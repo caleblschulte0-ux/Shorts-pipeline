@@ -51,6 +51,7 @@ class Happenings(unittest.TestCase):
             "bats": FIRE_ROOM, "fish": {"setting": "seashore", "time": "dusk", "weather": "clear", "shot": "close",
                                         "cast": [{"who": "man", "pose": "sit", "action": "fish"}], "props": []},
             "mouse": dict(LAMP_ROOM, time="night"), "moth": dict(LAMP_ROOM, time="night"), "turn": BED_ROOM,
+            "stretch": LAMP_ROOM,
         }
         self.assertEqual(set(homes), set(HP.KINDS))
         for k, spec in homes.items():
@@ -246,3 +247,24 @@ class EveryShotHasSomethingHappen(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+@unittest.skipUnless(HAVE, "the doodle kit needs cairo and numpy")
+class SomebodyAlreadyHereGetsUp(unittest.TestCase):
+    """A room too full for anyone new to walk in still has something happen:
+    whoever sits gets up, stands a moment, and sits back down."""
+
+    def test_the_lone_sitter_stretches_and_sits_back(self):
+        sp = {"setting": "villa_inside", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "woman", "pose": "sit", "action": "sew"}], "props": ["oil_lamp", "table", "brazier"]}
+        self.assertTrue(HP.fits("stretch", sp))
+        lay = S.layout(sp, 3)
+        acts = HP.plan(["stretch"], sp, lay, 3, 7.0)
+        self.assertEqual([a["kind"] for a in acts], ["stretch"])
+        a = acts[0]
+        self.assertEqual(a["owns"], 0)
+        seat = lay["people"][0]["pose"]          # the layout seats a sewer at the table on a bench
+        poses = [HP._state(a, t)[1] for t in (0.0, a["keys"][2][0] + 0.5, 7.0)]
+        self.assertEqual(poses, [seat, "stand", seat], poses)
+        self.assertTrue(all(abs(k[1] - lay["people"][0]["x"]) < 1 for k in a["keys"]), "a stretch is on the spot")
+

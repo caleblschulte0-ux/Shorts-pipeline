@@ -447,10 +447,25 @@ WALK_CYCLE = 1.1         # seconds per stride cycle (people.skeleton's walk)
 
 
 def walker_x(w: dict, t: float) -> float:
-    """Where a walker is at local time t: they enter from beyond one edge
-    and keep going, at exactly the pace their feet carry them (a planted
-    foot moves back 2 x 0.62 R each half cycle, so nothing slides)."""
-    return w["x0"] + w["dir"] * w["v"] * t
+    """Where a walker is at local time t: whole inside one edge at the
+    start, going at exactly the pace their feet carry them (a planted foot
+    moves back 2 x 0.62 R each half cycle, so nothing slides), and stopped
+    whole inside the far edge rather than walking out through it (run 92:
+    "a figure cut off at the right frame edge")."""
+    far = w.get("x_end")
+    x = w["x0"] + w["dir"] * w["v"] * t
+    if far is None:
+        return x
+    return min(x, far) if w["dir"] > 0 else max(x, far)
+
+
+def walker_pose(w: dict, t: float) -> str:
+    """`walk` on the way; `stand` once they have got where they were going."""
+    far = w.get("x_end")
+    if far is None:
+        return "walk"
+    x = w["x0"] + w["dir"] * w["v"] * t
+    return "stand" if (x >= far if w["dir"] > 0 else x <= far) else "walk"
 
 
 def _walkers(walking: list, s: float, gy: float, seed: int, pan: bool = False, far: bool = True) -> list:
@@ -483,8 +498,9 @@ def _walkers(walking: list, s: float, gy: float, seed: int, pan: bool = False, f
         # off at the left edge"); a second walker follows a few paces behind
         n_ = len(walking)
         x0 = (EDGE + 1.4 * R + (n_ - 1 - i) * 5.0 * R) if d > 0 else (W - EDGE - 1.4 * R - (n_ - 1 - i) * 5.0 * R)
+        x_end = (W - EDGE - 1.4 * R - i * 3.0 * R) if d > 0 else (EDGE + 1.4 * R + i * 3.0 * R)
         out.append(dict(who=c["who"], pose="walk", action=c.get("action", "idle"), mood=c.get("mood", "calm"),
-                        item=c.get("item"), x0=x0, dir=d, v=v, y=(gy - 66 * s) if far else (gy + 28 * s),
+                        item=c.get("item"), x0=x0, x_end=x_end, dir=d, v=v, y=(gy - 66 * s) if far else (gy + 28 * s),
                         s=sw, facing=facing, seed=seed * 17 + i * 211, near=not far))
     return out
 
@@ -1070,7 +1086,7 @@ class Scene:
                 for w in [w for w in lay.get("walkers") or [] if not w.get("front") and not w.get("near")]:
                     x = walker_x(w, t)
                     if -400 < x < W + 400:
-                        people.draw(cr, who=w["who"], era=self.era, seed=w["seed"], pose="walk",
+                        people.draw(cr, who=w["who"], era=self.era, seed=w["seed"], pose=walker_pose(w, t),
                                     action=w["action"], x=x, ground_y=w["y"], scale=w["s"], t=t,
                                     facing=w["facing"], mood=w["mood"], item=w["item"],
                                     cold=self.weather in ("frost", "snow"))
@@ -1083,7 +1099,7 @@ class Scene:
                         else:
                             _hp.animal(cr, a, t)
         for w in [w for w in lay.get("walkers") or [] if w.get("front")]:
-            people.draw(cr, who=w["who"], era=self.era, seed=w["seed"], pose="walk", action=w["action"],
+            people.draw(cr, who=w["who"], era=self.era, seed=w["seed"], pose=walker_pose(w, t), action=w["action"],
                         x=walker_x(w, t), ground_y=w["y"], scale=w["s"], t=t * w.get("pace", 1.0), facing=w["facing"],
                         mood=w["mood"],
                         item=w["item"], cold=self.weather in ("frost", "snow"))
@@ -1106,7 +1122,7 @@ class Scene:
                 w = lay["walkers"][i]
                 x = walker_x(w, t)
                 if -400 < x < W + 400:
-                    people.draw(cr, who=w["who"], era=self.era, seed=w["seed"], pose="walk", action=w["action"],
+                    people.draw(cr, who=w["who"], era=self.era, seed=w["seed"], pose=walker_pose(w, t), action=w["action"],
                                 x=x, ground_y=w["y"], scale=w["s"], t=t, facing=w["facing"], mood=w["mood"],
                                 item=w["item"], cold=cold)
                 continue

@@ -50,7 +50,7 @@ W, H = 1920, 1080
 EDGE = 30.0
 GAP = 12.0
 
-PEOPLE_KINDS = ("arrive", "leave", "feed", "serve", "light", "snuff", "child", "passer", "turn")
+PEOPLE_KINDS = ("arrive", "leave", "feed", "serve", "light", "snuff", "child", "passer", "turn", "stretch")
 BACK_K = 0.56            # the far side of the picture: scene.WALK_LANE
 ANIMAL_KINDS = ("dog", "cat", "hens", "birds", "fish", "bats", "mouse", "moth")
 KINDS = PEOPLE_KINDS + ANIMAL_KINDS
@@ -311,6 +311,28 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
                           (t_turn, f["x"], "lie", f["action"], other),
                           (dur + 5, f["x"], "lie", f["action"], other)],
                     turn=dict(t0=t_turn - 0.7, tm=t_turn, t1=t_turn + 0.8))
+    if kind == "stretch":
+        # somebody already here gets up, stands a moment, and sits back down:
+        # what happens in a room too full for anyone new to walk into (the
+        # lone woman by her lamp had nothing but a mouse to offer)
+        sitters = [i for i, f in enumerate(lay["people"]) if f["pose"] in ("sit", "sit_on", "crouch")
+                   and x0 < f["x"] < x1]
+        if not sitters:
+            return None
+        gi = sitters[r.randrange(len(sitters))]
+        f = lay["people"][gi]
+        R = _R(f["who"], f["s"])
+        if not _head_fits(spec, f["y"], R):
+            return None                 # standing, the head would be above the window
+        t_up = max(1.0, min(dur * 0.3, dur - 3.0))
+        return dict(kind=kind, who=f["who"], s=f["s"], y=f["y"], seed=f["seed"], R=R, owns=gi,
+                    item=f.get("item"), mood=f.get("mood", "calm"),
+                    keys=[(0.0, f["x"], f["pose"], f["action"], f["facing"]),
+                          (t_up, f["x"], f["pose"], f["action"], f["facing"]),
+                          (t_up + RISE_S, f["x"], "stand", "idle", f["facing"]),
+                          (t_up + RISE_S + 1.3, f["x"], "stand", "idle", f["facing"]),
+                          (t_up + 2 * RISE_S + 1.3, f["x"], f["pose"], f["action"], f["facing"]),
+                          (dur + 5, f["x"], f["pose"], f["action"], f["facing"])])
     if kind in ("light", "snuff"):
         lamps = [p for p in _lamps(lay) if x0 < p["x"] < x1]
         if kind == "snuff":
@@ -392,13 +414,21 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
         sw = s * BACK_K
         R = _R(who, sw)
         side = r.choice((-1, 1))
-        start = (x0 - 3 * R) if side > 0 else (x1 + 3 * R)
-        end = start + side * WALK_V * R * dur * 1.05
+        # whole at both ends (run 92: "a figure is cut off at the right frame
+        # edge" was a passer walking out through it): in just inside one
+        # edge, across the back, and stopped whole just inside the other
+        start = (x0 + EDGE + 1.4 * R) if side > 0 else (x1 - EDGE - 1.4 * R)
+        far = (x1 - EDGE - 1.4 * R) if side > 0 else (x0 + EDGE + 1.4 * R)
+        travel = min(abs(far - start), WALK_V * R * dur * 1.05)
+        end = start + side * travel
+        t_end = max(0.5, travel / max(1e-6, WALK_V * R))
         dark = spec.get("time") in ("dusk", "night")
+        facing = "right" if side > 0 else "left"
         return dict(kind=kind, who=who, s=sw, y=lay["ground_y"] - 66 * s, seed=seed * 31 + 41, R=R,
                     item=("lantern" if dark else r.choice(("basket", "bundle", "none"))),
-                    keys=[(0.0, start, "walk", "carry" if not dark else "idle", "right" if side > 0 else "left"),
-                          (dur * 1.05, end, "walk", "idle", "right" if side > 0 else "left")], behind=True)
+                    keys=[(0.0, start, "walk", "carry" if not dark else "idle", facing),
+                          (t_end, end, "walk", "idle", facing),
+                          (t_end + 0.01, end, "stand", "idle", facing)], behind=True)
     if kind == "hens":
         dsz = 0.85 * s
         side = r.choice((-1, 1))
@@ -531,6 +561,8 @@ def fits(kind: str, spec: dict) -> bool:
         return not inside and not st.water
     if kind == "turn":
         return asleep
+    if kind == "stretch":
+        return any(isinstance(c, dict) and c.get("pose") in ("sit", "sit_on", "crouch") for c in spec.get("cast") or [])
     if kind == "hens":
         return spec.get("setting") in YARDS and time in ("day", "dawn", "dusk")
     if kind == "birds":

@@ -248,3 +248,37 @@ class TheStoryboardIsLookedAtFirst(unittest.TestCase):
     def test_the_publisher_looks_at_the_board_before_rendering(self):
         src = (ROOT / "scripts" / "post_ori.py").read_text()
         self.assertLess(src.index("SB.polish("), src.index("meta = OS.render(ep, out)"))
+
+
+@needs_cairo
+class ARespecHappensOncePerKit(unittest.TestCase):
+    """Run 92: every render re-polished the same script, three rounds of
+    brain respecs each time, and the scenes drifted from their words a
+    little further every run."""
+
+    def setUp(self):
+        self.work = Path(tempfile.mkdtemp())
+        import data_learning.ori_storyboard as SB
+        self.SB = SB
+        self._ledger = SB.LEDGER
+        SB.LEDGER = self.work / "ledger.jsonl"
+
+    def tearDown(self):
+        self.SB.LEDGER = self._ledger
+        import shutil
+        shutil.rmtree(self.work, ignore_errors=True)
+
+    def test_the_second_polish_asks_the_brain_nothing_for_the_same_beat(self):
+        ep = _ep(3)
+        asks = []
+        good = {"setting": "forest", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "man", "pose": "sit", "action": "warm_hands"}], "props": ["campfire", "hide_rack"]}
+        def ask(sy, u):
+            asks.append(u)
+            return json.dumps(good)
+        self.SB.polish(ep, judge=_judge_flagging({1: (False, 1)}, []), ask=ask, work=self.work / "w1", rounds=1)
+        n = len(asks)
+        self.assertEqual(n, 1)
+        self.assertEqual(ep["storyboard_respecs"].get("1"), self.SB.kit_sha())
+        self.SB.polish(ep, judge=_judge_flagging({1: (False, 1)}, []), ask=ask, work=self.work / "w2", rounds=1)
+        self.assertEqual(len(asks), n, "the same beat was respecified again on the next run")

@@ -31,6 +31,7 @@ import json
 import os
 import sys
 import tempfile
+import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -275,6 +276,8 @@ def respec(fb: dict, era: str, why: str, ask, chapter: str | None = None, chapte
     A.mend_beats([probe], era, log=lambda *_: None)
     if S.validate(new, era):
         return None
+    if keeps_nothing_the_words_name(fb.get("say", ""), fb["scene"], new):
+        return None
     if chapter_beats is not None:
         # the author's own picture rules still hold: a respec that makes the
         # same picture as the beat before or after it is not an improvement
@@ -289,6 +292,38 @@ def respec(fb: dict, era: str, why: str, ask, chapter: str | None = None, chapte
     fb["scene"].clear()
     fb["scene"].update(new)
     return "respecified"
+
+
+SLEEP_WORDS = re.compile(r"\b(asleep|sleeps|sleeping|lies down|lay down|lying|drift(?:s|ed) off|dozing|dozes)\b", re.I)
+
+
+def keeps_nothing_the_words_name(say: str, old: dict, new: dict) -> str | None:
+    """Why a respec is refused: it dropped something the words name that
+    the old scene had. Run 92's storyboard put a woman yawning where "the
+    man ... is already asleep" lay, took the dog out of "a stray dog noses
+    through the ash", and sent two of four diners away. A brain's new
+    scene may add; it may not take the words' own subject out."""
+    pass
+    low = (say or "").lower()
+    old_props = [p if isinstance(p, str) else (p or {}).get("name") for p in old.get("props") or []]
+    new_props = [p if isinstance(p, str) else (p or {}).get("name") for p in new.get("props") or []]
+    for n in OS.named_in(say, old_props):
+        if n not in new_props:
+            return f"the words name the {n}"
+    old_cast = [c for c in old.get("cast") or [] if isinstance(c, dict)]
+    new_cast = [c for c in new.get("cast") or [] if isinstance(c, dict)]
+    if SLEEP_WORDS.search(low) and any(c.get("pose") == "lie" for c in old_cast) \
+            and not any(c.get("pose") == "lie" for c in new_cast):
+        return "the words say somebody sleeps"
+    nouns = re.sub(r"\b(he|him|his|she|her)\b", " ", low)
+    old_who = {c.get("who") for c in old_cast}
+    new_who = {c.get("who") for c in new_cast}
+    for who, pat in OS.WHO_WORDS.items():
+        if re.search(pat, nouns) and who in old_who and who not in new_who:
+            return f"the words name the {who.replace('_', ' ')}"
+    if OS.PLURAL_PEOPLE.search(low) and len(new_cast) < min(2, len(old_cast)):
+        return "the words say several people"
+    return None
 
 
 # ------------------------------------------------------------------ the loop
@@ -363,8 +398,14 @@ def polish(ep: dict, *, judge=None, ask=None, work: Path | None = None, rounds: 
             for fb in flagged:
                 f = findings[fb["index"]]
                 did = None
-                if f["shows_words"] <= SHOWS_MIN and ask is not None and respecs < MAX_RESPECS and not out_of_time():
+                # a beat is respecified ONCE per kit: run 92 re-polished a
+                # script three rounds every run and the scenes drifted away
+                # from their words a little further each time
+                asked = ep.setdefault("storyboard_respecs", {})
+                if f["shows_words"] <= SHOWS_MIN and ask is not None and respecs < MAX_RESPECS and not out_of_time() \
+                        and asked.get(str(fb["index"])) != sha:
                     respecs += 1
+                    asked[str(fb["index"])] = sha
                     did = respec(fb, ep["era"], f["why"], ask,
                                  chapter=(ep["chapters"][fb["chapter"]].get("title") or ""),
                                  chapter_beats=ep["chapters"][fb["chapter"]]["beats"])

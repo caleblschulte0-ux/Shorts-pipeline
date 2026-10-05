@@ -140,14 +140,19 @@ def banked(cr, x, y, s, t, seed, size=62.0):
     # a bed of coals, each breathing on its own time, under a thread of
     # smoke; no tongue of flame at all — with one, the 78 film's judge
     # called three banked braziers "full blazing flames"
+    # dull red, under ash: bright orange cores with yellow hearts read as
+    # "a fully flaming brazier" to run 92's judge from across a square
     r = random.Random(seed + 5)
+    ink.fill_stroke(cr, ink.blob_pts(x, y - 4 * s, 44 * s, 9 * s, seed + 9, 0.12, 14), (0.42, 0.4, 0.38, 0.9),
+                    lw=0, amp=0)                                      # the ash
     for k in range(9):
         ex = x + (k - 4) * 9 * s + r.uniform(-3, 3) * s
         ey = y - 6 * s - (k % 3) * 4 * s
         glow = 0.5 + 0.5 * math.sin(2 * math.pi * t / (1.1 + 0.23 * k) + k * 1.7)
-        ink.dot(cr, ex, ey, (6 + 4 * glow) * s, (1.0, 0.35 + 0.35 * glow, 0.1, 0.5 + 0.45 * glow))
-        ink.dot(cr, ex, ey, (2.5 + 2 * glow) * s, (1.0, 0.85, 0.5, 0.35 + 0.55 * glow))
-    ink.glow(cr, x, y - 10 * s, size * 0.9 * s, (1.0, 0.45, 0.15), 0.12 + 0.1 * math.sin(t * 2.6))
+        ink.dot(cr, ex, ey, (5 + 3 * glow) * s, (0.75, 0.16 + 0.18 * glow, 0.06, 0.45 + 0.4 * glow))
+        if k % 3 == 0:
+            ink.dot(cr, ex, ey, (2 + 1.5 * glow) * s, (1.0, 0.55, 0.25, 0.25 + 0.5 * glow))
+    ink.glow(cr, x, y - 10 * s, size * 0.8 * s, (0.9, 0.3, 0.1), 0.08 + 0.07 * math.sin(t * 2.6))
     # a last few sparks, slow, and a thread of smoke
     embers(cr, x, y - 20 * s, s * 0.8, t, seed, n=4, spread=30, rise=70)
     for k in range(3):
@@ -435,17 +440,18 @@ def brazier_base(cr, x, y, s, t, seed):
     fat legs read as "a modern kettle grill"."""
     bronze = rgb("#9a7a3c")
     dark = shade(bronze, 0.7)
-    # three thin legs splayed from a ring under the bowl, hoof feet
-    for dx in (-40, 0, 40):
-        ink.line(cr, [(x + dx * s, y), (x + dx * s * 0.35, y - 74 * s)], lw=4.5 * s, ink=dark, amp=0)
-        ink.fill_stroke(cr, ink.ellipse_pts(x + dx * s, y - 2 * s, 7 * s, 4 * s, 10), dark, lw=0, amp=0)
-    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 52 * s, 24 * s, 6 * s, 16), dark, lw=3 * s, amp=0)   # the ring
+    # a round foot and one turned pedestal: three splayed legs under a bowl
+    # were "a modern kettle grill" to two judges running (runs 91 and 92)
+    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 3 * s, 34 * s, 9 * s, 18), dark, lw=3 * s, amp=0.4, seed=seed + 2)
+    ink.fill_stroke(cr, [(x - 9 * s, y - 8 * s), (x + 9 * s, y - 8 * s), (x + 6 * s, y - 72 * s),
+                         (x - 6 * s, y - 72 * s)], dark, lw=3.5 * s, amp=0.4, seed=seed + 3)
+    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 42 * s, 13 * s, 5 * s, 14), dark, lw=2.5 * s, amp=0)   # a knop
     # a shallow wide bowl, its rim turned out, with a lip of light along it
-    ink.fill_stroke(cr, [(x - 66 * s, y - 92 * s), (x + 66 * s, y - 92 * s), (x + 48 * s, y - 70 * s),
-                         (x - 48 * s, y - 70 * s)], bronze, lw=4 * s, amp=0.6, seed=seed, shadow=dark,
+    ink.fill_stroke(cr, [(x - 78 * s, y - 92 * s), (x + 78 * s, y - 92 * s), (x + 40 * s, y - 70 * s),
+                         (x - 40 * s, y - 70 * s)], bronze, lw=4 * s, amp=0.6, seed=seed, shadow=dark,
                     shadow_dir=(1, 0.6))
-    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 92 * s, 66 * s, 11 * s, 22), rgb("#4a3a2a"), lw=4 * s, amp=0)
-    ink.line(cr, [(x - 60 * s, y - 94 * s), (x + 60 * s, y - 94 * s)], lw=3 * s, ink=rgb("#d9b86a"), amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 92 * s, 78 * s, 11 * s, 22), rgb("#4a3a2a"), lw=4 * s, amp=0)
+    ink.line(cr, [(x - 72 * s, y - 94 * s), (x + 72 * s, y - 94 * s)], lw=3 * s, ink=rgb("#d9b86a"), amp=0)
 
 
 def brazier(cr, x, y, s, t, seed):
@@ -1308,7 +1314,7 @@ PROPS = {
     "temple": Prop(temple, 520, "back", ANCIENT),
     "villa": Prop(villa, 480, "back", ANCIENT),
     "amphora": Prop(amphora, 80, "front", ANCIENT),
-    "brazier": Prop(brazier, 150, "mid", ("ancient", "egypt"), living=True, light=True, height=100, base=brazier_base),
+    "brazier": Prop(brazier, 170, "mid", ("ancient", "egypt"), living=True, light=True, height=100, base=brazier_base),
     "oil_lamp": Prop(oil_lamp, 60, "front", ("ancient", "egypt"), living=True, light=True, height=60, base=oil_lamp_base),
     "stall": Prop(stall, 340, "mid", ("ancient", "egypt", "medieval", "early_modern")),
     "goat": Prop(goat, 200, "mid", ("ancient", "egypt"), living=False),

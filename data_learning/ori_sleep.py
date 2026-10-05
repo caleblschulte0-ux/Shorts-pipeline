@@ -452,6 +452,14 @@ PLURAL_PEOPLE = re.compile(r"\b(sellers|gatherers|fishermen|families|neighbours|
 # words that put two people in one picture: "her child half asleep beside
 # her" is a shot of both, "neither of them is in any hurry" too (the 78
 # film: a lone sleeper, and one diner where the words said two)
+# the words say there is COMPANY in the room, with nobody named: "cups are
+# filled, and the talk begins" was a close-up of one man alone on his couch
+# (run 92), beside an empty one
+COMPANY = re.compile(r"\b(cups are|the talk|talk begins|conversation|the others|the guests|companions|the men|"
+                     r"the women|the diners|the family|they|them|everyone|all of them)\b", re.I)
+# the words have somebody WITH the sleeper: watching, covering, close by
+WITH_SLEEPER = re.compile(r"\b(watch(?:es|ing)?|close by|covers?|tucks?|draws? (?:the|a) (?:blanket|cover)|"
+                          r"sits? (?:up )?(?:beside|by|with|near)|over (?:him|her|them)|a moment longer)\b", re.I)
 TOGETHER = re.compile(r"\b(beside|next to|close to|near|with|between|around|opposite|facing) (her|him|them|each other|"
                       r"one another)\b|\b(neither of them|both of them|the two of them|the pair|together|each other|"
                       r"one another|side by side)\b", re.I)
@@ -514,7 +522,9 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dic
     still = [c for c in cast if c.get("pose") != "walk"]
     if lights and still:
         at = next((c for c in still if c.get("action") in FIRE_ACTIONS), still[0])
-        ins_props = lights[:2] + [n for n in (named or ()) if n in names and n not in lights[:2]]
+        # of ONE light: a second one sat half in the window (run 92: "the
+        # lamp at the right edge ... clipped by the frame")
+        ins_props = lights[:1] + [n for n in (named or ()) if n in names and n not in lights[:1]]
         cands["insert"] = (clean(dict(spec, shot="close", cast=[at], props=ins_props)), seed + 7)
     if S.SETTINGS.get(spec.get("setting")) is not None and S.SETTINGS[spec["setting"]].interior:
         cands.pop("est", None)          # a wide room is small people in an empty wall
@@ -541,7 +551,10 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dic
                 sp = dict(sp, frame=fr)
         elif name.startswith("single:") and lay["people"]:
             f = lay["people"][0]
-            fr = frame_for([_figure_box(f)], SINGLE_ZOOM)
+            # the person AND the lights, whole (run 92: "the lamp at the right
+            # edge is clipped by the frame")
+            boxes = [_figure_box(f)] + [_prop_box(q) for q in lay["props"] if q["name"] in lights]
+            fr = frame_for(boxes, SINGLE_ZOOM)
             # framed in only if what moves stays in the picture: a close-up
             # that crops the flame out is a held frame (the Greek film's
             # painting held 47 identical frames and the gate blocked it)
@@ -549,8 +562,9 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dic
                 k = fr[2]
                 x0 = min(max(fr[0] * k - S.W / 2, 0.0), (k - 1) * S.W) / k
                 x1 = x0 + S.W / k
-                if any(x0 + 40 < q["x"] < x1 - 40 for q in lay["props"] if q["name"] in lights) or \
-                        S.SETTINGS[sp["setting"]].water:
+                if any(x0 < q["x"] - PROPS[q["name"]].width * q["s"] / 2 and
+                       q["x"] + PROPS[q["name"]].width * q["s"] / 2 < x1 for q in lay["props"] if q["name"] in lights) \
+                        or S.SETTINGS[sp["setting"]].water:
                     sp = dict(sp, frame=fr)
         out[name] = (sp, sd)
     return out
@@ -567,6 +581,14 @@ def _figure_box(f: dict) -> tuple:
     return (f["x"] + lo - 0.3 * R, top, f["x"] + hi + 0.3 * R, f["y"] + 0.5 * R)
 
 
+def _prop_box(q: dict) -> tuple:
+    """A prop's bounding box in world pixels, with its flame."""
+    from data_learning.doodle.props import PROPS as _P
+    hw = _P[q["name"]].width * q["s"] / 2
+    ph = _P[q["name"]].height * q["s"]
+    return (q["x"] - hw, q["y"] - ph * 1.3, q["x"] + hw, q["y"] + 10)
+
+
 def frame_for(boxes: list, kmax: float) -> list | None:
     """[cx, cy, k] for a held close-up that holds every box whole: the
     largest zoom up to kmax whose window takes them all, centred on them and
@@ -576,20 +598,41 @@ def frame_for(boxes: list, kmax: float) -> list | None:
     y0 = min(b[1] for b in boxes)
     x1 = max(b[2] for b in boxes)
     y1 = max(b[3] for b in boxes)
+    import math as _m
     k = min(kmax, S.W / max(1.0, x1 - x0), S.H / max(1.0, y1 - y0))
-    k = max(1.0, round(k, 2))
+    k = max(1.0, _m.floor(k * 100) / 100)           # rounded DOWN: rounded up, the window lost two pixels off a lamp
     if k <= 1.02:
         return None
     cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
     # the window must stay inside the world: its centre within [W/2k, W - W/2k]
     cx = min(max(cx, S.W / (2 * k)), S.W - S.W / (2 * k))
     cy = min(max(cy, S.H / (2 * k)), S.H - S.H / (2 * k))
+    # the window's top edge through the room's beams is "a dark bar at the
+    # top edge" (run 92): where the boxes still fit, the top goes under the
+    # band
+    top = cy - S.H / (2 * k)
+    if 0 < top < TOP_BAND:
+        # a zoom at which the window starts under the band and still holds
+        # the boxes; else the full-height window from the top; else no frame
+        lo_k = S.H / (S.H - TOP_BAND)
+        hi_k = min(kmax, S.W / max(1.0, x1 - x0), S.H / max(1.0, y1 - TOP_BAND))
+        kk = _m.floor(hi_k * 100) / 100
+        if kk >= lo_k and y0 >= TOP_BAND:
+            k = kk
+            cx = min(max((x0 + x1) / 2, S.W / (2 * k)), S.W - S.W / (2 * k))
+            cy = TOP_BAND + S.H / (2 * k)
+        elif y1 <= S.H / k:
+            cy = S.H / (2 * k)
+        else:
+            return None
     # and the boxes inside the window after clamping
     if x0 < cx - S.W / (2 * k) or x1 > cx + S.W / (2 * k) or y0 < cy - S.H / (2 * k) or y1 > cy + S.H / (2 * k):
         k2 = max(1.0, min(k, S.W / max(1.0, 2 * max(cx - x0, x1 - cx)), S.H / max(1.0, 2 * max(cy - y0, y1 - cy))))
         if k2 <= 1.02:
             return None
-        k = round(k2, 2)
+        k = _m.floor(k2 * 100) / 100
+    if 0 < cy - S.H / (2 * k) < TOP_BAND:
+        return None                  # no zoom rather than a window edge through the beams
     return [round(cx, 1), round(cy, 1), k]
 
 
@@ -671,8 +714,10 @@ def _choose(opts: dict, text: str, last: str | None, first: bool, used: list, ne
     if _re.search(MOVE_WORDS, low) and ok("pan"):
         return "pan"
     nouns_ = _re.sub(r"\b(he|him|his|she|her)\b", " ", low)
+    has_sleeper = any((sp.get("cast") or [{}])[0].get("pose") == "lie" for n, (sp, _sd) in opts.items()
+                      if n.startswith("single:"))
     if _re.search(r"\b(asleep|sleeps|sleeping|lies down|lay down|lying)\b", nouns_) and \
-            not (TOGETHER.search(low) or PLURAL_PEOPLE.search(low)):
+            not (TOGETHER.search(low) or PLURAL_PEOPLE.search(low) or COMPANY.search(low) or WITH_SLEEPER.search(low)):
         # the sentence is about whoever sleeps — alone; "half asleep beside
         # her" is the two of them (the 79 film: "the child is shown sleeping
         # alone, without the mother beside her")
@@ -686,7 +731,8 @@ def _choose(opts: dict, text: str, last: str | None, first: bool, used: list, ne
     named = {w for w, pat in WHO_WORDS.items() if _re.search(pat, nouns)}
     if "old_woman" in nouns or " gm " in nouns:
         named.add("old_woman")
-    if len(named) >= 2 or PLURAL_PEOPLE.search(low) or TOGETHER.search(low):
+    if len(named) >= 2 or PLURAL_PEOPLE.search(low) or TOGETHER.search(low) or COMPANY.search(low) \
+            or (has_sleeper and WITH_SLEEPER.search(low)):
         for name in ("two", "arr", "est"):
             if name in opts and len(opts[name][0].get("cast") or []) >= 2 and (name != last or
                                                                                  not any(n != last and n in opts for n in ("two", "arr"))):
@@ -735,10 +781,14 @@ HAPPEN_WORDS = {
 # what fills a shot when its words name nothing that happens: a person
 # coming or going or doing something to the fire or the light, and
 # something alive crossing the picture
-FILL_PEOPLE = ("arrive", "feed", "serve", "leave", "light", "child", "snuff", "passer", "turn")
+FILL_PEOPLE = ("arrive", "feed", "serve", "leave", "light", "child", "snuff", "passer", "turn", "stretch")
 FILL_LIFE = ("dog", "birds", "fish", "cat", "hens", "bats", "mouse", "moth")
 SMALL_LIFE = ("mouse", "moth")
 HAPPEN_MIN = 2           # the operator, 2026-10-03: "more needs to be happening per scene. Significantly more."
+
+
+NEWCOMERS = ("arrive", "serve", "child", "passer")    # happenings that bring somebody new into the picture
+TOP_BAND = 175.0     # world px: the ceiling beams and the painted band every room has along the top
 
 
 def happenings(spec: dict, era: str, seed: int, text: str, dur: float, prev: tuple = (), avoid: tuple = ()) -> list[str]:
@@ -763,6 +813,15 @@ def happenings(spec: dict, era: str, seed: int, text: str, dur: float, prev: tup
         people_fill.remove("light")       # as filler, a lamp is lit at dusk; at night the words must say so
     if spec.get("time") != "night" or not re.search(r"\b(sleep|asleep|bed|rest|goodnight|dark|quiet)\b", low):
         people_fill.remove("snuff")       # a lamp blown out while the talk is just starting is the wrong evening
+    # the words name ONE person, or say they are alone: nobody else comes in
+    # (run 92: "an old fisherman, too restless to sleep, sits by the water"
+    # had three on the beach by the time the judge looked)
+    nouns = re.sub(r"\b(he|him|his|she|her)\b", " ", low)
+    named_people = [w for w, pat in WHO_WORDS.items() if re.search(pat, nouns)]
+    alone = re.search(r"\b(alone|lone|only (?:one|person|figure)|by (?:him|her)self|solitary|restless)\b", low)
+    if len([c for c in spec.get("cast") or [] if isinstance(c, dict)]) == 1 and \
+            (alone or (len(named_people) == 1 and not PLURAL_PEOPLE.search(low) and not COMPANY.search(low))):
+        people_fill = [k for k in people_fill if k not in NEWCOMERS]
     people_fill = [k for k in people_fill if k not in prev] + [k for k in people_fill if k in prev]
     life_fill = [k for k in life_fill if k not in prev] + [k for k in life_fill if k in prev]
     # the small ones only when nothing bigger fits, and never two shots running

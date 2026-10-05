@@ -505,3 +505,131 @@ class TheEightyThreeNotes(unittest.TestCase):
         self.assertEqual(sc["props"].count("couch"), n_rec)
         self.assertGreaterEqual(n_rec, 1)
 
+
+
+@unittest.skipUnless(HAVE, "the doodle kit needs cairo and numpy")
+class TheSecondEightyThree(unittest.TestCase):
+    """Run 92's notes (83 again), each a rule now. Most of them were the
+    storyboard brain's doing: a respec that took the words' own subject out
+    of the picture, run again every render."""
+
+    def _beat(self, scene, sents):
+        b = OS.Beat(chapter=0, index=0, text=" ".join(sents), scene=scene, start=0.0)
+        t = 0.0
+        for x in sents:
+            d = len(x.split()) / 2.3
+            b.lines.append((t, t + d, x))
+            t += d + 0.7
+        b.end = t
+        return b
+
+    def _shot_of(self, b, shots, words):
+        return next(x for x in shots if any(words in l[2] for l in b.lines if x["start"] <= l[0] < x["end"]))
+
+    def test_a_respec_may_not_take_the_words_subject_out(self):
+        from data_learning import ori_storyboard as SB
+        say = "Down toward the water, the man who went to the shore is already asleep. A dog rests near the doorway."
+        old = {"setting": "seashore", "time": "night", "weather": "clear", "shot": "close",
+               "cast": [{"who": "man", "pose": "lie", "action": "sleep"}], "props": ["torch", "dog"]}
+        gone_sleeper = dict(old, cast=[{"who": "woman", "pose": "sit", "action": "yawn"}])
+        self.assertTrue(SB.keeps_nothing_the_words_name(say, old, gone_sleeper))
+        gone_dog = dict(old, props=["torch", "boat"])
+        self.assertTrue(SB.keeps_nothing_the_words_name(say, old, gone_dog))
+        kept = dict(old, props=["torch", "dog", "boat"], cast=old["cast"] + [{"who": "woman", "pose": "sit", "action": "yawn"}])
+        self.assertIsNone(SB.keeps_nothing_the_words_name(say, old, kept))
+        four = "Bread and a cup pass between them. A man, a woman, a child and an elder share the meal."
+        old4 = {"setting": "villa_inside", "time": "night", "weather": "clear", "shot": "wide",
+                "cast": [{"who": "man", "pose": "sit", "action": "eat"}, {"who": "woman", "pose": "sit", "action": "eat"},
+                         {"who": "child", "pose": "sit", "action": "eat"}, {"who": "elder", "pose": "sit", "action": "eat"}],
+                "props": ["table", "oil_lamp"]}
+        two = dict(old4, cast=old4["cast"][:2])
+        self.assertTrue(SB.keeps_nothing_the_words_name(four, old4, two))
+
+    def test_cups_are_filled_is_everyone_at_the_symposium(self):
+        scene = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                 "cast": [{"who": "man", "pose": "recline", "action": "drink", "at": "left"},
+                          {"who": "man", "pose": "recline", "action": "drink", "at": "right"}],
+                 "props": ["oil_lamp", "couch", "couch"]}
+        sents = ["Inside, in the room kept for guests, low couches line the walls.",
+                 "Cups are filled, and the talk begins slowly, easing into the evening rather than rushing to fill it."]
+        b = self._beat(scene, sents)
+        sh = OS.shots({"slug": "t", "era": "ancient"}, [b])
+        cups = self._shot_of(b, sh, "Cups are filled")
+        self.assertEqual(len(cups["scene"]["cast"]), 2, cups["scene"])
+
+    def test_watching_the_sleeper_keeps_the_sleeper_in_shot(self):
+        scene = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "wide",
+                 "cast": [{"who": "child", "pose": "lie", "action": "sleep"},
+                          {"who": "old_woman", "pose": "sit", "action": "hold"}],
+                 "props": ["bed", "oil_lamp"]}
+        sents = ["On a low bed near the wall, a child is already asleep, one arm loose over the edge of the blanket.",
+                 "An old woman sits close by a moment longer, watching the small steady breathing."]
+        b = self._beat(scene, sents)
+        sh = OS.shots({"slug": "t", "era": "ancient"}, [b])
+        watching = self._shot_of(b, sh, "watching")
+        self.assertTrue(any(c.get("pose") == "lie" for c in watching["scene"]["cast"]), watching["scene"])
+        self.assertTrue(any(c.get("who") == "old_woman" for c in watching["scene"]["cast"]), watching["scene"])
+
+    def test_one_named_person_gets_no_company(self):
+        spec = {"setting": "seashore", "time": "night", "weather": "clear", "shot": "wide",
+                "cast": [{"who": "elder", "pose": "sit", "action": "look_up"}], "props": ["boat", "reeds", "basket"]}
+        for seed in range(6):
+            got = OS.happenings(spec, "ancient", seed,
+                                "An old fisherman, too restless to sleep, sits by the water and listens to it.", 7.0)
+            self.assertFalse(set(got) & set(OS.NEWCOMERS), got)
+
+    def test_the_passer_is_whole_at_both_ends(self):
+        from data_learning.doodle import happen as HP
+        spec = {"setting": "forum", "time": "night", "weather": "clear", "shot": "wide",
+                "cast": [{"who": "elder", "pose": "sit", "action": "warm_hands"}], "props": ["brazier", "column"]}
+        seen = 0
+        for seed in range(8):
+            lay = S.layout(spec, seed)
+            a = HP.build("passer", spec, lay, seed, 7.0)
+            if a is None:
+                continue
+            seen += 1
+            for _t, x, _pose, _act, _facing in a["keys"]:
+                self.assertGreaterEqual(x - 1.2 * a["R"], 0, seed)
+                self.assertLessEqual(x + 1.2 * a["R"], S.W, seed)
+            self.assertEqual(a["keys"][-1][2], "stand")
+        self.assertGreater(seen, 0)
+
+    def test_walkers_stop_whole_inside_the_far_edge(self):
+        spec = {"setting": "forum", "time": "night", "weather": "clear", "shot": "wide",
+                "cast": [{"who": "man", "pose": "walk", "action": "carry"},
+                         {"who": "woman", "pose": "sit", "action": "warm_hands"}], "props": ["brazier", "column"]}
+        lay = S.layout(spec, 4)
+        (w,) = lay["walkers"]
+        R = P.R0 * w["s"] * P.WHO["man"]["size"]
+        lo, hi = S.figure_extent("walk", R, w["action"], w.get("item"))
+        x = S.walker_x(w, 60.0)
+        self.assertGreaterEqual(x + lo, 0)
+        self.assertLessEqual(x + hi, S.W)
+        self.assertEqual(S.walker_pose(w, 60.0), "stand")
+        self.assertEqual(S.walker_pose(w, 0.5), "walk")
+
+    def test_the_frame_holds_the_lamp_and_spares_the_beams(self):
+        spec = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "elder", "pose": "lie", "action": "sleep"}], "props": ["brazier", "oil_lamp"]}
+        from data_learning.doodle.props import PROPS
+        for seed in range(1, 12):
+            opts = OS.coverage(spec, "ancient", seed)
+            for name, (sp, sd) in opts.items():
+                fr = sp.get("frame")
+                if not fr:
+                    continue
+                cx, cy, k = fr
+                x0 = min(max(cx * k - S.W / 2, 0.0), (k - 1) * S.W) / k
+                y0 = min(max(cy * k - S.H / 2, 0.0), (k - 1) * S.H) / k
+                lay = S.layout(sp, sd)
+                x1 = x0 + S.W / k
+                for q in lay["props"]:
+                    if q["name"] in ("oil_lamp", "brazier"):
+                        # whole in the window, or wholly out of it (an insert
+                        # is of ONE light): never cut by its edge
+                        hw = PROPS[q["name"]].width * q["s"] / 2
+                        inside = q["x"] - hw >= x0 - 1 and q["x"] + hw <= x1 + 1
+                        outside = q["x"] + hw <= x0 + 1 or q["x"] - hw >= x1 - 1
+                        self.assertTrue(inside or outside, (seed, name, q["name"], "cut by the window's edge"))
+                self.assertFalse(0 < y0 < OS.TOP_BAND, (seed, name, f"the window's top cuts the beams at {y0:.0f}"))

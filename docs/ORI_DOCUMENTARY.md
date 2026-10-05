@@ -984,6 +984,40 @@ only as a hand edit is not a rule. So:
   the retired two-hour floor — the 27-minute film was "not publishable".
   It is 1200 now, his twenty minutes.
 
+- **Run 92 (commit a215d3c4): 83, SHIP, again.** Same dimensions. "Several
+  scenes drop the sentence's own subject, most visibly a symposium drawn as
+  one man alone with no cups and no talk." The diff of the shelf the run
+  persisted told the real story: the storyboard brain's respecs had put a
+  woman yawning where "the man ... is already asleep" lay, taken the dog
+  out of "a stray dog noses through the ash", sent two of four diners away,
+  and turned the film's last sleeping scene into a woman poking a fire — and
+  it did it again on every render, three rounds a run, because the key that
+  says "the board has looked" is dropped whenever the post-polish mend
+  changes anything. Now, held by `TheSecondEightyThree` and
+  `ARespecHappensOncePerKit`:
+  - a respec may ADD; it may not take the words' own subject out
+    (`keeps_nothing_the_words_name`: the named props, the sleeper the words
+    say sleeps, the people the words name, several where the words say
+    several);
+  - a beat is respecified once per kit (`storyboard_respecs`), so the
+    scenes stop drifting from their words a little further every run;
+  - "cups are filled, and the talk begins" is COMPANY: the shot of everyone,
+    not a close-up of one man beside an empty couch; "sits close by ...
+    watching" keeps the sleeper in the shot with the watcher;
+  - the words naming ONE person, or saying alone, bring nobody new in
+    (`NEWCOMERS` off): "an old fisherman, too restless to sleep" had three
+    on the beach;
+  - a passer and the scene's own walkers start AND stop whole inside the
+    frame (standing once they are there) instead of walking out through
+    its edge;
+  - a framed close-up holds its lights whole, an insert is of one light,
+    and no window's top edge runs through the room's beams (`TOP_BAND`);
+  - banked coals are dull red under ash, not orange with yellow hearts,
+    and the brazier is a bowl on one turned pedestal: "a modern kettle
+    grill" to two judges running.
+  The Greek shelf is restored to its pre-polish state (a215d3c4) and
+  re-mended; the guarded board looks at it again on the next render.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);
