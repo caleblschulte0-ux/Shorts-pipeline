@@ -1291,5 +1291,549 @@
       "music_vibe": "dark",
       "bottom_theme": "auto"
     }
+  },
+  "20260706": {
+    "01_whale-shark-biggest-fish-diver-2026.json": {
+      "version": 1,
+      "slug": "whale-shark-biggest-fish-diver-2026",
+      "title": "A Diver Swam Next to the Biggest Fish on Earth",
+      "hashtags": [
+        "whaleshark",
+        "ocean",
+        "diver",
+        "biggestfish",
+        "marine",
+        "sea",
+        "wild",
+        "nature",
+        "viral",
+        "scuba",
+        "fyp",
+        "news"
+      ],
+      "script": "A diver swam right next to the biggest fish in the ocean, and it's the size of a school bus. It's a whale shark, and despite the name, it's completely harmless, gliding through the water with its mouth wide open. That mouth is nearly five feet across, but all it eats is tiny plankton, filtering thousands of gallons of water an hour. They can grow past forty feet long and live over a hundred years, making them one of the oldest, largest animals alive. Divers who see one describe it as swimming next to a living submarine. So how does something that huge survive on food that small?",
+      "shots": [
+        {
+          "phrase": "the biggest fish in the ocean",
+          "query": "whale shark",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whale_shark_Georgia_aquarium.jpg"
+        },
+        {
+          "phrase": "the size of a school bus",
+          "query": "whale shark diver",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whale_shark_Georgia_aquarium.jpg"
+        },
+        {
+          "phrase": "gliding through the water with its mouth wide open",
+          "query": "whale shark swimming",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "all it eats is tiny plankton",
+          "query": "whale shark mouth",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whale_shark_Georgia_aquarium.jpg"
+        },
+        {
+          "phrase": "filtering thousands of gallons",
+          "query": "ocean plankton",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "past forty feet long and live over a hundred years",
+          "query": "giant whale shark",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whale_shark_Georgia_aquarium.jpg"
+        },
+        {
+          "phrase": "swimming next to a living submarine",
+          "query": "scuba diver ocean",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "survive on food that small",
+          "query": "whale shark",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Whale_shark_Georgia_aquarium.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "the biggest fish in the ocean",
+          "text": "BIGGEST FISH ALIVE",
+          "color": "#30c0ff"
+        },
+        {
+          "phrase": "the size of a school bus",
+          "text": "SIZE OF A BUS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "completely harmless",
+          "text": "HARMLESS",
+          "color": "#00e070"
+        },
+        {
+          "phrase": "over a hundred years",
+          "text": "100+ YEARS OLD",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "epic"
+    },
+    "02_stromboli-volcano-erupts-2026.json": {
+      "version": 1,
+      "slug": "stromboli-volcano-erupts-2026",
+      "title": "A Volcano That's Been Erupting for 2,000 Years",
+      "hashtags": [
+        "volcano",
+        "stromboli",
+        "lava",
+        "eruption",
+        "italy",
+        "nature",
+        "geology",
+        "wild",
+        "science",
+        "viral",
+        "fyp",
+        "news"
+      ],
+      "script": "There's a volcano that has been erupting almost nonstop for over two thousand years, and people still live right next to it. It's called Stromboli, a small island off Italy, and it fires glowing chunks of lava into the sky every few minutes like clockwork. Sailors have used its constant glow as a natural lighthouse for centuries, calling it the lighthouse of the Mediterranean. Most eruptions are small, but every so often it lets out a big one that sends ash and rock raining down. The people who live there have simply learned to time their lives around a mountain that never sleeps. So why would anyone build a home on an active volcano?",
+      "shots": [
+        {
+          "phrase": "a volcano that has been erupting almost nonstop for over two thousand years",
+          "query": "volcano erupting",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stromboli_Eruption.jpg"
+        },
+        {
+          "phrase": "people still live right next to it",
+          "query": "volcano island",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stromboli_Eruption.jpg"
+        },
+        {
+          "phrase": "fires glowing chunks of lava into the sky",
+          "query": "lava eruption night",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stromboli_Eruption.jpg"
+        },
+        {
+          "phrase": "every few minutes like clockwork",
+          "query": "volcano lava",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the lighthouse of the Mediterranean",
+          "query": "stromboli volcano",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stromboli_Eruption.jpg"
+        },
+        {
+          "phrase": "ash and rock raining down",
+          "query": "volcanic ash",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a mountain that never sleeps",
+          "query": "volcano night",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stromboli_Eruption.jpg"
+        },
+        {
+          "phrase": "build a home on an active volcano",
+          "query": "volcano",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stromboli_Eruption.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "erupting almost nonstop for over two thousand years",
+          "text": "2,000 YEARS",
+          "color": "#ff6a00"
+        },
+        {
+          "phrase": "every few minutes like clockwork",
+          "text": "EVERY FEW MINUTES",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "lighthouse of the Mediterranean",
+          "text": "NATURAL LIGHTHOUSE",
+          "color": "#30c0ff"
+        },
+        {
+          "phrase": "never sleeps",
+          "text": "NEVER SLEEPS",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "epic"
+    },
+    "03_bison-charges-tourist-yellowstone-2026.json": {
+      "version": 1,
+      "slug": "bison-charges-tourist-yellowstone-2026",
+      "title": "A Tourist Got Way Too Close to a Bison",
+      "hashtags": [
+        "bison",
+        "yellowstone",
+        "tourist",
+        "wildlife",
+        "charge",
+        "nature",
+        "wild",
+        "viral",
+        "animals",
+        "danger",
+        "fyp",
+        "news"
+      ],
+      "script": "A tourist walked way too close to a wild bison for a photo, and it did not end well. The animal, which can weigh a ton and run three times faster than a person, lowered its head and charged in a blur. Bison look slow and calm, but they injure more people in national parks than any other animal, including bears. Rangers say to stay at least seventy-five feet back, but every year someone ignores it for a selfie. This time the tourist got tossed into the air and got lucky to walk away with only bruises. So why do people keep underestimating them?",
+      "shots": [
+        {
+          "phrase": "walked way too close to a wild bison",
+          "query": "american bison",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_bison_k5680-1.jpg"
+        },
+        {
+          "phrase": "it did not end well",
+          "query": "bison closeup",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_bison_k5680-1.jpg"
+        },
+        {
+          "phrase": "can weigh a ton and run three times faster than a person",
+          "query": "bison running",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "lowered its head and charged",
+          "query": "bison charging",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_bison_k5680-1.jpg"
+        },
+        {
+          "phrase": "injure more people in national parks than any other animal",
+          "query": "bison herd",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "stay at least seventy-five feet back",
+          "query": "bison field",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_bison_k5680-1.jpg"
+        },
+        {
+          "phrase": "tossed into the air",
+          "query": "yellowstone bison",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "keep underestimating them",
+          "query": "bison",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/American_bison_k5680-1.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "way too close",
+          "text": "TOO CLOSE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "can weigh a ton",
+          "text": "1 TON",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "than any other animal",
+          "text": "#1 MOST DANGEROUS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "tossed into the air",
+          "text": "LAUNCHED",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "tense"
+    },
+    "04_skydiver-parachute-fails-survives-2026.json": {
+      "version": 1,
+      "slug": "skydiver-parachute-fails-survives-2026",
+      "title": "His Parachute Failed at 12,000 Feet. He Lived.",
+      "hashtags": [
+        "skydiving",
+        "parachute",
+        "survived",
+        "extreme",
+        "freefall",
+        "crazy",
+        "viral",
+        "adrenaline",
+        "stunt",
+        "wild",
+        "fyp",
+        "news"
+      ],
+      "script": "A skydiver's parachute failed at twelve thousand feet, and somehow he survived the fall. When his main chute tangled, he had seconds to cut it away and deploy his reserve, but that one only half-opened. He hit the ground at highway speed, and by every rule of physics he should not have made it. But he landed in a soft muddy field that absorbed just enough of the impact, walking away with broken bones instead of worse. Skydivers train for total chute failure over and over, because the difference between living and dying is what you do in about ten seconds. So what would you actually do in free fall?",
+      "shots": [
+        {
+          "phrase": "A skydiver's parachute failed at twelve thousand feet",
+          "query": "skydiver falling",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skydiving.jpg"
+        },
+        {
+          "phrase": "somehow he survived the fall",
+          "query": "skydiving",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skydiving.jpg"
+        },
+        {
+          "phrase": "his main chute tangled",
+          "query": "parachute sky",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "that one only half-opened",
+          "query": "skydiver parachute",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skydiving.jpg"
+        },
+        {
+          "phrase": "hit the ground at highway speed",
+          "query": "skydiver ground",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "landed in a soft muddy field",
+          "query": "skydiving field",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skydiving.jpg"
+        },
+        {
+          "phrase": "the difference between living and dying is what you do in about ten seconds",
+          "query": "skydiver freefall",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "do in free fall",
+          "query": "skydiving",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skydiving.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "parachute failed at twelve thousand feet",
+          "text": "12,000 FEET",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "only half-opened",
+          "text": "HALF-OPENED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "hit the ground at highway speed",
+          "text": "HIGHWAY SPEED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "survived the fall",
+          "text": "HE LIVED",
+          "color": "#00e070"
+        }
+      ],
+      "music_vibe": "tense"
+    },
+    "05_alligator-in-swimming-pool-2026.json": {
+      "version": 1,
+      "slug": "alligator-in-swimming-pool-2026",
+      "title": "A Family Found an Alligator in Their Pool",
+      "hashtags": [
+        "alligator",
+        "gator",
+        "pool",
+        "florida",
+        "wildlife",
+        "scary",
+        "viral",
+        "wild",
+        "animals",
+        "backyard",
+        "fyp",
+        "news"
+      ],
+      "script": "A family woke up to find an eleven-foot alligator floating in their backyard swimming pool. It had climbed the fence overnight, slid into the water, and made itself right at home, staring back at them through the glass door. Gators do this more than people think; a pool looks exactly like the warm, still water they love, and they'll travel surprising distances on land to find one. Trappers had to lasso it and tape its jaws shut before hauling it out, and it took four grown men to move it. The scariest part was realizing it had been in there all night. So how do you even get one out safely?",
+      "shots": [
+        {
+          "phrase": "an eleven-foot alligator floating in their backyard swimming pool",
+          "query": "alligator pool",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alligator_mississippiensis.jpg"
+        },
+        {
+          "phrase": "climbed the fence overnight",
+          "query": "large alligator",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alligator_mississippiensis.jpg"
+        },
+        {
+          "phrase": "staring back at them through the glass door",
+          "query": "alligator water",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a pool looks exactly like the warm, still water they love",
+          "query": "alligator swimming",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alligator_mississippiensis.jpg"
+        },
+        {
+          "phrase": "travel surprising distances on land",
+          "query": "alligator walking",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "lasso it and tape its jaws shut",
+          "query": "alligator trapper",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alligator_mississippiensis.jpg"
+        },
+        {
+          "phrase": "it had been in there all night",
+          "query": "backyard pool",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "get one out safely",
+          "query": "alligator",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Alligator_mississippiensis.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "eleven-foot alligator",
+          "text": "11 FEET",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "in their backyard swimming pool",
+          "text": "IN THE POOL",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "climbed the fence overnight",
+          "text": "IT CLIMBED THE FENCE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "four grown men to move it",
+          "text": "TOOK 4 MEN",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "dark"
+    },
+    "06_survived-going-over-niagara-falls-2026.json": {
+      "version": 1,
+      "slug": "survived-going-over-niagara-falls-2026",
+      "title": "Someone Went Over Niagara Falls and Lived",
+      "hashtags": [
+        "niagarafalls",
+        "survived",
+        "waterfall",
+        "miracle",
+        "crazy",
+        "viral",
+        "rescue",
+        "wild",
+        "nature",
+        "shocking",
+        "fyp",
+        "news"
+      ],
+      "script": "Someone went over Niagara Falls with no protection at all, and unbelievably survived. The person went over the edge where millions of gallons crash down every second onto jagged rocks below. The drop is nearly two hundred feet, and the force at the bottom is strong enough to crush a boat, yet rescuers found the person alive in the churning water and pulled them out. Only a tiny handful of people in history have ever survived the falls without a barrel or a suit, and most who go over do not. Experts still can't fully explain how the body absorbed that much force. So what makes the difference between surviving and not?",
+      "shots": [
+        {
+          "phrase": "Someone went over Niagara Falls with no protection at all",
+          "query": "niagara falls",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Niagara_Falls.jpg"
+        },
+        {
+          "phrase": "unbelievably survived",
+          "query": "waterfall",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Niagara_Falls.jpg"
+        },
+        {
+          "phrase": "millions of gallons crash down every second",
+          "query": "niagara falls water",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Niagara_Falls.jpg"
+        },
+        {
+          "phrase": "nearly two hundred feet",
+          "query": "waterfall cliff",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "strong enough to crush a boat",
+          "query": "niagara falls mist",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Niagara_Falls.jpg"
+        },
+        {
+          "phrase": "found the person alive in the churning water",
+          "query": "rescue water",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a tiny handful of people in history",
+          "query": "niagara falls",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Niagara_Falls.jpg"
+        },
+        {
+          "phrase": "surviving and not",
+          "query": "waterfall",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Niagara_Falls.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "went over Niagara Falls",
+          "text": "OVER THE FALLS",
+          "color": "#30c0ff"
+        },
+        {
+          "phrase": "no protection at all",
+          "text": "NO PROTECTION",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "nearly two hundred feet",
+          "text": "200 FEET DOWN",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "unbelievably survived",
+          "text": "HE SURVIVED",
+          "color": "#00e070"
+        }
+      ],
+      "music_vibe": "epic"
+    }
   }
 }
