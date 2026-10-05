@@ -36,7 +36,7 @@ ERAS = ("stone_age", "medieval", "ancient", "victorian", "egypt", "early_modern"
 SHOTS = ("close", "wide")
 SLOTS = {"far_left": 0.1, "left": 0.24, "center_left": 0.37, "center": 0.5,
          "center_right": 0.63, "right": 0.76, "far_right": 0.9}
-STILL = {"tent", "hut", "tree", "pine", "bush", "rock", "woodpile", "bedroll", "hide_rack", "fence", "krater",
+STILL = {"tent", "hut", "tree", "pine", "bush", "rock", "woodpile", "bedroll", "mat", "hide_rack", "fence", "krater",
          "table", "bench", "barrel", "stones", "basket", "bed", "cave_painting",
          "column", "temple", "villa", "amphora", "stall", "olive",
          "terrace", "chair", "bookshelf", "clock", "chimney_pot",
@@ -341,6 +341,8 @@ ITEM_REACH = {"spear": 2.1, "torch": 1.3, "stick": 1.2, "branch": 1.3, "axe": 1.
 FAR_SHORE = {"hut", "cottage", "tent", "tree", "pine", "villa", "temple", "column", "terrace", "barn",
              "obelisk", "mudbrick_house", "timber_house", "ship", "palm", "olive", "pyramid", "chimney_pot",
              "hide_rack", "fish_rack", "cave_painting"}
+# what a sleeper lies on: placed under them, centred on the body
+BEDDING = ("bedroll", "bed", "mat")
 SOLID_BACK = {"deer", "mammoth", "cow", "cart", "well", "hut", "cottage", "tent", "fish_rack", "hide_rack", "torch",
               "hearth", "temple", "villa", "column", "terrace", "gas_lamp", "carriage", "stove", "bookshelf",
               "clock", "obelisk", "mudbrick_house", "timber_house", "ship"}
@@ -550,6 +552,12 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         # in front of it still reads; a face does not
         _, mx, ow = settings.cave_opening(seed, shot)
         blocked.append(dict(label="the cave opening", lo=mx - ow, hi=mx + ow))
+    if spec.get("setting") == "villa_inside":
+        # nobody lies down across the courtyard door (a head in it is fine:
+        # somebody standing in a doorway is a thing people do)
+        dx = settings.villa_doorway(seed)
+        blocked.append(dict(label="the doorway", lo=dx - settings.VILLA_DOOR_HALF, hi=dx + settings.VILLA_DOOR_HALF,
+                            lying_only=True))
 
     def clash(lo, hi, head=None, keep_off=False, off_trees=False):
         """How much (lo, hi) overlaps what is taken. `head` is a person's
@@ -562,10 +570,13 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         if off_trees:
             c += sum(max(0.0, min(hi, thi) - max(lo, tlo) - MARGIN) for tlo, thi in trees)
         if head is not None:
-            hlo, hhi = head
-            c += sum(max(0.0, min(hhi, b["hi"]) - max(hlo, b["lo"]) - MARGIN) for b in blocked)
+            hlo, hhi = head[:2]
+            lying = len(head) == 3           # keep_span marks the whole of somebody lying down
+            c += sum(max(0.0, min(hhi, b["hi"]) - max(hlo, b["lo"]) - MARGIN) for b in blocked
+                     if not b.get("lying_only") or lying)
         elif keep_off:
-            c += sum(max(0.0, min(hi, b["hi"]) - max(lo, b["lo"]) - MARGIN) for b in blocked)
+            c += sum(max(0.0, min(hi, b["hi"]) - max(lo, b["lo"]) - MARGIN) for b in blocked
+                     if not b.get("lying_only"))
         return c
 
     def free(lo, hi, head=None, keep_off=False, off_trees=False):
@@ -590,6 +601,13 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
 
     def head_span(x, R):
         return x - 1.25 * R, x + 1.25 * R
+
+    def keep_span(c, x, facing, R):
+        """What must stay off ground the setting owns: a head — or, for
+        somebody lying down, the whole of them (the doorway)."""
+        if c.get("pose") == "lie":
+            return (*fig_span(c, x, facing, R), "lying")
+        return head_span(x, R)
 
     def settle(x, span_of, lo_lim, hi_lim, head_of=None, keep_off=False, off_trees=False):
         """Slide x away from the focal thing, then toward it, until its span
@@ -710,7 +728,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         pr, ps, py, w = prop_geom(p)
         if p.get("at"):
             x = W * SLOTS[p["at"]]
-        elif sleeper and p["name"] in ("bedroll", "bed") and not sleeper.get("_bed"):
+        elif sleeper and p["name"] in BEDDING and not sleeper.get("_bed"):
             # under the sleeper, centred on the body (head to feet), and
             # exempt from the crowding check — it is meant to be under them
             size = people.WHO[sleeper["who"]]["size"]
@@ -842,9 +860,9 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
                     lo0, hi0 = fig_span(c, 0.0, facing, R)
                     cand = focal_x + side * (half + (hi0 if side > 0 else -lo0) + 0.35 * R)
                     got = settle(cand, lambda xx: fig_span(c, xx, facing, R), EDGE, W - EDGE,
-                                 head_of=lambda xx: head_span(xx, R))
+                                 head_of=lambda xx: keep_span(c, xx, facing, R))
                     lo, hi = fig_span(c, got, facing, R)
-                    if lo >= EDGE and hi <= W - EDGE and free(lo, hi, head_span(got, R)):
+                    if lo >= EDGE and hi <= W - EDGE and free(lo, hi, keep_span(c, got, facing, R)):
                         x = got
                         break
             for k in range(len(slots_auto)):
@@ -853,16 +871,16 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
                 cand = W * slots_auto[(i + k) % len(slots_auto)]
                 facing = c.get("facing") or ("right" if cand < focal_x else "left")
                 got = settle(cand, lambda xx: fig_span(c, xx, facing, R), EDGE, W - EDGE,
-                             head_of=lambda xx: head_span(xx, R))
+                             head_of=lambda xx: keep_span(c, xx, facing, R))
                 lo, hi = fig_span(c, got, facing, R)
-                if lo >= EDGE and hi <= W - EDGE and free(lo, hi, head_span(got, R)):
+                if lo >= EDGE and hi <= W - EDGE and free(lo, hi, keep_span(c, got, facing, R)):
                     x = got
                     break
             if x is None:
                 cand = W * slots_auto[i % len(slots_auto)]
                 facing = c.get("facing") or ("right" if cand < focal_x else "left")
                 x = settle(cand, lambda xx: fig_span(c, xx, facing, R), EDGE, W - EDGE,
-                           head_of=lambda xx: head_span(xx, R))
+                           head_of=lambda xx: keep_span(c, xx, facing, R))
         put(*fig_span(c, x, facing, R))
         figs[i] = dict(who=c["who"], pose=pose, action=c.get("action", "idle"),
                        mood=c.get("mood", "calm"), item=c.get("item"), x=x,

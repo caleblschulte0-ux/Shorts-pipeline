@@ -935,6 +935,19 @@ only as a hand edit is not a rule. So:
   (`_head_fits`); no second child where there is a child. "Half asleep
   beside her" is the two of them now (the together rule runs before the
   sleeper rule), and the symposium has a krater.
+- **The same verdict's last note, "vary the sleeper scenes (a bed, a mat
+  by a wall, a parent and child together) so the second half does not
+  repeat one composition":** twelve of the film's fifteen sleeper scenes
+  were a close shot of somebody lying on the bare floor beside somebody
+  sitting. The kit has a `mat` now (a reed mat with rolled ends, longer
+  than the sleeper so it shows past the head and the feet, no blanket of
+  its own), and `ori_author.mend_sleepers` rotates what consecutive
+  indoor sleepers lie on — a bed, a mat, the floor — when the words do not
+  say; "on a low bed" keeps its bed. Found drawing it: a woman placed
+  asleep across the villa's courtyard door. `settings.villa_doorway` is a
+  pure function of the seed now and the layout keeps anyone lying down
+  out of it (a head may stand in a doorway; a body may not lie across
+  one). Held by `TheSleepersVary` in `tests/test_the_words_are_drawn.py`.
 
 ## Any topic: the era is found or the refusal is honest
 

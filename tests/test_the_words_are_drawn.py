@@ -297,3 +297,75 @@ class TheShotKeepsWhatTheSentenceNames(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TheSleepersVary(unittest.TestCase):
+    """The 79 film's judge: "vary the sleeper scenes (a bed, a mat by a
+    wall, a parent and child together) so the second half does not repeat
+    one composition"."""
+
+    def _film(self, props_per_beat, say="A man sleeps, and the house is quiet."):
+        beats = []
+        for props in props_per_beat:
+            beats.append({"say": say, "scene": {
+                "setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "man", "pose": "lie", "action": "sleep"},
+                         {"who": "woman", "pose": "sit", "action": "hold"}],
+                "props": list(props)}})
+        return {"slug": "t", "era": "ancient", "title": "t", "chapters": [{"title": "Night", "beats": beats}]}
+
+    def test_the_kit_draws_a_mat_under_the_sleeper(self):
+        from data_learning.doodle import scene as S
+        sc = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "man", "pose": "lie", "action": "sleep"}], "props": ["mat", "oil_lamp"]}
+        self.assertEqual(S.validate(sc, "ancient"), [])
+        lay = S.layout(sc, 7)
+        mat = next(p for p in lay["props"] if p["name"] == "mat")
+        self.assertEqual(mat.get("under"), 0, "the mat is not under the sleeper")
+        self.assertEqual(lay["collisions"], [])
+
+    def test_sleepers_in_a_row_do_not_share_one_bedding(self):
+        from scripts import ori_author as A
+        ep = self._film([["oil_lamp"], ["oil_lamp"], ["oil_lamp"], ["oil_lamp"]])
+        A.mend_film(ep, log=lambda *_: None)
+        beds = [A._bedding_of(b["scene"]) for b in ep["chapters"][0]["beats"]]
+        for a, b in zip(beds, beds[1:]):
+            self.assertNotEqual(a, b, beds)
+        self.assertGreaterEqual(len(set(beds)), 2, beds)
+
+    def test_the_words_keep_their_bed(self):
+        from scripts import ori_author as A
+        ep = self._film([["bed", "oil_lamp"], ["bed", "oil_lamp"]],
+                        say="On a low bed by the wall a man sleeps, and the house is quiet.")
+        A.mend_film(ep, log=lambda *_: None)
+        self.assertEqual([A._bedding_of(b["scene"]) for b in ep["chapters"][0]["beats"]], ["bed", "bed"])
+
+    def test_nobody_sleeps_across_the_villa_doorway(self):
+        from data_learning.doodle import scene as S, settings as ST
+        sc = {"setting": "villa_inside", "time": "night", "weather": "clear", "shot": "wide",
+              "cast": [{"who": "child", "pose": "lie", "action": "sleep"},
+                       {"who": "woman", "pose": "lie", "action": "sleep"},
+                       {"who": "man", "pose": "stand", "action": "idle"}],
+              "props": ["mat", "oil_lamp", "brazier"]}
+        for seed in range(1, 25):
+            lay = S.layout(sc, seed)
+            dx = ST.villa_doorway(seed)
+            for it in S.spans(lay):
+                if it.get("fig") is None or lay["people"][it["fig"]]["pose"] != "lie":
+                    continue
+                self.assertFalse(min(it["hi"], dx + ST.VILLA_DOOR_HALF) - max(it["lo"], dx - ST.VILLA_DOOR_HALF)
+                                 > S.MARGIN,
+                                 f"seed {seed}: {it['label']} lies across the doorway at {dx:.0f}")
+
+    def test_the_mat_shows_past_the_sleeper(self):
+        from data_learning.doodle import scene as S, people as P
+        sc = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "man", "pose": "lie", "action": "sleep"}], "props": ["mat", "oil_lamp"]}
+        lay = S.layout(sc, 3)
+        mat = next(p for p in lay["props"] if p["name"] == "mat")
+        f = lay["people"][0]
+        R = P.R0 * f["s"] * P.WHO["man"]["size"]
+        lo, hi = S.figure_extent("lie", R)
+        half = S.PROPS["mat"].width * mat["s"] / 2
+        self.assertLess(mat["x"] - half, f["x"] + min(lo, -hi) - 0.3 * R)
+        self.assertGreater(mat["x"] + half, f["x"] + max(hi, -lo) + 0.3 * R)

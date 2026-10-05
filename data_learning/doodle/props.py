@@ -351,6 +351,24 @@ def bedroll(cr, x, y, s, t, seed):
                     texture="fur", tex_alpha=0.5)
 
 
+def mat(cr, x, y, s, t, seed):
+    """A woven reed mat on the floor: the settled world's other bed (the 79
+    film's judge: "vary the sleeper scenes (a bed, a mat by a wall ...)").
+    Longer than the sleeper so it shows past the head and the feet, with a
+    rolled edge at each end; symmetric, since the sleeper may face either
+    way, and no blanket of its own (the sleeper brings theirs)."""
+    reed = rgb("#d2bd84")
+    ink.fill_stroke(cr, [(x - 215 * s, y), (x + 215 * s, y), (x + 205 * s, y - 18 * s), (x - 205 * s, y - 18 * s)],
+                    reed, lw=4 * s, amp=0.8, seed=seed, texture="hatch", tex_alpha=0.35)
+    for k in range(-7, 8):
+        kx = x + k * 27 * s
+        ink.line(cr, [(kx, y - 3 * s), (kx + 2 * s, y - 15 * s)], lw=2 * s, ink=shade(reed, 0.72), amp=0.4,
+                 seed=seed + k)
+    for d in (-1, 1):
+        ink.fill_stroke(cr, ink.ellipse_pts(x + d * 212 * s, y - 16 * s, 14 * s, 14 * s, 14), shade(reed, 0.9),
+                        lw=4 * s, amp=0.6, seed=seed + 20 + d)
+
+
 def column(cr, x, y, s, t, seed):
     """A fluted stone column with a plain capital."""
     c = rgb("#e8e0cf")
@@ -1285,6 +1303,7 @@ PROPS = {
     "basket": Prop(basket, 130, "front", ALL),
     "fish_rack": Prop(fish_rack, 220, "back", STONE_AGE),
     "bed": Prop(bed, 400, "mid", LATER),
+    "mat": Prop(mat, 440, "mid", LATER),
     "column": Prop(column, 80, "back", ANCIENT),
     "temple": Prop(temple, 520, "back", ANCIENT),
     "villa": Prop(villa, 480, "back", ANCIENT),

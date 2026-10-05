@@ -2124,6 +2124,60 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
     return notes
 
 
+
+# what a sleeper lies on, in the order the film rotates through them when the
+# words do not say (the 79 film's judge: "vary the sleeper scenes (a bed, a mat
+# by a wall, a parent and child together) so the second half does not repeat
+# one composition"). "floor" is nothing under them.
+BEDDING_TURNS = ("bed", "mat", "floor")
+
+
+def _bedding_of(sc: dict) -> str:
+    names = [p if isinstance(p, str) else (p or {}).get("name") for p in sc.get("props") or []]
+    return next((n for n in names if n in S.BEDDING or n == "couch"), "floor")
+
+
+def mend_sleepers(ep: dict) -> list[str]:
+    """No two sleeper scenes in a row on the same bedding: indoors, where
+    somebody lies asleep and the words do not name what they lie on, the
+    bedding takes the next turn (a bed, a mat, the bare floor) that the
+    scene still draws. The words always win: "on a low bed" keeps its bed."""
+    from data_learning import ori_sleep as OS
+    notes, last = [], None
+    era = ep.get("era")
+    for i, c in enumerate(ep.get("chapters") or []):
+        for j, b in enumerate(c.get("beats") or []):
+            sc = b.get("scene") if isinstance(b, dict) else None
+            if not isinstance(sc, dict) or not any((f or {}).get("pose") == "lie" for f in sc.get("cast") or []):
+                continue
+            st = S.SETTINGS.get(sc.get("setting"))
+            if not (st and st.interior):
+                continue
+            have = _bedding_of(sc)
+            if have != last or OS.named_in(b.get("say") or "", ["bed", "mat"]) or have == "couch":
+                last = have
+                continue
+            before = list(sc.get("props") or [])
+            stripped = [p for p in before if (p if isinstance(p, str) else (p or {}).get("name")) not in S.BEDDING]
+            start = BEDDING_TURNS.index(have) if have in BEDDING_TURNS else 0
+            for k in range(1, len(BEDDING_TURNS)):
+                turn = BEDDING_TURNS[(start + k) % len(BEDDING_TURNS)]
+                if turn != "floor":
+                    pr = S.PROPS.get(turn)
+                    if pr is None or era not in pr.eras or (pr.settings and sc.get("setting") not in pr.settings):
+                        continue
+                sc["props"] = stripped + ([] if turn == "floor" else [turn])
+                if not S.validate(sc, era) and not S.layout(sc, 1000 + j)["collisions"]:
+                    notes.append(f"chapter {i + 1}: beat {j + 1}: the sleeper lies on "
+                                 f"{'the bare floor' if turn == 'floor' else 'a ' + turn} (the last sleeper had "
+                                 f"{'the floor' if have == 'floor' else 'a ' + have})")
+                    last = turn
+                    break
+            else:
+                sc["props"] = before
+                last = have
+    return notes
+
 def mend_film(ep: dict, log=print) -> list[str]:
     """`_mend_film_once` until a pass changes nothing (at most three): a
     named prop added in one pass and converted by the room rule in the next
@@ -2168,6 +2222,9 @@ def _mend_film_once(ep: dict, log=print) -> list[str]:
                 log(f"[ori_author] {notes[-1]}")
         mend_beats(c.get("beats"), ep["era"], log=lambda m, _i=i: (notes.append(f"chapter {_i + 1}: {m}"), log(m)),
                    final=(i == len(chs) - 1), used=_place_tally(chs[:i]))
+    for m in mend_sleepers(ep):
+        notes.append(m)
+        log(f"[ori_author] {m}")
     notes += repair_film(ep, log=log)
     # last: every scene laid out at the seed the RENDER draws it with, not
     # only the rule's own (a grove at dusk drew a basket into a tree trunk

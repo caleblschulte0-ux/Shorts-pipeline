@@ -112,8 +112,7 @@
       "props": [
        "table",
        "oil_lamp",
-       "brazier",
-       "pot"
+       "brazier"
       ],
       "fire": "low"
      }
@@ -771,7 +770,7 @@
       ],
       "props": [
        "oil_lamp",
-       "bed"
+       "mat"
       ]
      }
     }
@@ -954,29 +953,25 @@
         "pose": "sit_on",
         "action": "point",
         "mood": "focused",
-        "item": "cup",
-        "at": "left"
+        "item": "cup"
        },
        {
         "who": "man",
         "pose": "recline",
         "action": "talk",
-        "mood": "happy",
-        "at": "center_left"
+        "mood": "happy"
        },
        {
         "who": "woman",
         "pose": "sit_on",
         "action": "wave",
-        "mood": "surprised",
-        "at": "center_right"
+        "mood": "surprised"
        },
        {
         "who": "old_woman",
         "pose": "sit",
         "action": "look_up",
-        "mood": "content",
-        "at": "right"
+        "mood": "content"
        }
       ],
       "props": [
@@ -1011,7 +1006,8 @@
        }
       ],
       "props": [
-       "oil_lamp"
+       "oil_lamp",
+       "bed"
       ],
       "variant": 1
      }
@@ -1216,22 +1212,19 @@
         "who": "old_woman",
         "pose": "sit_on",
         "action": "spin",
-        "mood": "calm",
-        "at": "center"
+        "mood": "calm"
        },
        {
         "who": "woman",
         "pose": "sit_on",
         "action": "spin",
-        "mood": "calm",
-        "at": "left"
+        "mood": "calm"
        },
        {
         "who": "woman",
         "pose": "sit_on",
         "action": "sew",
-        "mood": "calm",
-        "at": "right"
+        "mood": "calm"
        }
       ],
       "props": [
@@ -1263,7 +1256,7 @@
       ],
       "props": [
        "oil_lamp",
-       "bed"
+       "mat"
       ],
       "variant": 2
      }
@@ -1381,22 +1374,19 @@
         "pose": "walk",
         "action": "carry",
         "mood": "calm",
-        "item": "basket",
-        "at": "center"
+        "item": "basket"
        },
        {
         "who": "woman",
         "pose": "sit_on",
         "action": "sew",
-        "mood": "calm",
-        "at": "left"
+        "mood": "calm"
        },
        {
         "who": "old_woman",
         "pose": "sit_on",
         "action": "sew",
-        "mood": "content",
-        "at": "right"
+        "mood": "content"
        }
       ],
       "props": [
@@ -1430,7 +1420,8 @@
        }
       ],
       "props": [
-       "oil_lamp"
+       "oil_lamp",
+       "bed"
       ]
      }
     },
@@ -2005,15 +1996,13 @@
         "who": "man",
         "pose": "lie",
         "action": "sleep",
-        "mood": "sleepy",
-        "at": "left"
+        "mood": "sleepy"
        },
        {
         "who": "woman",
         "pose": "lie",
         "action": "sleep",
-        "mood": "sleepy",
-        "at": "right"
+        "mood": "sleepy"
        }
       ],
       "props": [
@@ -2078,7 +2067,8 @@
       ],
       "props": [
        "brazier",
-       "oil_lamp"
+       "oil_lamp",
+       "bed"
       ],
       "variant": 8,
       "fire": "low"

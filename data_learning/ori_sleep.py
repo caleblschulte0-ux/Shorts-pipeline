@@ -400,7 +400,7 @@ SHOT_SHORT = 3.5     # a sentence shorter than this shares its shot with the nex
 # them in the scene; a shot of the sentence keeps them in the picture). The
 # Greek film's judge, twice: "no table, bread or cup", "no boats", "no couches"
 NAMED_PROPS = {"stall": ("stall", "stalls"), "barn": ("barn",), "cart": ("cart", "carts", "wagon"),
-               "table": ("table",), "bed": ("bed", "beds"), "loom": ("loom",), "woodpile": ("woodpile", "logs"),
+               "table": ("table",), "bed": ("bed", "beds"), "mat": ("mat", "mats", "pallet", "pallets"), "loom": ("loom",), "woodpile": ("woodpile", "logs"),
                "brazier": ("brazier",), "boat": ("boat", "boats", "sail", "sails", "hull", "hulls"),
                "couch": ("couch", "couches", "kline", "klinai", "reclines", "reclining", "recline"),
                "well": ("well",), "amphora": ("amphora", "amphorae", "jar", "jars"),
@@ -505,8 +505,8 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dic
         keep = list(lights) + [n for n in (named or ()) if n in names and n not in lights]
         if c.get("action") in TABLE_ACTIONS and "table" in names and "table" not in keep:
             keep.append("table")
-        if c.get("pose") == "lie" and "bed" in names and "bed" not in keep:
-            keep.append("bed")
+        if c.get("pose") == "lie":
+            keep += [q for q in S.BEDDING if q in names and q not in keep]
         if c.get("pose") == "recline" and "couch" in names:
             keep += [q for q in names if q == "couch"]
         keep = [q for q in names if q in keep]          # in the scene's own order, duplicates kept

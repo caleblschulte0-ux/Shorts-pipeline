@@ -642,7 +642,7 @@
       ],
       "props": [
        "oil_lamp",
-       "bed"
+       "mat"
       ]
      }
     }
@@ -945,7 +945,7 @@
       ],
       "props": [
        "oil_lamp",
-       "bed"
+       "mat"
       ]
      }
     }
@@ -1271,7 +1271,8 @@
        }
       ],
       "props": [
-       "oil_lamp"
+       "oil_lamp",
+       "mat"
       ],
       "variant": 2
      }
@@ -1679,7 +1680,8 @@
        }
       ],
       "props": [
-       "oil_lamp"
+       "oil_lamp",
+       "mat"
       ],
       "variant": 1
      }
@@ -1764,7 +1766,8 @@
        }
       ],
       "props": [
-       "brazier"
+       "brazier",
+       "mat"
       ],
       "variant": 2,
       "fire": "low"

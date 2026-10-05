@@ -314,7 +314,7 @@ def _interior(cr, name, seed, r, time: str = "night"):
         ink.line(cr, [(-10, 106), (W + 10, 106)], lw=5, ink=rgb("#9a5a3c"), amp=0.3, seed=seed + 2)
         ink.line(cr, [(-10, 164), (W + 10, 164)], lw=5, ink=rgb("#9a5a3c"), amp=0.3, seed=seed + 3)
         sky, ground, tree = _outside(time)
-        dx = r.choice([300, 1620]) + r.uniform(-40, 40)
+        dx = villa_doorway(r)
         # the doorway: a stone frame, a lintel, the courtyard beyond
         ink.fill_stroke(cr, ink.box(dx - 150, 250, dx + 150, bot), rgb("#cdb894"), lw=7, amp=0.6, seed=seed + 4)
         ink.fill_stroke(cr, ink.box(dx - 115, 285, dx + 115, bot), sky, lw=5, amp=0, seed=seed + 5)
@@ -650,6 +650,18 @@ OPEN_SKY = ("grassland", "mountains", "riverbank", "lakeshore", "snowfield", "se
             "harbour", "nile_bank", "stream")
 CLOSE_WORLD = 1.35
 CLOSE_TREES = 1.9                # the tree line, nearer still: about twice a standing figure
+
+
+VILLA_DOOR_HALF = 150            # half-width of the villa's doorway, at scale 1
+
+
+def villa_doorway(r_or_seed) -> float:
+    """Centre x of the villa's doorway: a pure function of the seed (the
+    first thing the room's RNG decides), so the layout can keep a sleeper
+    out of it — a woman drawn asleep across the courtyard door read as
+    lying in the doorway."""
+    r = r_or_seed if isinstance(r_or_seed, random.Random) else random.Random(r_or_seed)
+    return r.choice([300, 1620]) + r.uniform(-40, 40)
 
 
 def cave_opening(seed: int, shot: str = "wide") -> tuple[int, float, float]:

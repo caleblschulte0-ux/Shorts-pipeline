@@ -300,8 +300,7 @@
         "who": "child",
         "pose": "sit_on",
         "action": "yawn",
-        "mood": "sleepy",
-        "at": "center"
+        "mood": "sleepy"
        },
        {
         "who": "child",
@@ -328,22 +327,19 @@
         "who": "man",
         "pose": "lie",
         "action": "sleep",
-        "mood": "calm",
-        "at": "left"
+        "mood": "calm"
        },
        {
         "who": "woman",
         "pose": "sit",
         "action": "hug_self",
-        "mood": "sleepy",
-        "at": "center"
+        "mood": "sleepy"
        },
        {
         "who": "child",
         "pose": "lie",
         "action": "sleep",
-        "mood": "calm",
-        "at": "right"
+        "mood": "calm"
        }
       ],
       "props": [
@@ -597,9 +593,7 @@
        }
       ],
       "props": [
-       "oil_lamp",
-       "table",
-       "bench"
+       "oil_lamp"
       ]
      }
     },
@@ -616,15 +610,13 @@
         "pose": "stand",
         "action": "carry",
         "mood": "calm",
-        "item": "bowl",
-        "at": "left"
+        "item": "bowl"
        },
        {
         "who": "man",
         "pose": "sit",
         "action": "eat",
-        "mood": "content",
-        "at": "right"
+        "mood": "content"
        }
       ],
       "props": [
@@ -728,15 +720,13 @@
         "who": "woman",
         "pose": "crouch",
         "action": "feed_fire",
-        "mood": "calm",
-        "at": "left"
+        "mood": "calm"
        },
        {
         "who": "child",
         "pose": "sit",
         "action": "eat",
-        "mood": "sleepy",
-        "at": "right"
+        "mood": "sleepy"
        }
       ],
       "props": [
@@ -842,15 +832,13 @@
         "who": "man",
         "pose": "lie",
         "action": "idle",
-        "mood": "worried",
-        "at": "center"
+        "mood": "worried"
        },
        {
         "who": "woman",
         "pose": "sit_on",
         "action": "hug_self",
-        "mood": "worried",
-        "at": "right"
+        "mood": "worried"
        }
       ],
       "props": [
@@ -885,7 +873,8 @@
       ],
       "props": [
        "oil_lamp",
-       "brazier"
+       "brazier",
+       "bed"
       ]
      }
     },
@@ -1273,22 +1262,19 @@
         "who": "woman",
         "pose": "lie",
         "action": "sleep",
-        "mood": "calm",
-        "at": "left"
+        "mood": "calm"
        },
        {
         "who": "man",
         "pose": "lie",
         "action": "sleep",
-        "mood": "calm",
-        "at": "center"
+        "mood": "calm"
        },
        {
         "who": "child",
         "pose": "lie",
         "action": "sleep",
-        "mood": "content",
-        "at": "right"
+        "mood": "content"
        }
       ],
       "props": [
@@ -1404,7 +1390,7 @@
       ],
       "props": [
        "oil_lamp",
-       "bed"
+       "mat"
       ],
       "variant": 1
      }
@@ -1813,7 +1799,8 @@
       ],
       "props": [
        "brazier",
-       "oil_lamp"
+       "oil_lamp",
+       "bed"
       ],
       "variant": 1,
       "fire": "low"
@@ -1913,21 +1900,19 @@
         "who": "woman",
         "pose": "crouch",
         "action": "eat",
-        "mood": "content",
-        "at": "left"
+        "mood": "content"
        },
        {
         "who": "child",
         "pose": "lie",
         "action": "sleep",
-        "mood": "sleepy",
-        "at": "right"
+        "mood": "sleepy"
        }
       ],
       "props": [
-       "bed",
        "brazier",
-       "oil_lamp"
+       "oil_lamp",
+       "mat"
       ],
       "fire": "low"
      }
