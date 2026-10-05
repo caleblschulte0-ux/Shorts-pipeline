@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261005",
+  "bundle": {
+    "identity": "2493dec1d28cc46e8b97a6832ced93e6c042342fc2341f642b8438a1c00e50ab",
+    "path": "exchange/bundles/20261005/bundle.json"
+  },
+  "request_id": "he-faked-our-own-flyer-s2-97c73736f56a",
+  "safe_request_id": "he-faked-our-own-flyer-s2-97c73736f56a",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "8dfde54dc065648b8115c493feae65c1810b1fd6893dad6498897f22e225616b",
+  "prompt_used": "An editorial illustration for a short-form video: cashier register checkout. It accompanies the narration: \"I matched it without arguing\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1RZB7V3B6AcWA_LnaE6bJqCD_JMFT0TLk",
+    "filename": "20261005__he-faked-our-own-flyer-s2-97c73736f56a.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1RZB7V3B6AcWA_LnaE6bJqCD_JMFT0TLk",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "66c8bc990046e8190489618ab3f7ca8619929db664562ae855780cf63f3e31ab",
+    "bytes": 1979700,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-05T11:34:19.554Z"
+}
