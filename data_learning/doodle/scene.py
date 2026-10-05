@@ -148,6 +148,13 @@ def _water_strength(kind, time, fog) -> int:
         "river": {"day": 0, "dusk": 2, "night": 2, "dawn": 0},
         "lake": {"day": 0, "dusk": 1, "night": 2, "dawn": 0},
         "sea": {"day": 1, "dusk": 2, "night": 2, "dawn": 2},
+        # measured 2026-10-04 with the same probe (4 s, the water alone,
+        # close): stream day 0.12, dusk 0.03, night 0.03, dawn 0.05; spring
+        # (the pool with its spout) day 0.17, dusk 0.06, night 0.06, dawn
+        # 0.11. Daylight is kept at 1 like the lake: the brook's dashes carry
+        # it, and a brighter sky washes them
+        "stream": {"day": 1, "dusk": 2, "night": 2, "dawn": 1},
+        "spring": {"day": 1, "dusk": 2, "night": 2, "dawn": 1},
     }
     return table.get(kind, {}).get(time, 0)
 
@@ -232,6 +239,9 @@ def validate(spec, era: str) -> list[str]:
     if fr is not None and not (isinstance(fr, (list, tuple)) and len(fr) == 3
                                and all(isinstance(v, (int, float)) for v in fr) and 1.0 <= fr[2] <= 2.5):
         bad.append("frame must be [centre x, centre y, zoom 1.0-2.5]")
+    if any(isinstance(c, dict) and c.get("pose") == "recline" for c in spec.get("cast") or []) and \
+            not any(_pname(p) == "couch" for p in _prop_list(spec)):
+        bad.append("somebody reclines: recline needs a couch in the props")
     hp = spec.get("happen")
     if hp is not None:
         from .happen import KINDS as _HK
@@ -311,7 +321,7 @@ PAD = 0.35           # head radii of air kept around every figure
 # facing +x — read off the rig (people.skeleton / people._draw_lying)
 _EXTENT = {
     "stand": (-0.9, 1.1), "walk": (-1.0, 1.2), "sit": (-1.0, 2.0), "sit_on": (-1.1, 1.5),
-    "crouch": (-1.1, 1.3), "lie": (-3.2, 3.2),
+    "crouch": (-1.1, 1.3), "lie": (-3.2, 3.2), "recline": (-2.2, 3.0),
 }
 # how far in front of the feet, in head radii, an action or a held thing
 # reaches — an ABSOLUTE extent, taken against the pose's own (a sitter's
@@ -326,6 +336,11 @@ ITEM_REACH = {"spear": 2.1, "torch": 1.3, "stick": 1.2, "branch": 1.3, "axe": 1.
 # back-layer props with a body: a deer standing "behind" the fire in the
 # same place reads as a deer in the fire, so they take room like anything
 # else. Trees, tents and walls stay scenery.
+# back props that may stand across the water: things with a footing of
+# their own, never a vehicle or an animal
+FAR_SHORE = {"hut", "cottage", "tent", "tree", "pine", "villa", "temple", "column", "terrace", "barn",
+             "obelisk", "mudbrick_house", "timber_house", "ship", "palm", "olive", "pyramid", "chimney_pot",
+             "hide_rack", "fish_rack", "cave_painting"}
 SOLID_BACK = {"deer", "mammoth", "cow", "cart", "well", "hut", "cottage", "tent", "fish_rack", "hide_rack", "torch",
               "hearth", "temple", "villa", "column", "terrace", "gas_lamp", "carriage", "stove", "bookshelf",
               "clock", "obelisk", "mudbrick_house", "timber_house", "ship"}
@@ -626,13 +641,16 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
 
     st = SETTINGS.get(spec.get("setting"))
     water = st.water if st is not None else None
-    # the near edge of the water band (settings._water): back props stand
-    # on the far shore, above it, a little smaller — not in the water
+    # the near edge of the water band (settings._water): BUILDINGS and
+    # trees stand on the far shore, above it, a little smaller — not in the
+    # water; a cart, a well or a cow stays on this bank (the Greek film: a
+    # cart across the bay read as a cart floating on the sea)
     far_shore = None
-    if water in ("river", "lake"):
+    if water in ("river", "lake", "stream"):
         far_shore = gy - settings.WATER_BAND[water][0] - 8
     elif water == "sea":
         far_shore = H * 0.58 - 8            # the sea runs to the horizon; things stand across the bay
+    near_bank = (gy - settings.WATER_BAND[water][1] + 30 * s * 0.4) if water in settings.WATER_BAND else None
 
     def prop_geom(p):
         pr = PROPS[p["name"]]
@@ -645,8 +663,11 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             ps *= 1.35          # a fire is the heart of a wide shot, not a speck in it
         py = gy + {"back": -60 * s, "mid": 10 * s, "front": 70 * s}[pr.layer]
         if pr.layer == "back" and far_shore is not None:
-            ps *= 0.8
-            py = far_shore
+            if p["name"] in FAR_SHORE:
+                ps *= 0.8
+                py = far_shore
+            else:
+                py = min(gy - 30 * s, near_bank if near_bank is not None else gy - 60 * s)
         if pr.layer == "back" and pr.solid_width:
             # a prop tree stays inside the frame: at 2.77 its canopy was
             # "cut off by the top edge" in every close forest scene
@@ -688,6 +709,19 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             put(x - pr.width * ps / 2, x + pr.width * ps / 2)
             placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
                                seed=seed + len(placed) * 17, under=figs.index(sleeper)))
+            return
+        elif p["name"] == "couch" and any(not f.get("_couch") for f in recliners):
+            # under whoever reclines: its head end under their shoulders
+            f = next(f for f in recliners if not f.get("_couch"))
+            R = people.R0 * s * people.WHO[f["who"]]["size"]
+            d = 1 if f["facing"] == "right" else -1
+            x = f["x"] + d * 0.4 * R            # the body runs from -2.2 R (head) to 3 R (feet)
+            py = f["y"] - 4 * s
+            ps = s * 0.92
+            f["_couch"] = True
+            put(x - pr.width * ps / 2, x + pr.width * ps / 2)
+            placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer, seed=seed + len(placed) * 17,
+                               under=figs.index(f), flip=(d < 0)))
             return
         elif sleeper and p["name"] in ("wolf", "dog") and not sleeper.get("_dog"):
             # curled at the sleeper's feet, on the side away from the fire —
@@ -823,6 +857,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     # goes under whoever is lying down
     stirrer = next((f for f in figs if f["action"] == "stir"), None)
     sleeper = next((f for f in figs if f["pose"] == "lie"), None)
+    recliners = [f for f in figs if f["pose"] == "recline"]
     for p in late:
         place_prop(p)
     # a small light stands ON a table when there is one (a lamp on the
@@ -840,6 +875,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     for f in figs:
         f.pop("_pot", None)
         f.pop("_bed", None)
+        f.pop("_couch", None)
     lay = dict(props=placed, people=figs, scale=s, ground_y=gy, shot=shot, blocked=blocked,
                walkers=_walkers(walking, s, gy, seed, pan=bool(spec.get("pan")),
                                 far=not (SETTINGS[spec["setting"]].interior or SETTINGS[spec["setting"]].water)))
@@ -954,6 +990,14 @@ class Scene:
         cr.set_operator(cairo.OPERATOR_OVER)
 
     def _prop(self, cr, p, t):
+        if p.get("flip"):
+            cr.save()
+            cr.translate(p["x"], 0)
+            cr.scale(-1, 1)
+            cr.translate(-p["x"], 0)
+            PROPS[p["name"]].draw(cr, p["x"], p["y"], p["s"], t, p["seed"])
+            cr.restore()
+            return
         if self.lamp_props:
             pi = self.lay["props"].index(p)
             if pi in self.lamp_props:

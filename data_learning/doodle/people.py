@@ -67,25 +67,26 @@ OUTFIT = {
                          texture=None, strap=False),
 }
 
-POSES = ("stand", "sit", "sit_on", "crouch", "lie", "walk")
+POSES = ("stand", "sit", "sit_on", "crouch", "lie", "walk", "recline")   # recline: propped on one elbow along a couch
 MOODS = ("calm", "happy", "sleepy", "worried", "surprised", "content", "focused")
 ITEMS = ("none", "spear", "stick", "branch", "torch", "bowl", "fish", "stone", "axe",
-         "bundle", "basket", "rod", "bread", "cup", "hoe", "lantern", "needle")
+         "bundle", "basket", "rod", "bread", "cup", "hoe", "lantern", "needle", "spindle")
 
 # action -> poses it can be done in (validation), and the item it implies
 ACTIONS = {
     "idle": dict(poses=POSES, item=None),
+    "spin": dict(poses=("sit", "sit_on", "stand"), item="spindle"),
     "warm_hands": dict(poses=("stand", "sit", "sit_on", "crouch"), item=None),
     "stir": dict(poses=("stand", "sit", "sit_on", "crouch"), item="stick"),
-    "eat": dict(poses=("stand", "sit", "sit_on", "crouch"), item="bread"),
-    "drink": dict(poses=("stand", "sit", "sit_on", "crouch"), item="cup"),
+    "eat": dict(poses=("stand", "sit", "sit_on", "crouch", "recline"), item="bread"),
+    "drink": dict(poses=("stand", "sit", "sit_on", "crouch", "recline"), item="cup"),
     "carry": dict(poses=("stand", "walk"), item="bundle"),
     "point": dict(poses=("stand", "sit", "sit_on", "walk"), item=None),
-    "talk": dict(poses=("stand", "sit", "sit_on", "crouch"), item=None),
+    "talk": dict(poses=("stand", "sit", "sit_on", "crouch", "recline"), item=None),
     "wave": dict(poses=("stand", "sit", "sit_on", "walk"), item=None),
     "knap": dict(poses=("sit", "sit_on", "crouch"), item="stone"),
     "gather": dict(poses=("crouch", "stand"), item=None),
-    "hold": dict(poses=POSES[:4] + ("walk",), item=None),
+    "hold": dict(poses=POSES[:4] + ("walk", "recline"), item=None),
     "sleep": dict(poses=("lie",), item=None),
     "yawn": dict(poses=("stand", "sit", "sit_on"), item=None),
     "sew": dict(poses=("sit", "sit_on"), item="needle"),
@@ -93,7 +94,7 @@ ACTIONS = {
     "fish": dict(poses=("stand", "sit", "sit_on"), item="rod"),
     "hoe": dict(poses=("stand",), item="hoe"),
     "hug_self": dict(poses=("stand", "sit", "sit_on", "crouch"), item=None),
-    "look_up": dict(poses=("stand", "sit", "sit_on", "lie"), item=None),
+    "look_up": dict(poses=("stand", "sit", "sit_on", "lie", "recline"), item=None),
     "play": dict(poses=("stand", "crouch"), item="stick"),
     "feed_fire": dict(poses=("sit", "sit_on", "crouch"), item="branch"),
 }
@@ -170,6 +171,15 @@ def skeleton(pose: str, R: float, t: float, phase: float = 0.0) -> dict:
         legs = [((-0.1 * R, -seat), (0.95 * R, -seat), (0.95 * R, 0.0)),
                 ((0.15 * R, -seat), (1.15 * R, -seat + 0.05 * R), (1.2 * R, 0.0))]
         lean = 0.0
+    elif pose == "recline":
+        # along a couch (the Greek andron: "reclining rather than sitting
+        # upright"): hips at couch height, legs stretched along it, the
+        # body leaning well back on the far elbow
+        seat = 1.4 * R                      # a kline's top (props.couch is drawn to it)
+        hip = (0.0, -seat)
+        legs = [((-0.1 * R, -seat), (1.3 * R, -seat - 0.12 * R), (2.45 * R, -seat + 0.02 * R)),
+                ((0.15 * R, -seat), (1.5 * R, -seat - 0.22 * R), (2.6 * R, -seat - 0.08 * R))]
+        lean = -0.72
     elif pose == "crouch":
         hip = (-0.3 * R, -0.95 * R)
         legs = [((-0.3 * R, -0.95 * R), (0.55 * R, -1.45 * R), (0.35 * R, 0.0)),
@@ -271,6 +281,12 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
         k = max(0.0, math.sin(c / 5.0 + ph))
         up = (nx + 0.3 * R, ny - 1.3 * R * k + 0.9 * R * (1 - k))
         return (up, (nx - 0.3 * R, ny - 1.3 * R * k + 0.9 * R * (1 - k)))
+    if action == "spin":
+        # the thread drawn out slowly up and across, the spindle hanging
+        # from the lower hand and turning
+        k = (math.sin(c / 3.2 + ph) + 1) / 2
+        return ((nx + 0.55 * R + k * 0.5 * R, ny + 0.2 * R - k * 0.7 * R),
+                (nx + 1.15 * R, ny + 1.2 * R))
     if action == "sew":
         k = (math.sin(c / 1.5 + ph) + 1) / 2
         return ((nx + 0.9 * R + k * 0.6 * R, ny + 1.25 * R - k * 0.35 * R),
@@ -516,6 +532,17 @@ def _item(cr, name, hx, hy, R, t, lw, facing_up=False):
                         rgb("#b88a4d"), lw=lw * 0.7, amp=0, texture="hatch", tex_alpha=0.25)
     elif name == "needle":
         ink.line(cr, [(hx, hy), (hx + 0.2 * R, hy - 0.25 * R)], lw=1.6, amp=0)
+    elif name == "spindle":
+        # a drop spindle: the thread from the hand down to a stick with a
+        # whorl, the whorl turning (its ellipse breathing with the spin)
+        ink.line(cr, [(hx, hy + 0.1 * R), (hx + 0.06 * R, hy + 1.0 * R)], lw=2.2, ink=rgb("#f1ead8"), amp=0)
+        sx, sy = hx + 0.06 * R, hy + 1.0 * R
+        ink.line(cr, [(sx, sy - 0.25 * R), (sx, sy + 0.75 * R)], lw=lw * 0.8, ink=rgb("#6b4a2e"), amp=0)
+        wobble = 0.1 * R * abs(math.sin(2 * math.pi * t / 0.6))
+        ink.fill_stroke(cr, ink.ellipse_pts(sx, sy + 0.42 * R, 0.32 * R, 0.1 * R + wobble, 14),
+                        rgb("#8d6a3f"), lw=lw * 0.7, amp=0)
+        # the wound thread on the shaft
+        ink.fill_stroke(cr, ink.ellipse_pts(sx, sy + 0.1 * R, 0.09 * R, 0.22 * R, 10), rgb("#e9e2d0"), lw=1.5, amp=0)
     else:
         raise KeyError(f"item {name!r} is not drawable")
 
@@ -524,7 +551,7 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
          x: float, ground_y: float, scale: float, t: float, facing: str = "right",
          mood: str = "calm", item: str | None = None, dim: float = 0.0, cold: bool = False,
          pose_to: str | None = None, blend: float = 0.0, reach: tuple | None = None,
-         reach_back: tuple | None = None, gait: float | None = None):
+         reach_back: tuple | None = None, gait: float | None = None, lift: float = 0.0):
     """Draw one person with feet at (x, ground_y).
 
     For the happenings (`happen.py`): `pose_to` and `blend` put the body part
@@ -544,7 +571,7 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
 
     if pose == "lie":
         _draw_lying(cr, lk, R, t, lw, mood if action != "sleep" else "sleepy", seed,
-                    looking_up=(action == "look_up"))
+                    looking_up=(action == "look_up"), lift=lift)
         cr.restore()
         return
 
@@ -720,12 +747,15 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
     # front arm + held item
     bend = -1 if action in ("wave", "yawn") else 1
     e, h = _ik(*sh_f, *front, ua, la, bend)
-    if held != "none":
+    if held == "spindle":
+        e2, h2 = _ik(*sh_b, *back, ua, la, bend)
+        _item(cr, held, h2[0], h2[1], R, t, lw)
+    elif held != "none":
         _item(cr, held, h[0], h[1], R, t, lw)
     ink.line(cr, [sh_f, e, h], lw=lw, amp=0)
     ink.fill_stroke(cr, ink.ellipse_pts(h[0], h[1], 0.17 * R, 0.16 * R, 12), HEAD, lw=lw * 0.6, amp=0)
     if reach_back is not None or action in ("warm_hands", "carry", "yawn", "sew", "chop", "hoe", "fish",
-                                            "hug_self", "knap", "eat", "drink", "play"):
+                                            "hug_self", "knap", "eat", "drink", "play", "spin"):
         e2, h2 = _ik(*sh_b, *back, ua, la, bend)
         ink.fill_stroke(cr, ink.ellipse_pts(h2[0], h2[1], 0.16 * R, 0.15 * R, 12), HEAD,
                         lw=lw * 0.6, amp=0)
@@ -752,15 +782,16 @@ def _seat(cr, lk, hip, R, lw):
                         rgb("#c9a06c"), lw=lw * 0.7, amp=0)
 
 
-def _draw_lying(cr, lk, R, t, lw, mood, seed, looking_up=False):
+def _draw_lying(cr, lk, R, t, lw, mood, seed, looking_up=False, lift: float = 0.0):
     """Asleep on the ground under a fur/blanket, head to the left — or, when
     looking up, on the back with the face to the sky and an arm raised at
     it (the seventh film's judge asked for exactly this for a sky chapter)."""
-    head = (-2.1 * R, -0.95 * R)
+    head = (-2.1 * R, -0.95 * R - 0.25 * R * lift)
     hair = _hair_pts(head[0], head[1], R, lk, back=False)
     blanket = rgb("#8a5a35") if lk["era"] == "stone_age" else lk["cloth"]
-    ink.fill_stroke(cr, [(-1.35 * R, -0.95 * R), (-0.6 * R, -1.55 * R), (0.5 * R, -1.7 * R),
-                         (1.5 * R, -1.35 * R), (2.35 * R, -1.1 * R), (2.7 * R, -0.45 * R),
+    up = 0.55 * R * lift                   # the shoulder rising as the sleeper turns over
+    ink.fill_stroke(cr, [(-1.35 * R, -0.95 * R - up * 0.6), (-0.6 * R, -1.55 * R - up), (0.5 * R, -1.7 * R - up),
+                         (1.5 * R, -1.35 * R - up * 0.5), (2.35 * R, -1.1 * R), (2.7 * R, -0.45 * R),
                          (2.6 * R, 0.0), (-1.5 * R, 0.0)], blanket, lw=lw * 0.85, amp=2.2,
                     seed=seed + 9, shadow=shade(blanket), shadow_dir=(0, 1),
                     texture="fur" if lk["era"] == "stone_age" else None, tex_alpha=0.5)

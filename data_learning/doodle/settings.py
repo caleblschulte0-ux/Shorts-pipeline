@@ -75,6 +75,11 @@ SETTINGS = {
     "harbour": Setting("stone", water="sea", eras=("early_modern",)),    # a quay, a ship at anchor
     "tavern_inside": Setting("boards", interior=True, eras=("early_modern",)),
     "market_square": Setting("cobbles", eras=("medieval", "early_modern")),
+    # a brook across open ground, and a spring below a town wall: the Greek
+    # film's judge, twice, on a stream and a spring both drawn as the open
+    # sea: "harbor, spring and stream all use the same seashore"
+    "stream": Setting("grass", water="stream"),
+    "spring": Setting("stone", water="spring", eras=("ancient", "medieval", "egypt", "early_modern")),
 }
 
 GROUND = {"grass": "#8fb35f", "snow": "#eef2f5", "sand": "#e3cf9a", "rock": "#9b8f80",
@@ -421,7 +426,9 @@ def _interior(cr, name, seed, r, time: str = "night"):
 # the water band, (top, bottom) above the ground line: the near bank is a
 # clear strip of ground, so a fire by the river is on the bank, not "drawn on
 # top of the river" (the eighth film's storyboard)
-WATER_BAND = {"river": (190, 100), "lake": (230, 110), "sea": (230, 110)}
+WATER_BAND = {"river": (190, 100), "lake": (230, 110), "sea": (230, 110), "stream": (150, 96),
+              "spring": (160, 70)}
+SPRING_X = (0.56, 0.86)          # the spring's pool spans this part of the frame; the wall is above it
 
 
 def _water(cr, kind, gy, seed):
@@ -432,8 +439,79 @@ def _water(cr, kind, gy, seed):
     pts = [(-40, top), (W * 0.4, top + 10), (W + 40, top - 6), (W + 40, bot), (W * 0.5, bot + 12), (-40, bot)]
     if kind == "sea":
         pts = [(-40, H * 0.58), (W + 40, H * 0.58), (W + 40, bot), (W * 0.5, bot + 15), (-40, bot)]
+    elif kind == "stream":
+        # a narrow brook winding across the grass, its banks in the open
+        r = random.Random(seed + 5)
+        a = r.uniform(-18, 18)
+        pts = [(-40, top + a), (W * 0.22, top - 12 + a), (W * 0.5, top + 14 - a), (W * 0.78, top - 10 + a),
+               (W + 40, top + 6 - a), (W + 40, bot - 4 + a), (W * 0.74, bot + 10 - a), (W * 0.48, bot - 8 + a),
+               (W * 0.2, bot + 8 - a), (-40, bot + a)]
+        c = rgb("#6aa6c8")
+    elif kind == "spring":
+        # a pool at the foot of the wall, fed from a stone spout
+        x0, x1 = W * SPRING_X[0], W * SPRING_X[1]
+        pts = ink.ellipse_pts((x0 + x1) / 2, (top + bot) / 2 + 20, (x1 - x0) / 2, (bot - top) / 2 - 8, 26)
+        c = rgb("#5f9cc0")
     ink.fill_stroke(cr, pts, c, lw=4.5, amp=2, seed=seed, shadow=shade(c, 0.88), shadow_dir=(0, -1))
+    if kind == "stream":
+        # a few stones in and along it
+        r = random.Random(seed + 9)
+        for k in range(7):
+            sx = r.uniform(60, W - 60)
+            sy = r.uniform(top + 6, bot + 14)
+            st = rgb("#8f8a80")
+            ink.fill_stroke(cr, ink.blob_pts(sx, sy, r.uniform(16, 34), r.uniform(9, 16), seed + k, 0.1, 10), st,
+                            lw=3, amp=0.8, seed=seed + k, shadow=shade(st), shadow_dir=(0, 1))
+    if kind == "spring":
+        # a rim of flat stones round the pool
+        x0, x1 = W * SPRING_X[0], W * SPRING_X[1]
+        r = random.Random(seed + 9)
+        for k in range(10):
+            ang = math.pi * (0.1 + 0.8 * k / 9)
+            sx = (x0 + x1) / 2 + math.cos(ang) * (x1 - x0) / 2 * 1.02
+            sy = (top + bot) / 2 + 20 + math.sin(ang) * ((bot - top) / 2 - 2)
+            st = rgb("#b9ad98")
+            ink.fill_stroke(cr, ink.blob_pts(sx, sy, r.uniform(22, 40), r.uniform(10, 16), seed + k, 0.1, 10), st,
+                            lw=3, amp=0.8, seed=seed + k, shadow=shade(st), shadow_dir=(0, 1))
     return top, bot
+
+
+def _spring_wall(cr, r, gy, seed):
+    """The town wall the spring runs out from: dressed stone across the
+    back, a lion's-mouth spout over the pool, a few ferns at the wet foot."""
+    top = H * 0.36
+    foot = gy - WATER_BAND["spring"][0] - 10
+    stone = rgb("#c9bca4")
+    ink.fill_stroke(cr, [(-40, foot), (-40, top), (W + 40, top - 8), (W + 40, foot)], stone, lw=5, amp=2,
+                    seed=seed + 21, shadow=shade(stone, 0.9), shadow_dir=(0, 1), texture="grain", tex_alpha=0.15)
+    # courses of ashlar
+    rows = 5
+    for i in range(rows + 1):
+        y = top + (foot - top) * i / rows
+        ink.line(cr, [(-40, y + r.uniform(-3, 3)), (W + 40, y + r.uniform(-3, 3))], lw=3, ink=shade(stone, 0.72),
+                 amp=1.2, seed=seed + i)
+        step = r.uniform(230, 300)
+        x = r.uniform(0, step) if i % 2 else r.uniform(-step, 0) + step / 2
+        while x < W:
+            ink.line(cr, [(x, y), (x + 2, y + (foot - top) / rows)], lw=3, ink=shade(stone, 0.72), amp=1.0,
+                     seed=seed + int(x))
+            x += step
+    # the spout, a carved mouth, above the pool's far side
+    sx = W * (SPRING_X[0] + SPRING_X[1]) / 2
+    sy = foot - 38
+    mouth = rgb("#a89b84")
+    ink.fill_stroke(cr, ink.blob_pts(sx, sy - 24, 46, 34, seed + 31, 0.12, 14), mouth, lw=4, amp=1.2,
+                    seed=seed + 31, shadow=shade(mouth), shadow_dir=(0, 1))
+    ink.fill_stroke(cr, [(sx - 18, sy - 10), (sx + 18, sy - 10), (sx + 12, sy + 6), (sx - 12, sy + 6)],
+                    rgb("#3a3330"), lw=3, amp=0)
+    # ferns and moss where the wall is always wet
+    fern = rgb("#5d8a4a")
+    for k in range(6):
+        fx = W * SPRING_X[0] + r.uniform(-80, (SPRING_X[1] - SPRING_X[0]) * W + 80)
+        fy = foot + r.uniform(-6, 10)
+        for j in range(3):
+            ink.line(cr, [(fx, fy), (fx + r.uniform(-30, 30), fy - r.uniform(20, 46))], lw=3.2, ink=fern, amp=0.6,
+                     seed=seed + k * 3 + j)
 
 
 def tree_line(name: str, seed: int, shot: str = "wide") -> list[tuple[float, str, float, float]]:
@@ -518,6 +596,13 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int, shot: str = "w
     if name == "harbour":
         from .props import ship
         ship(cr, W * r.uniform(0.3, 0.7), H * 0.58 + 40, 0.9, 0.0, seed)
+    if name == "spring":
+        _spring_wall(cr, r, gy, seed)
+    if name == "stream":
+        # a few bushes along the far bank
+        from .props import bush
+        for k in range(4):
+            bush(cr, 200 + k * 520 + r.uniform(-120, 120), gy - WATER_BAND["stream"][0] - 16, 0.6, 0.0, seed + k)
     if name == "desert":
         _dunes(cr, r, H * st.horizon + 20, seed)
         from .props import pyramid
@@ -562,7 +647,7 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int, shot: str = "w
 # it, so a woman is not "filling the cave mouth" (the sixth film's judge)
 # settings with a wide open sky where a clear night may show the Milky Way
 OPEN_SKY = ("grassland", "mountains", "riverbank", "lakeshore", "snowfield", "seashore", "desert", "field",
-            "harbour", "nile_bank")
+            "harbour", "nile_bank", "stream")
 CLOSE_WORLD = 1.35
 CLOSE_TREES = 1.9                # the tree line, nearer still: about twice a standing figure
 
@@ -660,6 +745,48 @@ def ambient(cr, name: str, time: str, weather: str, facts: dict, t: float, seed:
             ink.glow(cr, x, H * (0.55 + 0.08 * k), 520, (0.9, 0.92, 0.95), 0.35)
 
 
+def _spring_flow(cr, top, bot, t, seed, hl):
+    """Water falling from the spout into the pool, and the rings it makes."""
+    sx = W * (SPRING_X[0] + SPRING_X[1]) / 2
+    sy0 = top - 10 - 32                   # the spout mouth (settings._spring_wall)
+    sy1 = (top + bot) / 2 + 8
+    # the falling thread: beads carried down it
+    cr.set_line_width(7)
+    cr.set_line_cap(cairo.LINE_CAP_ROUND)
+    cr.set_source_rgba(hl[0], hl[1], hl[2], 0.75)
+    cr.move_to(sx, sy0)
+    cr.curve_to(sx + 2, sy0 + 20, sx + 6, sy1 - 30, sx + 8, sy1)
+    cr.stroke()
+    for k in range(5):
+        u = (t * 1.6 + k / 5) % 1.0
+        y = sy0 + (sy1 - sy0) * u
+        ink.dot(cr, sx + 8 * u * u, y, 5 + 3 * u, (1, 1, 1, 0.9))
+    # rings spreading on the pool, and a few ripple dashes drifting out
+    for k in range(3):
+        u = ((t / 1.1) + k / 3) % 1.0
+        rad = 10 + u * 120
+        cr.set_source_rgba(hl[0], hl[1], hl[2], 0.8 * (1 - u))
+        cr.set_line_width(5)
+        cr.save()
+        cr.translate(sx + 8, sy1 + 6)
+        cr.scale(1, 0.32)
+        cr.arc(0, 0, rad, 0, 2 * math.pi)
+        cr.restore()
+        cr.stroke()
+    r = random.Random(seed + 17)
+    x0, x1 = W * SPRING_X[0], W * SPRING_X[1]
+    for k in range(10):
+        gx = r.uniform(x0 + 40, x1 - 40)
+        gy = r.uniform(top + 20, bot + 10)
+        ph = r.uniform(0, 6.28)
+        v = (math.sin(t * 2.2 + ph) + 1) / 2
+        cr.set_source_rgba(hl[0], hl[1], hl[2], 0.7 * v)
+        cr.set_line_width(6)
+        cr.move_to(gx - 20, gy)
+        cr.curve_to(gx - 8, gy - 4, gx + 8, gy + 4, gx + 20, gy)
+        cr.stroke()
+
+
 def _flow(cr, kind, top, bot, t, seed, time):
     """Water that runs: rows of light ripple dashes carried along by the
     current (a river) or rolling in (lake/sea), each dash a clear mark."""
@@ -669,8 +796,11 @@ def _flow(cr, kind, top, bot, t, seed, time):
     # gate's probe, a river whose ripples were a shade dimmer sat under its
     # block threshold once the band moved by half a block row
     hl = (1, 1, 1, 0.8) if time != "night" else (0.85, 0.92, 1.0, 0.8)
-    rows = 9
-    speed = 120 if kind == "river" else 40
+    if kind == "spring":
+        _spring_flow(cr, top, bot, t, seed, hl)
+        return
+    rows = 9 if kind != "stream" else 4
+    speed = {"river": 120, "stream": 170}.get(kind, 40)
     for i in range(rows):
         y = top + (bot - top) * (i + 0.6) / rows
         spacing = r.uniform(150, 220)
@@ -749,8 +879,9 @@ def glints(cr, facts: dict, time: str, t: float, seed: int):
     kind, top, bot = w
     r = random.Random(seed + 13)
     gl = (1, 0.97, 0.85) if time in ("day", "dawn", "dusk") else (0.88, 0.94, 1.0)
-    for k in range(130 if kind == "sea" else 110):
-        gx = r.uniform(0, W)
+    x0, x1 = (W * SPRING_X[0] + 40, W * SPRING_X[1] - 40) if kind == "spring" else (0, W)
+    for k in range({"sea": 130, "stream": 60, "spring": 30}.get(kind, 110)):
+        gx = r.uniform(x0, x1)
         gy = r.uniform(top + 8, bot - 8)
         w_ = r.uniform(20, 40)
         v = ink.vnoise(t, 7.0 + (k % 5), seed * 31 + k)

@@ -401,14 +401,23 @@ def amphora(cr, x, y, s, t, seed):
 
 
 def brazier_base(cr, x, y, s, t, seed):
-    """An iron bowl on three legs, the fire people gathered round indoors and in the square."""
-    iron = rgb("#4a4744")
-    for dx in (-48, 0, 48):
-        ink.line(cr, [(x + dx * s, y), (x + dx * s * 0.45, y - 70 * s)], lw=6 * s, ink=iron, amp=0)
-    ink.fill_stroke(cr, [(x - 62 * s, y - 92 * s), (x + 62 * s, y - 92 * s), (x + 44 * s, y - 62 * s),
-                         (x - 44 * s, y - 62 * s)], iron, lw=4.5 * s, amp=0.8, seed=seed, shadow=shade(iron),
-                    shadow_dir=(1, 0.5))
-    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 92 * s, 62 * s, 12 * s, 20), rgb("#5a3a2a"), lw=4 * s, amp=0)
+    """A Greek brazier: a shallow bronze bowl on a slender three-legged
+    stand with a ring, the fire people gathered round indoors and in the
+    square. The judge on the Greek film, twice: the old dark dome on three
+    fat legs read as "a modern kettle grill"."""
+    bronze = rgb("#9a7a3c")
+    dark = shade(bronze, 0.7)
+    # three thin legs splayed from a ring under the bowl, hoof feet
+    for dx in (-40, 0, 40):
+        ink.line(cr, [(x + dx * s, y), (x + dx * s * 0.35, y - 74 * s)], lw=4.5 * s, ink=dark, amp=0)
+        ink.fill_stroke(cr, ink.ellipse_pts(x + dx * s, y - 2 * s, 7 * s, 4 * s, 10), dark, lw=0, amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 52 * s, 24 * s, 6 * s, 16), dark, lw=3 * s, amp=0)   # the ring
+    # a shallow wide bowl, its rim turned out, with a lip of light along it
+    ink.fill_stroke(cr, [(x - 66 * s, y - 92 * s), (x + 66 * s, y - 92 * s), (x + 48 * s, y - 70 * s),
+                         (x - 48 * s, y - 70 * s)], bronze, lw=4 * s, amp=0.6, seed=seed, shadow=dark,
+                    shadow_dir=(1, 0.6))
+    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 92 * s, 66 * s, 11 * s, 22), rgb("#4a3a2a"), lw=4 * s, amp=0)
+    ink.line(cr, [(x - 60 * s, y - 94 * s), (x + 60 * s, y - 94 * s)], lw=3 * s, ink=rgb("#d9b86a"), amp=0)
 
 
 def brazier(cr, x, y, s, t, seed):
@@ -1088,6 +1097,67 @@ def bed(cr, x, y, s, t, seed):
                     shadow_dir=(0, 1))
 
 
+def couch(cr, x, y, s, t, seed):
+    """A kline: the low couch of a Greek dinner, a wool cover and a bolster
+    at the raised head. Drawn under whoever reclines (scene._layout puts it
+    there), and only in a room."""
+    frame = WOOD
+    cov = rgb("#a3473a")
+    # knee high: its top is where people.skeleton puts a reclining hip
+    for dx in (-155, 155):
+        ink.line(cr, [(x + dx * s, y), (x + dx * s, y - 42 * s)], lw=8 * s, ink=shade(frame, 0.8), amp=0)
+    ink.fill_stroke(cr, [(x - 170 * s, y - 40 * s), (x + 170 * s, y - 40 * s), (x + 170 * s, y - 54 * s),
+                         (x - 170 * s, y - 54 * s)], frame, lw=4.5 * s, amp=0.6, seed=seed)
+    ink.fill_stroke(cr, [(x - 166 * s, y - 54 * s), (x + 166 * s, y - 54 * s), (x + 162 * s, y - 72 * s),
+                         (x - 162 * s, y - 72 * s)], cov, lw=4.5 * s, amp=1.4, seed=seed + 1, shadow=shade(cov),
+                    shadow_dir=(0, 1), texture="hatch", tex_alpha=0.18)
+    # the raised head end: a curved rest and a bolster
+    ink.fill_stroke(cr, [(x - 170 * s, y - 54 * s), (x - 172 * s, y - 112 * s), (x - 146 * s, y - 120 * s),
+                         (x - 126 * s, y - 72 * s)], frame, lw=4.5 * s, amp=0.8, seed=seed + 2)
+    ink.fill_stroke(cr, ink.ellipse_pts(x - 128 * s, y - 86 * s, 34 * s, 16 * s, 16), rgb("#e4c98a"), lw=4 * s,
+                    amp=1.0, seed=seed + 3, shadow=rgb("#c9ac6e"), shadow_dir=(0, 1))
+
+
+def boat(cr, x, y, s, t, seed):
+    """A small boat drawn up on the sand for the night, heeled on its side, the
+    sail furled along the yard. The Greek film's judge, twice: "boats pulled
+    up on the sand" showed three people and no boats."""
+    hull = rgb("#6d4a2e")
+    pale = rgb("#c9a06c")
+    # the hull, bow up to the left, resting on the keel and heeled toward us
+    pts = [(x - 220 * s, y - 70 * s), (x - 170 * s, y - 20 * s), (x - 60 * s, y), (x + 120 * s, y),
+           (x + 215 * s, y - 36 * s), (x + 190 * s, y - 62 * s), (x + 60 * s, y - 52 * s), (x - 90 * s, y - 56 * s),
+           (x - 190 * s, y - 86 * s)]
+    ink.fill_stroke(cr, pts, hull, lw=5 * s, amp=1.2, seed=seed, shadow=shade(hull), shadow_dir=(0, 1),
+                    texture="grain", tex_alpha=0.22)
+    # planking lines along the hull
+    for k in range(3):
+        yy = y - 14 * s - k * 13 * s
+        ink.line(cr, [(x - 160 * s + k * 10 * s, yy - 4 * s), (x + 180 * s - k * 12 * s, yy)], lw=2.2 * s,
+                 ink=shade(hull, 0.75), amp=0.4, seed=seed + k)
+    # the gunwale, a lighter strip
+    ink.line(cr, [(x - 190 * s, y - 84 * s), (x - 90 * s, y - 56 * s), (x + 60 * s, y - 52 * s),
+                  (x + 190 * s, y - 62 * s)], lw=4 * s, ink=pale, amp=0.8, seed=seed + 5)
+    # a short mast with the yard lowered and the sail furled along it
+    mx = x + 10 * s
+    ink.line(cr, [(mx, y - 52 * s), (mx + 6 * s, y - 250 * s)], lw=6 * s, ink=WOOD_D, amp=0)
+    ink.line(cr, [(mx - 110 * s, y - 196 * s), (mx + 120 * s, y - 206 * s)], lw=5 * s, ink=WOOD_D, amp=0)
+    sail = rgb("#e9e1cc")
+    ink.fill_stroke(cr, [(mx - 105 * s, y - 190 * s), (mx + 115 * s, y - 200 * s), (mx + 112 * s, y - 182 * s),
+                         (mx - 100 * s, y - 172 * s)], sail, lw=3.5 * s, amp=1.4, seed=seed + 7,
+                    shadow=shade(sail, 0.85), shadow_dir=(0, 1))
+    for k in range(4):
+        xx = mx - 70 * s + k * 48 * s
+        ink.line(cr, [(xx, y - 194 * s + k * 1.5 * s), (xx + 2 * s, y - 176 * s + k * 1.5 * s)], lw=2.2 * s, amp=0)
+    # an oar leaning in, and a rope coiled on the sand
+    ink.line(cr, [(x + 150 * s, y - 56 * s), (x + 60 * s, y - 150 * s)], lw=4 * s, ink=WOOD, amp=0)
+    ink.fill_stroke(cr, [(x + 60 * s, y - 150 * s), (x + 44 * s, y - 176 * s), (x + 72 * s, y - 172 * s)], WOOD,
+                    lw=3 * s, amp=0)
+    for k in range(3):
+        ink.fill_stroke(cr, ink.ellipse_pts(x - 150 * s, y + 8 * s, (34 - k * 9) * s, (12 - k * 3) * s, 14),
+                        (0, 0, 0, 0), lw=3.5 * s, amp=0)
+
+
 @dataclass(frozen=True)
 class Prop:
     draw: object
@@ -1119,7 +1189,11 @@ PROPS = {
     # canopies ("the tree looks like it is on fire"); among the people it
     # stands plainly in front of them
     "torch": Prop(torch_wall, 60, "mid", ALL, living=True, light=True, height=200, base=torch_base),
-    "candle": Prop(candle, 60, "front", LATER, living=True, light=True, height=75, base=candle_base),
+    # a wax candle is a medieval and later light: Greek and Egyptian rooms
+    # burn oil lamps (the Greek film's judge: "wax pillar candles ... out of
+    # period")
+    "candle": Prop(candle, 60, "front", ("medieval", "victorian", "early_modern"), living=True, light=True,
+                   height=75, base=candle_base),
     "cauldron": Prop(cauldron, 160, "mid", ALL, living=True, light=True, height=40, base=cauldron_base),
     "pot": Prop(pot, 130, "mid", ALL, base=pot_base),
     "tent": Prop(tent, 360, "back", STONE_AGE),
@@ -1183,4 +1257,6 @@ PROPS = {
     "timber_house": Prop(timber_house, 440, "back", ("medieval", "early_modern")),
     "crates": Prop(crates, 180, "mid", EARLY_MODERN),
     "mooring_post": Prop(mooring_post, 60, "front", EARLY_MODERN, settings=("harbour",)),
+    "couch": Prop(couch, 360, "mid", ANCIENT, settings=("villa_inside", "house_inside")),
+    "boat": Prop(boat, 450, "mid", LATER, settings=("seashore", "harbour", "lakeshore", "riverbank", "nile_bank")),
 }

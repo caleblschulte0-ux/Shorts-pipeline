@@ -177,7 +177,8 @@
       ],
       "props": [
        "hearth",
-       "table"
+       "table",
+       "well"
       ],
       "variant": 2
      }
@@ -246,7 +247,7 @@
        {
         "who": "child",
         "pose": "sit",
-        "action": "idle",
+        "action": "drink",
         "mood": "sleepy",
         "at": "right"
        }
@@ -419,7 +420,7 @@
       ],
       "props": [
        "hearth",
-       "pot"
+       "table"
       ],
       "variant": 1
      }
@@ -435,9 +436,8 @@
        {
         "who": "man",
         "pose": "sit",
-        "action": "hold",
-        "mood": "calm",
-        "item": "bread"
+        "action": "eat",
+        "mood": "calm"
        },
        {
         "who": "woman",
@@ -454,7 +454,8 @@
       ],
       "props": [
        "hearth",
-       "table"
+       "table",
+       "well"
       ],
       "variant": 2
      }
@@ -501,7 +502,7 @@
        {
         "who": "elder",
         "pose": "sit",
-        "action": "talk",
+        "action": "sew",
         "mood": "calm"
        },
        {
@@ -654,7 +655,9 @@
        }
       ],
       "props": [
-       "stall"
+       "stall",
+       "torch",
+       "hearth"
       ]
      }
     },
@@ -744,7 +747,7 @@
     {
      "say": "In a smaller house, a man sits by his own low fire, turning a piece of wood in his hands, shaping a spoon in slow, careful strokes. The shavings fall near his feet. It is a task a person can do half by feel, eyes drifting to the flame as often as to the work.",
      "scene": {
-      "setting": "forest",
+      "setting": "hut_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -759,7 +762,7 @@
        }
       ],
       "props": [
-       "campfire"
+       "hearth"
       ],
       "variant": 1
      }
@@ -869,7 +872,7 @@
        {
         "who": "child",
         "pose": "sit_on",
-        "action": "idle",
+        "action": "feed_fire",
         "mood": "content",
         "at": "right"
        }
@@ -1288,15 +1291,15 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "hold",
+        "action": "carry",
         "mood": "focused",
-        "item": "stick",
         "at": "center"
        }
       ],
       "props": [
        "campfire",
-       "torch"
+       "torch",
+       "well"
       ],
       "fire": "low"
      }
@@ -1344,7 +1347,8 @@
       "props": [
        "barn",
        "campfire",
-       "woodpile"
+       "woodpile",
+       "torch"
       ],
       "fire": "low"
      }
@@ -1368,21 +1372,22 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "talk",
+        "action": "carry",
         "mood": "calm",
         "at": "right"
        }
       ],
       "props": [
        "stall",
-       "torch"
+       "torch",
+       "bench"
       ]
      }
     },
     {
      "say": "Past the last houses, the stream that runs by the village keeps moving in the dark, the same quiet sound it has made all day. No one is there to watch it; it needs no watching. The water slides over stone and root, patient and unhurried, while behind it the village has gone almost silent, its small sounds giving way to this one steady murmur.",
      "scene": {
-      "setting": "riverbank",
+      "setting": "stream",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1448,7 +1453,8 @@
       ],
       "props": [
        "torch",
-       "campfire"
+       "campfire",
+       "well"
       ],
       "variant": 1,
       "fire": "low"
@@ -1543,7 +1549,7 @@
     {
      "say": "Outside the walls, the stream that runs past the village never stops. It slips over stones in the dark, quiet and steady, the same as it did at noon, the same as it will at dawn. No one is awake to hear it, but it keeps moving, patient, all through the night.",
      "scene": {
-      "setting": "riverbank",
+      "setting": "stream",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1696,7 +1702,8 @@
        }
       ],
       "props": [
-       "campfire"
+       "campfire",
+       "torch"
       ],
       "variant": 3
      }

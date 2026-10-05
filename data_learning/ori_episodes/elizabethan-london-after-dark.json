@@ -79,7 +79,8 @@
       ],
       "props": [
        "cauldron",
-       "torch"
+       "torch",
+       "basket"
       ],
       "variant": 1
      }
@@ -147,7 +148,9 @@
       "props": [
        "timber_house",
        "cauldron",
-       "stall"
+       "stall",
+       "basket",
+       "torch"
       ]
      }
     },
@@ -263,7 +266,7 @@
        }
       ],
       "props": [
-       "crates"
+       "boat"
       ],
       "variant": 3
      }
@@ -331,7 +334,8 @@
       ],
       "props": [
        "hearth",
-       "table"
+       "table",
+       "pot"
       ],
       "variant": 1
      }
@@ -358,7 +362,8 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "bench"
       ]
      }
     },
@@ -403,7 +408,7 @@
        {
         "who": "woman",
         "pose": "sit",
-        "action": "idle",
+        "action": "feed_fire",
         "mood": "calm"
        }
       ],
@@ -652,7 +657,9 @@
       "weather": "clear",
       "shot": "wide",
       "cast": [],
-      "props": [],
+      "props": [
+       "boat"
+      ],
       "variant": 2
      }
     },
@@ -673,7 +680,9 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "bench",
+       "candle"
       ],
       "fire": "low"
      }
@@ -700,7 +709,8 @@
       ],
       "props": [
        "hearth",
-       "table"
+       "table",
+       "candle"
       ],
       "variant": 1
      }
@@ -809,7 +819,9 @@
       "props": [
        "hearth",
        "table",
-       "bench"
+       "bench",
+       "candle",
+       "torch"
       ]
      }
     },
@@ -838,7 +850,9 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "candle",
+       "torch"
       ]
      }
     },
@@ -895,7 +909,9 @@
         "at": "right"
        }
       ],
-      "props": []
+      "props": [
+       "torch"
+      ]
      }
     },
     {
@@ -931,14 +947,15 @@
        {
         "who": "child",
         "pose": "sit",
-        "action": "warm_hands",
+        "action": "feed_fire",
         "mood": "sleepy",
         "at": "center"
        }
       ],
       "props": [
        "hearth",
-       "candle"
+       "candle",
+       "torch"
       ],
       "variant": 1
      }
@@ -961,7 +978,9 @@
        }
       ],
       "props": [
-       "reeds"
+       "reeds",
+       "torch",
+       "candle"
       ]
      }
     }
@@ -1056,9 +1075,8 @@
        {
         "who": "man",
         "pose": "sit",
-        "action": "talk",
-        "mood": "focused",
-        "item": "cup"
+        "action": "drink",
+        "mood": "focused"
        },
        {
         "who": "man",
@@ -1085,7 +1103,7 @@
        {
         "who": "woman",
         "pose": "sit",
-        "action": "warm_hands",
+        "action": "feed_fire",
         "mood": "content",
         "at": "center"
        }
@@ -1266,7 +1284,8 @@
       ],
       "props": [
        "candle",
-       "table"
+       "table",
+       "bench"
       ]
      }
     },
@@ -1295,7 +1314,9 @@
         "at": "right"
        }
       ],
-      "props": []
+      "props": [
+       "torch"
+      ]
      }
     },
     {
@@ -1436,7 +1457,7 @@
        {
         "who": "child",
         "pose": "sit_on",
-        "action": "warm_hands",
+        "action": "feed_fire",
         "mood": "content",
         "at": "right"
        }
@@ -1466,7 +1487,7 @@
        {
         "who": "child",
         "pose": "sit_on",
-        "action": "idle",
+        "action": "eat",
         "mood": "sleepy",
         "at": "right"
        }
@@ -1564,7 +1585,7 @@
     {
      "say": "Back inside, someone kneels by the hearth one last time, feeding it enough wood to keep a coal alive until dawn. This is the last task of the day, done almost without thinking, the same small ritual as every night before it.",
      "scene": {
-      "setting": "cottage_inside",
+      "setting": "tavern_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1720,7 +1741,9 @@
       "weather": "clear",
       "shot": "wide",
       "cast": [],
-      "props": [],
+      "props": [
+       "boat"
+      ],
       "variant": 2
      }
     },

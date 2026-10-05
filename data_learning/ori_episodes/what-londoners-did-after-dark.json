@@ -133,7 +133,8 @@
       ],
       "props": [
        "cart",
-       "gas_lamp"
+       "gas_lamp",
+       "basket"
       ],
       "variant": 3
      }
@@ -238,7 +239,8 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "pot"
       ]
      }
     },
@@ -253,7 +255,7 @@
        {
         "who": "elder",
         "pose": "stand",
-        "action": "look_up",
+        "action": "carry",
         "mood": "calm",
         "at": "center"
        }
@@ -283,9 +285,8 @@
        {
         "who": "woman",
         "pose": "crouch",
-        "action": "hold",
+        "action": "gather",
         "mood": "calm",
-        "item": "bundle",
         "at": "center"
        }
       ],
@@ -446,7 +447,7 @@
     {
      "say": "By the ornamental lake, a woman walks home with a child at her side, unhurried. Lamplight from the path has begun to lie in long soft lines across the still water. The child looks up at the glow rather than down at the water, and neither of them speaks.",
      "scene": {
-      "setting": "riverbank",
+      "setting": "lakeshore",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -462,7 +463,7 @@
        {
         "who": "child",
         "pose": "stand",
-        "action": "look_up",
+        "action": "carry",
         "mood": "content",
         "at": "center_right"
        }
@@ -484,7 +485,7 @@
        {
         "who": "child",
         "pose": "crouch",
-        "action": "warm_hands",
+        "action": "feed_fire",
         "mood": "content",
         "at": "left"
        },
@@ -628,7 +629,7 @@
        {
         "who": "child",
         "pose": "stand",
-        "action": "look_up",
+        "action": "carry",
         "mood": "calm",
         "at": "center_left"
        },
@@ -708,7 +709,8 @@
       ],
       "props": [
        "gas_lamp",
-       "terrace"
+       "terrace",
+       "basket"
       ]
      }
     },
@@ -749,8 +751,7 @@
       ],
       "props": [
        "hearth",
-       "pot",
-       "table"
+       "pot"
       ],
       "variant": 1
      }
@@ -790,7 +791,7 @@
        {
         "who": "man",
         "pose": "sit",
-        "action": "talk",
+        "action": "feed_fire",
         "mood": "calm",
         "at": "center"
        },
@@ -842,7 +843,7 @@
     {
      "say": "A few doors down, in a humbler home, a mother kneels to feed the fire another small piece of coal, careful to make it last. Her child carries in the last of the wood, stacking it close by the door so it is easy to reach later. This fire has more work than most tonight, since it is the only light in the house, and the only warmth besides each other.",
      "scene": {
-      "setting": "forest",
+      "setting": "cottage_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -864,7 +865,7 @@
        }
       ],
       "props": [
-       "campfire"
+       "hearth"
       ],
       "variant": 2
      }
@@ -909,7 +910,8 @@
        }
       ],
       "props": [
-       "gas_lamp"
+       "gas_lamp",
+       "torch"
       ],
       "variant": 1
      }
@@ -1020,8 +1022,7 @@
        {
         "who": "child",
         "pose": "stand",
-        "action": "hold",
-        "item": "torch",
+        "action": "eat",
         "mood": "content",
         "at": "center"
        },
@@ -1067,7 +1068,7 @@
       ],
       "props": [
        "candle",
-       "table"
+       "hearth"
       ]
      }
     },
@@ -1113,7 +1114,7 @@
        {
         "who": "child",
         "pose": "stand",
-        "action": "idle",
+        "action": "carry",
         "mood": "calm",
         "at": "center"
        }
@@ -1178,7 +1179,7 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "warm_hands",
+        "action": "eat",
         "mood": "content",
         "at": "right"
        }
@@ -1553,9 +1554,8 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "hold",
+        "action": "eat",
         "mood": "focused",
-        "item": "lantern",
         "at": "center"
        }
       ],
@@ -1611,7 +1611,8 @@
       ],
       "props": [
        "torch",
-       "gas_lamp"
+       "gas_lamp",
+       "candle"
       ],
       "variant": 6
      }

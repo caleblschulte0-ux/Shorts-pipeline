@@ -24,6 +24,7 @@ not fit the picture is never planned (`possible`). The events:
              round them
     passer   out of doors, somebody goes by on the far side, a lantern in
              hand after dark
+    turn     a sleeper stirs: the blanket lifts and they turn over
     dog      a dog trots in and lies down by the fire (or crosses)
     cat      a cat walks along the floor and sits
     hens     hens peck their way across the yard
@@ -49,7 +50,7 @@ W, H = 1920, 1080
 EDGE = 30.0
 GAP = 12.0
 
-PEOPLE_KINDS = ("arrive", "leave", "feed", "serve", "light", "snuff", "child", "passer")
+PEOPLE_KINDS = ("arrive", "leave", "feed", "serve", "light", "snuff", "child", "passer", "turn")
 BACK_K = 0.56            # the far side of the picture: scene.WALK_LANE
 ANIMAL_KINDS = ("dog", "cat", "hens", "birds", "fish", "bats", "mouse", "moth")
 KINDS = PEOPLE_KINDS + ANIMAL_KINDS
@@ -154,7 +155,7 @@ def _lamps(lay):
 
 
 def _sitters(lay):
-    return [i for i, f in enumerate(lay["people"]) if f["pose"] in ("sit", "sit_on", "crouch")]
+    return [i for i, f in enumerate(lay["people"]) if f["pose"] in ("sit", "sit_on", "crouch", "recline")]
 
 
 def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None, used=None):
@@ -182,7 +183,7 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
             target_x, action, end_pose, item = lay["people"][gi]["x"], "hold", "stand", r.choice(("bread", "cup"))
         elif kind == "child":
             adults = [i for i, f in enumerate(lay["people"]) if f["who"] != "child" and
-                      f["pose"] in ("sit", "sit_on", "stand", "crouch") and x0 < f["x"] < x1]
+                      f["pose"] in ("sit", "sit_on", "stand", "crouch", "recline") and x0 < f["x"] < x1]
             if not adults:
                 return None
             gi = adults[r.randrange(len(adults))]
@@ -252,7 +253,7 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
             a["keys"].append((dur + 5, x, end_pose, action, facing))
         return a
     if kind == "leave":
-        figs = [i for i, f in enumerate(lay["people"]) if f["pose"] in ("sit", "sit_on", "crouch", "stand")
+        figs = [i for i, f in enumerate(lay["people"]) if f["pose"] in ("sit", "sit_on", "crouch", "stand", "recline")
                 and x0 < f["x"] < x1 and f["who"] != "child"]
         if len(lay["people"]) < 2 or not figs:
             return None                    # the only person in the picture does not walk out of it
@@ -276,58 +277,34 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
         a["keys"].append((t_up + 0.3, f["x"], "stand", "idle", facing))
         a["keys"].append((t_up + 0.3 + walk_t, out, "walk", "idle", facing))
         return a
+    if kind == "turn":
+        sleepers = [i for i, f in enumerate(lay["people"]) if f["pose"] == "lie" and x0 < f["x"] < x1]
+        if not sleepers:
+            return None
+        gi = sleepers[r.randrange(len(sleepers))]
+        f = lay["people"][gi]
+        R = _R(f["who"], f["s"])
+        t_turn = max(1.0, min(dur * 0.45, dur - 1.5))
+        other = "left" if f["facing"] == "right" else "right"
+        return dict(kind=kind, who=f["who"], s=f["s"], y=f["y"] + 4 * f["s"], seed=f["seed"], R=R, owns=gi,
+                    item=None, mood=f.get("mood", "calm"),
+                    keys=[(0.0, f["x"], "lie", f["action"], f["facing"]),
+                          (t_turn, f["x"], "lie", f["action"], other),
+                          (dur + 5, f["x"], "lie", f["action"], other)],
+                    turn=dict(t0=t_turn - 0.7, tm=t_turn, t1=t_turn + 0.8))
     if kind in ("light", "snuff"):
         lamps = [p for p in _lamps(lay) if x0 < p["x"] < x1]
-        if not lamps:
-            return None
-        lp = lamps[0]
-        if kind == "snuff" and not _alive_without(spec, prop=lp["name"]):
+        if kind == "snuff":
             # the Greek film with happenings, blocked at 3:50: a candle blown
             # out in a wide room where it was the only thing alive, and 61
             # identical frames after it. A lamp goes out only where something
             # else in the picture still moves
-            return None
-        dx, dy, _sz = FLAME_AT[lp["name"]]
-        fx, fy = lp["x"] + dx * lp["s"], lp["y"] + dy * lp["s"]
-        # whoever is nearest leans in; if nobody is near, somebody comes
-        near = [(abs(f["x"] - fx), i) for i, f in enumerate(lay["people"])
-                if f["pose"] in ("sit", "sit_on", "crouch", "stand")]
-        near.sort()
-        t_act = max(1.2, dur * 0.35)
-        if near and near[0][0] < 3.8 * _R(lay["people"][near[0][1]]["who"], s):
-            gi = near[0][1]
-            f = lay["people"][gi]
-            R = _R(f["who"], f["s"])
-            face = "right" if fx > f["x"] else "left"
-            a = dict(kind=kind, who=f["who"], s=f["s"], y=f["y"] + 4 * f["s"], seed=f["seed"], R=R, owns=gi,
-                     item=None, mood=f.get("mood", "calm"),
-                     keys=[(0.0, f["x"], f["pose"], f["action"] if kind == "snuff" else "idle", f["facing"]),
-                           (t_act - 0.8, f["x"], f["pose"], "idle", face),
-                           (dur + 5, f["x"], f["pose"], f["action"] if kind == "light" else "idle", face)])
-        else:
-            who = r.choice(who_pool)
-            R = _R(who, s)
-            ext = _extent_fn("stand", R)
-            got = _spot(lay, ext, fx, taken, x0, x1, r)
-            if got is None or abs(got[0] - fx) > 3.6 * R:
-                return None
-            x, face = got
-            side = -1 if x - x0 < x1 - x else 1
-            start = (x0 - 3.0 * R) if side < 0 else (x1 + 3.0 * R)
-            walk_t = abs(x - start) / (WALK_V * R)
-            t_arr = t_act - 0.6
-            t0 = t_arr - walk_t
-            if t0 < 0:
-                start = x - (x - start) * (t_arr / walk_t)
-                t0 = 0.0
-            a = dict(kind=kind, who=who, s=s, y=gy + 4 * s, seed=seed * 31 + 23, R=R, item=None,
-                     keys=[(t0, start, "walk", "idle", "right" if x > start else "left"),
-                           (t_arr, x, "stand", "idle", face), (dur + 5, x, "stand", "idle", face)])
-            a["claim"] = (x + ext(face)[0], x + ext(face)[1])
-        a["lamp"] = dict(name=lp["name"], x=fx, y=fy, s=lp["s"], t=t_act, on=(kind == "light"),
-                         prop=lay["props"].index(lp))
-        a["reach_to"] = dict(x=fx, y=fy, t0=t_act - 0.7, t1=t_act + 0.6, spill=(kind == "light"))
-        return a
+            lamps = [p for p in lamps if _alive_without(spec, prop=p["name"])]
+        for lp in lamps:
+            a = _at_the_lamp(kind, lp, spec, lay, seed, dur, x0, x1, s, gy, taken, r, who_pool)
+            if a is not None:
+                return a
+        return None
     # ---- animals
     if kind == "dog":
         R = 60 * s / 2.05 * 1.0
@@ -432,6 +409,51 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
     return None
 
 
+def _at_the_lamp(kind, lp, spec, lay, seed, dur, x0, x1, s, gy, taken, r, who_pool):
+    """Somebody lights this lamp or blows it out: whoever is nearest leans
+    in; if nobody is near, somebody comes. None when nobody can reach it."""
+    dx, dy, _sz = FLAME_AT[lp["name"]]
+    fx, fy = lp["x"] + dx * lp["s"], lp["y"] + dy * lp["s"]
+    near = [(abs(f["x"] - fx), i) for i, f in enumerate(lay["people"])
+            if f["pose"] in ("sit", "sit_on", "crouch", "stand", "recline")]
+    near.sort()
+    t_act = max(1.2, dur * 0.35)
+    if near and near[0][0] < 3.8 * _R(lay["people"][near[0][1]]["who"], s):
+        gi = near[0][1]
+        f = lay["people"][gi]
+        R = _R(f["who"], f["s"])
+        face = "right" if fx > f["x"] else "left"
+        a = dict(kind=kind, who=f["who"], s=f["s"], y=f["y"] + 4 * f["s"], seed=f["seed"], R=R, owns=gi,
+                 item=None, mood=f.get("mood", "calm"),
+                 keys=[(0.0, f["x"], f["pose"], f["action"] if kind == "snuff" else "idle", f["facing"]),
+                       (t_act - 0.8, f["x"], f["pose"], "idle", face),
+                       (dur + 5, f["x"], f["pose"], f["action"] if kind == "light" else "idle", face)])
+    else:
+        who = r.choice(who_pool)
+        R = _R(who, s)
+        ext = _extent_fn("stand", R)
+        got = _spot(lay, ext, fx, taken, x0, x1, r)
+        if got is None or abs(got[0] - fx) > 3.6 * R:
+            return None
+        x, face = got
+        side = -1 if x - x0 < x1 - x else 1
+        start = (x0 - 3.0 * R) if side < 0 else (x1 + 3.0 * R)
+        walk_t = abs(x - start) / (WALK_V * R)
+        t_arr = t_act - 0.6
+        t0 = t_arr - walk_t
+        if t0 < 0:
+            start = x - (x - start) * (t_arr / walk_t)
+            t0 = 0.0
+        a = dict(kind=kind, who=who, s=s, y=gy + 4 * s, seed=seed * 31 + 23, R=R, item=None,
+                 keys=[(t0, start, "walk", "idle", "right" if x > start else "left"),
+                       (t_arr, x, "stand", "idle", face), (dur + 5, x, "stand", "idle", face)])
+        a["claim"] = (x + ext(face)[0], x + ext(face)[1])
+    a["lamp"] = dict(name=lp["name"], x=fx, y=fy, s=lp["s"], t=t_act, on=(kind == "light"),
+                     prop=lay["props"].index(lp))
+    a["reach_to"] = dict(x=fx, y=fy, t0=t_act - 0.7, t1=t_act + 0.6, spill=(kind == "light"))
+    return a
+
+
 YARDS = ("village", "farmyard", "forum", "market_square", "street", "field", "olive_grove")
 
 
@@ -482,6 +504,8 @@ def fits(kind: str, spec: dict) -> bool:
         return False
     if kind == "passer":
         return not inside and not st.water
+    if kind == "turn":
+        return asleep
     if kind == "hens":
         return spec.get("setting") in YARDS and time in ("day", "dawn", "dusk")
     if kind == "birds":
@@ -612,9 +636,14 @@ def person(cr, a: dict, era: str, t: float, scene=None, cold=False):
         gait = _gait(a, t) * 0.8
     else:
         gait = _gait(a, t) if moving else None
+    lift = 0.0
+    if "turn" in a:
+        tn = a["turn"]
+        lift = _bump(t, tn["t0"], tn["tm"], tn["t1"])
+        action = a["keys"][0][3]
     people.draw(cr, who=a["who"], era=era, seed=a["seed"], pose=pose, action=action, x=x, ground_y=a["y"],
                 scale=a["s"], t=t, facing=facing, mood=a.get("mood", "calm"), item=item,
-                cold=cold, pose_to=pose_to, blend=blend, reach=reach, reach_back=reach_back, gait=gait)
+                cold=cold, pose_to=pose_to, blend=blend, reach=reach, reach_back=reach_back, gait=gait, lift=lift)
     if "reach_to" in a and a["reach_to"]["spill"]:
         rt = a["reach_to"]
         u = _bump(t, rt["t0"], (rt["t0"] + rt["t1"]) / 2, rt["t1"])

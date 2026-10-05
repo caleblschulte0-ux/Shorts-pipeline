@@ -105,10 +105,10 @@
        }
       ],
       "props": [
-       "pot",
        "oil_lamp",
        "brazier",
-       "table"
+       "table",
+       "pot"
       ],
       "fire": "low"
      }
@@ -170,7 +170,8 @@
       ],
       "props": [
        "reeds",
-       "rock"
+       "rock",
+       "basket"
       ],
       "variant": 3
      }
@@ -327,7 +328,7 @@
        }
       ],
       "props": [
-       "candle"
+       "oil_lamp"
       ]
      }
     },
@@ -371,7 +372,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "brazier"
       ],
       "fire": "low",
@@ -440,7 +441,6 @@
       ],
       "props": [
        "oil_lamp",
-       "candle",
        "table"
       ],
       "variant": 2
@@ -466,7 +466,8 @@
       "props": [
        "torch",
        "column",
-       "brazier"
+       "brazier",
+       "oil_lamp"
       ],
       "variant": 5
      }
@@ -507,7 +508,8 @@
       "props": [
        "basket",
        "barrel",
-       "torch"
+       "torch",
+       "boat"
       ],
       "variant": 3
      }
@@ -570,15 +572,15 @@
        {
         "who": "girl",
         "pose": "stand",
-        "action": "hold",
-        "mood": "calm",
-        "item": "bread"
+        "action": "eat",
+        "mood": "calm"
        }
       ],
       "props": [
        "table",
        "oil_lamp",
-       "brazier"
+       "brazier",
+       "pot"
       ],
       "fire": "low",
       "variant": 3
@@ -622,9 +624,8 @@
        {
         "who": "man",
         "pose": "sit_on",
-        "action": "hold",
-        "mood": "content",
-        "item": "bread"
+        "action": "eat",
+        "mood": "content"
        },
        {
         "who": "woman",
@@ -636,7 +637,6 @@
       ],
       "props": [
        "oil_lamp",
-       "candle",
        "table"
       ],
       "variant": 4
@@ -669,7 +669,7 @@
     {
      "say": "After the meal, some families walk down to sit by the water a while, an elder telling a quiet story more from habit than plan. A woman sits nearby, and a child listens with chin propped on folded arms, eyes already a little heavy. Small waves lap steadily, and overhead the first stars have begun to show.",
      "scene": {
-      "setting": "riverbank",
+      "setting": "seashore",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -677,7 +677,7 @@
        {
         "who": "elder",
         "pose": "sit",
-        "action": "talk",
+        "action": "eat",
         "mood": "content",
         "at": "left"
        },
@@ -789,7 +789,6 @@
       ],
       "props": [
        "oil_lamp",
-       "candle",
        "bed"
       ]
      }
@@ -864,7 +863,8 @@
       ],
       "props": [
        "cauldron",
-       "stall"
+       "stall",
+       "torch"
       ],
       "variant": 11
      }
@@ -872,33 +872,33 @@
     {
      "say": "Inside, in the room kept for guests, low couches line the walls. The men settle onto them the way custom asks, reclining rather than sitting upright. A small lamp burns steady on its stand nearby. Cups are filled, and the talk begins slowly, easing into the evening rather than rushing to fill it.",
      "scene": {
-      "setting": "house_inside",
-      "time": "night",
-      "weather": "clear",
-      "shot": "close",
       "cast": [
        {
-        "who": "man",
-        "pose": "sit_on",
         "action": "drink",
-        "mood": "content",
+        "at": "left",
         "item": "cup",
-        "at": "left"
+        "mood": "content",
+        "pose": "recline",
+        "who": "man"
        },
        {
-        "who": "man",
-        "pose": "sit_on",
         "action": "talk",
-        "mood": "calm",
+        "at": "right",
         "item": "cup",
-        "at": "right"
+        "mood": "calm",
+        "pose": "recline",
+        "who": "man"
        }
       ],
       "props": [
        "oil_lamp",
-       "candle"
+       "couch"
       ],
-      "variant": 10
+      "setting": "house_inside",
+      "shot": "close",
+      "time": "night",
+      "variant": 10,
+      "weather": "clear"
      }
     },
     {
@@ -926,7 +926,8 @@
        }
       ],
       "props": [
-       "torch"
+       "torch",
+       "oil_lamp"
       ],
       "variant": 5
      }
@@ -934,7 +935,7 @@
     {
      "say": "A few streets away, in a smaller house, a woman sits close to a single lamp, mending a tear in a cloak. Her husband is already asleep on the far side of the room. She means to stop soon, but works a little longer, the needle catching the small flame each time it turns.",
      "scene": {
-      "setting": "forum",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -954,7 +955,7 @@
        }
       ],
       "props": [
-       "torch",
+       "oil_lamp",
        "brazier"
       ],
       "variant": 4
@@ -1023,7 +1024,7 @@
     {
      "say": "Down toward the water, the man who went to the shore that morning is already asleep, worn out from the day's work. A dog rests near the doorway, and a small lamp is left burning low. Not everyone stayed up for wine and riddles; for many, the evening ended early and plainly.",
      "scene": {
-      "setting": "riverbank",
+      "setting": "seashore",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1038,7 +1039,8 @@
       ],
       "props": [
        "torch",
-       "dog"
+       "dog",
+       "oil_lamp"
       ],
       "variant": 2
      },
@@ -1080,8 +1082,7 @@
        }
       ],
       "props": [
-       "oil_lamp",
-       "candle"
+       "oil_lamp"
       ],
       "variant": 3
      }
@@ -1121,7 +1122,7 @@
       "cast": [
        {
         "who": "man",
-        "pose": "sit_on",
+        "pose": "recline",
         "action": "idle",
         "mood": "sleepy",
         "at": "center_left",
@@ -1130,7 +1131,8 @@
       ],
       "props": [
        "oil_lamp",
-       "brazier"
+       "brazier",
+       "couch"
       ],
       "variant": 3,
       "fire": "low"
@@ -1168,7 +1170,6 @@
       ],
       "props": [
        "oil_lamp",
-       "candle",
        "basket"
       ],
       "variant": 2
@@ -1192,8 +1193,7 @@
        }
       ],
       "props": [
-       "oil_lamp",
-       "candle"
+       "oil_lamp"
       ],
       "variant": 1
      }
@@ -1229,8 +1229,7 @@
        }
       ],
       "props": [
-       "oil_lamp",
-       "candle"
+       "oil_lamp"
       ],
       "variant": 14
      }
@@ -1258,7 +1257,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "bed"
       ],
       "variant": 1
@@ -1307,7 +1306,7 @@
     {
      "say": "In the smaller house, the woman there sets her spindle down and banks the coals a little lower. Her own child is already half asleep beside her, one hand still resting on an unfinished basket. She will finish it tomorrow. Tonight the fire only needs to last a little while longer.",
      "scene": {
-      "setting": "forum",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1328,7 +1327,7 @@
       ],
       "props": [
        "brazier",
-       "torch",
+       "oil_lamp",
        "basket"
       ],
       "variant": 1,
@@ -1359,8 +1358,7 @@
        }
       ],
       "props": [
-       "oil_lamp",
-       "candle"
+       "oil_lamp"
       ],
       "variant": 7
      }
@@ -1398,7 +1396,7 @@
       ],
       "props": [
        "oil_lamp",
-       "candle"
+       "basket"
       ],
       "variant": 23
      }
@@ -1427,7 +1425,7 @@
        }
       ],
       "props": [
-       "candle"
+       "oil_lamp"
       ]
      }
     },
@@ -1458,7 +1456,6 @@
       ],
       "props": [
        "oil_lamp",
-       "candle",
        "basket"
       ],
       "variant": 5
@@ -1531,10 +1528,10 @@
        }
       ],
       "props": [
-       "cart",
        "barrel",
        "basket",
-       "reeds"
+       "reeds",
+       "boat"
       ],
       "variant": 6
      }
@@ -1591,7 +1588,7 @@
     {
      "say": "Outside the walls, where the ground slopes to a spring, a woman crouches at the water's edge with a jar. Fetching water after dark was not unusual once the day's heat had broken. She fills it slowly, listening to the water more than watching it, the town behind her a dark shape against the stars.",
      "scene": {
-      "setting": "riverbank",
+      "setting": "spring",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1639,7 +1636,8 @@
       ],
       "props": [
        "torch",
-       "brazier"
+       "brazier",
+       "oil_lamp"
       ],
       "variant": 4
      }
@@ -1671,7 +1669,8 @@
        "torch",
        "brazier",
        "olive",
-       "column"
+       "column",
+       "oil_lamp"
       ],
       "variant": 2
      }
@@ -1687,7 +1686,7 @@
        {
         "who": "man",
         "pose": "sit",
-        "action": "idle",
+        "action": "feed_fire",
         "mood": "sleepy"
        }
       ],
@@ -1701,7 +1700,7 @@
     {
      "say": "Past the last houses, where the town gives way to open ground, a stream keeps moving in the dark, indifferent to the hour. Its sound is the only steady thing left awake, running on toward wherever it runs, the way it has every night before this one.",
      "scene": {
-      "setting": "riverbank",
+      "setting": "stream",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1753,7 +1752,7 @@
     {
      "say": "Back inside the hut, you crouch by the hearth and settle the coals low, feeding in just enough wood to hold through the night. The flames sink from bright to a slow red glow, warm and quiet, filling the small room with familiar comfort.",
      "scene": {
-      "setting": "house_inside",
+      "setting": "villa_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1780,7 +1779,7 @@
       "setting": "villa_inside",
       "time": "dusk",
       "weather": "clear",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "woman",
@@ -1906,7 +1905,6 @@
       ],
       "props": [
        "brazier",
-       "candle",
        "oil_lamp"
       ],
       "variant": 5,
@@ -1961,8 +1959,7 @@
        }
       ],
       "props": [
-       "oil_lamp",
-       "candle"
+       "oil_lamp"
       ],
       "variant": 22
      }
@@ -1992,7 +1989,7 @@
       ],
       "props": [
        "brazier",
-       "candle",
+       "oil_lamp",
        "bed"
       ],
       "variant": 12
@@ -2049,7 +2046,7 @@
       ],
       "props": [
        "brazier",
-       "candle"
+       "oil_lamp"
       ],
       "variant": 8,
       "fire": "low"

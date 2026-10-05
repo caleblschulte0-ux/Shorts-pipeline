@@ -607,9 +607,7 @@ LOW_FIRE_WORDS = ("ember", "banked", "bank the", "banks the", "under ash", "bene
 
 # things the words name that the kit can draw: a market square whose words
 # say "the stalls stand empty and shuttered" had none (the medieval film)
-PROP_WORDS = {"stall": ("stall", "stalls"), "barn": ("barn",), "cart": ("cart", "carts", "wagon"),
-              "table": ("table",), "bed": ("bed", "beds"), "loom": ("loom",), "woodpile": ("woodpile", "logs"),
-              "brazier": ("brazier",)}
+PROP_WORDS = OS.NAMED_PROPS
 
 
 def add_named_props(beat: dict, era: str, seeds=(1000,)) -> str | None:
@@ -621,7 +619,7 @@ def add_named_props(beat: dict, era: str, seeds=(1000,)) -> str | None:
     words = set(re.findall(r"[a-z]+", (beat.get("say") or "").lower()))
     have = {p if isinstance(p, str) else (p or {}).get("name") for p in sc.get("props") or []}
     for prop, forms in PROP_WORDS.items():
-        if prop in have or prop not in S.PROPS or not words & set(forms):
+        if have & set(OS.stands_for(prop)) or prop not in S.PROPS or not words & set(forms):
             continue
         before = list(sc.get("props") or [])
         sc["props"] = before + [prop]
@@ -643,10 +641,31 @@ def add_named_props(beat: dict, era: str, seeds=(1000,)) -> str | None:
             drop_stray_animals(probe, era)
             drop_out_of_place(probe, era)
             ok = prop in [p if isinstance(p, str) else (p or {}).get("name") for p in probe["scene"]["props"]]
+        gave = None
+        if not ok:
+            # no room: what the words do NOT name gives way, biggest first
+            # (the Greek film: "boats pulled up on the sand" had a cart, a
+            # barrel, a basket and reeds on the sand, and no boat)
+            sc["props"] = before
+            named_here = {alt for q, forms in PROP_WORDS.items() if words & set(forms) for alt in OS.stands_for(q)}
+            spare = sorted((q for q in before if (q if isinstance(q, str) else (q or {}).get("name")) not in named_here
+                            and not S.PROPS[(q if isinstance(q, str) else (q or {}).get("name"))].light),
+                           key=lambda q: -S.PROPS[(q if isinstance(q, str) else (q or {}).get("name"))].width)
+            for drop in spare:
+                trial = [q for q in before if q is not drop] + [prop]
+                sc["props"] = trial
+                if S.validate(sc, era):
+                    continue
+                lays = [S.layout(sc, sd) for sd in seeds]
+                if any(l["collisions"] or l["scale"] < natural * (CROWD_SHRINK + 0.1) - 1e-6 for l in lays):
+                    continue
+                gave = drop if isinstance(drop, str) else drop.get("name")
+                ok = True
+                break
         if not ok:
             sc["props"] = before
             continue
-        return f"added the {prop} the words name"
+        return f"added the {prop} the words name" + (f" (the {gave} gave way)" if gave else "")
     return None
 
 
@@ -722,6 +741,107 @@ def mend_fire(beat: dict, era: str = "ancient") -> str | None:
     return None
 
 
+# a prop from another era, and what this era burns or builds instead (the
+# Greek film's judge: "wax pillar candles ... out of period")
+ERA_STAND_IN = {"candle": ("oil_lamp",), "oil_lamp": ("candle",), "hearth": ("brazier", "campfire"),
+                "stove": ("hearth", "brazier"), "gas_lamp": ("torch",), "chair": ("bench",),
+                "cottage": ("villa", "mudbrick_house", "hut"), "hut": ("villa", "mudbrick_house", "cottage")}
+
+
+GENERIC_ACTIONS = ("idle", "hold", "talk", "look_up", "warm_hands")
+
+
+def mend_doing(beat: dict, era: str) -> str | None:
+    """Whoever a sentence names does what that sentence says, when their
+    pose allows it and they were only idling, holding or talking: "a man
+    breaks bread and passes it across" is a man eating, with bread in his
+    hand (the Greek film's judge: "no table, bread or cup")."""
+    sc = beat.get("scene") if isinstance(beat, dict) else None
+    if not isinstance(sc, dict):
+        return None
+    from data_learning.doodle import people as P
+    cast = [c for c in sc.get("cast") or [] if isinstance(c, dict)]
+    if not cast:
+        return None
+    did = []
+    before = json.dumps(sc, sort_keys=True)
+    for sent in OS.sentences(beat.get("say") or ""):
+        # clause by clause: "a man breaks bread ..., and a woman lifts a cup"
+        # is two people doing two things
+        for clause in re.split(r",|;|\band\b|\bwhile\b", sent.lower()):
+            nouns = re.sub(r"\b(he|him|his|she|her)\b", " ", clause)
+            who_named = [w for w, pat in OS.WHO_WORDS.items() if re.search(pat, nouns)]
+            if len(who_named) != 1:
+                continue
+            action = next((a for a, ws in ACTION_WORDS if any(w in clause for w in ws)), None)
+            if action is None or action in ("sleep", "look_up", "play", "talk", "hug_self", "warm_hands"):
+                continue
+            for c in cast:
+                if c.get("who") != who_named[0] or c.get("action", "idle") not in GENERIC_ACTIONS:
+                    continue
+                if c.get("pose", "stand") not in P.ACTIONS[action]["poses"]:
+                    continue
+                old_a = c.get("action", "idle")
+                c["action"] = action
+                c.pop("item", None)
+                if S.validate(sc, era):
+                    c["action"] = old_a
+                    continue
+                did.append(f"the {c['who'].replace('_', ' ')} now: {action.replace('_', ' ')} (the words say so)")
+                break
+    if json.dumps(sc, sort_keys=True) == before:
+        return None
+    return ", ".join(did)
+
+
+def mend_recline(beat: dict, era: str) -> str | None:
+    """A Greek dinner: when the words say couches or reclining, whoever eats,
+    drinks or talks indoors reclines on one (the judge, twice: "no couches",
+    "a man sits on a stool instead")."""
+    sc = beat.get("scene") if isinstance(beat, dict) else None
+    if not isinstance(sc, dict) or era != "ancient":
+        return None
+    low = (beat.get("say") or "").lower()
+    if not re.search(r"\b(couch|couches|kline|klinai|reclin\w*|andron|symposium|symposion)\b", low):
+        return None
+    st = S.SETTINGS.get(sc.get("setting"))
+    if st is None or not st.interior:
+        return None
+    from data_learning.doodle import people as P
+    cast = [c for c in sc.get("cast") or [] if isinstance(c, dict)]
+    movers = [c for c in cast if c.get("pose") in ("sit", "sit_on", "stand") and c.get("who") != "child"
+              and "recline" in P.ACTIONS.get(c.get("action", "idle"), {}).get("poses", ())]
+    if not movers:
+        return None
+    before = json.dumps(sc, sort_keys=True)
+    names = [q if isinstance(q, str) else (q or {}).get("name") for q in sc.get("props") or []]
+    n_couch = names.count("couch")
+    for c in movers[:2]:
+        c["pose"] = "recline"
+    need = sum(1 for c in cast if c.get("pose") == "recline") - n_couch
+    sc["props"] = list(sc.get("props") or []) + ["couch"] * max(0, need)
+    natural = 2.05 if S.shot_of(sc) == "close" else 1.25
+    ok = not S.validate(sc, era)
+    if ok:
+        lay = S.layout(sc, 1000)
+        ok = not lay["collisions"] and lay["scale"] >= natural * (CROWD_SHRINK + 0.1) - 1e-6
+    if not ok and len(movers) > 1:
+        # one couch only, then
+        movers[1]["pose"] = "sit_on"
+        sc["props"] = [q for q in sc["props"]]
+        while [q if isinstance(q, str) else (q or {}).get("name") for q in sc["props"]].count("couch") > 1:
+            sc["props"].remove("couch")
+        ok = not S.validate(sc, era)
+        if ok:
+            lay = S.layout(sc, 1000)
+            ok = not lay["collisions"] and lay["scale"] >= natural * (CROWD_SHRINK + 0.1) - 1e-6
+    if not ok:
+        sc.clear()
+        sc.update(json.loads(before))
+        return None
+    return "they recline on couches (the words say so)"
+
+
 def mend_scene(scene: dict, era: str) -> str | None:
     """The smallest deterministic change that makes a scene the brain wrote
     valid: a scene where nothing moves gets the era's plainest light (a
@@ -793,10 +913,20 @@ def mend_scene(scene: dict, era: str) -> str | None:
         name = q if isinstance(q, str) else q.get("name")
         pr = S.PROPS.get(name)
         if pr is None or era not in pr.eras or (pr.settings and scene.get("setting") not in pr.settings):
-            did.append(f"dropped {name}")
+            swap = next((alt for alt in ERA_STAND_IN.get(name, ()) if alt in S.PROPS and era in S.PROPS[alt].eras
+                         and not (S.PROPS[alt].settings and scene.get("setting") not in S.PROPS[alt].settings)), None)
+            have = [k if isinstance(k, str) else k.get("name") for k in keep] + \
+                   [k if isinstance(k, str) else k.get("name") for k in props[props.index(q) + 1:]]
+            if swap and swap in have:
+                did.append(f"dropped {name} (the room has its {swap})")
+            elif swap:
+                did.append(f"{name} -> {swap} (the era's own)")
+                keep.append(swap)
+            else:
+                did.append(f"dropped {name}")
         else:
             keep.append(q)
-    if len(keep) != len(props):
+    if keep != props:
         scene["props"] = keep
     # nothing moves: add the plainest light this setting and era allow
     if any("moves enough" in x for x in S.validate(scene, era)):
@@ -962,7 +1092,8 @@ def uncrowd_scene(scene: dict, era: str, seeds=(1000,)) -> str | None:
 # idle: the first action whose words appear wins; a fire in the scene and
 # nothing in the words is warm_hands; two people and nothing else is talk
 ACTION_WORDS = (
-    ("sew", ("sew", "mend", "stitch", "spin", "weav", "knit", "needle", "darn")),
+    ("spin", ("spindle", "spinning", "spins", "spun", "wool", "yarn", "thread")),
+    ("sew", ("sew", "mend", "stitch", "weav", "knit", "needle", "darn")),
     ("eat", ("eat", "supper", "meal", "bread", "pottage", "stew", "feast", "dine", "porridge", "bowl")),
     ("drink", ("drink", "ale", "cup", "sip", "wine", "beer", "mead")),
     ("feed_fire", ("fire", "hearth", "ember", "log", "kindl", "flame", "bank")),
@@ -1056,9 +1187,11 @@ def mend_beats(beats, era: str, log=print, final: bool = False, used=None) -> in
             # last, so nothing after them undoes what they did (run twice,
             # the old order added a named table and then dropped it again)
             named = add_named_props(b, era, seeds=(1000 + j,))
+            recl = mend_recline(b, era)
+            doing = mend_doing(b, era)
             fire = mend_fire(b, era)
             moving = mend_motion(b, era)
-            did = ", ".join(x for x in (placed, night, did, crowd, named, fire, moving) if x)
+            did = ", ".join(x for x in (placed, night, did, crowd, named, recl, doing, fire, moving) if x)
             if did and json.dumps(b["scene"], sort_keys=True) == was:
                 did = ""          # a prop dropped and put back: nothing changed
             if did:
@@ -1244,7 +1377,9 @@ PLACE_WORDS = (
               "gaslight", "gaslit", "cab", "omnibus")),
     # the Nile is a river; a boat or a sail belongs to whatever water the
     # passage names (run #20: a Nile passage mended onto the seashore)
-    ("river", ("river", "stream", "brook", "ford", "nile", "canal", "thames", "embankment", "water")),
+    ("river", ("river", "ford", "nile", "canal", "thames", "embankment", "water")),
+    ("stream", ("stream", "brook", "creek", "rill")),
+    ("spring", ("spring",)),
     ("lake", ("lake", "pond", "mere")),
     ("sea", ("sea", "shore", "beach", "tide", "wave", "surf", "harbour", "harbor", "quay")),
     ("grove", ("olive", "grove", "orchard", "vineyard")),
@@ -1263,14 +1398,25 @@ PLACE_SETTINGS = {
                  "tavern_inside", "cave_inside"),
     "city": ("forum", "street", "market_square", "village", "castle", "harbour"),
     "river": ("riverbank", "nile_bank"), "lake": ("lakeshore",), "sea": ("seashore", "harbour"),
+    "stream": ("stream",), "spring": ("spring",),
     "grove": ("olive_grove",), "forest": ("forest",), "mountains": ("mountains",), "snow": ("snowfield",),
     "farm": ("farmyard", "field"), "cave": ("cave_mouth", "cave_inside"), "desert": ("desert",),
     "sky": ("desert", "grassland", "mountains", "riverbank", "nile_bank", "lakeshore", "seashore", "field",
             "snowfield", "forum", "olive_grove", "harbour", "farmyard", "cave_mouth",
             # every outdoor place shows the night sky: the sky class keeps
             # the stars OUT OF ROOMS (run #22), it does not pick a landscape
-            "forest", "village", "market_square", "street", "castle"),
+            "forest", "village", "market_square", "street", "castle", "stream", "spring"),
 }
+# "in a smaller house", "inside the hut": a dwelling the words put us IN is
+# indoors. A house seen from the street, walked past, or left is not (the
+# Greek film: "in a smaller house, a woman sits close to a single lamp" was
+# drawn on the rooftops because "house" was not a place word)
+HOUSE_WORDS = ("house", "home", "hut", "cottage", "villa", "household", "dwelling", "homes", "houses", "huts")
+IN_WORDS = ("in", "inside", "within", "into")
+NOT_IN = ("outside", "out", "beyond", "past", "behind", "from", "leave", "leaves", "leaving", "toward", "towards",
+          "near", "between", "across")
+WATER_CONTEXT = ("water", "jar", "jars", "fill", "fills", "filling", "drink", "drinks", "pool", "spout", "basin",
+                 "fetch", "fetching")
 
 
 def place_class(say: str) -> str | None:
@@ -1287,7 +1433,23 @@ def place_class(say: str) -> str | None:
     for i, w in enumerate(raw):
         if w in ("beyond", "past", "behind") or (w in ("away", "far") and i + 1 < len(raw) and raw[i + 1] == "from"):
             away.update(range(i + 1, min(len(raw), i + 5)))
+        if w == "away" and not (i + 1 < len(raw) and raw[i + 1] == "from"):
+            # "a few streets away, in a smaller house": the streets are how
+            # far, not where
+            away.update(range(max(0, i - 3), i))
     words = [_stem(w) if i not in away else "" for i, w in enumerate(raw)]
+    for i, w in enumerate(raw):
+        if w in HOUSE_WORDS and i not in away:
+            before = raw[max(0, i - 4):i]
+            if any(b in IN_WORDS for b in before) and not any(b in NOT_IN for b in before):
+                words[i] = "room"
+        if w == "spring" and not any(x in raw for x in WATER_CONTEXT):
+            words[i] = ""                 # the season, not the water
+    exact_water = {k for cls in ("stream", "spring", "lake", "sea") for k in PLACE_WORDS_BY_CLASS[cls]}
+    if any(w in exact_water for w in words):
+        # "at the water's edge" beside a spring is the spring, not a river
+        # (the Greek film: the spring stayed a riverbank on two words of "water")
+        words = ["" if w == "water" else w for w in words]
     best, best_n, best_pos = None, 0, 10 ** 9
     for cls, keys in PLACE_WORDS:
         n, pos = 0, 10 ** 9
@@ -1399,7 +1561,8 @@ def mend_title(beats, title: str, era: str, home=None, used=None) -> list[str]:
 # words in a passage that pin it to its place: a beat whose words say the
 # cave is not moved out of the cave to satisfy a picture rule
 SETTING_WORDS = {
-    "cave_mouth": ("cave",), "cave_inside": ("cave",), "riverbank": ("river", "stream", "bank"),
+    "cave_mouth": ("cave",), "cave_inside": ("cave",), "riverbank": ("river", "bank"),
+    "stream": ("stream", "brook"), "spring": ("spring",),
     "lakeshore": ("lake",), "seashore": ("sea", "shore", "beach", "tide"), "forest": ("forest", "wood", "trees"),
     "snowfield": ("snow",), "mountains": ("mountain", "peak", "hills"), "grassland": ("grass", "steppe", "plain"),
     "field": ("field",), "village": ("village",), "castle": ("castle",), "harbour": ("harbour", "harbor", "quay"),

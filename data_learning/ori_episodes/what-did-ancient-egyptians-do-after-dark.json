@@ -75,7 +75,8 @@
       ],
       "props": [
        "reed_boat",
-       "palm"
+       "palm",
+       "boat"
       ],
       "variant": 1
      }
@@ -97,8 +98,8 @@
        }
       ],
       "props": [
-       "reed_boat",
-       "reeds"
+       "reeds",
+       "boat"
       ]
      }
     },
@@ -151,7 +152,7 @@
       ],
       "props": [
        "brazier",
-       "candle"
+       "oil_lamp"
       ],
       "variant": 2
      }
@@ -231,7 +232,8 @@
       ],
       "props": [
        "reeds",
-       "palm"
+       "palm",
+       "basket"
       ]
      }
     },
@@ -287,8 +289,8 @@
        }
       ],
       "props": [
-       "reed_boat",
-       "reeds"
+       "reeds",
+       "boat"
       ]
      }
     },
@@ -450,7 +452,7 @@
        }
       ],
       "props": [
-       "candle"
+       "oil_lamp"
       ],
       "variant": 3
      }
@@ -481,7 +483,7 @@
     {
      "say": "In another small hut, two children play quietly near the lamp, careful to stay within its reach. Their mother sits close by, watching more than working now that the light is low. Games slow down after dark; there is only so much a small flame will let you see.",
      "scene": {
-      "setting": "nile_bank",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -509,7 +511,7 @@
        }
       ],
       "props": [
-       "torch"
+       "oil_lamp"
       ],
       "variant": 2
      }
@@ -531,7 +533,8 @@
        }
       ],
       "props": [
-       "oil_lamp"
+       "oil_lamp",
+       "torch"
       ],
       "variant": 1
      }
@@ -761,7 +764,7 @@
        {
         "who": "elder",
         "pose": "sit",
-        "action": "talk",
+        "action": "eat",
         "mood": "focused",
         "at": "center_left"
        },
@@ -830,8 +833,8 @@
        }
       ],
       "props": [
-       "reed_boat",
-       "torch"
+       "torch",
+       "boat"
       ]
      }
     },
@@ -846,7 +849,7 @@
        {
         "who": "elder",
         "pose": "sit",
-        "action": "talk",
+        "action": "drink",
         "mood": "focused",
         "at": "left"
        },
@@ -1014,7 +1017,8 @@
       ],
       "props": [
        "torch",
-       "campfire"
+       "campfire",
+       "oil_lamp"
       ],
       "variant": 1
      }
@@ -1077,7 +1081,7 @@
     {
      "say": "Inside a small home, an old woman sits with a lamp burning low and begins the story people tell of the night sky: that Nut, the sky itself, swallows the sun each evening as it sets, carrying it through her body until dawn, when she gives it back to the world new and warm again.",
      "scene": {
-      "setting": "mountains",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1102,7 +1106,8 @@
        }
       ],
       "props": [
-       "brazier"
+       "brazier",
+       "oil_lamp"
       ],
       "variant": 1,
       "fire": "low"
@@ -1219,8 +1224,11 @@
        }
       ],
       "props": [
-       "brazier"
-      ]
+       "brazier",
+       "pot",
+       "oil_lamp"
+      ],
+      "fire": "low"
      }
     },
     {
@@ -1333,7 +1341,8 @@
        }
       ],
       "props": [
-       "campfire"
+       "campfire",
+       "torch"
       ],
       "variant": 1
      }
@@ -1363,7 +1372,7 @@
        }
       ],
       "props": [
-       "reeds"
+       "boat"
       ]
      }
     },
@@ -1385,7 +1394,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "jar",
        "basket"
       ]
@@ -1460,7 +1469,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "brazier",
        "bed"
       ]
@@ -1507,7 +1516,7 @@
        {
         "who": "man",
         "pose": "sit",
-        "action": "idle",
+        "action": "feed_fire",
         "mood": "content",
         "at": "center"
        }
@@ -1535,9 +1544,8 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "hold",
+        "action": "yawn",
         "mood": "focused",
-        "item": "torch",
         "at": "right"
        }
       ],
@@ -1565,7 +1573,6 @@
       ],
       "props": [
        "oil_lamp",
-       "candle",
        "jar"
       ],
       "variant": 1
@@ -1734,10 +1741,10 @@
     {
      "say": "In the hut, a man and woman lie down together on their mats, the brazier's last coals glowing dim and orange in the corner. She pulls a woven cover over her shoulder and closes her eyes, letting the warmth carry her toward sleep.",
      "scene": {
-      "setting": "riverbank",
+      "setting": "mudbrick_inside",
       "time": "night",
       "weather": "clear",
-      "shot": "close",
+      "shot": "wide",
       "cast": [
        {
         "who": "woman",
@@ -1863,8 +1870,8 @@
        }
       ],
       "props": [
-       "reed_boat",
-       "reeds"
+       "reeds",
+       "boat"
       ]
      }
     },
@@ -1910,7 +1917,7 @@
        "dog",
        "bed",
        "brazier",
-       "candle"
+       "oil_lamp"
       ],
       "variant": 1
      }

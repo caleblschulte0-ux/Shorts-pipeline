@@ -17,7 +17,7 @@
    }
   ],
   "props": [
-   "candle"
+   "oil_lamp"
   ]
  },
  "description": "Step gently into ancient Rome as the sun goes down and the ordinary business of the day gives way to lamplight, quiet meals, and the distant rumble of night carts through empty streets. We drift through a Roman evening — a simple supper, a cautious glance toward the dark alleys, the night watch making their rounds — before settling into the hush before dawn. There is no rush here, only the slow unwinding of a very old kind of night. Let the lamps burn low, and let yourself fall asleep.",
@@ -91,7 +91,7 @@
        }
       ],
       "props": [
-       "candle"
+       "oil_lamp"
       ]
      }
     },
@@ -122,7 +122,8 @@
       ],
       "props": [
        "brazier",
-       "column"
+       "column",
+       "torch"
       ]
      }
     },
@@ -152,7 +153,7 @@
       ],
       "props": [
        "brazier",
-       "candle"
+       "oil_lamp"
       ],
       "variant": 1
      }
@@ -168,9 +169,8 @@
        {
         "who": "elder",
         "pose": "walk",
-        "action": "hold",
+        "action": "carry",
         "mood": "calm",
-        "item": "stick",
         "at": "left"
        },
        {
@@ -184,7 +184,8 @@
       ],
       "props": [
        "reeds",
-       "rock"
+       "rock",
+       "basket"
       ]
      }
     },
@@ -212,7 +213,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "amphora",
        "brazier"
       ]
@@ -268,7 +269,7 @@
       ],
       "props": [
        "brazier",
-       "candle"
+       "oil_lamp"
       ],
       "variant": 1
      }
@@ -307,7 +308,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "bed"
       ],
       "variant": 1
@@ -344,7 +345,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "brazier"
       ]
      }
@@ -443,7 +444,7 @@
        "brazier",
        "pot",
        "bench",
-       "candle"
+       "oil_lamp"
       ],
       "fire": "low"
      }
@@ -481,32 +482,32 @@
     {
      "say": "Around a plain table, the family eats together — bread, olives, maybe a little cheese if the season allows it. This, historians think, is far closer to how most Romans actually ate most nights: simple food, eaten by hand, nothing like the couches and courses of the wealthy.",
      "scene": {
-      "setting": "house_inside",
-      "time": "night",
-      "weather": "clear",
-      "shot": "close",
       "cast": [
        {
-        "who": "woman",
-        "pose": "sit",
         "action": "eat",
+        "item": "bread",
         "mood": "content",
-        "item": "bread"
+        "pose": "sit",
+        "who": "woman"
        },
        {
-        "who": "child",
-        "pose": "sit_on",
         "action": "eat",
+        "item": "bread",
         "mood": "sleepy",
-        "item": "bread"
+        "pose": "sit_on",
+        "who": "child"
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "brazier",
        "table"
       ],
-      "variant": 1
+      "setting": "house_inside",
+      "shot": "close",
+      "time": "night",
+      "variant": 1,
+      "weather": "clear"
      }
     },
     {
@@ -585,7 +586,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "table",
        "bench"
       ]
@@ -616,7 +617,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "brazier",
        "table"
       ],
@@ -642,7 +643,8 @@
       ],
       "props": [
        "brazier",
-       "torch"
+       "torch",
+       "oil_lamp"
       ],
       "variant": 1,
       "fire": "low"
@@ -666,9 +668,8 @@
        {
         "who": "woman",
         "pose": "sit",
-        "action": "hold",
+        "action": "drink",
         "mood": "content",
-        "item": "cup",
         "at": "right"
        }
       ],
@@ -839,7 +840,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "brazier",
        "cart"
       ],
@@ -870,7 +871,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "brazier"
       ]
      }
@@ -943,7 +944,8 @@
       "props": [
        "olive",
        "cart",
-       "basket"
+       "basket",
+       "amphora"
       ]
      }
     },
@@ -1113,7 +1115,8 @@
       "props": [
        "stall",
        "brazier",
-       "torch"
+       "torch",
+       "basket"
       ],
       "variant": 1
      }
@@ -1216,7 +1219,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "brazier"
       ],
       "variant": 1
@@ -1268,7 +1271,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "bed"
       ]
      }
@@ -1313,7 +1316,9 @@
         "at": "center"
        }
       ],
-      "props": [],
+      "props": [
+       "torch"
+      ],
       "variant": 1
      }
     },
@@ -1387,7 +1392,8 @@
        }
       ],
       "props": [
-       "brazier"
+       "brazier",
+       "oil_lamp"
       ]
      }
     }
@@ -1476,7 +1482,7 @@
        }
       ],
       "props": [
-       "candle"
+       "oil_lamp"
       ],
       "variant": 1
      }
@@ -1499,7 +1505,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "brazier"
       ],
       "variant": 1
@@ -1531,7 +1537,7 @@
     {
      "say": "The woman with the needle pauses to check her work, holding the cloth up toward the lamp. The tear is nearly closed now, the stitches even and small. She lowers it back into her lap and keeps going, unhurried, the way this kind of mending always has to be done.",
      "scene": {
-      "setting": "villa_inside",
+      "setting": "forum",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1546,8 +1552,9 @@
        }
       ],
       "props": [
-       "candle",
-       "brazier"
+       "torch",
+       "brazier",
+       "oil_lamp"
       ],
       "variant": 2
      }
@@ -1577,7 +1584,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "bed"
       ]
      }
@@ -1631,7 +1638,7 @@
     {
      "say": "In a small house nearby, a different woman keeps stitching by her own low flame, though her daughter is fully asleep now, curled close beside her. A younger child sits nearby too, heavy-eyed, fighting sleep a little longer. The woman glances at them both, content, and keeps the needle moving without hurry.",
      "scene": {
-      "setting": "forum",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "wide",
@@ -1660,7 +1667,7 @@
        }
       ],
       "props": [
-       "torch",
+       "oil_lamp",
        "basket",
        "brazier"
       ]
@@ -1761,7 +1768,7 @@
        {
         "who": "woman",
         "pose": "sit",
-        "action": "idle",
+        "action": "feed_fire",
         "mood": "content",
         "at": "left"
        },
@@ -1797,7 +1804,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "bed"
       ]
      }
@@ -1811,7 +1818,8 @@
       "shot": "wide",
       "cast": [],
       "props": [
-       "rock"
+       "rock",
+       "boat"
       ]
      }
     },
@@ -1871,7 +1879,7 @@
        {
         "who": "woman",
         "pose": "crouch",
-        "action": "idle",
+        "action": "eat",
         "mood": "content",
         "at": "left"
        },
@@ -1907,7 +1915,7 @@
        }
       ],
       "props": [
-       "candle",
+       "oil_lamp",
        "brazier"
       ],
       "variant": 1,
@@ -1961,7 +1969,9 @@
       ],
       "props": [
        "reeds",
-       "cart"
+       "cart",
+       "torch",
+       "oil_lamp"
       ]
      }
     }

@@ -396,6 +396,45 @@ SHOT_TARGET = 7.0    # seconds: a shot is one sentence, two when they are short 
 SHOT_LONGEST = 8.0   # two sentences longer than this together are two shots
 SHOT_SHORT = 3.5     # a sentence shorter than this shares its shot with the next
 
+# things the words name that the kit can draw (ori_author.add_named_props puts
+# them in the scene; a shot of the sentence keeps them in the picture). The
+# Greek film's judge, twice: "no table, bread or cup", "no boats", "no couches"
+NAMED_PROPS = {"stall": ("stall", "stalls"), "barn": ("barn",), "cart": ("cart", "carts", "wagon"),
+               "table": ("table",), "bed": ("bed", "beds"), "loom": ("loom",), "woodpile": ("woodpile", "logs"),
+               "brazier": ("brazier",), "boat": ("boat", "boats", "sail", "sails", "hull", "hulls"),
+               "couch": ("couch", "couches", "kline", "klinai", "reclines", "reclining", "recline"),
+               "well": ("well",), "amphora": ("amphora", "amphorae", "jar", "jars"),
+               "basket": ("basket", "baskets"), "bench": ("bench", "benches"), "stall": ("stall", "stalls"),
+               "hearth": ("hearth",), "oil_lamp": ("lamp", "lamps"), "candle": ("candle", "candles"),
+               "campfire": ("campfire", "bonfire"), "cauldron": ("cauldron", "pot"), "torch": ("torch", "torches"),
+               "stove": ("stove", "range")}
+
+
+# one word, several drawings: "the boats" on the Nile are reed boats, "the
+# lamp" in a Victorian parlour is a candle or the gas lamp, "the pot" is the
+# cauldron
+SAME_THING = {"boat": ("boat", "reed_boat", "canoe", "ship"), "oil_lamp": ("oil_lamp", "candle", "gas_lamp"),
+              "candle": ("candle", "oil_lamp"), "cauldron": ("cauldron", "pot"), "hearth": ("hearth", "stove"),
+              "campfire": ("campfire", "brazier"), "bench": ("bench", "chair"), "amphora": ("amphora", "jar")}
+
+
+def stands_for(name: str) -> tuple:
+    """Every drawing a named thing may be in the picture as."""
+    return SAME_THING.get(name, (name,))
+
+
+def named_in(text: str, props) -> list[str]:
+    """The props among `props` that these words name."""
+    words = set(re.findall(r"[a-z]+", (text or "").lower()))
+    said = {key for key, forms in NAMED_PROPS.items() if words & set(forms)}
+    out = []
+    for p in props:
+        name = p if isinstance(p, str) else (p or {}).get("name")
+        if name not in out and any(name in stands_for(key) for key in said):
+            out.append(name)
+    return out
+
+
 # words that say WHO a sentence is about, so the shot is of them
 WHO_WORDS = {
     "girl": r"\b(girls?|daughters?)\b",
@@ -414,7 +453,7 @@ FIRE_ACTIONS = ("warm_hands", "feed_fire", "stir", "sew", "eat", "drink", "talk"
 SINGLE_ZOOM = 1.3    # a shot of one person: framed on them
 
 
-def coverage(spec: dict, era: str, seed: int, dur: float = 6.0) -> dict:
+def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dict:
     """Every shot this place and these people can give, each checked valid
     and with nothing drawn into anything: `est` (wide, everyone), `two`
     (close, everyone), `single:<i>` (close on one person, with the light and
@@ -441,16 +480,20 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0) -> dict:
             cands["pan"] = (clean(dict(spec, shot="close", cast=[dict(c, pose="walk")], pan=True,
                                        pan_s=round(dur, 2))), seed + 9)
             continue
-        keep = list(lights)
-        if c.get("action") in TABLE_ACTIONS and "table" in names:
+        keep = list(lights) + [n for n in (named or ()) if n in names and n not in lights]
+        if c.get("action") in TABLE_ACTIONS and "table" in names and "table" not in keep:
             keep.append("table")
-        if c.get("pose") == "lie" and "bed" in names:
+        if c.get("pose") == "lie" and "bed" in names and "bed" not in keep:
             keep.append("bed")
+        if c.get("pose") == "recline" and "couch" in names:
+            keep += [q for q in names if q == "couch"]
+        keep = [q for q in names if q in keep]          # in the scene's own order, duplicates kept
         cands[f"single:{i}"] = (clean(dict(spec, shot="close", cast=[c], props=keep)), seed + 11 + i)
     still = [c for c in cast if c.get("pose") != "walk"]
     if lights and still:
         at = next((c for c in still if c.get("action") in FIRE_ACTIONS), still[0])
-        cands["insert"] = (clean(dict(spec, shot="close", cast=[at], props=lights[:2])), seed + 7)
+        ins_props = lights[:2] + [n for n in (named or ()) if n in names and n not in lights[:2]]
+        cands["insert"] = (clean(dict(spec, shot="close", cast=[at], props=ins_props)), seed + 7)
     if S.SETTINGS.get(spec.get("setting")) is not None and S.SETTINGS[spec["setting"]].interior:
         cands.pop("est", None)          # a wide room is small people in an empty wall
     out = {}
@@ -545,17 +588,38 @@ def _groups(lines: list, start: float, end: float) -> list[tuple[float, float, s
     return [(edges[k], edges[k + 1], " ".join(x[2] for x in g)) for k, g in enumerate(groups)]
 
 
-def _choose(opts: dict, text: str, last: str | None, first: bool, used: list) -> str:
-    """The shot that shows what this sentence is about."""
+def _choose(opts: dict, text: str, last: str | None, first: bool, used: list, needs=()) -> str:
+    """The shot that shows what this sentence is about: of the people it
+    names, with the things it names in the picture. A shot that shows them
+    is chosen over one that does not even when it repeats the last angle
+    (the Greek film: "a man breaks bread and a woman lifts a cup" cut to a
+    lamp on the floor because the two-shot had just been used)."""
     import re as _re
     low = text.lower()
+    needs = set(needs)
+
+    def has(name):
+        sp = opts[name][0]
+        names = {p if isinstance(p, str) else (p or {}).get("name") for p in sp.get("props") or []}
+        return needs <= names
+    fit = [n for n in opts if has(n)]
+    if needs and not fit:
+        fit = list(opts)                 # nothing has them all: the fullest picture, below
+    if needs and fit:
+        opts = {n: opts[n] for n in fit}
 
     def ok(name):
-        return name in opts and name != last
+        return name in opts and (name != last or len(opts) == 1)
     if first and ok("est"):
         return "est"
     if _re.search(MOVE_WORDS, low) and ok("pan"):
         return "pan"
+    nouns_ = _re.sub(r"\b(he|him|his|she|her)\b", " ", low)
+    if _re.search(r"\b(asleep|sleeps|sleeping|lies down|lay down|lying)\b", nouns_):
+        # the sentence is about whoever sleeps
+        for name, (sp, _sd) in opts.items():
+            if name.startswith("single:") and ok(name) and sp["cast"][0].get("pose") == "lie":
+                return name
     # a sentence about two people is a shot of both of them
     # (counted by the nouns: "a child holds her hands out" is one person)
     nouns = _re.sub(r"\b(he|him|his|she|her)\b", " ", low)
@@ -565,7 +629,8 @@ def _choose(opts: dict, text: str, last: str | None, first: bool, used: list) ->
         named.add("old_woman")
     if len(named) >= 2:
         for name in ("two", "arr", "est"):
-            if ok(name) and len(opts[name][0].get("cast") or []) >= 2:
+            if name in opts and len(opts[name][0].get("cast") or []) >= 2 and (name != last or
+                                                                                 not any(n != last and n in opts for n in ("two", "arr"))):
                 return name
     for who, pat in WHO_WORDS.items():
         if _re.search(pat, low):
@@ -575,6 +640,8 @@ def _choose(opts: dict, text: str, last: str | None, first: bool, used: list) ->
     if _re.search(LIGHT_WORDS, low) and ok("insert"):
         return "insert"
     order = ["two", "est"] + sorted(n for n in opts if n.startswith("single:")) + ["arr", "insert", "pan"]
+    if needs:
+        order = ["two", "arr"] + [n for n in order if n not in ("two", "arr")]   # the fullest picture first
     fresh = [n for n in order if ok(n) and n not in used[-3:]]
     if fresh:
         return fresh[0]
@@ -604,17 +671,18 @@ HAPPEN_WORDS = {
     "fish": r"\b(fish|fishes|fishing|nets?)\b",
     "mouse": r"\b(mouse|mice|rats?)\b",
     "moth": r"\b(moths?|insects?|gnats?)\b",
+    "turn": r"\b(turns? over|stirs? in (?:his|her|their) sleep|shifts? in (?:his|her|their) sleep|rolls? over)\b",
 }
 # what fills a shot when its words name nothing that happens: a person
 # coming or going or doing something to the fire or the light, and
 # something alive crossing the picture
-FILL_PEOPLE = ("arrive", "feed", "serve", "leave", "light", "child", "snuff", "passer")
+FILL_PEOPLE = ("arrive", "feed", "serve", "leave", "light", "child", "snuff", "passer", "turn")
 FILL_LIFE = ("dog", "birds", "fish", "cat", "hens", "bats", "mouse", "moth")
 SMALL_LIFE = ("mouse", "moth")
 HAPPEN_MIN = 2           # the operator, 2026-10-03: "more needs to be happening per scene. Significantly more."
 
 
-def happenings(spec: dict, era: str, seed: int, text: str, dur: float, prev: tuple = ()) -> list[str]:
+def happenings(spec: dict, era: str, seed: int, text: str, dur: float, prev: tuple = (), avoid: tuple = ()) -> list[str]:
     """What happens in this shot: whatever its words say happens, then a
     person coming, going or tending the fire or the light, and something
     alive crossing — every one checked to fit this picture, never the same
@@ -632,14 +700,15 @@ def happenings(spec: dict, era: str, seed: int, text: str, dur: float, prev: tup
     r.shuffle(life_fill)
     # the lamp is lit as night falls and put out at bedtime: as filler only
     # then (the words can ask for either at any time)
-    if spec.get("time") not in ("dusk", "night"):
-        people_fill.remove("light")
+    if spec.get("time") != "dusk":
+        people_fill.remove("light")       # as filler, a lamp is lit at dusk; at night the words must say so
     if spec.get("time") != "night" or not re.search(r"\b(sleep|asleep|bed|rest|goodnight|dark|quiet)\b", low):
         people_fill.remove("snuff")       # a lamp blown out while the talk is just starting is the wrong evening
     people_fill = [k for k in people_fill if k not in prev] + [k for k in people_fill if k in prev]
     life_fill = [k for k in life_fill if k not in prev] + [k for k in life_fill if k in prev]
-    # the small ones only when nothing bigger fits
-    life_fill = [k for k in life_fill if k not in SMALL_LIFE] + [k for k in life_fill if k in SMALL_LIFE]
+    # the small ones only when nothing bigger fits, and never two shots running
+    # (the Greek film: a mouse in every room)
+    life_fill = [k for k in life_fill if k not in SMALL_LIFE] + [k for k in life_fill if k in SMALL_LIFE and k not in avoid]
     order = want + [k for k in people_fill if k not in want] + [k for k in life_fill if k not in want]
     from data_learning.doodle.settings import SETTINGS
     facts = {"water": (SETTINGS[spec["setting"]].water, 0, 0)} if SETTINGS[spec["setting"]].water else {}
@@ -690,7 +759,8 @@ def shots(ep: dict, beats: list[Beat], paintings: dict | None = None) -> list[di
             _happen(out[-1], ep["era"], groups[0][2], out)
             prev_setting = (b.scene or {}).get("setting")
             continue
-        opts = coverage(b.scene, ep["era"], seed, dur=max(g[1] - g[0] for g in groups))
+        beat_named = named_in(b.text, (b.scene or {}).get("props") or [])
+        opts = coverage(b.scene, ep["era"], seed, dur=max(g[1] - g[0] for g in groups), named=beat_named)
         if not opts:
             out.append(dict(start=start, end=b.end, scene=b.scene, seed=seed))
             _happen(out[-1], ep["era"], b.text, out)
@@ -699,7 +769,7 @@ def shots(ep: dict, beats: list[Beat], paintings: dict | None = None) -> list[di
         last, used = None, []
         for k, (t0, t1, text) in enumerate(groups):
             first = k == 0 and (b.scene or {}).get("setting") != prev_setting
-            name = _choose(opts, text, last, first, used)
+            name = _choose(opts, text, last, first, used, needs=named_in(text, (b.scene or {}).get("props") or []))
             sp, sd = opts[name]
             if name == "pan":
                 sp = dict(sp, pan_s=round(t1 - t0 + XFADE, 2))
@@ -719,7 +789,8 @@ def _happen(shot: dict, era: str, text: str, so_far: list) -> None:
         return
     dur = round(shot["end"] - shot["start"] + XFADE, 2)
     prev = tuple(k for x in so_far[-4:-1] for k in ((x.get("scene") or {}).get("happen") or ()))
-    kinds = happenings(sp, era, shot["seed"], text, dur, prev)
+    avoid = tuple((so_far[-2].get("scene") or {}).get("happen") or ()) if len(so_far) > 1 else ()
+    kinds = happenings(sp, era, shot["seed"], text, dur, prev, avoid)
     if kinds:
         shot["scene"] = dict(sp, happen=kinds, happen_s=dur)
 

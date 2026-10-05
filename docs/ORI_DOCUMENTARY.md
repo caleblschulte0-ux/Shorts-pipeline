@@ -841,6 +841,39 @@ only as a hand edit is not a rule. So:
   Seen on my own look: the mouse turns up in too many interiors, and a cart
   floats over the forum (a back prop at the horizon).
 
+- **The operator on that one, 2026-10-04:** *"This is shit fix it don't stop
+  until I say."* The judge's notes, every one made a rule with a test
+  (`tests/test_the_words_are_drawn.py`):
+  - **The kit draws what the words name.** A `couch` (a kline) and a
+    `recline` pose for the Greek dinner, propped on one elbow along it; a
+    `spindle` in the hand and the act of spinning; a `boat` drawn up on the
+    sand with its sail furled; a `stream` setting (a brook across open
+    ground) and a `spring` (a pool at the foot of the town wall, fed from a
+    spout — both measured alive with the gate's own probe); the brazier is a
+    bronze bowl on a slender tripod, not a kettle grill; a wax candle no
+    longer exists in a Greek or Egyptian room (`ERA_STAND_IN` turns it into
+    an oil lamp).
+  - **The author puts it in the scene.** `NAMED_PROPS` (one table for the
+    author and the shot planner) grew boats, couches, jars, lamps, fires;
+    when the named thing has no room, what the words do NOT name gives way,
+    biggest first (the harbour's cart went for the boat). `mend_recline`
+    lays the diners on couches when the words say so; `mend_doing` has
+    whoever a clause names do what it says ("a man breaks bread" eats, with
+    the bread). "In a smaller house" is indoors now; "a few streets away" is
+    a distance, not a street; "at the water's edge" beside a spring is the
+    spring.
+  - **The shot keeps it.** `_choose` takes the sentence's named things as
+    `needs` and picks only among shots that carry them; a repeated angle
+    beats a wrong picture. A sentence about someone asleep is the shot of
+    the sleeper. A long sentence is still cut at its commas, so "a man
+    breaks bread ..., and a woman lifts a cup" is his shot and then hers,
+    each at the table.
+  - **Happenings grew:** a sleeper turns over (`turn`); the mouse and the
+    moth never two shots running; a lamp is lit as filler only at dusk;
+    a lamp with nobody near it is left for one somebody can reach.
+  - A cart no longer stands across the bay: only buildings and trees take
+    the far shore (`scene.FAR_SHORE`); everything else stays on this bank.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);
