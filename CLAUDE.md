@@ -275,6 +275,18 @@ that was visible in a shipped frame — which is why they are tests and not a
 style guide, and why a source-reading test here asserts on CODE (AST, string
 constants blanked), never on the prose that explains it.
 
+- **The art is LIT, not flat, and that is MEASURED** (operator,
+  2026-10-05: *"the art in general on the B clips needs to be better"*).
+  `illustrated.py` has one light model — `solid`, `box`, `cylinder`,
+  `disc`, `contact_shadow`, `haze`, `vignette`, `edge`, key light `KEY` —
+  exported to the brain's kit and used by the teachers; prompt rule 12
+  says so. `scene_author.craft_problems` counts exact-colour slabs in the
+  hero band and refuses more than `FLAT_MAX` as clip art; it runs inside
+  `verify` and on every SAVED scene at load, so flat scenes drawn before
+  the light are redrawn, never shipped again. A subject helper that
+  `cr.fill()`s one flat colour is the defect; draw the path, call
+  `solid()`. `tests/test_the_art_is_lit.py`.
+
 - **A brain-drawn subject scene has to pass a VIEWER, not just the code**
   (operator, 2026-10-01: a coffin he "couldn't tell was a coffin", an urn
   of blue "ash" that read as water, a rope "pulling a liquid up"). Every

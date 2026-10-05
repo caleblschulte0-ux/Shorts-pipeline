@@ -33,6 +33,8 @@ import cairo
 from shared import look
 from data_learning import illustrated as I
 from data_learning.illustrated import W, H, clamp, ease, pop, seg, glow, text, _c
+from data_learning.illustrated import (solid, box, cylinder, disc, contact_shadow,  # noqa: F401 — the light kit
+                                       haze, vignette, edge, KEY, FINISHES)
 
 P = look.SCENES
 
@@ -113,18 +115,11 @@ def tree(cr, x, base, s, lit, shade, trunk, lean=0.0, a=1.0):
     cr.translate(x, base)
     cr.rotate(lean * 1.45)
     cr.scale(s, s)
-    cr.set_source_rgba(*_c(trunk, a))
     cr.rectangle(-7, -120, 14, 120)
-    cr.fill()
+    solid(cr, trunk, a=a, rim=False)
     for dx, dy, r, col in ((-34, -128, 44, shade), (32, -132, 46, shade),
                            (0, -170, 56, lit), (-20, -140, 40, lit)):
-        cr.set_source_rgba(*_c(col, a))
-        cr.arc(dx, dy, r, 0, 2 * math.pi)
-        cr.fill()
-    cr.set_source_rgba(*_c(P["rim_leaf"], 0.55 * a))
-    cr.arc(-10, -186, 30, math.pi * 1.1, math.pi * 1.7)
-    cr.set_line_width(5)
-    cr.stroke()
+        disc(cr, dx, dy, r, col, a=a)
     cr.restore()
 
 
@@ -153,21 +148,18 @@ def cow(cr, x, y, s, t, a=1.0):
         cr.set_source_rgba(*_c(dark, a))
         cr.rectangle(lx - 4, 8, 8, 26)
         cr.fill()
-    cr.set_source_rgba(*_c(body, a))
     cr.save()
     cr.scale(1, 0.6)
     cr.arc(0, 0, 40, 0, 2 * math.pi)
     cr.restore()
-    cr.fill()
+    solid(cr, body, a=a)
     cr.set_source_rgba(*_c(patch, a))
     cr.arc(-12, -6, 12, 0, 2 * math.pi)
     cr.fill()
     cr.arc(16, 4, 9, 0, 2 * math.pi)
     cr.fill()
     dip = 10 * (0.5 + 0.5 * math.sin(t * 2.2 + x))
-    cr.set_source_rgba(*_c(body, a))
-    cr.arc(44, -4 + dip, 15, 0, 2 * math.pi)
-    cr.fill()
+    disc(cr, 44, -4 + dip, 15, body, a=a)
     cr.set_source_rgba(*_c(dark, a))
     cr.arc(52, 0 + dip, 5, 0, 2 * math.pi)
     cr.fill()
@@ -180,20 +172,15 @@ def truck(cr, x, y, s, a=1.0):
     cr.save()
     cr.translate(x, y)
     cr.scale(s, s)
-    cr.set_source_rgba(*_c(P["truck"], a))
+    contact_shadow(cr, 0, 8, 120, a=0.35 * a)
     cr.rectangle(-50, -34, 70, 34)
-    cr.fill()
-    cr.set_source_rgba(*_c(P["truck_cab"], a))
+    solid(cr, P["truck"], a=a)
     cr.rectangle(20, -26, 30, 26)
-    cr.fill()
-    cr.set_source_rgba(*_c(P["log"], a))
+    solid(cr, P["truck_cab"], finish="gloss", a=a)
     for k in range(3):
-        cr.arc(-40 + k * 22, -40, 11, 0, 2 * math.pi)
-        cr.fill()
-    cr.set_source_rgba(*_c(P["cow_dark"], a))
+        disc(cr, -40 + k * 22, -40, 11, P["log"], a=a)
     for wx in (-34, 0, 34):
-        cr.arc(wx, 2, 9, 0, 2 * math.pi)
-        cr.fill()
+        disc(cr, wx, 2, 9, P["cow_dark"], a=a)
     cr.restore()
 
 
@@ -609,16 +596,14 @@ def amazon_where_it_goes(cr, t, u, pts, host):
         tree(cr, x, 900 + 40 * d, 0.5 * s_, P["leaf_far"], P["leaf_far_shade"],
              P["trunk_far"])
     scar_path(cr)
-    cr.set_source_rgba(*_c(P["scar"]))
-    cr.fill()
+    solid(cr, P["scar"], rim=False, edge=False)
     x0, x1 = cx - R * 1.1, cx + R * 1.1
     split = x0 + (x1 - x0) * share * ease(seg(u, 0.05, 0.5))
     cr.save()
     scar_path(cr)
     cr.clip()
-    cr.set_source_rgba(*_c(P["pasture"]))
     cr.rectangle(x0, 0, split - x0, H)
-    cr.fill()
+    solid(cr, P["pasture"], rim=False, edge=False)
     for i in range(70):                       # grass tufts sway
         gx = x0 + (i * 131) % int(max(1, split - x0))
         gy = cy - R * 0.6 + (i * 71) % int(R * 1.2)
@@ -642,11 +627,10 @@ def amazon_where_it_goes(cr, t, u, pts, host):
     tx = x0 + (x1 - x0) * (share + (1 - share) / 2)
     la = ease(seg(u, 0.45, 0.6))
     truck(cr, tx + 30 * math.sin(t * 0.5), cy - 30, 1.2, a=la)
+    contact_shadow(cr, tx, cy + 104, 120, a=0.35 * la)
     for k in range(5):                        # the log pile
-        cr.set_source_rgba(*_c(P["log"], la))
-        cr.arc(tx - 40 + (k % 3) * 26 + (k // 3) * 13, cy + 90 - (k // 3) * 22, 13,
-               0, 2 * math.pi)
-        cr.fill()
+        disc(cr, tx - 40 + (k % 3) * 26 + (k // 3) * 13, cy + 90 - (k // 3) * 22, 13,
+             P["log"], a=la)
     if lead:   # he rides the lead cow: its walk is his motion
         host("hold_up" if u < 0.85 else "cheer", lead[0] - 4, lead[1] - 20,
              180)                  # the reins while the herd spreads
@@ -688,9 +672,8 @@ def cafe(cr, t, wy=(640, 1160), counter=1330):
     cr.move_to(540, y0)
     cr.line_to(540, y1)
     cr.stroke()
-    cr.set_source_rgba(*_c(P["counter_top"]))
     cr.rectangle(0, counter, W, 40)
-    cr.fill()
+    solid(cr, P["counter_top"], finish="gloss", rim=False, edge=False)
     vgrad(cr, [(0.0, P["counter"]), (1.0, (40, 24, 20))], counter + 40, H)
 
 
@@ -709,20 +692,19 @@ def cup(cr, x, y, s=1.0):
     cr.save()
     cr.translate(x, y)
     cr.scale(s, s)
-    cr.set_source_rgba(*_c(P["cow"]))
+    contact_shadow(cr, 0, 4, 150, a=0.3)
     cr.move_to(-70, -120)
     cr.line_to(70, -120)
     cr.line_to(56, 0)
     cr.line_to(-56, 0)
     cr.close_path()
-    cr.fill()
-    cr.set_source_rgba(*_c(P["bean"]))
+    solid(cr, P["cow"], finish="gloss")
     cr.save()
     cr.translate(0, -120)
     cr.scale(1, 0.25)
     cr.arc(0, 0, 66, 0, 2 * math.pi)
     cr.restore()
-    cr.fill()
+    solid(cr, P["bean"], finish="glass", rim=False)
     cr.set_source_rgba(*_c(P["cow"]))
     cr.set_line_width(14)
     cr.arc(80, -64, 30, -math.pi / 2, math.pi / 2)
@@ -736,19 +718,16 @@ def sack(cr, x, y, s=1.0, a=1.0, label=True):
     cr.save()
     cr.translate(x, y)
     cr.scale(s, s)
-    cr.set_source_rgba(*_c(P["sack"], a))
+    contact_shadow(cr, 0, 4, 110, a=0.3 * a)
     cr.move_to(-46, 0)
     cr.curve_to(-54, -40, -44, -86, -30, -96)
     cr.line_to(30, -96)
     cr.curve_to(44, -86, 54, -40, 46, 0)
     cr.close_path()
-    cr.fill_preserve()
-    # a dark edge: a beige sack on beige dry soil was one mush of colour —
-    # hard to count by eye, invisible in grey when it moved
-    cr.set_source_rgba(*_c(P["sack_ink"], a))
-    cr.set_line_width(6)
-    cr.stroke()
-    cr.set_source_rgba(*_c(P["sack_shade"], a))
+    # lit, with a dark edge: a beige sack on beige dry soil was one mush of
+    # colour — hard to count by eye, invisible in grey when it moved
+    solid(cr, P["sack"], a=a)
+    cr.set_source_rgba(*_c(P["sack_shade"], 0.6 * a))
     cr.move_to(10, 0)
     cr.curve_to(40, -30, 44, -80, 30, -96)
     cr.line_to(46, 0)
@@ -783,11 +762,10 @@ def coffee_climb(cr, t, u, pts, host):
     cx, py = W / 2, 1050
     # the money side sinks as it outweighs the pound of beans
     tilt = clamp((coins - 6) / 14 * 0.16, -0.10, 0.18)
-    cr.set_source_rgba(*_c(P["brass_shade"]))
-    cr.rectangle(cx - 16, py, 32, CT - py)
-    cr.fill()
+    contact_shadow(cr, cx, CT, 320, a=0.35)
+    cylinder(cr, cx - 16, CT - 22, 32, CT - 22 - py, P["brass"], finish="metal")
     cr.rectangle(cx - 120, CT - 22, 240, 22)
-    cr.fill()
+    solid(cr, P["brass_shade"], finish="metal")
     L = 360
     lx, ly = cx - L * math.cos(tilt), py - L * math.sin(-tilt)
     rx, ry = cx + L * math.cos(tilt), py + L * math.sin(tilt)
@@ -805,13 +783,12 @@ def coffee_climb(cr, t, u, pts, host):
         cr.move_to(px, pyy)
         cr.line_to(px + 120, pyy + 230)
         cr.stroke()
-        cr.set_source_rgba(*_c(P["brass"]))
         cr.save()
         cr.translate(px, pyy + 236)
         cr.scale(1, 0.22)
         cr.arc(0, 0, 140, 0, 2 * math.pi)
         cr.restore()
-        cr.fill()
+        solid(cr, P["brass"], finish="metal")
     # a pound of beans on the left pan
     sack(cr, lx, ly + 232, 1.9)
     # the money on the right pan: whole coins, the last one arriving
@@ -890,17 +867,13 @@ def coffee_drought(cr, t, u, pts, host):
     (l0, before), (l1, after) = rows if rows[0][1] >= rows[1][1] else rows[::-1]
     vgrad(cr, P["drought_sky"], 0, 1100)
     glow(cr, 760, 560, 420, P["sun_hot"], 0.85 + 0.1 * math.sin(t * 2))
-    cr.set_source_rgba(*_c(P["sun_hot"]))
-    cr.arc(760, 560, 110, 0, 2 * math.pi)
-    cr.fill()
+    disc(cr, 760, 560, 110, P["sun_hot"], finish="gloss")
     vgrad(cr, P["dry_soil"], 1060, H)
     dry = ease(seg(u, 0.15, 0.6))
     for i in range(16):                      # coffee shrubs on the hills
         x = 40 + i * 68
         col = tuple(int(a + (b - a) * dry) for a, b in zip(P["shrub"], P["shrub_dry"]))
-        cr.set_source_rgba(*_c(col))
-        cr.arc(x, 1080 + 12 * (i % 3), 34, 0, 2 * math.pi)
-        cr.fill()
+        disc(cr, x, 1080 + 12 * (i % 3), 34, col)
     for k in range(int(26 * dry)):           # the ground cracks
         x = 60 + (k * 173) % 960
         y = 1480 + (k * 97) % 160
@@ -919,6 +892,7 @@ def coffee_drought(cr, t, u, pts, host):
     drop = seg(u, 0.35, 0.86) * max(1, total - keep)
     idx = 0
     per_row = [11, 10, 9, 7, 5, 3]
+    contact_shadow(cr, 540, 1452, 900, a=0.4)
     for r_, cnt in enumerate(per_row):
         for c in range(cnt):
             if idx >= total:
@@ -968,18 +942,16 @@ def heat_shimmer(cr, t, y0, y1, a=0.18):
 
 
 def rowhouse(cr, x, w, h, base, lit, shade, hot=0.0, t=0.0, trees=False):
-    cr.set_source_rgba(*_c(lit))
+    contact_shadow(cr, x + w / 2, base, w * 1.3, a=0.3)
     cr.rectangle(x, base - h, w * 0.7, h)
-    cr.fill()
-    cr.set_source_rgba(*_c(shade))
+    solid(cr, lit, rim=False)
     cr.rectangle(x + w * 0.7, base - h, w * 0.3, h)
-    cr.fill()
-    cr.set_source_rgba(*_c(shade))
+    solid(cr, shade, rim=False, depth=0.5)
     cr.move_to(x - 6, base - h)
     cr.line_to(x + w / 2, base - h - 40)
     cr.line_to(x + w + 6, base - h)
     cr.close_path()
-    cr.fill()
+    solid(cr, shade, depth=0.5)
     for r_ in range(int((h - 60) // 90)):
         for c_ in range(2):
             cr.set_source_rgba(*_c(P["glass"], 0.85))
@@ -991,12 +963,9 @@ def rowhouse(cr, x, w, h, base, lit, shade, hot=0.0, t=0.0, trees=False):
              0.28 * hot * (0.8 + 0.2 * math.sin(t * 3 + x)))
     if trees:
         for dx in (-10, w * 0.55):
-            cr.set_source_rgba(*_c(P["trunk"]))
             cr.rectangle(x + dx + 20, base - 110, 12, 110)
-            cr.fill()
-            cr.set_source_rgba(*_c(P["treeleaf"]))
-            cr.arc(x + dx + 26, base - 140 + 4 * math.sin(t * 1.5 + x), 52, 0, 2 * math.pi)
-            cr.fill()
+            solid(cr, P["trunk"], rim=False)
+            disc(cr, x + dx + 26, base - 140 + 4 * math.sin(t * 1.5 + x), 52, P["treeleaf"])
 
 
 def street(cr):
@@ -1016,18 +985,15 @@ def traffic(cr, t):
                                         (STREET_Y + 120, -220, P["brick_cool"]),
                                         (STREET_Y + 70, 260, P["truck_cab"]))):
         x = (k * 420 + t * v) % (W + 300) - 150
-        cr.set_source_rgba(*_c(col))
+        contact_shadow(cr, x, lane + 6, 170, a=0.35)
         cr.rectangle(x - 70, lane - 34, 140, 34)
-        cr.fill()
+        solid(cr, col, finish="gloss")
         cr.rectangle(x - 40, lane - 58, 80, 26)
-        cr.fill()
-        cr.set_source_rgba(*_c(P["glass"], 0.9))
+        solid(cr, col, finish="gloss")
         cr.rectangle(x - 32, lane - 54, 64, 18)
-        cr.fill()
-        cr.set_source_rgba(*_c(P["cow_dark"]))
+        solid(cr, P["glass"], finish="glass", a=0.9, rim=False)
         for wx in (-44, 44):
-            cr.arc(x + wx, lane, 14, 0, 2 * math.pi)
-            cr.fill()
+            disc(cr, x + wx, lane, 14, P["cow_dark"])
 
 
 def heat_by_city(cr, t, u, pts, host):
@@ -1140,9 +1106,8 @@ def heat_redlining(cr, t, u, pts, host):
     cr.set_source_rgba(0, 0, 0, 0.35)
     cr.rectangle(mx + 14, my + 18, mw, mh)
     cr.fill()
-    cr.set_source_rgba(*_c(P["paper"]))
     cr.rectangle(mx, my, mw, mh)
-    cr.fill()
+    solid(cr, P["paper"], rim=False, depth=0.3)     # a sheet: lit, barely shaded
     cr.set_source_rgba(*_c(P["paper_ink"], 0.55))
     cr.set_line_width(3)
     for k in range(1, 8):                        # the street grid
@@ -1167,18 +1132,20 @@ def heat_redlining(cr, t, u, pts, host):
     ht = ease(seg(u, 0.4, 0.7))               # heat rises off that zone, today
     if ht > 0:
         glow(cr, zx + zw / 2, zy + zh / 2, 340, P["heat"], 0.55 * ht)
-        for k in range(16):                    # heat waves rise off the zone
-            ph = (t * 0.45 + k / 16) % 1
+        for k in range(24):                    # heat waves rise off the zone
+            ph = (t * 0.55 + k / 24) % 1
             x = zx + 30 + (k * 53) % (zw - 60)
             y = zy + zh - ph * (zh + 320)
             # bold and dark enough to read against the paper: thin orange on
             # beige was invisible in grey, to the eye at a glance as much as
-            # to the gate's detector
+            # to the gate's detector — and enough of them that the rising
+            # heat IS the scene's motion (a lit sheet under them measured
+            # as stiller than a flat one, 2026-10-05)
             cr.set_source_rgba(*_c(P["redline"], 0.95 * ht * (1 - ph)))
-            cr.set_line_width(12)
+            cr.set_line_width(16)
             cr.move_to(x, y)
-            for j in range(1, 6):
-                cr.line_to(x + 14 * math.sin(t * 3 + j + k), y - j * 22)
+            for j in range(1, 7):
+                cr.line_to(x + 18 * math.sin(t * 3 + j + k), y - j * 24)
             cr.stroke()
     # HAZARDOUS on top of the heat, outlined so the glow cannot wash it out
     cr.move_to(zx + zw / 2 - I.text_w(cr, "HAZARDOUS", 52, "display") / 2, zy + zh / 2 + 16)
