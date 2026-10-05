@@ -244,10 +244,23 @@ def _town(cr, r, y0, seed, facts=None):
             town["windows"].append((wx, y0 - h * 0.4))
 
 
-def _colonnade(cr, r, y0, seed):
-    """A line of columns across the square, with the beam they carry."""
+STOA_WALL = rgb("#cdc2ab")
+
+
+def _colonnade(cr, r, y0, seed, wall: bool = False):
+    """A line of columns across the square, with the beam they carry. Close
+    in, the stoa's back wall stands behind the columns: with the town's
+    roofs showing between them the beam read as a parapet and the judge saw
+    "a figure in a dress on a rooftop" (run 97); a wall is the stone the
+    words put the fire against."""
     from .props import column
     xs = [180 + k * 390 + r.uniform(-20, 20) for k in range(5)]
+    if wall:
+        ink.fill_stroke(cr, [(-40, y0 - 195), (W + 40, y0 - 195), (W + 40, y0 + 6), (-40, y0 + 6)],
+                        STOA_WALL, lw=4, amp=1.0, seed=seed + 3, shadow=shade(STOA_WALL, 0.92), shadow_dir=(0, 1))
+        for k in range(1, 5):
+            yy = y0 - 195 + k * 48
+            ink.line(cr, [(-40, yy), (W + 40, yy)], lw=2, ink=shade(STOA_WALL, 0.85), amp=1.2, seed=seed + 20 + k)
     ink.fill_stroke(cr, [(xs[0] - 60, y0 - 215), (xs[-1] + 60, y0 - 215), (xs[-1] + 60, y0 - 190), (xs[0] - 60, y0 - 190)],
                     rgb("#e3dbc9"), lw=4, amp=0.8, seed=seed, shadow=rgb("#cfc5b1"), shadow_dir=(0, 1))
     for k, x in enumerate(xs):
@@ -578,7 +591,7 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int, shot: str = "w
         _castle(cr, W * r.uniform(0.3, 0.7), H * st.horizon + 60, seed)
     if name == "forum":
         _town(cr, r, H * st.horizon + 40, seed, facts)
-        _colonnade(cr, r, H * st.horizon + 150, seed)
+        _colonnade(cr, r, H * st.horizon + 150, seed, wall=(shot == "close"))
     if name == "street":
         from .props import terrace
         for k in range(4):

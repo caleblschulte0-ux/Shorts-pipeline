@@ -1107,6 +1107,9 @@ def mend_scene(scene: dict, era: str) -> str | None:
         if c.get("mood") is not None and c.get("mood") not in P.MOODS:
             did.append(f"mood {c['mood']} -> calm")
             c["mood"] = "calm"
+        if c.get("mood") is not None and c.get("mood") not in OS.CALM_MOODS:
+            did.append(f"mood {c['mood']} -> calm (nobody frowns in a sleep film)")
+            c["mood"] = "calm"
         action = c.get("action", "idle")
         if action not in P.ACTIONS:
             did.append(f"action {action} -> idle")

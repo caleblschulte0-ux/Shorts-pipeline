@@ -484,6 +484,20 @@ SINGLE_ZOOM = 1.3    # a shot of one person: framed on them
 SINGLE_ZOOM_INTERIOR = 1.15    # ...looser in a room, so the shelf and the window stay in the picture (run 94: "the top half of the frame is empty")
 
 
+CALM_MOODS = ("calm", "content", "sleepy", "happy")   # the faces a sleep film has (run 97: "the shepherd has a stern, frowning expression")
+
+
+def soften(spec):
+    """The scene with every face calm: a focused, worried or surprised
+    face is drawn with angled brows, and nobody frowns in a film to fall
+    asleep to."""
+    if not isinstance(spec, dict) or not spec.get("cast"):
+        return spec
+    cast = [dict(c, mood="calm") if isinstance(c, dict) and c.get("mood") not in CALM_MOODS else c
+            for c in spec["cast"]]
+    return dict(spec, cast=cast)
+
+
 def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dict:
     """Every shot this place and these people can give, each checked valid
     and with nothing drawn into anything: `est` (wide, everyone), `two`
@@ -526,11 +540,22 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dic
         # run 95's judge wanted the man and the embers, not the square)
         still = [dict(cast[0], pose="stand", action="idle")]
     if lights and still:
-        at = next((c for c in still if c.get("action") in FIRE_ACTIONS), still[0])
+        at0 = next((c for c in still if c.get("action") in FIRE_ACTIONS), still[0])
+        # whoever is at the light is placed AT it, not at the slot the script
+        # gave the wide shot (run 97: "her hands are not near the lamp")
+        at = {k: v for k, v in at0.items() if k != "at"}
         # of ONE light: a second one sat half in the window (run 92: "the
         # lamp at the right edge ... clipped by the frame")
         ins_props = lights[:1] + [n for n in (named or ()) if n in names and n not in lights[:1]]
-        cands["insert"] = (clean(dict(spec, shot="close", cast=[at], props=ins_props)), seed + 7)
+        ins_cast = [at]
+        sleeper = next((c for c in still if c.get("pose") == "lie" and c is not at0), None)
+        if sleeper is not None:
+            # a sleeper stays in the picture with whoever sits up beside them
+            # (run 97: the storyteller's close-up dropped the sleeping child
+            # and repeated another chapter's picture)
+            ins_cast.append({k: v for k, v in sleeper.items() if k != "at"})
+            ins_props += [n for n in names if n in S.BEDDING and n not in ins_props]
+        cands["insert"] = (clean(dict(spec, shot="close", cast=ins_cast, props=ins_props)), seed + 7)
     if S.SETTINGS.get(spec.get("setting")) is not None and S.SETTINGS[spec["setting"]].interior:
         cands.pop("est", None)          # a wide room is small people in an empty wall
     out = {}
@@ -547,10 +572,10 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dic
             p = next((q for q in lay["props"] if q["name"] in lights), None)
             if p is None or not lay["people"]:
                 continue
-            f = lay["people"][0]
             ph = PROPS[p["name"]].height * p["s"]
-            boxes = [_figure_box(f), (p["x"] - PROPS[p["name"]].width * p["s"] / 2, p["y"] - ph * 1.3,
-                                      p["x"] + PROPS[p["name"]].width * p["s"] / 2, p["y"] + 10)]
+            boxes = [_figure_box(f) for f in lay["people"]] + \
+                [(p["x"] - PROPS[p["name"]].width * p["s"] / 2, p["y"] - ph * 1.3,
+                  p["x"] + PROPS[p["name"]].width * p["s"] / 2, p["y"] + 10)]
             fr = frame_for(boxes, INSERT_ZOOM)
             if fr is not None:
                 sp = dict(sp, frame=fr)
@@ -669,7 +694,7 @@ def _clauses(ln):
     res, t = [], t0
     for text in out:
         d = (t1 - t0) * len(text.split()) / n
-        res.append((t, t + d, text))
+        res.append((t, t + d, text, sent))
         t += d
     return res
 
@@ -689,7 +714,21 @@ def _groups(lines: list, start: float, end: float) -> list[tuple[float, float, s
     if cur:
         groups.append(cur)
     edges = [start] + [g[0][0] for g in groups[1:]] + [end]
-    return [(edges[k], edges[k + 1], " ".join(x[2] for x in g)) for k, g in enumerate(groups)]
+    # a clause cut from a long sentence is still that sentence: the shot is
+    # chosen by ALL its words (run 97: "the others do not stop spinning to
+    # listen, | but you can tell they are, a small pause in the rhythm" gave
+    # its second half a single, and the judge saw "only one woman")
+    return [(edges[k], edges[k + 1], " ".join(x[2] for x in g), " ".join(x[3] if len(x) > 3 else x[2] for x in g))
+            for k, g in enumerate(groups)]
+
+
+def _names_people(text: str) -> bool:
+    """Whether a clause says who it is about: a person by name, a plural,
+    the company, or two together."""
+    low = (text or "").lower()
+    nouns = re.sub(r"\b(he|him|his|she|her)\b", " ", low)
+    return bool(any(re.search(pat, nouns) for pat in WHO_WORDS.values()) or PLURAL_PEOPLE.search(low)
+                or COMPANY.search(low) or TOGETHER.search(low))
 
 
 def _choose(opts: dict, text: str, last: str | None, first: bool, used: list, needs=()) -> str:
@@ -799,7 +838,8 @@ KEEP_ON_WORDS = r"\b(do(?:es)? not stop|keeps?|still|go(?:es)? on|continues?|sta
 TOP_BAND = 175.0     # world px: the ceiling beams and the painted band every room has along the top
 
 
-def happenings(spec: dict, era: str, seed: int, text: str, dur: float, prev: tuple = (), avoid: tuple = ()) -> list[str]:
+def happenings(spec: dict, era: str, seed: int, text: str, dur: float, prev: tuple = (), avoid: tuple = (),
+               about: str | None = None) -> list[str]:
     """What happens in this shot: whatever its words say happens, then a
     person coming, going or tending the fire or the light, and something
     alive crossing — every one checked to fit this picture, never the same
@@ -810,6 +850,9 @@ def happenings(spec: dict, era: str, seed: int, text: str, dur: float, prev: tup
     lay = S.layout(spec, seed)
     low = (text or "").lower()
     want = [k for k, pat in HAPPEN_WORDS.items() if re.search(pat, low)]
+    # what the shot's words ask for comes from ITS clause; who may leave or
+    # stand up is read from the whole sentence it was cut from
+    low = (about or text or "").lower()
     r = random.Random(seed * 13 + 5)
     people_fill = list(FILL_PEOPLE)
     r.shuffle(people_fill)
@@ -839,7 +882,9 @@ def happenings(spec: dict, era: str, seed: int, text: str, dur: float, prev: tup
     # one of the others)
     if re.search(SEATED_WORDS, low):
         people_fill = [k for k in people_fill if k != "stretch"]
-    if re.search(KEEP_ON_WORDS, low):
+    if re.search(KEEP_ON_WORDS, low) or COMPANY.search(low) or TOGETHER.search(low) or PLURAL_PEOPLE.search(low):
+        # ...and nobody leaves a sentence that is about the company (run 97:
+        # "cups are filled, and the talk begins" with one man left on the couch)
         people_fill = [k for k in people_fill if k != "leave"]
     if spec.get("frame"):
         people_fill = [k for k in people_fill if k != "passer"]     # no far lane in a framed close-up
@@ -897,35 +942,40 @@ def shots(ep: dict, beats: list[Beat], paintings: dict | None = None) -> list[di
             cut = lines[1][0]
             out.append(dict(start=b.start, end=cut, scene=b.scene, seed=seed, painting=str(paints[b.index])))
             lines, start = lines[1:], cut
-        groups = _groups(lines, start, b.end) if lines else [(start, b.end, b.text)]
+        groups = _groups(lines, start, b.end) if lines else [(start, b.end, b.text, b.text)]
         if len(groups) == 1:
-            out.append(dict(start=groups[0][0], end=groups[0][1], scene=b.scene, seed=seed))
+            out.append(dict(start=groups[0][0], end=groups[0][1], scene=soften(b.scene), seed=seed))
             _happen(out[-1], ep["era"], groups[0][2], out)
             prev_setting = (b.scene or {}).get("setting")
             continue
         beat_named = named_in(b.text, (b.scene or {}).get("props") or [])
-        opts = coverage(b.scene, ep["era"], seed, dur=max(g[1] - g[0] for g in groups), named=beat_named)
+        opts = coverage(soften(b.scene), ep["era"], seed, dur=max(g[1] - g[0] for g in groups), named=beat_named)
         if not opts:
-            out.append(dict(start=start, end=b.end, scene=b.scene, seed=seed))
+            out.append(dict(start=start, end=b.end, scene=soften(b.scene), seed=seed))
             _happen(out[-1], ep["era"], b.text, out)
             prev_setting = (b.scene or {}).get("setting")
             continue
         last, used = None, []
-        for k, (t0, t1, text) in enumerate(groups):
+        for k, (t0, t1, text, about) in enumerate(groups):
             first = k == 0 and (b.scene or {}).get("setting") != prev_setting
-            name = _choose(opts, text, last, first, used, needs=named_in(text, (b.scene or {}).get("props") or []))
+            # a clause that names its own people is of them ("a man breaks
+            # bread, | and a woman lifts a cup": his, then hers); one that
+            # names nobody is of whoever its sentence is about
+            if _names_people(text):
+                about = text
+            name = _choose(opts, about, last, first, used, needs=named_in(about, (b.scene or {}).get("props") or []))
             sp, sd = opts[name]
             if name == "pan":
                 sp = dict(sp, pan_s=round(t1 - t0 + XFADE, 2))
             out.append(dict(start=t0, end=t1, scene=sp, seed=sd, shot=name))
-            _happen(out[-1], ep["era"], text, out)
+            _happen(out[-1], ep["era"], text, out, about=about)
             last = name
             used.append(name)
         prev_setting = (b.scene or {}).get("setting")
     return out
 
 
-def _happen(shot: dict, era: str, text: str, so_far: list) -> None:
+def _happen(shot: dict, era: str, text: str, so_far: list, about: str | None = None) -> None:
     """Give a shot its happenings, in place: the shot lasts as long as it is
     on screen plus the dissolve into the next."""
     sp = shot.get("scene")
@@ -934,7 +984,7 @@ def _happen(shot: dict, era: str, text: str, so_far: list) -> None:
     dur = round(shot["end"] - shot["start"] + XFADE, 2)
     prev = tuple(k for x in so_far[-4:-1] for k in ((x.get("scene") or {}).get("happen") or ()))
     avoid = tuple((so_far[-2].get("scene") or {}).get("happen") or ()) if len(so_far) > 1 else ()
-    kinds = happenings(sp, era, shot["seed"], text, dur, prev, avoid)
+    kinds = happenings(sp, era, shot["seed"], text, dur, prev, avoid, about=about)
     if kinds:
         shot["scene"] = dict(sp, happen=kinds, happen_s=dur)
 

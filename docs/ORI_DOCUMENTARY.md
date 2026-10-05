@@ -1084,6 +1084,22 @@ only as a hand edit is not a rule. So:
   a close-up is not "the upper half blank wall". The lantern stays in his
   hand: without it the shot has no second light and no insert at all.
 
+- **Run 97 (commit c2407cee): 83, SHIP** — the embers insert passed; what
+  was left was the picture contradicting the words in six small ways, every
+  one now a rule (`TheEightyThreeShip`): a clause cut from a long sentence
+  is chosen by the WHOLE sentence, so both halves of "the others do not stop
+  spinning..." are of the others; nobody leaves a sentence about the company
+  ("cups are filled, and the talk begins" had lost a man off the couch); the
+  hand-warmer sits AT the lamp, on its spout side, with her hands out past
+  her knees (she had kept the slot the wide shot gave her, and a sleeper
+  placed after her threw the arrangement out), and a sleeper is placed
+  first; a grey head carries age lines; the storyteller's close-up keeps the
+  sleeping child and her bedding, so two chapters no longer share one
+  picture; the forum close-up has the stoa's back wall behind the columns
+  ("a figure in a dress on a rooftop"); the spindle's reach keeps the lamp
+  out of a spinner's hands; and nobody frowns — `focused` and `worried`
+  faces are calm in every shot and in the shelf (the author mends them).
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

@@ -113,7 +113,7 @@ def look(who: str, era: str, seed: int) -> dict:
     hair = r.choice(GREY_HAIR if w["grey"] else (EGYPT_HAIR if era == "egypt" else HAIR))
     cloth = r.choice(o["cloth"])
     lk = dict(size=w["size"], hair=hair, cloth=cloth, texture=o["texture"],
-              strap=o["strap"], long=w["long"],
+              strap=o["strap"], long=w["long"], grey=w["grey"],
               beard=r.random() < w["beard"], era=era, who=who,
               hood=(era == "medieval" and r.random() < 0.35 and not w["long"]),
               scarf=(era == "medieval" and w["long"] and r.random() < 0.6),
@@ -189,7 +189,7 @@ def skeleton(pose: str, R: float, t: float, phase: float = 0.0) -> dict:
         raise KeyError(f"pose {pose!r} has no skeleton")
     neck = (hip[0] + math.sin(lean) * torso, hip[1] - math.cos(lean) * torso)
     head = (neck[0] + math.sin(lean) * 0.9 * R, neck[1] - math.cos(lean) * 0.95 * R)
-    return dict(hip=hip, neck=neck, head=head, legs=legs, lean=lean)
+    return dict(hip=hip, neck=neck, head=head, legs=legs, lean=lean, pose=pose)
 
 
 def _blend(a: dict, b: dict, u: float) -> dict:
@@ -229,6 +229,10 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
         return rest_f, rest_b
     if action == "warm_hands":
         k = math.sin(c / 1.3 + ph) * 0.18 * R
+        if sk.get("pose") in ("sit", "sit_on", "crouch"):
+            # seated, the hands reach out past the knees to the fire; held at
+            # the chest they were "not near the lamp" (run 97)
+            return ((nx + 1.85 * R + k, ny + 1.0 * R), (nx + 1.65 * R - k, ny + 1.12 * R))
         return ((nx + 1.35 * R + k, ny + 0.95 * R), (nx + 1.2 * R - k, ny + 1.05 * R))
     if action == "stir":
         a = c / 2.2 + ph
@@ -407,6 +411,17 @@ def _face(cr, cx, cy, R, mood, t, seed, looking_up=False):
                  lw=lw * 0.8, amp=0)
     else:
         ink.line(cr, [(mx - 0.11 * R, my), (mx + 0.11 * R, my + 0.01 * R)], lw=lw * 0.75, amp=0)
+
+
+def _age_lines(cr, cx, cy, R, lw):
+    """What makes a grey head read as OLD at a glance: a short line under
+    each eye and one at the corner of the mouth (run 97's judge: "the old
+    woman ... does not read as old")."""
+    ox, ey = 0.18 * R, cy - 0.02 * R
+    for sx in (-1, 1):
+        x = cx + ox + sx * 0.30 * R
+        ink.line(cr, [(x - 0.12 * R, ey + 0.2 * R), (x + 0.12 * R, ey + 0.24 * R)], lw=lw * 0.45, amp=0)
+    ink.line(cr, [(cx + ox + 0.22 * R, cy + 0.3 * R), (cx + ox + 0.3 * R, cy + 0.5 * R)], lw=lw * 0.45, amp=0)
 
 
 def _hair_pts(cx, cy, R, lk, back: bool):
@@ -749,6 +764,8 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
                 (hcx + 0.8 * R, hcy + 0.95 * R), (hcx + 0.35 * R, hcy + 1.18 * R), (hcx - 0.15 * R, hcy + 1.1 * R)]
         ink.fill_stroke(cr, bpts, ink.mix(lk["hair"], HEAD, 0.3), lw=lw * 0.7, amp=1.5, seed=seed + 4)
     _face(cr, hcx, hcy, R, mood, t, seed, looking_up=(action == "look_up"))
+    if lk["grey"] and action != "look_up":
+        _age_lines(cr, hcx, hcy, R, lw)
     if cold and action != "sleep":
         _breath(cr, hcx, hcy, R, t, seed)
 

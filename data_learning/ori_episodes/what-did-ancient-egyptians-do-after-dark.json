@@ -253,7 +253,7 @@
         "who": "old_woman",
         "pose": "sit",
         "action": "sew",
-        "mood": "focused",
+        "mood": "calm",
         "item": "needle"
        },
        {
@@ -282,7 +282,7 @@
         "who": "man",
         "pose": "crouch",
         "action": "stir",
-        "mood": "focused"
+        "mood": "calm"
        },
        {
         "who": "man",
@@ -368,7 +368,7 @@
         "pose": "crouch",
         "action": "stir",
         "item": "bowl",
-        "mood": "focused",
+        "mood": "calm",
         "at": "center_left"
        },
        {
@@ -399,7 +399,7 @@
         "who": "woman",
         "pose": "sit",
         "action": "spin",
-        "mood": "focused"
+        "mood": "calm"
        }
       ],
       "props": [
@@ -430,7 +430,7 @@
         "who": "child",
         "pose": "crouch",
         "action": "idle",
-        "mood": "focused",
+        "mood": "calm",
         "at": "center_right"
        }
       ],
@@ -480,7 +480,7 @@
         "pose": "sit",
         "action": "sew",
         "item": "needle",
-        "mood": "focused",
+        "mood": "calm",
         "at": "center"
        }
       ],
@@ -567,7 +567,7 @@
         "who": "woman",
         "pose": "stand",
         "action": "hold",
-        "mood": "focused",
+        "mood": "calm",
         "at": "center_left",
         "item": "lantern"
        },
@@ -785,7 +785,7 @@
         "who": "elder",
         "pose": "sit",
         "action": "eat",
-        "mood": "focused",
+        "mood": "calm",
         "at": "center_left"
        },
        {
@@ -838,14 +838,14 @@
         "who": "elder",
         "pose": "sit",
         "action": "point",
-        "mood": "focused",
+        "mood": "calm",
         "item": "torch"
        },
        {
         "who": "child",
         "pose": "sit",
         "action": "hug_self",
-        "mood": "worried"
+        "mood": "calm"
        },
        {
         "who": "woman",
@@ -872,7 +872,7 @@
         "who": "elder",
         "pose": "sit",
         "action": "drink",
-        "mood": "focused",
+        "mood": "calm",
         "at": "left"
        },
        {
@@ -996,7 +996,7 @@
         "who": "elder",
         "pose": "stand",
         "action": "look_up",
-        "mood": "focused",
+        "mood": "calm",
         "at": "center"
        },
        {
@@ -1031,14 +1031,14 @@
         "who": "elder",
         "pose": "stand",
         "action": "point",
-        "mood": "focused",
+        "mood": "calm",
         "at": "center_left"
        },
        {
         "who": "child",
         "pose": "lie",
         "action": "look_up",
-        "mood": "focused",
+        "mood": "calm",
         "at": "center_right"
        }
       ],
@@ -1087,7 +1087,7 @@
         "who": "elder",
         "pose": "stand",
         "action": "point",
-        "mood": "focused",
+        "mood": "calm",
         "at": "right"
        },
        {
@@ -1186,7 +1186,7 @@
         "who": "child",
         "pose": "sit",
         "action": "talk",
-        "mood": "worried",
+        "mood": "calm",
         "at": "left"
        },
        {
@@ -1274,7 +1274,7 @@
         "who": "elder",
         "pose": "sit",
         "action": "point",
-        "mood": "focused",
+        "mood": "calm",
         "item": "stone"
        }
       ],
@@ -1360,7 +1360,7 @@
         "who": "man",
         "pose": "crouch",
         "action": "feed_fire",
-        "mood": "focused",
+        "mood": "calm",
         "item": "stick"
        },
        {
@@ -1396,7 +1396,7 @@
         "who": "man",
         "pose": "walk",
         "action": "point",
-        "mood": "surprised",
+        "mood": "calm",
         "item": "spear"
        },
        {
@@ -1425,7 +1425,7 @@
         "who": "man",
         "pose": "stand",
         "action": "drink",
-        "mood": "focused",
+        "mood": "calm",
         "item": "lantern",
         "at": "center"
        }
@@ -1449,7 +1449,7 @@
         "who": "man",
         "pose": "crouch",
         "action": "feed_fire",
-        "mood": "focused",
+        "mood": "calm",
         "item": "stick",
         "at": "center"
        }
@@ -1471,7 +1471,7 @@
         "who": "man",
         "pose": "stand",
         "action": "hold",
-        "mood": "worried",
+        "mood": "calm",
         "item": "spear",
         "at": "center"
        }
@@ -1533,7 +1533,7 @@
         "who": "man",
         "pose": "stand",
         "action": "point",
-        "mood": "focused",
+        "mood": "calm",
         "item": "torch",
         "at": "right"
        }
@@ -1584,7 +1584,7 @@
         "who": "man",
         "pose": "stand",
         "action": "yawn",
-        "mood": "focused",
+        "mood": "calm",
         "at": "right"
        }
       ],
@@ -1606,7 +1606,7 @@
         "who": "man",
         "pose": "crouch",
         "action": "gather",
-        "mood": "focused",
+        "mood": "calm",
         "at": "center"
        }
       ],
@@ -1680,7 +1680,7 @@
         "who": "woman",
         "pose": "sit",
         "action": "feed_fire",
-        "mood": "focused",
+        "mood": "calm",
         "at": "center"
        }
       ],

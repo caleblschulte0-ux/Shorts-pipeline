@@ -333,7 +333,8 @@ _EXTENT = {
 # outstretched arm crosses the seated elder's head".
 ACTION_REACH = {"point": 1.9, "carry": 1.8, "wave": 1.2, "play": 1.8, "feed_fire": 2.2, "stir": 1.9,
                 "fish": 3.9, "hoe": 2.4, "chop": 1.8, "gather": 1.7, "talk": 1.3, "warm_hands": 1.6,
-                "knap": 1.4, "sew": 1.6, "eat": 1.3, "drink": 1.3}
+                "knap": 1.4, "sew": 1.6, "eat": 1.3, "drink": 1.3,
+                "spin": 2.4}     # the spindle hangs out in front and its whorl is half a head wide (run 97: the lamp stood in her hands)
 ITEM_REACH = {"spear": 2.1, "torch": 1.3, "stick": 1.2, "branch": 1.3, "axe": 1.4, "hoe": 2.4, "rod": 3.9,
               "bundle": 1.8, "basket": 1.2, "lantern": 1.0}
 # back-layer props with a body: a deer standing "behind" the fire in the
@@ -894,8 +895,14 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     at_table = bool(fire_adjacent and focal and focal["name"] == "table")
     anchor_actions = TABLE_ACTIONS if at_table else FIRE_ACTIONS
     at_fire = at_table or bool(fire_adjacent and focal and (PROPS[focal["name"]].light or PROPS[focal["name"]].living))
+    # whoever lies down is placed first (the longest figure, and the one a
+    # slot has to hold whole), then whoever acts at the fire, then the rest:
+    # placed after the hand-warmer, a sleeper's mat landed on her and the
+    # whole arrangement was thrown out for one that sat her across the
+    # room from the lamp (run 97)
     order = sorted(range(len(cast)),
-                   key=lambda i: 0 if (at_fire and cast[i].get("action") in anchor_actions) else 1)
+                   key=lambda i: 0 if cast[i].get("pose") == "lie" else
+                   1 if (at_fire and cast[i].get("action") in anchor_actions) else 2)
     figs: list = [None] * len(cast)
     for i in order:
         c = cast[i]
@@ -905,7 +912,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             # at a table you sit ON something: on the floor the diners'
             # heads came below the table top
             pose = c["pose"] = "sit_on"
-        if c.get("at"):
+        if c.get("at") and not (at_fire and c.get("action") in anchor_actions):
             x = W * SLOTS[c["at"]]
             facing = c.get("facing") or ("right" if x < focal_x else "left")
         else:
@@ -918,13 +925,21 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
                 # fire's own half-width plus this figure's, and a hand's gap
                 fp = placed[0]
                 half = PROPS[fp["name"]].width * fp["s"] / 2
-                for side in ((1, -1) if (seed + i) % 2 else (-1, 1)):
+                sides = (1, -1) if (seed + i) % 2 else (-1, 1)
+                if fp["name"] == "oil_lamp":
+                    sides = (1, -1)      # the flame is on the spout, to the right: sit there, hands at it (run 97)
+                for side in sides:
                     facing = "right" if side < 0 else "left"
                     lo0, hi0 = fig_span(c, 0.0, facing, R)
-                    cand = focal_x + side * (half + (hi0 if side > 0 else -lo0) + 0.35 * R)
+                    # a hand's gap from a fire; none from a lamp on a stand,
+                    # which is thin and sits where the hands reach (run 97)
+                    gap = 0.0 if fp["name"] in ("oil_lamp", "candle") else 0.35 * R
+                    cand = focal_x + side * (half + (hi0 if side > 0 else -lo0) + gap)
                     got = settle(cand, lambda xx: fig_span(c, xx, facing, R), EDGE, W - EDGE,
                                  head_of=lambda xx: keep_span(c, xx, facing, R))
                     lo, hi = fig_span(c, got, facing, R)
+                    if side * (got - focal_x) <= 0:
+                        continue       # slid across the fire: facing away from it on the other side (run 97)
                     if lo >= EDGE and hi <= W - EDGE and free(lo, hi, keep_span(c, got, facing, R)):
                         x = got
                         break

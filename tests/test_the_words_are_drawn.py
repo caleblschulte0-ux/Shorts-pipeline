@@ -8,6 +8,7 @@ author puts it in the scene when the words name it, and the shot planner
 keeps it in the picture for the sentence that names it."""
 from __future__ import annotations
 
+import inspect
 import json
 import subprocess
 import sys
@@ -895,3 +896,153 @@ class TheThirdBlock(unittest.TestCase):
             on = tuple(int(v) for v in buf[600, x, :3])
             off = tuple(int(v) for v in buf[600, (x + 400) % S.W if x < S.W / 2 else x - 400, :3])
             self.assertNotEqual(on, off, f"seed {seed}: nothing hangs on the wall at {x}")
+
+
+@unittest.skipUnless(HAVE, "the doodle kit needs cairo and numpy")
+class TheEightyThreeShip(unittest.TestCase):
+    """Run 97: 83, SHIP — the spinners' sentence was cut at a comma and its
+    second half given a single ("only one woman appears"); a man left the
+    couch while "cups are filled, and the talk begins"; the old woman sat
+    at the slot the wide shot gave her, hands nowhere near the lamp, and
+    "does not read as old"; the storyteller's close-up dropped the sleeping
+    child; the forum close-up read as a rooftop; the shepherd frowned."""
+
+    def _beats(self, ep):
+        beats, t, i = [], 0.0, 0
+        for ci, ch in enumerate(ep["chapters"]):
+            for bt in ch["beats"]:
+                b = OS.Beat(chapter=ci, index=i, text=bt["say"], scene=bt["scene"], start=t)
+                for x in OS.sentences(bt["say"]):
+                    d = len(x.split()) / 2.3
+                    b.lines.append((t, t + d, x))
+                    t += d + 0.7
+                b.end = t
+                t += 1.9
+                beats.append(b)
+                i += 1
+        return beats
+
+    def test_a_clause_cut_from_a_sentence_is_chosen_by_the_whole_sentence(self):
+        scene = {"setting": "villa_inside", "time": "night", "weather": "clear", "shot": "wide",
+                 "cast": [{"who": "old_woman", "pose": "sit", "action": "spin"},
+                          {"who": "woman", "pose": "sit", "action": "spin"},
+                          {"who": "woman", "pose": "sit", "action": "sew"}],
+                 "props": ["oil_lamp", "amphora", "bench"]}
+        say = ("An older woman begins to talk, low and unhurried, while her hands keep working. "
+               "The others do not stop spinning to listen, but you can tell they are, a small pause in the "
+               "rhythm, a softening of shoulders.")
+        ep = {"slug": "t", "era": "ancient", "chapters": [{"beats": [{"say": say, "scene": scene}]}]}
+        sh = OS.shots(ep, self._beats(ep))
+        halves = [x for x in sh if x["start"] >= sh[1]["start"]]
+        self.assertGreaterEqual(len(halves), 2, "the long sentence is cut at a comma")
+        for x in halves:
+            self.assertGreaterEqual(len(x["scene"]["cast"]), 2, (x.get("shot"), "a half of 'the others' is of the others"))
+            self.assertNotIn("leave", x["scene"].get("happen") or [], "nobody leaves while the others keep spinning")
+
+    def test_nobody_leaves_a_sentence_about_the_company(self):
+        spec = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "man", "pose": "recline", "action": "drink", "item": "cup"},
+                         {"who": "man", "pose": "sit", "action": "drink"}],
+                "props": ["oil_lamp", "couch", "amphora", "krater"]}
+        for seed in range(8):
+            got = OS.happenings(spec, "ancient", seed, "Cups are filled, and the talk begins slowly.", 7.0)
+            self.assertNotIn("leave", got, seed)
+
+    def test_the_hand_warmer_sits_at_the_lamp_with_her_hands_out(self):
+        spec = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "old_woman", "pose": "sit", "action": "warm_hands", "at": "center_left"},
+                         {"who": "child", "pose": "lie", "action": "sleep", "at": "right"}],
+                "props": ["oil_lamp", "mat", "barrel", "basket"]}
+        opts = OS.coverage(spec, "ancient", 5)
+        ins = opts["insert"][0]
+        self.assertNotIn("at", ins["cast"][0], "the slot of the wide shot does not follow her into the insert")
+        lay = S.layout(ins, 12)
+        her = next(f for f in lay["people"] if f["action"] == "warm_hands")
+        lamp = next(q for q in lay["props"] if q["name"] == "oil_lamp")
+        R = P.R0 * her["s"] * P.WHO["old_woman"]["size"]
+        d = 1 if her["facing"] == "right" else -1
+        self.assertGreater(d * (lamp["x"] - her["x"]), 0, "she faces the lamp")
+        self.assertLess(abs(lamp["x"] - her["x"]), 3.2 * R, "she sits at the lamp, not across the room")
+        sk = P.skeleton("sit", R, 0.0)
+        front, back = P.hand_targets("warm_hands", sk, R, 0.0, 0.0)
+        self.assertGreater(front[0], 1.7 * R, "seated, the hands reach past the knees toward the fire")
+        self.assertGreater(back[0], 1.5 * R)
+        # and the slot still holds where nobody is at the light
+        lay2 = S.layout(spec, 5)
+        self.assertEqual(lay2["collisions"], [])
+
+    def test_a_grey_head_reads_as_old(self):
+        import cairo
+        for who in ("old_woman", "elder"):
+            surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, 400, 400)
+            cr = cairo.Context(surf)
+            cr.set_source_rgb(1, 1, 1)
+            cr.paint()
+            P.draw(cr, who=who, era="ancient", seed=3, pose="sit", action="talk", facing="right", x=160,
+                   ground_y=380, scale=1.0, t=0.0)
+            lk = P.look(who, "ancient", 3)
+            self.assertTrue(lk["grey"])
+            self.assertFalse(P.look("woman", "ancient", 3)["grey"])
+        # the age lines are drawn by name, under the eyes, and only on grey heads
+        src = inspect.getsource(P.draw)
+        self.assertIn('if lk["grey"]', src)
+        self.assertIn("_age_lines", src)
+
+    def test_the_storyteller_s_close_up_keeps_the_sleeping_child(self):
+        spec = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "old_woman", "pose": "sit", "action": "talk", "at": "left"},
+                         {"who": "child", "pose": "lie", "action": "sleep", "at": "center"}],
+                "props": ["oil_lamp", "mat", "basket", "woodpile"]}
+        opts = OS.coverage(spec, "ancient", 5)
+        ins = opts["insert"][0]
+        self.assertEqual([c["pose"] for c in ins["cast"]], ["sit", "lie"])
+        self.assertIn("mat", ins["props"], "the sleeper keeps her bedding")
+        self.assertIsNotNone(ins.get("frame"))
+        # the two chapters' close-ups are no longer one picture: one has a child in it
+        other = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                 "cast": [{"who": "old_woman", "pose": "sit", "action": "warm_hands"}], "props": ["oil_lamp"]}
+        self.assertNotEqual([c["who"] for c in ins["cast"]], [c["who"] for c in OS.coverage(other, "ancient", 5)["insert"][0]["cast"]])
+
+    def test_the_forum_close_up_stands_against_stone(self):
+        import cairo
+
+        def still(shot):
+            surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, S.W, S.H)
+            ST.draw_still(cairo.Context(surf), "forum", "night", "clear", 2, shot=shot, era="ancient")
+            return np.ndarray(shape=(S.H, S.W, 4), dtype=np.uint8, buffer=surf.get_data())
+        c, w = still("close"), still("wide")
+        y = int(S.H * ST.SETTINGS["forum"].horizon) + 150 - 100     # between the beam and the ground, behind the columns
+        xs = [x for x in range(60, S.W - 60, 7)]
+        wall = tuple(int(round(v * 255)) for v in ST.STOA_WALL)
+
+        def stone(buf):
+            # cairo's buffer is BGRA
+            return sum(1 for x in xs if max(abs(int(buf[y, x, 2 - i]) - wall[i]) for i in range(3)) < 40) / len(xs)
+        self.assertGreater(stone(c), 0.6, "close in, the stoa's back wall stands behind the columns")
+        self.assertLess(stone(w), 0.2, "wide, the town shows between the columns")
+
+    def test_nobody_frowns_in_a_sleep_film(self):
+        sp = {"setting": "olive_grove", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "man", "pose": "stand", "action": "hold", "mood": "focused", "item": "torch"},
+                       {"who": "woman", "pose": "stand", "action": "hold", "mood": "worried", "item": "lantern"}],
+              "props": ["fence", "campfire", "goat"]}
+        ep = {"slug": "t", "era": "ancient", "chapters": [{"beats": [{"say": "The goats are settled. By torchlight you fasten the gate.", "scene": sp}]}]}
+        for x in OS.shots(ep, self._beats(ep)):
+            for c in x["scene"]["cast"]:
+                self.assertIn(c.get("mood", "calm"), OS.CALM_MOODS, x.get("shot"))
+        beat = {"say": "x", "scene": json.loads(json.dumps(sp))}
+        A.mend_scene(beat["scene"], "ancient")
+        self.assertTrue(all(c["mood"] in OS.CALM_MOODS for c in beat["scene"]["cast"]), "the author's mend says calm too")
+
+    def test_the_spinner_s_lamp_is_not_in_her_hands(self):
+        sp = {"setting": "villa_inside", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "old_woman", "pose": "sit", "action": "spin"}], "props": ["oil_lamp", "amphora", "bench"]}
+        for seed in range(6):
+            lay = S.layout(sp, seed)
+            her = lay["people"][0]
+            lamp = next(q for q in lay["props"] if q["name"] == "oil_lamp")
+            R = P.R0 * her["s"] * P.WHO["old_woman"]["size"]
+            d = 1 if her["facing"] == "right" else -1
+            ahead = d * (lamp["x"] - her["x"])
+            if ahead > 0:
+                self.assertGreater(ahead, 2.3 * R, (seed, "the lamp stands in front of the spindle"))
