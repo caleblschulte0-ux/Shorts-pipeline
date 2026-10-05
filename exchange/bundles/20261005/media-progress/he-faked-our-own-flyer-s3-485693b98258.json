@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261005",
+  "bundle": {
+    "identity": "2493dec1d28cc46e8b97a6832ced93e6c042342fc2341f642b8438a1c00e50ab",
+    "path": "exchange/bundles/20261005/bundle.json"
+  },
+  "request_id": "he-faked-our-own-flyer-s3-485693b98258",
+  "safe_request_id": "he-faked-our-own-flyer-s3-485693b98258",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "ed43b93491840ef8145edcc801840896957392f30ba954866d72f35fad2df075",
+  "prompt_used": "An editorial illustration for a short-form video: store sale flyer advertisement. It accompanies the narration: \"same crooked blue sale banner\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1l6VJha5GPfh0seDG0o0-Jd7o0r2gJ6hL",
+    "filename": "20261005__he-faked-our-own-flyer-s3-485693b98258.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1l6VJha5GPfh0seDG0o0-Jd7o0r2gJ6hL",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "5d49c057e51bcfc44d7a93d284dcd369efe45dc1fc41c6f524af4e09bb27fadb",
+    "bytes": 2050321,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-05T11:34:20.669Z"
+}
