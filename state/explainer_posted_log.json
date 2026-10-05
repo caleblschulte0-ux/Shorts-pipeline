@@ -2520,6 +2520,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
       "duration_s": 49.2
+    },
+    "nobel-prize-discovery-age": {
+      "claimed_at": "2026-10-05T14:27:18.746804+00:00",
+      "title": "Nobel-Winning Discoveries Now Happen 13 Years Later",
+      "publish_at": "2026-10-05T19:55:07Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3089,6 +3096,14 @@
       "state": "posted",
       "slug": "quantum-computers-5-to-1121-qubits",
       "at": "2026-10-05T14:18:57.750653+00:00"
+    },
+    {
+      "claimed_at": "2026-10-05T14:27:18.746804+00:00",
+      "title": "Nobel-Winning Discoveries Now Happen 13 Years Later",
+      "publish_at": "2026-10-05T19:55:07Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "nobel-prize-discovery-age"
     }
   ]
 }
