@@ -2502,6 +2502,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 70,
       "duration_s": 40.8
+    },
+    "quantum-computers-5-to-1121-qubits": {
+      "claimed_at": "2026-10-05T12:33:16.064926+00:00",
+      "title": "Quantum Computers Went From 5 Qubits To 1,121",
+      "publish_at": "2026-10-05T12:56:21Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3062,6 +3069,14 @@
       "state": "posted",
       "slug": "lab-grown-meat-scale-up-8x",
       "at": "2026-10-04T20:57:43.490015+00:00"
+    },
+    {
+      "claimed_at": "2026-10-05T12:33:16.064926+00:00",
+      "title": "Quantum Computers Went From 5 Qubits To 1,121",
+      "publish_at": "2026-10-05T12:56:21Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "quantum-computers-5-to-1121-qubits"
     }
   ]
 }
