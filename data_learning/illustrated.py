@@ -221,6 +221,41 @@ EDGE_K = 0.42                        # the ink edge = colour * this
 FINISHES = ("matte", "gloss", "metal", "glass", "ice")
 
 
+_GRAIN = None
+
+
+def _grain_surface():
+    """A tile of paper grain: one-level noise, repeated. Painted over every
+    lit solid so no two pixels of a surface are exactly alike — the way
+    printed colour never is — which also kills gradient banding."""
+    global _GRAIN
+    if _GRAIN is None:
+        import random
+        rnd = random.Random(7)
+        n = 64
+        surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, n, n)
+        buf = surf.get_data()
+        for i in range(n * n):
+            v = rnd.choice((0, 255))
+            a = 10                                        # ~4% of a level
+            buf[i * 4:i * 4 + 4] = bytes((v * a // 255, v * a // 255, v * a // 255, a))
+        surf.mark_dirty()
+        _GRAIN = cairo.SurfacePattern(surf)
+        _GRAIN.set_extend(cairo.EXTEND_REPEAT)
+        _GRAIN.set_filter(cairo.FILTER_NEAREST)
+    return _GRAIN
+
+
+def grain(cr):
+    """Paper grain over the CURRENT PATH (kept)."""
+    cr.save()
+    cr.clip_preserve()
+    cr.identity_matrix()
+    cr.set_source(_grain_surface())
+    cr.paint()
+    cr.restore()
+
+
 def _path_box(cr):
     x0, y0, x1, y1 = cr.fill_extents()
     return x0, y0, x1, y1
@@ -259,6 +294,7 @@ def solid(cr, rgb, finish="matte", a=1.0, edge=True, rim=True, depth=1.0):
     cr.save()
     cr.set_source(g)
     cr.fill_preserve()
+    grain(cr)
     if finish in ("gloss", "metal", "glass", "ice"):
         # a specular streak across the lit third
         s = cairo.LinearGradient(x0, y0, x0 + w * 0.6, y0 + h * 0.9)
@@ -325,7 +361,9 @@ def cylinder(cr, x, y, w, h, rgb, finish="matte", a=1.0):
     cr.save()
     cr.rectangle(x, y - h, w, h)
     cr.set_source(g)
-    cr.fill()
+    cr.fill_preserve()
+    grain(cr)
+    cr.new_path()
     for yy in (y, y - h):                      # the bottom and the top rims
         cr.save()
         cr.translate(x + w / 2, yy)
@@ -360,6 +398,7 @@ def disc(cr, x, y, r, rgb, finish="matte", a=1.0):
     cr.arc(x, y, r, 0, 2 * math.pi)
     cr.set_source(g)
     cr.fill_preserve()
+    grain(cr)
     if finish in ("gloss", "metal", "glass"):
         cr.save()
         cr.clip_preserve()

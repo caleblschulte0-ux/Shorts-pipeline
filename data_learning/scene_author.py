@@ -650,25 +650,32 @@ def tool_problems(fn, pts, decl: dict) -> list[str]:
 #: counts, in the band the hero lives in, pixels whose colour is EXACTLY
 #: the colour `FLAT_STEP` px to the right and below; more than
 #: `FLAT_MAX` of the band is clip art.
-FLAT_STEP = 12
-FLAT_MAX = 0.30
+FLAT_STEP = 12            # a slab: the same colour this far right AND down...
+FLAT_FAR = 96             # ...and still the same this far — a slow sky gradient
+#                           changes by a level inside it, a flat polygon does not
+FLAT_MAX = 0.12           # teachers measure <= 0.07; the posted flat scenes 0.15-0.25
 FLAT_BAND = (470, 1500)
 
 
-def flat_fraction(surf, band=FLAT_BAND, step=FLAT_STEP) -> float:
+def flat_fraction(surf, band=FLAT_BAND, step=FLAT_STEP, far=FLAT_FAR) -> float:
     import numpy as np
     stride = surf.get_stride() // 4
     a = np.frombuffer(surf.get_data(), dtype=np.uint8).reshape(SS.H, stride, 4)
     a = a[band[0]:band[1], :SS.W, :3].astype(np.int16)
-    r = (np.abs(a[:, step:] - a[:, :-step]).sum(axis=2) == 0)[:-step, :]
-    d = (np.abs(a[step:] - a[:-step]).sum(axis=2) == 0)[:, :-step]
-    return float((r & d).mean())
+    h, w = a.shape[:2]
+    out = np.ones((h - far, w - far), dtype=bool)
+    for k in (step, far):
+        r = (np.abs(a[:, k:] - a[:, :-k]).sum(axis=2) == 0)[:h - far, :w - far]
+        d = (np.abs(a[k:] - a[:-k]).sum(axis=2) == 0)[:h - far, :w - far]
+        out &= r & d
+    return float(out.mean())
 
 
 def craft_problems(fn, pts, at=(0.3, 0.85)) -> list[str]:
     """Refuse a scene whose hero band is mostly flat colour. Rendered with
     Data in it (his rig is cel-shaded and small) and with the text."""
     import cairo
+    from data_learning import illustrated as I
     surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, SS.W, SS.H)
     worst = 0.0
     for u in at:
@@ -940,8 +947,8 @@ round things disc() and cylinder(). Everything that stands on the ground \
 stands on a contact_shadow() drawn first. Far things go under haze(); \
 vignette() last, before the text. Build the hero from several lit pieces \
 (a scale is a post, a beam, two pans, chains — each shaded), not one \
-silhouette. A frame whose hero band is more than 30% exact flat colour is \
-MEASURED and refused as clip art — a gold pile of identical flat ellipses, \
+silhouette. A frame whose hero band holds more than {flat_max} of large exact \
+flat colour is MEASURED and refused as clip art — a gold pile of identical flat ellipses, \
 two flat pans and a flat box were the look this rule replaces.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
@@ -1017,6 +1024,7 @@ def build_prompt(title, topic, say, pts, unit, brief=""):
                            (SS.amazon_where_it_goes, SS.coffee_drought))
     tools = "\n".join(f"  {k}: {v}" for k, v in TOOL_ACTS.items())
     return _PROMPT.format(stances=", ".join(STANCES), tools=tools,
+                          flat_max=f"{FLAT_MAX:.0%}",
                           kit=", ".join(KIT_NAMES),
                           builtins=", ".join(sorted(SAFE_BUILTINS)),
                           palette=", ".join(sorted(SS.P)), sigs=_sigs(),
