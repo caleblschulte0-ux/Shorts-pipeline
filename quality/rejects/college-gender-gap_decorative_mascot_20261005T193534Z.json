@@ -1,0 +1,21 @@
+{
+ "slug": "college-gender-gap",
+ "ts": "20261005T193534Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg2:start through seg2:end: Data clings to a pole at the far left edge, half off-frame, while the scale tips and bricks drop on their own. He does not load the bricks or push the beam. In the hook and seg0 he only walks along the timeline with his arms up while the bars appear wi",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg2:start/mid/end: a generic seesaw with pink and grey bricks, labelled 22 Women and 12 Men. Data holds a pole jammed against the left frame edge, partly cropped, and overlaps the 'Women' label. Bricks fall in by themselves and the beam tips without him.",
+  "root_cause": "The scale was placed as a stock machine, and Data was given a hold/strain pose to one side instead of being the cause. Nothing about the scene is made of college, and his anchor never lands on the moving bricks or beam.",
+  "repair_goal": "Make Data the agent. He carries and stacks degree pieces (diplomas or mortarboards) onto the women's pan, 22 against 12, and the beam tips because he loads it. Keep him fully inside the frame and clear of the labels. Better still, make the weights themselves diplomas so the picture is made of the subject."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

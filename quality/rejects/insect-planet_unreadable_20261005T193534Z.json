@@ -1,0 +1,16 @@
+{
+ "slug": "insect-planet",
+ "ts": "20261005T193534Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:mid: the bird icon covers the start of 'All bird species', the paw covers 'All mammal species', and the beetle sits over 'Beetles (estimated)'. hook@0.3: Data is cut off by the left edge and his body overlaps the '80% Insects' label. seg1:start: '20%' and '80%' are low-contrast duri",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "chart_restates_prior_beat_with_decorative_mascot",
+  "visible_evidence": "seg1:start to seg1:end show a plain 80/20 stacked column, the same claim the hook's scale just made. Data stands to the left and cheers but never touches the column.",
+  "root_cause": "The share relationship was drawn twice: once as a machine (the scale), then again as a fallback chart. Data was given no act that causes the column to fill.",
+  "repair_goal": "Cut seg1 or merge it into the scale beat. If it stays, Data should cause the 80%, for example by shoveling beetles onto one pan until it slams down 4:1, with no stacked-bar chart."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "light-pollution-erasing-sky",
+ "ts": "20261005T193534Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg3:mid and seg3:end Data floats beside and over the bars without pushing them, and in seg4:start to seg4:end he stands still pointing at a hopper. He only causes the motion in seg0, where he stacks blocks from the ladder.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "wrong_claim_share",
+  "visible_evidence": "From seg4:start to seg4:end, bins split one whole into Chad 45%, Madagascar 43%, United States 11%, Sin... 1%. Those numbers contradict seg3's 78/75/20/1, they appear nowhere in the narration, and the picture says these countries are parts of one total.",
+  "root_cause": "The closing shows per-country rates (the percent of each country with pristine skies) as shares of one whole. Re-normalising them turned the real numbers into made-up ones. The closing line \"the lights just won\" has no picture that carries it.",
+  "repair_goal": "Replace the share bins with a closing picture made of the subject, with Data as the cause. For example, Data flips a light switch and city glow wipes out a field of stars. Use only numbers stated in the story (or none). Every label must sit fully inside the frame at readable contrast."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

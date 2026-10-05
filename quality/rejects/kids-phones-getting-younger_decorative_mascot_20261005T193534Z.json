@@ -1,0 +1,21 @@
+{
+ "slug": "kids-phones-getting-younger",
+ "ts": "20261005T193534Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg2:start to seg2:end: Data just stands on top of the Age 8 bubble with his hands on his head while the bubbles grow on their own. seg3:mid/end: he stands beside the scale's right pan and points; he never puts the phones on it.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "chart_with_perched_mascot_and_garbled_label",
+  "visible_evidence": "seg2:start to seg2:end: four bubbles (31/42/71/91%) grow on their own while Data stands on top of the Age 8 bubble with his hands on his head. By seg2:end the 31% label is printed twice on top of itself and can't be read.",
+  "root_cause": "The ownership-by-age climb is drawn as a generic bubble chart. Data has no job in it, and the highlight label is drawn twice (once as the old size, once as the new) without clearing the first copy.",
+  "repair_goal": "Show the age climb as one physical act Data performs. For example, he hands phones to a line of kids of rising height (age 8, 10, 12, 14), and the share of each group holding phones fills to 31/42/71/91%. Draw each label exactly once, in ink, clear of Data."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "bubbles",
+   "perf": "get_buried"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "third-interstellar-visitor",
+ "ts": "20261005T193534Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg3:start/mid/end: 'Visitor nucleus size' is just two big numbers, 5.6 and 1.0, with no unit and nothing drawn at scale. Two mascot copies stand beside them and the dotted ruler at the right edge is never used.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start/mid/end show two rows, '3I/ATLAS 5.6' and '2I/Borisov 1.0'. There are no units and no picture of size, two copies of the mascot just stand there, and an unused dotted ruler runs up the right edge.",
+  "root_cause": "The size claim (5.6 km vs 1 km) is rendered as labelled numbers instead of a physical comparison. The mascot is split into two copies with no act to perform.",
+  "repair_goal": "Draw the two nuclei to scale: a 1 km Borisov rock beside a 5.6 km 3I/ATLAS rock that grows to 5.6x its width, so the size gap is seen without reading it, and show the km unit. Use one mascot who causes the reveal, e.g. hauling a measuring tape across the big nucleus until it reads 5.6 km."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

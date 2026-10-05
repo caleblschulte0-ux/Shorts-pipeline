@@ -1,0 +1,16 @@
+{
+ "slug": "volcano-country-ranking",
+ "ts": "20261005T193534Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:mid: the map label reads 'Jnited States of America' because the frame edge cuts it off, and the row label is cut to 'United States o...'. seg1:end: Data covers the '165' on the bar. seg4:mid and seg4:end: 'On the Ring of Fire 75%' is printed on top of 'Everywhere else on Earth 25%',",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "meaningless_payoff_and_overlapping_text",
+  "visible_evidence": "At seg4:mid and seg4:end a ruler with '50% apart' runs between two posts. The 75% label is printed over the 25% label. The closing line about Alaska gets no picture of Alaska at all.",
+  "root_cause": "The closing machine was fed the 75%-vs-25% share from seg3. It then invented a '50% apart' gap that the story never claims, instead of paying off the Alaska punchline. The label placement does not check whether two labels collide.",
+  "repair_goal": "Make the closing show Alaska's 130 volcanoes as most of the US's 165. For example, Data pulls Alaska off the US pile and the remaining 35 shrink to almost nothing, so the joke that Alaska is 'quietly winning' lands. Remove the '50% apart' figure and keep every label clear of the others."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

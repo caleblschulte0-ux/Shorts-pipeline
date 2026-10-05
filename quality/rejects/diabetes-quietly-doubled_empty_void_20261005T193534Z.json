@@ -1,0 +1,21 @@
+{
+ "slug": "diabetes-quietly-doubled",
+ "ts": "20261005T193534Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg1:start the frame is almost all empty gradient with two thin blocks in the lower middle. In seg4:start the bubbles are tiny specks under a large blank area.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "false_share_claim_and_cutoff_labels",
+  "visible_evidence": "In seg3:start the header reads 'HIGH-INCOME COUNTRIES IS 54% OF THE WHOLE'. A 100-cell waffle splits 54/37/9 as if these were parts of one whole, but they are separate treatment rates. The right-hand legend labels are cut off at the frame edge, Data stands over the grid, and the waffle shows 54% while the narration says 53%.",
+  "root_cause": "The relationship classifier picked 'share' (parts of one whole) for a set of independent treatment-coverage rates per income group. The waffle composer then laid the legend out by character count, not measured width, so it overflows the 430px frame.",
+  "repair_goal": "Show each income group as its own vessel or population: for example, three rows of 10 patients where Data hands medicine to 5.3, 3.7 and 0.9 of each 10, with the untreated patients left grey. Use no part-of-whole framing. Measure the labels so they fit inside the frame, match the narration's 53%, and keep Data out of the cells he is not acting on."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "waffle_grid",
+   "perf": "drag_line"
+  }
+ },
+ "scenes": []
+}

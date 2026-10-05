@@ -1,0 +1,16 @@
+{
+ "slug": "body-renewal-clock",
+ "ts": "20261005T193534Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:start: the labels overprint into '120 d28 d5 days' and 'Red blood cellSkStomach lining'. seg1:mid: '5 day28 days' collide and the 'Stomach lining' text is tiny under the mascot. seg4:end: the 30T and 24.8T bubbles are cut off by the caption band.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_overlap_bare_number",
+  "visible_evidence": "seg1:start shows overlapping value labels ('120 d28 d5 days') and names ('Red blood cellSkStomach lining') with a cyan ring around the jumble. seg1:mid/end is a bubble chart: '5 day' and '28 days' collide under the mascot's feet, and one giant '3,650 days' disc dominates.",
+  "root_cause": "Four tissues whose renewal times span three orders of magnitude (5 to 3,650 days) were put into one area-sized bubble layout. The small bubbles collapse onto each other and their labels overlap, and nothing in the scene shows renewal happening.",
+  "repair_goal": "Show renewal as replacement over time. Use one body silhouette with four tissue zones that flash to 'new' at their own rates, driven by a day counter Data cranks forward. Stomach lining flips every 5 days, skin every 28, blood every 120, and the skeleton barely changes by the end. Give every label its own measured slot so no two overlap."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

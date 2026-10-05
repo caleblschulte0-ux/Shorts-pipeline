@@ -1,0 +1,21 @@
+{
+ "slug": "light-pollution-erasing-sky",
+ "ts": "20261005T193534Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg4:end the last bin's label is cut to \"Sin...\" in tiny text. In seg4:start the \"43% Madagascar\" label is too low-contrast to read. In seg3:end Data's head covers the \"78%\" value, and in seg1:start his body covers the \"80%\" and \"Can't see it\" labels.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "wrong_claim_share",
+  "visible_evidence": "From seg4:start to seg4:end, bins split one whole into Chad 45%, Madagascar 43%, United States 11%, Sin... 1%. Those numbers contradict seg3's 78/75/20/1, they appear nowhere in the narration, and the picture says these countries are parts of one total.",
+  "root_cause": "The closing shows per-country rates (the percent of each country with pristine skies) as shares of one whole. Re-normalising them turned the real numbers into made-up ones. The closing line \"the lights just won\" has no picture that carries it.",
+  "repair_goal": "Replace the share bins with a closing picture made of the subject, with Data as the cause. For example, Data flips a light switch and city glow wipes out a field of stars. Use only numbers stated in the story (or none). Every label must sit fully inside the frame at readable contrast."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

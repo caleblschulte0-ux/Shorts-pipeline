@@ -19159,9 +19159,9 @@
   {
    "slug": "body-renewal-clock",
    "title": "How Much Of 'You' Is Actually New",
-   "hook": "You're not the same person you were a year ago.",
+   "hook": "330 billion of your cells vanish every single day.",
    "closing": "So technically, your skin is younger than your phone.",
-   "question": "How old do you think your oldest cells actually are? Guess below.",
+   "question": "How old are your oldest cells? Guess below.",
    "caption": "Your stomach rebuilds itself every 5 days. Your skeleton takes 10 years. But scientists carbon-dated your brain cells and found something wild... How old do you think your oldest cells are? 👇",
    "hashtags": [
     "humanbody",
@@ -19190,8 +19190,8 @@
      "insight_type": "rank",
      "ascending": true,
      "role": "1 · RENEWAL SPEED",
-     "topic": "how fast tissue renews",
-     "say": "Your stomach lining rebuilds every 5 days. Skin, every 28 days. Red blood cells, about 120 days. Your skeleton, roughly 10 years.",
+     "topic": "How new is tissue",
+     "say": "Stomach lining rebuilds in 5 days, skin 28 days, blood 120 days, skeleton about 10 years.",
      "scene": {
       "mechanic": "body-clock-dials",
       "concept": "four tissue photos sit inside round clock dials arranged 2x2, each hand sweeping to a log-scaled position so a 5-day stomach barely ticks while a 3,650-day skeleton nearly completes a full lap",
@@ -19206,8 +19206,8 @@
      },
      "insight_type": "trend",
      "role": "2 · IT ADDS UP",
-     "topic": "cumulative cells replaced",
-     "say": "About 330 billion cells get replaced every day. Add that up, and in just 100 days your body has swapped out 30 trillion cells.",
+     "topic": "New cells per day",
+     "say": "330 billion cells are replaced daily, so 100 days swaps out 30 trillion.",
      "scene": {
       "mechanic": "cell-tally-swarm",
       "concept": "a human body silhouette fills with a growing swarm of tiny cell dots as a day-counter climbs from 0 to 100, tallying toward 30 trillion replaced cells",
@@ -19222,15 +19222,17 @@
      },
      "insight_type": "comparison",
      "role": "3 · EXCEPT...",
-     "topic": "neurons vs skin age",
-     "say": "But not everything renews. Carbon-dating shows your brain's neurons are about twenty-nine thousand days old, basically your whole lifetime, while your skin fully replaces every twenty-eight days.",
+     "topic": "Old neurons, new skin",
+     "say": "Neurons are about twenty-nine thousand days old, your whole lifetime, while skin renews every twenty-eight days.",
      "scene": {
       "mechanic": "scale-break-lifetime-ruler",
       "concept": "a single ruler with a jagged scale-break: skin's renewal mark sits just past the start, neuron's mark lands far out near the ruler's end, dramatizing that one cell type is basically as old as the person",
       "code": "skin_v = values[0]\nneuron_v = values[1] if n > 1 else values[0]\nry = RTOP + 520\nrx0 = RX0 + 40\nrx1 = RX1 - 40\ntext('DAYS TO FULLY RENEW', (rx0 + rx1) // 2, ry - 320, size=25, color=TEXT, center=True)\nd.line([rx0, ry, rx1, ry], fill=rgba(TEXT, 180), width=6)\nskin_x = rx0 + int((rx1 - rx0) * 0.12 * clamp(reveal * 2))\nskin_img = subject_image('human skin cell macro')\nif skin_img is not None:\n    paste(skin_img, skin_x - 60, ry - 220, 120, 120)\nd.ellipse([skin_x - 10, ry - 10, skin_x + 10, ry + 10], fill=rgba(ACCENT, 255))\ntext(labels[0], skin_x, ry + 20, size=25, color=ACCENT, center=True)\ntext(str(int(skin_v)) + ' days', skin_x, ry + 54, size=29, color=ACCENT, center=True)\nbx = rx0 + int((rx1 - rx0) * 0.22)\nfor k in range(3):\n    d.line([bx + k * 14, ry - 24, bx + k * 14 + 8, ry + 24], fill=rgba(WARN, 220), width=6)\nstage2 = clamp((reveal - 0.4) / 0.6)\nneuron_x = rx0 + int((rx1 - rx0) * (0.30 + 0.65 * stage2))\nneuron_img = subject_image('brain neuron cell illustration')\nif neuron_img is not None and stage2 > 0.05:\n    paste(neuron_img, neuron_x - 70, ry - 260, 140, 140)\nif stage2 > 0.02:\n    d.ellipse([neuron_x - 12, ry - 12, neuron_x + 12, ry + 12], fill=rgba(HIGHLIGHT, 255))\n    text(labels[1] if n > 1 else 'Neurons', neuron_x, ry + 20, size=25, color=HIGHLIGHT, center=True)\n    text(str(int(neuron_v)) + ' days (~80 yrs)', neuron_x, ry + 54, size=27, color=HIGHLIGHT, center=True)\n    text('almost as old as YOU', (rx0 + rx1) // 2, ry + 110, size=28, color=WARN, center=True)\n"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-05T17:42:53Z"
   },
   {
    "slug": "insect-planet",
@@ -20922,9 +20924,9 @@
   {
    "slug": "diabetes-quietly-doubled",
    "title": "Diabetes Quietly Became A Global Epidemic",
-   "hook": "It quietly doubled worldwide. Nobody's talking about it.",
+   "hook": "Diabetes doubled to 14 percent of adults, and nobody told you.",
    "closing": "Doubling a disease is easy. Treating it is not.",
-   "question": "Do you know your blood sugar numbers? Tell me below.",
+   "question": "Do you know your blood sugar numbers?",
    "caption": "828 million adults now have diabetes — double the rate of just 30 years ago. More than half of them aren't even being treated, and in some countries it's under 1 in 10. Do you know your numbers? 👇",
    "hashtags": [
     "diabetes",
@@ -20951,8 +20953,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE SPREAD",
-     "topic": "diabetes among adults worldwide",
-     "say": "In 1990, just 7 percent of adults worldwide had diabetes. By 2022, that number doubled to 14 percent. It happened in a single generation.",
+     "topic": "Diabetes among adults",
+     "say": "In 1990, 7 percent of adults had diabetes; by 2022, it doubled to 14 percent.",
      "scene": {
       "mechanic": "hundred-body-crowd-double",
       "concept": "a 10x10 grid of standing-person icons where the count colored WARN (diabetic) grows from the 1990 rate to the 2022 rate, doubling the crowd in place",
@@ -20968,8 +20970,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · THE GAP",
-     "topic": "diabetics who actually get treated",
-     "say": "So here's the catch: only 45.8 percent of those people are actually treated. The other 54.2 percent are managing a disease that can blind or kill them, with no treatment at all.",
+     "topic": "Diabetes treatment gap",
+     "say": "Only 45.8 percent of those people are treated; the other 54.2 percent get nothing.",
      "scene": {
       "mechanic": "pill-bottle-treatment-duel",
       "concept": "two pill bottles side by side; the treated bottle fills with pills to 45.8%, the untreated bottle stays mostly empty and dark at 54.2% — same total population, opposite fates",
@@ -20985,15 +20987,17 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "3 · THE DIVIDE",
-     "topic": "treatment coverage by country income",
-     "say": "Where you live decides your odds. High-income countries treat 53 percent of cases. Poorer countries barely reach 37 percent — and in some low-income countries, it's under 9 percent.",
+     "topic": "Diabetes treatment by income",
+     "say": "High-income countries treat 53 percent of cases; poorer countries barely reach 37 percent.",
      "scene": {
       "mechanic": "clinic-window-light-row",
       "concept": "three hospital buildings in a row; the share of lit, staffed windows scales to that income tier's treatment coverage — rich countries glow, poor countries stay mostly dark",
       "code": "clinic = subject_image('hospital building')\ncols = n\ngw = (RX1 - RX0 - 40) // max(1, cols)\ny0 = RTOP + 200\nbh = 560\nfor i in range(cols):\n    x = RX0 + 20 + i * gw\n    v = values[i]\n    frac = clamp(v / 100.0) * reveal\n    if clinic is not None:\n        paste(clinic, x, y0, gw - 30, bh)\n    else:\n        d.rounded_rectangle([x, y0, x + gw - 30, y0 + bh], radius=14, outline=rgba(TEXT, 180), width=4)\n    wcols = 3; wrows = 6\n    lit = int(wcols * wrows * frac)\n    ww = (gw - 30) // wcols\n    wh = bh // wrows\n    idx = 0\n    for r in range(wrows):\n        for c in range(wcols):\n            wx = x + c * ww + 14\n            wy = y0 + r * wh + 14\n            on = idx < lit\n            d.rectangle([wx, wy, wx + ww - 26, wy + wh - 26],\n                        fill=rgba(HIGHLIGHT, 230) if on else rgba((10, 12, 18), 210))\n            idx += 1\n    text(str(int(v)) + '%', x + 10, y0 + bh + 20, size=34, color=HIGHLIGHT)\n    text(labels[i], x + 10, y0 + bh + 70, size=22, color=TEXT)"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-05T18:20:05Z"
   },
   {
    "slug": "two-speed-aging-world",
@@ -21220,9 +21224,9 @@
   {
    "slug": "highest-point-illusion",
    "title": "Everest Isn't the Highest Point on Earth",
-   "hook": "Everest wins on a technicality. Two, actually.",
-   "closing": "So next time someone says Everest is the highest point on Earth, ask them: highest from where?",
-   "question": "Which mountain would you call the real winner? Tell me below.",
+   "hook": "Your 8,849-meter Everest champion just got dethroned. Twice.",
+   "closing": "Highest point on Earth? Highest from where?",
+   "question": "Which mountain is the real winner?",
    "caption": "Everest is 8,849 meters above sea level - and still loses twice. Mauna Kea is 10,211 meters from its base on the Pacific floor, and because Earth bulges 21 kilometers at the equator, Chimborazo's summit sits about 2 kilometers farther from the planet's center than Everest's does. Highest, tallest and farthest are three different questions. Which one counts? 👇",
    "hashtags": [
     "everest",
@@ -21251,8 +21255,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "1 · THE LEADERBOARD",
-     "topic": "highest peaks above sea level",
-     "say": "Everest tops every list at 8,849 meters. But that's measured from sea level - and sea level is a choice, not a fact. Move the starting line and Everest loses.",
+     "topic": "Highest above sea level",
+     "say": "Everest tops every list at 8,849 meters, but only measured from sea level.",
      "scene": {
       "mechanic": "summit-skyline-ascent",
       "concept": "Five real snow-capped summits rise in a row from one sea-level baseline, each column landing in order, Everest tallest and glowing - a skyline so close together it needs a zoomed baseline to even show the gaps.",
@@ -21268,8 +21272,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · FROM THE BOTTOM",
-     "topic": "mountain height from its own base",
-     "say": "So start at each mountain's real base. Mauna Kea runs 10,211 meters from the Pacific floor to its peak - taller than Everest. Only 4,207 of it is above water.",
+     "topic": "Highest from its base",
+     "say": "Mauna Kea spans 10,211 meters from the seafloor, with only 4,207 above water.",
      "scene": {
       "mechanic": "ocean-drains-to-reveal",
       "concept": "The real mountain photo starts mostly underwater, at today's true waterline - only its snowy tip showing, exactly like Mauna Kea now. The ocean drains away through the beat, exposing more and more of the SAME photo, and the exposed height counts up to the full 10,211m. Everest's summit is a single fixed mark on that same rock, so the punchline is one picture: the water it takes to hide a taller mountain.",
@@ -21284,15 +21288,17 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE REAL WINNER",
-     "topic": "distance from Earth's center",
-     "say": "And the sea isn't level either. Earth bulges 21 kilometers at the equator, so Chimborazo's summit ends up 13.4 kilometers past a perfect sphere. Everest's reaches 11.3 kilometers.",
+     "topic": "Highest from Earth's center",
+     "say": "Chimborazo's summit sits 13.4 kilometers past a perfect sphere; Everest's reaches only 11.3.",
      "scene": {
       "mechanic": "sphere-bulge-radial",
       "concept": "Earth drawn as a circle standing in for a perfect sphere, dashed all the way round. Two radius lines shoot out from the center past that dashed line to each summit's real photo - Chimborazo's line overshoots farther because it rides the equatorial bulge, even though its column onscreen a beat ago was shorter than Everest's. A pulse travels each line so the overshoot keeps reading as distance, not a static ruler.",
       "code": "earth = subject_image('earth globe photo from space')\nmtn = subject_image('snow capped mountain peak photo')\ncx = (RX0 + RX1) // 2\ncy = RTOP + 640\nR = 300\nif earth is not None:\n    paste(earth, cx - R, cy - R, R * 2, R * 2)\nelse:\n    d.ellipse([cx - R, cy - R, cx + R, cy + R], fill=rgba(REST, 130))\nfor k in range(0, 360, 12):\n    a = math.radians(k)\n    x0 = cx + (R + 4) * math.cos(a)\n    y0 = cy + (R + 4) * math.sin(a)\n    x1 = cx + (R + 14) * math.cos(a)\n    y1 = cy + (R + 14) * math.sin(a)\n    d.line([x0, y0, x1, y1], fill=rgba(SUBTLE, 170), width=3)\ntext('a perfect sphere', cx, cy - R - 46, size=27, color=SUBTLE, center=True)\nscale = 9.0\npeaks = [(labels[0], values[0], 300, HIGHLIGHT), (labels[1], values[1], 245, ACCENT)]\nfor i in range(len(peaks)):\n    lab, val, ang_deg, col = peaks[i]\n    a = math.radians(ang_deg)\n    grow = clamp((reveal - i * 0.2) / 0.45)\n    dist = R + val * scale * grow\n    bx = cx + R * math.cos(a)\n    by = cy + R * math.sin(a)\n    tx = cx + dist * math.cos(a)\n    ty = cy + dist * math.sin(a)\n    d.line([bx, by, tx, ty], fill=rgba(col, 235), width=9)\n    if mtn is not None:\n        paste(mtn, int(tx - 55), int(ty - 95), 110, 100)\n    else:\n        d.ellipse([tx - 16, ty - 16, tx + 16, ty + 16], fill=rgba(col))\n    pulse_t = (reveal * 3.4 + i * 0.5) % 1.0\n    px = lerp(bx, tx, pulse_t)\n    py = lerp(by, ty, pulse_t)\n    d.ellipse([px - 10, py - 10, px + 10, py + 10], fill=rgba(col, 220))\n    text(fmt(val) + ' past the sphere', tx, ty - 165, size=26, color=col, center=True)\n    text(lab, tx, ty - 130, size=23, color=TEXT, center=True)\ntext('bulge exaggerated for clarity', cx, cy + R + 60, size=22, color=SUBTLE, center=True)\n"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-05T18:34:42Z"
   },
   {
    "slug": "gps-einstein-fix",
@@ -21975,9 +21981,9 @@
   {
    "slug": "frog-freezes-and-revives",
    "title": "This Frog Freezes Solid Every Winter And Survives",
-   "hook": "This frog freezes solid. Then it's fine.",
+   "hook": "Your frog froze 65 percent solid. Then it hopped away.",
    "closing": "Best. Nap. Ever.",
-   "question": "Would you trust your own body to do that? Tell me below.",
+   "question": "Would you trust your body to do that?",
    "hashtags": [
     "woodfrog",
     "biology",
@@ -22001,8 +22007,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · IT SHOULDN'T WORK",
-     "topic": "body water frozen and survived",
-     "say": "Freeze about 10 percent of a normal animal's body water and it dies, the ice shreds its cells. Wood frogs survive up to 65 percent of their body frozen solid.",
+     "topic": "Frog survives frozen water",
+     "say": "10 percent frozen kills most animals, but wood frogs survive 65 percent.",
      "scene": {
       "mechanic": "ice-fill-shatter-duel",
       "concept": "two frog cutouts fill with ice to their survival threshold; one shatters, one holds and glows",
@@ -22017,8 +22023,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE TRICK",
-     "topic": "coldest survived body temperature",
-     "say": "Their liver floods their blood with glucose the moment ice touches their skin, protecting each cell from the inside. That lets them survive body temperatures 16 degrees below freezing.",
+     "topic": "Frog coldest body temperature",
+     "say": "Ice on skin floods blood with liver glucose, letting them survive 16 degrees below freezing.",
      "scene": {
       "mechanic": "frog-thermometer-plunge",
       "concept": "a shared vertical scale where each frog plunges to the coldest body temperature it survives",
@@ -22033,15 +22039,17 @@
      },
      "insight_type": "comparison",
      "role": "3 · HOW FAR IT TAKES THEM",
-     "topic": "northernmost range",
-     "say": "Most frogs top out around 45 degrees north. Wood frogs freeze and thaw every winter as far north as 68, the only frog found above the Arctic Circle.",
+     "topic": "Frog northernmost range",
+     "say": "Most frogs stop near 45 degrees north, but wood frogs live as far north as 68.",
      "scene": {
       "mechanic": "arctic-range-creep",
       "concept": "frog photos climb a latitude ladder, most stopping well short of the Arctic Circle line",
       "code": "cx = (RX0 + RX1) // 2\ntop_y = 220\nbot_y = 1080\nd.rounded_rectangle([cx - 140, top_y, cx + 140, bot_y], radius=30, outline=rgba(TEXT, 200), width=4)\narctic_frac = clamp(66.5 / 80)\narctic_y = bot_y - (bot_y - top_y) * arctic_frac\nd.line([cx - 160, arctic_y, cx + 160, arctic_y], fill=rgba(WARN, 220), width=5)\ntext('ARCTIC CIRCLE', cx + 170, arctic_y - 14, size=22, color=WARN)\nfor i in range(n):\n    lat = values[i]\n    frac = clamp(lat / 80.0) * reveal\n    y = bot_y - (bot_y - top_y) * frac\n    img = images.get(labels[i])\n    if img is None:\n        img = subject_image('frog')\n    w = 150\n    h = 120\n    if img is not None:\n        paste(img, cx - w // 2, int(y) - h // 2, w, h)\n    else:\n        d.ellipse([cx - w // 2, y - h // 2, cx + w // 2, y + h // 2], fill=rgba(ACCENT, 220))\n    text(labels[i], cx, int(y) + h // 2 + 24, size=24, center=True)\n    text(str(int(lat)) + ' N', cx, int(y) - h // 2 - 20, size=32, color=HIGHLIGHT, center=True)\n"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-05T18:34:57Z"
   },
   {
    "slug": "betelgeuse-great-dimming",
@@ -23184,7 +23192,7 @@
   {
    "slug": "parker-solar-probe-speed-record",
    "title": "Humans Just Built the Fastest Thing Ever Made",
-   "hook": "430 thousand miles an hour — and it's ours, built by humans.",
+   "hook": "430 thousand miles an hour: your species just broke its own speed record.",
    "closing": "And right now, it's diving straight into the sun.",
    "question": "Would you ride something this fast?",
    "caption": "In December 2024, Parker Solar Probe hit 430,000 miles per hour -- 17x faster than Apollo 10, the fastest speed any human has ever personally traveled. At that speed you could fly New York to Tokyo in 56 seconds. Would you ride it? 👇",
@@ -25449,9 +25457,9 @@
   {
    "slug": "podcasts-passed-radio-spoken-word",
    "title": "Podcasts Just Beat Radio For The First Time (3 Charts)",
-   "hook": "Podcasts Just Beat Radio For The First Time",
+   "hook": "Your radio just lost to podcasts, 40% to 39%.",
    "closing": "Radio had a hundred-year head start. Didn't matter.",
-   "question": "Do you listen to more podcasts or radio? Tell me below.",
+   "question": "Podcasts or radio: which do you play?",
    "caption": "Podcasts just passed AM/FM radio in spoken-word listening for the first time ever -- 40% to 39%. Radio spent a century building its audience; podcasts matched it in twenty years. Which do you listen to more? 👇",
    "hashtags": [
     "podcasts",
@@ -25475,9 +25483,9 @@
       "file": "podcast_spoken_word_share.json"
      },
      "insight_type": "comparison",
-     "topic": "podcasts' share of spoken-word listening",
+     "topic": "Podcasts, 2015 to 2025",
      "role": "1 · THE CLIMB",
-     "say": "In 2015, podcasts were just 10% of Americans' spoken-word listening time. AM/FM radio owned the rest. By 2025 podcasts had climbed to 40% -- a quadrupling in a decade.",
+     "say": "Podcasts went from 10% of spoken-word listening in 2015 to 40% by 2025.",
      "scene": {
       "mechanic": "mic-rise-radio-fade",
       "concept": "a podcast microphone fills upward with the growing listening share while a vintage radio dial shrinks beside it",
@@ -25491,9 +25499,9 @@
       "file": "podcast_vs_radio_q4_2025.json"
      },
      "insight_type": "comparison",
-     "topic": "the crossover moment",
+     "topic": "Podcasts beat radio",
      "role": "2 · THE CROSSOVER",
-     "say": "By the end of 2025, podcasts made up 40% of all spoken-word listening. AM/FM radio's talk programming fell to 39%. For the first time since anyone started measuring, podcasts won.",
+     "say": "In 2025, podcasts hit 40% of spoken-word listening and AM/FM talk radio fell to 39%.",
      "scene": {
       "mechanic": "photo-finish-race",
       "concept": "a microphone and a radio tower race down parallel lanes toward a finish line, the microphone edging ahead by a single point",
@@ -25507,16 +25515,18 @@
       "file": "podcast_weekly_reach_share.json"
      },
      "insight_type": "share",
-     "topic": "how many Americans listen weekly",
+     "topic": "Podcasts: weekly listeners",
      "role": "3 · THE SCALE",
-     "say": "That's not a niche hobby anymore -- about 115 million Americans, roughly 35% of the country, now listen to a podcast every single week. Radio spent a century building that audience.",
+     "say": "Now about 35% of Americans listen to a podcast every single week.",
      "scene": {
       "mechanic": "listener-crowd-fill",
       "concept": "a crowd grid of person silhouettes lights up with headphones for the roughly 1-in-3 who listen weekly, the rest left plain",
       "code": "person = subject_image('person silhouette icon with headphones')\nplain = subject_image('plain person silhouette icon')\nlisten_v = values[1] if labels[1].lower().startswith('listen') else values[0]\nrows = 8; cols = 10\ntotal = rows * cols\nlisten_n = max(1, int(round(total * listen_v / 100)))\nt = clamp(reveal)\nshown_listen = int(listen_n * t)\ngx0 = RX0 + 80\ngy0 = RTOP + 160\ncw = (RX1 - RX0 - 80) / cols\nch = 90\nfor k in range(total):\n    row = k // cols\n    col = k % cols\n    fx = gx0 + col * cw\n    fy = gy0 + row * ch\n    icon = person if k < shown_listen else plain\n    if icon is not None:\n        paste(icon, fx, fy, cw - 8, ch - 12)\ntext(f'{listen_v:.0f}% listen to a podcast weekly', (RX0 + RX1) // 2, RTOP + 60, size=27, color=HIGHLIGHT, center=True)\ntext('~115 MILLION AMERICANS', (RX0 + RX1) // 2, gy0 + rows * ch + 30, size=30, color=WARN, center=True)\n"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-05T19:15:34Z"
   },
   {
    "slug": "chickenpox-vaccine-collapse",
@@ -26157,9 +26167,9 @@
   {
    "slug": "kids-phones-getting-younger",
    "title": "Smartphones Just Got a Lot Younger",
-   "hook": "Elementary schoolers are getting smartphones now.",
+   "hook": "Your kid's classmates already have phones: 31 percent of 8-year-olds, nearly triple 2015.",
    "closing": "The unboxing age keeps dropping. Ask any 8-year-old.",
-   "question": "How old were you when you got your first phone? Comment below.",
+   "question": "How old were you at your first phone?",
    "caption": "In 2015, just 11% of 8-year-olds owned a smartphone. By 2021 it was 31% -- and 71% of kids already have one by age 12. Little kids are getting phones years earlier than their older siblings did. How old were you when you got yours? 👇",
    "hashtags": [
     "kids",
@@ -26187,8 +26197,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE YOUNGEST KIDS",
-     "topic": "8-year-olds who own a smartphone",
-     "say": "In 2015, just 11 percent of 8-year-olds had their own smartphone. By 2019 it was 19 percent, and by 2021 it hit 31 percent -- nearly tripling in six years."
+     "topic": "Smartphones at age 8",
+     "say": "In 2015, 11 percent of 8-year-olds owned a smartphone; by 2021, 31 percent did."
     },
     {
      "source": "offline",
@@ -26201,7 +26211,7 @@
      "use_baseline": false,
      "role": "2 · HOW FAST IT RAMPS",
      "topic": "smartphone ownership by age",
-     "say": "By age 10, 42 percent of kids already have their own phone. By 12 it's 71 percent. By 14, 91 percent -- nine in 10 teenagers are carrying one."
+     "say": "By age 10, 42 percent own a phone; by 12, 71 percent; by 14, 91 percent."
     },
     {
      "source": "offline",
@@ -26213,9 +26223,12 @@
      "use_baseline": false,
      "role": "3 · THE WHOLE GENERATION",
      "topic": "smartphone ownership among 8-12-year-olds",
-     "say": "Across ages 8 to 12, ownership nearly doubled -- 24 percent in 2015 to 43 percent in 2021. It didn't just arrive earlier for one kid. It arrived earlier for an entire generation."
+     "say": "Ownership among ages 8 to 12 nearly doubled: 24 percent in 2015, 43 percent in 2021."
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-05T19:15:51Z",
+   "hook_was": "31 percent of 8-year-olds now carry a smartphone. Yours could be next."
   },
   {
    "slug": "us-height-ranking-fall",

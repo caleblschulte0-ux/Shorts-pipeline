@@ -1,0 +1,177 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "body-renewal-clock__e0bfe838",
+ "filed": "2026-10-05T19:35:22Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "body-renewal-clock",
+ "current": {
+  "title": "How Much Of 'You' Is Actually New",
+  "hook": "330 billion of your cells vanish every single day.",
+  "closing": "So technically, your skin is younger than your phone.",
+  "question": "How old are your oldest cells? Guess below.",
+  "segments": [
+   {
+    "topic": "How new is tissue",
+    "say": "Stomach lining rebuilds in 5 days, skin 28 days, blood 120 days, skeleton about 10 years."
+   },
+   {
+    "topic": "New cells per day",
+    "say": "330 billion cells are replaced daily, so 100 days swaps out 30 trillion."
+   },
+   {
+    "topic": "Old neurons, new skin",
+    "say": "Neurons are about twenty-nine thousand days old, your whole lifetime, while skin renews every twenty-eight days."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "How new is tissue",
+   "say": "Stomach lining rebuilds in 5 days, skin 28 days, blood 120 days, skeleton about 10 years.",
+   "role": "1 · RENEWAL SPEED",
+   "data": {
+    "file": "cell_renewal_speed.json",
+    "unit": "days",
+    "title": "How long different tissues take to fully renew themselves",
+    "points": [
+     {
+      "label": "Stomach lining",
+      "value": 5
+     },
+     {
+      "label": "Skin",
+      "value": 28
+     },
+     {
+      "label": "Red blood cells",
+      "value": 120
+     },
+     {
+      "label": "Skeleton",
+      "value": 3650
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 1,
+   "topic": "New cells per day",
+   "say": "330 billion cells are replaced daily, so 100 days swaps out 30 trillion.",
+   "role": "2 · IT ADDS UP",
+   "data": {
+    "file": "cell_replacement_cumulative.json",
+    "unit": "trillion",
+    "title": "Cumulative human cells replaced over 100 days",
+    "points": [
+     {
+      "label": "Day 0",
+      "value": 0,
+      "period": "0"
+     },
+     {
+      "label": "Day 25",
+      "value": 8.3,
+      "period": "25"
+     },
+     {
+      "label": "Day 50",
+      "value": 16.5,
+      "period": "50"
+     },
+     {
+      "label": "Day 75",
+      "value": 24.8,
+      "period": "75"
+     },
+     {
+      "label": "Day 100",
+      "value": 30,
+      "period": "100"
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Old neurons, new skin",
+   "say": "Neurons are about twenty-nine thousand days old, your whole lifetime, while skin renews every twenty-eight days.",
+   "role": "3 · EXCEPT...",
+   "data": {
+    "file": "neuron_vs_skin_age.json",
+    "unit": "days",
+    "title": "How old your cells are, by type (days)",
+    "points": [
+     {
+      "label": "Skin",
+      "value": 28
+     },
+     {
+      "label": "Brain neurons (cortex)",
+      "value": 29200
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: This is a chart deck about cell renewal: overlapping unreadable labels, a mascot who is never the cause of anything, and a closing about skin being younger than your phone that the visuals never set up."
+ ],
+ "reasons": [
+  "judge: This is a chart deck about cell renewal: overlapping unreadable labels, a mascot who is never the cause of anything, and a closing about skin being younger than your phone that the visuals never set up."
+ ],
+ "judge": {
+  "ts": "2026-10-05T18:02:55+00:00",
+  "score": 39,
+  "one_line": "This is a chart deck about cell renewal: overlapping unreadable labels, a mascot who is never the cause of anything, and a closing about skin being younger than your phone that the visuals never set up.",
+  "problems": [
+   "The hook frames leave the bottom half of the screen empty under a stock ribcage. No motion or reason to stay beyond icons fading in, and the mascot is absent.",
+   "seg1:start labels overprint each other ('120 d28 d5 days', 'Red blood cellSkStomach lining'), so they cannot be read.",
+   "seg1:mid: the '5 day' and '28 days' labels collide and the mascot stands on them. The scene is a bubble chart with one giant disc.",
+   "seg2 is a plain two-bar chart, and the mascot floats beside it with no bit.",
+   "seg3 is titled 'New cells per day' but plots a cumulative total. The mascot merely rides the line's tip.",
+   "seg4 bubbles repeat seg3's numbers and get cut off by the caption band. The 'skin younger than your phone' line has no visual (no phone, no skin)."
+  ],
+  "fixes": [
+   "Open on motion: a body in which a visible wave of cells blinks out and is replaced, with a counter racing toward 330 billion and Data sweeping the old cells away with a broom.",
+   "Rebuild seg1 as one body with four tissue zones that refresh at their own rates as Data cranks a day-counter. Give every label a measured, non-overlapping slot.",
+   "seg2: an old, unchanged neuron next to a skin patch that Data peels and replaces dozens of times over the same span.",
+   "seg3: Data shovels new cells into a body-shaped vessel that fills to 30T by Day 100. Retitle it as a cumulative total.",
+   "seg4: put a phone next to a skin patch with age badges (skin 28 days versus the phone's age) to land the punchline. Keep every mark inside the safe area above the caption band."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261005/body-renewal-clock__e0bfe838.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

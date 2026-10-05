@@ -1,7 +1,47 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-05T16:55:17Z",
+ "updated": "2026-10-05T19:35:25Z",
  "open": [
+  {
+   "id": "parker-solar-probe-speed-record__c8e17643",
+   "slug": "parker-solar-probe-speed-record",
+   "filed": "2026-10-05T19:35:25Z",
+   "why": [
+    "judge: A record about speed is shown as four static charts, and the same speed values get charted twice in the first 13 seconds; nothing ever moves fast."
+   ],
+   "request": "exchange/rewrites/20261005/parker-solar-probe-speed-record__c8e17643.request.json",
+   "answer_path": "exchange/rewrites/20261005/parker-solar-probe-speed-record__c8e17643.answer.json"
+  },
+  {
+   "id": "highest-point-illusion__f1cfac45",
+   "slug": "highest-point-illusion",
+   "filed": "2026-10-05T19:35:24Z",
+   "why": [
+    "premise: brain: The premise lacks a single, clear verifiable number defining the new highest point, making it insufficient to meet the criteria."
+   ],
+   "request": "exchange/rewrites/20261005/highest-point-illusion__f1cfac45.request.json",
+   "answer_path": "exchange/rewrites/20261005/highest-point-illusion__f1cfac45.answer.json"
+  },
+  {
+   "id": "activity-inequality-steps__9bc98851",
+   "slug": "activity-inequality-steps",
+   "filed": "2026-10-05T19:35:23Z",
+   "why": [
+    "premise: brain: It relies on multiple step-count numbers rather than a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261005/activity-inequality-steps__9bc98851.request.json",
+   "answer_path": "exchange/rewrites/20261005/activity-inequality-steps__9bc98851.answer.json"
+  },
+  {
+   "id": "body-renewal-clock__e0bfe838",
+   "slug": "body-renewal-clock",
+   "filed": "2026-10-05T19:35:22Z",
+   "why": [
+    "judge: This is a chart deck about cell renewal: overlapping unreadable labels, a mascot who is never the cause of anything, and a closing about skin being younger than your phone that the visuals never set up."
+   ],
+   "request": "exchange/rewrites/20261005/body-renewal-clock__e0bfe838.request.json",
+   "answer_path": "exchange/rewrites/20261005/body-renewal-clock__e0bfe838.answer.json"
+  },
   {
    "id": "coldest-place-in-the-universe-is-human-made__df7103ae",
    "slug": "coldest-place-in-the-universe-is-human-made",
@@ -43,16 +83,6 @@
    "answer_path": "exchange/rewrites/20261005/college-gender-gap__adfbd805.answer.json"
   },
   {
-   "id": "parker-solar-probe-speed-record__c5064743",
-   "slug": "parker-solar-probe-speed-record",
-   "filed": "2026-10-05T16:55:13Z",
-   "why": [
-    "judge: A record about raw SPEED is shown as four static charts and a number list. Nothing in the video ever moves fast, and Data is a pointer, not a driver."
-   ],
-   "request": "exchange/rewrites/20261005/parker-solar-probe-speed-record__c5064743.request.json",
-   "answer_path": "exchange/rewrites/20261005/parker-solar-probe-speed-record__c5064743.answer.json"
-  },
-  {
    "id": "adhd-diagnosis-surge__5cd541a0",
    "slug": "adhd-diagnosis-surge",
    "filed": "2026-10-05T16:55:12Z",
@@ -81,16 +111,6 @@
    ],
    "request": "exchange/rewrites/20261005/gps-einstein-fix__0f6ffc54.request.json",
    "answer_path": "exchange/rewrites/20261005/gps-einstein-fix__0f6ffc54.answer.json"
-  },
-  {
-   "id": "activity-inequality-steps__3525f2fe",
-   "slug": "activity-inequality-steps",
-   "filed": "2026-10-05T16:55:09Z",
-   "why": [
-    "judge: A generic chart deck about step inequality: the hurdle hook barely moves for 6s, the comparison labels collide, and Data only perches on bars instead of driving the numbers."
-   ],
-   "request": "exchange/rewrites/20261005/activity-inequality-steps__3525f2fe.request.json",
-   "answer_path": "exchange/rewrites/20261005/activity-inequality-steps__3525f2fe.answer.json"
   },
   {
    "id": "lottery-odds-vs-real-life__cc4a14c6",
@@ -660,16 +680,6 @@
    "answer_path": "exchange/rewrites/20261005/diabetes-quietly-doubled__426a7e29.answer.json"
   },
   {
-   "id": "highest-point-illusion__b97249d0",
-   "slug": "highest-point-illusion",
-   "filed": "2026-10-05T10:56:42Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/highest-point-illusion__b97249d0.request.json",
-   "answer_path": "exchange/rewrites/20261005/highest-point-illusion__b97249d0.answer.json"
-  },
-  {
    "id": "plastic-in-your-body__83af4ec8",
    "slug": "plastic-in-your-body",
    "filed": "2026-10-05T10:56:42Z",
@@ -769,16 +779,6 @@
    ],
    "request": "exchange/rewrites/20261005/bird-flu-species-jump__49e828cf.request.json",
    "answer_path": "exchange/rewrites/20261005/bird-flu-species-jump__49e828cf.answer.json"
-  },
-  {
-   "id": "body-renewal-clock__3fbbbbd8",
-   "slug": "body-renewal-clock",
-   "filed": "2026-10-05T10:56:38Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/body-renewal-clock__3fbbbbd8.request.json",
-   "answer_path": "exchange/rewrites/20261005/body-renewal-clock__3fbbbbd8.answer.json"
   },
   {
    "id": "ozone-hole-recovery__fb0993e5",

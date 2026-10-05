@@ -1,0 +1,16 @@
+{
+ "slug": "coldest-place-in-the-universe-is-human-made",
+ "ts": "20261005T193534Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg4:mid/end: '29,399,999,999,999,752 apa' runs off the right edge of the frame. 'NASA's Cold ...' is truncated and low contrast. seg3: '29400T' renders as doubled/smeared glyphs. 'NASA's Cold Atom Lab (ISS)' sits on the edge of the square in tiny type.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start/mid/end: one giant static teal square fills the frame with '29400T' in the middle (garbled glyphs) and a tiny 'NASA's Cold Atom Lab (ISS)' label on its edge. Data perches on top with an identical pose. Nothing moves for about 4s.",
+  "root_cause": "The distance claim (Boomerang Nebula 5,000 light-years away vs the Cold Atom Lab 250 miles up) went to an area-square machine. The ISS value is effectively zero next to the nebula, so the picture collapses to one square plus a raw abbreviated number, and Data has no causal act.",
+  "repair_goal": "Show distance as distance. Data launches or zooms a camera out from Earth: the ISS sits 250 miles up, just above a curved Earth horizon, then the view pulls back through the Milky Way to a tiny nebula 5,000 light-years off. Data drives the zoom, for example by cranking a telescope. Label both values in readable units ('250 miles', '5,000 light-years'), never '29400T'."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

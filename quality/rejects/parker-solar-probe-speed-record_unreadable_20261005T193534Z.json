@@ -1,0 +1,16 @@
+{
+ "slug": "parker-solar-probe-speed-record",
+ "ts": "20261005T193534Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:end: a cyan ring and a second '56' are drawn over the 56 bubble and garble it. seg4:start to end: the ladder runs over the 'New York to Tokyo' label, which reads 'Ne_ York'. seg0:start: bar text '153K' sits tiny at the bottom of the bar.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start/mid/end: '24.8K' for Apollo 10 and '430K' for Parker sit as big numbers in two rows, each with an idle mascot. The '17 times faster' in the narration is never shown.",
+  "root_cause": "The comparison was drawn as two labelled numbers rather than as motion. Speed is never turned into distance or a race, so the ratio has nothing to carry it.",
+  "repair_goal": "Show the 17x gap as motion: Data rides or flings an Apollo capsule and a Parker probe over the same course, so the probe crosses it about 17 times in the time the capsule crosses once, or Apollo has covered 1/17 of the track when Parker finishes. Data must drive the motion, and the labels must stay clear of every mark."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

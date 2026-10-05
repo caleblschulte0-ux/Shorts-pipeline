@@ -1,0 +1,16 @@
+{
+ "slug": "adhd-diagnosis-surge",
+ "ts": "20261005T193534Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From seg3:start through seg3:end Data just stands on top of the 53.6% circle with the same idle pose and does nothing to grow it. From seg4:start through seg4:end he stays at the left edge holding a stick and never loads or tips the scale.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg3:start to seg3:end shows two circles (53.6% yellow, 46.4% grey) that just grow, with Data stuck on top of the yellow circle in one idle pose. He causes nothing, and the picture is a bubble chart that says nothing the labels do not.",
+  "root_cause": "The medication beat fell back to a two-bubble share chart with the mascot placed on top as an ornament. No machine ties his action to the 'only half are treated' claim, and the closing scale (seg4) repeats the same 53.6/46.4 split.",
+  "repair_goal": "Turn seg3 into a scene where Data causes the split. For example, he hands out pill bottles to a row of diagnosed kids and the line runs out barely past halfway, leaving 46.4% of the kids empty-handed and visibly waiting. Keep every label clear of his body. Then give seg4 a different payoff, or have him load the scale so the beat lands instead of repeating."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
