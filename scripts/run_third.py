@@ -1359,7 +1359,16 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         # 85-minute budget the whole run used 28 of. `_deadline_passed()`
         # below still stops between candidates, and retries no longer re-run
         # the story, so the cap cannot cost the day its other clips.
-        for cluster in clusters[:int(spec.get("story_max_clusters", 6))]:
+        # THE BUDGET COUNTS CANDIDATES EXAMINED, NOT SKIPPED. Slicing the
+        # list let an already-refused candidate — skipped in a millisecond —
+        # use up one of the six: in the 2026-10-05 story backtest attempts
+        # 3 and 4 examined almost nothing new because the six were spent on
+        # skips. `_examined` counts the ones that reach scene analysis.
+        _max_examined = int(spec.get("story_max_clusters", 6))
+        _examined = 0
+        for cluster in clusters:
+            if _examined >= _max_examined:
+                break
             # THE STORY ARM IS THE RUN'S UNBOUNDED TAIL. Worst case it is
             # 3 clusters x 6 sources x 2 scene analyses = 36 whisper passes
             # and 36 Claude vision calls in ONE slot, each VOD expansion
@@ -1400,6 +1409,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                                f"{_was.get('d', '?')}: {_was.get('why', '')}")
                 continue
 
+            _examined += 1
             # ---- multimodal scene analysis (§7), with VOD context
             # expansion (§6) for sources the analysis marks incomplete
             snip_dir = work / "story_scenes"
@@ -1466,9 +1476,15 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                             rep = rep2
                             rep["path"] = vod["path"]
                             rep["used_vod"] = True     # per-SOURCE, not per-pile
+                            # this file's second 0 is the WINDOW start
+                            rep["broadcast_t0"] = vod.get("vod_start_s")
                 rep["date"] = c.get("date", "")
                 rep["vod_offset"] = c.get("vod_offset")
                 rep["video_id"] = c.get("video_id")
+                # where this source's second 0 sits in the broadcast, so the
+                # director's plan never plays the same seconds twice when two
+                # clips of one stream overlap (story_director._positions)
+                rep.setdefault("broadcast_t0", c.get("vod_offset"))
                 reports.append(rep)
             if len(reports) < 2:
                 print(f"[story] {who}: <2 analyzable sources", flush=True)

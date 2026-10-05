@@ -372,9 +372,71 @@ def _overlaps(s: float, e: float, windows: list) -> bool:
     return False
 
 
+def _positions(reports: list[dict]) -> dict[str, tuple]:
+    """source_id -> (timeline, t0): which recording a source is cut from and
+    where its second 0 sits on it. Sources from one broadcast share the
+    broadcast's video_id and are placed by `broadcast_t0` (the clip's VOD
+    offset, or the start of the VOD window it was expanded to); any other
+    source is its own timeline starting at 0, which still catches two beats
+    cut over the same seconds of one clip."""
+    out = {}
+    for r in reports:
+        sid = r.get("source_id")
+        vid, t0 = r.get("video_id"), r.get("broadcast_t0")
+        try:
+            out[sid] = ((str(vid), float(t0)) if vid and t0 is not None
+                        else (f"src:{sid}", 0.0))
+        except (TypeError, ValueError):
+            out[sid] = (f"src:{sid}", 0.0)
+    return out
+
+
+def _no_replayed_seconds(beats: list[dict], positions: dict,
+                         rs: list) -> list[dict]:
+    """Trim or drop a beat that replays seconds an EARLIER beat already
+    showed. Two clips of one broadcast overlap whenever two clippers caught
+    the same moment, and the director, reading them as separate sources,
+    cut the shared stretch twice: the story backtest of 2026-10-05 opened
+    with "You kept talking about proof, right?" twice back to back, and the
+    critic named it on 10-04, 10-05 and in the backtest. Every beat after
+    the first is moved off any stretch already shown; one left under 1.5s
+    is dropped. Recorded as a repair."""
+    shown: list[tuple] = []
+    out = []
+    for b in beats:
+        tl, t0 = positions.get(b["source_id"], (f"src:{b['source_id']}", 0.0))
+        s, e = b["start"], b["end"]
+        for (otl, a, z) in shown:
+            if otl != tl:
+                continue
+            bs, be = t0 + s, t0 + e
+            if min(be, z) - max(bs, a) <= 0.5:
+                continue
+            if bs >= a:                      # starts inside: begin after it
+                s = z - t0
+            elif be <= z:                    # ends inside: end before it
+                e = a - t0
+            else:                            # straddles: keep the later part
+                s = z - t0
+        if e - s < 1.5:
+            rs.append(f"beat {b['source_id']} {b['start']:.1f}-{b['end']:.1f}s"
+                      " only replays seconds already shown — dropped "
+                      "(repaired)")
+            continue
+        if (s, e) != (b["start"], b["end"]):
+            rs.append(f"beat {b['source_id']} trimmed {b['start']:.1f}-"
+                      f"{b['end']:.1f}s -> {s:.1f}-{e:.1f}s so no second of "
+                      "the broadcast plays twice (repaired)")
+            b = dict(b, start=round(s, 2), end=round(e, 2))
+        shown.append((tl, t0 + s, t0 + e))
+        out.append(b)
+    return out
+
+
 def validate_edl(edl: dict, durations: dict[str, float],
                  windows: dict[str, list] | None = None,
-                 reasons: list | None = None) -> dict | None:
+                 reasons: list | None = None,
+                 positions: dict | None = None) -> dict | None:
     """Hard-validate a director EDL against the playbook's NARRATIVE laws,
     not just syntax (reviewer #8). Returns the cleaned EDL or None.
     `durations` maps source_id -> clip length; `windows` maps source_id ->
@@ -525,6 +587,7 @@ def validate_edl(edl: dict, durations: dict[str, float],
                           "framing": framing,
                           "context_overlay": overlay,
                           "effects": effects})
+        beats = _no_replayed_seconds(beats, positions or {}, rs)
         if len(beats) < 2:
             rs.append(f"only {len(beats)} valid beat(s)")
             return None
@@ -718,7 +781,8 @@ def plan_story(reports: list[dict], event: dict | None = None,
         return None
     durations = {r["source_id"]: float(r.get("duration_s") or 0)
                  for r in reports}
-    edl = validate_edl(out, durations, _windows(reports), reasons=rs)
+    edl = validate_edl(out, durations, _windows(reports), reasons=rs,
+                       positions=_positions(reports))
     # the director's own narration meets the same floor as the reviser's
     edl = _ground(edl, reports, rs)
     # `editorial` separates "a human editor would also say no" from "the
@@ -823,7 +887,8 @@ def revise_edl(edl: dict, problems: list[dict],
     durations = {r["source_id"]: float(r.get("duration_s") or 0)
                  for r in reports}
     rs: list = []
-    edl2 = validate_edl(out or {}, durations, _windows(reports), reasons=rs)
+    edl2 = validate_edl(out or {}, durations, _windows(reports), reasons=rs,
+                        positions=_positions(reports))
     edl2 = _ground(edl2, reports, rs)
     for r in rs:
         if r.startswith("narration dropped"):

@@ -67,13 +67,14 @@ def _review(publish, score, fix="cut the dead air"):
 
 class _Harness(unittest.TestCase):
     def run_attempt(self, reviews, *, preflight=lambda p: [],
-                    spec_extra=None, cluster=None, plan=None):
+                    spec_extra=None, cluster=None, plan=None,
+                    clusters=None, memory=None):
         rt = _load_rt()
         self.rt = rt
         tmp = Path(self.enterContext(tempfile.TemporaryDirectory()))
         rt.EVENTS_FILE = tmp / "events.json"
         rt._STORY_POOL = None
-        rt._CLIP_MEMORY = clip_memory.empty()
+        rt._CLIP_MEMORY = memory or clip_memory.empty()
         rt._JUDGES.clear()
         self.revisions = 0
 
@@ -95,8 +96,8 @@ class _Harness(unittest.TestCase):
             mock.patch.object(clip_qa, "review", return_value={
                 "verdict": "pass", "problems": [], "vision": {}}),
             mock.patch.object(storyline, "find_vod_arcs",
-                              return_value=[json.loads(json.dumps(
-                                  cluster or CLUSTER))]),
+                              return_value=json.loads(json.dumps(
+                                  clusters or [cluster or CLUSTER]))),
             mock.patch.object(storyline, "find_clusters", return_value=[]),
             mock.patch.object(story_director, "scout_stories",
                               return_value=[]),
@@ -364,6 +365,86 @@ class TheRepairMaySayWhatTheFootageSays(unittest.TestCase):
             _with_narration("Reggie claimed Kai ignored his call."),
             {"a": 60.0, "b": 60.0})
         self.assertEqual(out["narration"]["over_beat"], 0)
+
+
+class SkippedCandidatesDoNotSpendTheBudget(_Harness):
+    """2026-10-05 story backtest: attempts 3 and 4 examined almost nothing
+    new — the six-candidate budget was spent on already-refused candidates
+    that were skipped in a millisecond."""
+
+    def test_a_fresh_candidate_behind_seven_refused_ones_is_examined(self):
+        mem = clip_memory.empty()
+        refused = []
+        for i in range(7):
+            urls = [f"https://www.twitch.tv/x/clip/Old{i}a",
+                    f"https://www.twitch.tv/x/clip/Old{i}b"]
+            clip_memory.note_story_tried(mem, urls, why="no change")
+            refused.append({"who": ["x"], "kind": "vod_arc",
+                            "video_id": f"v{i}",
+                            "clips": [{"source_url": u, "title": "t",
+                                       "channel": "x", "date": "2026-10-01"}
+                                      for u in urls]})
+        led = self.run_attempt([_review(True, 85)], memory=mem,
+                               clusters=refused + [json.loads(
+                                   json.dumps(CLUSTER))])
+        self.assertIsNotNone(led, "the fresh candidate was never reached")
+
+
+class NoSecondOfTheBroadcastPlaysTwice(unittest.TestCase):
+    """The 2026-10-05 backtest's Kai Cenat cut ended one clip at 24.1-29.9s
+    and opened the next at 0-9.8s — and the two clips overlap in the
+    broadcast, so "You kept talking about proof, right?" played twice back
+    to back. The critic named it on 10-04, 10-05 and in the backtest."""
+
+    POS = {"A": ("vod1", 100.0), "B": ("vod1", 125.0),
+           "C": ("vod2", 125.0)}
+
+    def _beats(self, *spec):
+        return [{"source_id": s, "start": a, "end": b, "role": "setup",
+                 "purpose": "p"} for s, a, b in spec]
+
+    def test_the_kai_overlap_is_trimmed(self):
+        rs = []
+        out = story_director._no_replayed_seconds(
+            self._beats(("A", 24.1, 29.9), ("B", 0.0, 9.8)), self.POS, rs)
+        self.assertEqual([(b["source_id"], b["start"], b["end"])
+                          for b in out],
+                         [("A", 24.1, 29.9), ("B", 4.9, 9.8)])
+        self.assertIn("so no second of the broadcast plays twice", rs[0])
+
+    def test_a_beat_entirely_inside_one_already_shown_is_dropped(self):
+        rs = []
+        out = story_director._no_replayed_seconds(
+            self._beats(("A", 20.0, 40.0), ("B", 0.0, 10.0)), self.POS, rs)
+        self.assertEqual([b["source_id"] for b in out], ["A"])
+        self.assertIn("dropped", rs[0])
+
+    def test_different_broadcasts_never_collide(self):
+        rs = []
+        out = story_director._no_replayed_seconds(
+            self._beats(("A", 24.1, 29.9), ("C", 0.0, 9.8)), self.POS, rs)
+        self.assertEqual(len(out), 2)
+        self.assertEqual(rs, [])
+
+    def test_two_beats_over_the_same_seconds_of_one_clip(self):
+        rs = []
+        out = story_director._no_replayed_seconds(
+            self._beats(("Z", 0.0, 10.0), ("Z", 5.0, 20.0)), {}, rs)
+        self.assertEqual([(b["start"], b["end"]) for b in out],
+                         [(0.0, 10.0), (10.0, 20.0)])
+
+    def test_positions_come_from_the_reports_incl_vod_windows(self):
+        pos = story_director._positions([
+            {"source_id": "A", "video_id": "v", "broadcast_t0": 940.0},
+            {"source_id": "B", "video_id": None, "broadcast_t0": None}])
+        self.assertEqual(pos["A"], ("v", 940.0))
+        self.assertEqual(pos["B"], ("src:B", 0.0))
+
+    def test_the_run_records_where_each_source_starts(self):
+        src = (ROOT / "scripts" / "run_third.py").read_text()
+        self.assertIn('rep["broadcast_t0"] = vod.get("vod_start_s")', src)
+        self.assertIn('rep.setdefault("broadcast_t0", c.get("vod_offset"))',
+                      src)
 
 
 class TwoStoryAttemptsADay(unittest.TestCase):

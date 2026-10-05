@@ -356,7 +356,11 @@ def build_catalogue(corpus: list[dict], *, max_fresh: int = 120,
         pos = ""
         if c.get("video_id") and c.get("vod_offset") is not None:
             o = int(float(c["vod_offset"]))
-            pos = f" | vod={c['video_id']}@{o // 3600}:{(o % 3600) // 60:02d}"
+            # "6h50m", not "6:50": the scout read "6:50" as six minutes fifty
+            # SECONDS and proposed clips 25 MINUTES apart as "seconds apart"
+            # (story backtest 2026-10-05; the director refuted it twice)
+            pos = (f" | vod={c['video_id']} at {o // 3600}h"
+                   f"{(o % 3600) // 60:02d}m into the stream")
         title = re.sub(r"\s+", " ", str(c.get("title", ""))).strip()[:110]
         ev = clip_memory.evidence(mem, c["source_url"])
         lines.append(f"{cid} | {str(c.get('date', ''))[:10] or '?'} | "
