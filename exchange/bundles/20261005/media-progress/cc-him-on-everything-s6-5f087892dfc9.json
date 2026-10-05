@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261005",
+  "bundle": {
+    "identity": "2493dec1d28cc46e8b97a6832ced93e6c042342fc2341f642b8438a1c00e50ab",
+    "path": "exchange/bundles/20261005/bundle.json"
+  },
+  "request_id": "cc-him-on-everything-s6-5f087892dfc9",
+  "safe_request_id": "cc-him-on-everything-s6-5f087892dfc9",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "838f5e16800f8aa56fe95f5135105e6fae68a6936dada11add1124f5655e86b0",
+  "prompt_used": "An editorial illustration for a short-form video: tense office meeting table. It accompanies the narration: \"He called an emergency meeting\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "10UzPaOpOfVQ-UTWSLEEdYppD_xJip5zU",
+    "filename": "20261005__cc-him-on-everything-s6-5f087892dfc9.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=10UzPaOpOfVQ-UTWSLEEdYppD_xJip5zU",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "a3bc204a24af31ea091af1cea362a2317e6226967e7bf2cdb28c37354fcd9299",
+    "bytes": 1837131,
+    "format": "png",
+    "width": 1536,
+    "height": 1024
+  },
+  "verified_at": "2026-10-05T11:34:14.766Z"
+}
