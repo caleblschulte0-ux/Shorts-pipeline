@@ -1107,7 +1107,7 @@ def heat_redlining(cr, t, u, pts, host):
     cr.rectangle(mx + 14, my + 18, mw, mh)
     cr.fill()
     cr.rectangle(mx, my, mw, mh)
-    solid(cr, P["paper"], rim=False, depth=0.7)
+    solid(cr, P["paper"], rim=False, depth=0.3)     # a sheet: lit, barely shaded
     cr.set_source_rgba(*_c(P["paper_ink"], 0.55))
     cr.set_line_width(3)
     for k in range(1, 8):                        # the street grid
@@ -1132,18 +1132,20 @@ def heat_redlining(cr, t, u, pts, host):
     ht = ease(seg(u, 0.4, 0.7))               # heat rises off that zone, today
     if ht > 0:
         glow(cr, zx + zw / 2, zy + zh / 2, 340, P["heat"], 0.55 * ht)
-        for k in range(16):                    # heat waves rise off the zone
-            ph = (t * 0.45 + k / 16) % 1
+        for k in range(24):                    # heat waves rise off the zone
+            ph = (t * 0.55 + k / 24) % 1
             x = zx + 30 + (k * 53) % (zw - 60)
             y = zy + zh - ph * (zh + 320)
             # bold and dark enough to read against the paper: thin orange on
             # beige was invisible in grey, to the eye at a glance as much as
-            # to the gate's detector
+            # to the gate's detector — and enough of them that the rising
+            # heat IS the scene's motion (a lit sheet under them measured
+            # as stiller than a flat one, 2026-10-05)
             cr.set_source_rgba(*_c(P["redline"], 0.95 * ht * (1 - ph)))
-            cr.set_line_width(12)
+            cr.set_line_width(16)
             cr.move_to(x, y)
-            for j in range(1, 6):
-                cr.line_to(x + 14 * math.sin(t * 3 + j + k), y - j * 22)
+            for j in range(1, 7):
+                cr.line_to(x + 18 * math.sin(t * 3 + j + k), y - j * 24)
             cr.stroke()
     # HAZARDOUS on top of the heat, outlined so the glow cannot wash it out
     cr.move_to(zx + zw / 2 - I.text_w(cr, "HAZARDOUS", 52, "display") / 2, zy + zh / 2 + 16)
@@ -1169,7 +1171,6 @@ def heat_redlining(cr, t, u, pts, host):
     else:                # then he fans the heat rising off the old zone
         host("hold_up" if (ht < 0.9 or u < 0.88) else "shock", mx + mw - 120,
              min(my + mh + 20, 1520), 240)
-    vignette(cr, 0.28)                       # the eye lands on the map
     if u < 0.45:     # the top of the frame carries the 1930s until the heat lands
         fit_readout(cr, "1930s", "a map drew these lines", 80, 520,
                     a=ease(seg(u, 0.0, 0.08)) * (1 - ease(seg(u, 0.38, 0.45))),
