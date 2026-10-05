@@ -105,6 +105,15 @@ If it IS a story, DIRECT it. Choose ONE structure and justify it:
 - escalation: small incident -> worse -> biggest moment
 - before_after: original position -> event -> changed position
 
+THE FIRST THREE SECONDS TELL A STRANGER WHO AND WHAT. The viewer has
+never heard of this streamer, this friend, this game or this pet. Before
+the story moves, they must know who it is about and what is at stake —
+said by the first line, or stated by the hook, or by the one narration
+line. "Pokimane's cat Mimi" not "my baby"; "CaseOh's sausage challenge"
+not "it's done"; "Reggie says Kai ignored his call" not "the proof". In
+story backtests the critic's first complaint on most cuts was exactly
+this, and no repair can fix a cut that never says it.
+
 Then emit the COMPLETE timeline. Segment rules:
 - exact start/end seconds INTO THE NAMED SOURCE, chosen from its dialogue/
   visual beats: enter just before the new information, leave after the
@@ -128,17 +137,23 @@ Then emit the COMPLETE timeline. Segment rules:
   hard to see), at most 2 subtle_punch; spend emphasis on the payoff,
   not the first beat. Usually [].
 - narration: OPTIONAL top-level {"text": <=15 words, "over_beat": idx,
-  "essential_because": str} — spoken OVER that beat (ducked). ONLY when
-  essential context cannot be
-  shown by footage + a short overlay. Verified facts only, never
-  motives, never drama ("Two days later, he finally responded." — good;
-  "He was furious and planning revenge." — forbidden). Usually omit.
+  "essential_because": str} — spoken OVER that beat (ducked). Use it,
+  usually over beat 0, when the footage never says WHO or WHAT the story
+  is about and the scene reports do (a name, a relationship, what was
+  claimed); otherwise omit. Verified facts from the reports only, never
+  motives, never drama ("Pokimane's cat Mimi got out onto the balcony."
+  — good; "He was furious and planning revenge." — forbidden). A line the
+  sources do not support is removed automatically.
 
 Return STRICT JSON:
 {"is_story": true,
  "premise": str, "central_question": str, "ending_emotion": str,
  "structure": "<one of the six>", "structure_reason": str,
- "title": str, "hook_overlay": str,          // 3-7 words, over opening
+ "title": str,
+ "hook_overlay": str,   // 3-7 words over the opening that state the
+                        // SITUATION in plain words (who + what is at
+                        // stake) — "KAI SAYS REGGIE IS LYING", not a
+                        // teaser like "HE NEVER SAW IT COMING"
  "target_duration": int,                      // seconds, 25-90
  "beats": [{"source_id": str, "start": s, "end": s,
             "role": "setup|escalation|climax|payoff|context|reaction",
@@ -372,9 +387,121 @@ def _overlaps(s: float, e: float, windows: list) -> bool:
     return False
 
 
+def _positions(reports: list[dict]) -> dict[str, tuple]:
+    """source_id -> (timeline, t0): which recording a source is cut from and
+    where its second 0 sits on it. Sources from one broadcast share the
+    broadcast's video_id and are placed by `broadcast_t0` (the clip's VOD
+    offset, or the start of the VOD window it was expanded to); any other
+    source is its own timeline starting at 0, which still catches two beats
+    cut over the same seconds of one clip."""
+    out = {}
+    for r in reports:
+        sid = r.get("source_id")
+        vid, t0 = r.get("video_id"), r.get("broadcast_t0")
+        try:
+            out[sid] = ((str(vid), float(t0)) if vid and t0 is not None
+                        else (f"src:{sid}", 0.0))
+        except (TypeError, ValueError):
+            out[sid] = (f"src:{sid}", 0.0)
+    return out
+
+
+def _no_replayed_seconds(beats: list[dict], positions: dict,
+                         rs: list) -> list[dict]:
+    """Trim or drop a beat that replays seconds an EARLIER beat already
+    showed. Two clips of one broadcast overlap whenever two clippers caught
+    the same moment, and the director, reading them as separate sources,
+    cut the shared stretch twice: the story backtest of 2026-10-05 opened
+    with "You kept talking about proof, right?" twice back to back, and the
+    critic named it on 10-04, 10-05 and in the backtest. Every beat after
+    the first is moved off any stretch already shown; one left under 1.5s
+    is dropped. Recorded as a repair."""
+    shown: list[tuple] = []
+    out = []
+    for b in beats:
+        tl, t0 = positions.get(b["source_id"], (f"src:{b['source_id']}", 0.0))
+        s, e = b["start"], b["end"]
+        for (otl, a, z) in shown:
+            if otl != tl:
+                continue
+            bs, be = t0 + s, t0 + e
+            if min(be, z) - max(bs, a) <= 0.5:
+                continue
+            if bs >= a:                      # starts inside: begin after it
+                s = z - t0
+            elif be <= z:                    # ends inside: end before it
+                e = a - t0
+            else:                            # straddles: keep the later part
+                s = z - t0
+        if e - s < 1.5:
+            rs.append(f"beat {b['source_id']} {b['start']:.1f}-{b['end']:.1f}s"
+                      " only replays seconds already shown — dropped "
+                      "(repaired)")
+            continue
+        if (s, e) != (b["start"], b["end"]):
+            rs.append(f"beat {b['source_id']} trimmed {b['start']:.1f}-"
+                      f"{b['end']:.1f}s -> {s:.1f}-{e:.1f}s so no second of "
+                      "the broadcast plays twice (repaired)")
+            b = dict(b, start=round(s, 2), end=round(e, 2))
+        shown.append((tl, t0 + s, t0 + e))
+        out.append(b)
+    return out
+
+
+def _norm_w(w: str) -> str:
+    return re.sub(r"[^a-z0-9']", "", str(w).lower())
+
+
+def _no_repeated_lines(beats: list[dict], words: dict, rs: list,
+                       min_run: int = 4) -> list[dict]:
+    """Trim a beat that OPENS on the words the previous beat just ended on.
+
+    `_no_replayed_seconds` needs broadcast positions, and clips taken from
+    the channel's month of posts carry none — so the scout's Kai Cenat cut
+    in the second story backtest (2026-10-05) still said "You kept talking
+    about proof, right?" twice across the seam. The transcript catches what
+    the timestamps cannot: when the last `min_run`+ words of one beat are
+    the first words of the next, the next beat starts after them. One left
+    under 1.5s is dropped. Recorded as a repair."""
+    out: list[dict] = []
+    for b in beats:
+        if out:
+            prev = out[-1]
+            pw = [w for w in words.get(prev["source_id"]) or []
+                  if w["e"] > prev["start"] and w["s"] < prev["end"]]
+            cw = [w for w in words.get(b["source_id"]) or []
+                  if w["e"] > b["start"] and w["s"] < b["end"]]
+            tail = [_norm_w(w["w"]) for w in pw[-14:]]
+            head = [_norm_w(w["w"]) for w in cw[:14]]
+            k = 0
+            for n in range(min(len(tail), len(head)), min_run - 1, -1):
+                if tail[-n:] == head[:n] and all(tail[-n:]):
+                    k = n
+                    break
+            if k:
+                new_start = round(cw[k - 1]["e"] + 0.05, 2)
+                if b["end"] - new_start < 1.5:
+                    rs.append(f"beat {b['source_id']} only repeats the "
+                              f"{k} words the last beat ended on — dropped "
+                              "(repaired)")
+                    continue
+                rs.append(f"beat {b['source_id']} opened on the {k} words "
+                          f"the last beat ended on — starts at "
+                          f"{new_start:.1f}s (repaired)")
+                b = dict(b, start=new_start)
+        out.append(b)
+    return out
+
+
+def _words(reports: list[dict]) -> dict:
+    return {r.get("source_id"): r.get("words") or [] for r in reports}
+
+
 def validate_edl(edl: dict, durations: dict[str, float],
                  windows: dict[str, list] | None = None,
-                 reasons: list | None = None) -> dict | None:
+                 reasons: list | None = None,
+                 positions: dict | None = None,
+                 words: dict | None = None) -> dict | None:
     """Hard-validate a director EDL against the playbook's NARRATIVE laws,
     not just syntax (reviewer #8). Returns the cleaned EDL or None.
     `durations` maps source_id -> clip length; `windows` maps source_id ->
@@ -525,6 +652,8 @@ def validate_edl(edl: dict, durations: dict[str, float],
                           "framing": framing,
                           "context_overlay": overlay,
                           "effects": effects})
+        beats = _no_replayed_seconds(beats, positions or {}, rs)
+        beats = _no_repeated_lines(beats, words or {}, rs)
         if len(beats) < 2:
             rs.append(f"only {len(beats)} valid beat(s)")
             return None
@@ -718,7 +847,8 @@ def plan_story(reports: list[dict], event: dict | None = None,
         return None
     durations = {r["source_id"]: float(r.get("duration_s") or 0)
                  for r in reports}
-    edl = validate_edl(out, durations, _windows(reports), reasons=rs)
+    edl = validate_edl(out, durations, _windows(reports), reasons=rs,
+                       positions=_positions(reports), words=_words(reports))
     # the director's own narration meets the same floor as the reviser's
     edl = _ground(edl, reports, rs)
     # `editorial` separates "a human editor would also say no" from "the
@@ -823,7 +953,8 @@ def revise_edl(edl: dict, problems: list[dict],
     durations = {r["source_id"]: float(r.get("duration_s") or 0)
                  for r in reports}
     rs: list = []
-    edl2 = validate_edl(out or {}, durations, _windows(reports), reasons=rs)
+    edl2 = validate_edl(out or {}, durations, _windows(reports), reasons=rs,
+                        positions=_positions(reports), words=_words(reports))
     edl2 = _ground(edl2, reports, rs)
     for r in rs:
         if r.startswith("narration dropped"):

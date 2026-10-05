@@ -220,9 +220,12 @@ class TheScoutIsToldWhatIsEvidence(unittest.TestCase):
 
 # -------------------------------------------------------------- director
 def _plan_answer(sources):
-    beats = [{"source_id": s, "start": 0, "end": 10,
+    # each beat a different stretch, so a beat repeated from one source is
+    # a story told from fewer clips, not the same seconds replayed
+    beats = [{"source_id": s, "start": 10 * i, "end": 10 * i + 8,
               "role": r, "purpose": "advances it"}
-             for s, r in zip(sources, ["setup", "escalation", "payoff"])]
+             for i, (s, r) in enumerate(
+                 zip(sources, ["setup", "escalation", "payoff"]))]
     beats[-1]["role"] = "payoff"
     return {"is_story": True, "premise": "p", "central_question": "q?",
             "structure": "chronological", "structure_reason": "r",

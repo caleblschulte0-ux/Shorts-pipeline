@@ -93,7 +93,10 @@ def main() -> int:  # noqa: C901
     setup = dict(base["beats"][0])
     long_plan = dict(base)
     long_plan["beats"] = (
-        [dict(setup, purpose=f"step {i}", role="escalation") for i in range(5)]
+        # five DIFFERENT stretches of source a: the same seconds five times
+        # over is a replay, which validate_edl now trims (2026-10-05)
+        [dict(setup, purpose=f"step {i}", role="escalation",
+              start=1 + 4 * i, end=4.5 + 4 * i) for i in range(5)]
         + [dict(base["beats"][1], role="payoff")])
     v = story_director.validate_edl(dict(long_plan), durs)
     check("a payoff past the beat cap is KEPT, not cut",

@@ -80,7 +80,8 @@ class TheCatalogueCoversTheWholeWindow(unittest.TestCase):
         lines, ids = sl.build_catalogue(corpus)
         self.assertEqual(len(lines), 1)
         self.assertIn("Kai Reveals His Custom Suit", lines[0])
-        self.assertIn("vod=v7@1:00", lines[0])
+        # hours and minutes, spelled out: "1:00" was read as one minute
+        self.assertIn("vod=v7 at 1h00m into the stream", lines[0])
         self.assertIn("5.0k", lines[0])
 
     def test_lines_run_in_time_order_with_short_ids(self):
