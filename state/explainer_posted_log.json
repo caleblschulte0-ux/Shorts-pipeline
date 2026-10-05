@@ -2522,11 +2522,20 @@
       "duration_s": 49.2
     },
     "nobel-prize-discovery-age": {
-      "claimed_at": "2026-10-05T14:27:18.746804+00:00",
+      "url": "https://youtube.com/shorts/MDcG9aN82Sk",
       "title": "Nobel-Winning Discoveries Now Happen 13 Years Later",
+      "at": "2026-10-05T14:27:24.435249+00:00",
       "publish_at": "2026-10-05T19:55:07Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 33 credits are required for this request.\",\"status",
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 57,
+      "duration_s": 37.4
     }
   },
   "uploads": [
@@ -3101,9 +3110,10 @@
       "claimed_at": "2026-10-05T14:27:18.746804+00:00",
       "title": "Nobel-Winning Discoveries Now Happen 13 Years Later",
       "publish_at": "2026-10-05T19:55:07Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "nobel-prize-discovery-age"
+      "url": "https://youtube.com/shorts/MDcG9aN82Sk",
+      "state": "posted",
+      "slug": "nobel-prize-discovery-age",
+      "at": "2026-10-05T14:27:24.435249+00:00"
     }
   ]
 }
