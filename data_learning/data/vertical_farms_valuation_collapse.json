@@ -1,0 +1,25 @@
+{
+  "key": "vertical_farms_valuation_collapse",
+  "title": "Peak valuation of two major vertical farming companies that later collapsed",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "peak valuation, pre-collapse",
+  "source": {
+    "name": "Bowery Farming and Plenty Unlimited funding/valuation coverage",
+    "publisher": "PitchBook; TechCrunch",
+    "url": "https://techcrunch.com/2025/03/24/vertical-farming-company-plenty-files-for-bankruptcy-after-raising-nearly-1b/",
+    "officiality": "secondary",
+    "access_date": "2026-10-05"
+  },
+  "notes": "Bowery Farming was once valued at $2.3 billion before halting all operations in late 2024. Plenty Unlimited raised nearly $1 billion from investors including Jeff Bezos and SoftBank before filing for Chapter 11 bankruptcy in March 2025.",
+  "points": [
+    {
+      "label": "Bowery Farming (peak valuation)",
+      "value": 2.3
+    },
+    {
+      "label": "Plenty Unlimited (total raised)",
+      "value": 1.0
+    }
+  ]
+}

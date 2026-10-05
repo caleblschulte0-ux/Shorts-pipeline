@@ -1,0 +1,27 @@
+{
+  "key": "secondhand_shoppers_share",
+  "title": "Share of U.S. consumers who shopped secondhand apparel",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2023 vs. 2024",
+  "source": {
+    "name": "ThredUp 13th Annual Resale Report",
+    "publisher": "ThredUp / GlobalData",
+    "url": "https://ir.thredup.com/news-releases/news-release-details/thredups-13th-resale-report-shows-online-resale-saw-accelerated",
+    "officiality": "secondary",
+    "access_date": "2026-10-05"
+  },
+  "notes": "58% of U.S. consumers shopped secondhand apparel in 2024, up 6 percentage points from 52% in 2023.",
+  "points": [
+    {
+      "label": "2023",
+      "value": 52,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 58,
+      "period": "2024"
+    }
+  ]
+}

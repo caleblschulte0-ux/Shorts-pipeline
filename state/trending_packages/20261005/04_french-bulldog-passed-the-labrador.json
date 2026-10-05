@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "french-bulldog-passed-the-labrador",
+  "title": "The French Bulldog Ended A 31-Year Reign",
+  "hook": "America quietly changed its favorite dog.",
+  "y_label": "AKC registrations per year (thousands)",
+  "duration": 13,
+  "source": "American Kennel Club annual breed registration statistics -- French Bulldog vs. Labrador Retriever, new registrations per year. 2022-2023 figures as reported by AKC (French Bulldog 108,000 then 98,500, taking #1 from the Labrador after 31 years); earlier years approximate as publicly reported.",
+  "years": [
+    2012,
+    2016,
+    2019,
+    2021,
+    2022,
+    2023
+  ],
+  "series": [
+    {
+      "name": "French Bulldog",
+      "color": "#ffaa30",
+      "icon": null,
+      "values": [
+        9,
+        34,
+        66,
+        91,
+        108,
+        98.5
+      ]
+    },
+    {
+      "name": "Labrador Retriever",
+      "color": "#888888",
+      "icon": null,
+      "values": [
+        155,
+        130,
+        110,
+        99,
+        95,
+        85
+      ]
+    }
+  ],
+  "hashtags": [
+    "frenchbulldog",
+    "labrador",
+    "dogs",
+    "akc",
+    "dogbreeds",
+    "petstagram",
+    "data",
+    "didyouknow",
+    "facts",
+    "dogsoftiktok",
+    "trending",
+    "animals"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

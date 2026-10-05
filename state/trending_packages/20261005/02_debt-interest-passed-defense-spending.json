@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "debt-interest-passed-defense-spending",
+  "title": "Interest On The Debt Just Passed The Military Budget",
+  "hook": "America now pays more to lenders than soldiers.",
+  "y_label": "Annual U.S. federal spending ($ billions)",
+  "duration": 13,
+  "source": "Congressional Budget Office -- net interest on the federal debt vs. national defense outlays, by fiscal year. 2024 figures as reported by CBO (interest ~$881B vs. defense ~$851B); earlier years approximate from CBO historical tables.",
+  "years": [
+    2010,
+    2015,
+    2019,
+    2021,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Interest on the debt",
+      "color": "#ff3030",
+      "icon": null,
+      "values": [
+        197,
+        223,
+        375,
+        352,
+        659,
+        881
+      ]
+    },
+    {
+      "name": "Defense spending",
+      "color": "#888888",
+      "icon": null,
+      "values": [
+        721,
+        634,
+        676,
+        742,
+        820,
+        851
+      ]
+    }
+  ],
+  "hashtags": [
+    "nationaldebt",
+    "defensespending",
+    "economy",
+    "cbo",
+    "federalbudget",
+    "finance",
+    "data",
+    "didyouknow",
+    "facts",
+    "usbudget",
+    "trending",
+    "interestrates"
+  ],
+  "music_vibe": "dark",
+  "bottom_theme": "auto"
+}

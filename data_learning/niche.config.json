@@ -30885,6 +30885,234 @@
     }
    ],
    "hook_was": "Most of its brain isn't even in its head."
+  },
+  {
+   "slug": "nobel-prize-discovery-age",
+   "title": "Nobel-Winning Discoveries Now Happen 13 Years Later",
+   "hook": "Science used to reward the young. Not anymore.",
+   "closing": "Data's still waiting on his breakthrough. He's optimistic.",
+   "question": "Do you think you've peaked yet? Tell me below.",
+   "caption": "Physics Nobel discoveries used to happen at age 36 on average. Now it's 50 -- and almost none come from scientists under 40 anymore. Here's why the age of discovery keeps climbing ⬇️",
+   "hashtags": [
+    "nobelprize",
+    "science",
+    "physics",
+    "chemistry",
+    "research",
+    "didyouknow",
+    "facts",
+    "data",
+    "sciencefacts",
+    "academia",
+    "stem",
+    "innovation"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "nobel_physics_discovery_age",
+     "params": {
+      "file": "nobel_physics_discovery_age.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE SHIFT",
+     "topic": "how old nobel physics discoveries are now",
+     "say": "Nobel-winning physics discoveries made before 1905 happened at age 36, on average. Discoveries made after 1985 average 50 -- 13 years older, same prize."
+    },
+    {
+     "source": "offline",
+     "key": "nobel_physics_under40_share",
+     "params": {
+      "file": "nobel_physics_under40_share.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE YOUNG ARE DISAPPEARING",
+     "topic": "nobel physics winners under 40",
+     "say": "Before 2000, 60 percent of physics breakthroughs came from scientists under 40. Since then, just 19 percent."
+    },
+    {
+     "source": "offline",
+     "key": "nobel_chemistry_under40_share",
+     "params": {
+      "file": "nobel_chemistry_under40_share.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · IT'S WORSE IN CHEMISTRY",
+     "topic": "young nobel chemistry winners",
+     "say": "Chemistry's even starker: 66 percent of 20th-century winners were under 40. This century, zero have been."
+    }
+   ]
+  },
+  {
+   "slug": "youth-sports-dropout",
+   "title": "Only 41% Of American Boys Still Play Sports Regularly",
+   "hook": "Half of boys played sports in 2013. Not anymore.",
+   "closing": "Data benched himself in 2013. Never looked back.",
+   "question": "Did you play sports as a kid? Still do? Tell me below.",
+   "caption": "In 2013, half of American boys played a sport regularly. Now it's 41 percent -- and the drop is steepest for the kids who can least afford to be left out. Here's the data 👇",
+   "hashtags": [
+    "youthsports",
+    "sports",
+    "kids",
+    "parenting",
+    "data",
+    "didyouknow",
+    "facts",
+    "statistics",
+    "sportsscience",
+    "americanyouth",
+    "teamsports",
+    "socialtrends"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "boys_sports_participation_2013_2023",
+     "params": {
+      "file": "boys_sports_participation_2013_2023.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · THE DROP",
+     "topic": "boys still playing sports regularly",
+     "say": "In 2013, half of American boys played a team sport regularly. Ten years later, just 41 percent do."
+    },
+    {
+     "source": "offline",
+     "key": "lowincome_teen_sports_participation",
+     "params": {
+      "file": "lowincome_teen_sports_participation.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · WHO IT HITS HARDEST",
+     "topic": "lowest-income kids playing sports",
+     "say": "The drop hits hardest at the bottom. For the lowest-income teens, participation fell from 38 percent to just 27."
+    },
+    {
+     "source": "offline",
+     "key": "core_team_sports_kids_count",
+     "params": {
+      "file": "core_team_sports_kids_count.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · THE SCALE",
+     "topic": "kids leaving team sports",
+     "say": "Across the board, 1.2 million fewer kids played organized team sports between 2019 and 2022 -- a quiet 6 percent drop."
+    }
+   ]
+  },
+  {
+   "slug": "vertical-farming-bust",
+   "title": "Vertical Farms Raised 8 Billion Dollars. Then Investors Fled.",
+   "hook": "They promised to fix farming. 91% of the money is gone.",
+   "closing": "Data grows basil on a windowsill. No investors required.",
+   "question": "Would you eat vertical-farmed greens? Tell me below.",
+   "caption": "Vertical farms raised 8 billion dollars promising to reinvent agriculture. Most of that money is gone, and so are the farms. Here's where it actually went wrong 👇",
+   "hashtags": [
+    "verticalfarming",
+    "agtech",
+    "startups",
+    "indoorfarming",
+    "venturecapital",
+    "bankruptcy",
+    "data",
+    "didyouknow",
+    "facts",
+    "sustainability",
+    "futurefood",
+    "businessnews"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "vertical_farming_vc_funding",
+     "params": {
+      "file": "vertical_farming_vc_funding.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · THE MONEY",
+     "topic": "vertical farming investment",
+     "say": "Vertical farms raised 8 billion dollars between 2018 and 2022. Since then, investors haven't put in even 1 billion."
+    },
+    {
+     "source": "offline",
+     "key": "vertical_farms_valuation_collapse",
+     "params": {
+      "file": "vertical_farms_valuation_collapse.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE COLLAPSE",
+     "topic": "vertical farming companies collapsing",
+     "say": "Bowery Farming was valued at 2.3 billion dollars. It shut down completely in 2024. Plenty raised nearly 1 billion -- then filed for bankruptcy."
+    },
+    {
+     "source": "offline",
+     "key": "indoor_farming_vc_investment_crash",
+     "params": {
+      "file": "indoor_farming_vc_investment_crash.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · WHY IT HAPPENED",
+     "topic": "vertical farming funding crash",
+     "say": "Venture funding for indoor farms cratered 91 percent in a single year -- investors realized dirt-cheap traditional farming was always going to win on price."
+    }
+   ]
+  },
+  {
+   "slug": "secondhand-apparel-resale-boom",
+   "title": "Secondhand Clothes Are Growing 5 Times Faster Than New",
+   "hook": "Thrifting just became a 43 billion dollar habit.",
+   "closing": "Data's whole wardrobe is secondhand. He calls it archival.",
+   "question": "Do you shop secondhand? What was your best find? Tell me below.",
+   "caption": "The secondhand clothing market grew 5 times faster than regular retail in 2024, and most Americans are now in on it. Here's how fast thrifting actually took over 👇",
+   "hashtags": [
+    "secondhand",
+    "thrifting",
+    "resale",
+    "sustainablefashion",
+    "thredup",
+    "fashion",
+    "data",
+    "didyouknow",
+    "facts",
+    "circulareconomy",
+    "retail",
+    "consumertrends"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "secondhand_apparel_growth_vs_retail",
+     "params": {
+      "file": "secondhand_apparel_growth_vs_retail.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · THE GAP",
+     "topic": "secondhand clothing growing faster",
+     "say": "The secondhand clothing market grew 14 percent in 2024 -- 5 times faster than regular clothing retail."
+    },
+    {
+     "source": "offline",
+     "key": "secondhand_shoppers_share",
+     "params": {
+      "file": "secondhand_shoppers_share.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · WHO'S BUYING IT",
+     "topic": "americans shopping secondhand",
+     "say": "More than half of Americans now shop secondhand -- 58 percent in 2024, up from 52 the year before."
+    },
+    {
+     "source": "offline",
+     "key": "us_secondhand_market_size",
+     "params": {
+      "file": "us_secondhand_market_size.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · WHERE IT'S HEADED",
+     "topic": "secondhand market size growing",
+     "say": "The U.S. secondhand market was worth about 43 billion dollars in 2023. By 2029, it's projected to hit 74."
+    }
+   ]
   }
  ],
  "videos": [

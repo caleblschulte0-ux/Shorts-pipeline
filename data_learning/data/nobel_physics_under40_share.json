@@ -1,0 +1,27 @@
+{
+  "key": "nobel_physics_under40_share",
+  "title": "Share of physics Nobel discoveries made by scientists under 40",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "before 2000 vs. since 2000",
+  "source": {
+    "name": "Age dynamics in scientific creativity",
+    "publisher": "PNAS (Jones & Weinberg)",
+    "url": "https://www.pnas.org/doi/10.1073/pnas.1102895108",
+    "officiality": "secondary",
+    "access_date": "2026-10-05"
+  },
+  "notes": "Before 2000, about 60% of Nobel-winning physics discoveries were made by scientists under age 40. Since 2000, that share fell to 19%.",
+  "points": [
+    {
+      "label": "Before 2000",
+      "value": 60,
+      "period": "pre-2000"
+    },
+    {
+      "label": "Since 2000",
+      "value": 19,
+      "period": "post-2000"
+    }
+  ]
+}

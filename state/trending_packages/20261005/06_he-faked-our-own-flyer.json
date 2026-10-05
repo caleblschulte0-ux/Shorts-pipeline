@@ -1,0 +1,78 @@
+{
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "he-faked-our-own-flyer",
+  "title": "He Faked Our Own Flyer To Price-Match Himself. We Noticed.",
+  "script": "At the hardware store, a regular tried to price-match a power drill using a photo of a competitor's flyer on his phone, insisting their price was forty dollars less. I matched it without arguing, store policy. He came back a week later with the same flyer for a different tool. Then a different flyer, same font, same crooked blue sale banner, for a third item. I finally zoomed in on the competitor's logo. It was ours, mirrored and recolored in red. He had been editing our own weekly ads and claiming they were from across town. I quietly printed every transaction from the past two months, matched them against our real sale calendar, and handed the folder to my manager instead of him. He got banned from price-matching for a year. He still shops here. He just pays full price now, loudly, to anyone who will listen.",
+  "hashtags": [
+    "talesfromthecustomer",
+    "retail",
+    "pricematch",
+    "karma",
+    "pettyrevenge",
+    "truestory",
+    "reddit",
+    "hardwarestore",
+    "customerservice",
+    "scam",
+    "receipts",
+    "caught"
+  ],
+  "shots": [
+    {
+      "phrase": "tried to price-match a power drill using a photo of a competitor's flyer",
+      "query": "power drill hardware store shelf"
+    },
+    {
+      "phrase": "their price was forty dollars less",
+      "query": "phone screen sale flyer"
+    },
+    {
+      "phrase": "I matched it without arguing",
+      "query": "cashier register checkout"
+    },
+    {
+      "phrase": "same crooked blue sale banner",
+      "query": "store sale flyer advertisement"
+    },
+    {
+      "phrase": "zoomed in on the competitor's logo",
+      "query": "zoomed phone screen closeup"
+    },
+    {
+      "phrase": "mirrored and recolored in red",
+      "query": "photo editing app screen"
+    },
+    {
+      "phrase": "printed every transaction from the past two months",
+      "query": "receipt printer paper stack"
+    },
+    {
+      "phrase": "He got banned from price-matching for a year",
+      "query": "store manager office door"
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "forty dollars less",
+      "text": "$40 OFF",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "mirrored and recolored in red",
+      "text": "FAKE FLYER",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "He got banned from price-matching for a year",
+      "text": "BANNED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "pays full price now",
+      "text": "FULL PRICE",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "hiphop",
+  "bottom_theme": "auto"
+}

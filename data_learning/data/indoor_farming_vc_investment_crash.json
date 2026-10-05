@@ -1,0 +1,25 @@
+{
+  "key": "indoor_farming_vc_investment_crash",
+  "title": "Year-over-year change in venture investment into indoor farming",
+  "unit": "index (prior year = 100)",
+  "geography": "Global",
+  "time_coverage": "year before the crash vs. the following year",
+  "source": {
+    "name": "Indoor agriculture venture funding tracking",
+    "publisher": "Industry press coverage of vertical-farming bankruptcies",
+    "url": "https://theconversation.com/five-reasons-why-vertical-farming-is-still-the-future-despite-all-the-recent-business-failures-248270",
+    "officiality": "secondary",
+    "access_date": "2026-10-05"
+  },
+  "notes": "Venture capital investment in indoor farming dropped 91% year-on-year following the sector's 2021-2022 peak. Expressed here as an index where the prior year equals 100.",
+  "points": [
+    {
+      "label": "Peak year",
+      "value": 100
+    },
+    {
+      "label": "Following year",
+      "value": 9
+    }
+  ]
+}

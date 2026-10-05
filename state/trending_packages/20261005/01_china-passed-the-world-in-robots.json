@@ -1,0 +1,61 @@
+{
+  "format": "graph_race",
+  "slug": "china-passed-the-world-in-robots",
+  "title": "China Now Installs More Robots Than Everyone Else Combined",
+  "hook": "One country outbuilds the planet.",
+  "y_label": "Industrial robots installed per year (thousands)",
+  "duration": 13,
+  "source": "International Federation of Robotics, World Robotics reports -- annual industrial robot installations, China vs. the rest of the world combined. 2023-2024 figures as reported by IFR; earlier years approximate as publicly reported.",
+  "years": [
+    2015,
+    2018,
+    2020,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "China",
+      "color": "#ff3030",
+      "icon": "CN",
+      "values": [
+        68,
+        154,
+        168,
+        290,
+        276,
+        295
+      ]
+    },
+    {
+      "name": "Rest of world combined",
+      "color": "#888888",
+      "icon": null,
+      "values": [
+        187,
+        268,
+        215,
+        262,
+        265,
+        247
+      ]
+    }
+  ],
+  "hashtags": [
+    "robots",
+    "china",
+    "automation",
+    "manufacturing",
+    "robotics",
+    "factory",
+    "ai",
+    "data",
+    "didyouknow",
+    "facts",
+    "economy",
+    "trending"
+  ],
+  "music_vibe": "cinematic",
+  "bottom_theme": "auto"
+}

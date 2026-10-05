@@ -1,0 +1,27 @@
+{
+  "key": "nobel_physics_discovery_age",
+  "title": "Average age of physics Nobel laureates when they made the discovery",
+  "unit": "years",
+  "geography": "Global",
+  "time_coverage": "pre-1905 vs. post-1985",
+  "source": {
+    "name": "Age dynamics in scientific creativity",
+    "publisher": "PNAS (Jones & Weinberg)",
+    "url": "https://www.pnas.org/doi/10.1073/pnas.1102895108",
+    "officiality": "secondary",
+    "access_date": "2026-10-05"
+  },
+  "notes": "Physics Nobel laureates who made their prize-winning discovery before 1905 averaged 36.9 years old at the time; those whose discovery came after 1985 averaged 50.3.",
+  "points": [
+    {
+      "label": "Discoveries before 1905",
+      "value": 36.9,
+      "period": "pre-1905"
+    },
+    {
+      "label": "Discoveries after 1985",
+      "value": 50.3,
+      "period": "post-1985"
+    }
+  ]
+}

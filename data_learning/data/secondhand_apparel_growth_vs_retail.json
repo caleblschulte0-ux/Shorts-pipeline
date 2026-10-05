@@ -1,0 +1,25 @@
+{
+  "key": "secondhand_apparel_growth_vs_retail",
+  "title": "2024 growth rate: secondhand apparel market vs. overall retail clothing market",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "ThredUp 13th Annual Resale Report",
+    "publisher": "ThredUp / GlobalData",
+    "url": "https://ir.thredup.com/news-releases/news-release-details/thredups-13th-resale-report-shows-online-resale-saw-accelerated",
+    "officiality": "secondary",
+    "access_date": "2026-10-05"
+  },
+  "notes": "The U.S. secondhand apparel market grew 14% in 2024 -- 5 times faster than the broader retail clothing market, which grew about 2.8%.",
+  "points": [
+    {
+      "label": "Secondhand apparel",
+      "value": 14
+    },
+    {
+      "label": "Overall clothing retail",
+      "value": 2.8
+    }
+  ]
+}
