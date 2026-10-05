@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20261004",
+  "updated": "20261005",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -577,10 +577,16 @@
       ]
     },
     "66d90578bc9b": {
-      "verdict": "doing",
-      "date": "20260818",
-      "because": "Confirmed: make_reddit_story.py, make_explainer_stacked.py and make_text_card.py all call the global random module directly with no seed plumbed through the build entrypoints or audit sidecar. Agree with the direction as a long-term reproducibility investment; real scope (seeded RNG contract across 3 renderers + audit manifest + cross-renderer tests) is multi-session work, queued at long_term priority.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20261005",
+      "because": "picked up: shared/render_seed.py + seeded RNG in all three renderers + audit manifest; attempt via RENDER_ATTEMPT",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260818",
+          "because": "Confirmed: make_reddit_story.py, make_explainer_stacked.py and make_text_card.py all call the global random module directly with no seed plumbed through the build entrypoints or audit sidecar. Agree with the direction as a long-term reproducibility investment; real scope (seeded RNG contract across 3 renderers + audit manifest + cross-renderer tests) is multi-session work, queued at long_term priority."
+        }
+      ]
     },
     "d79703f6f53b": {
       "verdict": "done",
