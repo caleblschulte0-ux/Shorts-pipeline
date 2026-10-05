@@ -1567,10 +1567,23 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # ("make a system that makes better videos"): keep repairing
                 # what the critic names, same critic, same `publish` bar.
                 # Nothing here can ship a cut the critic did not pass.
+                #
+                # AND THE CRITIC'S "PUBLISH" IS NOT THE BAR (operator,
+                # 2026-10-05, of the first story in eleven days: "this needs
+                # to be better ... it's also the story"). It had passed every
+                # story it was ever shown — 66, 73, 74, 79, 80 — and the one
+                # that held viewers (98.7% viewed) was the 80. A story ships
+                # at `story_min_score` or above; below it, it is repaired
+                # toward the bar, never shipped. Code may only ADD blocks.
+                _floor = int(spec.get("story_min_score", 80))
+
+                def _passes(rv):
+                    return bool(rv["publish"]) and \
+                        int(rv["story_score"]) >= _floor
                 _scores = [review["story_score"]]
                 _render_failed = False
                 max_rev = int(spec.get("story_revisions", 2))
-                while (not review["publish"] and review["problems"]
+                while (not _passes(review) and review["problems"]
                        and revision_count < max_rev
                        and not _deadline_passed()):
                     edl2 = story_director.revise_edl(
@@ -1599,7 +1612,11 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 _crit = "; ".join(
                     f"@{p['at']:.0f}s {p['type']}: {p['fix']}"
                     for p in review["problems"][:3])
-                if _render_failed or not review["publish"]:
+                if _render_failed or not _passes(review):
+                    if review["publish"] and not _render_failed:
+                        _crit = (f"critic passed it at {_scores[-1]}, under "
+                                 f"the {_floor} floor"
+                                 + (f"; {_crit}" if _crit else ""))
                     print(f"[story] {elbl}: narrative review failed after "
                           f"{revision_count} revision(s) "
                           f"(scores={_scores}) — abandoned"
@@ -1677,6 +1694,10 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     "used_vod_expansion": any(r.get("used_vod") for r in sub),
                     "revision_count": revision_count,
                     "narrative_score": review["story_score"],
+                    # what the critic thought of what SHIPPED — on
+                    # 2026-10-05 a 74 left no trace of why it passed
+                    "narrative_summary": review.get("stranger_summary", ""),
+                    "narrative_problems": _crit,
                     "qa": {k: qa[k] for k in ("verdict", "problems",
                                               "vision")},
                 })
@@ -2616,6 +2637,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 entry["story_structure"] = led.get("story_structure")
                 entry["duration_s"] = led.get("duration_s")
                 entry["narrative_score"] = led.get("narrative_score")
+                entry["narrative_summary"] = led.get("narrative_summary")
                 entry["revision_count"] = led.get("revision_count")
                 entry["used_vod_expansion"] = led.get("used_vod_expansion")
                 entry["used_narration"] = led.get("used_narration")

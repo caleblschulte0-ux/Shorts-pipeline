@@ -324,3 +324,25 @@ Quality floors for normal clips: `min_banger` 0.5 (title-stage, unknown
 - SCOPING LAWS (two live incidents): never re-import a module-level name
   inside `process()`; never use `+=` on a closed-over list in a nested
   function (use `.extend`).
+
+### The critic's "publish" is not the bar (2026-10-05)
+
+Operator, of the first story in eleven days ("Cinna Crew Ditched Her
+Mid-Chase", critic 74, passed): *"This needs to be better ... it's also the
+story."* The narrative critic had passed every story it was ever shown —
+66, 73, 74, 79, 80 — and the one that held its viewers (98.7% viewed) was
+the 80. The Cinna cut ended where the clip ran out ("your comfy" / "not I'm
+not") and nothing in the code could say no.
+
+- **A floor:** a story ships only when the critic passes it AND scores it
+  at `story_min_score` (default 80). Below the floor it is repaired toward
+  the bar — the same repair loop — and abandoned if it never gets there.
+- **No payoff, no story:** the critic must retell the story in one sentence
+  (`stranger_summary`) and name the second it pays off (`payoff_at`). A
+  "publish" without either is turned into a fail in code, with a
+  `weak_payoff` problem the repair can act on.
+- What the critic thought of what SHIPPED is now recorded
+  (`narrative_summary`, `narrative_problems`).
+
+Code only adds blocks here; the critic's own "no" is untouched. Held by
+`tests/test_a_story_is_repaired_before_it_is_dropped.py`.

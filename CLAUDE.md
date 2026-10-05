@@ -529,6 +529,11 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   and every way a candidate dies is a recorded verdict with its reason —
   the two stories that reached a render that week died with nothing
   written down.
+- **A story ships at `story_min_score` (80), not at the critic's "publish"**
+  (operator, 2026-10-05, of a 74 that shipped with no payoff: *"This needs
+  to be better ... it's also the story"*). The critic had passed every story
+  it saw (66-80); only the 80 held viewers. It must also retell the story in
+  a sentence and name the payoff second, or its pass is a fail.
 - **Slots follow `_learned_prior()`, and it had no tests** until the day it
   was found inverted: kaicenat and buddha (median 5 and 8 views) at the
   maximum boost, jynxzi (1,355-view top video) below them, because flops and
