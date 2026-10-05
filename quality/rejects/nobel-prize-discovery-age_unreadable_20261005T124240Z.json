@@ -1,0 +1,21 @@
+{
+ "slug": "nobel-prize-discovery-age",
+ "ts": "20261005T124240Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:mid/seg1:end: '13.4 yrs apart' is cut off at the right edge ('apar'). hook@0.3 to seg1:start: the ladder covers the '3' of '36.9 yrs' and the 'D' of 'Discoveries'. seg2: Data's body covers the left of '60%' and he is clipped by the left frame edge.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg1:mid and seg1:end: the headline '13.4 yrs apart' runs off the right edge of the frame. The two value labels are stacked tight in small type. The picture is two thin vertical poles and a ruler in the upper half, with the lower half of the frame empty.",
+  "root_cause": "The headline is placed by anchor, not measured against the frame width. The gap machine draws thin strokes at small scale, so it uses little of the 9:16 frame.",
+  "repair_goal": "Measure the '13.4 yrs apart' headline and keep it fully inside the safe margins. Scale the gap so it fills the frame vertically, with Data physically pushing the 'after 1985' marker 13 years along the ruler (an agent act), so the gap opens because he moves it."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "comparison",
+   "perf": "catch_fall"
+  }
+ },
+ "scenes": []
+}

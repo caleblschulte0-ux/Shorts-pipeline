@@ -1,0 +1,16 @@
+{
+ "slug": "marathon-super-shoes-record-pace",
+ "ts": "20261005T124240Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: From hook@0.3 through seg0:end a small 150px tube sits in the upper middle and the whole lower third (y 520-660) is empty dark gradient. In seg3:start the frame is mostly empty, with two small dots.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_binding",
+  "visible_evidence": "At seg2:start/mid/end two identical yellow circles both read '8.3' and both are labelled 'Before 2016 (1988-2013)'. The narration's 'almost 30 seconds a year' since 2016 never appears, and the kicker says 'BEFORE 2016 (1988-2013) TOPS THE LIST', which is backwards.",
+  "root_cause": "The comparison machine bound the same row to both slots, so the post-2016 series (about 30 s/yr) was dropped. It also picked a rank/bubble machine for a before/after rate claim.",
+  "repair_goal": "Show two rates side by side: about 8 s/yr before 2016 vs about 30 s/yr since 2016, labelled correctly. Draw them as the subject's own motion, e.g. two runners or stopwatches where the post-2016 one sheds seconds about 3.6x faster. Data should drive the faster one (pushing the stopwatch hand or lacing the carbon shoe), and the 30 should visibly outrun the 8."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

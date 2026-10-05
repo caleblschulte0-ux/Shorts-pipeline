@@ -1,0 +1,16 @@
+{
+ "slug": "youth-sports-dropout",
+ "ts": "20261005T124240Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg2:start/mid/end: Data floats between the two bars, dancing, and touches neither one. In seg3:mid/end he stands at the edge of the scale with a pole and doesn't load the blocks.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "claim_contradiction",
+  "visible_evidence": "seg1:start to seg1:end: the gauge climbs from 10% to 50% (labelled 2013) while the voice says the figure fell to 41%. The gauge never comes down to 41, so the picture shows a rise where the story is a decline. The hook also stacks blocks upward from 25% to 45%.",
+  "root_cause": "The machine animates a build-up to the 2013 value and stops there. The headline claim is a DROP from 50% to 41%, and no mark ever shows that drop.",
+  "repair_goal": "Have the gauge open already at 50% (2013), then show Data physically pulling the needle back down to 41% (2023), with the lost 9 points visibly falling away. Fill the empty lower frame. Make the hook show the decline (blocks knocked off the stack), not a count-up."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

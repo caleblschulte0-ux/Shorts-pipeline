@@ -4506,6 +4506,58 @@
    ],
    "ending_type": "consequence",
    "notes": "existing scenes kept; validated pre-render"
+  },
+  {
+   "slug": "eclipse-recurrence-rarity",
+   "directed_at": "2026-10-05",
+   "hook_type": "shock_stat",
+   "hook_text": "One town got a total eclipse twice in 7 years. The odds? 375 years.",
+   "depictions": [
+    "mechanic:eclipse-shadow-sweep",
+    "mechanic:wait-years-ladder",
+    "viz:trend"
+   ],
+   "ending_type": "consequence",
+   "notes": "existing scenes kept; validated pre-render"
+  },
+  {
+   "slug": "gulf-dead-zone-growth",
+   "directed_at": "2026-10-05",
+   "hook_type": "shock_stat",
+   "hook_text": "Every summer, an area the size of New Jersey runs out of oxygen.",
+   "depictions": [
+    "viz:trend",
+    "mechanic:dead-zone-map-overlay",
+    "mechanic:farm-runoff-grid"
+   ],
+   "ending_type": "consequence",
+   "notes": "existing scenes kept; validated pre-render"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-05",
+   "hook_type": "shock_stat",
+   "hook_text": "Your bats are dying: 97 percent of one kind gone, and it started in one cave.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "notes": "existing scenes kept; validated pre-render"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-05",
+   "hook_type": "shock_stat",
+   "hook_text": "The government might be holding your money right now.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "consequence",
+   "notes": "existing scenes kept; validated pre-render"
   }
  ]
 }

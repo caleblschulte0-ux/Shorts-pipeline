@@ -1,0 +1,158 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "youth-sports-dropout__471bd3ef",
+ "filed": "2026-10-05T12:42:30Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "youth-sports-dropout",
+ "current": {
+  "title": "Only 41% Of American Boys Still Play Sports Regularly",
+  "hook": "Half of boys played sports in 2013. Not anymore.",
+  "closing": "Data benched himself in 2013. Never looked back.",
+  "question": "Did you play sports as a kid? Still do? Tell me below.",
+  "segments": [
+   {
+    "topic": "boys still playing sports regularly",
+    "say": "In 2013, half of American boys played a team sport regularly. Ten years later, just 41 percent do."
+   },
+   {
+    "topic": "lowest-income kids playing sports",
+    "say": "The drop hits hardest at the bottom. For the lowest-income teens, participation fell from 38 percent to just 27."
+   },
+   {
+    "topic": "kids leaving team sports",
+    "say": "Across the board, 1.2 million fewer kids played organized team sports between 2019 and 2022 -- a quiet 6 percent drop."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "boys still playing sports regularly",
+   "say": "In 2013, half of American boys played a team sport regularly. Ten years later, just 41 percent do.",
+   "role": "1 · THE DROP",
+   "data": {
+    "file": "boys_sports_participation_2013_2023.json",
+    "unit": "percent",
+    "title": "Share of boys ages 6-17 who play a team sport regularly",
+    "points": [
+     {
+      "label": "2013",
+      "value": 50,
+      "period": "2013"
+     },
+     {
+      "label": "2023",
+      "value": 41,
+      "period": "2023"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "lowest-income kids playing sports",
+   "say": "The drop hits hardest at the bottom. For the lowest-income teens, participation fell from 38 percent to just 27.",
+   "role": "2 · WHO IT HITS HARDEST",
+   "data": {
+    "file": "lowincome_teen_sports_participation.json",
+    "unit": "percent",
+    "title": "Share of teens (13-17) from households under $25k who play sports regularly",
+    "points": [
+     {
+      "label": "2012",
+      "value": 38,
+      "period": "2012"
+     },
+     {
+      "label": "2022",
+      "value": 27,
+      "period": "2022"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "kids leaving team sports",
+   "say": "Across the board, 1.2 million fewer kids played organized team sports between 2019 and 2022 -- a quiet 6 percent drop.",
+   "role": "3 · THE SCALE",
+   "data": {
+    "file": "core_team_sports_kids_count.json",
+    "unit": "million",
+    "title": "Kids ages 6-17 who play a team sport on a core, regular basis",
+    "points": [
+     {
+      "label": "2019",
+      "value": 20.0,
+      "period": "2019"
+     },
+     {
+      "label": "2022",
+      "value": 18.8,
+      "period": "2022"
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: Every picture runs against the story: the hook and gauge count UP for a story about kids quitting, the 1.2M beat is never shown, and the scale ending just repeats the bar chart."
+ ],
+ "reasons": [
+  "judge: Every picture runs against the story: the hook and gauge count UP for a story about kids quitting, the 1.2M beat is never shown, and the scale ending just repeats the bar chart."
+ ],
+ "judge": {
+  "ts": "2026-10-05T12:42:15+00:00",
+  "score": 44,
+  "one_line": "Every picture runs against the story: the hook and gauge count UP for a story about kids quitting, the 1.2M beat is never shown, and the scale ending just repeats the bar chart.",
+  "problems": [
+   "The hook stacks blocks upward from 25% to 45%, implying growth, when the story is a decline. It is also a slow build, not an instant reason to stay.",
+   "seg1: the gauge stops at 50% (2013) and never shows the 41% that is the headline number. The '41%' caption contradicts the '50%' on screen.",
+   "seg2 is a stock two-bar chart with Data floating between the bars doing nothing.",
+   "The '1.2 million fewer kids, 6% drop' line has no picture. The closing scale re-uses 38/27 instead.",
+   "seg3: Data's body covers the '3' in the '38%' label. The scale beam tips oddly for a decline story.",
+   "The closing line 'Data benched himself in 2013' isn't staged: Data never sits on a bench."
+  ],
+  "fixes": [
+   "Hook: open on a full team bench or stack at 50% and knock pieces off on frame 1 so the drop is visible immediately.",
+   "seg1: animate the needle falling from 50% to 41%, with Data dragging it down. Label both years.",
+   "seg2: replace the bars with something made of the subject, such as two team rosters with jerseys emptying from 38 to 27 players per 100, with Data pulling jerseys off.",
+   "Give the 1.2M / 6% beat its own scene, such as a stadium crowd thinning out.",
+   "Move Data clear of every label. Fill the lower frame. Stage the closing gag with Data actually sitting on a bench."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261005/youth-sports-dropout__471bd3ef.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

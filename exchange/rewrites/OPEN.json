@@ -1,7 +1,57 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-05T10:56:55Z",
+ "updated": "2026-10-05T12:42:30Z",
  "open": [
+  {
+   "id": "global-remittances-record-2023__5fd648c7",
+   "slug": "global-remittances-record-2023",
+   "filed": "2026-10-05T12:42:30Z",
+   "why": [
+    "premise: brain: It does not reverse a viewer expectation, only presents a large number."
+   ],
+   "request": "exchange/rewrites/20261005/global-remittances-record-2023__5fd648c7.request.json",
+   "answer_path": "exchange/rewrites/20261005/global-remittances-record-2023__5fd648c7.answer.json"
+  },
+  {
+   "id": "humpback-whale-recovery__8ffb64a1",
+   "slug": "humpback-whale-recovery",
+   "filed": "2026-10-05T12:42:30Z",
+   "why": [
+    "premise: brain: Uses multiple numbers and lacks a single consequential verifiable figure, failing the strict premise criteria."
+   ],
+   "request": "exchange/rewrites/20261005/humpback-whale-recovery__8ffb64a1.request.json",
+   "answer_path": "exchange/rewrites/20261005/humpback-whale-recovery__8ffb64a1.answer.json"
+  },
+  {
+   "id": "nobel-prize-discovery-age__7c23c14f",
+   "slug": "nobel-prize-discovery-age",
+   "filed": "2026-10-05T12:42:30Z",
+   "why": [
+    "judge: The hourglass and scale ideas are reasonable, but Data only points and cheers, '13.4 yrs apart' is cut off at the frame edge, labels sit under the ladder and the mascot, and the chemistry beat falls back to a plain bar chart."
+   ],
+   "request": "exchange/rewrites/20261005/nobel-prize-discovery-age__7c23c14f.request.json",
+   "answer_path": "exchange/rewrites/20261005/nobel-prize-discovery-age__7c23c14f.answer.json"
+  },
+  {
+   "id": "youth-sports-dropout__471bd3ef",
+   "slug": "youth-sports-dropout",
+   "filed": "2026-10-05T12:42:30Z",
+   "why": [
+    "judge: Every picture runs against the story: the hook and gauge count UP for a story about kids quitting, the 1.2M beat is never shown, and the scale ending just repeats the bar chart."
+   ],
+   "request": "exchange/rewrites/20261005/youth-sports-dropout__471bd3ef.request.json",
+   "answer_path": "exchange/rewrites/20261005/youth-sports-dropout__471bd3ef.answer.json"
+  },
+  {
+   "id": "marathon-super-shoes-record-pace__87f99e40",
+   "slug": "marathon-super-shoes-record-pace",
+   "filed": "2026-10-05T12:42:29Z",
+   "why": [
+    "judge: Broken data bindings sink it: seg2 shows the same 8.3 'Before 2016' twice and never shows the 30 s/yr claim, and seg1's gauge counts up to 126 while the narration says the record fell."
+   ],
+   "request": "exchange/rewrites/20261005/marathon-super-shoes-record-pace__87f99e40.request.json",
+   "answer_path": "exchange/rewrites/20261005/marathon-super-shoes-record-pace__87f99e40.answer.json"
+  },
   {
    "id": "permafrost-thaw__a94a08e2",
    "slug": "permafrost-thaw",
@@ -21,16 +71,6 @@
    ],
    "request": "exchange/rewrites/20261005/genz-drinking-decline__759c6866.request.json",
    "answer_path": "exchange/rewrites/20261005/genz-drinking-decline__759c6866.answer.json"
-  },
-  {
-   "id": "nobel-prize-discovery-age__0d1bba0d",
-   "slug": "nobel-prize-discovery-age",
-   "filed": "2026-10-05T10:56:54Z",
-   "why": [
-    "judge: Generic machines and two near-identical bar charts carry the story. Data cheers on top of the bars instead of causing anything, and key labels are clipped or covered ('13.4 yrs apar', '3_.9 yrs')."
-   ],
-   "request": "exchange/rewrites/20261005/nobel-prize-discovery-age__0d1bba0d.request.json",
-   "answer_path": "exchange/rewrites/20261005/nobel-prize-discovery-age__0d1bba0d.answer.json"
   },
   {
    "id": "secondhand-apparel-resale-boom__e3a857dc",
@@ -751,16 +791,6 @@
    "answer_path": "exchange/rewrites/20261004/octopus-nine-brains__5964f9a4.answer.json"
   },
   {
-   "id": "global-remittances-record-2023__5fd648c7",
-   "slug": "global-remittances-record-2023",
-   "filed": "2026-10-04T14:21:59Z",
-   "why": [
-    "premise: brain: The premise does not overturn a clear viewer expectation, merely presents a large figure without a surprising reversal."
-   ],
-   "request": "exchange/rewrites/20261004/global-remittances-record-2023__5fd648c7.request.json",
-   "answer_path": "exchange/rewrites/20261004/global-remittances-record-2023__5fd648c7.answer.json"
-  },
-  {
    "id": "lab-grown-meat-scale-up-8x__1f01b5a1",
    "slug": "lab-grown-meat-scale-up-8x",
    "filed": "2026-10-04T14:21:59Z",
@@ -799,26 +829,6 @@
    ],
    "request": "exchange/rewrites/20261004/muscle-loss-after-30__a6d6cd11.request.json",
    "answer_path": "exchange/rewrites/20261004/muscle-loss-after-30__a6d6cd11.answer.json"
-  },
-  {
-   "id": "marathon-super-shoes-record-pace__87f99e40",
-   "slug": "marathon-super-shoes-record-pace",
-   "filed": "2026-10-04T11:38:09Z",
-   "why": [
-    "premise: brain: Relies on an implausible claim about shoes achieving a 2‑hour marathon, lacking a verifiable, surprising numerical reversal of a common expectation."
-   ],
-   "request": "exchange/rewrites/20261004/marathon-super-shoes-record-pace__87f99e40.request.json",
-   "answer_path": "exchange/rewrites/20261004/marathon-super-shoes-record-pace__87f99e40.answer.json"
-  },
-  {
-   "id": "humpback-whale-recovery__8ffb64a1",
-   "slug": "humpback-whale-recovery",
-   "filed": "2026-10-04T11:38:09Z",
-   "why": [
-    "premise: brain: The premise relies on two numbers (450 and 25,000) instead of a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261004/humpback-whale-recovery__8ffb64a1.request.json",
-   "answer_path": "exchange/rewrites/20261004/humpback-whale-recovery__8ffb64a1.answer.json"
   },
   {
    "id": "oceanic-shark-collapse__7abc9718",
