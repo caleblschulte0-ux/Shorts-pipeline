@@ -218,6 +218,90 @@ class TheReviserSeesWhatTheDirectorSaw(unittest.TestCase):
             self.assertIn(f"LINE-FROM-SOURCE-{i}", seen["user"])
 
 
+REGGIE = [{"source_id": "a", "channel": "kaicenat", "duration_s": 60,
+           "summary": "Kai reads Reggie's text claiming Kai ignored his call",
+           "people": ["Kai Cenat", "Reggie"],
+           "transcript_lines": "[0.0-6.0] Reggie said I ignored his call at "
+                               "2:32 and that I left him on read"},
+          {"source_id": "b", "channel": "kaicenat", "duration_s": 60,
+           "summary": "Kai shows the call history screenshot",
+           "people": ["Kai Cenat"],
+           "transcript_lines": "[0.0-5.0] look at the call history, he's "
+                               "lying"}]
+
+
+def _with_narration(text):
+    e = {"is_story": True, "premise": "p", "central_question": "q?",
+         "structure": "chronological", "title": "t",
+         "hook_overlay": "he says kai ignored him",
+         "beats": [{"source_id": "a", "start": 0, "end": 10, "role": "setup",
+                    "purpose": "the claim"},
+                   {"source_id": "b", "start": 0, "end": 10,
+                    "role": "payoff", "purpose": "the proof"}]}
+    e["narration"] = {"text": text, "over_beat": 0,
+                      "essential_because": "source a, 0-6s"}
+    return e
+
+
+class TheRepairMaySayWhatTheFootageSays(unittest.TestCase):
+    """2026-10-03 and 10-04: the critic refused the Kai Cenat / Reggie story
+    on three runs because "the opening never says what Reggie is accused
+    of" — and the reviser was not allowed to say it. It may now add ONE
+    narration line, and code drops a line the sources do not support."""
+
+    def test_the_prompt_allows_narration_for_missing_context(self):
+        p = story_director._REVISE_SYSTEM
+        self.assertIn("missing_context", p)
+        self.assertIn("narration", p)
+        self.assertIn("ONLY what a source's transcript", p)
+
+    def test_a_line_from_the_footage_is_grounded(self):
+        self.assertTrue(story_director.narration_grounded(
+            "Reggie claimed Kai ignored his call and left him on read.",
+            REGGIE))
+
+    def test_an_invented_line_is_not(self):
+        self.assertFalse(story_director.narration_grounded(
+            "Reggie stole Kai's championship ring during the tournament.",
+            REGGIE))
+        self.assertFalse(story_director.narration_grounded("", REGGIE))
+
+    def _revise(self, text):
+        with mock.patch.object(story_director, "_brain",
+                               return_value=_with_narration(text)):
+            return story_director.revise_edl(
+                _with_narration(""), [{"type": "missing_context", "at": 0.0,
+                                       "fix": "say what Reggie claims"}],
+                REGGIE)
+
+    def test_the_reviser_keeps_a_grounded_line(self):
+        out = self._revise("Reggie claimed Kai ignored his call.")
+        self.assertIsNotNone(out)
+        self.assertEqual(out["narration"]["text"],
+                         "Reggie claimed Kai ignored his call.")
+
+    def test_the_reviser_loses_an_invented_line_but_keeps_the_cut(self):
+        out = self._revise("Reggie stole Kai's championship ring yesterday.")
+        self.assertIsNotNone(out, "the cut survives")
+        self.assertFalse(out.get("narration"))
+
+    def test_the_directors_own_narration_meets_the_same_floor(self):
+        with mock.patch.object(story_director, "_brain",
+                               return_value=_with_narration(
+                                   "Reggie stole Kai's championship ring.")):
+            out = story_director.plan_story(REGGIE, None)
+        self.assertIsNotNone(out)
+        self.assertFalse(out.get("narration"))
+
+    def test_narration_over_the_OPENING_beat_survives_validation(self):
+        """`int(over_beat) or -1` made beat 0 into -1: every setup line was
+        silently dropped before any of this existed."""
+        out = story_director.validate_edl(
+            _with_narration("Reggie claimed Kai ignored his call."),
+            {"a": 60.0, "b": 60.0})
+        self.assertEqual(out["narration"]["over_beat"], 0)
+
+
 class TwoStoryAttemptsADay(unittest.TestCase):
     def test_the_template_asks_for_two_story_slots(self):
         tpl = json.loads((ROOT / "state" / "third_packages" /
