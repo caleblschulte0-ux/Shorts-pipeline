@@ -26,6 +26,7 @@ import tempfile
 from pathlib import Path
 
 import make_explainer_stacked as base
+from shared import render_seed
 import reddit_card
 
 W, H, FPS = base.W, base.H, base.FPS
@@ -321,10 +322,12 @@ def _gameplay_fullscreen(tag: str, target: float, workdir: Path) -> Path:
     pool = [p for p in clips if tag.lower() in p.stem.lower()] or clips
     if not pool:
         raise RuntimeError(f"no gameplay clips in {GAMEPLAY_DIR}")
-    src = random.choice(pool)
+    r = render_seed.rng("reddit.gameplay")
+    src = r.choice(sorted(pool))
     sdur = _dur(src)
-    seek = random.uniform(5, max(5, sdur - target - 25)) if sdur > target + 35 \
+    seek = r.uniform(5, max(5, sdur - target - 25)) if sdur > target + 35 \
         else 0.0
+    render_seed.note("reddit.gameplay", src=src.name, seek_s=round(seek, 3))
     out = workdir / "bg.mp4"
     _run([
         "ffmpeg", "-y", "-loglevel", "error",
@@ -484,6 +487,7 @@ def _ding(workdir: Path) -> Path:
 
 def build_reddit_story(pkg: dict, out_path: Path, *,
                        gameplay_tag: str = "minecraft") -> None:
+    render_seed.begin(pkg)
     workdir = Path(tempfile.mkdtemp(prefix="reddit_"))
     try:
         cf = reddit_card.card_fields(pkg)
@@ -615,6 +619,7 @@ def build_reddit_story(pkg: dict, out_path: Path, *,
                 "out": str(out_path), "format": "reddit_story",
                 "subreddit": cf["subreddit"], "title_end_s": round(title_end, 2),
                 "duration_s": round(total, 2),
+                "render_seed": render_seed.manifest(),
             }, indent=2) + "\n")
         except Exception as e:  # noqa: BLE001
             print(f"      [audit write fail] {e}")

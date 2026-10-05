@@ -29,6 +29,7 @@ import tempfile
 import math
 import time
 import urllib.request
+from shared import render_seed
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -1794,7 +1795,8 @@ def pick_gameplay_clip(tag: str, target: float, workdir: Path) -> Path:
                 f"Existing files: {existing}. "
                 f"Run seed_gameplay.py to download fresh."
             )
-    src = random.choice(pool)
+    r = render_seed.rng("explainer.gameplay")
+    src = r.choice(sorted(pool))
     dur = ffprobe_duration(src)
 
     # Prefer to seek into a pre-scanned high-motion window. The scanner
@@ -1817,8 +1819,8 @@ def pick_gameplay_clip(tag: str, target: float, workdir: Path) -> Path:
                 # Pick a juicy window, then jitter inside it so two
                 # renders that hit the same window don't show the same
                 # framing.
-                base = random.choice(starts)
-                seek = base + random.uniform(0, max(0.1, scan_window - target - 2.0))
+                base = r.choice(starts)
+                seek = base + r.uniform(0, max(0.1, scan_window - target - 2.0))
                 print(f"      juicy seek {seek:.1f}s (from {len(starts)} candidates)")
         except Exception as e:  # noqa: BLE001
             print(f"      gameplay_scanner failed, falling back: {e}")
@@ -1827,7 +1829,9 @@ def pick_gameplay_clip(tag: str, target: float, workdir: Path) -> Path:
         # Stay away from the tail of the clip — that's where the
         # YouTuber's world-select menu / outro screens tend to sit.
         max_seek = max(0, dur - target - 25)
-        seek = random.uniform(5, max(5, max_seek))
+        seek = r.uniform(5, max(5, max_seek))
+    render_seed.note("explainer.gameplay", src=src.name,
+                     seek_s=round(seek, 3))
 
     out = workdir / "bottom_raw.mp4"
     run([
@@ -2267,6 +2271,7 @@ def build_video(
     bottom_theme: str | None = None,
     theme_config=None,
 ) -> None:
+    render_seed.begin(script)
     workdir = Path(tempfile.mkdtemp(prefix="exps_"))
     print(f"workdir: {workdir}")
     try:
@@ -2527,6 +2532,7 @@ def build_video(
             audit_path.write_text(json.dumps({
                 "out": str(out_path),
                 "shots": audit,
+                "render_seed": render_seed.manifest(),
             }, indent=2) + "\n")
             on_topic = sum(1 for r in audit
                            if any(s not in {"pexels", "pixabay", "placeholder"}

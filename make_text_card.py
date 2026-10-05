@@ -30,6 +30,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 
 import make_explainer_stacked as base
+from shared import render_seed
 
 W, H, FPS = base.W, base.H, base.FPS
 GAMEPLAY_DIR = base.GAMEPLAY_DIR
@@ -207,7 +208,9 @@ def _resolve_top_source(query: str | None, workdir: Path,
     if not pool:
         raise RuntimeError(f"no top clip: stock failed and no gameplay in "
                            f"{GAMEPLAY_DIR}")
-    return random.choice(pool), False
+    pick = render_seed.rng("text_card.top").choice(sorted(pool))
+    render_seed.note("text_card.top", src=pick.name)
+    return pick, False
 
 
 def _top_clip(query: str | None, target: float, workdir: Path,
@@ -216,8 +219,10 @@ def _top_clip(query: str | None, target: float, workdir: Path,
     sdur = _dur(src)
     # stock clips are short & topical — start at 0; gameplay we seek in.
     seek = 0.0 if is_stock else (
-        random.uniform(5, max(5, sdur - target - 20)) if sdur > target + 30
+        render_seed.rng("text_card.seek").uniform(
+            5, max(5, sdur - target - 20)) if sdur > target + 30
         else 0.0)
+    render_seed.note("text_card.seek", src=src.name, seek_s=round(seek, 3))
     out = workdir / "top.mp4"
     _run(["ffmpeg", "-y", "-loglevel", "error", "-stream_loop", "-1",
           "-ss", f"{seek:.2f}", "-i", str(src), "-t", f"{target:.2f}",
@@ -230,6 +235,7 @@ def _top_clip(query: str | None, target: float, workdir: Path,
 
 def build_text_card(pkg: dict, out_path: Path, *, duration: float = 7.0,
                     gameplay_tag: str = "minecraft") -> None:
+    render_seed.begin(pkg)
     workdir = Path(tempfile.mkdtemp(prefix="textcard_"))
     try:
         duration = float(pkg.get("duration") or duration)
@@ -276,7 +282,8 @@ def build_text_card(pkg: dict, out_path: Path, *, duration: float = 7.0,
         try:
             Path(str(out_path) + ".audit.json").write_text(json.dumps({
                 "out": str(out_path), "format": "text_card",
-                "duration_s": duration}, indent=2) + "\n")
+                "duration_s": duration,
+                "render_seed": render_seed.manifest()}, indent=2) + "\n")
         except Exception:  # noqa: BLE001
             pass
         print(f"done -> {out_path}")
