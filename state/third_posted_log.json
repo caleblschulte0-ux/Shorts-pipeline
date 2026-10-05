@@ -11037,13 +11037,49 @@
       "ts": "2026-10-05T11:34:39.831117+00:00"
     },
     "clip-20261005-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/cinna/clip/MagnificentIronicRadishWutFace-cYLmsdwhSAe5L7uQ",
-      "story_key": null,
-      "streamer": "cinna",
+      "url": "https://youtube.com/shorts/dWP7uYZFCUo",
       "title": "Cinna Panics After Kalita Dub Becomes The Getaway Driver For The First Time",
       "kind": "twitch_clip",
-      "ts": "2026-10-05T11:39:01.462241+00:00",
+      "ts": "2026-10-05T11:39:14.068277+00:00",
+      "uploaded_at": "2026-10-05T11:39:14.068299+00:00",
+      "publish_at": "2026-10-05T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261005-cinna-panics-after-kalita-dub-becomes-the-getawa-515b1ada"
+      },
+      "source_url": "https://www.twitch.tv/cinna/clip/MagnificentIronicRadishWutFace-cYLmsdwhSAe5L7uQ",
+      "streamer": "cinna",
+      "series": "chaos",
+      "hook": "HIS FIRST TIME AS GETAWAY DRIVER",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 5121,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 48.35
+      },
+      "director_cut": true
+    },
+    "rejected-clip_01m45qvs2stys2knamz5rh4mr5": {
+      "source_url": "https://kick.com/adinross/clips/clip_01M45QVS2STYS2KNAMZ5RH4MR5",
+      "streamer": "adinross",
+      "title": "Press",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Panel talk, nothing visibly happens)",
+      "ts": "2026-10-05T11:40:14.135992+00:00"
+    },
+    "clip-20261005-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/FlirtyObedientPuppyPeanutButterJellyTime-6dtAUgSeX4gVy1x-",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Makes An Insane Call And Hits For 120K",
+      "kind": "twitch_clip",
+      "ts": "2026-10-05T11:43:13.106861+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
