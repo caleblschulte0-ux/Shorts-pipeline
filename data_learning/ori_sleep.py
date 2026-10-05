@@ -520,6 +520,11 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dic
             keep = [q for q in keep if q != "couch"] + ["couch"]
         cands[f"single:{i}"] = (clean(dict(spec, shot="close", cast=[c], props=keep)), seed + 11 + i)
     still = [c for c in cast if c.get("pose") != "walk"]
+    if lights and not still and cast:
+        # nobody standing still: whoever walks stops at the fire for the
+        # insert ("behind him, the corner fire has burned down to embers" —
+        # run 95's judge wanted the man and the embers, not the square)
+        still = [dict(cast[0], pose="stand", action="idle")]
     if lights and still:
         at = next((c for c in still if c.get("action") in FIRE_ACTIONS), still[0])
         # of ONE light: a second one sat half in the window (run 92: "the

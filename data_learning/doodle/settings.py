@@ -300,7 +300,7 @@ def _interior(cr, name, seed, r, time: str = "night"):
         # with straight edges (ink.box) — four bare corners were smoothed
         # into a curved "horizon" and an arch with a blob in it, and the
         # operator called the film "3/10 AI slop"
-        wall = rgb("#e2cdb0")
+        wall = rgb(("#e2cdb0", "#d9c6a4", "#e8d6bc")[seed % 3])      # not one room every time (run 95)
         cr.set_source_rgba(*wall)
         cr.paint()
         top, bot = H * 0.5, H * GROUND_Y
@@ -336,7 +336,7 @@ def _interior(cr, name, seed, r, time: str = "night"):
     elif name == "house_inside":
         # a plain Greek or Roman house: whitewash, ceiling beams, a small
         # high window with a shutter, a shelf of pots and a loom
-        wall = rgb("#ece3d0")
+        wall = rgb(("#ece3d0", "#e4d8bf", "#f0e9d8")[seed % 3])      # not one room every time (run 95)
         cr.set_source_rgba(*wall)
         cr.paint()
         bot = H * GROUND_Y

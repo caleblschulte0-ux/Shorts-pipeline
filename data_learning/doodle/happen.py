@@ -565,7 +565,15 @@ def _far_lane(spec: dict) -> bool:
     indoors (it is the wall) and not by the water (it is the water)."""
     from .settings import SETTINGS
     st = SETTINGS.get(spec.get("setting"))
-    return st is not None and not st.interior and not st.water
+    if st is None or st.interior or st.water:
+        return False
+    # ...nor through the herd (run 95: "the right-hand figure overlaps the
+    # goat behind it, and the animal is barely readable")
+    names = {p if isinstance(p, str) else (p or {}).get("name") for p in spec.get("props") or []}
+    return not (names & HERD)
+
+
+HERD = {"goat", "sheep", "cow", "chicken", "deer", "dog", "mammoth"}
 
 
 def fits(kind: str, spec: dict) -> bool:
@@ -584,7 +592,7 @@ def fits(kind: str, spec: dict) -> bool:
     if kind == "feed" and spec.get("fire") == "low":
         return False                  # the words banked it; nobody builds it up again
     if kind == "passer":
-        return not inside and not st.water
+        return _far_lane(spec)
     if kind == "turn":
         return asleep
     if kind == "stretch":
@@ -765,6 +773,8 @@ def person(cr, a: dict, era: str, t: float, scene=None, cold=False):
         tn = a["turn"]
         lift = _bump(t, tn["t0"], tn["tm"], tn["t1"])
         action = a["keys"][0][3]
+    if pose == "sit" and scene is not None and getattr(scene, "cushions", False) and not a.get("behind"):
+        people.cushion(cr, x, a["y"], a["s"], a["who"], era, a["seed"], facing)
     people.draw(cr, who=a["who"], era=era, seed=a["seed"], pose=pose, action=action, x=x, ground_y=a["y"],
                 scale=a["s"], t=t, facing=facing, mood=a.get("mood", "calm"), item=item,
                 cold=cold, pose_to=pose_to, blend=blend, reach=reach, reach_back=reach_back, gait=gait, lift=lift)

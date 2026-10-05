@@ -780,3 +780,68 @@ class TheEightyTwo(unittest.TestCase):
             self.assertFalse(min(fire["x"] + hw, dx + ST.VILLA_DOOR_HALF) - max(fire["x"] - hw, dx - ST.VILLA_DOOR_HALF) > S.MARGIN,
                              f"seed {seed}: the brazier stands in the doorway")
 
+
+
+@unittest.skipUnless(HAVE, "the doodle kit needs cairo and numpy")
+class TheSeventyEight(unittest.TestCase):
+    """Run 95: 78, BLOCKED — the embers beat drawn as a square full of
+    walkers, spinners with no visible spindle, floor-sitters "floating",
+    a barrel with the water showing through, one house in every chapter,
+    a passer through the goats."""
+
+    def test_the_embers_get_an_insert_even_where_the_only_person_walks(self):
+        spec = {"setting": "forum", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "man", "pose": "walk", "action": "carry", "item": "lantern"}],
+                "props": ["brazier", "column"], "fire": "low"}
+        opts = OS.coverage(spec, "ancient", 4)
+        self.assertIn("insert", opts)
+        ins = opts["insert"][0]
+        self.assertEqual(ins["cast"][0]["pose"], "stand")
+        self.assertIn("frame", ins)
+        b = TheSecondEightyThree._beat(self, spec, ["The last person crossing the square carries a small lantern.",
+                                                    "Behind him, the corner fire has burned down to embers, glowing faint against the stone."])
+        sh = OS.shots({"slug": "t", "era": "ancient"}, [b])
+        embers = TheSecondEightyThree._shot_of(self, b, sh, "embers")
+        self.assertEqual(embers["shot"], "insert", embers["shot"])
+
+    def test_a_floor_sitter_indoors_sits_on_a_cushion(self):
+        import numpy as np
+        sp = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "old_woman", "pose": "sit", "action": "warm_hands"}], "props": ["oil_lamp", "table"]}
+        sc = S.Scene(sp, "ancient", 2)
+        self.assertTrue(sc.cushions)
+        out = {"setting": "forum", "time": "night", "weather": "clear", "shot": "close",
+               "cast": [{"who": "old_woman", "pose": "sit", "action": "warm_hands"}], "props": ["brazier"]}
+        self.assertFalse(S.Scene(out, "ancient", 2).cushions)
+        self.assertGreaterEqual(P.SPINDLE_WHORL, 0.45)
+
+    def test_the_water_does_not_show_through_a_barrel(self):
+        import numpy as np
+        sp = {"setting": "seashore", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "elder", "pose": "sit", "action": "look_up"}], "props": ["barrel", "boat"]}
+        sc = S.Scene(sp, "ancient", 3)
+        bar = next(p for p in sc.lay["props"] if p["name"] == "barrel")
+        xs, ys = int(bar["x"]), int(bar["y"] - 70 * bar["s"])
+        seen = set()
+        for k in range(40):
+            surf = sc.frame(k / 10.0)
+            buf = np.ndarray(shape=(S.H, S.W, 4), dtype=np.uint8, buffer=surf.get_data())
+            seen.add(tuple(int(v) for v in buf[ys, xs, :3]))
+        self.assertLessEqual(len(seen), 2, f"the barrel's face changes colour with the water: {sorted(seen)[:4]}")
+
+    def test_no_passer_through_the_herd(self):
+        from data_learning.doodle import happen as HP
+        pen = {"setting": "olive_grove", "time": "night", "weather": "clear", "shot": "close",
+               "cast": [{"who": "man", "pose": "stand", "action": "hold", "item": "torch"}], "props": ["fence", "campfire", "goat"]}
+        self.assertFalse(HP.fits("passer", pen))
+        self.assertTrue(HP.fits("passer", dict(pen, props=["fence", "campfire"])))
+
+    def test_the_rooms_are_not_one_room(self):
+        import numpy as np
+        walls = set()
+        for seed in range(3):
+            sp = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "wide", "cast": [], "props": ["oil_lamp", "table"]}
+            surf = S.Scene(sp, "ancient", seed).still
+            buf = np.ndarray(shape=(S.H, S.W, 4), dtype=np.uint8, buffer=surf.get_data())
+            walls.add(tuple(int(v) for v in buf[500, 960, :3]))
+        self.assertGreaterEqual(len(walls), 2, walls)

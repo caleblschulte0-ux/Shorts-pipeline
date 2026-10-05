@@ -1006,14 +1006,16 @@ class Scene:
         self.still = cairo.ImageSurface(cairo.FORMAT_RGB24, W, H)
         cr = cairo.Context(self.still)
         self.facts = settings.draw_still(cr, self.setting, self.time, self.weather, seed, shot_of(spec), era=era)
+        st_ = SETTINGS.get(self.setting)
+        self.cushions = bool(st_ and st_.interior and era != "stone_age")   # a floor-sitter sits on something
         for layer in ("back", "mid", "front"):
             for p in self.lay["props"]:
                 if p["layer"] != layer:
                     continue
                 pr = PROPS[p["name"]]
-                if p["name"] in STILL:
+                if p["name"] in STILL and not self._fronts_water(p):
                     pr.draw(cr, p["x"], p["y"], p["s"], 0.0, p["seed"])
-                elif pr.base is not None:
+                elif pr.base is not None and p["name"] not in STILL:
                     pr.base(cr, p["x"], p["y"], p["s"], 0.0, p["seed"])
         ink.paper(cr, W, H)
         self.still.flush()
@@ -1130,7 +1132,7 @@ class Scene:
         lay = self.lay
         for layer in ("back", "mid"):
             for p in lay["props"]:
-                if p["layer"] == layer and p["name"] not in STILL:
+                if p["layer"] == layer and (p["name"] not in STILL or self._fronts_water(p)):
                     self._prop(cr, p, t)
             if layer == "back":
                 # the walkers' lane is behind the furniture and the people
@@ -1179,6 +1181,8 @@ class Scene:
                 continue
             if src == 0:
                 f = lay["people"][i]
+                if f["pose"] == "sit" and self.cushions:
+                    people.cushion(cr, f["x"], f["y"], f["s"], f["who"], self.era, f["seed"], f["facing"])
                 if i in ov:
                     happen.draw_person_override(cr, f, self.era, t, ov[i], cold=cold)
                     continue
@@ -1192,7 +1196,7 @@ class Scene:
                 else:
                     happen.animal(cr, a, t)
         for p in lay["props"]:
-            if p["layer"] == "front" and p["name"] not in STILL:
+            if p["layer"] == "front" and (p["name"] not in STILL or self._fronts_water(p)):
                 self._prop(cr, p, t)
         for a in self.acts:
             if a["kind"] in ("mouse", "moth"):
@@ -1215,6 +1219,12 @@ class Scene:
             cr.rectangle(0, 0, W, H)
             for lo, hi, top, bot in self._figure_holes(t):
                 cr.rectangle(lo, top, hi - lo, bot - top)
+            for p in lay["props"]:
+                # ...and from the props (run 95: "the barrel beside the
+                # fisherman is semi-transparent, with the water showing through")
+                pw = PROPS[p["name"]].width * p["s"] / 2
+                cr.rectangle(p["x"] - pw, p["y"] - PROPS[p["name"]].height * p["s"] * 1.2, 2 * pw,
+                             PROPS[p["name"]].height * p["s"] * 1.2 + 12 * p["s"])
             cr.clip()
             settings.glints(cr, self.facts, self.time, t, self.seed)
             cr.restore()
@@ -1282,6 +1292,18 @@ class Scene:
         target = (0.32 + 0.36 * u) * W if w["dir"] > 0 else (0.68 - 0.36 * u) * W
         ox = k * walker_x(w, t) - target
         return k, min(max(ox, 0.0), (k - 1) * W), (k - 1) * H * 0.7
+
+    def _fronts_water(self, p: dict) -> bool:
+        """A still prop standing in front of the water is drawn every frame,
+        not baked into the still: the water's ripples are painted over the
+        still each frame (run 95's judge: "the barrel beside the fisherman is
+        semi-transparent, with the water showing through it")."""
+        w = self.facts.get("water")
+        if not w:
+            return False
+        _kind, top, bot = w
+        ph = PROPS[p["name"]].height * p["s"]
+        return p["y"] - ph < bot and p["y"] > top
 
     def frame(self, t: float, surf: cairo.ImageSurface | None = None) -> cairo.ImageSurface:
         surf = surf or cairo.ImageSurface(cairo.FORMAT_RGB24, W, H)

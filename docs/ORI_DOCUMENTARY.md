@@ -1053,6 +1053,23 @@ only as a hand edit is not a rule. So:
   dissolve "ghosts two sleepers over each other" — `XFADE` 0.6 to 0.35.
   The storyboard respecified 4 beats this time (down from 44).
 
+- **Run 95 (commit 268ab096): 78, BLOCKED** — `junk_imagery` on the same
+  two beats as run 93, in new clothes: "the corner fire has burned down to
+  embers ... against the stone" was a moonlit square with a woman carrying
+  a lantern (read as "a brightly burning brazier") and a dog, and "the
+  others do not stop spinning" showed no spindle. Also: floor-sitters
+  "float in a sitting pose with no stool", the barrel on the beach
+  "semi-transparent, with the water showing through", the same house in
+  seven judged moments, a passer through the goats. Rules now
+  (`TheSeventyEight`): where the only person walks, the insert stops him
+  at the fire — so "behind him, the corner fire ..." is a framed close-up
+  of the man and the embers, not the square; the spindle is big enough to
+  read and the spinning hand travels (`SPINDLE_WHORL`); a floor-sitter
+  indoors sits on a cushion (`people.cushion`, `Scene.cushions`); a still
+  prop standing in front of the water is drawn every frame instead of
+  being baked under the ripples (`_fronts_water`); three tints of
+  whitewash by seed; no passer through a herd (`HERD`).
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);
