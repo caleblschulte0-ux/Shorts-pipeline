@@ -265,7 +265,14 @@ def respec(fb: dict, era: str, why: str, ask, chapter: str | None = None, chapte
         return None
     # the words decide the place: a respec that leaves the class of place
     # the passage names is put back inside it (run #18's judge)
-    A.mend_place({"say": fb.get("say", ""), "scene": new}, era)
+    # the hour stays the author's (the 83 film: a respec drew a bright
+    # midday market for "the evening quiet"), and every rule the author
+    # holds a scene to holds the respec too
+    if fb["scene"].get("time") in A.TIME_ORDER and new.get("time") in A.TIME_ORDER \
+            and A.TIME_ORDER.index(new["time"]) < A.TIME_ORDER.index(fb["scene"]["time"]):
+        new["time"] = fb["scene"]["time"]
+    probe = {"say": fb.get("say", ""), "scene": new}
+    A.mend_beats([probe], era, log=lambda *_: None)
     if S.validate(new, era):
         return None
     if chapter_beats is not None:

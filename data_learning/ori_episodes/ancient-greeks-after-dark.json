@@ -312,7 +312,7 @@
      }
     },
     {
-     "say": "Later, in another home, an old man sits near a candle and speaks softly to a sleepy child beside him. His words are unhurried, more sound than story just yet. The candle gutters gently, shadows moving on the walls. Outside, the town has gone fully dark; inside, everything has slowed to this one small light.",
+     "say": "Later, in another home, an old man sits near a oil lamp and speaks softly to a sleepy child beside him. His words are unhurried, more sound than story just yet. The oil lamp gutters gently, shadows moving on the walls. Outside, the town has gone fully dark; inside, everything has slowed to this one small light.",
      "scene": {
       "setting": "villa_inside",
       "time": "night",
@@ -327,7 +327,7 @@
        },
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "idle",
         "mood": "sleepy"
        }
@@ -369,7 +369,7 @@
        },
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "hug_self",
         "mood": "content"
        }
@@ -578,7 +578,7 @@
      "say": "Near the square's low fire, two neighbors trade a few last words before parting for the night. Their talk is unhurried, the kind that fills the last minutes before a door closes. Behind them the square empties out further, the small fire's light the only thing still moving in the dark.",
      "scene": {
       "setting": "forum",
-      "time": "dusk",
+      "time": "night",
       "weather": "clear",
       "shot": "close",
       "cast": [
@@ -738,8 +738,7 @@
       ],
       "props": [
        "brazier",
-       "column",
-       "torch"
+       "column"
       ],
       "variant": 6,
       "fire": "low"
@@ -873,6 +872,7 @@
       ],
       "props": [
        "oil_lamp",
+       "couch",
        "couch"
       ],
       "setting": "house_inside",
@@ -992,7 +992,7 @@
       "cast": [
        {
         "who": "old_woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "warm_hands",
         "mood": "calm",
         "at": "center_left"
@@ -1210,19 +1210,19 @@
       "cast": [
        {
         "who": "old_woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "spin",
         "mood": "calm"
        },
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "spin",
         "mood": "calm"
        },
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "sew",
         "mood": "calm"
        }
@@ -1234,7 +1234,7 @@
      }
     },
     {
-     "say": "Across the city, in a much smaller room, a woman sits alone with her spindle and a single candle. The house around her is quiet, everyone else asleep. She works a little longer by its small light, the way the story often gets passed here too, in pieces, between chores.",
+     "say": "Across the city, in a much smaller room, a woman sits alone with her spindle and a single oil lamp. The house around her is quiet, everyone else asleep. She works a little longer by its small light, the way the story often gets passed here too, in pieces, between chores.",
      "scene": {
       "setting": "house_inside",
       "time": "night",
@@ -1243,7 +1243,7 @@
       "cast": [
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "spin",
         "mood": "focused"
        },
@@ -1271,7 +1271,7 @@
       "cast": [
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "spin",
         "mood": "calm",
         "item": "spindle",
@@ -1286,7 +1286,7 @@
        },
        {
         "who": "old_woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "sew",
         "mood": "content",
         "item": "needle",
@@ -1378,13 +1378,13 @@
        },
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "sew",
         "mood": "calm"
        },
        {
         "who": "old_woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "sew",
         "mood": "content"
        }
@@ -1397,7 +1397,7 @@
      }
     },
     {
-     "say": "In the humbler house, the old woman there tells her own small story to a child who is mostly asleep already. She does not mind. The words are as much for the quiet as for the listening, a way of keeping the candle company until it is time to let it go out.",
+     "say": "In the humbler house, the old woman there tells her own small story to a child who is mostly asleep already. She does not mind. The words are as much for the quiet as for the listening, a way of keeping the oil lamp company until it is time to let it go out.",
      "scene": {
       "setting": "house_inside",
       "time": "night",
@@ -1406,7 +1406,7 @@
       "cast": [
        {
         "who": "old_woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "talk",
         "mood": "calm",
         "at": "left"
@@ -1435,14 +1435,14 @@
       "cast": [
        {
         "who": "old_woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "yawn",
         "mood": "sleepy",
         "at": "center_left"
        },
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "spin",
         "mood": "sleepy",
         "at": "center_right"
@@ -1948,7 +1948,7 @@
        },
        {
         "who": "old_woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "hold",
         "mood": "calm",
         "item": "bundle",

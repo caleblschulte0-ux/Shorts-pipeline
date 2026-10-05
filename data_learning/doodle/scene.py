@@ -239,9 +239,12 @@ def validate(spec, era: str) -> list[str]:
     if fr is not None and not (isinstance(fr, (list, tuple)) and len(fr) == 3
                                and all(isinstance(v, (int, float)) for v in fr) and 1.0 <= fr[2] <= 2.5):
         bad.append("frame must be [centre x, centre y, zoom 1.0-2.5]")
-    if any(isinstance(c, dict) and c.get("pose") == "recline" for c in spec.get("cast") or []) and \
-            not any(_pname(p) == "couch" for p in _prop_list(spec)):
-        bad.append("somebody reclines: recline needs a couch in the props")
+    n_rec = sum(1 for c in spec.get("cast") or [] if isinstance(c, dict) and c.get("pose") == "recline")
+    n_couch = sum(1 for p in _prop_list(spec) if _pname(p) == "couch")
+    if n_rec and n_couch < n_rec:
+        # one each: the second of two recliners lay on air beside the one
+        # couch (run 83's symposium)
+        bad.append(f"{n_rec} recline: recline needs a couch in the props for each of them ({n_couch} here)")
     hp = spec.get("happen")
     if hp is not None:
         from .happen import KINDS as _HK
@@ -474,9 +477,12 @@ def _walkers(walking: list, s: float, gy: float, seed: int, pan: bool = False, f
         facing = c.get("facing") or ("right" if r.random() < 0.5 else "left")
         d = 1 if facing == "right" else -1
         v = 2.48 * R / WALK_CYCLE
-        # just outside the frame, so they walk IN; a second walker follows
-        # a few paces behind the first
-        x0 = (-3.0 * R - i * 5.0 * R) if d > 0 else (W + 3.0 * R + i * 5.0 * R)
+        # whole, just inside the frame, already walking (the dissolve hides
+        # the appearance; a walker entering from beyond the edge spent a
+        # second cut by it, and the 83 film's judge found it: "a figure cut
+        # off at the left edge"); a second walker follows a few paces behind
+        n_ = len(walking)
+        x0 = (EDGE + 1.4 * R + (n_ - 1 - i) * 5.0 * R) if d > 0 else (W - EDGE - 1.4 * R - (n_ - 1 - i) * 5.0 * R)
         out.append(dict(who=c["who"], pose="walk", action=c.get("action", "idle"), mood=c.get("mood", "calm"),
                         item=c.get("item"), x0=x0, dir=d, v=v, y=(gy - 66 * s) if far else (gy + 28 * s),
                         s=sw, facing=facing, seed=seed * 17 + i * 211, near=not far))

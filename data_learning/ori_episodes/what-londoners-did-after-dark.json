@@ -177,7 +177,7 @@
       "cast": [
        {
         "who": "elder",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "talk",
         "mood": "content",
         "item": null,
@@ -185,7 +185,7 @@
        },
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "look_up",
         "mood": "happy",
         "item": null,
@@ -277,7 +277,7 @@
       "cast": [
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "yawn",
         "mood": "sleepy",
         "at": "left"
@@ -293,7 +293,7 @@
       "props": [
        "hearth"
       ],
-      "variant": 2,
+      "variant": 6,
       "fire": "low"
      }
     },
@@ -409,7 +409,7 @@
       "cast": [
        {
         "who": "elder",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "warm_hands",
         "mood": "content",
         "item": "cup",
@@ -562,7 +562,7 @@
       "cast": [
        {
         "who": "man",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "drink",
         "mood": "content",
         "item": "cup",
@@ -570,7 +570,7 @@
        },
        {
         "who": "man",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "point",
         "mood": "focused",
         "at": "center_right"
@@ -738,14 +738,14 @@
        },
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "eat",
         "mood": "happy",
         "item": "bowl"
        },
        {
         "who": "girl",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "eat",
         "mood": "happy",
         "item": "bowl"
@@ -883,7 +883,7 @@
       "cast": [
        {
         "who": "old_woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "yawn",
         "mood": "sleepy",
         "at": "center"
@@ -1039,7 +1039,8 @@
         "pose": "walk",
         "action": "idle",
         "mood": "calm",
-        "at": "right"
+        "at": "right",
+        "item": "torch"
        }
       ],
       "props": [
@@ -1239,7 +1240,7 @@
       "cast": [
        {
         "who": "man",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "eat",
         "mood": "sleepy",
         "at": "left"
@@ -1589,7 +1590,7 @@
        },
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "hold",
         "mood": "sleepy",
         "at": "center_right"

@@ -230,7 +230,7 @@
        },
        {
         "who": "old_woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "idle",
         "mood": "content",
         "at": "right"
@@ -449,10 +449,8 @@
       ],
       "props": [
        "stall",
-       "campfire",
        "torch"
-      ],
-      "fire": "low"
+      ]
      }
     },
     {
@@ -1149,7 +1147,7 @@
        },
        {
         "who": "man",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "idle",
         "mood": "content"
        },
@@ -1161,7 +1159,7 @@
        },
        {
         "who": "man",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "idle",
         "mood": "sleepy"
        }
@@ -1214,14 +1212,14 @@
       "cast": [
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "idle",
         "mood": "sleepy",
         "at": "left"
        },
        {
         "who": "man",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "idle",
         "mood": "content",
         "at": "right"
@@ -1474,7 +1472,7 @@
        },
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "feed_fire",
         "mood": "content",
         "at": "right"
@@ -1504,7 +1502,7 @@
        },
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "eat",
         "mood": "sleepy",
         "at": "right"

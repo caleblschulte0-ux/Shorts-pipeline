@@ -1566,7 +1566,12 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertEqual([f["pose"] for f in lay["people"]], ["stand"])
         (w,) = lay["walkers"]
         x0, x1 = S.walker_x(w, 0.0), S.walker_x(w, 12.0)
-        self.assertTrue(x0 < 0 or x0 > S.W, "a walker should walk IN from beyond the frame")
+        # whole and inside the frame from the first frame (the 83 film's
+        # judge: "a figure cut off at the left edge" — walkers used to enter
+        # from beyond it), and going somewhere
+        Rw = P.R0 * w["s"] * P.WHO["man"]["size"]
+        self.assertGreaterEqual(x0 - 1.2 * Rw, 0, "a walker starts cut by the frame")
+        self.assertLessEqual(x0 + 1.2 * Rw, S.W, "a walker starts cut by the frame")
         self.assertGreater(abs(x1 - x0), S.W * 0.5, "a walker barely moved in twelve seconds")
         # at the pace their feet carry them: a planted foot moves back 2 x 0.62 R
         R = P.R0 * w["s"] * P.WHO["man"]["size"]

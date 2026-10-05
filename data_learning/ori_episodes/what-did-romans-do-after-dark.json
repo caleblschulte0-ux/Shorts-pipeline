@@ -74,7 +74,7 @@
      }
     },
     {
-     "say": "Inside a quiet home nearby, a woman sits close to a small flame, mending cloth with a bone needle. There is no other light. Just this one steady candle, cupped against the draft. Evening has always meant this kind of narrowing — the world shrinking down to the small circle a single flame can reach.",
+     "say": "Inside a quiet home nearby, a woman sits close to a small flame, mending cloth with a bone needle. There is no other light. Just this one steady oil lamp, cupped against the draft. Evening has always meant this kind of narrowing — the world shrinking down to the small circle a single flame can reach.",
      "scene": {
       "setting": "house_inside",
       "time": "dusk",
@@ -242,7 +242,7 @@
      }
     },
     {
-     "say": "In a home nearby, an old woman speaks softly to a child curled beside her, the two of them lit by a brazier's glow and one small candle. We don't know exactly what stories were told on nights like this, only that they probably were — old, familiar, comforting, the kind repeated because they always worked.",
+     "say": "In a home nearby, an old woman speaks softly to a child curled beside her, the two of them lit by a brazier's glow and one small oil lamp. We don't know exactly what stories were told on nights like this, only that they probably were — old, familiar, comforting, the kind repeated because they always worked.",
      "scene": {
       "setting": "villa_inside",
       "time": "night",
@@ -258,7 +258,7 @@
        },
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "eat",
         "mood": "sleepy",
         "at": "center_right"
@@ -289,7 +289,7 @@
      }
     },
     {
-     "say": "In a small room lit by one candle, a child yawns, eyes heavy, curled at the edge of a bed. The day is finished. There is nothing left to do now but rest, the way there was nothing left to do once the light went, for nearly everyone who ever lived here.",
+     "say": "In a small room lit by one oil lamp, a child yawns, eyes heavy, curled at the edge of a bed. The day is finished. There is nothing left to do now but rest, the way there was nothing left to do once the light went, for nearly everyone who ever lived here.",
      "scene": {
       "setting": "villa_inside",
       "time": "night",
@@ -298,13 +298,13 @@
       "cast": [
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "yawn",
         "mood": "sleepy"
        },
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "yawn"
        }
       ],
@@ -557,7 +557,7 @@
        },
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "idle",
         "mood": "sleepy"
        }
@@ -579,7 +579,7 @@
       "cast": [
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "yawn",
         "mood": "sleepy",
         "item": "bread",
@@ -587,7 +587,7 @@
        },
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "yawn",
         "item": "bread"
        }
@@ -637,7 +637,7 @@
       "cast": [
        {
         "who": "man",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "feed_fire",
         "mood": "calm",
         "item": "stick",
@@ -836,7 +836,7 @@
        },
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "hug_self",
         "mood": "worried"
        }
@@ -858,7 +858,7 @@
       "cast": [
        {
         "who": "old_woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "eat",
         "mood": "calm",
         "at": "left"
@@ -993,7 +993,7 @@
       "cast": [
        {
         "who": "man",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "look_up",
         "mood": "sleepy",
         "at": "left"
@@ -1193,7 +1193,7 @@
       "cast": [
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "sew",
         "mood": "focused",
         "item": "needle",
@@ -1215,14 +1215,14 @@
       "cast": [
        {
         "who": "elder",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "talk",
         "mood": "calm",
         "at": "center_left"
        },
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "idle",
         "mood": "sleepy",
         "at": "center_right"
@@ -1251,7 +1251,7 @@
      }
     },
     {
-     "say": "Across the city, whole households settle down together for the night, sometimes in a single room, for warmth and for company as much as safety. A candle burns low near the beds. There is comfort simply in numbers, in knowing that everyone under the roof is exactly where they should be.",
+     "say": "Across the city, whole households settle down together for the night, sometimes in a single room, for warmth and for company as much as safety. A oil lamp burns low near the beds. There is comfort simply in numbers, in knowing that everyone under the roof is exactly where they should be.",
      "scene": {
       "setting": "villa_inside",
       "time": "night",
@@ -1382,7 +1382,7 @@
        },
        {
         "who": "elder",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "talk",
         "mood": "calm",
         "at": "left"
@@ -1396,9 +1396,9 @@
      }
     },
     {
-     "say": "The candle finally burns down to nothing, and the little house goes dark and quiet. Outside, the watchman's steps fade into the distance, and Rome's long, careful night continues on, one lamp and one bolted door at a time, the way it will again tomorrow.",
+     "say": "The oil lamp finally burns down to nothing, and the little house goes dark and quiet. Outside, the watchman's steps fade into the distance, and Rome's long, careful night continues on, one lamp and one bolted door at a time, the way it will again tomorrow.",
      "scene": {
-      "setting": "house_inside",
+      "setting": "forum",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -1414,7 +1414,7 @@
       ],
       "props": [
        "brazier",
-       "oil_lamp"
+       "torch"
       ]
      }
     }
@@ -1472,8 +1472,7 @@
       ],
       "props": [
        "brazier",
-       "stall",
-       "torch"
+       "stall"
       ],
       "fire": "low"
      }
@@ -1488,7 +1487,7 @@
       "cast": [
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "sew",
         "mood": "focused",
         "item": "needle",
@@ -1496,7 +1495,7 @@
        },
        {
         "who": "girl",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "sew",
         "mood": "sleepy",
         "at": "center_right"
@@ -1509,7 +1508,7 @@
      }
     },
     {
-     "say": "In another home, an old woman works wool by a single candle, twisting it steadily between her fingers into thread. It is slow, careful work, the kind that asks for patience more than strength. She does not mind the hour. The house is quiet, the flame is close, and there is nowhere else she needs to be.",
+     "say": "In another home, an old woman works wool by a single oil lamp, twisting it steadily between her fingers into thread. It is slow, careful work, the kind that asks for patience more than strength. She does not mind the hour. The house is quiet, the flame is close, and there is nowhere else she needs to be.",
      "scene": {
       "setting": "villa_inside",
       "time": "night",
@@ -1518,7 +1517,7 @@
       "cast": [
        {
         "who": "old_woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "spin",
         "mood": "focused",
         "at": "center"
@@ -1588,7 +1587,7 @@
       "cast": [
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "sew",
         "mood": "calm",
         "item": "needle",
@@ -1640,7 +1639,7 @@
       "cast": [
        {
         "who": "elder",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "feed_fire",
         "mood": "calm",
         "item": "stick",
@@ -1663,7 +1662,7 @@
       "cast": [
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "sew",
         "mood": "content",
         "item": "needle",
@@ -1678,7 +1677,7 @@
        },
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "eat",
         "mood": "sleepy",
         "at": "right"
@@ -1692,7 +1691,7 @@
      }
     },
     {
-     "say": "In the last hour before light, the old woman finally sets the wool aside, and the candle burns low beside her. Across the city, the baker's ovens still glow, and rows of new bread wait for a morning that has not quite come. Not everyone sleeps through the night. Some people simply keep at their quiet work until it does.",
+     "say": "In the last hour before light, the old woman finally sets the wool aside, and the oil lamp burns low beside her. Across the city, the baker's ovens still glow, and rows of new bread wait for a morning that has not quite come. Not everyone sleeps through the night. Some people simply keep at their quiet work until it does.",
      "scene": {
       "setting": "forum",
       "time": "night",
@@ -1701,7 +1700,7 @@
       "cast": [
        {
         "who": "old_woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "eat",
         "mood": "sleepy",
         "at": "center"
@@ -1740,8 +1739,7 @@
       "props": [
        "column",
        "cart",
-       "brazier",
-       "torch"
+       "brazier"
       ],
       "fire": "low"
      }
@@ -1807,7 +1805,7 @@
      }
     },
     {
-     "say": "In a villa nearby, a man carries a small lantern down a dim corridor toward his bed, one hand cupped around the flame. The house has gone still around him — no footsteps, no voices, just the soft catch of light and his own tired breath. He sets it down beside a candle burned low, and lets his eyes close.",
+     "say": "In a villa nearby, a man carries a small lantern down a dim corridor toward his bed, one hand cupped around the flame. The house has gone still around him — no footsteps, no voices, just the soft catch of light and his own tired breath. He sets it down beside a oil lamp burned low, and lets his eyes close.",
      "scene": {
       "setting": "villa_inside",
       "time": "night",
@@ -1853,7 +1851,7 @@
       "cast": [
        {
         "who": "man",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "feed_fire",
         "mood": "content"
        }
@@ -1918,7 +1916,7 @@
      }
     },
     {
-     "say": "Across the city, the old woman finally lets the wool fall still in her lap. The candle beside her has burned down to almost nothing, its light no bigger now than a coin. She looks at it a moment, then leans back, and lets the dark come in around her the way it has come for everyone else tonight.",
+     "say": "Across the city, the old woman finally lets the wool fall still in her lap. The oil lamp beside her has burned down to almost nothing, its light no bigger now than a coin. She looks at it a moment, then leans back, and lets the dark come in around her the way it has come for everyone else tonight.",
      "scene": {
       "setting": "house_inside",
       "time": "night",

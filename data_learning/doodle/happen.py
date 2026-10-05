@@ -87,9 +87,11 @@ def _taken(lay: dict, skip: int | None = None) -> list[tuple[float, float]]:
     return out
 
 
-def _blocking(lay: dict) -> list[tuple[float, float]]:
-    """What an animal cannot walk past in front of: people and anything big.
-    A candle or a lamp on the floor it goes round."""
+def _blocking(lay: dict, lights: bool = False) -> list[tuple[float, float]]:
+    """What nobody walks through in front of: people and anything big. With
+    `lights`, any light on the floor too — an animal goes round a lamp (the
+    83 film's judge: "the dog's tail tip is drawn as a flame" — it was the
+    lamp the dog had trotted across); a person steps past it."""
     from .scene import spans, SMALL_PROP
     out = []
     for it in spans(lay):
@@ -97,7 +99,7 @@ def _blocking(lay: dict) -> list[tuple[float, float]]:
             out.append((it["lo"], it["hi"]))
         elif it.get("pid") is not None:
             p = lay["props"][it["pid"]]
-            if PROPS[p["name"]].width * p["s"] >= SMALL_PROP * 1.2:
+            if PROPS[p["name"]].width * p["s"] >= SMALL_PROP * 1.2 or (lights and PROPS[p["name"]].light):
                 out.append((it["lo"], it["hi"]))
     return out
 
@@ -331,16 +333,18 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
         target = fires[0]["x"] if fires else r.uniform(x0 + 300, x1 - 300)
         got = _spot(lay, lambda fc: (-span / 2, span / 2), target, taken, x0, x1, r)
         side = r.choice((-1, 1))
-        start = (x0 - span) if side < 0 else (x1 + span)
+        # whole, just inside the frame (the 83 film's judge: "the dog is cut
+        # off by the right frame edge"); the dissolve hides the appearance
+        start = (x0 + EDGE + span / 2) if side < 0 else (x1 - EDGE - span / 2)
         if got is not None:
             # it may lie down only where it can get to without walking over
             # anybody (the first sample: a dog trotting across a man in bed)
             lo_, hi_ = sorted((start, got[0]))
-            if any(min(hi_, b) - max(lo_, a) > 0 for a, b in _blocking(lay)):
+            if any(min(hi_, b) - max(lo_, a) > 0 for a, b in _blocking(lay, lights=True)):
                 side = -side
-                start = (x0 - span) if side < 0 else (x1 + span)
+                start = (x0 + EDGE + span / 2) if side < 0 else (x1 - EDGE - span / 2)
                 lo_, hi_ = sorted((start, got[0]))
-                if any(min(hi_, b) - max(lo_, a) > 0 for a, b in _blocking(lay)):
+                if any(min(hi_, b) - max(lo_, a) > 0 for a, b in _blocking(lay, lights=True)):
                     got = None
         if got is None:
             if not _far_lane(spec):
@@ -356,12 +360,12 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
     if kind == "cat":
         dsz = 0.75 * s
         span = 200 * dsz
-        block = _blocking(lay)
+        block = _blocking(lay, lights=True)
         got = _spot(lay, lambda fc: (-span / 2, span / 2), r.uniform(x0 + 0.3 * (x1 - x0), x0 + 0.7 * (x1 - x0)),
                     taken, x0, x1, r)
         start = end = None
         for side in r.sample((-1, 1), 2):
-            st_ = (x0 - 120) if side < 0 else (x1 + 120)
+            st_ = (x0 + EDGE + span / 2) if side < 0 else (x1 - EDGE - span / 2)
             if got is None:
                 break
             lo_, hi_ = sorted((st_, got[0]))
@@ -370,7 +374,7 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
                 break
         if start is None:
             side = r.choice((-1, 1))
-            start = (x0 - 120) if side < 0 else (x1 + 120)
+            start = (x0 + EDGE + span / 2) if side < 0 else (x1 - EDGE - span / 2)
             end = None
         if end is None:
             # nowhere to sit it can reach without walking over somebody: it

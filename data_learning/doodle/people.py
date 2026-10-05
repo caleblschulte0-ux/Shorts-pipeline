@@ -237,6 +237,11 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
     if action in ("eat", "drink"):
         k = (math.sin(c / 3.0 + ph) + 1) / 2          # 0 at lap, 1 at mouth
         k = k ** 2
+        if sk.get("lean", 0.0) < -0.5:
+            # reclining, the lap is behind the body: the cup stays up, in
+            # view (the 83 film's judge: "'Cups are filled', but no cup is
+            # visible in the symposium frame")
+            k = 0.55 + 0.45 * k
         # beside the chin, not over the mouth: a bowl at the mouth "covers
         # the man's face" (the ninth film's storyboard)
         mouth = (sk["head"][0] + 1.0 * R, sk["head"][1] + 0.8 * R)

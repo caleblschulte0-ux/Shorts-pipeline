@@ -949,6 +949,41 @@ only as a hand edit is not a rule. So:
   out of it (a head may stand in a doorway; a body may not lie across
   one). Held by `TheSleepersVary` in `tests/test_the_words_are_drawn.py`.
 
+- **Run 91 (commit 5652d7b7): 83, SHIP — the first real 80.** Hook 4,
+  mascot 4, data 3, craft 2, pace 2, payoff 2, temporal 2. "A warm,
+  well-paced sleep film with a strong opening and quiet ending, held back by
+  named objects not drawn (candle, cups) and small broken bits: a flame-
+  tailed dog, a woman sitting on air, a noon market under 'evening'." Every
+  note is a rule now, held by `TheEightyThreeNotes`:
+  - *the noon market*: the storyboard's respec had asked the brain for a new
+    scene and kept it with only the place rule — it came back `day` for "the
+    evening quiet" and without the brazier. A respec keeps the author's hour
+    (it may move later, never earlier) and goes through every beat mend; and
+    `mend_time` moves any scene to the hour its words name, forward only,
+    with the night words kept STRONG ("for the night", "the first stars" and
+    the channel's own "after dark" are said at dusk, and "before dusk" is the
+    day).
+  - *the blazing torch beside "embers"*: `mend_carry` puts the lantern the
+    words name in the walker's hand (a carried light keeps a square alive),
+    the torch mend_fire had planted goes, and a torch at a banked fire is
+    dropped or becomes a lamp wherever the picture stays alive without it.
+  - *no cups*: a reclining drinker keeps the cup up by the chin (the lap is
+    behind the body); and one couch per recliner — the second of the two men
+    had lain on air beside the one couch (validate counts, mend_scene adds a
+    couch while the room has space, else he sits up).
+  - *the woman sitting on air*: `sit_on` with nothing in the scene to sit on
+    becomes `sit` (`SEAT_PROPS`). Forty-one such scenes across the shelf.
+  - *the dog cut by the frame edge*: the dog and the cat start whole just
+    inside the frame, like the people; the scene's own walkers too.
+  - *the flame-tailed dog*: it was the oil lamp behind it — animals now go
+    round every light on the floor (`_blocking`).
+  - *"no candle"*: the kit draws no candle before the middle ages and the
+    sentence was wrong, not the picture: `mend_say` makes it "oil lamp" in
+    the narration for the ancient, Egyptian and Stone Age films.
+  Found the same hour: `ori.config.json` still said `min_seconds: 4800`,
+  the retired two-hour floor — the 27-minute film was "not publishable".
+  It is 1200 now, his twenty minutes.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

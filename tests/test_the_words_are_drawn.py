@@ -369,3 +369,139 @@ class TheSleepersVary(unittest.TestCase):
         half = S.PROPS["mat"].width * mat["s"] / 2
         self.assertLess(mat["x"] - half, f["x"] + min(lo, -hi) - 0.3 * R)
         self.assertGreater(mat["x"] + half, f["x"] + max(hi, -lo) + 0.3 * R)
+
+
+class TheEightyThreeNotes(unittest.TestCase):
+    """Run 83's six notes, each a rule now."""
+
+    def test_the_words_move_the_hour_forward_only(self):
+        from scripts import ori_author as A
+        b = {"say": "Soon the square will empty, its voices fading into the evening quiet.",
+             "scene": {"setting": "forum", "time": "day", "weather": "clear", "shot": "close", "cast": [], "props": []}}
+        self.assertIn("dusk", A.mend_time(b) or "")
+        self.assertEqual(b["scene"]["time"], "dusk")
+        b["say"] = "Stars have come out, scattered and quiet above the sleeping town."
+        A.mend_time(b)
+        self.assertEqual(b["scene"]["time"], "night")
+        b2 = {"say": "The shepherd banks a small fire at the fold before settling in for the night, as the first stars show.",
+              "scene": {"setting": "riverbank", "time": "dusk", "weather": "clear", "shot": "close", "cast": [], "props": []}}
+        self.assertIsNone(A.mend_time(b2), "'for the night' and 'the first stars' are said at dusk")
+        b3 = {"say": "Carts were loaded before dusk, olives and grain stacked and tied.",
+              "scene": {"setting": "olive_grove", "time": "day", "weather": "clear", "shot": "close", "cast": [], "props": []}}
+        self.assertIsNone(A.mend_time(b3), "'before dusk' is the day")
+        b["say"] = "The evening is warm."
+        self.assertIsNone(A.mend_time(b))
+        self.assertEqual(b["scene"]["time"], "night", "a dusk word must not turn the night back")
+
+    def test_a_candle_before_the_middle_ages_is_a_lamp_in_the_words(self):
+        from scripts import ori_author as A
+        b = {"say": "A woman sits alone with her spindle and a single candle. Candles were dear."}
+        self.assertTrue(A.mend_say(b, "ancient"))
+        self.assertEqual(b["say"], "A woman sits alone with her spindle and a single oil lamp. Oil lamps were dear.")
+        b2 = {"say": "a single candle"}
+        self.assertIsNone(A.mend_say(b2, "medieval"))
+
+    def test_nobody_sits_on_air(self):
+        from scripts import ori_author as A
+        sc = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "old_woman", "pose": "sit_on", "action": "warm_hands"},
+                       {"who": "child", "pose": "lie", "action": "sleep"}], "props": ["oil_lamp", "bed"]}
+        self.assertIn("sit_on -> sit", A.mend_scene(sc, "ancient") or "")
+        self.assertEqual(sc["cast"][0]["pose"], "sit")
+        sc2 = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+               "cast": [{"who": "old_woman", "pose": "sit_on", "action": "warm_hands"}], "props": ["oil_lamp", "bench"]}
+        A.mend_scene(sc2, "ancient")
+        self.assertEqual(sc2["cast"][0]["pose"], "sit_on")
+
+    def test_a_torch_beside_embers_goes_and_the_lantern_is_in_his_hand(self):
+        from scripts import ori_author as A
+        b = {"say": "The last person crossing the square carries a small lantern, its light swaying with each step. "
+                    "Behind him, the corner fire has burned down to embers, glowing faint and red against the stone.",
+             "scene": {"setting": "forum", "time": "night", "weather": "clear", "shot": "wide",
+                       "cast": [{"who": "man", "pose": "walk", "action": "carry"},
+                                {"who": "elder", "pose": "sit", "action": "warm_hands"}],
+                       "props": ["brazier", "column", "torch"]}}
+        A.mend_beats([b], "ancient", log=lambda *_: None)
+        self.assertEqual(b["scene"]["cast"][0].get("item"), "lantern")
+        self.assertEqual(b["scene"].get("fire"), "low")
+        self.assertNotIn("torch", b["scene"]["props"], b["scene"])
+        self.assertEqual(S.validate(b["scene"], "ancient"), [])
+
+    def test_walkers_start_whole_inside_the_frame(self):
+        from data_learning.doodle import scene as S, people as P
+        for shot in ("wide", "close"):
+            sc = {"setting": "forum", "time": "night", "weather": "clear", "shot": shot,
+                  "cast": [{"who": "man", "pose": "walk", "action": "carry"}, {"who": "elder", "pose": "walk", "action": "idle"},
+                           {"who": "woman", "pose": "sit", "action": "warm_hands"}], "props": ["brazier", "column"]}
+            lay = S.layout(sc, 4)
+            for w in lay["walkers"]:
+                R = P.R0 * w["s"] * P.WHO[w["who"]]["size"]
+                lo, hi = S.figure_extent("walk", R, w["action"], w.get("item"))
+                x = S.walker_x(w, 0.0)
+                self.assertGreaterEqual(x + lo, 0, (shot, w["who"]))
+                self.assertLessEqual(x + hi, S.W, (shot, w["who"]))
+
+    def test_the_dog_comes_in_whole_and_goes_round_the_lamp(self):
+        from data_learning.doodle import scene as S, happen as H
+        sc = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "old_woman", "pose": "sit", "action": "talk"},
+                       {"who": "child", "pose": "lie", "action": "sleep"}], "props": ["oil_lamp", "bed"]}
+        seen = 0
+        for seed in range(1, 30):
+            lay = S.layout(sc, seed)
+            acts = H.plan(["dog"], sc, lay, seed, 7.0)
+            if not acts:
+                continue
+            a = acts[0]
+            seen += 1
+            self.assertGreaterEqual(a["x0"], 0, seed)
+            self.assertLessEqual(a["x0"], S.W, seed)
+            if a.get("behind"):
+                continue
+            lamp = next(p for p in lay["props"] if p["name"] == "oil_lamp")
+            lw = S.PROPS["oil_lamp"].width * lamp["s"] / 2
+            lo, hi = sorted((a["x0"], a["x1"]))
+            self.assertFalse(lo < lamp["x"] + lw and hi > lamp["x"] - lw, f"seed {seed}: the dog trots across the lamp")
+        self.assertGreater(seen, 0)
+
+    def test_a_reclining_drinker_holds_the_cup_up(self):
+        from data_learning.doodle import people as P
+        sk = P.skeleton("recline", 46.0, 0.0)
+        if sk is None:
+            self.skipTest("no skeleton()")
+        for t in (0.0, 0.7, 1.9, 3.3):
+            front, _back = P.hand_targets("drink", sk, 46.0, t, 0.0)
+            self.assertLess(front[1], sk["hip"][1] - 0.2 * 46.0, "the cup is down in the lap, out of sight")
+
+    def test_a_respec_keeps_the_hour_and_the_rules(self):
+        import json
+        from data_learning import ori_storyboard as SB
+        fb = {"say": "In the market square, the last sellers pack away their baskets. Soon the square will empty "
+                     "into the evening quiet.", "chapter": 0, "beat": 2,
+              "scene": {"setting": "forum", "time": "dusk", "weather": "clear", "shot": "close",
+                        "cast": [{"who": "man", "pose": "crouch", "action": "gather"}], "props": ["stall", "basket", "brazier"]}}
+        brain = {"setting": "forum", "time": "day", "weather": "clear", "shot": "close",
+                 "cast": [{"who": "woman", "pose": "stand", "action": "wave"}], "props": ["stall"]}
+        did = SB.respec(fb, "ancient", "no packing away", lambda system, prompt: json.dumps(brain))
+        self.assertEqual(did, "respecified")
+        self.assertEqual(fb["scene"]["time"], "dusk")
+        self.assertIn("basket", fb["scene"]["props"], "the author's named-prop rule did not run on the respec")
+
+    def test_the_film_floor_is_his_twenty_minutes(self):
+        import json
+        cfg = json.load(open(ROOT / "data_learning" / "ori.config.json"))
+        self.assertEqual(cfg["min_seconds"], 20 * 60)
+
+    def test_a_couch_for_everyone_who_reclines(self):
+        from scripts import ori_author as A
+        sc = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "man", "pose": "recline", "action": "drink", "at": "left"},
+                       {"who": "man", "pose": "recline", "action": "drink", "at": "right"}],
+              "props": ["oil_lamp", "couch"]}
+        self.assertTrue(S.validate(sc, "ancient"), "one couch for two recliners passed")
+        A.mend_scene(sc, "ancient")
+        self.assertEqual(S.validate(sc, "ancient"), [])
+        n_rec = sum(1 for c in sc["cast"] if c["pose"] == "recline")
+        self.assertEqual(sc["props"].count("couch"), n_rec)
+        self.assertGreaterEqual(n_rec, 1)
+

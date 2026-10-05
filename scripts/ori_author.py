@@ -768,6 +768,123 @@ def mend_motion(beat: dict, era: str) -> str | None:
     return f"a {who} passes with a {item} (the words move somebody)"
 
 
+# ---- the words say WHEN it is (the 83 film's judge: "bright midday sun over
+# the market while the line says the square will soon empty into 'the
+# evening quiet'"). The day only moves forward: a dusk word never turns a
+# night scene back, and a scene already later than its words stays.
+DUSK_WORDS = r"\b(evening|dusk|sunset|sundown|twilight|nightfall|the light (?:goes|fades|fails|is fading|drains)|" \
+             r"last (?:of the )?light|sun (?:begins to )?(?:sink|set|go down|goes down|sinks|sets)|gloaming)\b"
+# night words are the STRONG ones: "for the night" and "the first stars" are
+# said at dusk, "after dark" is the channel's own phrase and names the
+# future as often as the hour, and a pattern that swallows too much answers
+# a different question than the one asked
+NIGHT_WORDS = r"\b(midnight|in the dark|the dead of night|the middle of the night|by moonlight|moonlit|" \
+              r"under the moon|night has (?:come|fallen)|full dark|the sleeping (?:town|city|village|house)|" \
+              r"the rising moon|a rising moon)\b"
+TIME_ORDER = ("day", "dusk", "night")
+
+
+def mend_time(beat: dict) -> str | None:
+    """A scene drawn earlier in the day than its words: moved to the hour
+    the words name (dusk for an evening, night for the dark)."""
+    sc = beat.get("scene") if isinstance(beat, dict) else None
+    if not isinstance(sc, dict) or sc.get("time") not in TIME_ORDER:
+        return None
+    low = (beat.get("say") or "").lower()
+    # "loaded before dusk", "home before dark": the hour named is the one
+    # NOT yet come
+    low = re.sub(r"\b(?:before|until|till|ahead of) (?:the )?(?:dusk|evening|nightfall|sunset|sundown|dark|night|midnight)\b", " ", low)
+    want = "night" if re.search(NIGHT_WORDS, low) else ("dusk" if re.search(DUSK_WORDS, low) else None)
+    if want is None or TIME_ORDER.index(want) <= TIME_ORDER.index(sc["time"]):
+        return None
+    old = sc["time"]
+    sc["time"] = want
+    return f"{old} -> {want} (the words say so)"
+
+
+# ---- the words name a thing the era never had (the 83 film's judge: "no
+# candle, though the line names it" — the kit draws no candle before the
+# middle ages, and the sentence was wrong, not the picture)
+ERA_WORD_STAND_IN = {
+    "candle": {"ancient": "oil lamp", "egypt": "oil lamp", "stone_age": "fire"},
+    "candles": {"ancient": "oil lamps", "egypt": "oil lamps", "stone_age": "fires"},
+}
+
+
+def mend_say(beat: dict, era: str) -> str | None:
+    """A word for a thing this era did not have becomes the era's own word,
+    in the narration itself, so the picture and the sentence agree."""
+    if not isinstance(beat, dict) or not isinstance(beat.get("say"), str):
+        return None
+    out, did = beat["say"], []
+    for word, by_era in ERA_WORD_STAND_IN.items():
+        to = by_era.get(era)
+        if to is None or not re.search(rf"\b{word}\b", out, flags=re.I):
+            continue
+        out = re.sub(rf"\b{word}\b", lambda m: to.capitalize() if m.group(0)[0].isupper() else to, out, flags=re.I)
+        did.append(f'"{word}" -> "{to}"')
+    if out == beat["say"]:
+        return None
+    beat["say"] = out
+    return "the words: " + ", ".join(did) + " (the era's own)"
+
+
+# what somebody in the sit_on pose is sitting ON; with none of these in the
+# scene they sat on air (the 83 film's judge: "the old woman sits with bent
+# legs and no stool or seat under her, so she floats")
+SEAT_PROPS = ("bench", "couch", "table", "rock", "barrel", "stones", "woodpile")
+
+
+def _torch_to_lamp(sc: dict, era: str) -> str:
+    """Beside a banked fire a torch blazes (the 83 film's judge: "the line
+    says the corner fire has burned down to embers ... a fully blazing
+    torch and brazier"): it goes, where the picture stays alive without it
+    (a lantern in somebody's hand keeps it alive — mend_carry gives one
+    where the words name it), else becomes a lamp."""
+    names = [p if isinstance(p, str) else (p or {}).get("name") for p in sc.get("props") or []]
+    if "torch" not in names:
+        return ""
+    before = list(sc.get("props") or [])
+    sc["props"] = [q for q in before if (q if isinstance(q, str) else q.get("name")) != "torch"]
+    if not S.validate(sc, era):
+        return ", the torch is gone (the words say the fire is down to embers)"
+    if "oil_lamp" in S.PROPS and era in S.PROPS["oil_lamp"].eras:
+        sc["props"] = [("oil_lamp" if (q if isinstance(q, str) else q.get("name")) == "torch" else q) for q in before]
+        if not S.validate(sc, era):
+            return ", the torch is a lamp (the words say the fire is down to embers)"
+    sc["props"] = before
+    return ""
+
+
+# a light the words put in somebody's hand (the 83 film: "carries a small
+# lantern" drawn empty-handed, with a blazing torch planted beside the
+# embers to keep the square alive instead)
+CARRIED_LIGHT = re.compile(r"\b(?:carr(?:y|ies|ying)|holds?|holding|with|swings?|lifts?)\b[^.]{0,30}?\b(lantern|lamp|torch)\b|"
+                           r"\b(lantern|lamp|torch) in (?:his|her|their|one|a) hand\b")
+
+
+def mend_carry(beat: dict) -> str | None:
+    """Whoever walks or carries gets the light the words put in their hand."""
+    sc = beat.get("scene") if isinstance(beat, dict) else None
+    if not isinstance(sc, dict):
+        return None
+    m = CARRIED_LIGHT.search((beat.get("say") or "").lower())
+    if not m:
+        return None
+    word = m.group(1) or m.group(2)
+    item = "torch" if word == "torch" else "lantern"
+    cast = [c for c in sc.get("cast") or [] if isinstance(c, dict)]
+    if any(c.get("item") in ("lantern", "torch") for c in cast):
+        return None
+    for c in cast:
+        if c.get("pose") == "walk" or c.get("action") in ("carry", "hold", "idle"):
+            if c.get("action") == "carry":
+                c["action"] = "hold" if c.get("pose") != "walk" else "idle"
+            c["item"] = item
+            return f"{c['who']} carries a {item} (the words say so)"
+    return None
+
+
 def mend_fire(beat: dict, era: str = "ancient") -> str | None:
     """A beat whose words bank the fire draws it banked (the medieval
     film's judge: "the narration says embers glow low under ash, and a full
@@ -792,7 +909,10 @@ def mend_fire(beat: dict, era: str = "ancient") -> str | None:
             # picture alive)
             before = list(sc.get("props") or [])
             st = S.SETTINGS.get(sc.get("setting"))
-            lights = (["oil_lamp", "candle", "torch"] if st and st.interior else ["torch", "oil_lamp", "candle"])
+            # a lamp, never a torch: beside embers a torch blazes (the 83
+            # film's judge: "the line says the corner fire has burned down
+            # to embers ... a fully blazing torch")
+            lights = ["oil_lamp", "candle", "torch"]
             for light in lights:
                 pr = S.PROPS.get(light)
                 if pr is None or era not in pr.eras or (pr.settings and sc.get("setting") not in pr.settings):
@@ -803,7 +923,10 @@ def mend_fire(beat: dict, era: str = "ancient") -> str | None:
             sc["props"] = before
             sc.pop("fire")
             return None
-        return "the fire is banked (the words say so)"
+        return "the fire is banked (the words say so)" + _torch_to_lamp(sc, era)
+    if low and sc.get("fire") == "low":
+        swapped = _torch_to_lamp(sc, era)
+        return swapped.strip(", ") or None
     if not low and sc.get("fire") == "low":
         sc.pop("fire")
         return "the fire burns (the words do not bank it)"
@@ -882,6 +1005,8 @@ def mend_doing(beat: dict, era: str) -> str | None:
                     continue
                 if c.get("pose", "stand") not in P.ACTIONS[action]["poses"]:
                     continue
+                if c.get("item") in P.LOW_HELD:
+                    continue                # a light in the hand (mend_carry) is what the words put there
                 c["action"] = action
                 c.pop("item", None)
                 if S.validate(sc, era):
@@ -990,6 +1115,34 @@ def mend_scene(scene: dict, era: str) -> str | None:
         if pose not in P.POSES or pose not in P.ACTIONS[action]["poses"]:
             c["pose"] = P.ACTIONS[action]["poses"][0]
             did.append(f"pose {pose} -> {c['pose']} for {action}")
+    names_ = [(q if isinstance(q, str) else (q or {}).get("name")) for q in scene.get("props") or []]
+    if not any(n in SEAT_PROPS for n in names_):
+        for c in scene.get("cast") or []:
+            if isinstance(c, dict) and c.get("pose") == "sit_on" and "sit" in P.ACTIONS[c.get("action", "idle")]["poses"]:
+                c["pose"] = "sit"
+                did.append("sit_on -> sit (nothing here to sit on)")
+    # a couch for everyone reclining: added while the room has space, else
+    # the last to recline sits up (run 83: two men on one couch, the second
+    # lying on air)
+    cast_ = [c for c in scene.get("cast") or [] if isinstance(c, dict)]
+    recl = [c for c in cast_ if c.get("pose") == "recline"]
+    n_couch = sum(1 for q in scene.get("props") or [] if (q if isinstance(q, str) else (q or {}).get("name")) == "couch")
+    while recl and n_couch < len(recl):
+        trial = dict(scene, props=list(scene.get("props") or []) + ["couch"])
+        natural = 2.05 if S.shot_of(scene) == "close" else 1.25
+        ok = not any("couch" not in b for b in S.validate(trial, era))
+        if ok:
+            lay = S.layout(trial, 1000)
+            ok = not lay["collisions"] and lay["scale"] >= natural * (CROWD_SHRINK + 0.1) - 1e-6
+        if ok:
+            scene["props"] = trial["props"]
+            n_couch += 1
+            did.append("a couch for each who reclines")
+        else:
+            last = recl.pop()
+            last["pose"] = "sit" if "sit" in P.ACTIONS[last.get("action", "idle")]["poses"] else \
+                P.ACTIONS[last.get("action", "idle")]["poses"][0]
+            did.append(f"the {last['who'].replace('_', ' ')} sits up (no room for another couch)")
     did += take_outdoors(scene, era) + bring_indoors(scene, era)
     if scene.get("setting") in PLACE_SETTINGS["city"]:
         names = [(q if isinstance(q, str) else q.get("name")) for q in scene.get("props") or []]
@@ -1275,6 +1428,9 @@ def mend_beats(beats, era: str, log=print, final: bool = False, used=None) -> in
     for j, b in enumerate(beats):
         if isinstance(b, dict) and isinstance(b.get("scene"), dict):
             was = json.dumps(b["scene"], sort_keys=True)
+            said = mend_say(b, era)
+            when = mend_time(b)
+            held = mend_carry(b)
             placed = mend_place(b, era, used=used)
             strays = drop_stray_animals(b, era) + drop_out_of_place(b, era)
             if strays:
@@ -1293,8 +1449,9 @@ def mend_beats(beats, era: str, log=print, final: bool = False, used=None) -> in
             plural = mend_plural(b, era, seeds=(1000 + j,))
             fire = mend_fire(b, era)
             moving = mend_motion(b, era)
-            did = ", ".join(x for x in (placed, night, did, crowd, named, recl, doing, plural, fire, moving) if x)
-            if did and json.dumps(b["scene"], sort_keys=True) == was:
+            did = ", ".join(x for x in (said, when, held, placed, night, did, crowd, named, recl, doing, plural, fire,
+                                        moving) if x)
+            if did and json.dumps(b["scene"], sort_keys=True) == was and not said:
                 did = ""          # a prop dropped and put back: nothing changed
             if did:
                 n += 1

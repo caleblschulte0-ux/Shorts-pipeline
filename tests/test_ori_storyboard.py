@@ -111,6 +111,20 @@ class TheStoryboardIsLookedAtFirst(unittest.TestCase):
         self.assertEqual(len(rows), 3)
         self.assertEqual(rows[0]["flagged"][0]["index"], 1)
 
+    def _is_the_respec(self, scene, good):
+        """The brain's scene, taken — and then held to every rule the author
+        holds its own scenes to (run 83: a respec came back `day` for "the
+        evening quiet"), so the place and the people are the brain's and
+        the rest may have been mended."""
+        from data_learning.doodle import scene as S
+        self.assertEqual(scene["setting"], good["setting"])
+        self.assertEqual(scene["shot"], good["shot"])
+        self.assertEqual(scene["cast"][0]["who"], good["cast"][0]["who"])
+        self.assertEqual(scene["cast"][0]["action"], good["cast"][0]["action"])
+        for p in good["props"]:
+            self.assertIn(p, scene["props"])
+        self.assertEqual(S.validate(scene, "stone_age"), [])
+
     def test_a_scene_that_does_not_show_its_words_is_respecified_only_if_valid(self):
         ep = _ep(3)
         calls = []
@@ -119,7 +133,7 @@ class TheStoryboardIsLookedAtFirst(unittest.TestCase):
                 "cast": [{"who": "woman", "pose": "sit", "action": "fish"}], "props": ["reeds"]}
         rep = self.SB.polish(ep, judge=judge, ask=lambda sy, u: json.dumps(good), work=self.work / "w", rounds=1)
         self.assertEqual(rep["repaired"], 1)
-        self.assertEqual(ep["chapters"][0]["beats"][0]["scene"], good)
+        self._is_the_respec(ep["chapters"][0]["beats"][0]["scene"], good)
         ep2 = _ep(3)
         bad = {"setting": "spaceship", "time": "night"}
         self.SB.polish(ep2, judge=_judge_flagging({0: (False, 0)}, []), ask=lambda sy, u: json.dumps(bad),
@@ -171,7 +185,7 @@ class TheStoryboardIsLookedAtFirst(unittest.TestCase):
         rep = self.SB.polish(ep, judge=_judge_flagging({1: (False, 1)}, []), ask=ask, work=self.work / "w3",
                              rounds=1)
         self.assertEqual(rep["repaired"], 1)
-        self.assertEqual(ep["chapters"][0]["beats"][1]["scene"], good)
+        self._is_the_respec(ep["chapters"][0]["beats"][1]["scene"], good)
         self.assertIn("Chapter:", asks[0])
         self.assertIn("could guess the activity", asks[0])
         # the cap: with every scene graded 1, no more than MAX_RESPECS author calls

@@ -10,7 +10,7 @@
   "cast": [
    {
     "who": "elder",
-    "pose": "sit_on",
+    "pose": "sit",
     "action": "feed_fire",
     "mood": "calm",
     "item": "stick",
@@ -91,7 +91,7 @@
       "cast": [
        {
         "who": "man",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "fish",
         "mood": "content",
         "item": "rod"
@@ -195,7 +195,7 @@
       "cast": [
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "eat",
         "mood": "content",
         "item": "bread"
@@ -369,7 +369,7 @@
        },
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "idle",
         "mood": "content",
         "at": "right"
@@ -495,7 +495,7 @@
        },
        {
         "who": "girl",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "idle",
         "mood": "content",
         "at": "center"
@@ -550,7 +550,8 @@
         "pose": "stand",
         "action": "hold",
         "mood": "focused",
-        "at": "center_left"
+        "at": "center_left",
+        "item": "lantern"
        },
        {
         "who": "elder",
@@ -576,7 +577,7 @@
       "cast": [
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "yawn",
         "mood": "sleepy"
        }
@@ -596,7 +597,7 @@
       "cast": [
        {
         "who": "elder",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "hold",
         "item": "lantern",
         "mood": "calm"
@@ -698,7 +699,7 @@
        },
        {
         "who": "child",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "eat",
         "mood": "happy",
         "at": "right"
@@ -971,7 +972,7 @@
        },
        {
         "who": "man",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "look_up",
         "mood": "calm",
         "at": "left"
@@ -1445,7 +1446,7 @@
      }
     },
     {
-     "say": "In the small guard hut, off-duty watchmen doze by a low candle, its flame trembling with each breath of wind through the doorway. One stirs, feeds a stick to the little brazier, then settles back into sleep. Outside, footsteps pass slowly, unhurried, just another circuit of the walls.",
+     "say": "In the small guard hut, off-duty watchmen doze by a low oil lamp, its flame trembling with each breath of wind through the doorway. One stirs, feeds a stick to the little brazier, then settles back into sleep. Outside, footsteps pass slowly, unhurried, just another circuit of the walls.",
      "scene": {
       "setting": "mudbrick_inside",
       "time": "night",
@@ -1637,7 +1638,7 @@
       "cast": [
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "feed_fire",
         "mood": "focused",
         "at": "center"
@@ -1666,7 +1667,7 @@
        },
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "hug_self",
         "mood": "content",
         "at": "center"
@@ -1719,7 +1720,7 @@
       "cast": [
        {
         "who": "elder",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "eat",
         "mood": "calm",
         "at": "left"
@@ -1882,7 +1883,7 @@
       "cast": [
        {
         "who": "woman",
-        "pose": "sit_on",
+        "pose": "sit",
         "action": "stir",
         "mood": "sleepy",
         "at": "center"
