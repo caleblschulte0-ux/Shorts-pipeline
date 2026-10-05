@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261005",
+  "bundle": {
+    "identity": "2493dec1d28cc46e8b97a6832ced93e6c042342fc2341f642b8438a1c00e50ab",
+    "path": "exchange/bundles/20261005/bundle.json"
+  },
+  "request_id": "cc-him-on-everything-s5-53ce55d9d1a4",
+  "safe_request_id": "cc-him-on-everything-s5-53ce55d9d1a4",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "c169631edea172fccc8b45769c4864c72ac070642d07fa48b3a8a37f5d9bc97f",
+  "prompt_used": "An editorial illustration for a short-form video: box of bagels office. It accompanies the narration: \"buried under three hundred about bagels\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Dyi-PwWJd9VPUmiBGlX8alThUKLfZ1EW",
+    "filename": "20261005__cc-him-on-everything-s5-53ce55d9d1a4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Dyi-PwWJd9VPUmiBGlX8alThUKLfZ1EW",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "dfa09c74b129d4133a58e44c7165cda93dcaf7c7bb272feb25baa9aedced4ed7",
+    "bytes": 2569489,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-05T11:34:13.658Z"
+}
