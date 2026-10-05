@@ -129,6 +129,22 @@ every teacher passes (`tests/test_subject_scenes.py`,
   that is his own, not pacing (`bit_problems`). The rubric asks for
   "setup → action → payoff"; the story whose teachers failed this is the
   one the judge called decorative.
+- **The art is LIT, not flat — and that is measured** (operator,
+  2026-10-05: *"the art in general on the B clips needs to be better"*).
+  Every subject was a flat-filled polygon with a hard edge — a gold pile
+  of identical ellipses, two flat pans, a flat coffin — in a world of soft
+  gradients it did not belong to; the hero band of posted brain scenes
+  measured up to 55% exact-colour slabs. `illustrated.py` now carries ONE
+  light model: `KEY` from the upper-left; `solid(cr, rgb, finish)` fills
+  the current path lit-face-to-shadow-face with a rim on the lit edge and
+  an ink edge (finishes: matte, gloss, metal, glass, ice); `box`,
+  `cylinder`, `disc` for those shapes; `contact_shadow` under whatever
+  stands on the ground; `haze` over the distance; `vignette` last. The
+  brain is told it (rule 12) and shown teachers that obey it;
+  `scene_author.craft_problems` renders the scene and refuses a hero band
+  more than `FLAT_MAX` exact flat colour, naming the kit; a scene saved
+  before the light is refused on load and redrawn. Held by
+  `tests/test_the_art_is_lit.py`.
 - **Work is done WITH THE TOOL, in one arc** (operator, 2026-10-02: *"data's
   movements are like tweaker ... he is breaking the iceberg and he is just
   flailing his arms around. Give him like a pick axe and have it feel like

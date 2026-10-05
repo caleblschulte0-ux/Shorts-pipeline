@@ -201,6 +201,225 @@ def flow(cr, pts, t, rgb, spacing=36.0, speed=560.0, r=9.0, a=0.9):
         d += spacing
 
 
+# ------------------------------------------------------------- light ---
+#
+# Operator, 2026-10-05: "the art in general on the B clips needs to be
+# better." Every subject was a flat-filled polygon with a hard edge — a
+# gold pile of identical ellipses, a scale of two flat pans, a coffin of
+# plank lines — sitting in a world of soft gradients it did not belong to.
+# ONE light model for everything solid, so a scene is lit like a scene:
+# a key light from the upper-left, a lit face falling to a shadow face, a
+# rim on the lit edge, an ink edge, and a contact shadow where a thing
+# meets the ground. `scene_author.craft_problems` MEASURES it: a frame
+# whose hero band is mostly exact-colour slabs is refused as clip art.
+
+KEY = (-0.55, -0.83)                 # where the light comes from (unit-ish)
+KEY_LIT = 1.0                        # the lit face is the colour itself
+KEY_SHADE = look.ILLU_SHADE          # the shadow face = colour * this
+KEY_RIM = look.ILLU_RIM              # rim = colour mixed this far to white
+EDGE_K = 0.42                        # the ink edge = colour * this
+FINISHES = ("matte", "gloss", "metal", "glass", "ice")
+
+
+def _path_box(cr):
+    x0, y0, x1, y1 = cr.fill_extents()
+    return x0, y0, x1, y1
+
+
+def _lit_shade(rgb, finish):
+    # the lit face is always lighter than the colour: a matte lit face equal
+    # to the colour left the first half of every gradient a flat run
+    lit = _mix(rgb, (255, 255, 255), 0.16 if finish in ("gloss", "metal") else 0.12)
+    shade = _scale(rgb, KEY_SHADE)
+    if finish == "ice":
+        lit = _mix(rgb, (255, 255, 255), 0.25)
+        shade = _mix(_scale(rgb, 0.78), (40, 80, 140), 0.25)
+    return lit, shade
+
+
+def solid(cr, rgb, finish="matte", a=1.0, edge=True, rim=True, depth=1.0):
+    """Fill the CURRENT PATH as a lit solid: lit face (upper-left) falling
+    to the shadow face (lower-right), a rim highlight along the lit edge,
+    an ink edge. Use it where you would have called cr.fill() on a
+    subject. `depth` 0..1 scales how far the shading falls; `finish` is
+    one of FINISHES. Consumes the path."""
+    x0, y0, x1, y1 = _path_box(cr)
+    if x1 <= x0 or y1 <= y0:
+        cr.new_path()
+        return
+    w, h = x1 - x0, y1 - y0
+    lit, shade = _lit_shade(rgb, finish)
+    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+    L = max(w, h) * 0.75 * max(0.15, depth)
+    g = cairo.LinearGradient(cx + KEY[0] * L, cy + KEY[1] * L,
+                             cx - KEY[0] * L, cy - KEY[1] * L)
+    g.add_color_stop_rgba(0.0, *_c(lit, a))
+    g.add_color_stop_rgba(0.45, *_c(rgb, a))
+    g.add_color_stop_rgba(1.0, *_c(shade, a))
+    cr.save()
+    cr.set_source(g)
+    cr.fill_preserve()
+    if finish in ("gloss", "metal", "glass", "ice"):
+        # a specular streak across the lit third
+        s = cairo.LinearGradient(x0, y0, x0 + w * 0.6, y0 + h * 0.9)
+        hi = 0.42 if finish == "metal" else 0.30 if finish == "glass" else 0.22
+        s.add_color_stop_rgba(0.00, 1, 1, 1, 0)
+        s.add_color_stop_rgba(0.28, 1, 1, 1, hi * a)
+        s.add_color_stop_rgba(0.40, 1, 1, 1, 0)
+        if finish == "metal":                 # a second, dimmer band
+            s.add_color_stop_rgba(0.62, 1, 1, 1, 0.14 * a)
+            s.add_color_stop_rgba(0.72, 1, 1, 1, 0)
+        cr.set_source(s)
+        cr.fill_preserve()
+    if rim:
+        # the rim: the path's own outline, offset toward the light, clipped
+        # to the shape so only the lit edge shows
+        cr.save()
+        cr.clip_preserve()
+        cr.translate(-KEY[0] * 3.0, -KEY[1] * 3.0)
+        cr.set_line_width(5.0)
+        cr.set_source_rgba(*_c(_mix(rgb, (255, 255, 255), KEY_RIM), 0.55 * a))
+        cr.stroke_preserve()
+        cr.restore()
+    if edge:
+        cr.set_line_width(4.0)
+        cr.set_source_rgba(*_c(_scale(rgb, EDGE_K), 0.9 * a))
+        cr.set_line_join(cairo.LINE_JOIN_ROUND)
+        cr.stroke_preserve()
+    cr.restore()
+    cr.new_path()
+
+
+def box(cr, x, y, w, h, rgb, depth=None, finish="matte", a=1.0):
+    """A three-quarter box standing on (x, y) its bottom-left: lit front,
+    shadow side on the right, light top. `depth` defaults to 0.22 * w."""
+    d = (w * 0.22) if depth is None else depth
+    dy = d * 0.55
+    lit, shade = _lit_shade(rgb, finish)
+    cr.rectangle(x, y - h, w, h)
+    solid(cr, rgb, finish=finish, a=a, rim=False)
+    cr.move_to(x + w, y - h)
+    cr.line_to(x + w + d, y - h - dy)
+    cr.line_to(x + w + d, y - dy)
+    cr.line_to(x + w, y)
+    cr.close_path()
+    solid(cr, shade, finish="matte", a=a, rim=False, depth=0.5)
+    cr.move_to(x, y - h)
+    cr.line_to(x + d, y - h - dy)
+    cr.line_to(x + w + d, y - h - dy)
+    cr.line_to(x + w, y - h)
+    cr.close_path()
+    solid(cr, _mix(lit, (255, 255, 255), 0.18), finish="matte", a=a, depth=0.5)
+
+
+def cylinder(cr, x, y, w, h, rgb, finish="matte", a=1.0):
+    """An upright cylinder standing on (x, y) its bottom-left: the body
+    shaded across its width, an elliptical top."""
+    ry = w * 0.16
+    lit, shade = _lit_shade(rgb, finish)
+    g = cairo.LinearGradient(x, 0, x + w, 0)
+    g.add_color_stop_rgba(0.00, *_c(shade, a))
+    g.add_color_stop_rgba(0.28, *_c(lit, a))
+    g.add_color_stop_rgba(0.55, *_c(rgb, a))
+    g.add_color_stop_rgba(1.00, *_c(_scale(shade, 0.85), a))
+    cr.save()
+    cr.rectangle(x, y - h, w, h)
+    cr.set_source(g)
+    cr.fill()
+    for yy in (y, y - h):                      # the bottom and the top rims
+        cr.save()
+        cr.translate(x + w / 2, yy)
+        cr.scale(w / 2, ry)
+        cr.arc(0, 0, 1, 0, 2 * math.pi)
+        cr.restore()
+        if yy == y:
+            cr.set_source_rgba(*_c(shade, a))
+            cr.fill()
+        else:
+            solid(cr, _mix(lit, (255, 255, 255), 0.12), finish=finish, a=a, depth=0.6)
+    cr.set_line_width(4.0)
+    cr.set_source_rgba(*_c(_scale(rgb, EDGE_K), 0.9 * a))
+    cr.move_to(x, y - h)
+    cr.line_to(x, y)
+    cr.move_to(x + w, y - h)
+    cr.line_to(x + w, y)
+    cr.stroke()
+    cr.restore()
+
+
+def disc(cr, x, y, r, rgb, finish="matte", a=1.0):
+    """A sphere: a radial highlight toward the key light, a dark limb, a
+    rim and an edge."""
+    lit, shade = _lit_shade(rgb, finish)
+    g = cairo.RadialGradient(x + KEY[0] * r * 0.45, y + KEY[1] * r * 0.45, r * 0.08,
+                             x, y, r * 1.05)
+    g.add_color_stop_rgba(0.0, *_c(_mix(lit, (255, 255, 255), 0.25), a))
+    g.add_color_stop_rgba(0.45, *_c(rgb, a))
+    g.add_color_stop_rgba(1.0, *_c(shade, a))
+    cr.save()
+    cr.arc(x, y, r, 0, 2 * math.pi)
+    cr.set_source(g)
+    cr.fill_preserve()
+    if finish in ("gloss", "metal", "glass"):
+        cr.save()
+        cr.clip_preserve()
+        glow(cr, x + KEY[0] * r * 0.5, y + KEY[1] * r * 0.5, r * 0.45, (255, 255, 255),
+             0.55 * a)
+        cr.restore()
+    cr.set_line_width(4.0)
+    cr.set_source_rgba(*_c(_scale(rgb, EDGE_K), 0.9 * a))
+    cr.stroke()
+    cr.restore()
+
+
+def contact_shadow(cr, x, y, w, a=0.35, h=None):
+    """A soft shadow on the ground under a thing that stands at (x, y),
+    `w` wide. Call it BEFORE drawing the thing."""
+    h = h or max(10.0, w * 0.16)
+    cr.save()
+    cr.translate(x, y)
+    cr.scale(max(1.0, w / 2), max(1.0, h / 2))
+    g = cairo.RadialGradient(0, 0, 0, 0, 0, 1)
+    g.add_color_stop_rgba(0.0, 0, 0, 0, a)
+    g.add_color_stop_rgba(0.6, 0, 0, 0, a * 0.55)
+    g.add_color_stop_rgba(1.0, 0, 0, 0, 0)
+    cr.set_source(g)
+    cr.arc(0, 0, 1, 0, 2 * math.pi)
+    cr.fill()
+    cr.restore()
+
+
+def haze(cr, y0, y1, rgb, a=0.35):
+    """Atmospheric depth: fade what is already painted between y0 and y1
+    toward the sky colour, strongest at the top. Paint it over the far
+    layers, before the hero."""
+    g = cairo.LinearGradient(0, y0, 0, y1)
+    g.add_color_stop_rgba(0.0, *_c(rgb, a))
+    g.add_color_stop_rgba(1.0, *_c(rgb, 0))
+    cr.set_source(g)
+    cr.rectangle(0, y0, W, y1 - y0)
+    cr.fill()
+
+
+def vignette(cr, a=0.30):
+    """Darken the corners so the eye lands on the hero. Last thing drawn
+    before the text."""
+    g = cairo.RadialGradient(W / 2, H * 0.46, H * 0.30, W / 2, H * 0.46, H * 0.78)
+    g.add_color_stop_rgba(0.0, 0, 0, 0, 0)
+    g.add_color_stop_rgba(1.0, 0, 0, 0, a)
+    cr.set_source(g)
+    cr.rectangle(0, 0, W, H)
+    cr.fill()
+
+
+def edge(cr, rgb, width=4.0, a=0.9):
+    """Ink the current path's outline (keeps nothing)."""
+    cr.set_line_width(width)
+    cr.set_source_rgba(*_c(_scale(rgb, EDGE_K), a))
+    cr.set_line_join(cairo.LINE_JOIN_ROUND)
+    cr.stroke()
+
+
 def pil_surface(img):
     """A PIL RGBA image as a premultiplied cairo surface."""
     img = img.convert("RGBA")

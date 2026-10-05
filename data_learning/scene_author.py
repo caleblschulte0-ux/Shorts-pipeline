@@ -68,7 +68,12 @@ KIT_NAMES = ("vgrad", "glow", "text", "fit_readout", "by_time", "tree", "stump",
              "dawn_sky", "cafe", "rowhouse", "street", "traffic",
              "heat_shimmer", "shape_path", "stride", "walk", "step_through", "landed", "STEP_BOB", "PACE_PERIOD", "EDGE", "clamp", "ease", "pop",
              "seg", "W", "H", "P", "_c", "scar_path", "SCAR", "FOREST_Y",
-             "STREET_Y", "_TREES", "forest_floor", "FRANCE")
+             "STREET_Y", "_TREES", "forest_floor", "FRANCE",
+             # THE LIGHT (2026-10-05, "the art in general on the B clips
+             # needs to be better"): one key light, lit face to shadow face,
+             # a rim, an edge, a contact shadow — illustrated.py
+             "solid", "box", "cylinder", "disc", "contact_shadow", "haze",
+             "vignette", "edge", "KEY", "FINISHES")
 SAFE_BUILTINS = {n: __builtins__[n] if isinstance(__builtins__, dict)
                  else getattr(__builtins__, n)
                  for n in ("range", "len", "min", "max", "abs", "int", "float",
@@ -636,6 +641,58 @@ def tool_problems(fn, pts, decl: dict) -> list[str]:
             f"the thing changes so one swing lands per change"]
 
 
+#: THE ART IS LIT, NOT FLAT (operator, 2026-10-05: "the art in general on
+#: the B clips needs to be better"). Measured on the posted scenes: the
+#: hero band of a brain scene was up to 55% exact-colour slabs — a gold
+#: pile of identical flat ellipses, two flat pans, a flat coffin — while
+#: the world behind it was soft gradients. A lit solid (illustrated.solid,
+#: box, cylinder, disc) has no slab wider than a few pixels. The check
+#: counts, in the band the hero lives in, pixels whose colour is EXACTLY
+#: the colour `FLAT_STEP` px to the right and below; more than
+#: `FLAT_MAX` of the band is clip art.
+FLAT_STEP = 12
+FLAT_MAX = 0.30
+FLAT_BAND = (470, 1500)
+
+
+def flat_fraction(surf, band=FLAT_BAND, step=FLAT_STEP) -> float:
+    import numpy as np
+    stride = surf.get_stride() // 4
+    a = np.frombuffer(surf.get_data(), dtype=np.uint8).reshape(SS.H, stride, 4)
+    a = a[band[0]:band[1], :SS.W, :3].astype(np.int16)
+    r = (np.abs(a[:, step:] - a[:, :-step]).sum(axis=2) == 0)[:-step, :]
+    d = (np.abs(a[step:] - a[:-step]).sum(axis=2) == 0)[:, :-step]
+    return float((r & d).mean())
+
+
+def craft_problems(fn, pts, at=(0.3, 0.85)) -> list[str]:
+    """Refuse a scene whose hero band is mostly flat colour. Rendered with
+    Data in it (his rig is cel-shaded and small) and with the text."""
+    import cairo
+    surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, SS.W, SS.H)
+    worst = 0.0
+    for u in at:
+        cr = cairo.Context(surf)
+        clock: dict = {}
+        f = int(u * 180)
+
+        def host(role, x, fy, h, pace=False, beat=0, _cr=cr, _f=f):
+            SS.place_host(_cr, role, SS.act_phase(clock, (role, int(beat)), _f),
+                          None, x, fy, h, _f / 30.0, pace)
+        with I.text_layer(cr):
+            fn(cr, 3.0 + u * 8, u, pts, host)
+        surf.flush()
+        worst = max(worst, flat_fraction(surf))
+    if worst > FLAT_MAX:
+        return [f"the picture is {worst:.0%} flat colour in the band the hero "
+                f"lives in (max {FLAT_MAX:.0%}) — clip art. Light every solid: "
+                f"draw its path and call solid(cr, rgb) (box(), cylinder(), "
+                f"disc() for those shapes), a contact_shadow() under what "
+                f"stands on the ground, haze() over the distance, vignette() "
+                f"last. Never cr.fill() a subject in one flat colour"]
+    return []
+
+
 #: A number has to stay up long enough to READ. Brain hooks cycled a value
 #: every few frames and the judge wrote "a hook number that flickers too fast
 #: to register" (Amazon, 2026-09-23).
@@ -725,6 +782,10 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
     problems += declaration_problems(fn)
     if not declaration_problems(fn):
         problems += tool_problems(fn, pts, declared(fn))
+    try:
+        problems += craft_problems(fn, pts)
+    except Exception as e:  # noqa: BLE001 — a crash here is reported above
+        problems.append(f"craft check crashed: {e}")
     if len(hosts) < 11:
         problems.append("Data is missing from a frame (host not called)")
     problems += bit_problems(fn, pts)
@@ -871,6 +932,17 @@ like on a job. Your CAUSE line names the verb; the verifier knows which \
 tool that verb takes and refuses a scene that does the work empty-handed. \
 Time the change to the strike: the crack appears on the beat the pick \
 lands, not while he winds up.
+12. THE ART IS LIT, NOT FLAT. One key light from the upper-left (KEY). \
+Nothing solid is a flat fill: draw its path, then solid(cr, rgb) — lit face \
+falling to shadow face, a rim on the lit edge, an ink edge — with a finish \
+when the material has one (gloss, metal, glass, ice). Boxes are box(), \
+round things disc() and cylinder(). Everything that stands on the ground \
+stands on a contact_shadow() drawn first. Far things go under haze(); \
+vignette() last, before the text. Build the hero from several lit pieces \
+(a scale is a post, a beam, two pans, chains — each shaded), not one \
+silhouette. A frame whose hero band is more than 30% exact flat colour is \
+MEASURED and refused as clip art — a gold pile of identical flat ellipses, \
+two flat pans and a flat box were the look this rule replaces.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \
@@ -1094,10 +1166,32 @@ def saved_scene(seg_cfg: dict, log=print):
     code = (seg_cfg or {}).get("illustrated_scene")
     if isinstance(code, str) and code.strip():
         try:
-            return compile_scene(code)
+            fn = compile_scene(code)
         except Exception as e:  # noqa: BLE001 — a stale/edited scene is re-authored
             log(f"[scene_author] saved scene refused ({e})")
+            return None
+        # A scene saved before the light (2026-10-05) is flat clip art; it is
+        # redrawn under the new rules rather than shipped again.
+        probs = _saved_craft(fn, seg_cfg, log)
+        if probs:
+            log(f"[scene_author] saved scene refused — {probs[0][:90]}")
+            return None
+        return fn
     return None
+
+
+def _saved_craft(fn, seg_cfg, log) -> list[str]:
+    try:
+        from shared import rewrite_mailbox as _rw
+        d = _rw._dataset(seg_cfg or {}) or {}
+        pts = [(str(p["label"]), float(p["value"])) for p in d.get("points") or []
+               if p.get("value") is not None]
+        if not pts:
+            return []
+        return craft_problems(fn, pts)
+    except Exception as e:  # noqa: BLE001 — cannot judge it: keep it
+        log(f"[scene_author] saved scene craft check skipped ({e})")
+        return []
 
 
 HOOK_BRIEF = """THIS IS THE HOOK — the first ~3 seconds, before the story \
@@ -1124,9 +1218,16 @@ def saved_bookend(story_cfg: dict, kind: str, n_beats: int, log=print):
     if isinstance(code, str) and code.strip() and isinstance(idx, int) \
             and 0 <= idx < n_beats:
         try:
-            return compile_scene(code), idx
+            fn = compile_scene(code)
         except Exception as e:  # noqa: BLE001
             log(f"[scene_author] saved {kind} refused ({e})")
+            return None
+        segs = story_cfg.get("segments") or []
+        probs = _saved_craft(fn, segs[idx] if idx < len(segs) else {}, log)
+        if probs:
+            log(f"[scene_author] saved {kind} refused — {probs[0][:90]}")
+            return None
+        return fn, idx
     return None
 
 
