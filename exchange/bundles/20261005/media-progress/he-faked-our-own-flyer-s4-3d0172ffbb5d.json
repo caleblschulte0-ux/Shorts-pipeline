@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261005",
+  "bundle": {
+    "identity": "2493dec1d28cc46e8b97a6832ced93e6c042342fc2341f642b8438a1c00e50ab",
+    "path": "exchange/bundles/20261005/bundle.json"
+  },
+  "request_id": "he-faked-our-own-flyer-s4-3d0172ffbb5d",
+  "safe_request_id": "he-faked-our-own-flyer-s4-3d0172ffbb5d",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "f34295bd6253f9303438ae9e79baf748c632464b8910094181d1fabf46b3dd2b",
+  "prompt_used": "An editorial illustration for a short-form video: zoomed phone screen closeup. It accompanies the narration: \"zoomed in on the competitor's logo\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1ba6kS4nkET6NY5XX_V8ih_CEPRgHuiau",
+    "filename": "20261005__he-faked-our-own-flyer-s4-3d0172ffbb5d.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1ba6kS4nkET6NY5XX_V8ih_CEPRgHuiau",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "17aac8c18936a99e452ffd31a97ddb6304dedf4c327baa5d173ea0387dfb4998",
+    "bytes": 1905020,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-05T11:34:21.891Z"
+}
