@@ -100,6 +100,10 @@ do. You are cutting WORDS, not facts.
 
 {rule}
 
+The gate's other word rules, which the rewrite must also clear (a story is \
+often held for one of these at the same time):
+{rules}
+
 Keep the title exactly. Keep each beat's headline number and what it means. \
 Prefer the plain verb; drop the throat-clearing ("That means", "In other \
 words", "It's worth noting").
@@ -112,7 +116,8 @@ QUESTION ({qw} words): {question}
 
 Return STRICT JSON: {{"hook": str, "closing": str, "question": str, \
 "segments": [{{"topic": str, "say": str}}, ...]}} with exactly {n} segments \
-in the same order, each "topic" copied from the beat."""
+in the same order. A "topic" is printed on the video: at most {tw} words — \
+keep the beat's when it fits, shorten it when it does not."""
 
 
 def _prompt(sc: dict, b: dict, note: str | None = None) -> str:
@@ -120,15 +125,23 @@ def _prompt(sc: dict, b: dict, note: str | None = None) -> str:
     beats = "\n".join(
         f"BEAT {i + 1} topic={seg.get('topic') or ''!r} ({words(seg.get('say'))} "
         f"words): {seg.get('say') or ''}" for i, seg in enumerate(segs))
-    p = _PROMPT.format(rule=rule(b), title=sc.get("title") or "",
+    from shared import rewrite_mailbox as rw
+    rules = "\n".join(f"- {r}" for r in rw.RULES if not r.startswith("PACE:"))
+    p = _PROMPT.format(rule=rule(b), rules=rules, title=sc.get("title") or "",
                        hw=words(sc.get("hook")), hook=sc.get("hook") or "",
                        beats=beats, cw=words(sc.get("closing")),
                        closing=sc.get("closing") or "",
                        qw=words(sc.get("question")),
-                       question=sc.get("question") or "", n=len(segs))
+                       question=sc.get("question") or "", n=len(segs),
+                       tw=_topic_words())
     if note:
         p += f"\n\nYour previous rewrite was REFUSED — fix exactly this:\n{note}"
     return p
+
+
+def _topic_words() -> int:
+    from shared import rewrite_mailbox as rw
+    return int(rw.MAX_TOPIC_WORDS)
 
 
 def _default_brain(prompt: str):
