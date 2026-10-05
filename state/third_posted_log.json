@@ -11163,13 +11163,48 @@
       "director_cut": true
     },
     "clip-20261005-5": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-ada222f23b5ae7c9",
-      "streamer": "cinna",
+      "url": "https://youtube.com/shorts/nQyAM0ZxNbU",
       "title": "Cinna Crew Ditched Her Mid-Chase",
       "kind": "story",
-      "ts": "2026-10-05T12:32:26.981149+00:00",
+      "ts": "2026-10-05T12:32:39.729795+00:00",
+      "uploaded_at": "2026-10-05T12:32:39.729813+00:00",
+      "publish_at": "2026-10-05T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261005-cinna-crew-ditched-her-mid-chase-73ea565d"
+      },
+      "story_key": "story-ada222f23b5ae7c9",
+      "member_keys": [
+        "https://www.twitch.tv/cinna/clip/MagnificentIronicRadishWutFace-cYLmsdwhSAe5L7uQ",
+        "https://www.twitch.tv/cinna/clip/LovelyCrepuscularSalamanderKeepo-dQSCakfYd7MNOgbp",
+        "https://www.twitch.tv/cinna/clip/LovelyCrepuscularSalamanderKeepo-dQSCakfYd7MNOgbp",
+        "https://www.twitch.tv/cinna/clip/LovelyCrepuscularSalamanderKeepo-dQSCakfYd7MNOgbp"
+      ],
+      "streamer": "cinna",
+      "who": [
+        "cinna"
+      ],
+      "series": "story",
+      "experiment_arm": "story",
+      "structure": "story",
+      "actual_structure": "story",
+      "n_beats": 4,
+      "story_structure": "chronological",
+      "duration_s": 41.9,
+      "narrative_score": 74,
+      "revision_count": 2,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 2,
+      "replay_count": 0
+    },
+    "clip-20261005-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caseoh_/clip/SparklyFairRatTBTacoLeft-10mLZLdWr0rj_REX",
+      "story_key": null,
+      "streamer": "caseoh_",
+      "title": "Caseoh Says 'Heck No' And The Whole Moment Falls Apart",
+      "kind": "twitch_clip",
+      "ts": "2026-10-05T12:34:53.219698+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
