@@ -552,20 +552,27 @@ def pre_render_verdict(sc: dict, *, use_llm: bool = True) -> dict:
                 and dist["ok"])
     thesis = (beats_support_one_thesis(sc, use_llm=use_llm) if other_ok
               else {"ok": True, "reasons": [], "judge": "skipped"})
+    # PACE (operator, 2026-10-05: "15 seconds per beat is far too long"). A
+    # word reason: the mailbox asks for a rewrite, and post_stories has the
+    # brain tighten the story before this verdict is taken.
+    from shared import pacing as _pacing
+    pace = _pacing.problems(sc)
     reasons = ([f"data: {r}" for r in prov["reasons"]]
                + [f"data: {r}" for r in finding["reasons"]]
                + [f"premise: {r}" for r in prem["reasons"]]
                + [f"beats: {r}" for r in dist["reasons"]]
                + [f"beats: {r}" for r in spoken["reasons"]]
                + [f"thesis: {r}" for r in thesis["reasons"]]
+               + [f"pace: {r}" for r in pace]
                # Reported, not refused — see `WILD_NUMBER`.
                + [f"beats (noted): {r}" for r in spoken["notes"]])
-    return {"ok": other_ok and thesis["ok"],
+    return {"ok": other_ok and thesis["ok"] and not pace,
             "reasons": reasons,
             "data_ok": prov["ok"] and finding["ok"],
             "premise_ok": prem["ok"],
             "beats_ok": dist["ok"] and spoken["ok"],
-            "thesis_ok": thesis["ok"]}
+            "thesis_ok": thesis["ok"],
+            "pace_ok": not pace}
 
 
 if __name__ == "__main__":

@@ -724,6 +724,28 @@ def _speechify_list_voices_once(key: str) -> None:
         print(f"[tts] speechify voices list failed: {str(e)[:140]}", file=sys.stderr)
 
 
+def _tempo() -> float:
+    """The narration's playback rate over the engine's natural pace, from the
+    registry (shared/pacing.py). 1.0 means untouched."""
+    try:
+        from shared import pacing
+        return float(pacing.budget()["tempo"])
+    except Exception:  # noqa: BLE001
+        return 1.0
+
+
+def _retime(wav: Path, tempo: float) -> None:
+    """Play one synthesized line at `tempo` (pitch kept), in place. Done per
+    line, before `_dur`, so every caption and scene window is measured on
+    the audio that actually plays."""
+    if abs(tempo - 1.0) < 0.005:
+        return
+    tmp = wav.with_suffix(".tempo.wav")
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(wav),
+          "-af", f"atempo={tempo:.4f}", "-c:a", "pcm_s16le", str(tmp)])
+    tmp.replace(wav)
+
+
 def synth_narration(sentences, workdir: Path, voice: str):
     import os
     import soundfile as sf
@@ -733,11 +755,17 @@ def synth_narration(sentences, workdir: Path, voice: str):
     # batch is thrown away and the next engine voices everything.
     wavs, windows, t = [], [], 0.0
     TTS_USED.update(engine=None, why_not_elevenlabs=None)
+    # PACE (operator, 2026-10-05: "15 seconds per beat is far too long").
+    # Speechify's natural rate measured 130 words a minute on the posted
+    # videos; every engine's lines play at the registry's tempo, applied
+    # PER LINE before its length is measured so the windows stay exact.
+    tempo = _tempo()
     for i, sent in enumerate(sentences):
         w = workdir / f"s{i}.wav"
         if not _elevenlabs_wav(_tts_text(sent), w):
             wavs, windows, t = [], [], 0.0
             break
+        _retime(w, tempo)
         d = _dur(w) + 0.12
         windows.append((t, t + d)); t += d; wavs.append(w)
     if wavs:
@@ -754,6 +782,7 @@ def synth_narration(sentences, workdir: Path, voice: str):
             if not _speechify_wav(_tts_text(sent), w):
                 ok = False
                 break
+            _retime(w, tempo)
             d = _dur(w) + 0.12
             windows.append((t, t + d)); t += d; wavs.append(w)
         if ok and wavs:
@@ -774,8 +803,8 @@ def synth_narration(sentences, workdir: Path, voice: str):
         except Exception:  # noqa: BLE001
             voice = "am_fenrir"
         for i, sent in enumerate(sentences):
-            samples, sr = k.create(_tts_text(sent), voice=voice, speed=1.10,
-                                   lang="en-us")
+            samples, sr = k.create(_tts_text(sent), voice=voice, speed=tempo,
+                                   lang="en-us")           # the same tempo, natively
             w = workdir / f"s{i}.wav"
             sf.write(str(w), samples, sr)
             d = _dur(w) + 0.12       # tight breath between lines (pace = retention)
@@ -4080,6 +4109,9 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         print(f"[studio] manifest skipped: {e}", file=sys.stderr)
     try:
         _style["tts"] = dict(TTS_USED)          # which voice, and why not ElevenLabs
+        # seconds each narration window was on screen: hook, beats, closing
+        _style["beat_s"] = [round(b - a, 2) for a, b in windows]
+        _style["tempo"] = _tempo()
         _style_arms.sidecar(out_path).write_text(json.dumps(_style))
     except Exception as e:  # noqa: BLE001
         print(f"[studio] style sidecar skipped: {e}", file=sys.stderr)

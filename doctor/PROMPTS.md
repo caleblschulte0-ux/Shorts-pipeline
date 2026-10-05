@@ -553,7 +553,7 @@ ONLY numbers you can derive from each segment's `data.points` (a listed
 value, a difference, a percent change, a share of the total, a rescale) or
 a year that appears as a label. No country, company or person the data
 does not name. Topics <= 4 words (they are printed on the video), says <=
-40 words. Write `answer_path` as one JSON object matching `answer_schema`,
+16 words — ONE sentence (operator 2026-10-05: a beat is about 8 seconds). Write `answer_path` as one JSON object matching `answer_schema`,
 request_id and slug copied. Commit.
 
 HARD RULES: never edit a request file; never edit anything outside the

@@ -108,7 +108,8 @@ on Tuesday. Now:
   start of every explainer run) **validates by code**: same segment
   count; every spoken quantity derivable from that beat's data through the
   gate's own matcher (`shared.beat_match`); no named entity the data does
-  not name; topics ≤ 4 words, says ≤ 40; and the same deterministic gate
+  not name; topics ≤ 4 words, says inside the registry's `pacing` budget
+  (one sentence, `say_words` at most — `shared/pacing.py`); and the same deterministic gate
   the run applies must PASS on the rewritten story. Only then does
   `niche.config.json` change (`words_by: chatgpt-rewrite`), the slug's old
   scene plan is dropped, and the persist commit goes out **without**

@@ -61,7 +61,11 @@ SCHEMA = "shorts-rewrite-request/v1"
 ANSWER_SCHEMA_NAME = "shorts-rewrite-answer/v1"
 MAX_POINTS = 24           # data points listed per segment in a request
 MAX_TOPIC_WORDS = 4       # a topic is an ON-SCREEN label; long ones clip
-MAX_SAY_WORDS = 40
+# The beat budget is the registry's (shared/pacing.py; operator 2026-10-05:
+# "15 seconds per beat is far too long"). 40 was the old ceiling and it let
+# 26-word beats through for a month.
+from shared import pacing as _pacing  # noqa: E402
+MAX_SAY_WORDS = _pacing.budget()["say_words"]
 WORDS_BY = "chatgpt-rewrite"
 
 
@@ -94,8 +98,7 @@ RULES = [
     "from the listed points.",
     "Keep every number that is already correct. Do not add a country, "
     "company or person the data does not name.",
-    "Each SAY is one spoken sentence or two, at most 40 words, and says its "
-    "beat's headline number out loud.",
+    _pacing.rule() + " Each SAY says its beat's headline number out loud.",
     "TOPIC labels are printed on the video: at most 4 words, no clause.",
     # operator, 2026-09-25 — the full doctrine is shared/hook_doctrine.py
     "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 "
@@ -173,7 +176,7 @@ def _dataset(seg: dict) -> dict | None:
 # What the gate would say — word reasons only
 # ---------------------------------------------------------------------------
 
-_WORD_PREFIX = ("premise:", "thesis:", "beats:")
+_WORD_PREFIX = ("premise:", "thesis:", "beats:", "pace:")
 
 
 def word_holds(sc: dict) -> list[str]:
