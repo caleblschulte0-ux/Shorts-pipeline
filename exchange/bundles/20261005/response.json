@@ -1,0 +1,452 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261005",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 7,
+    "registry_sha256": "9414de6fe8e5f9478aede832241005a45a78610ef4167c5269998c10de90c460",
+    "source_commit": "2fa0630c0448062725a5c769d29dab520bb91871",
+    "production_date": "20261005",
+    "bundle_sha256": "2493dec1d28cc46e8b97a6832ced93e6c042342fc2341f642b8438a1c00e50ab"
+  },
+  "packages": [
+    {
+      "slug": "china-passed-the-world-in-robots",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the China-versus-rest-of-world crossover is the surprise, and the chart makes the scale immediately legible."
+    },
+    {
+      "slug": "debt-interest-passed-defense-spending",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; interest overtaking defense is a concrete budget crossover, and the graph carries the comparison cleanly."
+    },
+    {
+      "slug": "energy-drinks-passed-sports-drinks",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the familiar category matchup and widening gap already give the chart a sharp visual payoff."
+    },
+    {
+      "slug": "french-bulldog-passed-the-labrador",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; ending the Labrador’s 31-year reign is specific, surprising, and best revealed by the crossover itself."
+    },
+    {
+      "slug": "cc-him-on-everything",
+      "script": "CC him on everything? My new regional manager announced that every email, no matter how small, needed him CC'd—no exceptions, so he could stay in the loop. Fine. I CC'd him on lunch orders. I CC'd him when the printer jammed. I even CC'd him on a reply-all thanking someone for coffee. Within four days, his inbox had over eleven hundred unread messages, and he missed the actual urgent email about a shipment delay, buried under three hundred about bagels. Bagel visibility: excellent. He called an emergency meeting to demand better judgment about what counted as necessary. I quoted his no-exceptions policy in front of everyone. He changed the policy within the hour. Funny how fast judgment returns when the inbox revolt reaches its author. Would he still demand every email?",
+      "editor_note": "Rewrote to 132 words, preserved all eight shot phrases and protected facts, added a dry bagel aside, and turned the policy reversal into the specific closing question."
+    },
+    {
+      "slug": "he-faked-our-own-flyer",
+      "script": "Forty dollars off—again? At the hardware store, a regular tried to price-match a power drill using a photo of a competitor's flyer. He insisted their price was forty dollars less. I matched it without arguing—store policy. A week later, he returned with the same flyer for another tool, then one with the same font and same crooked blue sale banner for a third item. I zoomed in on the competitor's logo. It was ours, mirrored and recolored in red. Subtle work. He'd been editing our weekly ads and claiming they came from across town. I quietly printed every transaction from the past two months, checked our sale calendar, and gave the folder to my manager. He got banned from price-matching for a year. He still shops, paying full price loudly. Was the fake red logo worth a year?",
+      "editor_note": "Rewrote to 140 words, preserved all eight shot phrases and protected facts, sharpened the forged-logo reveal, and closed on the one-year price-match ban."
+    }
+  ],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "The Food Shortage Forecast Missed The Harvest",
+      "hook": "The world was told food would run out. The data took a very different route.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8. By 2017, it was 91.3 — 1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons. By 2024, it was 1644.1 million metric tons — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "The feared famine never arrived the way people predicted. School climbed, grain climbed, and the forecast missed the field.",
+      "question": "Which number surprised you most — school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Tripled—And It Isn’t Solar",
+      "hook": "One energy source tripled. It is mostly the stuff people throw away.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 % of total energy. By 2024, it was 30.1 % of total energy — 3.0 times higher.",
+        "In 1998, access to electricity was 73.2 % of population. By 2024, it was 91.9 % of population — 1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste was 903.8 Mt CO2e. By 2024, it was 1,652 Mt CO2e — 1.8 times higher."
+      ],
+      "closing": "A third of the energy mix now comes from waste and renewables. Useful trash has had quite a career.",
+      "question": "Which number surprised you most — fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Didn’t Keep Accelerating",
+      "hook": "The population curve changed direction. Quietly, but dramatically.",
+      "says": [
+        "In 1972, rural population was 63.1 % of total population. By 2025, it was 42.2 % of total population — down to 67 percent of that.",
+        "In 1972, population in the largest city was 18.2 % of urban population. By 2025, it was 16.2 % of urban population — barely moved.",
+        "In 1972, population growth was 2 annual %. By 2025, it was 0.91 annual % — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. What faded was the acceleration everyone assumed would keep going.",
+      "question": "Which number surprised you most — rural, city, or growth?"
+    }
+  ],
+  "media": [
+    {
+      "request_id": "cc-him-on-everything-s0-1d413fe4ed57",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1pCVp2003ufpsJWKvYzs8WmDeS8j77xws",
+        "filename": "20261005__cc-him-on-everything-s0-1d413fe4ed57.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1pCVp2003ufpsJWKvYzs8WmDeS8j77xws",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "f17829b4508926b5d7570814d38b370b7d02f4c162e18482732b29519b154c00",
+        "bytes": 2010619,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261005/media-progress/cc-him-on-everything-s0-1d413fe4ed57.json",
+        "verified_at": "2026-10-05T11:34:07.035Z"
+      }
+    },
+    {
+      "request_id": "cc-him-on-everything-s1-b6420a4e6a65",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1R-1a3YA6ADJDTb0WAA83OsiI5UKUTKzM",
+        "filename": "20261005__cc-him-on-everything-s1-b6420a4e6a65.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1R-1a3YA6ADJDTb0WAA83OsiI5UKUTKzM",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "5a32313c732484c0d46ed508e67532c4cc76b51a5bd8d3b525e8a29979393633",
+        "bytes": 1912035,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261005/media-progress/cc-him-on-everything-s1-b6420a4e6a65.json",
+        "verified_at": "2026-10-05T11:34:08.801Z"
+      }
+    },
+    {
+      "request_id": "cc-him-on-everything-s2-58f5c4d1d517",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1hNeirmHZOuCkuAxE_JXnJbHc8JN7IhMX",
+        "filename": "20261005__cc-him-on-everything-s2-58f5c4d1d517.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1hNeirmHZOuCkuAxE_JXnJbHc8JN7IhMX",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "abdd16c8a2c1574175f3ea0919d4ef935c35612f587fe165b3978d5160d4bc82",
+        "bytes": 1708819,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261005/media-progress/cc-him-on-everything-s2-58f5c4d1d517.json",
+        "verified_at": "2026-10-05T11:34:09.974Z"
+      }
+    },
+    {
+      "request_id": "cc-him-on-everything-s3-f7b1c8468176",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1QuPibEbZ72S0ni5Y6CjTHEfyDVDHBpSN",
+        "filename": "20261005__cc-him-on-everything-s3-f7b1c8468176.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1QuPibEbZ72S0ni5Y6CjTHEfyDVDHBpSN",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "1fc785cbb7e5f9401d049ecfa1a6ed4483af238b9630baf15629b0483d2e546a",
+        "bytes": 1793279,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261005/media-progress/cc-him-on-everything-s3-f7b1c8468176.json",
+        "verified_at": "2026-10-05T11:34:11.222Z"
+      }
+    },
+    {
+      "request_id": "cc-him-on-everything-s4-4da5bede8905",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1TjAXL4Dn2L9mz9SqJFqA6HKPm_CL0LcP",
+        "filename": "20261005__cc-him-on-everything-s4-4da5bede8905.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1TjAXL4Dn2L9mz9SqJFqA6HKPm_CL0LcP",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "0b6adfa909f028f08c094120d37401346158cd0071924466303207497ecc9529",
+        "bytes": 1992135,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261005/media-progress/cc-him-on-everything-s4-4da5bede8905.json",
+        "verified_at": "2026-10-05T11:34:12.486Z"
+      }
+    },
+    {
+      "request_id": "cc-him-on-everything-s5-53ce55d9d1a4",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Dyi-PwWJd9VPUmiBGlX8alThUKLfZ1EW",
+        "filename": "20261005__cc-him-on-everything-s5-53ce55d9d1a4.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Dyi-PwWJd9VPUmiBGlX8alThUKLfZ1EW",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "dfa09c74b129d4133a58e44c7165cda93dcaf7c7bb272feb25baa9aedced4ed7",
+        "bytes": 2569489,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261005/media-progress/cc-him-on-everything-s5-53ce55d9d1a4.json",
+        "verified_at": "2026-10-05T11:34:13.658Z"
+      }
+    },
+    {
+      "request_id": "cc-him-on-everything-s6-5f087892dfc9",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "10UzPaOpOfVQ-UTWSLEEdYppD_xJip5zU",
+        "filename": "20261005__cc-him-on-everything-s6-5f087892dfc9.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=10UzPaOpOfVQ-UTWSLEEdYppD_xJip5zU",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "a3bc204a24af31ea091af1cea362a2317e6226967e7bf2cdb28c37354fcd9299",
+        "bytes": 1837131,
+        "format": "png",
+        "width": 1536,
+        "height": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261005/media-progress/cc-him-on-everything-s6-5f087892dfc9.json",
+        "verified_at": "2026-10-05T11:34:14.766Z"
+      }
+    },
+    {
+      "request_id": "cc-him-on-everything-s7-20977a143d49",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1u8VSJX63GcjTl76SBxLcdE3LcPSmyy3a",
+        "filename": "20261005__cc-him-on-everything-s7-20977a143d49.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1u8VSJX63GcjTl76SBxLcdE3LcPSmyy3a",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "62882b8f7d0070e5d8e5c5252ce355c817ce879b8532c36d943b1e90469dde58",
+        "bytes": 1686453,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261005/media-progress/cc-him-on-everything-s7-20977a143d49.json",
+        "verified_at": "2026-10-05T11:34:15.990Z"
+      }
+    },
+    {
+      "request_id": "he-faked-our-own-flyer-s0-3d92f660621a",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1LgeM2C1ZrgiuDMpNnNpeaSjIhqFatjs-",
+        "filename": "20261005__he-faked-our-own-flyer-s0-3d92f660621a.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1LgeM2C1ZrgiuDMpNnNpeaSjIhqFatjs-",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "7c52703856357d8795f36f311890d2d482e2ce2693750e38909a9e73d9f3cfe4",
+        "bytes": 1891519,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261005/media-progress/he-faked-our-own-flyer-s0-3d92f660621a.json",
+        "verified_at": "2026-10-05T11:34:17.251Z"
+      }
+    },
+    {
+      "request_id": "he-faked-our-own-flyer-s1-50dc26341061",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1y-_SMfdie33H9L0SG3At8VlP7XnsezFl",
+        "filename": "20261005__he-faked-our-own-flyer-s1-50dc26341061.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1y-_SMfdie33H9L0SG3At8VlP7XnsezFl",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "2b6958c908f87e6f58416dca960fba1350e98c125e481d156756565ced67d499",
+        "bytes": 1958330,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261005/media-progress/he-faked-our-own-flyer-s1-50dc26341061.json",
+        "verified_at": "2026-10-05T11:34:18.470Z"
+      }
+    },
+    {
+      "request_id": "he-faked-our-own-flyer-s2-97c73736f56a",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1RZB7V3B6AcWA_LnaE6bJqCD_JMFT0TLk",
+        "filename": "20261005__he-faked-our-own-flyer-s2-97c73736f56a.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1RZB7V3B6AcWA_LnaE6bJqCD_JMFT0TLk",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "66c8bc990046e8190489618ab3f7ca8619929db664562ae855780cf63f3e31ab",
+        "bytes": 1979700,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261005/media-progress/he-faked-our-own-flyer-s2-97c73736f56a.json",
+        "verified_at": "2026-10-05T11:34:19.554Z"
+      }
+    },
+    {
+      "request_id": "he-faked-our-own-flyer-s3-485693b98258",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1l6VJha5GPfh0seDG0o0-Jd7o0r2gJ6hL",
+        "filename": "20261005__he-faked-our-own-flyer-s3-485693b98258.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1l6VJha5GPfh0seDG0o0-Jd7o0r2gJ6hL",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "5d49c057e51bcfc44d7a93d284dcd369efe45dc1fc41c6f524af4e09bb27fadb",
+        "bytes": 2050321,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261005/media-progress/he-faked-our-own-flyer-s3-485693b98258.json",
+        "verified_at": "2026-10-05T11:34:20.669Z"
+      }
+    },
+    {
+      "request_id": "he-faked-our-own-flyer-s4-3d0172ffbb5d",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1ba6kS4nkET6NY5XX_V8ih_CEPRgHuiau",
+        "filename": "20261005__he-faked-our-own-flyer-s4-3d0172ffbb5d.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1ba6kS4nkET6NY5XX_V8ih_CEPRgHuiau",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "17aac8c18936a99e452ffd31a97ddb6304dedf4c327baa5d173ea0387dfb4998",
+        "bytes": 1905020,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261005/media-progress/he-faked-our-own-flyer-s4-3d0172ffbb5d.json",
+        "verified_at": "2026-10-05T11:34:21.891Z"
+      }
+    },
+    {
+      "request_id": "he-faked-our-own-flyer-s5-d75f693cf921",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1IFyrWPl_NIxqNP3KnRpn-lPePFjff8cw",
+        "filename": "20261005__he-faked-our-own-flyer-s5-d75f693cf921.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1IFyrWPl_NIxqNP3KnRpn-lPePFjff8cw",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "f4e077fa02244a9c46161edfa3203f529a6331c15bec081591f0e45218bd6435",
+        "bytes": 2012297,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261005/media-progress/he-faked-our-own-flyer-s5-d75f693cf921.json",
+        "verified_at": "2026-10-05T11:34:23.117Z"
+      }
+    },
+    {
+      "request_id": "he-faked-our-own-flyer-s6-c305bce31dbf",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "18JMqbgcFCgGpagTOuZl4qKMRUaAi7cpQ",
+        "filename": "20261005__he-faked-our-own-flyer-s6-c305bce31dbf.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=18JMqbgcFCgGpagTOuZl4qKMRUaAi7cpQ",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "4b34d5443a9b27d7ce7b52e91d6d9b678a88e7b05dd31e3132e8d3eafc5e7e01",
+        "bytes": 1684790,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261005/media-progress/he-faked-our-own-flyer-s6-c305bce31dbf.json",
+        "verified_at": "2026-10-05T11:34:24.218Z"
+      }
+    },
+    {
+      "request_id": "he-faked-our-own-flyer-s7-c046602f5faa",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1c6dhPvEDun2HHW5d_rz4y4IR-wV6YB2Y",
+        "filename": "20261005__he-faked-our-own-flyer-s7-c046602f5faa.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1c6dhPvEDun2HHW5d_rz4y4IR-wV6YB2Y",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "970d4a2a452e91d417fc2b37508772c4578ef032c0757785f41bbdb56bf945b3",
+        "bytes": 1730103,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261005/media-progress/he-faked-our-own-flyer-s7-c046602f5faa.json",
+        "verified_at": "2026-10-05T11:34:25.354Z"
+      }
+    }
+  ]
+}
