@@ -36,9 +36,9 @@
     "recovered_rejected_detail": []
   },
   "punchup": {
-    "applied": 0,
+    "applied": 2,
     "kept": 4,
-    "rejected": 2,
+    "rejected": 0,
     "absent": 0
   },
   "contract_refused": [],
@@ -122,20 +122,6 @@
       "request_id": "he-faked-our-own-flyer-s7-c046602f5faa",
       "outcome": "chatgpt",
       "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/he-faked-our-own-flyer-s7-c046602f5faa.png"
-    },
-    {
-      "slug": "cc-him-on-everything",
-      "outcome": "punchup_rejected",
-      "problems": [
-        "INVENTED named entity(ies): bagel, fine, would"
-      ]
-    },
-    {
-      "slug": "he-faked-our-own-flyer",
-      "outcome": "punchup_rejected",
-      "problems": [
-        "INVENTED named entity(ies): subtle"
-      ]
     }
   ]
 }
