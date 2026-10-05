@@ -146,7 +146,7 @@
        {
         "who": "child",
         "pose": "crouch",
-        "action": "warm_hands",
+        "action": "gather",
         "mood": "happy",
         "at": "right"
        }
@@ -201,15 +201,13 @@
         "who": "man",
         "pose": "sit",
         "action": "eat",
-        "mood": "content",
-        "item": "bread"
+        "mood": "content"
        },
        {
         "who": "woman",
         "pose": "sit",
-        "action": "drink",
-        "mood": "calm",
-        "item": "cup"
+        "action": "eat",
+        "mood": "calm"
        }
       ],
       "props": [
@@ -230,9 +228,8 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "hold",
+        "action": "eat",
         "mood": "calm",
-        "item": "torch",
         "at": "center"
        }
       ],
@@ -255,14 +252,14 @@
        {
         "who": "old_woman",
         "pose": "sit",
-        "action": "talk",
+        "action": "eat",
         "mood": "calm",
         "at": "center_left"
        },
        {
         "who": "child",
         "pose": "sit_on",
-        "action": "look_up",
+        "action": "eat",
         "mood": "sleepy",
         "at": "center_right"
        }
@@ -416,8 +413,7 @@
       ],
       "props": [
        "olive",
-       "basket",
-       "table"
+       "basket"
       ]
      }
     },
@@ -526,16 +522,14 @@
        {
         "who": "man",
         "pose": "sit",
-        "action": "drink",
+        "action": "eat",
         "mood": "calm",
-        "item": "cup",
         "at": "center"
        },
        {
         "who": "woman",
         "pose": "sit",
-        "action": "drink",
-        "item": "cup"
+        "action": "eat"
        }
       ],
       "props": [
@@ -556,13 +550,13 @@
        {
         "who": "elder",
         "pose": "sit",
-        "action": "talk",
+        "action": "eat",
         "mood": "calm"
        },
        {
         "who": "woman",
         "pose": "sit",
-        "action": "idle",
+        "action": "eat",
         "mood": "content"
        },
        {
@@ -628,7 +622,7 @@
        {
         "who": "man",
         "pose": "sit",
-        "action": "idle",
+        "action": "eat",
         "mood": "content",
         "at": "right"
        }
@@ -660,8 +654,7 @@
       ],
       "props": [
        "brazier",
-       "torch",
-       "oil_lamp"
+       "torch"
       ],
       "variant": 1,
       "fire": "low"
@@ -707,16 +700,14 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "hold",
+        "action": "stir",
         "mood": "calm",
-        "item": "lantern",
         "at": "center"
        },
        {
         "who": "woman",
         "pose": "stand",
-        "action": "hold",
-        "item": "lantern"
+        "action": "stir"
        }
       ],
       "props": [
@@ -743,7 +734,7 @@
        {
         "who": "child",
         "pose": "sit",
-        "action": "warm_hands",
+        "action": "eat",
         "mood": "sleepy",
         "at": "right"
        }
@@ -776,8 +767,7 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "hold",
-        "item": "bundle",
+        "action": "drink",
         "mood": "worried"
        }
       ],
@@ -812,7 +802,8 @@
       "props": [
        "brazier",
        "cart",
-       "torch"
+       "torch",
+       "cow"
       ]
      }
     },
@@ -864,8 +855,7 @@
       ],
       "props": [
        "oil_lamp",
-       "brazier",
-       "cart"
+       "brazier"
       ],
       "variant": 2
      }
@@ -881,7 +871,7 @@
        {
         "who": "old_woman",
         "pose": "sit_on",
-        "action": "talk",
+        "action": "eat",
         "mood": "calm",
         "at": "left"
        },
@@ -944,8 +934,7 @@
       ],
       "props": [
        "torch",
-       "brazier",
-       "bed"
+       "brazier"
       ]
      }
     },
@@ -962,10 +951,14 @@
         "pose": "stand",
         "action": "wave",
         "mood": "content"
+       },
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "wave"
        }
       ],
       "props": [
-       "olive",
        "cart",
        "basket",
        "amphora"
@@ -1061,7 +1054,7 @@
       "props": [
        "cart",
        "torch",
-       "column"
+       "goat"
       ]
      }
     },
@@ -1182,9 +1175,8 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "hold",
+        "action": "eat",
         "mood": "focused",
-        "item": "stick",
         "at": "center"
        },
        {
@@ -1330,7 +1322,8 @@
       ],
       "props": [
        "column",
-       "torch"
+       "torch",
+       "brazier"
       ]
      }
     },
@@ -1352,7 +1345,8 @@
        }
       ],
       "props": [
-       "torch"
+       "torch",
+       "brazier"
       ],
       "variant": 1
      }
@@ -1517,7 +1511,7 @@
        {
         "who": "girl",
         "pose": "sit_on",
-        "action": "idle",
+        "action": "sew",
         "mood": "sleepy",
         "at": "center_right"
        }
@@ -1539,9 +1533,8 @@
        {
         "who": "old_woman",
         "pose": "sit_on",
-        "action": "sew",
+        "action": "spin",
         "mood": "focused",
-        "item": "needle",
         "at": "center"
        }
       ],
@@ -1594,8 +1587,7 @@
       ],
       "props": [
        "torch",
-       "brazier",
-       "oil_lamp"
+       "brazier"
       ],
       "variant": 2
      }
@@ -1641,9 +1633,8 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "hold",
+        "action": "eat",
         "mood": "content",
-        "item": "bread",
         "at": "center"
        }
       ],
@@ -1702,7 +1693,7 @@
        {
         "who": "child",
         "pose": "sit_on",
-        "action": "idle",
+        "action": "eat",
         "mood": "sleepy",
         "at": "right"
        }
@@ -1725,9 +1716,8 @@
        {
         "who": "old_woman",
         "pose": "sit_on",
-        "action": "hold",
+        "action": "eat",
         "mood": "sleepy",
-        "item": "bundle",
         "at": "center"
        }
       ],
@@ -1822,9 +1812,11 @@
        }
       ],
       "props": [
-       "brazier"
+       "brazier",
+       "oil_lamp"
       ],
-      "variant": 1
+      "variant": 1,
+      "fire": "low"
      }
     },
     {
@@ -1934,8 +1926,10 @@
       ],
       "props": [
        "bed",
-       "brazier"
-      ]
+       "brazier",
+       "oil_lamp"
+      ],
+      "fire": "low"
      }
     },
     {
@@ -2017,8 +2011,7 @@
       "props": [
        "reeds",
        "cart",
-       "torch",
-       "oil_lamp"
+       "torch"
       ]
      }
     }

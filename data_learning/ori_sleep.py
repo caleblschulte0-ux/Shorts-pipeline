@@ -406,8 +406,11 @@ NAMED_PROPS = {"stall": ("stall", "stalls"), "barn": ("barn",), "cart": ("cart",
                "well": ("well",), "amphora": ("amphora", "amphorae", "jar", "jars"),
                "basket": ("basket", "baskets"), "bench": ("bench", "benches"), "stall": ("stall", "stalls"),
                "hearth": ("hearth",), "oil_lamp": ("lamp", "lamps"), "candle": ("candle", "candles"),
-               "campfire": ("campfire", "bonfire"), "cauldron": ("cauldron", "pot"), "torch": ("torch", "torches"),
-               "stove": ("stove", "range")}
+               "campfire": ("campfire", "bonfire", "embers", "coals", "fire"), "cauldron": ("cauldron", "pot"),
+               "torch": ("torch", "torches"), "stove": ("stove", "range"),
+               "goat": ("goat", "goats", "animals", "herd"), "sheep": ("sheep", "flock", "ewes", "lambs", "animals"),
+               "cow": ("cow", "cows", "cattle", "ox", "oxen"), "chicken": ("hens", "chickens", "hen"),
+               "dog": ("dog", "dogs", "hound"), "fence": ("gate", "pen", "fence", "fold", "hurdle")}
 
 
 # one word, several drawings: "the boats" on the Nile are reed boats, "the
@@ -415,7 +418,8 @@ NAMED_PROPS = {"stall": ("stall", "stalls"), "barn": ("barn",), "cart": ("cart",
 # cauldron
 SAME_THING = {"boat": ("boat", "reed_boat", "canoe", "ship"), "oil_lamp": ("oil_lamp", "candle", "gas_lamp"),
               "candle": ("candle", "oil_lamp"), "cauldron": ("cauldron", "pot"), "hearth": ("hearth", "stove"),
-              "campfire": ("campfire", "brazier"), "bench": ("bench", "chair"), "amphora": ("amphora", "jar")}
+              "campfire": ("campfire", "brazier", "hearth", "stove"), "bench": ("bench", "chair"),
+              "amphora": ("amphora", "jar"), "goat": ("goat", "sheep"), "sheep": ("sheep", "goat")}
 
 
 def stands_for(name: str) -> tuple:
@@ -442,6 +446,14 @@ PLURAL_PEOPLE = re.compile(r"\b(sellers|gatherers|fishermen|families|neighbours|
                            r"friends|guests|travellers|travelers|workers|people|crowds?|villagers|farmers|"
                            r"shepherds|sailors|merchants|traders|servants|elders|couples|boys|girls|everyone|"
                            r"household|family)\b", re.I)
+
+
+# words that put two people in one picture: "her child half asleep beside
+# her" is a shot of both, "neither of them is in any hurry" too (the 78
+# film: a lone sleeper, and one diner where the words said two)
+TOGETHER = re.compile(r"\b(beside|next to|close to|near|with|between|around|opposite|facing) (her|him|them|each other|"
+                      r"one another)\b|\b(neither of them|both of them|the two of them|the pair|together|each other|"
+                      r"one another|side by side)\b", re.I)
 
 
 # words that say WHO a sentence is about, so the shot is of them
@@ -512,38 +524,72 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dic
         lay = S.layout(sp, sd)
         if lay["collisions"]:
             continue
-        # close-ups are FRAMED in on what they are of, and held still
+        # close-ups are FRAMED in on what they are of, and held still —
+        # and the subject stays WHOLE in the frame (the 78 film: a diner
+        # "cut off by the right and bottom frame edges")
         if name == "insert":
             p = next((q for q in lay["props"] if q["name"] in lights), None)
             if p is None or not lay["people"]:
                 continue
             f = lay["people"][0]
             ph = PROPS[p["name"]].height * p["s"]
-            # framed on the light and the person together, both inside
-            span = abs(f["x"] - p["x"]) + 260.0
-            k = round(max(1.0, min(INSERT_ZOOM, S.W / span)), 2)
-            from data_learning.doodle import people as P
-            R = P.R0 * f["s"] * P.WHO[f["who"]]["size"]
-            # high enough that the head is never cut: the person's middle
-            # and the flame, whichever is higher
-            cy = min(p["y"] - ph * 0.6, f["y"] - 2.4 * R)
-            sp = dict(sp, frame=[round((f["x"] + p["x"]) / 2, 1), round(cy, 1), k])
+            boxes = [_figure_box(f), (p["x"] - PROPS[p["name"]].width * p["s"] / 2, p["y"] - ph * 1.3,
+                                      p["x"] + PROPS[p["name"]].width * p["s"] / 2, p["y"] + 10)]
+            fr = frame_for(boxes, INSERT_ZOOM)
+            if fr is not None:
+                sp = dict(sp, frame=fr)
         elif name.startswith("single:") and lay["people"]:
             f = lay["people"][0]
-            from data_learning.doodle import people as P
-            R = P.R0 * f["s"] * P.WHO[f["who"]]["size"]
-            fr = [round(f["x"] + (R if f["facing"] == "right" else -R), 1), round(f["y"] - 3.2 * R, 1), SINGLE_ZOOM]
+            fr = frame_for([_figure_box(f)], SINGLE_ZOOM)
             # framed in only if what moves stays in the picture: a close-up
             # that crops the flame out is a held frame (the Greek film's
             # painting held 47 identical frames and the gate blocked it)
-            k = SINGLE_ZOOM
-            x0 = min(max(fr[0] * k - S.W / 2, 0.0), (k - 1) * S.W) / k
-            x1 = x0 + S.W / k
-            if any(x0 + 40 < q["x"] < x1 - 40 for q in lay["props"] if q["name"] in lights) or \
-                    S.SETTINGS[sp["setting"]].water:
-                sp = dict(sp, frame=fr)
+            if fr is not None:
+                k = fr[2]
+                x0 = min(max(fr[0] * k - S.W / 2, 0.0), (k - 1) * S.W) / k
+                x1 = x0 + S.W / k
+                if any(x0 + 40 < q["x"] < x1 - 40 for q in lay["props"] if q["name"] in lights) or \
+                        S.SETTINGS[sp["setting"]].water:
+                    sp = dict(sp, frame=fr)
         out[name] = (sp, sd)
     return out
+
+
+def _figure_box(f: dict) -> tuple:
+    """A person's bounding box in world pixels, head to feet, with air."""
+    from data_learning.doodle import people as P, scene as S
+    R = P.R0 * f["s"] * P.WHO[f["who"]]["size"]
+    lo, hi = S.figure_extent(f["pose"], R, f.get("action", "idle"), f.get("item"))
+    if f["facing"] == "left":
+        lo, hi = -hi, -lo
+    top = f["y"] - (5.9 if f["pose"] in ("stand", "walk") else 4.6) * R
+    return (f["x"] + lo - 0.3 * R, top, f["x"] + hi + 0.3 * R, f["y"] + 0.5 * R)
+
+
+def frame_for(boxes: list, kmax: float) -> list | None:
+    """[cx, cy, k] for a held close-up that holds every box whole: the
+    largest zoom up to kmax whose window takes them all, centred on them and
+    kept inside the world. None when even 1.0 would not (never true)."""
+    from data_learning.doodle import scene as S
+    x0 = min(b[0] for b in boxes)
+    y0 = min(b[1] for b in boxes)
+    x1 = max(b[2] for b in boxes)
+    y1 = max(b[3] for b in boxes)
+    k = min(kmax, S.W / max(1.0, x1 - x0), S.H / max(1.0, y1 - y0))
+    k = max(1.0, round(k, 2))
+    if k <= 1.02:
+        return None
+    cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+    # the window must stay inside the world: its centre within [W/2k, W - W/2k]
+    cx = min(max(cx, S.W / (2 * k)), S.W - S.W / (2 * k))
+    cy = min(max(cy, S.H / (2 * k)), S.H - S.H / (2 * k))
+    # and the boxes inside the window after clamping
+    if x0 < cx - S.W / (2 * k) or x1 > cx + S.W / (2 * k) or y0 < cy - S.H / (2 * k) or y1 > cy + S.H / (2 * k):
+        k2 = max(1.0, min(k, S.W / max(1.0, 2 * max(cx - x0, x1 - cx)), S.H / max(1.0, 2 * max(cy - y0, y1 - cy))))
+        if k2 <= 1.02:
+            return None
+        k = round(k2, 2)
+    return [round(cx, 1), round(cy, 1), k]
 
 
 SHOT_SPLIT = 8.0     # a sentence longer than this is cut at a comma into two shots
@@ -636,7 +682,7 @@ def _choose(opts: dict, text: str, last: str | None, first: bool, used: list, ne
     named = {w for w, pat in WHO_WORDS.items() if _re.search(pat, nouns)}
     if "old_woman" in nouns or " gm " in nouns:
         named.add("old_woman")
-    if len(named) >= 2 or PLURAL_PEOPLE.search(low):
+    if len(named) >= 2 or PLURAL_PEOPLE.search(low) or TOGETHER.search(low):
         for name in ("two", "arr", "est"):
             if name in opts and len(opts[name][0].get("cast") or []) >= 2 and (name != last or
                                                                                  not any(n != last and n in opts for n in ("two", "arr"))):

@@ -36,7 +36,7 @@ ERAS = ("stone_age", "medieval", "ancient", "victorian", "egypt", "early_modern"
 SHOTS = ("close", "wide")
 SLOTS = {"far_left": 0.1, "left": 0.24, "center_left": 0.37, "center": 0.5,
          "center_right": 0.63, "right": 0.76, "far_right": 0.9}
-STILL = {"tent", "hut", "tree", "pine", "bush", "rock", "woodpile", "bedroll", "hide_rack",
+STILL = {"tent", "hut", "tree", "pine", "bush", "rock", "woodpile", "bedroll", "hide_rack", "fence",
          "table", "bench", "barrel", "stones", "basket", "bed", "cave_painting",
          "column", "temple", "villa", "amphora", "stall", "olive",
          "terrace", "chair", "bookshelf", "clock", "chimney_pot",
@@ -638,6 +638,21 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     # the fire now ranges over the middle half of the frame
     focal_x = W * SLOTS[focal["at"]] if focal and focal.get("at") else W * (0.25 + 0.5 * r.random() + focal_shift)
     focal_x = min(max(focal_x, W * 0.12), W * 0.88)
+    if focal is not None:
+        # never on a trunk: the 78 film's judge, "the fire burns into the
+        # tree's trunk" in the olive grove
+        fw = PROPS[focal["name"]].width * s * 0.5
+        trunks = [(x - TREE_KEEP * ts, x + TREE_KEEP * ts) for x, _k, ts, _y in
+                  settings.tree_line(spec.get("setting"), seed, shot)]
+        for step in range(0, 40):
+            for sgn in (1, -1):
+                fx = focal_x + sgn * step * 25.0
+                if W * 0.12 <= fx <= W * 0.88 and not any(min(fx + fw, b) - max(fx - fw, a) > 0 for a, b in trunks):
+                    focal_x = fx
+                    break
+            else:
+                continue
+            break
 
     st = SETTINGS.get(spec.get("setting"))
     water = st.water if st is not None else None

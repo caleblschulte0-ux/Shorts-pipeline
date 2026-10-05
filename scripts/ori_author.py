@@ -618,8 +618,17 @@ def add_named_props(beat: dict, era: str, seeds=(1000,)) -> str | None:
         return None
     words = set(re.findall(r"[a-z]+", (beat.get("say") or "").lower()))
     have = {p if isinstance(p, str) else (p or {}).get("name") for p in sc.get("props") or []}
-    for prop, forms in PROP_WORDS.items():
-        if have & set(OS.stands_for(prop)) or prop not in S.PROPS or not words & set(forms):
+    for key, forms in PROP_WORDS.items():
+        if have & set(OS.stands_for(key)) or not words & set(forms):
+            continue
+        st = S.SETTINGS.get(sc.get("setting"))
+        urban = sc.get("setting") in PLACE_SETTINGS["city"]
+        prop = next((alt for alt in OS.stands_for(key) if alt in S.PROPS and era in S.PROPS[alt].eras
+                     and not (S.PROPS[alt].settings and sc.get("setting") not in S.PROPS[alt].settings)
+                     and not (st and st.interior and alt in OUTDOOR_ONLY)
+                     and not (st and not st.interior and alt in INDOOR_ONLY)
+                     and not (urban and alt == "campfire")), None)
+        if prop is None:
             continue
         before = list(sc.get("props") or [])
         sc["props"] = before + [prop]
@@ -776,8 +785,22 @@ def mend_fire(beat: dict, era: str = "ancient") -> str | None:
         sc["fire"] = "low"
         burning = {k: v for k, v in sc.items() if k != "fire"}
         if S.validate(sc, era) and not S.validate(burning, era):
-            # banked, nothing else in the picture would move: it burns
-            # rather than freeze (a banked brazier counts for little)
+            # banked, nothing else in the picture would move: another light
+            # comes in beside it so the words can have their embers (the 78
+            # film's judge: "the narration says embers ... but full blazing
+            # flames are drawn" — the bank had been undone to keep the
+            # picture alive)
+            before = list(sc.get("props") or [])
+            st = S.SETTINGS.get(sc.get("setting"))
+            lights = (["oil_lamp", "candle", "torch"] if st and st.interior else ["torch", "oil_lamp", "candle"])
+            for light in lights:
+                pr = S.PROPS.get(light)
+                if pr is None or era not in pr.eras or (pr.settings and sc.get("setting") not in pr.settings):
+                    continue
+                sc["props"] = before + [light]
+                if not S.validate(sc, era):
+                    return f"the fire is banked (the words say so), a {light} lit beside it"
+            sc["props"] = before
             sc.pop("fire")
             return None
         return "the fire is banked (the words say so)"
@@ -795,6 +818,29 @@ ERA_STAND_IN = {"candle": ("oil_lamp",), "oil_lamp": ("candle",), "hearth": ("br
 
 
 GENERIC_ACTIONS = ("idle", "hold", "talk", "look_up", "warm_hands")
+# one of these may become the other when the words say so: the brain wrote
+# "sew" for women whose words say spinning (the 78 film's judge: "no spindle
+# or spinning is shown")
+ACTION_FAMILY = {"sew": ("spin",), "spin": ("sew",), "eat": ("drink",), "drink": ("eat",)}
+# what a clause says somebody DOES — verbs and the things done, never a
+# noun that only names the fire or the water ("the fire burns low" had
+# everyone in the room feeding it)
+DOING_WORDS = (
+    ("spin", ("spindle", "spinning", "spins", "spun", "wool", "yarn", "thread")),
+    ("sew", ("sew", "mend", "stitch", "weav", "knit", "needle", "darn")),
+    ("eat", ("eat", "breaks bread", "bread", "supper", "meal", "dine", "porridge", "stew", "olives", "cheese", "fig")),
+    ("drink", ("drink", "cup", "cups", "sip", "wine", "ale", "beer", "mead")),
+    ("feed_fire", ("feeds the fire", "feed the fire", "stoke", "adds a log", "adds another log", "adds wood",
+                   "tends the fire", "banks the", "bank the", "pushes a branch", "another branch")),
+    ("stir", ("stir", "cook", "simmer", "ladle")),
+    ("carry", ("carries", "carry", "carrying", "haul", "fetch", "bring")),
+    ("chop", ("chop", "split", "hew")),
+    ("gather", ("gather", "pick", "collect", "forage")),
+    ("yawn", ("yawn",)),
+    ("knap", ("knap", "flint")),
+    ("fish", ("fishing", "fishes", "casts a line", "net")),
+    ("play", ("plays", "game", "dice", "toss")),
+)
 
 
 def mend_doing(beat: dict, era: str) -> str | None:
@@ -817,24 +863,33 @@ def mend_doing(beat: dict, era: str) -> str | None:
         for clause in re.split(r",|;|\band\b|\bwhile\b", sent.lower()):
             nouns = re.sub(r"\b(he|him|his|she|her)\b", " ", clause)
             who_named = [w for w, pat in OS.WHO_WORDS.items() if re.search(pat, nouns)]
-            if len(who_named) != 1:
+            if len(who_named) > 1:
                 continue
-            action = next((a for a, ws in ACTION_WORDS if any(w in clause for w in ws)), None)
-            if action is None or action in ("sleep", "look_up", "play", "talk", "hug_self", "warm_hands"):
+            action = next((a for a, ws in DOING_WORDS if any(w in clause for w in ws)), None)
+            if action is None:
                 continue
-            for c in cast:
-                if c.get("who") != who_named[0] or c.get("action", "idle") not in GENERIC_ACTIONS:
+            # one named: that one; none named ("the others do not stop
+            # spinning", "cups are filled"): everyone awake who can
+            targets = [c for c in cast if (not who_named or c.get("who") == who_named[0]) and c.get("pose") != "lie"]
+            plural = bool(OS.PLURAL_PEOPLE.search(clause)) or not who_named
+            if not who_named:
+                targets = targets[:2]           # "cups are filled": two drink, not a room of six stirring one pot
+            for c in targets:
+                cur = c.get("action", "idle")
+                if cur == action:
+                    continue
+                if cur not in GENERIC_ACTIONS and action not in ACTION_FAMILY.get(cur, ()):
                     continue
                 if c.get("pose", "stand") not in P.ACTIONS[action]["poses"]:
                     continue
-                old_a = c.get("action", "idle")
                 c["action"] = action
                 c.pop("item", None)
                 if S.validate(sc, era):
-                    c["action"] = old_a
+                    c["action"] = cur
                     continue
                 did.append(f"the {c['who'].replace('_', ' ')} now: {action.replace('_', ' ')} (the words say so)")
-                break
+                if not plural:
+                    break
     if json.dumps(sc, sort_keys=True) == before:
         return None
     return ", ".join(did)
@@ -1713,7 +1768,8 @@ def drop_stray_animals(beat: dict, era: str) -> list[str]:
     notes, keep = [], []
     for q in sc.get("props") or []:
         name = q if isinstance(q, str) else q.get("name")
-        if name in ANIMAL_WORDS and not (set(ANIMAL_WORDS[name]) & words):
+        forms = set(ANIMAL_WORDS.get(name, ())) | set(OS.NAMED_PROPS.get(name, ()))
+        if name in ANIMAL_WORDS and not (forms & words):
             notes.append(f"dropped the {name} (the words never mention it)")
         else:
             keep.append(q)
@@ -2069,6 +2125,20 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
 
 
 def mend_film(ep: dict, log=print) -> list[str]:
+    """`_mend_film_once` until a pass changes nothing (at most three): a
+    named prop added in one pass and converted by the room rule in the next
+    ("cauldron -> pot") must settle before the render, not on the next
+    week's run."""
+    notes = []
+    for _ in range(3):
+        more = _mend_film_once(ep, log=log)
+        if not more:
+            break
+        notes += more
+    return notes
+
+
+def _mend_film_once(ep: dict, log=print) -> list[str]:
     """Every deterministic repair the author knows, on a whole script: each
     scene mended (a light, a dropped prop, the furniture left indoors), each
     chapter uncrowded and given the actions its words describe, then the

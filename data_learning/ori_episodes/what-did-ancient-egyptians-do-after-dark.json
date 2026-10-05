@@ -277,9 +277,8 @@
        {
         "who": "man",
         "pose": "crouch",
-        "action": "hold",
-        "mood": "focused",
-        "item": "bundle"
+        "action": "stir",
+        "mood": "focused"
        },
        {
         "who": "man",
@@ -305,7 +304,7 @@
        {
         "who": "woman",
         "pose": "sit",
-        "action": "idle",
+        "action": "eat",
         "mood": "calm",
         "at": "left"
        },
@@ -393,8 +392,7 @@
        {
         "who": "woman",
         "pose": "sit",
-        "action": "sew",
-        "item": "bundle",
+        "action": "spin",
         "mood": "focused"
        }
       ],
@@ -673,7 +671,6 @@
         "who": "man",
         "pose": "sit",
         "action": "drink",
-        "item": "cup",
         "mood": "content",
         "at": "right"
        }
@@ -695,8 +692,7 @@
        {
         "who": "woman",
         "pose": "sit",
-        "action": "drink",
-        "item": "cup",
+        "action": "eat",
         "mood": "content",
         "at": "center"
        },
@@ -704,7 +700,6 @@
         "who": "child",
         "pose": "sit_on",
         "action": "eat",
-        "item": "bread",
         "mood": "happy",
         "at": "right"
        },
@@ -771,7 +766,7 @@
        {
         "who": "child",
         "pose": "sit",
-        "action": "idle",
+        "action": "eat",
         "mood": "sleepy",
         "at": "center_right"
        }
@@ -918,7 +913,9 @@
         "at": "center_right"
        }
       ],
-      "props": [],
+      "props": [
+       "fence"
+      ],
       "variant": 1
      }
     },
@@ -1017,8 +1014,7 @@
       ],
       "props": [
        "torch",
-       "campfire",
-       "oil_lamp"
+       "campfire"
       ],
       "variant": 1
      }
@@ -1330,7 +1326,7 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "warm_hands",
+        "action": "drink",
         "mood": "calm"
        },
        {
@@ -1342,7 +1338,8 @@
       ],
       "props": [
        "campfire",
-       "torch"
+       "torch",
+       "dog"
       ],
       "variant": 1
      }
@@ -1440,7 +1437,8 @@
        }
       ],
       "props": [
-       "brazier"
+       "brazier",
+       "dog"
       ],
       "variant": 2
      }
@@ -1720,7 +1718,7 @@
        {
         "who": "elder",
         "pose": "sit_on",
-        "action": "talk",
+        "action": "eat",
         "mood": "calm",
         "at": "left"
        },
@@ -1840,18 +1838,14 @@
         "pose": "lie",
         "action": "sleep",
         "mood": "content"
-       },
-       {
-        "who": "woman",
-        "pose": "lie",
-        "action": "sleep",
-        "mood": "content"
        }
       ],
       "props": [
-       "dog",
-       "brazier"
-      ]
+       "brazier",
+       "oil_lamp",
+       "dog"
+      ],
+      "fire": "low"
      }
     },
     {

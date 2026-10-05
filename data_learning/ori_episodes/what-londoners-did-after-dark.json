@@ -150,7 +150,7 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "look_up",
+        "action": "carry",
         "mood": "calm",
         "at": "center"
        },
@@ -523,7 +523,8 @@
        }
       ],
       "props": [
-       "cow"
+       "cow",
+       "sheep"
       ],
       "variant": 1
      }
@@ -614,7 +615,8 @@
       ],
       "props": [
        "tree",
-       "bush"
+       "bush",
+       "gas_lamp"
       ]
      }
     },
@@ -731,7 +733,7 @@
        {
         "who": "man",
         "pose": "sit",
-        "action": "warm_hands",
+        "action": "eat",
         "mood": "calm"
        },
        {
@@ -751,7 +753,8 @@
       ],
       "props": [
        "hearth",
-       "pot"
+       "pot",
+       "candle"
       ],
       "variant": 1
      }
@@ -993,8 +996,7 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "hold",
-        "item": "lantern",
+        "action": "eat",
         "mood": "calm"
        },
        {
@@ -1142,7 +1144,7 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "talk",
+        "action": "eat",
         "mood": "happy",
         "at": "left"
        },
@@ -1238,8 +1240,7 @@
        {
         "who": "man",
         "pose": "sit_on",
-        "action": "hold",
-        "item": "lantern",
+        "action": "eat",
         "mood": "sleepy",
         "at": "left"
        },
@@ -1486,7 +1487,10 @@
         "at": "center"
        }
       ],
-      "props": [],
+      "props": [
+       "cow",
+       "dog"
+      ],
       "variant": 4
      }
     },
@@ -1524,15 +1528,14 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "talk",
+        "action": "carry",
         "mood": "calm",
-        "item": "lantern",
         "at": "left"
        },
        {
         "who": "man",
         "pose": "stand",
-        "action": "talk",
+        "action": "carry",
         "mood": "calm",
         "at": "right"
        },
@@ -1617,8 +1620,7 @@
       ],
       "props": [
        "torch",
-       "gas_lamp",
-       "candle"
+       "gas_lamp"
       ],
       "variant": 6
      }
@@ -1763,7 +1765,8 @@
        }
       ],
       "props": [
-       "campfire"
+       "campfire",
+       "gas_lamp"
       ],
       "variant": 6
      }

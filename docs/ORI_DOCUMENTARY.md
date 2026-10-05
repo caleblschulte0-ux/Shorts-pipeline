@@ -894,6 +894,31 @@ only as a hand edit is not a rule. So:
   a sentence about several people is the shot of everyone, never a
   close-up of one.
 
+- **The Greek film, judged on the right sentence (78, BLOCK; Kokoro).**
+  Told the true sentence, the judge graded harder and more usefully; every
+  note became a rule:
+  - "embers ... but full blazing flames": the banked fire is a bed of
+    breathing coals under a thread of smoke, no tongue of flame at all; and
+    `mend_fire` no longer un-banks a fire to keep the picture alive — it
+    lights a lamp beside the embers instead; nobody feeds a banked fire.
+  - "the women do not stop spinning" with no spindle: `mend_doing` now
+    takes a clause with no named person as everyone's (at most two), and
+    sew/spin, eat/drink are corrections of each other; `DOING_WORDS` are
+    verbs and the things done, never the noun "fire" (which had everyone in
+    the room feeding it).
+  - "her child half asleep beside her" as a lone sleeper: `TOGETHER` words
+    (beside her, with him, neither of them, both) make the shot of both.
+  - "goats, sheep and a gate" with none: animals are named props now (goat,
+    sheep, cow, hens, dog, "the animals"), and a `fence` with a gate is a
+    prop (`gate|pen|fold`).
+  - "the fire burns into the tree's trunk": the focal thing keeps off the
+    tree line.
+  - "cut off by the right and bottom frame edges": `frame_for` holds every
+    box of a close-up's subject whole inside the window.
+  - "a long black stick crosses the reclining man's couch": the tunic lies
+    along the legs on the couch; "cups are filled" has them drink.
+  - `mend_film` runs its passes until one changes nothing.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

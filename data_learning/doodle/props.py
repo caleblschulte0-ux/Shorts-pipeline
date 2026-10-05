@@ -137,13 +137,23 @@ def banked(cr, x, y, s, t, seed, size=62.0):
     breathe, a few slow sparks. The medieval film's judge: "the narration
     says embers glow low under ash, and a full fire is drawn". It still
     moves enough to read as alive; only the size and the sparks drop."""
+    # a bed of coals, each breathing on its own time, under a thread of
+    # smoke; no tongue of flame at all — with one, the 78 film's judge
+    # called three banked braziers "full blazing flames"
     r = random.Random(seed + 5)
-    for k in range(7):
-        ex = x + (k - 3) * 11 * s + r.uniform(-3, 3) * s
-        glow = 0.55 + 0.45 * math.sin(2 * math.pi * t / (1.6 + 0.3 * k) + k)
-        ink.dot(cr, ex, y - 8 * s, (7 + 3 * glow) * s, (1.0, 0.45 + 0.25 * glow, 0.15, 0.55 + 0.4 * glow))
-    flame(cr, x, y - 10 * s, size * 0.45 * s, t, seed, glow_r=3.0, glow_a=0.3)
-    embers(cr, x, y - 30 * s, s, t, seed, n=8, spread=40, rise=90)
+    for k in range(9):
+        ex = x + (k - 4) * 9 * s + r.uniform(-3, 3) * s
+        ey = y - 6 * s - (k % 3) * 4 * s
+        glow = 0.5 + 0.5 * math.sin(2 * math.pi * t / (1.1 + 0.23 * k) + k * 1.7)
+        ink.dot(cr, ex, ey, (6 + 4 * glow) * s, (1.0, 0.35 + 0.35 * glow, 0.1, 0.5 + 0.45 * glow))
+        ink.dot(cr, ex, ey, (2.5 + 2 * glow) * s, (1.0, 0.85, 0.5, 0.35 + 0.55 * glow))
+    ink.glow(cr, x, y - 10 * s, size * 0.9 * s, (1.0, 0.45, 0.15), 0.12 + 0.1 * math.sin(t * 2.6))
+    # a last few sparks, slow, and a thread of smoke
+    embers(cr, x, y - 20 * s, s * 0.8, t, seed, n=4, spread=30, rise=70)
+    for k in range(3):
+        u = ((t / 3.0) + k / 3) % 1.0
+        ink.dot(cr, x + math.sin(u * 6 + k) * 10 * s, y - 24 * s - u * 120 * s, (6 + 10 * u) * s,
+                (0.7, 0.68, 0.66, 0.22 * (1 - u)))
 
 
 def torch_base(cr, x, y, s, t, seed):
@@ -1118,6 +1128,31 @@ def couch(cr, x, y, s, t, seed):
                     amp=1.0, seed=seed + 3, shadow=rgb("#c9ac6e"), shadow_dir=(0, 1))
 
 
+def fence(cr, x, y, s, t, seed):
+    """A length of pen fence with a gate: posts, two rails, a hurdle hung on
+    the post nearest the middle. "Goats, sheep and a gate fastened by
+    torchlight" had no gate (the 78 film's judge)."""
+    post = WOOD_D
+    rail = WOOD
+    for k, dx in enumerate((-210, -70, 70, 210)):
+        ink.line(cr, [(x + dx * s, y + 4 * s), (x + dx * s, y - 120 * s)], lw=9 * s, ink=post, amp=0.6,
+                 seed=seed + k)
+    for yy in (-100, -55):
+        ink.line(cr, [(x - 210 * s, y + yy * s), (x - 70 * s, y + yy * s + 3 * s)], lw=6 * s, ink=rail, amp=0.5,
+                 seed=seed + 7)
+        ink.line(cr, [(x + 70 * s, y + yy * s + 2 * s), (x + 210 * s, y + yy * s)], lw=6 * s, ink=rail, amp=0.5,
+                 seed=seed + 8)
+    # the gate: a wattle hurdle between the two middle posts, cross-braced
+    ink.fill_stroke(cr, [(x - 64 * s, y - 2 * s), (x + 64 * s, y - 2 * s), (x + 64 * s, y - 112 * s),
+                         (x - 64 * s, y - 112 * s)], rgb("#b89a64"), lw=4.5 * s, amp=0.8, seed=seed + 3,
+                    texture="hatch", tex_alpha=0.3)
+    ink.line(cr, [(x - 64 * s, y - 2 * s), (x + 64 * s, y - 112 * s)], lw=5 * s, ink=rail, amp=0)
+    ink.line(cr, [(x - 64 * s, y - 112 * s), (x + 64 * s, y - 2 * s)], lw=5 * s, ink=rail, amp=0)
+    # a loop of rope over the latch post
+    ink.fill_stroke(cr, ink.ellipse_pts(x + 70 * s, y - 92 * s, 10 * s, 7 * s, 10), (0, 0, 0, 0), lw=3.5 * s,
+                    amp=0)
+
+
 def boat(cr, x, y, s, t, seed):
     """A small boat drawn up on the sand for the night, heeled on its side, the
     sail furled along the yard. The Greek film's judge, twice: "boats pulled
@@ -1259,4 +1294,6 @@ PROPS = {
     "mooring_post": Prop(mooring_post, 60, "front", EARLY_MODERN, settings=("harbour",)),
     "couch": Prop(couch, 360, "mid", ANCIENT, settings=("villa_inside", "house_inside")),
     "boat": Prop(boat, 450, "mid", LATER, settings=("seashore", "harbour", "lakeshore", "riverbank", "nile_bank")),
+    "fence": Prop(fence, 440, "back", LATER, settings=("grassland", "olive_grove", "farmyard", "field", "village",
+                                                     "mountains", "forest", "desert", "stream", "riverbank")),
 }

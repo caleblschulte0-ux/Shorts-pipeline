@@ -260,7 +260,7 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "talk",
+        "action": "carry",
         "mood": "calm",
         "at": "center_right"
        }
@@ -737,16 +737,14 @@
        {
         "who": "man",
         "pose": "walk",
-        "action": "hold",
-        "mood": "calm",
-        "item": "torch"
+        "action": "carry",
+        "mood": "calm"
        },
        {
         "who": "elder",
         "pose": "stand",
-        "action": "hold",
-        "mood": "calm",
-        "item": "torch"
+        "action": "eat",
+        "mood": "calm"
        },
        {
         "who": "child",
@@ -772,16 +770,14 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "hold",
+        "action": "carry",
         "mood": "calm",
-        "item": "lantern",
         "at": "center"
        },
        {
         "who": "woman",
         "pose": "stand",
-        "action": "hold",
-        "item": "lantern"
+        "action": "carry"
        }
       ],
       "props": [],
@@ -799,14 +795,14 @@
        {
         "who": "man",
         "pose": "walk",
-        "action": "idle",
+        "action": "carry",
         "mood": "worried",
         "at": "center"
        },
        {
         "who": "woman",
         "pose": "walk",
-        "action": "idle"
+        "action": "carry"
        }
       ],
       "props": [
@@ -1001,8 +997,7 @@
       ],
       "props": [
        "reeds",
-       "torch",
-       "candle"
+       "torch"
       ]
      }
     }
@@ -1061,7 +1056,7 @@
        {
         "who": "woman",
         "pose": "sit",
-        "action": "talk",
+        "action": "drink",
         "mood": "calm"
        },
        {
@@ -1255,7 +1250,7 @@
        {
         "who": "elder",
         "pose": "stand",
-        "action": "idle",
+        "action": "drink",
         "mood": "calm"
        },
        {
@@ -1403,7 +1398,8 @@
       ],
       "props": [
        "reeds",
-       "torch"
+       "torch",
+       "campfire"
       ],
       "variant": 1
      }
@@ -1449,7 +1445,7 @@
        {
         "who": "woman",
         "pose": "walk",
-        "action": "hold",
+        "action": "carry",
         "mood": "calm"
        }
       ],
@@ -1502,7 +1498,7 @@
        {
         "who": "elder",
         "pose": "sit",
-        "action": "talk",
+        "action": "eat",
         "mood": "calm",
         "at": "left"
        },
@@ -1532,14 +1528,15 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "hold",
+        "action": "drink",
         "mood": "focused",
-        "item": "lantern",
         "at": "center"
        }
       ],
       "props": [
-       "barn"
+       "barn",
+       "sheep",
+       "chicken"
       ],
       "variant": 1
      }
@@ -1898,9 +1895,8 @@
        {
         "who": "man",
         "pose": "sit",
-        "action": "idle",
+        "action": "drink",
         "mood": "sleepy",
-        "item": "cup",
         "at": "center"
        }
       ],

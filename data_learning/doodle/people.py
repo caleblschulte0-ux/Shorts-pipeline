@@ -644,6 +644,14 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
     ink.fill_stroke(cr, body, lk["cloth"], lw=lw * 0.85, amp=1.6, seed=seed + 1,
                     shadow=shade(lk["cloth"]), shadow_dir=(-1, 0.3),
                     texture=lk["texture"], tex_alpha=0.55)
+    if pose == "recline":
+        # the tunic lies along the legs on the couch: bare leg lines over
+        # the cover read as "a long black stick crosses the couch" (the 78
+        # film's judge)
+        ink.fill_stroke(cr, [(hx0 - 0.5 * R, hy0 + 0.25 * R), (hx0 + 2.25 * R, hy0 + 0.02 * R),
+                             (hx0 + 2.3 * R, hy0 - 0.5 * R), (hx0 + 1.0 * R, hy0 - 0.72 * R),
+                             (hx0 - 0.3 * R, hy0 - 0.8 * R)], lk["cloth"], lw=lw * 0.85, amp=1.4, seed=seed + 11,
+                        shadow=shade(lk["cloth"]), shadow_dir=(0, 1), texture=lk["texture"], tex_alpha=0.55)
     if lk["strap"]:
         ink.line(cr, [(nx - 0.45 * R, ny + 0.2 * R), (nx + 0.3 * R, ny + 0.95 * R)],
                  lw=lw * 0.55, ink=shade(lk["cloth"], 0.6), amp=0)

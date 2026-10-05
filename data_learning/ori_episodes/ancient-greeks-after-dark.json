@@ -100,15 +100,13 @@
         "pose": "crouch",
         "action": "stir",
         "mood": "content",
-        "item": "spindle",
-        "at": "center_left"
+        "item": "spindle"
        },
        {
         "who": "child",
         "pose": "sit",
-        "action": "look_up",
-        "mood": "sleepy",
-        "at": "center_right"
+        "action": "stir",
+        "mood": "sleepy"
        }
       ],
       "props": [
@@ -290,16 +288,15 @@
        {
         "who": "elder",
         "pose": "sit",
-        "action": "talk",
+        "action": "eat",
         "mood": "calm",
         "at": "center_left"
        },
        {
         "who": "woman",
         "pose": "sit",
-        "action": "drink",
+        "action": "eat",
         "mood": "calm",
-        "item": "cup",
         "at": "center"
        },
        {
@@ -410,9 +407,11 @@
        "villa",
        "well",
        "tree",
-       "reeds"
+       "reeds",
+       "campfire"
       ],
-      "variant": 5
+      "variant": 5,
+      "fire": "low"
      }
     }
    ]
@@ -546,7 +545,6 @@
        }
       ],
       "props": [
-       "olive",
        "bush",
        "basket"
       ],
@@ -630,9 +628,8 @@
        {
         "who": "woman",
         "pose": "sit_on",
-        "action": "drink",
-        "mood": "calm",
-        "item": "cup"
+        "action": "eat",
+        "mood": "calm"
        }
       ],
       "props": [
@@ -664,7 +661,8 @@
       "props": [
        "campfire",
        "sheep",
-       "bush"
+       "bush",
+       "fence"
       ]
      }
     },
@@ -686,7 +684,7 @@
        {
         "who": "woman",
         "pose": "sit",
-        "action": "idle",
+        "action": "eat",
         "mood": "calm",
         "at": "center"
        },
@@ -876,9 +874,8 @@
         "who": "man"
        },
        {
-        "action": "talk",
+        "action": "drink",
         "at": "right",
-        "item": "cup",
         "mood": "calm",
         "pose": "recline",
         "who": "man"
@@ -914,14 +911,13 @@
        {
         "who": "elder",
         "pose": "sit",
-        "action": "talk",
+        "action": "drink",
         "mood": "content",
         "at": "right"
        }
       ],
       "props": [
-       "torch",
-       "oil_lamp"
+       "torch"
       ],
       "variant": 11
      }
@@ -1035,8 +1031,7 @@
       ],
       "props": [
        "torch",
-       "dog",
-       "oil_lamp"
+       "dog"
       ],
       "variant": 2
      },
@@ -1072,9 +1067,8 @@
        {
         "who": "man",
         "pose": "recline",
-        "action": "hold",
+        "action": "drink",
         "mood": "content",
-        "item": "cup",
         "at": "right"
        }
       ],
@@ -1161,7 +1155,6 @@
         "pose": "sit_on",
         "action": "spin",
         "mood": "focused",
-        "item": "spindle",
         "at": "center_left"
        },
        {
@@ -1169,7 +1162,6 @@
         "pose": "sit_on",
         "action": "spin",
         "mood": "content",
-        "item": "spindle",
         "at": "center_right"
        }
       ],
@@ -1215,14 +1207,14 @@
        {
         "who": "old_woman",
         "pose": "sit_on",
-        "action": "talk",
+        "action": "spin",
         "mood": "calm",
         "at": "center"
        },
        {
         "who": "woman",
         "pose": "sit_on",
-        "action": "sew",
+        "action": "spin",
         "mood": "calm",
         "at": "left"
        },
@@ -1251,9 +1243,8 @@
        {
         "who": "woman",
         "pose": "sit_on",
-        "action": "sew",
-        "mood": "focused",
-        "item": "stick"
+        "action": "spin",
+        "mood": "focused"
        },
        {
         "who": "elder",
@@ -1351,21 +1342,20 @@
        {
         "who": "woman",
         "pose": "crouch",
-        "action": "talk",
+        "action": "eat",
         "mood": "calm",
         "at": "center_left"
        },
        {
         "who": "old_woman",
         "pose": "crouch",
-        "action": "talk",
+        "action": "eat",
         "mood": "content",
         "at": "center"
        }
       ],
       "props": [
-       "oil_lamp",
-       "well"
+       "oil_lamp"
       ],
       "variant": 7
      }
@@ -1557,7 +1547,7 @@
        {
         "who": "man",
         "pose": "sit",
-        "action": "warm_hands",
+        "action": "stir",
         "mood": "sleepy"
        }
       ],
@@ -1650,8 +1640,7 @@
       ],
       "props": [
        "torch",
-       "brazier",
-       "oil_lamp"
+       "brazier"
       ],
       "variant": 3
      }
@@ -1683,8 +1672,7 @@
        "torch",
        "column",
        "brazier",
-       "bush",
-       "oil_lamp"
+       "bush"
       ],
       "variant": 2
      }
@@ -1707,8 +1695,10 @@
       "props": [
        "brazier",
        "column",
-       "temple"
-      ]
+       "temple",
+       "torch"
+      ],
+      "fire": "low"
      }
     },
     {
@@ -1808,9 +1798,8 @@
        {
         "who": "woman",
         "pose": "sit",
-        "action": "hold",
+        "action": "eat",
         "mood": "content",
-        "item": "bread",
         "at": "center_left"
        },
        {
@@ -2017,7 +2006,8 @@
       "props": [
        "brazier",
        "oil_lamp",
-       "bed"
+       "bed",
+       "dog"
       ],
       "variant": 15
      }
@@ -2039,9 +2029,11 @@
        }
       ],
       "props": [
-       "brazier"
+       "brazier",
+       "oil_lamp"
       ],
-      "variant": 13
+      "variant": 13,
+      "fire": "low"
      }
     },
     {

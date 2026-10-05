@@ -502,6 +502,8 @@ def fits(kind: str, spec: dict) -> bool:
     asleep = any(isinstance(c, dict) and c.get("pose") == "lie" for c in spec.get("cast") or [])
     if kind in ("arrive", "serve", "child", "leave", "feed") and asleep:
         return False
+    if kind == "feed" and spec.get("fire") == "low":
+        return False                  # the words banked it; nobody builds it up again
     if kind == "passer":
         return not inside and not st.water
     if kind == "turn":

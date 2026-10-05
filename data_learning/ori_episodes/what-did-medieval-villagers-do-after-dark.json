@@ -105,7 +105,8 @@
       "props": [
        "campfire",
        "sheep",
-       "cow"
+       "cow",
+       "fence"
       ]
      }
     },
@@ -178,7 +179,7 @@
       "props": [
        "hearth",
        "table",
-       "well"
+       "pot"
       ],
       "variant": 2
      }
@@ -240,7 +241,7 @@
        {
         "who": "elder",
         "pose": "sit",
-        "action": "talk",
+        "action": "drink",
         "mood": "content",
         "at": "left"
        },
@@ -454,8 +455,7 @@
       ],
       "props": [
        "hearth",
-       "table",
-       "well"
+       "table"
       ],
       "variant": 2
      }
@@ -508,7 +508,7 @@
        {
         "who": "man",
         "pose": "sit",
-        "action": "idle",
+        "action": "sew",
         "mood": "focused"
        },
        {
@@ -621,8 +621,7 @@
        {
         "who": "woman",
         "pose": "sit",
-        "action": "hold",
-        "item": "bowl",
+        "action": "eat",
         "mood": "sleepy"
        }
       ],
@@ -656,8 +655,7 @@
       ],
       "props": [
        "stall",
-       "torch",
-       "hearth"
+       "torch"
       ]
      }
     },
@@ -695,7 +693,7 @@
        {
         "who": "man",
         "pose": "crouch",
-        "action": "warm_hands",
+        "action": "eat",
         "mood": "content",
         "at": "center"
        },
@@ -733,7 +731,7 @@
        {
         "who": "child",
         "pose": "sit",
-        "action": "idle",
+        "action": "sew",
         "mood": "sleepy"
        }
       ],
@@ -815,7 +813,7 @@
        {
         "who": "elder",
         "pose": "sit",
-        "action": "hold",
+        "action": "sew",
         "mood": "calm"
        }
       ],
@@ -931,7 +929,8 @@
       ],
       "props": [
        "torch",
-       "campfire"
+       "campfire",
+       "dog"
       ],
       "variant": 1,
       "fire": "low"
@@ -982,13 +981,13 @@
        {
         "who": "elder",
         "pose": "sit_on",
-        "action": "talk",
+        "action": "stir",
         "mood": "focused"
        },
        {
         "who": "woman",
         "pose": "sit",
-        "action": "warm_hands",
+        "action": "stir",
         "mood": "calm"
        },
        {
@@ -1089,14 +1088,14 @@
        {
         "who": "old_woman",
         "pose": "sit",
-        "action": "talk",
+        "action": "eat",
         "mood": "content",
         "at": "center"
        },
        {
         "who": "woman",
         "pose": "sit_on",
-        "action": "talk",
+        "action": "eat",
         "mood": "happy",
         "at": "center_right"
        }
@@ -1164,7 +1163,7 @@
        {
         "who": "old_woman",
         "pose": "sit",
-        "action": "idle",
+        "action": "sew",
         "mood": "content"
        }
       ],
@@ -1214,7 +1213,7 @@
        {
         "who": "woman",
         "pose": "sit_on",
-        "action": "talk",
+        "action": "eat",
         "mood": "calm",
         "at": "left"
        }
@@ -1348,9 +1347,8 @@
        {
         "who": "man",
         "pose": "crouch",
-        "action": "hold",
+        "action": "eat",
         "mood": "focused",
-        "item": "torch",
         "at": "center"
        }
       ],
@@ -1390,7 +1388,7 @@
       "props": [
        "stall",
        "torch",
-       "bench"
+       "stall"
       ]
      }
     },
@@ -1581,9 +1579,8 @@
        {
         "who": "elder",
         "pose": "crouch",
-        "action": "warm_hands",
-        "mood": "calm",
-        "item": "stick"
+        "action": "eat",
+        "mood": "calm"
        }
       ],
       "props": [
@@ -1611,7 +1608,8 @@
        }
       ],
       "props": [
-       "campfire"
+       "campfire",
+       "sheep"
       ],
       "variant": 2
      }
@@ -1705,9 +1703,8 @@
        {
         "who": "man",
         "pose": "stand",
-        "action": "warm_hands",
+        "action": "eat",
         "mood": "calm",
-        "item": "spear",
         "at": "center"
        }
       ],
@@ -1759,7 +1756,7 @@
        {
         "who": "woman",
         "pose": "crouch",
-        "action": "hold",
+        "action": "eat",
         "mood": "calm"
        }
       ],
