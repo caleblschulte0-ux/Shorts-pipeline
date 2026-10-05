@@ -65,7 +65,7 @@ SPEED = 0.82
 SENTENCE_GAP = 0.7           # a breath between sentences — sleep narration is slow
 BEAT_GAP = 1.9               # a longer rest when the picture changes
 CHAPTER_GAP = 6.0            # music alone between chapters
-XFADE = 0.6                  # scenes dissolve quickly into each other: a shot is a sentence long
+XFADE = 0.35                 # scenes dissolve quickly into each other: a shot is a sentence long (run 94: at 0.6 the dissolve "ghosts two sleepers over each other")
 MIN_WORDS, MAX_WORDS = 2400, 4000       # ~18 to ~30 minutes at this pace
 # Measured in CI, 2026-09-24 (run #15): 19,611 words narrated to 149.1 min —
 # 131 words a minute WITH the gaps. The operator's ruling that evening, on
@@ -481,6 +481,7 @@ TABLE_ACTIONS = ("eat", "drink", "talk", "sew")
 INSERT_ZOOM = 1.6    # a close-up of the fire or the lamp AND whoever is at it: framed in, held still
 FIRE_ACTIONS = ("warm_hands", "feed_fire", "stir", "sew", "eat", "drink", "talk", "hold")
 SINGLE_ZOOM = 1.3    # a shot of one person: framed on them
+SINGLE_ZOOM_INTERIOR = 1.15    # ...looser in a room, so the shelf and the window stay in the picture (run 94: "the top half of the frame is empty")
 
 
 def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dict:
@@ -510,14 +511,13 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dic
             cands["pan"] = (clean(dict(spec, shot="close", cast=[dict(c, pose="walk")], pan=True,
                                        pan_s=round(dur, 2))), seed + 9)
             continue
-        keep = list(lights) + [n for n in (named or ()) if n in names and n not in lights]
-        if c.get("action") in TABLE_ACTIONS and "table" in names and "table" not in keep:
-            keep.append("table")
-        if c.get("pose") == "lie":
-            keep += [q for q in S.BEDDING if q in names and q not in keep]
+        # the room comes with them: a single that kept only the light left
+        # "one figure against a bare wall" (run 94's judge, twice); a couch
+        # stays only under whoever reclines
+        keep = [q for q in names if (q != "couch" or c.get("pose") == "recline")
+                and (q not in S.BEDDING or c.get("pose") == "lie")]     # bedding stays with its sleeper
         if c.get("pose") == "recline" and "couch" in names:
-            keep += [q for q in names if q == "couch"]
-        keep = [q for q in names if q in keep]          # in the scene's own order, duplicates kept
+            keep = [q for q in keep if q != "couch"] + ["couch"]
         cands[f"single:{i}"] = (clean(dict(spec, shot="close", cast=[c], props=keep)), seed + 11 + i)
     still = [c for c in cast if c.get("pose") != "walk"]
     if lights and still:
@@ -554,7 +554,7 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dic
             # the person AND the lights, whole (run 92: "the lamp at the right
             # edge is clipped by the frame")
             boxes = [_figure_box(f)] + [_prop_box(q) for q in lay["props"] if q["name"] in lights]
-            fr = frame_for(boxes, SINGLE_ZOOM)
+            fr = frame_for(boxes, SINGLE_ZOOM_INTERIOR if S.SETTINGS[sp["setting"]].interior else SINGLE_ZOOM)
             # framed in only if what moves stays in the picture: a close-up
             # that crops the flame out is a held frame (the Greek film's
             # painting held 47 identical frames and the gate blocked it)
@@ -781,7 +781,7 @@ HAPPEN_WORDS = {
 # what fills a shot when its words name nothing that happens: a person
 # coming or going or doing something to the fire or the light, and
 # something alive crossing the picture
-FILL_PEOPLE = ("arrive", "feed", "serve", "leave", "light", "child", "snuff", "passer", "turn", "stretch")
+FILL_PEOPLE = ("arrive", "feed", "serve", "leave", "light", "child", "snuff", "passer", "turn", "pause", "stretch")
 FILL_LIFE = ("dog", "birds", "fish", "cat", "hens", "bats", "mouse", "moth")
 SMALL_LIFE = ("mouse", "moth")
 HAPPEN_MIN = 2           # the operator, 2026-10-03: "more needs to be happening per scene. Significantly more."

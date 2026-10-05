@@ -1040,6 +1040,19 @@ only as a hand edit is not a rule. So:
   shelf keeps the storyboard's additions (beds, mats, a bush) and its
   respec memory, migrated to the new key.
 
+- **Run 94 (commit 979a9d17): 82, SHIP.** No auto-fail; hook 3, data 4.
+  "A calm, consistent sleep film that mostly draws what is said and winds
+  down properly; weakest where an interior shot shrinks to one figure
+  against a bare wall." Notes, each a rule now (`TheEightyTwo`): a
+  gatherer stood up out of her gathering — `stretch` may interrupt only
+  somebody doing nothing in particular (`STRETCHABLE`); the old woman and
+  child "on an unfurnished floor ... the top half of the frame empty" — a
+  bare room gets a piece of furniture in turn (`mend_furnish`,
+  `FURNISHINGS`) and a close-up in a room is framed looser
+  (`SINGLE_ZOOM_INTERIOR` 1.15) so the shelf and the window stay in it; the
+  dissolve "ghosts two sleepers over each other" — `XFADE` 0.6 to 0.35.
+  The storyboard respecified 4 beats this time (down from 44).
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

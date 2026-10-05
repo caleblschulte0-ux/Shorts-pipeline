@@ -103,7 +103,8 @@
       "props": [
        "hearth",
        "clock",
-       "candle"
+       "candle",
+       "basket"
       ],
       "variant": 2
      }
@@ -240,7 +241,8 @@
       ],
       "props": [
        "hearth",
-       "pot"
+       "pot",
+       "basket"
       ]
      }
     },
@@ -291,7 +293,9 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "barrel",
+       "chair"
       ],
       "variant": 6,
       "fire": "low"
@@ -343,7 +347,9 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "barrel",
+       "basket"
       ],
       "variant": 3
      }
@@ -418,7 +424,9 @@
       ],
       "props": [
        "hearth",
-       "candle"
+       "candle",
+       "bench",
+       "barrel"
       ]
      }
     },
@@ -754,7 +762,8 @@
       "props": [
        "hearth",
        "pot",
-       "candle"
+       "candle",
+       "basket"
       ],
       "variant": 1
      }
@@ -778,7 +787,9 @@
       ],
       "props": [
        "candle",
-       "hearth"
+       "hearth",
+       "bench",
+       "barrel"
       ],
       "variant": 4
      }
@@ -808,7 +819,9 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "barrel",
+       "chair"
       ],
       "variant": 5
      }
@@ -868,7 +881,9 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "chair",
+       "basket"
       ],
       "variant": 2
      }
@@ -891,7 +906,8 @@
       ],
       "props": [
        "chair",
-       "hearth"
+       "hearth",
+       "basket"
       ]
      }
     },
@@ -951,7 +967,9 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "barrel",
+       "chair"
       ],
       "variant": 2,
       "fire": "low"
@@ -975,7 +993,8 @@
       ],
       "props": [
        "hearth",
-       "candle"
+       "candle",
+       "woodpile"
       ],
       "fire": "low"
      }
@@ -1077,7 +1096,9 @@
       ],
       "props": [
        "candle",
-       "hearth"
+       "hearth",
+       "barrel",
+       "chair"
       ]
      }
     },
@@ -1226,7 +1247,9 @@
       ],
       "props": [
        "hearth",
-       "bed"
+       "bed",
+       "basket",
+       "woodpile"
       ]
      }
     },
@@ -1386,7 +1409,8 @@
       ],
       "props": [
        "hearth",
-       "bookshelf"
+       "bookshelf",
+       "bench"
       ],
       "variant": 1,
       "fire": "low"
@@ -1415,7 +1439,9 @@
       ],
       "props": [
        "candle",
-       "bed"
+       "bed",
+       "woodpile",
+       "barrel"
       ],
       "variant": 1
      }
@@ -1691,7 +1717,9 @@
       ],
       "props": [
        "hearth",
-       "candle"
+       "candle",
+       "bench",
+       "barrel"
       ],
       "variant": 4,
       "fire": "low"
@@ -1707,7 +1735,8 @@
       "cast": [],
       "props": [
        "dog",
-       "hearth"
+       "hearth",
+       "woodpile"
       ]
      }
     },
@@ -1743,7 +1772,8 @@
       "props": [
        "candle",
        "bed",
-       "table"
+       "table",
+       "basket"
       ],
       "variant": 1
      }
@@ -1789,7 +1819,9 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "basket",
+       "woodpile"
       ],
       "variant": 5,
       "fire": "low"
@@ -1812,7 +1844,8 @@
       ],
       "props": [
        "hearth",
-       "bed"
+       "bed",
+       "woodpile"
       ],
       "variant": 3,
       "fire": "low"
@@ -1828,7 +1861,9 @@
       "cast": [],
       "props": [
        "hearth",
-       "candle"
+       "candle",
+       "woodpile",
+       "chair"
       ],
       "variant": 4,
       "fire": "low"

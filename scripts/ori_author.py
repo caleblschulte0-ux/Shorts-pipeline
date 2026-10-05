@@ -1448,9 +1448,10 @@ def mend_beats(beats, era: str, log=print, final: bool = False, used=None) -> in
             doing = mend_doing(b, era)
             plural = mend_plural(b, era, seeds=(1000 + j,))
             fire = mend_fire(b, era)
+            furnished = mend_furnish(b, era, turn=j)
             moving = mend_motion(b, era)
             did = ", ".join(x for x in (said, when, held, placed, night, did, crowd, named, recl, doing, plural, fire,
-                                        moving) if x)
+                                        furnished, moving) if x)
             if did and json.dumps(b["scene"], sort_keys=True) == was and not said:
                 did = ""          # a prop dropped and put back: nothing changed
             if did:
@@ -2316,6 +2317,45 @@ BEDDING_TURNS = ("bed", "mat", "floor")
 def _bedding_of(sc: dict) -> str:
     names = [p if isinstance(p, str) else (p or {}).get("name") for p in sc.get("props") or []]
     return next((n for n in names if n in S.BEDDING or n == "couch"), "floor")
+
+
+# what a room has in it besides its light and its bedding, taken in turn
+# (run 94's judge: "the old woman and child sit on an unfurnished floor with
+# no room detail")
+FURNISHINGS = ("table", "basket", "amphora", "bench", "woodpile", "krater", "loom", "barrel", "chair")
+FURNISH_MIN = 2        # a room with fewer furnishings than this gets one
+
+
+def mend_furnish(beat: dict, era: str, turn: int = 0) -> str | None:
+    """An interior scene with nothing in it but its light and its bedding is
+    given one piece of furniture the era has, where it fits."""
+    sc = beat.get("scene") if isinstance(beat, dict) else None
+    if not isinstance(sc, dict):
+        return None
+    st = S.SETTINGS.get(sc.get("setting"))
+    if not (st and st.interior):
+        return None
+    names = [p if isinstance(p, str) else (p or {}).get("name") for p in sc.get("props") or []]
+    have = [n for n in names if n in S.PROPS and not S.PROPS[n].light and not S.PROPS[n].living
+            and n not in S.BEDDING and n != "couch"]
+    if len(have) >= FURNISH_MIN:
+        return None
+    opts = [n for n in FURNISHINGS if n in S.PROPS and era in S.PROPS[n].eras and n not in names
+            and not (S.PROPS[n].settings and sc.get("setting") not in S.PROPS[n].settings)]
+    if not opts:
+        return None
+    before = list(sc.get("props") or [])
+    natural = 2.05 if S.shot_of(sc) == "close" else 1.25
+    for k in range(len(opts)):
+        name = opts[(turn + k) % len(opts)]
+        sc["props"] = before + [name]
+        if S.validate(sc, era):
+            continue
+        lay = S.layout(sc, 1000 + turn)
+        if not lay["collisions"] and lay["scale"] >= natural * (CROWD_SHRINK + 0.1) - 1e-6:
+            return f"a {name} in the room (it was bare)"
+    sc["props"] = before
+    return None
 
 
 def mend_sleepers(ep: dict) -> list[str]:

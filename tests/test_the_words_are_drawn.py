@@ -724,3 +724,59 @@ class TheThirdEightyThree(unittest.TestCase):
         self.assertTrue(SB.keeps_nothing_the_words_name(say, old, one))
         two = dict(old, cast=old["cast"][:2])
         self.assertIsNone(SB.keeps_nothing_the_words_name(say, old, two))
+
+
+@unittest.skipUnless(HAVE, "the doodle kit needs cairo and numpy")
+class TheEightyTwo(unittest.TestCase):
+    """Run 94: 82, SHIP. A gatherer stood up out of her gathering, a bare
+    wall behind a zoomed-in sitter, a dissolve that ghosted two sleepers."""
+
+    def test_nobody_at_work_stands_up_out_of_it(self):
+        from data_learning.doodle import happen as HP
+        sp = {"setting": "olive_grove", "time": "dusk", "weather": "clear", "shot": "close",
+              "cast": [{"who": "woman", "pose": "crouch", "action": "gather", "item": "basket"}], "props": ["tree", "basket"]}
+        for seed in range(6):
+            self.assertIsNone(HP.build("stretch", sp, S.layout(sp, seed), seed, 7.0))
+        sp2 = dict(sp, cast=[{"who": "woman", "pose": "sit", "action": "talk"}])
+        self.assertIsNotNone(HP.build("stretch", sp2, S.layout(sp2, 1), 1, 7.0))
+
+    def test_a_bare_room_gets_a_piece_of_furniture(self):
+        from scripts import ori_author as A
+        b = {"say": "In another house nearby, an old woman sits up a little longer, warming her hands near a small lamp.",
+             "scene": {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                       "cast": [{"who": "old_woman", "pose": "sit", "action": "warm_hands"},
+                                {"who": "child", "pose": "lie", "action": "sleep"}], "props": ["oil_lamp", "mat"]}}
+        did = A.mend_furnish(b, "ancient", turn=3)
+        self.assertTrue(did, b["scene"]["props"])
+        self.assertTrue(any(n in A.FURNISHINGS for n in b["scene"]["props"]), b["scene"]["props"])
+        self.assertEqual(S.validate(b["scene"], "ancient"), [])
+
+    def test_the_dissolve_is_short_and_a_room_is_framed_loosely(self):
+        self.assertLessEqual(OS.XFADE, 0.4)
+        spec = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "old_woman", "pose": "sit", "action": "warm_hands"}], "props": ["oil_lamp", "table"]}
+        for seed in range(1, 8):
+            for name, (sp, _sd) in OS.coverage(spec, "ancient", seed).items():
+                if name.startswith("single:") and sp.get("frame"):
+                    self.assertLessEqual(sp["frame"][2], OS.SINGLE_ZOOM_INTERIOR + 1e-9, (seed, name))
+
+    def test_a_single_keeps_the_room_but_not_another_s_bed(self):
+        spec = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "old_woman", "pose": "sit", "action": "warm_hands"},
+                         {"who": "child", "pose": "lie", "action": "sleep"}], "props": ["oil_lamp", "mat", "barrel", "basket"]}
+        opts = OS.coverage(spec, "ancient", 3)
+        self.assertIn("barrel", opts["single:0"][0]["props"])
+        self.assertNotIn("mat", opts["single:0"][0]["props"])
+        self.assertIn("mat", opts["single:1"][0]["props"])
+
+    def test_the_fire_does_not_stand_in_the_villa_doorway(self):
+        sc = {"setting": "villa_inside", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "woman", "pose": "sit", "action": "sew"}], "props": ["oil_lamp", "table", "brazier"]}
+        for seed in range(1, 16):
+            lay = S.layout(sc, seed)
+            dx = ST.villa_doorway(seed)
+            fire = next(p for p in lay["props"] if p["name"] == "brazier")
+            hw = S.PROPS["brazier"].width * fire["s"] / 2
+            self.assertFalse(min(fire["x"] + hw, dx + ST.VILLA_DOOR_HALF) - max(fire["x"] - hw, dx - ST.VILLA_DOOR_HALF) > S.MARGIN,
+                             f"seed {seed}: the brazier stands in the doorway")
+

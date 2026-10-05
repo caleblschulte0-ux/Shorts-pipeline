@@ -177,7 +177,9 @@
       ],
       "props": [
        "hearth",
-       "candle"
+       "candle",
+       "woodpile",
+       "barrel"
       ],
       "variant": 1
      }
@@ -363,7 +365,8 @@
       ],
       "props": [
        "hearth",
-       "bench"
+       "bench",
+       "basket"
       ]
      }
     },
@@ -415,7 +418,8 @@
       "props": [
        "hearth",
        "bed",
-       "candle"
+       "candle",
+       "basket"
       ]
      }
     }
@@ -574,7 +578,8 @@
       ],
       "props": [
        "hearth",
-       "candle"
+       "candle",
+       "barrel"
       ],
       "fire": "low"
      }
@@ -597,7 +602,9 @@
       ],
       "props": [
        "candle",
-       "hearth"
+       "hearth",
+       "basket",
+       "woodpile"
       ],
       "variant": 2,
       "fire": "low"
@@ -719,7 +726,8 @@
       "props": [
        "hearth",
        "table",
-       "candle"
+       "candle",
+       "basket"
       ],
       "variant": 1
      }
@@ -948,7 +956,9 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "woodpile",
+       "basket"
       ]
      }
     },
@@ -971,6 +981,8 @@
       "props": [
        "hearth",
        "candle",
+       "barrel",
+       "basket",
        "torch"
       ],
       "variant": 1
@@ -1074,7 +1086,8 @@
       "props": [
        "hearth",
        "candle",
-       "table"
+       "table",
+       "woodpile"
       ],
       "variant": 1
      }
@@ -1103,7 +1116,8 @@
       ],
       "props": [
        "hearth",
-       "candle"
+       "candle",
+       "bench"
       ]
      }
     },
@@ -1125,7 +1139,9 @@
       ],
       "props": [
        "hearth",
-       "candle"
+       "candle",
+       "woodpile",
+       "barrel"
       ],
       "variant": 2,
       "fire": "low"
@@ -1166,7 +1182,9 @@
       ],
       "props": [
        "hearth",
-       "candle"
+       "candle",
+       "barrel",
+       "table"
       ],
       "variant": 2
      }
@@ -1268,7 +1286,8 @@
       "props": [
        "hearth",
        "candle",
-       "table"
+       "table",
+       "barrel"
       ],
       "variant": 2,
       "fire": "low"
@@ -1352,7 +1371,8 @@
       ],
       "props": [
        "hearth",
-       "candle"
+       "candle",
+       "table"
       ],
       "fire": "low"
      }
@@ -1367,7 +1387,9 @@
       "cast": [],
       "props": [
        "hearth",
-       "candle"
+       "candle",
+       "basket",
+       "barrel"
       ],
       "variant": 1
      }
@@ -1450,7 +1472,8 @@
       "props": [
        "candle",
        "hearth",
-       "table"
+       "table",
+       "woodpile"
       ],
       "variant": 3
      }
@@ -1479,7 +1502,9 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "barrel",
+       "basket"
       ],
       "variant": 2,
       "fire": "low"
@@ -1616,7 +1641,9 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "woodpile",
+       "basket"
       ],
       "variant": 1
      }
@@ -1638,7 +1665,9 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "barrel",
+       "basket"
       ],
       "variant": 2
      }
@@ -1673,7 +1702,8 @@
       "props": [
        "bed",
        "hearth",
-       "candle"
+       "candle",
+       "basket"
       ]
      }
     },
@@ -1694,7 +1724,9 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "basket",
+       "barrel"
       ],
       "variant": 1
      }
@@ -1722,7 +1754,8 @@
       ],
       "props": [
        "candle",
-       "hearth"
+       "hearth",
+       "table"
       ],
       "variant": 1
      }
@@ -1780,7 +1813,9 @@
        }
       ],
       "props": [
-       "hearth"
+       "hearth",
+       "woodpile",
+       "barrel"
       ],
       "variant": 1,
       "fire": "low"
@@ -1826,7 +1861,8 @@
       ],
       "props": [
        "hearth",
-       "mat"
+       "mat",
+       "basket"
       ]
      }
     },
@@ -1900,7 +1936,9 @@
       ],
       "props": [
        "candle",
-       "hearth"
+       "hearth",
+       "woodpile",
+       "basket"
       ],
       "variant": 2,
       "fire": "low"
@@ -1958,7 +1996,8 @@
       "props": [
        "hearth",
        "bed",
-       "candle"
+       "candle",
+       "basket"
       ],
       "fire": "low"
      }

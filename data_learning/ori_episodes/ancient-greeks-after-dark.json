@@ -254,21 +254,21 @@
         "who": "child",
         "pose": "crouch",
         "action": "warm_hands",
-        "mood": "content",
-        "at": "center_left"
+        "mood": "content"
        },
        {
         "who": "old_woman",
         "pose": "crouch",
         "action": "feed_fire",
         "mood": "calm",
-        "item": "branch",
-        "at": "center_right"
+        "item": "branch"
        }
       ],
       "props": [
        "brazier",
-       "oil_lamp"
+       "oil_lamp",
+       "barrel",
+       "basket"
       ],
       "variant": 8,
       "fire": "low"
@@ -311,7 +311,8 @@
       "props": [
        "oil_lamp",
        "brazier",
-       "table"
+       "table",
+       "amphora"
       ],
       "variant": 11
      }
@@ -339,7 +340,8 @@
       ],
       "props": [
        "oil_lamp",
-       "bed"
+       "bed",
+       "basket"
       ]
      }
     },
@@ -383,7 +385,8 @@
       "props": [
        "bed",
        "brazier",
-       "oil_lamp"
+       "oil_lamp",
+       "barrel"
       ],
       "fire": "low",
       "variant": 2
@@ -438,7 +441,8 @@
       ],
       "props": [
        "oil_lamp",
-       "table"
+       "table",
+       "basket"
       ],
       "variant": 5
      }
@@ -751,7 +755,8 @@
       ],
       "props": [
        "oil_lamp",
-       "mat"
+       "woodpile",
+       "amphora"
       ],
       "variant": 2
      }
@@ -849,14 +854,15 @@
         "action": "drink",
         "at": "right",
         "mood": "calm",
-        "pose": "recline",
+        "pose": "sit",
         "who": "man"
        }
       ],
       "props": [
        "oil_lamp",
        "couch",
-       "couch"
+       "amphora",
+       "krater"
       ],
       "setting": "house_inside",
       "shot": "close",
@@ -912,7 +918,9 @@
       ],
       "props": [
        "oil_lamp",
-       "bed"
+       "bed",
+       "woodpile",
+       "barrel"
       ],
       "variant": 2
      }
@@ -930,13 +938,6 @@
         "pose": "sit_on",
         "action": "talk",
         "mood": "focused",
-        "item": "cup"
-       },
-       {
-        "who": "man",
-        "pose": "recline",
-        "action": "drink",
-        "mood": "happy",
         "item": "cup"
        }
       ],
@@ -973,7 +974,9 @@
       ],
       "props": [
        "oil_lamp",
-       "mat"
+       "mat",
+       "barrel",
+       "basket"
       ],
       "variant": 3
      }
@@ -1096,14 +1099,14 @@
         "pose": "recline",
         "action": "look_up",
         "mood": "calm",
-        "at": "center",
         "item": "cup"
        }
       ],
       "props": [
        "oil_lamp",
        "couch",
-       "brazier"
+       "brazier",
+       "barrel"
       ],
       "variant": 4,
       "fire": "low"
@@ -1139,7 +1142,8 @@
       ],
       "props": [
        "oil_lamp",
-       "bench"
+       "bench",
+       "basket"
       ],
       "variant": 5
      }
@@ -1163,7 +1167,8 @@
       ],
       "props": [
        "oil_lamp",
-       "bench"
+       "bench",
+       "basket"
       ],
       "variant": 2
      }
@@ -1196,7 +1201,9 @@
        }
       ],
       "props": [
-       "oil_lamp"
+       "oil_lamp",
+       "amphora",
+       "bench"
       ],
       "variant": 23
      }
@@ -1223,7 +1230,9 @@
        }
       ],
       "props": [
-       "oil_lamp"
+       "oil_lamp",
+       "bench",
+       "amphora"
       ],
       "variant": 2
      }
@@ -1252,7 +1261,9 @@
       ],
       "props": [
        "oil_lamp",
-       "brazier"
+       "brazier",
+       "woodpile",
+       "amphora"
       ],
       "variant": 4
      }
@@ -1284,7 +1295,8 @@
        "brazier",
        "oil_lamp",
        "basket",
-       "bed"
+       "bed",
+       "amphora"
       ],
       "variant": 8,
       "fire": "low"
@@ -1314,7 +1326,9 @@
        }
       ],
       "props": [
-       "oil_lamp"
+       "oil_lamp",
+       "barrel",
+       "basket"
       ],
       "variant": 7
      }
@@ -1349,7 +1363,8 @@
       ],
       "props": [
        "oil_lamp",
-       "basket"
+       "basket",
+       "amphora"
       ],
       "variant": 33
      }
@@ -1379,7 +1394,9 @@
       ],
       "props": [
        "oil_lamp",
-       "mat"
+       "mat",
+       "basket",
+       "woodpile"
       ]
      }
     },
@@ -1408,7 +1425,8 @@
       ],
       "props": [
        "oil_lamp",
-       "basket"
+       "basket",
+       "woodpile"
       ],
       "variant": 4
      }
@@ -1726,7 +1744,8 @@
       "props": [
        "brazier",
        "woodpile",
-       "oil_lamp"
+       "oil_lamp",
+       "basket"
       ],
       "variant": 2,
       "fire": "low"
@@ -1758,7 +1777,8 @@
       "props": [
        "oil_lamp",
        "brazier",
-       "table"
+       "table",
+       "amphora"
       ],
       "variant": 5
      }
@@ -1816,7 +1836,9 @@
        }
       ],
       "props": [
-       "oil_lamp"
+       "oil_lamp",
+       "bench",
+       "woodpile"
       ],
       "variant": 4
      }
@@ -1839,7 +1861,9 @@
        }
       ],
       "props": [
-       "oil_lamp"
+       "oil_lamp",
+       "woodpile",
+       "krater"
       ],
       "variant": 6
      }
@@ -1863,7 +1887,9 @@
       ],
       "props": [
        "brazier",
-       "oil_lamp"
+       "oil_lamp",
+       "krater",
+       "barrel"
       ],
       "variant": 11,
       "fire": "low"
@@ -1895,7 +1921,9 @@
       ],
       "props": [
        "bed",
-       "oil_lamp"
+       "oil_lamp",
+       "barrel",
+       "table"
       ],
       "variant": 1
      }
@@ -1917,7 +1945,9 @@
        }
       ],
       "props": [
-       "oil_lamp"
+       "oil_lamp",
+       "table",
+       "amphora"
       ],
       "variant": 37
      }
@@ -1947,7 +1977,8 @@
        "brazier",
        "oil_lamp",
        "bed",
-       "dog"
+       "dog",
+       "basket"
       ],
       "variant": 19
      }
@@ -1964,13 +1995,13 @@
         "who": "elder",
         "pose": "lie",
         "action": "sleep",
-        "mood": "content",
-        "at": "center"
+        "mood": "content"
        }
       ],
       "props": [
        "brazier",
-       "oil_lamp"
+       "oil_lamp",
+       "amphora"
       ],
       "variant": 13,
       "fire": "low"
@@ -2006,7 +2037,9 @@
       "props": [
        "brazier",
        "oil_lamp",
-       "bed"
+       "bed",
+       "woodpile",
+       "amphora"
       ],
       "variant": 8,
       "fire": "low"
@@ -2034,7 +2067,9 @@
        }
       ],
       "props": [
-       "oil_lamp"
+       "oil_lamp",
+       "woodpile",
+       "barrel"
       ],
       "variant": 7
      }

@@ -50,7 +50,8 @@ W, H = 1920, 1080
 EDGE = 30.0
 GAP = 12.0
 
-PEOPLE_KINDS = ("arrive", "leave", "feed", "serve", "light", "snuff", "child", "passer", "turn", "stretch")
+STRETCHABLE = ("idle", "hold", "talk", "look_up", "yawn")   # the actions a stretch may interrupt
+PEOPLE_KINDS = ("arrive", "leave", "feed", "serve", "light", "snuff", "child", "passer", "turn", "stretch", "pause")
 BACK_K = 0.56            # the far side of the picture: scene.WALK_LANE
 ANIMAL_KINDS = ("dog", "cat", "hens", "birds", "fish", "bats", "mouse", "moth")
 KINDS = PEOPLE_KINDS + ANIMAL_KINDS
@@ -319,8 +320,11 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
         # somebody already here gets up, stands a moment, and sits back down:
         # what happens in a room too full for anyone new to walk into (the
         # lone woman by her lamp had nothing but a mouse to offer)
+        # ...and only somebody doing nothing in particular: a gatherer who
+        # stood up was "standing still beside a basket instead of filling
+        # it" (run 94's judge)
         sitters = [i for i, f in enumerate(lay["people"]) if f["pose"] in ("sit", "sit_on", "crouch")
-                   and x0 < f["x"] < x1]
+                   and f["action"] in STRETCHABLE and x0 < f["x"] < x1]
         if not sitters:
             return None
         gi = sitters[r.randrange(len(sitters))]
@@ -336,6 +340,24 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
                           (t_up + RISE_S, f["x"], "stand", "idle", f["facing"]),
                           (t_up + RISE_S + 1.3, f["x"], "stand", "idle", f["facing"]),
                           (t_up + 2 * RISE_S + 1.3, f["x"], f["pose"], f["action"], f["facing"]),
+                          (dur + 5, f["x"], f["pose"], f["action"], f["facing"])])
+    if kind == "pause":
+        # somebody at their work stops a moment, looks up, and goes on: the
+        # small pause the words themselves describe ("a small pause in the
+        # rhythm"), for the worker nobody may stand up out of
+        busy = [i for i, f in enumerate(lay["people"]) if f["pose"] != "lie" and f["action"] not in STRETCHABLE
+                and x0 < f["x"] < x1]
+        if not busy:
+            return None
+        gi = busy[r.randrange(len(busy))]
+        f = lay["people"][gi]
+        R = _R(f["who"], f["s"])
+        t_up = max(1.0, min(dur * 0.35, dur - 2.5))
+        return dict(kind=kind, who=f["who"], s=f["s"], y=f["y"], seed=f["seed"], R=R, owns=gi,
+                    item=f.get("item"), mood=f.get("mood", "calm"),
+                    keys=[(0.0, f["x"], f["pose"], f["action"], f["facing"]),
+                          (t_up, f["x"], f["pose"], "look_up", f["facing"]),
+                          (t_up + 1.6, f["x"], f["pose"], f["action"], f["facing"]),
                           (dur + 5, f["x"], f["pose"], f["action"], f["facing"])])
     if kind in ("light", "snuff"):
         lamps = [p for p in _lamps(lay) if x0 < p["x"] < x1]
@@ -566,7 +588,11 @@ def fits(kind: str, spec: dict) -> bool:
     if kind == "turn":
         return asleep
     if kind == "stretch":
-        return any(isinstance(c, dict) and c.get("pose") in ("sit", "sit_on", "crouch") for c in spec.get("cast") or [])
+        return any(isinstance(c, dict) and c.get("pose") in ("sit", "sit_on", "crouch")
+                   and c.get("action", "idle") in STRETCHABLE for c in spec.get("cast") or [])
+    if kind == "pause":
+        return any(isinstance(c, dict) and c.get("pose") != "lie" and c.get("action", "idle") not in STRETCHABLE
+                   for c in spec.get("cast") or [])
     if kind == "hens":
         return spec.get("setting") in YARDS and time in ("day", "dawn", "dusk")
     if kind == "birds":

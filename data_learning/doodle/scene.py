@@ -384,6 +384,7 @@ def spans(lay: dict) -> list[dict]:
                         under=p.get("under"), pid=i, on=p.get("on")))
     for b in lay.get("blocked") or ():
         out.append(dict(label=b["label"], lo=b["lo"], hi=b["hi"], fig=None, under=None, pid=None, on=None,
+                        lying_only=b.get("lying_only", False), props=b.get("props", False),
                         ground=True))
     return out
 
@@ -414,11 +415,25 @@ def collisions(lay: dict) -> list[str]:
                 # may stand there
                 g, o = (A, B) if A.get("ground") else (B, A)
                 if o["fig"] is None:
+                    over = min(o["hi"], g["hi"]) - max(o["lo"], g["lo"])
+                    if g.get("props"):
+                        # a doorway: nothing is put in it, a fire least of all
+                        # (a couch or a bed under its own figure goes where
+                        # the figure goes, and the figure is kept out)
+                        if o["under"] is None and over > MARGIN:
+                            bad.append(f"{o['label']} stands in {g['label']} by {over:.0f}px")
+                        continue
                     if PROPS[o["label"]].light or PROPS[o["label"]].width < SMALL_PROP or o["under"] is not None:
                         continue      # a fire, something small, or a bed under its sleeper, reads there
-                    over = min(o["hi"], g["hi"]) - max(o["lo"], g["lo"])
                     if over > MARGIN:
                         bad.append(f"{o['label']} stands in front of {g['label']} by {over:.0f}px")
+                    continue
+                if g.get("lying_only"):
+                    # a doorway: somebody may stand in it, nobody lies across it
+                    if o["label"].endswith((":lie", ":recline")):
+                        over = min(o["hi"], g["hi"]) - max(o["lo"], g["lo"])
+                        if over > MARGIN:
+                            bad.append(f"{o['label']} lies across {g['label']} by {over:.0f}px")
                     continue
                 hlo, hhi = o["head"]
                 over = min(hhi, g["hi"]) - max(hlo, g["lo"])
@@ -585,7 +600,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         # somebody standing in a doorway is a thing people do)
         dx = settings.villa_doorway(seed)
         blocked.append(dict(label="the doorway", lo=dx - settings.VILLA_DOOR_HALF, hi=dx + settings.VILLA_DOOR_HALF,
-                            lying_only=True))
+                            lying_only=True, props=True))      # nor is anything PUT in it (a brazier, three times)
 
     def clash(lo, hi, head=None, keep_off=False, off_trees=False):
         """How much (lo, hi) overlaps what is taken. `head` is a person's
@@ -605,6 +620,9 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         elif keep_off:
             c += sum(max(0.0, min(hi, b["hi"]) - max(lo, b["lo"]) - MARGIN) for b in blocked
                      if not b.get("lying_only"))
+        else:
+            # a prop: off the ground flagged for props (the villa's doorway)
+            c += sum(max(0.0, min(hi, b["hi"]) - max(lo, b["lo"]) - MARGIN) for b in blocked if b.get("props"))
         return c
 
     def free(lo, hi, head=None, keep_off=False, off_trees=False):
@@ -635,6 +653,10 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         somebody lying down, the whole of them (the doorway)."""
         if c.get("pose") == "lie":
             return (*fig_span(c, x, facing, R), "lying")
+        if c.get("pose") == "recline":
+            # the couch comes with them, a little wider than the body
+            lo_, hi_ = fig_span(c, x, facing, R)
+            return (lo_ - 0.6 * R, hi_ + 0.6 * R, "lying")
         return head_span(x, R)
 
     def settle(x, span_of, lo_lim, hi_lim, head_of=None, keep_off=False, off_trees=False):
@@ -694,6 +716,11 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             # nor in the pool (run 93: "the torch pole is planted in the
             # middle of the pool the woman is filling from")
             trunks.append((W * settings.SPRING_X[0], W * settings.SPRING_X[1]))
+        if spec.get("setting") == "villa_inside":
+            # nor in the courtyard door (the storyboard, three runs: "the
+            # brazier stands in the doorway")
+            dx = settings.villa_doorway(seed)
+            trunks.append((dx - settings.VILLA_DOOR_HALF, dx + settings.VILLA_DOOR_HALF))
         for step in range(0, 40):
             for sgn in (1, -1):
                 fx = focal_x + sgn * step * 25.0
