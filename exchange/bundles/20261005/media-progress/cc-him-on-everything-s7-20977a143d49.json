@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261005",
+  "bundle": {
+    "identity": "2493dec1d28cc46e8b97a6832ced93e6c042342fc2341f642b8438a1c00e50ab",
+    "path": "exchange/bundles/20261005/bundle.json"
+  },
+  "request_id": "cc-him-on-everything-s7-20977a143d49",
+  "safe_request_id": "cc-him-on-everything-s7-20977a143d49",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e6f027246c1400b9cee443772bcc780ce95a6d2f41ad0840a919f23e678d7f60",
+  "prompt_used": "An editorial illustration for a short-form video: manager typing email desk. It accompanies the narration: \"He changed the policy within the hour\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1u8VSJX63GcjTl76SBxLcdE3LcPSmyy3a",
+    "filename": "20261005__cc-him-on-everything-s7-20977a143d49.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1u8VSJX63GcjTl76SBxLcdE3LcPSmyy3a",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "62882b8f7d0070e5d8e5c5252ce355c817ce879b8532c36d943b1e90469dde58",
+    "bytes": 1686453,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-05T11:34:15.990Z"
+}
