@@ -680,6 +680,52 @@ STILL_WORDS = re.compile(r"\b(empty|deserted|nobody|no one|no-one|silent street|
 WALKS_WITH = ("carry", "hold", "idle", "wave", "point")
 
 
+# words that say there are SEVERAL people: a square with "sellers packing
+# up" drawn with one seller read as "a rooftop terrace with one seller" (the
+# 83 film's judge)
+PLURAL_PEOPLE = OS.PLURAL_PEOPLE
+
+
+def mend_plural(beat: dict, era: str, seeds=(1000,)) -> str | None:
+    """When the words say several people and the scene has one, a second
+    joins them doing the same thing; when they say stalls and there is one
+    stall, a second stands beside it — while the picture still fits."""
+    sc = beat.get("scene") if isinstance(beat, dict) else None
+    if not isinstance(sc, dict):
+        return None
+    say = beat.get("say") or ""
+    cast = [c for c in sc.get("cast") or [] if isinstance(c, dict)]
+    natural = 2.05 if S.shot_of(sc) == "close" else 1.25
+
+    def fits():
+        if S.validate(sc, era):
+            return False
+        return all(not (l := S.layout(sc, sd))["collisions"] and l["scale"] >= natural * (CROWD_SHRINK + 0.1) - 1e-6
+                   for sd in seeds)
+    did = []
+    gone = re.search(r"\b(nobody|no one|no-one|gone|have left|deserted|all asleep|everyone sleeps)\b", say, re.I)
+    if PLURAL_PEOPLE.search(say) and len(cast) == 1 and not gone:
+        c = cast[0]
+        twin = {"who": {"woman": "man", "man": "woman"}.get(c.get("who"), c.get("who")),
+                "pose": c.get("pose", "stand"), "action": c.get("action", "idle")}
+        if c.get("item"):
+            twin["item"] = c["item"]
+        sc["cast"] = cast + [twin]
+        if fits():
+            did.append("a second person (the words say several)")
+        else:
+            sc["cast"] = cast
+    names = [q if isinstance(q, str) else (q or {}).get("name") for q in sc.get("props") or []]
+    if re.search(r"\bstalls\b", say, re.I) and names.count("stall") == 1:
+        before = list(sc["props"])
+        sc["props"] = before + ["stall"]
+        if fits():
+            did.append("a second stall (the words say stalls)")
+        else:
+            sc["props"] = before
+    return ", ".join(did) if did else None
+
+
 def mend_motion(beat: dict, era: str) -> str | None:
     """When the words say somebody is going somewhere and nobody in the
     picture is, a standing person sets off (they cross the frame) — or, out
@@ -1189,9 +1235,10 @@ def mend_beats(beats, era: str, log=print, final: bool = False, used=None) -> in
             named = add_named_props(b, era, seeds=(1000 + j,))
             recl = mend_recline(b, era)
             doing = mend_doing(b, era)
+            plural = mend_plural(b, era, seeds=(1000 + j,))
             fire = mend_fire(b, era)
             moving = mend_motion(b, era)
-            did = ", ".join(x for x in (placed, night, did, crowd, named, recl, doing, fire, moving) if x)
+            did = ", ".join(x for x in (placed, night, did, crowd, named, recl, doing, plural, fire, moving) if x)
             if did and json.dumps(b["scene"], sort_keys=True) == was:
                 did = ""          # a prop dropped and put back: nothing changed
             if did:

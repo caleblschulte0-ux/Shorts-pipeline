@@ -229,6 +229,45 @@ class TheShotKeepsWhatTheSentenceNames(unittest.TestCase):
         # and it holds: a second pass changes nothing
         self.assertIsNone(A.mend_recline(beat, "ancient"))
 
+    def test_the_judge_is_told_the_sentence_spoken_at_that_moment(self):
+        # the 83 film: "a man breaks bread" was held against the shot of the
+        # passage's third sentence, because the judge was given each
+        # passage's FIRST line at every moment it looked
+        b = OS.Beat(chapter=0, index=0, text="First sentence here. Second sentence here. Third one.", scene={},
+                    start=0.0)
+        b.lines = [(0.0, 4.0, "First sentence here."), (4.7, 8.7, "Second sentence here."), (9.4, 12.0, "Third one.")]
+        b.end = 13.9
+        lines = OS.judged_lines([b], [{"t": 0.0, "label": "c"}], 13.9)
+        # 55% of 13.9 s is 7.6 s: the second sentence
+        self.assertEqual(lines["seg0:mid"], "Second sentence here.")
+        self.assertEqual(lines["seg0:end"], "Third one.")
+        self.assertEqual(lines["seg0:start"], "First sentence here.")
+
+    def test_the_water_sparkle_never_crosses_a_face(self):
+        # the 83 film: "sea and spring sparkle dots are painted on top of the
+        # figures' heads" — on the woman a happening had just walked to the pool
+        sp = {"setting": "spring", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "woman", "pose": "crouch", "action": "gather"}], "props": ["amphora", "torch"],
+              "happen": ["arrive"], "happen_s": 7.0}
+        sc = S.Scene(sp, "ancient", 4)
+        self.assertEqual([a["kind"] for a in sc.acts], ["arrive"])
+        a = sc.acts[0]
+        t = a["keys"][-1][0] - 1.0 if a["keys"][-1][0] < 7 else 6.5
+        holes = sc._figure_holes(t)
+        from data_learning.doodle import happen as HP
+        x, *_ = HP._state(a, t)
+        self.assertTrue(any(lo <= x <= hi for lo, hi, _top, _bot in holes), "the newcomer has no hole in the glints")
+
+    def test_several_sellers_are_several(self):
+        beat = {"say": "In the market square, the last sellers pack away their baskets, and the stalls stand empty.",
+                "scene": {"setting": "forum", "time": "dusk", "weather": "clear", "shot": "close",
+                          "cast": [{"who": "man", "pose": "crouch", "action": "gather"}],
+                          "props": ["stall", "basket", "brazier"]}}
+        did = A.mend_plural(beat, "ancient")
+        self.assertIn("second person", did or "")
+        self.assertEqual(len(beat["scene"]["cast"]), 2)
+        self.assertEqual(S.validate(beat["scene"], "ancient"), [])
+
     def test_the_shelf_scripts_stand_mended_and_valid(self):
         for p in sorted((ROOT / "data_learning" / "ori_episodes").glob("*.json")):
             ep = json.loads(p.read_text())

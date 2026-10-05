@@ -108,7 +108,7 @@
        "oil_lamp",
        "brazier",
        "table",
-       "cauldron"
+       "pot"
       ],
       "fire": "low"
      }
@@ -453,7 +453,8 @@
       "props": [
        "brazier",
        "torch",
-       "stall"
+       "stall",
+       "oil_lamp"
       ],
       "variant": 7
      }
@@ -844,6 +845,7 @@
       "props": [
        "cauldron",
        "torch",
+       "stall",
        "stall"
       ],
       "variant": 13
@@ -1014,6 +1016,11 @@
         "action": "sleep",
         "mood": "sleepy",
         "at": "center_left"
+       },
+       {
+        "who": "woman",
+        "pose": "lie",
+        "action": "sleep"
        }
       ],
       "props": [
@@ -1095,9 +1102,9 @@
       "props": [
        "cauldron",
        "torch",
-       "column",
        "barrel",
-       "stall"
+       "stall",
+       "well"
       ],
       "variant": 4
      }
@@ -1560,6 +1567,12 @@
         "mood": "calm",
         "item": "torch",
         "at": "center_right"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [
@@ -1720,6 +1733,11 @@
         "action": "feed_fire",
         "mood": "sleepy",
         "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "feed_fire"
        }
       ],
       "props": [

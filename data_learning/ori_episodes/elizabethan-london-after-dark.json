@@ -643,6 +643,12 @@
         "mood": "worried",
         "item": "bundle",
         "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "bundle"
        }
       ],
       "props": [],
@@ -705,6 +711,11 @@
         "pose": "walk",
         "action": "carry",
         "mood": "focused"
+       },
+       {
+        "who": "man",
+        "pose": "walk",
+        "action": "carry"
        }
       ],
       "props": [
@@ -765,6 +776,12 @@
         "mood": "calm",
         "item": "lantern",
         "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "hold",
+        "item": "lantern"
        }
       ],
       "props": [],
@@ -785,6 +802,11 @@
         "action": "idle",
         "mood": "worried",
         "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "idle"
        }
       ],
       "props": [

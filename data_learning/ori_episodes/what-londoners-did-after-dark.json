@@ -907,6 +907,12 @@
         "mood": "focused",
         "item": "torch",
         "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "hold",
+        "item": "torch"
        }
       ],
       "props": [

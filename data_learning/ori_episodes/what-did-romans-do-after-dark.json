@@ -305,6 +305,11 @@
         "action": "yawn",
         "mood": "sleepy",
         "at": "center"
+       },
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "yawn"
        }
       ],
       "props": [
@@ -525,6 +530,12 @@
         "mood": "calm",
         "item": "cup",
         "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "sit",
+        "action": "drink",
+        "item": "cup"
        }
       ],
       "props": [
@@ -583,6 +594,12 @@
         "mood": "sleepy",
         "item": "bread",
         "at": "center"
+       },
+       {
+        "who": "child",
+        "pose": "sit_on",
+        "action": "yawn",
+        "item": "bread"
        }
       ],
       "props": [
@@ -694,6 +711,12 @@
         "mood": "calm",
         "item": "lantern",
         "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "hold",
+        "item": "lantern"
        }
       ],
       "props": [
@@ -1116,7 +1139,8 @@
        "stall",
        "brazier",
        "torch",
-       "basket"
+       "basket",
+       "stall"
       ],
       "variant": 1
      }
@@ -1135,6 +1159,11 @@
         "action": "idle",
         "mood": "worried",
         "at": "left"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "idle"
        }
       ],
       "props": [
@@ -1291,6 +1320,12 @@
         "mood": "focused",
         "item": "lantern",
         "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "lantern"
        }
       ],
       "props": [
@@ -1337,6 +1372,12 @@
         "item": "torch",
         "mood": "calm",
         "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "walk",
+        "action": "carry",
+        "item": "torch"
        }
       ],
       "props": [
@@ -1912,6 +1953,12 @@
         "mood": "sleepy",
         "item": "bundle",
         "at": "center"
+       },
+       {
+        "who": "old_woman",
+        "pose": "sit",
+        "action": "hold",
+        "item": "bundle"
        }
       ],
       "props": [

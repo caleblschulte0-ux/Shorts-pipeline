@@ -880,6 +880,20 @@ only as a hand edit is not a rule. So:
     villa 5 of 6 in chapter one, house 17 of 29 by chapter six).
     `try_swap` moves one beat each way.
 
+- **The Greek film with the words drawn (83, BLOCK; Kokoro; longest still
+  0.67 s).** The first verdict over 80 since the bar was set — and still
+  held, on four "picture-word mismatches" that were the JUDGE being told
+  the wrong words: `judged_lines` gave it each passage's FIRST sentence at
+  every moment it looked, while the shot on screen was the passage's third
+  sentence's. "A man breaks bread" was held against the shot of "the lamp
+  burns low"; "a child asleep on a low bed" against the shot of "an old
+  woman sits close by". It is told the sentence spoken at that moment now
+  (a test holds it). Its other notes, also made rules: the water's glints
+  never cross anybody a happening has brought in (`_figure_holes(t)`); "the
+  sellers" are more than one and "the stalls" are two (`mend_plural`), and
+  a sentence about several people is the shot of everyone, never a
+  close-up of one.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

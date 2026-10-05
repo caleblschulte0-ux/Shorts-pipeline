@@ -435,6 +435,15 @@ def named_in(text: str, props) -> list[str]:
     return out
 
 
+# words that say there are SEVERAL people: the shot is of everyone, never
+# a close-up of one (the 83 film: "the last sellers pack away their baskets"
+# sampled on a close-up of one man and one basket)
+PLURAL_PEOPLE = re.compile(r"\b(sellers|gatherers|fishermen|families|neighbours|neighbors|men|women|children|"
+                           r"friends|guests|travellers|travelers|workers|people|crowds?|villagers|farmers|"
+                           r"shepherds|sailors|merchants|traders|servants|elders|couples|boys|girls|everyone|"
+                           r"household|family)\b", re.I)
+
+
 # words that say WHO a sentence is about, so the shot is of them
 WHO_WORDS = {
     "girl": r"\b(girls?|daughters?)\b",
@@ -627,7 +636,7 @@ def _choose(opts: dict, text: str, last: str | None, first: bool, used: list, ne
     named = {w for w, pat in WHO_WORDS.items() if _re.search(pat, nouns)}
     if "old_woman" in nouns or " gm " in nouns:
         named.add("old_woman")
-    if len(named) >= 2:
+    if len(named) >= 2 or PLURAL_PEOPLE.search(low):
         for name in ("two", "arr", "est"):
             if name in opts and len(opts[name][0].get("cast") or []) >= 2 and (name != last or
                                                                                  not any(n != last and n in opts for n in ("two", "arr"))):
@@ -984,7 +993,15 @@ def judged_lines(beats, chapters, duration: float) -> dict:
                 else:
                     break
             if b is not None:
-                out[f"seg{i}:{tag}"] = sentences(b.text)[0][:160] if sentences(b.text) else b.text[:160]
+                # the SENTENCE spoken at that moment, now that a shot is a
+                # sentence: the beat's opening line graded the third
+                # sentence's shot against the first's words (the 83 film:
+                # "a man breaks bread" held against a shot of the lamp line)
+                line = next((l for l in b.lines if l[0] <= t < l[1] + SENTENCE_GAP), None)
+                if line is None and b.lines:
+                    line = b.lines[-1] if t >= b.lines[-1][1] else b.lines[0]
+                text = line[2] if line else (sentences(b.text)[0] if sentences(b.text) else b.text)
+                out[f"seg{i}:{tag}"] = text[:160]
     return out
 
 

@@ -1107,23 +1107,36 @@ class Scene:
             cr.save()
             cr.set_fill_rule(cairo.FILL_RULE_EVEN_ODD)
             cr.rectangle(0, 0, W, H)
-            for lo, hi, top, bot in self._figure_holes():
+            for lo, hi, top, bot in self._figure_holes(t):
                 cr.rectangle(lo, top, hi - lo, bot - top)
             cr.clip()
             settings.glints(cr, self.facts, self.time, t, self.seed)
             cr.restore()
 
-    def _figure_holes(self) -> list[tuple[float, float, float, float]]:
+    def _figure_holes(self, t: float = 0.0) -> list[tuple[float, float, float, float]]:
         """Each person's footprint as (lo, hi, top, bottom), the x-spans
         merged where they touch so the even-odd clip never re-admits an
-        overlap."""
+        overlap — the cast, the walkers where they are at t, and whoever a
+        happening has brought in (the 83 film's judge: "sea and spring
+        sparkle dots are painted on top of the figures' heads and faces" —
+        on a woman who had just arrived at the pool)."""
         spans_ = []
-        for f in self.lay["people"]:
-            R = people.R0 * f["s"] * people.WHO[f["who"]]["size"]
-            lo, hi = figure_extent(f["pose"], R, f.get("action", "idle"), f.get("item"))
-            if f["facing"] == "left":
+        figs = [(f["x"], f["pose"], f.get("action", "idle"), f.get("item"), f["facing"], f["who"], f["s"], f["y"])
+                for f in self.lay["people"]]
+        for w in self.lay.get("walkers") or []:
+            figs.append((walker_x(w, t), "walk", w.get("action", "idle"), w.get("item"), w["facing"], w["who"],
+                         w["s"], w["y"]))
+        from . import happen as _hp
+        for a in self.acts:
+            if a["kind"] in _hp.PEOPLE_KINDS and _hp.visible(a, t):
+                x, pose, action, facing, *_ = _hp._state(a, t)
+                figs.append((x, pose, action, a.get("item"), facing, a["who"], a["s"], a["y"]))
+        for x, pose, action, item, facing, who, sc, y in figs:
+            R = people.R0 * sc * people.WHO[who]["size"]
+            lo, hi = figure_extent(pose, R, action, item)
+            if facing == "left":
                 lo, hi = -hi, -lo
-            spans_.append((f["x"] + lo - 0.1 * R, f["x"] + hi + 0.1 * R, f["y"] - 5.6 * R, f["y"] + 0.4 * R))
+            spans_.append((x + lo - 0.1 * R, x + hi + 0.1 * R, y - 5.6 * R, y + 0.4 * R))
         spans_.sort()
         merged: list = []
         for lo, hi, top, bot in spans_:

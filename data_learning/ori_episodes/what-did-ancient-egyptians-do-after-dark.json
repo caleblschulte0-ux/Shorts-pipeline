@@ -1911,6 +1911,11 @@
         "action": "sleep",
         "mood": "sleepy",
         "at": "center"
+       },
+       {
+        "who": "child",
+        "pose": "lie",
+        "action": "sleep"
        }
       ],
       "props": [

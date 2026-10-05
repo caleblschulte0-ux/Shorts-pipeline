@@ -1271,6 +1271,11 @@
         "action": "feed_fire",
         "mood": "sleepy",
         "at": "center"
+       },
+       {
+        "who": "man",
+        "pose": "crouch",
+        "action": "feed_fire"
        }
       ],
       "props": [
@@ -1294,6 +1299,11 @@
         "action": "carry",
         "mood": "focused",
         "at": "center"
+       },
+       {
+        "who": "woman",
+        "pose": "stand",
+        "action": "carry"
        }
       ],
       "props": [
