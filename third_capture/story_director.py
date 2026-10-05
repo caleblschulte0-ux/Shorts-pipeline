@@ -267,8 +267,20 @@ create curiosity?  9. Does the ending answer it?  10. Is anything
 misleading?  11. Is emphasis on the right moment?  12. Does it feel like
 ONE story rather than several clips?
 
-Be stricter about coherence than cosmetics. Return STRICT JSON:
+Be stricter about coherence than cosmetics. Before you score, write the
+story the way a stranger would retell it to a friend, in ONE sentence — if
+you cannot, it is not a story yet. Then name the PAYOFF: the second at
+which the question the opening raised is answered (a reveal, a reaction
+to the consequence, a reversal). A cut that simply runs out, or ends on
+an unrelated line, has NO payoff — say so with payoff_at: null and
+publish: false. A score of 80+ means a stranger would watch to the end
+and could retell it; 60-79 means it hangs together but would not hold
+them; below 60 is a pile of clips.
+
+Return STRICT JSON:
 {"publish": true|false, "story_score": 0-100,
+ "stranger_summary": "<the one-sentence retelling>",
+ "payoff_at": <seconds> | null,
  "problems": [{"type": "missing_context|repetition|weak_payoff|confusing|
                misleading|pacing|other",
                "at": <seconds>, "fix": "<specific instruction>"}, ...]}"""
@@ -762,8 +774,28 @@ def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
                              "fix": str(p.get("fix", ""))[:200]})
         except (TypeError, ValueError):
             continue
-    return {"publish": bool(out.get("publish", False)),
+    summary = scrub_text(str(out.get("stranger_summary") or "").strip())[:240]
+    try:
+        payoff_at = (None if out.get("payoff_at") is None
+                     else float(out.get("payoff_at")))
+    except (TypeError, ValueError):
+        payoff_at = None
+    publish = bool(out.get("publish", False))
+    # NO PAYOFF, NO STORY. Code may only ADD blocks: a critic that says
+    # publish but cannot name the second the story pays off — or retell it
+    # in a sentence — has described a cut that runs out, which is what the
+    # 2026-10-05 Cinna story did ("your comfy" / "not I'm not") at 74.
+    if publish and (payoff_at is None or not summary):
+        publish = False
+        problems.append({"type": "weak_payoff",
+                         "at": max(0.0, float(duration_s) - 1.0),
+                         "fix": "No moment answers the question the opening "
+                                "raised. End on the reveal or the reaction "
+                                "to the consequence, not where the clip "
+                                "runs out."})
+    return {"publish": publish,
             "story_score": int(out.get("story_score", 0) or 0),
+            "stranger_summary": summary, "payoff_at": payoff_at,
             "problems": problems}
 
 

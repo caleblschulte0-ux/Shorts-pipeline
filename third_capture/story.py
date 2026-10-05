@@ -23,8 +23,12 @@ LAWS (acceptance-tested):
 - The renderer adds NO uncontrolled effects: only what the EDL budgeted.
   The ONE budgeted replay is rendered from the RAW source at its source
   timestamp (never the reframed beat) and advances the caption timeline.
-- Uniform blur-fill reframe for continuity; a `tight` beat crops around
-  the shot_plan-tracked subject, not a blind centre.
+- Each beat is FRAMED like a clip: the same shot plan the clip arm uses
+  (stacked facecam over full-width gameplay, a face crop, or a crop to the
+  motion), decided ONCE PER SOURCE so every beat cut from one clip keeps
+  one look. Blur-fill of the whole frame is the fallback, not the default:
+  on 2026-10-05 the first story in eleven days shipped with every beat a
+  1080x607 strip in two thirds blurred padding — 31.6% of the screen.
 - Real J-cuts (the next line's actual audio leads its picture) and L-cuts
   (the previous line's actual audio tails over the next picture) built from
   genuine source pre-/post-roll — each segment's own audio stays lip-synced,
@@ -121,6 +125,50 @@ def _tight_crop(src: Path) -> str:
         return default
 
 
+_AN_CACHE: dict[str, dict | None] = {}
+
+
+def _source_analysis(src: Path) -> dict | None:
+    """shot_plan's subject analysis of a whole SOURCE, once per file — every
+    beat (and every revision's re-render) cut from it reuses it, so beats
+    from one clip get one framing and the cv2 pass runs once."""
+    key = str(Path(src).resolve())
+    if key not in _AN_CACHE:
+        try:
+            from third_capture import shot_plan
+            _AN_CACHE[key] = shot_plan.analyze(Path(src))
+        except Exception:  # noqa: BLE001
+            _AN_CACHE[key] = None
+    return _AN_CACHE[key]
+
+
+def _framed_cut(src: Path, work: Path, tag: str, start: float,
+                end: float) -> tuple[Path | None, str]:
+    """(1080x1920 framed cut of [start, end] | None, layout).
+
+    The clip arm's shot plan applied to one beat: exact cut at source
+    geometry, then `shot_plan.build` with the SOURCE's analysis. None means
+    no plan applies and the caller blur-fills — never raises."""
+    an = _source_analysis(src)
+    if an is None:
+        return None, "wide"
+    try:
+        from third_capture import shot_plan
+        cut = work / f"cut_{tag}.mp4"
+        _run(["ffmpeg", "-y", "-v", "error",
+              "-ss", f"{start:.2f}", "-to", f"{end:.2f}", "-i", str(src),
+              "-c:v", "libx264", "-preset", "veryfast", "-crf", "17",
+              "-c:a", "aac", "-ar", "48000", "-ac", "2", str(cut)])
+        bdir = work / f"sp_{tag}"
+        bdir.mkdir(parents=True, exist_ok=True)
+        framed, summ = shot_plan.build(cut, bdir, analyze_on=Path(src), an=an)
+        return framed, str((summ or {}).get("layout") or "wide")
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[story] shot plan failed for beat {tag} "
+              f"({type(e).__name__}) — blur-fill", flush=True)
+        return None, "wide"
+
+
 def _seg_words(words: list[dict], start: float, end: float) -> list[dict]:
     """Caption words inside [start, end], rebased to the segment clock."""
     out = []
@@ -136,22 +184,29 @@ def _extract_segment(src: Path, out: Path, work: Path, tag: str, *,
                      start: float, end: float, words: list[dict],
                      hook: str = "", context_overlay: str = "",
                      effects: list[dict] | None = None,
-                     framing: str = "wide") -> None:
-    """One beat: exact cut, uniform 9:16 blur-fill reframe (optional
-    tight punch-in for reaction beats, §15), captions, overlays, budgeted
-    emphasis, loudness — a single ffmpeg pass."""
+                     framing: str = "wide") -> str:
+    """One beat: exact cut, the clip arm's shot-plan framing (blur-fill
+    when no plan applies; optional tight punch-in for reaction beats on
+    that fallback, §15), captions, overlays, budgeted emphasis, loudness.
+    Returns the layout used, for the ledger."""
     dur = end - start
+    framed, layout = _framed_cut(src, work, tag, start, end)
     vf = ""
-    if framing == "tight":
-        # subject-aware punch-in for response/reaction beats (§15) — crop
-        # centred on the tracked subject, computed once per source
-        vf = _tight_crop(src) + ","
-    # uniform reframe: blurred cover background + contained foreground
-    vf += (f"split=2[bg][fg];"
-          f"[bg]scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
-          f"increase,crop={CANVAS_W}:{CANVAS_H},boxblur=24:3[bgb];"
-          f"[fg]scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
-          f"decrease[fgs];[bgb][fgs]overlay=(W-w)/2:(H-h)/2")
+    if framed is not None:
+        # already a sharp 1080x1920 shot; the clip arm grades the same way
+        vf = "eq=saturation=1.05"
+    else:
+        layout = "blur_fill"
+        if framing == "tight":
+            # subject-aware punch-in for response/reaction beats (§15) —
+            # crop centred on the tracked subject, computed once per source
+            vf = _tight_crop(src) + ","
+        # blurred cover background + contained foreground
+        vf += (f"split=2[bg][fg];"
+              f"[bg]scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
+              f"increase,crop={CANVAS_W}:{CANVAS_H},boxblur=24:3[bgb];"
+              f"[fg]scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
+              f"decrease[fgs];[bgb][fgs]overlay=(W-w)/2:(H-h)/2")
     seg_words = _seg_words(words, start, end)
     if seg_words:
         ass = work / f"cap_{tag}.ass"
@@ -174,13 +229,16 @@ def _extract_segment(src: Path, out: Path, work: Path, tag: str, *,
         if d:
             vf += f",{d}"
     vf += f",fps={FPS},format=yuv420p"
-    _run(["ffmpeg", "-y", "-v", "error",
-          "-ss", f"{start:.2f}", "-to", f"{end:.2f}", "-i", str(src),
+    # the framed cut is already trimmed to [start, end]
+    inp = (["-i", str(framed)] if framed is not None else
+           ["-ss", f"{start:.2f}", "-to", f"{end:.2f}", "-i", str(src)])
+    _run(["ffmpeg", "-y", "-v", "error", *inp,
           "-vf", vf, "-af", _LOUDNORM,
           "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
           "-pix_fmt", "yuv420p", "-r", str(FPS),
           "-c:a", "aac", "-ar", "48000", "-ac", "2", "-b:a", "160k",
           str(out)])
+    return layout
 
 
 def _render_replay(src: Path, out: Path, *, at: float,
@@ -431,7 +489,7 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
             end = min(src_dur, end + hold)
         seg = work / f"seg_{idx}.mp4"
         try:
-            _extract_segment(
+            _lay = _extract_segment(
                 src, seg, work, str(idx), start=start, end=end,
                 words=srcinfo.get("words") or [],
                 hook=(edl.get("hook_overlay", "") if idx == 0 else ""),
@@ -534,6 +592,7 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
                      "streamer": srcinfo.get("channel", ""),
                      "role": beat["role"], "purpose": beat["purpose"],
                      "start": start, "end": round(end, 2),
+                     "layout": _lay,
                      "source_url": srcinfo.get("source_url",
                                                beat["source_id"])})
 

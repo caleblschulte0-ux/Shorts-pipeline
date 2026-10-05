@@ -59,7 +59,9 @@ def _report(url):
 
 def _review(publish, score, fix="cut the dead air"):
     return {"publish": publish, "story_score": score,
-            "problems": [] if publish else
+            "stranger_summary": "Soda bets everything and loses it.",
+            "payoff_at": 30.0 if publish else None,
+            "problems": [] if (publish and score >= 80) else
             [{"type": "pacing", "at": 4.0, "fix": fix}]}
 
 
@@ -125,10 +127,12 @@ class _Harness(unittest.TestCase):
 class RepairBeforeDrop(_Harness):
     def test_a_story_the_second_repair_fixes_is_posted(self):
         led = self.run_attempt([_review(False, 52), _review(False, 61),
-                                _review(True, 78)])
+                                _review(True, 84)])
         self.assertIsNotNone(led, "two repairs got it to a pass — post it")
         self.assertEqual(led["revision_count"], 2)
-        self.assertEqual(led["narrative_score"], 78)
+        self.assertEqual(led["narrative_score"], 84)
+        self.assertEqual(led["narrative_summary"],
+                         "Soda bets everything and loses it.")
 
     def test_the_critic_still_decides(self):
         """A high score without `publish` is still a no — the loop only
@@ -158,6 +162,66 @@ class RepairBeforeDrop(_Harness):
                           _review(False, 54)])
         self.assertIsNotNone(
             clip_memory.already_tried(self.rt._CLIP_MEMORY, URLS))
+
+
+class APassUnderTheFloorDoesNotShip(_Harness):
+    """2026-10-05: the critic passed the Cinna story at 74 and it shipped
+    with no payoff. It had passed every story it was ever shown (66-80); the
+    one that held viewers was the 80. A story ships at `story_min_score`."""
+
+    def test_a_critic_pass_at_74_is_repaired_not_shipped(self):
+        led = self.run_attempt([_review(True, 74), _review(True, 76),
+                                _review(True, 77)])
+        self.assertIsNone(led)
+        self.assertEqual(self.revisions, 2, "it was repaired toward the bar")
+        v = [x for x in self.verdicts() if x["outcome"] == "narrative_failed"]
+        self.assertIn("under the 80 floor", v[0]["why"])
+
+    def test_repaired_up_to_the_floor_it_ships(self):
+        led = self.run_attempt([_review(True, 74), _review(True, 82)])
+        self.assertIsNotNone(led)
+        self.assertEqual(led["narrative_score"], 82)
+
+    def test_the_floor_is_configurable(self):
+        led = self.run_attempt([_review(True, 74)],
+                               spec_extra={"story_min_score": 70})
+        self.assertIsNotNone(led)
+
+
+class NoPayoffNoStory(unittest.TestCase):
+    """Code may only ADD blocks: a critic pass that cannot name the second
+    the story pays off, or retell it in a sentence, is a fail."""
+
+    def _review(self, out):
+        with mock.patch.object(story_director, "_brain", return_value=out):
+            edl = story_director.validate_edl(_with_narration(""),
+                                              {"a": 60.0, "b": 60.0})
+            return story_director.review_rough_cut(edl, "", None, 40.0)
+
+    def test_publish_without_a_payoff_is_a_fail(self):
+        r = self._review({"publish": True, "story_score": 85,
+                          "stranger_summary": "She gets ditched.",
+                          "payoff_at": None, "problems": []})
+        self.assertFalse(r["publish"])
+        self.assertEqual(r["problems"][-1]["type"], "weak_payoff")
+
+    def test_publish_without_a_retelling_is_a_fail(self):
+        r = self._review({"publish": True, "story_score": 85,
+                          "stranger_summary": "", "payoff_at": 31.0,
+                          "problems": []})
+        self.assertFalse(r["publish"])
+
+    def test_a_named_payoff_passes_through(self):
+        r = self._review({"publish": True, "story_score": 85,
+                          "stranger_summary": "She gets ditched and caught.",
+                          "payoff_at": 31.0, "problems": []})
+        self.assertTrue(r["publish"])
+        self.assertEqual(r["payoff_at"], 31.0)
+
+    def test_the_rubric_asks_for_both(self):
+        p = story_director._REVIEW_SYSTEM
+        self.assertIn("stranger_summary", p)
+        self.assertIn("payoff_at", p)
 
 
 class StarvationSaysWhy(_Harness):
