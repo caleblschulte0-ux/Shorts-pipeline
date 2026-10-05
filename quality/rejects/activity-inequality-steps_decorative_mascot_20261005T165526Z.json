@@ -1,0 +1,21 @@
+{
+ "slug": "activity-inequality-steps",
+ "ts": "20261005T165526Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data just stands on bar tops and beside the stack (seg2:end, seg3:mid). He holds the same arms-up pose through seg0:start to seg0:end. He never causes the bars to grow.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable_chart",
+  "visible_evidence": "Two pill columns, 297 vs 100, with their category labels printed on top of each other under the bars. 'vs' floats in empty space. Data stands on top of the bar doing nothing.",
+  "root_cause": "A two-bar comparison is used as a fallback chart. The long category labels are not measured against the column spacing, and the mascot has no causal act.",
+  "repair_goal": "Swap the two-bar chart for a bespoke picture of obesity risk under unequal activity, for example two populations where the high-inequality one tips a scale nearly 3x. Label each side with short names (e.g. 'Unequal: US, Canada' / 'Equal: Sweden, Japan') that fit their own width. Data should physically load the weight that drives the 297."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

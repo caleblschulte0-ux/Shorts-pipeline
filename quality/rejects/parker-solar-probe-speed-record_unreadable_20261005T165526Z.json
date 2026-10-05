@@ -1,0 +1,16 @@
+{
+ "slug": "parker-solar-probe-speed-record",
+ "ts": "20261005T165526Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg4:start/mid/end the ladder covers the 'Y' of 'New York to Tokyo', which reads 'New \\ork'. In seg3:end the '56' in the yellow bubble has a doubled outline and reads like '58'.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start/mid/end show '24.8K' for Apollo 10 and '430K' for Parker as plain text rows with a cloned Data beside each. Nothing races and nothing is scaled, so '17x' is never shown.",
+  "root_cause": "The comparison was rendered as a labelled number list instead of a speed machine. The speed relationship should be motion, and that was never mapped to a race.",
+  "repair_goal": "Make it a race. An Apollo capsule and the Parker probe launch together, and Parker crosses the frame 17 times while Apollo crawls one length. Data drives or launches the probe and the 17x lands on the finish."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

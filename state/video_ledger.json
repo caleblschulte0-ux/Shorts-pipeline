@@ -4510,6 +4510,58 @@
   {
    "slug": "eclipse-recurrence-rarity",
    "directed_at": "2026-10-05",
+   "hook_type": "shock_stat",
+   "hook_text": "One town got a total eclipse twice in 7 years. The odds? 375 years.",
+   "depictions": [
+    "mechanic:eclipse-shadow-sweep",
+    "mechanic:wait-years-ladder",
+    "viz:trend"
+   ],
+   "ending_type": "consequence",
+   "notes": "existing scenes kept; validated pre-render"
+  },
+  {
+   "slug": "gulf-dead-zone-growth",
+   "directed_at": "2026-10-05",
+   "hook_type": "shock_stat",
+   "hook_text": "Every summer, an area the size of New Jersey runs out of oxygen.",
+   "depictions": [
+    "viz:trend",
+    "mechanic:dead-zone-map-overlay",
+    "mechanic:farm-runoff-grid"
+   ],
+   "ending_type": "consequence",
+   "notes": "existing scenes kept; validated pre-render"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-05",
+   "hook_type": "shock_stat",
+   "hook_text": "Your bats are dying: 97 percent of one kind gone, and it started in one cave.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "notes": "existing scenes kept; validated pre-render"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-05",
+   "hook_type": "shock_stat",
+   "hook_text": "The government might be holding your money right now.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "consequence",
+   "notes": "existing scenes kept; validated pre-render"
+  },
+  {
+   "slug": "eclipse-recurrence-rarity",
+   "directed_at": "2026-10-05",
    "topic_category": "space",
    "hook_type": "shock_stat",
    "hook_text": "One town got a total eclipse twice in 7 years. The odds? 375 years.",
@@ -4519,8 +4571,8 @@
     "viz:trend"
    ],
    "ending_type": "consequence",
-   "franchise": "rarity odds",
-   "notes": "shadow band sweeps past a fixed pin"
+   "franchise": "",
+   "notes": "shadow band sweeps a world strip; a fixed pin lights only on the rare pass"
   },
   {
    "slug": "gulf-dead-zone-growth",
@@ -4534,8 +4586,8 @@
     "mechanic:farm-runoff-grid"
    ],
    "ending_type": "consequence",
-   "franchise": "environment shocks",
-   "notes": "stain vs goal ring; runoff tripled"
+   "franchise": "",
+   "notes": "dead-zone stain vs 2035 goal ring; fertilizer tiles triple"
   },
   {
    "slug": "bat-fungus-collapse",
@@ -4549,23 +4601,23 @@
     "mechanic:farmland-value-gauge"
    ],
    "ending_type": "consequence",
-   "franchise": "ecology collapse",
-   "notes": "bats fall from ceiling; pest bill ending"
+   "franchise": "",
+   "notes": "colonies fall to the floor; gauge sweeps 3.7B to 53B"
   },
   {
    "slug": "unclaimed-money-states-hold",
    "directed_at": "2026-10-05",
    "topic_category": "money",
-   "hook_type": "inversion",
-   "hook_text": "The government might be holding your money right now.",
+   "hook_type": "shock_stat",
+   "hook_text": "States are holding 70 billion dollars of your money. Guess how much they gave back.",
    "depictions": [
     "viz:geo_us",
     "mechanic:vault-drain-trickle",
     "mechanic:crowd-glow-share"
    ],
-   "ending_type": "consequence",
-   "franchise": "cost shock",
-   "notes": "vault drains a trickle; fixed 'more than TX+OH' claim to 'nearly as much'"
+   "ending_type": "question",
+   "franchise": "",
+   "notes": "vault full, thin trickle returned; 1-in-7 crowd glows"
   }
  ]
 }

@@ -1,16 +1,156 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-05T15:03:06Z",
+ "updated": "2026-10-05T16:55:17Z",
  "open": [
   {
-   "id": "unclaimed-money-states-hold__cd7c3b6c",
-   "slug": "unclaimed-money-states-hold",
-   "filed": "2026-10-05T15:03:06Z",
+   "id": "coldest-place-in-the-universe-is-human-made__df7103ae",
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "filed": "2026-10-05T16:55:17Z",
    "why": [
-    "premise: no consequential number in the title or hook"
+    "judge: Generic starfield tiles and flat teal shapes stand in for the data. The two huge contrasts (293 K vs 2.7 K vs picokelvin, and 5,000 light-years vs 250 miles) are never actually shown, and the labels are cut off or meaningless."
    ],
-   "request": "exchange/rewrites/20261005/unclaimed-money-states-hold__cd7c3b6c.request.json",
-   "answer_path": "exchange/rewrites/20261005/unclaimed-money-states-hold__cd7c3b6c.answer.json"
+   "request": "exchange/rewrites/20261005/coldest-place-in-the-universe-is-human-made__df7103ae.request.json",
+   "answer_path": "exchange/rewrites/20261005/coldest-place-in-the-universe-is-human-made__df7103ae.answer.json"
+  },
+  {
+   "id": "third-interstellar-visitor__ce8065af",
+   "slug": "third-interstellar-visitor",
+   "filed": "2026-10-05T16:55:16Z",
+   "why": [
+    "judge: Every beat is a stock chart. A story about rocks from another star racing past at 246,000 km/h never shows a rock or any speed, the size beat is a bare number card, and the speed labels are covered."
+   ],
+   "request": "exchange/rewrites/20261005/third-interstellar-visitor__ce8065af.request.json",
+   "answer_path": "exchange/rewrites/20261005/third-interstellar-visitor__ce8065af.answer.json"
+  },
+  {
+   "id": "unclaimed-money-states-hold__08e3b159",
+   "slug": "unclaimed-money-states-hold",
+   "filed": "2026-10-05T16:55:16Z",
+   "why": [
+    "judge: This is a run of plain charts: bubbles, bars and a stacked bar. Data is mostly a sticker, and the closing scale shows the wrong numbers for its own payoff line."
+   ],
+   "request": "exchange/rewrites/20261005/unclaimed-money-states-hold__08e3b159.request.json",
+   "answer_path": "exchange/rewrites/20261005/unclaimed-money-states-hold__08e3b159.answer.json"
+  },
+  {
+   "id": "college-gender-gap__adfbd805",
+   "slug": "college-gender-gap",
+   "filed": "2026-10-05T16:55:15Z",
+   "why": [
+    "judge: The bar-chart hook and timeline are generic, Data watches the scale instead of loading it, and the 47%-vs-37% beat is replaced by a rerun of 22 vs 12."
+   ],
+   "request": "exchange/rewrites/20261005/college-gender-gap__adfbd805.request.json",
+   "answer_path": "exchange/rewrites/20261005/college-gender-gap__adfbd805.answer.json"
+  },
+  {
+   "id": "parker-solar-probe-speed-record__c5064743",
+   "slug": "parker-solar-probe-speed-record",
+   "filed": "2026-10-05T16:55:13Z",
+   "why": [
+    "judge: A record about raw SPEED is shown as four static charts and a number list. Nothing in the video ever moves fast, and Data is a pointer, not a driver."
+   ],
+   "request": "exchange/rewrites/20261005/parker-solar-probe-speed-record__c5064743.request.json",
+   "answer_path": "exchange/rewrites/20261005/parker-solar-probe-speed-record__c5064743.answer.json"
+  },
+  {
+   "id": "adhd-diagnosis-surge__5cd541a0",
+   "slug": "adhd-diagnosis-surge",
+   "filed": "2026-10-05T16:55:12Z",
+   "why": [
+    "judge: Five generic charts in a row with Data mostly standing around and, at the end, covering the 53.6% label. Nothing here is a scroll-stopping way to show ADHD numbers."
+   ],
+   "request": "exchange/rewrites/20261005/adhd-diagnosis-surge__5cd541a0.request.json",
+   "answer_path": "exchange/rewrites/20261005/adhd-diagnosis-surge__5cd541a0.answer.json"
+  },
+  {
+   "id": "volcano-country-ranking__0113b7c1",
+   "slug": "volcano-country-ranking",
+   "filed": "2026-10-05T16:55:11Z",
+   "why": [
+    "judge: The hook's reversal is strong, but the visuals are charts and stock machines with titles that wrongly say 'Indonesia's', and the closing scene is unreadable and off-story."
+   ],
+   "request": "exchange/rewrites/20261005/volcano-country-ranking__0113b7c1.request.json",
+   "answer_path": "exchange/rewrites/20261005/volcano-country-ranking__0113b7c1.answer.json"
+  },
+  {
+   "id": "gps-einstein-fix__0f6ffc54",
+   "slug": "gps-einstein-fix",
+   "filed": "2026-10-05T16:55:10Z",
+   "why": [
+    "premise: brain: Lacks a single verifiable number to support the reversed expectation."
+   ],
+   "request": "exchange/rewrites/20261005/gps-einstein-fix__0f6ffc54.request.json",
+   "answer_path": "exchange/rewrites/20261005/gps-einstein-fix__0f6ffc54.answer.json"
+  },
+  {
+   "id": "activity-inequality-steps__3525f2fe",
+   "slug": "activity-inequality-steps",
+   "filed": "2026-10-05T16:55:09Z",
+   "why": [
+    "judge: A generic chart deck about step inequality: the hurdle hook barely moves for 6s, the comparison labels collide, and Data only perches on bars instead of driving the numbers."
+   ],
+   "request": "exchange/rewrites/20261005/activity-inequality-steps__3525f2fe.request.json",
+   "answer_path": "exchange/rewrites/20261005/activity-inequality-steps__3525f2fe.answer.json"
+  },
+  {
+   "id": "lottery-odds-vs-real-life__cc4a14c6",
+   "slug": "lottery-odds-vs-real-life",
+   "filed": "2026-10-05T16:55:07Z",
+   "why": [
+    "premise: brain: It states the expected odds without reversing a viewer expectation, despite using a single verifiable number."
+   ],
+   "request": "exchange/rewrites/20261005/lottery-odds-vs-real-life__cc4a14c6.request.json",
+   "answer_path": "exchange/rewrites/20261005/lottery-odds-vs-real-life__cc4a14c6.answer.json"
+  },
+  {
+   "id": "light-pollution-erasing-sky__42049ca6",
+   "slug": "light-pollution-erasing-sky",
+   "filed": "2026-10-05T16:55:06Z",
+   "why": [
+    "judge: Every scene is a stock machine with no night sky in it, and the closing invents a false share-of-total (45% Chad) out of four unrelated rates, with a truncated label."
+   ],
+   "request": "exchange/rewrites/20261005/light-pollution-erasing-sky__42049ca6.request.json",
+   "answer_path": "exchange/rewrites/20261005/light-pollution-erasing-sky__42049ca6.answer.json"
+  },
+  {
+   "id": "blood-type-rarity__fb19284f",
+   "slug": "blood-type-rarity",
+   "filed": "2026-10-05T16:55:05Z",
+   "why": [
+    "premise: brain: The claim doesn't clearly invert a common viewer expectation and relies only on a vague 1% figure without a striking, verifiable twist."
+   ],
+   "request": "exchange/rewrites/20261005/blood-type-rarity__fb19284f.request.json",
+   "answer_path": "exchange/rewrites/20261005/blood-type-rarity__fb19284f.answer.json"
+  },
+  {
+   "id": "sand-mining-crisis__ce9e68b2",
+   "slug": "sand-mining-crisis",
+   "filed": "2026-10-05T16:55:04Z",
+   "why": [
+    "judge: Only the opening block-stacking has any physicality. After that it is a timeline, a waffle grid and a reused bar chart, none of which shows sand or the rivers-vs-mining gap."
+   ],
+   "request": "exchange/rewrites/20261005/sand-mining-crisis__ce9e68b2.request.json",
+   "answer_path": "exchange/rewrites/20261005/sand-mining-crisis__ce9e68b2.answer.json"
+  },
+  {
+   "id": "insect-planet__0d272244",
+   "slug": "insect-planet",
+   "filed": "2026-10-05T16:55:02Z",
+   "why": [
+    "judge: After a decent scale hook, the video turns into a run of generic charts (column, bars, bubbles) with Data mostly standing beside them, and the mascot covers the key numbers twice."
+   ],
+   "request": "exchange/rewrites/20261005/insect-planet__0d272244.request.json",
+   "answer_path": "exchange/rewrites/20261005/insect-planet__0d272244.answer.json"
+  },
+  {
+   "id": "data-breach-exposure__02731549",
+   "slug": "data-breach-exposure",
+   "filed": "2026-10-05T16:55:01Z",
+   "why": [
+    "premise: brain: The premise doesn't clearly invert a common viewer expectation and relies on a generic statistic rather than a single, striking, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261005/data-breach-exposure__02731549.request.json",
+   "answer_path": "exchange/rewrites/20261005/data-breach-exposure__02731549.answer.json"
   },
   {
    "id": "muscle-loss-after-30__a6d6cd11",
@@ -356,16 +496,6 @@
    "answer_path": "exchange/rewrites/20261005/religious-nones-rise__ea96d336.answer.json"
   },
   {
-   "id": "coldest-place-in-the-universe-is-human-made__851891bb",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-10-05T10:56:47Z",
-   "why": [
-    "premise: brain: It lacks a single verifiable number to anchor the claim despite the expectation reversal."
-   ],
-   "request": "exchange/rewrites/20261005/coldest-place-in-the-universe-is-human-made__851891bb.request.json",
-   "answer_path": "exchange/rewrites/20261005/coldest-place-in-the-universe-is-human-made__851891bb.answer.json"
-  },
-  {
    "id": "podcasts-passed-radio-spoken-word__79b32baa",
    "slug": "podcasts-passed-radio-spoken-word",
    "filed": "2026-10-05T10:56:47Z",
@@ -417,16 +547,6 @@
    "answer_path": "exchange/rewrites/20261005/lego-minifigs-outnumber-humans__1a1c49ff.answer.json"
   },
   {
-   "id": "third-interstellar-visitor__ce81b458",
-   "slug": "third-interstellar-visitor",
-   "filed": "2026-10-05T10:56:46Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/third-interstellar-visitor__ce81b458.request.json",
-   "answer_path": "exchange/rewrites/20261005/third-interstellar-visitor__ce81b458.answer.json"
-  },
-  {
    "id": "twin-birth-rate-rise__0551ace7",
    "slug": "twin-birth-rate-rise",
    "filed": "2026-10-05T10:56:46Z",
@@ -435,26 +555,6 @@
    ],
    "request": "exchange/rewrites/20261005/twin-birth-rate-rise__0551ace7.request.json",
    "answer_path": "exchange/rewrites/20261005/twin-birth-rate-rise__0551ace7.answer.json"
-  },
-  {
-   "id": "adhd-diagnosis-surge__684cfeea",
-   "slug": "adhd-diagnosis-surge",
-   "filed": "2026-10-05T10:56:45Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/adhd-diagnosis-surge__684cfeea.request.json",
-   "answer_path": "exchange/rewrites/20261005/adhd-diagnosis-surge__684cfeea.answer.json"
-  },
-  {
-   "id": "college-gender-gap__7d403c04",
-   "slug": "college-gender-gap",
-   "filed": "2026-10-05T10:56:45Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/college-gender-gap__7d403c04.request.json",
-   "answer_path": "exchange/rewrites/20261005/college-gender-gap__7d403c04.answer.json"
   },
   {
    "id": "monarch-butterfly-collapse__e0022722",
@@ -478,16 +578,6 @@
    "answer_path": "exchange/rewrites/20261005/moon-drifting-away__1f633000.answer.json"
   },
   {
-   "id": "parker-solar-probe-speed-record__ac875350",
-   "slug": "parker-solar-probe-speed-record",
-   "filed": "2026-10-05T10:56:45Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/parker-solar-probe-speed-record__ac875350.request.json",
-   "answer_path": "exchange/rewrites/20261005/parker-solar-probe-speed-record__ac875350.answer.json"
-  },
-  {
    "id": "earth-rotation-speeding-up__1c2a50c1",
    "slug": "earth-rotation-speeding-up",
    "filed": "2026-10-05T10:56:44Z",
@@ -506,16 +596,6 @@
    ],
    "request": "exchange/rewrites/20261005/peanut-allergy-guideline-flip__d2045db9.request.json",
    "answer_path": "exchange/rewrites/20261005/peanut-allergy-guideline-flip__d2045db9.answer.json"
-  },
-  {
-   "id": "volcano-country-ranking__4ec1f46e",
-   "slug": "volcano-country-ranking",
-   "filed": "2026-10-05T10:56:44Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/volcano-country-ranking__4ec1f46e.request.json",
-   "answer_path": "exchange/rewrites/20261005/volcano-country-ranking__4ec1f46e.answer.json"
   },
   {
    "id": "landline-death-robocall-boom__8f868915_r1",
@@ -580,16 +660,6 @@
    "answer_path": "exchange/rewrites/20261005/diabetes-quietly-doubled__426a7e29.answer.json"
   },
   {
-   "id": "gps-einstein-fix__dad5454f",
-   "slug": "gps-einstein-fix",
-   "filed": "2026-10-05T10:56:42Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/gps-einstein-fix__dad5454f.request.json",
-   "answer_path": "exchange/rewrites/20261005/gps-einstein-fix__dad5454f.answer.json"
-  },
-  {
    "id": "highest-point-illusion__b97249d0",
    "slug": "highest-point-illusion",
    "filed": "2026-10-05T10:56:42Z",
@@ -608,16 +678,6 @@
    ],
    "request": "exchange/rewrites/20261005/plastic-in-your-body__83af4ec8.request.json",
    "answer_path": "exchange/rewrites/20261005/plastic-in-your-body__83af4ec8.answer.json"
-  },
-  {
-   "id": "activity-inequality-steps__4738cbb7",
-   "slug": "activity-inequality-steps",
-   "filed": "2026-10-05T10:56:41Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/activity-inequality-steps__4738cbb7.request.json",
-   "answer_path": "exchange/rewrites/20261005/activity-inequality-steps__4738cbb7.answer.json"
   },
   {
    "id": "astronaut-bone-loss__5eb8bb6f",
@@ -680,36 +740,6 @@
    "answer_path": "exchange/rewrites/20261005/helium-supply-squeeze__c62dbd35.answer.json"
   },
   {
-   "id": "light-pollution-erasing-sky__9ac489b1",
-   "slug": "light-pollution-erasing-sky",
-   "filed": "2026-10-05T10:56:40Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/light-pollution-erasing-sky__9ac489b1.request.json",
-   "answer_path": "exchange/rewrites/20261005/light-pollution-erasing-sky__9ac489b1.answer.json"
-  },
-  {
-   "id": "lottery-odds-vs-real-life__a2d44abe",
-   "slug": "lottery-odds-vs-real-life",
-   "filed": "2026-10-05T10:56:40Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/lottery-odds-vs-real-life__a2d44abe.request.json",
-   "answer_path": "exchange/rewrites/20261005/lottery-odds-vs-real-life__a2d44abe.answer.json"
-  },
-  {
-   "id": "blood-type-rarity__b751ede5",
-   "slug": "blood-type-rarity",
-   "filed": "2026-10-05T10:56:39Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/blood-type-rarity__b751ede5.request.json",
-   "answer_path": "exchange/rewrites/20261005/blood-type-rarity__b751ede5.answer.json"
-  },
-  {
    "id": "chatgpt-fastest-adoption-ever__cb5bfb31",
    "slug": "chatgpt-fastest-adoption-ever",
    "filed": "2026-10-05T10:56:39Z",
@@ -731,16 +761,6 @@
    "answer_path": "exchange/rewrites/20261005/phone-call-avoidance__25158303.answer.json"
   },
   {
-   "id": "sand-mining-crisis__eb97e4fb",
-   "slug": "sand-mining-crisis",
-   "filed": "2026-10-05T10:56:39Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/sand-mining-crisis__eb97e4fb.request.json",
-   "answer_path": "exchange/rewrites/20261005/sand-mining-crisis__eb97e4fb.answer.json"
-  },
-  {
    "id": "bird-flu-species-jump__49e828cf",
    "slug": "bird-flu-species-jump",
    "filed": "2026-10-05T10:56:38Z",
@@ -759,26 +779,6 @@
    ],
    "request": "exchange/rewrites/20261005/body-renewal-clock__3fbbbbd8.request.json",
    "answer_path": "exchange/rewrites/20261005/body-renewal-clock__3fbbbbd8.answer.json"
-  },
-  {
-   "id": "data-breach-exposure__ce930062",
-   "slug": "data-breach-exposure",
-   "filed": "2026-10-05T10:56:38Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/data-breach-exposure__ce930062.request.json",
-   "answer_path": "exchange/rewrites/20261005/data-breach-exposure__ce930062.answer.json"
-  },
-  {
-   "id": "insect-planet__be913ed4",
-   "slug": "insect-planet",
-   "filed": "2026-10-05T10:56:38Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/insect-planet__be913ed4.request.json",
-   "answer_path": "exchange/rewrites/20261005/insect-planet__be913ed4.answer.json"
   },
   {
    "id": "ozone-hole-recovery__fb0993e5",

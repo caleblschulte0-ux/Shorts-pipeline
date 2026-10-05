@@ -1,0 +1,16 @@
+{
+ "slug": "sand-mining-crisis",
+ "ts": "20261005T165526Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:end, payoff@-1.8 and seg4:end Data's body covers the China '51%' label, and 'Rest of world 35%' is half-hidden in seg3:end. The map label 'China 51' is clipped and collides with the map in seg4:mid and seg4:end. '5. United States o...' is truncated and its value is cut off at the",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "claim_not_shown",
+  "visible_evidence": "The beat says rivers replace just 13 billion tonnes, so we take sand four times faster. seg2:start, mid and end show only a 50-tile grid filling up. Nothing marks the 13B that rivers replace. In seg2:end Data stands at the bottom-left edge pressing a stamp, half cut off by the frame edge, and the lower third is empty.",
+  "root_cause": "The scene shows one quantity, mined sand, as a unit grid with no second quantity. So the 4x mined-vs-replaced comparison, which is the whole point of the beat, never appears. Data stamps tiles but has no causal link to the river supply.",
+  "repair_goal": "Make the comparison physical. Show a river bed depositing 13 sand heaps while Data, with a shovel, digs out 50 from the same bank, so the bank visibly shrinks four times faster than it refills. Keep Data fully in frame and fill the lower third with the riverbank."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

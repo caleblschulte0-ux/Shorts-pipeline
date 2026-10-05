@@ -1,0 +1,21 @@
+{
+ "slug": "americans-stopped-moving",
+ "ts": "20261005T165526Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg2:mid/end the 'New mortgage today' and '(most homeowners)' labels are tiny, about 8px tall on a phone. At seg2:end the headline '1.8\u00d7 the rate / to take a new mortgage' is washed-out grey on a purple sky. At seg4:start/mid 'Sources in the description' is tiny and 'COMMENT BELOW' fa",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "UI_WIDGET",
+  "visible_evidence": "seg4:start through payoff@-0.4 shrink the scene into a bordered panel on a dark gradient, with caption bands above and below. Inside, a suitcase replays the seg3 licence numbers (5% \u2192 15% \u2192 25%) that were just shown at the gate.",
+  "root_cause": "The closing reuses the previous beat's dataset in a card-style end-screen layout. It does not land its own payoff, and the card breaks the full-bleed 'there is no card' rule.",
+  "repair_goal": "Make the closing full bleed with no panel. Give it its own 'stuck' payoff that ties all three causes together (the truck, the mortgage scale and the licence wall). For example, Data tries to load the truck, the coin stack and the slab wall hold it shut, and the suitcase stays packed on the curb. Keep the closing line as on-scene text, not a header band."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

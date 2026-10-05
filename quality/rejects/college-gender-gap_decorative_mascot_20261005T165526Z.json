@@ -1,0 +1,16 @@
+{
+ "slug": "college-gender-gap",
+ "ts": "20261005T165526Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg1:start, mid and end: Data rides the timeline playhead with both arms up while the bars rise without him. seg2:start, mid and end: he stands half off the left edge holding a pole and never places a brick on the scale. In both beats he reacts next to the moving part instead of c",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "In seg2:start through seg2:end the pink and grey bricks stack onto the scale pans by themselves. Data is clipped at the left frame edge holding a vertical pole, overlapping the 'Women' label, and nothing he does moves anything.",
+  "root_cause": "Data is placed beside the machine as an onlooker instead of at its moving part, and the stacking anchor was never put on his hands. The pole prop does no work, and his position runs off the frame's safe area.",
+  "repair_goal": "Data should carry each pink brick and drop it onto the women's pan, standing fully inside the frame on the left of the beam, so the beam tips because he loads it. He should then look across at the light men's pan. Move him clear of the 'Women' label."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

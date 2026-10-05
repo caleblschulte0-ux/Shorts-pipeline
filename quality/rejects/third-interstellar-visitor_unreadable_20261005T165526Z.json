@@ -1,0 +1,21 @@
+{
+ "slug": "third-interstellar-visitor",
+ "ts": "20261005T165526Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg2:end Data's head covers the '246K' value label, and the cyan rings are drawn over '177K' and '140K', which cuts through the digits. At seg2:start a caption line (''Oumuamua 140,000 kilometers') sits above the caption bar and runs into the big '140,000' number.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start, mid and end each show '5.6' and '1.0' as large text on two rules, with a Data figure standing beside each number cheering or waving and a dotted scale on the right that nothing uses. The scene the narration calls 'Biggest yet' gives no sense of size.",
+  "root_cause": "The size comparison was drawn as labeled number rows, not as two objects at their real scale, and the mascot was placed next to the data with no causal act.",
+  "repair_goal": "Draw two comet nuclei at true relative scale: a 1 km Borisov rock and a 5.6 km 3I/ATLAS rock that dwarfs it. Data should cause the size, for example by chiselling or measuring the ATLAS nucleus as it grows to 5.6x, with the value labels in ink clear of every mark."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

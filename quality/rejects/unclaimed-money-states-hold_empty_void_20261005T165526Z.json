@@ -1,0 +1,16 @@
+{
+ "slug": "unclaimed-money-states-hold",
+ "ts": "20261005T165526Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg2:start and seg2:mid the bar sits in a mostly empty dark field with faint gridlines. The right half holds only a tiny $4.5B pill. In seg4 the top of the frame, between the title and the scale, is empty.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "wrong_claim_and_decorative_mascot",
+  "visible_evidence": "The closing card reads 'States returned only 4.49 billion of 70 billion.' The scale below it instead weighs 85.7% 'Don't (as far as they know)' against 14.3% 'Have unclaimed'. Those are the seg3 population shares, not the returned-vs-held money. Cash bundles fall onto the 85.7% pan while Data stands at the far-left edge holding a stick. Text is crowded where the 85.7% label meets Data.",
+  "root_cause": "The closing beat reused the previous beat's population data instead of the payoff numbers ($4.49B returned of $70B held). It also uses a stock balance-scale machine in which Data plays no part.",
+  "repair_goal": "Redraw the payoff from the $70B vs $4.49B claim. For example, Data hauls a vault holding 70 cash bundles and hands back only about 4.5 of them through a tiny window, so most of the vault stays full. His hands must cause the motion. Keep every label clear of him and of the other marks."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

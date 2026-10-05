@@ -1,0 +1,16 @@
+{
+ "slug": "volcano-country-ranking",
+ "ts": "20261005T165526Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg4:mid and seg4:end, 'On the Ring of Fire 75%' is printed over 'Everywhere else on Earth 25%', so both are garbled. In seg1:mid and seg1:end the map label is cut off as 'nited States of America'. In seg1:end Data covers the '165' bar value.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable_overlap_and_off_story_closing",
+  "visible_evidence": "In seg4:mid to seg4:end, two percentage labels collide at the left end of a ruler while Data stands on a ladder. The caption '50% apart' compares 75% with 25%, but the closing line is about Alaska.",
+  "root_cause": "The closing reused the Ring-of-Fire share pair as a gap-ruler machine, which turned a part-of-a-whole statistic into a distance. Its label placement does not measure the text, so the two labels sit on top of each other.",
+  "repair_goal": "Make the payoff about Alaska. Pay off its 130 of the US's 165 (for example, Data stacks Alaska's volcanoes past Japan's 118 total). Use one readable label for each mark, and do not show '50% apart' as a share difference."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

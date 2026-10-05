@@ -1,0 +1,16 @@
+{
+ "slug": "insect-planet",
+ "ts": "20261005T165526Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:end: Data's head covers the '1.5M' value label. hook@0.3 and hook@1.5: Data overlaps the '80%' label and is cut off by the left frame edge. seg1:start: 'All other animals 20%' and 'Insects 80%' are faint grey on the dark grey and yellow column and barely readable on a phone.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "chart_repeat_decorative_mascot",
+  "visible_evidence": "seg1:start to seg1:end: a plain stacked 80/20 column with Data standing to its left cheering. It repeats the 80% claim the hook's scale already made, and its labels start out barely visible.",
+  "root_cause": "The 'share' relationship fell back to a stacked-column chart for a stat the hook had already shown, and Data was placed beside it as a reaction instead of causing the fill.",
+  "repair_goal": "Replace the column with a bespoke picture made of bugs: a crowd of 10 animal silhouettes where Data swaps 8 of them for beetles one by one (80%), or a swarm filling 4/5 of the frame as he shovels it in. Labels in full ink from frame one, and Data's hands on the moving part."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

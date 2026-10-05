@@ -1,0 +1,22 @@
+{
+ "slug": "light-pollution-erasing-sky",
+ "ts": "20261005T165526Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg4:end and payoff@-0.4 cut the Singapore label to \"Sin...\" in a tiny column at the right edge. In seg2:start/mid Data's head covers the \"80%\" label and the \"C\" of \"Can't see it\", and he is clipped by the left frame edge.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "false_claim_share",
+  "visual_evidence_note": "",
+  "visible_evidence": "The closing pours dots into bins labelled \"45% Chad / 43% Madagascar / 11% United States / 1% Sin...\". These are not numbers from the story (78%, 75%, 20%, 1%). They are each country's share of the SUM of four unrelated percentages, shown under the line \"The stars didn't leave. The lights just won.\"",
+  "root_cause": "A share/sorting-bin machine was chosen for four independent per-country rates and normalised them into parts of one whole that does not exist. That is the 'this is X% of the whole' misclaim the relationship classifier is meant to refuse. The rightmost bin is also too narrow for its label.",
+  "repair_goal": "Replace the closing picture with one that keeps the real per-country rates (78% Chad vs about 1% Singapore), for example a dark sky full of stars over Chad next to an almost empty, glowing sky over Singapore. Data should be the cause of it, for example switching on the city lights that wipe the stars out. No invented share-of-total numbers, and every label must fit inside the frame."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

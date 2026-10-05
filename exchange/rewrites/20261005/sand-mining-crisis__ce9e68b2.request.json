@@ -1,0 +1,172 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "sand-mining-crisis__ce9e68b2",
+ "filed": "2026-10-05T16:55:04Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "sand-mining-crisis",
+ "current": {
+  "title": "The World Is Quietly Running Out Of Sand",
+  "hook": "Your beach is being dug up: 50 billion tonnes of sand yearly.",
+  "closing": "Somehow, the beach is the crisis.",
+  "question": "Could sand really run out? Comment below.",
+  "segments": [
+   {
+    "topic": "sand extraction",
+    "say": "We now mine 50 billion tonnes of sand and gravel a year, five times 1970's pace."
+   },
+   {
+    "topic": "Sand vs rivers",
+    "say": "Rivers replace just 13 billion tonnes a year, so we take sand four times faster."
+   },
+   {
+    "topic": "China's sand demand",
+    "say": "China pours about 51 percent of the world's cement, mostly sand and gravel."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "sand extraction",
+   "say": "We now mine 50 billion tonnes of sand and gravel a year, five times 1970's pace.",
+   "role": "1 · THE DEMAND",
+   "data": {
+    "file": "sand_extraction_growth.json",
+    "unit": "billion tonnes",
+    "title": "Global sand and gravel extraction per year",
+    "points": [
+     {
+      "label": "1970",
+      "value": 9.6,
+      "period": "1970"
+     },
+     {
+      "label": "1994",
+      "value": 20.5,
+      "period": "1994"
+     },
+     {
+      "label": "2020",
+      "value": 50,
+      "period": "2020"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Sand vs rivers",
+   "say": "Rivers replace just 13 billion tonnes a year, so we take sand four times faster.",
+   "role": "2 · THE CATCH",
+   "data": {
+    "file": "sand_extraction_vs_replenishment.json",
+    "unit": "billion tonnes",
+    "title": "Sand mined vs. sand naturally replaced by rivers, per year",
+    "points": [
+     {
+      "label": "Mined per year",
+      "value": 50
+     },
+     {
+      "label": "Naturally replenished per year",
+      "value": 13
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "China's sand demand",
+   "say": "China pours about 51 percent of the world's cement, mostly sand and gravel.",
+   "role": "3 · WHO'S BUYING IT",
+   "data": {
+    "file": "cement_production_share_country.json",
+    "unit": "percent",
+    "title": "Share of world cement production, by country",
+    "points": [
+     {
+      "label": "China",
+      "value": 51
+     },
+     {
+      "label": "India",
+      "value": 8
+     },
+     {
+      "label": "Vietnam",
+      "value": 4
+     },
+     {
+      "label": "United States",
+      "value": 2
+     },
+     {
+      "label": "Rest of world",
+      "value": 35
+     }
+    ],
+    "n_points": 5
+   }
+  }
+ ],
+ "held_for": [
+  "judge: Only the opening block-stacking has any physicality. After that it is a timeline, a waffle grid and a reused bar chart, none of which shows sand or the rivers-vs-mining gap."
+ ],
+ "reasons": [
+  "judge: Only the opening block-stacking has any physicality. After that it is a timeline, a waffle grid and a reused bar chart, none of which shows sand or the rivers-vs-mining gap."
+ ],
+ "judge": {
+  "ts": "2026-10-05T15:24:36+00:00",
+  "score": 53,
+  "one_line": "Only the opening block-stacking has any physicality. After that it is a timeline, a waffle grid and a reused bar chart, none of which shows sand or the rivers-vs-mining gap.",
+  "problems": [
+   "seg2 never shows the 13B rivers replace, so the core 4x claim is spoken but not demonstrated.",
+   "seg1 timeline occupies a thin strip with large empty dark areas above and below; Data just stands arms-up on a dot.",
+   "seg3/seg4 reuse the same ranked-bar chart; Data stands on the China bar and covers the 51% label (seg3:end, seg4:end).",
+   "The 'China 51' map label is clipped and collides with the map. The fifth row 'United States o...' is truncated, with its value cut off by the panel edge.",
+   "Nothing anywhere looks like sand. Slabs, tiles and bars could be any commodity.",
+   "The closing 'Somehow, the beach is the crisis' has no visual payoff. It is the same bar chart with a caption."
+  ],
+  "fixes": [
+   "Rebuild seg2 as a riverbank: the river deposits 13 heaps while Data shovels out 50, so the shore visibly erodes four times faster than it refills.",
+   "Make seg0's blocks read as sand: heaps or bags with grain texture that Data pours or shovels. Show the 1970 pile beside today's pile at 1/5 the height.",
+   "Replace the seg1 timeline with a growing sand pile or dune that uses the full frame height.",
+   "Keep Data off the bars' value labels. Have him pour cement or sand into China's bar to make it rise to 51%.",
+   "Give the closing a beach picture, such as a shoreline receding as Data digs, instead of reusing the bar chart.",
+   "Fix the clipped 'China 51' label and the truncated 'United States o...' row."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261005/sand-mining-crisis__ce9e68b2.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

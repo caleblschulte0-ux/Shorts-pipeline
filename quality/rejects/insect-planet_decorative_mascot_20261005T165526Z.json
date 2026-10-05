@@ -1,0 +1,16 @@
+{
+ "slug": "insect-planet",
+ "ts": "20261005T165526Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg1:start to seg1:end: Data just stands and cheers beside a stacked column. seg3:start to seg3:end: he perches on top of the 5.5M bubble without touching the data. seg4: two Datas cheer and point beside the numbers. Only seg2 has him carrying the beetle along the bar.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "chart_repeat_decorative_mascot",
+  "visible_evidence": "seg1:start to seg1:end: a plain stacked 80/20 column with Data standing to its left cheering. It repeats the 80% claim the hook's scale already made, and its labels start out barely visible.",
+  "root_cause": "The 'share' relationship fell back to a stacked-column chart for a stat the hook had already shown, and Data was placed beside it as a reaction instead of causing the fill.",
+  "repair_goal": "Replace the column with a bespoke picture made of bugs: a crowd of 10 animal silhouettes where Data swaps 8 of them for beetles one by one (80%), or a swarm filling 4/5 of the frame as he shovels it in. Labels in full ink from frame one, and Data's hands on the moving part."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

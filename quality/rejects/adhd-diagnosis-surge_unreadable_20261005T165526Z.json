@@ -1,0 +1,16 @@
+{
+ "slug": "adhd-diagnosis-surge",
+ "ts": "20261005T165526Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg4:start, seg4:mid, payoff@-1.8 and seg4:end Data stands on top of the '53.6%' label and the 'Taking ADHD medication' text and covers part of the '5'. He is also cut off by the left edge of the frame. A stray floating block is unreadable at seg4:start (top right).",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start/mid/end: the labels Girls and Boys, two large percentages and two Data figures of the same size posing beside them. A dotted vertical bar on the right does nothing, and nothing shows boys at roughly twice the rate or girls catching up.",
+  "root_cause": "The scene shows a comparison by printing the numbers and placing a mascot next to each one. No part of the picture is sized by 8 vs 15, and the 'catching up' claim has no motion at all.",
+  "repair_goal": "Make the gap something a viewer can see. For example, two lines of kids filling up, 15 of 100 for boys and 8 of 100 for girls, with Data adding kids to the girls' line so it visibly gains on the boys' line during 'catching up'. Data has to be the one who makes the change, and his body must never cover a label."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

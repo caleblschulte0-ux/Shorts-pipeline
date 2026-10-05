@@ -1,0 +1,16 @@
+{
+ "slug": "coldest-place-in-the-universe-is-human-made",
+ "ts": "20261005T165526Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg4:mid: '29,399,999,999,999,752 apa' runs off the right edge of the frame. 'NASA's Cold ...' is cut off in tiny text. In seg3 the 'NASA's Cold Atom Lab (ISS)' label is tiny and sits on the teal square's edge. 'each = 20' and 'Room temperature 293' never update to 2.7.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "A flat teal square fills the frame with a meaningless '29400T' for the whole segment. 'NASA's Cold Atom Lab (ISS)' appears as a tiny label at its edge, and Data hovers on top in an unchanging pose. The narration's 5,000 light-years vs 250 miles is never shown.",
+  "root_cause": "The distance comparison went to a generic area-square renderer with the unit converted into an unreadable huge number ('29400T'). The ISS value is too small to draw, so there is no picture of the comparison at all.",
+  "repair_goal": "Show the distance contrast physically: Data on a launch pad or ladder reaches the ISS freezer at 250 miles while the Boomerang Nebula drops away on a log-scale road or tape that runs off into deep space. Use readable units ('250 miles' vs '5,000 light-years') and keep every label inside the frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
