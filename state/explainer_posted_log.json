@@ -2504,11 +2504,22 @@
       "duration_s": 40.8
     },
     "quantum-computers-5-to-1121-qubits": {
-      "claimed_at": "2026-10-05T12:33:16.064926+00:00",
+      "url": "https://youtube.com/shorts/XtwZ3qKACLQ",
       "title": "Quantum Computers Went From 5 Qubits To 1,121",
+      "at": "2026-10-05T12:33:28.069998+00:00",
       "publish_at": "2026-10-05T12:56:21Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 33 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 79,
+      "duration_s": 44.5
     }
   },
   "uploads": [
@@ -3074,9 +3085,10 @@
       "claimed_at": "2026-10-05T12:33:16.064926+00:00",
       "title": "Quantum Computers Went From 5 Qubits To 1,121",
       "publish_at": "2026-10-05T12:56:21Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "quantum-computers-5-to-1121-qubits"
+      "url": "https://youtube.com/shorts/XtwZ3qKACLQ",
+      "state": "posted",
+      "slug": "quantum-computers-5-to-1121-qubits",
+      "at": "2026-10-05T12:33:28.069998+00:00"
     }
   ]
 }
