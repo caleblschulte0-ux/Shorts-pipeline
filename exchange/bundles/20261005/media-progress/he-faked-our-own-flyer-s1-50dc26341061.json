@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261005",
+  "bundle": {
+    "identity": "2493dec1d28cc46e8b97a6832ced93e6c042342fc2341f642b8438a1c00e50ab",
+    "path": "exchange/bundles/20261005/bundle.json"
+  },
+  "request_id": "he-faked-our-own-flyer-s1-50dc26341061",
+  "safe_request_id": "he-faked-our-own-flyer-s1-50dc26341061",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "57e502a9f88f81c13fb00ddfaf67f4daa6ab5906d601b0d3197135deacf38a2f",
+  "prompt_used": "An editorial illustration for a short-form video: phone screen sale flyer. It accompanies the narration: \"their price was forty dollars less\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1y-_SMfdie33H9L0SG3At8VlP7XnsezFl",
+    "filename": "20261005__he-faked-our-own-flyer-s1-50dc26341061.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1y-_SMfdie33H9L0SG3At8VlP7XnsezFl",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "2b6958c908f87e6f58416dca960fba1350e98c125e481d156756565ced67d499",
+    "bytes": 1958330,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-05T11:34:18.470Z"
+}
