@@ -845,3 +845,53 @@ class TheSeventyEight(unittest.TestCase):
             buf = np.ndarray(shape=(S.H, S.W, 4), dtype=np.uint8, buffer=surf.get_data())
             walls.add(tuple(int(v) for v in buf[500, 960, :3]))
         self.assertGreaterEqual(len(walls), 2, walls)
+
+
+@unittest.skipUnless(HAVE, "the doodle kit needs cairo and numpy")
+class TheThirdBlock(unittest.TestCase):
+    """Run 96: 83, BLOCKED again on the embers beat — the insert of the man
+    at the banked brazier had a cat crossing the far lane through the bowl
+    and a lantern flame in his hand, and read as "a brazier in full flame
+    with an animal standing in the fire"."""
+
+    def test_nothing_crosses_the_back_lane_of_a_framed_close_up(self):
+        from data_learning.doodle import happen as HP
+        spec = {"setting": "forum", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "man", "pose": "stand", "action": "idle"}], "props": ["brazier"], "fire": "low",
+                "frame": [683.2, 670.9, 2.0]}
+        for seed in range(8):
+            lay = S.layout(spec, seed)
+            acts = HP.plan(["passer", "cat", "dog"], spec, lay, seed, 7.0)
+            self.assertFalse(any(a.get("behind") for a in acts), [a["kind"] for a in acts])
+            got = OS.happenings(spec, "ancient", seed, "Behind him, the corner fire has burned down to embers.", 7.0)
+            self.assertNotIn("passer", got)
+
+    def test_the_embers_insert_is_tight_and_alone(self):
+        spec = {"setting": "forum", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "man", "pose": "walk", "action": "carry", "item": "lantern"}],
+                "props": ["brazier"], "fire": "low"}
+        opts = OS.coverage(spec, "ancient", 4)
+        ins = opts["insert"][0]
+        self.assertGreater(ins["frame"][2], 1.6, "the rooftops stay in a loose insert")
+        self.assertEqual(len(ins["cast"]), 1)
+        for seed in range(6):
+            got = OS.happenings(ins, "ancient", seed, "Behind him, the corner fire has burned down to embers.", 7.0)
+            self.assertFalse(set(got) & set(OS.NEWCOMERS), got)
+
+    def test_a_drinker_keeps_the_cup_up_whatever_the_pose(self):
+        for pose in ("sit", "sit_on", "recline", "stand"):
+            sk = P.skeleton(pose, 46.0, 0.0)
+            for t in (0.0, 0.7, 1.9, 3.3):
+                front, _ = P.hand_targets("drink", sk, 46.0, t, 0.0)
+                self.assertLess(front[1], sk["hip"][1] - 0.2 * 46.0, (pose, t))
+
+    def test_the_house_wall_has_something_on_it_at_eye_height(self):
+        import numpy as np
+        for seed in range(3):
+            sp = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "wide", "cast": [], "props": ["oil_lamp", "table"]}
+            surf = S.Scene(sp, "ancient", seed).still
+            buf = np.ndarray(shape=(S.H, S.W, 4), dtype=np.uint8, buffer=surf.get_data())
+            x = int(ST.house_hanging_x(seed))
+            on = tuple(int(v) for v in buf[600, x, :3])
+            off = tuple(int(v) for v in buf[600, (x + 400) % S.W if x < S.W / 2 else x - 400, :3])
+            self.assertNotEqual(on, off, f"seed {seed}: nothing hangs on the wall at {x}")

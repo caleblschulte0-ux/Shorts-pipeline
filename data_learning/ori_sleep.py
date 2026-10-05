@@ -478,7 +478,7 @@ LIGHT_WORDS = r"\b(fire|flames?|lamps?|embers?|candles?|hearth|brazier|coals?|gl
 MOVE_WORDS = r"\b(walks?|walking|carr(?:y|ies|ying)|cross(?:es|ing)?|pass(?:es|ing)?|heads?|hurr(?:y|ies)|" \
              r"returns?|comes?|goes|leaves?|strolls?|wanders?|makes? (?:his|her|their) way)\b"
 TABLE_ACTIONS = ("eat", "drink", "talk", "sew")
-INSERT_ZOOM = 1.6    # a close-up of the fire or the lamp AND whoever is at it: framed in, held still
+INSERT_ZOOM = 2.0    # a close-up of the fire or the lamp AND whoever is at it: framed in, held still (2.0: the rooftops out of an embers shot, run 96)
 FIRE_ACTIONS = ("warm_hands", "feed_fire", "stir", "sew", "eat", "drink", "talk", "hold")
 SINGLE_ZOOM = 1.3    # a shot of one person: framed on them
 SINGLE_ZOOM_INTERIOR = 1.15    # ...looser in a room, so the shelf and the window stay in the picture (run 94: "the top half of the frame is empty")
@@ -841,6 +841,12 @@ def happenings(spec: dict, era: str, seed: int, text: str, dur: float, prev: tup
         people_fill = [k for k in people_fill if k != "stretch"]
     if re.search(KEEP_ON_WORDS, low):
         people_fill = [k for k in people_fill if k != "leave"]
+    if spec.get("frame"):
+        people_fill = [k for k in people_fill if k != "passer"]     # no far lane in a framed close-up
+        if len([c for c in spec.get("cast") or [] if isinstance(c, dict)]) == 1:
+            # a framed close-up of one person at the light is of THEM: nobody
+            # walks into it (run 96: a woman with a lantern beside "him")
+            people_fill = [k for k in people_fill if k not in NEWCOMERS]
     people_fill = [k for k in people_fill if k not in prev] + [k for k in people_fill if k in prev]
     life_fill = [k for k in life_fill if k not in prev] + [k for k in life_fill if k in prev]
     # the small ones only when nothing bigger fits, and never two shots running

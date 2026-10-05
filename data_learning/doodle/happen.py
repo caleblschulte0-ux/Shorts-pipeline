@@ -689,6 +689,11 @@ def plan(kinds: list, spec: dict, lay: dict, seed: int, dur: float, facts=None) 
         a = build(k, spec, lay, seed + 101 * len(out), dur, facts, used)
         if a is None:
             continue
+        if a.get("behind") and spec.get("frame"):
+            # a framed close-up has no far lane: at that zoom the lane runs
+            # through the fire (run 96's judge: "an orange animal standing
+            # in the fire on top of it" — a cat crossing behind the brazier)
+            continue
         if a.get("owns") is not None:
             if a["owns"] in owned:
                 continue

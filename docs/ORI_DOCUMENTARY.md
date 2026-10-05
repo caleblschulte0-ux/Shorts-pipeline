@@ -1070,6 +1070,20 @@ only as a hand edit is not a rule. So:
   being baked under the ripples (`_fronts_water`); three tints of
   whitewash by seed; no passer through a herd (`HERD`).
 
+- **Run 96 (commit 482b18fe): 83, BLOCKED** — the embers beat once more:
+  the new insert of the man at the banked brazier had a cat crossing the
+  far lane straight through the bowl at that zoom, a passer with a lantern
+  behind him and his own lantern beside dull coals, and the judge read "a
+  brazier in full flame with an orange animal standing in the fire".
+  Reproduced locally frame for frame before fixing. Rules now
+  (`TheThirdBlock`): a framed close-up has no far lane (`plan` refuses a
+  `behind` happening where the spec has a frame; no passer) and, of one
+  person, admits no newcomer; the insert is tighter (`INSERT_ZOOM` 2.0);
+  a drinker keeps the cup up whatever the pose; the house wall has a cloak
+  and a bag on pegs at eye height (`house_hanging_x`, `_wall_hanging`) so
+  a close-up is not "the upper half blank wall". The lantern stays in his
+  hand: without it the shot has no second light and no insert at all.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

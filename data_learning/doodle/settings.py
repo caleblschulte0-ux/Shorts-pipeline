@@ -358,6 +358,7 @@ def _interior(cr, name, seed, r, time: str = "night"):
             ink.fill_stroke(cr, [(px - w_ * 0.6, 380), (px - w_, 380 - h_ * 0.6), (px - w_ * 0.5, 380 - h_),
                                  (px + w_ * 0.5, 380 - h_), (px + w_, 380 - h_ * 0.6), (px + w_ * 0.6, 380)],
                             rgb(c), lw=4, amp=0.4, seed=seed + 10 + k, shadow=shade(rgb(c)), shadow_dir=(1, 0))
+        _wall_hanging(cr, house_hanging_x(seed), seed)
         # a skirting of beaten earth colour where the wall meets the floor
         ink.fill_stroke(cr, ink.box(-20, bot - 40, W + 20, bot + 10), rgb("#cdb48e"), lw=0, amp=0)
     elif name == "mudbrick_inside":
@@ -653,6 +654,34 @@ CLOSE_TREES = 1.9                # the tree line, nearer still: about twice a st
 
 
 VILLA_DOOR_HALF = 150            # half-width of the villa's doorway, at scale 1
+
+
+def house_hanging_x(seed: int) -> float:
+    """Where the house's cloak and bag hang: under the window's side, a
+    pure function of the seed (the window itself is the room RNG's first
+    draw)."""
+    r = random.Random(seed)
+    wx = r.choice([420, 1500]) + r.uniform(-60, 60)
+    return wx + 230 if wx < W / 2 else wx - 230
+
+
+def _wall_hanging(cr, x: float, seed: int):
+    """Two pegs with a cloak and a bag on them, at eye height: the plain
+    wall behind a close-up was "the upper half ... blank wall" to run 94's
+    and 96's judge."""
+    r = random.Random(seed + 5)
+    peg = rgb("#6a4c32")
+    for dx in (-40, 40):
+        ink.fill_stroke(cr, ink.box(x + dx - 7, 470, x + dx + 7, 486), peg, lw=3, amp=0.4, seed=seed + dx)
+    cloak = rgb(r.choice(["#7a5a8c", "#8c4a3a", "#4e6a52", "#9a7a3c"]))
+    ink.fill_stroke(cr, [(x - 60, 486), (x - 20, 486), (x - 8, 500), (x + 2, 486), (x + 8, 500),
+                         (x + 24, 486), (x + 70, 486), (x + 62, 700), (x + 26, 712), (x - 14, 706),
+                         (x - 52, 700)], cloak, lw=5, amp=1.4, seed=seed + 8, shadow=shade(cloak),
+                    shadow_dir=(1, 0.5), texture="hatch", tex_alpha=0.2)
+    bag = rgb("#b89a66")
+    ink.fill_stroke(cr, [(x + 40, 486), (x + 44, 520), (x + 88, 520), (x + 84, 486)], (0, 0, 0, 0), lw=3, amp=0)
+    ink.fill_stroke(cr, ink.blob_pts(x + 66, 560, 34, 42, seed + 9, 0.1, 12), bag, lw=4, amp=1.2, seed=seed + 9,
+                    shadow=shade(bag), shadow_dir=(1, 0.6))
 
 
 def villa_doorway(r_or_seed) -> float:
