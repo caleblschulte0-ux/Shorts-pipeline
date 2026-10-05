@@ -1,0 +1,16 @@
+{
+ "slug": "marathon-super-shoes-record-pace",
+ "ts": "20261005T150321Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg4:mid and payoff@-0.4, 'COMMENT BELOW' is printed over the last line of the caption, so 'think.' is cut through. In seg4:start, 'Set since 2018' sits under Data's body and the pole. In seg3:end, the '15' is covered by a cyan ring and barely legible.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_and_bare_number",
+  "visible_evidence": "seg2:start/mid/end show two identical yellow circles that both say '8.3', and both are labelled 'Before 2016 (1988-2013)'. The narration says the rate went from about 8 to almost 30 seconds a year, so the scene's one comparison is missing its second value and shows a duplicate instead.",
+  "root_cause": "The binding duplicated the first row into both slots, so the post-2016 rate of ~30 s/yr never renders. The visual is a generic circle-size chart, not a demonstration of speed.",
+  "repair_goal": "Show the two eras with their real values (8.3 s/yr before 2016, ~30 s/yr since 2016) as a race of motion. For example, two runners on a track where the super-shoe era covers about 3.6x the distance in the same time, with Data pushing or pacing the faster one, and distinct labels for each era."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

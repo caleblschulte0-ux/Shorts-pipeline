@@ -1,0 +1,25 @@
+{
+ "slug": "permafrost-thaw",
+ "ts": "20261005T150321Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg2:start the label 'Frozen in permafrost soil 1700B' is dim grey text on a grey bar and nearly disappears. In seg4:start/mid/end Data stands on top of the 'B' of '150B'.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "broken_chart",
+  "visible_evidence": "seg1:start/mid/end show a horizontal bar chart of temperature where every bar is a zero-length stub at the left edge. The numbers -8 to -2.3 sit at the right with no bar between them, and Data wanders over empty tracks. It also repeats the exact data seg0 just showed.",
+  "root_cause": "Negative temperatures went into a bar renderer that measures from zero, so every bar has zero or negative length. The beat re-plots seg0's series with no new claim.",
+  "repair_goal": "Replace seg1 with a warming machine made of the subject. For example, a cross-section of frozen ground whose ice line retreats as a thermometer climbs from -8\u00b0C to -2.3\u00b0C, with Data driving the warming (cranking a heat dial or chipping the ice with a pick). Or merge seg1 into seg0 so the series is shown once."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  },
+  "1": {
+   "viz": "stack",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "nobel-prize-discovery-age",
+ "ts": "20261005T150321Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg1:start and seg1:mid the left two-thirds of the frame between the title and the axis is empty, with only two thin uprights at the far right. In seg3 the 21st-century column is a small grey nub inside a large empty area.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg1:start/seg1:mid: the headline number '13.4 yrs apart' runs off the right edge of the frame. The two uprights and the mascot are crowded against the right edge, while the left 60% of the frame is empty. The ladder sits on top of the 50.3 upright.",
+  "root_cause": "The gap ruler is anchored at the ages' positions on an axis that starts near 0, so both markers cluster at the far right. The headline label is placed at the marker's x position and is not clamped to the safe area.",
+  "repair_goal": "Start the ruler axis near 30 years so that 36.9 and 50.3 are spread across the frame width with the 13.4-year gap in the centre. Clamp '13.4 yrs apart' fully inside the safe margins. Have Data stretch a tape measure across the gap instead of standing on a ladder beside it."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "comparison",
+   "perf": "catch_fall"
+  }
+ },
+ "scenes": []
+}

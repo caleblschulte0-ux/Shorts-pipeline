@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261005T150321Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: hook@1.5 \u2192 hook@2.2 \u2192 seg0:mid \u2192 seg0:end hold the same finished bar chart with Data on the ladder for about 4s. Code measured a 23-frame duplicate run (held_s 5.92) around 4.7s.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start/mid/end: two identical teal circles, both '127%' and both labelled 'Billionaire wealth'. The right circle should be the S&P 500 at 195%. The circles just grow, and Data stands idle on top.",
+  "root_cause": "The comparison's second series was bound to the same data as the first, so the stock-market side duplicates the billionaire value and label. The scene is also a generic circle-size chart with no causal mascot act.",
+  "repair_goal": "Show billionaire wealth at +127% against the S&P 500 at +195%, with correct and distinct labels and values. Make the S&P side visibly bigger, for example with Data pumping or stacking it higher so it overtakes the billionaire side. The point to land is that the billionaires' gain trailed the market's."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

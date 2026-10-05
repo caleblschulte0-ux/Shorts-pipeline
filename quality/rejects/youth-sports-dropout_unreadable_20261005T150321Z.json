@@ -1,0 +1,21 @@
+{
+ "slug": "youth-sports-dropout",
+ "ts": "20261005T150321Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:start, seg3:mid and payoff@-0.4 Data's body covers the left edge of the '38%' label on the scale pan, so it reads as '38%' with the 3 obscured or clipped. In seg1:end the caption '41%' sits under a dial that says '50%', two clashing numbers on one frame.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg3:start to payoff@-0.4 is a seesaw scale of 38% (2012) against 27% (2022). It reuses seg2's numbers, and Data stands at the far-left edge holding a pole, covering the '38%' label. The '1.2 million fewer kids / 6 percent drop' narration never gets a picture.",
+  "root_cause": "The closing scene repeats the previous beat's low-income comparison as a stock balance machine instead of depicting the beat's own number (1.2 million fewer kids). Data is placed beside the machine, not as its cause, and his anchor overlaps the label.",
+  "repair_goal": "Draw the 1.2M / 6% beat as its own scene made of the subject, for example a team bench or a line of jerseys emptying, with Data blowing the whistle or pulling jerseys off the hooks so the count drops. Keep every label clear of his body."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "catch_fall"
+  }
+ },
+ "scenes": []
+}

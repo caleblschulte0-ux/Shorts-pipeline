@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-05T12:42:30Z",
+ "updated": "2026-10-05T15:03:06Z",
  "open": [
+  {
+   "id": "unclaimed-money-states-hold__cd7c3b6c",
+   "slug": "unclaimed-money-states-hold",
+   "filed": "2026-10-05T15:03:06Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261005/unclaimed-money-states-hold__cd7c3b6c.request.json",
+   "answer_path": "exchange/rewrites/20261005/unclaimed-money-states-hold__cd7c3b6c.answer.json"
+  },
+  {
+   "id": "muscle-loss-after-30__a6d6cd11",
+   "slug": "muscle-loss-after-30",
+   "filed": "2026-10-05T15:03:04Z",
+   "why": [
+    "premise: brain: Lacks a specific, verifiable number to anchor the reversed expectation."
+   ],
+   "request": "exchange/rewrites/20261005/muscle-loss-after-30__a6d6cd11.request.json",
+   "answer_path": "exchange/rewrites/20261005/muscle-loss-after-30__a6d6cd11.answer.json"
+  },
   {
    "id": "global-remittances-record-2023__5fd648c7",
    "slug": "global-remittances-record-2023",
@@ -809,26 +829,6 @@
    ],
    "request": "exchange/rewrites/20261004/quantum-computers-5-to-1121-qubits__1b611ade.request.json",
    "answer_path": "exchange/rewrites/20261004/quantum-computers-5-to-1121-qubits__1b611ade.answer.json"
-  },
-  {
-   "id": "unclaimed-money-states-hold__13b48f97",
-   "slug": "unclaimed-money-states-hold",
-   "filed": "2026-10-04T12:49:00Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261004/unclaimed-money-states-hold__13b48f97.request.json",
-   "answer_path": "exchange/rewrites/20261004/unclaimed-money-states-hold__13b48f97.answer.json"
-  },
-  {
-   "id": "muscle-loss-after-30__a6d6cd11",
-   "slug": "muscle-loss-after-30",
-   "filed": "2026-10-04T12:48:56Z",
-   "why": [
-    "premise: brain: It lacks a single verifiable number, offering only a vague age range."
-   ],
-   "request": "exchange/rewrites/20261004/muscle-loss-after-30__a6d6cd11.request.json",
-   "answer_path": "exchange/rewrites/20261004/muscle-loss-after-30__a6d6cd11.answer.json"
   },
   {
    "id": "oceanic-shark-collapse__7abc9718",

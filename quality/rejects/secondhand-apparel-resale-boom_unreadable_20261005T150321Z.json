@@ -1,0 +1,16 @@
+{
+ "slug": "secondhand-apparel-resale-boom",
+ "ts": "20261005T150321Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg1:start and seg1:mid Data stands on the left edge of the frame over the '14%' label and the 'Secondhand apparel' text, covering the '1'. At payoff@-1.8 the pink '52%' sits on top of a translucent pink block and is hard to read.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg1:start to seg1:end: Data is jammed against the left edge on a pole, on top of the '14%' value and the 'Secondhand apparel' label. The left pan sits about 20px from the edge and the upper half of the frame is empty.",
+  "root_cause": "Data's placement anchor is the left pan, which sits at the frame edge, so his body lands on the value label. The scale is also drawn too wide and too low, leaving the top 40% unused.",
+  "repair_goal": "Move the scale's fulcrum up and narrow the beam so both pans sit at least 60px inside the frame. Put the labels under the pans, clear of Data. Have Data stand beside the left pan and load the pink bricks onto it, so his loading tips the beam, with nothing covering the '14%' or '2.8%' text."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
