@@ -2556,6 +2556,13 @@
       ],
       "words_first_10s": 7,
       "scene_changes_before_5s": 2
+    },
+    "diabetes-quietly-doubled": {
+      "claimed_at": "2026-10-05T18:34:09.651694+00:00",
+      "title": "Diabetes Quietly Became A Global Epidemic",
+      "publish_at": "2026-10-05T18:42:40Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3134,6 +3141,14 @@
       "state": "posted",
       "slug": "americans-stopped-moving",
       "at": "2026-10-05T16:08:24.246346+00:00"
+    },
+    {
+      "claimed_at": "2026-10-05T18:34:09.651694+00:00",
+      "title": "Diabetes Quietly Became A Global Epidemic",
+      "publish_at": "2026-10-05T18:42:40Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "diabetes-quietly-doubled"
     }
   ]
 }
