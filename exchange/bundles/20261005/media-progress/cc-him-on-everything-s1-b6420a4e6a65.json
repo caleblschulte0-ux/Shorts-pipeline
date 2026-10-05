@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261005",
+  "bundle": {
+    "identity": "2493dec1d28cc46e8b97a6832ced93e6c042342fc2341f642b8438a1c00e50ab",
+    "path": "exchange/bundles/20261005/bundle.json"
+  },
+  "request_id": "cc-him-on-everything-s1-b6420a4e6a65",
+  "safe_request_id": "cc-him-on-everything-s1-b6420a4e6a65",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "0843287efa148815d4c49ca1751f06ef9a5244d9573c8c7859d302faa4c98f15",
+  "prompt_used": "An editorial illustration for a short-form video: coworkers ordering lunch office. It accompanies the narration: \"I CC'd him on lunch orders\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1R-1a3YA6ADJDTb0WAA83OsiI5UKUTKzM",
+    "filename": "20261005__cc-him-on-everything-s1-b6420a4e6a65.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1R-1a3YA6ADJDTb0WAA83OsiI5UKUTKzM",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "5a32313c732484c0d46ed508e67532c4cc76b51a5bd8d3b525e8a29979393633",
+    "bytes": 1912035,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-05T11:34:08.801Z"
+}
