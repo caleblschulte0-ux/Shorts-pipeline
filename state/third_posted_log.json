@@ -11223,6 +11223,34 @@
         "end": 6.53
       },
       "director_cut": true
+    },
+    "rejected-delightfulblushingdonutfrankerz-a0qeqayce5fipvrl": {
+      "source_url": "https://www.twitch.tv/lacy/clip/DelightfulBlushingDonutFrankerZ-a0qeqaycE5fiPvrL",
+      "streamer": "lacy",
+      "title": "ksi disrespect",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Watching a Sidemen video; no clear event)",
+      "ts": "2026-10-05T12:38:27.570084+00:00"
+    },
+    "rejected-powerfultalentedbeefopieop-ua-ntzo4tdr-tzjq": {
+      "source_url": "https://www.twitch.tv/hasanabi/clip/PowerfulTalentedBeefOpieOP-UA-ntzo4TDr-tzJq",
+      "streamer": "hasanabi",
+      "title": "Kaya escape",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.0s \u2014 too short to edit",
+      "ts": "2026-10-05T12:38:37.044084+00:00"
+    },
+    "clip-20261005-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SnappyNimbleRatYee-i_wcqMjdyNTK4jnW",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Addresses The Situation With Reggie And Demands Proof",
+      "kind": "twitch_clip",
+      "ts": "2026-10-05T12:41:46.400612+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
