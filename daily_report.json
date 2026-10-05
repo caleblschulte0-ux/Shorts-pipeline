@@ -1,214 +1,19 @@
 [
   {
-    "topic": "China Now Installs More Robots Than Everyone Else Combined",
-    "title": "China Now Installs More Robots Than Everyone Else Combined",
-    "format": "graph_race",
-    "publish_at": "2026-10-05T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/BWAMwVKMIUw",
-    "error": null,
-    "elapsed_seconds": 68.1,
-    "package_path": "state/trending_packages/20261005/01_china-passed-the-world-in-robots.json",
-    "source": "brain",
-    "video_path": "output/daily_20261005-113328_china_now_installs_more_robots_than_ever.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 8.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 74
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261005-china-now-installs-more-robots-than-everyone-els-7faa19ca"
-    }
-  },
-  {
-    "topic": "Interest On The Debt Just Passed The Military Budget",
-    "title": "Interest On The Debt Just Passed The Military Budget",
-    "format": "graph_race",
-    "publish_at": "2026-10-05T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/XPEagzBtc0M",
-    "error": null,
-    "elapsed_seconds": 66.1,
-    "package_path": "state/trending_packages/20261005/02_debt-interest-passed-defense-spending.json",
-    "source": "brain",
-    "video_path": "output/daily_20261005-113436_interest_on_the_debt_just_passed_the_mil.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 8.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -22.8
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 83
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261005-interest-on-the-debt-just-passed-the-military-bu-00be294b"
-    }
-  },
-  {
-    "topic": "Energy Drinks Passed Sports Drinks. By A Lot.",
-    "title": "Energy Drinks Passed Sports Drinks. By A Lot.",
-    "format": "graph_race",
-    "publish_at": "2026-10-05T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/Wv1LU-l_x0U",
-    "error": null,
-    "elapsed_seconds": 89.1,
-    "package_path": "state/trending_packages/20261005/03_energy-drinks-passed-sports-drinks.json",
-    "source": "brain",
-    "video_path": "output/daily_20261005-113543_energy_drinks_passed_sports_drinks__by_a.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.0
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 83
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261005-energy-drinks-passed-sports-drinks-by-a-lot-b87ba098"
-    }
-  },
-  {
-    "topic": "The French Bulldog Ended A 31-Year Reign",
-    "title": "The French Bulldog Ended A 31-Year Reign",
-    "format": "graph_race",
-    "publish_at": "2026-10-05T17:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/BcfAW_RWlq0",
-    "error": null,
-    "elapsed_seconds": 80.9,
-    "package_path": "state/trending_packages/20261005/04_french-bulldog-passed-the-labrador.json",
-    "source": "brain",
-    "video_path": "output/daily_20261005-113712_the_french_bulldog_ended_a_31_year_reign.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 78
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261005-the-french-bulldog-ended-a-31-year-reign-b32f3a6d"
-    }
-  },
-  {
-    "topic": "He Wanted CC'd On Everything. I CC'd Him On Everything.",
-    "title": "He Wanted CC'd On Everything. I CC'd Him On Everything.",
-    "format": "reddit",
-    "publish_at": "2026-10-05T19:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/izwBxuxflfk",
-    "error": null,
-    "elapsed_seconds": 335.7,
-    "package_path": "state/trending_packages/20261005/05_cc-him-on-everything.json",
-    "source": "brain",
-    "video_path": "output/daily_20261005-113958_he_wanted_cc_d_on_everything__i_cc_d_him.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 49.8,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -23.7
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 70
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261005-he-wanted-cc-d-on-everything-i-cc-d-him-on-every-b232081a"
-    }
-  },
-  {
     "topic": "He Faked Our Own Flyer To Price-Match Himself. We Noticed.",
     "title": "He Faked Our Own Flyer To Price-Match Himself. We Noticed.",
     "format": "reddit",
-    "publish_at": "2026-10-05T20:30:00Z",
+    "publish_at": "2026-10-05T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Generic gameplay story whose illustrations are a dollar emoji and then a random chair held for the last 11 seconds. The flyer forgery, which is the whole story, is never shown.",
-    "elapsed_seconds": 310.2,
+    "error": "showrunner_block: showrunner BLOCK: A solid reddit-story frame with relevant inserts for the setup, but the illustrations stop before the forgery reveal and the ban, so the payoff lands on bare gameplay.",
+    "elapsed_seconds": 284.8,
     "package_path": "state/trending_packages/20261005/06_he-faked-our-own-flyer.json",
     "source": "brain",
-    "video_path": "output/daily_20261005-114534_he_faked_our_own_flyer_to_price_match_hi.mp4",
+    "video_path": "output/daily_20261005-115620_he_faked_our_own_flyer_to_price_match_hi.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.5,
+      "duration": 53.2,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -219,57 +24,29 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -24.0
+      "loudness_lufs": -23.2
     },
     "qa": {
       "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "verdict": "skip",
+      "reason": "gemini unavailable"
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: Generic gameplay story whose illustrations are a dollar emoji and then a random chair held for the last 11 seconds. The flyer forgery, which is the whole story, is never shown.",
-      "score": 53
+      "reason": "showrunner BLOCK: A solid reddit-story frame with relevant inserts for the setup, but the illustrations stop before the forgery reveal and the ban, so the payoff lands on bare gameplay.",
+      "score": 74
     },
     "blocked": true
   },
   {
-    "topic": "Florida man accused of accessing women\u2019s computers and making TikTok posts - FOX 29 Philadelphia",
-    "angle": "A Florida man was arrested for hacking into dozens of women\u2019s laptops and broadcasting their private data on TikTok, sparking a wave of online outrage and a crackdown on digital privacy violations.",
-    "publish_at": "2026-10-05T20:30:00Z",
+    "topic": "I'm a wildlife cameraman but 'special' rare sightings can still take me by surprise",
+    "angle": "Cameraman Dan Abbot captures a surprise humpback whale breach off Wales, a rare marine visitor that stuns locals and scientists alike.",
+    "publish_at": "2026-10-05T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: Generic, mismatched emoji (a microscope for a recorder, a hard-hat worker for a caf\u00e9 manager) are frozen for about 18s on a dark void, so nothing shows the story and the ending lands on bare gameplay.",
-    "elapsed_seconds": 235.3,
-    "title": "I Flipped the Latte\u2011Loving Laptop Hacker",
-    "package_path": "state/trending_packages/20261005-114933_auto_florida_man_accused_of_accessing_women_s.json",
-    "video_path": "output/daily_20261005-114933_florida_man_accused_of_accessing_women_s.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 49.1,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.1
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "None"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: Generic, mismatched emoji (a microscope for a recorder, a hard-hat worker for a caf\u00e9 manager) are frozen for about 18s on a dark void, so nothing shows the story and the ending lands on bare gameplay.",
-      "score": 57
-    },
-    "blocked": true,
+    "error": "unfit_for_fiction: \"I'm a wildlife cameraman but 'special' rare sightings can still take me by surprise\" refused by the writer: The requested occupation (wildlife cameraman) cannot be combined with the required setting (cafe, hardware store, airport, or rental office) without violating t",
+    "elapsed_seconds": 5.5,
+    "unfit": true,
     "backfill": true
   }
 ]
