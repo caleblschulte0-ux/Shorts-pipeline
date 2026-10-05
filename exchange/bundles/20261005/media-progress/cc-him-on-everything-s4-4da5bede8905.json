@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261005",
+  "bundle": {
+    "identity": "2493dec1d28cc46e8b97a6832ced93e6c042342fc2341f642b8438a1c00e50ab",
+    "path": "exchange/bundles/20261005/bundle.json"
+  },
+  "request_id": "cc-him-on-everything-s4-4da5bede8905",
+  "safe_request_id": "cc-him-on-everything-s4-4da5bede8905",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "3cb5e2a1cc05b7002a92eb1d40f93e049ced222b93ba227f3fb96ca7e260f69e",
+  "prompt_used": "An editorial illustration for a short-form video: warehouse shipment delay. It accompanies the narration: \"the actual urgent email about a shipment delay\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1TjAXL4Dn2L9mz9SqJFqA6HKPm_CL0LcP",
+    "filename": "20261005__cc-him-on-everything-s4-4da5bede8905.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1TjAXL4Dn2L9mz9SqJFqA6HKPm_CL0LcP",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "0b6adfa909f028f08c094120d37401346158cd0071924466303207497ecc9529",
+    "bytes": 1992135,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-05T11:34:12.486Z"
+}
