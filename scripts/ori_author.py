@@ -1864,6 +1864,49 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
             sc.clear(); sc.update(old)
         return None
 
+    def relocate(sc, alt):
+        sc["setting"] = alt
+        sc["props"] = [q for q in sc.get("props", []) if (q if isinstance(q, str) else q["name"]) != "cave_painting"]
+        take_outdoors(sc, era)
+        bring_indoors(sc, era)
+        if S.SETTINGS[alt].interior and sc.get("weather") not in (None, "clear"):
+            sc["weather"] = "clear"
+        if S.validate(sc, era):
+            mend_scene(sc, era)
+
+    def try_swap(i, j, name, other):
+        """Two rooms of one class, each near its cap: moving one beat out of
+        the full room tips the other room over in a later chapter, so no
+        single move lowers the count (the Roman script: villa 5 of 6 in
+        chapter one, house 17 of 29 by chapter six). A swap does: this beat
+        goes to the other room and a later beat of the other room comes
+        here."""
+        b = ep["chapters"][i]["beats"][j]
+        if b["scene"].get("setting") != name or _words_pin(b.get("say", ""), name):
+            return None
+        if other not in candidates(b.get("say", ""), name):
+            return None
+        before = severity()
+        old1 = json.loads(json.dumps(b["scene"]))
+        relocate(b["scene"], other)
+        if S.validate(b["scene"], era) or not scene_ok(i, j):
+            b["scene"].clear(); b["scene"].update(old1)
+            return None
+        for k in range(i + 1, len(ep["chapters"])):
+            for l, bl in enumerate(ep["chapters"][k]["beats"]):
+                if bl["scene"].get("setting") != other or _words_pin(bl.get("say", ""), other):
+                    continue
+                if name not in candidates(bl.get("say", ""), other):
+                    continue
+                old2 = json.loads(json.dumps(bl["scene"]))
+                relocate(bl["scene"], name)
+                if not S.validate(bl["scene"], era) and scene_ok(k, l) and severity() < before:
+                    return (f"{ep['chapters'][i]['title']} beat {j + 1}: {name} -> {other}, and "
+                            f"{ep['chapters'][k]['title']} beat {l + 1}: {other} -> {name} (a swap)")
+                bl["scene"].clear(); bl["scene"].update(old2)
+        b["scene"].clear(); b["scene"].update(old1)
+        return None
+
     def try_shot(i, j):
         """The other shot, for a beat whose words pin its place: the
         same-picture rule itself says "change the setting OR the shot"."""
@@ -1956,6 +1999,14 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
                 for j in order:
                     if beats[j]["scene"].get("setting") == setting:
                         done = try_shot(i, j)
+                        if done:
+                            break
+            if not done and "holds" in p:
+                m4 = re.search(r"use (\w+) for", p)
+                other = m4.group(1) if m4 else None
+                for j in order:
+                    if other and beats[j]["scene"].get("setting") == setting:
+                        done = try_swap(i, j, setting, other)
                         if done:
                             break
         if not done:

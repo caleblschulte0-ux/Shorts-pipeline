@@ -73,13 +73,20 @@ class EveryNameResolves(unittest.TestCase):
         for name, pr in self.PR.PROPS.items():
             for era in pr.eras:
                 where = pr.settings[0] if pr.settings else "riverbank"
-                props = [name] + (["campfire"] if pr.settings else [])   # a wall has no water
-                self._draw(_scene(props=props, setting=where), era)
+                # a wall has no water: the setting's own light keeps it alive
+                props = [name] + ([_fire_for(where, era)] if pr.settings and not pr.light else [])
+                cast = [{"who": "man", "pose": "recline", "action": "talk"}] if name == "couch" else []
+                self._draw(_scene(props=props, setting=where, cast=cast), era)
 
     def test_every_action_draws_in_every_pose_it_allows(self):
         for act, cfg in self.P.ACTIONS.items():
             for pose in cfg["poses"]:
                 for who in ("man", "girl"):
+                    if pose == "recline":
+                        # a Greek dinner: on a couch, in a room
+                        self._draw(_scene(setting="villa_inside", props=["couch", "oil_lamp"],
+                                          cast=[{"who": who, "pose": pose, "action": act}]), "ancient")
+                        continue
                     self._draw(_scene(setting="riverbank", props=[],
                                       cast=[{"who": who, "pose": pose, "action": act}]), "medieval")
 

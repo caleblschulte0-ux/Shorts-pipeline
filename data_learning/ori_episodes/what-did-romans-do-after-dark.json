@@ -76,7 +76,7 @@
     {
      "say": "Inside a quiet home nearby, a woman sits close to a small flame, mending cloth with a bone needle. There is no other light. Just this one steady candle, cupped against the draft. Evening has always meant this kind of narrowing — the world shrinking down to the small circle a single flame can reach.",
      "scene": {
-      "setting": "villa_inside",
+      "setting": "house_inside",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -358,7 +358,7 @@
     {
      "say": "The day's work is done, and the household gathers under one low roof. A man carries in the last tools, the fields' smell still on him. A small oil lamp is lit against the dark. Supper is near — plain, warm, and, for a family like this, ordinary.",
      "scene": {
-      "setting": "house_inside",
+      "setting": "villa_inside",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",

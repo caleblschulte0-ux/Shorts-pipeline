@@ -873,6 +873,12 @@ only as a hand edit is not a rule. So:
     a lamp with nobody near it is left for one somebody can reach.
   - A cart no longer stands across the bay: only buildings and trees take
     the far shore (`scene.FAR_SHORE`); everything else stays on this bank.
+  - Found re-mending the shelf: the room-balance rule could seesaw. Two
+    rooms of one class each near their cap, and moving one beat out of the
+    full room tipped the other room over six chapters later, so no single
+    move lowered the count and `repair_film` gave up (the Roman script:
+    villa 5 of 6 in chapter one, house 17 of 29 by chapter six).
+    `try_swap` moves one beat each way.
 
 ## Any topic: the era is found or the refusal is honest
 
