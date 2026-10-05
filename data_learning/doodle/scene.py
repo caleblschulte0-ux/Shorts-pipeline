@@ -346,6 +346,8 @@ FAR_SHORE = {"hut", "cottage", "tent", "tree", "pine", "villa", "temple", "colum
              "hide_rack", "fish_rack", "cave_painting"}
 # what a sleeper lies on: placed under them, centred on the body
 BEDDING = ("bedroll", "bed", "mat")
+BED_TOP = 74.0         # the mattress top above a bed's foot, at scale 1 (props.bed: frame to -70, blanket to -115)
+SLEEPER_ROOM = 0.8     # head radii kept clear at a sleeper's head and feet: no lamp at a sleeper's head (run 93)
 SOLID_BACK = {"deer", "mammoth", "cow", "cart", "well", "hut", "cottage", "tent", "fish_rack", "hide_rack", "torch",
               "hearth", "temple", "villa", "column", "terrace", "gas_lamp", "carriage", "stove", "bookshelf",
               "clock", "obelisk", "mudbrick_house", "timber_house", "ship"}
@@ -574,6 +576,10 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         # in front of it still reads; a face does not
         _, mx, ow = settings.cave_opening(seed, shot)
         blocked.append(dict(label="the cave opening", lo=mx - ow, hi=mx + ow))
+    if spec.get("setting") == "spring":
+        # the pool: nobody stands in it and nothing is planted in it (run
+        # 93: "the torch pole is planted in the middle of the pool")
+        taken.append((W * settings.SPRING_X[0], W * settings.SPRING_X[1]))
     if spec.get("setting") == "villa_inside":
         # nobody lies down across the courtyard door (a head in it is fine:
         # somebody standing in a doorway is a thing people do)
@@ -684,6 +690,10 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         fw = PROPS[focal["name"]].width * s * 0.5
         trunks = [(x - TREE_KEEP * ts, x + TREE_KEEP * ts) for x, _k, ts, _y in
                   settings.tree_line(spec.get("setting"), seed, shot)]
+        if spec.get("setting") == "spring":
+            # nor in the pool (run 93: "the torch pole is planted in the
+            # middle of the pool the woman is filling from")
+            trunks.append((W * settings.SPRING_X[0], W * settings.SPRING_X[1]))
         for step in range(0, 40):
             for sgn in (1, -1):
                 fx = focal_x + sgn * step * 25.0
@@ -761,6 +771,10 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             py = sleeper["y"] - 4 * s
             ps = s * size             # a child's bed is a child's size
             sleeper["_bed"] = True
+            if p["name"] == "bed":
+                # ON the mattress, not drawn through the front of the frame
+                # (the storyboard, three runs: "head drawn over the bed frame")
+                sleeper["y"] = py - BED_TOP * ps
             put(x - pr.width * ps / 2, x + pr.width * ps / 2)
             placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
                                seed=seed + len(placed) * 17, under=figs.index(sleeper)))
@@ -908,6 +922,16 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
                        mood=c.get("mood", "calm"), item=c.get("item"), x=x,
                        y=gy + 30 * s, s=s, facing=facing, seed=seed * 13 + i * 101)
 
+    # a head's width kept clear at a sleeper's head and feet, so no lamp
+    # stands at a sleeper's head (run 93's judge)
+    for f in figs:
+        if f["pose"] == "lie":
+            R_ = people.R0 * s * people.WHO[f["who"]]["size"]
+            lo_, hi_ = figure_extent("lie", R_)
+            if f["facing"] == "left":
+                lo_, hi_ = -hi_, -lo_
+            put(f["x"] + lo_ - SLEEPER_ROOM * R_, f["x"] + lo_)
+            put(f["x"] + hi_, f["x"] + hi_ + SLEEPER_ROOM * R_)
     # a pot or cauldron belongs in front of whoever is stirring it; a bedroll
     # goes under whoever is lying down
     stirrer = next((f for f in figs if f["action"] == "stir"), None)

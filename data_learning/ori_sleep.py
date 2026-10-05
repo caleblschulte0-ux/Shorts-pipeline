@@ -411,7 +411,7 @@ NAMED_PROPS = {"stall": ("stall", "stalls"), "barn": ("barn",), "cart": ("cart",
                "goat": ("goat", "goats", "animals", "herd"), "sheep": ("sheep", "flock", "ewes", "lambs", "animals"),
                "cow": ("cow", "cows", "cattle", "ox", "oxen"), "chicken": ("hens", "chickens", "hen"),
                "dog": ("dog", "dogs", "hound"), "fence": ("gate", "pen", "fence", "fold", "hurdle"),
-               "krater": ("krater", "mixing bowl", "mixing-bowl", "bowl of wine", "wine bowl")}
+               "krater": ("krater", "mixing bowl", "mixing-bowl", "bowl of wine", "wine bowl", "cups")}
 
 
 # one word, several drawings: "the boats" on the Nile are reed boats, "the
@@ -788,6 +788,9 @@ HAPPEN_MIN = 2           # the operator, 2026-10-03: "more needs to be happening
 
 
 NEWCOMERS = ("arrive", "serve", "child", "passer")    # happenings that bring somebody new into the picture
+SEATED_WORDS = r"\b(sits?|sitting|seated|sits? up|settles?|crouch(?:es|ing)?|kneels?|kneeling|bends?|warming|" \
+               r"spinning|sewing|mending|stirring|leans?|leaning)\b"
+KEEP_ON_WORDS = r"\b(do(?:es)? not stop|keeps?|still|go(?:es)? on|continues?|stays?|remains?|not stop)\b"
 TOP_BAND = 175.0     # world px: the ceiling beams and the painted band every room has along the top
 
 
@@ -817,17 +820,29 @@ def happenings(spec: dict, era: str, seed: int, text: str, dur: float, prev: tup
     # (run 92: "an old fisherman, too restless to sleep, sits by the water"
     # had three on the beach by the time the judge looked)
     nouns = re.sub(r"\b(he|him|his|she|her)\b", " ", low)
-    named_people = [w for w, pat in WHO_WORDS.items() if re.search(pat, nouns)]
+    nouns = re.sub(r"\b(old wom[ae]n|grandmother|grandma)\b", " gm ", nouns)     # "old woman" is one person, not two
+    named_people = [w for w, pat in WHO_WORDS.items() if w != "old_woman" and re.search(pat, nouns)]
+    if " gm " in nouns:
+        named_people.append("old_woman")
     alone = re.search(r"\b(alone|lone|only (?:one|person|figure)|by (?:him|her)self|solitary|restless)\b", low)
     if len([c for c in spec.get("cast") or [] if isinstance(c, dict)]) == 1 and \
             (alone or (len(named_people) == 1 and not PLURAL_PEOPLE.search(low) and not COMPANY.search(low))):
         people_fill = [k for k in people_fill if k not in NEWCOMERS]
+    # the words say they SIT, or keep at their work: nobody stands up out of
+    # the sentence, and nobody leaves it (run 93: "an old woman sits ...
+    # warming her hands" stood up; "the others do not stop spinning" lost
+    # one of the others)
+    if re.search(SEATED_WORDS, low):
+        people_fill = [k for k in people_fill if k != "stretch"]
+    if re.search(KEEP_ON_WORDS, low):
+        people_fill = [k for k in people_fill if k != "leave"]
     people_fill = [k for k in people_fill if k not in prev] + [k for k in people_fill if k in prev]
     life_fill = [k for k in life_fill if k not in prev] + [k for k in life_fill if k in prev]
     # the small ones only when nothing bigger fits, and never two shots running
     # (the Greek film: a mouse in every room)
     life_fill = [k for k in life_fill if k not in SMALL_LIFE] + [k for k in life_fill if k in SMALL_LIFE and k not in avoid]
-    order = want + [k for k in people_fill if k not in want] + [k for k in life_fill if k not in want]
+    order = want + [k for k in people_fill if k not in want and k != "stretch"] + \
+        [k for k in life_fill if k not in want] + (["stretch"] if "stretch" in people_fill else [])
     from data_learning.doodle.settings import SETTINGS
     facts = {"water": (SETTINGS[spec["setting"]].water, 0, 0)} if SETTINGS[spec["setting"]].water else {}
     got: list[str] = []

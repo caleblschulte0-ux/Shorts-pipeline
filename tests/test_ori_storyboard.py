@@ -279,6 +279,6 @@ class ARespecHappensOncePerKit(unittest.TestCase):
         self.SB.polish(ep, judge=_judge_flagging({1: (False, 1)}, []), ask=ask, work=self.work / "w1", rounds=1)
         n = len(asks)
         self.assertEqual(n, 1)
-        self.assertEqual(ep["storyboard_respecs"].get("1"), self.SB.kit_sha())
+        self.assertEqual(ep["storyboard_respecs"].get("1"), self.SB.say_key(ep["chapters"][0]["beats"][1]["say"]))
         self.SB.polish(ep, judge=_judge_flagging({1: (False, 1)}, []), ask=ask, work=self.work / "w2", rounds=1)
         self.assertEqual(len(asks), n, "the same beat was respecified again on the next run")

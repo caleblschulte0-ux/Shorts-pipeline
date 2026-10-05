@@ -168,6 +168,10 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
     s, gy = lay["scale"], lay["ground_y"] + 30 * lay["scale"]
     taken = _taken(lay) + list(used or [])
     who_pool = ["woman", "man", "old_woman", "elder"]
+    # never a twin: an old woman walking in beside the old woman already
+    # there read as "two duplicated standing women" (run 93's judge)
+    here = {f["who"] for f in lay["people"]}
+    who_pool = [w for w in who_pool if w not in here] or who_pool
     era_ok = True
     if kind in ("arrive", "feed", "serve", "child"):
         who = "child" if kind == "child" else r.choice(who_pool)

@@ -297,6 +297,12 @@ def respec(fb: dict, era: str, why: str, ask, chapter: str | None = None, chapte
 SLEEP_WORDS = re.compile(r"\b(asleep|sleeps|sleeping|lies down|lay down|lying|drift(?:s|ed) off|dozing|dozes)\b", re.I)
 
 
+def say_key(say: str) -> str:
+    """What a beat's respec is remembered by: its words. Keyed by the kit it
+    came back every time the kit changed, which is every round."""
+    return hashlib.sha1((say or "").strip().encode("utf-8")).hexdigest()[:12]
+
+
 def keeps_nothing_the_words_name(say: str, old: dict, new: dict) -> str | None:
     """Why a respec is refused: it dropped something the words name that
     the old scene had. Run 92's storyboard put a woman yawning where "the
@@ -321,7 +327,7 @@ def keeps_nothing_the_words_name(say: str, old: dict, new: dict) -> str | None:
     for who, pat in OS.WHO_WORDS.items():
         if re.search(pat, nouns) and who in old_who and who not in new_who:
             return f"the words name the {who.replace('_', ' ')}"
-    if OS.PLURAL_PEOPLE.search(low) and len(new_cast) < min(2, len(old_cast)):
+    if (OS.PLURAL_PEOPLE.search(low) or OS.COMPANY.search(low)) and len(new_cast) < min(2, len(old_cast)):
         return "the words say several people"
     return None
 
@@ -403,9 +409,9 @@ def polish(ep: dict, *, judge=None, ask=None, work: Path | None = None, rounds: 
                 # from their words a little further each time
                 asked = ep.setdefault("storyboard_respecs", {})
                 if f["shows_words"] <= SHOWS_MIN and ask is not None and respecs < MAX_RESPECS and not out_of_time() \
-                        and asked.get(str(fb["index"])) != sha:
+                        and asked.get(str(fb["index"])) != say_key(fb.get("say", "")):
                     respecs += 1
-                    asked[str(fb["index"])] = sha
+                    asked[str(fb["index"])] = say_key(fb.get("say", ""))
                     did = respec(fb, ep["era"], f["why"], ask,
                                  chapter=(ep["chapters"][fb["chapter"]].get("title") or ""),
                                  chapter_beats=ep["chapters"][fb["chapter"]]["beats"])

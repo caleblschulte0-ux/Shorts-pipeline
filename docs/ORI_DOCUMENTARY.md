@@ -1018,6 +1018,28 @@ only as a hand edit is not a rule. So:
   The Greek shelf is restored to its pre-polish state (a215d3c4) and
   re-mended; the guarded board looks at it again on the next render.
 
+- **Run 93 (commit e64a836c): 83, BLOCKED** — `junk_imagery`: two frames
+  showed the wrong activity. "An old woman sits up ... warming her hands"
+  was drawn as two identical standing women away from the lamp: the new
+  `stretch` had stood the sentence's own subject up, and an `arrive` had
+  walked a second old woman in beside her. "The others do not stop
+  spinning" had lost one of the others to `leave`. Also: no cups or krater
+  at the symposium (the cup was a thumbnail), the torch planted in the
+  spring's pool (the focal light's own search only avoided tree trunks),
+  the sleeper drawn through the front of the bed frame, a lamp at a
+  sleeper's head. And the storyboard respecified 44 of 68 beats, since its
+  memory was keyed by the kit and every round changes the kit. Rules now
+  (`TheThirdEightyThree`): no newcomer is anybody's twin; the words saying
+  they sit, or keep at it, allow no stretch and no leave, and "old woman"
+  is one person when the sentence's people are counted; `stretch` is the
+  last resort after the animals; a kylix you can see and "cups" bring the
+  krater; nothing stands in the pool; a sleeper on a bed lies ON the
+  mattress (`BED_TOP`) with a head's width kept clear at head and feet
+  (`SLEEPER_ROOM`); COMPANY counts for the respec guard; a respec is
+  remembered by the beat's WORDS (`say_key`), not the kit. The persisted
+  shelf keeps the storyboard's additions (beds, mats, a bush) and its
+  respec memory, migrated to the new key.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

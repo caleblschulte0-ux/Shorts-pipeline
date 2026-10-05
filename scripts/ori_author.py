@@ -2167,6 +2167,22 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
         b["scene"].clear(); b["scene"].update(old1)
         return None
 
+    def try_to(i, j, name, other):
+        """One free beat of the full room moved to the other room, when that
+        alone lowers the count (no later beat to swap it with)."""
+        b = ep["chapters"][i]["beats"][j]
+        if b["scene"].get("setting") != name or _words_pin(b.get("say", ""), name):
+            return None
+        if other not in candidates(b.get("say", ""), name):
+            return None
+        before = severity()
+        old1 = json.loads(json.dumps(b["scene"]))
+        relocate(b["scene"], other)
+        if not S.validate(b["scene"], era) and scene_ok(i, j) and severity() < before:
+            return f"{ep['chapters'][i]['title']} beat {j + 1}: {name} -> {other} (the room was full)"
+        b["scene"].clear(); b["scene"].update(old1)
+        return None
+
     def try_shot(i, j):
         """The other shot, for a beat whose words pin its place: the
         same-picture rule itself says "change the setting OR the shot"."""
@@ -2264,11 +2280,19 @@ def repair_film(ep: dict, log=print, only_chapter: int | None = None) -> list[st
             if not done and "holds" in p:
                 m4 = re.search(r"use (\w+) for", p)
                 other = m4.group(1) if m4 else None
-                for j in order:
-                    if other and beats[j]["scene"].get("setting") == setting:
-                        done = try_swap(i, j, setting, other)
-                        if done:
-                            break
+                # the count is "so far": a beat of an EARLIER chapter moved
+                # to the other room lowers it too (run 93's storyboard had
+                # moved three earlier villa beats into the house, and this
+                # chapter's house beats were all pinned by their words)
+                for ci in range(i, -1, -1):
+                    cb = ep["chapters"][ci]["beats"]
+                    for j in (order if ci == i else range(len(cb))):
+                        if other and cb[j]["scene"].get("setting") == setting:
+                            done = try_swap(ci, j, setting, other) or try_to(ci, j, setting, other)
+                            if done:
+                                break
+                    if done:
+                        break
         if not done:
             log(f"[ori_author] repair_film could not fix (no move, drop or shot change here lowers it — "
                 f"the words may pin those beats): {p[:120]}")

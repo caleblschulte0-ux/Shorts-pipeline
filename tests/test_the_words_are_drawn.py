@@ -633,3 +633,94 @@ class TheSecondEightyThree(unittest.TestCase):
                         outside = q["x"] + hw <= x0 + 1 or q["x"] - hw >= x1 - 1
                         self.assertTrue(inside or outside, (seed, name, q["name"], "cut by the window's edge"))
                 self.assertFalse(0 < y0 < OS.TOP_BAND, (seed, name, f"the window's top cuts the beams at {y0:.0f}"))
+
+
+@unittest.skipUnless(HAVE, "the doodle kit needs cairo and numpy")
+class TheThirdEightyThree(unittest.TestCase):
+    """Run 93: 83, BLOCKED on two frames that showed the wrong activity —
+    the old woman warming her hands stood up beside an identical old woman
+    who had just walked in; the spinners lost one to `leave`."""
+
+    def test_nobody_walks_in_as_somebody_s_twin(self):
+        from data_learning.doodle import happen as HP
+        sp = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "old_woman", "pose": "sit", "action": "warm_hands"}], "props": ["oil_lamp", "brazier"]}
+        seen = 0
+        for seed in range(12):
+            lay = S.layout(sp, seed)
+            for k in ("arrive", "serve", "feed"):
+                a = HP.build(k, sp, lay, seed, 7.0)
+                if a is not None:
+                    seen += 1
+                    self.assertNotEqual(a["who"], "old_woman", (seed, k))
+        self.assertGreater(seen, 0)
+
+    def test_the_words_say_she_sits_so_she_stays_sitting_and_alone(self):
+        spec = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "old_woman", "pose": "sit", "action": "warm_hands"}], "props": ["oil_lamp", "mat"]}
+        text = "In another house nearby, an old woman sits up a little longer, warming her hands near a small lamp."
+        for seed in range(6):
+            got = OS.happenings(spec, "ancient", seed, text, 7.0)
+            self.assertNotIn("stretch", got, got)
+            self.assertFalse(set(got) & set(OS.NEWCOMERS), got)
+
+    def test_nobody_leaves_while_the_others_keep_spinning(self):
+        spec = {"setting": "villa_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "old_woman", "pose": "sit", "action": "spin"}, {"who": "woman", "pose": "sit", "action": "spin"},
+                         {"who": "woman", "pose": "sit", "action": "sew"}], "props": ["oil_lamp"]}
+        text = "The others do not stop spinning to listen, but you can tell they are, a small pause in the rhythm."
+        for seed in range(6):
+            got = OS.happenings(spec, "ancient", seed, text, 7.0)
+            self.assertNotIn("leave", got, got)
+            self.assertNotIn("stretch", got, got)
+
+    def test_nothing_stands_in_the_pool(self):
+        sc = {"setting": "spring", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "woman", "pose": "crouch", "action": "gather", "item": "basket", "at": "center"}],
+              "props": ["amphora", "torch", "rock", "reeds"]}
+        lo, hi = S.W * ST.SPRING_X[0], S.W * ST.SPRING_X[1]
+        for seed in range(1, 10):
+            lay = S.layout(sc, seed)
+            for p in lay["props"]:
+                if p["layer"] != "back":
+                    self.assertFalse(lo < p["x"] < hi, (seed, p["name"], "stands in the pool"))
+
+    def test_a_sleeper_on_a_bed_lies_on_the_mattress(self):
+        sc = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "wide",
+              "cast": [{"who": "man", "pose": "lie", "action": "sleep"}], "props": ["bed", "oil_lamp"]}
+        lay = S.layout(sc, 8)
+        bed = next(p for p in lay["props"] if p["name"] == "bed")
+        f = lay["people"][0]
+        self.assertLess(f["y"], bed["y"] - 60 * bed["s"], "the sleeper is drawn through the bed frame")
+
+    def test_a_lamp_keeps_a_head_away_from_a_sleeper(self):
+        sc = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "wide",
+              "cast": [{"who": "man", "pose": "lie", "action": "sleep"}, {"who": "woman", "pose": "lie", "action": "sleep"}],
+              "props": ["brazier", "oil_lamp", "bed"], "fire": "low"}
+        from data_learning.doodle.props import PROPS
+        for seed in range(1, 10):
+            lay = S.layout(sc, seed)
+            lamp = next(p for p in lay["props"] if p["name"] == "oil_lamp")
+            hw = PROPS["oil_lamp"].width * lamp["s"] / 2
+            for f in lay["people"]:
+                R = P.R0 * f["s"] * P.WHO[f["who"]]["size"]
+                lo, hi = S.figure_extent("lie", R)
+                if f["facing"] == "left":
+                    lo, hi = -hi, -lo
+                gap = max(f["x"] + lo - (lamp["x"] + hw), lamp["x"] - hw - (f["x"] + hi))
+                self.assertGreaterEqual(gap, 0.5 * R, (seed, f["who"], "a lamp at a sleeper's head"))
+
+    def test_cups_are_filled_brings_the_krater(self):
+        self.assertEqual(OS.named_in("Cups are filled, and the talk begins slowly.", ["oil_lamp", "krater"]), ["krater"])
+
+    def test_a_respec_keeps_the_company_the_words_name(self):
+        from data_learning import ori_storyboard as SB
+        say = "The talk turns to riddles now, and someone laughs softly at a guess gone wrong."
+        old = {"setting": "villa_inside", "time": "night", "weather": "clear", "shot": "wide",
+               "cast": [{"who": "elder", "pose": "sit", "action": "talk"}, {"who": "man", "pose": "recline", "action": "talk"},
+                        {"who": "woman", "pose": "sit", "action": "wave"}, {"who": "old_woman", "pose": "sit", "action": "look_up"}],
+               "props": ["oil_lamp", "couch"]}
+        one = dict(old, cast=old["cast"][:1])
+        self.assertTrue(SB.keeps_nothing_the_words_name(say, old, one))
+        two = dict(old, cast=old["cast"][:2])
+        self.assertIsNone(SB.keeps_nothing_the_words_name(say, old, two))
