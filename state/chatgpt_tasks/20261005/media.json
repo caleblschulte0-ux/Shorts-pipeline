@@ -1,0 +1,37 @@
+{
+ "checked_at": "2026-10-05T12:30:59+00:00",
+ "date": "20261005",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20261005/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "cc-him-on-everything-s0-1d413fe4ed57.json",
+  "cc-him-on-everything-s1-b6420a4e6a65.json",
+  "cc-him-on-everything-s2-58f5c4d1d517.json",
+  "cc-him-on-everything-s3-f7b1c8468176.json",
+  "cc-him-on-everything-s4-4da5bede8905.json",
+  "cc-him-on-everything-s5-53ce55d9d1a4.json",
+  "cc-him-on-everything-s6-5f087892dfc9.json",
+  "cc-him-on-everything-s7-20977a143d49.json",
+  "he-faked-our-own-flyer-s0-3d92f660621a.json",
+  "he-faked-our-own-flyer-s1-50dc26341061.json",
+  "he-faked-our-own-flyer-s2-97c73736f56a.json",
+  "he-faked-our-own-flyer-s3-485693b98258.json",
+  "he-faked-our-own-flyer-s4-3d0172ffbb5d.json",
+  "he-faked-our-own-flyer-s5-d75f693cf921.json",
+  "he-faked-our-own-flyer-s6-c305bce31dbf.json",
+  "he-faked-our-own-flyer-s7-c046602f5faa.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 16 image(s)"
+}
