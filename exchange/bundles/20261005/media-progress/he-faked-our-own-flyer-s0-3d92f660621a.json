@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261005",
+  "bundle": {
+    "identity": "2493dec1d28cc46e8b97a6832ced93e6c042342fc2341f642b8438a1c00e50ab",
+    "path": "exchange/bundles/20261005/bundle.json"
+  },
+  "request_id": "he-faked-our-own-flyer-s0-3d92f660621a",
+  "safe_request_id": "he-faked-our-own-flyer-s0-3d92f660621a",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "8df81f5abc856558999ec4d0e1990edddc4f60ec147ebf506aa1a7b392ca96aa",
+  "prompt_used": "An editorial illustration for a short-form video: power drill hardware store shelf. It accompanies the narration: \"tried to price-match a power drill using a photo of a competitor's flyer\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1LgeM2C1ZrgiuDMpNnNpeaSjIhqFatjs-",
+    "filename": "20261005__he-faked-our-own-flyer-s0-3d92f660621a.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1LgeM2C1ZrgiuDMpNnNpeaSjIhqFatjs-",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "7c52703856357d8795f36f311890d2d482e2ce2693750e38909a9e73d9f3cfe4",
+    "bytes": 1891519,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-05T11:34:17.251Z"
+}
