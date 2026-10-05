@@ -1,0 +1,158 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "nobel-prize-discovery-age__0d1bba0d",
+ "filed": "2026-10-05T10:56:54Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "nobel-prize-discovery-age",
+ "current": {
+  "title": "Nobel-Winning Discoveries Now Happen 13 Years Later",
+  "hook": "Science used to reward the young. Not anymore.",
+  "closing": "Data's still waiting on his breakthrough. He's optimistic.",
+  "question": "Do you think you've peaked yet? Tell me below.",
+  "segments": [
+   {
+    "topic": "how old nobel physics discoveries are now",
+    "say": "Nobel-winning physics discoveries made before 1905 happened at age 36, on average. Discoveries made after 1985 average 50 -- 13 years older, same prize."
+   },
+   {
+    "topic": "nobel physics winners under 40",
+    "say": "Before 2000, 60 percent of physics breakthroughs came from scientists under 40. Since then, just 19 percent."
+   },
+   {
+    "topic": "young nobel chemistry winners",
+    "say": "Chemistry's even starker: 66 percent of 20th-century winners were under 40. This century, zero have been."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "how old nobel physics discoveries are now",
+   "say": "Nobel-winning physics discoveries made before 1905 happened at age 36, on average. Discoveries made after 1985 average 50 -- 13 years older, same prize.",
+   "role": "1 · THE SHIFT",
+   "data": {
+    "file": "nobel_physics_discovery_age.json",
+    "unit": "years",
+    "title": "Average age of physics Nobel laureates when they made the discovery",
+    "points": [
+     {
+      "label": "Discoveries before 1905",
+      "value": 36.9,
+      "period": "pre-1905"
+     },
+     {
+      "label": "Discoveries after 1985",
+      "value": 50.3,
+      "period": "post-1985"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "nobel physics winners under 40",
+   "say": "Before 2000, 60 percent of physics breakthroughs came from scientists under 40. Since then, just 19 percent.",
+   "role": "2 · THE YOUNG ARE DISAPPEARING",
+   "data": {
+    "file": "nobel_physics_under40_share.json",
+    "unit": "percent",
+    "title": "Share of physics Nobel discoveries made by scientists under 40",
+    "points": [
+     {
+      "label": "Before 2000",
+      "value": 60,
+      "period": "pre-2000"
+     },
+     {
+      "label": "Since 2000",
+      "value": 19,
+      "period": "post-2000"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "young nobel chemistry winners",
+   "say": "Chemistry's even starker: 66 percent of 20th-century winners were under 40. This century, zero have been.",
+   "role": "3 · IT'S WORSE IN CHEMISTRY",
+   "data": {
+    "file": "nobel_chemistry_under40_share.json",
+    "unit": "percent",
+    "title": "Share of chemistry Nobel laureates who were under 40 at the time",
+    "points": [
+     {
+      "label": "20th century",
+      "value": 66,
+      "period": "1901-2000"
+     },
+     {
+      "label": "21st century",
+      "value": 0,
+      "period": "2001-present"
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: Generic machines and two near-identical bar charts carry the story. Data cheers on top of the bars instead of causing anything, and key labels are clipped or covered ('13.4 yrs apar', '3_.9 yrs')."
+ ],
+ "reasons": [
+  "judge: Generic machines and two near-identical bar charts carry the story. Data cheers on top of the bars instead of causing anything, and key labels are clipped or covered ('13.4 yrs apar', '3_.9 yrs')."
+ ],
+ "judge": {
+  "ts": "2026-10-05T10:56:27+00:00",
+  "score": 44,
+  "one_line": "Generic machines and two near-identical bar charts carry the story. Data cheers on top of the bars instead of causing anything, and key labels are clipped or covered ('13.4 yrs apar', '3_.9 yrs').",
+  "problems": [
+   "seg1: the '13.4 yrs apart' headline is cut off at the right frame edge",
+   "hook/seg0: the ladder covers the first digit of '36.9 yrs'",
+   "seg4: Data covers the '66%' and '20th century' labels and is clipped by the left frame edge",
+   "seg2 and seg3 are the same two-bar chart template twice in a row, so the story stalls visually",
+   "Data is decorative throughout: he points at the hourglass, stands with his arms up on the bars, and holds a stick by the scale, and never drives the motion",
+   "seg0: the 50.3-year hourglass never visibly takes longer, so the core '13 years later' claim isn't demonstrated"
+  ],
+  "fixes": [
+   "seg1: clamp and centre the gap label inside the safe area, re-frame the axis so the gap fills the width, and have Data drag the second post out to 50.3",
+   "seg0: run the two hourglasses at the same rate so the right one keeps pouring visibly longer, with Data flipping each one to start it",
+   "seg4: move Data off the labels into the frame, for example placing the blocks onto the 20th-century pan himself, and keep all text clear of him",
+   "Replace one of the seg2/seg3 bar charts with a subject-made depiction, such as a lineup of laureate figures where the under-40 ones light up (60%→19%, 66%→0%), with Data handing out or taking back the medals",
+   "Measure every value label's extent against the frame and any occluder before placing it"
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261005/nobel-prize-discovery-age__0d1bba0d.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

@@ -1,0 +1,181 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "permafrost-thaw__a94a08e2",
+ "filed": "2026-10-05T10:56:54Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "permafrost-thaw",
+ "current": {
+  "title": "The Arctic's Permafrost Is Quietly Thawing For Good",
+  "hook": "Your climate's frozen vault is melting: 8 degrees below freezing has become just over 2 below.",
+  "closing": "It took millennia to freeze. It's unfreezing in decades.",
+  "question": "Did you know the ground itself could leak carbon? Tell me below.",
+  "segments": [
+   {
+    "topic": "Arctic permafrost ground temperature",
+    "say": "Arctic permafrost sat about 8 degrees below freezing in 1983. By 2023 it had warmed to just over 2 below -- ground frozen for millennia doesn't warm that fast on its own."
+   },
+   {
+    "topic": "carbon locked in permafrost versus the atmosphere",
+    "say": "Here's what's at stake: the whole atmosphere holds about 870 billion tons of carbon. Permafrost alone holds 1.7 trillion — almost double — frozen in place since before the last ice age ended."
+   },
+   {
+    "topic": "projected carbon release from thawing permafrost",
+    "say": "Scientists project that thaw could release 150 billion tons of that carbon by 2100 under a high-warming path. That's carbon the climate math never counted on moving."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Arctic permafrost ground temperature",
+   "say": "Arctic permafrost sat about 8 degrees below freezing in 1983. By 2023 it had warmed to just over 2 below -- ground frozen for millennia doesn't warm that fast on its own.",
+   "role": "1 · THE WARMING",
+   "data": {
+    "file": "permafrost_ground_temp_trend.json",
+    "unit": "number",
+    "title": "Arctic permafrost ground temperature (borehole depth)",
+    "points": [
+     {
+      "label": "1983",
+      "value": -8.0,
+      "period": "1983"
+     },
+     {
+      "label": "2000",
+      "value": -6.5,
+      "period": "2000"
+     },
+     {
+      "label": "2010",
+      "value": -5.0,
+      "period": "2010"
+     },
+     {
+      "label": "2016",
+      "value": -3.5,
+      "period": "2016"
+     },
+     {
+      "label": "2023",
+      "value": -2.3,
+      "period": "2023"
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 1,
+   "topic": "carbon locked in permafrost versus the atmosphere",
+   "say": "Here's what's at stake: the whole atmosphere holds about 870 billion tons of carbon. Permafrost alone holds 1.7 trillion — almost double — frozen in place since before the last ice age ended.",
+   "role": "2 · WHAT'S INSIDE IT",
+   "data": {
+    "file": "permafrost_vs_atmosphere_carbon.json",
+    "unit": "billion",
+    "title": "Carbon stored in permafrost vs. the atmosphere",
+    "points": [
+     {
+      "label": "Earth's whole atmosphere",
+      "value": 870
+     },
+     {
+      "label": "Frozen in permafrost soil",
+      "value": 1700
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "projected carbon release from thawing permafrost",
+   "say": "Scientists project that thaw could release 150 billion tons of that carbon by 2100 under a high-warming path. That's carbon the climate math never counted on moving.",
+   "role": "3 · WHAT COULD LEAK OUT",
+   "data": {
+    "file": "permafrost_carbon_release_projection.json",
+    "unit": "billion",
+    "title": "Projected cumulative carbon release from thawing permafrost",
+    "points": [
+     {
+      "label": "2030",
+      "value": 10,
+      "period": "2030"
+     },
+     {
+      "label": "2050",
+      "value": 40,
+      "period": "2050"
+     },
+     {
+      "label": "2080",
+      "value": 90,
+      "period": "2080"
+     },
+     {
+      "label": "2100",
+      "value": 150,
+      "period": "2100"
+     }
+    ],
+    "n_points": 4
+   }
+  }
+ ],
+ "held_for": [
+  "judge: Four of five beats are charts or stock machines with a mascot that never causes anything. Seg1 is a static repeat of seg0's data, and seg2's labels print on top of each other."
+ ],
+ "reasons": [
+  "judge: Four of five beats are charts or stock machines with a mascot that never causes anything. Seg1 is a static repeat of seg0's data, and seg2's labels print on top of each other."
+ ],
+ "judge": {
+  "ts": "2026-10-05T10:33:19+00:00",
+  "score": 39,
+  "one_line": "Four of five beats are charts or stock machines with a mascot that never causes anything. Seg1 is a static repeat of seg0's data, and seg2's labels print on top of each other.",
+  "problems": [
+   "Hook is a slow timeline build with a plain title and '-8'. Nothing visually says 'frozen vault melting' in the first 2s.",
+   "seg0 draws less-negative temperatures as shorter bars, so the warming looks like a decline.",
+   "seg1 repeats seg0's five numbers as empty-track ranked rows and holds for about 7s with only Data drifting.",
+   "seg2:end: 'Frozen in permafrost soil 1700B' overprints 'Earth's whole atmosphere 870B', and both are unreadable.",
+   "seg2's posts are equal height, so 'almost double' is never shown.",
+   "seg3 is a plain bar chart; Data points from a ladder (decorative)."
+  ],
+  "fixes": [
+   "Open on frozen ground cracking or a frost vault visibly dripping, with the -8 → -2.3 swing landing in the first 2s.",
+   "Replace seg0 and seg1 with one scene: a ground cross-section whose frost line retreats year by year as Data chips or heats it. Drop the duplicate rank chart.",
+   "seg2: draw two carbon stores to scale (permafrost about twice the atmosphere), and give each label its own clear position.",
+   "seg3: make the projected release a physical stack that Data shovels or carries out of thawing ground to 150B.",
+   "seg4: have Data load the carbon blocks onto the scale himself, with a tool, so his action tips it."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "Each SAY is one spoken sentence or two, at most 40 words, and says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261005/permafrost-thaw__a94a08e2.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

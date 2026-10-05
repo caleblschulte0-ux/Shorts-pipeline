@@ -1,0 +1,21 @@
+{
+ "slug": "nobel-prize-discovery-age",
+ "ts": "20261005T105703Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data stands on a ladder pointing while the hourglass sand falls on its own (seg0:start to seg0:end). In seg2:start to seg2:end and seg3:start to seg3:end he just stands on top of the rising bar with his arms up, cheering. In seg4 he is parked at the left edge holding a stick. He n",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "The scene's key number, '13.4 yrs apart', runs off the right edge of the frame ('13.4 yrs apar'). The two posts are crammed against the right side and the mascot's ladder, and about 60% of the frame on the left is empty.",
+  "root_cause": "The gap annotation is anchored to the right post with no width measurement or clamp to the safe area, and the axis domain puts both values at the far right instead of framing the 36.9 to 50.3 gap.",
+  "repair_goal": "Measure the label and clamp it inside the safe margins, centred over the gap. Zoom the axis so the 13-year gap spans most of the frame width. Have Data physically stretch the tape or push the right post out to 50.3, so the gap opening is his action."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "comparison",
+   "perf": "catch_fall"
+  }
+ },
+ "scenes": []
+}

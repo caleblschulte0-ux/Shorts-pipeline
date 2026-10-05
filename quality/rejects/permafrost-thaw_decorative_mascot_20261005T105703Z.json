@@ -1,0 +1,21 @@
+{
+ "slug": "permafrost-thaw",
+ "ts": "20261005T105703Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data stands with his arms raised while walking along the axis in hook@0.3 through seg0:end. In seg1:mid and seg1:end he floats between rows. In seg3:end he points from a ladder beside the 150B bar, and in seg4:mid he stands next to the scale holding a stick while the blocks drop i",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "dead_air",
+  "visible_evidence": "seg1:start to seg1:end is a ranked-row chart of the same five temperatures already shown in seg0. The bar tracks are all the same length and never fill, so only the value labels on the right carry the numbers. Nothing changes over about 7s except Data drifting up the rows.",
+  "root_cause": "The scene re-draws seg0's data as a fallback rank chart with no fill mapping, so the warming from -8 to -2.3 has no physical form and the frame holds still.",
+  "repair_goal": "Show the warming as the subject's own physics: a column of frozen ground whose frost line retreats, or ice that visibly thaws as Data chips or heats it year by year from -8 to -2.3. Every year should cause visible motion, and seg0's chart should not be repeated."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

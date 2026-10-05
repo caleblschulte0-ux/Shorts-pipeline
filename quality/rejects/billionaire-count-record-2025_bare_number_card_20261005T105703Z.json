@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261005T105703Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg3:start to seg3:end is two teal circles, each just printed '127%'. The circles grow but show nothing. Same in seg4:start to seg4:end.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_bare_number_card",
+  "visible_evidence": "Both circles say '127%' and both are labelled 'Billionaire wealth' (seg3:start, seg3:mid, seg3:end). The voiceover says 'the S&P 500 alone grew 195 percent', but 195% and the S&P 500 appear nowhere. Data just stands on top of the left circle.",
+  "root_cause": "The comparison machine bound the same series to both sides, so the second operand (S&P 500, 195%) never reached the scene. It drew two identical blobs with no physical comparison.",
+  "repair_goal": "Show billionaire wealth +127% next to the S&P 500 at +195%, correctly labelled, as a visible race or fill where the stock-market side clearly overtakes. Data should drive the S&P side past the billionaires, landing the 'it's mostly just stocks' punchline."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

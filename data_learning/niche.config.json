@@ -30889,7 +30889,7 @@
   {
    "slug": "nobel-prize-discovery-age",
    "title": "Nobel-Winning Discoveries Now Happen 13 Years Later",
-   "hook": "Science used to reward the young. Not anymore.",
+   "hook": "Science swallowed 13 years of your life before it hands you a Nobel.",
    "closing": "Data's still waiting on his breakthrough. He's optimistic.",
    "question": "Do you think you've peaked yet? Tell me below.",
    "caption": "Physics Nobel discoveries used to happen at age 36 on average. Now it's 50 -- and almost none come from scientists under 40 anymore. Here's why the age of discovery keeps climbing ⬇️",
@@ -30941,7 +30941,8 @@
      "topic": "young nobel chemistry winners",
      "say": "Chemistry's even starker: 66 percent of 20th-century winners were under 40. This century, zero have been."
     }
-   ]
+   ],
+   "hook_was": "Science used to reward the young. Not anymore."
   },
   {
    "slug": "youth-sports-dropout",
