@@ -410,7 +410,8 @@ NAMED_PROPS = {"stall": ("stall", "stalls"), "barn": ("barn",), "cart": ("cart",
                "torch": ("torch", "torches"), "stove": ("stove", "range"),
                "goat": ("goat", "goats", "animals", "herd"), "sheep": ("sheep", "flock", "ewes", "lambs", "animals"),
                "cow": ("cow", "cows", "cattle", "ox", "oxen"), "chicken": ("hens", "chickens", "hen"),
-               "dog": ("dog", "dogs", "hound"), "fence": ("gate", "pen", "fence", "fold", "hurdle")}
+               "dog": ("dog", "dogs", "hound"), "fence": ("gate", "pen", "fence", "fold", "hurdle"),
+               "krater": ("krater", "mixing bowl", "mixing-bowl", "bowl of wine", "wine bowl")}
 
 
 # one word, several drawings: "the boats" on the Nile are reed boats, "the
@@ -670,8 +671,11 @@ def _choose(opts: dict, text: str, last: str | None, first: bool, used: list, ne
     if _re.search(MOVE_WORDS, low) and ok("pan"):
         return "pan"
     nouns_ = _re.sub(r"\b(he|him|his|she|her)\b", " ", low)
-    if _re.search(r"\b(asleep|sleeps|sleeping|lies down|lay down|lying)\b", nouns_):
-        # the sentence is about whoever sleeps
+    if _re.search(r"\b(asleep|sleeps|sleeping|lies down|lay down|lying)\b", nouns_) and \
+            not (TOGETHER.search(low) or PLURAL_PEOPLE.search(low)):
+        # the sentence is about whoever sleeps — alone; "half asleep beside
+        # her" is the two of them (the 79 film: "the child is shown sleeping
+        # alone, without the mother beside her")
         for name, (sp, _sd) in opts.items():
             if name.startswith("single:") and ok(name) and sp["cast"][0].get("pose") == "lie":
                 return name

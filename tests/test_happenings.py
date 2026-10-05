@@ -78,7 +78,9 @@ class Happenings(unittest.TestCase):
         sc = S.Scene(sp, "ancient", 11)
         a = sc.acts[0]
         x, *_ = HP._state(a, 60.0)
-        self.assertTrue(x < -a["R"] or x > S.W + a["R"], x)
+        # at the frame's edge, whole — never half across it (the 79 film)
+        self.assertTrue(x <= 1.5 * a["R"] or x >= S.W - 1.5 * a["R"], x)
+        self.assertGreater(abs(x - a["keys"][0][1]), 2 * a["R"])
 
     def test_feeding_the_fire_makes_it_flare(self):
         sp = dict(FIRE_ROOM, happen=["feed"], happen_s=7.0)
@@ -146,6 +148,51 @@ class Happenings(unittest.TestCase):
             run = run + 1 if np.abs(a - b).max() < 6 else 0
             best = max(best, run)
         self.assertLess(best, 45, "frozen after the lamp went out")
+
+    def test_whoever_comes_or_goes_is_whole_in_the_frame_and_crosses_nobody(self):
+        # the 79 film's judge, three times: "clipped at the right edge",
+        # "a second figure merges into her" — people caught walking in across
+        # the frame's edge, and through a seated figure
+        for seed in range(8):
+            for kind in ("arrive", "serve", "child", "light"):
+                sp = dict(FIRE_ROOM if kind != "light" else LAMP_ROOM, happen=[kind], happen_s=7.0)
+                sc = S.Scene(sp, "ancient", seed)
+                for a in sc.acts:
+                    x0, *_ = HP._state(a, a["keys"][0][0])
+                    self.assertGreaterEqual(x0, 1.2 * a["R"], f"{kind} started outside the frame")
+                    self.assertLessEqual(x0, S.W - 1.2 * a["R"], f"{kind} started outside the frame")
+                    lo, hi = sorted((x0, a["keys"][-1][1]))
+                    for p_lo, p_hi in HP._blocking(sc.lay):
+                        self.assertLessEqual(min(hi, p_hi) - max(lo, p_lo), 0.3 * a["R"] + 1,
+                                             f"{kind} walked through somebody")
+        # whoever leaves stops whole at the edge
+        sp = dict(FIRE_ROOM, cast=FIRE_ROOM["cast"] + [{"who": "man", "pose": "stand", "action": "talk"}],
+                  happen=["leave"], happen_s=7.0)
+        sc = S.Scene(sp, "ancient", 11)
+        for a in sc.acts:
+            x_end = a["keys"][-1][1]
+            self.assertTrue(1.2 * a["R"] <= x_end <= S.W - 1.2 * a["R"], x_end)
+
+    def test_no_second_child_where_a_child_already_sleeps(self):
+        sp = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "wide",
+              "cast": [{"who": "child", "pose": "lie", "action": "sleep"},
+                       {"who": "old_woman", "pose": "sit_on", "action": "hold"}],
+              "props": ["bed", "oil_lamp"], "happen": ["child"], "happen_s": 7.0}
+        self.assertEqual(S.Scene(sp, "ancient", 3).acts, [])
+
+    def test_a_newcomer_keeps_their_head_under_a_framed_window(self):
+        # a close-up framed low on a crouching child: a standing arrival's
+        # head would be above the window ("the old person's head is cut off
+        # by the top-left frame edge")
+        from data_learning import ori_sleep as OS
+        sp = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "child", "pose": "crouch", "action": "warm_hands"}], "props": ["brazier", "oil_lamp"]}
+        opts = OS.coverage(sp, "ancient", 5, 7.0)
+        ins = opts["insert"][0]
+        self.assertIn("frame", ins)
+        sc = S.Scene(dict(ins, happen=["arrive", "serve", "light"], happen_s=7.0), "ancient", opts["insert"][1])
+        for a in sc.acts:
+            self.assertTrue(HP._head_fits(ins, a["y"], a["R"]), a["kind"])
 
     def test_nobody_walks_in_on_a_sleeping_house(self):
         sp = BED_ROOM

@@ -36,7 +36,7 @@ ERAS = ("stone_age", "medieval", "ancient", "victorian", "egypt", "early_modern"
 SHOTS = ("close", "wide")
 SLOTS = {"far_left": 0.1, "left": 0.24, "center_left": 0.37, "center": 0.5,
          "center_right": 0.63, "right": 0.76, "far_right": 0.9}
-STILL = {"tent", "hut", "tree", "pine", "bush", "rock", "woodpile", "bedroll", "hide_rack", "fence",
+STILL = {"tent", "hut", "tree", "pine", "bush", "rock", "woodpile", "bedroll", "hide_rack", "fence", "krater",
          "table", "bench", "barrel", "stones", "basket", "bed", "cave_painting",
          "column", "temple", "villa", "amphora", "stall", "olive",
          "terrace", "chair", "bookshelf", "clock", "chimney_pot",

@@ -205,6 +205,23 @@ class TheShotKeepsWhatTheSentenceNames(unittest.TestCase):
         self.assertTrue(any(c.get("pose") == "lie" for c in asleep["scene"]["cast"]), asleep.get("shot"))
         self.assertIn("bed", asleep["scene"]["props"])
 
+    def test_half_asleep_beside_her_is_the_two_of_them(self):
+        # the 79 film: "the child is shown sleeping alone, without the mother
+        # beside her" — the sleeper rule had run before the together rule
+        scene = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                 "cast": [{"who": "woman", "pose": "sit", "action": "feed_fire"},
+                          {"who": "child", "pose": "lie", "action": "sleep"}],
+                 "props": ["brazier", "oil_lamp", "basket"]}
+        sents = ["In the smaller house, the woman there sets her spindle down and banks the coals a little lower.",
+                 "Her own child is already half asleep beside her, one hand still resting on an unfinished basket.",
+                 "She will finish it tomorrow."]
+        b = self._beat(scene, sents)
+        sh = OS.shots({"slug": "t", "era": "ancient"}, [b])
+        t = next(l[0] for l in b.lines if "half asleep" in l[2])
+        x = next(x for x in sh if x["start"] <= t < x["end"])
+        self.assertEqual(len(x["scene"]["cast"]), 2, x.get("shot"))
+        self.assertIn("basket", x["scene"]["props"])
+
     def test_a_repeated_angle_beats_a_wrong_picture(self):
         opts = {"two": ({"cast": [{"who": "man"}, {"who": "woman"}], "props": ["oil_lamp", "table"]}, 1),
                 "single:0": ({"cast": [{"who": "man"}], "props": ["oil_lamp"]}, 2),

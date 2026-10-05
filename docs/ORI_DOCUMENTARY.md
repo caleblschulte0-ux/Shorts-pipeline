@@ -919,6 +919,23 @@ only as a hand edit is not a rule. So:
     along the legs on the couch; "cups are filled" has them drink.
   - `mend_film` runs its passes until one changes nothing.
 
+- **The Greek film with those (79, SHIP; Kokoro).** The first SHIP since
+  the bar was set, one under it. The judge's notes and the frames behind
+  them: three "clipped" figures were people a happening had caught half
+  across the frame's edge, walking in or out (an entrance spends about a
+  second with the body cut by the edge, and eighteen samples find it), one
+  "merging into her" walked through a seated woman on the way to its spot,
+  "the old person's head cut off" was a standing arrival in a close-up
+  framed low on a crouching child, and "the child sitting up awake" beside
+  the sleeping child was the `child` happening running in to a room that
+  already had one. So: whoever comes in starts WHOLE just inside the edge
+  (the dissolve hides the appearance) and walks a path that crosses nobody
+  (`_clear_side`); whoever leaves stops whole at the edge; a framed
+  close-up admits no newcomer whose head would be above the window
+  (`_head_fits`); no second child where there is a child. "Half asleep
+  beside her" is the two of them now (the together rule runs before the
+  sleeper rule), and the symposium has a krater.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

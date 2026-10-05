@@ -1107,6 +1107,28 @@ def bed(cr, x, y, s, t, seed):
                     shadow_dir=(0, 1))
 
 
+def krater(cr, x, y, s, t, seed):
+    """The wide two-handled bowl wine was mixed with water in, on a low
+    stand in the middle of the dinner (the 79 film's judge asked for it)."""
+    c = rgb("#b5673a")
+    dark = shade(c, 0.7)
+    ink.fill_stroke(cr, [(x - 30 * s, y), (x + 30 * s, y), (x + 18 * s, y - 30 * s), (x - 18 * s, y - 30 * s)],
+                    dark, lw=4 * s, amp=0.5, seed=seed)
+    ink.fill_stroke(cr, [(x - 24 * s, y - 30 * s), (x + 24 * s, y - 30 * s), (x + 70 * s, y - 92 * s),
+                         (x + 66 * s, y - 118 * s), (x - 66 * s, y - 118 * s), (x - 70 * s, y - 92 * s)], c,
+                    lw=4.5 * s, amp=1.0, seed=seed + 1, shadow=dark, shadow_dir=(1, 0.5))
+    for dx in (-1, 1):
+        ink.fill_stroke(cr, ink.ellipse_pts(x + dx * 80 * s, y - 100 * s, 16 * s, 12 * s, 12), (0, 0, 0, 0),
+                        lw=4.5 * s, amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 118 * s, 66 * s, 11 * s, 22), rgb("#5a2a22"), lw=4 * s, amp=0)
+    # a band of figures round the belly
+    ink.line(cr, [(x - 60 * s, y - 70 * s), (x + 60 * s, y - 70 * s)], lw=3 * s, ink=rgb("#2a211d"), amp=0)
+    ink.line(cr, [(x - 56 * s, y - 56 * s), (x + 56 * s, y - 56 * s)], lw=3 * s, ink=rgb("#2a211d"), amp=0)
+    for k in range(5):
+        kx = x - 44 * s + k * 22 * s
+        ink.line(cr, [(kx, y - 68 * s), (kx + 2 * s, y - 58 * s)], lw=3 * s, ink=rgb("#2a211d"), amp=0)
+
+
 def couch(cr, x, y, s, t, seed):
     """A kline: the low couch of a Greek dinner, a wool cover and a bolster
     at the raised head. Drawn under whoever reclines (scene._layout puts it
@@ -1293,6 +1315,7 @@ PROPS = {
     "crates": Prop(crates, 180, "mid", EARLY_MODERN),
     "mooring_post": Prop(mooring_post, 60, "front", EARLY_MODERN, settings=("harbour",)),
     "couch": Prop(couch, 360, "mid", ANCIENT, settings=("villa_inside", "house_inside")),
+    "krater": Prop(krater, 160, "mid", ANCIENT, settings=("villa_inside", "house_inside")),
     "boat": Prop(boat, 450, "mid", LATER, settings=("seashore", "harbour", "lakeshore", "riverbank", "nile_bank")),
     "fence": Prop(fence, 440, "back", LATER, settings=("grassland", "olive_grove", "farmyard", "field", "village",
                                                      "mountains", "forest", "desert", "stream", "riverbank")),
