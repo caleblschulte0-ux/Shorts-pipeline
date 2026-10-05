@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261005",
+  "bundle": {
+    "identity": "2493dec1d28cc46e8b97a6832ced93e6c042342fc2341f642b8438a1c00e50ab",
+    "path": "exchange/bundles/20261005/bundle.json"
+  },
+  "request_id": "cc-him-on-everything-s2-58f5c4d1d517",
+  "safe_request_id": "cc-him-on-everything-s2-58f5c4d1d517",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "23f324c00f5711dc1a48c002dee75f65934d2b7d83c4b5013ef79ff401ecdd1b",
+  "prompt_used": "An editorial illustration for a short-form video: jammed office printer. It accompanies the narration: \"I CC'd him when the printer jammed\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1hNeirmHZOuCkuAxE_JXnJbHc8JN7IhMX",
+    "filename": "20261005__cc-him-on-everything-s2-58f5c4d1d517.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1hNeirmHZOuCkuAxE_JXnJbHc8JN7IhMX",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "abdd16c8a2c1574175f3ea0919d4ef935c35612f587fe165b3978d5160d4bc82",
+    "bytes": 1708819,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-05T11:34:09.974Z"
+}
