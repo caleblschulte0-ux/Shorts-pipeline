@@ -30,6 +30,54 @@ _BAD_NARRATION = re.compile(
     r"\b(furious|revenge|secretly|plotting|planning to|must have|probably"
     r"|devastated|terrified|humiliated)\b", re.I)
 MAX_BEATS = 5
+
+_GROUND_STOP = set(
+    "the a an and or but to of in on at is was are were be been his her him "
+    "them they he she it its for with that this then than from into about "
+    "after before over just only also says said tells told asks asked".split())
+
+
+def narration_grounded(text: str, reports: list[dict]) -> bool:
+    """True when a narration line says only what the footage says.
+
+    The story repair may now add ONE spoken line of setup (§14) — the critic
+    refused the same Kai Cenat story on three runs because "the opening never
+    says what Reggie is accused of", and the reviser was not allowed to say
+    it. A line it may SAY is a line it could also invent, so this is the
+    check: at least two-thirds of the line's content words (4+ letters, not
+    stop words, names included) must appear in the sources' transcripts,
+    summaries or people. Not a fact-checker — a floor that a sentence made
+    up from nothing cannot clear. Code may only ADD blocks."""
+    words = [w for w in re.findall(r"[a-z0-9']+", str(text).lower())
+             if len(w) >= 4 and w not in _GROUND_STOP]
+    if not words:
+        return False
+    corpus = " ".join(
+        " ".join([str(r.get("transcript_lines", "")),
+                  str(r.get("summary", "")),
+                  " ".join(str(x) for x in r.get("people") or []),
+                  " ".join(str(b.get("purpose", ""))
+                           for b in r.get("dialogue_beats") or [])])
+        for r in reports).lower()
+    have = set(re.findall(r"[a-z0-9']+", corpus))
+
+    def seen(w):
+        # "accuses" / "accused" / "accusing" are one word to a viewer
+        return w in have or any(h.startswith(w[:5]) for h in have
+                                if len(w) >= 6 and len(h) >= 5)
+    return sum(1 for w in words if seen(w)) * 3 >= len(words) * 2
+
+
+def _ground(edl: dict | None, reports: list[dict], rs: list) -> dict | None:
+    """Drop a narration line the footage does not support — the cut stays,
+    the invented sentence goes."""
+    if edl and edl.get("narration") and \
+            not narration_grounded(edl["narration"].get("text", ""), reports):
+        rs.append("narration dropped — not grounded in the sources: "
+                  f"{edl['narration'].get('text', '')!r}")
+        edl = dict(edl)
+        edl.pop("narration", None)
+    return edl
 # banned overlay phrases (§17): overlays prevent confusion, never narrate
 # the edit. Meta-labels are prohibited.
 _BAD_OVERLAY = re.compile(
@@ -225,11 +273,23 @@ Be stricter about coherence than cosmetics. Return STRICT JSON:
                misleading|pacing|other",
                "at": <seconds>, "fix": "<specific instruction>"}, ...]}"""
 
-_REVISE_SYSTEM = """You are the story director revising your own edit ONCE
+_REVISE_SYSTEM = """You are the story director revising your own edit
 based on the critic's timestamped problems. You may only: adjust cut
 boundaries, remove a repetitive segment, extend a reaction, add/remove a
-context overlay, change a transition, or remove an effect. You may NOT add
-new sources or invent context. Return the COMPLETE corrected EDL in the
+context overlay, change a transition, remove an effect — and, ONLY when the
+critic names missing_context, add or rewrite the ONE narration line.
+
+Narration ({"text", "over_beat", "essential_because"}): at most 15 words,
+spoken over the beat that needs it (usually beat 0, to set up the story).
+It may state ONLY what a source's transcript or scene report states —
+who someone is, what they said happened, what was claimed — in the
+footage's own words where possible. Never motive, never feelings, never
+drama, never anything the sources do not say. `essential_because` names
+the source line it comes from. A line not supported by the sources is
+removed automatically, so do not guess. If the missing context is not in
+the sources at all, fix what you can with cuts instead.
+
+You may NOT add new sources. Return the COMPLETE corrected EDL in the
 exact same JSON schema you used before (is_story true, same fields)."""
 
 
@@ -501,8 +561,14 @@ def validate_edl(edl: dict, durations: dict[str, float],
         if isinstance(n_in, dict):
             text = scrub_text(str(n_in.get("text", "")).strip())[:90]
             why = str(n_in.get("essential_because", "")).strip()
-            over = int(n_in.get("over_beat",
-                                n_in.get("after_beat", -1)) or -1)
+            # NOT `int(...) or -1`: beat 0 is falsy, so that turned "over
+            # the opening" into -1 and dropped every narration line meant to
+            # SET UP the story — the one place the critic kept asking for it
+            # ("the opening never says what Reggie is accused of").
+            try:
+                over = int(n_in.get("over_beat", n_in.get("after_beat", -1)))
+            except (TypeError, ValueError):
+                over = -1
             if (text and why and 0 <= over < len(beats)
                     and len(text.split()) <= 15
                     and not _BAD_NARRATION.search(text)):
@@ -641,6 +707,8 @@ def plan_story(reports: list[dict], event: dict | None = None,
     durations = {r["source_id"]: float(r.get("duration_s") or 0)
                  for r in reports}
     edl = validate_edl(out, durations, _windows(reports), reasons=rs)
+    # the director's own narration meets the same floor as the reviser's
+    edl = _ground(edl, reports, rs)
     # `editorial` separates "a human editor would also say no" from "the
     # plan was malformed" — the second is OUR bug and needs a code fix, and
     # for a month both were logged as "no genuine arc".
@@ -701,8 +769,11 @@ def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
 
 def revise_edl(edl: dict, problems: list[dict],
                reports: list[dict]) -> dict | None:
-    """§19: exactly ONE constrained revision. Returns a re-validated EDL
-    or None (caller then abandons the story to the clip fallback)."""
+    """§19: one constrained revision (the caller loops up to
+    `story_revisions`). May add ONE narration line when the critic names
+    missing context; a line the sources do not support is dropped
+    (`narration_grounded`). Returns a re-validated EDL or None (caller then
+    abandons the story to the clip fallback)."""
     if not problems:
         return None
     user = ("YOUR PREVIOUS EDL:\n" + str(edl) + "\n\n"
@@ -719,4 +790,10 @@ def revise_edl(edl: dict, problems: list[dict],
     out = _brain(user, _REVISE_SYSTEM)
     durations = {r["source_id"]: float(r.get("duration_s") or 0)
                  for r in reports}
-    return validate_edl(out or {}, durations, _windows(reports))
+    rs: list = []
+    edl2 = validate_edl(out or {}, durations, _windows(reports), reasons=rs)
+    edl2 = _ground(edl2, reports, rs)
+    for r in rs:
+        if r.startswith("narration dropped"):
+            print(f"[story] revision: {r}", flush=True)
+    return edl2
