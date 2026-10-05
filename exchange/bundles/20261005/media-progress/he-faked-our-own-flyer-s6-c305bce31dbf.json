@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261005",
+  "bundle": {
+    "identity": "2493dec1d28cc46e8b97a6832ced93e6c042342fc2341f642b8438a1c00e50ab",
+    "path": "exchange/bundles/20261005/bundle.json"
+  },
+  "request_id": "he-faked-our-own-flyer-s6-c305bce31dbf",
+  "safe_request_id": "he-faked-our-own-flyer-s6-c305bce31dbf",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "22eaf7da7d9ccdfbc786882c5feb46f34dd65850cda7ea001b167efc6a25bea0",
+  "prompt_used": "An editorial illustration for a short-form video: receipt printer paper stack. It accompanies the narration: \"printed every transaction from the past two months\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "18JMqbgcFCgGpagTOuZl4qKMRUaAi7cpQ",
+    "filename": "20261005__he-faked-our-own-flyer-s6-c305bce31dbf.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=18JMqbgcFCgGpagTOuZl4qKMRUaAi7cpQ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "4b34d5443a9b27d7ce7b52e91d6d9b678a88e7b05dd31e3132e8d3eafc5e7e01",
+    "bytes": 1684790,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-05T11:34:24.218Z"
+}
