@@ -447,6 +447,73 @@ class NoSecondOfTheBroadcastPlaysTwice(unittest.TestCase):
                       src)
 
 
+def _w(text, t0, step=0.4):
+    return [{"w": w, "s": round(t0 + i * step, 2),
+             "e": round(t0 + i * step + 0.3, 2)}
+            for i, w in enumerate(text.split())]
+
+
+class NoLineIsSaidTwiceAcrossASeam(unittest.TestCase):
+    """Backtest #2 (2026-10-05): the scout's Kai cut came from the month of
+    posts, which carry no broadcast positions, and still said "You kept
+    talking about proof, right?" twice across the seam."""
+
+    WORDS = {
+        "A": _w("you are so disrespectful you kept talking about proof right",
+                0.0),
+        "B": _w("you kept talking about proof right so let's bring the proof",
+                0.0),
+    }
+
+    def _beats(self, *spec):
+        return [{"source_id": s, "start": a, "end": b, "role": "setup",
+                 "purpose": "p"} for s, a, b in spec]
+
+    def test_the_repeated_opening_is_trimmed(self):
+        rs = []
+        out = story_director._no_repeated_lines(
+            self._beats(("A", 0.0, 4.5), ("B", 0.0, 5.0)), self.WORDS, rs)
+        # "you kept talking about proof right" = 6 words; B now starts after
+        self.assertEqual(out[1]["start"], round(self.WORDS["B"][5]["e"] + 0.05, 2))
+        self.assertIn("opened on the 6 words", rs[0])
+
+    def test_three_shared_words_are_not_a_repeat(self):
+        rs = []
+        words = {"A": _w("we went to the shop", 0.0),
+                 "B": _w("to the shop and then home", 0.0)}
+        out = story_director._no_repeated_lines(
+            self._beats(("A", 0.0, 2.5), ("B", 0.0, 3.0)), words, rs)
+        self.assertEqual(out[1]["start"], 0.0)
+        self.assertEqual(rs, [])
+
+    def test_validate_edl_applies_it(self):
+        edl = _with_narration("")
+        edl.pop("narration")
+        edl["beats"] = [dict(edl["beats"][0], source_id="A", start=0, end=4.5),
+                        dict(edl["beats"][1], source_id="B", start=0, end=5.0)]
+        rs = []
+        out = story_director.validate_edl(edl, {"A": 10.0, "B": 10.0},
+                                          reasons=rs, words=self.WORDS)
+        self.assertGreater(out["beats"][1]["start"], 2.0)
+
+
+class TheOpeningSaysWhoAndWhat(unittest.TestCase):
+    """Backtest #2: 'missing_context' was the critic's first complaint on
+    13 of 21 cuts — Pokimane's 'my baby' never named as her cat, CaseOh's
+    challenge never named, Reggie never introduced."""
+
+    def test_the_director_is_told_the_first_three_seconds_rule(self):
+        p = story_director._PLAN_SYSTEM
+        self.assertIn("THE FIRST THREE SECONDS TELL A STRANGER WHO AND WHAT",
+                      p)
+        self.assertIn("SITUATION in plain words", p)
+
+    def test_narration_is_no_longer_discouraged_for_who_and_what(self):
+        p = story_director._PLAN_SYSTEM
+        self.assertNotIn("Usually omit.", p.split("narration:")[1][:600])
+        self.assertIn("never says WHO or WHAT", p)
+
+
 class TwoStoryAttemptsADay(unittest.TestCase):
     def test_the_template_asks_for_two_story_slots(self):
         tpl = json.loads((ROOT / "state" / "third_packages" /
