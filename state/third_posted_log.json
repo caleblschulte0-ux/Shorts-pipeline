@@ -11026,6 +11026,25 @@
         "end": 13.5
       },
       "director_cut": true
+    },
+    "rejected-entertainingcrispygalagothetarfu-cq1qlg7q-fpno2el": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/EntertainingCrispyGalagoTheTarFu-Cq1qlg7Q-fPnO2EL",
+      "streamer": "jynxzi",
+      "title": "Jynxzi Calls out Mooda",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Talking head, insider rant, no event)",
+      "ts": "2026-10-05T11:34:39.831117+00:00"
+    },
+    "clip-20261005-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/cinna/clip/MagnificentIronicRadishWutFace-cYLmsdwhSAe5L7uQ",
+      "story_key": null,
+      "streamer": "cinna",
+      "title": "Cinna Panics After Kalita Dub Becomes The Getaway Driver For The First Time",
+      "kind": "twitch_clip",
+      "ts": "2026-10-05T11:39:01.462241+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
