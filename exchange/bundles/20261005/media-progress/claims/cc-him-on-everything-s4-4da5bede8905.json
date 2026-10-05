@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "date": "20261005",
+  "bundle": {
+    "identity": "2493dec1d28cc46e8b97a6832ced93e6c042342fc2341f642b8438a1c00e50ab"
+  },
+  "request_id": "cc-him-on-everything-s4-4da5bede8905",
+  "safe_request_id": "cc-him-on-everything-s4-4da5bede8905",
+  "worker": "daily-producer",
+  "worker_run_id": "daily-producer-20261005-0615",
+  "created_at": "2026-10-05T11:14:25.436Z",
+  "expires_at": "2026-10-05T11:29:25.436Z",
+  "lease_seconds": 900
+}
