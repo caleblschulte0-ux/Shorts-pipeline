@@ -1,0 +1,141 @@
+{
+  "date": "20261005",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "envelope_problems": [],
+  "authored": {
+    "promoted": 0,
+    "rejected": 0,
+    "other_channels": {
+      "explainer": {
+        "applied": 3,
+        "rejected": 0
+      },
+      "curiosity": {
+        "applied": 0,
+        "rejected": 0
+      }
+    }
+  },
+  "media": {
+    "fulfilled": 16,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "2493dec1d28cc46e8b97a6832ced93e6c042342fc2341f642b8438a1c00e50ab",
+    "required": true,
+    "checked": 16,
+    "ok": 16,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": [],
+    "recovered_rejected_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 4,
+    "rejected": 2,
+    "absent": 0
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "cc-him-on-everything-s0-1d413fe4ed57",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/cc-him-on-everything-s0-1d413fe4ed57.png"
+    },
+    {
+      "request_id": "cc-him-on-everything-s1-b6420a4e6a65",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/cc-him-on-everything-s1-b6420a4e6a65.png"
+    },
+    {
+      "request_id": "cc-him-on-everything-s2-58f5c4d1d517",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/cc-him-on-everything-s2-58f5c4d1d517.png"
+    },
+    {
+      "request_id": "cc-him-on-everything-s3-f7b1c8468176",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/cc-him-on-everything-s3-f7b1c8468176.png"
+    },
+    {
+      "request_id": "cc-him-on-everything-s4-4da5bede8905",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/cc-him-on-everything-s4-4da5bede8905.png"
+    },
+    {
+      "request_id": "cc-him-on-everything-s5-53ce55d9d1a4",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/cc-him-on-everything-s5-53ce55d9d1a4.png"
+    },
+    {
+      "request_id": "cc-him-on-everything-s6-5f087892dfc9",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/cc-him-on-everything-s6-5f087892dfc9.png"
+    },
+    {
+      "request_id": "cc-him-on-everything-s7-20977a143d49",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/cc-him-on-everything-s7-20977a143d49.png"
+    },
+    {
+      "request_id": "he-faked-our-own-flyer-s0-3d92f660621a",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/he-faked-our-own-flyer-s0-3d92f660621a.png"
+    },
+    {
+      "request_id": "he-faked-our-own-flyer-s1-50dc26341061",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/he-faked-our-own-flyer-s1-50dc26341061.png"
+    },
+    {
+      "request_id": "he-faked-our-own-flyer-s2-97c73736f56a",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/he-faked-our-own-flyer-s2-97c73736f56a.png"
+    },
+    {
+      "request_id": "he-faked-our-own-flyer-s3-485693b98258",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/he-faked-our-own-flyer-s3-485693b98258.png"
+    },
+    {
+      "request_id": "he-faked-our-own-flyer-s4-3d0172ffbb5d",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/he-faked-our-own-flyer-s4-3d0172ffbb5d.png"
+    },
+    {
+      "request_id": "he-faked-our-own-flyer-s5-d75f693cf921",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/he-faked-our-own-flyer-s5-d75f693cf921.png"
+    },
+    {
+      "request_id": "he-faked-our-own-flyer-s6-c305bce31dbf",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/he-faked-our-own-flyer-s6-c305bce31dbf.png"
+    },
+    {
+      "request_id": "he-faked-our-own-flyer-s7-c046602f5faa",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/he-faked-our-own-flyer-s7-c046602f5faa.png"
+    },
+    {
+      "slug": "cc-him-on-everything",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): bagel, fine, would"
+      ]
+    },
+    {
+      "slug": "he-faked-our-own-flyer",
+      "outcome": "punchup_rejected",
+      "problems": [
+        "INVENTED named entity(ies): subtle"
+      ]
+    }
+  ]
+}
