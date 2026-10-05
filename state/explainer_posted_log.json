@@ -2504,10 +2504,10 @@
       "duration_s": 40.8
     },
     "quantum-computers-5-to-1121-qubits": {
-      "url": "https://youtube.com/shorts/3jncJb6kxu4",
+      "url": "https://youtube.com/shorts/XtwZ3qKACLQ",
       "title": "Quantum Computers Went From 5 Qubits To 1,121",
-      "at": "2026-10-05T14:18:57.750653+00:00",
-      "publish_at": "2026-10-05T13:55:07Z",
+      "at": "2026-10-05T12:33:28.069998+00:00",
+      "publish_at": "2026-10-05T12:56:21Z",
       "state": "posted",
       "experiment_arm": "other_topic",
       "actual_structure": "other_topic",
@@ -2519,7 +2519,7 @@
       "n_beats": 3,
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
-      "duration_s": 49.2
+      "duration_s": 44.5
     },
     "nobel-prize-discovery-age": {
       "url": "https://youtube.com/shorts/MDcG9aN82Sk",
@@ -2552,6 +2552,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 61,
       "duration_s": 30.0
+    },
+    "americans-stopped-moving": {
+      "claimed_at": "2026-10-05T16:08:13.749406+00:00",
+      "title": "Americans Stopped Moving. Here's Why.",
+      "publish_at": "2026-10-05T16:12:57Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3139,6 +3146,23 @@
       "state": "posted",
       "slug": "youth-sports-dropout",
       "at": "2026-10-05T14:45:17.205723+00:00"
+    },
+    {
+      "claimed_at": "2026-10-05T12:33:16.064926+00:00",
+      "title": "Quantum Computers Went From 5 Qubits To 1,121",
+      "publish_at": "2026-10-05T12:56:21Z",
+      "url": "https://youtube.com/shorts/XtwZ3qKACLQ",
+      "state": "posted",
+      "slug": "quantum-computers-5-to-1121-qubits",
+      "at": "2026-10-05T12:33:28.069998+00:00"
+    },
+    {
+      "claimed_at": "2026-10-05T16:08:13.749406+00:00",
+      "title": "Americans Stopped Moving. Here's Why.",
+      "publish_at": "2026-10-05T16:12:57Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "americans-stopped-moving"
     }
   ]
 }
