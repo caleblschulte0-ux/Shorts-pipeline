@@ -2,172 +2,126 @@
  "n_verdicts": 20,
  "classes": {
   "decorative_mascot": {
-   "count": 24,
+   "count": 17,
    "stories": {
-    "body-renewal-clock": 4,
-    "insect-planet": 1,
-    "light-pollution-erasing-sky": 2,
-    "diabetes-quietly-doubled": 3,
-    "volcano-country-ranking": 1,
-    "adhd-diagnosis-surge": 2,
-    "parker-solar-probe-speed-record": 2,
-    "college-gender-gap": 3,
-    "third-interstellar-visitor": 2,
-    "coldest-place-in-the-universe-is-human-made": 1,
-    "kids-phones-getting-younger": 3
+    "bird-flu-species-jump": 4,
+    "body-renewal-clock": 3,
+    "light-pollution-erasing-sky": 3,
+    "recycling-myth-reality": 2,
+    "adhd-diagnosis-surge": 1,
+    "college-gender-gap": 4
    },
    "timestamps": [
-    "2026-10-05T17:50:51+00:00",
-    "2026-10-05T17:57:08+00:00",
-    "2026-10-05T18:02:55+00:00",
-    "2026-10-05T18:02:55+00:00",
-    "2026-10-05T18:07:32+00:00",
-    "2026-10-05T18:15:53+00:00",
-    "2026-10-05T18:19:51+00:00",
-    "2026-10-05T18:24:33+00:00",
-    "2026-10-05T18:29:20+00:00",
-    "2026-10-05T18:34:08+00:00",
-    "2026-10-05T18:41:15+00:00",
-    "2026-10-05T18:48:03+00:00",
-    "2026-10-05T18:48:03+00:00",
-    "2026-10-05T18:52:41+00:00",
-    "2026-10-05T18:52:41+00:00",
-    "2026-10-05T18:57:49+00:00",
-    "2026-10-05T18:57:49+00:00",
-    "2026-10-05T19:01:37+00:00",
-    "2026-10-05T19:08:55+00:00",
-    "2026-10-05T19:08:55+00:00",
-    "2026-10-05T19:15:18+00:00",
-    "2026-10-05T19:22:01+00:00",
-    "2026-10-05T19:28:49+00:00",
-    "2026-10-05T19:34:57+00:00"
+    "2026-10-06T10:18:45+00:00",
+    "2026-10-06T10:26:47+00:00",
+    "2026-10-06T10:38:06+00:00",
+    "2026-10-06T10:52:33+00:00",
+    "2026-10-06T10:58:25+00:00",
+    "2026-10-06T11:04:12+00:00",
+    "2026-10-06T11:08:31+00:00",
+    "2026-10-06T11:12:39+00:00",
+    "2026-10-06T11:16:48+00:00",
+    "2026-10-06T11:33:08+00:00",
+    "2026-10-06T11:33:08+00:00",
+    "2026-10-06T11:43:02+00:00",
+    "2026-10-06T11:47:05+00:00",
+    "2026-10-06T11:47:05+00:00",
+    "2026-10-06T11:51:12+00:00",
+    "2026-10-06T11:55:18+00:00",
+    "2026-10-06T12:53:20+00:00"
    ],
    "examples": [
-    "decorative_mascot: In hook@0.3 through seg1:end Data stands on top of the stomach/skin bubbles, waving and posing. He causes nothing. In seg2:mid/end he floats beside the pink bar, and in seg4 he stan",
-    "decorative_mascot: seg1:mid/end Data perches on the 5/28-day labels, at seg2 he stands beside or on top of the pink bar, at seg3 he rides the line tip and at seg4 he stands at '0T'. He causes none of ",
-    "decorative_mascot: Data is missing from the hook and seg0. In seg1:mid he stands on top of the '5 day/28 days' labels. In seg2:start\u2013end he floats beside the neuron bar, and in seg4:start\u2013end he idles"
+    "decorative_mascot: seg0:start to seg0:end: Data stands still on top of a ladder pointing at the 206M bar. seg1:mid/end: he stands arms-up at the head of the timeline. seg4:start to end: he stands betw",
+    "decorative_mascot: In hook@0.3 through seg0:end Data stands with his arms up while the timeline carries him. In seg1:start, mid and end he floats across the bar rows. In seg4:start, mid and end he sta",
+    "decorative_mascot: Data keeps both hands on his head as he slides along the timeline (hook@0.3 to seg0:end), floats over the bars (seg1:start to seg1:end), stands between the lanes (seg4:start to payo"
    ],
    "recurred_after_fix": false
   },
   "other": {
-   "count": 16,
+   "count": 13,
    "stories": {
-    "body-renewal-clock": 2,
-    "insect-planet": 1,
+    "streaming_just_buried_cable_tv": 1,
+    "bird-flu-species-jump": 3,
+    "data-breach-exposure": 1,
+    "body-renewal-clock": 3,
     "light-pollution-erasing-sky": 3,
-    "diabetes-quietly-doubled": 3,
-    "volcano-country-ranking": 1,
     "adhd-diagnosis-surge": 1,
-    "parker-solar-probe-speed-record": 1,
-    "coldest-place-in-the-universe-is-human-made": 1,
-    "kids-phones-getting-younger": 3
+    "sand-mining-crisis": 1
    },
    "timestamps": [
-    "2026-10-05T17:50:51+00:00",
-    "2026-10-05T17:57:08+00:00",
-    "2026-10-05T18:07:32+00:00",
-    "2026-10-05T18:11:51+00:00",
-    "2026-10-05T18:15:53+00:00",
-    "2026-10-05T18:19:51+00:00",
-    "2026-10-05T18:24:33+00:00",
-    "2026-10-05T18:29:20+00:00",
-    "2026-10-05T18:34:08+00:00",
-    "2026-10-05T18:41:15+00:00",
-    "2026-10-05T18:48:03+00:00",
-    "2026-10-05T18:52:41+00:00",
-    "2026-10-05T19:15:18+00:00",
-    "2026-10-05T19:22:01+00:00",
-    "2026-10-05T19:28:49+00:00",
-    "2026-10-05T19:34:57+00:00"
+    "2026-10-06T12:11:54+00:00",
+    "2026-10-06T10:18:45+00:00",
+    "2026-10-06T10:26:47+00:00",
+    "2026-10-06T10:38:06+00:00",
+    "2026-10-06T10:44:41+00:00",
+    "2026-10-06T10:52:33+00:00",
+    "2026-10-06T10:58:25+00:00",
+    "2026-10-06T11:04:12+00:00",
+    "2026-10-06T11:08:31+00:00",
+    "2026-10-06T11:12:39+00:00",
+    "2026-10-06T11:16:48+00:00",
+    "2026-10-06T11:43:02+00:00",
+    "2026-10-06T17:42:41+00:00"
    ],
    "examples": [
-    "unreadable: In hook@0.3 through seg1:end the '5 day' and '28 days' labels overlap and read as '5 day28 days', with tiny 'Stomach lining' text. In seg4:end/payoff@-0.4 the 24.8T and 30T circles are cut",
-    "unreadable: seg1:start: the value labels collide into '120 d28sd5days' and the names into 'Red blood cellSStomach lining'. At seg1:mid/end '5 day28 days' overlaps and 'Stomach lining' is tiny. At seg4",
-    "unreadable: seg1:mid: the bird icon covers the start of 'All bird species', the paw covers 'All mammal species', and the beetle sits over 'Beetles (estimated)'. hook@0.3: Data is cut off by the left e"
+    "unreadable: payoff@-0.4: the closing banner '#1  Streaming (SVOD) households' runs off both edges. The '#' is clipped at the left and 'households' touches the right edge, on the last frame of the vide",
+    "unreadable: seg2:mid: Data's arm sits over the '738' value at the end of the California bar. seg3:start/mid/end: Data is cut off by the left frame edge and drawn on top of the 'Dairy cow exposure' lab",
+    "unreadable: In seg2:mid the '738' value is printed inside the bar's end cap and collides with it. In seg2:end the ring around 738 is crowded by Data, and you have to work out what the label says."
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
-   "count": 9,
+   "count": 5,
    "stories": {
+    "bird-flu-species-jump": 1,
     "body-renewal-clock": 3,
-    "diabetes-quietly-doubled": 3,
-    "volcano-country-ranking": 1,
-    "college-gender-gap": 1,
-    "coldest-place-in-the-universe-is-human-made": 1
+    "recycling-myth-reality": 1
    },
    "timestamps": [
-    "2026-10-05T17:50:51+00:00",
-    "2026-10-05T17:57:08+00:00",
-    "2026-10-05T18:02:55+00:00",
-    "2026-10-05T18:24:33+00:00",
-    "2026-10-05T18:29:20+00:00",
-    "2026-10-05T18:34:08+00:00",
-    "2026-10-05T18:41:15+00:00",
-    "2026-10-05T18:57:49+00:00",
-    "2026-10-05T19:15:18+00:00"
+    "2026-10-06T10:26:47+00:00",
+    "2026-10-06T10:52:33+00:00",
+    "2026-10-06T10:58:25+00:00",
+    "2026-10-06T11:04:12+00:00",
+    "2026-10-06T11:33:08+00:00"
    ],
    "examples": [
-    "empty_void: In seg2:start the top third above the bar is empty gridlines, and the skin column is a tiny blob in a large empty area. In seg0:start the 120-day dot and the Skeleton label float in a lot ",
-    "empty_void: hook@0.3\u2013seg0:end: the bottom half of the frame, below the ribcage and the small cell row, is empty dark gradient. At seg2:start the chart's upper half is empty gridlines",
-    "empty_void: hook@0.3\u2013seg0:end: the ribcage and a few small icons fill the top 40% of the frame. The bottom 55% above the caption bar is empty dark gradient for about 5 seconds."
+    "empty_void: In hook@0.3 to seg0:end the whole chart sits in a thin band (y\u2248340-480). The lower ~40% of the frame, down to the caption bar, is empty dark gradient.",
+    "empty_void: In hook@0.3 through seg0:end the skeleton sits in the top third. The bottom 55% of the frame is empty dark gradient apart from tiny icons.",
+    "empty_void: hook@0.3 to seg0:end: the lower ~55% of the frame under the skeleton is an empty dark gradient for the first ~5s."
    ],
    "recurred_after_fix": false
   },
   "bare_number": {
-   "count": 6,
-   "stories": {
-    "body-renewal-clock": 3,
-    "volcano-country-ranking": 1,
-    "college-gender-gap": 1,
-    "coldest-place-in-the-universe-is-human-made": 1
-   },
-   "timestamps": [
-    "2026-10-05T17:50:51+00:00",
-    "2026-10-05T17:57:08+00:00",
-    "2026-10-05T18:02:55+00:00",
-    "2026-10-05T18:41:15+00:00",
-    "2026-10-05T18:57:49+00:00",
-    "2026-10-05T19:15:18+00:00"
-   ],
-   "examples": [
-    "bare_number_card: In seg4:start to seg4:end the closing is circles labelled 8.3T/16.5T/24.8T/30T on a blank ground, so the numbers are just written in blobs. In seg2:start the skin side is a small gre",
-    "bare_number_card: seg4:start\u2013payoff@-0.4: circles labelled 8.3T/16.5T/24.8T/30T grow, which is just numbers in blobs. The seg1:end bubble '3,650 days' is the same treatment",
-    "bare_number_card: seg1:mid/seg1:end: a single huge '3,650 days' disc next to tiny '120 days' and '5 day' dots. These are number labels on circles that demonstrate nothing about renewal."
-   ],
-   "recurred_after_fix": false
-  },
-  "dead_air": {
-   "count": 4,
+   "count": 3,
    "stories": {
     "body-renewal-clock": 1,
-    "diabetes-quietly-doubled": 1,
-    "volcano-country-ranking": 1,
-    "coldest-place-in-the-universe-is-human-made": 1
+    "recycling-myth-reality": 1,
+    "bird-flu-species-jump": 1
    },
    "timestamps": [
-    "2026-10-05T17:50:51+00:00",
-    "2026-10-05T18:29:20+00:00",
-    "2026-10-05T18:41:15+00:00",
-    "2026-10-05T19:15:18+00:00"
+    "2026-10-06T11:04:12+00:00",
+    "2026-10-06T11:33:08+00:00",
+    "2026-10-06T12:53:20+00:00"
    ],
    "examples": [
-    "dead_air: seg0 and seg1 are the same bubble scene from hook@0.3 to seg1:end (about 10s). The only change is a cyan ring around '5 days' (seg1:start) and then '28 days'/'120 days' (seg1:end), so two be",
-    "dead_air: From hook@0.8 to seg0:end (about 0.8s to 3.7s) the 14-globe grid sits frozen and Data does not move. Across seg4:start to seg4:end (about 3s) only the bubbles grow slightly.",
-    "dead_air: Hook and seg0 (0.3s to 4.4s) are the same ranking scene, where the only motion is Data sliding along each row. In seg4:start to seg4:end (27.8s to 31.3s) the ruler stays fixed and Data just "
+    "bare_number_card: seg4:mid/end: the payoff is circles labelled 8.3T, 16.5T, 24.8T and 30T on a plain background. It is a bubble chart, not a demonstration, and it has nothing to do with the closing li",
+    "bare_number_card: seg1:start\u2013end is two rows of big numbers (353M, 1014M) with idle Datas beside them and no demonstration of 'almost triple'.",
+    "bare_number_card: In seg3:start (t=17.96s), the data is presented as two static circles with numbers '41' and '26' inside, lacking an interesting demonstration."
    ],
    "recurred_after_fix": false
   },
   "junk_imagery": {
-   "count": 1,
+   "count": 2,
    "stories": {
-    "body-renewal-clock": 1
+    "body-renewal-clock": 2
    },
    "timestamps": [
-    "2026-10-05T17:57:08+00:00"
+    "2026-10-06T10:58:25+00:00",
+    "2026-10-06T11:04:12+00:00"
    ],
    "examples": [
-    "junk_imagery: hook@0.3\u2013seg0:end: a murky stock-style 3D ribcage render, washed out and fading at hook@0.3, is the only hero image. The 'Skin' cell at seg0:end is a grey-green blob and the 'Stomach lin"
+    "junk_imagery: hook@0.3 to seg0:end: a murky, garbled AI/3D ribcage cutout with a doubled outline floats over the frame. It reads as a stock render, not channel art.",
+    "junk_imagery: hook@0.3\u2013seg0:end: an AI-rendered, muddy, half-melted ribcage cutout with blobby shoulders. It is a garbled render, not a clean illustration."
    ],
    "recurred_after_fix": false
   }
@@ -176,59 +130,59 @@
   "hook": {
    "median": 2,
    "min": 1,
-   "max": 2
+   "max": 4
   },
   "data_demo": {
    "median": 2,
    "min": 1,
-   "max": 2
+   "max": 4
   },
   "mascot": {
-   "median": 2,
-   "min": 1,
-   "max": 2
-  },
-  "craft": {
    "median": 1,
    "min": 1,
-   "max": 2
+   "max": 4
+  },
+  "craft": {
+   "median": 2,
+   "min": 1,
+   "max": 3
   },
   "pace": {
    "median": 1,
-   "min": 0,
+   "min": 1,
    "max": 2
   },
   "payoff": {
    "median": 1,
    "min": 0,
-   "max": 1
+   "max": 2
   },
   "temporal_craft": {
    "median": 3,
-   "min": 2,
+   "min": 3,
    "max": 3
   }
  },
  "scores": [
+  70,
+  61,
+  79,
   39,
-  35,
   39,
   52,
-  48,
-  53,
-  44,
-  53,
-  53,
   57,
+  39,
+  44,
+  35,
   49,
   44,
-  39,
+  52,
+  44,
   48,
   52,
-  48,
-  31,
-  52,
-  53,
-  57
+  44,
+  56,
+  65,
+  96
  ]
 }
