@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261006",
+  "bundle": {
+    "identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093",
+    "path": "exchange/bundles/20261006/bundle.json"
+  },
+  "request_id": "he-blocked-my-spot-for-a-year-s1-a3d8bce25b2d",
+  "safe_request_id": "he-blocked-my-spot-for-a-year-s1-a3d8bce25b2d",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "8528161af4c5b2658069fae5400e00bc3f3c1abccb8c010eb55f6d785165c8d5",
+  "prompt_used": "An editorial illustration for a short-form video: stack of notices mailbox. It accompanies the narration: \"Management mailed three written notices\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1nm1sfuD11DnZedeFiqiciBgJMVFH46Z6",
+    "filename": "20261006__he-blocked-my-spot-for-a-year-s1-a3d8bce25b2d.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1nm1sfuD11DnZedeFiqiciBgJMVFH46Z6",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "89508cb9a843ef2ae0e00b1316f68849fa46a0f68c62a378731dece4482d8262",
+    "bytes": 1672705,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-06T11:24:16.165Z"
+}
