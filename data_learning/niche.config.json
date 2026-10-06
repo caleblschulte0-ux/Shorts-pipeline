@@ -18763,8 +18763,8 @@
   {
    "slug": "bird-flu-species-jump",
    "title": "How Bird Flu Learned To Infect Cows, Then Us",
-   "hook": "A bird virus just learned to infect cows.",
-   "closing": "Two species down in two years -- and it's still testing new doors.",
+   "hook": "Bird flu wiped out 206 million birds, and now it's in the cows behind your milk.",
+   "closing": "Two species down in two years, still testing new doors.",
    "question": "Does bird flu worry you? Tell me below.",
    "caption": "Since 2022, bird flu has killed off 206 million US birds. Then in 2024 it did something new: it crossed into dairy cows, and from cows into 70 people. Here's how a bird-only virus keeps finding new hosts, one species at a time. Ever worry about the next pandemic? 👇",
    "hashtags": [
@@ -18793,13 +18793,14 @@
      },
      "insight_type": "trend",
      "role": "1 · THE SETUP",
-     "topic": "US birds lost to bird flu",
-     "say": "Since 2022, bird flu has killed off 206 million birds in the US, and the number keeps climbing every single year.",
+     "topic": "Bird flu losses",
+     "say": "Since 2022, bird flu has killed 206 million birds in the US.",
      "scene": {
       "mechanic": "feather-toll-climb",
       "concept": "a poultry photo tops a rising feather pile whose height climbs year by year to the cumulative US bird toll",
       "code": "v1 = values[-1]\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 60\nmax_h = 520\nbird = subject_image('chicken')\nbh = 0\nif bird is not None:\n    bw = 200\n    bh = int(bw * bird.height / bird.width)\n    paste(bird, cx - bw // 2, RTOP + 10, bw, bh)\ngap = (RX1 - RX0 - 120) // max(1, n - 1)\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    frac = clamp(v / vmax)\n    stage = clamp(reveal * n - i)\n    h = int(max_h * frac * stage)\n    x = RX0 + 60 + i * gap\n    if h > 0:\n        w = 26\n        d.rounded_rectangle([x - w // 2, base_y - h, x + w // 2, base_y], radius=10,\n                             fill=rgba(WARN if i == n - 1 else ACCENT, 210))\n        for fy in range(base_y - h, base_y, 34):\n            d.ellipse([x - 20, fy, x + 20, fy + 22], fill=rgba(TEXT, 160))\n    text(lab, x, base_y + 14, size=26, color=TEXT, center=True)\n    if stage >= 1:\n        text(str(int(v)), x, base_y - h - 34, size=28,\n             color=WARN if i == n - 1 else HIGHLIGHT, center=True)\nd.line([RX0 + 30, base_y, RX1 - 30, base_y], fill=rgba(TEXT, 140), width=4)\ntext(f\"{int(v1)}M birds lost\", cx, RTOP + 20 + bh + 10, size=40, color=WARN, center=True)"
-     }
+     },
+     "illustrated_scene": "def _hen(cr, x, y, s, a):\n    # a white hen's head and shoulder peeking through the slats\n    disc(cr, x, y + 10 * s, 20 * s, (236, 232, 222), a=a)\n    disc(cr, x + 6 * s, y - 12 * s, 12 * s, (242, 238, 230), a=a)\n    disc(cr, x + 6 * s, y - 26 * s, 6 * s, (204, 46, 40), a=a)\n    disc(cr, x + 17 * s, y - 11 * s, 4 * s, (226, 160, 40), a=a)\n\n\ndef _crate(cr, x, y, w, h, a):\n    contact_shadow(cr, x + w / 2, y + h, w * 0.9, a=0.3 * a)\n    box(cr, x, y, w, h, (178, 136, 86), a=a)\n    gap = (w - 32) / 3.0\n    for s_ in range(3):\n        ox = x + 16 + s_ * gap\n        cr.rectangle(ox + 6, y + 18, gap - 12, h - 36)\n        solid(cr, (70, 50, 34), a=a, rim=False)\n        _hen(cr, ox + gap / 2, y + h / 2 + 6, 1.0, a)\n    for sy in (y + 14, y + h - 14):          # the slats across the front\n        cr.rectangle(x + 8, sy - 6, w - 16, 12)\n        solid(cr, (196, 154, 100), a=a)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a tower of poultry crates\n    SUBSTANCE: crated white hens\n    CAUSE: Data places each crate of culled hens on the stack, climbing the ladder as it grows\n    Bird flu deaths, one crate per 20 million birds: each year's running\n    total arrives as crates Data sets on the tower outside the hen barn,\n    climbing as it rises, until he looks down from the top of the final\n    cumulative count. Every printed number is labelled with its own year.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    PER = 20.0\n    cnt = [int(round(v / PER)) for _, v in rows]\n\n    # the farm: sky, wild birds migrating overhead, the barn, the yard\n    dawn_sky(cr, t, y1=1100)\n    birds(cr, t, y0=420, n=6)\n    vgrad(cr, P[\"cleared\"], 1060, H)\n    contact_shadow(cr, 540, 1104, 860, a=0.3)\n    cr.move_to(120, 1104)\n    cr.line_to(120, 870)\n    cr.line_to(540, 700)\n    cr.line_to(960, 870)\n    cr.line_to(960, 1104)\n    cr.close_path()\n    solid(cr, P[\"brick\"])\n    cr.move_to(90, 884)\n    cr.line_to(540, 680)\n    cr.line_to(990, 884)\n    cr.line_to(990, 860)\n    cr.line_to(540, 650)\n    cr.line_to(90, 860)\n    cr.close_path()\n    solid(cr, P[\"brick_cool_shade\"])\n    box(cr, 450, 920, 180, 184, P[\"brick_shade\"])\n    edge(cr, (240, 236, 226), width=6)\n    haze(cr, 640, 1110, (210, 200, 190), a=0.3)\n\n    # the timeline: each year's running total arrives, then holds to be read\n    p = seg(u, 0.06, 0.88) * n\n    k = min(n - 1, int(p))\n    fr = 1.0 if p >= n else p - k\n    prev_n = cnt[k - 1] if k > 0 else 0\n    cur_n = cnt[k]\n    place = clamp(fr / 0.72)\n    c = prev_n + (cur_n - prev_n) * place     # crates set down so far\n\n    # the stack: 3 crates a row on the ground in front of the barn\n    cw, ch, base = 200, 130, 1460\n    x0 = 540 - 1.5 * cw\n    contact_shadow(cr, 540, base + 2, 640, a=0.4)\n    shown = int(math.ceil(c - 1e-6))\n    for i in range(shown):\n        col, row = i % 3, i // 3\n        q = ease(clamp(c - i))                  # 0..1 progress of this crate\n        lift = 90 * (1 - q)\n        _crate(cr, x0 + col * cw + 6, base - (row + 1) * ch - lift,\n               cw - 12, ch - 6, 0.35 + 0.65 * q)\n\n    # the ladder he climbs as the tower rises\n    for lx in (118, 196):\n        box(cr, lx, 940, 14, 520, P[\"log\"])\n    for ry in range(980, 1460, 64):\n        box(cr, 118, ry, 92, 10, P[\"log\"])\n\n    # his bit: point at the empty yard, place each crate, climb, then shock\n    j = min(max(0, int(c)), max(1, max(cnt)) - 1)   # crate he is working on\n    q = c - int(c)\n    row = j // 3\n    prow = (j - 1) // 3 if j > 0 else 0\n    foot = base - row * ch\n    if row != prow and q < 0.4:\n        foot = base - prow * ch - ch * ease(q / 0.4)\n    if u < 0.06:\n        role, bt = \"point\", 0\n    elif u > 0.9:\n        role, bt = \"shock\", 0\n    elif row != prow and q < 0.4:\n        role, bt = \"climb\", 0\n    else:\n        role, bt = \"place\", j\n    host(role, 158, foot, 210, beat=bt)\n\n    vignette(cr, 0.3)\n\n    lab, val = rows[k]\n    if p <= 0:\n        lab, val = rows[0][0], rows[0][1]\n    fit_readout(cr, f\"{int(round(val))}M birds\",\n                f\"killed by bird flu in the US · by {lab}\",\n                80, 520, a=ease(seg(u, 0.0, 0.08)), size=130)\n    a2 = ease(seg(u, 0.88, 0.96))\n    if a2 > 0:\n        last_lab, last_val = rows[-1]\n        fit_readout(cr, f\"{int(round(last_val))}M dead\",\n                    f\"by {last_lab}\", W - 80, 760, anchor=\"right\",\n                    a=a2, rgb=P[\"accent2\"], size=80)\n    text(cr, f\"each crate = {int(PER)} million birds\", W / 2, 1505, 34,\n         look.INK, anchor=\"center\", alpha=ease(seg(u, 0.05, 0.15)))\n"
     },
     {
      "source": "offline",
@@ -18810,8 +18811,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · THE JUMP",
-     "topic": "dairy herds infected by state",
-     "say": "Then in 2024, it jumped into cows. California alone has logged 738 infected dairy herds, more than every other state combined.",
+     "topic": "Cows infected by state",
+     "say": "In 2024 it jumped to cows, and California alone has 738 infected dairy herds.",
      "scene": {
       "mechanic": "cattle-outbreak-map",
       "concept": "cow photos bloom as glowing outbreak circles across an abstract US map, sized to each state's infected-herd count, California towering over the rest",
@@ -18826,22 +18827,25 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE COST",
-     "topic": "human cases by exposure source",
-     "say": "Of the 70 people infected so far, 41 caught it from cows, not birds. It's already learning new hosts, not just new flocks.",
+     "topic": "Human cases from cows",
+     "say": "Of 70 infected people, 41 caught it from cows, not birds.",
      "scene": {
       "mechanic": "cross-species-bridge",
       "concept": "a cow and a chicken funnel dot-streams toward a human silhouette, sized to how many human cases each source caused",
       "code": "cow = subject_image('dairy cow')\nbird = subject_image('chicken')\nperson = subject_image('person silhouette')\ncx = (RX0 + RX1) // 2\ntop = RTOP + 30\nif cow is not None:\n    paste(cow, RX0 + 10, top, 260, 190)\nif bird is not None:\n    paste(bird, RX1 - 270, top, 260, 190)\npy_h = 210\nif person is not None:\n    pw = 190\n    py_h = int(pw * person.height / person.width)\n    paste(person, cx - pw // 2, RBOT - py_h - 30, pw, py_h)\nvtot = values[0] + values[1]\ntarget = (cx, RBOT - py_h - 30)\nsources = ((RX0 + 140, top + 200, values[0], WARN),\n           (RX1 - 140, top + 200, values[1], HIGHLIGHT))\ngate = clamp(reveal * 6.0)\nfor sx, sy, v, col in sources:\n    share = v / vtot\n    cnt = max(3, int(16 * share))\n    for k in range(cnt):\n        t = ((reveal * 3.0) + (k / cnt)) % 1.0\n        px = lerp(sx, target[0], t)\n        py = lerp(sy, target[1], t)\n        d.ellipse([px - 8, py - 8, px + 8, py + 8], fill=rgba(col, int(220 * gate)))\n    text(str(int(v)), sx, sy - 34, size=40, color=col, center=True)\ntext('human cases', cx, target[1] - 34, size=28, color=TEXT, center=True)"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T10:10:37Z",
+   "hook_was": "Bird flu wiped out 206 million birds, then learned to infect cows."
   },
   {
    "slug": "ozone-hole-recovery",
    "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
-   "hook": "Remember the ozone hole? It's actually healing.",
-   "closing": "It's healing -- just not before anyone watching this sees it finish.",
-   "question": "Did you know the ozone hole was healing? Tell me below.",
+   "hook": "99 percent of the chemicals shredding your ozone vanished. The hole's healing.",
+   "closing": "It's healing, just not fast.",
+   "question": "Will you see the ozone hole close?",
    "caption": "In 2000, the hole in the ozone layer over Antarctica hit 29.9 million square kilometers -- nearly the size of North America. Since the world banned the chemicals causing it, it's been shrinking. Here's the real timeline for when it fully closes (spoiler: it's not soon). Did you know this was happening? 👇",
    "hashtags": [
     "ozonelayer",
@@ -18868,8 +18872,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE WOUND",
-     "topic": "size of the Antarctic ozone hole",
-     "say": "Back in 2000, the ozone hole over Antarctica hit 29.9 million square kilometers, nearly the size of North America. By 2025, it had shrunk to 22.9.",
+     "topic": "Antarctic ozone hole size",
+     "say": "The ozone hole hit 29.9 million square kilometers in 2000, then shrank to 22.9 by 2025.",
      "scene": {
       "mechanic": "ozone-hole-shrink",
       "concept": "a violet hole over an Earth photo shrinks year by year while a satellite radar beam spins several full loops around it each beat, scanning the shrinking boundary so the frame never idles even as the hole itself creeps",
@@ -18884,8 +18888,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE FIX",
-     "topic": "ozone-depleting chemicals phased out",
-     "say": "Here's why: 99 percent of the chemicals that caused it have been banned since 1987. Just 1 percent are still floating around up there.",
+     "topic": "ozone chemicals phased out",
+     "say": "Since 1987, 99 percent of the culprit chemicals are banned; only 1 percent remain.",
      "scene": {
       "mechanic": "banned-barrel-drain",
       "concept": "a chemical barrel drains from full down to the 1 percent still-in-use level, then a BANNED stamp lands",
@@ -18901,15 +18905,17 @@
      "insight_type": "rank",
      "ascending": true,
      "role": "3 · THE TIMELINE",
-     "topic": "years until full recovery",
-     "say": "So when does it fully heal? Best case, the rest of the world in 14 years. Antarctica, ground zero, not until 40 years from now.",
+     "topic": "ozone hole recovery years",
+     "say": "The rest of the world heals in 14 years; Antarctica, ground zero, takes 40 years.",
      "scene": {
       "mechanic": "recovery-vessel-row",
       "concept": "three vessels, one per region photo, fill bottom-up to how many years each still has left until full recovery",
       "code": "cols = n\ngap = 40\nbox_w = (RX1 - RX0 - gap * (cols - 1)) // cols\nsubjects = ['world map', 'arctic ice', 'antarctica glacier']\ntop = RTOP + 60\nimg_h = 170\nvessel_h = 480\nvessel_y = top + img_h + 20\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    x0 = RX0 + i * (box_w + gap)\n    cx = x0 + box_w // 2\n    img = subject_image(subjects[i % len(subjects)])\n    if img is not None:\n        iw = box_w - 10\n        ih = min(img_h, int(iw * img.height / img.width))\n        paste(img, x0 + 5, top, iw, ih)\n    vw = box_w - 40\n    vx = x0 + 20\n    d.rounded_rectangle([vx, vessel_y, vx + vw, vessel_y + vessel_h], radius=16,\n                         outline=rgba(TEXT, 200), width=5)\n    frac = clamp(v / vmax) * reveal\n    fh = int(vessel_h * frac)\n    d.rounded_rectangle([vx + 6, vessel_y + vessel_h - fh, vx + vw - 6, vessel_y + vessel_h - 6],\n                         radius=12, fill=rgba(WARN if i == n - 1 else ACCENT, 210))\n    for k in range(3):\n        t = ((reveal * 4.0) + (k / 3) + i * 0.2) % 1.0\n        by_bubble = vessel_y + vessel_h - 10 - int(t * (vessel_h - 20))\n        d.ellipse([cx - 8, by_bubble - 8, cx + 8, by_bubble + 8], fill=rgba(TEXT, 140))\n    text(lab, cx, vessel_y + vessel_h + 22, size=22, color=TEXT, center=True)\n    text(f\"{int(v)}y left\", cx, vessel_y + vessel_h + 52, size=28,\n         color=WARN if i == n - 1 else HIGHLIGHT, center=True)"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T10:38:17Z"
   },
   {
    "slug": "data-breach-exposure",
@@ -20385,7 +20391,7 @@
   {
    "slug": "helium-supply-squeeze",
    "title": "The Element Running Out Faster Than Anyone Noticed",
-   "hook": "Helium doesn't come back. Ever.",
+   "hook": "Your helium vanishes for good, and demand nearly doubles by 2035.",
    "closing": "Once it's gone, it's gone — literally into space.",
    "question": "Noticed helium balloons getting pricier? Tell me below.",
    "caption": "Qatar alone holds more helium reserves than any other country on Earth. Global demand is set to nearly double by 2035 as chipmakers need it to cool production lines. It already caused prices to quadruple once, from 2011 to 2013. 👇",
@@ -20413,8 +20419,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "1 · THE SOURCE",
-     "topic": "helium reserves by country",
-     "say": "Almost all of it comes from a handful of countries. Qatar alone holds 10.1 billion cubic meters, more than any nation on Earth.",
+     "topic": "Element reserves by country",
+     "say": "Qatar alone holds 10.1 billion cubic meters of helium, more than any nation on Earth.",
      "scene": {
       "mechanic": "reserve-tank-row",
       "concept": "industrial helium gas cylinders rise per country, sized to each nation's reserve - Qatar's tank towering slightly over the rest",
@@ -20430,8 +20436,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "2 · THE SQUEEZE",
-     "topic": "helium demand, 2024 vs. 2035",
-     "say": "Demand is about to nearly double by 2035, driven by chipmaking — advanced semiconductors need helium to keep production lines cold enough to work.",
+     "topic": "Element demand by 2035",
+     "say": "Demand nearly doubles by 2035, driven by chipmaking, which needs helium to keep production lines cold.",
      "scene": {
       "mechanic": "balloon-squeeze-double",
       "concept": "two helium balloons side by side, 2035's balloon swollen nearly double 2024's size with a microchip riding it - the chipmaking demand made physical",
@@ -20446,22 +20452,24 @@
      },
      "insight_type": "trend",
      "role": "3 · IT HAPPENED BEFORE",
-     "topic": "helium price index",
-     "say": "This already happened once. Prices quadrupled between 2011 and 2013 in the last supply crunch — and demand is climbing even faster this time.",
+     "topic": "Element price index",
+     "say": "Prices quadrupled between 2011 and 2013 in the last crunch, and demand climbs faster now.",
      "scene": {
       "mechanic": "price-climb-balloon-shrink",
       "concept": "as the price index line climbs the scale, the helium balloon beside it visibly deflates - scarcity driving the price up in real time",
       "code": "balloon = subject_image('red helium balloon photo')\ncur = lerp(values[0], values[-1], clamp(reveal))\nfrac = clamp(cur / values[-1])\ncx = RX0 + 220\nbase_y = RBOT - 120\nbw = max(int(240 * (1.0 - 0.6 * frac)), 40)\nbh = max(int(300 * (1.0 - 0.6 * frac)), 50)\nif balloon is not None:\n    paste(balloon, cx - bw // 2, base_y - bh, bw, bh)\nelse:\n    d.ellipse([cx - bw // 2, base_y - bh, cx + bw // 2, base_y], fill=rgba(ACCENT, 210))\ngx0 = RX0 + 480\ngx1 = RX1 - 40\ngy0 = RTOP + 200\ngy1 = RBOT - 140\nd.line([gx0, gy1, gx1, gy1], fill=rgba(TEXT, 150), width=4)\nd.line([gx0, gy1, gx0, gy0], fill=rgba(TEXT, 150), width=4)\npx = gx0 + int((gx1 - gx0) * clamp(reveal))\npy = gy1 - int((gy1 - gy0) * frac)\nd.line([gx0, gy1, px, py], fill=rgba(WARN, 230), width=8)\nd.ellipse([px - 12, py - 12, px + 12, py + 12], fill=rgba(WARN, 255))\ntext(f'{int(cur)}', px + 20, py - 20, size=30, color=WARN)\ntext('PRICE INDEX', gx0, gy0 - 40, size=23, color=TEXT)\ntext(f'{labels[0]} -> {labels[-1]}: 4x', cx, base_y + 30, size=23, color=HIGHLIGHT, center=True)\n"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:16:59Z"
   },
   {
    "slug": "recycling-myth-reality",
    "title": "Why 'Just Recycle It' Barely Works",
-   "hook": "Recycling isn't doing what you think.",
+   "hook": "You rinse, you sort, you feel good — and plastic waste still almost triples by 2060.",
    "closing": "The label says recyclable. The landfill says otherwise.",
-   "question": "Guess: how much plastic actually gets recycled? Drop it below.",
+   "question": "Guess how much plastic gets recycled?",
    "caption": "Global plastic waste is set to almost triple by 2060. Right now only 9% of it actually gets recycled — half goes straight to landfills. Even OECD's best-case forecast only gets recycling to 17% by 2060. 👇",
    "hashtags": [
     "recycling",
@@ -20486,13 +20494,14 @@
      },
      "insight_type": "trend",
      "role": "1 · THE SCALE",
-     "topic": "global plastic waste generated",
-     "say": "Global plastic waste is on track to almost triple by 2060 — from 353 million tons today to over a billion tons a year.",
+     "topic": "Why plastic waste grows",
+     "say": "Plastic waste will almost triple by 2060, from 353 million tons to over a billion.",
      "scene": {
       "mechanic": "trash-mountain-rise",
       "concept": "a mountain of plastic waste grows from today's pile toward 2060's towering scale, a human silhouette pinned beside it for horrifying scale",
       "code": "trash = subject_image('plastic waste pile photo')\nperson = subject_image('person silhouette icon for scale')\ncur = lerp(values[0], values[-1], clamp(reveal))\nfrac = clamp(cur / vmax)\ncx = (RX0 + RX1) // 2\nbase_y = RBOT - 100\nmax_h = RBOT - RTOP - 220\nh = int(max_h * frac)\nw = int(500 * (0.5 + 0.5 * frac))\nif trash is not None:\n    paste(trash, cx - w // 2, base_y - h, w, h)\nelse:\n    d.polygon([(cx - w // 2, base_y), (cx + w // 2, base_y), (cx, base_y - h)], fill=rgba(WARN, 210))\nif person is not None:\n    paste(person, cx - w // 2 - 60, base_y - 140, 50, 140)\ntext(f'{int(cur)}M TONS/YEAR', cx, base_y - h - 50, size=33, color=WARN, center=True)\ntext(f'{labels[0]}: {int(values[0])}M  ->  {labels[-1]}: {int(values[-1])}M', cx, RTOP + 70, size=25, color=TEXT, center=True)\n"
-     }
+     },
+     "illustrated_scene": "def _bottle(cr, x, y, s, ang, rgb, cap):\n    \"\"\"A plastic drink bottle: shoulders, neck, screw cap, label band, ribs.\"\"\"\n    cr.save()\n    cr.translate(x, y)\n    cr.rotate(ang)\n    cr.scale(s, s)\n    cr.new_path()\n    cr.move_to(-15, 32)\n    cr.line_to(-15, -16)\n    cr.curve_to(-15, -30, -6, -31, -6, -42)\n    cr.line_to(6, -42)\n    cr.curve_to(6, -31, 15, -30, 15, -16)\n    cr.line_to(15, 32)\n    cr.curve_to(15, 38, -15, 38, -15, 32)\n    cr.close_path()\n    solid(cr, rgb, finish=\"glass\")\n    cr.new_path()\n    cr.rectangle(-9, -44, 18, 4)             # the neck ring\n    solid(cr, rgb, finish=\"glass\", edge=False)\n    cr.new_path()\n    cr.rectangle(-8, -54, 16, 11)            # the screw cap\n    solid(cr, cap, finish=\"gloss\")\n    cr.set_source_rgba(*_c(INK, 0.35))\n    cr.set_line_width(1.2)\n    for k in range(4):                       # cap grip lines\n        cr.move_to(-5 + k * 3.4, -53)\n        cr.line_to(-5 + k * 3.4, -44)\n    cr.stroke()\n    cr.new_path()\n    cr.rectangle(-15, -8, 30, 16)            # the label band\n    solid(cr, (232, 228, 214), edge=False)\n    cr.new_path()\n    cr.rectangle(-15, -2, 30, 4)\n    solid(cr, cap, edge=False, rim=False)\n    cr.set_source_rgba(*_c(INK, 0.25))       # moulded ribs below the label\n    cr.set_line_width(1.5)\n    for yy in (14, 20, 26):\n        cr.move_to(-14, yy)\n        cr.curve_to(-5, yy + 2, 5, yy + 2, 14, yy)\n    cr.stroke()\n    cr.new_path()\n    cr.restore()\n\n\n_PLASTIC = [(150, 205, 235), (120, 196, 140), (226, 232, 238), (120, 170, 220)]\n_CAPS = [(40, 110, 200), (220, 60, 50), (250, 250, 250), (30, 150, 80), (245, 190, 60)]\n_ROWS = [7, 7, 6, 6, 5, 4, 3, 2, 1]\n_SP, _RH, _BS = 112, 62, 2.0\n\n\ndef _slots(cx, base):\n    out = []\n    for r, n in enumerate(_ROWS):\n        x0 = cx - (n - 1) * _SP / 2 + (r % 2) * 18\n        for i in range(n):\n            j = len(out)\n            out.append((x0 + i * _SP, base - _RH * r - 34,\n                        math.pi / 2 + 0.12 * math.sin(j * 2.7) + (math.pi if j % 3 == 0 else 0.0),\n                        r))\n    return out\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a pile of plastic bottles\n    SUBSTANCE: plastic bottles\n    CAUSE: Data tosses armfuls of plastic bottles onto the pile and it grows with each one\n    Each big capped, labelled drink bottle is the same tonnage of plastic\n    waste: the 2019 pile is two rows deep, and every armful Data throws\n    lands and adds its bottles until the pile reaches the 2060 projection —\n    nearly three times as many bottles, the 2019 level marked on it.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    v1 = max(v1, 1e-6)\n    ratio = v1 / max(v0, 1e-6)\n\n    base, cx = 1460, 640\n    slots = _slots(cx, base)\n    total = len(slots)\n    n0 = max(1, min(total, int(round(total * v0 / v1))))\n    extra = total - n0\n\n    # the dump yard\n    vgrad(cr, [(0, (118, 136, 156)), (0.7, (196, 192, 178)), (1, (214, 204, 182))], 0, 1200)\n    glow(cr, 230, 400, 360, (246, 226, 186), 0.45)\n    disc(cr, 230, 400, 70, (250, 236, 200), finish=\"gloss\")\n    for hx, hw_, hh in [(110, 260, 200), (960, 300, 240)]:\n        cr.new_path()\n        cr.move_to(hx - hw_, 1190)\n        cr.curve_to(hx - hw_ * 0.5, 1190 - hh, hx + hw_ * 0.5, 1190 - hh, hx + hw_, 1190)\n        cr.close_path()\n        solid(cr, (128, 132, 136), rim=False)\n    haze(cr, 880, 1200, (206, 200, 184), a=0.55)\n    vgrad(cr, [(0, (132, 118, 100)), (1, (70, 62, 54))], 1180, H)\n    birds(cr, t, y0=760, n=4, rgb=(50, 50, 60))\n\n    # the tosses: wind up, fly, LAND — the armful's bottles drop in, then hold\n    N = 4\n    a0, step = 0.27, 0.15\n    k_now = -1\n    fs = []\n    for k in range(N):\n        fs.append(seg(u, a0 + k * step, a0 + (k + 1) * step))\n        if u >= a0 + k * step:\n            k_now = k\n    per = max(1, int(math.ceil(extra / N)))\n\n    contact_shadow(cr, cx, base, 900, a=0.45)\n    landed_n = 0\n    top_y = {}\n    for j, (sx, sy, ang, r) in enumerate(slots):\n        if j < n0:\n            pj = 1.0\n        else:\n            b = min(N - 1, (j - n0) // per)\n            i = (j - n0) - b * per\n            st = 0.58 + i * (0.36 / per)\n            pj = seg(fs[b], st, st + 0.1)\n        if pj <= 0:\n            continue\n        if pj >= 1:\n            landed_n += 1\n            top_y[r] = sy\n        drop = 520 * (1 - pj * pj)               # it FALLS — gravity, not a glide\n        _bottle(cr, sx, sy - drop, _BS, ang + (1 - pj) * 2.0,\n                _PLASTIC[j % len(_PLASTIC)], _CAPS[(j * 3) % len(_CAPS)])\n    g = clamp((landed_n - n0) / max(1, extra))\n\n    # the 2019 level, marked on the grown pile\n    oa = ease(seg(g, 0.1, 0.35))\n    if oa > 0:\n        y19 = base - _RH * 2 + 4\n        cr.new_path()\n        cr.move_to(cx - 470, y19)\n        cr.line_to(cx + 440, y19)\n        cr.set_dash([18, 12])\n        cr.set_line_width(6)\n        cr.set_source_rgba(*_c((250, 248, 240), 0.9 * oa))\n        cr.stroke()\n        cr.set_dash([])\n        text(cr, f\"{l0} level\", cx + 440, y19 - 18, 40, (250, 248, 240),\n             anchor=\"right\", alpha=oa)\n\n    # Data: points at the pile, climbs onto its bottom rows, tosses, reacts\n    up = ease(seg(u, 0.14, 0.27))\n    dx = 110 + 160 * up\n    foot = base - (_RH * 2 - 4) * up\n    if u < 0.14:\n        role, bk = \"point\", 0\n    elif u < 0.27:\n        role, bk = \"climb\", 0\n    elif u < 0.88:\n        role, bk = \"toss\", max(0, k_now)\n    else:\n        role, bk = \"shock\", 0\n    host(role, dx, foot, 220, beat=bk)\n\n    # the armful in flight, from his hands to the pile\n    if 0 <= k_now < N:\n        fl = seg(fs[k_now], 0.3, 0.6)\n        if 0 < fl < 1:\n            sx, sy = dx + 40, foot - 200\n            ex = cx - 120 + 90 * k_now\n            ey = min(top_y.values()) - 60 if top_y else base - 200\n            bx = sx + (ex - sx) * fl\n            by = sy + (ey - sy) * fl - 280 * 4 * fl * (1 - fl)\n            for m in range(3):\n                _bottle(cr, bx + (m - 1) * 34, by + 10 * (m % 2), 1.4,\n                        fl * 5.0 + m * 0.9, _PLASTIC[(k_now + m) % 4],\n                        _CAPS[(k_now + m) % len(_CAPS)])\n\n    vignette(cr, 0.3)\n\n    done = g >= 0.999\n    lab, num = (l1, v1) if done else (l0, v0)\n    fit_readout(cr, f\"{num:,.0f}M tons\", f\"plastic waste · {lab.lower()}\", 80, 520,\n                a=ease(seg(u, 0.0, 0.08)), size=130)\n    b = ease(seg(u, 0.84, 0.92))\n    if b > 0:\n        fit_readout(cr, f\"×{ratio:.1f}\", f\"{l0} to {l1.split(' ')[0]}\", W / 2, 720,\n                    anchor=\"center\", a=b, rgb=P[\"accent2\"], size=96)\n"
     },
     {
      "source": "offline",
@@ -20502,14 +20511,15 @@
      },
      "insight_type": "share",
      "role": "2 · WHERE IT GOES",
-     "topic": "where plastic waste actually ends up",
-     "say": "Here's where it actually goes: only 9 percent gets recycled. Half goes straight to landfills, and 22 percent never even makes it to a dump.",
+     "topic": "Recycle or landfill",
+     "say": "Only 9 percent is recycled, half goes to landfill, and 22 percent never reaches a dump.",
      "viz": "share",
      "scene": {
       "mechanic": "plastic-fate-river",
       "concept": "one continuous stream of plastic waste forks into four proportionally-widthed channels, bottles flowing down each into a pile that fills to its share of the whole",
       "code": "prog = clamp(reveal)\nbottle = subject_image('plastic bottle icon')\nn = len(values)\ngx0, gx1 = RX0 + 20, RX1 - 20\ntotal_w = gx1 - gx0\ntop_y = RTOP + 130\nd.rectangle([gx0, top_y - 26, gx1, top_y + 26], fill=rgba(REST, 200))\ntext('ALL PLASTIC WASTE', (gx0 + gx1) // 2, top_y - 66, size=26, color=TEXT, center=True)\nxs = [gx0]\nfor v in values:\n    xs.append(xs[-1] + total_w * (v / 100.0))\nbase_y = RBOT - 90\nfor i in range(n):\n    cx0, cx1 = xs[i], xs[i + 1]\n    cx = (cx0 + cx1) / 2\n    d.polygon([(cx0, top_y + 26), (cx1, top_y + 26), (cx1 - 8, base_y), (cx0 + 8, base_y)],\n               outline=rgba(REST, 140), width=3)\n    flow_n = max(1, int(round(values[i] / 8)))\n    for k in range(flow_n):\n        t = (reveal * 1.6 + i * 0.11 + k / flow_n) % 1.0\n        fy = lerp(top_y + 30, base_y - 10, t)\n        fx = lerp(cx0 + 14, cx1 - 14, 0.5 + 0.3 * math.sin(t * 6.28 + i))\n        if bottle is not None:\n            paste(bottle, int(fx) - 16, int(fy) - 18, 32, 36)\n        else:\n            d.ellipse([fx - 8, fy - 8, fx + 8, fy + 8], fill=rgba(HIGHLIGHT, 200))\n    pile_h = int(90 * clamp(values[i] / 60.0) * prog)\n    d.rectangle([cx0 + 6, base_y - pile_h, cx1 - 6, base_y],\n                fill=rgba(HIGHLIGHT if i == 0 else WARN, 210))\n    text(str(int(values[i])) + '%', cx, base_y - pile_h - 34, size=28, color=TEXT, center=True)\n    text(labels[i][:12], cx, base_y + 14, size=16, color=TEXT, center=True)\n"
-     }
+     },
+     "illustrated_scene": "def _bottle(cr, x, y, L, col, cap, ang=0.0, a=1.0):\n    d = L * 0.36\n    cr.save()\n    cr.translate(x, y)\n    cr.rotate(ang)\n    bx = -L / 2\n    r = d * 0.45\n    cr.new_path()\n    cr.move_to(bx + r, -d / 2)\n    cr.line_to(bx + L * 0.68, -d / 2)\n    cr.curve_to(bx + L * 0.78, -d / 2, bx + L * 0.80, -d * 0.2, bx + L * 0.88, -d * 0.2)\n    cr.line_to(bx + L * 0.88, d * 0.2)\n    cr.curve_to(bx + L * 0.80, d * 0.2, bx + L * 0.78, d / 2, bx + L * 0.68, d / 2)\n    cr.line_to(bx + r, d / 2)\n    cr.arc(bx + r, 0, d / 2, math.pi / 2, 3 * math.pi / 2)\n    cr.close_path()\n    solid(cr, col, finish=\"gloss\", a=a)\n    cr.rectangle(bx + L * 0.88, -d * 0.24, L * 0.12, d * 0.48)\n    solid(cr, cap, a=a, rim=False)\n    cr.restore()\n\n\n_PLASTIC = [(150, 200, 225), (205, 225, 230), (140, 196, 160), (120, 170, 210)]\n_CAPS = [(40, 110, 200), (220, 70, 60), (245, 245, 245), (60, 150, 80)]\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a wheelie bin full of bottles\n    SUBSTANCE: plastic bottles\n    CAUSE: Data pours buckets of plastic bottles into the bin, one fate per layer\n    One year of plastic waste is ONE bin, cut open. Data climbs a ladder and\n    pours it in fate by fate: the landfill half fills the bottom, then the\n    dumped, then the burned — and the recycled share is the thin band left\n    on top, marked in the accent.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: -r[1])\n    tot = sum(v for _, v in rows) or 1.0\n    rec = min(rows, key=lambda r: r[1])\n    for r_ in rows:\n        if \"recycl\" in r_[0].lower():\n            rec = r_\n    rows = [r_ for r_ in rows if r_ is not rec] + [rec]\n    n = len(rows)\n\n    # the yard: overcast sky, a far landfill mound, paved ground\n    vgrad(cr, [(0.0, (92, 112, 140)), (0.7, (178, 186, 196)), (1.0, (206, 204, 198))], 0, 1400)\n    cr.new_path()\n    cr.move_to(-40, 1300)\n    cr.curve_to(160, 1080, 420, 1060, 620, 1200)\n    cr.curve_to(760, 1110, 980, 1100, 1120, 1260)\n    cr.line_to(1120, 1400)\n    cr.line_to(-40, 1400)\n    cr.close_path()\n    solid(cr, (122, 112, 96), rim=False)\n    haze(cr, 1000, 1400, (190, 194, 200), a=0.5)\n    vgrad(cr, [(0.0, (118, 118, 116)), (1.0, (70, 70, 72))], 1390, H)\n\n    BT, BB = 820, 1440\n    XL0, XR0, XL1, XR1 = 320, 880, 350, 850\n\n    def xl(y):\n        return XL0 + (XL1 - XL0) * (y - BT) / (BB - BT) + 22\n\n    def xr(y):\n        return XR0 + (XR1 - XR0) * (y - BT) / (BB - BT) - 22\n\n    contact_shadow(cr, 600, BB + 40, 620, a=0.45)\n    # open lid, tipped back\n    cr.new_path()\n    cr.move_to(XL0 - 6, BT)\n    cr.line_to(XR0 + 6, BT)\n    cr.line_to(XR0 + 30, BT - 80)\n    cr.line_to(XL0 + 20, BT - 92)\n    cr.close_path()\n    solid(cr, (38, 84, 60), finish=\"gloss\")\n    # back wall of the cut-open bin\n    cr.new_path()\n    cr.move_to(XL0, BT)\n    cr.line_to(XR0, BT)\n    cr.line_to(XR1, BB)\n    cr.line_to(XL1, BB)\n    cr.close_path()\n    solid(cr, (30, 62, 46), rim=False)\n\n    rowh = 34\n    nrows = int((BB - 30 - BT - 20) / rowh)\n    ytop0 = BB - 30\n    heights = [v / tot * nrows * rowh for _, v in rows]\n    starts = [0.25 + 0.155 * k for k in range(n)]\n    fills = [ease(seg(u, a + 0.04, a + 0.12)) for a in starts]\n    Hf = sum(h * f for h, f in zip(heights, fills))\n    bounds = []\n    acc = 0.0\n    for h in heights:\n        bounds.append((acc, acc + h))\n        acc += h\n\n    cr.save()\n    cr.new_path()\n    cr.move_to(XL0 + 14, BT)\n    cr.line_to(XR0 - 14, BT)\n    cr.line_to(XR1 - 14, BB - 20)\n    cr.line_to(XL1 + 14, BB - 20)\n    cr.close_path()\n    cr.clip()\n    for r in range(nrows + 1):\n        a = clamp((Hf - r * rowh) / rowh)\n        if a <= 0:\n            continue\n        yc = ytop0 - r * rowh - rowh / 2\n        drop = (1 - a) ** 2 * 160\n        x = xl(yc) + (r % 2) * 40\n        c = 0\n        while x + 40 < xr(yc) + 30:\n            k = (r * 7 + c * 13) % 4\n            _bottle(cr, x + 44, yc - drop, 92, _PLASTIC[k], _CAPS[(k + r) % 4],\n                    ang=0.12 * math.sin(r * 3.1 + c * 1.7) + (math.pi if (r + c) % 3 == 0 else 0))\n            x += 96\n            c += 1\n    # each layer's edge, and the recycled share in the accent\n    for k, ((lab, v), (b0, b1)) in enumerate(zip(rows, bounds)):\n        if fills[k] <= 0.02:\n            continue\n        top = ytop0 - b0 - (b1 - b0) * fills[k]\n        last = k == n - 1\n        cr.set_source_rgba(*_c(P[\"accent2\"] if last else look.INK, 0.9 if last else 0.55))\n        cr.set_line_width(6 if last else 3)\n        cr.move_to(xl(top) - 30, top)\n        cr.line_to(xr(top) + 30, top)\n        cr.stroke()\n        if last:\n            cr.rectangle(xl(top) - 20, top, xr(top) - xl(top) + 40, ytop0 - b0 - top)\n            cr.set_source_rgba(*_c(P[\"accent2\"], 0.22 * fills[k]))\n            cr.fill()\n    cr.restore()\n\n    # the bin's walls, lip, handle and wheels drawn over the cutaway\n    for (xa, xb) in ((XL0, XL1), (XR0, XR1)):\n        cr.new_path()\n        cr.move_to(xa - 14, BT)\n        cr.line_to(xa + 14, BT)\n        cr.line_to(xb + 14, BB)\n        cr.line_to(xb - 14, BB)\n        cr.close_path()\n        solid(cr, (46, 100, 72), finish=\"gloss\")\n    box(cr, XL1 - 14, BB - 24, XR1 - XL1 + 28, 40, (40, 90, 64))\n    box(cr, XL0 - 26, BT - 10, XR0 - XL0 + 52, 34, (54, 112, 82), finish=\"gloss\")\n    cylinder(cr, XR0 + 10, BT + 30, 22, 120, (34, 34, 38), finish=\"gloss\")\n    for wx in (XL1 + 40, XR1 - 40):\n        disc(cr, wx, BB + 22, 34, (30, 30, 34), finish=\"gloss\")\n        disc(cr, wx, BB + 22, 12, (120, 120, 126))\n\n    # layer labels, in ink; the recycled one in the accent\n    for k, ((lab, v), (b0, b1)) in enumerate(zip(rows, bounds)):\n        la = ease(seg(fills[k], 0.6, 1.0))\n        if la <= 0:\n            continue\n        ym = ytop0 - (b0 + b1) / 2 + 14\n        last = k == n - 1\n        s = f\"{int(round(v))}% {lab.lower()}\"\n        text(cr, s, 600, ym, fit_size(cr, s, 46 if not last else 40, 440),\n             P[\"accent2\"] if last else look.INK, anchor=\"center\", alpha=la)\n\n    # the ladder he climbs to pour\n    LX = 230\n    for rx in (LX - 40, LX + 40):\n        cr.rectangle(rx - 7, 860, 14, BB - 860 + 20)\n        solid(cr, (176, 180, 186), finish=\"gloss\")\n    for i in range(9):\n        y = 900 + i * 64\n        cr.rectangle(LX - 40, y - 5, 80, 10)\n        solid(cr, (160, 164, 170), rim=False)\n\n    # falling bottles from his bucket into the bin while each layer fills\n    for k, a in enumerate(starts):\n        p = seg(u, a + 0.03, a + 0.12)\n        if 0 < p < 1:\n            top_y = ytop0 - bounds[k][0] - heights[k] * fills[k]\n            for j in range(4):\n                q = clamp(p * 1.6 - j * 0.18)\n                if 0 < q < 1:\n                    fx = 330 + 160 * q + j * 30\n                    fy = 700 + (top_y - 700) * q * q\n                    _bottle(cr, fx, fy, 80, _PLASTIC[(j + k) % 4], _CAPS[j % 4],\n                            ang=1.2 * q + j)\n\n    # his bit: point at the bin, climb the ladder, pour each fate, react\n    climb = ease(seg(u, 0.12, 0.25))\n    hx = 110 + (LX - 110) * climb\n    fy = 1500 - (1500 - 860) * climb\n    if u < 0.12:\n        host(\"point\", hx, fy, 200)\n    elif u < 0.25:\n        host(\"climb\", hx, fy, 200)\n    elif u < 0.25 + 0.155 * n:\n        k = min(n - 1, int((u - 0.25) / 0.155))\n        host(\"pour\", hx, fy, 200, beat=k)\n    else:\n        host(\"shock\", hx, fy, 200)\n\n    # the readout follows the layer being poured; ends on the recycled share\n    cur = -1\n    for k in range(n):\n        if fills[k] > 0.3:\n            cur = k\n    if cur < 0:\n        fit_readout(cr, \"Plastic waste\", \"where one year of it goes\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.08)), size=120)\n    else:\n        lab, v = rows[cur]\n        pct = int(round(v))\n        if cur == n - 1:\n            fit_readout(cr, f\"{pct}%\", f\"{lab.lower()} · the rest is not\", 80, 520,\n                        rgb=P[\"accent2\"], size=150)\n        else:\n            fit_readout(cr, f\"{pct}%\", lab.lower(), 80, 520, size=140)\n    vignette(cr, 0.28)\n"
     },
     {
      "source": "offline",
@@ -20520,15 +20530,18 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "3 · THE 'FIX'",
-     "topic": "recycling rate, today vs. 2060",
-     "say": "Even OECD's own best-case forecast only gets the recycling rate to 17 percent by 2060. 'Just recycle it' was never going to be the fix.",
+     "topic": "Just recycle it",
+     "say": "OECD's best-case forecast reaches only 17 percent recycling by 2060.",
      "scene": {
       "mechanic": "plastic-sluice-split",
       "concept": "a chute of real bottles pours down and forks at a split point - only the recycled share peels off into the bin, the rest piles onto the landfill heap - run once for today, once for 2060's best case, so the fork itself gets wider or narrower with the rate instead of two abstract gauges",
       "code": "bottle = subject_image('plastic bottle photo')\nbin_img = subject_image('recycling bin photo')\npile_img = subject_image('landfill trash pile photo')\ncols = [(RX0 + 260, values[0], labels[0]), (RX1 - 260, values[-1], labels[-1])]\nchute_top = RTOP + 70\nsplit_y = RTOP + 320\nbase_y = RBOT - 70\ncount = 10\nfor cx, val, lab in cols:\n    frac = clamp(val / 100.0)\n    recycled_n = max(1, round(frac * count))\n    if bin_img is not None:\n        paste(bin_img, cx - 190, base_y - 130, 100, 130)\n    if pile_img is not None:\n        paste(pile_img, cx + 70, base_y - 110, 130, 110)\n    d.line([cx, chute_top, cx, split_y], fill=rgba(TEXT, 150), width=8)\n    for k in range(count):\n        t = (reveal * 1.6 + k / count) % 1.0\n        recycled = k < recycled_n\n        tx = cx - 140 if recycled else cx + 130\n        if t < 0.4:\n            x = cx\n            y = lerp(chute_top, split_y, t / 0.4)\n        else:\n            bt = (t - 0.4) / 0.6\n            x = lerp(cx, tx, clamp(bt * 2.2))\n            y = lerp(split_y, base_y - 40, bt)\n        if bottle is not None:\n            paste(bottle, int(x - 15), int(y - 20), 30, 40)\n        else:\n            d.ellipse([x - 11, y - 11, x + 11, y + 11], fill=rgba(HIGHLIGHT if recycled else WARN))\n    landed_r = int(round(recycled_n * clamp(reveal * 1.3)))\n    landed_l = int(round((count - recycled_n) * clamp(reveal * 1.3)))\n    for j in range(landed_r):\n        lx = cx - 150 + (j % 3) * 24\n        ly = base_y - 20 - (j // 3) * 26\n        if bottle is not None:\n            paste(bottle, lx, ly, 22, 30)\n        else:\n            d.ellipse([lx, ly, lx + 18, ly + 18], fill=rgba(HIGHLIGHT))\n    for j in range(landed_l):\n        lx = cx + 60 + (j % 4) * 22\n        ly = base_y - 15 - (j // 4) * 24\n        if bottle is not None:\n            paste(bottle, lx, ly, 20, 26)\n        else:\n            d.ellipse([lx, ly, lx + 16, ly + 16], fill=rgba(WARN))\n    text(f'{int(val)}%', cx, split_y - 46, size=42, color=HIGHLIGHT, center=True)\n    text(f'{recycled_n} of {count} recycled', cx - 150, base_y + 42, size=21, color=HIGHLIGHT, center=True)\n    text('rest: landfill', cx + 95, base_y + 42, size=21, color=WARN, center=True)\n    text(lab, cx, RTOP + 40, size=26, color=TEXT, center=True)\n"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:17:11Z",
+   "hook_was": "Your recycling bin lies: only 9 percent of plastic gets recycled."
   },
   {
    "slug": "cavendish-banana-monoculture",
@@ -21763,9 +21776,9 @@
   {
    "slug": "saffron-red-gold-myth",
    "title": "Why The World's Most Expensive Spice Costs $15 A Gram",
-   "hook": "One spice costs more than steak, by a lot.",
-   "closing": "Turns out flavor is cheap. Hands aren't.",
-   "question": "Have you ever actually cooked with real saffron? Tell me below.",
+   "hook": "One gram of this spice drains $15 from your wallet.",
+   "closing": "Flavor is cheap. Hands aren't.",
+   "question": "Ever cooked with real saffron?",
    "caption": "Saffron retails for $10 to $30 a gram -- making it the most expensive spice on Earth by a mile. It's not rare magic, it's rare LABOR: about 150 hand-picked crocus flowers per gram, and 40 to 70 hours of hand-harvesting for a single pound. Here's the real math behind the price tag. 👇",
    "hashtags": [
     "saffron",
@@ -21790,8 +21803,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE PRICE",
-     "topic": "saffron vs black pepper, price per gram",
-     "say": "Black pepper costs about 2 cents a gram. Saffron costs 15 dollars a gram. That's not a typo -- that's roughly 750 times more.",
+     "topic": "Spice price per gram",
+     "say": "Black pepper costs 2 cents a gram, saffron 15 dollars, roughly 750 times more.",
      "scene": {
       "mechanic": "price-scale-tip",
       "concept": "a balance beam scale with a pile of peppercorns on one pan and a pile of saffron threads on the other tips hard toward the saffron side as reveal builds, dramatizing the ~750x price gap",
@@ -21807,8 +21820,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · THE RANKING",
-     "topic": "spices ranked by price per gram",
-     "say": "Rank every spice on Earth by price and saffron isn't close to second place. Real vanilla beans run 60 cents a gram. Saffron runs 15 dollars.",
+     "topic": "Spice price ranking",
+     "say": "Real vanilla beans run 60 cents a gram, while saffron runs 15 dollars.",
      "scene": {
       "mechanic": "spice-price-ladder",
       "concept": "five spice jars climb a log-scaled staircase of rising height, saffron alone lit by a spotlight beam at the peak",
@@ -21823,15 +21836,17 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE WHY",
-     "topic": "hand-harvest labor per pound",
-     "say": "Here's why: pepper gets machine-stripped in minutes. Saffron only grows on a flower that wilts in a day, so every thread gets pulled by hand -- about 55 hours per pound.",
+     "topic": "Spice harvest labor",
+     "say": "Saffron's flower wilts in a day, so hands pull every thread: 55 hours per pound.",
      "scene": {
       "mechanic": "machine-vs-hand-harvest-split",
       "concept": "a split screen: a fast machine strips pepper on the left barely filling an hours bar, a hand plucks a single saffron flower on the right while its hours bar climbs far higher",
       "code": "machine = subject_image('spice harvesting machine')\nhand = subject_image('hand picking saffron flower')\nv0 = values[0]; v1 = values[1]\nmidx = (RX0 + RX1) // 2\nif machine is not None:\n    paste(machine, RX0 + 40, RTOP + 160, midx - RX0 - 80, 420)\nif hand is not None:\n    paste(hand, midx + 40, RTOP + 160, RX1 - midx - 80, 420)\nd.line([midx, RTOP + 40, midx, RBOT - 260], fill=rgba(TEXT, 160), width=4)\nhrs0 = round(lerp(0, v0, reveal), 1)\nhrs1 = round(lerp(0, v1, reveal), 1)\nbar_top = RTOP + 620\nbar_h = 140\nw0 = int((midx - RX0 - 80) * clamp(v0 / v1))\nw1 = midx - RX0 - 80\nd.rounded_rectangle([RX0 + 40, bar_top, RX0 + 40 + int(w0 * clamp(reveal)), bar_top + bar_h], radius=16, fill=rgba(HIGHLIGHT, 210))\nd.rounded_rectangle([midx + 40, bar_top, midx + 40 + int(w1 * clamp(reveal)), bar_top + bar_h], radius=16, fill=rgba(WARN, 220))\ntext(str(hrs0) + ' hrs/lb', RX0 + 50, bar_top + bar_h + 30, size=32, color=HIGHLIGHT)\ntext(str(hrs1) + ' hrs/lb', midx + 50, bar_top + bar_h + 30, size=34, color=WARN)\ntext(labels[0], RX0 + 40, RTOP + 100, size=26, color=TEXT)\ntext(labels[1], midx + 40, RTOP + 100, size=26, color=TEXT)\n"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:33:58Z"
   },
   {
    "slug": "ants-outnumber-humans",
@@ -21910,9 +21925,9 @@
   {
    "slug": "chip-transistor-shrink-limit",
    "title": "Your Phone's Chip Just Hit A Wall",
-   "hook": "Your phone's chip is running out of room to shrink.",
-   "closing": "Turns out atoms don't negotiate.",
-   "question": "Does your phone actually feel faster than it did 3 years ago? Tell me below.",
+   "hook": "Your phone's chip hit 19 billion transistors, then hit a wall.",
+   "closing": "Atoms don't negotiate.",
+   "question": "Does your phone feel faster lately?",
    "hashtags": [
     "technology",
     "chips",
@@ -21936,8 +21951,8 @@
      },
      "insight_type": "trend",
      "role": "1 · STILL GROWING",
-     "topic": "iPhone chip transistor count",
-     "say": "In 2015, Apple's iPhone chip packed 2 billion transistors. By 2023, that number hit 19 billion, nearly ten times more in under a decade.",
+     "topic": "iPhone chip transistors",
+     "say": "Apple's iPhone chip went from 2 billion transistors in 2015 to 19 billion in 2023.",
      "scene": {
       "mechanic": "chip-die-density-swell",
       "concept": "a real chip photo fills with a growing grid of glowing transistor dots as the years climb",
@@ -21952,8 +21967,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE SLOWDOWN",
-     "topic": "how fast that count used to double",
-     "say": "For decades, chipmakers doubled that count roughly every 2 years, the famous Moore's Law. Now it takes closer to 3, because transistors are running out of room to shrink.",
+     "topic": "Chip doubling time slows",
+     "say": "Chipmakers doubled transistor counts every 2 years, but now it takes closer to 3.",
      "scene": {
       "mechanic": "moores-law-metronome",
       "concept": "two cadence tracks tick off doublings over the same 12 years, one visibly slower than the other",
@@ -21968,15 +21983,17 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE ATOMIC WALL",
-     "topic": "transistor size, then vs. now",
-     "say": "The first commercial chip, in 1971, was built on a 10,000 nanometer process. Today's newest chips are near 2 nanometers, just a handful of silicon atoms wide.",
+     "topic": "Shrinking chip size",
+     "say": "The first chip in 1971 used 10,000 nanometers; today's newest chips are near 2.",
      "scene": {
       "mechanic": "atom-scale-zoom",
       "concept": "a real chip die shrinks from a huge square to a near-invisible dot next to the modern node size",
       "code": "cx = (RX0 + RX1) // 2\ntop_y = 380\nbig = values[0]\nsmall = values[1]\nbig_s = 480\nsmall_s = max(18, big_s * (small / big) ** 0.35)\nbx = cx - 260\nsx = cx + 200\nimg = images.get(labels[0])\nif img is None:\n    img = subject_image('silicon chip die macro')\nbw = int(lerp(40, big_s, reveal))\nif img is not None:\n    paste(img, bx - bw // 2, top_y - bw // 2, bw, bw)\nelse:\n    d.rounded_rectangle([bx - bw // 2, top_y - bw // 2, bx + bw // 2, top_y + bw // 2], fill=rgba(ACCENT, 220))\ntext(labels[0], bx, top_y + big_s // 2 + 40, size=26, center=True)\ntext(str(int(big)) + ' nm', bx, top_y - big_s // 2 - 40, size=36, color=HIGHLIGHT, center=True)\nsw = int(lerp(6, small_s, reveal))\nd.ellipse([sx - sw // 2, top_y - sw // 2, sx + sw // 2, top_y + sw // 2], fill=rgba(WARN, 230))\ntext(labels[1], sx, top_y + big_s // 2 + 40, size=26, center=True)\ntext(str(int(small)) + ' nm', sx, top_y - big_s // 2 - 40, size=36, color=WARN, center=True)\nif reveal > 0.6:\n    text('a handful of atoms wide', cx, RTOP + 10, size=32, center=True)\n"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:34:09Z"
   },
   {
    "slug": "frog-freezes-and-revives",
@@ -22202,9 +22219,9 @@
   {
    "slug": "chess-online-boom",
    "title": "How A Netflix Show Turned Chess Into A 200-Million-Person Habit",
-   "hook": "A Netflix show broke the internet's chess habit.",
+   "hook": "A Netflix show hooked you and 200 million others on chess.",
    "closing": "Turns out watching chess is a sport too.",
-   "question": "Do you know how to play chess? Tell me below.",
+   "question": "Do you play chess? Tell me below.",
    "caption": "Chess.com had 30 million members when the pandemic began. Then The Queen's Gambit dropped on Netflix, and by 2025 membership hit 200 million — nearly seven times bigger in five years. Do you know how to play chess? Tell me below ♟️",
    "hashtags": [
     "chess",
@@ -22229,8 +22246,8 @@
      },
      "insight_type": "trend",
      "role": "1 · SETUP",
-     "topic": "Chess.com members",
-     "say": "In March 2020, Chess.com had 30 million members. By 2025, that hit 200 million — nearly seven times bigger in five years.",
+     "topic": "Chess members",
+     "say": "Chess.com grew from 30 million members in March 2020 to 200 million by 2025.",
      "scene": {
       "mechanic": "pawn-stack-timeline",
       "concept": "chess pawn photos stack into growing towers along a five-point timeline, the 2025 tower dwarfing 2020's single piece",
@@ -22246,8 +22263,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · TURN",
-     "topic": "the Queen's Gambit spike",
-     "say": "The site was adding 1 million members a month during lockdown — until The Queen's Gambit hit, and that jumped to 2.8 million.",
+     "topic": "Netflix show spike",
+     "say": "Lockdown added 1 million members a month, then The Queen's Gambit pushed it to 2.8 million.",
      "scene": {
       "mechanic": "queens-gambit-signup-flood",
       "concept": "a TV showing a chess board streams a flood of pawn icons into a signup funnel, the stream thickening hard the moment the show hits — 1M vs 2.8M members a month",
@@ -22263,15 +22280,17 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · CONSEQUENCE",
-     "topic": "share of the world's chess players",
-     "say": "A 2012 survey counted 605 million regular chess players worldwide. Chess.com alone now claims 200 million accounts — one website, a third of them.",
+     "topic": "Chess players share",
+     "say": "A 2012 survey counted 605 million chess players; Chess.com's 200 million is a third.",
      "scene": {
       "mechanic": "globe-pawn-fill-share",
       "concept": "a world globe fills with tiny pawn dots for every regular player on Earth, then a glowing chessboard wedge highlights the third of them that Chess.com alone claims",
       "code": "globe = subject_image('world globe photo')\nboard = subject_image('chess board top down photo')\ncx = (RX0 + RX1) // 2\ngy = RTOP + 200\ngd = 560\nif globe is not None:\n    paste(globe, cx - gd // 2, gy, gd, gd)\nelse:\n    d.ellipse([cx - gd // 2, gy, cx + gd // 2, gy + gd], outline=rgba(TEXT, 200), width=6)\nshare = values[0] / values[1] if n > 1 and values[1] else 0.33\nang0 = -90\nang1 = ang0 + 360 * clamp(share) * reveal\nbbox = [cx - gd // 2, gy, cx + gd // 2, gy + gd]\nd.pieslice(bbox, ang0, ang1, fill=rgba(HIGHLIGHT, 130))\nif board is not None and reveal > 0.5:\n    bw = 140\n    paste(board, cx - bw // 2, gy + gd // 2 - bw // 2, bw, bw)\ntext(f\"{values[1]:.0f}M regular players worldwide\" if n > 1 else 'players worldwide', cx, gy - 40,\n     size=24, color=TEXT, center=True)\ntext(f'{values[0]:.0f}M on Chess.com', cx, gy + gd + 50, size=32, color=HIGHLIGHT, center=True)\n"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:34:22Z"
   },
   {
    "slug": "volcano-country-ranking",
@@ -22880,9 +22899,9 @@
   {
    "slug": "peanut-allergy-guideline-flip",
    "title": "Doctors Had Peanut Allergies Backwards For Decades",
-   "hook": "The peanut allergy advice was backwards the whole time.",
+   "hook": "Your baby's peanut allergy risk dropped 43% once doctors reversed course.",
    "closing": "Sometimes the cure is just... eating the thing.",
-   "question": "Did your family avoid peanuts when you were little? Comment below.",
+   "question": "Did your family avoid peanuts? Comment below.",
    "caption": "Peanut allergies in American kids tripled between 1997 and 2008. Turns out doctors had the fix backwards: infants told to avoid peanut hit a 13.7% allergy rate by age 5, vs just 1.9% for infants fed peanut early. Guidelines flipped, and diagnoses have dropped 43% since. Did your family avoid peanuts? 👇",
    "hashtags": [
     "peanutallergy",
@@ -22910,8 +22929,8 @@
      },
      "insight_type": "trend",
      "role": "1 · SETUP",
-     "topic": "peanut allergy in American kids",
-     "say": "Peanut allergies in American kids tripled in about a decade -- 0.4% in 1997, 0.8% in 2002, 1.4% by 2008. And doctors' advice made total sense: keep babies away from peanuts as long as possible.",
+     "topic": "Peanut allergy in kids",
+     "say": "Kids' peanut allergies tripled in a decade, from 0.4% in 1997 to 1.4% by 2008.",
      "scene": {
       "mechanic": "peanut-rash-climb",
       "concept": "peanuts rise along a climbing trend line, growing larger and more inflamed at each higher prevalence year",
@@ -22927,8 +22946,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · THE TURN",
-     "topic": "the trial that flipped the advice",
-     "say": "Then one trial flipped it. Infants told to avoid peanut hit a 13.7% allergy rate by age 5. Infants fed peanut early? Just 1.9%. Avoidance was the actual trigger.",
+     "topic": "Peanut trial results",
+     "say": "Infants who avoided peanut hit 13.7% allergy by age 5, versus 1.9% for early eaters.",
      "scene": {
       "mechanic": "peanut-shield-crack-duel",
       "concept": "two round shields crack from the peanuts breaking through them -- one badly shattered (avoidance), one barely scratched (early exposure)",
@@ -22944,8 +22963,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · CONSEQUENCE",
-     "topic": "what happened after guidelines flipped",
-     "say": "So guidelines flipped to 'introduce early' -- and it worked. Peanut allergy in kids under 3 dropped from 0.79% to 0.45%, a 43% drop, just from feeding babies the thing doctors used to ban.",
+     "topic": "Peanut allergy after flip",
+     "say": "Early introduction cut allergy in kids under 3 from 0.79% to 0.45%, a 43% drop.",
      "viz": "comparison",
      "scene": {
       "mechanic": "allergy-marker-drain",
@@ -22953,7 +22972,9 @@
       "code": "prog = clamp(reveal)\nmark = subject_image('red allergy alert icon')\nv0, v1 = values[0], values[-1]\ncount0 = max(6, int(round(v0 * 100)))\ncount1 = max(3, int(round(v1 * 100)))\ngx0, gx1 = RX0 + 40, RX1 - 40\ngy0 = RTOP + 210\ncols = 10\ncell = (gx1 - gx0) / cols\nrow_h = 54\ncleared = clamp(prog * 1.3)\nn_gone = int(round((count0 - count1) * cleared))\nremaining = max(count1, count0 - n_gone)\nfor idx in range(count0):\n    alive = idx < remaining\n    r_ = idx // cols\n    c = idx % cols\n    cx = gx0 + c * cell + cell / 2\n    cy = gy0 + r_ * row_h\n    if not alive:\n        prog_gone = clamp((cleared * count0 - idx) / max(1, count0 - remaining))\n        cy = cy + prog_gone * 700\n        if cy > RBOT + 40:\n            continue\n    else:\n        cy = cy + 10 * math.sin(reveal * 6.28 * 3 + idx)\n    sz = 20\n    if mark is not None:\n        paste(mark, int(cx - sz / 2), int(cy - sz / 2), sz, sz)\n    else:\n        d.ellipse([cx - 8, cy - 8, cx + 8, cy + 8], fill=rgba(WARN, 220))\ntext('BEFORE: ' + fmt(v0), RX0 + 10, RTOP + 130, size=24, color=WARN)\ntext('AFTER: ' + fmt(v1), RX0 + 10, RTOP + 168, size=24, color=HIGHLIGHT)\ntext('-43% ALLERGY RATE', (RX0 + RX1) // 2, RBOT - 60, size=30, color=HIGHLIGHT, center=True)\n"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:34:52Z"
   },
   {
    "slug": "landline-death-robocall-boom",
@@ -23035,9 +23056,9 @@
   {
    "slug": "monarch-butterfly-collapse",
    "title": "The Monarch Butterfly Is Running Out of Forest",
-   "hook": "One bug species is vanishing in plain sight.",
+   "hook": "Monarch forest shrank from 18 hectares to 0.9, vanishing before your eyes.",
    "closing": "No milkweed, no monarchs. It's really that simple.",
-   "question": "When did you last actually see a monarch? Tell me below.",
+   "question": "Seen a monarch lately? Tell me below.",
    "caption": "Monarch colonies in Mexico shrank from 18 hectares in 1996 to just 0.9 today. The culprit: herbicide-resistant crops wiped out the milkweed monarchs need to breed, and both US migration routes are now down 80-95% from their peak. When did you last see one? 👇",
    "hashtags": [
     "monarch",
@@ -23066,7 +23087,7 @@
      "insight_type": "trend",
      "role": "1 · SETUP",
      "topic": "monarch colony forest area",
-     "say": "In 1996, monarch colonies covered 18 hectares of Mexican forest. By 2024, that shrank to just 0.9 hectares -- barely two football fields.",
+     "say": "In 1996 monarch colonies covered 18 hectares of forest, but by 2024 only 0.9.",
      "scene": {
       "mechanic": "monarch-cluster-collapse",
       "concept": "a branch thick with clustered monarch butterflies thins out year by year as overwintering forest area collapses from 18 to 0.9 hectares",
@@ -23082,8 +23103,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · THE CAUSE",
-     "topic": "herbicide-resistant crops",
-     "say": "Here's why: herbicide-resistant soybeans went from 17 percent of US fields in 1997 to 94 percent by 2014. The spray that clears weeds also wipes out the milkweed monarchs need to lay eggs on.",
+     "topic": "monarch milkweed loss",
+     "say": "Herbicide-resistant soybeans grew from 17 to 94 percent of US fields, wiping out monarch milkweed.",
      "scene": {
       "mechanic": "field-erasure-sweep",
       "concept": "a bare-dirt sweep advances across a soybean field as herbicide-resistant adoption climbs from 17% to 94%, erasing milkweed flowers as it goes",
@@ -23100,15 +23121,17 @@
      "ascending": false,
      "use_baseline": false,
      "role": "3 · THE COST",
-     "topic": "population lost, by migration route",
-     "say": "The result: the eastern migration is down 80 percent since the 1990s. The western migration is down 95 percent. Both of America's monarch routes are collapsing at once.",
+     "topic": "monarch population lost",
+     "say": "Eastern monarchs are down 80 percent, western monarchs 95 percent; both routes are collapsing.",
      "scene": {
       "mechanic": "twin-migration-path-fade",
       "concept": "two migration flight paths thin out as butterflies vanish along each route, eastern down 80%, western down 95%",
       "code": "mono = subject_image('monarch butterfly')\npaths = [(RX0 + 120, RBOT - 140, RX0 + 420, RTOP + 200, WARN),\n         (RX1 - 120, RBOT - 140, RX1 - 420, RTOP + 200, HIGHLIGHT)]\ntotal_n = 10\nfor i in range(2):\n    sx, sy, ex, ey, col = paths[i]\n    d.line([sx, sy, ex, ey], fill=rgba(col, 90), width=6)\n    remain = clamp(1.0 - values[i] / 100.0)\n    alive_n = max(1, int(round(total_n * remain)))\n    cnt_now = max(1, int(total_n * clamp(reveal)))\n    for k in range(cnt_now):\n        t = (k + 1) / (total_n + 1)\n        px = lerp(sx, ex, t)\n        py = lerp(sy, ey, t)\n        if k < alive_n and mono is not None:\n            paste(mono, px - 24, py - 20, 48, 40)\n    text(labels[i], (sx + ex) // 2, ey - 70, size=24, color=col, center=True)\n    text(f'-{int(values[i])}%', (sx + ex) // 2, ey - 110, size=42, color=col, center=True)\n"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:35:35Z"
   },
   {
    "slug": "adhd-diagnosis-surge",
@@ -23822,9 +23845,9 @@
   {
    "slug": "gulf-dead-zone-growth",
    "title": "The Gulf Has A Dead Zone The Size Of New Jersey (3 Charts)",
-   "hook": "Every summer, an area the size of New Jersey runs out of oxygen.",
-   "closing": "Even the good year is nearly double the 2035 goal -- and the river feeding it carries three times the fertilizer.",
-   "question": "Did you know the Gulf has a dead zone? Tell me below.",
+   "hook": "Your dinner's ocean suffocated: 8,776 square miles went dead in 2017.",
+   "closing": "Nearly double the 2035 goal, and fertilizer tripled.",
+   "question": "Would you eat seafood from the Gulf?",
    "caption": "Every summer, a patch of the Gulf of Mexico roughly the size of New Jersey loses so much oxygen that fish and shrimp can't survive there. It's fed by fertilizer runoff funneled down the Mississippi River from 41 percent of the continental US. Even in a good year it's nearly double the size regulators are aiming for by 2035. Did you know the Gulf has a dead zone? Tell me below 👇",
    "hashtags": [
     "deadzone",
@@ -23852,8 +23875,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE SWING",
-     "topic": "size of the Gulf of Mexico dead zone",
-     "say": "Every summer part of the Gulf loses so much oxygen nothing can live there. In 2017 it hit 8,776 square miles. By 2024 it was still 6,705.",
+     "topic": "Gulf dead zone size",
+     "say": "In 2017 the dead zone hit 8,776 square miles, and in 2024 still 6,705.",
      "scene": null,
      "viz": "trend"
     },
@@ -23866,8 +23889,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · STILL FAR FROM THE GOAL",
-     "topic": "current dead zone average vs the 2035 target",
-     "say": "Even the 5-year average, 3,745 square miles, is almost double the 1,900 square mile goal regulators set for 2035.",
+     "topic": "Dead zone vs 2035",
+     "say": "The 5-year average, 3,745 square miles, is almost double the 1,900 goal for 2035.",
      "scene": {
       "mechanic": "dead-zone-map-overlay",
       "concept": "a dead-zone stain over a Gulf map grows to today's size, a bright ring marks the far smaller 2035 goal",
@@ -23883,15 +23906,17 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · WHY IT WON'T SHRINK",
-     "topic": "nitrogen load in the Mississippi watershed vs the 1950s",
-     "say": "That's because 41 percent of the entire US drains into one river, and the fertilizer it carries has roughly tripled since the 1950s.",
+     "topic": "Dead zone nitrogen",
+     "say": "41 percent of the US drains into one river, and its fertilizer tripled since the 1950s.",
      "scene": {
       "mechanic": "farm-runoff-grid",
       "concept": "a grid of farmland tiles multiplies from the 1950s baseline up to today's tripled nitrogen load",
       "code": "v0 = values[0]; v1 = values[-1]\nfarm = subject_image('fertilizer being sprayed on farmland')\ncols = 6\ncell = 118\ngx0 = RX0 + 24; gy0 = RTOP + 230\nfull = 18\nshown = max(1, int(full * clamp(reveal)))\ntarget_shown = max(1, int(full * (v0 / v1)))\nfor i in range(full):\n    row = i // cols; col = i % cols\n    x = gx0 + col * cell; y = gy0 + row * cell\n    active = i < shown\n    baseline_tile = i < target_shown\n    if farm is not None:\n        paste(farm, x, y, cell - 16, cell - 16)\n        if not active:\n            d.rectangle([x, y, x + cell - 16, y + cell - 16], fill=rgba((5, 8, 15), 205))\n    else:\n        d.rounded_rectangle([x, y, x + cell - 16, y + cell - 16], radius=12,\n                             fill=rgba(WARN if active else TEXT, 220 if active else 40))\n    if active and baseline_tile:\n        d.rectangle([x, y, x + cell - 16, y + cell - 16], outline=rgba(HIGHLIGHT, 220), width=4)\ntext('1950s baseline outlined', RX0 + 20, RTOP + 60, size=28, color=HIGHLIGHT)\ntext(f'today: {v1 / v0:.0f}x the nitrogen', RX0 + 20, RTOP + 120, size=36, color=WARN)\n"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:55:48Z"
   },
   {
    "slug": "organ-transplant-waitlist-gap",
@@ -23986,9 +24011,9 @@
   {
    "slug": "moon-drifting-away",
    "title": "The Moon Is Slowly Leaving Us (3 Charts)",
-   "hook": "Every total eclipse you'll ever see is numbered.",
+   "hook": "In 600 million years, you lose every total eclipse.",
    "closing": "The Moon's leaving. Slowly. Rudely. On its own schedule.",
-   "question": "Does it freak you out that the Moon is leaving? Tell me below.",
+   "question": "Does the Moon leaving freak you out?",
    "caption": "The Moon drifts 3.8 centimeters farther from Earth every single year, and it's been doing that since before dinosaurs existed. Keep that pace going and in 600 million years, the Moon will finally be too far away for a total solar eclipse to ever happen again. Does it freak you out that the Moon is leaving? Tell me below 👇",
    "hashtags": [
     "moon",
@@ -24016,8 +24041,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE DRIFT",
-     "topic": "the Moon drifting away from Earth",
-     "say": "Every year, the Moon drifts 3.8 centimeters farther from Earth. Since Apollo 11 planted mirrors up there in 1969, that's already added up to more than 2 meters.",
+     "topic": "Moon drifting from Earth",
+     "say": "The Moon drifts 3.8 centimeters farther every year, over 2 meters since 1969.",
      "scene": {
       "mechanic": "earth-moon-tape-stretch",
       "concept": "a measuring tape unspools between Earth and the Moon, the gap widening year by year as cumulative drift climbs toward 2 meters",
@@ -24033,8 +24058,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · THE MECHANISM",
-     "topic": "Earth-Moon distance across deep time",
-     "say": "Here's why: ocean tides drag on the Moon's orbit and steal Earth's spin energy. 1.4 billion years ago it sat just 340,900 kilometers away, today it's 384,400.",
+     "topic": "Moon distance over time",
+     "say": "Tides drag its orbit: the Moon once sat 340,900 kilometers away, now 384,400.",
      "scene": {
       "mechanic": "tidal-drag-orbit-widen",
       "concept": "two side-by-side Earth-Moon orbits, the ancient orbit tight and the modern orbit visibly wider, moons circling at true relative radius",
@@ -24050,15 +24075,17 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "3 · THE PAYOFF",
-     "topic": "how far off the last total eclipse really is",
-     "say": "Run that forward and in 600 million years, total solar eclipses stop forever, the Moon will be too far away. That's longer than the 230 million years dinosaurs have existed.",
+     "topic": "Moon's last eclipse",
+     "say": "In 600 million years the Moon will be too far for total eclipses.",
      "scene": {
       "mechanic": "eclipse-deep-time-ruler",
       "concept": "a deep-time ruler stretching from today out to 600 million years, dinosaur markers at their epochs and a sun-moon eclipse disc sliding out to the vanishing point",
       "code": "sun = subject_image('the Sun')\nmoon = subject_image('the Moon')\nrex = subject_image('T rex dinosaur skeleton')\nx0 = RX0 + 40\nx1 = RX1 - 40\ny = RTOP + 560\nd.line([x0, y, x1, y], fill=rgba(TEXT, 120), width=6)\nvmax_local = max(values) if values else 1\ncnt_now = max(1, int(round(n * clamp(reveal))) )\nfor i in range(min(cnt_now, n)):\n    frac = clamp(values[i] / vmax_local)\n    px = x0 + (x1 - x0) * frac\n    d.ellipse([px - 10, y - 10, px + 10, y + 10], fill=rgba(WARN, 220))\n    text(labels[i], px, y + 40, size=20, color=TEXT, center=True)\n    text(f'{int(values[i])}M yrs', px, y - 60, size=26, color=HIGHLIGHT, center=True)\n    lbl_lower = labels[i].lower()\n    if 'eclipse' in lbl_lower:\n        if sun is not None:\n            paste(sun, px - 70, y - 320, 140, 140)\n        if moon is not None:\n            paste(moon, px - 30 + 60 * clamp(reveal), y - 280, 70, 70)\n    elif rex is not None:\n        paste(rex, px - 55, y - 260, 110, 170)\n"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:56:08Z"
   },
   {
    "slug": "cesarean-rate-surge",
@@ -24137,9 +24164,9 @@
   {
    "slug": "seabed-mining-rush",
    "title": "The Race To Mine A Place No One Owns (3 Charts)",
-   "hook": "There's a gold rush happening 4 kilometers underwater.",
+   "hook": "A gold rush just started 4 kilometers beneath the ocean.",
    "closing": "Nobody owns the seafloor. Everyone suddenly wants a piece.",
-   "question": "Should anyone be allowed to mine the ocean floor? Tell me below.",
+   "question": "Should anyone mine the ocean floor?",
    "caption": "The Pacific seafloor holds more cobalt than every country's land reserves combined, 44 million tonnes down there versus 11 million tonnes on land. Mining companies have already filed 31 international claims to go get it, even as 37 countries now say the rules aren't ready. Should anyone be allowed to mine the ocean floor? Tell me below 👇",
    "hashtags": [
     "deepseamining",
@@ -24167,8 +24194,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE RUSH",
-     "topic": "deep-sea mining exploration contracts",
-     "say": "Companies have filed 31 international contracts to mine the ocean floor, up from just 8 back in 2001. Nobody owns this seabed, so it's first come, first claimed.",
+     "topic": "Race to mine seabed",
+     "say": "Companies filed 31 contracts to mine the ocean floor, up from 8 in 2001.",
      "scene": {
       "mechanic": "seafloor-claim-flags-plant",
       "concept": "small claim flags plant themselves across a dark seafloor bed one by one as exploration contracts climb from 8 to 31",
@@ -24184,8 +24211,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · THE MECHANISM",
-     "topic": "cobalt on the seafloor vs on land",
-     "say": "Here's why: the seafloor holds 44 million tonnes of cobalt for batteries, more than the 11 million tonnes left in every land mine on Earth combined.",
+     "topic": "Mine seafloor cobalt",
+     "say": "The seafloor holds 44 million tonnes of cobalt, more than the 11 million tonnes on land.",
      "scene": {
       "mechanic": "nodule-pile-vs-landpile",
       "concept": "two rising mounds of polymetallic nodules, the seabed pile towering far above the land-reserves pile",
@@ -24201,15 +24228,17 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · THE CATCH",
-     "topic": "countries demanding a pause on seabed mining",
-     "say": "But the rulebook isn't finished. 24 countries called for a pause in 2024; by 2025 that jumped to 37, all while the claims keep getting filed anyway.",
+     "topic": "No one owns seabed",
+     "say": "24 countries wanted a pause in 2024; by 2025 that jumped to 37.",
      "scene": {
       "mechanic": "world-pause-flag-spread",
       "concept": "small pause-sign flags light up across a world map, spreading from 24 to 37 objecting countries",
       "code": "globe = subject_image('flat world map')\nflag = subject_image('small red pause sign flag')\nif globe is not None:\n    paste(globe, RX0, RTOP + 180, RX1 - RX0, 600)\nt = clamp(reveal)\nv = lerp(values[0], values[1], t)\nlbl = labels[0] if t < 0.5 else labels[1]\ncnt = max(1, int(round(v)))\nseed = 7\npositions = []\nfor k in range(45):\n    seed = (seed * 1103515245 + 12345) % 2147483648\n    fx = RX0 + 40 + (seed % 900) * (RX1 - RX0 - 80) / 900\n    seed = (seed * 1103515245 + 12345) % 2147483648\n    fy = RTOP + 220 + (seed % 500) * 540 / 500\n    positions.append((fx, fy))\nfor k in range(min(cnt, len(positions))):\n    fx, fy = positions[k]\n    if flag is not None:\n        paste(flag, fx - 14, fy - 14, 28, 28)\ntext(lbl, (RX0 + RX1) // 2, RTOP + 70, size=44, color=HIGHLIGHT, center=True)\ntext(f'{int(round(v))} countries', (RX0 + RX1) // 2, RTOP + 840, size=36, color=WARN, center=True)\n"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:56:20Z"
   },
   {
    "slug": "mail-volume-collapse",
@@ -24290,9 +24319,9 @@
   {
    "slug": "clear-air-turbulence-increase",
    "title": "Why Flights Are Getting Bumpier",
-   "hook": "It's not your imagination.",
+   "hook": "Severe turbulence on your Atlantic flight is up 55 percent.",
    "closing": "Buckle up. That's not a suggestion anymore.",
-   "question": "Have you noticed flights getting bumpier lately? Tell me below.",
+   "question": "Noticed flights getting bumpier lately? Tell me below.",
    "caption": "Severe turbulence over the North Atlantic has climbed 55% since 1979, and researchers say a warming climate could roughly double or triple it again by later this century. Have you noticed flights getting bumpier lately? Tell me below 👇",
    "hashtags": [
     "turbulence",
@@ -24320,8 +24349,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE BUMP",
-     "topic": "severe turbulence over the North Atlantic",
-     "say": "Severe turbulence over the North Atlantic climbed from about 18 hours a year in 1979 to over 27 hours by 2020, up 55 percent.",
+     "topic": "Bumpier Atlantic flights",
+     "say": "Severe Atlantic turbulence jumped 55 percent, from 18 hours a year to 27 since 1979.",
      "scene": {
       "mechanic": "shaking-jet-climb",
       "concept": "a small jet rides a widening zig-zag flight line whose jaggedness grows year by year with severe-turbulence hours",
@@ -24337,8 +24366,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · THE PATTERN",
-     "topic": "turbulence increase by severity",
-     "say": "It's not random either: light turbulence rose 17 percent, moderate rose 37 percent, but severe turbulence, the kind that hurts people, rose the most.",
+     "topic": "Flights: turbulence by severity",
+     "say": "Light turbulence rose 17 percent, moderate 37 percent, and severe the most, 55 percent.",
      "scene": {
       "mechanic": "rough-air-bands",
       "concept": "three horizontal turbulence bands fill left-to-right by severity, each edged with a jagged shake-line that gets rougher as the value rises",
@@ -24353,15 +24382,17 @@
      },
      "insight_type": "trend",
      "role": "3 · WHY",
-     "topic": "turbulence under a warming climate",
-     "say": "The cause is a warming jet stream sharpening the wind shear planes fly through, and models show severe turbulence could double, maybe triple, again by later this century.",
+     "topic": "Warming makes flights bumpier",
+     "say": "A warming jet stream sharpens wind shear, so severe turbulence could double again by century's end.",
      "scene": {
       "mechanic": "future-storm-panels",
       "concept": "three time panels (2020/2050/2080) darken with storm color and a jet shakes harder in each one, keyed to projected turbulence hours",
       "code": "cols = n\ngap = 16\ncolw = int((RX1-RX0-gap*(cols-1))/cols)\ntop = RTOP+200\nbot = RBOT-140\nplane = subject_image('airplane flying side view')\nvmax_local = max(values) if values else 1\nfor i in range(cols):\n    x0 = RX0 + i*(colw+gap)\n    frac = clamp(values[i]/vmax_local) * reveal\n    dark = int(lerp(40, 210, frac))\n    d.rounded_rectangle([x0, top, x0+colw, bot], radius=20, fill=rgba((18,18,36), 255))\n    d.rounded_rectangle([x0, top, x0+colw, bot], radius=20, fill=rgba(WARN, dark))\n    if plane is not None:\n        amp = lerp(4, 40, frac)\n        jitter = math.sin(reveal*10 + i) * amp\n        pw2 = int(colw*0.6); ph2 = int(pw2*plane.height/plane.width)\n        paste(plane, x0 + (colw-pw2)//2, int((top+bot)//2 - ph2//2 + jitter), pw2, ph2)\n    text(labels[i], x0+colw//2, bot+30, size=20, color=TEXT, center=True)\n    text(str(int(values[i]))+'h', x0+colw//2, top-36, size=28, color=HIGHLIGHT, center=True)\ntext('projected severe-turbulence hours/year', (RX0+RX1)//2, RTOP+140, size=26, color=WARN, center=True)"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:56:35Z"
   },
   {
    "slug": "lego-minifigs-outnumber-humans",
@@ -24445,9 +24476,9 @@
   {
    "slug": "twin-birth-rate-rise",
    "title": "Why Twin Births Nearly Doubled — Then Started Falling",
-   "hook": "It's not just chance anymore.",
+   "hook": "Your odds of twins nearly doubled: 18.9 to 34 per 1,000.",
    "closing": "Two really did become the new one.",
-   "question": "Do twins run in your family? Tell me below.",
+   "question": "Do twins run in your family?",
    "caption": "US twin births per 1,000 climbed from 18.9 in 1980 to almost 34 by 2014, driven by older moms and fertility treatments, before ticking back down as IVF clinics started transferring just one embryo at a time. Do twins run in your family? Tell me below 👇",
    "hashtags": [
     "twins",
@@ -24476,7 +24507,7 @@
      "insight_type": "trend",
      "role": "1 · THE CLIMB",
      "topic": "US twin birth rate",
-     "say": "The US twin birth rate climbed from 18.9 per 1,000 births in 1980 to almost 34 by 2014, nearly doubling in one generation.",
+     "say": "US twin births climbed from 18.9 per 1,000 in 1980 to almost 34 by 2014.",
      "scene": {
       "mechanic": "twin-curve-ride",
       "concept": "a stroller icon rides a rise-then-dip curve traced from 1980 to 2022, with the peak year highlighted",
@@ -24492,8 +24523,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · WHY",
-     "topic": "twin rate by mother's age",
-     "say": "Part of it is biology: mothers over 40 naturally twin nearly 5 times as often as mothers under 20, and the average age of first-time moms kept rising.",
+     "topic": "twin rate by age",
+     "say": "Mothers over 40 have twins nearly 5 times as often as mothers under 20.",
      "scene": {
       "mechanic": "twin-odds-columns",
       "concept": "six columns filled with a twin-babies image, one per mother's age bracket, rising with the twinning rate",
@@ -24508,22 +24539,24 @@
      },
      "insight_type": "trend",
      "role": "3 · THE REVERSAL",
-     "topic": "twin share of IVF births",
-     "say": "The other driver, IVF, is now reversing it: the twin share of IVF births has crashed from 28 percent in 1997 to just 2 percent, since clinics switched to transferring one embryo at a time.",
+     "topic": "twin IVF births",
+     "say": "IVF twin share crashed from 28 percent in 1997 to 2 percent, thanks to single embryos.",
      "scene": {
       "mechanic": "embryo-dish-drain",
       "concept": "a petri-dish image drains from the top down as the reveal sweeps through years, tracking IVF twin share collapsing from 28% to 2%",
       "code": "n_pts = n\nbuilt = clamp(reveal)*max(n_pts-1,1)\nidx = min(int(built), n_pts-1)\nfracb = built - idx\ncur_val = values[idx]\nif idx < n_pts-1:\n    cur_val = lerp(values[idx], values[idx+1], fracb)\ncur_label = labels[idx]\ndish = subject_image('petri dish embryos')\ncx = (RX0+RX1)//2\ndish_w = 420\ntop_y = RTOP+220\nbot_y = RBOT-180\nvmax_local = max(values) if values else 1\nfrac = clamp(cur_val/vmax_local)\nif dish is not None:\n    fill_image(dish, frac, cx-dish_w//2, top_y, dish_w, bot_y-top_y, direction='down')\nelse:\n    fill_image(None, frac, cx-dish_w//2, top_y, dish_w, bot_y-top_y, direction='down', color=WARN)\nd.rounded_rectangle([cx-dish_w//2, top_y, cx+dish_w//2, bot_y], radius=24, outline=rgba(TEXT,200), width=5)\ntext(cur_label, cx, top_y-50, size=34, color=TEXT, center=True)\ntext(str(round(cur_val,1))+'%', cx, bot_y+40, size=44, color=WARN, center=True)\ntext('twin share of IVF births', cx, RTOP+120, size=28, color=TEXT, center=True)"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:56:56Z"
   },
   {
    "slug": "human-domesticated-14-animals",
    "title": "Humans Have Only Ever Domesticated 14 Large Animals",
-   "hook": "The list closed thousands of years ago.",
+   "hook": "Only 14 animals ever joined your world, and the list closed.",
    "closing": "The dog got there first. Nothing's caught up since.",
-   "question": "If you could domesticate one wild animal, which would you pick? Tell me below.",
+   "question": "Which animal would you domesticate? Comment below.",
    "caption": "Of roughly 148 candidate wild mammals big enough to be worth it, humans have only ever fully domesticated 14, starting with the dog about 15,000 years ago, and the list hasn't grown in about 3,000 years. If you could domesticate one wild animal, which would you pick? Tell me below 👇",
    "hashtags": [
     "domestication",
@@ -24552,8 +24585,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "1 · THE FIRST",
-     "topic": "how long ago each animal was domesticated",
-     "say": "Humans have only fully domesticated about 14 large animal species, ever, and the dog was first, roughly 15,000 years ago, thousands of years before any other.",
+     "topic": "When animals were domesticated",
+     "say": "Humans domesticated only 14 large animals, and the dog came first, roughly 15,000 years ago.",
      "scene": {
       "mechanic": "domestication-column-parade",
       "concept": "a photo column per animal, ordered by how long ago it was domesticated, growing in as reveal sweeps left to right, tallest = oldest",
@@ -24569,8 +24602,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · WHY SO FEW",
-     "topic": "candidate species versus actual successes",
-     "say": "Here's why so few: of roughly 148 wild mammals heavy enough to be worth domesticating, only 14 ever were, because most fail on temperament, diet, or breeding in captivity.",
+     "topic": "Candidates versus domesticated animals",
+     "say": "Of roughly 148 candidate mammals, only 14 made it; most failed on temperament, diet, or breeding.",
      "scene": {
       "mechanic": "species-elimination-grid",
       "concept": "a grid of candidate-species tiles fills in, most fading grey (failed) while a lit few (the actual domesticates) survive next to a real dog photo",
@@ -24585,15 +24618,17 @@
      },
      "insight_type": "trend",
      "role": "3 · THE FLATLINE",
-     "topic": "the domestication count over time",
-     "say": "The count climbed steadily until about 4,000 years ago, then flatlined completely. In all of recorded history since, we haven't fully domesticated one new major species.",
+     "topic": "Domesticated count over time",
+     "say": "The count climbed until about 4,000 years ago, then flatlined; no major species since.",
      "scene": {
       "mechanic": "domestication-ekg-flatline",
       "concept": "a step-style EKG line climbs with each new domesticated species then goes dead flat, a horse photo riding the last pulse",
       "code": "n_pts = n\nx0, x1 = RX0+40, RX1-40\nvmax_local = max(values) if values else 1\ny_top = RTOP+240; y_bot = RBOT-200\npts_all = []\nfor i in range(n_pts):\n    xx = lerp(x0, x1, i/max(n_pts-1,1))\n    yy = y_bot - (values[i]/vmax_local)*(y_bot-y_top)\n    pts_all.append((xx,yy))\nbuilt = clamp(reveal)*max(n_pts-1,1)\nidx = min(int(built), n_pts-1)\nfracb = built - idx\ndraw_pts = []\nfor i in range(idx+1):\n    draw_pts.append(pts_all[i])\nif idx < n_pts-1:\n    xa,ya = pts_all[idx]; xb,yb = pts_all[idx+1]\n    draw_pts.append((lerp(xa,xb,fracb), lerp(ya,yb,fracb)))\nstep_pts = []\nfor i in range(len(draw_pts)):\n    if i == 0:\n        step_pts.append(draw_pts[0])\n    else:\n        py = draw_pts[i-1][1]\n        cx2, cy2 = draw_pts[i]\n        step_pts.append((cx2, py))\n        step_pts.append((cx2, cy2))\nif len(step_pts) >= 2:\n    d.line(step_pts, fill=rgba(HIGHLIGHT,230), width=7)\nhorse = subject_image('horse')\nif draw_pts:\n    lx,ly = draw_pts[-1]\n    d.ellipse([lx-10,ly-10,lx+10,ly+10], fill=rgba(WARN,255))\n    if horse is not None:\n        hw=140; hh=int(hw*horse.height/horse.width)\n        paste(horse, int(lx-hw//2), int(ly-hh-16), hw, hh)\ntext(labels[0]+': '+str(int(values[0])), RX0+20, RTOP+60, size=30, color=TEXT)\ntext(labels[-1]+': '+str(int(values[-1])), RX0+20, RTOP+110, size=36, color=HIGHLIGHT)\ntext('total domesticated species, over time', (RX0+RX1)//2, RBOT-40, size=26, color=TEXT, center=True)"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:57:15Z"
   },
   {
    "slug": "melatonin-kids-er-surge",
@@ -25711,9 +25746,9 @@
   {
    "slug": "self-checkout-cashier-jobs",
    "title": "Self-Checkout Is Quietly Replacing Cashiers (3 Charts)",
-   "hook": "That kiosk replaced somebody's job.",
+   "hook": "Your cashier vanished, and 92% of big grocery chains made you scan.",
    "closing": "The line moved. So did the job.",
-   "question": "Do you use self-checkout, or always pick a cashier? Tell me below.",
+   "question": "Self-checkout or a cashier: which do you pick?",
    "caption": "Self-checkout went from a novelty in 6% of big grocery chains in 2000 to over 90% today, while US cashier employment has been shrinking every year since. There's a catch, though -- stores now lose more to theft at self-checkout than they ever did at a staffed register. Do you use it? 👇",
    "hashtags": [
     "selfcheckout",
@@ -25737,9 +25772,9 @@
       "file": "self_checkout_adoption_trend.json"
      },
      "insight_type": "trend",
-     "topic": "self-checkout adoption in grocery stores",
+     "topic": "Self-checkout adoption",
      "role": "1 · THE TAKEOVER",
-     "say": "In 2000, only 6% of big grocery chains had self-checkout lanes. By 2023, that number was over 92%, almost every major chain now pushes you to scan it yourself.",
+     "say": "In 2000, 6% of big grocery chains had self-checkout; by 2023, over 92% did.",
      "scene": {
       "mechanic": "kiosk-takeover-row",
       "concept": "three lanes of checkout icons per era flip from cashier photos to self-checkout kiosk photos as the adoption share climbs",
@@ -25754,9 +25789,9 @@
      },
      "insight_type": "comparison",
      "use_baseline": false,
-     "topic": "US cashier employment, 2013 vs 2023",
+     "topic": "Cashiers: 2013 vs 2023",
      "role": "2 · THE JOB THAT SHRANK",
-     "say": "That swap has a cost. US cashier employment fell from about 3.5 million workers in 2013 to roughly 3 million by 2023, even as the population kept growing.",
+     "say": "US cashier employment fell from about 3.5 million in 2013 to roughly 3 million by 2023.",
      "scene": {
       "mechanic": "shrinking-cashier-crowd",
       "concept": "a full grid of real cashier photos thins out as US cashier employment falls from 2013 to 2023",
@@ -25771,16 +25806,18 @@
      },
      "insight_type": "comparison",
      "use_baseline": false,
-     "topic": "theft rate: staffed vs self-checkout",
+     "topic": "Self-checkout theft rate",
      "role": "3 · THE TWIST",
-     "say": "Here's the catch: retail loss-prevention data shows self-checkout lanes lose about 4% of sales to theft and errors, versus 1.6% at a staffed register. The savings aren't free.",
+     "say": "Self-checkout lanes lose about 4% of sales to theft and errors, versus 1.6% staffed.",
      "scene": {
       "mechanic": "leaking-register-drawer",
       "concept": "two open cash registers leak coins at a rate proportional to their loss percentage, self-checkout leaking far more",
       "code": "register = subject_image('cash register')\ntop = RTOP + 60\nlx = RX0 + 250\nrx = RX1 - 250\nrw, rh = 220, 200\nif register is not None:\n    paste(register, lx-rw//2, top, rw, rh)\n    paste(register, rx-rw//2, top, rw, rh)\nlabels_txt = ['Staffed', 'Self-checkout']\nvals = [values[0], values[1]]\ncenters = [lx, rx]\ndrip_bot = top + rh + 260\nfor i in range(2):\n    v = vals[i]\n    cx0 = centers[i]\n    nparticles = max(2, int(v*6))\n    shown = int(nparticles*clamp(reveal))\n    for j in range(shown):\n        seedv = i*71 + j*17 + 1\n        tfrac = ((seedv*9301+49297) % 233280)/233280.0\n        fx = (math.sin(seedv*12.9898) * 43758.5453) % 1.0\n        px = cx0 - 40 + fx*80\n        py = top + rh + tfrac*260\n        d.ellipse([px-6, py-6, px+6, py+6], fill=rgba(WARN, 230))\n    text(f'{v:.1f}%', cx0, drip_bot+30, size=42, color=WARN, center=True)\n    text(labels_txt[i], cx0, drip_bot+74, size=28, color=TEXT, center=True)\n"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:57:25Z"
   },
   {
    "slug": "fifty-years-since-moon-landing",
@@ -25858,9 +25895,9 @@
   {
    "slug": "map-distortion-true-size",
    "title": "The Map In Your Head Is Lying To You",
-   "hook": "That map you picture is completely wrong.",
+   "hook": "Your map hides it: Africa is 14 times bigger than Greenland.",
    "closing": "Africa: still bigger than you think.",
-   "question": "Which country do you think looks the wrong size on a map? Drop it below.",
+   "question": "Which country looks the wrong size to you?",
    "caption": "Africa is 14 times bigger than Greenland -- they just look the same size on your map. It's not an accident, it's math: the Mercator projection stretches land more the farther it sits from the equator. See how far off your mental map really is. Which country looks wrong to you? 👇",
    "hashtags": [
     "maps",
@@ -25887,8 +25924,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "1 · THE ILLUSION",
-     "topic": "Greenland vs Africa's real size",
-     "say": "On most maps, Greenland looks nearly as big as Africa. Africa is actually 30.4 million square kilometers — 14 times bigger than Greenland's 2.2 million."
+     "topic": "Greenland vs Africa map",
+     "say": "Africa is 30.4 million square kilometers, 14 times bigger than Greenland's 2.2 million."
     },
     {
      "source": "offline",
@@ -25900,7 +25937,7 @@
      "ascending": false,
      "role": "2 · WHY IT HAPPENS",
      "topic": "map distortion by latitude",
-     "say": "Blame the Mercator projection. It stretches area more as you move from the equator toward the poles — by 60 degrees latitude, land looks 4 times bigger than it really is."
+     "say": "Mercator stretches land toward the poles; by 60 degrees latitude, it looks 4 times bigger."
     },
     {
      "source": "offline",
@@ -25911,18 +25948,20 @@
      "insight_type": "rank",
      "use_baseline": true,
      "role": "3 · THE REAL SCALE",
-     "topic": "Africa vs four countries combined",
-     "say": "Put it together and Africa's real land area, 30.4 million square kilometers, is bigger than the US, China, India, and Japan combined at about 23.1 million.",
+     "topic": "Africa's true map size",
+     "say": "Africa's 30.4 million square kilometers beat the US, China, India and Japan combined at 23.1 million.",
      "ascending": false
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:57:47Z"
   },
   {
    "slug": "left-brain-right-brain-myth",
    "title": "You're Not Actually Left-Brained Or Right-Brained",
-   "hook": "Left-brained? Right-brained? Neither is real.",
+   "hook": "Scans of 1,011 brains wiped out your left-brain, right-brain label.",
    "closing": "Your brain works as one team.",
-   "question": "Ever been told you're 'more right-brained'? Tell me below.",
+   "question": "Ever been called 'more right-brained'? Tell me below.",
    "caption": "A study scanned 1,011 brains looking for 'left-brained' and 'right-brained' personality types. It found zero. Some brain jobs really are lateralized (language leans 96% left) -- but your overall personality isn't one of them. Here's what the science actually shows. Ever been called 'more right-brained'? 👇",
    "hashtags": [
     "brain",
@@ -25949,8 +25988,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "1 · WHAT'S ACTUALLY LATERALIZED",
-     "topic": "how one-sided different brain jobs are",
-     "say": "Some brain jobs really do lean one way. In right-handed people, language sits about 96% in the left hemisphere. But your overall personality? That split barely exists."
+     "topic": "Left, right brain jobs",
+     "say": "Language sits about 96% in the left hemisphere for right-handers, but personality barely splits."
     },
     {
      "source": "offline",
@@ -25961,8 +26000,8 @@
      "insight_type": "rank",
      "use_baseline": true,
      "role": "2 · THE STUDY THAT TESTED IT",
-     "topic": "the 2013 brain scan that tested the myth",
-     "say": "In 2013, researchers scanned 1,011 brains and checked 7 separate brain networks for a personality link. 0 of the 7 matched the popular left-brain, right-brain idea.",
+     "topic": "The 2013 left-brain test",
+     "say": "In 2013, scans of 1,011 brains found 0 of 7 networks matched the myth.",
      "ascending": false
     },
     {
@@ -25974,10 +26013,12 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · WHY",
-     "topic": "how connected the two halves really are",
-     "say": "That's because the two halves aren't separate teams. The corpus callosum alone carries about 200 million nerve fibers, constantly trading signals between them."
+     "topic": "How left meets right",
+     "say": "The corpus callosum carries about 200 million nerve fibers, constantly trading signals between both halves."
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:57:58Z"
   },
   {
    "slug": "religious-nones-rise",
@@ -26103,9 +26144,9 @@
   {
    "slug": "north-american-bird-collapse",
    "title": "North America Lost 3 Billion Birds Since 1970",
-   "hook": "The birds outside your window are disappearing.",
-   "closing": "Turns out silence was the warning the whole time.",
-   "question": "Have you noticed fewer birds where you live? Tell me below.",
+   "hook": "Nearly 3 billion birds vanished from your sky.",
+   "closing": "Silence was the warning all along.",
+   "question": "Noticed fewer birds near you?",
    "caption": "North America has lost 3 billion birds -- 29% of all birds -- since 1970, and just 12 common families make up 90% of that loss. It's not rare species vanishing, it's the birds in your backyard. Proof it's fixable: waterfowl are up 56% thanks to conservation. Have you noticed fewer birds around you? 👇",
    "hashtags": [
     "birds",
@@ -26133,8 +26174,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE SCALE",
-     "topic": "total North American bird abundance",
-     "say": "In 1970, North America had about 10.1 billion breeding birds. By 2017 it was down to 7.2 billion -- nearly 3 billion gone, a 29 percent drop in under 50 years."
+     "topic": "Total North America Birds",
+     "say": "Since 1970, North America lost nearly 3 billion birds, a 29 percent drop."
     },
     {
      "source": "offline",
@@ -26146,8 +26187,8 @@
      "ascending": true,
      "use_baseline": false,
      "role": "2 · NOT EVEN",
-     "topic": "population change by bird group",
-     "say": "But losses weren't even. Grassland birds fell 53 percent and shorebirds fell 37 percent -- while waterfowl actually grew 56 percent, thanks to decades of wetland conservation funded by hunters."
+     "topic": "Birds By Group",
+     "say": "Grassland birds fell 53 percent and shorebirds 37, but waterfowl grew 56 percent."
     },
     {
      "source": "offline",
@@ -26158,11 +26199,13 @@
      "insight_type": "rank",
      "use_baseline": true,
      "role": "3 · WHICH BIRDS",
-     "topic": "share of the loss in common families",
-     "say": "And it's not exotic rarities. Just 12 familiar families -- sparrows, blackbirds, finches, warblers -- make up 90 percent of the total loss. Ordinary backyard birds, not rare ones, are vanishing.",
+     "topic": "Birds Behind the Loss",
+     "say": "Just 12 familiar families, like sparrows and finches, account for 90 percent of the loss.",
      "ascending": false
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:58:47Z"
   },
   {
    "slug": "kids-phones-getting-younger",
@@ -26233,9 +26276,9 @@
   {
    "slug": "us-height-ranking-fall",
    "title": "Americans Used To Be The Tallest People On Earth (3 Charts)",
-   "hook": "Americans used to be the tallest on Earth.",
+   "hook": "Americans once towered over the world — now 36 countries stand taller.",
    "closing": "Turns out tall was never really about genetics.",
-   "question": "Are you taller or shorter than your grandparents? Tell me below.",
+   "question": "Are you taller than your grandparents?",
    "caption": "A century ago, American men were the third-tallest in the world. Today the US ranks 37th, as South Korea, Iran and others raced ahead on better childhood nutrition and healthcare. Height isn't just genetics -- it's basically a scoreboard for how a country raises its kids. Are you taller than your grandparents were? 👇",
    "hashtags": [
     "height",
@@ -26264,8 +26307,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "1 · A REAL GAIN",
-     "topic": "average height of American men",
-     "say": "In 1914, the average American man stood about 171 centimeters. By 2014 that reached 177 -- a real gain, but a modest one compared to what was coming next."
+     "topic": "American men's height",
+     "say": "In 1914 the average American man stood about 171 centimeters; by 2014, 177."
     },
     {
      "source": "offline",
@@ -26277,8 +26320,8 @@
      "ascending": false,
      "use_baseline": false,
      "role": "2 · EVERYONE ELSE SPED UP",
-     "topic": "height gained over the century, by nation",
-     "say": "Compare that to South Korean women, who gained 20.2 centimeters over the same century, or Iranian men, up 16.5. America's growth practically stalled while other nations transformed."
+     "topic": "Nations outgrowing Americans",
+     "say": "South Korean women gained 20.2 centimeters in a century; Iranian men gained 16.5."
     },
     {
      "source": "offline",
@@ -26289,10 +26332,12 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · THE RANKING FLIPPED",
-     "topic": "countries now taller than the US",
-     "say": "And the ranking flipped. In 1914, only 2 countries had taller men than America. By 2014, 36 did. Height isn't genetics -- it's a scoreboard for how well a country feeds its kids."
+     "topic": "Countries taller than Americans",
+     "say": "In 1914 only 2 countries had taller men than America; by 2014, 36 did."
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:58:59Z"
   },
   {
    "slug": "global-displacement-record",
@@ -26883,9 +26928,9 @@
   {
    "slug": "divorce-rate-quiet-decline",
    "title": "Everyone Assumes Divorce Is Rising. It Isn't.",
-   "hook": "You've been told half of marriages fail.",
+   "hook": "Divorce collapsed from 4.7 per 1,000 to 2.4, and nobody bothered to tell you.",
    "closing": "Waiting turned out to be the plot twist.",
-   "question": "How old were your parents when they got married? Tell me below.",
+   "question": "How old were your parents when married?",
    "caption": "The US divorce rate has been cut nearly in half since 1990 — from 4.7 per 1,000 people down to 2.4. One quiet reason: people are waiting almost five years longer to say 'I do.' How old were your parents when they married?",
    "hashtags": [
     "divorce",
@@ -26910,7 +26955,8 @@
      "insight_type": "trend",
      "role": "1 · THE MYTH",
      "topic": "US divorce rate",
-     "say": "In 1990, the US recorded 4.7 divorces for every 1,000 people. By 2022, that had fallen to 2.4 — roughly half, and still dropping."
+     "say": "In 1990 the US recorded 4.7 divorces per 1,000 people; by 2022, just 2.4.",
+     "illustrated_scene": "def _sheet(cr, x, y, w, h, ang, rgb, a=1.0):\n    cr.save()\n    cr.translate(x, y)\n    cr.rotate(ang)\n    cr.rectangle(-w / 2, -h / 2, w, h)\n    solid(cr, rgb, a=a, depth=0.3)\n    cr.set_source_rgba(*_c(INK_2, 0.35 * a))\n    cr.set_line_width(2)\n    for k in range(3):\n        cr.move_to(-w / 2 + 10, -h / 2 + 5 + k * 4)\n        cr.line_to(w / 2 - 14 - 12 * k, -h / 2 + 5 + k * 4)\n    cr.stroke()\n    cr.restore()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a stack of divorce papers\n    SUBSTANCE: divorce decree sheets\n    CAUSE: Data tosses sheets off the top of the stack into the bin as the yearly pile shrinks\n    The court's stack of divorce decrees on the clerk's desk: one sheet per\n    0.1 divorces per 1,000 people. Each year the stack is cut to that year's\n    rate as Data, standing on it, throws the surplus sheets into the bin and\n    rides the pile down. A dashed ghost keeps the 1990 height in view.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts]) or [(\"\", 0.0)]\n    m = len(rows)\n    ns = [max(1, int(round(v * 10))) for _, v in rows]\n    N = max(ns)\n    th = min(16.0, 720.0 / N)\n    SX, SW, SD = 470.0, 360.0, 80.0\n    BASE = 1470.0\n    dy = SD * 0.55\n    BINX, BINY = 110.0, 1470.0\n\n    # --- the schedule: one cut per year, then a hold to read it\n    first, span = 0.14, 0.76\n    gap = span / max(1, m - 1)\n    win = gap * 0.68\n    dur = 0.075\n    events = {}          # sheet index -> (start, +1 remove / -1 add)\n    for i in range(1, m):\n        w0 = first + gap * (i - 1)\n        hi, lo = ns[i - 1], ns[i]\n        cnt = abs(hi - lo)\n        js = list(range(hi - 1, lo - 1, -1)) if hi > lo else list(range(hi, lo))\n        for q, j in enumerate(js):\n            st = w0 + (win - dur) * q / max(1, cnt - 1)\n            events[j] = (st, 1 if hi > lo else -1)\n    stage = 0\n    for i in range(1, m):\n        if u >= first + gap * (i - 1) + win * 0.5:\n            stage = i\n    working = any(first + gap * (i - 1) <= u <= first + gap * (i - 1) + win\n                  for i in range(1, m))\n\n    # --- the courtroom: panelled wood wall, a tall window of light\n    vgrad(cr, [(0.0, (58, 42, 34)), (0.6, (84, 60, 44)), (1.0, (46, 32, 26))], 0, H)\n    for k in range(6):\n        x = 20 + k * 180\n        cr.rectangle(x, 160, 150, 1060)\n        solid(cr, (96, 70, 50), rim=True, depth=0.6)\n    glow(cr, 300, 380, 420, (255, 226, 170), 0.35)\n    haze(cr, 0, 1200, (70, 52, 40), a=0.35)\n\n    # --- the clerk's desk\n    vgrad(cr, [(0.0, (120, 82, 54)), (1.0, (60, 40, 28))], BASE, H)\n    cr.rectangle(0, BASE - 8, W, 22)\n    solid(cr, (150, 104, 66), finish=\"gloss\", depth=0.4)\n\n    # the waste bin\n    contact_shadow(cr, BINX + 75, BINY, 190)\n    cylinder(cr, BINX, BINY, 150, 170, (90, 96, 104), finish=\"metal\")\n\n    # the gavel and two parted rings beside the stack\n    contact_shadow(cr, 985, BASE, 120, a=0.3)\n    cylinder(cr, 940, BASE, 90, 22, (110, 70, 40), finish=\"gloss\")\n    cr.save()\n    cr.translate(990, BASE - 60)\n    cr.rotate(-0.35)\n    cr.rectangle(-8, 0, 16, 70)\n    solid(cr, (130, 84, 48), finish=\"gloss\")\n    cr.rectangle(-48, -26, 96, 44)\n    solid(cr, (110, 66, 38), finish=\"gloss\")\n    cr.restore()\n    for rx, ry in ((400, BASE - 22), (442, BASE - 16)):\n        cr.save()\n        cr.translate(rx, ry)\n        cr.scale(1.0, 0.45)\n        cr.arc(0, 0, 18, 0, 2 * math.pi)\n        cr.restore()\n        cr.set_line_width(8)\n        cr.set_source_rgba(*_c(P[\"coin\"]))\n        cr.stroke()\n\n    # --- the stack\n    contact_shadow(cr, SX + SW / 2 + SD / 2, BASE + 4, SW + 120, a=0.45)\n    if stage >= 1:   # the 1990 height, ghosted\n        top0 = BASE - ns[0] * th\n        cr.set_dash([14, 10])\n        cr.set_line_width(3)\n        cr.set_source_rgba(*_c(look.INK, 0.45))\n        cr.rectangle(SX, top0, SW, BASE - top0)\n        cr.stroke()\n        cr.set_dash([])\n        text(cr, f\"{rows[0][0]}: {rows[0][1]:.1f}\", SX + SW + SD + 4, top0 + 6, 34,\n             look.INK, anchor=\"right\", alpha=0.7 * ease(seg(u, first, first + 0.06)))\n    flying = []\n    height = 0.0\n    for j in range(N):\n        ev = events.get(j)\n        if ev is None:\n            present = 1.0 if j < ns[0] else 0.0\n            p = 0.0\n        else:\n            p = seg(u, ev[0], ev[0] + dur)\n            if ev[1] > 0:\n                present = 0.0 if p > 0 else 1.0\n                if 0 < p < 1:\n                    flying.append((j, p))\n            else:\n                present = ease(p)\n        if j >= ns[0] and ev is None:\n            continue\n        height += present\n    nstand = int(height + 0.999)\n    for j in range(nstand):\n        tint = 0.0 if j % 7 else 0.06\n        col = tuple(int(c * (1 - tint)) for c in P[\"paper\"])\n        box(cr, SX + ((j * 37) % 9) - 4, BASE - j * th, SW, th, col, depth=SD)\n    top = BASE - height * th\n    # the decree on top: a red court seal\n    disc(cr, SX + SW * 0.72, top - dy * 0.5, 16, (178, 40, 40), finish=\"gloss\")\n    cr.set_source_rgba(*_c(INK_2, 0.5))\n    cr.set_line_width(3)\n    for k in range(3):\n        cr.move_to(SX + 40 + k * 10, top - dy * (0.25 + 0.2 * k))\n        cr.line_to(SX + 170 + k * 10, top - dy * (0.25 + 0.2 * k))\n    cr.stroke()\n\n    # sheets in flight, arcing into the bin\n    sx0, sy0 = SX + SW * 0.35, top - 60\n    for j, p in flying:\n        e = ease(p)\n        fx = sx0 + (BINX + 75 - sx0) * e\n        fy = sy0 + (BINY - 170 - sy0) * e - 260 * math.sin(math.pi * e)\n        _sheet(cr, fx, fy, 130, 14, -0.6 + 2.4 * e, P[\"paper\"], a=1.0 - 0.6 * seg(p, 0.85, 1.0))\n\n    # --- Data rides the stack down, tossing the surplus\n    hx = SX + SW * 0.5 + SD * 0.5 - 60 * (stage / max(1, m - 1))\n    hy = top - dy * 0.5\n    if u < first:\n        role = \"point\"\n    elif u > 0.93:\n        role = \"cheer\"\n    elif working:\n        role = \"toss\"\n    else:\n        role = \"hold_up\"\n    host(role, hx, hy, 210, beat=stage)\n\n    vignette(cr, 0.3)\n\n    # --- readouts\n    lab, val = rows[stage]\n    fit_readout(cr, f\"{val:.1f}\", f\"divorces per 1,000 · {lab}\", 80, 500,\n                a=ease(seg(u, 0.0, 0.08)), size=150, max_w=340)\n    b = ease(seg(u, 0.88, 0.96))\n    if b > 0 and m > 1:\n        fit_readout(cr, f\"{rows[0][1]:.1f} → {rows[-1][1]:.1f}\",\n                    f\"per 1,000 · {rows[0][0]} to {rows[-1][0]}\", 80, 860,\n                    a=b, rgb=P[\"accent2\"], size=80, max_w=340)\n"
     },
     {
      "source": "offline",
@@ -26920,10 +26966,14 @@
      },
      "insight_type": "trend",
      "role": "2 · THE REASON",
-     "topic": "age at first marriage",
-     "say": "One big reason: people wait. The median age women first marry climbed from 23.9 to 28.6 over that same stretch — nearly five extra years to actually know the person first."
+     "topic": "Later marriage, less divorce",
+     "say": "Women's median age at first marriage climbed from 23.9 to 28.6.",
+     "illustrated_scene": "def _ell(cr, cx, cy, rx, ry, a0, a1, n=28, start=False):\n    for i in range(n + 1):\n        a = a0 + (a1 - a0) * i / n\n        x, y = cx + rx * math.cos(a), cy + ry * math.sin(a)\n        if start and i == 0:\n            cr.move_to(x, y)\n        else:\n            cr.line_to(x, y)\n\n\ndef _tier(cr, cx, ytop, h, rx, ry):\n    cream, icing = (246, 236, 222), (255, 251, 244)\n    cr.move_to(cx - rx, ytop)\n    cr.line_to(cx - rx, ytop + h)\n    _ell(cr, cx, ytop + h, rx, ry, math.pi, 0.0)\n    cr.line_to(cx + rx, ytop)\n    cr.close_path()\n    solid(cr, cream, finish=\"gloss\")\n    # a satin ribbon round the base of the tier\n    cr.move_to(cx - rx, ytop + h - 34)\n    _ell(cr, cx, ytop + h - 34, rx, ry, math.pi, 0.0)\n    _ell(cr, cx, ytop + h - 12, rx, ry, 0.0, math.pi)\n    cr.close_path()\n    solid(cr, (214, 176, 150), finish=\"gloss\", rim=False)\n    _ell(cr, cx, ytop, rx, ry, 0.0, 2 * math.pi, 40, start=True)\n    cr.close_path()\n    solid(cr, icing, depth=0.5)\n    for i in range(22):                       # piped icing beads on the rim\n        a = math.pi * (i + 0.5) / 22\n        disc(cr, cx + rx * math.cos(a), ytop + ry * math.sin(a) + 4, 9, icing)\n    for i in range(18):                       # and along the foot\n        a = math.pi * (i + 0.5) / 18\n        disc(cr, cx + rx * math.cos(a), ytop + h + ry * math.sin(a) - 4, 10, icing)\n\n\ndef _candle(cr, x, y, rgb, t, a=1.0, s=1.0, k=0):\n    if a <= 0:\n        return\n    h, w = 56 * s, 16 * s\n    cr.rectangle(x - w / 2, y - h, w, h)\n    solid(cr, rgb, finish=\"gloss\", a=a)\n    fy = y - h - 4\n    fl = 1.0 + 0.08 * math.sin(t * 9 + k * 1.7)\n    glow(cr, x, fy - 14 * s, 34 * s, P[\"sun_glow\"], 0.55 * a)\n    cr.move_to(x, fy - 30 * s * fl)\n    cr.curve_to(x + 9 * s, fy - 14 * s, x + 8 * s, fy, x, fy)\n    cr.curve_to(x - 8 * s, fy, x - 9 * s, fy - 14 * s, x, fy - 30 * s * fl)\n    cr.close_path()\n    cr.set_source_rgba(*_c(P[\"sun\"], a))\n    cr.fill()\n    cr.move_to(x, fy - 16 * s * fl)\n    cr.curve_to(x + 4 * s, fy - 8 * s, x + 3 * s, fy, x, fy)\n    cr.curve_to(x - 3 * s, fy, x - 4 * s, fy - 8 * s, x, fy - 16 * s * fl)\n    cr.close_path()\n    cr.set_source_rgba(*_c((255, 255, 236), a))\n    cr.fill()\n\n\ndef _topper(cr, cx, base):\n    cr.set_source_rgba(*_c(P[\"brass\"]))\n    cr.set_line_width(7)\n    cr.arc(cx, base - 70, 78, math.pi, 2 * math.pi)\n    cr.stroke()\n    # bride: a white gown, a veil\n    cr.move_to(cx + 22, base - 92)\n    cr.line_to(cx + 52, base)\n    cr.line_to(cx - 6, base)\n    cr.close_path()\n    solid(cr, (250, 248, 244), finish=\"gloss\")\n    disc(cr, cx + 22, base - 106, 14, (232, 196, 170))\n    cr.move_to(cx + 22, base - 120)\n    cr.line_to(cx + 44, base - 60)\n    cr.line_to(cx + 30, base - 60)\n    cr.close_path()\n    solid(cr, (236, 236, 240), a=0.8, rim=False)\n    # groom: a dark suit\n    cr.rectangle(cx - 46, base - 92, 34, 92)\n    solid(cr, (40, 40, 52))\n    disc(cr, cx - 29, base - 106, 14, (226, 188, 160))\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a tiered wedding cake\n    SUBSTANCE: lit candles, one per year\n    CAUSE: Data places a new lit candle on the cake for each year the bride ages\n    A wedding cake carries one candle for every year of the median woman's\n    age on her first wedding day. Each time the data moves on, Data carries\n    the next candle across and places it on the bottom tier; the added\n    years burn in the accent beside the ones she already had in 1990.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    counts = [int(round(v)) for _, v in rows]\n    t0, t1 = 0.12, 0.74\n    d = (t1 - t0) / max(1, n - 1)\n    t_gain = 0.84\n\n    # the reception hall\n    vgrad(cr, [(0, (44, 30, 50)), (0.55, (92, 62, 74)), (1, (60, 40, 46))], 0, H)\n    for wx in (150, 540, 930):                    # tall arched windows\n        cr.move_to(wx - 110, 1260)\n        cr.line_to(wx - 110, 560)\n        cr.arc(wx, 560, 110, math.pi, 2 * math.pi)\n        cr.line_to(wx + 110, 1260)\n        cr.close_path()\n        solid(cr, (70, 86, 128), finish=\"glass\", rim=False)\n    haze(cr, 400, 1300, (92, 62, 74), a=0.55)\n    cr.set_source_rgba(*_c((40, 28, 34), 0.6))\n    cr.set_line_width(3)\n    cr.move_to(0, 330)\n    cr.curve_to(300, 430, 780, 430, W, 330)\n    cr.stroke()\n    for i in range(13):                           # string lights hung across\n        x = i * 90\n        sy = 330 + 100 * math.sin(math.pi * x / W) * 0.75\n        glow(cr, x, sy + 10, 26, P[\"sun_glow\"], 0.5)\n        disc(cr, x, sy + 10, 7, (255, 226, 160), finish=\"glass\")\n    vgrad(cr, [(0, (120, 84, 70)), (1, (64, 42, 38))], 1420, H)   # floor\n\n    # the cake\n    cx = 540\n    contact_shadow(cr, cx, 1520, 900, a=0.45)\n    _ell(cr, cx, 1505, 420, 92, 0, 2 * math.pi, 40, start=True)\n    cr.close_path()\n    solid(cr, (196, 200, 210), finish=\"metal\")\n\n    # the slots: top ring, mid ledge, bottom ledge (back ones are 1990's)\n    top = [(cx + 0.8 * 180 * math.cos(0.3 + i * 2 * math.pi / 8),\n            930 + 0.8 * 40 * math.sin(0.3 + i * 2 * math.pi / 8)) for i in range(8)]\n    mid = []\n    for a in (-0.6, -0.3, 0.0, 0.3, 0.6):\n        mid += [(cx + 270 * math.cos(a), 1110 + 60 * math.sin(a)),\n                (cx - 270 * math.cos(a), 1110 + 60 * math.sin(a))]\n    bot_back = []\n    for a in (-0.15, -0.35, -0.55):\n        bot_back += [(cx + 360 * math.cos(a), 1300 + 80 * math.sin(a)),\n                     (cx - 360 * math.cos(a), 1300 + 80 * math.sin(a))]\n    initial = top + mid + bot_back\n    n0 = min(counts[0], len(initial))\n    right = [(cx + 360 * math.cos(a), 1300 + 80 * math.sin(a)) for a in (0.12, 0.32, 0.52)]\n    left = [(cx - 360 * math.cos(a), 1300 + 80 * math.sin(a)) for a in (0.12, 0.32, 0.52)]\n    XR, XL, FOOT = 965, 115, 1525\n\n    def side_x(k):\n        return XL if k % 2 == 0 else XR\n\n    # candles each step adds go to the side Data walks to\n    adds = []\n    used = {\"L\": 0, \"R\": 0}\n    for k in range(1, n):\n        key = \"R\" if k % 2 else \"L\"\n        sl = right if key == \"R\" else left\n        for j in range(max(0, counts[k] - counts[k - 1])):\n            adds.append((k, sl[used[key] % len(sl)]))\n            used[key] += 1\n\n    def strike(k):\n        return t0 + (k - 1) * d + 0.6 * d\n\n    candles = []\n    open_in = ease(seg(u, 0.0, 0.08))\n    for i in range(n0):\n        candles.append((initial[i][0], initial[i][1], (238, 230, 214), open_in, 1.0))\n    for k, (x, y) in adds:\n        p = seg(u, strike(k), strike(k) + 0.04)\n        if p > 0:\n            candles.append((x, y, P[\"accent2\"], 1.0, pop(p)))\n\n    def draw_candles(lo, hi, front):\n        mid_y = hi - (hi - lo) / 2\n        for i, (x, y, rgb, a, s) in enumerate(sorted(candles, key=lambda c: c[1])):\n            if lo <= y < hi and ((y >= mid_y) == front):\n                _candle(cr, x, y, rgb, t, a=a, s=s, k=i)\n\n    _tier(cr, cx, 1300, 200, 360, 80)\n    draw_candles(1220, 1380, False)\n    _tier(cr, cx, 1110, 190, 270, 60)\n    draw_candles(1050, 1170, False)\n    _tier(cr, cx, 930, 180, 180, 40)\n    roses = [(-150, 1020), (-120, 1060), (-235, 1200),\n             (-205, 1240), (-315, 1390), (-280, 1420)]\n    for fx, fy in roses:                          # sugar roses\n        disc(cr, cx + fx, fy, 20, (226, 140, 160), finish=\"gloss\")\n        disc(cr, cx + fx + 16, fy + 12, 11, P[\"leaf\"])\n    draw_candles(890, 970, False)\n    _topper(cr, cx, 930)\n    draw_candles(890, 970, True)\n    draw_candles(1050, 1170, True)\n    draw_candles(1220, 1380, True)\n\n    # Data: carries each candle across and places it\n    k_now = 0\n    for k in range(1, n):\n        if u >= t0 + (k - 1) * d:\n            k_now = k\n    held = None\n    if k_now == 0:\n        x, role, beat, pace = XL, \"point\", 0, False\n    else:\n        p = seg(u, t0 + (k_now - 1) * d, t0 + k_now * d)\n        a_x, b_x = side_x(k_now - 1), side_x(k_now)\n        mine = [s for k, s in adds if k == k_now]\n        if p < 0.4:\n            x = a_x + (b_x - a_x) * ease(p / 0.4)\n            role, beat, pace = \"hold_up\", k_now, True\n            if mine:\n                held = (x, FOOT - 245)\n        else:\n            x, role, beat, pace = b_x, \"place\", k_now, False\n            if mine and p < 0.6:\n                f = ease((p - 0.4) / 0.2)\n                hx = x + (mine[0][0] - x) * f\n                hy = (FOOT - 245) + (mine[0][1] - (FOOT - 245)) * f\n                held = (hx, hy)\n        if u >= t_gain:\n            role = \"cheer\"\n    contact_shadow(cr, x, FOOT, 130, a=0.35)\n    host(role, x, FOOT, 230, pace=pace, beat=beat)\n    if held:\n        _candle(cr, held[0], held[1], P[\"accent2\"], t, s=1.0, k=99)\n\n    vignette(cr, 0.32)\n\n    # readout: each year's age while the candles go on, then the gain itself\n    if u >= t_gain:\n        gain = rows[-1][1] - rows[0][1]\n        big = \"+\" + format(gain, \".1f\") + \" years\"\n        small = \"older at first marriage than in \" + rows[0][0]\n        fit_readout(cr, big, small, 80, 520, rgb=P[\"accent2\"], size=130)\n    else:\n        idx = 0\n        for k in range(1, n):\n            if u >= strike(k):\n                idx = k\n        lab, val = rows[idx]\n        small = \"her median age at first marriage, \" + lab\n        fit_readout(cr, format(val, \".1f\") + \" years\", small, 80, 520,\n                    a=ease(seg(u, 0.0, 0.08)), size=130)\n"
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T11:59:35Z",
+   "hook_was": "Divorce nearly halved to 2.4 per 1,000, and nobody told you."
   },
   {
    "slug": "blood-supply-three-percent",
@@ -26974,9 +27024,9 @@
   {
    "slug": "library-digital-shift",
    "title": "Why Is Nobody Walking Into Libraries Anymore?",
-   "hook": "Nobody's walking in anymore. So what happened?",
-   "closing": "The card just moved to your pocket.",
-   "question": "When's the last time you set foot in a library? Tell me below.",
+   "hook": "Your town's library visits vanished by 46%!",
+   "closing": "Your library card now lives in your pocket.",
+   "question": "When did you last visit a library?",
    "caption": "In-person visits to US public libraries crashed from 1.25 billion in 2019 to well under a billion today. But digital checkouts through library apps more than doubled over the same years, hitting 739 million in 2024. When's the last time you actually walked into one?",
    "hashtags": [
     "libraries",
@@ -26999,8 +27049,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE EMPTY BUILDING",
-     "topic": "physical library visits",
-     "say": "In 2019, Americans walked into a public library 1.25 billion times. By 2022, that crashed to 671 million — and even after rebounding to 800 million in 2023, it's still far below where it started."
+     "topic": "Library visits",
+     "say": "Visits fell to 671 million in 2022, down 46 % from 1.25 billion."
     },
     {
      "source": "offline",
@@ -27010,10 +27060,12 @@
      },
      "insight_type": "trend",
      "role": "2 · WHERE IT WENT",
-     "topic": "digital library checkouts",
-     "say": "But borrowing didn't stop — it moved. Digital checkouts through library apps climbed from 326 million in 2019 to 739 million in 2024, more than doubling."
+     "topic": "Library checkouts",
+     "say": "Digital checkouts rose to 739 million in 2024, more than double 2019."
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T12:16:49Z"
   },
   {
    "slug": "ocean-floor-vs-mars-mapped",
@@ -27079,9 +27131,9 @@
   {
    "slug": "freshwater-accessible",
    "title": "How Much Of Earth's Water You Can Actually Drink",
-   "hook": "Almost none of Earth's water is drinkable.",
+   "hook": "Your coffee vanished: only 0.007% of water is drinkable!",
    "closing": "Drink up. There's not much to go around.",
-   "question": "Did you know that number was this small? Tell me below.",
+   "question": "Surprised by that tiny number? Comment below.",
    "caption": "96.5% of Earth's water is ocean. Almost all the rest is frozen or buried underground. What's left in every lake and river combined? A rounding error. 👇",
    "hashtags": [
     "water",
@@ -27107,9 +27159,9 @@
      "insight_type": "rank",
      "use_baseline": true,
      "ascending": false,
-     "topic": "Earth's water: saline vs. fresh",
+     "topic": "Water: saline vs fresh",
      "role": "1 · THE SPLIT",
-     "say": "Of every drop of water on this planet, roughly 96.5 percent is salty ocean water. Only 3.5 percent of it is freshwater at all."
+     "say": "96.5% of Earth's water is salty ocean water; only 3.5% is freshwater."
     },
     {
      "source": "offline",
@@ -27119,9 +27171,9 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "where the freshwater actually is",
+     "topic": "Water: where fresh",
      "role": "2 · THE CATCH",
-     "say": "And almost all of that freshwater is locked away: 68.7 percent frozen in glaciers and ice caps, another 30.1 percent buried underground."
+     "say": "Of that freshwater, 68.7% is frozen in ice, and 30.1% lies underground."
     },
     {
      "source": "offline",
@@ -27131,18 +27183,20 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "what's actually reachable",
+     "topic": "Water: what's reachable",
      "role": "3 · THE LEFTOVER",
-     "say": "Add it all up and the water in every lake and river combined, the stuff you can actually reach, comes to about 0.007% of all the water on Earth."
+     "say": "Lakes and rivers hold only about 0.007% of all Earth's water."
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T12:16:54Z"
   },
   {
    "slug": "cargo-ship-size-growth",
    "title": "Cargo Ships Quietly Got Six Times Bigger",
-   "hook": "This ship is longer than the Titanic.",
-   "closing": "One captain. Twenty-four thousand boxes. No pressure.",
-   "question": "Did you know ships got that much bigger? Tell me below.",
+   "hook": "Your harbor vanished under 6‑times bigger ships",
+   "closing": "One captain. Twenty‑four thousand boxes. No pressure.",
+   "question": "Your thoughts on massive ships?",
    "caption": "The biggest cargo ship in 1980 carried 4,000 containers. Today's record holder carries 24,327, with roughly the same size crew. Here's how shipping quietly scaled up. 👇",
    "hashtags": [
     "cargoships",
@@ -27165,9 +27219,9 @@
       "file": "container_ship_capacity_trend.json"
      },
      "insight_type": "trend",
-     "topic": "biggest container ship, 1980-2024",
+     "topic": "Cargo ships size",
      "role": "1 · THE CLIMB",
-     "say": "In 1980, the biggest container ship on Earth carried about 4,000 boxes. By 2024, the record holder carries 24,327, six times more, on one hull."
+     "say": "In 1980 ships carried about 4,000 boxes; by 2024 they carry 24,327."
     },
     {
      "source": "offline",
@@ -27178,9 +27232,9 @@
      "insight_type": "rank",
      "use_baseline": true,
      "ascending": false,
-     "topic": "today's biggest ship vs. the Titanic",
+     "topic": "Ships vs Titanic",
      "role": "2 · THE SCALE",
-     "say": "That record holder, the MSC Irina, stretches about 400 meters, longer than the Titanic, just to move boxes across an ocean."
+     "say": "The MSC Irina spans roughly 400 meters, longer than the Titanic."
     },
     {
      "source": "offline",
@@ -27190,16 +27244,18 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "crew size, then vs. now",
+     "topic": "Ships crew",
      "role": "3 · THE CATCH",
-     "say": "Yet the crew barely changed. About 20 people run a ship six times the size, thanks to automation, same crew, six times the cargo."
+     "say": "Only about 20 crew operate a vessel six times larger than 1980 ships."
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T12:21:23Z"
   },
   {
    "slug": "ceo-executive-pay-gap",
    "title": "The Gap Between CEO Pay And Your Pay Exploded",
-   "hook": "CEOs didn't always make this much.",
+   "hook": "Your town’s wages vanished against 281‑to‑1 CEO gap!",
    "closing": "Monday morning. Your whole year, gone.",
    "question": "Does that ratio surprise you? Tell me below.",
    "caption": "CEO pay is up 1,085% since 1978. Typical worker pay? 24%. At today's ratio, a CEO earns your yearly salary before their first coffee break clears. 👇",
@@ -27225,9 +27281,9 @@
       "file": "ceo_worker_pay_ratio_trend.json"
      },
      "insight_type": "trend",
-     "topic": "CEO-to-worker pay ratio, 1965-2024",
+     "topic": "CEO‑to‑worker gap",
      "role": "1 · THE CLIMB",
-     "say": "In 1965, a CEO made about 21 times what a typical worker earned. By 2000 that ratio hit 398 to 1. It's since cooled to 281 to 1, still enormous."
+     "say": "In 1965 CEOs earned 21 times workers; by 2000 it hit 398 to 1."
     },
     {
      "source": "offline",
@@ -27238,9 +27294,9 @@
      "insight_type": "rank",
      "use_baseline": true,
      "ascending": false,
-     "topic": "pay growth since 1978: CEOs vs. workers",
+     "topic": "Pay gap growth",
      "role": "2 · THE GAP",
-     "say": "Since 1978, CEO pay has climbed 1,085 percent. Typical worker pay? Just 24 percent, barely enough to keep pace with inflation."
+     "say": "Since 1978 CEO pay rose 1,085 %, while worker pay grew just 24 %."
     },
     {
      "source": "offline",
@@ -27250,11 +27306,13 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "days to earn your whole year",
+     "topic": "Earn year gap",
      "role": "3 · THE MATH",
-     "say": "Do the math on that 281-to-1 ratio and a CEO earns your entire year's pay in about 1.3 days back at their desk."
+     "say": "At a 281‑to‑1 gap, a CEO earns a year’s wage in 1.3 days."
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T12:21:27Z"
   },
   {
    "slug": "flying-safer-than-ever",
@@ -27377,9 +27435,9 @@
   {
    "slug": "english-internet-share-decline",
    "title": "English Used To Be Most Of The Internet",
-   "hook": "You think the internet speaks English. Barely.",
+   "hook": "Your town’s web vanished 45% without English.",
    "closing": "Half the internet still doesn't speak your language.",
-   "question": "What language do you think dominates the internet? Guess below.",
+   "question": "Which language dominates online now?",
    "caption": "English was 75% of web pages in 1998. It's down to about 55% of websites today, while other languages grew 10x faster online. What language do you think runs the internet? Guess below. 👇",
    "hashtags": [
     "internet",
@@ -27403,9 +27461,9 @@
       "file": "english_web_page_share.json"
      },
      "insight_type": "trend",
-     "topic": "English's share of web pages",
+     "topic": "English share",
      "role": "1 · THE OLD WEB",
-     "say": "In 1998, 75 percent of web pages were in English. By 2005 that fell to 45 — the internet was going global."
+     "say": "In 1998, 75% of pages were English; by 2005 it dropped to 45%."
     },
     {
      "source": "offline",
@@ -27415,9 +27473,9 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "online content growth by language",
+     "topic": "English growth",
      "role": "2 · THE CATCH-UP",
-     "say": "Here's why: from 2001 to 2011, English content grew 281 percent. Spanish grew 743. Arabic, 2,501 — everyone else caught up fast."
+     "say": "From 2001 to 2011 English grew 281%, Spanish 743%, Arabic 2,501%."
     },
     {
      "source": "offline",
@@ -27427,11 +27485,13 @@
      },
      "insight_type": "comparison",
      "use_baseline": false,
-     "topic": "English's share of websites today",
+     "topic": "English today",
      "role": "3 · THE LEAD TODAY",
-     "say": "Today English leads at 55 percent of websites — but everything else combined makes up the other 45."
+     "say": "Today English powers 55% of sites; other languages make up 45%."
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T12:21:44Z"
   },
   {
    "slug": "cash-payments-decade-decline",
@@ -27671,9 +27731,9 @@
   {
    "slug": "dating-app-user-exodus",
    "title": "Dating Apps Just Lost Millions Of Users",
-   "hook": "The dating apps are quietly emptying out.",
-   "closing": "Swipe fatigue is real, and it's winning.",
-   "question": "Have you deleted a dating app this year? Tell me below.",
+   "hook": "Your inbox vanished as 40% of users left",
+   "closing": "Swipe fatigue is real, and it's winning",
+   "question": "Deleted a dating app this year?",
    "caption": "Tinder's US users dropped from 18 million to 11 million in two years, and it's not alone -- usage across the top 10 dating apps fell industry-wide. 78% of users say the apps leave them drained. Have you quit one? 👥",
    "hashtags": [
     "datingapps",
@@ -27698,8 +27758,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE DROP",
-     "topic": "Tinder's US users",
-     "say": "Tinder's US user base went from 18 million in early 2022 to about 11 million now, a drop of nearly 40% in two years, on what used to be the biggest dating app on Earth."
+     "topic": "Dating Apps Tinder",
+     "say": "Tinder US users fell from 18 million to 11 million, a 40% drop in two years."
     },
     {
      "source": "offline",
@@ -27710,8 +27770,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · NOT JUST ONE",
-     "topic": "the whole industry",
-     "say": "It's not just Tinder. Usage across the ten biggest dating apps combined dropped 16% in a single year. This is an industry-wide retreat."
+     "topic": "Dating Apps Industry",
+     "say": "The ten biggest apps lost 16% of users in one year."
     },
     {
      "source": "offline",
@@ -27721,10 +27781,12 @@
      },
      "insight_type": "share",
      "role": "3 · THE WHY",
-     "topic": "why people are leaving",
-     "say": "The reason isn't a mystery. 78% of dating app users now say the experience leaves them mentally or emotionally drained. People stopped feeling it was worth it."
+     "topic": "Dating Apps Fatigue",
+     "say": "78% say dating apps leave them mentally and emotionally drained."
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T12:22:20Z"
   },
   {
    "slug": "fusion-net-energy-gain",
@@ -30601,9 +30663,9 @@
   {
    "slug": "genz-drinking-decline",
    "title": "Gen Z Broke A 20-Year Drinking Habit",
-   "hook": "Your twenty-something drinking habit is dying: 72% of young adults drank, now it's 50%.",
-   "closing": "Sober isn't the exception anymore -- it's becoming the norm.",
-   "question": "Do you drink less than your parents did? Tell me why.",
+   "hook": "Your twenty-something drinking habit is dying: 72% of young adults drank, now it's 50%",
+   "closing": "Sober isn't the exception anymore — it's becoming the norm",
+   "question": "Do you drink less than parents? Why?",
    "caption": "Only 50% of 18-34 year-old Americans now say they drink alcohol, down from 72% two decades ago -- and the youngest adults (18-20) cut their drinking rate from 70% to just 35%. Even the ones who still drink are doing it less often. Do you drink less than your parents did?",
    "hashtags": [
     "genz",
@@ -30629,8 +30691,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE DROP",
-     "topic": "Gen Z and millennial drinking rate falling",
-     "say": "Twenty years ago, 72% of 18 to 34 year-olds said they drank alcohol. That number fell to 59% by 2023, and now it's down to 50%."
+     "topic": "Gen Z drinking",
+     "say": "72% drank twenty years ago; 59% in 2023; now 50%."
     },
     {
      "source": "offline",
@@ -30641,8 +30703,8 @@
      "insight_type": "rank",
      "use_baseline": true,
      "role": "2 · THE YOUNGEST DROPPED IT FASTEST",
-     "topic": "Gen Z's drinking habit at the youngest ages",
-     "say": "Among the youngest group -- 18 to 20 year-olds -- 70% said they drank two decades ago. Today it's just 35%.",
+     "topic": "Gen Z youngest",
+     "say": "70% of 18‑20 year-olds drank twenty years ago; today 35%.",
      "ascending": false
     },
     {
@@ -30653,11 +30715,13 @@
      },
      "insight_type": "trend",
      "role": "3 · EVEN THE ONES WHO STILL DRINK",
-     "topic": "Gen Z drinking less often too",
-     "say": "Even the Gen Z and millennials who do drink are doing it less often. Weekly drinking among young adults fell from 67% in the early 2000s to 61% today."
+     "topic": "Gen Z frequency",
+     "say": "Weekly drinking fell from 67% in early 2000s to 61% now."
     }
    ],
-   "hook_was": "You've been told Gen Z parties harder than ever. The data says otherwise."
+   "hook_was": "You've been told Gen Z parties harder than ever. The data says otherwise.",
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T12:22:35Z"
   },
   {
    "slug": "global-remittances-record-2023",
@@ -31137,8 +31201,8 @@
    "slug": "secondhand-apparel-resale-boom",
    "title": "Secondhand Clothes Are Growing 5 Times Faster Than New",
    "hook": "Thrifting just became a 43 billion dollar habit.",
-   "closing": "Data's whole wardrobe is secondhand. He calls it archival.",
-   "question": "Do you shop secondhand? What was your best find? Tell me below.",
+   "closing": "All data shows wardrobes going secondhand, archival style.",
+   "question": "What's your best secondhand find?",
    "caption": "The secondhand clothing market grew 5 times faster than regular retail in 2024, and most Americans are now in on it. Here's how fast thrifting actually took over 👇",
    "hashtags": [
     "secondhand",
@@ -31163,8 +31227,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE GAP",
-     "topic": "secondhand clothing growing faster",
-     "say": "The secondhand clothing market grew 14 percent in 2024 -- 5 times faster than regular clothing retail."
+     "topic": "Secondhand growth",
+     "say": "Secondhand market grew 14% in 2024, five times faster than new clothing."
     },
     {
      "source": "offline",
@@ -31174,8 +31238,8 @@
      },
      "insight_type": "trend",
      "role": "2 · WHO'S BUYING IT",
-     "topic": "americans shopping secondhand",
-     "say": "More than half of Americans now shop secondhand -- 58 percent in 2024, up from 52 the year before."
+     "topic": "Secondhand shoppers",
+     "say": "58% of Americans shopped secondhand in 2024, up from 52% in 2023."
     },
     {
      "source": "offline",
@@ -31185,10 +31249,12 @@
      },
      "insight_type": "trend",
      "role": "3 · WHERE IT'S HEADED",
-     "topic": "secondhand market size growing",
-     "say": "The U.S. secondhand market was worth about 43 billion dollars in 2023. By 2029, it's projected to hit 74."
+     "topic": "Secondhand market",
+     "say": "U.S. secondhand market was $43 billion in 2023, projected $74 billion by 2029."
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T12:26:41Z"
   },
   {
    "slug": "back-to-sleep-campaign-cut-sids",

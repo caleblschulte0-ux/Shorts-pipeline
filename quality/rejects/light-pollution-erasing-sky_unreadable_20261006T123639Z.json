@@ -1,0 +1,21 @@
+{
+ "slug": "light-pollution-erasing-sky",
+ "ts": "20261006T123639Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: Seg4:end cuts the Singapore label to 'Sin...' at the right edge. In seg3:end Data covers the '78%' value label. In seg2:start his head overlaps the '8' of '80%' at the cut-off left edge. In seg1:end the header '2016 100 \u2192 2026 122' runs from edge to edge.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "false_claim_and_unreadable",
+  "visible_evidence": "The closing beat shows sorting bins labelled '45% Chad, 43% Madagascar, 11% United States, 1% Sin...'. These look like shares of one whole. The data is four separate per-country rates (78/75/20/1) that seg3 just showed. The Singapore label is cut off, Data just points at a hopper, and nothing in the picture says 'the lights won'.",
+  "root_cause": "Seg4 uses a share/sorting-bins machine on the previous beat's country rates, renormalising them into parts of a whole. It invents numbers that were never said or sourced, and it is a relationship misread. The bin layout also runs out of width for the smallest category.",
+  "repair_goal": "Replace the closing visual with one that pays off 'the stars didn't leave, the lights just won'. For example, a night sky full of stars that are washed out one by one as a city glow rises, with Data switching on the lights so he is the cause. Show no new percentages. Keep every label inside the frame and clear of Data."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

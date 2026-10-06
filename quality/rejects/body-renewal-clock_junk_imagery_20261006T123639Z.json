@@ -1,0 +1,21 @@
+{
+ "slug": "body-renewal-clock",
+ "ts": "20261006T123639Z",
+ "failure_class": "junk_imagery",
+ "evidence": "junk_imagery: hook@0.3\u2013seg0:end: an AI-rendered, muddy, half-melted ribcage cutout with blobby shoulders. It is a garbled render, not a clean illustration.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_overlap",
+  "visible_evidence": "seg1:start shows four duration labels printed on top of each other ('120 d28:d5ydays') and tissue names merged into one string. seg1:mid/end is a bubble chart where '5 day' is hidden under '28 days', the 5-day bubble cannot be seen, and Data stands on the labels.",
+  "root_cause": "The bubble layout puts values that differ by about 730x (5 to 3,650) in one row with no measured spacing, so the small items pile up and collide. It is a chart that reads the data shape, not a picture of what renewal means.",
+  "repair_goal": "Show each tissue renewing on its own clock: four tissue objects on a measured, non-overlapping layout, each refreshing (old cells flaking off, new ones replacing them) at its own rate, with Data actively swapping the tiles. Every label must have its own clear space, and no text may overlap."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "bubbles",
+   "perf": "get_buried"
+  }
+ },
+ "scenes": []
+}

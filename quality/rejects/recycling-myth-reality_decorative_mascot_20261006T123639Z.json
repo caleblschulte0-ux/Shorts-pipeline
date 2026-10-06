@@ -1,0 +1,16 @@
+{
+ "slug": "recycling-myth-reality",
+ "ts": "20261006T123639Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data does not cause any motion: in hook@0.3\u2013seg0:end he stands beside the scale pan holding a pole while bricks drop by themselves; in seg1:mid two Datas just stand by the rows; in seg3:mid/end he dangles off the 17% bar; in seg4 he stands on a ladder.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable_overlap",
+  "visible_evidence": "At payoff@-1.8 through seg4:end the label '2060 (projected) 17%' slides onto the same baseline as '2019 9%', so both become an illegible stack right on the payoff line. Data stands on a ladder doing nothing, and '8% apart' is really 8 percentage points.",
+  "root_cause": "The gap machine places the two endpoint labels at the same y with no collision check once the bracket spans both posts, and the mascot is parked instead of acting on the gap.",
+  "repair_goal": "Put the 2019 9% and 2060 17% labels on their own posts at separate heights so they never overlap. Have Data physically do something to the gap, like climb and stretch the measuring tape from 9 to 17, and label it '8 points apart'."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "bird-flu-species-jump",
+ "ts": "20261006T123639Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg2:mid Data's body covers the '738' value label at the end of California's bar. At seg3:mid Data overlaps the 'Dairy cow exposure' label and is cut off by the left frame edge.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "redundant_chart",
+  "visible_evidence": "seg1:start to seg1:end redraws the same five numbers the hook just showed (58M, 80M, 148M, 179M, 206M) as a plain horizontal bar chart. Data hovers over the bars doing nothing.",
+  "root_cause": "Beat 0 was mapped to a rank/trend chart of the same series the hook timeline already built. Nothing in the picture is made of birds or flocks, and Data has no act.",
+  "repair_goal": "Make 206 million birds physical. For example, Data shovels and stacks birds or crates that pile into a mountain, one layer per year, to 206M, so his act causes the growth. Do not repeat the hook's bar chart."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

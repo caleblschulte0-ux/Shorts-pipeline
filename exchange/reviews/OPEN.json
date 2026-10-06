@@ -1,16 +1,56 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-10-06T12:15:48Z",
+ "updated": "2026-10-06T12:36:03Z",
  "open": [
   {
-   "id": "coyote_brawl_caught_on_camera___ktla__9b5692a0fc",
-   "channel": "trending",
-   "slug": "coyote_brawl_caught_on_camera___ktla",
-   "title": "I Faked a Quality Inspector to Keep My Tips",
-   "filed": "2026-10-06T12:15:48Z",
-   "request": "exchange/reviews/20261006/coyote_brawl_caught_on_camera___ktla__9b5692a0fc.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/coyote_brawl_caught_on_camera___ktla__9b5692a0fc/sheet.jpg",
-   "answer_path": "exchange/reviews/20261006/coyote_brawl_caught_on_camera___ktla__9b5692a0fc.verdict.json"
+   "id": "back-to-sleep-campaign-cut-sids__44702cd053",
+   "channel": "explainer",
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "title": "One Campaign Cut A Top Baby Killer In Half",
+   "filed": "2026-10-06T12:36:03Z",
+   "request": "exchange/reviews/20261006/back-to-sleep-campaign-cut-sids__44702cd053.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/back-to-sleep-campaign-cut-sids__44702cd053/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/back-to-sleep-campaign-cut-sids__44702cd053.verdict.json"
+  },
+  {
+   "id": "secondhand-apparel-resale-boom__40bf298e23",
+   "channel": "explainer",
+   "slug": "secondhand-apparel-resale-boom",
+   "title": "Secondhand Clothes Are Growing 5 Times Faster Than New",
+   "filed": "2026-10-06T12:31:29Z",
+   "request": "exchange/reviews/20261006/secondhand-apparel-resale-boom__40bf298e23.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/secondhand-apparel-resale-boom__40bf298e23/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/secondhand-apparel-resale-boom__40bf298e23.verdict.json"
+  },
+  {
+   "id": "genz-drinking-decline__86e5ed7956",
+   "channel": "explainer",
+   "slug": "genz-drinking-decline",
+   "title": "Gen Z Broke A 20-Year Drinking Habit",
+   "filed": "2026-10-06T12:26:34Z",
+   "request": "exchange/reviews/20261006/genz-drinking-decline__86e5ed7956.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/genz-drinking-decline__86e5ed7956/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/genz-drinking-decline__86e5ed7956.verdict.json"
+  },
+  {
+   "id": "freshwater-accessible__22d7430030",
+   "channel": "explainer",
+   "slug": "freshwater-accessible",
+   "title": "How Much Of Earth's Water You Can Actually Drink",
+   "filed": "2026-10-06T12:21:20Z",
+   "request": "exchange/reviews/20261006/freshwater-accessible__22d7430030.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/freshwater-accessible__22d7430030/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/freshwater-accessible__22d7430030.verdict.json"
+  },
+  {
+   "id": "divorce-rate-quiet-decline__b8f51a9df3",
+   "channel": "explainer",
+   "slug": "divorce-rate-quiet-decline",
+   "title": "Everyone Assumes Divorce Is Rising. It Isn't.",
+   "filed": "2026-10-06T12:16:46Z",
+   "request": "exchange/reviews/20261006/divorce-rate-quiet-decline__b8f51a9df3.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/divorce-rate-quiet-decline__b8f51a9df3/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/divorce-rate-quiet-decline__b8f51a9df3.verdict.json"
   },
   {
    "id": "self-checkout-cashier-jobs__e946cf1b1c",

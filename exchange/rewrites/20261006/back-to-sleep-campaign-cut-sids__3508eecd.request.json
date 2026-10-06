@@ -1,0 +1,131 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "back-to-sleep-campaign-cut-sids__3508eecd",
+ "filed": "2026-10-06T12:36:19Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "back-to-sleep-campaign-cut-sids",
+ "current": {
+  "title": "One Campaign Cut A Top Baby Killer In Half",
+  "hook": "SIDS deaths fell 53% after one simple fix.",
+  "closing": "Data still naps strictly on his back. Just in case.",
+  "question": "Did you know which way babies should sleep?",
+  "segments": [
+   {
+    "topic": "SIDS deaths after back to sleep campaign",
+    "say": "In 1991, SIDS killed 1.34 per thousand babies born -- by 2008, just 0.64."
+   },
+   {
+    "topic": "the campaign flipped how babies sleep",
+    "say": "Stomach-sleeping fell from 85.4% of cases to 30.1% once parents switched them to their backs."
+   },
+   {
+    "topic": "sleep deaths the campaign hasn't caught yet",
+    "say": "About 3,400 babies still die this way every year -- the back still matters."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "SIDS deaths after back to sleep campaign",
+   "say": "In 1991, SIDS killed 1.34 per thousand babies born -- by 2008, just 0.64.",
+   "role": "1 · THE DROP",
+   "data": {
+    "file": "sids_rate_1991_2008.json",
+    "unit": "rate per 1,000 live births",
+    "title": "US SIDS rate per 1,000 live births, before vs. after Back to Sleep",
+    "points": [
+     {
+      "label": "1991",
+      "value": 1.34,
+      "period": "1991"
+     },
+     {
+      "label": "2008",
+      "value": 0.64,
+      "period": "2008"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "the campaign flipped how babies sleep",
+   "say": "Stomach-sleeping fell from 85.4% of cases to 30.1% once parents switched them to their backs.",
+   "role": "2 · THE FIX",
+   "data": {
+    "file": "sids_sleep_position_flip.json",
+    "unit": "percent",
+    "title": "Share of SIDS cases where the baby was placed stomach-down vs. back-up, before vs. after the campaign",
+    "points": [
+     {
+      "label": "Placed stomach-down",
+      "value": 85.4
+     },
+     {
+      "label": "Placed back-up",
+      "value": 1.9
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "sleep deaths the campaign hasn't caught yet",
+   "say": "About 3,400 babies still die this way every year -- the back still matters.",
+   "role": "3 · WHY IT STILL MATTERS",
+   "data": {
+    "file": "sids_deaths_still_annual.json",
+    "unit": "count",
+    "title": "Sleep-related infant deaths still recorded in the US each year",
+    "points": [
+     {
+      "label": "Sleep-related infant deaths per year",
+      "value": 3400
+     }
+    ],
+    "n_points": 1
+   }
+  }
+ ],
+ "held_for": [
+  "judge: blocked by the showrunner"
+ ],
+ "reasons": [
+  "judge: blocked by the showrunner"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261006/back-to-sleep-campaign-cut-sids__3508eecd.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

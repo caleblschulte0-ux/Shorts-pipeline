@@ -1,0 +1,16 @@
+{
+ "slug": "adhd-diagnosis-surge",
+ "ts": "20261006T123639Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg4:start/seg4:end: Data's body covers the '53.6%' label and the start of 'Taking ADHD medication'. seg3:start: the white '53.6%' on a pale yellow disc is low contrast and hard to read on a phone.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg3:start-seg3:end: two flat circles (53.6% yellow, 46.4% grey) grow a little while Data stands on top of the yellow one doing nothing. The white value text is low contrast on the yellow disc.",
+  "root_cause": "The medication split is drawn as a stock two-bubble chart and Data is placed on it like a sticker. Nothing in the picture is made of 'diagnosed kids taking medication', and Data does not cause anything to happen.",
+  "repair_goal": "Show the 53.6/46.4 split as a group of diagnosed kids, with Data handing a medication bottle to each one until 53.6% are holding one and the rest are left empty-handed. Use dark ink for all value text on light fills, and keep Data clear of every label."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

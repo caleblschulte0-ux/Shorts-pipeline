@@ -1,0 +1,21 @@
+{
+ "slug": "light-pollution-erasing-sky",
+ "ts": "20261006T123639Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data really does stack the blocks in the hook and seg1 (seg1:mid). After that he does no work: in seg2:start to seg2:end he is pinned to the left frame edge beside the scale pan, in seg3:start to seg3:end he walks over the bars without moving them, and in seg4:start to seg4:end he",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "false_claim_and_unreadable",
+  "visible_evidence": "The closing beat shows sorting bins labelled '45% Chad, 43% Madagascar, 11% United States, 1% Sin...'. These look like shares of one whole. The data is four separate per-country rates (78/75/20/1) that seg3 just showed. The Singapore label is cut off, Data just points at a hopper, and nothing in the picture says 'the lights won'.",
+  "root_cause": "Seg4 uses a share/sorting-bins machine on the previous beat's country rates, renormalising them into parts of a whole. It invents numbers that were never said or sourced, and it is a relationship misread. The bin layout also runs out of width for the smallest category.",
+  "repair_goal": "Replace the closing visual with one that pays off 'the stars didn't leave, the lights just won'. For example, a night sky full of stars that are washed out one by one as a city glow rises, with Data switching on the lights so he is the cause. Show no new percentages. Keep every label inside the frame and clear of Data."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

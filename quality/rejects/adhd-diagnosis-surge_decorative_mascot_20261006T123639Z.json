@@ -1,0 +1,16 @@
+{
+ "slug": "adhd-diagnosis-surge",
+ "ts": "20261006T123639Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg3:start-seg3:end: Data stands on top of the 53.6% circle and does nothing to it. seg0:mid-seg0:end: he stands on a ladder pointing at a finished bar. seg4:mid: he holds a pole at the frame edge and does not move the balance.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg3:start-seg3:end: two flat circles (53.6% yellow, 46.4% grey) grow a little while Data stands on top of the yellow one doing nothing. The white value text is low contrast on the yellow disc.",
+  "root_cause": "The medication split is drawn as a stock two-bubble chart and Data is placed on it like a sticker. Nothing in the picture is made of 'diagnosed kids taking medication', and Data does not cause anything to happen.",
+  "repair_goal": "Show the 53.6/46.4 split as a group of diagnosed kids, with Data handing a medication bottle to each one until 53.6% are holding one and the rest are left empty-handed. Use dark ink for all value text on light fills, and keep Data clear of every label."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

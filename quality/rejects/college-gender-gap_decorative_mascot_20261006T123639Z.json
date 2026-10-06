@@ -1,0 +1,21 @@
+{
+ "slug": "college-gender-gap",
+ "ts": "20261006T123639Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg1:mid and seg1:end Data floats over the 1980 bar and then beside the 43% circle. He causes nothing, the bars grow on their own and he covers the bar he sits on. In seg2:start to seg2:end he leans on a pole beside the pan while the bricks fall in by themselves. In the hook an",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "generic_chart_with_decorative_mascot",
+  "visible_evidence": "seg1:start to seg1:end is a plain horizontal bar chart (1970/1980/2000/2022 with 43/49/57/58%). The hook and seg0 already showed the same numbers as a vertical-bar timeline. Data hovers over the 1980 bar in seg1:mid and stands idle beside the circled 43% in seg1:end, doing nothing that makes the bars grow.",
+  "root_cause": "The beat fell back to a rank/bar chart and repeats the hook's data, so the 'flip' past 50% is never physically staged. The mascot is placed near the marks instead of being the cause of their motion.",
+  "repair_goal": "Show the flip itself. For example, a lecture hall whose seats Data fills one by one with women and men figures, so the women's share crosses the 50% line between 1980 and 2022 and lands at 58%. Data should be the one seating them, with no repeat of the hook's chart."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

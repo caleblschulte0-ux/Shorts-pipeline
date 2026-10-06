@@ -1,0 +1,16 @@
+{
+ "slug": "data-breach-exposure",
+ "ts": "20261006T123639Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg2:end a grey ring is drawn across the '32%' label and a cyan ring cuts through '17%'. In seg1:start the caption 'hit a record' sits ghosted under the big '3,322' number.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "chart_with_parked_mascot",
+  "visible_evidence": "seg2:start to seg2:end show two plain circles labelled 32% and 17%, with Data standing on top of the pink circle doing nothing. Outline rings are then drawn across both percentage labels.",
+  "root_cause": "The relationship 'breached again within a year, with vs without a password manager' was drawn as a generic area-comparison chart. Nothing in the picture is made of passwords, accounts or re-breaches, and Data has no act tied to the number.",
+  "repair_goal": "Show the re-breach rate as the subject's own physics: two rows of 100 account padlocks (or login cards), with 32 vs 17 springing open over the year. Data should be the cause, for example handing a password-manager vault to the right-hand row so its locks hold. Keep every label clear of any ring or mark."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -4618,6 +4618,66 @@
    "ending_type": "question",
    "franchise": "",
    "notes": "vault full, thin trickle returned; 1-in-7 crowd glows"
+  },
+  {
+   "slug": "eclipse-recurrence-rarity",
+   "directed_at": "2026-10-06",
+   "topic_category": "space",
+   "hook_type": "shock_stat",
+   "hook_text": "One town got a total eclipse twice in 7 years. The odds? 375 years.",
+   "depictions": [
+    "mechanic:eclipse-shadow-sweep",
+    "mechanic:wait-years-ladder",
+    "viz:trend"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "re-validated unchanged: shadow band sweeps a world strip; a fixed pin lights only on the rare pass"
+  },
+  {
+   "slug": "gulf-dead-zone-growth",
+   "directed_at": "2026-10-06",
+   "topic_category": "nature",
+   "hook_type": "shock_stat",
+   "hook_text": "Every summer, an area the size of New Jersey runs out of oxygen.",
+   "depictions": [
+    "viz:trend",
+    "mechanic:dead-zone-map-overlay",
+    "mechanic:farm-runoff-grid"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "re-validated unchanged: dead-zone stain vs 2035 goal ring; fertilizer tiles triple"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-06",
+   "topic_category": "animals",
+   "hook_type": "stake",
+   "hook_text": "Your bats are dying: 97 percent of one kind gone, and it started in one cave.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "re-validated unchanged: colonies fall to the floor; gauge sweeps 3.7B to 53B"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-06",
+   "topic_category": "money",
+   "hook_type": "shock_stat",
+   "hook_text": "States are holding 70 billion dollars of your money. Guess how much they gave back.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "question",
+   "franchise": "",
+   "notes": "re-validated unchanged: vault full, thin trickle returned; 1-in-7 crowd glows"
   }
  ]
 }
