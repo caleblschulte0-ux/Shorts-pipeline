@@ -1,0 +1,16 @@
+{
+ "slug": "sand-mining-crisis",
+ "ts": "20261006T183715Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: Percentages for India, Vietnam, and United States are small and low-contrast, making them difficult to read on a phone (e.g., frame seg3:end, seg4:mid).",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable",
+  "visible_evidence": "Percentages for India, Vietnam, and United States are small and low-contrast, making them difficult to read.",
+  "root_cause": "Insufficient contrast and font size for secondary data labels on a mobile screen.",
+  "repair_goal": "Increase font size and contrast for all percentage labels in the bar chart to ensure readability on a phone."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

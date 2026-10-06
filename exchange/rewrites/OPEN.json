@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-06T15:27:11Z",
+ "updated": "2026-10-06T18:36:56Z",
  "open": [
+  {
+   "id": "bird-flu-species-jump__5c10823e",
+   "slug": "bird-flu-species-jump",
+   "filed": "2026-10-06T18:36:55Z",
+   "why": [
+    "premise: brain: The premise lacks a clear, single verifiable number tied to a specific reversed expectation, making it too weak for the required criteria."
+   ],
+   "request": "exchange/rewrites/20261006/bird-flu-species-jump__5c10823e.request.json",
+   "answer_path": "exchange/rewrites/20261006/bird-flu-species-jump__5c10823e.answer.json"
+  },
+  {
+   "id": "helium-supply-squeeze__91f2d5b4",
+   "slug": "helium-supply-squeeze",
+   "filed": "2026-10-06T18:36:55Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a viewer expectation and hinges on an unsubstantiated, unverifiable figure."
+   ],
+   "request": "exchange/rewrites/20261006/helium-supply-squeeze__91f2d5b4.request.json",
+   "answer_path": "exchange/rewrites/20261006/helium-supply-squeeze__91f2d5b4.answer.json"
+  },
   {
    "id": "back-to-sleep-campaign-cut-sids__3508eecd",
    "slug": "back-to-sleep-campaign-cut-sids",
@@ -427,16 +447,6 @@
    "answer_path": "exchange/rewrites/20261006/activity-inequality-steps__9bc98851.answer.json"
   },
   {
-   "id": "helium-supply-squeeze__a35dcf99",
-   "slug": "helium-supply-squeeze",
-   "filed": "2026-10-06T12:36:08Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and hinges on an unverified, vague numeric claim about demand."
-   ],
-   "request": "exchange/rewrites/20261006/helium-supply-squeeze__a35dcf99.request.json",
-   "answer_path": "exchange/rewrites/20261006/helium-supply-squeeze__a35dcf99.answer.json"
-  },
-  {
    "id": "phone-call-avoidance__25158303",
    "slug": "phone-call-avoidance",
    "filed": "2026-10-06T12:36:06Z",
@@ -509,16 +519,6 @@
    ],
    "request": "exchange/rewrites/20261006/insect-planet__0d272244.request.json",
    "answer_path": "exchange/rewrites/20261006/insect-planet__0d272244.answer.json"
-  },
-  {
-   "id": "bird-flu-species-jump__d8fc99b6",
-   "slug": "bird-flu-species-jump",
-   "filed": "2026-10-06T12:36:05Z",
-   "why": [
-    "judge: The data is real and the scale beat works, but the first two beats show the same bird-loss series twice as plain charts, and Data reacts with his hands on his head instead of causing anything."
-   ],
-   "request": "exchange/rewrites/20261006/bird-flu-species-jump__d8fc99b6.request.json",
-   "answer_path": "exchange/rewrites/20261006/bird-flu-species-jump__d8fc99b6.answer.json"
   },
   {
    "id": "parker-solar-probe-speed-record__c8e17643",
