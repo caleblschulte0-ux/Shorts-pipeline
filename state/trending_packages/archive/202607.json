@@ -1835,5 +1835,516 @@
       ],
       "music_vibe": "epic"
     }
+  },
+  "20260707": {
+    "01_orca-great-white-fear-2026.json": {
+      "version": 1,
+      "slug": "orca-great-white-fear-2026",
+      "title": "The One Animal a Great White Shark Runs From",
+      "hashtags": [
+        "orca",
+        "killerwhale",
+        "greatwhite",
+        "shark",
+        "ocean",
+        "predator",
+        "wildlife",
+        "nature",
+        "viral",
+        "animals",
+        "fyp",
+        "scary"
+      ],
+      "script": "There's one animal that makes a great white shark flee in pure terror, and it's not what you'd guess. When it shows up, great whites don't fight; they abandon their entire hunting grounds for months. That animal is the orca. Orcas hunt in coordinated packs, and they've figured out how to flip a shark upside down, which locks it into a frozen, helpless trance, then they eat only its liver and leave the rest. Off California, tagged great whites fled the instant orcas arrived. The ocean's most feared predator has a predator of its own. So what does that make the orca?",
+      "shots": [
+        {
+          "phrase": "makes a great white shark flee in pure terror",
+          "query": "orca killer whale",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Killerwhales_jumping.jpg"
+        },
+        {
+          "phrase": "they abandon their entire hunting grounds",
+          "query": "great white shark",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "That animal is the orca",
+          "query": "killer whale ocean",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Killerwhales_jumping.jpg"
+        },
+        {
+          "phrase": "flip a shark upside down",
+          "query": "orca hunting",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "eat only its liver",
+          "query": "orca pod",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Killerwhales_jumping.jpg"
+        },
+        {
+          "phrase": "great whites fled the instant orcas arrived",
+          "query": "great white ocean",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "has a predator of its own",
+          "query": "killer whale",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Killerwhales_jumping.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "flee in pure terror",
+          "text": "IT RUNS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "That animal is the orca",
+          "text": "THE ORCA",
+          "color": "#30c0ff"
+        },
+        {
+          "phrase": "eat only its liver",
+          "text": "JUST THE LIVER",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "a predator of its own",
+          "text": "APEX OF THE APEX",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "dark"
+    },
+    "02_otter-cute-killer-2026.json": {
+      "version": 1,
+      "slug": "otter-cute-killer-2026",
+      "title": "This 'Cute' Animal Is a Ruthless Killer",
+      "hashtags": [
+        "otter",
+        "seaotter",
+        "wildlife",
+        "animals",
+        "nature",
+        "cute",
+        "killer",
+        "viral",
+        "river",
+        "wild",
+        "fyp",
+        "shocking"
+      ],
+      "script": "This looks like the most adorable animal in the river, and it is actually a ruthless killer. Otters look cuddly, but they drown prey, raid nests, and the males can be shockingly violent. Otters have been filmed attacking animals many times their own size and holding them underwater until they stop moving. They crack open shells with rocks, one of the only animals that use tools, and they eat almost constantly to survive the cold. That fluffy little face hides one of nature's most efficient hunters. So why do we all think they're harmless?",
+      "shots": [
+        {
+          "phrase": "the most adorable animal in the river",
+          "query": "sea otter",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sea_otter_cropped.jpg"
+        },
+        {
+          "phrase": "it is actually a ruthless killer",
+          "query": "otter closeup",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sea_otter_cropped.jpg"
+        },
+        {
+          "phrase": "they drown prey, raid nests",
+          "query": "otter water",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "attacking animals many times their own size",
+          "query": "otter swimming",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sea_otter_cropped.jpg"
+        },
+        {
+          "phrase": "crack open shells with rocks",
+          "query": "sea otter rock",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "one of nature's most efficient hunters",
+          "query": "otter",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sea_otter_cropped.jpg"
+        },
+        {
+          "phrase": "think they're harmless",
+          "query": "sea otter",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sea_otter_cropped.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "a ruthless killer",
+          "text": "NOT SO CUTE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "drown prey",
+          "text": "THEY DROWN PREY",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "use tools",
+          "text": "TOOL USERS",
+          "color": "#30c0ff"
+        },
+        {
+          "phrase": "harmless",
+          "text": "HARMLESS?",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "tense"
+    },
+    "03_hippo-deadliest-africa-2026.json": {
+      "version": 1,
+      "slug": "hippo-deadliest-africa-2026",
+      "title": "The Deadliest Big Animal in Africa Isn't the Lion",
+      "hashtags": [
+        "hippo",
+        "hippopotamus",
+        "africa",
+        "deadliest",
+        "wildlife",
+        "animals",
+        "nature",
+        "danger",
+        "viral",
+        "wild",
+        "fyp",
+        "scary"
+      ],
+      "script": "The animal that kills the most people in Africa is not the lion or the crocodile, it is this. The hippo. They look slow and lazy, but a hippo can run over twenty miles an hour, faster than most people can sprint, and their jaws open four feet wide with enough force to snap a canoe in half. They are fiercely territorial in the water and will capsize boats without warning. Hippos kill an estimated five hundred people a year, more than sharks, lions, and elephants combined. Behind that goofy face is Africa's deadliest heavyweight. So why does nobody warn you about them?",
+      "shots": [
+        {
+          "phrase": "kills the most people in Africa",
+          "query": "hippopotamus",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hippopotamus_in_San_Diego_Zoo.jpg"
+        },
+        {
+          "phrase": "it is this. The hippo",
+          "query": "hippo water",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hippopotamus_in_San_Diego_Zoo.jpg"
+        },
+        {
+          "phrase": "run over twenty miles an hour",
+          "query": "hippo running",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "jaws open four feet wide",
+          "query": "hippo mouth open",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hippopotamus_in_San_Diego_Zoo.jpg"
+        },
+        {
+          "phrase": "capsize boats without warning",
+          "query": "hippo river",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "more than sharks, lions, and elephants combined",
+          "query": "hippo pod",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hippopotamus_in_San_Diego_Zoo.jpg"
+        },
+        {
+          "phrase": "nobody warn you about them",
+          "query": "hippopotamus",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Hippopotamus_in_San_Diego_Zoo.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "kills the most people in Africa",
+          "text": "#1 KILLER",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "twenty miles an hour",
+          "text": "20 MPH",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "snap a canoe in half",
+          "text": "SNAPS A CANOE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "five hundred people a year",
+          "text": "500 A YEAR",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "dark"
+    },
+    "04_cassowary-deadliest-bird-2026.json": {
+      "version": 1,
+      "slug": "cassowary-deadliest-bird-2026",
+      "title": "The Bird That Can Kill You With One Kick",
+      "hashtags": [
+        "cassowary",
+        "bird",
+        "dinosaur",
+        "deadliest",
+        "australia",
+        "wildlife",
+        "animals",
+        "nature",
+        "viral",
+        "scary",
+        "fyp",
+        "wild"
+      ],
+      "script": "There is a bird that can kill a grown adult with a single kick, and it looks like a dinosaur because it basically is. The cassowary. It stands up to six feet tall, and each foot has a dagger-like claw up to four inches long. When it feels threatened, it leaps and slashes downward, and that claw can open a person from top to bottom. They live in the rainforests of Australia and New Guinea, and they are considered the single most dangerous bird on Earth. Scientists say they are living relatives of the dinosaurs. So what are you supposed to do if one charges you?",
+      "shots": [
+        {
+          "phrase": "kill a grown adult with a single kick",
+          "query": "cassowary",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cassowary.jpg"
+        },
+        {
+          "phrase": "it looks like a dinosaur",
+          "query": "cassowary closeup",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cassowary.jpg"
+        },
+        {
+          "phrase": "a dagger-like claw up to four inches long",
+          "query": "cassowary foot claw",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "leaps and slashes downward",
+          "query": "cassowary walking",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cassowary.jpg"
+        },
+        {
+          "phrase": "the single most dangerous bird on Earth",
+          "query": "cassowary",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cassowary.jpg"
+        },
+        {
+          "phrase": "living relatives of the dinosaurs",
+          "query": "cassowary rainforest",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "if one charges you",
+          "query": "cassowary",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Cassowary.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "kill a grown adult with a single kick",
+          "text": "ONE KICK",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "looks like a dinosaur",
+          "text": "A LIVING DINOSAUR",
+          "color": "#00e070"
+        },
+        {
+          "phrase": "four inches long",
+          "text": "4-INCH DAGGER",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "most dangerous bird on Earth",
+          "text": "#1 DEADLIEST BIRD",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "tense"
+    },
+    "05_elephant-scared-of-bees-2026.json": {
+      "version": 1,
+      "slug": "elephant-scared-of-bees-2026",
+      "title": "The Biggest Animal on Land Is Scared of Something Tiny",
+      "hashtags": [
+        "elephant",
+        "bees",
+        "wildlife",
+        "animals",
+        "nature",
+        "science",
+        "africa",
+        "viral",
+        "surprising",
+        "wild",
+        "fyp",
+        "facts"
+      ],
+      "script": "The largest animal on land is terrified of one of the smallest, and farmers are using it against them. Elephants, animals that fear almost nothing, will flee in a panic from bees. A swarm can sting the soft skin inside their trunk and around their eyes, and an elephant never forgets it. Researchers found that just the recorded buzzing of bees sends whole herds running for cover. So farmers in Africa started hanging beehive fences around their fields, and the elephants simply stopped raiding them. A six-ton giant, outsmarted by an insect. So what else are elephants secretly afraid of?",
+      "shots": [
+        {
+          "phrase": "The largest animal on land is terrified of one of the smallest",
+          "query": "african elephant",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/African_Bush_Elephant.jpg"
+        },
+        {
+          "phrase": "will flee in a panic from bees",
+          "query": "elephant herd",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/African_Bush_Elephant.jpg"
+        },
+        {
+          "phrase": "sting the soft skin inside their trunk",
+          "query": "bee closeup",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "just the recorded buzzing of bees sends whole herds running",
+          "query": "elephants running",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/African_Bush_Elephant.jpg"
+        },
+        {
+          "phrase": "hanging beehive fences around their fields",
+          "query": "beehive fence",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "A six-ton giant, outsmarted by an insect",
+          "query": "elephant",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/African_Bush_Elephant.jpg"
+        },
+        {
+          "phrase": "secretly afraid of",
+          "query": "african elephant",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/African_Bush_Elephant.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "terrified of one of the smallest",
+          "text": "SCARED OF BEES",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "flee in a panic",
+          "text": "THEY RUN",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "never forgets it",
+          "text": "NEVER FORGETS",
+          "color": "#30c0ff"
+        },
+        {
+          "phrase": "outsmarted by an insect",
+          "text": "BEATEN BY A BUG",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "epic"
+    },
+    "06_honey-badger-fearless-2026.json": {
+      "version": 1,
+      "slug": "honey-badger-fearless-2026",
+      "title": "The Animal Too Fearless to Have Predators",
+      "hashtags": [
+        "honeybadger",
+        "fearless",
+        "wildlife",
+        "animals",
+        "nature",
+        "tough",
+        "viral",
+        "wild",
+        "badger",
+        "crazy",
+        "fyp",
+        "facts"
+      ],
+      "script": "There is an animal so fearless that lions, leopards, and cobras mostly just leave it alone, and it is only the size of a small dog. The honey badger. It will fight animals ten times its size, shrug off a venomous snake bite, and then go right back to eating the snake that bit it. Its skin is so thick and loose that it can twist around inside an attacker's grip and bite back. It raids beehives, digs up cobras, and steals kills from far bigger predators. Pound for pound, it might be the toughest animal alive. So where does that fearlessness even come from?",
+      "shots": [
+        {
+          "phrase": "lions, leopards, and cobras mostly just leave it alone",
+          "query": "honey badger",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Honey_badger.jpg"
+        },
+        {
+          "phrase": "only the size of a small dog",
+          "query": "honey badger closeup",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Honey_badger.jpg"
+        },
+        {
+          "phrase": "fight animals ten times its size",
+          "query": "honey badger wild",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "shrug off a venomous snake bite",
+          "query": "honey badger",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Honey_badger.jpg"
+        },
+        {
+          "phrase": "eating the snake that bit it",
+          "query": "snake",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "it might be the toughest animal alive",
+          "query": "honey badger",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Honey_badger.jpg"
+        },
+        {
+          "phrase": "where does that fearlessness even come from",
+          "query": "honey badger",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Honey_badger.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "mostly just leave it alone",
+          "text": "NOTHING MESSES WITH IT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "ten times its size",
+          "text": "10x ITS SIZE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "shrug off a venomous snake bite",
+          "text": "SHRUGS OFF VENOM",
+          "color": "#00e070"
+        },
+        {
+          "phrase": "toughest animal alive",
+          "text": "POUND FOR POUND #1",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "tense"
+    }
   }
 }
