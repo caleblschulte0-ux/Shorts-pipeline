@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261006",
+  "bundle": {
+    "identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093",
+    "path": "exchange/bundles/20261006/bundle.json"
+  },
+  "request_id": "she-kept-taking-my-labeled-lunch-s4-4f505234ba7b",
+  "safe_request_id": "she-kept-taking-my-labeled-lunch-s4-4f505234ba7b",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "850306ebea5b9705b9dba69e217af81a9ee71a62e85e733cf17521867f1a8036",
+  "prompt_used": "An editorial illustration for a short-form video: phone group chat notifications. It accompanies the narration: \"our shared kitchen chat exploded\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "189C2tqzehRgi0WgY7rWkdgkliyGiCNkN",
+    "filename": "20261006__she-kept-taking-my-labeled-lunch-s4-4f505234ba7b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=189C2tqzehRgi0WgY7rWkdgkliyGiCNkN",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "2f4779a3804c3f520e16d71f2a1118768b4a16a5e2026bde8310aa83b4b11c60",
+    "bytes": 1916102,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-06T11:24:29.202Z"
+}
