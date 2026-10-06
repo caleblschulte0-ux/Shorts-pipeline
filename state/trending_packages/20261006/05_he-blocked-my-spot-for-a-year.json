@@ -2,7 +2,7 @@
   "subreddit": "ProRevenge",
   "slug": "he-blocked-my-spot-for-a-year",
   "title": "He Blocked My Spot For A Year. I Bought It.",
-  "script": "Still in my spot? My condo came with an assigned parking space, painted number and all, and a neighbor's truck sat in it anyway for eleven months straight. He told the board he had always parked there before I bought the unit. Management mailed three written notices. He used them as kindling, apparently, because nothing changed. So I pulled the HOA bylaws and found the loophole: unused numbered spots could be bought outright from the association, and his own spot, two rows over, had sat empty the whole time. I bought it. Not his truck's spot, his actual spot, the one with his unit number stenciled on the curb, now legally mine. His truck got towed from both spaces in the same week, and he parks on the street now like the visitors he used to complain about. He left an angry note on my door. I taped it to the new sign. One stolen spot, one real one, and he is still guessing which curb is safe to touch?",
+  "script": "Still in my spot? My condo included an assigned, painted-number space, but a neighbor's truck sat in it anyway for eleven months straight. He claimed he'd parked there before I bought the unit. Management mailed three written notices; nothing changed. I pulled the HOA bylaws and found unused numbered spots could be bought from the association\u2014better, his own spot, two rows over, had sat empty. I bought it\u2014not the space holding his truck, but his actual numbered spot. His truck got towed from both spaces in the same week, and he parks on the street now like the visitors he used to complain about. He left an angry note on my door, so I taped it to the new sign. He stole one spot, lost two, and still can't trust a curb?",
   "hashtags": [
     "prorevenge",
     "hoa",
@@ -20,11 +20,21 @@
   "shots": [
     {
       "phrase": "a neighbor's truck sat in it anyway for eleven months straight",
-      "query": "pickup truck parking spot"
+      "query": "pickup truck parking spot",
+      "image_url": "https://drive.google.com/uc?export=download&id=1SObvakzopu73u7yj0LrYit89N_jRfsNY",
+      "media_origin": "chatgpt",
+      "media_file_id": "1SObvakzopu73u7yj0LrYit89N_jRfsNY",
+      "media_sha256": "57f1637350c61783b46ff08cf68391455c8e070d48f0326d033c58aeaa63aff4",
+      "media_bytes": 1980916
     },
     {
       "phrase": "Management mailed three written notices",
-      "query": "stack of notices mailbox"
+      "query": "stack of notices mailbox",
+      "image_url": "https://drive.google.com/uc?export=download&id=1nm1sfuD11DnZedeFiqiciBgJMVFH46Z6",
+      "media_origin": "chatgpt",
+      "media_file_id": "1nm1sfuD11DnZedeFiqiciBgJMVFH46Z6",
+      "media_sha256": "89508cb9a843ef2ae0e00b1316f68849fa46a0f68c62a378731dece4482d8262",
+      "media_bytes": 1672705
     },
     {
       "phrase": "I pulled the HOA bylaws",
@@ -33,7 +43,7 @@
       "pin_context": "homeowners association board meeting documents",
       "news_query": "HOA",
       "news_angle": "The narrator pulls the HOA bylaws to discover the loophole allowing purchase of unused parking spots.",
-      "image_url": "https://live.staticflickr.com/5137/5583932913_9f03bdda26.jpg",
+      "image_url": "https://drive.google.com/uc?export=download&id=1zSmunprwKmdfe8PHEPxF8yXgaq1K5kdt",
       "media_evidence": {
         "content_type": "image/jpeg",
         "height": 0,
@@ -45,23 +55,47 @@
         "url": "https://live.staticflickr.com/5137/5583932913_9f03bdda26.jpg",
         "verified_at": "2026-10-06T10:10:47Z",
         "width": 0
-      }
+      },
+      "media_origin": "chatgpt",
+      "media_file_id": "1zSmunprwKmdfe8PHEPxF8yXgaq1K5kdt",
+      "media_sha256": "40b4c2d93583c37508d8df03c4eb8ca2928d04d1786660c51be168387c76ccc4",
+      "media_bytes": 1789266
     },
     {
       "phrase": "his own spot, two rows over, had sat empty",
-      "query": "empty parking space"
+      "query": "empty parking space",
+      "image_url": "https://drive.google.com/uc?export=download&id=1jmQLXz67jopJA9qKtt3kT47oLZqxe4d2",
+      "media_origin": "chatgpt",
+      "media_file_id": "1jmQLXz67jopJA9qKtt3kT47oLZqxe4d2",
+      "media_sha256": "f66b74b1fb0985b1ae10f325202ead1d87573e2e3e61a77be32e3655261b04f0",
+      "media_bytes": 2591949
     },
     {
       "phrase": "His truck got towed from both spaces",
-      "query": "tow truck hooking car"
+      "query": "tow truck hooking car",
+      "image_url": "https://drive.google.com/uc?export=download&id=1GKwDI9tJqLYc-laK49bQwbwxlI8Gj0XU",
+      "media_origin": "chatgpt",
+      "media_file_id": "1GKwDI9tJqLYc-laK49bQwbwxlI8Gj0XU",
+      "media_sha256": "560f94f29c37f306d657e5c22d12d95a1350994602a81717ea2f6ddb8a9f900b",
+      "media_bytes": 2671668
     },
     {
       "phrase": "he parks on the street now",
-      "query": "car parked on street curb"
+      "query": "car parked on street curb",
+      "image_url": "https://drive.google.com/uc?export=download&id=1NGjO9istSOyGU3HPXeK3pGHYDczeARM6",
+      "media_origin": "chatgpt",
+      "media_file_id": "1NGjO9istSOyGU3HPXeK3pGHYDczeARM6",
+      "media_sha256": "49f57d93131583883eeb51c7a6f38294a26b2555b31b8b1a120b91a5903b7fe0",
+      "media_bytes": 2437655
     },
     {
       "phrase": "He left an angry note on my door",
-      "query": "sticky note on door"
+      "query": "sticky note on door",
+      "image_url": "https://drive.google.com/uc?export=download&id=1X-KWYqzr5uxHset6q4sk2tc8yhvI7kG7",
+      "media_origin": "chatgpt",
+      "media_file_id": "1X-KWYqzr5uxHset6q4sk2tc8yhvI7kG7",
+      "media_sha256": "5c8e27afc2b3a143e29bb97330ed9eed235fc3c007e36edf6356b80edc1013f1",
+      "media_bytes": 1884747
     }
   ],
   "punches": [
@@ -82,5 +116,6 @@
     }
   ],
   "music_vibe": "hiphop",
-  "bottom_theme": "auto"
+  "bottom_theme": "auto",
+  "punched_up": true
 }

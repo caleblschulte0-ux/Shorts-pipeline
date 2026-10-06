@@ -1,0 +1,117 @@
+{
+  "date": "20261006",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "envelope_problems": [],
+  "authored": {
+    "promoted": 0,
+    "rejected": 0,
+    "other_channels": {
+      "explainer": {
+        "applied": 1,
+        "rejected": 2
+      },
+      "curiosity": {
+        "applied": 0,
+        "rejected": 0
+      }
+    }
+  },
+  "media": {
+    "fulfilled": 14,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093",
+    "required": true,
+    "checked": 14,
+    "ok": 14,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": [],
+    "recovered_rejected_detail": []
+  },
+  "punchup": {
+    "applied": 2,
+    "kept": 4,
+    "rejected": 0,
+    "absent": 0
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "he-blocked-my-spot-for-a-year-s0-8ca1511b9ee5",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/he-blocked-my-spot-for-a-year-s0-8ca1511b9ee5.png"
+    },
+    {
+      "request_id": "he-blocked-my-spot-for-a-year-s1-a3d8bce25b2d",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/he-blocked-my-spot-for-a-year-s1-a3d8bce25b2d.png"
+    },
+    {
+      "request_id": "he-blocked-my-spot-for-a-year-s3-c1c80df9e269",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/he-blocked-my-spot-for-a-year-s3-c1c80df9e269.png"
+    },
+    {
+      "request_id": "he-blocked-my-spot-for-a-year-s4-221a151b6515",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/he-blocked-my-spot-for-a-year-s4-221a151b6515.png"
+    },
+    {
+      "request_id": "he-blocked-my-spot-for-a-year-s5-4be8c8e7fed7",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/he-blocked-my-spot-for-a-year-s5-4be8c8e7fed7.png"
+    },
+    {
+      "request_id": "he-blocked-my-spot-for-a-year-s6-ec16e8d73380",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/he-blocked-my-spot-for-a-year-s6-ec16e8d73380.png"
+    },
+    {
+      "request_id": "he-blocked-my-spot-for-a-year-s2-0adaa4ddca03",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/he-blocked-my-spot-for-a-year-s2-0adaa4ddca03.png"
+    },
+    {
+      "request_id": "she-kept-taking-my-labeled-lunch-s0-cd0aa9d947e8",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-kept-taking-my-labeled-lunch-s0-cd0aa9d947e8.png"
+    },
+    {
+      "request_id": "she-kept-taking-my-labeled-lunch-s1-58e986a1018c",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-kept-taking-my-labeled-lunch-s1-58e986a1018c.png"
+    },
+    {
+      "request_id": "she-kept-taking-my-labeled-lunch-s2-8a6ac0473e1c",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-kept-taking-my-labeled-lunch-s2-8a6ac0473e1c.png"
+    },
+    {
+      "request_id": "she-kept-taking-my-labeled-lunch-s3-1c4334512060",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-kept-taking-my-labeled-lunch-s3-1c4334512060.png"
+    },
+    {
+      "request_id": "she-kept-taking-my-labeled-lunch-s4-4f505234ba7b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-kept-taking-my-labeled-lunch-s4-4f505234ba7b.png"
+    },
+    {
+      "request_id": "she-kept-taking-my-labeled-lunch-s5-2de3aeac0942",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-kept-taking-my-labeled-lunch-s5-2de3aeac0942.png"
+    },
+    {
+      "request_id": "she-kept-taking-my-labeled-lunch-s6-1f643e446ed1",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/she-kept-taking-my-labeled-lunch-s6-1f643e446ed1.png"
+    }
+  ]
+}
