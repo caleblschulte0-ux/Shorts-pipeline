@@ -1,0 +1,145 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "north-american-bird-collapse__d68a21d9",
+ "filed": "2026-10-06T13:45:31Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "north-american-bird-collapse",
+ "current": {
+  "title": "North America Lost 3 Billion Birds Since 1970",
+  "hook": "The birds outside your window are disappearing.",
+  "closing": "Turns out silence was the warning the whole time.",
+  "question": "Have you noticed fewer birds where you live? Tell me below.",
+  "segments": [
+   {
+    "topic": "total North American bird abundance",
+    "say": "In 1970, North America had about 10.1 billion breeding birds. By 2017 it was down to 7.2 billion -- nearly 3 billion gone, a 29 percent drop in under 50 years."
+   },
+   {
+    "topic": "population change by bird group",
+    "say": "But losses weren't even. Grassland birds fell 53 percent and shorebirds fell 37 percent -- while waterfowl actually grew 56 percent, thanks to decades of wetland conservation funded by hunters."
+   },
+   {
+    "topic": "share of the loss in common families",
+    "say": "And it's not exotic rarities. Just 12 familiar families -- sparrows, blackbirds, finches, warblers -- make up 90 percent of the total loss. Ordinary backyard birds, not rare ones, are vanishing."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "total North American bird abundance",
+   "say": "In 1970, North America had about 10.1 billion breeding birds. By 2017 it was down to 7.2 billion -- nearly 3 billion gone, a 29 percent drop in under 50 years.",
+   "role": "1 · THE SCALE",
+   "data": {
+    "file": "na_bird_abundance_1970_2017.json",
+    "unit": "billion",
+    "title": "Total breeding bird abundance, US & Canada (billion birds)",
+    "points": [
+     {
+      "label": "1970",
+      "value": 10.1,
+      "period": "1970"
+     },
+     {
+      "label": "2017",
+      "value": 7.2,
+      "period": "2017"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "population change by bird group",
+   "say": "But losses weren't even. Grassland birds fell 53 percent and shorebirds fell 37 percent -- while waterfowl actually grew 56 percent, thanks to decades of wetland conservation funded by hunters.",
+   "role": "2 · NOT EVEN",
+   "data": {
+    "file": "bird_population_change_by_group.json",
+    "unit": "percent",
+    "title": "Population change since 1970 by bird group (percent)",
+    "points": [
+     {
+      "label": "Grassland birds",
+      "value": -53
+     },
+     {
+      "label": "Shorebirds",
+      "value": -37
+     },
+     {
+      "label": "Waterfowl (ducks & geese)",
+      "value": 56
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 2,
+   "topic": "share of the loss in common families",
+   "say": "And it's not exotic rarities. Just 12 familiar families -- sparrows, blackbirds, finches, warblers -- make up 90 percent of the total loss. Ordinary backyard birds, not rare ones, are vanishing.",
+   "role": "3 · WHICH BIRDS",
+   "data": {
+    "file": "bird_loss_concentration_12_families.json",
+    "unit": "percent",
+    "title": "Share of the total bird loss concentrated in 12 common families",
+    "points": [
+     {
+      "label": "12 common families (sparrows, warblers, blackbirds, finches...)",
+      "value": 90
+     },
+     {
+      "label": "all other families combined",
+      "value": 10
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "pace: beat 1 says 31 words (max 16) — one sentence, the number and what it means",
+  "pace: beat 2 says 30 words (max 16) — one sentence, the number and what it means",
+  "pace: beat 3 says 31 words (max 16) — one sentence, the number and what it means",
+  "pace: question is 11 words (max 8)"
+ ],
+ "reasons": [
+  "pace: beat 1 says 31 words (max 16) — one sentence, the number and what it means",
+  "pace: beat 2 says 30 words (max 16) — one sentence, the number and what it means",
+  "pace: beat 3 says 31 words (max 16) — one sentence, the number and what it means",
+  "pace: question is 11 words (max 8)"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261006/north-american-bird-collapse__d68a21d9.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

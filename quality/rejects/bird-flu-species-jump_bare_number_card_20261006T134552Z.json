@@ -1,0 +1,16 @@
+{
+ "slug": "bird-flu-species-jump",
+ "ts": "20261006T134552Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: In seg3:start (t=17.96s), the data is presented as two static circles with numbers '41' and '26' inside, lacking an interesting demonstration.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "The scene displays two static circles with numbers '41' and '26' for 'Dairy cow exposure' and 'Poultry exposure' respectively, offering no dynamic visual demonstration of these values.",
+  "root_cause": "The chosen visual mechanic for this segment is a static chart (two circles) that simply presents the numbers without any engaging animation or metaphor to convey their meaning or scale.",
+  "repair_goal": "Replace the static circles with a dynamic visual metaphor that actively demonstrates the numbers '41' and '26' (e.g., filling, stacking, or comparing sizes with motion) and integrate the mascot into a performance related to the data."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
