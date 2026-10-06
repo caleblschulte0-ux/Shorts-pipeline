@@ -11270,13 +11270,58 @@
       "director_cut": true
     },
     "clip-20261006-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/cinna/clip/PatientRelentlessNeanderthalRiPepperonis-X2ao_1OEldfZ_Wju",
-      "story_key": null,
-      "streamer": "cinna",
+      "url": "https://youtube.com/shorts/y6Bmba84xDA",
       "title": "Cinna Blames Kalita After Wrong-Side Crash Into 4Head and Twinkles Car",
       "kind": "twitch_clip",
-      "ts": "2026-10-06T12:10:38.614931+00:00",
+      "ts": "2026-10-06T12:10:49.881308+00:00",
+      "uploaded_at": "2026-10-06T12:10:49.881327+00:00",
+      "publish_at": "2026-10-06T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261006-cinna-blames-kalita-after-wrong-side-crash-into--08e179f6"
+      },
+      "source_url": "https://www.twitch.tv/cinna/clip/PatientRelentlessNeanderthalRiPepperonis-X2ao_1OEldfZ_Wju",
+      "streamer": "cinna",
+      "series": "argument",
+      "hook": "HOW IS HE BLAMING ME?",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 5359,
+      "banger": 0.68,
+      "cut": {
+        "start": 0.0,
+        "end": 51.6
+      },
+      "director_cut": true
+    },
+    "rejected-obedientblatantskirretampenergycherry-vnpwccrj34-bg4yi": {
+      "source_url": "https://www.twitch.tv/fanum/clip/ObedientBlatantSkirretAMPEnergyCherry-VnPWCcrj34-bG4Yi",
+      "streamer": "fanum",
+      "title": "fanum announces he jad to distance himself from family",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (talking only; no visible event)",
+      "ts": "2026-10-06T12:11:16.147440+00:00"
+    },
+    "rejected-blazingwildcourgettebleedpurple-1pno7bhpnfnf_15h": {
+      "source_url": "https://www.twitch.tv/lacy/clip/BlazingWildCourgetteBleedPurple-1PnO7BhPnFnf_15H",
+      "streamer": "lacy",
+      "title": "no context is saving this",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.0s \u2014 too short to edit",
+      "ts": "2026-10-06T12:11:27.271583+00:00"
+    },
+    "clip-20261006-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/erobb221/clip/MoistUnusualGoblinBigBrother-XjE3XRjx5EDCS1I2",
+      "story_key": null,
+      "streamer": "erobb221",
+      "title": "Erobb221 Wins The Match And Gets Mugged Right After",
+      "kind": "twitch_clip",
+      "ts": "2026-10-06T12:15:13.097647+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
