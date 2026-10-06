@@ -3,144 +3,6 @@
     {
       "date": "20260928",
       "dry_run": false,
-      "ts": "2026-09-28T18:40:17+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 111,
-        "with_retention": 95,
-        "with_curve": 14,
-        "fetched_at": "2026-09-28T16:54:37.899744+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 4
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260928-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260928-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260928-3",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Jasontheween Did Not See That Coming",
-              "raw": "rakai",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 252.2
-        },
-        {
-          "slug": "clip-20260928-4",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260928-5",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260928-6",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        }
-      ]
-    },
-    {
-      "date": "20260928",
-      "dry_run": false,
       "ts": "2026-09-28T18:46:31+00:00",
       "feedback": {
         "snapshot": true,
@@ -6216,6 +6078,413 @@
           "slug": "clip-20261005-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261006",
+      "dry_run": false,
+      "ts": "2026-10-06T12:35:14+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 126,
+        "with_retention": 110,
+        "with_curve": 15,
+        "fetched_at": "2026-10-06T08:46:41.907875+00:00"
+      },
+      "brain": {
+        "ok": 31,
+        "fail": 4,
+        "limited_at": "2026-10-06T12:15:09+00:00",
+        "limit_detail": "vision call refused"
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261006-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 280,
+                "catalogue_watched": 29,
+                "refused_shown": 3,
+                "scouted": [
+                  {
+                    "premise": "On the same xQc stream, Jean Paul goes 8/8 on the cargo box job, and xQc then gets shot in the tire after it.",
+                    "shape": "one_stream",
+                    "n": 2
+                  },
+                  {
+                    "premise": "Los is called bad luck by stableronaldo's stream, gets a warning, and then ends up killing himself on his own stream.",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  },
+                  {
+                    "premise": "In one early CaseOh stream, he gets something in two tries, reacts with grief, and ends on a big aura moment.",
+                    "shape": "one_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 166,
+                "candidates": 269,
+                "pool": 1375,
+                "pool_with_vod": 1269,
+                "arc_sizes": [
+                  2,
+                  4,
+                  6,
+                  2,
+                  2,
+                  4,
+                  2,
+                  3,
+                  2,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:xqc/xqc-cargo-charact-2026w40",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not link the two clips. The first clip shows xQc working a cargo container minigame and driving away, with no 8/8 result and no Jean Paul scene shown. The second clip shows xQc drivin"
+                },
+                {
+                  "cluster": "sodapoppin@vod2872274770",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "scout:lospollostv+stableronaldo/lospollostv-stableronaldo-bi",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not show the scout's story. The first stableronaldo clip is a Minecraft tutorial: stableronaldo explains the inventory and tells Los to find a cave, and the clip ends in laughter with"
+                },
+                {
+                  "cluster": "kaicenat@vod2872697283/kaicenat-fash-model-2026w37",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The three clips are consecutive moments from one broadcast, but they show no meaningful change. The first two are wordless runway footage with no dialogue and no identified designer or brand. Kai Cena"
+                },
+                {
+                  "cluster": "scout:caseoh/caseoh-caseoh-grief-2026w41",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage doesn't show the scout's arc. The scout described a 'two tries, grief, big aura moment' story from titles alone, and only two of the three clips came with scene reports (0h29m and 0h31m). "
+                },
+                {
+                  "cluster": "kaicenat@vod2888642092/kaicenat-cenat-people-2026w40",
+                  "outcome": "narrative_failed",
+                  "why": "scores [66, 78, 58] after 2 revision(s) \u2014 @0s missing_context: A stranger is never told what Reggie is accused of, what 'proof' is about, or what 'leave me on scene' means (left on read). Add a one-line context overlay or a clip where Kai states the dispute befor; @3s repetition: Cut the repeated \"Y"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.68,
+              "why": "visible car launch, physical comedy",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "GTA RP car crash, unclear payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Cinna Blames Kalita After Wrong-Side Crash Into 4Head and Twinkles Car"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "Sharp region fills only about 60-65% of the canvas, a little under the target",
+                "A caption overlaps the car in some frames, but it doesn't cover a face or the main action",
+                "No person is visible in most frames. The subject is the car, which is clear and readable on a phone"
+              ]
+            }
+          },
+          "took_s": 369.1
+        },
+        {
+          "slug": "clip-20261006-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "split",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unknown content",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "Staring contest, visible win/loss result",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Erobb221 Wins The Match And Gets Mugged Right After"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 232.2
+        },
+        {
+          "slug": "clip-20261006-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "tweet reference, unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.75,
+              "why": "Pants fall, visible surprise reaction",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Calls Out Netflix Mistake And Gets Weird Reaction"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 83.0
+        },
+        {
+          "slug": "clip-20261006-4",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (talking, no observable event)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "inside joke purchase, generic",
+              "blind": false
+            },
+            "content": {
+              "score": 0.2,
+              "why": "talking, no observable event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": false,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 48.4
+        },
+        {
+          "slug": "clip-20261006-5",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.5
+        },
+        {
+          "slug": "clip-20261006-6",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 280,
+                "catalogue_watched": 48,
+                "refused_shown": 9,
+                "scouted": [],
+                "vod_arcs": 166,
+                "candidates": 265,
+                "pool": 1375,
+                "pool_with_vod": 1269,
+                "arc_sizes": [
+                  2,
+                  4,
+                  6,
+                  2,
+                  2,
+                  4,
+                  2,
+                  3,
+                  2,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "sodapoppin@vod2872274770",
+                  "outcome": "already_refused",
+                  "why": "2026-10-06: sources fail preflight: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "kaicenat@vod2872697283",
+                  "outcome": "already_refused",
+                  "why": "2026-10-06: director judged: not a story \u2014 The three clips are consecutive moments from one broadcast, but they show no meaningful change. The first two are wordless runway"
+                },
+                {
+                  "cluster": "kaicenat@vod2888642092",
+                  "outcome": "already_refused",
+                  "why": "2026-10-06: rendered; critic scored 58 after 2 revision(s) \u2014 @0s missing_context: A stranger is never told what Reggie is accused of, what 'proof' is about, or what 'leave "
+                },
+                {
+                  "cluster": "caseoh@vod2887743618",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 analysis:none; analysis:none"
+                },
+                {
+                  "cluster": "shroud@vod2870437527",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 analysis:none"
+                },
+                {
+                  "cluster": "sodapoppin@vod2888128304",
+                  "outcome": "already_refused",
+                  "why": "2026-10-03: sources fail preflight: preflight:source barely moves (avg frame delta 0.56) \u2014 static image/pa; preflight:source barely moves (avg frame delta 0"
+                },
+                {
+                  "cluster": "silky@vod2867322183/silky-comment-danc-2026w37",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clips consist of disjointed, repetitive instructions without a clear setup, escalation, or payoff, so no meaningful change or story arc is present."
+                },
+                {
+                  "cluster": "alinity@vod2892098335/alinity-about-alinity-2026w40",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clips show disjointed statements about a dead bunny and unrelated remarks without a clear setup\u2011escalation\u2011payoff structure or a resolved meaningful change."
+                },
+                {
+                  "cluster": "stableronaldo@vod2887348449",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "ohnepixel@vod2866885554",
+                  "outcome": "already_refused",
+                  "why": "2026-10-03: director judged: not a story \u2014 The two clips show the same bodycam-style glitch (static and corrupted-video screens) during tactical-shooter rounds, but there i"
+                },
+                {
+                  "cluster": "silky@vod2887864850/silky-about-boxing-2026w40",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clips consist of unrelated rambling monologues and chat messages without a clear meaningful change or narrative progression."
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 970.3
         }
       ]
     }

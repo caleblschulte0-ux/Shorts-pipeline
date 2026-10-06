@@ -11360,14 +11360,67 @@
       "ts": "2026-10-06T12:15:40.808731+00:00"
     },
     "clip-20261006-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/PoliteSmilingPotPogChamp-ENeiLeeooI1c92Ue",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/-zrQkKVClkE",
       "title": "Lacy Calls Out Netflix Mistake And Gets Weird Reaction",
       "kind": "twitch_clip",
-      "ts": "2026-10-06T12:16:55.619257+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-06T12:17:03.761526+00:00",
+      "uploaded_at": "2026-10-06T12:17:03.761542+00:00",
+      "publish_at": "2026-10-06T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261006-lacy-calls-out-netflix-mistake-and-gets-weird-re-7f8f36f1"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/PoliteSmilingPotPogChamp-ENeiLeeooI1c92Ue",
+      "streamer": "lacy",
+      "series": "wholesome",
+      "hook": "WHY IS THAT ON NETFLIX",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2295,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 7.1
+      },
+      "director_cut": true
+    },
+    "rejected-rockydarlingcoyotetheringer-x1kpnrl0kjutftmo": {
+      "source_url": "https://www.twitch.tv/agent00/clip/RockyDarlingCoyoteTheRinger-x1kpnrL0KJuTFtMo",
+      "streamer": "agent00",
+      "title": "Cuffem wants goon PS3",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (talk, no observable event)",
+      "ts": "2026-10-06T12:17:33.333944+00:00"
+    },
+    "rejected-sillyfrozenlasagnaheyguys-takupvtko1wmyws-": {
+      "source_url": "https://www.twitch.tv/fanum/clip/SillyFrozenLasagnaHeyGuys-tAkupvtkO1wMyWS-",
+      "streamer": "fanum",
+      "title": "fancy tries to feed girl",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (no observable event)",
+      "ts": "2026-10-06T12:17:56.128542+00:00"
+    },
+    "rejected-giftedkawaiidonkeybrokeback-hcjdirioxnspeq7l": {
+      "source_url": "https://www.twitch.tv/buddha/clip/GiftedKawaiiDonkeyBrokeBack-hCjdIrioXnsPeq7l",
+      "streamer": "buddha",
+      "title": "Piss Sec purchase a gas station",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (talking, no observable event)",
+      "ts": "2026-10-06T12:18:44.522363+00:00"
+    },
+    "rejected-blightedvenomousemuyee-ym_0lzlykd0huujy": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/BlightedVenomousEmuYee-ym_0lzlyKD0HuujY",
+      "streamer": "kaicenat",
+      "title": "kai",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Monologue, no observable event)",
+      "ts": "2026-10-06T12:19:03.731484+00:00"
     }
   }
 }
