@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "date": "20261006",
+  "bundle": {
+    "identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093"
+  },
+  "request_id": "she-kept-taking-my-labeled-lunch-s5-2de3aeac0942",
+  "safe_request_id": "she-kept-taking-my-labeled-lunch-s5-2de3aeac0942",
+  "worker": "media",
+  "worker_run_id": "daily-producer-20261006-0615",
+  "created_at": "2026-10-06T11:14:07.489Z",
+  "expires_at": "2026-10-06T11:29:07.489Z",
+  "lease_seconds": 900
+}
