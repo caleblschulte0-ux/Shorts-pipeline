@@ -576,6 +576,36 @@ class TheStoryEndsWhereTheSentenceEnds(unittest.TestCase):
         self.assertEqual(out[-1]["end"], 11.0)
         self.assertEqual(rs, [])
 
+    def test_a_source_that_ends_mid_sentence_is_cut_back(self):
+        # backtest #4: "this is really better than my bed. I have them" and
+        # the clip ends — nothing to run on to, so end after "bed."
+        words = {"E": _w("this is really better than my bed. I have them",
+                         10.0)}
+        beats = [{"source_id": "E", "start": 9.0, "end": 13.6,
+                  "role": "payoff", "purpose": "p"}]
+        rs = []
+        out = story_director._finish_the_sentence(beats, words,
+                                                  {"E": 13.6}, rs)
+        self.assertEqual(out[-1]["end"], 12.8)       # "bed." ends 12.7
+        self.assertIn("cut back", rs[0])
+
+    def test_punctuation_ends_a_sentence_inside_one_breath(self):
+        words = {"E": _w("this is really better than my bed. I have them "
+                         "all over the house and the cats love them", 10.0)}
+        beats = [{"source_id": "E", "start": 9.0, "end": 11.5,
+                  "role": "payoff", "purpose": "p"}]
+        out = story_director._finish_the_sentence(beats, words,
+                                                  {"E": 60.0}, [])
+        self.assertEqual(out[-1]["end"], 12.8)
+
+    def test_never_cut_below_a_beat(self):
+        words = {"E": _w("ok. and then I have them all", 10.0)}
+        beats = [{"source_id": "E", "start": 9.5, "end": 12.2,
+                  "role": "payoff", "purpose": "p"}]
+        out = story_director._finish_the_sentence(beats, words,
+                                                  {"E": 12.2}, [])
+        self.assertEqual(out[-1]["end"], 12.2, "'ok.' is under 1.5s in")
+
 
 class TwoStoryAttemptsADay(unittest.TestCase):
     def test_the_template_asks_for_two_story_slots(self):

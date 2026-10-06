@@ -169,6 +169,17 @@ def _framed_cut(src: Path, work: Path, tag: str, start: float,
         return None, "wide"
 
 
+def _next_word_at(words: list[dict], end: float) -> float:
+    """When the next word after `end` starts (inf if none).
+
+    The ending's hold extends the last beat into the source; backtest #4's
+    best cut was trimmed to "...than my bed." and the hold then let "I
+    have" back in. The hold may run into silence, never into a new line —
+    and never shorter than the beat itself."""
+    nxt = [float(w["s"]) for w in words or [] if float(w["s"]) >= end - 0.02]
+    return max(end + 0.05, min(nxt)) if nxt else float("inf")
+
+
 def _seg_words(words: list[dict], start: float, end: float) -> list[dict]:
     """Caption words inside [start, end], rebased to the segment clock."""
     out = []
@@ -486,12 +497,14 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
             # §12/§10: the ending holds on the reaction — extend within
             # the source instead of cutting the last half-second
             src_dur = float(srcinfo.get("duration_s") or end)
-            end = min(src_dur, end + hold)
+            end = min(src_dur, end + hold, _next_word_at(
+                srcinfo.get("words") or [], end) - 0.05)
         seg = work / f"seg_{idx}.mp4"
         try:
             _lay = _extract_segment(
                 src, seg, work, str(idx), start=start, end=end,
-                words=srcinfo.get("words") or [],
+                words=([] if srcinfo.get("own_subtitles")
+                       else srcinfo.get("words") or []),
                 hook=(edl.get("hook_overlay", "") if idx == 0 else ""),
                 context_overlay=beat.get("context_overlay", ""),
                 effects=beat.get("effects") or [],
