@@ -1100,6 +1100,12 @@ only as a hand edit is not a rule. So:
   out of a spinner's hands; and nobody frowns — `focused` and `worried`
   faces are calm in every shot and in the shelf (the author mends them).
 
+- **Run 98 (commit 11d55b9e): 87, SHIP** — no problems, no fixes, the
+  first verdict with an empty note list. Hook 4, data 4, mascot 4; craft,
+  pace, payoff and temporal craft still 2 each. The contradiction notes
+  have stopped; what is left is the film being merely right. The parts
+  were sent to the operator.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);
