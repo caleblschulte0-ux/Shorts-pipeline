@@ -966,6 +966,47 @@ DOING_WORDS = (
 )
 
 
+SETTLED_WORDS = re.compile(r"\b(settled|asleep|sleeping|lying|lie down|bedded|at rest|resting|folded|penned)\b")
+HERD_WORDS = re.compile(r"\b(goats?|sheep|flock|herd|ewes?|lambs?|kids)\b")
+
+
+def mend_settled(beat: dict, era: str) -> str | None:
+    """"The goats and sheep are already settled for the night": the animals
+    LIE DOWN — the standing goat and the single sheep give way to the flock
+    settled together (run 99's judge: "one spindly standing animal, and no
+    pen"). Where the words name a gate or a pen, the pen is in the picture."""
+    sc = beat.get("scene") if isinstance(beat, dict) else None
+    say = (beat.get("say") or "").lower() if isinstance(beat, dict) else ""
+    if not isinstance(sc, dict) or not HERD_WORDS.search(say):
+        return None
+    if "flock" not in S.PROPS or era not in S.PROPS["flock"].eras:
+        return None
+    props = list(sc.get("props") or [])
+    names = [p if isinstance(p, str) else (p or {}).get("name") for p in props]
+    did = []
+    if SETTLED_WORDS.search(say) and ("goat" in names or "sheep" in names) and "flock" not in names:
+        props = [p for p, n in zip(props, names) if n not in ("goat", "sheep")] + ["flock"]
+        did.append("the animals settle (goat/sheep -> flock)")
+        names = [p if isinstance(p, str) else (p or {}).get("name") for p in props]
+    if re.search(r"\b(gate|pen|fold|hurdle)\b", say) and "fence" not in names and "fence" in S.PROPS \
+            and era in S.PROPS["fence"].eras and (S.PROPS["fence"].settings is None
+                                                  or sc.get("setting") in S.PROPS["fence"].settings):
+        props.append("fence")
+        did.append("the pen the words name")
+    if did:
+        was = sc.get("props")
+        sc["props"] = props
+        trial = json.loads(json.dumps(sc))
+        if S.validate(sc, era) or S.layout(sc, 1000)["collisions"] or uncrowd_scene(trial, era, seeds=(1000,)):
+            # no room for the flock and the pen: the picture stays as it was
+            # rather than looping with the mend that uncrowds it (the
+            # medieval shelf: a sheep added, settled, dropped, added again)
+            sc["props"] = was
+            return None
+        return ", ".join(did)
+    return None
+
+
 def mend_doing(beat: dict, era: str) -> str | None:
     """Whoever a sentence names does what that sentence says, when their
     pose allows it and they were only idling, holding or talking: "a man
@@ -1448,13 +1489,14 @@ def mend_beats(beats, era: str, log=print, final: bool = False, used=None) -> in
             # the old order added a named table and then dropped it again)
             named = add_named_props(b, era, seeds=(1000 + j,))
             recl = mend_recline(b, era)
+            settled = mend_settled(b, era)
             doing = mend_doing(b, era)
             plural = mend_plural(b, era, seeds=(1000 + j,))
             fire = mend_fire(b, era)
             furnished = mend_furnish(b, era, turn=j)
             moving = mend_motion(b, era)
-            did = ", ".join(x for x in (said, when, held, placed, night, did, crowd, named, recl, doing, plural, fire,
-                                        furnished, moving) if x)
+            did = ", ".join(x for x in (said, when, held, placed, night, did, crowd, named, recl, settled, doing,
+                                        plural, fire, furnished, moving) if x)
             if did and json.dumps(b["scene"], sort_keys=True) == was and not said:
                 did = ""          # a prop dropped and put back: nothing changed
             if did:

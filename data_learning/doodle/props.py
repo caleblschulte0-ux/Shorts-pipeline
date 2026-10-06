@@ -498,23 +498,87 @@ def stall(cr, x, y, s, t, seed):
                     rgb(["#c9432f", "#d9a441", "#7a9a3f"][(k + j) % 3]))
 
 
+GOAT_BODY = (92, 54)        # half-width, half-height at scale 1: a full body, not a blob on sticks (run 99)
+ANIMAL_LEG = 9.0            # leg width at scale 1
+
+
+def _hoof(cr, x, y, s):
+    ink.fill_stroke(cr, ink.ellipse_pts(x, y - 3 * s, 9 * s, 5 * s, 8), ink.INK, lw=0, amp=0)
+
+
 def goat(cr, x, y, s, t, seed):
-    """A goat, head dipping to the ground and up, tail flicking."""
+    """A goat: a full body, sturdy legs with hooves, a neck, a head with a
+    beard, an ear and curved horns; the head dips to the ground and up,
+    the tail flicks. Run 99's judge: "thin stick legs and an unclear head,
+    so it does not read as a sheep or goat"."""
     c = rgb("#b8a48a")
-    ink.fill_stroke(cr, ink.blob_pts(x, y - 78 * s, 75 * s, 42 * s, seed, 0.1, 18), c, lw=5 * s, amp=1.2, seed=seed,
+    bw, bh = GOAT_BODY
+    for dx in (-52, -26, 30, 56):
+        ink.line(cr, [(x + dx * s, y - 50 * s), (x + dx * s, y)], lw=ANIMAL_LEG * s, ink=c, amp=0)
+        ink.line(cr, [(x + dx * s, y - 50 * s), (x + dx * s, y)], lw=ANIMAL_LEG * s + 5 * s, ink=ink.INK, amp=0)
+        ink.line(cr, [(x + dx * s, y - 50 * s), (x + dx * s, y)], lw=ANIMAL_LEG * s, ink=c, amp=0)
+        _hoof(cr, x + dx * s, y, s)
+    ink.fill_stroke(cr, ink.blob_pts(x, y - 86 * s, bw * s, bh * s, seed, 0.08, 20), c, lw=5 * s, amp=1.2, seed=seed,
                     shadow=shade(c), shadow_dir=(0, 1))
-    for dx in (-48, -22, 28, 50):
-        ink.line(cr, [(x + dx * s, y - 45 * s), (x + dx * s, y)], lw=6 * s, amp=0)
     g = (math.sin(t * 2 * math.pi / 5.0 + seed) + 1) / 2
-    hx, hy = x + 88 * s, y - 104 * s + g * 55 * s
-    ink.line(cr, [(x + 62 * s, y - 92 * s), (hx - 10 * s, hy + 4 * s)], lw=16 * s, ink=c, amp=0)
-    ink.fill_stroke(cr, ink.ellipse_pts(hx, hy, 26 * s, 20 * s, 16), c, lw=4 * s, amp=0.6, seed=seed + 1)
-    ink.fill_stroke(cr, ink.ellipse_pts(hx + 22 * s, hy + 2 * s, 5 * s, 4 * s, 8), ink.INK, lw=0, amp=0)
+    hx, hy = x + 112 * s, y - 118 * s + g * 55 * s
+    for lw_, col in ((26 * s, ink.INK), (20 * s, c)):
+        ink.line(cr, [(x + 70 * s, y - 104 * s), (hx - 12 * s, hy + 6 * s)], lw=lw_, ink=col, amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(hx, hy, 34 * s, 24 * s, 16), c, lw=4.5 * s, amp=0.6, seed=seed + 1)
+    ink.fill_stroke(cr, ink.ellipse_pts(hx + 28 * s, hy + 4 * s, 6 * s, 5 * s, 8), ink.INK, lw=0, amp=0)
+    ink.dot(cr, hx + 8 * s, hy - 6 * s, 3.5 * s)
+    # curved horns, an ear, a beard
     for d in (-1, 1):
-        ink.line(cr, [(hx - 8 * s + d * 8 * s, hy - 16 * s), (hx - 4 * s + d * 22 * s, hy - 44 * s)], lw=3.5 * s, amp=0)
-    ink.line(cr, [(hx + 4 * s, hy + 18 * s), (hx + 2 * s, hy + 32 * s)], lw=3 * s, amp=0)
+        ink.line(cr, [(hx - 10 * s + d * 8 * s, hy - 20 * s), (hx - 14 * s + d * 18 * s, hy - 46 * s),
+                      (hx - 26 * s + d * 22 * s, hy - 58 * s)], lw=5 * s, ink=rgb("#6b5a44"), amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(hx - 22 * s, hy - 8 * s, 12 * s, 6 * s, 8), c, lw=3.5 * s, amp=0)
+    ink.fill_stroke(cr, [(hx + 10 * s, hy + 20 * s), (hx + 22 * s, hy + 22 * s), (hx + 16 * s, hy + 40 * s)],
+                    rgb("#8a7a62"), lw=3 * s, amp=0)
     f = math.sin(t * 2 * math.pi / 2.2 + seed) * 8 * s
-    ink.line(cr, [(x - 72 * s, y - 88 * s), (x - 92 * s, y - 104 * s + f)], lw=5 * s, ink=c, amp=0)
+    ink.line(cr, [(x - 84 * s, y - 98 * s), (x - 108 * s, y - 116 * s + f)], lw=6 * s, ink=c, amp=0)
+
+
+def _lying_animal(cr, x, y, s, t, seed, kind: str):
+    """A goat or a sheep settled for the night: the body down on the
+    ground, legs folded under, the head up and nodding slowly."""
+    c = rgb("#b8a48a") if kind == "goat" else rgb("#f1ede4")
+    bw, bh = (96, 46) if kind == "goat" else (100, 52)
+    breath = math.sin(t * 2 * math.pi / 4.0 + seed) * 2 * s
+    ink.fill_stroke(cr, ink.blob_pts(x, y - bh * s * 0.9 + breath, bw * s, bh * s, seed, 0.08, 20), c, lw=5 * s,
+                    amp=1.2, seed=seed, shadow=shade(c), shadow_dir=(0, 1))
+    # the folded foreleg along the ground
+    ink.line(cr, [(x + 20 * s, y - 10 * s), (x + 70 * s, y - 6 * s)], lw=ANIMAL_LEG * s, ink=c, amp=0)
+    ink.line(cr, [(x + 20 * s, y - 10 * s), (x + 70 * s, y - 6 * s)], lw=ANIMAL_LEG * s + 4 * s, ink=ink.INK, amp=0)
+    ink.line(cr, [(x + 20 * s, y - 10 * s), (x + 70 * s, y - 6 * s)], lw=ANIMAL_LEG * s, ink=c, amp=0)
+    _hoof(cr, x + 74 * s, y, s)
+    g = (math.sin(t * 2 * math.pi / 7.0 + seed) + 1) / 2
+    hx, hy = x + 104 * s, y - 92 * s + g * 20 * s
+    for lw_, col in ((24 * s, ink.INK), (18 * s, c)):
+        ink.line(cr, [(x + 66 * s, y - 64 * s), (hx - 10 * s, hy + 6 * s)], lw=lw_, ink=col, amp=0)
+    if kind == "goat":
+        ink.fill_stroke(cr, ink.ellipse_pts(hx, hy, 32 * s, 22 * s, 16), c, lw=4.5 * s, amp=0.6, seed=seed + 1)
+        for d in (-1, 1):
+            ink.line(cr, [(hx - 10 * s + d * 8 * s, hy - 18 * s), (hx - 14 * s + d * 18 * s, hy - 42 * s),
+                          (hx - 26 * s + d * 22 * s, hy - 54 * s)], lw=5 * s, ink=rgb("#6b5a44"), amp=0)
+        ink.fill_stroke(cr, [(hx + 8 * s, hy + 18 * s), (hx + 20 * s, hy + 20 * s), (hx + 14 * s, hy + 36 * s)],
+                        rgb("#8a7a62"), lw=3 * s, amp=0)
+    else:
+        ink.fill_stroke(cr, ink.ellipse_pts(hx, hy, 28 * s, 24 * s, 16), rgb("#3c3632"), lw=4 * s, amp=0)
+        for d in (-1, 1):
+            ink.fill_stroke(cr, ink.ellipse_pts(hx - 6 * s + d * 22 * s, hy - 8 * s, 12 * s, 6 * s, 8), rgb("#3c3632"),
+                            lw=3 * s, amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(hx + 24 * s, hy + 2 * s, 5 * s, 4 * s, 8),
+                    ink.INK if kind == "goat" else rgb("#f1ede4"), lw=0, amp=0)
+
+
+def flock(cr, x, y, s, t, seed):
+    """Goats and sheep settled for the night: three animals lying close,
+    each breathing and nodding at its own pace (run 99's judge: "goats and
+    sheep settled" showed one spindly standing animal)."""
+    s = s * 0.78                 # a little further off than the people, as a settled flock is
+    _lying_animal(cr, x - 150 * s, y - 24 * s, s * 0.9, t, seed + 1, "sheep")
+    _lying_animal(cr, x + 150 * s, y - 20 * s, s * 0.92, t, seed + 2, "goat")
+    _lying_animal(cr, x, y, s, t, seed, "sheep")
 
 
 def olive(cr, x, y, s, t, seed):
@@ -950,14 +1014,23 @@ def _curled(cr, x, y, s, t, seed, c, texture=None, ears_up=False, muzzle=None):
 
 
 def sheep(cr, x, y, s, t, seed):
+    """A sheep: a full fleece, sturdy dark legs with hooves, a dark head
+    with ears, grazing and lifting its head."""
     c = rgb("#f1ede4")
-    ink.fill_stroke(cr, ink.blob_pts(x, y - 75 * s, 80 * s, 50 * s, seed, 0.12, 18), c, lw=5 * s, amp=1.5,
-                    seed=seed)
-    for dx in (-45, -20, 30, 52):
-        ink.line(cr, [(x + dx * s, y - 35 * s), (x + dx * s, y)], lw=7 * s, amp=0)
+    dark = rgb("#3c3632")
+    for dx in (-50, -24, 32, 58):
+        ink.line(cr, [(x + dx * s, y - 48 * s), (x + dx * s, y)], lw=ANIMAL_LEG * s, ink=dark, amp=0)
+        _hoof(cr, x + dx * s, y, s)
+    ink.fill_stroke(cr, ink.blob_pts(x, y - 84 * s, 98 * s, 56 * s, seed, 0.14, 20), c, lw=5 * s, amp=1.5,
+                    seed=seed, shadow=shade(c, 0.92), shadow_dir=(0, 1))
     g = (math.sin(t * 2 * math.pi / 6.0 + seed) + 1) / 2
-    ink.fill_stroke(cr, ink.ellipse_pts(x + 85 * s, y - 95 * s + g * 55 * s, 26 * s, 22 * s, 16),
-                    rgb("#3c3632"), lw=4 * s, amp=0)
+    hx, hy = x + 108 * s, y - 112 * s + g * 55 * s
+    ink.line(cr, [(x + 72 * s, y - 100 * s), (hx - 8 * s, hy + 4 * s)], lw=20 * s, ink=dark, amp=0)
+    ink.fill_stroke(cr, ink.ellipse_pts(hx, hy, 30 * s, 25 * s, 16), dark, lw=4 * s, amp=0)
+    for d in (-1, 1):
+        ink.fill_stroke(cr, ink.ellipse_pts(hx - 8 * s + d * 24 * s, hy - 10 * s, 13 * s, 6 * s, 8), dark,
+                        lw=3 * s, amp=0)
+    ink.dot(cr, hx + 10 * s, hy - 6 * s, 3.5 * s, rgb("#f1ede4"))
 
 
 def cow(cr, x, y, s, t, seed):
@@ -1174,29 +1247,36 @@ def couch(cr, x, y, s, t, seed):
                     amp=1.0, seed=seed + 3, shadow=rgb("#c9ac6e"), shadow_dir=(0, 1))
 
 
+FENCE_HALF = 330            # half-length of the pen's rails at scale 1
+
+
 def fence(cr, x, y, s, t, seed):
-    """A length of pen fence with a gate: posts, two rails, a hurdle hung on
-    the post nearest the middle. "Goats, sheep and a gate fastened by
-    torchlight" had no gate (the 78 film's judge)."""
+    """A pen: a long run of posts and rails with a rail GATE on two hinges
+    in the middle, a latch bar across it. The 78 film's judge found no
+    gate; run 99's read the old wattle hurdle as "a hide frame"."""
     post = WOOD_D
     rail = WOOD
-    for k, dx in enumerate((-210, -70, 70, 210)):
-        ink.line(cr, [(x + dx * s, y + 4 * s), (x + dx * s, y - 120 * s)], lw=9 * s, ink=post, amp=0.6,
+    posts = (-FENCE_HALF, -200, -72, 72, 200, FENCE_HALF)
+    for k, dx in enumerate(posts):
+        ink.line(cr, [(x + dx * s, y + 4 * s), (x + dx * s, y - 124 * s)], lw=10 * s, ink=post, amp=0.6,
                  seed=seed + k)
-    for yy in (-100, -55):
-        ink.line(cr, [(x - 210 * s, y + yy * s), (x - 70 * s, y + yy * s + 3 * s)], lw=6 * s, ink=rail, amp=0.5,
-                 seed=seed + 7)
-        ink.line(cr, [(x + 70 * s, y + yy * s + 2 * s), (x + 210 * s, y + yy * s)], lw=6 * s, ink=rail, amp=0.5,
-                 seed=seed + 8)
-    # the gate: a wattle hurdle between the two middle posts, cross-braced
-    ink.fill_stroke(cr, [(x - 64 * s, y - 2 * s), (x + 64 * s, y - 2 * s), (x + 64 * s, y - 112 * s),
-                         (x - 64 * s, y - 112 * s)], rgb("#b89a64"), lw=4.5 * s, amp=0.8, seed=seed + 3,
-                    texture="hatch", tex_alpha=0.3)
-    ink.line(cr, [(x - 64 * s, y - 2 * s), (x + 64 * s, y - 112 * s)], lw=5 * s, ink=rail, amp=0)
-    ink.line(cr, [(x - 64 * s, y - 112 * s), (x + 64 * s, y - 2 * s)], lw=5 * s, ink=rail, amp=0)
-    # a loop of rope over the latch post
-    ink.fill_stroke(cr, ink.ellipse_pts(x + 70 * s, y - 92 * s, 10 * s, 7 * s, 10), (0, 0, 0, 0), lw=3.5 * s,
-                    amp=0)
+        ink.fill_stroke(cr, ink.ellipse_pts(x + dx * s, y - 124 * s, 7 * s, 4 * s, 8), post, lw=3 * s, amp=0)
+    for yy in (-100, -58):
+        ink.line(cr, [(x - FENCE_HALF * s, y + yy * s), (x - 72 * s, y + yy * s + 3 * s)], lw=7 * s, ink=rail,
+                 amp=0.5, seed=seed + 7)
+        ink.line(cr, [(x + 72 * s, y + yy * s + 2 * s), (x + FENCE_HALF * s, y + yy * s)], lw=7 * s, ink=rail,
+                 amp=0.5, seed=seed + 8)
+    # the gate: three rails on a frame between the middle posts, a diagonal
+    # brace, and the latch bar dropped into its keeper
+    for yy in (-104, -72, -40):
+        ink.line(cr, [(x - 66 * s, y + yy * s), (x + 66 * s, y + yy * s)], lw=7 * s, ink=rail, amp=0.4,
+                 seed=seed + 11)
+    for dx in (-62, 62):
+        ink.line(cr, [(x + dx * s, y - 8 * s), (x + dx * s, y - 112 * s)], lw=7 * s, ink=rail, amp=0.4, seed=seed + 12)
+    ink.line(cr, [(x - 62 * s, y - 12 * s), (x + 62 * s, y - 108 * s)], lw=5 * s, ink=rail, amp=0)
+    ink.line(cr, [(x + 40 * s, y - 88 * s), (x + 96 * s, y - 84 * s)], lw=8 * s, ink=post, amp=0)
+    for dy in (-100, -46):
+        ink.dot(cr, x - 70 * s, y + dy * s, 4.5 * s)
 
 
 def boat(cr, x, y, s, t, seed):
@@ -1317,7 +1397,8 @@ PROPS = {
     "brazier": Prop(brazier, 170, "mid", ("ancient", "egypt"), living=True, light=True, height=100, base=brazier_base),
     "oil_lamp": Prop(oil_lamp, 60, "front", ("ancient", "egypt"), living=True, light=True, height=60, base=oil_lamp_base),
     "stall": Prop(stall, 340, "mid", ("ancient", "egypt", "medieval", "early_modern")),
-    "goat": Prop(goat, 200, "mid", ("ancient", "egypt"), living=False),
+    "goat": Prop(goat, 240, "mid", ("ancient", "egypt"), living=False),
+    "flock": Prop(flock, 420, "mid", LATER, living=False, height=90),
     "olive": Prop(olive, 260, "back", ANCIENT, solid_width=110),
     "terrace": Prop(terrace, 420, "back", VICTORIAN),
     "barn": Prop(barn, 540, "back", ("medieval", "victorian", "early_modern")),
@@ -1342,6 +1423,6 @@ PROPS = {
     "couch": Prop(couch, 360, "mid", ANCIENT, settings=("villa_inside", "house_inside")),
     "krater": Prop(krater, 160, "mid", ANCIENT, settings=("villa_inside", "house_inside")),
     "boat": Prop(boat, 450, "mid", LATER, settings=("seashore", "harbour", "lakeshore", "riverbank", "nile_bank")),
-    "fence": Prop(fence, 440, "back", LATER, settings=("grassland", "olive_grove", "farmyard", "field", "village",
+    "fence": Prop(fence, 2 * FENCE_HALF + 20, "back", LATER, settings=("grassland", "olive_grove", "farmyard", "field", "village",
                                                      "mountains", "forest", "desert", "stream", "riverbank")),
 }

@@ -1102,3 +1102,114 @@ class TheEightySeven(unittest.TestCase):
     def test_the_water_s_speed_is_data(self):
         self.assertIn("sea", ST.WATER_SPEED)
         self.assertIn("river", ST.WATER_SPEED)
+
+
+@unittest.skipUnless(HAVE, "the doodle kit needs cairo and numpy")
+class TheSeventyEightAgain(unittest.TestCase):
+    """Run 99: 78, SHIP (87 the run before, on the same shelf — the judge
+    is noisy, the notes are not): "goats and sheep settled" showed one
+    spindly standing animal and no pen; spinning could not be read at phone
+    size; the old woman did not read as old, sampled as she glanced up; one
+    house room carried six judged moments."""
+
+    def test_settled_animals_lie_in_a_pen(self):
+        beat = {"say": "The goats and sheep are already settled for the night, and by torchlight you make sure "
+                       "the gate is fastened before heading back toward the hut.",
+                "scene": {"setting": "olive_grove", "time": "night", "weather": "clear", "shot": "close",
+                          "cast": [{"who": "man", "pose": "stand", "action": "hold", "item": "torch"}],
+                          "props": ["campfire", "goat"]}}
+        note = A.mend_settled(beat, "ancient")
+        self.assertTrue(note)
+        self.assertIn("flock", beat["scene"]["props"])
+        self.assertNotIn("goat", beat["scene"]["props"])
+        self.assertIn("fence", beat["scene"]["props"], "the gate the words name")
+        self.assertEqual(S.validate(beat["scene"], "ancient"), [])
+        self.assertIsNone(A.mend_settled(beat, "ancient"), "mended once")
+        # a standing goat stays standing where nothing says they settled
+        up = {"say": "A goat wanders along the wall.", "scene": {"setting": "olive_grove", "time": "dusk", "weather": "clear",
+                                                              "shot": "close", "cast": [], "props": ["campfire", "goat"]}}
+        self.assertIsNone(A.mend_settled(up, "ancient"))
+        self.assertIn("flock", PROPS)
+        self.assertIn("flock", OS.stands_for("goat"))
+
+    def test_the_animals_have_bodies_and_the_pen_has_a_gate(self):
+        import cairo
+        from data_learning.doodle import props as PR
+        self.assertGreaterEqual(PR.ANIMAL_LEG, 8.0, "stick legs")
+        self.assertGreaterEqual(PR.GOAT_BODY[1], 50)
+        for name in ("goat", "sheep", "flock", "fence"):
+            surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, 1400, 500)
+            cr = cairo.Context(surf)
+            PROPS[name].draw(cr, 700, 470, 1.0, 0.7, 3)
+            buf = np.ndarray(shape=(500, 1400, 4), dtype=np.uint8, buffer=surf.get_data())
+            self.assertGreater(int((buf[:, :, 3] > 0).sum()), 20000, name)
+        self.assertGreaterEqual(PR.FENCE_HALF, 300, "a pen, not a hurdle")
+        src = inspect.getsource(PR.fence)
+        self.assertNotIn("hatch", src, "the wattle hurdle read as a hide frame")
+
+    def test_a_shot_of_several_people_is_framed_on_them_and_their_things(self):
+        sp = {"setting": "villa_inside", "time": "night", "weather": "clear", "shot": "wide",
+              "cast": [{"who": "old_woman", "pose": "sit", "action": "spin"},
+                       {"who": "woman", "pose": "sit", "action": "spin"},
+                       {"who": "woman", "pose": "sit", "action": "sew"}],
+              "props": ["oil_lamp", "amphora", "bench"]}
+        opts = OS.coverage(sp, "ancient", 28)
+        for name in ("two", "arr"):
+            fr = opts[name][0].get("frame")
+            self.assertIsNotNone(fr, name)
+            self.assertGreater(fr[2], 1.1)
+        pen = {"setting": "olive_grove", "time": "night", "weather": "clear", "shot": "close",
+               "cast": [{"who": "man", "pose": "stand", "action": "hold", "item": "torch"},
+                        {"who": "woman", "pose": "stand", "action": "hold", "item": "lantern"}],
+               "props": ["fence", "campfire", "flock"]}
+        for seed in (29, 4):
+            spec = OS.coverage(pen, "ancient", seed, named=("flock",))["arr"][0]
+            fr = spec.get("frame")
+            if fr is None:
+                continue
+            lay = S.layout(spec, seed + 3)
+            cx, _cy, k = fr
+            x0 = min(max(cx * k - S.W / 2, 0.0), (k - 1) * S.W) / k
+            x1 = x0 + S.W / k
+            q = next(q for q in lay["props"] if q["name"] == "flock")
+            hw = PROPS["flock"].width * q["s"] / 2
+            self.assertTrue(q["x"] - hw >= x0 - 1 and q["x"] + hw <= x1 + 1, (seed, "the flock is cut by the window"))
+        # a walker's shot is the pan, not a framed group
+        walk = dict(sp, cast=[dict(sp["cast"][0]), {"who": "man", "pose": "walk", "action": "carry", "item": "basket"}])
+        self.assertIsNone(OS.coverage(walk, "ancient", 28)["two"][0].get("frame"))
+
+    def test_the_spindle_reads_at_a_glance(self):
+        self.assertGreaterEqual(P.SPINDLE_WHORL, 0.6)
+        self.assertGreaterEqual(P.SPINDLE_DROP, 1.4)
+        src = inspect.getsource(P._item)
+        self.assertIn("spoke", src, "the turn you can see")
+
+    def test_an_old_face_is_old_looking_up_too_and_stoops(self):
+        src = inspect.getsource(P.draw)
+        self.assertIn("_age_lines(cr, hcx, hcy, R, lw, up=(action == \"look_up\"))", src)
+        self.assertIn("STOOPED", src)
+        sk_young = P.skeleton("sit", 46.0, 0.0)
+        self.assertGreater(P.STOOP, 0.1)
+        self.assertIn("sit", P.STOOPED)
+        self.assertIn("stand", P.STOOPED)
+        self.assertNotIn("walk", P.STOOPED)
+        # white hair, not the grey that read as a hood
+        self.assertTrue(all(sum(c) / 3 > 0.78 for c in P.GREY_HAIR), P.GREY_HAIR)
+        del sk_young
+
+    def test_the_house_has_four_rooms(self):
+        import cairo
+        walls = set()
+        looks = []
+        for seed in range(4):
+            surf = cairo.ImageSurface(cairo.FORMAT_RGB24, S.W, S.H)
+            ST.draw_still(cairo.Context(surf), "house_inside", "night", "clear", seed, "wide", era="ancient")
+            buf = np.ndarray(shape=(S.H, S.W, 4), dtype=np.uint8, buffer=surf.get_data())
+            walls.add(tuple(int(v) for v in buf[150, 960, :3]))
+            looks.append(buf[300:800, :, :3].astype(np.int32))
+        self.assertEqual(len(walls), 4, "one wall colour a room")
+        for a in range(4):
+            for b in range(a + 1, 4):
+                diff = (np.abs(looks[a] - looks[b]).max(axis=2) > 40).mean()
+                self.assertGreater(diff, 0.02, (a, b, "two rooms that look the same"))
+        self.assertEqual({ST.house_room(s) for s in range(40)}, {0, 1, 2, 3})

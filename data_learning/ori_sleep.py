@@ -409,6 +409,7 @@ NAMED_PROPS = {"stall": ("stall", "stalls"), "barn": ("barn",), "cart": ("cart",
                "campfire": ("campfire", "bonfire", "embers", "coals", "fire"), "cauldron": ("cauldron", "pot"),
                "torch": ("torch", "torches"), "stove": ("stove", "range"),
                "goat": ("goat", "goats", "animals", "herd"), "sheep": ("sheep", "flock", "ewes", "lambs", "animals"),
+               "flock": ("flock", "herd"),
                "cow": ("cow", "cows", "cattle", "ox", "oxen"), "chicken": ("hens", "chickens", "hen"),
                "dog": ("dog", "dogs", "hound"), "fence": ("gate", "pen", "fence", "fold", "hurdle"),
                "krater": ("krater", "mixing bowl", "mixing-bowl", "bowl of wine", "wine bowl", "cups")}
@@ -420,7 +421,8 @@ NAMED_PROPS = {"stall": ("stall", "stalls"), "barn": ("barn",), "cart": ("cart",
 SAME_THING = {"boat": ("boat", "reed_boat", "canoe", "ship"), "oil_lamp": ("oil_lamp", "candle", "gas_lamp"),
               "candle": ("candle", "oil_lamp"), "cauldron": ("cauldron", "pot"), "hearth": ("hearth", "stove"),
               "campfire": ("campfire", "brazier", "hearth", "stove"), "bench": ("bench", "chair"),
-              "amphora": ("amphora", "jar"), "goat": ("goat", "sheep"), "sheep": ("sheep", "goat")}
+              "amphora": ("amphora", "jar"), "goat": ("goat", "sheep", "flock"), "sheep": ("sheep", "goat", "flock"),
+              "flock": ("flock", "goat", "sheep")}
 
 
 def stands_for(name: str) -> tuple:
@@ -480,6 +482,8 @@ MOVE_WORDS = r"\b(walks?|walking|carr(?:y|ies|ying)|cross(?:es|ing)?|pass(?:es|i
 TABLE_ACTIONS = ("eat", "drink", "talk", "sew")
 INSERT_ZOOM = 2.0    # a close-up of the fire or the lamp AND whoever is at it: framed in, held still (2.0: the rooftops out of an embers shot, run 96)
 FIRE_ACTIONS = ("warm_hands", "feed_fire", "stir", "sew", "eat", "drink", "talk", "hold")
+GROUP_ZOOM = 1.35    # a shot of several people: framed on all of them (run 99: three spinners too small to read)
+GROUP_ZOOM_INTERIOR = 1.25
 SINGLE_ZOOM = 1.3    # a shot of one person: framed on them
 SINGLE_ZOOM_INTERIOR = 1.15    # ...looser in a room, so the shelf and the window stay in the picture (run 94: "the top half of the frame is empty")
 
@@ -520,6 +524,7 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dic
     cands = {"est": (clean(dict(spec, shot="wide")), seed + 1),
              "two": (clean(dict(spec, shot="close")), seed + 2),
              "arr": (clean(dict(spec)), seed + 3)}
+    walking = any(c.get("pose") == "walk" for c in cast)
     for i, c in enumerate(cast):
         if c.get("pose") == "walk":
             cands["pan"] = (clean(dict(spec, shot="close", cast=[dict(c, pose="walk")], pan=True,
@@ -577,6 +582,17 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dic
                 [(p["x"] - PROPS[p["name"]].width * p["s"] / 2, p["y"] - ph * 1.3,
                   p["x"] + PROPS[p["name"]].width * p["s"] / 2, p["y"] + 10)]
             fr = frame_for(boxes, INSERT_ZOOM)
+            if fr is not None:
+                sp = dict(sp, frame=fr)
+        elif name in ("two", "arr") and lay["people"] and not walking and len(cast) >= 2:
+            # a shot of several people is framed in on them, with the lights
+            # (run 99: "spinning cannot be read at phone size" — three women
+            # drawn small across a whole room)
+            # ...and with the things in the room, whole: a flock cut by the
+            # window's edge is a pale boulder
+            boxes = [_figure_box(f) for f in lay["people"]] + \
+                [_prop_box(q) for q in lay["props"] if q["name"] in lights or q["name"] in (named or ())]
+            fr = frame_for(boxes, GROUP_ZOOM_INTERIOR if S.SETTINGS[sp["setting"]].interior else GROUP_ZOOM)
             if fr is not None:
                 sp = dict(sp, frame=fr)
         elif name.startswith("single:") and lay["people"]:

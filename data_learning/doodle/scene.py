@@ -1286,6 +1286,13 @@ class Scene:
             pr = PROPS[p["name"]]
             if pr.layer != "back" and pr.width * p["s"] >= 160:
                 out.append((p["x"] - pr.width * p["s"] / 2, p["x"] + pr.width * p["s"] / 2))
+        fr = self.spec.get("frame")
+        if fr:
+            # a framed shot sees only its window: the path has to fall inside it
+            cx, _cy, k = fr
+            x0 = min(max(cx * k - W / 2, 0.0), (k - 1) * W) / k
+            out.append((-W, x0))
+            out.append((x0 + W / k, 2 * W))
         return out
 
     def _figure_holes(self, t: float = 0.0) -> list[tuple[float, float, float, float]]:

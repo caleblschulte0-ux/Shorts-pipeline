@@ -1121,6 +1121,28 @@ only as a hand edit is not a rule. So:
   figure's glint hole is its body, not the reach of its rod. A lamplit
   room probes at 24.0 now and the close shore at 23 to 24.
 
+- **Run 99 (commit b88dcf1a): 78, SHIP** — the same shelf as run 98's 87,
+  so nine points of that is the judge's own noise (hook 4→3, data 4→3);
+  the notes are not. Measured, the cadence work did what it was built
+  for: 23.86 effective fps over the film (21.8 the run before, 225 held
+  frame pairs of 39,350), and still 2 of 3 because the grade rounds at
+  24.0; what was left was two sleepers on the night shore with the moon's
+  path behind them and a framed single whose window the sun fell outside
+  of — the sun now stands inside a framed window (`_cover_spans` counts
+  the window's edges as cover). The notes, each a rule
+  (`TheSeventyEightAgain`): "goats and sheep settled" draws a FLOCK lying
+  in a PEN — a settled flock prop, a sturdier goat and sheep with bodies,
+  hooves, heads and horns, a pen of posts and rails with a rail gate (the
+  wattle hurdle read as "a hide frame"), and `mend_settled` puts them in
+  the scene where the words say settled and gate, only where they fit; a
+  shot of several people is framed in on them and the things the words
+  name (the spinners were "small objects at phone size"); the spindle
+  hangs lower with a bigger whorl and a spoke that turns; a grey head
+  carries its age lines looking up too, stoops, and is white rather than
+  the grey that read as a hood; the house has four rooms by seed (the pot
+  shelf and cloak; a loom; a red dado and a niche; a hearth corner), so
+  six judged moments are no longer one room.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

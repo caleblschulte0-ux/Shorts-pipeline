@@ -39,7 +39,7 @@ WHO = {
 }
 
 HAIR = [rgb("#6b4526"), rgb("#5a3d2a"), rgb("#8a5a2b"), rgb("#4a3a33"), rgb("#9c6b3a")]
-GREY_HAIR = [rgb("#c9c4bd"), rgb("#aaa49c")]
+GREY_HAIR = [rgb("#e6e2da"), rgb("#cfcac2")]   # white and silver: the darker grey read as a hood (run 99)
 EGYPT_HAIR = [rgb("#2e2a2c"), rgb("#3a3234")]
 
 # era -> outfit palette and pattern
@@ -215,6 +215,9 @@ def head_of(sk: dict, R: float, action: str) -> tuple[float, float]:
 
 # what is carried at the side whatever the free hand is doing
 LOW_HELD = ("lantern", "torch")
+
+STOOPED = ("stand", "sit", "sit_on", "crouch")    # the poses a grey head is carried forward in
+STOOP = 0.22                                      # head radii forward
 
 
 def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
@@ -413,10 +416,18 @@ def _face(cr, cx, cy, R, mood, t, seed, looking_up=False):
         ink.line(cr, [(mx - 0.11 * R, my), (mx + 0.11 * R, my + 0.01 * R)], lw=lw * 0.75, amp=0)
 
 
-def _age_lines(cr, cx, cy, R, lw):
+def _age_lines(cr, cx, cy, R, lw, up: bool = False):
     """What makes a grey head read as OLD at a glance: a short line under
     each eye and one at the corner of the mouth (run 97's judge: "the old
-    woman ... does not read as old")."""
+    woman ... does not read as old"). On a face turned up, the lines sit on
+    the cheek below the eyes at the crown (run 99: the same note, sampled
+    while she glanced up)."""
+    if up:
+        for k in (-1, 1):
+            ink.line(cr, [(cx + 0.3 * R, cy - 0.55 * R + k * 0.3 * R + 0.12 * R),
+                          (cx + 0.5 * R, cy - 0.55 * R + k * 0.3 * R + 0.16 * R)], lw=lw * 0.45, amp=0)
+        ink.line(cr, [(cx + 0.38 * R, cy - 0.1 * R), (cx + 0.56 * R, cy - 0.22 * R)], lw=lw * 0.45, amp=0)
+        return
     ox, ey = 0.18 * R, cy - 0.02 * R
     for sx in (-1, 1):
         x = cx + ox + sx * 0.30 * R
@@ -571,19 +582,27 @@ def _item(cr, name, hx, hy, R, t, lw, facing_up=False):
         # whorl, the whorl turning (its ellipse breathing with the spin)
         # big enough to read from across the room (run 95's judge, twice:
         # "no spindle or spinning action is visible")
-        ink.line(cr, [(hx, hy + 0.1 * R), (hx + 0.06 * R, hy + 1.1 * R)], lw=3.0, ink=rgb("#f1ead8"), amp=0)
-        sx, sy = hx + 0.06 * R, hy + 1.1 * R
-        ink.line(cr, [(sx, sy - 0.35 * R), (sx, sy + 0.95 * R)], lw=lw * 1.0, ink=rgb("#6b4a2e"), amp=0)
+        # a long thread (run 99: "a visible spindle and a hanging thread with
+        # a turning motion, so spinning reads at a glance")
+        ink.line(cr, [(hx, hy + 0.1 * R), (hx + 0.08 * R, hy + SPINDLE_DROP * R)], lw=4.0, ink=rgb("#f1ead8"), amp=0)
+        sx, sy = hx + 0.08 * R, hy + SPINDLE_DROP * R
+        ink.line(cr, [(sx, sy - 0.4 * R), (sx, sy + 1.0 * R)], lw=lw * 1.1, ink=rgb("#6b4a2e"), amp=0)
         wobble = SPINDLE_WHORL * 0.3 * R * abs(math.sin(2 * math.pi * t / 0.6))
-        ink.fill_stroke(cr, ink.ellipse_pts(sx, sy + 0.55 * R, SPINDLE_WHORL * R, 0.14 * R + wobble, 16),
+        ink.fill_stroke(cr, ink.ellipse_pts(sx, sy + 0.55 * R, SPINDLE_WHORL * R, 0.16 * R + wobble, 16),
                         rgb("#8d6a3f"), lw=lw * 0.8, amp=0, shadow=rgb("#6b4a2e"), shadow_dir=(0, 1))
+        # a spoke across the whorl that turns with it: the spin you can see
+        a = 2 * math.pi * t / 0.6
+        ink.line(cr, [(sx - math.cos(a) * SPINDLE_WHORL * R, sy + 0.55 * R - math.sin(a) * (0.16 * R + wobble)),
+                      (sx + math.cos(a) * SPINDLE_WHORL * R, sy + 0.55 * R + math.sin(a) * (0.16 * R + wobble))],
+                 lw=lw * 0.6, ink=rgb("#5a3d22"), amp=0)
         # the wound thread on the shaft
-        ink.fill_stroke(cr, ink.ellipse_pts(sx, sy + 0.1 * R, 0.13 * R, 0.3 * R, 10), rgb("#e9e2d0"), lw=2.0, amp=0)
+        ink.fill_stroke(cr, ink.ellipse_pts(sx, sy + 0.1 * R, 0.15 * R, 0.34 * R, 10), rgb("#e9e2d0"), lw=2.0, amp=0)
     else:
         raise KeyError(f"item {name!r} is not drawable")
 
 
-SPINDLE_WHORL = 0.5          # the whorl's half-width in head radii
+SPINDLE_WHORL = 0.62         # the whorl's half-width in head radii
+SPINDLE_DROP = 1.5           # how far below the hand the spindle hangs, in head radii
 
 
 def cushion(cr, x: float, ground_y: float, scale: float, who: str, era: str, seed: int, facing: str = "right"):
@@ -631,6 +650,14 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
         sk = _blend(sk, skeleton(pose_to, R, t if gait is None else gait, ph), min(1.0, blend))
         if blend >= 0.5:
             pose = pose_to
+    if lk["grey"] and pose in STOOPED:
+        # the old stoop: the neck and the head carried forward and a little
+        # down, so the whole silhouette says the years (run 99's judge: "a
+        # stooped posture")
+        nx0, ny0 = sk["neck"]
+        hx0, hy0 = sk["head"]
+        sk["neck"] = (nx0 + STOOP * R, ny0 + 0.5 * STOOP * R)
+        sk["head"] = (hx0 + 1.3 * STOOP * R, hy0 + 0.6 * STOOP * R)
     sk["head"] = head_of(sk, R, action)
     front, back = hand_targets(action, sk, R, t, ph)
     sx = -1.0 if facing == "left" else 1.0
@@ -764,8 +791,8 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
                 (hcx + 0.8 * R, hcy + 0.95 * R), (hcx + 0.35 * R, hcy + 1.18 * R), (hcx - 0.15 * R, hcy + 1.1 * R)]
         ink.fill_stroke(cr, bpts, ink.mix(lk["hair"], HEAD, 0.3), lw=lw * 0.7, amp=1.5, seed=seed + 4)
     _face(cr, hcx, hcy, R, mood, t, seed, looking_up=(action == "look_up"))
-    if lk["grey"] and action != "look_up":
-        _age_lines(cr, hcx, hcy, R, lw)
+    if lk["grey"]:
+        _age_lines(cr, hcx, hcy, R, lw, up=(action == "look_up"))
     if cold and action != "sleep":
         _breath(cr, hcx, hcy, R, t, seed)
 
