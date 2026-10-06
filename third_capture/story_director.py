@@ -493,6 +493,43 @@ def _no_repeated_lines(beats: list[dict], words: dict, rs: list,
     return out
 
 
+def _finish_the_sentence(beats: list[dict], words: dict,
+                         durations: dict, rs: list,
+                         max_extend: float = 3.0) -> list[dict]:
+    """The story ends where the sentence ends, not mid-word.
+
+    Third story backtest (2026-10-06): the one cut that cleared the bar
+    still ended on "I have them" — the critic: "the final line is cut
+    mid-phrase". When the last beat's end falls inside a word, or the next
+    word follows within 0.35s (the same breath), the beat runs on to the
+    first real pause, at most `max_extend` seconds and never past the
+    source. Recorded as a repair."""
+    if not beats:
+        return beats
+    last = beats[-1]
+    ws = sorted(words.get(last["source_id"]) or [], key=lambda w: w["s"])
+    end = last["end"]
+    limit = min(end + max_extend,
+                float(durations.get(last["source_id"]) or end))
+    new_end = end
+    for w in ws:
+        if w["e"] <= new_end - 0.05:
+            continue
+        if w["s"] < new_end or w["s"] - new_end <= 0.35:
+            if w["e"] > limit:
+                break
+            new_end = max(new_end, w["e"])
+        else:
+            break
+    if new_end > end + 0.05:
+        rs.append(f"last beat ran past mid-sentence: end {end:.1f}s -> "
+                  f"{new_end:.1f}s (repaired)")
+        cap = float(durations.get(last["source_id"]) or new_end + 0.1)
+        beats = beats[:-1] + [dict(last, end=round(min(new_end + 0.1, cap),
+                                                   2))]
+    return beats
+
+
 def _words(reports: list[dict]) -> dict:
     return {r.get("source_id"): r.get("words") or [] for r in reports}
 
@@ -654,6 +691,7 @@ def validate_edl(edl: dict, durations: dict[str, float],
                           "effects": effects})
         beats = _no_replayed_seconds(beats, positions or {}, rs)
         beats = _no_repeated_lines(beats, words or {}, rs)
+        beats = _finish_the_sentence(beats, words or {}, durations, rs)
         if len(beats) < 2:
             rs.append(f"only {len(beats)} valid beat(s)")
             return None

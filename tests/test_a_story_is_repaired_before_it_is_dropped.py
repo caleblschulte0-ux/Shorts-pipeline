@@ -77,9 +77,11 @@ class _Harness(unittest.TestCase):
         rt._CLIP_MEMORY = memory or clip_memory.empty()
         rt._JUDGES.clear()
         self.revisions = 0
+        self.revise_fixes = []
 
         def revise(edl, problems, reports):
             self.revisions += 1
+            self.revise_fixes.append([p["fix"] for p in problems])
             return dict(EDL)
 
         clip = tmp / "c.mp4"
@@ -512,6 +514,67 @@ class TheOpeningSaysWhoAndWhat(unittest.TestCase):
         p = story_director._PLAN_SYSTEM
         self.assertNotIn("Usually omit.", p.split("narration:")[1][:600])
         self.assertIn("never says WHO or WHAT", p)
+
+
+class RepairsStartFromTheBestCut(_Harness):
+    """Third backtest (2026-10-06): repair chains got WORSE as they went —
+    CaseOh 70 -> 66 -> 58 — because each repair rewrote the last repair."""
+
+    def test_a_worse_repair_is_not_the_base_for_the_next(self):
+        self.run_attempt([_review(False, 70, "fix A"),
+                          _review(False, 66, "fix B"),
+                          _review(False, 58, "fix C")])
+        self.assertEqual(self.revise_fixes, [["fix A"], ["fix A"]],
+                         "the second repair works from the 70, not the 66")
+
+    def test_a_better_repair_becomes_the_base(self):
+        self.run_attempt([_review(False, 60, "fix A"),
+                          _review(False, 72, "fix B"),
+                          _review(False, 74, "fix C")])
+        self.assertEqual(self.revise_fixes, [["fix A"], ["fix B"]])
+
+
+class TheStoryEndsWhereTheSentenceEnds(unittest.TestCase):
+    """Third backtest: the one cut over the bar still ended on 'I have
+    them' — "the final line is cut mid-phrase"."""
+
+    W = {"E": _w("this is better than my bed I have them", 10.0)}
+
+    def _last(self, end, dur=60.0):
+        beats = [{"source_id": "E", "start": 9.0, "end": end,
+                  "role": "payoff", "purpose": "p"}]
+        rs = []
+        out = story_director._finish_the_sentence(beats, self.W,
+                                                  {"E": dur}, rs)
+        return out[-1]["end"], rs
+
+    def test_mid_word_runs_to_the_end_of_the_breath(self):
+        # words every 0.4s, 0.3s long: one breath; last word ends 13.5
+        end, rs = self._last(11.1)
+        self.assertEqual(end, 13.6)
+        self.assertIn("mid-sentence", rs[0])
+
+    def test_never_more_than_three_seconds(self):
+        words = {"E": _w(" ".join(["word"] * 30), 10.0)}
+        beats = [{"source_id": "E", "start": 9.0, "end": 10.1,
+                  "role": "payoff", "purpose": "p"}]
+        out = story_director._finish_the_sentence(beats, words,
+                                                  {"E": 60.0}, [])
+        self.assertLessEqual(out[-1]["end"], 10.1 + 3.0 + 0.1)
+
+    def test_never_past_the_source(self):
+        end, _ = self._last(11.1, dur=12.0)
+        self.assertLessEqual(end, 12.0)
+
+    def test_an_end_in_a_pause_is_left_alone(self):
+        words = {"E": _w("done", 10.0) + _w("later", 14.0)}
+        beats = [{"source_id": "E", "start": 9.0, "end": 11.0,
+                  "role": "payoff", "purpose": "p"}]
+        rs = []
+        out = story_director._finish_the_sentence(beats, words,
+                                                  {"E": 60.0}, rs)
+        self.assertEqual(out[-1]["end"], 11.0)
+        self.assertEqual(rs, [])
 
 
 class TwoStoryAttemptsADay(unittest.TestCase):

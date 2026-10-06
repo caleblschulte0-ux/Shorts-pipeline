@@ -258,8 +258,15 @@ the two stories that DID get through the director (sodapoppin, 10-01 and
 and dropped silently.
 
 - **Up to `story_revisions` (default 2) repairs**, each from the critic's
-  latest problems, same critic, same `publish` bar (playbook §19 amended).
-  A high score without `publish` is still a no.
+  problems with the BEST cut so far, same critic, same `publish` bar
+  (playbook §19 amended). A high score without `publish` is still a no.
+  The third backtest (2026-10-06) showed chains of repairs-of-repairs
+  getting worse (70 → 66 → 58), so a repair that scores lower is never
+  the base for the next one.
+- **The last beat ends where the sentence ends** (`_finish_the_sentence`
+  in `validate_edl`): if the cut lands mid-breath it runs on to the next
+  pause, at most 3 s and never past the source. The one backtest cut over
+  the bar ended on "I have them".
 - **Every way a story dies is a verdict**: `narrative_failed` (all scores
   plus the critic's first three problems), `qa_failed`, `duration`,
   `already_shipped`. `starved` now names each source's failure —
