@@ -2616,11 +2616,38 @@
       "duration_s": 31.9
     },
     "data-breach-exposure": {
-      "claimed_at": "2026-10-06T10:44:45.932326+00:00",
+      "url": "https://youtube.com/shorts/s6mNUdB7hSQ",
       "title": "One Leaked Password Can Unlock Your Whole Digital Life",
+      "at": "2026-10-06T10:44:56.983568+00:00",
       "publish_at": "2026-10-06T11:10:25Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 37 credits are required for this request.\",\"status",
+      "beat_s_max": 6.06,
+      "beat_s": [
+        5.22,
+        6.06,
+        5.79,
+        5.51,
+        6.47
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 57,
+      "duration_s": 28.9,
+      "hook": "stake",
+      "topic_category": "tech",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:vault-crack-spread",
+        "mechanic:shield-breach-wash",
+        "mechanic:breach-target-board"
+      ],
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -3222,9 +3249,10 @@
       "claimed_at": "2026-10-06T10:44:45.932326+00:00",
       "title": "One Leaked Password Can Unlock Your Whole Digital Life",
       "publish_at": "2026-10-06T11:10:25Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "data-breach-exposure"
+      "url": "https://youtube.com/shorts/s6mNUdB7hSQ",
+      "state": "posted",
+      "slug": "data-breach-exposure",
+      "at": "2026-10-06T10:44:56.983568+00:00"
     }
   ]
 }
