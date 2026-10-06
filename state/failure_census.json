@@ -4,185 +4,170 @@
   "decorative_mascot": {
    "count": 24,
    "stories": {
-    "permafrost-thaw": 4,
-    "genz-drinking-decline": 3,
-    "lab-grown-meat-scale-up-8x": 5,
-    "octopus-nine-brains": 3,
-    "marathon-super-shoes-record-pace": 2,
-    "billionaire-count-record-2025": 3,
-    "quantum-computers-5-to-1121-qubits": 3,
-    "kelp-forest-sea-star-collapse": 1
+    "body-renewal-clock": 4,
+    "insect-planet": 1,
+    "light-pollution-erasing-sky": 2,
+    "diabetes-quietly-doubled": 3,
+    "volcano-country-ranking": 1,
+    "adhd-diagnosis-surge": 2,
+    "parker-solar-probe-speed-record": 2,
+    "college-gender-gap": 3,
+    "third-interstellar-visitor": 2,
+    "coldest-place-in-the-universe-is-human-made": 1,
+    "kids-phones-getting-younger": 3
    },
    "timestamps": [
-    "2026-10-04T15:18:14+00:00",
-    "2026-10-04T15:18:14+00:00",
-    "2026-10-04T15:25:38+00:00",
-    "2026-10-04T15:25:38+00:00",
-    "2026-10-04T15:36:52+00:00",
-    "2026-10-04T15:50:24+00:00",
-    "2026-10-04T16:02:36+00:00",
-    "2026-10-04T16:13:53+00:00",
-    "2026-10-04T16:28:38+00:00",
-    "2026-10-04T16:35:56+00:00",
-    "2026-10-04T16:35:56+00:00",
-    "2026-10-04T18:09:01+00:00",
-    "2026-10-04T18:09:01+00:00",
-    "2026-10-04T18:21:38+00:00",
-    "2026-10-04T18:44:53+00:00",
-    "2026-10-04T18:44:53+00:00",
-    "2026-10-04T18:56:28+00:00",
-    "2026-10-04T18:56:28+00:00",
-    "2026-10-04T19:08:47+00:00",
-    "2026-10-04T19:25:57+00:00",
-    "2026-10-04T19:43:01+00:00",
-    "2026-10-04T19:58:44+00:00",
-    "2026-10-04T20:29:12+00:00",
-    "2026-10-04T20:39:07+00:00"
+    "2026-10-05T17:50:51+00:00",
+    "2026-10-05T17:57:08+00:00",
+    "2026-10-05T18:02:55+00:00",
+    "2026-10-05T18:02:55+00:00",
+    "2026-10-05T18:07:32+00:00",
+    "2026-10-05T18:15:53+00:00",
+    "2026-10-05T18:19:51+00:00",
+    "2026-10-05T18:24:33+00:00",
+    "2026-10-05T18:29:20+00:00",
+    "2026-10-05T18:34:08+00:00",
+    "2026-10-05T18:41:15+00:00",
+    "2026-10-05T18:48:03+00:00",
+    "2026-10-05T18:48:03+00:00",
+    "2026-10-05T18:52:41+00:00",
+    "2026-10-05T18:52:41+00:00",
+    "2026-10-05T18:57:49+00:00",
+    "2026-10-05T18:57:49+00:00",
+    "2026-10-05T19:01:37+00:00",
+    "2026-10-05T19:08:55+00:00",
+    "2026-10-05T19:08:55+00:00",
+    "2026-10-05T19:15:18+00:00",
+    "2026-10-05T19:22:01+00:00",
+    "2026-10-05T19:28:49+00:00",
+    "2026-10-05T19:34:57+00:00"
    ],
    "examples": [
-    "decorative_mascot: In hook@0.3 to seg0:end Data walks along the timeline with his arms up and touches nothing. In seg1:start to seg1:end he floats between empty bar tracks (2023, then 2010, then perch",
-    "bare_number_card: seg2:end is two text labels with big numbers ('870B', '1700B') and a mascot beside each, with nothing that shows 1.7 trillion being almost double. seg1:mid is a list of values (-8, -",
-    "decorative_mascot: seg1:start/mid/end: Data hops between empty bar rows without causing any value. In seg0:mid he walks along the axis with his arms up. In seg2:mid/end two Data copies just stand besi"
+    "decorative_mascot: In hook@0.3 through seg1:end Data stands on top of the stomach/skin bubbles, waving and posing. He causes nothing. In seg2:mid/end he floats beside the pink bar, and in seg4 he stan",
+    "decorative_mascot: seg1:mid/end Data perches on the 5/28-day labels, at seg2 he stands beside or on top of the pink bar, at seg3 he rides the line tip and at seg4 he stands at '0T'. He causes none of ",
+    "decorative_mascot: Data is missing from the hook and seg0. In seg1:mid he stands on top of the '5 day/28 days' labels. In seg2:start\u2013end he floats beside the neuron bar, and in seg4:start\u2013end he idles"
    ],
    "recurred_after_fix": false
   },
   "other": {
-   "count": 17,
+   "count": 16,
    "stories": {
-    "permafrost-thaw": 2,
-    "genz-drinking-decline": 1,
-    "lab-grown-meat-scale-up-8x": 6,
-    "octopus-nine-brains": 2,
-    "billionaire-count-record-2025": 2,
-    "quantum-computers-5-to-1121-qubits": 3,
-    "kelp-forest-sea-star-collapse": 1
+    "body-renewal-clock": 2,
+    "insect-planet": 1,
+    "light-pollution-erasing-sky": 3,
+    "diabetes-quietly-doubled": 3,
+    "volcano-country-ranking": 1,
+    "adhd-diagnosis-surge": 1,
+    "parker-solar-probe-speed-record": 1,
+    "coldest-place-in-the-universe-is-human-made": 1,
+    "kids-phones-getting-younger": 3
    },
    "timestamps": [
-    "2026-10-04T15:18:14+00:00",
-    "2026-10-04T15:25:38+00:00",
-    "2026-10-04T15:36:52+00:00",
-    "2026-10-04T15:50:24+00:00",
-    "2026-10-04T16:02:36+00:00",
-    "2026-10-04T16:13:53+00:00",
-    "2026-10-04T16:21:15+00:00",
-    "2026-10-04T16:28:38+00:00",
-    "2026-10-04T18:21:38+00:00",
-    "2026-10-04T18:44:53+00:00",
-    "2026-10-04T19:08:47+00:00",
-    "2026-10-04T19:25:57+00:00",
-    "2026-10-04T19:43:01+00:00",
-    "2026-10-04T19:58:44+00:00",
-    "2026-10-04T20:29:12+00:00",
-    "2026-10-04T20:39:07+00:00",
-    "2026-10-04T20:54:07+00:00"
+    "2026-10-05T17:50:51+00:00",
+    "2026-10-05T17:57:08+00:00",
+    "2026-10-05T18:07:32+00:00",
+    "2026-10-05T18:11:51+00:00",
+    "2026-10-05T18:15:53+00:00",
+    "2026-10-05T18:19:51+00:00",
+    "2026-10-05T18:24:33+00:00",
+    "2026-10-05T18:29:20+00:00",
+    "2026-10-05T18:34:08+00:00",
+    "2026-10-05T18:41:15+00:00",
+    "2026-10-05T18:48:03+00:00",
+    "2026-10-05T18:52:41+00:00",
+    "2026-10-05T19:15:18+00:00",
+    "2026-10-05T19:22:01+00:00",
+    "2026-10-05T19:28:49+00:00",
+    "2026-10-05T19:34:57+00:00"
    ],
    "examples": [
-    "unreadable: In seg2:start the 'Frozen in permafrost soil 1700B' label is grey on a grey-blue bar and almost invisible. In hook@0.3 the stacked caption and the -8 axis label are tiny. In seg4:start the",
-    "unreadable: seg2:start: 'Frozen in permafrost soil 1700B' is grey on grey and almost invisible. In seg4:mid/end Data's body covers the 'B' of the pink '150B' label.",
-    "unreadable: seg1:end: Data's head covers the '72%' label (it reads '72%' cut off behind him). seg2:end: a cyan ellipse is drawn over the '70%' on the left disc. seg0:end: '72%' moves to the left of it"
+    "unreadable: In hook@0.3 through seg1:end the '5 day' and '28 days' labels overlap and read as '5 day28 days', with tiny 'Stomach lining' text. In seg4:end/payoff@-0.4 the 24.8T and 30T circles are cut",
+    "unreadable: seg1:start: the value labels collide into '120 d28sd5days' and the names into 'Red blood cellSStomach lining'. At seg1:mid/end '5 day28 days' overlaps and 'Stomach lining' is tiny. At seg4",
+    "unreadable: seg1:mid: the bird icon covers the start of 'All bird species', the paw covers 'All mammal species', and the beetle sits over 'Beetles (estimated)'. hook@0.3: Data is cut off by the left e"
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
-   "count": 13,
+   "count": 9,
    "stories": {
-    "permafrost-thaw": 2,
-    "genz-drinking-decline": 2,
-    "lab-grown-meat-scale-up-8x": 3,
-    "octopus-nine-brains": 2,
-    "marathon-super-shoes-record-pace": 1,
-    "billionaire-count-record-2025": 1,
-    "quantum-computers-5-to-1121-qubits": 1,
-    "kelp-forest-sea-star-collapse": 1
+    "body-renewal-clock": 3,
+    "diabetes-quietly-doubled": 3,
+    "volcano-country-ranking": 1,
+    "college-gender-gap": 1,
+    "coldest-place-in-the-universe-is-human-made": 1
    },
    "timestamps": [
-    "2026-10-04T15:18:14+00:00",
-    "2026-10-04T15:25:38+00:00",
-    "2026-10-04T15:36:52+00:00",
-    "2026-10-04T15:50:24+00:00",
-    "2026-10-04T16:28:38+00:00",
-    "2026-10-04T16:35:56+00:00",
-    "2026-10-04T18:09:01+00:00",
-    "2026-10-04T18:21:38+00:00",
-    "2026-10-04T18:44:53+00:00",
-    "2026-10-04T18:56:28+00:00",
-    "2026-10-04T19:08:47+00:00",
-    "2026-10-04T19:58:44+00:00",
-    "2026-10-04T20:29:12+00:00"
+    "2026-10-05T17:50:51+00:00",
+    "2026-10-05T17:57:08+00:00",
+    "2026-10-05T18:02:55+00:00",
+    "2026-10-05T18:24:33+00:00",
+    "2026-10-05T18:29:20+00:00",
+    "2026-10-05T18:34:08+00:00",
+    "2026-10-05T18:41:15+00:00",
+    "2026-10-05T18:57:49+00:00",
+    "2026-10-05T19:15:18+00:00"
    ],
    "examples": [
-    "empty_void: seg3:start leaves the top ~60% of the frame as empty dark gradient above two small bars at the bottom. seg0:mid also leaves the lower third blank below the timeline.",
-    "empty_void: seg3:start: the top 60% of the frame is empty gradient above two small bars. In seg1 the bar tracks carry no fill, so the whole panel is empty lines.",
-    "empty_void: hook@0.3-seg0:end: the bottom ~25% of the frame between the lanes and the caption is empty. seg2:start: the top half above the discs is blank. seg3:start: the space below the line is empty"
+    "empty_void: In seg2:start the top third above the bar is empty gridlines, and the skin column is a tiny blob in a large empty area. In seg0:start the 120-day dot and the Skeleton label float in a lot ",
+    "empty_void: hook@0.3\u2013seg0:end: the bottom half of the frame, below the ribcage and the small cell row, is empty dark gradient. At seg2:start the chart's upper half is empty gridlines",
+    "empty_void: hook@0.3\u2013seg0:end: the ribcage and a few small icons fill the top 40% of the frame. The bottom 55% above the caption bar is empty dark gradient for about 5 seconds."
    ],
    "recurred_after_fix": false
   },
   "bare_number": {
-   "count": 13,
+   "count": 6,
    "stories": {
-    "genz-drinking-decline": 2,
-    "lab-grown-meat-scale-up-8x": 3,
-    "octopus-nine-brains": 2,
-    "marathon-super-shoes-record-pace": 1,
-    "billionaire-count-record-2025": 2,
-    "quantum-computers-5-to-1121-qubits": 2,
-    "kelp-forest-sea-star-collapse": 1
+    "body-renewal-clock": 3,
+    "volcano-country-ranking": 1,
+    "college-gender-gap": 1,
+    "coldest-place-in-the-universe-is-human-made": 1
    },
    "timestamps": [
-    "2026-10-04T15:36:52+00:00",
-    "2026-10-04T15:50:24+00:00",
-    "2026-10-04T16:28:38+00:00",
-    "2026-10-04T16:35:56+00:00",
-    "2026-10-04T18:09:01+00:00",
-    "2026-10-04T18:21:38+00:00",
-    "2026-10-04T18:44:53+00:00",
-    "2026-10-04T18:56:28+00:00",
-    "2026-10-04T19:08:47+00:00",
-    "2026-10-04T19:43:01+00:00",
-    "2026-10-04T19:58:44+00:00",
-    "2026-10-04T20:29:12+00:00",
-    "2026-10-04T20:39:07+00:00"
+    "2026-10-05T17:50:51+00:00",
+    "2026-10-05T17:57:08+00:00",
+    "2026-10-05T18:02:55+00:00",
+    "2026-10-05T18:41:15+00:00",
+    "2026-10-05T18:57:49+00:00",
+    "2026-10-05T19:15:18+00:00"
    ],
    "examples": [
-    "bare_number_card: seg2:start-end: two yellow discs, each just '70%' printed on it, with no demonstration. The 70%\u219235% halving the narration describes never shows up.",
-    "bare_number_card: seg4:start through seg4:end is a big '2' inside an outlined box with 'Today = 2.5x 2023' and '2.5 times over'. Two grey tiles slide in, but nothing shows 2 becoming 5.",
-    "bare_number_card: seg1:mid and seg1:end are two shelves, each with a Data figure, plus a bare 320M and 180M. Nothing shows the amount. seg3 is a plain two-bar chart, 3,600 against 1."
+    "bare_number_card: In seg4:start to seg4:end the closing is circles labelled 8.3T/16.5T/24.8T/30T on a blank ground, so the numbers are just written in blobs. In seg2:start the skin side is a small gre",
+    "bare_number_card: seg4:start\u2013payoff@-0.4: circles labelled 8.3T/16.5T/24.8T/30T grow, which is just numbers in blobs. The seg1:end bubble '3,650 days' is the same treatment",
+    "bare_number_card: seg1:mid/seg1:end: a single huge '3,650 days' disc next to tiny '120 days' and '5 day' dots. These are number labels on circles that demonstrate nothing about renewal."
    ],
    "recurred_after_fix": false
   },
   "dead_air": {
-   "count": 3,
+   "count": 4,
    "stories": {
-    "permafrost-thaw": 1,
-    "genz-drinking-decline": 1,
-    "billionaire-count-record-2025": 1
+    "body-renewal-clock": 1,
+    "diabetes-quietly-doubled": 1,
+    "volcano-country-ranking": 1,
+    "coldest-place-in-the-universe-is-human-made": 1
    },
    "timestamps": [
-    "2026-10-04T15:25:38+00:00",
-    "2026-10-04T15:36:52+00:00",
-    "2026-10-04T20:39:07+00:00"
+    "2026-10-05T17:50:51+00:00",
+    "2026-10-05T18:29:20+00:00",
+    "2026-10-05T18:41:15+00:00",
+    "2026-10-05T19:15:18+00:00"
    ],
    "examples": [
-    "dead_air: seg1:start to seg1:end (9.3s to 16.5s): the five bars stay empty tracks and only the value labels appear. The cadence detector measured 9.1s held, with its longest duplicate run at 15.08s in",
-    "dead_air: seg2:start\u2192seg2:end (20.6-26.2s): both discs only grow, both still read 70%/'~20 years ago', and the beat never changes. seg4:start\u2192seg4:end (~5s): the same three towers, only slightly talle",
-    "dead_air: seg0:start, seg0:mid and seg0:end repeat the finished hook bar chart almost frame for frame. Only Data's face changes. That is two beats that look the same (held_s 5.92, max_dup_run 23 at 4."
+    "dead_air: seg0 and seg1 are the same bubble scene from hook@0.3 to seg1:end (about 10s). The only change is a cyan ring around '5 days' (seg1:start) and then '28 days'/'120 days' (seg1:end), so two be",
+    "dead_air: From hook@0.8 to seg0:end (about 0.8s to 3.7s) the 14-globe grid sits frozen and Data does not move. Across seg4:start to seg4:end (about 3s) only the bubbles grow slightly.",
+    "dead_air: Hook and seg0 (0.3s to 4.4s) are the same ranking scene, where the only motion is Data sliding along each row. In seg4:start to seg4:end (27.8s to 31.3s) the ruler stays fixed and Data just "
    ],
    "recurred_after_fix": false
   },
   "junk_imagery": {
-   "count": 3,
+   "count": 1,
    "stories": {
-    "quantum-computers-5-to-1121-qubits": 3
+    "body-renewal-clock": 1
    },
    "timestamps": [
-    "2026-10-04T19:08:47+00:00",
-    "2026-10-04T19:25:57+00:00",
-    "2026-10-04T19:43:01+00:00"
+    "2026-10-05T17:57:08+00:00"
    ],
    "examples": [
-    "junk_imagery: seg0:start/seg0:mid: a literal bald-eagle clip-art icon sits on the '2021 (Eagle)' bar. It is a bird standing in for an IBM chip that only shares the name, so it means nothing to the sto",
-    "junk_imagery: seg1:start and seg1:mid: a clip-art bald eagle sits on the '2021 (Eagle)' bar. It is a pun on the chip's codename, has nothing to do with qubits, and covers the start of the bar.",
-    "junk_imagery: seg1:start/seg1:mid: a stock bald-eagle clip-art head sits on the '2021 (Eagle)' bar. It is a pun on the chip's codename, not a picture of qubits, and it is pasted over the bar's start."
+    "junk_imagery: hook@0.3\u2013seg0:end: a murky stock-style 3D ribcage render, washed out and fading at hook@0.3, is the only hero image. The 'Skin' cell at seg0:end is a grey-green blob and the 'Stomach lin"
    ],
    "recurred_after_fix": false
   }
@@ -194,14 +179,14 @@
    "max": 2
   },
   "data_demo": {
-   "median": 1,
+   "median": 2,
    "min": 1,
-   "max": 3
+   "max": 2
   },
   "mascot": {
-   "median": 1,
+   "median": 2,
    "min": 1,
-   "max": 3
+   "max": 2
   },
   "craft": {
    "median": 1,
@@ -210,7 +195,7 @@
   },
   "pace": {
    "median": 1,
-   "min": 1,
+   "min": 0,
    "max": 2
   },
   "payoff": {
@@ -220,30 +205,30 @@
   },
   "temporal_craft": {
    "median": 3,
-   "min": 3,
+   "min": 2,
    "max": 3
   }
  },
  "scores": [
   39,
+  35,
   39,
+  52,
+  48,
+  53,
   44,
-  40,
-  40,
-  44,
+  53,
+  53,
   57,
+  49,
+  44,
+  39,
   48,
+  52,
   48,
-  39,
-  44,
-  40,
-  39,
-  44,
-  44,
-  44,
-  40,
-  39,
-  40,
-  70
+  31,
+  52,
+  53,
+  57
  ]
 }
