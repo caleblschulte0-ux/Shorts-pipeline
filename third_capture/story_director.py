@@ -507,7 +507,8 @@ def _finish_the_sentence(beats: list[dict], words: dict,
     Third story backtest (2026-10-06): the one cut that cleared the bar
     ended on "I have them" — the critic: "the final line is cut
     mid-phrase". A word ENDS A THOUGHT when it carries sentence punctuation,
-    a pause of 0.35s+ follows it, or it is the source's last word. If the
+    or a pause of 0.35s+ follows it in the source (a clip that stops
+    mid-sentence is not a pause). If the
     last beat's end is not just after such a word, it runs on to the next
     one, at most `max_extend` seconds and never past the source.
 
@@ -530,14 +531,19 @@ def _finish_the_sentence(beats: list[dict], words: dict,
     def ends_thought(i):
         if str(ws[i]["w"]).rstrip("\"'”’)").endswith((".", "!", "?")):
             return True
-        return i == len(ws) - 1 or ws[i + 1]["s"] - ws[i]["e"] >= 0.35
+        if i < len(ws) - 1:
+            return ws[i + 1]["s"] - ws[i]["e"] >= 0.35
+        # the source's last word ends a thought only if the source goes
+        # on in silence after it. Backtest #6: Emiru's payoff clip stops
+        # on "I have them" and that counted as an ending, so the first
+        # cut ended there again.
+        return src_end - ws[i]["e"] >= 0.35
 
     if any(w["s"] < end - 0.05 and w["e"] > end + 0.05 for w in ws):
         clean = False                                   # a word straddles it
     else:
         before = [i for i, w in enumerate(ws) if w["e"] <= end + 0.05]
-        clean = not before or ends_thought(before[-1]) or \
-            all(w["s"] >= end + 0.35 for w in ws[before[-1] + 1:])
+        clean = not before or ends_thought(before[-1])
     if clean:
         return beats
     fwd = [w["e"] for i, w in enumerate(ws)
