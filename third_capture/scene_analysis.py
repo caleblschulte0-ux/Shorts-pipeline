@@ -50,10 +50,16 @@ Return STRICT JSON:
  "opens_mid_sentence": bool,       // clip starts inside a thought/action
  "payoff_shown": bool,             // the consequence/reaction is visible
  "missing_context": [str, ...],    // what a stranger cannot know from this
+ "own_subtitles": bool,            // the stream itself shows the spoken
+                                   // words as subtitles in the picture
  "candidate_windows": [{"start": s, "end": s, "purpose": str}, ...]}
 
 Times are seconds into THIS clip. visual_beats only from frames you were
-actually shown; with no frames return visual_beats: []."""
+actually shown; with no frames return visual_beats: [].
+own_subtitles is true ONLY when the frames show the streamer's own live
+captions — the words being spoken, written across the picture as the
+stream's subtitles. Chat, alerts, game text and on-screen titles are not
+subtitles; with no frames return false."""
 
 
 def _dialogue_lines(words: list[dict]) -> str:
@@ -169,6 +175,9 @@ def analyze_source(video: Path, meta: dict, work: Path, *,
                                 (out.get("emotional_state") or [])][:5],
             "opens_mid_sentence": bool(out.get("opens_mid_sentence")),
             "payoff_shown": bool(out.get("payoff_shown", True)),
+            # the stream burns its own captions in (Kai Cenat's do):
+            # captioning it again shows every word twice (backtest #4)
+            "own_subtitles": bool(vision_ok and out.get("own_subtitles")),
             "missing_context": [str(m)[:100] for m in
                                 (out.get("missing_context") or [])][:6],
             "candidate_windows": _beats("candidate_windows", ("purpose",)),

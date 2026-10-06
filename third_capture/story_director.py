@@ -495,39 +495,62 @@ def _no_repeated_lines(beats: list[dict], words: dict, rs: list,
 
 def _finish_the_sentence(beats: list[dict], words: dict,
                          durations: dict, rs: list,
-                         max_extend: float = 3.0) -> list[dict]:
-    """The story ends where the sentence ends, not mid-word.
+                         max_extend: float = 3.0,
+                         min_beat: float = 1.5) -> list[dict]:
+    """The story ends where a sentence ends, not mid-word.
 
     Third story backtest (2026-10-06): the one cut that cleared the bar
-    still ended on "I have them" — the critic: "the final line is cut
-    mid-phrase". When the last beat's end falls inside a word, or the next
-    word follows within 0.35s (the same breath), the beat runs on to the
-    first real pause, at most `max_extend` seconds and never past the
-    source. Recorded as a repair."""
+    ended on "I have them" — the critic: "the final line is cut
+    mid-phrase". A word ENDS A THOUGHT when it carries sentence punctuation,
+    a pause of 0.35s+ follows it, or it is the source's last word. If the
+    last beat's end is not just after such a word, it runs on to the next
+    one, at most `max_extend` seconds and never past the source.
+
+    Fourth backtest: the same Emiru clip ENDS mid-sentence ("than my bed.
+    I have them") so there was nothing to run on to, and the critic asked
+    for the other fix — "trim to end right after 'this is better than my
+    bed'". When no ending is reachable forward, the beat is cut BACK to the
+    last one inside it, keeping at least `min_beat` seconds. Both are
+    recorded as repairs."""
     if not beats:
         return beats
     last = beats[-1]
     ws = sorted(words.get(last["source_id"]) or [], key=lambda w: w["s"])
-    end = last["end"]
-    limit = min(end + max_extend,
-                float(durations.get(last["source_id"]) or end))
-    new_end = end
-    for w in ws:
-        if w["e"] <= new_end - 0.05:
-            continue
-        if w["s"] < new_end or w["s"] - new_end <= 0.35:
-            if w["e"] > limit:
-                break
-            new_end = max(new_end, w["e"])
-        else:
-            break
-    if new_end > end + 0.05:
-        rs.append(f"last beat ran past mid-sentence: end {end:.1f}s -> "
-                  f"{new_end:.1f}s (repaired)")
-        cap = float(durations.get(last["source_id"]) or new_end + 0.1)
-        beats = beats[:-1] + [dict(last, end=round(min(new_end + 0.1, cap),
-                                                   2))]
-    return beats
+    if not ws:
+        return beats
+    start, end = float(last["start"]), float(last["end"])
+    src_end = float(durations.get(last["source_id"]) or end)
+    limit = min(end + max_extend, src_end)
+
+    def ends_thought(i):
+        if str(ws[i]["w"]).rstrip("\"'”’)").endswith((".", "!", "?")):
+            return True
+        return i == len(ws) - 1 or ws[i + 1]["s"] - ws[i]["e"] >= 0.35
+
+    if any(w["s"] < end - 0.05 and w["e"] > end + 0.05 for w in ws):
+        clean = False                                   # a word straddles it
+    else:
+        before = [i for i, w in enumerate(ws) if w["e"] <= end + 0.05]
+        clean = not before or ends_thought(before[-1]) or \
+            all(w["s"] >= end + 0.35 for w in ws[before[-1] + 1:])
+    if clean:
+        return beats
+    fwd = [w["e"] for i, w in enumerate(ws)
+           if w["e"] > end - 0.05 and w["e"] <= limit and ends_thought(i)]
+    if fwd:
+        new_end, how = fwd[0], "ran on to the end of the sentence"
+    else:
+        back = [w["e"] for i, w in enumerate(ws)
+                if start + min_beat <= w["e"] <= end and ends_thought(i)]
+        if not back:
+            return beats
+        new_end, how = back[-1], "cut back to the last finished sentence"
+    new_end = round(min(new_end + 0.1, src_end), 2)
+    if abs(new_end - end) <= 0.05:
+        return beats
+    rs.append(f"last beat ended mid-sentence: {how}, end {end:.1f}s -> "
+              f"{new_end:.1f}s (repaired)")
+    return beats[:-1] + [dict(last, end=new_end)]
 
 
 def _words(reports: list[dict]) -> dict:

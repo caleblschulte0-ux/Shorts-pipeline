@@ -263,10 +263,18 @@ and dropped silently.
   The third backtest (2026-10-06) showed chains of repairs-of-repairs
   getting worse (70 → 66 → 58), so a repair that scores lower is never
   the base for the next one.
-- **The last beat ends where the sentence ends** (`_finish_the_sentence`
-  in `validate_edl`): if the cut lands mid-breath it runs on to the next
-  pause, at most 3 s and never past the source. The one backtest cut over
-  the bar ended on "I have them".
+- **The last beat ends where a sentence ends** (`_finish_the_sentence`
+  in `validate_edl`): a word ends a thought when it carries sentence
+  punctuation, a 0.35 s pause follows it, or the source ends. A cut that
+  lands mid-thought runs on to the next ending (at most 3 s, never past
+  the source). If no ending is in reach it is cut BACK to the last one
+  inside the beat, keeping at least 1.5 s; backtest #4's Emiru clip itself
+  ends mid-sentence, on "than my bed. I have them". The renderer's ending
+  hold runs into silence, never into the next line (`story._next_word_at`).
+- **A stream that subtitles itself is not captioned again.** The scene
+  analyst reports `own_subtitles`, and only from frames it actually saw.
+  The renderer leaves those beats uncaptioned: Kai Cenat's stream burns in
+  live captions, and backtest #4 showed every word twice.
 - **Every way a story dies is a verdict**: `narrative_failed` (all scores
   plus the critic's first three problems), `qa_failed`, `duration`,
   `already_shipped`. `starved` now names each source's failure —
