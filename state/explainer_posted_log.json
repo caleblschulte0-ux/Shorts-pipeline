@@ -2614,6 +2614,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 57,
       "duration_s": 31.9
+    },
+    "data-breach-exposure": {
+      "claimed_at": "2026-10-06T10:44:45.932326+00:00",
+      "title": "One Leaked Password Can Unlock Your Whole Digital Life",
+      "publish_at": "2026-10-06T11:10:25Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3210,6 +3217,14 @@
       "state": "posted",
       "slug": "kids-phones-getting-younger",
       "at": "2026-10-05T19:35:11.779848+00:00"
+    },
+    {
+      "claimed_at": "2026-10-06T10:44:45.932326+00:00",
+      "title": "One Leaked Password Can Unlock Your Whole Digital Life",
+      "publish_at": "2026-10-06T11:10:25Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "data-breach-exposure"
     }
   ]
 }
