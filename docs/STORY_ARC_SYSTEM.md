@@ -271,6 +271,19 @@ and dropped silently.
   inside the beat, keeping at least 1.5 s; backtest #4's Emiru clip itself
   ends mid-sentence, on "than my bed. I have them". The renderer's ending
   hold runs into silence, never into the next line (`story._next_word_at`).
+- **The critic is told what the edit ADDED** (`on_screen` in the render
+  ledger → `review_rough_cut(..., on_screen)`): the title, each context
+  overlay, and the voice-over line, with their times on the output clock.
+  In backtest #5 all eleven cuts were marked down for missing context,
+  including the ones whose narrator had said it. The critic samples
+  frames, so a 1-2 s overlay falls between them, and it reads the source
+  transcript, which does not contain the voice-over. It still decides
+  whether that context is enough.
+- **On-screen text fits and stays up long enough to read**: measured
+  against the frame (`story._wrap`, at most two balanced lines, smaller
+  type before it would overflow), held 0.5 s + 0.3 s a word, and a hook
+  trimmed to 7 words never ends on "A" / "OF" / "THE" (backtest #5's
+  "EMIRU FIGHTS A MATTRESS OUT OF A").
 - **A stream that subtitles itself is not captioned again.** The scene
   analyst reports `own_subtitles`, and only from frames it actually saw.
   The renderer leaves those beats uncaptioned: Kai Cenat's stream burns in
