@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-06T18:36:56Z",
+ "updated": "2026-10-06T20:08:41Z",
  "open": [
+  {
+   "id": "genz-drinking-decline__ad4df0f9",
+   "slug": "genz-drinking-decline",
+   "filed": "2026-10-06T20:08:41Z",
+   "why": [
+    "judge: A generic bar chart and line chart about drinking, with a broken middle scene that shows 70% twice and never shows the drop to 35% that was the story's biggest number."
+   ],
+   "request": "exchange/rewrites/20261006/genz-drinking-decline__ad4df0f9.request.json",
+   "answer_path": "exchange/rewrites/20261006/genz-drinking-decline__ad4df0f9.answer.json"
+  },
   {
    "id": "bird-flu-species-jump__5c10823e",
    "slug": "bird-flu-species-jump",
@@ -101,18 +111,6 @@
    ],
    "request": "exchange/rewrites/20261006/english-internet-share-decline__aa4746d9.request.json",
    "answer_path": "exchange/rewrites/20261006/english-internet-share-decline__aa4746d9.answer.json"
-  },
-  {
-   "id": "genz-drinking-decline__759c6866",
-   "slug": "genz-drinking-decline",
-   "filed": "2026-10-06T13:45:33Z",
-   "why": [
-    "pace: beat 1 says 26 words (max 16) — one sentence, the number and what it means",
-    "pace: beat 2 says 21 words (max 16) — one sentence, the number and what it means",
-    "pace: beat 3 says 29 words (max 16) — one sentence, the number and what it means"
-   ],
-   "request": "exchange/rewrites/20261006/genz-drinking-decline__759c6866.request.json",
-   "answer_path": "exchange/rewrites/20261006/genz-drinking-decline__759c6866.answer.json"
   },
   {
    "id": "secondhand-apparel-resale-boom__e3a857dc",

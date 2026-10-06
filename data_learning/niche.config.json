@@ -30634,8 +30634,8 @@
    "slug": "genz-drinking-decline",
    "title": "Gen Z Broke A 20-Year Drinking Habit",
    "hook": "Your twenty-something drinking habit is dying: 72% of young adults drank, now it's 50%.",
-   "closing": "Sober isn't the exception anymore -- it's becoming the norm.",
-   "question": "Do you drink less than your parents did? Tell me why.",
+   "closing": "Sober isn't the exception anymore — it's becoming the norm.",
+   "question": "Drink less than your parents? Why?",
    "caption": "Only 50% of 18-34 year-old Americans now say they drink alcohol, down from 72% two decades ago -- and the youngest adults (18-20) cut their drinking rate from 70% to just 35%. Even the ones who still drink are doing it less often. Do you drink less than your parents did?",
    "hashtags": [
     "genz",
@@ -30661,8 +30661,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE DROP",
-     "topic": "Gen Z and millennial drinking rate falling",
-     "say": "Twenty years ago, 72% of 18 to 34 year-olds said they drank alcohol. That number fell to 59% by 2023, and now it's down to 50%."
+     "topic": "Gen Z drinking decline",
+     "say": "Drinking fell from 72% twenty years ago to 50% now."
     },
     {
      "source": "offline",
@@ -30673,8 +30673,8 @@
      "insight_type": "rank",
      "use_baseline": true,
      "role": "2 · THE YOUNGEST DROPPED IT FASTEST",
-     "topic": "Gen Z's drinking habit at the youngest ages",
-     "say": "Among the youngest group -- 18 to 20 year-olds -- 70% said they drank two decades ago. Today it's just 35%.",
+     "topic": "Gen Z youngest drinking",
+     "say": "Among 18‑20 year-olds, drinking dropped from 70% to 35%.",
      "ascending": false
     },
     {
@@ -30685,11 +30685,13 @@
      },
      "insight_type": "trend",
      "role": "3 · EVEN THE ONES WHO STILL DRINK",
-     "topic": "Gen Z drinking less often too",
-     "say": "Even the Gen Z and millennials who do drink are doing it less often. Weekly drinking among young adults fell from 67% in the early 2000s to 61% today."
+     "topic": "Gen Z weekly drinking",
+     "say": "Weekly drinking fell from 67% in early 2000s to 61% today."
     }
    ],
-   "hook_was": "You've been told Gen Z parties harder than ever. The data says otherwise."
+   "hook_was": "You've been told Gen Z parties harder than ever. The data says otherwise.",
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T19:49:27Z"
   },
   {
    "slug": "global-remittances-record-2023",

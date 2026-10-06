@@ -1,0 +1,167 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "genz-drinking-decline__ad4df0f9",
+ "filed": "2026-10-06T20:08:41Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "genz-drinking-decline",
+ "current": {
+  "title": "Gen Z Broke A 20-Year Drinking Habit",
+  "hook": "Your twenty-something drinking habit is dying: 72% of young adults drank, now it's 50%.",
+  "closing": "Sober isn't the exception anymore — it's becoming the norm.",
+  "question": "Drink less than your parents? Why?",
+  "segments": [
+   {
+    "topic": "Gen Z drinking decline",
+    "say": "Drinking fell from 72% twenty years ago to 50% now."
+   },
+   {
+    "topic": "Gen Z youngest drinking",
+    "say": "Among 18‑20 year-olds, drinking dropped from 70% to 35%."
+   },
+   {
+    "topic": "Gen Z weekly drinking",
+    "say": "Weekly drinking fell from 67% in early 2000s to 61% today."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Gen Z drinking decline",
+   "say": "Drinking fell from 72% twenty years ago to 50% now.",
+   "role": "1 · THE DROP",
+   "data": {
+    "file": "young_adult_drinking_rate_trend.json",
+    "unit": "percent",
+    "title": "U.S. 18-34 year-olds who say they drink alcohol",
+    "points": [
+     {
+      "label": "~20 years ago",
+      "value": 72,
+      "period": "2003"
+     },
+     {
+      "label": "2023",
+      "value": 59,
+      "period": "2023"
+     },
+     {
+      "label": "2025",
+      "value": 50,
+      "period": "2025"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Gen Z youngest drinking",
+   "say": "Among 18‑20 year-olds, drinking dropped from 70% to 35%.",
+   "role": "2 · THE YOUNGEST DROPPED IT FASTEST",
+   "data": {
+    "file": "teen_drinking_rate_then_now.json",
+    "unit": "percent",
+    "title": "18-20 year-olds who say they drink, then vs. now",
+    "points": [
+     {
+      "label": "~20 years ago",
+      "value": 70
+     },
+     {
+      "label": "~20 years ago",
+      "value": 70
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Gen Z weekly drinking",
+   "say": "Weekly drinking fell from 67% in early 2000s to 61% today.",
+   "role": "3 · EVEN THE ONES WHO STILL DRINK",
+   "data": {
+    "file": "weekly_drinking_frequency_trend.json",
+    "unit": "percent",
+    "title": "Young drinkers who had a drink in the past week",
+    "points": [
+     {
+      "label": "2001-2003",
+      "value": 67,
+      "period": "2002"
+     },
+     {
+      "label": "2011-2013",
+      "value": 64,
+      "period": "2012"
+     },
+     {
+      "label": "Recent",
+      "value": 61,
+      "period": "2025"
+     }
+    ],
+    "n_points": 3
+   }
+  }
+ ],
+ "held_for": [
+  "judge: A generic bar chart and line chart about drinking, with a broken middle scene that shows 70% twice and never shows the drop to 35% that was the story's biggest number."
+ ],
+ "reasons": [
+  "judge: A generic bar chart and line chart about drinking, with a broken middle scene that shows 70% twice and never shows the drop to 35% that was the story's biggest number."
+ ],
+ "judge": {
+  "ts": "2026-10-04T18:56:28+00:00",
+  "score": 39,
+  "one_line": "A generic bar chart and line chart about drinking, with a broken middle scene that shows 70% twice and never shows the drop to 35% that was the story's biggest number.",
+  "problems": [
+   "seg2 shows both circles as 70% with the same '~20 years ago' label, so the 35% 'today' value is missing and the scene contradicts the narration",
+   "seg2 has a stray cyan ellipse over the 70% label",
+   "seg1:end has the mascot covering the 72% value label",
+   "Nothing in the video depicts drinking (no glasses, bottles or people); every scene is a stock chart or a box shape",
+   "The mascot cheers, waves and slides but never causes any change in the data",
+   "seg3's line chart has a truncated axis that exaggerates a 6-point drop"
+  ],
+  "fixes": [
+   "Rebuild seg2 so it compares 70% (~20 years ago) with 35% (today), showing the halving as drinks disappearing from a crowd",
+   "Remove the ellipse overlay in seg2",
+   "Keep the mascot clear of value labels in seg1",
+   "Make the pictures out of the subject: glasses emptying, a bar crowd thinning, Data taking drinks off a tray as each number drops",
+   "Have Data cause each decline (pouring out, corking bottles) instead of cheering beside the chart",
+   "End on an image of the sober majority (half the glasses empty) rather than three apartment blocks"
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261006/genz-drinking-decline__ad4df0f9.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

@@ -1,7 +1,87 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-10-06T19:48:38Z",
+ "updated": "2026-10-06T20:08:39Z",
  "open": [
+  {
+   "id": "recycling-myth-reality__ade6aa9fa3",
+   "channel": "explainer",
+   "slug": "recycling-myth-reality",
+   "title": "Why 'Just Recycle It' Barely Works",
+   "filed": "2026-10-06T20:08:39Z",
+   "request": "exchange/reviews/20261006/recycling-myth-reality__ade6aa9fa3.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/recycling-myth-reality__ade6aa9fa3/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/recycling-myth-reality__ade6aa9fa3.verdict.json"
+  },
+  {
+   "id": "sand-mining-crisis__0fdb51c74c",
+   "channel": "explainer",
+   "slug": "sand-mining-crisis",
+   "title": "The World Is Quietly Running Out Of Sand",
+   "filed": "2026-10-06T20:06:19Z",
+   "request": "exchange/reviews/20261006/sand-mining-crisis__0fdb51c74c.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/sand-mining-crisis__0fdb51c74c/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/sand-mining-crisis__0fdb51c74c.verdict.json"
+  },
+  {
+   "id": "the-penny-lost-money-19-years-straight__fede45c9f8",
+   "channel": "explainer",
+   "slug": "the-penny-lost-money-19-years-straight",
+   "title": "The US Government Lost Money On Every Penny For 19 Years",
+   "filed": "2026-10-06T20:02:29Z",
+   "request": "exchange/reviews/20261006/the-penny-lost-money-19-years-straight__fede45c9f8.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/the-penny-lost-money-19-years-straight__fede45c9f8/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/the-penny-lost-money-19-years-straight__fede45c9f8.verdict.json"
+  },
+  {
+   "id": "back-to-sleep-campaign-cut-sids__87c341b6e9",
+   "channel": "explainer",
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "title": "One Campaign Cut A Top Baby Killer In Half",
+   "filed": "2026-10-06T19:58:32Z",
+   "request": "exchange/reviews/20261006/back-to-sleep-campaign-cut-sids__87c341b6e9.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/back-to-sleep-campaign-cut-sids__87c341b6e9/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/back-to-sleep-campaign-cut-sids__87c341b6e9.verdict.json"
+  },
+  {
+   "id": "genz-drinking-decline__90bf65d284",
+   "channel": "explainer",
+   "slug": "genz-drinking-decline",
+   "title": "Gen Z Broke A 20-Year Drinking Habit",
+   "filed": "2026-10-06T19:54:22Z",
+   "request": "exchange/reviews/20261006/genz-drinking-decline__90bf65d284.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/genz-drinking-decline__90bf65d284/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/genz-drinking-decline__90bf65d284.verdict.json"
+  },
+  {
+   "id": "self-checkout-cashier-jobs__4d7d674074",
+   "channel": "explainer",
+   "slug": "self-checkout-cashier-jobs",
+   "title": "Self-Checkout Is Quietly Replacing Cashiers (3 Charts)",
+   "filed": "2026-10-06T19:29:28Z",
+   "request": "exchange/reviews/20261006/self-checkout-cashier-jobs__4d7d674074.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/self-checkout-cashier-jobs__4d7d674074/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/self-checkout-cashier-jobs__4d7d674074.verdict.json"
+  },
+  {
+   "id": "monarch-butterfly-collapse__cafbafa561",
+   "channel": "explainer",
+   "slug": "monarch-butterfly-collapse",
+   "title": "The Monarch Butterfly Is Running Out of Forest",
+   "filed": "2026-10-06T19:20:43Z",
+   "request": "exchange/reviews/20261006/monarch-butterfly-collapse__cafbafa561.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/monarch-butterfly-collapse__cafbafa561/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/monarch-butterfly-collapse__cafbafa561.verdict.json"
+  },
+  {
+   "id": "earth-rotation-speeding-up__93c88c79ae",
+   "channel": "explainer",
+   "slug": "earth-rotation-speeding-up",
+   "title": "Earth Is Spinning Faster And Nobody Knows Why",
+   "filed": "2026-10-06T19:14:19Z",
+   "request": "exchange/reviews/20261006/earth-rotation-speeding-up__93c88c79ae.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/earth-rotation-speeding-up__93c88c79ae/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/earth-rotation-speeding-up__93c88c79ae.verdict.json"
+  },
   {
    "id": "back-to-sleep-campaign-cut-sids__9cffc144c1",
    "channel": "explainer",
@@ -73,6 +153,46 @@
    "answer_path": "exchange/reviews/20261006/the-penny-lost-money-19-years-straight__147edd693c.verdict.json"
   },
   {
+   "id": "back-to-sleep-campaign-cut-sids__a113181c5c",
+   "channel": "explainer",
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "title": "One Campaign Cut A Top Baby Killer In Half",
+   "filed": "2026-10-06T15:22:10Z",
+   "request": "exchange/reviews/20261006/back-to-sleep-campaign-cut-sids__a113181c5c.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/back-to-sleep-campaign-cut-sids__a113181c5c/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/back-to-sleep-campaign-cut-sids__a113181c5c.verdict.json"
+  },
+  {
+   "id": "self-checkout-cashier-jobs__fc3457f47f",
+   "channel": "explainer",
+   "slug": "self-checkout-cashier-jobs",
+   "title": "Self-Checkout Is Quietly Replacing Cashiers (3 Charts)",
+   "filed": "2026-10-06T14:53:39Z",
+   "request": "exchange/reviews/20261006/self-checkout-cashier-jobs__fc3457f47f.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/self-checkout-cashier-jobs__fc3457f47f/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/self-checkout-cashier-jobs__fc3457f47f.verdict.json"
+  },
+  {
+   "id": "twin-birth-rate-rise__40f016e30e",
+   "channel": "explainer",
+   "slug": "twin-birth-rate-rise",
+   "title": "Why Twin Births Nearly Doubled — Then Started Falling",
+   "filed": "2026-10-06T14:47:07Z",
+   "request": "exchange/reviews/20261006/twin-birth-rate-rise__40f016e30e.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/twin-birth-rate-rise__40f016e30e/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/twin-birth-rate-rise__40f016e30e.verdict.json"
+  },
+  {
+   "id": "monarch-butterfly-collapse__4e52960b73",
+   "channel": "explainer",
+   "slug": "monarch-butterfly-collapse",
+   "title": "The Monarch Butterfly Is Running Out of Forest",
+   "filed": "2026-10-06T14:38:18Z",
+   "request": "exchange/reviews/20261006/monarch-butterfly-collapse__4e52960b73.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/monarch-butterfly-collapse__4e52960b73/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/monarch-butterfly-collapse__4e52960b73.verdict.json"
+  },
+  {
    "id": "peanut-allergy-guideline-flip__700b84db6f",
    "channel": "explainer",
    "slug": "peanut-allergy-guideline-flip",
@@ -81,6 +201,26 @@
    "request": "exchange/reviews/20261006/peanut-allergy-guideline-flip__700b84db6f.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/peanut-allergy-guideline-flip__700b84db6f/sheet.jpg",
    "answer_path": "exchange/reviews/20261006/peanut-allergy-guideline-flip__700b84db6f.verdict.json"
+  },
+  {
+   "id": "earth-rotation-speeding-up__5738b53e1e",
+   "channel": "explainer",
+   "slug": "earth-rotation-speeding-up",
+   "title": "Earth Is Spinning Faster And Nobody Knows Why",
+   "filed": "2026-10-06T14:27:41Z",
+   "request": "exchange/reviews/20261006/earth-rotation-speeding-up__5738b53e1e.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/earth-rotation-speeding-up__5738b53e1e/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/earth-rotation-speeding-up__5738b53e1e.verdict.json"
+  },
+  {
+   "id": "recycling-myth-reality__7152cbc99b",
+   "channel": "explainer",
+   "slug": "recycling-myth-reality",
+   "title": "Why 'Just Recycle It' Barely Works",
+   "filed": "2026-10-06T14:20:03Z",
+   "request": "exchange/reviews/20261006/recycling-myth-reality__7152cbc99b.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/recycling-myth-reality__7152cbc99b/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/recycling-myth-reality__7152cbc99b.verdict.json"
   },
   {
    "id": "sand-mining-crisis__afbadbd57f",
