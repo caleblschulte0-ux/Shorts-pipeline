@@ -1,0 +1,26 @@
+{
+  "key": "penny_2024_total_loss",
+  "title": "US Mint penny production: total cost vs. total face value, 2024",
+  "unit": "million dollars",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "US Mint Annual Report",
+    "publisher": "United States Mint",
+    "url": "https://www.usmint.gov/about/congressional-reports/annual-report",
+    "officiality": "official",
+    "access_date": "2026-10-06"
+  },
+  "notes": "In 2024 the Mint spent about $118 million making roughly 3.2 billion pennies worth only $32 million in face value -- an $85 million loss in a single year.",
+  "points": [
+    {
+      "label": "Cost to make them",
+      "value": 118
+    },
+    {
+      "label": "Face value",
+      "value": 32
+    }
+  ],
+  "insight_type": "comparison"
+}

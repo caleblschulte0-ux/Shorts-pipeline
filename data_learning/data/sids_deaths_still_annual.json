@@ -1,0 +1,22 @@
+{
+  "key": "sids_deaths_still_annual",
+  "title": "Sleep-related infant deaths still recorded in the US each year",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "Recent annual average",
+  "source": {
+    "name": "Sudden Unexpected Infant Death (SUID) case registry",
+    "publisher": "CDC",
+    "url": "https://www.cdc.gov/sids/data.html",
+    "officiality": "official",
+    "access_date": "2026-10-06"
+  },
+  "notes": "Even after the campaign's gains, the CDC still counts roughly 3,400 sleep-related infant deaths a year in the US (SIDS, accidental suffocation, and unknown cause combined).",
+  "points": [
+    {
+      "label": "Sleep-related infant deaths per year",
+      "value": 3400
+    }
+  ],
+  "insight_type": "trend"
+}

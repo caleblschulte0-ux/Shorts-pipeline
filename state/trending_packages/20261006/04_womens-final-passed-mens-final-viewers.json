@@ -1,0 +1,59 @@
+{
+  "format": "graph_race",
+  "slug": "womens-final-passed-mens-final-viewers",
+  "title": "The Women's Final Just Out-Drew The Men's",
+  "hook": "For the first time ever, more watched the women.",
+  "y_label": "Championship game TV viewers (millions)",
+  "duration": 13,
+  "source": "Nielsen/ESPN broadcast ratings for the NCAA basketball championship games, reported via Front Office Sports/Axios/NPR. 2024 figures as reported (women's final 18.9M vs. men's final 14.82M, the first time the women's final outdrew the men's); earlier years approximate as publicly reported.",
+  "years": [
+    2017,
+    2019,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Men's final",
+      "color": "#888888",
+      "icon": null,
+      "values": [
+        18.1,
+        14.6,
+        16.9,
+        18.1,
+        14.69,
+        14.82
+      ]
+    },
+    {
+      "name": "Women's final",
+      "color": "#50ff80",
+      "icon": null,
+      "values": [
+        3.83,
+        3.73,
+        4.13,
+        4.85,
+        9.9,
+        18.9
+      ]
+    }
+  ],
+  "hashtags": [
+    "ncaa",
+    "marchmadness",
+    "womensbasketball",
+    "caitlinclark",
+    "collegebasketball",
+    "sportsratings",
+    "tvratings",
+    "nielsen",
+    "dataviz",
+    "espn",
+    "shorts",
+    "sports"
+  ]
+}

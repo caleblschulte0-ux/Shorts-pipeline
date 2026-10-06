@@ -31189,6 +31189,212 @@
      "say": "The U.S. secondhand market was worth about 43 billion dollars in 2023. By 2029, it's projected to hit 74."
     }
    ]
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "title": "One Campaign Cut A Top Baby Killer In Half",
+   "hook": "SIDS deaths fell 53% after one simple fix.",
+   "closing": "Data still naps strictly on his back. Just in case.",
+   "question": "Did you know which way babies should sleep?",
+   "caption": "SIDS deaths in the US fell by more than half in under two decades -- not from new medicine, but from one changed instruction to parents. Here's how 'back to sleep' became one of the most effective public health campaigns ever. Did you know which way babies should sleep? 👇",
+   "hashtags": [
+    "sids",
+    "backtosleep",
+    "babysleep",
+    "infanthealth",
+    "publichealth",
+    "parenting",
+    "newparents",
+    "pediatrics",
+    "safetosleep",
+    "babyhealth",
+    "didyouknow",
+    "sciencefacts"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "sids_rate_1991_2008",
+     "params": {
+      "file": "sids_rate_1991_2008.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE DROP",
+     "topic": "SIDS deaths after back to sleep campaign",
+     "say": "In 1991, SIDS killed 1.34 per thousand babies born -- by 2008, just 0.64."
+    },
+    {
+     "source": "offline",
+     "key": "sids_sleep_position_flip",
+     "params": {
+      "file": "sids_sleep_position_flip.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE FIX",
+     "topic": "the campaign flipped how babies sleep",
+     "say": "Stomach-sleeping fell from 85.4% of cases to 30.1% once parents switched them to their backs."
+    },
+    {
+     "source": "offline",
+     "key": "sids_deaths_still_annual",
+     "params": {
+      "file": "sids_deaths_still_annual.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · WHY IT STILL MATTERS",
+     "topic": "sleep deaths the campaign hasn't caught yet",
+     "say": "About 3,400 babies still die this way every year -- the back still matters."
+    }
+   ]
+  },
+  {
+   "slug": "lightning-deaths-collapsed-not-the-storms",
+   "title": "Lightning Deaths Collapsed. The Storms Didn't.",
+   "hook": "Lightning killed 350 Americans a year in the 1940s.",
+   "closing": "Data still ducks inside at the first rumble. Smart machine.",
+   "question": "Do you run inside the second thunder hits?",
+   "caption": "Lightning used to kill 300-400 Americans every year. Now it's under 20 -- but the storms never got weaker. Here's what actually changed. Do you run inside the second you hear thunder? 👇",
+   "hashtags": [
+    "lightning",
+    "noaa",
+    "weathersafety",
+    "publichealth",
+    "weatherfacts",
+    "didyouknow",
+    "sciencefacts",
+    "stormsafety",
+    "ruralhistory",
+    "dataviz",
+    "weather",
+    "safetyfirst"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "lightning_deaths_1940s_2023",
+     "params": {
+      "file": "lightning_deaths_1940s_2023.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE COLLAPSE",
+     "topic": "lightning deaths fell since the 1940s",
+     "say": "US lightning deaths averaged 350 a year in the 1940s -- by 2023, just 18."
+    },
+    {
+     "source": "offline",
+     "key": "lightning_per_capita_risk",
+     "params": {
+      "file": "lightning_per_capita_risk.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · NOT JUST FEWER PEOPLE OUTSIDE",
+     "topic": "lightning risk per person collapsed too",
+     "say": "Even with 2.5 times more people alive today, your personal odds fell about 40 times over."
+    },
+    {
+     "source": "offline",
+     "key": "lightning_top_activity_fishing",
+     "params": {
+      "file": "lightning_top_activity_fishing.json"
+     },
+     "insight_type": "share",
+     "role": "3 · WHO IT STILL FINDS",
+     "topic": "lightning still finds people outdoors fishing",
+     "say": "Farm work disappeared, so now fishing alone accounts for 1 in 10 lightning deaths."
+    }
+   ]
+  },
+  {
+   "slug": "phone-checks-205-times-a-day",
+   "title": "Your Phone Trained You Like A Slot Machine",
+   "hook": "Americans check their phone 205 times a day now.",
+   "closing": "Data has no phone. He just watches you check yours.",
+   "question": "How many times do you check your phone?",
+   "caption": "The average American now checks their phone 205 times a day -- 42% more than just one year earlier. It's not the notifications doing it. How many times do you think you check your phone a day? 👇",
+   "hashtags": [
+    "phoneaddiction",
+    "screentime",
+    "digitalwellbeing",
+    "techhabits",
+    "psychology",
+    "didyouknow",
+    "behavioralscience",
+    "smartphone",
+    "habitloop",
+    "dataviz",
+    "techfacts",
+    "mindfulness"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "phone_checks_per_day_2023_2024",
+     "params": {
+      "file": "phone_checks_per_day_2023_2024.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE JUMP",
+     "topic": "phone checks per day jumped in a year",
+     "say": "In 2023, Americans checked their phone 144 times a day -- in 2024, 205 times."
+    },
+    {
+     "source": "offline",
+     "key": "phone_screen_time_share_of_waking_day",
+     "params": {
+      "file": "phone_screen_time_share_of_waking_day.json"
+     },
+     "insight_type": "share",
+     "role": "2 · WHAT THAT ACTUALLY ADDS UP TO",
+     "topic": "phone screen time eats the waking day",
+     "say": "That's nearly 5 hours a day on the screen -- about a third of waking life."
+    }
+   ]
+  },
+  {
+   "slug": "the-penny-lost-money-19-years-straight",
+   "title": "The US Government Lost Money On Every Penny For 19 Years",
+   "hook": "Every penny made since 2006 has cost more than a cent.",
+   "closing": "Data refuses to pick up pennies off the ground.",
+   "question": "Do you still bother picking up pennies?",
+   "caption": "The US Mint has lost money on every single penny it's made since 2006. By 2024 each one cost 3.69 cents to produce. Do you still bother picking up pennies off the ground? 👇",
+   "hashtags": [
+    "penny",
+    "usmint",
+    "currency",
+    "coins",
+    "government",
+    "didyouknow",
+    "economics",
+    "moneyfacts",
+    "finance",
+    "dataviz",
+    "pennyfacts",
+    "uscurrency"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "penny_production_cost_2006_2024",
+     "params": {
+      "file": "penny_production_cost_2006_2024.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE LOSING STREAK",
+     "topic": "the penny has cost more every year since 2006",
+     "say": "Every US penny has cost more to make since 2006 -- now 3.69 cents each."
+    },
+    {
+     "source": "offline",
+     "key": "penny_2024_total_loss",
+     "params": {
+      "file": "penny_2024_total_loss.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · WHAT THAT COST IN 2024",
+     "topic": "the penny's total loss added up",
+     "say": "In 2024 alone, making pennies cost $118 million to produce just $32 million in value."
+    }
+   ]
   }
  ],
  "videos": [

@@ -1,0 +1,59 @@
+{
+  "format": "graph_race",
+  "slug": "streaming-passed-cable-tv",
+  "title": "Streaming Just Buried Cable TV",
+  "hook": "The box in the living room lost.",
+  "y_label": "Share of U.S. households (percent)",
+  "duration": 13,
+  "source": "Leichtman Research Group annual household-penetration reports for pay-TV vs. subscription streaming (SVOD), U.S. households, as reported via CableCompare/BroadbandTVNews secondary coverage. 2024 figures as reported (pay-TV ~34%, SVOD ~91%); 2017-2021 figures approximate as publicly reported.",
+  "years": [
+    2015,
+    2017,
+    2019,
+    2021,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "Pay-TV households",
+      "color": "#888888",
+      "icon": null,
+      "values": [
+        85.0,
+        79.0,
+        73.0,
+        64.0,
+        50.0,
+        34.0
+      ]
+    },
+    {
+      "name": "Streaming (SVOD) households",
+      "color": "#50ff80",
+      "icon": null,
+      "values": [
+        52.0,
+        65.0,
+        73.0,
+        78.0,
+        86.0,
+        91.0
+      ]
+    }
+  ],
+  "hashtags": [
+    "streaming",
+    "cabletv",
+    "cordcutting",
+    "netflix",
+    "svod",
+    "mediaindustry",
+    "tvratings",
+    "consumertrends",
+    "dataviz",
+    "entertainment",
+    "shorts",
+    "hulu"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "key": "lightning_deaths_1940s_2023",
+  "title": "US lightning deaths per year, 1940s average vs. recent years",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "1940s average vs. 2020-2023",
+  "source": {
+    "name": "Lightning fatality statistics",
+    "publisher": "NOAA / National Weather Service",
+    "url": "https://www.weather.gov/safety/lightning-odds",
+    "officiality": "official",
+    "access_date": "2026-10-06"
+  },
+  "notes": "US lightning deaths averaged 300-400 a year in the 1940s, when farm work was common; by 2020-2023 the annual count had fallen to the high teens.",
+  "points": [
+    {
+      "label": "1940s average",
+      "value": 350,
+      "period": "1940s"
+    },
+    {
+      "label": "1979",
+      "value": 87,
+      "period": "1979"
+    },
+    {
+      "label": "2020",
+      "value": 17,
+      "period": "2020"
+    },
+    {
+      "label": "2023",
+      "value": 18,
+      "period": "2023"
+    }
+  ],
+  "insight_type": "trend"
+}

@@ -1,0 +1,26 @@
+{
+  "key": "sids_sleep_position_flip",
+  "title": "Share of SIDS cases where the baby was placed stomach-down vs. back-up, before vs. after the campaign",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "Before vs. after Back to Sleep",
+  "source": {
+    "name": "SIDS case-control sleep position study",
+    "publisher": "CDC / NICHD (Safe to Sleep)",
+    "url": "https://safetosleep.nichd.nih.gov/about/history",
+    "officiality": "official",
+    "access_date": "2026-10-06"
+  },
+  "notes": "Among SIDS cases studied, the share of babies placed stomach-down fell from 85.4% to 30.1%, while back-sleeping placement rose from 1.9% to 47.1% -- the behavior flipped as the death rate halved.",
+  "points": [
+    {
+      "label": "Placed stomach-down",
+      "value": 85.4
+    },
+    {
+      "label": "Placed back-up",
+      "value": 1.9
+    }
+  ],
+  "insight_type": "comparison"
+}

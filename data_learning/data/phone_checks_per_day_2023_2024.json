@@ -1,0 +1,28 @@
+{
+  "key": "phone_checks_per_day_2023_2024",
+  "title": "Average US adult phone checks per day",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2023 vs. 2024",
+  "source": {
+    "name": "Annual cell phone usage survey",
+    "publisher": "Reviews.org",
+    "url": "https://www.reviews.org/mobile/cell-phone-addiction/",
+    "officiality": "secondary",
+    "access_date": "2026-10-06"
+  },
+  "notes": "The average American checked their phone 144 times a day in 2023 and 205 times a day in 2024, a 42% jump in a single year.",
+  "points": [
+    {
+      "label": "2023",
+      "value": 144,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 205,
+      "period": "2024"
+    }
+  ],
+  "insight_type": "trend"
+}
