@@ -589,6 +589,28 @@ class TheStoryEndsWhereTheSentenceEnds(unittest.TestCase):
         self.assertEqual(out[-1]["end"], 12.8)       # "bed." ends 12.7
         self.assertIn("cut back", rs[0])
 
+    def test_a_source_that_stops_on_its_last_word_is_not_a_pause(self):
+        # backtest #6: the clip's own last word "them" counted as an ending
+        # and the cut ended on "I have them" again
+        words = {"E": _w("this is really better than my bed. I have them",
+                         10.0)}                       # "them" ends 13.9
+        beats = [{"source_id": "E", "start": 9.0, "end": 14.0,
+                  "role": "payoff", "purpose": "p"}]
+        rs = []
+        out = story_director._finish_the_sentence(beats, words,
+                                                  {"E": 14.0}, rs)
+        self.assertEqual(out[-1]["end"], 12.8)
+        self.assertIn("cut back", rs[0])
+
+    def test_a_last_word_followed_by_silence_is_an_ending(self):
+        words = {"E": _w("this is really better than my bed I love it",
+                         10.0)}                       # "it" ends 13.9
+        beats = [{"source_id": "E", "start": 9.0, "end": 14.0,
+                  "role": "payoff", "purpose": "p"}]
+        out = story_director._finish_the_sentence(beats, words,
+                                                  {"E": 16.0}, [])
+        self.assertEqual(out[-1]["end"], 14.0)
+
     def test_punctuation_ends_a_sentence_inside_one_breath(self):
         words = {"E": _w("this is really better than my bed. I have them "
                          "all over the house and the cats love them", 10.0)}
