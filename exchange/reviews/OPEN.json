@@ -1,16 +1,66 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-10-06T13:48:39Z",
+ "updated": "2026-10-06T14:48:29Z",
  "open": [
   {
-   "id": "back-to-sleep-campaign-cut-sids__44702cd053",
+   "id": "back-to-sleep-campaign-cut-sids__64637df651",
    "channel": "explainer",
    "slug": "back-to-sleep-campaign-cut-sids",
    "title": "One Campaign Cut A Top Baby Killer In Half",
-   "filed": "2026-10-06T12:36:03Z",
-   "request": "exchange/reviews/20261006/back-to-sleep-campaign-cut-sids__44702cd053.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/back-to-sleep-campaign-cut-sids__44702cd053/sheet.jpg",
-   "answer_path": "exchange/reviews/20261006/back-to-sleep-campaign-cut-sids__44702cd053.verdict.json"
+   "filed": "2026-10-06T13:45:06Z",
+   "request": "exchange/reviews/20261006/back-to-sleep-campaign-cut-sids__64637df651.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/back-to-sleep-campaign-cut-sids__64637df651/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/back-to-sleep-campaign-cut-sids__64637df651.verdict.json"
+  },
+  {
+   "id": "self-checkout-cashier-jobs__c686a22ad9",
+   "channel": "explainer",
+   "slug": "self-checkout-cashier-jobs",
+   "title": "Self-Checkout Is Quietly Replacing Cashiers (3 Charts)",
+   "filed": "2026-10-06T13:14:55Z",
+   "request": "exchange/reviews/20261006/self-checkout-cashier-jobs__c686a22ad9.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/self-checkout-cashier-jobs__c686a22ad9/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/self-checkout-cashier-jobs__c686a22ad9.verdict.json"
+  },
+  {
+   "id": "twin-birth-rate-rise__8730fa2be6",
+   "channel": "explainer",
+   "slug": "twin-birth-rate-rise",
+   "title": "Why Twin Births Nearly Doubled — Then Started Falling",
+   "filed": "2026-10-06T13:10:20Z",
+   "request": "exchange/reviews/20261006/twin-birth-rate-rise__8730fa2be6.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/twin-birth-rate-rise__8730fa2be6/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/twin-birth-rate-rise__8730fa2be6.verdict.json"
+  },
+  {
+   "id": "monarch-butterfly-collapse__a8e6b72e86",
+   "channel": "explainer",
+   "slug": "monarch-butterfly-collapse",
+   "title": "The Monarch Butterfly Is Running Out of Forest",
+   "filed": "2026-10-06T13:06:56Z",
+   "request": "exchange/reviews/20261006/monarch-butterfly-collapse__a8e6b72e86.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/monarch-butterfly-collapse__a8e6b72e86/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/monarch-butterfly-collapse__a8e6b72e86.verdict.json"
+  },
+  {
+   "id": "recycling-myth-reality__1ee07a6229",
+   "channel": "explainer",
+   "slug": "recycling-myth-reality",
+   "title": "Why 'Just Recycle It' Barely Works",
+   "filed": "2026-10-06T13:00:33Z",
+   "request": "exchange/reviews/20261006/recycling-myth-reality__1ee07a6229.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/recycling-myth-reality__1ee07a6229/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/recycling-myth-reality__1ee07a6229.verdict.json"
+  },
+  {
+   "id": "sand-mining-crisis__3526be70c1",
+   "channel": "explainer",
+   "slug": "sand-mining-crisis",
+   "title": "The World Is Quietly Running Out Of Sand",
+   "filed": "2026-10-06T12:57:19Z",
+   "request": "exchange/reviews/20261006/sand-mining-crisis__3526be70c1.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/sand-mining-crisis__3526be70c1/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/sand-mining-crisis__3526be70c1.verdict.json"
   },
   {
    "id": "secondhand-apparel-resale-boom__40bf298e23",
@@ -61,16 +111,6 @@
    "request": "exchange/reviews/20261006/coyote_brawl_caught_on_camera___ktla__9b5692a0fc.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/coyote_brawl_caught_on_camera___ktla__9b5692a0fc/sheet.jpg",
    "answer_path": "exchange/reviews/20261006/coyote_brawl_caught_on_camera___ktla__9b5692a0fc.verdict.json"
-  },
-  {
-   "id": "self-checkout-cashier-jobs__e946cf1b1c",
-   "channel": "explainer",
-   "slug": "self-checkout-cashier-jobs",
-   "title": "Self-Checkout Is Quietly Replacing Cashiers (3 Charts)",
-   "filed": "2026-09-29T22:25:16Z",
-   "request": "exchange/reviews/20260929/self-checkout-cashier-jobs__e946cf1b1c.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/self-checkout-cashier-jobs__e946cf1b1c/sheet.jpg",
-   "answer_path": "exchange/reviews/20260929/self-checkout-cashier-jobs__e946cf1b1c.verdict.json"
   },
   {
    "id": "kelp-forest-sea-star-collapse__a798d71a4f",
