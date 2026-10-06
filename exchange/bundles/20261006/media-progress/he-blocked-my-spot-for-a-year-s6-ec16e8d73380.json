@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261006",
+  "bundle": {
+    "identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093",
+    "path": "exchange/bundles/20261006/bundle.json"
+  },
+  "request_id": "he-blocked-my-spot-for-a-year-s6-ec16e8d73380",
+  "safe_request_id": "he-blocked-my-spot-for-a-year-s6-ec16e8d73380",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "5caf94bb87f203e8bbf10a130a5641d0404c84b53049c5cfd08930d72c3968ea",
+  "prompt_used": "An editorial illustration for a short-form video: sticky note on door. It accompanies the narration: \"He left an angry note on my door\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1X-KWYqzr5uxHset6q4sk2tc8yhvI7kG7",
+    "filename": "20261006__he-blocked-my-spot-for-a-year-s6-ec16e8d73380.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1X-KWYqzr5uxHset6q4sk2tc8yhvI7kG7",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "5c8e27afc2b3a143e29bb97330ed9eed235fc3c007e36edf6356b80edc1013f1",
+    "bytes": 1884747,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-06T11:24:21.649Z"
+}
