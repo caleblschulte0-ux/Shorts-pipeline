@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261006",
+  "bundle": {
+    "identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093",
+    "path": "exchange/bundles/20261006/bundle.json"
+  },
+  "request_id": "he-blocked-my-spot-for-a-year-s2-0adaa4ddca03",
+  "safe_request_id": "he-blocked-my-spot-for-a-year-s2-0adaa4ddca03",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "77b0b0f36cae96832aa8fcb979a881103813b50006b8d49c83d2b1be17a01491",
+  "prompt_used": "An editorial illustration for a short-form video: binder of legal papers. It accompanies the narration: \"I pulled the HOA bylaws\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1zSmunprwKmdfe8PHEPxF8yXgaq1K5kdt",
+    "filename": "20261006__he-blocked-my-spot-for-a-year-s2-0adaa4ddca03.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1zSmunprwKmdfe8PHEPxF8yXgaq1K5kdt",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "40b4c2d93583c37508d8df03c4eb8ca2928d04d1786660c51be168387c76ccc4",
+    "bytes": 1789266,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-06T11:24:23.394Z"
+}
