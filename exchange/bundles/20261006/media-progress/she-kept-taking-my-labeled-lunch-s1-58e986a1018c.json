@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261006",
+  "bundle": {
+    "identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093",
+    "path": "exchange/bundles/20261006/bundle.json"
+  },
+  "request_id": "she-kept-taking-my-labeled-lunch-s1-58e986a1018c",
+  "safe_request_id": "she-kept-taking-my-labeled-lunch-s1-58e986a1018c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "dfa9afab65df7941250e7368071a904471ff84ee2c96cae17010f01a2a20e00e",
+  "prompt_used": "An editorial illustration for a short-form video: locked lunch bag office. It accompanies the narration: \"I switched to a locked lunch bag\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1CghVteN1rkTDz4dBESOo5xnG-ZG1y1gX",
+    "filename": "20261006__she-kept-taking-my-labeled-lunch-s1-58e986a1018c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1CghVteN1rkTDz4dBESOo5xnG-ZG1y1gX",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "7002e9d41f98197748d654c25e160c8b070e376f1973c2a31a4b78c5b1dbaf64",
+    "bytes": 2260796,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-06T11:24:25.669Z"
+}
