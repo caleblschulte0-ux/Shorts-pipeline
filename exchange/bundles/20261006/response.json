@@ -1,0 +1,406 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261006",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 8,
+    "registry_sha256": "6f4705b5afd447544619333b5575234574322c37a9c94f127e562bcdcfd8021d",
+    "source_commit": "53d2be82928d451335035fb8930271fbc106eda3",
+    "production_date": "20261006",
+    "bundle_sha256": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093"
+  },
+  "packages": [
+    {
+      "slug": "oat-milk-passed-soy-milk",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; oat milk overtaking soy in only three years is the full surprise, and the crossover supplies the payoff."
+    },
+    {
+      "slug": "nvidia-passed-intel-in-revenue",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; Nvidia overtaking Intel is a familiar rivalry with a decisive revenue crossover best shown directly."
+    },
+    {
+      "slug": "streaming-passed-cable-tv",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the streaming-versus-cable reversal is instantly readable, and the widening split carries the story."
+    },
+    {
+      "slug": "womens-final-passed-mens-final-viewers",
+      "kept": true,
+      "editor_note": "Renderer-native graph race; the women’s final out-drawing the men’s is specific, surprising, and already lands through the viewer crossover."
+    },
+    {
+      "slug": "he-blocked-my-spot-for-a-year",
+      "script": "Still in my spot? My condo included an assigned, painted-number space, but a neighbor's truck sat in it anyway for eleven months straight. He claimed he'd parked there before I bought the unit. Management mailed three written notices; nothing changed. I pulled the HOA bylaws and found unused numbered spots could be bought from the association—better, his own spot, two rows over, had sat empty. I bought it—not the space holding his truck, but his actual numbered spot. His truck got towed from both spaces in the same week, and he parks on the street now like the visitors he used to complain about. He left an angry note on my door, so I taped it to the new sign. He stole one spot, lost two, and still can't trust a curb?",
+      "editor_note": "Compressed to 134 words, preserved every protected fact and shot phrase, and sharpened the two-space reversal into the specific curb question."
+    },
+    {
+      "slug": "she-kept-taking-my-labeled-lunch",
+      "script": "Still missing? My name had been on the container in the office fridge for three weeks, then someone started eating half of it every single day and returning the empty tub. I switched to a locked lunch bag. Gone again—bag and all. I bought the same yogurt, added two tablespoons of hot sauce only I could handle, and labeled it in huge letters: special diet, do not eat. Within an hour, our shared kitchen chat exploded with someone demanding to know who “poisoned” the yogurt. I said nothing. She confessed first, mid-sentence, before anyone asked her name. HR got involved, and a sign-out sheet appeared on the fridge door within a day. My lunch stayed untouched for two weeks straight. Turns out one honest label was enough?",
+      "editor_note": "Compressed to 128 words, preserved every protected fact and shot phrase, and tightened the confession and honest-label payoff."
+    }
+  ],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "The Food Shortage Forecast Missed The Harvest",
+      "hook": "The world was told food would run out. The numbers disagree.",
+      "says": [
+        "In 1985, secondary-school progression was 77.8%; by 2017, 91.3%—1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons; by 2024, 1644.1 million—1.5 times higher.",
+        "China leads: 5.2 million square kilometers; United States 4.2, Australia 3.6, Brazil 2.4, Russia 2.2."
+      ],
+      "closing": "The feared famine never arrived as predicted.",
+      "question": "Which changed more: school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Tripled—And It Isn’t Solar",
+      "hook": "One energy source tripled, and it was mostly waste.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2%; by 2024, 30.1%—3.0 times higher.",
+        "In 1998, electricity access was 73.2%; by 2024, 91.9%—1.3 times higher.",
+        "In 1972, waste methane (ch4) was 903.8 Mt CO2e; by 2024, 1,652 Mt CO2e—1.8 times higher."
+      ],
+      "closing": "Waste became a serious part of the energy mix.",
+      "question": "Which changed most: fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Didn’t Keep Accelerating",
+      "hook": "The population curve changed direction more sharply than expected.",
+      "says": [
+        "In 1972, rural population was 63.1%; by 2025, 42.2%—down to 67 percent.",
+        "In 1972, largest-city population was 18.2% of urban population; by 2025, 16.2%—barely moved.",
+        "In 1972, population growth was 2% annually; by 2025, 0.91%—down to 46 percent."
+      ],
+      "closing": "Growth continued, but acceleration faded.",
+      "question": "Which shifted most: rural, city, or growth?"
+    }
+  ],
+  "media": [
+    {
+      "request_id": "he-blocked-my-spot-for-a-year-s0-8ca1511b9ee5",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1SObvakzopu73u7yj0LrYit89N_jRfsNY",
+        "filename": "20261006__he-blocked-my-spot-for-a-year-s0-8ca1511b9ee5.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1SObvakzopu73u7yj0LrYit89N_jRfsNY",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "57f1637350c61783b46ff08cf68391455c8e070d48f0326d033c58aeaa63aff4",
+        "bytes": 1980916,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261006/media-progress/he-blocked-my-spot-for-a-year-s0-8ca1511b9ee5.json",
+        "verified_at": "2026-10-06T11:24:14.750Z"
+      }
+    },
+    {
+      "request_id": "he-blocked-my-spot-for-a-year-s1-a3d8bce25b2d",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1nm1sfuD11DnZedeFiqiciBgJMVFH46Z6",
+        "filename": "20261006__he-blocked-my-spot-for-a-year-s1-a3d8bce25b2d.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1nm1sfuD11DnZedeFiqiciBgJMVFH46Z6",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "89508cb9a843ef2ae0e00b1316f68849fa46a0f68c62a378731dece4482d8262",
+        "bytes": 1672705,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261006/media-progress/he-blocked-my-spot-for-a-year-s1-a3d8bce25b2d.json",
+        "verified_at": "2026-10-06T11:24:16.165Z"
+      }
+    },
+    {
+      "request_id": "he-blocked-my-spot-for-a-year-s3-c1c80df9e269",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1jmQLXz67jopJA9qKtt3kT47oLZqxe4d2",
+        "filename": "20261006__he-blocked-my-spot-for-a-year-s3-c1c80df9e269.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1jmQLXz67jopJA9qKtt3kT47oLZqxe4d2",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "f66b74b1fb0985b1ae10f325202ead1d87573e2e3e61a77be32e3655261b04f0",
+        "bytes": 2591949,
+        "format": "png",
+        "width": 1374,
+        "height": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261006/media-progress/he-blocked-my-spot-for-a-year-s3-c1c80df9e269.json",
+        "verified_at": "2026-10-06T11:24:17.460Z"
+      }
+    },
+    {
+      "request_id": "he-blocked-my-spot-for-a-year-s4-221a151b6515",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1GKwDI9tJqLYc-laK49bQwbwxlI8Gj0XU",
+        "filename": "20261006__he-blocked-my-spot-for-a-year-s4-221a151b6515.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1GKwDI9tJqLYc-laK49bQwbwxlI8Gj0XU",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "560f94f29c37f306d657e5c22d12d95a1350994602a81717ea2f6ddb8a9f900b",
+        "bytes": 2671668,
+        "format": "png",
+        "width": 1536,
+        "height": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261006/media-progress/he-blocked-my-spot-for-a-year-s4-221a151b6515.json",
+        "verified_at": "2026-10-06T11:24:18.690Z"
+      }
+    },
+    {
+      "request_id": "he-blocked-my-spot-for-a-year-s5-4be8c8e7fed7",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1NGjO9istSOyGU3HPXeK3pGHYDczeARM6",
+        "filename": "20261006__he-blocked-my-spot-for-a-year-s5-4be8c8e7fed7.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1NGjO9istSOyGU3HPXeK3pGHYDczeARM6",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "49f57d93131583883eeb51c7a6f38294a26b2555b31b8b1a120b91a5903b7fe0",
+        "bytes": 2437655,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261006/media-progress/he-blocked-my-spot-for-a-year-s5-4be8c8e7fed7.json",
+        "verified_at": "2026-10-06T11:24:20.403Z"
+      }
+    },
+    {
+      "request_id": "he-blocked-my-spot-for-a-year-s6-ec16e8d73380",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1X-KWYqzr5uxHset6q4sk2tc8yhvI7kG7",
+        "filename": "20261006__he-blocked-my-spot-for-a-year-s6-ec16e8d73380.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1X-KWYqzr5uxHset6q4sk2tc8yhvI7kG7",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "5c8e27afc2b3a143e29bb97330ed9eed235fc3c007e36edf6356b80edc1013f1",
+        "bytes": 1884747,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261006/media-progress/he-blocked-my-spot-for-a-year-s6-ec16e8d73380.json",
+        "verified_at": "2026-10-06T11:24:21.649Z"
+      }
+    },
+    {
+      "request_id": "he-blocked-my-spot-for-a-year-s2-0adaa4ddca03",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1zSmunprwKmdfe8PHEPxF8yXgaq1K5kdt",
+        "filename": "20261006__he-blocked-my-spot-for-a-year-s2-0adaa4ddca03.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1zSmunprwKmdfe8PHEPxF8yXgaq1K5kdt",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "40b4c2d93583c37508d8df03c4eb8ca2928d04d1786660c51be168387c76ccc4",
+        "bytes": 1789266,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261006/media-progress/he-blocked-my-spot-for-a-year-s2-0adaa4ddca03.json",
+        "verified_at": "2026-10-06T11:24:23.394Z"
+      }
+    },
+    {
+      "request_id": "she-kept-taking-my-labeled-lunch-s0-cd0aa9d947e8",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "15DX6SwO3XF26M960OeuixWoIRwCp6KvY",
+        "filename": "20261006__she-kept-taking-my-labeled-lunch-s0-cd0aa9d947e8.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=15DX6SwO3XF26M960OeuixWoIRwCp6KvY",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "d8cfb04eccc21eb972ad24de28e626d3900af62cbd871c19529d247661a60552",
+        "bytes": 2268114,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261006/media-progress/she-kept-taking-my-labeled-lunch-s0-cd0aa9d947e8.json",
+        "verified_at": "2026-10-06T11:24:24.485Z"
+      }
+    },
+    {
+      "request_id": "she-kept-taking-my-labeled-lunch-s1-58e986a1018c",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1CghVteN1rkTDz4dBESOo5xnG-ZG1y1gX",
+        "filename": "20261006__she-kept-taking-my-labeled-lunch-s1-58e986a1018c.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1CghVteN1rkTDz4dBESOo5xnG-ZG1y1gX",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "7002e9d41f98197748d654c25e160c8b070e376f1973c2a31a4b78c5b1dbaf64",
+        "bytes": 2260796,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261006/media-progress/she-kept-taking-my-labeled-lunch-s1-58e986a1018c.json",
+        "verified_at": "2026-10-06T11:24:25.669Z"
+      }
+    },
+    {
+      "request_id": "she-kept-taking-my-labeled-lunch-s2-8a6ac0473e1c",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1n0CSm20TKXS6i_ZyOSpKpWiTrKhmTKUM",
+        "filename": "20261006__she-kept-taking-my-labeled-lunch-s2-8a6ac0473e1c.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1n0CSm20TKXS6i_ZyOSpKpWiTrKhmTKUM",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "94a04d374466bc7db81a447262995150e9efabd3ecd15086dbb37b02ea8f67a0",
+        "bytes": 1782953,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261006/media-progress/she-kept-taking-my-labeled-lunch-s2-8a6ac0473e1c.json",
+        "verified_at": "2026-10-06T11:24:26.976Z"
+      }
+    },
+    {
+      "request_id": "she-kept-taking-my-labeled-lunch-s3-1c4334512060",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1-AkrD_4rGDj5C_2FAg8CnjU7YQWaTZn5",
+        "filename": "20261006__she-kept-taking-my-labeled-lunch-s3-1c4334512060.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1-AkrD_4rGDj5C_2FAg8CnjU7YQWaTZn5",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "9546a1eb2b391a56322cb5d43a758ed367a88426f5c802b171dd7916067ae94c",
+        "bytes": 2293741,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261006/media-progress/she-kept-taking-my-labeled-lunch-s3-1c4334512060.json",
+        "verified_at": "2026-10-06T11:24:28.158Z"
+      }
+    },
+    {
+      "request_id": "she-kept-taking-my-labeled-lunch-s4-4f505234ba7b",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "189C2tqzehRgi0WgY7rWkdgkliyGiCNkN",
+        "filename": "20261006__she-kept-taking-my-labeled-lunch-s4-4f505234ba7b.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=189C2tqzehRgi0WgY7rWkdgkliyGiCNkN",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "2f4779a3804c3f520e16d71f2a1118768b4a16a5e2026bde8310aa83b4b11c60",
+        "bytes": 1916102,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261006/media-progress/she-kept-taking-my-labeled-lunch-s4-4f505234ba7b.json",
+        "verified_at": "2026-10-06T11:24:29.202Z"
+      }
+    },
+    {
+      "request_id": "she-kept-taking-my-labeled-lunch-s5-2de3aeac0942",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1qe-E7V_4aktNlJrfkRBYyJZlZEVYN1Em",
+        "filename": "20261006__she-kept-taking-my-labeled-lunch-s5-2de3aeac0942.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1qe-E7V_4aktNlJrfkRBYyJZlZEVYN1Em",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "3473df9481c90f5bd75d1180c620e57be573b835a9f35717c0ebd8a6d1742f91",
+        "bytes": 1887417,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261006/media-progress/she-kept-taking-my-labeled-lunch-s5-2de3aeac0942.json",
+        "verified_at": "2026-10-06T11:24:30.451Z"
+      }
+    },
+    {
+      "request_id": "she-kept-taking-my-labeled-lunch-s6-1f643e446ed1",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1NZAwDW3M9-cDjlXD6Hpa5rtorZwEvYDS",
+        "filename": "20261006__she-kept-taking-my-labeled-lunch-s6-1f643e446ed1.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1NZAwDW3M9-cDjlXD6Hpa5rtorZwEvYDS",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "3cbd5d92ef4157050888381a77d222858e0850328bf9a3977b858a13e0613a36",
+        "bytes": 2116069,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261006/media-progress/she-kept-taking-my-labeled-lunch-s6-1f643e446ed1.json",
+        "verified_at": "2026-10-06T11:24:31.753Z"
+      }
+    }
+  ]
+}
