@@ -384,8 +384,8 @@
           "shot_index": 2,
           "phrase": "I pulled the HOA bylaws",
           "query": "binder of legal papers",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
@@ -418,19 +418,19 @@
       ],
       "media_health": {
         "strong": 0,
-        "weak": 0,
-        "missing": 7,
+        "weak": 1,
+        "missing": 6,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
         "he-blocked-my-spot-for-a-year-s0-8ca1511b9ee5",
         "he-blocked-my-spot-for-a-year-s1-a3d8bce25b2d",
-        "he-blocked-my-spot-for-a-year-s2-0adaa4ddca03",
         "he-blocked-my-spot-for-a-year-s3-c1c80df9e269",
         "he-blocked-my-spot-for-a-year-s4-221a151b6515",
         "he-blocked-my-spot-for-a-year-s5-4be8c8e7fed7",
-        "he-blocked-my-spot-for-a-year-s6-ec16e8d73380"
+        "he-blocked-my-spot-for-a-year-s6-ec16e8d73380",
+        "he-blocked-my-spot-for-a-year-s2-0adaa4ddca03"
       ]
     },
     {
@@ -560,32 +560,6 @@
       "verdict": "missing"
     },
     {
-      "request_id": "he-blocked-my-spot-for-a-year-s2-0adaa4ddca03",
-      "safe_request_id": "he-blocked-my-spot-for-a-year-s2-0adaa4ddca03",
-      "drive_filename": "20261006__he-blocked-my-spot-for-a-year-s2-0adaa4ddca03.png",
-      "prompt_sha256": "77b0b0f36cae96832aa8fcb979a881103813b50006b8d49c83d2b1be17a01491",
-      "checkpoint_path": "exchange/bundles/20261006/media-progress/he-blocked-my-spot-for-a-year-s2-0adaa4ddca03.json",
-      "slug": "he-blocked-my-spot-for-a-year",
-      "shot_index": 2,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: binder of legal papers. It accompanies the narration: \"I pulled the HOA bylaws\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
       "request_id": "he-blocked-my-spot-for-a-year-s3-c1c80df9e269",
       "safe_request_id": "he-blocked-my-spot-for-a-year-s3-c1c80df9e269",
       "drive_filename": "20261006__he-blocked-my-spot-for-a-year-s3-c1c80df9e269.png",
@@ -688,6 +662,33 @@
         "no media found for this line"
       ],
       "verdict": "missing"
+    },
+    {
+      "request_id": "he-blocked-my-spot-for-a-year-s2-0adaa4ddca03",
+      "safe_request_id": "he-blocked-my-spot-for-a-year-s2-0adaa4ddca03",
+      "drive_filename": "20261006__he-blocked-my-spot-for-a-year-s2-0adaa4ddca03.png",
+      "prompt_sha256": "77b0b0f36cae96832aa8fcb979a881103813b50006b8d49c83d2b1be17a01491",
+      "checkpoint_path": "exchange/bundles/20261006/media-progress/he-blocked-my-spot-for-a-year-s2-0adaa4ddca03.json",
+      "slug": "he-blocked-my-spot-for-a-year",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: binder of legal papers. It accompanies the narration: \"I pulled the HOA bylaws\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
     },
     {
       "request_id": "she-kept-taking-my-labeled-lunch-s0-cd0aa9d947e8",

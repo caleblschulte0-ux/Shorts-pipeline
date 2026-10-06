@@ -28,7 +28,24 @@
     },
     {
       "phrase": "I pulled the HOA bylaws",
-      "query": "binder of legal papers"
+      "query": "binder of legal papers",
+      "pin_query": "HOA",
+      "pin_context": "homeowners association board meeting documents",
+      "news_query": "HOA",
+      "news_angle": "The narrator pulls the HOA bylaws to discover the loophole allowing purchase of unused parking spots.",
+      "image_url": "https://live.staticflickr.com/5137/5583932913_9f03bdda26.jpg",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "live.staticflickr.com",
+        "query": "homeowners association board meeting documents",
+        "resolved_by": "entity_media",
+        "source_class": "unverified",
+        "title": "HOA",
+        "url": "https://live.staticflickr.com/5137/5583932913_9f03bdda26.jpg",
+        "verified_at": "2026-10-06T10:10:47Z",
+        "width": 0
+      }
     },
     {
       "phrase": "his own spot, two rows over, had sat empty",
