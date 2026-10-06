@@ -1,0 +1,59 @@
+{
+  "format": "graph_race",
+  "slug": "oat-milk-passed-soy-milk",
+  "title": "Oat Milk Passed Soy Milk In Three Years",
+  "hook": "One plant milk ate the other's lunch.",
+  "y_label": "U.S. retail sales ($ millions)",
+  "duration": 13,
+  "source": "Nielsen U.S. retail scanner data for plant-based milk, reported via AgFunderNews/FoodDive/BevIndustry -- oat milk vs. soy milk dollar sales. 2020 crossover (~$213M oat vs. ~$202M soy) and 2022 figures (oat ~$421M, soy ~$144M) as publicly reported; 2018 figures approximate as publicly reported.",
+  "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022
+  ],
+  "series": [
+    {
+      "name": "Oat milk",
+      "color": "#50ff80",
+      "icon": null,
+      "values": [
+        4.4,
+        13.0,
+        29.0,
+        213.4,
+        300.0,
+        421.0
+      ]
+    },
+    {
+      "name": "Soy milk",
+      "color": "#888888",
+      "icon": null,
+      "values": [
+        280.0,
+        265.0,
+        250.0,
+        202.3,
+        165.0,
+        144.0
+      ]
+    }
+  ],
+  "hashtags": [
+    "oatmilk",
+    "soymilk",
+    "plantbasedmilk",
+    "dairyfree",
+    "grocery",
+    "consumertrends",
+    "foodindustry",
+    "oatly",
+    "nielsen",
+    "dataviz",
+    "foodtrends",
+    "shorts"
+  ]
+}

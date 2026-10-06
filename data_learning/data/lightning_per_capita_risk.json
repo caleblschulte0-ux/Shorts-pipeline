@@ -1,0 +1,26 @@
+{
+  "key": "lightning_per_capita_risk",
+  "title": "US lightning death rate, per-capita comparison across eras",
+  "unit": "index",
+  "geography": "United States",
+  "time_coverage": "1940s vs. 2013-2022 average",
+  "source": {
+    "name": "Lightning fatality statistics and Census population estimates",
+    "publisher": "NOAA/NWS + US Census Bureau",
+    "url": "https://www.weather.gov/safety/lightning-odds",
+    "officiality": "official",
+    "access_date": "2026-10-06"
+  },
+  "notes": "Even after accounting for the population roughly 2.5x larger today, the per-person odds of dying from lightning fell about 40-fold between the 1940s and 2013-2022.",
+  "points": [
+    {
+      "label": "1940s per-capita risk (indexed to 40)",
+      "value": 40
+    },
+    {
+      "label": "2013-2022 per-capita risk (indexed to 1)",
+      "value": 1
+    }
+  ],
+  "insight_type": "comparison"
+}

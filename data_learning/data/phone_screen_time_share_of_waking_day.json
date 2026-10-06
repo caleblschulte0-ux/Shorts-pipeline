@@ -1,0 +1,26 @@
+{
+  "key": "phone_screen_time_share_of_waking_day",
+  "title": "Daily phone screen time vs. the rest of the waking day",
+  "unit": "hours",
+  "geography": "United States",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Annual cell phone usage survey",
+    "publisher": "Reviews.org",
+    "url": "https://www.reviews.org/mobile/cell-phone-addiction/",
+    "officiality": "secondary",
+    "access_date": "2026-10-06"
+  },
+  "notes": "205 checks a day worked out to about 5.02 hours of phone screen time in 2024, out of a roughly 16-hour waking day.",
+  "points": [
+    {
+      "label": "Phone screen time",
+      "value": 5.02
+    },
+    {
+      "label": "Rest of the waking day",
+      "value": 10.98
+    }
+  ],
+  "insight_type": "share"
+}

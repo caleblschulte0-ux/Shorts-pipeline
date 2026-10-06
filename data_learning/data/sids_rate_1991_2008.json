@@ -1,0 +1,28 @@
+{
+  "key": "sids_rate_1991_2008",
+  "title": "US SIDS rate per 1,000 live births, before vs. after Back to Sleep",
+  "unit": "rate per 1,000 live births",
+  "geography": "United States",
+  "time_coverage": "1991 vs. 2008",
+  "source": {
+    "name": "Sudden Infant Death Syndrome rate",
+    "publisher": "CDC / NICHD",
+    "url": "https://safetosleep.nichd.nih.gov/about/history",
+    "officiality": "official",
+    "access_date": "2026-10-06"
+  },
+  "notes": "US SIDS rate fell from 1.34 per 1,000 live births in 1991 to 0.64 in 2008, most of the decline in the years right after the 1994 Back to Sleep campaign launch.",
+  "points": [
+    {
+      "label": "1991",
+      "value": 1.34,
+      "period": "1991"
+    },
+    {
+      "label": "2008",
+      "value": 0.64,
+      "period": "2008"
+    }
+  ],
+  "insight_type": "trend"
+}

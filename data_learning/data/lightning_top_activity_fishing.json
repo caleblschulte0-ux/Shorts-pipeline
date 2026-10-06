@@ -1,0 +1,26 @@
+{
+  "key": "lightning_top_activity_fishing",
+  "title": "Leading activity among recent US lightning deaths",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "Recent decade",
+  "source": {
+    "name": "Lightning fatality activity breakdown",
+    "publisher": "NOAA / National Weather Service",
+    "url": "https://www.weather.gov/safety/lightning-odds",
+    "officiality": "official",
+    "access_date": "2026-10-06"
+  },
+  "notes": "With farm work gone, fishing is now the single activity most often listed in US lightning deaths -- about 1 in 10 of all recent fatalities.",
+  "points": [
+    {
+      "label": "Fishing",
+      "value": 10
+    },
+    {
+      "label": "All other single activities",
+      "value": 90
+    }
+  ],
+  "insight_type": "share"
+}
