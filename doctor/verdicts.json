@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20261005",
+  "updated": "20261006",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -1409,10 +1409,16 @@
       "revisit_after": "20261009"
     },
     "38fd2900770d": {
-      "verdict": "doing",
-      "date": "20260909",
-      "because": "Verified: build_longform.py pick_slug() selects the newest unused published explainer slug with no chapter-count/duration/claim-depth check, and the Sept 6 47-second all-still candidate shows clearing the Shorts gate does not imply long-form readiness. Real long_term design gap; queued behind the motion-floor and transaction-safety work it's related to.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20261006",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260909",
+          "because": "Verified: build_longform.py pick_slug() selects the newest unused published explainer slug with no chapter-count/duration/claim-depth check, and the Sept 6 47-second all-still candidate shows clearing the Shorts gate does not imply long-form readiness. Real long_term design gap; queued behind the motion-floor and transaction-safety work it's related to."
+        }
+      ]
     }
   }
 }
