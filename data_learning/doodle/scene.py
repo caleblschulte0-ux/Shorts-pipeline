@@ -1020,7 +1020,8 @@ class Scene:
         self.lay = layout(spec, seed)
         self.still = cairo.ImageSurface(cairo.FORMAT_RGB24, W, H)
         cr = cairo.Context(self.still)
-        self.facts = settings.draw_still(cr, self.setting, self.time, self.weather, seed, shot_of(spec), era=era)
+        self.facts = settings.draw_still(cr, self.setting, self.time, self.weather, seed, shot_of(spec), era=era,
+                                         clear=self._cover_spans())
         st_ = SETTINGS.get(self.setting)
         self.cushions = bool(st_ and st_.interior and era != "stone_age")   # a floor-sitter sits on something
         for layer in ("back", "mid", "front"):
@@ -1042,6 +1043,8 @@ class Scene:
         self.owned = {a["owns"] for a in self.acts if a.get("owns") is not None}
         self.lamp_props = {a["lamp"]["prop"] for a in self.acts if a.get("lamp")}
         self._lightmaps = {}
+        self._flicker = []
+        self._flicker_dir = 1
         self.lights = []
         for i, p in enumerate(self.lay["props"]):
             pr = PROPS[p["name"]]
@@ -1096,12 +1099,36 @@ class Scene:
         self._lightmaps[key] = lm
         return lm
 
+    FLICKER_FPS = 24
+    FLICKER_STEPS = (2, 2, 3)     # levels a frame: never still, never the eight-level jump the noise made
+
+    def _flicker_level(self, t: float) -> int:
+        """Firelight that is never still: a bounded random walk over the
+        LIGHT_LEVELS, two or three levels every frame, turning at the ends.
+        Value noise at 8 Hz sat on the same level one frame in ten and moved
+        one level in another two, and those were a fifth of a night room's
+        frames the cadence probe called held (run 98: effective 19 fps in
+        every lamplit room, 24 wherever a brazier burned); it also jumped
+        eight levels at once, which is a jolt, not a flicker."""
+        i = max(0, int(t * self.FLICKER_FPS))
+        walk = self._flicker
+        if not walk:
+            walk.append(self.LIGHT_LEVELS // 2)
+            self._flicker_dir = 1
+        r = random.Random(self.seed * 7 + 11)
+        for _ in range(len(walk) - 1):
+            r.choice(self.FLICKER_STEPS)          # keep the stream aligned with the walk
+        while len(walk) <= i:
+            step = r.choice(self.FLICKER_STEPS)
+            nxt = walk[-1] + self._flicker_dir * step
+            if nxt < 0 or nxt > self.LIGHT_LEVELS - 1:
+                self._flicker_dir = -self._flicker_dir
+                nxt = walk[-1] + self._flicker_dir * step
+            walk.append(max(0, min(self.LIGHT_LEVELS - 1, nxt)))
+        return walk[i]
+
     def _light(self, cr, t):
-        if self.lights:
-            u = (ink.vnoise(t, 8.0, self.seed + 3) + 1) / 2
-            level = max(0, min(self.LIGHT_LEVELS - 1, int(u * self.LIGHT_LEVELS)))
-        else:
-            level = 0
+        level = self._flicker_level(t) if self.lights else 0
         lamps = ()
         if self.lamp_props:
             from . import happen
@@ -1244,6 +1271,23 @@ class Scene:
             settings.glints(cr, self.facts, self.time, t, self.seed)
             cr.restore()
 
+    def _cover_spans(self) -> list[tuple[float, float]]:
+        """The x-spans where somebody stands or a big prop sits in front of
+        the water: what the glints are clipped away from, and so where the
+        sun's path must not go."""
+        out = []
+        for f in self.lay["people"]:
+            R = people.R0 * f["s"] * people.WHO[f["who"]]["size"]
+            lo, hi = figure_extent(f["pose"], R)
+            if f["facing"] == "left":
+                lo, hi = -hi, -lo
+            out.append((f["x"] + lo, f["x"] + hi))
+        for p in self.lay["props"]:
+            pr = PROPS[p["name"]]
+            if pr.layer != "back" and pr.width * p["s"] >= 160:
+                out.append((p["x"] - pr.width * p["s"] / 2, p["x"] + pr.width * p["s"] / 2))
+        return out
+
     def _figure_holes(self, t: float = 0.0) -> list[tuple[float, float, float, float]]:
         """Each person's footprint as (lo, hi, top, bottom), the x-spans
         merged where they touch so the even-odd clip never re-admits an
@@ -1264,7 +1308,10 @@ class Scene:
                 figs.append((x, pose, action, a.get("item"), facing, a["who"], a["s"], a["y"]))
         for x, pose, action, item, facing, who, sc, y in figs:
             R = people.R0 * sc * people.WHO[who]["size"]
-            lo, hi = figure_extent(pose, R, action, item)
+            # the BODY's span, not the reach of a rod or a hoe: a fishing
+            # rod is a line, and the hole it cut took four heads of water
+            # with it (run 98: the shore's sun path clipped away whole)
+            lo, hi = figure_extent(pose, R)
             if facing == "left":
                 lo, hi = -hi, -lo
             spans_.append((x + lo - 0.1 * R, x + hi + 0.1 * R, y - 5.6 * R, y + 0.4 * R))

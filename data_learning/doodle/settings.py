@@ -96,21 +96,53 @@ def _sky(cr, time):
     cr.paint()
 
 
-def _sun_moon(cr, time, r):
+def _open_column(lo: float, hi: float, r, clear) -> float:
+    """An x in [lo, hi], by seed, out of every span in `clear` where it can
+    be: the sun's path on the water is the one thing on an open shore that
+    really moves, and placed behind whoever stands on the sand it is
+    clipped away with the glints (run 98: a close shot of the shore at
+    dawn read 96% held with the path behind the woman and the rock)."""
+    x = r.uniform(lo, hi)
+    if not clear:
+        return x
+    # its own range first; when that is all covered, anywhere across the sky
+    for lo_, hi_ in ((lo, hi), (0.12 * W, 0.88 * W)):
+        free = [(lo_, hi_)]
+        for c0, c1 in clear:
+            nxt = []
+            for a, b in free:
+                if c1 <= a or c0 >= b:
+                    nxt.append((a, b))
+                else:
+                    if c0 - a >= 160:
+                        nxt.append((a, c0))
+                    if b - c1 >= 160:
+                        nxt.append((c1, b))
+            free = nxt
+        if free:
+            a, b = max(free, key=lambda ab: ab[1] - ab[0])
+            return r.uniform(a + 50, b - 50) if b - a > 100 else (a + b) / 2
+    return x
+
+
+def _sun_moon(cr, time, r, clear=()):
+    """The sun or the moon; returns where it is, so the water can carry
+    its path. `clear` is the x-spans the path must not sit behind."""
     if time == "night":
-        x, y = r.uniform(0.62, 0.85) * W, r.uniform(0.12, 0.2) * H
+        x, y = _open_column(0.62 * W, 0.85 * W, r, clear), r.uniform(0.12, 0.2) * H
         ink.glow(cr, x, y, 180, (0.8, 0.85, 1.0), 0.25)
         ink.fill_stroke(cr, ink.ellipse_pts(x, y, 46, 46, 28), rgb("#f3f0dc"), lw=0, amp=0)
         ink.dot(cr, x - 12, y - 8, 9, rgb("#dcd8c0"))
         ink.dot(cr, x + 14, y + 12, 6, rgb("#dcd8c0"))
     elif time in ("dusk", "dawn"):
-        x, y = r.uniform(0.6, 0.8) * W, H * 0.56
+        x, y = _open_column(0.6 * W, 0.8 * W, r, clear), H * 0.56
         ink.glow(cr, x, y, 300, (1.0, 0.7, 0.45), 0.5)
         ink.fill_stroke(cr, ink.ellipse_pts(x, y, 70, 70, 28), rgb("#ffd79a"), lw=0, amp=0)
     else:
-        x, y = r.uniform(0.7, 0.88) * W, r.uniform(0.1, 0.18) * H
+        x, y = _open_column(0.7 * W, 0.88 * W, r, clear), r.uniform(0.1, 0.18) * H
         ink.glow(cr, x, y, 160, (1.0, 0.95, 0.75), 0.4)
         ink.fill_stroke(cr, ink.ellipse_pts(x, y, 52, 52, 28), rgb("#fff1b8"), lw=0, amp=0)
+    return x, y
 
 
 def _stars(cr, r, n=140):
@@ -247,7 +279,7 @@ def _town(cr, r, y0, seed, facts=None):
 STOA_WALL = rgb("#cdc2ab")
 
 
-def _colonnade(cr, r, y0, seed, wall: bool = False):
+def _colonnade(cr, r, y0, seed, wall: bool = False, facts: dict | None = None):
     """A line of columns across the square, with the beam they carry. Close
     in, the stoa's back wall stands behind the columns: with the town's
     roofs showing between them the beam read as a parapet and the judge saw
@@ -256,6 +288,8 @@ def _colonnade(cr, r, y0, seed, wall: bool = False):
     from .props import column
     xs = [180 + k * 390 + r.uniform(-20, 20) for k in range(5)]
     if wall:
+        if facts is not None and facts.get("town"):
+            facts["town"]["hidden_below"] = y0 - 195     # the windows behind the wall do not light up on it
         ink.fill_stroke(cr, [(-40, y0 - 195), (W + 40, y0 - 195), (W + 40, y0 + 6), (-40, y0 + 6)],
                         STOA_WALL, lw=4, amp=1.0, seed=seed + 3, shadow=shade(STOA_WALL, 0.92), shadow_dir=(0, 1))
         for k in range(1, 5):
@@ -558,8 +592,11 @@ def tree_line(name: str, seed: int, shot: str = "wide") -> list[tuple[float, str
 CITY_ERAS = ("victorian", "early_modern")     # a river or lake in these eras is a city's river or park lake
 
 
-def draw_still(cr, name: str, time: str, weather: str, seed: int, shot: str = "wide", era: str | None = None) -> dict:
-    """Paint the still world for a scene. Returns layout facts the scene needs."""
+def draw_still(cr, name: str, time: str, weather: str, seed: int, shot: str = "wide", era: str | None = None,
+               clear=()) -> dict:
+    """Paint the still world for a scene. Returns layout facts the scene
+    needs. `clear` is the x-spans the people and the big props take, so the
+    sun or the moon stands where its path on the water is in view."""
     st = SETTINGS[name]
     r = random.Random(seed)
     gy = H * GROUND_Y
@@ -574,7 +611,7 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int, shot: str = "w
         if weather == "clear" and name in OPEN_SKY and r.random() < 0.5:
             _milky_way(cr, r)
     if weather in ("clear", "cloudy", "snow", "frost") or time == "night":
-        _sun_moon(cr, time, r)
+        facts["sky_light"] = _sun_moon(cr, time, r, clear if st.water else ())
     far = {"day": rgb("#9fb7a8"), "dawn": rgb("#9d8fa0"), "dusk": rgb("#7a6485"), "night": rgb("#34466b")}[time]
     # the cave mouth is the film's most-used picture: half the time it has
     # the range behind it, half the time only hills, so it is not one layout
@@ -591,7 +628,7 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int, shot: str = "w
         _castle(cr, W * r.uniform(0.3, 0.7), H * st.horizon + 60, seed)
     if name == "forum":
         _town(cr, r, H * st.horizon + 40, seed, facts)
-        _colonnade(cr, r, H * st.horizon + 150, seed, wall=(shot == "close"))
+        _colonnade(cr, r, H * st.horizon + 150, seed, wall=(shot == "close"), facts=facts)
     if name == "street":
         from .props import terrace
         for k in range(4):
@@ -841,6 +878,14 @@ def _spring_flow(cr, top, bot, t, seed, hl):
         cr.stroke()
 
 
+# px/s the ripple dashes travel: a river runs, a stream hurries, the sea and
+# a lake roll in. Measured with the cadence probe on a CLOSE shot by the
+# water with no fire in it (the shore at dawn, run 98): at 40 the dashes
+# move a sixth of a pixel a frame at the probe's width and 96% of frames
+# read as held; the shot has nothing else that moves
+WATER_SPEED = {"river": 120, "stream": 170, "sea": 40, "lake": 40}
+
+
 def _flow(cr, kind, top, bot, t, seed, time):
     """Water that runs: rows of light ripple dashes carried along by the
     current (a river) or rolling in (lake/sea), each dash a clear mark."""
@@ -854,7 +899,7 @@ def _flow(cr, kind, top, bot, t, seed, time):
         _spring_flow(cr, top, bot, t, seed, hl)
         return
     rows = 9 if kind != "stream" else 4
-    speed = {"river": 120, "stream": 170}.get(kind, 40)
+    speed = WATER_SPEED.get(kind, WATER_SPEED["sea"])
     for i in range(rows):
         y = top + (bot - top) * (i + 0.6) / rows
         spacing = r.uniform(150, 220)
@@ -887,9 +932,12 @@ def _evening(cr, name: str, time: str, weather: str, facts: dict, t: float, seed
     town = facts.get("town")
     r = random.Random(seed * 13 + 5)
     if town and time in ("dusk", "night"):
+        hidden = town.get("hidden_below")
         for k, (wx, wy) in enumerate(town["windows"]):
             if r.random() < 0.35:
                 continue                        # not every house has a lamp lit
+            if hidden is not None and wy > hidden:
+                continue                        # behind the stoa's wall in a close shot
             on = 0.0 if time == "night" else r.uniform(1.0, 11.0)
             if t < on:
                 continue
@@ -923,6 +971,10 @@ def _evening(cr, name: str, time: str, weather: str, facts: dict, t: float, seed
                          ink=(0.18, 0.14, 0.2), amp=0)
 
 
+PATH_GLINTS = 36          # glints in the sun's or the moon's path on the water
+PATH_HALF_WIDTH = 260.0   # px either side of it
+
+
 def glints(cr, facts: dict, time: str, t: float, seed: int):
     """Sun or moon catching the ripples, each glint winking on and off the
     way light on moving water does. They are LIGHT, so a scene draws them
@@ -943,6 +995,24 @@ def glints(cr, facts: dict, time: str, t: float, seed: int):
             a = min(1.0, (v - 0.1) * 1.6)
             ink.fill_stroke(cr, ink.ellipse_pts(gx, gy, w_, w_ * 0.24, 10), (gl[0], gl[1], gl[2], a),
                             lw=0, amp=0)
+    sky = facts.get("sky_light")
+    if sky and kind != "spring":
+        # the sun's or the moon's path: a column of broader glints under it,
+        # each winking at its own rate — the one thing on open water that
+        # really moves at a glance. Measured with the cadence probe on a
+        # close shot of the shore at dawn with no fire in it: the ripple
+        # dashes alone left 96% of frames reading as held at any speed, the
+        # scattered glints are too small to count, and the path carries it
+        rp = random.Random(seed + 29)
+        sx = sky[0]
+        for k in range(PATH_GLINTS):
+            gx = sx + rp.gauss(0, PATH_HALF_WIDTH / 2)
+            gy = rp.uniform(top + 8, bot - 8)
+            w_ = rp.uniform(34, 70)
+            v = ink.vnoise(t, 6.0 + (k % 4), seed * 37 + k)
+            if v > 0.0:
+                ink.fill_stroke(cr, ink.ellipse_pts(gx, gy, w_, w_ * 0.26, 10), (gl[0], gl[1], gl[2], min(0.9, v * 1.4)),
+                                lw=0, amp=0)
 
 
 def _rain(cr, t, seed):

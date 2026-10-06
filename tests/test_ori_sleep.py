@@ -1583,9 +1583,16 @@ class ThePictureIsReadable(unittest.TestCase):
         self.assertTrue(facts["town"]["windows"] and facts["town"]["roofs"])
 
         def windows_lit(time, t):
-            sc = S.Scene(dict(spec, time=time, cast=[spec["cast"][0]]), "ancient", 5)
-            a = np.frombuffer(sc.frame(t).get_data(), np.uint8).reshape(S.H, S.W, 4)
-            return sum(1 for (wx, wy) in sc.facts["town"]["windows"]
+            # the still and the evening pass, wide: close in, the stoa's back
+            # wall stands between the camera and the town (run 97), and a
+            # lamp lit behind a wall stays dark on it
+            sf = cairo.ImageSurface(cairo.FORMAT_RGB24, S.W, S.H)
+            cr = cairo.Context(sf)
+            fx = ST.draw_still(cr, "forum", time, "clear", 5, "wide", era="ancient")
+            ST.ambient(cr, "forum", time, "clear", fx, t, 5)
+            sf.flush()
+            a = np.frombuffer(sf.get_data(), np.uint8).reshape(S.H, S.W, 4)
+            return sum(1 for (wx, wy) in fx["town"]["windows"]
                        if a[int(wy), int(wx), 2] > 200 and a[int(wy), int(wx), 0] < 150)
         self.assertLess(windows_lit("dusk", 0.5), windows_lit("dusk", 12.0), "no lamp was lit at dusk")
         self.assertGreater(windows_lit("night", 0.5), 0, "a town at night with every window dark")

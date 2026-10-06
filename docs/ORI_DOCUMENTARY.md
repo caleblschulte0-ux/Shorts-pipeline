@@ -1105,6 +1105,21 @@ only as a hand edit is not a rule. So:
   pace, payoff and temporal craft still 2 each. The contradiction notes
   have stopped; what is left is the film being merely right. The parts
   were sent to the operator.
+  **The cadence, measured.** Temporal craft is graded in code from the
+  probe (effective unique-frame rate at 24 fps; 3 of 3 needs 24.0). The
+  film measured 21.8: 85% of the held frames were night rooms (19 fps),
+  where the only life was the lamp's flicker, and value noise at 8 Hz sat
+  on one level a frame in ten and moved one level in two more; the rest
+  was the shore at dawn and dusk (1 to 2 fps on a close shot), where the
+  sun's path on the water — the one thing on open water the probe can see
+  — was clipped away behind the fisherman's rod and the rock. Rules now
+  (`TheEightySeven`): firelight is a bounded random walk, two or three
+  levels every frame (never still, and calmer at the top than the noise,
+  whose per-frame swing peaked at 13 of 255 against 6 now); the water
+  carries the sun's or the moon's path, the sun stands where the water is
+  in view of the camera (`_open_column`, `Scene._cover_spans`), and a
+  figure's glint hole is its body, not the reach of its rod. A lamplit
+  room probes at 24.0 now and the close shore at 23 to 24.
 
 ## Any topic: the era is found or the refusal is honest
 

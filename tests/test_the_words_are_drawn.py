@@ -1046,3 +1046,59 @@ class TheEightyThreeShip(unittest.TestCase):
             ahead = d * (lamp["x"] - her["x"])
             if ahead > 0:
                 self.assertGreater(ahead, 2.3 * R, (seed, "the lamp stands in front of the spindle"))
+
+
+@unittest.skipUnless(HAVE, "the doodle kit needs cairo and numpy")
+class TheEightySeven(unittest.TestCase):
+    """Run 98: 87, SHIP, not a note left — and temporal craft still 2 of 3,
+    which is graded in code from the cadence probe: effective 21.8 fps over
+    the film, 19 in every lamplit room (the firelight noise sat still one
+    frame in ten), 1.0 on a close shot of the shore at dawn (the sun's path,
+    the one thing that moves on open water, was clipped away behind the
+    fisherman's rod and the rock)."""
+
+    def test_the_firelight_is_never_still_and_never_jumps(self):
+        sp = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "man", "pose": "sit", "action": "talk"}], "props": ["oil_lamp"]}
+        for seed in range(4):
+            sc = S.Scene(sp, "ancient", seed)
+            levels = [sc._flicker_level(i / S.Scene.FLICKER_FPS) for i in range(400)]
+            for a, b in zip(levels, levels[1:]):
+                self.assertIn(abs(a - b), S.Scene.FLICKER_STEPS, (seed, a, b))
+            self.assertTrue(all(0 <= v < S.Scene.LIGHT_LEVELS for v in levels))
+            self.assertGreater(len(set(levels)), 12, "the walk covers the range")
+
+    def test_a_lamplit_room_reads_alive_on_every_frame(self):
+        sp = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+              "cast": [{"who": "man", "pose": "recline", "action": "drink", "item": "cup"},
+                       {"who": "man", "pose": "sit", "action": "drink"}],
+              "props": ["oil_lamp", "couch", "amphora", "krater"]}
+        ev = _probe(sp, "ancient", seconds=3.0, seed=7)
+        self.assertEqual(ev["duplicate_ratio"], 0.0, ev)
+
+    def test_the_sun_stands_where_the_water_is_in_view(self):
+        sp = {"setting": "seashore", "time": "dawn", "weather": "clear", "shot": "close",
+              "cast": [{"who": "man", "pose": "stand", "action": "fish", "item": "rod"},
+                       {"who": "woman", "pose": "crouch", "action": "gather", "item": "basket"}],
+              "props": ["reeds", "rock", "basket"]}
+        for seed in (3, 5, 9):
+            sc = S.Scene(sp, "ancient", seed)
+            sx = sc.facts["sky_light"][0]
+            for lo, hi in sc._cover_spans():
+                self.assertFalse(lo <= sx <= hi, (seed, "the sun's path is behind somebody"))
+        ev = _probe(sp, "ancient", seconds=3.0, seed=3)
+        self.assertLess(ev["duplicate_ratio"], 0.1, ev)
+
+    def test_the_glint_hole_is_the_body_not_the_rod(self):
+        sp = {"setting": "seashore", "time": "dawn", "weather": "clear", "shot": "close",
+              "cast": [{"who": "man", "pose": "stand", "action": "fish", "item": "rod"}], "props": []}
+        sc = S.Scene(sp, "ancient", 3)
+        f = sc.lay["people"][0]
+        R = P.R0 * f["s"] * P.WHO["man"]["size"]
+        lo, hi, _t, _b = sc._figure_holes()[0]
+        self.assertLess(hi - lo, 3.0 * R, "the hole took the rod's reach with it")
+        self.assertGreater(hi - lo, 1.6 * R)
+
+    def test_the_water_s_speed_is_data(self):
+        self.assertIn("sea", ST.WATER_SPEED)
+        self.assertIn("river", ST.WATER_SPEED)
