@@ -6,11 +6,11 @@
     "publish_at": "2026-10-06T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A clean, steadily moving line race with a clear crossover, but the payoff banner is clipped off both edges of the frame.",
-    "elapsed_seconds": 68.6,
+    "error": "showrunner_block: showrunner BLOCK: A clean graph race with a clear crossover, but the closing '#1 Streaming (SVOD) households' banner is cut off at both edges on the last frame, so the payoff is unreadable.",
+    "elapsed_seconds": 74.7,
     "package_path": "state/trending_packages/20261006/03_streaming-passed-cable-tv.json",
     "source": "brain",
-    "video_path": "output/daily_20261006-115816_streaming_just_buried_cable_tv.mp4",
+    "video_path": "output/daily_20261006-121039_streaming_just_buried_cable_tv.mp4",
     "technical_qa": {
       "analyzable": true,
       "duration": 8.375,
@@ -28,68 +28,25 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A clean, steadily moving line race with a clear crossover, but the payoff banner is clipped off both edges of the frame.",
-      "score": 74
+      "reason": "showrunner BLOCK: A clean graph race with a clear crossover, but the closing '#1 Streaming (SVOD) households' banner is cut off at both edges on the last frame, so the payoff is unreadable.",
+      "score": 79
     },
     "blocked": true
   },
   {
-    "topic": "She Kept Taking My Lunch. I Relabeled It.",
-    "title": "She Kept Taking My Lunch. I Relabeled It.",
-    "format": "reddit",
-    "publish_at": "2026-10-06T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/o1ZOiD46y2U",
-    "error": null,
-    "elapsed_seconds": 211.2,
-    "package_path": "state/trending_packages/20261006/06_she-kept-taking-my-labeled-lunch.json",
-    "source": "brain",
-    "video_path": "output/daily_20261006-115925_she_kept_taking_my_lunch__i_relabeled_it.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 47.533,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.5
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "skip",
-      "reason": "gemini unavailable"
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 70
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261006-she-kept-taking-my-lunch-i-relabeled-it-8ba805b7"
-    }
-  },
-  {
     "topic": "Coyote brawl caught on camera - KTLA",
-    "angle": "A midnight showdown erupts as two wild coyotes tumble and fight on a suburban street, captured in shocking video that shows nature\u2019s raw drama right outside our doors.",
-    "publish_at": "2026-10-06T14:30:00Z",
+    "angle": "A surprise showdown between two coyotes was captured on video, highlighting how urban wildlife conflicts are on the rise.",
+    "publish_at": "2026-10-06T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: A Reddit story told almost entirely over Minecraft parkour: only 2 of 7 beats get a picture, so the tip-jar revenge is told, never shown, and the ending fizzles on gameplay.",
-    "elapsed_seconds": 287.6,
-    "title": "I let a demanding customer steal my tip jar and she paid me back double",
-    "package_path": "state/trending_packages/20261006-120318_auto_coyote_brawl_caught_on_camera___ktla.json",
-    "video_path": "output/daily_20261006-120318_coyote_brawl_caught_on_camera___ktla.mp4",
+    "error": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request",
+    "elapsed_seconds": 226.0,
+    "title": "I Faked a Quality Inspector to Keep My Tips",
+    "package_path": "state/trending_packages/20261006-121216_auto_coyote_brawl_caught_on_camera___ktla.json",
+    "video_path": "output/daily_20261006-121216_coyote_brawl_caught_on_camera___ktla.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 44.067,
+      "duration": 34.6,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -100,7 +57,7 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -26.1
+      "loudness_lufs": -22.1
     },
     "qa": {
       "ok": true,
@@ -109,8 +66,8 @@
     },
     "showrunner": {
       "blocked": true,
-      "reason": "showrunner BLOCK: A Reddit story told almost entirely over Minecraft parkour: only 2 of 7 beats get a picture, so the tip-jar revenge is told, never shown, and the ending fizzles on gameplay.",
-      "score": 61
+      "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request",
+      "score": null
     },
     "blocked": true,
     "backfill": true

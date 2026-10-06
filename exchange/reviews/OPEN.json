@@ -1,7 +1,17 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-10-06T11:47:46Z",
+ "updated": "2026-10-06T12:15:48Z",
  "open": [
+  {
+   "id": "coyote_brawl_caught_on_camera___ktla__9b5692a0fc",
+   "channel": "trending",
+   "slug": "coyote_brawl_caught_on_camera___ktla",
+   "title": "I Faked a Quality Inspector to Keep My Tips",
+   "filed": "2026-10-06T12:15:48Z",
+   "request": "exchange/reviews/20261006/coyote_brawl_caught_on_camera___ktla__9b5692a0fc.request.json",
+   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/coyote_brawl_caught_on_camera___ktla__9b5692a0fc/sheet.jpg",
+   "answer_path": "exchange/reviews/20261006/coyote_brawl_caught_on_camera___ktla__9b5692a0fc.verdict.json"
+  },
   {
    "id": "self-checkout-cashier-jobs__e946cf1b1c",
    "channel": "explainer",

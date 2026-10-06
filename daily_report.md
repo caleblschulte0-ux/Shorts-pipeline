@@ -2,21 +2,14 @@
 
 > **1 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-- queued: **3**
-- succeeded: **1**
+- queued: **2**
+- succeeded: **0**
 - quarantined (off-topic imagery): **0**
 - failed: **2**
 
-## Posted
-- **She Kept Taking My Lunch. I Relabeled It.**
-  - topic: She Kept Taking My Lunch. I Relabeled It.
-  - publishes: `2026-10-06T13:00:00Z`
-  - https://youtube.com/shorts/o1ZOiD46y2U
-  - took: 211.2s
-
 ## Failed
 - **Streaming Just Buried Cable TV**
-  - error: `showrunner_block: showrunner BLOCK: A clean, steadily moving line race with a clear crossover, but the payoff banner is clipped off both edges of the frame.`
+  - error: `showrunner_block: showrunner BLOCK: A clean graph race with a clear crossover, but the closing '#1 Streaming (SVOD) households' banner is cut off at both edges on the last frame, so the payoff is unreadable.`
 - **Coyote brawl caught on camera - KTLA**
-  - error: `showrunner_block: showrunner BLOCK: A Reddit story told almost entirely over Minecraft parkour: only 2 of 7 beats get a picture, so the tip-jar revenge is told, never shown, and the ending fizzles on gameplay.`
+  - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: claude CLI rc=1: You've hit your weekly limit · resets 12am (UTC)\n", 'gemini: HTTP Error 429: Too Many Request`
 
