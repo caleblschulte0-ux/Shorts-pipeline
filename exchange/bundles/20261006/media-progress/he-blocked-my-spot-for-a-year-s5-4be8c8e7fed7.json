@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261006",
+  "bundle": {
+    "identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093",
+    "path": "exchange/bundles/20261006/bundle.json"
+  },
+  "request_id": "he-blocked-my-spot-for-a-year-s5-4be8c8e7fed7",
+  "safe_request_id": "he-blocked-my-spot-for-a-year-s5-4be8c8e7fed7",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "6485d9c2d1277af23bc413f110858fa6f06d706aa15c3f54f863e1f496f8a502",
+  "prompt_used": "An editorial illustration for a short-form video: car parked on street curb. It accompanies the narration: \"he parks on the street now\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1NGjO9istSOyGU3HPXeK3pGHYDczeARM6",
+    "filename": "20261006__he-blocked-my-spot-for-a-year-s5-4be8c8e7fed7.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1NGjO9istSOyGU3HPXeK3pGHYDczeARM6",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "49f57d93131583883eeb51c7a6f38294a26b2555b31b8b1a120b91a5903b7fe0",
+    "bytes": 2437655,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-06T11:24:20.403Z"
+}
