@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261006",
+  "bundle": {
+    "identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093",
+    "path": "exchange/bundles/20261006/bundle.json"
+  },
+  "request_id": "he-blocked-my-spot-for-a-year-s3-c1c80df9e269",
+  "safe_request_id": "he-blocked-my-spot-for-a-year-s3-c1c80df9e269",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "09a884d1cd5226e19cf51c21db6b709bbbf3d6611ad7d7b44abb88d25a5f02e4",
+  "prompt_used": "An editorial illustration for a short-form video: empty parking space. It accompanies the narration: \"his own spot, two rows over, had sat empty\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1jmQLXz67jopJA9qKtt3kT47oLZqxe4d2",
+    "filename": "20261006__he-blocked-my-spot-for-a-year-s3-c1c80df9e269.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1jmQLXz67jopJA9qKtt3kT47oLZqxe4d2",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "f66b74b1fb0985b1ae10f325202ead1d87573e2e3e61a77be32e3655261b04f0",
+    "bytes": 2591949,
+    "format": "png",
+    "width": 1374,
+    "height": 1145
+  },
+  "verified_at": "2026-10-06T11:24:17.460Z"
+}
