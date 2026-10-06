@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261006",
+  "bundle": {
+    "identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093",
+    "path": "exchange/bundles/20261006/bundle.json"
+  },
+  "request_id": "she-kept-taking-my-labeled-lunch-s0-cd0aa9d947e8",
+  "safe_request_id": "she-kept-taking-my-labeled-lunch-s0-cd0aa9d947e8",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "6f4247054403469cf928a43ba1f3ee233c8f7ee1a96311f92f4da98bed0667e3",
+  "prompt_used": "An editorial illustration for a short-form video: half eaten food container. It accompanies the narration: \"someone started eating half of it every single day\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "15DX6SwO3XF26M960OeuixWoIRwCp6KvY",
+    "filename": "20261006__she-kept-taking-my-labeled-lunch-s0-cd0aa9d947e8.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=15DX6SwO3XF26M960OeuixWoIRwCp6KvY",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "d8cfb04eccc21eb972ad24de28e626d3900af62cbd871c19529d247661a60552",
+    "bytes": 2268114,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-06T11:24:24.485Z"
+}
