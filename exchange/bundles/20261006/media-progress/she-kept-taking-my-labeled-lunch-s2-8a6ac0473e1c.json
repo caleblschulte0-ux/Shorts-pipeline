@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261006",
+  "bundle": {
+    "identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093",
+    "path": "exchange/bundles/20261006/bundle.json"
+  },
+  "request_id": "she-kept-taking-my-labeled-lunch-s2-8a6ac0473e1c",
+  "safe_request_id": "she-kept-taking-my-labeled-lunch-s2-8a6ac0473e1c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "09127de37878617c5ab05dd64b3d06960765ec6f12a4b4df1b5c888e9cf38afd",
+  "prompt_used": "An editorial illustration for a short-form video: hot sauce bottle kitchen. It accompanies the narration: \"added two tablespoons of hot sauce\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1n0CSm20TKXS6i_ZyOSpKpWiTrKhmTKUM",
+    "filename": "20261006__she-kept-taking-my-labeled-lunch-s2-8a6ac0473e1c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1n0CSm20TKXS6i_ZyOSpKpWiTrKhmTKUM",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "94a04d374466bc7db81a447262995150e9efabd3ecd15086dbb37b02ea8f67a0",
+    "bytes": 1782953,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-06T11:24:26.976Z"
+}
