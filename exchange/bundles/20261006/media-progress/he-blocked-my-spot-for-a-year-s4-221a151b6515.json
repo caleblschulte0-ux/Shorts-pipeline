@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261006",
+  "bundle": {
+    "identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093",
+    "path": "exchange/bundles/20261006/bundle.json"
+  },
+  "request_id": "he-blocked-my-spot-for-a-year-s4-221a151b6515",
+  "safe_request_id": "he-blocked-my-spot-for-a-year-s4-221a151b6515",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "9f41634483a2130bc8c28a674316135377e049c5cfca42ed98a9b7b3eada1c84",
+  "prompt_used": "An editorial illustration for a short-form video: tow truck hooking car. It accompanies the narration: \"His truck got towed from both spaces\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1GKwDI9tJqLYc-laK49bQwbwxlI8Gj0XU",
+    "filename": "20261006__he-blocked-my-spot-for-a-year-s4-221a151b6515.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1GKwDI9tJqLYc-laK49bQwbwxlI8Gj0XU",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "560f94f29c37f306d657e5c22d12d95a1350994602a81717ea2f6ddb8a9f900b",
+    "bytes": 2671668,
+    "format": "png",
+    "width": 1536,
+    "height": 1024
+  },
+  "verified_at": "2026-10-06T11:24:18.690Z"
+}
