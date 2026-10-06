@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261006",
+  "bundle": {
+    "identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093",
+    "path": "exchange/bundles/20261006/bundle.json"
+  },
+  "request_id": "she-kept-taking-my-labeled-lunch-s6-1f643e446ed1",
+  "safe_request_id": "she-kept-taking-my-labeled-lunch-s6-1f643e446ed1",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "45d5bd0403b07880905d68e61df278ab49fc2c851fda5c16f72a84c4cd499456",
+  "prompt_used": "An editorial illustration for a short-form video: office fridge sign up sheet. It accompanies the narration: \"a sign-out sheet appeared on the fridge door\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1NZAwDW3M9-cDjlXD6Hpa5rtorZwEvYDS",
+    "filename": "20261006__she-kept-taking-my-labeled-lunch-s6-1f643e446ed1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1NZAwDW3M9-cDjlXD6Hpa5rtorZwEvYDS",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "3cbd5d92ef4157050888381a77d222858e0850328bf9a3977b858a13e0613a36",
+    "bytes": 2116069,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-06T11:24:31.753Z"
+}
