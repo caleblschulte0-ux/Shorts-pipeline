@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261006",
+  "bundle": {
+    "identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093",
+    "path": "exchange/bundles/20261006/bundle.json"
+  },
+  "request_id": "she-kept-taking-my-labeled-lunch-s5-2de3aeac0942",
+  "safe_request_id": "she-kept-taking-my-labeled-lunch-s5-2de3aeac0942",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "5308b41689a169a7b91876a5207a9638d0f4650af49ab1aca3bb1b852c95b455",
+  "prompt_used": "An editorial illustration for a short-form video: nervous office confession. It accompanies the narration: \"She confessed first, mid-sentence\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1qe-E7V_4aktNlJrfkRBYyJZlZEVYN1Em",
+    "filename": "20261006__she-kept-taking-my-labeled-lunch-s5-2de3aeac0942.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1qe-E7V_4aktNlJrfkRBYyJZlZEVYN1Em",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "3473df9481c90f5bd75d1180c620e57be573b835a9f35717c0ebd8a6d1742f91",
+    "bytes": 1887417,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-06T11:24:30.451Z"
+}
