@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261006",
+  "bundle": {
+    "identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093",
+    "path": "exchange/bundles/20261006/bundle.json"
+  },
+  "request_id": "she-kept-taking-my-labeled-lunch-s3-1c4334512060",
+  "safe_request_id": "she-kept-taking-my-labeled-lunch-s3-1c4334512060",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "f07f9b0fd24cd961a5932e410074dc15fbd8e5e46ac8e3730e83b173dc33bf11",
+  "prompt_used": "An editorial illustration for a short-form video: handwritten warning label. It accompanies the narration: \"labeled it in huge letters\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1-AkrD_4rGDj5C_2FAg8CnjU7YQWaTZn5",
+    "filename": "20261006__she-kept-taking-my-labeled-lunch-s3-1c4334512060.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1-AkrD_4rGDj5C_2FAg8CnjU7YQWaTZn5",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "9546a1eb2b391a56322cb5d43a758ed367a88426f5c802b171dd7916067ae94c",
+    "bytes": 2293741,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-06T11:24:28.158Z"
+}
