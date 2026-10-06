@@ -420,8 +420,7 @@
       "props": [
        "hearth",
        "bed",
-       "candle",
-       "basket"
+       "candle"
       ]
      }
     }
@@ -1623,7 +1622,7 @@
       ],
       "props": [
        "hearth",
-       "bed"
+       "woodpile"
       ],
       "variant": 1
      }
@@ -1671,7 +1670,8 @@
       "props": [
        "hearth",
        "barrel",
-       "basket"
+       "basket",
+       "bed"
       ],
       "variant": 2
      }
@@ -1704,10 +1704,9 @@
        }
       ],
       "props": [
-       "bed",
        "hearth",
        "candle",
-       "basket"
+       "table"
       ]
      }
     },
@@ -1866,8 +1865,8 @@
       ],
       "props": [
        "hearth",
-       "mat",
-       "basket"
+       "basket",
+       "woodpile"
       ]
      }
     },
@@ -2000,9 +1999,8 @@
       ],
       "props": [
        "hearth",
-       "bed",
        "candle",
-       "basket"
+       "table"
       ],
       "fire": "low"
      }

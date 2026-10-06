@@ -82,6 +82,7 @@ def _pname(p):
 BANKABLE = ("hearth", "campfire", "brazier")   # drawn as banked embers when the scene says "fire": "low"
 FIRES = (None, "low")
 FIRE_ACTIONS = ("feed_fire", "warm_hands", "stir")     # done AT the fire, so drawn beside it
+POOL_ACTIONS = ("fill", "gather", "drink")             # done AT the spring's pool, so placed beside it
 
 
 LAMP_ROOMS = ("cottage_inside", "villa_inside", "house_inside", "mudbrick_inside")
@@ -333,7 +334,7 @@ _EXTENT = {
 # outstretched arm crosses the seated elder's head".
 ACTION_REACH = {"point": 1.9, "carry": 1.8, "wave": 1.2, "play": 1.8, "feed_fire": 2.2, "stir": 1.9,
                 "fish": 3.9, "hoe": 2.4, "chop": 1.8, "gather": 1.7, "talk": 1.3, "warm_hands": 1.6,
-                "knap": 1.4, "sew": 1.6, "eat": 1.3, "drink": 1.3,
+                "knap": 1.4, "sew": 1.6, "eat": 1.3, "drink": 1.3, "fill": 1.7,
                 "spin": 2.4}     # the spindle hangs out in front and its whorl is half a head wide (run 97: the lamp stood in her hands)
 ITEM_REACH = {"spear": 2.1, "torch": 1.3, "stick": 1.2, "branch": 1.3, "axe": 1.4, "hoe": 2.4, "rod": 3.9,
               "bundle": 1.8, "basket": 1.2, "lantern": 1.0}
@@ -707,6 +708,11 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     # the fire now ranges over the middle half of the frame
     focal_x = W * SLOTS[focal["at"]] if focal and focal.get("at") else W * (0.25 + 0.5 * r.random() + focal_shift)
     focal_x = min(max(focal_x, W * 0.12), W * 0.88)
+    if spec.get("setting") == "spring" and focal is not None and PROPS[focal["name"]].light:
+        # the torch stands by the wall, left of the pool: the pool's edge is
+        # where whoever fills a jar kneels (run 100: the torch stood between
+        # her and the water)
+        focal_x = min(focal_x, W * 0.34)
     if focal is not None:
         # never on a trunk: the 78 film's judge, "the fire burns into the
         # tree's trunk" in the olive grove
@@ -912,7 +918,8 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             # at a table you sit ON something: on the floor the diners'
             # heads came below the table top
             pose = c["pose"] = "sit_on"
-        if c.get("at") and not (at_fire and c.get("action") in anchor_actions):
+        at_pool = spec.get("setting") == "spring" and c.get("action") in POOL_ACTIONS
+        if c.get("at") and not (at_fire and c.get("action") in anchor_actions) and not at_pool:
             x = W * SLOTS[c["at"]]
             facing = c.get("facing") or ("right" if x < focal_x else "left")
         else:
@@ -920,7 +927,18 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             # jumping to the far slot instead put a cook at the frame edge
             # with her pot outside it
             x = None
-            if at_fire and c.get("action") in anchor_actions:
+            if spec.get("setting") == "spring" and c.get("action") in POOL_ACTIONS:
+                # at the pool's edge, facing the water, the jar under the spout
+                facing = "right"
+                lo0, hi0 = fig_span(c, 0.0, facing, R)
+                cand = W * settings.SPRING_X[0] - hi0 - 0.2 * R
+                got = settle(cand, lambda xx: fig_span(c, xx, facing, R), EDGE, W - EDGE,
+                             head_of=lambda xx: keep_span(c, xx, facing, R))
+                lo, hi = fig_span(c, got, facing, R)
+                if lo >= EDGE and hi <= W - EDGE and free(lo, hi, keep_span(c, got, facing, R)) \
+                        and got < W * settings.SPRING_X[0]:
+                    x = got
+            if x is None and at_fire and c.get("action") in anchor_actions:
                 # right beside the fire, on whichever side has room: the
                 # fire's own half-width plus this figure's, and a hand's gap
                 fp = placed[0]
@@ -928,6 +946,11 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
                 sides = (1, -1) if (seed + i) % 2 else (-1, 1)
                 if fp["name"] == "oil_lamp":
                     sides = (1, -1)      # the flame is on the spout, to the right: sit there, hands at it (run 97)
+                sleeper_x = next((f["x"] for f in figs if f is not None and f["pose"] == "lie"), None)
+                if sleeper_x is not None:
+                    # on the sleeper's side of the fire: "her own child is
+                    # already half asleep beside her" (run 100)
+                    sides = (1, -1) if sleeper_x > focal_x else (-1, 1)
                 for side in sides:
                     facing = "right" if side < 0 else "left"
                     lo0, hi0 = fig_span(c, 0.0, facing, R)
@@ -943,11 +966,24 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
                     if lo >= EDGE and hi <= W - EDGE and free(lo, hi, keep_span(c, got, facing, R)):
                         x = got
                         break
-            for k in range(len(slots_auto)):
+            # where this figure would rather be: a sleeper by the fire (then
+            # whoever sits at the fire is beside them — "her own child is
+            # already half asleep beside her" was a bed across the room, run
+            # 100), somebody filling a jar at the spring's pool
+            prefer, face_to = None, focal_x
+            if pose == "lie" and focal is not None:
+                prefer = focal_x
+            elif spec.get("setting") == "spring" and c.get("action") in POOL_ACTIONS:
+                prefer = W * settings.SPRING_X[0] - 1.4 * R
+                face_to = W * (settings.SPRING_X[0] + settings.SPRING_X[1]) / 2
+            n_slots = len(slots_auto)
+            slot_order = sorted(range(n_slots), key=lambda kk: abs(W * slots_auto[kk] - prefer)) \
+                if prefer is not None else [(i + kk) % n_slots for kk in range(n_slots)]
+            for k in slot_order:
                 if x is not None:
                     break
-                cand = W * slots_auto[(i + k) % len(slots_auto)]
-                facing = c.get("facing") or ("right" if cand < focal_x else "left")
+                cand = W * slots_auto[k]
+                facing = c.get("facing") or ("right" if cand < face_to else "left")
                 got = settle(cand, lambda xx: fig_span(c, xx, facing, R), EDGE, W - EDGE,
                              head_of=lambda xx: keep_span(c, xx, facing, R))
                 lo, hi = fig_span(c, got, facing, R)

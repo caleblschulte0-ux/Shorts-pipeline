@@ -70,7 +70,7 @@ OUTFIT = {
 POSES = ("stand", "sit", "sit_on", "crouch", "lie", "walk", "recline")   # recline: propped on one elbow along a couch
 MOODS = ("calm", "happy", "sleepy", "worried", "surprised", "content", "focused")
 ITEMS = ("none", "spear", "stick", "branch", "torch", "bowl", "fish", "stone", "axe",
-         "bundle", "basket", "rod", "bread", "cup", "hoe", "lantern", "needle", "spindle")
+         "bundle", "basket", "rod", "bread", "cup", "hoe", "lantern", "needle", "spindle", "jar")
 
 # action -> poses it can be done in (validation), and the item it implies
 ACTIONS = {
@@ -97,6 +97,7 @@ ACTIONS = {
     "look_up": dict(poses=("stand", "sit", "sit_on", "lie", "recline"), item=None),
     "play": dict(poses=("stand", "crouch"), item="stick"),
     "feed_fire": dict(poses=("sit", "sit_on", "crouch"), item="branch"),
+    "fill": dict(poses=("crouch", "stand"), item="jar"),     # a jar held low under the spout (run 100: "she fills it slowly")
 }
 
 
@@ -230,6 +231,10 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
     c = 2 * math.pi * t
     if action in ("idle", "hold"):
         return rest_f, rest_b
+    if action == "fill":
+        # both hands on the jar, held out low in front at the water
+        k = math.sin(c / 2.6 + ph) * 0.06 * R
+        return ((nx + 1.35 * R, ny + 1.55 * R + k), (nx + 1.05 * R, ny + 1.6 * R + k))
     if action == "warm_hands":
         k = math.sin(c / 1.3 + ph) * 0.18 * R
         if sk.get("pose") in ("sit", "sit_on", "crouch"):
@@ -416,6 +421,23 @@ def _face(cr, cx, cy, R, mood, t, seed, looking_up=False):
         ink.line(cr, [(mx - 0.11 * R, my), (mx + 0.11 * R, my + 0.01 * R)], lw=lw * 0.75, amp=0)
 
 
+DISTAFF_RISE = 2.1           # how far the distaff stands above the hand, in head radii
+
+
+def _distaff(cr, hx, hy, sx, sy, R, lw):
+    """The distaff in the upper hand: a stick standing well above the
+    shoulder with a mass of wool on it, and the thread drawn from the wool
+    down to the spinning hand. Spinning read as "small objects" and "the
+    women sit idle" twice (runs 99 and 100); a distaff with wool is what
+    says spinning across a room."""
+    top = (hx + 0.1 * R, hy - DISTAFF_RISE * R)
+    ink.line(cr, [(hx, hy + 0.1 * R), top], lw=lw * 0.9, ink=rgb("#6b4a2e"), amp=0)
+    wool = rgb("#f1ead8")
+    ink.fill_stroke(cr, ink.blob_pts(top[0], top[1] + 0.1 * R, 0.42 * R, 0.5 * R, 5, 0.18, 12), wool,
+                    lw=lw * 0.7, amp=1.2, seed=5, shadow=rgb("#d8cfbb"), shadow_dir=(1, 0.3))
+    ink.line(cr, [(top[0] + 0.1 * R, top[1] + 0.4 * R), (sx, sy)], lw=3.0, ink=wool, amp=0)
+
+
 def _age_lines(cr, cx, cy, R, lw, up: bool = False):
     """What makes a grey head read as OLD at a glance: a short line under
     each eye and one at the corner of the mouth (run 97's judge: "the old
@@ -577,6 +599,16 @@ def _item(cr, name, hx, hy, R, t, lw, facing_up=False):
                         rgb("#b88a4d"), lw=lw * 0.7, amp=0, texture="hatch", tex_alpha=0.25)
     elif name == "needle":
         ink.line(cr, [(hx, hy), (hx + 0.2 * R, hy - 0.25 * R)], lw=1.6, amp=0)
+    elif name == "jar":
+        # a small two-handled jar, tipped toward the water, held in both hands
+        c = rgb("#b5643a")
+        pts = [(hx - 0.22 * R, hy - 0.05 * R), (hx - 0.3 * R, hy + 0.3 * R), (hx - 0.18 * R, hy + 0.62 * R),
+               (hx + 0.18 * R, hy + 0.62 * R), (hx + 0.3 * R, hy + 0.3 * R), (hx + 0.22 * R, hy - 0.05 * R),
+               (hx + 0.26 * R, hy - 0.18 * R), (hx - 0.26 * R, hy - 0.18 * R)]
+        ink.fill_stroke(cr, pts, c, lw=lw * 0.7, amp=0.5, seed=3, shadow=rgb("#8d4a2a"), shadow_dir=(1, 0))
+        for d in (-1, 1):
+            ink.line(cr, [(hx + d * 0.24 * R, hy - 0.08 * R), (hx + d * 0.4 * R, hy + 0.12 * R),
+                          (hx + d * 0.28 * R, hy + 0.34 * R)], lw=lw * 0.6, ink=c, amp=0)
     elif name == "spindle":
         # a drop spindle: the thread from the hand down to a stick with a
         # whorl, the whorl turning (its ellipse breathing with the spin)
@@ -752,7 +784,9 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
     ink.fill_stroke(cr, ink.ellipse_pts(hcx, hcy, R, 1.03 * R, 30), HEAD, lw=lw * 0.95, amp=1.1,
                     seed=seed + 2, shadow=rgb("#e9e2d4"), shadow_dir=(-1, 0.4))
     if not (lk["hood"] or lk["scarf"]):
-        fh = _hair_pts(hcx, hcy, R, lk, back=False)
+        # looking up, the fringe falls back off the face (run 100: "the old
+        # woman's hair covers half her face" — her eyes rose into it)
+        fh = _hair_pts(hcx, hcy - (0.32 * R if action == "look_up" else 0.0), R, lk, back=False)
         ink.fill_stroke(cr, fh, lk["hair"], lw=lw * 0.8, amp=0.8, seed=seed + 3)
     if lk.get("cap"):
         capc = shade(lk["cloth"], 0.85)
@@ -838,6 +872,7 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
     if held == "spindle":
         e2, h2 = _ik(*sh_b, *back, ua, la, bend)
         _item(cr, held, h2[0], h2[1], R, t, lw)
+        _distaff(cr, h[0], h[1], h2[0], h2[1], R, lw)
     elif held != "none":
         _item(cr, held, h[0], h[1], R, t, lw)
     ink.line(cr, [sh_f, e, h], lw=lw, amp=0)

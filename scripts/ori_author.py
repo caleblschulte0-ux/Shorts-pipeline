@@ -1007,6 +1007,35 @@ def mend_settled(beat: dict, era: str) -> str | None:
     return None
 
 
+FILL_WORDS = re.compile(r"\b(fills? (?:it|the|her|his|a) |filling (?:it|the|her|his)|draws? water|drawing water)")
+WATER_PLACES = ("spring", "stream", "riverbank", "harbour", "seashore", "lakeside", "well")
+
+
+def mend_fill(beat: dict, era: str) -> str | None:
+    """"She fills it slowly" at the spring: whoever gathers or stands by
+    the water fills a JAR, crouched at the pool with it held under the
+    spout (run 100: "the woman holds a basket while the water spout sits
+    by the old man")."""
+    sc = beat.get("scene") if isinstance(beat, dict) else None
+    say = (beat.get("say") or "").lower() if isinstance(beat, dict) else ""
+    if not isinstance(sc, dict) or sc.get("setting") not in WATER_PLACES or not FILL_WORDS.search(say):
+        return None
+    from data_learning.doodle import people as P
+    if "fill" not in P.ACTIONS:
+        return None
+    cast = [c for c in sc.get("cast") or [] if isinstance(c, dict)]
+    if any(c.get("action") == "fill" for c in cast):
+        return None
+    nouns = re.sub(r"\b(he|him|his|she|her)\b", " ", say)
+    named = [w for w, pat in OS.WHO_WORDS.items() if re.search(pat, nouns)]
+    who_first = named[0] if len(named) == 1 else None
+    for c in sorted(cast, key=lambda c: 0 if who_first and c.get("who") == who_first else 1):
+        if c.get("pose") in ("crouch", "stand") and c.get("action", "idle") in ("gather", "idle", "hold", "carry", "talk"):
+            c["action"], c["item"], c["pose"] = "fill", "jar", "crouch"
+            return f"{c['who']} fills a jar at the water"
+    return None
+
+
 def mend_doing(beat: dict, era: str) -> str | None:
     """Whoever a sentence names does what that sentence says, when their
     pose allows it and they were only idling, holding or talking: "a man
@@ -1390,6 +1419,8 @@ def uncrowd_scene(scene: dict, era: str, seeds=(1000,)) -> str | None:
 # idle: the first action whose words appear wins; a fire in the scene and
 # nothing in the words is warm_hands; two people and nothing else is talk
 ACTION_WORDS = (
+    ("fill", ("fills it", "fills the", "fills her", "fills his", "filling the", "filling it", "draws water",
+              "drawing water", "fill the jar", "fill her jar", "fill his jar")),
     ("spin", ("spindle", "spinning", "spins", "spun", "wool", "yarn", "thread")),
     ("sew", ("sew", "mend", "stitch", "weav", "knit", "needle", "darn")),
     ("eat", ("eat", "supper", "meal", "bread", "pottage", "stew", "feast", "dine", "porridge", "bowl")),
@@ -1490,13 +1521,14 @@ def mend_beats(beats, era: str, log=print, final: bool = False, used=None) -> in
             named = add_named_props(b, era, seeds=(1000 + j,))
             recl = mend_recline(b, era)
             settled = mend_settled(b, era)
+            filled = mend_fill(b, era)
             doing = mend_doing(b, era)
             plural = mend_plural(b, era, seeds=(1000 + j,))
             fire = mend_fire(b, era)
             furnished = mend_furnish(b, era, turn=j)
             moving = mend_motion(b, era)
-            did = ", ".join(x for x in (said, when, held, placed, night, did, crowd, named, recl, settled, doing,
-                                        plural, fire, furnished, moving) if x)
+            did = ", ".join(x for x in (said, when, held, placed, night, did, crowd, named, recl, settled, filled,
+                                        doing, plural, fire, furnished, moving) if x)
             if did and json.dumps(b["scene"], sort_keys=True) == was and not said:
                 did = ""          # a prop dropped and put back: nothing changed
             if did:
@@ -2411,8 +2443,10 @@ def mend_sleepers(ep: dict) -> list[str]:
     from data_learning import ori_sleep as OS
     notes, last = [], None
     era = ep.get("era")
+    flat = -1
     for i, c in enumerate(ep.get("chapters") or []):
         for j, b in enumerate(c.get("beats") or []):
+            flat += 1
             sc = b.get("scene") if isinstance(b, dict) else None
             if not isinstance(sc, dict) or not any((f or {}).get("pose") == "lie" for f in sc.get("cast") or []):
                 continue
@@ -2432,8 +2466,26 @@ def mend_sleepers(ep: dict) -> list[str]:
                     pr = S.PROPS.get(turn)
                     if pr is None or era not in pr.eras or (pr.settings and sc.get("setting") not in pr.settings):
                         continue
-                sc["props"] = stripped + ([] if turn == "floor" else [turn])
-                if not S.validate(sc, era) and not S.layout(sc, 1000 + j)["collisions"]:
+                # ...and only where the room keeps it at the seed the render
+                # draws it with, by the same judgement repair_film uncrowds by:
+                # a bed added here and dropped there was a loop (the Greek
+                # shelf's last beat, three sleepers, run 100). Where the
+                # bedding does not fit beside the furnishings, a furnishing the
+                # words do not name gives way: what the sleeper lies on matters
+                # more than a barrel
+                said = set(OS.named_in(b.get("say") or "", stripped))
+                spare = [q for q in stripped if (q if isinstance(q, str) else (q or {}).get("name")) in FURNISHINGS
+                         and q not in said]
+                tries = [stripped] + [[q for q in stripped if q not in spare[:n]] for n in range(1, len(spare) + 1)]
+                fitted = False
+                for keep_ in tries:
+                    sc["props"] = keep_ + ([] if turn == "floor" else [turn])
+                    seeds = (OS._scene_seed(ep.get("slug", ""), flat, sc), 1000 + j)
+                    if not S.validate(sc, era) and not S.layout(sc, 1000 + j)["collisions"] \
+                            and not uncrowd_scene(json.loads(json.dumps(sc)), era, seeds=seeds):
+                        fitted = True
+                        break
+                if fitted:
                     notes.append(f"chapter {i + 1}: beat {j + 1}: the sleeper lies on "
                                  f"{'the bare floor' if turn == 'floor' else 'a ' + turn} (the last sleeper had "
                                  f"{'the floor' if have == 'floor' else 'a ' + have})")

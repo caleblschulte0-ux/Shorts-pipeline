@@ -738,6 +738,10 @@ def _groups(lines: list, start: float, end: float) -> list[tuple[float, float, s
             for k, g in enumerate(groups)]
 
 
+PLACE_WORDS = re.compile(r"\b(houses|windows|rooftops|roofs|streets|the town|the city|the square|the village|"
+                         r"the harbou?r|the hills?|the fields|the shore|doors are|the sky|the stars)\b")
+
+
 def _names_people(text: str) -> bool:
     """Whether a clause says who it is about: a person by name, a plural,
     the company, or two together."""
@@ -802,6 +806,11 @@ def _choose(opts: dict, text: str, last: str | None, first: bool, used: list, ne
             for name, (sp, _sd) in opts.items():
                 if name.startswith("single:") and ok(name) and sp["cast"][0].get("who") == who:
                     return name
+    if PLACE_WORDS.search(low) and not needs and "est" in opts:
+        # a sentence about the place itself is the wide shot of it ("behind
+        # shuttered windows a few houses are still lit" got a man at a
+        # cauldron in close-up, run 100's auto-fail)
+        return "est"
     if _re.search(LIGHT_WORDS, low) and ok("insert"):
         return "insert"
     order = ["two", "est"] + sorted(n for n in opts if n.startswith("single:")) + ["arr", "insert", "pan"]
@@ -902,6 +911,10 @@ def happenings(spec: dict, era: str, seed: int, text: str, dur: float, prev: tup
         # ...and nobody leaves a sentence that is about the company (run 97:
         # "cups are filled, and the talk begins" with one man left on the couch)
         people_fill = [k for k in people_fill if k != "leave"]
+    if re.search(KEEP_ON_WORDS, low):
+        # "the others do not stop spinning": nobody stops to look up either
+        # (run 100's auto-fail: the women "just sit on the floor")
+        people_fill = [k for k in people_fill if k != "pause"]
     if spec.get("frame"):
         people_fill = [k for k in people_fill if k != "passer"]     # no far lane in a framed close-up
         if len([c for c in spec.get("cast") or [] if isinstance(c, dict)]) == 1:

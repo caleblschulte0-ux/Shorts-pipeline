@@ -1213,3 +1213,106 @@ class TheSeventyEightAgain(unittest.TestCase):
                 diff = (np.abs(looks[a] - looks[b]).max(axis=2) > 40).mean()
                 self.assertGreater(diff, 0.02, (a, b, "two rooms that look the same"))
         self.assertEqual({ST.house_room(s) for s in range(40)}, {0, 1, 2, 3})
+
+
+@unittest.skipUnless(HAVE, "the doodle kit needs cairo and numpy")
+class TheSeventyFourBlock(unittest.TestCase):
+    """Run 100: 74, BLOCKED on junk imagery — the spinners "just sit on the
+    floor" (a `pause` happening stopped them, and the spindle was still
+    small), and "behind shuttered windows a few houses are still lit" got
+    a man at a cauldron in close-up. Plus: the child was in a bed across
+    the room from "beside her"; the old woman's fringe covered her eyes
+    looking up; the child who came to feed the brazier sat behind it with
+    the flames over him; "she fills it slowly" held a basket away from
+    the spout."""
+
+    def test_nobody_pauses_while_the_words_say_they_keep_on(self):
+        spec = {"setting": "villa_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "old_woman", "pose": "sit", "action": "spin"},
+                         {"who": "woman", "pose": "sit", "action": "spin"}],
+                "props": ["oil_lamp", "amphora", "bench"]}
+        for seed in range(8):
+            got = OS.happenings(spec, "ancient", seed, "The others do not stop spinning to listen.", 7.0)
+            self.assertNotIn("pause", got, seed)
+            self.assertNotIn("leave", got, seed)
+
+    def test_a_spinner_holds_a_distaff(self):
+        src = inspect.getsource(P.draw)
+        self.assertIn("_distaff(", src)
+        self.assertGreaterEqual(P.DISTAFF_RISE, 1.5, "the wool stands above the shoulder")
+        import cairo
+        surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, 600, 600)
+        cr = cairo.Context(surf)
+        P.draw(cr, who="woman", era="ancient", seed=3, pose="sit", action="spin", facing="right", x=250,
+               ground_y=560, scale=1.0, t=0.4)
+        buf = np.ndarray(shape=(600, 600, 4), dtype=np.uint8, buffer=surf.get_data())
+        R = P.R0 * P.WHO["woman"]["size"]
+        head_top = 560 - 4.6 * R
+        # something drawn above the head: the wool on the distaff
+        self.assertGreater(int((buf[:int(head_top - 0.2 * R), :, 3] > 0).sum()), 300, "nothing stands above the head")
+
+    def test_a_sentence_about_the_place_is_the_wide_shot(self):
+        spec = {"setting": "forum", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "elder", "pose": "sit", "action": "warm_hands"},
+                         {"who": "man", "pose": "walk", "action": "carry", "item": "basket"}],
+                "props": ["cauldron", "torch", "column", "stall"]}
+        opts = OS.coverage(spec, "ancient", 9)
+        self.assertIn("est", opts)
+        self.assertEqual(OS._choose(opts, "Behind shuttered windows a few houses are still lit; most are already dark.",
+                                    "single:0", False, ["single:0"]), "est")
+        self.assertEqual(OS._choose(opts, "Doors are shut now, one by one.", "two", False, ["two"]), "est")
+        # a sentence naming a person is still of them
+        self.assertNotEqual(OS._choose(opts, "An old man warms his hands at the cauldron.", "two", False, ["two"]), "est")
+
+    def test_the_fringe_falls_back_off_a_face_turned_up(self):
+        src = inspect.getsource(P.draw)
+        self.assertIn('hcy - (0.32 * R if action == "look_up" else 0.0)', src)
+
+    def test_a_child_feeding_the_fire_sits_beside_it_not_behind(self):
+        from data_learning.doodle import happen as HP
+        spec = {"setting": "forum", "time": "dusk", "weather": "clear", "shot": "close",
+                "cast": [{"who": "woman", "pose": "stand", "action": "wave"}, {"who": "man", "pose": "stand", "action": "gather"}],
+                "props": ["stall", "brazier", "basket"]}
+        for seed in range(6):
+            lay = S.layout(spec, seed)
+            acts = [a for a in HP.plan(["feed"], spec, lay, seed, 8.0) if a["kind"] == "feed"]
+            if not acts:
+                continue
+            a = acts[0]
+            fire = next(q for q in lay["props"] if q["name"] == "brazier")
+            hw = PROPS["brazier"].width * fire["s"] / 2
+            end_x = a["keys"][-1][1]
+            self.assertGreater(abs(end_x - fire["x"]), hw, (seed, "the child ends up behind the brazier"))
+
+    def test_a_sleeper_lies_by_the_fire_and_whoever_tends_it(self):
+        spec = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "woman", "pose": "sit", "action": "feed_fire"}, {"who": "child", "pose": "lie", "action": "sleep"}],
+                "props": ["brazier", "oil_lamp", "basket", "bed", "amphora"]}
+        for seed in (3, 8, 12):
+            lay = S.layout(spec, seed)
+            self.assertEqual(lay["collisions"], [])
+            woman = next(f for f in lay["people"] if f["who"] == "woman")
+            child = next(f for f in lay["people"] if f["who"] == "child")
+            R = P.R0 * woman["s"]
+            self.assertLess(abs(woman["x"] - child["x"]), 6.5 * R, (seed, "the child is across the room"))
+
+    def test_she_fills_a_jar_at_the_pool(self):
+        beat = {"say": "She fills it slowly, listening to the water more than watching it.",
+                "scene": {"setting": "spring", "time": "night", "weather": "clear", "shot": "close",
+                          "cast": [{"who": "woman", "pose": "crouch", "action": "gather", "mood": "calm", "item": "basket", "at": "center"}],
+                          "props": ["amphora", "torch"]}}
+        self.assertTrue(A.mend_fill(beat, "ancient"))
+        c = beat["scene"]["cast"][0]
+        self.assertEqual((c["action"], c["item"]), ("fill", "jar"))
+        self.assertEqual(S.validate(beat["scene"], "ancient"), [])
+        for seed in (7, 2, 11):
+            lay = S.layout(beat["scene"], seed)
+            f = lay["people"][0]
+            R = P.R0 * f["s"] * P.WHO["woman"]["size"]
+            pool_left = S.W * ST.SPRING_X[0]
+            self.assertEqual(f["facing"], "right", (seed, "she faces away from the water"))
+            self.assertLess(f["x"], pool_left, seed)
+            self.assertLess(pool_left - f["x"], 3.5 * R, (seed, "she crouches far from the pool"))
+        self.assertIsNone(A.mend_fill(beat, "ancient"), "mended once")
+        self.assertIn("jar", P.ITEMS)
+        self.assertEqual(A.action_for_words("She fills it slowly.", beat["scene"]), "fill")

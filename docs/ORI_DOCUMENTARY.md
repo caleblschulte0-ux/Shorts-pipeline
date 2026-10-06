@@ -1143,6 +1143,27 @@ only as a hand edit is not a rule. So:
   shelf and cloak; a loom; a red dado and a niche; a hearth corner), so
   six judged moments are no longer one room.
 
+- **Run 100 (commit aed75774): 74, BLOCKED** — junk imagery, twice: the
+  spinners "just sit on the floor" (a `pause` happening had them look up
+  from their work at the judged moment, and the spindle alone was too
+  small to carry it), and "behind shuttered windows a few houses are
+  still lit" cut to a man at a cauldron in close-up. Measured, 23.87
+  effective fps (211 held pairs), the same two night-shore shots as run
+  99 — which locally probe at 24.0 with their real seeds, so the shelf
+  the CI mended differed from the one here: `mend_sleepers` added a bed
+  the uncrowder then dropped, every pass. Rules now
+  (`TheSeventyFourBlock`): nobody pauses while the words say they keep
+  on; a spinner holds a DISTAFF with wool above her shoulder and the
+  thread runs down to the spindle (`_distaff`); a sentence about the
+  place (houses, windows, streets, the town) is the wide shot of it
+  (`PLACE_WORDS`); the fringe falls back off a face turned up; a child
+  who comes to feed the fire sits beside it, never behind it; a sleeper
+  lies by the fire and whoever tends it sits on the sleeper's side
+  ("beside her"); "she fills it slowly" fills a JAR (`fill`, `jar`,
+  `mend_fill`) crouched at the pool's edge, the torch kept left of the
+  pool; and the bed mend asks the uncrowder first, at the render's seed,
+  so the shelf converges.
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

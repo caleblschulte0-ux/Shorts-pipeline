@@ -182,6 +182,10 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
             if not fires:
                 return None
             target_x, action, end_pose, item = fires[0]["x"], "feed_fire", "crouch", "branch"
+            # beside the fire, never behind it: the child who came to feed the
+            # brazier sat where its flames were drawn over him (run 100)
+            fw = PROPS[fires[0]["name"]].width * fires[0]["s"] / 2
+            taken = taken + [(fires[0]["x"] - fw - 0.2 * R, fires[0]["x"] + fw + 0.2 * R)]
         elif kind == "serve":
             sit = [i for i in _sitters(lay) if x0 < lay["people"][i]["x"] < x1]
             if not sit:
