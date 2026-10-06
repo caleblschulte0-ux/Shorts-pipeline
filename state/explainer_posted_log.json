@@ -2648,6 +2648,13 @@
       ],
       "words_first_10s": 25,
       "scene_changes_before_5s": 3
+    },
+    "college-gender-gap": {
+      "claimed_at": "2026-10-06T11:55:20.089267+00:00",
+      "title": "The College Gender Gap Nobody Saw Coming",
+      "publish_at": "2026-10-06T17:10:25Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3253,6 +3260,14 @@
       "state": "posted",
       "slug": "data-breach-exposure",
       "at": "2026-10-06T10:44:56.983568+00:00"
+    },
+    {
+      "claimed_at": "2026-10-06T11:55:20.089267+00:00",
+      "title": "The College Gender Gap Nobody Saw Coming",
+      "publish_at": "2026-10-06T17:10:25Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "college-gender-gap"
     }
   ]
 }
