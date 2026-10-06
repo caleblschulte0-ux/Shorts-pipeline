@@ -356,22 +356,30 @@ def bedroll(cr, x, y, s, t, seed):
                     texture="fur", tex_alpha=0.5)
 
 
+MAT_THICK = 34
+
+
 def mat(cr, x, y, s, t, seed):
     """A woven reed mat on the floor: the settled world's other bed (the 79
     film's judge: "vary the sleeper scenes (a bed, a mat by a wall ...)").
     Longer than the sleeper so it shows past the head and the feet, with a
     rolled edge at each end; symmetric, since the sleeper may face either
     way, and no blanket of its own (the sleeper brings theirs)."""
+    # thick enough to read as a mat at a close-up's zoom: at 18 px the strip
+    # past the body "stretches across the floor like a rope" (run 101)
     reed = rgb("#d2bd84")
-    ink.fill_stroke(cr, [(x - 215 * s, y), (x + 215 * s, y), (x + 205 * s, y - 18 * s), (x - 205 * s, y - 18 * s)],
+    ink.fill_stroke(cr, [(x - 215 * s, y), (x + 215 * s, y), (x + 205 * s, y - MAT_THICK * s),
+                         (x - 205 * s, y - MAT_THICK * s)],
                     reed, lw=4 * s, amp=0.8, seed=seed, texture="hatch", tex_alpha=0.35)
     for k in range(-7, 8):
         kx = x + k * 27 * s
-        ink.line(cr, [(kx, y - 3 * s), (kx + 2 * s, y - 15 * s)], lw=2 * s, ink=shade(reed, 0.72), amp=0.4,
-                 seed=seed + k)
+        ink.line(cr, [(kx, y - 4 * s), (kx + 3 * s, y - MAT_THICK * s + 4 * s)], lw=2 * s, ink=shade(reed, 0.72),
+                 amp=0.4, seed=seed + k)
     for d in (-1, 1):
-        ink.fill_stroke(cr, ink.ellipse_pts(x + d * 212 * s, y - 16 * s, 14 * s, 14 * s, 14), shade(reed, 0.9),
-                        lw=4 * s, amp=0.6, seed=seed + 20 + d)
+        ink.fill_stroke(cr, ink.ellipse_pts(x + d * 208 * s, y - MAT_THICK * s * 0.6, 22 * s, 20 * s, 14),
+                        shade(reed, 0.9), lw=4 * s, amp=0.6, seed=seed + 20 + d)
+        ink.fill_stroke(cr, ink.ellipse_pts(x + d * 208 * s, y - MAT_THICK * s * 0.6, 9 * s, 8 * s, 10),
+                        shade(reed, 0.75), lw=2.5 * s, amp=0.4, seed=seed + 30 + d)
 
 
 def column(cr, x, y, s, t, seed):

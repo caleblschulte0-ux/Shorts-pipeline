@@ -333,7 +333,7 @@ def _render_chunk(args) -> str:
     p = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     a = cairo.ImageSurface(cairo.FORMAT_RGB24, W, H)
     b = cairo.ImageSurface(cairo.FORMAT_RGB24, W, H)
-    texts = [(c["t0"], c["t1"], c["x"], c["y"], _text_surface(c["text"], c["size"], band=c.get("band", False),
+    texts = [(c["t0"], c["t1"], c["x"], c["y"], c.get("fade", 1.2), _text_surface(c["text"], c["size"], band=c.get("band", False),
                                                             color=c.get("color", (248, 240, 222))))
              for c in captions if c["t1"] > t0 and c["t0"] < t1]
     i = lo
@@ -355,9 +355,9 @@ def _render_chunk(args) -> str:
             cr.paint_with_alpha(k)
         if texts:
             cr = cairo.Context(a)
-            for (c0, c1, x, y, (surf, _buf)) in texts:
+            for (c0, c1, x, y, fd, (surf, _buf)) in texts:
                 if c0 <= T < c1:
-                    al = min(1.0, (T - c0) / 1.2, (c1 - T) / 1.2)
+                    al = min(1.0, (T - c0) / fd, (c1 - T) / 1.2)
                     cr.set_source_surface(surf, x, y)
                     cr.paint_with_alpha(max(0.0, al))
         a.flush()
@@ -379,8 +379,11 @@ def _captions(ep: dict, beats: list[Beat]) -> list[dict]:
     if tail:
         # big and bright: at 44px in the band's grey it was "small and
         # low-contrast on the purple sky" to the ninth film's judge
-        out.append(dict(text=tail, size=60, t0=1.8, t1=10.0, x=118, y=236, band=True,
-                        color=(255, 250, 236)))
+        # ...and in by the time the judge looks (hook sampled at 2.2 s: a
+        # subtitle a third of the way through its fade was "low-contrast
+        # grey text on a dark box", run 101)
+        out.append(dict(text=tail, size=60, t0=1.2, t1=10.0, x=118, y=236, band=True,
+                        color=(255, 250, 236), fade=0.4))
     seen = set()
     for bt in beats:
         if bt.chapter not in seen and bt.chapter > 0:
@@ -577,10 +580,7 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dic
             p = next((q for q in lay["props"] if q["name"] in lights), None)
             if p is None or not lay["people"]:
                 continue
-            ph = PROPS[p["name"]].height * p["s"]
-            boxes = [_figure_box(f) for f in lay["people"]] + \
-                [(p["x"] - PROPS[p["name"]].width * p["s"] / 2, p["y"] - ph * 1.3,
-                  p["x"] + PROPS[p["name"]].width * p["s"] / 2, p["y"] + 10)]
+            boxes = [_figure_box(f) for f in lay["people"]] + [_prop_box(p)]     # with the light's glow
             fr = frame_for(boxes, INSERT_ZOOM)
             if fr is not None:
                 sp = dict(sp, frame=fr)
@@ -616,6 +616,9 @@ def coverage(spec: dict, era: str, seed: int, dur: float = 6.0, named=()) -> dic
     return out
 
 
+FIGURE_AIR = 0.65    # head radii of air kept around a figure inside a framed window
+
+
 def _figure_box(f: dict) -> tuple:
     """A person's bounding box in world pixels, head to feet, with air."""
     from data_learning.doodle import people as P, scene as S
@@ -624,14 +627,20 @@ def _figure_box(f: dict) -> tuple:
     if f["facing"] == "left":
         lo, hi = -hi, -lo
     top = f["y"] - (5.9 if f["pose"] in ("stand", "walk") else 4.6) * R
-    return (f["x"] + lo - 0.3 * R, top, f["x"] + hi + 0.3 * R, f["y"] + 0.5 * R)
+    # air enough for an elbow: a hand on the hip stands 0.5 R out behind
+    # the body, and the window's edge went through it (run 101)
+    return (f["x"] + lo - FIGURE_AIR * R, top, f["x"] + hi + FIGURE_AIR * R, f["y"] + 0.5 * R)
 
 
 def _prop_box(q: dict) -> tuple:
-    """A prop's bounding box in world pixels, with its flame."""
+    """A prop's bounding box in world pixels, with its flame — and a
+    light's glow, which reaches past its footprint (run 101: "the lamp cut
+    off at the right edge" of a close-up that held the lamp's stand)."""
     from data_learning.doodle.props import PROPS as _P
     hw = _P[q["name"]].width * q["s"] / 2
     ph = _P[q["name"]].height * q["s"]
+    if _P[q["name"]].light:
+        hw *= 1.7
     return (q["x"] - hw, q["y"] - ph * 1.3, q["x"] + hw, q["y"] + 10)
 
 
@@ -671,12 +680,22 @@ def frame_for(boxes: list, kmax: float) -> list | None:
             cy = S.H / (2 * k)
         else:
             return None
-    # and the boxes inside the window after clamping
-    if x0 < cx - S.W / (2 * k) or x1 > cx + S.W / (2 * k) or y0 < cy - S.H / (2 * k) or y1 > cy + S.H / (2 * k):
-        k2 = max(1.0, min(k, S.W / max(1.0, 2 * max(cx - x0, x1 - cx)), S.H / max(1.0, 2 * max(cy - y0, y1 - cy))))
-        if k2 <= 1.02:
-            return None
-        k = _m.floor(k2 * 100) / 100
+    # and the boxes inside the window after clamping — re-clamping after
+    # every zoom-out, because a wider window pushes the centre back in from
+    # the world's edge and the camera would otherwise shift it (run 101:
+    # the lamp's glow cut at the right edge of a window that "held" it)
+    for _ in range(4):
+        if x0 < cx - S.W / (2 * k) or x1 > cx + S.W / (2 * k) or y0 < cy - S.H / (2 * k) or y1 > cy + S.H / (2 * k):
+            k2 = max(1.0, min(k, S.W / max(1.0, 2 * max(cx - x0, x1 - cx)), S.H / max(1.0, 2 * max(cy - y0, y1 - cy))))
+            if k2 <= 1.02:
+                return None
+            k = _m.floor(k2 * 100) / 100
+            cx = min(max(cx, S.W / (2 * k)), S.W - S.W / (2 * k))
+            cy = min(max(cy, S.H / (2 * k)), S.H - S.H / (2 * k))
+        else:
+            break
+    else:
+        return None
     if 0 < cy - S.H / (2 * k) < TOP_BAND:
         return None                  # no zoom rather than a window edge through the beams
     return [round(cx, 1), round(cy, 1), k]
@@ -860,6 +879,7 @@ NEWCOMERS = ("arrive", "serve", "child", "passer")    # happenings that bring so
 SEATED_WORDS = r"\b(sits?|sitting|seated|sits? up|settles?|crouch(?:es|ing)?|kneels?|kneeling|bends?|warming|" \
                r"spinning|sewing|mending|stirring|leans?|leaning)\b"
 KEEP_ON_WORDS = r"\b(do(?:es)? not stop|keeps?|still|go(?:es)? on|continues?|stays?|remains?|not stop)\b"
+WORKING_WORDS = r"\b(warming|spinning|sewing|mending|stirring|weaving|kneading|grinding|feeding the fire|tending)\b"
 TOP_BAND = 175.0     # world px: the ceiling beams and the painted band every room has along the top
 
 
@@ -911,9 +931,11 @@ def happenings(spec: dict, era: str, seed: int, text: str, dur: float, prev: tup
         # ...and nobody leaves a sentence that is about the company (run 97:
         # "cups are filled, and the talk begins" with one man left on the couch)
         people_fill = [k for k in people_fill if k != "leave"]
-    if re.search(KEEP_ON_WORDS, low):
+    if re.search(KEEP_ON_WORDS, low) or re.search(WORKING_WORDS, low):
         # "the others do not stop spinning": nobody stops to look up either
-        # (run 100's auto-fail: the women "just sit on the floor")
+        # (run 100's auto-fail: the women "just sit on the floor"); nor
+        # while the words describe the work itself ("warming her hands near
+        # a small lamp" was a woman looking up, hands off the lamp, run 101)
         people_fill = [k for k in people_fill if k != "pause"]
     if spec.get("frame"):
         people_fill = [k for k in people_fill if k != "passer"]     # no far lane in a framed close-up

@@ -1294,7 +1294,16 @@ class TheSeventyFourBlock(unittest.TestCase):
             woman = next(f for f in lay["people"] if f["who"] == "woman")
             child = next(f for f in lay["people"] if f["who"] == "child")
             R = P.R0 * woman["s"]
-            self.assertLess(abs(woman["x"] - child["x"]), 6.5 * R, (seed, "the child is across the room"))
+            # the child's bed ends within reach of her: the gap between her
+            # span and the bed's span is small (the bed itself is long)
+            bed = next(q for q in lay["props"] if q["name"] == "bed")
+            bw = PROPS["bed"].width * bed["s"] / 2
+            lo, hi = S.figure_extent("sit", R, "feed_fire")
+            if woman["facing"] == "left":
+                lo, hi = -hi, -lo
+            gap = max(0.0, max(woman["x"] + lo, bed["x"] - bw) - min(woman["x"] + hi, bed["x"] + bw))
+            # ...or just across the fire from her (the brazier's own width)
+            self.assertLess(gap, 3.6 * R, (seed, "the child is across the room"))
 
     def test_she_fills_a_jar_at_the_pool(self):
         beat = {"say": "She fills it slowly, listening to the water more than watching it.",
@@ -1316,3 +1325,92 @@ class TheSeventyFourBlock(unittest.TestCase):
         self.assertIsNone(A.mend_fill(beat, "ancient"), "mended once")
         self.assertIn("jar", P.ITEMS)
         self.assertEqual(A.action_for_words("She fills it slowly.", beat["scene"]), "fill")
+
+
+@unittest.skipUnless(HAVE, "the doodle kit needs cairo and numpy")
+class TheEightySevenAgain(unittest.TestCase):
+    """Run 101: 87, SHIP, five notes. The old woman "warming her hands" was
+    looking up with her hands off the lamp (a pause), the lamp's glow was
+    cut at the window's edge, her mat read as "a rope across the floor";
+    the embers insert was "an open rooftop brazier" with the man's elbow
+    cut by the frame; an old woman "close by" the child sat across the
+    room; the hook's subtitle was sampled mid-fade."""
+
+    def test_nobody_pauses_from_the_work_the_words_describe(self):
+        spec = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "old_woman", "pose": "sit", "action": "warm_hands"}], "props": ["oil_lamp"]}
+        for seed in range(6):
+            got = OS.happenings(spec, "ancient", seed, "An old woman sits up a little longer, warming her hands near a small lamp.", 7.0)
+            self.assertNotIn("pause", got, seed)
+
+    def test_a_framed_window_holds_the_lamp_s_glow_and_the_elbow(self):
+        q = {"name": "oil_lamp", "x": 1000.0, "y": 900.0, "s": 2.0}
+        x0, _t, x1, _b = OS._prop_box(q)
+        self.assertGreater(x1 - 1000.0, PROPS["oil_lamp"].width * 2.0 / 2 * 1.5, "the glow is outside the box")
+        self.assertGreaterEqual(OS.FIGURE_AIR, 0.6)
+        spec = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "old_woman", "pose": "sit", "action": "warm_hands"},
+                         {"who": "child", "pose": "lie", "action": "sleep"}], "props": ["oil_lamp", "mat"]}
+        for seed in (5, 2818272419):
+            ins = OS.coverage(spec, "ancient", seed)["insert"][0]
+            fr = ins.get("frame")
+            if not fr:
+                continue
+            lay = S.layout(ins, seed + 7)
+            cx, _cy, k = fr
+            win0 = min(max(cx * k - S.W / 2, 0.0), (k - 1) * S.W) / k
+            win1 = win0 + S.W / k
+            lamp = next(p for p in lay["props"] if p["name"] == "oil_lamp")
+            self.assertLessEqual(lamp["x"] + PROPS["oil_lamp"].width * lamp["s"] * 0.8, win1 + 1, (seed, "the lamp's flame is cut"))
+
+    def test_the_mat_is_a_mat_not_a_rope(self):
+        from data_learning.doodle import props as PR
+        self.assertGreaterEqual(PR.MAT_THICK, 30)
+
+    def test_the_forum_close_up_is_walled_to_the_top(self):
+        import cairo
+        surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, S.W, S.H)
+        ST.draw_still(cairo.Context(surf), "forum", "night", "clear", 2, shot="close", era="ancient")
+        buf = np.ndarray(shape=(S.H, S.W, 4), dtype=np.uint8, buffer=surf.get_data())
+        wall = tuple(int(round(v * 255)) for v in ST.STOA_WALL)
+        for y in (120, 300):
+            xs = range(60, S.W - 60, 9)
+            stone = sum(1 for x in xs if max(abs(int(buf[y, x, 2 - i]) - wall[i]) for i in range(3)) < 40) / len(xs)
+            self.assertGreater(stone, 0.6, (y, "sky or roofs over the wall"))
+        # and no window of the town behind it glows on the stone (the still
+        # and the evening pass alone, without the firelight's own warm pool)
+        sf = cairo.ImageSurface(cairo.FORMAT_RGB24, S.W, S.H)
+        cr = cairo.Context(sf)
+        fx = ST.draw_still(cr, "forum", "night", "clear", 2, "close", era="ancient")
+        self.assertLessEqual(fx["town"]["hidden_below"], 0)
+        ST.ambient(cr, "forum", "night", "clear", fx, 0.5, 2)
+        sf.flush()
+        a = np.frombuffer(sf.get_data(), np.uint8).reshape(S.H, S.W, 4)
+        lit = sum(1 for (wx, wy) in fx["town"]["windows"] if a[int(wy), int(wx), 2] > 200 and a[int(wy), int(wx), 0] < 150)
+        self.assertEqual(lit, 0, "a window glows on the wall")
+
+    def test_the_one_other_person_sits_by_the_sleeper(self):
+        spec = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "child", "pose": "lie", "action": "sleep"}, {"who": "old_woman", "pose": "sit", "action": "hold"}],
+                "props": ["bed", "oil_lamp", "barrel", "table"]}
+        for seed in (3, 3703769626, 11):
+            lay = S.layout(spec, seed)
+            self.assertEqual(lay["collisions"], [])
+            child = next(f for f in lay["people"] if f["who"] == "child")
+            her = next(f for f in lay["people"] if f["who"] == "old_woman")
+            R = P.R0 * her["s"]
+            bed = next(q for q in lay["props"] if q["name"] == "bed")
+            bw = PROPS["bed"].width * bed["s"] / 2
+            lo, hi = S.figure_extent("sit", R, "hold")
+            if her["facing"] == "left":
+                lo, hi = -hi, -lo
+            gap = max(0.0, max(her["x"] + lo, bed["x"] - bw) - min(her["x"] + hi, bed["x"] + bw))
+            self.assertLess(gap, 1.5 * R, (seed, "across the room"))
+            self.assertEqual(her["facing"], "right" if her["x"] < child["x"] else "left", (seed, "facing away from the child"))
+
+    def test_the_hook_s_subtitle_is_in_by_the_time_the_judge_looks(self):
+        ep = {"title": "What Did Ancient Greeks Do After Dark? | Cozy History for Sleep", "chapters": [{"title": "x"}]}
+        caps = OS._captions(ep, [])
+        tail = next(c for c in caps if c["text"] == "Cozy History for Sleep")
+        self.assertLessEqual(tail["t0"] + tail.get("fade", 1.2), 2.0, "still fading in at 2.2 s")
+        self.assertGreaterEqual(sum(tail["color"]) / 3, 240)

@@ -350,6 +350,7 @@ FAR_SHORE = {"hut", "cottage", "tent", "tree", "pine", "villa", "temple", "colum
 BEDDING = ("bedroll", "bed", "mat")
 BED_TOP = 74.0         # the mattress top above a bed's foot, at scale 1 (props.bed: frame to -70, blanket to -115)
 SLEEPER_ROOM = 0.8     # head radii kept clear at a sleeper's head and feet: no lamp at a sleeper's head (run 93)
+BED_END = 0.6          # head radii of the bedding's overhang taken at placement: nobody sits on the bed's end (run 101)
 SOLID_BACK = {"deer", "mammoth", "cow", "cart", "well", "hut", "cottage", "tent", "fish_rack", "hide_rack", "torch",
               "hearth", "temple", "villa", "column", "terrace", "gas_lamp", "carriage", "stove", "bookshelf",
               "clock", "obelisk", "mudbrick_house", "timber_house", "ship"}
@@ -906,9 +907,16 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     # placed after the hand-warmer, a sleeper's mat landed on her and the
     # whole arrangement was thrown out for one that sat her across the
     # room from the lamp (run 97)
+    # whoever acts at the fire is placed first, then whoever lies down (by
+    # the fire-tender, their bedding's whole length taken so nothing lands
+    # on it), then the rest (by the sleeper). Run 97's lesson stands — a
+    # sleeper placed after the hand-warmer landed its mat on her — and is
+    # kept by taking the bedding's real overhang, not by placing the
+    # sleeper first: placed first by the fire, an 820 px bed met the lamp
+    # and the whole room shrank (run 101)
     order = sorted(range(len(cast)),
-                   key=lambda i: 0 if cast[i].get("pose") == "lie" else
-                   1 if (at_fire and cast[i].get("action") in anchor_actions) else 2)
+                   key=lambda i: 0 if (at_fire and cast[i].get("action") in anchor_actions) else
+                   1 if cast[i].get("pose") == "lie" else 2)
     figs: list = [None] * len(cast)
     for i in order:
         c = cast[i]
@@ -919,6 +927,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             # heads came below the table top
             pose = c["pose"] = "sit_on"
         at_pool = spec.get("setting") == "spring" and c.get("action") in POOL_ACTIONS
+        prefer, face_to = None, focal_x
         if c.get("at") and not (at_fire and c.get("action") in anchor_actions) and not at_pool:
             x = W * SLOTS[c["at"]]
             facing = c.get("facing") or ("right" if x < focal_x else "left")
@@ -971,14 +980,37 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             # already half asleep beside her" was a bed across the room, run
             # 100), somebody filling a jar at the spring's pool
             prefer, face_to = None, focal_x
-            if pose == "lie" and focal is not None:
-                prefer = focal_x
+            sleeper_x = next((f["x"] for f in figs if f is not None and f["pose"] == "lie"), None)
+            tender_x = next((f["x"] for f in figs if f is not None and f["action"] in anchor_actions), None)
+            if pose == "lie" and tender_x is not None:
+                prefer = tender_x        # by whoever tends the fire; otherwise the room's own order
+            elif sleeper_x is not None and len(cast) == 2 and pose in ("sit", "sit_on", "crouch", "stand"):
+                # the one other person sits by the sleeper ("an old woman sits
+                # close by ... watching the small steady breathing" was across
+                # the room, run 101) — on the fire's side of them where a dog
+                # or a wolf has the other (it curls at the sleeper's feet, away
+                # from the fire, and a woman sat on it)
+                prefer, face_to = sleeper_x, sleeper_x
+                if any(_pname(p) in ("wolf", "dog") for p in pl):
+                    sleeper_R = next(people.R0 * f["s"] * people.WHO[f["who"]]["size"] for f in figs
+                                     if f is not None and f["pose"] == "lie")
+                    prefer = sleeper_x + (1 if sleeper_x < focal_x else -1) * (3.2 * sleeper_R + 1.4 * R)
             elif spec.get("setting") == "spring" and c.get("action") in POOL_ACTIONS:
                 prefer = W * settings.SPRING_X[0] - 1.4 * R
                 face_to = W * (settings.SPRING_X[0] + settings.SPRING_X[1]) / 2
             n_slots = len(slots_auto)
             slot_order = sorted(range(n_slots), key=lambda kk: abs(W * slots_auto[kk] - prefer)) \
                 if prefer is not None else [(i + kk) % n_slots for kk in range(n_slots)]
+            if pose == "lie":
+                bed_name = next((_pname(p) for p in pl if _pname(p) in BEDDING), None)
+                if bed_name:
+                    body_half = figure_extent("lie", R)[1]
+                    pad_ = max(BED_END * R, PROPS[bed_name].width * s * people.WHO[c["who"]]["size"] / 2 - body_half)
+                    _span0 = fig_span
+
+                    def fig_span(cc, xx, ff, RR, _pad=pad_, _f=_span0):     # noqa: E306
+                        lo__, hi__ = _f(cc, xx, ff, RR)
+                        return (lo__ - _pad, hi__ + _pad) if cc is c else (lo__, hi__)
             for k in slot_order:
                 if x is not None:
                     break
@@ -992,10 +1024,36 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
                     break
             if x is None:
                 cand = W * slots_auto[i % len(slots_auto)]
-                facing = c.get("facing") or ("right" if cand < focal_x else "left")
+                facing = c.get("facing") or ("right" if cand < face_to else "left")
                 x = settle(cand, lambda xx: fig_span(c, xx, facing, R), EDGE, W - EDGE,
                            head_of=lambda xx: keep_span(c, xx, facing, R))
-        put(*fig_span(c, x, facing, R))
+        if not c.get("facing") and prefer is not None and not c.get("at"):
+            # toward what they were placed by — decided from where they ENDED
+            # up, since settling can carry them past it (run 101: seated
+            # beside the child, facing the wall)
+            facing = "right" if x < face_to else "left"
+        if pose == "lie":
+            # the bedding runs past the body at the head and the feet: as
+            # much as it really does, taken now, so the one who sits by the
+            # sleeper sits beside the bed and not on its end (run 101)
+            bed_name = next((_pname(p) for p in pl if _pname(p) in BEDDING), None)
+            body_half = figure_extent("lie", R)[1]
+            margin = max(BED_END * R, PROPS[bed_name].width * s * people.WHO[c["who"]]["size"] / 2 - body_half) \
+                if bed_name else 0.0
+            lo_, hi_ = fig_span(c, x, facing, R)
+            put(lo_ - margin, hi_ + margin)
+            dog = next((_pname(p) for p in pl if _pname(p) in ("wolf", "dog")), None)
+            if dog is not None:
+                # the dog's spot at the sleeper's feet (away from the fire) is
+                # spoken for now, so nobody sits on the wolf (run 101)
+                d_ = -1 if x < focal_x else 1
+                lo2, hi2 = figure_extent("lie", R)
+                w_ = PROPS[dog].width * s
+                edge_ = x + d_ * (hi2 if d_ > 0 else -lo2)
+                dx_ = min(max(edge_ + d_ * (w_ / 2 + 0.15 * R), EDGE + w_ / 2), W - EDGE - w_ / 2)
+                put(dx_ - w_ / 2, dx_ + w_ / 2)
+        else:
+            put(*fig_span(c, x, facing, R))
         figs[i] = dict(who=c["who"], pose=pose, action=c.get("action", "idle"),
                        mood=c.get("mood", "calm"), item=c.get("item"), x=x,
                        y=gy + 30 * s, s=s, facing=facing, seed=seed * 13 + i * 101)

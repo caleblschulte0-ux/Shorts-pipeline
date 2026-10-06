@@ -289,12 +289,18 @@ def _colonnade(cr, r, y0, seed, wall: bool = False, facts: dict | None = None):
     xs = [180 + k * 390 + r.uniform(-20, 20) for k in range(5)]
     if wall:
         if facts is not None and facts.get("town"):
-            facts["town"]["hidden_below"] = y0 - 195     # the windows behind the wall do not light up on it
-        ink.fill_stroke(cr, [(-40, y0 - 195), (W + 40, y0 - 195), (W + 40, y0 + 6), (-40, y0 + 6)],
+            facts["town"]["hidden_below"] = -40.0      # every window is behind the wall (it reaches the top)
+        # to the top of the frame: with the roofs showing over it the wall
+        # was a parapet and the man "on a rooftop" twice (runs 97 and 101);
+        # a stoa's back wall is the stone the words put the fire against
+        ink.fill_stroke(cr, [(-40, -40), (W + 40, -40), (W + 40, y0 + 6), (-40, y0 + 6)],
                         STOA_WALL, lw=4, amp=1.0, seed=seed + 3, shadow=shade(STOA_WALL, 0.92), shadow_dir=(0, 1))
-        for k in range(1, 5):
-            yy = y0 - 195 + k * 48
+        for k in range(1, int((y0 + 40) / 48) + 1):
+            yy = y0 + 6 - k * 48
             ink.line(cr, [(-40, yy), (W + 40, yy)], lw=2, ink=shade(STOA_WALL, 0.85), amp=1.2, seed=seed + 20 + k)
+            for j in range(0, W + 400, 400):
+                jx = j + (200 if k % 2 else 0) + r.uniform(-20, 20)
+                ink.line(cr, [(jx, yy), (jx, yy + 48)], lw=2, ink=shade(STOA_WALL, 0.85), amp=0.8, seed=seed + j + k)
     ink.fill_stroke(cr, [(xs[0] - 60, y0 - 215), (xs[-1] + 60, y0 - 215), (xs[-1] + 60, y0 - 190), (xs[0] - 60, y0 - 190)],
                     rgb("#e3dbc9"), lw=4, amp=0.8, seed=seed, shadow=rgb("#cfc5b1"), shadow_dir=(0, 1))
     for k, x in enumerate(xs):

@@ -1306,8 +1306,9 @@
       ],
       "props": [
        "oil_lamp",
-       "table",
-       "woodpile"
+       "woodpile",
+       "mat",
+       "barrel"
       ],
       "variant": 2
      }
@@ -1814,7 +1815,8 @@
       "props": [
        "brazier",
        "barrel",
-       "table"
+       "mat",
+       "basket"
       ],
       "variant": 2,
       "fire": "low"

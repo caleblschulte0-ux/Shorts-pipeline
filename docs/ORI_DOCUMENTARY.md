@@ -1164,6 +1164,19 @@ only as a hand edit is not a rule. So:
   pool; and the bed mend asks the uncrowder first, at the render's seed,
   so the shelf converges.
 
+- **Run 101 (commit 375593cf): 87, SHIP** — back to run 98's score with
+  the run-100 fixes in; five notes, each a rule (`TheEightySevenAgain`):
+  nobody pauses from the work the words describe ("warming her hands" had
+  her looking up with her hands off the lamp); a framed window holds a
+  light's GLOW, not just its stand, and keeps air for an elbow (the
+  insert's lamp box is `_prop_box` now, and `frame_for` re-clamps the
+  centre after every zoom-out — the camera had been shifting a window the
+  planner called whole); the mat is thick enough to be a mat; the stoa's
+  wall rises to the top of a close forum shot ("an open rooftop brazier",
+  twice); the one other person sits by the sleeper, facing them, with the
+  bed's ends taken at placement; the hook's subtitle is in by 1.6 s (the
+  judge samples at 2.2 s and found it mid-fade).
+
 ## Any topic: the era is found or the refusal is honest
 
 `ori_author.era_for` reads a topic's words against `ERA_WORDS` (no model);

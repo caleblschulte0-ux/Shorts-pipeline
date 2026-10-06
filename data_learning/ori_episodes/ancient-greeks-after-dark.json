@@ -914,7 +914,8 @@
       "props": [
        "oil_lamp",
        "woodpile",
-       "krater"
+       "krater",
+       "bed"
       ],
       "variant": 5
      }
@@ -1289,7 +1290,8 @@
        "brazier",
        "oil_lamp",
        "basket",
-       "barrel"
+       "barrel",
+       "bed"
       ],
       "variant": 15,
       "fire": "low"
@@ -2025,8 +2027,8 @@
       "props": [
        "brazier",
        "oil_lamp",
-       "bench",
-       "barrel"
+       "barrel",
+       "bed"
       ],
       "variant": 8,
       "fire": "low"
