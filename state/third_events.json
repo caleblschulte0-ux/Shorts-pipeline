@@ -2887,6 +2887,50 @@
       ],
       "published_versions": [],
       "last_updated": "2026-10-06"
+    },
+    "kaicenat-audible-present-2026w37": {
+      "event_id": "kaicenat-audible-present-2026w37",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "audible",
+        "present",
+        "speech",
+        "vivet"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-06",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/SplendidManlyStorkPoooound-ilSlfx_7ia6czL9e",
+        "https://www.twitch.tv/kaicenat/clip/ConcernedLazyDaikonTinyFace-1NG6n6Ok52AJ3M9k",
+        "https://www.twitch.tv/kaicenat/clip/BlindingInterestingDinosaurOSkomodo-MWkQ5wnVr7r-lC-b",
+        "https://www.twitch.tv/kaicenat/clip/SweetCleanClipsmomPeoplesChamp-xUAZDc28WRBtBq-b"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-06"
+    },
+    "kaicenat-about-criticiz-2026w40": {
+      "event_id": "kaicenat-about-criticiz-2026w40",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "about",
+        "criticiz",
+        "describ",
+        "expos"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-06",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/PuzzledPowerfulFrogSwiftRage-9wauUcUVSroaEnsX",
+        "https://www.twitch.tv/kaicenat/clip/AbstemiousCrowdedCasetteEagleEye-kx4AZ0BRgVxAW1IP"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-06"
     }
   }
 }

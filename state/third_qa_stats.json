@@ -3,144 +3,6 @@
     {
       "date": "20260928",
       "dry_run": false,
-      "ts": "2026-09-28T20:13:48+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 113,
-        "with_retention": 95,
-        "with_curve": 14,
-        "fetched_at": "2026-09-28T18:46:42.447909+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 4
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260928-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260928-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260928-3",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Soda Druid Lore",
-              "raw": "Soda Druid Lore",
-              "kept_raw": true
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 382.0
-        },
-        {
-          "slug": "clip-20260928-4",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260928-5",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        },
-        {
-          "slug": "clip-20260928-6",
-          "ok": false,
-          "skipped": "brain down \u2014 blind-slate gate"
-        }
-      ]
-    },
-    {
-      "date": "20260928",
-      "dry_run": false,
       "ts": "2026-09-28T22:33:13+00:00",
       "feedback": {
         "snapshot": true,
@@ -6545,6 +6407,254 @@
             }
           },
           "took_s": 604.8
+        }
+      ]
+    },
+    {
+      "date": "20261006",
+      "dry_run": false,
+      "ts": "2026-10-06T17:20:35+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 126,
+        "with_retention": 110,
+        "with_curve": 15,
+        "fetched_at": "2026-10-06T15:22:47.372733+00:00"
+      },
+      "brain": {
+        "ok": 1,
+        "fail": 0,
+        "limited_at": "2026-10-06T17:11:06+00:00",
+        "limit_detail": "You've hit your weekly limit \u00b7 resets 12am (UTC)"
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:dukedennis": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:esfand": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:extraemily": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:forsen": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:sypherpk": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 1,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261006-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261006-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261006-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261006-4",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 6.4
+        },
+        {
+          "slug": "clip-20261006-5",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20261006-6",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 280,
+                "catalogue_watched": 38,
+                "refused_shown": 6,
+                "scouted": [
+                  {
+                    "premise": "Buddha gets rug\u2011pulled live, then flips to promoting his own over\u2011the\u2011top crypto coin, and finally reacts to an AI\u2011gener",
+                    "shape": "one_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 174,
+                "candidates": 276,
+                "pool": 1374,
+                "pool_with_vod": 1272,
+                "arc_sizes": [
+                  2,
+                  5,
+                  6,
+                  2,
+                  2,
+                  4,
+                  2,
+                  3,
+                  2,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:buddha",
+                  "outcome": "already_refused",
+                  "why": "2026-10-06: director judged: not a story \u2014 The provided clips do not contain any mention of a promised massive coin pump or a hopeful setup. They only show Buddha mumbling "
+                },
+                {
+                  "cluster": "sodapoppin@vod2872274770",
+                  "outcome": "already_refused",
+                  "why": "2026-10-06: sources fail preflight: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "kaicenat@vod2872697283/kaicenat-audible-present-2026w37",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 All clips lack observable content, dialogue, or events; no meaningful change can be identified."
+                },
+                {
+                  "cluster": "kaicenat@vod2888642092/kaicenat-about-criticiz-2026w40",
+                  "outcome": "plan_rejected",
+                  "why": "director unreachable"
+                },
+                {
+                  "cluster": "caseoh@vod2887743618",
+                  "outcome": "already_refused",
+                  "why": "2026-10-06: director judged: not a story \u2014 The clips only show repeated frustrated statements without any clear change, conflict resolution, or payoff, so no meaningful sto"
+                },
+                {
+                  "cluster": "shroud@vod2870437527",
+                  "outcome": "already_refused",
+                  "why": "2026-10-06: director judged: not a story \u2014 The provided clips are unrelated fragments without a clear setup, escalation, and payoff, so they do not form a meaningful story."
+                },
+                {
+                  "cluster": "sodapoppin@vod2888128304",
+                  "outcome": "already_refused",
+                  "why": "2026-10-03: sources fail preflight: preflight:source barely moves (avg frame delta 0.56) \u2014 static image/pa; preflight:source barely moves (avg frame delta 0"
+                },
+                {
+                  "cluster": "silky@vod2867322183",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 analysis:none; analysis:none"
+                },
+                {
+                  "cluster": "alinity@vod2892098335",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 analysis:none; analysis:none; analysis:none"
+                },
+                {
+                  "cluster": "stableronaldo@vod2887348449",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit; analysis:none"
+                },
+                {
+                  "cluster": "ohnepixel@vod2866885554",
+                  "outcome": "already_refused",
+                  "why": "2026-10-03: director judged: not a story \u2014 The two clips show the same bodycam-style glitch (static and corrupted-video screens) during tactical-shooter rounds, but there i"
+                },
+                {
+                  "cluster": "silky@vod2887864850",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source barely moves (avg frame delta 0.37) \u2014 static image/pa; preflight:source barely moves (avg fra"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 567.8
         }
       ]
     }
