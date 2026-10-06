@@ -186,22 +186,81 @@ def _reconcile_pending() -> int:
     return 3
 
 
+# A story is long-form READY only when its own words can carry a watch-page
+# video. The renderer's duration is the narration of hook + every beat +
+# closing (data_learning/longform_render.py), so it can be estimated BEFORE a
+# render is spent: the first relaunch candidate (2026-09-06) ran 47 seconds,
+# all stills, and the showrunner rightly blocked it (doctor 38fd2900770d).
+# This is a floor on what is worth rendering, not a relaxation of any gate —
+# the long-form showrunner and motion thresholds are untouched.
+MIN_SEGMENTS = 3               # the renderer's chapter list needs >= 3
+MIN_EST_SECONDS = 60.0         # 47s was the failure; median story is ~43s
+WORDS_PER_SECOND = 2.4         # ~145 wpm calm documentary narration
+SENTENCE_GAP_S = 0.35          # longform_render.SENT_GAP
+
+
+def estimate_seconds(story: dict) -> float:
+    """Narration length of the story as long-form will speak it."""
+    lines = [story.get("hook") or ""]
+    lines += [(g or {}).get("say") or "" for g in story.get("segments") or []]
+    lines.append(story.get("closing") or "")
+    lines = [ln for ln in lines if ln.strip()]
+    words = sum(len(ln.split()) for ln in lines)
+    return words / WORDS_PER_SECOND + SENTENCE_GAP_S * len(lines)
+
+
+def readiness(story: dict) -> tuple[bool, str]:
+    """(ready, reason) — whether this story can fill a watch-page video."""
+    n = len(story.get("segments") or [])
+    if n < MIN_SEGMENTS:
+        return False, f"only {n} beats (< {MIN_SEGMENTS})"
+    est = estimate_seconds(story)
+    if est < MIN_EST_SECONDS:
+        return False, f"~{est:.0f}s of narration (< {MIN_EST_SECONDS:.0f}s)"
+    return True, f"~{est:.0f}s over {n} beats"
+
+
 def pick_slug(cfg: dict, explicit: str | None = None) -> str | None:
     """The story this week's long-form is built from.
 
-    Newest published explainer story that has NOT already carried a
-    long-form. Published means it cleared the shorts showrunner, so the
-    long-form starts from material the gate already liked — and the
+    The READIEST published explainer story (longest estimated narration,
+    newest breaking ties) that has NOT already carried a long-form and
+    clears `readiness()`. Published means it cleared the shorts showrunner,
+    so the long-form starts from material the gate already liked — and the
     long-form gate still judges the finished 16:9 cut on its own terms.
+    None holds the weekly slot: a gap routed back to story development, never
+    a thin render. An explicit slug is held to the same readiness bar.
     """
     stories = {s["slug"]: s for s in cfg.get("stories", [])}
     if explicit:
-        return explicit if explicit in stories else None
+        st = stories.get(explicit)
+        if st is None:
+            return None
+        ok, why = readiness(st)
+        if not ok:
+            print(f"[longform] {explicit!r} is not long-form ready: {why}",
+                  flush=True)
+            return None
+        return explicit
     done = _already_longformed()
-    for slug in _posted_slugs():
-        if slug in stories and slug not in done:
-            return slug
-    return None
+    best: tuple[float, int, str] | None = None
+    held = 0
+    for rank, slug in enumerate(_posted_slugs()):     # newest first
+        if slug not in stories or slug in done:
+            continue
+        ok, _ = readiness(stories[slug])
+        if not ok:
+            held += 1
+            continue
+        key = (estimate_seconds(stories[slug]), -rank, slug)
+        if best is None or key > best:
+            best = key
+    if best is None and held:
+        print(f"::warning::[longform] {held} unused published stories, none "
+              f"long-form ready (>= {MIN_SEGMENTS} beats and "
+              f">= {MIN_EST_SECONDS:.0f}s of narration) — holding the slot; "
+              f"the explainer needs deeper stories.", flush=True)
+    return best[2] if best else None
 
 
 def _valid_thumbnail(path: Path) -> bool:

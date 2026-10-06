@@ -41,9 +41,15 @@ import data_learning.longform_render  # noqa: E402,F401 - importable for mock.pa
 import shared.showrunner_gate         # noqa: E402,F401
 import shared.uploaders               # noqa: E402,F401
 
-CFG = {"stories": [{"slug": "a", "title": "A", "hook": "hook a"},
-                   {"slug": "b", "title": "B", "hook": "hook b"},
-                   {"slug": "c", "title": "C", "hook": "hook c"}]}
+def _ready(slug: str, title: str) -> dict:
+    """A story deep enough to clear BL.readiness() — equal depth, so the
+    pick falls to the newest-first tie-break these tests were written for."""
+    say = " ".join(["word"] * 40)
+    return {"slug": slug, "title": title, "hook": say, "closing": say,
+            "segments": [{"say": say} for _ in range(4)]}
+
+
+CFG = {"stories": [_ready("a", "A"), _ready("b", "B"), _ready("c", "C")]}
 
 
 class TestItPicksAStoryWorthCompiling(unittest.TestCase):
