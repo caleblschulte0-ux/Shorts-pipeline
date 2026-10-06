@@ -84,13 +84,14 @@
        "column",
        "campfire",
        "amphora"
-      ]
+      ],
+      "variant": 1
      }
     },
     {
      "say": "Inside a small home, a woman lights an oil lamp and sets it by the table. The flame catches, small and steady, warm light spreading across the walls. She stirs a pot over the coals, and the smell of lentils and herbs fills the room. Outside, the light is fading, but here it stays warm.",
      "scene": {
-      "setting": "house_inside",
+      "setting": "villa_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -113,10 +114,10 @@
        "brazier",
        "oil_lamp",
        "table",
-       "pot"
+       "amphora"
       ],
       "fire": "low",
-      "variant": 4
+      "variant": 5
      }
     },
     {
@@ -146,7 +147,7 @@
        "brazier",
        "basket"
       ],
-      "variant": 18
+      "variant": 20
      }
     },
     {
@@ -180,7 +181,7 @@
        "bush",
        "basket"
       ],
-      "variant": 11
+      "variant": 13
      }
     },
     {
@@ -209,7 +210,7 @@
       "props": [
        "campfire"
       ],
-      "variant": 16
+      "variant": 19
      }
     },
     {
@@ -236,7 +237,7 @@
        }
       ],
       "props": [],
-      "variant": 16
+      "variant": 19
      }
     },
     {
@@ -267,7 +268,7 @@
        "barrel",
        "table"
       ],
-      "variant": 13,
+      "variant": 14,
       "fire": "low"
      }
     },
@@ -311,7 +312,7 @@
        "table",
        "amphora"
       ],
-      "variant": 12
+      "variant": 14
      }
     },
     {
@@ -387,7 +388,7 @@
        "amphora"
       ],
       "fire": "low",
-      "variant": 5
+      "variant": 6
      }
     },
     {
@@ -418,7 +419,7 @@
     {
      "say": "Inside the house, a woman tips a thin stream of oil into a small clay lamp, feeding the wick until it holds a flame. A child sits near the table, watching the light steady and grow. Outside, the sky has gone the deep blue of true dusk, and the house is filling with a soft, low glow.",
      "scene": {
-      "setting": "villa_inside",
+      "setting": "house_inside",
       "time": "dusk",
       "weather": "clear",
       "shot": "close",
@@ -442,7 +443,7 @@
        "table",
        "basket"
       ],
-      "variant": 9
+      "variant": 10
      }
     },
     {
@@ -467,7 +468,7 @@
        "torch",
        "stall"
       ],
-      "variant": 17
+      "variant": 19
      }
     },
     {
@@ -500,7 +501,7 @@
        "reeds",
        "basket"
       ],
-      "variant": 12
+      "variant": 14
      }
     },
     {
@@ -534,13 +535,13 @@
        "tree",
        "basket"
       ],
-      "variant": 16
+      "variant": 18
      }
     },
     {
      "say": "Back inside, an old woman stirs a small pot over the coals while a girl sets bread on the table nearby. The lamp between them throws a warm, small circle of light, just enough to see hands and faces by. Whatever the day provided will be shared here tonight, simple as it is.",
      "scene": {
-      "setting": "villa_inside",
+      "setting": "house_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -566,7 +567,7 @@
        "pot"
       ],
       "fire": "low",
-      "variant": 7
+      "variant": 8
      }
     },
     {
@@ -599,7 +600,7 @@
     {
      "say": "At the table, a man breaks bread and passes it across, and a woman lifts a cup of watered wine. Olives sit in a small bowl between them, along with whatever else the day allowed. The lamp burns low and steady, and neither of them is in any hurry to finish.",
      "scene": {
-      "setting": "house_inside",
+      "setting": "villa_inside",
       "time": "night",
       "weather": "clear",
       "shot": "close",
@@ -620,10 +621,9 @@
       "props": [
        "oil_lamp",
        "brazier",
-       "table",
-       "amphora"
+       "table"
       ],
-      "variant": 7,
+      "variant": 8,
       "fire": "low"
      }
     },
@@ -684,7 +684,7 @@
        }
       ],
       "props": [],
-      "variant": 47
+      "variant": 50
      }
     },
     {
@@ -704,7 +704,7 @@
        }
       ],
       "props": [],
-      "variant": 14
+      "variant": 17
      }
     },
     {
@@ -790,10 +790,9 @@
       ],
       "props": [
        "reeds",
-       "rock",
-       "basket"
+       "rock"
       ],
-      "variant": 6
+      "variant": 7
      }
     },
     {
@@ -833,7 +832,7 @@
        "stall",
        "stall"
       ],
-      "variant": 29
+      "variant": 31
      }
     },
     {
@@ -889,7 +888,7 @@
       "props": [
        "torch"
       ],
-      "variant": 32
+      "variant": 35
      }
     },
     {
@@ -945,7 +944,7 @@
        "krater",
        "barrel"
       ],
-      "variant": 16
+      "variant": 18
      }
     },
     {
@@ -1005,7 +1004,7 @@
        "torch",
        "dog"
       ],
-      "variant": 13
+      "variant": 14
      },
      "painting": {
       "source": "The Metropolitan Museum of Art",
@@ -1050,7 +1049,7 @@
        "couch",
        "krater"
       ],
-      "variant": 20
+      "variant": 22
      }
     },
     {
@@ -1083,7 +1082,7 @@
        "column",
        "stall"
       ],
-      "variant": 5
+      "variant": 6
      }
     },
     {
@@ -1203,7 +1202,7 @@
        "amphora",
        "bench"
       ],
-      "variant": 29
+      "variant": 30
      }
     },
     {
@@ -1263,7 +1262,7 @@
        "woodpile",
        "amphora"
       ],
-      "variant": 12
+      "variant": 14
      }
     },
     {
@@ -1296,7 +1295,7 @@
        "bed",
        "amphora"
       ],
-      "variant": 12,
+      "variant": 13,
       "fire": "low"
      }
     },
@@ -1364,7 +1363,7 @@
        "basket",
        "amphora"
       ],
-      "variant": 41
+      "variant": 43
      }
     },
     {
@@ -1476,7 +1475,7 @@
        "brazier",
        "torch"
       ],
-      "variant": 20
+      "variant": 23
      }
     },
     {
@@ -1525,7 +1524,7 @@
        "brazier",
        "stall"
       ],
-      "variant": 16
+      "variant": 18
      }
     },
     {
@@ -1602,7 +1601,7 @@
       "props": [
        "torch"
       ],
-      "variant": 19
+      "variant": 22
      }
     },
     {
@@ -1632,7 +1631,7 @@
        "torch",
        "brazier"
       ],
-      "variant": 6
+      "variant": 7
      }
     },
     {
@@ -1711,7 +1710,7 @@
        "brazier",
        "torch"
       ],
-      "variant": 27
+      "variant": 30
      }
     }
    ]
@@ -1774,7 +1773,7 @@
        "brazier",
        "table"
       ],
-      "variant": 13
+      "variant": 15
      }
     },
     {
@@ -1805,7 +1804,7 @@
        "campfire",
        "goat"
       ],
-      "variant": 31
+      "variant": 32
      }
     },
     {
@@ -1943,7 +1942,7 @@
        "table",
        "amphora"
       ],
-      "variant": 45
+      "variant": 47
      }
     },
     {
@@ -1974,7 +1973,7 @@
        "dog",
        "basket"
       ],
-      "variant": 19
+      "variant": 20
      }
     },
     {
@@ -2065,7 +2064,7 @@
        "woodpile",
        "barrel"
       ],
-      "variant": 11
+      "variant": 12
      }
     }
    ]
@@ -2129,5 +2128,12 @@
   "65": "4d8c182d4ce4",
   "24": "12c9de38e79a",
   "33": "682be7d3fad0"
+ },
+ "storyboard": {
+  "kit": "2541dca70eeb",
+  "clean": false,
+  "reviewed_at": "2026-10-06T01:39",
+  "rounds": 3,
+  "repaired": 97
  }
 }
