@@ -493,6 +493,11 @@ def _no_repeated_lines(beats: list[dict], words: dict, rs: list,
     return out
 
 
+_DANGLING = frozenset(
+    "a an the of out to in on at for with and or but from by into about "
+    "his her their its my your our than as that who".split())
+
+
 def _finish_the_sentence(beats: list[dict], words: dict,
                          durations: dict, rs: list,
                          max_extend: float = 3.0,
@@ -617,8 +622,16 @@ def validate_edl(edl: dict, durations: dict[str, float],
         hook_raw = scrub_text(str(edl.get("hook_overlay", "")).strip())
         _hw = hook_raw.split()
         if len(_hw) > 7:
-            hook_raw = " ".join(_hw[:7])
-            rs.append(f"hook trimmed {len(_hw)}->7 words (repaired)")
+            # never end on a dangling word: backtest #5 shipped "EMIRU
+            # FIGHTS A MATTRESS OUT OF A" to the critic, who called the
+            # title cut off
+            kept = _hw[:7]
+            while len(kept) > 3 and kept[-1].lower().strip(",.:;!?") in \
+                    _DANGLING:
+                kept.pop()
+            hook_raw = " ".join(kept)
+            rs.append(f"hook trimmed {len(_hw)}->{len(kept)} words "
+                      "(repaired)")
         elif len(_hw) < 3:
             rs.append(f"hook too short ({len(_hw)} words)")
             return None
@@ -922,8 +935,32 @@ def plan_story(reports: list[dict], event: dict | None = None,
     return edl
 
 
+def _fmt_on_screen(items: list[dict] | None) -> str:
+    """What the cut shows and says beyond the streamer's own words.
+
+    Backtest #5: every cut was marked down for missing context, including
+    the ones whose narrator SAID it — the critic samples frames (a 1-2s
+    overlay falls between them) and reads the source transcript (the
+    voice-over is not in it). It is told what is really there, on the
+    output clock, and still judges whether that is enough."""
+    if not items:
+        return ""
+    rows = []
+    for o in items:
+        if o["kind"] == "narration":
+            rows.append(f"- {o['at']:.1f}s VOICE-OVER (spoken over the "
+                        f"footage, not captioned): \"{o['text']}\"")
+        else:
+            rows.append(f"- {o['at']:.1f}s for {o['secs']:.1f}s ON-SCREEN "
+                        f"{o['kind'].upper()}: \"{o['text']}\"")
+    return ("ADDED BY THE EDIT (exactly what the cut shows/says beyond the "
+            "transcript; frames may miss a short overlay):\n"
+            + "\n".join(rows) + "\n")
+
+
 def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
-                     duration_s: float) -> dict:
+                     duration_s: float,
+                     on_screen: list[dict] | None = None) -> dict:
     """§18 narrative review of the assembled rough cut. Fails CLOSED on
     brain unreachability (publish=False, score -1): the story format's
     primary risk is incoherence, so an UNREVIEWED story must not ship.
@@ -947,6 +984,7 @@ def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
             + (f"Contact sheet image (sampled frames of the ASSEMBLED rough "
                f"cut, timestamped labels) — read this image file: {sheet}\n"
                if have_sheet else "")
+            + _fmt_on_screen(on_screen)
             + f"FINAL TRANSCRIPT:\n{transcript_lines[:3000]}")
     out = _brain(user, _REVIEW_SYSTEM, read_files=have_sheet,
                  require_vision=have_sheet,

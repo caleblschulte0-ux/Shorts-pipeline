@@ -87,18 +87,71 @@ def _textfile(text: str, work: Path, tag: str) -> Path:
     return tf
 
 
+MAX_TEXT_W = CANVAS_W - 2 * 70          # the box's border stays on screen
+
+
+def _text_w(text: str, size: int) -> float:
+    try:
+        from PIL import ImageFont
+        return ImageFont.truetype(FONT, size).getlength(text)
+    except Exception:  # noqa: BLE001
+        return len(text) * size * 0.48    # Anton's average advance
+
+
+def _wrap(text: str, size: int) -> tuple[list[str], int]:
+    """Lines that FIT the frame, and the size that makes them fit.
+
+    Backtest #5: "EMIRU FIGHTS A MATTRESS OUT OF A BOX" is wider than
+    1080px at 64px, and drawtext does not wrap — the critic read the hook
+    as cut off. Greedy wrap to the measured width; at most two lines, and
+    the size steps down until they fit."""
+    words = text.split()
+    while True:
+        lines, cur = [], ""
+        for w in words:
+            cand = f"{cur} {w}".strip()
+            if cur and _text_w(cand, size) > MAX_TEXT_W:
+                lines.append(cur)
+                cur = w
+            else:
+                cur = cand
+        if cur:
+            lines.append(cur)
+        if len(lines) == 2:
+            # balanced, not greedy: no one-word orphan under a full line
+            lines = min(([" ".join(words[:k]), " ".join(words[k:])]
+                         for k in range(1, len(words))),
+                        key=lambda ls: max(_text_w(x, size) for x in ls))
+        if (len(lines) <= 2 and all(_text_w(l, size) <= MAX_TEXT_W
+                                    for l in lines)) or size <= 28:
+            return lines, size
+        size -= 4
+
+
+def _read_secs(text: str, floor: float) -> float:
+    """Long enough to READ: half a second to notice it, then 0.3s a word
+    (a six-word overlay held 1.3s was gone before it could be read)."""
+    return max(floor, 0.5 + 0.3 * len((text or "").split()))
+
+
 def _overlay_draw(text: str, work: Path, tag: str, *, y: int,
                   size: int, start: float, dur: float) -> str:
-    """A drawtext fragment: boxed text over the footage for a bounded
-    window. Upper-third placement; the footage keeps playing beneath."""
+    """drawtext fragments: boxed text over the footage for a bounded
+    window, each line centred and measured to fit the frame. Upper-third
+    placement; the footage keeps playing beneath."""
     text = (text or "").strip()
     if not text:
         return ""
-    tf = _textfile(text, work, tag)
-    return (f"drawtext=fontfile={FONT}:textfile={tf}:fontcolor=white:"
-            f"fontsize={size}:x=(w-tw)/2:y={y}:box=1:boxcolor=black@0.55:"
-            f"boxborderw=18:enable='between(t,{start:.2f},"
-            f"{start + dur:.2f})'")
+    lines, size = _wrap(text, size)
+    out = []
+    for i, line in enumerate(lines):
+        tf = _textfile(line, work, f"{tag}_{i}")
+        out.append(
+            f"drawtext=fontfile={FONT}:textfile={tf}:fontcolor=white:"
+            f"fontsize={size}:x=(w-tw)/2:y={y + i * int(size * 1.5)}:"
+            f"box=1:boxcolor=black@0.55:boxborderw=18:"
+            f"enable='between(t,{start:.2f},{start + dur:.2f})'")
+    return ",".join(out)
 
 
 def _tight_crop(src: Path) -> str:
@@ -226,11 +279,13 @@ def _extract_segment(src: Path, out: Path, work: Path, tag: str, *,
     draws = []
     if hook:
         draws.append(_overlay_draw(hook, work, f"h{tag}", y=230, size=64,
-                                   start=0.0, dur=HOOK_DUR))
+                                   start=0.0,
+                                   dur=_read_secs(hook, HOOK_DUR)))
     if context_overlay:
         draws.append(_overlay_draw(context_overlay, work, f"c{tag}",
                                    y=150, size=52, start=0.0,
-                                   dur=OVERLAY_DUR))
+                                   dur=min(dur, _read_secs(context_overlay,
+                                                           OVERLAY_DUR))))
     for i, fx in enumerate(effects or []):
         if fx.get("type") == "subtle_punch":
             at = min(max(0.0, float(fx.get("at", 0)) - start), dur - 0.1)
@@ -481,6 +536,11 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
     n_overlays = 0
     used_narration = False
     narr = edl.get("narration")
+    # what the cut SHOWS and SAYS beyond the source's own words, on the
+    # output clock — the critic is told (it samples frames and reads a
+    # transcript, so a voice-over and a 1-2s overlay are otherwise unknown
+    # to it; backtest #5's critic asked for context the narrator gave)
+    on_screen: list[dict] = []
 
     for idx, beat in enumerate(beats):
         srcinfo = sources.get(beat["source_id"])
@@ -574,6 +634,20 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
                           "words": srcinfo.get("words") or []})
         if beat.get("context_overlay"):
             n_overlays += 1
+            ov = beat["context_overlay"]
+            on_screen.append({"at": round(timeline, 1), "kind": "overlay",
+                              "secs": round(min(end - start, _read_secs(
+                                  ov, OVERLAY_DUR)), 1), "text": ov})
+        if idx == 0 and edl.get("hook_overlay"):
+            on_screen.append({"at": 0.0, "kind": "title",
+                              "secs": round(_read_secs(
+                                  edl["hook_overlay"], HOOK_DUR), 1),
+                              "text": edl["hook_overlay"]})
+        if used_narration and not any(o["kind"] == "narration"
+                                      for o in on_screen):
+            on_screen.append({"at": round(timeline + 0.15, 1),
+                              "kind": "narration", "secs": None,
+                              "text": narr["text"]})
         # this beat's caption words are placed at the CURRENT timeline
         # offset (before any replay that follows it)
         for w in _seg_words(srcinfo.get("words") or [], start, end):
@@ -645,6 +719,7 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
             "member_keys": [u["source_url"] for u in used],
             "final_words": final_words,
             "used_narration": used_narration,
+            "on_screen": on_screen,
             # REALIZED transitions (reviewer #11): what the renderer actually
             # produced, so a degraded j/l→hard cut is not logged as a j/l cut
             # that happened. `transitions_requested` keeps the EDL's intent for

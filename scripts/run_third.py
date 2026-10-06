@@ -1611,7 +1611,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 tlines = scene_analysis._dialogue_lines(led["final_words"])
                 review = story_director.review_rough_cut(
                     edl, tlines, str(sheet) if sheet_ok else None,
-                    led["duration_s"])
+                    led["duration_s"], led.get("on_screen"))
                 _backtest_keep(elbl, 0, out_mp4, edl, review, sub)
                 # REPAIR, THEN RE-JUDGE — up to `story_revisions` times.
                 # The playbook allowed ONE revision. On 2026-10-01 and 10-02
@@ -1666,7 +1666,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                         review = story_director.review_rough_cut(
                             edl, tlines,
                             str(sheet) if sheet_ok else None,
-                            led["duration_s"])
+                            led["duration_s"], led.get("on_screen"))
                         _scores.append(review["story_score"])
                         _backtest_keep(elbl, revision_count, out_mp4, edl,
                                        review, sub)
