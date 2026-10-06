@@ -1,0 +1,32 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261006",
+  "bundle": {
+    "identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093",
+    "path": "exchange/bundles/20261006/bundle.json"
+  },
+  "request_id": "he-blocked-my-spot-for-a-year-s0-8ca1511b9ee5",
+  "safe_request_id": "he-blocked-my-spot-for-a-year-s0-8ca1511b9ee5",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e87efe68275ca2323b65d507440391167b04d712202bc01b9f876f6f1702ab75",
+  "prompt_used": "An editorial illustration for a short-form video: pickup truck parking spot. It accompanies the narration: \"a neighbor's truck sat in it anyway for eleven months straight\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "media",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1SObvakzopu73u7yj0LrYit89N_jRfsNY",
+    "filename": "20261006__he-blocked-my-spot-for-a-year-s0-8ca1511b9ee5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1SObvakzopu73u7yj0LrYit89N_jRfsNY",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "57f1637350c61783b46ff08cf68391455c8e070d48f0326d033c58aeaa63aff4",
+    "bytes": 1980916,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-06T11:24:14.750Z"
+}
