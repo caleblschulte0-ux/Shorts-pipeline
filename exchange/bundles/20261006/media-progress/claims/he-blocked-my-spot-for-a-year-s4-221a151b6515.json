@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "date": "20261006",
+  "bundle": {
+    "identity": "6822945925e23d756d1c09c6ee9eccb5c93a3814034bba1a744bf586c9f86093"
+  },
+  "request_id": "he-blocked-my-spot-for-a-year-s4-221a151b6515",
+  "safe_request_id": "he-blocked-my-spot-for-a-year-s4-221a151b6515",
+  "worker": "media",
+  "worker_run_id": "daily-producer-20261006-0615",
+  "created_at": "2026-10-06T11:13:56.009Z",
+  "expires_at": "2026-10-06T11:28:56.009Z",
+  "lease_seconds": 900
+}
