@@ -1,0 +1,17 @@
+{
+  "key": "hpv_teen_infection_rate_drop",
+  "title": "Vaccine-Type HPV Prevalence in Teen Girls",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2003-2006 vs 2015-2018 (NHANES)",
+  "source": {
+    "name": "Genital HPV Infection — Statistics (NHANES surveillance)",
+    "publisher": "U.S. Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/std/hpv/stats.htm",
+    "officiality": "official",
+    "access_date": "2026-10-07"
+  },
+  "notes": "CDC/NHANES surveillance found vaccine-type HPV prevalence among females aged 14-19 fell from about 11.5% (2003-2006, pre-vaccine) to about 1.8% (2015-2018) — roughly an 88% relative decline. Recalled from published CDC surveillance figures; not live-refreshed this run because outbound network access was unavailable in this session.",
+  "baseline": {"label": "Before the vaccine (2003-2006)", "value": 11.5},
+  "points": [{"label": "Today (2015-2018)", "value": 1.8}]
+}

@@ -31431,6 +31431,242 @@
      "say": "In 2024 alone, making pennies cost $118 million to produce just $32 million in value."
     }
    ]
+  },
+  {
+   "slug": "ingenuity-mars-helicopter-flights",
+   "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
+   "hook": "A tiny helicopter wasn't supposed to last this long.",
+   "closing": "Five flights were the ask. Seventy-two was the answer.",
+   "question": "Would you have guessed seventy-two?",
+   "caption": "NASA's Ingenuity was built for just 5 flights on Mars. It flew 72 — and logged over 10 miles doing it. Here's how a helicopter kept flying far longer than anyone planned. Would you have bet on five or seventy-two? 👇",
+   "hashtags": [
+    "mars",
+    "ingenuity",
+    "nasa",
+    "spaceexploration",
+    "spacefacts",
+    "didyouknow",
+    "aerospace",
+    "robotics",
+    "marsrover",
+    "sciencefacts",
+    "engineering",
+    "jpl"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "ingenuity_plan_vs_actual_flights",
+     "params": {
+      "file": "ingenuity_plan_vs_actual_flights.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "1 · THE PLAN",
+     "topic": "ingenuity's planned 5 flights vs its actual 72 on mars",
+     "say": "NASA built Ingenuity for just five test flights on Mars, but it flew seventy-two."
+    },
+    {
+     "source": "offline",
+     "key": "ingenuity_flight_count_trend",
+     "params": {
+      "file": "ingenuity_flight_count_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE CLIMB",
+     "topic": "ingenuity's flights climbed for years on mars",
+     "say": "It passed flight fifty in 2023, then snapped a rotor blade on flight seventy-two."
+    },
+    {
+     "source": "offline",
+     "key": "ingenuity_distance_plan_vs_actual",
+     "params": {
+      "file": "ingenuity_distance_plan_vs_actual.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · WHAT IT PROVED",
+     "topic": "what ingenuity's mars flights proved about distance flew",
+     "say": "It ended up flying over ten miles — seventeen times farther than planned."
+    }
+   ]
+  },
+  {
+   "slug": "hpv-vaccine-cancer-drop",
+   "title": "The Cancer Vaccine Already Cut Cases By 88%",
+   "hook": "What if a vaccine could just erase a cancer?",
+   "closing": "Turns out prevention beats a cure. Who knew.",
+   "question": "Did you know this vaccine worked?",
+   "caption": "About 91% of cervical cancers start with one virus: HPV. Since the vaccine arrived in 2006, infections in teen girls have collapsed — and so has the cancer. Here's the data connecting the dots. Did you know the vaccine does this? 👇",
+   "hashtags": [
+    "hpv",
+    "hpvvaccine",
+    "cervicalcancer",
+    "cancerprevention",
+    "publichealth",
+    "vaccines",
+    "womenshealth",
+    "science",
+    "healthfacts",
+    "cdc",
+    "cancer",
+    "immunization"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "hpv_cervical_cancer_share",
+     "params": {
+      "file": "hpv_cervical_cancer_share.json"
+     },
+     "insight_type": "share",
+     "role": "1 · THE CAUSE",
+     "topic": "the virus behind almost all cervical cancer",
+     "say": "About 91% of cervical cancers are caused by one virus, HPV."
+    },
+    {
+     "source": "offline",
+     "key": "hpv_teen_infection_rate_drop",
+     "params": {
+      "file": "hpv_teen_infection_rate_drop.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · THE INFECTION RATE",
+     "topic": "how the vaccine cut hpv infections in teen girls",
+     "say": "Before the vaccine, 11.5% of teen girls carried it — now just 1.8%."
+    },
+    {
+     "source": "offline",
+     "key": "hpv_vaccinated_cancer_reduction",
+     "params": {
+      "file": "hpv_vaccinated_cancer_reduction.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · THE PAYOFF",
+     "topic": "the vaccine's effect on cervical cancer cases",
+     "say": "Women vaccinated before age 17 cut their cervical cancer risk by 88%."
+    }
+   ]
+  },
+  {
+   "slug": "saharan-dust-feeds-amazon",
+   "title": "Africa Sends The Amazon 27 Million Tons Of Dust A Year",
+   "hook": "The rainforest runs on sand from another continent.",
+   "closing": "Dust: nature's slowest delivery service.",
+   "question": "Guessed dust could feed a rainforest?",
+   "caption": "Africa sends 182 million tons of dust into the sky every year. Most sinks into the ocean — but 27 million tons survives the 5,000-mile trip to the Amazon, carrying the exact nutrient the rainforest is starving for. Would you have guessed dust feeds a rainforest? 👇",
+   "hashtags": [
+    "saharandust",
+    "amazon",
+    "rainforest",
+    "climate",
+    "nature",
+    "environment",
+    "earthscience",
+    "nasa",
+    "ecology",
+    "phosphorus",
+    "africa",
+    "didyouknow"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "saharan_dust_vs_pyramid",
+     "params": {
+      "file": "saharan_dust_vs_pyramid.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "1 · THE CLOUD",
+     "topic": "how much dust africa sends into the sky",
+     "say": "Each year, winds lift 182 million tons of dust off the Sahara."
+    },
+    {
+     "source": "offline",
+     "key": "saharan_dust_share_amazon_vs_ocean",
+     "params": {
+      "file": "saharan_dust_share_amazon_vs_ocean.json"
+     },
+     "insight_type": "share",
+     "role": "2 · WHERE IT LANDS",
+     "topic": "where that dust from africa actually lands",
+     "say": "About 27.7 million tons of that dust actually reaches the Amazon."
+    },
+    {
+     "source": "offline",
+     "key": "saharan_dust_phosphorus_payoff",
+     "params": {
+      "file": "saharan_dust_phosphorus_payoff.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · WHY THE AMAZON NEEDS THAT DUST",
+     "topic": "why the amazon needs that dust from africa",
+     "say": "That dust delivers about 22,000 tons of phosphorus to the Amazon yearly."
+    }
+   ]
+  },
+  {
+   "slug": "medical-debt-credit-score-fix",
+   "title": "One Rule Change Fixed 16 Million Credit Scores For Free",
+   "hook": "Medical debt stopped wrecking your credit score in 2022.",
+   "closing": "Score went up. Debt didn't move an inch.",
+   "question": "Did your credit score jump in 2022?",
+   "caption": "Medical debt used to make up 58% of every collections account on a credit report. A 2022 rule change erased most of it — lifting scores for 16 million Americans without anyone paying a cent. Did your score change back then? 👇",
+   "hashtags": [
+    "creditscore",
+    "medicaldebt",
+    "creditreport",
+    "personalfinance",
+    "finance",
+    "cfpb",
+    "debt",
+    "moneytips",
+    "financetips",
+    "consumerrights",
+    "creditrepair",
+    "budgeting"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "medical_debt_collections_share",
+     "params": {
+      "file": "medical_debt_collections_share.json"
+     },
+     "insight_type": "share",
+     "role": "1 · THE OLD RULE",
+     "topic": "medical debt's old share of credit report collections",
+     "say": "Medical debt used to make up 58% of all credit-report collections."
+    },
+    {
+     "source": "offline",
+     "key": "medical_debt_rule_change_drop",
+     "params": {
+      "file": "medical_debt_rule_change_drop.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · THE RULE CHANGE",
+     "topic": "the rule change that erased medical collections",
+     "say": "After 2022's rule change, medical collections on reports dropped about 70%."
+    },
+    {
+     "source": "offline",
+     "key": "medical_debt_credit_score_lift",
+     "params": {
+      "file": "medical_debt_credit_score_lift.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · WHAT IT DID TO SCORES",
+     "topic": "what the rule change did to credit scores",
+     "say": "That single rule lifted average credit scores by about 20 points."
+    }
+   ]
   }
  ],
  "videos": [

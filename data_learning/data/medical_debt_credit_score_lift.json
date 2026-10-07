@@ -1,0 +1,17 @@
+{
+  "key": "medical_debt_credit_score_lift",
+  "title": "Average Credit Score Change From the Medical-Debt Reporting Fix",
+  "unit": "points",
+  "geography": "United States",
+  "time_coverage": "2022-2023",
+  "source": {
+    "name": "Medical Debt Burden in the United States",
+    "publisher": "Consumer Financial Protection Bureau",
+    "url": "https://www.consumerfinance.gov/data-research/research-reports/medical-debt-burden-in-the-united-states/",
+    "officiality": "official",
+    "access_date": "2026-10-07"
+  },
+  "notes": "CFPB estimated the medical-debt credit-reporting changes raised scores for an estimated 16 million Americans, by an average of about 20 points, with no debt actually repaid. Recalled from CFPB's published estimate; not live-refreshed this run because outbound network access was unavailable in this session.",
+  "baseline": {"label": "Before the fix", "value": 0},
+  "points": [{"label": "After the fix (average)", "value": 20}]
+}

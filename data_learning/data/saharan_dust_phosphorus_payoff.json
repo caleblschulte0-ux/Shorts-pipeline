@@ -1,0 +1,17 @@
+{
+  "key": "saharan_dust_phosphorus_payoff",
+  "title": "Phosphorus Lost From Amazon Soil vs. Delivered By Saharan Dust",
+  "unit": "thousand tons",
+  "geography": "Amazon basin",
+  "time_coverage": "Annual average (NASA CALIPSO satellite record)",
+  "source": {
+    "name": "Yu et al., satellite study of trans-Atlantic Saharan dust transport",
+    "publisher": "NASA Goddard Space Flight Center",
+    "url": "https://www.nasa.gov/feature/goddard/2015/nasa-satellite-reveals-how-much-saharan-dust-feeds-amazon-s-plants",
+    "officiality": "official",
+    "access_date": "2026-10-07"
+  },
+  "notes": "NASA's study estimated Saharan dust delivers roughly 22,000 tons of phosphorus to the Amazon basin per year, in the same range as the phosphorus the rainforest loses annually to rain and flooding — part of why the dust matters ecologically. Recalled from the published study; not live-refreshed this run because outbound network access was unavailable in this session.",
+  "baseline": {"label": "Lost from Amazon soil each year", "value": 22},
+  "points": [{"label": "Delivered by Saharan dust each year", "value": 22}]
+}

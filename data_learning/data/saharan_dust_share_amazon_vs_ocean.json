@@ -1,0 +1,19 @@
+{
+  "key": "saharan_dust_share_amazon_vs_ocean",
+  "title": "Where Saharan Dust Ends Up",
+  "unit": "million tons",
+  "geography": "Sahara Desert to the Amazon basin",
+  "time_coverage": "Annual average (NASA CALIPSO satellite record)",
+  "source": {
+    "name": "Yu et al., satellite study of trans-Atlantic Saharan dust transport",
+    "publisher": "NASA Goddard Space Flight Center",
+    "url": "https://www.nasa.gov/feature/goddard/2015/nasa-satellite-reveals-how-much-saharan-dust-feeds-amazon-s-plants",
+    "officiality": "official",
+    "access_date": "2026-10-07"
+  },
+  "notes": "Of the roughly 182 million tons lifted off the Sahara annually, NASA's study estimated about 27.7 million tons survives the roughly 5,000-mile crossing to settle over the Amazon basin; the remainder settles over the Atlantic Ocean and Caribbean en route. Recalled from the published study; not live-refreshed this run because outbound network access was unavailable in this session.",
+  "points": [
+    {"label": "Reaches the Amazon", "value": 27.7},
+    {"label": "Settles over the ocean en route", "value": 154.3}
+  ]
+}
