@@ -2751,6 +2751,13 @@
       ],
       "words_first_10s": 12,
       "scene_changes_before_5s": 2
+    },
+    "light-pollution-erasing-sky": {
+      "claimed_at": "2026-10-07T13:55:45.311156+00:00",
+      "title": "Light Pollution Is Erasing The Night Sky",
+      "publish_at": "2026-10-07T20:01:21Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3383,6 +3390,14 @@
       "state": "posted",
       "slug": "sand-mining-crisis",
       "at": "2026-10-07T13:43:35.700985+00:00"
+    },
+    {
+      "claimed_at": "2026-10-07T13:55:45.311156+00:00",
+      "title": "Light Pollution Is Erasing The Night Sky",
+      "publish_at": "2026-10-07T20:01:21Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "light-pollution-erasing-sky"
     }
   ]
 }
