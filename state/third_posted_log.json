@@ -11648,14 +11648,49 @@
       "ts": "2026-10-07T13:16:15.419814+00:00"
     },
     "clip-20261007-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/AcceptablePoliteWoodpeckerShazBotstix-drqZ6-CFEHh9ZYkc",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/nJlLHCKNFvc",
       "title": "Kaicenat: Kai Cenat Says Stuff Is Getting Sad In The Stream",
       "kind": "twitch_clip",
-      "ts": "2026-10-07T13:19:20.374474+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-07T13:19:28.754504+00:00",
+      "uploaded_at": "2026-10-07T13:19:28.754521+00:00",
+      "publish_at": "2026-10-08T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261007-kaicenat-kai-cenat-says-stuff-is-getting-sad-in--5cd716d1"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/AcceptablePoliteWoodpeckerShazBotstix-drqZ6-CFEHh9ZYkc",
+      "streamer": "kaicenat",
+      "series": "drama",
+      "hook": "KAI SAYS IT'S GETTING SAD",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2266,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "rejected-expensivestupidturtleresidentsleeper-j8qfwxdxwivp2a6y": {
+      "source_url": "https://www.twitch.tv/cinna/clip/ExpensiveStupidTurtleResidentSleeper-J8QFWxDXwIVP2a6Y",
+      "streamer": "cinna",
+      "title": "Kalita tells Brickbois how to rob a bank",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Walking through alleys, no visible event)",
+      "ts": "2026-10-07T13:20:13.961507+00:00"
+    },
+    "rejected-doubtfulencouragingmulemvgame-d_-b58s6vqlkvpeh": {
+      "source_url": "https://www.twitch.tv/summit1g/clip/DoubtfulEncouragingMuleMVGame-D_-B58s6vQLKVpeH",
+      "streamer": "summit1g",
+      "title": "Summit gets sent to Asia by Alliance warlock",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (WoW PvP chase, tiny UI, insider)",
+      "ts": "2026-10-07T13:22:16.898356+00:00"
     }
   }
 }
