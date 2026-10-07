@@ -10,8 +10,8 @@
       "median_vph": 0.1
     },
     "fail": {
-      "n": 14,
-      "median_vph": 0.025
+      "n": 13,
+      "median_vph": 0.03
     },
     "drama": {
       "n": 10,
@@ -21,6 +21,10 @@
       "n": 7,
       "median_vph": 0.04
     },
+    "rage": {
+      "n": 5,
+      "median_vph": 0.35
+    },
     "argument": {
       "n": 5,
       "median_vph": 0.04
@@ -28,10 +32,6 @@
     "jumpscare": {
       "n": 4,
       "median_vph": 0.235
-    },
-    "rage": {
-      "n": 4,
-      "median_vph": 0.29
     },
     "beef": {
       "n": 4,
@@ -45,7 +45,7 @@
   "excluded": {
     "unknown": {
       "n": 1,
-      "median_vph": 0.53
+      "median_vph": 0.52
     },
     "story": {
       "n": 1,
