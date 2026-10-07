@@ -5,8 +5,8 @@
   "had_response": true,
   "envelope_problems": [],
   "authored": {
-    "promoted": 0,
-    "rejected": 1,
+    "promoted": 1,
+    "rejected": 0,
     "other_channels": {
       "explainer": {
         "applied": 0,
@@ -39,7 +39,7 @@
     "applied": 0,
     "kept": 0,
     "rejected": 0,
-    "absent": 5
+    "absent": 6
   },
   "contract_refused": [],
   "details": []
