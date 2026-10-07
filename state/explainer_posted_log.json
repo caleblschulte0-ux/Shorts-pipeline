@@ -2775,6 +2775,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 57,
       "duration_s": 27.8
+    },
+    "sand-mining-crisis": {
+      "claimed_at": "2026-10-07T13:43:25.081418+00:00",
+      "title": "The World Is Quietly Running Out Of Sand",
+      "publish_at": "2026-10-07T14:01:21Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3416,6 +3423,14 @@
       "state": "posted",
       "slug": "aquaculture-overtook-wild-fishing",
       "at": "2026-10-07T12:48:19.281853+00:00"
+    },
+    {
+      "claimed_at": "2026-10-07T13:43:25.081418+00:00",
+      "title": "The World Is Quietly Running Out Of Sand",
+      "publish_at": "2026-10-07T14:01:21Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "sand-mining-crisis"
     }
   ]
 }
