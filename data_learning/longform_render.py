@@ -50,7 +50,7 @@ from shared import look                                          # noqa: E402
 from data_learning.demo_render import _dur, _run                 # noqa: E402
 from data_learning.studio_render import (                        # noqa: E402
     KOKORO_MODEL, KOKORO_VOICES, _font, _full_by, _headline_number,
-    _music_track, _theme_for, _tts_text)
+    _build_music, _theme_for, _tts_text)
 
 W, H, FPS = 1920, 1080, 30
 EDGE_VOICE = "en-US-GuyNeural"       # fallback narrator (calm US male)
@@ -345,10 +345,47 @@ def _compose_exhibit(art, seg, theme: dict, idx: int, n: int):
     return img
 
 
+# The art is drawn for the SHORTS: a 1080x1920 frame, its picture somewhere
+# in the middle of a lot of dark ground. Fitted whole into the exhibit box
+# it came out a postage stamp on the right of a 16:9 frame with most of the
+# frame empty (the 2026-10-07 render of poisonous-plants). Crop to what is
+# actually drawn first, across the whole build, so the picture fills the box.
+CONTENT_FLOOR = 28          # a channel above this is ink, not ground
+CONTENT_PAD = 0.06          # breathing room around the drawn extent
+
+
+def _content_box(arts) -> tuple[int, int, int, int] | None:
+    """Union bbox of everything drawn across `arts` (PIL images of one size),
+    padded; None when nothing is drawn or the crop would not help."""
+    import numpy as np
+    box = None
+    for im in arts:
+        a = np.asarray(im.convert("RGB"))
+        ys, xs = np.nonzero(a.max(axis=2) > CONTENT_FLOOR)
+        if not len(xs):
+            continue
+        b = (int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1)
+        box = b if box is None else (min(box[0], b[0]), min(box[1], b[1]),
+                                     max(box[2], b[2]), max(box[3], b[3]))
+    if box is None:
+        return None
+    w0, h0 = arts[0].size
+    px = int((box[2] - box[0]) * CONTENT_PAD) + 8
+    py = int((box[3] - box[1]) * CONTENT_PAD) + 8
+    box = (max(0, box[0] - px), max(0, box[1] - py),
+           min(w0, box[2] + px), min(h0, box[3] + py))
+    if (box[2] - box[0]) * (box[3] - box[1]) > 0.9 * w0 * h0:
+        return None
+    return box
+
+
 def _beat_frame(seg, theme: dict, idx: int, n: int, out: Path) -> Path:
     from PIL import Image
     still = _chart_still(seg.chart_path)
     art = Image.open(still).convert("RGB") if still else None
+    if art is not None:
+        box = _content_box([art])
+        art = art.crop(box) if box else art
     _compose_exhibit(art, seg, theme, idx, n).save(out)
     return out
 
@@ -570,8 +607,12 @@ def _built_beat_clip(seg, theme: dict, idx: int, n: int, dur: float,
         raise RuntimeError(f"only {len(frames)} build frame(s) to animate")
     out_dir = work / f"lfcomposed{idx}"
     out_dir.mkdir(exist_ok=True)
+    probe = frames[:: max(1, len(frames) // 8)] + [frames[-1]]
+    box = _content_box([Image.open(fp) for fp in probe])
     for i, fp in enumerate(frames):
         art = Image.open(fp).convert("RGB")
+        if box:
+            art = art.crop(box)
         _compose_exhibit(art, seg, theme, idx, n).save(
             out_dir / f"f{i:05d}.png")
     raw = work / f"sbeat{idx}_raw.mp4"
@@ -806,9 +847,15 @@ def render(slug: str, out_path: Path, voice: str | None = None,
               "-safe", "0", "-i", str(listf), "-c", "copy", str(video)])
 
         # Soundtrack: narration + ducked music bed (skip music gracefully).
-        track = _music_track(cfg.get("music_vibe", "cinematic"), slug)
+        # The Shorts' bed: a real track when the library has one, else the
+        # synthesized one. This used to take only a real track and fall to
+        # narration over silence — every long-form ever rendered here had no
+        # music, because the library is empty on the runner.
+        track = work / "bed.wav"
+        _build_music(total, track, theme.get("vibe")
+                     or cfg.get("music_vibe", "cinematic"), slug)
         audio = work / "mix.wav"
-        if track:
+        if track.exists():
             _run(["ffmpeg", "-y", "-loglevel", "error",
                   "-i", str(narration), "-stream_loop", "-1",
                   "-i", str(track), "-filter_complex",
@@ -844,6 +891,79 @@ def render(slug: str, out_path: Path, voice: str | None = None,
     print(f"[longform] {out_path}  ({total:.0f}s, "
           f"{len(st.segments)} beats)")
     return out_path
+
+
+def render_episode(slugs: list[str], out_path: Path,
+                   config_path: Path | None = None) -> Path:
+    """ONE watch-page video made of several stories, each its own chapter.
+
+    A single explainer story is ~45 seconds of narration; rendered alone at
+    16:9 it is a 53-second "long-form" (poisonous-plants, 2026-10-07), which
+    no watch page wants and no honest gate passes. An episode strings
+    `slugs` together in order — each rendered by `render()` exactly as a
+    single story would be, with its own title card, beats and closing — and
+    opens straight on the first story's hook: no silent episode card ahead
+    of it, because the first seconds are where a watch-page video is lost.
+
+    Writes `<out>.mp4`, `<out>.meta.json` (chapters at every story start,
+    every source) and `<out>.jpg` (the lead story's thumbnail).
+    """
+    if not slugs:
+        raise ValueError("an episode needs at least one story")
+    out_path = Path(out_path)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    cfg = json.loads((Path(config_path) if config_path
+                      else PKG_DIR / "curiosity.config.json").read_text())
+    titles = {s["slug"]: s.get("title") or s["slug"]
+              for s in cfg.get("stories", [])}
+    with tempfile.TemporaryDirectory() as td:
+        work = Path(td)
+        parts, chapters, sources, t = [], [], [], 0.0
+        for i, slug in enumerate(slugs):
+            part = work / f"part{i}.mp4"
+            render(slug, part, config_path=config_path)
+            meta = json.loads(part.with_suffix(".meta.json").read_text())
+            chapters.append({"t": round(t, 2), "slug": slug,
+                             "label": _chapter_label(titles.get(slug, slug))})
+            for src in meta.get("sources") or []:
+                if src not in sources:
+                    sources.append(src)
+            t += _dur(part)
+            parts.append(part)
+            if i == 0 and part.with_suffix(".jpg").exists():
+                shutil.copyfile(part.with_suffix(".jpg"),
+                                out_path.with_suffix(".jpg"))
+        # Re-encode through the concat FILTER, not `-c copy`: each part's
+        # audio was loudness-normalised on its own and a copy-concat of
+        # independently muxed files drifts A/V at every join.
+        args = ["ffmpeg", "-y", "-loglevel", "error"]
+        for p in parts:
+            args += ["-i", str(p)]
+        streams = "".join(f"[{i}:v][{i}:a]" for i in range(len(parts)))
+        args += ["-filter_complex",
+                 f"{streams}concat=n={len(parts)}:v=1:a=1[v][a0];"
+                 f"[a0]loudnorm=I=-14:TP=-1.5:LRA=11[a]",
+                 "-map", "[v]", "-map", "[a]", "-r", str(FPS),
+                 "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
+                 "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "384k",
+                 "-ar", "48000", "-movflags", "+faststart", str(out_path)]
+        _run(args)
+    total = _dur(out_path)
+    meta = {"slug": "+".join(slugs), "slugs": list(slugs),
+            "duration": round(total, 2), "chapters": chapters,
+            "sources": sources}
+    out_path.with_suffix(".meta.json").write_text(
+        json.dumps(meta, indent=2) + "\n")
+    print(f"[longform] episode {out_path}  ({total:.0f}s, "
+          f"{len(slugs)} stories)")
+    return out_path
+
+
+def _chapter_label(title: str) -> str:
+    """A story title as a YouTube chapter name: no "(3 Charts)" suffix."""
+    import re
+    return re.sub(r"\s*\(\d+ charts?\)\s*$", "", title or "",
+                  flags=re.I).strip()[:80] or "Chapter"
 
 
 def main() -> int:

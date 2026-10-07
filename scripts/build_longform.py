@@ -154,13 +154,14 @@ def _reconcile_pending() -> int:
             return 0
         # YouTube accepted this upload (we have its URL) but the ledger
         # write never landed. Repair the ledger from the receipt instead of
-        # letting pick_slug() choose this slug again and post it twice.
+        # letting pick_episode() choose this slug again and post it twice.
         print(f"::warning::[longform] recovering an accepted upload that "
               f"never reached the ledger: {slug!r} -> {pending.get('url')}",
               flush=True)
         _append_ledger_entry({
             "url": pending.get("url"), "title": pending.get("title"),
-            "slug": slug, "slugs": [slug], "format": "long_form_16x9",
+            "slug": slug, "slugs": pending.get("slugs") or [slug],
+            "format": "long_form_16x9",
             "duration_s": pending.get("duration_s"),
             "showrunner_score": pending.get("showrunner_score"),
             "at": pending.get("uploaded_at") or pending.get("at"),
@@ -186,17 +187,21 @@ def _reconcile_pending() -> int:
     return 3
 
 
-# A story is long-form READY only when its own words can carry a watch-page
-# video. The renderer's duration is the narration of hook + every beat +
-# closing (data_learning/longform_render.py), so it can be estimated BEFORE a
-# render is spent: the first relaunch candidate (2026-09-06) ran 47 seconds,
-# all stills, and the showrunner rightly blocked it (doctor 38fd2900770d).
-# This is a floor on what is worth rendering, not a relaxation of any gate —
-# the long-form showrunner and motion thresholds are untouched.
-MIN_SEGMENTS = 3               # the renderer's chapter list needs >= 3
-MIN_EST_SECONDS = 60.0         # 47s was the failure; median story is ~43s
+# An EPISODE is several published stories, each its own chapter
+# (longform_render.render_episode). One explainer story is ~45 seconds of
+# narration: the single-story long-form this replaced rendered poisonous-
+# plants at 53 seconds on 2026-10-07, and its first relaunch candidate
+# (2026-09-06) at 47 seconds of stills (doctor 38fd2900770d). A watch-page
+# video has to be minutes long, so the floor is on the EPISODE. These are
+# floors on what is worth rendering, not a relaxation of any gate — the
+# long-form showrunner and motion thresholds are untouched.
+MIN_SEGMENTS = 3               # a story with fewer beats is not a chapter
+EPISODE_TARGET_S = 330.0       # stop adding stories past ~5.5 minutes
+EPISODE_MIN_S = 240.0          # under 4 minutes: hold the slot
+EPISODE_MAX_STORIES = 8
 WORDS_PER_SECOND = 2.4         # ~145 wpm calm documentary narration
 SENTENCE_GAP_S = 0.35          # longform_render.SENT_GAP
+ANALYTICS = STATE / "analytics_explainer" / "latest.json"
 
 
 def estimate_seconds(story: dict) -> float:
@@ -238,60 +243,83 @@ def unsourced_beats(story: dict) -> list[str]:
 
 
 def readiness(story: dict) -> tuple[bool, str]:
-    """(ready, reason) — whether this story can fill a watch-page video."""
+    """(ready, reason) — whether this story can be an episode's chapter."""
     n = len(story.get("segments") or [])
     if n < MIN_SEGMENTS:
         return False, f"only {n} beats (< {MIN_SEGMENTS})"
     bad = unsourced_beats(story)
     if bad:
         return False, f"{len(bad)} beat(s) on unofficial data ({bad[0]!r})"
-    est = estimate_seconds(story)
-    if est < MIN_EST_SECONDS:
-        return False, f"~{est:.0f}s of narration (< {MIN_EST_SECONDS:.0f}s)"
-    return True, f"~{est:.0f}s over {n} beats"
+    return True, f"~{estimate_seconds(story):.0f}s over {n} beats"
 
 
-def pick_slug(cfg: dict, explicit: str | None = None) -> str | None:
-    """The story this week's long-form is built from.
+def _views() -> dict[str, int]:
+    """slug -> views the story's Short earned, from committed analytics."""
+    from shared.fsutil import load_state_json
+    data = load_state_json(ANALYTICS, default={}) or {}
+    out: dict[str, int] = {}
+    for v in data.get("videos") or []:
+        if isinstance(v, dict) and v.get("catalog_id"):
+            out[v["catalog_id"]] = max(out.get(v["catalog_id"], 0),
+                                       int(v.get("views") or 0))
+    return out
 
-    The READIEST published explainer story (longest estimated narration,
-    newest breaking ties) that has NOT already carried a long-form and
-    clears `readiness()`. Published means it cleared the shorts showrunner,
-    so the long-form starts from material the gate already liked — and the
-    long-form gate still judges the finished 16:9 cut on its own terms.
-    None holds the weekly slot: a gap routed back to story development, never
-    a thin render. An explicit slug is held to the same readiness bar.
+
+def pick_episode(cfg: dict, explicit: list[str] | None = None
+                 ) -> list[str] | None:
+    """The stories this week's episode is built from, in running order.
+
+    Published explainer stories (they already cleared the shorts
+    showrunner) that have not carried a long-form and clear `readiness()`,
+    ranked by the views their Short earned — the audience already voted for
+    those subjects — newest first among equals. Stories are added until the
+    episode reaches EPISODE_TARGET_S; under EPISODE_MIN_S the slot is HELD:
+    a gap routed back to story development, never a thin render. Explicit
+    slugs keep their order and are held to the same bars.
     """
     stories = {s["slug"]: s for s in cfg.get("stories", [])}
     if explicit:
-        st = stories.get(explicit)
-        if st is None:
-            return None
-        ok, why = readiness(st)
-        if not ok:
-            print(f"[longform] {explicit!r} is not long-form ready: {why}",
-                  flush=True)
-            return None
-        return explicit
-    done = _already_longformed()
-    best: tuple[float, int, str] | None = None
-    held = 0
-    for rank, slug in enumerate(_posted_slugs()):     # newest first
-        if slug not in stories or slug in done:
-            continue
-        ok, _ = readiness(stories[slug])
-        if not ok:
-            held += 1
-            continue
-        key = (estimate_seconds(stories[slug]), -rank, slug)
-        if best is None or key > best:
-            best = key
-    if best is None and held:
-        print(f"::warning::[longform] {held} unused published stories, none "
-              f"long-form ready (>= {MIN_SEGMENTS} beats and "
-              f">= {MIN_EST_SECONDS:.0f}s of narration) — holding the slot; "
-              f"the explainer needs deeper stories.", flush=True)
-    return best[2] if best else None
+        for slug in explicit:
+            if slug not in stories:
+                print(f"[longform] {slug!r} is not a story", flush=True)
+                return None
+            ok, why = readiness(stories[slug])
+            if not ok:
+                print(f"[longform] {slug!r} is not long-form ready: {why}",
+                      flush=True)
+                return None
+        picks = list(explicit)
+    else:
+        done = _already_longformed()
+        views = _views()
+        cands = []
+        for rank, slug in enumerate(_posted_slugs()):     # newest first
+            if slug in stories and slug not in done \
+                    and readiness(stories[slug])[0]:
+                cands.append((-views.get(slug, 0), rank, slug))
+        picks, total = [], 0.0
+        for _, _, slug in sorted(cands):
+            if total >= EPISODE_TARGET_S or len(picks) >= EPISODE_MAX_STORIES:
+                break
+            picks.append(slug)
+            total += estimate_seconds(stories[slug])
+    total = sum(estimate_seconds(stories[s]) for s in picks)
+    if total < EPISODE_MIN_S:
+        print(f"::warning::[longform] only ~{total:.0f}s of ready, sourced, "
+              f"unused stories ({len(picks)}) — an episode needs "
+              f">= {EPISODE_MIN_S:.0f}s. Holding the slot.", flush=True)
+        return None
+    return picks
+
+
+def episode_title(stories: list[dict]) -> str:
+    """The lead story's claim carries the click; the rest are the promise."""
+    import re
+    lead = re.sub(r"\s*\(\d+ charts?\)\s*$", "",
+                  stories[0].get("title") or stories[0]["slug"], flags=re.I)
+    more = len(stories) - 1
+    return (f"{lead} (+{more} More Stories In Charts)" if more
+            else lead)[:100]
 
 
 def _valid_thumbnail(path: Path) -> bool:
@@ -340,11 +368,12 @@ def _description(story_cfg: dict, meta: dict) -> str:
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--slug", default=None,
-                    help="story to build (default: newest published "
-                         "explainer story that has not had a long-form)")
+    ap.add_argument("--slug", nargs="+", default=None,
+                    help="stories to build, in running order (default: "
+                         "pick_episode — the best-watched published stories "
+                         "that have not had a long-form)")
     ap.add_argument("--title", default=None,
-                    help="override the video title (default: the story's)")
+                    help="override the video title (default: episode_title)")
     ap.add_argument("--dry-run", action="store_true",
                     help="render and JUDGE, but never upload")
     ap.add_argument("--publish-at", default=None,
@@ -357,22 +386,27 @@ def main() -> int:
 
     cfg = json.loads(CONFIG.read_text())
     stories = {s["slug"]: s for s in cfg.get("stories", [])}
-    slug = pick_slug(cfg, args.slug)
-    if not slug:
-        # Not a failure: a week where every published story already has a
-        # long-form is an honest no-op, not an outage.
-        print("[longform] no eligible story — nothing to build", flush=True)
+    picks = pick_episode(cfg, args.slug)
+    if not picks:
+        # Not a failure: a week without enough ready, sourced stories is an
+        # honest no-op, not an outage.
+        print("[longform] no eligible episode — nothing to build", flush=True)
         return 0
+    # The lead story names the files and the pending claim; every member is
+    # in `slugs`, which is what _already_longformed() reads.
+    slug = picks[0]
     story_cfg = stories[slug]
+    ep_title = episode_title([stories[s] for s in picks])
 
     will_upload = not args.dry_run
     OUT.mkdir(parents=True, exist_ok=True)
     final = OUT / f"longform_{slug}.mp4"
 
     # ---- render the REAL 16:9 watch-page video -------------------------
-    print(f"[longform] rendering 1920x1080 watch-page: {slug}", flush=True)
+    print(f"[longform] rendering 1920x1080 episode: {' + '.join(picks)}",
+          flush=True)
     from data_learning import longform_render
-    longform_render.render(slug, final, config_path=CONFIG)
+    longform_render.render_episode(picks, final, config_path=CONFIG)
 
     meta_p = final.with_suffix(".meta.json")
     meta = json.loads(meta_p.read_text()) if meta_p.exists() else {}
@@ -389,7 +423,7 @@ def main() -> int:
         context={"format": "long_form", "channel": CHANNEL,
                  "aspect": "16:9", "duration_s": round(dur, 1),
                  "chapters": meta.get("chapters") or [],
-                 "title": story_cfg.get("title", slug),
+                 "title": ep_title, "stories": picks,
                  "hook": story_cfg.get("hook", "")})
     print(showrunner_gate.log(gate, slug=slug), flush=True)
     if gate.get("blocked"):
@@ -415,13 +449,14 @@ def main() -> int:
         return 3
 
     # ---- publish -------------------------------------------------------
-    title = (args.title or story_cfg.get("title") or slug)[:100]
+    title = (args.title or ep_title)[:100]
     desc = _description(story_cfg, meta)
     score = (gate.get("verdict") or {}).get("score")
     # The claim: written BEFORE the external call, so a crash that kills the
     # upload itself (nothing accepted) still leaves a trace distinguishable
     # from an accepted-but-unrecorded one — see _reconcile_pending().
-    _write_pending({"slug": slug, "phase": "uploading", "title": title,
+    _write_pending({"slug": slug, "slugs": picks, "phase": "uploading",
+                    "title": title,
                     "at": datetime.now(timezone.utc).isoformat()})
     from shared.uploaders import YouTubeUploader
     up = YouTubeUploader(channel=CHANNEL)
@@ -434,12 +469,13 @@ def main() -> int:
     # The receipt: written the MOMENT the upload is accepted, before touching
     # the (larger, load-then-append) ledger file at all. This is the durable
     # record a crash during the ledger write recovers from.
-    _write_pending({"slug": slug, "phase": "uploaded", "url": url,
+    _write_pending({"slug": slug, "slugs": picks, "phase": "uploaded",
+                    "url": url,
                     "title": title, "duration_s": round(dur, 1),
                     "showrunner_score": score,
                     "uploaded_at": datetime.now(timezone.utc).isoformat()})
     _append_ledger_entry({
-        "url": url, "title": title, "slug": slug, "slugs": [slug],
+        "url": url, "title": title, "slug": slug, "slugs": picks,
         "format": "long_form_16x9", "duration_s": round(dur, 1),
         "showrunner_score": score,
         "at": datetime.now(timezone.utc).isoformat()})

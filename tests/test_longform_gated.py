@@ -64,9 +64,10 @@ def tearDownModule():
     _DATA_PATCH.stop()
 
 def _ready(slug: str, title: str) -> dict:
-    """A story deep enough to clear BL.readiness() — equal depth, so the
-    pick falls to the newest-first tie-break these tests were written for."""
-    say = " ".join(["word"] * 40)
+    """A sourced story ~150s deep — equal depth, so the pick falls to the
+    newest-first tie-break these tests were written for, and any two make
+    an episode over EPISODE_MIN_S."""
+    say = " ".join(["word"] * 60)
     return {"slug": slug, "title": title, "hook": say, "closing": say,
             "segments": [{"say": say, **OFFICIAL} for _ in range(4)]}
 
@@ -93,32 +94,32 @@ class TestItPicksAStoryWorthCompiling(unittest.TestCase):
 
     def test_it_takes_the_newest_published_story(self):
         BL.LONGFORM_LOG.write_text(json.dumps({"posted": []}))
-        self.assertEqual(BL.pick_slug(CFG), "b")
+        self.assertEqual(BL.pick_episode(CFG), ["b", "c", "a"])
 
     def test_it_never_builds_the_same_story_twice(self):
         BL.LONGFORM_LOG.write_text(json.dumps({"posted": [
             {"slug": "b", "slugs": ["b"], "url": "x"}]}))
-        self.assertEqual(BL.pick_slug(CFG), "c")
+        self.assertEqual(BL.pick_episode(CFG), ["c", "a"])
 
     def test_the_old_six_slug_entries_still_count_as_used(self):
         """The nine already-published compilations list six slugs each —
         those stories must not come back as 'never long-formed'."""
         BL.LONGFORM_LOG.write_text(json.dumps({"posted": [
             {"slugs": ["a", "b", "c"], "url": "x"}]}))
-        self.assertIsNone(BL.pick_slug(CFG))
+        self.assertIsNone(BL.pick_episode(CFG))
 
-    def test_an_explicit_slug_wins(self):
+    def test_explicit_slugs_win_in_their_order(self):
         BL.LONGFORM_LOG.write_text(json.dumps({"posted": []}))
-        self.assertEqual(BL.pick_slug(CFG, "a"), "a")
+        self.assertEqual(BL.pick_episode(CFG, ["a", "c"]), ["a", "c"])
 
     def test_an_unknown_explicit_slug_is_refused_not_guessed(self):
         BL.LONGFORM_LOG.write_text(json.dumps({"posted": []}))
-        self.assertIsNone(BL.pick_slug(CFG, "nope"))
+        self.assertIsNone(BL.pick_episode(CFG, ["a", "nope"]))
 
     def test_nothing_eligible_is_a_no_op_not_a_crash(self):
         BL.LONGFORM_LOG.write_text(json.dumps({"posted": [
             {"slugs": ["a", "b", "c"]}]}))
-        self.assertIsNone(BL.pick_slug(CFG))
+        self.assertIsNone(BL.pick_episode(CFG))
 
 
 class TestTheDescriptionIsAWatchPageDescription(unittest.TestCase):
@@ -186,7 +187,7 @@ class TestTheGateIsNotOptional(unittest.TestCase):
     SRC = (ROOT / "scripts" / "build_longform.py").read_text()
 
     def test_it_renders_the_16x9_watch_page_renderer(self):
-        self.assertIn("longform_render.render(", self.SRC)
+        self.assertIn("longform_render.render_episode(", self.SRC)
 
     def test_it_does_not_concatenate_shorts_any_more(self):
         for gone in ('"-f", "concat"', "lf_concat", "_intro_card"):
@@ -230,7 +231,7 @@ class TestTheGateIsNotOptional(unittest.TestCase):
 
     def test_the_run_reconciles_before_picking_a_slug(self):
         self.assertLess(self.SRC.index("_reconcile_pending()"),
-                        self.SRC.index("pick_slug(cfg"))
+                        self.SRC.index("pick_episode(cfg"))
 
 
 class TestPendingUploadReconciliation(unittest.TestCase):
@@ -294,9 +295,9 @@ class TestPendingUploadReconciliation(unittest.TestCase):
         BL._reconcile_pending()
         # "a" is the newest published explainer story, so an un-reconciled
         # automatic pick would choose it again and re-upload. Reconciling
-        # must make pick_slug() skip straight past it to "b".
+        # must make pick_episode() skip straight past it to "b".
         self.assertIn("a", BL._already_longformed())
-        self.assertEqual(BL.pick_slug(CFG), "b")
+        self.assertEqual(BL.pick_episode(CFG), ["b", "c"])
 
     def test_a_claim_already_reflected_in_the_ledger_is_just_cleared(self):
         """If the ledger write actually succeeded and only clearing the
@@ -333,7 +334,7 @@ class TestThePublishThumbnailIsRequired(unittest.TestCase):
         BL.EXPLAINER_LOG.write_text(json.dumps({"posted": {
             "a": {"url": "u", "at": "2026-08-01T00:00:00+00:00"}}}))
         BL.LONGFORM_LOG.write_text(json.dumps({"posted": []}))
-        sys.argv = ["build_longform.py", "--slug", "a"]
+        sys.argv = ["build_longform.py", "--slug", "a", "b"]
 
     def tearDown(self):
         (BL.CONFIG, BL.OUT, BL.EXPLAINER_LOG, BL.LONGFORM_LOG,
@@ -341,7 +342,7 @@ class TestThePublishThumbnailIsRequired(unittest.TestCase):
         shutil.rmtree(self.tmp, ignore_errors=True)
 
     @staticmethod
-    def _fake_render_no_thumb(slug, out_path, config_path=None, voice=None):
+    def _fake_render_no_thumb(slugs, out_path, config_path=None):
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_bytes(b"fake video")
         out_path.with_suffix(".meta.json").write_text(
@@ -350,7 +351,7 @@ class TestThePublishThumbnailIsRequired(unittest.TestCase):
         return out_path
 
     @staticmethod
-    def _fake_render_valid_thumb(slug, out_path, config_path=None, voice=None):
+    def _fake_render_valid_thumb(slugs, out_path, config_path=None):
         from PIL import Image
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_bytes(b"fake video")
@@ -360,7 +361,7 @@ class TestThePublishThumbnailIsRequired(unittest.TestCase):
         return out_path
 
     def test_a_missing_thumbnail_stops_before_the_uploader(self):
-        with mock.patch("data_learning.longform_render.render",
+        with mock.patch("data_learning.longform_render.render_episode",
                         side_effect=self._fake_render_no_thumb), \
              mock.patch("shared.showrunner_gate.run",
                         return_value={"blocked": False,
@@ -371,11 +372,11 @@ class TestThePublishThumbnailIsRequired(unittest.TestCase):
         up_cls.return_value.upload.assert_not_called()
 
     def test_a_corrupt_thumbnail_stops_before_the_uploader(self):
-        def fake_render(slug, out_path, config_path=None, voice=None):
-            self._fake_render_no_thumb(slug, out_path, config_path, voice)
+        def fake_render(slugs, out_path, config_path=None):
+            self._fake_render_no_thumb(slugs, out_path, config_path)
             out_path.with_suffix(".jpg").write_bytes(b"not an image")
             return out_path
-        with mock.patch("data_learning.longform_render.render",
+        with mock.patch("data_learning.longform_render.render_episode",
                         side_effect=fake_render), \
              mock.patch("shared.showrunner_gate.run",
                         return_value={"blocked": False,
@@ -386,7 +387,7 @@ class TestThePublishThumbnailIsRequired(unittest.TestCase):
         up_cls.return_value.upload.assert_not_called()
 
     def test_a_valid_thumbnail_reaches_the_uploader(self):
-        with mock.patch("data_learning.longform_render.render",
+        with mock.patch("data_learning.longform_render.render_episode",
                         side_effect=self._fake_render_valid_thumb), \
              mock.patch("shared.showrunner_gate.run",
                         return_value={"blocked": False,
@@ -402,8 +403,8 @@ class TestThePublishThumbnailIsRequired(unittest.TestCase):
         """The preview-only path keeps its loud fallback log and still
         renders for the preview branch — only an actual upload is
         stopped by a missing thumbnail."""
-        sys.argv = ["build_longform.py", "--slug", "a", "--dry-run"]
-        with mock.patch("data_learning.longform_render.render",
+        sys.argv = ["build_longform.py", "--slug", "a", "b", "--dry-run"]
+        with mock.patch("data_learning.longform_render.render_episode",
                         side_effect=self._fake_render_no_thumb), \
              mock.patch("shared.showrunner_gate.run",
                         return_value={"blocked": False,
