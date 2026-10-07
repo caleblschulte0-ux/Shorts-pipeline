@@ -1,0 +1,16 @@
+{
+ "slug": "genz-drinking-decline",
+ "ts": "20261007T174922Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg1:end the mascot covers the \"72%\" value label, so it reads as \"72%\" with the 7 hidden. In seg0:mid the \"59%\" label is pushed into the right-edge tick ruler.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "wrong_data_bare_number_card",
+  "visible_evidence": "seg2:mid and seg2:end show two identical yellow circles, both '70%' and both labelled '~20 years ago', while the narration says '70% to 35%'.",
+  "root_cause": "The second data point was bound to the first row (the then value was duplicated, not the now value), and the scene is a pair of number discs rather than a demonstration.",
+  "repair_goal": "Show 18-20 year-olds going from 70% to 35%: a crowd of 10 young figures where 7 hold drinks, then half of those put their drinks down as Data takes the glasses from their hands and the count drops to 35%, with correct 'then' and 'now' labels."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

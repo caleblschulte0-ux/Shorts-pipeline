@@ -1,0 +1,21 @@
+{
+ "slug": "tattoo-mainstream-shift",
+ "ts": "20261007T174922Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:start and seg3:mid the labels 'Exactly one 10%', 'More than one 22%' and 'No tattoo 68%' are dim grey on navy and nearly vanish at phone size. In seg4:end 'Exactly one 10%' is still faded out. In seg0:end the stat line '2006 16% \u2192 2023 32%' runs edge to edge and is crowded.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_subject_accent_and_decorative_mascot",
+  "visible_evidence": "seg3:start to seg3:end show a stacked column titled 'NO TATTOO IS 68% OF THE WHOLE'. The gold accent fills the bottom block, which is the no-tattoo segment, while the line says most tattooed people have more than one. The '10%' and '22%' segments, which make the claim, are dim and unlabeled to the eye. Data stands to the left holding his head and touches nothing.",
+  "root_cause": "A generic share chart was picked and the accent was given by draw order, landing on the no-tattoo segment instead of the story's subject (22% of 32% with multiple tattoos). The mascot was placed as a reaction, not as an agent.",
+  "repair_goal": "Show the 32% tattooed people as a group, and inside it make 22 of 32 visibly carry several tattoos against 10 with one, for example Data inking a second and third mark onto the majority of figures. Give the gold accent only to 'more than one', and give every label ink-contrast text."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "stack",
+   "perf": "drag_line"
+  }
+ },
+ "scenes": []
+}

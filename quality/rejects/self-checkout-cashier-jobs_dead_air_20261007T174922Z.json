@@ -1,0 +1,16 @@
+{
+ "slug": "self-checkout-cashier-jobs",
+ "ts": "20261007T174922Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: The hook and seg1 show the same 6/33/92% bar chart. From seg0:end (2.96s) to seg1:end (8.43s) the bars are frozen and only Data's arms change. seg4 closing then reuses the seg3 circles almost unchanged.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg2:start/mid/end: Data is cut off at the left frame edge and stands on top of the pink '3.5M' label so it reads '.5M'. The balance barely tilts toward the heavier 2013 side, and the 3M brick stack on the right floats detached above its pan (seg2:mid). Data holds a pole and never touches the scale.",
+  "root_cause": "The mascot is placed at the left pan's x position with no margin check, so he overlaps the value label and the frame edge. The scale's tilt is too small to show a 0.5M loss. Data has no agent role (he should be removing bricks).",
+  "repair_goal": "Put the 2013 and 2023 pans fully inside the frame with labels clear of every mark. Have Data physically lift bricks off the 3.5M pan and carry them away, so the beam visibly swings as 0.5M jobs leave. Keep the 3.5M and 3M labels fully readable at phone size."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

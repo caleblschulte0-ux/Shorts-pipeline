@@ -1,0 +1,16 @@
+{
+ "slug": "sand-mining-crisis",
+ "ts": "20261007T174922Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:mid, seg3:end and seg4:*: Data's body sits on top of the caption 'of the world's cement \u00b7 China', splitting 'China'. seg2:start and seg2:end: the dredge grab covers 'mined per year'. seg2:end: '13 billion t / rivers put back' is teal and grey on blue water and very low contrast.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable_label_and_static_vessel",
+  "visible_evidence": "seg3:start to seg3:end: the silo window stays a flat, empty dark-grey slab for the whole beat while the narration says 51 percent. Data climbs onto the silo roof and stands directly on the 'of the world's cement \u00b7 China' caption, covering it. The fill and the China/everyone-else split appear only after the cut, in seg4.",
+  "root_cause": "The silo fill animation runs late, so the vessel only shows the number after the beat has ended. Data's roof anchor sits at the same height as the stat caption, and nothing checks the two for collision.",
+  "repair_goal": "Start filling the silo with cement as Data pours his bucket during seg3, rising to a visible 51% line marked China against everyone else by seg3:mid. Move the stat caption, or Data's roof anchor, so his figure never overlaps any text."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "light-pollution-erasing-sky",
+ "ts": "20261007T174922Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg2:start and seg2:end Data's head covers the '80%' label and the 'Can't see it' text, and his body is cut off by the left frame edge. In seg4:mid and seg4:end the fourth bin's label is cut to 'Sin...'. In seg4:start 'Madagascar' is so faint it almost disappears. In seg1:end the head",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "false_claim_depiction",
+  "visible_evidence": "The closing bins show 'Chad 45% / Madagascar 43% / United States 11% / Sin... 1%' as parts of one whole. The narration said Chad 78% and Singapore almost none, and these shares match neither. The last label is truncated to 'Sin...', and Data stands beside a grey hopper and points at it.",
+  "root_cause": "A 'share' sorting-bin machine was used on per-country percentages that are not parts of one whole. The renderer normalised 78/75/20/1 into invented shares. Data is placed as a pointer rather than as the cause of the pour.",
+  "repair_goal": "Replace the closing machine with one that restates the real payoff: a night sky that loses stars as light rises, or Data switching on a lamp that washes out a starfield, using 78% vs ~0% exactly as narrated. Never print shares the data does not state, and keep every label fully inside the frame."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

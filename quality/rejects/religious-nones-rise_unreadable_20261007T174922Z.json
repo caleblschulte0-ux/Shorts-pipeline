@@ -1,0 +1,21 @@
+{
+ "slug": "religious-nones-rise",
+ "ts": "20261007T174922Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg2:end Data's body covers the '36%' Millennial value. At seg3:start the labels 'Other faiths 12%', 'Catholic 20%' and 'Protestant 40%' are nearly invisible against the dark ground. In seg4:start '28% Unaffiliated' and the comment prompt fade into the background.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_subject_chart",
+  "visible_evidence": "seg3:start\u2013end show a stacked column titled 'Americans without religion' that is actually every religious group. The one accent colour (pink) and the kicker 'PROTESTANT IS 40% OF THE WHOLE' go to Protestants, while Unaffiliated 28% sits in gray. Data stands next to it with his hands on his head.",
+  "root_cause": "The share chart gives the accent to the largest segment instead of the story's subject, so the claim 'nones outnumber Catholics, closing on Protestants' is never drawn. The mascot has no act tied to the data.",
+  "repair_goal": "Make Unaffiliated the subject: give it the one accent. Draw it as a crowd or group of people that grows past the Catholic group and closes the gap to the Protestant group, with Data shepherding or pushing people across. Retitle it as the comparison, and make every label readable from the first frame."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "stack",
+   "perf": "drag_line"
+  }
+ },
+ "scenes": []
+}
