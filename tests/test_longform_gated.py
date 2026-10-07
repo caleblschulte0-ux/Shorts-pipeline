@@ -41,12 +41,34 @@ import data_learning.longform_render  # noqa: E402,F401 - importable for mock.pa
 import shared.showrunner_gate         # noqa: E402,F401
 import shared.uploaders               # noqa: E402,F401
 
+
+# Every fixture beat cites one OFFICIAL dataset: readiness() now refuses a
+# story built on invented ("illustrative") numbers, and these tests are about
+# depth and selection, not sourcing (tests/test_longform_sourced.py).
+OFFICIAL = {"params": {"file": "lf_fixture_official.json"}}
+_DATA_PATCH = None
+
+
+def setUpModule():
+    global _DATA_PATCH
+    import json as _json
+    import tempfile as _tf
+    d = Path(_tf.mkdtemp(prefix="lf-data-"))
+    (d / "lf_fixture_official.json").write_text(
+        _json.dumps({"source": {"officiality": "official"}}))
+    _DATA_PATCH = mock.patch.object(BL, "DATA_DIR", d)
+    _DATA_PATCH.start()
+
+
+def tearDownModule():
+    _DATA_PATCH.stop()
+
 def _ready(slug: str, title: str) -> dict:
     """A story deep enough to clear BL.readiness() — equal depth, so the
     pick falls to the newest-first tie-break these tests were written for."""
     say = " ".join(["word"] * 40)
     return {"slug": slug, "title": title, "hook": say, "closing": say,
-            "segments": [{"say": say} for _ in range(4)]}
+            "segments": [{"say": say, **OFFICIAL} for _ in range(4)]}
 
 
 CFG = {"stories": [_ready("a", "A"), _ready("b", "B"), _ready("c", "C")]}
