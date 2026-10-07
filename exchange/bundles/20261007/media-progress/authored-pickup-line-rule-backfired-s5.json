@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261007",
+  "bundle": {
+    "identity": "5842fff9571549d0ff5bb5e5fb169212d899a423ff5c7714495ba9692762817d",
+    "path": "exchange/bundles/20261007/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily_producer",
+  "verified_at": "2026-10-07T11:35:10.840Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-pickup-line-rule-backfired-s5",
+  "safe_request_id": "authored-pickup-line-rule-backfired-s5",
+  "prompt_sha256": "28a2a634d8e946ae76cb7be020fd71ef35efe6326e1980bc4db37943eb1c7e59",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: school principal handing parent pickup placard. It accompanies the narration: \"the principal handed her a new placard\" Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1b4Fp9xJ1hrmPp0aMnf_iqKr38WEsmGjZ",
+    "filename": "20261007__authored-pickup-line-rule-backfired-s5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1b4Fp9xJ1hrmPp0aMnf_iqKr38WEsmGjZ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "31f470815e5b6f0df09b1cd2fa7031960690b039a0fdae49a997de8ecfd6c05a",
+    "bytes": 2029638,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "pickup-line-rule-backfired",
+  "shot_index": 5,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
