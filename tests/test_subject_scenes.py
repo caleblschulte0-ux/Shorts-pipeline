@@ -94,7 +94,7 @@ class EveryTeacherSceneTellsTheTruth(unittest.TestCase):
                 texts.clear()
                 cr = _c.Context(surf)
                 fn(cr, 3.0 + u * 10, u, pts,
-                   lambda role, x, fy, h, pace=True: hosts.append((x, fy, h)))
+                   lambda role, x, fy, h, pace=True, beat=0: hosts.append((x, fy, h)))
         return surf, hosts, list(texts)
 
     def test_every_scene_renders_with_data_in_it(self):
