@@ -71,14 +71,38 @@ def narration_grounded(text: str, reports: list[dict]) -> bool:
     return sum(1 for w in words if seen(w)) * 3 >= len(words) * 2
 
 
+def narration_lines(edl: dict | None) -> list[dict]:
+    """Every narrator line of an EDL, in beat order. `narration` is the
+    first of them (kept for everything that read the one-line format);
+    `narration_lines` holds all of them."""
+    if not edl:
+        return []
+    lines = edl.get("narration_lines")
+    if lines is None:
+        lines = [edl["narration"]] if edl.get("narration") else []
+    return [ln for ln in lines if isinstance(ln, dict)]
+
+
 def _ground(edl: dict | None, reports: list[dict], rs: list) -> dict | None:
-    """Drop a narration line the footage does not support — the cut stays,
-    the invented sentence goes."""
-    if edl and edl.get("narration") and \
-            not narration_grounded(edl["narration"].get("text", ""), reports):
-        rs.append("narration dropped — not grounded in the sources: "
-                  f"{edl['narration'].get('text', '')!r}")
-        edl = dict(edl)
+    """Drop every narration line the footage does not support — the cut
+    stays, the invented sentences go, the grounded ones stay."""
+    lines = narration_lines(edl)
+    if not lines:
+        return edl
+    kept = []
+    for ln in lines:
+        if narration_grounded(ln.get("text", ""), reports):
+            kept.append(ln)
+        else:
+            rs.append("narration dropped — not grounded in the sources: "
+                      f"{ln.get('text', '')!r}")
+    if len(kept) == len(lines):
+        return edl
+    edl = dict(edl)
+    edl["narration_lines"] = kept
+    if kept:
+        edl["narration"] = kept[0]
+    else:
         edl.pop("narration", None)
     return edl
 # banned overlay phrases (§17): overlays prevent confusion, never narrate
@@ -111,7 +135,7 @@ If it IS a story, DIRECT it. Choose ONE structure and justify it:
 THE FIRST THREE SECONDS TELL A STRANGER WHO AND WHAT. The viewer has
 never heard of this streamer, this friend, this game or this pet. Before
 the story moves, they must know who it is about and what is at stake —
-said by the first line, or stated by the hook, or by the one narration
+said by the first line, or stated by the hook, or by a narration
 line. "Pokimane's cat Mimi" not "my baby"; "CaseOh's sausage challenge"
 not "it's done"; "Reggie says Kai ignored his call" not "the proof". In
 story backtests the critic's first complaint on most cuts was exactly
@@ -145,11 +169,13 @@ Then emit the COMPLETE timeline. Segment rules:
   re-shows ~2s around `at` slowed, ONLY when the action was genuinely
   hard to see), at most 2 subtle_punch; spend emphasis on the payoff,
   not the first beat. Usually [].
-- narration: OPTIONAL top-level {"text": <=15 words, "over_beat": idx,
-  "essential_because": str} — spoken OVER that beat (ducked). Use it,
-  usually over beat 0, when the footage never says WHO or WHAT the story
-  is about and the scene reports do (a name, a relationship, what was
-  claimed); otherwise omit. Verified facts from the reports only, never
+- narration: OPTIONAL top-level LIST, at most ONE line per beat, each
+  {"text": <=15 words, "over_beat": idx, "essential_because": str} —
+  a narrator spoken OVER that beat (ducked). Use it when the footage
+  never says WHO or WHAT the story is about and the scene reports do
+  (usually over beat 0), and to bridge how one clip leads to the next
+  ("Later that stream, Rakai's bag ended up in a sewer.") when the cut
+  jumps. Use as few as the story needs; omit when the footage says it. Verified facts from the reports only, never
   motives, never drama ("Pokimane's cat Mimi got out onto the balcony."
   — good; "He was furious and planning revenge." — forbidden). A line the
   sources do not support is removed automatically.
@@ -171,8 +197,8 @@ Return STRICT JSON:
             "framing": "wide|tight",
             "context_overlay": str,
             "effects": [{"type": "subtle_punch", "at": s}, ...]}, ...],
- "narration": {"text": str, "over_beat": int,
-               "essential_because": str} | omitted,
+ "narration": [{"text": str, "over_beat": int,
+                "essential_because": str}, ...] | omitted,
  "ending": {"type": "reaction_hold", "duration": 0.8-2.0}}
 
 The FIRST beat is the opening — moving footage from second zero, hook
@@ -312,11 +338,13 @@ Return STRICT JSON:
 _REVISE_SYSTEM = """You are the story director revising your own edit
 based on the critic's timestamped problems. You may only: adjust cut
 boundaries, remove a repetitive segment, extend a reaction, add/remove a
-context overlay, change a transition, remove an effect — and, ONLY when the
-critic names missing_context, add or rewrite the ONE narration line.
+context overlay, change a transition, remove an effect — and, when the
+critic names missing_context or confusing, add or rewrite narration
+lines: a LIST, at most ONE per beat.
 
-Narration ({"text", "over_beat", "essential_because"}): at most 15 words,
-spoken over the beat that needs it (usually beat 0, to set up the story).
+Narration ([{"text", "over_beat", "essential_because"}, ...]): each line
+at most 15 words, spoken over the beat that needs it — beat 0 to set up
+who and what, a later beat to bridge a jump the critic could not follow.
 It may state ONLY what a source's transcript or scene report states —
 who someone is, what they said happened, what was claimed — in the
 footage's own words where possible — plus the SOURCE's `streamer=` and
@@ -790,9 +818,18 @@ def validate_edl(edl: dict, durations: dict[str, float],
         # §14 narration: optional, justified, verified-voice only. Key is
         # `over_beat` (reviewer #10) — narration is DUCKED OVER that beat,
         # which is what the renderer does; `after_beat` still read for compat
-        narration = None
-        n_in = edl.get("narration")
-        if isinstance(n_in, dict):
+        # THE NARRATOR: up to ONE line per beat (story backtests
+        # 2026-10-07: ten cuts, every near-miss refused for context the
+        # footage never says — who someone is, how the bag got into the
+        # sewer, that the ban came minutes later — and the cut was allowed
+        # one line for all of it). A dict is the old one-line form.
+        n_raw = edl.get("narration")
+        cands = (n_raw if isinstance(n_raw, list)
+                 else [n_raw] if isinstance(n_raw, dict) else [])
+        lines, taken = [], set()
+        for n_in in cands:
+            if not isinstance(n_in, dict):
+                continue
             text = scrub_text(str(n_in.get("text", "")).strip())[:90]
             why = str(n_in.get("essential_because", "")).strip()
             # NOT `int(...) or -1`: beat 0 is falsy, so that turned "over
@@ -804,10 +841,14 @@ def validate_edl(edl: dict, durations: dict[str, float],
             except (TypeError, ValueError):
                 over = -1
             if (text and why and 0 <= over < len(beats)
+                    and over not in taken
                     and len(text.split()) <= 15
                     and not _BAD_NARRATION.search(text)):
-                narration = {"text": text, "over_beat": over,
-                             "essential_because": why[:120]}
+                taken.add(over)
+                lines.append({"text": text, "over_beat": over,
+                              "essential_because": why[:120]})
+        lines.sort(key=lambda ln: ln["over_beat"])
+        narration = lines[0] if lines else None
         # target_duration is advisory; clamp into the 25-90s band (§6)
         target = int(edl.get("target_duration", 45) or 45)
         target = min(90, max(25, target))
@@ -826,6 +867,7 @@ def validate_edl(edl: dict, durations: dict[str, float],
             "target_duration": target,
             "beats": beats,
             "narration": narration,
+            "narration_lines": lines,
             "ending": {"type": "reaction_hold", "duration": hold},
         }
     except (TypeError, ValueError, KeyError):
@@ -1050,13 +1092,17 @@ def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
 def revise_edl(edl: dict, problems: list[dict],
                reports: list[dict]) -> dict | None:
     """§19: one constrained revision (the caller loops up to
-    `story_revisions`). May add ONE narration line when the critic names
-    missing context; a line the sources do not support is dropped
+    `story_revisions`). May add narration lines (one per beat at most)
+    when the critic names missing context; a line the sources do not support is dropped
     (`narration_grounded`). Returns a re-validated EDL or None (caller then
     abandons the story to the clip fallback)."""
     if not problems:
         return None
-    user = ("YOUR PREVIOUS EDL:\n" + str(edl) + "\n\n"
+    # shown in the format the brain writes: `narration` is the LIST
+    prev = {k: v for k, v in edl.items() if k != "narration_lines"}
+    if narration_lines(edl):
+        prev["narration"] = narration_lines(edl)
+    user = ("YOUR PREVIOUS EDL:\n" + str(prev) + "\n\n"
             "CRITIC PROBLEMS (timestamped):\n"
             + "\n".join(f"- at {p['at']:.1f}s [{p['type']}]: {p['fix']}"
                         for p in problems)

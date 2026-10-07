@@ -477,11 +477,12 @@ def _assemble(parts: list[Path], out: Path,
     _run(cmd)
 
 
-def _maybe_narration(text: str, work: Path) -> Path | None:
+def _maybe_narration(text: str, work: Path,
+                     name: str = "narration") -> Path | None:
     """§14: optional verified narration line via edge-tts. Best-effort —
     any failure returns None and the story ships without narration."""
     try:
-        mp3 = work / "narration.mp3"
+        mp3 = work / f"{name}.mp3"
         _run(["edge-tts", "--voice", "en-US-ChristopherNeural",
               "--text", text, "--write-media", str(mp3)])
         return mp3 if mp3.exists() and mp3.stat().st_size > 1000 else None
@@ -535,7 +536,18 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
     timeline = 0.0
     n_overlays = 0
     used_narration = False
-    narr = edl.get("narration")
+    # one narrator line per beat at most (story_director.narration_lines)
+    _lines = edl.get("narration_lines")
+    if _lines is None:
+        _lines = [edl["narration"]] if edl.get("narration") else []
+    narr_by_beat = {}
+    for _ln in _lines:
+        try:
+            narr_by_beat.setdefault(
+                int(_ln.get("over_beat", _ln.get("after_beat", -1))), _ln)
+        except (TypeError, ValueError, AttributeError):
+            continue
+    n_spoken = 0
     # what the cut SHOWS and SAYS beyond the source's own words, on the
     # output clock — the critic is told (it samples frames and reads a
     # transcript, so a voice-over and a 1-2s overlay are otherwise unknown
@@ -577,17 +589,19 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
             print(f"::warning::[story] middle beat {idx} failed "
                   f"({type(e).__name__}) — dropped", flush=True)
             continue
-        # §14 narration: mixed onto its beat, ducked, best-effort
-        if narr and not used_narration and \
-                int(narr.get("over_beat",
-                             narr.get("after_beat", -1))) == idx:
-            voice = _maybe_narration(narr["text"], work)
+        # §14 narration: this beat's line, mixed on, ducked, best-effort
+        spoken = None
+        narr = narr_by_beat.get(idx)
+        if narr:
+            voice = _maybe_narration(narr["text"], work, f"narration_{idx}")
             if voice:
                 seg_n = work / f"seg_{idx}_narr.mp4"
                 try:
                     _mix_narration(seg, voice, seg_n)
                     seg = seg_n
                     used_narration = True
+                    n_spoken += 1
+                    spoken = narr["text"]
                 except Exception:  # noqa: BLE001
                     pass
         if parts:
@@ -643,11 +657,10 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
                               "secs": round(_read_secs(
                                   edl["hook_overlay"], HOOK_DUR), 1),
                               "text": edl["hook_overlay"]})
-        if used_narration and not any(o["kind"] == "narration"
-                                      for o in on_screen):
+        if spoken:
             on_screen.append({"at": round(timeline + 0.15, 1),
                               "kind": "narration", "secs": None,
-                              "text": narr["text"]})
+                              "text": spoken})
         # this beat's caption words are placed at the CURRENT timeline
         # offset (before any replay that follows it)
         for w in _seg_words(srcinfo.get("words") or [], start, end):
@@ -719,6 +732,7 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
             "member_keys": [u["source_url"] for u in used],
             "final_words": final_words,
             "used_narration": used_narration,
+            "narration_lines": n_spoken,
             "on_screen": on_screen,
             # REALIZED transitions (reviewer #11): what the renderer actually
             # produced, so a degraded j/l→hard cut is not logged as a j/l cut
