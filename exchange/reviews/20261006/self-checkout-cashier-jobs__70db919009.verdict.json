@@ -1,0 +1,106 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "self-checkout-cashier-jobs__70db919009",
+ "video_sha256": "70db91900933182d7d7bfa01c73667eced4c6c776c2cbde309125113a3afcf51",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T05:49:19Z",
+ "grades": {
+  "dimensions": {
+   "hook": 1,
+   "data_demo": 2,
+   "mascot": 1,
+   "craft": 1,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "No stock or AI photos. Every frame uses flat icons: carts in seg0 and seg1, worker emoji on the scale in seg2. At seg4:end (f20) two stray cyan ellipse outlines appear over the circles; that is a render glitch, not junk imagery."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "In seg0 and seg1 Data stands on a ladder beside the 92% bar and points at it, but the bar grows by itself. At seg2:start he is parked half off the left edge of the scale. From seg3:start to seg4:end he just stands on top of the 4% circle. He never causes any of the motion."
+   },
+   "bare_number_card": {
+    "present": true,
+    "evidence": "In seg3 and seg4 the 4% vs 1.6% loss rate is two flat circles with a number in each (seg3:end). Nothing shows a loss happening."
+   },
+   "dead_air": {
+    "present": true,
+    "evidence": "seg1:start, seg1:mid and seg1:end (4.9-8.4s) are the same finished bar chart already shown at seg0:end. Only Data's arms change, so two beats look identical for about 6 seconds."
+   },
+   "empty_void": {
+    "present": true,
+    "evidence": "In seg3:start the two small circles float in a mostly empty dark frame, and the labels 'Self-checkout' and 'Staffed checkout' sit far below them, cut off from their marks. In seg0 and seg1 the top 40% of the frame is empty above the bars."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "In seg2:start, mid and end Data's body covers the '3' of '3.5M', so it reads '.5M', and he is cropped at the left edge. In seg3:mid the big caption number shows '4%' and '1.6%' drawn on top of each other, so it reads '146%'. In seg3:start the '4%' is half hidden under Data. In seg2:mid the caption '3.5' is dark purple on navy and nearly invisible."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg3",
+   "index": 3,
+   "failure_class": "bare_number_card",
+   "visible_evidence": "seg3:start through seg3:end show a pink 4% circle and a grey 1.6% circle on an empty dark ground. Data stands on top of the pink circle doing nothing. The labels drift far below the circles, and the caption at seg3:mid overlaps into '146%'.",
+   "root_cause": "The 'loss rate' comparison was drawn as a stock pair of sized circles. Nothing in the picture is made of shoplifting or shrink, and the mascot is parked as a sticker instead of causing the motion.",
+   "repair_goal": "Redraw the loss as the subject itself. Show two checkout lanes where items slip off the belt or out of a bagging area into a loss bin: 4 of every 100 at the self-checkout lane, 1.6 at the staffed one. Data should be at the self-checkout scanner and miss the scans, so the loss pile grows because of him. Keep labels attached to their lanes, and make the caption number swap cleanly instead of overlapping."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "A plain bar chart of adoption (6/33/92%) with cart icons on the bars. The hook line says 92% of cashier jobs were 'wiped out', but the bars show adoption."
+   },
+   {
+    "id": "seg1",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "The same finished bar chart held for the whole beat. Nothing new is shown."
+   },
+   {
+    "id": "seg2",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "A stock seesaw with worker emoji dropped onto each pan. The tilt is barely visible, so the drop from 3.5M to 3M doesn't come across."
+   },
+   {
+    "id": "seg3",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "Two sized circles labelled 4% and 1.6%. It is a bubble chart in all but name."
+   },
+   {
+    "id": "seg4",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "The closing reuses the circles under the closing line, with stray cyan ellipses added at the end."
+   }
+  ],
+  "one_line": "Three stock charts with Data standing beside them. The hook claims '92% of cashier jobs wiped out', but the 92% on screen is self-checkout adoption, and the beat after the hook repeats the hook's chart.",
+  "problems": [
+   "The hook claim 'wiped out 92% of cashier jobs' doesn't match the data shown: 92% is the share of grocery chains with self-checkout lanes, and jobs fell only from 3.5M to 3M.",
+   "In seg1 the whole beat is the bar chart already finished at seg0:end, so the frame looks unchanged for about 6s.",
+   "In seg2 the mascot covers the '3' of '3.5M' and is cut off at the left edge of the frame.",
+   "In seg3:mid the caption numbers overlap into '146%'.",
+   "seg3 and seg4 are two plain circles with numbers in them, and the labels float far from the circles.",
+   "Data stands, perches or points in every scene and never drives the motion.",
+   "At seg4:end stray cyan ellipse outlines appear over both circles."
+  ],
+  "fixes": [
+   "Rewrite the hook so it states the real claim, for example that 92% of big grocers now have self-checkout, or show the 500k lost jobs.",
+   "Replace the seg1 chart with a scene made of the subject: a store's checkout lanes turning into kiosks one by one until 92 of 100 have them, with Data installing each kiosk.",
+   "In seg2, move Data off the 3.5M label and have him lift cashiers off one pan so the scale visibly tips.",
+   "Redraw seg3 as items slipping through unscanned at a self-checkout lane into a loss pile, 4 vs 1.6 per 100, with Data as the scanner.",
+   "Fix the caption crossfade so two numbers are never drawn on top of each other.",
+   "Remove the stray cyan ellipses at the end."
+  ]
+ }
+}

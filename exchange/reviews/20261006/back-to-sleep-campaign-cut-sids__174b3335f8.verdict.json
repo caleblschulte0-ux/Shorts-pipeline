@@ -1,0 +1,102 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "back-to-sleep-campaign-cut-sids__174b3335f8",
+ "video_sha256": "174b3335f869dc4710b59d66484c45e4d670a17aa3f2ff535c44c3f37d840bd9",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T05:48:31Z",
+ "grades": {
+  "dimensions": {
+   "hook": 3,
+   "data_demo": 2,
+   "mascot": 2,
+   "craft": 1,
+   "pace": 2,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All imagery is drawn in-house: coffins, blocks, ring, bricks (hook@0.3, seg1:mid, seg4:start). There is no stock or AI art."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "Data has a bit in most scenes: he saws the coffin in the hook (hook@0.8 to hook@1.5), climbs a ladder beside the coffin stack in seg1:mid and seg1:end, and pulls a lever in seg4:end. Only seg2 is decorative: he dances beside the bar in seg2:start to seg2:end."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "Seg3 comes close, with a big 3,400 over a ring (seg3:end), but the dot ring fills as the number counts up, so it is not a bare card."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Measured longest_static_s is 0.0. Something moves in every sampled frame."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The bottom third is empty dark space in seg0:start to seg1:start (hook@0.3, seg1:start), but it is not one tiny element on black."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "In payoff@-1.8 to seg4:end the top of the 3,400 headline is clipped and reads as '3,40O'. In seg3:start and seg3:mid the dark ring dots are printed over the digits of 1,316 and 2,588. In seg3:end Data covers the end of 'deaths per year'. In seg2:end Data overlaps the circled 85.4% label."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg2",
+   "index": 2,
+   "failure_class": "chart_contradicts_narration",
+   "visible_evidence": "seg2:start to seg2:end show a plain two-bar chart, 'Placed stomach-down 85.4%' vs 'Placed back-up 1.9%', while the voiceover says stomach-sleeping fell 'from 85.4% of cases to 30.1%'. The 30.1% is never shown, the 1.9% is never spoken, and Data just dances beside the bar.",
+   "root_cause": "The fallback bar chart was drawn from a different pair of fields (stomach vs back, one year) than the claim in the narration (stomach-down share before vs after), and Data was given no act tied to the data.",
+   "repair_goal": "Show the narrated drop from 85.4% to 30.1% as a before-to-after change made of the subject: a row of 100 sleeping-baby cribs where Data rolls babies from stomach-down onto their backs until only 30.1% stay face-down. The numbers must match the voiceover, and Data must be the cause of the change."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "bespoke",
+    "bespoke": 2,
+    "proves_claim": 2,
+    "note": "Data saws the coffin in half and the cut piece fades to show -0.7. The coffin is made of the subject, but the halving is a generic dashed box."
+   },
+   {
+    "id": "seg1",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "A stack of blocks with coffin icons, each = 0.1. It climbs to 1.1 while the voiceover says 'just 0.64', so it reads as rising when the claim is a fall."
+   },
+   {
+    "id": "seg2",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "Two bars, 85.4 vs 1.9. They do not match the narrated 30.1% and Data dances beside them."
+   },
+   {
+    "id": "seg3",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "A ring of dots fills while the number counts up to 3,400. It is a generic progress dial and nothing in it is about sleep or infants."
+   },
+   {
+    "id": "seg4",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 0,
+    "note": "A conveyor carries gold blocks and grey bricks pile up. It is unclear what the bricks stand for or how they relate to 3,400."
+   }
+  ],
+  "one_line": "The hook's sawn coffin is a strong start, but seg2's bar chart contradicts the narration (shows 1.9%, voiceover says 30.1%), seg1's stack climbs while the voiceover describes a fall, and several labels are clipped or overprinted.",
+  "problems": [
+   "seg2: a plain bar chart shows 85.4% vs 1.9% while the voiceover says 85.4% to 30.1%. The visual contradicts the claim, and Data dances beside the bar with no bit.",
+   "seg1: the coffin-block stack grows from 0.5 to 1.1 as the voiceover says 'by 2008, just 0.64'. The motion runs opposite to the decline being described.",
+   "seg3: dark ring dots are printed over the counting digits (seg3:start, seg3:mid), and Data covers the end of 'deaths per year' (seg3:end).",
+   "seg4/payoff: the 3,400 headline is clipped at its top edge, and the brick wall and conveyor do not say anything readable about 3,400 deaths.",
+   "The hook shows '1.3' and '0.6' while the voiceover says 1.34 and 0.64. This is rounding, but the numbers on screen and in the voiceover should match."
+  ],
+  "fixes": [
+   "Rebuild seg2 so it shows the narrated before-to-after shift (85.4% stomach-down falling to 30.1%) as cribs of babies Data turns onto their backs. Remove the unspoken 1.9% back-up bar.",
+   "Make seg1 fall: start with the full 1991 stack of 13.4 blocks and have Data remove blocks down to 6.4 for 2008, so the motion matches the decline.",
+   "Move the seg3 ring dots behind the number, or ring it outside the digits, and keep Data clear of the label text.",
+   "Give the payoff's 3,400 headline top padding so it is not clipped. Replace the abstract brick wall with something that reads as 3,400 infants (e.g. 3,400 tiny cribs filling), or drop it for a cleaner payoff."
+  ]
+ }
+}
