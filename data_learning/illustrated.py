@@ -128,6 +128,17 @@ def seg(t, a, b):
 
 
 def vgrad(cr, stops, y0=0, y1=H, x0=0, x1=W):
+    """Fill x0..x1, y0..y1 with a top-to-bottom gradient. `stops` is
+    [(position 0..1, rgb), ...], or plain [rgb, ...] spaced evenly."""
+    # Plain colours are what the brain writes first: "too many values to
+    # unpack (expected 2)" at `vgrad(cr, [(120, 156, 196), ...])` was the
+    # crash on attempt 1 of most drafts, 2026-10-07. Same picture either way.
+    stops = list(stops)
+    if stops and all(isinstance(s, (tuple, list)) and len(s) in (3, 4)
+                     and all(isinstance(v, (int, float)) for v in s)
+                     for s in stops):
+        n = max(1, len(stops) - 1)
+        stops = [(k / n, c) for k, c in enumerate(stops)]
     g = cairo.LinearGradient(0, y0, 0, y1)
     for p, c in stops:
         g.add_color_stop_rgba(p, *_c(c))

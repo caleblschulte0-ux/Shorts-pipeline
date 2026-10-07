@@ -40,6 +40,8 @@ P = look.SCENES
 
 
 def vgrad(cr, stops, y0=0, y1=H, x0=0, x1=W):
+    """Fill x0..x1, y0..y1 with a top-to-bottom gradient. `stops` is
+    [(position 0..1, rgb), ...], or plain [rgb, ...] spaced evenly."""
     I.vgrad(cr, stops, y0, y1, x0, x1)
 
 
