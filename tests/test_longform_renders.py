@@ -31,6 +31,14 @@ class _Reached(Exception):
 
 class TestRenderGetsPastTheTheme(unittest.TestCase):
 
+    def setUp(self):
+        # render() sets the chart colours as module globals, like the shorts
+        # renderer does; put them back so no later test sees this story's.
+        saved = (charts.HIGHLIGHT, charts.ACCENT, charts.WARN)
+        self.addCleanup(lambda: setattr(charts, "HIGHLIGHT", saved[0]))
+        self.addCleanup(lambda: setattr(charts, "ACCENT", saved[1]))
+        self.addCleanup(lambda: setattr(charts, "WARN", saved[2]))
+
     def _render_until_story(self, slug: str) -> dict:
         seen = {}
         cfg = {"stories": [{"slug": slug, "title": "T", "segments": []}]}
