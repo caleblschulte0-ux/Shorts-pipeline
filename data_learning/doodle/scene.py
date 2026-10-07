@@ -83,8 +83,14 @@ BANKABLE = ("hearth", "campfire", "brazier")   # drawn as banked embers when the
 FIRES = (None, "low")
 FIRE_ACTIONS = ("feed_fire", "warm_hands", "stir")     # done AT the fire, so drawn beside it
 POOL_ACTIONS = ("fill", "gather", "drink")             # done AT the spring's pool, so placed beside it
+# a gatherer fills a basket of their own, set at their hands: one basket in
+# the middle of the grove and two gatherers standing at the frame's edges
+# was "idle standing figures" to the judge (2026-10-06, 78)
+BASKET_X = 1.6        # head radii in front of the feet: the basket's centre, under the dropping hand
 
 
+HEARTH_LIGHT = 0.45     # a built-in hearth's banked embers: a corner's glow, a third of a fire's
+HEARTH_EMBERS = 2.4     # their scale in the 300 px firebox
 LAMP_ROOMS = ("cottage_inside", "villa_inside", "house_inside", "mudbrick_inside")
 
 
@@ -334,7 +340,7 @@ _EXTENT = {
 # outstretched arm crosses the seated elder's head".
 ACTION_REACH = {"point": 1.9, "carry": 1.8, "wave": 1.2, "play": 1.8, "feed_fire": 2.2, "stir": 1.9,
                 "fish": 3.9, "hoe": 2.4, "chop": 1.8, "gather": 1.7, "talk": 1.3, "warm_hands": 1.6,
-                "knap": 1.4, "sew": 1.6, "eat": 1.3, "drink": 1.3, "fill": 1.7,
+                "knap": 1.4, "sew": 1.6, "fasten": 1.6, "eat": 1.3, "drink": 1.3, "fill": 1.7,
                 "spin": 2.4}     # the spindle hangs out in front and its whorl is half a head wide (run 97: the lamp stood in her hands)
 ITEM_REACH = {"spear": 2.1, "torch": 1.3, "stick": 1.2, "branch": 1.3, "axe": 1.4, "hoe": 2.4, "rod": 3.9,
               "bundle": 1.8, "basket": 1.2, "lantern": 1.0}
@@ -635,9 +641,19 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         taken.append((lo, hi))
 
     has_pot = next((q["name"] for q in pl if q["name"] in ("pot", "cauldron")), None)
+    # every gatherer has a basket at their hands: as many as there are
+    # gatherers, the spec's own first
+    n_gather = sum(1 for c in cast if c.get("action") == "gather")
+    if n_gather and spec.get("setting") != "spring":
+        have = sum(1 for q in pl if q["name"] == "basket")
+        pl.extend({"name": "basket"} for _ in range(max(0, n_gather - have)))
+    gathers = n_gather and spec.get("setting") != "spring"
 
     def fig_span(c, x, facing, R):
         lo, hi = figure_extent(c.get("pose", "stand"), R, c.get("action", "idle"), c.get("item"))
+        if c.get("action") == "gather" and gathers:
+            # the basket in front of them is part of their span
+            hi = max(hi, BASKET_X * R + PROPS["basket"].width * s / 2 + PAD * R)
         if c.get("action") == "stir" and has_pot:
             # the pot goes on her far side from the fire (below), and she
             # turns to it: it is part of her span, or she is placed at the
@@ -790,6 +806,9 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
              and not PROPS[p['name']].living]
     late = [p for p in rest if p not in early]
     stirrer = sleeper = None
+    misses = []
+    gatherers = []
+    keeper = None
     def place_prop(p):
         """Place one non-focal prop; bedroll and pot go with their person."""
         pr, ps, py, w = prop_geom(p)
@@ -842,6 +861,41 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
             put(x - w / 2, x + w / 2)
             placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
                                seed=seed + len(placed) * 17, under=figs.index(sleeper)))
+            return
+        elif p["name"] == "fence" and keeper is not None and not keeper.get("_gate"):
+            # the pen's gate at the hand of whoever fastens it: the latch
+            # side when they face it from the right, the hinge side from the
+            # left (props.fence: the gate spans +-66, the latch to +96)
+            R = people.R0 * s * people.WHO[keeper["who"]]["size"]
+            if keeper["facing"] == "left":
+                x = keeper["x"] - 1.35 * R - 70 * ps
+            else:
+                x = keeper["x"] + 1.35 * R + 60 * ps
+            keeper["_gate"] = True
+            placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer, seed=seed + len(placed) * 17))
+            return
+        elif p["name"] == "basket" and sleeper and sleeper.get("item") == "basket" and not sleeper.get("_basket"):
+            # in front of the bed at the sleeper's chest, and their hand on
+            # its rim ("half asleep beside her, one hand still resting on an
+            # unfinished basket" was a basket across the room, 2026-10-06, 78)
+            R = people.R0 * s * people.WHO[sleeper["who"]]["size"]
+            d = 1 if sleeper["facing"] == "right" else -1
+            x = sleeper["x"] - d * 0.55 * R
+            sleeper["_basket"] = True
+            put(x - w / 2, x + w / 2)
+            placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
+                               seed=seed + len(placed) * 17, under=figs.index(sleeper)))
+            return
+        elif p["name"] == "basket" and any(not f.get("_basket") for f in gatherers):
+            # at the gatherer's hands, in front of them (BASKET_X)
+            f = next(f for f in gatherers if not f.get("_basket"))
+            R = people.R0 * s * people.WHO[f["who"]]["size"]
+            d = 1 if f["facing"] == "right" else -1
+            x = f["x"] + d * BASKET_X * R
+            f["_basket"] = True
+            put(x - w / 2, x + w / 2)
+            placed.append(dict(name=p["name"], x=x, y=py, s=ps, layer=pr.layer,
+                               seed=seed + len(placed) * 17, under=figs.index(f)))
             return
         elif stirrer and p["name"] in ("pot", "cauldron") and not stirrer.get("_pot"):
             R = people.R0 * s * people.WHO[stirrer["who"]]["size"]
@@ -915,7 +969,7 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     # sleeper first: placed first by the fire, an 820 px bed met the lamp
     # and the whole room shrank (run 101)
     order = sorted(range(len(cast)),
-                   key=lambda i: 0 if (at_fire and cast[i].get("action") in anchor_actions) else
+                   key=lambda i: 0 if cast[i].get("action") in anchor_actions else
                    1 if cast[i].get("pose") == "lie" else 2)
     figs: list = [None] * len(cast)
     for i in order:
@@ -1011,6 +1065,29 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
                     def fig_span(cc, xx, ff, RR, _pad=pad_, _f=_span0):     # noqa: E306
                         lo__, hi__ = _f(cc, xx, ff, RR)
                         return (lo__ - _pad, hi__ + _pad) if cc is c else (lo__, hi__)
+            if x is None and pose == "lie" and tender_x is not None:
+                # right at the tender's back, on the side away from the fire:
+                # the nearest slot to her was the fire's other side, and "her
+                # own child is already half asleep beside her" lay with the
+                # brazier between them (2026-10-06, 78)
+                tf = next(f for f in figs if f is not None and f["action"] in anchor_actions)
+                tR = people.R0 * tf["s"] * people.WHO[tf["who"]]["size"]
+                tlo, thi = figure_extent(tf["pose"], tR, tf["action"], tf.get("item"))
+                if tf["facing"] == "left":
+                    tlo, thi = -thi, -tlo
+                side = 1 if tender_x >= focal_x else -1
+                for facing in (("left", "right") if side > 0 else ("right", "left")):
+                    lo0, hi0 = fig_span(c, 0.0, facing, R)
+                    cand = tender_x + thi - lo0 + 4 if side > 0 else tender_x + tlo - hi0 - 4
+                    lo, hi = fig_span(c, cand, facing, R)
+                    if lo >= EDGE and hi <= W - EDGE and free(lo, hi, keep_span(c, cand, facing, R)):
+                        x = cand
+                        break
+                if x is None and spec.get("together"):
+                    # the words put them together and there is no room at
+                    # her back: this arrangement is refused, and layout()
+                    # tries the fire somewhere else
+                    misses.append(f"{c['who']}:lie is not beside whoever tends the fire")
             for k in slot_order:
                 if x is not None:
                     break
@@ -1073,8 +1150,15 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
     stirrer = next((f for f in figs if f["action"] == "stir"), None)
     sleeper = next((f for f in figs if f["pose"] == "lie"), None)
     recliners = [f for f in figs if f["pose"] == "recline"]
+    gatherers = [f for f in figs if f["action"] == "gather"] if gathers else []
+    keeper = next((f for f in figs if f["action"] == "fasten"), None)
     for p in late:
         place_prop(p)
+    for q in placed:
+        f = figs[q["under"]] if q["name"] == "basket" and q.get("under") is not None else None
+        if f is not None and f["pose"] == "lie":
+            # the hand on the rim, now the bed has set where the body lies
+            f["rest"] = (q["x"] - f["x"], q["y"] - 80 * q["s"] + 0.12 * people.R0 * q["s"] - f["y"])
     # a small light stands ON a table when there is one (a lamp on the
     # floor under the table was where the crowding check put it)
     tables = [i for i, q in enumerate(placed) if q["name"] == "table"]
@@ -1091,10 +1175,12 @@ def _layout(spec: dict, seed: int, shrink: float, slots_auto=None, focal_shift: 
         f.pop("_pot", None)
         f.pop("_bed", None)
         f.pop("_couch", None)
+        f.pop("_basket", None)
+        f.pop("_gate", None)
     lay = dict(props=placed, people=figs, scale=s, ground_y=gy, shot=shot, blocked=blocked,
                walkers=_walkers(walking, s, gy, seed, pan=bool(spec.get("pan")),
                                 far=not (SETTINGS[spec["setting"]].interior or SETTINGS[spec["setting"]].water)))
-    lay["collisions"] = collisions(lay)
+    lay["collisions"] = collisions(lay) + misses
     return lay
 
 
@@ -1147,6 +1233,20 @@ class Scene:
         for f in self.lay["people"]:
             if f["item"] in LIGHT_ITEMS:
                 self.lights.append((f["x"], f["y"] - 230 * f["s"], 0.7 * f["s"], f["seed"], None))
+        # a room's built-in hearth is never a dead black hole at night: its
+        # fire is banked, a bed of embers that breathes and lights the corner
+        # (2026-10-06, 78: "the hearth is an empty black opening, while the
+        # narration closes on the faint red glow of the banked fire")
+        self.hearth = self.facts.get("hearth") if self.time in ("dusk", "night") else None
+        if self.hearth and any(min(hi, self.hearth[0] + 160) - max(lo, self.hearth[0] - 160) > 0
+                               for lo, hi in self._cover_spans()):
+            # something stands in front of the firebox: the embers would be
+            # drawn over it (the bed is in the still), so only its light shows
+            self.hearth_light_only = True
+        else:
+            self.hearth_light_only = False
+        if self.hearth:
+            self.lights.append((self.hearth[0], self.hearth[1] - 60, HEARTH_LIGHT, seed + 3, None))
         interior = SETTINGS[self.setting].interior
         base = settings.AMBIENT[self.time]
         if interior:
@@ -1265,6 +1365,9 @@ class Scene:
         cr.set_operator(cairo.OPERATOR_OVER)
         settings.ambient(cr, self.setting, self.time, "clear" if self.weather in ("rain", "snow") else
                          self.weather, self.facts, t, self.seed)
+        if self.hearth and not self.hearth_light_only:
+            from .props import banked
+            banked(cr, self.hearth[0], self.hearth[1] - 8, HEARTH_EMBERS, t, self.seed + 3, size=110.0)
         lay = self.lay
         for layer in ("back", "mid"):
             for p in lay["props"]:
@@ -1324,7 +1427,7 @@ class Scene:
                     continue
                 people.draw(cr, who=f["who"], era=self.era, seed=f["seed"], pose=f["pose"],
                             action=f["action"], x=f["x"], ground_y=f["y"], scale=f["s"], t=t,
-                            facing=f["facing"], mood=f["mood"], item=f["item"], cold=cold)
+                            facing=f["facing"], mood=f["mood"], item=f["item"], cold=cold, reach=f.get("rest"))
             else:
                 a = self.acts[i]
                 if a["kind"] in happen.PEOPLE_KINDS:

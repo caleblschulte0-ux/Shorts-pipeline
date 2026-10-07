@@ -45,7 +45,7 @@ import subprocess
 import sys
 import tempfile
 from concurrent.futures import ProcessPoolExecutor
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 PKG = Path(__file__).resolve().parent
@@ -494,6 +494,68 @@ SINGLE_ZOOM_INTERIOR = 1.15    # ...looser in a room, so the shelf and the windo
 CALM_MOODS = ("calm", "content", "sleepy", "happy")   # the faces a sleep film has (run 97: "the shepherd has a stern, frowning expression")
 
 
+GATE_WORDS = re.compile(r"\b(?:the|a) gate (?:is |was )?(?:fastened|shut|closed|latched|barred)|"
+                        r"\b(?:fasten|fastens|shut|shuts|close|closes|latch|latches|bar|bars)(?:es)? the gate\b", re.I)
+
+
+def at_the_gate(spec, text: str):
+    """The scene with somebody fastening the gate when the words say it is
+    fastened and the scene has a pen: whoever holds the light (a torch, a
+    lantern), else whoever stands. "By torchlight you make sure the gate is
+    fastened" drew a pen nobody stood at (2026-10-06, 78)."""
+    if not isinstance(spec, dict) or not GATE_WORDS.search(text or ""):
+        return spec
+    if not any((p if isinstance(p, str) else (p or {}).get("name")) == "fence" for p in spec.get("props") or []):
+        return spec
+    cast = [dict(c) if isinstance(c, dict) else c for c in spec.get("cast") or []]
+    if any(isinstance(c, dict) and c.get("action") == "fasten" for c in cast):
+        return spec
+    stand = [c for c in cast if isinstance(c, dict) and c.get("pose") == "stand"]
+    lit = [c for c in stand if c.get("item") in ("torch", "lantern")]
+    if not (lit or stand):
+        return spec
+    (lit or stand)[0]["action"] = "fasten"
+    return dict(spec, cast=cast)
+
+
+def side_by_side(spec, text: str):
+    """The scene with nobody pinned to a place when the words put somebody
+    WITH a sleeper ("an old woman sits close by", "half asleep beside
+    her"): the layout seats them together, and a pinned `at` overrode it —
+    child at the centre, the old woman at the right edge, "across the room"
+    to the judge twice running (run 101, then 2026-10-06's 78)."""
+    if not isinstance(spec, dict) or not (WITH_SLEEPER.search(text or "") or TOGETHER.search(text or "")):
+        return spec
+    cast = [c for c in spec.get("cast") or [] if isinstance(c, dict)]
+    if not any(c.get("pose") == "lie" for c in cast):
+        return spec
+    # `together` holds the layout to it: a sleeper by a fire-tender lies at
+    # her back, or the arrangement is refused (scene._layout)
+    return dict(spec, together=True, cast=[{k: v for k, v in c.items() if k != "at"} if isinstance(c, dict) else c
+                                           for c in spec.get("cast") or []])
+
+
+EMBER_WORDS = re.compile(r"\b(embers?|banked|coals?|(?:red|orange) glow)\b", re.I)
+
+
+def the_embers_glow(spec, text: str, era: str):
+    """The scene with a banked fire in it when the words name embers or a
+    banked glow and nothing in it burns: "let the embers hold their small
+    red glow" closed the Greek film on a room with a lamp and a woodpile
+    (2026-10-06, 78). The first fire this setting and era allow, banked."""
+    from data_learning.doodle import scene as S
+    if not isinstance(spec, dict) or not EMBER_WORDS.search(text or ""):
+        return spec
+    names = [p if isinstance(p, str) else (p or {}).get("name") for p in spec.get("props") or []]
+    if any(n in S.BANKABLE for n in names):
+        return spec if spec.get("fire") == "low" else dict(spec, fire="low")
+    for fire in ("brazier", "hearth", "campfire"):
+        cand = dict(spec, props=[fire] + list(spec.get("props") or []), fire="low")
+        if not S.validate(cand, era):
+            return cand
+    return spec
+
+
 def soften(spec):
     """The scene with every face calm: a focused, worried or surprised
     face is drawn with angled brows, and nobody frowns in a film to fall
@@ -879,7 +941,8 @@ NEWCOMERS = ("arrive", "serve", "child", "passer")    # happenings that bring so
 SEATED_WORDS = r"\b(sits?|sitting|seated|sits? up|settles?|crouch(?:es|ing)?|kneels?|kneeling|bends?|warming|" \
                r"spinning|sewing|mending|stirring|leans?|leaning)\b"
 KEEP_ON_WORDS = r"\b(do(?:es)? not stop|keeps?|still|go(?:es)? on|continues?|stays?|remains?|not stop)\b"
-WORKING_WORDS = r"\b(warming|spinning|sewing|mending|stirring|weaving|kneading|grinding|feeding the fire|tending)\b"
+WORKING_WORDS = r"\b(warming|spinning|sewing|mending|stirring|weaving|kneading|grinding|feeding the fire|tending|" \
+                r"gathering|picking|fill(?:s|ing)? (?:their|her|his|the) baskets?)\b"
 TOP_BAND = 175.0     # world px: the ceiling beams and the painted band every room has along the top
 
 
@@ -986,6 +1049,7 @@ def shots(ep: dict, beats: list[Beat], paintings: dict | None = None) -> list[di
     prev_setting = None
     for b in beats:
         seed = _scene_seed(ep["slug"], b.index, b.scene)
+        b = replace(b, scene=the_embers_glow(side_by_side(at_the_gate(b.scene, b.text), b.text), b.text, ep["era"]))
         lines = list(b.lines)
         start = b.start
         if b.index in paints and len(lines) > 1:

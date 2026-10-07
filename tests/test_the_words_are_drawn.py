@@ -1414,3 +1414,108 @@ class TheEightySevenAgain(unittest.TestCase):
         tail = next(c for c in caps if c["text"] == "Cozy History for Sleep")
         self.assertLessEqual(tail["t0"] + tail.get("fade", 1.2), 2.0, "still fading in at 2.2 s")
         self.assertGreaterEqual(sum(tail["color"]) / 3, 240)
+
+
+@unittest.skipUnless(HAVE, "the doodle kit needs cairo and numpy")
+class TheSeventyEightOfOctoberSixth(unittest.TestCase):
+    """2026-10-06, 78 ship, five notes: a heavy downpour and idle figures in
+    a grove whose words fill baskets; "half asleep beside her, one hand on an
+    unfinished basket" across the room; "by torchlight ... the gate is
+    fastened" with nobody at the gate; a black empty hearth under words that
+    close on a banked red glow; an old woman "close by" the child across
+    the room."""
+
+    def test_the_rain_is_soft(self):
+        self.assertLessEqual(ST.RAIN_DROPS, 360)
+        self.assertLessEqual(ST.RAIN_ALPHA, 0.65)
+
+    def test_every_gatherer_has_a_basket_at_their_hands(self):
+        spec = {"setting": "olive_grove", "time": "dusk", "weather": "rain", "shot": "close",
+                "cast": [{"who": "woman", "pose": "crouch", "action": "gather"},
+                         {"who": "man", "pose": "crouch", "action": "gather"}], "props": ["tree", "basket"]}
+        for seed in (1, 7, 24, 2024):
+            lay = S.layout(spec, seed)
+            self.assertEqual(lay["collisions"], [], seed)
+            baskets = [q for q in lay["props"] if q["name"] == "basket"]
+            self.assertEqual(len(baskets), 2, seed)
+            for q in baskets:
+                f = lay["people"][q["under"]]
+                self.assertEqual(f["action"], "gather")
+                R = P.R0 * f["s"] * P.WHO[f["who"]]["size"]
+                d = 1 if f["facing"] == "right" else -1
+                self.assertAlmostEqual((q["x"] - f["x"]) * d, S.BASKET_X * R, delta=1.0)
+        # the hand goes down into it and back up to pick
+        sk = P.skeleton("crouch", 46.0, 0.0)
+        ys = [P.hand_targets("gather", sk, 46.0, t, 0.0)[0][1] for t in np.linspace(0, P.GATHER_S, 40)]
+        self.assertGreater(max(ys) - min(ys), 0.6 * 46.0, "the hand hardly moves")
+        self.assertGreater(max(ys), -0.95 * 46.0, "never reaches the basket's rim")
+
+    def test_nobody_stops_gathering_or_walks_off_from_the_gate(self):
+        from data_learning.doodle import happen as HP
+        self.assertIn("gather", HP.AT_THE_WORK)
+        self.assertIn("fasten", HP.AT_THE_WORK)
+        spec = {"setting": "olive_grove", "time": "dusk", "weather": "rain", "shot": "close", "cast": [], "props": []}
+        self.assertFalse(HP.fits("hens", spec), "hens shelter from the rain")
+        import re
+        self.assertTrue(re.search(OS.WORKING_WORDS, "the last gatherers fill their baskets before the light goes"))
+
+    def test_the_child_half_asleep_lies_beside_her_not_across_the_fire(self):
+        spec = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "woman", "pose": "sit", "action": "feed_fire", "item": "spindle"},
+                         {"who": "child", "pose": "lie", "action": "sleep", "item": "basket"}],
+                "props": ["brazier", "oil_lamp", "basket", "barrel", "bed"], "fire": "low"}
+        spec = OS.side_by_side(spec, "Her own child is already half asleep beside her.")
+        self.assertTrue(spec.get("together"))
+        for seed in (3, 16, 99, 2818272419):
+            lay = S.layout(spec, seed)
+            self.assertEqual(lay["collisions"], [], seed)
+            her = next(f for f in lay["people"] if f["who"] == "woman")
+            child = next(f for f in lay["people"] if f["who"] == "child")
+            fire = next(q for q in lay["props"] if q["name"] == "brazier")
+            self.assertFalse(min(her["x"], child["x"]) < fire["x"] < max(her["x"], child["x"]),
+                             (seed, "the fire between them"))
+            basket = next(q for q in lay["props"] if q["name"] == "basket")
+            self.assertEqual(lay["people"][basket["under"]]["who"], "child", seed)
+            self.assertIsNotNone(child.get("rest"), (seed, "no hand on the basket"))
+
+    def test_by_torchlight_somebody_fastens_the_gate(self):
+        spec = {"setting": "olive_grove", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "man", "pose": "stand", "action": "hold", "item": "torch"},
+                         {"who": "woman", "pose": "stand", "action": "hold", "item": "lantern"}],
+                "props": ["fence", "campfire", "flock"]}
+        text = "The goats and sheep are already settled, and by torchlight you make sure the gate is fastened."
+        got = OS.at_the_gate(spec, text)
+        self.assertEqual(got["cast"][0]["action"], "fasten")
+        self.assertEqual(spec["cast"][0]["action"], "hold", "the episode's own spec is not changed")
+        self.assertIs(OS.at_the_gate(spec, "The goats are settled."), spec)
+        self.assertEqual(S.validate(got, "ancient"), [])
+        for seed in (32, 5, 77):
+            lay = S.layout(got, seed)
+            man = next(f for f in lay["people"] if f["action"] == "fasten")
+            fence = next(q for q in lay["props"] if q["name"] == "fence")
+            R = P.R0 * man["s"]
+            self.assertLess(abs(fence["x"] - man["x"]), 1.35 * R + 100 * fence["s"], seed)
+
+    def test_the_embers_the_words_name_are_in_the_room(self):
+        spec = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                "cast": [{"who": "woman", "pose": "lie", "action": "sleep"}], "props": ["oil_lamp", "woodpile"]}
+        got = OS.the_embers_glow(spec, "Let the embers hold their small red glow.", "ancient")
+        self.assertEqual(got.get("fire"), "low")
+        self.assertTrue(any(p in S.BANKABLE for p in got["props"]))
+        self.assertEqual(S.validate(got, "ancient"), [])
+        self.assertIs(OS.the_embers_glow(spec, "The room is quiet.", "ancient"), spec)
+        # the hearth built into a room is lit at night, never a black hole
+        seed = next(k for k in range(40) if ST.house_room(k) == 3)
+        sc = S.Scene({"setting": "house_inside", "time": "night", "weather": "clear", "shot": "close",
+                      "cast": [], "props": ["oil_lamp"]}, "ancient", seed)
+        self.assertIsNotNone(sc.hearth)
+        self.assertTrue(any(abs(x - sc.hearth[0]) < 1 for x, *_ in sc.lights), "no light at the hearth")
+
+    def test_close_by_beats_a_pinned_place(self):
+        spec = {"setting": "house_inside", "time": "night", "weather": "clear", "shot": "wide",
+                "cast": [{"who": "child", "pose": "lie", "action": "sleep", "at": "center"},
+                         {"who": "old_woman", "pose": "sit", "action": "hold", "item": "bundle", "at": "right"}],
+                "props": ["bed", "oil_lamp", "barrel", "table"]}
+        got = OS.side_by_side(spec, "An old woman sits close by a moment longer, watching the small steady breathing.")
+        self.assertFalse(any(c.get("at") for c in got["cast"]))
+        self.assertIs(OS.side_by_side(spec, "The room is dark."), spec)

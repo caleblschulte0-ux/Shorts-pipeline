@@ -51,6 +51,10 @@ EDGE = 30.0
 GAP = 12.0
 
 STRETCHABLE = ("idle", "hold", "talk", "look_up", "yawn")   # the actions a stretch may interrupt
+# the work the words are about: whoever does it neither walks off nor stops
+# (the man fastening the gate walked away through the campfire, and a
+# gatherer stopped to look up, in the 2026-10-06 fixes' own previews)
+AT_THE_WORK = ("fasten", "gather")
 PEOPLE_KINDS = ("arrive", "leave", "feed", "serve", "light", "snuff", "child", "passer", "turn", "stretch", "pause")
 BACK_K = 0.56            # the far side of the picture: scene.WALK_LANE
 ANIMAL_KINDS = ("dog", "cat", "hens", "birds", "fish", "bats", "mouse", "moth")
@@ -274,7 +278,7 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
         return a
     if kind == "leave":
         figs = [i for i, f in enumerate(lay["people"]) if f["pose"] in ("sit", "sit_on", "crouch", "stand", "recline")
-                and x0 < f["x"] < x1 and f["who"] != "child"]
+                and x0 < f["x"] < x1 and f["who"] != "child" and f["action"] not in AT_THE_WORK]
         if len(lay["people"]) < 2 or not figs:
             return None                    # the only person in the picture does not walk out of it
         r.shuffle(figs)
@@ -306,7 +310,7 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
         a["keys"].append((t_up + 0.3 + walk_t, out, "walk", "idle", facing))
         return a
     if kind == "turn":
-        sleepers = [i for i, f in enumerate(lay["people"]) if f["pose"] == "lie" and x0 < f["x"] < x1]
+        sleepers = [i for i, f in enumerate(lay["people"]) if f["pose"] == "lie" and not f.get("rest") and x0 < f["x"] < x1]
         if not sleepers:
             return None
         gi = sleepers[r.randrange(len(sleepers))]
@@ -350,7 +354,7 @@ def build(kind: str, spec: dict, lay: dict, seed: int, dur: float, setting=None,
         # small pause the words themselves describe ("a small pause in the
         # rhythm"), for the worker nobody may stand up out of
         busy = [i for i, f in enumerate(lay["people"]) if f["pose"] != "lie" and f["action"] not in STRETCHABLE
-                and x0 < f["x"] < x1]
+                and f["action"] not in AT_THE_WORK and x0 < f["x"] < x1]
         if not busy:
             return None
         gi = busy[r.randrange(len(busy))]
@@ -606,7 +610,9 @@ def fits(kind: str, spec: dict) -> bool:
         return any(isinstance(c, dict) and c.get("pose") != "lie" and c.get("action", "idle") not in STRETCHABLE
                    for c in spec.get("cast") or [])
     if kind == "hens":
-        return spec.get("setting") in YARDS and time in ("day", "dawn", "dusk")
+        # hens shelter from the rain (and three of them strutting over the
+        # gatherers' baskets in a rainy grove, 2026-10-06's render)
+        return spec.get("setting") in YARDS and time in ("day", "dawn", "dusk") and spec.get("weather") != "rain"
     if kind == "birds":
         return not inside and time in ("day", "dawn", "dusk")
     if kind == "bats":

@@ -329,6 +329,9 @@ def _outside(time: str):
 
 
 def _interior(cr, name, seed, r, time: str = "night"):
+    """Paint an interior; returns where its built-in hearth's floor is,
+    (x, y), when the room has one."""
+    hearth = None
     if name == "cave_inside":
         cr.set_source_rgba(*rgb("#4a4038"))
         cr.paint()
@@ -429,6 +432,7 @@ def _interior(cr, name, seed, r, time: str = "night"):
             _niche(cr, sx, seed)
         else:
             _hearth_corner(cr, wx, bot - 40, seed, time)
+            hearth = (wx, bot - 40)
         # a skirting of beaten earth colour where the wall meets the floor
         ink.fill_stroke(cr, ink.box(-20, bot - 40, W + 20, bot + 10), rgb(HOUSE_SKIRTINGS[room]), lw=0, amp=0)
     elif name == "mudbrick_inside":
@@ -492,6 +496,7 @@ def _interior(cr, name, seed, r, time: str = "night"):
                         lw=8, amp=0.8, seed=seed)
         ink.line(cr, [(wx, 280), (wx, 470)], lw=7, ink=rgb("#6d4b2d"), amp=0)
         ink.line(cr, [(wx - 90, 375), (wx + 90, 375)], lw=7, ink=rgb("#6d4b2d"), amp=0)
+    return hearth
 
 
 # the water band, (top, bottom) above the ground line: the near bank is a
@@ -625,7 +630,7 @@ def draw_still(cr, name: str, time: str, weather: str, seed: int, shot: str = "w
     gy = H * GROUND_Y
     facts = {"ground_y": gy, "water": None}
     if st.interior:
-        _interior(cr, name, seed, r, time)
+        facts["hearth"] = _interior(cr, name, seed, r, time)
         _ground(cr, st.ground, gy, seed + 1)
         return facts
     _sky(cr, time if weather not in ("rain",) else ("night" if time == "night" else "dusk"))
@@ -1094,18 +1099,23 @@ def glints(cr, facts: dict, time: str, t: float, seed: int):
                                 lw=0, amp=0)
 
 
+RAIN_DROPS = 340        # a soft rain: at 700 thick bright streaks it was "a heavy downpour" over words
+                        # that say "a soft rain tapping through the leaves" (2026-10-06, 78)
+RAIN_W, RAIN_ALPHA = 3.0, 0.65    # measured: thinner or fainter and a day rain reads as frozen to the probe
+
+
 def _rain(cr, t, seed):
     r = random.Random(seed + 21)
-    cr.set_line_width(3.4)
+    cr.set_line_width(RAIN_W)
     cr.set_line_cap(cairo.LINE_CAP_ROUND)
-    cr.set_source_rgba(0.86, 0.9, 1.0, 0.7)
-    for _ in range(700):
+    cr.set_source_rgba(0.86, 0.9, 1.0, RAIN_ALPHA)
+    for _ in range(RAIN_DROPS):
         x0, y0 = r.uniform(-100, W), r.uniform(0, H)
         v = r.uniform(900, 1300)
         y = (y0 + t * v) % (H + 80) - 40
         x = x0 + (y - y0) * 0.12
         cr.move_to(x, y)
-        cr.line_to(x + 6, y + 44)
+        cr.line_to(x + 4, y + 32)
     cr.stroke()
 
 

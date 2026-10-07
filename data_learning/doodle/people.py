@@ -86,6 +86,7 @@ ACTIONS = {
     "wave": dict(poses=("stand", "sit", "sit_on", "walk"), item=None),
     "knap": dict(poses=("sit", "sit_on", "crouch"), item="stone"),
     "gather": dict(poses=("crouch", "stand"), item=None),
+    "fasten": dict(poses=("stand",), item=None),       # a hand on the pen's gate, dropping the latch bar
     "hold": dict(poses=POSES[:4] + ("walk", "recline"), item=None),
     "sleep": dict(poses=("lie",), item=None),
     "yawn": dict(poses=("stand", "sit", "sit_on"), item=None),
@@ -217,6 +218,7 @@ def head_of(sk: dict, R: float, action: str) -> tuple[float, float]:
 # what is carried at the side whatever the free hand is doing
 LOW_HELD = ("lantern", "torch")
 
+GATHER_S = 3.4          # seconds per pick-and-drop
 STOOPED = ("stand", "sit", "sit_on", "crouch")    # the poses a grey head is carried forward in
 STOOP = 0.22                                      # head radii forward
 
@@ -291,9 +293,30 @@ def hand_targets(action: str, sk: dict, R: float, t: float, ph: float):
         # knapping flint is never shown")
         k = abs(math.sin(c / 1.6 + ph))
         return ((nx + 1.15 * R, ny + 0.15 * R + k * 1.2 * R), (nx + 1.0 * R, ny + 1.55 * R))
+    if action == "fasten":
+        # the free hand out at the gate's latch, lifting and dropping the
+        # bar into its keeper ("by torchlight you make sure the gate is
+        # fastened": nobody was at the gate, 2026-10-06, 78)
+        k = abs(math.sin(c / 2.6 + ph))
+        return ((nx + 1.35 * R, ny + 0.32 * R - k * 0.22 * R), rest_b)
     if action == "gather":
-        k = (math.sin(c / 3.2 + ph) + 1) / 2
-        return ((nx + 1.3 * R, sk["hip"][1] + (0.9 - 0.3 * k) * R), rest_b)
+        # pick, then drop it in the basket at the feet (scene.BASKET_X), and
+        # back: a hand drifting at the hip was "idle standing figures" to the
+        # judge in a grove whose words fill baskets (2026-10-06, 78)
+        u = ((t / GATHER_S) + ph / (2 * math.pi)) % 1.0
+        pick = (nx + 1.6 * R, ny + 0.95 * R)
+        drop = (nx + 1.15 * R, ny + 1.75 * R) if sk.get("pose") == "crouch" else (nx + 1.25 * R, ny + 1.6 * R)
+        if u < 0.3:
+            k = 0.0
+        elif u < 0.5:
+            k = (u - 0.3) / 0.2
+        elif u < 0.7:
+            k = 1.0
+        else:
+            k = 1.0 - (u - 0.7) / 0.3
+        k = k * k * (3 - 2 * k)
+        jig = math.sin(c * 1.6 + ph) * 0.06 * R * (1 - k)        # fingers at work among the leaves
+        return ((pick[0] + (drop[0] - pick[0]) * k, pick[1] + (drop[1] - pick[1]) * k + jig), rest_b)
     if action == "yawn":
         k = max(0.0, math.sin(c / 5.0 + ph))
         up = (nx + 0.3 * R, ny - 1.3 * R * k + 0.9 * R * (1 - k))
@@ -673,7 +696,8 @@ def draw(cr, *, who: str, era: str, seed: int, pose: str, action: str,
 
     if pose == "lie":
         _draw_lying(cr, lk, R, t, lw, mood if action != "sleep" else "sleepy", seed,
-                    looking_up=(action == "look_up"), lift=lift)
+                    looking_up=(action == "look_up"), lift=lift,
+                    rest=None if reach is None else ((-1.0 if facing == "left" else 1.0) * reach[0], reach[1]))
         cr.restore()
         return
 
@@ -905,7 +929,7 @@ def _seat(cr, lk, hip, R, lw):
                         rgb("#c9a06c"), lw=lw * 0.7, amp=0)
 
 
-def _draw_lying(cr, lk, R, t, lw, mood, seed, looking_up=False, lift: float = 0.0):
+def _draw_lying(cr, lk, R, t, lw, mood, seed, looking_up=False, lift: float = 0.0, rest: tuple | None = None):
     """Asleep on the ground under a fur/blanket, head to the left — or, when
     looking up, on the back with the face to the sky and an arm raised at
     it (the seventh film's judge asked for exactly this for a sky chapter)."""
@@ -929,6 +953,17 @@ def _draw_lying(cr, lk, R, t, lw, mood, seed, looking_up=False, lift: float = 0.
         _face_up(cr, head[0], head[1], R, t, seed, lw)
         return
     _face(cr, head[0], head[1], R, "sleepy", t, seed)
+    if rest is not None:
+        # an arm out from under the blanket, the hand resting where `rest`
+        # says (the rim of the basket she was weaving: "one hand still
+        # resting on an unfinished basket", 2026-10-06, 78)
+        sh = (-1.05 * R, -1.05 * R)
+        el = ((sh[0] + rest[0]) / 2 + 0.15 * R, (sh[1] + rest[1]) / 2 + 0.1 * R)
+        ink.line(cr, [sh, el, rest], lw=0.36 * R, ink=lk["cloth"], amp=0)
+        ink.line(cr, [sh, el, rest], lw=lw * 0.8, amp=0.4, seed=seed + 7)
+        ink.line(cr, [sh, el, rest], lw=0.36 * R - 2 * lw * 0.8, ink=lk["cloth"], amp=0)
+        ink.fill_stroke(cr, ink.ellipse_pts(rest[0], rest[1], 0.2 * R, 0.17 * R, 14), HEAD, lw=lw * 0.7, amp=0.3,
+                        seed=seed + 8)
     # Zzz: letters drifting up and fading, a slow loop
     cr.select_font_face("Anton", 0, 0)
     for k in range(3):
