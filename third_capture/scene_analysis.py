@@ -159,6 +159,10 @@ def analyze_source(video: Path, meta: dict, work: Path, *,
             "title": str(meta.get("title", ""))[:120],
             "channel": str(meta.get("channel")
                            or meta.get("streamer", "")),
+            # Twitch's category for the clip (helix), not a guess: the one
+            # piece of "what is this" a stranger needs that nobody on
+            # stream ever says
+            "game": str(meta.get("game", "") or "")[:60],
             "duration_s": round(dur, 1),
             "people": [str(p)[:40] for p in (out.get("people") or [])][:8],
             "location": str(out.get("location", ""))[:60],

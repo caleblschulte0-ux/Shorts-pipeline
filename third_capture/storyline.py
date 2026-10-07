@@ -270,7 +270,9 @@ def from_discovery(pool: list[dict]) -> list[dict]:
                     # here is why the story arm could only ever guess.
                     "video_id": c.get("video_id"),
                     "vod_offset": c.get("vod_offset"),
-                    "duration": c.get("duration")})
+                    "duration": c.get("duration"),
+                    # Twitch's own category: a fact, unlike the title
+                    "game": str(c.get("game", "") or "")})
     return out
 
 
@@ -310,7 +312,7 @@ def build_catalogue(corpus: list[dict], *, max_fresh: int = 200,
         # are whatever the clipper typed. Keep the better of each field.
         if c.get("posted") is not None and "views" not in c:
             prev["title"] = c.get("title") or prev.get("title", "")
-        for k in ("views", "video_id", "vod_offset", "duration"):
+        for k in ("views", "video_id", "vod_offset", "duration", "game"):
             if prev.get(k) in (None, "", 0) and c.get(k) not in (None, ""):
                 prev[k] = c[k]
         if not prev.get("date"):
@@ -363,9 +365,10 @@ def build_catalogue(corpus: list[dict], *, max_fresh: int = 200,
                    f"{(o % 3600) // 60:02d}m into the stream")
         title = re.sub(r"\s+", " ", str(c.get("title", ""))).strip()[:110]
         ev = clip_memory.evidence(mem, c["source_url"])
+        game = f" | game={c['game']}" if c.get("game") else ""
         lines.append(f"{cid} | {str(c.get('date', ''))[:10] or '?'} | "
                      f"{c.get('channel', '?')} | {_views(c.get('views'))} | "
-                     f"{title}{pos}" + (f" | {ev}" if ev else ""))
+                     f"{title}{pos}{game}" + (f" | {ev}" if ev else ""))
     return lines, ids
 
 def find_vod_arcs(pool: list[dict], *, gap_s: float = 900.0,

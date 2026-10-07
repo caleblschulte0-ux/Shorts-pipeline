@@ -241,6 +241,39 @@ def _helix_user_id(login: str) -> str | None:
     return _HELIX_IDS[login] or None
 
 
+_HELIX_GAMES: dict = {}
+
+
+def helix_game_names(ids) -> dict:
+    """{game_id: name} for helix clip `game_id`s, cached for the run.
+
+    A story the critic calls confusing is usually one where a stranger
+    cannot tell who the streamer is or what they are playing ("a stranger
+    doesn't know who Forsen is, or that this is Terraria", backtest
+    2026-10-07) — and nobody on stream says it out loud, so the director
+    could not either. Twitch knows; this is that fact. Best-effort: {} on
+    any failure, never raises."""
+    want = [str(i) for i in dict.fromkeys(ids or []) if i
+            and str(i) not in _HELIX_GAMES]
+    if want and _helix_creds():
+        try:
+            import requests
+            for k in range(0, len(want), 100):
+                chunk = want[k:k + 100]
+                r = requests.get("https://api.twitch.tv/helix/games",
+                                 params=[("id", g) for g in chunk],
+                                 headers=_helix_headers(), timeout=20)
+                r.raise_for_status()
+                for g in r.json().get("data", []):
+                    _HELIX_GAMES[str(g.get("id"))] = str(g.get("name", ""))
+                for g in chunk:
+                    _HELIX_GAMES.setdefault(g, "")
+        except Exception as e:  # noqa: BLE001
+            print(f"[helix] game names unavailable ({type(e).__name__})",
+                  flush=True)
+    return {str(i): _HELIX_GAMES.get(str(i), "") for i in ids or [] if i}
+
+
 def _discover_helix(channel: str, top: int, hours: int = 24) -> list[dict]:
     import time
     import requests
@@ -266,7 +299,8 @@ def _discover_helix(channel: str, top: int, hours: int = 24) -> list[dict]:
                       "platform": "twitch",
                       "age_h": max(0.05, (now - created) / 3600),
                       "vod_offset": c.get("vod_offset"),
-                      "video_id": c.get("video_id")})
+                      "video_id": c.get("video_id"),
+                      "game_id": c.get("game_id") or ""})
     return clips
 
 
