@@ -1,0 +1,102 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "sand-mining-crisis__cc258e199c",
+ "video_sha256": "cc258e199cc64ee111d6a8d17819176a674088a9da44281703296d0fe44a3425",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T03:49:26Z",
+ "grades": {
+  "dimensions": {
+   "hook": 2,
+   "data_demo": 2,
+   "mascot": 2,
+   "craft": 1,
+   "pace": 2,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "No photos or AI images; every frame is a flat render: blocks (hook@0.3), timeline (seg1:mid), tile grid (seg2:mid), bar chart and map (seg3:mid)."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "Data climbs a ladder and slots blocks onto the stack (hook@0.8, seg0:end) and lays tiles in the grid (seg2:start to seg2:end). He works the data, but in seg3 and seg4 he only stands on the China bar."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "Every beat has a visual. None is a lone number on a blob, although seg1 is a sparse timeline with three bars."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Measured longest_static_s is 0.0. Bars grow and Data moves throughout, including in seg4:mid to seg4:end."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "dark_fraction is 0.0. seg1:mid leaves the bottom third and the area above the timeline mostly empty, but the frame is used."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "In seg4:mid and seg4:end the China bar's '51%' label is printed under Data's body and reads '51%' half-covered. The '5. United States o...' label is truncated, and its value ('3%') is clipped by the panel bottom edge (seg4:start, payoff@-0.4). The map label 'China 51' collides with the '1' marker (seg4:mid)."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg3",
+   "index": 3,
+   "failure_class": "unreadable",
+   "visible_evidence": "The China cement beat is a stock ranked bar chart with a map strip. Data stands on top of the China bar and covers the '51%' value (seg3:end, then seg4:mid). Row 5 reads 'United States o...' and its bar and value are cut off by the bottom edge (seg4:start). The map's 'China 51' tag sits on the numbered marker.",
+   "root_cause": "A generic rank chart with Data placed at the subject bar's end. His position is not checked against the value label's box. The list is laid out taller than its panel, so the 5th row clips, and the label column is not measured for long names.",
+   "repair_goal": "Show China's 51% as a cement and sand pile split by share, or a mixer where Data shovels half of the world's sand into China's drum. If the chart stays, keep Data clear of every value label, fit all 5 rows inside the panel with full names ('United States') and their values, and move the map tag off the marker."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 2,
+    "note": "A generic block stack ('each block = 5B') that Data builds up a ladder to 45B. He is the cause, but the blocks are not sand, and the 1970 versus now contrast is not legible."
+   },
+   {
+    "id": "seg1",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "A timeline with three bars (9.6B, 20.5B, 50B). Data walks along the axis. It is a chart."
+   },
+   {
+    "id": "seg2",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "A waffle of 50 tiles titled 'Sand vs rivers', but the 13B river refill never appears, so the 4x claim is not shown at all."
+   },
+   {
+    "id": "seg3",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "A ranked bar chart with a map strip. China's 51% is just the longest bar, and Data covers its label."
+   },
+   {
+    "id": "seg4",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "The closing line sits over the same bar chart. Nothing shows the beach as the crisis."
+   }
+  ],
+  "one_line": "The video opens with a good Data-builds-the-pile bit, then falls back to stock charts. The river comparison it promises never appears, and Data covers the 51% label on the payoff chart.",
+  "problems": [
+   "seg3/seg4: Data stands on the China bar and covers its '51%' value. The 5th row 'United States o...' is truncated and its value is clipped by the panel edge. The map tag 'China 51' overlaps the marker.",
+   "seg2: titled 'Sand vs rivers' but only the 50B mined grid is drawn. The 13B river replacement and the 4x gap are never shown.",
+   "seg1: a sparse three-bar timeline chart with no sand anywhere in it. Data just walks the axis with his arms up.",
+   "hook/seg0: the blocks are generic teal bars ('each block = 5B'), not sand. The '5x since 1970' claim reads only as a counter climbing 30B to 45B.",
+   "payoff: the closing line 'the beach is the crisis' sits over a bar chart with no beach and no whoa moment."
+  ],
+  "fixes": [
+   "Rebuild the China beat as a subject picture, for example Data shovelling a sand pile where 51% of it pours into a China cement mixer. Otherwise keep Data clear of value labels, measure the label column, and fit all rows inside the panel.",
+   "In seg2, draw the river refill: a river delivering 13 tiles while Data's mining pulls 50, so the 4x deficit is visible as a shrinking pile.",
+   "Make the 1970-to-now beat out of sand: a 1970 dune beside a dune five times taller that Data builds bucket by bucket, instead of a timeline.",
+   "Land the payoff on a beach that visibly shrinks or disappears under Data's shovel, so the closing line has a picture."
+  ]
+ }
+}

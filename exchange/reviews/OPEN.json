@@ -1,27 +1,7 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-10-07T02:47:52Z",
+ "updated": "2026-10-07T03:49:26Z",
  "open": [
-  {
-   "id": "recycling-myth-reality__2fc8146a7c",
-   "channel": "explainer",
-   "slug": "recycling-myth-reality",
-   "title": "Why 'Just Recycle It' Barely Works",
-   "filed": "2026-10-06T22:57:35Z",
-   "request": "exchange/reviews/20261006/recycling-myth-reality__2fc8146a7c.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/recycling-myth-reality__2fc8146a7c/sheet.jpg",
-   "answer_path": "exchange/reviews/20261006/recycling-myth-reality__2fc8146a7c.verdict.json"
-  },
-  {
-   "id": "sand-mining-crisis__cc258e199c",
-   "channel": "explainer",
-   "slug": "sand-mining-crisis",
-   "title": "The World Is Quietly Running Out Of Sand",
-   "filed": "2026-10-06T22:54:01Z",
-   "request": "exchange/reviews/20261006/sand-mining-crisis__cc258e199c.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/sand-mining-crisis__cc258e199c/sheet.jpg",
-   "answer_path": "exchange/reviews/20261006/sand-mining-crisis__cc258e199c.verdict.json"
-  },
   {
    "id": "bird-flu-species-jump__003bc69eec",
    "channel": "explainer",
@@ -143,16 +123,6 @@
    "answer_path": "exchange/reviews/20261006/divorce-rate-quiet-decline__b8f51a9df3.verdict.json"
   },
   {
-   "id": "coyote_brawl_caught_on_camera___ktla__9b5692a0fc",
-   "channel": "trending",
-   "slug": "coyote_brawl_caught_on_camera___ktla",
-   "title": "I Faked a Quality Inspector to Keep My Tips",
-   "filed": "2026-10-06T12:15:48Z",
-   "request": "exchange/reviews/20261006/coyote_brawl_caught_on_camera___ktla__9b5692a0fc.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/coyote_brawl_caught_on_camera___ktla__9b5692a0fc/sheet.jpg",
-   "answer_path": "exchange/reviews/20261006/coyote_brawl_caught_on_camera___ktla__9b5692a0fc.verdict.json"
-  },
-  {
    "id": "kelp-forest-sea-star-collapse__a798d71a4f",
    "channel": "explainer",
    "slug": "kelp-forest-sea-star-collapse",
@@ -161,86 +131,6 @@
    "request": "exchange/reviews/20260929/kelp-forest-sea-star-collapse__a798d71a4f.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/kelp-forest-sea-star-collapse__a798d71a4f/sheet.jpg",
    "answer_path": "exchange/reviews/20260929/kelp-forest-sea-star-collapse__a798d71a4f.verdict.json"
-  },
-  {
-   "id": "global-ewaste-crisis__ec46fd6e2d",
-   "channel": "explainer",
-   "slug": "global-ewaste-crisis",
-   "title": "The World Made 62 Million Tons Of E-Waste",
-   "filed": "2026-09-29T22:01:07Z",
-   "request": "exchange/reviews/20260929/global-ewaste-crisis__ec46fd6e2d.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/global-ewaste-crisis__ec46fd6e2d/sheet.jpg",
-   "answer_path": "exchange/reviews/20260929/global-ewaste-crisis__ec46fd6e2d.verdict.json"
-  },
-  {
-   "id": "tsa__207104dbd3",
-   "channel": "trending",
-   "slug": "tsa",
-   "title": "I Turned the Greedy Customer's Shortcut Into a Day-Long Detention",
-   "filed": "2026-09-29T21:29:41Z",
-   "request": "exchange/reviews/20260929/tsa__207104dbd3.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/tsa__207104dbd3/sheet.jpg",
-   "answer_path": "exchange/reviews/20260929/tsa__207104dbd3.verdict.json"
-  },
-  {
-   "id": "españa___croacia__255c93921e",
-   "channel": "trending",
-   "slug": "españa___croacia",
-   "title": "I Locked the Espresso Machine After the Spill and Got Sweet Karma",
-   "filed": "2026-09-29T18:43:50Z",
-   "request": "exchange/reviews/20260929/españa___croacia__255c93921e.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/españa___croacia__255c93921e/sheet.jpg",
-   "answer_path": "exchange/reviews/20260929/españa___croacia__255c93921e.verdict.json"
-  },
-  {
-   "id": "brock_faber__2b99c80a11",
-   "channel": "trending",
-   "slug": "brock_faber",
-   "title": "I Turned My Boss’s Tip Into His Cleaning Duty",
-   "filed": "2026-09-29T17:00:18Z",
-   "request": "exchange/reviews/20260929/brock_faber__2b99c80a11.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/brock_faber__2b99c80a11/sheet.jpg",
-   "answer_path": "exchange/reviews/20260929/brock_faber__2b99c80a11.verdict.json"
-  },
-  {
-   "id": "video__elk_encounter_caught_on_camera__g__1a8c7309e3",
-   "channel": "trending",
-   "slug": "video__elk_encounter_caught_on_camera__g",
-   "title": "I Served a Free Latte to a Food Critic and Got a Paycheck",
-   "filed": "2026-09-29T12:00:31Z",
-   "request": "exchange/reviews/20260929/video__elk_encounter_caught_on_camera__g__1a8c7309e3.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260929/video__elk_encounter_caught_on_camera__g__1a8c7309e3/sheet.jpg",
-   "answer_path": "exchange/reviews/20260929/video__elk_encounter_caught_on_camera__g__1a8c7309e3.verdict.json"
-  },
-  {
-   "id": "iss-sixteen-sunrises__9335d30553",
-   "channel": "explainer",
-   "slug": "iss-sixteen-sunrises",
-   "title": "Astronauts On The ISS See 16 Sunrises Every Day",
-   "filed": "2026-09-28T23:28:56Z",
-   "request": "exchange/reviews/20260928/iss-sixteen-sunrises__9335d30553.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260928/iss-sixteen-sunrises__9335d30553/sheet.jpg",
-   "answer_path": "exchange/reviews/20260928/iss-sixteen-sunrises__9335d30553.verdict.json"
-  },
-  {
-   "id": "two_norad_chicago_interceptions_caught_o__0ab45869bc",
-   "channel": "trending",
-   "slug": "two_norad_chicago_interceptions_caught_o",
-   "title": "I Served a Free Coffee to an Entitled Customer and Got Sweet Karma",
-   "filed": "2026-09-28T13:38:09Z",
-   "request": "exchange/reviews/20260928/two_norad_chicago_interceptions_caught_o__0ab45869bc.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260928/two_norad_chicago_interceptions_caught_o__0ab45869bc/sheet.jpg",
-   "answer_path": "exchange/reviews/20260928/two_norad_chicago_interceptions_caught_o__0ab45869bc.verdict.json"
-  },
-  {
-   "id": "hidden-foster-system__d492dd0e43",
-   "channel": "explainer",
-   "slug": "hidden-foster-system",
-   "title": "2.6 Million Kids Are Raised By A System No One Runs",
-   "filed": "2026-09-27T13:21:33Z",
-   "request": "exchange/reviews/20260927/hidden-foster-system__d492dd0e43.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260927/hidden-foster-system__d492dd0e43/sheet.jpg",
-   "answer_path": "exchange/reviews/20260927/hidden-foster-system__d492dd0e43.verdict.json"
   },
   {
    "id": "solar_capacity_just_passed_hydropower__836e2ec869",
@@ -271,26 +161,6 @@
    "request": "exchange/reviews/20260926/he_said_the_chair_vanished__then_he_list__e7216d9e3a.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260926/he_said_the_chair_vanished__then_he_list__e7216d9e3a/sheet.jpg",
    "answer_path": "exchange/reviews/20260926/he_said_the_chair_vanished__then_he_list__e7216d9e3a.verdict.json"
-  },
-  {
-   "id": "cicada-double-brood-2024__828771cf8e",
-   "channel": "explainer",
-   "slug": "cicada-double-brood-2024",
-   "title": "Two Cicada Broods Emerged Together For The First Time Since 1803",
-   "filed": "2026-09-26T18:17:43Z",
-   "request": "exchange/reviews/20260926/cicada-double-brood-2024__828771cf8e.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260926/cicada-double-brood-2024__828771cf8e/sheet.jpg",
-   "answer_path": "exchange/reviews/20260926/cicada-double-brood-2024__828771cf8e.verdict.json"
-  },
-  {
-   "id": "beaver-ecosystem-comeback__855d950629",
-   "channel": "explainer",
-   "slug": "beaver-ecosystem-comeback",
-   "title": "Beavers Crashed To 100,000. Now There Are 12 Million.",
-   "filed": "2026-09-26T18:10:29Z",
-   "request": "exchange/reviews/20260926/beaver-ecosystem-comeback__855d950629.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260926/beaver-ecosystem-comeback__855d950629/sheet.jpg",
-   "answer_path": "exchange/reviews/20260926/beaver-ecosystem-comeback__855d950629.verdict.json"
   }
  ],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."

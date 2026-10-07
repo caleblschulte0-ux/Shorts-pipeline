@@ -1,0 +1,106 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "recycling-myth-reality__2fc8146a7c",
+ "video_sha256": "2fc8146a7cf302b6512f3dfe38be11468d14a1437a1c1d3a0751d7c2355fed39",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T03:48:44Z",
+ "grades": {
+  "dimensions": {
+   "hook": 1,
+   "data_demo": 2,
+   "mascot": 1,
+   "craft": 1,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "No photos or AI images. Every frame is drawn diagram art (hook@0.3 through payoff@-0.4)."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "In hook@0.3\u2013seg0:end Data stands on a ladder beside the gap bar. In seg1 he perches on the ladder next to the box. In seg2:start\u2013end he clings to the pan edge while the recycle icons, not he, tip the scale. In seg3:mid he hangs off the bar's side. In seg4 he cheers beside the numbers. He never causes any of the data's motion."
+   },
+   "bare_number_card": {
+    "present": true,
+    "evidence": "seg1:start\u2013end is a big '3' in an outlined box, with 2-3 grey rounded tiles slowly filling in and '2.9 times over' printed underneath. The tiles say nothing about plastic or tonnage, so the beat is essentially a number in a box."
+   },
+   "dead_air": {
+    "present": true,
+    "evidence": "The hook@0.3 gap-bar composition stays nearly unchanged through seg0:end (t\u22480.3\u20133.75s, about 3.5s). Only Data's pose and the caption change, so the first five seconds read as one held frame."
+   },
+   "empty_void": {
+    "present": true,
+    "evidence": "In seg0 (hook@0.8\u2013seg0:end) the lower ~40% of the frame under the baseline is empty dark navy. In seg1:mid the bottom third below '2.9 times over' is empty. In seg3:start the chart area above the bars is blank."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "From hook@0.8 through seg0:end, the label '2060 (projected) 1014M' is printed over '2019 353M', so the two collide and read as '2060 (projected)' smeared over '353M'. In seg2:start\u2013end, the 'Landfilled' label and '50%' are partly covered by Data's body at the left frame edge."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg0",
+   "index": 0,
+   "failure_class": "unreadable",
+   "visible_evidence": "seg0:start\u2013seg0:end: the '2060 (projected) 1014M' label is drawn on top of the '2019 353M' label above a thin gap bar. Data stands idle on a ladder at the right edge, and the bottom 40% of the frame is empty. The picture is unchanged from the hook.",
+   "root_cause": "The gap machine places both endpoint labels on the same baseline row without measuring their widths, so the 2060 label sits on top of the 2019 label. The machine also never shows the growth physically (353M\u21921014M); the comparison is reduced to a horizontal bracket labelled '661M apart'.",
+   "repair_goal": "Redraw the growth as a mountain of plastic waste that Data shovels or dumps onto, rising from 353M tons to roughly 2.9x that height by 2060. Give each year its own separated label that never overlaps another. Fill the frame vertically, and make the hook visibly different from seg0 within the first second."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "A generic span bracket with a ladder, labelled '661M apart'. Nothing in it is plastic, and the labels overlap."
+   },
+   {
+    "id": "seg1",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "Grey tiles fill a box toward 2.9x, but the tiles are not waste, and the '3' is just a number in the box."
+   },
+   {
+    "id": "seg2",
+    "kind": "machine",
+    "bespoke": 2,
+    "proves_claim": 2,
+    "note": "A balance scale with recycle-symbol weights piling on the landfill pan reads well, but 22% leaked is missing and the recycle icons on the landfill side muddle the meaning."
+   },
+   {
+    "id": "seg3",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "Two rounded bars, 9% vs 17%. A plain chart, with Data clinging to the bar's side."
+   },
+   {
+    "id": "seg4",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "Two numbers on rails with cheering mascots. It restates 9% \u2192 17% and draws nothing about labels versus landfills."
+   }
+  ],
+  "one_line": "An overlapping label in the first 4 seconds, a held hook picture, and a mascot who never causes the data's motion. Only the scale beat demonstrates anything, and the payoff is a restated chart.",
+  "problems": [
+   "hook/seg0: '2060 (projected) 1014M' is printed over '2019 353M', which is unreadable on a phone",
+   "hook and seg0 share an almost static composition for about 3.5s; the hook has no motion that gives a reason to stay",
+   "seg1: the '3' in a box with grey tiles is close to a bare-number card, and nothing in it is plastic",
+   "seg2: Data partly covers the '50% Landfilled' label at the left edge, and the 22% 'disappears' share is never shown",
+   "seg3: a plain two-bar chart, the fallback rather than a demonstration",
+   "seg4: the closing line 'landfills prove otherwise' shows no landfill; it restates 9%/17% with cheering mascots, so the payoff falls flat",
+   "Data is decorative throughout: he perches, clings and cheers but never causes any motion"
+  ],
+  "fixes": [
+   "seg0: measure the label widths and stack the year labels on separate rows. Better, redraw the growth as a waste heap that Data dumps onto, rising 2.9x",
+   "hook: open on motion, such as a recycling bin whose contents slide out of the back into a landfill, with 9% caught",
+   "seg1: replace the tile box with three 2019-sized plastic piles, the third one 90% full, that Data stacks up himself",
+   "seg2: have Data shovel waste onto the landfill pan so that he tips the scale, add a third pan or a leak for the 22%, and keep him off the labels",
+   "seg3: show 17% as a recycling chute that Data widens from 9% to 17% while most of the stream still overflows into a dump",
+   "seg4: land the payoff visually, with a 'recyclable' label on a bottle that Data follows into a landfill"
+  ]
+ }
+}
