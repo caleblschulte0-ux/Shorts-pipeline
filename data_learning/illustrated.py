@@ -227,14 +227,17 @@ def flow(cr, pts, t, rgb, spacing=36.0, speed=560.0, r=9.0, a=0.9):
 KEY = (-0.55, -0.83)                 # where the light comes from (unit-ish)
 KEY_LIT = 1.0                        # the lit face is the colour itself
 KEY_SHADE = look.ILLU_SHADE          # the shadow face = colour * this
-# The edge is a soft ink line, not a cartoon outline, and the rim carries the
-# silhouette instead (operator 2026-10-07: "it just needs to look cleaner").
-# A 4px line at 90% read as clip art at phone size.
+# CRISP AND CLEAN (operator 2026-10-07: "the new art style has like a felt
+# feel almost, I want it to be crisp and clean"). The felt was the paper
+# grain on every solid and a heavy soft-light wash; both are gone. A crisp
+# edge is a clean dark ink line, a little heavier than the grain-era soft
+# one, and the rim still carries the lit side.
 KEY_RIM = 0.50                       # rim = colour mixed this far to white
-EDGE_K = 0.60                        # the ink edge = colour * this
-EDGE_W = 2.0                         # ...this wide
-EDGE_A = 0.7                         # ...at this opacity
-FINISH = 0.55                        # strength of finish(), every frame
+EDGE_K = 0.35                        # the ink edge = colour * this
+EDGE_W = 3.0                         # ...this wide
+EDGE_A = 0.95                        # ...at this opacity
+FINISH = 0.2                         # strength of finish(), every frame
+GRAIN = False                        # paper grain on solids: the felt
 FINISHES = ("matte", "gloss", "metal", "glass", "ice")
 
 
@@ -264,7 +267,10 @@ def _grain_surface():
 
 
 def grain(cr):
-    """Paper grain over the CURRENT PATH (kept)."""
+    """Paper grain over the CURRENT PATH (kept). Off while GRAIN is False:
+    at phone size it read as felt, not print."""
+    if not GRAIN:
+        return
     cr.save()
     cr.clip_preserve()
     cr.identity_matrix()

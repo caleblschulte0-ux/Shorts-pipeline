@@ -206,7 +206,7 @@ SETTINGS = {
     "coast":  [(100, 150, 200), (182, 204, 220), (248, 214, 172), (160, 178, 188),
                (64, 124, 160), (226, 204, 156), (196, 168, 118)],
     "town":   [(104, 146, 194), (184, 198, 212), (246, 210, 168), (150, 156, 170),
-               (118, 124, 138), (150, 146, 136), (96, 92, 86)],
+               (118, 124, 138), (188, 172, 150), (128, 112, 96)],
 }
 SUN = (230, 760)         # the low sun, upper left: where KEY comes from
 
@@ -466,11 +466,16 @@ def hen(cr, x, y, s, t, i=0, flip=False):
     cr.curve_to(-26 * s, -30 * s, -16 * s, -22 * s, -10 * s, -14 * s)
     cr.close_path()
     solid(cr, (236, 230, 220), edge=False)
-    cr.move_to(-26 * s, -12 * s)                      # body
-    cr.curve_to(-30 * s, 14 * s, 18 * s, 18 * s, 26 * s, -6 * s)
-    cr.curve_to(30 * s, -22 * s, 10 * s, -30 * s, -6 * s, -24 * s)
-    cr.close_path()
-    solid(cr, (252, 250, 244), edge=False)
+    for k in range(2):                                # body, then its lift
+        cr.move_to(-26 * s, -12 * s)
+        cr.curve_to(-30 * s, 14 * s, 18 * s, 18 * s, 26 * s, -6 * s)
+        cr.curve_to(30 * s, -22 * s, 10 * s, -30 * s, -6 * s, -24 * s)
+        cr.close_path()
+        if k == 0:
+            solid(cr, (252, 250, 244), edge=False)
+        else:   # white feathers stay white in shade: lift the shadow face
+            cr.set_source_rgba(1, 1, 1, 0.32)
+            cr.fill()
     cr.move_to(-14 * s, -10 * s)                      # wing
     cr.curve_to(-8 * s, 6 * s, 10 * s, 6 * s, 14 * s, -4 * s)
     cr.curve_to(4 * s, -8 * s, -6 * s, -12 * s, -14 * s, -10 * s)
@@ -501,6 +506,63 @@ def hen(cr, x, y, s, t, i=0, flip=False):
     cr.fill()
     cr.restore()
 
+
+# ------------------------------------------------------- SCALE IN THE SHOT ---
+# Operator, 2026-10-07, on a bar strip laid over the top of the frame: "boxes
+# on top of the video doesn't help ... it just needs to be able to more
+# easily glance at it and gauge the scale." The scale belongs ON the subject:
+# where it used to reach, how big it used to be, how many times over it is.
+
+def then_mark(cr, x0, x1, y, label, a=1.0):
+    """Mark ON the subject where an earlier value reached: a dashed line from
+    x0 to x1 at y, `label` (its year, say) at the right end. Draw it after
+    the subject; returns the label's (x0, y0, x1, y1) box."""
+    cr.save()
+    cr.set_dash([18, 12])
+    cr.set_line_width(5)
+    cr.set_line_cap(cairo.LINE_CAP_ROUND)
+    cr.set_source_rgba(0.05, 0.06, 0.12, 0.55 * a)        # its dark keyline
+    cr.move_to(x0, y + 2)
+    cr.line_to(x1, y + 2)
+    cr.stroke()
+    cr.set_source_rgba(*_c(look.INK, a))
+    cr.move_to(x0, y)
+    cr.line_to(x1, y)
+    cr.stroke()
+    cr.restore()
+    return text(cr, str(label), x1 + 14, y + 13, 36, look.INK, face="bold", alpha=a)
+
+
+def ghost(cr, a=0.9):
+    """Stroke the CURRENT PATH as a dashed white outline and consume it: the
+    earlier size drawn where it stood, beside or inside the current one, so
+    the growth reads in one look."""
+    cr.save()
+    cr.set_dash([16, 10])
+    cr.set_line_join(cairo.LINE_JOIN_ROUND)
+    path = cr.copy_path()
+    cr.set_line_width(8)
+    cr.set_source_rgba(0.05, 0.06, 0.12, 0.45 * a)
+    cr.stroke()
+    cr.append_path(path)
+    cr.set_line_width(4)
+    cr.set_source_rgba(*_c(look.INK, a))
+    cr.stroke()
+    cr.restore()
+
+
+def times_ticks(cr, x, base, unit_h, n, a=1.0):
+    """Ticks up from `base` every `unit_h` px labelled 1x, 2x ... nx, at x:
+    the subject measured in its own earlier size. unit_h is the earlier
+    value's height in your drawing; n = ceil(new / old)."""
+    for k in range(1, int(n) + 1):
+        y = base - k * unit_h
+        cr.set_source_rgba(*_c(look.INK, a))
+        cr.set_line_width(5)
+        cr.move_to(x - 18, y)
+        cr.line_to(x + 18, y)
+        cr.stroke()
+        text(cr, f"{k}x", x + 28, y + 12, 34, look.INK, face="bold", alpha=a)
 
 #: France, coarse on purpose (lon, lat) — the hexagone, same register as
 #: `data_learning/continents.py`.
@@ -1512,7 +1574,9 @@ def bird_flu_barn(cr, t, u, pts, host):
     three-quarter view throwing a long shadow, hens right by the camera.
     Each year's toll slides the door further across the doorway: the closed
     share of it is that year's cumulative deaths over the latest total, and
-    the readout prints a year only once the door has landed on it."""
+    the readout prints a year only once the door has landed on it. THE SCALE
+    is on the barn: each landed year leaves a notch on the track, the first
+    and the latest named, so how far it closed reads at a glance."""
     rows = by_time([(str(l), float(v)) for l, v in pts])
     n = len(rows)
     top = max(v for _, v in rows) or 1.0
@@ -1597,6 +1661,22 @@ def bird_flu_barn(cr, t, u, pts, host):
     cr.stroke()
     for wx in (dx + 40, dx + dw - 40):
         disc(cr, wx, DY - 18, 11, (70, 70, 76), finish="metal")
+    # THE SCALE, on the barn itself: every year the door has landed on leaves
+    # a notch on the track, so a glance reads how far each year closed it
+    landed_to = k if slide >= 0.999 else k - 1
+    for j in range(0, landed_to + 1):
+        if u < a0:
+            break
+        nx = DX0 + dw * rows[j][1] / top
+        cr.set_source_rgba(*_c((244, 238, 226)))
+        cr.set_line_width(6)
+        cr.move_to(nx, DY - 40)
+        cr.line_to(nx, DY - 2)
+        cr.stroke()
+        first_x = DX0 + dw * rows[0][1] / top
+        if j == landed_to or (j == 0 and nx - first_x < 1 and
+                              dw * (rows[landed_to][1] - rows[0][1]) / top > 110):
+            text(cr, rows[j][0], nx, DY - 52, 30, look.INK, face="bold", anchor="center")
 
     # right by the camera: the rest of the flock, the grass
     for i in range(5):
