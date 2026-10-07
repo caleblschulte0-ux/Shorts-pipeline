@@ -302,6 +302,12 @@ constants blanked), never on the prose that explains it.
   `then_mark`, `ghost`, `times_ticks` draw the earlier size ON the
   subject, prompt rule 14 asks for it, no overlay is laid over a scene.
   `tests/test_the_scale_is_on_screen.py`.
+  And the CHANGE is big and the numbers few (same day, of a plastic pile
+  that tripled under one number beside a bone that stood still under three:
+  *"I like the pile one but the bone one no"*): `verify` refuses more than
+  `MAX_HEADLINES` big numbers in a frame and any label on top of Data, and
+  the glance refuses a change a viewer calls "barely" and a picture they
+  call a diagram. `tests/test_one_number_and_a_big_change.py`.
 
 - **A brain-drawn subject scene has to pass a VIEWER, not just the code**
   (operator, 2026-10-01: a coffin he "couldn't tell was a coffin", an urn

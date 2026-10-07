@@ -246,7 +246,12 @@ is missing that would ('no lid detail or handles')>",
 moving between the frames, in 1-4 words — what it LOOKS like, not what it \
 might stand for; 'nothing' if none>",
  "change": "<what happens between the first frame and the second, one \
-sentence>"}}"""
+sentence>",
+ "how_much": "<how big that change LOOKS: 'none', 'barely' (you had to \
+compare closely), 'clear' or 'dramatic'>",
+ "shot": "<'a place' if it is somewhere you could stand, with ground, light \
+and near-and-far depth; 'a diagram' if it is an object shown front-on \
+against a backdrop>"}}"""
 
 _JUDGE = """A viewer saw two frames of an animated scene with every word \
 and the mascot removed, and described it unaided:
@@ -357,6 +362,8 @@ def glance(fn, pts, log=print) -> list[str]:
     chg = str(seen.get("change") or "?").strip()
     frm = str(seen.get("object_from") or "").strip().lower()
     tells = str(seen.get("tells") or "").strip()
+    much = str(seen.get("how_much") or "").strip().lower()
+    shot = str(seen.get("shot") or "").strip().lower()
     ans = ask_glance(_JUDGE.format(object=obj, substance=sub, change=chg,
                                    hero=decl["HERO"], substance_said=decl["SUBSTANCE"],
                                    cause=decl["CAUSE"]), [])
@@ -383,6 +390,16 @@ def glance(fn, pts, log=print) -> list[str]:
                         f"— a material keeps its own colour and form (ash is grey "
                         f"dust, fire is flame, water is blue); the accent marks "
                         f"the share, it never recolours the stuff. {why}".rstrip())
+    if much in ("none", "barely"):
+        problems.append(f"a viewer saw the change as {much!r} ({chg!r}) — the "
+                        f"thing that moves must change BIG enough to see at a "
+                        f"glance; draw what piles up, empties or spreads until "
+                        f"it is large, not an object that barely differs")
+    if "diagram" in shot:
+        problems.append("a viewer called it a diagram, not a place — an object "
+                        "front-on on a backdrop; build the SETTING around it "
+                        "with near-and-far depth, three-quarter view and "
+                        "something by the camera (rule 13)")
     if ans.get("cause_makes_sense") is False:
         problems.append(f"{decl['CAUSE']!r} could not cause what a viewer saw "
                         f"({chg!r}) — Data's act must be the one that would really "
@@ -757,6 +774,13 @@ def craft_problems(fn, pts, at=(0.3, 0.85)) -> list[str]:
 #: to register" (Amazon, 2026-09-23).
 MIN_DWELL_S = 0.7
 
+#: Operator, 2026-10-07, of a bone-loss scene with -1.5%, 1% and 1.5x stacked
+#: beside the bone (the plastic pile beside it, one number and its x2.9, was
+#: the one he liked): a viewer glances. Text at or above HEADLINE_PX with a
+#: digit in it is a headline number; no frame shows more than MAX_HEADLINES.
+HEADLINE_PX = 64
+MAX_HEADLINES = 2
+
 
 def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
     """Every check a teacher scene passes. Empty list = usable. `say` is the
@@ -783,6 +807,11 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
     overlaps = []
     covered = []                       # text Data is drawn on top of
 
+    bodies = []                        # Data's body in THIS frame, once drawn
+    on_data = []                       # text drawn AFTER him, over him
+    crowded = []                       # (frame u, headline numbers in it)
+    heads = []                         # headline numbers visible in THIS frame
+
     def spy(cr, s, *a, **k):
         texts.append(str(s))
         if len(a) >= 2 and isinstance(a[1], (int, float)) and a[1] > CAPTION_Y:
@@ -794,10 +823,19 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
                 if _overlap(box, ob) > 0.15:
                     overlaps.append((other, str(s)))
             boxes.append((str(s), box))
+            for body in bodies:
+                if _covered(box, body) > 0.25:
+                    on_data.append(str(s))
+            size = a[2] if len(a) > 2 else k.get("size", 0)
+            if (isinstance(size, (int, float)) and size >= HEADLINE_PX
+                    and re.search(r"\d", str(s))):
+                heads.append(str(s))
         return box
 
     def run(rows, u, record=True):
         boxes.clear()
+        bodies.clear()
+        heads.clear()
         cr = cairo.Context(surf)
         # Spy on the kit too: a number printed through fit_readout or any
         # other helper is still a number on screen.
@@ -814,8 +852,11 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
             for t_, b_ in boxes:              # text drawn BEFORE him, under him
                 if _covered(b_, body) > 0.25:
                     covered.append(t_)
+            bodies.append(body)
         try:
             fn(cr, 3.0 + u * 10, u, rows, host)
+            if record and len(set(heads)) > MAX_HEADLINES:
+                crowded.append((u, list(dict.fromkeys(heads))))
         finally:
             fn.__globals__["text"] = real
             SS.text = real
@@ -860,6 +901,16 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
         problems.append(f"Data is drawn over {covered[0]!r} — he stands in front "
                         f"of text drawn before him; draw the text after him or "
                         f"keep him clear of it")
+    if on_data:
+        problems.append(f"prints {on_data[0]!r} over Data — a label drawn on top "
+                        f"of him hides him and neither reads; put it where he "
+                        f"is not")
+    if crowded:
+        u_, hs = crowded[0]
+        problems.append(f"shows {len(hs)} big numbers at once at u={u_:.2f} "
+                        f"({', '.join(map(repr, hs))}) — a viewer glances, they "
+                        f"do not read a table; at most {MAX_HEADLINES} big "
+                        f"numbers on screen, and let the PICTURE carry the rest")
     if overlaps:
         a_, b_ = overlaps[0]
         problems.append(f"prints {b_!r} over {a_!r} — two pieces of text overlap "
@@ -1027,6 +1078,15 @@ ghost() outline where it stood, a then_mark() where the old level reached \
 with its year on it, times_ticks() up the side when it is a multiple, or \
 something everyone knows the size of next to it (Data, a person, a car). \
 With the sound off, one look must say "about three times as much".
+15. ONE NUMBER, AND THE CHANGE IS BIG ON SCREEN. The operator liked a \
+pile of plastic that grew to three times its size under one number; he \
+did not like a bone standing still in a window with -1.5%, 1% and 1.5x \
+stacked beside it. At most {max_heads} big numbers in any frame — MEASURED \
+— and never a label on top of Data. What moves must be the biggest thing \
+in the frame and change shape you can see from across a room. A small \
+percentage drawn literally (a bone 1.5% thinner) is invisible: draw what \
+piles up, empties or spreads until it is large, or set the thing beside \
+what it equals, so the PICTURE makes the comparison and the words do not.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \
@@ -1114,7 +1174,7 @@ def build_prompt(title, topic, say, pts, unit, brief=""):
                            (SS.amazon_where_it_goes, SS.coffee_drought))
     tools = "\n".join(f"  {k}: {v}" for k, v in TOOL_ACTS.items())
     return _PROMPT.format(stances=", ".join(STANCES), tools=tools,
-                          flat_max=f"{FLAT_MAX:.0%}",
+                          flat_max=f"{FLAT_MAX:.0%}", max_heads=MAX_HEADLINES,
                           kit=", ".join(KIT_NAMES),
                           builtins=", ".join(sorted(SAFE_BUILTINS)),
                           palette=", ".join(sorted(SS.P)), sigs=_sigs(),
