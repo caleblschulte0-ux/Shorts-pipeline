@@ -610,8 +610,9 @@ def motion_profile(fn, pts, fps: int = 24, secs: float = 6.8) -> dict:
             "still_spans": [s for s in spans if s[1] - s[0] >= 0.03][:4]}
 
 
-def motion_problems(fn, pts, secs: float = 10.0) -> list[str]:
-    m = motion_profile(fn, pts, secs=secs)
+def motion_problems(fn, pts, secs: float | None = None) -> list[str]:
+    # a beat's REAL length (SCENE_SECS), not the 10s it was once assumed to be
+    m = motion_profile(fn, pts, secs=SCENE_SECS["beat"] if secs is None else secs)
     out = []
     if m["judder"] > MAX_JUDDER:
         out.append(f"it judders: {m['judder']:.0%} of frames are 1-3-frame stalls "
@@ -1154,7 +1155,7 @@ in the frame and change shape you can see from across a room. A small \
 percentage drawn literally (a bone 1.5% thinner) is invisible: draw what \
 piles up, empties or spreads until it is large, or set the thing beside \
 what it equals, so the PICTURE makes the comparison and the words do not.
-16. LAND IT, THEN HOLD IT. A scene is on screen for about {secs:.0f} seconds, and the owner called a fence whose last number arrived with under a second left "whiplash — I didn't even have time to process". Finish the story — every number, the final size, the last label — by u={payoff_by}, then HOLD that finished picture to the end so it can be read. After it lands the WORLD keeps moving (wind, a bottle rolling, Data's follow-through), the story does not. A readout steps through at most {shows} values (landed(rows, k, f) does this). MEASURED: a number still arriving after u={payoff_by} is refused.
+16. LAND IT, THEN HOLD IT. A scene is on screen for about {secs:.0f} seconds, and the owner called a fence whose last number arrived with under a second left "whiplash — I didn't even have time to process". Finish the story — every number, the final size, the last label — by u={payoff_by}, then HOLD that finished picture to the end so it can be read. After it lands the WORLD keeps moving (wind, a bottle rolling) and Data KEEPS DOING HIS ACT to the end (another toss, holding the load up, one more shove) — he never stands and points at what he made; the story does not move. A readout steps through at most {shows} values (landed(rows, k, f) does this). MEASURED: a number still arriving after u={payoff_by} is refused.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \

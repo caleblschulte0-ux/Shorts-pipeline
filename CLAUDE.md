@@ -314,6 +314,17 @@ constants blanked), never on the prose that explains it.
   redraw replaces it only if it passes every same check. THE PILE
   (`subject_scenes.recycling_pile`, brain-drawn, kept verbatim) is the
   second bar beside THE SHOT, in the prompt and in the look again.
+  And the payoff LANDS IN TIME TO READ IT (operator, same day, of the
+  bird flu fence ending: *"we only have it on screen for like a second
+  ... whiplash ... I'm not saying we necessarily need to be sitting on
+  beats longer but we need to fix this"*). A scene is on screen as long
+  as its narration — `scene_author.SCENE_SECS`, hook 4s / beat 6s /
+  closing 4s from the posted log, never the 10s the checks once assumed —
+  and `payoff_problems` refuses any number it ends on that arrives after
+  `land_by(secs)`, in `verify` and on every SAVED scene at load. A
+  readout steps through at most `READOUT_SHOWS` values (`landed`). After
+  the payoff the world moves, the story holds; prompt rule 16.
+  `tests/test_the_payoff_lands_in_time_to_read.py`.
 
 - **A brain-drawn subject scene has to pass a VIEWER, not just the code**
   (operator, 2026-10-01: a coffin he "couldn't tell was a coffin", an urn
