@@ -1,27 +1,7 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-10-07T03:49:26Z",
+ "updated": "2026-10-07T04:49:06Z",
  "open": [
-  {
-   "id": "bird-flu-species-jump__003bc69eec",
-   "channel": "explainer",
-   "slug": "bird-flu-species-jump",
-   "title": "How Bird Flu Learned To Infect Cows, Then Us",
-   "filed": "2026-10-06T22:49:06Z",
-   "request": "exchange/reviews/20261006/bird-flu-species-jump__003bc69eec.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/bird-flu-species-jump__003bc69eec/sheet.jpg",
-   "answer_path": "exchange/reviews/20261006/bird-flu-species-jump__003bc69eec.verdict.json"
-  },
-  {
-   "id": "the-penny-lost-money-19-years-straight__d4e690d2c2",
-   "channel": "explainer",
-   "slug": "the-penny-lost-money-19-years-straight",
-   "title": "The US Government Lost Money On Every Penny For 19 Years",
-   "filed": "2026-10-06T22:42:34Z",
-   "request": "exchange/reviews/20261006/the-penny-lost-money-19-years-straight__d4e690d2c2.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/the-penny-lost-money-19-years-straight__d4e690d2c2/sheet.jpg",
-   "answer_path": "exchange/reviews/20261006/the-penny-lost-money-19-years-straight__d4e690d2c2.verdict.json"
-  },
   {
    "id": "back-to-sleep-campaign-cut-sids__174b3335f8",
    "channel": "explainer",
