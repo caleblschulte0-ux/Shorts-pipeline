@@ -1,0 +1,117 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "solar_capacity_just_passed_hydropower__836e2ec869",
+ "video_sha256": "836e2ec86909547e692789a4343ab8e406876a864767bbd0ec460d00ac068c6d",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T10:49:36Z",
+ "grades": {
+  "dimensions": {
+   "hook": 2,
+   "data_demo": 3,
+   "mascot": 4,
+   "craft": 2,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "Every frame from hook@0.3 to payoff@-0.4 is the chart only. There are no photos, AI images or cutouts."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot appears in any frame, from hook@0.3 to payoff@-0.4. This keeps the trending channel separate from the Explainer channel's brand."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "Every number sits on a line that is still growing, with the leaderboard and year counter changing. No beat is just a number on a background."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Measured longest_static_s is 0.0. The lines extend and the leaderboard changes in every frame from mid0 to mid5. The 2024 hold at the end (payoff) lasts about 1s."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The chart fills the frame from the title to the year counter. The black background is the design, not empty space, and it holds two filled areas."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "The source line at the bottom of every frame (e.g. payoff@-0.4: 'Source: International Renewable Energy Agency, Renewable Capacity Statistics 2025') is tiny grey text on black and can't be read on a phone held at arm's length. In payoff@-0.4 the yellow solar line also runs into the edge of the 'Hydropower 1.4K' tag at the crossover."
+   }
+  },
+  "weakest_scene": {
+   "id": "hook",
+   "index": 0,
+   "failure_class": "weak_hook",
+   "visible_evidence": "At hook@0.3 to hook@1.5 the caption 'Sunlight took the lead.' sits over a chart where Hydropower is 1.2K and Solar is 240, five times smaller. What the viewer sees contradicts the caption, the opening is a slow line build from a stub, and the grey source footer is unreadable throughout.",
+   "root_cause": "The payoff claim is used as the hook caption over the 2015 state, so the opening states a result the picture shows as false. Nothing teases the coming crossover, and the footer is drawn too small and dim for a phone.",
+   "repair_goal": "Open on a tease of the crossover, e.g. the hydro line labelled 'the leader for a century?' with solar shown below and closing fast, or phrase the caption as a question/countdown ('Solar is 5x behind... for now'). Make the source footer at least 1.5x larger with higher contrast, and move the hydropower end tag so the solar line never crosses it."
+  },
+  "depictions": [
+   {
+    "id": "mid0",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 2,
+    "note": "Two-line race chart with filled areas. The gap is visible but this is a generic line chart."
+   },
+   {
+    "id": "mid1",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 2,
+    "note": "Solar is climbing faster but is still well below hydro. Generic line chart."
+   },
+   {
+    "id": "mid2",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 2,
+    "note": "The gap narrows as the y-axis rescales. Generic chart."
+   },
+   {
+    "id": "mid3",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 2,
+    "note": "Solar's curve steepens toward hydro."
+   },
+   {
+    "id": "mid4",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 2,
+    "note": "Solar is at 1.2K against hydro's 1.4K, nearly touching."
+   },
+   {
+    "id": "mid5",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 3,
+    "note": "The crossover is marked with a dashed line and a 'Solar passes Hydropower' flag, and the leaderboard order flips. The pass reads without the labels."
+   },
+   {
+    "id": "payoff",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 3,
+    "note": "Solar at 1.9K is well above hydro at 1.4K, with a '#1 Solar' banner. The scale payoff is clear."
+   }
+  ],
+  "one_line": "A clean two-line race whose crossover payoff lands. But the hook caption claims the lead while the picture shows solar at a fifth of hydro, and the source footer can't be read on a phone.",
+  "problems": [
+   "Hook (hook@0.3 to hook@1.5): the caption 'Sunlight took the lead.' contradicts the picture (Solar 240 vs Hydropower 1.2K), and the opening is a slow build from a stub line with no tease.",
+   "The source footer is tiny, low-contrast grey on black in every frame and can't be read on a phone.",
+   "At mid5/payoff the yellow solar line runs into the 'Hydropower 1.4K' end tag at the crossover.",
+   "The year counter slides sideways across the bottom (2015 to 2024), drifting and taking attention from the chart.",
+   "At hook@0.3 to mid1 the x-axis shows only '2016' while the counter reads 2015 or 2017, so time context is thin early on."
+  ],
+  "fixes": [
+   "Rewrite the hook caption as a tease of the coming pass (e.g. 'Solar was 5x behind. Watch.'), or open on a quick preview flash of the crossover before rewinding to 2015.",
+   "Enlarge the source footer about 1.5x and raise its contrast, or put it on a subtle backing strip.",
+   "Offset the hydropower end tag (or add collision avoidance) so the solar line never passes under or through it.",
+   "Anchor the year counter in a fixed position instead of letting it slide.",
+   "Show at least two x-axis year ticks from the first frame."
+  ]
+ }
+}
