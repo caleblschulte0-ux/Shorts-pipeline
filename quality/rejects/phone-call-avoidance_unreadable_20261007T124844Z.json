@@ -1,0 +1,16 @@
+{
+ "slug": "phone-call-avoidance",
+ "ts": "20261007T124844Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: hook@0.3, hook@0.8 and seg0:mid: Data's body covers the '7' of '70%', so it reads as '/0%'. seg1:start: 'Prefer call 30%' and 'Prefer text 70%' are faint grey on the dark ground and disappear on a phone.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg2:start-end: a plain two-capsule bar chart (44% vs 36%) with Data standing in the gap between the bars, then bobbing up beside the 44% label. He does nothing to make the bars grow.",
+  "root_cause": "The anxiety beat fell back to a generic compare-bars chart, and Data was placed next to it as a bystander. Nothing in the scene is made of the subject (a phone ringing or a call being dodged) and nothing gives him a job.",
+  "repair_goal": "Redraw the beat as a subject scene: two rows of ringing phones, 44% of the young row with the call declined or turned face-down against 36% of the adult row. Data should do the declining himself, swiping or flipping each phone so the count climbs because of what he does."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

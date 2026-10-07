@@ -1,0 +1,16 @@
+{
+ "slug": "coldest-place-in-the-universe-is-human-made",
+ "ts": "20261007T124844Z",
+ "failure_class": "junk_imagery",
+ "evidence": "junk_imagery: hook@0.3 through seg1:end: every tile is the same generic purple 'starry sky' card. They count 'Room temperature 293, each = 20' and look nothing like room temperature. In seg2/seg3 a teal disc and a slab stand in for the Boomerang Nebula and the Cold Atom Lab, with nothing tying them ",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start-end: a full-frame teal square with '29400T' and a clipped 'NASA's Cold Atom Lab (ISS)' label. It stays static for about 4s while Data stands on top. The beat is about 5,000 light-years versus 250 miles, and nothing shows a distance.",
+  "root_cause": "The distance relationship fell through to a share/area-style fallback. It draws the larger value as one slab with an abbreviated unit ('T') and no counterpart, and the label overflows. The magnitude (about 1e14 to 1) is too big for the picture to show.",
+  "repair_goal": "Show distance as distance. Zoom out from Earth past the ISS, which sits 250 miles up and almost on the surface, toward the 5,000-light-year nebula, with Data pushing the camera or riding the zoom. Use readable units (miles and light-years) and keep every label inside the frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

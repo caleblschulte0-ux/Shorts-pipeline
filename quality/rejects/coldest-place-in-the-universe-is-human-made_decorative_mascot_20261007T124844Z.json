@@ -1,0 +1,16 @@
+{
+ "slug": "coldest-place-in-the-universe-is-human-made",
+ "ts": "20261007T124844Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg0:mid to seg1:end: Data stands in the same spot pointing a red stamp at the tiles. seg2:start to seg2:end: he poses with his hands behind his head on top of the disc. seg3: he perches on the slab. He causes nothing the data does.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start-end: a full-frame teal square with '29400T' and a clipped 'NASA's Cold Atom Lab (ISS)' label. It stays static for about 4s while Data stands on top. The beat is about 5,000 light-years versus 250 miles, and nothing shows a distance.",
+  "root_cause": "The distance relationship fell through to a share/area-style fallback. It draws the larger value as one slab with an abbreviated unit ('T') and no counterpart, and the label overflows. The magnitude (about 1e14 to 1) is too big for the picture to show.",
+  "repair_goal": "Show distance as distance. Zoom out from Earth past the ISS, which sits 250 miles up and almost on the surface, toward the 5,000-light-year nebula, with Data pushing the camera or riding the zoom. Use readable units (miles and light-years) and keep every label inside the frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

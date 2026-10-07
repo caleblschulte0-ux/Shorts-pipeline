@@ -1,0 +1,16 @@
+{
+ "slug": "insect-planet",
+ "ts": "20261007T124844Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In the hook frames (hook@0.3 to seg0:end) Data covers the start of the \"Insects\" and \"80%\" labels at the left edge, and he is clipped by the frame. In seg2:end his body covers the \"1.5M\" value. In seg1:start \"All other animals 20%\" is grey on grey and nearly invisible.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "chart_restates_hook",
+  "visible_evidence": "seg1:start to seg1:end is a plain stacked bar, 80% yellow and 20% grey, with Data perched on top doing nothing. It repeats the same 80% claim the hook's scale already made.",
+  "root_cause": "The relationship fell back to a share chart for a number the hook had already shown, and the mascot was placed beside the mark instead of acting as the cause of anything.",
+  "repair_goal": "Drop the repeated 80% bar. Use this beat for a bespoke picture made of bugs: for example, Data shovels beetles into a crowd of 10 animal silhouettes until 8 of them are bugs. Keep the labels clear of Data and inside the frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

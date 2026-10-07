@@ -1,0 +1,143 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "helium-supply-squeeze__91f2d5b4",
+ "filed": "2026-10-07T12:48:28Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "helium-supply-squeeze",
+ "current": {
+  "title": "The Element Running Out Faster Than Anyone Noticed",
+  "hook": "Helium vanished 10.1 billion cubic meters from Earth, your town feels it.",
+  "closing": "When it’s gone, it’s gone—literally into space.",
+  "question": "Helium balloons pricier? Comment below.",
+  "segments": [
+   {
+    "topic": "Running out",
+    "say": "Qatar holds 10.1 billion cubic meters, most of global helium reserves."
+   },
+   {
+    "topic": "Faster demand",
+    "say": "Demand will nearly double by 2035 as chips need helium cooling."
+   },
+   {
+    "topic": "Element prices",
+    "say": "Helium prices quadrupled from 2011 to 2013 and are rising again."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Running out",
+   "say": "Qatar holds 10.1 billion cubic meters, most of global helium reserves.",
+   "role": "1 · THE SOURCE",
+   "data": {
+    "file": "helium_reserves_by_country.json",
+    "unit": "billion cubic meters",
+    "title": "Estimated helium reserves by country",
+    "points": [
+     {
+      "label": "Qatar",
+      "value": 10.1
+     },
+     {
+      "label": "United States",
+      "value": 8.7
+     },
+     {
+      "label": "Algeria",
+      "value": 8.2
+     },
+     {
+      "label": "Russia",
+      "value": 6.8
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Faster demand",
+   "say": "Demand will nearly double by 2035 as chips need helium cooling.",
+   "role": "2 · THE SQUEEZE",
+   "data": {
+    "file": "helium_demand_2024_vs_2035.json",
+    "unit": "index",
+    "title": "Global helium demand index: 2024 vs. 2035 (projected)",
+    "points": [
+     {
+      "label": "2024 demand",
+      "value": 100
+     },
+     {
+      "label": "2035 projected demand",
+      "value": 190
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Element prices",
+   "say": "Helium prices quadrupled from 2011 to 2013 and are rising again.",
+   "role": "3 · IT HAPPENED BEFORE",
+   "data": {
+    "file": "helium_price_spike_2011_2013.json",
+    "unit": "index",
+    "title": "Helium price index during the 2011-2013 supply crunch",
+    "points": [
+     {
+      "label": "2011",
+      "value": 100,
+      "period": "2011"
+     },
+     {
+      "label": "2013",
+      "value": 400,
+      "period": "2013"
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The premise lacks a clear reversal of a common expectation and relies on a vague, unverifiable claim despite mentioning a number."
+ ],
+ "reasons": [
+  "premise: brain: The premise lacks a clear reversal of a common expectation and relies on a vague, unverifiable claim despite mentioning a number."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261007/helium-supply-squeeze__91f2d5b4.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

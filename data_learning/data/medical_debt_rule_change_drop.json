@@ -12,6 +12,14 @@
     "access_date": "2026-10-07"
   },
   "notes": "After Equifax, Experian and TransUnion stopped reporting paid medical debt and small unpaid medical collections starting in 2022-2023, analyses found medical-collections tradelines on credit reports fell by roughly 70%. Recalled from published CFPB/bureau reporting; not live-refreshed this run because outbound network access was unavailable in this session.",
-  "baseline": {"label": "No change", "value": 0},
-  "points": [{"label": "Drop in medical collections", "value": 70}]
+  "points": [
+    {
+      "label": "Drop in medical collections",
+      "value": 70
+    },
+    {
+      "label": "No change",
+      "value": 0
+    }
+  ]
 }

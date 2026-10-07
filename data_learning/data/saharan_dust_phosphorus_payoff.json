@@ -11,7 +11,15 @@
     "officiality": "official",
     "access_date": "2026-10-07"
   },
-  "notes": "NASA's study estimated Saharan dust delivers roughly 22,000 tons of phosphorus to the Amazon basin per year, in the same range as the phosphorus the rainforest loses annually to rain and flooding — part of why the dust matters ecologically. Recalled from the published study; not live-refreshed this run because outbound network access was unavailable in this session.",
-  "baseline": {"label": "Lost from Amazon soil each year", "value": 22},
-  "points": [{"label": "Delivered by Saharan dust each year", "value": 22}]
+  "notes": "NASA's study estimated Saharan dust delivers roughly 22,000 tons of phosphorus to the Amazon basin per year, in the same range as the phosphorus the rainforest loses annually to rain and flooding \u2014 part of why the dust matters ecologically. Recalled from the published study; not live-refreshed this run because outbound network access was unavailable in this session.",
+  "points": [
+    {
+      "label": "Lost from Amazon soil each year",
+      "value": 22
+    },
+    {
+      "label": "Delivered by Saharan dust each year",
+      "value": 22
+    }
+  ]
 }

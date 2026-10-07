@@ -1,6 +1,6 @@
 {
   "key": "ingenuity_plan_vs_actual_flights",
-  "title": "Ingenuity Mars Helicopter — Planned vs Actual Flights",
+  "title": "Ingenuity Mars Helicopter \u2014 Planned vs Actual Flights",
   "unit": "flights",
   "geography": "Mars (Jezero Crater)",
   "time_coverage": "2021-2024",
@@ -12,6 +12,14 @@
     "access_date": "2026-10-07"
   },
   "notes": "NASA/JPL's mission-end summary: Ingenuity was built as a technology demonstration targeting up to 5 flights and ultimately flew 72. Figures recalled from NASA's published mission statistics; not live-refreshed this run because outbound network access was unavailable in this session.",
-  "baseline": {"label": "Originally planned", "value": 5},
-  "points": [{"label": "Actually flown", "value": 72}]
+  "points": [
+    {
+      "label": "Actually flown",
+      "value": 72
+    },
+    {
+      "label": "Originally planned",
+      "value": 5
+    }
+  ]
 }

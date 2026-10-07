@@ -1,0 +1,16 @@
+{
+ "slug": "left-brain-right-brain-myth",
+ "ts": "20261007T124844Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg1:start-end and seg2:start-end: Data just stands on top of a growing circle with no act tied to the stat. In hook@0.3 to seg0:end three copies of him slide sideways and point at percentages.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:mid/end shows a huge teal circle labelled '7' and a tiny outline '0' whose label crashes into the circle's edge. Data stands on top doing nothing.",
+  "root_cause": "The 'zero of seven networks matched' claim went to a generic bubble-size chart. A zero has no size to show, so the payoff number of the video ends up as an empty dot.",
+  "repair_goal": "Draw 7 brain networks as 7 lit regions or wires that Data tests one at a time with a probe or switch. Each one fails to light only one side, so all 7 end up firing across both halves, and the tally reads 0/7 matched. Keep labels clear of the shapes."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

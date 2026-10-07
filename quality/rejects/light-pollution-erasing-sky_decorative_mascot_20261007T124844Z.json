@@ -1,0 +1,21 @@
+{
+ "slug": "light-pollution-erasing-sky",
+ "ts": "20261007T124844Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg3:start-end: Data walks along and stands on bars he does not cause to grow. seg4:start through payoff@-0.4: he holds the same pose beside the hopper in every frame while dots drop without him.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "false_claim_share_and_static_mascot",
+  "visible_evidence": "seg4:start-end: sorting bins split one whole into Chad 45%, Madagascar 43%, US 11%, 1% 'Sin...'. That says these countries are parts of a single total, which contradicts seg3's 78/75/20/1% pristine-sky rates. Data holds one pointing pose by the hopper for the whole closing while dots fall, and the Singapore label is truncated.",
+  "root_cause": "The closing beat was classified as a 'share' relationship. The per-country rates were renormalized into parts of a whole, and the mascot was placed next to the machine instead of driving it.",
+  "repair_goal": "Redraw the closing as one night sky per country, each with stars fading to its own rate (78% Chad down to ~0 Singapore). Data should be the cause, e.g. switching on a streetlight that washes the stars out. Labels must be fully inside the frame and not covered by him, and no part-of-whole framing."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

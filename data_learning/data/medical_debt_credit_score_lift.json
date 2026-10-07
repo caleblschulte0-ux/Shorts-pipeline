@@ -12,6 +12,14 @@
     "access_date": "2026-10-07"
   },
   "notes": "CFPB estimated the medical-debt credit-reporting changes raised scores for an estimated 16 million Americans, by an average of about 20 points, with no debt actually repaid. Recalled from CFPB's published estimate; not live-refreshed this run because outbound network access was unavailable in this session.",
-  "baseline": {"label": "Before the fix", "value": 0},
-  "points": [{"label": "After the fix (average)", "value": 20}]
+  "points": [
+    {
+      "label": "After the fix (average)",
+      "value": 20
+    },
+    {
+      "label": "Before the fix",
+      "value": 0
+    }
+  ]
 }

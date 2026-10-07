@@ -1,0 +1,16 @@
+{
+ "slug": "parker-solar-probe-speed-record",
+ "ts": "20261007T124844Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg2:start through seg2:end show two big numbers ('24.8K' and '430K') in rows with a mascot next to each. The '17 times faster' claim is never shown, only two numbers to read.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start through seg2:end show two rows, 'Apollo 10 ... 24.8K' and 'Parker Solar Probe 430K', each with a standing Data. The only motion is the second Data sliding right. Nothing shows the 17x gap.",
+  "root_cause": "The comparison is drawn as two labelled numbers instead of as speed. The 17x ratio, which is the story's headline, has no physical form.",
+  "repair_goal": "Make the 17x a race: Data drives the Apollo 10 capsule and the Parker probe streaks along a shared track. The probe covers 17 lengths in the time Apollo covers one and leaves it behind, so the ratio is seen before it is read."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
