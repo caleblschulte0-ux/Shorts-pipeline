@@ -2787,11 +2787,40 @@
       "scene_changes_before_5s": 2
     },
     "bird-flu-species-jump": {
-      "claimed_at": "2026-10-07T18:23:31.700097+00:00",
+      "url": "https://youtube.com/shorts/mhIr58VWBAw",
       "title": "How Bird Flu Learned To Infect Cows, Then Us",
+      "at": "2026-10-07T18:23:43.067095+00:00",
       "publish_at": "2026-10-07T19:03:05Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 23 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.77,
+      "beat_s": [
+        3.57,
+        6.27,
+        6.77,
+        5.4,
+        3.99
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 66,
+      "duration_s": 25.9,
+      "hook": "shock_stat",
+      "topic_category": "health",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:feather-toll-climb",
+        "mechanic:cattle-outbreak-map",
+        "mechanic:cross-species-bridge"
+      ],
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -3438,9 +3467,10 @@
       "claimed_at": "2026-10-07T18:23:31.700097+00:00",
       "title": "How Bird Flu Learned To Infect Cows, Then Us",
       "publish_at": "2026-10-07T19:03:05Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "bird-flu-species-jump"
+      "url": "https://youtube.com/shorts/mhIr58VWBAw",
+      "state": "posted",
+      "slug": "bird-flu-species-jump",
+      "at": "2026-10-07T18:23:43.067095+00:00"
     }
   ]
 }
