@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261007",
+  "bundle": {
+    "identity": "5842fff9571549d0ff5bb5e5fb169212d899a423ff5c7714495ba9692762817d",
+    "path": "exchange/bundles/20261007/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily_producer",
+  "verified_at": "2026-10-07T11:35:04.101Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-pickup-line-rule-backfired-s0",
+  "safe_request_id": "authored-pickup-line-rule-backfired-s0",
+  "prompt_sha256": "5f82420e00cc094526f093f45e0872a8d836042b3ce15d4a28d826a7693c9851",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: car cutting long elementary school pickup line. It accompanies the narration: \"cut around twenty waiting cars\" Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "10CD-py_rEWFvu4CoSoToogDuAUoCBapx",
+    "filename": "20261007__authored-pickup-line-rule-backfired-s0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=10CD-py_rEWFvu4CoSoToogDuAUoCBapx",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "29c16bc07daeca048f28bf9c24d23c03d2dbf570e14e0dcbc08b3cd6739ab10e",
+    "bytes": 2211307,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "pickup-line-rule-backfired",
+  "shot_index": 0,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
