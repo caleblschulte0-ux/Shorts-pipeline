@@ -261,11 +261,13 @@ def _remember_clip(source_url: str, **fields) -> None:
         print(f"::warning::[clip-memory] {e}", flush=True)
 
 
-def _remember_refused(member_urls: list[str], premise: str, why: str) -> None:
+def _remember_refused(member_urls: list[str], premise: str, why: str,
+                      rendered: bool = False) -> None:
     try:
         from third_capture import clip_memory
         clip_memory.note_story_tried(_memory(), member_urls,
-                                     premise=premise, why=why)
+                                     premise=premise, why=why,
+                                     rendered=rendered)
         clip_memory.save(_memory())
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[clip-memory] {e}", flush=True)
@@ -1759,7 +1761,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                         _refuse_urls, edl.get("premise") or who,
                         f"rendered; critic scored {_scores[-1]} after "
                         f"{revision_count} revision(s)"
-                        + (f" — {_crit}" if _crit else ""))
+                        + (f" — {_crit}" if _crit else ""),
+                        rendered=True)
                     continue
 
                 # ---- dedupe on the ACTUAL rendered members + duration band
