@@ -25,6 +25,7 @@ import json
 import re
 import subprocess
 import tempfile
+import time
 from pathlib import Path
 
 CANVAS_W, CANVAS_H = 1080, 1920
@@ -40,6 +41,8 @@ FX_DIR = REPO / "assets" / "fx"                  # procedural FX overlays
 # run until GitHub's 60-min job timeout — the batch-4 incident. On
 # timeout the package raises and the orchestrator moves to the next one.
 _RUN_TIMEOUT = 300  # seconds
+# a VOD window is minutes of HLS segments, not one clip file
+_VOD_TIMEOUT = 480
 
 
 def _run(cmd: list[str], timeout: int = _RUN_TIMEOUT) -> str:
@@ -324,12 +327,23 @@ def maybe_vod_window(clip: dict, work: Path, *, before: float = 60.0,
         work.mkdir(parents=True, exist_ok=True)
         stem = f"vod_{vid}_{int(start)}_{int(end)}"
         out = work / f"{stem}.mp4"
+        # STREAM COPY, not a re-encode. `--force-keyframes-at-cuts` plus
+        # `--recode-video` re-encoded every expanded window on a 2-core
+        # runner and ran into the 300s timeout (story backtest 2026-10-07:
+        # `TimeoutExpired`, twice on one video) — so the stories that most
+        # needed the setup or payoff around a clip never got it. A copy
+        # snaps the start to the keyframe before `start` (Twitch: every 2s);
+        # the director plans from this FILE's own transcript, so its cuts
+        # stay exact and only `vod_start_s` is approximate.
         if not out.exists():
+            t = time.monotonic()
             _ytdlp(["--download-sections", f"*{start:.0f}-{end:.0f}",
                     "-f", "b[height<=720]/b",
-                    "--force-keyframes-at-cuts",
-                    "-o", str(out), "--recode-video", "mp4",
-                    f"https://www.twitch.tv/videos/{vid}"])
+                    "-o", str(out), "--remux-video", "mp4",
+                    f"https://www.twitch.tv/videos/{vid}"],
+                   timeout=_VOD_TIMEOUT)
+            print(f"[vod] expanded video {vid} {start:.0f}-{end:.0f}s "
+                  f"in {time.monotonic() - t:.0f}s", flush=True)
         if not out.exists() or out.stat().st_size < 10_000:
             return None
         return {"path": str(out), "vod_start_s": start,
@@ -347,9 +361,10 @@ def _needs_impersonation(platform_or_url: str) -> bool:
     return any(s in platform_or_url for s in ("kick", "rumble"))
 
 
-def _ytdlp(args: list[str], *, impersonate: bool = False) -> str:
+def _ytdlp(args: list[str], *, impersonate: bool = False,
+           timeout: int = _RUN_TIMEOUT) -> str:
     cmd = ["yt-dlp"] + (["--impersonate", "chrome"] if impersonate else [])
-    return _run(cmd + args)
+    return _run(cmd + args, timeout=timeout)
 
 
 def _discover_kick(channel: str, top: int, range_: str) -> list[dict]:

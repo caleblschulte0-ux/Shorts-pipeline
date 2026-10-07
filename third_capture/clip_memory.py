@@ -120,23 +120,43 @@ def said_from_words(words) -> str:
         return ""
 
 
+# Bump when the story EDIT gets a capability a rendered refusal lacked.
+# A cut the critic refused is a verdict on THE EDIT as much as on the
+# story: the 72 that missed for "who is Buddha" was judged when a cut could
+# carry one narrator line. Remembering it forever meant every near-miss of
+# the old edit was skipped by every run of the new one, live and backtest
+# alike (2026-10-07: the third backtest re-tried nothing it had rendered
+# before). The director's "not a story" is about the footage and stands.
+#   1 — a narrator line per beat; the stream around a clip arrives (copy)
+EDIT_VERSION = 1
+
+
 def note_story_tried(mem: dict, member_urls: list[str], *, premise: str = "",
-                     why: str = "", day: str = "") -> None:
+                     why: str = "", day: str = "",
+                     rendered: bool = False) -> None:
     """Remember that the director refused these clips AS A STORY. Only an
     editorial refusal belongs here — a starved analysis or a malformed plan
-    says nothing about whether the story exists."""
+    says nothing about whether the story exists. `rendered` marks a cut the
+    critic refused, which a better edit may yet pass (EDIT_VERSION)."""
     try:
         keys = sorted({_key(u) for u in member_urls if _key(u)})
         if len(keys) < 2:
             return
         tried = mem.setdefault("stories_tried", [])
         tried[:] = [t for t in tried if sorted(t.get("members") or []) != keys]
-        tried.append({"members": keys, "premise": _clean(premise, 120),
-                      "why": _clean(why, 160),
-                      "d": _day(day) or datetime.now(
-                          timezone.utc).date().isoformat()})
+        rec = {"members": keys, "premise": _clean(premise, 120),
+               "why": _clean(why, 160),
+               "d": _day(day) or datetime.now(timezone.utc).date().isoformat()}
+        if rendered:
+            rec["edit"] = EDIT_VERSION
+        tried.append(rec)
     except Exception:  # noqa: BLE001
         pass
+
+
+def _rendered(t: dict) -> bool:
+    # records written before `edit` existed say so in their reason
+    return "edit" in t or str(t.get("why", "")).startswith("rendered;")
 
 
 def already_tried(mem: dict, member_urls: list[str],
@@ -154,6 +174,8 @@ def already_tried(mem: dict, member_urls: list[str],
         pk = set(t.get("members") or [])
         if not pk or keys - pk:
             continue
+        if _rendered(t) and int(t.get("edit") or 0) < EDIT_VERSION:
+            continue                 # judged by an older edit: try again
         if len(keys & pk) / len(keys | pk) >= thresh:
             return t
     return None
