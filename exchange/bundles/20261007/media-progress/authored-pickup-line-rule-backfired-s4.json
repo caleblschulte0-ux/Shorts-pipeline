@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261007",
+  "bundle": {
+    "identity": "5842fff9571549d0ff5bb5e5fb169212d899a423ff5c7714495ba9692762817d",
+    "path": "exchange/bundles/20261007/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily_producer",
+  "verified_at": "2026-10-07T11:35:09.495Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-pickup-line-rule-backfired-s4",
+  "safe_request_id": "authored-pickup-line-rule-backfired-s4",
+  "prompt_sha256": "7925b1eaa2174a4061d1ebc549c58e7b1c7b2e8df7510f1317386be16b9fa851",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: car redirected into school visitor lane. It accompanies the narration: \"sent her to the visitor lane\" Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1R-vdTgB7fDU0duUuuK0q78JVmDZi5S2O",
+    "filename": "20261007__authored-pickup-line-rule-backfired-s4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1R-vdTgB7fDU0duUuuK0q78JVmDZi5S2O",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "8c40e30bec47c647245c82464fdee0a472f9cad2e82929cb9f2d41239a9bc276",
+    "bytes": 2277108,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "pickup-line-rule-backfired",
+  "shot_index": 4,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
