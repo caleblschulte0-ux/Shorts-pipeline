@@ -11421,6 +11421,43 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (Monologue, no observable event)",
       "ts": "2026-10-06T12:19:03.731484+00:00"
+    },
+    "rejected-quaintlightdurianwtruck-utsypalrkc0zpckn": {
+      "source_url": "https://www.twitch.tv/buddha/clip/QuaintLightDurianWTRuck-UTSyPaLrKC0ZPCKn",
+      "streamer": "buddha",
+      "title": "Mr Lang(Buddha) perma's Nathan (burn)",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (dark GTA RP body, hard to follow)",
+      "ts": "2026-10-07T11:33:49.865505+00:00"
+    },
+    "rejected-incredulousdistinctyakuwot-rn6mlvl-oz7sedc0": {
+      "source_url": "https://www.twitch.tv/cinna/clip/IncredulousDistinctYakUWot-RN6MLVL-OZ7sEDC0",
+      "streamer": "cinna",
+      "title": "Cinna Admits A Situationship With A 98 Year Old And Panics At The End",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp picture is a thin letterboxed strip, roughly a third of the canvas, with large black and blurred padding above and; vision: Subject is tiny and far away in the later frames (lying on the ground, or a distant parachute), so it is hard to read on; vision: Frames from about 17s to 60s are",
+      "ts": "2026-10-07T11:38:37.373534+00:00"
+    },
+    "rejected-jollyblindingbatterypupper-wslcr98gvmv2ukt6": {
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/JollyBlindingBatteryPupper-WslcR98gVmv2UKT6",
+      "streamer": "plaqueboymax",
+      "title": "this man laughing",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (static face, unclear event, insider)",
+      "ts": "2026-10-07T11:39:04.360537+00:00"
+    },
+    "clip-20261007-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/ScaryWildWatermelonHoneyBadger-Zys1uz_KyciD_dzL",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Cameraman Gets Manipulated And Reggie Says He'll Kill Kai",
+      "kind": "twitch_clip",
+      "ts": "2026-10-07T11:41:27.365919+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
