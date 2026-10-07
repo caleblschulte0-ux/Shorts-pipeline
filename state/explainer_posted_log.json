@@ -2785,6 +2785,13 @@
       ],
       "words_first_10s": 6,
       "scene_changes_before_5s": 2
+    },
+    "bird-flu-species-jump": {
+      "claimed_at": "2026-10-07T18:23:31.700097+00:00",
+      "title": "How Bird Flu Learned To Infect Cows, Then Us",
+      "publish_at": "2026-10-07T19:03:05Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3426,6 +3433,14 @@
       "state": "posted",
       "slug": "light-pollution-erasing-sky",
       "at": "2026-10-07T13:55:56.536294+00:00"
+    },
+    {
+      "claimed_at": "2026-10-07T18:23:31.700097+00:00",
+      "title": "How Bird Flu Learned To Infect Cows, Then Us",
+      "publish_at": "2026-10-07T19:03:05Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "bird-flu-species-jump"
     }
   ]
 }
