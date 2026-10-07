@@ -287,6 +287,15 @@ constants blanked), never on the prose that explains it.
   `cr.fill()`s one flat colour is the defect; draw the path, call
   `solid()`. `tests/test_the_art_is_lit.py`.
 
+- **A subject scene is a SHOT, not a diagram** (operator, 2026-10-07: a
+  front-on barn over an empty field was *"still very much lacking"*; the
+  same beat with a low sun, far-to-near hills, the barn in three-quarter
+  view and hens by the camera was *"ok now we are talking"*). The shot is
+  in the kit — `landscape`, `building`, `cast_shadow`, `foreground`, `hen`
+  in `subject_scenes.py` — prompt rule 13 asks for it, and
+  `bird_flu_barn` is THE SHOT the brain is shown as the bar.
+  `tests/test_it_is_a_shot_not_a_diagram.py`.
+
 - **A brain-drawn subject scene has to pass a VIEWER, not just the code**
   (operator, 2026-10-01: a coffin he "couldn't tell was a coffin", an urn
   of blue "ash" that read as water, a rope "pulling a liquid up"). Every

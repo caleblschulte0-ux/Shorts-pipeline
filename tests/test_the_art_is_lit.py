@@ -167,7 +167,7 @@ class TheBrainIsToldAndShown(unittest.TestCase):
 
     def test_the_prompt_teachers_use_the_light(self):
         from data_learning import subject_scenes as SS
-        for fn in (SS.amazon_where_it_goes, SS.coffee_drought):
+        for fn in (SS.amazon_where_it_goes, SS.coffee_drought, SS.bird_flu_barn):
             src = inspect.getsource(fn)
             self.assertTrue(any(f"{n}(" in src for n in ("solid", "box", "cylinder", "disc")), fn.__name__)
             self.assertIn("contact_shadow(", src, fn.__name__)

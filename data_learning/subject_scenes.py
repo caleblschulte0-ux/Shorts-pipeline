@@ -186,6 +186,322 @@ def truck(cr, x, y, s, a=1.0):
     cr.restore()
 
 
+
+# ---------------------------------------------------------------- THE SHOT ---
+# Operator, 2026-10-07, on a flat front-on barn over an empty field: "still
+# very much lacking" — then, on the same beat drawn as a SHOT (a low sun, hills
+# fading into the distance, the barn in three-quarter view, hens right by the
+# camera): "ok now we are talking". These are the pieces of that shot, so
+# every scene can start from it instead of from a gradient.
+
+#: The setting's colours, far to near: sky top, sky mid, sky at the horizon,
+#: far ridge, near ridge, ground near the horizon, ground at the camera.
+SETTINGS = {
+    "field":  [(108, 150, 196), (186, 200, 210), (248, 212, 166), (170, 182, 176),
+               (138, 160, 128), (150, 168, 84), (74, 104, 46)],
+    "desert": [(112, 156, 204), (196, 210, 220), (250, 220, 176), (196, 168, 138),
+               (204, 160, 112), (226, 190, 132), (176, 128, 80)],
+    "snow":   [(96, 140, 190), (178, 196, 216), (236, 222, 214), (176, 190, 206),
+               (210, 220, 232), (226, 232, 240), (176, 190, 210)],
+    "coast":  [(100, 150, 200), (182, 204, 220), (248, 214, 172), (160, 178, 188),
+               (64, 124, 160), (226, 204, 156), (196, 168, 118)],
+    "town":   [(104, 146, 194), (184, 198, 212), (246, 210, 168), (150, 156, 170),
+               (118, 124, 138), (150, 146, 136), (96, 92, 86)],
+}
+SUN = (230, 760)         # the low sun, upper left: where KEY comes from
+
+
+def ridge(cr, base, amp, seed=0.0, n=5):
+    """Trace (do not fill) a soft hill line `amp` px above `base`, closed down
+    to the bottom of the frame — then solid(..., edge=False) it."""
+    cr.move_to(0, H)
+    cr.line_to(0, base)
+    step = W / n
+    for i in range(n):
+        x0 = i * step
+        y1 = base - amp * (0.6 + 0.4 * math.sin(i * 1.7 + seed))
+        cr.curve_to(x0 + step * 0.3, y1, x0 + step * 0.7, y1,
+                    x0 + step, base - amp * 0.3 * math.cos(i + seed))
+    cr.line_to(W, H)
+    cr.close_path()
+
+
+def treeline(cr, y, rgb, n=14, seed=0):
+    """A band of rounded tree crowns standing on y, edge to edge."""
+    for i in range(n):
+        k = i * 37 + seed * 11
+        x, r = 20 + i * (W / n) + k % 30, 34 + (k * 13) % 18
+        yy = y - k % 40
+        for dx, dy, rr in ((0, 0, 1), (-0.6, 0.25, 0.75), (0.6, 0.2, 0.8),
+                           (0, -0.45, 0.7)):
+            cr.arc(x + dx * r, yy + dy * r, r * rr, 0, 2 * math.pi)
+            cr.new_sub_path()
+    solid(cr, rgb, edge=False)
+
+
+def landscape(cr, t=0.0, kind="field", horizon=1170):
+    """Paints a whole outdoor setting (kind: field, desert, snow, coast,
+    town) under a low sun; returns the ground's top y.
+
+    Far to near: sky, sun, clouds, two ridges under haze, ground whose
+    stripes run to the horizon."""
+    sky0, sky1, sky2, far, near, g0, g1 = SETTINGS.get(kind, SETTINGS["field"])
+    vgrad(cr, [(0, sky0), (0.45, sky1), (0.8, sky2), (1, sky2)], 0, horizon + 20)
+    glow(cr, SUN[0], SUN[1], 520, (255, 236, 196), 0.55)
+    glow(cr, SUN[0], SUN[1], 140, (255, 250, 232), 0.9)
+    for cx, cy, s in ((760, 380, 1.0), (300, 520, 0.7), (930, 640, 0.6)):
+        cx = (cx + t * 6 * s) % (W + 300) - 150      # clouds drift slowly
+        for dx, r in ((-80, 60), (0, 85), (90, 65), (170, 45)):
+            cr.save()
+            cr.translate(cx + dx * s, cy)
+            cr.scale(1, 0.55)
+            cr.arc(0, 0, r * s, 0, 2 * math.pi)
+            cr.restore()
+        cr.set_source_rgba(1, 0.98, 0.95, 0.55)
+        cr.fill()
+    ridge(cr, horizon - 60, 90, 0.3, 4)
+    solid(cr, far, edge=False, rim=False)
+    if kind == "town":                                # a far skyline
+        for i in range(16):
+            bw, bh = 40 + (i * 29) % 40, 60 + (i * 53) % 140
+            cr.rectangle(i * 70 - 10, horizon - 20 - bh, bw, bh + 20)
+        solid(cr, near, edge=False, rim=False)
+    else:
+        ridge(cr, horizon - 20, 70, 2.1, 5)
+        solid(cr, near, edge=False, rim=False)
+    if kind == "field":
+        treeline(cr, horizon - 20, _mix3(near, (40, 70, 40), 0.35))
+    haze(cr, horizon - 170, horizon + 30, sky2, a=0.45)
+    if kind == "coast":                               # the sea, then the beach
+        vgrad(cr, [(0, (96, 150, 180)), (1, (48, 104, 140))], horizon, horizon + 160)
+        horizon += 160
+    vgrad(cr, [(0, g0), (0.4, _mix3(g0, g1, 0.4)), (1, g1)], horizon, H)
+    vx = W / 2
+    for k in range(-9, 10):                          # stripes run to the horizon
+        cr.move_to(vx + k * 40, horizon)
+        cr.line_to(vx + k * 420, H)
+        cr.line_to(vx + k * 420 + 210, H)
+        cr.line_to(vx + k * 40 + 20, horizon)
+        cr.close_path()
+        cr.set_source_rgba(1, 1, 0.85, 0.05 if k % 2 else 0.0)
+        cr.fill()
+    return horizon
+
+
+def _mix3(a, b, f):
+    return tuple(int(x + (y - x) * f) for x, y in zip(a, b))
+
+
+def foreground(cr, kind="field", y0=1560):
+    """Things right by the camera, from y0 to the bottom: grass tufts on a
+    field, pebbles on desert/coast/town, drifts on snow. Paint it after the
+    hero and before vignette()."""
+    for i in range(40):
+        gx, gy = (i * 137) % W, y0 + (i * 71) % (H - y0 - 20)
+        sh = 0.6 + 0.6 * (gy - y0) / max(1, H - y0)
+        if kind == "field":
+            for b in (-1, 0, 1):
+                cr.move_to(gx, gy)
+                cr.curve_to(gx + b * 6 * sh, gy - 14 * sh, gx + b * 10 * sh,
+                            gy - 22 * sh, gx + b * 14 * sh, gy - 30 * sh)
+            cr.set_source_rgba(*_c((60, 92, 38), 0.8))
+            cr.set_line_width(3 * sh)
+            cr.stroke()
+        elif kind == "snow":
+            cr.save()
+            cr.translate(gx, gy)
+            cr.scale(1, 0.3)
+            cr.arc(0, 0, 40 * sh, math.pi, 2 * math.pi)
+            cr.restore()
+            cr.set_source_rgba(1, 1, 1, 0.35)
+            cr.fill()
+        else:
+            cr.save()
+            cr.translate(gx, gy)
+            cr.scale(1, 0.6)
+            cr.arc(0, 0, 7 * sh, 0, 2 * math.pi)
+            cr.restore()
+            cr.set_source_rgba(*_c((90, 70, 52), 0.55))
+            cr.fill()
+
+
+def cast_shadow(cr, x0, x1, y, length=300, a=0.3):
+    """The long shadow a thing standing on x0..x1 at ground y throws to the
+    lower right, away from the low sun. Draw it before the thing."""
+    cr.move_to(x0, y)
+    cr.line_to(x1, y)
+    cr.line_to(x1 + length, y + length * 0.18)
+    cr.line_to(x0 + length * 0.5, y + length * 0.22)
+    cr.close_path()
+    cr.set_source_rgba(0.08, 0.10, 0.04, a)
+    cr.fill()
+
+
+def building(cr, x0, x1, base, wall_h, rgb, roof_rgb=(96, 102, 114),
+             roof="gable", depth=None, boards=True):
+    """Three-quarter building, front face x0..x1 on base; returns the front's
+    {"x0","x1","top","base","peak"} for doors and signs. roof: gable/gambrel/flat.
+
+    The side wall runs back to the right in shadow, the roof is lit, and it
+    throws its own long shadow."""
+    d = (x1 - x0) * 0.62 if depth is None else depth
+    top = base - wall_h
+    sx, sb, st = x1 + d, base - d * 0.26, top + d * 0.06
+    rx = (x0 + x1) / 2
+    rise = {"gable": 0.5, "gambrel": 0.58, "flat": 0.0}.get(roof, 0.5) * (x1 - x0)
+    shade = _mix3(rgb, (20, 10, 10), 0.38)
+    cast_shadow(cr, x1, sx, base, length=320)
+    contact_shadow(cr, (x0 + sx) / 2, base + 6, (sx - x0) * 1.05, a=0.45)
+    cr.move_to(x1, base)                              # side wall
+    cr.line_to(sx, sb)
+    cr.line_to(sx, st)
+    cr.line_to(x1, top)
+    cr.close_path()
+    solid(cr, shade, rim=False)
+    if boards:
+        cr.save()
+        cr.move_to(x1, base)
+        cr.line_to(sx, sb)
+        cr.line_to(sx, st)
+        cr.line_to(x1, top)
+        cr.clip()
+        for k in range(1, 14):
+            f = k / 14
+            cr.move_to(x1 + d * f, top + (st - top) * f)
+            cr.line_to(x1 + d * f, base + (sb - base) * f)
+        cr.set_source_rgba(0, 0, 0, 0.18)
+        cr.set_line_width(2)
+        cr.stroke()
+        cr.restore()
+    if rise:                                          # the roof's long side
+        cr.move_to(x1 + 26, top + 6)
+        cr.line_to(sx + 22, st + 4)
+        cr.line_to(sx - 40 - (x1 - x0) * 0.1, st - rise * 0.5)
+        cr.line_to(rx + (x1 - rx) * 0.4, top - rise * 0.62)
+        cr.close_path()
+        solid(cr, roof_rgb, finish="metal")
+        cr.move_to(rx + (x1 - rx) * 0.4, top - rise * 0.62)
+        cr.line_to(sx - 40 - (x1 - x0) * 0.1, st - rise * 0.5)
+        cr.line_to(sx - (x1 - x0) * 0.4, st - rise * 0.8)
+        cr.line_to(rx, top - rise)
+        cr.close_path()
+        solid(cr, _mix3(roof_rgb, (255, 255, 255), 0.18), finish="metal")
+    else:
+        cr.move_to(x0, top)
+        cr.line_to(x1, top)
+        cr.line_to(sx, st)
+        cr.line_to(sx - (x1 - x0) * 0.2, st - 30)
+        cr.line_to(x0 + 20, top - 30)
+        cr.close_path()
+        solid(cr, roof_rgb)
+
+    def front():
+        cr.move_to(x0, base)
+        cr.line_to(x1, base)
+        cr.line_to(x1, top)
+        if roof == "gambrel":
+            cr.line_to(x1 - (x1 - x0) * 0.12, top - rise * 0.62)
+            cr.line_to(rx, top - rise)
+            cr.line_to(x0 + (x1 - x0) * 0.12, top - rise * 0.62)
+        elif rise:
+            cr.line_to(rx, top - rise)
+        cr.line_to(x0, top)
+        cr.close_path()
+    front()
+    solid(cr, rgb)
+    cr.save()
+    front()
+    cr.clip()
+    if boards:
+        for x in range(int(x0) + 28, int(x1), 28):
+            cr.move_to(x, top - rise - 10)
+            cr.line_to(x, base)
+        cr.set_source_rgba(0, 0, 0, 0.16)
+        cr.set_line_width(2)
+        cr.stroke()
+    g = cairo.LinearGradient(x0, top - rise, x1, base)   # the sun on the face
+    g.add_color_stop_rgba(0, 1, 0.9, 0.7, 0.28)
+    g.add_color_stop_rgba(1, 1, 0.9, 0.7, 0)
+    cr.set_source(g)
+    cr.paint()
+    cr.restore()
+    if rise:                                          # eave trim
+        cr.move_to(x0 - 20, top + 10)
+        if roof == "gambrel":
+            cr.line_to(x0 + (x1 - x0) * 0.1, top - rise * 0.64)
+            cr.line_to(rx, top - rise - 12)
+            cr.line_to(x1 - (x1 - x0) * 0.1, top - rise * 0.64)
+        else:
+            cr.line_to(rx, top - rise - 12)
+        cr.line_to(x1 + 20, top + 10)
+        cr.set_source_rgba(*_c((240, 234, 222)))
+        cr.set_line_width(14)
+        cr.set_line_join(cairo.LINE_JOIN_ROUND)
+        cr.stroke()
+    return {"x0": x0, "x1": x1, "top": top, "base": base, "peak": top - rise}
+
+
+def hen(cr, x, y, s, t, i=0, flip=False):
+    """A white hen standing at (x, y), s ~1 is 60px tall, pecking now and
+    then (i staggers the peck), with its long shadow."""
+    peck = max(0.0, math.sin(t * 2.4 + i * 1.9)) ** 3
+    cr.save()
+    cr.translate(x + 30 * s, y + 18 * s)
+    cr.scale(1.0, 0.28)
+    cr.arc(0, 0, 46 * s, 0, 2 * math.pi)
+    cr.restore()
+    cr.set_source_rgba(0.12, 0.10, 0.06, 0.28)
+    cr.fill()
+    cr.save()
+    cr.translate(x, y)
+    cr.scale(-1 if flip else 1, 1)
+    cr.set_source_rgba(*_c((214, 150, 50)))
+    cr.set_line_width(4 * s)
+    for lx in (-8, 8):
+        cr.move_to(lx * s, 6 * s)
+        cr.line_to(lx * s, 20 * s)
+        cr.stroke()
+    cr.move_to(-22 * s, -10 * s)                      # tail
+    cr.curve_to(-46 * s, -30 * s, -44 * s, -54 * s, -30 * s, -50 * s)
+    cr.curve_to(-26 * s, -30 * s, -16 * s, -22 * s, -10 * s, -14 * s)
+    cr.close_path()
+    solid(cr, (236, 230, 220), edge=False)
+    cr.move_to(-26 * s, -12 * s)                      # body
+    cr.curve_to(-30 * s, 14 * s, 18 * s, 18 * s, 26 * s, -6 * s)
+    cr.curve_to(30 * s, -22 * s, 10 * s, -30 * s, -6 * s, -24 * s)
+    cr.close_path()
+    solid(cr, (252, 250, 244), edge=False)
+    cr.move_to(-14 * s, -10 * s)                      # wing
+    cr.curve_to(-8 * s, 6 * s, 10 * s, 6 * s, 14 * s, -4 * s)
+    cr.curve_to(4 * s, -8 * s, -6 * s, -12 * s, -14 * s, -10 * s)
+    cr.close_path()
+    solid(cr, (234, 228, 216), edge=False, rim=False)
+    hx, hy = 24 * s + 6 * s * peck, -30 * s + 30 * s * peck
+    cr.move_to(10 * s, -22 * s)                       # neck
+    cr.line_to(hx - 6 * s, hy + 4 * s)
+    cr.line_to(hx + 6 * s, hy + 8 * s)
+    cr.line_to(22 * s, -8 * s)
+    cr.close_path()
+    solid(cr, (250, 248, 240), edge=False, rim=False)
+    cr.arc(hx, hy, 10 * s, 0, 2 * math.pi)
+    solid(cr, (252, 250, 244), edge=False)
+    cr.move_to(hx - 7 * s, hy - 7 * s)                # comb
+    for k in range(3):
+        cr.curve_to(hx - 6 * s + k * 5 * s, hy - 19 * s, hx - 2 * s + k * 5 * s,
+                    hy - 19 * s, hx - 1 * s + k * 5 * s, hy - 8 * s)
+    cr.close_path()
+    solid(cr, (210, 40, 36), edge=False, rim=False)
+    cr.move_to(hx + 8 * s, hy - 2 * s)                # beak
+    cr.line_to(hx + 18 * s, hy + 2 * s)
+    cr.line_to(hx + 8 * s, hy + 5 * s)
+    cr.close_path()
+    solid(cr, (236, 170, 50), edge=False, rim=False)
+    cr.arc(hx + 3 * s, hy - 2 * s, 1.8 * s, 0, 2 * math.pi)
+    cr.set_source_rgba(0.08, 0.08, 0.1, 1)
+    cr.fill()
+    cr.restore()
+
+
 #: France, coarse on purpose (lon, lat) — the hexagone, same register as
 #: `data_learning/continents.py`.
 FRANCE = [(-4.8, 48.4), (-1.8, 48.6), (-1.3, 49.7), (1.6, 50.9), (2.6, 51.1),
@@ -1185,6 +1501,128 @@ def heat_redlining(cr, t, u, pts, host):
          alpha=ease(seg(u, 0.55, 0.7)), shadow=False)
 
 
+# ------------------------------------------------------------ BIRD FLU -----
+
+def bird_flu_barn(cr, t, u, pts, host):
+    """HERO: a red barn full of hens
+    SUBSTANCE: the white hens
+    CAUSE: Data shoves the big barn door shut on the flock, one push per year of deaths
+    THE SHOT, not a diagram (operator 2026-10-07: "ok now we are talking"):
+    a low sun upper left, hills fading into the distance, the barn in
+    three-quarter view throwing a long shadow, hens right by the camera.
+    Each year's toll slides the door further across the doorway: the closed
+    share of it is that year's cumulative deaths over the latest total, and
+    the readout prints a year only once the door has landed on it."""
+    rows = by_time([(str(l), float(v)) for l, v in pts])
+    n = len(rows)
+    top = max(v for _, v in rows) or 1.0
+    a0, a1 = 0.1, 0.9
+    span = (a1 - a0) / max(1, n)
+    k = int(clamp((u - a0) / span, 0, n - 0.001))
+    f = clamp((u - a0 - k * span) / span)
+    slide = ease(seg(f, 0.2, 0.6))           # lands on the shove, then holds
+    prev = rows[k - 1][1] if k > 0 else 0.0
+    frac = 0.0 if u < a0 else (prev + (rows[k][1] - prev) * slide) / top
+    if u < a0:
+        shown = None
+    elif slide >= 0.999:
+        shown = rows[k]
+    elif k > 0:
+        shown = rows[k - 1]
+    else:
+        shown = None
+
+    landscape(cr, t, "field")
+    # a dirt track from the camera to the door
+    cr.move_to(330, 1440)
+    cr.curve_to(320, 1600, 260, 1760, 180, H)
+    cr.line_to(640, H)
+    cr.curve_to(560, 1760, 500, 1600, 470, 1440)
+    cr.close_path()
+    solid(cr, (186, 150, 104), edge=False)
+    # the silo behind, then the barn
+    contact_shadow(cr, 895, 1334, 190, a=0.4)
+    cylinder(cr, 820, 1330, 150, 520, (196, 190, 178), finish="metal")
+    cr.save()
+    cr.translate(895, 810)
+    cr.scale(1, 0.5)
+    cr.arc(0, 0, 76, math.pi, 2 * math.pi)
+    cr.restore()
+    solid(cr, (120, 128, 140), finish="metal")
+    b = building(cr, 150, 650, 1440, 380, (196, 56, 42), roof="gambrel")
+    rx = (b["x0"] + b["x1"]) / 2
+    cr.rectangle(rx - 55, b["top"] - 170, 110, 120)          # hayloft
+    solid(cr, (150, 36, 30), rim=False)
+    cr.set_source_rgba(*_c((244, 238, 226)))
+    cr.set_line_width(8)
+    cr.rectangle(rx - 55, b["top"] - 170, 110, 120)
+    cr.move_to(rx - 55, b["top"] - 170)
+    cr.line_to(rx + 55, b["top"] - 50)
+    cr.move_to(rx + 55, b["top"] - 170)
+    cr.line_to(rx - 55, b["top"] - 50)
+    cr.stroke()
+
+    # the doorway: a dark barn full of hens, warm light on the straw
+    DX0, DX1, DY, GY = 230, 570, 1150, b["base"]
+    dw = DX1 - DX0
+    cr.save()
+    cr.rectangle(DX0, DY, dw, GY - DY)
+    cr.clip()
+    vgrad(cr, [(0, (40, 28, 22)), (1, (96, 70, 44))], DY, GY, DX0, DX1)
+    glow(cr, (DX0 + DX1) / 2, GY, 220, (230, 180, 110), 0.35)
+    for i in range(7):
+        hen(cr, DX0 + 40 + i * 48, GY - 30 - (i % 2) * 26, 0.7, t, i + 10,
+            flip=i % 3 == 0)
+    cr.restore()
+    cr.set_source_rgba(*_c((244, 238, 226)))
+    cr.set_line_width(12)
+    cr.rectangle(DX0, DY, dw, GY - DY)
+    cr.stroke()
+    # the sliding door, parked left of the opening and shoved across it
+    dx = DX0 - dw + dw * frac
+    cr.set_source_rgba(*_c((46, 44, 48)))
+    cr.set_line_width(10)
+    cr.move_to(b["x0"] - 120, DY - 18)
+    cr.line_to(DX1 + 30, DY - 18)
+    cr.stroke()
+    cr.rectangle(dx, DY - 8, dw, GY - DY + 8)
+    solid(cr, (182, 48, 38))
+    cr.set_source_rgba(*_c((244, 238, 226)))
+    cr.set_line_width(10)
+    cr.rectangle(dx + 12, DY + 6, dw - 24, GY - DY - 18)
+    cr.move_to(dx + 12, DY + 6)
+    cr.line_to(dx + dw - 12, GY - 12)
+    cr.move_to(dx + dw - 12, DY + 6)
+    cr.line_to(dx + 12, GY - 12)
+    cr.stroke()
+    for wx in (dx + 40, dx + dw - 40):
+        disc(cr, wx, DY - 18, 11, (70, 70, 76), finish="metal")
+
+    # right by the camera: the rest of the flock, the grass
+    for i in range(5):
+        hen(cr, 600 + i * 95, 1600 + (i % 2) * 50 + i * 8, 1.35 + 0.1 * (i % 2), t, i,
+            flip=i % 2 == 1)
+    foreground(cr, "field")
+    vignette(cr, a=0.28)
+
+    fx = max(dx + 90, 110)
+    if u < a0:
+        host("point", 760, 1452, 220)
+    elif u < 0.93:
+        host("shove", fx, 1452, 220, beat=k)
+    else:
+        host("shock", fx, 1452, 220)
+
+    if shown is not None:
+        lab, v = shown
+        fit_readout(cr, f"{int(round(v))}M birds", f"dead of bird flu in the US · {lab}",
+                    80, 520, a=ease(seg(u, a0, a0 + 0.05)), size=130)
+    else:
+        fit_readout(cr, "Bird flu", f"US flocks since {rows[0][0]}", 80, 520,
+                    a=ease(seg(u, 0.0, 0.05)), size=130)
+
+
+
 #: Hand-authored TEACHER scenes, by story slug and beat. The brain is shown
 #: these (and the reference) when it draws a new story's scenes.
 TEACHERS = {
@@ -1194,6 +1632,8 @@ TEACHERS = {
     # the judge marked the video down for showing the same machine twice
     "coffee-price-record": [coffee_climb, coffee_drought],
     "urban-heat-island-redlining": [heat_by_city, heat_share, heat_redlining],
+    # THE SHOT (2026-10-07): beats 1-2 are the brain's, drawn from this one
+    "bird-flu-species-jump": [bird_flu_barn],
 }
 
 

@@ -73,7 +73,11 @@ KIT_NAMES = ("vgrad", "glow", "text", "fit_readout", "by_time", "tree", "stump",
              # needs to be better"): one key light, lit face to shadow face,
              # a rim, an edge, a contact shadow — illustrated.py
              "solid", "box", "cylinder", "disc", "contact_shadow", "haze",
-             "vignette", "edge", "KEY", "FINISHES")
+             "vignette", "edge", "KEY", "FINISHES",
+             # THE SHOT (2026-10-07, "ok now we are talking"): a low sun,
+             # far-to-near depth, a three-quarter hero, things by the camera
+             "landscape", "foreground", "building", "cast_shadow", "ridge",
+             "treeline", "hen", "SUN", "SETTINGS")
 SAFE_BUILTINS = {n: __builtins__[n] if isinstance(__builtins__, dict)
                  else getattr(__builtins__, n)
                  for n in ("range", "len", "min", "max", "abs", "int", "float",
@@ -971,6 +975,17 @@ vignette() last, before the text. Build the hero from several lit pieces \
 silhouette. A frame whose hero band holds more than {flat_max} of large exact \
 flat colour is MEASURED and refused as clip art — a gold pile of identical flat ellipses, \
 two flat pans and a flat box were the look this rule replaces.
+13. IT IS A SHOT, NOT A DIAGRAM. A front-on elevation of the hero over an \
+empty field was "still very much lacking"; the same beat as a shot was "ok \
+now we are talking". So: start from a SETTING — landscape(cr, t, kind) for \
+anything outdoors (or a kit interior like cafe()) — never a bare gradient. \
+Show the hero in THREE-QUARTER view with a side going back into the \
+picture (building() for anything built; box() and cylinder() already turn), \
+throwing a long cast_shadow() to the lower right, away from the sun. Give \
+the frame three depths: the far setting under haze, the hero in the \
+middle, and something of the subject RIGHT BY THE CAMERA in the bottom \
+third (hens in the yard, a sack in the foreground, a rock), then \
+foreground(cr, kind) before vignette(). THE SHOT below is the bar.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \
@@ -991,6 +1006,9 @@ INK, INK_2, WARN, and these builtins: {builtins}. _c(rgb, alpha) makes a cairo c
 
 THE KIT (signatures):
 {sigs}
+
+THE SHOT — the look every scene is held to (this exact code passes every check):
+{shot}
 
 TWO TEACHER SCENES that pass every check — match this quality and style:
 {teachers}
@@ -1059,6 +1077,7 @@ def build_prompt(title, topic, say, pts, unit, brief=""):
                           kit=", ".join(KIT_NAMES),
                           builtins=", ".join(sorted(SAFE_BUILTINS)),
                           palette=", ".join(sorted(SS.P)), sigs=_sigs(),
+                          shot=inspect.getsource(SS.bird_flu_barn),
                           teachers=teachers, title=title, topic=topic, say=say,
                           pts=json.dumps(pts), unit=unit, brief=brief)
 
