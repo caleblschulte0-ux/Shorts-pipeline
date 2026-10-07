@@ -2753,11 +2753,38 @@
       "scene_changes_before_5s": 2
     },
     "light-pollution-erasing-sky": {
-      "claimed_at": "2026-10-07T13:55:45.311156+00:00",
+      "url": "https://youtube.com/shorts/eNMev0zBCdQ",
       "title": "Light Pollution Is Erasing The Night Sky",
+      "at": "2026-10-07T13:55:56.536294+00:00",
       "publish_at": "2026-10-07T20:01:21Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 27 credits are required for this request.\",\"status",
+      "beat_s_max": 5.33,
+      "beat_s": [
+        3.44,
+        4.83,
+        3.68,
+        5.33,
+        4.98
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 61,
+      "duration_s": 22.1,
+      "hook": "question",
+      "topic_category": "space",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:orange-glow-rise",
+        "mechanic:curtain-wipe-split",
+        "mechanic:night-photo-star-count"
+      ],
+      "words_first_10s": 6,
+      "scene_changes_before_5s": 2
     }
   },
   "uploads": [
@@ -3395,9 +3422,10 @@
       "claimed_at": "2026-10-07T13:55:45.311156+00:00",
       "title": "Light Pollution Is Erasing The Night Sky",
       "publish_at": "2026-10-07T20:01:21Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "light-pollution-erasing-sky"
+      "url": "https://youtube.com/shorts/eNMev0zBCdQ",
+      "state": "posted",
+      "slug": "light-pollution-erasing-sky",
+      "at": "2026-10-07T13:55:56.536294+00:00"
     }
   ]
 }
