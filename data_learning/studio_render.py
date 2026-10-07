@@ -2936,19 +2936,33 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         if _style["style_arm"] == "illustrated":
             from data_learning import scene_author as _sa0
             _sa0.set_budget()             # this video's drawing clock
+            # Every beat is TRIED, even after one fails. Stopping at the
+            # first miss threw away the rest of the story's chance: the
+            # scenes that do pass are saved on the story, so its next render
+            # only has to draw the beats still missing, instead of starting
+            # from beat 0 again and failing on the same one (41 queued
+            # new-look stories had 0 saved scenes on 2026-10-07). The
+            # drawing clock (`set_budget`) still bounds the whole video.
+            _missing = []
             for _i, _sg in enumerate(st.segments):
                 if not getattr(_sg, "insight", None):
                     continue
                 _got = _resolve_scene(slug, story_cfg, _i, _sg.insight)
                 if _got is None:
-                    _style["style_arm"] = "current"
-                    _style["illustrated_fallback"] = f"beat {_i}: no verified scene"
-                    print(f"[studio] style arm: current — beat {_i} has no "
-                          f"verified subject scene, and one video has one look",
-                          flush=True)
-                    _prepared = {}
-                    break
+                    _missing.append(_i)
+                    continue
                 _prepared[_i] = _got
+            if _missing:
+                _kept = len(_prepared)
+                _style["style_arm"] = "current"
+                _prepared = {}
+                _style["illustrated_fallback"] = (
+                    f"beat {_missing[0]}: no verified scene")
+                _style["illustrated_missing"] = _missing
+                print(f"[studio] style arm: current — beat(s) {_missing} have "
+                      f"no verified subject scene ({_kept} drawn and kept for "
+                      f"the next render), and one video has one look",
+                      flush=True)
 
         # TRUE 30fps: re-render each chart at frames = span*30 now that the beat
         # length is known, so the build animates smoothly across the WHOLE window
