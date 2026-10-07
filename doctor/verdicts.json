@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20261006",
+  "updated": "20261007",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -188,10 +188,16 @@
       ]
     },
     "75af24a46374": {
-      "verdict": "doing",
-      "date": "20260811",
-      "because": "Confirmed in third_capture/auto_edit.py build_edl(): the replay branch appends an ('whoosh') cue, but the over-cap cleanup at line 392 only filters cues where cue[1]!='riser', leaving the replay's whoosh cue firing at the old position after its segment is removed. Small, contained, queued for a quick pickup.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20261007",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260811",
+          "because": "Confirmed in third_capture/auto_edit.py build_edl(): the replay branch appends an ('whoosh') cue, but the over-cap cleanup at line 392 only filters cues where cue[1]!='riser', leaving the replay's whoosh cue firing at the old position after its segment is removed. Small, contained, queued for a quick pickup."
+        }
+      ]
     },
     "9b8b29a78b87": {
       "verdict": "doing",
