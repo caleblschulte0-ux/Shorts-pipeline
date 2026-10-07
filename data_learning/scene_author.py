@@ -1189,7 +1189,9 @@ def _strip_fence(s: str) -> str:
 
 
 def ask_brain(prompt: str, model: str | None = None,
-              timeout: float | None = None) -> str | None:
+              timeout: float | None = None, images: bool = False) -> str | None:
+    """The drawing brain's code for `prompt`. `images`: the prompt names
+    image files it must READ (the look-again round), so it may use Read."""
     if not shutil.which("claude"):
         return None
     # The drawing IS the video: the strongest model draws it (the judge that
@@ -1198,6 +1200,7 @@ def ask_brain(prompt: str, model: str | None = None,
                                     os.environ.get("SHOWRUNNER_MODEL", "opus"))
     try:
         proc = subprocess.run(["claude", "-p", prompt, "--model", model,
+                               *(["--allowedTools", "Read"] if images else []),
                                "--output-format", "text"],
                               capture_output=True, text=True,
                               timeout=timeout or TIMEOUT_S)
@@ -1229,12 +1232,113 @@ def author(title, topic, say, pts, unit="", attempts=3, log=print, brief="",
         except Exception as e:  # noqa: BLE001 — refused or broken: tell it why
             problems = [f"{type(e).__name__}: {str(e)[:200]}"]
         if not problems:
-            return fn, code
+            return look_again(fn, code, prompt, pts, say, secs, log=log) or (fn, code)
         why = "; ".join(problems[:4])
         log(f"[scene_author] attempt {k + 1} refused: {why}")
         prompt += ("\n\nYOUR PREVIOUS SCENE FAILED THESE CHECKS — fix every "
                    "one:\n- " + "\n- ".join(problems[:6]) + "\n\nPREVIOUS CODE:\n" + code)
     return None, why
+
+
+# ----------------------------------------------------------- look again ----
+# Operator, 2026-10-07: "I like the pile one but the bone one no." Both had
+# passed every check; the bone was a femur built of circles and rectangles,
+# small, in a bare room. The brain that DRAWS had never seen either one: it
+# wrote code, the code was measured, a separate viewer named the object.
+# So a scene that passes gets ONE more round: the brain READS its own frames
+# as they will be seen (words, Data and all) beside THE SHOT, and redraws
+# what looks cheap. The redraw goes through every same check; if it fails
+# any, the scene that passed is kept. A look again can only replace a
+# passing scene with another passing scene.
+
+LOOK_AGAIN_AT = (0.3, 0.85)
+LOOK_AGAIN_MIN_S = 300            # budget a redraw needs, or it is skipped
+LOOK_SIZE = (540, 960)
+#: THE SHOT is drawn with stand-in rows: it is shown for its art, not its data.
+SHOT_ROWS = [["2021", 2.0], ["2022", 6.0], ["2023", 11.0], ["2024", 19.0]]
+
+_LOOK_AGAIN = """
+
+YOUR SCENE PASSED EVERY CHECK. Now LOOK at it, the way the channel owner \
+will. READ these image files with the Read tool — your scene as a viewer \
+sees it:
+{yours}
+and THE SHOT, the frame the owner loved:
+{shot}
+
+Two scenes that passed every check went to the owner together: a pile of \
+plastic in a field that grew to three times its size under one number, and \
+a thigh bone built of circles and rectangles, small, in a bare room, with \
+three numbers beside it. His words: "I like the pile one but the bone one \
+no." Find the three things in YOUR frames that look most amateur beside \
+THE SHOT — a hero assembled from primitive shapes, a hero too small to \
+read, an empty backdrop, crowded or tiny text, a change you cannot see, \
+Data lost or covered — and fix them. Keep the idea, the data, the numbers \
+and the HERO / SUBSTANCE / CAUSE declaration; redraw what looks cheap.
+
+YOUR CODE:
+{code}
+
+Return the WHOLE improved scene code, nothing else."""
+
+
+def seen_frames(fn, pts, out_dir, at=LOOK_AGAIN_AT, size=LOOK_SIZE) -> list[str]:
+    """`fn` rendered as it ships — words, Data, finish — at each `at`, to PNGs."""
+    import cairo
+    from PIL import Image
+    out_dir = Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, SS.W, SS.H)
+    clock, paths = {}, []
+    for u in at:
+        f = int(round(u * 299))
+        cr = cairo.Context(surf)
+
+        def host(role, x, fy, h, pace=False, beat=0, _cr=cr, _f=f):
+            SS.place_host(_cr, role, SS.act_phase(clock, (role, int(beat)), _f),
+                          None, x, fy, h, _f / 30.0, pace)
+        with SS.I.text_layer(cr):
+            fn(cr, f / 30.0, u, pts, host)
+            SS.I.finish(cr, SS.I.FINISH)
+        surf.flush()
+        p = out_dir / f"{getattr(fn, '__name__', 'scene')}_u{int(u * 100):02d}.png"
+        surf.write_to_png(str(p))
+        Image.open(p).resize(size, Image.LANCZOS).save(p)
+        paths.append(str(p))
+    return paths
+
+
+def look_again(fn, code, prompt, pts, say="", secs=10.0, log=print):
+    """(fn, code) of the brain's redraw of a PASSING scene after it has seen
+    its own frames beside THE SHOT, or None — no budget, no brain, or the
+    redraw failed a check — in which case the passing scene stands."""
+    if _remaining() < LOOK_AGAIN_MIN_S:
+        return None
+    try:
+        with tempfile.TemporaryDirectory(prefix="look_again_") as td:
+            yours = seen_frames(fn, pts, Path(td) / "yours")
+            shot = seen_frames(SS.bird_flu_barn, SHOT_ROWS, Path(td) / "shot",
+                               at=(0.85,))
+            ask = prompt + _LOOK_AGAIN.format(
+                yours="\n".join(f"- {p}" for p in yours),
+                shot="\n".join(f"- {p}" for p in shot), code=code)
+            code2 = ask_brain(ask, timeout=min(TIMEOUT_S, _remaining()), images=True)
+    except Exception as e:  # noqa: BLE001 — a look that cannot happen keeps the pass
+        log(f"[scene_author] look again skipped: {type(e).__name__}: {e}")
+        return None
+    if not code2 or code2.strip() == code.strip():
+        return None
+    try:
+        fn2 = compile_scene(code2)
+        problems = verify(fn2, pts, say, secs) or glance(fn2, pts, log=log)
+    except Exception as e:  # noqa: BLE001
+        problems = [f"{type(e).__name__}: {str(e)[:200]}"]
+    if problems:
+        log(f"[scene_author] look-again redraw refused, keeping the pass: "
+            f"{'; '.join(problems[:2])}")
+        return None
+    log("[scene_author] look-again redraw passed and replaces the first draft")
+    return fn2, code2
 
 
 def scene_for_segment(story_cfg: dict, index: int, insight, log=print):
