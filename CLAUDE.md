@@ -308,6 +308,9 @@ constants blanked), never on the prose that explains it.
   `MAX_HEADLINES` big numbers in a frame and any label on top of Data, and
   the glance refuses a change a viewer calls "barely" and a picture they
   call a diagram. `tests/test_one_number_and_a_big_change.py`.
+  A scene that passes also gets ONE look again (`scene_author.look_again`):
+  the drawing brain READS its own frames beside THE SHOT and redraws what
+  looks cheap; the redraw replaces it only if it passes every same check.
 
 - **A brain-drawn subject scene has to pass a VIEWER, not just the code**
   (operator, 2026-10-01: a coffin he "couldn't tell was a coffin", an urn
