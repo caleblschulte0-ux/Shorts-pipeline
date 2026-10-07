@@ -2683,11 +2683,38 @@
       "scene_changes_before_5s": 3
     },
     "phone-call-avoidance": {
-      "claimed_at": "2026-10-07T10:53:11.569939+00:00",
+      "url": "https://youtube.com/shorts/3ziehpLeaL4",
       "title": "Why Gen Z Refuses To Answer The Phone",
+      "at": "2026-10-07T10:53:24.998782+00:00",
       "publish_at": "2026-10-07T11:16:19Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 23 credits are required for this request.\",\"status",
+      "beat_s_max": 6.35,
+      "beat_s": [
+        3.46,
+        4.94,
+        6.35,
+        5.99,
+        4.62
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 56,
+      "duration_s": 25.2,
+      "hook": "question",
+      "topic_category": "behavior",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:phone-duel-fill",
+        "mechanic:anxiety-pulse-spike",
+        "mechanic:voice-waveform-duel"
+      ],
+      "words_first_10s": 10,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -3307,9 +3334,10 @@
       "claimed_at": "2026-10-07T10:53:11.569939+00:00",
       "title": "Why Gen Z Refuses To Answer The Phone",
       "publish_at": "2026-10-07T11:16:19Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "phone-call-avoidance"
+      "url": "https://youtube.com/shorts/3ziehpLeaL4",
+      "state": "posted",
+      "slug": "phone-call-avoidance",
+      "at": "2026-10-07T10:53:24.998782+00:00"
     }
   ]
 }
