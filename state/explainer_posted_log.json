@@ -2751,6 +2751,13 @@
       ],
       "words_first_10s": 6,
       "scene_changes_before_5s": 3
+    },
+    "aquaculture-overtook-wild-fishing": {
+      "claimed_at": "2026-10-07T12:48:07.400627+00:00",
+      "title": "The Ocean Isn't Where Your Fish Comes From Anymore",
+      "publish_at": "2026-10-07T23:16:19Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3383,6 +3390,14 @@
       "state": "posted",
       "slug": "twin-birth-rate-rise",
       "at": "2026-10-07T12:10:35.831965+00:00"
+    },
+    {
+      "claimed_at": "2026-10-07T12:48:07.400627+00:00",
+      "title": "The Ocean Isn't Where Your Fish Comes From Anymore",
+      "publish_at": "2026-10-07T23:16:19Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "aquaculture-overtook-wild-fishing"
     }
   ]
 }
