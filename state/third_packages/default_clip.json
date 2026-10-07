@@ -1,6 +1,6 @@
 {
   "count": 4,
-  "story_count": 2,
+  "story_count": 6,
   "channel": "third",
   "title": "{clip_title}",
   "hook": "",
@@ -110,7 +110,11 @@
         "parked_on": "2026-07-31"
       }
     },
-    "content_hard_floor": 0.35
+    "content_hard_floor": 0.35,
+    "story_lookback_days": 90,
+    "story_top": 15,
+    "story_top_90d": 15,
+    "story_budget_min": 50
   },
   "hashtags": [
     "streamerclips",

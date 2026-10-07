@@ -1225,6 +1225,25 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         from third_capture import story as story_mod
         from shared.fsutil import atomic_write_json
         spec = pkg["capture"]
+        # STORY TIME CAP. Every slot is a story slot now (operator,
+        # 2026-10-07: "this channel needs to be stories and edits not just
+        # raw clips"), and a story search costs 10-20 minutes. Past
+        # `story_budget_min` into the run the remaining slots go straight
+        # to the clip arm, so six story searches can never spend the 85
+        # minutes the day's clips need. Same once the brain has hit its
+        # usage limit: every director call after that is a guaranteed miss.
+        _story_cap = float(spec.get("story_budget_min", _BUDGET_MIN))
+        if elapsed_min() >= _story_cap:
+            print(f"[story] {elapsed_min():.0f} min in, past the "
+                  f"{_story_cap:.0f}-minute story budget — clip arm",
+                  flush=True)
+            _story_verdict(slug, "story_budget", "run past story_budget_min")
+            return None
+        if author.brain_limited().get("at"):
+            print("[story] brain usage limit reached — clip arm",
+                  flush=True)
+            _story_verdict(slug, "brain_limited", "usage limit this run")
+            return None
         sources_cfg = spec.get("sources") or \
             {"twitch": spec.get("channels", [])}
         known = [ch for chans in sources_cfg.values() for ch in chans]
@@ -1237,10 +1256,19 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             # clips from ONE broadcast — the top 6 of a week rarely hold two
             # from the same stream. Helix pages up to 100, so asking for 20
             # costs the same number of calls as asking for 6.
+            # 90d (operator, 2026-10-07: "make it able to pull from further
+            # back"): a saga's first chapter is often weeks old, and the
+            # scout can only connect what the catalogue holds. Twitch only:
+            # Kick's clips API has no window longer than a month.
             _tops = {"7d": int(spec.get("story_top_vod", 20)),
-                     "30d": int(spec.get("story_top", 6))}
-            for window in ("7d", "30d"):
+                     "30d": int(spec.get("story_top", 6)),
+                     "90d": int(spec.get("story_top_90d", 0))}
+            for window in ("7d", "30d", "90d"):
+                if not _tops[window]:
+                    continue
                 for platform, chans in sources_cfg.items():
+                    if window == "90d" and platform != "twitch":
+                        continue
                     for ch in chans:
                         try:
                             pool += clip_edit.discover(
@@ -1401,7 +1429,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             # the 2026-07-25 job that died on the wall. Stop between
             # clusters when the budget is gone; a clean fallback to the
             # clip arm is a video, a cancelled job is nothing.
-            if _deadline_passed():
+            if _deadline_passed() or elapsed_min() >= _story_cap:
                 print(f"::warning::[story] out of run budget after "
                       f"{elapsed_min():.0f} min — falling back to the clip "
                       f"arm", flush=True)

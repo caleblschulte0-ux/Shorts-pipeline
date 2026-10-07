@@ -629,11 +629,31 @@ class TheStoryEndsWhereTheSentenceEnds(unittest.TestCase):
         self.assertEqual(out[-1]["end"], 12.2, "'ok.' is under 1.5s in")
 
 
-class TwoStoryAttemptsADay(unittest.TestCase):
-    def test_the_template_asks_for_two_story_slots(self):
+class EverySlotTriesAStory(unittest.TestCase):
+    """Operator, 2026-10-07: "this channel needs to be stories and edits
+    not just raw clips". Every slot tries the story arm first; the clip arm
+    is the fallback, and story_budget_min keeps the searches from eating
+    the time the day's clips need."""
+
+    def test_the_template_makes_every_slot_a_story_slot(self):
+        from shared import channel_registry
         tpl = json.loads((ROOT / "state" / "third_packages" /
                           "default_clip.json").read_text())
-        self.assertEqual(tpl["story_count"], 2)
+        self.assertGreaterEqual(tpl["story_count"],
+                                channel_registry.target_count("third"))
+
+    def test_the_story_budget_leaves_the_clips_time(self):
+        rt = _load_rt()
+        tpl = json.loads((ROOT / "state" / "third_packages" /
+                          "default_clip.json").read_text())
+        cap = float(tpl["capture"]["story_budget_min"])
+        self.assertLess(cap, rt._BUDGET_MIN - 20)
+
+    def test_it_reaches_back_ninety_days(self):
+        tpl = json.loads((ROOT / "state" / "third_packages" /
+                          "default_clip.json").read_text())
+        self.assertGreaterEqual(tpl["capture"]["story_lookback_days"], 90)
+        self.assertGreater(tpl["capture"]["story_top_90d"], 0)
 
 
 if __name__ == "__main__":
