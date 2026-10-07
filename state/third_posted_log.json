@@ -11574,6 +11574,25 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (Talking over soccer score, no event)",
       "ts": "2026-10-07T12:22:23.748390+00:00"
+    },
+    "rejected-easygleamingpenguinfeelsbadman-nyi167eh5vb2izeu": {
+      "source_url": "https://www.twitch.tv/buddha/clip/EasyGleamingPenguinFeelsBadMan-NYi167eH5VB2izeu",
+      "streamer": "buddha",
+      "title": "Mysterious Aura",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (GTA RP planning talk, nothing happens)",
+      "ts": "2026-10-07T12:27:33.347913+00:00"
+    },
+    "clip-20261007-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jinnytty/clip/GloriousTsundereMouseWoofer-HXsr6qjLSSrYyThv",
+      "story_key": null,
+      "streamer": "jinnytty",
+      "title": "Jinnytty Can't Stop Watching Kicky And Says She's So Cute",
+      "kind": "twitch_clip",
+      "ts": "2026-10-07T12:30:59.998401+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
