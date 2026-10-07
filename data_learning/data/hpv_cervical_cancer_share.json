@@ -1,0 +1,19 @@
+{
+  "key": "hpv_cervical_cancer_share",
+  "title": "Share of Cervical Cancers Caused by HPV",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "Current (CDC estimate)",
+  "source": {
+    "name": "HPV and Cancer — Clinical Overview",
+    "publisher": "U.S. Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/hpv/hcp/clinical-overview/index.html",
+    "officiality": "official",
+    "access_date": "2026-10-07"
+  },
+  "notes": "CDC estimates roughly 91% of cervical cancers are attributable to HPV infection. Recalled from CDC's published HPV-attributable cancer estimates; not live-refreshed this run because outbound network access was unavailable in this session.",
+  "points": [
+    {"label": "Caused by HPV", "value": 91},
+    {"label": "Other causes", "value": 9}
+  ]
+}

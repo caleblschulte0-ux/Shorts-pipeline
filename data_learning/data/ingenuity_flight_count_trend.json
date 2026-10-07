@@ -1,0 +1,20 @@
+{
+  "key": "ingenuity_flight_count_trend",
+  "title": "Ingenuity's Cumulative Flight Count",
+  "unit": "flights",
+  "geography": "Mars (Jezero Crater)",
+  "time_coverage": "2021-2024",
+  "source": {
+    "name": "Ingenuity mission statistics",
+    "publisher": "NASA / Jet Propulsion Laboratory",
+    "url": "https://mars.nasa.gov/technology/helicopter/",
+    "officiality": "official",
+    "access_date": "2026-10-07"
+  },
+  "notes": "NASA/JPL milestone log: first flight April 2021, 50th flight April 2023, final (72nd) flight January 2024 when a rotor blade was damaged on landing. Recalled from NASA's published mission timeline; not live-refreshed this run because outbound network access was unavailable in this session.",
+  "points": [
+    {"label": "First flight", "value": 1, "period": "Apr 2021"},
+    {"label": "50th flight", "value": 50, "period": "Apr 2023"},
+    {"label": "Final flight", "value": 72, "period": "Jan 2024"}
+  ]
+}

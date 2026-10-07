@@ -1,0 +1,17 @@
+{
+  "key": "hpv_vaccinated_cancer_reduction",
+  "title": "Cervical Cancer Risk Reduction — Vaccinated Before Age 17",
+  "unit": "percent",
+  "geography": "Sweden (nationwide cohort)",
+  "time_coverage": "2006-2017 cohort, published 2020",
+  "source": {
+    "name": "Lei J, et al. 'HPV Vaccination and the Risk of Invasive Cervical Cancer'",
+    "publisher": "New England Journal of Medicine",
+    "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1917338",
+    "officiality": "official",
+    "access_date": "2026-10-07"
+  },
+  "notes": "A nationwide Swedish cohort study (NEJM, 2020) found an 88% reduction in invasive cervical cancer among women vaccinated before age 17, versus unvaccinated women (63% overall). Recalled from the published study; not live-refreshed this run because outbound network access was unavailable in this session.",
+  "baseline": {"label": "No reduction (unvaccinated)", "value": 0},
+  "points": [{"label": "Vaccinated before age 17", "value": 88}]
+}

@@ -1,0 +1,17 @@
+{
+  "key": "saharan_dust_vs_pyramid",
+  "title": "Saharan Dust Lifted Per Year vs. the Great Pyramid",
+  "unit": "million tons",
+  "geography": "Sahara Desert, North Africa",
+  "time_coverage": "Annual average (NASA CALIPSO satellite record)",
+  "source": {
+    "name": "Yu et al., satellite study of trans-Atlantic Saharan dust transport",
+    "publisher": "NASA Goddard Space Flight Center",
+    "url": "https://www.nasa.gov/feature/goddard/2015/nasa-satellite-reveals-how-much-saharan-dust-feeds-amazon-s-plants",
+    "officiality": "official",
+    "access_date": "2026-10-07"
+  },
+  "notes": "NASA's CALIPSO-based study estimated about 182 million tons of dust leave the Sahara each year. The Great Pyramid of Giza's mass is commonly estimated at about 6 million tons, used here only as a size reference. Recalled from NASA's published study summary; not live-refreshed this run because outbound network access was unavailable in this session.",
+  "baseline": {"label": "Great Pyramid of Giza (mass)", "value": 6},
+  "points": [{"label": "Saharan dust lifted per year", "value": 182}]
+}
