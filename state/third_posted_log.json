@@ -11522,14 +11522,58 @@
       "ts": "2026-10-07T12:17:50.384090+00:00"
     },
     "clip-20261007-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/emiru/clip/CrazyJazzyBaboonKappaPride-_fytmSgRkgSkpxfM",
-      "story_key": null,
-      "streamer": "emiru",
+      "url": "https://youtube.com/shorts/Ft2dOZ1GfZs",
       "title": "Emiru Shows Off Her Bandaged Head And Thanks Chat After Lights Mishap",
       "kind": "twitch_clip",
-      "ts": "2026-10-07T12:20:19.199632+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-07T12:20:43.126949+00:00",
+      "uploaded_at": "2026-10-07T12:20:43.126969+00:00",
+      "publish_at": "2026-10-07T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261007-emiru-shows-off-her-bandaged-head-and-thanks-cha-11246d74"
+      },
+      "source_url": "https://www.twitch.tv/emiru/clip/CrazyJazzyBaboonKappaPride-_fytmSgRkgSkpxfM",
+      "streamer": "emiru",
+      "series": "wholesome",
+      "hook": "WHY IS HER HEAD BANDAGED",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2628,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "rejected-impartialathleticflychocolaterain-yiusa6bhizu9em7z": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/ImpartialAthleticFlyChocolateRain-yIUsA6BHIzu9eM7Z",
+      "streamer": "jynxzi",
+      "title": "LOS FREAKY !?!?",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (Crude baby-villager joke, inside gamepla)",
+      "ts": "2026-10-07T12:21:17.678513+00:00"
+    },
+    "rejected-affluentkitschykoupreybcwarrior-ntprq-dk4gqq5ecc": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/AffluentKitschyKoupreyBCWarrior-NTpRq-DK4GqQ5ECC",
+      "streamer": "sodapoppin",
+      "title": "bobka vs soda oneshot",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (WoW duel, build talk, insider)",
+      "ts": "2026-10-07T12:22:07.828066+00:00"
+    },
+    "rejected-enjoyablestupidheronhotpokket-mkjbuz5vf0ei8hmr": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/EnjoyableStupidHeronHotPokket-mKJbUz5vF0Ei8hmR",
+      "streamer": "jynxzi",
+      "title": "shark",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Talking over soccer score, no event)",
+      "ts": "2026-10-07T12:22:23.748390+00:00"
     }
   }
 }
