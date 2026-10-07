@@ -11612,13 +11612,49 @@
       "director_cut": true
     },
     "clip-20261007-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lospollostv/clip/TawdryThoughtfulPheasantChefFrank-hN1PII8gWfkReFVf",
-      "story_key": null,
-      "streamer": "lospollostv",
+      "url": "https://youtube.com/shorts/Fl-OJoi6FYk",
       "title": "Lospollostv Can't Believe Jixi Is Messing With Them In The Lobby",
       "kind": "twitch_clip",
-      "ts": "2026-10-07T12:59:18.098509+00:00",
+      "ts": "2026-10-07T12:59:29.270985+00:00",
+      "uploaded_at": "2026-10-07T12:59:29.271001+00:00",
+      "publish_at": "2026-10-08T02:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261007-lospollostv-can-t-believe-jixi-is-messing-with-t-ecd824a9"
+      },
+      "source_url": "https://www.twitch.tv/lospollostv/clip/TawdryThoughtfulPheasantChefFrank-hN1PII8gWfkReFVf",
+      "streamer": "lospollostv",
+      "series": "chaos",
+      "hook": "HOW IS THIS A GOOD IDEA",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1774,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "rejected-sleepyheadstronganiseoptimizeprime-4cxfkbxvg1u8-h1n": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/SleepyHeadstrongAniseOptimizePrime-4CXFkbXVG1U8-h1n",
+      "streamer": "stableronaldo",
+      "title": "ron gets caught",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.0s \u2014 too short to edit",
+      "ts": "2026-10-07T13:16:15.419814+00:00"
+    },
+    "clip-20261007-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/AcceptablePoliteWoodpeckerShazBotstix-drqZ6-CFEHh9ZYkc",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Says Stuff Is Getting Sad In The Stream",
+      "kind": "twitch_clip",
+      "ts": "2026-10-07T13:19:20.374474+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
