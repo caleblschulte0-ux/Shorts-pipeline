@@ -658,3 +658,38 @@ class EverySlotTriesAStory(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ARejectedRevisionIsToldWhy(unittest.TestCase):
+    """2026-10-07: a 66 and a 70 ended "after 0 revision(s)" because the
+    reviser's EDL broke an edit law and came back None, silently."""
+
+    def test_the_reviser_hears_what_it_broke_and_tries_once_more(self):
+        calls = []
+        bad = _with_narration("Reggie claimed Kai ignored his call.")
+        bad["beats"] = [dict(bad["beats"][0], source_id="nope")]
+        good = _with_narration("Reggie claimed Kai ignored his call.")
+
+        def brain(user, system, **kw):
+            calls.append(user)
+            return bad if len(calls) == 1 else good
+        with mock.patch.object(story_director, "_brain", side_effect=brain):
+            out = story_director.revise_edl(
+                _with_narration(""), [{"type": "pacing", "at": 0.0,
+                                       "fix": "trim the opening"}], REGGIE)
+        self.assertIsNotNone(out)
+        self.assertEqual(len(calls), 2)
+        self.assertIn("REJECTED", calls[1])
+
+    def test_it_does_not_loop(self):
+        calls = []
+
+        def brain(user, system, **kw):
+            calls.append(user)
+            return {"is_story": True, "beats": []}
+        with mock.patch.object(story_director, "_brain", side_effect=brain):
+            out = story_director.revise_edl(
+                _with_narration(""), [{"type": "pacing", "at": 0.0,
+                                       "fix": "x"}], REGGIE)
+        self.assertIsNone(out)
+        self.assertEqual(len(calls), 2)

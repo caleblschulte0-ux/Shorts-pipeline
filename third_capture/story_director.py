@@ -1113,14 +1113,28 @@ def revise_edl(edl: dict, problems: list[dict],
             # the cut scored 58, 46, 58 and was dropped.
             + "\n\nSCENE REPORTS (the same ones you planned from):\n"
             + _fmt_reports(reports))
-    out = _brain(user, _REVISE_SYSTEM)
     durations = {r["source_id"]: float(r.get("duration_s") or 0)
                  for r in reports}
-    rs: list = []
-    edl2 = validate_edl(out or {}, durations, _windows(reports), reasons=rs,
-                        positions=_positions(reports), words=_words(reports))
-    edl2 = _ground(edl2, reports, rs)
-    for r in rs:
-        if r.startswith("narration dropped"):
-            print(f"[story] revision: {r}", flush=True)
-    return edl2
+    # A REVISION THE LAWS REFUSE GETS TOLD WHY, ONCE. It used to come back
+    # None and end the story with "after 0 revision(s)" and nothing logged:
+    # the 2026-10-07 backtest dropped a 66 (Ludwig's archery-lane intruder)
+    # and a 70 (Sodapoppin's machine) that way, both with problems a trim
+    # and an overlay fix. Same validation, same laws — the reviser just
+    # hears what it broke.
+    for attempt in range(2):
+        out = _brain(user, _REVISE_SYSTEM)
+        rs: list = []
+        edl2 = validate_edl(out or {}, durations, _windows(reports),
+                            reasons=rs, positions=_positions(reports),
+                            words=_words(reports))
+        edl2 = _ground(edl2, reports, rs)
+        for r in rs:
+            if r.startswith("narration dropped") or not edl2:
+                print(f"[story] revision: {r}", flush=True)
+        if edl2 or not out:
+            return edl2
+        user += ("\n\nYOUR REVISION WAS REJECTED by the edit laws: "
+                 + "; ".join(rs)[:1200]
+                 + "\nReturn the complete EDL again, fixing that and still "
+                   "fixing the critic's problems.")
+    return None
