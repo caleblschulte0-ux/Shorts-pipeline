@@ -77,7 +77,7 @@ KIT_NAMES = ("vgrad", "glow", "text", "fit_readout", "by_time", "tree", "stump",
              # THE SHOT (2026-10-07, "ok now we are talking"): a low sun,
              # far-to-near depth, a three-quarter hero, things by the camera
              "landscape", "foreground", "building", "cast_shadow", "ridge",
-             "treeline", "hen", "SUN", "SETTINGS",
+             "treeline", "hen", "SUN", "SETTINGS", "heap_path", "heap_top", "bottle", "PLASTIC",
              # THE SCALE IN THE SHOT (2026-10-07, "boxes on top of the video
              # doesn't help ... glance at it and gauge the scale")
              "then_mark", "ghost", "times_ticks")
@@ -1111,6 +1111,11 @@ THE KIT (signatures):
 THE SHOT — the look every scene is held to (this exact code passes every check):
 {shot}
 
+THE PILE — drawn by a brain like you from this kit, and the scene the owner \
+picked over another that passed every check ("I like the pile one but the \
+bone one no"): one number, a heap that triples, its old size on it:
+{pile}
+
 TWO TEACHER SCENES that pass every check — match this quality and style:
 {teachers}
 
@@ -1179,6 +1184,7 @@ def build_prompt(title, topic, say, pts, unit, brief=""):
                           builtins=", ".join(sorted(SAFE_BUILTINS)),
                           palette=", ".join(sorted(SS.P)), sigs=_sigs(),
                           shot=inspect.getsource(SS.bird_flu_barn),
+                          pile=inspect.getsource(SS.recycling_pile),
                           teachers=teachers, title=title, topic=topic, say=say,
                           pts=json.dumps(pts), unit=unit, brief=brief)
 
@@ -1252,10 +1258,12 @@ def author(title, topic, say, pts, unit="", attempts=3, log=print, brief="",
 # passing scene with another passing scene.
 
 LOOK_AGAIN_AT = (0.3, 0.85)
+LOOK_AGAIN_TRIES = 2
 LOOK_AGAIN_MIN_S = 300            # budget a redraw needs, or it is skipped
 LOOK_SIZE = (540, 960)
 #: THE SHOT is drawn with stand-in rows: it is shown for its art, not its data.
 SHOT_ROWS = [["2021", 2.0], ["2022", 6.0], ["2023", 11.0], ["2024", 19.0]]
+PILE_ROWS = [["2019", 353.0], ["2060 (projected)", 1014.0]]
 
 _LOOK_AGAIN = """
 
@@ -1263,7 +1271,8 @@ YOUR SCENE PASSED EVERY CHECK. Now LOOK at it, the way the channel owner \
 will. READ these image files with the Read tool — your scene as a viewer \
 sees it:
 {yours}
-and THE SHOT, the frame the owner loved:
+and the two frames the owner loved — THE SHOT (the barn) and THE PILE \
+(plastic, drawn by a brain like you from this same kit):
 {shot}
 
 Two scenes that passed every check went to the owner together: a pile of \
@@ -1271,7 +1280,7 @@ plastic in a field that grew to three times its size under one number, and \
 a thigh bone built of circles and rectangles, small, in a bare room, with \
 three numbers beside it. His words: "I like the pile one but the bone one \
 no." Find the three things in YOUR frames that look most amateur beside \
-THE SHOT — a hero assembled from primitive shapes, a hero too small to \
+THE SHOT and THE PILE — a hero assembled from primitive shapes, a hero too small to \
 read, an empty backdrop, crowded or tiny text, a change you cannot see, \
 Data lost or covered — and fix them. Keep the idea, the data, the numbers \
 and the HERO / SUBSTANCE / CAUSE declaration; redraw what looks cheap.
@@ -1310,8 +1319,10 @@ def seen_frames(fn, pts, out_dir, at=LOOK_AGAIN_AT, size=LOOK_SIZE) -> list[str]
 
 def look_again(fn, code, prompt, pts, say="", secs=10.0, log=print):
     """(fn, code) of the brain's redraw of a PASSING scene after it has seen
-    its own frames beside THE SHOT, or None — no budget, no brain, or the
-    redraw failed a check — in which case the passing scene stands."""
+    its own frames beside THE SHOT and THE PILE, or None — no budget, no
+    brain, or every redraw failed a check — in which case the passing scene
+    stands. A redraw that fails is told why and may try again, up to
+    LOOK_AGAIN_TRIES, while the budget lasts."""
     if _remaining() < LOOK_AGAIN_MIN_S:
         return None
     try:
@@ -1319,26 +1330,37 @@ def look_again(fn, code, prompt, pts, say="", secs=10.0, log=print):
             yours = seen_frames(fn, pts, Path(td) / "yours")
             shot = seen_frames(SS.bird_flu_barn, SHOT_ROWS, Path(td) / "shot",
                                at=(0.85,))
+            shot += seen_frames(SS.recycling_pile, PILE_ROWS, Path(td) / "pile",
+                                at=(0.95,))
             ask = prompt + _LOOK_AGAIN.format(
                 yours="\n".join(f"- {p}" for p in yours),
                 shot="\n".join(f"- {p}" for p in shot), code=code)
-            code2 = ask_brain(ask, timeout=min(TIMEOUT_S, _remaining()), images=True)
+            for k in range(LOOK_AGAIN_TRIES):
+                if k and _remaining() < LOOK_AGAIN_MIN_S:
+                    break
+                code2 = ask_brain(ask, timeout=min(TIMEOUT_S, _remaining()),
+                                  images=True)
+                if not code2 or code2.strip() == code.strip():
+                    return None
+                try:
+                    fn2 = compile_scene(code2)
+                    problems = verify(fn2, pts, say, secs) or glance(fn2, pts, log=log)
+                except Exception as e:  # noqa: BLE001
+                    problems = [f"{type(e).__name__}: {str(e)[:200]}"]
+                if not problems:
+                    log("[scene_author] look-again redraw passed and replaces "
+                        "the first draft")
+                    return fn2, code2
+                log(f"[scene_author] look-again redraw {k + 1} refused: "
+                    f"{'; '.join(problems[:2])}")
+                ask += ("\n\nYOUR REDRAW FAILED THESE CHECKS — keep what you "
+                        "improved and fix every one:\n- "
+                        + "\n- ".join(problems[:6]) + "\n\nYOUR REDRAW:\n" + code2)
     except Exception as e:  # noqa: BLE001 — a look that cannot happen keeps the pass
         log(f"[scene_author] look again skipped: {type(e).__name__}: {e}")
         return None
-    if not code2 or code2.strip() == code.strip():
-        return None
-    try:
-        fn2 = compile_scene(code2)
-        problems = verify(fn2, pts, say, secs) or glance(fn2, pts, log=log)
-    except Exception as e:  # noqa: BLE001
-        problems = [f"{type(e).__name__}: {str(e)[:200]}"]
-    if problems:
-        log(f"[scene_author] look-again redraw refused, keeping the pass: "
-            f"{'; '.join(problems[:2])}")
-        return None
-    log("[scene_author] look-again redraw passed and replaces the first draft")
-    return fn2, code2
+    log("[scene_author] no redraw passed; keeping the scene that did")
+    return None
 
 
 def scene_for_segment(story_cfg: dict, index: int, insight, log=print):
