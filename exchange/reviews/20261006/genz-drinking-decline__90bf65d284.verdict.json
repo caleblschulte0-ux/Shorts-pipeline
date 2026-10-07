@@ -1,0 +1,99 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "genz-drinking-decline__90bf65d284",
+ "video_sha256": "90bf65d28425390110b6ec9a0e923c065abde77315ce491d9e5b7fb208e4d0c6",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T07:29:39Z",
+ "grades": {
+  "dimensions": {
+   "hook": 2,
+   "data_demo": 1,
+   "mascot": 1,
+   "craft": 1,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "No photos or AI images in any frame; everything is flat vector chart art plus the mascot (hook@0.3 through payoff@-0.4)."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "Data never causes any of the motion: at seg0:mid he hovers between the bars with his arms raised, at seg1:start through seg1:end he sits on top of a 70% bubble, at seg2:mid he slides down the line, and at seg4:start through seg4:end he stands at the foot of the 2001-2003 building and waves. None of it is a setup, action and payoff tied to the stat."
+   },
+   "bare_number_card": {
+    "present": true,
+    "evidence": "In seg1:start through seg1:end the beat is two identical yellow circles that each say \"70%\", which is just a number on a blob. The 35% from the script never appears."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Measured longest_static_s is 0.0 and something animates in every sampled frame. The closing buildings do only grow slowly (seg4:start to payoff@-0.4)."
+   },
+   "empty_void": {
+    "present": true,
+    "evidence": "In seg1:mid the top ~40% of the frame above the bubbles is empty dark gradient. In seg4:start the space between the title and the buildings is mostly dead dark ground."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "At seg0:end the mascot's head sits on top of the ~20-years-ago \"72%\" label, which reads as \"?2%\". In hook@0.3 the yellow glowing caption \"Your twenty-something\" bleeds and is hard to read."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg1",
+   "index": 1,
+   "failure_class": "wrong_data_binding",
+   "visible_evidence": "Two identical yellow circles both read \"70%\" and are both captioned \"~20 years ago\". The kicker reads \"~20 YEARS AGO TOPS THE LIST\". The 35% that the narration says (\"70% to 35%\") is never drawn, and a stray cyan ellipse floats inside the left circle at seg1:end.",
+   "root_cause": "The second data point was bound to the first point's value and label, so the comparison has nothing to compare. The bubble machine is also a generic size comparison with nothing about drinking in it.",
+   "repair_goal": "Show 70% shrinking to 35% for 18-20 year-olds with the right labels on each side, for example a crowd of 10 young-adult figures where half put their drinks down, with Data taking the glasses away himself. The second value must visibly be half of the first and be labelled \"recent\"."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "A horizontal bar chart of 72/59/50% with the mascot perched on it. Plain bars and nothing about drinking."
+   },
+   {
+    "id": "seg1",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 0,
+    "note": "Two identical 70% bubbles. The data binding is broken, so the picture shows no decline at all."
+   },
+   {
+    "id": "seg2",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "A line chart from 67% to 61% whose y-axis is cropped so a 6-point drop looks like a cliff. The mascot slides along the line."
+   },
+   {
+    "id": "seg3",
+    "kind": "chart",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "The closing shows 67/64/61% as near-equal buildings with windows, so the picture undercuts \"sober is the norm\". The buildings have nothing to do with drinking."
+   }
+  ],
+  "one_line": "The core comparison scene is broken (two identical 70% bubbles, 35% never shown), and the rest is stock bar and line charts with a mascot who just hangs around.",
+  "problems": [
+   "seg1: both bubbles read \"70%\" and \"~20 years ago\", so the 70%-to-35% drop the narration states is never shown.",
+   "seg0:end: the mascot covers the \"72%\" value label.",
+   "The hook (hook@0.3 to hook@2.2) is a static ranked list of three mascots with percentages. The motion is weak and the glowing caption bleeds.",
+   "seg2 cuts off the y-axis so 67% to 61% reads as a steep crash.",
+   "The closing (seg4) ends on 67/64/61% buildings that look almost equal, which contradicts the \"sober is becoming the norm\" payoff.",
+   "Data never causes any motion. He perches, hovers, slides and waves in every scene.",
+   "Nothing in any picture is about drinking (no glasses, bottles or people). Every scene is a generic chart form."
+  ],
+  "fixes": [
+   "Fix the data binding in seg1: label the second bubble \"recent\" with 35% and make it visibly half the size, or redraw it as glasses being set down.",
+   "Keep the mascot's bounding box clear of every value label.",
+   "Open on immediate motion tied to the subject, for example a row of raised glasses where Data lowers 22 of every 100.",
+   "Start the weekly-drinking axis at 0, or show the small drop honestly as a small change.",
+   "Close on the strongest number (70% to 35%) instead of the 67/64/61% weekly series.",
+   "Give Data an agent act in each scene: he removes glasses, drains a pitcher to the level, or pushes the bar down."
+  ]
+ }
+}

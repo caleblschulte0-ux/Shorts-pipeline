@@ -1,0 +1,105 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "earth-rotation-speeding-up__93c88c79ae",
+ "video_sha256": "93c88c79aedc68eb93db71f07df641a67a45291d4e4b8ccc43ac89042af1eaf5",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T07:30:25Z",
+ "grades": {
+  "dimensions": {
+   "hook": 1,
+   "data_demo": 2,
+   "mascot": 2,
+   "craft": 1,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "Only flat earth icons, blocks and bars throughout (hook@0.3, seg2:mid, seg3:mid). No stock or AI photos."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "In seg3:start through seg4:end, Data shuffles beside the two bars with arms out and causes nothing. The bars grow without him. In seg2 he only stamps beside the globes, and his acts in hook and seg1 are tied to the stack."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "Every beat has a demonstration: a block stack in seg1, a globe count in seg2 and bars in seg3/seg4. Weak ones, but none is just a number on a blob."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Measured longest_static_s is 0.0. The bars and the stack keep moving between seg3:start and seg3:end."
+   },
+   "empty_void": {
+    "present": true,
+    "evidence": "In seg3:start and seg3:mid the top half of the frame, between the 'Earth negative' title and the bars, is empty grid with only a faint 'VS'. The bars and Data fill a small strip near y\u2248450-520."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "In seg3:start the header is cut off at 'CHANCE IT STILL ISN'T NEEDED VS CHANCE OF A\u2026'. The bar labels in seg3:mid are tiny grey text that can't be read on a phone. In seg0:start the 'vanished 1.66' caption is faded grey on dark."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg3",
+   "index": 3,
+   "failure_class": "chart_with_decorative_mascot",
+   "visible_evidence": "seg3:start to seg3:end show two rounded bars with no values. The title 'Earth negative' means nothing, the header is truncated, and the axis labels are faint and tiny. The pink accent sits on 'Chance it still isn't needed', not on the 40% the narration names. Data dances beside the bars, and the upper half of the frame is empty.",
+   "root_cause": "The probability claim fell back to a stock two-bar chart. The accent went to the complement instead of the subject, there were no value labels until the closing, and Data has no agent act tied to the moving part.",
+   "repair_goal": "Show the 40% negative-leap-second chance as a picture made of the subject: a clock or calendar with a second that can be removed, or 10 days of which Data pulls a second out of 4. Put the accent and the value label on the 40% from the first frame, title it in plain words ('40% chance we DELETE a second by 2035'), drop the truncated header, and have Data do the removing so his hands are on the moving part."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 0,
+    "note": "A generic block stack with an earth icon on each block. '1.5' and 'each block = 0.2' carry no units, so the hook means nothing."
+   },
+   {
+    "id": "seg1",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "The same stacking tower. It ends at '2020 1.5 \u2192 2024 1.7' with no milliseconds unit, and the 1.7 contradicts the spoken 1.66."
+   },
+   {
+    "id": "seg2",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 2,
+    "note": "A unit grid of 27 earth icons stamped in one by one. The count reads, but an earth is not a leap second, and Data covers some of the globes."
+   },
+   {
+    "id": "seg3",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "Two unlabeled bars. The accent is on the wrong side and the labels are illegible."
+   },
+   {
+    "id": "seg4",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "The same bars, now labeled 60% vs 40% during the closing. A plain bar chart with Data idling beside it."
+   }
+  ],
+  "one_line": "Generic block-stack and bar-chart visuals with no units, mismatched numbers and a decorative closing chart. Nothing makes a shrinking day feel real.",
+  "problems": [
+   "The hook shows 'Earth record 1.5' and 'each block = 0.2' with no units. A viewer has no idea what is being stacked or why to stay.",
+   "seg1 shows 1.5 \u2192 1.7 while the narration says 1.66 ms, so the picture contradicts the script.",
+   "seg2 uses earth icons as leap-second units, a swappable icon grid, and Data overlaps the globes in seg2:start and seg2:mid.",
+   "seg3 is a fallback two-bar chart: truncated header, meaningless 'Earth negative' title, illegible grey labels, accent on the complement instead of the 40% subject, and the top half of the frame empty.",
+   "In seg3 and seg4 Data dances beside the bars without causing anything (decorative).",
+   "The payoff 'Your day is shrinking' sits over a 60/40 probability chart that does not show a day shrinking."
+  ],
+  "fixes": [
+   "Open on motion that shows the claim, e.g. a clock face whose day-ring visibly closes short with '\u22121.66 ms' on it, units always printed.",
+   "Make seg1's numbers match the narration (1.66 ms) and label every value with its unit.",
+   "Draw leap seconds as seconds (ticks added to a clock rim) rather than earth icons, and keep Data clear of the count.",
+   "Replace seg3's chart with a bespoke depiction of the 40% chance of removing a second. Put the accent and the label on the 40%, use plain-language titles, and remove the truncated header.",
+   "Give Data an agent act in seg3/seg4: he pulls the second out, winds the clock or spins the globe, with his hands on the moving part.",
+   "End the closing on the shrinking-day image, not the probability bars."
+  ]
+ }
+}

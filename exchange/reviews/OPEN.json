@@ -1,27 +1,7 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-10-07T06:49:31Z",
+ "updated": "2026-10-07T07:30:25Z",
  "open": [
-  {
-   "id": "genz-drinking-decline__90bf65d284",
-   "channel": "explainer",
-   "slug": "genz-drinking-decline",
-   "title": "Gen Z Broke A 20-Year Drinking Habit",
-   "filed": "2026-10-06T19:54:22Z",
-   "request": "exchange/reviews/20261006/genz-drinking-decline__90bf65d284.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/genz-drinking-decline__90bf65d284/sheet.jpg",
-   "answer_path": "exchange/reviews/20261006/genz-drinking-decline__90bf65d284.verdict.json"
-  },
-  {
-   "id": "earth-rotation-speeding-up__93c88c79ae",
-   "channel": "explainer",
-   "slug": "earth-rotation-speeding-up",
-   "title": "Earth Is Spinning Faster And Nobody Knows Why",
-   "filed": "2026-10-06T19:14:19Z",
-   "request": "exchange/reviews/20261006/earth-rotation-speeding-up__93c88c79ae.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/earth-rotation-speeding-up__93c88c79ae/sheet.jpg",
-   "answer_path": "exchange/reviews/20261006/earth-rotation-speeding-up__93c88c79ae.verdict.json"
-  },
   {
    "id": "peanut-allergy-guideline-flip__700b84db6f",
    "channel": "explainer",
