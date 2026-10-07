@@ -2717,11 +2717,40 @@
       "scene_changes_before_5s": 3
     },
     "twin-birth-rate-rise": {
-      "claimed_at": "2026-10-07T12:10:25.475654+00:00",
+      "url": "https://youtube.com/shorts/3E-LP1AFvls",
       "title": "Why Twin Births Nearly Doubled \u2014 Then Started Falling",
+      "at": "2026-10-07T12:10:35.831965+00:00",
       "publish_at": "2026-10-07T17:16:19Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 23 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.75,
+      "beat_s": [
+        4.07,
+        5.75,
+        4.64,
+        5.51,
+        4.13
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 58,
+      "duration_s": 24.0,
+      "hook": "inversion",
+      "topic_category": "body",
+      "ending_type": "inversion",
+      "depictions": [
+        "mechanic:twin-curve-ride",
+        "mechanic:twin-odds-columns",
+        "mechanic:embryo-dish-drain"
+      ],
+      "words_first_10s": 6,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -3350,9 +3379,10 @@
       "claimed_at": "2026-10-07T12:10:25.475654+00:00",
       "title": "Why Twin Births Nearly Doubled \u2014 Then Started Falling",
       "publish_at": "2026-10-07T17:16:19Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "twin-birth-rate-rise"
+      "url": "https://youtube.com/shorts/3E-LP1AFvls",
+      "state": "posted",
+      "slug": "twin-birth-rate-rise",
+      "at": "2026-10-07T12:10:35.831965+00:00"
     }
   ]
 }
