@@ -1705,6 +1705,156 @@ def bird_flu_barn(cr, t, u, pts, host):
 
 #: Hand-authored TEACHER scenes, by story slug and beat. The brain is shown
 #: these (and the reference) when it draws a new story's scenes.
+# ------------------------------------------------------------ THE PILE ---
+
+def heap_path(cr, cx, base, h, hw):
+    """A heap's outline, a rounded mound with a ragged top, as the current
+    path: `h` tall, `hw` half-wide, sitting on `base` at `cx`."""
+    cr.move_to(cx - hw, base)
+    for i in range(1, 32):
+        x = -1 + 2 * i / 32
+        y = base - h * (1 - x * x) ** 0.8 - 7 * math.sin(i * 2.3) * (1 - abs(x))
+        cr.line_to(cx + hw * x, y)
+    cr.line_to(cx + hw, base)
+    cr.close_path()
+
+
+def heap_top(cx, base, h, hw, x):
+    """The y of the heap's surface above `x` (for standing Data on it)."""
+    d = clamp((x - cx) / max(1.0, hw), -1.0, 1.0)
+    return base - h * (1 - d * d) ** 0.8
+
+
+#: The colours plastic comes in, for a pile of it.
+PLASTIC = [(70, 140, 210), (232, 234, 238), (206, 62, 52), (240, 200, 64),
+            (88, 176, 118), (150, 205, 225)]
+
+
+def bottle(cr, x, y, ang, s, rgb, a=1.0):
+    """A plastic bottle, lit, with its cap: `s` 1.0 is about 50px long."""
+    cr.save()
+    cr.translate(x, y)
+    cr.rotate(ang)
+    cr.scale(s, s)
+    cr.move_to(-20, -8)
+    cr.line_to(10, -8)
+    cr.line_to(16, -4)
+    cr.line_to(22, -4)
+    cr.line_to(22, 4)
+    cr.line_to(16, 4)
+    cr.line_to(10, 8)
+    cr.line_to(-20, 8)
+    cr.close_path()
+    solid(cr, rgb, finish="gloss", a=a)
+    cr.rectangle(22, -5, 6, 10)
+    solid(cr, (40, 90, 170), a=a, rim=False)
+    cr.restore()
+
+
+def recycling_pile(cr, t, u, pts, host):
+    """THE PILE (2026-10-07), brain-drawn, the scene the operator picked:
+    "I like the pile one but the bone one no." One number, a heap that
+    triples, its old size drawn on it. Kept verbatim as the brain drew it.
+    HERO: a towering dump of plastic waste
+    SUBSTANCE: plastic bottles and bags
+    CAUSE: Data tosses armfuls of plastic onto the dump and the heap grows with every throw
+    The 2019 heap stands at 353 million tons; throw by throw it swells to
+    the 2060 projection. Its height is the tonnage, so the 2019 heap stays
+    as a dashed ghost with its top marked, and 1x/2x ticks up the side
+    measure the new heap in the old one — about three times as much."""
+    rows = by_time([(str(l), float(v)) for l, v in pts])
+    (l0, v0), (l1, v1) = rows[0], rows[-1]
+    v0 = v0 or 1.0
+    ratio = v1 / v0
+    n = 6
+    a0, a1 = 0.1, 0.9
+    span = (a1 - a0) / n
+    k = int(clamp((u - a0) / span, 0, n - 0.001))
+    f = clamp((u - a0 - k * span) / span)
+    fly = seg(f, 0.0, 0.35)
+    grow = ease(seg(f, 0.3, 0.7))
+    if u < a0:
+        step = 0.0
+    else:
+        step = (k + grow) / n
+    val = v0 + (v1 - v0) * step
+
+    CX, BASE = 600, 1440
+    H0 = 250.0
+    h = H0 * val / v0
+    hw = min(480.0, 1.2 * h)
+    h0, hw0 = H0, min(480.0, 1.2 * H0)
+
+    landscape(cr, t, "field")
+    birds(cr, t, y0=760, n=4, rgb=(60, 60, 70))
+
+    cast_shadow(cr, CX - hw, CX + hw, BASE, length=320, a=0.3)
+    contact_shadow(cr, CX, BASE + 4, 2 * hw + 60, a=0.4)
+    heap_path(cr, CX, BASE, h, hw)
+    solid(cr, (122, 112, 98))
+    # the plastic the heap is made of, packed into its profile
+    cr.save()
+    heap_path(cr, CX, BASE, h, hw)
+    cr.clip()
+    count = int(40 + 110 * (val - v0) / max(1.0, v1 - v0) + 0.5)
+    for i in range(count):
+        dx = ((i * 0.6180339) % 1.0) * 1.9 - 0.95
+        py = ((i * 0.4142136) % 1.0)
+        px = CX + hw * dx
+        top_y = heap_top(CX, BASE, h, hw, px)
+        py_ = BASE - (BASE - top_y) * py * 0.95 - 6
+        bottle(cr, px, py_, i * 1.7, 0.9 + 0.5 * ((i * 0.37) % 1.0),
+                PLASTIC[i % len(PLASTIC)])
+    cr.restore()
+    heap_path(cr, CX, BASE, h, hw)
+    edge(cr, (40, 36, 32))
+
+    # THE SCALE on the heap: 2019's heap as a ghost, its top marked, ticks up the side
+    if step > 0.02:
+        heap_path(cr, CX, BASE, h0, hw0)
+        ghost(cr, a=0.9)
+        then_mark(cr, CX - 140, CX + 140, BASE - h0, l0)
+        times_ticks(cr, 1010, BASE, h0, max(1, int(ratio)))
+
+    # Data on the heap's left flank, climbing as it widens
+    hx = CX - hw * 0.72
+    hy = min(1500.0, heap_top(CX, BASE, h, hw, hx) + 10)
+
+    # the armful in flight, from his hands to the summit
+    if u >= a0 and 0 < fly < 1:
+        sx, sy = hx + 40, hy - 190
+        ex, ey = CX + 20, BASE - h - 10
+        bx = sx + (ex - sx) * fly
+        by = sy + (ey - sy) * fly - 260 * math.sin(math.pi * fly)
+        for j in range(3):
+            bottle(cr, bx + 22 * (j - 1), by + 10 * (j % 2), fly * 6 + j * 2.1, 1.6,
+                    PLASTIC[(k + j) % len(PLASTIC)])
+
+    # right by the camera: bottles washed out into the grass
+    for i in range(5):
+        bottle(cr, 120 + i * 210, 1640 + (i % 2) * 70 + i * 10, i * 0.9 + 0.3,
+                2.6 + 0.4 * (i % 2), PLASTIC[(i * 2) % len(PLASTIC)])
+    foreground(cr, "field")
+    vignette(cr, a=0.28)
+
+    if u < a0:
+        host("point", hx, hy, 220)
+    elif u < 0.92:
+        host("toss", hx, hy, 220, beat=k)
+    else:
+        host("shock", hx, hy, 220)
+
+    done = u >= a0 and k == n - 1 and grow >= 0.999
+    if done:
+        fit_readout(cr, f"{int(round(v1)):,}M tons", f"plastic waste a year · {l1}",
+                    80, 520, size=130)
+        text(cr, f"{ratio:.1f}x", W - 80, 650, 90, look.INK, face="display",
+             anchor="right", alpha=ease(seg(u, 0.9, 0.95)))
+    else:
+        fit_readout(cr, f"{int(round(v0)):,}M tons", f"plastic waste a year · {l0}",
+                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)
+
+
 TEACHERS = {
     "amazon-still-shrinking": [amazon_clearing, amazon_vs_france,
                                amazon_where_it_goes],
@@ -1714,6 +1864,8 @@ TEACHERS = {
     "urban-heat-island-redlining": [heat_by_city, heat_share, heat_redlining],
     # THE SHOT (2026-10-07): beats 1-2 are the brain's, drawn from this one
     "bird-flu-species-jump": [bird_flu_barn],
+    # THE PILE (2026-10-07): beats 1-2 are the brain's
+    "recycling-myth-reality": [recycling_pile],
 }
 
 

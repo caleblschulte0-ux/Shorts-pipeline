@@ -151,8 +151,11 @@ class TheBrainLooksAtWhatItDrew(unittest.TestCase):
         self.assertIn("# looked again", code)
 
     def test_a_redraw_that_fails_keeps_the_scene_that_passed(self):
+        from data_learning import scene_author as SA
         fn, code, asks = self._author(BROKEN)
-        self.assertEqual(len(asks), 2)
+        # the first draft, then each redraw — the second told why the first failed
+        self.assertEqual(len(asks), 1 + SA.LOOK_AGAIN_TRIES)
+        self.assertIn("YOUR REDRAW FAILED THESE CHECKS", asks[-1][0])
         self.assertEqual(code, GOOD_MIN)
         self.assertIsNotNone(fn)
 
@@ -161,3 +164,21 @@ class TheBrainLooksAtWhatItDrew(unittest.TestCase):
         fn, code, asks = self._author(BROKEN, budget=SA.LOOK_AGAIN_MIN_S - 60)
         self.assertEqual(len(asks), 1)
         self.assertIsNotNone(fn)
+
+
+class ThePileIsTheBar(unittest.TestCase):
+    """The scene the operator picked is kept verbatim, ships for its story,
+    and is shown to the brain as a bar beside THE SHOT."""
+
+    def test_the_pile_is_a_teacher_and_in_the_prompt(self):
+        from data_learning import scene_author as SA, subject_scenes as SS
+        self.assertEqual(SS.TEACHERS["recycling-myth-reality"][0], SS.recycling_pile)
+        p = SA.build_prompt("t", "x", "y", PTS, "")
+        self.assertIn("def recycling_pile(", p)
+        self.assertIn("the bone one no", p)
+
+    def test_its_kit_resolves_for_the_brain(self):
+        from data_learning import scene_author as SA
+        ns = SA.kit_globals()
+        for name in ("heap_path", "heap_top", "bottle", "PLASTIC"):
+            self.assertIn(name, ns)

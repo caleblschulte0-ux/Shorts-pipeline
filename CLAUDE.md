@@ -310,7 +310,10 @@ constants blanked), never on the prose that explains it.
   call a diagram. `tests/test_one_number_and_a_big_change.py`.
   A scene that passes also gets ONE look again (`scene_author.look_again`):
   the drawing brain READS its own frames beside THE SHOT and redraws what
-  looks cheap; the redraw replaces it only if it passes every same check.
+  looks cheap, told why and given one more go if a redraw fails; the
+  redraw replaces it only if it passes every same check. THE PILE
+  (`subject_scenes.recycling_pile`, brain-drawn, kept verbatim) is the
+  second bar beside THE SHOT, in the prompt and in the look again.
 
 - **A brain-drawn subject scene has to pass a VIEWER, not just the code**
   (operator, 2026-10-01: a coffin he "couldn't tell was a coffin", an urn
