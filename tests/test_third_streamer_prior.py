@@ -120,6 +120,18 @@ class TheOriginalGuardrailsHold(unittest.TestCase):
             m._PRIOR_CACHE = None
             self.assertEqual(m._learned_prior(), {})
 
+    def test_fewer_clips_dampen_a_lead_never_invert_it(self):
+        # 2026-10-07: cinna (3 clips, median 96) sat just BELOW xqc (14
+        # clips, median 31) because shrinkage pulled the smaller sample
+        # further toward 1.0. Less certainty about how much better is not
+        # evidence of worse.
+        few = [_vid("few", v) for v in (300, 320, 340)]
+        many = [_vid("many", v) for v in (100,) * 13 + (0,)]
+        p = _prior(BACKGROUND + few + many)
+        self.assertGreaterEqual(p.get("few", 1.0), p.get("many", 1.0))
+        # and shrinkage still does its job: a well-evidenced lead is kept
+        self.assertGreater(p.get("many", 1.0), 1.0)
+
     def test_young_videos_and_stories_are_excluded(self):
         young = [_vid("fresh", 5000, age=5.0) for _ in range(5)]
         story = [dict(_vid("storyteller", 5000), actual_structure="story")
