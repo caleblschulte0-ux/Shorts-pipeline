@@ -135,7 +135,27 @@ def compile_scene(code: str):
     if not callable(fn):
         raise Refused("scene is not callable")
     fn.__name__ = "brain_scene"
+    fn.__scene_code__ = code
     return fn
+
+
+def crash_at(fn, e: BaseException) -> str:
+    """Where in the brain's own code `e` was raised: " (line N: `src`)".
+
+    "ValueError: too many values to unpack (expected 2)" was attempt 1 of
+    most brain drafts for a fortnight (2026-10-04..06) and the redraw was
+    told nothing else, so attempt 2 guessed again. With the line it can see
+    it unpacked `text()`'s four-number box into two names."""
+    import traceback
+    code = getattr(fn, "__scene_code__", "") or ""
+    frames = [f for f in traceback.extract_tb(e.__traceback__)
+              if f.filename == "<brain scene>"]
+    if not frames:
+        return ""
+    n = frames[-1].lineno or 0
+    lines = code.splitlines()
+    src = lines[n - 1].strip()[:120] if 0 < n <= len(lines) else ""
+    return f" (line {n}: `{src}`)" if src else f" (line {n})"
 
 
 # --------------------------------------------- what the scene says it shows
@@ -317,7 +337,8 @@ def glance(fn, pts, log=print) -> list[str]:
         try:
             frames = glance_frames(fn, pts, td)
         except Exception as e:  # noqa: BLE001
-            return [f"crashed while rendering the glance frames: {e}"]
+            return [f"crashed while rendering the glance frames: {e}"
+                    f"{crash_at(fn, e)}"]
         listing = "\n".join(f"- at {int(u * 100)}% of the beat: {p}"
                              for u, p in zip(GLANCE_AT, frames))
         seen = ask_glance(_LOOK.format(listing=listing), frames)
@@ -785,7 +806,7 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
                 shown[t_] = max(shown.get(t_, 0), c)
         final = list(texts)
     except Exception as e:  # noqa: BLE001
-        return [f"crashed: {type(e).__name__}: {str(e)[:160]}"]
+        return [f"crashed: {type(e).__name__}: {str(e)[:160]}{crash_at(fn, e)}"]
     problems += declaration_problems(fn)
     if not declaration_problems(fn):
         problems += tool_problems(fn, pts, declared(fn))
@@ -847,7 +868,7 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
     try:
         run(list(reversed(pts)), 1.0)
     except Exception as e:  # noqa: BLE001
-        return problems + [f"crashed on reversed data: {e}"]
+        return problems + [f"crashed on reversed data: {e}{crash_at(fn, e)}"]
     if sorted(t for t in final if re.search(r"\d", t)) != \
             sorted(t for t in texts if re.search(r"\d", t)):
         problems.append("the numbers change when the data's order changes")
@@ -991,7 +1012,17 @@ def _sigs():
         obj = getattr(SS, n)
         if callable(obj):
             try:
-                out.append(f"  {n}{inspect.signature(obj)}")
+                line = f"  {n}{inspect.signature(obj)}"
+                # WHAT IT RETURNS. A bare signature let the brain guess, and
+                # it guessed `w, h = text(...)` — text() returns its
+                # (x0, y0, x1, y1) box — so the commonest first draft
+                # crashed on an unpack (2026-10-04..06). The docstring's
+                # first sentence states the contract.
+                doc = (inspect.getdoc(obj) or "").strip().split("\n\n")[0]
+                doc = " ".join(doc.split())
+                if doc:
+                    line += f"  # {doc[:160]}"
+                out.append(line)
             except (TypeError, ValueError):
                 pass
     return "\n".join(out)
@@ -1096,12 +1127,13 @@ def scene_for_segment(story_cfg: dict, index: int, insight, log=print):
     if not 0 <= index < len(segs):
         return None
     seg = segs[index]
-    code = seg.get("illustrated_scene")
-    if isinstance(code, str) and code.strip():
-        try:
-            return compile_scene(code)
-        except Exception as e:  # noqa: BLE001 — a stale/edited scene is re-authored
-            log(f"[scene_author] saved scene refused ({e}) — re-authoring")
+    # The saved scene goes through the SAME load check as everywhere else —
+    # compile AND craft. This used to compile only, so a flat scene from
+    # before the light (2026-10-05) that `saved_scene` had just refused
+    # came straight back through here and shipped flat anyway.
+    fn = saved_scene(seg, log=log)
+    if fn is not None:
+        return fn
     pts = [[str(getattr(p, "label", "")), float(getattr(p, "value", 0) or 0)]
            for p in (getattr(insight, "items", None) or [])]
     if not pts:
