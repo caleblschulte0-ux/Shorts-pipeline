@@ -2681,6 +2681,13 @@
       ],
       "words_first_10s": 25,
       "scene_changes_before_5s": 3
+    },
+    "phone-call-avoidance": {
+      "claimed_at": "2026-10-07T10:53:11.569939+00:00",
+      "title": "Why Gen Z Refuses To Answer The Phone",
+      "publish_at": "2026-10-07T11:16:19Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3295,6 +3302,14 @@
       "state": "posted",
       "slug": "college-gender-gap",
       "at": "2026-10-06T11:55:29.542238+00:00"
+    },
+    {
+      "claimed_at": "2026-10-07T10:53:11.569939+00:00",
+      "title": "Why Gen Z Refuses To Answer The Phone",
+      "publish_at": "2026-10-07T11:16:19Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "phone-call-avoidance"
     }
   ]
 }
