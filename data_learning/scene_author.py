@@ -66,7 +66,7 @@ def _remaining() -> float:
 KIT_NAMES = ("vgrad", "glow", "text", "fit_readout", "by_time", "tree", "stump",
              "cow", "truck", "sack", "cup", "steam", "birds",
              "dawn_sky", "cafe", "rowhouse", "street", "traffic",
-             "heat_shimmer", "shape_path", "stride", "walk", "step_through", "landed", "STEP_BOB", "PACE_PERIOD", "EDGE", "clamp", "ease", "pop",
+             "heat_shimmer", "shape_path", "stride", "walk", "step_through", "landed", "READOUT_SHOWS", "STEP_BOB", "PACE_PERIOD", "EDGE", "clamp", "ease", "pop",
              "seg", "W", "H", "P", "_c", "scar_path", "SCAR", "FOREST_Y",
              "STREET_Y", "_TREES", "forest_floor", "FRANCE",
              # THE LIGHT (2026-10-05, "the art in general on the B clips
@@ -782,10 +782,76 @@ HEADLINE_PX = 64
 MAX_HEADLINES = 2
 
 
-def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
+#: Operator, 2026-10-07, of the bird flu closing: "the picket fence at the
+#: end is already hard to understand, then we only have it on screen for like
+#: a second ... it's like whiplash, I didn't even have time to process." Its
+#: last number landed at 80% of a 4-second scene, so the finished picture was
+#: up for 0.8s before the video ended. Not longer beats: an EARLIER payoff.
+#: Every number a scene ends on must be up, unbroken, from PAYOFF_BY of the
+#: beat — or earlier, so it holds READ_S seconds — to the end. The world may
+#: keep moving after that; the story may not.
+PAYOFF_BY = 0.6
+READ_S = 1.8
+
+
+def land_by(secs: float | None = None) -> float:
+    """The u by which a ~`secs` scene must have its whole payoff up."""
+    secs = SCENE_SECS["beat"] if secs is None else secs
+    return min(PAYOFF_BY, 1.0 - READ_S / max(secs, READ_S + 0.1))
+
+
+def payoff_problems(fn, pts, secs: float | None = None) -> list[str]:
+    """The scene's FINISHED picture lands too late to be read: a number it
+    ends on first appears (and stays) after `land_by` of the beat."""
+    import cairo
+    secs = SCENE_SECS["beat"] if secs is None else secs
+    by = land_by(secs)
+    real = SS.text
+    real_ro = SS.fit_readout
+    g = fn.__globals__
+    frames = []
+
+    def spy(cr, s, *a, **k):
+        box = real(cr, s, *a, **k)
+        alpha = k.get("alpha", a[6] if len(a) > 6 else 1.0)
+        if box and re.search(r"\d", str(s)) and (alpha or 0) > 0.3:
+            frames[-1].add(str(s))
+        return box
+    surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, SS.W, SS.H)
+    try:
+        g["text"], SS.text = spy, spy
+        g["fit_readout"] = real_ro
+        for k in range(41):
+            frames.append(set())
+            fn(cairo.Context(surf), 3.0 + k / 40 * 10, k / 40, pts,
+               lambda *a, **kw: None)
+    finally:
+        g["text"], SS.text = real, real
+    last = frames[-1]
+    late = []
+    for t_ in last:
+        k = 40
+        while k > 0 and t_ in frames[k - 1]:
+            k -= 1
+        if k / 40 > by + 1e-9:
+            late.append((k / 40, t_))
+    if not late:
+        return []
+    u_, t_ = max(late)
+    return [f"its last number {t_!r} only lands at u={u_:.2f} and the scene "
+            f"ends at u=1 — about {(1 - u_) * secs:.1f}s of a ~{secs:.0f}s "
+            f"beat to read the finished picture. Land the WHOLE payoff (every "
+            f"number it ends on, the end state of the hero) by u={by:.2f} "
+            f"and HOLD it; after that keep the world moving (Data, birds, "
+            f"steam, light), never the story"]
+
+
+def verify(fn, pts, say: str = "", secs: float | None = None) -> list[str]:
     """Every check a teacher scene passes. Empty list = usable. `say` is the
     beat's narration: a number the story itself states ("the 1930s") may be
-    printed; the editorial gate has already held the narration to the data."""
+    printed; the editorial gate has already held the narration to the data.
+    `secs` is how long the scene is on screen; a beat's by default."""
+    secs = SCENE_SECS["beat"] if secs is None else secs
     import cairo
     import numpy as np
     from PIL import Image
@@ -889,6 +955,7 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
     if len(hosts) < 11:
         problems.append("Data is missing from a frame (host not called)")
     problems += bit_problems(fn, pts)
+    problems += payoff_problems(fn, pts, secs)
     brief_ = [t_ for t_, c in shown.items() if c / 40 * secs < MIN_DWELL_S]
     if brief_:
         problems.append(f"shows {brief_[0]!r} for under {MIN_DWELL_S}s of a "
@@ -1087,6 +1154,7 @@ in the frame and change shape you can see from across a room. A small \
 percentage drawn literally (a bone 1.5% thinner) is invisible: draw what \
 piles up, empties or spreads until it is large, or set the thing beside \
 what it equals, so the PICTURE makes the comparison and the words do not.
+16. LAND IT, THEN HOLD IT. A scene is on screen for about {secs:.0f} seconds, and the owner called a fence whose last number arrived with under a second left "whiplash — I didn't even have time to process". Finish the story — every number, the final size, the last label — by u={payoff_by}, then HOLD that finished picture to the end so it can be read. After it lands the WORLD keeps moving (wind, a bottle rolling, Data's follow-through), the story does not. A readout steps through at most {shows} values (landed(rows, k, f) does this). MEASURED: a number still arriving after u={payoff_by} is refused.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \
@@ -1174,12 +1242,15 @@ current code:
 """
 
 
-def build_prompt(title, topic, say, pts, unit, brief=""):
+def build_prompt(title, topic, say, pts, unit, brief="", secs=None):
     teachers = "\n\n".join(inspect.getsource(f) for f in
                            (SS.amazon_where_it_goes, SS.coffee_drought))
     tools = "\n".join(f"  {k}: {v}" for k, v in TOOL_ACTS.items())
     return _PROMPT.format(stances=", ".join(STANCES), tools=tools,
                           flat_max=f"{FLAT_MAX:.0%}", max_heads=MAX_HEADLINES,
+                          secs=SCENE_SECS["beat"] if secs is None else secs,
+                          payoff_by=f"{land_by(secs):.2f}",
+                          shows=SS.READOUT_SHOWS,
                           kit=", ".join(KIT_NAMES),
                           builtins=", ".join(sorted(SAFE_BUILTINS)),
                           palette=", ".join(sorted(SS.P)), sigs=_sigs(),
@@ -1216,12 +1287,12 @@ def ask_brain(prompt: str, model: str | None = None,
 
 
 def author(title, topic, say, pts, unit="", attempts=3, log=print, brief="",
-           secs: float = 10.0):
+           secs: float | None = None):
     """(scene_fn, code) for a verified brain-drawn scene, or (None, reason).
     `brief` adds the job on top of the rules: a closing, or a repair."""
     if os.environ.get("SCENE_AUTHOR", "on").lower() in ("0", "off", "false"):
         return None, "SCENE_AUTHOR=off"
-    prompt = build_prompt(title, topic, say, pts, unit, brief)
+    prompt = build_prompt(title, topic, say, pts, unit, brief, secs)
     why = "no brain"
     for k in range(attempts):
         if _remaining() < 90:
@@ -1317,7 +1388,7 @@ def seen_frames(fn, pts, out_dir, at=LOOK_AGAIN_AT, size=LOOK_SIZE) -> list[str]
     return paths
 
 
-def look_again(fn, code, prompt, pts, say="", secs=10.0, log=print):
+def look_again(fn, code, prompt, pts, say="", secs=None, log=print):
     """(fn, code) of the brain's redraw of a PASSING scene after it has seen
     its own frames beside THE SHOT and THE PILE, or None — no budget, no
     brain, or every redraw failed a check — in which case the passing scene
@@ -1458,7 +1529,7 @@ def saved_scene(seg_cfg: dict, log=print):
             return None
         # A scene saved before the light (2026-10-05) is flat clip art; it is
         # redrawn under the new rules rather than shipped again.
-        probs = _saved_craft(fn, seg_cfg, log)
+        probs = _saved_craft(fn, seg_cfg, log, SCENE_SECS["beat"])
         if probs:
             log(f"[scene_author] saved scene refused — {probs[0][:90]}")
             return None
@@ -1466,7 +1537,7 @@ def saved_scene(seg_cfg: dict, log=print):
     return None
 
 
-def _saved_craft(fn, seg_cfg, log) -> list[str]:
+def _saved_craft(fn, seg_cfg, log, secs: float | None = None) -> list[str]:
     try:
         from shared import rewrite_mailbox as _rw
         d = _rw._dataset(seg_cfg or {}) or {}
@@ -1474,7 +1545,10 @@ def _saved_craft(fn, seg_cfg, log) -> list[str]:
                if p.get("value") is not None]
         if not pts:
             return []
-        return craft_problems(fn, pts)
+        # And one saved before the payoff rule (2026-10-07) that lands its
+        # last number with under a second left is redrawn, not replayed:
+        # the bird flu fence's ending did exactly that.
+        return craft_problems(fn, pts) + payoff_problems(fn, pts, secs)
     except Exception as e:  # noqa: BLE001 — cannot judge it: keep it
         log(f"[scene_author] saved scene craft check skipped ({e})")
         return []
@@ -1491,9 +1565,12 @@ whole story, the contrast at its heart.
 """
 
 BRIEFS = {"hook": HOOK_BRIEF, "closing": CLOSING_BRIEF}
-#: How long each kind of scene is on screen, for the dwell check (a hook is
-#: ~3s of the cold open; a beat ~10s; a closing ~6s).
-SCENE_SECS = {"hook": 3.0, "closing": 6.0, "beat": 10.0}
+#: How long each kind of scene is REALLY on screen, for the dwell and payoff
+#: checks. These were 3 / 10 / 6 until 2026-10-07, when the posted log said
+#: otherwise: since the 8-second beat (pacing, 2026-10-05) the median hook
+#: ran 4.4s, beat 6.0s and closing 4.6s (shortest 4.0s). A check that thinks
+#: a beat is 10 seconds passed a payoff held for 0.8 of a real second.
+SCENE_SECS = {"hook": 4.0, "closing": 4.0, "beat": 6.0}
 
 
 def saved_bookend(story_cfg: dict, kind: str, n_beats: int, log=print):
@@ -1509,7 +1586,8 @@ def saved_bookend(story_cfg: dict, kind: str, n_beats: int, log=print):
             log(f"[scene_author] saved {kind} refused ({e})")
             return None
         segs = story_cfg.get("segments") or []
-        probs = _saved_craft(fn, segs[idx] if idx < len(segs) else {}, log)
+        probs = _saved_craft(fn, segs[idx] if idx < len(segs) else {}, log,
+                             SCENE_SECS.get(kind, SCENE_SECS["beat"]))
         if probs:
             log(f"[scene_author] saved {kind} refused — {probs[0][:90]}")
             return None
