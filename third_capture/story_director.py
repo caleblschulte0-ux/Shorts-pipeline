@@ -55,6 +55,9 @@ def narration_grounded(text: str, reports: list[dict]) -> bool:
     corpus = " ".join(
         " ".join([str(r.get("transcript_lines", "")),
                   str(r.get("summary", "")),
+                  # Twitch metadata, not the footage — but facts: whose
+                  # stream it is and what they were playing
+                  str(r.get("channel", "")), str(r.get("game", "")),
                   " ".join(str(x) for x in r.get("people") or []),
                   " ".join(str(b.get("purpose", ""))
                            for b in r.get("dialogue_beats") or [])])
@@ -126,6 +129,12 @@ Then emit the COMPLETE timeline. Segment rules:
   otherwise be confused (time jump, new speaker, new place) — e.g.
   "EARLIER THAT DAY", "THEN HIS FRIEND RESPONDED". NEVER meta-labels like
   "IT GETS WORSE" or "PART TWO". "" when the cut is already obvious.
+- A STRANGER DOES NOT KNOW THE STREAMER OR THE GAME. Each SOURCE's
+  `streamer=` and `game=` are Twitch's own metadata — verified facts. When
+  nobody on stream says who or what this is, the opening (hook_overlay,
+  beat 0's context_overlay, or narration) names them: "FORSEN PLAYING
+  TERRARIA" (game=Terraria), "BUDDHA IN GTA" (game=Grand Theft Auto V).
+  Never a fact that is in neither the metadata nor the sources.
 - transition per beat: "hard_cut" (default) | "j_cut" (next beat's audio
   blends in over the cut — use when the next line naturally answers or
   interrupts) | "l_cut" (previous audio tails briefly over the next
@@ -310,8 +319,11 @@ Narration ({"text", "over_beat", "essential_because"}): at most 15 words,
 spoken over the beat that needs it (usually beat 0, to set up the story).
 It may state ONLY what a source's transcript or scene report states —
 who someone is, what they said happened, what was claimed — in the
-footage's own words where possible. Never motive, never feelings, never
-drama, never anything the sources do not say. `essential_because` names
+footage's own words where possible — plus the SOURCE's `streamer=` and
+`game=`, which are Twitch's own metadata. When the critic says a stranger
+does not know who this is or what they are playing, name them: in the
+hook, beat 0's context overlay, or the narration line. Never motive,
+never feelings, never drama, never anything the sources do not say. `essential_because` names
 the source line it comes from. A line not supported by the sources is
 removed automatically, so do not guess. If the missing context is not in
 the sources at all, fix what you can with cuts instead.
@@ -343,10 +355,11 @@ def _fmt_reports(reports: list[dict]) -> str:
                         f"{o % 60:02d}s")
             except (TypeError, ValueError):
                 at = ""
+        game = f" game={r['game']}" if r.get("game") else ""
         out.append(
             f"SOURCE {r['source_id']}\n"
             f"  streamer={r['channel']} dur={r['duration_s']}s "
-            f"date={r.get('date', '?')}{at}\n"
+            f"date={r.get('date', '?')}{at}{game}\n"
             f"  summary: {r['summary']}\n"
             f"  people: {', '.join(r.get('people', []))}\n"
             f"  dialogue: {beats or '(none)'}\n"

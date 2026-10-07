@@ -1279,6 +1279,12 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                             print(f"::warning::[story] discover "
                                   f"{platform}:{ch} {window} failed "
                                   f"({type(e).__name__})", flush=True)
+            # name each clip's game (Twitch's category): the critic's
+            # commonest refusal is a stranger not knowing what this is
+            _names = clip_edit.helix_game_names(
+                [c.get("game_id") for c in pool])
+            for c in pool:
+                c["game"] = _names.get(str(c.get("game_id") or ""), "")
             _STORY_POOL = pool
         pool_by_url = {c.get("url"): c for c in _STORY_POOL}
         corpus += storyline.from_discovery(_STORY_POOL)
