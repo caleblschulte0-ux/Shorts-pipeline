@@ -189,6 +189,20 @@ jobs:
           [ -n "${{ inputs.title }}" ] && ARGS="$ARGS --title '${{ inputs.title }}'"
           [ "${{ inputs.dry_run }}" = "true" ] && ARGS="$ARGS --dry-run"
           eval python scripts/build_longform.py $ARGS
+      # A HELD cut is kept, not lost: the gate's own docstring promises the
+      # mp4 "stays in output/", but output/ dies with the runner. Upload it
+      # so a blocked week can be watched and its verdict checked by eye.
+      - name: Keep the render
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: longform-${{ github.run_id }}
+          path: |
+            output/longform_*.mp4
+            output/longform_*.jpg
+            output/longform_*.meta.json
+          if-no-files-found: ignore
+          retention-days: 14
       - name: Persist long-form log
         if: always()
         run: |
@@ -199,4 +213,5 @@ jobs:
           # along with the crash.
           bash scripts/ci_commit_state.sh \
             "explainer: long-form log [skip ci]" \
-            state/longform_log.json state/longform_pending.json
+            state/longform_log.json state/longform_pending.json \
+            state/showrunner_verdicts.jsonl

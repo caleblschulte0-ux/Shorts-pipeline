@@ -46,6 +46,7 @@ if str(REPO) not in sys.path:
     sys.path.insert(0, str(REPO))
 
 from data_learning import charts, story                          # noqa: E402
+from shared import look                                          # noqa: E402
 from data_learning.demo_render import _dur, _run                 # noqa: E402
 from data_learning.studio_render import (                        # noqa: E402
     KOKORO_MODEL, KOKORO_VOICES, _font, _full_by, _headline_number,
@@ -716,9 +717,20 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         raise KeyError(f"no story with slug {slug!r} in {config_path.name}")
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    theme = _theme_for(slug)
-    charts.HIGHLIGHT, charts.ACCENT, charts.WARN = (
-        theme["highlight"], theme["accent"], theme["warn"])
+    # THE THEME NO LONGER CARRIES COLOUR (studio_render.THEMES, 2026-09-10):
+    # the accent comes from the design system, deterministic per slug, the
+    # same way the shorts get theirs. This line used to read
+    # theme["highlight"], a key the look rehaul removed, so every weekly
+    # long-form from 2026-09-13 died here with a KeyError before rendering a
+    # frame. The colours are folded back INTO the theme dict because every
+    # composer below reads theme.get("highlight"/"accent"), and without them
+    # it would silently fall through to hardcoded teal/blue.
+    theme = dict(_theme_for(slug))
+    charts.HIGHLIGHT, charts.ACCENT = (
+        charts._hex(c) for c in look.accent(look.accent_for(slug)))
+    charts.WARN = charts._hex(look.WARN)
+    theme.update(highlight=charts.HIGHLIGHT, accent=charts.ACCENT,
+                 warn=charts.WARN)
     if voice is None:
         voice = theme["voice"]
 
