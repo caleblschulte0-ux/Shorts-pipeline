@@ -383,7 +383,8 @@ def _learned_prior() -> dict:
                 buckets[str(v["streamer"]).lower()].append(rw)
 
         K = 4.0  # shrinkage strength: n/(n+K) weight on observed deviation
-        prior = {}
+        import statistics as _st
+        rows = []   # (mid_r, n, shrunk) per streamer with enough clips
         for streamer, rws in buckets.items():
             n = len(rws)
             if n < MIN_STREAMER_VIDS:   # too few clips to trust a prior
@@ -394,12 +395,34 @@ def _learned_prior() -> dict:
             # at 71) out-ranked jasontheween (median 44) because a single
             # lucky clip lifted the average while jasontheween's two brand-
             # new zeros dragged his down. The direction test caught it.
-            import statistics as _st
             mid_r = _st.median(r for r, _ in rws)
-            eff = 1.0 + (mid_r - 1.0) * (n / (n + K))
-            mult = max(0.70, min(1.40, eff))
+            rows.append([streamer, mid_r, n, 1.0 + (mid_r - 1.0) * (n / (n + K))])
+        # SHRINKAGE MAY DAMPEN AN ORDER, NEVER INVERT IT. On 2026-10-07
+        # cinna (3 clips, median 96 views) sat at 1.296 below xqc (14 clips,
+        # median 31) at 1.302: cinna's stronger median was pulled further
+        # toward 1.0 only because there were fewer clips of it. Fewer clips
+        # means less certainty about HOW MUCH better, not evidence that it
+        # is worse. So the shrunk values are made monotone in the median
+        # clip (pool-adjacent-violators, weighted by clip count): streamers
+        # whose shrunk order disagrees with their medians are pooled to one
+        # shared value — "we cannot tell these apart yet" — and every other
+        # value is left exactly as shrinkage set it.
+        rows.sort(key=lambda r: r[1])
+        blocks = []   # [sum(w*val), sum(w), members]
+        for streamer, mid_r, n, eff in rows:
+            blocks.append([eff * n, float(n), [streamer]])
+            while (len(blocks) > 1 and blocks[-2][0] / blocks[-2][1]
+                    > blocks[-1][0] / blocks[-1][1]):
+                top = blocks.pop()
+                blocks[-1][0] += top[0]
+                blocks[-1][1] += top[1]
+                blocks[-1][2] += top[2]
+        prior = {}
+        for total, weight, members in blocks:
+            mult = max(0.70, min(1.40, total / weight))
             if abs(mult - 1.0) >= 0.02:  # skip no-op entries
-                prior[streamer] = round(mult, 3)
+                for streamer in members:
+                    prior[streamer] = round(mult, 3)
         _PRIOR_CACHE = prior
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[prior] learned prior unavailable ({e})",
