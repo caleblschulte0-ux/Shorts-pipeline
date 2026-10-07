@@ -211,7 +211,7 @@ minutes per clip, so:
   and turned down, with the reason. Do not propose them again unless a
   clip that was not in them changes what happened.
 
-Return STRICT JSON, best story first, at most 3:
+Return STRICT JSON, best story first, at most 6:
 {"stories": [{"members": ["C3", "C9", "C14"],
               "premise": "<one sentence: who, what changed>",
               "why_connected": "<why these clips are one story>",
@@ -220,7 +220,7 @@ Return {"stories": []} when the catalogue holds no real story."""
 
 
 def scout_stories(lines: list[str], ids: set[str],
-                  max_stories: int = 3,
+                  max_stories: int = 6,
                   tried: list[str] | None = None) -> list[dict]:
     """Ask the brain which clips in the catalogue form stories.
 

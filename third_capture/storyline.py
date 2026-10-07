@@ -275,8 +275,8 @@ def from_discovery(pool: list[dict]) -> list[dict]:
 
 
 
-def build_catalogue(corpus: list[dict], *, max_fresh: int = 120,
-                    max_history: int = 160,
+def build_catalogue(corpus: list[dict], *, max_fresh: int = 200,
+                    max_history: int = 240,
                     memory: dict | None = None) -> tuple[list[str], dict]:
     """The story scout's reading material: one line per clip.
 

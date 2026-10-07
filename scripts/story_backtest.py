@@ -91,6 +91,9 @@ def main(argv=None) -> int:
     base.pop("count", None)
     base.pop("story_count", None)
     base["capture"]["story_max_clusters"] = args.max_clusters
+    # production caps the story arm at story_budget_min so the day's clips
+    # keep their time; a backtest has nothing else to spend it on
+    base["capture"].pop("story_budget_min", None)
     floor = int(base["capture"].get("story_min_score", 80))
     log = copy.deepcopy(json.loads(
         (REPO / "state" / "third_posted_log.json").read_text()))
