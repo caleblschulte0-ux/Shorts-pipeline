@@ -1,27 +1,7 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-10-07T08:50:23Z",
+ "updated": "2026-10-07T09:49:48Z",
  "open": [
-  {
-   "id": "freshwater-accessible__22d7430030",
-   "channel": "explainer",
-   "slug": "freshwater-accessible",
-   "title": "How Much Of Earth's Water You Can Actually Drink",
-   "filed": "2026-10-06T12:21:20Z",
-   "request": "exchange/reviews/20261006/freshwater-accessible__22d7430030.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/freshwater-accessible__22d7430030/sheet.jpg",
-   "answer_path": "exchange/reviews/20261006/freshwater-accessible__22d7430030.verdict.json"
-  },
-  {
-   "id": "divorce-rate-quiet-decline__b8f51a9df3",
-   "channel": "explainer",
-   "slug": "divorce-rate-quiet-decline",
-   "title": "Everyone Assumes Divorce Is Rising. It Isn't.",
-   "filed": "2026-10-06T12:16:46Z",
-   "request": "exchange/reviews/20261006/divorce-rate-quiet-decline__b8f51a9df3.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261006/divorce-rate-quiet-decline__b8f51a9df3/sheet.jpg",
-   "answer_path": "exchange/reviews/20261006/divorce-rate-quiet-decline__b8f51a9df3.verdict.json"
-  },
   {
    "id": "kelp-forest-sea-star-collapse__a798d71a4f",
    "channel": "explainer",
