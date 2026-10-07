@@ -21,6 +21,21 @@ graded the frames into `<id>.verdict.json`. This step:
      A hash mismatch is refused, not retried.
   6. settles the request beside itself (`<id>.done.json`), append-only.
 
+With `--rejudge`, a request nobody has answered is first shown to the
+SHOWRUNNER ITSELF once it can watch again (2026-10-07, operator: *"I
+thought between ChatGPT and Aletheia, we could never have the issue of no
+judge available"*). "No judge" was meant to DELAY a video, never lose it,
+but the mailbox only helps if somebody answers it, and from 09-21 to
+10-07 nobody did: the held renders sat there after the headless brain's
+weekly limit reset. So the claim run asks the same `_judge` the render
+run asked, with the request's own verbatim prompt and frames, writes the
+answer as `by: showrunner:<backend>`, and lets the ordinary claim decide
+it. Nothing about the bar moves: the same prompt, the same grades, the
+same `assemble_verdict` + `showrunner_gate.decide`, and a judge that is
+still out leaves the request open. A request that can never publish (its
+story already posted or gone, its trending package gone) is WITHDRAWN
+first, so no judge is spent on it.
+
 A hold is settled too: the story stays in its queue and the next render
 run tries it fresh — the 48h block memory in `post_stories` rotates it to
 the back of the line like any other block.
@@ -49,6 +64,11 @@ from shared import review_mailbox as rm                     # noqa: E402
 
 JUDGE = "chatgpt-mailbox"
 API = "https://api.github.com"
+#: The `by` a re-judged verdict carries (`showrunner:headless-claude`).
+REJUDGE_BY = "showrunner"
+#: At most this many re-judges per claim run: the claim cron is hourly and
+#: the judge's budget is the same subscription the morning's renders use.
+MAX_REJUDGE = int(os.environ.get("CLAIM_MAX_REJUDGE", "2"))
 
 
 def _now() -> str:
@@ -251,6 +271,90 @@ def claim(req: dict, *, publish: bool, workdir: Path) -> dict:
     return {"id": req["id"], "state": "settled", **out}
 
 
+def unpublishable(req: dict) -> str | None:
+    """Why this request could never be uploaded even on a ship, or None.
+    The same facts `_publish_*` would raise on, checked BEFORE a judge is
+    asked: grading a video that cannot post only spends the judge."""
+    if req.get("channel") == "trending":
+        pkg = (req.get("ctx") or {}).get("package")
+        if not pkg or not (REPO / pkg).exists():
+            return f"its trending package {pkg!r} is gone"
+        return None
+    from scripts import post_stories as ps
+    try:
+        cfg = json.loads(ps.CONFIG.read_text())
+    except Exception:  # noqa: BLE001
+        return None                       # cannot tell: let the claim decide
+    if not any(s.get("slug") == req["slug"] for s in cfg.get("stories", [])):
+        return f"story {req['slug']!r} is no longer in niche.config.json"
+    prev = (ps._load_log(ps.LOG_PATH).get("posted") or {}).get(req["slug"])
+    if isinstance(prev, dict) and prev.get("state") == "posted" and prev.get("url"):
+        return f"{req['slug']} is already posted: {prev['url']}"
+    return None
+
+
+def _fetch(url: str, dest: Path) -> Path:
+    with urllib.request.urlopen(url, timeout=60) as r:
+        dest.write_bytes(r.read())
+    return dest
+
+
+def rejudge(req: dict, workdir: Path) -> str:
+    """Ask the showrunner to grade an unanswered request now; write its
+    grades as the request's verdict. Returns the backend that graded.
+    Raises when no judge can watch (the request stays open)."""
+    from scripts import showrunner_review as sr
+    d = workdir / f"rejudge-{req['id']}"
+    d.mkdir(parents=True, exist_ok=True)
+    labeled = []
+    for i, f in enumerate(req.get("frames") or []):
+        labeled.append((_fetch(f["url"], d / f"f{i:02d}.jpg"),
+                        str(f.get("label") or f"f{i}"), float(f.get("t") or 0.0)))
+    if not labeled:
+        raise RuntimeError("the request has no frames")
+    grades, backend = sr._judge(req["prompt"], labeled)
+    vp = Path(req["_path"]).parent / f"{req['id']}.verdict.json"
+    vp.write_text(json.dumps({
+        "schema": rm.VERDICT_SCHEMA, "request_id": req["id"],
+        "video_sha256": req["video_sha256"], "by": f"{REJUDGE_BY}:{backend}",
+        "graded_at": _now(), "grades": grades}, indent=1) + "\n")
+    return backend
+
+
+def rejudge_open(reqs: list[dict], workdir: Path,
+                 limit: int = MAX_REJUDGE) -> list[dict]:
+    """Withdraw what can never publish; re-judge up to `limit` of the rest,
+    newest first (only the newest cut of a story is worth a judge). Stops
+    at the first judge failure: a judge that is out is not asked again."""
+    left = []
+    for req in reqs:
+        if rm.has_verdict(req):
+            left.append(req)
+            continue
+        why = unpublishable(req)
+        if why:
+            rm.settle(req, {"decision": "withdrawn", "judge": None,
+                            "reason": f"cannot publish: {why}"})
+            print(f"[claim] withdrawn {req['id']}: {why}", flush=True)
+            continue
+        left.append(req)
+    asked = 0
+    for req in sorted(left, key=lambda r: str(r.get("filed") or ""), reverse=True):
+        if asked >= limit:
+            break
+        if rm.has_verdict(req):
+            continue
+        asked += 1
+        try:
+            backend = rejudge(req, workdir)
+            print(f"[claim] re-judged {req['id']} with {backend}", flush=True)
+        except Exception as e:  # noqa: BLE001
+            print(f"[claim] {req['id']}: no judge yet ({str(e)[:160]}); "
+                  "left open", flush=True)
+            break
+    return left
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--channel", default="all", choices=["all", "explainer", "trending"])
@@ -262,6 +366,10 @@ def main() -> int:
                     help="settle as WITHDRAWN every open request whose frames "
                          "were staged here but never published (the workflow "
                          "calls this when the preview-renders push fails)")
+    ap.add_argument("--rejudge", action="store_true",
+                    help="show unanswered requests to the showrunner itself "
+                         "(up to CLAIM_MAX_REJUDGE a run) and withdraw the "
+                         "ones that could never publish")
     args = ap.parse_args()
     if args.withdraw_stage is not None:
         ids = rm.withdraw_staged(
@@ -279,6 +387,8 @@ def main() -> int:
     print(f"[claim] {len(reqs)} open request(s)", flush=True)
     settled = 0
     with tempfile.TemporaryDirectory() as td:
+        if args.rejudge:
+            reqs = rejudge_open(reqs, Path(td))
         for req in reqs:
             res = claim(req, publish=args.publish, workdir=Path(td))
             print(f"[claim] {res['id']}: {res['state']}"
