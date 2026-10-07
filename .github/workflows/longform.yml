@@ -188,6 +188,13 @@ jobs:
           [ -n "${{ inputs.slugs }}" ] && ARGS="$ARGS --slug ${{ inputs.slugs }}"
           [ -n "${{ inputs.title }}" ] && ARGS="$ARGS --title '${{ inputs.title }}'"
           [ "${{ inputs.dry_run }}" = "true" ] && ARGS="$ARGS --dry-run"
+          # THE SUNDAY CRON NEVER UPLOADS (operator, 2026-10-07: "the
+          # channel looks like shit. We haven't been able to produce a
+          # postable video yet."). It renders and judges every week so
+          # there is a cut to look at (the "Keep the render" artifact), and
+          # publishing is a manual dispatch with dry_run=false, made once a
+          # cut has been watched and approved.
+          [ "${{ github.event_name }}" = "schedule" ] && ARGS="$ARGS --dry-run"
           eval python scripts/build_longform.py $ARGS
       # A HELD cut is kept, not lost: the gate's own docstring promises the
       # mp4 "stays in output/", but output/ dies with the runner. Upload it
