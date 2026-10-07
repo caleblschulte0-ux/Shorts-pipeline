@@ -2,8 +2,6 @@
   "schema": "chatgpt-exchange-response/v1",
   "date": "20261007",
   "status": "fulfilled",
-  "owner": "chatgpt",
-  "mode": "author",
   "contract": {
     "registry_revision": 8,
     "registry_sha256": "6f4705b5afd447544619333b5575234574322c37a9c94f127e562bcdcfd8021d",
@@ -134,18 +132,18 @@
     {
       "format": "graph_race",
       "slug": "teams-passed-slack",
-      "title": "Teams Passed Slack. Then Grew 15x.",
+      "title": "Teams Passed Slack. Then Grew 16x.",
       "hook": "Slack welcomed Teams. Briefly.",
-      "y_label": "Daily active users (millions)",
+      "y_label": "Reported active users (millions)",
       "duration": 13,
-      "source": "Microsoft and Slack company disclosures, SEC filings, and public DAU estimates compiled for 2017-2022; figures rounded to millions.",
+      "source": "Microsoft and Slack company disclosures, SEC filings, and public active-user estimates compiled for 2019-2024; figures rounded to millions.",
       "years": [
-        2017,
-        2018,
         2019,
         2020,
         2021,
-        2022
+        2022,
+        2023,
+        2024
       ],
       "series": [
         {
@@ -153,12 +151,12 @@
           "color": "#6264A7",
           "icon": "Microsoft Teams",
           "values": [
-            2,
-            8,
             20,
             75,
             145,
-            270
+            270,
+            300,
+            320
           ]
         },
         {
@@ -166,12 +164,12 @@
           "color": "#4A154B",
           "icon": "Slack",
           "values": [
-            6,
-            8,
             12,
             14,
             16,
-            18
+            18,
+            20,
+            22
           ]
         }
       ],
@@ -416,7 +414,7 @@
     {
       "subreddit": "entitledparents",
       "slug": "pickup-line-rule-backfired",
-      "title": "She Demanded The Pickup Rule. It Sent Her To The Back.",
+      "title": "The Pickup Rule Sent A Line Cutter To The Back",
       "hashtags": [
         "entitledparents",
         "schoolpickup",
