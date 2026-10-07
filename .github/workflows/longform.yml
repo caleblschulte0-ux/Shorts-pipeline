@@ -16,11 +16,11 @@ on:
         required: false
         default: ''
       dry_run:
-        description: 'build but do not upload'
+        description: 'build but do not upload (pick false to publish an approved cut)'
         required: false
-        default: 'false'
+        default: 'true'
         type: choice
-        options: ['false', 'true']
+        options: ['true', 'false']
   schedule:
     - cron: '0 17 * * 0'        # Sundays 17:00 UTC
 
@@ -193,7 +193,9 @@ jobs:
           # postable video yet."). It renders and judges every week so
           # there is a cut to look at (the "Keep the render" artifact), and
           # publishing is a manual dispatch with dry_run=false, made once a
-          # cut has been watched and approved.
+          # cut has been watched and approved. The clock re-fires a missed
+          # cron as a DISPATCH, so the input defaults to true and the clock
+          # passes it explicitly (scripts/clock.py DISPATCH_INPUTS).
           [ "${{ github.event_name }}" = "schedule" ] && ARGS="$ARGS --dry-run"
           eval python scripts/build_longform.py $ARGS
       # A HELD cut is kept, not lost: the gate's own docstring promises the
