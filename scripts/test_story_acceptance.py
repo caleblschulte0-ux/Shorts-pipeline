@@ -466,7 +466,7 @@ def main() -> int:  # noqa: C901
           len(replays) == 1 and led2["replay_count"] == 1)
 
     # narration is best-effort: TTS failure ships the story clean
-    story._maybe_narration = lambda text, work: None
+    story._maybe_narration = lambda text, work, name="narration": None
     e = dict(base, narration={"text": "Two days later he responded",
                               "over_beat": 0,
                               "essential_because": "time jump"})

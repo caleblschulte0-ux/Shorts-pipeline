@@ -188,8 +188,10 @@ def _report_md(floor: int, attempts: list, cuts: list) -> str:
         for p in rv.get("problems") or []:
             L.append(f"- problem @{p.get('at')}s {p.get('type')}: "
                      f"{p.get('fix')}")
-        if e.get("narration"):
-            L.append(f"- narration: {e['narration'].get('text')}")
+        for n in e.get("narration_lines") or (
+                [e["narration"]] if e.get("narration") else []):
+            L.append(f"- narration over beat {n.get('over_beat')}: "
+                     f"{n.get('text')}")
         L.append(f"- files: {c['files']['mp4']} / {c['files']['sheet']}")
     return "\n".join(L) + "\n"
 
