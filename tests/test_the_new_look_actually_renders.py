@@ -179,5 +179,32 @@ class ThePredrawStepIsWired(unittest.TestCase):
         self.assertNotIn("illustrated_scene", got["stories"][1]["segments"][0])
 
 
+@unittest.skipUnless(HAVE_CAIRO, "pycairo not installed")
+class AGradientTakesPlainColours(unittest.TestCase):
+    """The crash line PR 529 added named the next culprit on its first
+    morning: `vgrad(cr, [(120, 156, 196), ...], 0, 1120)` — plain colours
+    where the kit wanted (position, colour) pairs — on attempt 1 of four of
+    the six beats it drew (2026-10-07 story forge)."""
+
+    def _px(self, stops):
+        import cairo
+        from data_learning import subject_scenes as SS
+        surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, 10, 100)
+        SS.vgrad(cairo.Context(surf), stops, 0, 100, 0, 10)
+        surf.flush()
+        d = surf.get_data()
+        return bytes(d[0:4]), bytes(d[99 * surf.get_stride():99 * surf.get_stride() + 4])
+
+    def test_plain_colours_spread_evenly_and_match_explicit_stops(self):
+        plain = [(200, 0, 0), (0, 0, 200)]
+        self.assertEqual(self._px(plain), self._px([(0, plain[0]), (1, plain[1])]))
+
+    def test_the_brain_sees_both_forms(self):
+        from data_learning import scene_author as SA
+        line = next(ln for ln in SA._sigs().splitlines()
+                    if ln.strip().startswith("vgrad("))
+        self.assertIn("plain [rgb, ...]", line)
+
+
 if __name__ == "__main__":
     unittest.main()
