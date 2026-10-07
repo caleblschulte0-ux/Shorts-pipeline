@@ -11691,6 +11691,24 @@
       "rejected_by": "content gate",
       "rejected_why": "0.30 < 0.35 (WoW PvP chase, tiny UI, insider)",
       "ts": "2026-10-07T13:22:16.898356+00:00"
+    },
+    "rejected-scrumptiousspicyminkritzmitz-nxhgr8c9rvwiv38p": {
+      "source_url": "https://www.twitch.tv/buddha/clip/ScrumptiousSpicyMinkRitzMitz-NxhGR8c9rVwiv38P",
+      "streamer": "buddha",
+      "title": "Lebron and bronny",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (GTA RP texting, fishing; nothing happens)",
+      "ts": "2026-10-07T18:32:27.864873+00:00"
+    },
+    "rejected-wittyhelplessayeayekippa-ewm3fg_nbo9hjyep": {
+      "source_url": "https://www.twitch.tv/xqc/clip/WittyHelplessAyeayeKippa-EWM3fG_nbO9hjyEP",
+      "streamer": "xqc",
+      "title": "Xqc Reacts After Jean Pole Fails His Clown Risk Landing",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin 16:9 strip that fills only about a third of the 9:16 canvas, well short of the roughly three; vision: The subject and action are tiny and far away. The streamer is a small facecam in the corner and the gameplay is distant,; vision: The footage is very dark and low",
+      "ts": "2026-10-07T18:39:02.026914+00:00"
     }
   }
 }
