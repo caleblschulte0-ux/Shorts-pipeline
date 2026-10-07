@@ -2715,6 +2715,13 @@
       ],
       "words_first_10s": 10,
       "scene_changes_before_5s": 3
+    },
+    "twin-birth-rate-rise": {
+      "claimed_at": "2026-10-07T12:10:25.475654+00:00",
+      "title": "Why Twin Births Nearly Doubled \u2014 Then Started Falling",
+      "publish_at": "2026-10-07T17:16:19Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3338,6 +3345,14 @@
       "state": "posted",
       "slug": "phone-call-avoidance",
       "at": "2026-10-07T10:53:24.998782+00:00"
+    },
+    {
+      "claimed_at": "2026-10-07T12:10:25.475654+00:00",
+      "title": "Why Twin Births Nearly Doubled \u2014 Then Started Falling",
+      "publish_at": "2026-10-07T17:16:19Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "twin-birth-rate-rise"
     }
   ]
 }
