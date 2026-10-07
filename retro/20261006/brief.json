@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261006",
-  "generated_at": "2026-10-06T23:31:01Z",
+  "generated_at": "2026-10-07T00:31:00Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 12.76,
+          "days": 12.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 11.76,
+          "days": 11.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1600,10 +1600,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "fb37839",
-    "commits_since": "2026-10-05",
+    "head": "469acd4",
+    "commits_since": "2026-10-06",
     "commit_count": 50,
     "commits": [
+      "469acd4 claim: mailbox verdicts 2026-10-06T23:47Z [skip ci]",
+      "8fd1f53 retro: brief + triage for 20261006 [skip ci]",
       "fb37839 explainer: update posted log + analytics [skip ci]",
       "a5d8fd6 claim: mailbox verdicts 2026-10-06T22:48Z [skip ci]",
       "cccf26d claim: mailbox verdicts 2026-10-06T21:48Z [skip ci]",
@@ -1641,9 +1643,7 @@
       "41448b6 third: update posted log + analytics [skip ci]",
       "c577e00 watchdog: chatgpt task verdicts 20261006 [skip ci]",
       "a653cc2 third: checkpoint posted log (claim upload slot) [skip ci]",
-      "19b303f daily: 2026-10-06 report + state [skip ci]",
-      "f4c3c34 third: checkpoint posted log (claim upload slot) [skip ci]",
-      "47506ee third: checkpoint posted log (claim upload slot) [skip ci]"
+      "19b303f daily: 2026-10-06 report + state [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
