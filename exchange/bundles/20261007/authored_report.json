@@ -3,29 +3,56 @@
   "channel": "trending",
   "offered": 6,
   "promoted": [
-    "state/trending_packages/20261007/01_chrome-passed-internet-explorer.json",
-    "state/trending_packages/20261007/02_doordash-passed-grubhub.json",
-    "state/trending_packages/20261007/03_cash-app-chased-venmo.json",
-    "state/trending_packages/20261007/04_his-dog-reported-itself.json"
+    "state/trending_packages/20261007/05_pickup-line-rule-backfired.json"
   ],
   "rejected": [
     {
       "origin": "response.json",
-      "slug": "teams-passed-slack",
-      "title": "Teams Passed Slack. Then Grew 15x.",
+      "slug": "chrome-passed-internet-explorer",
+      "title": "Chrome Passed Internet Explorer In Four Years",
       "problems": [
-        "fails the graph drama gate: {'ok': False, 'peak': 270000000.0, 'swing': 135.0, 'crossovers': 1, 'reasons': ['opening paints ~5% of the plot (first 20% of the timeline is a stub against the 12%-of-max camera floor) < 5% \u2014 trim the flat early years or pick a window where the story has already started'], 'open_area': 0.049, 'travel': 0.993}"
+        "title repeats a recently posted video: 'Chrome Passed Internet Explorer In Four Years'",
+        "same story as a video already posted (brain): 'Smartphones Passed PCs In Two Years' \u2014 a new title over the same comparison is a repeat",
+        "slug already in today's slate: chrome-passed-internet-explorer"
       ]
     },
     {
       "origin": "response.json",
-      "slug": "pickup-line-rule-backfired",
-      "title": "She Demanded The Pickup Rule. It Sent Her To The Back.",
+      "slug": "doordash-passed-grubhub",
+      "title": "DoorDash Passed Grubhub In One Year",
       "problems": [
-        "same story as a video already posted (subject:her+she): \"A Tesla on Autopilot Crashed Into Her House. She Didn't Make It.\" \u2014 a new title over the same comparison is a repeat"
+        "title repeats a recently posted video: 'DoorDash Passed Grubhub In One Year'",
+        "slug already in today's slate: doordash-passed-grubhub"
+      ]
+    },
+    {
+      "origin": "response.json",
+      "slug": "teams-passed-slack",
+      "title": "Teams Passed Slack. Then Grew 16x.",
+      "problems": [
+        "same story as a video already posted (subject:16x+report): 'The CDC Says Lyme Disease Is 16x More Common Than Reported' \u2014 a new title over the same comparison is a repeat"
+      ]
+    },
+    {
+      "origin": "response.json",
+      "slug": "cash-app-chased-venmo",
+      "title": "Cash App Grew 7x. Venmo Stayed Ahead.",
+      "problems": [
+        "title repeats a recently posted video: 'Cash App Grew 7x. Venmo Stayed Ahead.'",
+        "slug already in today's slate: cash-app-chased-venmo"
+      ]
+    },
+    {
+      "origin": "response.json",
+      "slug": "his-dog-reported-itself",
+      "title": "He Reported My Sprinkler. His Photo Reported His Dog.",
+      "problems": [
+        "title repeats a recently posted video: 'He Reported My Sprinkler. His Photo Reported His Dog.'",
+        "same story as a video already posted (brain): 'She Returned A Vacuum. The Serial Number Returned Her.' \u2014 a new title over the same comparison is a repeat",
+        "slug already in today's slate: his-dog-reported-itself"
       ]
     }
   ],
   "slate_problems": [],
-  "slate_size_after": 4
+  "slate_size_after": 5
 }
