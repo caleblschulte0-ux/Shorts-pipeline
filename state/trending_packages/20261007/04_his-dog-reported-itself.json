@@ -1,0 +1,112 @@
+{
+  "subreddit": "pettyrevenge",
+  "slug": "his-dog-reported-itself",
+  "title": "He Reported My Sprinkler. His Photo Reported His Dog.",
+  "hashtags": [
+    "pettyrevenge",
+    "neighbor",
+    "dog",
+    "hoa",
+    "sprinkler",
+    "karma",
+    "storytime",
+    "shorts"
+  ],
+  "script": "My neighbor let his dog cross onto my lawn every morning and never picked up what followed. I asked twice, then installed a bright orange motion sprinkler aimed only at my grass. The next morning, his dog crossed onto my lawn, the sprinkler clicked on, and both of them retreated very quickly. He complained to the HOA that I was \u201charassing\u201d his pet and attached a photo as proof. At the hearing, I enlarged the photo he submitted. It showed the sprinkler entirely inside my property line, plus his dog standing off-leash on my lawn beside an untouched waste bag dispenser. Our rules allow sprinklers, but they fine owners for off-leash dogs and uncollected waste. The board dismissed his complaint and issued him two violations from his own evidence. He now walks on the opposite sidewalk carrying three bags. The sprinkler has not had another customer.",
+  "shots": [
+    {
+      "phrase": "his dog cross onto my lawn",
+      "query": "dog crossing onto manicured front lawn",
+      "image_url": "https://drive.google.com/uc?export=download&id=1-bu_KXRH_UkpayD8Dhx4HaNtwS04VsI2",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1-bu_KXRH_UkpayD8Dhx4HaNtwS04VsI2",
+      "media_sha256": "d1e8833c851b3a3974727860b2555bd8e198e3a326928acd757144899af74c92",
+      "media_bytes": 2582009
+    },
+    {
+      "phrase": "bright orange motion sprinkler",
+      "query": "orange motion sprinkler on green lawn",
+      "image_url": "https://drive.google.com/uc?export=download&id=1UY2iQ6IFKhaAbvsJYQSYA5ROFc74E4Q4",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1UY2iQ6IFKhaAbvsJYQSYA5ROFc74E4Q4",
+      "media_sha256": "0dfcfa75e300d9ac32a147b0c3e251ae79a9dd0e4354b4014229c6415b3fc7f2",
+      "media_bytes": 3122758
+    },
+    {
+      "phrase": "complained to the HOA",
+      "query": "angry neighbor holding complaint envelope",
+      "pin_query": "HOA",
+      "pin_context": "homeowners association meeting documents",
+      "news_query": "HOA",
+      "news_angle": "The HOA hearing dismissed the neighbor's complaint after seeing the photo evidence.",
+      "image_url": "https://drive.google.com/uc?export=download&id=1N8kCTFA4JrJQAkxxMwTRojP7cM2xvSMl",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "live.staticflickr.com",
+        "query": "homeowners association meeting documents",
+        "resolved_by": "entity_media",
+        "source_class": "unverified",
+        "title": "HOA",
+        "url": "https://live.staticflickr.com/5137/5583932913_9f03bdda26.jpg",
+        "verified_at": "2026-10-07T11:38:44Z",
+        "width": 0
+      },
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1N8kCTFA4JrJQAkxxMwTRojP7cM2xvSMl",
+      "media_sha256": "b65864bdb12219401f2fa2829dc5d7b185d0d93406f5934f15fca67407ae951b",
+      "media_bytes": 2297384
+    },
+    {
+      "phrase": "the photo he submitted",
+      "query": "printed photo evidence on meeting table",
+      "image_url": "https://drive.google.com/uc?export=download&id=1fy3ltOTVZ4S5duW1OIvv_YuiQctEABqq",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "1fy3ltOTVZ4S5duW1OIvv_YuiQctEABqq",
+      "media_sha256": "64d03149c2aa548cb4007f0c4c8ba3d20f2bfef5efaf983f4fbe409351dcf288",
+      "media_bytes": 2098606
+    },
+    {
+      "phrase": "his dog standing off-leash",
+      "query": "dog standing off leash on suburban lawn",
+      "image_url": "https://drive.google.com/uc?export=download&id=17JsKO4OEEpNlzRNgB12l1Juk7JrPptbO",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "17JsKO4OEEpNlzRNgB12l1Juk7JrPptbO",
+      "media_sha256": "6cfbf32396735bb68b2d80cd711cc1f9e420c33452cc8d55e9c51dfd8aef3420",
+      "media_bytes": 2569356
+    },
+    {
+      "phrase": "issued him two violations",
+      "query": "two violation notices in homeowner hands",
+      "image_url": "https://drive.google.com/uc?export=download&id=10FIFkFzEHVWBqDr-Od9z9dlP_JN0W48N",
+      "media_origin": "chatgpt_authored",
+      "media_file_id": "10FIFkFzEHVWBqDr-Od9z9dlP_JN0W48N",
+      "media_sha256": "2727eb1b610187fc4b6bc38883635390ef8095bd3e15c50c7366e97fc5b4edea",
+      "media_bytes": 2218103
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "bright orange motion sprinkler",
+      "text": "MOTION ACTIVATED",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "attached a photo as proof",
+      "text": "HIS OWN PROOF",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "his dog standing off-leash",
+      "text": "RIGHT THERE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "issued him two violations",
+      "text": "TWO VIOLATIONS",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "playful",
+  "_authored_by": "chatgpt-takeover"
+}

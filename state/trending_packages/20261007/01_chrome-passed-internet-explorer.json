@@ -1,0 +1,57 @@
+{
+  "format": "graph_race",
+  "slug": "chrome-passed-internet-explorer",
+  "title": "Chrome Passed Internet Explorer In Four Years",
+  "hook": "One browser ate the default.",
+  "y_label": "Global browser usage share (%)",
+  "duration": 13,
+  "source": "StatCounter Global Stats worldwide browser usage-share snapshots, January 2009-2014; values are page-view share percentages.",
+  "years": [
+    2009,
+    2010,
+    2011,
+    2012,
+    2013,
+    2014
+  ],
+  "series": [
+    {
+      "name": "Google Chrome",
+      "color": "#4285F4",
+      "icon": "Chrome",
+      "values": [
+        1.38,
+        6.04,
+        15.68,
+        28.4,
+        38.08,
+        46.6
+      ]
+    },
+    {
+      "name": "Internet Explorer",
+      "color": "#00A4EF",
+      "icon": "Internet Explorer",
+      "values": [
+        65.41,
+        55.25,
+        46,
+        37.45,
+        32.25,
+        24.65
+      ]
+    }
+  ],
+  "hashtags": [
+    "chrome",
+    "internetexplorer",
+    "browserwars",
+    "google",
+    "microsoft",
+    "techhistory",
+    "data",
+    "shorts"
+  ],
+  "music_vibe": "electronic",
+  "_authored_by": "chatgpt-takeover"
+}
