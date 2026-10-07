@@ -11585,13 +11585,40 @@
       "ts": "2026-10-07T12:27:33.347913+00:00"
     },
     "clip-20261007-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jinnytty/clip/GloriousTsundereMouseWoofer-HXsr6qjLSSrYyThv",
-      "story_key": null,
-      "streamer": "jinnytty",
+      "url": "https://youtube.com/shorts/n3qinj4idcI",
       "title": "Jinnytty Can't Stop Watching Kicky And Says She's So Cute",
       "kind": "twitch_clip",
-      "ts": "2026-10-07T12:30:59.998401+00:00",
+      "ts": "2026-10-07T12:31:11.902676+00:00",
+      "uploaded_at": "2026-10-07T12:31:11.902697+00:00",
+      "publish_at": "2026-10-08T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261007-jinnytty-can-t-stop-watching-kicky-and-says-she--6afe9212"
+      },
+      "source_url": "https://www.twitch.tv/jinnytty/clip/GloriousTsundereMouseWoofer-HXsr6qjLSSrYyThv",
+      "streamer": "jinnytty",
+      "series": "wholesome",
+      "hook": "YOU COULD WATCH KICKY FOR HOURS",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2640,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 26.2
+      },
+      "director_cut": true
+    },
+    "clip-20261007-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lospollostv/clip/TawdryThoughtfulPheasantChefFrank-hN1PII8gWfkReFVf",
+      "story_key": null,
+      "streamer": "lospollostv",
+      "title": "Lospollostv Can't Believe Jixi Is Messing With Them In The Lobby",
+      "kind": "twitch_clip",
+      "ts": "2026-10-07T12:59:18.098509+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
