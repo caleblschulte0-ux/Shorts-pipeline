@@ -77,7 +77,10 @@ KIT_NAMES = ("vgrad", "glow", "text", "fit_readout", "by_time", "tree", "stump",
              # THE SHOT (2026-10-07, "ok now we are talking"): a low sun,
              # far-to-near depth, a three-quarter hero, things by the camera
              "landscape", "foreground", "building", "cast_shadow", "ridge",
-             "treeline", "hen", "SUN", "SETTINGS")
+             "treeline", "hen", "SUN", "SETTINGS",
+             # THE SCALE IN THE SHOT (2026-10-07, "boxes on top of the video
+             # doesn't help ... glance at it and gauge the scale")
+             "then_mark", "ghost", "times_ticks")
 SAFE_BUILTINS = {n: __builtins__[n] if isinstance(__builtins__, dict)
                  else getattr(__builtins__, n)
                  for n in ("range", "len", "min", "max", "abs", "int", "float",
@@ -573,9 +576,21 @@ def motion_profile(fn, pts, fps: int = 24, secs: float = 6.8) -> dict:
         return out + ([r] if r else [])
     still = [d < sr.BLOCK_MOTION_THRESH for d in diffs]
     pairs = max(1, len(diffs))
+    # WHERE it is still, in the scene's own u. "still 52%" alone left the
+    # brain guessing, and two of three drafts on 2026-10-07 came back still
+    # again (47-52%) on attempt 2 and 3.
+    spans, start = [], None
+    for i, f_ in enumerate(still + [False]):
+        if f_ and start is None:
+            start = i
+        elif not f_ and start is not None:
+            spans.append((start / pairs, i / pairs))
+            start = None
+    spans.sort(key=lambda s: s[0] - s[1])
     return {"judder": sr.judder_pairs(diffs) / pairs,
             "max_hold_s": max(_runs(still), default=0) / float(fps),
-            "still": sum(still) / pairs}
+            "still": sum(still) / pairs,
+            "still_spans": [s for s in spans if s[1] - s[0] >= 0.03][:4]}
 
 
 def motion_problems(fn, pts, secs: float = 10.0) -> list[str]:
@@ -588,8 +603,20 @@ def motion_problems(fn, pts, secs: float = 10.0) -> list[str]:
         out.append(f"it freezes for {m['max_hold_s']:.1f}s (allowed {MAX_HOLD_S}s) — "
                    f"a hold is fine, a frozen stretch is not")
     if m["still"] > MAX_STILL:
+        where = ", ".join(f"u {a:.2f}-{b:.2f}" for a, b in sorted(m["still_spans"]))
+        if sum(b - a for a, b in m["still_spans"]) < m["still"] * 0.6:
+            # most of the stillness is in short gaps all through the beat:
+            # the motion is there but too slow to register
+            where = (where + "; and in short gaps all through it — what moves "
+                     "moves too slowly or too small to register (a 90x160px "
+                     "cell has to change by 6+ grey levels a frame), so move "
+                     "bigger things further, less often").lstrip("; ")
         out.append(f"it is still {m['still']:.0%} of the time (allowed "
-                   f"{MAX_STILL:.0%}) — the story has to keep arriving")
+                   f"{MAX_STILL:.0%}) — the story has to keep arriving"
+                   + (f"; too little moves at {where}: give each of those "
+                      f"stretches a move of the subject itself (the next "
+                      f"step starting, the thing settling, Data's next act)"
+                      if where else ""))
     return out
 
 
@@ -924,7 +951,13 @@ frame, height 180-240.
 moves: the subject changes, arrives, falls, fills — then HOLDS a beat so it \
 can be read — then the next thing happens. Holds of up to ~1.5s are good; \
 nothing may freeze longer than that, and the scene must not be mostly \
-still. Keep speeds calm enough to follow (things crossing the frame take \
+still: BUDGET IT so something of the subject is moving at least 60% of \
+the beat — each change takes longer than the hold after it, and the first \
+change starts within the first second. HOW IT IS MEASURED: the frame is \
+cut into a 12x12 grid (cells ~90x160px) and a frame counts as moving only \
+when some cell's average grey level changes by 6+ from the frame before — \
+so a big, contrasty thing travelling several px a frame counts, and a \
+small, pale or slow one does not. Keep speeds calm enough to follow (things crossing the frame take \
 a second or more; nothing flickers back and forth). NEVER draw a particle \
 overlay — no snow, dust, motes, sparkles, bokeh or rain drifting across the \
 frame: it reads as a glitch on every second of the video. Data stands where \
@@ -986,6 +1019,14 @@ the frame three depths: the far setting under haze, the hero in the \
 middle, and something of the subject RIGHT BY THE CAMERA in the bottom \
 third (hens in the yard, a sack in the foreground, a rock), then \
 foreground(cr, kind) before vignette(). THE SHOT below is the bar.
+14. THE SCALE IS IN THE PICTURE, read at a glance. Never a chart, key or \
+legend laid over the scene — "freaking boxes on top of the video doesn't \
+help ... it just needs to be able to more easily glance at it and gauge \
+the scale". Show the comparison ON the subject: the earlier size as a \
+ghost() outline where it stood, a then_mark() where the old level reached \
+with its year on it, times_ticks() up the side when it is a multiple, or \
+something everyone knows the size of next to it (Data, a person, a car). \
+With the sound off, one look must say "about three times as much".
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \

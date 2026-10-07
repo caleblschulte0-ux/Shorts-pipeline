@@ -294,7 +294,14 @@ constants blanked), never on the prose that explains it.
   in the kit — `landscape`, `building`, `cast_shadow`, `foreground`, `hen`
   in `subject_scenes.py` — prompt rule 13 asks for it, and
   `bird_flu_barn` is THE SHOT the brain is shown as the bar.
-  `tests/test_it_is_a_shot_not_a_diagram.py`.
+  `tests/test_it_is_a_shot_not_a_diagram.py`. It is CRISP, not felt (same
+  day: *"I want it to be crisp and clean"*): `illustrated.GRAIN` is off and
+  the edge is a clean dark line. And the SCALE is IN the shot (*"there is
+  no scale or context"*, then, of a bar strip over the frame, *"boxes on
+  top of the video doesn't help ... glance at it and gauge the scale"*):
+  `then_mark`, `ghost`, `times_ticks` draw the earlier size ON the
+  subject, prompt rule 14 asks for it, no overlay is laid over a scene.
+  `tests/test_the_scale_is_on_screen.py`.
 
 - **A brain-drawn subject scene has to pass a VIEWER, not just the code**
   (operator, 2026-10-01: a coffin he "couldn't tell was a coffin", an urn

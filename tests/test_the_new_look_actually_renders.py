@@ -207,14 +207,15 @@ class AGradientTakesPlainColours(unittest.TestCase):
 
 
 class TheLookIsCleanNotOutlined(unittest.TestCase):
-    """Operator 2026-10-07 on the new look: "it just needs to look cleaner".
-    A 4px ink outline at 90% on every shape read as clip art at phone size;
-    the edge is now a soft line and one key-light pass finishes every frame."""
+    """Operator 2026-10-07 on the new look: "it just needs to look cleaner",
+    then, of the soft-edged grain look, "crisp and clean". The edge is ONE
+    set of constants, never a width hardcoded per shape, and one light pass
+    finishes every frame (tests/test_the_scale_is_on_screen.py holds the
+    grain off)."""
 
-    def test_the_edge_is_a_soft_line(self):
+    def test_the_edge_is_one_set_of_constants(self):
         from data_learning import illustrated as I
-        self.assertLessEqual(I.EDGE_W, 2.5)
-        self.assertLessEqual(I.EDGE_A, 0.75)
+        self.assertLessEqual(I.EDGE_W, 3.5)
         src = inspect.getsource(I.solid) + inspect.getsource(I.disc) \
             + inspect.getsource(I.cylinder)
         self.assertNotIn("set_line_width(4.0)", src)
@@ -224,6 +225,36 @@ class TheLookIsCleanNotOutlined(unittest.TestCase):
         src = inspect.getsource(SS._render_frames)
         self.assertIn("I.finish(cr, I.FINISH)", src)
         self.assertNotIn("environ", src)
+
+
+@unittest.skipUnless(HAVE_CAIRO, "pycairo not installed")
+class AStillSceneIsToldWhere(unittest.TestCase):
+    """2026-10-07: two of three drafts were refused "still 47-52%" and came
+    back still again — the refusal said how much, never where."""
+    MOVES_THEN_STOPS = '''
+def scene(cr, t, u, pts, host):
+    vgrad(cr, [(0, (20, 30, 60)), (1, (10, 10, 30))], 0, H)
+    x = 100 + 800 * min(u, 0.3) / 0.3
+    cr.rectangle(x, 800, 200, 200)
+    solid(cr, (200, 60, 40))
+    host("point", 300, 1450, 220)
+'''
+
+    def test_the_refusal_names_the_still_stretch_in_u(self):
+        from data_learning import scene_author as SA
+        fn = SA.compile_scene(self.MOVES_THEN_STOPS)
+        m = SA.motion_profile(fn, [], secs=10.0)
+        self.assertGreater(m["still"], SA.MAX_STILL)
+        a, b = max(m["still_spans"], key=lambda s: s[1] - s[0])
+        self.assertLess(abs(a - 0.3), 0.08)
+        self.assertGreater(b, 0.95)
+        probs = SA.motion_problems(fn, [])
+        msg = next(p for p in probs if p.startswith("it is still"))
+        self.assertIn("too little moves at u 0.", msg)
+
+    def test_the_prompt_budgets_the_motion(self):
+        from data_learning import scene_author as SA
+        self.assertIn("at least 60% of", SA.build_prompt("t", "x", "y", [["a", 1.0]], ""))
 
 
 if __name__ == "__main__":
