@@ -15,7 +15,7 @@
     {
       "format": "graph_race",
       "slug": "teams-passed-slack",
-      "title": "Teams Passed Slack—Then Pulled Away",
+      "title": "Teams Passed Slack",
       "hook": "Slack welcomed Teams. Briefly.",
       "y_label": "Active users (millions)",
       "duration": 13,
