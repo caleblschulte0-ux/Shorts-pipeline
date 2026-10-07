@@ -1,27 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-10-07T10:49:36Z",
- "open": [
-  {
-   "id": "online_shopping_passed_department_stores__16de371bf6",
-   "channel": "trending",
-   "slug": "online_shopping_passed_department_stores",
-   "title": "Online Shopping Passed Department Stores",
-   "filed": "2026-09-27T12:01:38Z",
-   "request": "exchange/reviews/20260927/online_shopping_passed_department_stores__16de371bf6.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260927/online_shopping_passed_department_stores__16de371bf6/sheet.jpg",
-   "answer_path": "exchange/reviews/20260927/online_shopping_passed_department_stores__16de371bf6.verdict.json"
-  },
-  {
-   "id": "he_said_the_chair_vanished__then_he_list__e7216d9e3a",
-   "channel": "trending",
-   "slug": "he_said_the_chair_vanished__then_he_list",
-   "title": "He Said The Chair Vanished. Then He Listed It.",
-   "filed": "2026-09-26T18:37:15Z",
-   "request": "exchange/reviews/20260926/he_said_the_chair_vanished__then_he_list__e7216d9e3a.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20260926/he_said_the_chair_vanished__then_he_list__e7216d9e3a/sheet.jpg",
-   "answer_path": "exchange/reviews/20260926/he_said_the_chair_vanished__then_he_list__e7216d9e3a.verdict.json"
-  }
- ],
+ "updated": "2026-10-07T11:48:54Z",
+ "open": [],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
 }

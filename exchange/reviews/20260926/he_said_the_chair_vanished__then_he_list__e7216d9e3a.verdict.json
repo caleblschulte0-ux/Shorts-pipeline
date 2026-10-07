@@ -1,0 +1,88 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "he_said_the_chair_vanished__then_he_list__e7216d9e3a",
+ "video_sha256": "e7216d9e3abbc6f604eed67a0983865d8342b4c2026f89ace9bb0d04353d370a",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T11:48:54Z",
+ "grades": {
+  "dimensions": {
+   "hook": 2,
+   "data_demo": 2,
+   "mascot": 4,
+   "craft": 2,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "The illustrations match the story: a chargeback form on a laptop (mid1), printed evidence photos (mid2), and the seller celebrating in a furniture showroom (mid4). They are generic but on-topic."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "No mascot appears in any frame from hook@0.3 to payoff@-0.4. Channel separation is correct."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "No number card appears. The only numbers are the 45.2k/6.1k counts on the post card (hook@0.3)."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "The gameplay keeps moving in every frame (measured longest_static_s 0.0). But the top illustration stays the same from mid2 to mid3 (~10s) and from mid4 to payoff@-0.4 (~12s)."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "Both halves fill the frame in every sample. No large dark areas (dark_fraction 0.0)."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "The post card title (hook@0.3) and the captions (mid1 'NEVER RECEIVED IT.', mid4 'NORMAL RETURN UNDER') are large, high-contrast and clear of other marks."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg3",
+   "index": 3,
+   "failure_class": "missing_key_beat_visual",
+   "visible_evidence": "No frame shows the chair or the public marketplace listing, which is the story's twist and its title. The evidence-desk image (mid2, mid3) has a truck photo and store CCTV stills while the caption says 'SAME GARAGE SHOWN'. The seller-celebration image then stays up from mid4 through payoff@-0.4 for ~12s.",
+   "root_cause": "Illustrations were picked at a generic level ('person at desk with evidence', 'person happy at computer') instead of from the beat's own content. As a result, the reveal moment, the listing, never gets its own picture. Each image is held across several beats.",
+   "repair_goal": "Give seg3 its own illustration of a phone or browser marketplace listing showing the same $1,200 leather chair in a garage. Make the seg4 evidence image show that listing screenshot beside loading-dock footage. Change the top image at least every ~6s so no single still carries the last 12s."
+  },
+  "depictions": [
+   {
+    "id": "seg2",
+    "kind": "bespoke",
+    "bespoke": 2,
+    "proves_claim": 1,
+    "note": "A chargeback form on a laptop fits the action. The person shown is a woman while the story's buyer is 'he', and nothing shows the 'never received' lie."
+   },
+   {
+    "id": "seg4",
+    "kind": "bespoke",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "A generic evidence desk. A truck photo and CCTV stills stand in for 'vehicle plate'. The caption says 'same garage shown' but no garage or listing is visible."
+   },
+   {
+    "id": "seg5",
+    "kind": "bespoke",
+    "bespoke": 1,
+    "proves_claim": 2,
+    "note": "The seller fist-pumps at a green checkmark, which reads as winning. It is a generic stock-style image and stays up for the last ~12s."
+   }
+  ],
+  "one_line": "The premise and the post-card hook are strong, but the twist (the chair in his own marketplace listing) is never shown. Generic illustrations are held 10-12s each, so the reveal doesn't land.",
+  "problems": [
+   "The chair and the marketplace listing, the story's title and twist, never appear in any sampled frame.",
+   "The evidence-desk image (mid2-mid3) shows a truck and store CCTV while the caption says 'SAME GARAGE SHOWN'. Picture and narration don't match.",
+   "The same celebration image is held from mid4 (43s) to the end (55s). The top half is visually stale for the payoff.",
+   "mid1 shows a woman filing the chargeback in a story about a man.",
+   "The ending caption 'A REMARKABLY CROWDED' trails off. The payoff line is not visually landed."
+  ],
+  "fixes": [
+   "Add a dedicated illustration for seg3: a marketplace listing screenshot showing the same leather chair, timed to the reveal line.",
+   "Rebuild the seg4 evidence image around the listing screenshot, the loading-dock video still and the plate, so it matches the caption.",
+   "Change the top illustration at least every ~6s. Split the final 12s into 'bank denies chargeback' (a denial notice) and the closing beat.",
+   "Match the buyer's gender in the illustrations to the story ('he')."
+  ]
+ }
+}
