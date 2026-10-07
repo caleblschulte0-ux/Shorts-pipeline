@@ -1,55 +1,15 @@
 {
   "date": "20261007",
   "channel": "trending",
-  "offered": 6,
-  "promoted": [
-    "state/trending_packages/20261007/05_pickup-line-rule-backfired.json"
-  ],
+  "offered": 1,
+  "promoted": [],
   "rejected": [
     {
       "origin": "response.json",
-      "slug": "chrome-passed-internet-explorer",
-      "title": "Chrome Passed Internet Explorer In Four Years",
-      "problems": [
-        "title repeats a recently posted video: 'Chrome Passed Internet Explorer In Four Years'",
-        "same story as a video already posted (brain): 'Smartphones Passed PCs In Two Years' \u2014 a new title over the same comparison is a repeat",
-        "slug already in today's slate: chrome-passed-internet-explorer"
-      ]
-    },
-    {
-      "origin": "response.json",
-      "slug": "doordash-passed-grubhub",
-      "title": "DoorDash Passed Grubhub In One Year",
-      "problems": [
-        "title repeats a recently posted video: 'DoorDash Passed Grubhub In One Year'",
-        "slug already in today's slate: doordash-passed-grubhub"
-      ]
-    },
-    {
-      "origin": "response.json",
       "slug": "teams-passed-slack",
-      "title": "Teams Passed Slack. Then Grew 16x.",
+      "title": "Teams Passed Slack\u2014Then Pulled Away",
       "problems": [
-        "same story as a video already posted (subject:16x+report): 'The CDC Says Lyme Disease Is 16x More Common Than Reported' \u2014 a new title over the same comparison is a repeat"
-      ]
-    },
-    {
-      "origin": "response.json",
-      "slug": "cash-app-chased-venmo",
-      "title": "Cash App Grew 7x. Venmo Stayed Ahead.",
-      "problems": [
-        "title repeats a recently posted video: 'Cash App Grew 7x. Venmo Stayed Ahead.'",
-        "slug already in today's slate: cash-app-chased-venmo"
-      ]
-    },
-    {
-      "origin": "response.json",
-      "slug": "his-dog-reported-itself",
-      "title": "He Reported My Sprinkler. His Photo Reported His Dog.",
-      "problems": [
-        "title repeats a recently posted video: 'He Reported My Sprinkler. His Photo Reported His Dog.'",
-        "same story as a video already posted (brain): 'She Returned A Vacuum. The Serial Number Returned Her.' \u2014 a new title over the same comparison is a repeat",
-        "slug already in today's slate: his-dog-reported-itself"
+        "same story as a video already posted (subject:away+pull): 'China Pulled Away In Electric Car Sales' \u2014 a new title over the same comparison is a repeat"
       ]
     }
   ],

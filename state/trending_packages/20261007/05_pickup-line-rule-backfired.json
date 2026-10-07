@@ -23,18 +23,16 @@
       "news_angle": "A parent aggressively cuts the line, stops at the front cone, and holds up an expired placard.",
       "image_url": "https://drive.google.com/uc?export=download&id=10CD-py_rEWFvu4CoSoToogDuAUoCBapx",
       "media_evidence": {
-        "content_type": "image/jpeg",
+        "url": "https://drive.google.com/uc?export=download&id=10CD-py_rEWFvu4CoSoToogDuAUoCBapx",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
         "height": 0,
-        "provider": "wikimedia",
-        "query": "driver car horn confrontation",
-        "resolved_by": "entity_media",
-        "source_class": "open_or_licensed",
-        "title": "parent",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Parents_and_their_baby.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
-        "verified_at": "2026-10-07T11:41:53Z",
-        "width": 0
+        "content_type": "image/png",
+        "verified_at": "2026-10-07T11:45:14Z",
+        "resolved_by": "verify_shot_urls"
       },
-      "media_origin": "chatgpt_authored",
+      "media_origin": "chatgpt_authored_recovered",
       "media_file_id": "10CD-py_rEWFvu4CoSoToogDuAUoCBapx",
       "media_sha256": "29c16bc07daeca048f28bf9c24d23c03d2dbf570e14e0dcbc08b3cd6739ab10e",
       "media_bytes": 2211307
@@ -47,19 +45,39 @@
       "news_query": "expired pickup placard",
       "news_angle": "The parent shows an expired placard, triggering the school\u2019s procedure for ID verification.",
       "image_url": "https://drive.google.com/uc?export=download&id=1rMsF1J1OrBesCM-uemb1ICCMMR728QKP",
-      "media_origin": "chatgpt_authored",
+      "media_origin": "chatgpt_authored_recovered",
       "media_file_id": "1rMsF1J1OrBesCM-uemb1ICCMMR728QKP",
       "media_sha256": "ca72e494a9f28ee6ed90884591cbfdf82db17b98ebdf2bb858972c3e4eae181f",
-      "media_bytes": 1916069
+      "media_bytes": 1916069,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1rMsF1J1OrBesCM-uemb1ICCMMR728QKP",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-07T11:45:15Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "demanded I enforce the rules exactly",
       "query": "angry driver arguing at school traffic cone",
       "image_url": "https://drive.google.com/uc?export=download&id=1P6Dys_SkOMGqJIPOgKPonxpJb5Nv9bMf",
-      "media_origin": "chatgpt_authored",
+      "media_origin": "chatgpt_authored_recovered",
       "media_file_id": "1P6Dys_SkOMGqJIPOgKPonxpJb5Nv9bMf",
       "media_sha256": "6299858aa2691158623a252162e9ef964945af39272688ab108a80604c2f203c",
-      "media_bytes": 2202911
+      "media_bytes": 2202911,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1P6Dys_SkOMGqJIPOgKPonxpJb5Nv9bMf",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-07T11:45:16Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "radioed the front office",
@@ -70,18 +88,16 @@
       "news_angle": "The narrator radios the front office to confirm the ID check required for the expired placard.",
       "image_url": "https://drive.google.com/uc?export=download&id=1dkfELx1WBODbupx5SYeMLFSeDQ2HVUwJ",
       "media_evidence": {
-        "content_type": "image/jpeg",
+        "url": "https://drive.google.com/uc?export=download&id=1dkfELx1WBODbupx5SYeMLFSeDQ2HVUwJ",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
         "height": 0,
-        "provider": "wikimedia",
-        "query": "school administration office ID check",
-        "resolved_by": "entity_media",
-        "source_class": "open_or_licensed",
-        "title": "front office",
-        "url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Kes%C3%A4inen_Rastilan_leirint%C3%A4alue_-_G51730_%28hkm.HKMS000005-km0000owqh%29.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
-        "verified_at": "2026-10-07T11:42:21Z",
-        "width": 0
+        "content_type": "image/png",
+        "verified_at": "2026-10-07T11:45:18Z",
+        "resolved_by": "verify_shot_urls"
       },
-      "media_origin": "chatgpt_authored",
+      "media_origin": "chatgpt_authored_recovered",
       "media_file_id": "1dkfELx1WBODbupx5SYeMLFSeDQ2HVUwJ",
       "media_sha256": "7750742e38360980251889c8afd04c5ac5de6579aaaa7e1b037733d2719cbe69",
       "media_bytes": 2253699
@@ -95,18 +111,16 @@
       "news_angle": "The parent is redirected to the visitor lane after the school staff logs her plate.",
       "image_url": "https://drive.google.com/uc?export=download&id=1R-vdTgB7fDU0duUuuK0q78JVmDZi5S2O",
       "media_evidence": {
-        "content_type": "image/jpeg",
-        "height": 0,
-        "provider": "live.staticflickr.com",
-        "query": "school parking visitor lane signage",
-        "resolved_by": "entity_media",
+        "url": "https://drive.google.com/uc?export=download&id=1R-vdTgB7fDU0duUuuK0q78JVmDZi5S2O",
         "source_class": "unverified",
-        "title": "visitor lane",
-        "url": "https://live.staticflickr.com/3943/15600527675_72a2a540c3_b.jpg",
-        "verified_at": "2026-10-07T11:42:34Z",
-        "width": 0
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-07T11:45:19Z",
+        "resolved_by": "verify_shot_urls"
       },
-      "media_origin": "chatgpt_authored",
+      "media_origin": "chatgpt_authored_recovered",
       "media_file_id": "1R-vdTgB7fDU0duUuuK0q78JVmDZi5S2O",
       "media_sha256": "8c40e30bec47c647245c82464fdee0a472f9cad2e82929cb9f2d41239a9bc276",
       "media_bytes": 2277108
@@ -120,18 +134,16 @@
       "news_angle": "The principal gives the parent a new placard and a copy of the procedure after the confrontation.",
       "image_url": "https://drive.google.com/uc?export=download&id=1b4Fp9xJ1hrmPp0aMnf_iqKr38WEsmGjZ",
       "media_evidence": {
-        "content_type": "image/jpeg",
-        "height": 0,
-        "provider": "live.staticflickr.com",
-        "query": "school principal handing placard",
-        "resolved_by": "entity_media",
+        "url": "https://drive.google.com/uc?export=download&id=1b4Fp9xJ1hrmPp0aMnf_iqKr38WEsmGjZ",
         "source_class": "unverified",
-        "title": "principal",
-        "url": "https://live.staticflickr.com/3152/3016899799_ac4801b6fa_b.jpg",
-        "verified_at": "2026-10-07T11:42:47Z",
-        "width": 0
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-07T11:45:21Z",
+        "resolved_by": "verify_shot_urls"
       },
-      "media_origin": "chatgpt_authored",
+      "media_origin": "chatgpt_authored_recovered",
       "media_file_id": "1b4Fp9xJ1hrmPp0aMnf_iqKr38WEsmGjZ",
       "media_sha256": "31f470815e5b6f0df09b1cd2fa7031960690b039a0fdae49a997de8ecfd6c05a",
       "media_bytes": 2029638

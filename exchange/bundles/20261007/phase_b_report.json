@@ -5,11 +5,11 @@
   "had_response": true,
   "envelope_problems": [],
   "authored": {
-    "promoted": 1,
-    "rejected": 5,
+    "promoted": 0,
+    "rejected": 1,
     "other_channels": {
       "explainer": {
-        "applied": 3,
+        "applied": 0,
         "rejected": 0
       },
       "curiosity": {
@@ -27,8 +27,8 @@
   "checkpoints": {
     "bundle_identity": "5842fff9571549d0ff5bb5e5fb169212d899a423ff5c7714495ba9692762817d",
     "required": true,
-    "checked": 12,
-    "ok": 12,
+    "checked": 0,
+    "ok": 0,
     "rejected": 0,
     "warnings": 0,
     "rejected_detail": [],
