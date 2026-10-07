@@ -1,0 +1,106 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "peanut-allergy-guideline-flip__700b84db6f",
+ "video_sha256": "700b84db6fe075d32345311e5615d31ea625aeea4843b913558f7e6ae65526c1",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T08:49:10Z",
+ "grades": {
+  "dimensions": {
+   "hook": 1,
+   "data_demo": 1,
+   "mascot": 1,
+   "craft": 1,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "No stock or AI photos; the only images are flat emoji kid faces on the bars (hook@0.3) and drawn peanuts (payoff@-1.8), both on-topic."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "seg2:start through seg2:end show Data cheering or clutching his head beside the 1.9% and 13.7% text, causing nothing. seg1:mid shows him with arms up while walking the timeline. seg4:start has him clinging to a pole at the frame edge, not loading the scale."
+   },
+   "bare_number_card": {
+    "present": true,
+    "evidence": "In seg2:mid the trial result is just two big percentages (1.9% vs 13.7%) on rules with labels. Nothing shows the 7x gap."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Measured longest static is 0.0s. But seg0 and seg1 both replay the same 0.4% to 0.8% to 1.4% rise (bars, then a timeline), so a whole beat is spent repeating itself."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "In seg1:start the bottom ~40% of the frame and the area above the baseline are empty dark ground. In seg4 the space under the scale is empty. Wasteful, but not a single tiny element on black."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "seg3:start header is cut off: 'BEFORE EARLY-INTRODUCTION GUIDELINES VS AFT\u2026'. In seg4:start and payoff@-0.4 Data's body sits on the '0.8%' label at the left edge and he is cut off by the frame. In seg2:start the faded caption 'to 13.7% allergy' and the grey '1.9%' are low-contrast."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg2",
+   "index": 2,
+   "failure_class": "bare_number_card",
+   "visible_evidence": "seg2:start/mid/end: two rows of text (1.9% grey, 13.7% pink) with a mascot cheering next to each. Nothing grows, fills or compares in size. The only change is the mascot sliding right.",
+   "root_cause": "The study's core result (avoidance gives 7x the allergy rate) was rendered as a labelled number list instead of a picture where 13.7 is visibly about 7x 1.9. Data has no act tied to the number.",
+   "repair_goal": "Make the 7x gap physical and peanut-made. Two groups of 100 infants (or two jars) fill with allergy markers to 1.9 and 13.7. Data feeds peanuts to the early group, which keeps its markers low, while the avoid group's pile climbs to 13.7. The viewer should see the size difference without reading the labels."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "Three-bar column chart with emoji faces and Data on a ladder beside the tallest bar. A plain chart."
+   },
+   {
+    "id": "seg1",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "Timeline with bars rising at 1997/2002/2008. It repeats seg0's numbers with Data walking the axis."
+   },
+   {
+    "id": "seg2",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "Two labelled percentages with no picture. The 13.7 vs 1.9 gap is asserted only by the text."
+   },
+   {
+    "id": "seg3",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "Two pill bars (0.8% vs 0.5%) with Data riding the left bar up. Shows 0.8/0.5, while the narration says 0.79/0.45."
+   },
+   {
+    "id": "seg4",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "Stock seesaw with peanut icons dropped onto both pans. More peanuts pile on the 'before' side, which contradicts 'the cure is eating peanuts'."
+   }
+  ],
+  "one_line": "The hook says allergies 'vanished 43%' over a chart going up. Then three charts and a number card restate the stats instead of showing them, and Data mostly poses beside the numbers.",
+  "problems": [
+   "Hook contradicts its picture: the caption 'vanished 43%' plays over a bar chart rising 0.4 to 1.4% (hook@0.8 to seg0:end).",
+   "seg0 and seg1 show the same rise twice in two chart forms, wasting about 10s.",
+   "seg2 is a bare number card: 1.9% vs 13.7% as text, with Data cheering beside it.",
+   "seg3 shows 0.8% vs 0.5% while the narration says 0.79% and 0.45%. The 43% drop is never drawn.",
+   "seg4 piles MORE peanuts on the 'before' (avoidance) side, so the metaphor argues against the closing line.",
+   "seg4: Data is cut off at the left edge and covers the '0.8%' label. The seg3 header is truncated 'VS AFT\u2026'.",
+   "Data is mostly decorative (ladder pointing, arms-up, head-clutching) and never causes the motion."
+  ],
+  "fixes": [
+   "Open on the payoff tension: an allergy count visibly shrinking by 43% (e.g. 79 kids in 10,000 becoming 45) with Data feeding peanuts to make it shrink, so the hook matches the picture.",
+   "Merge seg0/seg1 into one beat for the 1997 to 2008 rise and drop the duplicate chart.",
+   "Rebuild seg2 as two infant groups or jars where 13.7 visibly dwarfs 1.9, with Data feeding peanuts to the early group.",
+   "In seg3, draw the 43% drop itself (a stack losing 43% of its markers) and use the narration's exact values.",
+   "In seg4, put the peanuts on the side that LOWERS allergy, or swap the scale for a picture made of peanuts. Keep Data and the labels fully in frame and not overlapping.",
+   "Shorten the seg3 header so it isn't cut off. Bring faded captions and the grey 1.9% up to full contrast."
+  ]
+ }
+}
