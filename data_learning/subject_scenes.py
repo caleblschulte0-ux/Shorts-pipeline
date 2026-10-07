@@ -1293,6 +1293,7 @@ def _render_frames(scene, insight, out_dir, name, frames, pts, surf):
                        insight, x, fy, h, _f / 30.0, pace)
         with I.text_layer(cr):          # labels are painted last, on top
             scene(cr, f / 30.0, f / max(1, frames - 1), pts, host)
+            I.finish(cr, I.FINISH)      # one key light over the whole frame
         caption_scrim(cr)
         surf.flush()
         surf.write_to_png(str(out_dir / f"{name}_build{f + 1:02d}.png"))

@@ -227,8 +227,14 @@ def flow(cr, pts, t, rgb, spacing=36.0, speed=560.0, r=9.0, a=0.9):
 KEY = (-0.55, -0.83)                 # where the light comes from (unit-ish)
 KEY_LIT = 1.0                        # the lit face is the colour itself
 KEY_SHADE = look.ILLU_SHADE          # the shadow face = colour * this
-KEY_RIM = look.ILLU_RIM              # rim = colour mixed this far to white
-EDGE_K = 0.42                        # the ink edge = colour * this
+# The edge is a soft ink line, not a cartoon outline, and the rim carries the
+# silhouette instead (operator 2026-10-07: "it just needs to look cleaner").
+# A 4px line at 90% read as clip art at phone size.
+KEY_RIM = 0.50                       # rim = colour mixed this far to white
+EDGE_K = 0.60                        # the ink edge = colour * this
+EDGE_W = 2.0                         # ...this wide
+EDGE_A = 0.7                         # ...at this opacity
+FINISH = 0.55                        # strength of finish(), every frame
 FINISHES = ("matte", "gloss", "metal", "glass", "ice")
 
 
@@ -329,8 +335,8 @@ def solid(cr, rgb, finish="matte", a=1.0, edge=True, rim=True, depth=1.0):
         cr.stroke_preserve()
         cr.restore()
     if edge:
-        cr.set_line_width(4.0)
-        cr.set_source_rgba(*_c(_scale(rgb, EDGE_K), 0.9 * a))
+        cr.set_line_width(EDGE_W)
+        cr.set_source_rgba(*_c(_scale(rgb, EDGE_K), EDGE_A * a))
         cr.set_line_join(cairo.LINE_JOIN_ROUND)
         cr.stroke_preserve()
     cr.restore()
@@ -386,8 +392,8 @@ def cylinder(cr, x, y, w, h, rgb, finish="matte", a=1.0):
             cr.fill()
         else:
             solid(cr, _mix(lit, (255, 255, 255), 0.12), finish=finish, a=a, depth=0.6)
-    cr.set_line_width(4.0)
-    cr.set_source_rgba(*_c(_scale(rgb, EDGE_K), 0.9 * a))
+    cr.set_line_width(EDGE_W)
+    cr.set_source_rgba(*_c(_scale(rgb, EDGE_K), EDGE_A * a))
     cr.move_to(x, y - h)
     cr.line_to(x, y)
     cr.move_to(x + w, y - h)
@@ -416,8 +422,8 @@ def disc(cr, x, y, r, rgb, finish="matte", a=1.0):
         glow(cr, x + KEY[0] * r * 0.5, y + KEY[1] * r * 0.5, r * 0.45, (255, 255, 255),
              0.55 * a)
         cr.restore()
-    cr.set_line_width(4.0)
-    cr.set_source_rgba(*_c(_scale(rgb, EDGE_K), 0.9 * a))
+    cr.set_line_width(EDGE_W)
+    cr.set_source_rgba(*_c(_scale(rgb, EDGE_K), EDGE_A * a))
     cr.stroke()
     cr.restore()
 
@@ -462,8 +468,33 @@ def vignette(cr, a=0.30):
     cr.fill()
 
 
-def edge(cr, rgb, width=4.0, a=0.9):
+def finish(cr, strength=1.0):
+    """The frame's last light pass, under the text: the key light falling
+    across the whole picture from the upper-left (soft light, so lit areas
+    glow and shadows keep their colour) and a gentle lift that takes the
+    harshness off the darkest ink."""
+    if strength <= 0:
+        return
+    cr.save()
+    cr.set_operator(cairo.OPERATOR_SOFT_LIGHT)
+    g = cairo.RadialGradient(W * 0.18, H * 0.12, 0, W * 0.18, H * 0.12, H * 0.95)
+    g.add_color_stop_rgba(0.0, 1.0, 0.97, 0.90, 0.55 * strength)
+    g.add_color_stop_rgba(0.55, 1.0, 0.97, 0.90, 0.12 * strength)
+    g.add_color_stop_rgba(1.0, 0.10, 0.12, 0.22, 0.30 * strength)
+    cr.set_source(g)
+    cr.rectangle(0, 0, W, H)
+    cr.fill()
+    cr.set_operator(cairo.OPERATOR_SCREEN)
+    cr.set_source_rgba(0.16, 0.17, 0.22, 0.10 * strength)
+    cr.rectangle(0, 0, W, H)
+    cr.fill()
+    cr.restore()
+
+
+def edge(cr, rgb, width=None, a=None):
     """Ink the current path's outline (keeps nothing)."""
+    width = EDGE_W if width is None else width
+    a = EDGE_A if a is None else a
     cr.set_line_width(width)
     cr.set_source_rgba(*_c(_scale(rgb, EDGE_K), a))
     cr.set_line_join(cairo.LINE_JOIN_ROUND)
