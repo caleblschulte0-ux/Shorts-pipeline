@@ -25,6 +25,12 @@
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
+        "code": "channel_auto_paused",
+        "severity": "critical",
+        "detail": "trending is AUTO-PAUSED: state/failure_count.txt is 2 (threshold 2). daily.yml skips the orchestrator and the job still reports success, so nothing else will look wrong.",
+        "fix": "It CANNOT clear itself \u2014 the reset step is skipped while paused. Fix whatever failed, then: `echo 0 > state/failure_count.txt && git commit -am 'resume trending' && git push`."
+      },
+      {
         "code": "production_repair_trending",
         "severity": "critical",
         "detail": "trending 20261006: production outcome says 5/6 uploaded and repair never completed (0 quarantined, 2 failed).",
@@ -235,907 +241,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-10-05T16:28:49+00:00",
-      "slug": "volcano-country-ranking",
-      "score": 44,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "The hook's reversal is strong, but the visuals are charts and stock machines with titles that wrongly say 'Indonesia's', and the closing scene is unreadable and off-story.",
-      "auto_fails": [
-        "decorative_mascot: In seg3:mid Data just stands cheering on top of the 75% circle. In seg2:mid he is cropped at the left edge holding a pole that touches nothing. In hook@0.3 he is copied five times, pointing at numbers. His actions do not cause any of the data's motion.",
-        "bare_number_card: seg3:start to seg3:end is two plain circles labelled '75%' and '25%' on an empty ground. Nothing demonstrates the Ring of Fire.",
-        "unreadable: In seg4:mid and seg4:end, 'On the Ring of Fire 75%' is printed over 'Everywhere else on Earth 25%', so both are garbled. In seg1:mid and seg1:end the map label is cut off as 'nited States of America'. In seg1:end Data covers the '165' bar value."
-      ],
-      "problems": [
-        "Three scene titles say the scene is about Indonesia ('Indonesia's volcano rank', 'Indonesia's Ring of Fire', 'Indonesia versus Alaska') when the data is about the US and Alaska.",
-        "seg4: the labels 'On the Ring of Fire 75%' and 'Everywhere else on Earth 25%' are printed over each other.",
-        "seg4: '50% apart' is a meaningless measure for a part-of-a-whole share, and the scene does not match the Alaska closing line.",
-        "seg1: the map label is cut off at the frame edge ('nited States of America') and the bar label is truncated ('United States o...').",
-        "seg2: Data is cropped at the left frame edge, holding a pole that does nothing.",
-        "seg3: two plain circles carrying percentages, which is a bare-number card."
-      ],
-      "fixes": [
-        "Title each scene after its subject: 'The US leads on volcanoes', 'Alaska vs the rest of the US', 'The Ring of Fire'.",
-        "Rebuild seg4 so Alaska's 130 is the payoff, e.g. Data hauls 130 volcano cones onto Alaska until it outweighs Japan's 118. Remove the gap ruler.",
-        "Draw seg3 as an actual ring of fire around the Pacific, with 75% of the volcano markers lighting up along it as Data ignites them.",
-        "Measure label widths in seg1 so country names fit inside the frame, and keep Data clear of the bar values.",
-        "Keep Data fully in frame in seg2 and have him load the volcanoes onto the pan so they cause the tilt.",
-        "Use one Data in the hook, doing a single action (for example, shoving the US row to the top)."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 96
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "decorative_mascot",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "unreadable_overlap_and_off_story_closing",
-        "visible_evidence": "In seg4:mid to seg4:end, two percentage labels collide at the left end of a ruler while Data stands on a ladder. The caption '50% apart' compares 75% with 25%, but the closing line is about Alaska.",
-        "root_cause": "The closing reused the Ring-of-Fire share pair as a gap-ruler machine, which turned a part-of-a-whole statistic into a distance. Its label placement does not measure the text, so the two labels sit on top of each other.",
-        "repair_goal": "Make the payoff about Alaska. Pay off its 130 of the US's 165 (for example, Data stacks Alaska's volcanoes past Japan's 118 total). Use one readable label for each mark, and do not show '50% apart' as a share difference."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.114,
-        "effective_fps": 21.3,
-        "max_dup_run": 11,
-        "measured": true,
-        "judder_ratio": 0.005,
-        "judder_fps": 23.9,
-        "held_s": 1.25,
-        "max_dup_at_s": 24.92,
-        "duration_s": 32.08
-      },
-      "fingerprint": "?|bare_number_card+decorative_mascot+unreadable|unreadable_overlap_and_off_story_closing",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-05T16:32:25+00:00",
-      "slug": "adhd-diagnosis-surge",
-      "score": 44,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Five generic charts in a row with Data mostly standing around and, at the end, covering the 53.6% label. Nothing here is a scroll-stopping way to show ADHD numbers.",
-      "auto_fails": [
-        "decorative_mascot: At seg3:start, seg3:mid and seg3:end Data just perches on top of the 53.6% circle and never touches the medication split. At seg1:mid and seg1:end he walks the timeline with his hands up while the bars rise by themselves. At seg2:start and seg2:end two copies of him stand next to the girls' and boys' numbers but neither one shows the 8 vs 15.",
-        "bare_number_card: seg2:mid is two big numbers, '8%' and '15%', each next to a Data figure of the same size. Nothing in the picture shows boys at almost twice the rate or girls catching up, so it is a number card with mascots added.",
-        "unreadable: At seg4:start, seg4:mid, payoff@-1.8 and seg4:end Data stands on top of the '53.6%' label and the 'Taking ADHD medication' text and covers part of the '5'. He is also cut off by the left edge of the frame. A stray floating block is unreadable at seg4:start (top right)."
-      ],
-      "problems": [
-        "seg2 is a bare number card: 8% and 15% next to identical mascots, and 'girls catching up' is never shown.",
-        "seg3 is two growing circles with Data perched on top doing nothing.",
-        "seg4: Data covers the '53.6%' and 'Taking ADHD medication' labels and is cut off at the left edge. There is a stray floating block on the right side.",
-        "seg0 and seg1 both use bar charts, so the first half shows the same rising-bars idea twice.",
-        "The payoff scale barely tips, so 'still not enough help' has no visual punch.",
-        "The hook opens on a chart that is still building rather than a moment that grabs attention."
-      ],
-      "fixes": [
-        "seg2: show 15/100 vs 8/100 kids filling up, with Data adding kids to the girls' side so it visibly gains.",
-        "seg3: show the medication split as something physical, such as Data handing out pill bottles to 54 of 100 kids while the rest are left empty-handed.",
-        "seg4: move Data off the labels and inside the safe area, delete the stray block, and make the closing image show the gap between diagnosis and help clearly.",
-        "Drop one of the two bar treatments in seg0 and seg1 and give the 7.8 to 11.4 rise its own form, for example kids filling a classroom, with Data letting each one in."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 80
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "decorative_mascot",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "bare_number_card",
-        "visible_evidence": "seg2:start/mid/end: the labels Girls and Boys, two large percentages and two Data figures of the same size posing beside them. A dotted vertical bar on the right does nothing, and nothing shows boys at roughly twice the rate or girls catching up.",
-        "root_cause": "The scene shows a comparison by printing the numbers and placing a mascot next to each one. No part of the picture is sized by 8 vs 15, and the 'catching up' claim has no motion at all.",
-        "repair_goal": "Make the gap something a viewer can see. For example, two lines of kids filling up, 15 of 100 for boys and 8 of 100 for girls, with Data adding kids to the girls' line so it visibly gains on the boys' line during 'catching up'. Data has to be the one who makes the change, and his body must never cov"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.164,
-        "effective_fps": 20.1,
-        "max_dup_run": 15,
-        "measured": true,
-        "judder_ratio": 0.028,
-        "judder_fps": 23.3,
-        "held_s": 2.42,
-        "max_dup_at_s": 3.21,
-        "duration_s": 26.71
-      },
-      "fingerprint": "?|bare_number_card+decorative_mascot+unreadable|bare_number_card",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-05T16:36:07+00:00",
-      "slug": "parker-solar-probe-speed-record",
-      "score": 43,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A record about raw SPEED is shown as four static charts and a number list. Nothing in the video ever moves fast, and Data is a pointer, not a driver.",
-      "auto_fails": [
-        "decorative_mascot: From seg0:start to seg0:end Data stands on a ladder pointing at the 430K bar with the same pose. In seg1:start/mid/end he holds the same arms-up pose while sliding along the timeline. In seg4:start to seg4:end he points at an hourglass he does not cause. Nothing he does is a setup, action and payoff tied to speed.",
-        "bare_number_card: seg2:start/mid/end are two text rows, '24.8K' and '430K', each with a standing Data. The '17 times faster' claim is never demonstrated, only printed.",
-        "unreadable: In seg4:start/mid/end the ladder covers the 'Y' of 'New York to Tokyo', which reads 'New \\ork'. In seg3:end the '56' in the yellow bubble has a doubled outline and reads like '58'."
-      ],
-      "problems": [
-        "The hook opens on a bar chart building, with no motion or speed hit in frame 1 (hook@0.3).",
-        "seg0 and seg1 show the same four values twice, as bars and then as a timeline.",
-        "seg2 states 24.8K vs 430K as text, and the 17x comparison is never demonstrated.",
-        "seg3 is bubbles of seconds, an abstract area chart for a travel-time claim.",
-        "seg4's hourglasses have inverted logic: the 208s glass reads as nearly done while the 56s glass is still running. The ladder also covers 'York'.",
-        "The closing line 'diving straight into the sun' sits over hourglasses, and the payoff visual has nothing to do with the sun."
-      ],
-      "fixes": [
-        "Hook: the probe streaks across the frame, with Data at the controls and a speedometer slamming to 430,000 mph in under a second.",
-        "Merge seg0 and seg1 into one escalating race of record-holders, each one overtaking the last.",
-        "seg2: Apollo 10 and Parker race side by side, and Parker laps 17 times while Data pumps a throttle.",
-        "seg3: show a globe with a probe trail drawing New York to Tokyo against a 56s clock, then a full lap against 208s.",
-        "seg4/closing: the probe dives toward a looming sun. Drop the hourglasses, or make them drain in the correct order and keep the ladder off the labels."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 85
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "decorative_mascot",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "bare_number_card",
-        "visible_evidence": "seg2:start/mid/end show '24.8K' for Apollo 10 and '430K' for Parker as plain text rows with a cloned Data beside each. Nothing races and nothing is scaled, so '17x' is never shown.",
-        "root_cause": "The comparison was rendered as a labelled number list instead of a speed machine. The speed relationship should be motion, and that was never mapped to a race.",
-        "repair_goal": "Make it a race. An Apollo capsule and the Parker probe launch together, and Parker crosses the frame 17 times while Apollo crawls one length. Data drives or launches the probe and the 17x lands on the finish."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.165,
-        "effective_fps": 20.0,
-        "max_dup_run": 13,
-        "measured": true,
-        "judder_ratio": 0.04,
-        "judder_fps": 23.0,
-        "held_s": 2.21,
-        "max_dup_at_s": 2.58,
-        "duration_s": 28.29
-      },
-      "fingerprint": "?|bare_number_card+decorative_mascot+unreadable|bare_number_card",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-05T16:39:14+00:00",
-      "slug": "college-gender-gap",
-      "score": 52,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The bar-chart hook and timeline are generic, Data watches the scale instead of loading it, and the 47%-vs-37% beat is replaced by a rerun of 22 vs 12.",
-      "auto_fails": [
-        "decorative_mascot: seg1:start, mid and end: Data rides the timeline playhead with both arms up while the bars rise without him. seg2:start, mid and end: he stands half off the left edge holding a pole and never places a brick on the scale. In both beats he reacts next to the moving part instead of causing the motion."
-      ],
-      "problems": [
-        "seg1: a plain timeline chart. Data stands on the playhead with arms raised and does nothing to make the bars rise.",
-        "seg2: Data is clipped at the left frame edge, overlaps the 'Women' label, and never places a brick. The scale fills itself.",
-        "seg3/closing: the script's third beat ('47 percent of women hold degrees; men, only 37') never appears. The race reuses 22 vs 12, so the strongest current-state number is missing.",
-        "hook: the 2000 bar reads 57% right next to the 58% subject. The near-identical heights weaken the 'flip' claim, and the bar chart is the generic default.",
-        "seg0:mid to seg0:end: the hook bar is finished and Data holds the same pointing pose. The motion is spent early."
-      ],
-      "fixes": [
-        "seg2: Data carries each pink brick onto the women's pan inside the frame, and the beam tips as each one lands.",
-        "Give the 47% vs 37% beat its own scene, for example two lecture halls filling seats or caps stacking to 47 and 37, instead of rerunning 22/12 in the race.",
-        "seg1: make Data the cause. He hands a graduation cap onto each rising marker, or climbs and pushes the 58 bar up, instead of cheering on the playhead.",
-        "Hook: open with the flip itself, women's and men's shares crossing the 50% line, rather than a four-bar chart build."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 68
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "decorative_mascot",
-        "visible_evidence": "In seg2:start through seg2:end the pink and grey bricks stack onto the scale pans by themselves. Data is clipped at the left frame edge holding a vertical pole, overlapping the 'Women' label, and nothing he does moves anything.",
-        "root_cause": "Data is placed beside the machine as an onlooker instead of at its moving part, and the stacking anchor was never put on his hands. The pole prop does no work, and his position runs off the frame's safe area.",
-        "repair_goal": "Data should carry each pink brick and drop it onto the women's pan, standing fully inside the frame on the left of the beam, so the beam tips because he loads it. He should then look across at the light men's pan. Move him clear of the 'Women' label."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.163,
-        "effective_fps": 20.1,
-        "max_dup_run": 14,
-        "measured": true,
-        "judder_ratio": 0.04,
-        "judder_fps": 23.0,
-        "held_s": 1.58,
-        "max_dup_at_s": 3.17,
-        "duration_s": 22.75
-      },
-      "fingerprint": "?|decorative_mascot|decorative_mascot",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-05T16:43:32+00:00",
-      "slug": "third-interstellar-visitor",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The video covers the same 1-2-3 count twice as charts, never shows the 246,000 km/h speed as motion, overprints its key label with stray rings, and reduces the size beat to two numbers.",
-      "auto_fails": [
-        "decorative_mascot: seg0:start to seg0:end: Data stands on a ladder pointing at a bar with the same pose for about 3s. seg3:start/mid: two copies of Data stand beside the numbers 5.6 and 1.0 and do nothing to them. seg2:mid: he stands on top of a circle. None of these bits causes the number.",
-        "bare_number_card: seg3:start/mid/end: \"5.6\" and \"1.0\" are printed as big numbers on two plain baselines. Nothing shows a 5.6 km nucleus next to a 1 km one, only two numbers with mascots next to them.",
-        "unreadable: seg2:end: cyan ellipse outlines are drawn over the circle labels and the \"246K\" label is garbled and illegible, overprinted by the ring. \"177K\" and \"140K\" are also struck through by the rings."
-      ],
-      "problems": [
-        "The hook shows a count bar chart while the narration says something blasted past at 246,000 km/h. Picture and line disagree, and nothing moves fast.",
-        "The hook, seg0 and seg1 all show the same 1, 2, 3 count, as a bar chart and then as a timeline, so the story opens with a repeat.",
-        "seg2:end: cyan ellipse outlines are drawn over the value labels, making \"246K\" illegible and striking through 177K and 140K.",
-        "seg2 shows speed as bubble area, a static size comparison with no motion.",
-        "seg3 is two big numbers on baselines with two idle Data clones, a bare number card.",
-        "Data never causes anything. He points from a ladder, stands on a circle or idles beside numbers."
-      ],
-      "fixes": [
-        "Open on an interstellar object streaking across the frame at visible speed, with Data clocking it, so the hook matches the line.",
-        "Merge the count into a single beat and drop the duplicate bar chart or timeline.",
-        "Show speed as three comets racing across the screen at speeds proportional to their values, with 3I/ATLAS visibly pulling ahead.",
-        "Remove the cyan ring overlay, or draw it behind or around the circles, never over the text.",
-        "For size, draw the two nuclei as rocks to scale (5.6 km vs 1 km), with Data chiselling or measuring the giant one, so the 5.6x size is seen rather than read.",
-        "Give each beat a cause act: Data launches, pushes or measures the object with a tool."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 101
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "decorative_mascot",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "unreadable_overlay_and_chart_fallback",
-        "visible_evidence": "seg2:end: three circles sized by speed have cyan ellipse outlines drawn over their value labels, so \"246K\" turns into an unreadable smear. A small Data stands on top of the biggest circle and does nothing.",
-        "root_cause": "A bubble-size chart stands in for speed, which is a motion relationship. A stray highlight-ring layer renders on top of the value text instead of beneath it or around the circle.",
-        "repair_goal": "Redraw the speed beat as motion: three objects streak across the frame at speeds proportional to 140k, 177k and 246k km/h, with Data launching or clocking each one with a radar gun so 3I/ATLAS visibly outruns the others. Labels should sit in ink on clear ground with no overlapping rings."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.251,
-        "effective_fps": 18.0,
-        "max_dup_run": 17,
-        "measured": true,
-        "judder_ratio": 0.037,
-        "judder_fps": 23.1,
-        "held_s": 3.5,
-        "max_dup_at_s": 21.25,
-        "duration_s": 33.79
-      },
-      "fingerprint": "?|bare_number_card+decorative_mascot+unreadable|unreadable_overlay_and_chart_fallback",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-05T16:47:31+00:00",
-      "slug": "third-interstellar-visitor",
-      "score": 44,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 2,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Every beat is a stock chart. A story about rocks from another star racing past at 246,000 km/h never shows a rock or any speed, the size beat is a bare number card, and the speed labels are covered.",
-      "auto_fails": [
-        "decorative_mascot: In seg3:start and seg3:mid two copies of Data just stand next to the numbers 5.6 and 1.0, cheering and waving. Neither one does anything that makes a size. Through seg0:start to seg0:end he stays on the ladder and only his arms move.",
-        "bare_number_card: seg3:start to seg3:end shows two big numbers, '5.6' and '1.0', on horizontal rules with a mascot beside each. Nothing shows a 5.6 km nucleus next to a 1 km one; it is a number card.",
-        "unreadable: At seg2:end Data's head covers the '246K' value label, and the cyan rings are drawn over '177K' and '140K', which cuts through the digits. At seg2:start a caption line (''Oumuamua 140,000 kilometers') sits above the caption bar and runs into the big '140,000' number."
-      ],
-      "problems": [
-        "Hook: the narration says something 'blasted past at 246,000 km/h', but the picture is a slowly building count bar chart with nothing moving fast (hook@0.3 to hook@2.2).",
-        "seg0 and seg1 both show the same count of 3 (a bar chart, then a timeline), which spends about 14 seconds on one number.",
-        "seg2:end: Data's head covers '246K', and the cyan rings are drawn over '177K' and '140K'.",
-        "seg2:start: a caption line overlaps the big '140,000' number in the caption bar.",
-        "seg3: two cheering mascots stand beside the bare numbers 5.6 and 1.0. The scene has no sense of scale and the mascot is decorative.",
-        "seg4: the closing says 'Each one bigger' about three visitors, but the tape compares only two, and a tape measure is generic."
-      ],
-      "fixes": [
-        "Make the hook a comet streaking across the frame at speed in the first second, with 246,000 km/h trailing it.",
-        "Merge seg0 and seg1 into one beat: three objects arrive one by one on a starfield timeline (2017, 2019, 2025).",
-        "Show seg2 as three comets racing across the frame, each at its own speed, with Data pushing or launching the fastest one. Keep every value label clear of the mascot and the rings.",
-        "Show seg3 as two nuclei drawn at true 1:5.6 scale, with Data carving or measuring the large one as it grows.",
-        "Keep all text in ink and clear of marks. Nothing should overlap the big caption number."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 102
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "decorative_mascot",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "bare_number_card",
-        "visible_evidence": "seg3:start, mid and end each show '5.6' and '1.0' as large text on two rules, with a Data figure standing beside each number cheering or waving and a dotted scale on the right that nothing uses. The scene the narration calls 'Biggest yet' gives no sense of size.",
-        "root_cause": "The size comparison was drawn as labeled number rows, not as two objects at their real scale, and the mascot was placed next to the data with no causal act.",
-        "repair_goal": "Draw two comet nuclei at true relative scale: a 1 km Borisov rock and a 5.6 km 3I/ATLAS rock that dwarfs it. Data should cause the size, for example by chiselling or measuring the ATLAS nucleus as it grows to 5.6x, with the value labels in ink clear of every mark."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.189,
-        "effective_fps": 19.5,
-        "max_dup_run": 16,
-        "measured": true,
-        "judder_ratio": 0.034,
-        "judder_fps": 23.2,
-        "held_s": 1.88,
-        "max_dup_at_s": 21.46,
-        "duration_s": 33.96
-      },
-      "fingerprint": "?|bare_number_card+decorative_mascot+unreadable|bare_number_card",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-05T16:50:50+00:00",
-      "slug": "unclaimed-money-states-hold",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "This is a run of plain charts: bubbles, bars and a stacked bar. Data is mostly a sticker, and the closing scale shows the wrong numbers for its own payoff line.",
-      "auto_fails": [
-        "decorative_mascot: In hook@0.3 to seg0:end Data just stands on the California bubble. In seg2:start to seg2:end he hangs on the side of the $70B bar. In seg3 he floats beside a stacked bar. In seg4 he stands at the edge of the frame holding a stick and does nothing to the scale. Only at seg1:end does he briefly push the California bar.",
-        "bare_number_card: In hook@0.3 to seg0:end the beat is three static circles with $15B, $10.5B and $4.8B printed on them. They are plain number blobs and nothing is demonstrated.",
-        "empty_void: In seg2:start and seg2:mid the bar sits in a mostly empty dark field with faint gridlines. The right half holds only a tiny $4.5B pill. In seg4 the top of the frame, between the title and the scale, is empty.",
-        "unreadable: In seg0:end and hook@2.2 the $15B label on the California bubble turns into garbled dark text ('$1\u2075B'). In seg1:mid and seg1:end the California bar's value is covered by Data and his rope and reads as a black smear. In seg3:start the labels 'Have unclaimed property waiting 14%' and 'Don't (as far as they know) 86%' are near-invisible grey on dark. The kicker in seg2 and seg3 is cut off ('RETURNED TO OWNE\u2026', 'IS 86% OF THE WH\u2026'). In seg4 the 85.7% label overlaps Data and the cash bar."
-      ],
-      "problems": [
-        "Hook: three static number bubbles with Data standing on one is a bare-number opening. Nothing happens to make a viewer stay.",
-        "seg1: Data's rope gag covers the California value, which reads as a black blot at seg1:mid and seg1:end.",
-        "seg0/hook: the $15B label garbles as it transitions at hook@2.2 and seg0:end.",
-        "seg2: one tall bar against a tiny pill in a mostly empty frame, with Data hanging on the bar doing nothing.",
-        "seg3: the labels are near-invisible grey at seg3:start, and the 14% (the actual story) is the dimmest element.",
-        "seg4: the scale weighs the 85.7%/14.3% population split under a caption about $4.49B of $70B returned. Picture and claim disagree."
-      ],
-      "fixes": [
-        "Open with motion. For example, a state vault door slams shut on a pile of cash as '$70B' counts up, with Data trying to pry it open.",
-        "Draw the money as money. Show the $70B as a vault of cash bundles, then have Data carry out only the 4.49B share, so the tiny return is visible without reading a number.",
-        "Rebuild the closing beat on $4.49B vs $70B, not on the population shares.",
-        "For 1 in 7: a row of 7 people with one lit up, with Data handing that person an envelope, instead of a stacked bar.",
-        "Keep value labels clear of Data and the rope, raise label contrast, and shorten kickers so they fit without an ellipsis.",
-        "Give Data a cause in each beat: pulling, pouring or hauling the part that moves, not standing beside it."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 74
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "wrong_claim_and_decorative_mascot",
-        "visible_evidence": "The closing card reads 'States returned only 4.49 billion of 70 billion.' The scale below it instead weighs 85.7% 'Don't (as far as they know)' against 14.3% 'Have unclaimed'. Those are the seg3 population shares, not the returned-vs-held money. Cash bundles fall onto the 85.7% pan while Data stands",
-        "root_cause": "The closing beat reused the previous beat's population data instead of the payoff numbers ($4.49B returned of $70B held). It also uses a stock balance-scale machine in which Data plays no part.",
-        "repair_goal": "Redraw the payoff from the $70B vs $4.49B claim. For example, Data hauls a vault holding 70 cash bundles and hands back only about 4.5 of them through a tiny window, so most of the vault stays full. His hands must cause the motion. Keep every label clear of him and of the other marks."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.216,
-        "effective_fps": 18.8,
-        "max_dup_run": 16,
-        "measured": true,
-        "judder_ratio": 0.003,
-        "judder_fps": 23.9,
-        "held_s": 3.29,
-        "max_dup_at_s": 13.25,
-        "duration_s": 24.5
-      },
-      "fingerprint": "?|bare_number_card+decorative_mascot+empty_void+unreadable|wrong_claim_and_decorative_mascot",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-05T16:54:56+00:00",
-      "slug": "coldest-place-in-the-universe-is-human-made",
-      "score": 31,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "Generic starfield tiles and flat teal shapes stand in for the data. The two huge contrasts (293 K vs 2.7 K vs picokelvin, and 5,000 light-years vs 250 miles) are never actually shown, and the labels are cut off or meaningless.",
-      "auto_fails": [
-        "junk_imagery: hook@0.3 to seg1:end: every unit tile is the same generic purple starfield-over-hills clip art. It says nothing about temperature, and a pile of 'night sky' tiles cannot show 293 K against 2.7 K.",
-        "decorative_mascot: seg0:mid to seg1:end: Data stands in one spot among the tiles holding a little red stamp. In seg2 and seg3 he perches on top of a circle and a square, and in seg4 he poses on a ladder at the end of a ruler. In none of these does he cause or act on the data.",
-        "bare_number_card: seg3:start to seg3:end: a flat teal square filling the frame with '29400T' in the middle and nothing else for about 6s. seg2 is the same idea: a teal circle with '1' and '0.0' beside it.",
-        "dead_air: seg3:start, seg3:mid and seg3:end are almost the same frame (the square, '29400T' and Data's pose do not change). seg0:mid through seg1:end is also the same tile grid held for about 6s. Measured held_s is 3.92 at 15.2s.",
-        "empty_void: seg2:start: a small circle in a large dark empty frame. In seg4 the space inside the bracket below the ruler is empty dark ground.",
-        "unreadable: seg4:mid: '29,399,999,999,999,752 apa' runs off the right edge of the frame. 'NASA's Cold ...' is cut off in tiny text. In seg3 the 'NASA's Cold Atom Lab (ISS)' label is tiny and sits on the teal square's edge. 'each = 20' and 'Room temperature 293' never update to 2.7."
-      ],
-      "problems": [
-        "Hook: the opening frames are a static grid of identical purple tiles under 'Room temperature 293'. Nothing in them says 'coldest place in the universe is above your head'.",
-        "seg0/seg1: the tile grid ('each = 20') never changes when the narration moves from 293 K to 2.7 K, and starfield tiles are the wrong icon for temperature.",
-        "seg2: 'a billion times colder' is drawn as a circle labelled '1' next to '0.0'. The defining number becomes zero and the claim is lost.",
-        "seg3: a flat teal square showing '29400T' for about 6s. The unit is unreadable, nothing moves, and it is a bare number card.",
-        "seg4: '29,399,999,999,999,752 apa' is cut off at the right edge, 'NASA's Cold ...' is truncated, and the ending gives no 'whoa'.",
-        "Data never causes anything: he holds a stamp, perches on shapes and poses on a ladder."
-      ],
-      "fixes": [
-        "Hook: open on Data in a lab coat looking up at the ISS freezer 250 miles overhead, with a frost burst or thermometer plunging past 'deep space' at frame 1.",
-        "seg0/seg1: draw a thermometer Data pumps down from 293 K to 2.7 K, with the mercury actually falling, on a temperature-specific visual instead of starfield tiles.",
-        "seg2: use a log-scale ladder or descending staircase from 2.7 K down to 100 picokelvin, nine orders of magnitude, with Data climbing down each 'x10' step so 'a billion' becomes distance travelled.",
-        "seg3: replace the area square with a log-scale distance tape: 250 miles to the ISS vs 5,000 light-years to the Boomerang Nebula, in readable units, with Data reeling out the tape.",
-        "Fit-check every label inside the frame and never format light-years as a T-suffixed or 20-digit raw number.",
-        "Update the header label when the beat changes so the on-screen values match what is said."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 81
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "dead_air",
-        "decorative_mascot",
-        "empty_void",
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "bare_number_card",
-        "visible_evidence": "A flat teal square fills the frame with a meaningless '29400T' for the whole segment. 'NASA's Cold Atom Lab (ISS)' appears as a tiny label at its edge, and Data hovers on top in an unchanging pose. The narration's 5,000 light-years vs 250 miles is never shown.",
-        "root_cause": "The distance comparison went to a generic area-square renderer with the unit converted into an unreadable huge number ('29400T'). The ISS value is too small to draw, so there is no picture of the comparison at all.",
-        "repair_goal": "Show the distance contrast physically: Data on a launch pad or ladder reaches the ISS freezer at 250 miles while the Boomerang Nebula drops away on a log-scale road or tape that runs off into deep space. Use readable units ('250 miles' vs '5,000 light-years') and keep every label inside the frame."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.375,
-        "effective_fps": 15.0,
-        "max_dup_run": 21,
-        "measured": true,
-        "judder_ratio": 0.074,
-        "judder_fps": 22.2,
-        "held_s": 3.92,
-        "max_dup_at_s": 15.21,
-        "duration_s": 27.04
-      },
-      "fingerprint": "?|bare_number_card+dead_air+decorative_mascot+empty_void+junk_imagery+unreadable|bare_number_card",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-05T17:50:51+00:00",
-      "slug": "body-renewal-clock",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Four plain charts, two of them the same bubble chart held for ten seconds. Data poses beside the numbers instead of causing them, and labels collide and get clipped.",
-      "auto_fails": [
-        "decorative_mascot: In hook@0.3 through seg1:end Data stands on top of the stomach/skin bubbles, waving and posing. He causes nothing. In seg2:mid/end he floats beside the pink bar, and in seg4 he stands parked on the '0T' bubble. His only tie to the data is riding the line's tip in seg3.",
-        "bare_number_card: In seg4:start to seg4:end the closing is circles labelled 8.3T/16.5T/24.8T/30T on a blank ground, so the numbers are just written in blobs. In seg2:start the skin side is a small grey blob with '28 days' over it.",
-        "dead_air: seg0 and seg1 are the same bubble scene from hook@0.3 to seg1:end (about 10s). The only change is a cyan ring around '5 days' (seg1:start) and then '28 days'/'120 days' (seg1:end), so two beats are identical.",
-        "empty_void: In seg2:start the top third above the bar is empty gridlines, and the skin column is a tiny blob in a large empty area. In seg0:start the 120-day dot and the Skeleton label float in a lot of dead space.",
-        "unreadable: In hook@0.3 through seg1:end the '5 day' and '28 days' labels overlap and read as '5 day28 days', with tiny 'Stomach lining' text. In seg4:end/payoff@-0.4 the 24.8T and 30T circles are cut off by the caption panel, and Data covers the '0T' bubble."
-      ],
-      "problems": [
-        "The hook opens on a static bubble chart with no motion and no image of 330 billion cells vanishing",
-        "seg0 and seg1 reuse the same bubble scene for about 10s",
-        "The '5 day' and '28 days' labels overlap and are unreadable on a phone",
-        "Data waves and stands on the marks and never causes the renewal",
-        "The closing circles are clipped by the caption panel, and Data covers the '0T' bubble",
-        "The phone comparison in the closing has no picture at all"
-      ],
-      "fixes": [
-        "Open with 330 billion cells visibly dissolving or draining in the first frame, with Data sweeping them away",
-        "Give seg1 its own renewal scene where each tissue rebuilds on its own clock",
-        "Space or stack the turnover labels so none overlap",
-        "Draw seg4 as skin age against phone age, two objects with age counters",
-        "Keep every circle above the caption safe area, and keep Data off the labels"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 85
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "dead_air",
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "dead_air_repeated_scene",
-        "visible_evidence": "seg1:start through seg1:end reuse the exact bubble chart from the hook/seg0 (5 days, 28 days, 120 days, 3,650 days). The only change is a cyan ring, and the 5-day and 28-day labels collide.",
-        "root_cause": "The renderer showed the same bubble chart across the hook, seg0 and seg1, so the turnover story ('rebuilds in 5 days') became a static size comparison with no renewal motion.",
-        "repair_goal": "Build one bespoke renewal scene for seg1. Each tissue (stomach lining, skin, blood, bone) should visibly rebuild on its own clock, with Data doing the rebuilding (for example, laying new tiles as fast as each one turns over), so the 5-day tissue cycles many times while the bone barely changes. Label"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.229,
-        "effective_fps": 18.5,
-        "max_dup_run": 23,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 3.38,
-        "max_dup_at_s": 3.92,
-        "duration_s": 28.25
-      },
-      "fingerprint": "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|dead_air_repeated_scene",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-05T17:57:08+00:00",
-      "slug": "body-renewal-clock",
-      "score": 35,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "This is a stack of generic charts with colliding labels and a parked mascot. Nothing shows a body actually renewing, and the 'younger than your phone' payoff gets no picture at all.",
-      "auto_fails": [
-        "junk_imagery: hook@0.3\u2013seg0:end: a murky stock-style 3D ribcage render, washed out and fading at hook@0.3, is the only hero image. The 'Skin' cell at seg0:end is a grey-green blob and the 'Stomach lining' at seg1:start is a green droplet, so neither reads as its tissue",
-        "decorative_mascot: seg1:mid/end Data perches on the 5/28-day labels, at seg2 he stands beside or on top of the pink bar, at seg3 he rides the line tip and at seg4 he stands at '0T'. He causes none of the motion; he is parked on the marks",
-        "bare_number_card: seg4:start\u2013payoff@-0.4: circles labelled 8.3T/16.5T/24.8T/30T grow, which is just numbers in blobs. The seg1:end bubble '3,650 days' is the same treatment",
-        "empty_void: hook@0.3\u2013seg0:end: the bottom half of the frame, below the ribcage and the small cell row, is empty dark gradient. At seg2:start the chart's upper half is empty gridlines",
-        "unreadable: seg1:start: the value labels collide into '120 d28sd5days' and the names into 'Red blood cellSStomach lining'. At seg1:mid/end '5 day28 days' overlaps and 'Stomach lining' is tiny. At seg4:end the bottom circles are cut off by the caption band, and '30T' is dark text on pink. At hook@0.3 '3,650 days' and 'Skeleton' are faded to near-invisible"
-      ],
-      "problems": [
-        "At seg1:start the turnover labels overprint into '120 d28sd5days', which can't be read on a phone",
-        "At seg1:mid/end '5 day' and '28 days' still overlap, and the 'Stomach lining' label is tiny",
-        "The hook is a faded stock ribcage over an empty lower half. The '330 billion vanish' line has no visual, since no cells disappear",
-        "Data never causes anything: he perches on labels (seg1), a bar top (seg2), the line tip (seg3) and '0T' (seg4)",
-        "The seg4 closing bubbles repeat the seg3 data, and the bottom circles are cut off by the caption band",
-        "At seg4 '30T' is dark text on pink, which is low contrast"
-      ],
-      "fixes": [
-        "Hook: show a body silhouette that visibly sheds cells (330B particles streaming out) while Data sweeps them up with a broom, in motion from frame 1",
-        "seg1: put the four tissues in separate lanes with measured labels, and have each tissue regrow at its own rate while Data swaps out the layers",
-        "seg2: set the neuron age against the skin age as stacked skin layers (about 1,040 skin generations beside one neuron) rather than two bars",
-        "seg3: have Data shovel cells into a body-shaped vessel that fills to 30T at day 100, replacing the line chart",
-        "Closing: show a phone beside a skin patch with age counters, the payoff the line promises, and keep every mark above the caption band",
-        "Run label collision checks and contrast checks on every value label"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 85
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "decorative_mascot",
-        "empty_void",
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "unreadable",
-        "visible_evidence": "seg1:start shows the labels '120 days', '28 days' and '5 days' printed on top of each other as '120 d28sd5days', with the names merged into 'Red blood cellSStomach lining'. At seg1:mid/end, after the cut to a bubble layout, '5 day' and '28 days' still overlap, and Data stands on top of them doing no",
-        "root_cause": "Labels are placed at fixed offsets beside icons with no collision measurement. The tiny 5- and 28-day bubbles are drawn next to each other at area scale, so their labels land on top of each other. The scene also hard-cuts between two layouts of the same data",
-        "repair_goal": "Show the stomach lining, skin, blood and skeleton turnover clocks as one readable shot: each tissue gets its own row or lane with a measured, non-overlapping label, and something made of the tissue itself renews (the stomach lining regrows 73\u00d7 while the skeleton regrows once over 3,650 days). Data d"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.258,
-        "effective_fps": 17.8,
-        "max_dup_run": 26,
-        "measured": true,
-        "judder_ratio": 0.001,
-        "judder_fps": 24.0,
-        "held_s": 5.0,
-        "max_dup_at_s": 3.67,
-        "duration_s": 28.25
-      },
-      "fingerprint": "?|bare_number_card+decorative_mascot+empty_void+junk_imagery+unreadable|unreadable",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-05T18:02:55+00:00",
-      "slug": "body-renewal-clock",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "This is a chart deck about cell renewal: overlapping unreadable labels, a mascot who is never the cause of anything, and a closing about skin being younger than your phone that the visuals never set up.",
-      "auto_fails": [
-        "decorative_mascot: Data is missing from the hook and seg0. In seg1:mid he stands on top of the '5 day/28 days' labels. In seg2:start\u2013end he floats beside the neuron bar, and in seg4:start\u2013end he idles at the '0T' corner. Only in seg3 does he ride the line's tip, and there he is the line's endpoint, not the thing making it rise.",
-        "bare_number_card: seg1:mid/seg1:end: a single huge '3,650 days' disc next to tiny '120 days' and '5 day' dots. These are number labels on circles that demonstrate nothing about renewal.",
-        "empty_void: hook@0.3\u2013seg0:end: the ribcage and a few small icons fill the top 40% of the frame. The bottom 55% above the caption bar is empty dark gradient for about 5 seconds.",
-        "unreadable: seg1:start: the labels overprint into '120 d28 d5 days' and 'Red blood cellSkStomach lining'. seg1:mid: '5 day28 days' collide and the 'Stomach lining' text is tiny under the mascot. seg4:end: the 30T and 24.8T bubbles are cut off by the caption band."
-      ],
-      "problems": [
-        "The hook frames leave the bottom half of the screen empty under a stock ribcage. No motion or reason to stay beyond icons fading in, and the mascot is absent.",
-        "seg1:start labels overprint each other ('120 d28 d5 days', 'Red blood cellSkStomach lining'), so they cannot be read.",
-        "seg1:mid: the '5 day' and '28 days' labels collide and the mascot stands on them. The scene is a bubble chart with one giant disc.",
-        "seg2 is a plain two-bar chart, and the mascot floats beside it with no bit.",
-        "seg3 is titled 'New cells per day' but plots a cumulative total. The mascot merely rides the line's tip.",
-        "seg4 bubbles repeat seg3's numbers and get cut off by the caption band. The 'skin younger than your phone' line has no visual (no phone, no skin)."
-      ],
-      "fixes": [
-        "Open on motion: a body in which a visible wave of cells blinks out and is replaced, with a counter racing toward 330 billion and Data sweeping the old cells away with a broom.",
-        "Rebuild seg1 as one body with four tissue zones that refresh at their own rates as Data cranks a day-counter. Give every label a measured, non-overlapping slot.",
-        "seg2: an old, unchanged neuron next to a skin patch that Data peels and replaces dozens of times over the same span.",
-        "seg3: Data shovels new cells into a body-shaped vessel that fills to 30T by Day 100. Retitle it as a cumulative total.",
-        "seg4: put a phone next to a skin patch with age badges (skin 28 days versus the phone's age) to land the punchline. Keep every mark inside the safe area above the caption band."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 85
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "unreadable_overlap_bare_number",
-        "visible_evidence": "seg1:start shows overlapping value labels ('120 d28 d5 days') and names ('Red blood cellSkStomach lining') with a cyan ring around the jumble. seg1:mid/end is a bubble chart: '5 day' and '28 days' collide under the mascot's feet, and one giant '3,650 days' disc dominates.",
-        "root_cause": "Four tissues whose renewal times span three orders of magnitude (5 to 3,650 days) were put into one area-sized bubble layout. The small bubbles collapse onto each other and their labels overlap, and nothing in the scene shows renewal happening.",
-        "repair_goal": "Show renewal as replacement over time. Use one body silhouette with four tissue zones that flash to 'new' at their own rates, driven by a day counter Data cranks forward. Stomach lining flips every 5 days, skin every 28, blood every 120, and the skeleton barely changes by the end. Give every label i"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.257,
-        "effective_fps": 17.8,
-        "max_dup_run": 26,
-        "measured": true,
-        "judder_ratio": 0.001,
-        "judder_fps": 24.0,
-        "held_s": 4.83,
-        "max_dup_at_s": 3.67,
-        "duration_s": 28.25
-      },
-      "fingerprint": "?|bare_number_card+decorative_mascot+empty_void+unreadable|unreadable_overlap_bare_number",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-05T18:07:32+00:00",
-      "slug": "insect-planet",
-      "score": 52,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The facts are solid, but after the scale hook it turns into stock charts, repeats the 80% beat, and Data watches instead of doing the work.",
-      "auto_fails": [
-        "decorative_mascot: In seg1:start through seg1:end Data only stands beside the stacked bar and raises his arms. In hook@0.3 to seg0:end he hangs on the left edge holding a pole and does nothing to the scale.",
-        "unreadable: seg1:mid: the bird icon covers the start of 'All bird species', the paw covers 'All mammal species', and the beetle sits over 'Beetles (estimated)'. hook@0.3: Data is cut off by the left edge and his body overlaps the '80% Insects' label. seg1:start: '20%' and '80%' are low-contrast during the fade."
-      ],
-      "problems": [
-        "seg1 restates the hook's 80% share as a plain stacked column, which wastes about 5 seconds.",
-        "Data is decorative in seg0 (hanging off the left edge, cut off) and in seg1 (cheering beside the column).",
-        "Icons cover the label text in seg2 (bird over 'All bird species', paw over 'All mammal species', beetle over 'Beetles (estimated)').",
-        "The '5.5M' in seg3 is dark text with an outline on yellow and looks muddy.",
-        "The closing seg4 is a two-row number table and has no visual punchline for 'an unnamed beetle is judging you'."
-      ],
-      "fixes": [
-        "Drop seg1 or fold it into the scale, and have Data pile beetles onto the pan so he causes the tilt.",
-        "Move the seg2 icons off the label text, or put labels above the bars with clear padding.",
-        "Give Data a cause act in seg3, for example inflating or pumping the 5.5M circle, and draw unnamed beetles as silhouettes filling the gap between 1M and 5.5M.",
-        "Land the closing on a beetle staring at the viewer instead of a number table.",
-        "Keep Data fully inside the frame in the hook."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 82
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "chart_restates_prior_beat_with_decorative_mascot",
-        "visible_evidence": "seg1:start to seg1:end show a plain 80/20 stacked column, the same claim the hook's scale just made. Data stands to the left and cheers but never touches the column.",
-        "root_cause": "The share relationship was drawn twice: once as a machine (the scale), then again as a fallback chart. Data was given no act that causes the column to fill.",
-        "repair_goal": "Cut seg1 or merge it into the scale beat. If it stays, Data should cause the 80%, for example by shoveling beetles onto one pan until it slams down 4:1, with no stacked-bar chart."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.192,
-        "effective_fps": 19.4,
-        "max_dup_run": 18,
-        "measured": true,
-        "judder_ratio": 0.003,
-        "judder_fps": 23.9,
-        "held_s": 2.17,
-        "max_dup_at_s": 20.58,
-        "duration_s": 27.17
-      },
-      "fingerprint": "?|decorative_mascot+unreadable|chart_restates_prior_beat_with_decorative_mascot",
-      "style_arm": "current"
-    },
     {
       "ts": "2026-10-05T18:11:51+00:00",
       "slug": "light-pollution-erasing-sky",
@@ -4530,15 +3635,871 @@
         "duration_s": 21.25
       },
       "fingerprint": "?|decorative_mascot+empty_void+unreadable|unreadable"
+    },
+    {
+      "ts": "2026-10-07T05:49:19+00:00",
+      "slug": "back-to-sleep-campaign-cut-sids",
+      "score": 61,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 2,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The hook's sawn coffin is a strong start, but seg2's bar chart contradicts the narration (shows 1.9%, voiceover says 30.1%), seg1's stack climbs while the voiceover describes a fall, and several labels are clipped or overprinted.",
+      "auto_fails": [
+        "unreadable: In payoff@-1.8 to seg4:end the top of the 3,400 headline is clipped and reads as '3,40O'. In seg3:start and seg3:mid the dark ring dots are printed over the digits of 1,316 and 2,588. In seg3:end Data covers the end of 'deaths per year'. In seg2:end Data overlaps the circled 85.4% label."
+      ],
+      "problems": [
+        "seg2: a plain bar chart shows 85.4% vs 1.9% while the voiceover says 85.4% to 30.1%. The visual contradicts the claim, and Data dances beside the bar with no bit.",
+        "seg1: the coffin-block stack grows from 0.5 to 1.1 as the voiceover says 'by 2008, just 0.64'. The motion runs opposite to the decline being described.",
+        "seg3: dark ring dots are printed over the counting digits (seg3:start, seg3:mid), and Data covers the end of 'deaths per year' (seg3:end).",
+        "seg4/payoff: the 3,400 headline is clipped at its top edge, and the brick wall and conveyor do not say anything readable about 3,400 deaths.",
+        "The hook shows '1.3' and '0.6' while the voiceover says 1.34 and 0.64. This is rounding, but the numbers on screen and in the voiceover should match."
+      ],
+      "fixes": [
+        "Rebuild seg2 so it shows the narrated before-to-after shift (85.4% stomach-down falling to 30.1%) as cribs of babies Data turns onto their backs. Remove the unspoken 1.9% back-up bar.",
+        "Make seg1 fall: start with the full 1991 stack of 13.4 blocks and have Data remove blocks down to 6.4 for 2008, so the motion matches the decline.",
+        "Move the seg3 ring dots behind the number, or ring it outside the digits, and keep Data clear of the label text.",
+        "Give the payoff's 3,400 headline top padding so it is not clipped. Replace the abstract brick wall with something that reads as 3,400 infants (e.g. 3,400 tiny cribs filling), or drop it for a cleaner payoff."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 89
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "chart_contradicts_narration",
+        "visible_evidence": "seg2:start to seg2:end show a plain two-bar chart, 'Placed stomach-down 85.4%' vs 'Placed back-up 1.9%', while the voiceover says stomach-sleeping fell 'from 85.4% of cases to 30.1%'. The 30.1% is never shown, the 1.9% is never spoken, and Data just dances beside the bar.",
+        "root_cause": "The fallback bar chart was drawn from a different pair of fields (stomach vs back, one year) than the claim in the narration (stomach-down share before vs after), and Data was given no act tied to the data.",
+        "repair_goal": "Show the narrated drop from 85.4% to 30.1% as a before-to-after change made of the subject: a row of 100 sleeping-baby cribs where Data rolls babies from stomach-down onto their backs until only 30.1% stay face-down. The numbers must match the voiceover, and Data must be the cause of the change."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.123,
+        "effective_fps": 21.1,
+        "max_dup_run": 5,
+        "measured": true,
+        "judder_ratio": 0.001,
+        "judder_fps": 24.0,
+        "held_s": 0.17,
+        "max_dup_at_s": 17.75,
+        "duration_s": 29.58
+      },
+      "fingerprint": "?|unreadable|chart_contradicts_narration"
+    },
+    {
+      "ts": "2026-10-07T05:49:19+00:00",
+      "slug": "self-checkout-cashier-jobs",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Three stock charts with Data standing beside them. The hook claims '92% of cashier jobs wiped out', but the 92% on screen is self-checkout adoption, and the beat after the hook repeats the hook's chart.",
+      "auto_fails": [
+        "decorative_mascot: In seg0 and seg1 Data stands on a ladder beside the 92% bar and points at it, but the bar grows by itself. At seg2:start he is parked half off the left edge of the scale. From seg3:start to seg4:end he just stands on top of the 4% circle. He never causes any of the motion.",
+        "bare_number_card: In seg3 and seg4 the 4% vs 1.6% loss rate is two flat circles with a number in each (seg3:end). Nothing shows a loss happening.",
+        "dead_air: seg1:start, seg1:mid and seg1:end (4.9-8.4s) are the same finished bar chart already shown at seg0:end. Only Data's arms change, so two beats look identical for about 6 seconds.",
+        "empty_void: In seg3:start the two small circles float in a mostly empty dark frame, and the labels 'Self-checkout' and 'Staffed checkout' sit far below them, cut off from their marks. In seg0 and seg1 the top 40% of the frame is empty above the bars.",
+        "unreadable: In seg2:start, mid and end Data's body covers the '3' of '3.5M', so it reads '.5M', and he is cropped at the left edge. In seg3:mid the big caption number shows '4%' and '1.6%' drawn on top of each other, so it reads '146%'. In seg3:start the '4%' is half hidden under Data. In seg2:mid the caption '3.5' is dark purple on navy and nearly invisible."
+      ],
+      "problems": [
+        "The hook claim 'wiped out 92% of cashier jobs' doesn't match the data shown: 92% is the share of grocery chains with self-checkout lanes, and jobs fell only from 3.5M to 3M.",
+        "In seg1 the whole beat is the bar chart already finished at seg0:end, so the frame looks unchanged for about 6s.",
+        "In seg2 the mascot covers the '3' of '3.5M' and is cut off at the left edge of the frame.",
+        "In seg3:mid the caption numbers overlap into '146%'.",
+        "seg3 and seg4 are two plain circles with numbers in them, and the labels float far from the circles.",
+        "Data stands, perches or points in every scene and never drives the motion."
+      ],
+      "fixes": [
+        "Rewrite the hook so it states the real claim, for example that 92% of big grocers now have self-checkout, or show the 500k lost jobs.",
+        "Replace the seg1 chart with a scene made of the subject: a store's checkout lanes turning into kiosks one by one until 92 of 100 have them, with Data installing each kiosk.",
+        "In seg2, move Data off the 3.5M label and have him lift cashiers off one pan so the scale visibly tips.",
+        "Redraw seg3 as items slipping through unscanned at a self-checkout lane into a loss pile, 4 vs 1.6 per 100, with Data as the scanner.",
+        "Fix the caption crossfade so two numbers are never drawn on top of each other.",
+        "Remove the stray cyan ellipses at the end."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 74
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "bare_number_card",
+        "dead_air",
+        "decorative_mascot",
+        "empty_void",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "bare_number_card",
+        "visible_evidence": "seg3:start through seg3:end show a pink 4% circle and a grey 1.6% circle on an empty dark ground. Data stands on top of the pink circle doing nothing. The labels drift far below the circles, and the caption at seg3:mid overlaps into '146%'.",
+        "root_cause": "The 'loss rate' comparison was drawn as a stock pair of sized circles. Nothing in the picture is made of shoplifting or shrink, and the mascot is parked as a sticker instead of causing the motion.",
+        "repair_goal": "Redraw the loss as the subject itself. Show two checkout lanes where items slip off the belt or out of a bagging area into a loss bin: 4 of every 100 at the self-checkout lane, 1.6 at the staffed one. Data should be at the self-checkout scanner and miss the scans, so the loss pile grows because of h"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.365,
+        "effective_fps": 15.2,
+        "max_dup_run": 16,
+        "measured": true,
+        "judder_ratio": 0.073,
+        "judder_fps": 22.3,
+        "held_s": 3.88,
+        "max_dup_at_s": 1.92,
+        "duration_s": 24.67
+      },
+      "fingerprint": "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|bare_number_card"
+    },
+    {
+      "ts": "2026-10-07T06:49:31+00:00",
+      "slug": "monarch-butterfly-collapse",
+      "score": 44,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The opening tank is frozen and already empty, three middle beats are stock charts and machines, and the closer presents a fabricated '95%\u219280%, \u221215 pts' change between two different routes, with text covered by the mascot.",
+      "auto_fails": [
+        "decorative_mascot: Data stands holding a pole inside an already-drained tank (hook@0.3 to seg0:end), holds his head beside a line (seg1:mid), sits on top of the 17% bubble (seg2:mid) and clings to the left edge (seg3:mid). Only seg4 gives him an action (sawing a wing), and that action illustrates a wrong comparison.",
+        "dead_air: The tank frame is almost unchanged from hook@0.3 to seg0:end (about 3s), then dims through seg1:start. Measured held_s is 5.17 and max_dup_run is 41 at 3.67s, so the opening is effectively frozen for about 5s.",
+        "unreadable: In seg4:mid, payoff@-0.4 and seg4:end, Data's legs and saw sit on top of '\u221215 pts'. In seg3:start to seg3:end, Data's body covers the left edge of '95%' and 'Western route' at the frame edge. In hook@0.3, the four labels '2017 2.5 / 2020 2.1 / 2024 0.9 / 2013 0.7' are crammed into about 50px."
+      ],
+      "problems": [
+        "The hook shows a static, already-drained tank for about 5s, so nothing happens in the first seconds.",
+        "The hook line 'Your garden vanished 94% of monarch milkweed' is garbled and mixes the herbicide stat with milkweed.",
+        "Tank labels are crammed into about 50px and ordered 2017/2020/2024/2013.",
+        "seg1 is a plain line chart and seg2 is plain bubbles, with Data posing beside or on top of them.",
+        "On the seg3 scale the arm drops toward 80% even though 95% is the larger loss, and Data covers the Western label at the frame edge.",
+        "seg4 claims the eastern route 'was 95%' and dropped '\u221215 pts', which is false (it is the western figure), and Data's legs cover the '\u221215 pts' text."
+      ],
+      "fixes": [
+        "Open on the forest actually shrinking: 18.2 ha of fir canopy draining to 0.9 while Data cuts or carries it away, so the motion is visible from frame 1.",
+        "Rewrite the hook to a coherent claim, for example 'Monarchs lost 95% of their winter forest'.",
+        "Make seg2 bespoke: a field of soybean rows turning herbicide-resistant from 17% to 94%, with Data spraying it.",
+        "Replace the balance with two migrating swarms thinning to 5% and 20% of their size.",
+        "Remove the cross-route delta in seg4 and keep labels clear of the mascot's anchor."
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 4.33,
+        "dark_fraction": 0.0,
+        "sampled": 85
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "dead_air",
+        "decorative_mascot",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg4",
+        "index": 4,
+        "failure_class": "false_comparison_and_occlusion",
+        "visible_evidence": "seg4:mid shows 'Eastern route (since 1990s) 80% / was 95%' with '\u221215 pts'. That presents the western route's 95% as an earlier value of the eastern route, which is a fabricated change. Data's feet and saw also cover the '\u221215 pts' text, and he stands on a floating ladder next to a dashed box that has",
+        "root_cause": "The closing compare template treated the two categories (western, eastern) as before/after values of one series and computed a delta between unrelated measures. The mascot anchor was placed over the delta label.",
+        "repair_goal": "Show the closing as the two routes side by side, or as one wing for the subject: a monarch wing shrinking to its remaining share (5% west, 20% east), with Data cutting it away himself. Remove the 'was 95%' / '\u221215 pts' delta and keep every label clear of the mascot."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.281,
+        "effective_fps": 17.2,
+        "max_dup_run": 41,
+        "measured": true,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 5.17,
+        "max_dup_at_s": 3.67,
+        "duration_s": 28.33
+      },
+      "fingerprint": "?|dead_air+decorative_mascot+unreadable|false_comparison_and_occlusion"
+    },
+    {
+      "ts": "2026-10-07T06:49:31+00:00",
+      "slug": "twin-birth-rate-rise",
+      "score": 43,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 1,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Every beat is a stock chart with Data cheering on top. The units are wrong (per-1,000 values labelled %), and the 'five times' beat shows an unrelated 46% waffle.",
+      "auto_fails": [
+        "decorative_mascot: Data points from a ladder beside a bar he did not fill (hook@0.8\u2013seg0:mid). He then rides line tips in the same arms-up pose (seg1:mid, seg3:mid, seg4:mid) and floats over the 1980 bar (seg1:start), causing nothing."
+      ],
+      "problems": [
+        "Hook (hook@0.3\u2013seg0:mid) is the same finished bar chart repeated with Data pointing; nothing happens in the first 2s beyond the mascot shuffling.",
+        "The twin rate is per 1,000 births, but every bar and headline labels it as a percent ('33.9%', '18.9%'), which misstates the stat by an order of magnitude in meaning.",
+        "seg2 waffle shows '40+ 46%' with no under-20 comparison, so the 'nearly five times' claim is never demonstrated.",
+        "Data uses the same arms-up pose riding line tips in seg1, seg3 and seg4. He causes none of the motion and overlaps the 1980 bar in seg1:start.",
+        "The closing 'Two really did become the new one' sits over the IVF decline chart, so the payoff contradicts the visual (a falling line).",
+        "Two different chart treatments of the same series in seg1 (horizontal bars, then a column/line race) look like a template switch rather than a build."
+      ],
+      "fixes": [
+        "Relabel the twin-rate values as 'per 1,000' (e.g. '33.9 per 1,000') wherever they appear.",
+        "Replace the seg2 waffle with a side-by-side ratio picture (under-20 versus 40+ twin pairs, about 1:5) that Data fills himself.",
+        "Give Data an agent act for each beat: he stacks twin pairs to raise the rate in seg1 and pulls IVF twins out of the pile in seg3, instead of cheering on the line tip.",
+        "Open on motion: the twin count doubling in front of the viewer within the first second, not a pre-built bar chart.",
+        "Close on the doubling (twin pairs where there used to be one), not on the reused IVF decline chart."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 72
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "decorative_mascot"
+      ],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "claim_not_demonstrated",
+        "visible_evidence": "seg2:start\u2013seg2:end: a waffle of identical baby emoji titled 'Twin age factor 40+ 46%' with 'each = 1%', while the narration says mothers over 40 twin nearly five times more often than under-20 mothers. There is no under-20 group, no ratio, and Data just stands in the grid pointing.",
+        "root_cause": "A share/waffle chart was chosen for a RATIO comparison between two age groups. The comparison group is missing, so the picture asserts '46%', which the script never says.",
+        "repair_goal": "Draw the two groups side by side: under-20 mothers with 1 twin pair for every ~5 pairs among 40+ mothers, filling as Data hands over each pair. The 5x gap should be visible without reading, and the numbers should come from the beat's data."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.096,
+        "effective_fps": 21.7,
+        "max_dup_run": 16,
+        "measured": true,
+        "judder_ratio": 0.021,
+        "judder_fps": 23.5,
+        "held_s": 1.04,
+        "max_dup_at_s": 5.75,
+        "duration_s": 23.96
+      },
+      "fingerprint": "?|decorative_mascot|claim_not_demonstrated"
+    },
+    {
+      "ts": "2026-10-07T07:30:25+00:00",
+      "slug": "earth-rotation-speeding-up",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Generic block-stack and bar-chart visuals with no units, mismatched numbers and a decorative closing chart. Nothing makes a shrinking day feel real.",
+      "auto_fails": [
+        "decorative_mascot: In seg3:start through seg4:end, Data shuffles beside the two bars with arms out and causes nothing. The bars grow without him. In seg2 he only stamps beside the globes, and his acts in hook and seg1 are tied to the stack.",
+        "empty_void: In seg3:start and seg3:mid the top half of the frame, between the 'Earth negative' title and the bars, is empty grid with only a faint 'VS'. The bars and Data fill a small strip near y\u2248450-520.",
+        "unreadable: In seg3:start the header is cut off at 'CHANCE IT STILL ISN'T NEEDED VS CHANCE OF A\u2026'. The bar labels in seg3:mid are tiny grey text that can't be read on a phone. In seg0:start the 'vanished 1.66' caption is faded grey on dark."
+      ],
+      "problems": [
+        "The hook shows 'Earth record 1.5' and 'each block = 0.2' with no units. A viewer has no idea what is being stacked or why to stay.",
+        "seg1 shows 1.5 \u2192 1.7 while the narration says 1.66 ms, so the picture contradicts the script.",
+        "seg2 uses earth icons as leap-second units, a swappable icon grid, and Data overlaps the globes in seg2:start and seg2:mid.",
+        "seg3 is a fallback two-bar chart: truncated header, meaningless 'Earth negative' title, illegible grey labels, accent on the complement instead of the 40% subject, and the top half of the frame empty.",
+        "In seg3 and seg4 Data dances beside the bars without causing anything (decorative).",
+        "The payoff 'Your day is shrinking' sits over a 60/40 probability chart that does not show a day shrinking."
+      ],
+      "fixes": [
+        "Open on motion that shows the claim, e.g. a clock face whose day-ring visibly closes short with '\u22121.66 ms' on it, units always printed.",
+        "Make seg1's numbers match the narration (1.66 ms) and label every value with its unit.",
+        "Draw leap seconds as seconds (ticks added to a clock rim) rather than earth icons, and keep Data clear of the count.",
+        "Replace seg3's chart with a bespoke depiction of the 40% chance of removing a second. Put the accent and the label on the 40%, use plain-language titles, and remove the truncated header.",
+        "Give Data an agent act in seg3/seg4: he pulls the second out, winds the clock or spins the globe, with his hands on the moving part.",
+        "End the closing on the shrinking-day image, not the probability bars."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 63
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "decorative_mascot",
+        "empty_void",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "chart_with_decorative_mascot",
+        "visible_evidence": "seg3:start to seg3:end show two rounded bars with no values. The title 'Earth negative' means nothing, the header is truncated, and the axis labels are faint and tiny. The pink accent sits on 'Chance it still isn't needed', not on the 40% the narration names. Data dances beside the bars, and the upp",
+        "root_cause": "The probability claim fell back to a stock two-bar chart. The accent went to the complement instead of the subject, there were no value labels until the closing, and Data has no agent act tied to the moving part.",
+        "repair_goal": "Show the 40% negative-leap-second chance as a picture made of the subject: a clock or calendar with a second that can be removed, or 10 days of which Data pulls a second out of 4. Put the accent and the value label on the 40% from the first frame, title it in plain words ('40% chance we DELETE a sec"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.216,
+        "effective_fps": 18.8,
+        "max_dup_run": 13,
+        "measured": true,
+        "judder_ratio": 0.006,
+        "judder_fps": 23.9,
+        "held_s": 1.58,
+        "max_dup_at_s": 1.21,
+        "duration_s": 20.92
+      },
+      "fingerprint": "?|decorative_mascot+empty_void+unreadable|chart_with_decorative_mascot"
+    },
+    {
+      "ts": "2026-10-07T07:30:25+00:00",
+      "slug": "genz-drinking-decline",
+      "score": 44,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 1,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The core comparison scene is broken (two identical 70% bubbles, 35% never shown), and the rest is stock bar and line charts with a mascot who just hangs around.",
+      "auto_fails": [
+        "decorative_mascot: Data never causes any of the motion: at seg0:mid he hovers between the bars with his arms raised, at seg1:start through seg1:end he sits on top of a 70% bubble, at seg2:mid he slides down the line, and at seg4:start through seg4:end he stands at the foot of the 2001-2003 building and waves. None of it is a setup, action and payoff tied to the stat.",
+        "bare_number_card: In seg1:start through seg1:end the beat is two identical yellow circles that each say \"70%\", which is just a number on a blob. The 35% from the script never appears.",
+        "empty_void: In seg1:mid the top ~40% of the frame above the bubbles is empty dark gradient. In seg4:start the space between the title and the buildings is mostly dead dark ground.",
+        "unreadable: At seg0:end the mascot's head sits on top of the ~20-years-ago \"72%\" label, which reads as \"?2%\". In hook@0.3 the yellow glowing caption \"Your twenty-something\" bleeds and is hard to read."
+      ],
+      "problems": [
+        "seg1: both bubbles read \"70%\" and \"~20 years ago\", so the 70%-to-35% drop the narration states is never shown.",
+        "seg0:end: the mascot covers the \"72%\" value label.",
+        "The hook (hook@0.3 to hook@2.2) is a static ranked list of three mascots with percentages. The motion is weak and the glowing caption bleeds.",
+        "seg2 cuts off the y-axis so 67% to 61% reads as a steep crash.",
+        "The closing (seg4) ends on 67/64/61% buildings that look almost equal, which contradicts the \"sober is becoming the norm\" payoff.",
+        "Data never causes any motion. He perches, hovers, slides and waves in every scene."
+      ],
+      "fixes": [
+        "Fix the data binding in seg1: label the second bubble \"recent\" with 35% and make it visibly half the size, or redraw it as glasses being set down.",
+        "Keep the mascot's bounding box clear of every value label.",
+        "Open on immediate motion tied to the subject, for example a row of raised glasses where Data lowers 22 of every 100.",
+        "Start the weekly-drinking axis at 0, or show the small drop honestly as a small change.",
+        "Close on the strongest number (70% to 35%) instead of the 67/64/61% weekly series.",
+        "Give Data an agent act in each scene: he removes glasses, drains a pitcher to the level, or pushes the bar down."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 80
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "bare_number_card",
+        "decorative_mascot",
+        "empty_void",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 1,
+        "failure_class": "wrong_data_binding",
+        "visible_evidence": "Two identical yellow circles both read \"70%\" and are both captioned \"~20 years ago\". The kicker reads \"~20 YEARS AGO TOPS THE LIST\". The 35% that the narration says (\"70% to 35%\") is never drawn, and a stray cyan ellipse floats inside the left circle at seg1:end.",
+        "root_cause": "The second data point was bound to the first point's value and label, so the comparison has nothing to compare. The bubble machine is also a generic size comparison with nothing about drinking in it.",
+        "repair_goal": "Show 70% shrinking to 35% for 18-20 year-olds with the right labels on each side, for example a crowd of 10 young-adult figures where half put their drinks down, with Data taking the glasses away himself. The second value must visibly be half of the first and be labelled \"recent\"."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.1,
+        "effective_fps": 21.6,
+        "max_dup_run": 10,
+        "measured": true,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 1.67,
+        "max_dup_at_s": 14.58,
+        "duration_s": 26.79
+      },
+      "fingerprint": "?|bare_number_card+decorative_mascot+empty_void+unreadable|wrong_data_binding"
+    },
+    {
+      "ts": "2026-10-07T08:50:23+00:00",
+      "slug": "peanut-allergy-guideline-flip",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The hook says allergies 'vanished 43%' over a chart going up. Then three charts and a number card restate the stats instead of showing them, and Data mostly poses beside the numbers.",
+      "auto_fails": [
+        "decorative_mascot: seg2:start through seg2:end show Data cheering or clutching his head beside the 1.9% and 13.7% text, causing nothing. seg1:mid shows him with arms up while walking the timeline. seg4:start has him clinging to a pole at the frame edge, not loading the scale.",
+        "bare_number_card: In seg2:mid the trial result is just two big percentages (1.9% vs 13.7%) on rules with labels. Nothing shows the 7x gap.",
+        "unreadable: seg3:start header is cut off: 'BEFORE EARLY-INTRODUCTION GUIDELINES VS AFT\u2026'. In seg4:start and payoff@-0.4 Data's body sits on the '0.8%' label at the left edge and he is cut off by the frame. In seg2:start the faded caption 'to 13.7% allergy' and the grey '1.9%' are low-contrast."
+      ],
+      "problems": [
+        "Hook contradicts its picture: the caption 'vanished 43%' plays over a bar chart rising 0.4 to 1.4% (hook@0.8 to seg0:end).",
+        "seg0 and seg1 show the same rise twice in two chart forms, wasting about 10s.",
+        "seg2 is a bare number card: 1.9% vs 13.7% as text, with Data cheering beside it.",
+        "seg3 shows 0.8% vs 0.5% while the narration says 0.79% and 0.45%. The 43% drop is never drawn.",
+        "seg4 piles MORE peanuts on the 'before' (avoidance) side, so the metaphor argues against the closing line.",
+        "seg4: Data is cut off at the left edge and covers the '0.8%' label. The seg3 header is truncated 'VS AFT\u2026'."
+      ],
+      "fixes": [
+        "Open on the payoff tension: an allergy count visibly shrinking by 43% (e.g. 79 kids in 10,000 becoming 45) with Data feeding peanuts to make it shrink, so the hook matches the picture.",
+        "Merge seg0/seg1 into one beat for the 1997 to 2008 rise and drop the duplicate chart.",
+        "Rebuild seg2 as two infant groups or jars where 13.7 visibly dwarfs 1.9, with Data feeding peanuts to the early group.",
+        "In seg3, draw the 43% drop itself (a stack losing 43% of its markers) and use the narration's exact values.",
+        "In seg4, put the peanuts on the side that LOWERS allergy, or swap the scale for a picture made of peanuts. Keep Data and the labels fully in frame and not overlapping.",
+        "Shorten the seg3 header so it isn't cut off. Bring faded captions and the grey 1.9% up to full contrast."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 87
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "bare_number_card",
+        "decorative_mascot",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "bare_number_card",
+        "visible_evidence": "seg2:start/mid/end: two rows of text (1.9% grey, 13.7% pink) with a mascot cheering next to each. Nothing grows, fills or compares in size. The only change is the mascot sliding right.",
+        "root_cause": "The study's core result (avoidance gives 7x the allergy rate) was rendered as a labelled number list instead of a picture where 13.7 is visibly about 7x 1.9. Data has no act tied to the number.",
+        "repair_goal": "Make the 7x gap physical and peanut-made. Two groups of 100 infants (or two jars) fill with allergy markers to 1.9 and 13.7. Data feeds peanuts to the early group, which keeps its markers low, while the avoid group's pile climbs to 13.7. The viewer should see the size difference without reading the "
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.149,
+        "effective_fps": 20.4,
+        "max_dup_run": 14,
+        "measured": true,
+        "judder_ratio": 0.03,
+        "judder_fps": 23.3,
+        "held_s": 2.33,
+        "max_dup_at_s": 23.12,
+        "duration_s": 28.92
+      },
+      "fingerprint": "?|bare_number_card+decorative_mascot+unreadable|bare_number_card"
+    },
+    {
+      "ts": "2026-10-07T08:50:23+00:00",
+      "slug": "secondhand-apparel-resale-boom",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "Four stock charts in a row. The 5x headline claim is never shown, the opening waffle sits frozen for about 6s, and the closing line 'archival style' is nonsense.",
+      "auto_fails": [
+        "dead_air: From hook@2.2 through seg0:end and seg1:start to seg1:end (t=2.2-7.8s) the waffle is the same 14 tiles with Data holding the same stamp pose. About 5.6s where nothing meaningful changes, and the hook and seg0 show the identical picture.",
+        "unreadable: In payoff@-1.8 the falling pink block covers the bottom half of the '55%' label. In seg3:end Data's body sits on top of the circled '58%' label."
+      ],
+      "problems": [
+        "hook: the narration says '$43 billion habit' over a 14% waffle, so the hook picture doesn't match its line and repeats seg0",
+        "seg0/seg1: the same static waffle holds from t=2.2 to 7.8s with Data idle holding a stamp",
+        "seg0: 'five times faster than new clothing' has no visual. New-clothing growth is never drawn",
+        "seg2 and seg3: generic bar and line charts, nothing made of clothing or thrift",
+        "seg3: the y-axis starts at about 51%, which exaggerates a 6-point rise. Data's body overlaps the '58%' label at seg3:end",
+        "seg4: the falling block covers the '55%' label (payoff@-1.8), and the counter reads 52% while the stack sits near 58%"
+      ],
+      "fixes": [
+        "Build seg0 as a secondhand rack vs a new rack racing, with Data pushing the secondhand one to 5x the distance",
+        "Give the hook its own image: $43B of thrifted clothes dropping into a bin or pile that Data catches",
+        "Replace the seg2 bars with a clothing pile or hanger rail that grows from 43 to 74 as Data hangs garments",
+        "Replace the seg3 line with a crowd of shoppers filling a thrift store (52 out of 100 rising to 58), with a full axis or no axis",
+        "Keep labels clear of moving blocks and the mascot, and sync the seg4 counter to the stack height",
+        "Rewrite the closing as a real payoff, e.g. 'By 2029, nearly one in three dollars of your closet could be secondhand', if the data supports it"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 84
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "dead_air",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg0",
+        "index": 0,
+        "failure_class": "dead_air / wrong_claim_picture",
+        "visible_evidence": "hook@0.3 to seg1:end: one static 14-tile waffle ('each = 1%') holds for roughly 7s. Data stands still with a stamp after hook@2.2. 'Five times faster than new' is never shown, and the hook's '$43 billion' plays over a 14% waffle.",
+        "root_cause": "A growth-rate comparison (14% secondhand vs about 3% new) was mapped to a share waffle. It finishes filling during the hook and then has nothing left to do while the narration states the 5x comparison.",
+        "repair_goal": "Replace the waffle with a two-lane race: a secondhand clothing rack and a new-clothing rack growing side by side, with Data pushing the secondhand rack forward so it pulls ahead to 5x the new one's distance while the 'five times faster' line plays. Make the hook its own scene (a $43B pile of thrifte"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.26,
+        "effective_fps": 17.8,
+        "max_dup_run": 12,
+        "measured": true,
+        "judder_ratio": 0.091,
+        "judder_fps": 21.8,
+        "held_s": 1.33,
+        "max_dup_at_s": 15.08,
+        "duration_s": 28.08
+      },
+      "fingerprint": "?|dead_air+unreadable|dead_air / wrong_claim_picture"
+    },
+    {
+      "ts": "2026-10-07T09:49:48+00:00",
+      "slug": "divorce-rate-quiet-decline",
+      "score": 61,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A strong bespoke stack of divorce filings and a candle-cake, but the hook sits frozen for over a second and the payoff never shows why waiting lowers divorce.",
+      "auto_fails": [],
+      "problems": [
+        "The hook holds for about 1.3s (hook@0.3 to seg0:start): Data waves, nothing moves.",
+        "Data waves and stands more than he works; the papers leave the stack without his hands on them (seg0:end, seg1:start).",
+        "Candles are too small to count at phone size, so the age climb is read from the label, not seen (seg2:mid).",
+        "The closing shrinks the scene into a boxed card with dark bands (seg3:start), a step down in craft from the full-bleed scenes.",
+        "The payoff asserts that waiting was the 'plot twist' but never visually links the cake to the shrinking stack; '+4.7 years' echoing the 4.7 divorce rate is confusing."
+      ],
+      "fixes": [
+        "Have Data throw filings into the bin from frame 1 so the hook opens on the collapse.",
+        "Make Data the cause in both scenes: tossing papers off the stack, then lighting or pushing in each new candle with a visible arc.",
+        "Make the candle count readable: fewer, larger candles per year added, or a counter tied to each lit candle.",
+        "Close with both pictures together, the shrunken stack beside the candle-laden cake, so 'waiting is the twist' is shown and not just stated."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 71
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg0",
+        "index": 0,
+        "failure_class": "static_hook",
+        "visible_evidence": "hook@0.3, hook@0.8, hook@1.5 and seg0:start are the same frame: Data waving on top of an untouched stack while '4.7' sits there. Nothing happens until hook@2.2, when the first papers fly.",
+        "root_cause": "The demolition of the stack is timed to start after the hook line instead of on frame 1. Data starts in an idle wave and does not cause the papers to leave.",
+        "repair_goal": "Start the collapse on frame 1: Data hurls the first sheaf of filings from the stack into the bin by 0.3s, and the stack visibly drops each time he throws, so his hands are the cause of the decline from the opening frame."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.358,
+        "effective_fps": 15.4,
+        "max_dup_run": 20,
+        "measured": true,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 6.0,
+        "max_dup_at_s": 6.42,
+        "duration_s": 23.79
+      },
+      "fingerprint": "?|-|static_hook"
+    },
+    {
+      "ts": "2026-10-07T09:49:48+00:00",
+      "slug": "freshwater-accessible",
+      "score": 35,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "The headline number, 0.007%, is never shown. The payoff scene draws it as '0.0%' on a plain pie, and the other scenes are stock charts with Data standing beside them.",
+      "auto_fails": [
+        "decorative_mascot: In hook@0.3\u2013seg0:end Data only stands on top of the wave icon. In seg1:mid/end he floats beside the 96.5% bar, in seg2:start/end he hangs beside the stacked bar, and in seg3:start\u2013end he perches on the pie. He causes none of the motion. Only in seg4:mid does he hold a pole by the scale, and the pole does nothing.",
+        "bare_number_card: seg3:mid/end is a single disc reading '100.0%' with '0.0%' floating to its right. That is a number on a blob, and it shows nothing.",
+        "empty_void: In hook@0.3\u2013seg0:end the bottom third of the frame, below the tap row, is empty dark space. In seg1:start nearly the whole top half is empty grid. In seg3:start a small disc sits in a mostly empty frame.",
+        "unreadable: In seg4:start the left pan label 'Locked away (oceans, ice, deep groundwater)' is printed over itself and covered by Data ('ice, deep' is garbled). In seg4:mid\u2013end Data covers the 'L' of 'Locked'. In seg2:start the stacked-bar labels 'Glaciers & ice caps 69%' and 'Groundwater 30%' are too faint to read. The seg3 eyebrow is cut off at 'GROUNDWATER\u2026'."
+      ],
+      "problems": [
+        "seg3 rounds the 0.007% payoff to '0.0%' and draws a 100.0% disc. The picture contradicts the narration and the title.",
+        "The hook (hook@0.3\u2013seg0:end) is a static icon chart, and the only motion is the wave sliding sideways. Nothing happens to 'your coffee'.",
+        "Data is decorative throughout. He stands on a wave, floats beside bars and sits on a pie, and causes none of the data's motion.",
+        "seg1 and seg2 are standard bar and stacked-bar charts with no ice, ocean or ground in them.",
+        "The seg4 labels overlap each other and Data covers them ('Locked away (oceans, ice, deep' is garbled at seg4:start). The scale also says 0.0%.",
+        "There is large empty space in the hook frames and in seg1:start and seg3:start."
+      ],
+      "fixes": [
+        "Rebuild seg3 as a scale reveal: a full ocean tank, then Data pours out a single drop into a glass, then a zoom shows the drop labelled 0.007%. Format small shares with enough decimal places that they never show as 0.0%.",
+        "Open the hook on a coffee mug draining or being snatched away while '0.007%' lands, with motion from frame 1.",
+        "seg1: show Data hauling salt into a huge ocean tank next to a small freshwater jug. seg2: show Data swinging a pick at a giant ice block (68.7%) and digging down to groundwater (30.1%), each part sized by its share.",
+        "Lay out the seg4 labels so nothing overlaps, keep Data clear of the text, and make the right pan hold a visible drop marked 0.007%.",
+        "Fill the frame. Make the hero object big and drop the empty grid areas."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 89
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "bare_number_card",
+        "decorative_mascot",
+        "empty_void",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "bare_number_card",
+        "visible_evidence": "seg3:start\u2013end shows a plain blue disc labelled '100.0%' 'Locked away', with '0.0% Rivers & lakes (accessible)' as floating text. The narration says 0.007%, so the picture says the accessible share is literally zero and draws nothing for it.",
+        "root_cause": "A share/donut chart was used for a 0.007% slice. Rounding to one decimal place turns the payoff number into 0.0%, and the tiny part is not drawn at all. The claim needs a scale change, not a pie.",
+        "repair_goal": "Show 0.007% physically. Start from a huge body of water (a full Earth-sized tank or ocean), have Data scoop or pour out just one drop or one teaspoon into a glass, and zoom in until that drop is visible. Label it '0.007%' and never '0.0%'. Data should do the pouring, so he causes the motion."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.197,
+        "effective_fps": 19.3,
+        "max_dup_run": 23,
+        "measured": true,
+        "judder_ratio": 0.001,
+        "judder_fps": 24.0,
+        "held_s": 4.08,
+        "max_dup_at_s": 4.42,
+        "duration_s": 29.58
+      },
+      "fingerprint": "?|bare_number_card+decorative_mascot+empty_void+unreadable|bare_number_card"
+    },
+    {
+      "ts": "2026-10-07T10:49:36+00:00",
+      "slug": "solar_capacity_just_passed_hydropower",
+      "score": 78,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A clean two-line race whose crossover payoff lands. But the hook caption claims the lead while the picture shows solar at a fifth of hydro, and the source footer can't be read on a phone.",
+      "auto_fails": [
+        "unreadable: The source line at the bottom of every frame (e.g. payoff@-0.4: 'Source: International Renewable Energy Agency, Renewable Capacity Statistics 2025') is tiny grey text on black and can't be read on a phone held at arm's length. In payoff@-0.4 the yellow solar line also runs into the edge of the 'Hydropower 1.4K' tag at the crossover."
+      ],
+      "problems": [
+        "Hook (hook@0.3 to hook@1.5): the caption 'Sunlight took the lead.' contradicts the picture (Solar 240 vs Hydropower 1.2K), and the opening is a slow build from a stub line with no tease.",
+        "The source footer is tiny, low-contrast grey on black in every frame and can't be read on a phone.",
+        "At mid5/payoff the yellow solar line runs into the 'Hydropower 1.4K' end tag at the crossover.",
+        "The year counter slides sideways across the bottom (2015 to 2024), drifting and taking attention from the chart.",
+        "At hook@0.3 to mid1 the x-axis shows only '2016' while the counter reads 2015 or 2017, so time context is thin early on."
+      ],
+      "fixes": [
+        "Rewrite the hook caption as a tease of the coming pass (e.g. 'Solar was 5x behind. Watch.'), or open on a quick preview flash of the crossover before rewinding to 2015.",
+        "Enlarge the source footer about 1.5x and raise its contrast, or put it on a subtle backing strip.",
+        "Offset the hydropower end tag (or add collision avoidance) so the solar line never passes under or through it.",
+        "Anchor the year counter in a fixed position instead of letting it slide.",
+        "Show at least two x-axis year ticks from the first frame."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 1.0,
+        "sampled": 43
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook",
+        "visible_evidence": "At hook@0.3 to hook@1.5 the caption 'Sunlight took the lead.' sits over a chart where Hydropower is 1.2K and Solar is 240, five times smaller. What the viewer sees contradicts the caption, the opening is a slow line build from a stub, and the grey source footer is unreadable throughout.",
+        "root_cause": "The payoff claim is used as the hook caption over the 2015 state, so the opening states a result the picture shows as false. Nothing teases the coming crossover, and the footer is drawn too small and dim for a phone.",
+        "repair_goal": "Open on a tease of the crossover, e.g. the hydro line labelled 'the leader for a century?' with solar shown below and closing fast, or phrase the caption as a question/countdown ('Solar is 5x behind... for now'). Make the source footer at least 1.5x larger with higher contrast, and move the hydropow"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.076,
+        "effective_fps": 22.2,
+        "max_dup_run": 26,
+        "measured": true,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 1.04,
+        "max_dup_at_s": 13.29,
+        "duration_s": 14.38
+      },
+      "fingerprint": "?|unreadable|weak_hook"
+    },
+    {
+      "ts": "2026-10-07T10:49:36+00:00",
+      "slug": "kelp-forest-sea-star-collapse",
+      "score": 39,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 1,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A strong three-step ecological chain is told with gauges, bubbles and labelled rows: no sea stars, no urchins, no kelp is ever drawn, and Data poses beside charts instead of causing anything.",
+      "auto_fails": [
+        "decorative_mascot: hook@0.3 to seg1:start: Data shuffles beside a ruler gauge. seg1:mid and seg3:mid: he stands on top of a bubble. seg2:start to seg2:end: he points at and cheers beside the numbers. Nothing changes because of him. In seg4 he cheers on the 100% pan while the closing says the forest is gone, so the reaction is the wrong way round.",
+        "bare_number_card: seg2:start/mid/end: '100%' and '10.1K%' sit as big text on two empty rows, with no urchins, no swarm and no growth. The 10,000% explosion is only a label.",
+        "unreadable: seg1:mid/end: the source line is tiny and cut off ('Sea Star Wasting Disease monitor...'). seg4:mid to payoff@-0.4: 'Tell me below.' sits right on top of 'COMMENT BELOW' with 'Sources in the description' squeezed underneath. seg2:start: the caption 'urchins in check.' is faded almost into the background."
+      ],
+      "problems": [
+        "Hook (hook@0.3 to seg1:start): a static ruler gauge reading '99% apart' with Data shuffling. The hook and seg0 are one recycled picture for about 6s.",
+        "seg1 and seg3 use the identical bubble-comparison template, so the video repeats itself.",
+        "seg2 is a bare number card: '10.1K%' as text with no urchin swarm.",
+        "None of the story's subjects (sea star, urchin, kelp) is ever drawn. Kelp appears as land-tree icons in seg4.",
+        "Data is decorative throughout (perching, pointing, cheering) and celebrates on the 100% pan during a loss payoff.",
+        "The outro text is crowded: the CTA caption, 'COMMENT BELOW' and the sources line are stacked on top of each other. The source line in seg1 is truncated."
+      ],
+      "fixes": [
+        "Hook: open on a sea star dissolving or wasting away, with 99 of 100 stars vanishing from a reef in the first second.",
+        "seg2: Data pours urchins from a bucket and the seafloor fills with a purple urchin carpet scaled to 100x.",
+        "seg3: urchins chew down kelp stalks until 4 of 100 remain. Use a bespoke kelp forest, not a reused bubble chart.",
+        "Draw kelp as kelp (tall swaying fronds with floats), not trees. Data's reaction at the payoff should match the loss.",
+        "Give the outro caption, the CTA and the sources line their own vertical bands. Shorten the source line so it is not truncated."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 122
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "bare_number_card",
+        "decorative_mascot",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "bare_number_card",
+        "visible_evidence": "seg2:start/mid/end: two rows, 'Before 2014 100%' and 'Since 2014 10.1K%'. Data points and cheers beside them. There are no urchins, nothing multiplies and nothing shows the scale.",
+        "root_cause": "A comparison-row template was used for a 100x population explosion. The number lives only in the label, and Data's poses are not attached to anything.",
+        "repair_goal": "Draw the urchin explosion from urchins: one urchin multiplies into a carpet of about 100 spiny purple urchins covering the seafloor. Data does the multiplying, for example tipping a bucket that pours urchins out. Keep the 10,000% label secondary to the swarm."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.323,
+        "effective_fps": 16.3,
+        "max_dup_run": 24,
+        "measured": true,
+        "judder_ratio": 0.01,
+        "judder_fps": 23.8,
+        "held_s": 6.67,
+        "max_dup_at_s": 4.21,
+        "duration_s": 40.71
+      },
+      "fingerprint": "?|bare_number_card+decorative_mascot+unreadable|bare_number_card"
     }
   ],
   "showrunner_recurrence": {
-    "?|bare_number_card+decorative_mascot+unreadable|bare_number_card": {
-      "count": 4,
-      "days": [
-        "2026-10-05"
-      ]
-    },
     "?|unreadable|unreadable": {
       "count": 4,
       "days": [
@@ -4546,65 +4507,25 @@
         "2026-10-07"
       ]
     },
-    "?|decorative_mascot|decorative_mascot": {
-      "count": 2,
-      "days": [
-        "2026-10-05"
-      ]
-    },
-    "?|bare_number_card+decorative_mascot+empty_void+unreadable|bare_number_card": {
-      "count": 2,
+    "?|bare_number_card+decorative_mascot+unreadable|bare_number_card": {
+      "count": 3,
       "days": [
         "2026-10-05",
         "2026-10-07"
       ]
     },
-    "?|bare_number_card+decorative_mascot+unreadable|unreadable_overlap_and_off_story_closing": {
-      "count": 1,
+    "?|bare_number_card+decorative_mascot+empty_void+unreadable|bare_number_card": {
+      "count": 3,
       "days": [
-        "2026-10-05"
+        "2026-10-05",
+        "2026-10-07"
       ]
     },
-    "?|bare_number_card+decorative_mascot+unreadable|unreadable_overlay_and_chart_fallback": {
-      "count": 1,
+    "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|bare_number_card": {
+      "count": 2,
       "days": [
-        "2026-10-05"
-      ]
-    },
-    "?|bare_number_card+decorative_mascot+empty_void+unreadable|wrong_claim_and_decorative_mascot": {
-      "count": 1,
-      "days": [
-        "2026-10-05"
-      ]
-    },
-    "?|bare_number_card+dead_air+decorative_mascot+empty_void+junk_imagery+unreadable|bare_number_card": {
-      "count": 1,
-      "days": [
-        "2026-10-05"
-      ]
-    },
-    "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|dead_air_repeated_scene": {
-      "count": 1,
-      "days": [
-        "2026-10-05"
-      ]
-    },
-    "?|bare_number_card+decorative_mascot+empty_void+junk_imagery+unreadable|unreadable": {
-      "count": 1,
-      "days": [
-        "2026-10-05"
-      ]
-    },
-    "?|bare_number_card+decorative_mascot+empty_void+unreadable|unreadable_overlap_bare_number": {
-      "count": 1,
-      "days": [
-        "2026-10-05"
-      ]
-    },
-    "?|decorative_mascot+unreadable|chart_restates_prior_beat_with_decorative_mascot": {
-      "count": 1,
-      "days": [
-        "2026-10-05"
+        "2026-10-05",
+        "2026-10-07"
       ]
     },
     "?|unreadable|false_claim_share": {
@@ -4655,13 +4576,13 @@
         "2026-10-05"
       ]
     },
-    "?|bare_number_card+unreadable|bare_number_card": {
+    "?|decorative_mascot|decorative_mascot": {
       "count": 1,
       "days": [
         "2026-10-05"
       ]
     },
-    "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|bare_number_card": {
+    "?|bare_number_card+unreadable|bare_number_card": {
       "count": 1,
       "days": [
         "2026-10-05"
@@ -4846,11 +4767,59 @@
       "days": [
         "2026-10-07"
       ]
+    },
+    "?|unreadable|chart_contradicts_narration": {
+      "count": 1,
+      "days": [
+        "2026-10-07"
+      ]
+    },
+    "?|dead_air+decorative_mascot+unreadable|false_comparison_and_occlusion": {
+      "count": 1,
+      "days": [
+        "2026-10-07"
+      ]
+    },
+    "?|decorative_mascot|claim_not_demonstrated": {
+      "count": 1,
+      "days": [
+        "2026-10-07"
+      ]
+    },
+    "?|decorative_mascot+empty_void+unreadable|chart_with_decorative_mascot": {
+      "count": 1,
+      "days": [
+        "2026-10-07"
+      ]
+    },
+    "?|bare_number_card+decorative_mascot+empty_void+unreadable|wrong_data_binding": {
+      "count": 1,
+      "days": [
+        "2026-10-07"
+      ]
+    },
+    "?|dead_air+unreadable|dead_air / wrong_claim_picture": {
+      "count": 1,
+      "days": [
+        "2026-10-07"
+      ]
+    },
+    "?|-|static_hook": {
+      "count": 1,
+      "days": [
+        "2026-10-07"
+      ]
+    },
+    "?|unreadable|weak_hook": {
+      "count": 1,
+      "days": [
+        "2026-10-07"
+      ]
     }
   },
   "recent_commits": [
-    "6d5fb20 2026-10-07 claim: mailbox verdicts 2026-10-07T04:49Z [skip ci]",
-    "19f25c6 2026-10-06 The new look actually renders: tell the brain what the kit returns, try every beat, draw ahead of posting (#529)"
+    "b6886fa 2026-10-07 deadman: repaired 2026-10-07 [skip ci]",
+    "77eb869 2026-10-07 producer: retrigger final 20261007 shortfall"
   ],
   "channel_performance": {
     "trending": {
@@ -4888,10 +4857,11 @@
         "2026-10-03": 2,
         "2026-10-04": 3,
         "2026-10-05": 3,
-        "2026-10-06": 3
+        "2026-10-06": 3,
+        "2026-10-07": 1
       },
-      "total_posted": 302,
-      "attempted": 302,
+      "total_posted": 303,
+      "attempted": 303,
       "rejected_or_pending": 0
     },
     "third": {
@@ -4911,8 +4881,8 @@
         "2026-10-06": 5
       },
       "total_posted": 368,
-      "attempted": 838,
-      "rejected_or_pending": 470
+      "attempted": 842,
+      "rejected_or_pending": 474
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4957,32 +4927,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 126,
+      "videos": 124,
       "top_by_vph": [
         {
           "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
-          "vph": 6.68,
-          "views": 463
+          "vph": 5.87,
+          "views": 498
         },
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 2.99,
+          "vph": 2.89,
           "views": 1358
         },
         {
-          "title": "Cinna Blames Kalita After Wrong-Side Crash Into 4Head and Twinkles Car",
-          "vph": 2.95,
-          "views": 1
-        },
-        {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 2.27,
-          "views": 45
+          "vph": 2.84,
+          "views": 100
         },
         {
           "title": "Kaicenat: Kai Cenat Addresses The Situation With Reggie And Demands Pr",
-          "vph": 2.02,
-          "views": 31
+          "vph": 1.43,
+          "views": 44
+        },
+        {
+          "title": "Cinna Gets Ragebaited By Chatty And Totally Loses It",
+          "vph": 1.09,
+          "views": 96
         }
       ],
       "full_data": "state/analytics_third/latest.json"
@@ -5164,7 +5134,7 @@
       "title": "Dropping an overlength replay leaves its whoosh cue behind",
       "horizon": "small_fix",
       "severity": "low",
-      "ruling": "doing"
+      "ruling": "in_progress"
     },
     {
       "signature": "9b8b29a78b87",
