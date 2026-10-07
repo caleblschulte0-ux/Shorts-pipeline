@@ -206,5 +206,25 @@ class AGradientTakesPlainColours(unittest.TestCase):
         self.assertIn("plain [rgb, ...]", line)
 
 
+class TheLookIsCleanNotOutlined(unittest.TestCase):
+    """Operator 2026-10-07 on the new look: "it just needs to look cleaner".
+    A 4px ink outline at 90% on every shape read as clip art at phone size;
+    the edge is now a soft line and one key-light pass finishes every frame."""
+
+    def test_the_edge_is_a_soft_line(self):
+        from data_learning import illustrated as I
+        self.assertLessEqual(I.EDGE_W, 2.5)
+        self.assertLessEqual(I.EDGE_A, 0.75)
+        src = inspect.getsource(I.solid) + inspect.getsource(I.disc) \
+            + inspect.getsource(I.cylinder)
+        self.assertNotIn("set_line_width(4.0)", src)
+
+    def test_every_frame_gets_the_finish_unconditionally(self):
+        from data_learning import subject_scenes as SS
+        src = inspect.getsource(SS._render_frames)
+        self.assertIn("I.finish(cr, I.FINISH)", src)
+        self.assertNotIn("environ", src)
+
+
 if __name__ == "__main__":
     unittest.main()
