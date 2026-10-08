@@ -370,56 +370,56 @@
           "shot_index": 0,
           "phrase": "comparing two blenders in the kitchen aisle",
           "query": "kitchen appliance aisle blenders store",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
           "phrase": "holding a cracked air fryer",
           "query": "cracked air fryer box",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
           "phrase": "my blue jacket proved otherwise",
           "query": "blue zip jacket casual wear",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
           "phrase": "the actual employee vest hanging two feet away",
           "query": "store employee safety vest rack",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
           "phrase": "flagged down a real manager",
           "query": "store manager badge walkie talkie",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
           "phrase": "a receipt from a different store chain stapled inside the box",
           "query": "crumpled receipt paper closeup",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 6,
           "phrase": "the loyalty app on my phone",
           "query": "phone shopping app screen hand",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 0,
-        "missing": 7,
+        "weak": 7,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.0,
@@ -442,43 +442,43 @@
           "shot_index": 0,
           "phrase": "fan started screaming three months after I bought it",
           "query": "laptop cooling fan closeup",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
           "phrase": "rep looked up my serial number",
           "query": "call center headset agent computer",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
           "phrase": "sealed in plastic, from their own store",
           "query": "sealed laptop box retail shelf",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
           "phrase": "the store's barcode scan timestamp",
           "query": "barcode scanner checkout receipt",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
           "phrase": "the unboxing video I filmed for a tech channel",
           "query": "phone filming unboxing desk",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
           "phrase": "pulled the manufacturing batch records",
           "query": "warehouse shelves inventory records",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 6,
@@ -490,19 +490,19 @@
       ],
       "media_health": {
         "strong": 0,
-        "weak": 0,
-        "missing": 7,
+        "weak": 6,
+        "missing": 1,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
+        "three-year-old-laptop-s6-534a70eac1dc",
         "three-year-old-laptop-s0-98e0e2cb81dd",
         "three-year-old-laptop-s1-e0e2866cdb29",
         "three-year-old-laptop-s2-faa4de224cd5",
         "three-year-old-laptop-s3-c0df8b8fce8b",
         "three-year-old-laptop-s4-ed9d975c202a",
-        "three-year-old-laptop-s5-097b5d7ff8e3",
-        "three-year-old-laptop-s6-534a70eac1dc"
+        "three-year-old-laptop-s5-097b5d7ff8e3"
       ]
     }
   ],
@@ -529,9 +529,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "fake-customer-costume-s1-de1df396a50e",
@@ -555,9 +557,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "fake-customer-costume-s2-dfca4b442c85",
@@ -581,9 +585,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "fake-customer-costume-s3-36337e37028d",
@@ -607,9 +613,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "fake-customer-costume-s4-00ab514365c9",
@@ -633,9 +641,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "fake-customer-costume-s5-3457251bbf2c",
@@ -659,9 +669,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "fake-customer-costume-s6-df8a3cd8ab97",
@@ -673,6 +685,34 @@
       "shot_index": 6,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: phone shopping app screen hand. It accompanies the narration: \"the loyalty app on my phone\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "three-year-old-laptop-s6-534a70eac1dc",
+      "safe_request_id": "three-year-old-laptop-s6-534a70eac1dc",
+      "drive_filename": "20261008__three-year-old-laptop-s6-534a70eac1dc.png",
+      "prompt_sha256": "309b2b509d57755bbb683f282629cfe48d67e52b78587aeb3df8639a7bc9a98d",
+      "checkpoint_path": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s6-534a70eac1dc.json",
+      "slug": "three-year-old-laptop",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: warehouse pallet boxes forklift. It accompanies the narration: \"a warehouse clerk had mislabeled an entire pallet\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -711,9 +751,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "three-year-old-laptop-s1-e0e2866cdb29",
@@ -737,9 +779,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "three-year-old-laptop-s2-faa4de224cd5",
@@ -763,9 +807,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "three-year-old-laptop-s3-c0df8b8fce8b",
@@ -789,9 +835,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "three-year-old-laptop-s4-ed9d975c202a",
@@ -815,9 +863,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "three-year-old-laptop-s5-097b5d7ff8e3",
@@ -841,35 +891,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "three-year-old-laptop-s6-534a70eac1dc",
-      "safe_request_id": "three-year-old-laptop-s6-534a70eac1dc",
-      "drive_filename": "20261008__three-year-old-laptop-s6-534a70eac1dc.png",
-      "prompt_sha256": "309b2b509d57755bbb683f282629cfe48d67e52b78587aeb3df8639a7bc9a98d",
-      "checkpoint_path": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s6-534a70eac1dc.json",
-      "slug": "three-year-old-laptop",
-      "shot_index": 6,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: warehouse pallet boxes forklift. It accompanies the narration: \"a warehouse clerk had mislabeled an entire pallet\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
+      "verdict": "weak"
     }
   ],
   "media_protocol": {

@@ -21,7 +21,21 @@
       "media_origin": "chatgpt",
       "media_file_id": "19p9cfZe-f0BMWT0lXaH7pnMNkGMmTC0-",
       "media_sha256": "1421b32c95f386b7f998e070b4ac8ac281b650da191d4ef8f4bb9b7730488901",
-      "media_bytes": 2705741
+      "media_bytes": 2705741,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=19p9cfZe-f0BMWT0lXaH7pnMNkGMmTC0-",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-08T11:36:01Z",
+        "resolved_by": "verify_shot_urls"
+      },
+      "pin_query": "blender",
+      "pin_context": "kitchen appliance countertop product comparison",
+      "news_query": "blender",
+      "news_angle": "The narrator was comparing two blenders in the kitchen aisle when the confrontation began."
     },
     {
       "phrase": "holding a cracked air fryer",
@@ -30,7 +44,21 @@
       "media_origin": "chatgpt",
       "media_file_id": "1C1dYrHdvHYgMXp880OccahfT-B08H7Q3",
       "media_sha256": "21f08c6c5ad107a4c411406ae23465131f2b728aeebb00a0bc7bb41bc9437c31",
-      "media_bytes": 1901724
+      "media_bytes": 1901724,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1C1dYrHdvHYgMXp880OccahfT-B08H7Q3",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-08T11:36:02Z",
+        "resolved_by": "verify_shot_urls"
+      },
+      "pin_query": "air fryer",
+      "pin_context": "kitchen appliance cracked broken",
+      "news_query": "air fryer",
+      "news_angle": "The woman brandished a cracked air fryer and demanded the narrator fix it."
     },
     {
       "phrase": "my blue jacket proved otherwise",
@@ -39,7 +67,21 @@
       "media_origin": "chatgpt",
       "media_file_id": "1vRuaON2Xv6jeTS_fgcmnSRVhSrYV5Z66",
       "media_sha256": "213d4b37a75e51d6cfb429d9fd330f6a5ab6ef5cdb7f48e5e4b5894cbbb45567",
-      "media_bytes": 1833112
+      "media_bytes": 1833112,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1vRuaON2Xv6jeTS_fgcmnSRVhSrYV5Z66",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-08T11:36:03Z",
+        "resolved_by": "verify_shot_urls"
+      },
+      "pin_query": "blue jacket",
+      "pin_context": "men's outerwear casual blue jacket",
+      "news_query": "blue jacket",
+      "news_angle": "The woman pointed to the narrator\u2019s blue jacket as proof that he was an employee."
     },
     {
       "phrase": "the actual employee vest hanging two feet away",
@@ -48,7 +90,21 @@
       "media_origin": "chatgpt",
       "media_file_id": "1YKXRAQSQNrX7IpcM4VqtZ8oumJw34jUe",
       "media_sha256": "df19958357b234daf967cd5bf5451c3e474213e0d3dd7291f8c643da8c0705f3",
-      "media_bytes": 2104268
+      "media_bytes": 2104268,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1YKXRAQSQNrX7IpcM4VqtZ8oumJw34jUe",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-08T11:36:04Z",
+        "resolved_by": "verify_shot_urls"
+      },
+      "pin_query": "employee vest",
+      "pin_context": "store associate uniform vest retail",
+      "news_query": "employee vest",
+      "news_angle": "An actual employee vest hung nearby on an associate restocking shelves."
     },
     {
       "phrase": "flagged down a real manager",
@@ -57,7 +113,17 @@
       "media_origin": "chatgpt",
       "media_file_id": "147ixHeW9zGxBKwOzL9K4qLs3VTp1_Qw2",
       "media_sha256": "5ab0ed6723aa81b7a7a3507df5ec2c6079e99136140b0e3dc6f5737635a09461",
-      "media_bytes": 2275865
+      "media_bytes": 2275865,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=147ixHeW9zGxBKwOzL9K4qLs3VTp1_Qw2",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-08T11:36:05Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "a receipt from a different store chain stapled inside the box",
@@ -66,7 +132,21 @@
       "media_origin": "chatgpt",
       "media_file_id": "1VNCgl8UkuQ3Qbxr9uv-SCGNjjmKYkTg6",
       "media_sha256": "6ae40c7782111a0a8bb6ff43ea0c8180dadff711ef0bf2f16cbb1c53b3658b04",
-      "media_bytes": 2080148
+      "media_bytes": 2080148,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1VNCgl8UkuQ3Qbxr9uv-SCGNjjmKYkTg6",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-08T11:36:06Z",
+        "resolved_by": "verify_shot_urls"
+      },
+      "pin_query": "receipt",
+      "pin_context": "store purchase proof stapled inside box",
+      "news_query": "receipt",
+      "news_angle": "The manager found a receipt from a different store chain stapled inside the air fryer box."
     },
     {
       "phrase": "the loyalty app on my phone",
@@ -75,7 +155,21 @@
       "media_origin": "chatgpt",
       "media_file_id": "1Ueyxki_-FatUwj2l3bPKEuKp6Gba91X2",
       "media_sha256": "8401d31453cee6f96106a75a781631678e309bd171fb31a5c1ffe5ab26c82368",
-      "media_bytes": 1774454
+      "media_bytes": 1774454,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1Ueyxki_-FatUwj2l3bPKEuKp6Gba91X2",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-08T11:36:07Z",
+        "resolved_by": "verify_shot_urls"
+      },
+      "pin_query": "loyalty app",
+      "pin_context": "mobile retail loyalty program screenshot",
+      "news_query": "loyalty app",
+      "news_angle": "The narrator held up the loyalty app on his phone showing an order placed twenty minutes earlier."
     }
   ],
   "punches": [
