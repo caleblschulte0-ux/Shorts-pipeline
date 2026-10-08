@@ -142,7 +142,9 @@ class TheStoryArmUsesThem(unittest.TestCase):
     def test_a_vod_arc_is_not_resplit_by_token_overlap(self):
         """Token subclustering splits people piles into events. Run over an
         arc it would split the accusation from its own reply."""
-        i_bypass = self.body.index("if is_vod_arc:\n                _subs = [sorted(")
+        # a moment (one broadcast, before/clip/after) is kept whole too
+        i_bypass = self.body.index("if is_vod_arc or is_moment:\n"
+                                   "                _subs = [sorted(")
         i_split = self.body.index("_subs = _semantic_subclusters(reports)")
         self.assertLess(i_bypass, i_split)
 
