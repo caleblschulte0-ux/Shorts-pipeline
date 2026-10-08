@@ -277,6 +277,38 @@ def helix_game_names(ids) -> dict:
     return {str(i): _HELIX_GAMES.get(str(i), "") for i in ids or [] if i}
 
 
+_HELIX_VIDEOS: dict[str, str] = {}
+
+
+def helix_video_titles(ids) -> dict:
+    """{video_id: broadcast title} for the VODs clips were cut from, cached
+    for the run. The title is the STREAMER'S OWN line for that stream
+    ("FNCS QUALIFIERS DAY 2 | !gfuel") — the context a stranger is missing
+    and nobody on stream says: story backtest 9's best cut (Lacy, 78) was
+    marked down because "a stranger never learns what the qualifier was".
+    Best-effort: {} on any failure, never raises."""
+    want = [str(i) for i in dict.fromkeys(ids or []) if i
+            and str(i) not in _HELIX_VIDEOS]
+    if want and _helix_creds():
+        try:
+            import requests
+            for k in range(0, len(want), 100):
+                chunk = want[k:k + 100]
+                r = requests.get("https://api.twitch.tv/helix/videos",
+                                 params=[("id", v) for v in chunk],
+                                 headers=_helix_headers(), timeout=20)
+                r.raise_for_status()
+                for v in r.json().get("data", []):
+                    _HELIX_VIDEOS[str(v.get("id"))] = \
+                        str(v.get("title", ""))[:140]
+                for v in chunk:
+                    _HELIX_VIDEOS.setdefault(v, "")
+        except Exception as e:  # noqa: BLE001
+            print(f"[helix] stream titles unavailable ({type(e).__name__})",
+                  flush=True)
+    return {str(i): _HELIX_VIDEOS.get(str(i), "") for i in ids or [] if i}
+
+
 def _discover_helix(channel: str, top: int, hours: int = 24) -> list[dict]:
     import time
     import requests

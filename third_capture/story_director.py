@@ -68,6 +68,8 @@ def narration_grounded(text: str, reports: list[dict]) -> bool:
                   # Twitch metadata, not the footage — but facts: whose
                   # stream it is and what they were playing
                   str(r.get("channel", "")), str(r.get("game", "")),
+                  # the streamer's own title for the broadcast
+                  str(r.get("stream_title", "")),
                   " ".join(str(x) for x in r.get("people") or []),
                   " ".join(str(b.get("purpose", ""))
                            for b in r.get("dialogue_beats") or [])])
@@ -169,6 +171,10 @@ Then emit the COMPLETE timeline. Segment rules:
   beat 0's context_overlay, or narration) names them: "FORSEN PLAYING
   TERRARIA" (game=Terraria), "BUDDHA IN GTA" (game=Grand Theft Auto V).
   Never a fact that is in neither the metadata nor the sources.
+  `stream_title=` is the STREAMER'S OWN title for that broadcast — what
+  they said the stream was ("FNCS QUALIFIERS DAY 2"). Use it to say what
+  was at stake ("LACY'S FNCS QUALIFIER"), attributed to the stream, never
+  as a result it does not state.
 - transition per beat: "hard_cut" (default) | "j_cut" (next beat's audio
   blends in over the cut — use when the next line naturally answers or
   interrupts) | "l_cut" (previous audio tails briefly over the next
@@ -357,8 +363,10 @@ at most 15 words, spoken over the beat that needs it — beat 0 to set up
 who and what, a later beat to bridge a jump the critic could not follow.
 It may state ONLY what a source's transcript or scene report states —
 who someone is, what they said happened, what was claimed — in the
-footage's own words where possible — plus the SOURCE's `streamer=` and
-`game=`, which are Twitch's own metadata. When the critic says a stranger
+footage's own words where possible — plus the SOURCE's `streamer=`,
+`game=` and `stream_title=` (the streamer's own title for the broadcast:
+what the stream was, e.g. a qualifier, a subathon, a trial), which are
+Twitch's own metadata. When the critic says a stranger
 does not know who this is or what they are playing, name them: in the
 hook, beat 0's context overlay, or the narration line. Never motive,
 never feelings, never drama, never anything the sources do not say. `essential_because` names
@@ -400,6 +408,8 @@ def _fmt_reports(reports: list[dict]) -> str:
             except (TypeError, ValueError):
                 at = ""
         game = f" game={r['game']}" if r.get("game") else ""
+        if r.get("stream_title"):
+            game += f" stream_title={r['stream_title']!r}"
         out.append(
             f"SOURCE {r['source_id']}\n"
             f"  streamer={r['channel']} dur={r['duration_s']}s "
