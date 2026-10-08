@@ -40,21 +40,52 @@ CONFIG = REPO / "data_learning" / "niche.config.json"
 POSTED = REPO / "state" / "explainer_posted_log.json"
 
 
-def candidates(cfg: dict, posted: set, n: int) -> list[str]:
+def candidates(cfg: dict, posted: set, n: int,
+               held: set | None = None) -> list[str]:
     """The next `n` unposted stories the registry's split puts in the new
-    look, in queue (config) order — the order the posting run reaches them."""
+    look, in queue (config) order — the order the posting run reaches them.
+
+    Two kinds of story do not use up one of the `n` (2026-10-08: no
+    illustrated video posted, while every forge run spent two of its three
+    picks on ozone-hole-recovery and helium-supply-squeeze, both fully drawn
+    and both held in the rewrite mailbox by the pre-render gate, so the
+    drawing budget advanced one story a run):
+      * a story whose every beat already has a saved scene still goes
+        through (its scenes are re-checked on load), but does not count;
+      * a story with an OPEN rewrite request cannot render until it is
+        rewritten, so it is skipped — drawing it first only feeds a queue
+        the posting run will not take from.
+    """
     from shared import style_arms
-    out = []
+    if held is None:
+        held = _held_slugs()
+    out, counted = [], 0
     for s in cfg.get("stories", []):
         slug = s.get("slug")
-        if not slug or slug in posted:
+        if not slug or slug in posted or slug in held:
             continue
         if style_arms.choose(slug) != "illustrated":
             continue
         out.append(slug)
-        if len(out) >= n:
-            break
+        segs = s.get("segments") or []
+        drawn = bool(segs) and all(
+            isinstance(g.get("illustrated_scene"), str)
+            and g["illustrated_scene"].strip() for g in segs)
+        if not drawn:
+            counted += 1
+            if counted >= n:
+                break
     return out
+
+
+def _held_slugs() -> set:
+    """Slugs the pre-render gate parked in the rewrite mailbox."""
+    try:
+        from shared import rewrite_mailbox
+        return {r.get("slug") for r in rewrite_mailbox.open_requests()
+                if r.get("slug")}
+    except Exception:  # noqa: BLE001 — no mailbox: nothing is held
+        return set()
 
 
 def _save_scene(config_path: Path, slug: str, index: int, code: str) -> None:

@@ -160,8 +160,23 @@ class ThePredrawStepIsWired(unittest.TestCase):
         ill = [s["slug"] for s in cfg["stories"]
                if style_arms.choose(s["slug"]) == "illustrated"]
         self.assertGreaterEqual(len(ill), 3)
-        self.assertEqual(P.candidates(cfg, set(), 2), ill[:2])
-        self.assertEqual(P.candidates(cfg, {ill[0]}, 2), ill[1:3])
+        self.assertEqual(P.candidates(cfg, set(), 2, held=set()), ill[:2])
+        self.assertEqual(P.candidates(cfg, {ill[0]}, 2, held=set()), ill[1:3])
+
+    def test_a_drawn_or_held_story_does_not_use_up_a_pick(self):
+        # 2026-10-08: two of every three picks went to fully drawn stories
+        # the rewrite mailbox was holding, so drawing advanced one a run
+        from scripts import predraw_scenes as P
+        from shared import style_arms
+        cfg = {"stories": [{"slug": f"s{i}"} for i in range(60)]}
+        ill = [s["slug"] for s in cfg["stories"]
+               if style_arms.choose(s["slug"]) == "illustrated"]
+        drawn = {"segments": [{"illustrated_scene": "CODE"}]}
+        for s in cfg["stories"]:
+            if s["slug"] == ill[0]:
+                s.update(drawn)
+        got = P.candidates(cfg, set(), 2, held={ill[1]})
+        self.assertEqual(got, [ill[0], ill[2], ill[3]])
 
     def test_a_scene_is_saved_onto_only_its_segment(self):
         import json
