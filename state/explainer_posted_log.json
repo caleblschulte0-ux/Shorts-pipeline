@@ -2895,11 +2895,28 @@
       "scene_changes_before_5s": 2
     },
     "marathon-super-shoes-record-pace": {
-      "claimed_at": "2026-10-08T18:56:27.703299+00:00",
+      "url": "https://youtube.com/shorts/InVYGU9plr0",
       "title": "Super Shoes Just Broke The Marathon World Record Again",
+      "at": "2026-10-08T18:56:38.100468+00:00",
       "publish_at": "2026-10-09T05:48:32Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 27 credits are required for this request.\",\"status",
+      "beat_s_max": 5.9,
+      "beat_s": [
+        4.62,
+        5.67,
+        5.9,
+        5.63,
+        5.57
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 57,
+      "duration_s": 27.3
     }
   },
   "uploads": [
@@ -3573,9 +3590,10 @@
       "claimed_at": "2026-10-08T18:56:27.703299+00:00",
       "title": "Super Shoes Just Broke The Marathon World Record Again",
       "publish_at": "2026-10-09T05:48:32Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "marathon-super-shoes-record-pace"
+      "url": "https://youtube.com/shorts/InVYGU9plr0",
+      "state": "posted",
+      "slug": "marathon-super-shoes-record-pace",
+      "at": "2026-10-08T18:56:38.100468+00:00"
     }
   ]
 }
