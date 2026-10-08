@@ -1,0 +1,16 @@
+{
+ "slug": "permafrost-thaw",
+ "ts": "20261008T222508Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: hook@1.5/hook@2.2/seg0:mid: the -2.3 label on the pink circle is doubled and smeared into an illegible blob. seg2:end: the 870B label renders as a dark doubled smear on pink. seg4:start: the 2100 bar has no value label.",
+ "weakest_scene": {
+  "id": "hook",
+  "index": 0,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "Frames hook@0.3 to seg0:mid show a static grid of five labelled circles for about 2.5s, with -2.3 garbled. Data stands idle on the -8 circle. There is no ice, no ground, no thaw, and nothing moves.",
+  "root_cause": "The opening picture is a generic labelled-circle layout chosen by chart kind. The permafrost subject is never drawn, so the hook's shock ('frozen vault is melting') has no picture at all.",
+  "repair_goal": "Open on a cross-section of frozen ground: a thermometer or ice block, drawn as permafrost, sitting at -8 that visibly thaws to -2.3, with dripping ice and darkening, slumping soil. The finished thawed state should flash on frame 1. Data should push the thermometer needle up or chip the ice with a pick. Use one clean -2.3 headline label."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

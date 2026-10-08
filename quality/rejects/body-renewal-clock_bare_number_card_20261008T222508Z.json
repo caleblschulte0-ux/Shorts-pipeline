@@ -1,0 +1,21 @@
+{
+ "slug": "body-renewal-clock",
+ "ts": "20261008T222508Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg4:start\u2013seg4:end: the closing is a field of plain bubbles labelled 0T/8.3T/16.5T/24.8T/30T, numbers on blobs with no demonstration of 'skin younger than phone'",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg4:start\u2013seg4:end: the closing 'skin younger than your phone' sits over a bubble grid of cell counts (0T\u201330T) that repeats seg3's data. The bubbles are clipped at the bottom edge and Data stands idle at 0T.",
+  "root_cause": "The closing scene reuses the previous beat's day-0\u2192100 series as bubbles instead of depicting the closing claim (skin age, 28 days, vs. phone age), so the payoff has no picture and the layout overflows into the caption bar",
+  "repair_goal": "Redraw the closing as one shot: a phone with a 'bought ~2-3 years ago' age beside a hand of skin peeling and renewing on a 28-day loop, with Data peeling the old layer off. One headline number, all of it inside the safe area."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "bubbles",
+   "perf": "get_buried"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,181 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "permafrost-thaw__4f021187",
+ "filed": "2026-10-08T22:25:00Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "permafrost-thaw",
+ "current": {
+  "title": "The Arctic's Permafrost Is Quietly Thawing For Good",
+  "hook": "Your frozen vault is melting: 8 below freezing became just over 2 below.",
+  "closing": "It took millennia to freeze. It's unfreezing in decades.",
+  "question": "Could the ground itself leak carbon? Tell me.",
+  "segments": [
+   {
+    "topic": "Arctic permafrost temperature",
+    "say": "Permafrost sat 8 degrees below freezing in 1983, and just over 2 below by 2023."
+   },
+   {
+    "topic": "Permafrost carbon versus atmosphere",
+    "say": "The atmosphere holds about 870 billion tons of carbon, but permafrost holds 1.7 trillion, almost double."
+   },
+   {
+    "topic": "Permafrost thaw carbon release",
+    "say": "Thaw could release 150 billion tons of that carbon by 2100 under high warming."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Arctic permafrost temperature",
+   "say": "Permafrost sat 8 degrees below freezing in 1983, and just over 2 below by 2023.",
+   "role": "1 · THE WARMING",
+   "data": {
+    "file": "permafrost_ground_temp_trend.json",
+    "unit": "number",
+    "title": "Arctic permafrost ground temperature (borehole depth)",
+    "points": [
+     {
+      "label": "1983",
+      "value": -8.0,
+      "period": "1983"
+     },
+     {
+      "label": "2000",
+      "value": -6.5,
+      "period": "2000"
+     },
+     {
+      "label": "2010",
+      "value": -5.0,
+      "period": "2010"
+     },
+     {
+      "label": "2016",
+      "value": -3.5,
+      "period": "2016"
+     },
+     {
+      "label": "2023",
+      "value": -2.3,
+      "period": "2023"
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Permafrost carbon versus atmosphere",
+   "say": "The atmosphere holds about 870 billion tons of carbon, but permafrost holds 1.7 trillion, almost double.",
+   "role": "2 · WHAT'S INSIDE IT",
+   "data": {
+    "file": "permafrost_vs_atmosphere_carbon.json",
+    "unit": "billion",
+    "title": "Carbon stored in permafrost vs. the atmosphere",
+    "points": [
+     {
+      "label": "Earth's whole atmosphere",
+      "value": 870
+     },
+     {
+      "label": "Frozen in permafrost soil",
+      "value": 1700
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Permafrost thaw carbon release",
+   "say": "Thaw could release 150 billion tons of that carbon by 2100 under high warming.",
+   "role": "3 · WHAT COULD LEAK OUT",
+   "data": {
+    "file": "permafrost_carbon_release_projection.json",
+    "unit": "billion",
+    "title": "Projected cumulative carbon release from thawing permafrost",
+    "points": [
+     {
+      "label": "2030",
+      "value": 10,
+      "period": "2030"
+     },
+     {
+      "label": "2050",
+      "value": 40,
+      "period": "2050"
+     },
+     {
+      "label": "2080",
+      "value": 90,
+      "period": "2080"
+     },
+     {
+      "label": "2100",
+      "value": 150,
+      "period": "2100"
+     }
+    ],
+    "n_points": 4
+   }
+  }
+ ],
+ "held_for": [
+  "judge: A run of stock charts with labelled circles and bars. Permafrost, ice and carbon are never drawn, Data poses beside the data instead of causing it, and several labels are garbled."
+ ],
+ "reasons": [
+  "judge: A run of stock charts with labelled circles and bars. Permafrost, ice and carbon are never drawn, Data poses beside the data instead of causing it, and several labels are garbled."
+ ],
+ "judge": {
+  "ts": "2026-10-08T22:24:51+00:00",
+  "score": 39,
+  "one_line": "A run of stock charts with labelled circles and bars. Permafrost, ice and carbon are never drawn, Data poses beside the data instead of causing it, and several labels are garbled.",
+  "problems": [
+   "The hook and seg0 are a static grid of labelled circles whose size doesn't encode the value. The -2.3 label is smeared and illegible (hook@1.5, hook@2.2).",
+   "seg0:end shows an empty bar track with no values for over a second.",
+   "seg2:end: the 870B label is double-rendered as a dark smear on pink.",
+   "seg3:start: the frame is almost entirely empty, with one tiny box at the bottom.",
+   "Data is decorative throughout: he stands on circles, raises his arms, and points at bars. He never pours, pushes or thaws anything.",
+   "No scene depicts the subject (frozen ground, thaw, released carbon). Every beat is a chart."
+  ],
+  "fixes": [
+   "Replace the hook with a lit permafrost cross-section that visibly thaws, showing the finished thawed state on frame 1 and one -2.3 headline.",
+   "seg1: draw a thermometer driven into the frozen soil. Data pushes the needle from -8 up to -2.3, with a ghost mark left at -8 for scale.",
+   "seg2: draw the atmosphere as a sky volume beside an underground vault of frozen carbon about twice its size, so the 2x reads without labels.",
+   "seg3/seg4: show carbon escaping from cracked, thawing ground into a growing cloud or pile that Data shovels out with a tool, filling to 150B. Fill the frame and keep a then-mark for the earlier size.",
+   "Fix the double-rendered labels on the accent shapes (-2.3, 870B), and never show an unlabelled bar."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261008/permafrost-thaw__4f021187.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "recycling-myth-reality",
+ "ts": "20261008T222508Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg2:start the caption \"50% lands in\" is faint grey on beige sand and nearly disappears on a phone. In seg4:mid a falling bottle covers \"2060 (projected)\".",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "claim_contradicted_by_picture",
+  "visible_evidence": "seg2:start to seg2:end show a giant bottle packed with plastic almost to its \"full\" line under the words \"Only 9%\". The 9% is really a small crate at the bottom, and the 50% to dumps and 22% elsewhere from the narration are never drawn. Data stands beside a valve wheel and only touches it at seg2:end.",
+  "root_cause": "The scene draws a filling vessel and says nothing about where the rest goes. Its biggest object reads as nearly full, which is the opposite of the claim, and the three-way split the narration states has no picture.",
+  "repair_goal": "Show the whole stream splitting three ways in proportion: a thin 9% trickle into the recycling crate, a fat 50% chute into a landfill heap and a 22% spill escaping into the scene. Data should be the one turning the valve that releases the flow, so the 9% trickle looks visibly tiny next to the dump."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

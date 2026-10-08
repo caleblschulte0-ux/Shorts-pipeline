@@ -1,0 +1,16 @@
+{
+ "slug": "adhd-diagnosis-surge",
+ "ts": "20261008T222508Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: hook@1.5 through seg0:end (about 1.2-3.9s) is the same finished bar chart with Data on the ladder and barely any change. The 11.4% bar has already landed, so roughly 2.7s at the start of the video is a static hold.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start/mid/end: two plain circles labelled 53.6% and 46.4% with captions below. Data stands on top of the yellow circle doing nothing, and the frame is otherwise empty dark space.",
+  "root_cause": "The 'only half are treated' beat used a generic bubble-size comparison (close to a chart) instead of a picture made of the subject. The mascot was placed as a sticker rather than as the cause of anything.",
+  "repair_goal": "Draw this beat as the story's own physics: a line of 100 diagnosed kids where Data hands a pill bottle or prescription to each one in turn and stops at 53.6%, leaving the remaining 46.4% visibly empty-handed. Make the number land early, keep one big headline, and keep Data's anchor on the moving part."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

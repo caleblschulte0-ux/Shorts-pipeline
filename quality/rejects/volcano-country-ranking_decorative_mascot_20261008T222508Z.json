@@ -1,0 +1,16 @@
+{
+ "slug": "volcano-country-ranking",
+ "ts": "20261008T222508Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: hook@0.3 to seg0:end: five copies of Data stand beside the numbers and point at them, so one character is cloned as a list bullet. At seg1:mid he dances beside the bars without causing them to grow. At seg2:start and seg2:end he stands beside the scale holding a stick and does not",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "nonsensical_payoff",
+  "visible_evidence": "The closing line 'Alaska: quietly winning at volcanoes' sits over a ruler gauge reading '50% apart' that compares 75% to 25%. It says nothing about Alaska. Its labels overlap at payoff@-1.8, and a ladder with Data standing on it is the whole picture.",
+  "root_cause": "A generic two-value gap machine was reused on the previous beat's share data (75/25), so the closing picture neither matches the closing line nor lands the story's payoff (Alaska holds 130 of the 165).",
+  "repair_goal": "End on the Alaska payoff. Show the US volcano count collapsing from 165 to 35 when Alaska is removed, or a pile of 130 volcanoes on Alaska towering over Indonesia's 101, with Data doing the physical act that causes it (lifting Alaska away, for example). Use a single headline number and no overlapping labels."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

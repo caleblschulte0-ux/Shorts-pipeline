@@ -1,0 +1,21 @@
+{
+ "slug": "aquaculture-overtook-wild-fishing",
+ "ts": "20261008T222508Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data never causes anything. He points from a ladder beside a finished bar (hook@1.5, seg0:end), stands on timeline dots with his arms up while bars grow without him (seg1:start-end), poses in the fish grid (seg2), and stands on top of bars that fill by themselves (seg3:mid, seg4:s",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "generic_chart_no_demonstration",
+  "visible_evidence": "seg3:start to seg3:end: five thin, unlabelled horizontal bars titled 'Fish on your plate'. The 2022 bar is a short sliver while the subtitle says 57%, and Data just stands on the 2010 and 2018 bars.",
+  "root_cause": "The 57%-of-your-plate beat fell back to a stock bar chart with no values. It draws neither a plate nor the share, and the mascot has no act tied to the number.",
+  "repair_goal": "Draw a dinner plate of fish fillets that becomes 57% farmed: Data serves farmed fillets from a net-pen bucket onto the plate until they cover 57 of 100 portions, with one big 57% that lands by mid-beat."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

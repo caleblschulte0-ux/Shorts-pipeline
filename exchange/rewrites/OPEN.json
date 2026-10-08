@@ -1,16 +1,126 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-08T19:01:56Z",
+ "updated": "2026-10-08T22:25:00Z",
  "open": [
   {
-   "id": "billionaire-count-record-2025__13fb03d3",
-   "slug": "billionaire-count-record-2025",
-   "filed": "2026-10-08T19:01:56Z",
+   "id": "permafrost-thaw__4f021187",
+   "slug": "permafrost-thaw",
+   "filed": "2026-10-08T22:25:00Z",
    "why": [
-    "judge: The payoff comparison is broken: both circles read 'Billionaire wealth 127%', and the S&P 500's 195% never appears. That leaves three bar charts and a bare-number card."
+    "judge: A run of stock charts with labelled circles and bars. Permafrost, ice and carbon are never drawn, Data poses beside the data instead of causing it, and several labels are garbled."
    ],
-   "request": "exchange/rewrites/20261008/billionaire-count-record-2025__13fb03d3.request.json",
-   "answer_path": "exchange/rewrites/20261008/billionaire-count-record-2025__13fb03d3.answer.json"
+   "request": "exchange/rewrites/20261008/permafrost-thaw__4f021187.request.json",
+   "answer_path": "exchange/rewrites/20261008/permafrost-thaw__4f021187.answer.json"
+  },
+  {
+   "id": "marathon-super-shoes-record-pace__87f99e40",
+   "slug": "marathon-super-shoes-record-pace",
+   "filed": "2026-10-08T22:24:59Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer's specific expectation and relies on a generic claim rather than a single verifiable, consequential number.",
+    "pace: beat 1 says 19 words (max 16) — one sentence, the number and what it means",
+    "pace: beat 2 says 20 words (max 16) — one sentence, the number and what it means"
+   ],
+   "request": "exchange/rewrites/20261008/marathon-super-shoes-record-pace__87f99e40.request.json",
+   "answer_path": "exchange/rewrites/20261008/marathon-super-shoes-record-pace__87f99e40.answer.json"
+  },
+  {
+   "id": "billionaire-count-record-2025__452c83e8_r1",
+   "slug": "billionaire-count-record-2025",
+   "filed": "2026-10-08T22:24:59Z",
+   "why": [
+    "pace: beat 1 says 18 words (max 16) — one sentence, the number and what it means",
+    "pace: beat 2 says 17 words (max 16) — one sentence, the number and what it means",
+    "pace: beat 3 says 24 words (max 16) — one sentence, the number and what it means"
+   ],
+   "request": "exchange/rewrites/20261008/billionaire-count-record-2025__452c83e8_r1.request.json",
+   "answer_path": "exchange/rewrites/20261008/billionaire-count-record-2025__452c83e8_r1.answer.json"
+  },
+  {
+   "id": "kelp-forest-sea-star-collapse__45530595",
+   "slug": "kelp-forest-sea-star-collapse",
+   "filed": "2026-10-08T22:24:59Z",
+   "why": [
+    "premise: brain: Uses multiple percentages (96% and 99%) rather than a single consequential number, failing the one-number rule."
+   ],
+   "request": "exchange/rewrites/20261008/kelp-forest-sea-star-collapse__45530595.request.json",
+   "answer_path": "exchange/rewrites/20261008/kelp-forest-sea-star-collapse__45530595.answer.json"
+  },
+  {
+   "id": "game-industry-layoffs-record__a47fa4f1",
+   "slug": "game-industry-layoffs-record",
+   "filed": "2026-10-08T22:24:58Z",
+   "why": [
+    "premise: no consequential number in the title or hook",
+    "pace: beat 1 says 27 words (max 16) — one sentence, the number and what it means",
+    "pace: beat 2 says 31 words (max 16) — one sentence, the number and what it means"
+   ],
+   "request": "exchange/rewrites/20261008/game-industry-layoffs-record__a47fa4f1.request.json",
+   "answer_path": "exchange/rewrites/20261008/game-industry-layoffs-record__a47fa4f1.answer.json"
+  },
+  {
+   "id": "self-storage-outnumbers-starbucks__c3fab999",
+   "slug": "self-storage-outnumbers-starbucks",
+   "filed": "2026-10-08T22:24:58Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on an unverified, vague number without verifiable context."
+   ],
+   "request": "exchange/rewrites/20261008/self-storage-outnumbers-starbucks__c3fab999.request.json",
+   "answer_path": "exchange/rewrites/20261008/self-storage-outnumbers-starbucks__c3fab999.answer.json"
+  },
+  {
+   "id": "daylight-saving-time-in-decline__d148cd57",
+   "slug": "daylight-saving-time-in-decline",
+   "filed": "2026-10-08T22:24:56Z",
+   "why": [
+    "premise: no consequential number in the title or hook",
+    "pace: beat 1 says 23 words (max 16) — one sentence, the number and what it means",
+    "pace: beat 2 says 23 words (max 16) — one sentence, the number and what it means"
+   ],
+   "request": "exchange/rewrites/20261008/daylight-saving-time-in-decline__d148cd57.request.json",
+   "answer_path": "exchange/rewrites/20261008/daylight-saving-time-in-decline__d148cd57.answer.json"
+  },
+  {
+   "id": "fireflies-losing-their-glow__6498b510",
+   "slug": "fireflies-losing-their-glow",
+   "filed": "2026-10-08T22:24:56Z",
+   "why": [
+    "premise: no consequential number in the title or hook",
+    "pace: beat 1 says 26 words (max 16) — one sentence, the number and what it means",
+    "pace: beat 2 says 31 words (max 16) — one sentence, the number and what it means"
+   ],
+   "request": "exchange/rewrites/20261008/fireflies-losing-their-glow__6498b510.request.json",
+   "answer_path": "exchange/rewrites/20261008/fireflies-losing-their-glow__6498b510.answer.json"
+  },
+  {
+   "id": "black-holes-in-galaxy__3b4d53e5",
+   "slug": "black-holes-in-galaxy",
+   "filed": "2026-10-08T22:24:56Z",
+   "why": [
+    "premise: brain: The claim relies on an unverified estimate rather than a single, concrete, verifiable number, making the premise weak."
+   ],
+   "request": "exchange/rewrites/20261008/black-holes-in-galaxy__3b4d53e5.request.json",
+   "answer_path": "exchange/rewrites/20261008/black-holes-in-galaxy__3b4d53e5.answer.json"
+  },
+  {
+   "id": "global-displacement-record__42f9a9e1_r1",
+   "slug": "global-displacement-record",
+   "filed": "2026-10-08T22:24:55Z",
+   "why": [
+    "judge: Only the hook's block stack shows anything. After that it is three charts with Data parked beside them, and the closing line plays over an unrelated bubble chart."
+   ],
+   "request": "exchange/rewrites/20261008/global-displacement-record__42f9a9e1_r1.request.json",
+   "answer_path": "exchange/rewrites/20261008/global-displacement-record__42f9a9e1_r1.answer.json"
+  },
+  {
+   "id": "volcano-country-ranking__b9110c88",
+   "slug": "volcano-country-ranking",
+   "filed": "2026-10-08T22:24:54Z",
+   "why": [
+    "judge: The story is a strong surprise (the US beats Indonesia, thanks to Alaska), but it is told with a cloned-mascot list, a bar chart, a bubble card and a nonsensical '50% apart' closer."
+   ],
+   "request": "exchange/rewrites/20261008/volcano-country-ranking__b9110c88.request.json",
+   "answer_path": "exchange/rewrites/20261008/volcano-country-ranking__b9110c88.answer.json"
   },
   {
    "id": "blood-supply-three-percent__40fe030c",
@@ -24,18 +134,6 @@
    "answer_path": "exchange/rewrites/20261008/blood-supply-three-percent__40fe030c.answer.json"
   },
   {
-   "id": "kelp-forest-sea-star-collapse__88acf100",
-   "slug": "kelp-forest-sea-star-collapse",
-   "filed": "2026-10-08T19:01:55Z",
-   "why": [
-    "premise: brain: It uses multiple percentages and lacks a single consequential number with a clear expectation reversal.",
-    "pace: beat 1 says 24 words (max 16) — one sentence, the number and what it means",
-    "pace: beat 2 says 23 words (max 16) — one sentence, the number and what it means"
-   ],
-   "request": "exchange/rewrites/20261008/kelp-forest-sea-star-collapse__88acf100.request.json",
-   "answer_path": "exchange/rewrites/20261008/kelp-forest-sea-star-collapse__88acf100.answer.json"
-  },
-  {
    "id": "aquaculture-overtook-wild-fishing__80181d75",
    "slug": "aquaculture-overtook-wild-fishing",
    "filed": "2026-10-08T19:01:55Z",
@@ -44,16 +142,6 @@
    ],
    "request": "exchange/rewrites/20261008/aquaculture-overtook-wild-fishing__80181d75.request.json",
    "answer_path": "exchange/rewrites/20261008/aquaculture-overtook-wild-fishing__80181d75.answer.json"
-  },
-  {
-   "id": "global-displacement-record__84c76b52",
-   "slug": "global-displacement-record",
-   "filed": "2026-10-08T19:01:54Z",
-   "why": [
-    "pace: hook is 15 words (max 14)"
-   ],
-   "request": "exchange/rewrites/20261008/global-displacement-record__84c76b52.request.json",
-   "answer_path": "exchange/rewrites/20261008/global-displacement-record__84c76b52.answer.json"
   },
   {
    "id": "chip-transistor-shrink-limit__40c2f231",
@@ -234,16 +322,6 @@
    "answer_path": "exchange/rewrites/20261008/highest-point-illusion__f1cfac45.answer.json"
   },
   {
-   "id": "volcano-country-ranking__0113b7c1",
-   "slug": "volcano-country-ranking",
-   "filed": "2026-10-08T13:36:14Z",
-   "why": [
-    "judge: The video is mostly charts. Data points and cheers instead of causing anything, the labels are clipped and overlapping, and the closing shows a meaningless '50% apart' gap instead of the Alaska payoff."
-   ],
-   "request": "exchange/rewrites/20261008/volcano-country-ranking__0113b7c1.request.json",
-   "answer_path": "exchange/rewrites/20261008/volcano-country-ranking__0113b7c1.answer.json"
-  },
-  {
    "id": "earth-rotation-speeding-up__3690b203",
    "slug": "earth-rotation-speeding-up",
    "filed": "2026-10-08T13:36:14Z",
@@ -356,18 +434,6 @@
    ],
    "request": "exchange/rewrites/20261008/insect-planet__3f212360.request.json",
    "answer_path": "exchange/rewrites/20261008/insect-planet__3f212360.answer.json"
-  },
-  {
-   "id": "fireflies-losing-their-glow__6498b510",
-   "slug": "fireflies-losing-their-glow",
-   "filed": "2026-10-07T12:48:34Z",
-   "why": [
-    "premise: no consequential number in the title or hook",
-    "pace: beat 1 says 26 words (max 16) — one sentence, the number and what it means",
-    "pace: beat 2 says 31 words (max 16) — one sentence, the number and what it means"
-   ],
-   "request": "exchange/rewrites/20261007/fireflies-losing-their-glow__6498b510.request.json",
-   "answer_path": "exchange/rewrites/20261007/fireflies-losing-their-glow__6498b510.answer.json"
   },
   {
    "id": "metric-system-holdouts__38b6e88f",
@@ -752,56 +818,6 @@
    "answer_path": "exchange/rewrites/20261005/youth-sports-dropout__471bd3ef.answer.json"
   },
   {
-   "id": "marathon-super-shoes-record-pace__87f99e40",
-   "slug": "marathon-super-shoes-record-pace",
-   "filed": "2026-10-05T12:42:29Z",
-   "why": [
-    "judge: Broken data bindings sink it: seg2 shows the same 8.3 'Before 2016' twice and never shows the 30 s/yr claim, and seg1's gauge counts up to 126 while the narration says the record fell."
-   ],
-   "request": "exchange/rewrites/20261005/marathon-super-shoes-record-pace__87f99e40.request.json",
-   "answer_path": "exchange/rewrites/20261005/marathon-super-shoes-record-pace__87f99e40.answer.json"
-  },
-  {
-   "id": "permafrost-thaw__a94a08e2",
-   "slug": "permafrost-thaw",
-   "filed": "2026-10-05T10:56:54Z",
-   "why": [
-    "judge: Four of five beats are charts or stock machines with a mascot that never causes anything. Seg1 is a static repeat of seg0's data, and seg2's labels print on top of each other."
-   ],
-   "request": "exchange/rewrites/20261005/permafrost-thaw__a94a08e2.request.json",
-   "answer_path": "exchange/rewrites/20261005/permafrost-thaw__a94a08e2.answer.json"
-  },
-  {
-   "id": "game-industry-layoffs-record__a47fa4f1",
-   "slug": "game-industry-layoffs-record",
-   "filed": "2026-10-05T10:56:51Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/game-industry-layoffs-record__a47fa4f1.request.json",
-   "answer_path": "exchange/rewrites/20261005/game-industry-layoffs-record__a47fa4f1.answer.json"
-  },
-  {
-   "id": "self-storage-outnumbers-starbucks__397d6a57",
-   "slug": "self-storage-outnumbers-starbucks",
-   "filed": "2026-10-05T10:56:51Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/self-storage-outnumbers-starbucks__397d6a57.request.json",
-   "answer_path": "exchange/rewrites/20261005/self-storage-outnumbers-starbucks__397d6a57.answer.json"
-  },
-  {
-   "id": "daylight-saving-time-in-decline__d148cd57",
-   "slug": "daylight-saving-time-in-decline",
-   "filed": "2026-10-05T10:56:50Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/daylight-saving-time-in-decline__d148cd57.request.json",
-   "answer_path": "exchange/rewrites/20261005/daylight-saving-time-in-decline__d148cd57.answer.json"
-  },
-  {
    "id": "lab-grown-diamond-price-collapse__147039f2",
    "slug": "lab-grown-diamond-price-collapse",
    "filed": "2026-10-05T10:56:50Z",
@@ -1040,16 +1056,6 @@
    ],
    "request": "exchange/rewrites/20260929/saffron-red-gold-myth__9af139ed.request.json",
    "answer_path": "exchange/rewrites/20260929/saffron-red-gold-myth__9af139ed.answer.json"
-  },
-  {
-   "id": "black-holes-in-galaxy__cf824ed9",
-   "slug": "black-holes-in-galaxy",
-   "filed": "2026-09-29T12:45:26Z",
-   "why": [
-    "premise: brain: It offers a speculative number without a verifiable source and does not clearly overturn a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20260929/black-holes-in-galaxy__cf824ed9.request.json",
-   "answer_path": "exchange/rewrites/20260929/black-holes-in-galaxy__cf824ed9.answer.json"
   },
   {
    "id": "iss-sixteen-sunrises__2a396886",

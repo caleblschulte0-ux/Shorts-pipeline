@@ -1,0 +1,16 @@
+{
+ "slug": "adhd-diagnosis-surge",
+ "ts": "20261008T222508Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg4:start through payoff@-0.4 the mascot covers the '5' of '53.6%' and the 'T' of 'Taking ADHD medication', and the whole cluster is cramped against the left frame edge. In seg2:start the 15% caption under the subtitle is ghosted dark-on-dark and almost invisible.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start/mid/end: two plain circles labelled 53.6% and 46.4% with captions below. Data stands on top of the yellow circle doing nothing, and the frame is otherwise empty dark space.",
+  "root_cause": "The 'only half are treated' beat used a generic bubble-size comparison (close to a chart) instead of a picture made of the subject. The mascot was placed as a sticker rather than as the cause of anything.",
+  "repair_goal": "Draw this beat as the story's own physics: a line of 100 diagnosed kids where Data hands a pill bottle or prescription to each one in turn and stops at 53.6%, leaving the remaining 46.4% visibly empty-handed. Make the number land early, keep one big headline, and keep Data's anchor on the moving part."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

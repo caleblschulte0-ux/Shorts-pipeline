@@ -1,0 +1,16 @@
+{
+ "slug": "global-displacement-record",
+ "ts": "20261008T222508Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data does real work only in seg0, placing blocks from a ladder. Elsewhere he is decoration: in seg1:start to seg1:end he walks along the timeline with his arms up while the bars rise without him, in seg2:mid and seg2:end he stands at the bar tips, and from seg3:start to seg4:end h",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "chart_with_perched_mascot",
+  "visible_evidence": "From seg3:start to seg3:end there are two flat circles labelled 73% and 27% in a mostly empty frame, with Data standing on top of the larger circle doing nothing. The same circles stay on screen through seg4 under the closing line about records, which they have nothing to do with.",
+  "root_cause": "The share relationship fell back to a generic proportional-bubble chart. Data was given no action that causes the 73%, and the closing reuses that picture instead of returning to the record-breaking stack.",
+  "repair_goal": "Draw 100 displaced people as figures streaming into two host shapes, with low and middle income nations visibly crowded at 73 and rich nations at 27. Have Data direct or carry the figures so he causes the split. Close on the block tower from the hook topping out at 123M, so the picture backs up 'every year breaks the record'."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

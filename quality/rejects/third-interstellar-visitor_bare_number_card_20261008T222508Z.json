@@ -1,0 +1,25 @@
+{
+ "slug": "third-interstellar-visitor",
+ "ts": "20261008T222508Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg3:start to seg3:end: '5.6' and '1.0' are big numbers on two empty shelves with a mascot beside each. Nothing shows a 5.6 km nucleus next to a 1 km one.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start/mid/end show '5.6' and '1.0' as large numbers on two empty horizontal shelves, with a mascot standing beside each. There is no object, nothing about size, and nothing changes except Data sliding right.",
+  "root_cause": "The size comparison was drawn as two labelled rows of text instead of a picture where the nucleus size can be seen. Data has no action that produces the number.",
+  "repair_goal": "Draw the two comet nuclei as lit rocky bodies to scale in one shot, with Borisov's 1 km nucleus as a ghost or 'then' mark on 3I/ATLAS's 5.6 km nucleus so the ~5.6x size difference reads at a glance. Have Data do the measuring, for example rolling or chiselling the bigger nucleus or stretching a tape across it. Show only one headline number and have it land early."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}
