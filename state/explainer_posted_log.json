@@ -2891,6 +2891,13 @@
       ],
       "words_first_10s": 25,
       "scene_changes_before_5s": 3
+    },
+    "ozone-hole-recovery": {
+      "claimed_at": "2026-10-08T17:09:41.969407+00:00",
+      "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
+      "publish_at": "2026-10-08T17:48:32Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3559,6 +3566,14 @@
       "state": "posted",
       "slug": "adhd-diagnosis-surge",
       "at": "2026-10-08T15:57:51.791067+00:00"
+    },
+    {
+      "claimed_at": "2026-10-08T17:09:41.969407+00:00",
+      "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
+      "publish_at": "2026-10-08T17:48:32Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "ozone-hole-recovery"
     }
   ]
 }
