@@ -404,6 +404,8 @@ def check(date: str, now=None) -> dict:
         for f in sorted(outcome_dir.glob("*.json")):
             oc = _load(f)
             if not isinstance(oc, dict):
+                notes.append(f"{f.stem}: production outcome file {f.name} "
+                             f"is unreadable - ignored, NOT counted as complete")
                 continue
             cid = oc.get("channel") or f.stem
             status = str(oc.get("status") or "")
