@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261008",
+  "bundle": {
+    "identity": "8a031f56a921c3605d155f4c82b172d91160b2759a215a061fea4eea23090505",
+    "path": "exchange/bundles/20261008/bundle.json"
+  },
+  "request_id": "fake-customer-costume-s5-3457251bbf2c",
+  "safe_request_id": "fake-customer-costume-s5-3457251bbf2c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "9df651f170d7d0c0c661cd402d088911f72ec1fbc8089d6dc081ba576b5ae3a0",
+  "prompt_used": "An editorial illustration for a short-form video: crumpled receipt paper closeup. It accompanies the narration: \"a receipt from a different store chain stapled inside the box\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1VNCgl8UkuQ3Qbxr9uv-SCGNjjmKYkTg6",
+    "filename": "20261008__fake-customer-costume-s5-3457251bbf2c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1VNCgl8UkuQ3Qbxr9uv-SCGNjjmKYkTg6",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "6ae40c7782111a0a8bb6ff43ea0c8180dadff711ef0bf2f16cbb1c53b3658b04",
+    "bytes": 2080148,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-08T11:29:30Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
