@@ -47,7 +47,8 @@ CLUSTER = {"who": ["soda"], "kind": "vod_arc", "video_id": "v1",
                      for i, u in enumerate(URLS)]}
 EDL = {"title": "Soda Loses The Bet", "hook_overlay": "he bet everything",
        "premise": "Soda bets and loses", "structure": "chronological",
-       "beats": [{"source_id": URLS[0]}, {"source_id": URLS[1]}]}
+       "beats": [{"source_id": URLS[0], "start": 0.0, "end": 10.0},
+                 {"source_id": URLS[1], "start": 0.0, "end": 10.0}]}
 
 
 def _report(url):
@@ -120,7 +121,10 @@ class _Harness(unittest.TestCase):
         ]
         for p in patches:
             self.enterContext(p)
-        spec = {"kind": "twitch_clip", "sources": {"twitch": ["soda"]}}
+        # the table read is its own test file; here every review is a
+        # render's (test_a_plan_is_read_before_it_is_rendered)
+        spec = {"kind": "twitch_clip", "sources": {"twitch": ["soda"]},
+                "story_table_reads": 0}
         spec.update(spec_extra or {})
         return rt._story_attempt({"capture": spec}, {"posted": {}},
                                  tmp, tmp / "out.mp4", "clip-x-1")
