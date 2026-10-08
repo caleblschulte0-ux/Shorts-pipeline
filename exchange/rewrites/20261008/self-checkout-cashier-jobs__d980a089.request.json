@@ -1,0 +1,160 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "self-checkout-cashier-jobs__d980a089",
+ "filed": "2026-10-08T13:36:16Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "self-checkout-cashier-jobs",
+ "current": {
+  "title": "Self-Checkout Is Quietly Replacing Cashiers (3 Charts)",
+  "hook": "Your town wiped out 92% of cashier jobs",
+  "closing": "The line moved. So did the job",
+  "question": "Do you still choose a cashier?",
+  "segments": [
+   {
+    "topic": "Self-Checkout Adoption",
+    "say": "In 2023, over 92% of major grocery chains have self‑checkout lanes."
+   },
+   {
+    "topic": "Cashier Employment",
+    "say": "US cashier jobs dropped from 3.5 million in 2013 to 3 million in 2023."
+   },
+   {
+    "topic": "Self-Checkout Theft",
+    "say": "Self‑checkout loss rates are 4% versus 1.6% at staffed registers."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Self-Checkout Adoption",
+   "say": "In 2023, over 92% of major grocery chains have self‑checkout lanes.",
+   "role": "1 · THE TAKEOVER",
+   "data": {
+    "file": "self_checkout_adoption_trend.json",
+    "unit": "percent",
+    "title": "Share of large US grocery chains offering self-checkout",
+    "points": [
+     {
+      "label": "2000",
+      "value": 6,
+      "period": "2000"
+     },
+     {
+      "label": "2012",
+      "value": 33,
+      "period": "2012"
+     },
+     {
+      "label": "2023",
+      "value": 92,
+      "period": "2023"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Cashier Employment",
+   "say": "US cashier jobs dropped from 3.5 million in 2013 to 3 million in 2023.",
+   "role": "2 · THE JOB THAT SHRANK",
+   "data": {
+    "file": "cashier_employment_2013_vs_2023.json",
+    "unit": "million",
+    "title": "US cashier employment, 2013 vs. 2023",
+    "points": [
+     {
+      "label": "2013",
+      "value": 3.5
+     },
+     {
+      "label": "2023",
+      "value": 3.0
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Self-Checkout Theft",
+   "say": "Self‑checkout loss rates are 4% versus 1.6% at staffed registers.",
+   "role": "3 · THE TWIST",
+   "data": {
+    "file": "checkout_loss_rate_comparison.json",
+    "unit": "percent",
+    "title": "Retail loss rate: staffed checkout vs. self-checkout",
+    "points": [
+     {
+      "label": "Staffed checkout",
+      "value": 1.6
+     },
+     {
+      "label": "Self-checkout",
+      "value": 4.0
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: Three stock charts with Data dancing beside them, and a hook that claims 92% of cashier jobs were wiped out when the data shows a 14% drop."
+ ],
+ "reasons": [
+  "judge: Three stock charts with Data dancing beside them, and a hook that claims 92% of cashier jobs were wiped out when the data shows a 14% drop."
+ ],
+ "judge": {
+  "ts": "2026-10-08T12:44:34+00:00",
+  "score": 35,
+  "one_line": "Three stock charts with Data dancing beside them, and a hook that claims 92% of cashier jobs were wiped out when the data shows a 14% drop.",
+  "problems": [
+   "The hook says 'wiped out 92% of cashier jobs', but 92% is self-checkout adoption and jobs fell 3.5M to 3M (about 14%). This misstates the data.",
+   "The hook is a slow timeline build with tiny labels in a mostly empty frame. Nothing gives a reason to stay.",
+   "The hook timeline (seg0) and the bar chart (seg1) show the same adoption numbers twice.",
+   "seg2: Data is clipped by the left edge and covers the '3' of the 3.5M label; the scale's tilt for a 14% drop is barely visible.",
+   "seg3: the theft comparison is two bare bubbles; the caption collides into '146%'.",
+   "The closing reuses the seg3 bubbles; the stray cyan ellipses at payoff@-0.4 look like artifacts."
+  ],
+  "fixes": [
+   "Rewrite the hook to match the data, e.g. 'Self-checkout is in 92% of chains. 500,000 cashier jobs are gone.'",
+   "Replace the seg0 timeline with a hook shot that has immediate motion in a full frame, e.g. cashier lanes turning into kiosks one by one.",
+   "Show the job loss as cashiers leaving lanes: 35 cashier figures shrink to 30, with Data shutting the registers.",
+   "Show theft as items slipping past an unstaffed scanner into a loss pile, 4 vs 1.6 per 100, with Data as the scanner operator.",
+   "Keep labels clear of Data and the frame edges, and allow only one number in the caption at a time.",
+   "Give the closing its own payoff image instead of reusing seg3."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261008/self-checkout-cashier-jobs__d980a089.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

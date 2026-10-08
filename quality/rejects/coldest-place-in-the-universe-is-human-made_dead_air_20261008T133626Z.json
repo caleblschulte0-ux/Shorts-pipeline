@@ -1,0 +1,16 @@
+{
+ "slug": "coldest-place-in-the-universe-is-human-made",
+ "ts": "20261008T133626Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: seg0:end to seg1:end (about 3.4s to 8.2s) is the same frozen 14-tile grid with only a small arm wiggle. seg3:start to seg3:end (16.6s to 20.3s) is an identical static square. The measured held_s is 4.0.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start to seg3:end: a full-frame flat teal square holding '29400T' with no unit. Data stands still on its top edge. A tiny 'NASA's Cold Atom Lab (ISS)' label sits on the right edge. There is no motion for about 4s, and the narration is '5,000 light-years away, but NASA's freezer is 250 miles up'.",
+  "root_cause": "An area-proportional square was used for a distance comparison. The 5,000 ly vs 250 miles ratio is so large that the comparison partner shrinks to nothing, leaving one slab. '29400T' is a unit-less abbreviation that viewers cannot parse.",
+  "repair_goal": "Draw the distance as a journey made of the subject. Earth with the ISS a hair above it, Data zooming a telescope/rocket out past the planets toward a far nebula, with the 250-mile hop visible as a tiny tick next to an enormous 5,000 light-year sweep. Use one readable headline ('5,000 light-years vs 250 miles') fully inside the frame. Data drives the zoom-out."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "global-displacement-record",
+ "ts": "20261008T133626Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg2:mid the '3.5M' label is printed on top of the bar and its outline and reads as garbled 3.5M. In seg1:start the 51.2M label is covered by a ring and reads '51.2M' half hidden. In seg1:mid/end the axis labels '2023' and '2024' run together as '20232024'. In seg3:start Data's foot c",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start and seg3:mid show two small circles labelled 73% and 27% on an empty dark field, with Data standing on top of the left circle doing nothing. The same picture carries on into seg4.",
+  "root_cause": "The share relationship was drawn as a default bubble pair. Nothing in the picture is made of the subject (people, homes, borders), and Data has no act tied to the number.",
+  "repair_goal": "Draw a scene made of the subject. For example, 100 tents or 100 people walk out and settle into two camps: 73 crowd into a modest low/middle-income town and 27 into a rich skyline. Data leads or ferries the groups so that he causes the split. Put one big number in the shot and keep the frame full."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

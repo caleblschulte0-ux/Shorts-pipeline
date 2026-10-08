@@ -1,0 +1,16 @@
+{
+ "slug": "insect-planet",
+ "ts": "20261008T133626Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data mostly poses beside the marks. He stands next to the stacked bar (seg1:start, seg1:mid), stands on top of the 5.5M circle (seg3:mid), and in the closing two copies of him just stand and point (seg4:mid). Nothing he does causes the data to move. The only real action is a brief",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start to seg3:end shows two flat circles (a yellow 5.5M and a grey 1M) on an empty navy field. Data stands on top of the big circle doing nothing.",
+  "root_cause": "The 'named vs estimated' claim was drawn as a bubble-size comparison with no subject form. The mascot has no act tied to it, and the circles' areas don't even read as a 5.5:1 ratio.",
+  "repair_goal": "Make the scene out of the subject. Example: Data as a cataloguer pinning specimen cards onto a vast insect drawer. Only about 1 of every 5.5 slots gets filled, and the empty labelled slots stretch to the edges of the frame. The 4.5M unnamed gap should be shown as physical empty space that he is visibly working through."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

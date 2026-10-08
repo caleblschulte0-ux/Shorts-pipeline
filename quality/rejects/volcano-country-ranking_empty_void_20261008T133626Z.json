@@ -1,0 +1,16 @@
+{
+ "slug": "volcano-country-ranking",
+ "ts": "20261008T133626Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg3:mid the lower third and the space around the discs are empty. In seg4:start a long stretch between the title and the ruler holds nothing.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "incoherent_payoff",
+  "visible_evidence": "seg4:start to seg4:end: a ruler on a ladder reading '50% apart', with the 'Everywhere else 25%' label printed over 'On the Ring of Fire 75%'. Above it is the caption 'Alaska: quietly winning at volcanoes since forever.'",
+  "root_cause": "The closing reused the Ring-of-Fire share as a 'gap' machine (75% minus 25% = '50% apart'). That number is not in the story, and the drawing has nothing to do with the closing line about Alaska. The labels also collide.",
+  "repair_goal": "Make the closing land the Alaska payoff. Show Alaska's 130 volcanoes visibly dwarfing the whole of Indonesia's 101, with Data placing the last volcano that tips it. Remove the made-up '50% apart' figure and keep the labels apart."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

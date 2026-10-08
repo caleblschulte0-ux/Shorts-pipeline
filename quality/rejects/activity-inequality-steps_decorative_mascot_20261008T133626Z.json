@@ -1,0 +1,21 @@
+{
+ "slug": "activity-inequality-steps",
+ "ts": "20261008T133626Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In hook@0.3 to seg0:end Data stands on a dashed line with his arms up and never crosses the hurdle. In seg1 he slides along the end of a bar, in seg2 he stands on top of a bar, and in seg3/seg4 he walks beside a stacked bar. He never causes the data to move.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable_generic_chart",
+  "visible_evidence": "In seg2:start/mid/end two rounded pills labelled 297 and 100 sit in a mostly empty frame. Their category labels print over each other at the base, the kicker is truncated, and 'vs' floats in the middle. Data just stands on top of the tall pill.",
+  "root_cause": "The relative-risk claim (about 200% more likely obesity) fell back to a generic two-bar comparison with auto-placed long labels that collide. No subject form was drawn and the mascot was given no causal act.",
+  "repair_goal": "Show obesity risk physically: e.g. two populations, one with a wide spread of walkers and one even, with the high-inequality side's risk load visibly about 3x heavier. Use one short readable label per side (\"Unequal (US)\" / \"Equal (Japan)\"), one headline number (\"~3x\"), and have Data add the weight that makes the gap grow."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

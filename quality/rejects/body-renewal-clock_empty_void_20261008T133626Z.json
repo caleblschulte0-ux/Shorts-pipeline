@@ -1,0 +1,21 @@
+{
+ "slug": "body-renewal-clock",
+ "ts": "20261008T133626Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.3-seg0:end: the bottom 55% of the frame, below the skeleton and the small icons, is empty dark gradient.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "unreadable_overlap",
+  "visible_evidence": "seg0:end: three tissue icons are crammed onto one row, so their day labels collide ('120 d28:d5days') and their names merge ('Red blood cellSStomach lining'). A cyan ring circles the pile, the skeleton cutout is garbled, and the lower half of the frame is empty.",
+  "root_cause": "Each new tissue item is placed at a fixed slot in the same row without measuring label widths, and there is no layout for the five-to-3,650-day range. The scene adds icons one by one instead of showing four renewal clocks.",
+  "repair_goal": "Redraw seg0 as four tissues stacked down the full frame, each with its own clock or hourglass draining at its renewal rate: stomach 5d, skin 28d, blood 120d, skeleton 10y. Labels must never collide, the skeleton must be a clean full figure, and Data should flip or turn each clock so the stomach one visibly races while the skeleton one barely moves."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "bubbles",
+   "perf": "get_buried"
+  }
+ },
+ "scenes": []
+}

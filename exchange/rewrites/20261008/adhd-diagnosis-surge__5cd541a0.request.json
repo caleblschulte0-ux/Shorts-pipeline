@@ -1,0 +1,158 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "adhd-diagnosis-surge__5cd541a0",
+ "filed": "2026-10-08T13:36:15Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "adhd-diagnosis-surge",
+ "current": {
+  "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
+  "hook": "Your kid's odds of an ADHD diagnosis just hit 11.4 percent.",
+  "closing": "More labels. Still not enough help.",
+  "question": "Were you diagnosed as a kid? Tell me.",
+  "segments": [
+   {
+    "topic": "ADHD diagnosis rate",
+    "say": "ADHD diagnoses rose from 7.8 percent of US kids in 2003 to 11.4 percent in 2022."
+   },
+   {
+    "topic": "Who's newly diagnosed",
+    "say": "Boys are diagnosed at 15 percent, girls at 8 percent, and girls are catching up."
+   },
+   {
+    "topic": "Diagnosed kids treated",
+    "say": "Only 53.6 percent of diagnosed kids are actually taking medication for it."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "ADHD diagnosis rate",
+   "say": "ADHD diagnoses rose from 7.8 percent of US kids in 2003 to 11.4 percent in 2022.",
+   "role": "1 · SETUP",
+   "data": {
+    "file": "adhd_diagnosis_trend.json",
+    "unit": "percent",
+    "title": "US children ever diagnosed with ADHD",
+    "points": [
+     {
+      "label": "2003",
+      "value": 7.8,
+      "period": "2003"
+     },
+     {
+      "label": "2007",
+      "value": 9.5,
+      "period": "2007"
+     },
+     {
+      "label": "2011",
+      "value": 11.0,
+      "period": "2011"
+     },
+     {
+      "label": "2022",
+      "value": 11.4,
+      "period": "2022"
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Who's newly diagnosed",
+   "say": "Boys are diagnosed at 15 percent, girls at 8 percent, and girls are catching up.",
+   "role": "2 · THE SHIFT",
+   "data": {
+    "file": "adhd_diagnosis_by_sex.json",
+    "unit": "percent",
+    "title": "Children ever diagnosed with ADHD, by sex (2022)",
+    "points": [
+     {
+      "label": "Boys",
+      "value": 15
+     },
+     {
+      "label": "Girls",
+      "value": 8
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Diagnosed kids treated",
+   "say": "Only 53.6 percent of diagnosed kids are actually taking medication for it.",
+   "role": "3 · THE GAP",
+   "data": {
+    "file": "adhd_medication_treatment_gap.json",
+    "unit": "percent",
+    "title": "Diagnosed children currently taking ADHD medication",
+    "points": [
+     {
+      "label": "Taking ADHD medication",
+      "value": 53.6
+     },
+     {
+      "label": "Not taking medication",
+      "value": 46.4
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: blocked: judge response failed schema validation"
+ ],
+ "reasons": [
+  "judge: blocked: judge response failed schema validation"
+ ],
+ "judge": {
+  "ts": "2026-10-08T11:39:22+00:00",
+  "score": 14,
+  "one_line": "blocked: judge response failed schema validation",
+  "problems": [
+   "checks.bare_number_card missing or not an object",
+   "checks.dead_air missing or not an object",
+   "checks.empty_void missing or not an object",
+   "checks.unreadable missing or not an object"
+  ],
+  "fixes": [
+   "judge must answer every WEIGHTS dimension and every AUTOFAIL_CHECKS key with present(bool) + nonempty evidence, per _GRADE_PROMPT"
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261008/adhd-diagnosis-surge__5cd541a0.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

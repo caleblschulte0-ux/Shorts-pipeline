@@ -1,0 +1,16 @@
+{
+ "slug": "insect-planet",
+ "ts": "20261008T133626Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: The mascot covers the '80%' label in hook@0.3 and hook@0.8. In seg2:end, '1.5M' is printed over the mascot's head. In seg1:start, 'All other animals 20%' is very low contrast. In seg2:start, the 'Beetles (estimated)' label is crossed by the beetle icon.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start to seg3:end shows two flat circles (a yellow 5.5M and a grey 1M) on an empty navy field. Data stands on top of the big circle doing nothing.",
+  "root_cause": "The 'named vs estimated' claim was drawn as a bubble-size comparison with no subject form. The mascot has no act tied to it, and the circles' areas don't even read as a 5.5:1 ratio.",
+  "repair_goal": "Make the scene out of the subject. Example: Data as a cataloguer pinning specimen cards onto a vast insect drawer. Only about 1 of every 5.5 slots gets filled, and the empty labelled slots stretch to the edges of the frame. The 4.5M unnamed gap should be shown as physical empty space that he is visibly working through."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

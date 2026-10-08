@@ -1,0 +1,16 @@
+{
+ "slug": "parker-solar-probe-speed-record",
+ "ts": "20261008T133626Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data never causes any motion. He stands on a ladder pointing at a finished bar (seg0:mid), holds his arms up while the timeline sweeps past him (seg1:mid), stands next to static numbers (seg2:mid), perches on a bubble (seg3:mid) and points at an hourglass from a ladder (seg4:mid).",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start/mid/end: two rows of text ('Apollo 10 ... 24.8K' and 'Parker Solar Probe 430K'), each with an idle mascot beside it. The only change is the mascot sliding right. The title 'Fastest human ever' sits over an uncrewed probe.",
+  "root_cause": "The 17x claim was given a label-and-number comparison row instead of a picture of the speed. Nothing carries the ratio, and the mascot is decoration next to the text.",
+  "repair_goal": "Make the 17x ratio physical with a race. An Apollo 10 capsule and the Parker probe leave together; in the time the capsule covers one length, the probe covers 17, ticked as 17 marks along its path. Data fires the probe's thruster (or throws the start lever) so he causes the launch. Show only the one headline number, 17x, and retitle the scene 'Fastest humans vs fastest object'."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

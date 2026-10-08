@@ -1,0 +1,16 @@
+{
+ "slug": "recycling-myth-reality",
+ "ts": "20261008T133626Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg0:mid Data stands on a ladder resting a hand on the bar. In seg1:mid he stands on a ladder beside the box doing nothing to it. In seg3:mid he hangs off the 17% bar. In seg4 he poses and cheers beside the numbers. He never causes the data to change.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "unreadable_overlap_and_chart_hook",
+  "visible_evidence": "The 2019 and 2060 value labels collide over the left end of the span bar. The space under the bar is a large empty rectangle, Data stands on a ladder at the right end doing nothing, and the narration says 'trash vanished 9%' while the picture shows a 661M gap.",
+  "root_cause": "The span-bar machine places both endpoint labels at the same height without checking width. The hook reuses a growth chart that does not match the hook's 'recycling fails' claim. The mascot has no act tied to the number.",
+  "repair_goal": "Open on the actual claim with a bespoke shot: a pile of plastic grows from 353M to 1,014M tons while Data shovels into a recycling bin that catches only a 9% sliver. Keep every label separate and readable, and give Data a tool act (dig or shovel) that causes the pile's motion."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

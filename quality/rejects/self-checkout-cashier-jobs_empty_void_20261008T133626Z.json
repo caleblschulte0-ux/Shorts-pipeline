@@ -1,0 +1,21 @@
+{
+ "slug": "self-checkout-cashier-jobs",
+ "ts": "20261008T133626Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In hook@0.3 to seg0:end a thin timeline sits at mid-frame with about 60% empty dark gradient above and below. seg3:start has a small Data and two small dots floating in empty space.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "Two plain circles, a pink 4% and a grey 1.6%, with Data standing on top of the pink one. The circles grow, and the closing reuses this exact scene. The caption collides into '146%' at seg3:mid.",
+  "root_cause": "The theft-rate comparison fell back to a proportional-bubble chart. Nothing in it is made of shoplifting or a checkout, and Data has no act tied to the loss.",
+  "repair_goal": "Draw two checkout lanes. Goods slip off the self-checkout belt into a 'lost' bin at 4 in 100 items, against 1.6 in 100 at the staffed lane, so the bin piles up visibly bigger. Data should be the cause, for example scanning and missing items at the self-checkout. Keep one headline number and stop the caption from stacking two numbers."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

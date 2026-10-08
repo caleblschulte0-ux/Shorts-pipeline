@@ -1,0 +1,16 @@
+{
+ "slug": "left-brain-right-brain-myth",
+ "ts": "20261008T133626Z",
+ "failure_class": "junk_imagery",
+ "evidence": "junk_imagery: hook@0.3\u2013seg0:end: a flock of hens pecks in the foreground of a brain-myth scene, and at seg1:start\u2013seg1:end a red/white national flag, a city skyline and gold bullion bars surround the balance scale. Kit props unrelated to the brain topic.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "junk_imagery",
+  "visible_evidence": "seg1:start shows a balance tilted under '96%' with gold bars, a red/white striped national flag and a city skyline. By seg1:mid it has flipped to a level '50%' with matching gold stacks while Data stands to the right and gestures.",
+  "root_cause": "A stock balance-scale machine with set-dressing reused from unrelated stories (flag, bullion, skyline). The brain is dropped on as an icon, and Data is not the cause of the tilt.",
+  "repair_goal": "Redraw it as a brain-made balance: language-region tissue piled on the left hemisphere tips it to 96%, then personality traits spread evenly level it. Data loads the tissue onto the pan himself. Remove the flag, gold bars and skyline; use a neutral lab setting."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
