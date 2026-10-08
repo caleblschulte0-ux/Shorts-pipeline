@@ -1,0 +1,70 @@
+# Voice lab: pin the Chatterbox models and dependency set for a production
+# engine, and time the real call shape. No secrets; read-only token; only
+# collect writes, and only to this branch.
+name: Voice lab pin
+on:
+  push:
+    branches: [voice-lab]
+    paths: ['voice_lab/pin_probe.py', 'voice_lab/ref_clips.py', '.github/workflows/voice_lab_pin.yml']
+permissions:
+  contents: read
+jobs:
+  refs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - run: |
+          curl -fsSL -o dev_clean.tar.gz https://www.openslr.org/resources/141/dev_clean.tar.gz
+          sha256sum dev_clean.tar.gz | tee corpus.sha256
+          mkdir corpus && tar -xzf dev_clean.tar.gz -C corpus
+          pip install -q soundfile numpy
+          python voice_lab/ref_clips.py corpus out
+          cp corpus.sha256 out/
+      - uses: actions/upload-artifact@v4
+        with: { name: ref_clips, path: out/ }
+  pin:
+    needs: refs
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with: { name: ref_clips, path: refs/ }
+      - run: |
+          mkdir -p out
+          T=$(date +%s)
+          python -m venv /tmp/cbv
+          /tmp/cbv/bin/pip install -q --upgrade pip
+          /tmp/cbv/bin/pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          /tmp/cbv/bin/pip install -q chatterbox-tts==0.1.7 --extra-index-url https://download.pytorch.org/whl/cpu
+          echo "install_s=$(( $(date +%s) - T ))" | tee out/install.txt
+          du -sh /tmp/cbv | tee -a out/install.txt
+          /tmp/cbv/bin/pip freeze --all > out/freeze.txt
+          /tmp/cbv/bin/python voice_lab/pin_probe.py refs out
+          du -sh ~/.cache/huggingface | tee -a out/install.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: pin, path: out/ }
+  collect:
+    needs: [refs, pin]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: dl/ }
+      - run: |
+          mkdir -p voice_lab/pin
+          find dl -type f \( -name '*.ogg' -o -name '*.mp3' -o -name '*.txt' -o -name '*.json' -o -name '*.sha256' \) -exec cp {} voice_lab/pin/ \;
+          git config user.name "voice-lab"
+          git config user.email "voice-lab@users.noreply.github.com"
+          git add voice_lab/pin
+          git commit -m "voice lab pin results [skip ci]" && git push origin HEAD:voice-lab
