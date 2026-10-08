@@ -2823,11 +2823,40 @@
       "scene_changes_before_5s": 3
     },
     "monarch-butterfly-collapse": {
-      "claimed_at": "2026-10-08T15:52:54.089661+00:00",
+      "url": "https://youtube.com/shorts/xhZHZjV5o9c",
       "title": "The Monarch Butterfly Is Running Out of Forest",
+      "at": "2026-10-08T15:53:05.187515+00:00",
       "publish_at": "2026-10-08T14:47:06Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 27 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.34,
+      "beat_s": [
+        3.58,
+        7.34,
+        6.96,
+        5.43,
+        5.13
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 100,
+      "duration_s": 28.3,
+      "hook": "shock_stat",
+      "topic_category": "animals",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:monarch-cluster-collapse",
+        "mechanic:field-erasure-sweep",
+        "mechanic:twin-migration-path-fade"
+      ],
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -3483,9 +3512,10 @@
       "claimed_at": "2026-10-08T15:52:54.089661+00:00",
       "title": "The Monarch Butterfly Is Running Out of Forest",
       "publish_at": "2026-10-08T14:47:06Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "monarch-butterfly-collapse"
+      "url": "https://youtube.com/shorts/xhZHZjV5o9c",
+      "state": "posted",
+      "slug": "monarch-butterfly-collapse",
+      "at": "2026-10-08T15:53:05.187515+00:00"
     }
   ]
 }
