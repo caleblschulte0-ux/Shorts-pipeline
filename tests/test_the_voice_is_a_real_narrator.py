@@ -143,6 +143,38 @@ class ABadLineIsRedrawnThenHandedOn(unittest.TestCase):
         self.assertNotEqual(cb._seed("hello", 0), cb._seed("hello", 1))
 
 
+class TheWorkerIsHandedAbsolutePaths(unittest.TestCase):
+    """The worker runs with cwd = the work dir; a relative path in its job
+    resolved twice and every line fell through (voice-preview, 2026-10-08)."""
+
+    def test_a_relative_work_dir_still_reaches_the_worker_whole(self):
+        tmp = Path(tempfile.mkdtemp())
+        seen = {}
+
+        def run(cmd, **kw):
+            import json as _j
+            job = Path(cmd[-1])
+            seen["job_abs"] = job.is_absolute()
+            spec = _j.loads(job.read_text())
+            seen["paths"] = [spec["ref"]] + [l["out"] for l in spec["lines"]]
+            for l in spec["lines"]:
+                _wav(Path(l["out"]))
+            return mock.Mock(returncode=0, stderr="")
+        old = os.getcwd()
+        os.chdir(tmp)
+        try:
+            (tmp / "w").mkdir()
+            with mock.patch("subprocess.run", side_effect=run), \
+                    mock.patch.object(cb, "_trim", lambda a, b: Path(a).replace(b)):
+                ok = cb._run_worker([("hi there", Path("w/s0.wav"), 1)], "turbo",
+                                    Path("ref.ogg"), 10)
+        finally:
+            os.chdir(old)
+        self.assertTrue(ok)
+        self.assertTrue(seen["job_abs"])
+        self.assertTrue(all(Path(p).is_absolute() for p in seen["paths"]), seen)
+
+
 class ChatterboxGoesFirstAndWhole(unittest.TestCase):
     def setUp(self):
         from data_learning import studio_render as R

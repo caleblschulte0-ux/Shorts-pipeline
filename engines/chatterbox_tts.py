@@ -210,6 +210,10 @@ def _seed(text: str, attempt: int) -> int:
 
 def _run_worker(items: list[tuple[str, Path, int]], model: str, ref: Path,
                 timeout: float) -> bool:
+    # Absolute everywhere: the worker runs with cwd=job_dir, so a relative
+    # work dir would resolve twice (found by the voice-preview run).
+    items = [(t, Path(o).resolve(), s) for t, o, s in items]
+    ref = Path(ref).resolve()
     job_dir = items[0][1].parent
     job = job_dir / f"chatterbox_job_{os.getpid()}.json"
     raw = [(t, o.with_suffix(".cb.wav"), s) for t, o, s in items]
