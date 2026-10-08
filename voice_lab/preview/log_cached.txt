@@ -1,0 +1,12 @@
+[tts] chatterbox libritts_r_3000 (turbo) (5 lines)
+Traceback (most recent call last):
+  File "/home/runner/work/Shorts-pipeline/Shorts-pipeline/voice_lab/narration_test.py", line 19, in <module>
+    nar, windows = R.synth_narration(sents, work, "am_fenrir")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Shorts-pipeline/Shorts-pipeline/data_learning/studio_render.py", line 942, in synth_narration
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0",
+  File "/home/runner/work/Shorts-pipeline/Shorts-pipeline/data_learning/demo_render.py", line 36, in _run
+    subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL,
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['ffmpeg', '-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', 'out2/_w_octopus-nine-brains/list.txt', '-af', 'apad=pad_dur=0.18', '-c:a', 'pcm_s16le', 'out2/_w_octopus-nine-brains/raw.wav']' returned non-zero exit status 254.
