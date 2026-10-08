@@ -484,25 +484,25 @@
           "shot_index": 6,
           "phrase": "a warehouse clerk had mislabeled an entire pallet",
           "query": "warehouse pallet boxes forklift",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 6,
-        "missing": 1,
+        "weak": 7,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
-        "three-year-old-laptop-s6-534a70eac1dc",
         "three-year-old-laptop-s0-98e0e2cb81dd",
         "three-year-old-laptop-s1-e0e2866cdb29",
         "three-year-old-laptop-s2-faa4de224cd5",
         "three-year-old-laptop-s3-c0df8b8fce8b",
         "three-year-old-laptop-s4-ed9d975c202a",
-        "three-year-old-laptop-s5-097b5d7ff8e3"
+        "three-year-old-laptop-s5-097b5d7ff8e3",
+        "three-year-old-laptop-s6-534a70eac1dc"
       ]
     }
   ],
@@ -704,32 +704,6 @@
       "verdict": "weak"
     },
     {
-      "request_id": "three-year-old-laptop-s6-534a70eac1dc",
-      "safe_request_id": "three-year-old-laptop-s6-534a70eac1dc",
-      "drive_filename": "20261008__three-year-old-laptop-s6-534a70eac1dc.png",
-      "prompt_sha256": "309b2b509d57755bbb683f282629cfe48d67e52b78587aeb3df8639a7bc9a98d",
-      "checkpoint_path": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s6-534a70eac1dc.json",
-      "slug": "three-year-old-laptop",
-      "shot_index": 6,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: warehouse pallet boxes forklift. It accompanies the narration: \"a warehouse clerk had mislabeled an entire pallet\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
       "request_id": "three-year-old-laptop-s0-98e0e2cb81dd",
       "safe_request_id": "three-year-old-laptop-s0-98e0e2cb81dd",
       "drive_filename": "20261008__three-year-old-laptop-s0-98e0e2cb81dd.png",
@@ -879,6 +853,34 @@
       "shot_index": 5,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: warehouse shelves inventory records. It accompanies the narration: \"pulled the manufacturing batch records\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "three-year-old-laptop-s6-534a70eac1dc",
+      "safe_request_id": "three-year-old-laptop-s6-534a70eac1dc",
+      "drive_filename": "20261008__three-year-old-laptop-s6-534a70eac1dc.png",
+      "prompt_sha256": "309b2b509d57755bbb683f282629cfe48d67e52b78587aeb3df8639a7bc9a98d",
+      "checkpoint_path": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s6-534a70eac1dc.json",
+      "slug": "three-year-old-laptop",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: warehouse pallet boxes forklift. It accompanies the narration: \"a warehouse clerk had mislabeled an entire pallet\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",

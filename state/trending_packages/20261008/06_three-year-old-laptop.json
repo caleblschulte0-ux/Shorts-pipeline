@@ -29,7 +29,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T11:36:09Z",
+        "verified_at": "2026-10-08T14:11:58Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -48,7 +48,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T11:36:10Z",
+        "verified_at": "2026-10-08T14:11:59Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -67,7 +67,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T11:36:11Z",
+        "verified_at": "2026-10-08T14:12:00Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -86,7 +86,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T11:36:12Z",
+        "verified_at": "2026-10-08T14:12:01Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -105,7 +105,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T11:36:13Z",
+        "verified_at": "2026-10-08T14:12:02Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -124,7 +124,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T11:36:14Z",
+        "verified_at": "2026-10-08T14:12:04Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -135,7 +135,17 @@
       "media_file_id": "1IiTvOh4x5NypCEUQY9wfi1CIDHD05dkN",
       "media_sha256": "2f7e4fa1cd99ba0f378cee08bca78d81c2ea744510d14649f7917fc452c9daad",
       "media_bytes": 2093757,
-      "image_url": "https://drive.google.com/uc?export=download&id=1IiTvOh4x5NypCEUQY9wfi1CIDHD05dkN"
+      "image_url": "https://drive.google.com/uc?export=download&id=1IiTvOh4x5NypCEUQY9wfi1CIDHD05dkN",
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1IiTvOh4x5NypCEUQY9wfi1CIDHD05dkN",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-08T14:12:05Z",
+        "resolved_by": "verify_shot_urls"
+      }
     }
   ],
   "punches": [
