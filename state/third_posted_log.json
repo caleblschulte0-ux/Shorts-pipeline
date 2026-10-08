@@ -11927,14 +11927,31 @@
       "director_cut": true
     },
     "clip-20261008-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ohnepixel/clip/EndearingWittyMeerkatChefFrank-7_5qi5_UQvubPFLJ",
-      "story_key": null,
-      "streamer": "ohnepixel",
+      "url": "https://youtube.com/shorts/q8LWPbqghfQ",
       "title": "Ohnepixel Loses It: \"Don't Mess With Steve\" After Trying To Turn Something Off",
       "kind": "twitch_clip",
-      "ts": "2026-10-08T13:46:45.906997+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-08T13:46:57.291987+00:00",
+      "uploaded_at": "2026-10-08T13:46:57.292006+00:00",
+      "publish_at": "2026-10-09T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261008-ohnepixel-loses-it-don-t-mess-with-steve-after-t-60e7592e"
+      },
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/EndearingWittyMeerkatChefFrank-7_5qi5_UQvubPFLJ",
+      "streamer": "ohnepixel",
+      "series": "rage",
+      "hook": "DON'T MESS WITH STEVE",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3245,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 23.0
+      },
+      "director_cut": true
     }
   }
 }
