@@ -9,7 +9,8 @@ name: Voice lab
 on:
   push:
     branches: [voice-lab]
-    paths: ['voice_lab/*.py', 'voice_lab/*.json', '.github/workflows/voice_lab.yml']
+    paths: ['voice_lab/gen_kokoro.py', 'voice_lab/gen_cloud.py', 'voice_lab/gen_chatterbox.py',
+            'voice_lab/gen_neutts.py', 'voice_lab/analyze.py', '.github/workflows/voice_lab.yml']
 permissions:
   contents: read
 jobs:

@@ -1,0 +1,91 @@
+# Voice lab round 2: does it sound human? Clones real human reference voices
+# (LibriTTS-R, CC BY 4.0) with Chatterbox, renders Gemini TTS, then has a
+# blind AI listener rate every take, with real human clips as controls.
+# Third-party code runs only in jobs with no secrets and a read-only token;
+# the jobs holding GEMINI_API_KEY run only this repo's stdlib scripts.
+name: Voice lab human
+on:
+  push:
+    branches: [voice-lab]
+    paths: ['voice_lab/pick_refs.py', 'voice_lab/gen_chatterbox_human.py', 'voice_lab/gen_gemini_tts.py',
+            'voice_lab/judge.py', '.github/workflows/voice_lab_human.yml']
+permissions:
+  contents: read
+jobs:
+  refs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - run: |
+          curl -fsSL -o dev_clean.tar.gz https://www.openslr.org/resources/141/dev_clean.tar.gz
+          mkdir corpus && tar -xzf dev_clean.tar.gz -C corpus
+          pip install -q soundfile librosa==0.10.2.post1
+          python voice_lab/pick_refs.py corpus out
+      - uses: actions/upload-artifact@v4
+        with: { name: refs, path: out/ }
+  chatterbox:
+    needs: refs
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with: { name: refs, path: refs/ }
+      - run: |
+          pip install -q chatterbox-tts==0.1.7
+          python voice_lab/gen_chatterbox_human.py refs out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: chatterbox_human, path: out/ }
+  gemini:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - env: { GEMINI_API_KEY: '${{ secrets.GEMINI_API_KEY }}' }
+        run: python voice_lab/gen_gemini_tts.py out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: gemini_tts, path: out/ }
+  judge:
+    needs: [refs, chatterbox, gemini]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: dl/ }
+      - run: |
+          mkdir -p all
+          cp voice_lab/samples/*.mp3 all/
+          find dl -name '*.mp3' -exec cp {} all/ \;
+          ls all
+      - env: { GEMINI_API_KEY: '${{ secrets.GEMINI_API_KEY }}' }
+        run: python voice_lab/judge.py all
+      - uses: actions/upload-artifact@v4
+        with: { name: judge, path: all/judge.json }
+  collect:
+    needs: [refs, chatterbox, gemini, judge]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: dl/ }
+      - run: |
+          mkdir -p voice_lab/samples
+          find dl -type f \( -name '*.mp3' -o -name '*.txt' -o -name '*.json' \) -exec cp {} voice_lab/samples/ \;
+          git config user.name "voice-lab"
+          git config user.email "voice-lab@users.noreply.github.com"
+          git add voice_lab/samples
+          git commit -m "voice lab round 2 samples" && git push origin HEAD:voice-lab
