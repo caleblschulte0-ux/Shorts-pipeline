@@ -73,13 +73,45 @@ jobs:
       - uses: actions/download-artifact@v4
         with: { name: kokoro, path: ref/ }
       - run: |
-          pip install -q neutts==1.4.1
+          pip install -q neutts==1.4.1 'torchao==0.12.0'
           python voice_lab/gen_neutts.py out ref/ref_kokoro_michael.wav
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: neutts, path: out/ }
-  collect:
+  posted:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Audio of posted videos (the two ElevenLabs ones + a Speechify one), best effort
+        continue-on-error: true
+        run: |
+          pip install -q yt-dlp==2025.9.26
+          mkdir -p out
+          for id in ontxdDpNpHE rdFZ6zBicJM W-Ku8ZqnGOg; do
+            yt-dlp -q -x --audio-format mp3 -o "out/posted_${id}.%(ext)s" "https://youtube.com/shorts/${id}" || echo "yt-dlp failed for $id"
+          done
+          ls out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: posted, path: out/, if-no-files-found: ignore }
+  analyze:
     needs: [kokoro, cloud, chatterbox, neutts]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with: { path: dl/ }
+      - run: |
+          mkdir -p all && find dl -name '*.mp3' -exec cp {} all/ \;
+          pip install -q faster-whisper==1.1.1 librosa==0.10.2.post1
+          python voice_lab/analyze.py all
+      - uses: actions/upload-artifact@v4
+        with: { name: analysis, path: all/analysis.json }
+  collect:
+    needs: [kokoro, cloud, chatterbox, neutts, posted, analyze]
     if: always()
     runs-on: ubuntu-latest
     permissions:
