@@ -68,7 +68,7 @@ def _review(publish, score, fix="cut the dead air"):
 class _Harness(unittest.TestCase):
     def run_attempt(self, reviews, *, preflight=lambda p: [],
                     spec_extra=None, cluster=None, plan=None,
-                    clusters=None, memory=None):
+                    clusters=None, memory=None, qa=None):
         rt = _load_rt()
         self.rt = rt
         tmp = Path(self.enterContext(tempfile.TemporaryDirectory()))
@@ -95,8 +95,10 @@ class _Harness(unittest.TestCase):
                               return_value={"path": str(clip)}),
             mock.patch.object(clip_qa, "preflight", side_effect=preflight),
             mock.patch.object(clip_qa, "contact_sheet", return_value=None),
-            mock.patch.object(clip_qa, "review", return_value={
-                "verdict": "pass", "problems": [], "vision": {}}),
+            (mock.patch.object(clip_qa, "review", side_effect=list(qa))
+             if qa else
+             mock.patch.object(clip_qa, "review", return_value={
+                 "verdict": "pass", "problems": [], "vision": {}})),
             mock.patch.object(storyline, "find_vod_arcs",
                               return_value=json.loads(json.dumps(
                                   clusters or [cluster or CLUSTER]))),
