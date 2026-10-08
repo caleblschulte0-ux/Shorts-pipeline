@@ -1,0 +1,25 @@
+{
+  "key": "big_three_ownership_compare",
+  "title": "Combined 'Big Three' stake vs a typical large active manager, avg S&P 500 company",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "Current (approximate)",
+  "source": {
+    "name": "Index-fund ownership concentration research (approximate, compiled)",
+    "publisher": "Academic/industry research on BlackRock, Vanguard, State Street combined holdings",
+    "url": "https://www.sec.gov",
+    "officiality": "secondary",
+    "access_date": "2026-10-08"
+  },
+  "notes": "Approximate; research on 'Big Three' index managers (BlackRock, Vanguard, State Street) commonly cites a combined average stake around one-fifth of the typical S&P 500 company, well above any single active fund manager's typical stake.",
+  "points": [
+    {
+      "label": "BlackRock + Vanguard + State Street",
+      "value": 22
+    },
+    {
+      "label": "Largest single active manager",
+      "value": 4
+    }
+  ]
+}

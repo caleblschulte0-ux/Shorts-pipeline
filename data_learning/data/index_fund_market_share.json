@@ -1,0 +1,42 @@
+{
+  "key": "index_fund_market_share",
+  "title": "Passive index funds' share of US stock market assets",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2000-2024 (selected years)",
+  "source": {
+    "name": "Passive fund asset-share trend",
+    "publisher": "Morningstar / S&P Dow Jones Indices fund-flow research (approximate, compiled)",
+    "url": "https://www.morningstar.com",
+    "officiality": "secondary",
+    "access_date": "2026-10-08"
+  },
+  "notes": "Approximate; passive (index) funds' share of total US equity fund assets rose from roughly 2% in 2000 to over 50% by the mid-2020s, commonly cited in Morningstar/ICI fund-flow research as passive overtaking active management.",
+  "points": [
+    {
+      "label": "2000",
+      "value": 2,
+      "period": "2000"
+    },
+    {
+      "label": "2010",
+      "value": 15,
+      "period": "2010"
+    },
+    {
+      "label": "2016",
+      "value": 35,
+      "period": "2016"
+    },
+    {
+      "label": "2020",
+      "value": 45,
+      "period": "2020"
+    },
+    {
+      "label": "2024",
+      "value": 52,
+      "period": "2024"
+    }
+  ]
+}

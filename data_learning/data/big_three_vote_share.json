@@ -1,0 +1,29 @@
+{
+  "key": "big_three_vote_share",
+  "title": "Share of S&P 500 annual-meeting votes cast by each 'Big Three' manager",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "Current (approximate)",
+  "source": {
+    "name": "Proxy-voting concentration research (approximate, compiled)",
+    "publisher": "Academic/industry research on index-fund proxy voting power",
+    "url": "https://www.sec.gov",
+    "officiality": "secondary",
+    "access_date": "2026-10-08"
+  },
+  "notes": "Approximate; research on proxy-voting concentration estimates BlackRock, Vanguard, and State Street combined can cast roughly a quarter of votes at the average S&P 500 annual meeting.",
+  "points": [
+    {
+      "label": "Vanguard",
+      "value": 9
+    },
+    {
+      "label": "BlackRock",
+      "value": 7
+    },
+    {
+      "label": "State Street",
+      "value": 5
+    }
+  ]
+}

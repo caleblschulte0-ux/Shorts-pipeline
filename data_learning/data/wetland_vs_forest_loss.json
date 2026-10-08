@@ -1,0 +1,25 @@
+{
+  "key": "wetland_vs_forest_loss",
+  "title": "Share lost since 1970: wetlands vs forests",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "1970-2020 (approximate)",
+  "source": {
+    "name": "Global Wetland Outlook / global forest-cover research (approximate, compiled)",
+    "publisher": "Ramsar Convention on Wetlands; FAO forest-resource assessments",
+    "url": "https://www.global-wetland-outlook.ramsar.org",
+    "officiality": "secondary",
+    "access_date": "2026-10-08"
+  },
+  "notes": "Approximate; Ramsar's wetland-loss figure (~35% since 1970) is commonly compared against slower global net forest-cover decline over the same period (~10-15%, FAO), putting wetland loss at roughly 3x the forest rate.",
+  "points": [
+    {
+      "label": "Wetlands lost since 1970",
+      "value": 35
+    },
+    {
+      "label": "Forests lost since 1970",
+      "value": 12
+    }
+  ]
+}

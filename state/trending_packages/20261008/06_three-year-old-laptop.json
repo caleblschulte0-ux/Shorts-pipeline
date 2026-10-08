@@ -1,0 +1,23 @@
+{
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "three-year-old-laptop",
+  "title": "Support Said My Warranty Expired. The Serial Number Said Why.",
+  "hashtags": ["talesfromthecustomer", "warranty", "customerservice", "techsupport", "recall", "storytime", "shorts", "reddit"],
+  "script": "My laptop's fan started screaming three months after I bought it, so I called support to use the warranty. The rep looked up my serial number and told me the warranty had expired two years ago, because their system showed the laptop was manufactured in 2022. I explained I bought it three weeks earlier, brand new, sealed in plastic, from their own store. He said the manufacturing date was final and hung up. I called back with the purchase receipt, the store's barcode scan timestamp, and the unboxing video I filmed for a tech channel, all showing the same serial number. A supervisor pulled the manufacturing batch records and found the real problem: a warehouse clerk had mislabeled an entire pallet of unsold 2022 stock as new arrivals, so hundreds of customers were buying three year old laptops as current models. My one warranty call turned into a recall notice. The company extended every affected warranty by two years and shipped me a new fan assembly right away.",
+  "shots": [
+    {"phrase": "fan started screaming three months after I bought it", "query": "laptop cooling fan closeup"},
+    {"phrase": "rep looked up my serial number", "query": "call center headset agent computer"},
+    {"phrase": "sealed in plastic, from their own store", "query": "sealed laptop box retail shelf"},
+    {"phrase": "the store's barcode scan timestamp", "query": "barcode scanner checkout receipt"},
+    {"phrase": "the unboxing video I filmed for a tech channel", "query": "phone filming unboxing desk"},
+    {"phrase": "pulled the manufacturing batch records", "query": "warehouse shelves inventory records"},
+    {"phrase": "a warehouse clerk had mislabeled an entire pallet", "query": "warehouse pallet boxes forklift"}
+  ],
+  "punches": [
+    {"phrase": "the warranty had expired two years ago", "text": "WARRANTY DENIED", "color": "#ff3030"},
+    {"phrase": "manufactured in 2022", "text": "THREE YEARS OLD", "color": "#ffaa30"},
+    {"phrase": "turned into a recall notice", "text": "RECALL NOTICE", "color": "#ffaa30"},
+    {"phrase": "extended every affected warranty by two years", "text": "WARRANTY WON", "color": "#50ff80"}
+  ],
+  "music_vibe": "electronic"
+}

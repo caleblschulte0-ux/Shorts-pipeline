@@ -1,0 +1,20 @@
+{
+  "key": "rabies_region_rank",
+  "title": "Estimated annual human rabies deaths by region",
+  "unit": "people",
+  "geography": "World",
+  "time_coverage": "Current (annual estimate)",
+  "source": {
+    "name": "Rabies fact sheet",
+    "publisher": "World Health Organization (WHO)",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/rabies",
+    "officiality": "official",
+    "access_date": "2026-10-08"
+  },
+  "notes": "WHO estimates roughly 59,000 human rabies deaths per year worldwide, with Asia and Africa together accounting for about 95-96% of the total.",
+  "points": [
+    {"label": "Asia", "value": 35000},
+    {"label": "Africa", "value": 21000},
+    {"label": "Rest of world", "value": 3000}
+  ]
+}
