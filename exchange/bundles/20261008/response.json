@@ -356,52 +356,52 @@
     },
     {
       "slug": "fake-customer-costume",
-      "script": "Wrong employee—twice? I was comparing two blenders in the kitchen aisle when a woman marched over holding a cracked air fryer and ordered me to fix it. I told her I didn't work there. My blue jacket proved otherwise. I pointed to my charity fun run shirt and the actual employee vest hanging two feet away. She ignored both, flagged down a real manager, and accused me of hiding behind a fake customer costume. Bold theory. The manager found a receipt from a different store chain stapled inside the box, so this location couldn't process it. She asked why I hadn't said that. I held up the loyalty app on my phone, showing my actual order from twenty minutes earlier. She left muttering about bad service; the associate picked my blender. Which costume was supposed to say customer?",
-      "editor_note": "Rewritten to 138 words with a two-word question hook, every shot phrase preserved, one dry aside, and a costume-specific kicker."
+      "kept": true,
+      "editor_note": "Original script retained after fact-guard review; it preserves every verified detail and all seven media-aligned shot phrases."
     },
     {
       "slug": "three-year-old-laptop",
-      "script": "How old was “new”? My laptop's fan started screaming three months after I bought it. The rep looked up my serial number and said the warranty had expired two years ago because the laptop was manufactured in 2022. I had bought it three weeks earlier, brand new, sealed in plastic, from their own store. He called the manufacturing date final and hung up. Lovely warranty. I called back with the receipt, the store's barcode scan timestamp, and the unboxing video I filmed for a tech channel—all tied to that serial number. A supervisor pulled the manufacturing batch records: a warehouse clerk had mislabeled an entire pallet of unsold 2022 stock, so hundreds bought three year old laptops as current. One call triggered a recall, two years of extended warranty, and my new fan assembly. How “new” was that 2022 pallet?",
-      "editor_note": "Rewritten to 140 words with a four-word question hook, every protected number and shot phrase preserved, and a 2022-pallet kicker."
+      "kept": true,
+      "editor_note": "Original script retained after fact-guard review; it preserves both 2022 references, every other number, and all seven media-aligned shot phrases."
     }
   ],
   "authored": [],
   "authored_explainer": [
     {
       "slug": "cereal-production-is-1-5x-higher-than-in-1972",
-      "title": "The Harvest Beat The Shortage Forecast",
-      "hook": "The 1970s predicted food shortages; the data went the other way.",
+      "title": "Cereal production Is 1.5x Higher Than In 1972",
+      "hook": "By the 1970s, experts warned the world would run out of food.",
       "says": [
-        "Secondary-school progression rose from 77.8 in 1985 to 91.3 in 2017—1.2 times higher.",
-        "Cereal production rose from 1083.7 million metric tons in 1972 to 1644.1 by 2024—1.5 times higher.",
-        "China 5.2, United States 4.2, Australia 3.6, Brazil 2.4, Russia 2.2 million square kilometers."
+        "In 1985, progression was 77.8; by 2017, it was 91.3—1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons; by 2024, 1644.1—1.5 times higher.",
+        "China: 5.2; United States: 4.2; Australia: 3.6; Brazil: 2.4; Russia: 2.2 million square kilometers."
       ],
-      "closing": "The shortage forecast missed a much bigger harvest.",
-      "question": "School, grain, or land: which surprised you?"
+      "closing": "The famine everyone predicted never showed up.",
+      "question": "Which surprised you most—school, grain, or land?"
     },
     {
       "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
-      "title": "Waste Energy Tripled While Methane Climbed",
-      "hook": "Since 1990, the energy surprise wasn't solar or wind; it was combustible waste.",
+      "title": "Combustible renewables and waste Is 3.0x Higher Than In 1990",
+      "hook": "One energy source has tripled since 1990; it isn't solar or wind.",
       "says": [
-        "Combustible renewables and waste from 10.2 % in 1990 to 30.1 % in 2024—3.0 times higher.",
-        "Electricity access moved from 73.2 % in 1998 to 91.9 % in 2024—1.3 times higher.",
-        "Waste methane (ch4) emissions from 903.8 Mt CO2e in 1972 to 1,652 in 2024—1.8 times higher."
+        "In 1990, combustible renewables and waste was 10.2 %; by 2024, 30.1 %—3.0 times higher.",
+        "In 1998, electricity access was 73.2 %; by 2024, 91.9 %—1.3 times higher.",
+        "In 1972, methane (ch4) waste emissions were 903.8 Mt CO2e; by 2024, 1,652—1.8 times higher."
       ],
-      "closing": "Waste became fuel, while its methane bill kept rising.",
-      "question": "Fuel, power, or waste: which surprised you?"
+      "closing": "A third of the world's energy now comes from waste.",
+      "question": "Which surprised you most—fuel, power, or waste?"
     },
     {
       "slug": "population-growth-fell-54-since-1972",
-      "title": "Population Growth Fell 54% Since 1972",
-      "hook": "The planet kept growing, but its growth rate was cut nearly in half.",
+      "title": "Population growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to accelerate forever; the number proves it didn't.",
       "says": [
-        "Rural population fell from 63.1 % in 1972 to 42.2 % in 2025—67 percent of that.",
-        "Largest-city population moved from 18.2 % in 1972 to 16.2 % in 2025—barely moved.",
-        "Population growth fell from 2 annual % in 1972 to 0.91 annual % in 2025—46 percent."
+        "In 1972, rural population was 63.1 %; by 2025, 42.2 %—67 percent of that.",
+        "In 1972, largest-city population was 18.2 %; by 2025, 16.2 %—barely moved.",
+        "In 1972, population growth was 2 annual %; by 2025, 0.91 annual %—46 percent."
       ],
-      "closing": "Growth didn't stop; acceleration nearly did.",
-      "question": "Rural, city, or growth: which surprised you?"
+      "closing": "The planet is still growing; it has almost stopped accelerating.",
+      "question": "Which surprised you most—rural, city, or growth?"
     }
   ]
 }
