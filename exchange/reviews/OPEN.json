@@ -1,27 +1,7 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-10-08T16:30:50Z",
+ "updated": "2026-10-08T16:46:48Z",
  "open": [
-  {
-   "id": "global-displacement-record__47a7ae7c62",
-   "channel": "explainer",
-   "slug": "global-displacement-record",
-   "title": "More People Are Displaced Right Now Than Ever Recorded",
-   "filed": "2026-10-08T16:30:50Z",
-   "request": "exchange/reviews/20261008/global-displacement-record__47a7ae7c62.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261008/global-displacement-record__47a7ae7c62/sheet.jpg",
-   "answer_path": "exchange/reviews/20261008/global-displacement-record__47a7ae7c62.verdict.json"
-  },
-  {
-   "id": "self-checkout-cashier-jobs__8e2beece88",
-   "channel": "explainer",
-   "slug": "self-checkout-cashier-jobs",
-   "title": "Self-Checkout Is Quietly Replacing Cashiers (3 Charts)",
-   "filed": "2026-10-08T16:26:14Z",
-   "request": "exchange/reviews/20261008/self-checkout-cashier-jobs__8e2beece88.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261008/self-checkout-cashier-jobs__8e2beece88/sheet.jpg",
-   "answer_path": "exchange/reviews/20261008/self-checkout-cashier-jobs__8e2beece88.verdict.json"
-  },
   {
    "id": "coldest-place-in-the-universe-is-human-made__39fc2e34fa",
    "channel": "explainer",
