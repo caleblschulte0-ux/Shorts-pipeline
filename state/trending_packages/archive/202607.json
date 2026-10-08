@@ -2853,5 +2853,516 @@
       ],
       "music_vibe": "tense"
     }
+  },
+  "20260709": {
+    "01_peregrine-falcon-fastest-2026.json": {
+      "version": 1,
+      "slug": "peregrine-falcon-fastest-2026",
+      "title": "The Fastest Animal Alive Isn't the Cheetah",
+      "hashtags": [
+        "peregrine",
+        "falcon",
+        "fastest",
+        "bird",
+        "animals",
+        "nature",
+        "wildlife",
+        "viral",
+        "predator",
+        "raptor",
+        "fyp",
+        "facts"
+      ],
+      "script": "There's an animal that hits speeds a race car can't match, and it does it falling out of the sky. It's the peregrine falcon. When it spots a target, it folds its wings and dives in what's called a stoop, reaching over two hundred miles an hour. At that speed, special baffles in its nose let it keep breathing, and a third eyelid wipes its eyes clear. It hits its prey mid-air with a closed foot, a strike so hard the impact alone kills. The fastest animal alive isn't the cheetah. So what happens to a pigeon that never sees it coming?",
+      "shots": [
+        {
+          "phrase": "hits speeds a race car can't match",
+          "query": "peregrine falcon",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peregrine_Falcon_in_flight.jpg"
+        },
+        {
+          "phrase": "falling out of the sky",
+          "query": "falcon diving sky",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "It's the peregrine falcon",
+          "query": "peregrine falcon flight",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peregrine_Falcon_in_flight.jpg"
+        },
+        {
+          "phrase": "reaching over two hundred miles an hour",
+          "query": "falcon stoop dive",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "special baffles in its nose",
+          "query": "peregrine falcon head",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peregrine_Falcon_in_flight.jpg"
+        },
+        {
+          "phrase": "The fastest animal alive isn't the cheetah",
+          "query": "cheetah running",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "never sees it coming",
+          "query": "peregrine falcon",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Peregrine_Falcon_in_flight.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "a race car can't match",
+          "text": "FASTER THAN A CAR",
+          "color": "#30c0ff"
+        },
+        {
+          "phrase": "two hundred miles an hour",
+          "text": "200+ MPH",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "the impact alone kills",
+          "text": "IMPACT KILLS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "isn't the cheetah",
+          "text": "NOT THE CHEETAH",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "epic"
+    },
+    "02_komodo-dragon-one-bite-2026.json": {
+      "version": 1,
+      "slug": "komodo-dragon-one-bite-2026",
+      "title": "This Lizard Only Needs to Bite You Once",
+      "hashtags": [
+        "komodo",
+        "dragon",
+        "lizard",
+        "venom",
+        "deadliest",
+        "animals",
+        "nature",
+        "wildlife",
+        "viral",
+        "reptile",
+        "fyp",
+        "scary"
+      ],
+      "script": "This giant lizard doesn't need to win the fight, it just needs one bite. It's the Komodo dragon, and it can grow ten feet long. When it ambushes a water buffalo, it doesn't hold on. It bites once, then backs off and follows. Its mouth carries venom that stops blood from clotting, so the wound never closes. It will trail its prey for days, waiting, until the animal finally collapses from blood loss. Then the whole dragon clan moves in. It's less a hunter and more a patient executioner. So how does something this big stay hidden long enough to strike?",
+      "shots": [
+        {
+          "phrase": "it just needs one bite",
+          "query": "komodo dragon",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Komodo_dragon_%28Varanus_komodoensis%29.jpg"
+        },
+        {
+          "phrase": "It's the Komodo dragon",
+          "query": "komodo dragon closeup",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Komodo_dragon_%28Varanus_komodoensis%29.jpg"
+        },
+        {
+          "phrase": "it ambushes a water buffalo",
+          "query": "water buffalo",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "venom that stops blood from clotting",
+          "query": "komodo dragon tongue",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Komodo_dragon_%28Varanus_komodoensis%29.jpg"
+        },
+        {
+          "phrase": "trail its prey for days",
+          "query": "komodo dragon walking",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a patient executioner",
+          "query": "komodo dragon",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Komodo_dragon_%28Varanus_komodoensis%29.jpg"
+        },
+        {
+          "phrase": "stay hidden long enough to strike",
+          "query": "komodo dragon",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Komodo_dragon_%28Varanus_komodoensis%29.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "just needs one bite",
+          "text": "ONE BITE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "ten feet long",
+          "text": "10 FEET LONG",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "venom that stops blood from clotting",
+          "text": "VENOM: NO CLOTTING",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "patient executioner",
+          "text": "PATIENT EXECUTIONER",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "dark"
+    },
+    "03_wolverine-chases-bears-2026.json": {
+      "version": 1,
+      "slug": "wolverine-chases-bears-2026",
+      "title": "This Dog-Sized Animal Steals Food From Bears",
+      "hashtags": [
+        "wolverine",
+        "fearless",
+        "animals",
+        "nature",
+        "wildlife",
+        "tough",
+        "viral",
+        "predator",
+        "wild",
+        "snow",
+        "fyp",
+        "facts"
+      ],
+      "script": "This animal is the size of a small dog, but it will chase a grown bear off its own kill. It's the wolverine. Pound for pound, it might be the strongest mammal in the north. It has jaws that can crush frozen meat and bone solid as rock, and paws that spread wide to run across deep snow where bigger predators sink. It's been recorded taking down prey many times its size, and it fears almost nothing that walks. Ranchers say it's the meanest animal in the mountains. So where does an animal this small find that much nerve?",
+      "shots": [
+        {
+          "phrase": "chase a grown bear off its own kill",
+          "query": "wolverine",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wolverine_on_rock.jpg"
+        },
+        {
+          "phrase": "It's the wolverine",
+          "query": "wolverine snow",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wolverine_on_rock.jpg"
+        },
+        {
+          "phrase": "crush frozen meat and bone",
+          "query": "wolverine teeth",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "run across deep snow",
+          "query": "wolverine walking snow",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wolverine_on_rock.jpg"
+        },
+        {
+          "phrase": "taking down prey many times its size",
+          "query": "wolverine wild",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the meanest animal in the mountains",
+          "query": "wolverine",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wolverine_on_rock.jpg"
+        },
+        {
+          "phrase": "that much nerve",
+          "query": "wolverine",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Wolverine_on_rock.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "the size of a small dog",
+          "text": "SIZE OF A DOG",
+          "color": "#30c0ff"
+        },
+        {
+          "phrase": "chase a grown bear off its own kill",
+          "text": "STEALS FROM BEARS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "strongest mammal in the north",
+          "text": "POUND-FOR-POUND #1",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "fears almost nothing",
+          "text": "FEARS NOTHING",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "tense"
+    },
+    "04_tarantula-hawk-worst-sting-2026.json": {
+      "version": 1,
+      "slug": "tarantula-hawk-worst-sting-2026",
+      "title": "The Bug With a Sting So Bad You Just Lie Down",
+      "hashtags": [
+        "tarantulahawk",
+        "wasp",
+        "sting",
+        "insect",
+        "spider",
+        "animals",
+        "nature",
+        "wildlife",
+        "viral",
+        "scary",
+        "fyp",
+        "facts"
+      ],
+      "script": "This wasp has a sting so bad that experts say your only advice is to lie down and scream. It's the tarantula hawk. It hunts one of the scariest spiders alive, the tarantula, and it usually wins. It stings the spider to paralyze it, then drags the living body back to its burrow. It lays a single egg on the spider, and when the larva hatches, it eats the still-living tarantula from the inside, saving the vital organs for last. Its sting ranks near the top of the entire insect world. So what could possibly make a giant spider the easy part?",
+      "shots": [
+        {
+          "phrase": "lie down and scream",
+          "query": "tarantula hawk wasp",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tarantula_hawk.jpg"
+        },
+        {
+          "phrase": "It's the tarantula hawk",
+          "query": "tarantula hawk",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tarantula_hawk.jpg"
+        },
+        {
+          "phrase": "the scariest spiders alive, the tarantula",
+          "query": "tarantula spider",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "drags the living body back to its burrow",
+          "query": "wasp dragging spider",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tarantula_hawk.jpg"
+        },
+        {
+          "phrase": "eats the still-living tarantula from the inside",
+          "query": "tarantula",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "near the top of the entire insect world",
+          "query": "tarantula hawk wasp",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tarantula_hawk.jpg"
+        },
+        {
+          "phrase": "make a giant spider the easy part",
+          "query": "tarantula hawk",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tarantula_hawk.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "lie down and scream",
+          "text": "LIE DOWN & SCREAM",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "it usually wins",
+          "text": "IT USUALLY WINS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "from the inside",
+          "text": "EATEN ALIVE INSIDE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "top of the entire insect world",
+          "text": "#1 WORST STING",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "tense"
+    },
+    "05_star-nosed-mole-fastest-eater-2026.json": {
+      "version": 1,
+      "slug": "star-nosed-mole-fastest-eater-2026",
+      "title": "The Weirdest Face in Nature Is the Fastest Eater Alive",
+      "hashtags": [
+        "starnosedmole",
+        "mole",
+        "weird",
+        "animals",
+        "nature",
+        "science",
+        "wildlife",
+        "viral",
+        "surprising",
+        "facts",
+        "fyp",
+        "wild"
+      ],
+      "script": "This might be the strangest face in the animal kingdom, and it belongs to the fastest eater on Earth. It's the star-nosed mole. That pink star on its face is made of twenty-two feelers with over a hundred thousand nerve endings, more touch sensors than your entire hand. It's nearly blind, but it can find, identify, and swallow a piece of food in under two tenths of a second, faster than your eye can even follow. It maps the world entirely by touch, in total darkness underground. So how does a brain process anything that fast?",
+      "shots": [
+        {
+          "phrase": "the strangest face in the animal kingdom",
+          "query": "star-nosed mole",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Condylura.jpg"
+        },
+        {
+          "phrase": "the fastest eater on Earth",
+          "query": "star nosed mole closeup",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Condylura.jpg"
+        },
+        {
+          "phrase": "twenty-two feelers",
+          "query": "star-nosed mole nose",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "more touch sensors than your entire hand",
+          "query": "mole star nose",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Condylura.jpg"
+        },
+        {
+          "phrase": "swallow a piece of food in under two tenths of a second",
+          "query": "mole underground",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "maps the world entirely by touch",
+          "query": "star-nosed mole",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Condylura.jpg"
+        },
+        {
+          "phrase": "process anything that fast",
+          "query": "star-nosed mole",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Condylura.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "the fastest eater on Earth",
+          "text": "FASTEST EATER ALIVE",
+          "color": "#00e070"
+        },
+        {
+          "phrase": "over a hundred thousand nerve endings",
+          "text": "100,000 NERVES",
+          "color": "#30c0ff"
+        },
+        {
+          "phrase": "under two tenths of a second",
+          "text": "0.2 SECONDS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "entirely by touch",
+          "text": "SEES BY TOUCH",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "epic"
+    },
+    "06_basilisk-lizard-runs-on-water-2026.json": {
+      "version": 1,
+      "slug": "basilisk-lizard-runs-on-water-2026",
+      "title": "The Lizard That Literally Runs on Water",
+      "hashtags": [
+        "basilisk",
+        "lizard",
+        "runsonwater",
+        "jesuslizard",
+        "animals",
+        "nature",
+        "science",
+        "wildlife",
+        "viral",
+        "reptile",
+        "fyp",
+        "facts"
+      ],
+      "script": "There's a lizard that can do something that looks impossible, it runs straight across the surface of water. It's the basilisk, nicknamed the Jesus Christ lizard. When a predator strikes, it drops onto a pond and sprints across the top on its back legs, slapping the water so fast that air pockets form under its feet and keep it from sinking. A small one can cross fifteen feet before it starts to swim. It's pure panic engineered into a superpower. So what happens the moment it finally runs out of speed?",
+      "shots": [
+        {
+          "phrase": "runs straight across the surface of water",
+          "query": "basilisk lizard",
+          "mascot_pose": "shock",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Basiliscus_plumifrons.jpg"
+        },
+        {
+          "phrase": "the Jesus Christ lizard",
+          "query": "green basilisk lizard",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Basiliscus_plumifrons.jpg"
+        },
+        {
+          "phrase": "sprints across the top on its back legs",
+          "query": "basilisk running water",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "air pockets form under its feet",
+          "query": "basilisk lizard water",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Basiliscus_plumifrons.jpg"
+        },
+        {
+          "phrase": "cross fifteen feet before it starts to swim",
+          "query": "basilisk lizard pond",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "panic engineered into a superpower",
+          "query": "basilisk lizard",
+          "mascot_pose": "idle",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Basiliscus_plumifrons.jpg"
+        },
+        {
+          "phrase": "runs out of speed",
+          "query": "basilisk lizard",
+          "mascot_pose": "point",
+          "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Basiliscus_plumifrons.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "across the surface of water",
+          "text": "RUNS ON WATER",
+          "color": "#30c0ff"
+        },
+        {
+          "phrase": "the Jesus Christ lizard",
+          "text": "THE JESUS LIZARD",
+          "color": "#00e070"
+        },
+        {
+          "phrase": "fifteen feet before it starts to swim",
+          "text": "15 FT ON WATER",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "panic engineered into a superpower",
+          "text": "PANIC = SUPERPOWER",
+          "color": "#ffaa30"
+        }
+      ],
+      "music_vibe": "epic"
+    }
   }
 }
