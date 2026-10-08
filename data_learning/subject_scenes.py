@@ -60,10 +60,13 @@ def by_time(rows):
     return list(rows)
 
 
-def step_through(u, n, hold_first=0.28, hold_last=0.18):
+def step_through(u, n, hold_first=0.28, hold_last=0.4):
     """(k, f): item k of a sequence is ARRIVING, f its progress 0..1.
 
-    The FIRST item holds the opening stretch and the LAST the closing one.
+    The FIRST item holds the opening stretch and the LAST the closing one —
+    the last 40% of the beat, so the finished picture is up long enough to
+    read (operator, 2026-10-07: a payoff held under a second was
+    "whiplash"; scene_author.PAYOFF_BY).
     The showrunner looks at each beat at 25%, 55% and 85% of it; stepped
     evenly, a seven-year series showed it 2020 first while the narration
     said 2019, and the judge called the scene a contradiction (coffee,
@@ -79,14 +82,27 @@ def step_through(u, n, hold_first=0.28, hold_last=0.18):
     return k, pos - (k - 1)
 
 
-def landed(rows, k, f, at=0.6):
+#: A readout shows at most this many of a series' points in one beat: the
+#: first, the last, and evenly spaced ones between. Eight years stepped
+#: through a six-second beat put a new number up every quarter second — the
+#: picture may glide through every year, the reader cannot.
+READOUT_SHOWS = 3
+
+
+def landed(rows, k, f, at=0.6, shows=READOUT_SHOWS):
     """The (label, value) a READOUT may print: the item that has arrived.
 
     A readout that counts up between two data points and wears the second
     one's label prints a number the data does not have — "$3.24 · February
     2025", when February 2025 was $4.41. The picture may glide; the number
-    only ever shows a data point."""
-    return rows[k] if (k == 0 or f >= at) else rows[k - 1]
+    only ever shows a data point — and only `shows` of them in a beat (the
+    first, the last, evenly spaced between), so each stays up to be read."""
+    n = len(rows)
+    got = k if (k == 0 or f >= at) else k - 1
+    if n <= shows:
+        return rows[got]
+    keep = sorted({round(i * (n - 1) / (shows - 1)) for i in range(shows)})
+    return rows[max(i for i in keep if i <= got)]
 
 
 def fit_readout(cr, big, small, x, y, anchor="left", a=1.0, rgb=None,
@@ -754,9 +770,10 @@ def amazon_clearing(cr, t, u, pts, host):
     host("shock" if u > 0.86 else ("climb" if val > 12000 else "strain"),
          clamp(fx + 90, 120, W - 120),
          FOREST_Y + 250, 230)                  # above the caption band
-    fit_readout(cr, f"{int(val):,} km²", f"of rainforest cleared in {year}",
+    say_year, say_val = landed(pts, k, fk)
+    fit_readout(cr, f"{int(say_val):,} km²", f"of rainforest cleared in {say_year}",
                 80, 520, a=ease(seg(u, 0.0, 0.08)))
-    text(cr, year, W - 80, 520, 64, look.INK, face="display", anchor="right",
+    text(cr, say_year, W - 80, 520, 64, look.INK, face="display", anchor="right",
          alpha=ease(seg(u, 0.0, 0.08)))
 
 
@@ -913,7 +930,7 @@ def amazon_vs_france(cr, t, u, pts, host):
             cr.fill()
     # the land France does NOT cover, traced out — the "bigger than France"
     # claim as a line drawn round what is left over
-    tr = ease(seg(u, 0.6, 0.86))
+    tr = ease(seg(u, 0.46, 0.62))   # traced while the flag goes in: done by 0.6
     if tr > 0:
         ring = []
         for k in range(97):
@@ -950,7 +967,7 @@ def amazon_vs_france(cr, t, u, pts, host):
              cy - 40, 190)
     fit_readout(cr, f"{int(lost):,} km²", "of Amazon lost since 1970", W / 2, 470,
                 anchor="center", a=ease(seg(u, 0.0, 0.1)))
-    b = seg(u, 0.58, 0.8)
+    b = seg(u, 0.48, 0.58)
     if b > 0:
         diff = int(lost - fra)
         fit_readout(cr, f"{diff:,} km² more", f"than all of {lf.title() if lf.isupper() else 'France'}",
@@ -1249,7 +1266,7 @@ def coffee_drought(cr, t, u, pts, host):
     glow(cr, 760, 560, 420, P["sun_hot"], 0.85 + 0.1 * math.sin(t * 2))
     disc(cr, 760, 560, 110, P["sun_hot"], finish="gloss")
     vgrad(cr, P["dry_soil"], 1060, H)
-    dry = ease(seg(u, 0.15, 0.6))
+    dry = ease(seg(u, 0.1, 0.45))
     for i in range(16):                      # coffee shrubs on the hills
         x = 40 + i * 68
         col = tuple(int(a + (b - a) * dry) for a, b in zip(P["shrub"], P["shrub_dry"]))
@@ -1266,10 +1283,10 @@ def coffee_drought(cr, t, u, pts, host):
     # the pile: one sack per million bags, stacked in a pyramid
     total = int(round(before))
     keep = int(round(after))
-    lost = ease(seg(u, 0.35, 0.8))
+    lost = ease(seg(u, 0.25, 0.55))
     # the lost sacks go ONE AT A TIME — each drops and crumbles in its own
     # moment — instead of the whole top sinking 60px over four seconds
-    drop = seg(u, 0.35, 0.86) * max(1, total - keep)
+    drop = seg(u, 0.25, 0.58) * max(1, total - keep)
     idx = 0
     per_row = [11, 10, 9, 7, 5, 3]
     contact_shadow(cr, 540, 1452, 900, a=0.4)
@@ -1291,14 +1308,14 @@ def coffee_drought(cr, t, u, pts, host):
     heat_shimmer(cr, t, 900, 1600, a=0.22)
     # his bit: he points at the pile, climbs it to hold up the top sacks as
     # they crumble, and lands in shock on what is left
-    climb = ease(seg(u, 0.1, 0.55))
+    climb = ease(seg(u, 0.08, 0.4))
     host("point" if climb <= 0 else ("climb" if lost < 0.95 else
                                      ("strain" if u < 0.92 else "shock")),
          280 + 200 * climb, 1520 - 330 * climb, 220)
     lab, val = (l1, after) if lost >= 0.6 else (l0, before)
     fit_readout(cr, f"{val:.1f}M bags", f"Brazil arabica forecast · {lab.lower()}", 80, 520,
                 a=ease(seg(u, 0.0, 0.08)), size=130)
-    b = ease(seg(u, 0.7, 0.85))
+    b = ease(seg(u, 0.48, 0.58))
     if b > 0:
         fit_readout(cr, f"{before - after:.0f} million bags gone", "overnight",
                     W / 2, 800, anchor="center", a=b, rgb=P["accent2"], size=64)
@@ -1580,21 +1597,20 @@ def bird_flu_barn(cr, t, u, pts, host):
     rows = by_time([(str(l), float(v)) for l, v in pts])
     n = len(rows)
     top = max(v for _, v in rows) or 1.0
-    a0, a1 = 0.1, 0.9
+    a0, a1 = 0.08, 0.56                     # done by 0.56, then it HOLDS
     span = (a1 - a0) / max(1, n)
     k = int(clamp((u - a0) / span, 0, n - 0.001))
     f = clamp((u - a0 - k * span) / span)
     slide = ease(seg(f, 0.2, 0.6))           # lands on the shove, then holds
     prev = rows[k - 1][1] if k > 0 else 0.0
     frac = 0.0 if u < a0 else (prev + (rows[k][1] - prev) * slide) / top
-    if u < a0:
-        shown = None
-    elif slide >= 0.999:
-        shown = rows[k]
-    elif k > 0:
-        shown = rows[k - 1]
-    else:
-        shown = None
+    # the readout names only the years landed() would — the first, one
+    # between, the last — so each stays up long enough to read
+    landed_to = k if slide >= 0.999 else k - 1
+    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))
+                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))
+    named = max((i for i in keep if i <= landed_to), default=None)
+    shown = None if (u < a0 or named is None) else rows[named]
 
     landscape(cr, t, "field")
     # a dirt track from the camera to the door
@@ -1663,7 +1679,6 @@ def bird_flu_barn(cr, t, u, pts, host):
         disc(cr, wx, DY - 18, 11, (70, 70, 76), finish="metal")
     # THE SCALE, on the barn itself: every year the door has landed on leaves
     # a notch on the track, so a glance reads how far each year closed it
-    landed_to = k if slide >= 0.999 else k - 1
     for j in range(0, landed_to + 1):
         if u < a0:
             break
@@ -1674,8 +1689,8 @@ def bird_flu_barn(cr, t, u, pts, host):
         cr.line_to(nx, DY - 2)
         cr.stroke()
         first_x = DX0 + dw * rows[0][1] / top
-        if j == landed_to or (j == 0 and nx - first_x < 1 and
-                              dw * (rows[landed_to][1] - rows[0][1]) / top > 110):
+        if j == named or (j == 0 and nx - first_x < 1 and named is not None and
+                          dw * (rows[named][1] - rows[0][1]) / top > 110):
             text(cr, rows[j][0], nx, DY - 52, 30, look.INK, face="bold", anchor="center")
 
     # right by the camera: the rest of the flock, the grass
@@ -1688,7 +1703,7 @@ def bird_flu_barn(cr, t, u, pts, host):
     fx = max(dx + 90, 110)
     if u < a0:
         host("point", 760, 1452, 220)
-    elif u < 0.93:
+    elif u < a1 + 0.04:
         host("shove", fx, 1452, 220, beat=k)
     else:
         host("shock", fx, 1452, 220)
@@ -1754,7 +1769,8 @@ def bottle(cr, x, y, ang, s, rgb, a=1.0):
 def recycling_pile(cr, t, u, pts, host):
     """THE PILE (2026-10-07), brain-drawn, the scene the operator picked:
     "I like the pile one but the bone one no." One number, a heap that
-    triples, its old size drawn on it. Kept verbatim as the brain drew it.
+    triples, its old size drawn on it. Kept as the brain drew it, except its
+    clock: the heap is done by 0.56 and held (PAYOFF_BY, same day).
     HERO: a towering dump of plastic waste
     SUBSTANCE: plastic bottles and bags
     CAUSE: Data tosses armfuls of plastic onto the dump and the heap grows with every throw
@@ -1767,7 +1783,7 @@ def recycling_pile(cr, t, u, pts, host):
     v0 = v0 or 1.0
     ratio = v1 / v0
     n = 6
-    a0, a1 = 0.1, 0.9
+    a0, a1 = 0.08, 0.5
     span = (a1 - a0) / n
     k = int(clamp((u - a0) / span, 0, n - 0.001))
     f = clamp((u - a0 - k * span) / span)
@@ -1830,6 +1846,16 @@ def recycling_pile(cr, t, u, pts, host):
             bottle(cr, bx + 22 * (j - 1), by + 10 * (j % 2), fly * 6 + j * 2.1, 1.6,
                     PLASTIC[(k + j) % len(PLASTIC)])
 
+    # once the heap is done the world keeps moving, not the story: loose
+    # bottles keep tumbling down its flank
+    if u > a1:
+        for j in range(3):
+            ph = ((u - a1) / 0.16 + j / 3) % 1.0
+            side = 1 if j % 2 else -1
+            bx = CX + side * hw * (0.08 + 0.8 * ph)
+            by = heap_top(CX, BASE, h, hw, bx) - 10
+            bottle(cr, bx, by, side * ph * 9 + j, 1.5, PLASTIC[(j * 2 + 1) % len(PLASTIC)])
+
     # right by the camera: bottles washed out into the grass
     for i in range(5):
         bottle(cr, 120 + i * 210, 1640 + (i % 2) * 70 + i * 10, i * 0.9 + 0.3,
@@ -1839,8 +1865,10 @@ def recycling_pile(cr, t, u, pts, host):
 
     if u < a0:
         host("point", hx, hy, 220)
-    elif u < 0.92:
+    elif u < a1 + 0.04:
         host("toss", hx, hy, 220, beat=k)
+    elif u < 0.9:                       # the heap is done: he holds up one more
+        host("hold_up", hx, hy, 220)
     else:
         host("shock", hx, hy, 220)
 
@@ -1849,7 +1877,7 @@ def recycling_pile(cr, t, u, pts, host):
         fit_readout(cr, f"{int(round(v1)):,}M tons", f"plastic waste a year · {l1}",
                     80, 520, size=130)
         text(cr, f"{ratio:.1f}x", W - 80, 650, 90, look.INK, face="display",
-             anchor="right", alpha=ease(seg(u, 0.9, 0.95)))
+             anchor="right", alpha=ease(seg(u, a1, a1 + 0.05)))
     else:
         fit_readout(cr, f"{int(round(v0)):,}M tons", f"plastic waste a year · {l0}",
                     80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)
