@@ -2857,6 +2857,13 @@
       ],
       "words_first_10s": 25,
       "scene_changes_before_5s": 3
+    },
+    "adhd-diagnosis-surge": {
+      "claimed_at": "2026-10-08T15:57:45.945322+00:00",
+      "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
+      "publish_at": "2026-10-08T20:47:06Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3516,6 +3523,14 @@
       "state": "posted",
       "slug": "monarch-butterfly-collapse",
       "at": "2026-10-08T15:53:05.187515+00:00"
+    },
+    {
+      "claimed_at": "2026-10-08T15:57:45.945322+00:00",
+      "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
+      "publish_at": "2026-10-08T20:47:06Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "adhd-diagnosis-surge"
     }
   ]
 }
