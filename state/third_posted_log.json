@@ -11709,6 +11709,61 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The sharp picture is a thin 16:9 strip that fills only about a third of the 9:16 canvas, well short of the roughly three; vision: The subject and action are tiny and far away. The streamer is a small facecam in the corner and the gameplay is distant,; vision: The footage is very dark and low",
       "ts": "2026-10-07T18:39:02.026914+00:00"
+    },
+    "rejected-zealousmoistconsolecoolstorybro-tmoetzngyyxn0ktl": {
+      "source_url": "https://www.twitch.tv/buddha/clip/ZealousMoistConsoleCoolStoryBro-TMOEtZngyYxN0KTl",
+      "streamer": "buddha",
+      "title": "WICKED",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (dark routine driving, no visible event)",
+      "ts": "2026-10-08T12:02:55.187656+00:00"
+    },
+    "rejected-finestrangepothotpokket-lkazfvpcg4gmy9lt": {
+      "source_url": "https://www.twitch.tv/erobb221/clip/FineStrangePotHotPokket-lkaZfvPCg4GmY9lT",
+      "streamer": "erobb221",
+      "title": "Ricky Borby vs Commissioner Dawson",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-10-08T12:03:48.748007+00:00"
+    },
+    "rejected-smokyartsyfloofresidentsleeper-p-yx5fhe7selesbw": {
+      "source_url": "https://www.twitch.tv/xqc/clip/SmokyArtsyFloofResidentSleeper-P-yX5fHe7SElESbW",
+      "streamer": "xqc",
+      "title": "Jean Paul Wick",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA RP incapacitated, unclear event, ins)",
+      "ts": "2026-10-08T12:28:21.752374+00:00"
+    },
+    "rejected-boredamazingcroquettebuddhabar-5robhjyzrkhmgcws": {
+      "source_url": "https://www.twitch.tv/buddha/clip/BoredAmazingCroquetteBuddhaBar-5RObhJYZRKhmGcWS",
+      "streamer": "buddha",
+      "title": "Den Sheisty rides the lightning",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA RP standoff, inside-joke, no payoff)",
+      "ts": "2026-10-08T12:29:16.295350+00:00"
+    },
+    "rejected-wittyagitatedsaladunclenox-i4gettrkw7ghghuy": {
+      "source_url": "https://www.twitch.tv/cinna/clip/WittyAgitatedSaladUncleNox-i4GetTRkw7GHghUy",
+      "streamer": "cinna",
+      "title": "Bronny disposes of Clayton's body",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Dark RP, inventory menus, no visible pay)",
+      "ts": "2026-10-08T12:30:06.631590+00:00"
+    },
+    "clip-20261008-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/PeppyCrispyDonkeyKappa-vDcCpOvXdsrGuF18",
+      "story_key": null,
+      "streamer": "plaqueboymax",
+      "title": "Plaqueboymax Dance Fails And Hits His Mouth On Camera",
+      "kind": "twitch_clip",
+      "ts": "2026-10-08T12:38:03.493416+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
