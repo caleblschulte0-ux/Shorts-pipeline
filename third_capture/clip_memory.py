@@ -129,7 +129,8 @@ def said_from_words(words) -> str:
 # before). The director's "not a story" is about the footage and stands.
 #   1 — a narrator line per beat; the stream around a clip arrives (copy)
 #   2 — a repair is told which beat and source second the critic meant
-EDIT_VERSION = 2
+#   3 — a plan is read and repaired on paper before it is rendered
+EDIT_VERSION = 3
 
 
 def note_story_tried(mem: dict, member_urls: list[str], *, premise: str = "",

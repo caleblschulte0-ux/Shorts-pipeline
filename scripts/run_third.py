@@ -1733,8 +1733,65 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                           "near-dup — skipped", flush=True)
                     continue
 
-                # ---- rough cut via the dedicated renderer (§11)
                 src_map = {r["source_id"]: r for r in sub}
+                _floor = int(spec.get("story_min_score", 80))
+
+                # ---- TABLE READ: the plan is judged and repaired ON PAPER
+                # before a frame is cut. Backtest 7 (2026-10-08) spent its
+                # whole render budget on six plans that opened at 48-72 and
+                # never climbed: three renders and two vision reviews each,
+                # for stories whose transcript already said "who is Reggie?"
+                # and "the payoff is never shown". The same critic reads the
+                # words the cut WOULD hold (`story.plan_ledger`), the
+                # director repairs what it names, and only a plan that
+                # reads at `story_table_read_min` is rendered. This can only
+                # ADD a block: the render is still judged by the full critic
+                # with frames at `story_min_score`, unchanged.
+                _tr_best = None
+                _tr_n = int(spec.get("story_table_reads", 3))
+                for _tr_i in range(_tr_n):
+                    if _deadline_passed():
+                        break
+                    _plan = story_mod.plan_ledger(edl, src_map)
+                    _tr = story_director.review_rough_cut(
+                        edl, scene_analysis._dialogue_lines(
+                            _plan["final_words"]),
+                        None, _plan["duration_s"], _plan["on_screen"])
+                    if int(_tr["story_score"]) < 0:
+                        break            # no brain: the render decides
+                    print(f"[story] {elbl}: table read {_tr_i}: "
+                          f"{_tr['story_score']}", flush=True)
+                    if _tr_best is None or \
+                            _tr["story_score"] > _tr_best[0]:
+                        _tr_best = (_tr["story_score"], edl, _tr, _plan)
+                    if (_tr["story_score"] >= _floor or not _tr["problems"]
+                            or _tr_i == _tr_n - 1):
+                        break
+                    _edl2 = story_director.revise_edl(
+                        _tr_best[1], _tr_best[2]["problems"], sub,
+                        cut=_tr_best[3])
+                    if not _edl2:
+                        break
+                    edl = _edl2
+                if _tr_best is not None:
+                    edl = _tr_best[1]
+                    _tr_min = int(spec.get("story_table_read_min", 65))
+                    if _tr_best[0] < _tr_min:
+                        _crit = "; ".join(
+                            f"{p['type']}: {p['fix']}"
+                            for p in _tr_best[2]["problems"][:3])
+                        why = (f"table read {_tr_best[0]} < {_tr_min} — "
+                               f"not rendered; {_crit}")[:400]
+                        print(f"[story] {elbl}: {why}", flush=True)
+                        _story_verdict(elbl, "table_read_failed", why)
+                        # about the EDIT, not the footage: a better editor
+                        # (EDIT_VERSION) gets to read it again
+                        _remember_refused(_refuse_urls,
+                                          edl.get("premise") or who, why,
+                                          rendered=True)
+                        continue
+
+                # ---- rough cut via the dedicated renderer (§11)
                 story_work = work / f"story_{slug}"
                 revision_count = 0
                 try:
@@ -1770,8 +1827,6 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # that held viewers (98.7% viewed) was the 80. A story ships
                 # at `story_min_score` or above; below it, it is repaired
                 # toward the bar, never shipped. Code may only ADD blocks.
-                _floor = int(spec.get("story_min_score", 80))
-
                 def _passes(rv):
                     return bool(rv["publish"]) and \
                         int(rv["story_score"]) >= _floor

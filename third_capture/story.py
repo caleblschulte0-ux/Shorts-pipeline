@@ -533,6 +533,66 @@ def _mix_narration(seg: Path, voice: Path, out: Path) -> None:
           "-b:a", "160k", str(out)])
 
 
+def plan_ledger(edl: dict, sources: dict[str, dict]) -> dict:
+    """The ledger `render_story` WOULD write, without rendering anything:
+    each beat's place on the output clock, the words a viewer would hear
+    there, and what the edit lays on top. The same arithmetic as the
+    renderer (the last beat's hold into silence, the hook and overlay read
+    times, the narrator line per beat), minus replays, which add no words.
+
+    It is what the critic reads at the TABLE READ (`run_third`): a plan is
+    judged and repaired on paper before a single frame is cut, so the
+    render budget goes to the plans that read like a story."""
+    beats = edl.get("beats") or []
+    hold = float((edl.get("ending") or {}).get("duration", 1.0) or 1.0)
+    narr_by_beat: dict = {}
+    for ln in (edl.get("narration_lines")
+               or ([edl["narration"]] if isinstance(edl.get("narration"), dict)
+                   else edl.get("narration") or [])):
+        try:
+            narr_by_beat.setdefault(
+                int(ln.get("over_beat", ln.get("after_beat", -1))), ln)
+        except (TypeError, ValueError, AttributeError):
+            continue
+    timeline = 0.0
+    used, words, on_screen = [], [], []
+    for idx, beat in enumerate(beats):
+        srcinfo = sources.get(beat.get("source_id"))
+        if not srcinfo:
+            continue
+        start, end = float(beat["start"]), float(beat["end"])
+        if idx == len(beats) - 1:
+            src_dur = float(srcinfo.get("duration_s") or end)
+            end = min(src_dur, end + hold, _next_word_at(
+                srcinfo.get("words") or [], end) - 0.05)
+        if beat.get("context_overlay"):
+            ov = beat["context_overlay"]
+            on_screen.append({"at": round(timeline, 1), "kind": "overlay",
+                              "secs": round(min(end - start, _read_secs(
+                                  ov, OVERLAY_DUR)), 1), "text": ov})
+        if idx == 0 and edl.get("hook_overlay"):
+            on_screen.append({"at": 0.0, "kind": "title",
+                              "secs": round(_read_secs(
+                                  edl["hook_overlay"], HOOK_DUR), 1),
+                              "text": edl["hook_overlay"]})
+        if narr_by_beat.get(idx):
+            on_screen.append({"at": round(timeline + 0.15, 1),
+                              "kind": "narration", "secs": None,
+                              "text": narr_by_beat[idx]["text"]})
+        for w in _seg_words(srcinfo.get("words") or [], start, end):
+            words.append({"w": w["w"], "s": w["s"] + timeline,
+                          "e": w["e"] + timeline})
+        used.append({"source_id": beat["source_id"],
+                     "role": beat.get("role", ""),
+                     "purpose": beat.get("purpose", ""),
+                     "start": start, "end": round(end, 2), "beat": idx,
+                     "out_start": round(timeline, 2),
+                     "out_end": round(timeline + end - start, 2)})
+        timeline += end - start
+    return {"beats": used, "final_words": words, "on_screen": on_screen,
+            "duration_s": round(timeline, 1)}
+
+
 def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
                  work: Path, safe_framing: bool = False) -> dict:
     """Execute a validated director EDL.
