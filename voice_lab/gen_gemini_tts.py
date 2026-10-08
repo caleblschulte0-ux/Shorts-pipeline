@@ -21,13 +21,14 @@ def get(url, body=None):
 ms, err = get(f"{B}?pageSize=200")
 tts = [m["name"].split("/")[1] for m in (ms or {}).get("models", []) if "tts" in m["name"]]
 log["tts_models"] = tts or err
-model = next((m for m in ["gemini-2.5-pro-preview-tts", "gemini-2.5-flash-preview-tts"] if m in tts), tts[0] if tts else None)
+want = os.environ.get("TTS_MODELS", "gemini-3.8-flash-tts,gemini-3.1-flash-tts-preview,gemini-2.5-flash-preview-tts").split(",")
+model = next((m for m in want if m in tts), None)
 log["model_used"] = model
 note = ("Read this like a curious, friendly YouTube Shorts narrator telling a friend a "
         "surprising fact. Natural, conversational, brisk pace, real emphasis on the "
         "numbers, no announcer voice:\n\n")
 text = " ".join(L["lines"])
-for v in ["Charon", "Puck", "Orus", "Fenrir", "Iapetus", "Algieba"]:
+for v in os.environ.get("TTS_VOICES", "Charon,Puck,Orus").split(","):
     r, err = get(f"{B}/{model}:generateContent", {
         "contents": [{"parts": [{"text": note + text}]}],
         "generationConfig": {"responseModalities": ["AUDIO"], "speechConfig": {
@@ -37,5 +38,5 @@ for v in ["Charon", "Puck", "Orus", "Fenrir", "Iapetus", "Algieba"]:
     w = out / f"_g_{v}.wav"
     with wave.open(str(w), "wb") as f:
         f.setnchannels(1); f.setsampwidth(2); f.setframerate(24000); f.writeframes(pcm)
-    finish([w], out / f"gemini_{v}.mp3", 1.0); w.unlink(); log[v] = "ok"; time.sleep(8)
+    finish([w], out / f"gemini_{model}_{v}.mp3", 1.0); w.unlink(); log[v] = "ok"; time.sleep(8)
 (out / "gemini_tts_log.json").write_text(json.dumps(log, indent=1)); print(json.dumps(log, indent=1))
