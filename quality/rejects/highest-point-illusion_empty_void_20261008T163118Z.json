@@ -1,0 +1,16 @@
+{
+ "slug": "highest-point-illusion",
+ "ts": "20261008T163118Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.3\u2013seg0:end: everything sits in the top 30\u201350% of the frame. The bottom half to two thirds is empty dark gradient down to the caption.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg0:start\u2013seg0:end: a tiny stock mountain thumbnail top-left and a list of numbers fading in top-right. More than 60% of the frame is empty navy gradient. No Data, no mountain silhouette, no motion beyond text fades.",
+  "root_cause": "The opening is a text leaderboard with a pasted thumbnail, not a shot. The 'dethroned twice' claim has no picture, so the strongest hook in the script plays over a void.",
+  "repair_goal": "Make the hook a lit full-frame shot. Show Everest's silhouette as the crowned champion, with Data planting a flag or crown on its summit. Then two rivals visibly rise past it (Mauna Kea climbing from a seafloor below the waterline, Chimborazo bulging outward on Earth's curve) while Data is knocked off or has to move the crown, all inside the first 2s. Remove the stock thumbnail and the number list."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

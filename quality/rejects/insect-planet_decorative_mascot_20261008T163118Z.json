@@ -1,0 +1,16 @@
+{
+ "slug": "insect-planet",
+ "ts": "20261008T163118Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data never causes the data. He clings to the frame edge beside the scale (hook@0.3), stands next to the stacked bar and raises his arms (seg1:mid), walks on top of a circle (seg3:mid), and shows up twice as a cheering and pointing sticker (seg4:mid).",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "chart_restating_hook",
+  "visible_evidence": "seg1:start to seg1:end show one stacked yellow and grey column labelled 'Insects 80%'. It repeats the 80% the hook's scale has just shown, with thin low-contrast labels, while Data stands beside the column and raises his arms.",
+  "root_cause": "The relationship engine fell back to a plain share chart for a stat the hook had already shown, so the beat adds no new picture and Data has nothing to cause.",
+  "repair_goal": "Replace the stacked bar with a scene made of the subject. For example, a crowd of 10 animal silhouettes where Data paints or turns 8 of them into beetles one by one, so that 80% is shown by the bugs taking over the group. Data does the turning, and labels are in ink with strong contrast."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

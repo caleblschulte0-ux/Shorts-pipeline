@@ -1,0 +1,21 @@
+{
+ "slug": "body-renewal-clock",
+ "ts": "20261008T163118Z",
+ "failure_class": "junk_imagery",
+ "evidence": "junk_imagery: hook@0.3 through seg0:end: the 'Skeleton' is a garbled AI cutout, a torso with a skull and no arms or legs that floats over the dark gradient, plus a generic green blob for 'Stomach lining'",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "unreadable_collision_and_junk_cutout",
+  "visible_evidence": "At seg0:end the three tissue icons land on top of each other, so the labels read '120 d28 d5 days' and 'Red blood cellSkStomach lining' under a cyan ring. Above them is a limbless AI skeleton cutout, the lower half of the frame is empty, and Data is absent.",
+  "root_cause": "The icon layout places each new tissue at a fixed small offset without measuring label widths, and it draws the subject with stock/AI cutouts instead of a lit scene. No mascot act is assigned to the beat.",
+  "repair_goal": "Redraw seg0 as one shot where four tissues renew at different speeds, for example four lit clocks or turnover wheels that each spin at their own rate (stomach 5d fast, skin 28d, blood 120d, bone 10y barely moving). Lay them out over the full frame with measured, non-overlapping labels, and have Data turning the crank that drives them."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "bubbles",
+   "perf": "get_buried"
+  }
+ },
+ "scenes": []
+}

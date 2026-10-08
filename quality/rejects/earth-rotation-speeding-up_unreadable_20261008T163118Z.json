@@ -1,0 +1,16 @@
+{
+ "slug": "earth-rotation-speeding-up",
+ "ts": "20261008T163118Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg3:start the bar labels ('Chance of a negative leap second by 2035') are tiny low-contrast grey and unreadable on a phone. The kicker is cut off ('...VS CHANCE OF A\u2026'). From hook@0.3 to seg1:mid 'Earth record 1.5' and 'each block = 0.2' have no unit, so the viewer cannot work out 1.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "chart_with_decorative_mascot",
+  "visible_evidence": "seg3:start to seg3:end show a generic two-bar 'vs' chart titled 'Earth negative'. The accent pink sits on the 60% 'still isn't needed' bar, but the claim is the 40% bar, which is greyed out. The bar labels are tiny grey text, and Data dances in the gap without touching either bar.",
+  "root_cause": "The probability relationship fell back to a stock bar comparison. The accent went to the larger bar instead of the subject, and the mascot was given no agent act.",
+  "repair_goal": "Show a 40% chance of a negative leap second as the subject's own physics. For example, Data reaches into a clock dial and pulls one second OUT of it, with the 40% shown as a dial sweep or 4 of 10 clocks losing a tick. Put the single accent on the 40% claim, give every label at least 40px with high contrast, and fill the upper half of the frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

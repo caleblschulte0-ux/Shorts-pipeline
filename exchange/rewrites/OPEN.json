@@ -1,7 +1,37 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-08T14:49:52Z",
+ "updated": "2026-10-08T16:30:56Z",
  "open": [
+  {
+   "id": "chip-transistor-shrink-limit__40c2f231",
+   "slug": "chip-transistor-shrink-limit",
+   "filed": "2026-10-08T16:30:56Z",
+   "why": [
+    "premise: brain: The premise lacks a clear single verifiable number and does not cleanly reverse a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261008/chip-transistor-shrink-limit__40c2f231.request.json",
+   "answer_path": "exchange/rewrites/20261008/chip-transistor-shrink-limit__40c2f231.answer.json"
+  },
+  {
+   "id": "ants-outnumber-humans__57091d35",
+   "slug": "ants-outnumber-humans",
+   "filed": "2026-10-08T16:30:55Z",
+   "why": [
+    "premise: brain: It merely states a known fact with a statistic rather than overturning a viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261008/ants-outnumber-humans__57091d35.request.json",
+   "answer_path": "exchange/rewrites/20261008/ants-outnumber-humans__57091d35.answer.json"
+  },
+  {
+   "id": "homeschool-surge__95298deb",
+   "slug": "homeschool-surge",
+   "filed": "2026-10-08T16:30:54Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and the statistic isn’t a striking, consequential surprise."
+   ],
+   "request": "exchange/rewrites/20261008/homeschool-surge__95298deb.request.json",
+   "answer_path": "exchange/rewrites/20261008/homeschool-surge__95298deb.answer.json"
+  },
   {
    "id": "hurricane-names-retired-growing-list__ca1668e1",
    "slug": "hurricane-names-retired-growing-list",
@@ -317,16 +347,6 @@
    ],
    "request": "exchange/rewrites/20261007/light-pollution-erasing-sky__42049ca6.request.json",
    "answer_path": "exchange/rewrites/20261007/light-pollution-erasing-sky__42049ca6.answer.json"
-  },
-  {
-   "id": "chip-transistor-shrink-limit__40c2f231",
-   "slug": "chip-transistor-shrink-limit",
-   "filed": "2026-10-07T12:48:28Z",
-   "why": [
-    "premise: brain: The premise uses multiple numbers and lacks a clear single, verifiable figure that overturns a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261007/chip-transistor-shrink-limit__40c2f231.request.json",
-   "answer_path": "exchange/rewrites/20261007/chip-transistor-shrink-limit__40c2f231.answer.json"
   },
   {
    "id": "bird-flu-species-jump__5c10823e",
@@ -809,16 +829,6 @@
    "answer_path": "exchange/rewrites/20261005/lego-minifigs-outnumber-humans__1a1c49ff.answer.json"
   },
   {
-   "id": "ants-outnumber-humans__c008c7bf",
-   "slug": "ants-outnumber-humans",
-   "filed": "2026-10-05T10:56:43Z",
-   "why": [
-    "beats: seg1: the line's headline number (8e+09) is 16,000,000x away from anything this beat's picture can show — say a number the picture shows"
-   ],
-   "request": "exchange/rewrites/20261005/ants-outnumber-humans__c008c7bf.request.json",
-   "answer_path": "exchange/rewrites/20261005/ants-outnumber-humans__c008c7bf.answer.json"
-  },
-  {
    "id": "betelgeuse-great-dimming__5b23be2f",
    "slug": "betelgeuse-great-dimming",
    "filed": "2026-10-05T10:56:43Z",
@@ -857,16 +867,6 @@
    ],
    "request": "exchange/rewrites/20261005/cavendish-banana-monoculture__0921ca0f.request.json",
    "answer_path": "exchange/rewrites/20261005/cavendish-banana-monoculture__0921ca0f.answer.json"
-  },
-  {
-   "id": "homeschool-surge__83b312c1",
-   "slug": "homeschool-surge",
-   "filed": "2026-10-05T10:56:41Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/homeschool-surge__83b312c1.request.json",
-   "answer_path": "exchange/rewrites/20261005/homeschool-surge__83b312c1.answer.json"
   },
   {
    "id": "americans-stopped-moving__f6264643",

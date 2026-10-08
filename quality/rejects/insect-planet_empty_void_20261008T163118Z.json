@@ -1,0 +1,16 @@
+{
+ "slug": "insect-planet",
+ "ts": "20261008T163118Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg2:mid the bird and mammal bars are empty dark tracks, and the lower half of that frame is dead space. In seg3:start a small 1M dot sits in a large empty dark area.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "chart_restating_hook",
+  "visible_evidence": "seg1:start to seg1:end show one stacked yellow and grey column labelled 'Insects 80%'. It repeats the 80% the hook's scale has just shown, with thin low-contrast labels, while Data stands beside the column and raises his arms.",
+  "root_cause": "The relationship engine fell back to a plain share chart for a stat the hook had already shown, so the beat adds no new picture and Data has nothing to cause.",
+  "repair_goal": "Replace the stacked bar with a scene made of the subject. For example, a crowd of 10 animal silhouettes where Data paints or turns 8 of them into beetles one by one, so that 80% is shown by the bugs taking over the group. Data does the turning, and labels are in ink with strong contrast."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

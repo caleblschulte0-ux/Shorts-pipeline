@@ -1,0 +1,35 @@
+{
+ "slug": "monarch-butterfly-collapse",
+ "ts": "20261008T163118Z",
+ "score": 100,
+ "dimensions": {
+  "hook": 4,
+  "data_demo": 5,
+  "mascot": 4,
+  "craft": 3,
+  "pace": 2,
+  "payoff": 2,
+  "temporal_craft": 3
+ },
+ "temporal": {
+  "sample_fps": 24,
+  "duplicate_ratio": 0.127,
+  "effective_fps": 21.0,
+  "max_dup_run": 26,
+  "measured": true,
+  "judder_ratio": 0.004,
+  "judder_fps": 23.9,
+  "held_s": 2.79,
+  "max_dup_at_s": 8.0,
+  "duration_s": 28.33
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "bubbles",
+   "perf": "get_buried"
+  }
+ },
+ "scenes": [],
+ "why_it_worked": "The video effectively uses bespoke animation and a performing mascot to demonstrate the severe decline of monarch butterflies due to habitat loss.",
+ "render_ref": "preview-renders branch @ 20261008T163118Z"
+}

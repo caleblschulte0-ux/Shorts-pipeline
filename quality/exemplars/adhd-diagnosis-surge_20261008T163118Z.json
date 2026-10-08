@@ -1,0 +1,30 @@
+{
+ "slug": "adhd-diagnosis-surge",
+ "ts": "20261008T163118Z",
+ "score": 91,
+ "dimensions": {
+  "hook": 4,
+  "data_demo": 3,
+  "mascot": 4,
+  "craft": 3,
+  "pace": 2,
+  "payoff": 2,
+  "temporal_craft": 3
+ },
+ "temporal": {
+  "sample_fps": 24,
+  "duplicate_ratio": 0.161,
+  "effective_fps": 20.1,
+  "max_dup_run": 15,
+  "measured": true,
+  "judder_ratio": 0.03,
+  "judder_fps": 23.3,
+  "held_s": 2.54,
+  "max_dup_at_s": 3.21,
+  "duration_s": 26.67
+ },
+ "scene_plan": {},
+ "scenes": [],
+ "why_it_worked": "The video effectively uses a mascot to interact with data, but many data demonstrations rely on standard chart formats.",
+ "render_ref": "preview-renders branch @ 20261008T163118Z"
+}
