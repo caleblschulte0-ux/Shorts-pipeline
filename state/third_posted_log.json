@@ -11855,14 +11855,31 @@
       "ts": "2026-10-08T12:49:47.816813+00:00"
     },
     "clip-20261008-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/ObeseOptimisticVampireEagleEye-Hjdc_814uO3OZkH-",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/-X1qco1VeUE",
       "title": "Kaicenat: Kai Cenat Demands Proof: \"Where Is Your Proof?\" After Being Accused",
       "kind": "twitch_clip",
-      "ts": "2026-10-08T12:51:31.081682+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-08T12:51:37.488528+00:00",
+      "uploaded_at": "2026-10-08T12:51:37.488552+00:00",
+      "publish_at": "2026-10-09T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261008-kaicenat-kai-cenat-demands-proof-where-is-your-p-88d45e06"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/ObeseOptimisticVampireEagleEye-Hjdc_814uO3OZkH-",
+      "streamer": "kaicenat",
+      "series": "argument",
+      "hook": "WHERE IS YOUR PROOF?",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 26313,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 11.0
+      },
+      "director_cut": true
     }
   }
 }
