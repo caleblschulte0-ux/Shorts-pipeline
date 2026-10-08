@@ -2859,11 +2859,40 @@
       "scene_changes_before_5s": 3
     },
     "recycling-myth-reality": {
-      "claimed_at": "2026-10-08T17:56:08.593587+00:00",
+      "url": "https://youtube.com/shorts/2Krsh_OGfK8",
       "title": "Why 'Just Recycle It' Barely Works",
+      "at": "2026-10-08T17:56:19.206550+00:00",
       "publish_at": "2026-10-08T23:48:32Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 27 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.93,
+      "beat_s": [
+        4.41,
+        5.59,
+        5.93,
+        5.32,
+        5.65
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+share+scene",
+      "narrative_score": 83,
+      "duration_s": 26.8,
+      "hook": "inversion",
+      "topic_category": "environment",
+      "ending_type": "inversion",
+      "depictions": [
+        "mechanic:trash-mountain-rise",
+        "viz:share",
+        "mechanic:plastic-sluice-split"
+      ],
+      "words_first_10s": 6,
+      "scene_changes_before_5s": 2
     }
   },
   "uploads": [
@@ -3528,9 +3557,10 @@
       "claimed_at": "2026-10-08T17:56:08.593587+00:00",
       "title": "Why 'Just Recycle It' Barely Works",
       "publish_at": "2026-10-08T23:48:32Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "recycling-myth-reality"
+      "url": "https://youtube.com/shorts/2Krsh_OGfK8",
+      "state": "posted",
+      "slug": "recycling-myth-reality",
+      "at": "2026-10-08T17:56:19.206550+00:00"
     }
   ]
 }
