@@ -28,7 +28,7 @@ from tests.test_a_story_is_repaired_before_it_is_dropped import (  # noqa
 from third_capture import shot_plan, story                      # noqa: E402
 
 HAVE_FFMPEG = shutil.which("ffmpeg") is not None
-READS = {"story_table_reads": 3, "story_table_read_min": 65}
+READS = {"story_table_reads": 3, "story_table_read_min": 65}  # explicit knobs
 
 
 class APlanIsReadFirst(_Harness):

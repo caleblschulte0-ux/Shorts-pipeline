@@ -309,12 +309,26 @@ def _moment_segments(clip: dict, work: Path, wmodel: str, spec: dict,
 
 
 def _remember_refused(member_urls: list[str], premise: str, why: str,
-                      rendered: bool = False) -> None:
+                      rendered: bool = False, near: bool = False) -> None:
     try:
         from third_capture import clip_memory
         clip_memory.note_story_tried(_memory(), member_urls,
                                      premise=premise, why=why,
-                                     rendered=rendered)
+                                     rendered=rendered, near=near)
+        clip_memory.save(_memory())
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[clip-memory] {e}", flush=True)
+
+
+def _cm_keep_min() -> int:
+    from third_capture import clip_memory
+    return clip_memory.KEEP_MIN
+
+
+def _keep_edit(edl: dict, score: int) -> None:
+    try:
+        from third_capture import clip_memory
+        clip_memory.keep_edit(_memory(), edl, score)
         clip_memory.save(_memory())
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[clip-memory] {e}", flush=True)
@@ -1696,8 +1710,25 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 event = _upsert_event(events, cluster["who"], sub, sub_urls)
                 elbl = f"{who}/{event['event_id']}"
 
+                # ---- a near-miss keeps its edit (clip_memory.keep_edit):
+                # repair the cut the critic rated near the bar instead of
+                # asking the director again from scratch
+                edl = None
+                try:
+                    from third_capture import clip_memory as _cm
+                    _kept = _cm.kept_edit(
+                        _memory(), [r["source_id"] for r in sub])
+                    if _kept:
+                        edl = story_director.revalidate(_kept["edl"], sub)
+                        if edl:
+                            print(f"[story] {elbl}: starting from the kept "
+                                  f"edit the critic scored {_kept['score']}",
+                                  flush=True)
+                except Exception as e:  # noqa: BLE001
+                    print(f"::warning::[story] kept edit: {e}", flush=True)
+                    edl = None
                 # ---- eligibility + structure + story EDL (§8-10)
-                edl = story_director.plan_story(
+                edl = edl or story_director.plan_story(
                     sub, event, guidance=_story_guidance(),
                     hypothesis=(f"{cluster.get('premise', '')} — "
                                 f"{cluster.get('why_connected', '')}"
@@ -1747,8 +1778,15 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # reads at `story_table_read_min` is rendered. This can only
                 # ADD a block: the render is still judged by the full critic
                 # with frames at `story_min_score`, unchanged.
+                #
+                # The words alone read LOWER than the cut: backtest 8 put
+                # nearly every plan at exactly 58 on paper, and the same
+                # Buddha story had rendered at 72-74 the run before (the
+                # critic sees frames the words leave out). At 65 the read
+                # blocked all but one render, so it screens only what reads
+                # as no story at all (`story_table_read_min`).
                 _tr_best = None
-                _tr_n = int(spec.get("story_table_reads", 3))
+                _tr_n = int(spec.get("story_table_reads", 2))
                 for _tr_i in range(_tr_n):
                     if _deadline_passed():
                         break
@@ -1775,7 +1813,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     edl = _edl2
                 if _tr_best is not None:
                     edl = _tr_best[1]
-                    _tr_min = int(spec.get("story_table_read_min", 65))
+                    _tr_min = int(spec.get("story_table_read_min", 50))
                     if _tr_best[0] < _tr_min:
                         _crit = "; ".join(
                             f"{p['type']}: {p['fix']}"
@@ -1895,12 +1933,14 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                                    + (" (revision render failed)"
                                       if _render_failed else "")
                                    + (f" — {_crit}" if _crit else ""))
+                    _keep_edit(_best[1], _best[0])
                     _remember_refused(
                         _refuse_urls, edl.get("premise") or who,
                         f"rendered; critic scored {_scores[-1]} after "
                         f"{revision_count} revision(s)"
                         + (f" — {_crit}" if _crit else ""),
-                        rendered=True)
+                        rendered=True,
+                        near=_best[0] >= _cm_keep_min())
                     continue
 
                 # ---- dedupe on the ACTUAL rendered members + duration band
@@ -1975,6 +2015,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                           flush=True)
                     _story_verdict(elbl, "qa_failed",
                                    "; ".join(hard)[:140])
+                    _keep_edit(edl, review["story_score"])
                     continue
 
                 lead = led["beats"][0].get("streamer") or cluster["who"][0]
