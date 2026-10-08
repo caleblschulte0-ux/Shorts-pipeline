@@ -128,7 +128,8 @@ def said_from_words(words) -> str:
 # alike (2026-10-07: the third backtest re-tried nothing it had rendered
 # before). The director's "not a story" is about the footage and stands.
 #   1 — a narrator line per beat; the stream around a clip arrives (copy)
-EDIT_VERSION = 1
+#   2 — a repair is told which beat and source second the critic meant
+EDIT_VERSION = 2
 
 
 def note_story_tried(mem: dict, member_urls: list[str], *, premise: str = "",
