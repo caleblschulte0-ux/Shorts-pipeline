@@ -80,50 +80,9 @@ KOKORO_VOICES = ROOT / "kokoro_models" / "voices-v1.0.bin"
 KOKORO_VOICE = os.environ.get("KOKORO_VOICE", "am_adam")
 
 
-def normalize_for_tts(text: str) -> str:
-    """Rewrite numeric shorthand so Kokoro/edge-tts pronounce it the way
-    a human would read it aloud.
-
-    Kokoro reads "$3B" as "dollar three bee" and "25%" as "twenty five
-    percent sign". Fix by expanding the symbols before the engine sees
-    them. Phrase-matching (find_phrase_start) runs the same normaliser
-    so triggers stay aligned with the spoken transcript.
-
-      $3B / $1.5B / $650-900B  -> N billion dollars (preserves "to" in ranges)
-      $559M / $30.9M           -> N million dollars
-      $1T / $1.05T             -> N trillion dollars
-      $15,000 / $559           -> N dollars
-      350M (no $)              -> 350 million
-      25% / 130 percent        -> N percent (already-spelled passthrough)
-    """
-    s = text
-    # Dollar ranges with B/M/T suffix: "$650-900B" -> "650 to 900 billion dollars"
-    s = re.sub(r"\$([\d,]+(?:\.\d+)?)\s*-\s*([\d,]+(?:\.\d+)?)\s*[Bb]\b",
-               r"\1 to \2 billion dollars", s)
-    s = re.sub(r"\$([\d,]+(?:\.\d+)?)\s*-\s*([\d,]+(?:\.\d+)?)\s*[Mm]\b",
-               r"\1 to \2 million dollars", s)
-    s = re.sub(r"\$([\d,]+(?:\.\d+)?)\s*-\s*([\d,]+(?:\.\d+)?)\s*[Tt]\b",
-               r"\1 to \2 trillion dollars", s)
-    # Single-value dollar amounts with B/M/K/T suffix.
-    s = re.sub(r"\$([\d,]+(?:\.\d+)?)\s*[Bb]\b", r"\1 billion dollars", s)
-    s = re.sub(r"\$([\d,]+(?:\.\d+)?)\s*[Mm]\b", r"\1 million dollars", s)
-    s = re.sub(r"\$([\d,]+(?:\.\d+)?)\s*[Tt]\b", r"\1 trillion dollars", s)
-    s = re.sub(r"\$([\d,]+(?:\.\d+)?)\s*[Kk]\b", r"\1 thousand dollars", s)
-    # Dollar with WRITTEN-OUT unit: "$10.9 billion" -> "10.9 billion dollars".
-    # Must run BEFORE bare "$NUM" so the unit stays inside the substitution.
-    s = re.sub(r"\$([\d,]+(?:\.\d+)?)\s+(billion|million|trillion|thousand|hundred)\b",
-               r"\1 \2 dollars", s, flags=re.I)
-    # Plain "$NUM" -> "NUM dollars" (after the suffixed forms have run).
-    s = re.sub(r"\$([\d,]+(?:\.\d+)?)", r"\1 dollars", s)
-    # Percent symbol.
-    s = re.sub(r"(\d+(?:\.\d+)?)\s*%", r"\1 percent", s)
-    # Bare abbreviations after a number (no $). Lookahead avoids breaking
-    # acronyms like "AMD" or words starting with B/M/K/T.
-    s = re.sub(r"\b(\d+(?:\.\d+)?)\s*B\b(?![A-Za-z])", r"\1 billion", s)
-    s = re.sub(r"\b(\d+(?:\.\d+)?)\s*M\b(?![A-Za-z])", r"\1 million", s)
-    s = re.sub(r"\b(\d+(?:\.\d+)?)\s*T\b(?![A-Za-z])", r"\1 trillion", s)
-    s = re.sub(r"\b(\d+(?:\.\d+)?)\s*K\b(?![A-Za-z])", r"\1 thousand", s)
-    return s
+# The trending normaliser lives in shared/spoken.py with the explainer's
+# full speller, so there is one place that decides what the voice reads.
+from shared.spoken import shorthand as normalize_for_tts  # noqa: E402,F401
 
 
 def tts(text: str, out: Path) -> None:
