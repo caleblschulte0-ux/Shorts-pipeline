@@ -1,0 +1,27 @@
+{
+ "3000": {
+  "median_f0_hz": 99,
+  "ref_seconds": 26.4,
+  "gender_guess": "male"
+ },
+ "2902": {
+  "median_f0_hz": 137,
+  "ref_seconds": 23.9,
+  "gender_guess": "male"
+ },
+ "3170": {
+  "median_f0_hz": 144,
+  "ref_seconds": 27.2,
+  "gender_guess": "male"
+ },
+ "2086": {
+  "median_f0_hz": 125,
+  "ref_seconds": 22.6,
+  "gender_guess": "male"
+ },
+ "6319": {
+  "median_f0_hz": 182,
+  "ref_seconds": 24.8,
+  "gender_guess": "female"
+ }
+}

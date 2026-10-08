@@ -1,0 +1,170 @@
+{
+ "kokoro_bm_george": {
+  "human_probability": 92,
+  "tells": [
+   "Natural emphasis on key words, varied pacing, and a slight vocal fry/rasp at the end of some phrases sound very human.",
+   "The pacing is consistently fast, but the intonation is varied and natural, with appropriate emphasis on key words and numbers. No robotic breaths or metallic timbre detected."
+  ]
+ },
+ "kokoro_am_puck": {
+  "human_probability": 95,
+  "tells": [
+   "none",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "chatterbox_turbo_clone_michael": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "human_control_6319": {
+  "human_probability": 95,
+  "tells": [
+   "Natural intonation, varied pacing, clear and human-sounding breaths, and a warm timbre all suggest a real human. No robotic or metallic qualities detected.",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "kokoro_am_michael": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "human_control_3000": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 503: {\n  \"error\": {\n    \"code\": 503,\n    \"message\": \"This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "chatterbox_human_3000": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "kokoro_am_echo": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "human_control_2086": {
+  "human_probability": 15,
+  "tells": [
+   "Even, metronomic stress on multi-syllable words (e.g., 'accordingly', 'cogitations', 'unexpectedly'). Flat or slightly unnatural falling intonation at the end of some phrases/sentences. Pacing feels a little too consistent, lacking natural human variation.",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "chatterbox_turbo_human_3170": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "chatterbox_human_2902": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "chatterbox_human_6319": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "chatterbox_turbo_human_6319": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "chatterbox_default": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "chatterbox_turbo_human_2902": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "chatterbox_human_2086": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "kokoro_am_fenrir": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "chatterbox_turbo_human_3000": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "human_control_2902": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "chatterbox_human_3170": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "speechify_henry_live": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "human_control_3170": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "chatterbox_clone_michael": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ },
+ "chatterbox_turbo_human_2086": {
+  "human_probability": null,
+  "tells": [
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+   "HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,"
+  ]
+ }
+}
