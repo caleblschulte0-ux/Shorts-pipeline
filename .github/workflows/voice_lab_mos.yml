@@ -1,0 +1,37 @@
+# Voice lab, scoring only: predicted listener naturalness for the committed
+# samples. Read-only token and no secrets while third-party code runs.
+name: Voice lab MOS
+on:
+  push:
+    branches: [voice-lab]
+    paths: ['voice_lab/mos.py', '.github/workflows/voice_lab_mos.yml']
+permissions:
+  contents: read
+jobs:
+  score:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - run: |
+          pip install -q torch==2.5.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q librosa==0.10.2.post1
+          python voice_lab/mos.py voice_lab/samples
+      - uses: actions/upload-artifact@v4
+        with: { name: mos, path: voice_lab/samples/mos.json }
+  commit:
+    needs: score
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { name: mos, path: voice_lab/samples/ }
+      - run: |
+          git config user.name "voice-lab"
+          git config user.email "voice-lab@users.noreply.github.com"
+          git add voice_lab/samples/mos.json
+          git commit -m "voice lab MOS scores" && git push origin HEAD:voice-lab
