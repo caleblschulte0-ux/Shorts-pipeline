@@ -366,6 +366,12 @@ the source line it comes from. A line not supported by the sources is
 removed automatically, so do not guess. If the missing context is not in
 the sources at all, fix what you can with cuts instead.
 
+The critic's times are on the OUTPUT clock (the rendered video); your
+EDL is in each SOURCE's own seconds. Each problem is mapped for you to the
+beat and source second it lands on, and THE CUT THE CRITIC WATCHED shows
+every line each beat kept, in source seconds: move a boundary to the line
+you mean — past a garbled or repeated line, onto a clean one.
+
 You may NOT add new sources. Return the COMPLETE corrected EDL in the
 exact same JSON schema you used before (is_story true, same fields)."""
 
@@ -1107,8 +1113,71 @@ def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
             "problems": problems}
 
 
+def locate(at: float, cut_beats: list[dict]) -> dict | None:
+    """Map an OUTPUT second (the critic's clock) to the beat that plays it
+    and the SOURCE second the EDL uses. `cut_beats` is `render_story`'s
+    `beats` (each with `beat`, `source_id`, `start`, `out_start`,
+    `out_end`). A second inside a replay or past the end maps to the
+    nearest beat before it. None when nothing is known."""
+    best = None
+    for b in cut_beats or []:
+        try:
+            o0, o1 = float(b["out_start"]), float(b["out_end"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        if o0 <= at:
+            best = (b, min(at, o1))
+    if not best:
+        return None
+    b, t = best
+    return {"beat": b.get("beat"), "source_id": b.get("source_id"),
+            "source_s": round(float(b["start"]) + t - float(b["out_start"]),
+                              1)}
+
+
+def _cut_map(cut: dict) -> str:
+    """What the rendered cut actually holds, beat by beat, in the SOURCE
+    seconds the EDL is written in — the reviser edits what it can see."""
+    words = cut.get("final_words") or []
+    out = []
+    for b in cut.get("beats") or []:
+        try:
+            o0, o1 = float(b["out_start"]), float(b["out_end"])
+            s0 = float(b["start"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        mine = [{"w": w["w"], "s": w["s"] - o0 + s0, "e": w["e"] - o0 + s0}
+                for w in words if o0 <= w["s"] < o1]
+        lines = []
+        if mine:
+            cur = [mine[0]]
+            for w in mine[1:]:
+                if w["s"] - cur[-1]["e"] >= 1.2:
+                    lines.append(cur)
+                    cur = [w]
+                else:
+                    cur.append(w)
+            lines.append(cur)
+        said = "\n".join(
+            f"    [{ln[0]['s']:.1f}-{ln[-1]['e']:.1f}] "
+            + " ".join(w["w"] for w in ln) for ln in lines) or "    (no speech)"
+        out.append(f"  beat {b.get('beat')} ({b.get('role', '')}) "
+                   f"source {b.get('source_id')} "
+                   f"{s0:.1f}-{float(b['end']):.1f}s = output "
+                   f"{o0:.1f}-{o1:.1f}s:\n{said}")
+    return "\n".join(out)
+
+
+def _where(p: dict, cut: dict | None) -> str:
+    loc = locate(float(p["at"]), (cut or {}).get("beats") or [])
+    if not loc:
+        return ""
+    return (f" (= beat {loc['beat']}, source {loc['source_id']} at "
+            f"{loc['source_s']:.1f}s)")
+
+
 def revise_edl(edl: dict, problems: list[dict],
-               reports: list[dict]) -> dict | None:
+               reports: list[dict], cut: dict | None = None) -> dict | None:
     """§19: one constrained revision (the caller loops up to
     `story_revisions`). May add narration lines (one per beat at most)
     when the critic names missing context; a line the sources do not support is dropped
@@ -1121,9 +1190,20 @@ def revise_edl(edl: dict, problems: list[dict],
     if narration_lines(edl):
         prev["narration"] = narration_lines(edl)
     user = ("YOUR PREVIOUS EDL:\n" + str(prev) + "\n\n"
-            "CRITIC PROBLEMS (timestamped):\n"
-            + "\n".join(f"- at {p['at']:.1f}s [{p['type']}]: {p['fix']}"
+            "CRITIC PROBLEMS (timestamped on the OUTPUT clock"
+            + (", each mapped to YOUR beat and source second" if cut else "")
+            + "):\n"
+            + "\n".join(f"- at {p['at']:.1f}s{_where(p, cut)} "
+                        f"[{p['type']}]: {p['fix']}"
                         for p in problems)
+            # THE CUT THE CRITIC WATCHED, in source seconds. The critic says
+            # "@63.0s repetition"; the EDL is written in each source's own
+            # seconds; with three beats and a hook between them the reviser
+            # was guessing which line the critic meant. Backtest 6 repaired
+            # the same "are you hacked" repetition three times without
+            # removing it (62 -> 68 -> 71).
+            + ("\n\nTHE CUT THE CRITIC WATCHED (what each beat holds, in "
+               "source seconds):\n" + _cut_map(cut) if cut else "")
             # THE WHOLE REPORTS, as the director planned from. `[:4000]` cut
             # every source's transcript but the first: on 2026-10-03 the
             # critic asked for "Kai stating the accusation" at the opening

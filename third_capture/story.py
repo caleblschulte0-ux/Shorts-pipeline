@@ -692,6 +692,10 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
             on_screen.append({"at": round(timeline + 0.15, 1),
                               "kind": "narration", "secs": None,
                               "text": spoken})
+        # where this beat sits on the OUTPUT clock — the critic names
+        # problems in output seconds and the reviser edits source seconds
+        # (`story_director.locate`)
+        out_start = timeline
         # this beat's caption words are placed at the CURRENT timeline
         # offset (before any replay that follows it)
         for w in _seg_words(srcinfo.get("words") or [], start, end):
@@ -723,6 +727,8 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
                      "streamer": srcinfo.get("channel", ""),
                      "role": beat["role"], "purpose": beat["purpose"],
                      "start": start, "end": round(end, 2),
+                     "beat": idx, "out_start": round(out_start, 2),
+                     "out_end": round(out_start + end - start, 2),
                      "layout": _lay,
                      "source_url": srcinfo.get("source_url",
                                                beat["source_id"])})
