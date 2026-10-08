@@ -90,3 +90,22 @@ class ANarratorLinePerBeat(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ABeatRoleIsReadNotRefusedForAWord(unittest.TestCase):
+    """Backtests 2026-10-07/08 lost three repairs to "unknown beat role
+    'turn'" / 'evidence' / 'proof'."""
+
+    def test_synonyms_are_read(self):
+        e = _edl(None)
+        e["beats"][1]["role"] = "Turn"
+        e["beats"][0]["role"] = "evidence"
+        v = sd.validate_edl(e, DUR)
+        self.assertIsNotNone(v)
+        self.assertEqual(v["beats"][1]["role"], "climax")
+        self.assertEqual(v["beats"][0]["role"], "context")
+
+    def test_a_word_that_means_nothing_is_still_refused(self):
+        e = _edl(None)
+        e["beats"][1]["role"] = "vibes"
+        self.assertIsNone(sd.validate_edl(e, DUR))

@@ -23,6 +23,16 @@ from third_capture.author import (_call_claude, _call_gemini_vision,
 STRUCTURES = {"chronological", "cold_open", "mystery_reveal",
               "two_perspectives", "escalation", "before_after"}
 ROLES = {"setup", "escalation", "climax", "payoff", "context", "reaction"}
+# What the brain calls a role it means. Backtests 2026-10-07/08 threw away
+# three repairs over "unknown beat role 'turn'", "'evidence'", "'proof'" —
+# a word, not a defect in the edit. Anything not here is still refused.
+ROLE_ALIASES = {"turn": "climax", "twist": "climax", "reveal": "climax",
+                "evidence": "context", "proof": "context",
+                "background": "context", "resolution": "payoff",
+                "punchline": "payoff", "aftermath": "payoff",
+                "hook": "setup", "intro": "setup", "build": "escalation",
+                "conflict": "escalation", "complication": "escalation",
+                "response": "reaction"}
 TRANSITIONS = {"hard_cut", "j_cut", "l_cut"}
 FRAMINGS = {"wide", "tight"}
 # §14: narration never speculates — motive/drama words reject the line
@@ -732,7 +742,11 @@ def validate_edl(edl: dict, durations: dict[str, float],
                 rs.append(f"beat {sid} {s:.1f}-{e:.1f}s lands on no "
                           f"analysed window")
                 return None
-            role = str(b.get("role", ""))
+            role = str(b.get("role", "")).strip().lower()
+            if role in ROLE_ALIASES:
+                rs.append(f"beat role {role!r} read as "
+                          f"{ROLE_ALIASES[role]!r} (repaired)")
+                role = ROLE_ALIASES[role]
             if role not in ROLES:
                 rs.append(f"unknown beat role {role!r}")
                 return None
