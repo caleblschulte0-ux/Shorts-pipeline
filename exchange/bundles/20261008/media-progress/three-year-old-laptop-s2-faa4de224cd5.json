@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261008",
+  "bundle": {
+    "identity": "8a031f56a921c3605d155f4c82b172d91160b2759a215a061fea4eea23090505",
+    "path": "exchange/bundles/20261008/bundle.json"
+  },
+  "request_id": "three-year-old-laptop-s2-faa4de224cd5",
+  "safe_request_id": "three-year-old-laptop-s2-faa4de224cd5",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "43f524a22b7aa2b53ac0a19851a271ee07dfb73a12c8fec8ac43b1f07cff7af9",
+  "prompt_used": "An editorial illustration for a short-form video: sealed laptop box retail shelf. It accompanies the narration: \"sealed in plastic, from their own store\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1moYiSeQP9LwWcpQ2d-abrdVyy8OgGC1v",
+    "filename": "20261008__three-year-old-laptop-s2-faa4de224cd5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1moYiSeQP9LwWcpQ2d-abrdVyy8OgGC1v",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c4f8c79b09cf7aa5072ce6f9315e9475055c2d59edb2ba36017e0fef8d049def",
+    "bytes": 1666406,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-08T11:29:30Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
