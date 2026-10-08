@@ -35,6 +35,7 @@ CLI (how another Claude chat discovers and drives this)
 from __future__ import annotations
 
 import importlib
+import json
 import shutil
 from pathlib import Path
 
@@ -204,6 +205,47 @@ REGISTRY: dict[str, dict] = {
                           "render; maybe_chart_race returns None"],
         "sample": "python -m engines demo chartrace --spec pkg.json "
                   "--out /tmp/race.mp4",
+    },
+    "chatterbox_tts": {
+        "kind": "module",
+        # 2026-10-08: the explainer's narration voice. Operator, on the voice
+        # lab page, of a clone of a real LibriTTS-R narrator: "chatterbox
+        # lowkey sound better then eleven labs". Free, local, no account.
+        "status": "active",
+        "problem": "A narration voice people cannot tell is AI, for free: "
+                   "Chatterbox clones a real narrator (LibriTTS-R, CC BY "
+                   "4.0) from a 10 s clip in assets/voice/, on the runner's "
+                   "CPU, and every line is listened back (whisper) before "
+                   "it is used — the showrunner judges frames, not audio.",
+        "headless": True,
+        "control": "python (engines.chatterbox_tts.maybe_voice)",
+        "reusable": True,
+        "license": "MIT (Chatterbox code + weights, Resemble AI); the voices "
+                   "are LibriTTS-R speakers, CC BY 4.0 — every video it "
+                   "narrates carries chatterbox_tts.CREDIT",
+        "commercial_use": True,
+        "cpu_ok": True,
+        "est_runtime": "see engines/chatterbox.models.json (measured on a "
+                       "GitHub runner); lines already voiced come from the "
+                       "TTS line cache for free",
+        "deps": ["its own venv (cache/venvs/chatterbox, pinned by "
+                 "engines/chatterbox.lock)", "ffmpeg on PATH",
+                 "openai-whisper in the pipeline env (the listener)",
+                 "pinned model in cache/models/chatterbox/"],
+        "models": json.loads((Path(__file__).with_name(
+            "chatterbox.models.json")).read_text())["models"],
+        "fallback": "None from maybe_voice: studio_render voices the whole "
+                    "video with ElevenLabs -> Speechify -> Kokoro, as before",
+        "consumers": ["data_learning/studio_render.py (explainer narration)",
+                      "scripts/post_stories.py (the voice credit)"],
+        "failure_modes": [
+            "an LLM voice can garble, skip or ad-lib a line: whisper must "
+            "hear >= HEARD_MIN of its words, else redrawn with a new seed "
+            "(REDRAWS), else the next engine voices the video",
+            "CPU time: one narration per process, one process at a time",
+        ],
+        "sample": "python -m engines install chatterbox_tts && "
+                  "python -m engines doctor chatterbox_tts",
     },
     # ---- external engines (owned elsewhere; registered for doctor) --------
     "lookmatch": {

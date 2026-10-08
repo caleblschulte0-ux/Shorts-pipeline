@@ -171,7 +171,7 @@ def _publish_explainer(req: dict, mp4: Path, verdict: dict,
     ps._persist_posted_log_now(ps.LOG_PATH, req["slug"], why="claim upload slot (mailbox)")
     res = YouTubeUploader(channel="explainer").upload(
         file_path=mp4, title=sc.get("title", req["slug"])[:100],
-        description=ps._description(sc), tags=ps._merged_tags(sc), publish_at=None)
+        description=ps._description(sc, mp4), tags=ps._merged_tags(sc), publish_at=None)
     url = getattr(res, "url", None) or str(res)
     log = ps._load_log(ps.LOG_PATH)
     log["posted"][req["slug"]] = {
@@ -186,7 +186,7 @@ def _publish_explainer(req: dict, mp4: Path, verdict: dict,
     ps._persist_posted_log_now(ps.LOG_PATH, req["slug"])
     from shared.crosspost import crosspost
     crosspost("explainer", mp4, sc.get("title", req["slug"])[:100],
-              ps._description(sc), ps._merged_tags(sc))
+              ps._description(sc, mp4), ps._merged_tags(sc))
     return url
 
 

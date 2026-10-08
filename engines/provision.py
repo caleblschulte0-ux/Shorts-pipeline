@@ -74,6 +74,9 @@ def install(name: str) -> bool:
         print(f"[provision] {name!r} is not an installable engine module "
               f"(external engines are provisioned by the workflows)")
         return False
+    if name == "chatterbox_tts":       # its own venv, its own pinned files
+        from engines import chatterbox_tts
+        return chatterbox_tts.install()
     ok = _pip_install(_PIP_DEPS.get(name, []))
     if ok and "model" in meta:
         ok = _download_model(meta["model"])

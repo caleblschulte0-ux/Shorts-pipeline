@@ -263,6 +263,20 @@ jobs:
           restore-keys: |
             tts-lines-v1-
 
+      # The narration voice (engines/chatterbox_tts.py): its own venv and
+      # the pinned model. NOT in actions/cache: 2-4 GB of weights would evict
+      # every other cache in the repo's 10 GB, and building it fresh measured
+      # 75 s for the venv and 11 s for the model (voice-lab pin run).
+      - name: Install the Chatterbox voice
+        if: inputs.mode != 'verify'
+        env:
+          CHATTERBOX_MODEL: ${{ vars.CHATTERBOX_MODEL || 'turbo' }}
+        run: |
+          df -h . | tail -1
+          python -m engines install chatterbox_tts \
+            || echo "::warning::Chatterbox voice unavailable this run: narration falls back to ElevenLabs/Speechify/Kokoro"
+          df -h . | tail -1
+
       - name: Cache rembg model (~170MB)
         if: inputs.mode != 'verify'
         uses: actions/cache@v4
@@ -564,6 +578,10 @@ jobs:
           SPEECHIFY_VOICE: ${{ vars.SPEECHIFY_VOICE || 'henry' }}
           SPEECHIFY_MODEL: ${{ vars.SPEECHIFY_MODEL || 'simba-3.2' }}
           TTS_CACHE_DIR: cache/tts
+          # The narrator: a voice number from the voice lab page (1-5) and
+          # full | turbo. Repo variables, so a pick needs no code change.
+          CHATTERBOX_VOICE: ${{ vars.CHATTERBOX_VOICE || '1' }}
+          CHATTERBOX_MODEL: ${{ vars.CHATTERBOX_MODEL || 'turbo' }}
           # PUBLISH OPT-IN. The editorial gate's freeze (PUBLISH_ENABLED) is the
           # operator's switch and the operator has turned it on: the channel
           # posts again. Nothing that judges QUALITY changes — real-data

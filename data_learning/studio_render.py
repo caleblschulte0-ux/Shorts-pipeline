@@ -473,7 +473,8 @@ def _speechify_try(text: str, out_wav: Path, key: str, voice: str, model: str):
 #: Which engine voiced the last narration, and why a preferred one was not
 #: used. Recorded on the video (its style sidecar -> the posted log) so a day
 #: that silently fell back to the local voice is visible, not assumed.
-TTS_USED = {"engine": None, "why_not_elevenlabs": None}
+TTS_USED = {"engine": None, "voice": None, "why_not_elevenlabs": None,
+            "why_not_chatterbox": None}
 _ELEVEN_DEAD = None       # the reason ElevenLabs is off for the rest of the run
 
 
@@ -736,6 +737,37 @@ def _speechify_list_voices_once(key: str) -> None:
         print(f"[tts] speechify voices list failed: {str(e)[:140]}", file=sys.stderr)
 
 
+def _chatterbox_lines(texts: list[str], workdir: Path) -> list[Path] | None:
+    """Every line in the Chatterbox clone (engines/chatterbox_tts.py), through
+    the line cache: only the lines it has not voiced before go to the model,
+    in one process. None — with the reason in TTS_USED — if any line fails,
+    and the next engine voices the whole video."""
+    try:
+        from engines import chatterbox_tts as cb
+    except Exception as e:  # noqa: BLE001
+        TTS_USED["why_not_chatterbox"] = f"engine import failed: {e}"
+        return None
+    if not cb.available():
+        TTS_USED["why_not_chatterbox"] = "not installed in this run"
+        return None
+    model = cb.model_name()
+    rev = cb.META["models"][model]["revision"][:12]
+    ref = cb.voice_ref()
+    outs = [workdir / f"s{i}.wav" for i in range(len(texts))]
+    keys = [_tts_cache_path("chatterbox", ref.stem, f"{model}-{rev}", t) for t in texts]
+    todo = [i for i in range(len(texts)) if not _tts_cache_get(keys[i], outs[i])]
+    if todo:
+        got = cb.maybe_voice([texts[i] for i in todo], [outs[i] for i in todo],
+                             model=model, normalize=_tts_text)
+        if got is None:
+            TTS_USED["why_not_chatterbox"] = cb.LAST_FAILURE or "a line failed"
+            return None
+        for i in todo:
+            _tts_cache_put(keys[i], outs[i])
+    TTS_USED["voice"] = f"{ref.stem} ({model})"
+    return outs
+
+
 def _tempo() -> float:
     """The narration's playback rate over the engine's natural pace, from the
     registry (shared/pacing.py). 1.0 means untouched."""
@@ -762,31 +794,50 @@ def synth_narration(sentences, workdir: Path, voice: str):
     import os
     import soundfile as sf
 
-    # ElevenLabs first, then Speechify, then the local Kokoro voice — each
-    # WHOLE-VIDEO, so the voice never switches mid-clip: if ANY line fails the
-    # batch is thrown away and the next engine voices everything.
+    # Chatterbox first, then ElevenLabs, then Speechify, then the local
+    # Kokoro voice — each WHOLE-VIDEO, so the voice never switches mid-clip:
+    # if ANY line fails the batch is thrown away and the next engine voices
+    # everything.
     wavs, windows, t = [], [], 0.0
-    TTS_USED.update(engine=None, why_not_elevenlabs=None)
+    TTS_USED.update(engine=None, voice=None, why_not_elevenlabs=None,
+                    why_not_chatterbox=None)
     # PACE (operator, 2026-10-05: "15 seconds per beat is far too long").
     # Speechify's natural rate measured 130 words a minute on the posted
     # videos; every engine's lines play at the registry's tempo, applied
     # PER LINE before its length is measured so the windows stay exact.
     tempo = _tempo()
-    for i, sent in enumerate(sentences):
-        w = workdir / f"s{i}.wav"
-        if not _elevenlabs_wav(_tts_text(sent), w):
-            wavs, windows, t = [], [], 0.0
-            break
-        _retime(w, tempo)
-        d = _dur(w) + 0.12
-        windows.append((t, t + d)); t += d; wavs.append(w)
-    if wavs:
-        TTS_USED["engine"] = "elevenlabs"
-        print(f"[tts] elevenlabs ({len(wavs)} lines)", flush=True)
-    else:
-        TTS_USED["why_not_elevenlabs"] = _ELEVEN_DEAD or "a line failed to synthesize"
-        print(f"[tts] ElevenLabs NOT used: {TTS_USED['why_not_elevenlabs']}",
+    # CHATTERBOX FIRST (operator, 2026-10-08, on the voice lab: a clone of a
+    # real narrator "lowkey sound[s] better than eleven labs", and it is
+    # free). It runs on the runner's CPU; a line it cannot voice cleanly
+    # hands the whole video to ElevenLabs/Speechify/Kokoro as before.
+    cb = _chatterbox_lines([_tts_text(s) for s in sentences], workdir)
+    if cb:
+        for w in cb:
+            _retime(w, tempo)
+            d = _dur(w) + 0.12
+            windows.append((t, t + d)); t += d; wavs.append(w)
+        TTS_USED["engine"] = "chatterbox"
+        print(f"[tts] chatterbox {TTS_USED.get('voice')} ({len(wavs)} lines)",
               flush=True)
+    else:
+        print(f"[tts] Chatterbox NOT used: {TTS_USED['why_not_chatterbox']}",
+              flush=True)
+    if not wavs:
+        for i, sent in enumerate(sentences):
+            w = workdir / f"s{i}.wav"
+            if not _elevenlabs_wav(_tts_text(sent), w):
+                wavs, windows, t = [], [], 0.0
+                break
+            _retime(w, tempo)
+            d = _dur(w) + 0.12
+            windows.append((t, t + d)); t += d; wavs.append(w)
+        if wavs:
+            TTS_USED["engine"] = "elevenlabs"
+            print(f"[tts] elevenlabs ({len(wavs)} lines)", flush=True)
+        else:
+            TTS_USED["why_not_elevenlabs"] = _ELEVEN_DEAD or "a line failed to synthesize"
+            print(f"[tts] ElevenLabs NOT used: {TTS_USED['why_not_elevenlabs']}",
+                  flush=True)
     if not wavs and os.environ.get("SPEECHIFY_API_KEY"):
         ok = True
         for i, sent in enumerate(sentences):
