@@ -1664,6 +1664,16 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             # would re-split the setup from its own payoff, because an
             # accusation and the reply to it rarely share two action words.
             # Tell it in broadcast order instead.
+            # the streamer's own title for each broadcast (helix): context
+            # a stranger needs that nobody says on stream
+            try:
+                _tt = clip_edit.helix_video_titles(
+                    [r.get("video_id") for r in reports])
+                for r in reports:
+                    if _tt.get(str(r.get("video_id") or "")):
+                        r["stream_title"] = _tt[str(r["video_id"])]
+            except Exception:  # noqa: BLE001
+                pass
             if is_vod_arc or is_moment:
                 _subs = [sorted(reports,
                                 key=lambda r: float(r.get("vod_offset")
