@@ -1674,6 +1674,18 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                         r["stream_title"] = _tt[str(r["video_id"])]
             except Exception:  # noqa: BLE001
                 pass
+            # who the people the footage never introduces ARE, checked by
+            # a second model — the line of text on screen may say it
+            try:
+                _who = story_director.known_people(
+                    reports[0].get("channel", "") if reports else "",
+                    sorted({str(p) for r in reports
+                            for p in r.get("people") or []}))
+                for r in reports:
+                    if _who:
+                        r["known_people"] = _who
+            except Exception:  # noqa: BLE001
+                pass
             if is_vod_arc or is_moment:
                 _subs = [sorted(reports,
                                 key=lambda r: float(r.get("vod_offset")

@@ -88,7 +88,7 @@ class TheLedgerSaysWhatTheEditAdded(unittest.TestCase):
                         str(self.src)], check=True)
         story._AN_CACHE.clear()
 
-    def test_title_overlay_and_voice_over_are_recorded(self):
+    def test_title_overlay_and_text_line_are_recorded(self):
         edl = {"structure": "chronological", "premise": "p",
                "hook_overlay": LONG,
                "narration": {"text": "Emiru is unboxing a mattress.",
@@ -101,31 +101,26 @@ class TheLedgerSaysWhatTheEditAdded(unittest.TestCase):
                "ending": {"duration": 0.3}}
         srcinfo = {"S": {"path": str(self.src), "words": [],
                          "duration_s": 4.0, "source_url": "S"}}
-
-        def mix(seg, voice, out):
-            shutil.copy(seg, out)
         with mock.patch.object(shot_plan, "analyze",
                                return_value={"sw": 1280, "sh": 720,
                                              "subjects": []}), \
                 mock.patch.object(shot_plan, "build",
-                                  return_value=(None, {"layout": "wide"})), \
-                mock.patch.object(story, "_maybe_narration",
-                                  return_value=self.td / "v.mp3"), \
-                mock.patch.object(story, "_mix_narration", side_effect=mix):
+                                  return_value=(None, {"layout": "wide"})):
             led = story.render_story(edl, srcinfo, self.td / "story.mp4",
                                      self.td / "w")
-        kinds = {o["kind"]: o for o in led["on_screen"]}
+        kinds = {}
+        for o in led["on_screen"]:
+            kinds.setdefault(o["kind"], o)
         self.assertEqual(kinds["title"]["text"], LONG)
-        self.assertEqual(kinds["narration"]["text"],
-                         "Emiru is unboxing a mattress.")
         self.assertEqual(kinds["overlay"]["text"], "LATER ON STREAM")
         self.assertAlmostEqual(kinds["overlay"]["at"], 1.4, places=1)
+        self.assertIs(led["used_narration"], False)
         self.assertTrue((self.td / "story.mp4").exists(),
                         "the wrapped title renders through real ffmpeg")
 
 
 class TheCriticIsToldWhatTheEditAdded(unittest.TestCase):
-    def test_the_voice_over_and_overlays_are_in_the_critics_brief(self):
+    def test_the_text_and_overlays_are_in_the_critics_brief(self):
         seen = {}
 
         def brain(user, *a, **k):
@@ -136,13 +131,14 @@ class TheCriticIsToldWhatTheEditAdded(unittest.TestCase):
         with mock.patch.object(story_director, "_brain", side_effect=brain):
             story_director.review_rough_cut(
                 edl, "", None, 20.0,
-                [{"at": 0.2, "kind": "narration", "secs": None,
-                  "text": "Reggie says Kai never called."},
+                [{"at": 2.5, "kind": "text", "secs": 2.5,
+                  "text": "Reggie is Kai Cenat's cousin"},
                  {"at": 9.0, "kind": "overlay", "secs": 1.5,
                   "text": "MINUTES LATER"}])
-        self.assertIn('VOICE-OVER (spoken over the footage, not captioned): '
-                      '"Reggie says Kai never called."', seen["user"])
+        self.assertIn('ON-SCREEN TEXT: "Reggie is Kai Cenat\'s cousin"',
+                      seen["user"])
         self.assertIn('ON-SCREEN OVERLAY: "MINUTES LATER"', seen["user"])
+        self.assertNotIn("VOICE-OVER", seen["user"])
 
     def test_both_review_sites_pass_it(self):
         src = (ROOT / "scripts" / "run_third.py").read_text()

@@ -52,6 +52,13 @@ from third_capture import clip_edit
 REPO = Path(__file__).resolve().parent.parent
 FONT = str(REPO / "assets" / "fonts" / "Anton-Regular.ttf")
 FONTS_DIR = str(REPO / "assets" / "fonts")
+# the story's own line of text (hook, overlay, context) — sentence case in
+# a clean bold sans, apart from the speech captions' all-caps Anton
+CAPTION_FONT = str(REPO / "assets" / "fonts" / "InterDisplay-Bold.ttf")
+# the BOTTOM THIRD, as in the reposts (operator, 2026-10-08: "the text is
+# in the bottom third not the middle"): below the speech captions
+# (centred, ~960), above the platform's own bottom bar
+CAPTION_Y = 1340
 CANVAS_W, CANVAS_H = 1080, 1920
 FPS = 30
 MIN_BEATS = 2
@@ -93,9 +100,9 @@ MAX_TEXT_W = CANVAS_W - 2 * 70          # the box's border stays on screen
 def _text_w(text: str, size: int) -> float:
     try:
         from PIL import ImageFont
-        return ImageFont.truetype(FONT, size).getlength(text)
+        return ImageFont.truetype(CAPTION_FONT, size).getlength(text)
     except Exception:  # noqa: BLE001
-        return len(text) * size * 0.48    # Anton's average advance
+        return len(text) * size * 0.55    # Inter Display Bold's advance
 
 
 def _wrap(text: str, size: int) -> tuple[list[str], int]:
@@ -134,11 +141,45 @@ def _read_secs(text: str, floor: float) -> float:
     return max(floor, 0.5 + 0.3 * len((text or "").split()))
 
 
+def beat_captions(idx: int, beat_secs: float, hook: str = "",
+                  overlay: str = "", text: str = "") -> list[dict]:
+    """What caption is on screen during one beat, in the beat's seconds:
+    ONE at a time, in one place, `[{kind, text, at, secs}]`.
+
+    The story has no narrator (operator, 2026-10-08: *"No narrator but
+    like any clip your allowed like a line or 2 of text on the screen"*,
+    with three reposts as the look: one short line mid-frame, white with
+    a black outline, no box, there the whole clip). So the hook is that
+    line and it STAYS; a time-jump overlay or a line of context (who
+    someone is, how one clip leads to the next) takes its place long
+    enough to read, and the hook comes back. On the opening the hook is
+    read first."""
+    out, t = [], 0.0
+
+    def show(kind, txt, floor):
+        nonlocal t
+        if not txt or t >= beat_secs - 0.3:
+            return
+        secs = min(beat_secs - t, _read_secs(txt, floor))
+        out.append({"kind": kind, "text": txt, "at": round(t, 2),
+                    "secs": round(secs, 2)})
+        t += secs
+    if idx == 0:
+        show("title", hook, HOOK_DUR)
+    show("overlay", overlay, OVERLAY_DUR)
+    show("text", text, 2.5)
+    if hook and t < beat_secs - 0.3:
+        out.append({"kind": "title", "text": hook, "at": round(t, 2),
+                    "secs": round(beat_secs - t, 2)})
+    return out
+
+
 def _overlay_draw(text: str, work: Path, tag: str, *, y: int,
                   size: int, start: float, dur: float) -> str:
-    """drawtext fragments: boxed text over the footage for a bounded
-    window, each line centred and measured to fit the frame. Upper-third
-    placement; the footage keeps playing beneath."""
+    """drawtext fragments: the caption over the footage for a bounded
+    window, each line centred and measured to fit the frame — white,
+    a heavy black outline, no box (a bordered panel is a UI widget; the
+    reposts this channel is told to look like have none)."""
     text = (text or "").strip()
     if not text:
         return ""
@@ -147,9 +188,10 @@ def _overlay_draw(text: str, work: Path, tag: str, *, y: int,
     for i, line in enumerate(lines):
         tf = _textfile(line, work, f"{tag}_{i}")
         out.append(
-            f"drawtext=fontfile={FONT}:textfile={tf}:fontcolor=white:"
-            f"fontsize={size}:x=(w-tw)/2:y={y + i * int(size * 1.5)}:"
-            f"box=1:boxcolor=black@0.55:boxborderw=18:"
+            f"drawtext=fontfile={CAPTION_FONT}:textfile={tf}:"
+            f"fontcolor=white:fontsize={size}:x=(w-tw)/2:"
+            f"y={y + i * int(size * 1.25)}:"
+            f"borderw={max(4, size // 9)}:bordercolor=black:"
             f"enable='between(t,{start:.2f},{start + dur:.2f})'")
     return ",".join(out)
 
@@ -273,7 +315,7 @@ def _seg_words(words: list[dict], start: float, end: float) -> list[dict]:
 
 def _extract_segment(src: Path, out: Path, work: Path, tag: str, *,
                      start: float, end: float, words: list[dict],
-                     hook: str = "", context_overlay: str = "",
+                     captions: list[dict] | None = None,
                      effects: list[dict] | None = None,
                      framing: str = "wide", safe: bool = False) -> str:
     """One beat: exact cut, the clip arm's shot-plan framing (blur-fill
@@ -307,15 +349,10 @@ def _extract_segment(src: Path, out: Path, work: Path, tag: str, *,
         clip_edit.build_ass(seg_words, "", dur, ass)
         vf += f",ass={ass}:fontsdir={FONTS_DIR}"
     draws = []
-    if hook:
-        draws.append(_overlay_draw(hook, work, f"h{tag}", y=230, size=64,
-                                   start=0.0,
-                                   dur=_read_secs(hook, HOOK_DUR)))
-    if context_overlay:
-        draws.append(_overlay_draw(context_overlay, work, f"c{tag}",
-                                   y=150, size=52, start=0.0,
-                                   dur=min(dur, _read_secs(context_overlay,
-                                                           OVERLAY_DUR))))
+    for i, c in enumerate(captions or []):
+        draws.append(_overlay_draw(c["text"], work, f"c{tag}_{i}",
+                                   y=CAPTION_Y, size=64, start=c["at"],
+                                   dur=c["secs"]))
     for i, fx in enumerate(effects or []):
         if fx.get("type") == "subtle_punch":
             at = min(max(0.0, float(fx.get("at", 0)) - start), dur - 0.1)
@@ -507,32 +544,6 @@ def _assemble(parts: list[Path], out: Path,
     _run(cmd)
 
 
-def _maybe_narration(text: str, work: Path,
-                     name: str = "narration") -> Path | None:
-    """§14: optional verified narration line via edge-tts. Best-effort —
-    any failure returns None and the story ships without narration."""
-    try:
-        mp3 = work / f"{name}.mp3"
-        _run(["edge-tts", "--voice", "en-US-ChristopherNeural",
-              "--text", text, "--write-media", str(mp3)])
-        return mp3 if mp3.exists() and mp3.stat().st_size > 1000 else None
-    except Exception:  # noqa: BLE001
-        return None
-
-
-def _mix_narration(seg: Path, voice: Path, out: Path) -> None:
-    """Duck the segment under the narration line, then restore."""
-    _run(["ffmpeg", "-y", "-v", "error", "-i", str(seg), "-i", str(voice),
-          "-filter_complex",
-          "[1:a]adelay=150|150,apad[nv];"
-          "[0:a][nv]sidechaincompress=threshold=0.05:ratio=8:attack=5:"
-          "release=300[duck];[duck][nv]amix=inputs=2:duration=first:"
-          "dropout_transition=0.3[a]",
-          "-map", "0:v", "-map", "[a]",
-          "-c:v", "copy", "-c:a", "aac", "-ar", "48000", "-ac", "2",
-          "-b:a", "160k", str(out)])
-
-
 def plan_ledger(edl: dict, sources: dict[str, dict]) -> dict:
     """The ledger `render_story` WOULD write, without rendering anything:
     each beat's place on the output clock, the words a viewer would hear
@@ -565,20 +576,13 @@ def plan_ledger(edl: dict, sources: dict[str, dict]) -> dict:
             src_dur = float(srcinfo.get("duration_s") or end)
             end = min(src_dur, end + hold, _next_word_at(
                 srcinfo.get("words") or [], end) - 0.05)
-        if beat.get("context_overlay"):
-            ov = beat["context_overlay"]
-            on_screen.append({"at": round(timeline, 1), "kind": "overlay",
-                              "secs": round(min(end - start, _read_secs(
-                                  ov, OVERLAY_DUR)), 1), "text": ov})
-        if idx == 0 and edl.get("hook_overlay"):
-            on_screen.append({"at": 0.0, "kind": "title",
-                              "secs": round(_read_secs(
-                                  edl["hook_overlay"], HOOK_DUR), 1),
-                              "text": edl["hook_overlay"]})
-        if narr_by_beat.get(idx):
-            on_screen.append({"at": round(timeline + 0.15, 1),
-                              "kind": "narration", "secs": None,
-                              "text": narr_by_beat[idx]["text"]})
+        for c in beat_captions(
+                idx, end - start, edl.get("hook_overlay", ""),
+                beat.get("context_overlay", ""),
+                (narr_by_beat.get(idx) or {}).get("text", "")):
+            on_screen.append({"at": round(timeline + c["at"], 1),
+                              "kind": c["kind"], "secs": round(c["secs"], 1),
+                              "text": c["text"]})
         for w in _seg_words(srcinfo.get("words") or [], start, end):
             words.append({"w": w["w"], "s": w["s"] + timeline,
                           "e": w["e"] + timeline})
@@ -625,8 +629,8 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
     final_words: list[dict] = []
     timeline = 0.0
     n_overlays = 0
-    used_narration = False
-    # one narrator line per beat at most (story_director.narration_lines)
+    # one line of on-screen text per beat at most
+    # (story_director.narration_lines; the key kept its old name)
     _lines = edl.get("narration_lines")
     if _lines is None:
         _lines = [edl["narration"]] if edl.get("narration") else []
@@ -637,7 +641,7 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
                 int(_ln.get("over_beat", _ln.get("after_beat", -1))), _ln)
         except (TypeError, ValueError, AttributeError):
             continue
-    n_spoken = 0
+    n_text = 0
     # what the cut SHOWS and SAYS beyond the source's own words, on the
     # output clock — the critic is told (it samples frames and reads a
     # transcript, so a voice-over and a 1-2s overlay are otherwise unknown
@@ -662,13 +666,15 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
             end = min(src_dur, end + hold, _next_word_at(
                 srcinfo.get("words") or [], end) - 0.05)
         seg = work / f"seg_{idx}.mp4"
+        caps = beat_captions(idx, end - start, edl.get("hook_overlay", ""),
+                             beat.get("context_overlay", ""),
+                             (narr_by_beat.get(idx) or {}).get("text", ""))
         try:
             _lay = _extract_segment(
                 src, seg, work, str(idx), start=start, end=end,
                 words=([] if srcinfo.get("own_subtitles")
                        else srcinfo.get("words") or []),
-                hook=(edl.get("hook_overlay", "") if idx == 0 else ""),
-                context_overlay=beat.get("context_overlay", ""),
+                captions=caps,
                 effects=beat.get("effects") or [],
                 framing=beat.get("framing", "wide"),
                 safe=safe_framing)
@@ -680,21 +686,6 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
             print(f"::warning::[story] middle beat {idx} failed "
                   f"({type(e).__name__}) — dropped", flush=True)
             continue
-        # §14 narration: this beat's line, mixed on, ducked, best-effort
-        spoken = None
-        narr = narr_by_beat.get(idx)
-        if narr:
-            voice = _maybe_narration(narr["text"], work, f"narration_{idx}")
-            if voice:
-                seg_n = work / f"seg_{idx}_narr.mp4"
-                try:
-                    _mix_narration(seg, voice, seg_n)
-                    seg = seg_n
-                    used_narration = True
-                    n_spoken += 1
-                    spoken = narr["text"]
-                except Exception:  # noqa: BLE001
-                    pass
         if parts:
             # build a REAL J/L bridge (reviewer #8) or fall back to a hard
             # cut when the source lacks the pre-/post-roll to do it honestly
@@ -739,19 +730,12 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
                           "words": srcinfo.get("words") or []})
         if beat.get("context_overlay"):
             n_overlays += 1
-            ov = beat["context_overlay"]
-            on_screen.append({"at": round(timeline, 1), "kind": "overlay",
-                              "secs": round(min(end - start, _read_secs(
-                                  ov, OVERLAY_DUR)), 1), "text": ov})
-        if idx == 0 and edl.get("hook_overlay"):
-            on_screen.append({"at": 0.0, "kind": "title",
-                              "secs": round(_read_secs(
-                                  edl["hook_overlay"], HOOK_DUR), 1),
-                              "text": edl["hook_overlay"]})
-        if spoken:
-            on_screen.append({"at": round(timeline + 0.15, 1),
-                              "kind": "narration", "secs": None,
-                              "text": spoken})
+        if narr_by_beat.get(idx):
+            n_text += 1
+        for c in caps:
+            on_screen.append({"at": round(timeline + c["at"], 1),
+                              "kind": c["kind"], "secs": round(c["secs"], 1),
+                              "text": c["text"]})
         # where this beat sits on the OUTPUT clock — the critic names
         # problems in output seconds and the reviser edits source seconds
         # (`story_director.locate`)
@@ -828,8 +812,9 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
             "beats": used,
             "member_keys": [u["source_url"] for u in used],
             "final_words": final_words,
-            "used_narration": used_narration,
-            "narration_lines": n_spoken,
+            # no voice-over, ever: the story's added words are TEXT
+            "used_narration": False,
+            "text_lines": n_text,
             "on_screen": on_screen,
             # REALIZED transitions (reviewer #11): what the renderer actually
             # produced, so a degraded j/l→hard cut is not logged as a j/l cut

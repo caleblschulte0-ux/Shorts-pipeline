@@ -615,6 +615,16 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   rated >= `clip_memory.KEEP_MIN` is kept and repaired on the next try,
   `KEEP_RETRIES` times. The repair is told which beat and source second
   each critic note lands on (`story_director.locate`). Same 80 throughout.
+- **A story has NO narrator — a line of text on screen** (operator,
+  2026-10-08: *"No narrator but like any clip your allowed like a line or
+  2 of text on the screen"*, with three reposts as the look). The hook is
+  one sentence-case line in the bottom third, white with a black outline, no box,
+  there the whole video (`story.beat_captions`: one caption at a time; a
+  time-jump overlay or a line of context replaces it long enough to read).
+  The line may say who someone is when the footage never does, from
+  `story_director.known_people`: one model proposes, a DIFFERENT model
+  must confirm, events and accusations never qualify.
+  `tests/test_a_story_has_no_narrator_only_a_line_of_text.py`.
 - **Slots follow `_learned_prior()`, and it had no tests** until the day it
   was found inverted: kaicenat and buddha (median 5 and 8 views) at the
   maximum boost, jynxzi (1,355-view top video) below them, because flops and
