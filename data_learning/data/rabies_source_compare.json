@@ -1,0 +1,19 @@
+{
+  "key": "rabies_source_compare",
+  "title": "Human rabies cases by transmission source",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "Current",
+  "source": {
+    "name": "Rabies fact sheet",
+    "publisher": "World Health Organization (WHO)",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/rabies",
+    "officiality": "official",
+    "access_date": "2026-10-08"
+  },
+  "notes": "WHO: dogs are the source of 99% of human rabies transmissions worldwide; the remainder come from other rabid mammals (bats, raccoons, foxes, etc).",
+  "points": [
+    {"label": "Dog bites", "value": 99},
+    {"label": "All other animals", "value": 1}
+  ]
+}

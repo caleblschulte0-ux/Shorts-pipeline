@@ -120,23 +120,103 @@ def said_from_words(words) -> str:
         return ""
 
 
+# Bump when the story EDIT gets a capability a rendered refusal lacked.
+# A cut the critic refused is a verdict on THE EDIT as much as on the
+# story: the 72 that missed for "who is Buddha" was judged when a cut could
+# carry one narrator line. Remembering it forever meant every near-miss of
+# the old edit was skipped by every run of the new one, live and backtest
+# alike (2026-10-07: the third backtest re-tried nothing it had rendered
+# before). The director's "not a story" is about the footage and stands.
+#   1 — a narrator line per beat; the stream around a clip arrives (copy)
+#   2 — a repair is told which beat and source second the critic meant
+#   3 — a plan is read and repaired on paper before it is rendered
+#   4 — a near-miss keeps its edit (keep_edit) and the table read screens
+#       only what reads as no story at all
+EDIT_VERSION = 4
+
+
 def note_story_tried(mem: dict, member_urls: list[str], *, premise: str = "",
-                     why: str = "", day: str = "") -> None:
+                     why: str = "", day: str = "",
+                     rendered: bool = False, near: bool = False) -> None:
     """Remember that the director refused these clips AS A STORY. Only an
     editorial refusal belongs here — a starved analysis or a malformed plan
-    says nothing about whether the story exists."""
+    says nothing about whether the story exists. `rendered` marks a cut the
+    critic refused, which a better edit may yet pass (EDIT_VERSION)."""
     try:
         keys = sorted({_key(u) for u in member_urls if _key(u)})
-        if len(keys) < 2:
+        # one key is a MOMENT candidate (storyline.find_moments); a subset
+        # of a refused moment is never a different story, and a story that
+        # adds a clip to it is (already_tried)
+        if not keys:
             return
         tried = mem.setdefault("stories_tried", [])
+        old = [t for t in tried if sorted(t.get("members") or []) == keys]
         tried[:] = [t for t in tried if sorted(t.get("members") or []) != keys]
-        tried.append({"members": keys, "premise": _clean(premise, 120),
-                      "why": _clean(why, 160),
-                      "d": _day(day) or datetime.now(
-                          timezone.utc).date().isoformat()})
+        rec = {"members": keys, "premise": _clean(premise, 120),
+               "why": _clean(why, 160),
+               "d": _day(day) or datetime.now(timezone.utc).date().isoformat()}
+        if rendered:
+            rec["edit"] = EDIT_VERSION
+        if near:
+            # a near-miss is tried again, from its kept edit, KEEP_RETRIES
+            # times before it is skipped like any refusal
+            left = (int(old[0]["retries_left"]) - 1
+                    if old and "retries_left" in old[0] else KEEP_RETRIES)
+            rec["retries_left"] = max(0, left)
+        tried.append(rec)
     except Exception:  # noqa: BLE001
         pass
+
+
+# A NEAR-MISS KEEPS ITS EDIT. Lacy's Fortnite story scored 82 in story
+# backtest 5 and died at QA; in backtest 8 the director, asked again from
+# scratch, called the same two clips "not a story". Every judge here is a
+# brain and none of them answers the same way twice, so an edit the critic
+# rated near the bar is kept and the next attempt REPAIRS it instead of
+# re-rolling the plan. It still has to pass the same critic at the same 80.
+KEEP_MIN = 70
+KEEP_MAX = 30
+KEEP_RETRIES = 2
+
+
+def keep_edit(mem: dict, edl: dict, score: int, day: str = "") -> None:
+    """Remember an edit the critic scored >= KEEP_MIN (best KEEP_MAX)."""
+    try:
+        if not isinstance(edl, dict) or int(score) < KEEP_MIN:
+            return
+        srcs = sorted({str(b.get("source_id")) for b in edl.get("beats")
+                       or [] if b.get("source_id")})
+        if len(srcs) < 2:
+            return
+        kept = mem.setdefault("kept_edits", [])
+        old = [k for k in kept if k.get("sources") == srcs]
+        if old and int(old[0].get("score") or 0) > int(score):
+            return
+        kept[:] = [k for k in kept if k.get("sources") != srcs]
+        slim = {k: v for k, v in edl.items() if k != "narration_lines"}
+        if edl.get("narration_lines"):
+            slim["narration"] = edl["narration_lines"]
+        kept.append({"sources": srcs, "score": int(score), "edl": slim,
+                     "d": _day(day)
+                     or datetime.now(timezone.utc).date().isoformat()})
+        kept.sort(key=lambda k: -int(k.get("score") or 0))
+        del kept[KEEP_MAX:]
+    except Exception:  # noqa: BLE001
+        pass
+
+
+def kept_edit(mem: dict, source_ids) -> dict | None:
+    """The best kept edit whose every source is among `source_ids`."""
+    have = {str(s) for s in source_ids or ()}
+    for k in mem.get("kept_edits") or []:
+        if k.get("sources") and set(k["sources"]) <= have:
+            return k
+    return None
+
+
+def _rendered(t: dict) -> bool:
+    # records written before `edit` existed say so in their reason
+    return "edit" in t or str(t.get("why", "")).startswith("rendered;")
 
 
 def already_tried(mem: dict, member_urls: list[str],
@@ -154,6 +234,10 @@ def already_tried(mem: dict, member_urls: list[str],
         pk = set(t.get("members") or [])
         if not pk or keys - pk:
             continue
+        if _rendered(t) and int(t.get("edit") or 0) < EDIT_VERSION:
+            continue                 # judged by an older edit: try again
+        if int(t.get("retries_left") or 0) > 0:
+            continue                 # a near-miss: repair its kept edit
         if len(keys & pk) / len(keys | pk) >= thresh:
             return t
     return None

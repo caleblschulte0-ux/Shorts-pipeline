@@ -1,0 +1,16 @@
+{
+ "slug": "earth-rotation-speeding-up",
+ "ts": "20261007T124844Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:start's header is cut off ('CHANCE IT STILL ISN'T NEEDED VS CHANCE OF A\u2026') and its tiny grey bar labels can't be read on a phone. In seg2:start Data covers the globes, and the hook's '1.5' has no unit.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "chart_fallback_decorative_mascot",
+  "visible_evidence": "seg3:start-end shows two pill bars under the title 'Earth negative' with a truncated header and tiny grey labels. The pink accent sits on 'Chance it still isn't needed' rather than on the 40% subject, the values only appear later in seg4, and Data dances between the bars without touching them.",
+  "root_cause": "The probability claim fell back to a generic two-bar chart. The accent was assigned by draw order instead of the subject, and the mascot got an idle animation instead of an act that causes the motion.",
+  "repair_goal": "Show the 40% chance of a negative leap second as a bespoke picture made of the subject, for example a 10-slot clock where Data pulls 4 seconds out of the dial. Put the single accent on the 40% outcome, label it large and readable from the first frame, and make Data the agent who removes the seconds."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

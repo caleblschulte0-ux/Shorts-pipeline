@@ -1,15 +1,12 @@
-# Daily Trending Shorts — 2026-10-06
+# Daily Trending Shorts — 2026-10-08
 
-> **1 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
+Already posted 1 short(s) in the last 6 hours; skipped duplicate trigger.
 
-- queued: **2**
-- succeeded: **0**
-- quarantined (off-topic imagery): **0**
-- failed: **2**
+## Format scoreboard (A/B/C test)
 
-## Failed
-- **Streaming Just Buried Cable TV**
-  - error: `showrunner_block: showrunner BLOCK: A clean graph race with a clear crossover, but the closing '#1 Streaming (SVOD) households' banner is cut off at both edges on the last frame, so the payoff is unreadable.`
-- **Coyote brawl caught on camera - KTLA**
-  - error: `showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. ["headless-claude[0]: claude CLI rc=1: You've hit your weekly limit · resets 12am (UTC)\n", 'gemini: HTTP Error 429: Too Many Request`
+| format | videos | views | views/video | avg vph | avg view % | likes | shares | subs |
+|---|---|---|---|---|---|---|---|---|
+| graph_race | 57 | 195 | 3.4 | 0.02 | 60.7 | 0 | 0 | 0 |
+| reddit_story | 35 | 30 | 0.9 | 0.0 | 40.0 | 2 | 0 | 0 |
 
+matched 92 videos to packages, 15 unmatched (pre-A/B/C uploads)

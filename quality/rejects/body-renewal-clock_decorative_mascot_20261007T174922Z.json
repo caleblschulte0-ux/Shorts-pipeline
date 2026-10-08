@@ -1,0 +1,21 @@
+{
+ "slug": "body-renewal-clock",
+ "ts": "20261007T174922Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg1:mid/seg1:end Data stands above the bubbles with his arms raised; seg2:mid he hovers beside the neuron bar; seg4:mid he is parked at '0T Day 0'. He never causes anything: no cells are swapped or built and no bar is pushed",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "seg1:start: three tissue labels and three day counts are stacked on top of each other into gibberish. seg1:mid: the 5-day and 28-day bubbles are specks crammed under Data and their labels overlap, while the 3,650-day circle takes up the frame",
+  "root_cause": "A bubble layout sized by area puts four values spanning 5 to 3,650 days on one scale, so the small ones collapse into overlapping specks and labels. The hook's icon row also packs its labels with no measured widths",
+  "repair_goal": "Show the renewal clocks as four separate ticking clocks or calendars, one per tissue, each with its own label space. Data flips the stomach's 5-day calendar again and again while the skeleton's 10-year clock barely moves. Every label must be measured, with no overlaps"
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "bubbles",
+   "perf": "get_buried"
+  }
+ },
+ "scenes": []
+}

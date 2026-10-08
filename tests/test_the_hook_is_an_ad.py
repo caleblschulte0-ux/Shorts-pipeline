@@ -1,9 +1,10 @@
-"""The first sentence is a 2000s download-site ad — and still true.
+"""The first sentence stops a thumb, is true, and sounds like a person.
 
-Operator, 2026-09-25: *"Our intros need to be 2000s ... LimeWire type shit
-... real clickbaity. And not like scammy clickbaity."* `shared/hook_doctrine`
-scores a hook, and at render time has the brain rewrite any hook under the
-bar. These hold the two halves: it hits harder, and it never lies.
+Operator, 2026-09-25: *"real clickbaity. And not like scammy clickbaity."*
+Operator, 2026-10-08: *"our word hooks are trash"* — a keyword score had
+taught the forge to staple "your" and "vanished" onto everything. Code now
+holds only a FLOOR; a listener hears the current hook beside the rewrites
+and ranks them. These hold the floor, the listener, and that it never lies.
 """
 from __future__ import annotations
 
@@ -26,29 +27,46 @@ COFFEE = dict(next(s for s in CFG["stories"]
               hook="Your coffee habit is about to get pricier.")
 
 
-class TheScoreKnowsAnAdFromAFact(unittest.TestCase):
-    def test_the_voice_outscores_the_queue(self):
-        ad = H.punch("Your coffee just hit a record $4.41 a pound — gutted.")
-        soft = H.punch("Your coffee habit is about to get pricier.")
-        self.assertGreaterEqual(ad["score"], H.BAR)
-        self.assertLess(soft["score"], H.BAR)
+class TheFloorIsWhatCodeCanSee(unittest.TestCase):
+    def test_a_plain_true_hook_clears_it(self):
+        for line in ("A degree costs triple. It pays half.",
+                     "More than half the web is bots now.",
+                     "Your coffee just hit a record $4.41 a pound."):
+            self.assertEqual(H.floor(line), [], line)
 
     def test_a_quiz_is_not_a_hook(self):
-        self.assertLess(H.punch("Which animal could crush a bowling ball "
-                                "in its jaws?")["score"], H.BAR)
+        self.assertIn("quiz opener", H.floor(
+            "Which animal could crush a bowling ball in its jaws?"))
 
     def test_an_accusing_question_is(self):
-        q = H.punch("Why is your coffee twice the price it was a year ago?")
-        self.assertNotIn("quiz opener", q["notes"])
+        self.assertEqual(H.floor(
+            "Why is your coffee twice the price it was a year ago?"), [])
 
-    def test_a_scam_tell_sinks_it(self):
-        self.assertLess(H.punch("Click now: your coffee DOUBLED and doctors "
-                                "hate it")["score"], H.BAR)
+    def test_a_scam_tell_a_hedge_and_a_vague_size_fail(self):
+        self.assertIn("scam tell", H.floor("Click now: your coffee DOUBLED"))
+        self.assertIn("hedge", H.floor("Your coffee might get gutted."))
+        self.assertTrue(any(w.startswith("vague") for w in H.floor(
+            "Your nose can detect an astonishing number of scents")))
 
-    def test_a_hedge_costs(self):
-        a = H.punch("Your coffee got gutted by 11 million bags.")
-        b = H.punch("Your coffee might get gutted by 11 million bags.")
-        self.assertLess(b["score"], a["score"])
+    def test_the_formula_tags_the_keyword_score_taught_fail(self):
+        """Queued 2026-10-08, each one scored 6-8 under the old keyword
+        score and each one is a tag bolted onto a fact."""
+        for line in ("Your town's peanut allergies vanished 43% overnight, "
+                     "shocking everyone",
+                     "Diabetes doubled to 14 percent of adults, and nobody "
+                     "told you.",
+                     "Commercial whaling killed 2.9 million whales. Then "
+                     "something incredible happened."):
+            self.assertTrue(any(w.startswith("a formula tag")
+                                for w in H.floor(line)), line)
+
+    def test_the_floor_is_not_a_score(self):
+        """Nothing in the module ranks by keywords any more: "you" and a
+        verb off a list bought nothing (posted hooks scoring 7+ kept 31%
+        of viewers, 0-2 kept 36%) and taught "your octopus"."""
+        self.assertFalse(hasattr(H, "punch"))
+        self.assertFalse(hasattr(H, "BAR"))
+        self.assertNotIn("Put the VIEWER in it", H.DOCTRINE)
 
 
 class ItNeverLies(unittest.TestCase):
@@ -83,14 +101,14 @@ class ItNeverLies(unittest.TestCase):
             "You're paying $4.41 a pound now. One drought."), [])
 
 
-def _brain(hooks, supported):
-    """A fake brain: the first call writes hooks, the second fact-checks."""
+def _brain(hooks, ranking):
+    """A fake brain: the first call writes hooks, the second listens."""
     calls = []
 
     def brain(prompt):
         calls.append(prompt)
         if "fact-checker" in prompt:
-            return json.dumps({"supported": supported}) if supported is not None \
+            return json.dumps({"ranking": ranking}) if ranking is not None \
                 else "no idea"
         return json.dumps({"hooks": hooks})
     brain.calls = calls
@@ -98,18 +116,30 @@ def _brain(hooks, supported):
 
 
 class TheSharpener(unittest.TestCase):
-    GOOD = "Your coffee just hit a record $4.41 a pound — gutted."
+    GOOD = "Your coffee just hit a record $4.41 a pound."
 
-    def test_a_soft_hook_is_replaced_by_a_true_hard_one(self):
-        b = _brain(["Your coffee costs 5 times more now.", self.GOOD], [1])
+    def test_the_listeners_first_choice_ships(self):
+        # candidates heard: 1 = the current hook, 2 = GOOD (the 5x line is
+        # refused by code before the listener hears it)
+        b = _brain(["Your coffee costs 5 times more now.", self.GOOD], [2, 1])
         got = H.sharpen(dict(COFFEE), brain=b, log=lambda m: None)
         self.assertEqual(got, self.GOOD)
+        self.assertIn("1. " + COFFEE["hook"], b.calls[1])
+        self.assertNotIn("5 times", b.calls[1])
 
-    def test_a_hook_the_fact_check_refuses_never_ships(self):
+    def test_the_current_hook_is_kept_when_it_is_ranked_first(self):
+        """A plain good hook is not traded for a louder one: "A degree costs
+        triple. It pays half." scored 1 and was going to be rewritten."""
+        b = _brain([self.GOOD], [1, 2])
+        self.assertIsNone(H.sharpen(dict(COFFEE), brain=b, log=lambda m: None))
+
+    def test_a_hook_the_listener_fails_never_ships(self):
+        b = _brain([self.GOOD], [1])
+        self.assertIsNone(H.sharpen(dict(COFFEE), brain=b, log=lambda m: None))
         b = _brain([self.GOOD], [])
         self.assertIsNone(H.sharpen(dict(COFFEE), brain=b, log=lambda m: None))
 
-    def test_no_fact_check_means_no_change(self):
+    def test_no_verdict_means_no_change(self):
         """Fails CLOSED: a soft hook is a missed click, a false one a lie."""
         b = _brain([self.GOOD], None)
         self.assertIsNone(H.sharpen(dict(COFFEE), brain=b, log=lambda m: None))
@@ -118,11 +148,31 @@ class TheSharpener(unittest.TestCase):
         self.assertIsNone(H.sharpen(dict(COFFEE), brain=lambda p: None,
                                     log=lambda m: None))
 
-    def test_a_hook_that_already_hits_is_left_alone(self):
-        sc = dict(COFFEE, hook=self.GOOD)
-        b = _brain(["anything"], [1])
-        self.assertIsNone(H.sharpen(sc, brain=b, log=lambda m: None))
-        self.assertEqual(b.calls, [])
+    def test_a_hook_under_the_floor_is_not_heard(self):
+        bad = "Your coffee vanished 4.41— and nobody told you"
+        b = _brain([self.GOOD], [1])
+        got = H.sharpen(dict(COFFEE, hook=bad), brain=b, log=lambda m: None)
+        self.assertEqual(got, self.GOOD)
+        self.assertNotIn(bad, b.calls[1])
+
+
+class TheListenerHearsLikeAViewer(unittest.TestCase):
+    """2026-10-08, "our word hooks are trash". The listener is told what a
+    viewer refuses, and it is the same call that checks the facts."""
+
+    def test_it_is_told_to_fail_nonsense_and_templates(self):
+        for words in ("fact-checker", "heard once", "not the viewer",
+                      "template", "stop scrolling"):
+            self.assertIn(words, H._LISTEN)
+
+    def test_the_doctrine_shows_what_the_channel_got_wrong(self):
+        for words in ("your octopus", "nobody told you", "Read it out loud"):
+            self.assertIn(words.lower(), H.DOCTRINE.lower())
+
+    def test_a_bare_number_into_a_dash_is_garbled(self):
+        self.assertTrue(H.garbled("Your sky vanished 29.9— the ozone hole is healing"))
+        self.assertEqual(H.garbled("Now it's 45% — and still spreading toward you."), [])
+        self.assertEqual(H.garbled(TheSharpener.GOOD), [])
 
 
 class SavingAHookDoesNotRewriteTheFile(unittest.TestCase):
@@ -159,7 +209,7 @@ class ItIsWiredIn(unittest.TestCase):
     def test_the_forge_writes_to_the_same_doctrine(self):
         src = (ROOT / "scripts" / "story_forge.py").read_text()
         self.assertIn("_HOOK_DOCTRINE", src)
-        self.assertIn("_hd.punch(", src)
+        self.assertIn("_hd.floor(", src)
 
 
 if __name__ == "__main__":

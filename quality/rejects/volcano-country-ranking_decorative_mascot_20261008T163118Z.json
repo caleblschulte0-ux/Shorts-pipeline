@@ -1,0 +1,16 @@
+{
+ "slug": "volcano-country-ranking",
+ "ts": "20261008T163118Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: hook@0.3: five copies of Data stand beside the numbers pointing. seg1:mid: he slides beside the bars. seg3:mid: he stands on top of a circle. He never causes anything that moves.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "incoherent_payoff",
+  "visible_evidence": "seg4:mid and seg4:end: a ruler on two posts says '50% apart' and compares the Ring-of-Fire 75% with the 25% elsewhere, while the closing line is about Alaska. Two labels overlap ('Everywhere else on Earth 25%' collides with 'On the Ring of Fire 75%'). Data stands on a ladder doing nothing.",
+  "root_cause": "A generic 'gap' machine was given the previous beat's share data, so the closing picture asserts a meaningless '50% apart' instead of paying off Alaska's 130 of 165.",
+  "repair_goal": "Make the closing land the Alaska payoff: Data adds the last volcanoes to an Alaska pile until it towers over Indonesia's 101, with one readable number. Remove the overlapping labels and the '50% apart' readout."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

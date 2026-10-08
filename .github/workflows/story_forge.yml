@@ -38,7 +38,7 @@ concurrency:
 jobs:
   forge:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
         with:
@@ -86,6 +86,31 @@ jobs:
           else
             python3 scripts/story_forge.py --top-up "$TOPUP"
           fi
+
+      - name: Install Claude Code CLI (the brain that draws the new look)
+        run: |
+          command -v claude >/dev/null 2>&1 && { echo "claude CLI present"; exit 0; }
+          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 \
+            && echo "claude CLI installed" \
+            || echo "::warning::claude CLI install failed"
+
+      - name: Draw the next new-look stories ahead of the posting run
+        # The A/B split is two illustrated videos a day, and one renders in
+        # that look only when every beat has a verified scene. Drawn only
+        # inside the posting render, none made it from 2026-10-05 to
+        # 2026-10-07 (scripts/predraw_scenes.py). Same verifier, its own clock;
+        # each verified scene is saved the moment it passes. Best-effort: a
+        # missing brain or a spent budget leaves the renderer to try as before.
+        continue-on-error: true
+        timeout-minutes: 40
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ]; then
+            echo "::notice::CLAUDE_CODE_OAUTH_TOKEN not set — nothing can be drawn ahead"
+            exit 0
+          fi
+          python3 scripts/predraw_scenes.py --stories 3 --budget-min 35
 
       - name: Show what the editorial gate makes of the queue
         run: python3 scripts/editorial_gate.py 2>&1 | tail -20

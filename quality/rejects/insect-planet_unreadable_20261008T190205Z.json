@@ -1,0 +1,16 @@
+{
+ "slug": "insect-planet",
+ "ts": "20261008T190205Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: hook@0.8-seg0:end: Data is cut off at the left frame edge and his arm covers the '80%' label. seg2:end: Data's head sits on top of the '1.5M' value. seg1:start: 'All other animals 20%' is grey on a grey-blue fill and nearly disappears.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "chart_repeat_of_hook",
+  "visible_evidence": "seg1:start-end: a plain stacked column fills to 'Insects 80%' / 'All other animals 20%', with thin grey labels and Data standing idle beside it and then on top of it. It restates the same 80% the hook's scale already showed.",
+  "root_cause": "The beat repeats the hook's statistic, so the planner fell back to a chart (a share column) instead of a picture made of insects. Data has no part in how it moves.",
+  "repair_goal": "Replace the column with a crowd of 10 animal silhouettes where 8 turn into beetles as Data flips them over one by one, so 80% is seen as a crowd. Otherwise merge this beat into the hook and give the time to the beetle comparison."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

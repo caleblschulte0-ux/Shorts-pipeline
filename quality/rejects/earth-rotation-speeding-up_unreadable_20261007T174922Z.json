@@ -1,0 +1,16 @@
+{
+ "slug": "earth-rotation-speeding-up",
+ "ts": "20261007T174922Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:start the kicker is cut off with an ellipsis ('CHANCE IT STILL ISN'T NEEDED VS CHANCE OF A...'). The bar labels in seg3:mid are tiny grey text, and 'Chance of a negative leap second by 2035' fades into the background on a phone. A ghost caption is half-faded at the bottom of seg3",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "chart_with_decorative_mascot",
+  "visible_evidence": "seg3:start to seg3:end show two rounded bars, 'Chance it still isn't needed' versus 'Chance of a negative leap second by 2035'. The accent pink goes on the 60% NOT-needed bar while the 40% subject bar is a grey neutral. No percentages appear until the closing. Data dances in the gap between the bars. The upper half of the frame is empty. The labels are tiny grey text and the kicker is cut off.",
+  "root_cause": "The probability relationship fell back to a generic two-bar comparison chart. The accent went on the complement instead of the claim, and the mascot was given no act that causes anything.",
+  "repair_goal": "Show the 40% chance of a negative leap second as a physical thing made of the subject. For example, a clock dial where Data pulls a second OFF, or a 10-slot rack of leap-second tiles where Data removes 4. Put the single accent on the 40% subject. Show the 40% on screen during the beat at a readable size. Fill the frame and drop the truncated kicker."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -289,7 +289,14 @@ class TheSecondLayerFromTheFirstRunOnTheFixes(unittest.TestCase):
         i = src.index("hchunks = _chunks(_dash(st.hook), 2)")
         blk = src[i:i + 2500]
         self.assertNotIn("pos(540,470)", blk, "the hook take is back on the chart's top rows")
-        self.assertEqual(blk.count("\\pos(540,1734)"), 2)
+        # since 2026-10-08 the WHOLE hook is shown (`hook_karaoke`), bottom-
+        # anchored on the plate; a hook too long for it is the old take
+        self.assertIn("hook_karaoke(", blk)
+        from data_learning import studio_render as R
+        whole = R.hook_karaoke("Your coffee just hit a record high", (0, 2), "&H4FD1F5&")
+        self.assertIn("\\an2\\pos(540,1840)", whole)
+        alone = R.hook_karaoke(" ".join(["unbelievable"] * 16), (0, 2), "&H4FD1F5&")
+        self.assertIn("\\pos(540,1734)", alone)
 
     def test_bubble_labels_fit_their_slot_and_stay_on_the_card(self):
         import tempfile

@@ -1,0 +1,25 @@
+{
+  "key": "pitch_drop_vs_dublin",
+  "title": "Years between drops: Queensland average vs Dublin's first recorded drop",
+  "unit": "years",
+  "geography": "Australia / Ireland",
+  "time_coverage": "1930-2014 (Queensland); 1944-2013 (Dublin)",
+  "source": {
+    "name": "Pitch drop experiments comparison",
+    "publisher": "University of Queensland; Trinity College Dublin",
+    "url": "https://smp.uq.edu.au/pitch-drop-experiment",
+    "officiality": "secondary",
+    "access_date": "2026-10-08"
+  },
+  "notes": "Queensland's experiment (begun 1930) has averaged roughly 8-13 years between its nine drops. Trinity College Dublin's own pitch-drop experiment, begun in 1944, did not have a drop caught on camera until 2013 -- the first time a drop fall had ever been filmed live for either experiment.",
+  "points": [
+    {
+      "label": "Queensland (avg years between drops)",
+      "value": 10
+    },
+    {
+      "label": "Dublin (years to first filmed drop)",
+      "value": 69
+    }
+  ]
+}

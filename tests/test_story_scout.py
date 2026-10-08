@@ -118,10 +118,12 @@ class TheScoutProposesAndIsCheckedStructurally(unittest.TestCase):
         self.assertEqual(self._scout({"stories": [
             {"members": [f"C{i}" for i in range(1, 9)], "premise": "p"}]}), [])
 
-    def test_at_most_three_are_kept(self):
+    def test_at_most_six_are_kept(self):
+        # 3 -> 6 on 2026-10-07: every slot is a story slot now, and the
+        # director refuses most proposals, so the scout must offer more
         many = {"stories": [{"members": [f"C{i}", f"C{i + 1}"], "premise": "p"}
-                            for i in range(1, 12, 2)]}
-        self.assertEqual(len(self._scout(many)), 3)
+                            for i in range(1, 20, 2)]}
+        self.assertEqual(len(self._scout(many)), 6)
 
     def test_no_brain_or_garbage_means_no_proposals_not_a_crash(self):
         for bad in (None, "text", {"stories": "no"}, {"stories": [None, 7]},

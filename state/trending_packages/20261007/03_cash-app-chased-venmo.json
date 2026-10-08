@@ -1,0 +1,57 @@
+{
+  "format": "graph_race",
+  "slug": "cash-app-chased-venmo",
+  "title": "Cash App Grew 7x. Venmo Stayed Ahead.",
+  "hook": "The gap refused to close.",
+  "y_label": "Active users (millions)",
+  "duration": 13,
+  "source": "Block/Square and PayPal company disclosures for Cash App monthly transacting actives and Venmo active accounts, 2017-2022; figures rounded.",
+  "years": [
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022
+  ],
+  "series": [
+    {
+      "name": "Cash App",
+      "color": "#00D64F",
+      "icon": "Cash App",
+      "values": [
+        7,
+        15,
+        24,
+        36,
+        44,
+        51
+      ]
+    },
+    {
+      "name": "Venmo",
+      "color": "#3D95CE",
+      "icon": "Venmo",
+      "values": [
+        10,
+        23,
+        40,
+        52,
+        70,
+        78
+      ]
+    }
+  ],
+  "hashtags": [
+    "cashapp",
+    "venmo",
+    "payments",
+    "fintech",
+    "moneyapps",
+    "paypal",
+    "block",
+    "shorts"
+  ],
+  "music_vibe": "hiphop",
+  "_authored_by": "chatgpt-takeover"
+}

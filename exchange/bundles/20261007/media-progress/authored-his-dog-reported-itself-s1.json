@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261007",
+  "bundle": {
+    "identity": "5842fff9571549d0ff5bb5e5fb169212d899a423ff5c7714495ba9692762817d",
+    "path": "exchange/bundles/20261007/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily_producer",
+  "verified_at": "2026-10-07T11:34:57.312Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-his-dog-reported-itself-s1",
+  "safe_request_id": "authored-his-dog-reported-itself-s1",
+  "prompt_sha256": "4ea212c3259e277945e65c6b0d2e8dfb24b6e9afe7fe9388f99ea0f73acedc41",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: orange motion sprinkler on green lawn. It accompanies the narration: \"bright orange motion sprinkler\" Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1UY2iQ6IFKhaAbvsJYQSYA5ROFc74E4Q4",
+    "filename": "20261007__authored-his-dog-reported-itself-s1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1UY2iQ6IFKhaAbvsJYQSYA5ROFc74E4Q4",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "0dfcfa75e300d9ac32a147b0c3e251ae79a9dd0e4354b4014229c6415b3fc7f2",
+    "bytes": 3122758,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "his-dog-reported-itself",
+  "shot_index": 1,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}

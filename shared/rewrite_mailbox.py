@@ -101,12 +101,12 @@ RULES = [
     _pacing.rule() + " Each SAY says its beat's headline number out loud.",
     "TOPIC labels are printed on the video: at most 4 words, no clause.",
     # operator, 2026-09-25 — the full doctrine is shared/hook_doctrine.py
-    "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 "
-    "words, the VIEWER is the one it happens to ('your coffee', 'your "
-    "town'), lead with the shock, a visceral verb (wiped out, vanished, "
-    "doubled, gone), one number from the data. Never a quiz ('Which "
-    "animal...', 'Did you know...'), never a hedge (might, may, perhaps). "
-    "Exaggerate the FEELING, never the FACT.",
+    "The HOOK is clickbait, never a scam: the most surprising TRUE fact in "
+    "the story, 5-14 words, said the way a person tells a friend. It makes "
+    "sense heard once. 'You' only when it is the viewer's own money, body or "
+    "kids. No formula tags ('...and nobody told you', '...shocking "
+    "everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge "
+    "(might, may), no vague size ('astonishing'). Exaggerate nothing.",
 ]
 
 ANSWER_SCHEMA = {

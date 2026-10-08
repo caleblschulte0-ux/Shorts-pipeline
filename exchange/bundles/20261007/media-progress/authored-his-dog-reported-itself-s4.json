@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261007",
+  "bundle": {
+    "identity": "5842fff9571549d0ff5bb5e5fb169212d899a423ff5c7714495ba9692762817d",
+    "path": "exchange/bundles/20261007/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily_producer",
+  "verified_at": "2026-10-07T11:35:01.448Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-his-dog-reported-itself-s4",
+  "safe_request_id": "authored-his-dog-reported-itself-s4",
+  "prompt_sha256": "cf9594c5ff6e2715a057cada71e929fdc4cfab3cb967a8382e80338b9f4f67c5",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: dog standing off leash on suburban lawn. It accompanies the narration: \"his dog standing off-leash\" Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "17JsKO4OEEpNlzRNgB12l1Juk7JrPptbO",
+    "filename": "20261007__authored-his-dog-reported-itself-s4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=17JsKO4OEEpNlzRNgB12l1Juk7JrPptbO",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "6cfbf32396735bb68b2d80cd711cc1f9e420c33452cc8d55e9c51dfd8aef3420",
+    "bytes": 2569356,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "his-dog-reported-itself",
+  "shot_index": 4,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}

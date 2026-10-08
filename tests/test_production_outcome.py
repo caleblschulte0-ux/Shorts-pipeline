@@ -561,7 +561,13 @@ class TestTheAlarmReadsTheOutcome(unittest.TestCase):
         d.mkdir(parents=True, exist_ok=True)
         (d / "trending.json").write_text("{not json")
         r = self.alarm.check(self.DATE, now=self.LATE)
-        self.assertIn("alarms", r)
+        # malformed state must be surfaced, and must never pass as a
+        # finished day (nor invent a repair alarm out of garbage)
+        self.assertTrue(any("trending: production outcome file trending.json "
+                            "is unreadable" in n for n in r["notes"]), r["notes"])
+        self.assertFalse(any("production outcome complete" in n
+                             for n in r["notes"]))
+        self.assertNotIn("production_repair_trending", self.codes(r))
 
 
 class TestTheTwoJudgesAgreeAboutTheMascot(unittest.TestCase):

@@ -1,0 +1,74 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261007",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 8,
+    "registry_sha256": "6f4705b5afd447544619333b5575234574322c37a9c94f127e562bcdcfd8021d",
+    "source_commit": "a91514bb442565b0ecd5c01c3b036056ebf504ee",
+    "production_date": "20261007",
+    "bundle_sha256": "5842fff9571549d0ff5bb5e5fb169212d899a423ff5c7714495ba9692762817d"
+  },
+  "media": [],
+  "packages": [],
+  "authored": [
+    {
+      "format": "graph_race",
+      "slug": "teams-passed-slack",
+      "title": "Teams Passed Slack",
+      "hook": "Slack welcomed Teams. Briefly.",
+      "y_label": "Active users (millions)",
+      "duration": 13,
+      "source": "Microsoft and Slack company disclosures, SEC filings, and published active-user estimates for 2019-2024; figures rounded to millions.",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Microsoft Teams",
+          "color": "#6264A7",
+          "icon": "Microsoft Teams",
+          "values": [
+            20,
+            75,
+            145,
+            270,
+            300,
+            320
+          ]
+        },
+        {
+          "name": "Slack",
+          "color": "#4A154B",
+          "icon": "Slack",
+          "values": [
+            12,
+            14,
+            16,
+            18,
+            20,
+            22
+          ]
+        }
+      ],
+      "hashtags": [
+        "microsoftteams",
+        "slack",
+        "remotework",
+        "workchat",
+        "microsoft",
+        "salesforce",
+        "data",
+        "shorts"
+      ],
+      "music_vibe": "electronic",
+      "_authored_by": "chatgpt-author-20261007"
+    }
+  ],
+  "authored_explainer": []
+}

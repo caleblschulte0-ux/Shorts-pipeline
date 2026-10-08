@@ -1,0 +1,16 @@
+{
+ "slug": "coldest-place-in-the-universe-is-human-made",
+ "ts": "20261008T222508Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: seg0:start to seg1:end (~1.0-8.2s): the grid and Data barely change for about 7s; seg3:start to seg3:end (~16.6-20.3s): the square and number stay frozen while Data shuffles on top",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start to seg3:end: the whole frame is a static teal square showing '29400T' with a tiny 'NASA's Cold Atom Lab (ISS)' label clipped at its edge, while Data shuffles on top",
+  "root_cause": "A light-years distance (5,000 ly) was turned into miles with a 'T' suffix and drawn as an area square. The comparison it is meant to make (250 miles up vs 5,000 light-years away) has no second mark, so it is a bare number on a blob with no meaning",
+  "repair_goal": "Show the distance contrast as a picture: Earth with the ISS freezer just 250 miles overhead, then the camera pulls far back to a tiny dot of the Boomerang Nebula 5,000 light-years away. Data operates the freezer or pulls the camera back, and the headline uses honest units ('250 miles' vs '5,000 light-years'), no '29400T'"
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -287,6 +287,72 @@ constants blanked), never on the prose that explains it.
   `cr.fill()`s one flat colour is the defect; draw the path, call
   `solid()`. `tests/test_the_art_is_lit.py`.
 
+- **A subject scene is a SHOT, not a diagram** (operator, 2026-10-07: a
+  front-on barn over an empty field was *"still very much lacking"*; the
+  same beat with a low sun, far-to-near hills, the barn in three-quarter
+  view and hens by the camera was *"ok now we are talking"*). The shot is
+  in the kit — `landscape`, `building`, `cast_shadow`, `foreground`, `hen`
+  in `subject_scenes.py` — prompt rule 13 asks for it, and
+  `bird_flu_barn` is THE SHOT the brain is shown as the bar.
+  `tests/test_it_is_a_shot_not_a_diagram.py`. It is CRISP, not felt (same
+  day: *"I want it to be crisp and clean"*): `illustrated.GRAIN` is off and
+  the edge is a clean dark line. And the SCALE is IN the shot (*"there is
+  no scale or context"*, then, of a bar strip over the frame, *"boxes on
+  top of the video doesn't help ... glance at it and gauge the scale"*):
+  `then_mark`, `ghost`, `times_ticks` draw the earlier size ON the
+  subject, prompt rule 14 asks for it, no overlay is laid over a scene.
+  `tests/test_the_scale_is_on_screen.py`.
+  And the CHANGE is big and the numbers few (same day, of a plastic pile
+  that tripled under one number beside a bone that stood still under three:
+  *"I like the pile one but the bone one no"*): `verify` refuses more than
+  `MAX_HEADLINES` big numbers in a frame and any label on top of Data, and
+  the glance refuses a change a viewer calls "barely" and a picture they
+  call a diagram. `tests/test_one_number_and_a_big_change.py`.
+  A scene that passes also gets ONE look again (`scene_author.look_again`):
+  the drawing brain READS its own frames beside THE SHOT and redraws what
+  looks cheap, told why and given one more go if a redraw fails; the
+  redraw replaces it only if it passes every same check. THE PILE
+  (`subject_scenes.recycling_pile`, brain-drawn, kept verbatim) is the
+  second bar beside THE SHOT, in the prompt and in the look again.
+  And the payoff LANDS IN TIME TO READ IT (operator, same day, of the
+  bird flu fence ending: *"we only have it on screen for like a second
+  ... whiplash ... I'm not saying we necessarily need to be sitting on
+  beats longer but we need to fix this"*). A scene is on screen as long
+  as its narration — `scene_author.SCENE_SECS`, hook 4s / beat 6s /
+  closing 4s from the posted log, never the 10s the checks once assumed —
+  and `payoff_problems` refuses any number it ends on that arrives after
+  `land_by(secs)`, in `verify` and on every SAVED scene at load. A
+  readout steps through at most `READOUT_SHOWS` values (`landed`). After
+  the payoff the world moves, the story holds; prompt rule 16.
+  `tests/test_the_payoff_lands_in_time_to_read.py`.
+  And the OPENING IS THE SHOCK (operator, 2026-10-08: *"our hook and first
+  10 seconds need to be better ... we need to be really hooking the
+  audience"*; 55-70% of viewers swiped in the first seconds). Rendered,
+  posted openings began on the smallest state of their picture — an empty
+  frame under "Your kid's", a knee-high pile that became the mountain at
+  second five. `studio_render.flash_forward` lays the opening picture's
+  FINISHED frame over its first `FLASH_S`, the first picture never fades
+  in from black, and the WHOLE hook line is on the plate from frame one
+  with the said word lit (`hook_karaoke`). `tests/test_the_first_frame_is_the_shock.py`.
+  And the hook is said the way a PERSON says it (operator, same day:
+  *"our word hooks are trash"*). A keyword score — points for "you" and
+  for a verb off a list, with the forge refusing anything under 7 — had
+  taught the brain "your garden vanished 94% of milkweed" and "...shocking
+  everyone", and bought nothing (posted hooks scoring 7+ kept 31% of
+  viewers, 0-2 kept 36%). It is gone. Code holds a FLOOR only
+  (`hook_doctrine.floor`: quiz, hedge, vague size, formula tag, length,
+  garbled) plus the numbers-and-names `problems`; a LISTENER (`listen`)
+  hears the current hook beside the rewrites as a scrolling viewer, fails
+  the untrue and the unsayable, and ranks the rest. Never put a keyword
+  score back in. `tests/test_the_hook_is_an_ad.py`.
+  And the VOICE is handed WORDS (operator, same day: *"everything and
+  anything it could mis read ... needs to be in word format"*).
+  `shared/spoken.say` is the one speller: units, °F, decades, ordinals,
+  fractions, ranges, acronyms ("US" is "U S"), shouting, every number.
+  The explainer's `_tts_text` is it; trending's `normalize_for_tts` is its
+  `shorthand` (trending times cues off a digit transcript, so it keeps
+  digits). `tests/test_the_voice_reads_words.py` runs every queued line.
+
 - **A brain-drawn subject scene has to pass a VIEWER, not just the code**
   (operator, 2026-10-01: a coffin he "couldn't tell was a coffin", an urn
   of blue "ash" that read as water, a rope "pulling a liquid up"). Every
@@ -526,6 +592,15 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   the transcripts and frames, §8 unchanged. What it proposed is recorded
   per slot in `judges.story_director.supply` in `state/third_qa_stats.json`
   — read that before tuning anything.
+- **A story can be ONE moment and the stream around it** (2026-10-08,
+  after four backtests in which the director refused ~150 grouped
+  candidates as "two unrelated moments" and every rendered cut failed on
+  the setup or payoff the clipper cut off). `storyline.find_moments`
+  offers the hottest unposted clips with VOD coordinates; `run_third`
+  fetches the BEFORE and AFTER from the VOD as sources of their own
+  (`_moment_segments`, `clip_edit.maybe_vod_segment`) and the director and
+  the critic judge them like any story, same 80. No VOD, no story — never
+  padded. They take turns with the scout and the arcs.
 - **The scout reads what the clips SHOWED, not just their titles**
   (2026-10-02: all three of the 10-01 proposals were refused because "the
   boar snipe never appears" — built from titles, while the run held the
@@ -546,6 +621,26 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   to be better ... it's also the story"*). The critic had passed every story
   it saw (66-80); only the 80 held viewers. It must also retell the story in
   a sentence and name the payoff second, or its pass is a fail.
+- **A plan is READ before it is rendered, and a near-miss KEEPS ITS EDIT**
+  (2026-10-08, backtests 7-8). The critic reads the words a plan would
+  hold (`story.plan_ledger`, held equal to the render's ledger) and the
+  director repairs on paper; only what reads as no story at all
+  (`story_table_read_min`) is skipped — the words alone score ~10 below
+  the cut. Every judge is a brain that never answers twice the same way
+  (the same Lacy story: 82 one run, "not a story" the next), so an edit
+  rated >= `clip_memory.KEEP_MIN` is kept and repaired on the next try,
+  `KEEP_RETRIES` times. The repair is told which beat and source second
+  each critic note lands on (`story_director.locate`). Same 80 throughout.
+- **A story has NO narrator — a line of text on screen** (operator,
+  2026-10-08: *"No narrator but like any clip your allowed like a line or
+  2 of text on the screen"*, with three reposts as the look). The hook is
+  one sentence-case line in the bottom third, white with a black outline, no box,
+  there the whole video (`story.beat_captions`: one caption at a time; a
+  time-jump overlay or a line of context replaces it long enough to read).
+  The line may say who someone is when the footage never does, from
+  `story_director.known_people`: one model proposes, a DIFFERENT model
+  must confirm, events and accusations never qualify.
+  `tests/test_a_story_has_no_narrator_only_a_line_of_text.py`.
 - **Slots follow `_learned_prior()`, and it had no tests** until the day it
   was found inverted: kaicenat and buddha (median 5 and 8 views) at the
   maximum boost, jynxzi (1,355-view top video) below them, because flops and

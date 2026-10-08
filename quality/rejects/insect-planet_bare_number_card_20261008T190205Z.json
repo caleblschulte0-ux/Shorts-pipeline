@@ -1,0 +1,16 @@
+{
+ "slug": "insect-planet",
+ "ts": "20261008T190205Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg4:start-end: '5.5M' and '1M' are big numbers on two plain lines next to posing mascots. Nothing shows the gap between them.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "chart_repeat_of_hook",
+  "visible_evidence": "seg1:start-end: a plain stacked column fills to 'Insects 80%' / 'All other animals 20%', with thin grey labels and Data standing idle beside it and then on top of it. It restates the same 80% the hook's scale already showed.",
+  "root_cause": "The beat repeats the hook's statistic, so the planner fell back to a chart (a share column) instead of a picture made of insects. Data has no part in how it moves.",
+  "repair_goal": "Replace the column with a crowd of 10 animal silhouettes where 8 turn into beetles as Data flips them over one by one, so 80% is seen as a crowd. Otherwise merge this beat into the hook and give the time to the beetle comparison."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

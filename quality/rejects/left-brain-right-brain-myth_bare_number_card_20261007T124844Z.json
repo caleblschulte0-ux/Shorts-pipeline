@@ -1,0 +1,16 @@
+{
+ "slug": "left-brain-right-brain-myth",
+ "ts": "20261007T124844Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg2:mid/end: the headline claim, '0 of 7 networks', is a teal blob with '7' in it next to a tiny outlined '0'. It is a number on a shape, not a demonstration of the myth failing.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:mid/end shows a huge teal circle labelled '7' and a tiny outline '0' whose label crashes into the circle's edge. Data stands on top doing nothing.",
+  "root_cause": "The 'zero of seven networks matched' claim went to a generic bubble-size chart. A zero has no size to show, so the payoff number of the video ends up as an empty dot.",
+  "repair_goal": "Draw 7 brain networks as 7 lit regions or wires that Data tests one at a time with a probe or switch. Each one fails to light only one side, so all 7 end up firing across both halves, and the tally reads 0/7 matched. Keep labels clear of the shapes."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

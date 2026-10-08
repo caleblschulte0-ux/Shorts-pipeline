@@ -1,0 +1,95 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "divorce-rate-quiet-decline__b8f51a9df3",
+ "video_sha256": "b8f51a9df3e10d2a323ba7b9c20346aca37f333e1dff0ad1941bb7267c8c05d5",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T09:49:48Z",
+ "grades": {
+  "dimensions": {
+   "hook": 2,
+   "data_demo": 3,
+   "mascot": 2,
+   "craft": 2,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All imagery is illustrated and on-topic: divorce-filing stack, rings, gavel and bin (hook@0.3), wedding cake with candles (seg2:start)."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "Data rides the shrinking stack of filings down as papers fly into the bin (seg0:end to seg1:end), and he moves around the cake while new blue candles appear by his hand (seg2:mid, seg2:end). That is borderline: he waves a lot and is never seen gripping a paper."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "Every number sits on a demonstration: stack height for the divorce rate (seg1:mid), candle count for age (seg2:start)."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "hook@0.3 to seg0:start are near-identical (about 1.3s), which is under 4s. Code measured longest_static_s 0.0."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "Both scenes fill the frame. The closing card's dark bands (seg3:start) carry the closing line, the question and the CTA."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "Headline numbers and captions are large and high-contrast. The small grey sublabels ('divorces per 1,000 \u00b7 2019', seg1:start) and the '1990: 4.7' ghost label (seg0:mid) are small but legible on a phone."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg0",
+   "index": 0,
+   "failure_class": "static_hook",
+   "visible_evidence": "hook@0.3, hook@0.8, hook@1.5 and seg0:start are the same frame: Data waving on top of an untouched stack while '4.7' sits there. Nothing happens until hook@2.2, when the first papers fly.",
+   "root_cause": "The demolition of the stack is timed to start after the hook line instead of on frame 1. Data starts in an idle wave and does not cause the papers to leave.",
+   "repair_goal": "Start the collapse on frame 1: Data hurls the first sheaf of filings from the stack into the bin by 0.3s, and the stack visibly drops each time he throws, so his hands are the cause of the decline from the opening frame."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "bespoke",
+    "bespoke": 2,
+    "proves_claim": 2,
+    "note": "A stack of divorce filings sized to the rate, shedding sheets into a bin. Made of the subject, but papers drift off on their own instead of Data throwing them."
+   },
+   {
+    "id": "seg1",
+    "kind": "bespoke",
+    "bespoke": 2,
+    "proves_claim": 2,
+    "note": "The stack sinks below the dashed '1990: 4.7' outline to 2.4. The ghost outline makes the halving readable without the label."
+   },
+   {
+    "id": "seg2",
+    "kind": "bespoke",
+    "bespoke": 2,
+    "proves_claim": 1,
+    "note": "Birthday candles on a wedding cake for age at marriage is a clever invented form, but at phone size you cannot count the candles, so the climb from 23.9 to 28.6 only comes through the label."
+   },
+   {
+    "id": "seg3",
+    "kind": "bespoke",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "The closing reuses the cake scene shrunk into a boxed card; '+4.7 years' is carried by the text, not the picture."
+   }
+  ],
+  "one_line": "A strong bespoke stack of divorce filings and a candle-cake, but the hook sits frozen for over a second and the payoff never shows why waiting lowers divorce.",
+  "problems": [
+   "The hook holds for about 1.3s (hook@0.3 to seg0:start): Data waves, nothing moves.",
+   "Data waves and stands more than he works; the papers leave the stack without his hands on them (seg0:end, seg1:start).",
+   "Candles are too small to count at phone size, so the age climb is read from the label, not seen (seg2:mid).",
+   "The closing shrinks the scene into a boxed card with dark bands (seg3:start), a step down in craft from the full-bleed scenes.",
+   "The payoff asserts that waiting was the 'plot twist' but never visually links the cake to the shrinking stack; '+4.7 years' echoing the 4.7 divorce rate is confusing."
+  ],
+  "fixes": [
+   "Have Data throw filings into the bin from frame 1 so the hook opens on the collapse.",
+   "Make Data the cause in both scenes: tossing papers off the stack, then lighting or pushing in each new candle with a visible arc.",
+   "Make the candle count readable: fewer, larger candles per year added, or a counter tied to each lit candle.",
+   "Close with both pictures together, the shrunken stack beside the candle-laden cake, so 'waiting is the twist' is shown and not just stated."
+  ]
+ }
+}

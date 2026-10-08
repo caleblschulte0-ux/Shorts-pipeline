@@ -1,0 +1,33 @@
+{
+  "key": "pitch_viscosity_rank",
+  "title": "Viscosity relative to water, by substance",
+  "unit": "times more viscous than water",
+  "geography": "N/A",
+  "time_coverage": "Current (physical constants)",
+  "source": {
+    "name": "Viscosity reference values (approximate, compiled)",
+    "publisher": "Standard physics/materials-science reference values",
+    "url": "https://smp.uq.edu.au/pitch-drop-experiment",
+    "officiality": "secondary",
+    "access_date": "2026-10-08"
+  },
+  "notes": "Approximate order-of-magnitude comparison. Pitch's viscosity is commonly cited as roughly 230 billion times that of water, versus honey at roughly 10,000 times and ketchup at roughly 50-100 times; water is the baseline.",
+  "baseline": {
+    "label": "Water",
+    "value": 1
+  },
+  "points": [
+    {
+      "label": "Pitch",
+      "value": 230000000000
+    },
+    {
+      "label": "Honey",
+      "value": 10000
+    },
+    {
+      "label": "Ketchup",
+      "value": 70
+    }
+  ]
+}

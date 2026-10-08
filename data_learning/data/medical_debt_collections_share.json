@@ -1,0 +1,19 @@
+{
+  "key": "medical_debt_collections_share",
+  "title": "Medical Debt's Share of All Credit-Report Collections",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2021-2022",
+  "source": {
+    "name": "Medical Debt Burden in the United States",
+    "publisher": "Consumer Financial Protection Bureau",
+    "url": "https://www.consumerfinance.gov/data-research/research-reports/medical-debt-burden-in-the-united-states/",
+    "officiality": "official",
+    "access_date": "2026-10-07"
+  },
+  "notes": "CFPB research found medical debt made up the majority of third-party collections tradelines appearing on consumer credit reports — commonly cited at roughly 58% — before the 2022-2023 reporting changes. Recalled from CFPB's published research; not live-refreshed this run because outbound network access was unavailable in this session.",
+  "points": [
+    {"label": "Medical debt collections", "value": 58},
+    {"label": "All other collections", "value": 42}
+  ]
+}

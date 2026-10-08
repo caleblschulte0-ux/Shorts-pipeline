@@ -59,7 +59,7 @@ class OnlyCheckedComparisonsReachAHook(unittest.TestCase):
         def brain(prompt):
             brain_calls.append(prompt)
             if "fact-checker" in prompt:
-                return json.dumps({"supported": [1, 2]})
+                return json.dumps({"ranking": [2, 1]})
             return json.dumps({"hooks": [
                 "A forest almost the size of Belgium vanished — and you ate it.",
                 "A forest almost the size of Mongolia vanished — and you ate it."]})

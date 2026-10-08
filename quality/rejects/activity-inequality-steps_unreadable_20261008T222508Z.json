@@ -1,0 +1,21 @@
+{
+ "slug": "activity-inequality-steps",
+ "ts": "20261008T222508Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:start-end: the two category labels print on top of each other ('US, Canada, Egypt)' runs into '...uality countries'). seg1:end: the Hong Kong value is scribbled over and unreadable. seg1:start-end: 'United States o...' is cut off. seg2: the kicker 'HIGH ACTIVITY-INEQUALITY COUNTRIES",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "chart_with_unreadable_labels",
+  "visible_evidence": "seg2:start-mid: a plain two-bar chart, 297 vs 100, sits on a dark empty field. Its two category labels overprint each other into one unreadable line, the kicker is cut off at the right edge, and Data just perches on top of the tall bar.",
+  "root_cause": "The 'obesity almost 200 percent more likely' claim got the default comparison-bar fallback. The labels were never measured against each other, and the mascot has no role in the action.",
+  "repair_goal": "Show the 3x obesity risk as a physical thing made of the subject: for example, a scale or a row of figures where the high-inequality side carries about three times the weight of the low side, with Data piling the extra on. Use one clear headline number ('~3x'), short non-overlapping labels ('Unequal: US, Canada' / 'Equal: Sweden, Japan') and a full-width composition."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "recycling-myth-reality",
+ "ts": "20261007T174922Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg0:start, hook@2.2 and seg0:end: '2019 353M' is printed directly on top of '2060 (projected) 1014M', so the two labels collide into '2060 353M'. seg2:mid: the 'Landfilled' label and '50%' are partly covered by the mascot at the left edge.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "unreadable_overlap_and_static_hook",
+  "visible_evidence": "From hook@0.3 to seg0:end the frame is one fixed horizontal span bar labelled '661M apart'. The '2019 353M' label sits on top of '2060 (projected) 1014M'. Data stands on top of a ladder at the right end and does nothing to the bar, and the same picture serves as both hook and beat 0 for about 3.5s.",
+  "root_cause": "The span machine places both endpoint labels at the same height with no collision avoidance. The bar is drawn already complete instead of growing, and the mascot is placed beside the part instead of on the moving anchor.",
+  "repair_goal": "Have Data visibly drive the growth: he hauls or stacks the waste volume from 353M up to 1,014M so the gap opens on screen during the hook. Put the 2019 and 2060 labels at separate measured positions with no overlap. Use the bespoke form of the subject, such as a growing mountain of plastic, instead of a generic span bar."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

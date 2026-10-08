@@ -1,0 +1,16 @@
+{
+ "slug": "left-brain-right-brain-myth",
+ "ts": "20261007T174922Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: seg2:mid and seg2:end: the beat is one huge teal disc with a '7' in it and a tiny '0' at the edge. A big number on a blob, and the actual claim (0 of 7 networks matched) is never demonstrated.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start\u2192seg2:end: a single teal circle swells until it fills the frame with '7' in the middle, while the payoff number '0 networks matching the myth' is tiny text crushed against the circle's right edge. Data stands on top of the circle doing nothing. The title reads 'Right-Brained Myth Scan' and the kicker says 'BRAIN NETWORKS TESTED TOPS THE LIST', which is ranking language for a single value.",
+  "root_cause": "The claim '0 of 7 networks matched the myth, across 1,011 brains' was sent to a size-ranked bubble chart. The picture shows the denominator (7) as huge and the result (0) as nothing, so the zero, which is the whole story, is invisible. The mascot was placed as a perch, not as the agent of a test.",
+  "repair_goal": "Show seven brain networks as seven distinct shapes (lit brain-region pieces or hemisphere pairs). Data runs a scanner across each one and tests it for a left/right split, and each fails: the two halves light up equally and a check flips to 'no split'. A tally climbs 0/7 to 7/7 tested with 0 matching, and the 1,011 brains appear as a stack he feeds through. Keep all labels inside the frame at phone size."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

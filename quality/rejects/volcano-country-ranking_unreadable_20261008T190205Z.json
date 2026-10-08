@@ -1,0 +1,16 @@
+{
+ "slug": "volcano-country-ranking",
+ "ts": "20261008T190205Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg4:mid\u2013end prints 'On the Ring of Fire 75%' on top of 'Everywhere else on Earth 25%'. seg1:mid cuts the map label to 'Jnited States of America' at the left edge. seg3:mid shows '75%' garbled as '76%'. seg1:end puts Data's hand over the '165' bar label.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start\u2013end shows two plain circles labelled 75% and 25%. Data stands cheering on top of the pink one, with nothing about volcanoes or the Ring of Fire. The '75%' renders as '76%' at mid and end, and the title still says 'Indonesia's Ring of Fire'.",
+  "root_cause": "A 'share' relationship fell back to two proportional discs. The subject (a ring of volcanoes around the Pacific) is never drawn, and the mascot has no causal act.",
+  "repair_goal": "Draw the Pacific basin with volcanoes lighting up along a horseshoe ring until 75% of a field of volcano icons sits on the ring and 25% are scattered elsewhere. Data should cause it, for example by lighting each cone with a torch along the arc. Render the 75% headline cleanly, and fix the title so it doesn't say 'Indonesia's'."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

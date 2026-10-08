@@ -1,0 +1,106 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "secondhand-apparel-resale-boom__40bf298e23",
+ "video_sha256": "40bf298e2389532375bb4f6f786b399251260474d2bf60f56121d1ec1f63b165",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T08:50:23Z",
+ "grades": {
+  "dimensions": {
+   "hook": 1,
+   "data_demo": 2,
+   "mascot": 2,
+   "craft": 2,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "No photos or AI images anywhere; every frame is flat vector charts plus the Data rig (hook@0.3 through payoff@-0.4)."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "Data does physical work tied to the numbers: he stamps tiles (hook@0.3, hook@0.8), rides the bar top up to $74B (seg2:mid), rides the line tip to 58% (seg3:mid), and stacks blocks from a ladder (seg4:mid). It's thin, but it is linked to the stats."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "Every beat has a mark carrying its number (waffle, bars, line, block stack), even though most of them are charts."
+   },
+   "dead_air": {
+    "present": true,
+    "evidence": "From hook@2.2 through seg0:end and seg1:start to seg1:end (t=2.2-7.8s) the waffle is the same 14 tiles with Data holding the same stamp pose. About 5.6s where nothing meaningful changes, and the hook and seg0 show the identical picture."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "dark_fraction is 0.0. The upper third of seg4 above the stack (seg4:start) is sparse but not a dead void."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "In payoff@-1.8 the falling pink block covers the bottom half of the '55%' label. In seg3:end Data's body sits on top of the circled '58%' label."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg0",
+   "index": 0,
+   "failure_class": "dead_air / wrong_claim_picture",
+   "visible_evidence": "hook@0.3 to seg1:end: one static 14-tile waffle ('each = 1%') holds for roughly 7s. Data stands still with a stamp after hook@2.2. 'Five times faster than new' is never shown, and the hook's '$43 billion' plays over a 14% waffle.",
+   "root_cause": "A growth-rate comparison (14% secondhand vs about 3% new) was mapped to a share waffle. It finishes filling during the hook and then has nothing left to do while the narration states the 5x comparison.",
+   "repair_goal": "Replace the waffle with a two-lane race: a secondhand clothing rack and a new-clothing rack growing side by side, with Data pushing the secondhand rack forward so it pulls ahead to 5x the new one's distance while the 'five times faster' line plays. Make the hook its own scene (a $43B pile of thrifted clothes landing) so it doesn't duplicate seg0."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "A 14-tile waffle for a growth rate. It doesn't show 'five times faster' and it is frozen after filling."
+   },
+   {
+    "id": "seg1",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "Same frame as seg0. No new picture for the beat."
+   },
+   {
+    "id": "seg2",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 2,
+    "note": "Two pill bars, $43B vs $74B, with Data riding the taller one. You can read the growth at a glance, but it's a generic chart."
+   },
+   {
+    "id": "seg3",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "Line from 52% to 58% on a truncated axis that exaggerates the climb, with Data at the tip."
+   },
+   {
+    "id": "seg4",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "Data on a ladder stacking 5% slabs. The slabs aren't clothing, and the label jumps 52%, then 55%, then '52% to 58%'."
+   }
+  ],
+  "one_line": "Four stock charts in a row. The 5x headline claim is never shown, the opening waffle sits frozen for about 6s, and the closing line 'archival style' is nonsense.",
+  "problems": [
+   "hook: the narration says '$43 billion habit' over a 14% waffle, so the hook picture doesn't match its line and repeats seg0",
+   "seg0/seg1: the same static waffle holds from t=2.2 to 7.8s with Data idle holding a stamp",
+   "seg0: 'five times faster than new clothing' has no visual. New-clothing growth is never drawn",
+   "seg2 and seg3: generic bar and line charts, nothing made of clothing or thrift",
+   "seg3: the y-axis starts at about 51%, which exaggerates a 6-point rise. Data's body overlaps the '58%' label at seg3:end",
+   "seg4: the falling block covers the '55%' label (payoff@-1.8), and the counter reads 52% while the stack sits near 58%",
+   "closing line 'All data shows wardrobes going secondhand, archival style.' is incoherent and it is printed as the payoff headline"
+  ],
+  "fixes": [
+   "Build seg0 as a secondhand rack vs a new rack racing, with Data pushing the secondhand one to 5x the distance",
+   "Give the hook its own image: $43B of thrifted clothes dropping into a bin or pile that Data catches",
+   "Replace the seg2 bars with a clothing pile or hanger rail that grows from 43 to 74 as Data hangs garments",
+   "Replace the seg3 line with a crowd of shoppers filling a thrift store (52 out of 100 rising to 58), with a full axis or no axis",
+   "Keep labels clear of moving blocks and the mascot, and sync the seg4 counter to the stack height",
+   "Rewrite the closing as a real payoff, e.g. 'By 2029, nearly one in three dollars of your closet could be secondhand', if the data supports it"
+  ]
+ }
+}

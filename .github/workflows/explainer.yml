@@ -253,6 +253,16 @@ jobs:
           restore-keys: |
             translation-cache-v1-
 
+      # Narration line cache: a line a paid voice already read is reused,
+      # never re-bought (studio_render._tts_cache_*). Same evolving pattern.
+      - name: Cache narration lines
+        uses: actions/cache@v4
+        with:
+          path: cache/tts/
+          key: tts-lines-v1-${{ github.run_id }}
+          restore-keys: |
+            tts-lines-v1-
+
       - name: Cache rembg model (~170MB)
         if: inputs.mode != 'verify'
         uses: actions/cache@v4
@@ -553,6 +563,7 @@ jobs:
           SPEECHIFY_API_KEY: ${{ secrets.SPEECHIFY_API_KEY }}
           SPEECHIFY_VOICE: ${{ vars.SPEECHIFY_VOICE || 'henry' }}
           SPEECHIFY_MODEL: ${{ vars.SPEECHIFY_MODEL || 'simba-3.2' }}
+          TTS_CACHE_DIR: cache/tts
           # PUBLISH OPT-IN. The editorial gate's freeze (PUBLISH_ENABLED) is the
           # operator's switch and the operator has turned it on: the channel
           # posts again. Nothing that judges QUALITY changes — real-data

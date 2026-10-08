@@ -1,0 +1,104 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "kelp-forest-sea-star-collapse__a798d71a4f",
+ "video_sha256": "a798d71a4f4ac5b7ef7626dd569c3e57cbf7b9966cd1f6b8bcb77beb48ba910a",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T10:48:56Z",
+ "grades": {
+  "dimensions": {
+   "hook": 1,
+   "data_demo": 1,
+   "mascot": 1,
+   "craft": 1,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "No photos or AI images. The seg4 'kelp' is drawn as land-tree icons (seg4:start), which is the wrong subject but still part of the scene's own drawing, not imported junk."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "hook@0.3 to seg1:start: Data shuffles beside a ruler gauge. seg1:mid and seg3:mid: he stands on top of a bubble. seg2:start to seg2:end: he points at and cheers beside the numbers. Nothing changes because of him. In seg4 he cheers on the 100% pan while the closing says the forest is gone, so the reaction is the wrong way round."
+   },
+   "bare_number_card": {
+    "present": true,
+    "evidence": "seg2:start/mid/end: '100%' and '10.1K%' sit as big text on two empty rows, with no urchins, no swarm and no growth. The 10,000% explosion is only a label."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Measured longest_static_s is 0.0. However, the hook's ruler scene runs unchanged in content from hook@0.3 to seg1:start (about 6.4s), so the hook and seg0 show one picture."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "dark_fraction is 0.0. The wide empty areas inside the hook gauge and around the small seg3:start bubble are a weakness, not a void."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "seg1:mid/end: the source line is tiny and cut off ('Sea Star Wasting Disease monitor...'). seg4:mid to payoff@-0.4: 'Tell me below.' sits right on top of 'COMMENT BELOW' with 'Sources in the description' squeezed underneath. seg2:start: the caption 'urchins in check.' is faded almost into the background."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg2",
+   "index": 2,
+   "failure_class": "bare_number_card",
+   "visible_evidence": "seg2:start/mid/end: two rows, 'Before 2014 100%' and 'Since 2014 10.1K%'. Data points and cheers beside them. There are no urchins, nothing multiplies and nothing shows the scale.",
+   "root_cause": "A comparison-row template was used for a 100x population explosion. The number lives only in the label, and Data's poses are not attached to anything.",
+   "repair_goal": "Draw the urchin explosion from urchins: one urchin multiplies into a carpet of about 100 spiny purple urchins covering the seafloor. Data does the multiplying, for example tipping a bucket that pours urchins out. Keep the 10,000% label secondary to the swarm."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "A generic ruler/gap gauge labelled '99% apart'. Nothing in it is a sea star, and the phrasing makes no sense."
+   },
+   {
+    "id": "seg1",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "A bubble-size comparison, 100% vs 1%, with Data perched on top. It is a chart, not sea stars."
+   },
+   {
+    "id": "seg2",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "Two labelled rows. The 10.1K% is text only, and nothing urchin-shaped appears."
+   },
+   {
+    "id": "seg3",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "The same bubble machine as seg1, reused for kelp canopy at 100% vs 4%."
+   },
+   {
+    "id": "seg4",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "A seesaw with tree icons standing in for kelp. It is a stock machine with a swappable icon, and the pan tilt hardly carries the 96% loss."
+   }
+  ],
+  "one_line": "A strong three-step ecological chain is told with gauges, bubbles and labelled rows: no sea stars, no urchins, no kelp is ever drawn, and Data poses beside charts instead of causing anything.",
+  "problems": [
+   "Hook (hook@0.3 to seg1:start): a static ruler gauge reading '99% apart' with Data shuffling. The hook and seg0 are one recycled picture for about 6s.",
+   "seg1 and seg3 use the identical bubble-comparison template, so the video repeats itself.",
+   "seg2 is a bare number card: '10.1K%' as text with no urchin swarm.",
+   "None of the story's subjects (sea star, urchin, kelp) is ever drawn. Kelp appears as land-tree icons in seg4.",
+   "Data is decorative throughout (perching, pointing, cheering) and celebrates on the 100% pan during a loss payoff.",
+   "The outro text is crowded: the CTA caption, 'COMMENT BELOW' and the sources line are stacked on top of each other. The source line in seg1 is truncated."
+  ],
+  "fixes": [
+   "Hook: open on a sea star dissolving or wasting away, with 99 of 100 stars vanishing from a reef in the first second.",
+   "seg2: Data pours urchins from a bucket and the seafloor fills with a purple urchin carpet scaled to 100x.",
+   "seg3: urchins chew down kelp stalks until 4 of 100 remain. Use a bespoke kelp forest, not a reused bubble chart.",
+   "Draw kelp as kelp (tall swaying fronds with floats), not trees. Data's reaction at the payoff should match the loss.",
+   "Give the outro caption, the CTA and the sources line their own vertical bands. Shorten the source line so it is not truncated."
+  ]
+ }
+}

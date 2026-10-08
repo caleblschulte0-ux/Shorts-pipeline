@@ -1,0 +1,21 @@
+{
+ "slug": "aquaculture-overtook-wild-fishing",
+ "ts": "20261007T124844Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: From seg3:mid to the end, the 2022 '57%' value label is cut off by the caption panel at the bottom edge and only its top half shows. In payoff@-0.4 a stray cyan circle sits over the '52%' area.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "chart_with_decorative_mascot",
+  "visible_evidence": "seg2:start through seg2:end show plain horizontal progress bars (1990-2022) with no value labels. The 57% exists only in the caption, and Data stands on the 2018 and 2010 tracks doing nothing while the bars fill without him.",
+  "root_cause": "The 'share of your plate' claim fell back to a generic ranked-bar chart. The mascot is placed on the bars but given no act that causes the fill, and the values are not drawn until the closing.",
+  "repair_goal": "Show the 57% as a dinner plate holding 100 fish portions. Data scoops farmed fish from a net pen onto the plate until 57 of 100 are farm-coloured and 43 are wild. The 57% label must sit fully inside the safe area, above the caption panel."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

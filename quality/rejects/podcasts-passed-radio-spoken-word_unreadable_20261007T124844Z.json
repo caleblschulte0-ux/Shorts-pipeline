@@ -1,0 +1,16 @@
+{
+ "slug": "podcasts-passed-radio-spoken-word",
+ "ts": "20261007T124844Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In hook@0.3 and seg0:mid the mascot covers the '40%' label on the scale pan and is clipped by the right edge. In seg3:start the 'Listen to a podcast weekly 35%' and 'Don't 65%' labels almost vanish against the ground. The 'AM/FM radio (spoken word)' label in seg2 is tiny and dim.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "chart_fallback_wrong_subject_accent",
+  "visible_evidence": "A single stacked column labelled 'DON'T IS 65% OF THE WHOLE'. The accent blue goes on the 65% who DON'T listen, while the 35% podcast share is grey. The labels are near-invisible at seg3:start, and Data slides up beside the column doing a surprised pose.",
+  "root_cause": "The share relationship fell back to a stacked-column chart. The accent was given to the larger part instead of the story's subject (podcast listeners), and the mascot was placed beside the chart with no causal act.",
+  "repair_goal": "Show 35% of Americans listening weekly as a subject-made picture, for example a crowd of 100 figures where Data hands headphones to 35 of them one by one. Put the accent on the 35% podcast listeners, keep 'Don't' neutral, and make the labels high-contrast from the first frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

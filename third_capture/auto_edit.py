@@ -384,11 +384,13 @@ def build_edl(words, dur, style: Style, motion) -> EDL:
     # instant replay: clone the money window, slower + stamped. Keep its audio
     # (time-stretched) so the moment is heard again rather than going silent —
     # a whoosh marks the cut into it instead of a riser under the dialogue.
+    replay_cue_t = None
     if style.replay:
         rs = Segment(src_s=ws, src_e=we, speed=min(style.slow_speed, 0.55),
                      kind="replay", minterp=True, mute=False, stamp="REPLAY")
         edl.segments.append(rs)
         if style.sfx:
+            replay_cue_t = out_t
             edl.sfx_cues.append((out_t, "whoosh"))
 
     # keep edits tight: if slow-mo + replay overran, drop the replay first,
@@ -396,7 +398,12 @@ def build_edl(words, dur, style: Style, motion) -> EDL:
     max_out = 52.0
     if edl.out_dur() > max_out and any(s.kind == "replay" for s in edl.segments):
         edl.segments = [s for s in edl.segments if s.kind != "replay"]
-        edl.sfx_cues = [c for c in edl.sfx_cues if c[1] != "riser"]
+        # the replay owns exactly one cue: the whoosh at its start. Drop that,
+        # not an unrelated label, or it fires over the old end of the timeline.
+        edl.sfx_cues = [c for c in edl.sfx_cues
+                        if c[1] != "riser"
+                        and not (replay_cue_t is not None
+                                 and c[1] == "whoosh" and c[0] == replay_cue_t)]
     if edl.out_dur() > max_out:
         for s in edl.segments:
             if s.speed < 1.0:

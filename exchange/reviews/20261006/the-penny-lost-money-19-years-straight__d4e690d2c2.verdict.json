@@ -1,0 +1,97 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "the-penny-lost-money-19-years-straight__d4e690d2c2",
+ "video_sha256": "d4e690d2c2bf48e39ed14dff2f93aee587a2acd0b5cf63916d7e22451d907d93",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T04:49:06Z",
+ "grades": {
+  "dimensions": {
+   "hook": 1,
+   "data_demo": 2,
+   "mascot": 2,
+   "craft": 1,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "No photos or AI images; every frame is drawn vector art (dollar-bill bars, circles, a ladder)."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "In seg2:start through seg2:end Data just perches on top of the $118M circle and reacts. In seg3 he stands on a ladder doing a crossed-arm pose beside the bar. Neither is an action that causes the number."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "Each beat has a visual. In seg2 the two circles are a basic bubble comparison, but they are more than a bare number."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "The measured longest_static_s is 0.0. Bars stack and circles grow across seg0-seg2."
+   },
+   "empty_void": {
+    "present": true,
+    "evidence": "In seg0:start through seg1:end the lower ~35% of the frame below Data is empty dark gradient. In seg3:start most of the frame is empty, with only thin lines and a ladder."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "At seg3:end and payoff@-0.4 the label 'Cost to make them $118M' is printed over 'Face value $32M', so '$32M' becomes illegible. At seg3:start the 'Face value $32M' and '$86M apart' labels are low-contrast dim blue on navy."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg3",
+   "index": 3,
+   "failure_class": "unreadable",
+   "visible_evidence": "At seg3:end and payoff@-0.4 the 'Cost to make them $118M' label overlaps 'Face value $32M', and the two texts collide into an unreadable '$32M'. The scene is a thin bar-and-ladder diagram with large empty space. Data stands on the ladder crossing his arms instead of doing anything about pennies.",
+   "root_cause": "The two value labels are placed at the same height without collision measurement. The closing gag ('refuses to pick up pennies') is not staged. Instead a generic gap-ruler machine is reused with Data as a bystander.",
+   "repair_goal": "Stage the closing as the gag itself. Show a penny on the ground and Data walking past it, or Data picking up a penny that costs 3.69 cents. Lay the two value labels out with measured extents so they never overlap, keep the $86M gap readable, and fill the frame."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "Data lifts stacked dollar-bill bars, one stack per year. It is a generic weightlifting stack with no penny anywhere. The stack height does not visibly track the 1.2\u21923.7 cents (it shrinks in 2015), so the cost rising is not felt."
+   },
+   {
+    "id": "seg1",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "Same bill-stack lift continued to 3.7 cents. Bars pile up, but nothing shows the cost against a 1-cent face value."
+   },
+   {
+    "id": "seg2",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 2,
+    "note": "Bubble comparison of $118M vs $32M. The size ratio reads, but it is a plain bubble chart with Data perched on top."
+   },
+   {
+    "id": "seg3",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "Gap ruler on posts with a ladder. Generic, sparse, and the labels collide. Nothing about pennies."
+   }
+  ],
+  "one_line": "A generic dollar-bill weightlifting stack and a bubble chart, with no penny in sight, a static perched mascot, and a closing scene whose labels collide into an unreadable mess.",
+  "problems": [
+   "Hook (hook@0.3) opens on Data holding two bill bars with a dim '2006 1.2' readout. It has no penny, no unit ('1.2' what?) and no reason to stay.",
+   "seg0-seg1: the bill stack does not scale with the cost (it drops from 4 bars to 2 at 2015/2020), so the 'every year more' claim is not shown. The bottom third of the frame is empty.",
+   "seg2: a plain two-bubble chart. Data just stands on the big circle with his hands up, a decorative reaction.",
+   "seg3: 'Cost to make them $118M' is printed over 'Face value $32M' (seg3:end, payoff@-0.4), so the label cannot be read.",
+   "seg3: a sparse ruler/ladder diagram with most of the frame empty. The closing gag about refusing to pick up pennies is never shown.",
+   "The subject (a penny) never appears in any frame."
+  ],
+  "fixes": [
+   "Make the penny the hero. For seg0/seg1, Data feeds 3.69 cents of zinc/copper into a press that stamps out a single 1-cent coin, with the cost pile growing each year.",
+   "Hook: open on a penny being minted with a price tag ticking past 1 cent within the first second.",
+   "seg2: show $118M as a mountain of minting cost beside a $32M pile of pennies, with Data shovelling into the larger one.",
+   "seg3: measure the label extents and stack them so they do not overlap. Stage the actual gag: Data steps over a penny on the ground.",
+   "Fill the lower third of the frame in seg0-seg1, either by placing the action lower or by adding a ground/penny pile."
+  ]
+ }
+}

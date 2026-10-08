@@ -1,0 +1,16 @@
+{
+ "slug": "highest-point-illusion",
+ "ts": "20261008T222508Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg1:start-end and seg2:start-end: Data just stands on top of the leading bubble. seg3:start-end: two copies of Data stand next to the numbers and change expression, but they do nothing that produces either number.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start/mid/end: the heading 'Highest from Earth's center', two cloned Data figures standing on two flat lines, and the big numbers 13.4 and 11.3. There is no Earth, no equatorial bulge, no mountains and no sphere.",
+  "root_cause": "The most surprising claim in the video (Earth bulges at the equator, so Chimborazo's summit sits furthest from the center) fell back to a generic two-row number readout. Data was duplicated as a stand-in for the two mountains instead of acting on anything.",
+  "repair_goal": "Draw a cross-section of Earth's limb with an exaggerated equatorial bulge. Put Chimborazo on the bulge near the equator and Everest further north. Use a dashed 'perfect sphere' circle as the reference. Data should stretch a tape measure from that circle up to each summit, so Chimborazo's line visibly runs 2.1 km longer. Use one Data, one headline number, and keep the labels clear of the figures."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

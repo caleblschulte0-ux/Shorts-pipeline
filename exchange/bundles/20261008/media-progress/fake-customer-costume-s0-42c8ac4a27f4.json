@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261008",
+  "bundle": {
+    "identity": "8a031f56a921c3605d155f4c82b172d91160b2759a215a061fea4eea23090505",
+    "path": "exchange/bundles/20261008/bundle.json"
+  },
+  "request_id": "fake-customer-costume-s0-42c8ac4a27f4",
+  "safe_request_id": "fake-customer-costume-s0-42c8ac4a27f4",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e393f1d3444ca2d5842cd3ca257fac05439ea80a42c4d43d92c2f879a5475347",
+  "prompt_used": "An editorial illustration for a short-form video: kitchen appliance aisle blenders store. It accompanies the narration: \"comparing two blenders in the kitchen aisle\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "19p9cfZe-f0BMWT0lXaH7pnMNkGMmTC0-",
+    "filename": "20261008__fake-customer-costume-s0-42c8ac4a27f4.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=19p9cfZe-f0BMWT0lXaH7pnMNkGMmTC0-",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "1421b32c95f386b7f998e070b4ac8ac281b650da191d4ef8f4bb9b7730488901",
+    "bytes": 2705741,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-08T11:29:30Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}

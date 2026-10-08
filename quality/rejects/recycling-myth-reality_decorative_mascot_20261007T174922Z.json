@@ -1,0 +1,16 @@
+{
+ "slug": "recycling-myth-reality",
+ "ts": "20261007T174922Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: hook@0.3 to seg0:end: Data stands on a ladder top while the bar is already drawn. seg1:start/end: he stands on a ladder beside the box. seg3:start/end: he clings to the side of the 2060 bar doing nothing to make it grow. Nowhere is he the cause of the motion.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 0,
+  "failure_class": "unreadable_overlap_and_static_hook",
+  "visible_evidence": "From hook@0.3 to seg0:end the frame is one fixed horizontal span bar labelled '661M apart'. The '2019 353M' label sits on top of '2060 (projected) 1014M'. Data stands on top of a ladder at the right end and does nothing to the bar, and the same picture serves as both hook and beat 0 for about 3.5s.",
+  "root_cause": "The span machine places both endpoint labels at the same height with no collision avoidance. The bar is drawn already complete instead of growing, and the mascot is placed beside the part instead of on the moving anchor.",
+  "repair_goal": "Have Data visibly drive the growth: he hauls or stacks the waste volume from 353M up to 1,014M so the gap opens on screen during the hook. Put the 2019 and 2060 labels at separate measured positions with no overlap. Use the bespoke form of the subject, such as a growing mountain of plastic, instead of a generic span bar."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

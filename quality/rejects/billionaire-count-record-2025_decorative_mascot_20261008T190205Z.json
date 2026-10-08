@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261008T190205Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In hook@1.5 and seg2:end Data stands on a ladder pointing at the tallest bar, and in seg1:mid/end he only cheers with both arms up on the timeline. He causes no bar to grow. In seg3/seg4 he just perches on top of a circle.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "wrong_data_bare_number_card",
+  "visible_evidence": "seg3:start\u2013end and the whole of seg4 show two identical circles, both labelled 'Billionaire wealth' and both reading '127%', while the narration says the S&P 500 grew 195 percent. The S&P figure never appears on screen.",
+  "root_cause": "The comparison machine was bound to one series twice. The second entity (the S&P 500, 195%) was lost, so the scene contradicts its own claim and draws two equal shapes.",
+  "repair_goal": "Show billionaire wealth +127% against the S&P 500 +195% as two clearly different sizes, with the stock pile visibly bigger. Label each correctly, and have Data physically pour or stack into the S&P side so the stocks outgrowing the billionaires is the picture."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

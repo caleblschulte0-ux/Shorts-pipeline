@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "helium-supply-squeeze__91f2d5b4",
+ "slug": "helium-supply-squeeze",
+ "by": "claude:shorts-ops-thread",
+ "written_at": "2026-10-08T14:30:00Z",
+ "hook": "Helium prices exploded 4x once, and your phone's chips need it.",
+ "closing": "Once helium escapes, it leaves Earth for good.",
+ "question": "Would you give up party balloons?",
+ "segments": [
+  {
+   "topic": "Helium Reserves",
+   "say": "Qatar holds the most helium, 10.1 billion cubic meters, then the United States."
+  },
+  {
+   "topic": "Helium Demand",
+   "say": "Demand is set to grow 90% by 2035 as chip factories need more."
+  },
+  {
+   "topic": "Helium Prices",
+   "say": "In the last crunch, from 2011 to 2013, helium prices quadrupled."
+  }
+ ],
+ "title": "Helium Prices Went Up 4x Before. It's Happening Again."
+}

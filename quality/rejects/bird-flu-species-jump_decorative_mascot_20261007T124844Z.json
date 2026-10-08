@@ -1,0 +1,21 @@
+{
+ "slug": "bird-flu-species-jump",
+ "ts": "20261007T124844Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In hook@0.3 to seg0:end Data slides along the timeline axis with his hands on his head. In seg1:mid he floats over the 2024 bar, in seg2:end he stands beside the 738 bar, and in seg3:start to seg4:end he perches on the 41 bubble. He causes nothing and does no bit tied to any stat.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start shows '41' and '26' as tiny text on a near-empty frame. By seg3:end they are two plain circles (yellow 41, grey 26) with 'Dairy cow exposure' and 'Poultry exposure' captions, and Data is just standing on top of the 41 circle.",
+  "root_cause": "The story's key claim (the virus jumped species: 41 of 70 human cases came from cows, not birds) fell back to a generic two-bubble comparison. Nothing in the picture is made of cows, birds or people, the total of 70 never appears, and the mascot has no act.",
+  "repair_goal": "Show the 70 human cases as 70 small person figures, with the 41 linked to a cow and the 26 to a bird. Data should drive the transfer (for example, leading infection lines from a cow to the people one by one) so the viewer sees most cases coming from cows without reading a label. Fill the frame and keep every number clear of the mascot."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

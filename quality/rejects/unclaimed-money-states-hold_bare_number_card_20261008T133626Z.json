@@ -1,0 +1,16 @@
+{
+ "slug": "unclaimed-money-states-hold",
+ "ts": "20261008T133626Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: The hook and seg0 are three plain circles with $15B, $10.5B and $4.8B printed inside them, which is just numbers on blobs.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "payoff_mismatch_chart_metaphor",
+  "visible_evidence": "The closing caption says 'States returned only 4.49 billion of 70 billion', but the scale weighs 85.7% against 14.3% people (seg4:start to payoff@-0.4). That is the wrong statistic, and the scale tips toward the lighter-looking side. Data stands to one side holding a stick.",
+  "root_cause": "The closing machine got the share data from seg3 instead of the returned-vs-held pair. The seesaw is a stock machine and Data is not the agent.",
+  "repair_goal": "Make the closing show 4.49B of 70B physically. For example, show a vault holding 70 stacks of bills with Data hauling out only about 4.5 of them, so the tiny fraction that left is obvious. Data should do the work with a tool (a dolly or a wheelbarrow), and the 70B figure should stay visible, not just the 4.49B."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

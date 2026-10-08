@@ -11421,6 +11421,537 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (Monologue, no observable event)",
       "ts": "2026-10-06T12:19:03.731484+00:00"
+    },
+    "rejected-quaintlightdurianwtruck-utsypalrkc0zpckn": {
+      "source_url": "https://www.twitch.tv/buddha/clip/QuaintLightDurianWTRuck-UTSyPaLrKC0ZPCKn",
+      "streamer": "buddha",
+      "title": "Mr Lang(Buddha) perma's Nathan (burn)",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (dark GTA RP body, hard to follow)",
+      "ts": "2026-10-07T11:33:49.865505+00:00"
+    },
+    "rejected-incredulousdistinctyakuwot-rn6mlvl-oz7sedc0": {
+      "source_url": "https://www.twitch.tv/cinna/clip/IncredulousDistinctYakUWot-RN6MLVL-OZ7sEDC0",
+      "streamer": "cinna",
+      "title": "Cinna Admits A Situationship With A 98 Year Old And Panics At The End",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp picture is a thin letterboxed strip, roughly a third of the canvas, with large black and blurred padding above and; vision: Subject is tiny and far away in the later frames (lying on the ground, or a distant parachute), so it is hard to read on; vision: Frames from about 17s to 60s are",
+      "ts": "2026-10-07T11:38:37.373534+00:00"
+    },
+    "rejected-jollyblindingbatterypupper-wslcr98gvmv2ukt6": {
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/JollyBlindingBatteryPupper-WslcR98gVmv2UKT6",
+      "streamer": "plaqueboymax",
+      "title": "this man laughing",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (static face, unclear event, insider)",
+      "ts": "2026-10-07T11:39:04.360537+00:00"
+    },
+    "clip-20261007-2": {
+      "url": "https://youtube.com/shorts/b59wkJH0F5E",
+      "title": "Kaicenat: Kai Cenat Cameraman Gets Manipulated And Reggie Says He'll Kill Kai",
+      "kind": "twitch_clip",
+      "ts": "2026-10-07T11:41:44.370558+00:00",
+      "uploaded_at": "2026-10-07T11:41:44.370578+00:00",
+      "publish_at": "2026-10-07T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261007-kaicenat-kai-cenat-cameraman-gets-manipulated-an-ff783964"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/ScaryWildWatermelonHoneyBadger-Zys1uz_KyciD_dzL",
+      "streamer": "kaicenat",
+      "series": "beef",
+      "hook": "HE TRIED TO MANIPULATE MY CAMERAMAN",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2497,
+      "banger": 0.72,
+      "cut": {
+        "start": 0.0,
+        "end": 29.9
+      },
+      "director_cut": true
+    },
+    "rejected-gracefulunsightlysparrowbabyrage-hdfl4pece_yzksid": {
+      "source_url": "https://www.twitch.tv/northernlion/clip/GracefulUnsightlySparrowBabyRage-hdFl4pEcE_YZKsiD",
+      "streamer": "northernlion",
+      "title": "He's the GOAT",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source barely moves (avg frame delta 0.33) \u2014 static image/paused screen, not a clip",
+      "ts": "2026-10-07T12:01:07.571378+00:00"
+    },
+    "rejected-tawdryrealcheesecakeallenhuhu-qbn0ydl_yodogepj": {
+      "source_url": "https://www.twitch.tv/agent00/clip/TawdryRealCheesecakeAllenHuhu-qbn0YdL_YoDOGEPj",
+      "streamer": "agent00",
+      "title": "Agent So Smart LOL",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Group chatting over food, no clear event)",
+      "ts": "2026-10-07T12:01:35.794612+00:00"
+    },
+    "rejected-optimisticfunnyredpandapeanutbutterjellytime-kq6420y6xsxz15p7": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/OptimisticFunnyRedpandaPeanutButterJellyTime-KQ6420y6XSXZ15p7",
+      "streamer": "caseoh_",
+      "title": "lol",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (Hooded talking head, no visible event)",
+      "ts": "2026-10-07T12:14:27.193954+00:00"
+    },
+    "rejected-preciousawkwardaardvarkdoublerainbow-rundfnrocz0a8gzz": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/PreciousAwkwardAardvarkDoubleRainbow-rUNdfnRocz0a8gzZ",
+      "streamer": "jynxzi",
+      "title": "coal pickaxe",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Minecraft crafting menu, no visible payo)",
+      "ts": "2026-10-07T12:14:56.821103+00:00"
+    },
+    "rejected-freezingbravescallionallenhuhu-bt_gdatck4sdbrkm": {
+      "source_url": "https://www.twitch.tv/buddha/clip/FreezingBraveScallionAllenHuhu-Bt_gdatCk4SDBRkm",
+      "streamer": "buddha",
+      "title": "Lang Buddha Says Jumping Off A Bridge Is Survivable After This Psec Meeting",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about a third of the canvas height, with large blurred padding above and below. It is; vision: The subject is tiny and lost. The overhead GTA view shows people as specks, so no person or action reads on a phone.; vision: The footage is very dark and low-con",
+      "ts": "2026-10-07T12:17:50.384090+00:00"
+    },
+    "clip-20261007-5": {
+      "url": "https://youtube.com/shorts/Ft2dOZ1GfZs",
+      "title": "Emiru Shows Off Her Bandaged Head And Thanks Chat After Lights Mishap",
+      "kind": "twitch_clip",
+      "ts": "2026-10-07T12:20:43.126949+00:00",
+      "uploaded_at": "2026-10-07T12:20:43.126969+00:00",
+      "publish_at": "2026-10-07T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261007-emiru-shows-off-her-bandaged-head-and-thanks-cha-11246d74"
+      },
+      "source_url": "https://www.twitch.tv/emiru/clip/CrazyJazzyBaboonKappaPride-_fytmSgRkgSkpxfM",
+      "streamer": "emiru",
+      "series": "wholesome",
+      "hook": "WHY IS HER HEAD BANDAGED",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2628,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "rejected-impartialathleticflychocolaterain-yiusa6bhizu9em7z": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/ImpartialAthleticFlyChocolateRain-yIUsA6BHIzu9eM7Z",
+      "streamer": "jynxzi",
+      "title": "LOS FREAKY !?!?",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (Crude baby-villager joke, inside gamepla)",
+      "ts": "2026-10-07T12:21:17.678513+00:00"
+    },
+    "rejected-affluentkitschykoupreybcwarrior-ntprq-dk4gqq5ecc": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/AffluentKitschyKoupreyBCWarrior-NTpRq-DK4GqQ5ECC",
+      "streamer": "sodapoppin",
+      "title": "bobka vs soda oneshot",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (WoW duel, build talk, insider)",
+      "ts": "2026-10-07T12:22:07.828066+00:00"
+    },
+    "rejected-enjoyablestupidheronhotpokket-mkjbuz5vf0ei8hmr": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/EnjoyableStupidHeronHotPokket-mKJbUz5vF0Ei8hmR",
+      "streamer": "jynxzi",
+      "title": "shark",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Talking over soccer score, no event)",
+      "ts": "2026-10-07T12:22:23.748390+00:00"
+    },
+    "rejected-easygleamingpenguinfeelsbadman-nyi167eh5vb2izeu": {
+      "source_url": "https://www.twitch.tv/buddha/clip/EasyGleamingPenguinFeelsBadMan-NYi167eH5VB2izeu",
+      "streamer": "buddha",
+      "title": "Mysterious Aura",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (GTA RP planning talk, nothing happens)",
+      "ts": "2026-10-07T12:27:33.347913+00:00"
+    },
+    "clip-20261007-1": {
+      "url": "https://youtube.com/shorts/n3qinj4idcI",
+      "title": "Jinnytty Can't Stop Watching Kicky And Says She's So Cute",
+      "kind": "twitch_clip",
+      "ts": "2026-10-07T12:31:11.902676+00:00",
+      "uploaded_at": "2026-10-07T12:31:11.902697+00:00",
+      "publish_at": "2026-10-08T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261007-jinnytty-can-t-stop-watching-kicky-and-says-she--6afe9212"
+      },
+      "source_url": "https://www.twitch.tv/jinnytty/clip/GloriousTsundereMouseWoofer-HXsr6qjLSSrYyThv",
+      "streamer": "jinnytty",
+      "series": "wholesome",
+      "hook": "YOU COULD WATCH KICKY FOR HOURS",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2640,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 26.2
+      },
+      "director_cut": true
+    },
+    "clip-20261007-3": {
+      "url": "https://youtube.com/shorts/Fl-OJoi6FYk",
+      "title": "Lospollostv Can't Believe Jixi Is Messing With Them In The Lobby",
+      "kind": "twitch_clip",
+      "ts": "2026-10-07T12:59:29.270985+00:00",
+      "uploaded_at": "2026-10-07T12:59:29.271001+00:00",
+      "publish_at": "2026-10-08T02:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261007-lospollostv-can-t-believe-jixi-is-messing-with-t-ecd824a9"
+      },
+      "source_url": "https://www.twitch.tv/lospollostv/clip/TawdryThoughtfulPheasantChefFrank-hN1PII8gWfkReFVf",
+      "streamer": "lospollostv",
+      "series": "chaos",
+      "hook": "HOW IS THIS A GOOD IDEA",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1774,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "rejected-sleepyheadstronganiseoptimizeprime-4cxfkbxvg1u8-h1n": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/SleepyHeadstrongAniseOptimizePrime-4CXFkbXVG1U8-h1n",
+      "streamer": "stableronaldo",
+      "title": "ron gets caught",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.0s \u2014 too short to edit",
+      "ts": "2026-10-07T13:16:15.419814+00:00"
+    },
+    "clip-20261007-4": {
+      "url": "https://youtube.com/shorts/nJlLHCKNFvc",
+      "title": "Kaicenat: Kai Cenat Says Stuff Is Getting Sad In The Stream",
+      "kind": "twitch_clip",
+      "ts": "2026-10-07T13:19:28.754504+00:00",
+      "uploaded_at": "2026-10-07T13:19:28.754521+00:00",
+      "publish_at": "2026-10-08T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261007-kaicenat-kai-cenat-says-stuff-is-getting-sad-in--5cd716d1"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/AcceptablePoliteWoodpeckerShazBotstix-drqZ6-CFEHh9ZYkc",
+      "streamer": "kaicenat",
+      "series": "drama",
+      "hook": "KAI SAYS IT'S GETTING SAD",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2266,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "rejected-expensivestupidturtleresidentsleeper-j8qfwxdxwivp2a6y": {
+      "source_url": "https://www.twitch.tv/cinna/clip/ExpensiveStupidTurtleResidentSleeper-J8QFWxDXwIVP2a6Y",
+      "streamer": "cinna",
+      "title": "Kalita tells Brickbois how to rob a bank",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Walking through alleys, no visible event)",
+      "ts": "2026-10-07T13:20:13.961507+00:00"
+    },
+    "rejected-doubtfulencouragingmulemvgame-d_-b58s6vqlkvpeh": {
+      "source_url": "https://www.twitch.tv/summit1g/clip/DoubtfulEncouragingMuleMVGame-D_-B58s6vQLKVpeH",
+      "streamer": "summit1g",
+      "title": "Summit gets sent to Asia by Alliance warlock",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (WoW PvP chase, tiny UI, insider)",
+      "ts": "2026-10-07T13:22:16.898356+00:00"
+    },
+    "rejected-scrumptiousspicyminkritzmitz-nxhgr8c9rvwiv38p": {
+      "source_url": "https://www.twitch.tv/buddha/clip/ScrumptiousSpicyMinkRitzMitz-NxhGR8c9rVwiv38P",
+      "streamer": "buddha",
+      "title": "Lebron and bronny",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (GTA RP texting, fishing; nothing happens)",
+      "ts": "2026-10-07T18:32:27.864873+00:00"
+    },
+    "rejected-wittyhelplessayeayekippa-ewm3fg_nbo9hjyep": {
+      "source_url": "https://www.twitch.tv/xqc/clip/WittyHelplessAyeayeKippa-EWM3fG_nbO9hjyEP",
+      "streamer": "xqc",
+      "title": "Xqc Reacts After Jean Pole Fails His Clown Risk Landing",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin 16:9 strip that fills only about a third of the 9:16 canvas, well short of the roughly three; vision: The subject and action are tiny and far away. The streamer is a small facecam in the corner and the gameplay is distant,; vision: The footage is very dark and low",
+      "ts": "2026-10-07T18:39:02.026914+00:00"
+    },
+    "rejected-zealousmoistconsolecoolstorybro-tmoetzngyyxn0ktl": {
+      "source_url": "https://www.twitch.tv/buddha/clip/ZealousMoistConsoleCoolStoryBro-TMOEtZngyYxN0KTl",
+      "streamer": "buddha",
+      "title": "WICKED",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (dark routine driving, no visible event)",
+      "ts": "2026-10-08T12:02:55.187656+00:00"
+    },
+    "rejected-finestrangepothotpokket-lkazfvpcg4gmy9lt": {
+      "source_url": "https://www.twitch.tv/erobb221/clip/FineStrangePotHotPokket-lkaZfvPCg4GmY9lT",
+      "streamer": "erobb221",
+      "title": "Ricky Borby vs Commissioner Dawson",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-10-08T12:03:48.748007+00:00"
+    },
+    "rejected-smokyartsyfloofresidentsleeper-p-yx5fhe7selesbw": {
+      "source_url": "https://www.twitch.tv/xqc/clip/SmokyArtsyFloofResidentSleeper-P-yX5fHe7SElESbW",
+      "streamer": "xqc",
+      "title": "Jean Paul Wick",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA RP incapacitated, unclear event, ins)",
+      "ts": "2026-10-08T12:28:21.752374+00:00"
+    },
+    "rejected-boredamazingcroquettebuddhabar-5robhjyzrkhmgcws": {
+      "source_url": "https://www.twitch.tv/buddha/clip/BoredAmazingCroquetteBuddhaBar-5RObhJYZRKhmGcWS",
+      "streamer": "buddha",
+      "title": "Den Sheisty rides the lightning",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA RP standoff, inside-joke, no payoff)",
+      "ts": "2026-10-08T12:29:16.295350+00:00"
+    },
+    "rejected-wittyagitatedsaladunclenox-i4gettrkw7ghghuy": {
+      "source_url": "https://www.twitch.tv/cinna/clip/WittyAgitatedSaladUncleNox-i4GetTRkw7GHghUy",
+      "streamer": "cinna",
+      "title": "Bronny disposes of Clayton's body",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Dark RP, inventory menus, no visible pay)",
+      "ts": "2026-10-08T12:30:06.631590+00:00"
+    },
+    "clip-20261008-3": {
+      "url": "https://youtube.com/shorts/Ifcbbv1-BdA",
+      "title": "Plaqueboymax Dance Fails And Hits His Mouth On Camera",
+      "kind": "twitch_clip",
+      "ts": "2026-10-08T12:38:16.348570+00:00",
+      "uploaded_at": "2026-10-08T12:38:16.348594+00:00",
+      "publish_at": "2026-10-08T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261008-plaqueboymax-dance-fails-and-hits-his-mouth-on-c-a646c22c"
+      },
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/PeppyCrispyDonkeyKappa-vDcCpOvXdsrGuF18",
+      "streamer": "plaqueboymax",
+      "series": "fail",
+      "hook": "THE DANCE GOES WRONG",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2786,
+      "banger": 0.65,
+      "cut": {
+        "start": 1.7,
+        "end": 41.3
+      },
+      "director_cut": true
+    },
+    "rejected-importantabstrusecardimglitch-5mvbr9r4fx_vsfsa": {
+      "source_url": "https://www.twitch.tv/shroud/clip/ImportantAbstruseCardImGlitch-5MVBR9R4Fx_vsFSa",
+      "streamer": "shroud",
+      "title": "Shroud take",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source barely moves (avg frame delta 0.34) \u2014 static image/paused screen, not a clip",
+      "ts": "2026-10-08T12:39:23.993416+00:00"
+    },
+    "clip-20261008-4": {
+      "url": "https://youtube.com/shorts/UcdvjndJcaI",
+      "title": "Buddha 5 Second Getaway Is Wild To Watch",
+      "kind": "twitch_clip",
+      "ts": "2026-10-08T12:44:04.527114+00:00",
+      "uploaded_at": "2026-10-08T12:44:04.527133+00:00",
+      "publish_at": "2026-10-08T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261008-buddha-5-second-getaway-is-wild-to-watch-abf8bc20"
+      },
+      "source_url": "https://www.twitch.tv/buddha/clip/ZanyHelpfulSmoothieSuperVinlin-iZ7I4FJgN8g4ccVq",
+      "streamer": "buddha",
+      "series": "chaos",
+      "hook": "THE 5 SECOND GETAWAY",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3827,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "clip-20261008-5": {
+      "url": "https://youtube.com/shorts/WFkXLJ3-kmc",
+      "title": "Jynxzi Panics After Realizing He's Dead In Day 3 Of Death 2",
+      "kind": "twitch_clip",
+      "ts": "2026-10-08T12:48:42.354374+00:00",
+      "uploaded_at": "2026-10-08T12:48:42.354394+00:00",
+      "publish_at": "2026-10-08T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261008-jynxzi-panics-after-realizing-he-s-dead-in-day-3-95369225"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/LazyCharmingPepperoniDatSheffy-w6k-B5G0eBotQhEP",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "hook": "HE JUST REALIZED HE'S DEAD",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 8787,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 25.0
+      },
+      "director_cut": true
+    },
+    "rejected-freezingabnegateeaglewow-ynzy1u5bv7hsjur3": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/FreezingAbnegateEagleWow-ynZy1u5bV7HSjUR3",
+      "streamer": "caseoh_",
+      "title": "Ayo?",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source too dark (avg luma 26/255) \u2014 unwatchable IRL/night footage; source barely moves (avg frame delta 0.55) \u2014 static image/paused screen, not a clip",
+      "ts": "2026-10-08T12:49:47.816813+00:00"
+    },
+    "clip-20261008-6": {
+      "url": "https://youtube.com/shorts/-X1qco1VeUE",
+      "title": "Kaicenat: Kai Cenat Demands Proof: \"Where Is Your Proof?\" After Being Accused",
+      "kind": "twitch_clip",
+      "ts": "2026-10-08T12:51:37.488528+00:00",
+      "uploaded_at": "2026-10-08T12:51:37.488552+00:00",
+      "publish_at": "2026-10-09T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261008-kaicenat-kai-cenat-demands-proof-where-is-your-p-88d45e06"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/ObeseOptimisticVampireEagleEye-Hjdc_814uO3OZkH-",
+      "streamer": "kaicenat",
+      "series": "argument",
+      "hook": "WHERE IS YOUR PROOF?",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 26313,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 11.0
+      },
+      "director_cut": true
+    },
+    "rejected-smilingarbitrarydinosaurninjagrumpy-7vswvqug740i60lp": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/SmilingArbitraryDinosaurNinjaGrumpy-7VSwvqUG740I60LP",
+      "streamer": "stableronaldo",
+      "title": "Ron Speaks On Speed Shooring His Shot At Cinna! \ud83d\ude02",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Streamer scrolling X, chat chatter, no e)",
+      "ts": "2026-10-08T13:08:17.467722+00:00"
+    },
+    "rejected-mistyarborealgoatklappa-fqw1edcahzsnpnyt": {
+      "source_url": "https://www.twitch.tv/silky/clip/MistyArborealGoatKlappa-fqW1EdcAHZSnpnYT",
+      "streamer": "silky",
+      "title": "Silky Gets Hit With The Biggest Jump Scare And Totally Loses It",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The last ~3s (about 16-18.8s) show a 'Connection lost, be back soon!' stream-offline screen. This is dead footage and lo; vision: The payoff is missing. The jump scare is never clearly shown. The middle frames are near-black, then a blown-out white o; vision: Several frames (8.6s, 13.3s, 14.",
+      "ts": "2026-10-08T13:11:25.048334+00:00"
+    },
+    "clip-20261008-1": {
+      "url": "https://youtube.com/shorts/uT0aI1mS_MI",
+      "title": "Ironmouse Screams \"Fuck CVID For Ruining My Life\" As Her Team Pushes To Break The Record",
+      "kind": "twitch_clip",
+      "ts": "2026-10-08T13:16:53.985433+00:00",
+      "uploaded_at": "2026-10-08T13:16:53.985451+00:00",
+      "publish_at": "2026-10-09T02:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261008-ironmouse-screams-fuck-cvid-for-ruining-my-life--7bec39f4"
+      },
+      "source_url": "https://www.twitch.tv/ironmouse/clip/CuteSweetKuduKappa-eYWYx6HHX2vAmOPt",
+      "streamer": "ironmouse",
+      "series": "rage",
+      "hook": "SHE SNAPPED AT CVID",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2236,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 48.27
+      },
+      "director_cut": true
+    },
+    "clip-20261008-2": {
+      "url": "https://youtube.com/shorts/q8LWPbqghfQ",
+      "title": "Ohnepixel Loses It: \"Don't Mess With Steve\" After Trying To Turn Something Off",
+      "kind": "twitch_clip",
+      "ts": "2026-10-08T13:46:57.291987+00:00",
+      "uploaded_at": "2026-10-08T13:46:57.292006+00:00",
+      "publish_at": "2026-10-09T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261008-ohnepixel-loses-it-don-t-mess-with-steve-after-t-60e7592e"
+      },
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/EndearingWittyMeerkatChefFrank-7_5qi5_UQvubPFLJ",
+      "streamer": "ohnepixel",
+      "series": "rage",
+      "hook": "DON'T MESS WITH STEVE",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3245,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 23.0
+      },
+      "director_cut": true
     }
   }
 }

@@ -1,0 +1,21 @@
+{
+ "slug": "bird-flu-species-jump",
+ "ts": "20261007T182402Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg2:end the line '83% of these five states' infected herds' is faint pink on a pink sky and the scale beam runs through it. At seg2:start Data's head covers 'Texas' in the state label. At seg0:mid through seg1:end the weathervane rooster sits on top of the '\u00b7 2022' / '\u00b7 2026' subtitl",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg2:end the claim line '83% of these five states' infected herds' is pale pink on a pink sky and the tilted scale beam cuts through it. At seg2:start Data stands in front of the 'Colorado \u00b7 Idaho \u00b7 Michigan \u00b7 Texas' label and hides 'Texas'. All through the beat Data stands beside the post and cheers while the pans move without him.",
+  "root_cause": "The claim text is drawn at low alpha in the same band the beam swings through, and the state label sits where Data is placed. Data is set beside the machine as a spectator, not given the act that moves it.",
+  "repair_goal": "Move the 83% claim to solid ink in clear sky above the beam's swing and keep the state label clear of Data's reach. Make Data the cause of the tip: he herds or lifts the California cows onto the right pan himself, one load at a time, so the beam drops because of what he does."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,171 @@
+{
+  "subreddit": "IDontWorkHereLady",
+  "slug": "fake-customer-costume",
+  "title": "She Swore I Managed The Store. My Badge Said Customer.",
+  "hashtags": [
+    "idontworkherelady",
+    "retail",
+    "karen",
+    "retailstory",
+    "storetime",
+    "entitled",
+    "shorts",
+    "reddit"
+  ],
+  "script": "I was comparing two blenders in the kitchen aisle when a woman marched up holding a cracked air fryer and announced I had better fix it. I told her I did not work there. She said my blue jacket proved otherwise and demanded a manager. I pointed at my shirt, which read charity fun run in giant letters, and at the actual employee vest hanging two feet away on an associate restocking shelves. She ignored both and flagged down a real manager, insisting I was hiding from responsibility behind a fake customer costume. The manager checked the air fryer, found a receipt from a different store chain stapled inside the box, and told her this location could not process it. She asked why I did not say that from the start. I held up the loyalty app on my phone, still open to my actual order from twenty minutes earlier. She left muttering about bad service. The associate in the vest got my blender picked for me as an apology.",
+  "shots": [
+    {
+      "phrase": "comparing two blenders in the kitchen aisle",
+      "query": "kitchen appliance aisle blenders store",
+      "media_origin": "chatgpt",
+      "media_file_id": "19p9cfZe-f0BMWT0lXaH7pnMNkGMmTC0-",
+      "media_sha256": "1421b32c95f386b7f998e070b4ac8ac281b650da191d4ef8f4bb9b7730488901",
+      "media_bytes": 2705741,
+      "pin_query": "blender",
+      "pin_context": "kitchen appliance countertop product comparison",
+      "news_query": "blender",
+      "news_angle": "The narrator was comparing two blenders in the kitchen aisle when the confrontation began.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/67/Breville.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+      "media_evidence": {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/67/Breville.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+        "source_class": "open_or_licensed",
+        "provider": "wikimedia",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-10-08T19:17:20Z",
+        "resolved_by": "verify_shot_urls"
+      }
+    },
+    {
+      "phrase": "holding a cracked air fryer",
+      "query": "cracked air fryer box",
+      "image_url": "https://drive.google.com/uc?export=download&id=1C1dYrHdvHYgMXp880OccahfT-B08H7Q3",
+      "media_origin": "chatgpt",
+      "media_file_id": "1C1dYrHdvHYgMXp880OccahfT-B08H7Q3",
+      "media_sha256": "21f08c6c5ad107a4c411406ae23465131f2b728aeebb00a0bc7bb41bc9437c31",
+      "media_bytes": 1901724,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1C1dYrHdvHYgMXp880OccahfT-B08H7Q3",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-08T19:17:21Z",
+        "resolved_by": "verify_shot_urls"
+      },
+      "pin_query": "air fryer",
+      "pin_context": "kitchen appliance cracked broken",
+      "news_query": "air fryer",
+      "news_angle": "The woman brandished a cracked air fryer and demanded the narrator fix it."
+    },
+    {
+      "phrase": "my blue jacket proved otherwise",
+      "query": "blue zip jacket casual wear",
+      "media_origin": "chatgpt",
+      "media_file_id": "1vRuaON2Xv6jeTS_fgcmnSRVhSrYV5Z66",
+      "media_sha256": "213d4b37a75e51d6cfb429d9fd330f6a5ab6ef5cdb7f48e5e4b5894cbbb45567",
+      "media_bytes": 1833112,
+      "pin_query": "blue jacket",
+      "pin_context": "men's outerwear casual blue jacket",
+      "news_query": "blue jacket",
+      "news_angle": "The woman pointed to the narrator\u2019s blue jacket as proof that he was an employee."
+    },
+    {
+      "phrase": "the actual employee vest hanging two feet away",
+      "query": "store employee safety vest rack",
+      "media_origin": "chatgpt",
+      "media_file_id": "1YKXRAQSQNrX7IpcM4VqtZ8oumJw34jUe",
+      "media_sha256": "df19958357b234daf967cd5bf5451c3e474213e0d3dd7291f8c643da8c0705f3",
+      "media_bytes": 2104268,
+      "pin_query": "employee vest",
+      "pin_context": "store associate uniform vest retail",
+      "news_query": "employee vest",
+      "news_angle": "An actual employee vest hung nearby on an associate restocking shelves."
+    },
+    {
+      "phrase": "flagged down a real manager",
+      "query": "store manager badge walkie talkie",
+      "media_origin": "chatgpt",
+      "media_file_id": "147ixHeW9zGxBKwOzL9K4qLs3VTp1_Qw2",
+      "media_sha256": "5ab0ed6723aa81b7a7a3507df5ec2c6079e99136140b0e3dc6f5737635a09461",
+      "media_bytes": 2275865,
+      "pin_query": "manager",
+      "pin_context": "store supervisor front office",
+      "news_query": "manager",
+      "news_angle": "The woman flags down a real manager to complain about the narrator.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Fredrick_Winslow_Taylor_c1907_retouched.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+      "media_evidence": {
+        "content_type": "image/png",
+        "height": 0,
+        "provider": "wikimedia",
+        "query": "store supervisor front office",
+        "resolved_by": "entity_media",
+        "source_class": "open_or_licensed",
+        "title": "manager",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Fredrick_Winslow_Taylor_c1907_retouched.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+        "verified_at": "2026-10-08T19:18:31Z",
+        "width": 0
+      }
+    },
+    {
+      "phrase": "a receipt from a different store chain stapled inside the box",
+      "query": "crumpled receipt paper closeup",
+      "image_url": "https://drive.google.com/uc?export=download&id=1VNCgl8UkuQ3Qbxr9uv-SCGNjjmKYkTg6",
+      "media_origin": "chatgpt",
+      "media_file_id": "1VNCgl8UkuQ3Qbxr9uv-SCGNjjmKYkTg6",
+      "media_sha256": "6ae40c7782111a0a8bb6ff43ea0c8180dadff711ef0bf2f16cbb1c53b3658b04",
+      "media_bytes": 2080148,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1VNCgl8UkuQ3Qbxr9uv-SCGNjjmKYkTg6",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-08T19:17:22Z",
+        "resolved_by": "verify_shot_urls"
+      },
+      "pin_query": "receipt",
+      "pin_context": "store purchase proof stapled inside box",
+      "news_query": "receipt",
+      "news_angle": "The manager found a receipt from a different store chain stapled inside the air fryer box."
+    },
+    {
+      "phrase": "the loyalty app on my phone",
+      "query": "phone shopping app screen hand",
+      "media_origin": "chatgpt",
+      "media_file_id": "1Ueyxki_-FatUwj2l3bPKEuKp6Gba91X2",
+      "media_sha256": "8401d31453cee6f96106a75a781631678e309bd171fb31a5c1ffe5ab26c82368",
+      "media_bytes": 1774454,
+      "pin_query": "loyalty app",
+      "pin_context": "mobile retail loyalty program screenshot",
+      "news_query": "loyalty app",
+      "news_angle": "The narrator held up the loyalty app on his phone showing an order placed twenty minutes earlier."
+    }
+  ],
+  "punches": [
+    {
+      "phrase": "demanded a manager",
+      "text": "DEMANDED A MANAGER",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "a receipt from a different store chain",
+      "text": "WRONG STORE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "still open to my actual order",
+      "text": "RECEIPTS DON'T LIE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "got my blender picked for me as an apology",
+      "text": "FREE UPGRADE",
+      "color": "#50ff80"
+    }
+  ],
+  "music_vibe": "playful"
+}

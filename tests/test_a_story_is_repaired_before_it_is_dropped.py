@@ -47,7 +47,8 @@ CLUSTER = {"who": ["soda"], "kind": "vod_arc", "video_id": "v1",
                      for i, u in enumerate(URLS)]}
 EDL = {"title": "Soda Loses The Bet", "hook_overlay": "he bet everything",
        "premise": "Soda bets and loses", "structure": "chronological",
-       "beats": [{"source_id": URLS[0]}, {"source_id": URLS[1]}]}
+       "beats": [{"source_id": URLS[0], "start": 0.0, "end": 10.0},
+                 {"source_id": URLS[1], "start": 0.0, "end": 10.0}]}
 
 
 def _report(url):
@@ -68,7 +69,7 @@ def _review(publish, score, fix="cut the dead air"):
 class _Harness(unittest.TestCase):
     def run_attempt(self, reviews, *, preflight=lambda p: [],
                     spec_extra=None, cluster=None, plan=None,
-                    clusters=None, memory=None):
+                    clusters=None, memory=None, qa=None):
         rt = _load_rt()
         self.rt = rt
         tmp = Path(self.enterContext(tempfile.TemporaryDirectory()))
@@ -79,7 +80,7 @@ class _Harness(unittest.TestCase):
         self.revisions = 0
         self.revise_fixes = []
 
-        def revise(edl, problems, reports):
+        def revise(edl, problems, reports, **_k):
             self.revisions += 1
             self.revise_fixes.append([p["fix"] for p in problems])
             return dict(EDL)
@@ -95,8 +96,10 @@ class _Harness(unittest.TestCase):
                               return_value={"path": str(clip)}),
             mock.patch.object(clip_qa, "preflight", side_effect=preflight),
             mock.patch.object(clip_qa, "contact_sheet", return_value=None),
-            mock.patch.object(clip_qa, "review", return_value={
-                "verdict": "pass", "problems": [], "vision": {}}),
+            (mock.patch.object(clip_qa, "review", side_effect=list(qa))
+             if qa else
+             mock.patch.object(clip_qa, "review", return_value={
+                 "verdict": "pass", "problems": [], "vision": {}})),
             mock.patch.object(storyline, "find_vod_arcs",
                               return_value=json.loads(json.dumps(
                                   clusters or [cluster or CLUSTER]))),
@@ -118,7 +121,10 @@ class _Harness(unittest.TestCase):
         ]
         for p in patches:
             self.enterContext(p)
-        spec = {"kind": "twitch_clip", "sources": {"twitch": ["soda"]}}
+        # the table read is its own test file; here every review is a
+        # render's (test_a_plan_is_read_before_it_is_rendered)
+        spec = {"kind": "twitch_clip", "sources": {"twitch": ["soda"]},
+                "story_table_reads": 0}
         spec.update(spec_extra or {})
         return rt._story_attempt({"capture": spec}, {"posted": {}},
                                  tmp, tmp / "out.mp4", "clip-x-1")
@@ -629,12 +635,67 @@ class TheStoryEndsWhereTheSentenceEnds(unittest.TestCase):
         self.assertEqual(out[-1]["end"], 12.2, "'ok.' is under 1.5s in")
 
 
-class TwoStoryAttemptsADay(unittest.TestCase):
-    def test_the_template_asks_for_two_story_slots(self):
+class EverySlotTriesAStory(unittest.TestCase):
+    """Operator, 2026-10-07: "this channel needs to be stories and edits
+    not just raw clips". Every slot tries the story arm first; the clip arm
+    is the fallback, and story_budget_min keeps the searches from eating
+    the time the day's clips need."""
+
+    def test_the_template_makes_every_slot_a_story_slot(self):
+        from shared import channel_registry
         tpl = json.loads((ROOT / "state" / "third_packages" /
                           "default_clip.json").read_text())
-        self.assertEqual(tpl["story_count"], 2)
+        self.assertGreaterEqual(tpl["story_count"],
+                                channel_registry.target_count("third"))
+
+    def test_the_story_budget_leaves_the_clips_time(self):
+        rt = _load_rt()
+        tpl = json.loads((ROOT / "state" / "third_packages" /
+                          "default_clip.json").read_text())
+        cap = float(tpl["capture"]["story_budget_min"])
+        self.assertLess(cap, rt._BUDGET_MIN - 20)
+
+    def test_it_reaches_back_ninety_days(self):
+        tpl = json.loads((ROOT / "state" / "third_packages" /
+                          "default_clip.json").read_text())
+        self.assertGreaterEqual(tpl["capture"]["story_lookback_days"], 90)
+        self.assertGreater(tpl["capture"]["story_top_90d"], 0)
 
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ARejectedRevisionIsToldWhy(unittest.TestCase):
+    """2026-10-07: a 66 and a 70 ended "after 0 revision(s)" because the
+    reviser's EDL broke an edit law and came back None, silently."""
+
+    def test_the_reviser_hears_what_it_broke_and_tries_once_more(self):
+        calls = []
+        bad = _with_narration("Reggie claimed Kai ignored his call.")
+        bad["beats"] = [dict(bad["beats"][0], source_id="nope")]
+        good = _with_narration("Reggie claimed Kai ignored his call.")
+
+        def brain(user, system, **kw):
+            calls.append(user)
+            return bad if len(calls) == 1 else good
+        with mock.patch.object(story_director, "_brain", side_effect=brain):
+            out = story_director.revise_edl(
+                _with_narration(""), [{"type": "pacing", "at": 0.0,
+                                       "fix": "trim the opening"}], REGGIE)
+        self.assertIsNotNone(out)
+        self.assertEqual(len(calls), 2)
+        self.assertIn("REJECTED", calls[1])
+
+    def test_it_does_not_loop(self):
+        calls = []
+
+        def brain(user, system, **kw):
+            calls.append(user)
+            return {"is_story": True, "beats": []}
+        with mock.patch.object(story_director, "_brain", side_effect=brain):
+            out = story_director.revise_edl(
+                _with_narration(""), [{"type": "pacing", "at": 0.0,
+                                       "fix": "x"}], REGGIE)
+        self.assertIsNone(out)
+        self.assertEqual(len(calls), 2)

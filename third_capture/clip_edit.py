@@ -25,6 +25,7 @@ import json
 import re
 import subprocess
 import tempfile
+import time
 from pathlib import Path
 
 CANVAS_W, CANVAS_H = 1080, 1920
@@ -40,6 +41,8 @@ FX_DIR = REPO / "assets" / "fx"                  # procedural FX overlays
 # run until GitHub's 60-min job timeout — the batch-4 incident. On
 # timeout the package raises and the orchestrator moves to the next one.
 _RUN_TIMEOUT = 300  # seconds
+# a VOD window is minutes of HLS segments, not one clip file
+_VOD_TIMEOUT = 480
 
 
 def _run(cmd: list[str], timeout: int = _RUN_TIMEOUT) -> str:
@@ -241,6 +244,71 @@ def _helix_user_id(login: str) -> str | None:
     return _HELIX_IDS[login] or None
 
 
+_HELIX_GAMES: dict = {}
+
+
+def helix_game_names(ids) -> dict:
+    """{game_id: name} for helix clip `game_id`s, cached for the run.
+
+    A story the critic calls confusing is usually one where a stranger
+    cannot tell who the streamer is or what they are playing ("a stranger
+    doesn't know who Forsen is, or that this is Terraria", backtest
+    2026-10-07) — and nobody on stream says it out loud, so the director
+    could not either. Twitch knows; this is that fact. Best-effort: {} on
+    any failure, never raises."""
+    want = [str(i) for i in dict.fromkeys(ids or []) if i
+            and str(i) not in _HELIX_GAMES]
+    if want and _helix_creds():
+        try:
+            import requests
+            for k in range(0, len(want), 100):
+                chunk = want[k:k + 100]
+                r = requests.get("https://api.twitch.tv/helix/games",
+                                 params=[("id", g) for g in chunk],
+                                 headers=_helix_headers(), timeout=20)
+                r.raise_for_status()
+                for g in r.json().get("data", []):
+                    _HELIX_GAMES[str(g.get("id"))] = str(g.get("name", ""))
+                for g in chunk:
+                    _HELIX_GAMES.setdefault(g, "")
+        except Exception as e:  # noqa: BLE001
+            print(f"[helix] game names unavailable ({type(e).__name__})",
+                  flush=True)
+    return {str(i): _HELIX_GAMES.get(str(i), "") for i in ids or [] if i}
+
+
+_HELIX_VIDEOS: dict[str, str] = {}
+
+
+def helix_video_titles(ids) -> dict:
+    """{video_id: broadcast title} for the VODs clips were cut from, cached
+    for the run. The title is the STREAMER'S OWN line for that stream
+    ("FNCS QUALIFIERS DAY 2 | !gfuel") — the context a stranger is missing
+    and nobody on stream says: story backtest 9's best cut (Lacy, 78) was
+    marked down because "a stranger never learns what the qualifier was".
+    Best-effort: {} on any failure, never raises."""
+    want = [str(i) for i in dict.fromkeys(ids or []) if i
+            and str(i) not in _HELIX_VIDEOS]
+    if want and _helix_creds():
+        try:
+            import requests
+            for k in range(0, len(want), 100):
+                chunk = want[k:k + 100]
+                r = requests.get("https://api.twitch.tv/helix/videos",
+                                 params=[("id", v) for v in chunk],
+                                 headers=_helix_headers(), timeout=20)
+                r.raise_for_status()
+                for v in r.json().get("data", []):
+                    _HELIX_VIDEOS[str(v.get("id"))] = \
+                        str(v.get("title", ""))[:140]
+                for v in chunk:
+                    _HELIX_VIDEOS.setdefault(v, "")
+        except Exception as e:  # noqa: BLE001
+            print(f"[helix] stream titles unavailable ({type(e).__name__})",
+                  flush=True)
+    return {str(i): _HELIX_VIDEOS.get(str(i), "") for i in ids or [] if i}
+
+
 def _discover_helix(channel: str, top: int, hours: int = 24) -> list[dict]:
     import time
     import requests
@@ -266,7 +334,8 @@ def _discover_helix(channel: str, top: int, hours: int = 24) -> list[dict]:
                       "platform": "twitch",
                       "age_h": max(0.05, (now - created) / 3600),
                       "vod_offset": c.get("vod_offset"),
-                      "video_id": c.get("video_id")})
+                      "video_id": c.get("video_id"),
+                      "game_id": c.get("game_id") or ""})
     return clips
 
 
@@ -290,12 +359,23 @@ def maybe_vod_window(clip: dict, work: Path, *, before: float = 60.0,
         work.mkdir(parents=True, exist_ok=True)
         stem = f"vod_{vid}_{int(start)}_{int(end)}"
         out = work / f"{stem}.mp4"
+        # STREAM COPY, not a re-encode. `--force-keyframes-at-cuts` plus
+        # `--recode-video` re-encoded every expanded window on a 2-core
+        # runner and ran into the 300s timeout (story backtest 2026-10-07:
+        # `TimeoutExpired`, twice on one video) — so the stories that most
+        # needed the setup or payoff around a clip never got it. A copy
+        # snaps the start to the keyframe before `start` (Twitch: every 2s);
+        # the director plans from this FILE's own transcript, so its cuts
+        # stay exact and only `vod_start_s` is approximate.
         if not out.exists():
+            t = time.monotonic()
             _ytdlp(["--download-sections", f"*{start:.0f}-{end:.0f}",
                     "-f", "b[height<=720]/b",
-                    "--force-keyframes-at-cuts",
-                    "-o", str(out), "--recode-video", "mp4",
-                    f"https://www.twitch.tv/videos/{vid}"])
+                    "-o", str(out), "--remux-video", "mp4",
+                    f"https://www.twitch.tv/videos/{vid}"],
+                   timeout=_VOD_TIMEOUT)
+            print(f"[vod] expanded video {vid} {start:.0f}-{end:.0f}s "
+                  f"in {time.monotonic() - t:.0f}s", flush=True)
         if not out.exists() or out.stat().st_size < 10_000:
             return None
         return {"path": str(out), "vod_start_s": start,
@@ -306,6 +386,37 @@ def maybe_vod_window(clip: dict, work: Path, *, before: float = 60.0,
         return None
 
 
+def maybe_vod_segment(video_id: str, start: float, end: float,
+                      work: Path) -> Path | None:
+    """One stretch of a broadcast as its own file, or None. The moment
+    story's BEFORE and AFTER (storyline.find_moments): what led up to the
+    clip and what came of it, each a source the director can cut from.
+    Same stream copy and timeout as `maybe_vod_window`; never raises."""
+    if not video_id or end - start < 5:
+        return None
+    try:
+        start = max(0.0, float(start))
+        work = Path(work)
+        work.mkdir(parents=True, exist_ok=True)
+        out = work / f"vodseg_{video_id}_{int(start)}_{int(end)}.mp4"
+        if not out.exists():
+            t = time.monotonic()
+            _ytdlp(["--download-sections", f"*{start:.0f}-{end:.0f}",
+                    "-f", "b[height<=720]/b",
+                    "-o", str(out), "--remux-video", "mp4",
+                    f"https://www.twitch.tv/videos/{video_id}"],
+                   timeout=_VOD_TIMEOUT)
+            print(f"[vod] segment {video_id} {start:.0f}-{end:.0f}s "
+                  f"in {time.monotonic() - t:.0f}s", flush=True)
+        if not out.exists() or out.stat().st_size < 10_000:
+            return None
+        return out
+    except Exception as e:  # noqa: BLE001
+        print(f"[vod] segment failed for video {video_id} "
+              f"({type(e).__name__})", flush=True)
+        return None
+
+
 # Kick and Rumble sit behind bot protection; yt-dlp's TLS impersonation
 # (curl_cffi) gets through from clean egress (e.g. CI runners). Twitch
 # needs nothing.
@@ -313,9 +424,10 @@ def _needs_impersonation(platform_or_url: str) -> bool:
     return any(s in platform_or_url for s in ("kick", "rumble"))
 
 
-def _ytdlp(args: list[str], *, impersonate: bool = False) -> str:
+def _ytdlp(args: list[str], *, impersonate: bool = False,
+           timeout: int = _RUN_TIMEOUT) -> str:
     cmd = ["yt-dlp"] + (["--impersonate", "chrome"] if impersonate else [])
-    return _run(cmd + args)
+    return _run(cmd + args, timeout=timeout)
 
 
 def _discover_kick(channel: str, top: int, range_: str) -> list[dict]:
@@ -396,7 +508,8 @@ def discover(platform: str, channel: str, *, top: int = 8,
     if platform == "twitch":
         if _helix_creds():
             try:
-                hours = {"24hr": 24, "7d": 168, "30d": 720}.get(range_, 24)
+                hours = {"24hr": 24, "7d": 168, "30d": 720,
+                         "90d": 2160}.get(range_, 24)
                 return _discover_helix(channel, top, hours=hours)
             except Exception as e:  # noqa: BLE001 — fall back to yt-dlp
                 print(f"[helix] {channel}: {e} — falling back to yt-dlp",

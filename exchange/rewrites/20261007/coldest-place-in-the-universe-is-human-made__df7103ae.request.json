@@ -1,0 +1,156 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "coldest-place-in-the-universe-is-human-made__df7103ae",
+ "filed": "2026-10-07T12:48:30Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "coldest-place-in-the-universe-is-human-made",
+ "current": {
+  "title": "The Coldest Place In The Universe Isn't In Space (3 Charts)",
+  "hook": "The coldest place in the universe is 250 miles above your head",
+  "closing": "The universe's coldest place also has the best view.",
+  "question": "Could you survive one second at absolute zero?",
+  "segments": [
+   {
+    "topic": "Coldest places known",
+    "say": "Room temperature is 293 Kelvin, while deep space sits at 2.7."
+   },
+   {
+    "topic": "Coldest atom lab",
+    "say": "NASA's Cold Atom Lab chills atoms to under 100 picokelvin, a billion times colder than space."
+   },
+   {
+    "topic": "Coldest place distance",
+    "say": "The Boomerang Nebula is 5,000 light-years away, but NASA's freezer is 250 miles up."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Coldest places known",
+   "say": "Room temperature is 293 Kelvin, while deep space sits at 2.7.",
+   "role": "1 · HOW COLD SPACE GETS",
+   "data": {
+    "file": "temperature_ladder.json",
+    "unit": "kelvin",
+    "title": "How cold known places get (Kelvin)",
+    "points": [
+     {
+      "label": "Room temperature",
+      "value": 293
+     },
+     {
+      "label": "Deep space (cosmic background)",
+      "value": 2.7
+     },
+     {
+      "label": "Boomerang Nebula",
+      "value": 1.0
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Coldest atom lab",
+   "say": "NASA's Cold Atom Lab chills atoms to under 100 picokelvin, a billion times colder than space.",
+   "role": "2 · THE UPSET",
+   "data": {
+    "file": "cold_atom_lab_vs_nebula.json",
+    "unit": "kelvin",
+    "title": "Boomerang Nebula vs. NASA's Cold Atom Lab (Kelvin)",
+    "points": [
+     {
+      "label": "Boomerang Nebula",
+      "value": 1.0
+     },
+     {
+      "label": "NASA Cold Atom Lab (ISS)",
+      "value": 1e-10
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Coldest place distance",
+   "say": "The Boomerang Nebula is 5,000 light-years away, but NASA's freezer is 250 miles up.",
+   "role": "3 · THE TWIST",
+   "data": {
+    "file": "nebula_vs_iss_distance.json",
+    "unit": "miles",
+    "title": "Distance to the Boomerang Nebula vs. the ISS (miles)",
+    "points": [
+     {
+      "label": "Boomerang Nebula",
+      "value": 29400000000000000
+     },
+     {
+      "label": "NASA's Cold Atom Lab (ISS)",
+      "value": 250
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: Generic space tiles, a '1 vs 0.0' disc and a static '29400T' slab never show how cold or how far, and the numbers are clipped or unreadable."
+ ],
+ "reasons": [
+  "judge: Generic space tiles, a '1 vs 0.0' disc and a static '29400T' slab never show how cold or how far, and the numbers are clipped or unreadable."
+ ],
+ "judge": {
+  "ts": "2026-10-07T12:16:04+00:00",
+  "score": 22,
+  "one_line": "Generic space tiles, a '1 vs 0.0' disc and a static '29400T' slab never show how cold or how far, and the numbers are clipped or unreadable.",
+  "problems": [
+   "seg0-seg1: generic purple space tiles count room temperature, and the 2.7 K comparison is never drawn.",
+   "seg0-seg1: the tile grid is frozen for about 5s while the narration moves on.",
+   "seg2: the disc says '1' vs '0.0', so the 'billion times colder' claim gets no picture, and the Nebula is the bigger shape in a 'coldest' story.",
+   "seg3: a static full-frame square with '29400T', a bare number card with a garbled outline and a clipped label.",
+   "seg4: '29,399,999,999,999,752 apa' runs off the frame and 'NASA's Cold ...' is truncated.",
+   "Mascot poses and perches throughout and causes none of the motion."
+  ],
+  "fixes": [
+   "seg0-seg1: show a thermometer that Data drains from 293 K down to 2.7 K, with the room and deep space as its endpoints.",
+   "seg2: show a log-scale descent (room, then space, then the Cold Atom Lab), with Data pushing the needle down nine orders of magnitude.",
+   "seg3: replace the slab with a zoom-out from the ISS to the nebula in miles and light-years.",
+   "seg4: abbreviate large numbers in readable units and measure them so every label stays inside the frame.",
+   "Give Data an act that causes each motion: pouring, pushing, or cranking the zoom."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261007/coldest-place-in-the-universe-is-human-made__df7103ae.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

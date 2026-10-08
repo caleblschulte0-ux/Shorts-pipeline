@@ -1,0 +1,97 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "twin-birth-rate-rise__5985b41e7e",
+ "video_sha256": "5985b41e7e7497eee9a82afc73d7ca385ef094d7dca9f5f5cecda12a66a18341",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T06:48:43Z",
+ "grades": {
+  "dimensions": {
+   "hook": 1,
+   "data_demo": 1,
+   "mascot": 1,
+   "craft": 2,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "Only baby emoji icons and charts (hook@0.3, seg2:mid); nothing off-topic or garbled."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "Data points from a ladder beside a bar he did not fill (hook@0.8\u2013seg0:mid). He then rides line tips in the same arms-up pose (seg1:mid, seg3:mid, seg4:mid) and floats over the 1980 bar (seg1:start), causing nothing."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "Every beat has a chart or a grid behind the number (seg1:end, seg2:mid, seg3:end); no lone number on a blob."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Measured longest_static_s is 0.0. The hook chart barely changes from hook@0.8 to seg0:mid, but the mascot and captions still move."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The empty bar tracks in seg0:end and the bare lower third in seg3:start are short build states; the later frames fill the space."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All labels read at phone size. The caption fading in at seg3:start is a transition, and the year axis and percentages are legible."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg2",
+   "index": 2,
+   "failure_class": "claim_not_demonstrated",
+   "visible_evidence": "seg2:start\u2013seg2:end: a waffle of identical baby emoji titled 'Twin age factor 40+ 46%' with 'each = 1%', while the narration says mothers over 40 twin nearly five times more often than under-20 mothers. There is no under-20 group, no ratio, and Data just stands in the grid pointing.",
+   "root_cause": "A share/waffle chart was chosen for a RATIO comparison between two age groups. The comparison group is missing, so the picture asserts '46%', which the script never says.",
+   "repair_goal": "Draw the two groups side by side: under-20 mothers with 1 twin pair for every ~5 pairs among 40+ mothers, filling as Data hands over each pair. The 5x gap should be visible without reading, and the numbers should come from the beat's data."
+  },
+  "depictions": [
+   {
+    "id": "seg1",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "Horizontal bars, then a column/line race to 33.9. The values are labelled '%' although the claim is per 1,000, so the unit is wrong on screen."
+   },
+   {
+    "id": "seg2",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "An emoji waffle at 46% with no comparison group. It does not show 'five times more often'."
+   },
+   {
+    "id": "seg3",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 2,
+    "note": "An area/line chart falling from about 28% to 2%. The decline reads, but it is a plain chart with Data riding the tip."
+   },
+   {
+    "id": "seg4",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "The closing reuses the IVF line chart; nothing shows 'two became the new one'."
+   }
+  ],
+  "one_line": "Every beat is a stock chart with Data cheering on top. The units are wrong (per-1,000 values labelled %), and the 'five times' beat shows an unrelated 46% waffle.",
+  "problems": [
+   "Hook (hook@0.3\u2013seg0:mid) is the same finished bar chart repeated with Data pointing; nothing happens in the first 2s beyond the mascot shuffling.",
+   "The twin rate is per 1,000 births, but every bar and headline labels it as a percent ('33.9%', '18.9%'), which misstates the stat by an order of magnitude in meaning.",
+   "seg2 waffle shows '40+ 46%' with no under-20 comparison, so the 'nearly five times' claim is never demonstrated.",
+   "Data uses the same arms-up pose riding line tips in seg1, seg3 and seg4. He causes none of the motion and overlaps the 1980 bar in seg1:start.",
+   "The closing 'Two really did become the new one' sits over the IVF decline chart, so the payoff contradicts the visual (a falling line).",
+   "Two different chart treatments of the same series in seg1 (horizontal bars, then a column/line race) look like a template switch rather than a build."
+  ],
+  "fixes": [
+   "Relabel the twin-rate values as 'per 1,000' (e.g. '33.9 per 1,000') wherever they appear.",
+   "Replace the seg2 waffle with a side-by-side ratio picture (under-20 versus 40+ twin pairs, about 1:5) that Data fills himself.",
+   "Give Data an agent act for each beat: he stacks twin pairs to raise the rate in seg1 and pulls IVF twins out of the pile in seg3, instead of cheering on the line tip.",
+   "Open on motion: the twin count doubling in front of the viewer within the first second, not a pre-built bar chart.",
+   "Close on the doubling (twin pairs where there used to be one), not on the reused IVF decline chart."
+  ]
+ }
+}

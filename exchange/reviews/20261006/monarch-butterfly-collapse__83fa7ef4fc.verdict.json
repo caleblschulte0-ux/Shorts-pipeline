@@ -1,0 +1,104 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "monarch-butterfly-collapse__83fa7ef4fc",
+ "video_sha256": "83fa7ef4fc130fb47c33a0d2efa89d6f538adc3a74f6651614992c587b5c9d3c",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T06:49:31Z",
+ "grades": {
+  "dimensions": {
+   "hook": 1,
+   "data_demo": 2,
+   "mascot": 1,
+   "craft": 1,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All imagery is the channel's own vector art (tank, line, bubbles, scale with butterflies, butterfly wings in seg4:mid). There is no stock or AI photo."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "Data stands holding a pole inside an already-drained tank (hook@0.3 to seg0:end), holds his head beside a line (seg1:mid), sits on top of the 17% bubble (seg2:mid) and clings to the left edge (seg3:mid). Only seg4 gives him an action (sawing a wing), and that action illustrates a wrong comparison."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "Every beat has a visual form (tank, line, bubbles, scale, wing cut). None is just a number on a blob."
+   },
+   "dead_air": {
+    "present": true,
+    "evidence": "The tank frame is almost unchanged from hook@0.3 to seg0:end (about 3s), then dims through seg1:start. Measured held_s is 5.17 and max_dup_run is 41 at 3.67s, so the opening is effectively frozen for about 5s."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The frames use navy gradients with no large black dead area (dark_fraction 0.0). The tank in the hook does leave the top 60% of the frame empty, but it is not a void."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "In seg4:mid, payoff@-0.4 and seg4:end, Data's legs and saw sit on top of '\u221215 pts'. In seg3:start to seg3:end, Data's body covers the left edge of '95%' and 'Western route' at the frame edge. In hook@0.3, the four labels '2017 2.5 / 2020 2.1 / 2024 0.9 / 2013 0.7' are crammed into about 50px."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg4",
+   "index": 4,
+   "failure_class": "false_comparison_and_occlusion",
+   "visible_evidence": "seg4:mid shows 'Eastern route (since 1990s) 80% / was 95%' with '\u221215 pts'. That presents the western route's 95% as an earlier value of the eastern route, which is a fabricated change. Data's feet and saw also cover the '\u221215 pts' text, and he stands on a floating ladder next to a dashed box that has no meaning.",
+   "root_cause": "The closing compare template treated the two categories (western, eastern) as before/after values of one series and computed a delta between unrelated measures. The mascot anchor was placed over the delta label.",
+   "repair_goal": "Show the closing as the two routes side by side, or as one wing for the subject: a monarch wing shrinking to its remaining share (5% west, 20% east), with Data cutting it away himself. Remove the 'was 95%' / '\u221215 pts' delta and keep every label clear of the mascot."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "A generic tank that is already drained when the video starts, so the 18\u21920.9 loss never visibly happens. Labels are crammed and out of order."
+   },
+   {
+    "id": "seg1",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "A plain line chart of forest hectares with a circled 0.9."
+   },
+   {
+    "id": "seg2",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 2,
+    "note": "Bubbles sized by 17% and 94% show the growth, but the form is generic and has no soy or herbicide in it."
+   },
+   {
+    "id": "seg3",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 0,
+    "note": "A stock seesaw with butterfly icons. It tilts toward 80% even though 95% is the larger loss, and comparing two losses on a balance asserts nothing."
+   },
+   {
+    "id": "seg4",
+    "kind": "bespoke",
+    "bespoke": 2,
+    "proves_claim": 0,
+    "note": "Sawing a monarch wing is made of the subject, but the number it carries is a fabricated delta between the two routes."
+   }
+  ],
+  "one_line": "The opening tank is frozen and already empty, three middle beats are stock charts and machines, and the closer presents a fabricated '95%\u219280%, \u221215 pts' change between two different routes, with text covered by the mascot.",
+  "problems": [
+   "The hook shows a static, already-drained tank for about 5s, so nothing happens in the first seconds.",
+   "The hook line 'Your garden vanished 94% of monarch milkweed' is garbled and mixes the herbicide stat with milkweed.",
+   "Tank labels are crammed into about 50px and ordered 2017/2020/2024/2013.",
+   "seg1 is a plain line chart and seg2 is plain bubbles, with Data posing beside or on top of them.",
+   "On the seg3 scale the arm drops toward 80% even though 95% is the larger loss, and Data covers the Western label at the frame edge.",
+   "seg4 claims the eastern route 'was 95%' and dropped '\u221215 pts', which is false (it is the western figure), and Data's legs cover the '\u221215 pts' text."
+  ],
+  "fixes": [
+   "Open on the forest actually shrinking: 18.2 ha of fir canopy draining to 0.9 while Data cuts or carries it away, so the motion is visible from frame 1.",
+   "Rewrite the hook to a coherent claim, for example 'Monarchs lost 95% of their winter forest'.",
+   "Make seg2 bespoke: a field of soybean rows turning herbicide-resistant from 17% to 94%, with Data spraying it.",
+   "Replace the balance with two migrating swarms thinning to 5% and 20% of their size.",
+   "Remove the cross-route delta in seg4 and keep labels clear of the mascot's anchor."
+  ]
+ }
+}

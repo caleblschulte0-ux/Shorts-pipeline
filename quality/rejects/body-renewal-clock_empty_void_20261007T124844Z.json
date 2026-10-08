@@ -1,0 +1,21 @@
+{
+ "slug": "body-renewal-clock",
+ "ts": "20261007T124844Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.8 through seg0:end: the bottom ~55% of the frame under the skeleton is empty navy with one small cell icon.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable_collision",
+  "visible_evidence": "seg1:start stacks three day-labels and three tissue names on top of each other ('120 d28 d5 days'). seg1:mid/end put the 5-day and 28-day bubbles on top of each other with Data standing on them. The giant 3,650-day disc fills the middle as a plain bubble chart.",
+  "root_cause": "The tissue items are laid out by value on a scale where 5, 28 and 120 days all collapse together next to 3,650. Labels are placed without collision measurement, and the mascot is anchored over the smallest items.",
+  "repair_goal": "Replace the bubble chart with a renewal clock built from the tissues themselves: stomach lining, skin, blood and bone, each rebuilding on its own lap, with Data turning the clock hand so the fast tissues visibly cycle many times while bone barely moves. Space the labels by measured extents so none overlap, and keep Data off every label."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "bubbles",
+   "perf": "get_buried"
+  }
+ },
+ "scenes": []
+}

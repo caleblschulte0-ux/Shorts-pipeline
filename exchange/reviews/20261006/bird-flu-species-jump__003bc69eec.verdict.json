@@ -1,0 +1,106 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "bird-flu-species-jump__003bc69eec",
+ "video_sha256": "003bc69eecb5efc7371467c355c5311616b07fa4ffc5b9cb2dc0ed7b02eda883",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T04:48:32Z",
+ "grades": {
+  "dimensions": {
+   "hook": 1,
+   "data_demo": 1,
+   "mascot": 1,
+   "craft": 1,
+   "pace": 1,
+   "payoff": 0
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "No photos or AI images. Every frame (hook@0.3 to payoff@-0.4) is flat vector chart art plus the mascot."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "In seg0:start and seg0:end Data slides along the timeline with his hands on his head. In seg1:mid he floats over the 2024 bar, and in seg3:start-end and seg4 he perches on top of the 41 bubble. He never makes a bar grow or a bubble swell."
+   },
+   "bare_number_card": {
+    "present": true,
+    "evidence": "seg3:start through seg4:end is just two circles reading 41 and 26 on an empty gradient. It is a bubble chart with nothing being demonstrated."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Measured longest_static_s is 0.0 and max_dup_run is 12, so nothing holds for 4s. The bars grow (seg1) and the bubbles inflate (seg3)."
+   },
+   "empty_void": {
+    "present": true,
+    "evidence": "In seg3:start the top ~40% of the frame between the headline and the bubbles is empty dark gradient. The 41 and 26 discs and their labels float in a mostly empty frame, and the hook's top half is empty above the timeline too."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "In seg2:mid the 738 value label inside the California bar is crowded by Data's body. In seg2:end the 738 is overlapped by a cyan ring and reads garbled ('73B'). In seg4:end the 41 is partly covered by the ring outline."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg3",
+   "index": 3,
+   "failure_class": "bare_number_card",
+   "visible_evidence": "seg3:start-end shows two plain circles labelled 41 (dairy cow exposure) and 26 (poultry exposure), with Data standing on top of the 41 circle with his hands on his head, on an otherwise empty dark frame.",
+   "root_cause": "The species-jump claim (the virus moved from birds to cows to people) is drawn as a generic proportional bubble chart. The picture has nothing about cows, birds or people, and the mascot only perches.",
+   "repair_goal": "Draw the transmission itself. A cow barn on one side and a poultry coop on the other, with 41 and 26 human figures walking out of each, so the cow side visibly outnumbers the bird side. Data should be the one leading or herding each person out, so his action produces the count."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "Timeline bars ramping up from 58M to 206M. Data rides the cursor but it is still a bar chart."
+   },
+   {
+    "id": "seg1",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "Horizontal bars by year. The 2026 bar is yellow and the rest are muted, with no bird imagery."
+   },
+   {
+    "id": "seg2",
+    "kind": "chart",
+    "bespoke": 1,
+    "proves_claim": 2,
+    "note": "US map with California highlighted plus a ranked bar list. The bar gap (738 vs 64) reads clearly but it is a stock map-plus-bars layout."
+   },
+   {
+    "id": "seg3",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "Two proportional bubbles, 41 vs 26. Nothing about cows or people."
+   },
+   {
+    "id": "seg4",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "The same bubbles reused under the closing line. No new picture for the payoff."
+   }
+  ],
+  "one_line": "This is a deck of four stock charts (timeline, bars, map-plus-bars, bubbles) with Data parked on top of them, and nothing shows a virus jumping from birds to cows to people.",
+  "problems": [
+   "Hook: the opening is a slow bar build at 58M with the caption 'Your town'. Nothing happens to grab attention in the first second, and the 'your town' framing never gets a picture.",
+   "seg0/seg1 show the same data twice: 58M to 206M as a timeline, then again as horizontal bars, so the story wastes ~8s retelling one number.",
+   "Mascot: in every scene he stands or slides with his hands on his head, or perches on a mark. He causes nothing.",
+   "seg2: the 738 label inside the bar is crowded by Data, and in seg2:end a cyan ring overlaps it and makes it garbled.",
+   "Title labels read 'Bird dairy herds' and 'Bird human cases', which are awkward and confusing.",
+   "seg3/seg4: a bare bubble chart in an empty frame, and the closing reuses it with no payoff image.",
+   "The video's own premise (species jumping from birds to cows to humans) is never drawn."
+  ],
+  "fixes": [
+   "Open on motion: birds dropping out of a flock that keeps thinning, or a town-sized pile growing to 206M, with Data shovelling or stacking it from the first frame.",
+   "Merge seg0 and seg1 into one escalating scene and spend the saved time on the species jump.",
+   "seg2: make California's 738 a field of tiny herd icons filling the state, with Data stamping them in. Move his anchor off the value label and drop the ring that overlaps the text.",
+   "seg3: show people leaving a cow barn (41) versus a coop (26), with Data leading them out.",
+   "Rewrite the scene headers to plain English: 'Infected dairy herds', 'Human cases by source'.",
+   "Closing: show the chain bird to cow to human visually as the payoff, not the leftover bubbles."
+  ]
+ }
+}

@@ -1,0 +1,60 @@
+{
+  "format": "graph_race",
+  "slug": "doordash-passed-grubhub",
+  "title": "DoorDash Passed Grubhub In One Year",
+  "hook": "Dinner changed apps fast.",
+  "y_label": "U.S. meal-delivery spending share (%)",
+  "duration": 13,
+  "source": "Bloomberg Second Measure and Earnest Analytics U.S. delivery-aggregator transaction panels, 2018-2024; annual figures are rounded snapshots.",
+  "years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "series": [
+    {
+      "name": "DoorDash",
+      "color": "#FF3008",
+      "icon": "DoorDash",
+      "values": [
+        15,
+        34,
+        48,
+        55,
+        59,
+        65,
+        67
+      ]
+    },
+    {
+      "name": "Grubhub",
+      "color": "#F63440",
+      "icon": "Grubhub",
+      "values": [
+        38,
+        23,
+        18,
+        16,
+        14,
+        9,
+        8
+      ]
+    }
+  ],
+  "hashtags": [
+    "doordash",
+    "grubhub",
+    "fooddelivery",
+    "takeout",
+    "deliveryapps",
+    "business",
+    "data",
+    "shorts"
+  ],
+  "music_vibe": "hiphop",
+  "_authored_by": "chatgpt-takeover"
+}

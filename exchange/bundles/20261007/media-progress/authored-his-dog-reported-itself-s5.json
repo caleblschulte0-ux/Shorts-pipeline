@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261007",
+  "bundle": {
+    "identity": "5842fff9571549d0ff5bb5e5fb169212d899a423ff5c7714495ba9692762817d",
+    "path": "exchange/bundles/20261007/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily_producer",
+  "verified_at": "2026-10-07T11:35:02.819Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-his-dog-reported-itself-s5",
+  "safe_request_id": "authored-his-dog-reported-itself-s5",
+  "prompt_sha256": "d66ad0d9717c0d7211f78c86d48eb25da1fcf6bbab8ccf1b9dd355cc87abd40e",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: two violation notices in homeowner hands. It accompanies the narration: \"issued him two violations\" Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "10FIFkFzEHVWBqDr-Od9z9dlP_JN0W48N",
+    "filename": "20261007__authored-his-dog-reported-itself-s5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=10FIFkFzEHVWBqDr-Od9z9dlP_JN0W48N",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "2727eb1b610187fc4b6bc38883635390ef8095bd3e15c50c7366e97fc5b4edea",
+    "bytes": 2218103,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "his-dog-reported-itself",
+  "shot_index": 5,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}

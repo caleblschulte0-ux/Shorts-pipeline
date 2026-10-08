@@ -1,0 +1,33 @@
+{
+  "key": "wetland_loss_by_region",
+  "title": "Wetland area lost since 1970, by region",
+  "unit": "percent",
+  "geography": "World, by region",
+  "time_coverage": "1970-2020 (approximate)",
+  "source": {
+    "name": "Global Wetland Outlook",
+    "publisher": "Ramsar Convention on Wetlands",
+    "url": "https://www.global-wetland-outlook.ramsar.org",
+    "officiality": "secondary",
+    "access_date": "2026-10-08"
+  },
+  "notes": "Approximate regional breakdown; Ramsar's Global Wetland Outlook notes Europe has historically lost the largest share of its wetlands, with Africa and the Americas losing roughly half that share since 1970.",
+  "points": [
+    {
+      "label": "Europe",
+      "value": 50
+    },
+    {
+      "label": "Asia",
+      "value": 32
+    },
+    {
+      "label": "Africa",
+      "value": 25
+    },
+    {
+      "label": "Americas",
+      "value": 23
+    }
+  ]
+}

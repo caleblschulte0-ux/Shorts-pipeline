@@ -1,0 +1,33 @@
+{
+ "checked_at": "2026-10-08T20:41:00+00:00",
+ "date": "20261007",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20261007/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "STARTED.json",
+  "authored-his-dog-reported-itself-s0.json",
+  "authored-his-dog-reported-itself-s1.json",
+  "authored-his-dog-reported-itself-s2.json",
+  "authored-his-dog-reported-itself-s3.json",
+  "authored-his-dog-reported-itself-s4.json",
+  "authored-his-dog-reported-itself-s5.json",
+  "authored-pickup-line-rule-backfired-s0.json",
+  "authored-pickup-line-rule-backfired-s1.json",
+  "authored-pickup-line-rule-backfired-s2.json",
+  "authored-pickup-line-rule-backfired-s3.json",
+  "authored-pickup-line-rule-backfired-s4.json",
+  "authored-pickup-line-rule-backfired-s5.json"
+ ],
+ "headline": "media: not_required",
+ "ok": true,
+ "required": false,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "not_required",
+ "task": "media",
+ "why_required": "the bundle asks for 0 images"
+}

@@ -1,0 +1,104 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "freshwater-accessible__22d7430030",
+ "video_sha256": "22d7430030440f87827a560dc2a95ebe1e8b6600d01e95aa629d2038fd7514ed",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-07T09:49:01Z",
+ "grades": {
+  "dimensions": {
+   "hook": 1,
+   "data_demo": 1,
+   "mascot": 1,
+   "craft": 1,
+   "pace": 1,
+   "payoff": 0
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "No stock or AI photos anywhere. The wave and tap icons in hook@0.3 and the waves in seg4:mid are flat clip-art, but they fit the topic."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "In hook@0.3\u2013seg0:end Data only stands on top of the wave icon. In seg1:mid/end he floats beside the 96.5% bar, in seg2:start/end he hangs beside the stacked bar, and in seg3:start\u2013end he perches on the pie. He causes none of the motion. Only in seg4:mid does he hold a pole by the scale, and the pole does nothing."
+   },
+   "bare_number_card": {
+    "present": true,
+    "evidence": "seg3:mid/end is a single disc reading '100.0%' with '0.0%' floating to its right. That is a number on a blob, and it shows nothing."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Measured longest_static_s is 0.0. The longest held run is 4.08s at about 4.4s, inside seg0, where the only change is the wave sliding left. That is borderline but not a full freeze."
+   },
+   "empty_void": {
+    "present": true,
+    "evidence": "In hook@0.3\u2013seg0:end the bottom third of the frame, below the tap row, is empty dark space. In seg1:start nearly the whole top half is empty grid. In seg3:start a small disc sits in a mostly empty frame."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "In seg4:start the left pan label 'Locked away (oceans, ice, deep groundwater)' is printed over itself and covered by Data ('ice, deep' is garbled). In seg4:mid\u2013end Data covers the 'L' of 'Locked'. In seg2:start the stacked-bar labels 'Glaciers & ice caps 69%' and 'Groundwater 30%' are too faint to read. The seg3 eyebrow is cut off at 'GROUNDWATER\u2026'."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg3",
+   "index": 3,
+   "failure_class": "bare_number_card",
+   "visible_evidence": "seg3:start\u2013end shows a plain blue disc labelled '100.0%' 'Locked away', with '0.0% Rivers & lakes (accessible)' as floating text. The narration says 0.007%, so the picture says the accessible share is literally zero and draws nothing for it.",
+   "root_cause": "A share/donut chart was used for a 0.007% slice. Rounding to one decimal place turns the payoff number into 0.0%, and the tiny part is not drawn at all. The claim needs a scale change, not a pie.",
+   "repair_goal": "Show 0.007% physically. Start from a huge body of water (a full Earth-sized tank or ocean), have Data scoop or pour out just one drop or one teaspoon into a glass, and zoom in until that drop is visible. Label it '0.007%' and never '0.0%'. Data should do the pouring, so he causes the motion."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 0,
+    "note": "A wave icon and a tap icon in rows with percentage labels. The wave only slides sideways, and the icon sizes do not show 96.5 vs 3.5."
+   },
+   {
+    "id": "seg1",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "A two-bar chart, 96.5% vs a stub for 3.5%. It reads, but it is a plain bar chart."
+   },
+   {
+    "id": "seg2",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "A stacked bar of where freshwater sits. It is a chart with no ice or ground in it."
+   },
+   {
+    "id": "seg3",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "A pie showing 100.0% vs 0.0%. It contradicts the 0.007% claim and draws no slice."
+   },
+   {
+    "id": "seg4",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "A stock balance scale with wave icons stacking on one pan. The tilt reads as an imbalance, but the scale could hold any subject and the label still says 0.0%."
+   }
+  ],
+  "one_line": "The headline number, 0.007%, is never shown. The payoff scene draws it as '0.0%' on a plain pie, and the other scenes are stock charts with Data standing beside them.",
+  "problems": [
+   "seg3 rounds the 0.007% payoff to '0.0%' and draws a 100.0% disc. The picture contradicts the narration and the title.",
+   "The hook (hook@0.3\u2013seg0:end) is a static icon chart, and the only motion is the wave sliding sideways. Nothing happens to 'your coffee'.",
+   "Data is decorative throughout. He stands on a wave, floats beside bars and sits on a pie, and causes none of the data's motion.",
+   "seg1 and seg2 are standard bar and stacked-bar charts with no ice, ocean or ground in them.",
+   "The seg4 labels overlap each other and Data covers them ('Locked away (oceans, ice, deep' is garbled at seg4:start). The scale also says 0.0%.",
+   "There is large empty space in the hook frames and in seg1:start and seg3:start."
+  ],
+  "fixes": [
+   "Rebuild seg3 as a scale reveal: a full ocean tank, then Data pours out a single drop into a glass, then a zoom shows the drop labelled 0.007%. Format small shares with enough decimal places that they never show as 0.0%.",
+   "Open the hook on a coffee mug draining or being snatched away while '0.007%' lands, with motion from frame 1.",
+   "seg1: show Data hauling salt into a huge ocean tank next to a small freshwater jug. seg2: show Data swinging a pick at a giant ice block (68.7%) and digging down to groundwater (30.1%), each part sized by its share.",
+   "Lay out the seg4 labels so nothing overlaps, keep Data clear of the text, and make the right pan hold a visible drop marked 0.007%.",
+   "Fill the frame. Make the hero object big and drop the empty grid areas."
+  ]
+ }
+}

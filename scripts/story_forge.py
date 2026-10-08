@@ -708,17 +708,20 @@ def _words_that_clear_the_bar(dss: list[dict]) -> tuple[dict, str]:
             m = bm.check(str(say), vals, ds.get("unit", ""))
             if not m["ok"]:
                 reasons.append(f"say[{i}]: {m['why']}")
-        # THE HOOK HAS TO HIT (operator, 2026-09-25). Scored by the same
-        # doctrine the renderer sharpens against, so a story is not banked
-        # with a hook the render will only have to rewrite.
+        # THE HOOK HAS TO HIT (operator, 2026-09-25) and sound like a person
+        # said it (2026-10-08: "our word hooks are trash"). Only what code
+        # can see is refused here — a quiz, a hedge, a vague size, a formula
+        # tag; whether it would stop a thumb is the listener's call at render
+        # time (`hook_doctrine.sharpen`). This used to refuse any hook a
+        # keyword score put under 7, which is what taught the forge to staple
+        # "your" and "vanished" onto everything.
         try:
             from shared import hook_doctrine as _hd
-            _p = _hd.punch(w.get("hook", ""))
-            if _p["score"] < _hd.BAR:
-                reasons.append(f"hook: too soft (punch {_p['score']}/10: "
-                               f"{', '.join(_p['notes'][-3:])}) — make the "
-                               "viewer the one it happens to, lead with the "
-                               "shock, one number from the data")
+            _why = _hd.floor(w.get("hook", ""))
+            if _why:
+                reasons.append(f"hook: {'; '.join(_why)} — say the most "
+                               "surprising true fact in this story the way "
+                               "a person would say it to a friend")
         except Exception:  # noqa: BLE001
             pass
         # PACE (operator, 2026-10-05: "15 seconds per beat is far too long").

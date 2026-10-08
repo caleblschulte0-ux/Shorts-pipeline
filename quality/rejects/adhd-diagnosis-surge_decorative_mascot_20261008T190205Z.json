@@ -1,0 +1,16 @@
+{
+ "slug": "adhd-diagnosis-surge",
+ "ts": "20261008T190205Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg3:start, seg3:mid and seg3:end Data just perches on top of the 53.6% circle doing the same small shuffle. In seg2:mid two copies of Data stand beside 8% and 15% and do nothing with the numbers. In seg0:mid he points from a ladder at a bar that has already grown.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "Two plain circles labelled 53.6% and 46.4%, with Data perched on top of the yellow one doing nothing. The white 53.6% text barely shows against the pale yellow fill (seg3:start, seg3:mid).",
+  "root_cause": "The 'share' relationship fell back to a two-bubble chart that has no physical metaphor for kids going without treatment, and the mascot was placed as decoration rather than as the cause.",
+  "repair_goal": "Show the treatment gap physically: a line of diagnosed kids, with Data handing out medicine and running out about halfway, so the untreated 46.4% are visibly left empty-handed. Put the one number in dark ink, clear of Data, and fill the frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

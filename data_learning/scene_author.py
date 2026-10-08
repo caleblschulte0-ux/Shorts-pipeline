@@ -66,14 +66,21 @@ def _remaining() -> float:
 KIT_NAMES = ("vgrad", "glow", "text", "fit_readout", "by_time", "tree", "stump",
              "cow", "truck", "sack", "cup", "steam", "birds",
              "dawn_sky", "cafe", "rowhouse", "street", "traffic",
-             "heat_shimmer", "shape_path", "stride", "walk", "step_through", "landed", "STEP_BOB", "PACE_PERIOD", "EDGE", "clamp", "ease", "pop",
+             "heat_shimmer", "shape_path", "stride", "walk", "step_through", "landed", "READOUT_SHOWS", "STEP_BOB", "PACE_PERIOD", "EDGE", "clamp", "ease", "pop",
              "seg", "W", "H", "P", "_c", "scar_path", "SCAR", "FOREST_Y",
              "STREET_Y", "_TREES", "forest_floor", "FRANCE",
              # THE LIGHT (2026-10-05, "the art in general on the B clips
              # needs to be better"): one key light, lit face to shadow face,
              # a rim, an edge, a contact shadow — illustrated.py
              "solid", "box", "cylinder", "disc", "contact_shadow", "haze",
-             "vignette", "edge", "KEY", "FINISHES")
+             "vignette", "edge", "KEY", "FINISHES",
+             # THE SHOT (2026-10-07, "ok now we are talking"): a low sun,
+             # far-to-near depth, a three-quarter hero, things by the camera
+             "landscape", "foreground", "building", "cast_shadow", "ridge",
+             "treeline", "hen", "SUN", "SETTINGS", "heap_path", "heap_top", "bottle", "PLASTIC",
+             # THE SCALE IN THE SHOT (2026-10-07, "boxes on top of the video
+             # doesn't help ... glance at it and gauge the scale")
+             "then_mark", "ghost", "times_ticks")
 SAFE_BUILTINS = {n: __builtins__[n] if isinstance(__builtins__, dict)
                  else getattr(__builtins__, n)
                  for n in ("range", "len", "min", "max", "abs", "int", "float",
@@ -135,7 +142,27 @@ def compile_scene(code: str):
     if not callable(fn):
         raise Refused("scene is not callable")
     fn.__name__ = "brain_scene"
+    fn.__scene_code__ = code
     return fn
+
+
+def crash_at(fn, e: BaseException) -> str:
+    """Where in the brain's own code `e` was raised: " (line N: `src`)".
+
+    "ValueError: too many values to unpack (expected 2)" was attempt 1 of
+    most brain drafts for a fortnight (2026-10-04..06) and the redraw was
+    told nothing else, so attempt 2 guessed again. With the line it can see
+    it unpacked `text()`'s four-number box into two names."""
+    import traceback
+    code = getattr(fn, "__scene_code__", "") or ""
+    frames = [f for f in traceback.extract_tb(e.__traceback__)
+              if f.filename == "<brain scene>"]
+    if not frames:
+        return ""
+    n = frames[-1].lineno or 0
+    lines = code.splitlines()
+    src = lines[n - 1].strip()[:120] if 0 < n <= len(lines) else ""
+    return f" (line {n}: `{src}`)" if src else f" (line {n})"
 
 
 # --------------------------------------------- what the scene says it shows
@@ -219,7 +246,12 @@ is missing that would ('no lid detail or handles')>",
 moving between the frames, in 1-4 words — what it LOOKS like, not what it \
 might stand for; 'nothing' if none>",
  "change": "<what happens between the first frame and the second, one \
-sentence>"}}"""
+sentence>",
+ "how_much": "<how big that change LOOKS: 'none', 'barely' (you had to \
+compare closely), 'clear' or 'dramatic'>",
+ "shot": "<'a place' if it is somewhere you could stand, with ground, light \
+and near-and-far depth; 'a diagram' if it is an object shown front-on \
+against a backdrop>"}}"""
 
 _JUDGE = """A viewer saw two frames of an animated scene with every word \
 and the mascot removed, and described it unaided:
@@ -317,7 +349,8 @@ def glance(fn, pts, log=print) -> list[str]:
         try:
             frames = glance_frames(fn, pts, td)
         except Exception as e:  # noqa: BLE001
-            return [f"crashed while rendering the glance frames: {e}"]
+            return [f"crashed while rendering the glance frames: {e}"
+                    f"{crash_at(fn, e)}"]
         listing = "\n".join(f"- at {int(u * 100)}% of the beat: {p}"
                              for u, p in zip(GLANCE_AT, frames))
         seen = ask_glance(_LOOK.format(listing=listing), frames)
@@ -329,6 +362,8 @@ def glance(fn, pts, log=print) -> list[str]:
     chg = str(seen.get("change") or "?").strip()
     frm = str(seen.get("object_from") or "").strip().lower()
     tells = str(seen.get("tells") or "").strip()
+    much = str(seen.get("how_much") or "").strip().lower()
+    shot = str(seen.get("shot") or "").strip().lower()
     ans = ask_glance(_JUDGE.format(object=obj, substance=sub, change=chg,
                                    hero=decl["HERO"], substance_said=decl["SUBSTANCE"],
                                    cause=decl["CAUSE"]), [])
@@ -355,6 +390,16 @@ def glance(fn, pts, log=print) -> list[str]:
                         f"— a material keeps its own colour and form (ash is grey "
                         f"dust, fire is flame, water is blue); the accent marks "
                         f"the share, it never recolours the stuff. {why}".rstrip())
+    if much in ("none", "barely"):
+        problems.append(f"a viewer saw the change as {much!r} ({chg!r}) — the "
+                        f"thing that moves must change BIG enough to see at a "
+                        f"glance; draw what piles up, empties or spreads until "
+                        f"it is large, not an object that barely differs")
+    if "diagram" in shot:
+        problems.append("a viewer called it a diagram, not a place — an object "
+                        "front-on on a backdrop; build the SETTING around it "
+                        "with near-and-far depth, three-quarter view and "
+                        "something by the camera (rule 13)")
     if ans.get("cause_makes_sense") is False:
         problems.append(f"{decl['CAUSE']!r} could not cause what a viewer saw "
                         f"({chg!r}) — Data's act must be the one that would really "
@@ -548,13 +593,26 @@ def motion_profile(fn, pts, fps: int = 24, secs: float = 6.8) -> dict:
         return out + ([r] if r else [])
     still = [d < sr.BLOCK_MOTION_THRESH for d in diffs]
     pairs = max(1, len(diffs))
+    # WHERE it is still, in the scene's own u. "still 52%" alone left the
+    # brain guessing, and two of three drafts on 2026-10-07 came back still
+    # again (47-52%) on attempt 2 and 3.
+    spans, start = [], None
+    for i, f_ in enumerate(still + [False]):
+        if f_ and start is None:
+            start = i
+        elif not f_ and start is not None:
+            spans.append((start / pairs, i / pairs))
+            start = None
+    spans.sort(key=lambda s: s[0] - s[1])
     return {"judder": sr.judder_pairs(diffs) / pairs,
             "max_hold_s": max(_runs(still), default=0) / float(fps),
-            "still": sum(still) / pairs}
+            "still": sum(still) / pairs,
+            "still_spans": [s for s in spans if s[1] - s[0] >= 0.03][:4]}
 
 
-def motion_problems(fn, pts, secs: float = 10.0) -> list[str]:
-    m = motion_profile(fn, pts, secs=secs)
+def motion_problems(fn, pts, secs: float | None = None) -> list[str]:
+    # a beat's REAL length (SCENE_SECS), not the 10s it was once assumed to be
+    m = motion_profile(fn, pts, secs=SCENE_SECS["beat"] if secs is None else secs)
     out = []
     if m["judder"] > MAX_JUDDER:
         out.append(f"it judders: {m['judder']:.0%} of frames are 1-3-frame stalls "
@@ -563,8 +621,20 @@ def motion_problems(fn, pts, secs: float = 10.0) -> list[str]:
         out.append(f"it freezes for {m['max_hold_s']:.1f}s (allowed {MAX_HOLD_S}s) — "
                    f"a hold is fine, a frozen stretch is not")
     if m["still"] > MAX_STILL:
+        where = ", ".join(f"u {a:.2f}-{b:.2f}" for a, b in sorted(m["still_spans"]))
+        if sum(b - a for a, b in m["still_spans"]) < m["still"] * 0.6:
+            # most of the stillness is in short gaps all through the beat:
+            # the motion is there but too slow to register
+            where = (where + "; and in short gaps all through it — what moves "
+                     "moves too slowly or too small to register (a 90x160px "
+                     "cell has to change by 6+ grey levels a frame), so move "
+                     "bigger things further, less often").lstrip("; ")
         out.append(f"it is still {m['still']:.0%} of the time (allowed "
-                   f"{MAX_STILL:.0%}) — the story has to keep arriving")
+                   f"{MAX_STILL:.0%}) — the story has to keep arriving"
+                   + (f"; too little moves at {where}: give each of those "
+                      f"stretches a move of the subject itself (the next "
+                      f"step starting, the thing settling, Data's next act)"
+                      if where else ""))
     return out
 
 
@@ -705,11 +775,84 @@ def craft_problems(fn, pts, at=(0.3, 0.85)) -> list[str]:
 #: to register" (Amazon, 2026-09-23).
 MIN_DWELL_S = 0.7
 
+#: Operator, 2026-10-07, of a bone-loss scene with -1.5%, 1% and 1.5x stacked
+#: beside the bone (the plastic pile beside it, one number and its x2.9, was
+#: the one he liked): a viewer glances. Text at or above HEADLINE_PX with a
+#: digit in it is a headline number; no frame shows more than MAX_HEADLINES.
+HEADLINE_PX = 64
+MAX_HEADLINES = 2
 
-def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
+
+#: Operator, 2026-10-07, of the bird flu closing: "the picket fence at the
+#: end is already hard to understand, then we only have it on screen for like
+#: a second ... it's like whiplash, I didn't even have time to process." Its
+#: last number landed at 80% of a 4-second scene, so the finished picture was
+#: up for 0.8s before the video ended. Not longer beats: an EARLIER payoff.
+#: Every number a scene ends on must be up, unbroken, from PAYOFF_BY of the
+#: beat — or earlier, so it holds READ_S seconds — to the end. The world may
+#: keep moving after that; the story may not.
+PAYOFF_BY = 0.6
+READ_S = 1.8
+
+
+def land_by(secs: float | None = None) -> float:
+    """The u by which a ~`secs` scene must have its whole payoff up."""
+    secs = SCENE_SECS["beat"] if secs is None else secs
+    return min(PAYOFF_BY, 1.0 - READ_S / max(secs, READ_S + 0.1))
+
+
+def payoff_problems(fn, pts, secs: float | None = None) -> list[str]:
+    """The scene's FINISHED picture lands too late to be read: a number it
+    ends on first appears (and stays) after `land_by` of the beat."""
+    import cairo
+    secs = SCENE_SECS["beat"] if secs is None else secs
+    by = land_by(secs)
+    real = SS.text
+    real_ro = SS.fit_readout
+    g = fn.__globals__
+    frames = []
+
+    def spy(cr, s, *a, **k):
+        box = real(cr, s, *a, **k)
+        alpha = k.get("alpha", a[6] if len(a) > 6 else 1.0)
+        if box and re.search(r"\d", str(s)) and (alpha or 0) > 0.3:
+            frames[-1].add(str(s))
+        return box
+    surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, SS.W, SS.H)
+    try:
+        g["text"], SS.text = spy, spy
+        g["fit_readout"] = real_ro
+        for k in range(41):
+            frames.append(set())
+            fn(cairo.Context(surf), 3.0 + k / 40 * 10, k / 40, pts,
+               lambda *a, **kw: None)
+    finally:
+        g["text"], SS.text = real, real
+    last = frames[-1]
+    late = []
+    for t_ in last:
+        k = 40
+        while k > 0 and t_ in frames[k - 1]:
+            k -= 1
+        if k / 40 > by + 1e-9:
+            late.append((k / 40, t_))
+    if not late:
+        return []
+    u_, t_ = max(late)
+    return [f"its last number {t_!r} only lands at u={u_:.2f} and the scene "
+            f"ends at u=1 — about {(1 - u_) * secs:.1f}s of a ~{secs:.0f}s "
+            f"beat to read the finished picture. Land the WHOLE payoff (every "
+            f"number it ends on, the end state of the hero) by u={by:.2f} "
+            f"and HOLD it; after that keep the world moving (Data, birds, "
+            f"steam, light), never the story"]
+
+
+def verify(fn, pts, say: str = "", secs: float | None = None) -> list[str]:
     """Every check a teacher scene passes. Empty list = usable. `say` is the
     beat's narration: a number the story itself states ("the 1930s") may be
-    printed; the editorial gate has already held the narration to the data."""
+    printed; the editorial gate has already held the narration to the data.
+    `secs` is how long the scene is on screen; a beat's by default."""
+    secs = SCENE_SECS["beat"] if secs is None else secs
     import cairo
     import numpy as np
     from PIL import Image
@@ -731,6 +874,11 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
     overlaps = []
     covered = []                       # text Data is drawn on top of
 
+    bodies = []                        # Data's body in THIS frame, once drawn
+    on_data = []                       # text drawn AFTER him, over him
+    crowded = []                       # (frame u, headline numbers in it)
+    heads = []                         # headline numbers visible in THIS frame
+
     def spy(cr, s, *a, **k):
         texts.append(str(s))
         if len(a) >= 2 and isinstance(a[1], (int, float)) and a[1] > CAPTION_Y:
@@ -742,10 +890,19 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
                 if _overlap(box, ob) > 0.15:
                     overlaps.append((other, str(s)))
             boxes.append((str(s), box))
+            for body in bodies:
+                if _covered(box, body) > 0.25:
+                    on_data.append(str(s))
+            size = a[2] if len(a) > 2 else k.get("size", 0)
+            if (isinstance(size, (int, float)) and size >= HEADLINE_PX
+                    and re.search(r"\d", str(s))):
+                heads.append(str(s))
         return box
 
     def run(rows, u, record=True):
         boxes.clear()
+        bodies.clear()
+        heads.clear()
         cr = cairo.Context(surf)
         # Spy on the kit too: a number printed through fit_readout or any
         # other helper is still a number on screen.
@@ -762,8 +919,11 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
             for t_, b_ in boxes:              # text drawn BEFORE him, under him
                 if _covered(b_, body) > 0.25:
                     covered.append(t_)
+            bodies.append(body)
         try:
             fn(cr, 3.0 + u * 10, u, rows, host)
+            if record and len(set(heads)) > MAX_HEADLINES:
+                crowded.append((u, list(dict.fromkeys(heads))))
         finally:
             fn.__globals__["text"] = real
             SS.text = real
@@ -785,7 +945,7 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
                 shown[t_] = max(shown.get(t_, 0), c)
         final = list(texts)
     except Exception as e:  # noqa: BLE001
-        return [f"crashed: {type(e).__name__}: {str(e)[:160]}"]
+        return [f"crashed: {type(e).__name__}: {str(e)[:160]}{crash_at(fn, e)}"]
     problems += declaration_problems(fn)
     if not declaration_problems(fn):
         problems += tool_problems(fn, pts, declared(fn))
@@ -796,6 +956,7 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
     if len(hosts) < 11:
         problems.append("Data is missing from a frame (host not called)")
     problems += bit_problems(fn, pts)
+    problems += payoff_problems(fn, pts, secs)
     brief_ = [t_ for t_, c in shown.items() if c / 40 * secs < MIN_DWELL_S]
     if brief_:
         problems.append(f"shows {brief_[0]!r} for under {MIN_DWELL_S}s of a "
@@ -808,6 +969,16 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
         problems.append(f"Data is drawn over {covered[0]!r} — he stands in front "
                         f"of text drawn before him; draw the text after him or "
                         f"keep him clear of it")
+    if on_data:
+        problems.append(f"prints {on_data[0]!r} over Data — a label drawn on top "
+                        f"of him hides him and neither reads; put it where he "
+                        f"is not")
+    if crowded:
+        u_, hs = crowded[0]
+        problems.append(f"shows {len(hs)} big numbers at once at u={u_:.2f} "
+                        f"({', '.join(map(repr, hs))}) — a viewer glances, they "
+                        f"do not read a table; at most {MAX_HEADLINES} big "
+                        f"numbers on screen, and let the PICTURE carry the rest")
     if overlaps:
         a_, b_ = overlaps[0]
         problems.append(f"prints {b_!r} over {a_!r} — two pieces of text overlap "
@@ -847,7 +1018,7 @@ def verify(fn, pts, say: str = "", secs: float = 10.0) -> list[str]:
     try:
         run(list(reversed(pts)), 1.0)
     except Exception as e:  # noqa: BLE001
-        return problems + [f"crashed on reversed data: {e}"]
+        return problems + [f"crashed on reversed data: {e}{crash_at(fn, e)}"]
     if sorted(t for t in final if re.search(r"\d", t)) != \
             sorted(t for t in texts if re.search(r"\d", t)):
         problems.append("the numbers change when the data's order changes")
@@ -899,7 +1070,13 @@ frame, height 180-240.
 moves: the subject changes, arrives, falls, fills — then HOLDS a beat so it \
 can be read — then the next thing happens. Holds of up to ~1.5s are good; \
 nothing may freeze longer than that, and the scene must not be mostly \
-still. Keep speeds calm enough to follow (things crossing the frame take \
+still: BUDGET IT so something of the subject is moving at least 60% of \
+the beat — each change takes longer than the hold after it, and the first \
+change starts within the first second. HOW IT IS MEASURED: the frame is \
+cut into a 12x12 grid (cells ~90x160px) and a frame counts as moving only \
+when some cell's average grey level changes by 6+ from the frame before — \
+so a big, contrasty thing travelling several px a frame counts, and a \
+small, pale or slow one does not. Keep speeds calm enough to follow (things crossing the frame take \
 a second or more; nothing flickers back and forth). NEVER draw a particle \
 overlay — no snow, dust, motes, sparkles, bokeh or rain drifting across the \
 frame: it reads as a glitch on every second of the video. Data stands where \
@@ -950,6 +1127,35 @@ vignette() last, before the text. Build the hero from several lit pieces \
 silhouette. A frame whose hero band holds more than {flat_max} of large exact \
 flat colour is MEASURED and refused as clip art — a gold pile of identical flat ellipses, \
 two flat pans and a flat box were the look this rule replaces.
+13. IT IS A SHOT, NOT A DIAGRAM. A front-on elevation of the hero over an \
+empty field was "still very much lacking"; the same beat as a shot was "ok \
+now we are talking". So: start from a SETTING — landscape(cr, t, kind) for \
+anything outdoors (or a kit interior like cafe()) — never a bare gradient. \
+Show the hero in THREE-QUARTER view with a side going back into the \
+picture (building() for anything built; box() and cylinder() already turn), \
+throwing a long cast_shadow() to the lower right, away from the sun. Give \
+the frame three depths: the far setting under haze, the hero in the \
+middle, and something of the subject RIGHT BY THE CAMERA in the bottom \
+third (hens in the yard, a sack in the foreground, a rock), then \
+foreground(cr, kind) before vignette(). THE SHOT below is the bar.
+14. THE SCALE IS IN THE PICTURE, read at a glance. Never a chart, key or \
+legend laid over the scene — "freaking boxes on top of the video doesn't \
+help ... it just needs to be able to more easily glance at it and gauge \
+the scale". Show the comparison ON the subject: the earlier size as a \
+ghost() outline where it stood, a then_mark() where the old level reached \
+with its year on it, times_ticks() up the side when it is a multiple, or \
+something everyone knows the size of next to it (Data, a person, a car). \
+With the sound off, one look must say "about three times as much".
+15. ONE NUMBER, AND THE CHANGE IS BIG ON SCREEN. The operator liked a \
+pile of plastic that grew to three times its size under one number; he \
+did not like a bone standing still in a window with -1.5%, 1% and 1.5x \
+stacked beside it. At most {max_heads} big numbers in any frame — MEASURED \
+— and never a label on top of Data. What moves must be the biggest thing \
+in the frame and change shape you can see from across a room. A small \
+percentage drawn literally (a bone 1.5% thinner) is invisible: draw what \
+piles up, empties or spreads until it is large, or set the thing beside \
+what it equals, so the PICTURE makes the comparison and the words do not.
+16. LAND IT, THEN HOLD IT. A scene is on screen for about {secs:.0f} seconds, and the owner called a fence whose last number arrived with under a second left "whiplash — I didn't even have time to process". Finish the story — every number, the final size, the last label — by u={payoff_by}, then HOLD that finished picture to the end so it can be read. After it lands the WORLD keeps moving (wind, a bottle rolling) and Data KEEPS DOING HIS ACT to the end (another toss, holding the load up, one more shove) — he never stands and points at what he made; the story does not move. A readout steps through at most {shows} values (landed(rows, k, f) does this). MEASURED: a number still arriving after u={payoff_by} is refused.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \
@@ -971,6 +1177,14 @@ INK, INK_2, WARN, and these builtins: {builtins}. _c(rgb, alpha) makes a cairo c
 THE KIT (signatures):
 {sigs}
 
+THE SHOT — the look every scene is held to (this exact code passes every check):
+{shot}
+
+THE PILE — drawn by a brain like you from this kit, and the scene the owner \
+picked over another that passed every check ("I like the pile one but the \
+bone one no"): one number, a heap that triples, its old size on it:
+{pile}
+
 TWO TEACHER SCENES that pass every check — match this quality and style:
 {teachers}
 
@@ -991,7 +1205,17 @@ def _sigs():
         obj = getattr(SS, n)
         if callable(obj):
             try:
-                out.append(f"  {n}{inspect.signature(obj)}")
+                line = f"  {n}{inspect.signature(obj)}"
+                # WHAT IT RETURNS. A bare signature let the brain guess, and
+                # it guessed `w, h = text(...)` — text() returns its
+                # (x0, y0, x1, y1) box — so the commonest first draft
+                # crashed on an unpack (2026-10-04..06). The docstring's
+                # first sentence states the contract.
+                doc = (inspect.getdoc(obj) or "").strip().split("\n\n")[0]
+                doc = " ".join(doc.split())
+                if doc:
+                    line += f"  # {doc[:160]}"
+                out.append(line)
             except (TypeError, ValueError):
                 pass
     return "\n".join(out)
@@ -1019,15 +1243,20 @@ current code:
 """
 
 
-def build_prompt(title, topic, say, pts, unit, brief=""):
+def build_prompt(title, topic, say, pts, unit, brief="", secs=None):
     teachers = "\n\n".join(inspect.getsource(f) for f in
                            (SS.amazon_where_it_goes, SS.coffee_drought))
     tools = "\n".join(f"  {k}: {v}" for k, v in TOOL_ACTS.items())
     return _PROMPT.format(stances=", ".join(STANCES), tools=tools,
-                          flat_max=f"{FLAT_MAX:.0%}",
+                          flat_max=f"{FLAT_MAX:.0%}", max_heads=MAX_HEADLINES,
+                          secs=SCENE_SECS["beat"] if secs is None else secs,
+                          payoff_by=f"{land_by(secs):.2f}",
+                          shows=SS.READOUT_SHOWS,
                           kit=", ".join(KIT_NAMES),
                           builtins=", ".join(sorted(SAFE_BUILTINS)),
                           palette=", ".join(sorted(SS.P)), sigs=_sigs(),
+                          shot=inspect.getsource(SS.bird_flu_barn),
+                          pile=inspect.getsource(SS.recycling_pile),
                           teachers=teachers, title=title, topic=topic, say=say,
                           pts=json.dumps(pts), unit=unit, brief=brief)
 
@@ -1038,7 +1267,9 @@ def _strip_fence(s: str) -> str:
 
 
 def ask_brain(prompt: str, model: str | None = None,
-              timeout: float | None = None) -> str | None:
+              timeout: float | None = None, images: bool = False) -> str | None:
+    """The drawing brain's code for `prompt`. `images`: the prompt names
+    image files it must READ (the look-again round), so it may use Read."""
     if not shutil.which("claude"):
         return None
     # The drawing IS the video: the strongest model draws it (the judge that
@@ -1047,6 +1278,7 @@ def ask_brain(prompt: str, model: str | None = None,
                                     os.environ.get("SHOWRUNNER_MODEL", "opus"))
     try:
         proc = subprocess.run(["claude", "-p", prompt, "--model", model,
+                               *(["--allowedTools", "Read"] if images else []),
                                "--output-format", "text"],
                               capture_output=True, text=True,
                               timeout=timeout or TIMEOUT_S)
@@ -1056,12 +1288,12 @@ def ask_brain(prompt: str, model: str | None = None,
 
 
 def author(title, topic, say, pts, unit="", attempts=3, log=print, brief="",
-           secs: float = 10.0):
+           secs: float | None = None):
     """(scene_fn, code) for a verified brain-drawn scene, or (None, reason).
     `brief` adds the job on top of the rules: a closing, or a repair."""
     if os.environ.get("SCENE_AUTHOR", "on").lower() in ("0", "off", "false"):
         return None, "SCENE_AUTHOR=off"
-    prompt = build_prompt(title, topic, say, pts, unit, brief)
+    prompt = build_prompt(title, topic, say, pts, unit, brief, secs)
     why = "no brain"
     for k in range(attempts):
         if _remaining() < 90:
@@ -1078,12 +1310,129 @@ def author(title, topic, say, pts, unit="", attempts=3, log=print, brief="",
         except Exception as e:  # noqa: BLE001 — refused or broken: tell it why
             problems = [f"{type(e).__name__}: {str(e)[:200]}"]
         if not problems:
-            return fn, code
+            return look_again(fn, code, prompt, pts, say, secs, log=log) or (fn, code)
         why = "; ".join(problems[:4])
         log(f"[scene_author] attempt {k + 1} refused: {why}")
         prompt += ("\n\nYOUR PREVIOUS SCENE FAILED THESE CHECKS — fix every "
                    "one:\n- " + "\n- ".join(problems[:6]) + "\n\nPREVIOUS CODE:\n" + code)
     return None, why
+
+
+# ----------------------------------------------------------- look again ----
+# Operator, 2026-10-07: "I like the pile one but the bone one no." Both had
+# passed every check; the bone was a femur built of circles and rectangles,
+# small, in a bare room. The brain that DRAWS had never seen either one: it
+# wrote code, the code was measured, a separate viewer named the object.
+# So a scene that passes gets ONE more round: the brain READS its own frames
+# as they will be seen (words, Data and all) beside THE SHOT, and redraws
+# what looks cheap. The redraw goes through every same check; if it fails
+# any, the scene that passed is kept. A look again can only replace a
+# passing scene with another passing scene.
+
+LOOK_AGAIN_AT = (0.3, 0.85)
+LOOK_AGAIN_TRIES = 2
+LOOK_AGAIN_MIN_S = 300            # budget a redraw needs, or it is skipped
+LOOK_SIZE = (540, 960)
+#: THE SHOT is drawn with stand-in rows: it is shown for its art, not its data.
+SHOT_ROWS = [["2021", 2.0], ["2022", 6.0], ["2023", 11.0], ["2024", 19.0]]
+PILE_ROWS = [["2019", 353.0], ["2060 (projected)", 1014.0]]
+
+_LOOK_AGAIN = """
+
+YOUR SCENE PASSED EVERY CHECK. Now LOOK at it, the way the channel owner \
+will. READ these image files with the Read tool — your scene as a viewer \
+sees it:
+{yours}
+and the two frames the owner loved — THE SHOT (the barn) and THE PILE \
+(plastic, drawn by a brain like you from this same kit):
+{shot}
+
+Two scenes that passed every check went to the owner together: a pile of \
+plastic in a field that grew to three times its size under one number, and \
+a thigh bone built of circles and rectangles, small, in a bare room, with \
+three numbers beside it. His words: "I like the pile one but the bone one \
+no." Find the three things in YOUR frames that look most amateur beside \
+THE SHOT and THE PILE — a hero assembled from primitive shapes, a hero too small to \
+read, an empty backdrop, crowded or tiny text, a change you cannot see, \
+Data lost or covered — and fix them. Keep the idea, the data, the numbers \
+and the HERO / SUBSTANCE / CAUSE declaration; redraw what looks cheap.
+
+YOUR CODE:
+{code}
+
+Return the WHOLE improved scene code, nothing else."""
+
+
+def seen_frames(fn, pts, out_dir, at=LOOK_AGAIN_AT, size=LOOK_SIZE) -> list[str]:
+    """`fn` rendered as it ships — words, Data, finish — at each `at`, to PNGs."""
+    import cairo
+    from PIL import Image
+    out_dir = Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, SS.W, SS.H)
+    clock, paths = {}, []
+    for u in at:
+        f = int(round(u * 299))
+        cr = cairo.Context(surf)
+
+        def host(role, x, fy, h, pace=False, beat=0, _cr=cr, _f=f):
+            SS.place_host(_cr, role, SS.act_phase(clock, (role, int(beat)), _f),
+                          None, x, fy, h, _f / 30.0, pace)
+        with SS.I.text_layer(cr):
+            fn(cr, f / 30.0, u, pts, host)
+            SS.I.finish(cr, SS.I.FINISH)
+        surf.flush()
+        p = out_dir / f"{getattr(fn, '__name__', 'scene')}_u{int(u * 100):02d}.png"
+        surf.write_to_png(str(p))
+        Image.open(p).resize(size, Image.LANCZOS).save(p)
+        paths.append(str(p))
+    return paths
+
+
+def look_again(fn, code, prompt, pts, say="", secs=None, log=print):
+    """(fn, code) of the brain's redraw of a PASSING scene after it has seen
+    its own frames beside THE SHOT and THE PILE, or None — no budget, no
+    brain, or every redraw failed a check — in which case the passing scene
+    stands. A redraw that fails is told why and may try again, up to
+    LOOK_AGAIN_TRIES, while the budget lasts."""
+    if _remaining() < LOOK_AGAIN_MIN_S:
+        return None
+    try:
+        with tempfile.TemporaryDirectory(prefix="look_again_") as td:
+            yours = seen_frames(fn, pts, Path(td) / "yours")
+            shot = seen_frames(SS.bird_flu_barn, SHOT_ROWS, Path(td) / "shot",
+                               at=(0.85,))
+            shot += seen_frames(SS.recycling_pile, PILE_ROWS, Path(td) / "pile",
+                                at=(0.95,))
+            ask = prompt + _LOOK_AGAIN.format(
+                yours="\n".join(f"- {p}" for p in yours),
+                shot="\n".join(f"- {p}" for p in shot), code=code)
+            for k in range(LOOK_AGAIN_TRIES):
+                if k and _remaining() < LOOK_AGAIN_MIN_S:
+                    break
+                code2 = ask_brain(ask, timeout=min(TIMEOUT_S, _remaining()),
+                                  images=True)
+                if not code2 or code2.strip() == code.strip():
+                    return None
+                try:
+                    fn2 = compile_scene(code2)
+                    problems = verify(fn2, pts, say, secs) or glance(fn2, pts, log=log)
+                except Exception as e:  # noqa: BLE001
+                    problems = [f"{type(e).__name__}: {str(e)[:200]}"]
+                if not problems:
+                    log("[scene_author] look-again redraw passed and replaces "
+                        "the first draft")
+                    return fn2, code2
+                log(f"[scene_author] look-again redraw {k + 1} refused: "
+                    f"{'; '.join(problems[:2])}")
+                ask += ("\n\nYOUR REDRAW FAILED THESE CHECKS — keep what you "
+                        "improved and fix every one:\n- "
+                        + "\n- ".join(problems[:6]) + "\n\nYOUR REDRAW:\n" + code2)
+    except Exception as e:  # noqa: BLE001 — a look that cannot happen keeps the pass
+        log(f"[scene_author] look again skipped: {type(e).__name__}: {e}")
+        return None
+    log("[scene_author] no redraw passed; keeping the scene that did")
+    return None
 
 
 def scene_for_segment(story_cfg: dict, index: int, insight, log=print):
@@ -1096,12 +1445,13 @@ def scene_for_segment(story_cfg: dict, index: int, insight, log=print):
     if not 0 <= index < len(segs):
         return None
     seg = segs[index]
-    code = seg.get("illustrated_scene")
-    if isinstance(code, str) and code.strip():
-        try:
-            return compile_scene(code)
-        except Exception as e:  # noqa: BLE001 — a stale/edited scene is re-authored
-            log(f"[scene_author] saved scene refused ({e}) — re-authoring")
+    # The saved scene goes through the SAME load check as everywhere else —
+    # compile AND craft. This used to compile only, so a flat scene from
+    # before the light (2026-10-05) that `saved_scene` had just refused
+    # came straight back through here and shipped flat anyway.
+    fn = saved_scene(seg, log=log)
+    if fn is not None:
+        return fn
     pts = [[str(getattr(p, "label", "")), float(getattr(p, "value", 0) or 0)]
            for p in (getattr(insight, "items", None) or [])]
     if not pts:
@@ -1180,7 +1530,7 @@ def saved_scene(seg_cfg: dict, log=print):
             return None
         # A scene saved before the light (2026-10-05) is flat clip art; it is
         # redrawn under the new rules rather than shipped again.
-        probs = _saved_craft(fn, seg_cfg, log)
+        probs = _saved_craft(fn, seg_cfg, log, SCENE_SECS["beat"])
         if probs:
             log(f"[scene_author] saved scene refused — {probs[0][:90]}")
             return None
@@ -1188,7 +1538,7 @@ def saved_scene(seg_cfg: dict, log=print):
     return None
 
 
-def _saved_craft(fn, seg_cfg, log) -> list[str]:
+def _saved_craft(fn, seg_cfg, log, secs: float | None = None) -> list[str]:
     try:
         from shared import rewrite_mailbox as _rw
         d = _rw._dataset(seg_cfg or {}) or {}
@@ -1196,7 +1546,10 @@ def _saved_craft(fn, seg_cfg, log) -> list[str]:
                if p.get("value") is not None]
         if not pts:
             return []
-        return craft_problems(fn, pts)
+        # And one saved before the payoff rule (2026-10-07) that lands its
+        # last number with under a second left is redrawn, not replayed:
+        # the bird flu fence's ending did exactly that.
+        return craft_problems(fn, pts) + payoff_problems(fn, pts, secs)
     except Exception as e:  # noqa: BLE001 — cannot judge it: keep it
         log(f"[scene_author] saved scene craft check skipped ({e})")
         return []
@@ -1213,9 +1566,12 @@ whole story, the contrast at its heart.
 """
 
 BRIEFS = {"hook": HOOK_BRIEF, "closing": CLOSING_BRIEF}
-#: How long each kind of scene is on screen, for the dwell check (a hook is
-#: ~3s of the cold open; a beat ~10s; a closing ~6s).
-SCENE_SECS = {"hook": 3.0, "closing": 6.0, "beat": 10.0}
+#: How long each kind of scene is REALLY on screen, for the dwell and payoff
+#: checks. These were 3 / 10 / 6 until 2026-10-07, when the posted log said
+#: otherwise: since the 8-second beat (pacing, 2026-10-05) the median hook
+#: ran 4.4s, beat 6.0s and closing 4.6s (shortest 4.0s). A check that thinks
+#: a beat is 10 seconds passed a payoff held for 0.8 of a real second.
+SCENE_SECS = {"hook": 4.0, "closing": 4.0, "beat": 6.0}
 
 
 def saved_bookend(story_cfg: dict, kind: str, n_beats: int, log=print):
@@ -1231,7 +1587,8 @@ def saved_bookend(story_cfg: dict, kind: str, n_beats: int, log=print):
             log(f"[scene_author] saved {kind} refused ({e})")
             return None
         segs = story_cfg.get("segments") or []
-        probs = _saved_craft(fn, segs[idx] if idx < len(segs) else {}, log)
+        probs = _saved_craft(fn, segs[idx] if idx < len(segs) else {}, log,
+                             SCENE_SECS.get(kind, SCENE_SECS["beat"]))
         if probs:
             log(f"[scene_author] saved {kind} refused — {probs[0][:90]}")
             return None

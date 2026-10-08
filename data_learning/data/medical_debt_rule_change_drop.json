@@ -1,0 +1,25 @@
+{
+  "key": "medical_debt_rule_change_drop",
+  "title": "Drop In Medical Collections On Credit Reports After The 2022-23 Bureau Changes",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2022 vs 2023",
+  "source": {
+    "name": "Medical Debt Burden in the United States",
+    "publisher": "Consumer Financial Protection Bureau",
+    "url": "https://www.consumerfinance.gov/data-research/research-reports/medical-debt-burden-in-the-united-states/",
+    "officiality": "official",
+    "access_date": "2026-10-07"
+  },
+  "notes": "After Equifax, Experian and TransUnion stopped reporting paid medical debt and small unpaid medical collections starting in 2022-2023, analyses found medical-collections tradelines on credit reports fell by roughly 70%. Recalled from published CFPB/bureau reporting; not live-refreshed this run because outbound network access was unavailable in this session.",
+  "points": [
+    {
+      "label": "Drop in medical collections",
+      "value": 70
+    },
+    {
+      "label": "No change",
+      "value": 0
+    }
+  ]
+}

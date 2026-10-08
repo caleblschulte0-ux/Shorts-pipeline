@@ -91,6 +91,9 @@ def main(argv=None) -> int:
     base.pop("count", None)
     base.pop("story_count", None)
     base["capture"]["story_max_clusters"] = args.max_clusters
+    # production caps the story arm at story_budget_min so the day's clips
+    # keep their time; a backtest has nothing else to spend it on
+    base["capture"].pop("story_budget_min", None)
     floor = int(base["capture"].get("story_min_score", 80))
     log = copy.deepcopy(json.loads(
         (REPO / "state" / "third_posted_log.json").read_text()))
@@ -185,8 +188,10 @@ def _report_md(floor: int, attempts: list, cuts: list) -> str:
         for p in rv.get("problems") or []:
             L.append(f"- problem @{p.get('at')}s {p.get('type')}: "
                      f"{p.get('fix')}")
-        if e.get("narration"):
-            L.append(f"- narration: {e['narration'].get('text')}")
+        for n in e.get("narration_lines") or (
+                [e["narration"]] if e.get("narration") else []):
+            L.append(f"- narration over beat {n.get('over_beat')}: "
+                     f"{n.get('text')}")
         L.append(f"- files: {c['files']['mp4']} / {c['files']['sheet']}")
     return "\n".join(L) + "\n"
 

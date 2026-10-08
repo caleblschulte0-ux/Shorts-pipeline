@@ -1,0 +1,43 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261007",
+  "bundle": {
+    "identity": "5842fff9571549d0ff5bb5e5fb169212d899a423ff5c7714495ba9692762817d",
+    "path": "exchange/bundles/20261007/bundle.json"
+  },
+  "request_kind": "authored_shot",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "daily_producer",
+  "verified_at": "2026-10-07T11:35:05.486Z",
+  "error": null,
+  "retryable": false,
+  "request_id": "authored-pickup-line-rule-backfired-s1",
+  "safe_request_id": "authored-pickup-line-rule-backfired-s1",
+  "prompt_sha256": "581451c6c04a228f0ad91583daca4d0712150a991a18f2f30556ab884cc461cc",
+  "prompt_used": "An editorial illustration for a short-form Reddit story: expired school pickup placard held from car. It accompanies the narration: \"held up an expired pickup placard\" Photographic realism, dramatic lighting, single clear subject, centered, vertical composition, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1rMsF1J1OrBesCM-uemb1ICCMMR728QKP",
+    "filename": "20261007__authored-pickup-line-rule-backfired-s1.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1rMsF1J1OrBesCM-uemb1ICCMMR728QKP",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "ca72e494a9f28ee6ed90884591cbfdf82db17b98ebdf2bb858972c3e4eae181f",
+    "bytes": 1916069,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "package_id": "pickup-line-rule-backfired",
+  "shot_index": 1,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}

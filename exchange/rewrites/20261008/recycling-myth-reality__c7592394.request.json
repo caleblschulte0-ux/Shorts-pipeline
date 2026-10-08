@@ -1,0 +1,163 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "recycling-myth-reality__c7592394",
+ "filed": "2026-10-08T13:36:12Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "recycling-myth-reality",
+ "current": {
+  "title": "Why 'Just Recycle It' Barely Works",
+  "hook": "Your town's trash vanished 9%—recycling fails miserably!",
+  "closing": "Labels promise recycle; landfills prove otherwise.",
+  "question": "How much actually recycles? Comment below.",
+  "segments": [
+   {
+    "topic": "Recycle waste volume",
+    "say": "Plastic waste will rise from 353 million to over a billion tons by 2060."
+   },
+   {
+    "topic": "Recycle end fate",
+    "say": "Only 9% recycles, 50% lands in dumps, 22% disappears elsewhere."
+   },
+   {
+    "topic": "Recycle rate forecast",
+    "say": "Best‑case OECD forecast reaches just 17% recycling by 2060."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Recycle waste volume",
+   "say": "Plastic waste will rise from 353 million to over a billion tons by 2060.",
+   "role": "1 · THE SCALE",
+   "data": {
+    "file": "plastic_waste_growth_2019_2060.json",
+    "unit": "million tons",
+    "title": "Global plastic waste generated",
+    "points": [
+     {
+      "label": "2019",
+      "value": 353,
+      "period": "2019"
+     },
+     {
+      "label": "2060 (projected)",
+      "value": 1014,
+      "period": "2060"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Recycle end fate",
+   "say": "Only 9% recycles, 50% lands in dumps, 22% disappears elsewhere.",
+   "role": "2 · WHERE IT GOES",
+   "data": {
+    "file": "plastic_waste_end_fate_2019.json",
+    "unit": "percent",
+    "title": "Where global plastic waste actually ends up",
+    "points": [
+     {
+      "label": "Recycled",
+      "value": 9
+     },
+     {
+      "label": "Incinerated",
+      "value": 19
+     },
+     {
+      "label": "Landfilled",
+      "value": 50
+     },
+     {
+      "label": "Mismanaged / dumped",
+      "value": 22
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Recycle rate forecast",
+   "say": "Best‑case OECD forecast reaches just 17% recycling by 2060.",
+   "role": "3 · THE 'FIX'",
+   "data": {
+    "file": "plastic_recycling_rate_2019_vs_2060.json",
+    "unit": "percent",
+    "title": "Global plastic recycling rate: today vs. OECD's best case",
+    "points": [
+     {
+      "label": "2019",
+      "value": 9
+     },
+     {
+      "label": "2060 (projected)",
+      "value": 17
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: A chain of generic charts (span bar, tile box, balance scale, bars) about plastic that never shows any plastic. The hook labels overlap, and Data poses next to the numbers instead of causing them."
+ ],
+ "reasons": [
+  "judge: A chain of generic charts (span bar, tile box, balance scale, bars) about plastic that never shows any plastic. The hook labels overlap, and Data poses next to the numbers instead of causing them."
+ ],
+ "judge": {
+  "ts": "2026-10-08T11:04:30+00:00",
+  "score": 39,
+  "one_line": "A chain of generic charts (span bar, tile box, balance scale, bars) about plastic that never shows any plastic. The hook labels overlap, and Data poses next to the numbers instead of causing them.",
+  "problems": [
+   "Hook/seg0: the '2019 353M' and '2060 (projected) 1014M' labels overlap and cannot be read. The scene is a static span chart that does not match the spoken hook 'trash vanished 9%'.",
+   "seg0 holds nearly the same frame from hook@0.8 to seg0:end, about 3s with only Data's arm moving.",
+   "seg1: a big '3' in an outlined box with dim tiles reads as a number card. It shows no tons and no plastic.",
+   "seg2: Data is cut off at the left frame edge and covers the 'L' of 'Landfilled'. The 22% 'disappears' share from the narration is never shown.",
+   "seg3: a plain bar chart where Data hangs from a bar as decoration.",
+   "Mascot: no setup, action and payoff anywhere. He stands on ladders, hangs and cheers, but never drives the motion."
+  ],
+  "fixes": [
+   "Replace the hook with a lit shot of a plastic pile and a small recycling bin. Data shovels while 91% of the waste misses the bin, and the 9% lands on screen within 2s.",
+   "Lay out endpoint labels with measured widths so they never collide, and put the later value at the later end.",
+   "Show the 353M to 1,014M tons growth as a plastic mountain tripling, with a then-mark ghost at its 2019 size.",
+   "Turn the fate split into physical streams: the 50% to a landfill, the 22% leaking into nature, the 9% into a bin, with Data sorting at the chute.",
+   "Show the 17% forecast as a bin that barely gets fuller next to a still-huge pile, rather than two bars.",
+   "Keep Data fully inside the frame and away from labels."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261008/recycling-myth-reality__c7592394.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

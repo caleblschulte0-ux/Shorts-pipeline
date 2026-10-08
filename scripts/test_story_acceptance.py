@@ -164,10 +164,14 @@ def main() -> int:  # noqa: C901
         for sid in durs}
     led = story.render_story(edl, sources, td / "o.mp4", td / "w")
     check("renderer follows EDL beats", led["n_beats"] == 2)
-    check("hook overlays FIRST beat only",
-          bool(calls[0]["hook"]) and not calls[1]["hook"])
+    check("hook is read first on the FIRST beat",
+          calls[0]["captions"][0]["kind"] == "title")
     check("context overlay burned on its segment",
-          calls[1]["context_overlay"] == "THEN HE RESPONDED")
+          any(c["kind"] == "overlay" and c["text"] == "THEN HE RESPONDED"
+              for c in calls[1]["captions"]))
+    check("one caption at a time", all(
+        a["at"] + a["secs"] <= b["at"] + 1e-6
+        for c in calls for a, b in zip(c["captions"], c["captions"][1:])))
     check("no narration ever", led["used_narration"] is False)
     check("measurement fields present",
           all(k in led for k in ("story_structure", "n_beats",
@@ -466,7 +470,7 @@ def main() -> int:  # noqa: C901
           len(replays) == 1 and led2["replay_count"] == 1)
 
     # narration is best-effort: TTS failure ships the story clean
-    story._maybe_narration = lambda text, work: None
+    story._maybe_narration = lambda text, work, name="narration": None
     e = dict(base, narration={"text": "Two days later he responded",
                               "over_beat": 0,
                               "essential_because": "time jump"})

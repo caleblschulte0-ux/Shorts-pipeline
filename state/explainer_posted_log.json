@@ -2681,6 +2681,218 @@
       ],
       "words_first_10s": 25,
       "scene_changes_before_5s": 3
+    },
+    "phone-call-avoidance": {
+      "url": "https://youtube.com/shorts/3ziehpLeaL4",
+      "title": "Why Gen Z Refuses To Answer The Phone",
+      "at": "2026-10-07T10:53:24.998782+00:00",
+      "publish_at": "2026-10-07T11:16:19Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 23 credits are required for this request.\",\"status",
+      "beat_s_max": 6.35,
+      "beat_s": [
+        3.46,
+        4.94,
+        6.35,
+        5.99,
+        4.62
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 56,
+      "duration_s": 25.2,
+      "hook": "question",
+      "topic_category": "behavior",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:phone-duel-fill",
+        "mechanic:anxiety-pulse-spike",
+        "mechanic:voice-waveform-duel"
+      ],
+      "words_first_10s": 10,
+      "scene_changes_before_5s": 3
+    },
+    "sand-mining-crisis": {
+      "url": "https://youtube.com/shorts/W-Ku8ZqnGOg",
+      "title": "The World Is Quietly Running Out Of Sand",
+      "at": "2026-10-07T13:43:35.700985+00:00",
+      "publish_at": "2026-10-07T14:01:21Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 27 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.4,
+      "beat_s": [
+        4.37,
+        5.4,
+        5.17,
+        4.86,
+        4.6
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 79,
+      "duration_s": 24.3,
+      "hook": "shock_stat",
+      "topic_category": "environment",
+      "ending_type": "inversion",
+      "depictions": [
+        "mechanic:sand-mound-buildup",
+        "mechanic:hourglass-overflow",
+        "mechanic:concrete-pour-skyline"
+      ],
+      "words_first_10s": 12,
+      "scene_changes_before_5s": 2
+    },
+    "light-pollution-erasing-sky": {
+      "url": "https://youtube.com/shorts/eNMev0zBCdQ",
+      "title": "Light Pollution Is Erasing The Night Sky",
+      "at": "2026-10-07T13:55:56.536294+00:00",
+      "publish_at": "2026-10-07T20:01:21Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 27 credits are required for this request.\",\"status",
+      "beat_s_max": 5.33,
+      "beat_s": [
+        3.44,
+        4.83,
+        3.68,
+        5.33,
+        4.98
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 61,
+      "duration_s": 22.1,
+      "hook": "question",
+      "topic_category": "space",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:orange-glow-rise",
+        "mechanic:curtain-wipe-split",
+        "mechanic:night-photo-star-count"
+      ],
+      "words_first_10s": 6,
+      "scene_changes_before_5s": 2
+    },
+    "bird-flu-species-jump": {
+      "url": "https://youtube.com/shorts/mhIr58VWBAw",
+      "title": "How Bird Flu Learned To Infect Cows, Then Us",
+      "at": "2026-10-07T18:23:43.067095+00:00",
+      "publish_at": "2026-10-07T19:03:05Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 23 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.77,
+      "beat_s": [
+        3.57,
+        6.27,
+        6.77,
+        5.4,
+        3.99
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 66,
+      "duration_s": 25.9,
+      "hook": "shock_stat",
+      "topic_category": "health",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:feather-toll-climb",
+        "mechanic:cattle-outbreak-map",
+        "mechanic:cross-species-bridge"
+      ],
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3
+    },
+    "ozone-hole-recovery": {
+      "url": "https://youtube.com/shorts/fxJsmvFzAqs",
+      "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
+      "at": "2026-10-08T17:09:53.706843+00:00",
+      "publish_at": "2026-10-08T17:48:32Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 27 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.42,
+      "beat_s": [
+        4.45,
+        7.42,
+        7.11,
+        5.83,
+        4.11
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 79,
+      "duration_s": 28.8,
+      "hook": "inversion",
+      "topic_category": "science",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:ozone-hole-shrink",
+        "mechanic:banned-barrel-drain",
+        "mechanic:recovery-vessel-row"
+      ],
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3
+    },
+    "recycling-myth-reality": {
+      "url": "https://youtube.com/shorts/lGppjUB3byk",
+      "title": "Why 'Just Recycle It' Barely Works",
+      "at": "2026-10-08T20:43:42.267733+00:00",
+      "publish_at": "2026-10-08T20:14:17Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 27 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.93,
+      "beat_s": [
+        4.41,
+        5.59,
+        5.93,
+        5.32,
+        5.65
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+share+scene",
+      "narrative_score": 74,
+      "duration_s": 26.8,
+      "hook": "inversion",
+      "topic_category": "environment",
+      "ending_type": "inversion",
+      "depictions": [
+        "mechanic:trash-mountain-rise",
+        "viz:share",
+        "mechanic:plastic-sluice-split"
+      ],
+      "words_first_10s": 6,
+      "scene_changes_before_5s": 2
     }
   },
   "uploads": [
@@ -3295,6 +3507,60 @@
       "state": "posted",
       "slug": "college-gender-gap",
       "at": "2026-10-06T11:55:29.542238+00:00"
+    },
+    {
+      "claimed_at": "2026-10-07T10:53:11.569939+00:00",
+      "title": "Why Gen Z Refuses To Answer The Phone",
+      "publish_at": "2026-10-07T11:16:19Z",
+      "url": "https://youtube.com/shorts/3ziehpLeaL4",
+      "state": "posted",
+      "slug": "phone-call-avoidance",
+      "at": "2026-10-07T10:53:24.998782+00:00"
+    },
+    {
+      "claimed_at": "2026-10-07T13:43:25.081418+00:00",
+      "title": "The World Is Quietly Running Out Of Sand",
+      "publish_at": "2026-10-07T14:01:21Z",
+      "url": "https://youtube.com/shorts/W-Ku8ZqnGOg",
+      "state": "posted",
+      "slug": "sand-mining-crisis",
+      "at": "2026-10-07T13:43:35.700985+00:00"
+    },
+    {
+      "claimed_at": "2026-10-07T13:55:45.311156+00:00",
+      "title": "Light Pollution Is Erasing The Night Sky",
+      "publish_at": "2026-10-07T20:01:21Z",
+      "url": "https://youtube.com/shorts/eNMev0zBCdQ",
+      "state": "posted",
+      "slug": "light-pollution-erasing-sky",
+      "at": "2026-10-07T13:55:56.536294+00:00"
+    },
+    {
+      "claimed_at": "2026-10-07T18:23:31.700097+00:00",
+      "title": "How Bird Flu Learned To Infect Cows, Then Us",
+      "publish_at": "2026-10-07T19:03:05Z",
+      "url": "https://youtube.com/shorts/mhIr58VWBAw",
+      "state": "posted",
+      "slug": "bird-flu-species-jump",
+      "at": "2026-10-07T18:23:43.067095+00:00"
+    },
+    {
+      "claimed_at": "2026-10-08T17:09:41.969407+00:00",
+      "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
+      "publish_at": "2026-10-08T17:48:32Z",
+      "url": "https://youtube.com/shorts/fxJsmvFzAqs",
+      "state": "posted",
+      "slug": "ozone-hole-recovery",
+      "at": "2026-10-08T17:09:53.706843+00:00"
+    },
+    {
+      "claimed_at": "2026-10-08T20:43:29.519964+00:00",
+      "title": "Why 'Just Recycle It' Barely Works",
+      "publish_at": "2026-10-08T20:14:17Z",
+      "url": "https://youtube.com/shorts/lGppjUB3byk",
+      "state": "posted",
+      "slug": "recycling-myth-reality",
+      "at": "2026-10-08T20:43:42.267733+00:00"
     }
   ]
 }

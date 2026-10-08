@@ -1,0 +1,21 @@
+{
+ "slug": "aquaculture-overtook-wild-fishing",
+ "ts": "20261008T190205Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg1:start-end Data walks along the timeline with his arms up, cheering. In seg3:mid, seg3:end and seg4:start-end he stands or hops on top of the bars without filling or pushing them. In seg2 he points beside the fish grid. Only hook@0.8 and seg0, where he climbs a ladder to th",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "chart_contradicts_claim",
+  "visible_evidence": "seg3:start-end show 'Fish on your plate' as five bars with no values. The 2022 bar is about 10-40% filled while the narration and caption say 57%. Data stands on the 2018 and 2010 bars doing nothing. The values (12/25/40/52/57%) only appear in the closing.",
+  "root_cause": "The default horizontal-bar fallback was used for a share claim. The bars animate from zero long after the number is spoken, and there are no value labels. The mascot is placed on the bars instead of acting on the share.",
+  "repair_goal": "Show 57% of a plate as farmed fish. Draw a dinner plate with fish portions that Data serves one by one, farmed fish in the accent colour and wild fish in neutral, landing at 57 of 100 within the first ~3s of the beat, with a 1990 ghost of 12% drawn on the same plate for scale. No bar chart, and nothing clipped by the caption band."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

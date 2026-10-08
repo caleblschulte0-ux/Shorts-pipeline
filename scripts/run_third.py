@@ -261,11 +261,74 @@ def _remember_clip(source_url: str, **fields) -> None:
         print(f"::warning::[clip-memory] {e}", flush=True)
 
 
-def _remember_refused(member_urls: list[str], premise: str, why: str) -> None:
+_MOMENT_HYPOTHESIS = (
+    "ONE MOMENT of one broadcast: the clip viewers made, the stream just "
+    "BEFORE it and the stream just AFTER it, each a source. Clippers cut "
+    "moments short of their setup and their payoff. A story here is the "
+    "clip's moment with what caused it and what came of it; refuse it if "
+    "neither the before nor the after holds either.")
+
+
+def _moment_segments(clip: dict, work: Path, wmodel: str, spec: dict,
+                     lost: list) -> list[dict]:
+    """The BEFORE and AFTER of a moment candidate, each analysed as a
+    source of its own (storyline.find_moments). [] when the VOD is gone,
+    sub-only, or the download fails — the moment then has one source and
+    is refused as "<2 analyzable sources", never padded."""
+    from third_capture import clip_edit, scene_analysis
+    vid, off = clip.get("video_id"), clip.get("vod_offset")
+    if not vid or off is None:
+        return []
+    off, dur = float(off), float(clip.get("duration") or 30.0)
+    before = float(spec.get("story_moment_before_s", 120.0))
+    after = float(spec.get("story_moment_after_s", 150.0))
+    out = []
+    for tag, a, b in (("before", off - before, off),
+                      ("after", off + dur, off + dur + after)):
+        a = max(0.0, a)
+        if b - a < 10:
+            continue
+        seg = clip_edit.maybe_vod_segment(vid, a, b, work)
+        if not seg:
+            lost.append(f"vod_{tag}:unavailable")
+            continue
+        c = {"source_url": f"vodmine://{vid}/{int(a)}-{int(b)}",
+             "title": f"{clip.get('title', '')} ({tag} the clip)",
+             "channel": clip.get("channel", ""),
+             "date": clip.get("date", ""), "game": clip.get("game", ""),
+             "video_id": vid, "vod_offset": a}
+        rep = scene_analysis.analyze_source(seg, c, work,
+                                            whisper_model=wmodel)
+        if not rep:
+            lost.append(f"vod_{tag}:analysis")
+            continue
+        rep.update({"date": c["date"], "vod_offset": a, "video_id": vid,
+                    "broadcast_t0": a, "path": str(seg), "used_vod": True})
+        out.append(rep)
+    return out
+
+
+def _remember_refused(member_urls: list[str], premise: str, why: str,
+                      rendered: bool = False, near: bool = False) -> None:
     try:
         from third_capture import clip_memory
         clip_memory.note_story_tried(_memory(), member_urls,
-                                     premise=premise, why=why)
+                                     premise=premise, why=why,
+                                     rendered=rendered, near=near)
+        clip_memory.save(_memory())
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[clip-memory] {e}", flush=True)
+
+
+def _cm_keep_min() -> int:
+    from third_capture import clip_memory
+    return clip_memory.KEEP_MIN
+
+
+def _keep_edit(edl: dict, score: int) -> None:
+    try:
+        from third_capture import clip_memory
+        clip_memory.keep_edit(_memory(), edl, score)
         clip_memory.save(_memory())
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[clip-memory] {e}", flush=True)
@@ -383,7 +446,8 @@ def _learned_prior() -> dict:
                 buckets[str(v["streamer"]).lower()].append(rw)
 
         K = 4.0  # shrinkage strength: n/(n+K) weight on observed deviation
-        prior = {}
+        import statistics as _st
+        rows = []   # (mid_r, n, shrunk) per streamer with enough clips
         for streamer, rws in buckets.items():
             n = len(rws)
             if n < MIN_STREAMER_VIDS:   # too few clips to trust a prior
@@ -394,12 +458,34 @@ def _learned_prior() -> dict:
             # at 71) out-ranked jasontheween (median 44) because a single
             # lucky clip lifted the average while jasontheween's two brand-
             # new zeros dragged his down. The direction test caught it.
-            import statistics as _st
             mid_r = _st.median(r for r, _ in rws)
-            eff = 1.0 + (mid_r - 1.0) * (n / (n + K))
-            mult = max(0.70, min(1.40, eff))
+            rows.append([streamer, mid_r, n, 1.0 + (mid_r - 1.0) * (n / (n + K))])
+        # SHRINKAGE MAY DAMPEN AN ORDER, NEVER INVERT IT. On 2026-10-07
+        # cinna (3 clips, median 96 views) sat at 1.296 below xqc (14 clips,
+        # median 31) at 1.302: cinna's stronger median was pulled further
+        # toward 1.0 only because there were fewer clips of it. Fewer clips
+        # means less certainty about HOW MUCH better, not evidence that it
+        # is worse. So the shrunk values are made monotone in the median
+        # clip (pool-adjacent-violators, weighted by clip count): streamers
+        # whose shrunk order disagrees with their medians are pooled to one
+        # shared value — "we cannot tell these apart yet" — and every other
+        # value is left exactly as shrinkage set it.
+        rows.sort(key=lambda r: r[1])
+        blocks = []   # [sum(w*val), sum(w), members]
+        for streamer, mid_r, n, eff in rows:
+            blocks.append([eff * n, float(n), [streamer]])
+            while (len(blocks) > 1 and blocks[-2][0] / blocks[-2][1]
+                    > blocks[-1][0] / blocks[-1][1]):
+                top = blocks.pop()
+                blocks[-1][0] += top[0]
+                blocks[-1][1] += top[1]
+                blocks[-1][2] += top[2]
+        prior = {}
+        for total, weight, members in blocks:
+            mult = max(0.70, min(1.40, total / weight))
             if abs(mult - 1.0) >= 0.02:  # skip no-op entries
-                prior[streamer] = round(mult, 3)
+                for streamer in members:
+                    prior[streamer] = round(mult, 3)
         _PRIOR_CACHE = prior
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[prior] learned prior unavailable ({e})",
@@ -1202,6 +1288,25 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         from third_capture import story as story_mod
         from shared.fsutil import atomic_write_json
         spec = pkg["capture"]
+        # STORY TIME CAP. Every slot is a story slot now (operator,
+        # 2026-10-07: "this channel needs to be stories and edits not just
+        # raw clips"), and a story search costs 10-20 minutes. Past
+        # `story_budget_min` into the run the remaining slots go straight
+        # to the clip arm, so six story searches can never spend the 85
+        # minutes the day's clips need. Same once the brain has hit its
+        # usage limit: every director call after that is a guaranteed miss.
+        _story_cap = float(spec.get("story_budget_min", _BUDGET_MIN))
+        if elapsed_min() >= _story_cap:
+            print(f"[story] {elapsed_min():.0f} min in, past the "
+                  f"{_story_cap:.0f}-minute story budget — clip arm",
+                  flush=True)
+            _story_verdict(slug, "story_budget", "run past story_budget_min")
+            return None
+        if author.brain_limited().get("at"):
+            print("[story] brain usage limit reached — clip arm",
+                  flush=True)
+            _story_verdict(slug, "brain_limited", "usage limit this run")
+            return None
         sources_cfg = spec.get("sources") or \
             {"twitch": spec.get("channels", [])}
         known = [ch for chans in sources_cfg.values() for ch in chans]
@@ -1214,10 +1319,19 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             # clips from ONE broadcast — the top 6 of a week rarely hold two
             # from the same stream. Helix pages up to 100, so asking for 20
             # costs the same number of calls as asking for 6.
+            # 90d (operator, 2026-10-07: "make it able to pull from further
+            # back"): a saga's first chapter is often weeks old, and the
+            # scout can only connect what the catalogue holds. Twitch only:
+            # Kick's clips API has no window longer than a month.
             _tops = {"7d": int(spec.get("story_top_vod", 20)),
-                     "30d": int(spec.get("story_top", 6))}
-            for window in ("7d", "30d"):
+                     "30d": int(spec.get("story_top", 6)),
+                     "90d": int(spec.get("story_top_90d", 0))}
+            for window in ("7d", "30d", "90d"):
+                if not _tops[window]:
+                    continue
                 for platform, chans in sources_cfg.items():
+                    if window == "90d" and platform != "twitch":
+                        continue
                     for ch in chans:
                         try:
                             pool += clip_edit.discover(
@@ -1228,6 +1342,12 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                             print(f"::warning::[story] discover "
                                   f"{platform}:{ch} {window} failed "
                                   f"({type(e).__name__})", flush=True)
+            # name each clip's game (Twitch's category): the critic's
+            # commonest refusal is a stranger not knowing what this is
+            _names = clip_edit.helix_game_names(
+                [c.get("game_id") for c in pool])
+            for c in pool:
+                c["game"] = _names.get(str(c.get("game_id") or ""), "")
             _STORY_POOL = pool
         pool_by_url = {c.get("url"): c for c in _STORY_POOL}
         corpus += storyline.from_discovery(_STORY_POOL)
@@ -1288,15 +1408,32 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             print(f"[scout] {st['shape'] or '?'}: {st['premise'][:90]!r} "
                   f"({len(members)} clips)", flush=True)
 
+        # MOMENTS: one hot clip plus the stream before and after it
+        # (storyline.find_moments) — never a clip this channel already
+        # posted, alone or inside a story.
+        _used = set()
+        for v in (log.get("posted") or {}).values():
+            if v.get("source_url"):
+                _used.add(storyline.clip_key(v["source_url"]))
+            _used.update(v.get("member_keys") or [])
+        moments = storyline.find_moments(
+            _STORY_POOL, exclude_keys=_used,
+            n=int(spec.get("story_moments", 20)))
+
         # TAKE TURNS. The scout's proposals and the same-broadcast arcs are
         # different bets — the scout guesses long arcs from titles, a VOD arc
         # is one incident Twitch vouches for — and on 2026-09-23 the scout's
         # three took all three candidate slots while 174 VOD arcs went
         # unexamined. Alternate them, best first, then people clusters.
+        # Moments take a turn too, ahead of the arcs: in four backtests
+        # on 2026-10-07 the director refused almost every arc as two
+        # unrelated moments of one stream.
         _mixed = []
-        for i in range(max(len(scouted), len(vod_arcs))):
+        for i in range(max(len(scouted), len(vod_arcs), len(moments))):
             if i < len(scouted):
                 _mixed.append(scouted[i])
+            if i < len(moments):
+                _mixed.append(moments[i])
             if i < len(vod_arcs):
                 _mixed.append(vod_arcs[i])
         clusters = _mixed + storyline.find_clusters(corpus, known)
@@ -1311,9 +1448,9 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             _members_seen.append(urls_)
             _deduped.append(cl)
         clusters = _deduped
-        print(f"[story] {len(scouted)} scouted + {len(vod_arcs)} VOD arc(s) + "
-              f"people clusters = {len(clusters)} candidate(s) after dedupe",
-              flush=True)
+        print(f"[story] {len(scouted)} scouted + {len(moments)} moment(s) + "
+              f"{len(vod_arcs)} VOD arc(s) + people clusters = "
+              f"{len(clusters)} candidate(s) after dedupe", flush=True)
         # DURABLE, not just printed: whether single-broadcast arcs exist at
         # useful volume is the open question this design rests on, and it
         # could not be measured from the session that built it (no Twitch
@@ -1331,6 +1468,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                              "shape": x["shape"], "n": len(x["clips"])}
                             for x in scouted],
                 "vod_arcs": len(vod_arcs),
+                "moments": len(moments),
                 "candidates": len(clusters),
                 "pool": len(_STORY_POOL),
                 "pool_with_vod": sum(1 for c in _STORY_POOL
@@ -1378,7 +1516,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             # the 2026-07-25 job that died on the wall. Stop between
             # clusters when the budget is gone; a clean fallback to the
             # clip arm is a video, a cancelled job is nothing.
-            if _deadline_passed():
+            if _deadline_passed() or elapsed_min() >= _story_cap:
                 print(f"::warning::[story] out of run budget after "
                       f"{elapsed_min():.0f} min — falling back to the clip "
                       f"arm", flush=True)
@@ -1386,8 +1524,12 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             who = "+".join(cluster["who"])
             is_vod_arc = cluster.get("kind") == "vod_arc"
             is_scouted = cluster.get("kind") == "scouted"
+            is_moment = cluster.get("kind") == "moment"
             if is_vod_arc:
                 who = f"{who}@vod{cluster.get('video_id')}"
+            elif is_moment:
+                who = (f"{who}@moment"
+                       f"{storyline.clip_key(cluster['clips'][0]['source_url'])}")
             elif is_scouted:
                 who = f"scout:{who}"
             urls = [c["source_url"] for c in cluster["clips"]]
@@ -1457,10 +1599,11 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # Each expansion is a ~390s re-encoded download plus a
                 # whisper pass over three minutes plus another vision call
                 # — 4-7 minutes apiece, with nothing capping how many fire.
+                # (a moment fetches its before and after below instead)
                 if (rep.get("opens_mid_sentence")
                         or not rep.get("payoff_shown")
                         or rep.get("missing_context")) and \
-                        helix.get("video_id") \
+                        not is_moment and helix.get("video_id") \
                         and vod_expansions < max_vod \
                         and not _deadline_passed():
                     vod_expansions += 1
@@ -1486,6 +1629,9 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # clips of one stream overlap (story_director._positions)
                 rep.setdefault("broadcast_t0", c.get("vod_offset"))
                 reports.append(rep)
+            if is_moment and reports and not _deadline_passed():
+                reports += _moment_segments(cluster["clips"][0], snip_dir,
+                                            wmodel, spec, _lost)
             if len(reports) < 2:
                 print(f"[story] {who}: <2 analyzable sources", flush=True)
                 _story_verdict(who, "starved",
@@ -1496,9 +1642,16 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # no audio, wrong shape) — remember the candidate so it stops
                 # costing a slot every day. A download or analysis failure
                 # may be transient and is retried.
-                if _lost and all(x.startswith("preflight:") for x in _lost):
+                # A moment whose VOD is gone (deleted, sub-only) is gone
+                # tomorrow too.
+                if _lost and (all(x.startswith("preflight:") for x in _lost)
+                              or (is_moment and "vod_before:unavailable"
+                                  in _lost and "vod_after:unavailable"
+                                  in _lost)):
                     _remember_refused(urls, cluster.get("premise") or who,
-                                      "sources fail preflight: "
+                                      ("its VOD is unavailable: "
+                                       if is_moment else
+                                       "sources fail preflight: ")
                                       + "; ".join(_lost)[:120])
                 continue
 
@@ -1511,7 +1664,29 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             # would re-split the setup from its own payoff, because an
             # accusation and the reply to it rarely share two action words.
             # Tell it in broadcast order instead.
-            if is_vod_arc:
+            # the streamer's own title for each broadcast (helix): context
+            # a stranger needs that nobody says on stream
+            try:
+                _tt = clip_edit.helix_video_titles(
+                    [r.get("video_id") for r in reports])
+                for r in reports:
+                    if _tt.get(str(r.get("video_id") or "")):
+                        r["stream_title"] = _tt[str(r["video_id"])]
+            except Exception:  # noqa: BLE001
+                pass
+            # who the people the footage never introduces ARE, checked by
+            # a second model — the line of text on screen may say it
+            try:
+                _who = story_director.known_people(
+                    reports[0].get("channel", "") if reports else "",
+                    sorted({str(p) for r in reports
+                            for p in r.get("people") or []}))
+                for r in reports:
+                    if _who:
+                        r["known_people"] = _who
+            except Exception:  # noqa: BLE001
+                pass
+            if is_vod_arc or is_moment:
                 _subs = [sorted(reports,
                                 key=lambda r: float(r.get("vod_offset")
                                                     or 0.0))]
@@ -1557,12 +1732,31 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 event = _upsert_event(events, cluster["who"], sub, sub_urls)
                 elbl = f"{who}/{event['event_id']}"
 
+                # ---- a near-miss keeps its edit (clip_memory.keep_edit):
+                # repair the cut the critic rated near the bar instead of
+                # asking the director again from scratch
+                edl = None
+                try:
+                    from third_capture import clip_memory as _cm
+                    _kept = _cm.kept_edit(
+                        _memory(), [r["source_id"] for r in sub])
+                    if _kept:
+                        edl = story_director.revalidate(_kept["edl"], sub)
+                        if edl:
+                            print(f"[story] {elbl}: starting from the kept "
+                                  f"edit the critic scored {_kept['score']}",
+                                  flush=True)
+                except Exception as e:  # noqa: BLE001
+                    print(f"::warning::[story] kept edit: {e}", flush=True)
+                    edl = None
                 # ---- eligibility + structure + story EDL (§8-10)
-                edl = story_director.plan_story(
+                edl = edl or story_director.plan_story(
                     sub, event, guidance=_story_guidance(),
                     hypothesis=(f"{cluster.get('premise', '')} — "
                                 f"{cluster.get('why_connected', '')}"
-                                if is_scouted else ""))
+                                if is_scouted else ""),
+                    moment=_MOMENT_HYPOTHESIS if is_moment else "",
+                    takes=int(spec.get("story_takes", 3)))
                 if not edl:
                     # NAME THE GATE. plan_story returns None for an
                     # editorial "not a story" AND for ten different
@@ -1593,8 +1787,93 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                           "near-dup — skipped", flush=True)
                     continue
 
-                # ---- rough cut via the dedicated renderer (§11)
                 src_map = {r["source_id"]: r for r in sub}
+                _floor = int(spec.get("story_min_score", 80))
+
+                # ---- TABLE READ: the plan is judged and repaired ON PAPER
+                # before a frame is cut. Backtest 7 (2026-10-08) spent its
+                # whole render budget on six plans that opened at 48-72 and
+                # never climbed: three renders and two vision reviews each,
+                # for stories whose transcript already said "who is Reggie?"
+                # and "the payoff is never shown". The same critic reads the
+                # words the cut WOULD hold (`story.plan_ledger`), the
+                # director repairs what it names, and only a plan that
+                # reads at `story_table_read_min` is rendered. This can only
+                # ADD a block: the render is still judged by the full critic
+                # with frames at `story_min_score`, unchanged.
+                #
+                # The words alone read LOWER than the cut: backtest 8 put
+                # nearly every plan at exactly 58 on paper, and the same
+                # Buddha story had rendered at 72-74 the run before (the
+                # critic sees frames the words leave out). At 65 the read
+                # blocked all but one render, so it screens only what reads
+                # as no story at all (`story_table_read_min`).
+                _tr_n = int(spec.get("story_table_reads", 2))
+
+                def _read(e):
+                    pl = story_mod.plan_ledger(e, src_map)
+                    tr = story_director.review_rough_cut(
+                        e, scene_analysis._dialogue_lines(
+                            pl["final_words"]),
+                        None, pl["duration_s"], pl["on_screen"])
+                    if int(tr["story_score"]) < 0:
+                        return None      # no brain: the render decides
+                    return (tr["story_score"], e, tr, pl)
+
+                # every TAKE the director wrote is read once; the best one
+                # is repaired on paper and rendered (story_takes)
+                _alts = story_director.last_takes()
+                _takes = ([edl] + [t for t in _alts if t is not edl]
+                          if any(t is edl for t in _alts) else [edl])
+                if _tr_n <= 0:
+                    _takes = []          # no table read: render the plan
+                _tr_best = None
+                for _k, _e in enumerate(_takes):
+                    if _deadline_passed():
+                        break
+                    _r = _read(_e)
+                    if _r is None:
+                        break
+                    print(f"[story] {elbl}: table read take {_k}: "
+                          f"{_r[0]}", flush=True)
+                    if _tr_best is None or _r[0] > _tr_best[0]:
+                        _tr_best = _r
+                for _tr_i in range(1, _tr_n):
+                    if (_tr_best is None or _deadline_passed()
+                            or _tr_best[0] >= _floor
+                            or not _tr_best[2]["problems"]):
+                        break
+                    _edl2 = story_director.revise_edl(
+                        _tr_best[1], _tr_best[2]["problems"], sub,
+                        cut=_tr_best[3])
+                    if not _edl2:
+                        break
+                    _r = _read(_edl2)
+                    if _r is None:
+                        break
+                    print(f"[story] {elbl}: table read repair {_tr_i}: "
+                          f"{_r[0]}", flush=True)
+                    if _r[0] > _tr_best[0]:
+                        _tr_best = _r
+                if _tr_best is not None:
+                    edl = _tr_best[1]
+                    _tr_min = int(spec.get("story_table_read_min", 50))
+                    if _tr_best[0] < _tr_min:
+                        _crit = "; ".join(
+                            f"{p['type']}: {p['fix']}"
+                            for p in _tr_best[2]["problems"][:3])
+                        why = (f"table read {_tr_best[0]} < {_tr_min} — "
+                               f"not rendered; {_crit}")[:400]
+                        print(f"[story] {elbl}: {why}", flush=True)
+                        _story_verdict(elbl, "table_read_failed", why)
+                        # about the EDIT, not the footage: a better editor
+                        # (EDIT_VERSION) gets to read it again
+                        _remember_refused(_refuse_urls,
+                                          edl.get("premise") or who, why,
+                                          rendered=True)
+                        continue
+
+                # ---- rough cut via the dedicated renderer (§11)
                 story_work = work / f"story_{slug}"
                 revision_count = 0
                 try:
@@ -1630,8 +1909,6 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # that held viewers (98.7% viewed) was the 80. A story ships
                 # at `story_min_score` or above; below it, it is repaired
                 # toward the bar, never shipped. Code may only ADD blocks.
-                _floor = int(spec.get("story_min_score", 80))
-
                 def _passes(rv):
                     return bool(rv["publish"]) and \
                         int(rv["story_score"]) >= _floor
@@ -1646,12 +1923,13 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # base; the next one starts again from the best cut and its
                 # own critique. Shipping is unchanged: only a cut the
                 # critic passes at the floor ships.
-                _best = (review["story_score"], edl, review)
+                _best = (review["story_score"], edl, review, led)
                 while (not _passes(review) and _best[2]["problems"]
                        and revision_count < max_rev
                        and not _deadline_passed()):
                     edl2 = story_director.revise_edl(
-                        _best[1], _best[2]["problems"], sub)
+                        _best[1], _best[2]["problems"], sub,
+                        cut=_best[3])
                     if not edl2:
                         break
                     revision_count += 1
@@ -1671,7 +1949,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                         _backtest_keep(elbl, revision_count, out_mp4, edl,
                                        review, sub)
                         if review["story_score"] > _best[0]:
-                            _best = (review["story_score"], edl, review)
+                            _best = (review["story_score"], edl, review,
+                                     led)
                     except Exception as e:  # noqa: BLE001
                         print(f"::warning::[story] {elbl}: revision "
                               f"render failed ({e})", flush=True)
@@ -1698,11 +1977,14 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                                    + (" (revision render failed)"
                                       if _render_failed else "")
                                    + (f" — {_crit}" if _crit else ""))
+                    _keep_edit(_best[1], _best[0])
                     _remember_refused(
                         _refuse_urls, edl.get("premise") or who,
                         f"rendered; critic scored {_scores[-1]} after "
                         f"{revision_count} revision(s)"
-                        + (f" — {_crit}" if _crit else ""))
+                        + (f" — {_crit}" if _crit else ""),
+                        rendered=True,
+                        near=_best[0] >= _cm_keep_min())
                     continue
 
                 # ---- dedupe on the ACTUAL rendered members + duration band
@@ -1728,12 +2010,56 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     "authored_title": edl["title"],
                     "hook": edl["hook_overlay"], "series": "story"}, work)
                 hard = [p for p in qa["problems"] if "duration" not in p]
+                # A FRAMING FAILURE IS RE-FRAMED, NOT THE STORY DROPPED.
+                # The first story a backtest critic ever passed (82,
+                # 2026-10-08) died here: "the same streamer appears twice in
+                # the same frame, once as a close crop and once as a wide
+                # shot" — the shot plan's stacked layout / the blur-fill's
+                # copy behind the picture. Re-render the SAME edit as one
+                # subject-centred picture per beat; it ships only if the
+                # critic passes it again at the floor AND the QA passes it.
+                if qa["verdict"] == "fail" and hard \
+                        and not _deadline_passed():
+                    print(f"[story] {elbl}: QA failed "
+                          f"({'; '.join(hard)[:100]}) — re-framing as one "
+                          f"picture per beat", flush=True)
+                    try:
+                        led2 = story_mod.render_story(
+                            edl, src_map, out_mp4, story_work,
+                            safe_framing=True)
+                        sheet_ok = clip_qa.contact_sheet(
+                            out_mp4, sheet) is not None
+                        review2 = story_director.review_rough_cut(
+                            edl, scene_analysis._dialogue_lines(
+                                led2["final_words"]),
+                            str(sheet) if sheet_ok else None,
+                            led2["duration_s"], led2.get("on_screen"))
+                        _backtest_keep(f"{elbl} reframed",
+                                       revision_count, out_mp4, edl,
+                                       review2, sub)
+                        qa = clip_qa.review(out_mp4, {
+                            "authored_title": edl["title"],
+                            "hook": edl["hook_overlay"],
+                            "series": "story"}, work)
+                        hard = [p for p in qa["problems"]
+                                if "duration" not in p]
+                        if not _passes(review2):
+                            hard = hard or [
+                                f"re-framed cut scored "
+                                f"{review2['story_score']}"]
+                            qa["verdict"] = "fail"
+                        else:
+                            led, review = led2, review2
+                    except Exception as e:  # noqa: BLE001
+                        print(f"::warning::[story] {elbl}: re-frame "
+                              f"failed ({e})", flush=True)
                 if qa["verdict"] == "fail" and hard:
                     print(f"::warning::[story] {elbl}: QA failed "
                           f"({'; '.join(hard)[:140]}) — next event",
                           flush=True)
                     _story_verdict(elbl, "qa_failed",
                                    "; ".join(hard)[:140])
+                    _keep_edit(edl, review["story_score"])
                     continue
 
                 lead = led["beats"][0].get("streamer") or cluster["who"][0]

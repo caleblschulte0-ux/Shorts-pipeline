@@ -1,0 +1,67 @@
+{
+  "key": "pitch_drop_timeline",
+  "title": "University of Queensland pitch drop experiment: cumulative drops fallen",
+  "unit": "count",
+  "geography": "Australia (University of Queensland)",
+  "time_coverage": "1930-2014",
+  "source": {
+    "name": "The pitch drop experiment",
+    "publisher": "University of Queensland, School of Mathematics and Physics",
+    "url": "https://smp.uq.edu.au/pitch-drop-experiment",
+    "officiality": "secondary",
+    "access_date": "2026-10-08"
+  },
+  "notes": "The pitch drop experiment was set up in 1930 to demonstrate that solid-looking pitch is actually a very high-viscosity fluid. As of the most recent fall (2014), only nine drops had fallen since the experiment began.",
+  "points": [
+    {
+      "label": "1930",
+      "value": 0,
+      "period": "1930"
+    },
+    {
+      "label": "1938",
+      "value": 1,
+      "period": "1938"
+    },
+    {
+      "label": "1947",
+      "value": 2,
+      "period": "1947"
+    },
+    {
+      "label": "1954",
+      "value": 3,
+      "period": "1954"
+    },
+    {
+      "label": "1962",
+      "value": 4,
+      "period": "1962"
+    },
+    {
+      "label": "1970",
+      "value": 5,
+      "period": "1970"
+    },
+    {
+      "label": "1979",
+      "value": 6,
+      "period": "1979"
+    },
+    {
+      "label": "1988",
+      "value": 7,
+      "period": "1988"
+    },
+    {
+      "label": "2000",
+      "value": 8,
+      "period": "2000"
+    },
+    {
+      "label": "2014",
+      "value": 9,
+      "period": "2014"
+    }
+  ]
+}

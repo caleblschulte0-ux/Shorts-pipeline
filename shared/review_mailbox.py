@@ -303,7 +303,10 @@ def verdict_for(req: dict) -> tuple[dict | None, str]:
 #: Claude, then Codex on his ChatGPT, then her own local vision model) and
 #: her grades go through the SAME `assemble_verdict` + `showrunner_gate.
 #: decide` as every other judge's. The name is provenance, never authority.
-GRADERS = {"chatgpt": "chatgpt-mailbox", "aletheia": "aletheia-mailbox"}
+#: `showrunner` is the judge itself, back from its limit and shown the
+#: request a run filed while it was out (`claim_reviews.rejudge`).
+GRADERS = {"chatgpt": "chatgpt-mailbox", "aletheia": "aletheia-mailbox",
+           "showrunner": "showrunner-rejudge"}
 
 
 def grader_of(verdict_by) -> str:

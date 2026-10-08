@@ -1,0 +1,21 @@
+{
+ "slug": "twin-birth-rate-rise",
+ "ts": "20261007T124844Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: The hook (hook@0.3-2.2) and seg0 (seg0:start-end) are the same cradle shot with the same 18.9 label, and seg1 continues it, so the first ~9s are one picture. In seg4:start to seg4:end the tub level and ducks barely change, and the measured hold is 4.29s at about 7.8s.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable_and_redundant_closing",
+  "visible_evidence": "The closing bathtub card replays the IVF 28%\u21922% stat already shown in seg3. Its '28% \u2192 2%' ghost text overlaps the '2022' label (seg4:end), the drain/ducks barely move, and the line 'Two really did become the new one' contradicts the falling number on screen.",
+  "root_cause": "The closing machine re-rendered the previous beat's dataset instead of a payoff, and the delta annotation was placed in the same slot as the stat label.",
+  "repair_goal": "Make the closing a real payoff that lands the hook's 18.9\u219234 doubling: one baby becoming two, ending on the peak. If the IVF fall stays, move the delta text clear of the label and make the drain visibly empty the tub. Remove the letterbox so the scene fills the frame."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

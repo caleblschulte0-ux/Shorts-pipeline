@@ -1,0 +1,25 @@
+{
+  "key": "ingenuity_distance_plan_vs_actual",
+  "title": "Ingenuity \u2014 Planned vs Actual Distance Flown",
+  "unit": "miles",
+  "geography": "Mars (Jezero Crater)",
+  "time_coverage": "2021-2024",
+  "source": {
+    "name": "Ingenuity mission statistics",
+    "publisher": "NASA / Jet Propulsion Laboratory",
+    "url": "https://mars.nasa.gov/technology/helicopter/",
+    "officiality": "official",
+    "access_date": "2026-10-07"
+  },
+  "notes": "NASA's mission-end statement said Ingenuity flew more than 17 times farther than originally planned, for a cumulative distance over 10.5 miles (about 17 km). Recalled from NASA's published mission-end summary; not live-refreshed this run because outbound network access was unavailable in this session.",
+  "points": [
+    {
+      "label": "Actually flown",
+      "value": 10.5
+    },
+    {
+      "label": "Originally planned",
+      "value": 0.6
+    }
+  ]
+}

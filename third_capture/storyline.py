@@ -270,13 +270,15 @@ def from_discovery(pool: list[dict]) -> list[dict]:
                     # here is why the story arm could only ever guess.
                     "video_id": c.get("video_id"),
                     "vod_offset": c.get("vod_offset"),
-                    "duration": c.get("duration")})
+                    "duration": c.get("duration"),
+                    # Twitch's own category: a fact, unlike the title
+                    "game": str(c.get("game", "") or "")})
     return out
 
 
 
-def build_catalogue(corpus: list[dict], *, max_fresh: int = 120,
-                    max_history: int = 160,
+def build_catalogue(corpus: list[dict], *, max_fresh: int = 200,
+                    max_history: int = 240,
                     memory: dict | None = None) -> tuple[list[str], dict]:
     """The story scout's reading material: one line per clip.
 
@@ -310,7 +312,7 @@ def build_catalogue(corpus: list[dict], *, max_fresh: int = 120,
         # are whatever the clipper typed. Keep the better of each field.
         if c.get("posted") is not None and "views" not in c:
             prev["title"] = c.get("title") or prev.get("title", "")
-        for k in ("views", "video_id", "vod_offset", "duration"):
+        for k in ("views", "video_id", "vod_offset", "duration", "game"):
             if prev.get(k) in (None, "", 0) and c.get(k) not in (None, ""):
                 prev[k] = c[k]
         if not prev.get("date"):
@@ -363,9 +365,10 @@ def build_catalogue(corpus: list[dict], *, max_fresh: int = 120,
                    f"{(o % 3600) // 60:02d}m into the stream")
         title = re.sub(r"\s+", " ", str(c.get("title", ""))).strip()[:110]
         ev = clip_memory.evidence(mem, c["source_url"])
+        game = f" | game={c['game']}" if c.get("game") else ""
         lines.append(f"{cid} | {str(c.get('date', ''))[:10] or '?'} | "
                      f"{c.get('channel', '?')} | {_views(c.get('views'))} | "
-                     f"{title}{pos}" + (f" | {ev}" if ev else ""))
+                     f"{title}{pos}{game}" + (f" | {ev}" if ev else ""))
     return lines, ids
 
 def find_vod_arcs(pool: list[dict], *, gap_s: float = 900.0,
@@ -459,6 +462,62 @@ def find_vod_arcs(pool: list[dict], *, gap_s: float = 900.0,
                          "kind": "vod_arc", "video_id": vid})
     arcs.sort(key=lambda a: -a["score"])
     return arcs
+
+
+def find_moments(pool: list[dict], *, exclude_keys=(), n: int = 20,
+                 min_views: int = 0) -> list[dict]:
+    """Stories told from ONE hot moment and the stream around it.
+
+    Four story backtests (2026-10-07) examined ~150 grouped candidates and
+    the director called almost every one "not a story": two clips of one
+    broadcast are usually two unrelated moments, and a scout's saga built
+    from titles is rarely in the footage. The story a clipper caught is
+    usually INSIDE one clip — and cut short of its setup and its payoff
+    ("nothing explains how the bag got into the sewer"). Twitch tells us
+    where every clip sits in its broadcast, so the minutes before and after
+    are one download away. A moment candidate is the clip plus a BEFORE and
+    an AFTER fetched from the VOD as sources of their own; the director
+    decides whether they make a story, under the same laws, and the critic
+    grades it against the same 80.
+
+    The most-viewed clips with VOD coordinates first, one per broadcast
+    minute, never a clip already posted or already in a story."""
+    seen, out = set(exclude_keys or ()), []
+    for c in sorted(pool or [], key=lambda c: -int(c.get("views") or 0)):
+        url = c.get("url") or c.get("source_url")
+        vid = str(c.get("video_id") or "").strip()
+        if not url or not vid or c.get("vod_offset") is None:
+            continue
+        if int(c.get("views") or 0) < min_views:
+            continue
+        ck = clip_key(url)
+        try:
+            spot = (vid, int(float(c["vod_offset"]) // 60))
+        except (TypeError, ValueError):
+            continue
+        if not ck or ck in seen or spot in seen:
+            continue
+        seen.update((ck, spot))
+        date = str(c.get("date") or "")
+        if not date and c.get("age_h"):
+            date = (datetime.now(timezone.utc)
+                    - timedelta(hours=float(c["age_h"]))).strftime("%Y-%m-%d")
+        out.append({"who": [_norm_ent(str(c.get("channel", "")))],
+                    "clips": [{"source_url": url,
+                               "title": str(c.get("title", "")),
+                               "channel": str(c.get("channel", "")),
+                               "date": date,
+                               "views": int(c.get("views") or 0),
+                               "video_id": vid,
+                               "vod_offset": float(c["vod_offset"]),
+                               "duration": float(c.get("duration") or 30.0),
+                               "game": str(c.get("game") or ""),
+                               "posted": False}],
+                    "score": float(c.get("views") or 0),
+                    "kind": "moment", "video_id": vid})
+        if len(out) >= n:
+            break
+    return out
 
 
 def _densest_window(clips: list[dict], window_days: int) -> list[dict]:

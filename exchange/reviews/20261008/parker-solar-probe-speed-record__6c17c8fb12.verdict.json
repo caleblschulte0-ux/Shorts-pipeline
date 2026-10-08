@@ -1,0 +1,104 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "parker-solar-probe-speed-record__6c17c8fb12",
+ "video_sha256": "6c17c8fb1237ec01f40a735be42904a15df8a056af8dae03c939504f4a60629d",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-08T17:49:47Z",
+ "grades": {
+  "dimensions": {
+   "hook": 2,
+   "data_demo": 1,
+   "mascot": 1,
+   "craft": 1,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "No photos or AI images anywhere. Every frame from hook@0.3 to payoff@-0.4 is flat vector chart art plus the mascot."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "At seg2:start/mid/end Data stands beside the 24.8K and 430K numbers and points; he does nothing to them. At seg3:mid/end he just perches on the 56 bubble. At seg4:mid through payoff@-0.4 he stands on a ladder pointing at the hourglass instead of flipping it or pouring the sand. Only the hook ladder and the seg1 timeline walk tie him to the number at all."
+   },
+   "bare_number_card": {
+    "present": true,
+    "evidence": "seg2:start-end is two big numbers, 24.8K and 430K, in two rows with a mascot beside each. There is no race, no distance and no visible 17x gap; the numbers alone carry the comparison."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Code measured longest_static_s=0.0. Every segment has something moving: bars grow, the timeline is walked, the bubbles grow, the sand falls."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "Dark ground but no large dead area; dark_fraction=0.0. seg1:start is sparse in its upper-right, but it fills as the bars arrive."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "In seg4:start through payoff@-0.4 the ladder's rail runs through the label 'New York to Tokyo', so it reads 'Ne  York'. At seg3:end the '56' inside the yellow bubble is double-printed into an illegible blob."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg2",
+   "index": 2,
+   "failure_class": "bare_number_card",
+   "visible_evidence": "seg2:start-end: two text rows, 'Apollo 10 -- fastest humans ever traveled (1969) 24.8K' and 'Parker Solar Probe (2024) 430K', each with a Data standing beside it. A dotted vertical line sits at the right edge. Nothing shows that one is 17 times the other.",
+   "root_cause": "The comparison was drawn as a pair of number cards instead of a picture where the ratio is visible as distance or motion, so the '17 times faster' claim is only stated in text.",
+   "repair_goal": "Make the 17x visible as a race. Apollo 10 and Parker each streak across the frame toward the same line: in the time the capsule covers 1 unit, the probe covers 17 and blows past the frame edge. Data should be the cause, for example lighting or launching the probe, not standing beside a label. Keep one headline number."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "Plain bar chart of record speeds with sun icons. Data climbs a ladder to raise the 2024 bar, but it is still bars."
+   },
+   {
+    "id": "seg1",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "Timeline spike chart. Data walks the axis while a counter ticks up to 430,000. It is a line chart with a walker."
+   },
+   {
+    "id": "seg2",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 0,
+    "note": "Two lanes of numbers with a mascot in each and no vehicles. Nothing shows 17x."
+   },
+   {
+    "id": "seg3",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "Two sized bubbles, 56 and 208. A bubble chart, not a trip from New York to Tokyo or around the Earth."
+   },
+   {
+    "id": "seg4",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "Stock hourglass pair with the sand falling. Generic timer, and it ignores the 'diving into the sun' closing line."
+   }
+  ],
+  "one_line": "A chart-led explainer: bars, a timeline, number cards, bubbles and hourglasses, with the 17x and 56-second claims never shown physically and Data mostly pointing.",
+  "problems": [
+   "Hook (hook@0.3 to seg0:end) is a slow bar-chart build titled 'Fastest thing built', with no speed, motion or probe on screen.",
+   "seg2 is a bare number card, 24.8K vs 430K, and the 17x comparison is never visualised.",
+   "seg3 is a bubble chart. The '56' glyph is garbled at seg3:end, and 'NEW YORK TO TOKYO SITS LOWEST' is chart-speak.",
+   "In seg4 the ladder covers the 'New York to Tokyo' label, and the hourglass is a generic timer. The closing 'diving straight into the sun' has no visual at all.",
+   "Data points or perches in seg2, seg3 and seg4 instead of causing the motion.",
+   "There is no probe, no sun and no Earth anywhere in a video about a solar probe."
+  ],
+  "fixes": [
+   "Open on the probe itself streaking toward the sun with a speedometer reading 430K mph, and make Data the one throwing the throttle.",
+   "Turn seg2 into a race: an Apollo capsule against the probe over the same time, with the probe covering 17 times the distance.",
+   "Turn seg3 into a globe, with the probe crossing from New York to Tokyo in a 56-second sweep and circling Earth in 208, and Data riding or launching it.",
+   "Move the ladder off the labels, and fix the double-drawn 56 so it reads cleanly.",
+   "End on the probe diving into the sun so the closing line is shown on screen."
+  ]
+ }
+}

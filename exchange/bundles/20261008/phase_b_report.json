@@ -1,0 +1,117 @@
+{
+  "date": "20261008",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "envelope_problems": [],
+  "authored": {
+    "promoted": 0,
+    "rejected": 0,
+    "other_channels": {
+      "explainer": {
+        "applied": 3,
+        "rejected": 0
+      },
+      "curiosity": {
+        "applied": 0,
+        "rejected": 0
+      }
+    }
+  },
+  "media": {
+    "fulfilled": 14,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "8a031f56a921c3605d155f4c82b172d91160b2759a215a061fea4eea23090505",
+    "required": true,
+    "checked": 14,
+    "ok": 14,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": [],
+    "recovered_rejected_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 6,
+    "rejected": 0,
+    "absent": 0
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "fake-customer-costume-s0-42c8ac4a27f4",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/fake-customer-costume-s0-42c8ac4a27f4.png"
+    },
+    {
+      "request_id": "fake-customer-costume-s1-de1df396a50e",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/fake-customer-costume-s1-de1df396a50e.png"
+    },
+    {
+      "request_id": "fake-customer-costume-s2-dfca4b442c85",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/fake-customer-costume-s2-dfca4b442c85.png"
+    },
+    {
+      "request_id": "fake-customer-costume-s3-36337e37028d",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/fake-customer-costume-s3-36337e37028d.png"
+    },
+    {
+      "request_id": "fake-customer-costume-s4-00ab514365c9",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/fake-customer-costume-s4-00ab514365c9.png"
+    },
+    {
+      "request_id": "fake-customer-costume-s5-3457251bbf2c",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/fake-customer-costume-s5-3457251bbf2c.png"
+    },
+    {
+      "request_id": "fake-customer-costume-s6-df8a3cd8ab97",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/fake-customer-costume-s6-df8a3cd8ab97.png"
+    },
+    {
+      "request_id": "three-year-old-laptop-s6-534a70eac1dc",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/three-year-old-laptop-s6-534a70eac1dc.png"
+    },
+    {
+      "request_id": "three-year-old-laptop-s0-98e0e2cb81dd",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/three-year-old-laptop-s0-98e0e2cb81dd.png"
+    },
+    {
+      "request_id": "three-year-old-laptop-s1-e0e2866cdb29",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/three-year-old-laptop-s1-e0e2866cdb29.png"
+    },
+    {
+      "request_id": "three-year-old-laptop-s2-faa4de224cd5",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/three-year-old-laptop-s2-faa4de224cd5.png"
+    },
+    {
+      "request_id": "three-year-old-laptop-s3-c0df8b8fce8b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/three-year-old-laptop-s3-c0df8b8fce8b.png"
+    },
+    {
+      "request_id": "three-year-old-laptop-s4-ed9d975c202a",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/three-year-old-laptop-s4-ed9d975c202a.png"
+    },
+    {
+      "request_id": "three-year-old-laptop-s5-097b5d7ff8e3",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/three-year-old-laptop-s5-097b5d7ff8e3.png"
+    }
+  ]
+}

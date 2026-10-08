@@ -15,6 +15,7 @@ Contract: every function returns a validated dict or None, never raises.
 """
 from __future__ import annotations
 
+import json
 import re
 
 from third_capture.author import (_call_claude, _call_gemini_vision,
@@ -23,6 +24,16 @@ from third_capture.author import (_call_claude, _call_gemini_vision,
 STRUCTURES = {"chronological", "cold_open", "mystery_reveal",
               "two_perspectives", "escalation", "before_after"}
 ROLES = {"setup", "escalation", "climax", "payoff", "context", "reaction"}
+# What the brain calls a role it means. Backtests 2026-10-07/08 threw away
+# three repairs over "unknown beat role 'turn'", "'evidence'", "'proof'" —
+# a word, not a defect in the edit. Anything not here is still refused.
+ROLE_ALIASES = {"turn": "climax", "twist": "climax", "reveal": "climax",
+                "evidence": "context", "proof": "context",
+                "background": "context", "resolution": "payoff",
+                "punchline": "payoff", "aftermath": "payoff",
+                "hook": "setup", "intro": "setup", "build": "escalation",
+                "conflict": "escalation", "complication": "escalation",
+                "response": "reaction"}
 TRANSITIONS = {"hard_cut", "j_cut", "l_cut"}
 FRAMINGS = {"wide", "tight"}
 # §14: narration never speculates — motive/drama words reject the line
@@ -55,6 +66,15 @@ def narration_grounded(text: str, reports: list[dict]) -> bool:
     corpus = " ".join(
         " ".join([str(r.get("transcript_lines", "")),
                   str(r.get("summary", "")),
+                  # Twitch metadata, not the footage — but facts: whose
+                  # stream it is and what they were playing
+                  str(r.get("channel", "")), str(r.get("game", "")),
+                  # the streamer's own title for the broadcast
+                  str(r.get("stream_title", "")),
+                  # who someone is, from general knowledge, checked by a
+                  # second model (`known_people`)
+                  " ".join(f"{k} {v}" for k, v in
+                           (r.get("known_people") or {}).items()),
                   " ".join(str(x) for x in r.get("people") or []),
                   " ".join(str(b.get("purpose", ""))
                            for b in r.get("dialogue_beats") or [])])
@@ -68,14 +88,99 @@ def narration_grounded(text: str, reports: list[dict]) -> bool:
     return sum(1 for w in words if seen(w)) * 3 >= len(words) * 2
 
 
+_WHO_SYSTEM = """You identify people for captions on a streamer-clip
+channel. For each NAME, say who they are TO THE STREAMER in at most 10
+words, as a stranger would need it: "Kai Cenat's cousin", "a streamer in
+Kai's AMP group", "Lacy's duo partner". Only what is widely known and
+stable — a relationship or a role. Never an event, a claim, an
+accusation, a motive or anything you are unsure of: then null.
+Return STRICT JSON: {"who": {"<name>": "<line>" | null, ...}}"""
+
+_WHO_VERIFY_SYSTEM = """You fact-check captions on a streamer-clip
+channel. For each NAME and LINE about who they are to the streamer,
+answer true only if you are confident the line is accurate and widely
+known; false if it is wrong, unsure, or says anything beyond who the
+person is. Return STRICT JSON: {"ok": {"<name>": true|false, ...}}"""
+
+# a who-line names a relationship or a role, never an event
+_BAD_WHO = re.compile(
+    r"\b(accus|alleg|banned|arrest|lied|lying|scam|cheat|fight|beef|feud"
+    r"|drama|stole|steal|charged|lawsuit|sued|controvers|ex-)", re.I)
+
+_WHO_CACHE: dict = {}
+
+
+def known_people(streamer: str, names: list[str]) -> dict:
+    """{name: who they are to the streamer} for the people a story's
+    sources name but never introduce — proposed by one model, kept only
+    where a SECOND, different model agrees it is accurate.
+
+    The critic's most frequent refusal across story backtests 6-11 was a
+    stranger not knowing who someone is (Reggie, Ron, Bruce), and the
+    grounding rule forbade any line the sources do not say. The operator
+    allowed a line of text on screen (2026-10-08); this is where its
+    "who" may come from when the footage never says it. Best-effort:
+    any failure or doubt returns nothing, and the cut is as before."""
+    names = [str(n).strip() for n in names or []
+             if str(n).strip() and str(n).strip().lower()
+             != str(streamer).strip().lower()][:8]
+    if not names:
+        return {}
+    key = (str(streamer).lower(), tuple(sorted(n.lower() for n in names)))
+    if key in _WHO_CACHE:
+        return dict(_WHO_CACHE[key])
+    out: dict = {}
+    try:
+        ask = f"STREAMER: {streamer}\nNAMES: " + json.dumps(names)
+        got = (_call_claude(ask, system=_WHO_SYSTEM) or {}).get("who") or {}
+        lines = {n: " ".join(str(v).split()) for n, v in got.items()
+                 if n in names and v and len(str(v).split()) <= 12
+                 and not _BAD_WHO.search(str(v))
+                 and not _BAD_NARRATION.search(str(v))}
+        if lines:
+            ok = (_call_text_fallback(
+                f"STREAMER: {streamer}\n" + json.dumps(lines),
+                system=_WHO_VERIFY_SYSTEM, tag="who") or {}).get("ok") or {}
+            out = {n: v for n, v in lines.items() if ok.get(n) is True}
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[director] known_people failed ({e})", flush=True)
+        out = {}
+    _WHO_CACHE[key] = dict(out)
+    return out
+
+
+def narration_lines(edl: dict | None) -> list[dict]:
+    """Every narrator line of an EDL, in beat order. `narration` is the
+    first of them (kept for everything that read the one-line format);
+    `narration_lines` holds all of them."""
+    if not edl:
+        return []
+    lines = edl.get("narration_lines")
+    if lines is None:
+        lines = [edl["narration"]] if edl.get("narration") else []
+    return [ln for ln in lines if isinstance(ln, dict)]
+
+
 def _ground(edl: dict | None, reports: list[dict], rs: list) -> dict | None:
-    """Drop a narration line the footage does not support — the cut stays,
-    the invented sentence goes."""
-    if edl and edl.get("narration") and \
-            not narration_grounded(edl["narration"].get("text", ""), reports):
-        rs.append("narration dropped — not grounded in the sources: "
-                  f"{edl['narration'].get('text', '')!r}")
-        edl = dict(edl)
+    """Drop every narration line the footage does not support — the cut
+    stays, the invented sentences go, the grounded ones stay."""
+    lines = narration_lines(edl)
+    if not lines:
+        return edl
+    kept = []
+    for ln in lines:
+        if narration_grounded(ln.get("text", ""), reports):
+            kept.append(ln)
+        else:
+            rs.append("narration dropped — not grounded in the sources: "
+                      f"{ln.get('text', '')!r}")
+    if len(kept) == len(lines):
+        return edl
+    edl = dict(edl)
+    edl["narration_lines"] = kept
+    if kept:
+        edl["narration"] = kept[0]
+    else:
         edl.pop("narration", None)
     return edl
 # banned overlay phrases (§17): overlays prevent confusion, never narrate
@@ -108,7 +213,7 @@ If it IS a story, DIRECT it. Choose ONE structure and justify it:
 THE FIRST THREE SECONDS TELL A STRANGER WHO AND WHAT. The viewer has
 never heard of this streamer, this friend, this game or this pet. Before
 the story moves, they must know who it is about and what is at stake —
-said by the first line, or stated by the hook, or by the one narration
+said by the first line, or stated by the hook, or by a narration
 line. "Pokimane's cat Mimi" not "my baby"; "CaseOh's sausage challenge"
 not "it's done"; "Reggie says Kai ignored his call" not "the proof". In
 story backtests the critic's first complaint on most cuts was exactly
@@ -122,10 +227,24 @@ Then emit the COMPLETE timeline. Segment rules:
 - every segment states its narrative purpose; a segment adding no
   information, emotion, escalation, or payoff must not exist
 - remove repetition across sources (same explanation twice = cut one)
-- context_overlay: 2-6 words over the FOOTAGE only when the viewer would
-  otherwise be confused (time jump, new speaker, new place) — e.g.
-  "EARLIER THAT DAY", "THEN HIS FRIEND RESPONDED". NEVER meta-labels like
+- context_overlay: 2-6 words, sentence case, briefly replacing the
+  caption only when the viewer would otherwise be confused (time jump,
+  new speaker, new place) — e.g. "Earlier that day", "Then his friend
+  responded". NEVER meta-labels like
   "IT GETS WORSE" or "PART TWO". "" when the cut is already obvious.
+- A STRANGER DOES NOT KNOW THE STREAMER OR THE GAME. Each SOURCE's
+  `streamer=` and `game=` are Twitch's own metadata — verified facts. When
+  nobody on stream says who or what this is, the opening (hook_overlay,
+  beat 0's context_overlay, or narration) names them: "FORSEN PLAYING
+  TERRARIA" (game=Terraria), "BUDDHA IN GTA" (game=Grand Theft Auto V).
+  Never a fact that is in neither the metadata nor the sources.
+  `known (general knowledge, verified by a second model)` says who a
+  person is to the streamer when the footage never does ("Reggie = Kai
+  Cenat's cousin"); a line of text may say exactly that.
+  `stream_title=` is the STREAMER'S OWN title for that broadcast — what
+  they said the stream was ("FNCS QUALIFIERS DAY 2"). Use it to say what
+  was at stake ("LACY'S FNCS QUALIFIER"), attributed to the stream, never
+  as a result it does not state.
 - transition per beat: "hard_cut" (default) | "j_cut" (next beat's audio
   blends in over the cut — use when the next line naturally answers or
   interrupts) | "l_cut" (previous audio tails briefly over the next
@@ -136,11 +255,15 @@ Then emit the COMPLETE timeline. Segment rules:
   re-shows ~2s around `at` slowed, ONLY when the action was genuinely
   hard to see), at most 2 subtle_punch; spend emphasis on the payoff,
   not the first beat. Usually [].
-- narration: OPTIONAL top-level {"text": <=15 words, "over_beat": idx,
-  "essential_because": str} — spoken OVER that beat (ducked). Use it,
-  usually over beat 0, when the footage never says WHO or WHAT the story
-  is about and the scene reports do (a name, a relationship, what was
-  claimed); otherwise omit. Verified facts from the reports only, never
+- narration: OPTIONAL top-level LIST, at most ONE line per beat, each
+  {"text": <=12 words, "over_beat": idx, "essential_because": str} —
+  a line of TEXT shown on screen over that beat (there is NO voice-over;
+  this channel never narrates — a line or two of text is all the edit
+  says). Use it when the footage
+  never says WHO or WHAT the story is about and the scene reports do
+  (usually over beat 0), and to bridge how one clip leads to the next
+  ("Later that stream, Rakai's bag ended up in a sewer.") when the cut
+  jumps. Use as few as the story needs; omit when the footage says it. Verified facts from the reports only, never
   motives, never drama ("Pokimane's cat Mimi got out onto the balcony."
   — good; "He was furious and planning revenge." — forbidden). A line the
   sources do not support is removed automatically.
@@ -150,10 +273,15 @@ Return STRICT JSON:
  "premise": str, "central_question": str, "ending_emotion": str,
  "structure": "<one of the six>", "structure_reason": str,
  "title": str,
- "hook_overlay": str,   // 3-7 words over the opening that state the
-                        // SITUATION in plain words (who + what is at
-                        // stake) — "KAI SAYS REGGIE IS LYING", not a
-                        // teaser like "HE NEVER SAW IT COMING"
+ "hook_overlay": str,   // 3-7 words, SENTENCE CASE: the ONE caption
+                        // that stays on screen the whole video, like a
+                        // repost's: "Los thought he ended stream",
+                        // "Kai says Reggie is lying", or the clip's own
+                        // best quote in quotes ("Opening an umbrella
+                        // indoors is bad luck"). It states the
+                        // SITUATION in plain words (who + what) — never
+                        // a teaser like "He never saw it coming", never
+                        // ALL CAPS
  "target_duration": int,                      // seconds, 25-90
  "beats": [{"source_id": str, "start": s, "end": s,
             "role": "setup|escalation|climax|payoff|context|reaction",
@@ -162,8 +290,8 @@ Return STRICT JSON:
             "framing": "wide|tight",
             "context_overlay": str,
             "effects": [{"type": "subtle_punch", "at": s}, ...]}, ...],
- "narration": {"text": str, "over_beat": int,
-               "essential_because": str} | omitted,
+ "narration": [{"text": str, "over_beat": int,
+                "essential_because": str}, ...] | omitted,
  "ending": {"type": "reaction_hold", "duration": 0.8-2.0}}
 
 The FIRST beat is the opening — moving footage from second zero, hook
@@ -211,7 +339,7 @@ minutes per clip, so:
   and turned down, with the reason. Do not propose them again unless a
   clip that was not in them changes what happened.
 
-Return STRICT JSON, best story first, at most 3:
+Return STRICT JSON, best story first, at most 6:
 {"stories": [{"members": ["C3", "C9", "C14"],
               "premise": "<one sentence: who, what changed>",
               "why_connected": "<why these clips are one story>",
@@ -220,7 +348,7 @@ Return {"stories": []} when the catalogue holds no real story."""
 
 
 def scout_stories(lines: list[str], ids: set[str],
-                  max_stories: int = 3,
+                  max_stories: int = 6,
                   tried: list[str] | None = None) -> list[dict]:
     """Ask the brain which clips in the catalogue form stories.
 
@@ -303,18 +431,33 @@ Return STRICT JSON:
 _REVISE_SYSTEM = """You are the story director revising your own edit
 based on the critic's timestamped problems. You may only: adjust cut
 boundaries, remove a repetitive segment, extend a reaction, add/remove a
-context overlay, change a transition, remove an effect — and, ONLY when the
-critic names missing_context, add or rewrite the ONE narration line.
+context overlay, change a transition, remove an effect — and, when the
+critic names missing_context or confusing, add or rewrite narration
+lines: a LIST, at most ONE per beat.
 
-Narration ({"text", "over_beat", "essential_because"}): at most 15 words,
-spoken over the beat that needs it (usually beat 0, to set up the story).
+Narration ([{"text", "over_beat", "essential_because"}, ...]): each line
+at most 12 words of on-screen TEXT (never a voice) over the beat that
+needs it — beat 0 to set up
+who and what, a later beat to bridge a jump the critic could not follow.
 It may state ONLY what a source's transcript or scene report states —
 who someone is, what they said happened, what was claimed — in the
-footage's own words where possible. Never motive, never feelings, never
-drama, never anything the sources do not say. `essential_because` names
+footage's own words where possible — plus a source's `known` line (who
+a person is to the streamer, verified by a second model) and its `streamer=`,
+`game=` and `stream_title=` (the streamer's own title for the broadcast:
+what the stream was, e.g. a qualifier, a subathon, a trial), which are
+Twitch's own metadata. When the critic says a stranger
+does not know who this is or what they are playing, name them: in the
+hook, beat 0's context overlay, or the narration line. Never motive,
+never feelings, never drama, never anything the sources do not say. `essential_because` names
 the source line it comes from. A line not supported by the sources is
 removed automatically, so do not guess. If the missing context is not in
 the sources at all, fix what you can with cuts instead.
+
+The critic's times are on the OUTPUT clock (the rendered video); your
+EDL is in each SOURCE's own seconds. Each problem is mapped for you to the
+beat and source second it lands on, and THE CUT THE CRITIC WATCHED shows
+every line each beat kept, in source seconds: move a boundary to the line
+you mean — past a garbled or repeated line, onto a clean one.
 
 You may NOT add new sources. Return the COMPLETE corrected EDL in the
 exact same JSON schema you used before (is_story true, same fields)."""
@@ -343,12 +486,20 @@ def _fmt_reports(reports: list[dict]) -> str:
                         f"{o % 60:02d}s")
             except (TypeError, ValueError):
                 at = ""
+        game = f" game={r['game']}" if r.get("game") else ""
+        if r.get("stream_title"):
+            game += f" stream_title={r['stream_title']!r}"
+        who = "; ".join(f"{k} = {v}" for k, v in
+                        (r.get("known_people") or {}).items())
+        who = (f"  known (general knowledge, verified by a second model): "
+               f"{who}\n" if who else "")
         out.append(
             f"SOURCE {r['source_id']}\n"
             f"  streamer={r['channel']} dur={r['duration_s']}s "
-            f"date={r.get('date', '?')}{at}\n"
+            f"date={r.get('date', '?')}{at}{game}\n"
             f"  summary: {r['summary']}\n"
             f"  people: {', '.join(r.get('people', []))}\n"
+            f"{who}"
             f"  dialogue: {beats or '(none)'}\n"
             f"  visual: {vis or '(none)'}\n"
             f"  emotions: {', '.join(r.get('emotional_state', []))}\n"
@@ -691,7 +842,11 @@ def validate_edl(edl: dict, durations: dict[str, float],
                 rs.append(f"beat {sid} {s:.1f}-{e:.1f}s lands on no "
                           f"analysed window")
                 return None
-            role = str(b.get("role", ""))
+            role = str(b.get("role", "")).strip().lower()
+            if role in ROLE_ALIASES:
+                rs.append(f"beat role {role!r} read as "
+                          f"{ROLE_ALIASES[role]!r} (repaired)")
+                role = ROLE_ALIASES[role]
             if role not in ROLES:
                 rs.append(f"unknown beat role {role!r}")
                 return None
@@ -700,7 +855,7 @@ def validate_edl(edl: dict, durations: dict[str, float],
                 rs.append(f"beat {sid} states no purpose")
                 return None      # §10: every segment states its purpose
             overlay = scrub_text(
-                str(b.get("context_overlay", "")).strip())[:40].upper()
+                str(b.get("context_overlay", "")).strip())[:40]
             if overlay:
                 if _BAD_OVERLAY.search(overlay) or \
                         not (2 <= len(overlay.split()) <= 6):
@@ -777,9 +932,18 @@ def validate_edl(edl: dict, durations: dict[str, float],
         # §14 narration: optional, justified, verified-voice only. Key is
         # `over_beat` (reviewer #10) — narration is DUCKED OVER that beat,
         # which is what the renderer does; `after_beat` still read for compat
-        narration = None
-        n_in = edl.get("narration")
-        if isinstance(n_in, dict):
+        # THE NARRATOR: up to ONE line per beat (story backtests
+        # 2026-10-07: ten cuts, every near-miss refused for context the
+        # footage never says — who someone is, how the bag got into the
+        # sewer, that the ban came minutes later — and the cut was allowed
+        # one line for all of it). A dict is the old one-line form.
+        n_raw = edl.get("narration")
+        cands = (n_raw if isinstance(n_raw, list)
+                 else [n_raw] if isinstance(n_raw, dict) else [])
+        lines, taken = [], set()
+        for n_in in cands:
+            if not isinstance(n_in, dict):
+                continue
             text = scrub_text(str(n_in.get("text", "")).strip())[:90]
             why = str(n_in.get("essential_because", "")).strip()
             # NOT `int(...) or -1`: beat 0 is falsy, so that turned "over
@@ -791,10 +955,14 @@ def validate_edl(edl: dict, durations: dict[str, float],
             except (TypeError, ValueError):
                 over = -1
             if (text and why and 0 <= over < len(beats)
+                    and over not in taken
                     and len(text.split()) <= 15
                     and not _BAD_NARRATION.search(text)):
-                narration = {"text": text, "over_beat": over,
-                             "essential_because": why[:120]}
+                taken.add(over)
+                lines.append({"text": text, "over_beat": over,
+                              "essential_because": why[:120]})
+        lines.sort(key=lambda ln: ln["over_beat"])
+        narration = lines[0] if lines else None
         # target_duration is advisory; clamp into the 25-90s band (§6)
         target = int(edl.get("target_duration", 45) or 45)
         target = min(90, max(25, target))
@@ -809,10 +977,13 @@ def validate_edl(edl: dict, durations: dict[str, float],
             "structure": structure,
             "structure_reason": str(edl.get("structure_reason", ""))[:200],
             "title": str(edl.get("title", "")).strip()[:95],
-            "hook_overlay": hook_raw[:60].upper(),
+            # sentence case, as the line is shown (the reposts it looks
+            # like: "Los thought he ended stream")
+            "hook_overlay": hook_raw[:60],
             "target_duration": target,
             "beats": beats,
             "narration": narration,
+            "narration_lines": lines,
             "ending": {"type": "reaction_hold", "duration": hold},
         }
     except (TypeError, ValueError, KeyError):
@@ -870,8 +1041,27 @@ def last_rejection() -> dict:
     return dict(_LAST_REJECTION)
 
 
+_LAST_TAKES: list = []
+
+
+def last_takes() -> list[dict]:
+    """Every valid take the most recent plan_story() produced, best-first
+    as the director ordered them (the first is what plan_story returned)."""
+    return list(_LAST_TAKES)
+
+
+_TAKES_ASK = (
+    "\n\nWRITE {n} DIFFERENT TAKES on this story — an editor's alternate "
+    "cuts, not copies: a different opening line, different beats kept or "
+    "dropped, a different place to end, a different structure where one "
+    "fits. Each take is a COMPLETE plan in the schema above. Return "
+    '{{"is_story": true, "takes": [<plan>, <plan>, ...]}}, your best '
+    "first — or the usual is_story false and why when there is no story.")
+
+
 def plan_story(reports: list[dict], event: dict | None = None,
-               guidance: str = "", hypothesis: str = "") -> dict | None:
+               guidance: str = "", hypothesis: str = "",
+               moment: str = "", takes: int = 1) -> dict | None:
     """Eligibility gate + structure choice + full story EDL, validated.
     `guidance` is the channel's own evidence about which structures/
     lengths retain (empty until >=25 mature stories exist — creative
@@ -886,6 +1076,9 @@ def plan_story(reports: list[dict], event: dict | None = None,
         user += (f"EVENT: {event.get('event_id', '?')} "
                  f"people={event.get('people')} "
                  f"type={event.get('event_type', '?')}\n\n")
+    if moment:
+        # storyline.find_moments: one clip and the stream either side of it
+        user += f"WHAT THESE SOURCES ARE: {moment}\n\n"
     if hypothesis:
         # The scout's reading, mostly from titles. The director is the one
         # with the transcripts and frames — it confirms or kills it. But a
@@ -918,7 +1111,9 @@ def plan_story(reports: list[dict], event: dict | None = None,
                  "(`at=`). Judge whether they form setup -> "
                  "escalation -> payoff; do not assume they do.\n\n")
     user += "SCENE REPORTS:\n" + _fmt_reports(reports)
-    out = _brain(user, _PLAN_SYSTEM)
+    _LAST_TAKES.clear()
+    out = _brain(user + (_TAKES_ASK.format(n=takes) if takes > 1 else ""),
+                 _PLAN_SYSTEM)
     rs: list = []
     if out is None:
         rs.append("director unreachable")
@@ -927,10 +1122,29 @@ def plan_story(reports: list[dict], event: dict | None = None,
         return None
     durations = {r["source_id"]: float(r.get("duration_s") or 0)
                  for r in reports}
-    edl = validate_edl(out, durations, _windows(reports), reasons=rs,
-                       positions=_positions(reports), words=_words(reports))
-    # the director's own narration meets the same floor as the reviser's
-    edl = _ground(edl, reports, rs)
+    # SEVERAL TAKES (story backtests 7-9: a plan that opened at 58 never
+    # climbed past ~66 by repair, while a different cut of the same
+    # footage scored 78). Each take meets every law on its own; the table
+    # read in run_third picks which one is rendered.
+    raw = out.get("takes") if isinstance(out, dict) else None
+    if isinstance(raw, list) and raw:
+        cands = [dict(t, is_story=True) for t in raw[:max(1, takes)]
+                 if isinstance(t, dict)]
+    else:
+        cands = [out]
+    edl = None
+    for i, cand in enumerate(cands):
+        trs: list = []
+        e = validate_edl(cand, durations, _windows(reports), reasons=trs,
+                         positions=_positions(reports),
+                         words=_words(reports))
+        # the director's own narration meets the same floor as the reviser's
+        e = _ground(e, reports, trs)
+        if e:
+            _LAST_TAKES.append(e)
+            edl = edl or e
+        rs.extend(trs if len(cands) == 1 else [f"take {i}: {r}"
+                                               for r in trs])
     # `editorial` separates "a human editor would also say no" from "the
     # plan was malformed" — the second is OUR bug and needs a code fix, and
     # for a month both were logged as "no genuine arc".
@@ -945,20 +1159,16 @@ def _fmt_on_screen(items: list[dict] | None) -> str:
     """What the cut shows and says beyond the streamer's own words.
 
     Backtest #5: every cut was marked down for missing context, including
-    the ones whose narrator SAID it — the critic samples frames (a 1-2s
+    the ones whose added text SAID it — the critic samples frames (a 1-2s
     overlay falls between them) and reads the source transcript (the
-    voice-over is not in it). It is told what is really there, on the
+    edit's own words are not in it). It is told what is really there, on the
     output clock, and still judges whether that is enough."""
     if not items:
         return ""
     rows = []
     for o in items:
-        if o["kind"] == "narration":
-            rows.append(f"- {o['at']:.1f}s VOICE-OVER (spoken over the "
-                        f"footage, not captioned): \"{o['text']}\"")
-        else:
-            rows.append(f"- {o['at']:.1f}s for {o['secs']:.1f}s ON-SCREEN "
-                        f"{o['kind'].upper()}: \"{o['text']}\"")
+        rows.append(f"- {o['at']:.1f}s for {o['secs']:.1f}s ON-SCREEN "
+                    f"{o['kind'].upper()}: \"{o['text']}\"")
     return ("ADDED BY THE EDIT (exactly what the cut shows/says beyond the "
             "transcript; frames may miss a short overlay):\n"
             + "\n".join(rows) + "\n")
@@ -1034,19 +1244,119 @@ def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
             "problems": problems}
 
 
+def revalidate(edl: dict, reports: list[dict]) -> dict | None:
+    """A stored EDL (clip_memory.kept_edit) put back through the same laws
+    against today's reports — the sources may have changed, the laws may
+    have grown. None when it no longer holds."""
+    if not isinstance(edl, dict):
+        return None
+    prev = {k: v for k, v in edl.items() if k != "narration_lines"}
+    if narration_lines(edl):
+        prev["narration"] = narration_lines(edl)
+    prev["is_story"] = True
+    rs: list = []
+    durations = {r["source_id"]: float(r.get("duration_s") or 0)
+                 for r in reports}
+    out = validate_edl(prev, durations, _windows(reports), reasons=rs,
+                       positions=_positions(reports), words=_words(reports))
+    out = _ground(out, reports, rs)
+    if not out:
+        print(f"[story] kept edit no longer holds: {'; '.join(rs)[:200]}",
+              flush=True)
+    return out
+
+
+def locate(at: float, cut_beats: list[dict]) -> dict | None:
+    """Map an OUTPUT second (the critic's clock) to the beat that plays it
+    and the SOURCE second the EDL uses. `cut_beats` is `render_story`'s
+    `beats` (each with `beat`, `source_id`, `start`, `out_start`,
+    `out_end`). A second inside a replay or past the end maps to the
+    nearest beat before it. None when nothing is known."""
+    best = None
+    for b in cut_beats or []:
+        try:
+            o0, o1 = float(b["out_start"]), float(b["out_end"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        if o0 <= at:
+            best = (b, min(at, o1))
+    if not best:
+        return None
+    b, t = best
+    return {"beat": b.get("beat"), "source_id": b.get("source_id"),
+            "source_s": round(float(b["start"]) + t - float(b["out_start"]),
+                              1)}
+
+
+def _cut_map(cut: dict) -> str:
+    """What the rendered cut actually holds, beat by beat, in the SOURCE
+    seconds the EDL is written in — the reviser edits what it can see."""
+    words = cut.get("final_words") or []
+    out = []
+    for b in cut.get("beats") or []:
+        try:
+            o0, o1 = float(b["out_start"]), float(b["out_end"])
+            s0 = float(b["start"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        mine = [{"w": w["w"], "s": w["s"] - o0 + s0, "e": w["e"] - o0 + s0}
+                for w in words if o0 <= w["s"] < o1]
+        lines = []
+        if mine:
+            cur = [mine[0]]
+            for w in mine[1:]:
+                if w["s"] - cur[-1]["e"] >= 1.2:
+                    lines.append(cur)
+                    cur = [w]
+                else:
+                    cur.append(w)
+            lines.append(cur)
+        said = "\n".join(
+            f"    [{ln[0]['s']:.1f}-{ln[-1]['e']:.1f}] "
+            + " ".join(w["w"] for w in ln) for ln in lines) or "    (no speech)"
+        out.append(f"  beat {b.get('beat')} ({b.get('role', '')}) "
+                   f"source {b.get('source_id')} "
+                   f"{s0:.1f}-{float(b['end']):.1f}s = output "
+                   f"{o0:.1f}-{o1:.1f}s:\n{said}")
+    return "\n".join(out)
+
+
+def _where(p: dict, cut: dict | None) -> str:
+    loc = locate(float(p["at"]), (cut or {}).get("beats") or [])
+    if not loc:
+        return ""
+    return (f" (= beat {loc['beat']}, source {loc['source_id']} at "
+            f"{loc['source_s']:.1f}s)")
+
+
 def revise_edl(edl: dict, problems: list[dict],
-               reports: list[dict]) -> dict | None:
+               reports: list[dict], cut: dict | None = None) -> dict | None:
     """§19: one constrained revision (the caller loops up to
-    `story_revisions`). May add ONE narration line when the critic names
-    missing context; a line the sources do not support is dropped
+    `story_revisions`). May add narration lines (one per beat at most)
+    when the critic names missing context; a line the sources do not support is dropped
     (`narration_grounded`). Returns a re-validated EDL or None (caller then
     abandons the story to the clip fallback)."""
     if not problems:
         return None
-    user = ("YOUR PREVIOUS EDL:\n" + str(edl) + "\n\n"
-            "CRITIC PROBLEMS (timestamped):\n"
-            + "\n".join(f"- at {p['at']:.1f}s [{p['type']}]: {p['fix']}"
+    # shown in the format the brain writes: `narration` is the LIST
+    prev = {k: v for k, v in edl.items() if k != "narration_lines"}
+    if narration_lines(edl):
+        prev["narration"] = narration_lines(edl)
+    user = ("YOUR PREVIOUS EDL:\n" + str(prev) + "\n\n"
+            "CRITIC PROBLEMS (timestamped on the OUTPUT clock"
+            + (", each mapped to YOUR beat and source second" if cut else "")
+            + "):\n"
+            + "\n".join(f"- at {p['at']:.1f}s{_where(p, cut)} "
+                        f"[{p['type']}]: {p['fix']}"
                         for p in problems)
+            # THE CUT THE CRITIC WATCHED, in source seconds. The critic says
+            # "@63.0s repetition"; the EDL is written in each source's own
+            # seconds; with three beats and a hook between them the reviser
+            # was guessing which line the critic meant. Backtest 6 repaired
+            # the same "are you hacked" repetition three times without
+            # removing it (62 -> 68 -> 71).
+            + ("\n\nTHE CUT THE CRITIC WATCHED (what each beat holds, in "
+               "source seconds):\n" + _cut_map(cut) if cut else "")
             # THE WHOLE REPORTS, as the director planned from. `[:4000]` cut
             # every source's transcript but the first: on 2026-10-03 the
             # critic asked for "Kai stating the accusation" at the opening
@@ -1054,14 +1364,28 @@ def revise_edl(edl: dict, problems: list[dict],
             # the cut scored 58, 46, 58 and was dropped.
             + "\n\nSCENE REPORTS (the same ones you planned from):\n"
             + _fmt_reports(reports))
-    out = _brain(user, _REVISE_SYSTEM)
     durations = {r["source_id"]: float(r.get("duration_s") or 0)
                  for r in reports}
-    rs: list = []
-    edl2 = validate_edl(out or {}, durations, _windows(reports), reasons=rs,
-                        positions=_positions(reports), words=_words(reports))
-    edl2 = _ground(edl2, reports, rs)
-    for r in rs:
-        if r.startswith("narration dropped"):
-            print(f"[story] revision: {r}", flush=True)
-    return edl2
+    # A REVISION THE LAWS REFUSE GETS TOLD WHY, ONCE. It used to come back
+    # None and end the story with "after 0 revision(s)" and nothing logged:
+    # the 2026-10-07 backtest dropped a 66 (Ludwig's archery-lane intruder)
+    # and a 70 (Sodapoppin's machine) that way, both with problems a trim
+    # and an overlay fix. Same validation, same laws — the reviser just
+    # hears what it broke.
+    for attempt in range(2):
+        out = _brain(user, _REVISE_SYSTEM)
+        rs: list = []
+        edl2 = validate_edl(out or {}, durations, _windows(reports),
+                            reasons=rs, positions=_positions(reports),
+                            words=_words(reports))
+        edl2 = _ground(edl2, reports, rs)
+        for r in rs:
+            if r.startswith("narration dropped") or not edl2:
+                print(f"[story] revision: {r}", flush=True)
+        if edl2 or not out:
+            return edl2
+        user += ("\n\nYOUR REVISION WAS REJECTED by the edit laws: "
+                 + "; ".join(rs)[:1200]
+                 + "\nReturn the complete EDL again, fixing that and still "
+                   "fixing the critic's problems.")
+    return None

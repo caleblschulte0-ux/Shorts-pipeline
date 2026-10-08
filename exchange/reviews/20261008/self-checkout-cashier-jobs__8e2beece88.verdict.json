@@ -1,0 +1,98 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "self-checkout-cashier-jobs__8e2beece88",
+ "video_sha256": "8e2beece883be97d98595a73074a80784b342b152ea9fe6bd1954931f7637930",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-08T16:46:48Z",
+ "grades": {
+  "dimensions": {
+   "hook": 1,
+   "data_demo": 1,
+   "mascot": 1,
+   "craft": 1,
+   "pace": 1,
+   "payoff": 0
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "No photos or AI images in any frame; everything is drawn (hook@0.3 through payoff@-0.4)."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "Data does nothing that drives the data: arms up on a timeline (hook@0.3-2.2), a loop of dance moves beside bars (seg0:start/mid/end), hanging off the frame edge by a scale (seg1:start-end), and standing on a bubble while it grows on its own (seg2-seg4)."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "Every beat has a visual: a timeline (hook), bars (seg0), a balance scale (seg1) and bubbles (seg2). Each is a weak chart, but none is a bare number card."
+   },
+   "dead_air": {
+    "present": true,
+    "evidence": "seg2, seg3 and seg4 (t=10.8 to 24.3s) are the same 4% vs 1.6% bubble scene. The closing only swaps the title and grows the circles, so two beats look identical for about 13 seconds."
+   },
+   "empty_void": {
+    "present": true,
+    "evidence": "In hook@0.3-2.2 a thin timeline sits in the middle, leaving roughly 60% of the frame as empty gradient above and below. seg2:start has small bubbles floating in a large empty field."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "seg1:start/mid/end: Data's body covers the '3' of '3.5M' and he is cut off by the left frame edge, so the label reads '.5M'. seg2:mid: the caption numbers overlap and read as '146%'. seg1:mid: a faint '3.5' ghost caption is nearly invisible."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg1",
+   "index": 1,
+   "failure_class": "unreadable",
+   "visible_evidence": "On a balance scale, Data is clipped by the left frame edge and stands on top of the '3.5M' label, which reads '.5M'. The beam barely tilts from 3.5M to 3M, and the 2023 bricks are greyed out. Data is a sticker at the margin, not doing anything.",
+   "root_cause": "The mascot's anchor is placed at the scale's left pan, which sits at the frame edge, with no collision check against the value label. The 14% drop is drawn as a near-level beam, so the change barely shows.",
+   "repair_goal": "Keep the subject in frame and label-clear. Show the cashier drop as something viewers see happen: a row of cashier lanes or workers where Data takes away the 0.5M share (for example, he wheels away one checkout station in seven). The 3.5M \u2192 3M change should be visibly removed by Data's own action, with the 3.5M label fully readable."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "A plain horizontal bar chart (6/33/92%) with the mascot dancing beside it."
+   },
+   {
+    "id": "seg1",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "A stock balance scale with bricks. The tilt is barely visible and nothing about it is about cashiers."
+   },
+   {
+    "id": "seg2",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "Two proportional bubbles labelled 4% and 1.6%. A bubble chart, nothing about theft or checkout lanes."
+   },
+   {
+    "id": "seg3",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "The same bubble scene repeated under the closing line, adding nothing new."
+   }
+  ],
+  "one_line": "Three generic charts (bars, a stock scale, bubbles) with a decorative mascot, a hook that misreads 92% adoption as 92% of jobs wiped out, and a closing that replays the bubble scene. It is not a demonstration.",
+  "problems": [
+   "The hook claims 'wiped out 92% of cashier jobs', but the data says 92% of chains have self-checkout and jobs fell about 14% (3.5M\u21923M). The hook is a false claim.",
+   "The hook visual is a slow timeline build on an empty frame, stuck on '6%' for 1.5s. Nothing grabs attention.",
+   "seg0 is a plain bar chart while Data dances beside it with no tie to the numbers.",
+   "seg1: Data is clipped by the left frame edge and covers the '3' in '3.5M'. The scale barely tilts, so the job loss doesn't show.",
+   "seg2: the caption numbers overlap into '146%'.",
+   "seg3/seg4 reuse the seg2 bubble scene for the closing, so two beats look identical.",
+   "No payoff. It ends on a bubble comparison unrelated to the 'job moved' line."
+  ],
+  "fixes": [
+   "Rewrite the hook to match the data, for example '92% of grocery chains now have self-checkout'. Open on Data doing something, not a timeline drawing itself.",
+   "seg0: show the change as checkout lanes turning into kiosks, with Data swapping each one, instead of bars.",
+   "seg1: move the scene inside safe margins, keep labels clear of Data, and have Data take away the 0.5M of cashiers visibly.",
+   "seg2: show the loss as merchandise slipping past unscanned at self-checkout vs a staffed lane, and fix the overlapping caption numbers.",
+   "Give the closing its own scene that pays off 'the line moved, so did the job' instead of replaying the bubbles."
+  ]
+ }
+}

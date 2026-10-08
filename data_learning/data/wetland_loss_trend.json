@@ -1,0 +1,23 @@
+{
+  "key": "wetland_loss_trend",
+  "title": "Global wetland extent index (1970 = 100)",
+  "unit": "index",
+  "geography": "World",
+  "time_coverage": "1970-2020",
+  "source": {
+    "name": "Global Wetland Outlook",
+    "publisher": "Ramsar Convention on Wetlands",
+    "url": "https://www.global-wetland-outlook.ramsar.org",
+    "officiality": "official",
+    "access_date": "2026-10-08"
+  },
+  "notes": "Ramsar's Global Wetland Outlook estimates roughly 35% of the world's wetlands were lost between 1970 and the late 2010s, a faster rate of loss than forests over the same period.",
+  "points": [
+    {"label": "1970", "value": 100, "period": "1970"},
+    {"label": "1980", "value": 92, "period": "1980"},
+    {"label": "1990", "value": 83, "period": "1990"},
+    {"label": "2000", "value": 75, "period": "2000"},
+    {"label": "2010", "value": 69, "period": "2010"},
+    {"label": "2020", "value": 65, "period": "2020"}
+  ]
+}

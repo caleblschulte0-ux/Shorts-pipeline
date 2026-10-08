@@ -1,0 +1,16 @@
+{
+ "slug": "parker-solar-probe-speed-record",
+ "ts": "20261008T222508Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: hook@0.8 to seg0:end: Data stands on a ladder pointing at the 2024 bar. seg2:start/mid/end: two Data figures just stand beside the numbers 24.8K and 430K. seg4: he points at an hourglass from a ladder. Nothing he does causes the speed or the motion.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start/mid/end: two mascots beside '24.8K' and '430K' under the title 'Fastest human ever'. The probe is not a human, and the 17x speed difference is never shown.",
+  "root_cause": "A two-row comparison template puts the numbers in as text, with the mascot as a stand-in icon. Nothing in the picture is a spacecraft or shows speed.",
+  "repair_goal": "Show the 17x as speed you can see: an Apollo 10 capsule and the Parker probe leave the same line at once, and the probe covers 17 lengths while Apollo covers one, with Data launching or flagging the start. Retitle so the probe is not called a human."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

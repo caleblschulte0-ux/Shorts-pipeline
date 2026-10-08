@@ -1,0 +1,21 @@
+{
+ "slug": "back-to-sleep-campaign-cut-sids",
+ "ts": "20261007T174922Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg2:start through seg2:end Data hovers next to the 85.4% bar and drifts up beside it. He causes nothing; the bar grows on its own. In the other segments he does work (stacking in the hook, the lever in seg4:start).",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg2:start to seg2:end show a stock two-bar chart: 'Placed stomach-down 85.4%' against 'Placed back-up 1.9%'. Data floats beside the gold bar doing nothing. The 30.1% the narration says is never shown, and the 1.9% back-up figure contradicts the line 'fell from 85.4% to 30.1%'. 'vs' sits behind Data's body.",
+  "root_cause": "A chart fallback was picked for a before/after shift. The bar values don't match the narrated claim, and the mascot was placed instead of given an agent act on the moving part.",
+  "repair_goal": "Show the flip with the subject itself. For example, a row of cribs with babies on their stomachs that Data turns onto their backs one by one, until only 30.1% of the cases are stomach-down. Data should be the cause of the change, the scene should show the narrated 85.4% to 30.1% numbers exactly, and 'vs' and all labels should be readable and uncovered."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "stack",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,105 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "global-displacement-record__47a7ae7c62",
+ "video_sha256": "47a7ae7c62cfec23bd7d0565b0236b83ffbcb4a929aed5d5bf7600b9ff5d8a68",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-08T16:46:02Z",
+ "grades": {
+  "dimensions": {
+   "hook": 2,
+   "data_demo": 2,
+   "mascot": 1,
+   "craft": 1,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "No stock or AI imagery. Every frame is drawn: blocks, timeline, map, bubbles (hook@0.3 to seg4:end)."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "Data stacks the blocks in the hook (hook@0.8 to seg0:end), but after that he only stands. On the timeline he raises both arms and slides along the axis (seg1:start to seg1:end). He leans beside the bars (seg2:mid). He stands on top of the 73% bubble through the whole bubble beat and the closing (seg3:start to seg4:end). None of that causes anything."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "Every beat has a visual: stacked blocks, a timeline, a map with bars, and sized bubbles. None is a bare number card. The bubble beat comes closest (seg3:mid)."
+   },
+   "dead_air": {
+    "present": true,
+    "evidence": "The closing reuses the seg3 bubble scene unchanged. From seg3:start at 20.2s to seg4:end at 27.7s (about 7s), the only motion is the bubbles slowly growing and Data shifting on top of one. The two beats look the same."
+   },
+   "empty_void": {
+    "present": true,
+    "evidence": "In the bubble beat the top half of the frame, between the title and Data, is empty dark gradient (seg3:start, seg3:mid). In the hook the lower third under 'each block = 10M' is unused (hook@0.3)."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "The axis labels '2023' and '2024' run together into '20232024' (seg1:end). '3.5M' is dark text over a dark ring on the bar end and cannot be read (seg2:mid, seg2:end). The '73%' label is half covered by the bubble as it grows (seg3:start)."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg3",
+   "index": 3,
+   "failure_class": "decorative_mascot",
+   "visible_evidence": "Two flat circles marked 73% and 27% sit on an empty dark field. Data just stands on top of the big circle, and the closing (seg4) repeats the same frame for about 7 more seconds.",
+   "root_cause": "The share relationship is drawn as a generic bubble pair. Nothing in the picture is made of displaced people or host countries, and Data has no action that produces the 73%.",
+   "repair_goal": "Show the 73/27 split as people arriving: a stream of displaced figures fills two host shelters (poorer-country tents next to a wealthy-country house), and about three of every four go to the tents. Have Data drive that flow by directing figures into the bigger camp so the share builds as he works. Give the closing its own scene that brings back the record-breaking stack."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "Data stacks generic 10M blocks from a ladder, but the counter stops at 100M while the narration says 123.2M, so the payoff never lands."
+   },
+   {
+    "id": "seg1",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "A lollipop timeline with Data sliding along the axis. The 2023/2024 labels collide."
+   },
+   {
+    "id": "seg2",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "A map highlight plus horizontal bars. Iran lights up, but the 3.5M label is unreadable."
+   },
+   {
+    "id": "seg3",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 1,
+    "note": "Proportional bubbles labelled 73% and 27%. Nothing in the picture is about displaced people."
+   },
+   {
+    "id": "seg4",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "Reuses the seg3 bubbles under the 'every year breaks the record' line, which they do not show."
+   }
+  ],
+  "one_line": "Only the hook has a real bit, and it stops at 100M while the narration says 123.2M. The rest is a timeline, bars and bubbles with Data standing on them, plus collided and unreadable labels.",
+  "problems": [
+   "The hook counter stops at 100M (seg0:end) while the narration says 123.2 million. The headline number is never shown.",
+   "The '100M' readout has a dark slab drawn over it (seg0:end).",
+   "The timeline labels '2023' and '2024' run together (seg1:end).",
+   "'3.5M' is black text on a dark ring and cannot be read (seg2:mid).",
+   "Data is decorative from seg1 on: he slides with his arms up, leans beside bars, and stands on a bubble.",
+   "The closing reuses the bubble scene for about 7s and does not show 'every year breaks the record'.",
+   "seg1, seg2 and seg3 are charts. Nothing is drawn from the subject itself (people, homes, camps)."
+  ],
+  "fixes": [
+   "Have the hook stack reach 123.2M (twelve full blocks plus a partial one) by its end, and keep the readout clear of the blocks.",
+   "Space or thin the year ticks so 2023 and 2024 cannot collide, or label only 2013, 2018 and 2024.",
+   "Print the bar value in ink colour outside the bar end when the bar is full, not over the highlight ring.",
+   "Redraw seg3 as displaced figures filling tents versus a house in a 73:27 split, with Data directing the flow.",
+   "Give the closing its own scene: the tower gets a new top block each year, with Data hoisting it."
+  ]
+ }
+}

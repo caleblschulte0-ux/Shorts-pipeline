@@ -1,0 +1,16 @@
+{
+ "slug": "recycling-myth-reality",
+ "ts": "20261008T163118Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg2:start to seg2:mid, the top half of the chart above the bars is empty, and so is the band below the bars. In the hook frames, half the frame below y\u2248540 is empty dark gradient.",
+ "weakest_scene": {
+  "id": "hook",
+  "index": 0,
+  "failure_class": "unreadable_overlapping_labels_static_chart_hook",
+  "visible_evidence": "The hook (0.3-2.2s) and seg0:end show a bracket-span gauge where '2019 353M' sits on top of '2060 (projected) 1014M'. Data just stands on a ladder at the right edge, and the bottom half of the frame is empty. The hook line says 'trash vanished 9%', but the picture shows tonnage.",
+  "root_cause": "A generic span/gap machine with no collision layout was used for the hook. The picture does not match the hook's claim (9% recycled), and Data has no act tied to the moving part.",
+  "repair_goal": "Open on a bespoke subject shot of a plastic pile in which only a tiny 9% sliver goes into a recycling bin while Data shovels it, the rest sliding toward a landfill. Use one big number, no overlapping labels, and fill the frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
