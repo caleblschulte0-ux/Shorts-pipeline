@@ -575,7 +575,77 @@ class _eleven_slot:
         return False
 
 
+#: A line a paid engine already voiced is never paid for twice (2026-10-08:
+#: the explainer voiced ~45 judged renders a day to post 4, and the judge
+#: never hears the audio; ElevenLabs' whole month went in two days). Keyed
+#: on engine + voice + model + the exact spoken text, so a redraft that
+#: keeps its words reuses them and one that changes a word pays for that
+#: line only. Off unless TTS_CACHE_DIR is set (the workflow persists it).
+_TTS_CACHE_DAYS = 21
+_TTS_PRUNED = False
+
+
+def _tts_cache_path(engine: str, voice: str, model: str, text: str):
+    import os
+    root = os.environ.get("TTS_CACHE_DIR", "").strip()
+    if not root:
+        return None
+    h = _hashlib.sha256(f"{engine}\0{voice}\0{model}\0{text}".encode()).hexdigest()
+    base = Path(root) if Path(root).is_absolute() else REPO / root
+    return base / engine / f"{h[:40]}.wav"
+
+
+def _tts_cache_get(path, out_wav: Path) -> bool:
+    import os
+    import shutil
+    if path is None or not path.exists() or path.stat().st_size < 2000:
+        return False
+    shutil.copyfile(path, out_wav)
+    os.utime(path)                     # recently used lines survive the prune
+    return True
+
+
+def _tts_cache_put(path, wav: Path) -> None:
+    import os
+    import shutil
+    import time
+    global _TTS_PRUNED
+    if path is None or not wav.exists():
+        return
+    try:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        tmp = path.with_suffix(f".{os.getpid()}.tmp")
+        shutil.copyfile(wav, tmp)
+        tmp.replace(path)              # atomic: parallel renders share it
+        if not _TTS_PRUNED:
+            _TTS_PRUNED = True
+            cut = time.time() - _TTS_CACHE_DAYS * 86400
+            for f in path.parent.parent.glob("*/*.wav"):
+                if f.stat().st_mtime < cut:
+                    f.unlink(missing_ok=True)
+    except OSError as e:               # a cache is never worth a render
+        print(f"[tts] cache write skipped: {e}", file=sys.stderr)
+
+
 def _elevenlabs_wav(text: str, out_wav: Path) -> bool:
+    """`_elevenlabs_call`, through the line cache."""
+    import os
+    if not (os.environ.get("ELEVENLABS_API_KEY", "").strip()
+            or os.environ.get("ELEVEN_LABS_API_KEY", "").strip()) or _ELEVEN_DEAD:
+        return _elevenlabs_call(text, out_wav)        # records why it is off
+    c = _tts_cache_path(
+        "elevenlabs",
+        os.environ.get("ELEVENLABS_VOICE_ID", "").strip() or "pNInz6obpgDQGcFmaJgB",
+        os.environ.get("ELEVENLABS_MODEL", "").strip() or "eleven_multilingual_v2", text)
+    if _tts_cache_get(c, out_wav):
+        return True
+    ok = _elevenlabs_call(text, out_wav)
+    if ok:
+        _tts_cache_put(c, out_wav)
+    return ok
+
+
+def _elevenlabs_call(text: str, out_wav: Path) -> bool:
     """Synthesize ONE line with ElevenLabs -> WAV (operator, 2026-09-24: "this
     should start trying to use ElevenLabs when it can"). Raw 24kHz PCM, the
     same rate the Kokoro path and the pitch filter assume. False — with the
@@ -675,10 +745,14 @@ def _speechify_wav(text: str, out_wav: Path) -> bool:
                   "simba-english", "simba-multilingual", "simba-turbo"]:
             if m and m not in order:
                 order.append(m)
+    c = _tts_cache_path("speechify", voice, order[0], text)
+    if _tts_cache_get(c, out_wav):
+        return True
     last = None
     for model in order:
         ok, err = _speechify_try(text, out_wav, key, voice, model)
         if ok:
+            _tts_cache_put(_tts_cache_path("speechify", voice, model, text), out_wav)
             if _SPEECHIFY_MODEL_OK != model:
                 print(f"[tts] speechify OK on model={model!r} voice={voice!r}",
                       flush=True)
