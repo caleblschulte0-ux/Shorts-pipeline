@@ -1,12 +1,41 @@
 [tts] chatterbox libritts_r_3000 (turbo) (5 lines)
-Traceback (most recent call last):
-  File "/home/runner/work/Shorts-pipeline/Shorts-pipeline/voice_lab/narration_test.py", line 19, in <module>
-    nar, windows = R.synth_narration(sents, work, "am_fenrir")
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/Shorts-pipeline/Shorts-pipeline/data_learning/studio_render.py", line 942, in synth_narration
-    _run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0",
-  File "/home/runner/work/Shorts-pipeline/Shorts-pipeline/data_learning/demo_render.py", line 36, in _run
-    subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL,
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/subprocess.py", line 571, in run
-    raise CalledProcessError(retcode, process.args,
-subprocess.CalledProcessError: Command '['ffmpeg', '-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', 'out2/_w_octopus-nine-brains/list.txt', '-af', 'apad=pad_dur=0.18', '-c:a', 'pcm_s16le', 'out2/_w_octopus-nine-brains/raw.wav']' returned non-zero exit status 254.
+{
+ "octopus-nine-brains": {
+  "seconds_to_voice": 1.3,
+  "tts": {
+   "engine": "chatterbox",
+   "voice": "libritts_r_3000 (turbo)",
+   "why_not_elevenlabs": null,
+   "why_not_chatterbox": null
+  },
+  "lines": [
+   "Your octopus has five hundred million neurons \u2014 and three hundred twenty million of them aren't in its head.",
+   "An octopus runs on about five hundred million neurons -- but only one hundred eighty million of them sit in its central brain. The other three hundred twenty million are out in its arms.",
+   "That's because every one of its two hundred eighty suckers per arm is its own touch-and-taste sensor --  two thousand two hundred forty  of them across all eight arms, each wired straight into that arm's own nerves.",
+   "And that control is so independent, a severed arm keeps reacting to touch and pain for up to  three thousand six hundred  seconds after it's cut off -- a full hour, with no brain attached at all.",
+   "Data counted his own brains. Still just the one. Would you want a second brain in each arm? Tell me below."
+  ],
+  "windows": [
+   [
+    0.0,
+    5.24
+   ],
+   [
+    5.24,
+    14.61
+   ],
+   [
+    14.61,
+    25.27
+   ],
+   [
+    25.27,
+    35.75
+   ],
+   [
+    35.75,
+    42.01
+   ]
+  ]
+ }
+}
