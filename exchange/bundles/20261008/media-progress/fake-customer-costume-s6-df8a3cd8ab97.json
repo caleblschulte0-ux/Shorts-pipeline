@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261008",
+  "bundle": {
+    "identity": "8a031f56a921c3605d155f4c82b172d91160b2759a215a061fea4eea23090505",
+    "path": "exchange/bundles/20261008/bundle.json"
+  },
+  "request_id": "fake-customer-costume-s6-df8a3cd8ab97",
+  "safe_request_id": "fake-customer-costume-s6-df8a3cd8ab97",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "778f85f2322c1ff35a12a0b7e3f5b19c5a9f897f48c10af4860be873bedcd4e5",
+  "prompt_used": "An editorial illustration for a short-form video: phone shopping app screen hand. It accompanies the narration: \"the loyalty app on my phone\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Ueyxki_-FatUwj2l3bPKEuKp6Gba91X2",
+    "filename": "20261008__fake-customer-costume-s6-df8a3cd8ab97.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Ueyxki_-FatUwj2l3bPKEuKp6Gba91X2",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "8401d31453cee6f96106a75a781631678e309bd171fb31a5c1ffe5ab26c82368",
+    "bytes": 1774454,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-08T11:29:30Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
