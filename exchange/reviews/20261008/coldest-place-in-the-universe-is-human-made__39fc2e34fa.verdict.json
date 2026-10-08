@@ -1,0 +1,104 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "coldest-place-in-the-universe-is-human-made__39fc2e34fa",
+ "video_sha256": "39fc2e34faf04f631cd669d4d543e9d0b655ab561c816e3a8e1f736cea38745d",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-08T17:48:59Z",
+ "grades": {
+  "dimensions": {
+   "hook": 1,
+   "data_demo": 0,
+   "mascot": 1,
+   "craft": 0,
+   "pace": 1,
+   "payoff": 0
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": true,
+    "evidence": "hook@0.3 through seg1:end: the 'Room temperature 293' grid tiles are identical purple starfield-and-mountain clip-art squares. They have nothing to do with room temperature, which makes them generic filler icons."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "seg1:start to seg1:end: Data stands in the middle of the tile grid holding a red stamp but never stamps or places a tile. seg2: he stands on top of the circle with his hands on his head. seg3: he stands on top of the square. None of these is a setup, action and payoff tied to the stat."
+   },
+   "bare_number_card": {
+    "present": true,
+    "evidence": "seg2:start to seg2:end: a plain teal circle labelled only '1' grows next to '0.0 NASA Cold Atom Lab'. seg3:start to seg3:end: a full-frame teal square reads '29400T' with nothing else in it."
+   },
+   "dead_air": {
+    "present": true,
+    "evidence": "seg0:mid to seg1:end (t=2.2 to 8.2s): the grid is complete and frozen. Only Data's arm twitches, so about 6s of the same frame. seg3:start to seg3:end (t=16.6 to 20.3s): the square is unchanged. The measured held_s is 4.0."
+   },
+   "empty_void": {
+    "present": true,
+    "evidence": "seg2:start: a small circle and a tiny '0.0' label float in a large dark field. seg4:start: the ruler and ladder sit in a mostly empty dark frame."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "seg4:mid to payoff@-0.4: '29,399,999,999,999,752 apa' is cut off by the right frame edge. 'NASA's Cold ...' is truncated. seg2:mid: 'NASA Cold Atom Lab (ISS)' is tiny and sits against the circle's edge. seg3:start: 'NASA's Cold Atom Lab (ISS)' is printed on top of the teal square."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg3",
+   "index": 3,
+   "failure_class": "bare_number_card",
+   "visible_evidence": "A full-frame flat teal square with the meaningless label '29400T' in the centre. Data stands idle on top, and a tiny overlapping label reads 'NASA's Cold Atom Lab (ISS)'. Nothing changes for about 4s while the narration talks about 5,000 light-years versus 250 miles up.",
+   "root_cause": "The distance comparison (5,000 light-years versus 250 miles) went to a generic area-square machine. That machine shows only one value, with a unit-mangled abbreviation, and has no second object to compare against.",
+   "repair_goal": "Draw the distance as a SHOT. Earth with the ISS at 250 miles, then a zoom-out where Data hauls a measuring tape from the ISS out toward a far nebula that dwarfs the frame. The headline should be one readable number ('5,000 light-years' versus '250 miles'), and no label should overlap a mark."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 0,
+    "note": "A unit grid of generic starfield tiles ('each = 20') for room temperature. The icon has no link to the subject, and the 2.7K space value never appears."
+   },
+   {
+    "id": "seg1",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 0,
+    "note": "The same frozen tile grid repeats. Nothing shows deep space at 2.7."
+   },
+   {
+    "id": "seg2",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "A circle sized '1' against '0.0'. A proportional-area bubble asserts nothing about 'a billion times colder'."
+   },
+   {
+    "id": "seg3",
+    "kind": "chart",
+    "bespoke": 0,
+    "proves_claim": 0,
+    "note": "A flat area square reading '29400T'. The unit is garbled and there is no comparison object."
+   },
+   {
+    "id": "seg4",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "A ruler on a ladder that Data stretches is a stock measure machine. The giant cut-off number undoes it."
+   }
+  ],
+  "one_line": "Generic charts and a frozen clip-art grid with garbled labels ('29400T', '0.0', a cut-off number) never show how cold or how far anything is.",
+  "problems": [
+   "Hook (hook@0.3) opens on a static tile grid labelled 'Room temperature 293'. The visuals give no reason to stay.",
+   "seg0 and seg1 repeat the same frozen grid for about 7s, and the 2.7K deep-space value is never drawn.",
+   "seg2's 'Coldest atom lab' bubble reads '1' versus '0.0', which is meaningless and contradicts the narration.",
+   "seg3 shows '29400T' on a full-frame flat square. The unit is garbled and the label overlaps the square.",
+   "seg4's '29,399,999,999,999,752 apa' is clipped at the frame edge, and 'NASA's Cold ...' is truncated.",
+   "Data stands idle on top of shapes in seg2 and seg3, and his stamp in seg0 and seg1 never stamps anything."
+  ],
+  "fixes": [
+   "Hook: open with the ISS orbiting Earth and a frost burst. Data in a parka points the camera up at a thermometer plunging.",
+   "seg0 and seg1: show a thermometer Data pumps down from 293 to 2.7, so the drop is a visible distance.",
+   "seg2: show a billion-fold scale. Data cranks a freezer dial while the scale zooms past space's 2.7K to 100 pK. Drop '1 vs 0.0'.",
+   "seg3: replace the square with an Earth\u2013ISS\u2013nebula distance shot. Data pulls a tape measure. Use one readable headline.",
+   "seg4: format the payoff number in human units that fit inside the frame, and fix the truncated labels."
+  ]
+ }
+}
