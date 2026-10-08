@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261008",
+  "bundle": {
+    "identity": "8a031f56a921c3605d155f4c82b172d91160b2759a215a061fea4eea23090505",
+    "path": "exchange/bundles/20261008/bundle.json"
+  },
+  "request_id": "three-year-old-laptop-s3-c0df8b8fce8b",
+  "safe_request_id": "three-year-old-laptop-s3-c0df8b8fce8b",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "bb1fb76979611556123e7edf7a76ccb4ee3621ef19222139c7f7bea5aa9ed5aa",
+  "prompt_used": "An editorial illustration for a short-form video: barcode scanner checkout receipt. It accompanies the narration: \"the store's barcode scan timestamp\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1bE8IFEUP6sA18gLDZfZn-Uz289cu3TD1",
+    "filename": "20261008__three-year-old-laptop-s3-c0df8b8fce8b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1bE8IFEUP6sA18gLDZfZn-Uz289cu3TD1",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "544e0d549c92427660b5167bf3e5f5576e1f4cfeb6875d29126d50dd17eaa3df",
+    "bytes": 1847817,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-08T11:29:30Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
