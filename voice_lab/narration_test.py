@@ -7,7 +7,7 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO)); sys.path.insert(0, str(REPO / "data_learning"))
 from data_learning import studio_render as R
 from data_learning import story
-out = Path(sys.argv[1]); out.mkdir(parents=True, exist_ok=True)
+out = Path(sys.argv[1]).resolve(); out.mkdir(parents=True, exist_ok=True)
 cfg = json.loads((REPO / "data_learning" / "niche.config.json").read_text())
 rep = {}
 for slug in sys.argv[2:]:
