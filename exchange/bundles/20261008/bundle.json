@@ -398,8 +398,8 @@
           "shot_index": 4,
           "phrase": "flagged down a real manager",
           "query": "store manager badge walkie talkie",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
@@ -418,19 +418,19 @@
       ],
       "media_health": {
         "strong": 0,
-        "weak": 3,
-        "missing": 4,
+        "weak": 4,
+        "missing": 3,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
         "fake-customer-costume-s2-dfca4b442c85",
         "fake-customer-costume-s3-36337e37028d",
-        "fake-customer-costume-s4-00ab514365c9",
         "fake-customer-costume-s6-df8a3cd8ab97",
         "fake-customer-costume-s1-de1df396a50e",
         "fake-customer-costume-s5-3457251bbf2c",
-        "fake-customer-costume-s0-42c8ac4a27f4"
+        "fake-customer-costume-s0-42c8ac4a27f4",
+        "fake-customer-costume-s4-00ab514365c9"
       ]
     },
     {
@@ -560,32 +560,6 @@
       "verdict": "missing"
     },
     {
-      "request_id": "fake-customer-costume-s4-00ab514365c9",
-      "safe_request_id": "fake-customer-costume-s4-00ab514365c9",
-      "drive_filename": "20261008__fake-customer-costume-s4-00ab514365c9.png",
-      "prompt_sha256": "afccd2a74d0960f3ee65d36cc5a71893c54a8e9a7e9e02cbe2e46fbdacd2612c",
-      "checkpoint_path": "exchange/bundles/20261008/media-progress/fake-customer-costume-s4-00ab514365c9.json",
-      "slug": "fake-customer-costume",
-      "shot_index": 4,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: store manager badge walkie talkie. It accompanies the narration: \"flagged down a real manager\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
       "request_id": "fake-customer-costume-s6-df8a3cd8ab97",
       "safe_request_id": "fake-customer-costume-s6-df8a3cd8ab97",
       "drive_filename": "20261008__fake-customer-costume-s6-df8a3cd8ab97.png",
@@ -689,7 +663,33 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "weak relation to the line (20% term overlap)",
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "fake-customer-costume-s4-00ab514365c9",
+      "safe_request_id": "fake-customer-costume-s4-00ab514365c9",
+      "drive_filename": "20261008__fake-customer-costume-s4-00ab514365c9.png",
+      "prompt_sha256": "afccd2a74d0960f3ee65d36cc5a71893c54a8e9a7e9e02cbe2e46fbdacd2612c",
+      "checkpoint_path": "exchange/bundles/20261008/media-progress/fake-customer-costume-s4-00ab514365c9.json",
+      "slug": "fake-customer-costume",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: store manager badge walkie talkie. It accompanies the narration: \"flagged down a real manager\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
         "resolution unverified (no width/height reported)"
       ],
       "verdict": "weak"

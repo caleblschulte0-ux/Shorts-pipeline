@@ -27,16 +27,14 @@
       "news_angle": "The narrator was comparing two blenders in the kitchen aisle when the confrontation began.",
       "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/67/Breville.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
       "media_evidence": {
-        "content_type": "image/jpeg",
-        "height": 0,
-        "provider": "wikimedia",
-        "query": "kitchen appliance",
-        "resolved_by": "entity_media",
-        "source_class": "open_or_licensed",
-        "title": "blender",
         "url": "https://upload.wikimedia.org/wikipedia/commons/6/67/Breville.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
-        "verified_at": "2026-10-08T16:58:19Z",
-        "width": 0
+        "source_class": "open_or_licensed",
+        "provider": "wikimedia",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/jpeg",
+        "verified_at": "2026-10-08T19:17:20Z",
+        "resolved_by": "verify_shot_urls"
       }
     },
     {
@@ -54,7 +52,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T16:57:21Z",
+        "verified_at": "2026-10-08T19:17:21Z",
         "resolved_by": "verify_shot_urls"
       },
       "pin_query": "air fryer",
@@ -92,7 +90,24 @@
       "media_origin": "chatgpt",
       "media_file_id": "147ixHeW9zGxBKwOzL9K4qLs3VTp1_Qw2",
       "media_sha256": "5ab0ed6723aa81b7a7a3507df5ec2c6079e99136140b0e3dc6f5737635a09461",
-      "media_bytes": 2275865
+      "media_bytes": 2275865,
+      "pin_query": "manager",
+      "pin_context": "store supervisor front office",
+      "news_query": "manager",
+      "news_angle": "The woman flags down a real manager to complain about the narrator.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Fredrick_Winslow_Taylor_c1907_retouched.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+      "media_evidence": {
+        "content_type": "image/png",
+        "height": 0,
+        "provider": "wikimedia",
+        "query": "store supervisor front office",
+        "resolved_by": "entity_media",
+        "source_class": "open_or_licensed",
+        "title": "manager",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Fredrick_Winslow_Taylor_c1907_retouched.png?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=original",
+        "verified_at": "2026-10-08T19:18:31Z",
+        "width": 0
+      }
     },
     {
       "phrase": "a receipt from a different store chain stapled inside the box",
@@ -109,7 +124,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T16:57:47Z",
+        "verified_at": "2026-10-08T19:17:22Z",
         "resolved_by": "verify_shot_urls"
       },
       "pin_query": "receipt",
