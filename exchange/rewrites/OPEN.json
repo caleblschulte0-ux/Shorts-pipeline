@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-08T13:36:17Z",
+ "updated": "2026-10-08T14:49:52Z",
  "open": [
   {
    "id": "hurricane-names-retired-growing-list__ca1668e1",
@@ -275,16 +275,6 @@
    "answer_path": "exchange/rewrites/20261008/body-renewal-clock__e0bfe838.answer.json"
   },
   {
-   "id": "ozone-hole-recovery__ce672e81",
-   "slug": "ozone-hole-recovery",
-   "filed": "2026-10-08T13:36:11Z",
-   "why": [
-    "premise: brain: The premise lacks a clear, single verifiable number and does not unambiguously reverse a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261008/ozone-hole-recovery__ce672e81.request.json",
-   "answer_path": "exchange/rewrites/20261008/ozone-hole-recovery__ce672e81.answer.json"
-  },
-  {
    "id": "insect-planet__3f212360",
    "slug": "insect-planet",
    "filed": "2026-10-08T13:36:11Z",
@@ -339,16 +329,6 @@
    "answer_path": "exchange/rewrites/20261007/chip-transistor-shrink-limit__40c2f231.answer.json"
   },
   {
-   "id": "helium-supply-squeeze__91f2d5b4",
-   "slug": "helium-supply-squeeze",
-   "filed": "2026-10-07T12:48:28Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common expectation and relies on a vague, unverifiable claim despite mentioning a number."
-   ],
-   "request": "exchange/rewrites/20261007/helium-supply-squeeze__91f2d5b4.request.json",
-   "answer_path": "exchange/rewrites/20261007/helium-supply-squeeze__91f2d5b4.answer.json"
-  },
-  {
    "id": "bird-flu-species-jump__5c10823e",
    "slug": "bird-flu-species-jump",
    "filed": "2026-10-07T12:48:27Z",
@@ -359,6 +339,16 @@
    "answer_path": "exchange/rewrites/20261007/bird-flu-species-jump__5c10823e.answer.json"
   },
   {
+   "id": "ozone-hole-recovery__ce672e81",
+   "slug": "ozone-hole-recovery",
+   "filed": "2026-10-07T12:48:27Z",
+   "why": [
+    "premise: brain: The premise lacks a clear, single verifiable number supporting the claim, making it fail the required criteria."
+   ],
+   "request": "exchange/rewrites/20261007/ozone-hole-recovery__ce672e81.request.json",
+   "answer_path": "exchange/rewrites/20261007/ozone-hole-recovery__ce672e81.answer.json"
+  },
+  {
    "id": "genz-drinking-decline__ad4df0f9",
    "slug": "genz-drinking-decline",
    "filed": "2026-10-06T20:08:41Z",
@@ -367,6 +357,16 @@
    ],
    "request": "exchange/rewrites/20261006/genz-drinking-decline__ad4df0f9.request.json",
    "answer_path": "exchange/rewrites/20261006/genz-drinking-decline__ad4df0f9.answer.json"
+  },
+  {
+   "id": "helium-supply-squeeze__91f2d5b4",
+   "slug": "helium-supply-squeeze",
+   "filed": "2026-10-06T18:36:55Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a viewer expectation and hinges on an unsubstantiated, unverifiable figure."
+   ],
+   "request": "exchange/rewrites/20261006/helium-supply-squeeze__91f2d5b4.request.json",
+   "answer_path": "exchange/rewrites/20261006/helium-supply-squeeze__91f2d5b4.answer.json"
   },
   {
    "id": "back-to-sleep-campaign-cut-sids__3508eecd",

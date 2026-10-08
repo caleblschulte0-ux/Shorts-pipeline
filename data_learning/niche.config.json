@@ -18845,10 +18845,10 @@
   },
   {
    "slug": "ozone-hole-recovery",
-   "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
-   "hook": "Your sky vanished 29.9— the ozone hole is healing",
-   "closing": "Healing slowly, but we must watch",
-   "question": "Seen the hole shrink? Comment below",
+   "title": "We Actually Fixed The Ozone Hole. 99% Of The Cause Is Gone.",
+   "hook": "99% of the chemicals eating your sky are already gone.",
+   "closing": "The world agreed, and the sky is healing.",
+   "question": "What should we fix next?",
    "caption": "In 2000, the hole in the ozone layer over Antarctica hit 29.9 million square kilometers -- nearly the size of North America. Since the world banned the chemicals causing it, it's been shrinking. Here's the real timeline for when it fully closes (spoiler: it's not soon). Did you know this was happening? 👇",
    "hashtags": [
     "ozonelayer",
@@ -18876,7 +18876,7 @@
      "insight_type": "trend",
      "role": "1 · THE WOUND",
      "topic": "Ozone Hole Size",
-     "say": "In 2000 the hole was 29.9 million km²; by 2025 it fell to 22.9.",
+     "say": "The hole shrank from 29.9 million square kilometers in 2000 to 22.9 in 2025.",
      "scene": {
       "mechanic": "ozone-hole-shrink",
       "concept": "a violet hole over an Earth photo shrinks year by year while a satellite radar beam spins several full loops around it each beat, scanning the shrinking boundary so the frame never idles even as the hole itself creeps",
@@ -18893,7 +18893,7 @@
      "insight_type": "comparison",
      "role": "2 · THE FIX",
      "topic": "Ozone Chemicals",
-     "say": "Since 1987, 99% of ozone‑depleting chemicals are banned; only 1% remains.",
+     "say": "99% of the chemicals that tore it open have now been phased out.",
      "scene": {
       "mechanic": "banned-barrel-drain",
       "concept": "a chemical barrel drains from full down to the 1 percent still-in-use level, then a BANNED stamp lands",
@@ -18911,7 +18911,7 @@
      "ascending": true,
      "role": "3 · THE TIMELINE",
      "topic": "Ozone Recovery",
-     "say": "Best case: global recovery in 14 years; Antarctica needs about 40 years.",
+     "say": "The rest of the world heals in 14 years; Antarctica takes 40.",
      "scene": {
       "mechanic": "recovery-vessel-row",
       "concept": "three vessels, one per region photo, fill bottom-up to how many years each still has left until full recovery",
@@ -18920,8 +18920,8 @@
      "illustrated_scene": "def scene(cr, t, u, pts, host):\n    \"\"\"HERO: a giant hourglass on the ice\n    SUBSTANCE: falling sand\n    CAUSE: Data turns the valve at the hourglass neck and sand runs down into the lower bulb to each region's years\n    How long the ozone layer takes to heal, region by region, shown as\n    years of sand in one giant hourglass standing on the Antarctic ice.\n    The upper bulb starts full. A brass valve shuts the neck. Data climbs\n    the ladder to its wheel and turns it once per region. Each time, sand\n    runs down through the neck. The upper bulb drains and the lower bulb\n    fills to that region's years: the rest of the world, then the Arctic,\n    then the Antarctic. Every level the sand reaches stays marked on the\n    glass with its region's name, so the Antarctic's level towers over the\n    rest of the world's. Its multiple lands beside the readout. The last\n    level lands by u=0.56 and holds. Tabular icebergs sit on the hazy\n    horizon, and emperor penguins waddle across the ice by the camera.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: r[1])\n    n = len(rows)\n    top = max(v for _, v in rows) or 1.0\n    a0, a1 = 0.12, 0.56\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    rise = ease(seg(f, 0.25, 0.75))\n    prev = rows[k - 1][1] if k > 0 else 0.0\n    yrs = 0.0 if u < a0 else prev + (rows[k][1] - prev) * rise\n    landed_to = k if rise >= 0.999 else k - 1\n    flowing = a0 <= u < a1 and 0 < rise < 1\n\n    L, R, CX = 370, 870, 620                  # glass walls and neck\n    GT, NY, GB = 640, 900, 1400               # glass top, neck, floor\n    PX = 400.0 / top                          # px per year in the lower bulb\n    lvl_y = GB - yrs * PX\n    SAND, SAND_D = (222, 186, 122), (176, 140, 86)\n    WOOD = (132, 88, 52)\n    BRASS = (196, 156, 72)\n    ICE = (224, 236, 246)\n\n    landscape(cr, t, \"snow\")\n    # far tabular icebergs on the horizon, under haze\n    for x0, w, h in ((-20, 190, 70), (900, 200, 96), (820, 90, 44)):\n        cr.move_to(x0, 1172)\n        cr.line_to(x0 + 14, 1172 - h)\n        cr.line_to(x0 + w - 18, 1172 - h - 6)\n        cr.line_to(x0 + w, 1172)\n        cr.close_path()\n        solid(cr, ICE, finish=\"gloss\")\n    haze(cr, 860, 1180, (206, 220, 234), a=0.4)\n\n    def glass_path():\n        cr.move_to(L, GB)\n        cr.line_to(L, 1030)\n        cr.curve_to(L, 950, CX - 12, 945, CX - 12, NY)\n        cr.curve_to(CX - 12, 855, L + 30, 830, L + 30, 730)\n        cr.line_to(L + 30, GT)\n        cr.line_to(R - 30, GT)\n        cr.line_to(R - 30, 730)\n        cr.curve_to(R - 30, 830, CX + 12, 855, CX + 12, NY)\n        cr.curve_to(CX + 12, 945, R, 950, R, 1030)\n        cr.line_to(R, GB)\n        cr.close_path()\n\n    # the hourglass: shadow, frame, glass, sand\n    cast_shadow(cr, L - 30, R + 30, 1440, length=340, a=0.32)\n    contact_shadow(cr, CX, 1444, R - L + 120, a=0.45)\n    cylinder(cr, L - 34, GB, 28, GB - GT + 10, WOOD, finish=\"gloss\")\n    glass_path()\n    solid(cr, (205, 228, 242), finish=\"glass\", a=0.35)\n    cr.save()\n    glass_path()\n    cr.clip()\n    # the upper bulb drains as the lower one fills: the same sand, moved down\n    drained = yrs / top\n    sy = 662 + 236 * drained\n    if drained < 0.98:\n        cr.move_to(L, sy + 16)\n        cr.curve_to(L + 120, sy - 6, R - 120, sy - 6, R, sy + 16)\n        cr.line_to(R, NY + 20)\n        cr.line_to(L, NY + 20)\n        cr.close_path()\n        solid(cr, SAND, edge=False)\n    if yrs > 0.3:\n        cr.move_to(L - 10, GB + 10)\n        cr.line_to(L - 10, lvl_y + 14)\n        cr.curve_to(L + 140, lvl_y - 12, R - 140, lvl_y - 12, R + 10, lvl_y + 14)\n        cr.line_to(R + 10, GB + 10)\n        cr.close_path()\n        solid(cr, SAND, edge=False)\n        # grain strata, so it reads as sand, not paint\n        cr.set_source_rgba(*_c(SAND_D, 0.45))\n        cr.set_line_width(3)\n        for i in range(1, 12):\n            yy = GB - i * 34\n            if yy < lvl_y + 20:\n                break\n            cr.move_to(L, yy)\n            cr.curve_to(L + 160, yy - 6, R - 160, yy + 6, R, yy)\n            cr.stroke()\n    # the stream through the open neck, only while the valve is open\n    if flowing:\n        cr.set_source_rgba(*_c(SAND_D))\n        cr.set_line_width(14)\n        cr.set_dash([16, 8], -t * 340)\n        cr.move_to(CX, NY + 18)\n        cr.line_to(CX, lvl_y - 4)\n        cr.stroke()\n        cr.set_dash([])\n    cr.restore()\n    glass_path()\n    edge(cr, (38, 48, 60))\n    cr.set_source_rgba(*_c((255, 255, 255), 0.6))\n    cr.set_line_width(10)\n    cr.move_to(L + 22, GB - 20)\n    cr.line_to(L + 22, 1050)\n    cr.move_to(L + 52, 820)\n    cr.line_to(L + 52, GT + 20)\n    cr.stroke()\n    cylinder(cr, R + 6, GB, 28, GB - GT + 10, WOOD, finish=\"gloss\")\n    box(cr, L - 40, GT, R - L + 80, 34, WOOD, depth=44, finish=\"gloss\")\n    box(cr, L - 46, 1440, R - L + 92, 44, WOOD, depth=48, finish=\"gloss\")\n\n    # the brass valve that shuts the neck, its stem out to a wheel at the left\n    WX, WY = 300, NY\n    cr.rectangle(WX, WY - 10, CX - WX, 20)\n    solid(cr, BRASS, finish=\"metal\")\n    cr.rectangle(CX - 30, WY - 24, 60, 48)\n    solid(cr, BRASS, finish=\"metal\")\n    turned = (k + rise) if u >= a0 else 0.0\n    ang = turned * math.pi * 1.5\n    cr.set_source_rgba(*_c((150, 40, 34)))\n    cr.set_line_width(13)\n    cr.arc(WX, WY, 50, 0, 2 * math.pi)\n    cr.stroke()\n    for s_ in range(3):\n        a_ = ang + s_ * math.pi / 3\n        cr.move_to(WX - 50 * math.cos(a_), WY - 50 * math.sin(a_))\n        cr.line_to(WX + 50 * math.cos(a_), WY + 50 * math.sin(a_))\n        cr.stroke()\n    disc(cr, WX, WY, 13, BRASS, finish=\"metal\")\n\n    # THE SCALE on the glass: every level the sand has reached stays marked\n    # with its region, all three stacked on the same sand\n    if u >= a0:\n        for j in range(0, landed_to + 1):\n            then_mark(cr, L + 70, CX, GB - rows[j][1] * PX, rows[j][0])\n\n    # the ladder up to the valve wheel\n    LX = 210\n    for rx in (LX - 40, LX + 40):\n        cr.rectangle(rx - 7, 1040, 14, 400)\n        solid(cr, (150, 104, 62))\n    for i in range(6):\n        ry = 1420 - i * 68\n        cr.rectangle(LX - 40, ry, 80, 10)\n        solid(cr, (164, 116, 70), rim=False)\n\n    # emperor penguins waddling past the camera: the ice is alive\n    def penguin(x, y, s, ph):\n        cr.save()\n        cr.translate(x, y)\n        contact_shadow(cr, 0, 0, 90 * s, a=0.3)\n        cr.scale(s, s)\n        cr.rotate(0.07 * math.sin(ph))\n        for fx in (-14, 14):                       # feet\n            cr.save()\n            cr.translate(fx, -2)\n            cr.scale(1.0, 0.4)\n            cr.arc(0, 0, 13, 0, 2 * math.pi)\n            cr.restore()\n            solid(cr, (232, 140, 44), rim=False)\n        cr.move_to(0, -150)                        # body\n        cr.curve_to(42, -150, 54, -60, 40, -12)\n        cr.curve_to(28, 6, -28, 6, -40, -12)\n        cr.curve_to(-54, -60, -42, -150, 0, -150)\n        cr.close_path()\n        solid(cr, (34, 38, 50))\n        cr.move_to(8, -124)                        # white belly\n        cr.curve_to(34, -112, 40, -42, 26, -10)\n        cr.curve_to(16, 2, -10, 2, -16, -10)\n        cr.curve_to(-22, -50, -16, -112, 8, -124)\n        cr.close_path()\n        solid(cr, (240, 242, 246), rim=False)\n        cr.save()                                  # yellow neck patch\n        cr.translate(16, -128)\n        cr.scale(0.7, 1.0)\n        cr.arc(0, 0, 13, 0, 2 * math.pi)\n        cr.restore()\n        solid(cr, (246, 196, 70), rim=False, edge=False)\n        cr.move_to(-30, -112)                      # flipper\n        cr.curve_to(-58, -80, -56, -44, -46, -30)\n        cr.curve_to(-38, -60, -30, -90, -24, -104)\n        cr.close_path()\n        solid(cr, (26, 30, 40), rim=False)\n        disc(cr, 4, -156, 26, (34, 38, 50))        # head\n        cr.move_to(24, -160)                       # beak\n        cr.line_to(50, -150)\n        cr.line_to(24, -148)\n        cr.close_path()\n        solid(cr, (236, 150, 50), rim=False)\n        disc(cr, 14, -162, 4, (250, 250, 250))\n        cr.restore()\n\n    for i in range(3):\n        px = 140 + i * 330 + 40 * t\n        penguin(px, 1700 + (i % 2) * 100, 1.3 + 0.2 * (i % 2), t * 5 + i)\n    foreground(cr, \"snow\")\n    vignette(cr, a=0.28)\n\n    # Data points at the full upper bulb, climbs the ladder to the valve, then turns it once per region\n    c = ease(seg(u, 0.03, a0))\n    hx = 100 + (LX - 100) * c\n    fy = 1452 - (1452 - 1040) * c\n    if u < 0.03:\n        host(\"point\", hx, fy, 230)\n    elif u < a0:\n        host(\"climb\", hx, fy, 230)\n    elif u < a1:\n        host(\"tap\", hx, fy, 230, beat=k)\n    else:\n        host(\"hold_up\", hx, fy, 230)\n\n    if u >= a0 and landed_to >= 0:\n        lab, v = rows[landed_to]\n        fit_readout(cr, f\"{int(round(v))} years\", f\"until the ozone heals · {lab}\",\n                    80, 520, size=130, max_w=640)\n    else:\n        fit_readout(cr, \"Ozone healing\", \"years until each sky recovers\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.05)), size=130, max_w=640)\n    if landed_to >= n - 1 and rows[0][1] > 0:\n        text(cr, f\"{top / rows[0][1]:.1f}x\", W - 80, 520, 100, look.INK,\n             face=\"display\", anchor=\"right\", alpha=ease(seg(u, 0.52, 0.57)))\n"
     }
    ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-06T12:53:30Z"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-08T14:49:52Z"
   },
   {
    "slug": "data-breach-exposure",
@@ -20400,10 +20400,10 @@
   },
   {
    "slug": "helium-supply-squeeze",
-   "title": "The Element Running Out Faster Than Anyone Noticed",
-   "hook": "Helium vanished 10.1 billion cubic meters from Earth, your town feels it.",
-   "closing": "When it’s gone, it’s gone—literally into space.",
-   "question": "Helium balloons pricier? Comment below.",
+   "title": "Helium Prices Went Up 4x Before. It's Happening Again.",
+   "hook": "Helium prices exploded 4x once, and your phone's chips need it.",
+   "closing": "Once helium escapes, it leaves Earth for good.",
+   "question": "Would you give up party balloons?",
    "caption": "Qatar alone holds more helium reserves than any other country on Earth. Global demand is set to nearly double by 2035 as chipmakers need it to cool production lines. It already caused prices to quadruple once, from 2011 to 2013. 👇",
    "hashtags": [
     "helium",
@@ -20429,8 +20429,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "1 · THE SOURCE",
-     "topic": "Running out",
-     "say": "Qatar holds 10.1 billion cubic meters, most of global helium reserves.",
+     "topic": "Helium Reserves",
+     "say": "Qatar holds the most helium, 10.1 billion cubic meters, then the United States.",
      "scene": {
       "mechanic": "reserve-tank-row",
       "concept": "industrial helium gas cylinders rise per country, sized to each nation's reserve - Qatar's tank towering slightly over the rest",
@@ -20447,8 +20447,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "2 · THE SQUEEZE",
-     "topic": "Faster demand",
-     "say": "Demand will nearly double by 2035 as chips need helium cooling.",
+     "topic": "Helium Demand",
+     "say": "Demand is set to grow 90% by 2035 as chip factories need more.",
      "scene": {
       "mechanic": "balloon-squeeze-double",
       "concept": "two helium balloons side by side, 2035's balloon swollen nearly double 2024's size with a microchip riding it - the chipmaking demand made physical",
@@ -20464,8 +20464,8 @@
      },
      "insight_type": "trend",
      "role": "3 · IT HAPPENED BEFORE",
-     "topic": "Element prices",
-     "say": "Helium prices quadrupled from 2011 to 2013 and are rising again.",
+     "topic": "Helium Prices",
+     "say": "In the last crunch, from 2011 to 2013, helium prices quadrupled.",
      "scene": {
       "mechanic": "price-climb-balloon-shrink",
       "concept": "as the price index line climbs the scale, the helium balloon beside it visibly deflates - scarcity driving the price up in real time",
@@ -20474,8 +20474,8 @@
      "illustrated_scene": "def scene(cr, t, u, pts, host):\n    \"\"\"HERO: a heap of gold coins beside one helium tank\n    SUBSTANCE: gold coins\n    CAUSE: Data shovels gold coins onto the heap, one scoop at a time, until it is four times its 2011 size\n    The price of ONE helium cylinder, paid in gold. The heap beside the tank is\n    what that cylinder cost in 2011 (index 100). Scoop by scoop, Data piles on\n    coins until the heap is what the same tank costs in 2013. The 2011 heap\n    stays as a dashed ghost with its year marked, and 1x..4x ticks up the side\n    measure the new price against the old one: four times as much.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    v0 = v0 or 1.0\n    ratio = v1 / v0\n    n = 6\n    a0, a1 = 0.1, 0.9\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    fly = seg(f, 0.0, 0.35)\n    grow = ease(seg(f, 0.3, 0.7))\n    step = 0.0 if u < a0 else (k + grow) / n\n    val = v0 + (v1 - v0) * step\n\n    CX, BASE = 470, 1440\n    H0 = 155.0\n    h = H0 * val / v0\n    hw = min(390.0, 160.0 + 0.4 * h)\n    h0, hw0 = H0, 160.0 + 0.4 * H0\n\n    landscape(cr, t, \"town\")\n\n    # the helium cylinder whose price the heap is\n    TX, TW, TH = 885, 125, 330\n    cast_shadow(cr, TX, TX + TW, BASE, length=260, a=0.3)\n    contact_shadow(cr, TX + TW / 2, BASE + 4, TW + 40, a=0.4)\n    cylinder(cr, TX, BASE, TW, TH, (128, 150, 172), finish=\"metal\")\n    cr.save()\n    cr.translate(TX + TW / 2, BASE - TH)\n    cr.scale(1, 0.55)\n    cr.arc(0, -10, TW / 2 - 6, math.pi, 2 * math.pi)\n    cr.restore()\n    solid(cr, (110, 130, 150), finish=\"metal\")\n    box(cr, TX + TW / 2 - 16, BASE - TH - 36, 32, 34, (70, 74, 82), finish=\"metal\")\n    disc(cr, TX + TW / 2, BASE - TH - 48, 16, (196, 60, 48), finish=\"gloss\")\n    cr.rectangle(TX + 10, BASE - TH * 0.62, TW - 20, 70)\n    solid(cr, (232, 226, 210), rim=False)\n    text(cr, \"He\", TX + TW / 2, BASE - TH * 0.62 + 54, 52, (40, 44, 52),\n         face=\"display\", anchor=\"center\", shadow=False)\n\n    # the heap of gold: the price of that one tank\n    cast_shadow(cr, CX - hw, CX + hw, BASE, length=300, a=0.3)\n    contact_shadow(cr, CX, BASE + 4, 2 * hw + 60, a=0.4)\n    heap_path(cr, CX, BASE, h, hw)\n    solid(cr, P[\"coin_edge\"], finish=\"metal\")\n    cr.save()\n    heap_path(cr, CX, BASE, h, hw)\n    cr.clip()\n    count = int(60 + 200 * (val - v0) / max(1.0, v1 - v0) + 0.5)\n    for i in range(count):\n        dx = ((i * 0.6180339) % 1.0) * 1.9 - 0.95\n        py = (i * 0.4142136) % 1.0\n        px = CX + hw * dx\n        top_y = heap_top(CX, BASE, h, hw, px)\n        cy_ = BASE - (BASE - top_y) * py * 0.97 - 8\n        disc(cr, px, cy_, 15 + 5 * ((i * 0.37) % 1.0), P[\"coin\"], finish=\"metal\")\n    cr.restore()\n    heap_path(cr, CX, BASE, h, hw)\n    edge(cr, (70, 50, 20))\n\n    # THE SCALE on the heap: the 2011 price as a ghost, its top marked, ticks up\n    if step > 0.02:\n        heap_path(cr, CX, BASE, h0, hw0)\n        ghost(cr, a=0.9)\n        then_mark(cr, CX - 130, CX + 130, BASE - h0, l0)\n        times_ticks(cr, 60, BASE, h0, max(1, int(ratio)))\n\n    # Data on the heap's left flank, climbing it as it grows\n    hx = CX - hw * 0.62\n    hy = min(1500.0, heap_top(CX, BASE, h, hw, hx) + 10)\n\n    # the scoop of coins in flight, shovel to summit\n    if u >= a0 and 0 < fly < 1:\n        sx, sy = hx + 70, hy - 60\n        ex, ey = CX + 30, BASE - h - 6\n        bx = sx + (ex - sx) * fly\n        by = sy + (ey - sy) * fly - 220 * math.sin(math.pi * fly)\n        for j in range(5):\n            disc(cr, bx + 26 * (j - 2), by + 12 * (j % 2), 20, P[\"coin\"], finish=\"metal\")\n\n    # right by the camera: coins spilled on the pavement\n    for i in range(6):\n        disc(cr, 140 + i * 165, 1650 + (i % 2) * 60 + i * 12, 30 + 6 * (i % 2),\n             P[\"coin\"], finish=\"metal\")\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    if u < a0:\n        host(\"point\", hx, hy, 220)\n    elif u < 0.92:\n        host(\"dig\", hx, hy, 220, beat=k)\n    else:\n        host(\"shock\", hx, hy, 220)\n\n    done = u >= a0 and k == n - 1 and grow >= 0.999\n    if done:\n        fit_readout(cr, f\"{int(round(v1))}\", f\"helium price index · {l1}\",\n                    80, 520, size=130)\n        text(cr, f\"{ratio:.0f}x\", W - 80, 650, 90, look.INK, face=\"display\",\n             anchor=\"right\", alpha=ease(seg(u, 0.9, 0.95)))\n    else:\n        fit_readout(cr, f\"{int(round(v0))}\", f\"helium price index · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     }
    ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-06T12:57:24Z"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-08T14:49:52Z"
   },
   {
    "slug": "recycling-myth-reality",
