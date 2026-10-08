@@ -1786,12 +1786,13 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # base; the next one starts again from the best cut and its
                 # own critique. Shipping is unchanged: only a cut the
                 # critic passes at the floor ships.
-                _best = (review["story_score"], edl, review)
+                _best = (review["story_score"], edl, review, led)
                 while (not _passes(review) and _best[2]["problems"]
                        and revision_count < max_rev
                        and not _deadline_passed()):
                     edl2 = story_director.revise_edl(
-                        _best[1], _best[2]["problems"], sub)
+                        _best[1], _best[2]["problems"], sub,
+                        cut=_best[3])
                     if not edl2:
                         break
                     revision_count += 1
@@ -1811,7 +1812,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                         _backtest_keep(elbl, revision_count, out_mp4, edl,
                                        review, sub)
                         if review["story_score"] > _best[0]:
-                            _best = (review["story_score"], edl, review)
+                            _best = (review["story_score"], edl, review,
+                                     led)
                     except Exception as e:  # noqa: BLE001
                         print(f"::warning::[story] {elbl}: revision "
                               f"render failed ({e})", flush=True)

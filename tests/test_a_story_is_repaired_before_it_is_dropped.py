@@ -79,7 +79,7 @@ class _Harness(unittest.TestCase):
         self.revisions = 0
         self.revise_fixes = []
 
-        def revise(edl, problems, reports):
+        def revise(edl, problems, reports, **_k):
             self.revisions += 1
             self.revise_fixes.append([p["fix"] for p in problems])
             return dict(EDL)
