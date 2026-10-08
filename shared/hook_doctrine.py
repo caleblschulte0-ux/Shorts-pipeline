@@ -92,6 +92,20 @@ _SCAM = re.compile(r"\b(click|link|free|guaranteed|doctors hate|one weird "
                    r"trick|subscribe)\b", re.I)
 _SHOUT = re.compile(r"\b[A-Z]{4,}\b")
 _ACCUSE = re.compile(r"^\s*why (is|are|did|do|does) (your|you)\b", re.I)
+#: A number with nothing after it to say what it counts, run straight into a
+#: dash: "Your sky vanished 29.9— the ozone hole is healing" was spoken over
+#: the first frame on 2026-10-07. A viewer hears a number of nothing.
+#: Only a number run INTO the dash: "shrank from 29.9 million km² to 22.9 —
+#: and ..." is a list a viewer can follow, the unit said once.
+_BARE_NUMBER = re.compile(r"\d(?:[\d.,]*\d)?(?:[—–]|--)")
+
+
+def garbled(line: str) -> list:
+    """Why this line is not a sentence a person would say. Empty = fine."""
+    m = _BARE_NUMBER.search(" ".join(str(line or "").split()))
+    if m:
+        return [f"a bare number with nothing after it ({m.group(0).strip()!r})"]
+    return []
 
 
 def punch(line: str) -> dict:
@@ -229,6 +243,7 @@ def problems(line: str, story_cfg: dict, allowed: set, label_words: set) -> list
         out.append(f"names the story never uses: {ents}")
     if _SCAM.search(s) or _SHOUT.search(s):
         out.append("scam tell")
+    out += garbled(s)
     return out
 
 
@@ -279,7 +294,11 @@ _VERIFY = """You are a fact-checker for a YouTube Shorts channel. Below is \
 a story's narration and some candidate opening lines. Clickbait TONE is \
 allowed — drama, "you", exaggerated feeling. What is NOT allowed is a FACT \
 the narration does not support: a cause, a consequence, a quantity, a date, \
-a "never" or an "every" the story does not back up.
+a "never" or an "every" the story does not back up. Also refuse a candidate \
+that is not a complete sentence a person would say out loud, or that says \
+something HAPPENED to the viewer or their things that did not ("your town \
+wiped out by 206 million bird deaths" — no town was wiped out; "your \
+garden vanished 94% of milkweed" does not parse).
 
 NARRATION:
 {say}
@@ -299,26 +318,38 @@ def verified(cands: list, story_cfg: dict, brain,
     changes — a soft hook is a missed click, a false one is a lie."""
     if not cands:
         return []
-    say = "\n".join([str(story_cfg.get("title") or "")] +
-                    [str(s.get("say") or "")
-                     for s in story_cfg.get("segments") or []])
+    say = _say(story_cfg)
     if facts:
         say += ("\nALSO TRUE (checked reference sizes):\n"
                 + _facts_text(facts))
     raw = brain(_VERIFY.format(
         say=say, cands="\n".join(f"{i + 1}. {c}" for i, c in enumerate(cands))))
+    keep = _supported(raw)
+    return [c for i, c in enumerate(cands) if keep and i in keep]
+
+
+def _say(story_cfg: dict) -> str:
+    return "\n".join([str(story_cfg.get("title") or "")] +
+                     [str(s.get("say") or "")
+                      for s in story_cfg.get("segments") or []])
+
+
+def _supported(raw) -> set | None:
+    """The 0-based candidates the fact-checker passed; None = no verdict."""
     m = re.search(r"\{.*\}", str(raw or ""), re.S)
     try:
         ok = json.loads(m.group(0)).get("supported") if m else None
     except Exception:  # noqa: BLE001
-        return []
+        return None
+    if ok is None:
+        return None
     keep = set()
-    for k in ok or []:
+    for k in ok:
         try:
             keep.add(int(k) - 1)
         except (TypeError, ValueError):
             continue
-    return [c for i, c in enumerate(cands) if i in keep]
+    return keep
 
 
 def sharpen(story_cfg: dict, brain=_default_brain, n: int = 6,
@@ -331,8 +362,22 @@ def sharpen(story_cfg: dict, brain=_default_brain, n: int = 6,
     """
     old = str(story_cfg.get("hook") or "").strip()
     was = punch(old)
-    if was["score"] >= BAR:
-        return None
+    broken = garbled(old)
+    if was["score"] >= BAR and not broken:
+        # A loud hook still has to be TRUE and a sentence: the forge wrote
+        # "Your town wiped out by 206 million bird deaths", which scores high
+        # on punch and is neither. Asked once; no answer keeps it.
+        raw = brain(_VERIFY.format(say=_say(story_cfg), cands="1. " + old)) \
+            if brain else None
+        ok = _supported(raw)
+        if ok is None or 0 in ok:
+            return None
+        log(f"[hook] {old!r} must be rewritten: the fact-checker refused it")
+        broken = ["refused by the fact-checker"]
+    if broken:
+        # a line that does not parse is worth nothing, however loud it is
+        log(f"[hook] {old!r} must be rewritten: {broken[0]}")
+        was = {**was, "score": 0}
     allowed, label_words = evidence(story_cfg)
     facts = scale_facts(story_cfg)
     for f in facts:                 # a checked comparison may be said

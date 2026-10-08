@@ -119,10 +119,54 @@ class TheSharpener(unittest.TestCase):
                                     log=lambda m: None))
 
     def test_a_hook_that_already_hits_is_left_alone(self):
+        # one question only — is it true and a sentence? — and no rewrite
         sc = dict(COFFEE, hook=self.GOOD)
         b = _brain(["anything"], [1])
         self.assertIsNone(H.sharpen(sc, brain=b, log=lambda m: None))
-        self.assertEqual(b.calls, [])
+        self.assertEqual(len(b.calls), 1)
+        self.assertIn("fact-checker", b.calls[0])
+
+    def test_no_verdict_on_a_loud_hook_keeps_it(self):
+        sc = dict(COFFEE, hook=self.GOOD)
+        self.assertIsNone(H.sharpen(sc, brain=_brain(["x"], None),
+                                    log=lambda m: None))
+
+
+class TheFirstLineIsASentence(unittest.TestCase):
+    """2026-10-08, "our hook and first 10 seconds need to be better". The
+    forge had written hooks that score loud and say nothing: "Your sky
+    vanished 29.9— the ozone hole is healing", "Your town wiped out by 206
+    million bird deaths". Loud is not enough; it must parse and be true."""
+
+    def test_a_bare_number_into_a_dash_is_garbled(self):
+        self.assertTrue(H.garbled("Your sky vanished 29.9— the ozone hole is healing"))
+        self.assertEqual(H.garbled("Now it's 45% — and still spreading toward you."), [])
+        self.assertEqual(H.garbled(TheSharpener.GOOD), [])
+
+    def test_a_garbled_hook_is_rewritten_however_loud(self):
+        bad = "Your coffee just got gutted 4.41— record prices"
+        self.assertGreaterEqual(H.punch(bad)["score"], H.BAR)
+        b = _brain([TheSharpener.GOOD], [1])
+        got = H.sharpen(dict(COFFEE, hook=bad), brain=b, log=lambda m: None)
+        self.assertEqual(got, TheSharpener.GOOD)
+
+    def test_a_loud_hook_the_checker_refuses_is_rewritten(self):
+        loud = "Your coffee is being wiped out at a record $4.41 a pound."
+        self.assertGreaterEqual(H.punch(loud)["score"], H.BAR)
+        calls = []
+
+        def brain(prompt):
+            calls.append(prompt)
+            if "fact-checker" in prompt:
+                # the old hook alone is refused; the rewrite is supported
+                return json.dumps({"supported": [] if "1. " + loud in prompt else [1]})
+            return json.dumps({"hooks": [TheSharpener.GOOD]})
+        got = H.sharpen(dict(COFFEE, hook=loud), brain=brain, log=lambda m: None)
+        self.assertEqual(got, TheSharpener.GOOD)
+
+    def test_the_checker_is_told_to_refuse_nonsense(self):
+        self.assertIn("complete sentence", H._VERIFY)
+        self.assertIn("did not", H._VERIFY)
 
 
 class SavingAHookDoesNotRewriteTheFile(unittest.TestCase):

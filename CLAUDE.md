@@ -325,6 +325,17 @@ constants blanked), never on the prose that explains it.
   readout steps through at most `READOUT_SHOWS` values (`landed`). After
   the payoff the world moves, the story holds; prompt rule 16.
   `tests/test_the_payoff_lands_in_time_to_read.py`.
+  And the OPENING IS THE SHOCK (operator, 2026-10-08: *"our hook and first
+  10 seconds need to be better ... we need to be really hooking the
+  audience"*; 55-70% of viewers swiped in the first seconds). Rendered,
+  posted openings began on the smallest state of their picture — an empty
+  frame under "Your kid's", a knee-high pile that became the mountain at
+  second five. `studio_render.flash_forward` lays the opening picture's
+  FINISHED frame over its first `FLASH_S`, the first picture never fades
+  in from black, and the WHOLE hook line is on the plate from frame one
+  with the said word lit (`hook_karaoke`). A hook must also parse and be
+  true: `hook_doctrine.garbled`, and a loud hook is still fact-checked
+  once. `tests/test_the_first_frame_is_the_shock.py`.
 
 - **A brain-drawn subject scene has to pass a VIEWER, not just the code**
   (operator, 2026-10-01: a coffin he "couldn't tell was a coffin", an urn

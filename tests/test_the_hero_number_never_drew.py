@@ -96,7 +96,8 @@ class ItIsGoneAndStaysGone(unittest.TestCase):
         self.assertIn("hchunks = _chunks(_dash(st.hook), 2) if not hook_visual", src)
         # ...on the lower caption plate since 2026-09-22 — at y=470 it sat on
         # the leading chart's top rows (test_the_frame_reads_on_a_phone).
-        self.assertIn("pos(540,1734)\\\\fs78", src)
+        self.assertIn("hook_karaoke(", src)
+        self.assertIn("pos(540,1734)\\\\fs78", inspect.getsource(sr.hook_karaoke))
 
 
 class TheHELPERIsStillLive(unittest.TestCase):
