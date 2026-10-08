@@ -11819,13 +11819,49 @@
       "director_cut": true
     },
     "clip-20261008-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/LazyCharmingPepperoniDatSheffy-w6k-B5G0eBotQhEP",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/WFkXLJ3-kmc",
       "title": "Jynxzi Panics After Realizing He's Dead In Day 3 Of Death 2",
       "kind": "twitch_clip",
-      "ts": "2026-10-08T12:48:31.693329+00:00",
+      "ts": "2026-10-08T12:48:42.354374+00:00",
+      "uploaded_at": "2026-10-08T12:48:42.354394+00:00",
+      "publish_at": "2026-10-08T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261008-jynxzi-panics-after-realizing-he-s-dead-in-day-3-95369225"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/LazyCharmingPepperoniDatSheffy-w6k-B5G0eBotQhEP",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "hook": "HE JUST REALIZED HE'S DEAD",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 8787,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 25.0
+      },
+      "director_cut": true
+    },
+    "rejected-freezingabnegateeaglewow-ynzy1u5bv7hsjur3": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/FreezingAbnegateEagleWow-ynZy1u5bV7HSjUR3",
+      "streamer": "caseoh_",
+      "title": "Ayo?",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source too dark (avg luma 26/255) \u2014 unwatchable IRL/night footage; source barely moves (avg frame delta 0.55) \u2014 static image/paused screen, not a clip",
+      "ts": "2026-10-08T12:49:47.816813+00:00"
+    },
+    "clip-20261008-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/ObeseOptimisticVampireEagleEye-Hjdc_814uO3OZkH-",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Demands Proof: \"Where Is Your Proof?\" After Being Accused",
+      "kind": "twitch_clip",
+      "ts": "2026-10-08T12:51:31.081682+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
