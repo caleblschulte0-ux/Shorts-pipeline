@@ -140,7 +140,10 @@ def note_story_tried(mem: dict, member_urls: list[str], *, premise: str = "",
     critic refused, which a better edit may yet pass (EDIT_VERSION)."""
     try:
         keys = sorted({_key(u) for u in member_urls if _key(u)})
-        if len(keys) < 2:
+        # one key is a MOMENT candidate (storyline.find_moments); a subset
+        # of a refused moment is never a different story, and a story that
+        # adds a clip to it is (already_tried)
+        if not keys:
             return
         tried = mem.setdefault("stories_tried", [])
         tried[:] = [t for t in tried if sorted(t.get("members") or []) != keys]

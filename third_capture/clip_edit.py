@@ -354,6 +354,37 @@ def maybe_vod_window(clip: dict, work: Path, *, before: float = 60.0,
         return None
 
 
+def maybe_vod_segment(video_id: str, start: float, end: float,
+                      work: Path) -> Path | None:
+    """One stretch of a broadcast as its own file, or None. The moment
+    story's BEFORE and AFTER (storyline.find_moments): what led up to the
+    clip and what came of it, each a source the director can cut from.
+    Same stream copy and timeout as `maybe_vod_window`; never raises."""
+    if not video_id or end - start < 5:
+        return None
+    try:
+        start = max(0.0, float(start))
+        work = Path(work)
+        work.mkdir(parents=True, exist_ok=True)
+        out = work / f"vodseg_{video_id}_{int(start)}_{int(end)}.mp4"
+        if not out.exists():
+            t = time.monotonic()
+            _ytdlp(["--download-sections", f"*{start:.0f}-{end:.0f}",
+                    "-f", "b[height<=720]/b",
+                    "-o", str(out), "--remux-video", "mp4",
+                    f"https://www.twitch.tv/videos/{video_id}"],
+                   timeout=_VOD_TIMEOUT)
+            print(f"[vod] segment {video_id} {start:.0f}-{end:.0f}s "
+                  f"in {time.monotonic() - t:.0f}s", flush=True)
+        if not out.exists() or out.stat().st_size < 10_000:
+            return None
+        return out
+    except Exception as e:  # noqa: BLE001
+        print(f"[vod] segment failed for video {video_id} "
+              f"({type(e).__name__})", flush=True)
+        return None
+
+
 # Kick and Rumble sit behind bot protection; yt-dlp's TLS impersonation
 # (curl_cffi) gets through from clean egress (e.g. CI runners). Twitch
 # needs nothing.

@@ -565,6 +565,15 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   the transcripts and frames, §8 unchanged. What it proposed is recorded
   per slot in `judges.story_director.supply` in `state/third_qa_stats.json`
   — read that before tuning anything.
+- **A story can be ONE moment and the stream around it** (2026-10-08,
+  after four backtests in which the director refused ~150 grouped
+  candidates as "two unrelated moments" and every rendered cut failed on
+  the setup or payoff the clipper cut off). `storyline.find_moments`
+  offers the hottest unposted clips with VOD coordinates; `run_third`
+  fetches the BEFORE and AFTER from the VOD as sources of their own
+  (`_moment_segments`, `clip_edit.maybe_vod_segment`) and the director and
+  the critic judge them like any story, same 80. No VOD, no story — never
+  padded. They take turns with the scout and the arcs.
 - **The scout reads what the clips SHOWED, not just their titles**
   (2026-10-02: all three of the 10-01 proposals were refused because "the
   boar snipe never appears" — built from titles, while the run held the
