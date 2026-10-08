@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261007",
-  "generated_at": "2026-10-07T23:31:03Z",
+  "generated_at": "2026-10-08T00:30:59Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 13.76,
+          "days": 13.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 12.76,
+          "days": 12.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1627,10 +1627,14 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "8736d06",
-    "commits_since": "2026-10-06",
+    "head": "77afad9",
+    "commits_since": "2026-10-07",
     "commit_count": 50,
     "commits": [
+      "77afad9 exchange: phase A bundle for 20261008 [skip ci]",
+      "9b5993c Explainer scenes land their payoff in time to read it (#544)",
+      "85694a1 claim: mailbox verdicts 2026-10-07T23:48Z [skip ci]",
+      "f0e893b retro: brief + triage for 20261007 [skip ci]",
       "8736d06 Third stories: stream window arrives, near-misses retried, rejected revisions told why (#543)",
       "f1b9639 claim: mailbox verdicts 2026-10-07T22:47Z [skip ci]",
       "332766b story forge: new real-data stories [skip ci]",
@@ -1666,11 +1670,7 @@
       "8bca932 Cleaner new look: soft ink edge, brighter rim, one key-light finish per frame (#534)",
       "f9bcafd explainer: posted light-pollution-erasing-sky [skip ci]",
       "2802e5e explainer: claim upload slot light-pollution-erasing-sky [skip ci]",
-      "4d71a4f claim: mailbox verdicts 2026-10-07T13:48Z [skip ci]",
-      "953e4f4 explainer: posted sand-mining-crisis [skip ci]",
-      "0a5da1d explainer: claim upload slot sand-mining-crisis [skip ci]",
-      "fec0a4a watchdog: chatgpt task verdicts 20261007 [skip ci]",
-      "83d2fa0 credentials: heartbeat [skip ci]"
+      "4d71a4f claim: mailbox verdicts 2026-10-07T13:48Z [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
@@ -1862,6 +1862,7 @@
       "test_the_mascot_is_actually_directed.py",
       "test_the_new_look_actually_renders.py",
       "test_the_payoff_is_a_new_picture.py",
+      "test_the_payoff_lands_in_time_to_read.py",
       "test_the_picture_is_made_of_the_thing.py",
       "test_the_picture_is_of_the_subject.py",
       "test_the_post_card_arrives.py",
