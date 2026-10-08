@@ -37,8 +37,8 @@
   },
   "punchup": {
     "applied": 0,
-    "kept": 4,
-    "rejected": 2,
+    "kept": 6,
+    "rejected": 0,
     "absent": 0
   },
   "contract_refused": [],
@@ -112,21 +112,6 @@
       "request_id": "three-year-old-laptop-s6-534a70eac1dc",
       "outcome": "chatgpt",
       "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/three-year-old-laptop-s6-534a70eac1dc.png"
-    },
-    {
-      "slug": "fake-customer-costume",
-      "outcome": "punchup_rejected",
-      "problems": [
-        "INVENTED named entity(ies): bold, wrong"
-      ]
-    },
-    {
-      "slug": "three-year-old-laptop",
-      "outcome": "punchup_rejected",
-      "problems": [
-        "INVENTED numeric claim(s): 2022 (x2 -> x3)",
-        "INVENTED named entity(ies): lovely"
-      ]
     }
   ]
 }
