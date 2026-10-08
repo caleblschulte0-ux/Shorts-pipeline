@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261008",
+  "bundle": {
+    "identity": "8a031f56a921c3605d155f4c82b172d91160b2759a215a061fea4eea23090505",
+    "path": "exchange/bundles/20261008/bundle.json"
+  },
+  "request_id": "three-year-old-laptop-s5-097b5d7ff8e3",
+  "safe_request_id": "three-year-old-laptop-s5-097b5d7ff8e3",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "6bb6352bea02b2a8b6fb4fbd486b5fda9c9f0817da1db8deb7e4688042906f7f",
+  "prompt_used": "An editorial illustration for a short-form video: warehouse shelves inventory records. It accompanies the narration: \"pulled the manufacturing batch records\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1BJiJ0KtFAWS6QYRB1VBR3fs_qlVeFpmM",
+    "filename": "20261008__three-year-old-laptop-s5-097b5d7ff8e3.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1BJiJ0KtFAWS6QYRB1VBR3fs_qlVeFpmM",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "41a5884238f24c0fb87b470a10c6d71a9b487cf28f2e017755027e841c5d8c17",
+    "bytes": 2141332,
+    "format": "png",
+    "width": 940,
+    "height": 1672
+  },
+  "verified_at": "2026-10-08T11:29:30Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
