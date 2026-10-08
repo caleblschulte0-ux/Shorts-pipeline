@@ -2821,6 +2821,13 @@
       ],
       "words_first_10s": 25,
       "scene_changes_before_5s": 3
+    },
+    "monarch-butterfly-collapse": {
+      "claimed_at": "2026-10-08T15:52:54.089661+00:00",
+      "title": "The Monarch Butterfly Is Running Out of Forest",
+      "publish_at": "2026-10-08T14:47:06Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3471,6 +3478,14 @@
       "state": "posted",
       "slug": "bird-flu-species-jump",
       "at": "2026-10-07T18:23:43.067095+00:00"
+    },
+    {
+      "claimed_at": "2026-10-08T15:52:54.089661+00:00",
+      "title": "The Monarch Butterfly Is Running Out of Forest",
+      "publish_at": "2026-10-08T14:47:06Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "monarch-butterfly-collapse"
     }
   ]
 }
