@@ -1224,6 +1224,40 @@ MAX_STILL_TAIL = 1.6       # seconds a finished chart may sit before the cut
 # it has to keep moving almost to the cut. It is also the cheapest place to buy
 # motion honestly: the chart is already there and already building.
 CLOSING_STILL_TAIL = 0.35
+
+
+#: THE FIRST FRAME IS THE SHOCK (operator, 2026-10-08: "our hook and first
+#: 10 seconds need to be better"). Rendered, two posted openings began on
+#: the SMALLEST state of their picture: an empty dark frame with "Your
+#: kid's" under it while a bar chart grew out of nothing, and a knee-high
+#: pile of sand that only became the 50-billion-tonne mountain at second
+#: five. 55-70% of viewers had swiped by then. The opening picture now
+#: FLASHES FORWARD: its finished state — the 31% bar, the mountain — fills
+#: the first FLASH_S seconds, then it cuts back and builds, so the shock is
+#: on screen from frame one and the build is the explanation.
+FLASH_S = 0.8
+
+
+def flash_forward(pattern: str, fps: float = 30.0, secs: float = FLASH_S) -> int:
+    """Lay a build's FINISHED frame over its first `secs`, in place.
+    Returns how many frames were replaced (0 when the build is too short to
+    spare them, or is not a frame sequence)."""
+    import shutil
+    try:
+        files = []
+        k = 1
+        while Path(pattern % k).exists():
+            files.append(Path(pattern % k))
+            k += 1
+    except (TypeError, ValueError):
+        return 0
+    n = int(round(secs * fps))
+    if n < 1 or len(files) < 3 * n:
+        return 0
+    last = files[-1]
+    for f in files[:n]:
+        shutil.copyfile(last, f)
+    return n
 # ...AND THE GAPS BETWEEN THE CLOSING'S REVEALS ARE BOUNDED IN SECONDS TOO.
 #
 # The tail was fixed and the gaps were left proportional. `qs`/`cs`/`ls` were
@@ -1381,6 +1415,67 @@ def _dash(text: str) -> str:
     return _re.sub(r"\s*--\s*", " \u2014 ", text or "").strip()
 
 
+#: THE WHOLE HOOK IS ON SCREEN FROM FRAME ONE (operator, 2026-10-08: "we
+#: need to be really hooking the audience"). It came up two words at a time,
+#: so a viewer scrolling with the sound off met "Your kid's" over the first
+#: frame and had to wait three seconds to learn what the video was. The full
+#: line now sits on the lower plate for the whole hook, the word being said
+#: lit in the accent and the words still to come dimmed — read at a glance,
+#: heard as it is said. At most HOOK_LINES lines, measured, never cut.
+HOOK_LINES = 3
+HOOK_FS = (70, 52)          # largest size first, smallest it may shrink to
+HOOK_W = 940                # px a line may take on the 1080 frame
+
+
+def hook_layout(text: str) -> tuple[int, list[list[str]]]:
+    """(font size, the hook's words in lines) — the biggest size at which it
+    fits in HOOK_LINES lines of HOOK_W, measured with the caption font; no
+    lines when it fits at no size."""
+    words = text.split()
+    for fs in range(HOOK_FS[0], HOOK_FS[1] - 1, -2):
+        try:
+            f = _font(fs)
+            width = lambda t: f.getlength(t)  # noqa: E731
+        except Exception:  # noqa: BLE001 — no font: the caption font's mean
+            width = lambda t: len(t) * fs * 0.62  # noqa: E731
+        lines, cur = [], []
+        for w in words:
+            if cur and width(" ".join(cur + [w])) > HOOK_W:
+                lines.append(cur)
+                cur = []
+            cur.append(w)
+        if cur:
+            lines.append(cur)
+        if len(lines) <= HOOK_LINES:
+            return fs, lines
+    return HOOK_FS[1], []         # it does not fit: never cut, never crammed
+
+
+def hook_karaoke(text: str, lit: tuple[int, int], accent: str) -> str:
+    """The ASS text of the whole hook with words [lit) in the accent, the
+    ones already said in ink and the ones to come dimmed."""
+    fs, lines = hook_layout(text)
+    if not lines:
+        # too long to read whole: the said words alone, as it always was
+        words = text.split()[lit[0]:lit[1]]
+        return ("{\\an2\\pos(540,1734)\\fs78\\bord8\\3c" + accent + "}"
+                + " ".join(words))
+    out, k = [], 0
+    for line in lines:
+        parts = []
+        for w in line:
+            if lit[0] <= k < lit[1]:
+                parts.append("{\\c" + accent + "\\1a&H00&}" + w)
+            elif k < lit[0]:
+                parts.append("{\\c&HFFFFFF&\\1a&H00&}" + w)
+            else:
+                parts.append("{\\c&HFFFFFF&\\1a&H70&}" + w)
+            k += 1
+        out.append(" ".join(parts))
+    return ("{\\an2\\pos(540,1840)\\fs" + str(fs) + "\\b1\\bord7"
+            "\\3c&H0A0C12&\\shad0\\q2}" + "\\N".join(out))
+
+
 def build_story_ass(st: story.Story, windows, events, out: Path,
                     accent: str = "&H4FD1F5&", hook_visual: bool = False,
                     closing_scene: bool = False,
@@ -1458,29 +1553,18 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     # blocks, and the data demonstration should be the star from frame 1.
     # `_headline_number` is still live for the thumbnail and for long-form.
     hchunks = _chunks(_dash(st.hook), 2) if not hook_visual else []
+    _htext = _dash(st.hook)
     if hchunks:
         hstep = (h1 - h0) / len(hchunks)
         for j, ch in enumerate(hchunks):
             cs, ce = h0 + j * hstep, h0 + (j + 1) * hstep
-            # THE HOOK TAKE SITS ON THE LOWER PLATE, WHERE EVERY OTHER CAPTION
-            # SITS. It was pinned at y=470 — the top rows of whichever chart
-            # leads the cold open, which is the ONLY case this branch runs
-            # (`hook_visual` is false exactly when seg0's chart is on screen
-            # from frame 1). Three of seven verdicts on 2026-09-22 named it:
-            # "'A pit / stop used' overlapping the '1950s' label and bar",
-            # "'Your coffee' set straight across the 2019 row, covering that
-            # row's $1.1 value", "'That's more' lands on top of the 1970 row
-            # label and its $1.6B value". The lower plate is below the card
-            # and above the source line, and seg0's own captions only start
-            # when the hook window ends, so nothing shares these pixels.
-            if j == 0:
-                pop = ("{\\an2\\pos(540,1734)\\fs78\\fad(0,70)\\fscx118\\fscy118"
-                       "\\t(0,130,\\fscx100\\fscy100)\\3c" + accent + "\\bord8\\blur5}")
-            else:
-                pop = ("{\\an2\\pos(540,1734)\\fs78\\fad(70,70)\\fscx106\\fscy106"
-                       "\\t(0,110,\\fscx100\\fscy100)\\bord8}")
+            # THE HOOK SITS ON THE LOWER PLATE, WHERE EVERY OTHER CAPTION
+            # SITS: pinned at y=470 it covered the top rows of the chart that
+            # leads the cold open ("'Your coffee' set straight across the 2019
+            # row", 2026-09-22). Now the WHOLE line, the said word lit
+            # (HOOK_LINES, above); seg0's own captions start when it ends.
             lines.append(f"Dialogue: 0,{_ass_time(cs)},{_ass_time(ce)},Hook,,0,0,0,,"
-                         f"{pop}{ch.strip()}")
+                         + hook_karaoke(_htext, (2 * j, 2 * j + 2), accent))
 
     # Per segment: step chip + kinetic captions. In CLEAN mode the chart draws
     # its own title, so the studio role chip is dropped (it was overlapping it).
@@ -3376,6 +3460,15 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                       + " -> ".join(f"{sp['kind']}({sp['t1'] - sp['t0']:.1f}s)"
                                     for sp in seg.spans), flush=True)
         _save_persisted_mechanics(config_path, story_cfg, slug)
+        # The video opens on its picture's finished state (FLASH_S, above).
+        _first = next(iter(sorted(
+            (sp for sg in st.segments for sp in (getattr(sg, "spans", None) or [])),
+            key=lambda sp: sp["t0"])), None)
+        if _first is not None and _first["t0"] <= 0.05 and not receipt:
+            _nf = flash_forward(_first["path"])
+            if _nf:
+                print(f"[studio] opens on the finished {_first['kind']} "
+                      f"({_nf} frames)", flush=True)
 
         # SCENE-ADDRESSABLE METRICS: encode each scene's build alone and run the
         # reviewer's own cadence detector + the build-time temporal gate on it,
@@ -3969,9 +4062,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 # no near-black to hide, and a cross-fade laid two scenes'
                 # readouts — which sit at the same spot — over each other: the
                 # "garbled crossfade number" that blocked a 73 (2026-09-23).
+                # ...and the video's FIRST picture does not fade in from
+                # nothing: frame one is the shock (FLASH_S), not a black frame.
                 _fades = ("" if sp.get("kind") == "subject_scene" else
-                          f",fade=t=in:st={t0:.2f}:d=0.12:alpha=1,"
-                          f"fade=t=out:st={max(t0, t1 - fd):.2f}:d={fd}:alpha=1")
+                          ("" if t0 < 0.05 else
+                           f",fade=t=in:st={t0:.2f}:d=0.12:alpha=1")
+                          + f",fade=t=out:st={max(t0, t1 - fd):.2f}:d={fd}:alpha=1")
                 fc.append(
                     f"[{gi}:v]tpad=stop_mode=clone:stop_duration={hold:.2f},"
                     f"setpts=PTS-STARTPTS+{t0:.2f}/TB,"
