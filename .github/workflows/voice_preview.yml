@@ -1,0 +1,53 @@
+# Chatterbox narration on real stories through the real code path, kept OUT
+# of the explainer's concurrency group so it can never take a posting slot.
+# No secrets; read-only token; only collect writes, and only to this branch.
+name: Voice preview
+on:
+  push:
+    branches: [voice-preview]
+    paths: ['voice_lab/narration_test.py', '.github/workflows/voice_preview.yml']
+permissions:
+  contents: read
+jobs:
+  narrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11', cache: 'pip' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -q ffmpeg libcairo2 libcairo2-dev pkg-config
+      - run: pip install -q -r requirements.txt -r data_learning/requirements.txt
+      - name: Install the Chatterbox voice (as explainer.yml does)
+        run: |
+          df -h . | tail -1
+          T=$(date +%s); python -m engines install chatterbox_tts; echo "install_s=$(( $(date +%s) - T ))"
+          df -h . | tail -1
+          python -m engines doctor chatterbox_tts
+      - name: Narrate three real stories, twice (the second pass is the line cache)
+        env:
+          CHATTERBOX_VOICE: '1'
+          CHATTERBOX_MODEL: turbo
+          TTS_CACHE_DIR: cache/tts
+        run: |
+          mkdir -p out
+          python voice_lab/narration_test.py out octopus-nine-brains lab-grown-meat-scale-up-8x creator-economy-250-billion 2>&1 | tee out/log.txt
+          python voice_lab/narration_test.py out2 octopus-nine-brains 2>&1 | tee out/log_cached.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: narration, path: out/*.* }
+  collect:
+    needs: narrate
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { name: narration, path: voice_lab/preview/ }
+      - run: |
+          git config user.name "voice-lab"
+          git config user.email "voice-lab@users.noreply.github.com"
+          git add voice_lab/preview
+          git commit -m "voice preview results [skip ci]" && git push origin HEAD:voice-preview
