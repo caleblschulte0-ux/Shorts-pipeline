@@ -1869,6 +1869,49 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     "authored_title": edl["title"],
                     "hook": edl["hook_overlay"], "series": "story"}, work)
                 hard = [p for p in qa["problems"] if "duration" not in p]
+                # A FRAMING FAILURE IS RE-FRAMED, NOT THE STORY DROPPED.
+                # The first story a backtest critic ever passed (82,
+                # 2026-10-08) died here: "the same streamer appears twice in
+                # the same frame, once as a close crop and once as a wide
+                # shot" — the shot plan's stacked layout / the blur-fill's
+                # copy behind the picture. Re-render the SAME edit as one
+                # subject-centred picture per beat; it ships only if the
+                # critic passes it again at the floor AND the QA passes it.
+                if qa["verdict"] == "fail" and hard \
+                        and not _deadline_passed():
+                    print(f"[story] {elbl}: QA failed "
+                          f"({'; '.join(hard)[:100]}) — re-framing as one "
+                          f"picture per beat", flush=True)
+                    try:
+                        led2 = story_mod.render_story(
+                            edl, src_map, out_mp4, story_work,
+                            safe_framing=True)
+                        sheet_ok = clip_qa.contact_sheet(
+                            out_mp4, sheet) is not None
+                        review2 = story_director.review_rough_cut(
+                            edl, scene_analysis._dialogue_lines(
+                                led2["final_words"]),
+                            str(sheet) if sheet_ok else None,
+                            led2["duration_s"], led2.get("on_screen"))
+                        _backtest_keep(f"{elbl} reframed",
+                                       revision_count, out_mp4, edl,
+                                       review2, sub)
+                        qa = clip_qa.review(out_mp4, {
+                            "authored_title": edl["title"],
+                            "hook": edl["hook_overlay"],
+                            "series": "story"}, work)
+                        hard = [p for p in qa["problems"]
+                                if "duration" not in p]
+                        if not _passes(review2):
+                            hard = hard or [
+                                f"re-framed cut scored "
+                                f"{review2['story_score']}"]
+                            qa["verdict"] = "fail"
+                        else:
+                            led, review = led2, review2
+                    except Exception as e:  # noqa: BLE001
+                        print(f"::warning::[story] {elbl}: re-frame "
+                              f"failed ({e})", flush=True)
                 if qa["verdict"] == "fail" and hard:
                     print(f"::warning::[story] {elbl}: QA failed "
                           f"({'; '.join(hard)[:140]}) — next event",

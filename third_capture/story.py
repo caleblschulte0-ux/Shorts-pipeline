@@ -178,6 +178,33 @@ def _tight_crop(src: Path) -> str:
         return default
 
 
+def _cover_crop(src: Path) -> str:
+    """ONE picture, filling the frame: a 9:16 window of the source centred
+    on its dominant subject, scaled up. The plain fallback (`safe` render):
+    the shot plan's stacked/split layouts and the blur-fill's blurred copy
+    behind the picture both put the streamer on screen twice, and the clip
+    QA refused the first story the critic ever passed in a backtest for
+    exactly that (2026-10-08: "the same streamer appears twice in the same
+    frame, once as a close crop and once as a wide shot")."""
+    default = (f"crop='min(iw,ih*9/16)':'min(ih,iw*16/9)',"
+               f"scale={CANVAS_W}:{CANVAS_H}")
+    try:
+        an = _source_analysis(src)
+        if not an or not an.get("subjects"):
+            return default
+        sw, sh = float(an["sw"]), float(an["sh"])
+        top = max(an["subjects"],
+                  key=lambda s: getattr(s, "presence", 0.0)
+                  + getattr(s, "talk", 0.0) / 1000.0)
+        cw, ch = min(sw, sh * 9 / 16), min(sh, sw * 16 / 9)
+        x = min(max(top.cx - cw / 2.0, 0.0), sw - cw)
+        y = min(max(top.cy - ch / 2.0, 0.0), sh - ch)
+        return (f"crop={cw:.0f}:{ch:.0f}:{x:.0f}:{y:.0f},"
+                f"scale={CANVAS_W}:{CANVAS_H}")
+    except Exception:  # noqa: BLE001
+        return default
+
+
 _AN_CACHE: dict[str, dict | None] = {}
 
 
@@ -248,15 +275,18 @@ def _extract_segment(src: Path, out: Path, work: Path, tag: str, *,
                      start: float, end: float, words: list[dict],
                      hook: str = "", context_overlay: str = "",
                      effects: list[dict] | None = None,
-                     framing: str = "wide") -> str:
+                     framing: str = "wide", safe: bool = False) -> str:
     """One beat: exact cut, the clip arm's shot-plan framing (blur-fill
     when no plan applies; optional tight punch-in for reaction beats on
     that fallback, §15), captions, overlays, budgeted emphasis, loudness.
     Returns the layout used, for the ledger."""
     dur = end - start
-    framed, layout = _framed_cut(src, work, tag, start, end)
+    framed, layout = ((None, "cover") if safe
+                      else _framed_cut(src, work, tag, start, end))
     vf = ""
-    if framed is not None:
+    if safe:
+        vf = _cover_crop(src)
+    elif framed is not None:
         # already a sharp 1080x1920 shot; the clip arm grades the same way
         vf = "eq=saturation=1.05"
     else:
@@ -504,7 +534,7 @@ def _mix_narration(seg: Path, voice: Path, out: Path) -> None:
 
 
 def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
-                 work: Path) -> dict:
+                 work: Path, safe_framing: bool = False) -> dict:
     """Execute a validated director EDL.
 
     `sources` maps source_id -> {"path": file, "words": [...], meta...}
@@ -580,7 +610,8 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
                 hook=(edl.get("hook_overlay", "") if idx == 0 else ""),
                 context_overlay=beat.get("context_overlay", ""),
                 effects=beat.get("effects") or [],
-                framing=beat.get("framing", "wide"))
+                framing=beat.get("framing", "wide"),
+                safe=safe_framing)
         except Exception as e:  # noqa: BLE001
             if is_edge:
                 raise RuntimeError(
