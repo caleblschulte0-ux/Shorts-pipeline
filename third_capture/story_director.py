@@ -15,6 +15,7 @@ Contract: every function returns a validated dict or None, never raises.
 """
 from __future__ import annotations
 
+import json
 import re
 
 from third_capture.author import (_call_claude, _call_gemini_vision,
@@ -70,6 +71,10 @@ def narration_grounded(text: str, reports: list[dict]) -> bool:
                   str(r.get("channel", "")), str(r.get("game", "")),
                   # the streamer's own title for the broadcast
                   str(r.get("stream_title", "")),
+                  # who someone is, from general knowledge, checked by a
+                  # second model (`known_people`)
+                  " ".join(f"{k} {v}" for k, v in
+                           (r.get("known_people") or {}).items()),
                   " ".join(str(x) for x in r.get("people") or []),
                   " ".join(str(b.get("purpose", ""))
                            for b in r.get("dialogue_beats") or [])])
@@ -81,6 +86,67 @@ def narration_grounded(text: str, reports: list[dict]) -> bool:
         return w in have or any(h.startswith(w[:5]) for h in have
                                 if len(w) >= 6 and len(h) >= 5)
     return sum(1 for w in words if seen(w)) * 3 >= len(words) * 2
+
+
+_WHO_SYSTEM = """You identify people for captions on a streamer-clip
+channel. For each NAME, say who they are TO THE STREAMER in at most 10
+words, as a stranger would need it: "Kai Cenat's cousin", "a streamer in
+Kai's AMP group", "Lacy's duo partner". Only what is widely known and
+stable — a relationship or a role. Never an event, a claim, an
+accusation, a motive or anything you are unsure of: then null.
+Return STRICT JSON: {"who": {"<name>": "<line>" | null, ...}}"""
+
+_WHO_VERIFY_SYSTEM = """You fact-check captions on a streamer-clip
+channel. For each NAME and LINE about who they are to the streamer,
+answer true only if you are confident the line is accurate and widely
+known; false if it is wrong, unsure, or says anything beyond who the
+person is. Return STRICT JSON: {"ok": {"<name>": true|false, ...}}"""
+
+# a who-line names a relationship or a role, never an event
+_BAD_WHO = re.compile(
+    r"\b(accus|alleg|banned|arrest|lied|lying|scam|cheat|fight|beef|feud"
+    r"|drama|stole|steal|charged|lawsuit|sued|controvers|ex-)", re.I)
+
+_WHO_CACHE: dict = {}
+
+
+def known_people(streamer: str, names: list[str]) -> dict:
+    """{name: who they are to the streamer} for the people a story's
+    sources name but never introduce — proposed by one model, kept only
+    where a SECOND, different model agrees it is accurate.
+
+    The critic's most frequent refusal across story backtests 6-11 was a
+    stranger not knowing who someone is (Reggie, Ron, Bruce), and the
+    grounding rule forbade any line the sources do not say. The operator
+    allowed a line of text on screen (2026-10-08); this is where its
+    "who" may come from when the footage never says it. Best-effort:
+    any failure or doubt returns nothing, and the cut is as before."""
+    names = [str(n).strip() for n in names or []
+             if str(n).strip() and str(n).strip().lower()
+             != str(streamer).strip().lower()][:8]
+    if not names:
+        return {}
+    key = (str(streamer).lower(), tuple(sorted(n.lower() for n in names)))
+    if key in _WHO_CACHE:
+        return dict(_WHO_CACHE[key])
+    out: dict = {}
+    try:
+        ask = f"STREAMER: {streamer}\nNAMES: " + json.dumps(names)
+        got = (_call_claude(ask, system=_WHO_SYSTEM) or {}).get("who") or {}
+        lines = {n: " ".join(str(v).split()) for n, v in got.items()
+                 if n in names and v and len(str(v).split()) <= 12
+                 and not _BAD_WHO.search(str(v))
+                 and not _BAD_NARRATION.search(str(v))}
+        if lines:
+            ok = (_call_text_fallback(
+                f"STREAMER: {streamer}\n" + json.dumps(lines),
+                system=_WHO_VERIFY_SYSTEM, tag="who") or {}).get("ok") or {}
+            out = {n: v for n, v in lines.items() if ok.get(n) is True}
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[director] known_people failed ({e})", flush=True)
+        out = {}
+    _WHO_CACHE[key] = dict(out)
+    return out
 
 
 def narration_lines(edl: dict | None) -> list[dict]:
@@ -161,9 +227,10 @@ Then emit the COMPLETE timeline. Segment rules:
 - every segment states its narrative purpose; a segment adding no
   information, emotion, escalation, or payoff must not exist
 - remove repetition across sources (same explanation twice = cut one)
-- context_overlay: 2-6 words over the FOOTAGE only when the viewer would
-  otherwise be confused (time jump, new speaker, new place) — e.g.
-  "EARLIER THAT DAY", "THEN HIS FRIEND RESPONDED". NEVER meta-labels like
+- context_overlay: 2-6 words, sentence case, briefly replacing the
+  caption only when the viewer would otherwise be confused (time jump,
+  new speaker, new place) — e.g. "Earlier that day", "Then his friend
+  responded". NEVER meta-labels like
   "IT GETS WORSE" or "PART TWO". "" when the cut is already obvious.
 - A STRANGER DOES NOT KNOW THE STREAMER OR THE GAME. Each SOURCE's
   `streamer=` and `game=` are Twitch's own metadata — verified facts. When
@@ -171,6 +238,9 @@ Then emit the COMPLETE timeline. Segment rules:
   beat 0's context_overlay, or narration) names them: "FORSEN PLAYING
   TERRARIA" (game=Terraria), "BUDDHA IN GTA" (game=Grand Theft Auto V).
   Never a fact that is in neither the metadata nor the sources.
+  `known (general knowledge, verified by a second model)` says who a
+  person is to the streamer when the footage never does ("Reggie = Kai
+  Cenat's cousin"); a line of text may say exactly that.
   `stream_title=` is the STREAMER'S OWN title for that broadcast — what
   they said the stream was ("FNCS QUALIFIERS DAY 2"). Use it to say what
   was at stake ("LACY'S FNCS QUALIFIER"), attributed to the stream, never
@@ -186,8 +256,10 @@ Then emit the COMPLETE timeline. Segment rules:
   hard to see), at most 2 subtle_punch; spend emphasis on the payoff,
   not the first beat. Usually [].
 - narration: OPTIONAL top-level LIST, at most ONE line per beat, each
-  {"text": <=15 words, "over_beat": idx, "essential_because": str} —
-  a narrator spoken OVER that beat (ducked). Use it when the footage
+  {"text": <=12 words, "over_beat": idx, "essential_because": str} —
+  a line of TEXT shown on screen over that beat (there is NO voice-over;
+  this channel never narrates — a line or two of text is all the edit
+  says). Use it when the footage
   never says WHO or WHAT the story is about and the scene reports do
   (usually over beat 0), and to bridge how one clip leads to the next
   ("Later that stream, Rakai's bag ended up in a sewer.") when the cut
@@ -201,10 +273,15 @@ Return STRICT JSON:
  "premise": str, "central_question": str, "ending_emotion": str,
  "structure": "<one of the six>", "structure_reason": str,
  "title": str,
- "hook_overlay": str,   // 3-7 words over the opening that state the
-                        // SITUATION in plain words (who + what is at
-                        // stake) — "KAI SAYS REGGIE IS LYING", not a
-                        // teaser like "HE NEVER SAW IT COMING"
+ "hook_overlay": str,   // 3-7 words, SENTENCE CASE: the ONE caption
+                        // that stays on screen the whole video, like a
+                        // repost's: "Los thought he ended stream",
+                        // "Kai says Reggie is lying", or the clip's own
+                        // best quote in quotes ("Opening an umbrella
+                        // indoors is bad luck"). It states the
+                        // SITUATION in plain words (who + what) — never
+                        // a teaser like "He never saw it coming", never
+                        // ALL CAPS
  "target_duration": int,                      // seconds, 25-90
  "beats": [{"source_id": str, "start": s, "end": s,
             "role": "setup|escalation|climax|payoff|context|reaction",
@@ -359,11 +436,13 @@ critic names missing_context or confusing, add or rewrite narration
 lines: a LIST, at most ONE per beat.
 
 Narration ([{"text", "over_beat", "essential_because"}, ...]): each line
-at most 15 words, spoken over the beat that needs it — beat 0 to set up
+at most 12 words of on-screen TEXT (never a voice) over the beat that
+needs it — beat 0 to set up
 who and what, a later beat to bridge a jump the critic could not follow.
 It may state ONLY what a source's transcript or scene report states —
 who someone is, what they said happened, what was claimed — in the
-footage's own words where possible — plus the SOURCE's `streamer=`,
+footage's own words where possible — plus a source's `known` line (who
+a person is to the streamer, verified by a second model) and its `streamer=`,
 `game=` and `stream_title=` (the streamer's own title for the broadcast:
 what the stream was, e.g. a qualifier, a subathon, a trial), which are
 Twitch's own metadata. When the critic says a stranger
@@ -410,12 +489,17 @@ def _fmt_reports(reports: list[dict]) -> str:
         game = f" game={r['game']}" if r.get("game") else ""
         if r.get("stream_title"):
             game += f" stream_title={r['stream_title']!r}"
+        who = "; ".join(f"{k} = {v}" for k, v in
+                        (r.get("known_people") or {}).items())
+        who = (f"  known (general knowledge, verified by a second model): "
+               f"{who}\n" if who else "")
         out.append(
             f"SOURCE {r['source_id']}\n"
             f"  streamer={r['channel']} dur={r['duration_s']}s "
             f"date={r.get('date', '?')}{at}{game}\n"
             f"  summary: {r['summary']}\n"
             f"  people: {', '.join(r.get('people', []))}\n"
+            f"{who}"
             f"  dialogue: {beats or '(none)'}\n"
             f"  visual: {vis or '(none)'}\n"
             f"  emotions: {', '.join(r.get('emotional_state', []))}\n"
@@ -771,7 +855,7 @@ def validate_edl(edl: dict, durations: dict[str, float],
                 rs.append(f"beat {sid} states no purpose")
                 return None      # §10: every segment states its purpose
             overlay = scrub_text(
-                str(b.get("context_overlay", "")).strip())[:40].upper()
+                str(b.get("context_overlay", "")).strip())[:40]
             if overlay:
                 if _BAD_OVERLAY.search(overlay) or \
                         not (2 <= len(overlay.split()) <= 6):
@@ -893,7 +977,9 @@ def validate_edl(edl: dict, durations: dict[str, float],
             "structure": structure,
             "structure_reason": str(edl.get("structure_reason", ""))[:200],
             "title": str(edl.get("title", "")).strip()[:95],
-            "hook_overlay": hook_raw[:60].upper(),
+            # sentence case, as the line is shown (the reposts it looks
+            # like: "Los thought he ended stream")
+            "hook_overlay": hook_raw[:60],
             "target_duration": target,
             "beats": beats,
             "narration": narration,
@@ -1073,20 +1159,16 @@ def _fmt_on_screen(items: list[dict] | None) -> str:
     """What the cut shows and says beyond the streamer's own words.
 
     Backtest #5: every cut was marked down for missing context, including
-    the ones whose narrator SAID it — the critic samples frames (a 1-2s
+    the ones whose added text SAID it — the critic samples frames (a 1-2s
     overlay falls between them) and reads the source transcript (the
-    voice-over is not in it). It is told what is really there, on the
+    edit's own words are not in it). It is told what is really there, on the
     output clock, and still judges whether that is enough."""
     if not items:
         return ""
     rows = []
     for o in items:
-        if o["kind"] == "narration":
-            rows.append(f"- {o['at']:.1f}s VOICE-OVER (spoken over the "
-                        f"footage, not captioned): \"{o['text']}\"")
-        else:
-            rows.append(f"- {o['at']:.1f}s for {o['secs']:.1f}s ON-SCREEN "
-                        f"{o['kind'].upper()}: \"{o['text']}\"")
+        rows.append(f"- {o['at']:.1f}s for {o['secs']:.1f}s ON-SCREEN "
+                    f"{o['kind'].upper()}: \"{o['text']}\"")
     return ("ADDED BY THE EDIT (exactly what the cut shows/says beyond the "
             "transcript; frames may miss a short overlay):\n"
             + "\n".join(rows) + "\n")

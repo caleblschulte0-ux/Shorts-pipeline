@@ -92,7 +92,8 @@ class ABeatUsesTheClipArmsShotPlan(unittest.TestCase):
             out = self.td / f"seg_{tag}.mp4"
             layout = story._extract_segment(
                 self.src, out, self.td, tag, start=0.5, end=3.0, words=[],
-                hook="LEFT BEHIND", framing="wide")
+                captions=[{"kind": "title", "text": "LEFT BEHIND",
+                          "at": 0.0, "secs": 2.5}], framing="wide")
         return out, layout
 
     def test_a_planned_beat_is_the_plans_shot_not_a_strip(self):
