@@ -29,7 +29,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T14:42:55Z",
+        "verified_at": "2026-10-08T16:44:37Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -48,9 +48,13 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T14:42:56Z",
+        "verified_at": "2026-10-08T16:44:38Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "pin_query": "support rep",
+      "pin_context": "customer support representative warranty call",
+      "news_query": "support rep",
+      "news_angle": "The support rep initially told the customer the warranty had expired."
     },
     {
       "phrase": "sealed in plastic, from their own store",
@@ -67,7 +71,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T14:42:57Z",
+        "verified_at": "2026-10-08T16:44:39Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -86,9 +90,13 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T14:42:58Z",
+        "verified_at": "2026-10-08T16:44:40Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "pin_query": "barcode scan timestamp",
+      "pin_context": "store barcode system timestamp proof",
+      "news_query": "barcode scan timestamp",
+      "news_angle": "The barcode scan timestamp was used as evidence of the purchase date."
     },
     {
       "phrase": "the unboxing video I filmed for a tech channel",
@@ -105,9 +113,13 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T14:42:59Z",
+        "verified_at": "2026-10-08T16:44:41Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "pin_query": "unboxing video",
+      "pin_context": "tech channel video showing new laptop",
+      "news_query": "unboxing video",
+      "news_angle": "The customer provided an unboxing video as proof of purchase date."
     },
     {
       "phrase": "pulled the manufacturing batch records",
@@ -132,9 +144,13 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T14:43:08Z",
+        "verified_at": "2026-10-08T16:44:42Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "pin_query": "warehouse clerk",
+      "pin_context": "warehouse employee mislabeling stock",
+      "news_query": "warehouse clerk",
+      "news_angle": "A warehouse clerk had mislabeled an entire pallet of older laptops as new."
     }
   ],
   "punches": [
