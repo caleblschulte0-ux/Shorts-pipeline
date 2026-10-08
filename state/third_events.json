@@ -2533,10 +2533,11 @@
       "candidate_sources": [
         "https://www.twitch.tv/buddha/clip/LuckyPatientCardSeemsGood-_QDEMBts-NRgmIat",
         "https://www.twitch.tv/buddha/clip/DistinctPatientWormWOOP-ugvV1kgUf40w2d4y",
-        "https://www.twitch.tv/xqc/clip/DullFunnyThymeBuddhaBar-Pu93Lrqk9zpV0qO7"
+        "https://www.twitch.tv/xqc/clip/DullFunnyThymeBuddhaBar-Pu93Lrqk9zpV0qO7",
+        "https://www.twitch.tv/xqc/clip/BetterOpenCroquetteFrankerZ-xM3H4tYDh9HA1GCZ"
       ],
       "published_versions": [],
-      "last_updated": "2026-10-03"
+      "last_updated": "2026-10-08"
     },
     "brucedropemoff-arrow-basketball-2026w39": {
       "event_id": "brucedropemoff-arrow-basketball-2026w39",
@@ -3525,60 +3526,58 @@
       "published_versions": [],
       "last_updated": "2026-10-07"
     },
-    "kaicenat-cenat-detent-2026w30": {
-      "event_id": "kaicenat-cenat-detent-2026w30",
+    "cinna-cars-cinna-2026w41": {
+      "event_id": "cinna-cars-cinna-2026w41",
       "people": [
-        "kaicenat"
+        "cinna"
       ],
       "actions": [
-        "cenat",
-        "detent",
-        "first",
-        "guest"
+        "cars",
+        "cinna",
+        "other",
+        "side"
       ],
       "event_type": "storyline",
       "first_seen": "2026-10-08",
       "known_claims": [],
       "candidate_sources": [
-        "https://www.twitch.tv/kaicenat/clip/MiniatureAdorableClamDeIlluminati-bwFwQHo_m_I7_T01",
-        "https://www.twitch.tv/kaicenat/clip/DaintyBoldCiderStrawBeary-WFhL2jI0QYXRH2J-",
-        "https://www.twitch.tv/kaicenat/clip/StrongOriginalTitanAsianGlow-tbeO2ffjoyWNmcWy"
+        "https://www.twitch.tv/cinna/clip/MagnificentIronicRadishWutFace-cYLmsdwhSAe5L7uQ",
+        "https://www.twitch.tv/cinna/clip/PatientRelentlessNeanderthalRiPepperonis-X2ao_1OEldfZ_Wju"
       ],
       "published_versions": [],
       "last_updated": "2026-10-08"
     },
-    "xqc-charact-door-2026w37": {
-      "event_id": "xqc-charact-door-2026w37",
+    "lacy-fortnite-lacy-2026w31": {
+      "event_id": "lacy-fortnite-lacy-2026w31",
       "people": [
-        "xqc"
+        "lacy"
       ],
       "actions": [
-        "charact",
-        "door",
-        "food",
-        "says"
+        "fortnite",
+        "lacy",
+        "purposely",
+        "qualifi"
       ],
       "event_type": "storyline",
       "first_seen": "2026-10-08",
       "known_claims": [],
       "candidate_sources": [
-        "https://www.twitch.tv/xqc/clip/HomelyAbstemiousOysterOhMyDog-eFL17XCV9z_qZVBa",
-        "https://www.twitch.tv/xqc/clip/BetterOpenCroquetteFrankerZ-xM3H4tYDh9HA1GCZ",
-        "https://www.twitch.tv/xqc/clip/ThankfulSingleDiscOMGScoots-OP4-z52CzhAxpDaZ"
+        "https://www.twitch.tv/lacy/clip/PerfectManlyMetalTooSpicy-lHhLxPL6ouJ9E7Qy",
+        "https://www.twitch.tv/lacy/clip/SpineyVivaciousMallardBlargNaut-ZuKs8eXazRKlOK5b"
       ],
       "published_versions": [],
       "last_updated": "2026-10-08"
     },
-    "kaicenat-briefcase-drake-2026w29": {
-      "event_id": "kaicenat-briefcase-drake-2026w29",
+    "kaicenat-creator-drake-2026w29": {
+      "event_id": "kaicenat-creator-drake-2026w29",
       "people": [
         "kaicenat"
       ],
       "actions": [
-        "briefcase",
+        "creator",
         "drake",
-        "present",
-        "room"
+        "left",
+        "says"
       ],
       "event_type": "storyline",
       "first_seen": "2026-10-08",
@@ -3587,51 +3586,6 @@
         "vodmine://2820831944/2449-2569",
         "https://www.twitch.tv/kaicenat/clip/BoldSuspiciousWatercressGrammarKing-Jifdf5_8pCp0718s",
         "vodmine://2820831944/2584-2734"
-      ],
-      "published_versions": [],
-      "last_updated": "2026-10-08"
-    },
-    "fanum-lacy-about-fanum-2026w36": {
-      "event_id": "fanum-lacy-about-fanum-2026w36",
-      "people": [
-        "fanum",
-        "lacy"
-      ],
-      "actions": [
-        "about",
-        "fanum",
-        "group",
-        "lacy"
-      ],
-      "event_type": "storyline",
-      "first_seen": "2026-10-08",
-      "known_claims": [],
-      "candidate_sources": [
-        "https://www.twitch.tv/lacy/clip/GoldenColdbloodedShingleJebaited-RgeZMAzvVdMqp6yd",
-        "https://www.twitch.tv/fanum/clip/YummyAlertGuanacoPlanking--Y5soGn9Dcz5dWHw",
-        "https://www.twitch.tv/lacy/clip/GorgeousSuccessfulArmadilloFunRun-00lOTDNuFwPjkYk3"
-      ],
-      "published_versions": [],
-      "last_updated": "2026-10-08"
-    },
-    "kaicenat-apologiz-cenat-2026w29": {
-      "event_id": "kaicenat-apologiz-cenat-2026w29",
-      "people": [
-        "kaicenat"
-      ],
-      "actions": [
-        "apologiz",
-        "cenat",
-        "desk",
-        "press"
-      ],
-      "event_type": "storyline",
-      "first_seen": "2026-10-08",
-      "known_claims": [],
-      "candidate_sources": [
-        "vodmine://2820831944/13981-14101",
-        "https://www.twitch.tv/kaicenat/clip/CreativeFlirtyDunlinM4xHeh-qmUbYmsA6rvij7jd",
-        "vodmine://2820831944/14140-14290"
       ],
       "published_versions": [],
       "last_updated": "2026-10-08"

@@ -11880,6 +11880,34 @@
         "end": 11.0
       },
       "director_cut": true
+    },
+    "rejected-smilingarbitrarydinosaurninjagrumpy-7vswvqug740i60lp": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/SmilingArbitraryDinosaurNinjaGrumpy-7VSwvqUG740I60LP",
+      "streamer": "stableronaldo",
+      "title": "Ron Speaks On Speed Shooring His Shot At Cinna! \ud83d\ude02",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Streamer scrolling X, chat chatter, no e)",
+      "ts": "2026-10-08T13:08:17.467722+00:00"
+    },
+    "rejected-mistyarborealgoatklappa-fqw1edcahzsnpnyt": {
+      "source_url": "https://www.twitch.tv/silky/clip/MistyArborealGoatKlappa-fqW1EdcAHZSnpnYT",
+      "streamer": "silky",
+      "title": "Silky Gets Hit With The Biggest Jump Scare And Totally Loses It",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The last ~3s (about 16-18.8s) show a 'Connection lost, be back soon!' stream-offline screen. This is dead footage and lo; vision: The payoff is missing. The jump scare is never clearly shown. The middle frames are near-black, then a blown-out white o; vision: Several frames (8.6s, 13.3s, 14.",
+      "ts": "2026-10-08T13:11:25.048334+00:00"
+    },
+    "clip-20261008-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ironmouse/clip/CuteSweetKuduKappa-eYWYx6HHX2vAmOPt",
+      "story_key": null,
+      "streamer": "ironmouse",
+      "title": "Ironmouse Screams \"Fuck CVID For Ruining My Life\" As Her Team Pushes To Break The Record",
+      "kind": "twitch_clip",
+      "ts": "2026-10-08T13:16:41.566430+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
