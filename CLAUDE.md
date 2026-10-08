@@ -344,7 +344,13 @@ constants blanked), never on the prose that explains it.
   garbled) plus the numbers-and-names `problems`; a LISTENER (`listen`)
   hears the current hook beside the rewrites as a scrolling viewer, fails
   the untrue and the unsayable, and ranks the rest. Never put a keyword
-  score back in. `tests/test_the_hook_is_an_ad.py`.
+  score back in. And it is a TABLOID line, not a lab result (same night,
+  of "...allergies went from 0.4% to 1.4%": *"thinking like a TMZ/youtube
+  click bait type shit not nerd ass"*): the writer and the listener both
+  look for the twist, the villain, the loss, the comeback or the secret,
+  and the floor refuses two numbers, a "from X to Y" or a decimal in a
+  hook. The video reads the numbers; the hook says what they MEAN.
+  `tests/test_the_hook_is_an_ad.py`.
   And the VOICE is handed WORDS (operator, same day: *"everything and
   anything it could mis read ... needs to be in word format"*).
   `shared/spoken.say` is the one speller: units, °F, decades, ordinals,

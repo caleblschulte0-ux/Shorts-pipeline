@@ -31,7 +31,7 @@ class TheFloorIsWhatCodeCanSee(unittest.TestCase):
     def test_a_plain_true_hook_clears_it(self):
         for line in ("A degree costs triple. It pays half.",
                      "More than half the web is bots now.",
-                     "Your coffee just hit a record $4.41 a pound."):
+                     "Your coffee just hit the highest price ever."):
             self.assertEqual(H.floor(line), [], line)
 
     def test_a_quiz_is_not_a_hook(self):
@@ -59,6 +59,26 @@ class TheFloorIsWhatCodeCanSee(unittest.TestCase):
                      "something incredible happened."):
             self.assertTrue(any(w.startswith("a formula tag")
                                 for w in H.floor(line)), line)
+
+    def test_a_stat_sheet_is_not_a_hook(self):
+        """Operator, 2026-10-08, of "Doctors told parents to avoid peanuts,
+        and allergies went from 0.4% to 1.4%": "thinking like a TMZ/youtube
+        click bait ... not nerd ass oh the percentage point dropped". The
+        hook says what the numbers MEAN; the video reads them out."""
+        for line in ("Doctors told parents to avoid peanuts, and allergies "
+                     "went from 0.4% to 1.4%.",
+                     "In 1996 monarchs had 18 hectares. Now they have 0.9.",
+                     "Your coffee just hit a record $4.41 a pound."):
+            self.assertTrue(any(w.startswith(("a stat sheet", "a decimal"))
+                                for w in H.floor(line)), line)
+        self.assertEqual(H.floor("Doctors told parents to keep peanuts away "
+                                 "from babies. It backfired."), [])
+        self.assertEqual(H.floor("Your diamond ring lost 90% of its price."), [])
+
+    def test_the_writer_and_the_listener_want_drama(self):
+        self.assertIn("TMZ", H.DOCTRINE)
+        self.assertIn("TMZ", H._LISTEN)
+        self.assertIn("NOT THE STATISTIC", H.DOCTRINE)
 
     def test_the_floor_is_not_a_score(self):
         """Nothing in the module ranks by keywords any more: "you" and a
@@ -116,7 +136,7 @@ def _brain(hooks, ranking):
 
 
 class TheSharpener(unittest.TestCase):
-    GOOD = "Your coffee just hit a record $4.41 a pound."
+    GOOD = "Your coffee just hit the highest price ever recorded."
 
     def test_the_listeners_first_choice_ships(self):
         # candidates heard: 1 = the current hook, 2 = GOOD (the 5x line is
@@ -154,6 +174,26 @@ class TheSharpener(unittest.TestCase):
         got = H.sharpen(dict(COFFEE, hook=bad), brain=b, log=lambda m: None)
         self.assertEqual(got, self.GOOD)
         self.assertNotIn(bad, b.calls[1])
+
+
+class ANothingRoundIsAskedAgain(unittest.TestCase):
+    def test_the_second_round_is_told_why_and_can_ship(self):
+        prompts = []
+        first = "Your coffee is secretly ruining your whole life."
+
+        def brain(prompt):
+            prompts.append(prompt)
+            if "fact-checker" in prompt:
+                if first in prompt.split("CANDIDATES:")[1]:
+                    return json.dumps({"ranking": [], "why": {"2": "never said"}})
+                return json.dumps({"ranking": [2]})
+            if "ALREADY REFUSED" in prompt:
+                return json.dumps({"hooks": [TheSharpener.GOOD]})
+            return json.dumps({"hooks": [first]})
+        got = H.sharpen(dict(COFFEE), brain=brain, log=lambda m: None)
+        self.assertEqual(got, TheSharpener.GOOD)
+        self.assertIn(first + " -> never said", prompts[2])
+        self.assertEqual(H.ROUNDS, 2)
 
 
 class TheListenerHearsLikeAViewer(unittest.TestCase):
