@@ -1,0 +1,25 @@
+{
+ "schema": "shorts-rewrite-answer/v1",
+ "request_id": "ozone-hole-recovery__ce672e81",
+ "slug": "ozone-hole-recovery",
+ "by": "claude:shorts-ops-thread",
+ "written_at": "2026-10-08T14:30:00Z",
+ "title": "We Actually Fixed The Ozone Hole. 99% Of The Cause Is Gone.",
+ "hook": "99% of the chemicals eating your sky are already gone.",
+ "closing": "The world agreed, and the sky is healing.",
+ "question": "What should we fix next?",
+ "segments": [
+  {
+   "topic": "Ozone Hole Size",
+   "say": "The hole shrank from 29.9 million square kilometers in 2000 to 22.9 in 2025."
+  },
+  {
+   "topic": "Ozone Chemicals",
+   "say": "99% of the chemicals that tore it open have now been phased out."
+  },
+  {
+   "topic": "Ozone Recovery",
+   "say": "The rest of the world heals in 14 years; Antarctica takes 40."
+  }
+ ]
+}
