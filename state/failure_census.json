@@ -2,166 +2,202 @@
  "n_verdicts": 20,
  "classes": {
   "decorative_mascot": {
-   "count": 19,
+   "count": 26,
    "stories": {
-    "body-renewal-clock": 1,
-    "recycling-myth-reality": 3,
-    "earth-rotation-speeding-up": 1,
-    "self-checkout-cashier-jobs": 2,
-    "left-brain-right-brain-myth": 1,
-    "religious-nones-rise": 3,
-    "tattoo-mainstream-shift": 3,
-    "genz-drinking-decline": 2,
-    "back-to-sleep-campaign-cut-sids": 3
+    "activity-inequality-steps": 4,
+    "highest-point-illusion": 1,
+    "volcano-country-ranking": 1,
+    "adhd-diagnosis-surge": 4,
+    "parker-solar-probe-speed-record": 2,
+    "third-interstellar-visitor": 4,
+    "coldest-place-in-the-universe-is-human-made": 1,
+    "global-displacement-record": 1,
+    "aquaculture-overtook-wild-fishing": 4,
+    "permafrost-thaw": 4
    },
    "timestamps": [
-    "2026-10-07T13:19:50+00:00",
-    "2026-10-07T14:15:20+00:00",
-    "2026-10-07T14:15:20+00:00",
-    "2026-10-07T14:15:20+00:00",
-    "2026-10-07T14:33:11+00:00",
-    "2026-10-07T14:52:25+00:00",
-    "2026-10-07T14:52:25+00:00",
-    "2026-10-07T15:09:22+00:00",
-    "2026-10-07T15:28:55+00:00",
-    "2026-10-07T15:47:48+00:00",
-    "2026-10-07T15:59:54+00:00",
-    "2026-10-07T16:19:42+00:00",
-    "2026-10-07T16:38:01+00:00",
-    "2026-10-07T16:54:30+00:00",
-    "2026-10-07T17:09:38+00:00",
-    "2026-10-07T17:09:38+00:00",
-    "2026-10-07T17:26:54+00:00",
-    "2026-10-07T17:36:17+00:00",
-    "2026-10-07T17:46:03+00:00"
+    "2026-10-08T20:51:58+00:00",
+    "2026-10-08T20:59:49+00:00",
+    "2026-10-08T21:07:40+00:00",
+    "2026-10-08T21:07:40+00:00",
+    "2026-10-08T21:13:10+00:00",
+    "2026-10-08T21:19:56+00:00",
+    "2026-10-08T21:24:47+00:00",
+    "2026-10-08T21:24:47+00:00",
+    "2026-10-08T21:24:47+00:00",
+    "2026-10-08T21:24:47+00:00",
+    "2026-10-08T21:29:08+00:00",
+    "2026-10-08T21:29:08+00:00",
+    "2026-10-08T21:34:40+00:00",
+    "2026-10-08T21:39:48+00:00",
+    "2026-10-08T21:39:48+00:00",
+    "2026-10-08T21:39:48+00:00",
+    "2026-10-08T21:44:59+00:00",
+    "2026-10-08T21:51:51+00:00",
+    "2026-10-08T21:57:30+00:00",
+    "2026-10-08T22:02:34+00:00",
+    "2026-10-08T22:07:38+00:00",
+    "2026-10-08T22:07:38+00:00",
+    "2026-10-08T22:14:17+00:00",
+    "2026-10-08T22:14:17+00:00",
+    "2026-10-08T22:19:39+00:00",
+    "2026-10-08T22:24:51+00:00"
    ],
    "examples": [
-    "decorative_mascot: seg1:mid/seg1:end Data stands above the bubbles with his arms raised; seg2:mid he hovers beside the neuron bar; seg4:mid he is parked at '0T Day 0'. He never causes anything: no cel",
-    "decorative_mascot: hook@0.3 to seg0:end: Data stands on a ladder top while the bar is already drawn. seg1:start/end: he stands on a ladder beside the box. seg3:start/end: he clings to the side of the ",
-    "dead_air: hook@0.3 through seg0:end (0.3s to 3.75s) is nearly the same frame. The bar and '661M apart' are already complete at 0.3s, and only the ladder and mascot shift a little over about 3.5s while"
+    "decorative_mascot: hook@0.3\u2013seg0:start: Data stands on the dashed line with his arms up and never jumps the hurdle. seg2: he slides up the side of the 297 bar. seg3/seg4: he slides up the side of the ",
+    "decorative_mascot: Data does the same arms-up cheer above the dashed line from hook@0.3 to seg0:end, stands beside the bars in seg2:mid, and slides up beside the stacked column in seg3:start through s",
+    "decorative_mascot: Data rides the top of the bars and stack without causing anything. hook@0.3-seg0:end: he stands on a dashed line with his arms up. seg1:mid: he perches on the Hong Kong bar. seg2:mi"
    ],
    "recurred_after_fix": false
   },
   "other": {
    "count": 17,
    "stories": {
-    "body-renewal-clock": 1,
-    "sand-mining-crisis": 1,
-    "light-pollution-erasing-sky": 3,
-    "earth-rotation-speeding-up": 1,
-    "left-brain-right-brain-myth": 1,
-    "religious-nones-rise": 3,
-    "tattoo-mainstream-shift": 3,
-    "back-to-sleep-campaign-cut-sids": 3,
-    "bird-flu-species-jump": 1
+    "recycling-myth-reality": 2,
+    "activity-inequality-steps": 3,
+    "highest-point-illusion": 1,
+    "volcano-country-ranking": 1,
+    "parker-solar-probe-speed-record": 1,
+    "third-interstellar-visitor": 1,
+    "coldest-place-in-the-universe-is-human-made": 1,
+    "global-displacement-record": 1,
+    "aquaculture-overtook-wild-fishing": 3,
+    "permafrost-thaw": 3
    },
    "timestamps": [
-    "2026-10-07T13:19:50+00:00",
-    "2026-10-07T13:39:55+00:00",
-    "2026-10-07T13:47:44+00:00",
-    "2026-10-07T13:51:48+00:00",
-    "2026-10-07T13:55:44+00:00",
-    "2026-10-07T14:33:11+00:00",
-    "2026-10-07T15:09:22+00:00",
-    "2026-10-07T15:28:55+00:00",
-    "2026-10-07T15:47:48+00:00",
-    "2026-10-07T15:59:54+00:00",
-    "2026-10-07T16:19:42+00:00",
-    "2026-10-07T16:38:01+00:00",
-    "2026-10-07T16:54:30+00:00",
-    "2026-10-07T17:26:54+00:00",
-    "2026-10-07T17:36:17+00:00",
-    "2026-10-07T17:46:03+00:00",
-    "2026-10-07T18:18:25+00:00"
+    "2026-10-08T19:56:03+00:00",
+    "2026-10-08T20:43:28+00:00",
+    "2026-10-08T20:51:58+00:00",
+    "2026-10-08T20:59:49+00:00",
+    "2026-10-08T21:07:40+00:00",
+    "2026-10-08T21:13:10+00:00",
+    "2026-10-08T21:19:56+00:00",
+    "2026-10-08T21:29:08+00:00",
+    "2026-10-08T21:34:40+00:00",
+    "2026-10-08T21:44:59+00:00",
+    "2026-10-08T21:51:51+00:00",
+    "2026-10-08T21:57:30+00:00",
+    "2026-10-08T22:02:34+00:00",
+    "2026-10-08T22:07:38+00:00",
+    "2026-10-08T22:14:17+00:00",
+    "2026-10-08T22:19:39+00:00",
+    "2026-10-08T22:24:51+00:00"
    ],
    "examples": [
-    "unreadable: seg1:start labels print on top of each other ('120 d28 d5 days', 'Red blood cellSkStomach lining'); seg1:mid '5 day28 days' collides and 'Stomach lining' is tiny; seg4:end the bubbles are ",
-    "unreadable: seg3:mid, seg3:end and seg4:*: Data's body sits on top of the caption 'of the world's cement \u00b7 China', splitting 'China'. seg2:start and seg2:end: the dredge grab covers 'mined per year'. ",
-    "unreadable: In seg1:mid Data's body covers the 'C' of \"Can't see it\" and the 80% label at the left edge. In payoff@-0.4 the Singapore label is cut to 'Sin...' and the 1% and United States labels are t"
+    "unreadable: seg2:mid and seg2:end: the '9% recycled' label is tiny type squeezed into the thin cyan top band of the bottle, and you can't read it at arm's length. The faded caption '50% lands in' at s",
+    "unreadable: In seg2:start the caption \"50% lands in\" is faint grey on beige sand and nearly disappears on a phone. In seg4:mid a falling bottle covers \"2060 (projected)\".",
+    "unreadable: seg2:mid: the two x-axis labels overlap ('High activity-inequality countries (e.g. US, Canada, Egypt)' is printed over the low-inequality label). seg1:end: the Hong Kong bar's value is cov"
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
-   "count": 4,
+   "count": 12,
    "stories": {
-    "body-renewal-clock": 1,
-    "recycling-myth-reality": 1,
-    "earth-rotation-speeding-up": 1,
-    "religious-nones-rise": 1
+    "activity-inequality-steps": 3,
+    "highest-point-illusion": 1,
+    "volcano-country-ranking": 1,
+    "parker-solar-probe-speed-record": 1,
+    "third-interstellar-visitor": 1,
+    "coldest-place-in-the-universe-is-human-made": 1,
+    "global-displacement-record": 1,
+    "aquaculture-overtook-wild-fishing": 1,
+    "permafrost-thaw": 2
    },
    "timestamps": [
-    "2026-10-07T13:19:50+00:00",
-    "2026-10-07T14:15:20+00:00",
-    "2026-10-07T14:33:11+00:00",
-    "2026-10-07T15:47:48+00:00"
+    "2026-10-08T20:51:58+00:00",
+    "2026-10-08T20:59:49+00:00",
+    "2026-10-08T21:07:40+00:00",
+    "2026-10-08T21:13:10+00:00",
+    "2026-10-08T21:19:56+00:00",
+    "2026-10-08T21:29:08+00:00",
+    "2026-10-08T21:34:40+00:00",
+    "2026-10-08T21:44:59+00:00",
+    "2026-10-08T21:51:51+00:00",
+    "2026-10-08T21:57:30+00:00",
+    "2026-10-08T22:19:39+00:00",
+    "2026-10-08T22:24:51+00:00"
    ],
    "examples": [
-    "empty_void: hook@0.3 to seg0:end: one small skeleton in the top third and the whole lower 60% of the frame is empty dark gradient; seg2:start is mostly empty gridlines above a stub bar",
-    "empty_void: hook@0.3 and seg0:mid: the lower half of the frame under the baseline (y\u2248540 to 670) is empty dark space. seg2:mid: large empty areas around the scale. seg3:start: the chart sits on a most",
-    "empty_void: In seg3:start and seg3:mid the whole upper half of the frame is empty gridlines and a 'vs', with two small stubs at mid-height. In seg4:start the top 40% above the bars is empty."
+    "empty_void: seg2:start: the upper half of the frame is empty grid with one tiny bar. hook frames: the lower third under the hurdle base is blank dark ground.",
+    "empty_void: In seg2:start through seg2:end the two pill columns fill only the middle third, leaving a large empty band between the title and the bars. seg3 leaves the right half almost bare apart from",
+    "empty_void: In seg2:start the frame is mostly an empty dark field: one short bar, a tiny stub and a lone 'vs' fill the middle. In hook@0.3 the bottom third under the hurdle base is blank."
    ],
    "recurred_after_fix": false
   },
   "dead_air": {
-   "count": 3,
+   "count": 7,
    "stories": {
-    "self-checkout-cashier-jobs": 1,
-    "religious-nones-rise": 2
+    "activity-inequality-steps": 2,
+    "adhd-diagnosis-surge": 1,
+    "coldest-place-in-the-universe-is-human-made": 1,
+    "aquaculture-overtook-wild-fishing": 1,
+    "permafrost-thaw": 2
    },
    "timestamps": [
-    "2026-10-07T14:52:25+00:00",
-    "2026-10-07T15:28:55+00:00",
-    "2026-10-07T15:47:48+00:00"
+    "2026-10-08T20:51:58+00:00",
+    "2026-10-08T20:59:49+00:00",
+    "2026-10-08T21:24:47+00:00",
+    "2026-10-08T21:44:59+00:00",
+    "2026-10-08T21:57:30+00:00",
+    "2026-10-08T22:14:17+00:00",
+    "2026-10-08T22:24:51+00:00"
    ],
    "examples": [
-    "dead_air: The hook and seg1 show the same 6/33/92% bar chart. From seg0:end (2.96s) to seg1:end (8.43s) the bars are frozen and only Data's arms change. seg4 closing then reuses the seg3 circles almos",
-    "dead_air: hook@1.5 to seg0:end (f02-f06, about 1.3-4.4s): the chart is identical and fully built and only the captions change. The measured held_s is 6.0, with max_dup_run 18 at 17.0s.",
-    "dead_air: hook@1.5, hook@2.2, seg0:mid and seg0:end are almost the same frame: a finished bar chart with Data on the ladder. That matches the measured held_s of 6.0s, which overlaps the identical hook"
+    "dead_air: hook@0.3 through seg0:end (0.3\u20136.7s) is the same hurdle frame held ~6s; only the 'clears it by 1,919' label appears. held_s 7.12 measured, max dup run at 3.5s.",
+    "dead_air: hook@0.3 through seg0:end (0.3s to 6.7s) is one composition: same hurdle, same dashed line, same 'clears it by 1,919' label, and only Data's cheer loops. The measured held_s is 7.12.",
+    "dead_air: hook@1.5 through seg0:end (about 1.2-3.9s) is the same finished bar chart with Data on the ladder and barely any change. The 11.4% bar has already landed, so roughly 2.7s at the start of the"
    ],
    "recurred_after_fix": false
   },
   "bare_number": {
-   "count": 2,
+   "count": 7,
    "stories": {
-    "left-brain-right-brain-myth": 1,
-    "genz-drinking-decline": 1
+    "highest-point-illusion": 1,
+    "volcano-country-ranking": 1,
+    "third-interstellar-visitor": 1,
+    "coldest-place-in-the-universe-is-human-made": 1,
+    "permafrost-thaw": 3
    },
    "timestamps": [
-    "2026-10-07T15:09:22+00:00",
-    "2026-10-07T17:09:38+00:00"
+    "2026-10-08T21:13:10+00:00",
+    "2026-10-08T21:19:56+00:00",
+    "2026-10-08T21:34:40+00:00",
+    "2026-10-08T21:44:59+00:00",
+    "2026-10-08T22:14:17+00:00",
+    "2026-10-08T22:19:39+00:00",
+    "2026-10-08T22:24:51+00:00"
    ],
    "examples": [
-    "bare_number_card: seg2:mid and seg2:end: the beat is one huge teal disc with a '7' in it and a tiny '0' at the edge. A big number on a blob, and the actual claim (0 of 7 networks matched) is never dem",
-    "bare_number_card: In seg2:end there are two identical yellow circles, both reading 70% and both labelled \"~20 years ago\". They are numbers on blobs, and the 35% the narration says never appears."
+    "bare_number_card: seg3:mid: '13.4' and '11.3' are printed beside two Data figures on thin baselines. There is no Earth, no bulge and no mountain, so a sphere-relative height is never demonstrated.",
+    "bare_number_card: seg3:start to seg3:end: '75%' and '25%' are printed inside two plain circles, which is a bubble card with nothing demonstrated.",
+    "bare_number_card: seg3:start/mid/end show '5.6' and '1.0' printed as big numbers beside two Datas, with no size demonstration. Nothing in the frame is 5.6x bigger than anything else."
    ],
    "recurred_after_fix": false
   },
   "junk_imagery": {
-   "count": 2,
+   "count": 1,
    "stories": {
-    "religious-nones-rise": 2
+    "coldest-place-in-the-universe-is-human-made": 1
    },
    "timestamps": [
-    "2026-10-07T15:28:55+00:00",
-    "2026-10-07T15:59:54+00:00"
+    "2026-10-08T21:44:59+00:00"
    ],
    "examples": [
-    "junk_imagery: seg1:start/mid/end (f08-f10): a baby emoji slides along the Baby Boomer bar. It is a generic clip-art glyph and the wrong idea: boomers are the older group, not babies.",
-    "junk_imagery: seg2:start\u2013seg2:end: a cartoon baby-face emoji sits on the 'Baby Boomer' bar (a pun on the name), which reads as a baby on the oldest generation's row and does not belong in the picture."
+    "junk_imagery: hook@0.3 to seg0:end: the 'room temperature' grid is built from generic purple starfield tiles with nothing about temperature in them; at 'each = 20' the 15 tiles are just a 293 count, c"
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 2,
+   "median": 1,
    "min": 1,
    "max": 3
   },
   "data_demo": {
-   "median": 2,
+   "median": 1,
    "min": 1,
-   "max": 4
+   "max": 3
   },
   "mascot": {
    "median": 1,
@@ -170,7 +206,7 @@
   },
   "craft": {
    "median": 1,
-   "min": 1,
+   "min": 0,
    "max": 2
   },
   "pace": {
@@ -190,25 +226,25 @@
   }
  },
  "scores": [
+  70,
+  70,
+  74,
   44,
-  79,
-  57,
-  48,
-  61,
   44,
-  57,
-  31,
-  44,
+  35,
   39,
-  39,
-  44,
-  44,
-  52,
-  48,
-  39,
+  40,
   53,
+  39,
+  35,
+  39,
+  27,
+  44,
+  35,
+  39,
   48,
-  57,
-  66
+  39,
+  39,
+  39
  ]
 }
