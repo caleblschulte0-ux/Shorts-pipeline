@@ -1,0 +1,16 @@
+{
+ "slug": "recycling-myth-reality",
+ "ts": "20261008T190205Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:mid: the scale ticks on the right edge are cut off by the frame and read '2' and '1x'. hook@0.3: the 'LANDFILL' sign is partly covered by bottles ('LANDFI'). seg2:mid: the '9% recycled' layer label is tiny at phone size. seg2:start: the caption '50% lands in' is low-contrast against",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg1:mid and seg1:end the pile's scale markers sit off the right edge, so the '2x' tick reads '2' and the other reads '1x' half-cut. The '2.9x' callout floats alone at the right with no visible axis it belongs to.",
+  "root_cause": "The times_ticks scale was laid out against a frame wider than 1080 and the right tick column was never measured against the safe area.",
+  "repair_goal": "Keep the 1x/2x/2.9x marks fully inside the frame by drawing them on the pile itself (a dashed 2019 outline is already there). Each tick label must be fully visible at phone size, or drop the tick column and keep only '2.9x' next to the 2060 peak."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

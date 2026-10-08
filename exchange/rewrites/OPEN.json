@@ -1,7 +1,60 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-08T16:30:56Z",
+ "updated": "2026-10-08T19:01:56Z",
  "open": [
+  {
+   "id": "billionaire-count-record-2025__13fb03d3",
+   "slug": "billionaire-count-record-2025",
+   "filed": "2026-10-08T19:01:56Z",
+   "why": [
+    "judge: The payoff comparison is broken: both circles read 'Billionaire wealth 127%', and the S&P 500's 195% never appears. That leaves three bar charts and a bare-number card."
+   ],
+   "request": "exchange/rewrites/20261008/billionaire-count-record-2025__13fb03d3.request.json",
+   "answer_path": "exchange/rewrites/20261008/billionaire-count-record-2025__13fb03d3.answer.json"
+  },
+  {
+   "id": "blood-supply-three-percent__40fe030c",
+   "slug": "blood-supply-three-percent",
+   "filed": "2026-10-08T19:01:55Z",
+   "why": [
+    "pace: beat 1 says 34 words (max 16) — one sentence, the number and what it means",
+    "pace: beat 2 says 32 words (max 16) — one sentence, the number and what it means"
+   ],
+   "request": "exchange/rewrites/20261008/blood-supply-three-percent__40fe030c.request.json",
+   "answer_path": "exchange/rewrites/20261008/blood-supply-three-percent__40fe030c.answer.json"
+  },
+  {
+   "id": "kelp-forest-sea-star-collapse__88acf100",
+   "slug": "kelp-forest-sea-star-collapse",
+   "filed": "2026-10-08T19:01:55Z",
+   "why": [
+    "premise: brain: It uses multiple percentages and lacks a single consequential number with a clear expectation reversal.",
+    "pace: beat 1 says 24 words (max 16) — one sentence, the number and what it means",
+    "pace: beat 2 says 23 words (max 16) — one sentence, the number and what it means"
+   ],
+   "request": "exchange/rewrites/20261008/kelp-forest-sea-star-collapse__88acf100.request.json",
+   "answer_path": "exchange/rewrites/20261008/kelp-forest-sea-star-collapse__88acf100.answer.json"
+  },
+  {
+   "id": "aquaculture-overtook-wild-fishing__80181d75",
+   "slug": "aquaculture-overtook-wild-fishing",
+   "filed": "2026-10-08T19:01:55Z",
+   "why": [
+    "judge: Four charts in a row tell the same farmed-growth story twice. The farmed-vs-wild comparison is never shown, Data sits on the bars instead of driving them, and the 57% payoff is clipped and arrives late."
+   ],
+   "request": "exchange/rewrites/20261008/aquaculture-overtook-wild-fishing__80181d75.request.json",
+   "answer_path": "exchange/rewrites/20261008/aquaculture-overtook-wild-fishing__80181d75.answer.json"
+  },
+  {
+   "id": "global-displacement-record__84c76b52",
+   "slug": "global-displacement-record",
+   "filed": "2026-10-08T19:01:54Z",
+   "why": [
+    "pace: hook is 15 words (max 14)"
+   ],
+   "request": "exchange/rewrites/20261008/global-displacement-record__84c76b52.request.json",
+   "answer_path": "exchange/rewrites/20261008/global-displacement-record__84c76b52.answer.json"
+  },
   {
    "id": "chip-transistor-shrink-limit__40c2f231",
    "slug": "chip-transistor-shrink-limit",
@@ -75,16 +128,6 @@
    ],
    "request": "exchange/rewrites/20261008/self-checkout-cashier-jobs__d980a089.request.json",
    "answer_path": "exchange/rewrites/20261008/self-checkout-cashier-jobs__d980a089.answer.json"
-  },
-  {
-   "id": "global-displacement-record__42f9a9e1",
-   "slug": "global-displacement-record",
-   "filed": "2026-10-08T13:36:16Z",
-   "why": [
-    "judge: The block-stacking hook is the only real demonstration. Every scene after it is a stock chart (bars, timeline, ranked bars, bubbles) with Data standing on it, and the ending re-scales the 73% bubble instead of paying off the record."
-   ],
-   "request": "exchange/rewrites/20261008/global-displacement-record__42f9a9e1.request.json",
-   "answer_path": "exchange/rewrites/20261008/global-displacement-record__42f9a9e1.answer.json"
   },
   {
    "id": "left-brain-right-brain-myth__e2a6db07",
@@ -729,26 +772,6 @@
    "answer_path": "exchange/rewrites/20261005/permafrost-thaw__a94a08e2.answer.json"
   },
   {
-   "id": "kelp-forest-sea-star-collapse__88acf100",
-   "slug": "kelp-forest-sea-star-collapse",
-   "filed": "2026-10-05T10:56:53Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on vague claims rather than a single verifiable consequential number."
-   ],
-   "request": "exchange/rewrites/20261005/kelp-forest-sea-star-collapse__88acf100.request.json",
-   "answer_path": "exchange/rewrites/20261005/kelp-forest-sea-star-collapse__88acf100.answer.json"
-  },
-  {
-   "id": "billionaire-count-record-2025__452c83e8",
-   "slug": "billionaire-count-record-2025",
-   "filed": "2026-10-05T10:56:53Z",
-   "why": [
-    "judge: The payoff comparison is broken: both sides show 127% 'Billionaire wealth' while the voiceover says the S&P grew 195%, and the rest is the same bar chart twice with a ladder-pointing mascot."
-   ],
-   "request": "exchange/rewrites/20261005/billionaire-count-record-2025__452c83e8.request.json",
-   "answer_path": "exchange/rewrites/20261005/billionaire-count-record-2025__452c83e8.answer.json"
-  },
-  {
    "id": "game-industry-layoffs-record__a47fa4f1",
    "slug": "game-industry-layoffs-record",
    "filed": "2026-10-05T10:56:51Z",
@@ -767,16 +790,6 @@
    ],
    "request": "exchange/rewrites/20261005/self-storage-outnumbers-starbucks__397d6a57.request.json",
    "answer_path": "exchange/rewrites/20261005/self-storage-outnumbers-starbucks__397d6a57.answer.json"
-  },
-  {
-   "id": "aquaculture-overtook-wild-fishing__3427b61a",
-   "slug": "aquaculture-overtook-wild-fishing",
-   "filed": "2026-10-05T10:56:50Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/aquaculture-overtook-wild-fishing__3427b61a.request.json",
-   "answer_path": "exchange/rewrites/20261005/aquaculture-overtook-wild-fishing__3427b61a.answer.json"
   },
   {
    "id": "daylight-saving-time-in-decline__d148cd57",
@@ -1087,16 +1100,6 @@
    ],
    "request": "exchange/rewrites/20260926/seabed-mining-rush__19acc403.request.json",
    "answer_path": "exchange/rewrites/20260926/seabed-mining-rush__19acc403.answer.json"
-  },
-  {
-   "id": "blood-supply-three-percent__40fe030c",
-   "slug": "blood-supply-three-percent",
-   "filed": "2026-09-26T15:15:46Z",
-   "why": [
-    "premise: brain: This just states a statistic (3% donate) rather than reversing a specific expectation the viewer holds, making it a generic fact-drop, not a premise twist."
-   ],
-   "request": "exchange/rewrites/20260926/blood-supply-three-percent__40fe030c.request.json",
-   "answer_path": "exchange/rewrites/20260926/blood-supply-three-percent__40fe030c.answer.json"
   },
   {
    "id": "waymo-robotaxi-surge__678d43a1",

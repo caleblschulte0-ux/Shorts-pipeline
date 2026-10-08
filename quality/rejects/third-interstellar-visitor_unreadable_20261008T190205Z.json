@@ -1,0 +1,21 @@
+{
+ "slug": "third-interstellar-visitor",
+ "ts": "20261008T190205Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg2:end Data's head covers the '246K' label, and cyan ring overlays sit on top of '177K' and '140K', so 177K reads as '17?K'. In seg2:start a faded ghost caption overlaps behind the '140,000' caption.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start to seg3:end show '5.6' and '1.0' as big text next to two same-size Datas waving. Nothing in the frame is 5.6 times bigger than anything else.",
+  "root_cause": "The size comparison is drawn as labelled numbers instead of as two objects at their true relative scale. The mascot is duplicated as a stand-in for each comet, which makes the two equal in size and works against the claim.",
+  "repair_goal": "Draw the two comet nuclei as lit rocky bodies at true scale: Borisov 1 km as a small pebble and 3I/ATLAS 5.6 km as a boulder 5.6 times wider. Have Data, at one size, unroll a tape measure across each one so the 5.6x gap reads at a glance, with one headline number."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

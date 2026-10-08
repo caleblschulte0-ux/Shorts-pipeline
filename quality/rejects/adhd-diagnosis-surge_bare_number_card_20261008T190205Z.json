@@ -1,0 +1,16 @@
+{
+ "slug": "adhd-diagnosis-surge",
+ "ts": "20261008T190205Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: In seg3:start and seg3:mid the beat is two plain circles reading 53.6% and 46.4%. The circles grow, but nothing is demonstrated beyond the two numbers on blobs.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "Two plain circles labelled 53.6% and 46.4%, with Data perched on top of the yellow one doing nothing. The white 53.6% text barely shows against the pale yellow fill (seg3:start, seg3:mid).",
+  "root_cause": "The 'share' relationship fell back to a two-bubble chart that has no physical metaphor for kids going without treatment, and the mascot was placed as decoration rather than as the cause.",
+  "repair_goal": "Show the treatment gap physically: a line of diagnosed kids, with Data handing out medicine and running out about halfway, so the untreated 46.4% are visibly left empty-handed. Put the one number in dark ink, clear of Data, and fill the frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

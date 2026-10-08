@@ -1,0 +1,16 @@
+{
+ "slug": "parker-solar-probe-speed-record",
+ "ts": "20261008T190205Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:start\u2013end leaves the area between the title and the bubbles empty and the band below 'All the way around Earth' empty, so about 40% of the frame is blank navy. hook@0.3 has a large empty band under the bars.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start/mid/end show two rows, Apollo 10 '24.8K' and Parker '430K', each with a mascot standing beside a number. Nothing is drawn at a 17\u00d7 scale, so the 'whoa' of the claim never appears.",
+  "root_cause": "A labelled two-row comparison was used instead of a machine that shows the ratio physically. The 17\u00d7 multiplier is spoken but never drawn.",
+  "repair_goal": "Show 17\u00d7 as motion: a race in which Data pilots the probe and covers 17 lengths of the track while a tiny Apollo capsule covers one, or 17 Apollo capsules stacked against a single probe streak. Put the word '17\u00d7' on the subject as the only headline number, and keep Data's hands on the throttle or the probe."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

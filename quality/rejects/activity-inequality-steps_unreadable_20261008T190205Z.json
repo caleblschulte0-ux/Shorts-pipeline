@@ -1,0 +1,21 @@
+{
+ "slug": "activity-inequality-steps",
+ "ts": "20261008T190205Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg2:mid the two x-axis labels print on top of each other ('US, Canada, Egypt' collides with the low-inequality label). In seg1 '3. United States o\u2026' is truncated. In seg3:start the '43%' label is so low-contrast it nearly disappears. In seg1:start Data covers the 'Hong Kong 6,880' va",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "chart_with_collision",
+  "visible_evidence": "In seg2:mid two plain rounded bars (297 vs 100) float in an empty upper frame, their category labels overprint each other, and Data perches on the bar top doing nothing.",
+  "root_cause": "An 'almost 200 percent more likely obesity' claim fell through to a generic two-bar comparison chart. The labels were never measured for width, and the mascot was not given an agent act.",
+  "repair_goal": "Show the obesity risk as a physical scale. Example: a seesaw or bodies-in-a-room where Data loads about 3x the people on the high-inequality side while the low side holds 1x. Use one short label per side (e.g. 'Unequal: US' vs 'Equal: Japan') with no overlap, and give Data the action that makes the number grow."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
