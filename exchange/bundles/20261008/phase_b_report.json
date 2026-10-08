@@ -9,7 +9,7 @@
     "rejected": 0,
     "other_channels": {
       "explainer": {
-        "applied": 0,
+        "applied": 2,
         "rejected": 1
       },
       "curiosity": {
@@ -79,6 +79,11 @@
       "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/fake-customer-costume-s6-df8a3cd8ab97.png"
     },
     {
+      "request_id": "three-year-old-laptop-s6-534a70eac1dc",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/three-year-old-laptop-s6-534a70eac1dc.png"
+    },
+    {
       "request_id": "three-year-old-laptop-s0-98e0e2cb81dd",
       "outcome": "chatgpt",
       "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/three-year-old-laptop-s0-98e0e2cb81dd.png"
@@ -107,11 +112,6 @@
       "request_id": "three-year-old-laptop-s5-097b5d7ff8e3",
       "outcome": "chatgpt",
       "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/three-year-old-laptop-s5-097b5d7ff8e3.png"
-    },
-    {
-      "request_id": "three-year-old-laptop-s6-534a70eac1dc",
-      "outcome": "chatgpt",
-      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/three-year-old-laptop-s6-534a70eac1dc.png"
     }
   ]
 }
