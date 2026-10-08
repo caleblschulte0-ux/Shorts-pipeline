@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261008",
+  "bundle": {
+    "identity": "8a031f56a921c3605d155f4c82b172d91160b2759a215a061fea4eea23090505",
+    "path": "exchange/bundles/20261008/bundle.json"
+  },
+  "request_id": "three-year-old-laptop-s0-98e0e2cb81dd",
+  "safe_request_id": "three-year-old-laptop-s0-98e0e2cb81dd",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "7044ae8e72b52a1b86784de1bddecf41829059b14a4529fd32bab580e4b73afc",
+  "prompt_used": "An editorial illustration for a short-form video: laptop cooling fan closeup. It accompanies the narration: \"fan started screaming three months after I bought it\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1YKXOF2DH2-DuAXD_dYXph9iFH-J9PFMO",
+    "filename": "20261008__three-year-old-laptop-s0-98e0e2cb81dd.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1YKXOF2DH2-DuAXD_dYXph9iFH-J9PFMO",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "7c21eaa4a48ce24dc552645b495c3174740eadc09730f3ae6ec0b2e21f647d06",
+    "bytes": 2218687,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-08T11:29:30Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
