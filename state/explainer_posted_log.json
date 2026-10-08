@@ -2859,11 +2859,38 @@
       "scene_changes_before_5s": 3
     },
     "adhd-diagnosis-surge": {
-      "claimed_at": "2026-10-08T15:57:45.945322+00:00",
+      "url": "https://youtube.com/shorts/aCtti_E5Nqo",
       "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
+      "at": "2026-10-08T15:57:51.791067+00:00",
       "publish_at": "2026-10-08T20:47:06Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 27 credits are required for this request.\",\"status",
+      "beat_s_max": 7.76,
+      "beat_s": [
+        4.64,
+        7.76,
+        4.64,
+        4.93,
+        4.83
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 91,
+      "duration_s": 26.7,
+      "hook": "shock_stat",
+      "topic_category": "health",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:classroom-glow-grid",
+        "mechanic:diagnosis-gate-lanes",
+        "mechanic:pill-bottle-half-fill"
+      ],
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -3528,9 +3555,10 @@
       "claimed_at": "2026-10-08T15:57:45.945322+00:00",
       "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
       "publish_at": "2026-10-08T20:47:06Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "adhd-diagnosis-surge"
+      "url": "https://youtube.com/shorts/aCtti_E5Nqo",
+      "state": "posted",
+      "slug": "adhd-diagnosis-surge",
+      "at": "2026-10-08T15:57:51.791067+00:00"
     }
   ]
 }
