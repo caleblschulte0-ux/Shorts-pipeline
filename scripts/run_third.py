@@ -261,6 +261,53 @@ def _remember_clip(source_url: str, **fields) -> None:
         print(f"::warning::[clip-memory] {e}", flush=True)
 
 
+_MOMENT_HYPOTHESIS = (
+    "ONE MOMENT of one broadcast: the clip viewers made, the stream just "
+    "BEFORE it and the stream just AFTER it, each a source. Clippers cut "
+    "moments short of their setup and their payoff. A story here is the "
+    "clip's moment with what caused it and what came of it; refuse it if "
+    "neither the before nor the after holds either.")
+
+
+def _moment_segments(clip: dict, work: Path, wmodel: str, spec: dict,
+                     lost: list) -> list[dict]:
+    """The BEFORE and AFTER of a moment candidate, each analysed as a
+    source of its own (storyline.find_moments). [] when the VOD is gone,
+    sub-only, or the download fails — the moment then has one source and
+    is refused as "<2 analyzable sources", never padded."""
+    from third_capture import clip_edit, scene_analysis
+    vid, off = clip.get("video_id"), clip.get("vod_offset")
+    if not vid or off is None:
+        return []
+    off, dur = float(off), float(clip.get("duration") or 30.0)
+    before = float(spec.get("story_moment_before_s", 120.0))
+    after = float(spec.get("story_moment_after_s", 150.0))
+    out = []
+    for tag, a, b in (("before", off - before, off),
+                      ("after", off + dur, off + dur + after)):
+        a = max(0.0, a)
+        if b - a < 10:
+            continue
+        seg = clip_edit.maybe_vod_segment(vid, a, b, work)
+        if not seg:
+            lost.append(f"vod_{tag}:unavailable")
+            continue
+        c = {"source_url": f"vodmine://{vid}/{int(a)}-{int(b)}",
+             "title": f"{clip.get('title', '')} ({tag} the clip)",
+             "channel": clip.get("channel", ""),
+             "date": clip.get("date", ""), "game": clip.get("game", ""),
+             "video_id": vid, "vod_offset": a}
+        rep = scene_analysis.analyze_source(seg, c, work,
+                                            whisper_model=wmodel)
+        if not rep:
+            lost.append(f"vod_{tag}:analysis")
+            continue
+        rep.update({"date": c["date"], "vod_offset": a, "video_id": vid,
+                    "broadcast_t0": a, "path": str(seg), "used_vod": True})
+        out.append(rep)
+    return out
+
+
 def _remember_refused(member_urls: list[str], premise: str, why: str,
                       rendered: bool = False) -> None:
     try:
@@ -1347,15 +1394,32 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             print(f"[scout] {st['shape'] or '?'}: {st['premise'][:90]!r} "
                   f"({len(members)} clips)", flush=True)
 
+        # MOMENTS: one hot clip plus the stream before and after it
+        # (storyline.find_moments) — never a clip this channel already
+        # posted, alone or inside a story.
+        _used = set()
+        for v in (log.get("posted") or {}).values():
+            if v.get("source_url"):
+                _used.add(storyline.clip_key(v["source_url"]))
+            _used.update(v.get("member_keys") or [])
+        moments = storyline.find_moments(
+            _STORY_POOL, exclude_keys=_used,
+            n=int(spec.get("story_moments", 20)))
+
         # TAKE TURNS. The scout's proposals and the same-broadcast arcs are
         # different bets — the scout guesses long arcs from titles, a VOD arc
         # is one incident Twitch vouches for — and on 2026-09-23 the scout's
         # three took all three candidate slots while 174 VOD arcs went
         # unexamined. Alternate them, best first, then people clusters.
+        # Moments take a turn too, ahead of the arcs: in four backtests
+        # on 2026-10-07 the director refused almost every arc as two
+        # unrelated moments of one stream.
         _mixed = []
-        for i in range(max(len(scouted), len(vod_arcs))):
+        for i in range(max(len(scouted), len(vod_arcs), len(moments))):
             if i < len(scouted):
                 _mixed.append(scouted[i])
+            if i < len(moments):
+                _mixed.append(moments[i])
             if i < len(vod_arcs):
                 _mixed.append(vod_arcs[i])
         clusters = _mixed + storyline.find_clusters(corpus, known)
@@ -1370,9 +1434,9 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             _members_seen.append(urls_)
             _deduped.append(cl)
         clusters = _deduped
-        print(f"[story] {len(scouted)} scouted + {len(vod_arcs)} VOD arc(s) + "
-              f"people clusters = {len(clusters)} candidate(s) after dedupe",
-              flush=True)
+        print(f"[story] {len(scouted)} scouted + {len(moments)} moment(s) + "
+              f"{len(vod_arcs)} VOD arc(s) + people clusters = "
+              f"{len(clusters)} candidate(s) after dedupe", flush=True)
         # DURABLE, not just printed: whether single-broadcast arcs exist at
         # useful volume is the open question this design rests on, and it
         # could not be measured from the session that built it (no Twitch
@@ -1390,6 +1454,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                              "shape": x["shape"], "n": len(x["clips"])}
                             for x in scouted],
                 "vod_arcs": len(vod_arcs),
+                "moments": len(moments),
                 "candidates": len(clusters),
                 "pool": len(_STORY_POOL),
                 "pool_with_vod": sum(1 for c in _STORY_POOL
@@ -1445,8 +1510,12 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             who = "+".join(cluster["who"])
             is_vod_arc = cluster.get("kind") == "vod_arc"
             is_scouted = cluster.get("kind") == "scouted"
+            is_moment = cluster.get("kind") == "moment"
             if is_vod_arc:
                 who = f"{who}@vod{cluster.get('video_id')}"
+            elif is_moment:
+                who = (f"{who}@moment"
+                       f"{storyline.clip_key(cluster['clips'][0]['source_url'])}")
             elif is_scouted:
                 who = f"scout:{who}"
             urls = [c["source_url"] for c in cluster["clips"]]
@@ -1516,10 +1585,11 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # Each expansion is a ~390s re-encoded download plus a
                 # whisper pass over three minutes plus another vision call
                 # — 4-7 minutes apiece, with nothing capping how many fire.
+                # (a moment fetches its before and after below instead)
                 if (rep.get("opens_mid_sentence")
                         or not rep.get("payoff_shown")
                         or rep.get("missing_context")) and \
-                        helix.get("video_id") \
+                        not is_moment and helix.get("video_id") \
                         and vod_expansions < max_vod \
                         and not _deadline_passed():
                     vod_expansions += 1
@@ -1545,6 +1615,9 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # clips of one stream overlap (story_director._positions)
                 rep.setdefault("broadcast_t0", c.get("vod_offset"))
                 reports.append(rep)
+            if is_moment and reports and not _deadline_passed():
+                reports += _moment_segments(cluster["clips"][0], snip_dir,
+                                            wmodel, spec, _lost)
             if len(reports) < 2:
                 print(f"[story] {who}: <2 analyzable sources", flush=True)
                 _story_verdict(who, "starved",
@@ -1555,9 +1628,16 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # no audio, wrong shape) — remember the candidate so it stops
                 # costing a slot every day. A download or analysis failure
                 # may be transient and is retried.
-                if _lost and all(x.startswith("preflight:") for x in _lost):
+                # A moment whose VOD is gone (deleted, sub-only) is gone
+                # tomorrow too.
+                if _lost and (all(x.startswith("preflight:") for x in _lost)
+                              or (is_moment and "vod_before:unavailable"
+                                  in _lost and "vod_after:unavailable"
+                                  in _lost)):
                     _remember_refused(urls, cluster.get("premise") or who,
-                                      "sources fail preflight: "
+                                      ("its VOD is unavailable: "
+                                       if is_moment else
+                                       "sources fail preflight: ")
                                       + "; ".join(_lost)[:120])
                 continue
 
@@ -1570,7 +1650,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             # would re-split the setup from its own payoff, because an
             # accusation and the reply to it rarely share two action words.
             # Tell it in broadcast order instead.
-            if is_vod_arc:
+            if is_vod_arc or is_moment:
                 _subs = [sorted(reports,
                                 key=lambda r: float(r.get("vod_offset")
                                                     or 0.0))]
@@ -1621,7 +1701,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     sub, event, guidance=_story_guidance(),
                     hypothesis=(f"{cluster.get('premise', '')} — "
                                 f"{cluster.get('why_connected', '')}"
-                                if is_scouted else ""))
+                                if is_scouted else ""),
+                    moment=_MOMENT_HYPOTHESIS if is_moment else "")
                 if not edl:
                     # NAME THE GATE. plan_story returns None for an
                     # editorial "not a story" AND for ten different

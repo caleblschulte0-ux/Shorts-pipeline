@@ -926,7 +926,8 @@ def last_rejection() -> dict:
 
 
 def plan_story(reports: list[dict], event: dict | None = None,
-               guidance: str = "", hypothesis: str = "") -> dict | None:
+               guidance: str = "", hypothesis: str = "",
+               moment: str = "") -> dict | None:
     """Eligibility gate + structure choice + full story EDL, validated.
     `guidance` is the channel's own evidence about which structures/
     lengths retain (empty until >=25 mature stories exist — creative
@@ -941,6 +942,9 @@ def plan_story(reports: list[dict], event: dict | None = None,
         user += (f"EVENT: {event.get('event_id', '?')} "
                  f"people={event.get('people')} "
                  f"type={event.get('event_type', '?')}\n\n")
+    if moment:
+        # storyline.find_moments: one clip and the stream either side of it
+        user += f"WHAT THESE SOURCES ARE: {moment}\n\n"
     if hypothesis:
         # The scout's reading, mostly from titles. The director is the one
         # with the transcripts and frames — it confirms or kills it. But a

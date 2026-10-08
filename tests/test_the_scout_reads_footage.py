@@ -127,10 +127,16 @@ class ARefusedStoryIsNotReanalysed(unittest.TestCase):
         self.assertIsNone(cm.already_tried(self.mem,
                                            self.refused + [_url("payoff")]))
 
-    def test_only_two_or_more_clips_are_a_story_to_remember(self):
+    def test_a_refused_moment_is_remembered_and_stays_its_own(self):
+        """A one-clip MOMENT candidate (storyline.find_moments) is refused
+        like any story and not re-analysed tomorrow — but a story that adds
+        a clip to it, or a story it is one clip of, is a different one."""
         mem = cm.empty()
         cm.note_story_tried(mem, [_url("solo")], why="x")
-        self.assertEqual(mem["stories_tried"], [])
+        self.assertIsNotNone(cm.already_tried(mem, [_url("solo")]))
+        self.assertIsNone(cm.already_tried(mem, [_url("solo"),
+                                                 _url("after")]))
+        self.assertIsNone(cm.already_tried(self.mem, self.refused[:1]))
 
 
 # ------------------------------------------------------------- catalogue
