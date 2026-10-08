@@ -1,0 +1,407 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261008",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 8,
+    "registry_sha256": "6f4705b5afd447544619333b5575234574322c37a9c94f127e562bcdcfd8021d",
+    "source_commit": "9b5993c04a313fe65f5b2d238a8ef48116a47257",
+    "production_date": "20261008",
+    "bundle_sha256": "8a031f56a921c3605d155f4c82b172d91160b2759a215a061fea4eea23090505"
+  },
+  "media": [
+    {
+      "request_id": "fake-customer-costume-s0-42c8ac4a27f4",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "19p9cfZe-f0BMWT0lXaH7pnMNkGMmTC0-",
+        "filename": "20261008__fake-customer-costume-s0-42c8ac4a27f4.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=19p9cfZe-f0BMWT0lXaH7pnMNkGMmTC0-",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "1421b32c95f386b7f998e070b4ac8ac281b650da191d4ef8f4bb9b7730488901",
+        "bytes": 2705741,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261008/media-progress/fake-customer-costume-s0-42c8ac4a27f4.json",
+        "verified_at": "2026-10-08T11:29:30Z"
+      }
+    },
+    {
+      "request_id": "fake-customer-costume-s1-de1df396a50e",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1C1dYrHdvHYgMXp880OccahfT-B08H7Q3",
+        "filename": "20261008__fake-customer-costume-s1-de1df396a50e.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1C1dYrHdvHYgMXp880OccahfT-B08H7Q3",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "21f08c6c5ad107a4c411406ae23465131f2b728aeebb00a0bc7bb41bc9437c31",
+        "bytes": 1901724,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261008/media-progress/fake-customer-costume-s1-de1df396a50e.json",
+        "verified_at": "2026-10-08T11:29:30Z"
+      }
+    },
+    {
+      "request_id": "fake-customer-costume-s2-dfca4b442c85",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1vRuaON2Xv6jeTS_fgcmnSRVhSrYV5Z66",
+        "filename": "20261008__fake-customer-costume-s2-dfca4b442c85.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1vRuaON2Xv6jeTS_fgcmnSRVhSrYV5Z66",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "213d4b37a75e51d6cfb429d9fd330f6a5ab6ef5cdb7f48e5e4b5894cbbb45567",
+        "bytes": 1833112,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261008/media-progress/fake-customer-costume-s2-dfca4b442c85.json",
+        "verified_at": "2026-10-08T11:29:30Z"
+      }
+    },
+    {
+      "request_id": "fake-customer-costume-s3-36337e37028d",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1YKXRAQSQNrX7IpcM4VqtZ8oumJw34jUe",
+        "filename": "20261008__fake-customer-costume-s3-36337e37028d.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1YKXRAQSQNrX7IpcM4VqtZ8oumJw34jUe",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "df19958357b234daf967cd5bf5451c3e474213e0d3dd7291f8c643da8c0705f3",
+        "bytes": 2104268,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261008/media-progress/fake-customer-costume-s3-36337e37028d.json",
+        "verified_at": "2026-10-08T11:29:30Z"
+      }
+    },
+    {
+      "request_id": "fake-customer-costume-s4-00ab514365c9",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "147ixHeW9zGxBKwOzL9K4qLs3VTp1_Qw2",
+        "filename": "20261008__fake-customer-costume-s4-00ab514365c9.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=147ixHeW9zGxBKwOzL9K4qLs3VTp1_Qw2",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "5ab0ed6723aa81b7a7a3507df5ec2c6079e99136140b0e3dc6f5737635a09461",
+        "bytes": 2275865,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261008/media-progress/fake-customer-costume-s4-00ab514365c9.json",
+        "verified_at": "2026-10-08T11:29:30Z"
+      }
+    },
+    {
+      "request_id": "fake-customer-costume-s5-3457251bbf2c",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1VNCgl8UkuQ3Qbxr9uv-SCGNjjmKYkTg6",
+        "filename": "20261008__fake-customer-costume-s5-3457251bbf2c.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1VNCgl8UkuQ3Qbxr9uv-SCGNjjmKYkTg6",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "6ae40c7782111a0a8bb6ff43ea0c8180dadff711ef0bf2f16cbb1c53b3658b04",
+        "bytes": 2080148,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261008/media-progress/fake-customer-costume-s5-3457251bbf2c.json",
+        "verified_at": "2026-10-08T11:29:30Z"
+      }
+    },
+    {
+      "request_id": "fake-customer-costume-s6-df8a3cd8ab97",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Ueyxki_-FatUwj2l3bPKEuKp6Gba91X2",
+        "filename": "20261008__fake-customer-costume-s6-df8a3cd8ab97.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Ueyxki_-FatUwj2l3bPKEuKp6Gba91X2",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "8401d31453cee6f96106a75a781631678e309bd171fb31a5c1ffe5ab26c82368",
+        "bytes": 1774454,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261008/media-progress/fake-customer-costume-s6-df8a3cd8ab97.json",
+        "verified_at": "2026-10-08T11:29:30Z"
+      }
+    },
+    {
+      "request_id": "three-year-old-laptop-s0-98e0e2cb81dd",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1YKXOF2DH2-DuAXD_dYXph9iFH-J9PFMO",
+        "filename": "20261008__three-year-old-laptop-s0-98e0e2cb81dd.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1YKXOF2DH2-DuAXD_dYXph9iFH-J9PFMO",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "7c21eaa4a48ce24dc552645b495c3174740eadc09730f3ae6ec0b2e21f647d06",
+        "bytes": 2218687,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s0-98e0e2cb81dd.json",
+        "verified_at": "2026-10-08T11:29:30Z"
+      }
+    },
+    {
+      "request_id": "three-year-old-laptop-s1-e0e2866cdb29",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1KGNKEO8t4HWrT9xe26GK-kkuGAsH6BPm",
+        "filename": "20261008__three-year-old-laptop-s1-e0e2866cdb29.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1KGNKEO8t4HWrT9xe26GK-kkuGAsH6BPm",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "9ff88c8ed1017195d6eee9ac6d20647c3b9f9c58601e078aa3d1219ad47efc63",
+        "bytes": 1695788,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s1-e0e2866cdb29.json",
+        "verified_at": "2026-10-08T11:29:30Z"
+      }
+    },
+    {
+      "request_id": "three-year-old-laptop-s2-faa4de224cd5",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1moYiSeQP9LwWcpQ2d-abrdVyy8OgGC1v",
+        "filename": "20261008__three-year-old-laptop-s2-faa4de224cd5.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1moYiSeQP9LwWcpQ2d-abrdVyy8OgGC1v",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "c4f8c79b09cf7aa5072ce6f9315e9475055c2d59edb2ba36017e0fef8d049def",
+        "bytes": 1666406,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s2-faa4de224cd5.json",
+        "verified_at": "2026-10-08T11:29:30Z"
+      }
+    },
+    {
+      "request_id": "three-year-old-laptop-s3-c0df8b8fce8b",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1bE8IFEUP6sA18gLDZfZn-Uz289cu3TD1",
+        "filename": "20261008__three-year-old-laptop-s3-c0df8b8fce8b.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1bE8IFEUP6sA18gLDZfZn-Uz289cu3TD1",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "544e0d549c92427660b5167bf3e5f5576e1f4cfeb6875d29126d50dd17eaa3df",
+        "bytes": 1847817,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s3-c0df8b8fce8b.json",
+        "verified_at": "2026-10-08T11:29:30Z"
+      }
+    },
+    {
+      "request_id": "three-year-old-laptop-s4-ed9d975c202a",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1TMQVUEp1uMw7RrPfcKpukAWgKQTpwWE4",
+        "filename": "20261008__three-year-old-laptop-s4-ed9d975c202a.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1TMQVUEp1uMw7RrPfcKpukAWgKQTpwWE4",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "254bf66a78b918e902ff77d527f77f189a4f5482664ffead50c243bd19fdbd3b",
+        "bytes": 1660831,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s4-ed9d975c202a.json",
+        "verified_at": "2026-10-08T11:29:30Z"
+      }
+    },
+    {
+      "request_id": "three-year-old-laptop-s5-097b5d7ff8e3",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1BJiJ0KtFAWS6QYRB1VBR3fs_qlVeFpmM",
+        "filename": "20261008__three-year-old-laptop-s5-097b5d7ff8e3.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1BJiJ0KtFAWS6QYRB1VBR3fs_qlVeFpmM",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "41a5884238f24c0fb87b470a10c6d71a9b487cf28f2e017755027e841c5d8c17",
+        "bytes": 2141332,
+        "format": "png",
+        "width": 940,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s5-097b5d7ff8e3.json",
+        "verified_at": "2026-10-08T11:29:30Z"
+      }
+    },
+    {
+      "request_id": "three-year-old-laptop-s6-534a70eac1dc",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1IiTvOh4x5NypCEUQY9wfi1CIDHD05dkN",
+        "filename": "20261008__three-year-old-laptop-s6-534a70eac1dc.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1IiTvOh4x5NypCEUQY9wfi1CIDHD05dkN",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "2f7e4fa1cd99ba0f378cee08bca78d81c2ea744510d14649f7917fc452c9daad",
+        "bytes": 2093757,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s6-534a70eac1dc.json",
+        "verified_at": "2026-10-08T11:29:30Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "cars-passed-horses",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly states the cars-versus-horses crossover."
+    },
+    {
+      "slug": "blackberry-vs-iphone",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title lands the BlackBerry-to-iPhone reversal directly."
+    },
+    {
+      "slug": "debt-passed-the-economy",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title names the debt-versus-economy threshold clearly."
+    },
+    {
+      "slug": "craft-breweries-buried-big-beer",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title cleanly frames craft breweries overtaking big beer."
+    },
+    {
+      "slug": "fake-customer-costume",
+      "script": "Wrong employee—twice? I was comparing two blenders in the kitchen aisle when a woman marched over holding a cracked air fryer and ordered me to fix it. I told her I didn't work there. My blue jacket proved otherwise. I pointed to my charity fun run shirt and the actual employee vest hanging two feet away. She ignored both, flagged down a real manager, and accused me of hiding behind a fake customer costume. Bold theory. The manager found a receipt from a different store chain stapled inside the box, so this location couldn't process it. She asked why I hadn't said that. I held up the loyalty app on my phone, showing my actual order from twenty minutes earlier. She left muttering about bad service; the associate picked my blender. Which costume was supposed to say customer?",
+      "editor_note": "Rewritten to 138 words with a two-word question hook, every shot phrase preserved, one dry aside, and a costume-specific kicker."
+    },
+    {
+      "slug": "three-year-old-laptop",
+      "script": "How old was “new”? My laptop's fan started screaming three months after I bought it. The rep looked up my serial number and said the warranty had expired two years ago because the laptop was manufactured in 2022. I had bought it three weeks earlier, brand new, sealed in plastic, from their own store. He called the manufacturing date final and hung up. Lovely warranty. I called back with the receipt, the store's barcode scan timestamp, and the unboxing video I filmed for a tech channel—all tied to that serial number. A supervisor pulled the manufacturing batch records: a warehouse clerk had mislabeled an entire pallet of unsold 2022 stock, so hundreds bought three year old laptops as current. One call triggered a recall, two years of extended warranty, and my new fan assembly. How “new” was that 2022 pallet?",
+      "editor_note": "Rewritten to 140 words with a four-word question hook, every protected number and shot phrase preserved, and a 2022-pallet kicker."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "The Harvest Beat The Shortage Forecast",
+      "hook": "The 1970s predicted food shortages; the data went the other way.",
+      "says": [
+        "Secondary-school progression rose from 77.8 in 1985 to 91.3 in 2017—1.2 times higher.",
+        "Cereal production rose from 1083.7 million metric tons in 1972 to 1644.1 by 2024—1.5 times higher.",
+        "China 5.2, United States 4.2, Australia 3.6, Brazil 2.4, Russia 2.2 million square kilometers."
+      ],
+      "closing": "The shortage forecast missed a much bigger harvest.",
+      "question": "School, grain, or land: which surprised you?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Tripled While Methane Climbed",
+      "hook": "Since 1990, the energy surprise wasn't solar or wind; it was combustible waste.",
+      "says": [
+        "Combustible renewables and waste from 10.2 % in 1990 to 30.1 % in 2024—3.0 times higher.",
+        "Electricity access moved from 73.2 % in 1998 to 91.9 % in 2024—1.3 times higher.",
+        "Waste methane (ch4) emissions from 903.8 Mt CO2e in 1972 to 1,652 in 2024—1.8 times higher."
+      ],
+      "closing": "Waste became fuel, while its methane bill kept rising.",
+      "question": "Fuel, power, or waste: which surprised you?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "The planet kept growing, but its growth rate was cut nearly in half.",
+      "says": [
+        "Rural population fell from 63.1 % in 1972 to 42.2 % in 2025—67 percent of that.",
+        "Largest-city population moved from 18.2 % in 1972 to 16.2 % in 2025—barely moved.",
+        "Population growth fell from 2 annual % in 1972 to 0.91 annual % in 2025—46 percent."
+      ],
+      "closing": "Growth didn't stop; acceleration nearly did.",
+      "question": "Rural, city, or growth: which surprised you?"
+    }
+  ]
+}
