@@ -3190,10 +3190,11 @@
         "https://www.twitch.tv/kaicenat/clip/MildInspiringStorkNerfRedBlaster-txnQqPC2ANXWFYiJ",
         "https://www.twitch.tv/kaicenat/clip/ObeseOptimisticVampireEagleEye-Hjdc_814uO3OZkH-",
         "https://www.twitch.tv/kaicenat/clip/BlightedVenomousEmuYee-ym_0lzlyKD0HuujY",
-        "https://www.twitch.tv/kaicenat/clip/ScaryWildWatermelonHoneyBadger-Zys1uz_KyciD_dzL"
+        "https://www.twitch.tv/kaicenat/clip/ScaryWildWatermelonHoneyBadger-Zys1uz_KyciD_dzL",
+        "https://www.twitch.tv/kaicenat/clip/SnappyNimbleRatYee-i_wcqMjdyNTK4jnW"
       ],
       "published_versions": [],
-      "last_updated": "2026-10-07"
+      "last_updated": "2026-10-08"
     },
     "xqc-cargo-charact-2026w40": {
       "event_id": "xqc-cargo-charact-2026w40",
@@ -3586,6 +3587,71 @@
         "vodmine://2820831944/2449-2569",
         "https://www.twitch.tv/kaicenat/clip/BoldSuspiciousWatercressGrammarKing-Jifdf5_8pCp0718s",
         "vodmine://2820831944/2584-2734"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-08"
+    },
+    "kaicenat-about-arrest-2026w29": {
+      "event_id": "kaicenat-about-arrest-2026w29",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "about",
+        "arrest",
+        "detent",
+        "first"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-08",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/StrongOriginalTitanAsianGlow-tbeO2ffjoyWNmcWy",
+        "https://www.twitch.tv/kaicenat/clip/DaintyBoldCiderStrawBeary-WFhL2jI0QYXRH2J-"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-08"
+    },
+    "kaicenat-cenat-desk-2026w29": {
+      "event_id": "kaicenat-cenat-desk-2026w29",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "cenat",
+        "desk",
+        "over",
+        "press"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-08",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2820831944/13981-14101",
+        "https://www.twitch.tv/kaicenat/clip/CreativeFlirtyDunlinM4xHeh-qmUbYmsA6rvij7jd",
+        "vodmine://2820831944/14140-14290"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-08"
+    },
+    "plaqueboymax-plaqueboymax-post-2026w38": {
+      "event_id": "plaqueboymax-plaqueboymax-post-2026w38",
+      "people": [
+        "plaqueboymax"
+      ],
+      "actions": [
+        "plaqueboymax",
+        "post",
+        "sagmakak",
+        "while"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-08",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/plaqueboymax/clip/PrettiestRelatedAxeFeelsBadMan-PaXF-095Yx4_pY5S",
+        "https://www.twitch.tv/plaqueboymax/clip/WittyPlausibleQueleaNotATK-oylG_dInCIogU0xH",
+        "https://www.twitch.tv/plaqueboymax/clip/DeadEvilHedgehogPupper--dYraRuDpzaeTRyw"
       ],
       "published_versions": [],
       "last_updated": "2026-10-08"
