@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261008",
+  "bundle": {
+    "identity": "8a031f56a921c3605d155f4c82b172d91160b2759a215a061fea4eea23090505",
+    "path": "exchange/bundles/20261008/bundle.json"
+  },
+  "request_id": "three-year-old-laptop-s1-e0e2866cdb29",
+  "safe_request_id": "three-year-old-laptop-s1-e0e2866cdb29",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "c6cb63e363c87e61dc256828e5037323bdb807726249b30862a6d718970228b7",
+  "prompt_used": "An editorial illustration for a short-form video: call center headset agent computer. It accompanies the narration: \"rep looked up my serial number\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1KGNKEO8t4HWrT9xe26GK-kkuGAsH6BPm",
+    "filename": "20261008__three-year-old-laptop-s1-e0e2866cdb29.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1KGNKEO8t4HWrT9xe26GK-kkuGAsH6BPm",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "9ff88c8ed1017195d6eee9ac6d20647c3b9f9c58601e078aa3d1219ad47efc63",
+    "bytes": 1695788,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-08T11:29:30Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
