@@ -1743,7 +1743,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     hypothesis=(f"{cluster.get('premise', '')} — "
                                 f"{cluster.get('why_connected', '')}"
                                 if is_scouted else ""),
-                    moment=_MOMENT_HYPOTHESIS if is_moment else "")
+                    moment=_MOMENT_HYPOTHESIS if is_moment else "",
+                    takes=int(spec.get("story_takes", 3)))
                 if not edl:
                     # NAME THE GATE. plan_story returns None for an
                     # editorial "not a story" AND for ten different
@@ -1795,32 +1796,53 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # critic sees frames the words leave out). At 65 the read
                 # blocked all but one render, so it screens only what reads
                 # as no story at all (`story_table_read_min`).
-                _tr_best = None
                 _tr_n = int(spec.get("story_table_reads", 2))
-                for _tr_i in range(_tr_n):
+
+                def _read(e):
+                    pl = story_mod.plan_ledger(e, src_map)
+                    tr = story_director.review_rough_cut(
+                        e, scene_analysis._dialogue_lines(
+                            pl["final_words"]),
+                        None, pl["duration_s"], pl["on_screen"])
+                    if int(tr["story_score"]) < 0:
+                        return None      # no brain: the render decides
+                    return (tr["story_score"], e, tr, pl)
+
+                # every TAKE the director wrote is read once; the best one
+                # is repaired on paper and rendered (story_takes)
+                _alts = story_director.last_takes()
+                _takes = ([edl] + [t for t in _alts if t is not edl]
+                          if any(t is edl for t in _alts) else [edl])
+                if _tr_n <= 0:
+                    _takes = []          # no table read: render the plan
+                _tr_best = None
+                for _k, _e in enumerate(_takes):
                     if _deadline_passed():
                         break
-                    _plan = story_mod.plan_ledger(edl, src_map)
-                    _tr = story_director.review_rough_cut(
-                        edl, scene_analysis._dialogue_lines(
-                            _plan["final_words"]),
-                        None, _plan["duration_s"], _plan["on_screen"])
-                    if int(_tr["story_score"]) < 0:
-                        break            # no brain: the render decides
-                    print(f"[story] {elbl}: table read {_tr_i}: "
-                          f"{_tr['story_score']}", flush=True)
-                    if _tr_best is None or \
-                            _tr["story_score"] > _tr_best[0]:
-                        _tr_best = (_tr["story_score"], edl, _tr, _plan)
-                    if (_tr["story_score"] >= _floor or not _tr["problems"]
-                            or _tr_i == _tr_n - 1):
+                    _r = _read(_e)
+                    if _r is None:
+                        break
+                    print(f"[story] {elbl}: table read take {_k}: "
+                          f"{_r[0]}", flush=True)
+                    if _tr_best is None or _r[0] > _tr_best[0]:
+                        _tr_best = _r
+                for _tr_i in range(1, _tr_n):
+                    if (_tr_best is None or _deadline_passed()
+                            or _tr_best[0] >= _floor
+                            or not _tr_best[2]["problems"]):
                         break
                     _edl2 = story_director.revise_edl(
                         _tr_best[1], _tr_best[2]["problems"], sub,
                         cut=_tr_best[3])
                     if not _edl2:
                         break
-                    edl = _edl2
+                    _r = _read(_edl2)
+                    if _r is None:
+                        break
+                    print(f"[story] {elbl}: table read repair {_tr_i}: "
+                          f"{_r[0]}", flush=True)
+                    if _r[0] > _tr_best[0]:
+                        _tr_best = _r
                 if _tr_best is not None:
                     edl = _tr_best[1]
                     _tr_min = int(spec.get("story_table_read_min", 50))

@@ -955,9 +955,27 @@ def last_rejection() -> dict:
     return dict(_LAST_REJECTION)
 
 
+_LAST_TAKES: list = []
+
+
+def last_takes() -> list[dict]:
+    """Every valid take the most recent plan_story() produced, best-first
+    as the director ordered them (the first is what plan_story returned)."""
+    return list(_LAST_TAKES)
+
+
+_TAKES_ASK = (
+    "\n\nWRITE {n} DIFFERENT TAKES on this story — an editor's alternate "
+    "cuts, not copies: a different opening line, different beats kept or "
+    "dropped, a different place to end, a different structure where one "
+    "fits. Each take is a COMPLETE plan in the schema above. Return "
+    '{{"is_story": true, "takes": [<plan>, <plan>, ...]}}, your best '
+    "first — or the usual is_story false and why when there is no story.")
+
+
 def plan_story(reports: list[dict], event: dict | None = None,
                guidance: str = "", hypothesis: str = "",
-               moment: str = "") -> dict | None:
+               moment: str = "", takes: int = 1) -> dict | None:
     """Eligibility gate + structure choice + full story EDL, validated.
     `guidance` is the channel's own evidence about which structures/
     lengths retain (empty until >=25 mature stories exist — creative
@@ -1007,7 +1025,9 @@ def plan_story(reports: list[dict], event: dict | None = None,
                  "(`at=`). Judge whether they form setup -> "
                  "escalation -> payoff; do not assume they do.\n\n")
     user += "SCENE REPORTS:\n" + _fmt_reports(reports)
-    out = _brain(user, _PLAN_SYSTEM)
+    _LAST_TAKES.clear()
+    out = _brain(user + (_TAKES_ASK.format(n=takes) if takes > 1 else ""),
+                 _PLAN_SYSTEM)
     rs: list = []
     if out is None:
         rs.append("director unreachable")
@@ -1016,10 +1036,29 @@ def plan_story(reports: list[dict], event: dict | None = None,
         return None
     durations = {r["source_id"]: float(r.get("duration_s") or 0)
                  for r in reports}
-    edl = validate_edl(out, durations, _windows(reports), reasons=rs,
-                       positions=_positions(reports), words=_words(reports))
-    # the director's own narration meets the same floor as the reviser's
-    edl = _ground(edl, reports, rs)
+    # SEVERAL TAKES (story backtests 7-9: a plan that opened at 58 never
+    # climbed past ~66 by repair, while a different cut of the same
+    # footage scored 78). Each take meets every law on its own; the table
+    # read in run_third picks which one is rendered.
+    raw = out.get("takes") if isinstance(out, dict) else None
+    if isinstance(raw, list) and raw:
+        cands = [dict(t, is_story=True) for t in raw[:max(1, takes)]
+                 if isinstance(t, dict)]
+    else:
+        cands = [out]
+    edl = None
+    for i, cand in enumerate(cands):
+        trs: list = []
+        e = validate_edl(cand, durations, _windows(reports), reasons=trs,
+                         positions=_positions(reports),
+                         words=_words(reports))
+        # the director's own narration meets the same floor as the reviser's
+        e = _ground(e, reports, trs)
+        if e:
+            _LAST_TAKES.append(e)
+            edl = edl or e
+        rs.extend(trs if len(cands) == 1 else [f"take {i}: {r}"
+                                               for r in trs])
     # `editorial` separates "a human editor would also say no" from "the
     # plan was malformed" — the second is OUR bug and needs a code fix, and
     # for a month both were logged as "no genuine arc".
