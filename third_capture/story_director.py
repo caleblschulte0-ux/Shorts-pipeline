@@ -1113,6 +1113,28 @@ def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
             "problems": problems}
 
 
+def revalidate(edl: dict, reports: list[dict]) -> dict | None:
+    """A stored EDL (clip_memory.kept_edit) put back through the same laws
+    against today's reports — the sources may have changed, the laws may
+    have grown. None when it no longer holds."""
+    if not isinstance(edl, dict):
+        return None
+    prev = {k: v for k, v in edl.items() if k != "narration_lines"}
+    if narration_lines(edl):
+        prev["narration"] = narration_lines(edl)
+    prev["is_story"] = True
+    rs: list = []
+    durations = {r["source_id"]: float(r.get("duration_s") or 0)
+                 for r in reports}
+    out = validate_edl(prev, durations, _windows(reports), reasons=rs,
+                       positions=_positions(reports), words=_words(reports))
+    out = _ground(out, reports, rs)
+    if not out:
+        print(f"[story] kept edit no longer holds: {'; '.join(rs)[:200]}",
+              flush=True)
+    return out
+
+
 def locate(at: float, cut_beats: list[dict]) -> dict | None:
     """Map an OUTPUT second (the critic's clock) to the beat that plays it
     and the SOURCE second the EDL uses. `cut_beats` is `render_story`'s

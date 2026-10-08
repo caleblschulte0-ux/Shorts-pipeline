@@ -594,6 +594,16 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   to be better ... it's also the story"*). The critic had passed every story
   it saw (66-80); only the 80 held viewers. It must also retell the story in
   a sentence and name the payoff second, or its pass is a fail.
+- **A plan is READ before it is rendered, and a near-miss KEEPS ITS EDIT**
+  (2026-10-08, backtests 7-8). The critic reads the words a plan would
+  hold (`story.plan_ledger`, held equal to the render's ledger) and the
+  director repairs on paper; only what reads as no story at all
+  (`story_table_read_min`) is skipped — the words alone score ~10 below
+  the cut. Every judge is a brain that never answers twice the same way
+  (the same Lacy story: 82 one run, "not a story" the next), so an edit
+  rated >= `clip_memory.KEEP_MIN` is kept and repaired on the next try,
+  `KEEP_RETRIES` times. The repair is told which beat and source second
+  each critic note lands on (`story_director.locate`). Same 80 throughout.
 - **Slots follow `_learned_prior()`, and it had no tests** until the day it
   was found inverted: kaicenat and buddha (median 5 and 8 views) at the
   maximum boost, jynxzi (1,355-view top video) below them, because flops and
