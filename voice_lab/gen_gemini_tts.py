@@ -24,9 +24,7 @@ log["tts_models"] = tts or err
 want = os.environ.get("TTS_MODELS", "gemini-3.8-flash-tts,gemini-3.1-flash-tts-preview,gemini-2.5-flash-preview-tts").split(",")
 model = next((m for m in want if m in tts), None)
 log["model_used"] = model
-note = ("Read this like a curious, friendly YouTube Shorts narrator telling a friend a "
-        "surprising fact. Natural, conversational, brisk pace, real emphasis on the "
-        "numbers, no announcer voice:\n\n")
+note = "Say in a curious, friendly, brisk YouTube Shorts narrator voice: "
 text = " ".join(L["lines"])
 for v in os.environ.get("TTS_VOICES", "Charon,Puck,Orus").split(","):
     r, err = get(f"{B}/{model}:generateContent", {

@@ -21,3 +21,21 @@ jobs:
           git config user.email "voice-lab@users.noreply.github.com"
           git add voice_lab/samples
           git commit -m "voice lab gemini tts" && git push origin HEAD:voice-lab
+  heard:
+    needs: gemini
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with: { ref: voice-lab }
+      - run: |
+          pip install -q faster-whisper==1.1.1
+          python - <<'PY'
+          from faster_whisper import WhisperModel
+          import glob
+          m = WhisperModel("small.en", device="cpu", compute_type="int8")
+          for f in sorted(glob.glob("voice_lab/samples/gemini_*.mp3")):
+              segs, _ = m.transcribe(f)
+              print("==", f); [print(f"{s.start:6.1f} {s.text}") for s in segs]
+          PY
