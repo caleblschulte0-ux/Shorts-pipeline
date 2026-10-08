@@ -6,19 +6,49 @@
   "y_label": "US federal debt vs GDP (trillions of dollars)",
   "duration": 13,
   "source": "Approximate, compiled from U.S. Treasury/OMB federal debt totals and Bureau of Economic Analysis GDP figures, selected years 2000-2020.",
-  "years": [2000, 2004, 2008, 2012, 2016, 2020],
+  "years": [
+    2000,
+    2004,
+    2008,
+    2012,
+    2016,
+    2020
+  ],
   "series": [
     {
       "name": "Federal Debt",
       "color": "#e74c3c",
-      "values": [5.6, 7.6, 10.0, 16.1, 19.6, 27.7]
+      "values": [
+        5.6,
+        7.6,
+        10.0,
+        16.1,
+        19.6,
+        27.7
+      ]
     },
     {
       "name": "US GDP",
       "color": "#2ecc71",
-      "values": [10.3, 12.2, 14.8, 16.2, 18.7, 21.0]
+      "values": [
+        10.3,
+        12.2,
+        14.8,
+        16.2,
+        18.7,
+        21.0
+      ]
     }
   ],
-  "hashtags": ["nationaldebt", "gdp", "economy", "usdebt", "finance", "data", "macro", "shorts"],
+  "hashtags": [
+    "nationaldebt",
+    "gdp",
+    "economy",
+    "usdebt",
+    "finance",
+    "data",
+    "macro",
+    "shorts"
+  ],
   "music_vibe": "dark"
 }

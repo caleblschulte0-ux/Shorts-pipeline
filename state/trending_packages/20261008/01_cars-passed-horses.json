@@ -6,19 +6,52 @@
   "y_label": "Vehicles / horses on US roads and farms (thousands)",
   "duration": 13,
   "source": "Approximate, compiled from U.S. Federal Highway Administration historical motor-vehicle registration series and USDA historical farm horse-and-mule population statistics, 1900-1930.",
-  "years": [1900, 1905, 1910, 1915, 1920, 1925, 1930],
+  "years": [
+    1900,
+    1905,
+    1910,
+    1915,
+    1920,
+    1925,
+    1930
+  ],
   "series": [
     {
       "name": "Registered Automobiles",
       "color": "#4a90e2",
-      "values": [8, 78, 458, 2490, 8132, 17481, 23035]
+      "values": [
+        8,
+        78,
+        458,
+        2490,
+        8132,
+        17481,
+        23035
+      ]
     },
     {
       "name": "Horses & Mules (US farms)",
       "color": "#8b5e3c",
-      "values": [18500, 19500, 20000, 21000, 19700, 16000, 13500]
+      "values": [
+        18500,
+        19500,
+        20000,
+        21000,
+        19700,
+        16000,
+        13500
+      ]
     }
   ],
-  "hashtags": ["cars", "horses", "automobilehistory", "1920s", "transportation", "history", "data", "shorts"],
+  "hashtags": [
+    "cars",
+    "horses",
+    "automobilehistory",
+    "1920s",
+    "transportation",
+    "history",
+    "data",
+    "shorts"
+  ],
   "music_vibe": "cinematic"
 }

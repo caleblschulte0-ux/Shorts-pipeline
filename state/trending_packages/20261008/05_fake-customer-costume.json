@@ -2,22 +2,68 @@
   "subreddit": "IDontWorkHereLady",
   "slug": "fake-customer-costume",
   "title": "She Swore I Managed The Store. My Badge Said Customer.",
-  "hashtags": ["idontworkherelady", "retail", "karen", "retailstory", "storetime", "entitled", "shorts", "reddit"],
+  "hashtags": [
+    "idontworkherelady",
+    "retail",
+    "karen",
+    "retailstory",
+    "storetime",
+    "entitled",
+    "shorts",
+    "reddit"
+  ],
   "script": "I was comparing two blenders in the kitchen aisle when a woman marched up holding a cracked air fryer and announced I had better fix it. I told her I did not work there. She said my blue jacket proved otherwise and demanded a manager. I pointed at my shirt, which read charity fun run in giant letters, and at the actual employee vest hanging two feet away on an associate restocking shelves. She ignored both and flagged down a real manager, insisting I was hiding from responsibility behind a fake customer costume. The manager checked the air fryer, found a receipt from a different store chain stapled inside the box, and told her this location could not process it. She asked why I did not say that from the start. I held up the loyalty app on my phone, still open to my actual order from twenty minutes earlier. She left muttering about bad service. The associate in the vest got my blender picked for me as an apology.",
   "shots": [
-    {"phrase": "comparing two blenders in the kitchen aisle", "query": "kitchen appliance aisle blenders store"},
-    {"phrase": "holding a cracked air fryer", "query": "cracked air fryer box"},
-    {"phrase": "my blue jacket proved otherwise", "query": "blue zip jacket casual wear"},
-    {"phrase": "the actual employee vest hanging two feet away", "query": "store employee safety vest rack"},
-    {"phrase": "flagged down a real manager", "query": "store manager badge walkie talkie"},
-    {"phrase": "a receipt from a different store chain stapled inside the box", "query": "crumpled receipt paper closeup"},
-    {"phrase": "the loyalty app on my phone", "query": "phone shopping app screen hand"}
+    {
+      "phrase": "comparing two blenders in the kitchen aisle",
+      "query": "kitchen appliance aisle blenders store"
+    },
+    {
+      "phrase": "holding a cracked air fryer",
+      "query": "cracked air fryer box"
+    },
+    {
+      "phrase": "my blue jacket proved otherwise",
+      "query": "blue zip jacket casual wear"
+    },
+    {
+      "phrase": "the actual employee vest hanging two feet away",
+      "query": "store employee safety vest rack"
+    },
+    {
+      "phrase": "flagged down a real manager",
+      "query": "store manager badge walkie talkie"
+    },
+    {
+      "phrase": "a receipt from a different store chain stapled inside the box",
+      "query": "crumpled receipt paper closeup"
+    },
+    {
+      "phrase": "the loyalty app on my phone",
+      "query": "phone shopping app screen hand"
+    }
   ],
   "punches": [
-    {"phrase": "demanded a manager", "text": "DEMANDED A MANAGER", "color": "#ffaa30"},
-    {"phrase": "a receipt from a different store chain", "text": "WRONG STORE", "color": "#ff3030"},
-    {"phrase": "still open to my actual order", "text": "RECEIPTS DON'T LIE", "color": "#50ff80"},
-    {"phrase": "got my blender picked for me as an apology", "text": "FREE UPGRADE", "color": "#50ff80"}
+    {
+      "phrase": "demanded a manager",
+      "text": "DEMANDED A MANAGER",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "a receipt from a different store chain",
+      "text": "WRONG STORE",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "still open to my actual order",
+      "text": "RECEIPTS DON'T LIE",
+      "color": "#50ff80"
+    },
+    {
+      "phrase": "got my blender picked for me as an apology",
+      "text": "FREE UPGRADE",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "playful"
 }
