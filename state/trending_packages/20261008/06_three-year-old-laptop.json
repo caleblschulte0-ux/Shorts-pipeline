@@ -17,40 +17,18 @@
     {
       "phrase": "fan started screaming three months after I bought it",
       "query": "laptop cooling fan closeup",
-      "image_url": "https://drive.google.com/uc?export=download&id=1YKXOF2DH2-DuAXD_dYXph9iFH-J9PFMO",
       "media_origin": "chatgpt",
       "media_file_id": "1YKXOF2DH2-DuAXD_dYXph9iFH-J9PFMO",
       "media_sha256": "7c21eaa4a48ce24dc552645b495c3174740eadc09730f3ae6ec0b2e21f647d06",
-      "media_bytes": 2218687,
-      "media_evidence": {
-        "url": "https://drive.google.com/uc?export=download&id=1YKXOF2DH2-DuAXD_dYXph9iFH-J9PFMO",
-        "source_class": "unverified",
-        "provider": "drive.google.com",
-        "width": 0,
-        "height": 0,
-        "content_type": "image/png",
-        "verified_at": "2026-10-08T16:44:37Z",
-        "resolved_by": "verify_shot_urls"
-      }
+      "media_bytes": 2218687
     },
     {
       "phrase": "rep looked up my serial number",
       "query": "call center headset agent computer",
-      "image_url": "https://drive.google.com/uc?export=download&id=1KGNKEO8t4HWrT9xe26GK-kkuGAsH6BPm",
       "media_origin": "chatgpt",
       "media_file_id": "1KGNKEO8t4HWrT9xe26GK-kkuGAsH6BPm",
       "media_sha256": "9ff88c8ed1017195d6eee9ac6d20647c3b9f9c58601e078aa3d1219ad47efc63",
       "media_bytes": 1695788,
-      "media_evidence": {
-        "url": "https://drive.google.com/uc?export=download&id=1KGNKEO8t4HWrT9xe26GK-kkuGAsH6BPm",
-        "source_class": "unverified",
-        "provider": "drive.google.com",
-        "width": 0,
-        "height": 0,
-        "content_type": "image/png",
-        "verified_at": "2026-10-08T16:44:38Z",
-        "resolved_by": "verify_shot_urls"
-      },
       "pin_query": "support rep",
       "pin_context": "customer support representative warranty call",
       "news_query": "support rep",
@@ -71,7 +49,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T16:44:39Z",
+        "verified_at": "2026-10-08T16:58:55Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -90,7 +68,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T16:44:40Z",
+        "verified_at": "2026-10-08T16:58:56Z",
         "resolved_by": "verify_shot_urls"
       },
       "pin_query": "barcode scan timestamp",
@@ -101,21 +79,10 @@
     {
       "phrase": "the unboxing video I filmed for a tech channel",
       "query": "phone filming unboxing desk",
-      "image_url": "https://drive.google.com/uc?export=download&id=1TMQVUEp1uMw7RrPfcKpukAWgKQTpwWE4",
       "media_origin": "chatgpt",
       "media_file_id": "1TMQVUEp1uMw7RrPfcKpukAWgKQTpwWE4",
       "media_sha256": "254bf66a78b918e902ff77d527f77f189a4f5482664ffead50c243bd19fdbd3b",
       "media_bytes": 1660831,
-      "media_evidence": {
-        "url": "https://drive.google.com/uc?export=download&id=1TMQVUEp1uMw7RrPfcKpukAWgKQTpwWE4",
-        "source_class": "unverified",
-        "provider": "drive.google.com",
-        "width": 0,
-        "height": 0,
-        "content_type": "image/png",
-        "verified_at": "2026-10-08T16:44:41Z",
-        "resolved_by": "verify_shot_urls"
-      },
       "pin_query": "unboxing video",
       "pin_context": "tech channel video showing new laptop",
       "news_query": "unboxing video",
@@ -136,17 +103,6 @@
       "media_file_id": "1IiTvOh4x5NypCEUQY9wfi1CIDHD05dkN",
       "media_sha256": "2f7e4fa1cd99ba0f378cee08bca78d81c2ea744510d14649f7917fc452c9daad",
       "media_bytes": 2093757,
-      "image_url": "https://drive.google.com/uc?export=download&id=1IiTvOh4x5NypCEUQY9wfi1CIDHD05dkN",
-      "media_evidence": {
-        "url": "https://drive.google.com/uc?export=download&id=1IiTvOh4x5NypCEUQY9wfi1CIDHD05dkN",
-        "source_class": "unverified",
-        "provider": "drive.google.com",
-        "width": 0,
-        "height": 0,
-        "content_type": "image/png",
-        "verified_at": "2026-10-08T16:44:42Z",
-        "resolved_by": "verify_shot_urls"
-      },
       "pin_query": "warehouse clerk",
       "pin_context": "warehouse employee mislabeling stock",
       "news_query": "warehouse clerk",

@@ -384,22 +384,22 @@
           "shot_index": 2,
           "phrase": "my blue jacket proved otherwise",
           "query": "blue zip jacket casual wear",
-          "has_media": true,
-          "verdict": "weak"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 3,
           "phrase": "the actual employee vest hanging two feet away",
           "query": "store employee safety vest rack",
-          "has_media": true,
-          "verdict": "weak"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 4,
           "phrase": "flagged down a real manager",
           "query": "store manager badge walkie talkie",
-          "has_media": true,
-          "verdict": "weak"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 5,
@@ -412,25 +412,25 @@
           "shot_index": 6,
           "phrase": "the loyalty app on my phone",
           "query": "phone shopping app screen hand",
-          "has_media": true,
-          "verdict": "weak"
+          "has_media": false,
+          "verdict": "missing"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 7,
-        "missing": 0,
+        "weak": 3,
+        "missing": 4,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
-        "fake-customer-costume-s0-42c8ac4a27f4",
-        "fake-customer-costume-s1-de1df396a50e",
         "fake-customer-costume-s2-dfca4b442c85",
         "fake-customer-costume-s3-36337e37028d",
         "fake-customer-costume-s4-00ab514365c9",
+        "fake-customer-costume-s6-df8a3cd8ab97",
+        "fake-customer-costume-s1-de1df396a50e",
         "fake-customer-costume-s5-3457251bbf2c",
-        "fake-customer-costume-s6-df8a3cd8ab97"
+        "fake-customer-costume-s0-42c8ac4a27f4"
       ]
     },
     {
@@ -442,15 +442,15 @@
           "shot_index": 0,
           "phrase": "fan started screaming three months after I bought it",
           "query": "laptop cooling fan closeup",
-          "has_media": true,
-          "verdict": "weak"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 1,
           "phrase": "rep looked up my serial number",
           "query": "call center headset agent computer",
-          "has_media": true,
-          "verdict": "weak"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 2,
@@ -470,8 +470,8 @@
           "shot_index": 4,
           "phrase": "the unboxing video I filmed for a tech channel",
           "query": "phone filming unboxing desk",
-          "has_media": true,
-          "verdict": "weak"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 5,
@@ -484,85 +484,29 @@
           "shot_index": 6,
           "phrase": "a warehouse clerk had mislabeled an entire pallet",
           "query": "warehouse pallet boxes forklift",
-          "has_media": true,
-          "verdict": "weak"
+          "has_media": false,
+          "verdict": "missing"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 6,
-        "missing": 1,
+        "weak": 2,
+        "missing": 5,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
-        "three-year-old-laptop-s5-097b5d7ff8e3",
         "three-year-old-laptop-s0-98e0e2cb81dd",
         "three-year-old-laptop-s1-e0e2866cdb29",
-        "three-year-old-laptop-s2-faa4de224cd5",
-        "three-year-old-laptop-s3-c0df8b8fce8b",
         "three-year-old-laptop-s4-ed9d975c202a",
-        "three-year-old-laptop-s6-534a70eac1dc"
+        "three-year-old-laptop-s5-097b5d7ff8e3",
+        "three-year-old-laptop-s6-534a70eac1dc",
+        "three-year-old-laptop-s2-faa4de224cd5",
+        "three-year-old-laptop-s3-c0df8b8fce8b"
       ]
     }
   ],
   "requests": [
-    {
-      "request_id": "fake-customer-costume-s0-42c8ac4a27f4",
-      "safe_request_id": "fake-customer-costume-s0-42c8ac4a27f4",
-      "drive_filename": "20261008__fake-customer-costume-s0-42c8ac4a27f4.png",
-      "prompt_sha256": "e393f1d3444ca2d5842cd3ca257fac05439ea80a42c4d43d92c2f879a5475347",
-      "checkpoint_path": "exchange/bundles/20261008/media-progress/fake-customer-costume-s0-42c8ac4a27f4.json",
-      "slug": "fake-customer-costume",
-      "shot_index": 0,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: kitchen appliance aisle blenders store. It accompanies the narration: \"comparing two blenders in the kitchen aisle\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "weak relation to the line (0% term overlap)",
-        "resolution unverified (no width/height reported)",
-        "unverified provenance (unverified)"
-      ],
-      "verdict": "weak"
-    },
-    {
-      "request_id": "fake-customer-costume-s1-de1df396a50e",
-      "safe_request_id": "fake-customer-costume-s1-de1df396a50e",
-      "drive_filename": "20261008__fake-customer-costume-s1-de1df396a50e.png",
-      "prompt_sha256": "dde9acccae55e7ca0fcb65ff9e528c2526c0228936769c387f7a8fa2d7cf2dfa",
-      "checkpoint_path": "exchange/bundles/20261008/media-progress/fake-customer-costume-s1-de1df396a50e.json",
-      "slug": "fake-customer-costume",
-      "shot_index": 1,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: cracked air fryer box. It accompanies the narration: \"holding a cracked air fryer\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "weak relation to the line (0% term overlap)",
-        "resolution unverified (no width/height reported)",
-        "unverified provenance (unverified)"
-      ],
-      "verdict": "weak"
-    },
     {
       "request_id": "fake-customer-costume-s2-dfca4b442c85",
       "safe_request_id": "fake-customer-costume-s2-dfca4b442c85",
@@ -585,11 +529,9 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "weak relation to the line (0% term overlap)",
-        "resolution unverified (no width/height reported)",
-        "unverified provenance (unverified)"
+        "no media found for this line"
       ],
-      "verdict": "weak"
+      "verdict": "missing"
     },
     {
       "request_id": "fake-customer-costume-s3-36337e37028d",
@@ -613,11 +555,9 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "weak relation to the line (0% term overlap)",
-        "resolution unverified (no width/height reported)",
-        "unverified provenance (unverified)"
+        "no media found for this line"
       ],
-      "verdict": "weak"
+      "verdict": "missing"
     },
     {
       "request_id": "fake-customer-costume-s4-00ab514365c9",
@@ -629,6 +569,58 @@
       "shot_index": 4,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: store manager badge walkie talkie. It accompanies the narration: \"flagged down a real manager\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "fake-customer-costume-s6-df8a3cd8ab97",
+      "safe_request_id": "fake-customer-costume-s6-df8a3cd8ab97",
+      "drive_filename": "20261008__fake-customer-costume-s6-df8a3cd8ab97.png",
+      "prompt_sha256": "778f85f2322c1ff35a12a0b7e3f5b19c5a9f897f48c10af4860be873bedcd4e5",
+      "checkpoint_path": "exchange/bundles/20261008/media-progress/fake-customer-costume-s6-df8a3cd8ab97.json",
+      "slug": "fake-customer-costume",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: phone shopping app screen hand. It accompanies the narration: \"the loyalty app on my phone\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "fake-customer-costume-s1-de1df396a50e",
+      "safe_request_id": "fake-customer-costume-s1-de1df396a50e",
+      "drive_filename": "20261008__fake-customer-costume-s1-de1df396a50e.png",
+      "prompt_sha256": "dde9acccae55e7ca0fcb65ff9e528c2526c0228936769c387f7a8fa2d7cf2dfa",
+      "checkpoint_path": "exchange/bundles/20261008/media-progress/fake-customer-costume-s1-de1df396a50e.json",
+      "slug": "fake-customer-costume",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: cracked air fryer box. It accompanies the narration: \"holding a cracked air fryer\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -676,15 +668,15 @@
       "verdict": "weak"
     },
     {
-      "request_id": "fake-customer-costume-s6-df8a3cd8ab97",
-      "safe_request_id": "fake-customer-costume-s6-df8a3cd8ab97",
-      "drive_filename": "20261008__fake-customer-costume-s6-df8a3cd8ab97.png",
-      "prompt_sha256": "778f85f2322c1ff35a12a0b7e3f5b19c5a9f897f48c10af4860be873bedcd4e5",
-      "checkpoint_path": "exchange/bundles/20261008/media-progress/fake-customer-costume-s6-df8a3cd8ab97.json",
+      "request_id": "fake-customer-costume-s0-42c8ac4a27f4",
+      "safe_request_id": "fake-customer-costume-s0-42c8ac4a27f4",
+      "drive_filename": "20261008__fake-customer-costume-s0-42c8ac4a27f4.png",
+      "prompt_sha256": "e393f1d3444ca2d5842cd3ca257fac05439ea80a42c4d43d92c2f879a5475347",
+      "checkpoint_path": "exchange/bundles/20261008/media-progress/fake-customer-costume-s0-42c8ac4a27f4.json",
       "slug": "fake-customer-costume",
-      "shot_index": 6,
+      "shot_index": 0,
       "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: phone shopping app screen hand. It accompanies the narration: \"the loyalty app on my phone\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "prompt_verbatim": "An editorial illustration for a short-form video: kitchen appliance aisle blenders store. It accompanies the narration: \"comparing two blenders in the kitchen aisle\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -697,11 +689,88 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "weak relation to the line (0% term overlap)",
-        "resolution unverified (no width/height reported)",
-        "unverified provenance (unverified)"
+        "weak relation to the line (20% term overlap)",
+        "resolution unverified (no width/height reported)"
       ],
       "verdict": "weak"
+    },
+    {
+      "request_id": "three-year-old-laptop-s0-98e0e2cb81dd",
+      "safe_request_id": "three-year-old-laptop-s0-98e0e2cb81dd",
+      "drive_filename": "20261008__three-year-old-laptop-s0-98e0e2cb81dd.png",
+      "prompt_sha256": "7044ae8e72b52a1b86784de1bddecf41829059b14a4529fd32bab580e4b73afc",
+      "checkpoint_path": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s0-98e0e2cb81dd.json",
+      "slug": "three-year-old-laptop",
+      "shot_index": 0,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: laptop cooling fan closeup. It accompanies the narration: \"fan started screaming three months after I bought it\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "three-year-old-laptop-s1-e0e2866cdb29",
+      "safe_request_id": "three-year-old-laptop-s1-e0e2866cdb29",
+      "drive_filename": "20261008__three-year-old-laptop-s1-e0e2866cdb29.png",
+      "prompt_sha256": "c6cb63e363c87e61dc256828e5037323bdb807726249b30862a6d718970228b7",
+      "checkpoint_path": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s1-e0e2866cdb29.json",
+      "slug": "three-year-old-laptop",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: call center headset agent computer. It accompanies the narration: \"rep looked up my serial number\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
+    {
+      "request_id": "three-year-old-laptop-s4-ed9d975c202a",
+      "safe_request_id": "three-year-old-laptop-s4-ed9d975c202a",
+      "drive_filename": "20261008__three-year-old-laptop-s4-ed9d975c202a.png",
+      "prompt_sha256": "f0544b032771f4b7ff659ece87f3278e378b20abfaff67c75918dbbf3fbe6d8f",
+      "checkpoint_path": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s4-ed9d975c202a.json",
+      "slug": "three-year-old-laptop",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: phone filming unboxing desk. It accompanies the narration: \"the unboxing video I filmed for a tech channel\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
     },
     {
       "request_id": "three-year-old-laptop-s5-097b5d7ff8e3",
@@ -730,15 +799,15 @@
       "verdict": "missing"
     },
     {
-      "request_id": "three-year-old-laptop-s0-98e0e2cb81dd",
-      "safe_request_id": "three-year-old-laptop-s0-98e0e2cb81dd",
-      "drive_filename": "20261008__three-year-old-laptop-s0-98e0e2cb81dd.png",
-      "prompt_sha256": "7044ae8e72b52a1b86784de1bddecf41829059b14a4529fd32bab580e4b73afc",
-      "checkpoint_path": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s0-98e0e2cb81dd.json",
+      "request_id": "three-year-old-laptop-s6-534a70eac1dc",
+      "safe_request_id": "three-year-old-laptop-s6-534a70eac1dc",
+      "drive_filename": "20261008__three-year-old-laptop-s6-534a70eac1dc.png",
+      "prompt_sha256": "309b2b509d57755bbb683f282629cfe48d67e52b78587aeb3df8639a7bc9a98d",
+      "checkpoint_path": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s6-534a70eac1dc.json",
       "slug": "three-year-old-laptop",
-      "shot_index": 0,
+      "shot_index": 6,
       "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: laptop cooling fan closeup. It accompanies the narration: \"fan started screaming three months after I bought it\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "prompt_verbatim": "An editorial illustration for a short-form video: warehouse pallet boxes forklift. It accompanies the narration: \"a warehouse clerk had mislabeled an entire pallet\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -751,39 +820,9 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "weak relation to the line (0% term overlap)",
-        "resolution unverified (no width/height reported)",
-        "unverified provenance (unverified)"
+        "no media found for this line"
       ],
-      "verdict": "weak"
-    },
-    {
-      "request_id": "three-year-old-laptop-s1-e0e2866cdb29",
-      "safe_request_id": "three-year-old-laptop-s1-e0e2866cdb29",
-      "drive_filename": "20261008__three-year-old-laptop-s1-e0e2866cdb29.png",
-      "prompt_sha256": "c6cb63e363c87e61dc256828e5037323bdb807726249b30862a6d718970228b7",
-      "checkpoint_path": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s1-e0e2866cdb29.json",
-      "slug": "three-year-old-laptop",
-      "shot_index": 1,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: call center headset agent computer. It accompanies the narration: \"rep looked up my serial number\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "weak relation to the line (0% term overlap)",
-        "resolution unverified (no width/height reported)",
-        "unverified provenance (unverified)"
-      ],
-      "verdict": "weak"
+      "verdict": "missing"
     },
     {
       "request_id": "three-year-old-laptop-s2-faa4de224cd5",
@@ -823,62 +862,6 @@
       "shot_index": 3,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: barcode scanner checkout receipt. It accompanies the narration: \"the store's barcode scan timestamp\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "weak relation to the line (0% term overlap)",
-        "resolution unverified (no width/height reported)",
-        "unverified provenance (unverified)"
-      ],
-      "verdict": "weak"
-    },
-    {
-      "request_id": "three-year-old-laptop-s4-ed9d975c202a",
-      "safe_request_id": "three-year-old-laptop-s4-ed9d975c202a",
-      "drive_filename": "20261008__three-year-old-laptop-s4-ed9d975c202a.png",
-      "prompt_sha256": "f0544b032771f4b7ff659ece87f3278e378b20abfaff67c75918dbbf3fbe6d8f",
-      "checkpoint_path": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s4-ed9d975c202a.json",
-      "slug": "three-year-old-laptop",
-      "shot_index": 4,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: phone filming unboxing desk. It accompanies the narration: \"the unboxing video I filmed for a tech channel\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "weak relation to the line (0% term overlap)",
-        "resolution unverified (no width/height reported)",
-        "unverified provenance (unverified)"
-      ],
-      "verdict": "weak"
-    },
-    {
-      "request_id": "three-year-old-laptop-s6-534a70eac1dc",
-      "safe_request_id": "three-year-old-laptop-s6-534a70eac1dc",
-      "drive_filename": "20261008__three-year-old-laptop-s6-534a70eac1dc.png",
-      "prompt_sha256": "309b2b509d57755bbb683f282629cfe48d67e52b78587aeb3df8639a7bc9a98d",
-      "checkpoint_path": "exchange/bundles/20261008/media-progress/three-year-old-laptop-s6-534a70eac1dc.json",
-      "slug": "three-year-old-laptop",
-      "shot_index": 6,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: warehouse pallet boxes forklift. It accompanies the narration: \"a warehouse clerk had mislabeled an entire pallet\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",

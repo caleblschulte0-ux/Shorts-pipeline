@@ -17,25 +17,27 @@
     {
       "phrase": "comparing two blenders in the kitchen aisle",
       "query": "kitchen appliance aisle blenders store",
-      "image_url": "https://drive.google.com/uc?export=download&id=19p9cfZe-f0BMWT0lXaH7pnMNkGMmTC0-",
       "media_origin": "chatgpt",
       "media_file_id": "19p9cfZe-f0BMWT0lXaH7pnMNkGMmTC0-",
       "media_sha256": "1421b32c95f386b7f998e070b4ac8ac281b650da191d4ef8f4bb9b7730488901",
       "media_bytes": 2705741,
-      "media_evidence": {
-        "url": "https://drive.google.com/uc?export=download&id=19p9cfZe-f0BMWT0lXaH7pnMNkGMmTC0-",
-        "source_class": "unverified",
-        "provider": "drive.google.com",
-        "width": 0,
-        "height": 0,
-        "content_type": "image/png",
-        "verified_at": "2026-10-08T16:44:28Z",
-        "resolved_by": "verify_shot_urls"
-      },
       "pin_query": "blender",
       "pin_context": "kitchen appliance countertop product comparison",
       "news_query": "blender",
-      "news_angle": "The narrator was comparing two blenders in the kitchen aisle when the confrontation began."
+      "news_angle": "The narrator was comparing two blenders in the kitchen aisle when the confrontation began.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/67/Breville.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "wikimedia",
+        "query": "kitchen appliance",
+        "resolved_by": "entity_media",
+        "source_class": "open_or_licensed",
+        "title": "blender",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/67/Breville.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+        "verified_at": "2026-10-08T16:58:19Z",
+        "width": 0
+      }
     },
     {
       "phrase": "holding a cracked air fryer",
@@ -52,7 +54,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T16:44:29Z",
+        "verified_at": "2026-10-08T16:57:21Z",
         "resolved_by": "verify_shot_urls"
       },
       "pin_query": "air fryer",
@@ -63,21 +65,10 @@
     {
       "phrase": "my blue jacket proved otherwise",
       "query": "blue zip jacket casual wear",
-      "image_url": "https://drive.google.com/uc?export=download&id=1vRuaON2Xv6jeTS_fgcmnSRVhSrYV5Z66",
       "media_origin": "chatgpt",
       "media_file_id": "1vRuaON2Xv6jeTS_fgcmnSRVhSrYV5Z66",
       "media_sha256": "213d4b37a75e51d6cfb429d9fd330f6a5ab6ef5cdb7f48e5e4b5894cbbb45567",
       "media_bytes": 1833112,
-      "media_evidence": {
-        "url": "https://drive.google.com/uc?export=download&id=1vRuaON2Xv6jeTS_fgcmnSRVhSrYV5Z66",
-        "source_class": "unverified",
-        "provider": "drive.google.com",
-        "width": 0,
-        "height": 0,
-        "content_type": "image/png",
-        "verified_at": "2026-10-08T16:44:30Z",
-        "resolved_by": "verify_shot_urls"
-      },
       "pin_query": "blue jacket",
       "pin_context": "men's outerwear casual blue jacket",
       "news_query": "blue jacket",
@@ -86,21 +77,10 @@
     {
       "phrase": "the actual employee vest hanging two feet away",
       "query": "store employee safety vest rack",
-      "image_url": "https://drive.google.com/uc?export=download&id=1YKXRAQSQNrX7IpcM4VqtZ8oumJw34jUe",
       "media_origin": "chatgpt",
       "media_file_id": "1YKXRAQSQNrX7IpcM4VqtZ8oumJw34jUe",
       "media_sha256": "df19958357b234daf967cd5bf5451c3e474213e0d3dd7291f8c643da8c0705f3",
       "media_bytes": 2104268,
-      "media_evidence": {
-        "url": "https://drive.google.com/uc?export=download&id=1YKXRAQSQNrX7IpcM4VqtZ8oumJw34jUe",
-        "source_class": "unverified",
-        "provider": "drive.google.com",
-        "width": 0,
-        "height": 0,
-        "content_type": "image/png",
-        "verified_at": "2026-10-08T16:44:31Z",
-        "resolved_by": "verify_shot_urls"
-      },
       "pin_query": "employee vest",
       "pin_context": "store associate uniform vest retail",
       "news_query": "employee vest",
@@ -109,21 +89,10 @@
     {
       "phrase": "flagged down a real manager",
       "query": "store manager badge walkie talkie",
-      "image_url": "https://drive.google.com/uc?export=download&id=147ixHeW9zGxBKwOzL9K4qLs3VTp1_Qw2",
       "media_origin": "chatgpt",
       "media_file_id": "147ixHeW9zGxBKwOzL9K4qLs3VTp1_Qw2",
       "media_sha256": "5ab0ed6723aa81b7a7a3507df5ec2c6079e99136140b0e3dc6f5737635a09461",
-      "media_bytes": 2275865,
-      "media_evidence": {
-        "url": "https://drive.google.com/uc?export=download&id=147ixHeW9zGxBKwOzL9K4qLs3VTp1_Qw2",
-        "source_class": "unverified",
-        "provider": "drive.google.com",
-        "width": 0,
-        "height": 0,
-        "content_type": "image/png",
-        "verified_at": "2026-10-08T16:44:33Z",
-        "resolved_by": "verify_shot_urls"
-      }
+      "media_bytes": 2275865
     },
     {
       "phrase": "a receipt from a different store chain stapled inside the box",
@@ -140,7 +109,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-08T16:44:34Z",
+        "verified_at": "2026-10-08T16:57:47Z",
         "resolved_by": "verify_shot_urls"
       },
       "pin_query": "receipt",
@@ -151,21 +120,10 @@
     {
       "phrase": "the loyalty app on my phone",
       "query": "phone shopping app screen hand",
-      "image_url": "https://drive.google.com/uc?export=download&id=1Ueyxki_-FatUwj2l3bPKEuKp6Gba91X2",
       "media_origin": "chatgpt",
       "media_file_id": "1Ueyxki_-FatUwj2l3bPKEuKp6Gba91X2",
       "media_sha256": "8401d31453cee6f96106a75a781631678e309bd171fb31a5c1ffe5ab26c82368",
       "media_bytes": 1774454,
-      "media_evidence": {
-        "url": "https://drive.google.com/uc?export=download&id=1Ueyxki_-FatUwj2l3bPKEuKp6Gba91X2",
-        "source_class": "unverified",
-        "provider": "drive.google.com",
-        "width": 0,
-        "height": 0,
-        "content_type": "image/png",
-        "verified_at": "2026-10-08T16:44:35Z",
-        "resolved_by": "verify_shot_urls"
-      },
       "pin_query": "loyalty app",
       "pin_context": "mobile retail loyalty program screenshot",
       "news_query": "loyalty app",
