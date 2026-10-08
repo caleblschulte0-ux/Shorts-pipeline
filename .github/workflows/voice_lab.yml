@@ -1,0 +1,98 @@
+# Voice lab: renders ONE explainer story's narration through free/open TTS
+# models and the paid voices in use, for a side-by-side listen. Lives only on
+# the voice-lab branch; never posts, never touches main.
+#
+# Third-party model packages (pinned) run only in jobs with NO secrets and a
+# read-only token. The paid-API job runs only this repo's own stdlib script.
+# Only `collect` (no third-party code) can write, and only to this branch.
+name: Voice lab
+on:
+  push:
+    branches: [voice-lab]
+    paths: ['voice_lab/*.py', 'voice_lab/*.json', '.github/workflows/voice_lab.yml']
+permissions:
+  contents: read
+jobs:
+  kokoro:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - run: |
+          pip install -q kokoro-onnx==0.6.1 soundfile
+          mkdir -p kokoro_models
+          curl -fsSL -o kokoro_models/kokoro-v1.0.onnx https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/kokoro-v1.0.onnx
+          curl -fsSL -o kokoro_models/voices-v1.0.bin https://github.com/thewh1teagle/kokoro-onnx/releases/download/model-files-v1.0/voices-v1.0.bin
+          python voice_lab/gen_kokoro.py out
+      - uses: actions/upload-artifact@v4
+        with: { name: kokoro, path: out/ }
+  cloud:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - env:
+          ELEVEN: ${{ secrets.ELEVENLABS_API_KEY || secrets.ELEVEN_LABS_API_KEY }}
+          EL_VOICE: ${{ vars.ELEVENLABS_VOICE_ID }}
+          SPEECHIFY_API_KEY: ${{ secrets.SPEECHIFY_API_KEY }}
+          SP_VOICE: ${{ vars.SPEECHIFY_VOICE }}
+          SP_MODEL: ${{ vars.SPEECHIFY_MODEL }}
+        run: python voice_lab/gen_cloud.py out
+      - uses: actions/upload-artifact@v4
+        with: { name: cloud, path: out/ }
+  chatterbox:
+    needs: kokoro
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with: { name: kokoro, path: ref/ }
+      - run: |
+          pip install -q chatterbox-tts==0.1.7
+          python voice_lab/gen_chatterbox.py out ref/ref_kokoro_michael.wav
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: chatterbox, path: out/ }
+  neutts:
+    needs: kokoro
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg espeak-ng
+      - uses: actions/download-artifact@v4
+        with: { name: kokoro, path: ref/ }
+      - run: |
+          pip install -q neutts==1.4.1
+          python voice_lab/gen_neutts.py out ref/ref_kokoro_michael.wav
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: neutts, path: out/ }
+  collect:
+    needs: [kokoro, cloud, chatterbox, neutts]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: dl/ }
+      - run: |
+          mkdir -p voice_lab/samples
+          find dl -type f \( -name '*.mp3' -o -name '*.txt' -o -name '*.json' -o -name 'ref_*.wav' \) -exec cp {} voice_lab/samples/ \;
+          ls -la voice_lab/samples
+          git config user.name "voice-lab"
+          git config user.email "voice-lab@users.noreply.github.com"
+          git add voice_lab/samples
+          git commit -m "voice lab samples" && git push origin HEAD:voice-lab
