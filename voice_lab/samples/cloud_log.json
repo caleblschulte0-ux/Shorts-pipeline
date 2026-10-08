@@ -1,0 +1,15 @@
+{
+ "elevenlabs_subscription": {
+  "tier": "starter",
+  "character_count": 39989,
+  "character_limit": 40000,
+  "next_character_count_reset_unix": 1792692547,
+  "status": "active",
+  "billing_period": "monthly_period",
+  "can_use_instant_voice_cloning": true,
+  "can_use_professional_voice_cloning": false
+ },
+ "elevenlabs_eleven_flash_v2_5": "HTTP 401: {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 18 credits are required for this request.\",\"status\":\"quota_exceeded\",\"request_id\":\"7f247477fbd9e76453aedf9c69ef8685\"}}",
+ "elevenlabs_eleven_multilingual_v2": "HTTP 401: {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 35 credits are required for this request.\",\"status\":\"quota_exceeded\",\"request_id\":\"cf608776338fa15244d55568e4892007\"}}",
+ "speechify": "ok"
+}
