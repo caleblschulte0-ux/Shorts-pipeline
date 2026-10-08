@@ -39,8 +39,9 @@ existing dormant-enhancer pattern): `available()` is offline-deterministic
 (deps importable + binaries on PATH + model present with valid checksum —
 never a network call); best-effort entry points are `maybe_*` and return a
 result or `None`, never raising into a caller; engines never write outside
-`cache/` (gitignored). **No production renderer or workflow imports
-`engines/` today — every capability is opt-in.**
+`cache/` (gitignored). Each engine is opt-in per consumer; the
+`consumers` field in `engines.REGISTRY` says who calls it, and
+`tests/test_engine_registry_honesty.py` holds that field to the code.
 
 ---
 
@@ -129,6 +130,23 @@ git history at the commit before its deletion if a real consumer — a
 | consumers | `third_capture.clip_qa` (pre-vision mechanical gate) |
 | known failure modes | blurred/stylistic padding is invisible to cropdetect (near-black bars only) — aesthetic judgment stays with the vision critic; freeze detection can flag deliberate long holds ≥2s (threshold tunable per call) |
 | sample | `python -m engines demo render_qa --video output/third/clip.mp4` |
+
+### chatterbox_tts (added 2026-10-08 — the explainer's narration voice)
+
+| Field | `chatterbox_tts` |
+|---|---|
+| status | **active** |
+| problem | A narration voice people cannot tell is AI, free. Operator, 2026-10-08: paying for ElevenLabs is hard to justify, a recognisably-AI voice "is cooked", recording their own voice defeats autonomy; of a clone on the voice lab page, "chatterbox lowkey sound better then eleven labs". |
+| how | Resemble AI's Chatterbox clones one of five real LibriTTS-R narrators from a 10 s clip in `assets/voice/` (the numbers 1-5 match the voice lab page). |
+| isolation | its own venv `cache/venvs/chatterbox`, exact versions in `engines/chatterbox.lock` (torch 2.6 CPU, numpy<2, transformers 5.2 — never in the pipeline env); runs as `engines/_chatterbox_worker.py` with an allow-listed environment (no secret reaches it) and the HF hub offline |
+| model | `engines/chatterbox.models.json`: repo, revision and SHA-256 + size of every file, for `full` and `turbo`, with the times measured on a GitHub runner |
+| listened to | the showrunner judges frames, never audio, and an LLM voice can ad-lib: whisper `base.en` must hear ≥ `HEARD_MIN` of each line's words at a natural rate, else the line is redrawn with a new seed (`REDRAWS`), else `maybe_voice` returns `None` |
+| settings | repo variables `CHATTERBOX_VOICE` (1-5, default 1) and `CHATTERBOX_MODEL` (`turbo` / `full`, default `turbo`: five lines in ~80 s against ~270 s) |
+| license / commercial | MIT (code + weights). The voices are CC BY 4.0: `chatterbox_tts.CREDIT` goes in the description of every video it narrated (`post_stories._voice_credit`) |
+| fallback | `None` → `studio_render.synth_narration` voices the WHOLE video with ElevenLabs → Speechify → Kokoro |
+| consumers | `data_learning/studio_render.py` (explainer narration, through the TTS line cache), `scripts/post_stories.py` (the credit) |
+| provisioning | `python -m engines install chatterbox_tts`, every explainer run (~90 s). Deliberately NOT in actions/cache: 2-4 GB of weights would evict the repo's other caches from its 10 GB |
+| tests | `tests/test_the_voice_is_a_real_narrator.py` |
 
 ---
 
