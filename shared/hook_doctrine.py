@@ -1,30 +1,34 @@
-"""THE HOOK — the first sentence we say, written like a 2000s download-site ad.
+"""THE HOOK — the first sentence we say: clickbait, never a scam, and said
+the way a PERSON says it.
 
 Operator, 2026-09-25: *"Our intros need to be 2000s, ad on a fucking LimeWire
-type shit ... real clickbaity. And not like scammy clickbaity"* — and, of the
-rainforest story: *"why a forest the size of France disappeared ... You're
-gonna die because the Amazon rainforest lost a million trees. Shit like
-that."*
+type shit ... real clickbaity. And not like scammy clickbaity."* Operator,
+2026-10-08: *"we need to work on our wording like our word hooks are trash"*.
 
-The queue's hooks were polite: "Your nose can detect an astonishing number of
-scents", "Why do some clocks even still change?", "Which animal could crush a
-bowling ball in its jaws?". A quiz question, a hedge, a fact read aloud. This
-module is the one place that says what a hook is now, scores it, and — at
-render time, for every story in the queue, not just new ones — has the brain
-rewrite any hook that does not clear the bar.
+Between the two, hooks were RANKED BY KEYWORDS: two points for "you", two for
+a verb off a list (vanished, gutted, exploded), and the forge refused any hook
+under 7. So the brain learned to staple those words onto anything: "Your
+garden vanished 94% of monarch milkweed", "Your town's peanut allergies
+vanished 43% overnight, shocking everyone", "Your world vanished 15,000 years
+ago", "Your octopus has 500 million neurons". It also rewrote good plain hooks
+("A degree costs triple. It pays half.") because they scored 1. And the score
+bought nothing: across the posted videos with 30+ views, hooks scoring 7+
+kept 31% of viewers and hooks scoring 0-2 kept 36%.
+
+So a hook is now judged the way a viewer meets it, by a LISTENER
+(`listen`): the brain hears every candidate — the current hook included — as
+someone scrolling, fails any that is untrue, does not parse heard once, or
+sounds like a template, and ranks the rest by "which would make you stop".
+Code keeps what code can check (`floor`: quiz, hedge, vague, scam, formula
+tag, length, garbled; `problems`: the numbers and names), and only a line
+that clears both reaches the listener.
 
 THE LINE BETWEEN CLICKBAIT AND A SCAM is the same one the rest of this repo
-already holds: EXAGGERATE THE FEELING, NEVER THE FACT. Every number in a new
-hook must come from the story's own data (`rewrite_mailbox._quantities_ok`),
-it may not bring a name from outside (`rewrite_mailbox._entities_ok`), and a
-hook that fails either is thrown away, however good it sounds. Those checks
-are REUSED, not re-written: they are what already guards a ChatGPT rewrite,
-and a second copy is how the two would drift.
-
-The score builds on `scripts/hook_director.grade_line` (curiosity, stakes,
-a number, you) — the curiosity channel's gate — and adds what that grader
-never asked for: the viewer is the one in danger, the verb is visceral, the
-line is short, and it is not a quiz.
+already holds: EXAGGERATE NOTHING. Every number in a new hook must come from
+the story's own data (`rewrite_mailbox._quantities_ok`), it may not bring a
+name from outside (`rewrite_mailbox._entities_ok`), and a hook that fails
+either is thrown away, however good it sounds. Those checks are REUSED, not
+re-written: they are what already guards a ChatGPT rewrite.
 """
 from __future__ import annotations
 
@@ -34,55 +38,52 @@ import re
 #: What the brain is told. Kept here so the forge and the render-time
 #: sharpener ask for the SAME thing.
 DOCTRINE = """\
-THE HOOK is the first sentence the viewer hears, over the first frame. Write \
-it like a 2000s download-site ad or a tabloid front page: it has to stop a \
-thumb mid-scroll. Real clickbait — never a scam.
+THE HOOK is the first sentence the viewer hears, over the first frame. It has \
+to stop a thumb mid-scroll. It is clickbait, never a scam: the most surprising \
+TRUE thing in this story, said the way a person says it when they just found \
+out and can't believe it.
 
-DO:
-  - Put the VIEWER in it. "You", "your" — their money, their food, their \
-body, their town, their kids. Make it their problem.
-  - Lead with the shock. The most alarming TRUE consequence of the data, \
-first word to last. No warm-up.
-  - Use visceral verbs: wiped out, vanished, exploded, gutted, doubled, \
-swallowed, bleeding, gone, dying, erased, crushed.
-  - Leave a gap the video fills: "...and nobody noticed", "...here's who's \
-paying", "...and it's speeding up".
-  - Say ONE number from the data, the loudest one, in the words a person \
-would shout ("11 million bags", "more than double", "a third of them").
-  - Short. 6 to 14 words. One sentence, two at most.
+HOW IT SOUNDS:
+  - Like a person talking, not ad copy. Read it out loud: if nobody would ever \
+say that sentence to a friend, it is wrong, however dramatic it is.
+  - It makes sense heard ONCE, at full speed, with no picture. Plain words, \
+normal grammar, one idea.
+  - The surprise is the FACT, so say the fact: the number, the flip, the thing \
+nobody expects. "More than half the web is bots now." "A degree costs triple. \
+It pays half." "One ship now carries 24,000 truckloads of cargo."
+  - Concrete beats abstract: a thing you can picture, a number you can feel.
+  - "You" only when it really is about the viewer: their money, their body, \
+their phone, their kids. "Your dead phone joined 62 million tons of trash" is \
+fine — it is your phone. "Your octopus", "your lecture hall", "your garden \
+vanished 94% of milkweed", "your world vanished 15,000 years ago" are not \
+about the viewer and do not parse.
+  - A strong verb only when it is the true verb. "Vanished" needs a thing that \
+vanished; "exploded" needs a thing that grew that fast.
+  - Short: 5 to 14 words. One sentence, two at most.
 
 NEVER:
-  - A number that is not in the data. Not rounded differently, not \
-converted into a bigger one, not a comparison the data does not contain.
-  - A name — country, company, person — that the story does not already use.
-  - A fact that is not true. Exaggerate the FEELING, never the FACT: "your \
-coffee is being wiped out" is a feeling about a real 24% cut; "coffee will \
-be extinct by 2030" is a lie.
-  - Quiz or trivia openers: "Which animal...", "Can you guess...", "Did you \
-know...", "Have you ever...". A question is fine only if it is an accusation \
+  - A formula tag bolted on the end: "...and nobody told you", "...your town \
+feels it", "...shocking everyone", "...here's what changed". If the fact needs \
+a tag to be interesting, pick a better fact.
+  - A number that is not in the data, rounded differently, or converted.
+  - A name — country, company, person — the story does not already use.
+  - A fact that is not true. Exaggerate nothing: a 24% cut is not "gone".
+  - Quiz or trivia openers: "Which animal...", "Did you know...", "Can you \
+guess...", "You won't believe...". A question is fine only if it accuses \
 ("Why is your coffee twice the price?").
-  - Hedges: might, may, possibly, perhaps, somewhat, a bit, arguably.
-  - Scam tells: "click", "link", "free", "guaranteed", "doctors hate", \
-"one weird trick", ALL CAPS.
+  - Hedges (might, may, perhaps), vague size words with no number \
+("astonishing", "gargantuan", "much more"), and scam tells ("click", "free", \
+ALL CAPS).
 
-Examples of the voice (the numbers here are illustrations — use yours):
-  "Your coffee just got gutted: 11 million bags, gone overnight."
-  "A forest bigger than your whole state vanished — and you paid for it."
-  "You're breathing air from a sky that lost a third of its birds."
-  "Your rent doubled. Your paycheck didn't. Here's the number."
+Opening lines this channel posted that held the most viewers (the numbers \
+are theirs — use yours): "One laser shot finally changed the math." "More \
+than half the web is bots now." "One ship now carries 24,000 truckloads of \
+cargo." "Your dead phone joined 62 million tons of trash, and the pile is \
+growing fast."
 """
 
-#: A hook at or above this does not get rewritten.
-BAR = 7
 MAX_WORDS = 16
 
-_VISCERAL = re.compile(
-    r"\b(wip\w+ out|vanish\w*|explod\w*|gutt\w*|doubl\w*|tripl\w*|swallow\w*|"
-    r"bleed\w*|gone|dying|dies|died|dead|kill\w*|erase\w*|crush\w*|collaps\w*|"
-    r"disappear\w*|destroy\w*|stole\w*|steal\w*|drown\w*|burn\w*|starv\w*|"
-    r"poison\w*|shrink\w*|shrank|plung\w*|crash\w*|lost|losing|lose|broke|"
-    r"skyrocket\w*|soar\w*|slash\w*|choke\w*|devour\w*|melt\w*|empt\w*)\b",
-    re.I)
 _QUIZ = re.compile(
     r"^\s*(which|what|who|can you|could you|bet you|guess|did you know|have "
     r"you ever|you won'?t believe|ever wonder|here'?s a fun)\b", re.I)
@@ -92,6 +93,16 @@ _SCAM = re.compile(r"\b(click|link|free|guaranteed|doctors hate|one weird "
                    r"trick|subscribe)\b", re.I)
 _SHOUT = re.compile(r"\b[A-Z]{4,}\b")
 _ACCUSE = re.compile(r"^\s*why (is|are|did|do|does) (your|you)\b", re.I)
+#: A size said with no size: "Your nose can detect an astonishing number of
+#: scents", "home to gargantuan creatures". The viewer is told to be amazed
+#: and given nothing to be amazed BY.
+_VAGUE = re.compile(r"\b(astonishing\w*|incredibl\w*|amazing\w*|gargantuan|"
+                    r"mind[- ]blowing|unbelievabl\w*|much more|so many)\b", re.I)
+#: The tags the keyword score taught the forge to bolt on: if a fact needs
+#: one to be interesting, it is the wrong fact.
+_TAG = re.compile(r"(\band nobody (told you|noticed|is talking about it)|"
+                  r"\bshocking everyone|\bfeels it\b|\bthink about that|"
+                  r"\bthen something \w+ happened)", re.I)
 #: A number with nothing after it to say what it counts, run straight into a
 #: dash: "Your sky vanished 29.9— the ozone hole is healing" was spoken over
 #: the first frame on 2026-10-07. A viewer hears a number of nothing.
@@ -108,45 +119,28 @@ def garbled(line: str) -> list:
     return []
 
 
-def punch(line: str) -> dict:
-    """0-10: how hard the line stops a scroll, and why.
-
-    The first five points are `hook_director.grade_line` unchanged — one
-    grader for "is there a curiosity gap, stakes, a number, a you". The
-    other five are this doctrine's own, and the penalties can take a line
-    back to zero: a quiz, a hedge or a scam tell each cost more than any
-    single virtue earns.
-    """
-    from scripts import hook_director as hd
+def floor(line: str) -> list:
+    """Why this line cannot open a video, by what code can see. Empty = the
+    listener may hear it. Never a ranking: a line that clears the floor is
+    no better for clearing it by more."""
     s = " ".join(str(line or "").split())
-    base = hd.grade_line(s)
-    score, notes = base["score"], list(base["hits"])
+    if not s:
+        return ["empty"]
+    out = []
     words = len(s.split())
-    if hd.YOU.search(s):
-        score += 2
-        notes.append("the viewer is in it")
-    if _VISCERAL.search(s):
-        score += 2
-        notes.append("visceral verb")
-    if 5 <= words <= 14:
-        score += 1
-        notes.append("short")
     if words > MAX_WORDS:
-        score -= 2
-        notes.append(f"long ({words} words)")
+        out.append(f"long ({words} words)")
     if _QUIZ.match(s) and not _ACCUSE.match(s):
-        score -= 3
-        notes.append("quiz opener")
+        out.append("quiz opener")
     if _HEDGE.search(s):
-        score -= 2
-        notes.append("hedge")
+        out.append("hedge")
     if _SCAM.search(s) or _SHOUT.search(s):
-        score -= 4
-        notes.append("scam tell")
-    for g in base["gates"]:
-        score -= 2
-        notes.append(g)
-    return {"score": max(0, min(10, score)), "notes": notes, "words": words}
+        out.append("scam tell")
+    for rx, what in ((_VAGUE, "vague"), (_TAG, "a formula tag")):
+        m = rx.search(s)
+        if m:
+            out.append(f"{what} ({m.group(0).strip()!r})")
+    return out + garbled(s)
 
 
 # ---------------------------------------------------------------------------
@@ -256,7 +250,7 @@ def _facts_text(facts: list) -> str:
 
 def _prompt(story_cfg: dict, n: int, facts: list | None = None) -> str:
     lines = [f"TITLE: {story_cfg.get('title', '')}",
-             f"CURRENT HOOK (too soft): {story_cfg.get('hook', '')}"]
+             f"CURRENT HOOK (write better, or it stays): {story_cfg.get('hook', '')}"]
     for i, seg in enumerate(story_cfg.get("segments") or []):
         lines.append(f"BEAT {i + 1}: {seg.get('say', '')}")
     if facts:
@@ -290,42 +284,31 @@ def _default_brain(prompt: str):
         return None
 
 
-_VERIFY = """You are a fact-checker for a YouTube Shorts channel. Below is \
-a story's narration and some candidate opening lines. Clickbait TONE is \
-allowed — drama, "you", exaggerated feeling. What is NOT allowed is a FACT \
-the narration does not support: a cause, a consequence, a quantity, a date, \
-a "never" or an "every" the story does not back up. Also refuse a candidate \
-that is not a complete sentence a person would say out loud, or that says \
-something HAPPENED to the viewer or their things that did not ("your town \
-wiped out by 206 million bird deaths" — no town was wiped out; "your \
-garden vanished 94% of milkweed" does not parse).
+_LISTEN = """You are scrolling YouTube Shorts. Below are candidate opening lines for one \
+video — each one is spoken over its first frame — and the story the video \
+tells. Judge them the way a viewer hears them, and as a fact-checker.
 
-NARRATION:
+A line FAILS if any of these is true:
+  - it states a fact, cause, consequence, quantity, "never" or "every" the \
+story does not support;
+  - it does not make sense heard once at full speed (broken grammar, a \
+number of nothing, "your" stuck on something that is not the viewer's, a \
+thing "vanished" that did not);
+  - it sounds like ad copy or a template nobody would say out loud \
+("...and nobody told you", "...shocking everyone", "your town feels it");
+  - it is a quiz, a hedge, or vague ("astonishing", "gargantuan").
+
+Then RANK the lines that pass, best first, by one question: which one would \
+actually make YOU stop scrolling and watch the next five seconds?
+
+STORY:
 {say}
 
 CANDIDATES:
 {cands}
 
-Return STRICT JSON: {{"supported": [<the numbers of the candidates whose every \
-factual claim is supported>], "why": {{"<n>": "<one line, for the ones you \
-refused>"}}}}"""
-
-
-def verified(cands: list, story_cfg: dict, brain,
-             facts: list | None = None) -> list:
-    """The candidates whose every FACT the story's own narration supports,
-    in their original order. Fails CLOSED: no brain, no verdict, nothing
-    changes — a soft hook is a missed click, a false one is a lie."""
-    if not cands:
-        return []
-    say = _say(story_cfg)
-    if facts:
-        say += ("\nALSO TRUE (checked reference sizes):\n"
-                + _facts_text(facts))
-    raw = brain(_VERIFY.format(
-        say=say, cands="\n".join(f"{i + 1}. {c}" for i, c in enumerate(cands))))
-    keep = _supported(raw)
-    return [c for i, c in enumerate(cands) if keep and i in keep]
+Return STRICT JSON: {{"ranking": [<numbers of the passing lines, best \
+first>], "why": {{"<n>": "<one line on each line you failed>"}}}}"""
 
 
 def _say(story_cfg: dict) -> str:
@@ -334,50 +317,59 @@ def _say(story_cfg: dict) -> str:
                       for s in story_cfg.get("segments") or []])
 
 
-def _supported(raw) -> set | None:
-    """The 0-based candidates the fact-checker passed; None = no verdict."""
+def _ranking(raw, n: int) -> list | None:
+    """The 0-based candidates the listener passed, best first; None = no
+    verdict."""
     m = re.search(r"\{.*\}", str(raw or ""), re.S)
     try:
-        ok = json.loads(m.group(0)).get("supported") if m else None
+        got = json.loads(m.group(0)).get("ranking") if m else None
     except Exception:  # noqa: BLE001
         return None
-    if ok is None:
+    if not isinstance(got, list):
         return None
-    keep = set()
-    for k in ok:
+    out = []
+    for k in got:
         try:
-            keep.add(int(k) - 1)
+            i = int(k) - 1
         except (TypeError, ValueError):
             continue
-    return keep
+        if 0 <= i < n and i not in out:
+            out.append(i)
+    return out
+
+
+def listen(cands: list, story_cfg: dict, brain,
+           facts: list | None = None) -> list | None:
+    """The candidates a scrolling viewer would stop for, best first, each one
+    TRUE to the story and a sentence a person would say. Indices into
+    `cands`; a candidate left out failed. None = no verdict (fail CLOSED:
+    a soft hook is a missed click, a false one is a lie)."""
+    if not cands:
+        return []
+    say = _say(story_cfg)
+    if facts:
+        say += ("\nALSO TRUE (checked reference sizes):\n"
+                + _facts_text(facts))
+    raw = brain(_LISTEN.format(
+        say=say, cands="\n".join(f"{i + 1}. {c}" for i, c in enumerate(cands)))) \
+        if brain else None
+    return _ranking(raw, len(cands))
 
 
 def sharpen(story_cfg: dict, brain=_default_brain, n: int = 6,
             log=print) -> str | None:
-    """A harder hook for this story, or None to keep the one it has.
+    """A better hook for this story, or None to keep the one it has.
 
-    Keeps the current hook when it already clears `BAR`. Otherwise asks for
-    `n` rewrites, drops every one that fails `problems`, and returns the
-    highest-punch survivor — only if it beats the current hook.
+    Asks for `n` rewrites, drops every one that fails `problems` or `floor`,
+    and has the LISTENER hear the survivors beside the current hook. Returns
+    the line it ranks first, or None when that is the current hook, nothing
+    survived, or there is no verdict.
     """
     old = str(story_cfg.get("hook") or "").strip()
-    was = punch(old)
-    broken = garbled(old)
-    if was["score"] >= BAR and not broken:
-        # A loud hook still has to be TRUE and a sentence: the forge wrote
-        # "Your town wiped out by 206 million bird deaths", which scores high
-        # on punch and is neither. Asked once; no answer keeps it.
-        raw = brain(_VERIFY.format(say=_say(story_cfg), cands="1. " + old)) \
-            if brain else None
-        ok = _supported(raw)
-        if ok is None or 0 in ok:
-            return None
-        log(f"[hook] {old!r} must be rewritten: the fact-checker refused it")
-        broken = ["refused by the fact-checker"]
-    if broken:
-        # a line that does not parse is worth nothing, however loud it is
-        log(f"[hook] {old!r} must be rewritten: {broken[0]}")
-        was = {**was, "score": 0}
+    why_old = floor(old)
+    if why_old:
+        # a line under the floor is worth nothing, however loud it is
+        log(f"[hook] {old!r} must be rewritten: {why_old[0]}")
     allowed, label_words = evidence(story_cfg)
     facts = scale_facts(story_cfg)
     for f in facts:                 # a checked comparison may be said
@@ -385,28 +377,29 @@ def sharpen(story_cfg: dict, brain=_default_brain, n: int = 6,
         m = re.search(r"more than (\d+) times", f["phrase"])
         if m:
             allowed.add(float(m.group(1)))
-    passed = []
+    cands = [] if why_old else [old]
     for cand in _ask(_prompt(story_cfg, n, facts), brain):
-        why = problems(cand, story_cfg, allowed, label_words)
+        why = problems(cand, story_cfg, allowed, label_words) + floor(cand)
         if why:
-            log(f"[hook] refused {cand!r}: {'; '.join(why)}")
-            continue
-        p = punch(cand)["score"]
-        if p > was["score"]:
-            passed.append((p, cand))
-    passed.sort(key=lambda t: -t[0])          # stable: brain order breaks ties
-    top = [c for _, c in passed[:3]]
-    true = verified(top, story_cfg, brain, facts)
-    for c in top:
-        if c not in true:
-            log(f"[hook] refused {c!r}: a fact the story does not support")
-    best, best_p = None, was["score"]
-    for p, c in passed:
-        if c in true:
-            best, best_p = c, p
-            break
-    if best:
-        log(f"[hook] {was['score']}->{best_p}: {old!r} -> {best!r}")
-    else:
-        log(f"[hook] kept {old!r} (punch {was['score']}): no rewrite beat it")
+            log(f"[hook] refused {cand!r}: {'; '.join(dict.fromkeys(why))}")
+        elif cand not in cands:
+            cands.append(cand)
+    if not cands or cands == [old]:
+        log(f"[hook] kept {old!r}: no rewrite cleared the floor")
+        return None
+    rank = listen(cands, story_cfg, brain, facts)
+    if rank is None:
+        log(f"[hook] kept {old!r}: the listener gave no verdict")
+        return None
+    for i, c in enumerate(cands):
+        if i not in rank:
+            log(f"[hook] refused {c!r}: the listener failed it")
+    if not rank:
+        log(f"[hook] kept {old!r}: the listener passed nothing")
+        return None
+    best = cands[rank[0]]
+    if best == old:
+        log(f"[hook] kept {old!r}: the listener ranked it first")
+        return None
+    log(f"[hook] {old!r} -> {best!r}")
     return best

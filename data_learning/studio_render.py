@@ -429,76 +429,14 @@ def _advance_broll(total: float) -> None:
 # --------------------------------------------------------------------------
 # Kokoro narration (the pipeline voice).
 # --------------------------------------------------------------------------
-_ONES = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight",
-         "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen",
-         "sixteen", "seventeen", "eighteen", "nineteen"]
-_TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy",
-         "eighty", "ninety"]
-
-
-def _card(n: int) -> str:
-    if n < 20:
-        return _ONES[n]
-    if n < 100:
-        return _TENS[n // 10] + (" " + _ONES[n % 10] if n % 10 else "")
-    if n < 1000:
-        r = n % 100
-        return _ONES[n // 100] + " hundred" + (" " + _card(r) if r else "")
-    r = n % 1000
-    return _card(n // 1000) + " thousand" + (" " + _card(r) if r else "")
-
-
-def _year(n: int) -> str:
-    if 2000 <= n <= 2009:
-        return "two thousand" + (" " + _ONES[n % 10] if n % 10 else "")
-    hi, lo = n // 100, n % 100
-    if lo == 0:
-        return _card(hi) + " hundred"
-    if lo < 10:
-        return _card(hi) + " oh " + _ONES[lo]
-    return _card(hi) + " " + _card(lo)
-
-
-def _spell_numbers(text: str) -> str:
-    """Spell every number out in words so the TTS pronounces it correctly
-    (e.g. '5.3' -> 'five point three', '2023' -> 'twenty twenty three').
-    Applied to the spoken audio ONLY — captions keep the digits."""
-    def _dec(m):
-        whole, frac = m.group(0).split(".")
-        return (_card(int(whole)) + " point "
-                + " ".join(_ONES[int(d)] for d in frac))
-    text = re.sub(r"\d+\.\d+", _dec, text)
-
-    def _int(m):
-        n = int(m.group(0))
-        return _year(n) if 1900 <= n <= 2099 else _card(n)
-    return re.sub(r"\d+", _int, text)
-
-
-def _say_num(s: str) -> str:
-    """Spell a number string (commas/decimal ok) as cardinal words — never a
-    year. '1,920' -> 'one thousand nine hundred twenty', '50.4' -> 'fifty point
-    four'."""
-    s = s.replace(",", "")
-    if "." in s:
-        whole, frac = s.split(".")
-        return _card(int(whole)) + " point " + " ".join(_ONES[int(d)] for d in frac)
-    return _card(int(s))
-
-
 def _tts_text(text: str) -> str:
-    # CORE: spoken numbers must come out clean for a number-heavy channel.
-    #   "$1,920" -> "one thousand nine hundred twenty dollars" (cardinal + unit,
-    #   never a year), "5,600" -> "five thousand six hundred", "200%" -> "two
-    #   hundred percent". Dollar amounts and comma'd quantities are forced to
-    #   cardinals; only BARE 4-digit numbers (1990, 2020) read as years. The
-    #   captions keep the original digits; only the audio changes.
-    text = re.sub(r"\$\s?(\d[\d,]*(?:\.\d+)?)",
-                  lambda m: " " + _say_num(m.group(1)) + " dollars ", text)
-    text = re.sub(r"\b(\d{1,3}(?:,\d{3})+)\b",
-                  lambda m: " " + _say_num(m.group(1)) + " ", text)
-    text = text.replace("%", " percent ")
-    return _spell_numbers(text)
+    # CORE: the voice is handed WORDS (operator, 2026-10-08: "everything and
+    # anything it could mis read ... needs to be in word format"). Numbers,
+    # units, symbols, decades, ordinals and acronyms are spelled the way a
+    # person says them: `shared/spoken.say`. The captions keep the digits;
+    # only the audio changes.
+    from shared import spoken
+    return spoken.say(text)
 
 
 _SPEECHIFY_MODEL_OK = None            # cache the model that actually worked
@@ -3022,12 +2960,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
     if voice is None:
         voice = theme["voice"]
 
-    # THE FIRST SENTENCE IS AN AD (operator, 2026-09-25: "our intros need to
-    # be 2000s ... LimeWire type shit ... real clickbaity. And not like
-    # scammy"). Every story in the queue — not only the new ones the forge
-    # writes — gets its hook rewritten here when it does not clear the bar,
-    # before a word is spoken, and the rewrite is persisted so it happens
-    # once. Numbers from the data, no outside names: `shared/hook_doctrine`.
+    # THE FIRST SENTENCE STOPS A THUMB (operator, 2026-09-25: "real
+    # clickbaity. And not like scammy"; 2026-10-08: "our word hooks are
+    # trash"). Every story in the queue — not only the new ones the forge
+    # writes — has its hook heard here beside fresh rewrites, before a word
+    # is spoken, and a better one is persisted. Numbers from the data, no
+    # outside names, a listener ranks: `shared/hook_doctrine`.
     import os as _os_h
     if _os_h.environ.get("HOOK_SHARPEN", "on").lower() not in ("0", "off", "false"):
         try:

@@ -112,7 +112,7 @@ class EveryWriterIsTold(unittest.TestCase):
         with mock.patch.object(SF, "_brain_words", brain), \
                 mock.patch("scripts.editorial_gate.premise_ok",
                            return_value={"ok": True, "reasons": [], "judge": "stub"}), \
-                mock.patch("shared.hook_doctrine.punch", return_value={"score": 9, "notes": []}):
+                mock.patch("shared.hook_doctrine.floor", return_value=[]):
             w, by = SF._words_that_clear_the_bar(dss)
         self.assertEqual(w["says"][0], drafts[1]["says"][0])
         self.assertIn("pace:", notes[1] or "")

@@ -333,9 +333,25 @@ constants blanked), never on the prose that explains it.
   second five. `studio_render.flash_forward` lays the opening picture's
   FINISHED frame over its first `FLASH_S`, the first picture never fades
   in from black, and the WHOLE hook line is on the plate from frame one
-  with the said word lit (`hook_karaoke`). A hook must also parse and be
-  true: `hook_doctrine.garbled`, and a loud hook is still fact-checked
-  once. `tests/test_the_first_frame_is_the_shock.py`.
+  with the said word lit (`hook_karaoke`). `tests/test_the_first_frame_is_the_shock.py`.
+  And the hook is said the way a PERSON says it (operator, same day:
+  *"our word hooks are trash"*). A keyword score — points for "you" and
+  for a verb off a list, with the forge refusing anything under 7 — had
+  taught the brain "your garden vanished 94% of milkweed" and "...shocking
+  everyone", and bought nothing (posted hooks scoring 7+ kept 31% of
+  viewers, 0-2 kept 36%). It is gone. Code holds a FLOOR only
+  (`hook_doctrine.floor`: quiz, hedge, vague size, formula tag, length,
+  garbled) plus the numbers-and-names `problems`; a LISTENER (`listen`)
+  hears the current hook beside the rewrites as a scrolling viewer, fails
+  the untrue and the unsayable, and ranks the rest. Never put a keyword
+  score back in. `tests/test_the_hook_is_an_ad.py`.
+  And the VOICE is handed WORDS (operator, same day: *"everything and
+  anything it could mis read ... needs to be in word format"*).
+  `shared/spoken.say` is the one speller: units, °F, decades, ordinals,
+  fractions, ranges, acronyms ("US" is "U S"), shouting, every number.
+  The explainer's `_tts_text` is it; trending's `normalize_for_tts` is its
+  `shorthand` (trending times cues off a digit transcript, so it keeps
+  digits). `tests/test_the_voice_reads_words.py` runs every queued line.
 
 - **A brain-drawn subject scene has to pass a VIEWER, not just the code**
   (operator, 2026-10-01: a coffin he "couldn't tell was a coffin", an urn
