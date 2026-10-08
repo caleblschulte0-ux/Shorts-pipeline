@@ -11792,13 +11792,40 @@
       "ts": "2026-10-08T12:39:23.993416+00:00"
     },
     "clip-20261008-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/buddha/clip/ZanyHelpfulSmoothieSuperVinlin-iZ7I4FJgN8g4ccVq",
-      "story_key": null,
-      "streamer": "buddha",
+      "url": "https://youtube.com/shorts/UcdvjndJcaI",
       "title": "Buddha 5 Second Getaway Is Wild To Watch",
       "kind": "twitch_clip",
-      "ts": "2026-10-08T12:43:55.456188+00:00",
+      "ts": "2026-10-08T12:44:04.527114+00:00",
+      "uploaded_at": "2026-10-08T12:44:04.527133+00:00",
+      "publish_at": "2026-10-08T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261008-buddha-5-second-getaway-is-wild-to-watch-abf8bc20"
+      },
+      "source_url": "https://www.twitch.tv/buddha/clip/ZanyHelpfulSmoothieSuperVinlin-iZ7I4FJgN8g4ccVq",
+      "streamer": "buddha",
+      "series": "chaos",
+      "hook": "THE 5 SECOND GETAWAY",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3827,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "clip-20261008-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/LazyCharmingPepperoniDatSheffy-w6k-B5G0eBotQhEP",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Panics After Realizing He's Dead In Day 3 Of Death 2",
+      "kind": "twitch_clip",
+      "ts": "2026-10-08T12:48:31.693329+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
