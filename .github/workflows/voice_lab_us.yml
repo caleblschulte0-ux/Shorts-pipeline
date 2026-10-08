@@ -1,0 +1,81 @@
+# Voice lab round 5: young narrators an accent detector hears as American.
+# No secrets; read-only token; only collect writes, and only to this branch.
+name: Voice lab us
+on:
+  push:
+    branches: [voice-lab]
+    paths: ['voice_lab/us_refs.py', 'voice_lab/gen_us.py', 'voice_lab/heard_young.py', '.github/workflows/voice_lab_us.yml']
+permissions:
+  contents: read
+jobs:
+  refs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - run: |
+          mkdir globe
+          B=https://huggingface.co/datasets/MushanW/GLOBE_V2/resolve/main/data
+          for n in $(seq 4 17); do
+            f=train-$(printf %05d $n)-of-00164
+            curl -fsSL -o globe/$f.parquet $B/$f.parquet
+          done
+          sha256sum globe/* | tee globe.sha256
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q soundfile numpy librosa pyarrow speechbrain==1.0.3
+          python voice_lab/us_refs.py globe out voice_lab/young
+          cp globe.sha256 out/
+      - uses: actions/upload-artifact@v4
+        with: { name: us_refs, path: out/ }
+  gen:
+    needs: refs
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      matrix:
+        job: ['full 0/5', 'full 1/5', 'full 2/5', 'full 3/5', 'full 4/5', 'turbo 0/2', 'turbo 1/2']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with: { name: us_refs, path: refs/ }
+      - run: |
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q chatterbox-tts==0.1.7 --extra-index-url https://download.pytorch.org/whl/cpu
+          set -- ${{ matrix.job }}
+          python voice_lab/gen_us.py refs out $1 $2
+      - id: n
+        run: echo "n=$(echo '${{ matrix.job }}' | tr ' /' '__')" >> $GITHUB_OUTPUT
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: 'us_${{ steps.n.outputs.n }}', path: out/ }
+  collect:
+    needs: [refs, gen]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with: { path: dl/ }
+      - run: |
+          mkdir -p voice_lab/us
+          find dl -type f \( -name '*.mp3' -o -name '*.txt' -o -name '*.json' -o -name '*.sha256' \) -exec cp {} voice_lab/us/ \;
+          find dl -name 'us_*.wav' -exec sh -c 'ffmpeg -y -loglevel error -i "$1" -ac 1 -c:a libopus -b:a 96k voice_lab/us/$(basename "$1" .wav).ogg' _ {} \;
+          pip install -q openai-whisper
+          python voice_lab/heard_young.py voice_lab/us || true
+          git config user.name "voice-lab"
+          git config user.email "voice-lab@users.noreply.github.com"
+          git add -f voice_lab/us
+          git commit -m "voice lab us results [skip ci]"
+          for i in 1 2 3 4; do git pull --rebase -q origin voice-lab && git push origin HEAD:voice-lab && break; sleep $((i*3)); done
