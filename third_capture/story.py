@@ -55,9 +55,10 @@ FONTS_DIR = str(REPO / "assets" / "fonts")
 # the story's own line of text (hook, overlay, context) — sentence case in
 # a clean bold sans, apart from the speech captions' all-caps Anton
 CAPTION_FONT = str(REPO / "assets" / "fonts" / "InterDisplay-Bold.ttf")
-# upper-middle: above the speech captions (centred, ~960) and clear of
-# the platform's top bar
-CAPTION_Y = 560
+# the BOTTOM THIRD, as in the reposts (operator, 2026-10-08: "the text is
+# in the bottom third not the middle"): below the speech captions
+# (centred, ~960), above the platform's own bottom bar
+CAPTION_Y = 1340
 CANVAS_W, CANVAS_H = 1080, 1920
 FPS = 30
 MIN_BEATS = 2

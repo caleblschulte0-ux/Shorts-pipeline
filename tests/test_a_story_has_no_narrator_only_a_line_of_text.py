@@ -76,6 +76,11 @@ class ItLooksLikeTheReposts(unittest.TestCase):
         self.assertIn(story.CAPTION_FONT, f)
         self.assertTrue(Path(story.CAPTION_FONT).exists())
 
+    def test_it_sits_in_the_bottom_third(self):
+        # two lines at 64px still end above the platform's bottom bar
+        self.assertGreaterEqual(story.CAPTION_Y, story.CANVAS_H * 2 // 3)
+        self.assertLess(story.CAPTION_Y + 2 * 80, story.CANVAS_H - 300)
+
     def test_the_hook_keeps_its_case(self):
         from tests.test_the_story_critic_sees_the_whole_edit import _edl
         v = story_director.validate_edl(_edl("Los thought he ended stream"),

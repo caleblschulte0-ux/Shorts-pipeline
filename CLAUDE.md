@@ -618,7 +618,7 @@ Compilation dedupe rides `story_key` (member-set hash), never member
 - **A story has NO narrator — a line of text on screen** (operator,
   2026-10-08: *"No narrator but like any clip your allowed like a line or
   2 of text on the screen"*, with three reposts as the look). The hook is
-  one sentence-case line mid-frame, white with a black outline, no box,
+  one sentence-case line in the bottom third, white with a black outline, no box,
   there the whole video (`story.beat_captions`: one caption at a time; a
   time-jump overlay or a line of context replaces it long enough to read).
   The line may say who someone is when the footage never does, from
