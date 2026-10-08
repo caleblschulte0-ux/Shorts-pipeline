@@ -7,8 +7,7 @@ name: Voice lab human
 on:
   push:
     branches: [voice-lab]
-    paths: ['voice_lab/pick_refs.py', 'voice_lab/gen_chatterbox_human.py', 'voice_lab/gen_gemini_tts.py',
-            'voice_lab/judge.py', '.github/workflows/voice_lab_human.yml']
+    paths: ['voice_lab/pick_refs.py', 'voice_lab/gen_chatterbox_human.py', 'voice_lab/judge.py', '.github/workflows/voice_lab_human.yml']
 permissions:
   contents: read
 jobs:
