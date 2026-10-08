@@ -1,0 +1,52 @@
+# Voice lab: clone the operator's own recording (two 10s cuts), Chatterbox
+# full (energy dial up) and turbo. No secrets; read-only token; only collect
+# writes, and only to this branch.
+name: Voice lab mine
+on:
+  push:
+    branches: [voice-lab]
+    paths: ['voice_lab/gen_mine.py', 'voice_lab/mine/*.ogg', '.github/workflows/voice_lab_mine.yml']
+permissions:
+  contents: read
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        job: ['full 0/2', 'full 1/2', 'turbo 0/1']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - run: |
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q chatterbox-tts==0.1.7 --extra-index-url https://download.pytorch.org/whl/cpu
+          mkdir refs && for f in voice_lab/mine/*.ogg; do ffmpeg -loglevel error -i $f -ar 24000 refs/$(basename $f); done
+          set -- ${{ matrix.job }}
+          python voice_lab/gen_mine.py refs out $1 $2
+      - id: n
+        run: echo "n=$(echo '${{ matrix.job }}' | tr ' /' '__')" >> $GITHUB_OUTPUT
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: 'mine_${{ steps.n.outputs.n }}', path: out/ }
+  collect:
+    needs: gen
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: dl/ }
+      - run: |
+          mkdir -p voice_lab/mine/out
+          find dl -type f \( -name '*.mp3' -o -name '*.txt' \) -exec cp {} voice_lab/mine/out/ \;
+          git config user.name "voice-lab"
+          git config user.email "voice-lab@users.noreply.github.com"
+          git add -f voice_lab/mine/out
+          git commit -m "voice lab mine results [skip ci]"
+          for i in 1 2 3 4; do git pull --rebase -q origin voice-lab && git push origin HEAD:voice-lab && break; sleep $((i*3)); done
