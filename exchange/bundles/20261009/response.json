@@ -1,0 +1,458 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261009",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 8,
+    "registry_sha256": "6f4705b5afd447544619333b5575234574322c37a9c94f127e562bcdcfd8021d",
+    "source_commit": "4edfe4ea1d3b7397a66c820a31723bce4a4c39df",
+    "production_date": "20261009",
+    "bundle_sha256": "982086a788a0d72af0af25bd7d5fd2e165c254a1826c621f1cd4972b6872fb53"
+  },
+  "media": [
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s0-433c86381108",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1otssZ_ejJ0y6wkw4ELut4_DH6CCERmGY",
+        "filename": "20261009__05_reddit-badge-scanner-compliance-s0-433c86381108.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1otssZ_ejJ0y6wkw4ELut4_DH6CCERmGY",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "391bcebd7ae9a91885844ce9931f5eabb7f6930edff97a8709d41e1e7d6f8540",
+        "bytes": 1836219,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s0-433c86381108.json",
+        "verified_at": "2026-10-09T11:27:35.452Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s1-80943bffc170",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1EFicDk4sLr-cz6GCKkSg_Cz0A-nQfAuP",
+        "filename": "20261009__05_reddit-badge-scanner-compliance-s1-80943bffc170.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1EFicDk4sLr-cz6GCKkSg_Cz0A-nQfAuP",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "5d6d5c0099768116954792a0be7c51272d610c59afcc918a80250e87e39a0459",
+        "bytes": 2026522,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s1-80943bffc170.json",
+        "verified_at": "2026-10-09T11:27:35.452Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s2-dc135bc7f372",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1_hDMuaLGaZcPKWz1LiKJs3NkCsGqUkTO",
+        "filename": "20261009__05_reddit-badge-scanner-compliance-s2-dc135bc7f372.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1_hDMuaLGaZcPKWz1LiKJs3NkCsGqUkTO",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "e9a4edc24ec9c041d0b9ab520d2ba5f34fd1f6642a1796d16b3a5f8470b48141",
+        "bytes": 1863543,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s2-dc135bc7f372.json",
+        "verified_at": "2026-10-09T11:27:35.452Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s3-12f0ae073ba6",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1o9hGnPCWLuSj6IlieSr04G0LDrP56HSI",
+        "filename": "20261009__05_reddit-badge-scanner-compliance-s3-12f0ae073ba6.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1o9hGnPCWLuSj6IlieSr04G0LDrP56HSI",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "d38ee7df346b2e789f3794a14e8da9c1a1bf0a35c055edd686ab9c4a7181e889",
+        "bytes": 2011496,
+        "format": "png",
+        "width": 1672,
+        "height": 941
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s3-12f0ae073ba6.json",
+        "verified_at": "2026-10-09T11:27:35.452Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s4-66cb4b52ca03",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1nPCSYJpTY96iz9T74lTdu6ruUvYSEupz",
+        "filename": "20261009__05_reddit-badge-scanner-compliance-s4-66cb4b52ca03.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1nPCSYJpTY96iz9T74lTdu6ruUvYSEupz",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "45fe353f25ec3339e1b8e0110bcb4118dbc2fd2f45735b3742b1ca29a52b68ca",
+        "bytes": 2617952,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s4-66cb4b52ca03.json",
+        "verified_at": "2026-10-09T11:27:35.452Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1A0qQ_0Yj1aPSuQCSV0vqTPG1ac5B1iB0",
+        "filename": "20261009__05_reddit-badge-scanner-compliance-s5-560389cdbdb3.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1A0qQ_0Yj1aPSuQCSV0vqTPG1ac5B1iB0",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "260d7363b45061664248ebc865cfc7d1c5b1066a63920121735b4ca544f799fc",
+        "bytes": 1851291,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s5-560389cdbdb3.json",
+        "verified_at": "2026-10-09T11:27:35.452Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s6-7d5a9222809c",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1D4NuCRZ9ES1A5OCIVyRv8fPmNdNzc-4A",
+        "filename": "20261009__05_reddit-badge-scanner-compliance-s6-7d5a9222809c.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1D4NuCRZ9ES1A5OCIVyRv8fPmNdNzc-4A",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "3b026b286b0c1857cd80f51b075f57cb16ecfd5b790aec9f85cb2a638a455661",
+        "bytes": 2270685,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s6-7d5a9222809c.json",
+        "verified_at": "2026-10-09T11:27:35.452Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s7-3c5e99ec2f38",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1DCCGUbu-PxGNJu0plETVwLY__GIRS7bn",
+        "filename": "20261009__05_reddit-badge-scanner-compliance-s7-3c5e99ec2f38.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1DCCGUbu-PxGNJu0plETVwLY__GIRS7bn",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "00205211302285cb9ef22ca460856a49ff36d7980b41c7dbd98fb9d40c1d9e5d",
+        "bytes": 1961589,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s7-3c5e99ec2f38.json",
+        "verified_at": "2026-10-09T11:27:35.452Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s1-1e9c329558e3",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1N15ZYNVLqoZcxOkWk2S-hnUJhZl0lJlG",
+        "filename": "20261009__06_reddit-return-dog-damage-s1-1e9c329558e3.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1N15ZYNVLqoZcxOkWk2S-hnUJhZl0lJlG",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "11d6afae453a91a3149578058f4c73b1643be67f649a7fdb4bf425a5558e29e8",
+        "bytes": 2329688,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s1-1e9c329558e3.json",
+        "verified_at": "2026-10-09T11:27:35.452Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s2-632c54318233",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1xSdBsQkf_fajJXcMopNdu6jcRl2JUOfM",
+        "filename": "20261009__06_reddit-return-dog-damage-s2-632c54318233.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1xSdBsQkf_fajJXcMopNdu6jcRl2JUOfM",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "acdf34222c91b792511b1624b90b69b136843dc103a0b7a3f63c073bb7647925",
+        "bytes": 2038357,
+        "format": "png",
+        "width": 1374,
+        "height": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s2-632c54318233.json",
+        "verified_at": "2026-10-09T11:27:35.452Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s3-19b6310743a0",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Fz9HhblH7r29iHohpyx7dJPp1jDLeXlC",
+        "filename": "20261009__06_reddit-return-dog-damage-s3-19b6310743a0.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Fz9HhblH7r29iHohpyx7dJPp1jDLeXlC",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "5741e35f68c0bbbad45dfc16aaca4034157e3865797cab0a593918fe8043cb85",
+        "bytes": 2481875,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s3-19b6310743a0.json",
+        "verified_at": "2026-10-09T11:27:35.452Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s4-93f443f20cb2",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1bktYfMsEbmUJhm2yj0ko02KQ2O8jA2xx",
+        "filename": "20261009__06_reddit-return-dog-damage-s4-93f443f20cb2.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1bktYfMsEbmUJhm2yj0ko02KQ2O8jA2xx",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "37943160cf2f5ec293479a7de67932f6a4011142705ce91300310436a95257f9",
+        "bytes": 2796806,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s4-93f443f20cb2.json",
+        "verified_at": "2026-10-09T11:27:35.452Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s6-12d5fde8a41a",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1DleUbF6kdkOFXi62bcRq-mB7Hc-XUvNZ",
+        "filename": "20261009__06_reddit-return-dog-damage-s6-12d5fde8a41a.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1DleUbF6kdkOFXi62bcRq-mB7Hc-XUvNZ",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "3c9d7924ce3ce1c6bcf57ebd6c62847b74c908c77032661503b9d0c0de9c2ccd",
+        "bytes": 1835308,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s6-12d5fde8a41a.json",
+        "verified_at": "2026-10-09T11:27:35.452Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s7-960d5ca54eeb",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1DS9zxRx6NODHARRABBESQQrgLNuwcUQD",
+        "filename": "20261009__06_reddit-return-dog-damage-s7-960d5ca54eeb.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1DS9zxRx6NODHARRABBESQQrgLNuwcUQD",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "4d5a3eae58995ab7319d2e4a53c0cafbfbdbf354859e94fada5d68ddd47c24a6",
+        "bytes": 2263061,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s7-960d5ca54eeb.json",
+        "verified_at": "2026-10-09T11:27:35.452Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s0-2382fc808110",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Xv0bbB9QYvAwfwJ08I9nuozxkJ1rPyCH",
+        "filename": "20261009__06_reddit-return-dog-damage-s0-2382fc808110.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Xv0bbB9QYvAwfwJ08I9nuozxkJ1rPyCH",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "148c4c4376e911a896764adfa67bd93233bd21dc91e3bfecd7dbd9594dbb33ae",
+        "bytes": 2593106,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s0-2382fc808110.json",
+        "verified_at": "2026-10-09T11:27:35.452Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s5-bbd76f0168af",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1cY_NN8YMRwGGfFXZyVauXNN9N8TY-EXq",
+        "filename": "20261009__06_reddit-return-dog-damage-s5-bbd76f0168af.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1cY_NN8YMRwGGfFXZyVauXNN9N8TY-EXq",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "sha256": "55acdc3ce3a6a20474d0854e999dfe59bbc6dc7803eb5dbfe065f53ba338041b",
+        "bytes": 2359464,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s5-bbd76f0168af.json",
+        "verified_at": "2026-10-09T11:27:35.452Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "01_graph-india-china-population",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title directly names India’s first population crossover with China."
+    },
+    {
+      "slug": "02_graph-solar-nuclear-capacity",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title cleanly lands solar passing nuclear capacity."
+    },
+    {
+      "slug": "03_graph-smartphone-pc-shipments",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title identifies the decisive phones-versus-PC shipments crossover."
+    },
+    {
+      "slug": "04_graph-urban-rural-population",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly frames the global rural-to-urban reversal."
+    },
+    {
+      "slug": "05_reddit-badge-scanner-compliance",
+      "kept": true,
+      "editor_note": "Original retained after fact and shot-alignment review; its nine-thousand-scan escalation, three-director call, and badge-rule payoff already land cleanly."
+    },
+    {
+      "slug": "06_reddit-return-dog-damage",
+      "kept": true,
+      "editor_note": "Original retained after fact and shot-alignment review; the eight-month receipt reveal, chew-mark proof, and retriever admission already provide the turn and payoff."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal production Is 1.5x Higher Than In 1972",
+      "hook": "By the 1970s, experts were warning the world would run out of food.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8; by 2017, 91.3—1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons; by 2024, 1644.1—1.5 times higher.",
+        "China leads: 5.2; United States: 4.2; Australia: 3.6; Brazil: 2.4; Russia: 2.2 million square kilometers."
+      ],
+      "closing": "The famine everyone predicted never showed up.",
+      "question": "Which surprised you most—school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Combustible renewables and waste Is 3.0x Higher Than In 1990",
+      "hook": "One energy source has tripled since 1990; it isn't solar or wind.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 %; by 2024, 30.1 %—3.0 times higher.",
+        "In 1998, electricity access was 73.2 %; by 2024, 91.9 %—1.3 times higher.",
+        "In 1972, methane (ch4) waste emissions were 903.8 Mt CO2e; by 2024, 1,652—1.8 times higher."
+      ],
+      "closing": "A third of the world's energy now comes from waste.",
+      "question": "Which surprised you most—fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to accelerate forever; the number proves it didn't.",
+      "says": [
+        "In 1972, rural population was 63.1 %; by 2025, 42.2 %—67 percent of that.",
+        "In 1972, largest-city population was 18.2 %; by 2025, 16.2 %—barely moved.",
+        "In 1972, population growth was 2 annual %; by 2025, 0.91 annual %—46 percent."
+      ],
+      "closing": "The planet is still growing; it has almost stopped accelerating.",
+      "question": "Which surprised you most—rural, city, or growth?"
+    }
+  ],
+  "notes": [
+    "All 16 bundle media requests were generated, Drive-uploaded, raw-downloaded, byte/hash matched, PNG-decoded, and confirmed public via anyone-reader permission.",
+    "All six Trending packages received an editorial decision; the four graph races are renderer-native and both Reddit stories were retained after fact and shot-alignment review.",
+    "Three Explainer word rewrites preserve every protected number and entity and match the frozen pacing limits."
+  ]
+}
