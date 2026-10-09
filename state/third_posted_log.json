@@ -11999,13 +11999,58 @@
       "ts": "2026-10-09T12:28:56.363764+00:00"
     },
     "clip-20261009-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/AmazonianClearCookieDancingBanana-MPyC26edNNWJPaC_",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/cqRmEDQxj6s",
       "title": "Kaicenat: Kai Cenat Threatens To Sue Someone For Playing With His Name",
       "kind": "twitch_clip",
-      "ts": "2026-10-09T12:32:48.038287+00:00",
+      "ts": "2026-10-09T12:32:59.327814+00:00",
+      "uploaded_at": "2026-10-09T12:32:59.327829+00:00",
+      "publish_at": "2026-10-09T18:30:00Z",
+      "crossposts": {
+        "tiktok": "https://www.tiktok.com/@me/video/v_pub_file~v2-1.7694644691702368286"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/AmazonianClearCookieDancingBanana-MPyC26edNNWJPaC_",
+      "streamer": "kaicenat",
+      "series": "beef",
+      "hook": "I'M CALLING THE COPS",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3223,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 29.4
+      },
+      "director_cut": true
+    },
+    "rejected-coweringquaintherringbleedpurple-1mvqdbqw_dsmbulj": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/CoweringQuaintHerringBleedPurple-1MVQdBqw_DsMBULj",
+      "streamer": "stableronaldo",
+      "title": "JYNXZI SAID WHAT?",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.0s \u2014 too short to edit",
+      "ts": "2026-10-09T12:34:00.804417+00:00"
+    },
+    "rejected-furiousesteemedcarrotdatsheffy-gznkf0sosmjeevcr": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/FuriousEsteemedCarrotDatSheffy-gZNkf0soSmJeeVCr",
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Can't Stop Saying \"He's So Fine\" After This Moment",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about a third of the canvas height. It is the whole stream view with chat, overlays a; vision: The people are small and far away, and the blurred padding takes up most of the frame. They are hard to read on a phone.; vision: The frame is a stream VOD screen",
+      "ts": "2026-10-09T12:37:27.103282+00:00"
+    },
+    "clip-20261009-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/RenownedPricklyThymeKippa-2A6qIIrJlxWeTDxD",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Can't Believe What Just Happened After His 11th Death",
+      "kind": "twitch_clip",
+      "ts": "2026-10-09T12:42:19.881169+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
