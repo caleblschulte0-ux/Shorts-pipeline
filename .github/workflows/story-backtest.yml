@@ -93,6 +93,8 @@ jobs:
           TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
           TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
           THIRD_BUDGET_MIN: '170'
+          # large Whisper via Groq (clip_edit._groq_words); local on failure
+          THIRD_ASR: groq
         run: |
           python scripts/story_backtest.py \
             --attempts "${{ inputs.attempts || '4' }}" \

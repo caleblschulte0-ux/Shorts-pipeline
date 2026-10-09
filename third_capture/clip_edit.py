@@ -631,7 +631,94 @@ def _transcript_cache_path(video: Path, model_name: str) -> Path | None:
 _WHISPER: dict = {}
 
 
+# THE EARS. Whisper-small on CPU hears a streamer over game audio as
+# "what do you to fucking do it? Hold on wait?" — backtest 15's critic docked
+# cut after cut for garbled lines the viewer would have understood, the
+# director chose its seconds from those words, and the burned captions
+# showed them. THIRD_ASR=groq sends the audio to Groq's large-v3-turbo
+# (free tier, seconds per clip) and falls back to the local model on any
+# failure; a 429 rests it for the run.
+GROQ_ASR_MODEL = "whisper-large-v3-turbo"
+GROQ_ASR_URL = "https://api.groq.com/openai/v1/audio/transcriptions"
+_GROQ_ASR_DOWN = {"until": 0.0}
+
+
+def _groq_words(video: Path) -> list[dict] | None:
+    """Word timestamps from Groq's large Whisper, or None (caller falls
+    back). Same filters as the local path: segments Whisper calls
+    no-speech are dropped, junk tokens skipped."""
+    import os
+    key = os.environ.get("GROQ_API_KEY", "").strip()
+    if (os.environ.get("THIRD_ASR", "").lower() != "groq" or not key
+            or time.time() < _GROQ_ASR_DOWN["until"]):
+        return None
+    try:
+        import requests
+        with tempfile.TemporaryDirectory() as td:
+            aud = Path(td) / "a.mp3"
+            subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(video),
+                            "-vn", "-ac", "1", "-ar", "16000", "-b:a", "48k",
+                            str(aud)], check=True, timeout=300)
+            if aud.stat().st_size > 24 * 1024 * 1024:
+                return None
+            with open(aud, "rb") as f:
+                r = requests.post(
+                    GROQ_ASR_URL, headers={"Authorization": f"Bearer {key}"},
+                    files={"file": ("a.mp3", f, "audio/mpeg")},
+                    data=[("model", GROQ_ASR_MODEL), ("language", "en"),
+                          ("response_format", "verbose_json"),
+                          ("timestamp_granularities[]", "word"),
+                          ("timestamp_granularities[]", "segment")],
+                    timeout=120)
+        if r.status_code == 429:
+            _GROQ_ASR_DOWN["until"] = time.time() + 600
+            print("::warning::[asr] groq 429 — local whisper for 10 min",
+                  flush=True)
+            return None
+        r.raise_for_status()
+        return groq_words_from(r.json())
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[asr] groq failed ({type(e).__name__}) — local "
+              f"whisper", flush=True)
+        return None
+
+
+def groq_words_from(res: dict) -> list[dict]:
+    """Groq's verbose_json -> [{w, s, e}], minus words inside a segment
+    Whisper marked as no speech (the local path's 0.66 rule)."""
+    quiet = [(float(sg.get("start", 0)), float(sg.get("end", 0)))
+             for sg in res.get("segments") or []
+             if float(sg.get("no_speech_prob", 0) or 0) > 0.66]
+    out = []
+    for w in res.get("words") or []:
+        token = str(w.get("word", "")).strip()
+        s, e = float(w.get("start", 0)), float(w.get("end", 0))
+        if not token or _JUNK.match(token):
+            continue
+        if any(a <= (s + e) / 2 <= b for a, b in quiet):
+            continue
+        out.append({"w": token, "s": s, "e": e})
+    return out
+
+
 def transcribe_words(video: Path, model_name: str = "small") -> list[dict]:
+    import os
+    if os.environ.get("THIRD_ASR", "").lower() == "groq":
+        gpath = _transcript_cache_path(Path(video), "groq-" + GROQ_ASR_MODEL)
+        if gpath is not None and gpath.exists():
+            try:
+                return json.loads(gpath.read_text())
+            except Exception:  # noqa: BLE001
+                pass
+        got = _groq_words(Path(video))
+        if got is not None:
+            if gpath is not None:
+                try:
+                    gpath.parent.mkdir(parents=True, exist_ok=True)
+                    gpath.write_text(json.dumps(got))
+                except Exception:  # noqa: BLE001
+                    pass
+            return got
     cpath = _transcript_cache_path(Path(video), model_name)
     if cpath is not None and cpath.exists():
         try:
