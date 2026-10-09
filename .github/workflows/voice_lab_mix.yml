@@ -1,0 +1,75 @@
+# Voice lab round 7: tune Voice 11, blend 11 with 24, slower Turbo, styled script.
+# No secrets; read-only token; only collect writes, and only to this branch.
+name: Voice lab mix
+on:
+  push:
+    branches: [voice-lab]
+    paths: ['voice_lab/cut_refs.py', 'voice_lab/gen_mix.py', 'voice_lab/styled_lines.json', '.github/workflows/voice_lab_mix.yml']
+permissions:
+  contents: read
+jobs:
+  refs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - run: |
+          mkdir globe
+          B=https://huggingface.co/datasets/MushanW/GLOBE_V2/resolve/main/data
+          for f in test-00000-of-00002 test-00001-of-00002 val-00000-of-00002 val-00001-of-00002 \
+                   train-00000-of-00164 train-00001-of-00164 train-00002-of-00164 train-00003-of-00164; do
+            curl -fsSL -o globe/$f.parquet $B/$f.parquet
+          done
+          sha256sum globe/* | tee globe.sha256
+          pip install -q soundfile numpy librosa pyarrow
+          python voice_lab/cut_refs.py globe out S_008118 v11
+          cp globe.sha256 out/
+      - uses: actions/upload-artifact@v4
+        with: { name: mix_refs, path: out/ }
+  gen:
+    needs: refs
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      matrix:
+        job: [tune11-e75, tune11-e100, turbo-tune, blend-full, turbo-blend, styled-full, turbo-styled]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with: { name: mix_refs, path: refs/ }
+      - run: |
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q chatterbox-tts==0.1.7 --extra-index-url https://download.pytorch.org/whl/cpu
+          python voice_lab/gen_mix.py refs out ${{ matrix.job }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: 'mix_${{ matrix.job }}', path: out/ }
+  collect:
+    needs: [refs, gen]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with: { path: dl/ }
+      - run: |
+          mkdir -p voice_lab/mix
+          find dl -type f \( -name '*.mp3' -o -name '*.txt' -o -name '*.json' -o -name '*.sha256' \) -exec cp {} voice_lab/mix/ \;
+          find dl -name 'v11_*.wav' -exec sh -c 'ffmpeg -y -loglevel error -i "$1" -ac 1 -c:a libopus -b:a 96k voice_lab/mix/$(basename "$1" .wav).ogg' _ {} \;
+          git config user.name "voice-lab"
+          git config user.email "voice-lab@users.noreply.github.com"
+          git add -f voice_lab/mix
+          git commit -m "voice lab mix results [skip ci]"
+          for i in 1 2 3 4; do git pull --rebase -q origin voice-lab && git push origin HEAD:voice-lab && break; sleep $((i*3)); done
