@@ -1,0 +1,47 @@
+name: tiktok_post_release
+
+# Posts ONE video that already shipped (a GitHub Release asset, so it passed
+# its channel's gate and its YouTube upload) to that channel's TikTok. Manual
+# only; the channel must have tiktok.post on in the registry. The site
+# answers only jobs on main, so dispatch it from main.
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Release tag, e.g. video-explainer-20261008-..."
+        required: true
+
+permissions:
+  contents: read
+  id-token: write   # the site authenticates this job by its GitHub OIDC token
+
+concurrency:
+  group: tiktok-post-release
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Fetch the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ inputs.tag }}
+        run: |
+          gh release download "$TAG" -R "$GITHUB_REPOSITORY" --pattern '*.mp4' -D rel
+          gh release view "$TAG" -R "$GITHUB_REPOSITORY" --json name -q .name > rel/title.txt
+          gh release view "$TAG" -R "$GITHUB_REPOSITORY" --json body -q .body > rel/body.txt
+      - name: Post to TikTok
+        env:
+          TAG: ${{ inputs.tag }}
+        run: |
+          python scripts/tiktok_post_release.py --tag "$TAG" \
+            --mp4 "$(ls rel/*.mp4 | head -1)" --title "$(cat rel/title.txt)" \
+            --description-file rel/body.txt
