@@ -1,64 +1,339 @@
 {
  "round4_check": {
   "globe_01": [
-   0.06108813360333443,
+   1.211591916217003e-05,
    "african",
-   0.08908019214868546
+   0.9955878257751465
   ],
   "globe_02": [
-   0.07269901037216187,
+   0.0024666478857398033,
    "african",
-   0.08879237622022629
+   0.9943142533302307
   ],
   "globe_03": [
-   0.1623440533876419,
+   0.979685366153717,
    "us",
-   0.1623440533876419
+   0.979685366153717
   ],
   "globe_04": [
-   0.06211003661155701,
+   0.00011355392780387774,
    "indian",
-   0.08354733884334564
+   0.8285652995109558
   ],
   "globe_05": [
-   0.15049774944782257,
+   0.9978390336036682,
    "us",
-   0.15049774944782257
+   0.9978390336036682
   ],
   "globe_06": [
-   0.1585693508386612,
+   0.999969482421875,
    "us",
-   0.1585693508386612
+   0.999969482421875
   ],
   "globe_07": [
-   0.17172519862651825,
+   0.999826967716217,
    "us",
-   0.17172519862651825
+   0.999826967716217
   ],
   "globe_08": [
-   0.11406343430280685,
+   0.010558437556028366,
    "england",
-   0.14771375060081482
+   0.9883515238761902
   ],
   "globe_09": [
-   0.08428826183080673,
+   0.9668362736701965,
    "us",
-   0.08428826183080673
+   0.9668362736701965
   ],
   "globe_10": [
-   0.18520526587963104,
+   0.9999992847442627,
    "us",
-   0.18520526587963104
+   0.9999992847442627
   ],
   "globe_11": [
-   0.17731402814388275,
+   0.9999967813491821,
    "us",
-   0.17731402814388275
+   0.9999967813491821
   ],
   "globe_12": [
-   0.05740836262702942,
+   9.127925082452748e-10,
    "england",
-   0.11489368975162506
+   0.9999997615814209
+  ]
+ },
+ "us_01": {
+  "spk": "S_010967",
+  "g": "male",
+  "age": "twenties",
+  "acc_label": "United States English",
+  "p_us": 1.0,
+  "pitch_move_st": 4.84,
+  "words_s": 2.172,
+  "range_db": 50.225,
+  "f0": 108.777,
+  "score": 5.628,
+  "transcripts": [
+   "sporadic insecurity or widespread civil conflict could at any time ignite, thwarting eradication efforts.",
+   "through the following years it was supported by advertising and sponsorship, including by flextronics.",
+   "some designated cities also have further administrative subdivisions, also known as wards.",
+   "initially, the founders used their savings and credit cards to keep the company operating.",
+   "it is discouraged in many areas, for reasons of safety and environmental impact.",
+   "larson opposed president barack obama's health care reform, commonly known as obamacare."
+  ]
+ },
+ "us_02": {
+  "spk": "S_005082",
+  "g": "male",
+  "age": "twenties",
+  "acc_label": "United States English",
+  "p_us": 0.999,
+  "pitch_move_st": 2.929,
+  "words_s": 3.506,
+  "range_db": 38.753,
+  "f0": 122.098,
+  "score": 4.058,
+  "transcripts": [
+   "the invaders carried the name everywhere. the beautiful girl spoke of the invaders with pride.",
+   "everything on earth is being continuously transformed, because the earth is alive.",
+   "the caravans had been stopped at giza for some time, waiting for the wars to end.",
+   "a thin circle of bright metal showed between the top and the body of the cylinder.",
+   "i heard what you were talking about the other day with the alchemist, the wind said.",
+   "the end of the cylinder was still as ogilvy and henderson had left it."
+  ]
+ },
+ "us_03": {
+  "spk": "S_020807",
+  "g": "male",
+  "age": "twenties",
+  "acc_label": "United States English",
+  "p_us": 1.0,
+  "pitch_move_st": 2.988,
+  "words_s": 3.061,
+  "range_db": 44.638,
+  "f0": 156.522,
+  "score": 3.91,
+  "transcripts": [
+   "but as he saw them lying there on the ground, another phrase came to his mind.",
+   "so, we, their hearts, speak more and more softly.",
+   "it had toppled over the brim and fallen into the pit.",
+   "maybe that's why they always stay close to me."
+  ]
+ },
+ "us_04": {
+  "spk": "S_017094",
+  "g": "male",
+  "age": "twenties",
+  "acc_label": "United States English",
+  "p_us": 1.0,
+  "pitch_move_st": 4.147,
+  "words_s": 2.707,
+  "range_db": 30.2,
+  "f0": 162.042,
+  "score": 3.585,
+  "transcripts": [
+   "open street maps enable humanitarian aid workers to reach the hardest to reach places.",
+   "the declining number of residents is leaving a massive deficit for the council.",
+   "then, feeling queenly, she showed paul how to blanch almonds.",
+   "she must have changed her dress last night in an unusual hurry.",
+   "the hurricane tore the building apart and shredded it to bits.",
+   "using decomposition we can find the final value."
+  ]
+ },
+ "us_05": {
+  "spk": "S_006326",
+  "g": "male",
+  "age": "teens",
+  "acc_label": "Canadian English",
+  "p_us": 1.0,
+  "pitch_move_st": 4.698,
+  "words_s": 2.049,
+  "range_db": 34.209,
+  "f0": 94.423,
+  "score": 3.57,
+  "transcripts": [
+   "he encouraged his students to marry, establish businesses, and be fully engaged in society.",
+   "a very common type of spectral sequence comes from a filtered cochain complex.",
+   "following the election, socialist party leader sergei stanishev became prime minister.",
+   "the latter years of his rule were nevertheless marked by civil strife.",
+   "compare this with a satellite view of the vicinity."
+  ]
+ },
+ "us_06": {
+  "spk": "S_002023",
+  "g": "male",
+  "age": "teens",
+  "acc_label": "United States English",
+  "p_us": 0.986,
+  "pitch_move_st": 3.87,
+  "words_s": 2.975,
+  "range_db": 32.042,
+  "f0": 125.675,
+  "score": 3.335,
+  "transcripts": [
+   "the camel driver was seated at the base of a palm tree, observing the sunset.",
+   "he thought of the merchant's daughter, and was sure that she had probably married.",
+   "to show you one of life's simple lessons, the alchemist answered.",
+   "for at that time, it had not occurred to him that it might be hollow.",
+   "they tell their incredible stories at the time when you want to hear them.",
+   "in his hand, he grasped a snake by the tail."
+  ]
+ },
+ "us_07": {
+  "spk": "S_019178",
+  "g": "male",
+  "age": "twenties",
+  "acc_label": "United States English",
+  "p_us": 0.998,
+  "pitch_move_st": 4.639,
+  "words_s": 2.128,
+  "range_db": 30.831,
+  "f0": 116.922,
+  "score": 3.242,
+  "transcripts": [
+   "such characteristics include modulation method, track width, coercivity, and magnetic field direction.",
+   "as production tempo increased, a number of derivatives and experimental models were also developed.",
+   "the rotifers that were consistently kept hydrated fared worse than those desiccated and rehydrated.",
+   "tony richardson was dissatisfied with the final product, notwithstanding its acclaim by others.",
+   "the resulted engine redesigning provided lower fuel consumption and increased usability.",
+   "financial assistance for travel, housing, and tuition is provided by sponsoring institutions."
+  ]
+ },
+ "us_08": {
+  "spk": "S_019135",
+  "g": "male",
+  "age": "twenties",
+  "acc_label": "United States English",
+  "p_us": 0.998,
+  "pitch_move_st": 4.147,
+  "words_s": 2.152,
+  "range_db": 37.237,
+  "f0": 118.622,
+  "score": 3.157,
+  "transcripts": [
+   "atrophy is the general physiological process of reabsorption and breakdown of tissues, involving apoptosis.",
+   "the township's economy is heavily agricultural, with apples and cherries two prominent crops.",
+   "the logical connections between the network elements are known as interfaces.",
+   "the company also has a design facility in chennai, india.",
+   "the elected president would be a true figurehead for the australian people."
+  ]
+ },
+ "us_09": {
+  "spk": "S_007982",
+  "g": "male",
+  "age": "twenties",
+  "acc_label": "United States English",
+  "p_us": 1.0,
+  "pitch_move_st": 3.178,
+  "words_s": 3.027,
+  "range_db": 32.688,
+  "f0": 117.259,
+  "score": 2.943,
+  "transcripts": [
+   "the creative commons licensing system makes sharing intellectual property easy to follow.",
+   "if a mass vehicle flaw is identified, a mandatory recall may be needed.",
+   "car batteries require safe disposal, please visit the local recycling center.",
+   "hypothetical scenarios help people understand something from a different perspective.",
+   "drivers must master driving at the best speed for the current road conditions.",
+   "despite our cultural differences everyone has the same common values."
+  ]
+ },
+ "us_10": {
+  "spk": "S_000388",
+  "g": "male",
+  "age": "twenties",
+  "acc_label": "United States English",
+  "p_us": 1.0,
+  "pitch_move_st": 3.26,
+  "words_s": 2.563,
+  "range_db": 34.088,
+  "f0": 147.737,
+  "score": 2.328,
+  "transcripts": [
+   "immediately after the burning, members of the crowd began attacking o'brien and his companions.",
+   "as a rule, the court's procedure includes a written phase and an oral phase.",
+   "the team has won more big ten titles than any other program.",
+   "the staple crops, wheat and barley, also originated in the west.",
+   "behind the magic is spread over two discs."
+  ]
+ },
+ "us_11": {
+  "spk": "S_015563",
+  "g": "female",
+  "age": "twenties",
+  "acc_label": "United States English",
+  "p_us": 1.0,
+  "pitch_move_st": 3.26,
+  "words_s": 2.032,
+  "range_db": 56.511,
+  "f0": 196.638,
+  "score": 3.557,
+  "transcripts": [
+   "the ancient \"arthashastra\" has been traditionally attributed to chanakya by a number of scholars.",
+   "the offer was rejected by management, spurring some shareholder dissatisfaction and a shareholder lawsuit.",
+   "many non-originalists, like justice byron white, have also been critical of substantive due process.",
+   "meanwhile, crassus has found varinia and spartacus's newborn son and has taken them prisoner.",
+   "the game's final boss, moon lord, resembles common depictions of cthulhu.",
+   "fox is the daughter of australian children's author, mem fox and teacher malcolm fox."
+  ]
+ },
+ "us_12": {
+  "spk": "S_016033",
+  "g": "female",
+  "age": "twenties",
+  "acc_label": "United States English",
+  "p_us": 0.998,
+  "pitch_move_st": 3.761,
+  "words_s": 2.522,
+  "range_db": 34.06,
+  "f0": 229.162,
+  "score": 2.96,
+  "transcripts": [
+   "forrester was born in aberdeen, scotland, the son of jim forrester a professional golfer.",
+   "anyone can play advanced chess, sometimes with the same success as the strongest grandmasters.",
+   "after the capitulation of the fortress the garrison was in japanese captivity.",
+   "it is powered by an air-cooled piston engine driving a fixed-pitch propeller.",
+   "during the war of spanish succession, he was given the task of defending sicily.",
+   "as an eager amateur photographer, curtis made many valuable pictures in athens."
+  ]
+ },
+ "us_13": {
+  "spk": "S_001429",
+  "g": "female",
+  "age": "twenties",
+  "acc_label": "German English,Non native speaker",
+  "p_us": 1.0,
+  "pitch_move_st": 3.14,
+  "words_s": 2.167,
+  "range_db": 40.844,
+  "f0": 204.16,
+  "score": 2.068,
+  "transcripts": [
+   "the locality has one site listed on the victorian heritage register, prefabricated iron cottage.",
+   "prelude competitors traditionally included the toyota celica, the nissan silvia and the mitsubishi eclipse.",
+   "it is also speculated that air polonia's growing popularity altered ryanair's expansion into poland.",
+   "bianchi is serving his sentence at washington state penitentiary in walla walla, washington.",
+   "czech post primary serves the czech republic but also delivers to other countries.",
+   "compiled languages rely on their runtime system to provide information about the source code."
+  ]
+ },
+ "us_14": {
+  "spk": "S_009193",
+  "g": "female",
+  "age": "twenties",
+  "acc_label": "United States English",
+  "p_us": 1.0,
+  "pitch_move_st": 3.446,
+  "words_s": 2.04,
+  "range_db": 30.666,
+  "f0": 183.47,
+  "score": 1.284,
+  "transcripts": [
+   "currently combinatorial group theory as an area is largely subsumed by geometric group theory.",
+   "each promotes community awareness and action through educational, economic, and cultural service activities.",
+   "the last two tests, operation \"jangle\", evaluated the cratering effects of low-yield nuclear devices.",
+   "in thailand this language group is increasingly becoming integrated into the mainstream isan language.",
+   "ridley was educated at fordham university, woodstock college and the union theological seminary.",
+   "courier companies with operations at the airport include united parcel service and cargojet canada."
   ]
  }
 }
