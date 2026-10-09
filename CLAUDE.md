@@ -367,7 +367,11 @@ constants blanked), never on the prose that explains it.
   `post_stories`), validated by the mailbox's own rules, then heard
   against the old words by a listener that may keep them; persisted once
   (`retold`). It never holds a story. The forge and the mailbox carry
-  its `DOCTRINE`. `tests/test_the_narration_tells_a_story.py`.
+  its `DOCTRINE`. Then, of the first retell: *"take it a step further ...
+  the less numbers we just throw at them in a row, the better. And
+  obviously we want it to be entertaining"* — so `MAX_NUMBERS` is ONE, a
+  change is said in words ("it nearly doubled"), and the listener picks
+  the simpler, more fun story. `tests/test_the_narration_tells_a_story.py`.
 
 - **A brain-drawn subject scene has to pass a VIEWER, not just the code**
   (operator, 2026-10-01: a coffin he "couldn't tell was a coffin", an urn

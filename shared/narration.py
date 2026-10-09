@@ -32,11 +32,14 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 
-#: A then-and-now is two numbers and still a story; three is a table.
-MAX_NUMBERS = 2
+#: One number a beat (operator, 2026-10-09, after the first retell: "take
+#: it a step further ... the more simple ... the less numbers we just throw
+#: at them in a row, the better"). A then-and-now says the change in words
+#: ("it nearly doubled") around the one number that matters.
+MAX_NUMBERS = 1
 #: Bumped when the retell doctrine changes, so stories retold under an older
 #: one are heard again.
-RETOLD = "retell/v1"
+RETOLD = "retell/v2"
 WORDS_BY = "claude-retell"
 
 #: Names a viewer knows without being told. Anything else in capitals is a
@@ -98,23 +101,31 @@ def problems(sc: dict) -> list:
 
 DOCTRINE = """\
 THE NARRATION is the story a friend tells you after they read something \
-wild. It is NOT the data read out loud.
+wild. It is NOT the data read out loud. The viewer is scrolling, half \
+paying attention, and hears it once: make it so simple a twelve-year-old \
+gets it, and fun to listen to.
 
-  - ONE number a beat, and say what it MEANS: not "9% recycles, 50% lands in \
-dumps, 22% disappears" but "Only about one bottle in ten ever gets \
-recycled." Two numbers only for a then-and-now ("it was 3,300; now it's \
-4,900"). Never a list.
+  - AT MOST ONE number a beat, and say what it MEANS. Not "9% recycles, \
+50% lands in dumps, 22% disappears" but "Only about one bottle in ten \
+ever gets recycled." Not "royal flush, 1 in 649,740; shark attack, 1 in \
+11.5 million; jackpot, 1 in 292 million" but "Even a shark attack, at 1 in \
+11.5 million, is far likelier than the jackpot." A change is said in \
+words around one number: "it nearly doubled, to 4,900", not "from 3,300 \
+to 4,900".
+  - Compare to something the viewer already knows (the jackpot, a shark \
+attack, their own body, their own town) when the data gives you one. \
+"Half", "double", "one in ten" beat a figure.
   - Every number you keep must be one that beat's DATA shows, written the \
-way the data has it or as its share or change. Keep the beat's headline \
-number.
+way the data has it or as its share or change.
   - No organisation names a viewer would not know. "The OECD forecast" is \
 "the experts' best guess". Name it only if everyone knows it: the WHO, \
 NASA, the White House, the FBI.
   - Each beat follows from the last: the setup, the turn, the payoff. A \
 viewer who hears it once, at full speed, with no picture, knows what is \
 happening and why it matters to them.
-  - Plain words. No units a person has to think about when a plain one \
-works ("tons", not "megatonnes CO2e"). No jargon, no hedging, no \
+  - Entertaining: short punchy words, a little attitude, the surprise \
+landing at the end of the line. Plain words: no units a person has to \
+think about ("tons", not "megatonnes CO2e"), no jargon, no hedging, no \
 throat-clearing ("It's worth noting").
   - Exaggerate nothing. A link is not a cause; a forecast is not a fact.
 """
@@ -135,8 +146,9 @@ _LISTEN = """You are a viewer and a fact-checker. Two narrations for the same \
 YouTube Short follow, with the data each beat is drawn from. A narration \
 FAILS if it says anything the data does not support (a cause, a "never", a \
 number, a comparison), or if heard once at full speed it does not make \
-sense. Of the ones that pass, which would a viewer FOLLOW and keep watching: \
-a story, not a list of numbers?
+sense. Of the ones that pass, which would a distracted viewer scrolling \
+past FOLLOW and keep watching: the simpler, more fun story, not a list of \
+numbers?
 
 DATA:
 {data}

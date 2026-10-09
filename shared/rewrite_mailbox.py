@@ -100,8 +100,9 @@ RULES = [
     "company or person the data does not name.",
     _pacing.rule() + " Each SAY says its beat's headline number out loud.",
     # operator, 2026-10-09 — the full doctrine is shared/narration.py
-    "Each beat is part of a STORY, not a readout: one number a beat (two "
-    "only for a then-and-now), said with what it means. Name no group a "
+    "Each beat is part of a STORY, not a readout, simple enough for a "
+    "distracted viewer: at most ONE number a beat, said with what it means "
+    "(a change in words: 'it nearly doubled'). Name no group a "
     "viewer would not know ('the experts', not 'the OECD'); the WHO, NASA "
     "and the White House are fine.",
     "TOPIC labels are printed on the video: at most 4 words, no clause.",

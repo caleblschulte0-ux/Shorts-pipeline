@@ -29,7 +29,7 @@ SLUG = "measles-ninety-five-rule"
 RETOLD = {"segments": [
     {"say": "One person with measles infects about 15 others, far more than the flu."},
     {"say": "Stopping it takes 95 percent immunity, and American kindergartners are just short of that."},
-    {"say": "That small gap came with cases leaping from 285 to 2,566 in two years."}],
+    {"say": "That small gap brought measles roaring back: 2,566 cases this year."}],
     "closing": "Measles only needs a small gap to come back."}
 
 
@@ -56,10 +56,17 @@ class WhatCodeCanSee(unittest.TestCase):
                                                  "in dumps, 22% disappears."}]})
         self.assertTrue(any("reads off 3 numbers" in p for p in found), found)
 
-    def test_a_then_and_now_is_a_story(self):
+    def test_one_number_a_beat_is_a_story(self):
         self.assertEqual(N.problems({"segments": [
-            {"say": "In 1970 there were 10.1 billion birds; now only 7.2 billion."},
+            {"say": "Since 1970, nearly a third of the birds are just gone, 3 billion of them."},
             {"say": "The jackpot is 1 in 292 million."}]}), [])
+
+    def test_even_a_from_to_is_one_number_too_many(self):
+        """caaleb, 2026-10-09: 'the less numbers we just throw at them in a
+        row, the better'."""
+        found = N.problems({"segments": [
+            {"say": "In 1970 there were 10.1 billion birds; now only 7.2 billion."}]})
+        self.assertTrue(any("reads off 2 numbers" in p for p in found), found)
 
     def test_a_group_nobody_knows_is_named(self):
         found = N.problems({"segments": [{"say": "The OECD forecast says 17 percent."}],
