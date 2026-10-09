@@ -3124,6 +3124,9 @@ def _synthesize_fallback_packages(date: str) -> list[tuple[dict, None]]:
     import random as _rnd
     story_count = min(int(base.pop("story_count",
                                    base.pop("edit_count", 0))), n)
+    if os.environ.get("THIRD_STORY_COUNT", "").strip().isdigit():
+        # a look-preview dry run renders clips only (third.yml clips_only)
+        story_count = min(int(os.environ["THIRD_STORY_COUNT"]), n)
     base.pop("edit_count", None)
     slots = list(range(1, n + 1))
     _rnd.Random(f"third-ab-{date}").shuffle(slots)

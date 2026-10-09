@@ -251,10 +251,8 @@ Then emit the COMPLETE timeline. Segment rules:
   visual — use when showing the person/evidence being discussed)
 - framing per beat: "wide" (default — full scene, use for the incident)
   | "tight" (closer punch-in — use for a response/reaction beat)
-- effects: a GLOBAL budget — at most 1 replay ({"type":"replay","at":s}
-  re-shows ~2s around `at` slowed, ONLY when the action was genuinely
-  hard to see), at most 2 subtle_punch; spend emphasis on the payoff,
-  not the first beat. Usually [].
+- effects: always [] — this channel plays footage at its own speed, with
+  no slowed replay and no flash (operator, 2026-10-09).
 - narration: OPTIONAL top-level LIST, at most ONE line per beat, each
   {"text": <=12 words, "over_beat": idx, "essential_because": str} —
   a line of TEXT shown on screen over that beat (there is NO voice-over;
@@ -862,17 +860,10 @@ def validate_edl(edl: dict, durations: dict[str, float],
                     overlay = ""             # banned/oversized -> drop it
                 else:
                     n_overlay += 1
+            # NO EFFECTS (operator, 2026-10-09: "That weird slowdown thing
+            # we do never works"). The slowed replay and the white flash
+            # are retired; whatever a plan asks for is dropped here.
             effects = []
-            for fx in (b.get("effects") or []):
-                ft = str(fx.get("type", ""))
-                if ft == "subtle_punch" and n_punch < 2:
-                    n_punch += 1
-                    effects.append({"type": ft,
-                                    "at": max(0.0, float(fx.get("at", 0)))})
-                elif ft == "replay" and n_replay < 1:
-                    n_replay += 1
-                    effects.append({"type": ft,
-                                    "at": max(0.0, float(fx.get("at", 0)))})
             trans = str(b.get("transition", "hard_cut"))
             if trans not in TRANSITIONS:
                 trans = "hard_cut"

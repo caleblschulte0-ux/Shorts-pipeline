@@ -58,7 +58,7 @@ CAPTION_FONT = str(REPO / "assets" / "fonts" / "InterDisplay-Bold.ttf")
 # the BOTTOM THIRD, as in the reposts (operator, 2026-10-08: "the text is
 # in the bottom third not the middle"): below the speech captions
 # (centred, ~960), above the platform's own bottom bar
-CAPTION_Y = 1340
+from third_capture.caption_line import LINE_Y as CAPTION_Y  # noqa: E402
 CANVAS_W, CANVAS_H = 1080, 1920
 FPS = 30
 MIN_BEATS = 2
@@ -304,6 +304,25 @@ def _next_word_at(words: list[dict], end: float) -> float:
     and never shorter than the beat itself."""
     nxt = [float(w["s"]) for w in words or [] if float(w["s"]) >= end - 0.02]
     return max(end + 0.05, min(nxt)) if nxt else float("inf")
+
+
+_OWN_CAPS: dict = {}
+
+
+def _captions_itself(src: Path, srcinfo: dict) -> bool:
+    """The source already shows what is said — the scene analysis saw it,
+    or the frames read back the transcript (clip_edit.own_captions). Never
+    a second set of captions on top (operator, 2026-10-09)."""
+    if srcinfo.get("own_subtitles"):
+        return True
+    key = str(src)
+    if key not in _OWN_CAPS:
+        try:
+            _OWN_CAPS[key] = clip_edit.own_captions(
+                src, srcinfo.get("words") or [])
+        except Exception:  # noqa: BLE001
+            _OWN_CAPS[key] = False
+    return _OWN_CAPS[key]
 
 
 def snap_beat(words: list[dict], start: float, end: float, *,
@@ -743,7 +762,7 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
         try:
             _lay = _extract_segment(
                 src, seg, work, str(idx), start=start, end=end,
-                words=([] if srcinfo.get("own_subtitles")
+                words=([] if _captions_itself(src, srcinfo)
                        else srcinfo.get("words") or []),
                 captions=caps,
                 effects=beat.get("effects") or [],

@@ -147,8 +147,10 @@ def main() -> int:  # noqa: C901
               if f["type"] == "subtle_punch")
     n_r = sum(1 for b in v["beats"] for f in b["effects"]
               if f["type"] == "replay")
-    check("effect budget clamped (<=2 punch, <=1 replay)",
-          n_p <= 2 and n_r <= 1, f"punch={n_p} replay={n_r}")
+    # retired 2026-10-09 (operator: "That weird slowdown thing we do
+    # never works"): no replay, no flash, whatever the plan asks for
+    check("no effects survive validation (replay + punch retired)",
+          n_p == 0 and n_r == 0, f"punch={n_p} replay={n_r}")
 
     # ---- §11 renderer follows the EDL; arc integrity on edges ----------
     td = Path(tempfile.mkdtemp())
@@ -272,8 +274,8 @@ def main() -> int:  # noqa: C901
     check("tight framing accepted, garbage framing -> wide",
           v["beats"][0]["framing"] == "tight"
           and v["beats"][1]["framing"] == "wide")
-    check("replay carries its timestamp",
-          v["beats"][1]["effects"][0].get("at") == 12.0)
+    check("a requested replay is dropped",
+          v["beats"][1]["effects"] == [])
 
     e = dict(base, narration={"text": "Two days later he responded",
                               "over_beat": 1,
@@ -466,8 +468,8 @@ def main() -> int:  # noqa: C901
     led2 = story.render_story(edl2, sources, td / "p2.mp4", td / "wp2")
     check("framing reaches the renderer",
           calls[0]["framing"] == "tight" and calls[1]["framing"] == "wide")
-    check("budgeted replay rendered exactly once",
-          len(replays) == 1 and led2["replay_count"] == 1)
+    check("no replay is rendered (retired 2026-10-09)",
+          len(replays) == 0 and led2["replay_count"] == 0)
 
     # narration is best-effort: TTS failure ships the story clean
     story._maybe_narration = lambda text, work, name="narration": None
@@ -1741,13 +1743,22 @@ def main() -> int:  # noqa: C901
 
     # and the author contract has to ALLOW nothing, or none of this binds
     _au_src = (REPO / "third_capture" / "author.py").read_text()
-    check("the author may return NO emoji, and is told to default to it",
-          'DEFAULT TO ""' in _au_src)
-    check("...and is told not to reach for a generic hype word",
-          "never reach for a generic hype" in _au_src)
-    check("an out-of-whitelist emoji still normalises to none, not to a "
-          "default", 'if emoji not in _EMOJI_OK:' in _au_src
-          and 'emoji = ""' in _au_src)
+    # The slam word and sticker emoji were RETIRED (operator, 2026-10-09:
+    # "The fucking overlays we do suck"); the author directs the cut and
+    # the mood only, and a mood outside the list is none.
+    from third_capture import author as _au
+    _pp = _au._postprocess(
+        {"title": "Kai Cenat Cries After His Friend Leaves", "hook": "KAI SAYS GOODBYE",
+         "hashtags": ["kaicenat"], "series": "drama",
+         "edit": {"mood": "furious", "mood_at": 3, "slam": "BRO",
+                  "emoji": "skull"}}, "kaicenat", "kai says goodbye bro", 20.0)
+    check("the author directs no slam word or sticker emoji any more",
+          _pp is not None and "slam" not in _pp["edit"]
+          and "emoji" not in _pp["edit"])
+    check("an out-of-list mood normalises to none",
+          _pp is not None and _pp["edit"]["mood"] == "")
+    check("an ALL-CAPS hook comes back sentence case",
+          _pp is not None and _pp["hook"] == "Kai says goodbye")
 
     # ====== the picture must FILL the frame ============================
     # The real reason the output "looks like a repost": classify() returns
@@ -1859,12 +1870,12 @@ def main() -> int:  # noqa: C901
           _wh("THEN IT ALL WENT WRONG")[1] == 72)
     check("an empty hook is handled", _wh("")[0] == "")
     _ce_src2 = (REPO / "third_capture" / "clip_edit.py").read_text()
-    check("the hook fades in and out instead of a box snapping on at t=0",
-          ":alpha='" in _ce_src2 and "if(lt(t,0.25),t/0.25," in _ce_src2)
-    check("the hook uses the CAPTION treatment (outline + shadow), not a "
-          "solid meme box — two text looks in one video is its own tell",
-          "boxcolor=black@0.72" not in _ce_src2
-          and "borderw=7:bordercolor=black" in _ce_src2)
+    check("the hook is the ONE line of text, drawn by caption_line and on "
+          "screen the whole video (operator, 2026-10-08/09)",
+          "caption_line.render(hook" in _ce_src2
+          and "caption_line.LINE_Y" in _ce_src2)
+    check("no meme box anywhere on a clip",
+          "boxcolor=" not in _ce_src2)
 
     print()
     if FAILS:

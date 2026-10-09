@@ -17,6 +17,11 @@ on:
         required: false
         type: boolean
         default: false
+      clips_only:
+        description: 'Dry run only: skip the story slots (a quick look at the clip edit)'
+        required: false
+        type: boolean
+        default: false
   push:
     branches: [main]
     paths:
@@ -117,7 +122,7 @@ jobs:
       - name: Install system deps
         run: |
           sudo apt-get update -q
-          sudo apt-get install -y -q ffmpeg miller fonts-dejavu-core
+          sudo apt-get install -y -q ffmpeg miller fonts-dejavu-core fonts-noto-color-emoji tesseract-ocr
 
       - name: Install python deps
         # curl_cffi powers yt-dlp's TLS impersonation for Kick/Rumble.
@@ -188,7 +193,45 @@ jobs:
           [ -z "$DATE" ] && DATE=$(date -u +%Y%m%d)
           FLAGS=""
           [ "${{ inputs.dry_run }}" = "true" ] && FLAGS="--dry-run"
+          [ "${{ inputs.dry_run }}" = "true" ] && [ "${{ inputs.clips_only }}" = "true" ] \
+            && export THIRD_STORY_COUNT=0
           python scripts/run_third.py --date "$DATE" $FLAGS
+
+      # A DRY RUN IS FOR LOOKING AT (operator, 2026-10-09: "i need to see
+      # the finished producs"). Its renders, phone-sized, go to the
+      # preview-renders branch under third-dry/<run id>/, where a session
+      # fetches them with git and posts them in the thread.
+      - name: Publish dry-run renders
+        if: ${{ always() && inputs.dry_run == true }}
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          dest="third-dry/${{ github.run_id }}"
+          mkdir -p "$RUNNER_TEMP/payload"
+          n=0
+          for f in output/third/third_*.mp4; do
+            [ -f "$f" ] || continue
+            n=$((n+1))
+            ffmpeg -y -v error -i "$f" -vf scale=540:960 -c:v libx264 \
+              -preset veryfast -crf 30 -c:a aac -b:a 96k \
+              -movflags +faststart "$RUNNER_TEMP/payload/$(basename "$f")"
+          done
+          [ "$n" -gt 0 ] || { echo "no renders"; exit 0; }
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git stash -u -q || true
+          git fetch origin preview-renders --depth=1
+          git checkout -B preview-renders origin/preview-renders
+          mkdir -p "$dest"
+          cp "$RUNNER_TEMP/payload/"*.mp4 "$dest/"
+          git add -f "$dest"
+          git commit -q -m "third dry run ${{ github.run_id }}: renders [skip ci]"
+          for i in 1 2 3 4; do
+            git push origin preview-renders && break
+            git pull --rebase origin preview-renders || true
+            sleep $((i * 2))
+          done
+          echo "published -> preview-renders:$dest"
 
       # COMMIT BEFORE ANALYTICS. Both steps are always(), and on a
       # timeout GitHub CANCELS the job — always() steps get only the

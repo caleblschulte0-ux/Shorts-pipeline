@@ -701,6 +701,62 @@ def groq_words_from(res: dict) -> list[dict]:
     return out
 
 
+def _ocr_text(img: Path) -> str:
+    """Letters tesseract reads in a frame, lowercased and run together, so
+    a word glued to its neighbour ("SOMEBODYSTOLE") still matches."""
+    out = []
+    for psm in ("11", "6"):
+        r = subprocess.run(["tesseract", str(img), "-", "--psm", psm],
+                           capture_output=True, text=True, timeout=60)
+        out.append(re.sub(r"[^a-z]", "", (r.stdout or "").lower()))
+    return " ".join(out)
+
+
+def own_captions(video: Path, words: list[dict], samples: int = 8) -> bool:
+    """Does the video ALREADY show what is said, as text on screen?
+
+    Operator, 2026-10-09: *"don't put captions over the captions of the
+    video. Like, you can't read either of them then"*. Plenty of streamers
+    run live captions. A frame is read (tesseract, white pixels only) while someone is
+    talking, and the words the transcript says within a second and a half
+    are looked for in it: two found is a caption, a game's
+    HUD never matches speech. Two such frames, and at least 40% of those
+    read, says the video captions itself. No tesseract -> False (the old
+    behaviour)."""
+    import shutil
+    if not shutil.which("tesseract") or not words:
+        return False
+    spoken = [w for w in words if len(re.sub(r"[^a-z']", "",
+                                             str(w["w"]).lower())) >= 3]
+    if len(spoken) < 4:
+        return False
+    step = max(1, len(spoken) // samples)
+    times = [float(spoken[i]["s"]) + 0.15
+             for i in range(0, len(spoken), step)][:samples]
+    hits = read = 0
+    with tempfile.TemporaryDirectory() as td:
+        for k, t in enumerate(times):
+            fr = Path(td) / f"f{k}.png"
+            try:
+                subprocess.run(
+                    ["ffmpeg", "-y", "-v", "error", "-ss", f"{t:.2f}",
+                     "-i", str(video), "-frames:v", "1",
+                     # captions are WHITE: keep only near-white pixels, as
+                     # black text on white, so busy footage drops out
+                     "-vf", "crop=iw:ih*0.7:0:ih*0.3,scale=iw*1.5:-2,"
+                     "format=gray,lut=y='if(gt(val\\,215)\\,0\\,255)'",
+                     str(fr)], check=True, timeout=60)
+                seen = _ocr_text(fr)
+            except Exception:  # noqa: BLE001
+                continue
+            read += 1
+            near = {re.sub(r"[^a-z]", "", str(w["w"]).lower())
+                    for w in words if abs(float(w["s"]) - t) <= 1.5}
+            if sum(1 for n in near if len(n) >= 4 and n in seen) >= 2:
+                hits += 1
+    return hits >= 2 and hits >= 0.4 * max(1, read)
+
+
 def transcribe_words(video: Path, model_name: str = "small") -> list[dict]:
     import os
     if os.environ.get("THIRD_ASR", "").lower() == "groq":
@@ -790,7 +846,12 @@ _WHITE = r"\c&HFFFFFF&"
 # A soft drop-shadow (\shad, \4c black) lifts it off busy footage. This is
 # the biggest universal look upgrade — it renders on every caption in BOTH
 # A/B arms, calm or not, so it improves clips the edit effects can't touch.
-_POP_FX = (r"{\pos(540,1350)\shad3\4c&H000000&\fscx50\fscy50"
+# Centre of the word-pop captions: ABOVE the story/clip line of text in
+# the bottom third (caption_line.LINE_Y), never on it. At 1350 the two sat
+# on top of each other (operator, 2026-10-09: "don't put captions over the
+# captions ... you can't read either of them").
+from third_capture.caption_line import SPEECH_Y as _SPEECH_Y  # noqa: E402
+_POP_FX = (r"{\pos(540," + str(_SPEECH_Y) + r")\shad3\4c&H000000&\fscx50\fscy50"
            r"\t(0,80,\fscx114\fscy114)\t(80,150,\fscx100\fscy100)}")
 
 # Caption safety: whisper mishears crowd noise into words we must never
@@ -992,12 +1053,13 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
     (from transcribe_words on the SAME uncut file) to skip re-transcribing —
     only valid when start/end are unset.
 
-    `auto=True` runs the two-stage auto-editor (third_capture/auto_edit):
-    Stage 1 retimes the clip into a dynamically edited program (punch-in
-    zooms, slow-mo + replay of the money moment, dead-air speed-up, impact
-    shake/flash, SFX); Stage 2 face-tracks the reframe and burns captions.
-    Every layer degrades gracefully — on any failure this falls back to the
-    plain reframe+captions render, so a clip always ships. Returns the ledger.
+    `auto=True` reframes with the shot plan, burns the speech captions
+    (skipped when the video already shows its own), lays the ONE line of
+    text in the bottom third (caption_line) and, when the author marked a
+    sad turn, greys the picture and brings in the piano from that second
+    (mood). The auto-editor's slow-mo, replay, speed-up and sticker
+    overlays were retired 2026-10-09. Every layer degrades gracefully, so a
+    clip always ships. Returns the ledger.
     """
     probe = json.loads(_run(
         ["ffprobe", "-v", "quiet", "-print_format", "json",
@@ -1092,27 +1154,16 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             except Exception:  # noqa: BLE001 — default to the normal path
                 calm = False
 
-        # ---- Stage 1: time-domain auto-edit (retime into a program) ----
-        # Punch-in zooms, slow-mo + instant replay of the money moment,
-        # dead-air speed-up, impact shake/flash, SFX. Never raises — on any
-        # failure `program` stays the raw cut and words/dur are untouched, so
-        # the simple render below still ships the clip.
+        # ---- Stage 1: RETIRED (operator, 2026-10-09) ----
+        # The auto-editor's slow-mo + instant replay, dead-air speed-up,
+        # impact shake/flash, slam word, sticker emoji and SFX: "That weird
+        # slowdown thing we do never works, and then we speed up randomly
+        # after it. It sucks." The clip plays at its own speed, as the
+        # repost channels play it; the edit is the line of text and, on a
+        # sad turn, the grey and the piano (third_capture/mood.py).
         program = cut
-        overlays: list[dict] = []
-        ledger_ae = {"auto_edit": False, "fallback_reason": None,
+        ledger_ae = {"auto_edit": False, "fallback_reason": "retired",
                      "effects": [], "edl": None, "edit_mode": bool(edit_mode)}
-        if auto:
-            try:
-                from third_capture import auto_edit as ae
-                st1 = ae.build(cut, words, dur, series, tmp, direct=direct,
-                               calm=calm, edit_mode=edit_mode)
-                program, words, dur = st1["program"], st1["words"], st1["dur"]
-                overlays = st1.get("overlays", [])
-                ledger_ae = {k: st1[k] for k in
-                             ("auto_edit", "fallback_reason", "effects", "edl",
-                              "edit_mode")}
-            except Exception as e:  # noqa: BLE001
-                ledger_ae["fallback_reason"] = f"stage1:{type(e).__name__}"
 
         # ---- Stage 2: presentation ----
         # Shot-plan layer (playbook §3-§8): analyze subjects, classify the
@@ -1137,7 +1188,14 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             except Exception:  # noqa: BLE001
                 reframed = None
 
-        ass = build_ass(words, credit, dur, tmp / "caps.ass")
+        # NO CAPTIONS OVER CAPTIONS (operator, 2026-10-09): a stream that
+        # already shows what is said gets no second copy on top of it
+        own_subs = own_captions(cut, words) if auto else False
+        if own_subs:
+            print("[edit] the video captions itself — no speech captions",
+                  flush=True)
+        ass = build_ass([] if own_subs else words, credit, dur,
+                        tmp / "caps.ass")
 
         if reframed is not None:
             # program is already a sharp 1080x1920 face crop — just grade +
@@ -1176,178 +1234,75 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             base_vf = _blur + f";[base]ass={ass}:fontsdir={FONTS_DIR}[capped]"
             plain_vf = _blur.replace("[base]", "[vout]")
 
-        # ---- overlay effect layer (drawn on the final 1080x1920) ----
-        # Text stamps (REPLAY) + hook card via drawtext textfile= (apostrophe-
-        # safe), and a contextual reaction EMOJI that pops on the money moment
-        # — the overlay energy the camera now holds still for. Emoji ride in as
-        # extra image inputs; the graph and its inputs degrade together in the
-        # render ladder so a bad overlay can never drop the clip.
-
-        # Spatial safe-zones (§15): overlays pick a vertical position that
-        # avoids the faces (bands exported by the shot plan) and the caption
-        # zone, instead of hardcoded coordinates. Blur-fill wide look → the
-        # centered source occupies the middle band.
-        _bands = list((sp_summary or {}).get("face_bands")
-                      or [[0.34, 0.66]])
-        _bands.append([0.65, 0.80])                    # caption zone
-        # RESERVE THE HOOK CARD TOO. It was never in this list, so the
-        # emoji's first-choice position (0.15, height 0.16 -> 0.15-0.31)
-        # could land straight on top of the hook whenever a money moment
-        # fell inside the first 3 seconds. Wrapping the hook to two lines
-        # makes it taller, so the overlap has to be declared rather than
-        # left to luck. Computed from the ACTUAL wrapped text, not assumed.
-        _hook_txt, _hook_size = wrap_hook(hook) if hook else ("", 72)
-        _hook_band = None
-        if _hook_txt:
-            _n = len(_hook_txt.split("\n"))
-            _h_px = _n * _hook_size * 1.2 + (_n - 1) * 14
-            _hook_band = [230 / CANVAS_H, (230 + _h_px + 20) / CANVAS_H]
-
-        def _safe_y(cands: list[float], frac_h: float,
-                    extra: list | None = None) -> float:
-            bands = _bands + (extra or [])
-            for c in cands:
-                if all(c + frac_h <= b0 or c >= b1 for b0, b1 in bands):
-                    return c
-            # NOTHING FITS: fall back to the least-bad candidate rather than
-            # cands[0]. The old code returned cands[0] unconditionally,
-            # which is how an overlay ended up sitting on whatever it was
-            # supposed to avoid — a "safe zone" that silently gives up is
-            # worse than none, because it reads as deliberate placement.
-
-            def _overlap(c: float) -> float:
-                return sum(max(0.0, min(c + frac_h, b1) - max(c, b0))
-                           for b0, b1 in bands)
-            return min(cands, key=_overlap)
-
-        # The hook only exists for the first 3s. An overlay that lands
-        # after it is not competing for that space, so reserving the band
-        # unconditionally would push every emoji down for nothing.
-        def _hook_extra(s_t: float) -> list:
-            return [_hook_band] if (_hook_band and s_t < 3.0) else []
-
-        emoji_y = _safe_y([0.15, 0.30, 0.50, 0.04], 0.16)
-        word_y = _safe_y([0.40, 0.28, 0.55, 0.09], 0.09)
-        # Text draws (top layer): REPLAY stamps, the big WORD slam, hook card.
-        text_draws: list[str] = []
-        for i, ov in enumerate(overlays):
-            typ = ov.get("type")
-            if typ in ("emoji", "lines"):
-                continue
-            if typ == "word":
-                w = re.sub(r"[^A-Za-z0-9 !?']", "", str(ov.get("text", "")))[:14]
-                if not w:
-                    continue
-                wf = tmp / f"word{i}.txt"
-                wf.write_text(w)
-                ws, we = float(ov["s"]), float(ov["e"])
-                # slams in with a quick damped bounce, at the safe-zone y
-                yb = (f"(H*{word_y:.3f})-55*exp(-7*(t-{ws:.2f}))"
-                      f"*sin(15*(t-{ws:.2f}))")
-                text_draws.append(
-                    f"drawtext=fontfile={FONT_BOLD}:textfile={wf}:expansion=none"
-                    ":fontsize=132:fontcolor=yellow:borderw=10:bordercolor=black"
-                    f":x=(w-text_w)/2:y='{yb}'"
-                    f":enable='between(t,{ws:.2f},{we:.2f})'")
-                continue
-            txt = re.sub(r"[^A-Za-z0-9 !?'.,]", "", str(ov.get("text", "")))[:24]
-            if not txt:
-                continue
-            ovf = tmp / f"ov{i}.txt"
-            ovf.write_text(txt)
-            text_draws.append(
-                f"drawtext=fontfile={FONT_BOLD}:textfile={ovf}:expansion=none"
-                ":fontsize=64:fontcolor=white:box=1:boxcolor=red@0.75"
-                ":boxborderw=18:x=(w-text_w)/2:y=150"
-                f":enable='between(t,{ov['s']:.2f},{ov['e']:.2f})'")
+        # ---- the line of text, and the mood (operator, 2026-10-09) ----
+        # The hook card (3s, top), the REPLAY stamp, the slam word and the
+        # sticker emoji are gone: "The fucking overlays we do suck." What
+        # the repost channels put on a clip is ONE line, sentence case,
+        # white with a black outline, in the bottom third, there the whole
+        # video, emoji in the text (third_capture/caption_line.py) — and on
+        # a sad turn the picture goes grey and a piano comes in under the
+        # voices (third_capture/mood.py), from the second the author named.
+        from third_capture import caption_line
+        from third_capture import mood as mood_mod
+        line_png = None
         if hook:
-            # THE FIRST FRAME EVERY VIEWER SEES. It was a hard black box
-            # with a 26px border, snapping on at t=0 and off at t=3.0, at a
-            # fixed 72px with no wrapping — so a 4-8 word ALL-CAPS hook (what
-            # the author is told to write) ran off both edges once it passed
-            # ~30 characters, because x=(w-text_w)/2 goes negative.
-            # Three fixes, all visible in the first second:
-            #   - wrap to two lines and shrink only if it still won't fit
-            #   - match the CAPTION treatment (heavy outline + shadow)
-            #     instead of a solid box. Two different text looks in one
-            #     video is itself an amateur signal, and the box is the
-            #     meme-caption cliche the operator is trying to get away
-            #     from.
-            #   - fade in and out. A black rectangle appearing and vanishing
-            #     on a hard frame boundary reads as an overlay stuck on top
-            #     of someone else's video, which is exactly what it was.
-            htxt, hsize = _hook_txt, _hook_size
-            hf = tmp / "hook.txt"
-            hf.write_text(htxt)
-            _fade = ("if(lt(t,0.25),t/0.25,"
-                     "if(lt(t,2.55),1,max(0,(3.0-t)/0.45)))")
-            text_draws.append(
-                f"drawtext=fontfile={FONT_BOLD}:textfile={hf}:expansion=none"
-                f":fontsize={hsize}:fontcolor=white"
-                ":borderw=7:bordercolor=black@0.92"
-                ":shadowcolor=black@0.55:shadowx=0:shadowy=5"
-                ":line_spacing=14"
-                f":alpha='{_fade}'"
-                ":x=(w-text_w)/2:y=230"
-                ":enable='between(t,0,3.0)'")
-
-        # Image overlays (behind the text): speed-lines flash first, then the
-        # emoji burst. Each -> (png, start, end, scale_h, x_expr). Asset-guarded.
-        img_cues = []
-        for ov in overlays:
-            if ov.get("type") == "lines":
-                png = FX_DIR / "speedlines.png"
-                if png.exists():
-                    img_cues.append((png, float(ov["s"]), float(ov["e"]),
-                                     1180, "(W-w)/2"))
-        for ov in overlays:
-            if ov.get("type") == "emoji":
-                png = EMOJI_DIR / f"{ov.get('name', '')}.png"
-                if png.exists():
-                    x = float(ov.get("x", 0.5))
-                    img_cues.append((png, float(ov["s"]), float(ov["e"]),
-                                     300, f"(W*{x:.3f})-w/2"))
-
-        def _compose(with_text: bool, with_img: bool) -> tuple[str, list]:
-            """Build (filter_complex, extra_input_paths) for the given layers."""
-            parts, cur, inputs = [base_vf], "capped", []
-            if with_img and img_cues:
-                for k, (png, _s, _e, h, _x) in enumerate(img_cues):
-                    inputs.append(png)
-                    parts.append(f"[{k+1}:v]scale=-1:{h},format=rgba[i{k}]")
-                for k, (_png, s, e, h, xe) in enumerate(img_cues):
-                    nxt = f"im{k}"
-                    if h <= 320:      # emoji — damped bounce at the safe y
-                        ye = (f"(H*{emoji_y:.3f})-70*exp(-6*(t-{s:.2f}))"
-                              f"*sin(14*(t-{s:.2f}))")
-                    else:             # speed-lines — centered hard flash
-                        ye = "(H-h)/2"
-                    parts.append(
-                        f"[{cur}][i{k}]overlay=x='{xe}':y='{ye}'"
-                        f":enable='between(t,{s:.2f},{e:.2f})'[{nxt}]")
-                    cur = nxt
-            if with_text and text_draws:
-                parts.append(f"[{cur}]" + ",".join(text_draws) + "[txt]")
-                cur = "txt"
-            parts.append(f"[{cur}]null[vout]")
-            return ";".join(parts), inputs
+            try:
+                line_png = caption_line.render(hook, tmp / "line.png")
+            except Exception as e:  # noqa: BLE001
+                print(f"::warning::[edit] caption line failed "
+                      f"({type(e).__name__})", flush=True)
+        mood_t, bed = None, None
+        if auto and direct:
+            mood_t = mood_mod.treatment(direct.get("mood", ""),
+                                        direct.get("mood_at", 0.0), dur)
+            if mood_t:
+                try:
+                    bed = mood_mod.bed()
+                except Exception:  # noqa: BLE001
+                    mood_t = None
+        ledger_ae["mood"] = mood_t["mood"] if mood_t else None
+        ledger_ae["mood_at"] = mood_t["at"] if mood_t else None
+        ledger_ae["own_captions"] = own_subs
 
         # §9: a 0.25s audio fade-out — the clip breathes out instead of the
         # audio slamming shut on the final frame
         afade = (f"loudnorm=I=-14:TP=-1.5,"
                  f"afade=t=out:st={max(0.0, dur - 0.25):.2f}:d=0.25")
 
+        def _compose(with_line: bool, with_mood: bool) -> tuple[str, list]:
+            """(filter_complex, extra_input_paths); it ends in [vout] and
+            [aout]."""
+            vf0, inputs = base_vf, []
+            if with_mood and mood_t:
+                # grey UNDER the captions, so the words stay white
+                vf0 = vf0.replace("[base]ass=", f"[base]{mood_t['vf']},ass=")
+            parts, cur = [vf0], "capped"
+            if with_line and line_png:
+                inputs.append(line_png)
+                parts.append(f"[{cur}][{len(inputs)}:v]overlay=0:"
+                             f"{caption_line.LINE_Y}[ln]")
+                cur = "ln"
+            parts.append(f"[{cur}]null[vout]")
+            a_in = "0:a"
+            if with_mood and mood_t and bed:
+                inputs.append(bed)
+                parts.append(mood_mod.audio_graph(
+                    mood_t, "0:a", f"{len(inputs)}:a", dur, "amood"))
+                a_in = "amood"
+            parts.append(f"[{a_in}]{afade}[aout]")
+            return ";".join(parts), inputs
+
         def _render(chain: str, extra_inputs: list | None = None) -> bool:
             cmd = ["ffmpeg", "-y", "-v", "error", "-i", str(src)]
             for p in (extra_inputs or []):
                 cmd += ["-i", str(p)]
-            cmd += ["-filter_complex", chain, "-map", "[vout]", "-map", "0:a",
+            cmd += ["-filter_complex", chain, "-map", "[vout]",
+                    "-map", "[aout]",
                     # cap the container at the cut length: without -t, an
                     # audio stream that outlasts the video (yt-dlp recode)
                     # extends the file with picture-less tail — the afade
                     # timing and QA's AV_DRIFT allowance both assume `dur`
                     "-t", f"{dur:.3f}",
-                    "-af", afade,
                     "-c:v", "libx264", "-preset", "medium", "-crf", "19",
                     "-pix_fmt", "yuv420p", "-r", "30",
                     "-c:a", "aac", "-b:a", "160k", str(out_path)]
@@ -1357,16 +1312,18 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             except Exception:  # noqa: BLE001
                 return False
 
-        full_chain, full_inputs = _compose(with_text=True, with_img=True)
-        text_chain, _ = _compose(with_text=True, with_img=False)
-        caps_vf = base_vf.replace("[capped]", "[vout]")
+        full_chain, full_inputs = _compose(with_line=True, with_mood=True)
+        line_chain, line_inputs = _compose(with_line=True, with_mood=False)
+        _a = f";[0:a]{afade}[aout]"
+        caps_vf = base_vf.replace("[capped]", "[vout]") + _a
+        plain_vf = plain_vf + _a
 
-        # Render ladder — a clip must ALWAYS ship. Full (captions + text
-        # overlays + image FX) -> text overlays only (drop emoji/lines) ->
-        # captions only -> plain reframe -> raw re-encode. Record what shipped.
+        # Render ladder — a clip must ALWAYS ship. Full (captions + line +
+        # mood) -> line without the mood -> captions only -> plain reframe
+        # -> raw re-encode. Record what shipped.
         if _render(full_chain, full_inputs):
             render_level = "full"
-        elif (text_draws or img_cues) and _render(text_chain):
+        elif mood_t and _render(line_chain, line_inputs):
             render_level = "text_only"
         elif _render(caps_vf):
             render_level = "captions_only"

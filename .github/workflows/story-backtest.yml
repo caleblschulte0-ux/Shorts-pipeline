@@ -57,7 +57,7 @@ jobs:
       - name: Install system deps
         run: |
           sudo apt-get update -q
-          sudo apt-get install -y -q ffmpeg fonts-dejavu-core
+          sudo apt-get install -y -q ffmpeg fonts-dejavu-core fonts-noto-color-emoji tesseract-ocr
 
       - name: Install python deps
         run: pip install -q pillow numpy edge-tts yt-dlp curl_cffi openai-whisper "opencv-python-headless<5"
