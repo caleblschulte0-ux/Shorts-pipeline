@@ -1043,7 +1043,7 @@ def fetch_age_hours(url: str) -> float:
         return 0.0
 
 
-BG_TOP = 0.6   # the share of the frame the blurred fill is made from
+from third_capture.shot_plan import BG_TOP  # noqa: E402,F401  one share, both fills
 
 
 def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",

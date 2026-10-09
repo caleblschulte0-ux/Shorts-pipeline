@@ -54,6 +54,12 @@ GAME_PANEL_H = 608        # middle: full-width source = action always visible
 # bottom 752px: blurred fill — captions (y≈1350) land here
 
 
+# The blurred fill is made from the TOP of the frame: the bottom is where a
+# stream burns its own captions, and blown up behind ours they read as ghost
+# text (vision QA, 2026-10-09). clip_edit's own blur fill uses the same.
+BG_TOP = 0.6
+
+
 @dataclass
 class Subject:
     cx: float = 0.0           # running-mean center x (source px)
@@ -316,7 +322,7 @@ def _render_action_crop(video: Path, shot: Shot, out: Path) -> Path | None:
     sit."""
     w, h, x, y = shot.crop
     fc = (f"[0:v]crop={w}:{h}:{x}:{y},split=2[c0][c1];"
-          f"[c0]scale={CANVAS_W}:{CANVAS_H}:"
+          f"[c0]crop=iw:ih*{BG_TOP}:0:0,scale={CANVAS_W}:{CANVAS_H}:"
           f"force_original_aspect_ratio=increase,"
           f"crop={CANVAS_W}:{CANVAS_H},gblur=sigma=28,"
           f"eq=brightness=-0.03[bg];"
@@ -362,7 +368,8 @@ def _render_stacked(video: Path, shot: Shot, an: dict,
         f"[c]crop={int(cw)}:{int(ch)}:{int(cx)}:{int(cy)},"
         f"scale={CANVAS_W}:{CAM_PANEL_H}[cam];"
         f"[g]scale={CANVAS_W}:{game_h}[game];"
-        f"[b]scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
+        f"[b]crop=iw:ih*{BG_TOP}:0:0,"
+        f"scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
         f"increase,crop={CANVAS_W}:{CANVAS_H},gblur=sigma=24,"
         f"eq=brightness=-0.12:saturation=1.15[bg];"
         f"[bg][cam]overlay=0:0[t1];"

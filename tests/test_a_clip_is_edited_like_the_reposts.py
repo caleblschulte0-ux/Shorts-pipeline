@@ -254,3 +254,12 @@ def test_the_blurred_fill_leaves_the_streams_captions_out():
     from third_capture import clip_edit as _ce
     assert 0.4 <= _ce.BG_TOP <= 0.7
     assert "[bg]crop=iw:ih*{BG_TOP}:0:0," in _inspect.getsource(_ce.edit)
+
+
+def test_the_stacked_and_action_layouts_leave_them_out_too():
+    """The facecam-over-gameplay and action-crop layouts make their own
+    blurred fill; it is cut from the same top share."""
+    import inspect as _inspect
+    from third_capture import shot_plan as _sp
+    for fn in (_sp._render_stacked, _sp._render_action_crop):
+        assert "crop=iw:ih*{BG_TOP}:0:0," in _inspect.getsource(fn), fn
