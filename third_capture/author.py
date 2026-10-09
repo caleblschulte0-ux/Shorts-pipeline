@@ -46,7 +46,7 @@ Twitch, and the transcript of what is said in the clip.
 Return STRICT JSON:
 {"title": str, "hook": str, "caption": str, "cta": str, "hashtags": [str, ...],
  "series": str,
- "edit": {"slam": str, "emoji": str, "replay_worthy": bool,
+ "edit": {"mood": str, "mood_at": number,
           "cut": {"start": number, "end": number}, "complete": bool}}
 
 This niche is REALITY TV: viewers follow PEOPLE and DRAMA — fights, beef,
@@ -67,10 +67,14 @@ Rules:
   gap. <= 90 chars, max 1 emoji, at most one ALL-CAPS emphasis word. NEVER
   invent an event the transcript/original title doesn't support — tease
   honestly, do not lie or clickbait a payoff that isn't there.
-- hook: 4-8 words, ALL CAPS, on screen the first 3 seconds. The dramatic
-  stakes in one breath — a curiosity gap that stops the swipe ("SHE KEPT
-  DISRESPECTING HER", "THEN IT ALL WENT WRONG") without spoiling the payoff.
-  Honest only.
+- hook: the ONE line of text on screen for the whole video, written the
+  way the big Twitch repost channels write it: sentence case (never ALL
+  CAPS), plain words, 3-9 words, saying the SITUATION a stranger needs to
+  get the clip ("Los thought he ended stream", "Kai's mom walks in on
+  stream", "Jynxzi finally hits champ"), never the punchline. It may end
+  with ONE or TWO emoji when the moment earns them, the way those channels
+  use them: 😭 funny or painful, 🥀 sad or a loss, 💀 a fail, 😂 a joke
+  landing, 😳 awkward. Most lines take one or none. Honest only.
 - caption: ONE natural sentence for the video description (max ~140
   chars) — how a fan would describe the moment to a friend. Plain human
   wording, no jargon, no "clip from the allowlist" robot-speak, one
@@ -95,23 +99,13 @@ Rules:
   recurring shelf this moment belongs to (favor the human-drama labels when
   they fit; that is what travels).
 - edit: you also DIRECT the edit (a human editor's judgement):
-  - slam: the punchline word(s) that slam on screen at the peak — 1-2
-    words, <= 12 chars, taken VERBATIM from the transcript (the funniest/
-    most explosive thing actually said), or "" when nothing said fits.
-    Never write a word nobody said, and never reach for a generic hype
-    exclamation to fill the field — "" is the right answer far more often
-    than not. It only earns the screen when the line itself is the joke.
-  - emoji: "" (EMPTY) unless this exact moment genuinely earns one, or one
-    of "skull" | "fire" | "sob" | "joy" | "eyes" | "mindblown" | "scream" |
-    "flushed" | "pleading" | "rage". DEFAULT TO "". A reaction emoji is
-    emphasis, and emphasis on everything is emphasis on nothing — an emoji
-    stuck over ordinary footage is the loudest "cheap reposted clip" signal
-    we produce. Earn it: there must be a single visible instant a viewer
-    would actually react to that way. If you are choosing one because the
-    field exists, the answer is "".
-  - replay_worthy: true ONLY if the peak moment genuinely rewards seeing
-    twice (a visible event, a wild line). Talking with nothing visual
-    happening = false.
+  - mood: "sad" ONLY when the clip has a genuinely sad turn (a loss,
+    someone crying, a goodbye, bad news, a friend falling out) that a
+    viewer would feel; otherwise "". On "sad" the picture goes grey and a
+    sad piano comes in from mood_at, the way repost channels edit it, so
+    never use it for a joke or a rage moment.
+  - mood_at: the second (clip time, from the transcript timestamps) the
+    sad turn lands; 0 if it is sad from the start.
   - cut: {"start","end"} in SECONDS into this clip — the span to KEEP so a
     first-time viewer instantly understands the moment. Use the [t.t-t.t]
     timestamps in the transcript. start early enough to include the SETUP
@@ -407,7 +401,11 @@ def anchor_streamer(title: str, streamer: str) -> str:
 def _postprocess(out: dict, streamer: str, context: str,
                  clip_dur: float = 0.0) -> dict | None:
     title = str(out.get("title", "")).strip()
-    hook = str(out.get("hook", "")).strip().upper()
+    hook = " ".join(str(out.get("hook", "")).split())
+    if hook.isupper():
+        # the line is sentence case (operator, 2026-10-08/09); a model
+        # that still shouts gets lowered, first letter kept up
+        hook = hook[:1] + hook[1:].lower()
     tags = [re.sub(r"[^a-z0-9]", "", str(t).lower())
             for t in out.get("hashtags", [])]
     tags = [t for t in tags if 2 <= len(t) <= 30][:7]
@@ -441,20 +439,18 @@ def _postprocess(out: dict, streamer: str, context: str,
     cta = scrub_text(str(out.get("cta", "")).strip())[:90]
 
     # Edit direction (validated hard — the renderer must never trust raw
-    # model output): slam must be words actually present in the source
-    # material, emoji from the asset whitelist, replay a strict bool.
-    _EMOJI_OK = {"skull", "fire", "sob", "joy", "eyes", "mindblown",
-                 "scream", "flushed", "pleading", "rage"}
+    # model output). The slam word, sticker emoji and replay were retired
+    # 2026-10-09; what the author directs now is the cut and the mood.
     edit_raw = out.get("edit") or {}
-    slam = re.sub(r"[^A-Za-z0-9 !?']", "",
-                  str(edit_raw.get("slam", ""))).strip().upper()[:14]
-    if slam and _norm(slam) not in _norm(context):
-        slam = ""                     # said by nobody → not a slam
-    emoji = str(edit_raw.get("emoji", "")).strip().lower()
-    if emoji not in _EMOJI_OK:
-        emoji = ""
-    edit = {"slam": slam, "emoji": emoji,
-            "replay_worthy": bool(edit_raw.get("replay_worthy", True)),
+    mood = str(edit_raw.get("mood", "")).strip().lower()
+    try:
+        mood_at = max(0.0, float(edit_raw.get("mood_at") or 0.0))
+    except (TypeError, ValueError):
+        mood_at = 0.0
+    if clip_dur:
+        mood_at = min(mood_at, clip_dur)
+    edit = {"mood": mood if mood in ("sad",) else "",
+            "mood_at": round(mood_at, 2),
             "complete": bool(edit_raw.get("complete", True))}
 
     # Narrative cut window (§9): trusted only when it's sane against the
@@ -470,7 +466,7 @@ def _postprocess(out: dict, streamer: str, context: str,
     except (TypeError, ValueError):
         pass
 
-    return {"title": title[:95], "hook": hook[:60], "caption": caption,
+    return {"title": title[:95], "hook": hook[:80], "caption": caption,
             "cta": cta, "hashtags": tags, "series": series,
             "edit": edit}
 

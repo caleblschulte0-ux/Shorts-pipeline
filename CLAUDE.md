@@ -661,6 +661,23 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   `story_director.known_people`: one model proposes, a DIFFERENT model
   must confirm, events and accusations never qualify.
   `tests/test_a_story_has_no_narrator_only_a_line_of_text.py`.
+- **A clip is edited like the reposts, not by an effects engine**
+  (operator, 2026-10-09: *"That weird slowdown thing we do never works,
+  and then we speed up randomly after it ... do a gray overlay and do that
+  specific sad song whenever something sad happens ... the dead rose with
+  the crying face ... don't put captions over the captions of the
+  video"*). No slow-mo, replay, speed-up, slam word or sticker emoji (the
+  auto-editor's Stage 1 is retired; stories drop every effect). The hook
+  is ONE sentence-case line with its emoji, drawn by
+  `third_capture/caption_line.py` in the bottom third for the whole
+  video; the word captions sit above it (`SPEECH_Y`) and are skipped when
+  the stream already shows what is said (`clip_edit.own_captions`, OCR
+  against the transcript). The author marks a sad turn (`edit.mood`,
+  `mood_at`) and `third_capture/mood.py` greys the picture and brings in
+  a synthesised piano from that second — not a commercial song, which
+  Content ID would claim. A dry run with `clips_only` publishes its renders
+  to `preview-renders:third-dry/<run id>/`.
+  `tests/test_a_clip_is_edited_like_the_reposts.py`.
 - **Slots follow `_learned_prior()`, and it had no tests** until the day it
   was found inverted: kaicenat and buddha (median 5 and 8 views) at the
   maximum boost, jynxzi (1,355-view top video) below them, because flops and
