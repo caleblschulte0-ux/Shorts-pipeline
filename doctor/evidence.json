@@ -4964,8 +4964,8 @@
     }
   },
   "recent_commits": [
-    "071cea2 2026-10-09 claim: mailbox verdicts 2026-10-09T04:48Z [skip ci]",
-    "56d3379 2026-10-08 Third stories: no more than two candidates from one streamer per attempt (#567)"
+    "d63a6b3 2026-10-09 claim: mailbox verdicts 2026-10-09T11:49Z [skip ci]",
+    "768f47c 2026-10-09 trending: posted the_world_flipped_from_rural_to_urban [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4982,10 +4982,11 @@
         "2026-10-04": 4,
         "2026-10-05": 5,
         "2026-10-06": 5,
-        "2026-10-08": 1
+        "2026-10-08": 1,
+        "2026-10-09": 4
       },
-      "total_posted": 424,
-      "attempted": 424,
+      "total_posted": 428,
+      "attempted": 428,
       "rejected_or_pending": 0
     },
     "explainer": {
@@ -5072,32 +5073,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 127,
+      "videos": 129,
       "top_by_vph": [
         {
           "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
-          "vph": 4.82,
-          "views": 568
+          "vph": 4.45,
+          "views": 591
+        },
+        {
+          "title": "Plaqueboymax Dance Fails And Hits His Mouth On Camera",
+          "vph": 2.98,
+          "views": 38
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 2.88,
-          "views": 197
+          "vph": 2.68,
+          "views": 223
         },
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 2.7,
+          "vph": 2.63,
           "views": 1361
         },
         {
-          "title": "Jinnytty Can't Stop Watching Kicky And Says She's So Cute",
-          "vph": 1.15,
-          "views": 20
-        },
-        {
-          "title": "Cinna Blames Kalita After Wrong-Side Crash Into 4Head and Twinkles Car",
-          "vph": 1.0,
-          "views": 49
+          "title": "Kaicenat: Kai Cenat Demands Proof: \"Where Is Your Proof?\" After Being ",
+          "vph": 1.45,
+          "views": 12
         }
       ],
       "full_data": "state/analytics_third/latest.json"
@@ -5244,7 +5245,7 @@
       "title": "Provider fallback cache has no freshness contract",
       "horizon": "long_term",
       "severity": "medium",
-      "ruling": "doing"
+      "ruling": "in_progress"
     },
     {
       "signature": "b507d603aefb",
