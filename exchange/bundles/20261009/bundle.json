@@ -370,29 +370,29 @@
           "shot_index": 0,
           "phrase": "every task, no matter how small, had to be logged by scanning your badge",
           "query": "employee badge scanner terminal office",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 1,
           "phrase": "I scanned in to get a pen",
           "query": "office desk pen cup closeup",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
           "phrase": "Scanned in to refill the stapler",
           "query": "office stapler supply closet",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
           "phrase": "the terminal had logged over nine thousand scans",
           "query": "computer screen data log numbers",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
@@ -412,31 +412,31 @@
           "shot_index": 6,
           "phrase": "He got moved to an office with no staff to manage",
           "query": "empty office cubicle alone",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 7,
           "phrase": "The badge rule quietly disappeared the same week",
           "query": "office employees walking relaxed",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 0,
-        "missing": 8,
+        "weak": 6,
+        "missing": 2,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
+        "05_reddit-badge-scanner-compliance-s4-66cb4b52ca03",
+        "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
         "05_reddit-badge-scanner-compliance-s0-433c86381108",
         "05_reddit-badge-scanner-compliance-s1-80943bffc170",
         "05_reddit-badge-scanner-compliance-s2-dc135bc7f372",
         "05_reddit-badge-scanner-compliance-s3-12f0ae073ba6",
-        "05_reddit-badge-scanner-compliance-s4-66cb4b52ca03",
-        "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
         "05_reddit-badge-scanner-compliance-s6-7d5a9222809c",
         "05_reddit-badge-scanner-compliance-s7-3c5e99ec2f38"
       ]
@@ -457,15 +457,15 @@
           "shot_index": 1,
           "phrase": "collapsed on its own after barely a month",
           "query": "woman pointing at couch complaint",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 2,
           "phrase": "found the actual purchase date, eight months earlier",
           "query": "computer screen purchase receipt lookup",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 3,
@@ -478,8 +478,8 @@
           "shot_index": 4,
           "phrase": "a corner chewed clean through to the frame",
           "query": "damaged furniture fabric torn",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
@@ -505,128 +505,24 @@
       ],
       "media_health": {
         "strong": 0,
-        "weak": 2,
-        "missing": 6,
+        "weak": 5,
+        "missing": 3,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
-        "06_reddit-return-dog-damage-s1-1e9c329558e3",
-        "06_reddit-return-dog-damage-s2-632c54318233",
         "06_reddit-return-dog-damage-s3-19b6310743a0",
-        "06_reddit-return-dog-damage-s4-93f443f20cb2",
         "06_reddit-return-dog-damage-s6-12d5fde8a41a",
         "06_reddit-return-dog-damage-s7-960d5ca54eeb",
         "06_reddit-return-dog-damage-s0-2382fc808110",
+        "06_reddit-return-dog-damage-s1-1e9c329558e3",
+        "06_reddit-return-dog-damage-s2-632c54318233",
+        "06_reddit-return-dog-damage-s4-93f443f20cb2",
         "06_reddit-return-dog-damage-s5-bbd76f0168af"
       ]
     }
   ],
   "requests": [
-    {
-      "request_id": "05_reddit-badge-scanner-compliance-s0-433c86381108",
-      "safe_request_id": "05_reddit-badge-scanner-compliance-s0-433c86381108",
-      "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s0-433c86381108.png",
-      "prompt_sha256": "af9af9ab8e793f96be613ce678ba0e3a4461e5d92c84eedbb1fb5395e8aa4ce0",
-      "checkpoint_path": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s0-433c86381108.json",
-      "slug": "05_reddit-badge-scanner-compliance",
-      "shot_index": 0,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: employee badge scanner terminal office. It accompanies the narration: \"every task, no matter how small, had to be logged by scanning your badge\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "05_reddit-badge-scanner-compliance-s1-80943bffc170",
-      "safe_request_id": "05_reddit-badge-scanner-compliance-s1-80943bffc170",
-      "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s1-80943bffc170.png",
-      "prompt_sha256": "95a4537c72c1caa53b6882b306a4cf05445447fe2fd22baf1e3177fd0fe669a2",
-      "checkpoint_path": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s1-80943bffc170.json",
-      "slug": "05_reddit-badge-scanner-compliance",
-      "shot_index": 1,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: office desk pen cup closeup. It accompanies the narration: \"I scanned in to get a pen\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "05_reddit-badge-scanner-compliance-s2-dc135bc7f372",
-      "safe_request_id": "05_reddit-badge-scanner-compliance-s2-dc135bc7f372",
-      "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s2-dc135bc7f372.png",
-      "prompt_sha256": "c2b8495bd8d11f41d6a333b9522d0a9ce1352d8366fe2c81f494be7cb5b1c6d8",
-      "checkpoint_path": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s2-dc135bc7f372.json",
-      "slug": "05_reddit-badge-scanner-compliance",
-      "shot_index": 2,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: office stapler supply closet. It accompanies the narration: \"Scanned in to refill the stapler\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "05_reddit-badge-scanner-compliance-s3-12f0ae073ba6",
-      "safe_request_id": "05_reddit-badge-scanner-compliance-s3-12f0ae073ba6",
-      "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s3-12f0ae073ba6.png",
-      "prompt_sha256": "dac03a6ac448f4e4f89980b27fdf2df95418cc2ab24b64f70b36d05f60628b13",
-      "checkpoint_path": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s3-12f0ae073ba6.json",
-      "slug": "05_reddit-badge-scanner-compliance",
-      "shot_index": 3,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: computer screen data log numbers. It accompanies the narration: \"the terminal had logged over nine thousand scans\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
     {
       "request_id": "05_reddit-badge-scanner-compliance-s4-66cb4b52ca03",
       "safe_request_id": "05_reddit-badge-scanner-compliance-s4-66cb4b52ca03",
@@ -680,6 +576,118 @@
       "verdict": "missing"
     },
     {
+      "request_id": "05_reddit-badge-scanner-compliance-s0-433c86381108",
+      "safe_request_id": "05_reddit-badge-scanner-compliance-s0-433c86381108",
+      "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s0-433c86381108.png",
+      "prompt_sha256": "af9af9ab8e793f96be613ce678ba0e3a4461e5d92c84eedbb1fb5395e8aa4ce0",
+      "checkpoint_path": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s0-433c86381108.json",
+      "slug": "05_reddit-badge-scanner-compliance",
+      "shot_index": 0,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: employee badge scanner terminal office. It accompanies the narration: \"every task, no matter how small, had to be logged by scanning your badge\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s1-80943bffc170",
+      "safe_request_id": "05_reddit-badge-scanner-compliance-s1-80943bffc170",
+      "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s1-80943bffc170.png",
+      "prompt_sha256": "95a4537c72c1caa53b6882b306a4cf05445447fe2fd22baf1e3177fd0fe669a2",
+      "checkpoint_path": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s1-80943bffc170.json",
+      "slug": "05_reddit-badge-scanner-compliance",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: office desk pen cup closeup. It accompanies the narration: \"I scanned in to get a pen\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s2-dc135bc7f372",
+      "safe_request_id": "05_reddit-badge-scanner-compliance-s2-dc135bc7f372",
+      "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s2-dc135bc7f372.png",
+      "prompt_sha256": "c2b8495bd8d11f41d6a333b9522d0a9ce1352d8366fe2c81f494be7cb5b1c6d8",
+      "checkpoint_path": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s2-dc135bc7f372.json",
+      "slug": "05_reddit-badge-scanner-compliance",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: office stapler supply closet. It accompanies the narration: \"Scanned in to refill the stapler\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s3-12f0ae073ba6",
+      "safe_request_id": "05_reddit-badge-scanner-compliance-s3-12f0ae073ba6",
+      "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s3-12f0ae073ba6.png",
+      "prompt_sha256": "dac03a6ac448f4e4f89980b27fdf2df95418cc2ab24b64f70b36d05f60628b13",
+      "checkpoint_path": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s3-12f0ae073ba6.json",
+      "slug": "05_reddit-badge-scanner-compliance",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: computer screen data log numbers. It accompanies the narration: \"the terminal had logged over nine thousand scans\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
       "request_id": "05_reddit-badge-scanner-compliance-s6-7d5a9222809c",
       "safe_request_id": "05_reddit-badge-scanner-compliance-s6-7d5a9222809c",
       "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s6-7d5a9222809c.png",
@@ -701,9 +709,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "05_reddit-badge-scanner-compliance-s7-3c5e99ec2f38",
@@ -727,61 +737,11 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "no media found for this line"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "06_reddit-return-dog-damage-s1-1e9c329558e3",
-      "safe_request_id": "06_reddit-return-dog-damage-s1-1e9c329558e3",
-      "drive_filename": "20261009__06_reddit-return-dog-damage-s1-1e9c329558e3.png",
-      "prompt_sha256": "693ff7c60507a3679872ce1e9da07ce1e29fbd9de24f5e4974a56fa14bf52068",
-      "checkpoint_path": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s1-1e9c329558e3.json",
-      "slug": "06_reddit-return-dog-damage",
-      "shot_index": 1,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: woman pointing at couch complaint. It accompanies the narration: \"collapsed on its own after barely a month\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "06_reddit-return-dog-damage-s2-632c54318233",
-      "safe_request_id": "06_reddit-return-dog-damage-s2-632c54318233",
-      "drive_filename": "20261009__06_reddit-return-dog-damage-s2-632c54318233.png",
-      "prompt_sha256": "abbb2fc31c26d66844e5474614cc22f4a742ea279793a429186a05196ef6523a",
-      "checkpoint_path": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s2-632c54318233.json",
-      "slug": "06_reddit-return-dog-damage",
-      "shot_index": 2,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: computer screen purchase receipt lookup. It accompanies the narration: \"found the actual purchase date, eight months earlier\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
+      "verdict": "weak"
     },
     {
       "request_id": "06_reddit-return-dog-damage-s3-19b6310743a0",
@@ -793,32 +753,6 @@
       "shot_index": 3,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: chewed couch armrest closeup. It accompanies the narration: \"deep chew marks along one whole armrest\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "06_reddit-return-dog-damage-s4-93f443f20cb2",
-      "safe_request_id": "06_reddit-return-dog-damage-s4-93f443f20cb2",
-      "drive_filename": "20261009__06_reddit-return-dog-damage-s4-93f443f20cb2.png",
-      "prompt_sha256": "6f18b460f68c66fe9bf2aeba6982c66d02e4d68325c32af713a1cd55feb24d49",
-      "checkpoint_path": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s4-93f443f20cb2.json",
-      "slug": "06_reddit-return-dog-damage",
-      "shot_index": 4,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: damaged furniture fabric torn. It accompanies the narration: \"a corner chewed clean through to the frame\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -909,7 +843,93 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "resolution unverified (no width/height reported)"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s1-1e9c329558e3",
+      "safe_request_id": "06_reddit-return-dog-damage-s1-1e9c329558e3",
+      "drive_filename": "20261009__06_reddit-return-dog-damage-s1-1e9c329558e3.png",
+      "prompt_sha256": "693ff7c60507a3679872ce1e9da07ce1e29fbd9de24f5e4974a56fa14bf52068",
+      "checkpoint_path": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s1-1e9c329558e3.json",
+      "slug": "06_reddit-return-dog-damage",
+      "shot_index": 1,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: woman pointing at couch complaint. It accompanies the narration: \"collapsed on its own after barely a month\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s2-632c54318233",
+      "safe_request_id": "06_reddit-return-dog-damage-s2-632c54318233",
+      "drive_filename": "20261009__06_reddit-return-dog-damage-s2-632c54318233.png",
+      "prompt_sha256": "abbb2fc31c26d66844e5474614cc22f4a742ea279793a429186a05196ef6523a",
+      "checkpoint_path": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s2-632c54318233.json",
+      "slug": "06_reddit-return-dog-damage",
+      "shot_index": 2,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: computer screen purchase receipt lookup. It accompanies the narration: \"found the actual purchase date, eight months earlier\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s4-93f443f20cb2",
+      "safe_request_id": "06_reddit-return-dog-damage-s4-93f443f20cb2",
+      "drive_filename": "20261009__06_reddit-return-dog-damage-s4-93f443f20cb2.png",
+      "prompt_sha256": "6f18b460f68c66fe9bf2aeba6982c66d02e4d68325c32af713a1cd55feb24d49",
+      "checkpoint_path": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s4-93f443f20cb2.json",
+      "slug": "06_reddit-return-dog-damage",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: damaged furniture fabric torn. It accompanies the narration: \"a corner chewed clean through to the frame\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
       "verdict": "weak"
     },
@@ -935,7 +955,9 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "resolution unverified (no width/height reported)"
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
       ],
       "verdict": "weak"
     }
