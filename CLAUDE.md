@@ -358,6 +358,16 @@ constants blanked), never on the prose that explains it.
   The explainer's `_tts_text` is it; trending's `normalize_for_tts` is its
   `shorthand` (trending times cues off a digit transcript, so it keeps
   digits). `tests/test_the_voice_reads_words.py` runs every queued line.
+  And the NARRATION TELLS A STORY, not the data (operator, 2026-10-09:
+  *"this whole thing is just us reading off numbers to people ... we can
+  just say the experts, unless it's a really famous one, like WHO"*).
+  `shared/narration.py`: `problems` flags a beat reading off more than
+  `MAX_NUMBERS` numbers or naming a group outside `FAMOUS`; `retell` has
+  the brain retell it before the gate (next to `pacing.tighten` in
+  `post_stories`), validated by the mailbox's own rules, then heard
+  against the old words by a listener that may keep them; persisted once
+  (`retold`). It never holds a story. The forge and the mailbox carry
+  its `DOCTRINE`. `tests/test_the_narration_tells_a_story.py`.
 
 - **A brain-drawn subject scene has to pass a VIEWER, not just the code**
   (operator, 2026-10-01: a coffin he "couldn't tell was a coffin", an urn

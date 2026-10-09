@@ -433,6 +433,7 @@ _HOOK_DOCTRINE = _hook_doctrine()
 
 
 from shared import pacing as _pace  # noqa: E402 — the beat budget, from the registry
+from shared import narration as _narration  # noqa: E402 — a story, not a readout
 
 
 def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None:
@@ -640,9 +641,10 @@ def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None
             "\"closing\":str,\"question\":str,\"hashtags\":[str],"
             "\"says\":[str],\"scenes\":[{\"title\":true,\"elements\":"
             "[{...}]}]} where says AND scenes each have exactly "
-            f"{len(dss)} entries, one per dataset in order. Each say speaks "
-            "that dataset's actual numbers in spoken English.\n\n"
-            + _pace.rule() + "\n\n"
+            f"{len(dss)} entries, one per dataset in order. Each say tells "
+            "that dataset's part of the story with ONE of its actual "
+            "numbers, in spoken English.\n\n"
+            + _pace.rule() + "\n\n" + _narration.DOCTRINE + "\n"
             "SAY THE NUMBER THE PICTURE SHOWS. Each say line is spoken OVER "
             "its own beat's chart, so the LOUDEST number in it must be one "
             "that chart can show: a value from that dataset, a difference "
