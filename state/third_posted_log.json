@@ -12162,13 +12162,50 @@
       "ts": "2026-10-09T18:24:37.369747+00:00"
     },
     "clip-20261009-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/PuzzledDirtyDumplingsYee-6SyVqLXmlHvcV2Is",
-      "story_key": null,
-      "streamer": "joe_bartolozzi",
+      "url": "https://youtube.com/shorts/TTkGbk-VhE4",
       "title": "Joe Joe_Bartolozzi Asks Jimmy To Turn The Cameras Off For 10 Minutes",
       "kind": "twitch_clip",
-      "ts": "2026-10-09T18:27:17.736724+00:00",
+      "ts": "2026-10-09T18:27:26.583060+00:00",
+      "uploaded_at": "2026-10-09T18:27:26.583075+00:00",
+      "publish_at": "2026-10-10T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261009-joe-joe-bartolozzi-asks-jimmy-to-turn-the-camera-7972e047",
+        "tiktok": "queued for 2026-10-10T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/PuzzledDirtyDumplingsYee-6SyVqLXmlHvcV2Is",
+      "streamer": "joe_bartolozzi",
+      "series": "chaos",
+      "hook": "Joe asks Jimmy to cut the cameras \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 17282,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 14.4
+      },
+      "director_cut": true
+    },
+    "rejected-suspiciousfamousgazellejebaited-vrb0v1mdmnjrtpne": {
+      "source_url": "https://www.twitch.tv/lospollostv/clip/SuspiciousFamousGazelleJebaited-vrb0V1MDMnjrtPne",
+      "streamer": "lospollostv",
+      "title": "los kills los",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (dark Minecraft mining, inside-joke chatt)",
+      "ts": "2026-10-09T18:27:56.373734+00:00"
+    },
+    "clip-20261009-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/zackrawrr/clip/EnjoyableSingleWheelYouDontSay-pq4DgGX-oYkSro8M",
+      "story_key": null,
+      "streamer": "zackrawrr",
+      "title": "Zackrawrr Asks \"Do You Remember?\" 25 Times Over The Lindsay Clancy Debate",
+      "kind": "twitch_clip",
+      "ts": "2026-10-09T18:32:06.518901+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
