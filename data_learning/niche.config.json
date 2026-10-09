@@ -26305,7 +26305,12 @@
      "insight_type": "trend",
      "role": "1 · THE SCALE",
      "topic": "total bird abundance",
-     "say": "North America had 10.1 billion breeding birds in 1970; by 2017, only 7.2 billion."
+     "say": "North America had 10.1 billion breeding birds in 1970; by 2017, only 7.2 billion.",
+     "scene": {
+      "mechanic": "flock-thins-to-remainder",
+      "concept": "a flock of 101 birds (0.1 billion each) fills the sky as 1970, then 29 lift off and fly out the top of frame, leaving the 72 that remain in 2017",
+      "code": "bird = subject_image('small songbird flying cutout')\ntot = int(round(values[0] * 10))\nkeep = int(round(values[1] * 10))\ncols = 11\nrows = (tot + cols - 1) // cols\ncw = (RX1 - RX0) // cols\nch = 100\ny0 = RTOP + 200\ngo = clamp((reveal - 0.35) * 1.8)\nfor i in range(tot):\n    r, cc = i // cols, i % cols\n    x = RX0 + cc * cw + cw // 2\n    y = y0 + r * ch\n    gone = i >= keep\n    appear = clamp(reveal * 3.0 - i / tot * 1.5)\n    if gone:\n        y = y - int(go * (y0 + r * ch - RTOP + 120) * 1.0)\n        x = x + int(go * (cc - cols / 2) * 40)\n    if appear <= 0:\n        continue\n    if bird is not None:\n        paste(bird, x - 34, y - 28, 68, 56)\n    else:\n        d.ellipse([x-22, y-14, x+22, y+14], fill=rgba(WARN if gone else TEXT, 220))\ncur = values[0] if reveal < 0.35 else lerp(values[0], values[1], clamp((reveal - 0.35) * 1.8))\ntext(f'{cur:.1f} BILLION BIRDS', (RX0 + RX1) // 2, RBOT - 130, size=60, color=HIGHLIGHT, center=True)\ntext(f'1970: {values[0]:.1f}B   2017: {values[1]:.1f}B', (RX0 + RX1) // 2, RBOT - 50, size=36, color=TEXT, center=True)\n"
+     }
     },
     {
      "source": "offline",
@@ -26318,7 +26323,12 @@
      "use_baseline": false,
      "role": "2 · NOT EVEN",
      "topic": "change by bird group",
-     "say": "Grassland birds lost over half their numbers, while ducks and geese actually grew."
+     "say": "Grassland birds lost over half their numbers, while ducks and geese actually grew.",
+     "scene": {
+      "mechanic": "flight-from-zero-lanes",
+      "concept": "one bird per group leaves a zero line: losers fly left, the waterfowl flies right, each stopping at its percent change",
+      "code": "cx = (RX0 + RX1) // 2\nvmax = max(abs(v) for v in values)\nspan = 400\nlane_h = 360\nt = clamp(reveal * 1.2)\nd.line([cx, RTOP + 40, cx, RBOT - 60], fill=rgba(TEXT, 160), width=4)\ntext('0', cx, RTOP + 5, size=32, color=TEXT, center=True)\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    y = RTOP + 180 + i * lane_h\n    img = images.get(lab) if images else None\n    if img is None:\n        img = subject_image(lab.split('(')[0].strip())\n    x = cx + int(v / vmax * span * t)\n    col = HIGHLIGHT if v > 0 else WARN\n    d.line([cx, y, x, y], fill=rgba(col, 200), width=14)\n    for k in range(6):\n        ph = (reveal * 3.0 + k / 6.0) % 1.0\n        px = cx + int(v / vmax * span * ph * t)\n        d.ellipse([px - 7, y - 30, px + 7, y - 16], fill=rgba(col, int(220 * (1 - ph))))\n    if img is not None:\n        paste(img, x - 90, y - 150, 180, 140)\n    else:\n        d.ellipse([x - 50, y - 90, x + 50, y - 20], fill=rgba(col, 230))\n    text(lab.split('(')[0].strip(), RX0 + 20, y + 40, size=32, color=TEXT)\n    text(f'{v:+.0f}%', x, y + 100, size=54, color=col, center=True)\n"
+     }
     },
     {
      "source": "offline",
@@ -26331,7 +26341,21 @@
      "role": "3 · WHICH BIRDS",
      "topic": "common families' loss share",
      "say": "Nearly all that loss comes from just twelve everyday families, like sparrows and finches.",
-     "ascending": false
+     "ascending": false,
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "fill_object",
+        "region": "center",
+        "subject": "house sparrow",
+        "data": {
+         "value_from": "star"
+        },
+        "anim": "fill"
+       }
+      ]
+     }
     }
    ],
    "words_by": "claude-retell",
@@ -26439,7 +26463,12 @@
      "use_baseline": false,
      "role": "1 · A REAL GAIN",
      "topic": "Americans' average height",
-     "say": "In 1914 the average American man stood about 171 centimeters; by 2014, 177."
+     "say": "In 1914 the average American man stood about 171 centimeters; by 2014, 177.",
+     "scene": {
+      "mechanic": "height-wall-measure",
+      "concept": "a man stands against a measuring wall; his head line climbs from 171 to 177 cm past a ghost line at 1914, a modest gain on a real ruler",
+      "code": "man = subject_image('standing man full body cutout')\nlo, hi = 160.0, 185.0\ntop, bot = RTOP + 120, RBOT - 160\ndef ypos(cm):\n    return bot - (cm - lo) / (hi - lo) * (bot - top)\nfor cm in range(int(lo), int(hi) + 1, 5):\n    y = int(ypos(cm))\n    d.line([RX0 + 20, y, RX0 + 120, y], fill=rgba(TEXT, 200), width=4)\n    text(f'{cm}', RX0 + 140, y - 18, size=30, color=TEXT)\ncur = lerp(values[0], values[1], clamp((reveal - 0.15) * 1.3))\nyc = int(ypos(cur))\ny0 = int(ypos(values[0]))\nfig_h = bot - yc\ncx = (RX0 + RX1) // 2 + 60\nif man is not None:\n    paste(man, cx - fig_h // 6, yc, fig_h // 3, fig_h)\nelse:\n    d.rounded_rectangle([cx - 60, yc, cx + 60, bot], radius=40, fill=rgba(REST, 230))\nd.line([RX0 + 20, y0, RX1 - 20, y0], fill=rgba(SUBTLE, 200), width=5)\nd.line([RX0 + 20, yc, RX1 - 20, yc], fill=rgba(HIGHLIGHT, 230), width=7)\ntext(f'1914: {values[0]:.0f} cm', RX1 - 330, y0 + 12, size=34, color=SUBTLE)\ntext(f'{cur:.0f} cm', RX1 - 330, yc - 60, size=54, color=HIGHLIGHT)\ntext('2014: 177 cm', (RX0 + RX1) // 2, RBOT - 60, size=44, color=TEXT, center=True)\n"
+     }
     },
     {
      "source": "offline",
@@ -26452,7 +26481,12 @@
      "use_baseline": false,
      "role": "2 · EVERYONE ELSE SPED UP",
      "topic": "People gaining height",
-     "say": "South Korean women gained 20.2 centimeters and Iranian men 16.5, while America barely moved."
+     "say": "South Korean women gained 20.2 centimeters and Iranian men 16.5, while America barely moved.",
+     "scene": {
+      "mechanic": "gain-blocks-on-heads",
+      "concept": "three people stand at the same base height; centimeter blocks stack on their heads as each gain lands, South Korean women towering, American men a stub",
+      "code": "person = subject_image('standing person full body cutout')\nn = len(values)\ncolw = (RX1 - RX0) // n\nbase_h = 520\nunit = 17\nbot = RBOT - 180\nt = clamp(reveal * 1.15)\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    cx = RX0 + colw * i + colw // 2\n    top = bot - base_h\n    if person is not None:\n        paste(person, cx - 70, top, 140, base_h)\n    else:\n        d.rounded_rectangle([cx - 50, top, cx + 50, bot], radius=36, fill=rgba(REST, 230))\n    nb = int(v * t + 0.999)\n    col = HIGHLIGHT if i < n - 1 else WARN\n    for b in range(nb):\n        yb = top - (b + 1) * unit\n        d.rectangle([cx - 60, yb, cx + 60, yb + unit - 3], fill=rgba(col, 235))\n    text(f'+{v * t:.1f} cm', cx, bot + 20, size=40, color=col, center=True)\n    text(lab, cx, bot + 80, size=26, color=TEXT, center=True)\n"
+     }
     },
     {
      "source": "offline",
@@ -26464,7 +26498,12 @@
      "use_baseline": false,
      "role": "3 · THE RANKING FLIPPED",
      "topic": "Countries taller than Americans",
-     "say": "In 1914 only 2 countries had taller men; by 2014, 36 did."
+     "say": "In 1914 only 2 countries had taller men; by 2014, 36 did.",
+     "scene": {
+      "mechanic": "overtaken-by-crowd",
+      "concept": "one American man stands under a line; 2 taller countries stand beside him in 1914, then 34 more men file in over the line until 36 stand taller",
+      "code": "man = subject_image('standing man full body cutout')\na, b = int(values[0]), int(values[1])\ncols = 9\ncw = (RX1 - RX0) // cols\nfh = 150\ny0 = RTOP + 100\nshown = a + (b - a) * clamp((reveal - 0.2) * 1.3)\nn = int(round(shown))\nfor i in range(n):\n    r, cc = i // cols, i % cols\n    x = RX0 + cc * cw + cw // 2\n    y = y0 + r * (fh + 20)\n    pop = clamp(reveal * 4.0 - i * 0.05)\n    hh = int(fh * (0.6 + 0.4 * min(1.0, pop)))\n    if man is not None:\n        paste(man, x - hh // 6, y + fh - hh, hh // 3, hh)\n    else:\n        d.rounded_rectangle([x - 22, y + fh - hh, x + 22, y + fh], radius=14, fill=rgba(HIGHLIGHT if i >= a else TEXT, 230))\nly = y0 + 4 * (fh + 20) + 30\nd.line([RX0, ly, RX1, ly], fill=rgba(WARN, 230), width=6)\nif man is not None:\n    paste(man, (RX0 + RX1) // 2 - 70, ly + 20, 140, 330)\nelse:\n    d.rounded_rectangle([(RX0 + RX1) // 2 - 50, ly + 20, (RX0 + RX1) // 2 + 50, ly + 350], radius=40, fill=rgba(WARN, 230))\ntext(f'{n} COUNTRIES TALLER', (RX0 + RX1) // 2, RBOT - 60, size=52, color=HIGHLIGHT, center=True)\n"
+     }
     }
    ],
    "words_by": "brain-tighten",
