@@ -270,7 +270,12 @@ def download(url: str, dest: Path) -> Path:
     valid/encoded, so fetch as-is — do NOT re-quote (that double-encodes %20)."""
     import urllib.request
     req = urllib.request.Request(url, headers={"User-Agent": UA})
-    dest.write_bytes(urllib.request.urlopen(req, timeout=180).read())
+    try:
+        dest.write_bytes(urllib.request.urlopen(req, timeout=180).read())
+    except Exception:
+        from data_learning import stock_cache
+        stock_cache.report_dead(url)        # repeated failures evict the candidate
+        raise
     return dest
 
 
