@@ -1,0 +1,85 @@
+name: Story backtest preview
+
+# The FINISHED cuts of a story backtest, phone-sized, on the
+# `preview-renders` branch (backtests/<run_id>/). Operator, 2026-10-09:
+# "i need to see the finished producs and i need to seem them here" — the
+# artifact is a 570MB zip of every repair and working file, and a session
+# cannot reach GitHub's artifact storage, but it can fetch a branch. One
+# cut per story (its best), plus index.json with score and retelling
+# (scripts/backtest_preview.py). Uploads nothing anywhere else.
+
+on:
+  workflow_run:
+    workflows: ["Story backtest"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: 'Story backtest run id to publish'
+        required: true
+
+permissions:
+  contents: write        # push to preview-renders
+  actions: read          # download the backtest run's artifact
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      RUN_ID: ${{ inputs.run_id || github.event.workflow_run.id }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install ffmpeg
+        run: sudo apt-get update -q && sudo apt-get install -y -q ffmpeg
+
+      - name: Download the backtest artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: story-backtest-${{ env.RUN_ID }}
+          path: dl
+          run-id: ${{ env.RUN_ID }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pick each story's finished cut
+        run: |
+          set -euo pipefail
+          python scripts/backtest_preview.py dl "$RUNNER_TEMP/payload"
+          du -sh "$RUNNER_TEMP/payload"
+          # out of dl/ now: the orphan-branch path below cleans the tree
+          carry="$(find dl -name carry.json | head -1)"
+          [ -n "$carry" ] && cp "$carry" "$RUNNER_TEMP/carry.json" || true
+
+      - name: Publish to the preview-renders orphan branch
+        run: |
+          set -euo pipefail
+          dest="backtests/$RUN_ID"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # ADD to the branch, never replace it (canary_evidence.yml learned
+          # that emptying the index on an existing branch deletes history).
+          git fetch origin preview-renders --depth=1 || true
+          if git checkout -B preview-renders origin/preview-renders 2>/dev/null; then
+            :
+          else
+            git checkout --orphan preview-renders
+            git rm -rq --cached . 2>/dev/null || true
+            git clean -fdq 2>/dev/null || true
+          fi
+          mkdir -p "$dest"
+          cp -r "$RUNNER_TEMP/payload/." "$dest/"
+          git add -f "$dest"
+          # what this run tried, for the next backtest (story_backtest --carry)
+          if [ -f "$RUNNER_TEMP/carry.json" ]; then
+            cp "$RUNNER_TEMP/carry.json" backtests/carry.json
+            git add -f backtests/carry.json
+          fi
+          git commit -m "story backtest $RUN_ID: finished cuts" \
+            || { echo "nothing new to commit"; exit 0; }
+          for i in 1 2 3 4; do
+            git push origin preview-renders && break
+            git pull --rebase origin preview-renders || true
+            sleep $((i * 2))
+          done
+          echo "published -> preview-renders:$dest"
