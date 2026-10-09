@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261009",
+  "bundle": {
+    "identity": "982086a788a0d72af0af25bd7d5fd2e165c254a1826c621f1cd4972b6872fb53",
+    "path": "exchange/bundles/20261009/bundle.json"
+  },
+  "request_id": "06_reddit-return-dog-damage-s2-632c54318233",
+  "safe_request_id": "06_reddit-return-dog-damage-s2-632c54318233",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "abbb2fc31c26d66844e5474614cc22f4a742ea279793a429186a05196ef6523a",
+  "prompt_used": "An editorial illustration for a short-form video: computer screen purchase receipt lookup. It accompanies the narration: \"found the actual purchase date, eight months earlier\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1xSdBsQkf_fajJXcMopNdu6jcRl2JUOfM",
+    "filename": "20261009__06_reddit-return-dog-damage-s2-632c54318233.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1xSdBsQkf_fajJXcMopNdu6jcRl2JUOfM",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "acdf34222c91b792511b1624b90b69b136843dc103a0b7a3f63c073bb7647925",
+    "bytes": 2038357,
+    "format": "png",
+    "width": 1374,
+    "height": 1145
+  },
+  "verified_at": "2026-10-09T11:27:35.452Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
