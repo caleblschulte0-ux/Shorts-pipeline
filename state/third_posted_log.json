@@ -11952,6 +11952,25 @@
         "end": 23.0
       },
       "director_cut": true
+    },
+    "rejected-polishedhypertoothkeyboardcat-lyxt3_2oqjyu0qwe": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/PolishedHyperToothKeyboardCat-lYxt3_2OqjYU0qwe",
+      "streamer": "ohnepixel",
+      "title": "have a better look boys",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.05 < 0.35 (sexualized game footage, no real event)",
+      "ts": "2026-10-09T12:26:05.398971+00:00"
+    },
+    "clip-20261009-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/erobb221/clip/PeacefulClumsyCattleBrainSlug-TrABc44bjE5ieULd",
+      "story_key": null,
+      "streamer": "erobb221",
+      "title": "Erobb221 Can't Stop Laughing After Emmy's Reaction",
+      "kind": "twitch_clip",
+      "ts": "2026-10-09T12:27:52.615310+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
