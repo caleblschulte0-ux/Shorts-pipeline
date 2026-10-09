@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261009",
+  "bundle": {
+    "identity": "982086a788a0d72af0af25bd7d5fd2e165c254a1826c621f1cd4972b6872fb53",
+    "path": "exchange/bundles/20261009/bundle.json"
+  },
+  "request_id": "05_reddit-badge-scanner-compliance-s3-12f0ae073ba6",
+  "safe_request_id": "05_reddit-badge-scanner-compliance-s3-12f0ae073ba6",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "dac03a6ac448f4e4f89980b27fdf2df95418cc2ab24b64f70b36d05f60628b13",
+  "prompt_used": "An editorial illustration for a short-form video: computer screen data log numbers. It accompanies the narration: \"the terminal had logged over nine thousand scans\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1o9hGnPCWLuSj6IlieSr04G0LDrP56HSI",
+    "filename": "20261009__05_reddit-badge-scanner-compliance-s3-12f0ae073ba6.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1o9hGnPCWLuSj6IlieSr04G0LDrP56HSI",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "d38ee7df346b2e789f3794a14e8da9c1a1bf0a35c055edd686ab9c4a7181e889",
+    "bytes": 2011496,
+    "format": "png",
+    "width": 1672,
+    "height": 941
+  },
+  "verified_at": "2026-10-09T11:27:35.452Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
