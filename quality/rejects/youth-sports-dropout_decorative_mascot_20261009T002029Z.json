@@ -1,0 +1,21 @@
+{
+ "slug": "youth-sports-dropout",
+ "ts": "20261009T002029Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg2:start/mid/end: Data just stands in front of the 2012 bar with his arms raised and does nothing to it. seg3:start-end: he stands at the left edge of the frame holding a pole while the scale moves without him.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg2:start-end shows a stock two-bar chart (2012 vs 2022) with circled 38%/27% labels. Data stands in front of the 2012 bar with his arms up the whole time and never touches the bars, and the frame above and between the bars is empty.",
+  "root_cause": "The beat fell back to a generic compare chart, and the mascot was placed as a cheering sticker instead of being the cause of the drop.",
+  "repair_goal": "Show the drop as a picture of the subject: a team bench or row of jerseys where Data pulls players off until 38 becomes 27 (e.g. 11 of 38 seats empty). Data's hands must be on whatever is moving, the 27% must land early, and there should be one big number."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "catch_fall"
+  }
+ },
+ "scenes": []
+}

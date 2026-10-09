@@ -19249,7 +19249,7 @@
   {
    "slug": "insect-planet",
    "title": "Earth Is Actually The Planet Of The Bugs",
-   "hook": "80% of all animal species are insects — and they're everywhere you live.",
+   "hook": "Your world belongs to bugs: 80% of all animal species on Earth are insects.",
    "closing": "Somewhere right now, an unnamed beetle is judging you.",
    "question": "Weirdest bug you've ever seen? Tell me below.",
    "caption": "About 80% of all animal species on Earth are insects. Beetles alone outnumber every mammal and bird species combined. And most of them haven't even been named yet... What's the weirdest bug you've seen? 👇",
@@ -22314,7 +22314,7 @@
   {
    "slug": "volcano-country-ranking",
    "title": "You'd Guess Indonesia. The Data Says Otherwise.",
-   "hook": "Your guess just got crushed: 165 volcanoes, and the US beats Japan, Russia and Indonesia.",
+   "hook": "Your guess was wrong: the US has 165 volcanoes, and Indonesia has only 101.",
    "closing": "Alaska: quietly winning at volcanoes since forever.",
    "question": "Seen a volcano in person? Where?",
    "caption": "The United States has more active volcanoes than any other country on Earth — 165, mostly hiding along Alaska's coastline. It's not a coincidence: the US, Japan, Russia, and Indonesia all sit on the same fault line, the Ring of Fire, which holds 75% of Earth's active volcanoes. Ever seen a volcano in person? Tell me where 🌋",
@@ -22344,7 +22344,7 @@
      "use_baseline": false,
      "role": "1 · SETUP",
      "topic": "Indonesia's volcano rank",
-     "say": "The US has 165 volcanoes active in 11,700 years, beating Japan's 118, Russia's 107, Indonesia's 101.",
+     "say": "The US has 165 volcanoes active in 11,700 years; Japan has 118, Russia 107, Indonesia 101.",
      "scene": {
       "mechanic": "volcano-erupt-row",
       "concept": "five volcano photos stand in a row, each erupting a lava plume whose height is set by that country's volcano count — the US towering over Japan, Russia, Indonesia, Chile",
@@ -22387,7 +22387,7 @@
     }
    ],
    "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-05T16:24:38Z",
+   "rewritten_at": "2026-10-08T23:39:26Z",
    "hook_was": "Your guess is wrong: 165 volcanoes, and Indonesia isn't even close."
   },
   {
@@ -27029,7 +27029,7 @@
   {
    "slug": "blood-supply-three-percent",
    "title": "America's Blood Supply Has A 3% Problem",
-   "hook": "Only 3% of eligible people actually donate.",
+   "hook": "Your blood bank is running dry: only 3% of eligible people donate.",
    "closing": "Somebody's always one pint short.",
    "question": "Have you ever donated blood? Tell me below.",
    "caption": "About 38% of Americans qualify to donate blood — but only 3% of them actually do each year. Individual donations have fallen roughly 40% in two decades, and in January 2024 the Red Cross declared its first national blood emergency in years. Have you ever donated?",
@@ -27055,8 +27055,8 @@
      "insight_type": "rank",
      "use_baseline": true,
      "role": "1 · THE GAP",
-     "topic": "who could give vs. who does",
-     "say": "About 38% of Americans qualify to give blood. Of that group, only 3% actually roll up a sleeve in a given year — the gap between who could save a life and who does.",
+     "topic": "Blood donors gap",
+     "say": "About 38% of Americans qualify to give blood, but only 3% of them donate each year.",
      "ascending": false
     },
     {
@@ -27067,10 +27067,12 @@
      },
      "insight_type": "trend",
      "role": "2 · THE TREND",
-     "topic": "two decades of decline",
-     "say": "That gap has been widening for two decades. Individual blood donations have fallen roughly 40% since 2004, and in January 2024 the Red Cross declared its first national blood emergency in years."
+     "topic": "Blood donation decline",
+     "say": "Donations fell roughly 40% since 2004, and in January 2024 the Red Cross declared an emergency."
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-08T22:56:00Z"
   },
   {
    "slug": "library-digital-shift",
@@ -30771,9 +30773,9 @@
   {
    "slug": "global-remittances-record-2023",
    "title": "Migrants Sent Home A Record $685 Billion In 2024",
-   "hook": "If you've ever sent money home to family, you're part of a $685 billion trend.",
-   "closing": "The biggest foreign aid program isn't run by a government at all.",
-   "question": "Have you or your family ever sent money home? Tell me below.",
+   "hook": "Your family's money home is part of a $685 billion flood.",
+   "closing": "The biggest foreign aid program isn't run by government.",
+   "question": "Ever sent money home? Tell me below.",
    "caption": "Migrants sent an estimated $685 billion home to lower-income countries in 2024, more than the amount foreign companies invested there -- a gap of over $270 billion in 2023 alone. India alone received $120 billion. Turns out love moves more money than any government program. What's your remittance story?",
    "hashtags": [
     "remittances",
@@ -30798,8 +30800,8 @@
      },
      "insight_type": "trend",
      "role": "1 · HOW MUCH MONEY MOVES THIS WAY",
-     "topic": "how much money migrants have sent home every year",
-     "say": "By 2024, migrants were sending $685 billion a year to lower-income countries -- and that number barely dipped even during the pandemic."
+     "topic": "Money migrants sent home",
+     "say": "By 2024, migrants sent $685 billion to lower-income countries, barely dipping even during the pandemic."
     },
     {
      "source": "offline",
@@ -30810,8 +30812,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · WHERE IT ACTUALLY GOES",
-     "topic": "which countries receive the most money sent home",
-     "say": "India alone received $120 billion sent home by its migrants in one year -- more than Mexico, China, the Philippines and Pakistan combined receive individually."
+     "topic": "Who receives money home",
+     "say": "India alone received $120 billion from its migrants in a single year."
     },
     {
      "source": "offline",
@@ -30822,10 +30824,12 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · BIGGER THAN BUSINESS INVESTMENT",
-     "topic": "money sent home vs money companies invest",
-     "say": "In 2023, remittances to poorer countries hit $656 billion -- more than foreign companies invested there. The gap was over $270 billion in favor of migrants' money."
+     "topic": "Sent home vs investment",
+     "say": "In 2023, remittances hit $656 billion, over $270 billion more than foreign company investment."
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-08T23:02:31Z"
   },
   {
    "slug": "quantum-computers-5-to-1121-qubits",
@@ -31074,7 +31078,7 @@
    "title": "Nobel-Winning Discoveries Now Happen 13 Years Later",
    "hook": "Science swallowed 13 years of your life before it hands you a Nobel.",
    "closing": "Data's still waiting on his breakthrough. He's optimistic.",
-   "question": "Do you think you've peaked yet? Tell me below.",
+   "question": "Have you peaked yet? Tell me below.",
    "caption": "Physics Nobel discoveries used to happen at age 36 on average. Now it's 50 -- and almost none come from scientists under 40 anymore. Here's why the age of discovery keeps climbing ⬇️",
    "hashtags": [
     "nobelprize",
@@ -31099,8 +31103,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE SHIFT",
-     "topic": "how old nobel physics discoveries are now",
-     "say": "Nobel-winning physics discoveries made before 1905 happened at age 36, on average. Discoveries made after 1985 average 50 -- 13 years older, same prize."
+     "topic": "Nobel discovery age",
+     "say": "Before 1905, physics discoveries came at age 36; after 1985, at 50, 13 years older."
     },
     {
      "source": "offline",
@@ -31110,8 +31114,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE YOUNG ARE DISAPPEARING",
-     "topic": "nobel physics winners under 40",
-     "say": "Before 2000, 60 percent of physics breakthroughs came from scientists under 40. Since then, just 19 percent."
+     "topic": "Nobel physics under 40",
+     "say": "Before 2000, 60 percent of physics breakthroughs came from scientists under 40; since, just 19 percent."
     },
     {
      "source": "offline",
@@ -31121,18 +31125,20 @@
      },
      "insight_type": "comparison",
      "role": "3 · IT'S WORSE IN CHEMISTRY",
-     "topic": "young nobel chemistry winners",
-     "say": "Chemistry's even starker: 66 percent of 20th-century winners were under 40. This century, zero have been."
+     "topic": "Young Nobel chemistry winners",
+     "say": "Chemistry is starker: 66 percent of 20th-century winners were under 40, this century zero."
     }
    ],
-   "hook_was": "Science used to reward the young. Not anymore."
+   "hook_was": "Science used to reward the young. Not anymore.",
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-08T23:02:44Z"
   },
   {
    "slug": "youth-sports-dropout",
    "title": "Only 41% Of American Boys Still Play Sports Regularly",
-   "hook": "Your kid is being benched by life: boys playing sports fell from half to 41 percent.",
+   "hook": "Your kid's bench is emptying: boys playing sports fell from half to 41 percent.",
    "closing": "Data benched himself in 2013. Never looked back.",
-   "question": "Did you play sports as a kid? Still do? Tell me below.",
+   "question": "Did you play sports as a kid?",
    "caption": "In 2013, half of American boys played a sport regularly. Now it's 41 percent -- and the drop is steepest for the kids who can least afford to be left out. Here's the data 👇",
    "hashtags": [
     "youthsports",
@@ -31157,8 +31163,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE DROP",
-     "topic": "boys still playing sports regularly",
-     "say": "In 2013, half of American boys played a team sport regularly. Ten years later, just 41 percent do."
+     "topic": "boys playing sports",
+     "say": "In 2013, half of American boys played a team sport; now just 41 percent do."
     },
     {
      "source": "offline",
@@ -31168,8 +31174,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · WHO IT HITS HARDEST",
-     "topic": "lowest-income kids playing sports",
-     "say": "The drop hits hardest at the bottom. For the lowest-income teens, participation fell from 38 percent to just 27."
+     "topic": "lowest-income kids sports",
+     "say": "For the lowest-income teens, participation fell from 38 percent to just 27."
     },
     {
      "source": "offline",
@@ -31180,15 +31186,17 @@
      "insight_type": "trend",
      "role": "3 · THE SCALE",
      "topic": "kids leaving team sports",
-     "say": "Across the board, 1.2 million fewer kids played organized team sports between 2019 and 2022 -- a quiet 6 percent drop."
+     "say": "Between 2019 and 2022, 1.2 million fewer kids played organized team sports, a 6 percent drop."
     }
    ],
-   "hook_was": "Half of boys played sports in 2013. Not anymore."
+   "hook_was": "Half of boys played sports in 2013. Not anymore.",
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-08T23:02:48Z"
   },
   {
    "slug": "vertical-farming-bust",
    "title": "Vertical Farms Raised 8 Billion Dollars. Then Investors Fled.",
-   "hook": "They promised to fix farming. 91% of the money is gone.",
+   "hook": "8 billion dollars to fix your food — and it vanished.",
    "closing": "Data grows basil on a windowsill. No investors required.",
    "question": "Would you eat vertical-farmed greens? Tell me below.",
    "caption": "Vertical farms raised 8 billion dollars promising to reinvent agriculture. Most of that money is gone, and so are the farms. Here's where it actually went wrong 👇",
@@ -31216,7 +31224,7 @@
      "insight_type": "comparison",
      "role": "1 · THE MONEY",
      "topic": "vertical farming investment",
-     "say": "Vertical farms raised 8 billion dollars between 2018 and 2022. Since then, investors haven't put in even 1 billion."
+     "say": "Vertical farms raised 8 billion dollars from 2018 to 2022, then under 1 billion."
     },
     {
      "source": "offline",
@@ -31227,7 +31235,7 @@
      "insight_type": "comparison",
      "role": "2 · THE COLLAPSE",
      "topic": "vertical farming companies collapsing",
-     "say": "Bowery Farming was valued at 2.3 billion dollars. It shut down completely in 2024. Plenty raised nearly 1 billion -- then filed for bankruptcy."
+     "say": "Bowery Farming, once worth 2.3 billion dollars, shut down in 2024, and Plenty went bankrupt."
     },
     {
      "source": "offline",
@@ -31238,9 +31246,12 @@
      "insight_type": "comparison",
      "role": "3 · WHY IT HAPPENED",
      "topic": "vertical farming funding crash",
-     "say": "Venture funding for indoor farms cratered 91 percent in a single year -- investors realized dirt-cheap traditional farming was always going to win on price."
+     "say": "Venture funding for indoor farms cratered 91 percent in a single year."
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-08T23:14:08Z",
+   "hook_was": "They promised to fix farming. 91% of the money is gone."
   },
   {
    "slug": "secondhand-apparel-resale-boom",
@@ -31719,8 +31730,7 @@
      "insight_type": "share",
      "role": "1 · THE OLD RULE",
      "topic": "medical debt's old share of credit report collections",
-     "say": "Medical debt used to make up 58% of all credit-report collections.",
-     "illustrated_scene": "def _envelope(cr, x, y, ang, s, med, a=1.0):\n    \"\"\"A mailed bill: the V of the flap, the stamp, the address window; a\n    medical one wears a red cross where the return address goes.\"\"\"\n    cr.save()\n    cr.translate(x, y)\n    cr.rotate(ang)\n    w, h = 96 * s, 62 * s\n    paper = (246, 242, 234) if med else (222, 198, 148)\n    cr.rectangle(-w / 2, -h / 2, w, h)\n    solid(cr, paper, a=a)\n    # the flap: the envelope's signature V\n    cr.set_source_rgba(*_c((96, 80, 60), 0.9 * a))\n    cr.set_line_width(3.2 * s)\n    cr.move_to(-w / 2 + 2, -h / 2 + 2)\n    cr.line_to(0, h * 0.12)\n    cr.line_to(w / 2 - 2, -h / 2 + 2)\n    cr.stroke()\n    # the postage stamp, top right\n    cr.rectangle(w * 0.26, -h * 0.42, w * 0.17, h * 0.3)\n    solid(cr, (70, 110, 168), rim=False, a=a)\n    # the address window, lower middle\n    cr.rectangle(-w * 0.12, h * 0.2, w * 0.38, h * 0.16)\n    cr.set_source_rgba(*_c((170, 182, 196), 0.85 * a))\n    cr.fill()\n    if med:\n        # the medical bill: a bold red cross, big enough to read small\n        cx, cy, r = -w * 0.3, h * 0.12, h * 0.3\n        disc(cr, cx, cy, r, (200, 40, 36), finish=\"gloss\", a=a)\n        cr.set_source_rgba(*_c((252, 250, 246), a))\n        cr.rectangle(cx - r * 0.2, cy - r * 0.62, r * 0.4, r * 1.24)\n        cr.rectangle(cx - r * 0.62, cy - r * 0.2, r * 1.24, r * 0.4)\n        cr.fill()\n    cr.restore()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a heap of mailed bills\n    SUBSTANCE: bill envelopes\n    CAUSE: Data stamps a red medical cross on the bills, one stamp per armful\n    One whole: every collection on a credit report is one heap of bill\n    envelopes. Data works across it with his stamp, and every envelope he\n    passes takes the red cross of a medical bill, until the stamped part of\n    the heap is its true 58% by area. A dashed line then marks where the\n    medical bills end; the plain manila rest is the other share. The story\n    lands by 0.56 and holds; loose envelopes keep sliding down the flanks.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    med = next((r for r in rows if \"medical\" in r[0].lower()),\n               max(rows, key=lambda r: r[1]))\n    tot = sum(v for _, v in rows) or 1.0\n    share = med[1] / tot\n    pct = int(round(share * 100))\n\n    CX, BASE, HH, HW = 560, 1440, 600, 470\n    X0, X1 = CX - HW, CX + HW\n\n    # where the heap splits so the left part holds `share` of its area\n    xs = [X0 + (X1 - X0) * (i + 0.5) / 120 for i in range(120)]\n    hs = [max(0.0, BASE - heap_top(CX, BASE, HH, HW, x)) for x in xs]\n    area = sum(hs) or 1.0\n    acc, split = 0.0, X1\n    for x, hv in zip(xs, hs):\n        acc += hv\n        if acc >= share * area:\n            split = x\n            break\n\n    n = 5\n    a0, a1 = 0.06, 0.56\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    sweep = ease(seg(f, 0.25, 0.75))           # lands on the strike, then holds\n    prog = 0.0 if u < a0 else (k + sweep) / n\n    landed_all = u >= a0 and k == n - 1 and sweep >= 0.999\n    stamp_x = X0 + (split - X0) * prog\n\n    landscape(cr, t, \"town\")\n    birds(cr, t, y0=760, n=4, rgb=(60, 60, 70))\n\n    cast_shadow(cr, X0, X1, BASE, length=320, a=0.3)\n    contact_shadow(cr, CX, BASE + 4, 2 * HW + 60, a=0.4)\n    heap_path(cr, CX, BASE, HH, HW)\n    solid(cr, (198, 186, 166))\n\n    # the heap is made of envelopes, packed into its profile, back to front\n    env = []\n    for i in range(64):\n        dx = ((i * 0.6180339) % 1.0) * 1.9 - 0.95\n        py = (i * 0.4142136) % 1.0\n        px = CX + HW * dx\n        ty = heap_top(CX, BASE, HH, HW, px)\n        ey = BASE - (BASE - ty) * py * 0.92 - 20\n        env.append((ey, px, (((i * 0.37) % 1.0) - 0.5) * 0.9, 1.25 + 0.35 * ((i * 0.53) % 1.0)))\n    env.sort()\n    cr.save()\n    heap_path(cr, CX, BASE, HH, HW)\n    cr.clip()\n    for ey, px, ang, s in env:\n        is_med = px < split and px < stamp_x\n        _envelope(cr, px, ey, ang, s, is_med)\n    cr.restore()\n    heap_path(cr, CX, BASE, HH, HW)\n    edge(cr, (40, 36, 32))\n\n    # THE SCALE on the heap: where the medical bills end\n    if landed_all:\n        la = ease(seg(u, a1, a1 + 0.04))\n        top = heap_top(CX, BASE, HH, HW, split)\n        cr.set_source_rgba(*_c((252, 250, 246), 0.95 * la))\n        cr.set_line_width(7)\n        cr.set_dash([22, 14])\n        cr.move_to(split, top - 50)\n        cr.line_to(split, BASE)\n        cr.stroke()\n        cr.set_dash([])\n        text(cr, f\"{100 - pct}% other\", min(W - 60, split + 200), top - 70, 44,\n             look.INK, anchor=\"center\", alpha=la)\n\n    # after it lands the world keeps moving: loose envelopes slide down\n    if u > a1:\n        for j in range(3):\n            ph = ((u - a1) / 0.18 + j / 3) % 1.0\n            side = 1 if j % 2 else -1\n            bx = CX + side * HW * (0.1 + 0.8 * ph)\n            by = heap_top(CX, BASE, HH, HW, bx) - 14\n            _envelope(cr, bx, by, side * ph * 4 + j, 1.5, bx < split)\n\n    # right by the camera: bills dropped on the pavement\n    for i, (ex, ey, ang) in enumerate([(150, 1660, -0.3), (430, 1750, 0.25),\n                                       (790, 1690, -0.15), (990, 1800, 0.4)]):\n        _envelope(cr, ex, ey, ang, 2.6, i % 2 == 0)\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    # Data works across the heap with his stamp, on its surface; he starts\n    # at the heap's left foot, inside the frame, and travels with the stamp\n    start_x = X0 + 70\n    hx = max(start_x, stamp_x - 40) if u >= a0 else start_x\n    hy = min(1500.0, heap_top(CX, BASE, HH, HW, hx) + 10)\n    if u < a0:\n        host(\"point\", hx, hy, 220)\n    elif u < a1 + 0.04:\n        host(\"stamp\", hx, hy, 220, beat=k)\n    elif u < 0.93:                      # done: he keeps stamping the medical bills\n        host(\"stamp\", hx, hy, 220, beat=n + int((u - a1) / 0.12))\n    else:\n        host(\"cheer\", hx, hy, 220)\n\n    if landed_all:\n        fit_readout(cr, f\"{pct}%\", \"of credit-report collections were medical bills\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, \"Collections\", \"on US credit reports\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.05)), size=130)\n"
+     "say": "Medical debt used to make up 58% of all credit-report collections."
     },
     {
      "source": "offline",

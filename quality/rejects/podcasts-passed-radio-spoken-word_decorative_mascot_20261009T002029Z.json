@@ -1,0 +1,16 @@
+{
+ "slug": "podcasts-passed-radio-spoken-word",
+ "ts": "20261009T002029Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data never causes anything. He stands beside the scale pan in hook@0.3 and seg0:mid while blocks drop by themselves. He stands on the 10% circle in seg1:mid, holds his head on top of a bar in seg2:end, and floats beside the stacked bar in seg3:mid. In seg4 he is just two cheering ",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "payoff_contradicts_story",
+  "visible_evidence": "seg4:start to payoff@-0.4: the closing line 'Radio had a hundred-year head start. Didn't matter.' sits over a race between 'Don't 65%' and 'Listen to a podcast weekly 35%'. Data's top clone cheers, arms raised, beside 'Don't 65%' (seg4:mid), so the picture celebrates the 65% who don't listen. Radio appears nowhere in the payoff.",
+  "root_cause": "The closing scene reused seg3's share data (weekly listeners vs non-listeners) and not the story's actual claim, podcasts 40% passing radio 39%. The race classifier ranked Don't above Listen, so the accent and the winning pose went to the wrong subject.",
+  "repair_goal": "Rebuild the closing as podcasts overtaking radio. Radio carries a long century-old lead, a crowd of tall vintage radio sets or a long track behind it, and podcasts catch it and pass it by one point, 40 vs 39. Data drives the podcast side past the radio at the moment of the overtake. The one accent goes on podcasts, and the 35%/65% split does not appear."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,174 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "marathon-super-shoes-record-pace__fd3049b3",
+ "filed": "2026-10-09T00:20:16Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "marathon-super-shoes-record-pace",
+ "current": {
+  "title": "Super Shoes Just Broke The Marathon World Record Again",
+  "hook": "Your shoes just broke the marathon record: 2 hours flat, still falling.",
+  "closing": "Somewhere, a shoe lab just shaved off more seconds.",
+  "question": "Should super shoes count toward world records?",
+  "segments": [
+   {
+    "topic": "Marathon world record",
+    "say": "The record fell from 2 hours 6 minutes in 1998 to 2 hours flat by 2023."
+   },
+   {
+    "topic": "Super shoes speed-up",
+    "say": "Before super shoes it fell about 8 seconds a year, but since 2016, almost 30."
+   },
+   {
+    "topic": "Fastest marathon times",
+    "say": "Of the 20 fastest marathons ever, 15 came after 2018, when the shoes arrived."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Marathon world record",
+   "say": "The record fell from 2 hours 6 minutes in 1998 to 2 hours flat by 2023.",
+   "role": "1 · THE RECORD KEEPS FALLING",
+   "data": {
+    "file": "marathon_wr_progression.json",
+    "unit": "minutes",
+    "title": "Men's marathon world record time",
+    "points": [
+     {
+      "label": "1998",
+      "value": 126.08,
+      "period": "1998"
+     },
+     {
+      "label": "2003",
+      "value": 124.92,
+      "period": "2003"
+     },
+     {
+      "label": "2008",
+      "value": 123.98,
+      "period": "2008"
+     },
+     {
+      "label": "2014",
+      "value": 122.95,
+      "period": "2014"
+     },
+     {
+      "label": "2018",
+      "value": 121.65,
+      "period": "2018"
+     },
+     {
+      "label": "2023",
+      "value": 120.58,
+      "period": "2023"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Super shoes speed-up",
+   "say": "Before super shoes it fell about 8 seconds a year, but since 2016, almost 30.",
+   "role": "2 · THE SHOES CHANGED THE MATH",
+   "data": {
+    "file": "marathon_improvement_rate_pre_post_shoes.json",
+    "unit": "seconds per year",
+    "title": "Marathon world record: seconds shaved off per year",
+    "points": [
+     {
+      "label": "Before 2016 (1988-2013)",
+      "value": 8.3
+     },
+     {
+      "label": "Before 2016 (1988-2013)",
+      "value": 8.3
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Fastest marathon times",
+   "say": "Of the 20 fastest marathons ever, 15 came after 2018, when the shoes arrived.",
+   "role": "3 · THE PROOF",
+   "data": {
+    "file": "marathon_top20_times_era_share.json",
+    "unit": "count",
+    "title": "The 20 fastest marathons ever run, by era",
+    "points": [
+     {
+      "label": "Set since 2018",
+      "value": 15
+     },
+     {
+      "label": "Set before 2018",
+      "value": 5
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: Stock machines and charts carry a strong story: a draining tank, a line, bubbles and a ruler. Data perches instead of causing anything, the '15' is garbled, and the 'almost 30 seconds a year' contrast never reaches the screen."
+ ],
+ "reasons": [
+  "judge: Stock machines and charts carry a strong story: a draining tank, a line, bubbles and a ruler. Data perches instead of causing anything, the '15' is garbled, and the 'almost 30 seconds a year' contrast never reaches the screen."
+ ],
+ "judge": {
+  "ts": "2026-10-08T23:02:02+00:00",
+  "score": 44,
+  "one_line": "Stock machines and charts carry a strong story: a draining tank, a line, bubbles and a ruler. Data perches instead of causing anything, the '15' is garbled, and the 'almost 30 seconds a year' contrast never reaches the screen.",
+  "problems": [
+   "The hook shows a small, generic draining tank with grey minute labels and no units; it doesn't say 'your shoes broke the record' at a glance (hook@0.3 to seg0:end).",
+   "seg1 is a plain line chart, the fallback the channel is meant to avoid.",
+   "The seg2 shoe pictogram only ever shows 'Before 2016 8.3'. The post-2016 ~30 s/yr, which is the whole point, is never visible in seg2:start to seg2:end.",
+   "seg3 is two bubbles on a void with a doubled, smeared '15' glyph.",
+   "seg4 restates 5 vs 15 as a ruler gap under a closing line about shaving seconds, so the payoff repeats the previous beat instead of landing.",
+   "Data is a perch or pointer in every scene: riding the line, standing on the bubble, standing on the ladder. He never drives the motion."
+  ],
+  "fixes": [
+   "Hook: open on the finished shot of a runner breaking the tape at 2:00:35 with the super shoe glowing, and the clock frozen in big ink.",
+   "seg1: replace the line with a track where the 1998 and 2023 record-holders race as ghost runners and the 2023 one finishes far ahead. Data fires the start pistol.",
+   "seg2: show both rates side by side, with a pile of 17 shoes before 2016 against 60 after. Data stamps each new shoe so he causes the pile to grow.",
+   "seg3: show 20 runners with 15 lit, as in the repair goal, and fix the doubled-glyph rendering of the circle label.",
+   "seg4: make the closing a stopwatch Data shaves with a file or chisel, with seconds peeling off, instead of re-showing 5 vs 15."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261009/marathon-super-shoes-record-pace__fd3049b3.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

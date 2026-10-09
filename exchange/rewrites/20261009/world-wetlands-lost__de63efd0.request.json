@@ -1,0 +1,163 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "world-wetlands-lost__de63efd0",
+ "filed": "2026-10-09T00:20:18Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "world-wetlands-lost",
+ "current": {
+  "title": "The World Lost 35% Of Its Wetlands Since 1970",
+  "hook": "Nature's water filter is vanishing 3 times faster than its forests.",
+  "closing": "And the draining is speeding up, not slowing down.",
+  "question": "Is there a wetland near you?",
+  "segments": [
+   {
+    "topic": "the world's wetlands disappearing",
+    "say": "The world has lost 35 percent of its wetlands since 1970."
+   },
+   {
+    "topic": "wetlands disappearing faster than forests",
+    "say": "Wetlands lost 35 percent since 1970 -- forests lost only 12."
+   },
+   {
+    "topic": "where the world's wetlands are vanishing fastest",
+    "say": "Europe alone has lost half its wetlands since 1970."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "the world's wetlands disappearing",
+   "say": "The world has lost 35 percent of its wetlands since 1970.",
+   "role": "1 · THE LOSS",
+   "data": {
+    "file": "wetland_loss_trend.json",
+    "unit": "index",
+    "title": "Global wetland extent index (1970 = 100)",
+    "points": [
+     {
+      "label": "1970",
+      "value": 100,
+      "period": "1970"
+     },
+     {
+      "label": "1980",
+      "value": 92,
+      "period": "1980"
+     },
+     {
+      "label": "1990",
+      "value": 83,
+      "period": "1990"
+     },
+     {
+      "label": "2000",
+      "value": 75,
+      "period": "2000"
+     },
+     {
+      "label": "2010",
+      "value": 69,
+      "period": "2010"
+     },
+     {
+      "label": "2020",
+      "value": 65,
+      "period": "2020"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 1,
+   "topic": "wetlands disappearing faster than forests",
+   "say": "Wetlands lost 35 percent since 1970 -- forests lost only 12.",
+   "role": "2 · VS FORESTS",
+   "data": {
+    "file": "wetland_vs_forest_loss.json",
+    "unit": "percent",
+    "title": "Share lost since 1970: wetlands vs forests",
+    "points": [
+     {
+      "label": "Wetlands lost since 1970",
+      "value": 35
+     },
+     {
+      "label": "Forests lost since 1970",
+      "value": 12
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "where the world's wetlands are vanishing fastest",
+   "say": "Europe alone has lost half its wetlands since 1970.",
+   "role": "3 · WHERE WORST",
+   "data": {
+    "file": "wetland_loss_by_region.json",
+    "unit": "percent",
+    "title": "Wetland area lost since 1970, by region",
+    "points": [
+     {
+      "label": "Europe",
+      "value": 50
+     },
+     {
+      "label": "Asia",
+      "value": 32
+     },
+     {
+      "label": "Africa",
+      "value": 25
+     },
+     {
+      "label": "Americas",
+      "value": 23
+     }
+    ],
+    "n_points": 4
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The premise uses multiple numbers and a comparative claim rather than a single, clear, verifiable figure, failing the strict one-number requirement."
+ ],
+ "reasons": [
+  "premise: brain: The premise uses multiple numbers and a comparative claim rather than a single, clear, verifiable figure, failing the strict one-number requirement."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261009/world-wetlands-lost__de63efd0.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

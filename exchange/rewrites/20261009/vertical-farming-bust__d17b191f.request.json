@@ -1,0 +1,154 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "vertical-farming-bust__d17b191f",
+ "filed": "2026-10-09T00:20:17Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "vertical-farming-bust",
+ "current": {
+  "title": "Vertical Farms Raised 8 Billion Dollars. Then Investors Fled.",
+  "hook": "They promised to fix farming. 91% of the money is gone.",
+  "closing": "Data grows basil on a windowsill. No investors required.",
+  "question": "Would you eat vertical-farmed greens? Tell me below.",
+  "segments": [
+   {
+    "topic": "vertical farming investment",
+    "say": "Vertical farms raised 8 billion dollars from 2018 to 2022, then under 1 billion."
+   },
+   {
+    "topic": "vertical farming companies collapsing",
+    "say": "Bowery Farming, once worth 2.3 billion dollars, shut down in 2024, and Plenty went bankrupt."
+   },
+   {
+    "topic": "vertical farming funding crash",
+    "say": "Venture funding for indoor farms cratered 91 percent in a single year."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "vertical farming investment",
+   "say": "Vertical farms raised 8 billion dollars from 2018 to 2022, then under 1 billion.",
+   "role": "1 · THE MONEY",
+   "data": {
+    "file": "vertical_farming_vc_funding.json",
+    "unit": "billion dollars",
+    "title": "Venture capital raised by vertical/indoor farming startups",
+    "points": [
+     {
+      "label": "2018-2022",
+      "value": 8,
+      "period": "2018-2022"
+     },
+     {
+      "label": "2022-2024",
+      "value": 1,
+      "period": "2022-2024"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "vertical farming companies collapsing",
+   "say": "Bowery Farming, once worth 2.3 billion dollars, shut down in 2024, and Plenty went bankrupt.",
+   "role": "2 · THE COLLAPSE",
+   "data": {
+    "file": "vertical_farms_valuation_collapse.json",
+    "unit": "billion dollars",
+    "title": "Peak valuation of two major vertical farming companies that later collapsed",
+    "points": [
+     {
+      "label": "Bowery Farming (peak valuation)",
+      "value": 2.3
+     },
+     {
+      "label": "Plenty Unlimited (total raised)",
+      "value": 1.0
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "vertical farming funding crash",
+   "say": "Venture funding for indoor farms cratered 91 percent in a single year.",
+   "role": "3 · WHY IT HAPPENED",
+   "data": {
+    "file": "indoor_farming_vc_investment_crash.json",
+    "unit": "index (prior year = 100)",
+    "title": "Year-over-year change in venture investment into indoor farming",
+    "points": [
+     {
+      "label": "Peak year",
+      "value": 100
+     },
+     {
+      "label": "Following year",
+      "value": 9
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: The hook's money scale is the only idea, and it's undercut by Data covering the $8B label. The 91% crash payoff falls to a bubble chart with a perched mascot, and the closing ruler ('91 apart') misreads the stat and never shows the basil it promises."
+ ],
+ "reasons": [
+  "judge: The hook's money scale is the only idea, and it's undercut by Data covering the $8B label. The 91% crash payoff falls to a bubble chart with a perched mascot, and the closing ruler ('91 apart') misreads the stat and never shows the basil it promises."
+ ],
+ "judge": {
+  "ts": "2026-10-08T23:18:54+00:00",
+  "score": 48,
+  "one_line": "The hook's money scale is the only idea, and it's undercut by Data covering the $8B label. The 91% crash payoff falls to a bubble chart with a perched mascot, and the closing ruler ('91 apart') misreads the stat and never shows the basil it promises.",
+  "problems": [
+   "hook@0.3–seg0:end: Data is clipped by the left frame edge and his arm covers the '$8B' label.",
+   "seg0: two copies of Data serve as the race markers, a generic track with no farming or money in it, and the 8x gap reads weakly.",
+   "seg1: reuses the hook's scale and compares a peak valuation with total raised, two unlike quantities, so the tilt is meaningless.",
+   "seg2: the key 91% crash is a plain bubble chart of indexed values 100 vs 9 under the boilerplate kicker 'PEAK YEAR TOPS THE LIST', with Data perched on top as a reaction.",
+   "seg3/seg4: the closing ruler labelled '91 apart' turns a percentage drop into a distance. 'Following year 9' is tiny and faint, and the basil-on-a-windowsill line has no picture.",
+   "seg3 and seg4 are nearly the same frame for about 5 seconds, so the ending stalls instead of landing."
+  ],
+  "fixes": [
+   "Move Data inside the safe area of the hook scale. Have him drop the $8B bricks onto the pan so his hands cause the tilt, and keep him clear of the labels.",
+   "Replace the seg0 lane race with stacks of cash, or grow towers, built to 8 vs 1 so the 8x gap reads at a glance.",
+   "Give seg1 its own picture: Bowery's farm going dark and Plenty's rack toppling. Drop the mismatched valuation-vs-raised scale.",
+   "Rebuild seg2 as a vertical-farm rack that Data empties from 100 trays to 9, with ghost outlines of the old height and one headline '-91%'.",
+   "Make the closing a real payoff: Data watering one basil pot on a windowsill next to the dark, empty rack. No ruler, no '91 apart'."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261009/vertical-farming-bust__d17b191f.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

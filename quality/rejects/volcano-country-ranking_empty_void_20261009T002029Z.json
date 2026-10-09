@@ -1,0 +1,16 @@
+{
+ "slug": "volcano-country-ranking",
+ "ts": "20261009T002029Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.3: the bottom third under the ranking is empty dark gradient. seg2:start: the scale sits on a large empty field. seg3:start: the circles are small with wide dead space above and below.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "incoherent_payoff",
+  "visible_evidence": "seg4:start to seg4:end: the closing line 'Alaska: quietly winning at volcanoes' sits over a stray ruler reading '50% apart' between 25% and 75%. Data stands on a ladder. Two labels collide ('Everywhere else on Earth 25%' printed over 'On the Ring of Fire 75%') in tiny text.",
+  "root_cause": "The closing reused a generic gap-ruler machine fed with the previous beat's share data, not the Alaska payoff. '50% apart' is a made-up comparison that no line states, and the label placement was never measured for collisions.",
+  "repair_goal": "Make the closing land the Alaska punchline: a shot of Alaska's 130 volcanoes towering over Indonesia's 101, with Data placing the last one. Show one big number and no colliding labels, and drop the meaningless '50% apart' gap."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

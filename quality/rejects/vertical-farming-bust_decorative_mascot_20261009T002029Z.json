@@ -1,0 +1,16 @@
+{
+ "slug": "vertical-farming-bust",
+ "ts": "20261009T002029Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg2:start through seg2:end Data stands on top of the 100 bubble with his hands on his head, reacting while the bubble grows under him. In hook@0.3 and seg1:start he is pinned at the left frame edge holding a pole beside the $8B pan and never loads or unloads it.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "chart_with_decorative_mascot",
+  "visible_evidence": "In seg2:start through seg2:end two plain circles labelled 100 'Peak year' and 9 'Following year' sit under the boilerplate kicker 'PEAK YEAR TOPS THE LIST'. Data perches on top of the big circle with his hands on his head. Nothing in the frame is about farms, money or investors.",
+  "root_cause": "The 91% crash fell back to a generic sized-bubble chart with indexed values, and the mascot was placed as a reaction sticker instead of being the cause of the drop.",
+  "repair_goal": "Draw the funding collapse as something made of the subject. For example, a tall vertical-farm rack stacked with 100 grow trays that Data empties, hauling 91 of them out, until 9 lit trays remain against faint ghost outlines of the old height. The 91% drop should be read from the shrinking stack itself, with one headline number, and no '100 vs 9' index card or 'tops the list' kicker."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "marathon-super-shoes-record-pace",
+ "ts": "20261009T002029Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:mid and seg3:end the '15' inside the big yellow circle is drawn as a doubled, smeared black glyph that reads as a blur at phone size. The hook tank values ('126.1', '120.6' in hook@0.3) are small grey text with no units.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start to seg3:end shows a yellow circle labelled '15' and a grey circle labelled '5' growing on an empty background. The '15' is a doubled, smeared glyph, and Data just stands on top of the circle.",
+  "root_cause": "A 'share of top 20' claim fell back to a generic proportional-bubble chart with nothing from the subject in it. A text-rendering defect doubled the number's glyph, and the mascot was placed as a perch instead of being given an act.",
+  "repair_goal": "Show the 20 fastest marathons as 20 runners (or 20 finish-line tapes) lined up by time. As Data hands each runner a glowing super shoe, the 15 post-2018 runners light up in the accent colour and the 5 older ones stay neutral. Render one crisp '15 of 20' headline in ink."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

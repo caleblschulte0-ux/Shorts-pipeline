@@ -1,0 +1,16 @@
+{
+ "slug": "coldest-place-in-the-universe-is-human-made",
+ "ts": "20261009T002029Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: The ending's \"29,399,999,999,999,752 apa\" is cut off at the right edge (seg4:mid, seg4:end). \"NASA's Cold ...\" is truncated. In seg3 \"NASA's Cold Atom Lab (ISS)\" is tiny and printed on the teal square. In seg2 \"NASA Cold Atom Lab (ISS)\" is clipped by the circle's edge.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start to seg3:end is one static teal square filling the frame with \"29400T\" in the middle. It has no unit, the tiny \"NASA's Cold Atom Lab (ISS)\" label sits on top of it, and Data stands on top doing nothing. The narration says 5,000 light-years versus 250 miles, and none of that comparison is drawn.",
+  "root_cause": "A generic area-square fallback drew a raw value with a meaningless 'T' suffix instead of a picture of the distance. It also used the same accent for the one subject, so there is no comparison and nothing moves.",
+  "repair_goal": "Draw the distance itself. Data at the ISS 250 miles above a curved Earth, then the camera pulls back across stars until the Boomerang Nebula appears at 5,000 light-years. Data should cause the motion, for example by cranking out a measuring tape or riding a probe outward. Use one readable headline number with its unit (\"5,000 light-years\" vs \"250 miles\"), with no truncated labels and no 'T' notation."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

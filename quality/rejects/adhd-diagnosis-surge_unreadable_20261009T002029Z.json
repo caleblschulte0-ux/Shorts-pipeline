@@ -1,0 +1,16 @@
+{
+ "slug": "adhd-diagnosis-surge",
+ "ts": "20261009T002029Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg4:start to seg4:end: Data's head and arm cover '53.6%' (it reads as '3.6%') and overlap 'Taking ADHD'. seg3:start/mid: white '53.6%' on the pale yellow disc is low contrast at phone size.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start-end: a yellow disc reading 53.6% and a grey disc reading 46.4%. The discs grow, and Data dances on top of the yellow one. Nothing shows kids taking or not taking medication.",
+  "root_cause": "The 'only half are treated' claim fell through to a generic two-bubble share chart with the mascot laid over it, not a picture made of the subject. The white value label was never contrast-checked against the accent fill.",
+  "repair_goal": "Make it a subject shot of diagnosed kids, for example a row of ~10 kids each with a diagnosis card. Data hands a pill bottle to each kid in turn, one arc per kid, and stops just past half (53.6%), leaving the rest empty-handed. Use one headline number in ink on the ground, not on the fill."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

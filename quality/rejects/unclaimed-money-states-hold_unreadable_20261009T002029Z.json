@@ -1,0 +1,16 @@
+{
+ "slug": "unclaimed-money-states-hold",
+ "ts": "20261009T002029Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: The California bubble's '$15B' renders as garbled, doubled-outline text (hook@0.3, seg0:end). The California bar value is covered by Data's hand (seg1:end). The '85.7%' label sits on Data, who is cut off at the left frame edge (seg4:start, seg4:end). The stacked-bar labels are faint grey",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "claim_picture_mismatch",
+  "visible_evidence": "seg4:start through payoff@-0.4: the headline reads 'States returned only 4.49 billion of 70 billion' over a seesaw weighing 85.7% vs 14.3% of Americans. Data is pinned to the left frame edge, half off-screen, with the 85.7% label printed over him.",
+  "root_cause": "The closing reuses the previous beat's share data (14% have unclaimed money) on a stock balance machine instead of drawing the closing's own claim (4.49B returned of 70B). The mascot was placed at the beam's end with no space check against the frame edge or the label.",
+  "repair_goal": "Draw the closing's own numbers: a 70B pile or vault, with Data handing back a thin 4.49B slice that is visibly tiny against what stays locked. Keep Data fully inside the frame, keep labels off him, and make the payoff number land early."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

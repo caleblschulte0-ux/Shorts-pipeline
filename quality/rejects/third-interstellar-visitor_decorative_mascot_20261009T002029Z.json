@@ -1,0 +1,21 @@
+{
+ "slug": "third-interstellar-visitor",
+ "ts": "20261009T002029Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From hook@0.3 to seg0:end Data stands on a ladder pointing at the '3' bar, and at seg1:start and seg1:mid he holds his arms up on the timeline. At seg3:start and seg3:mid he stands beside the 5.6 and 1.0 numbers without doing anything to them. None of these is an action that cause",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start to seg3:end show two Data figures standing on shelves next to '5.6' and '1.0', with a dotted ruler at the right edge. No nucleus is drawn, and nothing in the frame is 5.6 times bigger than anything else.",
+  "root_cause": "The size comparison went to a label-plus-mascot layout instead of a picture of the two objects. The number carries the whole claim and the picture asserts nothing.",
+  "repair_goal": "Draw two lit comet nuclei to true relative scale: Borisov as a 1 km rock and 3I/ATLAS as a 5.6 km rock that dwarfs it, with Borisov's outline ghosted on ATLAS as the scale mark. Data should do the work, for example rolling the small rock up beside the giant or measuring across the big one with a tape. Use one headline number, 5.6 km, landing within 3s."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "parker-solar-probe-speed-record",
+ "ts": "20261009T002029Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: In seg2:start, mid and end the beat is just '24.8K' and '430K' printed beside two copies of the mascot. Nothing shows the 17x gap; the second Data only slides sideways.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start/mid/end: two rows, each with a cloned Data and a big number (24.8K vs 430K). Only a dotted rule runs down the right edge. The 430K Data drifts right and the rows never show the size difference.",
+  "root_cause": "The 17x comparison is drawn as two text rows with a duplicated mascot. No physical mark has a length or position set by speed.",
+  "repair_goal": "Show the 17x gap physically: an Apollo 10 capsule and the Parker probe racing over the same stretch, with the probe covering 17 times the distance as Apollo crawls. Use a single Data who is the cause, for example lighting the probe's thruster with a tool. Keep one headline number (17x) on screen."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

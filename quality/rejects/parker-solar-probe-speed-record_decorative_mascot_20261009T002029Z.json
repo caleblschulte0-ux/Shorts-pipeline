@@ -1,0 +1,16 @@
+{
+ "slug": "parker-solar-probe-speed-record",
+ "ts": "20261009T002029Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data poses beside the data and causes none of it. In hook@0.3 to seg0:end he stands on a ladder pointing at a bar that is already full. In seg1:start to end he raises his arms while the timeline grows without him. In seg3:mid and end he stands on a bubble. In seg4 he points at an ",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start/mid/end: two rows, each with a cloned Data and a big number (24.8K vs 430K). Only a dotted rule runs down the right edge. The 430K Data drifts right and the rows never show the size difference.",
+  "root_cause": "The 17x comparison is drawn as two text rows with a duplicated mascot. No physical mark has a length or position set by speed.",
+  "repair_goal": "Show the 17x gap physically: an Apollo 10 capsule and the Parker probe racing over the same stretch, with the probe covering 17 times the distance as Apollo crawls. Use a single Data who is the cause, for example lighting the probe's thruster with a tool. Keep one headline number (17x) on screen."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

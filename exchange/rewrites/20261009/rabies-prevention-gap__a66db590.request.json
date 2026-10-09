@@ -1,0 +1,157 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "rabies-prevention-gap__a66db590",
+ "filed": "2026-10-09T00:20:17Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "rabies-prevention-gap",
+ "current": {
+  "title": "Rabies Still Kills 59,000 People A Year",
+  "hook": "One bite. 100% fatal once it starts. Almost always preventable.",
+  "closing": "Dogs started it. A cheap vaccine could finish it.",
+  "question": "Did you know rabies still kills this many?",
+  "segments": [
+   {
+    "topic": "rabies fatality once symptoms start",
+    "say": "Rabies is 100 percent fatal once symptoms start, with no cure."
+   },
+   {
+    "topic": "where rabies deaths actually happen",
+    "say": "Asia loses 35,000 people a year to rabies, more than anywhere."
+   },
+   {
+    "topic": "what actually spreads rabies to people",
+    "say": "99 percent of human cases start with one dog bite."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "rabies fatality once symptoms start",
+   "say": "Rabies is 100 percent fatal once symptoms start, with no cure.",
+   "role": "1 · THE NUMBER",
+   "data": {
+    "file": "rabies_fatality_compare.json",
+    "unit": "percent",
+    "title": "Rabies case fatality: symptomatic vs vaccinated before symptoms",
+    "points": [
+     {
+      "label": "Fatal once symptoms start",
+      "value": 100
+     },
+     {
+      "label": "Fatal if vaccinated before symptoms",
+      "value": 0
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "where rabies deaths actually happen",
+   "say": "Asia loses 35,000 people a year to rabies, more than anywhere.",
+   "role": "2 · WHERE",
+   "data": {
+    "file": "rabies_region_rank.json",
+    "unit": "people",
+    "title": "Estimated annual human rabies deaths by region",
+    "points": [
+     {
+      "label": "Asia",
+      "value": 35000
+     },
+     {
+      "label": "Africa",
+      "value": 21000
+     },
+     {
+      "label": "Rest of world",
+      "value": 3000
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 2,
+   "topic": "what actually spreads rabies to people",
+   "say": "99 percent of human cases start with one dog bite.",
+   "role": "3 · THE FIX",
+   "data": {
+    "file": "rabies_source_compare.json",
+    "unit": "percent",
+    "title": "Human rabies cases by transmission source",
+    "points": [
+     {
+      "label": "Dog bites",
+      "value": 99
+     },
+     {
+      "label": "All other animals",
+      "value": 1
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: A clinical, generic machine-and-bubbles explainer: a recycled seesaw, then bare circles, with Data parked as a sticker, overlapping text, and no picture of dogs, bites, people or a vaccine anywhere."
+ ],
+ "reasons": [
+  "judge: A clinical, generic machine-and-bubbles explainer: a recycled seesaw, then bare circles, with Data parked as a sticker, overlapping text, and no picture of dogs, bites, people or a vaccine anywhere."
+ ],
+ "judge": {
+  "ts": "2026-10-08T23:23:11+00:00",
+  "score": 31,
+  "one_line": "A clinical, generic machine-and-bubbles explainer: a recycled seesaw, then bare circles, with Data parked as a sticker, overlapping text, and no picture of dogs, bites, people or a vaccine anywhere.",
+  "problems": [
+   "The hook (hook@0.3 to hook@2.2) opens on a plain seesaw with bricks dropping. It is a slow build, not a shock, and nothing says 'bite'.",
+   "Overlapping labels 'vaccinated'/'before' in hook@0.8, seg0:start and hook@1.5.",
+   "seg1 shows the same seesaw while the narration says Asia loses 35,000 a year, so picture and words don't match.",
+   "seg2 is a bubble chart. Data stands on the Asia circle as decoration.",
+   "seg3 is a bare 99% circle in an empty void, with grey '99%' on pink, half off the circle, in seg3:start.",
+   "seg4 is the seg3 circle enlarged: no vaccine, no payoff. The CTA 'kills this many?' sits over a 99% share."
+  ],
+  "fixes": [
+   "Open on the shock picture: a single dog bite mark with a 100% fatality readout already full on frame one.",
+   "Fix the 0%-side label layout so 'vaccinated before symptoms' wraps without overlapping.",
+   "Give seg1 its own picture of Asia's 35,000, for example a map of Asia filling with figures, with Data stacking them.",
+   "Replace the seg3 bubble with a scene made of the subject: 99 bitten figures traced to one dog, 1 to another animal, with Data leading or sorting them.",
+   "Make the closing pay off the vaccine: Data jabs a dog with a cheap syringe and the dog-bite share empties, so the line 'a cheap vaccine could finish it' is shown, not just stated.",
+   "Render numerals once in solid ink with high contrast, and stop doubled text."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261009/rabies-prevention-gap__a66db590.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "rabies-prevention-gap",
+ "ts": "20261009T002029Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: In seg3 (seg3:mid, seg3:end) the frame is a single pink circle reading '99%' and a floating '1%' label, with no demonstration of bites or dogs. seg4 (seg4:mid, seg4:end) is the same circle made bigger.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start to seg3:end: one pink circle labelled 99% in an empty dark frame, a tiny '1%' label at the right edge, 'Dog bites' floating far below, and Data standing on top of the circle doing nothing.",
+  "root_cause": "The 'one dog bite causes 99% of cases' claim fell back to a generic proportional-bubble machine with no subject in it: no dog, no bite, no people. The mascot was placed on top of the bubble as decoration instead of acting on anything.",
+  "repair_goal": "Draw the subject itself: a crowd of 100 human figures in which 99 carry bite marks traced back to a single dog in the foreground, and one figure bitten by a bat or other animal sits off to the side. Data is the CAUSE: he leads the lone dog, or he sorts the figures one by one into the dog pile, so the 99:1 split builds under his hands. Use one headline number, readable white-on-ink, filling the frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

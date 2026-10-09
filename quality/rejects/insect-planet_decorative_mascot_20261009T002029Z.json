@@ -1,0 +1,16 @@
+{
+ "slug": "insect-planet",
+ "ts": "20261009T002029Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data hangs at the edge of the seesaw (hook@0.8), stands beside the stacked bar raising his arms (seg1:mid, seg1:end), walks on top of a bubble (seg3:mid) and cheers next to labels (seg4:mid). He never causes the data's motion.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "chart_with_covered_payoff",
+  "visible_evidence": "A plain horizontal bar chart with tiny bird and paw icons. The 11K and 6,400 bars are empty dark tracks with no visible fill. Data stands on top of the 1.5M value label (seg2:end), and the beetle bar barely reaches past the middle of the frame.",
+  "root_cause": "The relationship '1.5M beetle species dwarfs 17K mammals plus birds' fell back to a rank bar chart. Data was placed at the beetle bar's tip with no act, so he covers the one number the scene is about.",
+  "repair_goal": "Make it a bespoke 'beetles bury the vertebrates' shot. Show a mountain of beetles roughly 88 times the size of a small pile of birds and mammals, with Data shovelling beetles onto the heap so it grows. Put the one headline '1.5M' clear of Data, and show the small pile on the same scale so the size gap is visible at a glance."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

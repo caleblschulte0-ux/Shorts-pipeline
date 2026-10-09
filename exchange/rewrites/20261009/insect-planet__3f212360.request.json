@@ -1,0 +1,157 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "insect-planet__3f212360",
+ "filed": "2026-10-09T00:20:18Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "insect-planet",
+ "current": {
+  "title": "Earth Is Actually The Planet Of The Bugs",
+  "hook": "80% of all animal species are insects — and they're everywhere you live.",
+  "closing": "Somewhere right now, an unnamed beetle is judging you.",
+  "question": "Weirdest bug you've ever seen? Tell me below.",
+  "segments": [
+   {
+    "topic": "Bugs' share of animals",
+    "say": "About 80% of all animal species on Earth are insects."
+   },
+   {
+    "topic": "Bugs: beetles vs mammals",
+    "say": "Beetles alone have an estimated 1.5 million species, beating all 6,400 mammals and 11,000 birds combined."
+   },
+   {
+    "topic": "Named vs estimated bugs",
+    "say": "We've named only about 1 million insect species, while scientists estimate 5.5 million exist."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Bugs' share of animals",
+   "say": "About 80% of all animal species on Earth are insects.",
+   "role": "1 · WHO'S HERE",
+   "data": {
+    "file": "insect_share_of_animal_species.json",
+    "unit": "percent",
+    "title": "Insects as a share of all known animal species",
+    "points": [
+     {
+      "label": "Insects",
+      "value": 80
+     },
+     {
+      "label": "All other animals",
+      "value": 20
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Bugs: beetles vs mammals",
+   "say": "Beetles alone have an estimated 1.5 million species, beating all 6,400 mammals and 11,000 birds combined.",
+   "role": "2 · JUST ONE GROUP",
+   "data": {
+    "file": "beetle_vs_vertebrate_species_count.json",
+    "unit": "species",
+    "title": "Estimated beetle species vs. total mammal and bird species",
+    "points": [
+     {
+      "label": "Beetles (estimated)",
+      "value": 1500000
+     },
+     {
+      "label": "All mammal species",
+      "value": 6400
+     },
+     {
+      "label": "All bird species",
+      "value": 11000
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Named vs estimated bugs",
+   "say": "We've named only about 1 million insect species, while scientists estimate 5.5 million exist.",
+   "role": "3 · STILL UNNAMED",
+   "data": {
+    "file": "insect_species_described_vs_estimated.json",
+    "unit": "million",
+    "title": "Insect species described so far vs. estimated to actually exist",
+    "points": [
+     {
+      "label": "Described so far",
+      "value": 1
+     },
+     {
+      "label": "Estimated to exist",
+      "value": 5.5
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: A charts-on-dark-blue explainer: a weak seesaw hook, then three generic charts repeating numbers. There is an empty-frame gap at 4.7s, and Data covers the key 1.5M label."
+ ],
+ "reasons": [
+  "judge: A charts-on-dark-blue explainer: a weak seesaw hook, then three generic charts repeating numbers. There is an empty-frame gap at 4.7s, and Data covers the key 1.5M label."
+ ],
+ "judge": {
+  "ts": "2026-10-08T23:39:16+00:00",
+  "score": 44,
+  "one_line": "A charts-on-dark-blue explainer: a weak seesaw hook, then three generic charts repeating numbers. There is an empty-frame gap at 4.7s, and Data covers the key 1.5M label.",
+  "problems": [
+   "seg0:end (4.72s) is a completely empty gradient frame between the seesaw and the next chart.",
+   "seg1 repeats the hook's 80% as a plain stacked bar. It is redundant and the 20% label is nearly invisible.",
+   "seg2 is a bar chart where the bird and mammal bars are effectively empty tracks, and Data covers the '1.5M' value at seg2:end.",
+   "seg3 is two labelled circles, which is a bare number comparison with outlined, blurry dark text on yellow.",
+   "Data never performs a bit tied to a stat. He perches, cheers and walks on shapes in every scene.",
+   "The closing ladder (seg4) shows two copies of Data and restates seg3's numbers instead of paying off the 'unnamed beetle judging you' joke."
+  ],
+  "fixes": [
+   "Remove the blank seg0:end transition. Hold the seesaw at full tilt, or flash forward to the next picture.",
+   "Cut seg1 or replace it: the hook already makes the 80% point. Spend the time on a world swarming with beetles, with Data pouring them in.",
+   "Rebuild seg2 as a heap of 1.5M beetles burying a tiny bird-and-mammal pile on one scale, with Data shovelling onto the heap. Keep every label clear of Data.",
+   "Rebuild seg3 as a jar or field of 5.5M bug silhouettes, with only 1M given name tags as Data labels them, so most of the field stays visibly unnamed.",
+   "End on a shot of an unnamed beetle staring at the camera, with Data trying to name it, to land the closing joke.",
+   "Make the hook seesaw's icon counts match 80/20, so the slam reads as the true ratio."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is a 2000s download-site ad, not a fact read aloud: 6-14 words, the VIEWER is the one it happens to ('your coffee', 'your town'), lead with the shock, a visceral verb (wiped out, vanished, doubled, gone), one number from the data. Never a quiz ('Which animal...', 'Did you know...'), never a hedge (might, may, perhaps). Exaggerate the FEELING, never the FACT."
+ ],
+ "answer_path": "exchange/rewrites/20261009/insect-planet__3f212360.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
