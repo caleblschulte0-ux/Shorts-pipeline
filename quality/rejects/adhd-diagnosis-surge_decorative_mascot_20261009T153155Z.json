@@ -1,0 +1,16 @@
+{
+ "slug": "adhd-diagnosis-surge",
+ "ts": "20261009T153155Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg3:start-end: Data only stands on top of the 53.6% circle while it grows. He does nothing to cause or show the number. seg1:mid: he walks the timeline with his hands on his head, which is a reaction, not the cause of the rising bars. The hook ladder pose (hook@0.8) is the only b",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "chart_with_decorative_mascot",
+  "visible_evidence": "seg3:start-end: two plain circles labelled 53.6% and 46.4% that grow. Data stands on the yellow circle doing nothing. The 'Taking ADHD medication tops the list' kicker and the source line are UI-widget framing, and the bottom half of the frame is empty.",
+  "root_cause": "The treated-vs-untreated split fell back to a generic proportional-bubble chart with no subject-made form. The mascot was placed on top as a sticker instead of being the agent of the number.",
+  "repair_goal": "Draw the 53.6% as the subject itself: a row of 100 kids or pill bottles where Data hands out medication to about 54 of them, and the untreated 46 stay visibly empty-handed. Data performs the handing-out in one arc. Fill the lower frame, and drop the kicker/source widget chrome."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

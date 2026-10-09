@@ -19171,7 +19171,7 @@
   {
    "slug": "body-renewal-clock",
    "title": "How Much Of 'You' Is Actually New",
-   "hook": "Your body throws out a stomach lining every five days like it's nothing.",
+   "hook": "Your stomach lining is gone in five days. Your skeleton takes a decade.",
    "closing": "So technically, your skin is younger than your phone.",
    "question": "How old are your oldest cells? Guess below.",
    "caption": "Your stomach rebuilds itself every 5 days. Your skeleton takes 10 years. But scientists carbon-dated your brain cells and found something wild... How old do you think your oldest cells are? 👇",
@@ -19203,7 +19203,7 @@
      "ascending": true,
      "role": "1 · RENEWAL SPEED",
      "topic": "How new is tissue",
-     "say": "Your stomach lining is brand new every five days, but your bones take years.",
+     "say": "Your stomach lining is brand new every 5 days, yet your skeleton takes a decade.",
      "scene": {
       "mechanic": "body-clock-dials",
       "concept": "four tissue photos sit inside round clock dials arranged 2x2, each hand sweeping to a log-scaled position so a 5-day stomach barely ticks while a 3,650-day skeleton nearly completes a full lap",
@@ -19219,7 +19219,7 @@
      "insight_type": "trend",
      "role": "2 · IT ADDS UP",
      "topic": "New cells per day",
-     "say": "In about three months, your body swaps out thirty trillion cells.",
+     "say": "In just 100 days, your body swaps out 30 trillion cells.",
      "scene": {
       "mechanic": "cell-tally-swarm",
       "concept": "a human body silhouette fills with a growing swarm of tiny cell dots as a day-counter climbs from 0 to 100, tallying toward 30 trillion replaced cells",
@@ -19235,7 +19235,7 @@
      "insight_type": "comparison",
      "role": "3 · EXCEPT...",
      "topic": "Old neurons, new skin",
-     "say": "Your brain cells are as old as you are, but your skin renews monthly.",
+     "say": "Your skin renews every 28 days, but your brain's neurons are as old as you.",
      "scene": {
       "mechanic": "scale-break-lifetime-ruler",
       "concept": "a single ruler with a jagged scale-break: skin's renewal mark sits just past the start, neuron's mark lands far out near the ruler's end, dramatizing that one cell type is basically as old as the person",
@@ -19244,15 +19244,15 @@
     }
    ],
    "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T10:30:41Z",
+   "rewritten_at": "2026-10-09T13:29:54Z",
    "retold": "retell/v1",
    "hook_was": "330 billion of your cells vanish every single day."
   },
   {
    "slug": "insect-planet",
    "title": "Earth Is Actually The Planet Of The Bugs",
-   "hook": "Earth is run by bugs, and eight out of every ten animal species is one.",
-   "closing": "Somewhere right now, an unnamed beetle is judging you.",
+   "hook": "Most animals on Earth are bugs, and we still haven't found most of them.",
+   "closing": "Somewhere out there, an unnamed beetle is judging you.",
    "question": "Weirdest bug you've ever seen? Tell me below.",
    "caption": "About 80% of all animal species on Earth are insects. Beetles alone outnumber every mammal and bird species combined. And most of them haven't even been named yet... What's the weirdest bug you've seen? 👇",
    "hashtags": [
@@ -19282,7 +19282,7 @@
      "insight_type": "share",
      "role": "1 · WHO'S HERE",
      "topic": "Bugs' share of animals",
-     "say": "Roughly eight out of every ten animal species on Earth are insects.",
+     "say": "Roughly eight in every ten animal species on Earth are insects.",
      "scene": {
       "mechanic": "insect-tide-overlay",
       "concept": "a big real beetle photo with a rising translucent tide filling it bottom-up to 80%, while a small collage of birds and mammals floats above the waterline for the remaining 20%",
@@ -19324,7 +19324,7 @@
     }
    ],
    "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T10:46:48Z",
+   "rewritten_at": "2026-10-09T13:45:24Z",
    "hook_was": "You're surrounded: 80% of every animal on Earth is a bug.",
    "retold": "retell/v1"
   },
@@ -19862,7 +19862,7 @@
   {
    "slug": "blood-type-rarity",
    "title": "The World's Rarest Blood Type, By The Numbers",
-   "hook": "If your blood type is rare, a hospital emergency could turn into a hunt for it.",
+   "hook": "Only 1 percent of people carry the rarest blood type.",
    "closing": "Somebody out there needs exactly your type.",
    "question": "Know your blood type? Drop it below.",
    "caption": "AB negative is the rarest blood type in America, at just 1%. It comes down to one gene most people never think about — and it varies by ethnic background too, which is exactly why blood banks need donors from every community. 👇 Know your type?",
@@ -19935,8 +19935,7 @@
     }
    ],
    "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-05T15:24:53Z",
-   "hook_was": "Only 1 percent of people carry the rarest blood type."
+   "rewritten_at": "2026-10-05T15:24:53Z"
   },
   {
    "slug": "boomerang-generation",
@@ -20283,7 +20282,7 @@
      "insight_type": "comparison",
      "role": "1 · THE ODDS",
      "topic": "Lottery odds vs lightning",
-     "say": "Getting struck by lightning in your lifetime is 1 in 15,300, and that's far likelier.",
+     "say": "The jackpot is 1 in 292 million, while lightning is thousands of times likelier.",
      "scene": {
       "mechanic": "odds-ring-zoom",
       "concept": "two targets built from concentric rings, one ring per power of ten -- the lightning target fills a handful of rings, the jackpot target keeps ringing out far past it",
@@ -20301,7 +20300,7 @@
      "use_baseline": false,
      "role": "2 · STILL WORSE",
      "topic": "Jackpot odds ranked",
-     "say": "Even a shark attack, at 1 in 11.5 million, is far likelier than the jackpot.",
+     "say": "Even a shark attack, 1 in 11.5 million, is far likelier than the jackpot.",
      "scene": {
       "mechanic": "shrinking-rarity-circles",
       "concept": "three real photos sit inside circles that shrink log-scaled to how rare each event is, so the jackpot photo is a near-vanishing pinprick next to a big royal flush",
@@ -20317,7 +20316,7 @@
      "insight_type": "comparison",
      "role": "3 · ON PURPOSE",
      "topic": "Why odds got worse",
-     "say": "In 2015, the odds got worse, from 1 in 175 million to 1 in 292 million.",
+     "say": "In 2015, Powerball worsened the odds from 1 in 175 million to 1 in 292 million.",
      "scene": {
       "mechanic": "ball-drum-swell",
       "concept": "two lottery-ball drums stand side by side, the after-2015 drum visibly bigger and more crowded with balls, making 'more balls, worse odds' a physical fact",
@@ -20326,7 +20325,7 @@
     }
    ],
    "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T11:15:25Z",
+   "rewritten_at": "2026-10-09T13:50:12Z",
    "retold": "retell/v1"
   },
   {
@@ -20799,8 +20798,8 @@
   {
    "slug": "activity-inequality-steps",
    "title": "It's Not How Much You Walk. It's How Unequal It Is.",
-   "hook": "Hong Kong: 6,880 steps a day. Indonesia: 3,513. That gap is gutting your health.",
-   "closing": "It's not the steps. It's the gap.",
+   "hook": "The obesity crisis isn't about willpower. It's about who gets to walk.",
+   "closing": "It's never the steps. It's the gap.",
    "question": "How many steps do you walk daily?",
    "caption": "Hong Kong walks 6,880 steps a day. Indonesia walks 3,513. But the real predictor of obesity isn't the average — it's the GAP between a country's most and least active people, and it makes obesity almost 200% more likely. How many steps do you actually walk a day? 👇",
    "hashtags": [
@@ -20832,7 +20831,7 @@
      "use_baseline": true,
      "role": "1 · THE STEPS",
      "topic": "How much we walk",
-     "say": "In Hong Kong people walk about 6,880 steps a day; in Indonesia, barely half that.",
+     "say": "Hong Kong walks 6,880 steps a day, while Indonesia manages only 3,513.",
      "scene": {
       "mechanic": "footprint-trail-row",
       "concept": "a dotted footprint trail walks out from each country's name, longer trails for higher daily step counts, Hong Kong's trail nearly crossing the frame while Indonesia's stops short",
@@ -20849,7 +20848,7 @@
      "use_baseline": true,
      "role": "2 · THE REAL PREDICTOR",
      "topic": "How unequal activity is",
-     "say": "Countries where activity is most unequal are nearly three times as likely to be obese.",
+     "say": "Countries with the widest activity gaps are almost three times as likely to be obese.",
      "scene": {
       "mechanic": "risk-scale-tilt",
       "concept": "a balance beam tilts as reveal builds, a fit-silhouette icon on the low-inequality side stays level while an overweight-silhouette icon on the high-inequality side sinks toward the 297 risk index",
@@ -20874,7 +20873,7 @@
     }
    ],
    "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T11:15:49Z",
+   "rewritten_at": "2026-10-09T13:50:32Z",
    "hook_was": "Your steps won't stop obesity; this gap makes it almost 200 percent likelier.",
    "retold": "retell/v1"
   },
@@ -20912,7 +20911,7 @@
      "insight_type": "trend",
      "role": "1 · THE SPIKE",
      "topic": "share of families homeschooling",
-     "say": "Homeschooling nearly quadrupled in 2020, and years later it's still about double 2019.",
+     "say": "Homeschooling jumped from 2.8 percent to 11.1 percent in 2020, and never fully dropped back.",
      "scene": {
       "mechanic": "empty-desk-swap",
       "concept": "a 5x4 grid of school desks swaps to little house icons as reveal sweeps 2019 to 2023, the house count tracking the homeschool share for that year - the grid fills with houses at the 2020 spike, then partly empties back",
@@ -20929,7 +20928,7 @@
      "ascending": false,
      "role": "2 · WHY IT STUCK",
      "topic": "Why homeschooling stuck",
-     "say": "Why stay? Eighty-three percent of parents say other schools' environment worries them most.",
+     "say": "The top reason, for 83 percent of parents, is worry about safety at other schools.",
      "scene": {
       "mechanic": "concern-flag-row",
       "concept": "four flagpoles rise to each reason's percentage, topped with an icon for that reason (shield, heart, family, book) - safety concern rises tallest",
@@ -20946,7 +20945,7 @@
      "use_baseline": true,
      "role": "3 · THE SCALE",
      "topic": "homeschooling vs private school",
-     "say": "Even so, private school still holds nearly twice as many kids as homeschooling.",
+     "say": "Today 5.4 percent of kids homeschool, so about one in twenty.",
      "scene": {
       "mechanic": "house-vs-school-growth",
       "concept": "a small house and a school building grow side by side, each scaled to its own share of kids - the school building noticeably bigger at 9.6% versus the house at 5.4%",
@@ -20955,7 +20954,7 @@
     }
    ],
    "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T11:15:59Z",
+   "rewritten_at": "2026-10-09T14:05:36Z",
    "retold": "retell/v1"
   },
   {
@@ -21263,7 +21262,7 @@
   {
    "slug": "highest-point-illusion",
    "title": "Everest Isn't the Highest Point on Earth",
-   "hook": "Your 8,849-meter Everest champion just got dethroned. Twice.",
+   "hook": "Everest only wins because they measure from sea level.",
    "closing": "Highest point on Earth? Highest from where?",
    "question": "Which mountain is the real winner?",
    "caption": "Everest is 8,849 meters above sea level - and still loses twice. Mauna Kea is 10,211 meters from its base on the Pacific floor, and because Earth bulges 21 kilometers at the equator, Chimborazo's summit sits about 2 kilometers farther from the planet's center than Everest's does. Highest, tallest and farthest are three different questions. Which one counts? 👇",
@@ -21337,13 +21336,14 @@
     }
    ],
    "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-05T18:34:42Z"
+   "rewritten_at": "2026-10-05T18:34:42Z",
+   "hook_was": "Your 8,849-meter Everest champion just got dethroned. Twice."
   },
   {
    "slug": "gps-einstein-fix",
    "title": "Every GPS Satellite Is Set to the Wrong Time on Purpose",
    "hook": "Your GPS slides 10 kilometers off in one day, uncorrected.",
-   "closing": "Einstein's homework, running in your pocket, every day.",
+   "closing": "Einstein's math is quietly guiding you home.",
    "question": "Your phone runs on relativity. Surprised?",
    "caption": "A GPS satellite clock gains 38 microseconds a day on yours - weaker gravity speeds it up 45, orbital speed drags 7 back. Ignore that and your position slides about 10 kilometers off in a single day, so every satellite is launched running deliberately slow. That correction is why your blue dot lands within 4.9 meters. Did you know your phone runs on relativity? 👇",
    "hashtags": [
@@ -21374,7 +21374,7 @@
      "ascending": false,
      "role": "1 · TWO CLOCKS, ONE ORBIT",
      "topic": "Satellite clock drift",
-     "say": "Weak gravity speeds satellite clocks 45 microseconds a day, and speed claws back 7, netting 38.",
+     "say": "Satellite clocks run 38 microseconds fast every day, because gravity up there is weaker.",
      "scene": {
       "mechanic": "satellite-tick-ledger",
       "concept": "45 real microsecond-cells light up one at a time under the satellite as gravity pulls its clock ahead, then orbital speed strikes out the last 7 - the 38 that survive ARE the net gain, counted, not asserted.",
@@ -21390,7 +21390,7 @@
      "insight_type": "trend",
      "role": "2 · WHERE IT GOES WRONG",
      "topic": "GPS error without fix",
-     "say": "Light covers 300,000 kilometers a second, so uncorrected, your position drifts 10 kilometers daily.",
+     "say": "Left alone, that tiny error shoves your map position 10 kilometers off each day.",
      "scene": {
       "mechanic": "pin-walks-off-the-map",
       "concept": "Your blue dot starts on target and every hour a fresh map pin lands further right, dragged by a widening error bar - the position visibly walking off the road as the day goes on.",
@@ -21406,7 +21406,7 @@
      "insight_type": "comparison",
      "role": "3 · THE FIX",
      "topic": "GPS accuracy corrected",
-     "say": "Satellites launch with clocks set slow, putting your phone within 4.9 meters instead of 10,000.",
+     "say": "So engineers launch the clocks set slow, and your phone lands within 4.9 meters.",
      "scene": {
       "mechanic": "gps-off-target-dial",
       "concept": "A log-scale rangefinder from the true spot: the corrected pin barely leaves home at 4.9m while the uncorrected one races almost the full width to 10,000m, same start, wildly different landing.",
@@ -21414,8 +21414,9 @@
      }
     }
    ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-05T16:23:26Z"
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-09T14:18:01Z",
+   "retold": "retell/v1"
   },
   {
    "slug": "lightning-lake-maracaibo",
@@ -21525,7 +21526,7 @@
      "ascending": false,
      "role": "1 · HOW FAST IT SPREADS",
      "topic": "measles infections per case",
-     "say": "One sick person with measles infects about fifteen people; flu manages just one.",
+     "say": "One measles case infects about 15 people; chickenpox 11, polio 6, flu 1.3.",
      "scene": {
       "mechanic": "outbreak-radiate-count",
       "concept": "Four patient-zero silhouettes, one per disease, each ringed by its own orbiting cloud of infected silhouettes counted out to the exact R0 - measles visibly swarmed while flu barely has company.",
@@ -21541,7 +21542,7 @@
      "insight_type": "comparison",
      "role": "2 · THE 95 PERCENT RULE",
      "topic": "measles immunity needed",
-     "say": "Measles needs ninety-five percent immunity to stop spreading, and kindergartners sit at ninety-two and a half.",
+     "say": "Measles needs 95 percent immunity to stop spreading; American kindergartners sit at 92.5 percent.",
      "scene": {
       "mechanic": "forty-kids-three-gaps",
       "concept": "Forty kindergartners in a grid. The covered ones light up one by one; the last few stay red. Measles only needs the red ones - and the bar it has to clear is one kid away.",
@@ -21558,7 +21559,7 @@
      "viz": "trend",
      "role": "3 · WHAT 2.5 POINTS COSTS",
      "topic": "US measles cases",
-     "say": "That small gap let cases climb from two hundred eighty-five to over two thousand five hundred.",
+     "say": "Missing by 2.5 points brought 285 cases in 2024, 2,289 last year, 2,566 this year.",
      "scene": {
       "mechanic": "measles-outbreak-swarm",
       "concept": "each year's case count erupts as a swirling swarm of red spot markers along a rising path -- the swarm barely visible in 2021-2024, exploding by 2026",
@@ -21566,9 +21567,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T11:17:00Z",
-   "retold": "retell/v1"
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-05T16:23:43Z"
   },
   {
    "slug": "gold-central-bank-hoarding",
@@ -21726,7 +21726,7 @@
    "slug": "muscle-loss-after-30",
    "title": "You Start Losing Muscle Before You Turn 40",
    "hook": "Your muscles started vanishing at 30.",
-   "closing": "Lifting weights fixes it.",
+   "closing": "The fix is simple: lift weights.",
    "question": "How many days a week do you lift?",
    "caption": "After age 30, you lose 3 to 5 percent of your muscle mass every decade -- and after 70, that jumps to as much as 24 percent a decade. It's called sarcopenia and almost nobody talks about it until it's already happened. Here's the good news: one study reversed it in 12 weeks. 👇",
    "hashtags": [
@@ -21753,7 +21753,7 @@
      "insight_type": "trend",
      "role": "1 · THE DECLINE",
      "topic": "Muscle mass with age",
-     "say": "By sixty, you've lost about thirteen percent of your muscle, and by eighty, over a third.",
+     "say": "At 30 you peak; by 60, 13 percent is gone, and by 80, 35 percent.",
      "scene": {
       "title": true,
       "elements": [
@@ -21773,7 +21773,7 @@
      "insight_type": "comparison",
      "role": "2 · THE CLIFF",
      "topic": "Muscle loss rate",
-     "say": "It's slow until seventy, about four percent a decade, then it jumps to eighteen.",
+     "say": "You lose about 4 percent a decade until 70, then 18 a decade.",
      "scene": {
       "mechanic": "muscle-cliff-drop",
       "concept": "a muscular silhouette walks down a gentle ramp scaled to the 4%-per-decade slope through the 30s-50s, then the ramp breaks into a sheer cliff at 70 where the same figure plunges at the much steeper 18%-per-decade rate",
@@ -21789,7 +21789,7 @@
      "insight_type": "comparison",
      "role": "3 · THE FIX",
      "topic": "Training stops muscle loss",
-     "say": "In one twelve-week lifting study, thirty-five percent of the group had it, and afterward, nobody did.",
+     "say": "One 12-week resistance training study cut sarcopenia from 35 percent of the group to zero.",
      "scene": {
       "mechanic": "rep-count-cure-grid",
       "concept": "a 40-icon grid of people starts 35% shaded red for sarcopenia and clears to zero red as a pumping barbell counts up through 12 weeks of training",
@@ -21797,15 +21797,14 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T11:17:13Z",
-   "retold": "retell/v1"
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-05T16:23:56Z"
   },
   {
    "slug": "saffron-red-gold-myth",
    "title": "Why The World's Most Expensive Spice Costs $15 A Gram",
    "hook": "Your wallet vanished: one spice costs $15 per gram!",
-   "closing": "Flavor stays cheap; labor stays pricey.",
+   "closing": "The spice is cheap; the hands are not.",
    "question": "Cooked with real saffron? Share below.",
    "caption": "Saffron retails for $10 to $30 a gram -- making it the most expensive spice on Earth by a mile. It's not rare magic, it's rare LABOR: about 150 hand-picked crocus flowers per gram, and 40 to 70 hours of hand-harvesting for a single pound. Here's the real math behind the price tag. 👇",
    "hashtags": [
@@ -21832,7 +21831,7 @@
      "insight_type": "comparison",
      "role": "1 · THE PRICE",
      "topic": "Spice price",
-     "say": "Saffron costs $15 per gram, about 750 times pepper’s 2‑cent price.",
+     "say": "Saffron costs fifteen dollars a gram, about seven hundred fifty times what pepper does.",
      "scene": {
       "mechanic": "price-scale-tip",
       "concept": "a balance beam scale with a pile of peppercorns on one pan and a pile of saffron threads on the other tips hard toward the saffron side as reveal builds, dramatizing the ~750x price gap",
@@ -21849,7 +21848,7 @@
      "ascending": false,
      "role": "2 · THE RANKING",
      "topic": "Spice rank",
-     "say": "Saffron at $15 per gram outranks vanilla’s 60‑cent price.",
+     "say": "Even pricey vanilla and black truffle can't touch saffron's fifteen dollars a gram.",
      "scene": {
       "mechanic": "spice-price-ladder",
       "concept": "five spice jars climb a log-scaled staircase of rising height, saffron alone lit by a spotlight beam at the peak",
@@ -21865,7 +21864,7 @@
      "insight_type": "comparison",
      "role": "3 · THE WHY",
      "topic": "Spice labor",
-     "say": "Harvesting saffron needs about 55 hours of hand work per pound.",
+     "say": "Each pound takes about fifty-five hours of hand picking, while pepper needs barely half an hour.",
      "scene": {
       "mechanic": "machine-vs-hand-harvest-split",
       "concept": "a split screen: a fast machine strips pepper on the left barely filling an hours bar, a hand plucks a single saffron flower on the right while its hours bar climbs far higher",
@@ -21873,8 +21872,9 @@
      }
     }
    ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-06T13:00:44Z"
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-09T14:18:46Z",
+   "retold": "retell/v1"
   },
   {
    "slug": "ants-outnumber-humans",
@@ -22323,7 +22323,7 @@
   {
    "slug": "volcano-country-ranking",
    "title": "You'd Guess Indonesia. The Data Says Otherwise.",
-   "hook": "You'd bet it's Indonesia. It's not even close to first.",
+   "hook": "The world's volcano capital isn't Indonesia. It's the US.",
    "closing": "Alaska: quietly winning at volcanoes since forever.",
    "question": "Seen a volcano in person? Where?",
    "caption": "The United States has more active volcanoes than any other country on Earth — 165, mostly hiding along Alaska's coastline. It's not a coincidence: the US, Japan, Russia, and Indonesia all sit on the same fault line, the Ring of Fire, which holds 75% of Earth's active volcanoes. Ever seen a volcano in person? Tell me where 🌋",
@@ -22933,7 +22933,7 @@
    "slug": "peanut-allergy-guideline-flip",
    "title": "Doctors Had Peanut Allergies Backwards For Decades",
    "hook": "Your town's peanut allergies vanished 43% overnight, shocking everyone",
-   "closing": "Sometimes the cure is simply eating peanuts",
+   "closing": "Sometimes the cure is simply eating peanuts.",
    "question": "Did you avoid peanuts as a kid?",
    "caption": "Peanut allergies in American kids tripled between 1997 and 2008. Turns out doctors had the fix backwards: infants told to avoid peanut hit a 13.7% allergy rate by age 5, vs just 1.9% for infants fed peanut early. Guidelines flipped, and diagnoses have dropped 43% since. Did your family avoid peanuts? 👇",
    "hashtags": [
@@ -22963,7 +22963,7 @@
      "insight_type": "trend",
      "role": "1 · SETUP",
      "topic": "Peanut Allergy Kids",
-     "say": "Peanut allergy rose from 0.4% in 1997 to 1.4% in 2008.",
+     "say": "Peanut allergies in kids more than tripled in just over a decade.",
      "scene": {
       "mechanic": "peanut-rash-climb",
       "concept": "peanuts rise along a climbing trend line, growing larger and more inflamed at each higher prevalence year",
@@ -22980,7 +22980,7 @@
      "use_baseline": false,
      "role": "2 · THE TURN",
      "topic": "Peanut Trial",
-     "say": "Avoiding peanuts led to 13.7% allergy rate, early feeding only 1.9%.",
+     "say": "Kids who ate peanuts early were far less likely to become allergic.",
      "scene": {
       "mechanic": "peanut-shield-crack-duel",
       "concept": "two round shields crack from the peanuts breaking through them -- one badly shattered (avoidance), one barely scratched (early exposure)",
@@ -22997,7 +22997,7 @@
      "use_baseline": false,
      "role": "3 · CONSEQUENCE",
      "topic": "Peanut Guidelines",
-     "say": "Early introduction cut allergy to 0.45%, a 43% drop from 0.79%.",
+     "say": "After doctors changed their advice, allergy diagnoses in little kids dropped by 43%.",
      "viz": "comparison",
      "scene": {
       "mechanic": "allergy-marker-drain",
@@ -23006,8 +23006,9 @@
      }
     }
    ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-06T13:01:18Z"
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-09T14:24:33Z",
+   "retold": "retell/v1"
   },
   {
    "slug": "landline-death-robocall-boom",
@@ -23176,7 +23177,7 @@
   {
    "slug": "adhd-diagnosis-surge",
    "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
-   "hook": "Your kid's odds of an ADHD diagnosis just hit 11.4 percent.",
+   "hook": "Boys used to get the attention disorder label. Now girls are catching up fast.",
    "closing": "More labels. Still not enough help.",
    "question": "Were you diagnosed as a kid? Tell me.",
    "caption": "In 2003, 7.8% of US kids had an ADHD diagnosis. By 2022 it was 11.4% -- nearly 1 in 9. Girls are finally being caught almost as often as boys, but still only about half of diagnosed kids get medication for it. Were you diagnosed as a kid, or later? 👇",
@@ -23250,12 +23251,13 @@
     }
    ],
    "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-05T16:29:01Z"
+   "rewritten_at": "2026-10-05T16:29:01Z",
+   "hook_was": "Your kid's odds of an ADHD diagnosis just hit 11.4 percent."
   },
   {
    "slug": "parker-solar-probe-speed-record",
    "title": "Humans Just Built the Fastest Thing Ever Made",
-   "hook": "Your species just broke its own speed record, and it wasn't close.",
+   "hook": "Nothing humans ever built has moved like this: 430 thousand miles an hour.",
    "closing": "And right now, it's diving straight into the sun.",
    "question": "Would you ride something this fast?",
    "caption": "In December 2024, Parker Solar Probe hit 430,000 miles per hour -- 17x faster than Apollo 10, the fastest speed any human has ever personally traveled. At that speed you could fly New York to Tokyo in 56 seconds. Would you ride it? 👇",
@@ -23784,17 +23786,17 @@
      "insight_type": "trend",
      "role": "3 · WHY CHASERS TRAVEL",
      "topic": "US total eclipse gaps",
-     "say": "The US waited 38 years for one eclipse, then got another much sooner.",
+     "say": "The US waited 38 years, then 7, and now 20 more until 2044.",
      "scene": {
       "mechanic": "eclipse-gap-timeline",
       "concept": "the Moon's shadow rides a year line through 1979, 2017, 2024, 2044 with the long waits labelled on each gap",
       "code": "moon = subject_image('total solar eclipse')\nn_ = max(1, n)\nx0 = RX0 + 60; x1 = RX1 - 60\ny = (RTOP + RBOT) // 2\nd.line([x0, y, x1, y], fill=rgba(SUBTLE, 160), width=6)\ntot = sum(values)\npos = 0.0\ntrav = clamp(reveal * 1.15)\nfor i in range(n_):\n    px = x0 + (x1 - x0) * pos / tot\n    d.ellipse([px - 16, y - 16, px + 16, y + 16], fill=rgba(HIGHLIGHT, 255))\n    text(str(labels[i]), px, y + 70 + (i % 2) * 70, size=40, color=TEXT, center=True)\n    seg = (x1 - x0) * values[i] / tot\n    if i < n_ - 1:\n        text(fmt(values[i]), px + seg / 2, y - 120 - (i % 2) * 70, size=44, color=HIGHLIGHT, center=True)\n    pos += values[i]\nmx = x0 + (x1 - x0) * trav * (1 - 1.0 / tot)\nif moon is not None:\n    paste(moon, int(mx) - 110, y - 330, 220, 220)\nelse:\n    d.ellipse([mx - 90, y - 300, mx + 90, y - 120], fill=rgba(TEXT, 255))\nd.rectangle([x0, y - 4, mx, y + 4], fill=rgba(HIGHLIGHT, 255))\nfor k in range(6):\n    sx = x0 + ((reveal * 3 + k / 6.0) % 1) * (x1 - x0)\n    d.ellipse([sx - 5, y - 5, sx + 5, y + 5], fill=rgba(TEXT, 200))\n"
-     }
+     },
+     "viz": "trend"
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T11:30:22Z",
-   "retold": "retell/v1"
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-05T16:39:23Z"
   },
   {
    "slug": "office-vacancy-structural-shift",
@@ -23925,7 +23927,8 @@
       "mechanic": "dead-zone-swing-towers",
       "concept": "four survey years rise as oxygen-starved towers against a New Jersey outline, the 2017 record tallest, particles rushing the river floor",
       "code": "nj = subject_image('New Jersey state map outline')\ncx = (RX0 + RX1) // 2\nbase = RBOT - 120\nhmax = 900\nbw = (RX1 - RX0 - 100) // max(1, n)\nfor i in range(n):\n    f = clamp(values[i] / vmax) * clamp(reveal * 1.3 - i * 0.1)\n    h = int(hmax * f)\n    x = RX0 + 50 + i * bw\n    d.rounded_rectangle([x + 10, base - h, x + bw - 10, base], radius=16, fill=rgba(WARN if values[i] == max(values) else REST, 230))\n    text(str(labels[i]), x + bw // 2, base + 36, size=36, color=TEXT, center=True)\n    text(fmt(values[i]), x + bw // 2, base - h - 40, size=34, color=TEXT, center=True)\nif nj is not None:\n    paste(nj, RX0 + 60, RTOP + 20, 220, 300)\ntext('2017 = size of New Jersey', cx, RTOP + 360, size=34, color=HIGHLIGHT, center=True)\nfor k in range(8):\n    sx = RX0 + 50 + ((reveal * 2.4 + k / 8.0) % 1) * (RX1 - RX0 - 100)\n    d.ellipse([sx - 7, base - 8, sx + 7, base + 6], fill=rgba(HIGHLIGHT, 220))\n"
-     }
+     },
+     "viz": "trend"
     },
     {
      "source": "offline",
@@ -24367,7 +24370,7 @@
    "slug": "clear-air-turbulence-increase",
    "title": "Why Flights Are Getting Bumpier",
    "hook": "Severe turbulence on your flight jumped 55 percent since 1979.",
-   "closing": "Buckle up. That's not a suggestion anymore.",
+   "closing": "So yes, keep your seatbelt fastened.",
    "question": "Have you noticed flights getting bumpier lately?",
    "caption": "Severe turbulence over the North Atlantic has climbed 55% since 1979, and researchers say a warming climate could roughly double or triple it again by later this century. Have you noticed flights getting bumpier lately? Tell me below 👇",
    "hashtags": [
@@ -24397,7 +24400,7 @@
      "insight_type": "trend",
      "role": "1 · THE BUMP",
      "topic": "Bumpier North Atlantic flights",
-     "say": "Severe North Atlantic turbulence rose 55 percent, from 18 hours a year in 1979 to 27.",
+     "say": "Severe turbulence over the North Atlantic rose from about 18 hours a year to 27.",
      "scene": {
       "mechanic": "shaking-jet-climb",
       "concept": "a small jet rides a widening zig-zag flight line whose jaggedness grows year by year with severe-turbulence hours",
@@ -24414,7 +24417,7 @@
      "ascending": false,
      "role": "2 · THE PATTERN",
      "topic": "Bumpier by severity",
-     "say": "Light turbulence rose 17 percent, moderate 37 percent, and severe, the kind that hurts, rose most.",
+     "say": "The worse the turbulence, the faster it grew, and severe jumped the most, up 55 percent.",
      "scene": {
       "mechanic": "rough-air-bands",
       "concept": "three horizontal turbulence bands fill left-to-right by severity, each edged with a jagged shake-line that gets rougher as the value rises",
@@ -24430,7 +24433,7 @@
      "insight_type": "trend",
      "role": "3 · WHY",
      "topic": "Bumpier flights, warming climate",
-     "say": "A warming jet stream sharpens wind shear, and severe turbulence could double this century.",
+     "say": "A warming jet stream makes it worse, and severe turbulence could hit 62 hours by 2080.",
      "scene": {
       "mechanic": "future-storm-panels",
       "concept": "three time panels (2020/2050/2080) darken with storm color and a jet shakes harder in each one, keyed to projected turbulence hours",
@@ -24438,8 +24441,9 @@
      }
     }
    ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-07T11:26:19Z"
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-09T14:35:04Z",
+   "retold": "retell/v1"
   },
   {
    "slug": "lego-minifigs-outnumber-humans",
@@ -24476,7 +24480,7 @@
      "use_baseline": false,
      "role": "1 · THE HEADLINE",
      "topic": "Minifigures versus people alive",
-     "say": "Lego has made about ten billion minifigures, and the world has only eight billion people.",
+     "say": "Lego has made about 10 billion minifigures since 1978, and there are only 8.1 billion people.",
      "scene": {
       "mechanic": "toy-vs-humanity-columns",
       "concept": "two rising columns, one built from a photo of stacked minifigures and one from a crowd of people, race to their totals",
@@ -24492,7 +24496,7 @@
      "insight_type": "trend",
      "role": "2 · HOW",
      "topic": "Minifigures made by 2019",
-     "say": "It started from zero in 1978, and by 2019 there were already eight billion.",
+     "say": "It started from zero in 1978 and hit 8.3 billion by 2019.",
      "scene": {
       "mechanic": "minifig-fill-sweep",
       "concept": "a giant minifigure silhouette fills bottom-up as the reveal sweeps across the production years toward the cumulative total",
@@ -24509,7 +24513,7 @@
      "use_baseline": false,
      "role": "3 · THE PACE",
      "topic": "Minifigures versus babies born",
-     "say": "Lego makes 400 million a year, while only 134 million babies are born.",
+     "say": "Lego makes 400 million minifigures a year, while only 134 million babies are born.",
      "scene": {
       "mechanic": "assembly-line-density",
       "concept": "two streaming lanes of repeated icons, minifigures vs babies, whose count density encodes the per-year production rate race",
@@ -24518,13 +24522,13 @@
     }
    ],
    "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T11:30:51Z",
+   "rewritten_at": "2026-10-09T14:35:22Z",
    "retold": "retell/v1"
   },
   {
    "slug": "twin-birth-rate-rise",
    "title": "Why Twin Births Nearly Doubled — Then Started Falling",
-   "hook": "Your town saw twin births double to 34 per 1,000!",
+   "hook": "Twin births nearly doubled, and then they started falling.",
    "closing": "Two really did become the new one.",
    "question": "Do twins run in your family?",
    "caption": "US twin births per 1,000 climbed from 18.9 in 1980 to almost 34 by 2014, driven by older moms and fertility treatments, before ticking back down as IVF clinics started transferring just one embryo at a time. Do twins run in your family? Tell me below 👇",
@@ -24561,7 +24565,7 @@
       "concept": "a stroller icon rides a rise-then-dip curve traced from 1980 to 2022, with the peak year highlighted",
       "code": "n_pts = n\nx0, x1 = RX0+40, RX1-40\nvmax_local = max(values); vmin_local = min(values)\nrng = max(vmax_local-vmin_local, 0.001)\ny_top = RTOP+220; y_bot = RBOT-160\npts_all = []\nfor i in range(n_pts):\n    xx = lerp(x0, x1, i/max(n_pts-1,1))\n    yy = y_bot - (values[i]-vmin_local)/rng*(y_bot-y_top)\n    pts_all.append((xx,yy))\nbuilt = clamp(reveal)*max(n_pts-1,1)\nidx = min(int(built), n_pts-1)\nfracb = built-idx\ndraw_pts = pts_all[:idx+1]\nif idx < n_pts-1:\n    xa,ya = pts_all[idx]; xb,yb = pts_all[idx+1]\n    draw_pts.append((lerp(xa,xb,fracb), lerp(ya,yb,fracb)))\nif len(draw_pts) >= 2:\n    d.line(draw_pts, fill=rgba(HIGHLIGHT,230), width=8)\ntwins = subject_image('twin babies in stroller')\nif draw_pts:\n    lx,ly = draw_pts[-1]\n    if twins is not None:\n        tw=160; th=int(tw*twins.height/twins.width)\n        paste(twins, int(lx-tw//2), int(ly-th), tw, th)\npeak_i = values.index(vmax_local)\npx,py = pts_all[peak_i]\nd.ellipse([px-10,py-10,px+10,py+10], fill=rgba(WARN,255))\ntext(labels[0]+': '+str(values[0]), RX0+20, RTOP+60, size=32, color=TEXT)\ntext(labels[-1]+': '+str(values[-1]), RX0+20, RTOP+110, size=36, color=HIGHLIGHT)\ntext('twin births per 1,000, US', (RX0+RX1)//2, RBOT-40, size=26, color=TEXT, center=True)"
      },
-     "illustrated_scene": "def scene(cr, t, u, pts, host):\n    \"\"\"HERO: a wooden baby cradle\n    SUBSTANCE: swaddled twin babies\n    CAUSE: Data places each new pair of swaddled twins into the cradle, so the pile rises\n    Twin births per 1,000 as a pile of swaddled pairs in one big nursery\n    cradle: each year that arrives, Data lifts in the extra pairs, so the heap\n    rises from 1980 to 2014 and holds while the readout lands.\"\"\"\n    rows = [(str(l), float(v)) for l, v in by_time(pts)]\n    rise = []\n    for l, v in rows:\n        try:\n            if int(str(l)[:4]) <= 2014:\n                rise.append((l, v))\n        except ValueError:\n            pass\n    if len(rise) >= 2:\n        rows = rise\n    n = max(1, len(rows))\n    k, f = step_through(u, n)\n    k = min(k, n - 1)\n    cnts = [max(1, int(round(v / 2.5))) for _, v in rows]\n    prev = cnts[k - 1] if k > 0 else max(0, cnts[0] - 3)\n    drop = seg(f, 0.25, 0.75)\n    shown = prev + (cnts[k] - prev) * drop\n\n    # the nursery: warm wall, a sunlit window, a wooden floor\n    vgrad(cr, [(0.0, (246, 226, 204)), (1.0, (232, 200, 176))], 0, 1400)\n    vgrad(cr, [(0.0, (176, 128, 92)), (1.0, (120, 84, 60))], 1400, H)\n    cr.new_path()\n    cr.rectangle(640, 180, 340, 420)\n    solid(cr, (250, 238, 214), finish=\"glass\")\n    glow(cr, 810, 390, 260, P[\"sun_glow\"], 0.55)\n    cr.set_source_rgba(*_c(P[\"log\"]))\n    cr.set_line_width(14)\n    cr.rectangle(640, 180, 340, 420)\n    cr.move_to(810, 180)\n    cr.line_to(810, 600)\n    cr.move_to(640, 390)\n    cr.line_to(980, 390)\n    cr.stroke()\n    haze(cr, 0, 700, (246, 226, 204), a=0.25)\n\n    # the cradle: rockers, a hooded head end, a deep bowl\n    cx, rim, bot = 580, 1150, 1330\n    contact_shadow(cr, cx, 1420, 720, a=0.4)\n    cr.new_path()\n    cr.arc(cx, 760, 680, math.radians(64), math.radians(116))\n    cr.set_line_width(30)\n    cr.set_source_rgba(*_c((132, 86, 52)))\n    cr.stroke()\n    for lx in (cx - 230, cx + 230):           # the legs down to the rockers\n        box(cr, lx - 16, 1400, 32, 90, (150, 100, 62), depth=10)\n    # the hood behind the pile\n    cr.new_path()\n    cr.move_to(cx + 220, rim + 20)\n    cr.line_to(cx + 220, 870)\n    cr.curve_to(cx + 260, 800, cx + 380, 800, cx + 400, 880)\n    cr.line_to(cx + 400, rim + 20)\n    cr.close_path()\n    solid(cr, (226, 168, 176))\n    cr.new_path()\n    cr.move_to(cx - 330, rim - 10)\n    cr.line_to(cx + 330, rim - 10)\n    cr.line_to(cx + 330, bot - 40)\n    cr.line_to(cx - 330, bot - 40)\n    cr.close_path()\n    solid(cr, (120, 80, 50), rim=False)\n\n    # the pile of swaddled pairs inside, resting on the bedding\n    widths = [6, 5, 4, 3, 2, 1]\n    slots = []\n    for r_, cnt in enumerate(widths):\n        for c in range(cnt):\n            slots.append((cx - 40 - (cnt - 1) * 46 + c * 92, rim + 30 - r_ * 62))\n    total = min(len(slots), int(math.ceil(shown)))\n    for j in range(total):\n        sx, sy = slots[j]\n        fall = clamp(shown - j)\n        y = sy - 300 * (1 - ease(fall)) ** 2\n        wrap = (196, 222, 246) if j % 2 else (248, 210, 222)\n        cr.save()\n        cr.translate(sx, y)\n        cr.scale(1.0, 0.62)\n        cr.new_path()\n        cr.arc(0, 0, 46, 0, 2 * math.pi)\n        cr.restore()\n        solid(cr, wrap, a=fall)\n        disc(cr, sx - 30, y - 10, 19, (240, 196, 160), a=fall)\n        cr.set_source_rgba(*_c((90, 60, 50), 0.7 * fall))\n        cr.set_line_width(3)\n        cr.move_to(sx - 36, y - 8)\n        cr.line_to(sx - 30, y - 6)\n        cr.stroke()\n\n    # the front panel of the cradle in front of the pile\n    cr.new_path()\n    cr.move_to(cx - 340, rim)\n    cr.line_to(cx + 340, rim)\n    cr.curve_to(cx + 340, bot + 30, cx - 340, bot + 30, cx - 340, rim)\n    cr.close_path()\n    solid(cr, (172, 116, 72), finish=\"gloss\")\n    for sx in range(cx - 280, cx + 300, 80):  # the spindles' carving\n        cr.set_source_rgba(*_c((120, 78, 46), 0.8))\n        cr.set_line_width(6)\n        cr.move_to(sx, rim + 20)\n        cr.line_to(sx, rim + 110)\n        cr.stroke()\n    cr.new_path()\n    cr.rectangle(cx - 350, rim - 18, 700, 26)\n    solid(cr, (196, 140, 92), finish=\"gloss\")\n    # the hood's rim in front\n    cr.new_path()\n    cr.rectangle(cx + 330, 860, 24, rim - 840)\n    solid(cr, (200, 140, 150))\n\n    # Data: climbs a growing stack of step-stools beside the cradle as the\n    # pile rises, placing each new pair in from above\n    prog = (k + drop) / max(1, n - 1) if n > 1 else drop\n    p = ease(clamp(prog))\n    hx = 120 + 70 * p\n    fy = 1500 - 200 * p\n    if fy < 1495:\n        contact_shadow(cr, hx, 1510, 160, a=0.35)\n        box(cr, hx - 70, 1510, 140, max(1, 1510 - fy - 10), (150, 100, 62), depth=24)\n    if u < 0.06:\n        role = \"point\"\n    elif u > 0.92:\n        role = \"cheer\"\n    else:\n        role = \"place\"\n    host(role, hx, fy, 220, beat=k)\n\n    vignette(cr, 0.28)\n    lab, val = landed(rows, k, f)\n    fit_readout(cr, f\"{val:.1f}\", f\"twin births per 1,000 · {lab}\", 80, 520,\n                a=ease(seg(u, 0.0, 0.08)), size=150)\n    b = ease(seg(u, 0.86, 0.95))\n    if b > 0 and len(rows) > 1:\n        fit_readout(cr, f\"+{rows[-1][1] - rows[0][1]:.1f}\",\n                    f\"since {rows[0][0]}\", W - 80, 760, anchor=\"right\", a=b,\n                    rgb=P[\"accent2\"], size=90, max_w=520)\n"
+     "illustrated_scene": "def scene(cr, t, u, pts, host):\n    \"\"\"HERO: a tower of toy alphabet blocks\n    SUBSTANCE: toy alphabet blocks\n    CAUSE: Data climbs the ladder and places the next block on top, one block per year\n    Twins per 1,000 US births, built as a tower of toy alphabet blocks in a\n    back yard. The base is 1980's rate. For each later year Data carries one\n    more block up the ladder and sets it on top, so the tower's height is that\n    year's rate. 1980's height stays marked on the tower, and the tower ends\n    nearly twice as tall. Everything lands by u=0.56 and then holds; a\n    pinwheel by the camera keeps turning. The tower is capped so Data, at its\n    top, stays below the readout. A block in his hands is blank until it lands,\n    so no letter ever sits under him.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    pk = max(range(len(rows)), key=lambda i: rows[i][1])\n    rows = rows[:pk + 1]                      # the rise, up to the peak\n    n = len(rows)\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    top = v1 or 1.0\n    S = 720.0 / top                           # px per twin per 1,000\n    X0, BW, BASE, DEP = 440, 420, 1440, 84\n    COLS = [(214, 64, 58), (60, 120, 200), (240, 186, 60), (80, 160, 90),\n            (196, 108, 176), (236, 132, 54)]\n    LET = \"ABCDEFGHIJ\"\n\n    a0, a1 = 0.08, 0.56\n    m = max(1, n - 1)\n    span = (a1 - a0) / m\n    k = int(clamp((u - a0) / span, 0, m - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    drop = ease(seg(f, 0.25, 0.6))            # the block lands on the place\n    j_new = k + 1 if (u >= a0 and n > 1) else None\n    landed_to = 0 if j_new is None else (j_new if drop >= 0.999 else j_new - 1)\n\n    def block(x, y, w, h, col, letter):\n        h = max(6.0, h)\n        box(cr, x, y, w, h, col, depth=DEP, finish=\"gloss\")\n        if h > 56:\n            # the raised panel of an alphabet block, and its letter\n            cr.set_source_rgba(*_c((255, 252, 244), 0.75))\n            cr.set_line_width(7)\n            cr.rectangle(x + 18, y - h + 12, w - 36, h - 24)\n            cr.stroke()\n            if letter:\n                sz = min(86.0, h * 0.62)\n                text(cr, letter, x + w / 2, y - h / 2 + sz * 0.36, sz,\n                     (255, 252, 244), face=\"bold\", anchor=\"center\")\n\n    # the back yard: grass, a house behind, a picket fence\n    gy = landscape(cr, t, \"field\")\n    birds(cr, t, y0=700, n=3, rgb=(60, 60, 70))\n    for i in range(28):\n        px = -10 + i * 40\n        cr.move_to(px, gy + 80)\n        cr.line_to(px, gy + 18)\n        cr.line_to(px + 11, gy + 4)\n        cr.line_to(px + 22, gy + 18)\n        cr.line_to(px + 22, gy + 80)\n        cr.close_path()\n        solid(cr, (236, 232, 220), rim=False)\n    cr.rectangle(-10, gy + 30, W + 20, 12)\n    solid(cr, (222, 216, 202), rim=False)\n    cast_shadow(cr, 40, 300, gy + 60, length=200, a=0.25)\n    building(cr, 40, 300, gy + 60, 190, (214, 196, 168), roof_rgb=(120, 76, 62),\n             roof=\"gable\", boards=True)\n    haze(cr, 0, gy + 60, (226, 220, 210), a=0.25)\n\n    h_full = rows[landed_to][1] * S\n    cast_shadow(cr, X0, X0 + BW, BASE, length=380, a=0.32)\n    contact_shadow(cr, X0 + BW / 2, BASE + 4, BW + 140, a=0.42)\n\n    # the base: 1980's rate, four blocks high\n    h0 = v0 * S\n    bh = h0 / 4\n    for b_ in range(4):\n        block(X0, BASE - b_ * bh, BW, bh, COLS[b_ % len(COLS)], LET[b_])\n    # every landed year: one block, as tall as that year's rise\n    for j in range(1, landed_to + 1):\n        hb = (rows[j][1] - rows[j - 1][1]) * S\n        block(X0, BASE - rows[j - 1][1] * S, BW, hb, COLS[(j + 3) % len(COLS)],\n              LET[(j + 3) % len(LET)])\n\n    # THE SCALE on the tower: 1980's height marked where it reached\n    if u >= a0:\n        then_mark(cr, X0 - 20, X0 + BW + DEP + 40, BASE - h0, l0)\n\n    # the ladder up the tower's left side\n    LX = X0 - 90\n    ltop = BASE - h_full - 30 if j_new is None or drop >= 0.999 else BASE - rows[k][1] * S - 30\n    ltop = min(ltop, BASE - h0 - 30)\n    contact_shadow(cr, LX, BASE + 2, 120, a=0.3)\n    cr.move_to(LX - 46, BASE)\n    cr.line_to(LX - 14, ltop)\n    cr.line_to(LX - 2, ltop)\n    cr.line_to(LX - 32, BASE)\n    cr.close_path()\n    solid(cr, (164, 116, 70))\n    cr.move_to(LX + 34, BASE)\n    cr.line_to(LX + 46, ltop)\n    cr.line_to(LX + 58, ltop)\n    cr.line_to(LX + 48, BASE)\n    cr.close_path()\n    solid(cr, (164, 116, 70))\n    cr.set_source_rgba(*_c((130, 90, 52)))\n    cr.set_line_width(10)\n    ry = BASE - 50\n    while ry > ltop + 10:\n        q = (BASE - ry) / max(1.0, BASE - ltop)\n        cr.move_to(LX - 40 + 30 * q, ry)\n        cr.line_to(LX + 42 + 10 * q, ry)\n        ry -= 70\n    cr.stroke()\n\n    # Data's level: just below the top he is building on\n    if j_new is None:\n        cur_top = BASE - h0\n    else:\n        prev_top = BASE - rows[k][1] * S\n        before = BASE - rows[k - 1][1] * S if k > 0 else BASE - h0\n        cur_top = before + (prev_top - before) * ease(seg(f, 0.0, 0.2)) if k > 0 else prev_top\n    if u > a1:\n        cur_top = BASE - v1 * S\n    fy = min(1452.0, cur_top + 150)\n    hx = LX\n\n    # the block in his hands, set down on the top — blank until it lands\n    if j_new is not None and drop < 0.999:\n        hb = (rows[j_new][1] - rows[j_new - 1][1]) * S\n        sx, sy = hx - BW * 0.3, fy - 160\n        ex, ey = X0, BASE - rows[j_new - 1][1] * S\n        bx = sx + (ex - sx) * drop\n        by = sy + (ey - sy) * drop - 60 * math.sin(math.pi * drop)\n        block(bx, by, BW, hb, COLS[(j_new + 3) % len(COLS)], None)\n\n    # right by the camera: loose blocks in the grass, and a pinwheel turning\n    contact_shadow(cr, 790, 1724, 220, a=0.35)\n    box(cr, 700, 1720, 180, 160, COLS[1], depth=56, finish=\"gloss\")\n    cr.set_source_rgba(*_c((255, 252, 244), 0.75))\n    cr.set_line_width(7)\n    cr.rectangle(716, 1576, 148, 128)\n    cr.stroke()\n    contact_shadow(cr, 960, 1844, 160, a=0.35)\n    box(cr, 885, 1840, 140, 130, COLS[2], depth=44, finish=\"gloss\")\n    foreground(cr, \"field\")\n    PX, PY = 190, 1640\n    cr.set_source_rgba(*_c((120, 90, 60)))\n    cr.set_line_width(12)\n    cr.move_to(PX, PY)\n    cr.line_to(PX + 10, H)\n    cr.stroke()\n    ang = t * 2.2\n    for i in range(4):\n        a_ = ang + i * math.pi / 2\n        cr.move_to(PX, PY)\n        cr.line_to(PX + 130 * math.cos(a_), PY + 130 * math.sin(a_))\n        cr.line_to(PX + 95 * math.cos(a_ + 0.8), PY + 95 * math.sin(a_ + 0.8))\n        cr.close_path()\n        solid(cr, COLS[i])\n    disc(cr, PX, PY, 14, (240, 240, 236), finish=\"gloss\")\n    vignette(cr, a=0.28)\n\n    if u < a0:\n        host(\"point\", hx, fy, 240)\n    elif u < a1 + 0.04:\n        host(\"place\", hx, fy, 240, beat=k)\n    elif u < 0.92:\n        host(\"hold_up\", hx, fy, 240)\n    else:\n        host(\"cheer\", hx, fy, 240)\n\n    # the readout prints only the first, a middle and the last year\n    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))\n                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))\n    named = max((i for i in keep if i <= landed_to), default=0)\n    lab, v = rows[named]\n    fit_readout(cr, f\"{v:.1f} twins\", f\"per 1,000 US births · {lab}\", 80, 500,\n                a=ease(seg(u, 0.0, 0.05)), size=130, max_w=420)\n    if landed_to == n - 1 and n > 1:\n        al = ease(seg(u, a1, a1 + 0.05))\n        text(cr, f\"{v1 / (v0 or 1.0):.1f}x\", 80, 690, 96, look.INK, face=\"display\",\n             alpha=al)\n        text(cr, f\"since {l0}\", 80, 740, 36, look.INK, alpha=al)\n"
     },
     {
      "source": "offline",
@@ -24579,7 +24583,7 @@
       "concept": "six columns filled with a twin-babies image, one per mother's age bracket, rising with the twinning rate",
       "code": "cols = n\ngap = 14\ncolw = int((RX1-RX0-gap*(cols-1))/cols)\nbase_y = RBOT-120\ntop_y = RTOP+240\nvmax_local = max(values)\nbabies = subject_image('twin babies icon')\nfor i in range(cols):\n    x0 = RX0+i*(colw+gap)\n    frac = clamp(values[i]/vmax_local)*reveal\n    if babies is not None:\n        fill_image(babies, frac, x0, top_y, colw, base_y-top_y, direction='up')\n    else:\n        fill_image(None, frac, x0, top_y, colw, base_y-top_y, direction='up', color=HIGHLIGHT)\n    d.rectangle([x0, top_y, x0+colw, base_y], outline=rgba(TEXT,180), width=3)\n    text(str(values[i]), x0+colw//2, top_y-36, size=26, color=HIGHLIGHT, center=True)\n    text(labels[i], x0+colw//2, base_y+22, size=18, color=TEXT, center=True)\ntext('twin rate per 1,000 births, by mother age', (RX0+RX1)//2, RTOP+100, size=28, color=WARN, center=True)"
      },
-     "illustrated_scene": "def _age(label):\n    d = \"\"\n    for ch in str(label):\n        if ch.isdigit():\n            d += ch\n        elif d:\n            break\n    return int(d) if d else 0\n\n\ndef _bottle(cr, cx, y0, y1, hw):\n    nw = hw * 0.62\n    mid = (y0 + 170 + y1) / 2\n    cr.new_path()\n    cr.move_to(cx - nw, y0)\n    cr.line_to(cx - nw, y0 + 50)\n    cr.curve_to(cx - nw, y0 + 110, cx - hw, y0 + 100, cx - hw, y0 + 170)\n    cr.curve_to(cx - hw, mid - 60, cx - hw * 0.86, mid - 30, cx - hw * 0.86, mid)\n    cr.curve_to(cx - hw * 0.86, mid + 30, cx - hw, mid + 60, cx - hw, mid + 120)\n    cr.line_to(cx - hw, y1 - 40)\n    cr.curve_to(cx - hw, y1, cx - hw + 20, y1, cx - hw + 50, y1)\n    cr.line_to(cx + hw - 50, y1)\n    cr.curve_to(cx + hw - 20, y1, cx + hw, y1, cx + hw, y1 - 40)\n    cr.line_to(cx + hw, mid + 120)\n    cr.curve_to(cx + hw, mid + 60, cx + hw * 0.86, mid + 30, cx + hw * 0.86, mid)\n    cr.curve_to(cx + hw * 0.86, mid - 30, cx + hw, mid - 60, cx + hw, y0 + 170)\n    cr.curve_to(cx + hw, y0 + 100, cx + nw, y0 + 110, cx + nw, y0 + 50)\n    cr.line_to(cx + nw, y0)\n    cr.close_path()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a giant glass baby bottle\n    SUBSTANCE: milk\n    CAUSE: Data climbs a step-ladder and pours milk from a bucket into the bottle, one pour per age group\n    Twin rate by the mother's age, poured as milk: a huge baby bottle on\n    the nursery table, its nipple set aside, and Data on a step-ladder\n    pouring it fuller for each older age band, youngest to oldest. Each\n    pour lands, the level holds, and a mark goes on the glass. It ends on\n    the oldest band, mothers over 40, beside the youngest.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: _age(r[0]))\n    n = len(rows)\n    if n == 0:\n        return\n    vmax = max(v for _, v in rows) or 1.0\n    cx, y0, y1, hw = 610, 760, 1430, 190\n    top_fill, bot_fill = y0 + 200, y1 - 12\n\n    def lvl(v):\n        return bot_fill - (v / vmax) * (bot_fill - top_fill)\n\n    # the nursery at dusk\n    vgrad(cr, [(0.0, (28, 40, 66)), (0.6, (52, 70, 104)), (1.0, (70, 88, 120))], 0, 1430)\n    vgrad(cr, [(0.0, (92, 70, 58)), (1.0, (60, 44, 38))], 1430, H)\n    glow(cr, 860, 270, 220, (255, 226, 170), 0.5)\n    cr.rectangle(720, 130, 300, 290)\n    solid(cr, (40, 56, 92), finish=\"glass\" if \"glass\" in FINISHES else \"gloss\")\n    disc(cr, 860, 260, 46, (250, 240, 214), finish=\"gloss\")\n    cr.rectangle(864, 130, 12, 290)\n    solid(cr, (236, 228, 214))\n    cr.rectangle(720, 268, 300, 12)\n    solid(cr, (236, 228, 214))\n    haze(cr, 0, 700, (52, 70, 104), a=0.3)\n\n    # the table\n    box(cr, 90, 1500, 900, 70, P[\"counter\"], depth=40)\n    cr.rectangle(90, 1430, 900, 30)\n    solid(cr, P[\"counter_top\"], rim=True)\n\n    # the nipple, set aside so the bottle can be filled\n    contact_shadow(cr, 900, 1432, 130, a=0.35)\n    cylinder(cr, 845, 1432, 110, 42, P[\"accent2\"], finish=\"gloss\")\n    cr.new_path()\n    cr.arc(900, 1390, 46, math.pi, 0)\n    cr.close_path()\n    solid(cr, (226, 182, 122), finish=\"gloss\")\n    cr.new_path()\n    cr.arc(900, 1338, 16, 0, 2 * math.pi)\n    solid(cr, (226, 182, 122), finish=\"gloss\")\n\n    # the step-ladder Data climbs\n    contact_shadow(cr, 370, 1432, 170, a=0.35)\n    for (xa, xb) in ((290, 330), (450, 410)):\n        cr.new_path()\n        cr.move_to(xa - 9, 1430)\n        cr.line_to(xb - 9, 905)\n        cr.line_to(xb + 9, 905)\n        cr.line_to(xa + 9, 1430)\n        cr.close_path()\n        solid(cr, P[\"log\"])\n    for r_ in range(5):\n        ry = 1340 - r_ * 105\n        fr = (1430 - ry) / 525.0\n        xl = 290 + 40 * fr\n        xr = 450 - 40 * fr\n        cr.rectangle(xl, ry - 8, xr - xl, 16)\n        solid(cr, P[\"trunk\"])\n    cr.rectangle(318, 898, 112, 18)\n    solid(cr, P[\"trunk\"])\n\n    # pours: band k arrives with progress f\n    k, f = step_through(u, n, hold_first=0.24, hold_last=0.12)\n    prev = rows[k - 1][1] if k > 0 else 0.0\n    rise = ease(seg(f, 0.15, 0.75))\n    cur = prev + (rows[k][1] - prev) * rise\n    level = lvl(cur)\n    pouring = u > 0.22 and 0.08 < f < 0.8\n\n    contact_shadow(cr, cx, y1 + 4, 2 * hw + 40, a=0.45)\n    cr.save()\n    _bottle(cr, cx, y0, y1, hw)\n    cr.clip()\n    cr.rectangle(cx - hw - 6, level, 2 * hw + 12, y1 - level + 6)\n    solid(cr, (246, 242, 230), rim=False, edge=False)\n    wob = 4 * math.sin(t * 6) if pouring else 0.0\n    cr.save()\n    cr.translate(cx, level)\n    cr.scale(hw, 16 + wob)\n    cr.arc(0, 0, 1, 0, 2 * math.pi)\n    cr.restore()\n    cr.set_source_rgba(*_c((255, 253, 246)))\n    cr.fill()\n    if pouring:   # the stream from his bucket to the surface\n        cr.set_source_rgba(*_c((248, 244, 232)))\n        cr.set_line_width(18)\n        cr.move_to(cx - 40, y0 - 10)\n        cr.line_to(cx - 30, level)\n        cr.stroke()\n    cr.restore()\n    if pouring:\n        cr.set_source_rgba(*_c((248, 244, 232)))\n        cr.set_line_width(18)\n        cr.move_to(470, 790)\n        cr.curve_to(530, 760, cx - 50, 730, cx - 40, y0 + 10)\n        cr.stroke()\n\n    # the glass over the milk, and its threads\n    _bottle(cr, cx, y0, y1, hw)\n    solid(cr, (205, 225, 240), finish=\"glass\" if \"glass\" in FINISHES else \"gloss\", a=0.32)\n    for i in range(3):\n        ty = y0 + 12 + i * 14\n        cr.set_source_rgba(*_c((220, 236, 248), 0.7))\n        cr.set_line_width(3)\n        cr.move_to(cx - hw * 0.62, ty + 6)\n        cr.line_to(cx + hw * 0.62, ty)\n        cr.stroke()\n    for i in range(1, 6):   # graduation marks on the glass\n        gy = bot_fill - i * (bot_fill - top_fill) / 5.0\n        cr.set_source_rgba(*_c((235, 244, 252), 0.6))\n        cr.set_line_width(4)\n        cr.move_to(cx - hw + 18, gy)\n        cr.line_to(cx - hw + 58, gy)\n        cr.stroke()\n\n    # a mark on the glass for each band that has landed (unlabelled)\n    for j in range(n):\n        if j < k or (j == k and f >= 0.6):\n            yj = lvl(rows[j][1])\n            cr.set_source_rgba(*_c(P[\"accent2\"]))\n            cr.set_line_width(6)\n            cr.move_to(cx + hw - 30, yj)\n            cr.line_to(cx + hw + 30, yj)\n            cr.stroke()\n\n    # Data's bit: point at the bottle, climb the ladder, pour, then cheer\n    c = ease(seg(u, 0.1, 0.22))\n    fx, fy = 220 + 150 * c, 1430 - 530 * c\n    if u < 0.1:\n        host(\"point\", fx, fy, 220)\n    elif u < 0.22:\n        host(\"climb\", fx, fy, 220)\n    elif u < 0.9:\n        host(\"pour\", fx, fy, 220, beat=k)\n    else:\n        host(\"cheer\", fx, fy, 220)\n\n    vignette(cr, 0.3)\n\n    hi_l, hi_v = rows[-1]\n    done = k == n - 1 and f >= 0.6\n    if not done:\n        fit_readout(cr, \"Twin rate\", \"rises with the mother's age\",\n                    80, 520, a=ease(seg(u, 0.0, 0.08)), size=120)\n    else:\n        fit_readout(cr, f\"{hi_v:g}\", f\"twin rate · mothers {hi_l}\",\n                    80, 520, a=1.0, rgb=P[\"accent2\"], size=140)\n"
+     "illustrated_scene": "def scene(cr, t, u, pts, host):\n    \"\"\"HERO: a wooden cradle of twins\n    SUBSTANCE: the wooden cradle\n    CAUSE: Data hauls the rope hand over hand and the pulley lifts the wooden cradle higher for each older age group\n    Twin births per thousand, by the mother's age. A big wooden cradle with\n    two sleeping babies in knit caps hangs from a pulley on a tall timber\n    gantry in a back garden, and how high it hangs is the twin rate. It\n    starts low, just off the grass, at the 20-24 rate. For each older age\n    group Data hauls once and the cradle climbs, until it hangs at the top\n    of the gantry at the 40+ rate, three times as high. The 20-24 height\n    stays as a dashed ghost cradle down where it hung with its age marked,\n    1x/2x/3x ticks up the side measure the top height against it, and the\n    rope he has hauled in piles up in coils at his feet. Everything lands\n    by 0.56, then holds. The cradle keeps rocking on its rope and Data keeps\n    the load held.\"\"\"\n    def age(l):\n        d = \"\".join(ch if ch.isdigit() else \" \" for ch in str(l)).split()\n        return int(d[0]) if d else 0\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: age(r[0]))\n    n = len(rows)\n    v0 = rows[0][1] or 1.0\n    v1 = rows[-1][1]\n    top = max(v for _, v in rows) or 1.0\n    steps = max(1, n - 1)\n    a0, a1 = 0.14, 0.56\n    span = (a1 - a0) / steps\n    k = int(clamp((u - a0) / span, 0, steps - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    lift = ease(seg(f, 0.3, 0.85))              # rises on the pull, then holds\n    if u < a0 or n < 2:\n        val, landed_to = v0, 0\n    else:\n        val = rows[k][1] + (rows[k + 1][1] - rows[k][1]) * lift\n        landed_to = k + 1 if lift >= 0.999 else k\n    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))\n                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))\n    named = max((i for i in keep if i <= landed_to), default=0)\n    prog = clamp((val - v0) / max(1e-6, v1 - v0))\n\n    BASE, CX, PY = 1480, 632, 600\n    HMAX = 576.0\n    S = 1.1\n    h = HMAX * val / top\n    h0 = HMAX * v0 / top\n    sway = 10 * math.sin(t * 2.0)\n    WOOD = (176, 120, 72)\n    WOOD_LIT = (214, 168, 116)\n    WOOD_DARK = (110, 70, 40)\n    TIMBER = (150, 108, 70)\n    ROPE = (84, 70, 56)\n\n    def cradle_body(cx, by):\n        cr.move_to(cx - 190 * S, by - 150 * S)\n        cr.line_to(cx + 190 * S, by - 150 * S)\n        cr.line_to(cx + 150 * S, by - 20 * S)\n        cr.line_to(cx - 150 * S, by - 20 * S)\n        cr.close_path()\n\n    def cradle(cx, by):\n        rim = by - 150 * S\n        # the wooden hood over the head end, slatted like the body\n        cr.move_to(cx - 190 * S, rim)\n        cr.curve_to(cx - 190 * S, by - 236 * S, cx - 70 * S, by - 244 * S,\n                    cx - 50 * S, rim)\n        cr.close_path()\n        solid(cr, WOOD, finish=\"gloss\")\n        cr.set_source_rgba(*_c(WOOD_DARK))\n        cr.set_line_width(5)\n        for i in range(3):\n            hx_ = cx - 168 * S + i * 38 * S\n            cr.move_to(hx_, rim - 4)\n            cr.line_to(hx_ + 12 * S, by - (214 - i * 10) * S)\n        cr.stroke()\n        # two sleeping babies in knit caps, a cream blanket tucked over them\n        for dx, cap in ((5, (236, 196, 92)), (100, (132, 196, 170))):\n            hx_, hy_ = cx + dx * S, rim - 26 * S\n            disc(cr, hx_, hy_, 40 * S, (242, 202, 170))\n            cr.arc(hx_, hy_ - 4 * S, 42 * S, math.pi * 1.05, math.pi * 1.95)\n            cr.close_path()\n            solid(cr, cap)\n            disc(cr, hx_, hy_ - 46 * S, 10 * S, cap)\n            cr.set_source_rgba(*_c((70, 50, 40)))\n            cr.set_line_width(4)\n            for ex in (-13, 13):\n                cr.arc(hx_ + ex * S, hy_ + 4 * S, 6 * S, 0.2, math.pi - 0.2)\n                cr.stroke()\n            disc(cr, hx_ - 22 * S, hy_ + 14 * S, 7 * S, (240, 160, 150))\n        cr.move_to(cx - 60 * S, rim + 2)\n        cr.curve_to(cx - 20 * S, rim - 40 * S, cx + 150 * S, rim - 44 * S,\n                    cx + 186 * S, rim + 2)\n        cr.close_path()\n        solid(cr, (238, 230, 212))\n        # the wooden body, its spindles, rail and rockers\n        cradle_body(cx, by)\n        solid(cr, WOOD, finish=\"gloss\")\n        cr.set_source_rgba(*_c(WOOD_LIT))\n        cr.set_line_width(8)\n        for i in range(7):\n            sx = cx - 140 * S + i * 47 * S\n            cr.move_to(sx, by - 132 * S)\n            cr.line_to(sx, by - 36 * S)\n        cr.stroke()\n        cr.set_source_rgba(*_c(WOOD_DARK))\n        cr.set_line_width(12)\n        cr.move_to(cx - 190 * S, rim)\n        cr.line_to(cx + 190 * S, rim)\n        cr.stroke()\n        for px_ in (cx - 190 * S, cx + 190 * S):   # corner posts with knobs\n            disc(cr, px_, rim - 8, 16 * S, WOOD, finish=\"gloss\")\n        cr.set_source_rgba(*_c(WOOD_DARK))\n        cr.set_line_width(18)\n        cr.move_to(cx - 220 * S, by - 40 * S)\n        cr.curve_to(cx - 110 * S, by + 18 * S, cx + 110 * S, by + 18 * S,\n                    cx + 220 * S, by - 40 * S)\n        cr.stroke()\n\n    landscape(cr, t, \"field\")\n    birds(cr, t, y0=800, n=4, rgb=(60, 60, 70))\n\n    # a white picket fence closes the back garden\n    cr.rectangle(0, 1210, W, 12)\n    solid(cr, (236, 234, 226), edge=False)\n    cr.rectangle(0, 1246, W, 12)\n    solid(cr, (236, 234, 226), edge=False)\n    for i in range(28):\n        px = 8 + i * 40\n        cr.move_to(px, 1280)\n        cr.line_to(px, 1196)\n        cr.line_to(px + 11, 1182)\n        cr.line_to(px + 22, 1196)\n        cr.line_to(px + 22, 1280)\n        cr.close_path()\n        solid(cr, (240, 238, 230))\n    haze(cr, 1150, 1290, (236, 222, 200), a=0.2)\n\n    # the tall timber gantry, braced at the corners\n    cast_shadow(cr, 300, 964, BASE, length=320, a=0.3)\n    contact_shadow(cr, 322, BASE + 4, 100, a=0.4)\n    contact_shadow(cr, 942, BASE + 4, 100, a=0.4)\n    box(cr, 300, BASE, 44, BASE - PY + 40, TIMBER)\n    box(cr, 920, BASE, 44, BASE - PY + 40, TIMBER)\n    box(cr, 270, PY - 30, 720, 36, (138, 98, 62))\n    for x0_, x1_ in ((344, 440), (920, 824)):\n        cr.move_to(x0_, PY + 120)\n        cr.line_to(x0_, PY + 96)\n        cr.line_to(x1_, PY + 6)\n        cr.line_to(x1_ + (24 if x1_ > x0_ else -24), PY + 6)\n        cr.close_path()\n        solid(cr, TIMBER)\n\n    # THE SCALE on the gantry: where 20-24's cradle hung, ticks up the side\n    by0 = BASE - h0\n    if prog > 0.04:\n        cradle_body(CX, by0)\n        ghost(cr, a=0.9)\n        then_mark(cr, CX - 260, CX + 180, by0, rows[0][0])\n        times_ticks(cr, 1010, BASE, h0, max(1, int(v1 / v0)))\n\n    # the hoisted cradle on its ropes\n    by = BASE - h\n    ccx = CX + sway\n    cr.set_source_rgba(*_c(ROPE))\n    cr.set_line_width(7)\n    cr.move_to(CX, PY)\n    cr.line_to(ccx - 190 * S, by - 150 * S)\n    cr.move_to(CX, PY)\n    cr.line_to(ccx + 190 * S, by - 150 * S)\n    cr.stroke()\n    contact_shadow(cr, ccx, BASE + 4, 360 * (0.5 + 0.5 * (1 - prog)), a=0.3 - 0.15 * prog)\n    cradle(ccx, by)\n    disc(cr, CX, PY, 34, (150, 150, 158), finish=\"metal\")\n\n    # Data walks back as he hauls, rope from the pulley to his hands\n    hx = 255 - 155 * prog\n    fy = 1500\n    # the rope he has hauled in piles up in coils behind him\n    coils = int(1 + 7 * prog + 0.5)\n    for j in range(coils):\n        cr.save()\n        cr.translate(hx - 70, fy - 6 - j * 9)\n        cr.scale(1, 0.32)\n        cr.arc(0, 0, 54 - j * 3, 0, 2 * math.pi)\n        cr.restore()\n        cr.set_source_rgba(*_c(ROPE))\n        cr.set_line_width(9)\n        cr.stroke()\n    cr.set_source_rgba(*_c(ROPE))\n    cr.set_line_width(7)\n    cr.move_to(CX - 32, PY)\n    cr.line_to(hx + 32, fy - 160)\n    cr.stroke()\n\n    # right by the camera: a wooden rocking horse\n    bx, byy = 830, 1720\n    contact_shadow(cr, bx, 1850, 380, a=0.4)\n    cr.set_source_rgba(*_c(WOOD_DARK))\n    cr.set_line_width(16)\n    for lx0, lx1 in ((-80, -115), (-40, -50), (50, 60), (90, 125)):\n        cr.move_to(bx + lx0, byy + 20)\n        cr.line_to(bx + lx1, 1826)\n    cr.stroke()\n    cr.set_line_width(22)\n    cr.move_to(bx - 210, 1796)\n    cr.curve_to(bx - 80, 1872, bx + 80, 1872, bx + 210, 1796)\n    cr.stroke()\n    cr.set_line_width(10)                           # the tail\n    for j in range(3):\n        cr.move_to(bx - 125, byy - 15)\n        cr.curve_to(bx - 170, byy - 20 + j * 12, bx - 180, byy + 30 + j * 14,\n                    bx - 160 - j * 8, byy + 70 + j * 10)\n    cr.stroke()\n    cr.save()\n    cr.translate(bx, byy)\n    cr.scale(1, 0.42)\n    cr.arc(0, 0, 135, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, WOOD, finish=\"gloss\")\n    cr.move_to(bx + 75, byy - 30)                  # neck and head\n    cr.curve_to(bx + 105, byy - 110, bx + 125, byy - 150, bx + 148, byy - 172)\n    cr.line_to(bx + 220, byy - 132)\n    cr.curve_to(bx + 232, byy - 112, bx + 216, byy - 96, bx + 194, byy - 100)\n    cr.curve_to(bx + 162, byy - 92, bx + 142, byy - 44, bx + 122, byy + 8)\n    cr.close_path()\n    solid(cr, WOOD, finish=\"gloss\")\n    cr.move_to(bx + 140, byy - 166)                # ear\n    cr.line_to(bx + 146, byy - 205)\n    cr.line_to(bx + 164, byy - 172)\n    cr.close_path()\n    solid(cr, WOOD)\n    cr.set_source_rgba(*_c((60, 40, 28)))          # mane\n    cr.set_line_width(9)\n    for j in range(5):\n        mx = bx + 140 - j * 16\n        my = byy - 160 + j * 28\n        cr.move_to(mx, my)\n        cr.line_to(mx - 24, my + 10)\n    cr.stroke()\n    disc(cr, bx + 172, byy - 142, 7, (40, 28, 20))\n    cr.move_to(bx - 50, byy - 50)                  # saddle\n    cr.curve_to(bx - 40, byy - 75, bx + 40, byy - 75, bx + 50, byy - 50)\n    cr.line_to(bx + 40, byy + 6)\n    cr.line_to(bx - 40, byy + 6)\n    cr.close_path()\n    solid(cr, (184, 52, 44), finish=\"gloss\")\n    foreground(cr, \"field\")\n    vignette(cr, a=0.28)\n\n    if u < a0:\n        host(\"point\", hx, fy, 230)\n    elif u < a1 + 0.04:\n        host(\"haul\", hx, fy, 230, beat=k)\n    elif u < 0.93:\n        host(\"strain\", hx, fy, 230)          # bearing the hoisted load\n    else:\n        host(\"cheer\", hx, fy, 230)\n\n    lab, v = rows[named]\n    fit_readout(cr, f\"{int(round(v))}\", f\"twin births per thousand · mothers {lab}\",\n                80, 520, a=ease(seg(u, 0.0, 0.05)), size=140)\n    if landed_to >= n - 1 and u >= a0:\n        text(cr, f\"{v1 / v0:.1f}x\", 80, 760, 96, look.INK, face=\"display\",\n             alpha=ease(seg(u, a1, a1 + 0.05)))\n        text(cr, f\"vs {rows[0][0]}\", 80, 812, 38, look.INK,\n             alpha=ease(seg(u, a1, a1 + 0.05)))\n"
     },
     {
      "source": "offline",
@@ -24596,13 +24600,16 @@
       "concept": "a petri-dish image drains from the top down as the reveal sweeps through years, tracking IVF twin share collapsing from 28% to 2%",
       "code": "n_pts = n\nbuilt = clamp(reveal)*max(n_pts-1,1)\nidx = min(int(built), n_pts-1)\nfracb = built - idx\ncur_val = values[idx]\nif idx < n_pts-1:\n    cur_val = lerp(values[idx], values[idx+1], fracb)\ncur_label = labels[idx]\ndish = subject_image('petri dish embryos')\ncx = (RX0+RX1)//2\ndish_w = 420\ntop_y = RTOP+220\nbot_y = RBOT-180\nvmax_local = max(values) if values else 1\nfrac = clamp(cur_val/vmax_local)\nif dish is not None:\n    fill_image(dish, frac, cx-dish_w//2, top_y, dish_w, bot_y-top_y, direction='down')\nelse:\n    fill_image(None, frac, cx-dish_w//2, top_y, dish_w, bot_y-top_y, direction='down', color=WARN)\nd.rounded_rectangle([cx-dish_w//2, top_y, cx+dish_w//2, bot_y], radius=24, outline=rgba(TEXT,200), width=5)\ntext(cur_label, cx, top_y-50, size=34, color=TEXT, center=True)\ntext(str(round(cur_val,1))+'%', cx, bot_y+40, size=44, color=WARN, center=True)\ntext('twin share of IVF births', cx, RTOP+120, size=28, color=TEXT, center=True)"
      },
-     "illustrated_scene": "def scene(cr, t, u, pts, host):\n    \"\"\"HERO: an IVF petri dish\n    SUBSTANCE: embryos in culture medium\n    CAUSE: Data shoves the glass divider across the dish, shrinking the twin-embryo side\n    One IVF lab dish stands for every IVF birth in that year. A glass divider\n    splits it at the twin share: on the left (accent) the embryos sit in\n    PAIRS, on the right they sit alone. For each year that arrives, Data puts\n    both hands flat on the divider and shoves it left, and the pairs it passes\n    become single embryos. The share falls from 28% in 1997 to 2% today.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    k, f = step_through(u, n)\n    move = ease(seg(f, 0.35, 0.85)) if k > 0 else 0.0\n    v0 = rows[max(0, k - 1)][1]\n    v1 = rows[k][1]\n    share = clamp((v0 + (v1 - v0) * move) / 100.0, 0.0, 1.0)\n\n    def frac(a):\n        return (a * math.sqrt(max(0.0, 1 - a * a)) + math.asin(a) + math.pi / 2) / math.pi\n\n    lo, hi = -1.0, 1.0\n    for _ in range(32):\n        mid = (lo + hi) / 2\n        if frac(mid) < share:\n            lo = mid\n        else:\n            hi = mid\n    a_ = (lo + hi) / 2\n\n    def ell(cx_, cy_, rx_, ry_):\n        cr.new_path()\n        cr.save()\n        cr.translate(cx_, cy_)\n        cr.scale(rx_, ry_)\n        cr.arc(0, 0, 1, 0, 2 * math.pi)\n        cr.restore()\n\n    # the lab: a cool wall, a back shelf of glassware, a steel bench\n    vgrad(cr, [(0.0, (206, 220, 232)), (1.0, (150, 168, 186))], 0, 1180)\n    box(cr, 40, 1000, 1000, 22, (170, 178, 190), finish=\"metal\")\n    for i, (sx, sh) in enumerate([(90, 150), (230, 110), (720, 170), (880, 120)]):\n        contact_shadow(cr, sx + 35, 1000, 80, a=0.25)\n        cylinder(cr, sx, 1000, 70, sh, P[\"glass\"], finish=\"glass\", a=0.8)\n    haze(cr, 760, 1060, (206, 220, 232), a=0.45)\n    vgrad(cr, [(0.0, (196, 204, 214)), (1.0, (96, 106, 120))], 1100, H)\n\n    cx, cy, rx, ry = 540, 1010, 430, 250\n    mrx, mry = rx - 26, ry - 18\n    split = cx + mrx * a_\n\n    # the dish: a glass base wall, then the medium\n    contact_shadow(cr, cx, cy + ry + 34, 2 * rx + 40, a=0.4)\n    ell(cx, cy + 34, rx, ry)\n    solid(cr, P[\"glass\"], finish=\"glass\", a=0.9)\n    ell(cx, cy, rx, ry)\n    solid(cr, (226, 236, 244), finish=\"glass\", a=0.85)\n    ell(cx, cy, mrx, mry)\n    solid(cr, (238, 178, 186), finish=\"gloss\", rim=False)\n    # the twin share, cut at its true proportion of the one dish\n    cr.save()\n    ell(cx, cy, mrx, mry)\n    cr.clip()\n    cr.rectangle(0, 0, split, H)\n    cr.set_source_rgba(*_c(P[\"accent2\"], 0.5))\n    cr.fill()\n    cr.restore()\n\n    # embryos: pairs on the twin side, singles on the rest\n    cr.save()\n    ell(cx, cy, mrx, mry)\n    cr.clip()\n    for i in range(46):\n        ex = cx - mrx + 40 + ((i * 197) % int(2 * mrx - 80))\n        ey = cy - mry + 40 + ((i * 113 + (i // 7) * 29) % int(2 * mry - 80))\n        nx, ny = (ex - cx) / mrx, (ey - cy) / mry\n        if nx * nx + ny * ny > 0.82:\n            continue\n        if ex < split - 22:\n            disc(cr, ex - 13, ey, 15, (250, 236, 226), finish=\"gloss\")\n            disc(cr, ex + 13, ey + 2, 15, (250, 236, 226), finish=\"gloss\")\n        else:\n            disc(cr, ex, ey, 17, (250, 240, 232), finish=\"gloss\")\n    cr.restore()\n\n    # the glass divider he pushes\n    half = mry * math.sqrt(max(0.0, 1 - a_ * a_))\n    box(cr, split - 12, cy + half + 8, 24, 2 * half + 50, P[\"glass\"], depth=10,\n        finish=\"glass\", a=0.92)\n    # the dish's rim catches the key light\n    ell(cx, cy, rx, ry)\n    edge(cr, (250, 252, 255), width=6, a=0.8)\n\n    # a pipette hanging over the dish: this is an IVF lab\n    cr.new_path()\n    cr.move_to(880, 330)\n    cr.line_to(910, 330)\n    cr.line_to(902, 760)\n    cr.line_to(894, 800)\n    cr.line_to(888, 760)\n    cr.close_path()\n    solid(cr, P[\"glass\"], finish=\"glass\", a=0.85)\n    cr.new_path()\n    cr.rectangle(870, 250, 50, 90)\n    solid(cr, (200, 70, 80), finish=\"gloss\")\n\n    vignette(cr, 0.3)\n\n    # his bit: walk up and point, shove the divider once per year, cheer\n    fy = cy + 70\n    if u < 0.22:\n        w = ease(seg(u, 0.0, 0.2))\n        host(\"point\", split + 320 - 250 * w, fy, 220)\n    elif u < 0.86:\n        host(\"shove\", split + 70, fy, 220, beat=k)\n    else:\n        host(\"cheer\", split + 70, fy, 220)\n\n    lab, val = landed(rows, k, f)\n    fit_readout(cr, f\"{val:.0f}%\", f\"of IVF births were twins · {lab}\", 80, 520,\n                a=ease(seg(u, 0.0, 0.08)), size=150)\n    ta = ease(seg(u, 0.05, 0.15))\n    if split - (cx - mrx) > 120:\n        text(cr, \"twins\", (cx - mrx + split) / 2, cy - mry - 20, 40,\n             P[\"accent2\"], anchor=\"center\", alpha=ta)\n    text(cr, \"singles\", (split + cx + mrx) / 2, cy - mry - 20, 40, look.INK,\n         anchor=\"center\", alpha=ta)\n    b = ease(seg(u, 0.84, 0.94))\n    if b > 0:\n        fit_readout(cr, f\"{rows[0][1]:.0f}% → {rows[-1][1]:.0f}%\",\n                    f\"{rows[0][0]} to {rows[-1][0]}\", W / 2, 1380, anchor=\"center\",\n                    a=b, rgb=P[\"accent2\"], size=80)\n"
+     "illustrated_scene": "def scene(cr, t, u, pts, host):\n    \"\"\"HERO: a baby quilt on a clothesline\n    SUBSTANCE: quilt fabric\n    CAUSE: Data shoves the plain quilt along the line over the twin quilt, one shove per year\n    One whole: the full width of the line is every IVF birth of a year.\n    The rose patchwork quilt with paired hearts is the twin share, and the\n    plain cream quilt hangs on pegs next to it. For each year that lands\n    Data shoves the cream quilt along the line, covering more of the twin\n    quilt, until only that year's sliver of rose shows. 1997's edge stays\n    as a dashed ghost so you can see how far the share fell. Everything\n    lands by u=0.56, then holds while the quilts move in the wind.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    m = max(1, n - 1)\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / m\n    k = int(clamp((u - a0) / span, 0, m - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.15, 0.75))\n    if u < a0 or n < 2:\n        share = rows[0][1] / 100.0\n        landed_to = 0\n    else:\n        v0 = rows[k][1]\n        v1 = rows[min(k + 1, n - 1)][1]\n        share = (v0 + (v1 - v0) * slide) / 100.0\n        landed_to = k + 1 if slide >= 0.999 else k\n    share = clamp(share)\n    share0 = clamp(rows[0][1] / 100.0)\n    keep = (sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))\n                    for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS\n            else list(range(n)))\n    named = max((i for i in keep if i <= landed_to), default=0)\n    lab, val = rows[named]\n\n    landscape(cr, t, \"field\")\n\n    X0, X1, LY, TOP, QH = 80, 1000, 720, 742, 600\n    GY = 1452\n    sway = 26 * math.sin(t * 1.3) + 10 * math.sin(t * 2.7)\n\n    def qp(s, v):\n        x = X0 + (X1 - X0) * s + sway * v * v\n        y = TOP + QH * v + 14 * math.sin(s * 7 + t * 1.6) * v\n        return x, y\n\n    def quad(s0, s1, v0, v1):\n        cr.move_to(*qp(s0, v0))\n        cr.line_to(*qp(s1, v0))\n        cr.line_to(*qp(s1, v1))\n        cr.line_to(*qp(s0, v1))\n        cr.close_path()\n\n    def heart(cx, cy, r):\n        cr.move_to(cx, cy + r)\n        cr.curve_to(cx - 1.7 * r, cy - 0.1 * r, cx - 1.0 * r, cy - 1.4 * r, cx, cy - 0.5 * r)\n        cr.curve_to(cx + 1.0 * r, cy - 1.4 * r, cx + 1.7 * r, cy - 0.1 * r, cx, cy + r)\n        cr.close_path()\n\n    # the long shadow of the laundry, the two posts with their cross bars\n    cast_shadow(cr, X0, X1, GY, length=340, a=0.24)\n    for px in (40, 1010):\n        contact_shadow(cr, px + 15, GY + 4, 100, a=0.45)\n        box(cr, px, GY, 30, GY - 680, (122, 90, 60), depth=12)\n        box(cr, px - 30, 712, 90, 18, (110, 80, 54), depth=8)\n    cr.set_source_rgba(*_c((40, 38, 42)))\n    cr.set_line_width(6)\n    cr.move_to(55, LY)\n    cr.curve_to(400, LY + 10, 700, LY + 10, 1025, LY)\n    cr.stroke()\n\n    # the twin quilt: rose patchwork, a PAIR of hearts in every other patch\n    rose, rose_d, blush = (222, 104, 128), (178, 70, 96), (246, 206, 212)\n    cols, rws = 8, 6\n    for i in range(cols):\n        for j in range(rws):\n            quad(i / cols, (i + 1) / cols, j / rws, (j + 1) / rws)\n            solid(cr, rose if (i + j) % 2 == 0 else rose_d, rim=False, edge=False)\n            if (i + j) % 2 == 0:\n                cx, cy = qp((i + 0.5) / cols, (j + 0.5) / rws)\n                heart(cx - 17, cy, 15)\n                solid(cr, blush, rim=False)\n                heart(cx + 17, cy, 15)\n                solid(cr, blush, rim=False)\n    # stitched seams\n    cr.set_source_rgba(*_c((255, 236, 236), 0.8))\n    cr.set_line_width(3)\n    cr.set_dash([10, 8])\n    for i in range(1, cols):\n        cr.move_to(*qp(i / cols, 0))\n        cr.line_to(*qp(i / cols, 1))\n    for j in range(1, rws):\n        cr.move_to(*qp(0, j / rws))\n        cr.line_to(*qp(1, j / rws))\n    cr.stroke()\n    cr.set_dash([])\n    # a bold binding so even a sliver of it reads as quilt\n    quad(0, 1, 0, 1)\n    edge(cr, (150, 40, 70), width=16)\n\n    # the plain quilt, diamond-quilted, shoved across the twin quilt\n    cr.save()\n    quad(share, 1, 0, 1)\n    cr.clip()\n    folds = 9\n    for i in range(folds):\n        sa = share + (1 - share) * i / folds\n        sb = share + (1 - share) * (i + 1) / folds\n        quad(sa, sb, 0, 1)\n        solid(cr, (240, 232, 214) if i % 2 == 0 else (218, 206, 182), rim=False,\n              edge=False)\n    bx0, _ = qp(share, 0)\n    cr.set_source_rgba(*_c((170, 150, 120), 0.7))\n    cr.set_line_width(3)\n    cr.set_dash([12, 9])\n    for d in range(-12, 14):\n        x = bx0 + d * 90\n        cr.move_to(x, TOP - 20)\n        cr.line_to(x + 700, TOP + 680)\n        cr.move_to(x + 700, TOP - 20)\n        cr.line_to(x, TOP + 680)\n    cr.stroke()\n    cr.set_dash([])\n    cr.restore()\n    quad(share, 1, 0, 1)\n    edge(cr, (120, 150, 132), width=14)       # sage binding\n    # the leading edge throws a shadow onto the rose\n    cr.save()\n    quad(0, 1, 0, 1)\n    cr.clip()\n    cr.set_source_rgba(*_c((40, 20, 30), 0.35))\n    cr.set_line_width(22)\n    cr.move_to(qp(share, 0)[0] - 11, qp(share, 0)[1])\n    cr.line_to(qp(share, 1)[0] - 11, qp(share, 1)[1])\n    cr.stroke()\n    cr.restore()\n\n    # pegs: fixed on the twin quilt, riding with the plain quilt\n    for s in [0.04, 0.2, 0.36]:\n        if s < share:\n            px, _ = qp(s, 0)\n            box(cr, px - 8, LY + 30, 16, 46, (176, 134, 88), depth=6)\n    for i in range(5):\n        s = share + 0.01 + (1 - share - 0.03) * i / 4\n        px, _ = qp(s, 0)\n        box(cr, px - 8, LY + 30, 16, 46, (176, 134, 88), depth=6)\n\n    # THE SCALE: 1997's edge, a dashed ghost where the twin quilt once ended\n    if u >= a0:\n        quad(0, share0, 0, 1)\n        ghost(cr, a=0.95)\n        gx, _ = qp(share0, 0)\n        text(cr, rows[0][0], gx, 690, 36, look.INK, face=\"bold\", anchor=\"center\")\n\n    # right by the camera: a woven laundry basket, a folded rose blanket in it\n    BX, BY, BW, BH = 860, 1830, 300, 170\n    contact_shadow(cr, BX, BY + 6, BW + 40, a=0.45)\n    cr.move_to(BX - BW / 2, BY - BH)\n    cr.line_to(BX + BW / 2, BY - BH)\n    cr.line_to(BX + BW / 2 - 26, BY)\n    cr.line_to(BX - BW / 2 + 26, BY)\n    cr.close_path()\n    solid(cr, (196, 150, 94))\n    cr.set_source_rgba(*_c((132, 92, 52), 0.85))\n    cr.set_line_width(4)\n    for r_ in range(1, 6):\n        y = BY - BH + r_ * BH / 6\n        inset = 26 * r_ / 6\n        cr.move_to(BX - BW / 2 + inset, y)\n        cr.line_to(BX + BW / 2 - inset, y)\n    for c in range(1, 9):\n        x = BX - BW / 2 + c * BW / 9\n        cr.move_to(x, BY - BH)\n        cr.line_to(x + (BX - x) * 0.17, BY)\n    cr.stroke()\n    cr.save()\n    cr.translate(BX, BY - BH)\n    cr.scale(1, 0.28)\n    cr.arc(0, 0, BW / 2 + 8, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (170, 124, 76))\n    cr.move_to(BX - 120, BY - BH + 6)\n    cr.curve_to(BX - 100, BY - BH - 60, BX + 100, BY - BH - 60, BX + 120, BY - BH + 6)\n    cr.close_path()\n    solid(cr, rose)\n    heart(BX - 18, BY - BH - 18, 12)\n    solid(cr, blush, rim=False)\n    heart(BX + 18, BY - BH - 18, 12)\n    solid(cr, blush, rim=False)\n    foreground(cr, \"field\")\n    vignette(cr, a=0.28)\n\n    bx, _ = qp(share, 0.95)\n    fx = bx + 64\n    if u < a0:\n        host(\"point\", 640, GY, 240)\n    elif u < a1 + 0.04:\n        host(\"shove\", fx, GY, 240, beat=k)\n    elif u < 0.86:\n        host(\"shove\", fx, GY, 240, beat=m + 1)\n    else:\n        host(\"shock\", fx, GY, 240)\n\n    fit_readout(cr, f\"{int(round(val))}%\", f\"of IVF births were twins · {lab}\",\n                80, 540, a=ease(seg(u, 0.0, 0.05)), size=140)\n"
     }
    ],
    "words_by": "brain-tighten",
    "rewritten_at": "2026-10-06T13:07:29Z",
    "closing_scene": "def _duck(cr, x, y, s, a=1.0):\n    # A rubber duck afloat: a round body, the raised tail, a round head,\n    # an orange bill and a dark eye.\n    cr.save()\n    cr.translate(x, y)\n    cr.scale(s, s)\n    cr.move_to(-50, -6)\n    cr.curve_to(-58, -34, -40, -30, -30, -22)\n    cr.curve_to(-10, -30, 30, -30, 44, -10)\n    cr.curve_to(52, 6, 36, 22, 0, 22)\n    cr.curve_to(-34, 22, -48, 10, -50, -6)\n    cr.close_path()\n    solid(cr, (250, 204, 48), finish=\"gloss\", a=a)\n    disc(cr, 22, -44, 24, (252, 212, 60), finish=\"gloss\", a=a)\n    cr.move_to(40, -50)\n    cr.line_to(64, -42)\n    cr.line_to(40, -34)\n    cr.close_path()\n    solid(cr, (240, 128, 40), a=a)\n    cr.set_source_rgba(*_c((30, 26, 40), a))\n    cr.arc(28, -50, 4, 0, 2 * math.pi)\n    cr.fill()\n    cr.restore()\n\n\ndef _tub_path(cr, inset=0.0):\n    # The baby bath: a straight rim, sides that slope and round into a\n    # flat bottom.\n    x0, x1, top, bot = 150 + inset, 930 - inset, 820 + inset, 1220 - inset\n    cr.move_to(x0, top)\n    cr.line_to(x1, top)\n    cr.curve_to(x1 - 20, top + 250, x1 - 60, bot, x1 - 180, bot)\n    cr.line_to(x0 + 180, bot)\n    cr.curve_to(x0 + 60, bot, x0 + 20, top + 250, x0, top)\n    cr.close_path()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a baby bath full of water\n    SUBSTANCE: blue bathwater\n    CAUSE: Data turns the drain valve under the bath and the water runs out to each year's lower level\n    The closing: one clear baby bath on its stand is every IVF birth of a\n    year. The water in it is the twin share, two rubber ducks riding on\n    it. For each year that arrives Data turns the drain valve once, water\n    pours out of the spout into the floor drain, and the level settles at\n    that year's share, from 28% down to 2%. He ends looking at what is\n    left: the ducks resting on the bottom.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts]) or [(\"now\", 0.0)]\n    n = len(rows)\n    k, f = step_through(u, n, hold_first=0.28, hold_last=0.16)\n    k = int(clamp(k, 0, n - 1))\n    drain = ease(seg(f, 0.3, 0.75)) if k > 0 else 0.0   # after the turn lands\n    prev = rows[k - 1][1] if k > 0 else rows[0][1]\n    share = clamp((prev + (rows[k][1] - prev) * drain) / 100.0)\n    flow = math.sin(math.pi * drain) if k > 0 else 0.0\n\n    # the nursery bathroom at dawn: painted wall, a window, a wooden floor\n    vgrad(cr, [(0, (236, 214, 190)), (0.6, (214, 186, 160)), (1, (186, 156, 132))],\n          0, 1190)\n    cr.rectangle(620, 160, 360, 420)\n    solid(cr, (250, 246, 236), rim=False)\n    vgrad(cr, [(0, (255, 196, 150)), (0.6, (250, 222, 180)), (1, (200, 220, 236))],\n          190, 550, 650, 950)\n    cr.rectangle(796, 190, 8, 360)\n    cr.rectangle(650, 366, 300, 8)\n    solid(cr, (250, 246, 236), rim=False, edge=False)\n    vgrad(cr, [(0, (176, 132, 96)), (1, (122, 88, 62))], 1180, H)\n    cr.rectangle(0, 1170, W, 18)\n    solid(cr, (240, 232, 220))\n    # a towel rail with a towel on the left wall\n    cylinder(cr, 40, 690, 14, 8, (190, 194, 204), finish=\"metal\")\n    cr.rectangle(20, 600, 100, 14)\n    solid(cr, (190, 194, 204), finish=\"metal\")\n    cr.move_to(28, 612)\n    cr.line_to(112, 612)\n    cr.line_to(116, 860)\n    cr.line_to(24, 860)\n    cr.close_path()\n    solid(cr, (232, 160, 170))\n    for yy in (800, 820):\n        cr.rectangle(26, yy, 88, 8)\n        solid(cr, (250, 238, 240), rim=False, edge=False)\n    haze(cr, 0, 1190, (240, 220, 200), a=0.15)\n\n    # the folding stand, under its shadow\n    contact_shadow(cr, 540, 1478, 760, a=0.4)\n    for (a0, b0) in (((280, 1200), (780, 1476)), ((800, 1200), (300, 1476))):\n        cr.move_to(*a0)\n        cr.line_to(*b0)\n        cr.set_source_rgba(*_c((120, 124, 134)))\n        cr.set_line_width(24)\n        cr.stroke()\n        cr.move_to(a0[0] - 4, a0[1] - 4)\n        cr.line_to(b0[0] - 4, b0[1] - 4)\n        cr.set_source_rgba(*_c((214, 218, 226), 0.8))\n        cr.set_line_width(7)\n        cr.stroke()\n    for fx in (300, 780):\n        box(cr, fx - 30, 1484, 60, 16, (90, 92, 100), finish=\"metal\")\n\n    # the drain: pipe down, the valve, the spout over the floor drain\n    VX, VY, OX = 870, 1330, 990\n    cr.move_to(790, 1210)\n    cr.line_to(790, VY)\n    cr.line_to(OX, VY)\n    cr.line_to(OX, 1392)\n    cr.set_source_rgba(*_c((150, 156, 168)))\n    cr.set_line_width(26)\n    cr.stroke()\n    cr.move_to(784, 1210)\n    cr.line_to(784, VY - 6)\n    cr.line_to(OX - 6, VY - 6)\n    cr.line_to(OX - 6, 1392)\n    cr.set_source_rgba(*_c((226, 230, 238), 0.8))\n    cr.set_line_width(7)\n    cr.stroke()\n    cr.save()\n    cr.scale(1.0, 0.35)\n    cr.arc(OX, 1484 / 0.35, 52, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (60, 52, 50), finish=\"metal\")\n    rot = (max(0, k - 1) + drain) * math.pi * 0.9     # the wheel turns as it drains\n    cr.set_source_rgba(*_c((196, 56, 48)))\n    cr.set_line_width(9)\n    cr.arc(VX, VY, 32, 0, 2 * math.pi)\n    cr.stroke()\n    for j in range(4):\n        aj = rot + j * math.pi / 2\n        cr.move_to(VX, VY)\n        cr.line_to(VX + 32 * math.cos(aj), VY + 32 * math.sin(aj))\n        cr.stroke()\n    disc(cr, VX, VY, 10, (210, 70, 60), finish=\"gloss\")\n    if flow > 0.02:                                   # the water running out\n        g = cairo.LinearGradient(OX - 10, 0, OX + 10, 0)\n        g.add_color_stop_rgba(0, *_c((70, 140, 210), 0.9))\n        g.add_color_stop_rgba(0.5, *_c((150, 205, 245), 0.95))\n        g.add_color_stop_rgba(1, *_c((50, 110, 190), 0.9))\n        cr.set_source(g)\n        wd = 18 * flow\n        cr.rectangle(OX - wd / 2, 1392, wd, 88)\n        cr.fill()\n        cr.save()\n        cr.scale(1.0, 0.3)\n        cr.arc(OX, 1482 / 0.3, 30 * flow + 6 * math.sin(t * 9), 0, 2 * math.pi)\n        cr.restore()\n        cr.set_source_rgba(*_c((170, 215, 245), 0.7 * flow))\n        cr.fill()\n\n    # the water inside the clear bath, at the share; two ducks ride on it\n    TOP_IN, BOT_IN = 840.0, 1206.0\n    lvl = BOT_IN - share * (BOT_IN - TOP_IN)\n    cr.save()\n    _tub_path(cr, 14)\n    cr.clip()\n    g = cairo.LinearGradient(0, lvl, 0, BOT_IN)\n    g.add_color_stop_rgba(0, *_c((96, 176, 232), 0.95))\n    g.add_color_stop_rgba(1, *_c((38, 104, 186), 0.95))\n    cr.set_source(g)\n    cr.rectangle(0, lvl, W, H - lvl)\n    cr.fill()\n    cr.move_to(0, lvl)\n    for i in range(1, 41):\n        x = W * i / 40\n        cr.line_to(x, lvl + 3 * math.sin(t * 2.2 + i * 0.7) * (0.4 + flow))\n    cr.set_source_rgba(*_c((220, 242, 255), 0.85))\n    cr.set_line_width(5)\n    cr.stroke()\n    cr.restore()\n    for j, dx_ in enumerate((440, 590)):\n        bob = 5 * math.sin(t * 1.6 + j * 1.9) * (1.0 if share > 0.04 else 0.0)\n        _duck(cr, dx_, min(lvl, BOT_IN - 22) + bob, 0.85)\n\n    # the bath itself: clear plastic, a rolled rim, a highlight\n    _tub_path(cr)\n    g = cairo.LinearGradient(150, 0, 930, 0)\n    g.add_color_stop_rgba(0, *_c((214, 236, 250), 0.30))\n    g.add_color_stop_rgba(1, *_c((150, 186, 214), 0.42))\n    cr.set_source(g)\n    cr.fill_preserve()\n    edge(cr, (40, 64, 96), width=5)\n    cr.new_path()\n    cr.move_to(196, 870)\n    cr.curve_to(206, 1010, 236, 1120, 300, 1180)\n    cr.set_source_rgba(*_c((255, 255, 255), 0.45))\n    cr.set_line_width(10)\n    cr.stroke()\n    cr.move_to(128, 804)\n    cr.line_to(952, 804)\n    cr.curve_to(966, 804, 966, 836, 952, 836)\n    cr.line_to(128, 836)\n    cr.curve_to(114, 836, 114, 804, 128, 804)\n    cr.close_path()\n    solid(cr, (226, 234, 244), finish=\"gloss\")\n    # the share, marked in the accent beside the water it measures\n    cr.move_to(118, BOT_IN)\n    cr.line_to(104, BOT_IN)\n    cr.line_to(104 - 0.0 * share, lvl)\n    cr.line_to(118, lvl)\n    cr.set_source_rgba(*_c(P[\"accent2\"]))\n    cr.set_line_width(9)\n    cr.stroke()\n\n    # Data: walks over to the valve, turns it once per year, then looks\n    # at the ducks sitting on the bottom\n    walking = u < 0.24\n    dx = 240 + 560 * ease(seg(u, 0.04, 0.24))\n    if walking:\n        role, bk = \"point\", 0\n    elif u < 0.9:\n        role, bk = \"tap\", k\n    else:\n        role, bk = \"think\", 0\n    contact_shadow(cr, dx, 1490, 130, a=0.4)\n    host(role, dx, 1490, 220, pace=walking, beat=bk)\n\n    vignette(cr, 0.3)\n\n    lab, val = landed(rows, k, f)\n    fit_readout(cr, f\"{val:.0f}%\", f\"of IVF births were twins · {lab}\", 80, 640,\n                a=ease(seg(u, 0.0, 0.1)), size=120)\n    b = ease(seg(u, 0.86, 0.96))\n    if b > 0:\n        text(cr, f\"{rows[0][1]:.0f}% \\u2192 {rows[-1][1]:.0f}%\", 80, 760, 64,\n             P[\"accent2\"], face=\"display\", anchor=\"left\", alpha=b)\n",
-   "closing_data": 2
+   "closing_data": 2,
+   "hook_was": "Your town saw twin births double to 34 per 1,000!",
+   "hook_scene": "def scene(cr, t, u, pts, host):\n    \"\"\"HERO: two balloons tied to a twin pram\n    SUBSTANCE: the air in the balloons\n    CAUSE: Data pumps air into the twin balloons with a bellows, then turns the valve to let some out\n    THE HOOK, already mid-action on frame one: the twin pram's pink and blue\n    balloons are swelling and lifting as Data works the bellows. Each\n    balloon's size and its height above the pram are the twin rate. They\n    swell from the 1980 size, kept as a dashed ghost inside each one, to\n    nearly twice as big at the peak. Then Data walks to the valve and turns\n    it, and they shrink and sink a little below a mark that shows where the\n    peak reached. Everything lands by u=0.55 and holds. The balloons keep\n    tugging on their strings in the wind, and Data keeps working the valve.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0) = rows[0]\n    (lp, vp) = max(rows, key=lambda r: r[1])\n    (ll, vl) = rows[-1]\n    vp = vp or 1.0\n    span = (vp - v0) or 1.0\n    g0 = seg(u, 0.0, 0.28)                  # swelling from frame one\n    g = 0.6 * g0 + 0.4 * ease(g0)\n    f0 = seg(u, 0.33, 0.55)                 # the let-down, landed by 0.55\n    fall = 0.6 * f0 + 0.4 * ease(f0)\n    val = v0 + (vp - v0) * g - (vp - vl) * fall\n\n    RMAX = 230.0\n    LIFT = 160.0\n    r = RMAX * val / vp\n    r0 = RMAX * v0 / vp\n    lift = LIFT * (val - v0) / span\n    CY = 1000 - lift\n    HX, HY = 870, 1100                      # the pram's handle, where the strings tie\n\n    landscape(cr, t, \"field\")\n\n    # the twin balloons, tugging on their strings in the wind\n    cols = [(236, 118, 150), (104, 156, 232)]\n    centres = []\n    for i, side in enumerate((-1, 1)):\n        sw = 45 * math.sin(t * 3.4 + i * 2.2)\n        cx = 540 + side * (0.95 * r + 20) + sw\n        cy = CY + 14 * math.sin(t * 2.6 + i * 1.3)\n        centres.append((cx, cy))\n        cr.set_source_rgba(*_c((244, 244, 244)))\n        cr.set_line_width(4)\n        cr.move_to(cx, cy + r * 1.12 + 14)\n        cr.curve_to(cx + 30, cy + r * 1.12 + 90, HX - 80, HY - 70, HX, HY)\n        cr.stroke()\n    for i, (cx, cy) in enumerate(centres):\n        cr.save()\n        cr.translate(cx, cy)\n        cr.scale(1.0, 1.12)\n        cr.arc(0, 0, r, 0, 2 * math.pi)\n        cr.restore()\n        solid(cr, cols[i], finish=\"gloss\")\n        ky = cy + r * 1.12\n        cr.move_to(cx - 16, ky + 18)\n        cr.line_to(cx + 16, ky + 18)\n        cr.line_to(cx, ky - 2)\n        cr.close_path()\n        solid(cr, tuple(int(c * 0.8) for c in cols[i]))\n        # THE SCALE on the balloon: the 1980 balloon as a ghost inside it\n        cr.save()\n        cr.translate(cx, cy + (r - r0) * 1.12)\n        cr.scale(1.0, 1.12)\n        cr.arc(0, 0, r0, 0, 2 * math.pi)\n        cr.restore()\n        ghost(cr, a=0.9)\n    if fall > 0.02:                         # where the peak reached\n        top = (1000 - LIFT) - RMAX * 1.12\n        then_mark(cr, 240, 860, top, lp, a=ease(seg(u, 0.33, 0.39)))\n\n    # the twin pram, three-quarter, big on the grass in front of the balloons\n    cast_shadow(cr, 340, 800, 1450, length=320, a=0.3)\n    contact_shadow(cr, 570, 1454, 520, a=0.42)\n    # far-side wheels, smaller and darker, then the chassis struts\n    for wx in (450, 770):\n        disc(cr, wx, 1392, 34, (34, 34, 40), finish=\"metal\")\n    cr.set_source_rgba(*_c((150, 154, 164)))\n    cr.set_line_width(9)\n    for a_, b_ in (((420, 1340), (400, 1412)), ((700, 1340), (720, 1412)),\n                   ((400, 1412), (720, 1412))):\n        cr.move_to(*a_)\n        cr.line_to(*b_)\n    cr.stroke()\n    # the handle\n    cr.set_source_rgba(*_c((52, 52, 60)))\n    cr.set_line_width(16)\n    cr.move_to(770, 1240)\n    cr.line_to(HX, HY)\n    cr.stroke()\n    cylinder(cr, HX - 10, HY + 14, 22, 30, (40, 40, 46), finish=\"gloss\")\n    # the bassinet body\n    cr.move_to(330, 1215)\n    cr.line_to(800, 1215)\n    cr.curve_to(800, 1300, 760, 1360, 690, 1364)\n    cr.line_to(440, 1364)\n    cr.curve_to(370, 1360, 330, 1300, 330, 1215)\n    cr.close_path()\n    solid(cr, (62, 76, 112), finish=\"gloss\")\n    cr.set_source_rgba(*_c((170, 182, 210), 0.8))\n    cr.set_line_width(5)\n    cr.move_to(352, 1250)\n    cr.curve_to(360, 1320, 420, 1342, 460, 1342)\n    cr.line_to(680, 1342)\n    cr.curve_to(740, 1340, 776, 1310, 780, 1250)\n    cr.stroke()\n    # the opening, and the twins asleep in knit caps\n    cr.save()\n    cr.translate(570, 1216)\n    cr.scale(1.0, 0.13)\n    cr.arc(0, 0, 232, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (30, 34, 50), rim=False)\n    for j, (bx, cap) in enumerate(((590, (236, 118, 150)), (680, (104, 156, 232)))):\n        disc(cr, bx, 1200, 32, (240, 200, 170))\n        cr.save()\n        cr.translate(bx, 1192)\n        cr.arc(0, 0, 34, math.pi, 2 * math.pi)\n        cr.restore()\n        solid(cr, cap)\n        disc(cr, bx, 1150, 11, (248, 246, 240))\n        cr.set_source_rgba(*_c((60, 40, 36)))\n        cr.set_line_width(3)\n        for ex in (-11, 11):\n            cr.arc(bx + ex, 1204, 6, 0.2, math.pi - 0.2)\n            cr.stroke()\n    # the folding hood over the near end, pleated\n    cr.move_to(330, 1220)\n    cr.curve_to(325, 1100, 420, 1040, 530, 1050)\n    cr.curve_to(545, 1110, 545, 1170, 530, 1220)\n    cr.close_path()\n    solid(cr, (48, 58, 88), finish=\"gloss\")\n    cr.set_source_rgba(*_c((120, 134, 170)))\n    cr.set_line_width(5)\n    for i in range(1, 4):\n        k_ = i / 4\n        cr.move_to(330 + 200 * k_, 1220)\n        cr.curve_to(330 + 160 * k_, 1140, 380 + 120 * k_, 1070, 420 + 110 * k_, 1052 - 8 * k_)\n        cr.stroke()\n    # near wheels, spoked\n    for wx in (420, 710):\n        disc(cr, wx, 1408, 46, (40, 40, 46), finish=\"metal\")\n        cr.set_source_rgba(*_c((190, 192, 200)))\n        cr.set_line_width(4)\n        for s_ in range(6):\n            a_ = s_ * math.pi / 3\n            cr.move_to(wx, 1408)\n            cr.line_to(wx + 32 * math.cos(a_), 1408 + 32 * math.sin(a_))\n        cr.stroke()\n        disc(cr, wx, 1408, 10, (210, 210, 216), finish=\"metal\")\n\n    # Data walks from the bellows to the valve on the pram's side\n    walk_in = ease(seg(u, 0.30, 0.44))\n    hx = 140 + 170 * walk_in\n    vx, vy = 352, 1300\n    cr.set_source_rgba(*_c((60, 60, 66)))\n    cr.set_line_width(10)\n    cr.move_to(hx + 50, 1340)\n    cr.curve_to(hx + 110, 1440, vx - 50, 1400, vx, vy)\n    cr.stroke()\n    disc(cr, vx, vy, 18, (190, 160, 70), finish=\"metal\")\n\n    # right by the camera: two baby rattles in the grass\n    for i, (rx, ry, ang, cc) in enumerate(((150, 1700, -0.5, (236, 118, 150)),\n                                           (930, 1730, 0.6, (104, 156, 232)))):\n        cr.save()\n        cr.translate(rx, ry)\n        cr.rotate(ang)\n        contact_shadow(cr, 0, 70, 120, a=0.3)\n        cr.rectangle(-12, 0, 24, 110)\n        solid(cr, (246, 236, 214))\n        disc(cr, 0, -40, 52, cc, finish=\"gloss\")\n        cr.set_source_rgba(*_c((246, 236, 214)))\n        cr.set_line_width(10)\n        cr.arc(0, -40, 60, 0, 2 * math.pi)\n        cr.stroke()\n        cr.restore()\n    foreground(cr, \"field\")\n    vignette(cr, a=0.28)\n\n    if u < 0.30:\n        host(\"pump\", hx, 1452, 220, beat=int(u / 0.07))\n    else:\n        host(\"tap\", hx, 1452, 220, beat=int((u - 0.30) / 0.11))\n\n    if fall >= 0.999:\n        lab, v = ll, vl\n    elif g >= 0.999:\n        lab, v = lp, vp\n    else:\n        lab, v = l0, v0\n    fit_readout(cr, f\"{v:.1f}\", f\"twins per 1,000 US births · {lab}\", 80, 480, size=130)\n",
+   "hook_data": 0
   },
   {
    "slug": "human-domesticated-14-animals",
@@ -25395,7 +25402,7 @@
   {
    "slug": "coldest-place-in-the-universe-is-human-made",
    "title": "The Coldest Place In The Universe Isn't In Space (3 Charts)",
-   "hook": "The coldest place in the universe isn't in space. Scientists built it.",
+   "hook": "The coldest place in the universe is 250 miles above your head",
    "closing": "The universe's coldest place also has the best view.",
    "question": "Could you survive one second at absolute zero?",
    "caption": "The coldest known place in the universe isn't 5,000 light-years away -- it's 250 miles above your head. NASA's Cold Atom Lab chills atoms a billion times colder than deep space itself. Could you survive one second there? 👇",
@@ -25466,8 +25473,7 @@
     }
    ],
    "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-05T16:51:01Z",
-   "hook_was": "The coldest place in the universe is 250 miles above your head"
+   "rewritten_at": "2026-10-05T16:51:01Z"
   },
   {
    "slug": "sea-level-rise-rate-doubled",
@@ -25800,7 +25806,7 @@
   {
    "slug": "self-checkout-cashier-jobs",
    "title": "Self-Checkout Is Quietly Replacing Cashiers (3 Charts)",
-   "hook": "Self-checkout was sold as the future. Stores are losing more money on it.",
+   "hook": "Your town wiped out 92% of cashier jobs",
    "closing": "The line moved. So did the job",
    "question": "Do you still choose a cashier?",
    "caption": "Self-checkout went from a novelty in 6% of big grocery chains in 2000 to over 90% today, while US cashier employment has been shrinking every year since. There's a catch, though -- stores now lose more to theft at self-checkout than they ever did at a staffed register. Do you use it? 👇",
@@ -25869,13 +25875,11 @@
       "mechanic": "leaking-register-drawer",
       "concept": "two open cash registers leak coins at a rate proportional to their loss percentage, self-checkout leaking far more",
       "code": "register = subject_image('cash register')\ntop = RTOP + 60\nlx = RX0 + 250\nrx = RX1 - 250\nrw, rh = 220, 200\nif register is not None:\n    paste(register, lx-rw//2, top, rw, rh)\n    paste(register, rx-rw//2, top, rw, rh)\nlabels_txt = ['Staffed', 'Self-checkout']\nvals = [values[0], values[1]]\ncenters = [lx, rx]\ndrip_bot = top + rh + 260\nfor i in range(2):\n    v = vals[i]\n    cx0 = centers[i]\n    nparticles = max(2, int(v*6))\n    shown = int(nparticles*clamp(reveal))\n    for j in range(shown):\n        seedv = i*71 + j*17 + 1\n        tfrac = ((seedv*9301+49297) % 233280)/233280.0\n        fx = (math.sin(seedv*12.9898) * 43758.5453) % 1.0\n        px = cx0 - 40 + fx*80\n        py = top + rh + tfrac*260\n        d.ellipse([px-6, py-6, px+6, py+6], fill=rgba(WARN, 230))\n    text(f'{v:.1f}%', cx0, drip_bot+30, size=42, color=WARN, center=True)\n    text(labels_txt[i], cx0, drip_bot+74, size=28, color=TEXT, center=True)\n"
-     },
-     "illustrated_scene": "def scene(cr, t, u, pts, host):\n    \"\"\"HERO: a tower of unscanned grocery boxes\n    SUBSTANCE: cardboard grocery cartons\n    CAUSE: Data climbs a ladder and stacks box after box on the tower, placing one carton per slice of loss\n    Outside the supermarket, the goods that walked out unpaid sit as one\n    tower of cartons on a pallet in the car park. The staffed registers'\n    loss is the tower's first boxes. From that level Data, up a ladder\n    leaning on the tower's right side, places carton after carton until\n    the tower reaches the self-checkout rate. THE SCALE is on the tower: a\n    dashed line marks where the staffed level stopped, with its name\n    beneath it on the left, and 1x and 2x ticks up the left side measure\n    the new tower in the old one. It ends about two and a half times as\n    tall. All of it lands by u=0.54. After that a shopping cart rolls out\n    of the lot by the camera and Data holds the top box up.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    hi = max(rows, key=lambda r: r[1])\n    lo = min(rows, key=lambda r: r[1])\n    hv = hi[1] or 1.0\n    ratio = hi[1] / (lo[1] or 1.0)\n    N = 10\n    n0 = int(clamp(round(N * lo[1] / hv), 1, N - 1))\n    add = N - n0\n    a0, a1 = 0.06, 0.54\n    span = (a1 - a0) / add\n    if u < a0:\n        k, f, land = 0, 0.0, 0.0\n    else:\n        k = int(clamp((u - a0) / span, 0, add - 0.001))\n        f = clamp((u - a0 - k * span) / span)\n        land = ease(seg(f, 0.15, 0.6))\n    placed = n0 if u < a0 else n0 + k + (1 if land >= 0.999 else 0)\n    hcur = n0 if u < a0 else n0 + k + land\n    done = u >= a0 and k == add - 1 and land >= 0.999\n\n    TX, BW, BH, BD = 330, 300, 76, 60\n    S0 = 1420                                  # pallet top\n    BANDS = [(198, 52, 44), (44, 98, 178), (232, 186, 46), (60, 146, 82),\n             (210, 112, 40)]\n\n    def jit(i):\n        return ((i * 37) % 11 - 5) * 3\n\n    def carton(x, y, i, w=BW, h=BH, d=BD, a=1.0):\n        box(cr, x, y, w, h, (196, 154, 102), depth=d, a=a)\n        cr.rectangle(x + 16, y - h + 18, w - 32, h * 0.36)\n        solid(cr, BANDS[i % len(BANDS)], a=a, rim=False)\n        cr.set_source_rgba(*_c((30, 28, 26), 0.85 * a))\n        for b in range(9):\n            cr.rectangle(x + w - 80 + b * 7, y - 24, 3 if b % 3 else 2, 15)\n        cr.fill()\n        cr.set_source_rgba(*_c((150, 112, 70), a))\n        cr.set_line_width(5)\n        cr.move_to(x + w / 2, y - h)\n        cr.line_to(x + w / 2, y - h + 14)\n        cr.stroke()\n\n    def cart(x, y, s):\n        contact_shadow(cr, x, y, 230 * s, a=0.4)\n        cr.move_to(x - 110 * s, y - 190 * s)\n        cr.line_to(x + 100 * s, y - 190 * s)\n        cr.line_to(x + 80 * s, y - 70 * s)\n        cr.line_to(x - 90 * s, y - 70 * s)\n        cr.close_path()\n        solid(cr, (168, 176, 188), finish=\"metal\", a=0.9)\n        cr.set_source_rgba(*_c((70, 76, 86)))\n        cr.set_line_width(3 * s)\n        for j in range(1, 10):\n            xx = x - 110 * s + j * 21 * s\n            cr.move_to(xx, y - 190 * s)\n            cr.line_to(xx - 2 * s, y - 70 * s)\n        for j in range(1, 4):\n            yy = y - 190 * s + j * 30 * s\n            cr.move_to(x - 110 * s + j * 5 * s, yy)\n            cr.line_to(x + 100 * s - j * 5 * s, yy)\n        cr.stroke()\n        cr.set_line_width(8 * s)\n        cr.move_to(x - 90 * s, y - 70 * s)\n        cr.line_to(x - 80 * s, y - 24 * s)\n        cr.line_to(x + 75 * s, y - 24 * s)\n        cr.line_to(x + 80 * s, y - 70 * s)\n        cr.stroke()\n        cr.set_source_rgba(*_c((200, 46, 40)))\n        cr.set_line_width(12 * s)\n        cr.move_to(x + 100 * s, y - 190 * s)\n        cr.line_to(x + 150 * s, y - 220 * s)\n        cr.stroke()\n        for wx in (x - 78 * s, x + 70 * s):\n            disc(cr, wx, y - 12 * s, 13 * s, (40, 40, 46))\n\n    # the setting: the supermarket at the edge of town, its car park\n    landscape(cr, t, \"town\")\n    st = building(cr, -80, 520, 1190, 300, (222, 214, 198), roof=\"flat\", boards=False)\n    cr.rectangle(st[\"x0\"] + 110, st[\"base\"] - 160, 300, 160)\n    solid(cr, (150, 192, 214), finish=\"glass\")\n    glow(cr, st[\"x0\"] + 260, st[\"base\"] - 80, 160, (250, 236, 200), 0.35)\n    cr.rectangle(st[\"x0\"] + 100, st[\"top\"] + 24, 320, 72)\n    solid(cr, (46, 120, 70))\n    text(cr, \"MARKET\", st[\"x0\"] + 260, st[\"top\"] + 80, 52, (244, 240, 228),\n         anchor=\"center\", shadow=False)\n    haze(cr, 700, 1200, (214, 200, 186), a=0.25)\n    # asphalt and bay lines\n    vgrad(cr, [(0, (88, 90, 96)), (1, (52, 54, 60))], 1240, H)\n    cr.set_source_rgba(*_c((232, 230, 220), 0.8))\n    cr.set_line_width(8)\n    for j in range(7):\n        bx = -100 + j * 220\n        cr.move_to(bx + 40, 1260)\n        cr.line_to(bx - 120, 1540)\n    cr.stroke()\n\n    # the tower of unpaid goods on its pallet\n    cast_shadow(cr, TX, TX + BW + BD, 1450, length=420, a=0.32)\n    contact_shadow(cr, TX + BW / 2 + 20, 1452, BW + 140, a=0.45)\n    box(cr, TX - 20, 1450, BW + 40, 30, (160, 120, 76), depth=BD + 6)\n    for i in range(placed):\n        carton(TX + jit(i), S0 - i * BH, i)\n\n    # THE SCALE: the staffed level as a dashed line across the tower, named\n    # beneath it on the left; 1x / 2x ticks up the left side above the name\n    my = S0 - n0 * BH\n    if placed > n0 or (u >= a0 and land > 0):\n        cr.move_to(TX - 50, my)\n        cr.line_to(TX + BW + BD + 20, my)\n        ghost(cr, a=0.95)\n        lab = lo[0].lower()\n        text(cr, lab, TX - 30, my + 50, fit_size(cr, lab, 32, TX - 50), look.INK,\n             anchor=\"right\")\n        times_ticks(cr, TX - 110, S0, n0 * BH, max(1, int(ratio)))\n\n    # the ladder leaning on the tower's right side\n    LX0, LY0, LX1, LY1 = 840, 1450, 690, 680\n    cr.set_source_rgba(*_c((150, 104, 60)))\n    cr.set_line_width(12)\n    for off in (0, 70):\n        cr.move_to(LX0 + off, LY0)\n        cr.line_to(LX1 + off, LY1)\n    cr.stroke()\n    cr.set_line_width(8)\n    for r in range(13):\n        q = r / 12\n        x_ = LX0 + (LX1 - LX0) * q\n        y_ = LY0 + (LY1 - LY0) * q\n        cr.move_to(x_, y_)\n        cr.line_to(x_ + 70, y_)\n    cr.stroke()\n\n    topy = S0 - hcur * BH\n    fy = min(1452.0, topy + 250)\n    q = clamp((LY0 - fy) / (LY0 - LY1))\n    hx = LX0 + 35 + (LX1 - LX0) * q\n\n    # the carton in his hands, set down onto the top of the stack\n    if u >= a0 and land < 0.999:\n        i = n0 + k\n        sx, sy = hx - 60, fy - 150\n        ex, ey = TX + jit(i), S0 - i * BH\n        bx = sx + (ex - sx) * land\n        by = sy + (ey - sy) * land - 70 * math.sin(math.pi * land)\n        carton(bx, by, i)\n\n    # right by the camera: cartons that already walked out, and a cart that\n    # rolls off across the lot once the tower has landed\n    contact_shadow(cr, 170, 1842, 300, a=0.45)\n    carton(30, 1840, 1, w=260, h=110, d=70)\n    carton(60, 1730, 3, w=210, h=90, d=56)\n    cart(860 - 1400 * ease(seg(u, 0.56, 1.0)), 1790, 1.5)\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    if u < a0:\n        host(\"point\", hx, fy, 220)\n    elif u < a1 + 0.04:\n        host(\"place\", hx, fy, 220, beat=k)\n    elif u < 0.9:\n        host(\"hold_up\", hx, fy, 220)\n    else:\n        host(\"shock\", hx, fy, 220)\n\n    if done:\n        fit_readout(cr, f\"{hi[1]:g}%\", f\"of goods lost · {hi[0].lower()}\",\n                    80, 520, size=130, max_w=560)\n        text(cr, f\"{ratio:.1f}x\", TX - 40, 740, 90, look.INK, face=\"display\",\n             anchor=\"right\", alpha=ease(seg(u, a1, a1 + 0.05)))\n    else:\n        fit_readout(cr, f\"{lo[1]:g}%\", f\"of goods lost · {lo[0].lower()}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130, max_w=560)\n"
+     }
     }
    ],
    "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-06T13:10:30Z",
-   "hook_was": "Your town wiped out 92% of cashier jobs"
+   "rewritten_at": "2026-10-06T13:10:30Z"
   },
   {
    "slug": "fifty-years-since-moon-landing",
@@ -26205,7 +26209,7 @@
    "slug": "north-american-bird-collapse",
    "title": "North America Lost 3 Billion Birds Since 1970",
    "hook": "Your backyard birds are vanishing — 3 billion gone since 1970.",
-   "closing": "The quiet was the warning.",
+   "closing": "Silence was the warning all along.",
    "question": "Noticed fewer birds near you? Tell me below.",
    "caption": "North America has lost 3 billion birds -- 29% of all birds -- since 1970, and just 12 common families make up 90% of that loss. It's not rare species vanishing, it's the birds in your backyard. Proof it's fixable: waterfowl are up 56% thanks to conservation. Have you noticed fewer birds around you? 👇",
    "hashtags": [
@@ -26235,7 +26239,7 @@
      "insight_type": "trend",
      "role": "1 · THE SCALE",
      "topic": "total bird abundance",
-     "say": "North America had 10.1 billion breeding birds in 1970; by 2017, only 7.2 billion."
+     "say": "North America fell from 10.1 billion breeding birds in 1970 to 7.2 billion by 2017."
     },
     {
      "source": "offline",
@@ -26248,7 +26252,7 @@
      "use_baseline": false,
      "role": "2 · NOT EVEN",
      "topic": "change by bird group",
-     "say": "Grassland birds lost over half their numbers, while ducks and geese actually grew."
+     "say": "Grassland birds fell 53 percent and shorebirds 37 percent, while waterfowl grew 56 percent."
     },
     {
      "source": "offline",
@@ -26260,13 +26264,12 @@
      "use_baseline": true,
      "role": "3 · WHICH BIRDS",
      "topic": "common families' loss share",
-     "say": "Nearly all that loss comes from just twelve everyday families, like sparrows and finches.",
+     "say": "Just 12 familiar families, like sparrows and finches, make up 90 percent of the loss.",
      "ascending": false
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T12:10:30Z",
-   "retold": "retell/v1"
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-07T12:33:11Z"
   },
   {
    "slug": "kids-phones-getting-younger",
@@ -26403,8 +26406,8 @@
   {
    "slug": "global-displacement-record",
    "title": "More People Are Displaced Right Now Than Ever Recorded",
-   "hook": "The world just broke its record for people forced to flee their homes.",
-   "closing": "The record keeps getting broken, year after year.",
+   "hook": "Your world now holds 123.2 million people forced from home.",
+   "closing": "Every year now breaks the record before the last one.",
    "question": "Which country hosts the most refugees?",
    "caption": "123.2 million people are now forcibly displaced worldwide -- a record for the 12th year in a row. The country hosting the most isn't a rich Western nation, it's Iran, and low- and middle-income countries host 73% of the total. Which country would you guess hosts the most? 👇",
    "hashtags": [
@@ -26434,7 +26437,7 @@
      "insight_type": "trend",
      "role": "1 · THE RECORD",
      "topic": "People displaced worldwide",
-     "say": "Back in 2013, 51 million people were displaced; by 2024, that number had more than doubled."
+     "say": "From 51.2 million in 2013 to 70.8 million in 2018, then 123.2 million in 2024."
     },
     {
      "source": "offline",
@@ -26447,7 +26450,7 @@
      "use_baseline": false,
      "role": "2 · NOT WHO YOU'D GUESS",
      "topic": "Where displaced people go",
-     "say": "Iran hosts the most refugees of any country, nearly three and a half million."
+     "say": "Iran hosts the most refugees, nearly 3.5 million, ahead of Turkey's 2.9 million."
     },
     {
      "source": "offline",
@@ -26459,14 +26462,12 @@
      "use_baseline": true,
      "role": "3 · WHO CARRIES IT",
      "topic": "Displaced hosts by income",
-     "say": "And it's mostly poorer countries carrying the load: 73 percent of displaced people live in them.",
+     "say": "Low and middle income countries host 73 percent of the world's displaced people.",
      "ascending": false
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T12:10:46Z",
-   "retold": "retell/v1",
-   "hook_was": "Your world now holds 123.2 million people forced from home."
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-07T12:33:33Z"
   },
   {
    "slug": "black-holes-in-galaxy",
@@ -26742,7 +26743,7 @@
      "insight_type": "trend",
      "topic": "lab-grown diamond price",
      "role": "1 · THE CRASH",
-     "say": "Lab-grown diamonds fell from $4,200 a carat to just $380 in five years."
+     "say": "In 2020, a lab-grown diamond cost $4,200 a carat; by 2025, just $380."
     },
     {
      "source": "offline",
@@ -26755,7 +26756,7 @@
      "use_baseline": true,
      "topic": "natural vs. lab-grown price",
      "role": "2 · THE GAP",
-     "say": "A natural diamond still costs $4,200, so the lab-grown twin sells for a tenth of that."
+     "say": "A natural 1-carat diamond still costs $4,200, while its lab-grown twin costs $380."
     },
     {
      "source": "offline",
@@ -26766,12 +26767,11 @@
      "insight_type": "trend",
      "topic": "share of engagement rings",
      "role": "3 · THE SHIFT",
-     "say": "Nearly half of engagement rings now sit on a lab-grown stone, up from almost none."
+     "say": "Lab-grown went from 3 percent of engagement rings in 2018 to 47 percent by 2024."
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T12:27:27Z",
-   "retold": "retell/v1"
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-07T12:34:28Z"
   },
   {
    "slug": "aquaculture-overtook-wild-fishing",
@@ -26803,7 +26803,7 @@
      "insight_type": "trend",
      "topic": "Farmed fish production",
      "role": "1 · THE CATCH-UP",
-     "say": "In 1990, farms raised only 13 million tonnes of fish; by 2022, it was 94 million."
+     "say": "In 1990 almost every fish was wild-caught; by 2022 farms produced 94 million tonnes."
     },
     {
      "source": "offline",
@@ -26815,7 +26815,7 @@
      "use_baseline": true,
      "topic": "Farmed vs wild fish",
      "role": "2 · THE FLIP",
-     "say": "Wild catch barely budged, so in 2022 farms finally edged ahead of the sea.",
+     "say": "Wild catch barely moved in 30 years; in 2022 farms edged ahead, 51 to 49.",
      "ascending": false
     },
     {
@@ -26827,12 +26827,11 @@
      "insight_type": "trend",
      "topic": "Fish on your plate",
      "role": "3 · YOUR PLATE",
-     "say": "Today, more than half the fish on your plate was raised on a farm."
+     "say": "Now 57 percent of the fish on your plate comes from a farm."
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T12:27:41Z",
-   "retold": "retell/v1"
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-07T12:34:48Z"
   },
   {
    "slug": "daylight-saving-time-in-decline",
@@ -26864,7 +26863,7 @@
      "use_baseline": true,
      "topic": "World still changes clocks",
      "role": "1 · TODAY",
-     "say": "Only about one country in three still bothers changing its clocks.",
+     "say": "Only about 70 countries, 36 percent, still change clocks; the other 64 skipped or quit.",
      "ascending": false
     },
     {
@@ -26876,7 +26875,7 @@
      "insight_type": "trend",
      "topic": "Countries that gave up",
      "role": "2 · THE EXIT",
-     "say": "At its peak, 140 countries changed their clocks; now it's down to about 70."
+     "say": "More than 140 countries tried daylight saving; Russia, Turkey, and Brazil recently walked away."
     },
     {
      "source": "offline",
@@ -26888,13 +26887,12 @@
      "use_baseline": true,
      "topic": "Most populous countries",
      "role": "3 · THE REAL SCALE",
-     "say": "India and China, with 1.4 billion people each, never changed their clocks at all.",
+     "say": "India and China, 1.4 billion people each, never observed daylight saving.",
      "ascending": false
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T12:28:01Z",
-   "retold": "retell/v1"
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-08T18:50:39Z"
   },
   {
    "slug": "self-storage-outnumbers-starbucks",
@@ -27208,9 +27206,9 @@
   {
    "slug": "freshwater-accessible",
    "title": "How Much Of Earth's Water You Can Actually Drink",
-   "hook": "Earth is drowning in water and you still can't drink almost any of it.",
+   "hook": "Almost none of Earth's water is drinkable.",
    "closing": "Drink up. There's not much to go around.",
-   "question": "Would you have guessed it was this small?",
+   "question": "Did you know that number was this small? Tell me below.",
    "caption": "96.5% of Earth's water is ocean. Almost all the rest is frozen or buried underground. What's left in every lake and river combined? A rounding error. 👇",
    "hashtags": [
     "water",
@@ -27236,9 +27234,9 @@
      "insight_type": "rank",
      "use_baseline": true,
      "ascending": false,
-     "topic": "Earth's salty water",
+     "topic": "Earth's water: saline vs. fresh",
      "role": "1 · THE SPLIT",
-     "say": "Only 3.5 percent of Earth's water is fresh; the rest is salty ocean."
+     "say": "Of every drop of water on this planet, roughly 96.5 percent is salty ocean water. Only 3.5 percent of it is freshwater at all."
     },
     {
      "source": "offline",
@@ -27248,10 +27246,9 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "Water locked away",
+     "topic": "where the freshwater actually is",
      "role": "2 · THE CATCH",
-     "say": "Nearly all freshwater is locked up, with 68.7 percent frozen in glaciers and ice caps.",
-     "illustrated_scene": "def scene(cr, t, u, pts, host):\n    \"\"\"HERO: a giant glass of Earth's freshwater\n    SUBSTANCE: chunks of glacier ice\n    CAUSE: Data tosses ice chunks into the glass, one throw at a time, until ice fills most of it\n    All of Earth's freshwater is one tall glass standing on the ice field.\n    The liquid part (groundwater plus surface water) sits blue at the bottom\n    at its true share. Data tosses ice into the glass, throw by throw, until\n    the frozen share fills its real 68.7% of the glass up to the brim. That\n    lands by 0.56 and holds. After that Data keeps throwing, and the extra\n    chunks bounce off the full brim and tumble down onto the snow. The scale\n    is the glass itself: brim to base is all the freshwater there is, and a\n    dashed mark shows where the liquid ends.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    tot = sum(v for _, v in rows) or 1.0\n    lab, vice = max(rows, key=lambda r: r[1])\n    share = vice / tot\n\n    n = 6\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    fly = seg(f, 0.0, 0.4)\n    grow = ease(seg(f, 0.35, 0.7))\n    step = 0.0 if u < a0 else (k + grow) / n\n    done = u >= a0 and k == n - 1 and grow >= 0.999\n\n    # the setting: an ice field under a low sun\n    gy = landscape(cr, t, \"snow\")\n    birds(cr, t, y0=760, n=3, rgb=(60, 66, 80))\n\n    GX0, GX1, BASE, TOP = 300, 780, 1440, 640\n    WALL = 14\n    IX0, IX1, IB, IT = GX0 + WALL, GX1 - WALL, BASE - WALL, TOP + 10\n    hin = IB - IT\n    water_h = hin * (1 - share)\n    yw = IB - water_h\n\n    cast_shadow(cr, GX0, GX1, BASE, length=340, a=0.3)\n    contact_shadow(cr, (GX0 + GX1) / 2, BASE + 4, GX1 - GX0 + 80, a=0.4)\n\n    # the contents, clipped to the inside of the glass\n    cr.save()\n    cr.rectangle(IX0, IT, IX1 - IX0, IB - IT)\n    cr.clip()\n    vgrad(cr, [(0, (196, 214, 228)), (1, (170, 190, 208))], IT, IB, IX0, IX1)\n    # the liquid share: blue water at the bottom\n    vgrad(cr, [(0, (86, 156, 214)), (1, (34, 84, 150))], yw, IB, IX0, IX1)\n    wave = 6 * math.sin(t * 2.2)\n    cr.set_source_rgba(*_c((210, 236, 252), 0.8))\n    cr.set_line_width(5)\n    cr.move_to(IX0, yw + wave)\n    cr.curve_to(IX0 + 150, yw - wave, IX1 - 150, yw + wave, IX1, yw - wave)\n    cr.stroke()\n    # the frozen share: ice chunks packed up from the waterline\n    cols, rh = 5, 64\n    cw = (IX1 - IX0) / cols\n    nrows = int(math.ceil(share * hin / rh))\n    total = cols * nrows\n    shown = int(total * step + 0.5)\n    ice = (206, 232, 246)\n    for i in range(shown):\n        r_, c = divmod(i, cols)\n        bx = IX0 + c * cw + 3 + (r_ % 2) * 8\n        by = yw - r_ * rh\n        box(cr, bx, by, cw - 18, rh - 8, ice, depth=12, finish=\"ice\")\n    cr.restore()\n\n    # the glass itself, over its contents\n    cr.rectangle(GX0, TOP, GX1 - GX0, BASE - TOP)\n    cr.rectangle(IX0, IT, IX1 - IX0, IB - IT)\n    cr.set_fill_rule(cairo.FILL_RULE_EVEN_ODD)\n    solid(cr, (200, 226, 240), finish=\"glass\", a=0.55)\n    cr.set_fill_rule(cairo.FILL_RULE_WINDING)\n    cr.set_source_rgba(*_c((255, 255, 255), 0.35))\n    cr.rectangle(GX0 + 30, TOP + 30, 22, BASE - TOP - 80)\n    cr.fill()\n    cr.rectangle(GX0, TOP, GX1 - GX0, BASE - TOP)\n    edge(cr, (40, 52, 66))\n    # the scale on the glass: brim is all freshwater, the liquid's top marked\n    if step > 0.02:\n        then_mark(cr, GX0 - 10, GX1 + 10, yw, \"liquid\", a=ease(seg(u, a0, a0 + 0.05)))\n\n    # Data walks in along the right of the glass as he throws\n    walk_in = ease(seg(u, a0, a1))\n    hx = 1000 - 160 * walk_in\n    hy = 1452\n\n    # the chunk in flight, from his hands into the glass\n    if u >= a0 and u < a1 + 0.01 and 0 < fly < 1:\n        r_, c = divmod(min(shown, total - 1), cols)\n        sx, sy = hx - 30, hy - 200\n        ex, ey = IX0 + c * cw + cw / 2, yw - r_ * rh - 40\n        bx = sx + (ex - sx) * fly\n        by = sy + (ey - sy) * fly - 300 * math.sin(math.pi * fly)\n        cr.save()\n        cr.translate(bx, by)\n        cr.rotate(fly * 5)\n        cr.rectangle(-40, -30, 80, 60)\n        solid(cr, ice, finish=\"ice\")\n        cr.restore()\n\n    # after it lands: he keeps throwing, the extra ice bounces off the brim\n    j = 0\n    if u > a1:\n        per = 0.14\n        j = int((u - a1) / per)\n        ph = ((u - a1) % per) / per\n        sx, sy = hx - 30, hy - 200\n        if ph < 0.5:\n            q = ph / 0.5\n            bx = sx + (GX1 - 60 - sx) * q\n            by = sy + (TOP - 20 - sy) * q - 260 * math.sin(math.pi * q)\n        else:\n            q = (ph - 0.5) / 0.5\n            bx = GX1 - 60 + 90 * q\n            by = TOP - 20 + (BASE - 30 - TOP + 20) * q * q\n        cr.save()\n        cr.translate(bx, by)\n        cr.rotate(ph * 7)\n        cr.rectangle(-36, -28, 72, 56)\n        solid(cr, ice, finish=\"ice\")\n        cr.restore()\n\n    # right by the camera: broken ice on the snow\n    for i in range(4):\n        box(cr, 70 + i * 260, 1700 + (i % 2) * 60, 120 + 20 * (i % 2), 80, ice,\n            depth=26, finish=\"ice\")\n    foreground(cr, \"snow\")\n    vignette(cr, a=0.28)\n\n    if u < a0:\n        host(\"point\", hx, hy, 220)\n    elif u <= a1:\n        host(\"toss\", hx, hy, 220, beat=k)\n    else:\n        host(\"toss\", hx, hy, 220, beat=n + j)\n\n    if done or u > a1:\n        fit_readout(cr, f\"{vice:g}%\", f\"of freshwater is frozen · {lab.lower()}\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, \"Freshwater\", \"all of it, in one glass\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.05)), size=130)\n"
+     "say": "And almost all of that freshwater is locked away: 68.7 percent frozen in glaciers and ice caps, another 30.1 percent buried underground."
     },
     {
      "source": "offline",
@@ -27261,21 +27258,18 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "Water you can reach",
+     "topic": "what's actually reachable",
      "role": "3 · THE LEFTOVER",
-     "say": "Every lake and river combined holds just 0.007% of Earth's water."
+     "say": "Add it all up and the water in every lake and river combined, the stuff you can actually reach, comes to about 0.007% of all the water on Earth."
     }
-   ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-09T12:28:39Z",
-   "hook_was": "Only 3.5 percent of Earth's water isn't salty."
+   ]
   },
   {
    "slug": "cargo-ship-size-growth",
    "title": "Cargo Ships Quietly Got Six Times Bigger",
-   "hook": "20 people now run a ship longer than the Titanic.",
+   "hook": "This ship is longer than the Titanic.",
    "closing": "One captain. Twenty-four thousand boxes. No pressure.",
-   "question": "Would you sail on one? Tell me below.",
+   "question": "Did you know ships got that much bigger? Tell me below.",
    "caption": "The biggest cargo ship in 1980 carried 4,000 containers. Today's record holder carries 24,327, with roughly the same size crew. Here's how shipping quietly scaled up. 👇",
    "hashtags": [
     "cargoships",
@@ -27298,9 +27292,9 @@
       "file": "container_ship_capacity_trend.json"
      },
      "insight_type": "trend",
-     "topic": "Cargo ship size, 1980-2024",
+     "topic": "biggest container ship, 1980-2024",
      "role": "1 · THE CLIMB",
-     "say": "In 1980, the biggest container ship carried about 4,000 boxes; today it carries 24,327."
+     "say": "In 1980, the biggest container ship on Earth carried about 4,000 boxes. By 2024, the record holder carries 24,327, six times more, on one hull."
     },
     {
      "source": "offline",
@@ -27311,9 +27305,9 @@
      "insight_type": "rank",
      "use_baseline": true,
      "ascending": false,
-     "topic": "Cargo ship vs. Titanic",
+     "topic": "today's biggest ship vs. the Titanic",
      "role": "2 · THE SCALE",
-     "say": "The biggest one today is about 400 meters long, longer than the Titanic."
+     "say": "That record holder, the MSC Irina, stretches about 400 meters, longer than the Titanic, just to move boxes across an ocean."
     },
     {
      "source": "offline",
@@ -27323,19 +27317,16 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "Cargo ship crew",
+     "topic": "crew size, then vs. now",
      "role": "3 · THE CATCH",
-     "say": "Yet it runs on about 20 people, fewer than in 1980, for six times the cargo."
+     "say": "Yet the crew barely changed. About 20 people run a ship six times the size, thanks to automation, same crew, six times the cargo."
     }
-   ],
-   "words_by": "claude-retell",
-   "retold": "retell/v1",
-   "rewritten_at": "2026-10-09T12:45:57Z"
+   ]
   },
   {
    "slug": "ceo-executive-pay-gap",
    "title": "The Gap Between CEO Pay And Your Pay Exploded",
-   "hook": "A CEO now makes 281 times what you do.",
+   "hook": "CEOs didn't always make this much.",
    "closing": "Monday morning. Your whole year, gone.",
    "question": "Does that ratio surprise you? Tell me below.",
    "caption": "CEO pay is up 1,085% since 1978. Typical worker pay? 24%. At today's ratio, a CEO earns your yearly salary before their first coffee break clears. 👇",
@@ -27361,9 +27352,9 @@
       "file": "ceo_worker_pay_ratio_trend.json"
      },
      "insight_type": "trend",
-     "topic": "CEO-to-worker pay ratio",
+     "topic": "CEO-to-worker pay ratio, 1965-2024",
      "role": "1 · THE CLIMB",
-     "say": "CEOs earned 21 times a worker's pay in 1965, and 281 times today."
+     "say": "In 1965, a CEO made about 21 times what a typical worker earned. By 2000 that ratio hit 398 to 1. It's since cooled to 281 to 1, still enormous."
     },
     {
      "source": "offline",
@@ -27374,9 +27365,9 @@
      "insight_type": "rank",
      "use_baseline": true,
      "ascending": false,
-     "topic": "CEO vs. worker pay",
+     "topic": "pay growth since 1978: CEOs vs. workers",
      "role": "2 · THE GAP",
-     "say": "CEO pay climbed 1,085 percent since 1978, while worker pay rose only 24 percent."
+     "say": "Since 1978, CEO pay has climbed 1,085 percent. Typical worker pay? Just 24 percent, barely enough to keep pace with inflation."
     },
     {
      "source": "offline",
@@ -27386,13 +27377,11 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "Your year of pay",
+     "topic": "days to earn your whole year",
      "role": "3 · THE MATH",
-     "say": "A CEO earns a typical worker's whole year of pay in barely a day or two."
+     "say": "Do the math on that 281-to-1 ratio and a CEO earns your entire year's pay in about 1.3 days back at their desk."
     }
-   ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-09T12:46:26Z"
+   ]
   },
   {
    "slug": "flying-safer-than-ever",
@@ -27456,9 +27445,9 @@
   {
    "slug": "cursive-handwriting-comeback",
    "title": "Cursive Nearly Died. Schools Brought It Back.",
-   "hook": "Schools killed cursive, then 25 states made it law again.",
+   "hook": "Your kid's school killed cursive. Then un-killed it.",
    "closing": "Soon nobody will read their own grandparents' letters.",
-   "question": "Did you learn cursive in school?",
+   "question": "Did you learn cursive in school? Tell me below.",
    "caption": "14 states required cursive in 2016. 25 do now. Meanwhile about 2 in 3 young Americans can't read it — and 80% of the National Archives is written in it. Did you learn cursive? Tell me below. 👇",
    "hashtags": [
     "cursive",
@@ -27482,9 +27471,9 @@
       "file": "states_requiring_cursive.json"
      },
      "insight_type": "trend",
-     "topic": "States requiring cursive",
+     "topic": "states requiring cursive",
      "role": "1 · THE COMEBACK",
-     "say": "Cursive requirements nearly doubled, from 14 states in 2016 to 25 by 2024."
+     "say": "In 2016, only 14 states required cursive by law. By 2024, 25 states did — nearly double in under a decade."
     },
     {
      "source": "offline",
@@ -27494,9 +27483,9 @@
      },
      "insight_type": "comparison",
      "use_baseline": false,
-     "topic": "Young Americans' cursive literacy",
+     "topic": "cursive literacy among young Americans",
      "role": "2 · THE GAP",
-     "say": "About 2 in 3 young Americans can't read cursive, a skill that skipped a generation."
+     "say": "That gap costs something: about 2 in 3 young Americans can't actually read cursive anymore. The skill skipped a whole generation."
     },
     {
      "source": "offline",
@@ -27506,13 +27495,11 @@
      },
      "insight_type": "comparison",
      "use_baseline": false,
-     "topic": "Archives' cursive documents",
+     "topic": "the National Archives' cursive documents",
      "role": "3 · THE STAKES",
-     "say": "About 80 percent of the National Archives' documents are written in cursive."
+     "say": "It's not just old letters — about 80 percent of the National Archives' 15 billion documents are written in cursive."
     }
-   ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-09T12:46:45Z"
+   ]
   },
   {
    "slug": "english-internet-share-decline",
@@ -27813,9 +27800,9 @@
   {
    "slug": "dating-app-user-exodus",
    "title": "Dating Apps Just Lost Millions Of Users",
-   "hook": "Tinder lost nearly 40% of its US users in two years.",
+   "hook": "The dating apps are quietly emptying out.",
    "closing": "Swipe fatigue is real, and it's winning.",
-   "question": "Have you deleted a dating app this year?",
+   "question": "Have you deleted a dating app this year? Tell me below.",
    "caption": "Tinder's US users dropped from 18 million to 11 million in two years, and it's not alone -- usage across the top 10 dating apps fell industry-wide. 78% of users say the apps leave them drained. Have you quit one? 👥",
    "hashtags": [
     "datingapps",
@@ -27841,7 +27828,7 @@
      "insight_type": "trend",
      "role": "1 · THE DROP",
      "topic": "Tinder's US users",
-     "say": "Tinder's US users fell from 18 million to about 11 million in two years."
+     "say": "Tinder's US user base went from 18 million in early 2022 to about 11 million now, a drop of nearly 40% in two years, on what used to be the biggest dating app on Earth."
     },
     {
      "source": "offline",
@@ -27852,8 +27839,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · NOT JUST ONE",
-     "topic": "Dating app usage",
-     "say": "Across the biggest dating apps, usage fell 16% in one year."
+     "topic": "the whole industry",
+     "say": "It's not just Tinder. Usage across the ten biggest dating apps combined dropped 16% in a single year. This is an industry-wide retreat."
     },
     {
      "source": "offline",
@@ -27863,12 +27850,10 @@
      },
      "insight_type": "share",
      "role": "3 · THE WHY",
-     "topic": "Why users leave",
-     "say": "78% of dating app users say the apps leave them mentally or emotionally drained."
+     "topic": "why people are leaving",
+     "say": "The reason isn't a mystery. 78% of dating app users now say the experience leaves them mentally or emotionally drained. People stopped feeling it was worth it."
     }
-   ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-09T12:47:35Z"
+   ]
   },
   {
    "slug": "fusion-net-energy-gain",
@@ -29258,9 +29243,9 @@
   {
    "slug": "kelp-forest-sea-star-collapse",
    "title": "California Lost 96% Of Its Kelp Forests. Blame One Missing Predator.",
-   "hook": "A disease wiped out 99% of California's sunflower sea stars in two years.",
-   "closing": "No sea stars, no kelp. One disease did all that.",
-   "question": "Could one disease topple a forest? Tell me.",
+   "hook": "99% of them were gone within two years — and no one warned you.",
+   "closing": "No sea stars, no kelp, no forest. One disease did all that.",
+   "question": "Did you know one disease could take down a whole forest? Tell me below.",
    "caption": "In 2013, a mystery wasting disease killed up to 99% of Pacific sunflower sea stars. Without them, purple urchins exploded more than 10,000% -- and mowed California's north coast kelp forests down to almost nothing: a 96% loss. One missing predator, one collapsed ecosystem. Did you know this? 👇",
    "hashtags": [
     "kelpforest",
@@ -29285,8 +29270,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE DIE-OFF",
-     "topic": "Sea star predator dies",
-     "say": "A mystery disease killed up to 99% of sunflower sea stars within two years."
+     "topic": "sea stars wiped out by disease",
+     "say": "In 2013, a mystery wasting disease killed billions of sunflower sea stars almost overnight -- up to 99% of them, gone within two years."
     },
     {
      "source": "offline",
@@ -29296,8 +29281,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE EXPLOSION",
-     "topic": "Urchins lose their predator",
-     "say": "Without sea stars, purple urchins exploded — up more than 10,000% along the North Coast."
+     "topic": "urchins take over without their main predator",
+     "say": "Sea stars used to keep purple urchins in check. Without them, urchin numbers exploded -- up more than 10,000% along the North Coast."
     },
     {
      "source": "offline",
@@ -29309,12 +29294,10 @@
      "ascending": false,
      "role": "3 · THE COLLAPSE",
      "topic": "California's kelp forests disappear",
-     "say": "Those urchins mowed the kelp down, and the North Coast lost 96% of its canopy."
+     "say": "Those urchins mowed down the kelp forest the whole ecosystem depends on. California's north coast lost 96% of its kelp canopy in just a few years."
     }
    ],
-   "hook_was": "A mystery disease wiped out billions of sea stars in 2013.",
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-09T12:47:46Z"
+   "hook_was": "A mystery disease wiped out billions of sea stars in 2013."
   },
   {
    "slug": "passport-ownership-surge",
@@ -30204,7 +30187,7 @@
   {
    "slug": "marathon-super-shoes-record-pace",
    "title": "Super Shoes Just Broke The Marathon World Record Again",
-   "hook": "The marathon record sat nearly still for years. Then the shoes arrived.",
+   "hook": "Your shoes just broke the marathon record: 2 hours flat, still falling.",
    "closing": "Somewhere, a shoe lab just shaved off more seconds.",
    "question": "Should super shoes count toward world records?",
    "caption": "The marathon world record has fallen 5 times since 1998 -- but it's falling almost 4x faster since carbon-plated 'super shoes' showed up in 2016. 15 of the 20 fastest marathons ever were run after that. 👇",
@@ -30232,7 +30215,7 @@
      "insight_type": "trend",
      "topic": "Marathon world record",
      "role": "1 · THE RECORD KEEPS FALLING",
-     "say": "The marathon record has dropped from 126 minutes to about 120."
+     "say": "The record fell from 2 hours 6 minutes in 1998 to 2 hours flat by 2023."
     },
     {
      "source": "offline",
@@ -30244,7 +30227,7 @@
      "use_baseline": true,
      "topic": "Super shoes speed-up",
      "role": "2 · THE SHOES CHANGED THE MATH",
-     "say": "Before super shoes, the record slipped just 8 seconds a year; then it sped up.",
+     "say": "Before super shoes it fell about 8 seconds a year, but since 2016, almost 30.",
      "ascending": false
     },
     {
@@ -30257,13 +30240,12 @@
      "ascending": false,
      "topic": "Fastest marathon times",
      "role": "3 · THE PROOF",
-     "say": "Three out of four of the fastest marathons ever came after super shoes arrived."
+     "say": "Of the 20 fastest marathons ever, 15 came after 2018, when the shoes arrived."
     }
    ],
    "hook_was": "The record just fell for the 5th time since 1998.",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T12:48:10Z",
-   "retold": "retell/v1"
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-08T18:51:54Z"
   },
   {
    "slug": "night-owl-chronotype-rarity",
@@ -30334,7 +30316,7 @@
   {
    "slug": "billionaire-count-record-2025",
    "title": "The World Now Has Over 3,000 Billionaires For The First Time",
-   "hook": "While you were paying rent, the world minted 1,200 new billionaires.",
+   "hook": "Billionaires exploded from 1,826 to 3,028 while you were busy paying rent.",
    "closing": "Getting richer mostly meant holding stocks while they climbed.",
    "question": "Lucky, or just well-invested? Tell me below.",
    "caption": "Forbes counted 3,028 billionaires in 2025, worth over $16.1 trillion combined -- up from 1,826 people and $7.1 trillion a decade ago. But the S&P 500 alone grew even faster. 👇",
@@ -30513,9 +30495,9 @@
   {
    "slug": "permafrost-thaw",
    "title": "The Arctic's Permafrost Is Quietly Thawing For Good",
-   "hook": "The Arctic's frozen ground is a carbon bomb, and it's already thawing.",
+   "hook": "Your climate's frozen vault is melting: 8 degrees below freezing has become just over 2 below.",
    "closing": "It took millennia to freeze. It's unfreezing in decades.",
-   "question": "Could frozen ground leak carbon? Tell me below.",
+   "question": "Did you know the ground itself could leak carbon? Tell me below.",
    "caption": "Arctic permafrost has held carbon frozen in place for thousands of years — 1.7 trillion tons of it, nearly double what's in the whole atmosphere. It's now warming fast enough to start letting that carbon go. Here's the mechanism. Did this surprise you? 👇",
    "hashtags": [
     "permafrost",
@@ -30540,8 +30522,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE WARMING",
-     "topic": "Arctic permafrost temperature",
-     "say": "Permafrost sat 8 degrees below freezing in 1983, and just over 2 below by 2023."
+     "topic": "Arctic permafrost ground temperature",
+     "say": "Arctic permafrost sat about 8 degrees below freezing in 1983. By 2023 it had warmed to just over 2 below -- ground frozen for millennia doesn't warm that fast on its own."
     },
     {
      "source": "offline",
@@ -30552,8 +30534,8 @@
      "insight_type": "rank",
      "ascending": true,
      "role": "2 · WHAT'S INSIDE IT",
-     "topic": "Permafrost carbon versus atmosphere",
-     "say": "The atmosphere holds 870 billion tons of carbon, but permafrost holds 1.7 trillion, almost double."
+     "topic": "carbon locked in permafrost versus the atmosphere",
+     "say": "Here's what's at stake: the whole atmosphere holds about 870 billion tons of carbon. Permafrost alone holds 1.7 trillion — almost double — frozen in place since before the last ice age ended."
     },
     {
      "source": "offline",
@@ -30563,13 +30545,11 @@
      },
      "insight_type": "trend",
      "role": "3 · WHAT COULD LEAK OUT",
-     "topic": "Thawing permafrost carbon release",
-     "say": "Thawing could release 150 billion tons of that carbon by 2100 under high warming."
+     "topic": "projected carbon release from thawing permafrost",
+     "say": "Scientists project that thaw could release 150 billion tons of that carbon by 2100 under a high-warming path. That's carbon the climate math never counted on moving."
     }
    ],
-   "hook_was": "It's held 1.7 trillion tons of carbon frozen for thousands of years.",
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-09T13:01:33Z"
+   "hook_was": "It's held 1.7 trillion tons of carbon frozen for thousands of years."
   },
   {
    "slug": "air-conditioning-access-gap",

@@ -1,0 +1,16 @@
+{
+ "slug": "volcano-country-ranking",
+ "ts": "20261009T153155Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg4:mid/end, 'Everywhere else on Earth 25%' is tiny and printed on top of 'On the Ring of Fire 75%'. In seg1:start the map label 'Jnited States of America' is cut off and 'United States o...' is truncated. In seg1:end '185' is printed over by the mascot and a ring, and '118'/'107' ar",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "meaningless_closing_visual",
+  "visible_evidence": "seg4:mid/end show a generic two-post ruler reading '50% apart', with 'Everywhere else on Earth 25%' printed over 'On the Ring of Fire 75%'. Data stands on a ladder, and the caption 'Alaska: quietly winning at volcanoes since forever.' has nothing to do with the picture.",
+  "root_cause": "The closing reused a generic gap-ruler machine on the previous beat's percentages instead of drawing the Alaska payoff. The label layout collides, and '50% apart' is a meaningless derived number.",
+  "repair_goal": "Make the closing land the Alaska punchline. Draw Alaska's 130 volcanoes as a dense chain of peaks along the Aleutian arc that dwarfs the 35 left in the rest of the US, have Data place the last cone, and show at most one number with no overlapping labels."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "highest-point-illusion",
+ "ts": "20261009T153155Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg1:start shows the values and names as near-invisible ghost text ('8,_49', 'Everest', 'Lhotse'). In seg1:end, the Everest bubble's '8,849' is garbled under a ring overlay. In seg2:start, blue tape icons cover 'Mauna Kea, ocean floor to summit' and 'Everest, sea level to summit'. In hoo",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start to seg3:end: the numbers '13.4' and '11.3' sit on two horizontal lines beside a dotted vertical ruler. Two idle Data copies stand next to them. There is no Earth, no bulge and no sphere.",
+  "root_cause": "This beat is the twist of the whole video: the equatorial bulge pushes Chimborazo furthest from Earth's centre. It was drawn as a two-row number comparison instead of the physical idea, so the 'whoa' is only ever read out, never seen.",
+  "repair_goal": "Draw a cross-section of a bulging Earth from its centre. Data stretches a measuring tape from the core out to the Chimborazo peak at the equator, then to the Everest peak further north. Chimborazo's tape visibly reaches past Everest's, and only the single headline '2.1 km further' appears."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,21 @@
+{
+ "slug": "insect-planet",
+ "ts": "20261009T153155Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:start shows one 5.5M circle and one tiny 1M dot in a big empty frame. In seg2:start the bird and mammal rows are empty tracks across most of the frame.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg4:start to seg4:end show two text labels '5.5M' and '1M' with two Data copies cheering and pointing on a plain navy ground. The 5.5M number only slides sideways, and the bottom of the frame is a CTA.",
+  "root_cause": "The closing re-states the seg3 numbers as text rows with mascot stickers instead of paying off the 'unnamed beetle judging you' line. No picture carries the 4.5M unnamed gap.",
+  "repair_goal": "Make the closing a shot of the joke. Data, with a magnifying glass, labels a few beetles in a jar marked 1M while a dark field of about 5x as many unnamed beetle eyes appears behind him. One beetle turns to stare at the camera. Show one headline number, the gap, landing early enough to read."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

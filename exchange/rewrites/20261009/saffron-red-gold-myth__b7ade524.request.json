@@ -1,0 +1,146 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "saffron-red-gold-myth__b7ade524",
+ "filed": "2026-10-09T15:31:44Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "saffron-red-gold-myth",
+ "current": {
+  "title": "Why The World's Most Expensive Spice Costs $15 A Gram",
+  "hook": "Your wallet vanished: one spice costs $15 per gram!",
+  "closing": "The spice is cheap; the hands are not.",
+  "question": "Cooked with real saffron? Share below.",
+  "segments": [
+   {
+    "topic": "Spice price",
+    "say": "Saffron costs fifteen dollars a gram, about seven hundred fifty times what pepper does."
+   },
+   {
+    "topic": "Spice rank",
+    "say": "Even pricey vanilla and black truffle can't touch saffron's fifteen dollars a gram."
+   },
+   {
+    "topic": "Spice labor",
+    "say": "Each pound takes about fifty-five hours of hand picking, while pepper needs barely half an hour."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Spice price",
+   "say": "Saffron costs fifteen dollars a gram, about seven hundred fifty times what pepper does.",
+   "role": "1 · THE PRICE",
+   "data": {
+    "file": "saffron_vs_pepper_price.json",
+    "unit": "dollars",
+    "title": "Retail spice price (dollars per gram)",
+    "points": [
+     {
+      "label": "Black pepper",
+      "value": 0.02
+     },
+     {
+      "label": "Saffron",
+      "value": 15
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Spice rank",
+   "say": "Even pricey vanilla and black truffle can't touch saffron's fifteen dollars a gram.",
+   "role": "2 · THE RANKING",
+   "data": {
+    "file": "expensive_spices_ranked.json",
+    "unit": "dollars",
+    "title": "Spices and specialty foods ranked by retail price (dollars per gram)",
+    "points": [
+     {
+      "label": "Black pepper",
+      "value": 0.02
+     },
+     {
+      "label": "Cinnamon",
+      "value": 0.03
+     },
+     {
+      "label": "Vanilla beans",
+      "value": 0.6
+     },
+     {
+      "label": "Black truffle",
+      "value": 4
+     },
+     {
+      "label": "Saffron",
+      "value": 15
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Spice labor",
+   "say": "Each pound takes about fifty-five hours of hand picking, while pepper needs barely half an hour.",
+   "role": "3 · THE WHY",
+   "data": {
+    "file": "labor_hours_per_pound.json",
+    "unit": "hours",
+    "title": "Hand-harvest labor per pound (hours)",
+    "points": [
+     {
+      "label": "Black pepper (machine-harvested)",
+      "value": 0.5
+     },
+     {
+      "label": "Saffron (hand-harvested)",
+      "value": 55
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The premise does not clearly reverse a common viewer expectation and relies only on a single price figure without a surprising contradictory claim."
+ ],
+ "reasons": [
+  "premise: brain: The premise does not clearly reverse a common viewer expectation and relies only on a single price figure without a surprising contradictory claim."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout: one number a beat (two only for a then-and-now), said with what it means. Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261009/saffron-red-gold-myth__b7ade524.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

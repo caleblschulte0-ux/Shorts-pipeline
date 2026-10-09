@@ -1,0 +1,21 @@
+{
+ "slug": "twin-birth-rate-rise",
+ "ts": "20261009T153155Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg2:mid and seg2:end the label 'twin births per thousand \u00b7 mothers 40+' is printed in dark ink on the brown crossbeam and crossed by the rope, so it is hard to read at phone size. In seg2:mid a half-faded ghost '3.1x vs 20-24' overlaps. In the hook frames the bottom caption sits over",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "claim_mismatch_and_label_collision",
+  "visible_evidence": "The narration says 40+ mothers twin 'nearly five times more often than under-20 moms'. The screen reads '46 \u2026 mothers 40+' and '3.1x vs 20-24', with a baseline marked 20-24. Its label sits on top of the wooden crossbeam, and the rope cuts through it (seg2:mid, seg2:end).",
+  "root_cause": "The scene compares 40+ against the 20-24 group while the script compares against under-20, so the number on screen contradicts the spoken claim. The headline label was placed where the swing frame's beam and rope cross it.",
+  "repair_goal": "Make the baseline the under-20 rate and have the cradle rise to about 5x on the tick scale, so the headline reads ~5x vs under-20 and matches the narration. Move the number and its label into clear sky away from the beam and rope, and drop the ghost readout."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

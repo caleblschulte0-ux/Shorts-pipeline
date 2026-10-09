@@ -1,0 +1,16 @@
+{
+ "slug": "volcano-country-ranking",
+ "ts": "20261009T153155Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In seg0:end the lower third of the frame is empty. In seg2:mid the upper-left half is empty dark space, and seg3:start is mostly empty with two small circles.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "meaningless_closing_visual",
+  "visible_evidence": "seg4:mid/end show a generic two-post ruler reading '50% apart', with 'Everywhere else on Earth 25%' printed over 'On the Ring of Fire 75%'. Data stands on a ladder, and the caption 'Alaska: quietly winning at volcanoes since forever.' has nothing to do with the picture.",
+  "root_cause": "The closing reused a generic gap-ruler machine on the previous beat's percentages instead of drawing the Alaska payoff. The label layout collides, and '50% apart' is a meaningless derived number.",
+  "repair_goal": "Make the closing land the Alaska punchline. Draw Alaska's 130 volcanoes as a dense chain of peaks along the Aleutian arc that dwarfs the 35 left in the rest of the US, have Data place the last cone, and show at most one number with no overlapping labels."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

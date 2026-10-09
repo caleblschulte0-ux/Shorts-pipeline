@@ -1,0 +1,16 @@
+{
+ "slug": "parker-solar-probe-speed-record",
+ "ts": "20261009T153155Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: hook@0.3 to seg0:end: Data stands on a ladder pointing at the 430K bar. seg1:start to seg1:end: arms raised, sliding along the timeline. seg2: two copies of Data stand beside the numbers. seg4: he points at an hourglass. He never causes the speed or the motion; he only points and ",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg2:start to seg2:end show 'Apollo 10 ... 24.8K' and 'Parker Solar Probe 430K' as two rows of large text, each with a standing Data, with gray ticks down the right edge. Nothing shows 17 times faster.",
+  "root_cause": "The 17x comparison is drawn as two numeric labels side by side instead of a race or distance picture, and Data is copied in as decoration rather than driving the comparison.",
+  "repair_goal": "Show the 17x as motion. A tiny Apollo capsule and the Parker probe launch together across a long track, and the probe covers 17 lengths while Apollo covers one. Data fires or throttles the probe as the cause. Put one headline number (17x) on screen, and land it by second 3."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

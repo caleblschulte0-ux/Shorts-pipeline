@@ -1,0 +1,165 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "activity-inequality-steps__bac52c4b",
+ "filed": "2026-10-09T15:31:43Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "activity-inequality-steps",
+ "current": {
+  "title": "It's Not How Much You Walk. It's How Unequal It Is.",
+  "hook": "Hong Kong: 6,880 steps a day. Indonesia: 3,513. That gap is gutting your health.",
+  "closing": "It's never the steps. It's the gap.",
+  "question": "How many steps do you walk daily?",
+  "segments": [
+   {
+    "topic": "How much we walk",
+    "say": "Hong Kong walks 6,880 steps a day, while Indonesia manages only 3,513."
+   },
+   {
+    "topic": "How unequal activity is",
+    "say": "Countries with the widest activity gaps are almost three times as likely to be obese."
+   },
+   {
+    "topic": "Why it's so unequal",
+    "say": "Women walk fewer steps than men almost everywhere, and that explains 43 percent of the gap."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "How much we walk",
+   "say": "Hong Kong walks 6,880 steps a day, while Indonesia manages only 3,513.",
+   "role": "1 · THE STEPS",
+   "data": {
+    "file": "global_daily_steps_by_country.json",
+    "unit": "steps",
+    "title": "Average daily steps by country (smartphone accelerometer data)",
+    "points": [
+     {
+      "label": "Hong Kong",
+      "value": 6880
+     },
+     {
+      "label": "China",
+      "value": 6180
+     },
+     {
+      "label": "United States",
+      "value": 4774
+     },
+     {
+      "label": "Saudi Arabia",
+      "value": 3807
+     },
+     {
+      "label": "Indonesia",
+      "value": 3513
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 1,
+   "topic": "How unequal activity is",
+   "say": "Countries with the widest activity gaps are almost three times as likely to be obese.",
+   "role": "2 · THE REAL PREDICTOR",
+   "data": {
+    "file": "activity_inequality_obesity_risk.json",
+    "unit": "index",
+    "title": "Relative obesity likelihood: low vs high 'activity inequality' countries (index)",
+    "points": [
+     {
+      "label": "Low activity-inequality countries (e.g. Sweden, Japan)",
+      "value": 100
+     },
+     {
+      "label": "High activity-inequality countries (e.g. US, Canada, Egypt)",
+      "value": 297
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Why it's so unequal",
+   "say": "Women walk fewer steps than men almost everywhere, and that explains 43 percent of the gap.",
+   "role": "3 · WHY THE GAP",
+   "data": {
+    "file": "activity_inequality_gender_gap_share.json",
+    "unit": "percent",
+    "title": "Share of worldwide activity inequality explained by the gender step gap",
+    "points": [
+     {
+      "label": "Explained by the gender step gap",
+      "value": 43
+     },
+     {
+      "label": "Other factors",
+      "value": 57
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: A stack of generic charts (hurdle, bars, pills, stacked bar) with overlapping, cut-off labels and a mascot that decorates instead of performing; nothing draws walking, steps or bodies."
+ ],
+ "reasons": [
+  "judge: A stack of generic charts (hurdle, bars, pills, stacked bar) with overlapping, cut-off labels and a mascot that decorates instead of performing; nothing draws walking, steps or bodies."
+ ],
+ "judge": {
+  "ts": "2026-10-09T14:05:24+00:00",
+  "score": 35,
+  "one_line": "A stack of generic charts (hurdle, bars, pills, stacked bar) with overlapping, cut-off labels and a mascot that decorates instead of performing; nothing draws walking, steps or bodies.",
+  "problems": [
+   "The hook is a near-static hurdle frame for about 3.4s (hook@0.3 to seg0:end); the measured hold is 5.83s.",
+   "seg1: Hong Kong's '6,880' is hidden under the mascot and bar end, the label is truncated to 'United States o...', and the header is a generic 'HONG KONG LEADS THE MAP'.",
+   "seg2: the two category labels overprint each other, the header is cut off ('E.G. US,...'), and the top half of the frame is empty.",
+   "seg3: the header says 'OTHER FACTORS IS 57% OF THE WHOLE' (ungrammatical, wrong emphasis), and the 43% label is near-invisible grey until late.",
+   "seg4 repeats the seg3 bar unchanged, and its highlight ellipse circles empty space off-frame right (payoff@-0.4).",
+   "Data never causes the motion: he cheers, rides a bar, stands and slides beside a bar."
+  ],
+  "fixes": [
+   "Open with the finished shock image: a crowd of footprints/walkers in Hong Kong vs a sparse line in Indonesia, with the whole picture on screen from frame one.",
+   "Draw steps as footprints. Data walks one trail while the other falls short, so his walking is what grows the gap.",
+   "Show the 3x obesity claim as three figures on a scale against one. Data loads the scale, with one readable label per side and no overprint.",
+   "Draw the 43% as a split trail of men's vs women's footprints, with the gap shaded and Data pacing it out; make 43% the headline, not 'other factors'.",
+   "Measure every label against the frame, never overprint, never let the mascot cover a value, and aim the highlight ellipse at the actual mark."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout: one number a beat (two only for a then-and-now), said with what it means. Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261009/activity-inequality-steps__bac52c4b.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

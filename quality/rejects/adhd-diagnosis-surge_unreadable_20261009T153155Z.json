@@ -1,0 +1,16 @@
+{
+ "slug": "adhd-diagnosis-surge",
+ "ts": "20261009T153155Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg4:start through payoff@-0.4: Data is parked over the left pan's '53.6%' label and covers its leading '5', so it reads like '3.6%'. In seg2:start the bottom caption '15%' is ghosted to near-invisible grey on navy.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "chart_with_decorative_mascot",
+  "visible_evidence": "seg3:start-end: two plain circles labelled 53.6% and 46.4% that grow. Data stands on the yellow circle doing nothing. The 'Taking ADHD medication tops the list' kicker and the source line are UI-widget framing, and the bottom half of the frame is empty.",
+  "root_cause": "The treated-vs-untreated split fell back to a generic proportional-bubble chart with no subject-made form. The mascot was placed on top as a sticker instead of being the agent of the number.",
+  "repair_goal": "Draw the 53.6% as the subject itself: a row of 100 kids or pill bottles where Data hands out medication to about 54 of them, and the untreated 46 stay visibly empty-handed. Data performs the handing-out in one arc. Fill the lower frame, and drop the kicker/source widget chrome."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

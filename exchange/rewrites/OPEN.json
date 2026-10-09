@@ -1,7 +1,87 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-09T13:18:10Z",
+ "updated": "2026-10-09T15:31:45Z",
  "open": [
+  {
+   "id": "monarch-butterfly-collapse__f5453757",
+   "slug": "monarch-butterfly-collapse",
+   "filed": "2026-10-09T15:31:45Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on a vague claim rather than a single, verifiable consequential number."
+   ],
+   "request": "exchange/rewrites/20261009/monarch-butterfly-collapse__f5453757.request.json",
+   "answer_path": "exchange/rewrites/20261009/monarch-butterfly-collapse__f5453757.answer.json"
+  },
+  {
+   "id": "peanut-allergy-guideline-flip__e7741354",
+   "slug": "peanut-allergy-guideline-flip",
+   "filed": "2026-10-09T15:31:45Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer's expectation and does not hinge on a single, verifiable consequential number."
+   ],
+   "request": "exchange/rewrites/20261009/peanut-allergy-guideline-flip__e7741354.request.json",
+   "answer_path": "exchange/rewrites/20261009/peanut-allergy-guideline-flip__e7741354.answer.json"
+  },
+  {
+   "id": "homeschool-surge__9a565353",
+   "slug": "homeschool-surge",
+   "filed": "2026-10-09T15:31:44Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a strong viewer expectation and the 5.4% figure is not a striking, consequential statistic."
+   ],
+   "request": "exchange/rewrites/20261009/homeschool-surge__9a565353.request.json",
+   "answer_path": "exchange/rewrites/20261009/homeschool-surge__9a565353.answer.json"
+  },
+  {
+   "id": "saffron-red-gold-myth__b7ade524",
+   "slug": "saffron-red-gold-myth",
+   "filed": "2026-10-09T15:31:44Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies only on a single price figure without a surprising contradictory claim."
+   ],
+   "request": "exchange/rewrites/20261009/saffron-red-gold-myth__b7ade524.request.json",
+   "answer_path": "exchange/rewrites/20261009/saffron-red-gold-myth__b7ade524.answer.json"
+  },
+  {
+   "id": "activity-inequality-steps__bac52c4b",
+   "slug": "activity-inequality-steps",
+   "filed": "2026-10-09T15:31:43Z",
+   "why": [
+    "judge: A stack of generic charts (hurdle, bars, pills, stacked bar) with overlapping, cut-off labels and a mascot that decorates instead of performing; nothing draws walking, steps or bodies."
+   ],
+   "request": "exchange/rewrites/20261009/activity-inequality-steps__bac52c4b.request.json",
+   "answer_path": "exchange/rewrites/20261009/activity-inequality-steps__bac52c4b.answer.json"
+  },
+  {
+   "id": "body-renewal-clock__9d074794",
+   "slug": "body-renewal-clock",
+   "filed": "2026-10-09T15:31:43Z",
+   "why": [
+    "judge: A chart slideshow with labels that collide and get cut off. The hook's 330-billion claim is never shown, Data is decoration, and the phone punchline sits over unrelated bubbles."
+   ],
+   "request": "exchange/rewrites/20261009/body-renewal-clock__9d074794.request.json",
+   "answer_path": "exchange/rewrites/20261009/body-renewal-clock__9d074794.answer.json"
+  },
+  {
+   "id": "insect-planet__3c655236",
+   "slug": "insect-planet",
+   "filed": "2026-10-09T15:31:43Z",
+   "why": [
+    "judge: The hook seesaw is decent. After it, the video turns into a stacked bar, a bar race and bubble circles, with Data posing beside them. The beetle-judging-you closing is two numbers on a card."
+   ],
+   "request": "exchange/rewrites/20261009/insect-planet__3c655236.request.json",
+   "answer_path": "exchange/rewrites/20261009/insect-planet__3c655236.answer.json"
+  },
+  {
+   "id": "lottery-odds-vs-real-life__4032dfa0",
+   "slug": "lottery-odds-vs-real-life",
+   "filed": "2026-10-09T15:31:43Z",
+   "why": [
+    "premise: brain: It states a known odds figure without overturning a viewer expectation, so it fails the reversal requirement."
+   ],
+   "request": "exchange/rewrites/20261009/lottery-odds-vs-real-life__4032dfa0.request.json",
+   "answer_path": "exchange/rewrites/20261009/lottery-odds-vs-real-life__4032dfa0.answer.json"
+  },
   {
    "id": "billionaire-count-record-2025__13fb03d3_r1",
    "slug": "billionaire-count-record-2025",
@@ -195,16 +275,6 @@
    "answer_path": "exchange/rewrites/20261009/earth-rotation-speeding-up__3690b203.answer.json"
   },
   {
-   "id": "peanut-allergy-guideline-flip__08d91354",
-   "slug": "peanut-allergy-guideline-flip",
-   "filed": "2026-10-09T13:18:01Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on an ambiguous claim rather than a single verifiable number."
-   ],
-   "request": "exchange/rewrites/20261009/peanut-allergy-guideline-flip__08d91354.request.json",
-   "answer_path": "exchange/rewrites/20261009/peanut-allergy-guideline-flip__08d91354.answer.json"
-  },
-  {
    "id": "volcano-country-ranking__c85b495d",
    "slug": "volcano-country-ranking",
    "filed": "2026-10-09T13:18:01Z",
@@ -237,26 +307,6 @@
    "answer_path": "exchange/rewrites/20261009/plastic-in-your-body__acdad93e.answer.json"
   },
   {
-   "id": "activity-inequality-steps__3cd5df4e",
-   "slug": "activity-inequality-steps",
-   "filed": "2026-10-09T13:18:00Z",
-   "why": [
-    "premise: brain: It relies on multiple numbers instead of a single consequential, verifiable figure, violating the one-number rule"
-   ],
-   "request": "exchange/rewrites/20261009/activity-inequality-steps__3cd5df4e.request.json",
-   "answer_path": "exchange/rewrites/20261009/activity-inequality-steps__3cd5df4e.answer.json"
-  },
-  {
-   "id": "lottery-odds-vs-real-life__cce8558b",
-   "slug": "lottery-odds-vs-real-life",
-   "filed": "2026-10-09T13:18:00Z",
-   "why": [
-    "premise: brain: It states a known odds figure without overturning a viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261009/lottery-odds-vs-real-life__cce8558b.request.json",
-   "answer_path": "exchange/rewrites/20261009/lottery-odds-vs-real-life__cce8558b.answer.json"
-  },
-  {
    "id": "blood-type-rarity__fb19284f",
    "slug": "blood-type-rarity",
    "filed": "2026-10-09T13:17:59Z",
@@ -265,26 +315,6 @@
    ],
    "request": "exchange/rewrites/20261009/blood-type-rarity__fb19284f.request.json",
    "answer_path": "exchange/rewrites/20261009/blood-type-rarity__fb19284f.answer.json"
-  },
-  {
-   "id": "insect-planet__b467f17c",
-   "slug": "insect-planet",
-   "filed": "2026-10-09T13:17:59Z",
-   "why": [
-    "judge: Generic charts repeat the 80% claim twice, and the mascot covers the 1.5M payoff label. Nothing on screen is made of bugs."
-   ],
-   "request": "exchange/rewrites/20261009/insect-planet__b467f17c.request.json",
-   "answer_path": "exchange/rewrites/20261009/insect-planet__b467f17c.answer.json"
-  },
-  {
-   "id": "body-renewal-clock__253b1d9e",
-   "slug": "body-renewal-clock",
-   "filed": "2026-10-09T13:17:58Z",
-   "why": [
-    "judge: Every beat is a stock chart, and the hook overlaps its own labels under an AI skeleton cutout and never shows the 330 billion cells vanishing."
-   ],
-   "request": "exchange/rewrites/20261009/body-renewal-clock__253b1d9e.request.json",
-   "answer_path": "exchange/rewrites/20261009/body-renewal-clock__253b1d9e.answer.json"
   },
   {
    "id": "podcasts-passed-radio-spoken-word__a775875f",
@@ -548,16 +578,6 @@
    "answer_path": "exchange/rewrites/20261008/aquaculture-overtook-wild-fishing__80181d75.answer.json"
   },
   {
-   "id": "homeschool-surge__95298deb",
-   "slug": "homeschool-surge",
-   "filed": "2026-10-08T16:30:54Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and the statistic isn’t a striking, consequential surprise."
-   ],
-   "request": "exchange/rewrites/20261008/homeschool-surge__95298deb.request.json",
-   "answer_path": "exchange/rewrites/20261008/homeschool-surge__95298deb.answer.json"
-  },
-  {
    "id": "self-checkout-cashier-jobs__d980a089",
    "slug": "self-checkout-cashier-jobs",
    "filed": "2026-10-08T13:36:16Z",
@@ -576,16 +596,6 @@
    ],
    "request": "exchange/rewrites/20261008/left-brain-right-brain-myth__e2a6db07.request.json",
    "answer_path": "exchange/rewrites/20261008/left-brain-right-brain-myth__e2a6db07.answer.json"
-  },
-  {
-   "id": "monarch-butterfly-collapse__f5453757",
-   "slug": "monarch-butterfly-collapse",
-   "filed": "2026-10-08T13:36:15Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague claim rather than a single, verifiable numeric fact."
-   ],
-   "request": "exchange/rewrites/20261008/monarch-butterfly-collapse__f5453757.request.json",
-   "answer_path": "exchange/rewrites/20261008/monarch-butterfly-collapse__f5453757.answer.json"
   },
   {
    "id": "recycling-myth-reality__c7592394",
@@ -1074,16 +1084,6 @@
    ],
    "request": "exchange/rewrites/20260930/cremation-overtakes-burial__366085b9.request.json",
    "answer_path": "exchange/rewrites/20260930/cremation-overtakes-burial__366085b9.answer.json"
-  },
-  {
-   "id": "saffron-red-gold-myth__9af139ed",
-   "slug": "saffron-red-gold-myth",
-   "filed": "2026-09-29T14:10:49Z",
-   "why": [
-    "premise: brain: The premise highlights a surprising fact and promises an explanation, but it does not reverse a specific expectation the viewer already holds."
-   ],
-   "request": "exchange/rewrites/20260929/saffron-red-gold-myth__9af139ed.request.json",
-   "answer_path": "exchange/rewrites/20260929/saffron-red-gold-myth__9af139ed.answer.json"
   },
   {
    "id": "iss-sixteen-sunrises__2a396886",

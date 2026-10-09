@@ -1,0 +1,21 @@
+{
+ "slug": "body-renewal-clock",
+ "ts": "20261009T153155Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.8 to seg0:end: the skeleton sits in the top third, a small strip of labels follows, and the bottom half of the frame from y\u2248420 to 650 is empty dark gradient.",
+ "weakest_scene": {
+  "id": "seg0",
+  "index": 1,
+  "failure_class": "unreadable_overlap_layout",
+  "visible_evidence": "The skeleton floats alone at the top. Three tissue labels and their day counts print on top of each other (\"120 d28sdays\", \"Red blood cellSkin\"), and the lower half of the frame is empty. The hook's own claim (330 billion cells a day) is never shown; the caption is already on the stomach-lining line.",
+  "root_cause": "A row of fixed-width label slots was used with no measured text extents, so the labels collide. The hook scene reuses seg0's comparison instead of drawing its own number, and nothing fills the bottom of the frame.",
+  "repair_goal": "Redraw the opening as a shot of the hook's number: a body shedding cells (a stream or pile falling away, with Data sweeping it up) that lands 330 billion. Then lay out the tissue comparison with measured, non-overlapping labels across the whole frame (stomach 5 days vs skeleton 3,650 days as a physical clock or turnover), with Data turning the clock."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "bubbles",
+   "perf": "get_buried"
+  }
+ },
+ "scenes": []
+}

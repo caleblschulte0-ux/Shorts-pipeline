@@ -1,0 +1,21 @@
+{
+ "slug": "activity-inequality-steps",
+ "ts": "20261009T153155Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg2:start through seg2:end the two category labels print on top of each other ('e.g. US, Canada, Egypt' overlaps 'quality countries'). The header is cut off ('E.G. US,...'), the label reads 'United States o...', and Hong Kong's value '6,880' is covered by the bar end and mascot in se",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "chart_with_overlapping_labels",
+  "visible_evidence": "seg2:mid shows two plain pill bars, 297 vs 100, with category labels printed on top of each other, a cut-off header, and a large empty void in the upper frame. Data just stands on the bar top.",
+  "root_cause": "The 'three times as likely to be obese' claim fell back to a generic two-bar compare. The label layout was never measured, and the mascot has no causal act.",
+  "repair_goal": "Draw the 3x as a bespoke subject scene: three bodies or three scale readings against one, built by Data as he does it (for example, stacking weights on a scale). Give it one short readable label per side, with no overlap, filling the frame."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "compressed"
+  }
+ },
+ "scenes": []
+}
