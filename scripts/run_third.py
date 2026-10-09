@@ -1505,6 +1505,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         # skips. `_examined` counts the ones that reach scene analysis.
         _max_examined = int(spec.get("story_max_clusters", 6))
         _examined = 0
+        _per_streamer: dict = {}
+        _per_streamer_max = int(spec.get("story_max_per_streamer", 2))
         for cluster in clusters:
             if _examined >= _max_examined:
                 break
@@ -1552,6 +1554,19 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                                f"{_was.get('d', '?')}: {_was.get('why', '')}")
                 continue
 
+            # NO MORE THAN `story_max_per_streamer` CANDIDATES FROM ONE
+            # STREAMER. Kai Cenat was 6 of backtest 13's 8 rendered stories
+            # (his month of posts dominates the catalogue and the pool), and
+            # a run that spends its examinations on one streamer's weakest
+            # moments — apologising for rain, a dean bit — never reaches the
+            # better material behind them.
+            _lead = str((cluster.get("who") or ["?"])[0]).lower()
+            if _per_streamer.get(_lead, 0) >= _per_streamer_max:
+                print(f"[story] {who}: {_per_streamer_max} {_lead} "
+                      f"candidate(s) already examined — skipped for "
+                      f"another streamer", flush=True)
+                continue
+            _per_streamer[_lead] = _per_streamer.get(_lead, 0) + 1
             _examined += 1
             # ---- multimodal scene analysis (§7), with VOD context
             # expansion (§6) for sources the analysis marks incomplete
