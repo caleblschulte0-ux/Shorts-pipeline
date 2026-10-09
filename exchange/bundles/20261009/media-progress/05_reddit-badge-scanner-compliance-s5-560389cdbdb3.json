@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261009",
+  "bundle": {
+    "identity": "982086a788a0d72af0af25bd7d5fd2e165c254a1826c621f1cd4972b6872fb53",
+    "path": "exchange/bundles/20261009/bundle.json"
+  },
+  "request_id": "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
+  "safe_request_id": "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "6933b82d2de425db49936ac7add598fd174538c9198a415c9cddc6e0c3f7ef28",
+  "prompt_used": "An editorial illustration for a short-form video: stressed man on conference call. It accompanies the narration: \"explaining, on a call with three regional directors\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1A0qQ_0Yj1aPSuQCSV0vqTPG1ac5B1iB0",
+    "filename": "20261009__05_reddit-badge-scanner-compliance-s5-560389cdbdb3.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1A0qQ_0Yj1aPSuQCSV0vqTPG1ac5B1iB0",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "260d7363b45061664248ebc865cfc7d1c5b1066a63920121735b4ca544f799fc",
+    "bytes": 1851291,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-09T11:27:35.452Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
