@@ -1,0 +1,75 @@
+# Voice lab: tune the operator's favourite (Voice 24, GLOBE S_019178).
+# No secrets; read-only token; only collect writes, and only to this branch.
+name: Voice lab tune
+on:
+  push:
+    branches: [voice-lab]
+    paths: ['voice_lab/tune_refs.py', 'voice_lab/gen_tune.py', '.github/workflows/voice_lab_tune.yml']
+permissions:
+  contents: read
+jobs:
+  refs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - run: |
+          mkdir globe
+          B=https://huggingface.co/datasets/MushanW/GLOBE_V2/resolve/main/data
+          for n in $(seq 4 17); do
+            f=train-$(printf %05d $n)-of-00164
+            curl -fsSL -o globe/$f.parquet $B/$f.parquet
+          done
+          sha256sum globe/* | tee globe.sha256
+          pip install -q soundfile numpy librosa pyarrow
+          python voice_lab/tune_refs.py globe out S_019178
+          cp globe.sha256 out/
+      - uses: actions/upload-artifact@v4
+        with: { name: tune_refs, path: out/ }
+  gen:
+    needs: refs
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      matrix:
+        job: [fullA, fullB, fullC, turbo]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with: { name: tune_refs, path: refs/ }
+      - run: |
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q chatterbox-tts==0.1.7 --extra-index-url https://download.pytorch.org/whl/cpu
+          python voice_lab/gen_tune.py refs out ${{ matrix.job }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: 'tune_${{ matrix.job }}', path: out/ }
+  collect:
+    needs: [refs, gen]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with: { path: dl/ }
+      - run: |
+          mkdir -p voice_lab/tune
+          find dl -type f \( -name '*.mp3' -o -name '*.txt' -o -name '*.json' -o -name '*.sha256' \) -exec cp {} voice_lab/tune/ \;
+          find dl -name 'tune_*.wav' -exec sh -c 'ffmpeg -y -loglevel error -i "$1" -ac 1 -c:a libopus -b:a 96k voice_lab/tune/$(basename "$1" .wav).ogg' _ {} \;
+          git config user.name "voice-lab"
+          git config user.email "voice-lab@users.noreply.github.com"
+          git add -f voice_lab/tune
+          git commit -m "voice lab tune results [skip ci]"
+          for i in 1 2 3 4; do git pull --rebase -q origin voice-lab && git push origin HEAD:voice-lab && break; sleep $((i*3)); done
