@@ -2893,6 +2893,13 @@
       ],
       "words_first_10s": 6,
       "scene_changes_before_5s": 2
+    },
+    "self-checkout-cashier-jobs": {
+      "claimed_at": "2026-10-09T12:08:59.188768+00:00",
+      "title": "Self-Checkout Is Quietly Replacing Cashiers (3 Charts)",
+      "publish_at": "2026-10-09T11:30:24Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3561,6 +3568,14 @@
       "state": "posted",
       "slug": "recycling-myth-reality",
       "at": "2026-10-08T20:43:42.267733+00:00"
+    },
+    {
+      "claimed_at": "2026-10-09T12:08:59.188768+00:00",
+      "title": "Self-Checkout Is Quietly Replacing Cashiers (3 Charts)",
+      "publish_at": "2026-10-09T11:30:24Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "self-checkout-cashier-jobs"
     }
   ]
 }
