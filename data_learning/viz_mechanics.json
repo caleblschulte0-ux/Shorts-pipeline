@@ -660,5 +660,21 @@
   "topic": "map distortion",
   "starred": false,
   "sig": "02819a875e14"
+ },
+ {
+  "mechanic": "empty-pew-exodus",
+  "concept": "a hundred-person congregation under a church photo; as the years tick 1990 to 2021, people at the pews drop out of colour and walk off until 29 of 100 are gone",
+  "code": "church = subject_image('church interior pews photo')\nif church is not None:\n    paste(church, RX0, RTOP + 20, RX1 - RX0, 380)\npts = list(values)\nk = clamp(reveal * 1.05) * (len(pts) - 1)\ni = min(int(k), len(pts) - 2)\ncur = lerp(pts[i], pts[i + 1], k - i)\ncols, rows = 10, 10\ncw = (RX1 - RX0) // cols\ntop = RTOP + 440\nch = 88\ngone = int(round(cur))\nfor r in range(rows):\n    for c in range(cols):\n        idx = r * cols + c\n        x = RX0 + c * cw + cw // 2\n        y = top + r * ch\n        out = idx >= cols * rows - gone\n        col = HIGHLIGHT if out else REST\n        sh = int(14 * math.sin(reveal * 40 + idx)) if out else 0\n        d.ellipse([x - 14 + sh, y, x + 14 + sh, y + 28], fill=rgba(col, 255 if out else 150))\n        d.rounded_rectangle([x - 20 + sh, y + 32, x + 20 + sh, y + 76], radius=14, fill=rgba(col, 255 if out else 150))\nyr_i = int(round(k))\nlabel = labels[min(yr_i, len(labels) - 1)]\ntext(label, RX0 + 40, RTOP + 400, size=60, color=TEXT)\ntext(f'{gone} of 100 have no religion', RX1 - 20, RTOP + 410, size=44, color=HIGHLIGHT, center=False)\n",
+  "topic": "Americans with no religious affiliation",
+  "starred": false,
+  "sig": "5fdb4fc122ac"
+ },
+ {
+  "mechanic": "disaster-pins-year-strip",
+  "concept": "two year-long strips; the 1980s strip gets 3 pins, then the recent strip rains 20 storm pins down on it",
+  "code": "pin = subject_image('tornado flood wildfire disaster icon')\nsx0, sx1 = RX0 + 40, RX1 - 40\nlanes = [(RTOP + 180, int(values[1]), '1980s: a typical year'), (RTOP + 760, int(values[0]), '2019-2023: a typical year')]\nfor li, (ly, cnt, name) in enumerate(lanes):\n    text(name, RX0 + 20, ly - 120, size=44, color=TEXT)\n    d.rounded_rectangle([sx0, ly + 150, sx1, ly + 170], radius=8, fill=rgba(REST, 200))\n    for m in range(13):\n        mx = sx0 + (sx1 - sx0) * m // 12\n        d.line([mx, ly + 140, mx, ly + 180], fill=rgba(SUBTLE, 200), width=3)\n    start = 0.0 if li == 0 else 0.25\n    for j in range(cnt):\n        t = clamp((reveal - start) * 1.3 - j * 0.04 / (1 + li))\n        px = sx0 + int((sx1 - sx0) * ((j + 0.5) / cnt))\n        py = ly + 150 - int(300 * (1 - t) ** 2) - 70 * min(1, t * 4)\n        if t > 0:\n            if pin is not None:\n                paste(pin, px - 28, int(py) - 28, 56, 56)\n            else:\n                d.ellipse([px - 22, int(py) - 22, px + 22, int(py) + 22], fill=rgba(WARN, 255))\n    shown = int(cnt * clamp((reveal - start) * 1.3))\n    text(f'{shown} billion-dollar disasters', sx1, ly - 60, size=40, color=HIGHLIGHT if li else TEXT)\n",
+  "topic": "billion-dollar disasters per year, then vs now",
+  "starred": false,
+  "sig": "0512ab7d50e7"
  }
 ]

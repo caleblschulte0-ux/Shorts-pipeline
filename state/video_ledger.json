@@ -4918,6 +4918,74 @@
    "ending_type": "consequence",
    "franchise": "Myths Busted",
    "notes": "wipe over brains per task; 7 networks light both halves; 200 dots of fibers vs 3"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-09",
+   "topic_category": "nature",
+   "hook_type": "shock_stat",
+   "hook_text": "Your bats are dying: 97 percent of one kind gone, and it started in one cave.",
+   "words_first_10s": 26,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "people/plaque units as the bar; subject's own verb (leave, stamp, flood)"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-09",
+   "topic_category": "records",
+   "hook_type": "shock_stat",
+   "hook_text": "States are quietly holding 70 billion dollars of your money.",
+   "words_first_10s": 20,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "question",
+   "franchise": "",
+   "notes": "people/plaque units as the bar; subject's own verb (leave, stamp, flood)"
+  },
+  {
+   "slug": "religious-nones-rise",
+   "directed_at": "2026-10-09",
+   "topic_category": "society",
+   "hook_type": "inversion",
+   "hook_text": "Nobody saw it coming: America's biggest religious shift isn't a faith at all.",
+   "words_first_10s": 23,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:empty-pew-exodus",
+    "mechanic:generation-pew-seats",
+    "mechanic:people-stack-overtake"
+   ],
+   "ending_type": "escalation",
+   "franchise": "",
+   "notes": "people/plaque units as the bar; subject's own verb (leave, stamp, flood)"
+  },
+  {
+   "slug": "hurricane-names-retired-growing-list",
+   "directed_at": "2026-10-09",
+   "topic_category": "nature",
+   "hook_type": "stake",
+   "hook_text": "Some names are banned from ever naming a storm again, and the list just hit 100.",
+   "words_first_10s": 26,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:retired-name-roll",
+    "mechanic:flood-line-houses",
+    "mechanic:disaster-pins-year-strip"
+   ],
+   "ending_type": "escalation",
+   "franchise": "",
+   "notes": "people/plaque units as the bar; subject's own verb (leave, stamp, flood)"
   }
  ]
 }

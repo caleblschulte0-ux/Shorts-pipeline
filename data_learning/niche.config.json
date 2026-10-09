@@ -26121,8 +26121,8 @@
   {
    "slug": "religious-nones-rise",
    "title": "One In Four Americans Now Has No Religion",
-   "hook": "No religion is now America's fastest-growing group.",
-   "closing": "Faith didn't vanish. It just stopped being default.",
+   "hook": "Nobody saw it coming: America's biggest religious shift isn't a faith at all.",
+   "closing": "One in four now says none. Soon that's the biggest pew in the country.",
    "question": "Do you consider yourself religious? Tell me below.",
    "caption": "Only 8% of Americans had no religion in 1990. Today it's 29% -- and it's not random, it's generational: only 10% of the oldest Americans are unaffiliated, versus about a third of Gen Z. 'No religion' is now closing in on becoming the country's single biggest group. Do you consider yourself religious? 👇",
    "hashtags": [
@@ -26150,7 +26150,12 @@
      "insight_type": "trend",
      "role": "1 · THE RISE",
      "topic": "Americans with no religious affiliation",
-     "say": "In 1990, about 8% of Americans claimed no religion. By 2021 that hit 29% — more than 1 in 4 adults."
+     "say": "In 1990, 8 in 100 Americans had no religion. By 2021 it was 29. That's about one in three pews, gone quiet.",
+     "scene": {
+      "mechanic": "empty-pew-exodus",
+      "concept": "a hundred-person congregation under a church photo; as the years tick 1990 to 2021, people at the pews drop out of colour and walk off until 29 of 100 are gone",
+      "code": "church = subject_image('church interior pews photo')\nif church is not None:\n    paste(church, RX0, RTOP + 20, RX1 - RX0, 380)\npts = list(values)\nk = clamp(reveal * 1.05) * (len(pts) - 1)\ni = min(int(k), len(pts) - 2)\ncur = lerp(pts[i], pts[i + 1], k - i)\ncols, rows = 10, 10\ncw = (RX1 - RX0) // cols\ntop = RTOP + 440\nch = 88\ngone = int(round(cur))\nfor r in range(rows):\n    for c in range(cols):\n        idx = r * cols + c\n        x = RX0 + c * cw + cw // 2\n        y = top + r * ch\n        out = idx >= cols * rows - gone\n        col = HIGHLIGHT if out else REST\n        sh = int(14 * math.sin(reveal * 40 + idx)) if out else 0\n        d.ellipse([x - 14 + sh, y, x + 14 + sh, y + 28], fill=rgba(col, 255 if out else 150))\n        d.rounded_rectangle([x - 20 + sh, y + 32, x + 20 + sh, y + 76], radius=14, fill=rgba(col, 255 if out else 150))\nyr_i = int(round(k))\nlabel = labels[min(yr_i, len(labels) - 1)]\ntext(label, RX0 + 40, RTOP + 400, size=60, color=TEXT)\ntext(f'{gone} of 100 have no religion', RX1 - 20, RTOP + 410, size=44, color=HIGHLIGHT, center=False)\n"
+     }
     },
     {
      "source": "offline",
@@ -26162,7 +26167,12 @@
      "ascending": false,
      "role": "2 · WHY",
      "topic": "no-religion share by generation",
-     "say": "Why? Each generation is less religious than the one before it. Only 10% of the oldest Americans have no religion. Among Gen Z, it's roughly 1 in 3."
+     "say": "Why? Each generation leaves more. Only 10 percent of the oldest Americans have no religion. Millennials hit 36, and Gen Z about 1 in 3.",
+     "scene": {
+      "mechanic": "generation-pew-seats",
+      "concept": "five rows of pews, one per generation, 20 seats each; seats empty out from the right as each generation's no-religion share sweeps in, oldest barely touched, youngest a third vacant",
+      "code": "pew = subject_image('wooden church pew')\nn_seats = 20\nrowh = 250\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    y = RTOP + 50 + i * rowh\n    gone = int(round(n_seats * v / 100.0 * clamp(reveal * 1.15)))\n    if pew is not None:\n        paste(pew, RX0, y + 90, RX1 - RX0, 110)\n    sw = (RX1 - RX0 - 40) // n_seats\n    for s in range(n_seats):\n        x = RX0 + 20 + s * sw\n        out = s >= n_seats - gone\n        fall = int(40 * clamp(reveal * 3 - s * 0.1)) if out else 0\n        col = HIGHLIGHT if out else REST\n        d.ellipse([x + 6, y + 50 - fall, x + sw - 6, y + 50 + sw - 12 - fall], fill=rgba(col, 120 if out else 255))\n        d.rounded_rectangle([x + 4, y + 96 - fall, x + sw - 4, y + 150 - fall], radius=10, fill=rgba(col, 120 if out else 255))\n    text(lab, RX0 + 10, y, size=40, color=TEXT)\n    text(fmt(v), RX1 - 10, y, size=44, color=HIGHLIGHT)\nfor i, v in enumerate(values):\n    y = RTOP + 50 + i * rowh\n    for w in range(3):\n        ph = (reveal * 3.0 + w / 3.0 + i * 0.13) % 1.0\n        wx = RX0 + 20 + int((RX1 - RX0 - 120) * ph)\n        d.ellipse([wx, y + 4, wx + 26, y + 30], fill=rgba(HIGHLIGHT, 255))\n        d.rounded_rectangle([wx - 4, y + 32, wx + 30, y + 46], radius=6, fill=rgba(HIGHLIGHT, 255))\n"
+     }
     },
     {
      "source": "offline",
@@ -26173,15 +26183,20 @@
      "insight_type": "share",
      "role": "3 · THE NEW MAP",
      "topic": "US religious affiliation today",
-     "say": "Unaffiliated Americans are now bigger than Catholics, and closing in on Protestants — on track to become the country's single largest religious group within decades."
+     "say": "Today the no-religion group, 28 percent, has passed Catholics at 20, and it's chasing Protestants at 40.",
+     "scene": {
+      "mechanic": "people-stack-overtake",
+      "concept": "each affiliation is a column of stacked people; the Unaffiliated column climbs past the Catholic one and stops just under Protestants",
+      "code": "person = subject_image('person silhouette icon')\nn_c = n\ncw = (RX1 - RX0) // n_c\nbase = RBOT - 120\nunit = 22\nmaxh = int(vmax / 2.0)\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    x = RX0 + i * cw + cw // 2\n    cnt = int(v / 2.0 * clamp(reveal * 1.1))\n    hi = lab.lower().startswith('unaff')\n    col = HIGHLIGHT if hi else REST\n    for j in range(cnt):\n        yy = base - (j + 1) * 54\n        d.ellipse([x - 22, yy, x + 22, yy + 24], fill=rgba(col, 255))\n        d.rounded_rectangle([x - 34, yy + 26, x + 34, yy + 50], radius=10, fill=rgba(col, 230))\n    if person is not None:\n        paste(person, x - 40, base + 10, 80, 80)\n    text(lab, x, base + 95, size=34, color=TEXT, center=True)\n    text(fmt(v), x, base - cnt * 54 - 50, size=46, color=HIGHLIGHT if hi else TEXT, center=True)\ncat = values[2]\nly = base - int(cat / 2.0) * 54\nd.line([RX0, ly, RX1, ly], fill=rgba(WARN, 200), width=4)\n"
+     }
     }
    ]
   },
   {
    "slug": "hurricane-names-retired-growing-list",
    "title": "Why Some Hurricane Names Get Retired Forever",
-   "hook": "A hurricane name just got retired forever.",
-   "closing": "The list only grows. It never shrinks.",
+   "hook": "Some names are banned from ever naming a storm again, and the list just hit 100.",
+   "closing": "Twenty billion-dollar disasters a year. The list only grows.",
    "question": "Do you know anyone whose name got retired? Tell me below.",
    "caption": "About 100 hurricane names have been permanently retired since 1954 -- and the list is growing faster than ever. It's not about wind speed, it's about damage: Katrina alone cost about $125 billion. Coastlines are more crowded and oceans are warmer, so the list keeps climbing. Know anyone whose name got retired? 👇",
    "hashtags": [
@@ -26209,7 +26224,12 @@
      "insight_type": "trend",
      "role": "1 · THE GROWING LIST",
      "topic": "cumulative retired Atlantic hurricane names",
-     "say": "By 1954, 1 hurricane name had ever been retired. By 2005 it was 50. By 2024, the list hit 100 names, permanently banned from ever being reused."
+     "say": "By 1954, 1 hurricane name had ever been retired. By 2005 it was 50. By 2024, the list hit 100 names, permanently banned from ever being reused.",
+     "scene": {
+      "mechanic": "retired-name-roll",
+      "concept": "a hundred name plaques stamp RETIRED one by one as the years run 1954 to 2024; the stamping speeds up toward the present",
+      "code": "storm = subject_image('hurricane satellite view')\nif storm is not None:\n    paste(storm, RX0, RTOP + 10, RX1 - RX0, 420)\npts = list(values)\nk = clamp(reveal * 1.05) * (len(pts) - 1)\ni = min(int(k), len(pts) - 2)\ncur = int(lerp(pts[i], pts[i + 1], k - i))\ncols, rows = 10, 10\ncw = (RX1 - RX0) // cols\ntop = RTOP + 470\nch = 90\nfor idx in range(100):\n    r, c = idx // cols, idx % cols\n    x = RX0 + c * cw + 6\n    y = top + r * ch\n    stamped = idx < cur\n    d.rounded_rectangle([x, y, x + cw - 12, y + ch - 14], radius=8, fill=rgba(WARN if stamped else REST, 255 if stamped else 90))\n    if stamped:\n        d.line([x + 10, y + 10, x + cw - 22, y + ch - 24], fill=rgba(TEXT, 255), width=5)\n        d.line([x + cw - 22, y + 10, x + 10, y + ch - 24], fill=rgba(TEXT, 255), width=5)\ntext(labels[min(int(round(k)), len(labels) - 1)], RX0 + 20, RTOP + 440, size=56, color=TEXT)\ntext(f'{cur} names retired', RX1 - 20, RTOP + 440, size=50, color=HIGHLIGHT)\n"
+     }
     },
     {
      "source": "offline",
@@ -26222,7 +26242,12 @@
      "use_baseline": true,
      "role": "2 · THE THRESHOLD",
      "topic": "costliest retired hurricanes",
-     "say": "It's not about wind speed. A name gets retired when a storm is catastrophic enough that reusing it would feel wrong — Katrina alone cost about $125 billion."
+     "say": "It's not about wind speed. A name gets retired when a storm is catastrophic enough that reusing it would feel wrong — Katrina alone cost about $125 billion.",
+     "scene": {
+      "mechanic": "flood-line-houses",
+      "concept": "one house per storm; floodwater rises on each to a height set by its damage bill, waves sloshing, Katrina and Harvey tied at the roofline",
+      "code": "house = subject_image('suburban house flooded hurricane')\nn_h = n\ncw = (RX1 - RX0) // n_h\nbase = RBOT - 160\nhh = 1000\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    x0 = RX0 + i * cw + 8\n    x1 = x0 + cw - 16\n    d.rounded_rectangle([x0, base - hh, x1, base], radius=10, fill=rgba(REST, 70))\n    if house is not None:\n        paste(house, x0, base - hh, x1 - x0, hh)\n    wl = int(hh * 0.92 * v / vmax * clamp(reveal * 1.1))\n    for xx in range(x0, x1, 6):\n        wave = int(10 * math.sin(reveal * 30 + xx * 0.08 + i))\n        d.rectangle([xx, base - wl + wave, xx + 6, base], fill=rgba(HIGHLIGHT if v >= vmax - 1 else REST, 170))\n    text(lab.split(' ')[0], (x0 + x1) // 2, base + 20, size=30, color=TEXT, center=True)\n    text(fmt(v), (x0 + x1) // 2, base - wl - 60, size=38, color=HIGHLIGHT if v >= vmax - 1 else TEXT, center=True)\n"
+     }
     },
     {
      "source": "offline",
@@ -26235,7 +26260,12 @@
      "role": "3 · WHY IT'S ACCELERATING",
      "topic": "billion-dollar disasters per year, then vs now",
      "say": "It's not just perception. Coastlines are more crowded and oceans are warmer, so the US now averages over 20 billion-dollar disasters a year, up from about 3 in the 1980s.",
-     "ascending": false
+     "ascending": false,
+     "scene": {
+      "mechanic": "disaster-pins-year-strip",
+      "concept": "two year-long strips; the 1980s strip gets 3 pins, then the recent strip rains 20 storm pins down on it",
+      "code": "pin = subject_image('tornado flood wildfire disaster icon')\nsx0, sx1 = RX0 + 40, RX1 - 40\nlanes = [(RTOP + 180, int(values[1]), '1980s: a typical year'), (RTOP + 760, int(values[0]), '2019-2023: a typical year')]\nfor li, (ly, cnt, name) in enumerate(lanes):\n    text(name, RX0 + 20, ly - 120, size=44, color=TEXT)\n    d.rounded_rectangle([sx0, ly + 150, sx1, ly + 170], radius=8, fill=rgba(REST, 200))\n    for m in range(13):\n        mx = sx0 + (sx1 - sx0) * m // 12\n        d.line([mx, ly + 140, mx, ly + 180], fill=rgba(SUBTLE, 200), width=3)\n    start = 0.0 if li == 0 else 0.25\n    for j in range(cnt):\n        t = clamp((reveal - start) * 1.3 - j * 0.04 / (1 + li))\n        px = sx0 + int((sx1 - sx0) * ((j + 0.5) / cnt))\n        py = ly + 150 - int(300 * (1 - t) ** 2) - 70 * min(1, t * 4)\n        if t > 0:\n            if pin is not None:\n                paste(pin, px - 28, int(py) - 28, 56, 56)\n            else:\n                d.ellipse([px - 22, int(py) - 22, px + 22, int(py) + 22], fill=rgba(WARN, 255))\n    shown = int(cnt * clamp((reveal - start) * 1.3))\n    text(f'{shown} billion-dollar disasters', sx1, ly - 60, size=40, color=HIGHLIGHT if li else TEXT)\n"
+     }
     }
    ]
   },
