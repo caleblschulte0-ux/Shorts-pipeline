@@ -25,7 +25,7 @@ jobs:
           done
           sha256sum globe/* | tee globe.sha256
           pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
-          pip install -q soundfile numpy librosa pyarrow speechbrain==1.0.3
+          pip install -q soundfile numpy librosa pyarrow speechbrain==1.0.3 "huggingface_hub<0.26"
           python voice_lab/us_refs.py globe out voice_lab/young
           cp globe.sha256 out/
       - uses: actions/upload-artifact@v4
