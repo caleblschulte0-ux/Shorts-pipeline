@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261008",
-  "generated_at": "2026-10-08T23:31:04Z",
+  "generated_at": "2026-10-09T00:31:00Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 14.76,
+          "days": 14.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 13.76,
+          "days": 13.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -361,14 +361,14 @@
     "explainer": {
       "channel": "explainer",
       "available": true,
-      "fetched_at": "2026-10-08T22:25:08.222977+00:00",
+      "fetched_at": "2026-10-09T00:20:29.052597+00:00",
       "today": [
         {
           "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
           "url": "https://youtube.com/shorts/fxJsmvFzAqs",
           "published_at": "2026-10-08T17:49:09Z",
-          "age_hours": 4.6,
-          "age_band": "0-6h",
+          "age_hours": 6.5,
+          "age_band": "6-24h",
           "views": 73,
           "engaged_views": 73,
           "likes": 1,
@@ -383,67 +383,67 @@
             "impressions",
             "ctr"
           ],
-          "views_per_hour": 15.8696,
+          "views_per_hour": 11.2308,
           "percentile_vs_same_age": null,
           "verdict": "no comparable history"
         }
       ],
       "last_7d": {
         "videos": 18,
-        "total_views": 1925,
+        "total_views": 1926,
         "median_views": 78.0,
-        "median_vph": 1.0865,
+        "median_vph": 1.062,
         "best": "The Ozone Hole Is Quietly Healing. Here's Proof.",
         "worst": "Light Pollution Is Erasing The Night Sky"
       },
       "last_30d": {
         "videos": 66,
-        "total_views": 7406,
+        "total_views": 7407,
         "median_views": 48.0,
-        "median_vph": 0.2061,
+        "median_vph": 0.2042,
         "best": "The Ozone Hole Is Quietly Healing. Here's Proof.",
         "worst": "Why Is There A Vault Built For The End Of The World?"
       },
       "all_time_summary": {
         "total_videos": 110,
-        "total_views": 14495,
+        "total_views": 14496,
         "avg_views_per_video": 131.8,
         "median_views_per_hour": 0.11,
         "top_5_by_vph": [
           {
             "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
-            "views_per_hour": 15.87,
+            "views_per_hour": 11.19,
             "views": 73,
-            "age_hours": 4.6,
+            "age_hours": 6.5,
             "url": "https://youtube.com/shorts/fxJsmvFzAqs"
           },
           {
             "title": "Smartphones Just Got a Lot Younger",
-            "views_per_hour": 8.08,
+            "views_per_hour": 7.86,
             "views": 563,
-            "age_hours": 69.7,
+            "age_hours": 71.6,
             "url": "https://youtube.com/shorts/l5bZZPuFpzU"
           },
           {
             "title": "The World Is Quietly Running Out Of Sand",
-            "views_per_hour": 3.89,
-            "views": 126,
-            "age_hours": 32.4,
+            "views_per_hour": 3.7,
+            "views": 127,
+            "age_hours": 34.3,
             "url": "https://youtube.com/shorts/W-Ku8ZqnGOg"
           },
           {
             "title": "Why Gen Z Refuses To Answer The Phone",
-            "views_per_hour": 3.81,
+            "views_per_hour": 3.62,
             "views": 134,
-            "age_hours": 35.1,
+            "age_hours": 37.1,
             "url": "https://youtube.com/shorts/3ziehpLeaL4"
           },
           {
-            "title": "Lab-Grown Meat Is About To Scale Up 8 Times",
-            "views_per_hour": 2.09,
-            "views": 203,
-            "age_hours": 97.1,
-            "url": "https://youtube.com/shorts/OS2L_MIJP6k"
+            "title": "Why Are 44% Of Rural Homes Still Cooking Over Fire?",
+            "views_per_hour": 2.06,
+            "views": 414,
+            "age_hours": 200.9,
+            "url": "https://youtube.com/shorts/63Ou9lIlfj4"
           }
         ],
         "bottom_5_by_vph": [
@@ -451,35 +451,35 @@
             "title": "Why Is There A Vault Built For The End Of The World?",
             "views_per_hour": 0.0,
             "views": 1,
-            "age_hours": 461.5,
+            "age_hours": 463.4,
             "url": "https://youtube.com/shorts/kkODTt8nWuQ"
           },
           {
             "title": "Why Cargo Ships Started Losing Containers Again (3 Charts)",
             "views_per_hour": 0.0,
             "views": 2,
-            "age_hours": 694.6,
+            "age_hours": 696.5,
             "url": "https://youtube.com/shorts/NhR15EjR3uI"
           },
           {
             "title": "Why Empty Offices Will Never Fill Back Up (3 Charts)",
             "views_per_hour": 0.0,
             "views": 0,
-            "age_hours": 796.2,
+            "age_hours": 798.1,
             "url": "https://youtube.com/shorts/fReGr_FMIEw"
           },
           {
             "title": "$124 Trillion Is About To Change Hands",
             "views_per_hour": 0.0,
             "views": 3,
-            "age_hours": 797.4,
+            "age_hours": 799.4,
             "url": "https://youtube.com/shorts/GDCGj6kpbqo"
           },
           {
             "title": "Why NASA Waits Almost Two Days For One Reply",
             "views_per_hour": 0.0,
             "views": 3,
-            "age_hours": 842.2,
+            "age_hours": 844.2,
             "url": "https://youtube.com/shorts/6hKXyKNTK9E"
           }
         ],
@@ -593,20 +593,20 @@
         }
       },
       "band_sample_sizes": {
-        "0-6h": 1,
         "1-3d": 6,
-        "1-4w": 42,
+        "1-4w": 41,
         "3-7d": 11,
-        "4w+": 50
+        "4w+": 51,
+        "6-24h": 1
       },
       "thin_bands": [
-        "0-6h"
+        "6-24h"
       ],
       "maturity": {
         "24h": {
           "all_formats": {
             "n": 2,
-            "median_vph": 0.2569,
+            "median_vph": 0.2402,
             "median_views": 7.0,
             "median_view_pct": null,
             "view_pct_reported_for": "0/2",
@@ -615,7 +615,7 @@
           "by_format": {
             "other_topic": {
               "n": 2,
-              "median_vph": 0.2569,
+              "median_vph": 0.2402,
               "median_views": 7.0,
               "median_view_pct": null,
               "view_pct_reported_for": "0/2",
@@ -634,7 +634,7 @@
         "72h": {
           "all_formats": {
             "n": 4,
-            "median_vph": 1.7529,
+            "median_vph": 1.7105,
             "median_views": 134.5,
             "median_view_pct": null,
             "view_pct_reported_for": "0/4",
@@ -643,7 +643,7 @@
           "by_format": {
             "other_topic": {
               "n": 4,
-              "median_vph": 1.7529,
+              "median_vph": 1.7105,
               "median_views": 134.5,
               "median_view_pct": null,
               "view_pct_reported_for": "0/4",
@@ -661,21 +661,21 @@
         },
         "7d": {
           "all_formats": {
-            "n": 4,
-            "median_vph": 0.2778,
-            "median_views": 51.5,
+            "n": 5,
+            "median_vph": 0.2101,
+            "median_views": 33.0,
             "median_view_pct": null,
-            "view_pct_reported_for": "0/4",
-            "enough_to_judge": false
+            "view_pct_reported_for": "0/5",
+            "enough_to_judge": true
           },
           "by_format": {
             "other_topic": {
-              "n": 4,
-              "median_vph": 0.2778,
-              "median_views": 51.5,
+              "n": 5,
+              "median_vph": 0.2101,
+              "median_views": 33.0,
               "median_view_pct": null,
-              "view_pct_reported_for": "0/4",
-              "enough_to_judge": false
+              "view_pct_reported_for": "0/5",
+              "enough_to_judge": true
             },
             "superlative_topic": {
               "n": 0,
@@ -691,33 +691,33 @@
       "mature_enough_to_judge": [
         {
           "title": "Smartphones Just Got a Lot Younger",
-          "vph": 8.0775,
+          "vph": 7.8631,
           "fmt": "other_topic",
-          "age_hours": 69.7
+          "age_hours": 71.6
         },
         {
           "title": "The World Is Quietly Running Out Of Sand",
-          "vph": 3.8889,
+          "vph": 3.7026,
           "fmt": "other_topic",
-          "age_hours": 32.4
+          "age_hours": 34.3
         },
         {
           "title": "Why Gen Z Refuses To Answer The Phone",
-          "vph": 3.8177,
+          "vph": 3.6119,
           "fmt": "other_topic",
-          "age_hours": 35.1
-        },
-        {
-          "title": "Lab-Grown Meat Is About To Scale Up 8 Times",
-          "vph": 2.0906,
-          "fmt": "other_topic",
-          "age_hours": 97.1
+          "age_hours": 37.1
         },
         {
           "title": "Why Are 44% Of Rural Homes Still Cooking Over Fire?",
-          "vph": 2.0804,
+          "vph": 2.0607,
           "fmt": "other_topic",
-          "age_hours": 199.0
+          "age_hours": 200.9
+        },
+        {
+          "title": "Lab-Grown Meat Is About To Scale Up 8 Times",
+          "vph": 2.0505,
+          "fmt": "other_topic",
+          "age_hours": 99.0
         }
       ],
       "worst_mature": [
@@ -725,31 +725,31 @@
           "title": "World Hydropower Fell Below Its 1990 Level",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 1155.1
+          "age_hours": 1157.0
         },
         {
           "title": "Cereal production Is 1.5x Higher Than In 1972",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 927.6
+          "age_hours": 929.5
         },
         {
           "title": "Central Banks Are Hoarding Gold Like It's 1967",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 889.8
+          "age_hours": 891.7
         },
         {
           "title": "Why Empty Offices Will Never Fill Back Up (3 Charts)",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 796.2
+          "age_hours": 798.1
         },
         {
           "title": "World Coal Power Fell Below Its 1990 Level",
           "vph": 0.0009,
           "fmt": "unknown",
-          "age_hours": 1059.5
+          "age_hours": 1061.4
         }
       ]
     },
@@ -1334,195 +1334,187 @@
     },
     "showrunner": {
       "recent": 40,
-      "blocks": 33,
-      "avg_score": 44.5
+      "blocks": 37,
+      "avg_score": 42.5
     },
     "failure_census": {
       "n_verdicts": 20,
       "classes": {
         "decorative_mascot": {
-          "count": 26,
+          "count": 23,
           "stories": {
-            "activity-inequality-steps": 4,
-            "highest-point-illusion": 1,
+            "aquaculture-overtook-wild-fishing": 2,
+            "permafrost-thaw": 4,
+            "marathon-super-shoes-record-pace": 1,
+            "youth-sports-dropout": 2,
+            "vertical-farming-bust": 1,
+            "rabies-prevention-gap": 1,
+            "insect-planet": 3,
             "volcano-country-ranking": 1,
-            "adhd-diagnosis-surge": 4,
+            "adhd-diagnosis-surge": 2,
             "parker-solar-probe-speed-record": 2,
-            "third-interstellar-visitor": 4,
+            "third-interstellar-visitor": 1,
+            "unclaimed-money-states-hold": 1,
             "coldest-place-in-the-universe-is-human-made": 1,
-            "global-displacement-record": 1,
-            "aquaculture-overtook-wild-fishing": 4,
-            "permafrost-thaw": 4
+            "podcasts-passed-radio-spoken-word": 1
           },
           "timestamps": [
-            "2026-10-08T20:51:58+00:00",
-            "2026-10-08T20:59:49+00:00",
-            "2026-10-08T21:07:40+00:00",
-            "2026-10-08T21:07:40+00:00",
-            "2026-10-08T21:13:10+00:00",
-            "2026-10-08T21:19:56+00:00",
-            "2026-10-08T21:24:47+00:00",
-            "2026-10-08T21:24:47+00:00",
-            "2026-10-08T21:24:47+00:00",
-            "2026-10-08T21:24:47+00:00",
-            "2026-10-08T21:29:08+00:00",
-            "2026-10-08T21:29:08+00:00",
-            "2026-10-08T21:34:40+00:00",
-            "2026-10-08T21:39:48+00:00",
-            "2026-10-08T21:39:48+00:00",
-            "2026-10-08T21:39:48+00:00",
-            "2026-10-08T21:44:59+00:00",
-            "2026-10-08T21:51:51+00:00",
-            "2026-10-08T21:57:30+00:00",
-            "2026-10-08T22:02:34+00:00",
             "2026-10-08T22:07:38+00:00",
             "2026-10-08T22:07:38+00:00",
             "2026-10-08T22:14:17+00:00",
             "2026-10-08T22:14:17+00:00",
             "2026-10-08T22:19:39+00:00",
-            "2026-10-08T22:24:51+00:00"
+            "2026-10-08T22:24:51+00:00",
+            "2026-10-08T23:02:02+00:00",
+            "2026-10-08T23:06:33+00:00",
+            "2026-10-08T23:14:00+00:00",
+            "2026-10-08T23:18:54+00:00",
+            "2026-10-08T23:23:11+00:00",
+            "2026-10-08T23:28:13+00:00",
+            "2026-10-08T23:34:08+00:00",
+            "2026-10-08T23:39:16+00:00",
+            "2026-10-08T23:45:48+00:00",
+            "2026-10-08T23:52:30+00:00",
+            "2026-10-08T23:52:30+00:00",
+            "2026-10-08T23:57:08+00:00",
+            "2026-10-08T23:57:08+00:00",
+            "2026-10-09T00:04:32+00:00",
+            "2026-10-09T00:09:09+00:00",
+            "2026-10-09T00:15:22+00:00",
+            "2026-10-09T00:20:10+00:00"
           ],
           "examples": [
-            "decorative_mascot: hook@0.3\u2013seg0:start: Data stands on the dashed line with his arms up and never jumps the hurdle. seg2: he slides up the side of the 297 bar. seg3/seg4: he slides up the side of the ",
-            "decorative_mascot: Data does the same arms-up cheer above the dashed line from hook@0.3 to seg0:end, stands beside the bars in seg2:mid, and slides up beside the stacked column in seg3:start through s",
-            "decorative_mascot: Data rides the top of the bars and stack without causing anything. hook@0.3-seg0:end: he stands on a dashed line with his arms up. seg1:mid: he perches on the Hong Kong bar. seg2:mi"
+            "decorative_mascot: Data never causes anything. He points from a ladder beside a finished bar (hook@1.5, seg0:end), stands on timeline dots with his arms up while bars grow without him (seg1:start-end)",
+            "dead_air: seg0 (seg0:start, seg0:mid, seg0:end) is the same finished bar chart as hook@1.5/hook@2.2, held from about 1.2s to 4.2s with only small mascot changes. seg1 then shows the same 13M-to-94.4M ",
+            "decorative_mascot: In hook@0.3 to seg0:mid Data stands on the -8 circle with his hands on his head. In seg1:mid and seg1:end he stands on a timeline dot. In seg2 he perches on top of the 870B circle. "
           ],
           "recurred_after_fix": false
         },
         "other": {
-          "count": 17,
+          "count": 20,
           "stories": {
-            "recycling-myth-reality": 2,
-            "activity-inequality-steps": 3,
-            "highest-point-illusion": 1,
+            "aquaculture-overtook-wild-fishing": 1,
+            "permafrost-thaw": 3,
+            "marathon-super-shoes-record-pace": 1,
+            "youth-sports-dropout": 3,
+            "vertical-farming-bust": 1,
+            "rabies-prevention-gap": 1,
+            "insect-planet": 3,
             "volcano-country-ranking": 1,
+            "adhd-diagnosis-surge": 1,
             "parker-solar-probe-speed-record": 1,
             "third-interstellar-visitor": 1,
+            "unclaimed-money-states-hold": 1,
             "coldest-place-in-the-universe-is-human-made": 1,
-            "global-displacement-record": 1,
-            "aquaculture-overtook-wild-fishing": 3,
-            "permafrost-thaw": 3
+            "podcasts-passed-radio-spoken-word": 1
           },
           "timestamps": [
-            "2026-10-08T19:56:03+00:00",
-            "2026-10-08T20:43:28+00:00",
-            "2026-10-08T20:51:58+00:00",
-            "2026-10-08T20:59:49+00:00",
-            "2026-10-08T21:07:40+00:00",
-            "2026-10-08T21:13:10+00:00",
-            "2026-10-08T21:19:56+00:00",
-            "2026-10-08T21:29:08+00:00",
-            "2026-10-08T21:34:40+00:00",
-            "2026-10-08T21:44:59+00:00",
-            "2026-10-08T21:51:51+00:00",
-            "2026-10-08T21:57:30+00:00",
-            "2026-10-08T22:02:34+00:00",
             "2026-10-08T22:07:38+00:00",
             "2026-10-08T22:14:17+00:00",
             "2026-10-08T22:19:39+00:00",
-            "2026-10-08T22:24:51+00:00"
+            "2026-10-08T22:24:51+00:00",
+            "2026-10-08T23:02:02+00:00",
+            "2026-10-08T23:06:33+00:00",
+            "2026-10-08T23:10:22+00:00",
+            "2026-10-08T23:14:00+00:00",
+            "2026-10-08T23:18:54+00:00",
+            "2026-10-08T23:23:11+00:00",
+            "2026-10-08T23:28:13+00:00",
+            "2026-10-08T23:34:08+00:00",
+            "2026-10-08T23:39:16+00:00",
+            "2026-10-08T23:45:48+00:00",
+            "2026-10-08T23:52:30+00:00",
+            "2026-10-08T23:57:08+00:00",
+            "2026-10-09T00:04:32+00:00",
+            "2026-10-09T00:09:09+00:00",
+            "2026-10-09T00:15:22+00:00",
+            "2026-10-09T00:20:10+00:00"
           ],
           "examples": [
-            "unreadable: seg2:mid and seg2:end: the '9% recycled' label is tiny type squeezed into the thin cyan top band of the bottle, and you can't read it at arm's length. The faded caption '50% lands in' at s",
-            "unreadable: In seg2:start the caption \"50% lands in\" is faint grey on beige sand and nearly disappears on a phone. In seg4:mid a falling bottle covers \"2060 (projected)\".",
-            "unreadable: seg2:mid: the two x-axis labels overlap ('High activity-inequality countries (e.g. US, Canada, Egypt)' is printed over the low-inequality label). seg1:end: the Hong Kong bar's value is cov"
+            "unreadable: The bottom edge cuts off the '57%' value label in seg4:start, seg4:mid and payoff@-0.4. In payoff@-0.4 a teal ring is drawn over '52%'. In seg3 the bars carry no values, so a viewer cannot",
+            "unreadable: The highlighted value in the pink circle at hook@1.5, hook@2.2 and seg0:mid is dark text with a double outline that reads as a smear. The 870B in the pink blob at seg2:end has the same pro",
+            "unreadable: In hook@1.5, hook@2.2 and seg0:mid the '-2.3' in the pink circle is dark doubled text that smears. In seg2:end the '870B' on pink is a dark outlined smear that is hard to read. The seg0:en"
           ],
           "recurred_after_fix": false
         },
         "empty_void": {
-          "count": 12,
+          "count": 13,
           "stories": {
-            "activity-inequality-steps": 3,
-            "highest-point-illusion": 1,
+            "permafrost-thaw": 2,
+            "marathon-super-shoes-record-pace": 1,
+            "youth-sports-dropout": 3,
+            "rabies-prevention-gap": 1,
+            "insect-planet": 3,
             "volcano-country-ranking": 1,
-            "parker-solar-probe-speed-record": 1,
             "third-interstellar-visitor": 1,
-            "coldest-place-in-the-universe-is-human-made": 1,
-            "global-displacement-record": 1,
-            "aquaculture-overtook-wild-fishing": 1,
-            "permafrost-thaw": 2
+            "coldest-place-in-the-universe-is-human-made": 1
           },
           "timestamps": [
-            "2026-10-08T20:51:58+00:00",
-            "2026-10-08T20:59:49+00:00",
-            "2026-10-08T21:07:40+00:00",
-            "2026-10-08T21:13:10+00:00",
-            "2026-10-08T21:19:56+00:00",
-            "2026-10-08T21:29:08+00:00",
-            "2026-10-08T21:34:40+00:00",
-            "2026-10-08T21:44:59+00:00",
-            "2026-10-08T21:51:51+00:00",
-            "2026-10-08T21:57:30+00:00",
             "2026-10-08T22:19:39+00:00",
-            "2026-10-08T22:24:51+00:00"
+            "2026-10-08T22:24:51+00:00",
+            "2026-10-08T23:02:02+00:00",
+            "2026-10-08T23:06:33+00:00",
+            "2026-10-08T23:10:22+00:00",
+            "2026-10-08T23:14:00+00:00",
+            "2026-10-08T23:23:11+00:00",
+            "2026-10-08T23:28:13+00:00",
+            "2026-10-08T23:34:08+00:00",
+            "2026-10-08T23:39:16+00:00",
+            "2026-10-08T23:45:48+00:00",
+            "2026-10-09T00:04:32+00:00",
+            "2026-10-09T00:15:22+00:00"
           ],
           "examples": [
-            "empty_void: seg2:start: the upper half of the frame is empty grid with one tiny bar. hook frames: the lower third under the hurdle base is blank dark ground.",
-            "empty_void: In seg2:start through seg2:end the two pill columns fill only the middle third, leaving a large empty band between the title and the bars. seg3 leaves the right half almost bare apart from",
-            "empty_void: In seg2:start the frame is mostly an empty dark field: one short bar, a tiny stub and a lone 'vs' fill the middle. In hook@0.3 the bottom third under the hurdle base is blank."
-          ],
-          "recurred_after_fix": false
-        },
-        "dead_air": {
-          "count": 7,
-          "stories": {
-            "activity-inequality-steps": 2,
-            "adhd-diagnosis-surge": 1,
-            "coldest-place-in-the-universe-is-human-made": 1,
-            "aquaculture-overtook-wild-fishing": 1,
-            "permafrost-thaw": 2
-          },
-          "timestamps": [
-            "2026-10-08T20:51:58+00:00",
-            "2026-10-08T20:59:49+00:00",
-            "2026-10-08T21:24:47+00:00",
-            "2026-10-08T21:44:59+00:00",
-            "2026-10-08T21:57:30+00:00",
-            "2026-10-08T22:14:17+00:00",
-            "2026-10-08T22:24:51+00:00"
-          ],
-          "examples": [
-            "dead_air: hook@0.3 through seg0:end (0.3\u20136.7s) is the same hurdle frame held ~6s; only the 'clears it by 1,919' label appears. held_s 7.12 measured, max dup run at 3.5s.",
-            "dead_air: hook@0.3 through seg0:end (0.3s to 6.7s) is one composition: same hurdle, same dashed line, same 'clears it by 1,919' label, and only Data's cheer loops. The measured held_s is 7.12.",
-            "dead_air: hook@1.5 through seg0:end (about 1.2-3.9s) is the same finished bar chart with Data on the ladder and barely any change. The 11.4% bar has already landed, so roughly 2.7s at the start of the"
+            "empty_void: In seg3:start and seg3:mid the top 60% of the frame is an empty dark gradient above a tiny 10B box and a small Data. seg2:start is similar: two small bubbles in a large dark field.",
+            "empty_void: seg3:start: a single tiny 10B box and a small Data at the bottom, with roughly 70% of the frame empty dark gradient. seg0:end also has a near-empty bar track with no bars drawn.",
+            "empty_void: In hook@0.3 to seg0:end a narrow tank sits in the middle third with large empty dark areas on both sides and below it. In seg3:start the top 35% and the area under the circles are empty, w"
           ],
           "recurred_after_fix": false
         },
         "bare_number": {
-          "count": 7,
+          "count": 9,
           "stories": {
-            "highest-point-illusion": 1,
+            "permafrost-thaw": 3,
+            "marathon-super-shoes-record-pace": 1,
+            "rabies-prevention-gap": 1,
+            "insect-planet": 1,
             "volcano-country-ranking": 1,
             "third-interstellar-visitor": 1,
-            "coldest-place-in-the-universe-is-human-made": 1,
-            "permafrost-thaw": 3
-          },
-          "timestamps": [
-            "2026-10-08T21:13:10+00:00",
-            "2026-10-08T21:19:56+00:00",
-            "2026-10-08T21:34:40+00:00",
-            "2026-10-08T21:44:59+00:00",
-            "2026-10-08T22:14:17+00:00",
-            "2026-10-08T22:19:39+00:00",
-            "2026-10-08T22:24:51+00:00"
-          ],
-          "examples": [
-            "bare_number_card: seg3:mid: '13.4' and '11.3' are printed beside two Data figures on thin baselines. There is no Earth, no bulge and no mountain, so a sphere-relative height is never demonstrated.",
-            "bare_number_card: seg3:start to seg3:end: '75%' and '25%' are printed inside two plain circles, which is a bubble card with nothing demonstrated.",
-            "bare_number_card: seg3:start/mid/end show '5.6' and '1.0' printed as big numbers beside two Datas, with no size demonstration. Nothing in the frame is 5.6x bigger than anything else."
-          ],
-          "recurred_after_fix": false
-        },
-        "junk_imagery": {
-          "count": 1,
-          "stories": {
             "coldest-place-in-the-universe-is-human-made": 1
           },
           "timestamps": [
-            "2026-10-08T21:44:59+00:00"
+            "2026-10-08T22:14:17+00:00",
+            "2026-10-08T22:19:39+00:00",
+            "2026-10-08T22:24:51+00:00",
+            "2026-10-08T23:02:02+00:00",
+            "2026-10-08T23:23:11+00:00",
+            "2026-10-08T23:39:16+00:00",
+            "2026-10-08T23:45:48+00:00",
+            "2026-10-09T00:04:32+00:00",
+            "2026-10-09T00:15:22+00:00"
           ],
           "examples": [
-            "junk_imagery: hook@0.3 to seg0:end: the 'room temperature' grid is built from generic purple starfield tiles with nothing about temperature in them; at 'each = 20' the 15 tiles are just a 293 count, c"
+            "bare_number_card: In hook@0.3 to seg0:mid each year is a grey circle with a number printed inside, and the 2023 circle is pink. The circles do not change, so each one is just a number on a blob.",
+            "bare_number_card: seg3:start shows a big '150' with '150 billion tons' at the bottom over a mostly empty frame with one tiny 10B box. The number has no picture behind it.",
+            "bare_number_card: hook@0.3 to seg0:mid: five grey circles labelled -8/-6.5/-5/-3.5/-2.3 with one pink circle. Circle size does not encode temperature, so the opening beat is just numbers in blobs."
+          ],
+          "recurred_after_fix": false
+        },
+        "dead_air": {
+          "count": 3,
+          "stories": {
+            "permafrost-thaw": 2,
+            "coldest-place-in-the-universe-is-human-made": 1
+          },
+          "timestamps": [
+            "2026-10-08T22:14:17+00:00",
+            "2026-10-08T22:24:51+00:00",
+            "2026-10-09T00:15:22+00:00"
+          ],
+          "examples": [
+            "dead_air: The circles barely change across 0.3s to 2.47s (hook to seg0:mid), and code measured a 5.42s held stretch peaking at 5.75s. That is the seg0 bar chart sitting on empty tracks with no values.",
+            "dead_air: Measured held_s 5.04 at 5.75s. hook@0.3 to seg0:mid (about 2.5s) is the same circle grid with only a slight resize, and seg4:start to seg4:end is one held bar chart for about 4s.",
+            "dead_air: The tile grid is identical from hook@1.5 through seg1:end, about 7s. seg3:start to seg3:end is the same square with the same \"29400T\" for about 4s."
           ],
           "recurred_after_fix": false
         }
@@ -1531,27 +1523,27 @@
         "hook": {
           "median": 1,
           "min": 1,
-          "max": 3
+          "max": 2
         },
         "data_demo": {
           "median": 1,
           "min": 1,
-          "max": 3
+          "max": 2
         },
         "mascot": {
           "median": 1,
-          "min": 1,
-          "max": 3
+          "min": 0,
+          "max": 2
         },
         "craft": {
           "median": 1,
-          "min": 0,
+          "min": 1,
           "max": 2
         },
         "pace": {
           "median": 1,
           "min": 1,
-          "max": 2
+          "max": 1
         },
         "payoff": {
           "median": 1,
@@ -1565,26 +1557,26 @@
         }
       },
       "scores": [
-        70,
-        70,
-        74,
-        44,
-        44,
-        35,
-        39,
-        40,
-        53,
-        39,
-        35,
-        39,
-        27,
-        44,
-        35,
-        39,
         48,
         39,
         39,
-        39
+        39,
+        44,
+        35,
+        53,
+        53,
+        48,
+        31,
+        48,
+        44,
+        44,
+        44,
+        44,
+        31,
+        39,
+        44,
+        31,
+        35
       ]
     }
   },
@@ -1599,12 +1591,12 @@
     "arms": {
       "current": {
         "n": 17,
-        "median_percentile": 44.0,
+        "median_percentile": 45.1,
         "thin": true
       },
       "illustrated": {
         "n": 23,
-        "median_percentile": 65.5,
+        "median_percentile": 64.6,
         "thin": true
       }
     },
@@ -1619,10 +1611,15 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "44536d4",
-    "commits_since": "2026-10-07",
+    "head": "b028247",
+    "commits_since": "2026-10-08",
     "commit_count": 50,
     "commits": [
+      "b028247 Hooks are tabloid headlines: the drama in the data, not the numbers (#560)",
+      "53e8331 explainer: update posted log + analytics [skip ci]",
+      "53a032c exchange: phase A bundle for 20261009 [skip ci]",
+      "4edfe4e claim: mailbox verdicts 2026-10-08T23:48Z [skip ci]",
+      "0256062 retro: brief + triage for 20261008 [skip ci]",
       "44536d4 Hooks are heard by a listener, not scored on keywords; the voice gets words (#559)",
       "5b03117 story forge: new real-data stories [skip ci]",
       "d364182 claim: mailbox verdicts 2026-10-08T22:47Z [skip ci]",
@@ -1657,12 +1654,7 @@
       "874b65d explainer: posted ozone-hole-recovery [skip ci]",
       "2916f57 explainer: claim upload slot ozone-hole-recovery [skip ci]",
       "962cc21 exchange: phase A bundle for 20261008 [skip ci]",
-      "68fc890 claim: mailbox verdicts 2026-10-08T16:46Z [skip ci]",
-      "f06bba8 exchange: phase A bundle for 20261008 [skip ci]",
-      "05bc072 Third stories: a story knows what the stream was (#554)",
-      "c696c15 explainer: update posted log + analytics [skip ci]",
-      "8096195 explainer: posted adhd-diagnosis-surge [skip ci]",
-      "2161268 explainer: claim upload slot adhd-diagnosis-surge [skip ci]"
+      "68fc890 claim: mailbox verdicts 2026-10-08T16:46Z [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",

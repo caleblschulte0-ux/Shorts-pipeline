@@ -1,6 +1,6 @@
 # Retro — 20261008
 
-generated 2026-10-08T23:31:04Z · 4 video(s) posted today
+generated 2026-10-09T00:31:00Z · 4 video(s) posted today
 
 ## trending
 
@@ -13,11 +13,11 @@ _nothing published today_
 
 | video | age | views | vph | vs same age |
 |---|---|---|---|---|
-| The Ozone Hole Is Quietly Healing. Here's Pr | 4.6h | 73 | 15.8696 | — · no comparable history |
+| The Ozone Hole Is Quietly Healing. Here's Pr | 6.5h | 73 | 11.2308 | — · no comparable history |
 
 - 7d: 18 videos, median 78.0 views
 - 30d: 66 videos, median 48.0 views
-- thin data (<5): 0-6h
+- thin data (<5): 6-24h
 
 ## curiosity
 
@@ -45,9 +45,9 @@ _nothing published today_
 ## Running experiments
 
 - `20260924-third-story-arm-slot-beats-mature-clip-baseline-on` — Third story-arm slot beats mature clip baseline on views-per-hour
-    - 14.76d, 2 samples, needs 28d / 25 samples · 14.8/28 days elapsed — too early to read
+    - 14.8d, 2 samples, needs 28d / 25 samples · 14.8/28 days elapsed — too early to read
 - `20260925-superlative-science-family-explainer-topics-beat-t` — Superlative/science-family explainer topics beat the broad mix on average-view-percentage
-    - 13.76d, 1 samples, needs 28d / 25 samples · 13.8/28 days elapsed — too early to read
+    - 13.8d, 1 samples, needs 28d / 25 samples · 13.8/28 days elapsed — too early to read
 
 ## Bespoke pictures vs performance
 
@@ -59,8 +59,8 @@ _best judge `bespoke` grade per video vs views-per-hour at >= 24h_
 
 _views-per-hour percentile vs same-age explainer videos, by style arm, videos >= 24h old posted since the first illustrated upload_
 
-- current: n=17, median p44 _(noise: too few)_
-- illustrated: n=23, median p66 _(noise: too few)_
+- current: n=17, median p45 _(noise: too few)_
+- illustrated: n=23, median p65 _(noise: too few)_
 - **fewer than 30 mature videos in at least one arm: this is noise, not a result**
 
 ## Pipeline health
@@ -68,10 +68,10 @@ _views-per-hour percentile vs same-age explainer videos, by style arm, videos >=
 - consecutive failures: 0
 - exchange: {"media": {"fulfilled": 14, "self_filled": 0, "unfilled": 0, "refused": 0}, "punchup": {"applied": 0, "kept": 6, "rejected": 0, "absent": 0}, "done_marker": true, "authored": {"promoted": 0, "rejected
 - slots: {"note": "no daily_report.json \u2014 the trending run has not reported since this clone was made"}
-- showrunner: {"recent": 40, "blocks": 33, "avg_score": 44.5}
+- showrunner: {"recent": 40, "blocks": 37, "avg_score": 42.5}
 
 ## Repo
 
-- HEAD 44536d4, 50 commit(s) since 2026-10-07
+- HEAD b028247, 50 commit(s) since 2026-10-08
 
 Write proposals per `retro/README.md`. Nothing you write is applied automatically.

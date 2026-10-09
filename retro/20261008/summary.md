@@ -8,7 +8,7 @@
 
 - **trending**: nothing in the 24h window yet
 - **explainer**: 2 video(s) at ~24h, median 7.0 views _(thin)_
-    - best: Smartphones Just Got a Lot Younger (8.0775 vph)
+    - best: Smartphones Just Got a Lot Younger (7.8631 vph)
     - worst: World Hydropower Fell Below Its 1990 Level (0.0 vph)
 - **curiosity**: nothing in the 24h window yet
 - **third**: 1 video(s) at ~24h, median 6.0 views _(thin)_
