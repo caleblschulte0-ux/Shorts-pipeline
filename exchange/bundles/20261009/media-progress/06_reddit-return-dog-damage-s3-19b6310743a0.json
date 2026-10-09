@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261009",
+  "bundle": {
+    "identity": "982086a788a0d72af0af25bd7d5fd2e165c254a1826c621f1cd4972b6872fb53",
+    "path": "exchange/bundles/20261009/bundle.json"
+  },
+  "request_id": "06_reddit-return-dog-damage-s3-19b6310743a0",
+  "safe_request_id": "06_reddit-return-dog-damage-s3-19b6310743a0",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "673b5a15868d8b29b32a8eda272f43f386403128caa34f0d2bc190ffe3f44a82",
+  "prompt_used": "An editorial illustration for a short-form video: chewed couch armrest closeup. It accompanies the narration: \"deep chew marks along one whole armrest\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Fz9HhblH7r29iHohpyx7dJPp1jDLeXlC",
+    "filename": "20261009__06_reddit-return-dog-damage-s3-19b6310743a0.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Fz9HhblH7r29iHohpyx7dJPp1jDLeXlC",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "5741e35f68c0bbbad45dfc16aaca4034157e3865797cab0a593918fe8043cb85",
+    "bytes": 2481875,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-09T11:27:35.452Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
