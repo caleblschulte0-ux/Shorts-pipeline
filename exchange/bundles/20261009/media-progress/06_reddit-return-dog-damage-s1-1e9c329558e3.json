@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261009",
+  "bundle": {
+    "identity": "982086a788a0d72af0af25bd7d5fd2e165c254a1826c621f1cd4972b6872fb53",
+    "path": "exchange/bundles/20261009/bundle.json"
+  },
+  "request_id": "06_reddit-return-dog-damage-s1-1e9c329558e3",
+  "safe_request_id": "06_reddit-return-dog-damage-s1-1e9c329558e3",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "693ff7c60507a3679872ce1e9da07ce1e29fbd9de24f5e4974a56fa14bf52068",
+  "prompt_used": "An editorial illustration for a short-form video: woman pointing at couch complaint. It accompanies the narration: \"collapsed on its own after barely a month\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1N15ZYNVLqoZcxOkWk2S-hnUJhZl0lJlG",
+    "filename": "20261009__06_reddit-return-dog-damage-s1-1e9c329558e3.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1N15ZYNVLqoZcxOkWk2S-hnUJhZl0lJlG",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "11d6afae453a91a3149578058f4c73b1643be67f649a7fdb4bf425a5558e29e8",
+    "bytes": 2329688,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-09T11:27:35.452Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
