@@ -75,6 +75,16 @@ jobs:
           restore-keys: |
             translation-cache-v1-
 
+      - name: What earlier backtests already tried
+        # carry.json on preview-renders (backtest-preview.yml): without it
+        # every backtest re-cut the same few stories
+        run: |
+          git fetch origin preview-renders --depth=1 2>/dev/null \
+            && git show origin/preview-renders:backtests/carry.json \
+               > "$RUNNER_TEMP/carry.json" 2>/dev/null \
+            && echo "carrying $(wc -c < "$RUNNER_TEMP/carry.json") bytes" \
+            || { echo "no carry yet"; rm -f "$RUNNER_TEMP/carry.json"; }
+
       - name: Backtest
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
@@ -87,7 +97,8 @@ jobs:
           python scripts/story_backtest.py \
             --attempts "${{ inputs.attempts || '4' }}" \
             --max-clusters "${{ inputs.max_clusters || '6' }}" \
-            --out backtest
+            --out backtest \
+            --carry "$RUNNER_TEMP/carry.json"
 
       - name: Keep every cut
         if: always()

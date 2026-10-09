@@ -279,7 +279,12 @@ def prune(mem: dict, today: date | None = None) -> dict:
         clips = {k: clips[k] for k in keep}
     tried = [t for t in (mem.get("stories_tried") or [])
              if isinstance(t, dict) and str(t.get("d", "")) >= cutoff]
-    return {"clips": clips, "stories_tried": tried[-MAX_STORIES:]}
+    # kept edits are saved too: dropping them here meant a near-miss's edit
+    # lived only as long as the run that made it (found 2026-10-09)
+    kept = [k for k in (mem.get("kept_edits") or [])
+            if isinstance(k, dict) and str(k.get("d", "")) >= cutoff]
+    return {"clips": clips, "stories_tried": tried[-MAX_STORIES:],
+            "kept_edits": kept[:KEEP_MAX]}
 
 
 def save(mem: dict, path: Path | str | None = None,

@@ -61,12 +61,53 @@ def _sheet(mp4: Path) -> Path | None:
         return None
 
 
+def _carry_out(mem: dict) -> dict:
+    return {"stories_tried": list(mem.get("stories_tried") or []),
+            "kept_edits": list(mem.get("kept_edits") or [])}
+
+
+def carry(clip_memory, mem_path: Path, carry_path: str) -> int:
+    """Seed the scratch clip memory with what EARLIER BACKTESTS tried.
+
+    Operator, 2026-10-09: *"are we just doing the same sotires over and
+    over again?"* — yes. Each backtest started from a fresh copy of the
+    repo's memory and threw its own refusals away, so backtests 3-12 kept
+    re-cutting the same few stories (Kai's "call" story in six of them,
+    Buddha's coin in four). The refusals and kept edits now carry from run
+    to run (`backtest-preview.yml` keeps carry.json on preview-renders), so
+    a refused story is skipped like it would be in production and a
+    near-miss is repaired from its edit instead of re-rolled. Returns how
+    many tried stories came in."""
+    if not carry_path or not Path(carry_path).exists():
+        return 0
+    try:
+        prev = json.loads(Path(carry_path).read_text())
+    except (OSError, ValueError):
+        return 0
+    mem = clip_memory.load(mem_path) if mem_path.exists() else {}
+    have = {tuple(sorted(t.get("members") or []))
+            for t in mem.get("stories_tried") or []}
+    new = [t for t in prev.get("stories_tried") or []
+           if tuple(sorted(t.get("members") or [])) not in have]
+    mem.setdefault("stories_tried", []).extend(new)
+    kept = mem.setdefault("kept_edits", [])
+    kept_keys = {tuple(k.get("sources") or []) for k in kept}
+    for k in prev.get("kept_edits") or []:
+        if tuple(k.get("sources") or []) not in kept_keys:
+            kept.append(k)
+    mem_path.write_text(json.dumps(mem))
+    return len(new)
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--attempts", type=int, default=4)
     ap.add_argument("--out", default="backtest")
     ap.add_argument("--max-clusters", type=int, default=6,
                     help="candidates examined per attempt")
+    ap.add_argument("--carry", default="",
+                    help="carry.json from earlier backtests: what they "
+                         "already tried, so this one looks elsewhere")
     args = ap.parse_args(argv)
 
     out = Path(args.out).resolve()
@@ -79,6 +120,7 @@ def main(argv=None) -> int:
     if clip_memory.PATH.exists():
         shutil.copy2(clip_memory.PATH, mem_copy)
     clip_memory.PATH = mem_copy                 # scratch: never the repo's
+    carry_in = carry(clip_memory, mem_copy, args.carry)
 
     rt = _load_run_third()
     rt.EVENTS_FILE = scratch / "third_events.json"
@@ -141,6 +183,13 @@ def main(argv=None) -> int:
         r["passes"] = bool(rv.get("publish")) and \
             int(rv.get("story_score") or 0) >= floor
         cuts.append(r)
+
+    # what this run tried goes forward to the next one
+    final = _carry_out(rt._CLIP_MEMORY if rt._CLIP_MEMORY is not None
+                       else clip_memory.load(mem_copy))
+    (out / "carry.json").write_text(json.dumps(final, indent=1))
+    print(f"[backtest] carried in {carry_in} tried stories; carried out "
+          f"{len(final['stories_tried'])}", flush=True)
 
     (out / "report.json").write_text(json.dumps(
         {"floor": floor, "attempts": attempts, "cuts": cuts},
