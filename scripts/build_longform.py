@@ -209,11 +209,42 @@ def estimate_seconds(story: dict) -> float:
     return words / WORDS_PER_SECOND + SENTENCE_GAP_S * len(lines)
 
 
+DATA_DIR = REPO / "data_learning" / "data"
+
+
+def unsourced_beats(story: dict) -> list[str]:
+    """Beats whose dataset is not `officiality: official`.
+
+    A long-form puts the source on every frame and the number at 200pt for
+    minutes; it cannot be built on figures nobody measured. On 2026-10-07,
+    22 of the 23 stories that cleared `readiness()` ran on datasets marked
+    `"publisher": "Illustrative"` ("approximate real-world values for
+    visual storytelling") — poisonous-plants rendered "1,000%" over a plant
+    distribution chart. The forge only writes official data now; this keeps
+    the queue's older invented numbers off the watch page."""
+    bad = []
+    for g in story.get("segments") or []:
+        f = ((g or {}).get("params") or {}).get("file")
+        off = None
+        if f and (DATA_DIR / f).exists():
+            try:
+                src = json.loads((DATA_DIR / f).read_text()).get("source")
+                off = (src or {}).get("officiality") if isinstance(src, dict) else None
+            except (OSError, ValueError):
+                off = None
+        if off != "official":
+            bad.append((g or {}).get("topic") or f or "?")
+    return bad
+
+
 def readiness(story: dict) -> tuple[bool, str]:
     """(ready, reason) — whether this story can fill a watch-page video."""
     n = len(story.get("segments") or [])
     if n < MIN_SEGMENTS:
         return False, f"only {n} beats (< {MIN_SEGMENTS})"
+    bad = unsourced_beats(story)
+    if bad:
+        return False, f"{len(bad)} beat(s) on unofficial data ({bad[0]!r})"
     est = estimate_seconds(story)
     if est < MIN_EST_SECONDS:
         return False, f"~{est:.0f}s of narration (< {MIN_EST_SECONDS:.0f}s)"

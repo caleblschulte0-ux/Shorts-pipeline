@@ -64,6 +64,9 @@ DISPATCH_INPUTS = {
     "explainer.yml": {"mode": "schedule"},
     "deadman.yml": {"dry_run": "false"},
     "exchange_phase_b.yml": {"backstop": "true"},
+    # The Sunday long-form cron renders and judges, never uploads
+    # (operator, 2026-10-07); a re-fired slot must not be the one that does.
+    "longform.yml": {"dry_run": "true"},
 }
 
 #: Crons the clock deliberately leaves to GitHub, each with its reason.

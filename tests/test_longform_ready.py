@@ -15,10 +15,32 @@ sys.path.append(str(ROOT / "scripts"))
 import build_longform as BL  # noqa: E402
 
 
+# Every fixture beat cites one OFFICIAL dataset: readiness() now refuses a
+# story built on invented ("illustrative") numbers, and these tests are about
+# depth and selection, not sourcing (tests/test_longform_sourced.py).
+OFFICIAL = {"params": {"file": "lf_fixture_official.json"}}
+_DATA_PATCH = None
+
+
+def setUpModule():
+    global _DATA_PATCH
+    import json as _json
+    import tempfile as _tf
+    d = Path(_tf.mkdtemp(prefix="lf-data-"))
+    (d / "lf_fixture_official.json").write_text(
+        _json.dumps({"source": {"officiality": "official"}}))
+    _DATA_PATCH = mock.patch.object(BL, "DATA_DIR", d)
+    _DATA_PATCH.start()
+
+
+def tearDownModule():
+    _DATA_PATCH.stop()
+
+
 def _story(slug: str, words_per_say: int, beats: int = 4) -> dict:
     say = " ".join(["word"] * words_per_say)
     return {"slug": slug, "hook": say, "closing": say,
-            "segments": [{"say": say} for _ in range(beats)]}
+            "segments": [{"say": say, **OFFICIAL} for _ in range(beats)]}
 
 
 class LongformReadiness(unittest.TestCase):
