@@ -26581,7 +26581,7 @@
    "slug": "black-holes-in-galaxy",
    "title": "Our Galaxy Is Hiding Millions Of Black Holes",
    "hook": "100 million black holes are hiding in your own galaxy.",
-   "closing": "Somewhere out there, one just went quiet again.",
+   "closing": "For every black hole we've found, 250,000 are still hiding.",
    "question": "How many black holes lurk within 1,000 light-years?",
    "caption": "Scientists estimate our galaxy alone might be hiding 100 million black holes -- and we've directly confirmed only about 400 of them. Here's how we went from finding a dozen in a century to hundreds in under ten years, just by learning to feel them collide instead of trying to see them. What's your guess for how close the nearest one really is?",
    "hashtags": [
@@ -26611,7 +26611,12 @@
      "insight_type": "trend",
      "role": "1 · FIRST CONTACT",
      "topic": "Black hole collisions detected",
-     "say": "Since 2015, confirmed black hole collisions climbed from 1 to 390."
+     "say": "Since 2015, confirmed black hole collisions climbed from 1 to 390.",
+     "scene": {
+      "mechanic": "collision-ripple-ledger",
+      "concept": "each detected merger lights one cell of a 390-cell ledger beneath a black hole that sends out spacetime ripples",
+      "code": "bh = subject_image('black hole accretion disk')\ncx = (RX0 + RX1) // 2\nif bh is not None:\n    paste(bh, cx - 230, RTOP + 20, 460, 460)\nfor k in range(4):\n    ph = (reveal * 3.0 + k / 4.0) % 1.0\n    r = 120 + ph * 420\n    d.ellipse([cx - r, RTOP + 250 - r * 0.55, cx + r, RTOP + 250 + r * 0.55], outline=rgba(HIGHLIGHT, int(200 * (1 - ph))), width=5)\nidx = reveal * (n - 1)\ni = int(min(idx, n - 2))\ncur = lerp(values[i], values[i + 1], clamp(idx - i))\nlit = int(round(cur))\ncols = 26\nsz = 38\nfor j in range(390):\n    gx = RX0 + 6 + (j % cols) * sz\n    gy = RTOP + 560 + (j // cols) * sz\n    if j < lit:\n        d.ellipse([gx + 4, gy + 4, gx + sz - 8, gy + sz - 8], fill=rgba(HIGHLIGHT, 235))\n    else:\n        d.ellipse([gx + 12, gy + 12, gx + sz - 16, gy + sz - 16], fill=rgba(REST, 90))\ntext(fmt(round(cur)) + ' MERGERS HEARD', cx, RTOP + 500, size=52, color=HIGHLIGHT, center=True)\ntext(labels[0] + ' to ' + labels[-1], cx, RBOT - 40, size=34, color=SUBTLE, center=True)"
+     }
     },
     {
      "source": "offline",
@@ -26622,7 +26627,12 @@
      "insight_type": "comparison",
      "role": "2 · TWO METHODS",
      "topic": "Finding black holes",
-     "say": "Light found about a dozen in a century; gravitational waves found 390 in under ten years."
+     "say": "Light found about a dozen in a century; gravitational waves found 390 in under ten years.",
+     "scene": {
+      "mechanic": "light-vs-gravity-barcode",
+      "concept": "a telescope lights 12 slow stars while a gravity-wave detector's barcode of 390 ticks rises in a rush",
+      "code": "tel = subject_image('telescope observatory')\ncx = (RX0 + RX1) // 2\nif tel is not None:\n    paste(tel, RX0 + 20, RTOP + 20, 260, 300)\na = values[0]\nb = values[1]\nfor j in range(12):\n    t = clamp(reveal * 3.0 - j * 0.12)\n    sx = RX0 + 330 + (j % 6) * 110\n    sy = RTOP + 90 + (j // 6) * 130\n    d.ellipse([sx, sy, sx + 46, sy + 46], fill=rgba(TEXT, int(230 * t)))\ntext('LIGHT: ' + fmt(a) + ' in a century', RX0 + 20, RTOP + 360, size=44, color=TEXT)\nbase = RBOT - 80\nfor j in range(390):\n    t = clamp(reveal * 1.6 - j / 390.0 * 1.0)\n    hh = (120 + ((j * 53) % 97) * 5) * t\n    x = RX0 + 8 + j * 2.5\n    d.rectangle([x, base - hh, x + 1.8, base], fill=rgba(HIGHLIGHT, 230))\ncnt = int(clamp(reveal * 1.6) * b)\ntext('GRAVITY WAVES: ' + fmt(cnt), cx, RTOP + 480, size=54, color=HIGHLIGHT, center=True)\ntext(labels[1], cx, base + 30, size=30, color=SUBTLE, center=True)"
+     }
     },
     {
      "source": "offline",
@@ -26633,7 +26643,12 @@
      "insight_type": "comparison",
      "role": "3 · THE HIDDEN MAJORITY",
      "topic": "Hidden black holes",
-     "say": "Our galaxy holds about 100 million black holes; we've confirmed roughly 400."
+     "say": "Our galaxy holds about 100 million black holes; we've confirmed roughly 400.",
+     "scene": {
+      "mechanic": "galaxy-one-in-250000",
+      "concept": "a spiral galaxy of a thousand dim dots hides black holes; only a handful flash gold while the hidden count climbs to its estimate",
+      "code": "gal = subject_image('spiral galaxy milky way')\ncx = (RX0 + RX1) // 2\ncy = (RTOP + RBOT) // 2 - 60\nif gal is not None:\n    paste(gal, RX0, cy - 480, RX1 - RX0, 960)\nest = values[1]\nconf = values[0]\nvis = int(1400 * clamp(reveal * 1.4))\nfor k in range(vis):\n    ang = k * 0.31\n    rr = 20 + (k % 700) * 0.68\n    x = cx + rr * math.cos(ang + rr * 0.012)\n    y = cy + rr * 0.8 * math.sin(ang + rr * 0.012)\n    d.ellipse([x - 3, y - 3, x + 3, y + 3], fill=rgba(REST, 160))\nfor k in range(8):\n    ph = (reveal * 4.0 + k / 8.0) % 1.0\n    ang = k * 2.4\n    rr = 90 + k * 55\n    x = cx + rr * math.cos(ang)\n    y = cy + rr * 0.8 * math.sin(ang)\n    d.ellipse([x - 16 - ph * 30, y - 16 - ph * 30, x + 16 + ph * 30, y + 16 + ph * 30], outline=rgba(HIGHLIGHT, int(240 * (1 - ph))), width=5)\n    d.ellipse([x - 9, y - 9, x + 9, y + 9], fill=rgba(HIGHLIGHT, 255))\ncur = est * clamp(reveal * 1.3)\ntext(fmt(cur) + ' ESTIMATED', cx, RTOP + 20, size=56, color=HIGHLIGHT, center=True)\ntext('only ' + fmt(conf) + ' confirmed', cx, RBOT - 60, size=48, color=TEXT, center=True)"
+     }
     }
    ],
    "words_by": "brain-tighten",
@@ -26673,7 +26688,12 @@
      "insight_type": "trend",
      "role": "1 · THE SKY IS BRIGHTER",
      "topic": "Light drowning fireflies",
-     "say": "Artificial light makes the night sky about 9.6 percent brighter every year."
+     "say": "Artificial light makes the night sky about 9.6 percent brighter every year.",
+     "scene": {
+      "mechanic": "meadow-drowned-by-glow",
+      "concept": "a night meadow of blinking fireflies fades out as an orange skyglow climbs up from the horizon with the light-pollution index",
+      "code": "fly = subject_image('firefly glowing insect')\ncx = (RX0 + RX1) // 2\nidx = reveal * (n - 1)\ni = int(min(idx, n - 2))\ncur = lerp(values[i], values[i + 1], clamp(idx - i))\nrise = clamp((cur - values[0]) / max(1e-6, vmax - values[0]))\nhorizon = RBOT - 260\nbands = 40\nfor b in range(bands):\n    f = b / float(bands)\n    top = horizon - rise * 1000 * (1 - f)\n    d.rectangle([RX0, top, RX1, horizon], fill=rgba(WARN, int(6 + 4 * rise)))\nd.rectangle([RX0, horizon, RX1, RBOT], fill=rgba(REST, 200))\nalive = clamp(1 - rise * 1.05)\nfor k in range(26):\n    ph = (reveal * 6.0 + k * 0.37) % 1.0\n    blink = 1.0 if ph < 0.55 else 0.25\n    x = RX0 + 40 + (k * 211) % 920 + 25 * math.sin(reveal * 9 + k)\n    y = RTOP + 120 + (k * 137) % 1000 + 30 * math.cos(reveal * 7 + k)\n    if k / 26.0 < alive:\n        a = int(255 * blink)\n        d.ellipse([x - 22, y - 22, x + 22, y + 22], fill=rgba(HIGHLIGHT, int(a * 0.3)))\n        d.ellipse([x - 7, y - 7, x + 7, y + 7], fill=rgba(HIGHLIGHT, a))\nif fly is not None:\n    paste(fly, cx - 150, horizon - 120, 300, 260)\ntext('SKY BRIGHTNESS ' + fmt(cur), cx, RTOP + 20, size=54, color=WARN, center=True)\ntext(labels[0] + ' = 100', RX0 + 30, RBOT - 70, size=34, color=TEXT)"
+     }
     },
     {
      "source": "offline",
@@ -26684,7 +26704,12 @@
      "insight_type": "comparison",
      "role": "2 · THE COST",
      "topic": "Fireflies at risk",
-     "say": "Xerces estimates 1 in 3 firefly species are at risk, versus 14 percent formally threatened."
+     "say": "Xerces estimates 1 in 3 firefly species are at risk, versus 14 percent formally threatened.",
+     "scene": {
+      "mechanic": "lantern-grid-at-risk",
+      "concept": "100 firefly lanterns: 14 go dark for good, then a wave of flickering amber marks the extra species projected at risk, reaching 29",
+      "code": "fly = subject_image('firefly glowing insect')\ncx = (RX0 + RX1) // 2\nsure = int(values[0])\nrisk = int(values[1])\ncell = 92\nif fly is not None:\n    paste(fly, cx - 130, RTOP + 10, 260, 220)\nfor j in range(100):\n    x = RX0 + 40 + (j % 10) * cell\n    y = RTOP + 260 + (j // 10) * cell\n    t1 = clamp(reveal * 2.2 - j * 0.02)\n    t2 = clamp(reveal * 2.2 - 0.9 - (j - sure) * 0.03)\n    if j < sure:\n        col = rgba(WARN, int(240 * t1)) if t1 > 0.5 else rgba(HIGHLIGHT, 230)\n        d.ellipse([x, y, x + 64, y + 64], fill=col)\n    elif j < risk:\n        fl = 255 if int((reveal * 14 + j) % 3) else 120\n        col = rgba(HIGHLIGHT, int(fl * t2)) if t2 > 0 else rgba(REST, 120)\n        d.ellipse([x, y, x + 64, y + 64], fill=col)\n    else:\n        d.ellipse([x + 14, y + 14, x + 50, y + 50], fill=rgba(REST, 110))\nsx = RX0 + ((reveal * 3.0) % 1.0) * 1000\nd.rectangle([sx - 30, RTOP + 250, sx + 30, RTOP + 260 + 10 * cell], fill=rgba(HIGHLIGHT, 60))\nfor q in range(3):\n    qx = RX0 + ((reveal * 5.0 + q / 3.0) % 1.0) * 1000\n    d.ellipse([qx - 12, RTOP + 120 + q * 40, qx + 12, RTOP + 144 + q * 40], fill=rgba(HIGHLIGHT, 230))\ncnt = sure + int((risk - sure) * clamp(reveal * 2.2 - 0.9))\ntext(fmt(values[0]) + ' threatened', RX0 + 20, RBOT - 120, size=40, color=WARN)\ntext(fmt(cnt) + ' at risk', RX1 - 20 - 380, RBOT - 60, size=48, color=HIGHLIGHT)"
+     }
     },
     {
      "source": "offline",
@@ -26695,7 +26720,12 @@
      "insight_type": "comparison",
      "role": "3 · THE BLIND SPOT",
      "topic": "Fireflies we've studied",
-     "say": "We've assessed only 132 of roughly 172 known firefly species; the rest may already be gone."
+     "say": "We've assessed only 132 of roughly 172 known firefly species; the rest may already be gone.",
+     "scene": {
+      "mechanic": "searchlight-species-census",
+      "concept": "a searchlight sweeps a 172-cell grid of species, lighting the 132 ever assessed and leaving 40 dark question marks",
+      "code": "fly = subject_image('firefly close up photo')\ncx = (RX0 + RX1) // 2\ndone = int(values[0])\ntot = int(values[1])\ncols = 12\ncw = 82\nrows = (tot + cols - 1) // cols\ngy0 = RTOP + 380\nif fly is not None:\n    paste(fly, cx - 160, RTOP + 20, 320, 280)\nsweep = clamp(reveal * 1.1)\nlim = int(tot * sweep)\nfor j in range(tot):\n    x = RX0 + 8 + (j % cols) * cw\n    y = gy0 + (j // cols) * cw\n    if j < lim and j < done:\n        d.ellipse([x + 8, y + 8, x + cw - 14, y + cw - 14], fill=rgba(HIGHLIGHT, 235))\n    elif j < lim:\n        d.ellipse([x + 8, y + 8, x + cw - 14, y + cw - 14], outline=rgba(WARN, 220), width=4)\n        text('?', x + cw // 2 - 4, y + cw // 2 - 4, size=36, color=WARN, center=True)\n    else:\n        d.ellipse([x + 22, y + 22, x + cw - 28, y + cw - 28], fill=rgba(REST, 100))\nsy = gy0 + (lim // cols) * cw\nd.rectangle([RX0, sy + cw - 6, RX1, sy + cw + 4], fill=rgba(HIGHLIGHT, 200))\ntext(fmt(min(lim, done)) + ' ASSESSED', cx, RTOP + 310, size=50, color=HIGHLIGHT, center=True)\ntext(fmt(tot - done) + ' never checked', cx, RBOT - 40, size=44, color=WARN, center=True)"
+     }
     }
    ],
    "words_by": "brain-tighten",

@@ -4986,6 +4986,70 @@
    "ending_type": "escalation",
    "franchise": "",
    "notes": "people/plaque units as the bar; subject's own verb (leave, stamp, flood)"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-09",
+   "video_id": null,
+   "topic_category": "nature",
+   "hook_type": "shock_stat",
+   "hook_text": "Your bats are dying: 97 percent of one kind gone, and it started in one cave.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "kept existing scenes; spread map -> colonies fall -> pest bill"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-09",
+   "video_id": null,
+   "topic_category": "records",
+   "hook_type": "shock_stat",
+   "hook_text": "States are quietly holding 70 billion dollars of your money.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "kept existing scenes; vault vs trickle"
+  },
+  {
+   "slug": "black-holes-in-galaxy",
+   "directed_at": "2026-10-09",
+   "video_id": null,
+   "topic_category": "space",
+   "hook_type": "shock_stat",
+   "hook_text": "100 million black holes are hiding in your own galaxy.",
+   "depictions": [
+    "mechanic:collision-ripple-ledger",
+    "mechanic:light-vs-gravity-barcode",
+    "mechanic:galaxy-one-in-250000"
+   ],
+   "ending_type": "escalation",
+   "franchise": "",
+   "notes": "ledger of mergers -> barcode of waves -> 1 in 250,000 hidden"
+  },
+  {
+   "slug": "fireflies-losing-their-glow",
+   "directed_at": "2026-10-09",
+   "video_id": null,
+   "topic_category": "nature",
+   "hook_type": "shock_stat",
+   "hook_text": "Your summer nights are going dark: 14 percent of firefly species threatened.",
+   "depictions": [
+    "mechanic:meadow-drowned-by-glow",
+    "mechanic:lantern-grid-at-risk",
+    "mechanic:searchlight-species-census"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "skyglow rises as fireflies fade -> lantern grid -> census searchlight"
   }
  ]
 }
