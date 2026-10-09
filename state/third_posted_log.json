@@ -12116,13 +12116,59 @@
       "ts": "2026-10-09T12:46:12.020425+00:00"
     },
     "clip-20261009-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/caseoh_/clip/CuteAbstemiousChamoisKlappa-cgrc7_UNU0lHRvQN",
-      "story_key": null,
-      "streamer": "caseoh_",
+      "url": "https://youtube.com/shorts/s6PIxtfXxy4",
       "title": "Caseoh Calls Out An EF4 Tornado And Then Realizes He Got It Wrong",
       "kind": "twitch_clip",
-      "ts": "2026-10-09T17:57:28.299776+00:00",
+      "ts": "2026-10-09T17:57:37.518471+00:00",
+      "uploaded_at": "2026-10-09T17:57:37.518487+00:00",
+      "publish_at": "2026-10-09T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261009-caseoh-calls-out-an-ef4-tornado-and-then-realize-6d95dd00",
+        "tiktok": "queued for 2026-10-09T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/caseoh_/clip/CuteAbstemiousChamoisKlappa-cgrc7_UNU0lHRvQN",
+      "streamer": "caseoh_",
+      "series": "fail",
+      "hook": "Caseoh learns what an EF4 really is \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3953,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 20.69
+      },
+      "director_cut": true
+    },
+    "rejected-deliciousbluekuduphilosoraptor-2t1ckcnsovcdxwhh": {
+      "source_url": "https://www.twitch.tv/lirik/clip/DeliciousBlueKuduPhilosoraptor-2T1cKCnsOVcDXWhH",
+      "streamer": "lirik",
+      "title": "very interesting puzzle",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (puzzle gameplay, no visible payoff)",
+      "ts": "2026-10-09T18:24:27.890197+00:00"
+    },
+    "rejected-unusualgiantstarpermasmug-xw5cwlavjps176cv": {
+      "source_url": "https://www.twitch.tv/alinity/clip/UnusualGiantStarPermaSmug-xw5CWlaVjps176cv",
+      "streamer": "alinity",
+      "title": "BOOBA",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.8s \u2014 too short to edit",
+      "ts": "2026-10-09T18:24:37.369747+00:00"
+    },
+    "clip-20261009-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/PuzzledDirtyDumplingsYee-6SyVqLXmlHvcV2Is",
+      "story_key": null,
+      "streamer": "joe_bartolozzi",
+      "title": "Joe Joe_Bartolozzi Asks Jimmy To Turn The Cameras Off For 10 Minutes",
+      "kind": "twitch_clip",
+      "ts": "2026-10-09T18:27:17.736724+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
