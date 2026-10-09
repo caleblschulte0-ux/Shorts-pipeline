@@ -107,9 +107,12 @@ class ASadTurnGoesGrey(unittest.TestCase):
 @unittest.skipUnless(HAVE_FFMPEG and shutil.which("tesseract"),
                      "ffmpeg or tesseract unavailable")
 class NoCaptionsOverCaptions(unittest.TestCase):
-    def _video(self, td: Path, burned: bool) -> tuple[Path, list]:
-        lines = ["somebody stole my chair", "where did everybody go",
-                 "this stream is cursed", "nobody believes me today"]
+    def _video(self, td: Path, burned: bool, small: bool = False
+               ) -> tuple[Path, list]:
+        lines = (["oh my god", "that poor man", "do you remember",
+                  "no way bro"] if small else
+                 ["somebody stole my chair", "where did everybody go",
+                  "this stream is cursed", "nobody believes me today"])
         words, filt = [], []
         for i, ln in enumerate(lines):
             for j, w in enumerate(ln.split()):
@@ -117,8 +120,11 @@ class NoCaptionsOverCaptions(unittest.TestCase):
                               "e": i * 2.0 + j * 0.4 + 0.35})
             f = td / f"l{i}.txt"
             f.write_text(ln.upper())
-            filt.append(f"drawtext=textfile={f}:fontsize=64:fontcolor=white"
-                        f":borderw=4:x=(w-text_w)/2:y=h*0.8"
+            # small: the purple-bar captions reaction videos carry
+            fs, y, box = ((26, "h*0.62", ":box=1:boxcolor=0x6a2cff:boxborderw=6")
+                          if small else (64, "h*0.8", ""))
+            filt.append(f"drawtext=textfile={f}:fontsize={fs}:fontcolor=white"
+                        f":borderw=2{box}:x=(w-text_w)/2:y={y}"
                         f":enable='between(t,{i * 2.0},{i * 2.0 + 2.0})'")
         out = td / ("b.mp4" if burned else "n.mp4")
         vf = ",".join(filt) if burned else "null"
@@ -130,6 +136,12 @@ class NoCaptionsOverCaptions(unittest.TestCase):
     def test_a_captioned_stream_is_seen(self):
         with tempfile.TemporaryDirectory() as td:
             v, w = self._video(Path(td), True)
+            self.assertTrue(clip_edit.own_captions(v, w))
+
+    def test_small_short_captions_are_seen_too(self):
+        """A reaction video's own captions: ~26px, three short words."""
+        with tempfile.TemporaryDirectory() as td:
+            v, w = self._video(Path(td), True, small=True)
             self.assertTrue(clip_edit.own_captions(v, w))
 
     def test_an_uncaptioned_one_is_not(self):
