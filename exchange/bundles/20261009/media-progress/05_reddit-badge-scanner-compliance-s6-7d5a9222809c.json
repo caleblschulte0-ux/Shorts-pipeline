@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261009",
+  "bundle": {
+    "identity": "982086a788a0d72af0af25bd7d5fd2e165c254a1826c621f1cd4972b6872fb53",
+    "path": "exchange/bundles/20261009/bundle.json"
+  },
+  "request_id": "05_reddit-badge-scanner-compliance-s6-7d5a9222809c",
+  "safe_request_id": "05_reddit-badge-scanner-compliance-s6-7d5a9222809c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "452644a05469602f8dbbae584efaa5ac0fe4ed47fbfa6906d5bc3a20c8d19971",
+  "prompt_used": "An editorial illustration for a short-form video: empty office cubicle alone. It accompanies the narration: \"He got moved to an office with no staff to manage\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1D4NuCRZ9ES1A5OCIVyRv8fPmNdNzc-4A",
+    "filename": "20261009__05_reddit-badge-scanner-compliance-s6-7d5a9222809c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1D4NuCRZ9ES1A5OCIVyRv8fPmNdNzc-4A",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "3b026b286b0c1857cd80f51b075f57cb16ecfd5b790aec9f85cb2a638a455661",
+    "bytes": 2270685,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-09T11:27:35.452Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
