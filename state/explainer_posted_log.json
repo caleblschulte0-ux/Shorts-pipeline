@@ -2953,6 +2953,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 61,
       "duration_s": 25.3
+    },
+    "permafrost-thaw": {
+      "claimed_at": "2026-10-09T13:17:39.533978+00:00",
+      "title": "The Arctic's Permafrost Is Quietly Thawing For Good",
+      "publish_at": "2026-10-09T23:30:24Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3639,6 +3646,14 @@
       "state": "posted",
       "slug": "global-displacement-record",
       "at": "2026-10-09T12:26:58.966240+00:00"
+    },
+    {
+      "claimed_at": "2026-10-09T13:17:39.533978+00:00",
+      "title": "The Arctic's Permafrost Is Quietly Thawing For Good",
+      "publish_at": "2026-10-09T23:30:24Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "permafrost-thaw"
     }
   ]
 }
