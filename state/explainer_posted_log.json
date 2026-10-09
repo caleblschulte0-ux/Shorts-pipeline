@@ -2955,11 +2955,28 @@
       "duration_s": 25.3
     },
     "permafrost-thaw": {
-      "claimed_at": "2026-10-09T13:17:39.533978+00:00",
+      "url": "https://youtube.com/shorts/_GjzcmO4aMA",
       "title": "The Arctic's Permafrost Is Quietly Thawing For Good",
+      "at": "2026-10-09T13:17:51.662853+00:00",
       "publish_at": "2026-10-09T23:30:24Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 26 credits are required for this request.\",\"status",
+      "beat_s_max": 7.23,
+      "beat_s": [
+        3.8,
+        6.09,
+        7.23,
+        5.67,
+        5.7
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 57,
+      "duration_s": 28.4
     }
   },
   "uploads": [
@@ -3651,9 +3668,10 @@
       "claimed_at": "2026-10-09T13:17:39.533978+00:00",
       "title": "The Arctic's Permafrost Is Quietly Thawing For Good",
       "publish_at": "2026-10-09T23:30:24Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "permafrost-thaw"
+      "url": "https://youtube.com/shorts/_GjzcmO4aMA",
+      "state": "posted",
+      "slug": "permafrost-thaw",
+      "at": "2026-10-09T13:17:51.662853+00:00"
     }
   ]
 }
