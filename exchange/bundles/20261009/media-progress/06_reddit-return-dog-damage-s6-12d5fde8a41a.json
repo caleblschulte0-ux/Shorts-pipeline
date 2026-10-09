@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261009",
+  "bundle": {
+    "identity": "982086a788a0d72af0af25bd7d5fd2e165c254a1826c621f1cd4972b6872fb53",
+    "path": "exchange/bundles/20261009/bundle.json"
+  },
+  "request_id": "06_reddit-return-dog-damage-s6-12d5fde8a41a",
+  "safe_request_id": "06_reddit-return-dog-damage-s6-12d5fde8a41a",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "4490c6e24ea1ec875b00d1f92f237b3c13623092c8a3f5651a57039b10a51c64",
+  "prompt_used": "An editorial illustration for a short-form video: store clerk helping customer counter. It accompanies the narration: \"offered a modest discount on a new one instead\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1DleUbF6kdkOFXi62bcRq-mB7Hc-XUvNZ",
+    "filename": "20261009__06_reddit-return-dog-damage-s6-12d5fde8a41a.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1DleUbF6kdkOFXi62bcRq-mB7Hc-XUvNZ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "3c9d7924ce3ce1c6bcf57ebd6c62847b74c908c77032661503b9d0c0de9c2ccd",
+    "bytes": 1835308,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-09T11:27:35.452Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
