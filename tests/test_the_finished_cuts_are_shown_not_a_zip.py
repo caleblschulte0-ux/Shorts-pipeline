@@ -135,3 +135,17 @@ class ItRunsAfterEveryBacktest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class NoOneStreamerTakesTheRun(unittest.TestCase):
+    """Backtest 13: Kai Cenat was 6 of the 8 rendered stories."""
+
+    def test_the_cap_is_configured_and_read(self):
+        spec = json.loads((ROOT / "state" / "third_packages" /
+                           "default_clip.json").read_text())["capture"]
+        self.assertEqual(spec["story_max_per_streamer"], 2)
+        src = (ROOT / "scripts" / "run_third.py").read_text()
+        self.assertIn('spec.get("story_max_per_streamer", 2)', src)
+        # the cap is checked BEFORE a candidate counts as examined
+        self.assertLess(src.index("_per_streamer.get(_lead, 0) >= "),
+                        src.index("_examined += 1"))
