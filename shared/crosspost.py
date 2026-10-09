@@ -8,7 +8,9 @@ every failure is a warning, and the YouTube post stands regardless.
 
 TikTok: the account is the one linked at shorts-media.netlify.app/app/ for
 this channel — `tiktok.handle` in config/channel_registry.json, overridable
-by TIKTOK_HANDLE_<CHANNEL>. A channel with no handle does NOT post: with
+by TIKTOK_HANDLE_<CHANNEL>. `tiktok.post: false` switches a channel's TikTok
+off outright (a static token or handle variable cannot turn it back on).
+A channel with no handle does NOT post: with
 several accounts linked, "whichever one" is how a trending video lands on
 the third channel's TikTok. A static TIKTOK_ACCESS_TOKEN[_<CHANNEL>] still
 works as before.
@@ -40,8 +42,22 @@ def tiktok_handle(channel: str) -> str:
         return ""
 
 
+def tiktok_posting_on(channel: str) -> bool:
+    """False when the registry switches this channel's TikTok off
+    (`tiktok.post: false`)."""
+    try:
+        from shared import channel_registry
+        return (channel_registry.channel(channel).get("tiktok") or {}) \
+            .get("post", True) is not False
+    except Exception:  # noqa: BLE001 — an unknown channel simply has none
+        return False
+
+
 def _tiktok_ready(channel: str) -> tuple[bool, str]:
     from shared.uploaders import tiktok_broker_available
+    if not tiktok_posting_on(channel):
+        return False, (f"TikTok is off for {channel} "
+                       f"(channels.{channel}.tiktok.post is false)")
     if os.environ.get(f"TIKTOK_ACCESS_TOKEN_{channel.upper()}") or \
             os.environ.get("TIKTOK_ACCESS_TOKEN"):
         return True, ""

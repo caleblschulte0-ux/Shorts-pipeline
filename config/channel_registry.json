@@ -60,7 +60,8 @@
     "trending": {
       "id": "trending",
       "tiktok": {
-        "handle": "ballerbro2.1"
+        "handle": "ballerbro2.1",
+        "post": false
       },
       "enabled": true,
       "display_name": "Trending / daily shorts",
@@ -226,7 +227,8 @@
     "explainer": {
       "id": "explainer",
       "tiktok": {
-        "handle": "shortexplainer1"
+        "handle": "shortexplainer1",
+        "post": true
       },
       "enabled": true,
       "display_name": "Explainer (data stories)",
@@ -412,7 +414,8 @@
     "third": {
       "id": "third",
       "tiktok": {
-        "handle": "third.brain.down"
+        "handle": "third.brain.down",
+        "post": false
       },
       "enabled": true,
       "display_name": "Third channel (Proof Mode / clips)",
