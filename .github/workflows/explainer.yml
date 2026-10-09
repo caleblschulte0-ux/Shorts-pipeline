@@ -270,7 +270,7 @@ jobs:
       - name: Install the Chatterbox voice
         if: inputs.mode != 'verify'
         env:
-          CHATTERBOX_MODEL: ${{ vars.CHATTERBOX_MODEL || 'turbo' }}
+          CHATTERBOX_MODEL: ${{ vars.CHATTERBOX_MODEL || 'full' }}
         run: |
           df -h . | tail -1
           python -m engines install chatterbox_tts \
@@ -580,8 +580,8 @@ jobs:
           TTS_CACHE_DIR: cache/tts
           # The narrator: a voice number from the voice lab page (1-5) and
           # full | turbo. Repo variables, so a pick needs no code change.
-          CHATTERBOX_VOICE: ${{ vars.CHATTERBOX_VOICE || '1' }}
-          CHATTERBOX_MODEL: ${{ vars.CHATTERBOX_MODEL || 'turbo' }}
+          CHATTERBOX_VOICE: ${{ vars.CHATTERBOX_VOICE || '38' }}
+          CHATTERBOX_MODEL: ${{ vars.CHATTERBOX_MODEL || 'full' }}
           # PUBLISH OPT-IN. The editorial gate's freeze (PUBLISH_ENABLED) is the
           # operator's switch and the operator has turned it on: the channel
           # posts again. Nothing that judges QUALITY changes — real-data

@@ -48,18 +48,38 @@ LOCK = Path(__file__).with_name("chatterbox.lock")
 WORKER = Path(__file__).with_name("_chatterbox_worker.py")
 VOICE_DIR = ROOT / "assets" / "voice"
 
-#: The five narrators on the voice lab page, by the number caaleb sees there.
-VOICES = {"1": "3000", "2": "2086", "3": "2902", "4": "3170", "5": "6319"}
-DEFAULT_VOICE = "1"
+#: The narrators on the voice lab page, by the number caaleb sees there,
+#: each a 10 s clip in assets/voice/ (assets/voice/README.md says where
+#: every one came from).
+VOICES = {"1": "libritts_r_3000", "2": "libritts_r_2086", "3": "libritts_r_2902",
+          "4": "libritts_r_3170", "5": "libritts_r_6319", "38": "globe_S_001818"}
+#: caaleb, 2026-10-09, of Voice 38 on the full model after the finals on two
+#: real stories: "make that the new voice of the channel". One voice for
+#: every video (2026-10-08: never rotate it, never match it to a topic).
+DEFAULT_VOICE = "38"
+#: The full model, with its energy dial where the finals were rendered.
 #: Turbo voices five lines in ~80 s on a runner, the full model in ~270 s
-#: (engines/chatterbox.models.json). The repo variable picks.
-DEFAULT_MODEL = "turbo"
+#: (engines/chatterbox.models.json); the repo variable can still pick.
+DEFAULT_MODEL = "full"
+FULL_STYLE = {"exaggeration": 0.75, "cfg_weight": 0.35}
+#: A run that has spent this long in the full model finishes on Turbo in
+#: the SAME voice, so a long day cannot push the explainer job past its
+#: timeout (the full model is ~3x slower). Minutes, repo variable
+#: CHATTERBOX_FULL_BUDGET_MIN.
+FULL_BUDGET_MIN = 75.0
+_FULL_SPENT_S = 0.0
 
-#: CC BY 4.0 asks for credit wherever the voice is used.
+#: CC BY 4.0 asks for credit wherever a LibriTTS-R voice is used. GLOBE
+#: (Common Voice) is CC0: nothing to credit.
 CREDIT = ("Narration voice based on the LibriTTS-R corpus (Koizumi et al., "
           "2023), licensed under Creative Commons: By Attribution 4.0 "
           "(creativecommons.org/licenses/by/4.0/). Voice model: Chatterbox "
           "by Resemble AI (MIT).")
+
+
+def credit_for(stem: str) -> str:
+    """The description credit a voice's licence asks for, by its clip's stem."""
+    return CREDIT if str(stem).startswith("libritts_r_") else ""
 
 #: A line must say at least this share of its words, in order, as heard by
 #: whisper. Base.en mishears the odd word; an ad-lib, a dropped clause or a
@@ -74,13 +94,27 @@ LAST_FAILURE: str | None = None
 
 def voice_ref(voice: str | None = None) -> Path:
     v = str(voice or os.environ.get("CHATTERBOX_VOICE") or DEFAULT_VOICE).strip()
-    spk = VOICES.get(v, v)
-    return VOICE_DIR / f"libritts_r_{spk}.ogg"
+    p = VOICE_DIR / f"{VOICES.get(v, v)}.ogg"
+    return p if p.is_file() else VOICE_DIR / f"{VOICES[DEFAULT_VOICE]}.ogg"
+
+
+def _budget_s() -> float:
+    try:
+        return 60.0 * float(os.environ.get("CHATTERBOX_FULL_BUDGET_MIN") or FULL_BUDGET_MIN)
+    except ValueError:
+        return 60.0 * FULL_BUDGET_MIN
 
 
 def model_name(model: str | None = None) -> str:
     m = str(model or os.environ.get("CHATTERBOX_MODEL") or DEFAULT_MODEL).strip()
-    return m if m in META["models"] else DEFAULT_MODEL
+    m = m if m in META["models"] else DEFAULT_MODEL
+    if m == "full" and model is None and _FULL_SPENT_S >= _budget_s():
+        try:
+            if model_verified("turbo"):
+                return "turbo"             # same voice, three times faster
+        except Exception:  # noqa: BLE001
+            pass
+    return m
 
 
 def model_dir(model: str | None = None) -> Path:
@@ -131,6 +165,22 @@ def install(model: str | None = None) -> bool:
     """Build the venv from the lock and fetch the pinned model. The only
     network this engine ever touches."""
     m = model_name(model)
+    for extra in (["turbo"] if m == "full" else []):   # the budget's fallback
+        if not _fetch(extra):
+            print("[chatterbox] Turbo fallback not fetched; a long run stays on full")
+    if not _venv_ok() and not _build_venv():
+        return False
+    if not _fetch(m):
+        return False
+    try:                                   # the listener every line must pass
+        import whisper
+        whisper.load_model(os.environ.get("CHATTERBOX_LISTENER", "base.en"))
+    except Exception as e:  # noqa: BLE001
+        print(f"[chatterbox] listener not fetched ({e}); lines will fail closed")
+    return available(m)
+
+
+def _build_venv() -> bool:
     if not _venv_ok():
         print(f"[chatterbox] building venv {VENV}")
         subprocess.run([sys.executable, "-m", "venv", "--clear", str(VENV)], check=True)
@@ -145,6 +195,13 @@ def install(model: str | None = None) -> bool:
             return False
         (VENV / ".lock.sha256").write_text(
             hashlib.sha256(LOCK.read_bytes()).hexdigest() + "\n")
+    return True
+
+
+def _fetch(m: str) -> bool:
+    """The pinned weights of one model, verified, or False."""
+    if not _venv_ok() and not _build_venv():
+        return False
     if not model_verified(m):
         spec = META["models"][m]
         d = model_dir(m)
@@ -161,12 +218,7 @@ def install(model: str | None = None) -> bool:
             print("[chatterbox] model download failed or did not match its "
                   "pinned SHA-256 — refusing it")
             return False
-    try:                                   # the listener every line must pass
-        import whisper
-        whisper.load_model(os.environ.get("CHATTERBOX_LISTENER", "base.en"))
-    except Exception as e:  # noqa: BLE001
-        print(f"[chatterbox] listener not fetched ({e}); lines will fail closed")
-    return available(m)
+    return True
 
 
 # ------------------------------------------------------------------ voicing
@@ -219,7 +271,7 @@ def _run_worker(items: list[tuple[str, Path, int]], model: str, ref: Path,
     raw = [(t, o.with_suffix(".cb.wav"), s) for t, o, s in items]
     job.write_text(json.dumps({
         "model": model, "ckpt": str(model_dir(model)), "ref": str(ref),
-        "threads": _threads(),
+        "threads": _threads(), **(FULL_STYLE if model == "full" else {}),
         "lines": [{"text": t, "out": str(r), "seed": s} for t, r, s in raw]}))
     t0 = time.time()
     with _OneAtATime():
@@ -231,6 +283,9 @@ def _run_worker(items: list[tuple[str, Path, int]], model: str, ref: Path,
             _fail(f"timed out after {timeout:.0f}s")
             return False
     job.unlink(missing_ok=True)
+    if model == "full":
+        global _FULL_SPENT_S
+        _FULL_SPENT_S += time.time() - t0
     if r.returncode != 0:
         _fail(f"worker exit {r.returncode}: {(r.stderr or '')[-300:]}")
         return False
@@ -297,7 +352,7 @@ def _fail(why: str) -> None:
 
 def maybe_voice(texts: list[str], outs: list[Path], *, voice: str | None = None,
                 model: str | None = None, normalize=None,
-                timeout: float = 900.0) -> list[Path] | None:
+                timeout: float = 1800.0) -> list[Path] | None:
     """Voice every line into its `outs` path (24kHz mono WAV), each one
     listened to. The list of paths, or None on ANY failure — never raises."""
     global LAST_FAILURE

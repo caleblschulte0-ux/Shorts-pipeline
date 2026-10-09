@@ -18,8 +18,12 @@ the runner's CPU, for free. What these tests hold:
   * a line it voiced is never voiced again (the line cache);
   * its process gets no secret: it is third-party code in a job that holds
     the YouTube token;
-  * the CC BY credit rides on every video it narrated;
-  * the five voices on the lab page are in the repo, small, and pinned.
+  * the credit a voice's licence asks for rides on every video it narrated
+    (LibriTTS-R is CC BY; the GLOBE voices are CC0 and need none);
+  * the voices on the lab page are in the repo, small, and pinned;
+  * the channel's ONE voice is Voice 38 on the full model (caaleb,
+    2026-10-09, after the finals: "make that the new voice of the
+    channel"), and a long run finishes on Turbo in that same voice.
 """
 from __future__ import annotations
 
@@ -295,14 +299,27 @@ class TheCreditRidesOnEveryVideoItNarrated(unittest.TestCase):
             mp4.with_suffix(".style.json").write_text(json.dumps({"tts": {"engine": engine}}))
         return mp4
 
-    def test_chatterbox_videos_credit_the_corpus(self):
-        self.assertIn(cb.CREDIT, self.ps._desc_suffix({}, self._mp4("chatterbox")))
+    def _voiced(self, stem):
+        import json
+        mp4 = self.tmp / f"{stem}.mp4"
+        mp4.with_suffix(".style.json").write_text(json.dumps(
+            {"tts": {"engine": "chatterbox", "voice": f"{stem} (full)"}}))
+        return mp4
+
+    def test_a_libritts_voice_credits_the_corpus(self):
+        self.assertIn(cb.CREDIT, self.ps._desc_suffix({}, self._voiced("libritts_r_3000")))
+
+    def test_the_globe_voice_is_cc0_and_credits_nothing(self):
+        self.assertNotIn(cb.CREDIT, self.ps._desc_suffix({}, self._voiced("globe_S_001818")))
 
     def test_other_voices_do_not(self):
         self.assertNotIn(cb.CREDIT, self.ps._desc_suffix({}, self._mp4("speechify")))
 
-    def test_a_cut_that_lost_its_sidecar_still_credits(self):
-        self.assertIn(cb.CREDIT, self.ps._desc_suffix({}, self.tmp / "gone.mp4"))
+    def test_a_cut_that_lost_its_sidecar_is_credited_for_this_runs_voice(self):
+        with mock.patch.dict(os.environ, {"CHATTERBOX_VOICE": "1"}):
+            self.assertIn(cb.CREDIT, self.ps._desc_suffix({}, self.tmp / "gone.mp4"))
+        with mock.patch.dict(os.environ, {"CHATTERBOX_VOICE": "38"}):
+            self.assertNotIn(cb.CREDIT, self.ps._desc_suffix({}, self.tmp / "gone.mp4"))
 
     def test_every_upload_passes_its_cut(self):
         for f in ("scripts/post_stories.py", "scripts/claim_reviews.py"):
@@ -332,6 +349,63 @@ class TheWorkflowProvisionsIt(unittest.TestCase):
         y = (ROOT / ".github" / "workflows" / "explainer.yml").read_text()
         got = set(re.findall(r"CHATTERBOX_MODEL: \$\{\{ vars.CHATTERBOX_MODEL \|\| '(\w+)' \}\}", y))
         self.assertEqual(got, {cb.DEFAULT_MODEL})
+
+class TheChannelHasOneVoice(unittest.TestCase):
+    def test_it_is_voice_38_on_the_full_model(self):
+        self.assertEqual(cb.DEFAULT_VOICE, "38")
+        self.assertEqual(cb.DEFAULT_MODEL, "full")
+        with mock.patch.dict(os.environ, {"CHATTERBOX_VOICE": "", "CHATTERBOX_MODEL": ""}):
+            self.assertEqual(cb.voice_ref().name, "globe_S_001818.ogg")
+            self.assertTrue(cb.voice_ref().is_file())
+
+    def test_its_source_is_written_down(self):
+        readme = (ROOT / "assets" / "voice" / "README.md").read_text()
+        self.assertIn("globe_S_001818.ogg", readme)
+        self.assertIn("CC0", readme)
+
+    def test_both_workflow_steps_default_to_it(self):
+        y = (ROOT / ".github" / "workflows" / "explainer.yml").read_text()
+        self.assertIn("CHATTERBOX_VOICE: ${{ vars.CHATTERBOX_VOICE || '38' }}", y)
+
+    def test_the_full_model_is_handed_the_energy_it_was_picked_at(self):
+        seen = {}
+        tmp = Path(tempfile.mkdtemp())
+
+        def run(cmd, **kw):
+            import json as _j
+            spec = _j.loads(Path(cmd[-1]).read_text())
+            seen.update(spec)
+            for l in spec["lines"]:
+                _wav(Path(l["out"]))
+            return mock.Mock(returncode=0, stderr="")
+        with mock.patch("subprocess.run", side_effect=run), \
+                mock.patch.object(cb, "_trim", lambda a, b: Path(a).replace(b)):
+            self.assertTrue(cb._run_worker([("hi there", tmp / "s0.wav", 1)], "full",
+                                           tmp / "ref.ogg", 10))
+        self.assertEqual(seen["exaggeration"], cb.FULL_STYLE["exaggeration"])
+        self.assertEqual(seen["cfg_weight"], cb.FULL_STYLE["cfg_weight"])
+
+    def test_a_long_run_finishes_on_turbo_in_the_same_voice(self):
+        with mock.patch.dict(os.environ, {"CHATTERBOX_MODEL": "", "CHATTERBOX_VOICE": ""}), \
+                mock.patch.object(cb, "model_verified", lambda m=None: True):
+            with mock.patch.object(cb, "_FULL_SPENT_S", 0.0):
+                self.assertEqual(cb.model_name(), "full")
+            with mock.patch.object(cb, "_FULL_SPENT_S", cb._budget_s() + 1):
+                self.assertEqual(cb.model_name(), "turbo")
+                self.assertEqual(cb.model_name("full"), "full")   # an explicit ask is kept
+                self.assertEqual(cb.voice_ref().name, "globe_S_001818.ogg")
+
+    def test_no_turbo_on_disk_means_it_stays_on_full(self):
+        with mock.patch.dict(os.environ, {"CHATTERBOX_MODEL": ""}), \
+                mock.patch.object(cb, "model_verified", lambda m=None: False), \
+                mock.patch.object(cb, "_FULL_SPENT_S", cb._budget_s() + 1):
+            self.assertEqual(cb.model_name(), "full")
+
+    def test_the_cache_keeps_full_model_lines_apart_by_their_energy(self):
+        from data_learning import studio_render as R
+        import inspect
+        self.assertIn("FULL_STYLE", inspect.getsource(R._chatterbox_lines))
+
 
 if __name__ == "__main__":
     unittest.main()

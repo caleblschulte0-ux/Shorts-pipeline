@@ -754,7 +754,8 @@ def _chatterbox_lines(texts: list[str], workdir: Path) -> list[Path] | None:
     rev = cb.META["models"][model]["revision"][:12]
     ref = cb.voice_ref()
     outs = [workdir / f"s{i}.wav" for i in range(len(texts))]
-    keys = [_tts_cache_path("chatterbox", ref.stem, f"{model}-{rev}", t) for t in texts]
+    style = "".join(f"-{k[0]}{v}" for k, v in sorted(cb.FULL_STYLE.items())) if model == "full" else ""
+    keys = [_tts_cache_path("chatterbox", ref.stem, f"{model}-{rev}{style}", t) for t in texts]
     todo = [i for i in range(len(texts)) if not _tts_cache_get(keys[i], outs[i])]
     if todo:
         got = cb.maybe_voice([texts[i] for i in todo], [outs[i] for i in todo],

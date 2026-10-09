@@ -213,15 +213,17 @@ REGISTRY: dict[str, dict] = {
         # lowkey sound better then eleven labs". Free, local, no account.
         "status": "active",
         "problem": "A narration voice people cannot tell is AI, for free: "
-                   "Chatterbox clones a real narrator (LibriTTS-R, CC BY "
-                   "4.0) from a 10 s clip in assets/voice/, on the runner's "
+                   "Chatterbox clones one real person (Voice 38, GLOBE, "
+                   "CC0; caaleb's pick 2026-10-09) from a 10 s clip in "
+                   "assets/voice/, on the runner's "
                    "CPU, and every line is listened back (whisper) before "
                    "it is used — the showrunner judges frames, not audio.",
         "headless": True,
         "control": "python (engines.chatterbox_tts.maybe_voice)",
         "reusable": True,
-        "license": "MIT (Chatterbox code + weights, Resemble AI); the voices "
-                   "are LibriTTS-R speakers, CC BY 4.0 — every video it "
+        "license": "MIT (Chatterbox code + weights, Resemble AI); the "
+                   "channel's voice is CC0 (GLOBE / Common Voice); the lab's "
+                   "LibriTTS-R voices are CC BY 4.0 and a video one of them "
                    "narrates carries chatterbox_tts.CREDIT",
         "commercial_use": True,
         "cpu_ok": True,

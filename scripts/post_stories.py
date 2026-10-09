@@ -208,11 +208,12 @@ def _sources_block(cfg: dict) -> str:
 
 
 def _voice_credit(mp4) -> str:
-    """The CC-BY credit for the Chatterbox narrator, on every video that voice
-    narrated. Read off the render's own sidecar; a cut whose sidecar is gone
-    carries it anyway — an unneeded credit costs nothing, a missing one
-    breaks the licence."""
-    from engines.chatterbox_tts import CREDIT
+    """The credit the Chatterbox narrator's licence asks for, on every video
+    that voice narrated (a LibriTTS-R voice is CC BY; the GLOBE voices are
+    CC0 and need none). Read off the render's own sidecar; a cut whose
+    sidecar is gone is credited for the voice this run would use — an
+    unneeded credit costs nothing, a missing one breaks the licence."""
+    from engines import chatterbox_tts as cb
     if mp4 is None:
         return ""
     try:
@@ -222,7 +223,9 @@ def _voice_credit(mp4) -> str:
         tts = None
     if isinstance(tts, dict) and tts.get("engine") and tts["engine"] != "chatterbox":
         return ""
-    return CREDIT
+    voice = (tts or {}).get("voice") if isinstance(tts, dict) else None
+    stem = str(voice).split(" (")[0] if voice else cb.voice_ref().stem
+    return cb.credit_for(stem)
 
 
 def _desc_suffix(cfg: dict, mp4=None) -> str:
