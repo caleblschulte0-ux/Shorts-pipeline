@@ -53,5 +53,19 @@ class TheUploaderUsesTheRegistryHandle(unittest.TestCase):
         self.assertEqual(asked, [{"handle": "shortexplainer1"}])
 
 
+class APostedVideoCanBeSentByHand(unittest.TestCase):
+    def test_only_a_posted_video_of_a_tiktok_channel(self):
+        sys.path.insert(0, str(ROOT / "scripts"))
+        import tiktok_post_release as t
+        self.assertEqual(t.channel_of("video-explainer-20261008-x-1"), "explainer")
+        with self.assertRaises(SystemExit):
+            t.channel_of("v1.0")
+        self.assertFalse(t.passed_the_gate("explainer", "never posted"))
+        import json
+        log = json.loads((ROOT / t.POSTED_LOGS["explainer"]).read_text())
+        posted = [u["title"] for u in log["uploads"] if u.get("state") == "posted"]
+        self.assertTrue(t.passed_the_gate("explainer", posted[-1]))
+
+
 if __name__ == "__main__":
     unittest.main()
