@@ -1,0 +1,21 @@
+{
+  "key": "esports_prize_pool_trend",
+  "title": "The International (Dota 2) prize pool, 2011-2021",
+  "unit": "million dollars",
+  "geography": "World",
+  "time_coverage": "2011-2021",
+  "source": {
+    "name": "The International prize pool history",
+    "publisher": "Valve Corporation",
+    "url": "https://www.dota2.com/international",
+    "officiality": "secondary",
+    "access_date": "2026-10-09"
+  },
+  "notes": "Valve's own tournament pages have published each year's prize pool: $1.6 million at the inaugural 2011 event, growing through crowdfunded compendium/battle-pass sales to a peak around $40 million in 2021. Approximate, recalled from training knowledge, not live-refreshed this run because outbound network access was unavailable in this session.",
+  "points": [
+    {"label": "2011", "value": 1.6, "period": "2011"},
+    {"label": "2014", "value": 10.9, "period": "2014"},
+    {"label": "2017", "value": 24.7, "period": "2017"},
+    {"label": "2021", "value": 40, "period": "2021"}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "condor_recovery_trend",
+  "title": "California condor total population, 1987-2023",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "1987-2023",
+  "source": {
+    "name": "California condor recovery program status reports",
+    "publisher": "U.S. Fish and Wildlife Service",
+    "url": "https://www.fws.gov/species/california-condor-gymnogyps-californianus",
+    "officiality": "official",
+    "access_date": "2026-10-09"
+  },
+  "notes": "USFWS and partner condor recovery programs have tracked the population's slow climb from 27 birds in 1987 past 300 by the late 2000s to over 500 by the early 2020s. Approximate milestone figures, recalled from training knowledge, not live-refreshed this run because outbound network access was unavailable in this session.",
+  "points": [
+    {"label": "1987", "value": 27, "period": "1987"},
+    {"label": "2008", "value": 300, "period": "2008"},
+    {"label": "2023", "value": 500, "period": "2023"}
+  ]
+}

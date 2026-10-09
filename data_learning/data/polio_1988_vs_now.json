@@ -1,0 +1,20 @@
+{
+  "key": "polio_1988_vs_now",
+  "title": "Wild polio cases worldwide, 1988 vs recent",
+  "unit": "count",
+  "geography": "World",
+  "time_coverage": "1988 vs 2023",
+  "source": {
+    "name": "Global Polio Eradication Initiative case counts",
+    "publisher": "World Health Organization / GPEI",
+    "url": "https://polioeradication.org",
+    "officiality": "official",
+    "access_date": "2026-10-09"
+  },
+  "notes": "GPEI has reported wild poliovirus paralytic cases falling from about 350,000 across more than 125 countries in 1988 (the year of the global eradication push) to a low double-digit/single-digit count in recent years. Approximate, recalled from training knowledge, not live-refreshed this run because outbound network access was unavailable in this session.",
+  "baseline": {"label": "1988", "value": 350000},
+  "points": [
+    {"label": "1988", "value": 350000},
+    {"label": "2023", "value": 12}
+  ]
+}

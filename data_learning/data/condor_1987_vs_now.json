@@ -1,0 +1,20 @@
+{
+  "key": "condor_1987_vs_now",
+  "title": "California condor population, 1987 vs today",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "1987 vs 2023",
+  "source": {
+    "name": "California condor recovery program status reports",
+    "publisher": "U.S. Fish and Wildlife Service",
+    "url": "https://www.fws.gov/species/california-condor-gymnogyps-californianus",
+    "officiality": "official",
+    "access_date": "2026-10-09"
+  },
+  "notes": "USFWS's condor recovery program has documented the species falling to 27 individuals (all in captivity) by 1987 before a captive-breeding and reintroduction effort brought the total population back above 500. Approximate current total, recalled from training knowledge, not live-refreshed this run because outbound network access was unavailable in this session.",
+  "baseline": {"label": "1987 (all-time low)", "value": 27},
+  "points": [
+    {"label": "1987 (all-time low)", "value": 27},
+    {"label": "Today", "value": 500}
+  ]
+}

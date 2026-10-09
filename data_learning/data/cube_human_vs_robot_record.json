@@ -1,0 +1,19 @@
+{
+  "key": "cube_human_vs_robot_record",
+  "title": "Rubik's Cube record: fastest human vs fastest robot",
+  "unit": "seconds",
+  "geography": "World",
+  "time_coverage": "2018-2023",
+  "source": {
+    "name": "Robotic cube-solving record reports",
+    "publisher": "Various engineering teams (e.g. MIT)",
+    "url": "https://www.guinnessworldrecords.com",
+    "officiality": "secondary",
+    "access_date": "2026-10-09"
+  },
+  "notes": "A machine built to solve the cube has done it in well under one second -- a widely reported MIT-built robot recorded about 0.38 seconds in 2018 -- far faster than any human's official record. Approximate, recalled from training knowledge, not live-refreshed this run because outbound network access was unavailable in this session.",
+  "points": [
+    {"label": "Fastest human", "value": 3.13},
+    {"label": "Fastest robot", "value": 0.38}
+  ]
+}

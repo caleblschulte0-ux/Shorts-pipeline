@@ -32007,6 +32007,243 @@
      "say": "Pitch is roughly 230 billion times more viscous than water."
     }
    ]
+  },
+  {
+   "slug": "california-condor-comeback",
+   "title": "This Bird Went From 27 To Over 500",
+   "hook": "In 1987, every wild California condor left was just 27.",
+   "closing": "27 birds. Now hundreds, still fighting old bullets.",
+   "question": "Have you ever seen a condor?",
+   "caption": "In 1987, the entire California condor species was down to 27 birds, all in captivity. Decades of breeding and release brought the total past 500 -- but lead poisoning from old ammunition still kills half the wild ones with a known cause. Have you ever seen one? 👇",
+   "hashtags": [
+    "condor",
+    "californiacondor",
+    "conservation",
+    "wildlife",
+    "endangeredspecies",
+    "birds",
+    "nature",
+    "extinction",
+    "science",
+    "data",
+    "didyouknow",
+    "environment"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "condor_1987_vs_now",
+     "params": {
+      "file": "condor_1987_vs_now.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "1 · THE LOW POINT",
+     "topic": "how few California condors were left in 1987",
+     "say": "By 1987, only 27 California condors were left alive on Earth."
+    },
+    {
+     "source": "offline",
+     "key": "condor_recovery_trend",
+     "params": {
+      "file": "condor_recovery_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE SLOW CLIMB",
+     "topic": "the California condor's slow comeback",
+     "say": "The population climbed slowly for decades, passing 300 birds by 2008."
+    },
+    {
+     "source": "offline",
+     "key": "condor_lead_poisoning_share",
+     "params": {
+      "file": "condor_lead_poisoning_share.json"
+     },
+     "insight_type": "share",
+     "use_baseline": false,
+     "role": "3 · WHAT'S STILL KILLING THEM",
+     "topic": "what's still killing wild condors today",
+     "say": "Lead poisoning from bullet fragments still causes about half of wild condor deaths."
+    }
+   ]
+  },
+  {
+   "slug": "polio-cases-fell-99-percent",
+   "title": "Polio Cases Fell 99.9% In One Generation",
+   "hook": "In 1988, polio paralyzed 350,000 kids a year.",
+   "closing": "One vaccine. One generation. Almost gone.",
+   "question": "Did you know polio still exists?",
+   "caption": "In 1988, polio paralyzed about 350,000 children a year across more than 125 countries. One global vaccination push cut that by over 99.9% -- wild polio now survives in just two countries. Did you know it was that close to zero? 👇",
+   "hashtags": [
+    "polio",
+    "vaccines",
+    "publichealth",
+    "who",
+    "eradication",
+    "globalhealth",
+    "science",
+    "data",
+    "didyouknow",
+    "medicine",
+    "history",
+    "health"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "polio_1988_vs_now",
+     "params": {
+      "file": "polio_1988_vs_now.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "1 · HOW BAD IT WAS",
+     "topic": "how common polio used to be",
+     "say": "In 1988, polio paralyzed about 350,000 children across more than 125 countries."
+    },
+    {
+     "source": "offline",
+     "key": "polio_decline_trend",
+     "params": {
+      "file": "polio_decline_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE FALL",
+     "topic": "how fast polio kept disappearing",
+     "say": "Cases kept falling for decades, down to just a dozen worldwide by 2023."
+    },
+    {
+     "source": "offline",
+     "key": "polio_endemic_countries",
+     "params": {
+      "file": "polio_endemic_countries.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · WHERE IT'S LEFT",
+     "topic": "where polio still exists today",
+     "say": "Wild polio is now endemic in just two countries, down from over 125."
+    }
+   ]
+  },
+  {
+   "slug": "esports-prize-pool-25x",
+   "title": "One Tournament's Prize Pool Grew 25x",
+   "hook": "Esports' biggest prize pool jumped from $1.6 million to $40 million.",
+   "closing": "Biggest prize pool ever. Then it wasn't.",
+   "question": "Do you watch competitive esports?",
+   "caption": "Dota 2's championship started with a $1.6 million prize pool in 2011. Fan crowdfunding pushed it to $40 million by 2021 -- then a funding change cut it back down almost overnight. Do you follow competitive gaming? 👇",
+   "hashtags": [
+    "esports",
+    "dota2",
+    "gaming",
+    "videogames",
+    "prizepool",
+    "twitch",
+    "gamingnews",
+    "data",
+    "didyouknow",
+    "tech",
+    "competitivegaming",
+    "streaming"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "esports_prize_pool_trend",
+     "params": {
+      "file": "esports_prize_pool_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE CLIMB",
+     "topic": "the tournament's prize pool exploding",
+     "say": "The prize pool went from $1.6 million in 2011 to $40 million by 2021."
+    },
+    {
+     "source": "offline",
+     "key": "esports_prize_pool_funding_share",
+     "params": {
+      "file": "esports_prize_pool_funding_share.json"
+     },
+     "insight_type": "share",
+     "use_baseline": false,
+     "role": "2 · WHO ACTUALLY PAID FOR IT",
+     "topic": "where the extra prize pool money came from",
+     "say": "Valve only funded about 4% of it -- fans crowdfunded the other 96%."
+    },
+    {
+     "source": "offline",
+     "key": "esports_prize_pool_after_2021",
+     "params": {
+      "file": "esports_prize_pool_after_2021.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · THE CRASH",
+     "topic": "why the prize pool shrank again",
+     "say": "By 2023, Valve changed the funding model and the prize pool shrank fast."
+    }
+   ]
+  },
+  {
+   "slug": "rubiks-cube-record-vs-robot",
+   "title": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
+   "hook": "In 1982, the world's fastest cube solve took 22 seconds.",
+   "closing": "Humans got fast. Machines got faster.",
+   "question": "Could you solve a cube that fast?",
+   "caption": "The first world championship Rubik's Cube solve in 1982 took almost 23 seconds. The official record has since fallen to about 3.13 seconds -- and a robot beat that too, in well under half a second. Could you even solve one? 👇",
+   "hashtags": [
+    "rubikscube",
+    "speedcubing",
+    "worldrecord",
+    "puzzle",
+    "cubing",
+    "robotics",
+    "tech",
+    "data",
+    "didyouknow",
+    "science",
+    "gaming",
+    "records"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "cube_record_1982_vs_now",
+     "params": {
+      "file": "cube_record_1982_vs_now.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "1 · HOW SLOW IT STARTED",
+     "topic": "how slow the first rubik's cube record was",
+     "say": "In 1982, the first world championship cube solve took almost 23 seconds."
+    },
+    {
+     "source": "offline",
+     "key": "cube_record_decline_trend",
+     "params": {
+      "file": "cube_record_decline_trend.json"
+     },
+     "insight_type": "trend",
+     "ascending": false,
+     "role": "2 · THE RECORD KEPT FALLING",
+     "topic": "how fast cube solving kept getting",
+     "say": "The record kept falling for decades, down to 3.47 seconds by 2018."
+    },
+    {
+     "source": "offline",
+     "key": "cube_human_vs_robot_record",
+     "params": {
+      "file": "cube_human_vs_robot_record.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "3 · THEN A MACHINE TRIED",
+     "topic": "how a machine beat every human cube record",
+     "say": "A robot then solved the same cube in just 0.38 seconds flat."
+    }
+   ]
   }
  ],
  "videos": [

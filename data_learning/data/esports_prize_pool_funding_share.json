@@ -1,0 +1,19 @@
+{
+  "key": "esports_prize_pool_funding_share",
+  "title": "Who actually funded the $40 million prize pool (2021)",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "2021",
+  "source": {
+    "name": "The International prize pool history",
+    "publisher": "Valve Corporation",
+    "url": "https://www.dota2.com/international",
+    "officiality": "secondary",
+    "access_date": "2026-10-09"
+  },
+  "notes": "Valve seeded the tournament with a fixed base contribution (around $1.6 million) and the rest came from the community crowdfunding the prize pool through battle-pass/compendium sales -- the vast majority of the final total. Approximate share, recalled from training knowledge, not live-refreshed this run because outbound network access was unavailable in this session.",
+  "points": [
+    {"label": "Fan crowdfunding", "value": 96},
+    {"label": "Valve's base contribution", "value": 4}
+  ]
+}

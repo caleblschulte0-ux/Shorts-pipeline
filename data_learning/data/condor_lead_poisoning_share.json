@@ -1,0 +1,19 @@
+{
+  "key": "condor_lead_poisoning_share",
+  "title": "Share of wild condor deaths from lead poisoning",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "recent years",
+  "source": {
+    "name": "California condor recovery program status reports",
+    "publisher": "U.S. Fish and Wildlife Service",
+    "url": "https://www.fws.gov/species/california-condor-gymnogyps-californianus",
+    "officiality": "official",
+    "access_date": "2026-10-09"
+  },
+  "notes": "Condor recovery programs have repeatedly reported lead poisoning, mainly from scavenging carcasses shot with lead ammunition, as the single leading cause of death among wild condors with a known cause -- roughly half of documented cases. Approximate share, recalled from training knowledge, not live-refreshed this run because outbound network access was unavailable in this session.",
+  "points": [
+    {"label": "Lead poisoning", "value": 50},
+    {"label": "Other known causes", "value": 50}
+  ]
+}

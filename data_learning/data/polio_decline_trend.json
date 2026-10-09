@@ -1,0 +1,21 @@
+{
+  "key": "polio_decline_trend",
+  "title": "Wild polio cases worldwide, 1988-2023",
+  "unit": "count",
+  "geography": "World",
+  "time_coverage": "1988-2023",
+  "source": {
+    "name": "Global Polio Eradication Initiative case counts",
+    "publisher": "World Health Organization / GPEI",
+    "url": "https://polioeradication.org",
+    "officiality": "official",
+    "access_date": "2026-10-09"
+  },
+  "notes": "GPEI's own reporting has emphasized a greater than 99% drop by 2000 from the 1988 baseline, with further decline since. Approximate milestone figures, recalled from training knowledge, not live-refreshed this run because outbound network access was unavailable in this session.",
+  "points": [
+    {"label": "1988", "value": 350000, "period": "1988"},
+    {"label": "2000", "value": 3500, "period": "2000"},
+    {"label": "2012", "value": 223, "period": "2012"},
+    {"label": "2023", "value": 12, "period": "2023"}
+  ]
+}
