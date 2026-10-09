@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261009",
+  "bundle": {
+    "identity": "982086a788a0d72af0af25bd7d5fd2e165c254a1826c621f1cd4972b6872fb53",
+    "path": "exchange/bundles/20261009/bundle.json"
+  },
+  "request_id": "06_reddit-return-dog-damage-s7-960d5ca54eeb",
+  "safe_request_id": "06_reddit-return-dog-damage-s7-960d5ca54eeb",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "c38e0501de5e93b0a7ac81ae4e63a0b991404e923dc1b8a04f55e1855ec269e3",
+  "prompt_used": "An editorial illustration for a short-form video: customer walking out store exit. It accompanies the narration: \"She left annoyed but quiet\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1DS9zxRx6NODHARRABBESQQrgLNuwcUQD",
+    "filename": "20261009__06_reddit-return-dog-damage-s7-960d5ca54eeb.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1DS9zxRx6NODHARRABBESQQrgLNuwcUQD",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "4d5a3eae58995ab7319d2e4a53c0cafbfbdbf354859e94fada5d68ddd47c24a6",
+    "bytes": 2263061,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-09T11:27:35.452Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
