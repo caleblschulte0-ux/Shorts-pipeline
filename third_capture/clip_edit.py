@@ -743,16 +743,25 @@ def own_captions(video: Path, words: list[dict], samples: int = 8) -> bool:
                      "-i", str(video), "-frames:v", "1",
                      # captions are WHITE: keep only near-white pixels, as
                      # black text on white, so busy footage drops out
-                     "-vf", "crop=iw:ih*0.7:0:ih*0.3,scale=iw*1.5:-2,"
+                     # 2.5x: a stream's captions are often SMALL (a
+                     # reaction's purple-bar captions at ~20px tall)
+                     "-vf", "crop=iw:ih*0.7:0:ih*0.3,scale=iw*2.5:-2,"
                      "format=gray,lut=y='if(gt(val\\,215)\\,0\\,255)'",
                      str(fr)], check=True, timeout=60)
                 seen = _ocr_text(fr)
             except Exception:  # noqa: BLE001
                 continue
             read += 1
-            near = {re.sub(r"[^a-z]", "", str(w["w"]).lower())
-                    for w in words if abs(float(w["s"]) - t) <= 1.5}
-            if sum(1 for n in near if len(n) >= 4 and n in seen) >= 2:
+            seq = [re.sub(r"[^a-z]", "", str(w["w"]).lower())
+                   for w in words if abs(float(w["s"]) - t) <= 1.5]
+            near = set(seq)
+            # two words a HUD never says, or two SPOKEN IN A ROW read
+            # together ("ohmygod", "thatpoorman"): short captions are
+            # mostly short words
+            pairs = {a + b for a, b in zip(seq, seq[1:])
+                     if a and b and len(a + b) >= 6}
+            if (sum(1 for n in near if len(n) >= 4 and n in seen) >= 2
+                    or any(p in seen for p in pairs)):
                 hits += 1
     return hits >= 2 and hits >= 0.4 * max(1, read)
 
