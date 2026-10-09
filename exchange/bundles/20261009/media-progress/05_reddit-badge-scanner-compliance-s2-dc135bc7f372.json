@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261009",
+  "bundle": {
+    "identity": "982086a788a0d72af0af25bd7d5fd2e165c254a1826c621f1cd4972b6872fb53",
+    "path": "exchange/bundles/20261009/bundle.json"
+  },
+  "request_id": "05_reddit-badge-scanner-compliance-s2-dc135bc7f372",
+  "safe_request_id": "05_reddit-badge-scanner-compliance-s2-dc135bc7f372",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "c2b8495bd8d11f41d6a333b9522d0a9ce1352d8366fe2c81f494be7cb5b1c6d8",
+  "prompt_used": "An editorial illustration for a short-form video: office stapler supply closet. It accompanies the narration: \"Scanned in to refill the stapler\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 2,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1_hDMuaLGaZcPKWz1LiKJs3NkCsGqUkTO",
+    "filename": "20261009__05_reddit-badge-scanner-compliance-s2-dc135bc7f372.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1_hDMuaLGaZcPKWz1LiKJs3NkCsGqUkTO",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "e9a4edc24ec9c041d0b9ab520d2ba5f34fd1f6642a1796d16b3a5f8470b48141",
+    "bytes": 1863543,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-09T11:27:35.452Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
