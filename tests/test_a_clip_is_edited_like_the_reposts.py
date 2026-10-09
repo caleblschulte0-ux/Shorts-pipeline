@@ -152,3 +152,96 @@ def test_a_two_line_hook_is_balanced_not_an_orphan():
     lines, _ = c.wrap("CaseOh finds out what an EF4 is 😳")
     assert len(lines) == 2
     assert len(lines[1].split()) >= 3, lines   # never a lone "is 😳"
+
+
+# ---- the moves (operator, 2026-10-09: "you have to add stuff other
+# clippers do ... we can't just do the sad grey thing") ----
+
+def test_the_moves_land_on_the_cut_not_the_clip():
+    from third_capture import moves
+    p = moves.plan({"mood": "hype", "mood_at": 9,
+                    "moves": [{"move": "zoom", "at": 12},
+                              {"move": "shake", "at": 3},   # before the cut
+                              {"move": "awkward", "at": 13},  # too close
+                              {"move": "slowmo", "at": 15}],  # retired
+                    "line2": {"text": "Then chat noticed 💀", "at": 14}},
+                   dur=20, offset=5)
+    assert p["hits"] == [{"move": "zoom", "at": 7.0}]
+    assert p["bed"] == {"move": "hype", "at": 4.0}
+    assert p["line2"] == {"text": "Then chat noticed 💀", "at": 9.0}
+    assert moves.summary(p) == ["zoom@7.0", "hype@4.0", "line2@9.0"]
+
+
+def test_no_more_than_three_hits_and_none_on_a_tiny_clip():
+    from third_capture import moves
+    many = [{"move": "zoom", "at": t} for t in (1, 4, 7, 10, 13)]
+    assert len(moves.plan({"moves": many}, 20)["hits"]) == 3
+    assert moves.plan({"moves": many}, 1.5)["hits"] == []
+
+
+def test_the_author_directs_the_moves():
+    from third_capture import author
+    out = author._postprocess(
+        {"title": "Kai Cenat Can't Believe What Chat Did", "hook": "Kai reads chat",
+         "caption": "x", "hashtags": ["kaicenat"], "series": "chaos",
+         "edit": {"mood": "hype", "mood_at": 4,
+                  "moves": [{"move": "zoom", "at": 6.5},
+                            {"move": "explode", "at": 8}],
+                  "line2": {"text": "THEN CHAT NOTICED 💀", "at": 9}}},
+        "kaicenat", "kai reads chat", 20.0)
+    e = out["edit"]
+    assert e["mood"] == "hype"
+    assert e["moves"] == [{"move": "zoom", "at": 6.5}]
+    assert e["line2"] == {"text": "Then chat noticed 💀", "at": 9.0}
+
+
+def test_every_move_renders_with_its_sound(tmp_path):
+    """A real ffmpeg render of the camera, the colour and the sounds on a
+    test clip: the zoom must change the picture at its second and the
+    boom must be heard there."""
+    import subprocess
+
+    import numpy as np
+    from third_capture import moves
+    p = moves.plan({"mood": "sad", "mood_at": 3.5,
+                    "moves": [{"move": "zoom", "at": 1.0},
+                              {"move": "shake", "at": 3.2},
+                              {"move": "awkward", "at": 5.4}]}, 8.0)
+    assert len(p["hits"]) == 3
+    frag, files = moves.audio_graph(p, "0:a", 1, 8.0, "amv")
+    vf = (f"[0:v]scale=540:960,{moves.camera(p, 540, 960)},"
+          f"{moves.look(p)}[vout];{frag}")
+    out = tmp_path / "m.mp4"
+    src = tmp_path / "src.mp4"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i",
+                    "testsrc2=s=540x960:r=30:d=8", "-f", "lavfi", "-i",
+                    "anullsrc=r=44100:cl=stereo", "-t", "8",
+                    "-c:v", "libx264", "-c:a", "aac", str(src)], check=True)
+    cmd = ["ffmpeg", "-v", "error", "-y", "-i", str(src)]
+    for f in files:
+        cmd += ["-i", str(f)]
+    cmd += ["-filter_complex", vf, "-map", "[vout]", "-map", "[amv]",
+            "-t", "8", "-c:v", "libx264", "-c:a", "aac", str(out)]
+    subprocess.run(cmd, check=True)
+
+    def frame(t):
+        raw = subprocess.run(
+            ["ffmpeg", "-v", "error", "-ss", str(t), "-i", str(out),
+             "-frames:v", "1", "-vf", "scale=54:96,format=gray",
+             "-f", "rawvideo", "-"], capture_output=True, check=True).stdout
+        return np.frombuffer(raw, np.uint8).astype(float)
+
+    def loud(t0, t1):
+        raw = subprocess.run(
+            ["ffmpeg", "-v", "error", "-ss", str(t0), "-t", str(t1 - t0),
+             "-i", str(out), "-ac", "1", "-ar", "8000", "-f", "s16le", "-"],
+            capture_output=True, check=True).stdout
+        a = np.frombuffer(raw, np.int16).astype(float)
+        return float(np.sqrt((a ** 2).mean())) if len(a) else 0.0
+
+    # testsrc2 moves a little on its own; the punch-in moves it a lot
+    still = np.abs(frame(0.5) - frame(0.6)).mean()
+    punched = np.abs(frame(0.6) - frame(1.4)).mean()
+    assert punched > 3 * still + 2
+    assert loud(1.0, 1.6) > 300          # the boom under the zoom
+    assert loud(0.1, 0.8) < 50           # silence before it

@@ -1243,51 +1243,80 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         # a sad turn the picture goes grey and a piano comes in under the
         # voices (third_capture/mood.py), from the second the author named.
         from third_capture import caption_line
-        from third_capture import mood as mood_mod
-        line_png = None
+        from third_capture import moves as moves_mod
+        # The moves (operator, same day: "you have to add stuff other
+        # clippers do ... we can't just do the sad grey thing"): a punch-in
+        # with a boom, a shake, an awkward push-in with crickets, the sad
+        # grey and piano or the hype colour and beat, and a second line at
+        # the turn — each on the second the author named
+        # (third_capture/moves.py).
+        mv = moves_mod.plan(direct if (auto and direct) else {}, dur,
+                            offset=t0)
+        line_png, line2_png = None, None
         if hook:
             try:
                 line_png = caption_line.render(hook, tmp / "line.png")
+                if mv["line2"]:
+                    line2_png = caption_line.render(mv["line2"]["text"],
+                                                    tmp / "line2.png")
             except Exception as e:  # noqa: BLE001
                 print(f"::warning::[edit] caption line failed "
                       f"({type(e).__name__})", flush=True)
-        mood_t, bed = None, None
-        if auto and direct:
-            mood_t = mood_mod.treatment(direct.get("mood", ""),
-                                        direct.get("mood_at", 0.0), dur)
-            if mood_t:
-                try:
-                    bed = mood_mod.bed()
-                except Exception:  # noqa: BLE001
-                    mood_t = None
-        ledger_ae["mood"] = mood_t["mood"] if mood_t else None
-        ledger_ae["mood_at"] = mood_t["at"] if mood_t else None
+        try:
+            # make every sound now, so a synth failure drops the moves
+            # rather than the render
+            moves_mod.audio_graph(mv, "0:a", 1, dur, "amv")
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[edit] move sounds failed "
+                  f"({type(e).__name__}) — no moves", flush=True)
+            mv = moves_mod.plan({}, dur)
+        _bed = mv["bed"]
+        ledger_ae["mood"] = _bed["move"] if _bed else None
+        ledger_ae["mood_at"] = _bed["at"] if _bed else None
+        ledger_ae["moves"] = moves_mod.summary(mv)
         ledger_ae["own_captions"] = own_subs
 
         # §9: a 0.25s audio fade-out — the clip breathes out instead of the
         # audio slamming shut on the final frame
         afade = (f"loudnorm=I=-14:TP=-1.5,"
                  f"afade=t=out:st={max(0.0, dur - 0.25):.2f}:d=0.25")
+        _has_moves = bool(mv["hits"] or mv["bed"] or line2_png)
 
         def _compose(with_line: bool, with_mood: bool) -> tuple[str, list]:
             """(filter_complex, extra_input_paths); it ends in [vout] and
-            [aout]."""
+            [aout]. with_mood carries every move."""
             vf0, inputs = base_vf, []
-            if with_mood and mood_t:
-                # grey UNDER the captions, so the words stay white
-                vf0 = vf0.replace("[base]ass=", f"[base]{mood_t['vf']},ass=")
+            if with_mood:
+                # the camera and the colour act on the PICTURE, under the
+                # captions, so the words neither zoom nor go grey
+                pre = ",".join(f for f in (
+                    moves_mod.camera(mv, CANVAS_W, CANVAS_H),
+                    moves_mod.look(mv)) if f)
+                if pre:
+                    vf0 = vf0.replace("[base]ass=", f"[base]{pre},ass=")
             parts, cur = [vf0], "capped"
             if with_line and line_png:
                 inputs.append(line_png)
-                parts.append(f"[{cur}][{len(inputs)}:v]overlay=0:"
-                             f"{caption_line.LINE_Y}[ln]")
+                if with_mood and line2_png:
+                    a2 = mv["line2"]["at"]
+                    parts.append(f"[{cur}][{len(inputs)}:v]overlay=0:"
+                                 f"{caption_line.LINE_Y}:"
+                                 f"enable='lt(t,{a2:.2f})'[ln1]")
+                    inputs.append(line2_png)
+                    parts.append(f"[ln1][{len(inputs)}:v]overlay=0:"
+                                 f"{caption_line.LINE_Y}:"
+                                 f"enable='gte(t,{a2:.2f})'[ln]")
+                else:
+                    parts.append(f"[{cur}][{len(inputs)}:v]overlay=0:"
+                                 f"{caption_line.LINE_Y}[ln]")
                 cur = "ln"
             parts.append(f"[{cur}]null[vout]")
             a_in = "0:a"
-            if with_mood and mood_t and bed:
-                inputs.append(bed)
-                parts.append(mood_mod.audio_graph(
-                    mood_t, "0:a", f"{len(inputs)}:a", dur, "amood"))
+            if with_mood and (mv["hits"] or mv["bed"]):
+                frag, files = moves_mod.audio_graph(
+                    mv, "0:a", len(inputs) + 1, dur, "amood")
+                inputs += files
+                parts.append(frag)
                 a_in = "amood"
             parts.append(f"[{a_in}]{afade}[aout]")
             return ";".join(parts), inputs
@@ -1323,7 +1352,7 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         # -> raw re-encode. Record what shipped.
         if _render(full_chain, full_inputs):
             render_level = "full"
-        elif mood_t and _render(line_chain, line_inputs):
+        elif _has_moves and _render(line_chain, line_inputs):
             render_level = "text_only"
         elif _render(caps_vf):
             render_level = "captions_only"
