@@ -226,11 +226,11 @@ class TheRendererPlaysItAtTempo(unittest.TestCase):
     def test_every_engine_is_retimed_before_it_is_measured(self):
         from data_learning import studio_render as R
         src = inspect.getsource(R.synth_narration)
-        self.assertEqual(src.count("_retime(w, tempo)"), 2)          # elevenlabs, speechify
+        self.assertEqual(src.count("_retime(w, tempo)"), 3)          # chatterbox, elevenlabs, speechify
         self.assertIn("speed=tempo", src)                             # kokoro, natively
         for m in re.finditer(r"_retime\(w, tempo\)\n(\s+)d = _dur\(w\)", src):
             pass
-        self.assertEqual(len(re.findall(r"_retime\(w, tempo\)\s+d = _dur\(w\)", src)), 2)
+        self.assertEqual(len(re.findall(r"_retime\(w, tempo\)\s+d = _dur\(w\)", src)), 3)
         self.assertNotIn("speed=1.10", src)
         self.assertEqual(R._tempo(), B["tempo"])
 

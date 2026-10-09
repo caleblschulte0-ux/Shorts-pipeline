@@ -207,19 +207,41 @@ def _sources_block(cfg: dict) -> str:
     return ("Sources:\n" + "\n".join(out)) if out else ""
 
 
-def _desc_suffix(cfg: dict) -> str:
+def _voice_credit(mp4) -> str:
+    """The credit the Chatterbox narrator's licence asks for, on every video
+    that voice narrated (a LibriTTS-R voice is CC BY; the GLOBE voices are
+    CC0 and need none). Read off the render's own sidecar; a cut whose
+    sidecar is gone is credited for the voice this run would use — an
+    unneeded credit costs nothing, a missing one breaks the licence."""
+    from engines import chatterbox_tts as cb
+    if mp4 is None:
+        return ""
+    try:
+        from shared import style_arms as _style_arms
+        tts = _style_arms.read(Path(mp4)).get("tts")
+    except Exception:  # noqa: BLE001
+        tts = None
+    if isinstance(tts, dict) and tts.get("engine") and tts["engine"] != "chatterbox":
+        return ""
+    voice = (tts or {}).get("voice") if isinstance(tts, dict) else None
+    stem = str(voice).split(" (")[0] if voice else cb.voice_ref().stem
+    return cb.credit_for(stem)
+
+
+def _desc_suffix(cfg: dict, mp4=None) -> str:
     """The non-prose tail appended to EVERY description (English and localized):
     the full data sources, a hashtag block (<=15 so YouTube keeps them) + the
-    CC-BY attribution."""
+    CC-BY attributions (music, and the narrator's voice when `mp4` used it)."""
     tags = _merged_tags(cfg)[:15]
     block = " ".join(f"#{t}" for t in tags)
     srcs = _sources_block(cfg)
+    voice = _voice_credit(mp4)
     return ((f"\n\n{srcs}" if srcs else "") + (f"\n\n{block}" if block else "")
-            + f"\n\n{ATTRIBUTION}")
+            + f"\n\n{ATTRIBUTION}" + (f"\n{voice}" if voice else ""))
 
 
-def _description(cfg: dict) -> str:
-    return (_human_body(cfg) + _desc_suffix(cfg))[:5000]
+def _description(cfg: dict, mp4=None) -> str:
+    return (_human_body(cfg) + _desc_suffix(cfg, mp4))[:5000]
 
 
 def _creative_facts(slug: str, sc: dict, mp4: Path, verdict: dict | None) -> dict:
@@ -1051,7 +1073,7 @@ def main() -> int:
         try:
             from shared.localize import localize_meta
             localizations = localize_meta(
-                sc.get("title", slug), _human_body(sc), _desc_suffix(sc))
+                sc.get("title", slug), _human_body(sc), _desc_suffix(sc, out))
         except Exception as e:  # noqa: BLE001 — never let i18n block a post
             print(f"[{slug}] localization skipped: {e}", flush=True)
             localizations = {}
@@ -1107,7 +1129,7 @@ def main() -> int:
             res = uploader.upload(
                 file_path=out,
                 title=sc.get("title", slug)[:100],
-                description=_description(sc),
+                description=_description(sc, out),
                 tags=_merged_tags(sc),
                 publish_at=publish_at,
                 thumbnail=thumb if thumb.exists() else None,
@@ -1176,7 +1198,7 @@ def main() -> int:
         # Shipped (gate passed, YouTube took it): same cut to TikTok.
         from shared.crosspost import crosspost
         xposts = crosspost(args.channel, out, sc.get("title", slug)[:100],
-                           _description(sc), _merged_tags(sc),
+                           _description(sc, out), _merged_tags(sc),
                            publish_at=publish_at)
         if xposts:
             results[-1]["crossposts"] = xposts
