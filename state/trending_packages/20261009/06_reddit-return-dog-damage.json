@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "subreddit": "TalesFromTheCustomer",
+  "slug": "06_reddit-return-dog-damage",
+  "title": "She wanted a refund on a couch she'd had for 8 months. The chew marks gave it away.",
+  "hashtags": [
+    "reddit",
+    "talesfromthecustomer",
+    "retail",
+    "customerservice",
+    "storytime",
+    "karma",
+    "justice",
+    "fyp",
+    "shorts",
+    "story",
+    "viral",
+    "satisfying"
+  ],
+  "script": "A woman came in demanding a full refund on a couch, insisting it had collapsed on its own after barely a month of light use, and she wanted her nine hundred dollars back in cash right then. Our return window was thirty days, but she had no receipt, just a photo of the couch on her phone. I pulled up her loyalty account and found the actual purchase date, eight months earlier, which already broke her story. Then I zoomed into her own photo and saw deep chew marks along one whole armrest and a corner chewed clean through to the frame. I asked if she had a dog. She froze, then admitted her retriever puppy had gotten a little carried away with it. I explained warranty terms don't cover pet damage, showed her the purchase date on screen, and offered a modest discount on a new one instead. She left annoyed but quiet, and the couch stayed exactly where it was, teeth marks and all.",
+  "shots": [
+    {"phrase": "demanding a full refund on a couch", "query": "furniture store couch showroom"},
+    {"phrase": "collapsed on its own after barely a month", "query": "woman pointing at couch complaint"},
+    {"phrase": "found the actual purchase date, eight months earlier", "query": "computer screen purchase receipt lookup"},
+    {"phrase": "deep chew marks along one whole armrest", "query": "chewed couch armrest closeup"},
+    {"phrase": "a corner chewed clean through to the frame", "query": "damaged furniture fabric torn"},
+    {"phrase": "her retriever puppy had gotten a little carried away", "query": "golden retriever puppy indoors"},
+    {"phrase": "offered a modest discount on a new one instead", "query": "store clerk helping customer counter"},
+    {"phrase": "She left annoyed but quiet", "query": "customer walking out store exit"}
+  ],
+  "punches": [
+    {"phrase": "nine hundred dollars back in cash right then", "text": "$900 DEMAND", "color": "#ffaa30"},
+    {"phrase": "purchase date, eight months earlier", "text": "8 MONTHS AGO", "color": "#ff3030"},
+    {"phrase": "a corner chewed clean through to the frame", "text": "DOG DID THAT", "color": "#ff3030"},
+    {"phrase": "the couch stayed exactly where it was", "text": "REFUND DENIED", "color": "#50ff80"}
+  ],
+  "music_vibe": "dark"
+}

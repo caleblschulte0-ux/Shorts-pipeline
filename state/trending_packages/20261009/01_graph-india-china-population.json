@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "format": "graph_race",
+  "slug": "01_graph-india-china-population",
+  "title": "India Just Passed China. First Time Ever.",
+  "y_label": "Population (millions)",
+  "duration": 13,
+  "source": "Sources: UN DESA World Population Prospects (approx.)",
+  "hashtags": [
+    "india",
+    "china",
+    "population",
+    "demographics",
+    "worldpopulation",
+    "data",
+    "chart",
+    "history",
+    "fyp",
+    "shorts",
+    "trending",
+    "viral"
+  ],
+  "years": [1950, 1980, 2000, 2010, 2020, 2023],
+  "series": [
+    {
+      "name": "China",
+      "color": "#ff3030",
+      "icon": "CN",
+      "values": [554, 985, 1270, 1341, 1412, 1411]
+    },
+    {
+      "name": "India",
+      "color": "#ffaa30",
+      "icon": "IN",
+      "values": [376, 696, 1059, 1234, 1396, 1428]
+    }
+  ],
+  "music_vibe": "cinematic"
+}

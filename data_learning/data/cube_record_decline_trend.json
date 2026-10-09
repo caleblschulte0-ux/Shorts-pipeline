@@ -1,0 +1,21 @@
+{
+  "key": "cube_record_decline_trend",
+  "title": "Rubik's Cube world record solve time, 1982-2023",
+  "unit": "seconds",
+  "geography": "World",
+  "time_coverage": "1982-2023",
+  "source": {
+    "name": "World Cube Association official records",
+    "publisher": "World Cube Association",
+    "url": "https://www.worldcubeassociation.org",
+    "officiality": "secondary",
+    "access_date": "2026-10-09"
+  },
+  "notes": "Official competitive records fell from the first championship's 22.95 seconds in 1982 through roughly 20 seconds by 2000 to 3.47 seconds in 2018 (Yusheng Du) and about 3.13 seconds in recent years (Max Park). Approximate, recalled from training knowledge, not live-refreshed this run because outbound network access was unavailable in this session.",
+  "points": [
+    {"label": "1982", "value": 22.95, "period": "1982"},
+    {"label": "2000", "value": 20, "period": "2000"},
+    {"label": "2018", "value": 3.47, "period": "2018"},
+    {"label": "2023", "value": 3.13, "period": "2023"}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "polio_endemic_countries",
+  "title": "Countries with endemic wild polio, 1988 vs today",
+  "unit": "count",
+  "geography": "World",
+  "time_coverage": "1988 vs 2023",
+  "source": {
+    "name": "Global Polio Eradication Initiative endemic country status",
+    "publisher": "World Health Organization / GPEI",
+    "url": "https://polioeradication.org",
+    "officiality": "official",
+    "access_date": "2026-10-09"
+  },
+  "notes": "GPEI considered wild poliovirus endemic in more than 125 countries in 1988; by the 2020s only Afghanistan and Pakistan remained endemic. Approximate, recalled from training knowledge, not live-refreshed this run because outbound network access was unavailable in this session.",
+  "baseline": {"label": "1988", "value": 125},
+  "points": [
+    {"label": "1988", "value": 125},
+    {"label": "Today", "value": 2}
+  ]
+}

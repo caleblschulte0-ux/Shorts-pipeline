@@ -1,0 +1,20 @@
+{
+  "key": "cube_record_1982_vs_now",
+  "title": "Rubik's Cube world record solve time, 1982 vs today",
+  "unit": "seconds",
+  "geography": "World",
+  "time_coverage": "1982 vs 2023",
+  "source": {
+    "name": "World Cube Association official records",
+    "publisher": "World Cube Association",
+    "url": "https://www.worldcubeassociation.org",
+    "officiality": "secondary",
+    "access_date": "2026-10-09"
+  },
+  "notes": "The first world championship in 1982 was won in just under 23 seconds; the official single-solve world record has fallen to roughly 3.1 seconds in recent years. Approximate, recalled from training knowledge, not live-refreshed this run because outbound network access was unavailable in this session.",
+  "baseline": {"label": "1982", "value": 22.95},
+  "points": [
+    {"label": "1982", "value": 22.95},
+    {"label": "Today", "value": 3.13}
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "format": "graph_race",
+  "slug": "04_graph-urban-rural-population",
+  "title": "The World Flipped From Rural To Urban",
+  "y_label": "Share of world population (%)",
+  "duration": 13,
+  "source": "Sources: UN World Urbanization Prospects (approx.)",
+  "hashtags": [
+    "cities",
+    "urbanization",
+    "population",
+    "worldhistory",
+    "demographics",
+    "data",
+    "chart",
+    "society",
+    "fyp",
+    "shorts",
+    "trending",
+    "viral"
+  ],
+  "years": [1950, 1970, 1990, 2000, 2007, 2023],
+  "series": [
+    {
+      "name": "Rural",
+      "color": "#4a90e2",
+      "values": [70.4, 63.4, 57.0, 53.3, 49.6, 42.5]
+    },
+    {
+      "name": "Urban",
+      "color": "#ffaa30",
+      "values": [29.6, 36.6, 43.0, 46.7, 50.4, 57.5]
+    }
+  ],
+  "music_vibe": "cinematic"
+}
