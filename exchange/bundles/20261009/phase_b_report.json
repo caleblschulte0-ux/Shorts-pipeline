@@ -1,0 +1,127 @@
+{
+  "date": "20261009",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "envelope_problems": [],
+  "authored": {
+    "promoted": 0,
+    "rejected": 0,
+    "other_channels": {
+      "explainer": {
+        "applied": 3,
+        "rejected": 0
+      },
+      "curiosity": {
+        "applied": 0,
+        "rejected": 0
+      }
+    }
+  },
+  "media": {
+    "fulfilled": 16,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "982086a788a0d72af0af25bd7d5fd2e165c254a1826c621f1cd4972b6872fb53",
+    "required": true,
+    "checked": 16,
+    "ok": 16,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": [],
+    "recovered_rejected_detail": []
+  },
+  "punchup": {
+    "applied": 0,
+    "kept": 6,
+    "rejected": 0,
+    "absent": 0
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s0-433c86381108",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-badge-scanner-compliance-s0-433c86381108.png"
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s1-80943bffc170",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-badge-scanner-compliance-s1-80943bffc170.png"
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s2-dc135bc7f372",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-badge-scanner-compliance-s2-dc135bc7f372.png"
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s3-12f0ae073ba6",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-badge-scanner-compliance-s3-12f0ae073ba6.png"
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s4-66cb4b52ca03",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-badge-scanner-compliance-s4-66cb4b52ca03.png"
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-badge-scanner-compliance-s5-560389cdbdb3.png"
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s6-7d5a9222809c",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-badge-scanner-compliance-s6-7d5a9222809c.png"
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s7-3c5e99ec2f38",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-badge-scanner-compliance-s7-3c5e99ec2f38.png"
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s1-1e9c329558e3",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-return-dog-damage-s1-1e9c329558e3.png"
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s2-632c54318233",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-return-dog-damage-s2-632c54318233.png"
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s3-19b6310743a0",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-return-dog-damage-s3-19b6310743a0.png"
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s4-93f443f20cb2",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-return-dog-damage-s4-93f443f20cb2.png"
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s6-12d5fde8a41a",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-return-dog-damage-s6-12d5fde8a41a.png"
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s7-960d5ca54eeb",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-return-dog-damage-s7-960d5ca54eeb.png"
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s0-2382fc808110",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-return-dog-damage-s0-2382fc808110.png"
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s5-bbd76f0168af",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-return-dog-damage-s5-bbd76f0168af.png"
+    }
+  ]
+}
