@@ -1043,6 +1043,9 @@ def fetch_age_hours(url: str) -> float:
         return 0.0
 
 
+BG_TOP = 0.6   # the share of the frame the blurred fill is made from
+
+
 def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
          start: float = 0.0, end: float = 0.0,
          whisper_model: str = "small", words: list[dict] | None = None,
@@ -1217,7 +1220,13 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             bar_crop = _content_crop(src, dur)
             _blur = (
                 f"[0:v]{bar_crop}split=2[bg][fg];"
-                f"[bg]scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
+                # the fill is made from the TOP of the frame: the bottom is
+                # where a stream burns its own captions, and blown up and
+                # blurred they sat under ours as ghost text ("burned-in
+                # stream captions ... and a blurred ghost caption in the
+                # bottom padding all stack up", vision QA 2026-10-09)
+                f"[bg]crop=iw:ih*{BG_TOP}:0:0,"
+                f"scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
                 "increase,crop=1080:1920,gblur=sigma=24,"
                 # was brightness=-0.12 — darkening an already-dark IRL clip
                 # crushed the whole frame to near-black (the top QA-reject on
@@ -1274,6 +1283,8 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         ledger_ae["mood"] = _bed["move"] if _bed else None
         ledger_ae["mood_at"] = _bed["at"] if _bed else None
         ledger_ae["moves"] = moves_mod.summary(mv)
+        print(f"[edit] moves: {', '.join(ledger_ae['moves']) or 'none'}",
+              flush=True)
         ledger_ae["own_captions"] = own_subs
 
         # §9: a 0.25s audio fade-out — the clip breathes out instead of the

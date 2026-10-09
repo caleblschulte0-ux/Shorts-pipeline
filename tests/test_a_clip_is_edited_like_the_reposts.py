@@ -245,3 +245,12 @@ def test_every_move_renders_with_its_sound(tmp_path):
     assert punched > 3 * still + 2
     assert loud(1.0, 1.6) > 300          # the boom under the zoom
     assert loud(0.1, 0.8) < 50           # silence before it
+
+
+def test_the_blurred_fill_leaves_the_streams_captions_out():
+    """A stream's own captions sit at the bottom of its frame; the blurred
+    fill is made from the top, so they never come back as ghost text."""
+    import inspect as _inspect
+    from third_capture import clip_edit as _ce
+    assert 0.4 <= _ce.BG_TOP <= 0.7
+    assert "[bg]crop=iw:ih*{BG_TOP}:0:0," in _inspect.getsource(_ce.edit)
