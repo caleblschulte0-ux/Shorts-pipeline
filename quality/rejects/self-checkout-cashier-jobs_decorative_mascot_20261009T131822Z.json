@@ -1,0 +1,21 @@
+{
+ "slug": "self-checkout-cashier-jobs",
+ "ts": "20261009T131822Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data does real work in seg0 (pointing a wand to convert lanes) and seg3 (stacking boxes from a ladder). In seg1:start to seg1:end he stands by the counter waving in the same pose. In seg2:start to seg2:end he stands on top of the register pile waving. In seg4:start to seg4:end he ",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "claim_inverted_picture",
+  "visible_evidence": "seg2:start shows a modest pile of cash registers under '3.5M US cashier jobs \u00b7 2013'. By seg2:mid and seg2:end the pile has grown into a mountain while the number DROPS to 3.0M with a floating '-0.5M'. Data stands on top waving the whole time.",
+  "root_cause": "The thing that grows (the register pile) is not the thing the number counts (jobs), so the picture shows growth while the stat says decline. Data has no act that causes the change.",
+  "repair_goal": "Make the subject the jobs themselves, e.g. a row of staffed registers where one in seven goes dark or is wheeled away so the line visibly shrinks from 3.5M to 3.0M. Data should be the cause, unplugging or carting off the registers with a dolly, and the then-size should be ghosted on the ground for scale."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

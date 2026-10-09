@@ -12,9 +12,14 @@
     "access_date": "2026-10-09"
   },
   "notes": "After the 2021 peak, Valve changed how the battle pass funded the prize pool and the total dropped sharply the following years. Approximate, recalled from training knowledge, not live-refreshed this run because outbound network access was unavailable in this session.",
-  "baseline": {"label": "2021 peak", "value": 40},
   "points": [
-    {"label": "2021 peak", "value": 40},
-    {"label": "2023", "value": 3.3}
+    {
+      "label": "2021 peak",
+      "value": 40
+    },
+    {
+      "label": "2021 peak",
+      "value": 40
+    }
   ]
 }

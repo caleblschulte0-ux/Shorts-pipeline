@@ -12,9 +12,14 @@
     "access_date": "2026-10-09"
   },
   "notes": "The first world championship in 1982 was won in just under 23 seconds; the official single-solve world record has fallen to roughly 3.1 seconds in recent years. Approximate, recalled from training knowledge, not live-refreshed this run because outbound network access was unavailable in this session.",
-  "baseline": {"label": "1982", "value": 22.95},
   "points": [
-    {"label": "1982", "value": 22.95},
-    {"label": "Today", "value": 3.13}
+    {
+      "label": "1982",
+      "value": 22.95
+    },
+    {
+      "label": "1982",
+      "value": 22.95
+    }
   ]
 }

@@ -1,0 +1,16 @@
+{
+ "slug": "coldest-place-in-the-universe-is-human-made",
+ "ts": "20261009T131822Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg2:start: a small disc on a large empty dark field. seg4: a mostly empty frame with only a thin ruler and a ladder.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start\u2013end: one flat teal square fills the frame with '29400T' in the middle and a tiny overlapping 'NASA's Cold Atom Lab (ISS)' label. Data perches on top doing nothing.",
+  "root_cause": "An area/scale machine was fed a distance comparison in mangled units (29400T, presumably trillion miles), so one value fills the frame and the other is invisible. Nothing depicts 'far away vs 250 miles up'.",
+  "repair_goal": "Show the distance as a journey: Earth with the ISS just above it at 250 miles, while the Boomerang Nebula sits at the end of an absurdly long zoom-out. Data rides or launches the Cold Atom Lab to orbit, and one readable label in plain units ('5,000 light-years' vs '250 miles') lands by mid-beat."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

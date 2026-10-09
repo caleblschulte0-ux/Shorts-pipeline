@@ -1,0 +1,21 @@
+{
+ "slug": "permafrost-thaw",
+ "ts": "20261009T131822Z",
+ "failure_class": "bare_number_card",
+ "evidence": "bare_number_card: In seg1:mid and seg1:end every bar track is empty. Only the right-hand values (-8, -6.5, -5, -3.5, -2.3) carry the data, so it is a column of numbers, not a demonstration.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg1:start through seg1:end show a horizontal bar chart of permafrost temperature (1983-2023). Every bar track is empty, with only a tiny nub at the left. The values sit in a column on the right, and Data wanders between rows with no task.",
+  "root_cause": "Bars for negative temperatures were drawn with zero or negative length, so the chart renders as empty tracks. The scene also repeats the same five numbers seg0 already showed, as a plainer chart.",
+  "repair_goal": "Replace it with a scene made of the subject: a cross-section of frozen ground whose ice line or frost-blue fill recedes as a thermometer embedded in the soil climbs from -8 to -2.3. Data should do the warming, for example by pushing the needle or chipping at ice that shrinks, and the payoff number should land early in the beat."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}

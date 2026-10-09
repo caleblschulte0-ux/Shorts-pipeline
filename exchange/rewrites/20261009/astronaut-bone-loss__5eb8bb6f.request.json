@@ -1,0 +1,150 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "astronaut-bone-loss__5eb8bb6f",
+ "filed": "2026-10-09T13:18:00Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "astronaut-bone-loss",
+ "current": {
+  "title": "Space Doesn't Just Float You. It Hollows You.",
+  "hook": "Six months in space costs you years of bone.",
+  "closing": "Bones need gravity to bother staying strong.",
+  "question": "Would you handle a Mars mission knowing the cost? Comment below.",
+  "segments": [
+   {
+    "topic": "monthly bone density loss",
+    "say": "Astronauts lose 1.5 percent of bone density every month up there. A severe osteoporosis patient on Earth loses 1 percent — in a whole year."
+   },
+   {
+    "topic": "bone loss by body part",
+    "say": "It's gravity. Your weight-bearing hip loses up to 2.2 percent a month; your forearm, never weight-bearing, barely loses 0.1."
+   },
+   {
+    "topic": "ISS vs Mars mission bone loss",
+    "say": "Which is why Mars is scary. Six months costs about 9 percent; 30 months to Mars could cost 30. So astronauts train daily to slow it."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "monthly bone density loss",
+   "say": "Astronauts lose 1.5 percent of bone density every month up there. A severe osteoporosis patient on Earth loses 1 percent — in a whole year.",
+   "role": "1 · THE RATE",
+   "data": {
+    "file": "astronaut_bone_loss_rate.json",
+    "unit": "percent",
+    "title": "Bone mineral density loss: astronaut (per month in space) vs osteoporosis patient (per year on Earth)",
+    "points": [
+     {
+      "label": "Astronaut (per month, in space)",
+      "value": 1.5
+     },
+     {
+      "label": "Osteoporosis patient (per year, on Earth)",
+      "value": 1.0
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "bone loss by body part",
+   "say": "It's gravity. Your weight-bearing hip loses up to 2.2 percent a month; your forearm, never weight-bearing, barely loses 0.1.",
+   "role": "2 · WHY",
+   "data": {
+    "file": "astronaut_bone_loss_by_region.json",
+    "unit": "percent",
+    "title": "Monthly bone mineral density loss in spaceflight, by skeletal region",
+    "points": [
+     {
+      "label": "Hip (trochanter)",
+      "value": 2.2
+     },
+     {
+      "label": "Spine (lumbar)",
+      "value": 1.1
+     },
+     {
+      "label": "Pelvis",
+      "value": 1.0
+     },
+     {
+      "label": "Forearm (non-weight-bearing)",
+      "value": 0.1
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 2,
+   "topic": "ISS vs Mars mission bone loss",
+   "say": "Which is why Mars is scary. Six months costs about 9 percent; 30 months to Mars could cost 30. So astronauts train daily to slow it.",
+   "role": "3 · THE MARS PROBLEM",
+   "data": {
+    "file": "iss_vs_mars_bone_loss.json",
+    "unit": "percent",
+    "title": "Estimated cumulative hip bone loss: ISS mission vs a Mars mission, unmitigated",
+    "points": [
+     {
+      "label": "ISS mission (6 months, unmitigated)",
+      "value": 9
+     },
+     {
+      "label": "Mars mission (30 months, unmitigated)",
+      "value": 30
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook",
+  "pace: beat 1 says 25 words (max 16) — one sentence, the number and what it means",
+  "pace: beat 2 says 19 words (max 16) — one sentence, the number and what it means",
+  "pace: beat 3 says 26 words (max 16) — one sentence, the number and what it means",
+  "pace: question is 11 words (max 8)"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook",
+  "pace: beat 1 says 25 words (max 16) — one sentence, the number and what it means",
+  "pace: beat 2 says 19 words (max 16) — one sentence, the number and what it means",
+  "pace: beat 3 says 26 words (max 16) — one sentence, the number and what it means",
+  "pace: question is 11 words (max 8)"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout: one number a beat (two only for a then-and-now), said with what it means. Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261009/astronaut-bone-loss__5eb8bb6f.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

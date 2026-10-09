@@ -1,0 +1,16 @@
+{
+ "slug": "volcano-country-ranking",
+ "ts": "20261009T131822Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg0:start\u2013seg0:end shows five cloned Datas pointing at row numbers. seg2:start\u2013end has Data clipped at the left frame edge holding a pole beside the scale while the volcanoes stack themselves. seg3 has him perched on top of a bubble. In seg4 he stands on a ladder with his arms cr",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "incoherent_payoff",
+  "visible_evidence": "The closing line 'Alaska: quietly winning at volcanoes since forever.' plays over a ruler reading '50% apart' between the Ring of Fire share (75%) and 'everywhere else' (25%). The two labels collide, and Data stands on a ladder with his arms crossed. Alaska is never shown.",
+  "root_cause": "The closing reused the previous beat's percentage data as a generic gap-ruler machine, so it says neither the story's payoff (Alaska alone outranks every country) nor anything readable.",
+  "repair_goal": "End on Alaska as the payoff: Data piles Alaska's 130 volcano cones into a single heap that by itself towers over Japan's 118 and Indonesia's 101. One big number (130), no overlapping labels, landed within the first 2s of the closing."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

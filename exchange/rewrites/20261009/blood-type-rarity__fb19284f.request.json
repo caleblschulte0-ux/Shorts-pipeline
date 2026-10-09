@@ -1,0 +1,186 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "blood-type-rarity__fb19284f",
+ "filed": "2026-10-09T13:17:59Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "blood-type-rarity",
+ "current": {
+  "title": "The World's Rarest Blood Type, By The Numbers",
+  "hook": "Only 1 percent of people carry the rarest blood type.",
+  "closing": "Somebody out there needs exactly your type.",
+  "question": "Know your blood type? Drop it below.",
+  "segments": [
+   {
+    "topic": "blood type distribution",
+    "say": "37 percent of Americans are O positive, but AB negative is just 1 percent."
+   },
+   {
+    "topic": "Rh blood type",
+    "say": "85 percent of people are Rh positive, so hospitals run short on the 15 percent negative."
+   },
+   {
+    "topic": "Blood type background",
+    "say": "O positive is 53 percent of Latin American donors but 37 percent of Caucasian donors."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "blood type distribution",
+   "say": "37 percent of Americans are O positive, but AB negative is just 1 percent.",
+   "role": "1 · THE SPREAD",
+   "data": {
+    "file": "blood_type_distribution_us.json",
+    "unit": "percent",
+    "title": "US population share by blood type",
+    "points": [
+     {
+      "label": "O+",
+      "value": 37
+     },
+     {
+      "label": "A+",
+      "value": 36
+     },
+     {
+      "label": "B+",
+      "value": 9
+     },
+     {
+      "label": "O-",
+      "value": 7
+     },
+     {
+      "label": "A-",
+      "value": 6
+     },
+     {
+      "label": "AB+",
+      "value": 3
+     },
+     {
+      "label": "B-",
+      "value": 2
+     },
+     {
+      "label": "AB-",
+      "value": 1
+     }
+    ],
+    "n_points": 8
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Rh blood type",
+   "say": "85 percent of people are Rh positive, so hospitals run short on the 15 percent negative.",
+   "role": "2 · THE FACTOR",
+   "data": {
+    "file": "rh_factor_share_us.json",
+    "unit": "percent",
+    "title": "Share of US population, Rh-positive vs Rh-negative",
+    "points": [
+     {
+      "label": "Rh-positive",
+      "value": 85
+     },
+     {
+      "label": "Rh-negative",
+      "value": 15
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Blood type background",
+   "say": "O positive is 53 percent of Latin American donors but 37 percent of Caucasian donors.",
+   "role": "3 · WHY DIVERSITY MATTERS",
+   "data": {
+    "file": "o_positive_share_by_ethnicity.json",
+    "unit": "percent",
+    "title": "Share who are blood type O-positive, by ethnicity (US donor population)",
+    "points": [
+     {
+      "label": "Latin American",
+      "value": 53
+     },
+     {
+      "label": "African American",
+      "value": 47
+     },
+     {
+      "label": "Asian",
+      "value": 39
+     },
+     {
+      "label": "Caucasian",
+      "value": 37
+     }
+    ],
+    "n_points": 4
+   }
+  }
+ ],
+ "held_for": [
+  "judge: Four plain charts in a row (bubbles, waffle, bar, bars). The story's rarest-type 1% is never shown, the waffle contradicts the narration (39% vs 37%), and Data just stands on the charts."
+ ],
+ "reasons": [
+  "judge: Four plain charts in a row (bubbles, waffle, bar, bars). The story's rarest-type 1% is never shown, the waffle contradicts the narration (39% vs 37%), and Data just stands on the charts."
+ ],
+ "judge": {
+  "ts": "2026-10-09T11:15:04+00:00",
+  "score": 39,
+  "one_line": "Four plain charts in a row (bubbles, waffle, bar, bars). The story's rarest-type 1% is never shown, the waffle contradicts the narration (39% vs 37%), and Data just stands on the charts.",
+  "problems": [
+   "The hook and seg0 are the same static bubble chart for about 3.6s, with a 5.1s duplicate hold measured. The first frame is a chart title card, not a shock.",
+   "The headline claim (AB negative is 1%, the rarest type) is never drawn in any frame. AB- is missing from the bubble chart and the waffle.",
+   "seg1's eyebrow and legend say O+ 39% and A+ 38% while the narration says 37%, so the screen contradicts the voice.",
+   "The '37%' on the pink bubble renders as a smeared dark doubled glyph in hook@0.3, hook@2.2, seg0:mid and seg0:end.",
+   "At seg2:start the Rh labels are grey-on-navy and unreadable on a phone.",
+   "Data is decorative throughout: perched on a bubble, blocking the waffle, floating beside the bar, then shown as four static copies in the closing."
+  ],
+  "fixes": [
+   "Open on the shock: one lone AB- blood bag in a huge rack of others, '1%' as the only big number, on screen from frame one.",
+   "Rebuild seg1 as a blood bank shelf Data fills drip by drip (37 O+ bags against one AB- bag), using the narrated values and no 39% eyebrow.",
+   "seg2: Data hangs bags on a rack until the 15% Rh-negative shelf visibly runs out (the hospital shortage), with labels in INK at full contrast.",
+   "seg3: two donor queues or vials that Data fills, 53 vs 37, with the gap visible, not bars.",
+   "Fix the 37% glyph rendering on the accent bubble (ink text, no doubled stroke).",
+   "Closing: Data hands the single rare bag across to a waiting patient. Don't repeat the seg3 bars."
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout: one number a beat (two only for a then-and-now), said with what it means. Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261009/blood-type-rarity__fb19284f.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

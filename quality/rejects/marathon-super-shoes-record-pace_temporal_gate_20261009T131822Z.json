@@ -1,0 +1,9 @@
+{
+ "slug": "marathon-super-shoes-record-pace",
+ "ts": "20261009T131822Z",
+ "failure_class": "temporal_gate",
+ "evidence": "temporal_gate: duplicate_ratio 0.504 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+ "weakest_scene": {},
+ "scene_plan": {},
+ "scenes": []
+}

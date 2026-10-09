@@ -12,9 +12,14 @@
     "access_date": "2026-10-09"
   },
   "notes": "GPEI considered wild poliovirus endemic in more than 125 countries in 1988; by the 2020s only Afghanistan and Pakistan remained endemic. Approximate, recalled from training knowledge, not live-refreshed this run because outbound network access was unavailable in this session.",
-  "baseline": {"label": "1988", "value": 125},
   "points": [
-    {"label": "1988", "value": 125},
-    {"label": "Today", "value": 2}
+    {
+      "label": "1988",
+      "value": 125
+    },
+    {
+      "label": "1988",
+      "value": 125
+    }
   ]
 }

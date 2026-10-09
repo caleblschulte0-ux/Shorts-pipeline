@@ -1,0 +1,16 @@
+{
+ "slug": "volcano-country-ranking",
+ "ts": "20261009T131822Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg4:mid/end: 'On the Ring of Fire 75%' is printed over 'Everywhere else on Earth 25%'. The 25% label is tiny. seg1:start/mid: 'United States o...' is truncated, and the 165 on the bar is partly covered by Data. seg1:mid: the map label 'Jnited States of America' is clipped at the left ed",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "incoherent_payoff",
+  "visible_evidence": "The closing line 'Alaska: quietly winning at volcanoes since forever.' plays over a ruler reading '50% apart' between the Ring of Fire share (75%) and 'everywhere else' (25%). The two labels collide, and Data stands on a ladder with his arms crossed. Alaska is never shown.",
+  "root_cause": "The closing reused the previous beat's percentage data as a generic gap-ruler machine, so it says neither the story's payoff (Alaska alone outranks every country) nor anything readable.",
+  "repair_goal": "End on Alaska as the payoff: Data piles Alaska's 130 volcano cones into a single heap that by itself towers over Japan's 118 and Indonesia's 101. One big number (130), no overlapping labels, landed within the first 2s of the closing."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

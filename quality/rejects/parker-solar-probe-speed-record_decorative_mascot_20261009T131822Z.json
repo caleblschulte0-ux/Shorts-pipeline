@@ -1,0 +1,16 @@
+{
+ "slug": "parker-solar-probe-speed-record",
+ "ts": "20261009T131822Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In hook@0.3-2.2 Data stands on a ladder beside the 2024 bar and points at it. In seg0:start-end he slides along a timeline with his arms raised. In seg1:mid-end he drifts along a lane. In seg2:start-end he stands on top of the 56 bubble. In seg4 he points at an hourglass whose san",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "chart_not_demonstration",
+  "visible_evidence": "seg2:start-end shows two flat circles labelled 56 and 208 under the title 'Fastest thing, in seconds'. Data stands on the small circle doing nothing. By seg2:end the 56 is double-printed and garbled, and a cyan ring sits on the 208.",
+  "root_cause": "The claim 'New York to Tokyo in 56 seconds' is about speed over a distance, and it went to a generic proportional-bubble chart. Nothing travels, so the bubble sizes say nothing a viewer feels. The label redraw also collides with the bubble's own number.",
+  "repair_goal": "Draw it as travel. Show a globe or map arc from New York to Tokyo with the probe streaking across it while a seconds counter lands on 56, then the probe looping Earth once by 208. Data should launch the probe or ride on it. Print each number once, in ink, clear of the marks."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

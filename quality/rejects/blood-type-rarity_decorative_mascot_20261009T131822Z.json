@@ -1,0 +1,21 @@
+{
+ "slug": "blood-type-rarity",
+ "ts": "20261009T131822Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: hook@0.3 to seg0:end: Data stands on top of the 37% bubble with his hands on his head. seg1:mid: he stands in front of the waffle and blocks cells. seg2:start/end: he floats beside the Rh bar. seg3:end: he stands at the end of the bar. He causes nothing he is next to: no pouring, ",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "chart_not_demonstration_plus_wrong_claim",
+  "visible_evidence": "seg1:start to seg1:end is a generic 10x10 waffle with legend icons. The eyebrow reads 'O+ IS 39% OF THE WHOLE' and the legend says 39% while the narration and caption say 37%. The beat's payoff, 'AB negative is just 1 percent', never appears on screen. Data stands with his hands on his head covering the cells.",
+  "root_cause": "The share relationship fell back to the stock waffle, using rounded/renormalised values, and AB- was dropped from the dataset. Nothing in the picture is made of blood, and the mascot was placed with no act.",
+  "repair_goal": "Make it a blood bank shelf: 100 blood bags or vials. Data fills them with a drip, 37 O+ red ones, down to a single AB- bag he holds up alone with '1%' as the only big number. The numbers must match the narration (37%, 1%). Remove the 39% eyebrow, and keep Data off the cells he is filling."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "waffle_grid",
+   "perf": "drag_line"
+  }
+ },
+ "scenes": []
+}

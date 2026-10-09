@@ -1,0 +1,21 @@
+{
+ "slug": "global-displacement-record",
+ "ts": "20261009T131822Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:end: the '3.5M' value is printed on top of the bar end, the mascot overlaps it, and it reads as a smear; the map label reads 'Iran 3.5' with no unit. seg1:end: the axis labels '2023' and '2024' run together as '20232024'. payoff@-0.4: the mascot covers the 'l' of 'low & middle'.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "unreadable_label_and_chart_fallback",
+  "visible_evidence": "At seg2:end the Iran bar's value '3.5M' sits under the mascot and the bar end and can't be read. The map pin says 'Iran 3.5' with no unit. Underneath is a plain three-bar ranking under a flat map.",
+  "root_cause": "The value label is drawn inside the bar's end cap, and the mascot's push anchor is placed on the same spot. The map callout is cut short. The relationship fell back to a rank chart, not a picture made of the subject.",
+  "repair_goal": "Put the value outside the bar and away from the mascot's anchor, with its unit ('3.5M'). Better: show people arriving into Iran on the map as a crowd or tents that grows to about 3.5M, so Iran clearly outweighs Turkiye and Germany. Keep exactly one headline number."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  }
+ },
+ "scenes": []
+}

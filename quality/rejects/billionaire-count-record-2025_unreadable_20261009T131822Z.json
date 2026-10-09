@@ -1,0 +1,16 @@
+{
+ "slug": "billionaire-count-record-2025",
+ "ts": "20261009T131822Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:mid and seg3:end, BOTH circles are labelled 'Billionaire wealth 127%', so the S&P 500's 195% never appears and the comparison is wrong on screen. At seg1:start the x-axis years '20242025' run together, and at seg2:start the caption 'than doubled, from' is greyed out at low contra",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "bare_number_card",
+  "visible_evidence": "seg3:start to seg3:end: two identical teal circles, both labelled 'Billionaire wealth' and '127%', while the narration says the S&P 500 grew 195 percent. The second circle should be the S&P at 195% and never is.",
+  "root_cause": "The comparison machine bound the same series to both slots, so the S&P 500 value never reached the second mark. Both circles are also the same size, so they show no difference at all.",
+  "repair_goal": "Bind the second mark to the S&P 500 at 195% with its own label. Draw the two as things that grow (billionaire wealth vs a stock-chart rocket or tower), with the S&P one visibly bigger and passing the other. Data should be the one driving the stock side up, for example pumping or climbing it, so the payoff 'stocks did better' is readable without text."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

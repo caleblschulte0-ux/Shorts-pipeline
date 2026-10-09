@@ -1,0 +1,16 @@
+{
+ "slug": "freshwater-accessible",
+ "ts": "20261009T131822Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: seg3 and seg4 show the same disc, '100.0%' label and Data from seg3:start (15.9s) to seg4:end (23.4s). The disc only grows, so two beats are effectively identical.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "payoff_contradicts_claim",
+  "visible_evidence": "The narration says lakes and rivers hold 0.007%. On screen there is a growing disc labelled '100.0%' and a sliver label '0.0%'. Then the closing asks 'Would you have guessed it was this small?' over a disc that fills the frame.",
+  "root_cause": "A two-part share chart was rounded to one decimal place, so 0.007% shows as 0.0%. The animation grows the LOCKED-AWAY share instead of revealing the tiny reachable one, so the picture proves the opposite of the line.",
+  "repair_goal": "Make the reachable water the hero. Data pours the whole Earth's water into a giant tank, then dips a tiny cup or drop out of it for lakes and rivers. Label it '0.007%' (never 0.0%), have it land by 4s, and keep the huge locked-away mass as the scale reference behind it."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

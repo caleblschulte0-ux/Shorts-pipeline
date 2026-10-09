@@ -1,0 +1,21 @@
+{
+ "slug": "body-renewal-clock",
+ "ts": "20261009T131822Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: hook@0.8 and seg0:start: everything below the skeleton is empty dark navy, about 60% of the frame. seg2:start: the upper half is empty above the bar.",
+ "weakest_scene": {
+  "id": "hook",
+  "index": 0,
+  "failure_class": "unreadable_overlap_and_junk_imagery",
+  "visible_evidence": "hook@0.3: '120 d28sda5ydays' and 'Red blood cellSkin' are printed on top of each other under a headless AI skeleton torso. The bottom 60% of the frame is empty, and the number shown (3,650 days) is not the hook's 330 billion.",
+  "root_cause": "The opening packs four tissue labels into one row without measuring their widths, and uses a generated skeleton cutout instead of drawing the claim. The hook line says 330 billion cells vanish, but nothing on screen shows cells vanishing.",
+  "repair_goal": "Open on the shock itself: a full-frame body or silhouette shedding a visible swarm of cells, with one number (330 billion a day) placed clearly. Drop the overlapping tissue row and the AI skeleton, and fill the frame."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "bubbles",
+   "perf": "get_buried"
+  }
+ },
+ "scenes": []
+}
