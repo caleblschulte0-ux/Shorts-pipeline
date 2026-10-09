@@ -24,8 +24,11 @@ def decode(b, sr=SR):
 def accent(y16):
     with torch.no_grad():
         p = clf.classify_batch(torch.from_numpy(y16).unsqueeze(0))[0][0]
-    p = torch.softmax(p, -1) if p.min() < 0 else p
-    p = p / p.sum()
+    # This head is additive-margin softmax: it returns COSINE scores in
+    # [-1, 1], not log-probs, so a plain softmax is near-flat (round 5's
+    # first pass topped out at 0.19 for everyone). Scale by the training
+    # margin scale (30) before normalising.
+    p = torch.softmax(30.0 * p, -1)
     top = int(p.argmax())
     return float(p[US]), labels[top], float(p[top])
 
