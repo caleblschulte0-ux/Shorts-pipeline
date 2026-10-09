@@ -2930,13 +2930,6 @@
       "words_first_10s": 21,
       "scene_changes_before_5s": 3
     },
-    "twin-birth-rate-rise": {
-      "claimed_at": "2026-10-09T16:43:11.390265+00:00",
-      "title": "Why Twin Births Nearly Doubled \u2014 Then Started Falling",
-      "publish_at": "2026-10-09T16:48:55Z",
-      "url": null,
-      "state": "uploading"
-    },
     "global-displacement-record": {
       "url": "https://youtube.com/shorts/YC6kYj8fXy0",
       "title": "More People Are Displaced Right Now Than Ever Recorded",
@@ -2984,6 +2977,42 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 57,
       "duration_s": 28.4
+    },
+    "twin-birth-rate-rise": {
+      "url": "https://youtube.com/shorts/7a5jOIbyUzs",
+      "title": "Why Twin Births Nearly Doubled \u2014 Then Started Falling",
+      "at": "2026-10-09T16:43:20.616236+00:00",
+      "publish_at": "2026-10-09T16:48:55Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 22 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.75,
+      "beat_s": [
+        3.95,
+        5.75,
+        4.64,
+        5.06,
+        4.13
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 74,
+      "duration_s": 23.4,
+      "hook": "inversion",
+      "topic_category": "body",
+      "ending_type": "inversion",
+      "depictions": [
+        "mechanic:twin-curve-ride",
+        "mechanic:twin-odds-columns",
+        "mechanic:embryo-dish-drain"
+      ],
+      "words_first_10s": 6,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -3663,15 +3692,6 @@
       "at": "2026-10-09T12:09:08.802634+00:00"
     },
     {
-      "claimed_at": "2026-10-09T15:31:16.230440+00:00",
-      "title": "Why Twin Births Nearly Doubled \u2014 Then Started Falling",
-      "publish_at": "2026-10-09T14:29:32Z",
-      "url": "https://youtube.com/shorts/BLn8RBdPucM",
-      "state": "posted",
-      "slug": "twin-birth-rate-rise",
-      "at": "2026-10-09T15:31:32.804743+00:00"
-    },
-    {
       "claimed_at": "2026-10-09T12:26:45.649081+00:00",
       "title": "More People Are Displaced Right Now Than Ever Recorded",
       "publish_at": "2026-10-09T17:30:24Z",
@@ -3693,9 +3713,10 @@
       "claimed_at": "2026-10-09T16:43:11.390265+00:00",
       "title": "Why Twin Births Nearly Doubled \u2014 Then Started Falling",
       "publish_at": "2026-10-09T16:48:55Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "twin-birth-rate-rise"
+      "url": "https://youtube.com/shorts/7a5jOIbyUzs",
+      "state": "posted",
+      "slug": "twin-birth-rate-rise",
+      "at": "2026-10-09T16:43:20.616236+00:00"
     }
   ]
 }
