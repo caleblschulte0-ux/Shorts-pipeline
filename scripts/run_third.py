@@ -238,6 +238,9 @@ def _audit_dupes(log: dict) -> list:
 _PRIOR_CACHE: dict | None = None
 _STORY_POOL: list | None = None   # run-wide wide-sweep discovery cache
 _CLIP_MEMORY: dict | None = None  # what this channel has watched (lazy)
+# streamer -> story candidates examined THIS RUN, across every slot (see
+# the per-streamer cap in _story_attempt)
+_STREAMER_EXAMINED: dict = {}
 
 
 def _memory() -> dict:
@@ -1505,7 +1508,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         # skips. `_examined` counts the ones that reach scene analysis.
         _max_examined = int(spec.get("story_max_clusters", 6))
         _examined = 0
-        _per_streamer: dict = {}
+        _per_streamer = _STREAMER_EXAMINED
         _per_streamer_max = int(spec.get("story_max_per_streamer", 2))
         for cluster in clusters:
             if _examined >= _max_examined:
@@ -1559,7 +1562,9 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             # (his month of posts dominates the catalogue and the pool), and
             # a run that spends its examinations on one streamer's weakest
             # moments — apologising for rain, a dean bit — never reaches the
-            # better material behind them.
+            # better material behind them. The count is RUN-WIDE: per
+            # attempt, backtest 14 still gave Kai 3 of its 6 cuts, two
+            # each from four attempts.
             _lead = str((cluster.get("who") or ["?"])[0]).lower()
             if _per_streamer.get(_lead, 0) >= _per_streamer_max:
                 print(f"[story] {who}: {_per_streamer_max} {_lead} "

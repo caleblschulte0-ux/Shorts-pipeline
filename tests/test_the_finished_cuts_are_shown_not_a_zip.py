@@ -149,3 +149,10 @@ class NoOneStreamerTakesTheRun(unittest.TestCase):
         # the cap is checked BEFORE a candidate counts as examined
         self.assertLess(src.index("_per_streamer.get(_lead, 0) >= "),
                         src.index("_examined += 1"))
+
+    def test_the_cap_holds_across_slots(self):
+        # backtest 14: a per-attempt cap still gave Kai 3 of 6 cuts
+        src = (ROOT / "scripts" / "run_third.py").read_text()
+        self.assertIn("_STREAMER_EXAMINED: dict = {}", src)
+        self.assertIn("_per_streamer = _STREAMER_EXAMINED", src)
+        self.assertNotIn("_per_streamer: dict = {}", src)
