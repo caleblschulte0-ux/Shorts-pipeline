@@ -1,0 +1,33 @@
+name: Twitch roster scout
+
+# Which streamers is the Twitch channel missing? Lists the most-clipped
+# English streamers of the last N days who are not in
+# capture.sources.twitch (scripts/twitch_roster_scout.py). Read-only:
+# prints a table to the job log and changes nothing.
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Look-back window in days'
+        required: false
+        default: '30'
+
+permissions:
+  contents: read
+
+jobs:
+  scout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -q requests
+      - name: Scout
+        env:
+          TWITCH_CLIENT_ID: ${{ secrets.TWITCH_CLIENT_ID }}
+          TWITCH_CLIENT_SECRET: ${{ secrets.TWITCH_CLIENT_SECRET }}
+        run: python scripts/twitch_roster_scout.py --days "${{ inputs.days || '30' }}"
