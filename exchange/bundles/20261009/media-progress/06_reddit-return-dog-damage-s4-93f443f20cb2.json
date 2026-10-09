@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261009",
+  "bundle": {
+    "identity": "982086a788a0d72af0af25bd7d5fd2e165c254a1826c621f1cd4972b6872fb53",
+    "path": "exchange/bundles/20261009/bundle.json"
+  },
+  "request_id": "06_reddit-return-dog-damage-s4-93f443f20cb2",
+  "safe_request_id": "06_reddit-return-dog-damage-s4-93f443f20cb2",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "6f18b460f68c66fe9bf2aeba6982c66d02e4d68325c32af713a1cd55feb24d49",
+  "prompt_used": "An editorial illustration for a short-form video: damaged furniture fabric torn. It accompanies the narration: \"a corner chewed clean through to the frame\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1bktYfMsEbmUJhm2yj0ko02KQ2O8jA2xx",
+    "filename": "20261009__06_reddit-return-dog-damage-s4-93f443f20cb2.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1bktYfMsEbmUJhm2yj0ko02KQ2O8jA2xx",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "37943160cf2f5ec293479a7de67932f6a4011142705ce91300310436a95257f9",
+    "bytes": 2796806,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-09T11:27:35.452Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
