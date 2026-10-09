@@ -2895,11 +2895,40 @@
       "scene_changes_before_5s": 2
     },
     "self-checkout-cashier-jobs": {
-      "claimed_at": "2026-10-09T12:08:59.188768+00:00",
+      "url": "https://youtube.com/shorts/zex-PEPXkQc",
       "title": "Self-Checkout Is Quietly Replacing Cashiers (3 Charts)",
+      "at": "2026-10-09T12:09:08.802634+00:00",
       "publish_at": "2026-10-09T11:30:24Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 26 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.94,
+      "beat_s": [
+        3.95,
+        5.82,
+        5.94,
+        5.55,
+        3.98
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 66,
+      "duration_s": 25.1,
+      "hook": "stake",
+      "topic_category": "economy",
+      "ending_type": "inversion",
+      "depictions": [
+        "mechanic:kiosk-takeover-row",
+        "mechanic:shrinking-cashier-crowd",
+        "mechanic:leaking-register-drawer"
+      ],
+      "words_first_10s": 21,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -3573,9 +3602,10 @@
       "claimed_at": "2026-10-09T12:08:59.188768+00:00",
       "title": "Self-Checkout Is Quietly Replacing Cashiers (3 Charts)",
       "publish_at": "2026-10-09T11:30:24Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "self-checkout-cashier-jobs"
+      "url": "https://youtube.com/shorts/zex-PEPXkQc",
+      "state": "posted",
+      "slug": "self-checkout-cashier-jobs",
+      "at": "2026-10-09T12:09:08.802634+00:00"
     }
   ]
 }
