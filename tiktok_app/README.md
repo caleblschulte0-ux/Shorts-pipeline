@@ -28,14 +28,16 @@ No TikTok token is kept in GitHub secrets. Which linked account a channel
 posts to is `channels.<id>.tiktok.handle` in `config/channel_registry.json`
 (override: repo variable `TIKTOK_HANDLE_<CHANNEL>`); a channel with no handle
 does not post, and `channels.<id>.tiktok.post: false` switches a channel off
-even with a handle (only explainer posts for now). Every publishing channel cross-posts through
+even with a handle (explainer and third post for now). A video scheduled
+on YouTube goes to TikTok at its YouTube publish time (`tiktok_due.yml`),
+with at most 5 hashtags in the caption. Every publishing channel cross-posts through
 `shared/crosspost.py` after its gated YouTube upload succeeds. To see what is
 linked, run the `tiktok_accounts` workflow on main.
 
 | channel | TikTok | posting |
 |---|---|---|
 | trending (Baller Bro 2.0) | @ballerbro2.1 | off |
-| third (Thirdbraindown) | @third.brain.down | off |
+| third (Thirdbraindown) | @third.brain.down | on |
 | explainer (short_explainer67) | @shortexplainer1 | on |
 
 ## What is in git, what is not

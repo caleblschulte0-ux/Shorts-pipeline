@@ -45,6 +45,45 @@ def available() -> tuple[bool, str]:
     return True, ""
 
 
+TIKTOK_MARK = "tiktok.json"
+
+
+def _headers() -> dict:
+    token = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    return {"Authorization": f"Bearer {token}",
+            "Accept": "application/vnd.github+json",
+            "X-GitHub-Api-Version": "2022-11-28"}
+
+
+def tag_of(release_url: str) -> str:
+    return str(release_url or "").rstrip("/").rsplit("/tag/", 1)[-1]
+
+
+def attach_json(tag: str, name: str, data: dict) -> None:
+    """Attach a small JSON file to the video's release (e.g. tiktok.json,
+    the record that this video went to TikTok, so it never goes twice).
+    Raises on failure."""
+    import json
+    import requests
+    ok, why = available()
+    if not ok:
+        raise RuntimeError(why)
+    repo = os.environ["GITHUB_REPOSITORY"]
+    r = requests.get(f"{API}/repos/{repo}/releases/tags/{tag}",
+                     headers=_headers(), timeout=60)
+    if not r.ok:
+        raise RuntimeError(f"release {tag}: {r.status_code} {r.text[:200]}")
+    rel = r.json()
+    if any(a.get("name") == name for a in rel.get("assets") or []):
+        return
+    upload_url = str(rel["upload_url"]).split("{")[0]
+    up = requests.post(f"{upload_url}?name={name}",
+                       headers={**_headers(), "Content-Type": "application/json"},
+                       data=json.dumps(data).encode(), timeout=60)
+    if not up.ok:
+        raise RuntimeError(f"attach {name} failed: {up.status_code} {up.text[:200]}")
+
+
 def publish(mp4: Path, title: str, description: str, channel: str) -> str:
     """Create (or find) the release and attach the video. Returns the
     release's html_url. Raises on any failure; crosspost turns that into

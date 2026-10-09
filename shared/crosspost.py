@@ -15,8 +15,10 @@ several accounts linked, "whichever one" is how a trending video lands on
 the third channel's TikTok. A static TIKTOK_ACCESS_TOKEN[_<CHANNEL>] still
 works as before.
 
-TikTok's API cannot schedule: a cross-post goes out when the video is made,
-not at its YouTube publish slot.
+TikTok's API cannot schedule, so a video with a FUTURE YouTube publish_at
+is not posted here: its release is the queue, and tiktok_due.yml
+(scripts/tiktok_post_release.py --due) posts it at that time. A video that
+goes to TikTok gets `tiktok.json` on its release, so it never goes twice.
 
 GitHub Releases: the same file is attached to a release of this repository
 (shared/release_video.py), which is how it appears in the Shorts Media
@@ -70,9 +72,23 @@ def _tiktok_ready(channel: str) -> tuple[bool, str]:
     return True, ""
 
 
+def _in_future(publish_at, now=None) -> bool:
+    from datetime import datetime, timedelta, timezone
+    if not publish_at:
+        return False
+    try:
+        when = datetime.fromisoformat(str(publish_at).replace("Z", "+00:00"))
+    except ValueError:
+        return False
+    if when.tzinfo is None:
+        when = when.replace(tzinfo=timezone.utc)
+    return when > (now or datetime.now(timezone.utc)) + timedelta(minutes=10)
+
+
 def crosspost(channel: str, mp4: Path, title: str, description: str,
-              tags: list[str]) -> dict:
-    """Returns {platform: url} for whatever landed."""
+              tags: list[str], publish_at=None) -> dict:
+    """Returns {platform: url} for whatever landed. `publish_at` is the
+    YouTube go-live time; TikTok follows it (see the module docstring)."""
     out: dict = {}
     from shared import release_video
     if release_video.available()[0]:
@@ -85,7 +101,11 @@ def crosspost(channel: str, mp4: Path, title: str, description: str,
             print(f"::warning::[crosspost] github release failed ({e})",
                   flush=True)
     ready, why = _tiktok_ready(channel)
-    if ready:
+    if ready and _in_future(publish_at) and "github_release" in out:
+        out["tiktok"] = f"queued for {publish_at}"
+        print(f"[crosspost] tiktok queued for {publish_at} (tiktok_due posts "
+              f"it with the YouTube slot)", flush=True)
+    elif ready:
         try:
             from shared.uploaders import TikTokUploader
             up = TikTokUploader(channel=channel).upload(
@@ -94,6 +114,15 @@ def crosspost(channel: str, mp4: Path, title: str, description: str,
             print(f"[crosspost] tiktok -> {out['tiktok']}", flush=True)
         except Exception as e:  # noqa: BLE001
             print(f"::warning::[crosspost] tiktok failed ({e})", flush=True)
+        if "tiktok" in out and "github_release" in out:
+            try:   # so tiktok_due never posts it a second time
+                release_video.attach_json(
+                    release_video.tag_of(out["github_release"]),
+                    release_video.TIKTOK_MARK,
+                    {"posted": out["tiktok"], **getattr(up, "raw", {})})
+            except Exception as e:  # noqa: BLE001
+                print(f"::warning::[crosspost] tiktok mark failed ({e})",
+                      flush=True)
     if all(os.environ.get(k) for k in
            ("META_ACCESS_TOKEN", "IG_USER_ID", "REELS_PUBLIC_HOST")):
         try:

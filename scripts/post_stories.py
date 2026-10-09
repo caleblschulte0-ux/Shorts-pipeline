@@ -1149,7 +1149,8 @@ def main() -> int:
         # Shipped (gate passed, YouTube took it): same cut to TikTok.
         from shared.crosspost import crosspost
         xposts = crosspost(args.channel, out, sc.get("title", slug)[:100],
-                           _description(sc), _merged_tags(sc))
+                           _description(sc), _merged_tags(sc),
+                           publish_at=publish_at)
         if xposts:
             results[-1]["crossposts"] = xposts
 
