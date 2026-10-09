@@ -398,15 +398,15 @@
           "shot_index": 4,
           "phrase": "Corporate flagged the account for fraud and froze the whole badge system",
           "query": "corporate office building exterior",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 5,
           "phrase": "explaining, on a call with three regional directors",
           "query": "stressed man on conference call",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 6,
@@ -425,18 +425,18 @@
       ],
       "media_health": {
         "strong": 0,
-        "weak": 6,
-        "missing": 2,
+        "weak": 8,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
-        "05_reddit-badge-scanner-compliance-s4-66cb4b52ca03",
-        "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
         "05_reddit-badge-scanner-compliance-s0-433c86381108",
         "05_reddit-badge-scanner-compliance-s1-80943bffc170",
         "05_reddit-badge-scanner-compliance-s2-dc135bc7f372",
         "05_reddit-badge-scanner-compliance-s3-12f0ae073ba6",
+        "05_reddit-badge-scanner-compliance-s4-66cb4b52ca03",
+        "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
         "05_reddit-badge-scanner-compliance-s6-7d5a9222809c",
         "05_reddit-badge-scanner-compliance-s7-3c5e99ec2f38"
       ]
@@ -471,8 +471,8 @@
           "shot_index": 3,
           "phrase": "deep chew marks along one whole armrest",
           "query": "chewed couch armrest closeup",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 4,
@@ -492,89 +492,37 @@
           "shot_index": 6,
           "phrase": "offered a modest discount on a new one instead",
           "query": "store clerk helping customer counter",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         },
         {
           "shot_index": 7,
           "phrase": "She left annoyed but quiet",
           "query": "customer walking out store exit",
-          "has_media": false,
-          "verdict": "missing"
+          "has_media": true,
+          "verdict": "weak"
         }
       ],
       "media_health": {
         "strong": 0,
-        "weak": 5,
-        "missing": 3,
+        "weak": 8,
+        "missing": 0,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
-        "06_reddit-return-dog-damage-s3-19b6310743a0",
-        "06_reddit-return-dog-damage-s6-12d5fde8a41a",
-        "06_reddit-return-dog-damage-s7-960d5ca54eeb",
         "06_reddit-return-dog-damage-s0-2382fc808110",
         "06_reddit-return-dog-damage-s1-1e9c329558e3",
         "06_reddit-return-dog-damage-s2-632c54318233",
+        "06_reddit-return-dog-damage-s3-19b6310743a0",
         "06_reddit-return-dog-damage-s4-93f443f20cb2",
-        "06_reddit-return-dog-damage-s5-bbd76f0168af"
+        "06_reddit-return-dog-damage-s5-bbd76f0168af",
+        "06_reddit-return-dog-damage-s6-12d5fde8a41a",
+        "06_reddit-return-dog-damage-s7-960d5ca54eeb"
       ]
     }
   ],
   "requests": [
-    {
-      "request_id": "05_reddit-badge-scanner-compliance-s4-66cb4b52ca03",
-      "safe_request_id": "05_reddit-badge-scanner-compliance-s4-66cb4b52ca03",
-      "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s4-66cb4b52ca03.png",
-      "prompt_sha256": "9f98fed1dfd9214be90e88acefc07702c978a11aca8225ae2cf2c4fc1a5f0223",
-      "checkpoint_path": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s4-66cb4b52ca03.json",
-      "slug": "05_reddit-badge-scanner-compliance",
-      "shot_index": 4,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: corporate office building exterior. It accompanies the narration: \"Corporate flagged the account for fraud and froze the whole badge system\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
-      "safe_request_id": "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
-      "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s5-560389cdbdb3.png",
-      "prompt_sha256": "6933b82d2de425db49936ac7add598fd174538c9198a415c9cddc6e0c3f7ef28",
-      "checkpoint_path": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s5-560389cdbdb3.json",
-      "slug": "05_reddit-badge-scanner-compliance",
-      "shot_index": 5,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: stressed man on conference call. It accompanies the narration: \"explaining, on a call with three regional directors\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
     {
       "request_id": "05_reddit-badge-scanner-compliance-s0-433c86381108",
       "safe_request_id": "05_reddit-badge-scanner-compliance-s0-433c86381108",
@@ -688,6 +636,62 @@
       "verdict": "weak"
     },
     {
+      "request_id": "05_reddit-badge-scanner-compliance-s4-66cb4b52ca03",
+      "safe_request_id": "05_reddit-badge-scanner-compliance-s4-66cb4b52ca03",
+      "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s4-66cb4b52ca03.png",
+      "prompt_sha256": "9f98fed1dfd9214be90e88acefc07702c978a11aca8225ae2cf2c4fc1a5f0223",
+      "checkpoint_path": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s4-66cb4b52ca03.json",
+      "slug": "05_reddit-badge-scanner-compliance",
+      "shot_index": 4,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: corporate office building exterior. It accompanies the narration: \"Corporate flagged the account for fraud and froze the whole badge system\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
+      "safe_request_id": "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
+      "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s5-560389cdbdb3.png",
+      "prompt_sha256": "6933b82d2de425db49936ac7add598fd174538c9198a415c9cddc6e0c3f7ef28",
+      "checkpoint_path": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s5-560389cdbdb3.json",
+      "slug": "05_reddit-badge-scanner-compliance",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: stressed man on conference call. It accompanies the narration: \"explaining, on a call with three regional directors\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
       "request_id": "05_reddit-badge-scanner-compliance-s6-7d5a9222809c",
       "safe_request_id": "05_reddit-badge-scanner-compliance-s6-7d5a9222809c",
       "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s6-7d5a9222809c.png",
@@ -742,84 +746,6 @@
         "unverified provenance (unverified)"
       ],
       "verdict": "weak"
-    },
-    {
-      "request_id": "06_reddit-return-dog-damage-s3-19b6310743a0",
-      "safe_request_id": "06_reddit-return-dog-damage-s3-19b6310743a0",
-      "drive_filename": "20261009__06_reddit-return-dog-damage-s3-19b6310743a0.png",
-      "prompt_sha256": "673b5a15868d8b29b32a8eda272f43f386403128caa34f0d2bc190ffe3f44a82",
-      "checkpoint_path": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s3-19b6310743a0.json",
-      "slug": "06_reddit-return-dog-damage",
-      "shot_index": 3,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: chewed couch armrest closeup. It accompanies the narration: \"deep chew marks along one whole armrest\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "06_reddit-return-dog-damage-s6-12d5fde8a41a",
-      "safe_request_id": "06_reddit-return-dog-damage-s6-12d5fde8a41a",
-      "drive_filename": "20261009__06_reddit-return-dog-damage-s6-12d5fde8a41a.png",
-      "prompt_sha256": "4490c6e24ea1ec875b00d1f92f237b3c13623092c8a3f5651a57039b10a51c64",
-      "checkpoint_path": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s6-12d5fde8a41a.json",
-      "slug": "06_reddit-return-dog-damage",
-      "shot_index": 6,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: store clerk helping customer counter. It accompanies the narration: \"offered a modest discount on a new one instead\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
-    },
-    {
-      "request_id": "06_reddit-return-dog-damage-s7-960d5ca54eeb",
-      "safe_request_id": "06_reddit-return-dog-damage-s7-960d5ca54eeb",
-      "drive_filename": "20261009__06_reddit-return-dog-damage-s7-960d5ca54eeb.png",
-      "prompt_sha256": "c38e0501de5e93b0a7ac81ae4e63a0b991404e923dc1b8a04f55e1855ec269e3",
-      "checkpoint_path": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s7-960d5ca54eeb.json",
-      "slug": "06_reddit-return-dog-damage",
-      "shot_index": 7,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: customer walking out store exit. It accompanies the narration: \"She left annoyed but quiet\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "no media found for this line"
-      ],
-      "verdict": "missing"
     },
     {
       "request_id": "06_reddit-return-dog-damage-s0-2382fc808110",
@@ -906,6 +832,34 @@
       "verdict": "weak"
     },
     {
+      "request_id": "06_reddit-return-dog-damage-s3-19b6310743a0",
+      "safe_request_id": "06_reddit-return-dog-damage-s3-19b6310743a0",
+      "drive_filename": "20261009__06_reddit-return-dog-damage-s3-19b6310743a0.png",
+      "prompt_sha256": "673b5a15868d8b29b32a8eda272f43f386403128caa34f0d2bc190ffe3f44a82",
+      "checkpoint_path": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s3-19b6310743a0.json",
+      "slug": "06_reddit-return-dog-damage",
+      "shot_index": 3,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: chewed couch armrest closeup. It accompanies the narration: \"deep chew marks along one whole armrest\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
       "request_id": "06_reddit-return-dog-damage-s4-93f443f20cb2",
       "safe_request_id": "06_reddit-return-dog-damage-s4-93f443f20cb2",
       "drive_filename": "20261009__06_reddit-return-dog-damage-s4-93f443f20cb2.png",
@@ -943,6 +897,62 @@
       "shot_index": 5,
       "kind": "image",
       "prompt_verbatim": "An editorial illustration for a short-form video: golden retriever puppy indoors. It accompanies the narration: \"her retriever puppy had gotten a little carried away\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s6-12d5fde8a41a",
+      "safe_request_id": "06_reddit-return-dog-damage-s6-12d5fde8a41a",
+      "drive_filename": "20261009__06_reddit-return-dog-damage-s6-12d5fde8a41a.png",
+      "prompt_sha256": "4490c6e24ea1ec875b00d1f92f237b3c13623092c8a3f5651a57039b10a51c64",
+      "checkpoint_path": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s6-12d5fde8a41a.json",
+      "slug": "06_reddit-return-dog-damage",
+      "shot_index": 6,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: store clerk helping customer counter. It accompanies the narration: \"offered a modest discount on a new one instead\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "weak relation to the line (0% term overlap)",
+        "resolution unverified (no width/height reported)",
+        "unverified provenance (unverified)"
+      ],
+      "verdict": "weak"
+    },
+    {
+      "request_id": "06_reddit-return-dog-damage-s7-960d5ca54eeb",
+      "safe_request_id": "06_reddit-return-dog-damage-s7-960d5ca54eeb",
+      "drive_filename": "20261009__06_reddit-return-dog-damage-s7-960d5ca54eeb.png",
+      "prompt_sha256": "c38e0501de5e93b0a7ac81ae4e63a0b991404e923dc1b8a04f55e1855ec269e3",
+      "checkpoint_path": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s7-960d5ca54eeb.json",
+      "slug": "06_reddit-return-dog-damage",
+      "shot_index": 7,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: customer walking out store exit. It accompanies the narration: \"She left annoyed but quiet\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",

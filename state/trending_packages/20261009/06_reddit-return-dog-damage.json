@@ -34,7 +34,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T12:03:00Z",
+        "verified_at": "2026-10-09T12:03:59Z",
         "resolved_by": "verify_shot_urls"
       },
       "media_origin": "chatgpt",
@@ -57,7 +57,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T12:03:01Z",
+        "verified_at": "2026-10-09T12:04:00Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -76,17 +76,28 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T12:03:02Z",
+        "verified_at": "2026-10-09T12:04:01Z",
         "resolved_by": "verify_shot_urls"
       }
     },
     {
       "phrase": "deep chew marks along one whole armrest",
       "query": "chewed couch armrest closeup",
+      "image_url": "https://drive.google.com/uc?export=download&id=1Fz9HhblH7r29iHohpyx7dJPp1jDLeXlC",
       "media_origin": "chatgpt",
       "media_file_id": "1Fz9HhblH7r29iHohpyx7dJPp1jDLeXlC",
       "media_sha256": "5741e35f68c0bbbad45dfc16aaca4034157e3865797cab0a593918fe8043cb85",
-      "media_bytes": 2481875
+      "media_bytes": 2481875,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1Fz9HhblH7r29iHohpyx7dJPp1jDLeXlC",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-09T12:04:02Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "a corner chewed clean through to the frame",
@@ -103,7 +114,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T12:03:11Z",
+        "verified_at": "2026-10-09T12:04:03Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -122,7 +133,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T12:03:12Z",
+        "verified_at": "2026-10-09T12:04:04Z",
         "resolved_by": "verify_shot_urls"
       },
       "media_origin": "chatgpt",
@@ -133,18 +144,40 @@
     {
       "phrase": "offered a modest discount on a new one instead",
       "query": "store clerk helping customer counter",
+      "image_url": "https://drive.google.com/uc?export=download&id=1DleUbF6kdkOFXi62bcRq-mB7Hc-XUvNZ",
       "media_origin": "chatgpt",
       "media_file_id": "1DleUbF6kdkOFXi62bcRq-mB7Hc-XUvNZ",
       "media_sha256": "3c9d7924ce3ce1c6bcf57ebd6c62847b74c908c77032661503b9d0c0de9c2ccd",
-      "media_bytes": 1835308
+      "media_bytes": 1835308,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1DleUbF6kdkOFXi62bcRq-mB7Hc-XUvNZ",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-09T12:04:05Z",
+        "resolved_by": "verify_shot_urls"
+      }
     },
     {
       "phrase": "She left annoyed but quiet",
       "query": "customer walking out store exit",
+      "image_url": "https://drive.google.com/uc?export=download&id=1DS9zxRx6NODHARRABBESQQrgLNuwcUQD",
       "media_origin": "chatgpt",
       "media_file_id": "1DS9zxRx6NODHARRABBESQQrgLNuwcUQD",
       "media_sha256": "4d5a3eae58995ab7319d2e4a53c0cafbfbdbf354859e94fada5d68ddd47c24a6",
-      "media_bytes": 2263061
+      "media_bytes": 2263061,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1DS9zxRx6NODHARRABBESQQrgLNuwcUQD",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-09T12:04:07Z",
+        "resolved_by": "verify_shot_urls"
+      }
     }
   ],
   "punches": [

@@ -34,9 +34,13 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T12:02:36Z",
+        "verified_at": "2026-10-09T12:03:49Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "pin_query": "badge",
+      "pin_context": "employee ID badge RFID",
+      "news_query": "badge",
+      "news_angle": "Workers use their badge to log tasks on the terminal."
     },
     {
       "phrase": "I scanned in to get a pen",
@@ -53,7 +57,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T12:02:37Z",
+        "verified_at": "2026-10-09T12:03:50Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -72,9 +76,13 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T12:02:38Z",
+        "verified_at": "2026-10-09T12:03:51Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "pin_query": "stapler",
+      "pin_context": "office supply stapler",
+      "news_query": "stapler",
+      "news_angle": "An employee scans his badge just to refill the stapler."
     },
     {
       "phrase": "the terminal had logged over nine thousand scans",
@@ -91,25 +99,59 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T12:02:39Z",
+        "verified_at": "2026-10-09T12:03:52Z",
         "resolved_by": "verify_shot_urls"
-      }
+      },
+      "pin_query": "badge terminal",
+      "pin_context": "office time\u2011tracking scanner device",
+      "news_query": "badge terminal",
+      "news_angle": "Employees must scan their badge at the terminal before each action."
     },
     {
       "phrase": "Corporate flagged the account for fraud and froze the whole badge system",
       "query": "corporate office building exterior",
+      "image_url": "https://drive.google.com/uc?export=download&id=1nPCSYJpTY96iz9T74lTdu6ruUvYSEupz",
       "media_origin": "chatgpt",
       "media_file_id": "1nPCSYJpTY96iz9T74lTdu6ruUvYSEupz",
       "media_sha256": "45fe353f25ec3339e1b8e0110bcb4118dbc2fd2f45735b3742b1ca29a52b68ca",
-      "media_bytes": 2617952
+      "media_bytes": 2617952,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1nPCSYJpTY96iz9T74lTdu6ruUvYSEupz",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-09T12:03:53Z",
+        "resolved_by": "verify_shot_urls"
+      },
+      "pin_query": "Corporate",
+      "pin_context": "headquarters corporate fraud investigation",
+      "news_query": "Corporate",
+      "news_angle": "Corporate flags the badge account for fraud and freezes the system."
     },
     {
       "phrase": "explaining, on a call with three regional directors",
       "query": "stressed man on conference call",
+      "image_url": "https://drive.google.com/uc?export=download&id=1A0qQ_0Yj1aPSuQCSV0vqTPG1ac5B1iB0",
       "media_origin": "chatgpt",
       "media_file_id": "1A0qQ_0Yj1aPSuQCSV0vqTPG1ac5B1iB0",
       "media_sha256": "260d7363b45061664248ebc865cfc7d1c5b1066a63920121735b4ca544f799fc",
-      "media_bytes": 1851291
+      "media_bytes": 1851291,
+      "media_evidence": {
+        "url": "https://drive.google.com/uc?export=download&id=1A0qQ_0Yj1aPSuQCSV0vqTPG1ac5B1iB0",
+        "source_class": "unverified",
+        "provider": "drive.google.com",
+        "width": 0,
+        "height": 0,
+        "content_type": "image/png",
+        "verified_at": "2026-10-09T12:03:54Z",
+        "resolved_by": "verify_shot_urls"
+      },
+      "pin_query": "three regional directors",
+      "pin_context": "company senior regional directors video call",
+      "news_query": "three regional directors",
+      "news_angle": "The manager explains the badge rule on a call with three regional directors."
     },
     {
       "phrase": "He got moved to an office with no staff to manage",
@@ -126,7 +168,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T12:02:57Z",
+        "verified_at": "2026-10-09T12:03:55Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -145,7 +187,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T12:02:58Z",
+        "verified_at": "2026-10-09T12:03:57Z",
         "resolved_by": "verify_shot_urls"
       }
     }
