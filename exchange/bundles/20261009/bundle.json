@@ -405,8 +405,8 @@
           "shot_index": 5,
           "phrase": "explaining, on a call with three regional directors",
           "query": "stressed man on conference call",
-          "has_media": true,
-          "verdict": "weak"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 6,
@@ -425,18 +425,18 @@
       ],
       "media_health": {
         "strong": 0,
-        "weak": 8,
-        "missing": 0,
+        "weak": 7,
+        "missing": 1,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
+        "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
         "05_reddit-badge-scanner-compliance-s0-433c86381108",
         "05_reddit-badge-scanner-compliance-s1-80943bffc170",
         "05_reddit-badge-scanner-compliance-s2-dc135bc7f372",
         "05_reddit-badge-scanner-compliance-s3-12f0ae073ba6",
         "05_reddit-badge-scanner-compliance-s4-66cb4b52ca03",
-        "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
         "05_reddit-badge-scanner-compliance-s6-7d5a9222809c",
         "05_reddit-badge-scanner-compliance-s7-3c5e99ec2f38"
       ]
@@ -457,8 +457,8 @@
           "shot_index": 1,
           "phrase": "collapsed on its own after barely a month",
           "query": "woman pointing at couch complaint",
-          "has_media": true,
-          "verdict": "weak"
+          "has_media": false,
+          "verdict": "missing"
         },
         {
           "shot_index": 2,
@@ -505,14 +505,14 @@
       ],
       "media_health": {
         "strong": 0,
-        "weak": 8,
-        "missing": 0,
+        "weak": 7,
+        "missing": 1,
         "unknown": 0
       },
       "strong_fraction": 0.0,
       "requested": [
-        "06_reddit-return-dog-damage-s0-2382fc808110",
         "06_reddit-return-dog-damage-s1-1e9c329558e3",
+        "06_reddit-return-dog-damage-s0-2382fc808110",
         "06_reddit-return-dog-damage-s2-632c54318233",
         "06_reddit-return-dog-damage-s3-19b6310743a0",
         "06_reddit-return-dog-damage-s4-93f443f20cb2",
@@ -523,6 +523,32 @@
     }
   ],
   "requests": [
+    {
+      "request_id": "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
+      "safe_request_id": "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
+      "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s5-560389cdbdb3.png",
+      "prompt_sha256": "6933b82d2de425db49936ac7add598fd174538c9198a415c9cddc6e0c3f7ef28",
+      "checkpoint_path": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s5-560389cdbdb3.json",
+      "slug": "05_reddit-badge-scanner-compliance",
+      "shot_index": 5,
+      "kind": "image",
+      "prompt_verbatim": "An editorial illustration for a short-form video: stressed man on conference call. It accompanies the narration: \"explaining, on a call with three regional directors\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "negative": [
+        "text",
+        "watermarks",
+        "logos",
+        "user interfaces",
+        "screenshots",
+        "code",
+        "charts"
+      ],
+      "width": 1080,
+      "height": 1080,
+      "why": [
+        "no media found for this line"
+      ],
+      "verdict": "missing"
+    },
     {
       "request_id": "05_reddit-badge-scanner-compliance-s0-433c86381108",
       "safe_request_id": "05_reddit-badge-scanner-compliance-s0-433c86381108",
@@ -664,34 +690,6 @@
       "verdict": "weak"
     },
     {
-      "request_id": "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
-      "safe_request_id": "05_reddit-badge-scanner-compliance-s5-560389cdbdb3",
-      "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s5-560389cdbdb3.png",
-      "prompt_sha256": "6933b82d2de425db49936ac7add598fd174538c9198a415c9cddc6e0c3f7ef28",
-      "checkpoint_path": "exchange/bundles/20261009/media-progress/05_reddit-badge-scanner-compliance-s5-560389cdbdb3.json",
-      "slug": "05_reddit-badge-scanner-compliance",
-      "shot_index": 5,
-      "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: stressed man on conference call. It accompanies the narration: \"explaining, on a call with three regional directors\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
-      "negative": [
-        "text",
-        "watermarks",
-        "logos",
-        "user interfaces",
-        "screenshots",
-        "code",
-        "charts"
-      ],
-      "width": 1080,
-      "height": 1080,
-      "why": [
-        "weak relation to the line (0% term overlap)",
-        "resolution unverified (no width/height reported)",
-        "unverified provenance (unverified)"
-      ],
-      "verdict": "weak"
-    },
-    {
       "request_id": "05_reddit-badge-scanner-compliance-s6-7d5a9222809c",
       "safe_request_id": "05_reddit-badge-scanner-compliance-s6-7d5a9222809c",
       "drive_filename": "20261009__05_reddit-badge-scanner-compliance-s6-7d5a9222809c.png",
@@ -748,15 +746,15 @@
       "verdict": "weak"
     },
     {
-      "request_id": "06_reddit-return-dog-damage-s0-2382fc808110",
-      "safe_request_id": "06_reddit-return-dog-damage-s0-2382fc808110",
-      "drive_filename": "20261009__06_reddit-return-dog-damage-s0-2382fc808110.png",
-      "prompt_sha256": "62573cb64f3a325c2c35ca49bfdd4bfff7cda0ab548df824625b55658848f0f8",
-      "checkpoint_path": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s0-2382fc808110.json",
+      "request_id": "06_reddit-return-dog-damage-s1-1e9c329558e3",
+      "safe_request_id": "06_reddit-return-dog-damage-s1-1e9c329558e3",
+      "drive_filename": "20261009__06_reddit-return-dog-damage-s1-1e9c329558e3.png",
+      "prompt_sha256": "693ff7c60507a3679872ce1e9da07ce1e29fbd9de24f5e4974a56fa14bf52068",
+      "checkpoint_path": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s1-1e9c329558e3.json",
       "slug": "06_reddit-return-dog-damage",
-      "shot_index": 0,
+      "shot_index": 1,
       "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: furniture store couch showroom. It accompanies the narration: \"demanding a full refund on a couch\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "prompt_verbatim": "An editorial illustration for a short-form video: woman pointing at couch complaint. It accompanies the narration: \"collapsed on its own after barely a month\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
@@ -769,22 +767,20 @@
       "width": 1080,
       "height": 1080,
       "why": [
-        "weak relation to the line (0% term overlap)",
-        "resolution unverified (no width/height reported)",
-        "unverified provenance (unverified)"
+        "no media found for this line"
       ],
-      "verdict": "weak"
+      "verdict": "missing"
     },
     {
-      "request_id": "06_reddit-return-dog-damage-s1-1e9c329558e3",
-      "safe_request_id": "06_reddit-return-dog-damage-s1-1e9c329558e3",
-      "drive_filename": "20261009__06_reddit-return-dog-damage-s1-1e9c329558e3.png",
-      "prompt_sha256": "693ff7c60507a3679872ce1e9da07ce1e29fbd9de24f5e4974a56fa14bf52068",
-      "checkpoint_path": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s1-1e9c329558e3.json",
+      "request_id": "06_reddit-return-dog-damage-s0-2382fc808110",
+      "safe_request_id": "06_reddit-return-dog-damage-s0-2382fc808110",
+      "drive_filename": "20261009__06_reddit-return-dog-damage-s0-2382fc808110.png",
+      "prompt_sha256": "62573cb64f3a325c2c35ca49bfdd4bfff7cda0ab548df824625b55658848f0f8",
+      "checkpoint_path": "exchange/bundles/20261009/media-progress/06_reddit-return-dog-damage-s0-2382fc808110.json",
       "slug": "06_reddit-return-dog-damage",
-      "shot_index": 1,
+      "shot_index": 0,
       "kind": "image",
-      "prompt_verbatim": "An editorial illustration for a short-form video: woman pointing at couch complaint. It accompanies the narration: \"collapsed on its own after barely a month\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+      "prompt_verbatim": "An editorial illustration for a short-form video: furniture store couch showroom. It accompanies the narration: \"demanding a full refund on a couch\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
       "negative": [
         "text",
         "watermarks",
