@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20261008",
+  "updated": "20261009",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -1266,10 +1266,16 @@
       ]
     },
     "f85f65be87b6": {
-      "verdict": "doing",
-      "date": "20260904",
-      "because": "Confirmed at data_learning/stock_cache.py:47-60: save() writes only provider/query/candidates with no fetched_at/expiry/schema version, and wrap() (63-87) reuses any cached nonempty record on live failure regardless of age. Real long-term gap (dead CDN urls/stale licensing can re-enter indefinitely) but the right fix is a versioned cache-record migration plus eviction policy \u2014 a design task, not a quick patch.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20261009",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260904",
+          "because": "Confirmed at data_learning/stock_cache.py:47-60: save() writes only provider/query/candidates with no fetched_at/expiry/schema version, and wrap() (63-87) reuses any cached nonempty record on live failure regardless of age. Real long-term gap (dead CDN urls/stale licensing can re-enter indefinitely) but the right fix is a versioned cache-record migration plus eviction policy \u2014 a design task, not a quick patch."
+        }
+      ]
     },
     "b507d603aefb": {
       "verdict": "doing",

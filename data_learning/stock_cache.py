@@ -25,9 +25,17 @@ from __future__ import annotations
 
 import json
 import re
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent / "stock_cache"
+
+SCHEMA = 2
+# A fallback answer older than this is a guess about a CDN, not a fact. Live
+# results always outrank it; this only bounds how long it may stand in.
+MAX_AGE_S = 30 * 86400
+# A candidate whose download failed this many times is evicted from its slot.
+DEAD_AFTER = 2
 
 
 def _slot(provider: str, query: str) -> Path:
@@ -35,31 +43,63 @@ def _slot(provider: str, query: str) -> Path:
     return ROOT / f"{provider}__{q or 'empty'}.json"
 
 
-def load(provider: str, query: str) -> list[dict] | None:
-    """Cached candidates for this query, or None if never fetched."""
+def load(provider: str, query: str, now: float | None = None) -> list[dict] | None:
+    """Cached candidates for this query, or None if never fetched, expired, or
+    written before records carried a fetch time (age unknown = not trusted)."""
     p = _slot(provider, query)
     if not p.exists():
         return None
     try:
         d = json.loads(p.read_text())
-        c = d.get("candidates")
-        return c if isinstance(c, list) and c else None
+        fetched = d.get("fetched_at")
+        if d.get("schema") != SCHEMA or not isinstance(fetched, (int, float)):
+            return None
+        if (time.time() if now is None else now) - fetched > MAX_AGE_S:
+            return None
+        dead = d.get("failures") or {}
+        c = [x for x in d.get("candidates") or []
+             if isinstance(x, dict) and dead.get(x.get("url"), 0) < DEAD_AFTER]
+        return c or None
     except Exception:  # noqa: BLE001 — a corrupt slot is a miss, never a crash
         return None
 
 
-def save(provider: str, query: str, candidates: list[dict]) -> None:
+def save(provider: str, query: str, candidates: list[dict],
+         now: float | None = None) -> None:
     """Record a LIVE answer. Empty answers are not cached — a provider that
-    genuinely has nothing for a query should be re-asked later, not frozen."""
+    genuinely has nothing for a query should be re-asked later, not frozen.
+    A fresh live answer resets the fetch time and the failure counts."""
     if not candidates:
         return
     try:
         ROOT.mkdir(parents=True, exist_ok=True)
         _slot(provider, query).write_text(json.dumps(
-            {"provider": provider, "query": query,
-             "candidates": candidates}, indent=2) + "\n")
+            {"schema": SCHEMA, "provider": provider, "query": query,
+             "fetched_at": time.time() if now is None else now,
+             "failures": {}, "candidates": candidates}, indent=2) + "\n")
     except Exception:  # noqa: BLE001 — caching is best-effort by definition
         pass
+
+
+def report_dead(url: str) -> int:
+    """A download of `url` failed: count it against every slot holding it, so
+    a dead CDN link is evicted after DEAD_AFTER failures. Returns slots touched."""
+    n = 0
+    if not url or not ROOT.exists():
+        return n
+    for p in ROOT.glob("*.json"):
+        try:
+            d = json.loads(p.read_text())
+            if not any(isinstance(x, dict) and x.get("url") == url
+                       for x in d.get("candidates") or []):
+                continue
+            f = d.setdefault("failures", {})
+            f[url] = int(f.get(url, 0)) + 1
+            p.write_text(json.dumps(d, indent=2) + "\n")
+            n += 1
+        except Exception:  # noqa: BLE001
+            continue
+    return n
 
 
 def wrap(provider: str, query: str, live) -> list[dict]:
