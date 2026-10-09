@@ -47,6 +47,8 @@ Return STRICT JSON:
 {"title": str, "hook": str, "caption": str, "cta": str, "hashtags": [str, ...],
  "series": str,
  "edit": {"mood": str, "mood_at": number,
+          "moves": [{"move": str, "at": number}, ...],
+          "line2": {"text": str, "at": number},
           "cut": {"start": number, "end": number}, "complete": bool}}
 
 This niche is REALITY TV: viewers follow PEOPLE and DRAMA — fights, beef,
@@ -99,13 +101,29 @@ Rules:
   recurring shelf this moment belongs to (favor the human-drama labels when
   they fit; that is what travels).
 - edit: you also DIRECT the edit (a human editor's judgement):
-  - mood: "sad" ONLY when the clip has a genuinely sad turn (a loss,
-    someone crying, a goodbye, bad news, a friend falling out) that a
-    viewer would feel; otherwise "". On "sad" the picture goes grey and a
-    sad piano comes in from mood_at, the way repost channels edit it, so
-    never use it for a joke or a rage moment.
-  - mood_at: the second (clip time, from the transcript timestamps) the
-    sad turn lands; 0 if it is sad from the start.
+  - mood: the music and colour from one moment to the END, at most
+    one, the way repost channels edit it:
+    "sad" ONLY on a genuinely sad turn (a loss, someone crying, a goodbye,
+    bad news, a friend falling out): the picture goes grey and a sad
+    piano comes in. Never for a joke or a rage moment.
+    "hype" on a W: a win, a clutch, a big reveal going right, a crowd or
+    chat going off: the colour pops and a hard 808 beat comes in.
+    Otherwise "" (most clips).
+  - mood_at: the second (clip time, from the transcript timestamps) that
+    turn lands; 0 if it holds from the start.
+  - moves: the HITS a repost editor puts on single moments, 0-3 of them,
+    at least 2s apart, each on the exact second from the transcript:
+    "zoom": a hard punch-in with a bass boom on THE reaction or the
+    punchline (the stunned face, the "BRO", the line that lands);
+    "shake": the frame shakes, with the boom, on a scream, a jump scare,
+    a slam, someone losing it;
+    "awkward": a slow push-in with crickets on a cringe silence or a
+    dead joke. Use one only where an editor obviously would; a clip with
+    no such moment gets []. Never on the first second.
+  - line2: when the clip TURNS (the reveal, the moment it goes wrong),
+    the line of text may change to a second line at that second, same
+    rules as hook ("Then chat noticed 💀", "He was not ready 😭"). Most
+    clips keep one line: {"text": "", "at": 0}.
   - cut: {"start","end"} in SECONDS into this clip — the span to KEEP so a
     first-time viewer instantly understands the moment. Use the [t.t-t.t]
     timestamps in the transcript. start early enough to include the SETUP
@@ -449,9 +467,38 @@ def _postprocess(out: dict, streamer: str, context: str,
         mood_at = 0.0
     if clip_dur:
         mood_at = min(mood_at, clip_dur)
-    edit = {"mood": mood if mood in ("sad",) else "",
+    edit = {"mood": mood if mood in ("sad", "hype") else "",
             "mood_at": round(mood_at, 2),
             "complete": bool(edit_raw.get("complete", True))}
+    # the hits and the second line (third_capture/moves.py validates the
+    # vocabulary, spacing and seconds again against the cut)
+    _moves = []
+    for m in (edit_raw.get("moves") or [])[:6]:
+        if not isinstance(m, dict):
+            continue
+        name = str(m.get("move", "")).strip().lower()
+        try:
+            at = max(0.0, float(m.get("at") or 0.0))
+        except (TypeError, ValueError):
+            continue
+        if name in ("zoom", "shake", "awkward"):
+            _moves.append({"move": name,
+                           "at": round(min(at, clip_dur) if clip_dur
+                                       else at, 2)})
+    if _moves:
+        edit["moves"] = _moves
+    l2 = edit_raw.get("line2") if isinstance(edit_raw.get("line2"),
+                                             dict) else {}
+    l2_text = scrub_text(str(l2.get("text", "")).strip())[:80]
+    if l2_text:
+        if l2_text.isupper() and any(c.isalpha() for c in l2_text):
+            l2_text = l2_text[0] + l2_text[1:].lower()
+        try:
+            l2_at = max(0.0, float(l2.get("at") or 0.0))
+        except (TypeError, ValueError):
+            l2_at = 0.0
+        if l2_at > 0:
+            edit["line2"] = {"text": l2_text, "at": round(l2_at, 2)}
 
     # Narrative cut window (§9): trusted only when it's sane against the
     # known clip length — a >=3s span inside [0, clip_dur]. Anything off

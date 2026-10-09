@@ -675,7 +675,13 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   against the transcript). The author marks a sad turn (`edit.mood`,
   `mood_at`) and `third_capture/mood.py` greys the picture and brings in
   a synthesised piano from that second — not a commercial song, which
-  Content ID would claim. A dry run with `clips_only` publishes its renders
+  Content ID would claim. Grey is one move of a kit (same day: *"you have
+  to add stuff other clippers do ... we can't just do the sad grey
+  thing"*): `third_capture/moves.py` — a punch-in with a boom, a shake, an
+  awkward push-in with crickets, the hype colour and 808 beat, a second
+  line at the turn — each on the second the author names (`edit.moves`,
+  `edit.line2`), rebased onto the cut, every sound synthesised. None
+  changes the clip's speed. A dry run with `clips_only` publishes its renders
   to `preview-renders:third-dry/<run id>/`.
   `tests/test_a_clip_is_edited_like_the_reposts.py`.
 - **Slots follow `_learned_prior()`, and it had no tests** until the day it
