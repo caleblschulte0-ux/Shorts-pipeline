@@ -1,4 +1,153 @@
-{
-  "skipped": true,
-  "recent_posts": 4
-}
+[
+  {
+    "topic": "New boss said scan your badge for every single thing. So I did.",
+    "title": "New boss said scan your badge for every single thing. So I did.",
+    "format": "reddit",
+    "publish_at": "2026-10-09T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "quarantined: vision QA: broken \u2014 Frame 3 is missing the 'story illustration' in the top half of the frame, which is a required visual content according to the prompt description ('TOP half is a story illustration and the BOTTOM half ",
+    "elapsed_seconds": 247.2,
+    "package_path": "state/trending_packages/20261009/05_reddit-badge-scanner-compliance.json",
+    "source": "brain",
+    "video_path": "output/daily_20261009-121312_new_boss_said_scan_your_badge_for_every_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 50.1,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -22.1
+    },
+    "qa": {
+      "ok": false,
+      "verdict": "broken",
+      "reason": "Frame 3 is missing the 'story illustration' in the top half of the frame, which is a required visual content according to the prompt description ('TOP half is a story illustration and the BOTTOM half "
+    },
+    "quarantined": true
+  },
+  {
+    "topic": "She wanted a refund on a couch she'd had for 8 months. The chew marks gave it away.",
+    "title": "She wanted a refund on a couch she'd had for 8 months. The chew marks gave it away.",
+    "format": "reddit",
+    "publish_at": "2026-10-09T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: Two strong illustrations (chewed armrest, guilty puppy) land the reveal, but most beats, including the ending, are bare over-zoomed gameplay with the player clipped off-frame, so the story has no visual payoff.",
+    "elapsed_seconds": 276.0,
+    "package_path": "state/trending_packages/20261009/06_reddit-return-dog-damage.json",
+    "source": "brain",
+    "video_path": "output/daily_20261009-121719_she_wanted_a_refund_on_a_couch_she_d_had.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 49.767,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.5
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: Two strong illustrations (chewed armrest, guilty puppy) land the reveal, but most beats, including the ending, are bare over-zoomed gameplay with the player clipped off-frame, so the story has no visual payoff.",
+      "score": 66
+    },
+    "blocked": true
+  },
+  {
+    "topic": "Rare flamingos caught on camera in Irgiz-Turgai Nature Reserve - Qazinform",
+    "angle": "A massive flock of rare flamingos was filmed nesting in Kazakhstan, a visual spectacle that highlights a fragile species on the brink.",
+    "publish_at": "2026-10-09T13:00:00Z",
+    "ok": false,
+    "video_url": null,
+    "error": "showrunner_block: showrunner BLOCK: The story is told only by captions. The top half shows just two static emojis for 40 seconds, one of them frozen for the last 17s, so none of the story's beats is ever shown.",
+    "elapsed_seconds": 247.0,
+    "title": "I Served a Free Latte to an Entitled Customer",
+    "package_path": "state/trending_packages/20261009-122215_auto_rare_flamingos_caught_on_camera_in_irgiz.json",
+    "video_path": "output/daily_20261009-122215_rare_flamingos_caught_on_camera_in_irgiz.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 42.133,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -26.8
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The story is told only by captions. The top half shows just two static emojis for 40 seconds, one of them frozen for the last 17s, so none of the story's beats is ever shown.",
+      "score": 57
+    },
+    "blocked": true,
+    "backfill": true
+  },
+  {
+    "topic": "A 5.3-million-year-old deep-sea whale necropolis in the Diamantina Zone",
+    "angle": "Scientists uncovered the world\u2019s deepest whale-fall graveyard, showing how giant carcasses fuel entire ecosystems on the ocean floor.",
+    "publish_at": "2026-10-09T14:30:00Z",
+    "ok": true,
+    "video_url": "https://youtube.com/shorts/ebm0OSbAv4k",
+    "error": null,
+    "elapsed_seconds": 315.7,
+    "title": "My coffee shop turned a entitled rant into a five\u2011star win",
+    "package_path": "state/trending_packages/20261009-122620_auto_a_5_3_million_year_old_deep_sea_whale_ne.json",
+    "video_path": "output/daily_20261009-122620_a_5_3_million_year_old_deep_sea_whale_ne.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 49.1,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -24.6
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "skip",
+      "reason": "gemini unavailable"
+    },
+    "showrunner": {
+      "blocked": false,
+      "reason": "",
+      "score": 70
+    },
+    "logged": true,
+    "backfill": true
+  }
+]

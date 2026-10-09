@@ -1,12 +1,27 @@
 # Daily Trending Shorts — 2026-10-09
 
-Already posted 4 short(s) in the last 6 hours; skipped duplicate trigger.
+> **2 slot(s) were re-authored** after a gate refused the first attempt. The gate was right every time; a high number here means the AUTHORING needs work, never that the gate does.
 
-## Format scoreboard (A/B/C test)
+- queued: **4**
+- succeeded: **1**
+- quarantined (off-topic imagery): **1**
+- failed: **2**
 
-| format | videos | views | views/video | avg vph | avg view % | likes | shares | subs |
-|---|---|---|---|---|---|---|---|---|
-| graph_race | 58 | 198 | 3.4 | 0.02 | 64.6 | 0 | 0 | 0 |
-| reddit_story | 35 | 30 | 0.9 | 0.0 | 40.0 | 2 | 0 | 0 |
+## Posted
+- **My coffee shop turned a entitled rant into a five‑star win**
+  - topic: A 5.3-million-year-old deep-sea whale necropolis in the Diamantina Zone
+  - angle: Scientists uncovered the world’s deepest whale-fall graveyard, showing how giant carcasses fuel entire ecosystems on the ocean floor.
+  - publishes: `2026-10-09T14:30:00Z`
+  - https://youtube.com/shorts/ebm0OSbAv4k
+  - took: 315.7s
 
-matched 93 videos to packages, 15 unmatched (pre-A/B/C uploads)
+## Quarantined (off-topic imagery — fix & re-author)
+- **New boss said scan your badge for every single thing. So I did.**
+  - quarantined: vision QA: broken — Frame 3 is missing the 'story illustration' in the top half of the frame, which is a required visual content according to the prompt description ('TOP half is a story illustration and the BOTTOM half 
+
+## Failed
+- **She wanted a refund on a couch she'd had for 8 months. The chew marks gave it away.**
+  - error: `showrunner_block: showrunner BLOCK: Two strong illustrations (chewed armrest, guilty puppy) land the reveal, but most beats, including the ending, are bare over-zoomed gameplay with the player clipped off-frame, so the story has no visual payoff.`
+- **Rare flamingos caught on camera in Irgiz-Turgai Nature Reserve - Qazinform**
+  - error: `showrunner_block: showrunner BLOCK: The story is told only by captions. The top half shows just two static emojis for 40 seconds, one of them frozen for the last 17s, so none of the story's beats is ever shown.`
+
