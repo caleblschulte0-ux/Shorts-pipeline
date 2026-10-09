@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261009",
+  "bundle": {
+    "identity": "982086a788a0d72af0af25bd7d5fd2e165c254a1826c621f1cd4972b6872fb53",
+    "path": "exchange/bundles/20261009/bundle.json"
+  },
+  "request_id": "06_reddit-return-dog-damage-s0-2382fc808110",
+  "safe_request_id": "06_reddit-return-dog-damage-s0-2382fc808110",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "62573cb64f3a325c2c35ca49bfdd4bfff7cda0ab548df824625b55658848f0f8",
+  "prompt_used": "An editorial illustration for a short-form video: furniture store couch showroom. It accompanies the narration: \"demanding a full refund on a couch\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Xv0bbB9QYvAwfwJ08I9nuozxkJ1rPyCH",
+    "filename": "20261009__06_reddit-return-dog-damage-s0-2382fc808110.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Xv0bbB9QYvAwfwJ08I9nuozxkJ1rPyCH",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "148c4c4376e911a896764adfa67bd93233bd21dc91e3bfecd7dbd9594dbb33ae",
+    "bytes": 2593106,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-09T11:27:35.452Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
