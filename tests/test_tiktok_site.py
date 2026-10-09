@@ -157,7 +157,9 @@ class TheUploaderFetchesItsOwnToken(unittest.TestCase):
         return tok, calls
 
     def test_single_linked_account_needs_no_config(self):
-        tok, calls = self._run(OIDC_ENV, [{"open_id": "o1", "handle": "a"}])
+        # a channel with no registry handle (third has one now)
+        tok, calls = self._run(OIDC_ENV, [{"open_id": "o1", "handle": "a"}],
+                               channel="probe")
         self.assertEqual(tok, "fresh")
         self.assertEqual(calls[-1][2], {"open_id": "o1"})
 
@@ -169,8 +171,12 @@ class TheUploaderFetchesItsOwnToken(unittest.TestCase):
     def test_two_linked_accounts_and_no_handle_refuses_to_guess(self):
         with self.assertRaises(uploaders.UploadError) as e:
             self._run(OIDC_ENV, [{"open_id": "1", "handle": "a"},
-                                 {"open_id": "2", "handle": "b"}])
-        self.assertIn("TIKTOK_HANDLE_THIRD", str(e.exception))
+                                 {"open_id": "2", "handle": "b"}], channel="probe")
+        self.assertIn("TIKTOK_HANDLE_PROBE", str(e.exception))
+
+    def test_registry_handle_picks_the_account_without_a_variable(self):
+        tok, calls = self._run(OIDC_ENV, [], channel="explainer")
+        self.assertEqual(calls[-1][2], {"handle": "shortexplainer1"})
 
     def test_static_token_still_wins(self):
         with mock.patch.dict(os.environ, {**OIDC_ENV, "TIKTOK_ACCESS_TOKEN_THIRD": "s"},

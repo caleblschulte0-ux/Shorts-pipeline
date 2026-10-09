@@ -418,7 +418,8 @@ def _tiktok_broker_token(channel: str = "") -> str:
     """A fresh TikTok access token for the account linked at
     shorts-media.netlify.app/app/, fetched with this job's GitHub OIDC
     token. The site only answers jobs on caleblschulte0-ux/Shorts-pipeline
-    main. Which account: TIKTOK_HANDLE_<CHANNEL>, else TIKTOK_HANDLE, else
+    main. Which account: TIKTOK_HANDLE_<CHANNEL>, else the channel's
+    `tiktok.handle` in config/channel_registry.json, else TIKTOK_HANDLE, else
     the only linked account (more than one linked and none named refuses,
     rather than guessing which account a channel posts to)."""
     import requests
@@ -426,7 +427,8 @@ def _tiktok_broker_token(channel: str = "") -> str:
 
     handle = ""
     if channel:
-        handle = os.environ.get(f"TIKTOK_HANDLE_{channel.upper()}", "")
+        from shared.crosspost import tiktok_handle
+        handle = tiktok_handle(channel)
     handle = (handle or os.environ.get("TIKTOK_HANDLE", "")).strip().lstrip("@")
     if handle:
         who = {"handle": handle}

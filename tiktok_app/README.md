@@ -27,15 +27,16 @@ video at a time, with the settings you choose. It is TikTok's approved app
 No TikTok token is kept in GitHub secrets. Which linked account a channel
 posts to is `channels.<id>.tiktok.handle` in `config/channel_registry.json`
 (override: repo variable `TIKTOK_HANDLE_<CHANNEL>`); a channel with no handle
-does not post. Every publishing channel cross-posts through
+does not post, and `channels.<id>.tiktok.post: false` switches a channel off
+even with a handle (only explainer posts for now). Every publishing channel cross-posts through
 `shared/crosspost.py` after its gated YouTube upload succeeds. To see what is
 linked, run the `tiktok_accounts` workflow on main.
 
-| channel | TikTok |
-|---|---|
-| trending (Baller Bro 2.0) | @ballerbro2.1 |
-| third (Thirdbraindown) | @third.brain.down |
-| explainer (short_explainer67) | @shortexplainer1 |
+| channel | TikTok | posting |
+|---|---|---|
+| trending (Baller Bro 2.0) | @ballerbro2.1 | off |
+| third (Thirdbraindown) | @third.brain.down | off |
+| explainer (short_explainer67) | @shortexplainer1 | on |
 
 ## What is in git, what is not
 

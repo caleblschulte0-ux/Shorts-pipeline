@@ -59,6 +59,8 @@ def main() -> int:
     out = (f"TikTok Direct Post audit probe via @{handle} (nothing published)\n"
            f"- VERDICT: {words}\n- detail: {detail}\n")
     print(out)
+    # an annotation, so the verdict shows on the run page without its logs
+    print(f"::notice::TikTok audit via @{handle}: {words}", flush=True)
     if os.environ.get("GITHUB_STEP_SUMMARY"):
         with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as f:
             f.write(out)
