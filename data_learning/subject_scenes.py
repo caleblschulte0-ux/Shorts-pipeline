@@ -1883,6 +1883,318 @@ def recycling_pile(cr, t, u, pts, host):
                     80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)
 
 
+def _co_cart(cr, x, y, s):
+    """A shopping cart rolling past the camera, a few groceries in it."""
+    contact_shadow(cr, x - 5 * s, y, 230 * s, a=0.4)
+    cr.move_to(x - 105 * s, y - 175 * s)
+    cr.line_to(x + 95 * s, y - 175 * s)
+    cr.line_to(x + 72 * s, y - 72 * s)
+    cr.line_to(x - 82 * s, y - 72 * s)
+    cr.close_path()
+    solid(cr, (168, 176, 188), finish="metal")
+    cr.set_source_rgba(*_c((92, 98, 110)))
+    cr.set_line_width(3 * s)
+    for i in range(1, 8):
+        fx = i / 8.0
+        cr.move_to(x - 105 * s + 200 * s * fx, y - 175 * s)
+        cr.line_to(x - 82 * s + 154 * s * fx, y - 72 * s)
+    cr.move_to(x - 94 * s, y - 124 * s)
+    cr.line_to(x + 84 * s, y - 124 * s)
+    cr.stroke()
+    box(cr, x - 60 * s, y - 172 * s, 46 * s, 54 * s, (214, 120, 52))
+    disc(cr, x + 10 * s, y - 186 * s, 22 * s, (196, 60, 48), finish="gloss")
+    box(cr, x + 34 * s, y - 172 * s, 34 * s, 70 * s, (70, 132, 196))
+    cr.set_source_rgba(*_c((70, 74, 84)))
+    cr.set_line_width(7 * s)
+    cr.move_to(x - 105 * s, y - 175 * s)
+    cr.line_to(x - 140 * s, y - 210 * s)
+    cr.move_to(x - 82 * s, y - 72 * s)
+    cr.line_to(x - 72 * s, y - 24 * s)
+    cr.line_to(x + 64 * s, y - 24 * s)
+    cr.line_to(x + 72 * s, y - 72 * s)
+    cr.stroke()
+    cr.set_source_rgba(*_c((200, 50, 44)))
+    cr.set_line_width(12 * s)
+    cr.move_to(x - 150 * s, y - 214 * s)
+    cr.line_to(x - 128 * s, y - 206 * s)
+    cr.stroke()
+    for wx in (x - 70 * s, x + 60 * s):
+        disc(cr, wx, y - 12 * s, 12 * s, (40, 40, 46))
+
+
+def _co_basket(cr, x, y, s):
+    """A red hand basket on the floor by the camera, its handle up."""
+    contact_shadow(cr, x, y, 200 * s, a=0.4)
+    cr.move_to(x - 95 * s, y - 90 * s)
+    cr.line_to(x + 95 * s, y - 90 * s)
+    cr.line_to(x + 78 * s, y)
+    cr.line_to(x - 78 * s, y)
+    cr.close_path()
+    solid(cr, (200, 50, 44), finish="gloss")
+    cr.set_source_rgba(*_c((120, 26, 22)))
+    cr.set_line_width(4 * s)
+    for i in range(1, 6):
+        cr.move_to(x - 95 * s + 190 * s * i / 6, y - 84 * s)
+        cr.line_to(x - 78 * s + 156 * s * i / 6, y - 6 * s)
+    cr.stroke()
+    box(cr, x - 50 * s, y - 80 * s, 40 * s, 50 * s, (232, 220, 190), depth=10 * s)
+    disc(cr, x + 20 * s, y - 96 * s, 20 * s, (226, 170, 40), finish="gloss")
+    cr.set_source_rgba(*_c((60, 62, 70)))
+    cr.set_line_width(8 * s)
+    cr.arc(x, y - 90 * s, 70 * s, math.pi * 1.05, math.pi * 1.95)
+    cr.stroke()
+
+
+def _co_till(cr, x, y, s, a):
+    """A staffed checkout: a cashier in a green apron behind a belt counter."""
+    if a <= 0.01:
+        return
+    contact_shadow(cr, x + 50 * s, y, 130 * s, a=0.3 * a)
+    cr.move_to(x + 40 * s, y - 60 * s)
+    cr.line_to(x + 82 * s, y - 60 * s)
+    cr.line_to(x + 76 * s, y - 178 * s)
+    cr.line_to(x + 46 * s, y - 178 * s)
+    cr.close_path()
+    solid(cr, (46, 130, 90), a=a)
+    disc(cr, x + 61 * s, y - 200 * s, 21 * s, (222, 178, 140), a=a)
+    box(cr, x, y, 100 * s, 110 * s, (150, 152, 160), depth=34 * s, a=a)
+    cr.rectangle(x + 4 * s, y - 120 * s, 70 * s, 10 * s)
+    solid(cr, (30, 30, 34), finish="gloss", a=a, rim=False)
+    box(cr, x + 74 * s, y - 110 * s, 24 * s, 30 * s, (60, 62, 70), depth=8 * s, a=a)
+    for i in range(2):
+        box(cr, x + 10 * s + i * 30 * s, y - 120 * s, 20 * s, 22 * s + 8 * s * i,
+            [(214, 120, 52), (70, 132, 196)][i], depth=6 * s, a=a)
+
+
+def _co_kiosk(cr, x, y, s, a, drop):
+    """A self-checkout kiosk: a tall pillar, a tilted screen, a bagging stand."""
+    if a <= 0.01:
+        return
+    yy = y - drop
+    contact_shadow(cr, x + 50 * s, y, 120 * s, a=0.35 * a)
+    box(cr, x + 72 * s, yy, 30 * s, 100 * s, (176, 180, 190), depth=10 * s, a=a)
+    cr.move_to(x + 74 * s, yy - 100 * s)
+    cr.line_to(x + 104 * s, yy - 100 * s)
+    cr.line_to(x + 100 * s, yy - 140 * s)
+    cr.line_to(x + 78 * s, yy - 140 * s)
+    cr.close_path()
+    solid(cr, (236, 236, 230), a=a)
+    box(cr, x + 8 * s, yy, 60 * s, 200 * s, (206, 210, 218), depth=20 * s,
+        finish="metal", a=a)
+    cr.move_to(x + 2 * s, yy - 198 * s)
+    cr.line_to(x + 78 * s, yy - 198 * s)
+    cr.line_to(x + 72 * s, yy - 262 * s)
+    cr.line_to(x + 8 * s, yy - 262 * s)
+    cr.close_path()
+    solid(cr, (24, 30, 42), finish="glass", a=a)
+    cr.move_to(x + 10 * s, yy - 204 * s)
+    cr.line_to(x + 70 * s, yy - 204 * s)
+    cr.line_to(x + 66 * s, yy - 256 * s)
+    cr.line_to(x + 14 * s, yy - 256 * s)
+    cr.close_path()
+    cr.set_source_rgba(*_c(P["accent2"], 0.8 * a))
+    cr.fill()
+    cr.rectangle(x + 16 * s, yy - 150 * s, 44 * s, 8 * s)
+    cr.set_source_rgba(*_c((230, 60, 50), 0.9 * a))
+    cr.fill()
+
+
+def _co_at(L, z):
+    z = clamp(z, 0, len(L) - 1)
+    i = int(z)
+    if i >= len(L) - 1:
+        return L[-1]
+    f = z - i
+    return tuple(p + (q - p) * f for p, q in zip(L[i], L[i + 1]))
+
+
+def checkout_lanes(cr, t, u, pts, host):
+    """THE CHECKOUT (2026-10-09), brain-drawn, the opening the operator called
+    "perfect, beautiful ... what I want everything to look like. And it had
+    the creativity." Kept exactly as the brain drew it for the posted
+    self-checkout video, helpers renamed only. His one note, for every
+    scene after it: Data could have pushed a shopping cart down the line as
+    each cashier gave way to a kiosk — he is IN the story, not beside it.
+    HERO: a supermarket's row of checkout lanes
+    SUBSTANCE: self-checkout kiosks
+    CAUSE: Data places a self-checkout kiosk into each cashier lane, replacing the cashier, lane after lane
+    Inside one supermarket, its ten checkout lanes running from right by the
+    camera back into the store: the WHOLE is the front end. Each year Data
+    sets kiosks down into lanes, working from the far end toward the camera,
+    and the cashier there is gone, until that year's share of lanes is
+    self-checkout; the overhead sign is cut at the exact share, the
+    SELF-CHECKOUT part in the accent, and every landed year leaves a notch on
+    it. Done by 0.56 and held: one cashier lane is left, nearest the camera,
+    and carts keep rolling past."""
+    rows = by_time([(str(l), float(v)) for l, v in pts])
+    n = len(rows)
+    N = 10
+    a0, a1 = 0.08, 0.56
+    span = (a1 - a0) / max(1, n)
+    k = int(clamp((u - a0) / span, 0, n - 0.001))
+    f = clamp((u - a0 - k * span) / span)
+    slide = ease(seg(f, 0.05, 0.85))
+    prev = rows[k - 1][1] if k > 0 else 0.0
+    share = 0.0 if u < a0 else clamp((prev + (rows[k][1] - prev) * slide) / 100.0)
+    landed_to = k if slide >= 0.999 else k - 1
+    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))
+                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))
+    named = max((i for i in keep if i <= landed_to), default=None)
+    shown = None if (u < a0 or named is None) else rows[named]
+
+    # the lanes, big by the camera on the left, running back to the right
+    lanes = []
+    x, y, s = 50.0, 1440.0, 2.0
+    for j in range(N + 1):
+        lanes.append((x, y, s))
+        x += 70 * s
+        y -= 30 * s
+        s *= 0.9
+
+    # which year turns which lane over — rank 0 is the FAR lane
+    step_of = []
+    for r in range(N):
+        thr = (r + 0.5) / N * 100.0
+        step_of.append(next((i for i in range(n) if rows[i][1] >= thr), None))
+    now = [r for r in range(N) if step_of[r] == k]
+    conv_r = []
+    for r in range(N):
+        sr = step_of[r]
+        if u < a0 or sr is None or sr > k:
+            conv_r.append(0.0)
+        elif sr < k:
+            conv_r.append(1.0)
+        else:
+            q = now.index(r)
+            conv_r.append(clamp((slide * (len(now) + 1) - q) / 2.0))
+    conv = [conv_r[N - 1 - j] for j in range(N)]
+
+    # the store: a warm ceiling with light panels running back into it
+    vgrad(cr, [(0, (70, 66, 64)), (0.5, (168, 160, 148)), (1, (214, 206, 190))], 0, 1100)
+    for i in range(8):
+        z = i / 7.0
+        lx = 40 + 900 * z ** 0.8
+        ly = 140 + 560 * z ** 0.9
+        sc = 1.0 - 0.7 * z
+        glow(cr, lx + 90 * sc, ly, 200 * sc, (255, 240, 205), 0.4)
+        box(cr, lx, ly, 180 * sc, 22 * sc, (246, 242, 230), depth=40 * sc)
+    # the far aisles: tall stocked shelving under haze
+    vgrad(cr, [(0, (176, 170, 160)), (1, (120, 114, 106))], 1080, H)
+    for i in range(10):
+        bx = 10 + i * 108
+        hgt = 420 - i * 14
+        contact_shadow(cr, bx + 45, 1100, 110, a=0.25)
+        box(cr, bx, 1100, 92, hgt, (142, 134, 122), depth=18)
+        rows_n = int(hgt // 62)
+        for r_ in range(rows_n):
+            cr.rectangle(bx + 2, 1100 - 8 - r_ * 62, 90, 5)
+            cr.set_source_rgba(*_c((90, 84, 76)))
+            cr.fill()
+            for c_ in range(4):
+                col = [(190, 70, 60), (214, 168, 70), (80, 124, 170), (110, 156, 90)][(i + r_ + c_) % 4]
+                cr.rectangle(bx + 6 + c_ * 21, 1100 - 48 - r_ * 62, 17, 38)
+                cr.set_source_rgba(*_c(col, 0.9))
+                cr.fill()
+    haze(cr, 600, 1110, (200, 194, 182), a=0.55)
+    # a polished floor running to the camera
+    cr.save()
+    cr.rectangle(0, 1100, W, H - 1100)
+    cr.clip()
+    cr.set_source_rgba(*_c((90, 84, 76), 0.3))
+    cr.set_line_width(3)
+    for i in range(14):
+        cr.move_to(1300, 1000)
+        cr.line_to(-900 + i * 200, H)
+    cr.stroke()
+    cr.restore()
+    glow(cr, 540, 1350, 560, (255, 236, 200), 0.2)
+    cast_shadow(cr, lanes[0][0], lanes[N][0] + 40, 1450, length=240, a=0.2)
+
+    # the lanes, far first
+    for j in reversed(range(N)):
+        lx, ly, ls = lanes[j]
+        c = conv[j]
+        cr.rectangle(lx + 88 * ls, ly - 300 * ls, 6 * ls, 190 * ls)
+        solid(cr, (70, 72, 80), finish="metal", rim=False)
+        lit = P["accent2"] if c > 0.5 else (240, 214, 140)
+        glow(cr, lx + 91 * ls, ly - 300 * ls, 30 * ls, lit, 0.6)
+        disc(cr, lx + 91 * ls, ly - 300 * ls, 12 * ls, lit, finish="gloss")
+        _co_till(cr, lx, ly + 30 * ls * clamp(c / 0.45), ls, 1.0 - clamp(c / 0.45))
+        d = clamp((c - 0.35) / 0.65)
+        _co_kiosk(cr, lx, ly, ls, clamp(d * 3), (1 - pop(d)) * 260 * ls)
+
+    # the overhead sign over the whole front end, cut at the share
+    def _band(z0, z1, rgb):
+        if z1 - z0 < 0.01:
+            return
+        top, bot = [], []
+        for i in range(13):
+            bx_, by_, bs_ = _co_at(lanes, z0 + (z1 - z0) * i / 12)
+            top.append((bx_, by_ - 340 * bs_))
+            bot.append((bx_, by_ - 340 * bs_ + 44 * bs_))
+        cr.move_to(*top[0])
+        for p_ in top[1:]:
+            cr.line_to(*p_)
+        for p_ in reversed(bot):
+            cr.line_to(*p_)
+        cr.close_path()
+        solid(cr, rgb)
+    L = share * N
+    cut = N - L
+    cr.set_source_rgba(*_c((60, 62, 70)))
+    cr.set_line_width(4)
+    for z in (0.4, 4.0, 8.0):
+        bx_, by_, bs_ = _co_at(lanes, z)
+        cr.move_to(bx_, by_ - 340 * bs_)
+        cr.line_to(bx_, by_ - 340 * bs_ - 200)
+    cr.stroke()
+    _band(0, cut, (150, 152, 158))
+    _band(cut, N, P["accent2"])
+    if L > 3.0:
+        tx_, ty_, ts_ = _co_at(lanes, cut + 0.3)
+        text(cr, "SELF-CHECKOUT", tx_ + 6, ty_ - 340 * ts_ + 32 * ts_,
+             max(20, int(22 * ts_)), look.INK, face="bold", shadow=False)
+    if u >= a0:
+        for j in range(0, landed_to + 1):
+            nx, ny, ns = _co_at(lanes, N - rows[j][1] / 100.0 * N)
+            cr.set_source_rgba(*_c((244, 238, 226)))
+            cr.set_line_width(6)
+            cr.move_to(nx, ny - 340 * ns - 6)
+            cr.line_to(nx, ny - 340 * ns + 50 * ns)
+            cr.stroke()
+            if j == named or (j == 0 and named is not None and named != 0):
+                text(cr, rows[j][0], nx, ny - 340 * ns - 18, 30, look.INK,
+                     face="bold", anchor="center")
+
+    # right by the camera: carts rolling through, a basket on the floor
+    for j in range(2):
+        cx = -240 + ((t * 190 + j * 780) % 1560)
+        _co_cart(cr, cx, 1790 + j * 60, 1.35 + 0.15 * j)
+    _co_basket(cr, 940, 1880, 1.3)
+    vignette(cr, a=0.28)
+
+    # Data works his way from the far lane toward the camera
+    P_ = sum(conv)
+    dx_, dy_, ds_ = _co_at(lanes, clamp(N - P_ - 0.5, 0, N - 1))
+    hx, hy = dx_ + 30 * ds_, min(1500.0, dy_ + 50 * ds_)
+    hh = clamp(120 * ds_, 180, 240)
+    if u < a0:
+        hx, hy, hh = lanes[N - 1][0] + 30 * lanes[N - 1][2], lanes[N - 1][1] + 50 * lanes[N - 1][2], 180
+        host("point", hx, hy, hh)
+    elif u < a1 + 0.04:
+        host("place", hx, hy, hh, beat=k)
+    else:
+        host("hold_up", hx, hy, hh)
+
+    if shown is not None:
+        lab, v = shown
+        fit_readout(cr, f"{int(round(v))}%", f"of major grocery chains have self-checkout · {lab}",
+                    80, 520, a=ease(seg(u, a0, a0 + 0.05)), size=130)
+    else:
+        fit_readout(cr, "Self-checkout", f"major grocery chains, {rows[0][0]}–{rows[-1][0]}",
+                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)
+
+
 TEACHERS = {
     "amazon-still-shrinking": [amazon_clearing, amazon_vs_france,
                                amazon_where_it_goes],

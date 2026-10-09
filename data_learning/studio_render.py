@@ -2965,7 +2965,10 @@ def _resolve_scene(slug: str, story_cfg: dict, i: int, insight):
     segs = story_cfg.get("segments") or []
     seg_cfg = segs[i] if i < len(segs) else {}
     log = (lambda m: print(f"[studio] seg{i}: {m}", flush=True))
+    _was = seg_cfg.get("illustrated_scene")
     scene = _sa.saved_scene(seg_cfg, log=log)
+    if scene is not None and seg_cfg.get("illustrated_scene") != _was:
+        _PERSISTED.append(slug)             # re-judged to today's standard
     if scene is None:
         scene = _ss.scene_for(slug, i)
     if scene is None:
@@ -3185,8 +3188,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 if (i == 0 and lead_hook and _scene is not None
                         and windows[0][1] - start >= 1.0
                         and end - windows[0][1] >= 2.0):
+                    _wash = story_cfg.get("hook_scene")
                     _hook = (_sa.saved_bookend(story_cfg, "hook", len(st.segments))
                              or _ss.hook_for(slug))
+                    if story_cfg.get("hook_scene") != _wash:
+                        _PERSISTED.append(slug)
                     if _hook is None:
                         _hadh = bool(story_cfg.get("hook_scene"))
                         _hook = _sa.scene_for_bookend(
@@ -3215,8 +3221,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                         dur = max(0.0, end - start)
                 _close = None
                 if i == last_i and lead_payoff and windows[-1][0] > start + 1.0:
+                    _wasc = story_cfg.get("closing_scene")
                     _close = (_sa.saved_closing(story_cfg, len(st.segments))
                               or _ss.closing_for(slug))
+                    if story_cfg.get("closing_scene") != _wasc:
+                        _PERSISTED.append(slug)
                     if _close is None:
                         _hadc = bool(story_cfg.get("closing_scene"))
                         _close = _sa.scene_for_closing(
@@ -4286,6 +4295,8 @@ def render(slug: str, out_path: Path, voice: str | None = None,
         # seconds each narration window was on screen: hook, beats, closing
         _style["beat_s"] = [round(b - a, 2) for a, b in windows]
         _style["tempo"] = _tempo()
+        from shared import currency as _currency   # what today's rules are
+        _style.update(_currency.stamp())
         _style_arms.sidecar(out_path).write_text(json.dumps(_style))
     except Exception as e:  # noqa: BLE001
         print(f"[studio] style sidecar skipped: {e}", file=sys.stderr)

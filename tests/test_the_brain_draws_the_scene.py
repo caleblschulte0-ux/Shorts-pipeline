@@ -216,7 +216,7 @@ class TheAuthorLoop(unittest.TestCase):
             fn, code = SA.author("t", "topic", "say", [["2019", 1.05], ["2025", 4.41]],
                                  log=lambda m: None)
         self.assertIsNotNone(fn)
-        self.assertEqual(code, GOOD_MIN)
+        self.assertEqual(code, SA.stamped(GOOD_MIN))
         self.assertIn("FAILED THESE CHECKS", asks[1])
         self.assertIn("does not have", asks[1])
 
@@ -251,7 +251,7 @@ class TheAuthorLoop(unittest.TestCase):
         with mock.patch.object(SA, "ask_brain", return_value=GOOD_MIN):
             fn = SA.scene_for_segment(story, 0, ins, log=lambda m: None)
         self.assertIsNotNone(fn)
-        self.assertEqual(story["segments"][0]["illustrated_scene"], GOOD_MIN)
+        self.assertEqual(story["segments"][0]["illustrated_scene"], SA.stamped(GOOD_MIN))
         with mock.patch.object(SA, "ask_brain") as asked:   # reused, not re-asked
             self.assertIsNotNone(SA.scene_for_segment(story, 0, ins, log=lambda m: None))
             asked.assert_not_called()

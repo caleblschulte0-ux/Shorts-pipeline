@@ -294,7 +294,7 @@ class TheClosingIsItsOwnPicture(unittest.TestCase):
         self.assertIsNotNone(got)
         self.assertIn("THIS IS THE HOOK", asked["p"])
         self.assertIn("The damage isn't.", asked["p"])
-        self.assertEqual((story["hook_scene"], story["hook_data"]), (GOOD_MIN, 0))
+        self.assertEqual((story["hook_scene"], story["hook_data"]), (SA.stamped(GOOD_MIN), 0))
 
     def test_a_brain_closing_is_asked_for_the_closing_line(self):
         from data_learning import scene_author as SA

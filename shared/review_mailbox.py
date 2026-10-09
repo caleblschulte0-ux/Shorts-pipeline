@@ -172,7 +172,9 @@ def file_request(*, mp4: Path, slug: str, labeled, prompt: str, motion: dict,
         # 1. the kept render — an artifact the claim step can fetch by name
         held_dir.mkdir(parents=True, exist_ok=True)
         shutil.copy2(mp4, held_dir / f"{rid}.mp4")
-        for side in (".manifest.json", ".showrunner.json"):
+        # .style.json says which look and standard it was made to — a kept
+        # render without it is refused at the claim (shared/currency)
+        for side in (".manifest.json", ".showrunner.json", ".style.json"):
             sp = mp4.with_suffix(side)
             if sp.exists():
                 shutil.copy2(sp, held_dir / f"{rid}{side}")

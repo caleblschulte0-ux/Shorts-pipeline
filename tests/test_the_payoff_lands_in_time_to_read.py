@@ -63,7 +63,7 @@ class TheFinishedPictureIsUpLongEnoughToRead(unittest.TestCase):
         with mock.patch.object(RW, "_dataset", return_value=data), \
                 mock.patch.object(SA, "craft_problems", return_value=[]):
             self.assertIsNone(SA.saved_closing(story, 1, log=lambda m: None))
-            story["closing_scene"] = GOOD_MIN
+            story["closing_scene"] = SA.stamped(GOOD_MIN)   # drawn to today's standard
             self.assertIsNotNone(SA.saved_closing(story, 1, log=lambda m: None))
 
     def test_the_brain_is_told(self):

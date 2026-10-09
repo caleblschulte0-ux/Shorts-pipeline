@@ -117,7 +117,11 @@ def predraw(slug: str, cfg: dict, config_path: Path, deadline: float,
             continue
         cfg_segs = story_cfg.get("segments") or []
         seg_cfg = cfg_segs[i] if i < len(cfg_segs) else {}
+        _was = seg_cfg.get("illustrated_scene")
         if SA.saved_scene(seg_cfg, log=lambda m: log(f"[{slug}] seg{i}: {m}")):
+            # an old scene re-judged to today's standard is saved as such
+            if seg_cfg.get("illustrated_scene") != _was:
+                _save_scene(config_path, slug, i, seg_cfg["illustrated_scene"])
             res["kept"].append(i)
             continue
         left = deadline - time.monotonic()

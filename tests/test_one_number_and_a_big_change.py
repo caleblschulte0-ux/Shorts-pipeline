@@ -156,7 +156,7 @@ class TheBrainLooksAtWhatItDrew(unittest.TestCase):
         # the first draft, then each redraw — the second told why the first failed
         self.assertEqual(len(asks), 1 + SA.LOOK_AGAIN_TRIES)
         self.assertIn("YOUR REDRAW FAILED THESE CHECKS", asks[-1][0])
-        self.assertEqual(code, GOOD_MIN)
+        self.assertEqual(code, SA.stamped(GOOD_MIN), "the passing draft, marked with today's standard")
         self.assertIsNotNone(fn)
 
     def test_no_budget_for_it_skips_it(self):
