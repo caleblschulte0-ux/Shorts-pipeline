@@ -2929,6 +2929,13 @@
       ],
       "words_first_10s": 21,
       "scene_changes_before_5s": 3
+    },
+    "global-displacement-record": {
+      "claimed_at": "2026-10-09T12:26:45.649081+00:00",
+      "title": "More People Are Displaced Right Now Than Ever Recorded",
+      "publish_at": "2026-10-09T17:30:24Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3606,6 +3613,14 @@
       "state": "posted",
       "slug": "self-checkout-cashier-jobs",
       "at": "2026-10-09T12:09:08.802634+00:00"
+    },
+    {
+      "claimed_at": "2026-10-09T12:26:45.649081+00:00",
+      "title": "More People Are Displaced Right Now Than Ever Recorded",
+      "publish_at": "2026-10-09T17:30:24Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "global-displacement-record"
     }
   ]
 }
