@@ -3,210 +3,6 @@
     {
       "date": "20260929",
       "dry_run": false,
-      "ts": "2026-09-29T23:06:09+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 113,
-        "with_retention": 101,
-        "with_curve": 15,
-        "fetched_at": "2026-09-29T17:55:07.176014+00:00"
-      },
-      "brain": {
-        "ok": 1,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260929-1",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 8.4
-        },
-        {
-          "slug": "clip-20260929-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20260929-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20260929-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20260929-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20260929-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 280,
-                "scouted": [],
-                "vod_arcs": 185,
-                "candidates": 281,
-                "pool": 1358,
-                "pool_with_vod": 1286,
-                "arc_sizes": [
-                  2,
-                  2,
-                  2,
-                  2,
-                  3,
-                  3,
-                  2,
-                  2,
-                  3,
-                  2
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "kaicenat@vod2859079447",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "sodapoppin@vod2883882123",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "sodapoppin@vod2863459276",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "stableronaldo@vod2864388285",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "kaicenat@vod2859079447",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "emiru@vod2860987916",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 445.9
-        }
-      ]
-    },
-    {
-      "date": "20260929",
-      "dry_run": false,
       "ts": "2026-09-29T23:50:33+00:00",
       "feedback": {
         "snapshot": true,
@@ -7791,6 +7587,434 @@
             }
           },
           "took_s": 24.6
+        }
+      ]
+    },
+    {
+      "date": "20261009",
+      "dry_run": false,
+      "ts": "2026-10-09T18:32:12+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 11,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 129,
+        "with_retention": 112,
+        "with_curve": 15,
+        "fetched_at": "2026-10-09T15:29:16.499053+00:00"
+      },
+      "brain": {
+        "ok": 22,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261009-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261009-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261009-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 54,
+                "refused_shown": 20,
+                "scouted": [
+                  {
+                    "premise": "Joe Bartolozzi's 'Rules About Brooke' and a later trap clip",
+                    "shape": "one_stream",
+                    "n": 2
+                  },
+                  {
+                    "premise": "Kai Cenat's Streamer University broadcast: he becomes an anime girl, then Ron presses him, with Stableronaldo on the sam",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Jasontheween watches the Dean Cenat vs SuburbBaby fight break out and later breaks down the drama",
+                    "shape": "multi_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 279,
+                "moments": 40,
+                "candidates": 472,
+                "pool": 2848,
+                "pool_with_vod": 1969,
+                "arc_sizes": [
+                  2,
+                  3,
+                  2,
+                  6,
+                  2,
+                  4,
+                  6,
+                  6,
+                  2,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:joebartolozzi/joebartolozzi-about-anyone-2026w29",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not show the story the scout proposed. The first clip (2026-07-15) is Joe announcing that anyone who hates on Brooke in his Discord or stream is permanently banned, and that he is sti"
+                },
+                {
+                  "cluster": "esfandtv@momentpunchysarcasticskirretsmorc-wx0qyiuanwgib-mx",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2821557824",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: director judged: not a story \u2014 The two sources are unrelated moments from one broadcast. The first is Kai role-playing a school authority who sends the hoodie g"
+                },
+                {
+                  "cluster": "scout:kaicenat+stableronaldo/kaicenat-stableronaldo-anime-ce",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage doesn't show the scout's story. In Kai's first clip a woman performs an anime-girl character called 'Suki Mello', and Kai tells her not to call him 'Master'. Kai doesn't become an anime gi"
+                },
+                {
+                  "cluster": "esfandtv@momentobliqueexquisitepiecharlietheunicorn-r8zee3bs",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2820831944",
+                  "outcome": "already_refused",
+                  "why": "2026-10-07: director judged: not a story \u2014 The three clips are consecutive bits from one Streamer University broadcast: Kai, playing university president, greets a line of "
+                },
+                {
+                  "cluster": "scout:jasontheween/jasontheween-camera-crowd-2026w30",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not show the story the scout proposed. It was built from titles. No clip shows a Dean Cenat vs SuburbBaby fight breaking out, and no clip contains Jason's breakdown of the aftermath. "
+                },
+                {
+                  "cluster": "kaicenat@momentboldsuspiciouswatercressgrammarking-jifdf5_8p",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: every beat is from one source \u2014 a clip, not a story"
+                },
+                {
+                  "cluster": "kaicenat@vod2822355279/kaicenat-cenat-dean-2026w29",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The two clips are consecutive bits from the same 'Streamer University' roleplay, but they show no change. In the first, Kai reads out a list of names to report to the main office. The second opens 14 "
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "tornado reference, possible reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "Streamer reacts to real tornado footage",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Caseoh Calls Out An EF4 Tornado And Then Realizes He Got It Wrong"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Facecam appears twice: a cropped copy in the top panel and the original inside the stream picture",
+                "Top facecam panel doesn't span the full width, so there is a blurred gap to its right",
+                "Facecam is cropped at the forehead around 12.9s",
+                "A mostly dark frame at 11.2s",
+                "Main stream picture is a fairly thin strip, though the tornado is still readable"
+              ]
+            }
+          },
+          "took_s": 142.7
+        },
+        {
+          "slug": "clip-20261009-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261009-5",
+          "ok": true,
+          "render_level": "full",
+          "self_healed": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 68,
+                "refused_shown": 20,
+                "scouted": [
+                  {
+                    "premise": "Streamers on the GTA RP server get burned as in-game crypto coins crash: xQc watches a coin hit sixty-eight dollars and ",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Buddha is promised his coin will pump beyond the multiverse, and later loses $800 when Tony rugpulls him live.",
+                    "shape": "multi_stream",
+                    "n": 2
+                  }
+                ],
+                "vod_arcs": 279,
+                "moments": 40,
+                "candidates": 472,
+                "pool": 2848,
+                "pool_with_vod": 1969,
+                "arc_sizes": [
+                  2,
+                  3,
+                  2,
+                  6,
+                  2,
+                  4,
+                  6,
+                  6,
+                  2,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "esfandtv@momentpunchysarcasticskirretsmorc-wx0qyiuanwgib-mx",
+                  "outcome": "already_refused",
+                  "why": "2026-10-09: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2821557824",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: director judged: not a story \u2014 The two sources are unrelated moments from one broadcast. The first is Kai role-playing a school authority who sends the hoodie g"
+                },
+                {
+                  "cluster": "scout:buddha",
+                  "outcome": "already_refused",
+                  "why": "2026-10-03: director judged: not a story \u2014 The footage does not show the scout's story. (1) The promise: the 09-10 clip has only one fragmentary line at 161-167s ('Don't sa"
+                },
+                {
+                  "cluster": "esfandtv@momentobliqueexquisitepiecharlietheunicorn-r8zee3bs",
+                  "outcome": "already_refused",
+                  "why": "2026-10-09: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2820831944",
+                  "outcome": "already_refused",
+                  "why": "2026-10-07: director judged: not a story \u2014 The three clips are consecutive bits from one Streamer University broadcast: Kai, playing university president, greets a line of "
+                },
+                {
+                  "cluster": "kaicenat@momentboldsuspiciouswatercressgrammarking-jifdf5_8p",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: every beat is from one source \u2014 a clip, not a story"
+                },
+                {
+                  "cluster": "kaicenat@vod2822355279",
+                  "outcome": "already_refused",
+                  "why": "2026-10-09: director judged: not a story \u2014 The two clips are consecutive bits from the same 'Streamer University' roleplay, but they show no change. In the first, Kai reads"
+                },
+                {
+                  "cluster": "kaicenat@momentcreativeflirtydunlinm4xheh-qmubymsa6rvij7jd",
+                  "outcome": "already_refused",
+                  "why": "2026-10-09: rendered; critic scored 58 after 2 revision(s) \u2014 @12s missing_context: Ron is shown before he is introduced. Add a short line of context or a clear on-screen la"
+                },
+                {
+                  "cluster": "kaicenat@vod2872697283",
+                  "outcome": "already_refused",
+                  "why": "2026-10-07: director judged: not a story \u2014 The five clips are silent runway footage with no speech, so the sources never state a premise, a change, or a payoff. No frame id"
+                },
+                {
+                  "cluster": "shroud@momentpiercingrealmosquitohotpokket-zjo00ziwnbyim5bw",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "sodapoppin@vod2872274770",
+                  "outcome": "already_refused",
+                  "why": "2026-10-06: sources fail preflight: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "pokimane@momentwildbrighttardigradebrokeback-c1ugwcienk6ir1j",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "plaqueboymax@vod2874466121",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: director judged: not a story \u2014 The three clips are consecutive moments from one stream (11m, 27m, 32m in), but they don't form a setup, escalation and payoff. C"
+                },
+                {
+                  "cluster": "squeex@momentcrepuscularexcitedeggnogninjagrumpy-704iyhmzsyo",
+                  "outcome": "narrative_failed",
+                  "why": "scores [48, 52, 55] after 2 revision(s) \u2014 @0s confusing: Cut the opening 'You need to get over your fucking sister' line. It comes from a different, earlier exchange. It makes the opening sound like an argument about a living sister and contradicts the dead; @31s repetition: The 'body in the lake, I"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague, edgy title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "MrBeast-style bit, lights-off gag lands",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Joe Joe_Bartolozzi Asks Jimmy To Turn The Cameras Off For 10 Minutes"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Sharp picture is a thin 16:9 strip, about a third of the canvas height, well under the ~75% target",
+                "Frames at 1.8s and 3.0s show the subject small in the strip, though still readable",
+                "The video's own captions and player UI are visible, which is minor clutter",
+                "The blue-tinted frames from 10s on appear to come from the source footage (lights off), not a render fault"
+              ]
+            }
+          },
+          "took_s": 169.2
+        },
+        {
+          "slug": "clip-20261009-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261009-6",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Reacting to a tasteless child-murder ski",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Zackrawrr Asks \"Do You Remember?\" 25 Times Over The Lindsay Clancy Debate"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.5,
+              "problems": [
+                "The sharp picture is a small, awkward composite. A tiny portrait TikTok sits in the middle of a wide black area with lar",
+                "The woman in the TikTok fills only about a third of the width, and the subtitles inside it are too small to read on a ph",
+                "The frame at 1.6s shows a tiny, unreadable full-desktop screenshot, so the opening reads as lost.",
+                "Slivers of another window ('your / Lin\u2026') are cut off at the right edge of the webcam strip in many frames, which looks ",
+                "The streamer's face cam is small and tucked into the lower-left corner beside the TikTok, so framing varies between fram"
+              ]
+            }
+          },
+          "took_s": 223.1
         }
       ]
     }
