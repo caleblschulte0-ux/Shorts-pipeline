@@ -4,178 +4,171 @@
   "decorative_mascot": {
    "count": 23,
    "stories": {
-    "aquaculture-overtook-wild-fishing": 2,
-    "permafrost-thaw": 4,
-    "marathon-super-shoes-record-pace": 1,
-    "youth-sports-dropout": 2,
-    "vertical-farming-bust": 1,
-    "rabies-prevention-gap": 1,
-    "insect-planet": 3,
-    "volcano-country-ranking": 1,
-    "adhd-diagnosis-surge": 2,
-    "parker-solar-probe-speed-record": 2,
-    "third-interstellar-visitor": 1,
-    "unclaimed-money-states-hold": 1,
-    "coldest-place-in-the-universe-is-human-made": 1,
-    "podcasts-passed-radio-spoken-word": 1
+    "body-renewal-clock": 3,
+    "insect-planet": 1,
+    "activity-inequality-steps": 5,
+    "highest-point-illusion": 6,
+    "volcano-country-ranking": 3,
+    "adhd-diagnosis-surge": 1,
+    "parker-solar-probe-speed-record": 1,
+    "twin-birth-rate-rise": 3
    },
    "timestamps": [
-    "2026-10-08T22:07:38+00:00",
-    "2026-10-08T22:07:38+00:00",
-    "2026-10-08T22:14:17+00:00",
-    "2026-10-08T22:14:17+00:00",
-    "2026-10-08T22:19:39+00:00",
-    "2026-10-08T22:24:51+00:00",
-    "2026-10-08T23:02:02+00:00",
-    "2026-10-08T23:06:33+00:00",
-    "2026-10-08T23:14:00+00:00",
-    "2026-10-08T23:18:54+00:00",
-    "2026-10-08T23:23:11+00:00",
-    "2026-10-08T23:28:13+00:00",
-    "2026-10-08T23:34:08+00:00",
-    "2026-10-08T23:39:16+00:00",
-    "2026-10-08T23:45:48+00:00",
-    "2026-10-08T23:52:30+00:00",
-    "2026-10-08T23:52:30+00:00",
-    "2026-10-08T23:57:08+00:00",
-    "2026-10-08T23:57:08+00:00",
-    "2026-10-09T00:04:32+00:00",
-    "2026-10-09T00:09:09+00:00",
-    "2026-10-09T00:15:22+00:00",
-    "2026-10-09T00:20:10+00:00"
+    "2026-10-09T13:35:33+00:00",
+    "2026-10-09T13:39:57+00:00",
+    "2026-10-09T13:45:08+00:00",
+    "2026-10-09T13:49:23+00:00",
+    "2026-10-09T13:55:45+00:00",
+    "2026-10-09T13:55:45+00:00",
+    "2026-10-09T14:00:41+00:00",
+    "2026-10-09T14:05:24+00:00",
+    "2026-10-09T14:05:24+00:00",
+    "2026-10-09T14:09:41+00:00",
+    "2026-10-09T14:09:41+00:00",
+    "2026-10-09T14:13:49+00:00",
+    "2026-10-09T14:13:49+00:00",
+    "2026-10-09T14:17:47+00:00",
+    "2026-10-09T14:17:47+00:00",
+    "2026-10-09T14:24:16+00:00",
+    "2026-10-09T14:24:16+00:00",
+    "2026-10-09T14:24:16+00:00",
+    "2026-10-09T14:29:59+00:00",
+    "2026-10-09T14:34:21+00:00",
+    "2026-10-09T14:57:18+00:00",
+    "2026-10-09T15:07:51+00:00",
+    "2026-10-09T16:13:30+00:00"
    ],
    "examples": [
-    "decorative_mascot: Data never causes anything. He points from a ladder beside a finished bar (hook@1.5, seg0:end), stands on timeline dots with his arms up while bars grow without him (seg1:start-end)",
-    "dead_air: seg0 (seg0:start, seg0:mid, seg0:end) is the same finished bar chart as hook@1.5/hook@2.2, held from about 1.2s to 4.2s with only small mascot changes. seg1 then shows the same 13M-to-94.4M ",
-    "decorative_mascot: In hook@0.3 to seg0:mid Data stands on the -8 circle with his hands on his head. In seg1:mid and seg1:end he stands on a timeline dot. In seg2 he perches on top of the 870B circle. "
+    "decorative_mascot: seg1:start\u2013seg4:end: Data stands beside or on top of the chart in the same bobbing pose throughout. At seg1 he covers the '5 days' label, at seg3:end he perches on the line end, and",
+    "decorative_mascot: seg1:start-end, Data stands on top of the '5 days' bubble with his hands up; seg2:mid-end, he stands beside the pink bar; seg4:start-end, he stands still over '0T'. He never does an",
+    "decorative_mascot: seg1:start-end: Data stands over the labels with his arms raised and does nothing to the circles. seg2:mid/end: he hovers beside the pink bar. seg4:start-end: he is parked on the 0T"
    ],
    "recurred_after_fix": false
   },
   "other": {
-   "count": 20,
+   "count": 15,
    "stories": {
-    "aquaculture-overtook-wild-fishing": 1,
-    "permafrost-thaw": 3,
-    "marathon-super-shoes-record-pace": 1,
-    "youth-sports-dropout": 3,
-    "vertical-farming-bust": 1,
-    "rabies-prevention-gap": 1,
-    "insect-planet": 3,
-    "volcano-country-ranking": 1,
+    "body-renewal-clock": 3,
+    "insect-planet": 1,
+    "activity-inequality-steps": 2,
+    "highest-point-illusion": 2,
     "adhd-diagnosis-surge": 1,
     "parker-solar-probe-speed-record": 1,
-    "third-interstellar-visitor": 1,
-    "unclaimed-money-states-hold": 1,
-    "coldest-place-in-the-universe-is-human-made": 1,
-    "podcasts-passed-radio-spoken-word": 1
+    "twin-birth-rate-rise": 5
    },
    "timestamps": [
-    "2026-10-08T22:07:38+00:00",
-    "2026-10-08T22:14:17+00:00",
-    "2026-10-08T22:19:39+00:00",
-    "2026-10-08T22:24:51+00:00",
-    "2026-10-08T23:02:02+00:00",
-    "2026-10-08T23:06:33+00:00",
-    "2026-10-08T23:10:22+00:00",
-    "2026-10-08T23:14:00+00:00",
-    "2026-10-08T23:18:54+00:00",
-    "2026-10-08T23:23:11+00:00",
-    "2026-10-08T23:28:13+00:00",
-    "2026-10-08T23:34:08+00:00",
-    "2026-10-08T23:39:16+00:00",
-    "2026-10-08T23:45:48+00:00",
-    "2026-10-08T23:52:30+00:00",
-    "2026-10-08T23:57:08+00:00",
-    "2026-10-09T00:04:32+00:00",
-    "2026-10-09T00:09:09+00:00",
-    "2026-10-09T00:15:22+00:00",
-    "2026-10-09T00:20:10+00:00"
+    "2026-10-09T13:35:33+00:00",
+    "2026-10-09T13:39:57+00:00",
+    "2026-10-09T13:45:08+00:00",
+    "2026-10-09T13:49:23+00:00",
+    "2026-10-09T13:55:45+00:00",
+    "2026-10-09T14:00:41+00:00",
+    "2026-10-09T14:09:41+00:00",
+    "2026-10-09T14:13:49+00:00",
+    "2026-10-09T14:29:59+00:00",
+    "2026-10-09T14:34:21+00:00",
+    "2026-10-09T14:57:18+00:00",
+    "2026-10-09T15:07:51+00:00",
+    "2026-10-09T15:31:14+00:00",
+    "2026-10-09T16:13:30+00:00",
+    "2026-10-09T16:43:10+00:00"
    ],
    "examples": [
-    "unreadable: The bottom edge cuts off the '57%' value label in seg4:start, seg4:mid and payoff@-0.4. In payoff@-0.4 a teal ring is drawn over '52%'. In seg3 the bars carry no values, so a viewer cannot",
-    "unreadable: The highlighted value in the pink circle at hook@1.5, hook@2.2 and seg0:mid is dark text with a double outline that reads as a smear. The 870B in the pink blob at seg2:end has the same pro",
-    "unreadable: In hook@1.5, hook@2.2 and seg0:mid the '-2.3' in the pink circle is dark doubled text that smears. In seg2:end the '870B' on pink is a dark outlined smear that is hard to read. The seg0:en"
+    "unreadable: hook@0.3 and seg0:end: '120 d28 d5 days' and 'Red blood cellSkin Stomach lining' print on top of each other. seg1:start\u2013seg1:end: '5 day28 days' collides and Data covers it, and 'Stomach l",
+    "unreadable: hook@0.3 and seg0:end: '120 d28 d5days' and 'Red blood cellSkin Stomach lining' are printed on top of each other; seg1:mid shows '5 day28 days' overlapping; seg4:mid/end: the 30T bubble is",
+    "unreadable: seg0:end and hook@0.3: the labels collide as \"120 d28sdays\" and \"Red blood cellSkin\"/\"cellSIStomach lining\". seg1:mid shows \"5 da28 days\" overlapped and covered by Data. seg4:mid/end: the "
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
    "count": 13,
    "stories": {
-    "permafrost-thaw": 2,
-    "marathon-super-shoes-record-pace": 1,
-    "youth-sports-dropout": 3,
-    "rabies-prevention-gap": 1,
-    "insect-planet": 3,
+    "body-renewal-clock": 4,
+    "insect-planet": 1,
+    "activity-inequality-steps": 3,
+    "highest-point-illusion": 3,
     "volcano-country-ranking": 1,
-    "third-interstellar-visitor": 1,
-    "coldest-place-in-the-universe-is-human-made": 1
+    "parker-solar-probe-speed-record": 1
    },
    "timestamps": [
-    "2026-10-08T22:19:39+00:00",
-    "2026-10-08T22:24:51+00:00",
-    "2026-10-08T23:02:02+00:00",
-    "2026-10-08T23:06:33+00:00",
-    "2026-10-08T23:10:22+00:00",
-    "2026-10-08T23:14:00+00:00",
-    "2026-10-08T23:23:11+00:00",
-    "2026-10-08T23:28:13+00:00",
-    "2026-10-08T23:34:08+00:00",
-    "2026-10-08T23:39:16+00:00",
-    "2026-10-08T23:45:48+00:00",
-    "2026-10-09T00:04:32+00:00",
-    "2026-10-09T00:15:22+00:00"
+    "2026-10-09T13:35:33+00:00",
+    "2026-10-09T13:35:33+00:00",
+    "2026-10-09T13:39:57+00:00",
+    "2026-10-09T13:45:08+00:00",
+    "2026-10-09T13:49:23+00:00",
+    "2026-10-09T13:55:45+00:00",
+    "2026-10-09T14:00:41+00:00",
+    "2026-10-09T14:05:24+00:00",
+    "2026-10-09T14:09:41+00:00",
+    "2026-10-09T14:13:49+00:00",
+    "2026-10-09T14:17:47+00:00",
+    "2026-10-09T14:24:16+00:00",
+    "2026-10-09T14:34:21+00:00"
    ],
    "examples": [
-    "empty_void: In seg3:start and seg3:mid the top 60% of the frame is an empty dark gradient above a tiny 10B box and a small Data. seg2:start is similar: two small bubbles in a large dark field.",
-    "empty_void: seg3:start: a single tiny 10B box and a small Data at the bottom, with roughly 70% of the frame empty dark gradient. seg0:end also has a near-empty bar track with no bars drawn.",
-    "empty_void: In hook@0.3 to seg0:end a narrow tank sits in the middle third with large empty dark areas on both sides and below it. In seg3:start the top 35% and the area under the circles are empty, w"
+    "junk_imagery: hook@0.3\u2013seg0:end: a garbled AI-style skeleton torso cutout with no arms below the elbow and no legs, over a dark void. Glossy generic 'cell' blobs (green sphere, green drop) also sit be",
+    "empty_void: hook@0.8 / seg0:start: about 55% of the frame below the skeleton is an empty dark gradient, with one small figure at the top.",
+    "empty_void: hook@0.8, seg0:start and hook@1.5: the whole bottom half of the frame, between the skeleton and the caption, is empty dark gradient"
    ],
    "recurred_after_fix": false
   },
   "bare_number": {
    "count": 9,
    "stories": {
-    "permafrost-thaw": 3,
-    "marathon-super-shoes-record-pace": 1,
-    "rabies-prevention-gap": 1,
+    "permafrost-thaw": 1,
+    "body-renewal-clock": 2,
     "insect-planet": 1,
+    "activity-inequality-steps": 1,
+    "highest-point-illusion": 2,
     "volcano-country-ranking": 1,
-    "third-interstellar-visitor": 1,
-    "coldest-place-in-the-universe-is-human-made": 1
+    "parker-solar-probe-speed-record": 1
    },
    "timestamps": [
-    "2026-10-08T22:14:17+00:00",
-    "2026-10-08T22:19:39+00:00",
-    "2026-10-08T22:24:51+00:00",
-    "2026-10-08T23:02:02+00:00",
-    "2026-10-08T23:23:11+00:00",
-    "2026-10-08T23:39:16+00:00",
-    "2026-10-08T23:45:48+00:00",
-    "2026-10-09T00:04:32+00:00",
-    "2026-10-09T00:15:22+00:00"
+    "2026-10-09T13:17:38+00:00",
+    "2026-10-09T13:35:33+00:00",
+    "2026-10-09T13:39:57+00:00",
+    "2026-10-09T13:49:23+00:00",
+    "2026-10-09T14:00:41+00:00",
+    "2026-10-09T14:13:49+00:00",
+    "2026-10-09T14:17:47+00:00",
+    "2026-10-09T14:24:16+00:00",
+    "2026-10-09T14:34:21+00:00"
    ],
    "examples": [
-    "bare_number_card: In hook@0.3 to seg0:mid each year is a grey circle with a number printed inside, and the 2023 circle is pink. The circles do not change, so each one is just a number on a blob.",
-    "bare_number_card: seg3:start shows a big '150' with '150 billion tons' at the bottom over a mostly empty frame with one tiny 10B box. The number has no picture behind it.",
-    "bare_number_card: hook@0.3 to seg0:mid: five grey circles labelled -8/-6.5/-5/-3.5/-2.3 with one pink circle. Circle size does not encode temperature, so the opening beat is just numbers in blobs."
+    "bare_number_card: In seg1:mid and seg1:end every bar track is empty. Only the right-hand values (-8, -6.5, -5, -3.5, -2.3) carry the data, so it is a column of numbers, not a demonstration.",
+    "bare_number_card: seg4:mid\u2013seg4:end: the closing is just five circles labelled 0T/8.3T/16.5T/24.8T/30T on a dark background, a bubble version of the line chart already shown in seg3.",
+    "bare_number_card: seg4:start-end, the payoff is five circles labelled 0T, 8.3T, 16.5T, 24.8T and 30T under 'skin is younger than your phone'. They are bare numbers on blobs and none of them is about s"
    ],
    "recurred_after_fix": false
   },
   "dead_air": {
    "count": 3,
    "stories": {
-    "permafrost-thaw": 2,
-    "coldest-place-in-the-universe-is-human-made": 1
+    "activity-inequality-steps": 2,
+    "highest-point-illusion": 1
    },
    "timestamps": [
-    "2026-10-08T22:14:17+00:00",
-    "2026-10-08T22:24:51+00:00",
-    "2026-10-09T00:15:22+00:00"
+    "2026-10-09T14:00:41+00:00",
+    "2026-10-09T14:05:24+00:00",
+    "2026-10-09T14:13:49+00:00"
    ],
    "examples": [
-    "dead_air: The circles barely change across 0.3s to 2.47s (hook to seg0:mid), and code measured a 5.42s held stretch peaking at 5.75s. That is the seg0 bar chart sitting on empty tracks with no values.",
-    "dead_air: Measured held_s 5.04 at 5.75s. hook@0.3 to seg0:mid (about 2.5s) is the same circle grid with only a slight resize, and seg4:start to seg4:end is one held bar chart for about 4s.",
-    "dead_air: The tile grid is identical from hook@1.5 through seg1:end, about 7s. seg3:start to seg3:end is the same square with the same \"29400T\" for about 4s."
+    "dead_air: hook@0.3 through seg0:end (0.3-3.75s) is the same high-jump frame. Only the caption karaoke changes and Data never jumps. The measured max_dup_run of 18 lands at 13.75s, in the seg3 column h",
+    "dead_air: The hook frame barely changes from hook@0.3 to seg0:end (about 3.4s). Only the karaoke word and Data's arms move, and the measured hold is 5.83s at t=0.",
+    "dead_air: seg3:mid, payoff@-1.8, seg4:start, seg4:mid, seg4:end and payoff@-0.4 show the same ladder frame for about 2.5s. seg0:start to seg0:end (about 3s) is one static ring with small blob jitter."
+   ],
+   "recurred_after_fix": false
+  },
+  "junk_imagery": {
+   "count": 1,
+   "stories": {
+    "body-renewal-clock": 1
+   },
+   "timestamps": [
+    "2026-10-09T13:39:57+00:00"
+   ],
+   "examples": [
+    "junk_imagery: hook@0.3 through seg0:end: a glossy AI-style 3D skeleton torso with no arms or legs, plus generic blob icons (a red dot cluster, a green ball, a green drop) standing in for red blood cel"
    ],
    "recurred_after_fix": false
   }
@@ -184,59 +177,59 @@
   "hook": {
    "median": 1,
    "min": 1,
-   "max": 2
+   "max": 3
   },
   "data_demo": {
    "median": 1,
    "min": 1,
-   "max": 2
+   "max": 3
   },
   "mascot": {
    "median": 1,
    "min": 0,
-   "max": 2
+   "max": 3
   },
   "craft": {
    "median": 1,
-   "min": 1,
+   "min": 0,
    "max": 2
   },
   "pace": {
    "median": 1,
    "min": 1,
-   "max": 1
+   "max": 2
   },
   "payoff": {
-   "median": 1,
+   "median": 0,
    "min": 0,
    "max": 1
   },
   "temporal_craft": {
    "median": 3,
-   "min": 2,
+   "min": 3,
    "max": 3
   }
  },
  "scores": [
-  48,
-  39,
-  39,
-  39,
+  57,
+  27,
+  27,
+  31,
   44,
   35,
-  53,
-  53,
-  48,
-  31,
-  48,
   44,
-  44,
-  44,
-  44,
-  31,
+  35,
   39,
-  44,
-  31,
-  35
+  39,
+  39,
+  35,
+  48,
+  35,
+  35,
+  35,
+  74,
+  35,
+  74,
+  74
  ]
 }
