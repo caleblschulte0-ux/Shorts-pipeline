@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-09T15:31:45Z",
+ "updated": "2026-10-09T16:43:32Z",
  "open": [
+  {
+   "id": "astronaut-bone-loss__606ac204",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-10-09T16:43:32Z",
+   "why": [
+    "premise: brain: The claim lacks a verifiable, authoritative source for the specific 1.5% bone loss figure, making it an unsubstantiated premise."
+   ],
+   "request": "exchange/rewrites/20261009/astronaut-bone-loss__606ac204.request.json",
+   "answer_path": "exchange/rewrites/20261009/astronaut-bone-loss__606ac204.answer.json"
+  },
+  {
+   "id": "peanut-allergy-guideline-flip__08d91354_r1",
+   "slug": "peanut-allergy-guideline-flip",
+   "filed": "2026-10-09T16:43:32Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer's expectation and relies on a vague claim rather than a single verifiable statistic."
+   ],
+   "request": "exchange/rewrites/20261009/peanut-allergy-guideline-flip__08d91354_r1.request.json",
+   "answer_path": "exchange/rewrites/20261009/peanut-allergy-guideline-flip__08d91354_r1.answer.json"
+  },
   {
    "id": "monarch-butterfly-collapse__f5453757",
    "slug": "monarch-butterfly-collapse",
@@ -11,16 +31,6 @@
    ],
    "request": "exchange/rewrites/20261009/monarch-butterfly-collapse__f5453757.request.json",
    "answer_path": "exchange/rewrites/20261009/monarch-butterfly-collapse__f5453757.answer.json"
-  },
-  {
-   "id": "peanut-allergy-guideline-flip__e7741354",
-   "slug": "peanut-allergy-guideline-flip",
-   "filed": "2026-10-09T15:31:45Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer's expectation and does not hinge on a single, verifiable consequential number."
-   ],
-   "request": "exchange/rewrites/20261009/peanut-allergy-guideline-flip__e7741354.request.json",
-   "answer_path": "exchange/rewrites/20261009/peanut-allergy-guideline-flip__e7741354.answer.json"
   },
   {
    "id": "homeschool-surge__9a565353",
@@ -283,18 +293,6 @@
    ],
    "request": "exchange/rewrites/20261009/volcano-country-ranking__c85b495d.request.json",
    "answer_path": "exchange/rewrites/20261009/volcano-country-ranking__c85b495d.answer.json"
-  },
-  {
-   "id": "astronaut-bone-loss__5eb8bb6f",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-10-09T13:18:00Z",
-   "why": [
-    "premise: no consequential number in the title or hook",
-    "pace: beat 1 says 25 words (max 16) — one sentence, the number and what it means",
-    "pace: beat 2 says 19 words (max 16) — one sentence, the number and what it means"
-   ],
-   "request": "exchange/rewrites/20261009/astronaut-bone-loss__5eb8bb6f.request.json",
-   "answer_path": "exchange/rewrites/20261009/astronaut-bone-loss__5eb8bb6f.answer.json"
   },
   {
    "id": "plastic-in-your-body__acdad93e",

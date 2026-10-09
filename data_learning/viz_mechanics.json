@@ -652,5 +652,13 @@
   "code": "prog = clamp(reveal)\nphone = subject_image('ringing smartphone')\nn = len(values)\ngx0, gx1 = RX0 + 60, RX1 - 60\ncol_w = (gx1 - gx0) // n\nground_y = RBOT - 140\ntop_cap = RTOP + 200\nmax_stack = 9\niw, ih = 64, 64\nfor i in range(n):\n    cx = gx0 + i * col_w + col_w // 2\n    frac = clamp(values[i] / vmax)\n    stack_n = max(1, round(frac * max_stack * prog))\n    for k in range(stack_n):\n        jitter = int(14 * math.sin(k * 2.4 + i))\n        py = ground_y - 6 - k * 46\n        if py < top_cap:\n            break\n        arrive = clamp(prog * (stack_n + 2) - k, 0, 1)\n        drop = int((1 - arrive) * 260)\n        if phone is not None:\n            paste(phone, cx - iw // 2 + jitter, py - drop, iw, ih)\n    fall_t = (reveal * 2.3 + i / n) % 1.0\n    fy = lerp(top_cap - 80, ground_y - stack_n * 46, fall_t)\n    if phone is not None:\n        paste(phone, cx - 20 + int(10 * math.sin(fall_t * 6)), int(fy) - 20, 40, 40)\n    text(str(int(values[i])) + '%', cx, ground_y - stack_n * 46 - 46, size=32, color=WARN, center=True)\n    text(labels[i][:14], cx, ground_y + 30, size=20, color=TEXT, center=True)\ntext('52.8 BILLION ROBOCALLS IN 2024', RX0 + 10, RTOP + 60, size=28, color=TEXT)\n",
   "topic": "robocall category share of 2024 total",
   "starred": false
+ },
+ {
+  "mechanic": "mercator-coin-inflate",
+  "concept": "the same coin sits at five latitudes; the map inflates its area by the real Mercator factor, up to 33x near the pole",
+  "code": "coin = subject_image('gold coin')\nrowh = (RBOT - RTOP - 120) / max(1, n)\nbase = 44\ncx = RX0 + 330\nfor i in range(n):\n    st = clamp(reveal * 1.6 - i * 0.28)\n    f = lerp(1.0, values[i], st)\n    side = int(min(rowh - 6, base * math.sqrt(max(f, 1.0))))\n    cy = RTOP + 80 + rowh * i + rowh / 2\n    if coin is not None:\n        paste(coin, int(cx - side / 2), int(cy - side / 2), side, side)\n    else:\n        d.ellipse([cx - side / 2, cy - side / 2, cx + side / 2, cy + side / 2], fill=rgba(HIGHLIGHT, 220))\n    text(labels[i], RX0 + 10, cy - 50, size=26, color=SUBTLE)\n    text(fmt(f) + 'x', RX1 - 20 - 230, cy - 30, size=60, color=(WARN if f > 10 else TEXT))\ntext('SAME COIN, SAME TRUE SIZE', (RX0 + RX1) // 2, RTOP + 30, size=34, color=SUBTLE, center=True)",
+  "topic": "map distortion",
+  "starred": false,
+  "sig": "02819a875e14"
  }
 ]

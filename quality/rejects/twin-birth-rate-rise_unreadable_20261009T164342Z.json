@@ -1,0 +1,25 @@
+{
+ "slug": "twin-birth-rate-rise",
+ "ts": "20261009T164342Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg2:end the '3.1x vs moms 20-24' callout lands right on top of the '3x' tick, and the 'moms 20-24 1x' label is printed over the busy baby pile and the crib post (seg2:mid). You have to work out what they say on a phone.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "claim_mismatch",
+  "visible_evidence": "The narration says moms over 40 have twins 'nearly five times more often than under-20 moms', but the picture compares against moms 20-24 and lands on 3.1x (seg2:end). The 3.1x callout also collides with the 3x tick, and the 1x baseline label sits on the pile.",
+  "root_cause": "The scene was built from a different baseline series (moms 20-24) than the one the narration names (under-20), so the picture's payoff number disagrees with the spoken claim. The scale ticks and callout were placed without checking for collisions.",
+  "repair_goal": "Use the under-20 rate as the baseline so the crib overfills to roughly 5x its under-20 line and the callout matches the narration (or rewrite the line to say 3x vs moms 20-24). Move the multiplier callout clear of the tick labels and keep the baseline label off the pile."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "pictorial_race",
+   "perf": "block_wall"
+  },
+  "0": {
+   "viz": "pictorial_race",
+   "perf": "race_sprint"
+  }
+ },
+ "scenes": []
+}
