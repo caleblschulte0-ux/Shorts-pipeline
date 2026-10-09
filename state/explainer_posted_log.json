@@ -2977,6 +2977,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 57,
       "duration_s": 28.4
+    },
+    "twin-birth-rate-rise": {
+      "claimed_at": "2026-10-09T15:31:16.230440+00:00",
+      "title": "Why Twin Births Nearly Doubled \u2014 Then Started Falling",
+      "publish_at": "2026-10-09T14:29:32Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3672,6 +3679,14 @@
       "state": "posted",
       "slug": "permafrost-thaw",
       "at": "2026-10-09T13:17:51.662853+00:00"
+    },
+    {
+      "claimed_at": "2026-10-09T15:31:16.230440+00:00",
+      "title": "Why Twin Births Nearly Doubled \u2014 Then Started Falling",
+      "publish_at": "2026-10-09T14:29:32Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "twin-birth-rate-rise"
     }
   ]
 }
