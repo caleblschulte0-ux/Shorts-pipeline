@@ -1,0 +1,47 @@
+# Voice lab finals: the operator's five favourites on two real stories.
+# No secrets; read-only token; only collect writes, and only to this branch.
+name: Voice lab final
+on:
+  push:
+    branches: [voice-lab]
+    paths: ['voice_lab/gen_final.py', 'voice_lab/final_stories.json', '.github/workflows/voice_lab_final.yml']
+permissions:
+  contents: read
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        voice: ['11', '24', '34', '38', '39']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - run: |
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q chatterbox-tts==0.1.7 --extra-index-url https://download.pytorch.org/whl/cpu
+          python voice_lab/gen_final.py ${{ matrix.voice }} out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: 'final_${{ matrix.voice }}', path: out/ }
+  collect:
+    needs: gen
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: dl/ }
+      - run: |
+          mkdir -p voice_lab/final
+          find dl -type f \( -name '*.mp3' -o -name '*.txt' \) -exec cp {} voice_lab/final/ \;
+          git config user.name "voice-lab"
+          git config user.email "voice-lab@users.noreply.github.com"
+          git add -f voice_lab/final
+          git commit -m "voice lab final results [skip ci]"
+          for i in 1 2 3 4; do git pull --rebase -q origin voice-lab && git push origin HEAD:voice-lab && break; sleep $((i*3)); done
