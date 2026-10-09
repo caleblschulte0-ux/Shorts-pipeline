@@ -263,7 +263,7 @@ The scene's author says it shows:
   HERO: {hero}
   SUBSTANCE: {substance_said}
   CAUSE: {cause}
-
+{story}
 Answer as ONE JSON object, nothing else:
 {{"is_hero": <true only if the viewer's object IS the author's hero — the \
 same thing under another name counts (coffin/casket), a different thing \
@@ -272,7 +272,12 @@ does not (crate/casket, tank/urn)>,
 blue liquid is not ash, a glowing fill is not embers>,
  "cause_makes_sense": <true only if the author's CAUSE would physically \
 produce the viewer's change — a rope cannot raise a liquid; a bellows does \
-not fill a jar>,
+not fill a jar>, "story_fit": <true unless the beat's narration is given below AND the \
+viewer's change is a GENERIC stand-in that would fit any story with a new \
+label — a tower of boxes, a stack of blocks or coins, a filling bar, a \
+rising pile of crates — when the narration is about something that is not \
+boxes or blocks. Theft is goods walking out unpaid, lost jobs are people \
+leaving, a price is a tag or a till; the picture must be made of THAT>,
  "why": "<one sentence on anything you answered false>"}}"""
 
 
@@ -335,7 +340,7 @@ def glance_frames(fn, pts, out_dir, at=GLANCE_AT) -> list[str]:
     return paths
 
 
-def glance(fn, pts, log=print) -> list[str]:
+def glance(fn, pts, log=print, say: str = "") -> list[str]:
     """Problems a VIEWER has with the picture alone: the hero is not
     recognisable, the substance reads as something else, the cause could
     not produce the effect. The viewer describes the frames UNAIDED first;
@@ -364,9 +369,11 @@ def glance(fn, pts, log=print) -> list[str]:
     tells = str(seen.get("tells") or "").strip()
     much = str(seen.get("how_much") or "").strip().lower()
     shot = str(seen.get("shot") or "").strip().lower()
+    story = (f"\nThe beat's narration (what the picture must SHOW): {say}\n"
+             if str(say or "").strip() else "")
     ans = ask_glance(_JUDGE.format(object=obj, substance=sub, change=chg,
                                    hero=decl["HERO"], substance_said=decl["SUBSTANCE"],
-                                   cause=decl["CAUSE"]), [])
+                                   cause=decl["CAUSE"], story=story), [])
     if not isinstance(ans, dict):
         log("[scene_author] no viewer for the glance — passed on code checks only")
         return []
@@ -400,6 +407,15 @@ def glance(fn, pts, log=print) -> list[str]:
                         "front-on on a backdrop; build the SETTING around it "
                         "with near-and-far depth, three-quarter view and "
                         "something by the camera (rule 13)")
+    if story and ans.get("story_fit") is False:
+        # operator, 2026-10-09: the self-checkout video's first scene showed
+        # stores being taken over; "by the end it's just stacking boxes"
+        problems.append(f"the picture is a generic stand-in ({chg!r}) for a "
+                        f"beat about {str(say)[:120]!r} — a stack, tower or "
+                        f"bar fits any story with a new label. Draw the thing "
+                        f"the narration says HAPPENS (goods leaving unpaid, "
+                        f"cashiers walking out, the price tag rising), made "
+                        f"of this story's own objects. {why}".rstrip())
     if ans.get("cause_makes_sense") is False:
         problems.append(f"{decl['CAUSE']!r} could not cause what a viewer saw "
                         f"({chg!r}) — Data's act must be the one that would really "
@@ -791,7 +807,11 @@ MAX_HEADLINES = 2
 #: Every number a scene ends on must be up, unbroken, from PAYOFF_BY of the
 #: beat — or earlier, so it holds READ_S seconds — to the end. The world may
 #: keep moving after that; the story may not.
-PAYOFF_BY = 0.6
+#: The latest u a beat's payoff may land. 0.6 left a 6s beat holding its
+#: finished picture for 2.4s+ (operator, 2026-10-09: "some animations hold
+#: too long at the end after all the cool stuff has already happened");
+#: `land_by` still keeps READ_S to read it (2026-10-07, "whiplash").
+PAYOFF_BY = 0.72
 READ_S = 1.8
 
 
@@ -801,12 +821,34 @@ def land_by(secs: float | None = None) -> float:
     return min(PAYOFF_BY, 1.0 - READ_S / max(secs, READ_S + 0.1))
 
 
+def landed_at(fn, pts):
+    """The u at which the numbers a scene ENDS on have all arrived and
+    stay, or None when it ends on no number."""
+    late = _arrivals(fn, pts)
+    return max(u for u, _ in late) if late else None
+
+
 def payoff_problems(fn, pts, secs: float | None = None) -> list[str]:
     """The scene's FINISHED picture lands too late to be read: a number it
     ends on first appears (and stays) after `land_by` of the beat."""
-    import cairo
     secs = SCENE_SECS["beat"] if secs is None else secs
     by = land_by(secs)
+    late = [(u, t_) for u, t_ in _arrivals(fn, pts) if u > by + 1e-9]
+    if not late:
+        return []
+    u_, t_ = max(late)
+    return [f"its last number {t_!r} only lands at u={u_:.2f} and the scene "
+            f"ends at u=1 — about {(1 - u_) * secs:.1f}s of a ~{secs:.0f}s "
+            f"beat to read the finished picture. Land the WHOLE payoff (every "
+            f"number it ends on, the end state of the hero) by u={by:.2f} "
+            f"and HOLD it; after that keep the world moving (Data, birds, "
+            f"steam, light), never the story"]
+
+
+def _arrivals(fn, pts) -> list:
+    """[(u, text)] for every number on the scene's last frame: the u from
+    which it is on screen to the end."""
+    import cairo
     real = SS.text
     real_ro = SS.fit_readout
     g = fn.__globals__
@@ -828,23 +870,25 @@ def payoff_problems(fn, pts, secs: float | None = None) -> list[str]:
                lambda *a, **kw: None)
     finally:
         g["text"], SS.text = real, real
-    last = frames[-1]
-    late = []
-    for t_ in last:
+    out = []
+    for t_ in frames[-1]:
         k = 40
         while k > 0 and t_ in frames[k - 1]:
             k -= 1
-        if k / 40 > by + 1e-9:
-            late.append((k / 40, t_))
-    if not late:
-        return []
-    u_, t_ = max(late)
-    return [f"its last number {t_!r} only lands at u={u_:.2f} and the scene "
-            f"ends at u=1 — about {(1 - u_) * secs:.1f}s of a ~{secs:.0f}s "
-            f"beat to read the finished picture. Land the WHOLE payoff (every "
-            f"number it ends on, the end state of the hero) by u={by:.2f} "
-            f"and HOLD it; after that keep the world moving (Data, birds, "
-            f"steam, light), never the story"]
+        out.append((k / 40, t_))
+    return out
+
+
+def paced(u: float, landed: float | None, target: float) -> float:
+    """The u a scene is DRAWN at when the beat is at `u`: a scene that
+    finishes its story at `landed`, early, is stretched so it finishes at
+    `target` instead, and only the last READ_S or so is the held picture.
+    The build plays slower, the hold is shorter, nothing is cut."""
+    if landed is None or landed >= target - 0.02 or landed <= 0.05:
+        return u
+    if u <= target:
+        return u * landed / target
+    return landed + (u - target) * (1.0 - landed) / (1.0 - target)
 
 
 def verify(fn, pts, say: str = "", secs: float | None = None) -> list[str]:
@@ -1156,6 +1200,7 @@ percentage drawn literally (a bone 1.5% thinner) is invisible: draw what \
 piles up, empties or spreads until it is large, or set the thing beside \
 what it equals, so the PICTURE makes the comparison and the words do not.
 16. LAND IT, THEN HOLD IT. A scene is on screen for about {secs:.0f} seconds, and the owner called a fence whose last number arrived with under a second left "whiplash — I didn't even have time to process". Finish the story — every number, the final size, the last label — by u={payoff_by}, then HOLD that finished picture to the end so it can be read. After it lands the WORLD keeps moving (wind, a bottle rolling) and Data KEEPS DOING HIS ACT to the end (another toss, holding the load up, one more shove) — he never stands and points at what he made; the story does not move. A readout steps through at most {shows} values (landed(rows, k, f) does this). MEASURED: a number still arriving after u={payoff_by} is refused.
+17. THE PICTURE IS WHAT THE NARRATION SAYS HAPPENS. The owner, of a video whose first scene showed stores being taken over: "by the end it's just stacking boxes". A tower of boxes, a stack of blocks or coins, a filling bar or a pile of crates fits ANY story with a new label — refused when the beat is not about boxes. Theft is goods walking out unpaid, lost jobs are cashiers leaving their tills, a price is the tag on the shelf. Every beat of a story is drawn from that story's own world, the last as much as the first. A viewer is asked whether the picture shows what the narration says.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \
@@ -1306,7 +1351,7 @@ def author(title, topic, say, pts, unit="", attempts=3, log=print, brief="",
             problems = verify(fn, pts, say, secs)
             if not problems:
                 # the code agrees; now a VIEWER has to (hero, substance, cause)
-                problems = glance(fn, pts, log=log)
+                problems = glance(fn, pts, log=log, say=say)
         except Exception as e:  # noqa: BLE001 — refused or broken: tell it why
             problems = [f"{type(e).__name__}: {str(e)[:200]}"]
         if not problems:
@@ -1416,7 +1461,7 @@ def look_again(fn, code, prompt, pts, say="", secs=None, log=print):
                     return None
                 try:
                     fn2 = compile_scene(code2)
-                    problems = verify(fn2, pts, say, secs) or glance(fn2, pts, log=log)
+                    problems = verify(fn2, pts, say, secs) or glance(fn2, pts, log=log, say=say)
                 except Exception as e:  # noqa: BLE001
                     problems = [f"{type(e).__name__}: {str(e)[:200]}"]
                 if not problems:

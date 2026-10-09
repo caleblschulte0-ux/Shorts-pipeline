@@ -325,6 +325,16 @@ constants blanked), never on the prose that explains it.
   readout steps through at most `READOUT_SHOWS` values (`landed`). After
   the payoff the world moves, the story holds; prompt rule 16.
   `tests/test_the_payoff_lands_in_time_to_read.py`.
+  And the BUILD FILLS THE BEAT (operator, 2026-10-09: *"some animations
+  hold too long at the end after all the cool stuff has already
+  happened"*): `PAYOFF_BY` is 0.72, so a beat holds its finished picture
+  about `READ_S`, and `subject_scenes._render_frames` PACES every scene
+  (`scene_author.landed_at` + `paced`) — one that finishes early is
+  stretched to land by `land_by`, saved scenes included. And the picture is
+  WHAT THE NARRATION SAYS HAPPENS (same message: *"by the end it's just
+  stacking boxes"*): the glance's judge is given the beat's narration and
+  refuses a generic stack, tower or bar (`story_fit`), prompt rule 17.
+  `tests/test_the_build_fills_the_beat.py`.
   And the OPENING IS THE SHOCK (operator, 2026-10-08: *"our hook and first
   10 seconds need to be better ... we need to be really hooking the
   audience"*; 55-70% of viewers swiped in the first seconds). Rendered,

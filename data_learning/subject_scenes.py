@@ -1985,6 +1985,18 @@ def act_phase(clock: dict, role, f: int, fps: int = 30) -> float:
 
 def _render_frames(scene, insight, out_dir, name, frames, pts, surf):
     clock: dict = {}
+    # PACED to its window (operator, 2026-10-09: "some animations hold too
+    # long at the end after all the cool stuff has already happened"). A
+    # scene that finishes its story early is stretched to land by the
+    # beat's `land_by`, so the build fills the beat and only the last
+    # moments are the held picture.
+    from data_learning import scene_author as _sa
+    secs = frames / 30.0
+    try:
+        landed = _sa.landed_at(scene, pts)
+    except Exception:  # noqa: BLE001 — unmeasurable: drawn as authored
+        landed = None
+    target = _sa.land_by(secs)
     for f in range(frames):
         cr = cairo.Context(surf)
 
@@ -1992,7 +2004,8 @@ def _render_frames(scene, insight, out_dir, name, frames, pts, surf):
             place_host(_cr, role, act_phase(clock, (role, int(beat)), _f),
                        insight, x, fy, h, _f / 30.0, pace)
         with I.text_layer(cr):          # labels are painted last, on top
-            scene(cr, f / 30.0, f / max(1, frames - 1), pts, host)
+            scene(cr, f / 30.0,
+                  _sa.paced(f / max(1, frames - 1), landed, target), pts, host)
             I.finish(cr, I.FINISH)      # one key light over the whole frame
         caption_scrim(cr)
         surf.flush()
