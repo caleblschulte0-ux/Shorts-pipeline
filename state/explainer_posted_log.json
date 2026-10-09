@@ -2930,60 +2930,41 @@
       "words_first_10s": 21,
       "scene_changes_before_5s": 3
     },
-    "global-displacement-record": {
-      "url": "https://youtube.com/shorts/YC6kYj8fXy0",
-      "title": "More People Are Displaced Right Now Than Ever Recorded",
-      "at": "2026-10-09T12:26:58.966240+00:00",
-      "publish_at": "2026-10-09T17:30:24Z",
-      "state": "posted",
-      "experiment_arm": "other_topic",
-      "actual_structure": "other_topic",
-      "style_arm": "current",
-      "tts": "speechify",
-      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 26 credits are required for this request.\",\"status",
-      "beat_s_max": 6.62,
-      "beat_s": [
-        3.49,
-        6.62,
-        4.71,
-        5.43,
-        5.19
-      ],
-      "n_beats": 3,
-      "story_structure": "auto+auto+auto",
-      "narrative_score": 61,
-      "duration_s": 25.3
-    },
-    "permafrost-thaw": {
-      "url": "https://youtube.com/shorts/_GjzcmO4aMA",
-      "title": "The Arctic's Permafrost Is Quietly Thawing For Good",
-      "at": "2026-10-09T13:17:51.662853+00:00",
-      "publish_at": "2026-10-09T23:30:24Z",
-      "state": "posted",
-      "experiment_arm": "other_topic",
-      "actual_structure": "other_topic",
-      "style_arm": "current",
-      "tts": "speechify",
-      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 26 credits are required for this request.\",\"status",
-      "beat_s_max": 7.23,
-      "beat_s": [
-        3.8,
-        6.09,
-        7.23,
-        5.67,
-        5.7
-      ],
-      "n_beats": 3,
-      "story_structure": "auto+auto+auto",
-      "narrative_score": 57,
-      "duration_s": 28.4
-    },
     "twin-birth-rate-rise": {
-      "claimed_at": "2026-10-09T15:31:16.230440+00:00",
+      "url": "https://youtube.com/shorts/BLn8RBdPucM",
       "title": "Why Twin Births Nearly Doubled \u2014 Then Started Falling",
+      "at": "2026-10-09T15:31:32.804743+00:00",
       "publish_at": "2026-10-09T14:29:32Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 29 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.75,
+      "beat_s": [
+        3.78,
+        5.75,
+        4.64,
+        5.06,
+        4.13
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 74,
+      "duration_s": 23.2,
+      "hook": "inversion",
+      "topic_category": "body",
+      "ending_type": "inversion",
+      "depictions": [
+        "mechanic:twin-curve-ride",
+        "mechanic:twin-odds-columns",
+        "mechanic:embryo-dish-drain"
+      ],
+      "words_first_10s": 6,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -3663,30 +3644,13 @@
       "at": "2026-10-09T12:09:08.802634+00:00"
     },
     {
-      "claimed_at": "2026-10-09T12:26:45.649081+00:00",
-      "title": "More People Are Displaced Right Now Than Ever Recorded",
-      "publish_at": "2026-10-09T17:30:24Z",
-      "url": "https://youtube.com/shorts/YC6kYj8fXy0",
-      "state": "posted",
-      "slug": "global-displacement-record",
-      "at": "2026-10-09T12:26:58.966240+00:00"
-    },
-    {
-      "claimed_at": "2026-10-09T13:17:39.533978+00:00",
-      "title": "The Arctic's Permafrost Is Quietly Thawing For Good",
-      "publish_at": "2026-10-09T23:30:24Z",
-      "url": "https://youtube.com/shorts/_GjzcmO4aMA",
-      "state": "posted",
-      "slug": "permafrost-thaw",
-      "at": "2026-10-09T13:17:51.662853+00:00"
-    },
-    {
       "claimed_at": "2026-10-09T15:31:16.230440+00:00",
       "title": "Why Twin Births Nearly Doubled \u2014 Then Started Falling",
       "publish_at": "2026-10-09T14:29:32Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "twin-birth-rate-rise"
+      "url": "https://youtube.com/shorts/BLn8RBdPucM",
+      "state": "posted",
+      "slug": "twin-birth-rate-rise",
+      "at": "2026-10-09T15:31:32.804743+00:00"
     }
   ]
 }
