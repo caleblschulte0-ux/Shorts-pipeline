@@ -993,7 +993,7 @@ def _yt_tags(pkg: dict, led: dict) -> list[str]:
 
 
 def _crosspost(mp4: Path, title: str, description: str,
-               tags: list[str]) -> dict:
+               tags: list[str], publish_at=None) -> dict:
     """Cross-post the SAME rendered clip to the feed-first platforms where a
     small channel can actually break out. Our own scrape of this exact niche
     shows sub-10k-follower accounts hitting MILLIONS on the TikTok FYP, while
@@ -1002,7 +1002,8 @@ def _crosspost(mp4: Path, title: str, description: str,
     this is pure additive reach. Shared with every channel:
     shared/crosspost.py."""
     from shared.crosspost import crosspost
-    return crosspost("third", mp4, title, description, tags)
+    return crosspost("third", mp4, title, description, tags,
+                     publish_at=publish_at)
 
 
 def _public_source(url: str) -> str:
@@ -2977,7 +2978,7 @@ def process(pkg: dict, pkg_path: Path | None, *,
             # where a small channel can actually get distributed. Never breaks
             # the YouTube post.
             xposts = _crosspost(out_mp4, title, description,
-                                _hashtags(pkg, led))
+                                _hashtags(pkg, led), publish_at=publish_at)
             if xposts:
                 result["crossposts"] = xposts
             entry = {

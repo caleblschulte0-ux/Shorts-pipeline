@@ -452,6 +452,27 @@ def _tiktok_broker_token(channel: str = "") -> str:
     return r.json()["access_token"]
 
 
+TIKTOK_MAX_HASHTAGS = 5   # operator, 2026-10-09: "only 5 hashtags"
+
+
+def cap_hashtags(caption: str, n: int = TIKTOK_MAX_HASHTAGS) -> str:
+    """Keep the first n distinct #hashtags of a caption, drop the rest."""
+    import re
+    seen: list[str] = []
+
+    def keep(m):
+        tag = m.group(0).lower()
+        if tag in seen:
+            return ""
+        if len(seen) >= n:
+            return ""
+        seen.append(tag)
+        return m.group(0)
+    out = re.sub(r"(?<!\S)#\w+", keep, caption)
+    out = re.sub(r"[ \t]{2,}", " ", out)
+    return "\n".join(line.rstrip() for line in out.split("\n")).strip()
+
+
 class TikTokUploader(Uploader):
     name = "tiktok"
     INIT_URL = "https://open.tiktokapis.com/v2/post/publish/video/init/"
@@ -503,6 +524,7 @@ class TikTokUploader(Uploader):
         else:
             caption = (title + " "
                        + " ".join(f"#{t}" for t in (tags or [])))[:2200]
+        caption = cap_hashtags(caption)
         options = self._creator_privacy(token)
         privacy = ("PUBLIC_TO_EVERYONE" if "PUBLIC_TO_EVERYONE" in options
                    else "SELF_ONLY")

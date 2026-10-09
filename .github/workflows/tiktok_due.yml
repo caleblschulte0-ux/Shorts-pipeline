@@ -1,0 +1,36 @@
+name: tiktok_due
+
+# TikTok's API cannot schedule, so a video whose YouTube upload is scheduled
+# is queued instead of posted at render time (shared/crosspost.py). This
+# posts each one when its YouTube publish_at comes, one per channel per run,
+# so TikTok follows the YouTube slots instead of getting a day at once.
+# Only channels with tiktok.post on, only videos their posted log records as
+# posted. The site answers only jobs on main.
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write   # marks each release it posts (tiktok.json)
+  id-token: write   # the site authenticates this job by its GitHub OIDC token
+
+concurrency:
+  group: tiktok-post-release
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests
+      - name: Post what is due
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python scripts/tiktok_post_release.py --due
