@@ -1,0 +1,92 @@
+{
+ "S_007054": {
+  "why": "sounds like Voice 24",
+  "sim_24": 0.633,
+  "sim_11": 0.44,
+  "p_us": 1.0,
+  "age": "teens",
+  "clips": 4,
+  "name": "sim_01"
+ },
+ "S_000587": {
+  "why": "sounds like Voice 24",
+  "sim_24": 0.624,
+  "sim_11": 0.237,
+  "p_us": 1.0,
+  "age": "teens",
+  "clips": 5,
+  "name": "sim_02"
+ },
+ "S_001273": {
+  "why": "sounds like Voice 24",
+  "sim_24": 0.608,
+  "sim_11": 0.216,
+  "p_us": 0.985,
+  "age": "teens",
+  "clips": 8,
+  "name": "sim_03"
+ },
+ "S_019135": {
+  "why": "sounds like Voice 24",
+  "sim_24": 0.607,
+  "sim_11": 0.228,
+  "p_us": 0.998,
+  "age": "twenties",
+  "clips": 5,
+  "name": "sim_04"
+ },
+ "S_022835": {
+  "why": "sounds like Voice 11",
+  "sim_24": 0.195,
+  "sim_11": 0.536,
+  "p_us": 1.0,
+  "age": "twenties",
+  "clips": 8,
+  "name": "sim_05"
+ },
+ "S_013201": {
+  "why": "sounds like Voice 11",
+  "sim_24": 0.25,
+  "sim_11": 0.526,
+  "p_us": 1.0,
+  "age": "twenties",
+  "clips": 8,
+  "name": "sim_06"
+ },
+ "S_023157": {
+  "why": "sounds like Voice 11",
+  "sim_24": 0.399,
+  "sim_11": 0.503,
+  "p_us": 0.987,
+  "age": "twenties",
+  "clips": 8,
+  "name": "sim_07"
+ },
+ "S_001818": {
+  "why": "sounds like Voice 11",
+  "sim_24": 0.287,
+  "sim_11": 0.482,
+  "p_us": 1.0,
+  "age": "teens",
+  "clips": 8,
+  "name": "sim_08"
+ },
+ "S_007123": {
+  "why": "sounds like both",
+  "sim_24": 0.544,
+  "sim_11": 0.448,
+  "p_us": 0.982,
+  "age": "twenties",
+  "clips": 6,
+  "name": "sim_09"
+ },
+ "S_010967": {
+  "why": "sounds like both",
+  "sim_24": 0.444,
+  "sim_11": 0.447,
+  "p_us": 1.0,
+  "age": "twenties",
+  "clips": 8,
+  "name": "sim_10"
+ }
+}
