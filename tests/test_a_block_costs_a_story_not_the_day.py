@@ -52,7 +52,7 @@ class TheSlateCountsWhatPosted(unittest.TestCase):
     def test_posted_only_increments_after_a_real_outcome(self):
         """It must sit after the upload, not before the render — that
         ordering IS the bug this file exists for."""
-        up = SRC.index("_persist_posted_log_now(args.log, slug)\n"
+        up = SRC.index("_absorb_persisted(log, args.log)\n"
                        "        posted += 1")
         gate = SRC.index("SHOWRUNNER gate")
         self.assertGreater(up, gate,

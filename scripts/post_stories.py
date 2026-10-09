@@ -389,6 +389,85 @@ def _persist_posted_log_now(log_path: Path, slug: str,
         return False
 
 
+def _absorb(log: dict, other: dict) -> int:
+    """Add every upload `other` records that `log` lacks. Adds only: the
+    run's own entry wins its slug, and nothing the run removed on purpose (a
+    released claim, never persisted) can come back from a copy that never
+    had it."""
+    from scripts.merge_posted_log import _identity
+    gained = 0
+    posted = log.setdefault("posted", {})
+    for slug, entry in (other.get("posted") or {}).items():
+        if slug not in posted:
+            posted[slug] = entry
+            gained += 1
+    uploads = log.setdefault("uploads", [])
+    have = {_identity(u) for u in uploads}
+    for u in other.get("uploads") or []:
+        if _identity(u) not in have:
+            uploads.append(u)
+            have.add(_identity(u))
+            gained += 1
+    return gained
+
+
+def _absorb_persisted(log: dict, log_path: Path) -> int:
+    """Take back what a persist brought in from main. Returns how many.
+
+    When a persist loses its push race, ci_commit_state.sh union-merges the
+    file ON DISK with main, so the disk then holds every other run's uploads
+    as well as ours. This run's `log` is still the dict it loaded at the
+    start, and the next `_save_log` wrote that over the merged file — the
+    push after it is a clean fast-forward, so nothing merges it back. From
+    2026-10-07 to 2026-10-09 that wrote eight live videos out of the ledger
+    (the twins video among them, re-uploaded two days later and sent to
+    TikTok from its first render)."""
+    try:
+        disk = json.loads(Path(log_path).read_text())
+    except Exception:  # noqa: BLE001 — the in-memory log is still the run's
+        return 0
+    gained = _absorb(log, disk)
+    if gained:
+        print(f"[posted-log] kept {gained} entr{'y' if gained == 1 else 'ies'} "
+              f"other runs had put on main", flush=True)
+    return gained
+
+
+def _refresh_from_origin(log: dict, log_path: Path) -> int:
+    """Add main's uploads to `log` (CI only, best effort, never raises).
+
+    A run decides "already posted?" on the checkout it started from, and a
+    queued explainer run starts from its DISPATCH commit: on 2026-10-09 the
+    14:00 dispatch waited for the concurrency group until 15:32, missed the
+    twins upload made at 15:31, and uploaded the twins story again at 16:43.
+    Called before the run decides anything and again before every claim.
+    run_trending_daily has refreshed this way since 2026-10-02."""
+    import os as _os
+    import subprocess as _sp
+    if not _os.environ.get("GITHUB_ACTIONS"):
+        return 0
+    branch = _os.environ.get("CI_COMMIT_BRANCH", "main")
+    try:
+        try:
+            rel = Path(log_path).resolve().relative_to(REPO).as_posix()
+        except ValueError:
+            rel = "state/explainer_posted_log.json"
+        _sp.run(["git", "fetch", "-q", "origin", branch], cwd=REPO,
+                capture_output=True, text=True, timeout=90, check=True)
+        r = _sp.run(["git", "show", f"origin/{branch}:{rel}"], cwd=REPO,
+                    capture_output=True, text=True, timeout=30, check=True)
+        gained = _absorb(log, json.loads(r.stdout))
+    except Exception as e:  # noqa: BLE001 — decide on the local ledger
+        print(f"[posted-log] could not read origin/{branch} "
+              f"({type(e).__name__}: {str(e)[:120]}) — deciding on the "
+              f"local ledger", flush=True)
+        return 0
+    if gained:
+        print(f"[posted-log] main had {gained} entr"
+              f"{'y' if gained == 1 else 'ies'} this run's checkout did not",
+              flush=True)
+    return gained
+
 # --------------------------------------------------------------------------
 # NEAR-DUPLICATE GUARD
 # --------------------------------------------------------------------------
@@ -617,6 +696,7 @@ def main() -> int:
         return 2
 
     log = _load_log(args.log)
+    _refresh_from_origin(log, args.log)
     if not args.slugs:
         _reserve_superlative_slot(slugs, stories, log)
     results = []
@@ -1101,6 +1181,16 @@ def main() -> int:
         # says "check this slug by hand", and a duplicate says nothing at all
         # until a person notices it on the channel. `run_third.py` has claimed
         # its slot this way since 2026-08; this brings the explainer in line.
+        # ANOTHER RUN MAY HAVE POSTED IT while this one rendered: the
+        # checkout is the dispatch commit, often an hour or more old.
+        _refresh_from_origin(log, args.log)
+        if not args.force and slug in log["posted"]:
+            print(f"[{slug}] NOT POSTING — another run already posted or "
+                  f"claimed it: {log['posted'][slug].get('url')}", flush=True)
+            results.append({"slug": slug, "ok": False,
+                            "error": "duplicate_hold",
+                            "duplicate_of": log["posted"][slug].get("title")})
+            continue
         _claim = {
             "claimed_at": datetime.now(timezone.utc).isoformat(),
             "title": sc.get("title"), "publish_at": publish_at,
@@ -1125,6 +1215,7 @@ def main() -> int:
             results.append({"slug": slug, "ok": False,
                             "error": "ClaimNotDurable: claim not pushed"})
             continue
+        _absorb_persisted(log, args.log)
         try:
             res = uploader.upload(
                 file_path=out,
@@ -1191,7 +1282,8 @@ def main() -> int:
         _save_log(log, args.log)
         # Durable BEFORE the next render starts — a reclaimed runner between
         # here and the end of the run would otherwise cost a duplicate upload.
-        _persist_posted_log_now(args.log, slug)
+        if _persist_posted_log_now(args.log, slug):
+            _absorb_persisted(log, args.log)
         posted += 1                     # the slate counts THIS, not attempts
         _arm_done[_arm_now] = _arm_done.get(_arm_now, 0) + 1
         results.append({"slug": slug, "ok": True, "url": url})

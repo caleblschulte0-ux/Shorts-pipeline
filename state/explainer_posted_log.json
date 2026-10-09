@@ -3013,6 +3013,124 @@
       ],
       "words_first_10s": 6,
       "scene_changes_before_5s": 3
+    },
+    "marathon-super-shoes-record-pace": {
+      "url": "https://youtube.com/shorts/InVYGU9plr0",
+      "title": "Super Shoes Just Broke The Marathon World Record Again",
+      "at": "2026-10-08T18:56:38.100468+00:00",
+      "publish_at": "2026-10-09T05:48:32Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 27 credits are required for this request.\",\"status",
+      "beat_s_max": 5.9,
+      "beat_s": [
+        4.62,
+        5.67,
+        5.9,
+        5.63,
+        5.57
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 57,
+      "duration_s": 27.3
+    },
+    "monarch-butterfly-collapse": {
+      "url": "https://youtube.com/shorts/xhZHZjV5o9c",
+      "title": "The Monarch Butterfly Is Running Out of Forest",
+      "at": "2026-10-08T15:53:05.187515+00:00",
+      "publish_at": "2026-10-08T14:47:06Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 27 credits are required for this request.\",\"status",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.34,
+      "beat_s": [
+        3.58,
+        7.34,
+        6.96,
+        5.43,
+        5.13
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 100,
+      "duration_s": 28.3,
+      "hook": "shock_stat",
+      "topic_category": "animals",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:monarch-cluster-collapse",
+        "mechanic:field-erasure-sweep",
+        "mechanic:twin-migration-path-fade"
+      ],
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3
+    },
+    "adhd-diagnosis-surge": {
+      "url": "https://youtube.com/shorts/aCtti_E5Nqo",
+      "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
+      "at": "2026-10-08T15:57:51.791067+00:00",
+      "publish_at": "2026-10-08T20:47:06Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 27 credits are required for this request.\",\"status",
+      "beat_s_max": 7.76,
+      "beat_s": [
+        4.64,
+        7.76,
+        4.64,
+        4.93,
+        4.83
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 91,
+      "duration_s": 26.7,
+      "hook": "shock_stat",
+      "topic_category": "health",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:classroom-glow-grid",
+        "mechanic:diagnosis-gate-lanes",
+        "mechanic:pill-bottle-half-fill"
+      ],
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3
+    },
+    "aquaculture-overtook-wild-fishing": {
+      "url": "https://youtube.com/shorts/m-228C5VOcw",
+      "title": "The Ocean Isn't Where Your Fish Comes From Anymore",
+      "at": "2026-10-07T12:48:19.281853+00:00",
+      "publish_at": "2026-10-07T23:16:19Z",
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "current",
+      "tts": "speechify",
+      "tts_why_not_elevenlabs": "HTTP 401 {\"detail\":{\"type\":\"invalid_request\",\"code\":\"quota_exceeded\",\"message\":\"This request exceeds your quota of 40000. You have 11 credits remaining, while 23 credits are required for this request.\",\"status",
+      "beat_s_max": 7.38,
+      "beat_s": [
+        4.89,
+        7.38,
+        6.72,
+        3.8,
+        5.08
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 57,
+      "duration_s": 27.8
     }
   },
   "uploads": [
@@ -3717,6 +3835,69 @@
       "state": "posted",
       "slug": "twin-birth-rate-rise",
       "at": "2026-10-09T16:43:20.616236+00:00"
+    },
+    {
+      "claimed_at": "2026-10-09T15:31:16.230440+00:00",
+      "title": "Why Twin Births Nearly Doubled \u2014 Then Started Falling",
+      "publish_at": "2026-10-09T14:29:32Z",
+      "url": "https://youtube.com/shorts/BLn8RBdPucM",
+      "state": "posted",
+      "slug": "twin-birth-rate-rise",
+      "at": "2026-10-09T15:31:32.804743+00:00"
+    },
+    {
+      "claimed_at": "2026-10-08T17:56:08.593587+00:00",
+      "title": "Why 'Just Recycle It' Barely Works",
+      "publish_at": "2026-10-08T23:48:32Z",
+      "url": "https://youtube.com/shorts/2Krsh_OGfK8",
+      "state": "posted",
+      "slug": "recycling-myth-reality",
+      "at": "2026-10-08T17:56:19.206550+00:00"
+    },
+    {
+      "claimed_at": "2026-10-08T18:56:27.703299+00:00",
+      "title": "Super Shoes Just Broke The Marathon World Record Again",
+      "publish_at": "2026-10-09T05:48:32Z",
+      "url": "https://youtube.com/shorts/InVYGU9plr0",
+      "state": "posted",
+      "slug": "marathon-super-shoes-record-pace",
+      "at": "2026-10-08T18:56:38.100468+00:00"
+    },
+    {
+      "claimed_at": "2026-10-08T15:52:54.089661+00:00",
+      "title": "The Monarch Butterfly Is Running Out of Forest",
+      "publish_at": "2026-10-08T14:47:06Z",
+      "url": "https://youtube.com/shorts/xhZHZjV5o9c",
+      "state": "posted",
+      "slug": "monarch-butterfly-collapse",
+      "at": "2026-10-08T15:53:05.187515+00:00"
+    },
+    {
+      "claimed_at": "2026-10-08T15:57:45.945322+00:00",
+      "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
+      "publish_at": "2026-10-08T20:47:06Z",
+      "url": "https://youtube.com/shorts/aCtti_E5Nqo",
+      "state": "posted",
+      "slug": "adhd-diagnosis-surge",
+      "at": "2026-10-08T15:57:51.791067+00:00"
+    },
+    {
+      "claimed_at": "2026-10-07T12:10:25.475654+00:00",
+      "title": "Why Twin Births Nearly Doubled \u2014 Then Started Falling",
+      "publish_at": "2026-10-07T17:16:19Z",
+      "url": "https://youtube.com/shorts/3E-LP1AFvls",
+      "state": "posted",
+      "slug": "twin-birth-rate-rise",
+      "at": "2026-10-07T12:10:35.831965+00:00"
+    },
+    {
+      "claimed_at": "2026-10-07T12:48:07.400627+00:00",
+      "title": "The Ocean Isn't Where Your Fish Comes From Anymore",
+      "publish_at": "2026-10-07T23:16:19Z",
+      "url": "https://youtube.com/shorts/m-228C5VOcw",
+      "state": "posted",
+      "slug": "aquaculture-overtook-wild-fishing",
+      "at": "2026-10-07T12:48:19.281853+00:00"
     }
   ]
 }
