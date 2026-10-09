@@ -807,6 +807,22 @@ def main() -> int:
         from data_learning import studio_render       # lazy: needs Pillow etc.
         studio_render.render(slug, out, config_path=args.config)
 
+        # A render that fell back to a look with no slot today (operator,
+        # 2026-10-09: "we are only posting b type videos from here on out" —
+        # the old look's weight is 0, so its quota is 0) is not judged at
+        # all: the showrunner's minutes go to a story that can post. Its
+        # drawn beats are kept on the story, so a later render can finish it.
+        if _arm_quota and not args.force:
+            from shared import style_arms as _style_arms0
+            _rendered = _style_arms0.read(out).get("style_arm") or "current"
+            if _arm_done.get(_rendered, 0) >= _arm_quota.get(_rendered, 0):
+                print(f"[{slug}] rendered in the {_rendered} look, which has no "
+                      f"slot today — skipping the review, kept for another "
+                      f"day", flush=True)
+                results.append({"slug": slug, "ok": False,
+                                "error": "arm_quota_full"})
+                continue
+
         # SHOWRUNNER gate  (see the repair loop below: a BLOCK is a diagnosis
         # to act on, not the end of the story) — the editor with a veto. A headless Claude actually
         # WATCHES the finished video (extracts frames + reads the transcript)

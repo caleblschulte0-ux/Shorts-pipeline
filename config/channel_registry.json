@@ -263,9 +263,9 @@
             "production_supervisor"
           ],
           "style_arms": {
-            "current": 0.5,
-            "illustrated": 0.5,
-            "note": "A/B split of the explainer's LOOK (operator 2026-09-23: A/B test the illustrated 2D style). Weights per arm; shared/style_arms.py chooses per slug, deterministically. Raised 0 -> 0.5 on 2026-09-23 after the operator saw a 74 and ruled 'Don't ask if you can post a 74. Make a system that makes better videos': on the same judge that day the current look's one explainer story scored 43 (blocked, nothing posted) while illustrated renders scored 57-77 and the polish loop took one to 77 SHIP. A video whose every scene cannot be drawn and verified renders in the current look (one video, one look), and the retro compares the arms."
+            "current": 0,
+            "illustrated": 1.0,
+            "note": "2026-10-09, operator: 'We are only posting b type videos from here on out.' The A/B test is over: every slot is the illustrated look, and a story whose scenes cannot all be drawn is kept for another day instead of posting in the current look. History: A/B split of the explainer's LOOK (operator 2026-09-23: A/B test the illustrated 2D style). Weights per arm; shared/style_arms.py chooses per slug, deterministically. Raised 0 -> 0.5 on 2026-09-23 after the operator saw a 74 and ruled 'Don't ask if you can post a 74. Make a system that makes better videos': on the same judge that day the current look's one explainer story scored 43 (blocked, nothing posted) while illustrated renders scored 57-77 and the polish loop took one to 77 SHIP. A video whose every scene cannot be drawn and verified renders in the current look (one video, one look), and the retro compares the arms."
           },
           "pacing": {
             "beat_max_s": 8,
