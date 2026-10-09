@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261009",
+  "bundle": {
+    "identity": "982086a788a0d72af0af25bd7d5fd2e165c254a1826c621f1cd4972b6872fb53",
+    "path": "exchange/bundles/20261009/bundle.json"
+  },
+  "request_id": "05_reddit-badge-scanner-compliance-s7-3c5e99ec2f38",
+  "safe_request_id": "05_reddit-badge-scanner-compliance-s7-3c5e99ec2f38",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "292fc95d50cf0a0d212a3c8113b35371d87799c3fb678dbd4fb5b6821fefb0db",
+  "prompt_used": "An editorial illustration for a short-form video: office employees walking relaxed. It accompanies the narration: \"The badge rule quietly disappeared the same week\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1DCCGUbu-PxGNJu0plETVwLY__GIRS7bn",
+    "filename": "20261009__05_reddit-badge-scanner-compliance-s7-3c5e99ec2f38.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1DCCGUbu-PxGNJu0plETVwLY__GIRS7bn",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "00205211302285cb9ef22ca460856a49ff36d7980b41c7dbd98fb9d40c1d9e5d",
+    "bytes": 1961589,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-09T11:27:35.452Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
