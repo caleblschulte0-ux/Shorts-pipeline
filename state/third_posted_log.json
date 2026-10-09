@@ -12044,14 +12044,76 @@
       "ts": "2026-10-09T12:37:27.103282+00:00"
     },
     "clip-20261009-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/RenownedPricklyThymeKippa-2A6qIIrJlxWeTDxD",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/KjQsKjgh0Gs",
       "title": "Jynxzi Can't Believe What Just Happened After His 11th Death",
       "kind": "twitch_clip",
-      "ts": "2026-10-09T12:42:19.881169+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-09T12:42:31.482745+00:00",
+      "uploaded_at": "2026-10-09T12:42:31.482761+00:00",
+      "publish_at": "2026-10-09T21:30:00Z",
+      "crossposts": {
+        "tiktok": "https://www.tiktok.com/@me/video/v_pub_file~v2-1.7694647206216910878"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/RenownedPricklyThymeKippa-2A6qIIrJlxWeTDxD",
+      "streamer": "jynxzi",
+      "series": "fail",
+      "hook": "THERE'S NO WAY HE DID THAT",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 6925,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "rejected-slipperygoldenicecreamsquadgoals-iehfqbezwgsmimvz": {
+      "source_url": "https://www.twitch.tv/lacy/clip/SlipperyGoldenIcecreamSquadGoals-IeHFQBezWGsmImVz",
+      "streamer": "lacy",
+      "title": "WW YUGI",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Car chatter, no visible event, insider)",
+      "ts": "2026-10-09T12:43:09.990674+00:00"
+    },
+    "rejected-relatedcomfortablebillpartytime-iwoetc82rsbb_jvo": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/RelatedComfortableBillPartyTime-iwOeTC82RSBb_jVO",
+      "streamer": "ohnepixel",
+      "title": "ohnepixel lacking",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.05 < 0.35 (sexualized game content, no real event)",
+      "ts": "2026-10-09T12:43:57.742066+00:00"
+    },
+    "rejected-astutekawaiiherbsspicyboy-yxpye-zl3sf314sb": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/AstuteKawaiiHerbsSpicyBoy-yXpye-zl3Sf314sb",
+      "streamer": "kaicenat",
+      "title": "kai screaming IM GAY",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Volcano climb, title misleading, no payo)",
+      "ts": "2026-10-09T12:44:31.788590+00:00"
+    },
+    "rejected-elegantyummybibimbappanicvis-gnlan6bijcf2bf5z": {
+      "source_url": "https://www.twitch.tv/lospollostv/clip/ElegantYummyBibimbapPanicVis-GNLAn6bIjcf2bf5Z",
+      "streamer": "lospollostv",
+      "title": "dude",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-10-09T12:45:47.414093+00:00"
+    },
+    "rejected-auspicioustangentialthymeosfrog-o84c2blsjvys4lap": {
+      "source_url": "https://www.twitch.tv/lacy/clip/AuspiciousTangentialThymeOSfrog-O84C2BlsJvys4LAp",
+      "streamer": "lacy",
+      "title": "ayo silky?? \ud83e\udd28",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-10-09T12:46:12.020425+00:00"
     }
   }
 }
