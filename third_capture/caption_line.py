@@ -105,6 +105,13 @@ def wrap(text: str, size: int = SIZE, max_w: int = MAX_W,
                 lines.append(cur)
                 cur = w
         lines.append(cur)
+        if len(lines) == 2:
+            # balance the two lines: a lone "is 😳" under a full line reads
+            # as a mistake, so split where the wider line is narrowest
+            splits = [(" ".join(words[:i]), " ".join(words[i:]))
+                      for i in range(1, len(words))]
+            lines = list(min(splits, key=lambda ab: max(
+                _width(ab[0], fs, f), _width(ab[1], fs, f))))
         if len(lines) <= max_lines and all(
                 _width(ln, fs, f) <= max_w for ln in lines):
             return lines, fs

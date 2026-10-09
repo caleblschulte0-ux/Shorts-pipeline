@@ -145,3 +145,10 @@ class NoCaptionsOverCaptions(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+def test_a_two_line_hook_is_balanced_not_an_orphan():
+    from third_capture import caption_line as c
+    lines, _ = c.wrap("CaseOh finds out what an EF4 is 😳")
+    assert len(lines) == 2
+    assert len(lines[1].split()) >= 3, lines   # never a lone "is 😳"
