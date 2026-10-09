@@ -758,6 +758,17 @@ def main() -> int:
                             log=lambda m: print(f"[{slug}] {m}", flush=True))
         except Exception as _pe:  # noqa: BLE001 — the gate still decides
             print(f"[{slug}] pace tighten skipped: {_pe}", flush=True)
+        # THE NARRATION TELLS A STORY (operator, 2026-10-09: "this whole
+        # thing is just us reading off numbers to people"). A beat that reads
+        # off a list, or names a group nobody knows, is retold by the brain
+        # — validated like any rewrite, heard against the old one by a
+        # listener, persisted once. It never holds a story.
+        try:
+            from shared import narration as _narration
+            _narration.retell(sc, config_path=args.config,
+                              log=lambda m: print(f"[{slug}] {m}", flush=True))
+        except Exception as _ne:  # noqa: BLE001 — the old words post as before
+            print(f"[{slug}] retell skipped: {_ne}", flush=True)
         pre = _eg.pre_render_verdict(sc)
         if not pre["ok"]:
             print(f"[{slug}] EDITORIAL HOLD (pre-render): "
