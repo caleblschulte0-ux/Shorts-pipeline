@@ -1,0 +1,37 @@
+{
+ "checked_at": "2026-10-09T12:31:19+00:00",
+ "date": "20261009",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20261009/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "05_reddit-badge-scanner-compliance-s0-433c86381108.json",
+  "05_reddit-badge-scanner-compliance-s1-80943bffc170.json",
+  "05_reddit-badge-scanner-compliance-s2-dc135bc7f372.json",
+  "05_reddit-badge-scanner-compliance-s3-12f0ae073ba6.json",
+  "05_reddit-badge-scanner-compliance-s4-66cb4b52ca03.json",
+  "05_reddit-badge-scanner-compliance-s5-560389cdbdb3.json",
+  "05_reddit-badge-scanner-compliance-s6-7d5a9222809c.json",
+  "05_reddit-badge-scanner-compliance-s7-3c5e99ec2f38.json",
+  "06_reddit-return-dog-damage-s0-2382fc808110.json",
+  "06_reddit-return-dog-damage-s1-1e9c329558e3.json",
+  "06_reddit-return-dog-damage-s2-632c54318233.json",
+  "06_reddit-return-dog-damage-s3-19b6310743a0.json",
+  "06_reddit-return-dog-damage-s4-93f443f20cb2.json",
+  "06_reddit-return-dog-damage-s5-bbd76f0168af.json",
+  "06_reddit-return-dog-damage-s6-12d5fde8a41a.json",
+  "06_reddit-return-dog-damage-s7-960d5ca54eeb.json",
+  "STARTED.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 16 image(s)"
+}
