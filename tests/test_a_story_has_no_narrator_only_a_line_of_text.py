@@ -88,6 +88,25 @@ class ItLooksLikeTheReposts(unittest.TestCase):
         self.assertEqual(v["hook_overlay"], "Los thought he ended stream")
 
 
+class TheCriticKnowsTheCaptionStays(unittest.TestCase):
+    """Backtest 12: 12 of 27 cuts were marked down because the title was
+    "repeated across the entire video" — listed to the critic once per
+    piece, it read as a card shown over and over, when staying up IS the
+    format."""
+
+    def test_the_caption_is_listed_once_as_the_format(self):
+        caps = (story.beat_captions(0, 8.0, "Los thought he ended stream",
+                                    "", "Los is xQc's friend")
+                + [dict(c, at=c["at"] + 8.0) for c in story.beat_captions(
+                    1, 6.0, "Los thought he ended stream",
+                    "Minutes later", "")])
+        brief = story_director._fmt_on_screen(caps)
+        self.assertEqual(brief.count("Los thought he ended stream"), 1)
+        self.assertIn("on screen the whole video by design", brief)
+        self.assertIn('ON-SCREEN TEXT: "Los is xQc\'s friend"', brief)
+        self.assertIn('ON-SCREEN OVERLAY: "Minutes later"', brief)
+
+
 class WhoSomeoneIsIsCheckedTwice(unittest.TestCase):
     def setUp(self):
         story_director._WHO_CACHE.clear()

@@ -1165,12 +1165,28 @@ def _fmt_on_screen(items: list[dict] | None) -> str:
     output clock, and still judges whether that is enough."""
     if not items:
         return ""
+    # The title is ONE caption that stays up the whole video, stepping
+    # aside for a context line — the channel's format, like the reposts
+    # it copies (operator, 2026-10-08). Listed per piece, it read to the
+    # critic as the same card "repeated across the entire video" and 12 of
+    # backtest 12's 27 cuts were marked down for it. It is shown once, as
+    # what it is; the critic still judges whether its WORDS are right.
+    titles = [o for o in items if o["kind"] == "title"]
     rows = []
+    if titles:
+        rows.append(f"- CAPTION, on screen the whole video by design (this "
+                    f"channel's format: one line of text, like a repost's "
+                    f"caption; it steps aside while a line below shows): "
+                    f"\"{titles[0]['text']}\"")
     for o in items:
+        if o["kind"] == "title":
+            continue
         rows.append(f"- {o['at']:.1f}s for {o['secs']:.1f}s ON-SCREEN "
                     f"{o['kind'].upper()}: \"{o['text']}\"")
     return ("ADDED BY THE EDIT (exactly what the cut shows/says beyond the "
-            "transcript; frames may miss a short overlay):\n"
+            "transcript; frames may miss a short overlay). Judge whether "
+            "these words are right, not that the caption stays up — that "
+            "is the format:\n"
             + "\n".join(rows) + "\n")
 
 
