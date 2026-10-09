@@ -306,7 +306,9 @@ def _next_word_at(words: list[dict], end: float) -> float:
     return max(end + 0.05, min(nxt)) if nxt else float("inf")
 
 
-def snap_beat(words: list[dict], start: float, end: float) -> tuple[float, float]:
+def snap_beat(words: list[dict], start: float, end: float, *,
+              keep_start: bool = False,
+              keep_end: bool = False) -> tuple[float, float]:
     """Move a beat's edges off the middle of a line.
 
     Backtest 14's critic, on nearly every cut: "opens mid-sentence",
@@ -316,7 +318,11 @@ def snap_beat(words: list[dict], start: float, end: float) -> tuple[float, float
     under `PHRASE_GAP` away, moves to the phrase's edge: the start back (at
     most `SNAP_BACK`) to where the phrase begins, the end on (at most
     `SNAP_ON`) to where it stops. Too far either way and the edge goes to
-    the nearest word edge instead — never through the middle of a word."""
+    the nearest word edge instead — never through the middle of a word.
+
+    A J/L cut overlaps a line across the join ON PURPOSE, so the edge it
+    bridges is kept (`keep_start` for a j_cut in, `keep_end` for an l_cut
+    out)."""
     ws = sorted((w for w in words or []
                  if "s" in w and "e" in w), key=lambda w: float(w["s"]))
     if not ws or end - start < 1.0:
@@ -332,7 +338,8 @@ def snap_beat(words: list[dict], start: float, end: float) -> tuple[float, float
         return i == n - 1 or ss[i + 1] - es[i] >= PHRASE_GAP
 
     # ---- start: the first word at or after it, unless start cuts into one
-    i = next((k for k in range(n) if es[k] > start + 0.02), None)
+    i = None if keep_start else next(
+        (k for k in range(n) if es[k] > start + 0.02), None)
     if i is not None and (ss[i] < start - 0.02 or (
             not phrase_start(i) and ss[i] - start < PHRASE_GAP)):
         j = i
@@ -343,7 +350,8 @@ def snap_beat(words: list[dict], start: float, end: float) -> tuple[float, float
         elif ss[i] < start:
             start = max(0.0, ss[i] - 0.05)
     # ---- end: the last word at or before it, unless end cuts into one
-    k = max((m for m in range(n) if ss[m] < end - 0.02), default=None)
+    k = None if keep_end else max(
+        (m for m in range(n) if ss[m] < end - 0.02), default=None)
     if k is not None and (es[k] > end + 0.02 or not phrase_end(k)):
         j = k
         while j < n - 1 and not phrase_end(j) and es[j + 1] - end <= SNAP_ON:
@@ -624,8 +632,12 @@ def plan_ledger(edl: dict, sources: dict[str, dict]) -> dict:
         srcinfo = sources.get(beat.get("source_id"))
         if not srcinfo:
             continue
-        start, end = snap_beat(srcinfo.get("words") or [],
-                               float(beat["start"]), float(beat["end"]))
+        start, end = snap_beat(
+            srcinfo.get("words") or [], float(beat["start"]),
+            float(beat["end"]),
+            keep_start=beat.get("transition") == "j_cut",
+            keep_end=(idx + 1 < len(beats) and
+                      beats[idx + 1].get("transition") == "l_cut"))
         if idx == len(beats) - 1:
             src_dur = float(srcinfo.get("duration_s") or end)
             end = min(src_dur, end + hold, _next_word_at(
@@ -712,8 +724,12 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
                     "missing — arc invalid")
             continue
         src = Path(srcinfo["path"])
-        start, end = snap_beat(srcinfo.get("words") or [],
-                               float(beat["start"]), float(beat["end"]))
+        start, end = snap_beat(
+            srcinfo.get("words") or [], float(beat["start"]),
+            float(beat["end"]),
+            keep_start=beat.get("transition") == "j_cut",
+            keep_end=(idx + 1 < len(beats) and
+                      beats[idx + 1].get("transition") == "l_cut"))
         if idx == len(beats) - 1:
             # §12/§10: the ending holds on the reaction — extend within
             # the source instead of cutting the last half-second

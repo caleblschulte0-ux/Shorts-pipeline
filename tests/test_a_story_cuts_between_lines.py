@@ -57,6 +57,21 @@ class ItEndsWhereALineEnds(unittest.TestCase):
         self.assertLess(e, 2.1 + story.SNAP_ON + 0.2)
 
 
+class AJOrLCutKeepsItsOverlap(unittest.TestCase):
+    def test_the_bridged_edges_are_kept(self):
+        self.assertEqual(story.snap_beat(WORDS, 11.0, 13.5, keep_start=True,
+                                         keep_end=True), (11.0, 13.5))
+
+    def test_an_l_cut_keeps_the_previous_beats_end(self):
+        edl = {"beats": [
+            {"source_id": "a", "start": 9.0, "end": 13.5, "role": "setup"},
+            {"source_id": "a", "start": 20.0, "end": 24.0, "role": "payoff",
+             "transition": "l_cut"}], "hook_overlay": "h"}
+        led = story.plan_ledger(edl, {"a": {"words": WORDS,
+                                            "duration_s": 30.0}})
+        self.assertEqual(led["beats"][0]["end"], 13.5)
+
+
 class NoWordsNoChange(unittest.TestCase):
     def test_silence(self):
         self.assertEqual(story.snap_beat([], 3.0, 9.0), (3.0, 9.0))
