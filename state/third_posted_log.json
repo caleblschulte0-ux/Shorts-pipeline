@@ -12114,6 +12114,16 @@
       "rejected_by": "director",
       "rejected_why": "clip incomplete (no setup / payoff cut off)",
       "ts": "2026-10-09T12:46:12.020425+00:00"
+    },
+    "clip-20261009-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caseoh_/clip/CuteAbstemiousChamoisKlappa-cgrc7_UNU0lHRvQN",
+      "story_key": null,
+      "streamer": "caseoh_",
+      "title": "Caseoh Calls Out An EF4 Tornado And Then Realizes He Got It Wrong",
+      "kind": "twitch_clip",
+      "ts": "2026-10-09T17:57:28.299776+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
