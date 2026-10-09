@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261009",
+  "bundle": {
+    "identity": "982086a788a0d72af0af25bd7d5fd2e165c254a1826c621f1cd4972b6872fb53",
+    "path": "exchange/bundles/20261009/bundle.json"
+  },
+  "request_id": "06_reddit-return-dog-damage-s5-bbd76f0168af",
+  "safe_request_id": "06_reddit-return-dog-damage-s5-bbd76f0168af",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "1c96858b27390f71796d9f593c59503fa2f3bcae5e530acea8ad1961395040b5",
+  "prompt_used": "An editorial illustration for a short-form video: golden retriever puppy indoors. It accompanies the narration: \"her retriever puppy had gotten a little carried away\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1cY_NN8YMRwGGfFXZyVauXNN9N8TY-EXq",
+    "filename": "20261009__06_reddit-return-dog-damage-s5-bbd76f0168af.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1cY_NN8YMRwGGfFXZyVauXNN9N8TY-EXq",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "55acdc3ce3a6a20474d0854e999dfe59bbc6dc7803eb5dbfe065f53ba338041b",
+    "bytes": 2359464,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-09T11:27:35.452Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
