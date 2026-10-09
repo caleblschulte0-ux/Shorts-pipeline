@@ -34,7 +34,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T15:02:04Z",
+        "verified_at": "2026-10-09T15:20:39Z",
         "resolved_by": "verify_shot_urls"
       },
       "media_origin": "chatgpt",
@@ -65,7 +65,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T15:02:05Z",
+        "verified_at": "2026-10-09T15:20:40Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -84,28 +84,17 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T15:02:06Z",
+        "verified_at": "2026-10-09T15:20:41Z",
         "resolved_by": "verify_shot_urls"
       }
     },
     {
       "phrase": "a corner chewed clean through to the frame",
       "query": "damaged furniture fabric torn",
-      "image_url": "https://drive.google.com/uc?export=download&id=1bktYfMsEbmUJhm2yj0ko02KQ2O8jA2xx",
       "media_origin": "chatgpt",
       "media_file_id": "1bktYfMsEbmUJhm2yj0ko02KQ2O8jA2xx",
       "media_sha256": "37943160cf2f5ec293479a7de67932f6a4011142705ce91300310436a95257f9",
-      "media_bytes": 2796806,
-      "media_evidence": {
-        "url": "https://drive.google.com/uc?export=download&id=1bktYfMsEbmUJhm2yj0ko02KQ2O8jA2xx",
-        "source_class": "unverified",
-        "provider": "drive.google.com",
-        "width": 0,
-        "height": 0,
-        "content_type": "image/png",
-        "verified_at": "2026-10-09T15:02:07Z",
-        "resolved_by": "verify_shot_urls"
-      }
+      "media_bytes": 2796806
     },
     {
       "phrase": "her retriever puppy had gotten a little carried away",
@@ -122,7 +111,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T15:02:08Z",
+        "verified_at": "2026-10-09T15:20:50Z",
         "resolved_by": "verify_shot_urls"
       },
       "media_origin": "chatgpt",
@@ -145,7 +134,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T15:02:09Z",
+        "verified_at": "2026-10-09T15:20:51Z",
         "resolved_by": "verify_shot_urls"
       }
     },
@@ -164,7 +153,7 @@
         "width": 0,
         "height": 0,
         "content_type": "image/png",
-        "verified_at": "2026-10-09T15:02:11Z",
+        "verified_at": "2026-10-09T15:20:52Z",
         "resolved_by": "verify_shot_urls"
       }
     }
