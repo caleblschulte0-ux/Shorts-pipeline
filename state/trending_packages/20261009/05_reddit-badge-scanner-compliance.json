@@ -19,28 +19,60 @@
   ],
   "script": "Our new regional manager rolled out a rule that every task, no matter how small, had to be logged by scanning your badge at a terminal first, because he wanted hard data on how we spent our time. So I scanned in to get a pen. Scanned in to refill the stapler. Scanned in to walk to the printer, then scanned in again to walk back. Fourteen employees did the exact same thing, and within the week the terminal had logged over nine thousand scans for a store with twelve people in it. Corporate flagged the account for fraud and froze the whole badge system company wide while they investigated. The investigation ended with our manager explaining, on a call with three regional directors, why a staple refill required biometric authentication. He got moved to an office with no staff to manage. The badge rule quietly disappeared the same week, and nobody ever brought it up again.",
   "shots": [
-    {"phrase": "every task, no matter how small, had to be logged by scanning your badge",
-     "query": "employee badge scanner terminal office"},
-    {"phrase": "I scanned in to get a pen",
-     "query": "office desk pen cup closeup"},
-    {"phrase": "Scanned in to refill the stapler",
-     "query": "office stapler supply closet"},
-    {"phrase": "the terminal had logged over nine thousand scans",
-     "query": "computer screen data log numbers"},
-    {"phrase": "Corporate flagged the account for fraud and froze the whole badge system",
-     "query": "corporate office building exterior"},
-    {"phrase": "explaining, on a call with three regional directors",
-     "query": "stressed man on conference call"},
-    {"phrase": "He got moved to an office with no staff to manage",
-     "query": "empty office cubicle alone"},
-    {"phrase": "The badge rule quietly disappeared the same week",
-     "query": "office employees walking relaxed"}
+    {
+      "phrase": "every task, no matter how small, had to be logged by scanning your badge",
+      "query": "employee badge scanner terminal office"
+    },
+    {
+      "phrase": "I scanned in to get a pen",
+      "query": "office desk pen cup closeup"
+    },
+    {
+      "phrase": "Scanned in to refill the stapler",
+      "query": "office stapler supply closet"
+    },
+    {
+      "phrase": "the terminal had logged over nine thousand scans",
+      "query": "computer screen data log numbers"
+    },
+    {
+      "phrase": "Corporate flagged the account for fraud and froze the whole badge system",
+      "query": "corporate office building exterior"
+    },
+    {
+      "phrase": "explaining, on a call with three regional directors",
+      "query": "stressed man on conference call"
+    },
+    {
+      "phrase": "He got moved to an office with no staff to manage",
+      "query": "empty office cubicle alone"
+    },
+    {
+      "phrase": "The badge rule quietly disappeared the same week",
+      "query": "office employees walking relaxed"
+    }
   ],
   "punches": [
-    {"phrase": "scanning your badge at a terminal first", "text": "NEW RULE", "color": "#ffaa30"},
-    {"phrase": "over nine thousand scans for a store with twelve people", "text": "9,000 SCANS", "color": "#ff3030"},
-    {"phrase": "froze the whole badge system company wide", "text": "SYSTEM FROZEN", "color": "#ff3030"},
-    {"phrase": "He got moved to an office with no staff to manage", "text": "DEMOTED", "color": "#50ff80"}
+    {
+      "phrase": "scanning your badge at a terminal first",
+      "text": "NEW RULE",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "over nine thousand scans for a store with twelve people",
+      "text": "9,000 SCANS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "froze the whole badge system company wide",
+      "text": "SYSTEM FROZEN",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "He got moved to an office with no staff to manage",
+      "text": "DEMOTED",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "dark"
 }

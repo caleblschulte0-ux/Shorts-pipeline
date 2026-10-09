@@ -19,20 +19,94 @@
   ],
   "script": "A woman came in demanding a full refund on a couch, insisting it had collapsed on its own after barely a month of light use, and she wanted her nine hundred dollars back in cash right then. Our return window was thirty days, but she had no receipt, just a photo of the couch on her phone. I pulled up her loyalty account and found the actual purchase date, eight months earlier, which already broke her story. Then I zoomed into her own photo and saw deep chew marks along one whole armrest and a corner chewed clean through to the frame. I asked if she had a dog. She froze, then admitted her retriever puppy had gotten a little carried away with it. I explained warranty terms don't cover pet damage, showed her the purchase date on screen, and offered a modest discount on a new one instead. She left annoyed but quiet, and the couch stayed exactly where it was, teeth marks and all.",
   "shots": [
-    {"phrase": "demanding a full refund on a couch", "query": "furniture store couch showroom"},
-    {"phrase": "collapsed on its own after barely a month", "query": "woman pointing at couch complaint"},
-    {"phrase": "found the actual purchase date, eight months earlier", "query": "computer screen purchase receipt lookup"},
-    {"phrase": "deep chew marks along one whole armrest", "query": "chewed couch armrest closeup"},
-    {"phrase": "a corner chewed clean through to the frame", "query": "damaged furniture fabric torn"},
-    {"phrase": "her retriever puppy had gotten a little carried away", "query": "golden retriever puppy indoors"},
-    {"phrase": "offered a modest discount on a new one instead", "query": "store clerk helping customer counter"},
-    {"phrase": "She left annoyed but quiet", "query": "customer walking out store exit"}
+    {
+      "phrase": "demanding a full refund on a couch",
+      "query": "furniture store couch showroom",
+      "pin_query": "couch",
+      "pin_context": "living room furniture sofa upholstery",
+      "news_query": "couch",
+      "news_angle": "The couch in question displays deep chew marks on its armrest and a corner chewed through to the frame.",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/2009-05-16_Main_office_lobby_at_Hampton_Forest_Apartments.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "wikimedia",
+        "query": "living room furniture sofa upholstery",
+        "resolved_by": "entity_media",
+        "source_class": "open_or_licensed",
+        "title": "couch",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/2009-05-16_Main_office_lobby_at_Hampton_Forest_Apartments.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=original",
+        "verified_at": "2026-10-09T10:16:53Z",
+        "width": 0
+      }
+    },
+    {
+      "phrase": "collapsed on its own after barely a month",
+      "query": "woman pointing at couch complaint"
+    },
+    {
+      "phrase": "found the actual purchase date, eight months earlier",
+      "query": "computer screen purchase receipt lookup"
+    },
+    {
+      "phrase": "deep chew marks along one whole armrest",
+      "query": "chewed couch armrest closeup"
+    },
+    {
+      "phrase": "a corner chewed clean through to the frame",
+      "query": "damaged furniture fabric torn"
+    },
+    {
+      "phrase": "her retriever puppy had gotten a little carried away",
+      "query": "golden retriever puppy indoors",
+      "pin_query": "retriever puppy",
+      "pin_context": "golden retriever puppy pet dog",
+      "news_query": "retriever puppy",
+      "news_angle": "The woman admits her retriever puppy was responsible for the damage to the couch.",
+      "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Golden_Retriever_puppy_-_2010.jpg/1280px-Golden_Retriever_puppy_-_2010.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "media_evidence": {
+        "content_type": "image/jpeg",
+        "height": 0,
+        "provider": "wikimedia",
+        "query": "golden retriever puppy pet dog",
+        "resolved_by": "entity_media",
+        "source_class": "open_or_licensed",
+        "title": "retriever puppy",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Golden_Retriever_puppy_-_2010.jpg/1280px-Golden_Retriever_puppy_-_2010.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+        "verified_at": "2026-10-09T10:17:07Z",
+        "width": 0
+      }
+    },
+    {
+      "phrase": "offered a modest discount on a new one instead",
+      "query": "store clerk helping customer counter"
+    },
+    {
+      "phrase": "She left annoyed but quiet",
+      "query": "customer walking out store exit"
+    }
   ],
   "punches": [
-    {"phrase": "nine hundred dollars back in cash right then", "text": "$900 DEMAND", "color": "#ffaa30"},
-    {"phrase": "purchase date, eight months earlier", "text": "8 MONTHS AGO", "color": "#ff3030"},
-    {"phrase": "a corner chewed clean through to the frame", "text": "DOG DID THAT", "color": "#ff3030"},
-    {"phrase": "the couch stayed exactly where it was", "text": "REFUND DENIED", "color": "#50ff80"}
+    {
+      "phrase": "nine hundred dollars back in cash right then",
+      "text": "$900 DEMAND",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "purchase date, eight months earlier",
+      "text": "8 MONTHS AGO",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "a corner chewed clean through to the frame",
+      "text": "DOG DID THAT",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "the couch stayed exactly where it was",
+      "text": "REFUND DENIED",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "dark"
 }
