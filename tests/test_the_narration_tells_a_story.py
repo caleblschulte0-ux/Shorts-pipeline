@@ -28,7 +28,7 @@ CFG = json.loads(CFG_PATH.read_text())
 SLUG = "measles-ninety-five-rule"
 RETOLD = {"segments": [
     {"say": "One person with measles infects about 15 others, far more than the flu."},
-    {"say": "Stopping it takes 95 percent immunity, and American kindergartners are just short of that."},
+    {"say": "Stopping it takes 95 percent immunity, and kindergartners are just short of that."},
     {"say": "That small gap brought measles roaring back: 2,566 cases this year."}],
     "closing": "Measles only needs a small gap to come back."}
 
@@ -74,6 +74,10 @@ class WhatCodeCanSee(unittest.TestCase):
         self.assertTrue(any("OECD" in p for p in found), found)
         self.assertTrue(any("closing names RAND" in p for p in found), found)
 
+    def test_a_number_in_a_name_is_not_read_out(self):
+        self.assertEqual(N.problems({"segments": [
+            {"say": "It is 17 times faster than Apollo 10, the fastest crew ever."}]}), [])
+
     def test_a_famous_one_is_fine(self):
         self.assertEqual(N.problems({"segments": [
             {"say": "The WHO and NASA agree, and so does the FBI."}]}), [])
@@ -92,7 +96,13 @@ class TheRetell(unittest.TestCase):
         shutil.copy(CFG_PATH, self.cfg)
         self.sc = _story()
         if not N.problems(self.sc):
-            raise unittest.SkipTest(f"{SLUG} already reads as a story")
+            # the queued story was retold already: make it a readout again, or
+            # every test below skips and the retell goes untested (it did, and
+            # on 2026-10-10 it failed live on nearly every story)
+            self.sc["segments"][0]["say"] = ("Measles infects 15 people per "
+                                             "case; the flu infects 1.3.")
+            self.sc.pop("retold", None)
+        self.assertTrue(N.problems(self.sc))
 
     def tearDown(self):
         shutil.rmtree(self.tmp, ignore_errors=True)
@@ -124,13 +134,35 @@ class TheRetell(unittest.TestCase):
         self.assertEqual(self.sc["segments"], before["segments"])
         self.assertIn("REFUSED", brain.calls[-1], "the refusal is fed back")
 
-    def test_the_listener_can_keep_the_old_words(self):
+    def test_a_retell_the_listener_refuses_is_never_saved(self):
         before = copy.deepcopy(self.sc)
         brain = _brain(json.dumps(RETOLD), '{"pick": "A", "why": "B overstates"}')
         r = N.retell(self.sc, config_path=self.cfg, brain=brain, log=lambda m: None)
         self.assertFalse(r["changed"])
         self.assertEqual(self.sc["segments"], before["segments"])
         self.assertNotEqual(self._saved().get("retold"), N.RETOLD)
+
+    def test_the_listeners_objection_is_fed_back_and_fixed(self):
+        """2026-10-10: the listener's "B says something the data does not"
+        ended the retell, so lottery and peanut kept their readouts and the
+        posting run held them. It is a refusal like any other now."""
+        brain = _brain(json.dumps(RETOLD), '{"pick": "A", "why": "B overstates the flu"}',
+                       json.dumps(RETOLD), '{"pick": "B", "why": "follows"}')
+        r = N.retell(self.sc, config_path=self.cfg, brain=brain, log=lambda m: None)
+        self.assertTrue(r["changed"], r)
+        self.assertIn("B overstates the flu", brain.calls[2])
+
+    def test_a_topic_too_long_for_the_screen_can_be_shortened(self):
+        """2026-10-10: every retell of a story whose on-screen topic broke
+        the four-word rule was refused, because the brain could not touch it."""
+        self.sc["segments"][0]["topic"] = "people one sick person infects per case"
+        told = copy.deepcopy(RETOLD)
+        told["segments"][0]["topic"] = "measles spread"
+        brain = _brain(json.dumps(told), '{"pick": "B", "why": "follows"}')
+        r = N.retell(self.sc, config_path=self.cfg, brain=brain, log=lambda m: None)
+        self.assertTrue(r["changed"], r)
+        self.assertEqual(self._saved()["segments"][0]["topic"], "measles spread")
+        self.assertIn("TOPIC", brain.calls[0])
 
     def test_no_brain_keeps_the_story(self):
         r = N.retell(self.sc, config_path=self.cfg, brain=lambda p: None,
@@ -139,6 +171,12 @@ class TheRetell(unittest.TestCase):
 
 
 class ItIsWiredIn(unittest.TestCase):
+    def test_predraw_retells_before_it_draws_and_skips_held_data(self):
+        src = (ROOT / "scripts" / "predraw_scenes.py").read_text()
+        main = src[src.index("def main("):]
+        self.assertLess(main.index("narration.retell("), main.index("r = predraw("))
+        self.assertIn("_unpostable(cfg)", main)
+
     def test_post_stories_retells_before_the_gate(self):
         src = (ROOT / "scripts" / "post_stories.py").read_text()
         i = src.index("_narration.retell(")

@@ -66,6 +66,8 @@ def _figures(say: str) -> list:
     the thing measured (a year that dates another number is not read OUT)."""
     out = []
     text = re.sub(r"\b1 in (?=\d)", "", str(say or ""))   # "1 in 15" is one number: odds
+    # a number that is part of a NAME ("Apollo 10", "Windows 11") is not read out
+    text = re.sub(r"\b([A-Z][a-z]+) \d{1,3}\b(?!\s*%| percent)", r"\1", text)
     for m in _FIGURE.finditer(text):
         tok = m.group(0).strip().rstrip(",")
         if re.fullmatch(r"(1[5-9]|20)\d\d", tok):
@@ -138,9 +140,11 @@ HOOK (keep it): {hook}
 {beats}
 CLOSING: {closing}
 {refused}
-Rewrite the {n} beats and the closing so the video tells this story. Return \
-STRICT JSON: {{"segments": [{{"say": str}}, ...], "closing": str}} with \
-exactly {n} segments in the same order."""
+Rewrite the {n} beats and the closing so the video tells this story. Each \
+beat's TOPIC is the label printed on screen: keep it, or give a new one of \
+at most {topic_max} words that shares a word with the TITLE. Return STRICT \
+JSON: {{"segments": [{{"say": str, "topic": str}}, ...], "closing": str}} \
+with exactly {n} segments in the same order."""
 
 _LISTEN = """You are a viewer and a fact-checker. Two narrations for the same \
 YouTube Short follow, with the data each beat is drawn from. A narration \
@@ -199,7 +203,7 @@ def _default_brain(prompt: str):
 
 
 def retell(sc: dict, *, config_path: Path | None = None, brain=None,
-           log=print, tries: int = 3) -> dict:
+           log=print, tries: int = 4) -> dict:
     """Retell a story whose narration reads as data, in place and on disk.
     Returns {"changed": bool, "reasons": [...]}. A story already retold
     under this doctrine, or with nothing to fix, costs no brain call."""
@@ -221,14 +225,14 @@ def retell(sc: dict, *, config_path: Path | None = None, brain=None,
     reasons = found
     for attempt in range(tries):
         beats = "\n".join(
-            f"BEAT {i + 1}: {s.get('say') or ''}\n  {line}"
+            f"BEAT {i + 1} (topic: {s.get('topic') or ''}): {s.get('say') or ''}\n  {line}"
             for i, (s, line) in enumerate(zip(sc.get("segments") or [],
                                               data.splitlines())))
         raw = brain(_PROMPT.format(
             doctrine=DOCTRINE, pace=pacing.rule(pacing.budget()),
             title=sc.get("title") or "", hook=sc.get("hook") or "",
             beats=beats, closing=sc.get("closing") or "",
-            n=len(sc.get("segments") or []),
+            n=len(sc.get("segments") or []), topic_max=rw.MAX_TOPIC_WORDS,
             refused=(f"\nYOUR LAST REWRITE WAS REFUSED — fix exactly this: "
                      f"{refused}\n" if refused else "")))
         ans = _parse(raw)
@@ -240,7 +244,7 @@ def retell(sc: dict, *, config_path: Path | None = None, brain=None,
             continue
         segs = sc.get("segments") or []
         new = [{"say": str((x or {}).get("say") or "").strip(),
-                "topic": s.get("topic")}       # printed on the video; the gate passed it
+                "topic": str((x or {}).get("topic") or "").strip() or s.get("topic")}
                for s, x in zip(segs, ans.get("segments") or [])]
         full = {"title": sc.get("title"), "hook": sc.get("hook"),
                 "closing": str(ans.get("closing") or sc.get("closing") or ""),
@@ -257,10 +261,11 @@ def retell(sc: dict, *, config_path: Path | None = None, brain=None,
         verdict = _parse(brain(_LISTEN.format(data=data, a=_script(sc),
                                               b=_script(cand)))) or {}
         if str(verdict.get("pick", "")).strip().upper() != "B":
-            reasons = [f"the listener kept the old narration: "
-                       f"{verdict.get('why') or 'no verdict'}"]
+            why = verdict.get("why") or "no verdict"
+            reasons = [f"the listener refused the retell: {why}"]
             log(f"[retell] {sc.get('slug')}: {reasons[0][:160]}")
-            break
+            refused = f"a listener who checked it against the data said: {why}"[:400]
+            continue
         cand["retold"] = RETOLD
         _apply(sc, cand, config_path, log)
         return {"changed": True, "reasons": []}
@@ -272,6 +277,7 @@ def _apply(sc: dict, cand: dict, config_path, log) -> None:
     sc["closing"] = cand.get("closing")
     for a, c in zip(sc.get("segments") or [], cand.get("segments") or []):
         a["say"] = c.get("say")
+        a["topic"] = c.get("topic") or a.get("topic")
     sc["retold"] = RETOLD
     sc["words_by"] = WORDS_BY
     path = Path(config_path or REPO / "data_learning" / "niche.config.json")

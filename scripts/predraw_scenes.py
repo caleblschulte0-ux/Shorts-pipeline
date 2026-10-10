@@ -88,6 +88,25 @@ def _held_slugs() -> set:
         return set()
 
 
+def _unpostable(cfg: dict) -> set:
+    """Slugs the deterministic pre-render gate holds for reasons no drawing
+    fixes (a source that is not real): 2026-10-10 the night's batch spent its
+    clock on measles and helium, both held that morning for their data."""
+    out = set()
+    try:
+        from scripts import editorial_gate as eg
+    except Exception:  # noqa: BLE001
+        return out
+    for s in cfg.get("stories", []):
+        try:
+            v = eg.pre_render_verdict(s, use_llm=False)
+        except Exception:  # noqa: BLE001
+            continue
+        if not v["ok"] and any(r.startswith("data:") for r in v["reasons"]):
+            out.add(s.get("slug"))
+    return out
+
+
 def _save_scene(config_path: Path, slug: str, index: int, code: str) -> None:
     """Write one verified scene onto one segment — re-reading the file first
     so a concurrent edit to any other story or segment survives."""
@@ -159,13 +178,30 @@ def main(argv=None) -> int:
     except Exception:  # noqa: BLE001 — no log: nothing is posted yet
         posted = set()
     deadline = time.monotonic() + args.budget_min * 60
-    slugs = candidates(cfg, posted, args.stories)
+    slugs = candidates(cfg, posted, args.stories, held=_held_slugs() | _unpostable(cfg))
     print(f"[predraw] next new-look stories: {slugs}", flush=True)
     complete = 0
     for slug in slugs:
         if deadline - time.monotonic() < 120:
             print("[predraw] budget spent", flush=True)
             break
+        # The words first (2026-10-10: the night's batch drew phone-checks and
+        # hpv to today's look, and the morning run held both because their
+        # narration was still a readout). A story whose words cannot be made
+        # current is not drawn: the posting run would not take it.
+        sc = next(s for s in cfg["stories"] if s.get("slug") == slug)
+        try:
+            from shared import narration
+            narration.retell(sc, config_path=args.config,
+                             log=lambda m: print(f"[predraw] {m}", flush=True))
+            told = narration.problems(sc)
+        except Exception as e:  # noqa: BLE001 — the posting run retells again
+            told = []
+            print(f"[predraw] {slug}: retell skipped ({e})", flush=True)
+        if told:
+            print(f"[predraw] {slug}: not drawn — narration still a readout: "
+                  f"{told[0]}", flush=True)
+            continue
         try:
             r = predraw(slug, cfg, args.config, deadline,
                         log=lambda m: print(f"[predraw] {m}", flush=True))
