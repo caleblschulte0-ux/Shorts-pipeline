@@ -3,58 +3,6 @@
     {
       "date": "20260930",
       "dry_run": false,
-      "ts": "2026-09-30T13:34:50+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 113,
-        "with_retention": 102,
-        "with_curve": 15,
-        "fetched_at": "2026-09-30T12:27:00.396265+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20260930-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260930-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260930-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260930-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260930-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260930-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20260930",
-      "dry_run": false,
       "ts": "2026-09-30T16:52:31+00:00",
       "feedback": {
         "snapshot": true,
@@ -8494,6 +8442,289 @@
             }
           },
           "took_s": 229.5
+        }
+      ]
+    },
+    {
+      "date": "20261010",
+      "dry_run": false,
+      "ts": "2026-10-10T16:40:36+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 131,
+        "with_retention": 111,
+        "with_curve": 14,
+        "fetched_at": "2026-10-10T14:55:33.778380+00:00"
+      },
+      "brain": {
+        "ok": 8,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261010-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261010-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261010-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261010-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261010-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261010-6",
+          "ok": false,
+          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 64,
+                "refused_shown": 20,
+                "scouted": [
+                  {
+                    "premise": "Buddha is promised his coin will pump beyond the multiverse, buys into a spiking GTA RP coin with $800, and loses it to ",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Jynxzi dies in the Nether on Day 3 of Death 2, then on Day 15 gets killed in the Ender Dragon fight, and Stableronaldo a",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Kai's Streamer University opens with chat snitching on him, then he is called to the main office, then he performs at th",
+                    "shape": "multi_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 295,
+                "moments": 40,
+                "candidates": 489,
+                "pool": 2859,
+                "pool_with_vod": 1988,
+                "arc_sizes": [
+                  2,
+                  3,
+                  2,
+                  2,
+                  5,
+                  4,
+                  2,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:buddha+xqc",
+                  "outcome": "already_refused",
+                  "why": "2026-10-03: director judged: not a story \u2014 The footage does not show the scout's story. (1) The promise: the 09-10 clip has only one fragmentary line at 161-167s ('Don't sa"
+                },
+                {
+                  "cluster": "esfandtv@momentpunchysarcasticskirretsmorc-wx0qyiuanwgib-mx",
+                  "outcome": "already_refused",
+                  "why": "2026-10-09: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2821557824",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: director judged: not a story \u2014 The two sources are unrelated moments from one broadcast. The first is Kai role-playing a school authority who sends the hoodie g"
+                },
+                {
+                  "cluster": "esfandtv@momentobliqueexquisitepiecharlietheunicorn-r8zee3bs",
+                  "outcome": "already_refused",
+                  "why": "2026-10-09: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2820831944",
+                  "outcome": "already_refused",
+                  "why": "2026-10-07: director judged: not a story \u2014 The three clips are consecutive bits from one Streamer University broadcast: Kai, playing university president, greets a line of "
+                },
+                {
+                  "cluster": "scout:kaicenat/kaicenat-call-cenat-2026w29",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not show the scout's chain of being snitched on, then called to the office, then the talent show. (1) The 07-17 clip shows Kai playfully accusing two guests of being 'caught talking t"
+                },
+                {
+                  "cluster": "kaicenat@momentboldsuspiciouswatercressgrammarking-jifdf5_8p",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: every beat is from one source \u2014 a clip, not a story"
+                },
+                {
+                  "cluster": "kaicenat@vod2822355279",
+                  "outcome": "already_refused",
+                  "why": "2026-10-09: director judged: not a story \u2014 The two clips are consecutive bits from the same 'Streamer University' roleplay, but they show no change. In the first, Kai reads"
+                },
+                {
+                  "cluster": "kaicenat@momentcreativeflirtydunlinm4xheh-qmubymsa6rvij7jd",
+                  "outcome": "already_refused",
+                  "why": "2026-10-10: rendered; critic scored 58 after 2 revision(s) \u2014 @12s missing_context: Ron is never introduced. The overlay 'Kai told chat: get Ron in' gives a name but no reas"
+                },
+                {
+                  "cluster": "sodapoppin@vod2872274770",
+                  "outcome": "already_refused",
+                  "why": "2026-10-06: sources fail preflight: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "ishowspeed@momentmagnificentcaringlapwinglitfam--majf-ezbaoy",
+                  "outcome": "already_refused",
+                  "why": "2026-10-10: director judged: not a story \u2014 This is a run of unrelated reactions, not a chain. Before the clip, Speed checks whether his mic is too loud and reacts to a TikT"
+                },
+                {
+                  "cluster": "kaicenat@vod2872697283",
+                  "outcome": "already_refused",
+                  "why": "2026-10-07: director judged: not a story \u2014 The five clips are silent runway footage with no speech, so the sources never state a premise, a change, or a payoff. No frame id"
+                },
+                {
+                  "cluster": "shroud@momentpiercingrealmosquitohotpokket-zjo00ziwnbyim5bw",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "plaqueboymax@vod2874466121",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: director judged: not a story \u2014 The three clips are consecutive moments from one stream (11m, 27m, 32m in), but they don't form a setup, escalation and payoff. C"
+                },
+                {
+                  "cluster": "pokimane@momentwildbrighttardigradebrokeback-c1ugwcienk6ir1j",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "alinity@vod2892098335",
+                  "outcome": "already_refused",
+                  "why": "2026-10-10: sources fail preflight: preflight:source only 5.8s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "squeex@momentcrepuscularexcitedeggnogninjagrumpy-704iyhmzsyo",
+                  "outcome": "already_refused",
+                  "why": "2026-10-10: take 0: every beat is from one source \u2014 a clip, not a story; take 1: hook trimmed 8->5 words (repaired); take 1: every beat is from one source \u2014 a clip, not a s"
+                },
+                {
+                  "cluster": "stableronaldo@vod2871404003",
+                  "outcome": "already_refused",
+                  "why": "2026-10-07: director judged: not a story \u2014 The two clips are consecutive moments from one stream but form no arc. Clip one opens mid-sentence with stableronaldo telling som"
+                },
+                {
+                  "cluster": "kaicenat@momentcrazycarefultoadelegiggle-oiliilqfmy84fupf",
+                  "outcome": "already_refused",
+                  "why": "2026-10-10: rendered; critic scored 58 after 2 revision(s) \u2014 @34s weak_payoff: The ending ('you need medical attention, are you okay?') is a mild reaction, not an answer to"
+                },
+                {
+                  "cluster": "jynxzi@vod2875798295",
+                  "outcome": "already_refused",
+                  "why": "2026-10-10: director judged: not a story \u2014 The clips don't form a chain. The booklet clips (3h08m and 3h09m) show Jynxzi flipping through a manga booklet while chat tells h"
+                },
+                {
+                  "cluster": "marlon@momentbashfulcheerfulsangstinkycheese-5cj37ofvrgb3fy3",
+                  "outcome": "not_a_story",
+                  "why": "take 0: every beat is from one source \u2014 a clip, not a story; take 1: every beat is from one source \u2014 a clip, not a story; take 2: every beat is from one source \u2014 a clip, not a story"
+                },
+                {
+                  "cluster": "ishowspeed@vod2875841671/ishowspeed-about-count-2026w38",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 There is no meaningful change here. The sources are four separate reaction moments from one stream, and the payoff is never shown. Speed tells chat to look at his sub count, which ticks from about 61,"
+                },
+                {
+                  "cluster": "joebartolozzi@momentcutecrispyherdeagleeye-ubz8uezhydyfeyga/",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clip is a silent 6-second dance with beckoning gestures, and nothing before or after it causes it or pays it off. The surrounding minutes are Joe reacting to two videos, reading sub shoutouts and "
+                },
+                {
+                  "cluster": "ohnepixel@vod2896011569/ohnepixel-face-hand-2026w41",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The sources don't show why ohnepixel is crying, so the premise can't be stated plainly. Clip 1 has no speech and clip 2 only has him saying he's crying and asking for a minute. The Souvenir AWP | Drag"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "vague, mild inside joke",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "GTA RP fall, incapacitated; unclear cont",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            }
+          },
+          "took_s": 51.4
         }
       ]
     }

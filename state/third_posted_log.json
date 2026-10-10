@@ -12481,6 +12481,24 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The sharp picture is a thin strip, about a third of the canvas height, with large black or blurred padding above and bel; vision: Most of the clip is almost entirely dark (1s to 21s). Very little action is visible, and viewers can't tell what is happ; vision: The only on-screen content is a ",
       "ts": "2026-10-10T14:55:23.124628+00:00"
+    },
+    "rejected-horribleboringvulturetheringer-2s2nvekdfk4cstw9": {
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/HorribleBoringVultureTheRinger-2S2NVekDFK4CstW9",
+      "streamer": "ishowspeed",
+      "title": "idek",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (dark hallway, no visible event)",
+      "ts": "2026-10-10T16:39:45.227276+00:00"
+    },
+    "rejected-esteemedhomelypineapplebudblast--m4m_opwvbmsia3w": {
+      "source_url": "https://www.twitch.tv/valkyrae/clip/EsteemedHomelyPineappleBudBlast--m4m_OPwVBmsia3w",
+      "streamer": "valkyrae",
+      "title": "We flying under the radar for sure",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-10-10T16:40:36.615924+00:00"
     }
   }
 }
