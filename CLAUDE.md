@@ -471,7 +471,8 @@ see a slate of one format, that is the bug.
 
 ## Repo layout: the funnel (reorg 2026-07-30 — docs/PIPELINE_LAYOUT.md)
 
-Top-of-funnel media in **`funnel/`** (media_funnel, topic/entity image
+Top-of-funnel media in **`funnel/`** (media_funnel, find_image — a
+checked picture of ANY named thing from every source — topic/entity image
 finders, stock search, gemini_images AI-gen, usage ledger, og_scrape,
 gameplay_scanner). Cross-channel utilities in **`shared/`** (fsutil,
 uploaders, localize, script_generator, themed_bottom). Render capabilities
@@ -724,8 +725,17 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   A clip (`edit.show`) or a beat (`show`) names a thing that is said but
   not seen; `third_capture/show_it.py` cuts in its picture for `SHOW_S`
   at that second: a price chart around the clip's date for a coin or a
-  stock, else the lead image of the Wikipedia article whose title IS the
-  thing. No exact match, no picture. And sex sells, with dignity (same
+  stock. The picture comes from the SHARED finder `funnel/find_image.py`
+  (operator, same night: *"there needs to be a lot of capabilities that
+  aren't just on Wikipedia ... we 100% can use copyrighted images. This
+  is 100% fair use"*): every provider `media_funnel` reaches, searched for
+  the item's `look` (what it must SHOW: "HAWK coin chart after the rug
+  pull") and for its name, plus the exact-title Wikipedia image and real
+  price data; the brain checks each downloaded picture against `look`
+  (`shared.shot_relevance.judge_panels`). With no brain only the exact
+  Wikipedia image may be used; a coin or stock no picture showed is drawn
+  from its prices; otherwise nothing. Any channel that needs "a picture
+  of X" calls `find_image.find`, never a private search. And sex sells, with dignity (same
   night: *"we have the green light to goonbait not to much let's keep our
   dignity"*): the picker and the writer lean into flirting and thirst,
   adults only, nothing a platform would age-restrict.

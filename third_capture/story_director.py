@@ -268,8 +268,10 @@ Then emit the COMPLETE timeline. Segment rules:
 - show: when a beat TALKS ABOUT a thing a stranger cannot see — the coin
   that got rug pulled, the stock, the game, the car, a person who is not
   on stream — name it exactly ("thing": its real name as a search would
-  find it; "kind": "coin", "stock" or "thing"; "at": the SOURCE second it
-  is named). The edit cuts its picture (a price chart for a coin or a
+  find it; "look": what the picture must SHOW, in image-search words —
+  the moment, not just the name ("HAWK coin chart after the rug pull");
+  "kind": "coin", "stock" or "thing"; "at": the SOURCE second it is
+  named). The edit cuts its picture (a price chart for a coin or a
   stock) in for a few seconds so the viewer gets it. Only when seeing it
   makes the beat land; never a guess; omit otherwise.
 - effects: always [] — this channel plays footage at its own speed, with
@@ -310,8 +312,8 @@ Return STRICT JSON:
             "context_overlay": str,
             "link": "so|but",     // how this beat follows the one
                                   // before it; beat 0 has "start"
-            "show": {"thing": str, "kind": "coin|stock|thing",
-                     "at": s} | omitted,
+            "show": {"thing": str, "look": str,
+                     "kind": "coin|stock|thing", "at": s} | omitted,
             "effects": [{"type": "subtle_punch", "at": s}, ...]}, ...],
  "narration": [{"text": str, "over_beat": int,
                 "essential_because": str}, ...] | omitted,

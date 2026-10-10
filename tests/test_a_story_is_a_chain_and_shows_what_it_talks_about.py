@@ -21,6 +21,7 @@ import shutil
 import subprocess
 from unittest import mock
 
+import io
 import tempfile
 import unittest
 from pathlib import Path
@@ -81,7 +82,7 @@ def test_the_picture_lands_on_the_cut_not_the_clip():
     p = show_it.plan([{"thing": "Elden Ring", "kind": "thing", "at": 12}],
                      20.0, offset=5.0)
     assert p == [{"thing": "Elden Ring", "kind": "thing", "at": 7.0,
-                  "secs": show_it.SHOW_S}]
+                  "secs": show_it.SHOW_S, "look": ""}]
     # named before the cut, or too late to stay up: not shown
     assert show_it.plan([{"thing": "X", "at": 3}], 20.0, offset=5.0) == []
     assert show_it.plan([{"thing": "X", "at": 19.5}], 20.0) == []
@@ -106,10 +107,16 @@ def test_the_author_names_what_to_show():
     assert out["edit"]["show"] == [
         {"thing": "$HAWK", "kind": "coin", "at": 6.2},
         {"thing": "Lambo", "kind": "thing", "at": 9.0}]
-    assert '"show"' in author.SYSTEM
+    assert '"show"' in author.SYSTEM and '"look"' in author.SYSTEM
 
 
-# ------------------------------------------------- only an exact match
+# ------------------------------------- the shared finder: look everywhere
+# Operator, same night: "there needs to be a lot of capabilities that
+# aren't just on Wikipedia ... we 100% can use copyrighted images ...
+# make sure you're adding any capabilities to the shared area".
+from funnel import find_image  # noqa: E402
+
+
 def _fake_json(table):
     def f(url):
         for k, v in table.items():
@@ -119,19 +126,38 @@ def _fake_json(table):
     return f
 
 
-def test_a_coin_is_shown_only_when_its_name_or_ticker_matches():
+def _png(tmp, name, size=(400, 300), color=(200, 30, 30)):
+    from PIL import Image
+    buf = io.BytesIO()
+    Image.new("RGB", size, color).save(buf, "PNG")
+    return buf.getvalue()
+
+
+def test_the_finder_is_shared_and_searches_every_source():
+    import inspect
+    src = inspect.getsource(find_image)
+    assert "media_funnel.search" in src          # news/Brave/DDG/Reddit/...
+    assert "judge_panels" in src                 # the brain checks it
+    assert "find_image.find" in inspect.getsource(show_it.fetch)
+    # third_capture keeps no private copy of a search or a data source
+    assert "coingecko" not in inspect.getsource(show_it).lower()
+
+
+def test_a_coin_matches_only_its_own_name_or_ticker():
     table = {"/search?query=": {"coins": [
-                 {"id": "hawk-tuah-not", "name": "Hawk Tuah Inu",
-                  "symbol": "HTI", "large": None}]},
+                 {"id": "x", "name": "Hawk Tuah Inu", "symbol": "HTI",
+                  "large": None}]},
              "dexscreener": {"pairs": []}}
-    with mock.patch.object(show_it, "_json", side_effect=_fake_json(table)):
-        assert show_it.coin("Hawk Tuah") is None
+    with mock.patch.object(find_image, "_json",
+                           side_effect=_fake_json(table)):
+        assert find_image.coin("Hawk Tuah") is None
     table["/search?query="]["coins"].append(
         {"id": "hawk", "name": "Hawk Tuah", "symbol": "HAWK", "large": None})
     table["market_chart"] = {"prices": [[1e12, 1.0], [1.1e12, 9.0],
                                         [1.2e12, 0.4]]}
-    with mock.patch.object(show_it, "_json", side_effect=_fake_json(table)):
-        got = show_it.coin("$HAWK")
+    with mock.patch.object(find_image, "_json",
+                           side_effect=_fake_json(table)):
+        got = find_image.coin("$HAWK coin")
     assert got["name"] == "Hawk Tuah" and len(got["prices"]) == 3
 
 
@@ -140,24 +166,98 @@ def test_wikipedia_must_be_the_thing_and_never_a_disambiguation():
         return {"query": {"pages": {"1": {
             "title": title, "pageprops": props or {},
             "thumbnail": {"source": "https://x/y.jpg"}}}}}
-    with mock.patch.object(show_it, "_bytes", return_value=b"x" * 300):
-        with mock.patch.object(show_it, "_json",
-                               return_value=page("Elden Ring")):
-            assert show_it.wiki("Elden Ring")["name"] == "Elden Ring"
-        with mock.patch.object(show_it, "_json",
-                               return_value=page("Ring (jewellery)")):
-            assert show_it.wiki("Elden Ring") is None
-        with mock.patch.object(show_it, "_json", return_value=page(
-                "Mercury", {"disambiguation": ""})):
-            assert show_it.wiki("Mercury") is None
+    with mock.patch.object(find_image, "_json",
+                           return_value=page("Elden Ring")):
+        assert find_image.wiki("Elden Ring")["name"] == "Elden Ring"
+    with mock.patch.object(find_image, "_json",
+                           return_value=page("Ring (jewellery)")):
+        assert find_image.wiki("Elden Ring") is None
+    with mock.patch.object(find_image, "_json", return_value=page(
+            "Mercury", {"disambiguation": ""})):
+        assert find_image.wiki("Mercury") is None
+
+
+def _finder(tmp, *, verdicts, urls, wiki_hit=None):
+    imgs = {u: _png(tmp, u) for u in urls + (
+        [wiki_hit["url"]] if wiki_hit else [])}
+    return [mock.patch.object(find_image, "wiki", return_value=wiki_hit),
+            mock.patch.object(find_image, "search_urls", return_value=[
+                {"url": u, "source": "ddg", "title": u} for u in urls]),
+            mock.patch.object(find_image, "_bytes",
+                              side_effect=lambda u: imgs.get(u)),
+            mock.patch.object(find_image, "judge", return_value=verdicts)]
+
+
+def _run(patches, *a, **k):
+    for p in patches:
+        p.start()
+    try:
+        return find_image.find(*a, **k)
+    finally:
+        for p in patches:
+            p.stop()
+
+
+def test_the_first_picture_the_brain_says_shows_it_wins(tmp_path):
+    got = _run(_finder(tmp_path, urls=["https://a/1", "https://b/2"],
+                       wiki_hit={"name": "HAWK", "url": "https://w/0"},
+                       verdicts={0: {"depicts": False}, 1: {"depicts": False},
+                                 2: {"depicts": True}}),
+               "HAWK coin", "HAWK coin chart after the rug pull",
+               kind="coin", work=tmp_path)
+    assert got["url"] == "https://b/2" and got["via"] == "judged"
+    assert Path(got["path"]).exists()
+
+
+def test_with_no_brain_only_the_exact_wikipedia_picture_is_used(tmp_path):
+    got = _run(_finder(tmp_path, urls=["https://a/1"], verdicts=None,
+                       wiki_hit={"name": "Elden Ring", "url": "https://w/0"}),
+               "Elden Ring", work=tmp_path)
+    assert got["url"] == "https://w/0" and got["via"] == "exact"
+    assert _run(_finder(tmp_path, urls=["https://a/1"], verdicts=None),
+                "Elden Ring", work=tmp_path) is None
+
+
+def test_a_coin_nothing_showed_is_drawn_from_its_prices(tmp_path):
+    info = {"name": "Hawk Tuah", "symbol": "HAWK", "logo": None,
+            "prices": [(0, 1.0), (1, 9.0), (2, 0.2)]}
+    with mock.patch.object(find_image, "coin", return_value=info):
+        got = _run(_finder(tmp_path, urls=["https://a/1"],
+                           verdicts={0: {"depicts": False}}),
+                   "HAWK", "HAWK chart after the rug pull", kind="coin",
+                   work=tmp_path)
+    assert got == {"chart": info, "source": "coin_prices"}
+
+
+def test_a_thumbnail_is_not_a_pop_up(tmp_path):
+    from PIL import Image
+    buf = io.BytesIO()
+    Image.new("RGB", (120, 90)).save(buf, "PNG")
+    with mock.patch.object(find_image, "_bytes",
+                           return_value=buf.getvalue()):
+        assert find_image._download("https://x", tmp_path / "t.png") is None
 
 
 def test_nothing_found_shows_nothing(tmp_path):
-    with mock.patch.object(show_it, "_json", side_effect=OSError):
+    with mock.patch.object(find_image, "find", return_value=None):
         assert show_it.fetch({"thing": "Hawk Tuah", "kind": "coin"},
                              tmp_path) is None
         assert show_it.ready([{"thing": "X", "kind": "thing", "at": 1,
                                "secs": 2}], tmp_path) == []
+
+
+def test_the_look_travels_from_the_writer_to_the_finder(tmp_path):
+    seen = {}
+
+    def find(thing, look, **k):
+        seen["look"] = look
+        return None
+    plan = show_it.plan(show_it.parse([{
+        "thing": "HAWK", "kind": "coin", "at": 4,
+        "look": "HAWK coin chart after the rug pull"}]), 20.0)
+    with mock.patch.object(find_image, "find", side_effect=find):
+        show_it.ready(plan, tmp_path)
+    assert seen["look"] == "HAWK coin chart after the rug pull"
 
 
 def test_a_rug_pull_reads_off_its_peak(tmp_path):

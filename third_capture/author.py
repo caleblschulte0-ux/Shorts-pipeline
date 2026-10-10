@@ -49,7 +49,8 @@ Return STRICT JSON:
  "edit": {"mood": str, "mood_at": number,
           "moves": [{"move": str, "at": number}, ...],
           "line2": {"text": str, "at": number},
-          "show": [{"thing": str, "kind": str, "at": number}, ...],
+          "show": [{"thing": str, "look": str, "kind": str,
+                    "at": number}, ...],
           "cut": {"start": number, "end": number}, "complete": bool}}
 
 This niche is REALITY TV: viewers follow PEOPLE and DRAMA — fights, beef,
@@ -140,7 +141,12 @@ Rules:
     on stream, the product. The edit cuts its picture in for a few
     seconds at the second it is named, so the viewer gets it. "thing" is
     its exact real name as a search would find it ("Hawk Tuah",
-    "GameStop", "Elden Ring", "Lamborghini Urus"); "kind" is "coin" (a
+    "GameStop", "Elden Ring", "Lamborghini Urus"); "look" is what the
+    picture must SHOW, in the words you would type into an image search
+    ("HAWK coin chart after the rug pull", "Kai Cenat's orange
+    Lamborghini", "the Elden Ring Malenia boss"): the moment, not just
+    the name, since the picture is searched for everywhere and checked
+    against it; "kind" is "coin" (a
     crypto coin or meme coin: a price chart is shown), "stock" (a listed
     company's stock: a price chart) or "thing" (anything else: its
     picture); "at" is the second it is first named, from the
