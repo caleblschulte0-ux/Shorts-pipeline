@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261010",
+  "bundle": {
+    "identity": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad",
+    "path": "exchange/bundles/20261010/bundle.json"
+  },
+  "request_id": "05_reddit-gym-autorenew-contract-s6-2cbe9c1913f3",
+  "safe_request_id": "05_reddit-gym-autorenew-contract-s6-2cbe9c1913f3",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "d7ee7ae0672b230f34cae74989fa2a4af6df45529c0282c1135eea531f94cb88",
+  "prompt_used": "An editorial illustration for a short-form video: office filing cabinets records. It accompanies the narration: \"found over two thousand members hit with the same silent auto-renewal\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1v0qaG9TccV2nb4tML36CQoCE9oP_a9Tv",
+    "filename": "20261010__05_reddit-gym-autorenew-contract-s6-2cbe9c1913f3.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1v0qaG9TccV2nb4tML36CQoCE9oP_a9Tv",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "filename": "20261010__05_reddit-gym-autorenew-contract-s6-2cbe9c1913f3.png",
+    "sha256": "a2d81083d448110064a55dab2d81d3ab0ddf0e1e8fca3df1605ca27c6f664458",
+    "bytes": 1800040,
+    "width": 941,
+    "height": 1672,
+    "format": "png"
+  },
+  "verified_at": "2026-10-10T11:27:04.870Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
