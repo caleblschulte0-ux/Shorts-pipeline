@@ -145,10 +145,22 @@ def _from_atom(xml: str) -> dict:
 
 def _rss(path: str) -> dict | None:
     from funnel import media_funnel
+    import time as _t
+    import urllib.error
     url = "https://www.reddit.com" + path.replace(".json?", ".rss?", 1)
+    hdr = {"User-Agent": media_funnel._UA_REDDIT}
     try:
-        got = _from_atom(_fetch(url, {"User-Agent": media_funnel._UA_REDDIT})
-                         .decode("utf-8", "replace"))
+        try:
+            raw = _fetch(url, hdr)
+        except urllib.error.HTTPError as e:
+            # Reddit answers a second feed request inside a few seconds
+            # with 429 (backtest 20: the week listing answered, the month
+            # one 429'd, and every other-side search was then skipped)
+            if e.code != 429:
+                raise
+            _t.sleep(min(float(e.headers.get("Retry-After") or 8), 15))
+            raw = _fetch(url, hdr)
+        got = _from_atom(raw.decode("utf-8", "replace"))
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[hot_clips] r/{SUB} RSS failed "
               f"({type(e).__name__})", flush=True)
@@ -265,3 +277,104 @@ def about(query: str, period: str = "month", limit: int = 50) -> list[dict]:
                     "created": float(p.get("created_utc") or 0)})
     out.sort(key=lambda c: c["created"])
     return out
+
+
+# ---- the other side, searched for by name -------------------------------
+
+def _yt(params: dict) -> dict:
+    import os
+    key = os.environ.get("YOUTUBE_API_KEY", "").strip()
+    if not key:
+        return {}
+    url = ("https://www.googleapis.com/youtube/v3/" + params.pop("_api")
+           + "?" + urllib.parse.urlencode({**params, "key": key}))
+    try:
+        return json.loads(_fetch(url, {"User-Agent": "shorts-pipeline/1.0"})
+                          .decode("utf-8", "replace"))
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[hot_clips] YouTube search failed "
+              f"({type(e).__name__})", flush=True)
+        return {}
+
+
+def _iso_s(d: str) -> int:
+    """ISO-8601 duration (PT4M13S) in seconds."""
+    m = re.fullmatch(r"P(?:(\d+)D)?T?(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?",
+                     str(d or ""))
+    if not m:
+        return 0
+    d_, h, mi, s_ = (int(x or 0) for x in m.groups())
+    return ((d_ * 24 + h) * 60 + mi) * 60 + s_
+
+
+def youtube(query: str, *, days: int = 45, n: int = 6,
+            max_s: int = 600) -> list[dict]:
+    """YouTube videos for `query` from the last `days`, no longer than
+    `max_s`, most relevant first: [{url, platform, title, channel,
+    created}]. [] without YOUTUBE_API_KEY."""
+    from datetime import datetime, timedelta, timezone
+    after = (datetime.now(timezone.utc) - timedelta(days=days)) \
+        .strftime("%Y-%m-%dT%H:%M:%SZ")
+    found = _yt({"_api": "search", "part": "snippet", "q": query,
+                 "type": "video", "order": "relevance", "maxResults": 15,
+                 "publishedAfter": after, "safeSearch": "moderate"})
+    items = [i for i in (found.get("items") or [])
+             if (i.get("id") or {}).get("videoId")]
+    if not items:
+        return []
+    ids = [i["id"]["videoId"] for i in items]
+    lens = {v["id"]: _iso_s((v.get("contentDetails") or {})
+                            .get("duration"))
+            for v in (_yt({"_api": "videos", "part": "contentDetails",
+                           "id": ",".join(ids)}).get("items") or [])}
+    out = []
+    for i in items:
+        vid, sn = i["id"]["videoId"], i.get("snippet") or {}
+        if not 0 < lens.get(vid, 0) <= max_s:
+            continue
+        try:
+            created = datetime.fromisoformat(
+                str(sn.get("publishedAt", "")).replace("Z", "+00:00")
+            ).timestamp()
+        except ValueError:
+            created = 0.0
+        import html
+        out.append({"url": f"https://www.youtube.com/watch?v={vid}",
+                    "platform": "youtube",
+                    "title": html.unescape(str(sn.get("title") or ""))[:200],
+                    "channel": str(sn.get("channelTitle") or "")[:60],
+                    "created": created})
+        if len(out) >= n:
+            break
+    return out
+
+
+def other_side(person: str, versus: str, *, days: int = 45,
+               n: int = 4) -> list[dict]:
+    """The footage of `person` in their back-and-forth with `versus` —
+    the half of a feud a channel that follows `versus` never discovers
+    (operator, 2026-10-10: "take whoever made those allegations
+    originally, that stream, take a clip from there"). r/LivestreamFail
+    posts first (strangers posted the moment itself, often from the
+    person's own channel), then YouTube. Oldest first, at most `n`;
+    each with the title a stranger gave it."""
+    q = f"{person} {versus}".strip()
+    got, seen = [], set()
+    for h in about(q):
+        if h["url"] not in seen:
+            seen.add(h["url"])
+            got.append({"url": h["url"], "platform": h["platform"],
+                        "title": h["post_title"], "channel": "",
+                        "created": h["created"],
+                        "internet": {"upvotes": h["upvotes"],
+                                     "comments": h["comments"],
+                                     "post_title": h["post_title"],
+                                     "permalink": h["permalink"]}})
+    for v in youtube(q, days=days):
+        if v["url"] not in seen:
+            seen.add(v["url"])
+            got.append(v)
+    got = got[:n]
+    got.sort(key=lambda c: c["created"])
+    return got
+

@@ -766,6 +766,12 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   scout reads them as `r/LSF` lines, and the director cuts the
   back-and-forth in the order it was said — every accusation
   ATTRIBUTED, the accused's answer in the cut, one side alone refused.
+  The scout also NAMES whose side is missing (`other_side`), and
+  `hot_clips.other_side(person, versus)` searches r/LivestreamFail and
+  YouTube (clip-length only) for it before the director sees the story:
+  backtests 7-20 proposed Kai's half of that feud and were refused every
+  time. Reddit refuses the runner's API calls, so every r/LSF read falls
+  back to PullPush then the public RSS feed (`hot_clips._first`).
   `tests/test_a_story_is_a_chain_and_shows_what_it_talks_about.py`.
 - **Slots follow `_learned_prior()`, and it had no tests** until the day it
   was found inverted: kaicenat and buddha (median 5 and 8 views) at the

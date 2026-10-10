@@ -522,6 +522,110 @@ def test_reddit_refusing_the_api_still_reaches_the_posts():
     hot_clips._DEAD.clear()
 
 
+
+def _rt():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "run_third_other_side",
+        Path(__file__).resolve().parents[1] / "scripts" / "run_third.py")
+    rt = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(rt)
+    return rt
+
+
+def test_the_scout_names_whose_side_is_missing():
+    out = {"stories": [{"members": ["C1", "C2"], "premise": "Kai answers",
+                        "why_connected": "same feud", "shape": "multi_stream",
+                        "other_side": ["Reggie", "", 7, "a", "b"]}]}
+    with mock.patch.object(sd, "_brain", return_value=out):
+        got = sd.scout_stories(["C1 | x", "C2 | y"], {"C1", "C2"})
+    assert got[0]["other_side"] == ["Reggie", "a"]
+    assert "other_side" in sd._SCOUT_SYSTEM
+
+
+def test_a_missing_side_is_searched_for_and_joins_the_story():
+    rt = _rt()
+    members = [{"source_url": "https://clips.twitch.tv/KaiLie-1",
+                "channel": "kaicenat", "date": "2026-10-05"}]
+    found = [{"url": "https://x.com/reggie/status/11", "platform": "x",
+              "title": "Reggie's allegations", "channel": "",
+              "created": 1759300000.0,
+              "internet": {"upvotes": 5000, "post_title": "Reggie's"}},
+             {"url": "https://clips.twitch.tv/KaiLie-1", "platform": "twitch",
+              "title": "dup", "created": 1759400000.0},
+             {"url": "https://www.youtube.com/watch?v=Part2xx",
+              "platform": "youtube", "title": "Reggie part 2",
+              "channel": "Reggie", "created": 1759500000.0}]
+    from funnel import hot_clips
+    with mock.patch.object(hot_clips, "other_side",
+                           return_value=found) as srch:
+        got = rt._other_side_clips({"other_side": ["Reggie"]}, members, {})
+    assert srch.call_args[0] == ("Reggie", "Kai Cenat")
+    assert [g["platform"] for g in got] == ["x", "youtube"]
+    assert got[0]["date"] and got[0]["internet"]["upvotes"] == 5000
+    assert got[1]["channel"] == "Reggie"
+
+
+def test_a_youtube_video_or_reddit_post_keeps_its_own_identity():
+    rt = _rt()
+    a = rt._clip_key("https://www.youtube.com/watch?v=AAAAAA")
+    b = rt._clip_key("https://www.youtube.com/watch?v=BBBBBB")
+    assert a != b and a == rt._clip_key("https://youtu.be/AAAAAA?t=4")
+    assert rt._clip_key("https://www.reddit.com/r/LSF/comments/k1/x/") != \
+        rt._clip_key("https://www.reddit.com/r/LSF/comments/k2/x/")
+    # what the posted log already holds keys exactly as before
+    assert rt._clip_key("https://www.twitch.tv/a/clip/Slug-1?x") == "slug-1"
+
+
+def test_the_other_side_comes_from_reddit_and_youtube_oldest_first():
+    from funnel import hot_clips
+    posts = [{"url": "https://x.com/r/status/1", "platform": "x",
+              "slug": None, "post_title": "Reggie accuses Kai",
+              "upvotes": 9, "comments": 1, "permalink": "p", "created": 200}]
+    vids = [{"url": "https://www.youtube.com/watch?v=Old111",
+             "platform": "youtube", "title": "Reggie responds",
+             "channel": "Reggie", "created": 100}]
+    with mock.patch.object(hot_clips, "about", return_value=posts) as ab, \
+            mock.patch.object(hot_clips, "youtube", return_value=vids):
+        got = hot_clips.other_side("Reggie", "Kai Cenat")
+    assert ab.call_args[0][0] == "Reggie Kai Cenat"
+    assert [g["created"] for g in got] == [100, 200]
+    assert got[1]["internet"]["post_title"] == "Reggie accuses Kai"
+
+
+def test_youtube_keeps_only_clip_length_videos():
+    from funnel import hot_clips
+
+    def yt(params):
+        if params["_api"] == "search":
+            return {"items": [
+                {"id": {"videoId": "short1"}, "snippet": {
+                    "title": "Reggie &amp; Kai", "channelTitle": "R",
+                    "publishedAt": "2026-10-01T00:00:00Z"}},
+                {"id": {"videoId": "long22"}, "snippet": {"title": "2h"}}]}
+        return {"items": [{"id": "short1",
+                           "contentDetails": {"duration": "PT3M5S"}},
+                          {"id": "long22",
+                           "contentDetails": {"duration": "PT2H"}}]}
+    with mock.patch.object(hot_clips, "_yt", side_effect=yt):
+        got = hot_clips.youtube("Reggie Kai Cenat")
+    assert [g["url"][-6:] for g in got] == ["short1"]
+    assert got[0]["title"] == "Reggie & Kai" and got[0]["created"] > 0
+
+
+def test_a_rate_limited_feed_waits_and_asks_again():
+    import urllib.error
+    from funnel import hot_clips
+    err = urllib.error.HTTPError("u", 429, "slow", {"Retry-After": "0"},
+                                 None)
+    feed = (b"<feed><entry><title>t</title><link href=\"https://www."
+            b"reddit.com/r/x/comments/a/b/\"/></entry></feed>")
+    with mock.patch.object(hot_clips, "_fetch",
+                           side_effect=[err, feed]) as f:
+        got = hot_clips._rss("/r/x/top.json?t=week")
+    assert f.call_count == 2 and got["data"]["children"]
+
+
 class Everything(unittest.TestCase):
     """CI runs `unittest discover`, which collects only TestCases; every
     function above runs here as well as under pytest."""
