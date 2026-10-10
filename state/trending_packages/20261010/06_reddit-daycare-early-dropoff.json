@@ -16,39 +16,79 @@
     "story",
     "viral"
   ],
-  "script": "A mom at our daycare dropped her son off forty-five minutes before opening every single morning, waited in her car, then sent him in alone the second someone unlocked the door, and got furious when we started charging the early-drop fee she'd signed off on at enrollment. She called it theft, threatened to report us to the state licensing board, and demanded a refund for every fee we'd ever charged her. The inspector who showed up pulled our timestamped sign-in log and security footage instead of taking her word for it. It showed drop-offs as early as five forty for an eight o'clock opening, stretching back four months, and her own signature on the fee schedule from day one. The inspector also noticed she'd been writing a later arrival time on the paper sign-in sheet than the door camera showed, shaving minutes off her bill for months. She left owing us back-fees instead of getting a refund.",
+  "script": "Forty-five minutes early\u2014daily? A mom dropped her son at our daycare before opening every morning, waited in her car, then sent him in alone the moment someone unlocked the door. When we charged the early-drop fee she'd signed at enrollment, she called it theft, threatened the state licensing board, and demanded every fee back. The inspector checked our timestamped sign-in log and security footage. It showed arrivals as early as five forty for an eight o'clock opening, going back four months, plus her signature on the fee schedule from day one. Then the camera exposed the bonus trick: she'd written later arrival times on the paper sheet, shaving minutes off her bill for months. She left owing back-fees instead of getting a refund. Still trust that paper sign-in sheet?",
   "shots": [
     {
       "phrase": "dropped her son off forty-five minutes before opening",
-      "query": "empty parking lot sunrise"
+      "query": "empty parking lot sunrise",
+      "image_url": "https://drive.google.com/uc?export=download&id=1zry54x_FtLCf4JORb-Am9pDZpCz4qejY",
+      "media_origin": "chatgpt",
+      "media_file_id": "1zry54x_FtLCf4JORb-Am9pDZpCz4qejY",
+      "media_sha256": "fc662d971de560e0033621530e9bd3342d908a151579738446d25a9653f25c31",
+      "media_bytes": 2304781
     },
     {
       "phrase": "waited in her car",
-      "query": "car parked waiting window"
+      "query": "car parked waiting window",
+      "image_url": "https://drive.google.com/uc?export=download&id=1juxepMLc67jfN_IV8DYwYSLIewMLLWMk",
+      "media_origin": "chatgpt",
+      "media_file_id": "1juxepMLc67jfN_IV8DYwYSLIewMLLWMk",
+      "media_sha256": "bf40eafc0ce2e78dd8a1a5243af282b5560cc12ab26e17584f9f2bac2eea31de",
+      "media_bytes": 1980676
     },
     {
       "phrase": "got furious when we started charging the early-drop fee",
-      "query": "angry woman arms crossed"
+      "query": "angry woman arms crossed",
+      "image_url": "https://drive.google.com/uc?export=download&id=1DtjXvxa6hIIkooiHmcTMoy3Ns15ravQ-",
+      "media_origin": "chatgpt",
+      "media_file_id": "1DtjXvxa6hIIkooiHmcTMoy3Ns15ravQ-",
+      "media_sha256": "6e887085df06b2ce82fa649430fa073e54daa503d3c4b9a9f5cf7f83d08216e0",
+      "media_bytes": 2174462
     },
     {
       "phrase": "threatened to report us to the state licensing board",
-      "query": "official letterhead document"
+      "query": "official letterhead document",
+      "image_url": "https://drive.google.com/uc?export=download&id=1vG5RDACESLIvr0mHkIBOwLBJhHJLEoiE",
+      "media_origin": "chatgpt",
+      "media_file_id": "1vG5RDACESLIvr0mHkIBOwLBJhHJLEoiE",
+      "media_sha256": "7ac86386fdcf2b888ce160d9e64f826b5b841b52926956bf7afb4d9cd5655052",
+      "media_bytes": 1990569
     },
     {
       "phrase": "pulled our timestamped sign-in log and security footage",
-      "query": "security camera monitor footage"
+      "query": "security camera monitor footage",
+      "image_url": "https://drive.google.com/uc?export=download&id=11mqIocQL-UuQ-38j7EkRafgk5cS3WzyZ",
+      "media_origin": "chatgpt",
+      "media_file_id": "11mqIocQL-UuQ-38j7EkRafgk5cS3WzyZ",
+      "media_sha256": "73f942d2e7d5d0ac457757557ea07b46e90b912b28047dfc71e456d4b6dc0df6",
+      "media_bytes": 2208822
     },
     {
       "phrase": "her own signature on the fee schedule from day one",
-      "query": "signing paper pen closeup"
+      "query": "signing paper pen closeup",
+      "image_url": "https://drive.google.com/uc?export=download&id=1HUyHu5Yf-duXsp9JEKEZ37VzxW2ZVmlA",
+      "media_origin": "chatgpt",
+      "media_file_id": "1HUyHu5Yf-duXsp9JEKEZ37VzxW2ZVmlA",
+      "media_sha256": "38976652863d096b2890ab8f5bf3a5e7ead50c0be680e932b8401669affe4923",
+      "media_bytes": 1693603
     },
     {
       "phrase": "writing a later arrival time on the paper sign-in sheet",
-      "query": "clipboard sign in sheet"
+      "query": "clipboard sign in sheet",
+      "image_url": "https://drive.google.com/uc?export=download&id=1cZc3qDwe4sc0A2LgUsXYooMXZcT6LfXD",
+      "media_origin": "chatgpt",
+      "media_file_id": "1cZc3qDwe4sc0A2LgUsXYooMXZcT6LfXD",
+      "media_sha256": "ef0dec2debd0aa9551c96eb4e3bc8b38f1867bf5b0a86d89786ccd425ca187f4",
+      "media_bytes": 2229953
     },
     {
       "phrase": "She left owing us back-fees instead of getting a refund",
-      "query": "daycare entrance door closing"
+      "query": "daycare entrance door closing",
+      "image_url": "https://drive.google.com/uc?export=download&id=1N7Ieh9QektEgn-nh_2kibqqWJPXYuTf6",
+      "media_origin": "chatgpt",
+      "media_file_id": "1N7Ieh9QektEgn-nh_2kibqqWJPXYuTf6",
+      "media_sha256": "f33fea272242e0ba69a29f0d43c147f234aa9353b774c77cf73854272f714f61",
+      "media_bytes": 1845222
     }
   ],
   "punches": [
@@ -73,5 +113,6 @@
       "color": "#50ff80"
     }
   ],
-  "music_vibe": "dark"
+  "music_vibe": "dark",
+  "punched_up": true
 }

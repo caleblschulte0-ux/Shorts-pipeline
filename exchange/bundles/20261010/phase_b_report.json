@@ -1,0 +1,127 @@
+{
+  "date": "20261010",
+  "channel": "trending",
+  "done_marker": true,
+  "had_response": true,
+  "envelope_problems": [],
+  "authored": {
+    "promoted": 0,
+    "rejected": 0,
+    "other_channels": {
+      "explainer": {
+        "applied": 3,
+        "rejected": 0
+      },
+      "curiosity": {
+        "applied": 0,
+        "rejected": 0
+      }
+    }
+  },
+  "media": {
+    "fulfilled": 16,
+    "self_filled": 0,
+    "unfilled": 0,
+    "refused": 0
+  },
+  "checkpoints": {
+    "bundle_identity": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad",
+    "required": true,
+    "checked": 16,
+    "ok": 16,
+    "rejected": 0,
+    "warnings": 0,
+    "rejected_detail": [],
+    "warnings_detail": [],
+    "recovered_rejected_detail": []
+  },
+  "punchup": {
+    "applied": 2,
+    "kept": 4,
+    "rejected": 0,
+    "absent": 0
+  },
+  "contract_refused": [],
+  "details": [
+    {
+      "request_id": "05_reddit-gym-autorenew-contract-s0-537277150bf5",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-gym-autorenew-contract-s0-537277150bf5.png"
+    },
+    {
+      "request_id": "05_reddit-gym-autorenew-contract-s1-59eaaf32505e",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-gym-autorenew-contract-s1-59eaaf32505e.png"
+    },
+    {
+      "request_id": "05_reddit-gym-autorenew-contract-s2-a746067a8827",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-gym-autorenew-contract-s2-a746067a8827.png"
+    },
+    {
+      "request_id": "05_reddit-gym-autorenew-contract-s3-a215ba2bb4eb",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-gym-autorenew-contract-s3-a215ba2bb4eb.png"
+    },
+    {
+      "request_id": "05_reddit-gym-autorenew-contract-s4-93859643cb8c",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-gym-autorenew-contract-s4-93859643cb8c.png"
+    },
+    {
+      "request_id": "05_reddit-gym-autorenew-contract-s5-0df5c3a5ce71",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-gym-autorenew-contract-s5-0df5c3a5ce71.png"
+    },
+    {
+      "request_id": "05_reddit-gym-autorenew-contract-s6-2cbe9c1913f3",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-gym-autorenew-contract-s6-2cbe9c1913f3.png"
+    },
+    {
+      "request_id": "05_reddit-gym-autorenew-contract-s7-21f4db44b47b",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-gym-autorenew-contract-s7-21f4db44b47b.png"
+    },
+    {
+      "request_id": "06_reddit-daycare-early-dropoff-s0-e58592b5a8c7",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-daycare-early-dropoff-s0-e58592b5a8c7.png"
+    },
+    {
+      "request_id": "06_reddit-daycare-early-dropoff-s1-407326e34526",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-daycare-early-dropoff-s1-407326e34526.png"
+    },
+    {
+      "request_id": "06_reddit-daycare-early-dropoff-s2-05d73b084651",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-daycare-early-dropoff-s2-05d73b084651.png"
+    },
+    {
+      "request_id": "06_reddit-daycare-early-dropoff-s3-c2f1d3110ab2",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-daycare-early-dropoff-s3-c2f1d3110ab2.png"
+    },
+    {
+      "request_id": "06_reddit-daycare-early-dropoff-s4-106e84d528e8",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-daycare-early-dropoff-s4-106e84d528e8.png"
+    },
+    {
+      "request_id": "06_reddit-daycare-early-dropoff-s5-b277cdb12e5d",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-daycare-early-dropoff-s5-b277cdb12e5d.png"
+    },
+    {
+      "request_id": "06_reddit-daycare-early-dropoff-s6-999ad6478b02",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-daycare-early-dropoff-s6-999ad6478b02.png"
+    },
+    {
+      "request_id": "06_reddit-daycare-early-dropoff-s7-5ba792d5654f",
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-daycare-early-dropoff-s7-5ba792d5654f.png"
+    }
+  ]
+}
