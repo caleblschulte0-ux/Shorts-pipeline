@@ -3,17 +3,17 @@
     "topic": "One Parent Timed Every Drop-Off To Dodge The Fee. The Camera Didn't Lie.",
     "title": "One Parent Timed Every Drop-Off To Dodge The Fee. The Camera Didn't Lie.",
     "format": "reddit",
-    "publish_at": "2026-10-10T13:00:00Z",
+    "publish_at": "2026-10-10T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "quarantined: vision QA: broken \u2014 The third frame's TOP half is gameplay footage, but it is expected to be a story illustration based on the pipeline description ('the TOP half is a story illustration and the BOTTOM half is gameplay w",
-    "elapsed_seconds": 174.0,
+    "error": "showrunner_block: showrunner BLOCK: The story is satisfying, but its whole reveal (camera, signature, faked sign-in sheet) plays over one repeated PAST DUE stock photo, so the payoff is never shown.",
+    "elapsed_seconds": 228.7,
     "package_path": "state/trending_packages/20261010/06_reddit-daycare-early-dropoff.json",
     "source": "brain",
-    "video_path": "output/daily_20261010-115056_one_parent_timed_every_drop_off_to_dodge.mp4",
+    "video_path": "output/daily_20261010-130709_one_parent_timed_every_drop_off_to_dodge.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 45.867,
+      "duration": 43.633,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -24,24 +24,57 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.4
+      "loudness_lufs": -23.2
     },
     "qa": {
-      "ok": false,
-      "verdict": "broken",
-      "reason": "The third frame's TOP half is gameplay footage, but it is expected to be a story illustration based on the pipeline description ('the TOP half is a story illustration and the BOTTOM half is gameplay w"
+      "ok": true,
+      "verdict": "ok",
+      "reason": "short"
     },
-    "quarantined": true
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: The story is satisfying, but its whole reveal (camera, signature, faked sign-in sheet) plays over one repeated PAST DUE stock photo, so the payoff is never shown.",
+      "score": 57
+    },
+    "blocked": true
   },
   {
-    "topic": "'Tropical jungle' of wallabies, porcupines and parrots must move after neighbours complain",
-    "angle": "James Wale\u2019s private wildlife sanctuary is being forced to relocate dozens of exotic animals after a new neighbor\u2019s development threatens their habitat.",
-    "publish_at": "2026-10-10T13:00:00Z",
+    "topic": "Waterspout caught on camera in Crescent Beach - News4JAX",
+    "angle": "A sudden waterspout ripped up the surf at Crescent Beach, flashing on video and reminding viewers how quickly freak weather can turn a sunny day into danger.",
+    "publish_at": "2026-10-10T14:30:00Z",
     "ok": false,
     "video_url": null,
-    "error": "unfit_for_fiction: \"'Tropical jungle' of wallabies, porcupines and parrots must move after neighbours complain\" refused by the writer: The provided trend setting does not match the allowed occupations (cafe, hardware store, airport, rental office).",
-    "elapsed_seconds": 0.8,
-    "unfit": true,
+    "error": "showrunner_block: showrunner BLOCK: From 23.8s to the end, a leftover waterspout wave icon fills the top half of a cafe VIP story and never changes.",
+    "elapsed_seconds": 488.7,
+    "title": "I Served a Fake VIP and Turned the Tables in My Cafe",
+    "package_path": "state/trending_packages/20261010-131106_auto_waterspout_caught_on_camera_in_crescent_.json",
+    "video_path": "output/daily_20261010-131106_waterspout_caught_on_camera_in_crescent_.mp4",
+    "technical_qa": {
+      "analyzable": true,
+      "duration": 40.0,
+      "width": 1080,
+      "height": 1920,
+      "has_video": true,
+      "has_audio": true,
+      "black_spans": [],
+      "black_frac": 0.0,
+      "freeze_spans": [],
+      "freeze_frac": 0.0,
+      "silence_spans": [],
+      "silence_frac": 0.0,
+      "loudness_lufs": -25.8
+    },
+    "qa": {
+      "ok": true,
+      "verdict": "ok",
+      "reason": ""
+    },
+    "showrunner": {
+      "blocked": true,
+      "reason": "showrunner BLOCK: From 23.8s to the end, a leftover waterspout wave icon fills the top half of a cafe VIP story and never changes.",
+      "score": 49
+    },
+    "blocked": true,
     "backfill": true
   }
 ]

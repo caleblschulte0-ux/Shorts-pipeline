@@ -4,14 +4,12 @@
 
 - queued: **2**
 - succeeded: **0**
-- quarantined (off-topic imagery): **1**
-- failed: **1**
-
-## Quarantined (off-topic imagery — fix & re-author)
-- **One Parent Timed Every Drop-Off To Dodge The Fee. The Camera Didn't Lie.**
-  - quarantined: vision QA: broken — The third frame's TOP half is gameplay footage, but it is expected to be a story illustration based on the pipeline description ('the TOP half is a story illustration and the BOTTOM half is gameplay w
+- quarantined (off-topic imagery): **0**
+- failed: **2**
 
 ## Failed
-- **'Tropical jungle' of wallabies, porcupines and parrots must move after neighbours complain**
-  - error: `unfit_for_fiction: "'Tropical jungle' of wallabies, porcupines and parrots must move after neighbours complain" refused by the writer: The provided trend setting does not match the allowed occupations (cafe, hardware store, airport, rental office).`
+- **One Parent Timed Every Drop-Off To Dodge The Fee. The Camera Didn't Lie.**
+  - error: `showrunner_block: showrunner BLOCK: The story is satisfying, but its whole reveal (camera, signature, faked sign-in sheet) plays over one repeated PAST DUE stock photo, so the payoff is never shown.`
+- **Waterspout caught on camera in Crescent Beach - News4JAX**
+  - error: `showrunner_block: showrunner BLOCK: From 23.8s to the end, a leftover waterspout wave icon fills the top half of a cafe VIP story and never changes.`
 

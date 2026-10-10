@@ -6,12 +6,13 @@
   "previously_uploaded": 5,
   "rendered_or_attempted": 2,
   "uploaded": 5,
-  "quarantined": 1,
-  "failed": 1,
+  "quarantined": 0,
+  "failed": 2,
   "failed_by_stage": {
-    "infra_error": 1
+    "showrunner_block": 2
   },
   "failed_by_format": {
+    "reddit": 1,
     "unknown": 1
   },
   "status": "repair_required",
