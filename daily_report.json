@@ -1,214 +1,19 @@
 [
   {
-    "topic": "Duolingo Passed Rosetta Stone In Revenue",
-    "title": "Duolingo Passed Rosetta Stone In Revenue",
-    "format": "graph_race",
-    "publish_at": "2026-10-10T13:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/ybTwxHJp3N8",
-    "error": null,
-    "elapsed_seconds": 94.3,
-    "package_path": "state/trending_packages/20261010/01_graph-duolingo-rosetta-stone.json",
-    "source": "brain",
-    "video_path": "output/daily_20261010-113237_duolingo_passed_rosetta_stone_in_revenue.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.0
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 74
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261010-duolingo-passed-rosetta-stone-in-revenue-39ddd965"
-    }
-  },
-  {
-    "topic": "Temu Passed Amazon In App Downloads",
-    "title": "Temu Passed Amazon In App Downloads",
-    "format": "graph_race",
-    "publish_at": "2026-10-10T14:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/ND5_b2P9W3U",
-    "error": null,
-    "elapsed_seconds": 75.1,
-    "package_path": "state/trending_packages/20261010/02_graph-temu-amazon-downloads.json",
-    "source": "brain",
-    "video_path": "output/daily_20261010-113411_temu_passed_amazon_in_app_downloads.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.0
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 74
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261010-temu-passed-amazon-in-app-downloads-ea3b33be"
-    }
-  },
-  {
-    "topic": "Shein Is Now Bigger Than H&M",
-    "title": "Shein Is Now Bigger Than H&M",
-    "format": "graph_race",
-    "publish_at": "2026-10-10T16:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/5h3YM_mQtus",
-    "error": null,
-    "elapsed_seconds": 86.5,
-    "package_path": "state/trending_packages/20261010/03_graph-shein-hm-revenue.json",
-    "source": "brain",
-    "video_path": "output/daily_20261010-113526_shein_is_now_bigger_than_h_m.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 14.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 74
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261010-shein-is-now-bigger-than-h-m-3a2faede"
-    }
-  },
-  {
-    "topic": "Netflix's Revenue Just Beat All Of Hollywood's Theaters",
-    "title": "Netflix's Revenue Just Beat All Of Hollywood's Theaters",
-    "format": "graph_race",
-    "publish_at": "2026-10-10T17:30:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/y64dFdXeBJI",
-    "error": null,
-    "elapsed_seconds": 63.4,
-    "package_path": "state/trending_packages/20261010/04_graph-netflix-box-office.json",
-    "source": "brain",
-    "video_path": "output/daily_20261010-113653_netflix_s_revenue_just_beat_all_of_holly.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 8.375,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -25.2
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 78
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261010-netflix-s-revenue-just-beat-all-of-hollywood-s-t-a6733315"
-    }
-  },
-  {
-    "topic": "The Gym Auto-Renewed My Contract. Paragraph Nine Ended It.",
-    "title": "The Gym Auto-Renewed My Contract. Paragraph Nine Ended It.",
-    "format": "reddit",
-    "publish_at": "2026-10-10T19:00:00Z",
-    "ok": true,
-    "video_url": "https://youtube.com/shorts/8-q3zxRayBY",
-    "error": null,
-    "elapsed_seconds": 196.4,
-    "package_path": "state/trending_packages/20261010/05_reddit-gym-autorenew-contract.json",
-    "source": "brain",
-    "video_path": "output/daily_20261010-113757_the_gym_auto_renewed_my_contract__paragr.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 45.3,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -22.8
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": false,
-      "reason": "",
-      "score": 75
-    },
-    "channel": "default",
-    "logged": true,
-    "crossposts": {
-      "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261010-the-gym-auto-renewed-my-contract-paragraph-nine--abddd7ca"
-    }
-  },
-  {
     "topic": "One Parent Timed Every Drop-Off To Dodge The Fee. The Camera Didn't Lie.",
     "title": "One Parent Timed Every Drop-Off To Dodge The Fee. The Camera Didn't Lie.",
     "format": "reddit",
-    "publish_at": "2026-10-10T20:30:00Z",
+    "publish_at": "2026-10-10T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story's turn, the camera exposing the parent, is never shown: one 'PAST DUE' bill sits on screen for the last ~28s across five beats.",
-    "elapsed_seconds": 209.1,
+    "error": "quarantined: vision QA: broken \u2014 The third frame's TOP half is gameplay footage, but it is expected to be a story illustration based on the pipeline description ('the TOP half is a story illustration and the BOTTOM half is gameplay w",
+    "elapsed_seconds": 174.0,
     "package_path": "state/trending_packages/20261010/06_reddit-daycare-early-dropoff.json",
     "source": "brain",
-    "video_path": "output/daily_20261010-114115_one_parent_timed_every_drop_off_to_dodge.mp4",
+    "video_path": "output/daily_20261010-115056_one_parent_timed_every_drop_off_to_dodge.mp4",
     "technical_qa": {
       "analyzable": true,
-      "duration": 48.067,
+      "duration": 45.867,
       "width": 1080,
       "height": 1920,
       "has_video": true,
@@ -219,57 +24,24 @@
       "freeze_frac": 0.0,
       "silence_spans": [],
       "silence_frac": 0.0,
-      "loudness_lufs": -23.3
+      "loudness_lufs": -23.4
     },
     "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
+      "ok": false,
+      "verdict": "broken",
+      "reason": "The third frame's TOP half is gameplay footage, but it is expected to be a story illustration based on the pipeline description ('the TOP half is a story illustration and the BOTTOM half is gameplay w"
     },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The story's turn, the camera exposing the parent, is never shown: one 'PAST DUE' bill sits on screen for the last ~28s across five beats.",
-      "score": 57
-    },
-    "blocked": true
+    "quarantined": true
   },
   {
-    "topic": "Giant Rats Make Themselves At Home, Drive Families Out: Weird News & Oddities - Patch",
-    "angle": "Massive invasive rats have taken over homes across a U.S. town, forcing families to flee and sparking a costly pest\u2011control emergency.",
-    "publish_at": "2026-10-10T20:30:00Z",
+    "topic": "'Tropical jungle' of wallabies, porcupines and parrots must move after neighbours complain",
+    "angle": "James Wale\u2019s private wildlife sanctuary is being forced to relocate dozens of exotic animals after a new neighbor\u2019s development threatens their habitat.",
+    "publish_at": "2026-10-10T13:00:00Z",
     "ok": false,
     "video_url": null,
-    "error": "showrunner_block: showrunner BLOCK: The story's beats are hardly illustrated. The shots that do appear are generic emojis (one, a chair, is irrelevant) and an uncanny AI rat, so the cause and effect is never shown.",
-    "elapsed_seconds": 201.3,
-    "title": "I Turned My Manager's Rat Scam Into a Pay Raise",
-    "package_path": "state/trending_packages/20261010-114454_auto_giant_rats_make_themselves_at_home__driv.json",
-    "video_path": "output/daily_20261010-114454_giant_rats_make_themselves_at_home__driv.mp4",
-    "technical_qa": {
-      "analyzable": true,
-      "duration": 42.033,
-      "width": 1080,
-      "height": 1920,
-      "has_video": true,
-      "has_audio": true,
-      "black_spans": [],
-      "black_frac": 0.0,
-      "freeze_spans": [],
-      "freeze_frac": 0.0,
-      "silence_spans": [],
-      "silence_frac": 0.0,
-      "loudness_lufs": -24.3
-    },
-    "qa": {
-      "ok": true,
-      "verdict": "ok",
-      "reason": "short"
-    },
-    "showrunner": {
-      "blocked": true,
-      "reason": "showrunner BLOCK: The story's beats are hardly illustrated. The shots that do appear are generic emojis (one, a chair, is irrelevant) and an uncanny AI rat, so the cause and effect is never shown.",
-      "score": 57
-    },
-    "blocked": true,
+    "error": "unfit_for_fiction: \"'Tropical jungle' of wallabies, porcupines and parrots must move after neighbours complain\" refused by the writer: The provided trend setting does not match the allowed occupations (cafe, hardware store, airport, rental office).",
+    "elapsed_seconds": 0.8,
+    "unfit": true,
     "backfill": true
   }
 ]
