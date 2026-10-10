@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261010",
+  "bundle": {
+    "identity": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad",
+    "path": "exchange/bundles/20261010/bundle.json"
+  },
+  "request_id": "06_reddit-daycare-early-dropoff-s4-106e84d528e8",
+  "safe_request_id": "06_reddit-daycare-early-dropoff-s4-106e84d528e8",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "beb5b7c7f53a03bd82bf2d0aef9a8a3a70885c8c1ab2c36c37242448c429c0b3",
+  "prompt_used": "An editorial illustration for a short-form video: security camera monitor footage. It accompanies the narration: \"pulled our timestamped sign-in log and security footage\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "11mqIocQL-UuQ-38j7EkRafgk5cS3WzyZ",
+    "filename": "20261010__06_reddit-daycare-early-dropoff-s4-106e84d528e8.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=11mqIocQL-UuQ-38j7EkRafgk5cS3WzyZ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "filename": "20261010__06_reddit-daycare-early-dropoff-s4-106e84d528e8.png",
+    "sha256": "73f942d2e7d5d0ac457757557ea07b46e90b912b28047dfc71e456d4b6dc0df6",
+    "bytes": 2208822,
+    "width": 1145,
+    "height": 1374,
+    "format": "png"
+  },
+  "verified_at": "2026-10-10T11:27:11.877Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
