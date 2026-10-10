@@ -1,208 +1,155 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "decorative_mascot": {
-   "count": 23,
-   "stories": {
-    "body-renewal-clock": 3,
-    "insect-planet": 1,
-    "activity-inequality-steps": 5,
-    "highest-point-illusion": 6,
-    "volcano-country-ranking": 3,
-    "adhd-diagnosis-surge": 1,
-    "parker-solar-probe-speed-record": 1,
-    "twin-birth-rate-rise": 3
-   },
-   "timestamps": [
-    "2026-10-09T13:35:33+00:00",
-    "2026-10-09T13:39:57+00:00",
-    "2026-10-09T13:45:08+00:00",
-    "2026-10-09T13:49:23+00:00",
-    "2026-10-09T13:55:45+00:00",
-    "2026-10-09T13:55:45+00:00",
-    "2026-10-09T14:00:41+00:00",
-    "2026-10-09T14:05:24+00:00",
-    "2026-10-09T14:05:24+00:00",
-    "2026-10-09T14:09:41+00:00",
-    "2026-10-09T14:09:41+00:00",
-    "2026-10-09T14:13:49+00:00",
-    "2026-10-09T14:13:49+00:00",
-    "2026-10-09T14:17:47+00:00",
-    "2026-10-09T14:17:47+00:00",
-    "2026-10-09T14:24:16+00:00",
-    "2026-10-09T14:24:16+00:00",
-    "2026-10-09T14:24:16+00:00",
-    "2026-10-09T14:29:59+00:00",
-    "2026-10-09T14:34:21+00:00",
-    "2026-10-09T14:57:18+00:00",
-    "2026-10-09T15:07:51+00:00",
-    "2026-10-09T16:13:30+00:00"
-   ],
-   "examples": [
-    "decorative_mascot: seg1:start\u2013seg4:end: Data stands beside or on top of the chart in the same bobbing pose throughout. At seg1 he covers the '5 days' label, at seg3:end he perches on the line end, and",
-    "decorative_mascot: seg1:start-end, Data stands on top of the '5 days' bubble with his hands up; seg2:mid-end, he stands beside the pink bar; seg4:start-end, he stands still over '0T'. He never does an",
-    "decorative_mascot: seg1:start-end: Data stands over the labels with his arms raised and does nothing to the circles. seg2:mid/end: he hovers beside the pink bar. seg4:start-end: he is parked on the 0T"
-   ],
-   "recurred_after_fix": false
-  },
   "other": {
-   "count": 15,
+   "count": 9,
    "stories": {
-    "body-renewal-clock": 3,
-    "insect-planet": 1,
-    "activity-inequality-steps": 2,
-    "highest-point-illusion": 2,
-    "adhd-diagnosis-surge": 1,
     "parker-solar-probe-speed-record": 1,
-    "twin-birth-rate-rise": 5
+    "twin-birth-rate-rise": 5,
+    "one_parent_timed_every_drop_off_to_dodge": 1,
+    "youth-sports-dropout": 1,
+    "ingenuity-mars-helicopter-flights": 1
    },
    "timestamps": [
-    "2026-10-09T13:35:33+00:00",
-    "2026-10-09T13:39:57+00:00",
-    "2026-10-09T13:45:08+00:00",
-    "2026-10-09T13:49:23+00:00",
-    "2026-10-09T13:55:45+00:00",
-    "2026-10-09T14:00:41+00:00",
-    "2026-10-09T14:09:41+00:00",
-    "2026-10-09T14:13:49+00:00",
-    "2026-10-09T14:29:59+00:00",
     "2026-10-09T14:34:21+00:00",
     "2026-10-09T14:57:18+00:00",
     "2026-10-09T15:07:51+00:00",
     "2026-10-09T15:31:14+00:00",
     "2026-10-09T16:13:30+00:00",
-    "2026-10-09T16:43:10+00:00"
+    "2026-10-09T16:43:10+00:00",
+    "2026-10-10T13:10:55+00:00",
+    "2026-10-10T16:23:30+00:00",
+    "2026-10-10T17:21:36+00:00"
    ],
    "examples": [
-    "unreadable: hook@0.3 and seg0:end: '120 d28 d5 days' and 'Red blood cellSkin Stomach lining' print on top of each other. seg1:start\u2013seg1:end: '5 day28 days' collides and Data covers it, and 'Stomach l",
-    "unreadable: hook@0.3 and seg0:end: '120 d28 d5days' and 'Red blood cellSkin Stomach lining' are printed on top of each other; seg1:mid shows '5 day28 days' overlapping; seg4:mid/end: the 30T bubble is",
-    "unreadable: seg0:end and hook@0.3: the labels collide as \"120 d28sdays\" and \"Red blood cellSkin\"/\"cellSIStomach lining\". seg1:mid shows \"5 da28 days\" overlapped and covered by Data. seg4:mid/end: the "
+    "unreadable: seg4:start to seg4:end: Data's ladder covers the 'w' of the 'New York to Tokyo' label, which reads 'Ne  York'. seg3:end: the '56' inside the yellow bubble is doubled and smeared ('5\u0431').",
+    "unreadable: In seg2:end Data's body sits on top of the '46%' label so it reads as a fragment. In payoff@-0.4 Data covers the end of the line next to '2%', and two empty outline circles mark nothing. I",
+    "unreadable: seg2:end: Data's head covers the '4' of the 46% value label. seg1:start: the subtitle 'from 18.9 to' is faded nearly into the background. payoff@-0.4: empty rings float over the chart, imp"
+   ],
+   "recurred_after_fix": false
+  },
+  "decorative_mascot": {
+   "count": 5,
+   "stories": {
+    "parker-solar-probe-speed-record": 1,
+    "twin-birth-rate-rise": 3,
+    "youth-sports-dropout": 1
+   },
+   "timestamps": [
+    "2026-10-09T14:34:21+00:00",
+    "2026-10-09T14:57:18+00:00",
+    "2026-10-09T15:07:51+00:00",
+    "2026-10-09T16:13:30+00:00",
+    "2026-10-10T16:23:30+00:00"
+   ],
+   "examples": [
+    "decorative_mascot: hook@0.3 to seg0:end: Data stands on a ladder pointing at the 430K bar. seg1:start to seg1:end: arms raised, sliding along the timeline. seg2: two copies of Data stand beside the nu",
+    "decorative_mascot: In hook@0.3 and seg0:end Data stands on a ladder beside the bars and points. In seg1:mid and seg1:end he floats between bar rows, in seg2:mid he stands on the 35-39 bar, and in seg3",
+    "decorative_mascot: hook@0.3 to seg0:end: Data stands on a ladder pointing at a static bar. seg1:mid/end and seg2:start/mid: he floats between bar rows doing nothing to them. seg3 and seg4: he stands a"
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
-   "count": 13,
+   "count": 5,
    "stories": {
-    "body-renewal-clock": 4,
-    "insect-planet": 1,
-    "activity-inequality-steps": 3,
-    "highest-point-illusion": 3,
-    "volcano-country-ranking": 1,
-    "parker-solar-probe-speed-record": 1
+    "parker-solar-probe-speed-record": 1,
+    "giant_rats_make_themselves_at_home__driv": 1,
+    "one_parent_timed_every_drop_off_to_dodge": 1,
+    "waterspout_caught_on_camera_in_crescent_": 1,
+    "youth-sports-dropout": 1
    },
    "timestamps": [
-    "2026-10-09T13:35:33+00:00",
-    "2026-10-09T13:35:33+00:00",
-    "2026-10-09T13:39:57+00:00",
-    "2026-10-09T13:45:08+00:00",
-    "2026-10-09T13:49:23+00:00",
-    "2026-10-09T13:55:45+00:00",
-    "2026-10-09T14:00:41+00:00",
-    "2026-10-09T14:05:24+00:00",
-    "2026-10-09T14:09:41+00:00",
-    "2026-10-09T14:13:49+00:00",
-    "2026-10-09T14:17:47+00:00",
-    "2026-10-09T14:24:16+00:00",
-    "2026-10-09T14:34:21+00:00"
+    "2026-10-09T14:34:21+00:00",
+    "2026-10-10T11:48:13+00:00",
+    "2026-10-10T13:10:55+00:00",
+    "2026-10-10T13:19:11+00:00",
+    "2026-10-10T16:23:30+00:00"
    ],
    "examples": [
-    "junk_imagery: hook@0.3\u2013seg0:end: a garbled AI-style skeleton torso cutout with no arms below the elbow and no legs, over a dark void. Glossy generic 'cell' blobs (green sphere, green drop) also sit be",
-    "empty_void: hook@0.8 / seg0:start: about 55% of the frame below the skeleton is an empty dark gradient, with one small figure at the top.",
-    "empty_void: hook@0.8, seg0:start and hook@1.5: the whole bottom half of the frame, between the skeleton and the caption, is empty dark gradient"
-   ],
-   "recurred_after_fix": false
-  },
-  "bare_number": {
-   "count": 9,
-   "stories": {
-    "permafrost-thaw": 1,
-    "body-renewal-clock": 2,
-    "insect-planet": 1,
-    "activity-inequality-steps": 1,
-    "highest-point-illusion": 2,
-    "volcano-country-ranking": 1,
-    "parker-solar-probe-speed-record": 1
-   },
-   "timestamps": [
-    "2026-10-09T13:17:38+00:00",
-    "2026-10-09T13:35:33+00:00",
-    "2026-10-09T13:39:57+00:00",
-    "2026-10-09T13:49:23+00:00",
-    "2026-10-09T14:00:41+00:00",
-    "2026-10-09T14:13:49+00:00",
-    "2026-10-09T14:17:47+00:00",
-    "2026-10-09T14:24:16+00:00",
-    "2026-10-09T14:34:21+00:00"
-   ],
-   "examples": [
-    "bare_number_card: In seg1:mid and seg1:end every bar track is empty. Only the right-hand values (-8, -6.5, -5, -3.5, -2.3) carry the data, so it is a column of numbers, not a demonstration.",
-    "bare_number_card: seg4:mid\u2013seg4:end: the closing is just five circles labelled 0T/8.3T/16.5T/24.8T/30T on a dark background, a bubble version of the line chart already shown in seg3.",
-    "bare_number_card: seg4:start-end, the payoff is five circles labelled 0T, 8.3T, 16.5T, 24.8T and 30T under 'skin is younger than your phone'. They are bare numbers on blobs and none of them is about s"
+    "empty_void: seg1:start to seg1:end: the timeline is a thin line at mid-frame, and the area below it down to the caption (about 35% of the frame) is empty dark gradient. seg3:start: two small circles i",
+    "empty_void: mid4/mid5/payoff@-0.4: a flat emoji sits centred on a dark navy gradient, leaving most of the top half as dead dark space; mid3 is a murky grey wall",
+    "empty_void: mid2: a small flat camera icon sits on a near-black gradient, and the gameplay below is a dark, featureless purple floor. Most of the frame is dead dark space."
    ],
    "recurred_after_fix": false
   },
   "dead_air": {
    "count": 3,
    "stories": {
-    "activity-inequality-steps": 2,
-    "highest-point-illusion": 1
+    "one_parent_timed_every_drop_off_to_dodge": 2,
+    "waterspout_caught_on_camera_in_crescent_": 1
    },
    "timestamps": [
-    "2026-10-09T14:00:41+00:00",
-    "2026-10-09T14:05:24+00:00",
-    "2026-10-09T14:13:49+00:00"
+    "2026-10-10T11:44:42+00:00",
+    "2026-10-10T13:10:55+00:00",
+    "2026-10-10T13:19:11+00:00"
    ],
    "examples": [
-    "dead_air: hook@0.3 through seg0:end (0.3-3.75s) is the same high-jump frame. Only the caption karaoke changes and Data never jumps. The measured max_dup_run of 18 lands at 13.75s, in the seg3 column h",
-    "dead_air: The hook frame barely changes from hook@0.3 to seg0:end (about 3.4s). Only the karaoke word and Data's arms move, and the measured hold is 5.83s at t=0.",
-    "dead_air: seg3:mid, payoff@-1.8, seg4:start, seg4:mid, seg4:end and payoff@-0.4 show the same ladder frame for about 2.5s. seg0:start to seg0:end (about 3s) is one static ring with small blob jitter."
+    "dead_air: The top-half picture is the same 'PAST DUE' bill in mid2 (19.9s), mid3, mid4, mid5 and payoff@-0.4 (47.7s). That is about 28s across at least five story beats (fee, threat, log/footage, sign",
+    "dead_air: The top-panel illustration is the same PAST DUE photo from mid3 (25.98s) through mid4, mid5, payoff@-1.8 and payoff@-0.4 (43.23s). That is about 17s and four story beats (footage, her signat",
+    "dead_air: The identical static wave icon fills the top half from mid3 (23.8s) to payoff@-0.4 (39.6s). That is about 16s with no change, and mid5 and payoff@-1.8 are the same frame. Only the gameplay u"
    ],
    "recurred_after_fix": false
   },
   "junk_imagery": {
-   "count": 1,
+   "count": 2,
    "stories": {
-    "body-renewal-clock": 1
+    "giant_rats_make_themselves_at_home__driv": 1,
+    "waterspout_caught_on_camera_in_crescent_": 1
    },
    "timestamps": [
-    "2026-10-09T13:39:57+00:00"
+    "2026-10-10T11:48:13+00:00",
+    "2026-10-10T13:19:11+00:00"
    ],
    "examples": [
-    "junk_imagery: hook@0.3 through seg0:end: a glossy AI-style 3D skeleton torso with no arms or legs, plus generic blob icons (a red dot cluster, a green ball, a green drop) standing in for red blood cel"
+    "junk_imagery: mid4: a generic clip-art wooden CHAIR icon fills the top half over 'THE MANAGER PANICKED' \u2014 it has nothing to do with rats, a manager or panic; mid1 is an off-key AI rat in a grey jumpsu",
+    "junk_imagery: mid3 through payoff@-0.4: a generic blue wave icon (left over from the waterspout news topic) fills the top half while the story is about a fake VIP badge in a cafe. It has nothing to do"
+   ],
+   "recurred_after_fix": false
+  },
+  "bare_number": {
+   "count": 1,
+   "stories": {
+    "parker-solar-probe-speed-record": 1
+   },
+   "timestamps": [
+    "2026-10-09T14:34:21+00:00"
+   ],
+   "examples": [
+    "bare_number_card: seg2:start to seg2:end: '24.8K' and '430K' as big text beside two Data figures, with no picture of the 17x gap. seg3: '56' and '208' printed inside plain circles."
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 1,
+   "median": 2,
    "min": 1,
    "max": 3
   },
   "data_demo": {
-   "median": 1,
-   "min": 1,
-   "max": 3
+   "median": 3,
+   "min": 0,
+   "max": 4
   },
   "mascot": {
-   "median": 1,
-   "min": 0,
-   "max": 3
+   "median": 3,
+   "min": 1,
+   "max": 4
   },
   "craft": {
-   "median": 1,
-   "min": 0,
+   "median": 2,
+   "min": 1,
    "max": 2
   },
   "pace": {
-   "median": 1,
+   "median": 2,
    "min": 1,
    "max": 2
   },
   "payoff": {
-   "median": 0,
+   "median": 1,
    "min": 0,
-   "max": 1
+   "max": 2
   },
   "temporal_craft": {
    "median": 3,
@@ -211,25 +158,25 @@
   }
  },
  "scores": [
+  35,
+  35,
+  35,
+  74,
+  35,
+  74,
+  74,
+  74,
+  74,
+  74,
+  78,
+  75,
   57,
-  27,
-  27,
-  31,
-  44,
-  35,
-  44,
-  35,
-  39,
-  39,
-  39,
-  35,
-  48,
-  35,
-  35,
-  35,
+  57,
+  57,
+  49,
+  57,
   74,
-  35,
-  74,
+  79,
   74
  ]
 }
