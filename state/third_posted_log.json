@@ -12337,14 +12337,59 @@
       "ts": "2026-10-10T12:39:44.330772+00:00"
     },
     "clip-20261010-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/xqc/clip/OutstandingOilyOrcaDoggo-nzD9VcfuL5VIrR7Y",
-      "story_key": null,
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/yz-0eTlnjY4",
       "title": "Xqc Can't Believe What Just Happened After This Crazy Escape",
       "kind": "twitch_clip",
-      "ts": "2026-10-10T12:43:47.483387+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-10T12:43:53.083622+00:00",
+      "uploaded_at": "2026-10-10T12:43:53.083637+00:00",
+      "publish_at": "2026-10-10T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261010-xqc-can-t-believe-what-just-happened-after-this--2b7d12aa",
+        "tiktok": "queued for 2026-10-10T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/xqc/clip/OutstandingOilyOrcaDoggo-nzD9VcfuL5VIrR7Y",
+      "streamer": "xqc",
+      "series": "chaos",
+      "hook": "xqc pulls off a crazy escape \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3520,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 36.57
+      },
+      "director_cut": true
+    },
+    "rejected-sincerespunkyeaglepetezaroll-bter63wup8q4ewnv": {
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/SincereSpunkyEaglePeteZaroll-BtER63WUp8q4ewNV",
+      "streamer": "ishowspeed",
+      "title": "Ishowspeed Can't Stop Laughing At What He Just Saw",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture fills only about a third of the 9:16 canvas. It is a thin strip with large blurred areas above and bel; vision: The subject is tiny and lost. Speed's reaction is a small facecam in the corner or a small figure at the bottom-left of ; vision: The renderer did not crop toward",
+      "ts": "2026-10-10T12:50:55.636332+00:00"
+    },
+    "rejected-rudehedonisticjaguarohmydog-h2ntt7pn8rhppu4f": {
+      "source_url": "https://www.twitch.tv/xqc/clip/RudeHedonisticJaguarOhMyDog-h2nTt7PN8RHPPU4f",
+      "streamer": "xqc",
+      "title": "what does he mean the opposite?",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (GTA RP clothing menu, just talking)",
+      "ts": "2026-10-10T12:52:14.773596+00:00"
+    },
+    "rejected-jazzyincredulouscasettecharlietheunicorn-fmaiol0yo-p7kvmm": {
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/JazzyIncredulousCasetteCharlietheUnicorn-fMAIol0yO-p7KVmm",
+      "streamer": "joe_bartolozzi",
+      "title": "Joe Joe_Bartolozzi Reacts To The Momo Story And Gets Scared At The End",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about a third of the canvas height, in nearly every frame. The blurred padding takes ; vision: The streamer's face cam is a tiny inset in the top-right corner for most of the clip (1s\u201326s), so the reaction is hard t; vision: The main content is a small scre",
+      "ts": "2026-10-10T12:57:09.723723+00:00"
     }
   }
 }

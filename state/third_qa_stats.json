@@ -1,348 +1,6 @@
 {
   "runs": [
     {
-      "date": "20260929",
-      "dry_run": false,
-      "ts": "2026-09-29T23:50:33+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 113,
-        "with_retention": 102,
-        "with_curve": 15,
-        "fetched_at": "2026-09-29T23:06:22.086327+00:00"
-      },
-      "brain": {
-        "ok": 1,
-        "fail": 27
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260929-1",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Jasontheween Did Not See That Coming",
-              "raw": "rakai",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 121.4
-        },
-        {
-          "slug": "clip-20260929-2",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Jasontheween Did Not See That Coming",
-              "raw": "rakai",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 121.5
-        },
-        {
-          "slug": "clip-20260929-3",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Jasontheween Did Not See That Coming",
-              "raw": "rakai",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 121.8
-        },
-        {
-          "slug": "clip-20260929-4",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Jasontheween Did Not See That Coming",
-              "raw": "rakai",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 121.2
-        },
-        {
-          "slug": "clip-20260929-5",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Jasontheween Did Not See That Coming",
-              "raw": "rakai",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 125.2
-        },
-        {
-          "slug": "clip-20260929-6",
-          "ok": false,
-          "skipped": "unjudged: no content judge could evaluate this clip (ranker blind, content gate and vision both unavailable) \u2014 refusing to publish on view count alone",
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 280,
-                "scouted": [],
-                "vod_arcs": 181,
-                "candidates": 277,
-                "pool": 1359,
-                "pool_with_vod": 1288,
-                "arc_sizes": [
-                  2,
-                  2,
-                  2,
-                  2,
-                  3,
-                  3,
-                  2,
-                  2,
-                  3,
-                  2
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "kaicenat@vod2859079447",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "sodapoppin@vod2883882123",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "sodapoppin@vod2863459276",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "stableronaldo@vod2864388285",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "kaicenat@vod2859079447",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                },
-                {
-                  "cluster": "emiru@vod2860987916",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 scene analysis could not read the clips"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "blind": true
-            },
-            "content": {
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": false,
-              "verdict": "unavailable"
-            },
-            "title": {
-              "source": "floor",
-              "title": "Jasontheween Did Not See That Coming",
-              "raw": "rakai",
-              "kept_raw": false
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 377.2
-        }
-      ]
-    },
-    {
       "date": "20260930",
       "dry_run": false,
       "ts": "2026-09-30T12:19:59+00:00",
@@ -8015,6 +7673,551 @@
             }
           },
           "took_s": 223.1
+        }
+      ]
+    },
+    {
+      "date": "20261010",
+      "dry_run": false,
+      "ts": "2026-10-10T12:57:09+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 131,
+        "with_retention": 111,
+        "with_curve": 14,
+        "fetched_at": "2026-10-10T08:46:14.806744+00:00"
+      },
+      "brain": {
+        "ok": 46,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261010-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 53,
+                "refused_shown": 20,
+                "scouted": [
+                  {
+                    "premise": "Jynxzi watches England equalize against Argentina in disbelief, then watches them fall to Argentina while the team keeps",
+                    "shape": "one_stream",
+                    "n": 2
+                  },
+                  {
+                    "premise": "Kai Cenat screams at someone not to die, then reacts as Speed dies and goes down on stream.",
+                    "shape": "multi_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 293,
+                "moments": 40,
+                "candidates": 484,
+                "pool": 2846,
+                "pool_with_vod": 1978,
+                "arc_sizes": [
+                  2,
+                  3,
+                  2,
+                  2,
+                  5,
+                  4,
+                  2,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:jynxzi/jynxzi-argentina-england-2026w30",
+                  "outcome": "table_read_failed",
+                  "why": "table read 38 < 50 \u2014 not rendered; weak_payoff: The cut ends on the stunned 'Messy.' and never answers whether the match is decided or stays tense. Add the result or final whistle, or reframe the question around the near-miss so the last beat resol; missing_context: The explosion in the first clip i"
+                },
+                {
+                  "cluster": "esfandtv@momentpunchysarcasticskirretsmorc-wx0qyiuanwgib-mx",
+                  "outcome": "already_refused",
+                  "why": "2026-10-09: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2821557824",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: director judged: not a story \u2014 The two sources are unrelated moments from one broadcast. The first is Kai role-playing a school authority who sends the hoodie g"
+                },
+                {
+                  "cluster": "scout:kaicenat/kaicenat-cenat-down-2026w32",
+                  "outcome": "table_read_failed",
+                  "why": "table read 38 < 50 \u2014 not rendered; confusing: The opening 'don't die' clip never says who or what Kai is trying to save, so the central question is not set up. Open on the cause (Speed in danger or the fall), or add a line naming Speed and the si; confusing: The 'The next day' overlay breaks the cha"
+                },
+                {
+                  "cluster": "esfandtv@momentobliqueexquisitepiecharlietheunicorn-r8zee3bs",
+                  "outcome": "already_refused",
+                  "why": "2026-10-09: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2820831944",
+                  "outcome": "already_refused",
+                  "why": "2026-10-07: director judged: not a story \u2014 The three clips are consecutive bits from one Streamer University broadcast: Kai, playing university president, greets a line of "
+                },
+                {
+                  "cluster": "ohnepixel@momenthumblekathishsheepdancingbaby-q31lszeeskobfd",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2822355279",
+                  "outcome": "already_refused",
+                  "why": "2026-10-09: director judged: not a story \u2014 The two clips are consecutive bits from the same 'Streamer University' roleplay, but they show no change. In the first, Kai reads"
+                },
+                {
+                  "cluster": "kaicenat@momentboldsuspiciouswatercressgrammarking-jifdf5_8p",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: every beat is from one source \u2014 a clip, not a story"
+                },
+                {
+                  "cluster": "sodapoppin@vod2872274770",
+                  "outcome": "already_refused",
+                  "why": "2026-10-06: sources fail preflight: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "shroud@momentpreciousrelievedcodcorgiderp-iqjahmal8jqqh78f",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2872697283",
+                  "outcome": "already_refused",
+                  "why": "2026-10-07: director judged: not a story \u2014 The five clips are silent runway footage with no speech, so the sources never state a premise, a change, or a payoff. No frame id"
+                },
+                {
+                  "cluster": "kaicenat@momentcreativeflirtydunlinm4xheh-qmubymsa6rvij7jd/k",
+                  "outcome": "narrative_failed",
+                  "why": "scores [62, 58, 58] after 2 revision(s) \u2014 @12s missing_context: Ron is never introduced. The overlay 'Kai told chat: get Ron in' gives a name but no reason to care. Add a short line, such as 'Ron: the one student Kai is afraid of', before he enters, or cut straigh; @18s weak_payoff: The ending is a "
+                },
+                {
+                  "cluster": "plaqueboymax@vod2874466121",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: director judged: not a story \u2014 The three clips are consecutive moments from one stream (11m, 27m, 32m in), but they don't form a setup, escalation and payoff. C"
+                },
+                {
+                  "cluster": "ishowspeed@momentmagnificentcaringlapwinglitfam--majf-ezbaoy",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 This is a run of unrelated reactions, not a chain. Before the clip, Speed checks whether his mic is too loud and reacts to a TikTok about the Sun. In the clip he chants 'Stop piece!' at a fashion-show"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.55,
+              "why": "wholesome-ish, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "emotional streamer, unclear cause, chat ",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "Garbled, overlapping word caption at ~19.8s (reads like 'GI MINUTE A'). It is brief and sits in the padding, so it is a ",
+                "The middle gameplay/chat panel is busy and small, but the facecam on top carries the clip."
+              ]
+            }
+          },
+          "took_s": 196.1
+        },
+        {
+          "slug": "clip-20261010-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 62,
+                "refused_shown": 20,
+                "scouted": [
+                  {
+                    "premise": "Buddha is promised his coin will pump 'beyond the multiverse', then the next day loses $800 when the coin he buys into i",
+                    "shape": "multi_stream",
+                    "n": 2
+                  }
+                ],
+                "vod_arcs": 293,
+                "moments": 40,
+                "candidates": 482,
+                "pool": 2846,
+                "pool_with_vod": 1978,
+                "arc_sizes": [
+                  2,
+                  3,
+                  2,
+                  2,
+                  5,
+                  4,
+                  2,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:buddha",
+                  "outcome": "already_refused",
+                  "why": "2026-10-03: director judged: not a story \u2014 The footage does not show the scout's story. (1) The promise: the 09-10 clip has only one fragmentary line at 161-167s ('Don't sa"
+                },
+                {
+                  "cluster": "esfandtv@momentpunchysarcasticskirretsmorc-wx0qyiuanwgib-mx",
+                  "outcome": "already_refused",
+                  "why": "2026-10-09: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2821557824",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: director judged: not a story \u2014 The two sources are unrelated moments from one broadcast. The first is Kai role-playing a school authority who sends the hoodie g"
+                },
+                {
+                  "cluster": "esfandtv@momentobliqueexquisitepiecharlietheunicorn-r8zee3bs",
+                  "outcome": "already_refused",
+                  "why": "2026-10-09: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2820831944",
+                  "outcome": "already_refused",
+                  "why": "2026-10-07: director judged: not a story \u2014 The three clips are consecutive bits from one Streamer University broadcast: Kai, playing university president, greets a line of "
+                },
+                {
+                  "cluster": "kaicenat@momentboldsuspiciouswatercressgrammarking-jifdf5_8p",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: every beat is from one source \u2014 a clip, not a story"
+                },
+                {
+                  "cluster": "kaicenat@vod2822355279",
+                  "outcome": "already_refused",
+                  "why": "2026-10-09: director judged: not a story \u2014 The two clips are consecutive bits from the same 'Streamer University' roleplay, but they show no change. In the first, Kai reads"
+                },
+                {
+                  "cluster": "kaicenat@momentcreativeflirtydunlinm4xheh-qmubymsa6rvij7jd",
+                  "outcome": "already_refused",
+                  "why": "2026-10-10: rendered; critic scored 58 after 2 revision(s) \u2014 @12s missing_context: Ron is never introduced. The overlay 'Kai told chat: get Ron in' gives a name but no reas"
+                },
+                {
+                  "cluster": "sodapoppin@vod2872274770",
+                  "outcome": "already_refused",
+                  "why": "2026-10-06: sources fail preflight: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "ishowspeed@momentmagnificentcaringlapwinglitfam--majf-ezbaoy",
+                  "outcome": "already_refused",
+                  "why": "2026-10-10: director judged: not a story \u2014 This is a run of unrelated reactions, not a chain. Before the clip, Speed checks whether his mic is too loud and reacts to a TikT"
+                },
+                {
+                  "cluster": "kaicenat@vod2872697283",
+                  "outcome": "already_refused",
+                  "why": "2026-10-07: director judged: not a story \u2014 The five clips are silent runway footage with no speech, so the sources never state a premise, a change, or a payoff. No frame id"
+                },
+                {
+                  "cluster": "ishowspeed@momentsincerespunkyeaglepetezaroll-bter63wup8q4ew",
+                  "outcome": "narrative_failed",
+                  "why": "scores [48, 62, 64] after 2 revision(s) \u2014 @0s missing_context: Open by saying which penalty or foul decided the match. The cut never shows the call that cost him. 'Not a foul' at 0.2s and 'never a penalty' at 17.7s read as two separate complaints. Add a short lin; @8s confusing: The 5-6 loss lands a"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.62,
+              "why": "relatable girlfriend moment, visible",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Mild domestic moment, weak payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Erobb221 Girlfriend Brings Him A Steak And Beer Mid-Game And It Goes Wrong"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "The top panel is a tight, dark close-up of the streamer, and the girlfriend is often out of frame there.",
+                "The first second shows GTA gameplay before the streamer appears."
+              ]
+            }
+          },
+          "took_s": 173.5
+        },
+        {
+          "slug": "clip-20261010-3",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Political debate talk; 'CAUGHT' title un)",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261010-3",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.55,
+              "why": "Vague title, big streamer, unknown event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "Political debate talk; 'CAUGHT' title un",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 26.1
+        },
+        {
+          "slug": "clip-20261010-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261010-4",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unknown escape, no snip",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "GTA RP chase, unclear payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Xqc Can't Believe What Just Happened After This Crazy Escape"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "The sharp region fills about 65-70% of the canvas, a bit under the target, but the subject is large and readable.",
+                "Captions sit over the lower part of the gameplay but not over any face or the main action.",
+                "At 35.1s the stream's own caption 'LIFE,' appears next to the added caption 'my life man', so the two overlap slightly.",
+                "A censored caption ('***** **** ***') shows at 29.0s."
+              ]
+            }
+          },
+          "took_s": 216.6
+        },
+        {
+          "slug": "clip-20261010-5",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture fills only about a third of the 9:16 canvas. It is a thin strip with large blurred areas above and bel; vision: The subject is tiny and lost. Speed's reaction is a small face",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261010-5",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "Vague laughing title, unknown content",
+              "blind": false
+            },
+            "content": {
+              "score": 0.72,
+              "why": "Speed loses FC match, controller disconn",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ishowspeed Can't Stop Laughing At What He Just Saw"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.72,
+              "problems": [
+                "The sharp picture fills only about a third of the 9:16 canvas. It is a thin strip with large blurred areas above and bel",
+                "The subject is tiny and lost. Speed's reaction is a small facecam in the corner or a small figure at the bottom-left of ",
+                "The renderer did not crop toward the action. The wide game and stream UI is shown uncropped, so the framing does not loo",
+                "The clip ends on an EA server error screen, which is a dead and unpolished ending.",
+                "The hook says Speed 'loses it', but his laughing is barely visible in most frames."
+              ]
+            }
+          },
+          "took_s": 350.9
+        },
+        {
+          "slug": "clip-20261010-6",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about a third of the canvas height, in nearly every frame. The blurred padding takes ; vision: The streamer's face cam is a tiny inset in the top-right corne",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261010-6",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.55,
+              "why": "scare reaction, event unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.42,
+              "why": "Momo explainer; mild reaction, little pa",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Joe Joe_Bartolozzi Reacts To The Momo Story And Gets Scared At The End"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.7,
+              "problems": [
+                "The sharp picture is a thin strip, about a third of the canvas height, in nearly every frame. The blurred padding takes ",
+                "The streamer's face cam is a tiny inset in the top-right corner for most of the clip (1s\u201326s), so the reaction is hard t",
+                "The main content is a small screen-share of the Momo image or a cartoon, shown far from the camera. It looks like a repo",
+                "The big word captions in the sharp strip (e.g. 'IN FRONT OF', 'A PIECE OF') sit over the bottom of the picture. They don",
+                "The bottom padding at 18.6s and 21.0s shows a huge blurred blob, which is distracting, and the hook card text sits on to"
+              ]
+            }
+          },
+          "took_s": 294.9
         }
       ]
     }
