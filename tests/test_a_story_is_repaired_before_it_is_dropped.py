@@ -210,7 +210,9 @@ class NoPayoffNoStory(unittest.TestCase):
     def test_publish_without_a_payoff_is_a_fail(self):
         r = self._review({"publish": True, "story_score": 85,
                           "stranger_summary": "She gets ditched.",
-                          "payoff_at": None, "problems": []})
+                          "payoff_at": None, "problems": [],
+                          "entertaining_at": 12.0,
+                          "entertaining_why": "she is caught mid-lie"})
         self.assertFalse(r["publish"])
         self.assertEqual(r["problems"][-1]["type"], "weak_payoff")
 
@@ -223,7 +225,9 @@ class NoPayoffNoStory(unittest.TestCase):
     def test_a_named_payoff_passes_through(self):
         r = self._review({"publish": True, "story_score": 85,
                           "stranger_summary": "She gets ditched and caught.",
-                          "payoff_at": 31.0, "problems": []})
+                          "payoff_at": 31.0, "problems": [],
+                          "entertaining_at": 31.0,
+                          "entertaining_why": "she is caught mid-lie"})
         self.assertTrue(r["publish"])
         self.assertEqual(r["payoff_at"], 31.0)
 

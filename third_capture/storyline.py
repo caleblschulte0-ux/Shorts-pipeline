@@ -480,15 +480,21 @@ def find_moments(pool: list[dict], *, exclude_keys=(), n: int = 20,
     decides whether they make a story, under the same laws, and the critic
     grades it against the same 80.
 
-    The most-viewed clips with VOD coordinates first, one per broadcast
-    minute, never a clip already posted or already in a story."""
+    The clips the INTERNET picked first (r/LivestreamFail's most upvoted,
+    `c["internet"]`; operator, 2026-10-10: "None of them are
+    entertaining"), then the most-viewed, one per broadcast minute, never
+    a clip already posted or already in a story."""
     seen, out = set(exclude_keys or ()), []
-    for c in sorted(pool or [], key=lambda c: -int(c.get("views") or 0)):
+
+    def _rank(c):
+        up = int((c.get("internet") or {}).get("upvotes") or 0)
+        return (-up, -int(c.get("views") or 0))
+    for c in sorted(pool or [], key=_rank):
         url = c.get("url") or c.get("source_url")
         vid = str(c.get("video_id") or "").strip()
         if not url or not vid or c.get("vod_offset") is None:
             continue
-        if int(c.get("views") or 0) < min_views:
+        if int(c.get("views") or 0) < min_views and not c.get("internet"):
             continue
         ck = clip_key(url)
         try:
@@ -512,6 +518,8 @@ def find_moments(pool: list[dict], *, exclude_keys=(), n: int = 20,
                                "vod_offset": float(c["vod_offset"]),
                                "duration": float(c.get("duration") or 30.0),
                                "game": str(c.get("game") or ""),
+                               **({"internet": c["internet"]}
+                                  if c.get("internet") else {}),
                                "posted": False}],
                     "score": float(c.get("views") or 0),
                     "kind": "moment", "video_id": vid})

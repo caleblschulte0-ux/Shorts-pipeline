@@ -1346,6 +1346,31 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                             print(f"::warning::[story] discover "
                                   f"{platform}:{ch} {window} failed "
                                   f"({type(e).__name__})", flush=True)
+            # WHAT THE INTERNET FOUND ENTERTAINING (operator, 2026-10-10,
+            # of backtest 18: "None of them are entertaining is the
+            # issue"). A streamer's own top clip of the week is often just
+            # their least boring minute; r/LivestreamFail's top posts are
+            # the clips strangers upvoted, with a title saying what
+            # happens. They join the pool with their VOD coordinates and
+            # go first among the moments (storyline.find_moments).
+            if spec.get("story_internet", True):
+                from funnel import hot_clips
+                _hot = {}
+                for _period in ("week", "month"):
+                    for h in hot_clips.livestreamfail(_period):
+                        _hot.setdefault(h["slug"], h)
+                _picked = clip_edit.helix_clips(list(_hot)[:100])
+                _have = {c.get("url") for c in pool}
+                for c in _picked:
+                    h = _hot.get(c.get("slug")) or {}
+                    c["internet"] = {"upvotes": h.get("upvotes", 0),
+                                     "comments": h.get("comments", 0),
+                                     "post_title": h.get("post_title", ""),
+                                     "permalink": h.get("permalink", "")}
+                    if c["url"] not in _have:
+                        pool.append(c)
+                print(f"[story] r/LivestreamFail: {len(_hot)} clip post(s), "
+                      f"{len(_picked)} resolved on Twitch", flush=True)
             # name each clip's game (Twitch's category): the critic's
             # commonest refusal is a stranger not knowing what this is
             _names = clip_edit.helix_game_names(
@@ -1643,6 +1668,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                             # this file's second 0 is the WINDOW start
                             rep["broadcast_t0"] = vod.get("vod_start_s")
                 rep["date"] = c.get("date", "")
+                if c.get("internet"):
+                    rep["internet"] = c["internet"]
                 rep["vod_offset"] = c.get("vod_offset")
                 rep["video_id"] = c.get("video_id")
                 # where this source's second 0 sits in the broadcast, so the

@@ -339,6 +339,41 @@ def _discover_helix(channel: str, top: int, hours: int = 24) -> list[dict]:
     return clips
 
 
+def helix_clips(ids) -> list[dict]:
+    """Twitch clips by id (slug), in discovery's own shape — the clips
+    the internet picked (funnel/hot_clips.py) join the story pool with
+    their VOD coordinates like any discovered clip. [] without creds."""
+    import time
+    import requests
+    from datetime import datetime
+    ids = [str(i) for i in ids if i][:100]
+    if not ids or not _helix_creds():
+        return []
+    try:
+        r = requests.get("https://api.twitch.tv/helix/clips",
+                         params=[("id", i) for i in ids],
+                         headers=_helix_headers(), timeout=20)
+        r.raise_for_status()
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[helix] clips by id failed ({type(e).__name__})",
+              flush=True)
+        return []
+    out, now = [], time.time()
+    for c in r.json().get("data", []):
+        created = datetime.fromisoformat(
+            c["created_at"].replace("Z", "+00:00")).timestamp()
+        out.append({"url": c["url"], "views": int(c["view_count"]),
+                    "duration": float(c.get("duration", 0)),
+                    "title": c["title"],
+                    "channel": str(c.get("broadcaster_name", "")).lower(),
+                    "platform": "twitch", "slug": c["id"],
+                    "age_h": max(0.05, (now - created) / 3600),
+                    "vod_offset": c.get("vod_offset"),
+                    "video_id": c.get("video_id"),
+                    "game_id": c.get("game_id") or ""})
+    return out
+
+
 def maybe_vod_window(clip: dict, work: Path, *, before: float = 60.0,
                      after: float = 60.0) -> dict | None:
     """VOD context expansion (STORY_DIRECTOR_PLAYBOOK §6): a Twitch clip
