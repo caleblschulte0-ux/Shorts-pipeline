@@ -738,7 +738,16 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   of X" calls `find_image.find`, never a private search. And sex sells, with dignity (same
   night: *"we have the green light to goonbait not to much let's keep our
   dignity"*): the picker and the writer lean into flirting and thirst,
-  adults only, nothing a platform would age-restrict.
+  adults only, nothing a platform would age-restrict. And above all a
+  story ENTERTAINS (operator, 2026-10-10, of backtest 18's fourteen
+  coherent stories: *"None of them are entertaining is the issue"*): the
+  critic must name `entertaining_at` (the second a stranger laughs, gasps
+  or cringes) and why, or the cut cannot publish and scores at most
+  `NOT_FUN_MAX`; the director builds toward that moment or declines; and
+  moments are seeded first from what the internet already upvoted —
+  `funnel/hot_clips.livestreamfail()` (r/LivestreamFail's top Twitch
+  clips, resolved by `clip_edit.helix_clips`), whose post title reaches
+  the director as "the internet's take".
   `tests/test_a_story_is_a_chain_and_shows_what_it_talks_about.py`.
 - **Slots follow `_learned_prior()`, and it had no tests** until the day it
   was found inverted: kaicenat and buddha (median 5 and 8 views) at the

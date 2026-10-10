@@ -92,6 +92,9 @@ jobs:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           # the shared picture finder (funnel/find_image.py) searches every
           # provider the media funnel has; each is skipped when its key is unset
+          # r/LivestreamFail's top clips seed the stories (funnel/hot_clips)
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
           NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
           GNEWS_KEY: ${{ secrets.GNEWS_KEY }}
           BRAVE_KEY: ${{ secrets.BRAVE_KEY }}

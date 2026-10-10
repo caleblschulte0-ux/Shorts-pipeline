@@ -23,6 +23,7 @@ from third_capture.author import (_call_claude, _call_gemini_vision,
 
 STRUCTURES = {"chronological", "cold_open", "mystery_reveal",
               "two_perspectives", "escalation", "before_after"}
+NOT_FUN_MAX = 59       # a coherent cut nobody would enjoy is no near-miss
 LINKS = {"so", "but"}     # how a beat follows the one before it
 ROLES = {"setup", "escalation", "climax", "payoff", "context", "reaction"}
 # What the brain calls a role it means. Backtests 2026-10-07/08 threw away
@@ -201,6 +202,16 @@ argument escalates or ends, a prediction proves right/wrong...). A pile of
 funny moments about the same person is NOT a story. When the premise or
 payoff cannot be stated plainly from the sources, return
 {"is_story": false, "why_not": "<reason>"}.
+
+IT HAS TO BE ENTERTAINING (operator, 2026-10-10, of fourteen stories
+that all made sense: "None of them are entertaining is the issue"). A
+story that hangs together but would not make a stranger laugh, gasp,
+cringe or feel something is not worth cutting: say so with is_story
+false. Find the funniest, most shocking or most dramatic version the
+footage holds and build toward THAT moment; cut every second that does
+not set it up or land it. When a source carries "the internet's take",
+that is what strangers already found entertaining: it is the moment the
+story is about.
 
 A STORY IS A CHAIN, NOT A LIST (operator, 2026-10-09: "it's not a
 collection of clips or like 4 moments in a stream played in a row").
@@ -439,6 +450,13 @@ create curiosity?  9. Does the ending answer it?  10. Is anything
 misleading?  11. Is emphasis on the right moment?  12. Does it feel like
 ONE story rather than several clips?
 
+IS IT ENTERTAINING? Before anything else: would a stranger scrolling
+past laugh, gasp, cringe or feel something, and at which second? A
+story that is coherent but flat — someone confused, someone reading,
+someone explaining — scores below 60 however clean the cut. Name the
+moment in "entertaining_at" (seconds) and say what it is in
+"entertaining_why"; null when there is none, and then publish is false.
+
 A STORY IS A CHAIN: every beat follows from the one before it (SO) or
 turns against it (BUT). Beats joined only by AND THEN — the next moment
 in the same stream, another funny bit — are several clips, not a story,
@@ -459,6 +477,7 @@ Return STRICT JSON:
 {"publish": true|false, "story_score": 0-100,
  "stranger_summary": "<the one-sentence retelling>",
  "payoff_at": <seconds> | null,
+ "entertaining_at": <seconds> | null, "entertaining_why": str,
  "problems": [{"type": "missing_context|repetition|weak_payoff|confusing|
                misleading|pacing|other",
                "at": <seconds>, "fix": "<specific instruction>"}, ...]}"""
@@ -533,6 +552,12 @@ def _fmt_reports(reports: list[dict]) -> str:
                         (r.get("known_people") or {}).items())
         who = (f"  known (general knowledge, verified by a second model): "
                f"{who}\n" if who else "")
+        net = r.get("internet") or {}
+        if net.get("post_title"):
+            who += (f"  the internet's take (r/LivestreamFail, "
+                    f"{int(net.get('upvotes') or 0):,} upvotes — what "
+                    f"strangers found entertaining here): "
+                    f"{str(net['post_title'])[:160]!r}\n")
         out.append(
             f"SOURCE {r['source_id']}\n"
             f"  streamer={r['channel']} dur={r['duration_s']}s "
@@ -1306,9 +1331,31 @@ def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
                                 "raised. End on the reveal or the reaction "
                                 "to the consequence, not where the clip "
                                 "runs out."})
+    score = int(out.get("story_score", 0) or 0)
+    # NOT ENTERTAINING, NOT A STORY (operator, 2026-10-10: "None of them
+    # are entertaining is the issue"). A critic that cannot name the
+    # second a stranger laughs, gasps or cringes has described a cut that
+    # merely makes sense: it cannot publish and cannot score as a near-
+    # miss. Code only ADDS this block.
+    try:
+        fun_at = (None if out.get("entertaining_at") is None
+                  else float(out.get("entertaining_at")))
+    except (TypeError, ValueError):
+        fun_at = None
+    fun_why = scrub_text(str(out.get("entertaining_why") or "").strip())[:160]
+    if fun_at is None or not fun_why:
+        publish = False
+        score = min(score, NOT_FUN_MAX)
+        problems.append({"type": "not_entertaining",
+                         "at": 0.0,
+                         "fix": "Nothing here would make a stranger laugh, "
+                                "gasp or cringe. Build the cut around the "
+                                "funniest or most shocking moment the "
+                                "footage holds, or drop the story."})
     return {"publish": publish,
-            "story_score": int(out.get("story_score", 0) or 0),
+            "story_score": score,
             "stranger_summary": summary, "payoff_at": payoff_at,
+            "entertaining_at": fun_at, "entertaining_why": fun_why,
             "problems": problems}
 
 

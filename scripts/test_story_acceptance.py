@@ -242,6 +242,8 @@ def main() -> int:  # noqa: C901
         lambda u, system=None, tag="": {"publish": True, "story_score": 90,
                                         "stranger_summary": "He bets it all "
                                         "and loses it.", "payoff_at": 31.0,
+                                        "entertaining_at": 31.0,
+                                        "entertaining_why": "he loses it all",
                                         "problems": []}     # would rubber-stamp
     r = story_director.review_rough_cut(edl, "words", str(td / "s.jpg"), 40.0)
     check("sheet + no vision model => FAIL CLOSED, not groq's publish (#11)",
@@ -254,7 +256,9 @@ def main() -> int:  # noqa: C901
     story_director._call_text_fallback = \
         lambda u, system=None, tag="": {"publish": True, "story_score": 90,
                                         "stranger_summary": "x",
-                                        "payoff_at": None, "problems": []}
+                                        "payoff_at": None, "problems": [],
+                                        "entertaining_at": 5.0,
+                                        "entertaining_why": "a big fall"}
     r3 = story_director.review_rough_cut(edl, "words", None, 40.0)
     check("a pass with no named payoff is turned into a fail",
           r3["publish"] is False

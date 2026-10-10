@@ -327,6 +327,68 @@ def test_sex_sells_with_dignity():
         assert "under 18" in prompt and "age-restrict" in prompt
 
 
+
+# ------------------------------------------------- it has to be FUN
+# Operator, 2026-10-10, of backtest 18: "None of them are entertaining is
+# the issue."
+def _critic(out):
+    with mock.patch.object(sd, "_brain", return_value=out):
+        return sd.review_rough_cut(sd.validate_edl(_plan(["so", "but"]), DUR),
+                                   "", None, 30.0)
+
+
+def test_a_coherent_cut_nobody_enjoys_cannot_publish_or_near_miss():
+    base = {"publish": True, "story_score": 84, "payoff_at": 20.0,
+            "stranger_summary": "He explains a level, then gets it."}
+    r = _critic(base)
+    assert not r["publish"] and r["story_score"] <= sd.NOT_FUN_MAX
+    assert r["problems"][-1]["type"] == "not_entertaining"
+    r = _critic({**base, "entertaining_at": 18.0,
+                 "entertaining_why": "his friend faceplants into the cake"})
+    assert r["publish"] and r["story_score"] == 84
+
+
+def test_every_story_judge_is_told_it_must_entertain():
+    for prompt in (sd._PLAN_SYSTEM, sd._REVIEW_SYSTEM):
+        assert "ENTERTAINING" in prompt
+    assert "entertaining_at" in sd._REVIEW_SYSTEM
+
+
+def test_the_internet_picks_go_first_and_the_director_hears_why():
+    from third_capture import storyline
+    pool = [{"url": "https://clips.twitch.tv/Big", "views": 90000,
+             "video_id": "1", "vod_offset": 100, "channel": "a"},
+            {"url": "https://clips.twitch.tv/Fun", "views": 900,
+             "video_id": "2", "vod_offset": 100, "channel": "b",
+             "internet": {"upvotes": 4200, "post_title": "B falls off "
+                          "the stage mid-speech"}}]
+    m = storyline.find_moments(pool)
+    assert m[0]["clips"][0]["source_url"].endswith("Fun")
+    assert m[0]["clips"][0]["internet"]["upvotes"] == 4200
+    rep = {"source_id": "s", "channel": "b", "duration_s": 30, "summary": "",
+           "internet": {"upvotes": 4200,
+                        "post_title": "B falls off the stage mid-speech"}}
+    assert "falls off the stage" in sd._fmt_reports([rep])
+
+
+def test_livestreamfail_yields_twitch_clips_best_first():
+    from funnel import hot_clips
+    listing = {"data": {"children": [
+        {"data": {"url": "https://www.twitch.tv/xqc/clip/SlugOne-abc",
+                  "title": "xQc loses it", "ups": 900, "permalink": "/r/x"}},
+        {"data": {"url": "https://clips.twitch.tv/SlugTwo-def",
+                  "title": "Kai's mom walks in", "ups": 5000}},
+        {"data": {"url": "https://youtube.com/watch?v=1", "ups": 9999}},
+        {"data": {"url": "https://clips.twitch.tv/Nsfw-x", "ups": 7000,
+                  "over_18": True}}]}}
+    with mock.patch.object(hot_clips, "_listing", return_value=listing):
+        got = hot_clips.livestreamfail()
+    assert [g["slug"] for g in got] == ["SlugTwo-def", "SlugOne-abc"]
+    assert got[0]["post_title"] == "Kai's mom walks in"
+    with mock.patch.object(hot_clips, "_listing", return_value=None):
+        assert hot_clips.livestreamfail() == []
+
+
 class Everything(unittest.TestCase):
     """CI runs `unittest discover`, which collects only TestCases; every
     function above runs here as well as under pytest."""
