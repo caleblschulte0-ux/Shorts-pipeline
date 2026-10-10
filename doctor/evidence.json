@@ -4790,8 +4790,8 @@
     }
   },
   "recent_commits": [
-    "93c3091 2026-10-10 story forge: new real-data stories [skip ci]",
-    "73d7e42 2026-10-10 claim: mailbox verdicts 2026-10-10T04:47Z [skip ci]"
+    "1698a85 2026-10-10 claim: mailbox verdicts 2026-10-10T10:47Z [skip ci]",
+    "a85b5f6 2026-10-10 watchdog: phase A readiness 20261010 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4898,32 +4898,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 129,
+      "videos": 131,
       "top_by_vph": [
         {
           "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
-          "vph": 4.17,
-          "views": 594
+          "vph": 3.88,
+          "views": 608
         },
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 2.58,
+          "vph": 2.51,
           "views": 1361
         },
         {
-          "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 2.49,
-          "views": 232
+          "title": "Plaqueboymax Dance Fails And Hits His Mouth On Camera",
+          "vph": 2.45,
+          "views": 90
         },
         {
-          "title": "Plaqueboymax Dance Fails And Hits His Mouth On Camera",
-          "vph": 2.31,
-          "views": 52
+          "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
+          "vph": 2.33,
+          "views": 250
         },
         {
           "title": "Kaicenat: Kai Cenat Demands Proof: \"Where Is Your Proof?\" After Being ",
-          "vph": 2.22,
-          "views": 40
+          "vph": 1.61,
+          "views": 52
         }
       ],
       "full_data": "state/analytics_third/latest.json"
@@ -5112,7 +5112,7 @@
       "title": "One-shot explainer packages crash after being written",
       "horizon": "small_fix",
       "severity": "low",
-      "ruling": "doing"
+      "ruling": "in_progress"
     }
   ],
   "settled": [
