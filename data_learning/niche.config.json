@@ -32441,6 +32441,237 @@
      "say": "A robot then solved the same cube in just 0.38 seconds flat."
     }
    ]
+  },
+  {
+   "slug": "co2-pollen-season-stretch",
+   "title": "Pollen Season Just Got 20 Days Longer",
+   "hook": "Allergy season is 20 days longer than it was in 1990.",
+   "closing": "Thank the atmosphere for your runny nose.",
+   "question": "How bad is your allergy season? Comment below.",
+   "hashtags": [
+    "allergies",
+    "pollen",
+    "climate",
+    "co2",
+    "health",
+    "seasonalallergies",
+    "science",
+    "data",
+    "shorts",
+    "explainer",
+    "didyouknow",
+    "weather"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "co2_level_annual",
+     "params": {
+      "file": "co2_level_annual.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE DRIVER",
+     "topic": "rising CO2 behind the longer pollen season",
+     "say": "CO2 just hit 424 parts per million, up from 354 in 1990."
+    },
+    {
+     "source": "offline",
+     "key": "pollen_season_length",
+     "params": {
+      "file": "pollen_season_length.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE SEASON",
+     "topic": "pollen season stretching longer",
+     "say": "That's stretched pollen season 20 days longer than in 1990."
+    },
+    {
+     "source": "offline",
+     "key": "pollen_concentration_index",
+     "params": {
+      "file": "pollen_concentration_index.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · THE DOSE",
+     "topic": "pollen concentration getting thicker",
+     "say": "Pollen is also 21 percent more concentrated, so it hits harder."
+    }
+   ]
+  },
+  {
+   "slug": "airfare-booking-window-trap",
+   "title": "Why Plane Tickets Cost More The Closer You Book",
+   "hook": "The cheapest fare shows up 70 days before you fly.",
+   "closing": "Procrastination has a price tag. Literally.",
+   "question": "When do you usually book flights?",
+   "hashtags": [
+    "travel",
+    "flights",
+    "airfare",
+    "flying",
+    "traveltips",
+    "money",
+    "data",
+    "shorts",
+    "explainer",
+    "didyouknow",
+    "vacation",
+    "booking"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "airfare_booking_window",
+     "params": {
+      "file": "airfare_booking_window.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "1 · THE WINDOW",
+     "topic": "the best window to book plane tickets",
+     "say": "Flights have a booking sweet spot, averaging 70 days before you fly."
+    },
+    {
+     "source": "offline",
+     "key": "airfare_price_index",
+     "params": {
+      "file": "airfare_price_index.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "2 · THE SWING",
+     "topic": "why tickets cost more once you miss it",
+     "say": "Miss it, and fares jump 92 percent in the final two weeks."
+    },
+    {
+     "source": "offline",
+     "key": "airfare_domestic_vs_international_window",
+     "params": {
+      "file": "airfare_domestic_vs_international_window.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "3 · THE CATCH",
+     "topic": "why booking a flight window depends on where you're going",
+     "say": "International trips need more lead time: Europe averages 276 days out."
+    }
+   ]
+  },
+  {
+   "slug": "chip-shortage-tsmc-fragility",
+   "title": "The $210 Billion Chip Shortage Nobody Saw Coming",
+   "hook": "A chip shortage cost carmakers $210 billion in a single year.",
+   "closing": "One factory hiccup, and the whole world waits.",
+   "question": "Did the chip shortage delay your car?",
+   "hashtags": [
+    "semiconductors",
+    "chips",
+    "supplychain",
+    "tech",
+    "manufacturing",
+    "economy",
+    "data",
+    "shorts",
+    "explainer",
+    "didyouknow",
+    "business",
+    "tsmc"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "chip_fab_concentration",
+     "params": {
+      "file": "chip_fab_concentration.json"
+     },
+     "insight_type": "share",
+     "role": "1 · THE SETUP",
+     "topic": "one company makes nearly every advanced chip",
+     "say": "One company, TSMC, makes 90 percent of the world's advanced chips."
+    },
+    {
+     "source": "offline",
+     "key": "chip_lead_times",
+     "params": {
+      "file": "chip_lead_times.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE SQUEEZE",
+     "topic": "chip order wait times exploding",
+     "say": "Wait times then exploded from 13 weeks to 27 weeks."
+    },
+    {
+     "source": "offline",
+     "key": "chip_shortage_cost_revision",
+     "params": {
+      "file": "chip_shortage_cost_revision.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "3 · THE DAMAGE",
+     "topic": "the chip shortage bill kept climbing",
+     "say": "Forecasters raised the damage estimate from 110 billion to 210."
+    }
+   ]
+  },
+  {
+   "slug": "drug-resistant-infections-2050",
+   "title": "Drug-Resistant Infections Could Kill More Than Cancer By 2050",
+   "hook": "Drug-resistant infections already kill 1.3 million people a year.",
+   "closing": "The fix is using old drugs less, not new ones.",
+   "question": "Did you know resistance was this deadly?",
+   "hashtags": [
+    "health",
+    "antibiotics",
+    "superbugs",
+    "publichealth",
+    "science",
+    "medicine",
+    "data",
+    "shorts",
+    "explainer",
+    "didyouknow",
+    "cancer",
+    "future"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "amr_deaths_scope",
+     "params": {
+      "file": "amr_deaths_scope.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "1 · THE SCOPE",
+     "topic": "how many die from drug-resistant infections",
+     "say": "Resistant infections directly killed 1.27 million people in 2019."
+    },
+    {
+     "source": "offline",
+     "key": "amr_deaths_2050_projection",
+     "params": {
+      "file": "amr_deaths_2050_projection.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "2 · THE TRAJECTORY",
+     "topic": "drug-resistant deaths projected to explode by 2050",
+     "say": "That's projected to reach 10 million deaths a year by 2050."
+    },
+    {
+     "source": "offline",
+     "key": "amr_vs_cancer_2050",
+     "params": {
+      "file": "amr_vs_cancer_2050.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "3 · THE COMPARISON",
+     "topic": "resistant infections could match cancer by 2050",
+     "say": "That would make it as deadly as cancer is today."
+    }
+   ]
   }
  ],
  "videos": [

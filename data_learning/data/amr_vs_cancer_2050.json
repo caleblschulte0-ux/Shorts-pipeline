@@ -1,0 +1,19 @@
+{
+  "key": "amr_vs_cancer_2050",
+  "title": "Projected 2050 drug-resistance deaths vs. current global cancer deaths (millions/year)",
+  "unit": "million",
+  "geography": "Global",
+  "time_coverage": "2050 projection vs. current",
+  "source": {
+    "name": "O'Neill Review projection vs. global cancer mortality",
+    "publisher": "O'Neill Review on AMR / World Health Organization",
+    "url": "https://amr-review.org",
+    "officiality": "official",
+    "access_date": "2026-10-10"
+  },
+  "notes": "The O'Neill Review's 10-million-a-year 2050 AMR death projection, set against the WHO's current count of roughly 10 million global cancer deaths a year.",
+  "points": [
+    {"label": "Cancer deaths today", "value": 10},
+    {"label": "Projected AMR deaths, 2050", "value": 10}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "key": "amr_deaths_scope",
+  "title": "Global deaths linked to antibiotic-resistant infections, 2019 (millions)",
+  "unit": "million",
+  "geography": "Global",
+  "time_coverage": "2019",
+  "source": {
+    "name": "Global Burden of Antimicrobial Resistance (GRAM) study",
+    "publisher": "The Lancet",
+    "url": "https://www.thelancet.com",
+    "officiality": "official",
+    "access_date": "2026-10-10"
+  },
+  "notes": "2019 estimates: 1.27 million deaths directly attributable to antimicrobial-resistant infections, and 4.95 million deaths where resistance was a contributing factor.",
+  "points": [
+    {"label": "Directly caused by resistance", "value": 1.27},
+    {"label": "Resistance was a factor", "value": 4.95}
+  ]
+}

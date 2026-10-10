@@ -1,0 +1,22 @@
+{
+  "key": "co2_level_annual",
+  "title": "Atmospheric CO2 (annual mean, ppm)",
+  "unit": "index",
+  "geography": "Global (Mauna Loa Observatory)",
+  "time_coverage": "1990-2024 (annual)",
+  "source": {
+    "name": "Mauna Loa CO2 annual mean",
+    "publisher": "NOAA Global Monitoring Laboratory",
+    "url": "https://gml.noaa.gov/ccgg/trends/",
+    "officiality": "official",
+    "access_date": "2026-10-10"
+  },
+  "notes": "Annual mean atmospheric CO2 concentration, parts per million.",
+  "points": [
+    {"label": "1990", "value": 354, "period": "1990"},
+    {"label": "2000", "value": 369, "period": "2000"},
+    {"label": "2010", "value": 390, "period": "2010"},
+    {"label": "2020", "value": 414, "period": "2020"},
+    {"label": "2024", "value": 424, "period": "2024"}
+  ]
+}

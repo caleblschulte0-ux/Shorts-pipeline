@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "format": "graph_race",
+  "slug": "01_graph-duolingo-rosetta-stone",
+  "title": "Duolingo Passed Rosetta Stone In Revenue",
+  "y_label": "Annual revenue (million dollars)",
+  "duration": 13,
+  "source": "Sources: Duolingo SEC filings; Rosetta Stone's last public revenue before going private in 2020 (approx.)",
+  "hashtags": [
+    "duolingo",
+    "rosettastone",
+    "languagelearning",
+    "edtech",
+    "startup",
+    "business",
+    "data",
+    "chart",
+    "money",
+    "fyp",
+    "shorts",
+    "trending",
+    "viral"
+  ],
+  "years": [2019, 2020, 2021, 2022, 2023, 2024],
+  "series": [
+    {
+      "name": "Rosetta Stone",
+      "color": "#4a90e2",
+      "icon": "Rosetta Stone",
+      "values": [183, 180, 180, 180, 180, 180]
+    },
+    {
+      "name": "Duolingo",
+      "color": "#58cc02",
+      "icon": "Duolingo",
+      "values": [71, 162, 251, 369, 531, 748]
+    }
+  ],
+  "music_vibe": "hiphop"
+}

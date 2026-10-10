@@ -1,0 +1,19 @@
+{
+  "key": "airfare_price_index",
+  "title": "Average domestic fare, indexed (best booking day = 100)",
+  "unit": "index",
+  "geography": "United States (domestic)",
+  "time_coverage": "n/a (booking-window study)",
+  "source": {
+    "name": "Airfare booking-window study",
+    "publisher": "CheapAir.com (917-million-fare analysis)",
+    "url": "https://www.cheapair.com",
+    "officiality": "secondary",
+    "access_date": "2026-10-10"
+  },
+  "notes": "CheapAir's analysis of 917 million fares found booking near the best time saves up to 48% versus waiting; indexed here (best time = 100, so the late-booking side is ~192).",
+  "points": [
+    {"label": "Best booking day (~70 days out)", "value": 100},
+    {"label": "Final 2 weeks before departure", "value": 192}
+  ]
+}

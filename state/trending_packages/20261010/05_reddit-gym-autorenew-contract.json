@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "subreddit": "ProRevenge",
+  "slug": "05_reddit-gym-autorenew-contract",
+  "title": "The Gym Auto-Renewed My Contract. Paragraph Nine Ended It.",
+  "hashtags": [
+    "reddit",
+    "prorevenge",
+    "gym",
+    "contract",
+    "consumer",
+    "storytime",
+    "justice",
+    "karma",
+    "fyp",
+    "shorts",
+    "story",
+    "viral"
+  ],
+  "script": "Our gym's new manager needed his retention numbers to look good, so he quietly started auto-renewing annual contracts and routed every cancellation request through an in-person desk that was only staffed two weekday mornings a month. I couldn't get there in time, got charged for a year I never agreed to, and reread my actual signed contract that night. They had buried the answer in paragraph nine: the gym had to mail written notice sixty days before any renewal, by certified mail, or the renewal was void. They'd never sent one, not once. I wrote a demand letter quoting the clause and the state's consumer protection statute, and copied corporate legal. Within a week I had my refund and an apology call. What I didn't expect was the follow-up: corporate pulled renewal records chainwide, found over two thousand members hit with the same silent auto-renewal, and had to refund roughly three hundred eighty thousand dollars company-wide. The manager's retention bonus got clawed back the same quarter.",
+  "shots": [
+    {"phrase": "quietly started auto-renewing annual contracts", "query": "gym front desk reception"},
+    {"phrase": "only staffed two weekday mornings a month", "query": "closed office door sign"},
+    {"phrase": "reread my actual signed contract that night", "query": "reading contract paperwork desk lamp"},
+    {"phrase": "the gym had to mail written notice sixty days before any renewal", "query": "certified mail envelope stamp"},
+    {"phrase": "I wrote a demand letter quoting the clause", "query": "typing letter laptop closeup"},
+    {"phrase": "Within a week I had my refund and an apology call", "query": "phone call smiling relief"},
+    {"phrase": "found over two thousand members hit with the same silent auto-renewal", "query": "office filing cabinets records"},
+    {"phrase": "had to refund roughly three hundred eighty thousand dollars", "query": "stack of cash dollars"}
+  ],
+  "punches": [
+    {"phrase": "the renewal was void", "text": "VOID", "color": "#50ff80"},
+    {"phrase": "my refund and an apology call", "text": "REFUNDED", "color": "#50ff80"},
+    {"phrase": "over two thousand members", "text": "2,000+ MEMBERS", "color": "#ffaa30"},
+    {"phrase": "three hundred eighty thousand dollars", "text": "$380,000", "color": "#ff3030"}
+  ],
+  "music_vibe": "dark"
+}

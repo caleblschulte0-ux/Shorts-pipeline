@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "subreddit": "entitledparents",
+  "slug": "06_reddit-daycare-early-dropoff",
+  "title": "One Parent Timed Every Drop-Off To Dodge The Fee. The Camera Didn't Lie.",
+  "hashtags": [
+    "reddit",
+    "entitledparents",
+    "daycare",
+    "karma",
+    "storytime",
+    "justice",
+    "parenting",
+    "fyp",
+    "shorts",
+    "story",
+    "viral"
+  ],
+  "script": "A mom at our daycare dropped her son off forty-five minutes before opening every single morning, waited in her car, then sent him in alone the second someone unlocked the door, and got furious when we started charging the early-drop fee she'd signed off on at enrollment. She called it theft, threatened to report us to the state licensing board, and demanded a refund for every fee we'd ever charged her. The inspector who showed up pulled our timestamped sign-in log and security footage instead of taking her word for it. It showed drop-offs as early as five forty for an eight o'clock opening, stretching back four months, and her own signature on the fee schedule from day one. The inspector also noticed she'd been writing a later arrival time on the paper sign-in sheet than the door camera showed, shaving minutes off her bill for months. She left owing us back-fees instead of getting a refund.",
+  "shots": [
+    {"phrase": "dropped her son off forty-five minutes before opening", "query": "empty parking lot sunrise"},
+    {"phrase": "waited in her car", "query": "car parked waiting window"},
+    {"phrase": "got furious when we started charging the early-drop fee", "query": "angry woman arms crossed"},
+    {"phrase": "threatened to report us to the state licensing board", "query": "official letterhead document"},
+    {"phrase": "pulled our timestamped sign-in log and security footage", "query": "security camera monitor footage"},
+    {"phrase": "her own signature on the fee schedule from day one", "query": "signing paper pen closeup"},
+    {"phrase": "writing a later arrival time on the paper sign-in sheet", "query": "clipboard sign in sheet"},
+    {"phrase": "She left owing us back-fees instead of getting a refund", "query": "daycare entrance door closing"}
+  ],
+  "punches": [
+    {"phrase": "five forty for an eight o'clock opening", "text": "5:40 AM", "color": "#ffaa30"},
+    {"phrase": "stretching back four months", "text": "4 MONTHS", "color": "#ffaa30"},
+    {"phrase": "shaving minutes off her bill for months", "text": "CAUGHT", "color": "#ff3030"},
+    {"phrase": "owing us back-fees instead of getting a refund", "text": "REFUND DENIED", "color": "#50ff80"}
+  ],
+  "music_vibe": "dark"
+}

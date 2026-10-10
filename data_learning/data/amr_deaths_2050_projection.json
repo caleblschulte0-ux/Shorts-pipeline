@@ -1,0 +1,19 @@
+{
+  "key": "amr_deaths_2050_projection",
+  "title": "Global deaths from drug-resistant infections, actual vs. 2050 projection (millions)",
+  "unit": "million",
+  "geography": "Global",
+  "time_coverage": "2019 vs 2050 (projection)",
+  "source": {
+    "name": "Review on Antimicrobial Resistance (O'Neill Review)",
+    "publisher": "UK Government-commissioned review",
+    "url": "https://amr-review.org",
+    "officiality": "official",
+    "access_date": "2026-10-10"
+  },
+  "notes": "2019 actual (GRAM study, directly attributable) vs. the O'Neill Review's widely-cited projection of 10 million deaths a year by 2050 if resistance goes unchecked.",
+  "points": [
+    {"label": "2019 (actual)", "value": 1.27},
+    {"label": "2050 (projected)", "value": 10}
+  ]
+}
