@@ -707,6 +707,17 @@ def _clip_key(url: str) -> str:
     # identity instead.
     if path.startswith("vodmine://"):
         return path.lower()
+    # The other side of a feud arrives from YouTube and Reddit, where the
+    # last segment is not the identity: every YouTube video is "watch" and
+    # every Reddit post its title slug, so two of them would be one clip.
+    low = url.lower()
+    m = (re.search(r"(?:youtube\.com/(?:watch\?(?:.*&)?v=|shorts/)"
+                   r"|youtu\.be/)([\w-]{6,})", url)
+         if "youtu" in low else
+         re.search(r"reddit\.com/r/[^/]+/comments/(\w+)", url)
+         if "reddit.com" in low else None)
+    if m:
+        return ("yt:" if "youtu" in low else "rd:") + m.group(1).lower()
     seg = path.rsplit("/", 1)[-1]
     return seg.lower() or path.lower()
 
@@ -1029,6 +1040,45 @@ def _public_source(url: str) -> str:
                 f"?t={h:02d}h{m:02d}m{sec:02d}s")
     except (ValueError, IndexError):
         return ""
+
+
+def _other_side_clips(story: dict, members: list[dict],
+                      spec: dict) -> list[dict]:
+    """Clips of the people a scouted story names as its missing side, as
+    story members (corpus shape), at most `story_other_side_n` in all."""
+    from funnel import hot_clips
+    from third_capture import storyline
+    lead = next((c.get("channel") for c in members if c.get("channel")), "")
+    versus = storyline.SEARCH_NAMES.get(str(lead).lower(), lead)
+    have = {storyline.clip_key(c.get("source_url", "")) for c in members}
+    room = max(0, min(int(spec.get("story_other_side_n", 3)),
+                      6 - len(members)))
+    out = []
+    for person in story["other_side"]:
+        try:
+            found = hot_clips.other_side(person, versus)
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[other side] {person}: {e}", flush=True)
+            found = []
+        for v in found:
+            if len(out) >= room:
+                break
+            ck = storyline.clip_key(v["url"])
+            if ck in have:
+                continue
+            have.add(ck)
+            out.append({"source_url": v["url"], "title": v["title"],
+                        "channel": v.get("channel", ""),
+                        "platform": v["platform"],
+                        "date": (datetime.fromtimestamp(
+                            v["created"], timezone.utc).strftime("%Y-%m-%d")
+                            if v.get("created") else ""),
+                        "posted": False,
+                        **({"internet": v["internet"]}
+                           if v.get("internet") else {})})
+        print(f"[other side] {person} vs {versus}: {len(found)} found, "
+              f"{len(out)} added", flush=True)
+    return out
 
 
 def _description(pkg: dict, led: dict) -> str:
@@ -1489,6 +1539,15 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         for st in story_director.scout_stories(cat_lines, set(cat_ids),
                                                tried=_refused):
             members = [cat_ids[m] for m in st["members"]]
+            # THE OTHER SIDE, by name (operator, 2026-10-10, of Kai Cenat
+            # and Reggie: "take whoever made those allegations originally,
+            # that stream, take a clip from there"). Backtests 7-20 proposed
+            # Kai's half of that feud again and again and the director
+            # refused it every time: the accuser's own footage was never
+            # in the catalogue. The scout names whose side is missing; their
+            # clips are searched for and join the story.
+            if st.get("other_side") and spec.get("story_other_side", True):
+                members += _other_side_clips(st, members, spec)
             # story order as the scout gave it, stable across a date
             members = sorted(members, key=lambda c: str(c.get("date", "")))
             scouted.append({

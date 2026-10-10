@@ -410,7 +410,14 @@ Return STRICT JSON, best story first, at most 6:
 {"stories": [{"members": ["C3", "C9", "C14"],
               "premise": "<one sentence: who, what changed>",
               "why_connected": "<why these clips are one story>",
-              "shape": "one_stream|multi_stream|multi_streamer"}]}
+              "shape": "one_stream|multi_stream|multi_streamer",
+              "other_side": ["Reggie"]}]}
+"other_side" names the people (at most 2, by the name strangers call
+them) whose OWN footage the story needs but the catalogue does not hold
+— the accuser of an accusation the streamer answers, the rival in a
+feud we only see one side of. Their clips are then searched for on
+r/LivestreamFail and YouTube and added to the story. [] when the
+catalogue already holds every side.
 Return {"stories": []} when the catalogue holds no real story."""
 
 
@@ -458,6 +465,9 @@ def scout_stories(lines: list[str], ids: set[str],
             "why_connected": scrub_text(
                 str(st.get("why_connected", "")).strip())[:240],
             "shape": str(st.get("shape", ""))[:20],
+            "other_side": [scrub_text(str(x)).strip()[:40]
+                           for x in (st.get("other_side") or [])
+                           if isinstance(x, str) and x.strip()][:2],
         })
         if len(kept) >= max_stories:
             break
