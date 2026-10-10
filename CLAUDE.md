@@ -747,7 +747,18 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   moments are seeded first from what the internet already upvoted —
   `funnel/hot_clips.livestreamfail()` (r/LivestreamFail's top Twitch
   clips, resolved by `clip_edit.helix_clips`), whose post title reaches
-  the director as "the internet's take".
+  the director as "the internet's take". And a FEUD is told from BOTH
+  channels (operator, same day, of Kai Cenat and Reggie: *"take whoever
+  made those allegations originally, that stream, take a clip from
+  there, and then go to Kai's stream ... that's a story"* — one shape
+  among many, not the only one): discovery only reached the followed
+  streamers' Twitch clips, so the channel held Kai's half of that feud
+  for weeks and never the accuser's. `hot_clips.about(name)` finds every
+  r/LivestreamFail post about each followed streamer on ANY platform
+  yt-dlp downloads (`storyline.SEARCH_NAMES` is what people type), the
+  scout reads them as `r/LSF` lines, and the director cuts the
+  back-and-forth in the order it was said — every accusation
+  ATTRIBUTED, the accused's answer in the cut, one side alone refused.
   `tests/test_a_story_is_a_chain_and_shows_what_it_talks_about.py`.
 - **Slots follow `_learned_prior()`, and it had no tests** until the day it
   was found inverted: kaicenat and buddha (median 5 and 8 views) at the

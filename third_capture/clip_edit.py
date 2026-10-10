@@ -618,7 +618,11 @@ def _discover_ytdlp(url: str, channel: str, platform: str,
 
 # ---------- 2. download ----------
 
-def download(url: str, work: Path) -> dict:
+def download(url: str, work: Path, *, max_s: float | None = None) -> dict:
+    """yt-dlp the clip at `url` (any platform it supports). `max_s` refuses
+    a longer video BEFORE downloading it: a story's other side can be a
+    forty-minute YouTube upload, and only a clip-length source is footage
+    a story can cut from (ValueError)."""
     work.mkdir(parents=True, exist_ok=True)
     # per-clip filenames — a shared name collides when several packages
     # run in one invocation (and --print-to-file APPENDS across runs)
@@ -631,13 +635,26 @@ def download(url: str, work: Path) -> dict:
             "--recode-video", "mp4",
             "--print-to-file",
             "%(id)s\t%(title)s\t%(uploader)s\t%(view_count|0)s\t%(duration)s",
-            str(meta), url],
+            str(meta)]
+           + (["--match-filter", f"duration<=?{int(max_s)}"] if max_s else [])
+           + [url],
            impersonate=_needs_impersonation(url))
+    if max_s and not meta.exists():
+        raise ValueError(f"longer than {int(max_s)}s")
     cid, title, clipper, views, dur = \
         meta.read_text().strip().splitlines()[-1].split("\t")
     return {"path": raw, "clip_id": cid, "title": title,
-            "clipper": clipper, "views": int(float(views or 0)),
-            "duration": float(dur), "url": url}
+            "clipper": clipper, "views": _num(views),
+            "duration": float(_num(dur, float)), "url": url}
+
+
+def _num(v, kind=int):
+    """yt-dlp prints "NA" for a field a site does not report (an X post
+    has no view count)."""
+    try:
+        return kind(float(v))
+    except (TypeError, ValueError):
+        return kind(0)
 
 
 # ---------- 3. captions ----------
