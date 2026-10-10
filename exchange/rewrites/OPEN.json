@@ -1,7 +1,77 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-10T13:04:21Z",
+ "updated": "2026-10-10T22:12:00Z",
  "open": [
+  {
+   "id": "cargo-ship-size-growth__97ed9ff7",
+   "slug": "cargo-ship-size-growth",
+   "filed": "2026-10-10T22:12:00Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on vague claims rather than a single, verifiable consequential number."
+   ],
+   "request": "exchange/rewrites/20261010/cargo-ship-size-growth__97ed9ff7.request.json",
+   "answer_path": "exchange/rewrites/20261010/cargo-ship-size-growth__97ed9ff7.answer.json"
+  },
+  {
+   "id": "global-remittances-record-2023__077a9efc",
+   "slug": "global-remittances-record-2023",
+   "filed": "2026-10-10T22:12:00Z",
+   "why": [
+    "premise: brain: The premise does not clearly invert a common viewer expectation and relies on a vague large figure without a single verifiable consequential number."
+   ],
+   "request": "exchange/rewrites/20261010/global-remittances-record-2023__077a9efc.request.json",
+   "answer_path": "exchange/rewrites/20261010/global-remittances-record-2023__077a9efc.answer.json"
+  },
+  {
+   "id": "self-storage-outnumbers-starbucks__5f5e8e3e",
+   "slug": "self-storage-outnumbers-starbucks",
+   "filed": "2026-10-10T22:12:00Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a specific viewer expectation and relies on an ambiguous, unverifiable number."
+   ],
+   "request": "exchange/rewrites/20261010/self-storage-outnumbers-starbucks__5f5e8e3e.request.json",
+   "answer_path": "exchange/rewrites/20261010/self-storage-outnumbers-starbucks__5f5e8e3e.answer.json"
+  },
+  {
+   "id": "astronaut-bone-loss__606ac204",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-10-10T22:11:59Z",
+   "why": [
+    "premise: brain: The claim lacks verifiable evidence and appears scientifically inaccurate."
+   ],
+   "request": "exchange/rewrites/20261010/astronaut-bone-loss__606ac204.request.json",
+   "answer_path": "exchange/rewrites/20261010/astronaut-bone-loss__606ac204.answer.json"
+  },
+  {
+   "id": "earth-rotation-speeding-up__e26a5423",
+   "slug": "earth-rotation-speeding-up",
+   "filed": "2026-10-10T22:11:59Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261010/earth-rotation-speeding-up__e26a5423.request.json",
+   "answer_path": "exchange/rewrites/20261010/earth-rotation-speeding-up__e26a5423.answer.json"
+  },
+  {
+   "id": "peanut-allergy-guideline-flip__15398e9a",
+   "slug": "peanut-allergy-guideline-flip",
+   "filed": "2026-10-10T22:11:59Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a known expectation and relies on an unsubstantiated, vague statistic."
+   ],
+   "request": "exchange/rewrites/20261010/peanut-allergy-guideline-flip__15398e9a.request.json",
+   "answer_path": "exchange/rewrites/20261010/peanut-allergy-guideline-flip__15398e9a.answer.json"
+  },
+  {
+   "id": "lottery-odds-vs-real-life__69eb7cc3",
+   "slug": "lottery-odds-vs-real-life",
+   "filed": "2026-10-10T22:11:58Z",
+   "why": [
+    "premise: brain: It presents a known odds figure without overturning a viewer's expectation."
+   ],
+   "request": "exchange/rewrites/20261010/lottery-odds-vs-real-life__69eb7cc3.request.json",
+   "answer_path": "exchange/rewrites/20261010/lottery-odds-vs-real-life__69eb7cc3.answer.json"
+  },
   {
    "id": "kelp-forest-sea-star-collapse__1c09d550",
    "slug": "kelp-forest-sea-star-collapse",
@@ -143,26 +213,6 @@
    "answer_path": "exchange/rewrites/20261010/body-renewal-clock__a57c67e5.answer.json"
   },
   {
-   "id": "astronaut-bone-loss__606ac204",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-10-09T16:43:32Z",
-   "why": [
-    "premise: brain: The claim lacks a verifiable, authoritative source for the specific 1.5% bone loss figure, making it an unsubstantiated premise."
-   ],
-   "request": "exchange/rewrites/20261009/astronaut-bone-loss__606ac204.request.json",
-   "answer_path": "exchange/rewrites/20261009/astronaut-bone-loss__606ac204.answer.json"
-  },
-  {
-   "id": "peanut-allergy-guideline-flip__08d91354_r1",
-   "slug": "peanut-allergy-guideline-flip",
-   "filed": "2026-10-09T16:43:32Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer's expectation and relies on a vague claim rather than a single verifiable statistic."
-   ],
-   "request": "exchange/rewrites/20261009/peanut-allergy-guideline-flip__08d91354_r1.request.json",
-   "answer_path": "exchange/rewrites/20261009/peanut-allergy-guideline-flip__08d91354_r1.answer.json"
-  },
-  {
    "id": "monarch-butterfly-collapse__f5453757",
    "slug": "monarch-butterfly-collapse",
    "filed": "2026-10-09T15:31:45Z",
@@ -191,16 +241,6 @@
    ],
    "request": "exchange/rewrites/20261009/insect-planet__3c655236.request.json",
    "answer_path": "exchange/rewrites/20261009/insect-planet__3c655236.answer.json"
-  },
-  {
-   "id": "lottery-odds-vs-real-life__4032dfa0",
-   "slug": "lottery-odds-vs-real-life",
-   "filed": "2026-10-09T15:31:43Z",
-   "why": [
-    "premise: brain: It states a known odds figure without overturning a viewer expectation, so it fails the reversal requirement."
-   ],
-   "request": "exchange/rewrites/20261009/lottery-odds-vs-real-life__4032dfa0.request.json",
-   "answer_path": "exchange/rewrites/20261009/lottery-odds-vs-real-life__4032dfa0.answer.json"
   },
   {
    "id": "billionaire-count-record-2025__13fb03d3_r1",
@@ -243,16 +283,6 @@
    ],
    "request": "exchange/rewrites/20261009/ceo-executive-pay-gap__f7d194b4.request.json",
    "answer_path": "exchange/rewrites/20261009/ceo-executive-pay-gap__f7d194b4.answer.json"
-  },
-  {
-   "id": "cargo-ship-size-growth__24e5d6d7",
-   "slug": "cargo-ship-size-growth",
-   "filed": "2026-10-09T13:18:08Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on multiple vague numbers rather than a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261009/cargo-ship-size-growth__24e5d6d7.request.json",
-   "answer_path": "exchange/rewrites/20261009/cargo-ship-size-growth__24e5d6d7.answer.json"
   },
   {
    "id": "library-digital-shift__c767bb21",
@@ -341,16 +371,6 @@
    ],
    "request": "exchange/rewrites/20261009/gulf-dead-zone-growth__34b8ec5f.request.json",
    "answer_path": "exchange/rewrites/20261009/gulf-dead-zone-growth__34b8ec5f.answer.json"
-  },
-  {
-   "id": "earth-rotation-speeding-up__3690b203",
-   "slug": "earth-rotation-speeding-up",
-   "filed": "2026-10-09T13:18:01Z",
-   "why": [
-    "premise: brain: The claim lacks a strong, verifiable consequence and the tiny 1.66 ms change is not a compelling reversal of viewer expectations."
-   ],
-   "request": "exchange/rewrites/20261009/earth-rotation-speeding-up__3690b203.request.json",
-   "answer_path": "exchange/rewrites/20261009/earth-rotation-speeding-up__3690b203.answer.json"
   },
   {
    "id": "volcano-country-ranking__c85b495d",
@@ -549,16 +569,6 @@
    ],
    "request": "exchange/rewrites/20261009/black-holes-in-galaxy__3b4d53e5.request.json",
    "answer_path": "exchange/rewrites/20261009/black-holes-in-galaxy__3b4d53e5.answer.json"
-  },
-  {
-   "id": "self-storage-outnumbers-starbucks__c3fab999",
-   "slug": "self-storage-outnumbers-starbucks",
-   "filed": "2026-10-08T22:24:58Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on an unverified, vague number without verifiable context."
-   ],
-   "request": "exchange/rewrites/20261008/self-storage-outnumbers-starbucks__c3fab999.request.json",
-   "answer_path": "exchange/rewrites/20261008/self-storage-outnumbers-starbucks__c3fab999.answer.json"
   },
   {
    "id": "daylight-saving-time-in-decline__d148cd57",
@@ -870,16 +880,6 @@
    ],
    "request": "exchange/rewrites/20261005/muscle-loss-after-30__a6d6cd11.request.json",
    "answer_path": "exchange/rewrites/20261005/muscle-loss-after-30__a6d6cd11.answer.json"
-  },
-  {
-   "id": "global-remittances-record-2023__5fd648c7",
-   "slug": "global-remittances-record-2023",
-   "filed": "2026-10-05T12:42:30Z",
-   "why": [
-    "premise: brain: It does not reverse a viewer expectation, only presents a large number."
-   ],
-   "request": "exchange/rewrites/20261005/global-remittances-record-2023__5fd648c7.request.json",
-   "answer_path": "exchange/rewrites/20261005/global-remittances-record-2023__5fd648c7.answer.json"
   },
   {
    "id": "lab-grown-diamond-price-collapse__147039f2",

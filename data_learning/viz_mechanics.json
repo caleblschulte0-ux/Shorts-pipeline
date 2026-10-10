@@ -692,5 +692,21 @@
   "topic": "fireflies",
   "starred": false,
   "sig": "574dc1a38760"
+ },
+ {
+  "mechanic": "dst-clocks-quit",
+  "concept": "A wall of 40 clocks: the 64% that quit stop ticking and go dark in a wave, the 36% keep spinning their hands",
+  "code": "clk = subject_image('wall clock') or subject_image('Earth globe')\ncols, rows = 5, 8\ncw = (RX1 - RX0) // cols\nch = 150\ntotal = cols * rows\nquit_n = round(total * values[0] / 100.0)\nwave = clamp(reveal * 1.04)\nfor i in range(total):\n    r = i // cols\n    cc = i % cols\n    x = RX0 + cc * cw + cw // 2\n    y = RTOP + 110 + r * ch + ch // 2\n    order = (i * 7) % total\n    dead = order < quit_n and wave * total > order\n    rad = 58\n    if clk is not None:\n        paste(clk, x - rad, y - rad, rad * 2, rad * 2)\n    if dead:\n        d.ellipse([x - rad, y - rad, x + rad, y + rad], fill=rgba(REST, 215))\n        d.line([x - 30, y - 30, x + 30, y + 30], fill=rgba(WARN, 230), width=8)\n        d.line([x - 30, y + 30, x + 30, y - 30], fill=rgba(WARN, 230), width=8)\n    else:\n        a = (reveal * 14.0 + i * 0.7) * 2 * math.pi\n        d.line([x, y, x + 40 * math.sin(a), y - 40 * math.cos(a)], fill=rgba(HIGHLIGHT, 255), width=7)\n        d.line([x, y, x + 26 * math.sin(a / 12), y - 26 * math.cos(a / 12)], fill=rgba(HIGHLIGHT, 255), width=9)\n        d.ellipse([x - rad, y - rad, x + rad, y + rad], outline=rgba(HIGHLIGHT, 255), width=5)\nsy = RTOP + 110 + (ch * rows) * ((reveal * 3.0) % 1.0)\nd.rectangle([RX0, sy - 40, RX1, sy + 40], fill=rgba(HIGHLIGHT, 60))\nd.rectangle([RX0, sy - 6, RX1, sy + 6], fill=rgba(HIGHLIGHT, 200))\nshown = round(quit_n * clamp(wave))\ntext(str(shown) + ' OF ' + str(total) + ' STOPPED', (RX0 + RX1) // 2, RTOP + 30, size=52, color=WARN, center=True)\ntext(fmt(values[0]) + ' quit', (RX0 + RX1) // 2, RBOT - 110, size=60, color=TEXT, center=True)",
+  "topic": "dst-clocks-quit",
+  "starred": false,
+  "sig": "3934fe3a2683"
+ },
+ {
+  "mechanic": "storage-tiles-sort-57-43",
+  "concept": "A hundred falling tiles sort into two heaps: 57 roll-up storage doors against 43 chain stores (cup, sub, burger)",
+  "code": "door = subject_image('self storage unit roll-up door')\ncup = subject_image('Starbucks coffee cup')\ncols, rows = 10, 10\ncw = (RX1 - RX0) // cols\nchh = 100\nst = int(round(values[0]))\nprog = clamp(reveal * 1.25)\nfor i in range(100):\n    r = i // cols\n    cc = i % cols\n    storage = i < st\n    tx = RX0 + cc * cw + 4\n    ty = RTOP + 130 + r * chh\n    start = (i * 0.0085)\n    p = clamp((prog - start) * 4.0)\n    y = lerp(RTOP - 150, ty, p)\n    col = HIGHLIGHT if storage else REST\n    d.rounded_rectangle([tx, y, tx + cw - 8, y + chh - 8], radius=8, fill=rgba(col, 255))\n    if storage:\n        for q in range(3):\n            d.line([tx + 10, y + 28 + q * 20, tx + cw - 18, y + 28 + q * 20], fill=rgba(TEXT, 110), width=3)\n    elif cup is not None and i % 5 == 0:\n        paste(cup, tx + 14, y + 10, 60, 74)\nif door is not None:\n    paste(door, RX0, RBOT - 290, 240, 190)\ncx = (RX0 + RX1) // 2\ntext(str(int(round(st * clamp(prog)))) + ' STORAGE', cx, RBOT - 190, size=64, color=HIGHLIGHT, center=True)\ntext(str(int(round((100 - st) * clamp(prog)))) + ' = Subway + Starbucks + McDonalds', cx, RBOT - 100, size=34, color=TEXT, center=True)",
+  "topic": "storage-tiles-sort-57-43",
+  "starred": false,
+  "sig": "c1e4f6db5b4d"
  }
 ]

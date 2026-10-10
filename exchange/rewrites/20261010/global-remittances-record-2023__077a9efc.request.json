@@ -1,0 +1,168 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "global-remittances-record-2023__077a9efc",
+ "filed": "2026-10-10T22:12:00Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "global-remittances-record-2023",
+ "current": {
+  "title": "Migrants Sent Home A Record $685 Billion In 2024",
+  "hook": "Your family's money home is part of a $685 billion flood.",
+  "closing": "The biggest aid program isn't run by any government.",
+  "question": "Ever sent money home? Tell me below.",
+  "segments": [
+   {
+    "topic": "Money migrants sent home",
+    "say": "Migrants sent $685 billion home by 2024, and even a pandemic barely slowed them."
+   },
+   {
+    "topic": "Who receives migrants' money",
+    "say": "India alone got $120 billion from its workers abroad, more than any other country."
+   },
+   {
+    "topic": "Migrants' money beats investment",
+    "say": "In 2023, that money beat foreign company investment by about $270 billion."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Money migrants sent home",
+   "say": "Migrants sent $685 billion home by 2024, and even a pandemic barely slowed them.",
+   "role": "1 · HOW MUCH MONEY MOVES THIS WAY",
+   "data": {
+    "file": "remittances_to_lmics_trend.json",
+    "unit": "billion dollars",
+    "title": "Remittances sent to low- and middle-income countries",
+    "points": [
+     {
+      "label": "2016",
+      "value": 435,
+      "period": "2016"
+     },
+     {
+      "label": "2019",
+      "value": 548,
+      "period": "2019"
+     },
+     {
+      "label": "2020",
+      "value": 542,
+      "period": "2020"
+     },
+     {
+      "label": "2022",
+      "value": 647,
+      "period": "2022"
+     },
+     {
+      "label": "2023",
+      "value": 656,
+      "period": "2023"
+     },
+     {
+      "label": "2024",
+      "value": 685,
+      "period": "2024"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Who receives migrants' money",
+   "say": "India alone got $120 billion from its workers abroad, more than any other country.",
+   "role": "2 · WHERE IT ACTUALLY GOES",
+   "data": {
+    "file": "remittances_top_recipients.json",
+    "unit": "billion dollars",
+    "title": "Top remittance-receiving countries",
+    "points": [
+     {
+      "label": "India",
+      "value": 120
+     },
+     {
+      "label": "Mexico",
+      "value": 66
+     },
+     {
+      "label": "China",
+      "value": 50
+     },
+     {
+      "label": "Philippines",
+      "value": 39
+     },
+     {
+      "label": "Pakistan",
+      "value": 27
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Migrants' money beats investment",
+   "say": "In 2023, that money beat foreign company investment by about $270 billion.",
+   "role": "3 · BIGGER THAN BUSINESS INVESTMENT",
+   "data": {
+    "file": "remittances_vs_fdi_gap.json",
+    "unit": "billion dollars",
+    "title": "Remittances to poorer countries vs. the gap over foreign investment",
+    "points": [
+     {
+      "label": "Remittances to LMICs",
+      "value": 656
+     },
+     {
+      "label": "Amount more than FDI",
+      "value": 270
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The premise does not clearly invert a common viewer expectation and relies on a vague large figure without a single verifiable consequential number."
+ ],
+ "reasons": [
+  "premise: brain: The premise does not clearly invert a common viewer expectation and relies on a vague large figure without a single verifiable consequential number."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is ONE spoken sentence of at most 16 words — the number and what it means, nothing else; the HOOK at most 14 words, the CLOSING at most 10, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261010/global-remittances-record-2023__077a9efc.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

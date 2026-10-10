@@ -5120,21 +5120,55 @@
    "notes": "shrinking stone, 11 lab stones = 1 natural, ring wall lights up"
   },
   {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-10",
+   "topic_category": "nature",
+   "hook_type": "shock_stat",
+   "hook_text": "Your bats are dying: 97 percent of one kind gone, and it started in one cave.",
+   "words_first_10s": 24,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "bat colonies fall off the ceiling; needle sweeps to $53B"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-10",
+   "topic_category": "money",
+   "hook_type": "shock_stat",
+   "hook_text": "States are quietly holding 70 billion dollars of your money.",
+   "words_first_10s": 18,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "vault holds 70B, trickle returned; 1-in-7 crowd glows"
+  },
+  {
    "slug": "daylight-saving-time-in-decline",
    "directed_at": "2026-10-10",
-   "topic_category": "history",
-   "hook_type": "inversion",
+   "topic_category": "tech",
+   "hook_type": "shock_stat",
    "hook_text": "Your clock changes twice a year, but 64 countries quit.",
    "words_first_10s": 18,
    "scene_changes_before_5s": 2,
    "depictions": [
-    "mechanic:clock-face-quit-wedge",
-    "mechanic:clock-wall-switching-off",
-    "scene:object-rows"
+    "mechanic:dst-clocks-quit",
+    "mechanic:dst-countries-wind-down",
+    "mechanic:dst-people-never-changed"
    ],
    "ending_type": "inversion",
    "franchise": "",
-   "notes": "clock hand paints the quitters; 144-clock wall goes dark"
+   "notes": "clocks stop in a wave; 140 dots wink out; people blocks for India/China"
   },
   {
    "slug": "self-storage-outnumbers-starbucks",
@@ -5142,16 +5176,16 @@
    "topic_category": "money",
    "hook_type": "shock_stat",
    "hook_text": "Your town has more storage units than coffee shops: 66,000 of them.",
-   "words_first_10s": 18,
+   "words_first_10s": 20,
    "scene_changes_before_5s": 2,
    "depictions": [
-    "mechanic:storage-doors-roll-open",
-    "mechanic:storage-vs-cups-fill",
-    "scene:stack"
+    "mechanic:storage-doors-tower-vs-cups",
+    "mechanic:storage-tiles-sort-57-43",
+    "mechanic:storage-doors-skyline-grow"
    ],
-   "ending_type": "consequence",
+   "ending_type": "inversion",
    "franchise": "",
-   "notes": "roll-up doors open per chain; building vs cups fill; 10x stack"
+   "notes": "unit towers dwarf chains; 100 tiles sort 57/43; lot skyline 1984-2025"
   }
  ]
 }
