@@ -12236,13 +12236,50 @@
       "ts": "2026-10-10T12:08:40.906316+00:00"
     },
     "clip-20261010-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ohnepixel/clip/HumbleKathishSheepDancingBaby-Q31lSZeeSkoBFdYL",
-      "story_key": null,
-      "streamer": "ohnepixel",
+      "url": "https://youtube.com/shorts/V3hJr2XCDkU",
       "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
       "kind": "twitch_clip",
-      "ts": "2026-10-10T12:11:48.584007+00:00",
+      "ts": "2026-10-10T12:11:56.967125+00:00",
+      "uploaded_at": "2026-10-10T12:11:56.967140+00:00",
+      "publish_at": "2026-10-10T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261010-ohnepixel-breaks-down-crying-on-stream-and-needs-5fd162bf",
+        "tiktok": "queued for 2026-10-10T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/HumbleKathishSheepDancingBaby-Q31lSZeeSkoBFdYL",
+      "streamer": "ohnepixel",
+      "series": "wholesome",
+      "hook": "ohnepixel needs a minute \ud83e\udd40",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 37862,
+      "banger": 0.55,
+      "cut": {
+        "start": 24.0,
+        "end": 49.0
+      },
+      "director_cut": true
+    },
+    "rejected-plumpenthusiasticspindletoospicy-89yxdd913btqh259": {
+      "source_url": "https://www.twitch.tv/lospollostv/clip/PlumpEnthusiasticSpindleTooSpicy-89yXdD913Btqh259",
+      "streamer": "lospollostv",
+      "title": "Wtf is he doing bro, not brain cell in there",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Villager bed gag, sexual-child joke, ris)",
+      "ts": "2026-10-10T12:33:45.327719+00:00"
+    },
+    "clip-20261010-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/erobb221/clip/RealAttractivePeppermintFunRun-g6SLbf_an4PQXs0-",
+      "story_key": null,
+      "streamer": "erobb221",
+      "title": "Erobb221 Girlfriend Brings Him A Steak And Beer Mid-Game And It Goes Wrong",
+      "kind": "twitch_clip",
+      "ts": "2026-10-10T12:36:30.901559+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
