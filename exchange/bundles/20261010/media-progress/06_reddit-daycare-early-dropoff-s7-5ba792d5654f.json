@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261010",
+  "bundle": {
+    "identity": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad",
+    "path": "exchange/bundles/20261010/bundle.json"
+  },
+  "request_id": "06_reddit-daycare-early-dropoff-s7-5ba792d5654f",
+  "safe_request_id": "06_reddit-daycare-early-dropoff-s7-5ba792d5654f",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "306cd3e5100de177fef7b9da6d559b1a00b95afd9d23df3a657c37e53369e437",
+  "prompt_used": "An editorial illustration for a short-form video: daycare entrance door closing. It accompanies the narration: \"She left owing us back-fees instead of getting a refund\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1N7Ieh9QektEgn-nh_2kibqqWJPXYuTf6",
+    "filename": "20261010__06_reddit-daycare-early-dropoff-s7-5ba792d5654f.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1N7Ieh9QektEgn-nh_2kibqqWJPXYuTf6",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "filename": "20261010__06_reddit-daycare-early-dropoff-s7-5ba792d5654f.png",
+    "sha256": "f33fea272242e0ba69a29f0d43c147f234aa9353b774c77cf73854272f714f61",
+    "bytes": 1845222,
+    "width": 941,
+    "height": 1672,
+    "format": "png"
+  },
+  "verified_at": "2026-10-10T11:27:14.773Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
