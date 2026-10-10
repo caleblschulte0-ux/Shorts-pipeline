@@ -12420,14 +12420,49 @@
       "director_cut": true
     },
     "clip-20261010-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/DaintyWimpyNightingaleNononoCat-Q22n5lPuSU1OlC0w",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/SSH-WCFxiY4",
       "title": "Stableronaldo Can't Believe Jynxzi Just Messed Up The Run Of A Lifetime",
       "kind": "twitch_clip",
-      "ts": "2026-10-10T14:05:31.340896+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-10T14:05:43.154448+00:00",
+      "uploaded_at": "2026-10-10T14:05:43.154464+00:00",
+      "publish_at": "2026-10-11T00:30:00Z",
+      "crossposts": {
+        "tiktok": "https://www.tiktok.com/@me/video/v_pub_file~v2-1.7695039868589819934"
+      },
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/DaintyWimpyNightingaleNononoCat-Q22n5lPuSU1OlC0w",
+      "streamer": "stableronaldo",
+      "series": "fail",
+      "hook": "Jynxzi messes up the run of a lifetime \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2326,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 27.0
+      },
+      "director_cut": true
+    },
+    "rejected-prettiestabnegateshrimpnerfblueblaster-mk5cgt_ybffx_k6r": {
+      "source_url": "https://www.twitch.tv/alinity/clip/PrettiestAbnegateShrimpNerfBlueBlaster-Mk5CgT_YBFFX_k6r",
+      "streamer": "alinity",
+      "title": "wow",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Routine pizza prep, no real event)",
+      "ts": "2026-10-10T14:06:30.635312+00:00"
+    },
+    "rejected-credulouspoisedtaroaliens-8d28olp6v_cwn-yj": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/CredulousPoisedTaroAliens-8d28Olp6v_cWN-yj",
+      "streamer": "kaicenat",
+      "title": "leave me alone",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-10-10T14:07:34.337246+00:00"
     }
   }
 }
