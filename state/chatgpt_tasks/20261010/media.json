@@ -1,0 +1,37 @@
+{
+ "checked_at": "2026-10-10T12:30:55+00:00",
+ "date": "20261010",
+ "deadline_central": 7,
+ "deadline_passed": true,
+ "expected": [
+  "exchange/bundles/20261010/media-progress/STARTED.json",
+  "\u2026/<safe_request_id>.json",
+  "\u2026/FAILED-<id>.json"
+ ],
+ "found": [
+  "05_reddit-gym-autorenew-contract-s0-537277150bf5.json",
+  "05_reddit-gym-autorenew-contract-s1-59eaaf32505e.json",
+  "05_reddit-gym-autorenew-contract-s2-a746067a8827.json",
+  "05_reddit-gym-autorenew-contract-s3-a215ba2bb4eb.json",
+  "05_reddit-gym-autorenew-contract-s4-93859643cb8c.json",
+  "05_reddit-gym-autorenew-contract-s5-0df5c3a5ce71.json",
+  "05_reddit-gym-autorenew-contract-s6-2cbe9c1913f3.json",
+  "05_reddit-gym-autorenew-contract-s7-21f4db44b47b.json",
+  "06_reddit-daycare-early-dropoff-s0-e58592b5a8c7.json",
+  "06_reddit-daycare-early-dropoff-s1-407326e34526.json",
+  "06_reddit-daycare-early-dropoff-s2-05d73b084651.json",
+  "06_reddit-daycare-early-dropoff-s3-c2f1d3110ab2.json",
+  "06_reddit-daycare-early-dropoff-s4-106e84d528e8.json",
+  "06_reddit-daycare-early-dropoff-s5-b277cdb12e5d.json",
+  "06_reddit-daycare-early-dropoff-s6-999ad6478b02.json",
+  "06_reddit-daycare-early-dropoff-s7-5ba792d5654f.json",
+  "STARTED.json"
+ ],
+ "headline": "media: ok",
+ "ok": true,
+ "required": true,
+ "schema": "chatgpt-task-outcome/v1",
+ "status": "ok",
+ "task": "media",
+ "why_required": "the bundle asks for 16 image(s)"
+}
