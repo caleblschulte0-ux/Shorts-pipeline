@@ -3133,11 +3133,28 @@
       "duration_s": 27.8
     },
     "youth-sports-dropout": {
-      "claimed_at": "2026-10-10T16:29:42.602488+00:00",
+      "url": "https://youtube.com/shorts/lf1ObVpZBK0",
       "title": "Only 41% Of American Boys Still Play Sports Regularly",
+      "at": "2026-10-10T16:29:51.681163+00:00",
       "publish_at": "2026-10-10T14:41:24Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "illustrated_beats": 2,
+      "fallback_beats": 0,
+      "beat_s_max": 4.26,
+      "beat_s": [
+        4.0,
+        4.26,
+        3.05,
+        4.36
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 57,
+      "duration_s": 15.7
     }
   },
   "uploads": [
@@ -3910,9 +3927,10 @@
       "claimed_at": "2026-10-10T16:29:42.602488+00:00",
       "title": "Only 41% Of American Boys Still Play Sports Regularly",
       "publish_at": "2026-10-10T14:41:24Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "youth-sports-dropout"
+      "url": "https://youtube.com/shorts/lf1ObVpZBK0",
+      "state": "posted",
+      "slug": "youth-sports-dropout",
+      "at": "2026-10-10T16:29:51.681163+00:00"
     }
   ]
 }
