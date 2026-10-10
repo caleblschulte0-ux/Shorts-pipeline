@@ -3181,11 +3181,29 @@
       "duration_s": 16.1
     },
     "medical-debt-credit-score-fix": {
-      "claimed_at": "2026-10-10T18:16:13.579782+00:00",
+      "url": "https://youtube.com/shorts/RITO4fF3tqY",
       "title": "One Rule Change Fixed 16 Million Credit Scores For Free",
+      "at": "2026-10-10T18:16:21.520731+00:00",
       "publish_at": "2026-10-11T02:41:24Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 4.37,
+      "beat_s": [
+        3.89,
+        3.93,
+        4.37,
+        3.01,
+        4.61
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 79,
+      "duration_s": 19.7
     }
   },
   "uploads": [
@@ -3976,9 +3994,10 @@
       "claimed_at": "2026-10-10T18:16:13.579782+00:00",
       "title": "One Rule Change Fixed 16 Million Credit Scores For Free",
       "publish_at": "2026-10-11T02:41:24Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "medical-debt-credit-score-fix"
+      "url": "https://youtube.com/shorts/RITO4fF3tqY",
+      "state": "posted",
+      "slug": "medical-debt-credit-score-fix",
+      "at": "2026-10-10T18:16:21.520731+00:00"
     }
   ]
 }
