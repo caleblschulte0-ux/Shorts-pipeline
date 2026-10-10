@@ -5050,6 +5050,74 @@
    "ending_type": "consequence",
    "franchise": "",
    "notes": "skyglow rises as fireflies fade -> lantern grid -> census searchlight"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-10",
+   "topic_category": "animals",
+   "hook_type": "shock_stat",
+   "hook_text": "Your bats are dying: 97 percent of one kind gone, and it started in one cave.",
+   "words_first_10s": 26,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "kept existing scenes; farm bill consequence ending"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-10",
+   "topic_category": "money",
+   "hook_type": "shock_stat",
+   "hook_text": "States are quietly holding 70 billion dollars of your money.",
+   "words_first_10s": 20,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "kept existing scenes; 4.49B of 70B trickle"
+  },
+  {
+   "slug": "metric-system-holdouts",
+   "directed_at": "2026-10-10",
+   "topic_category": "history",
+   "hook_type": "stake",
+   "hook_text": "One unit mix-up burned up a 327 million dollar spacecraft, and America still hasn't fixed it.",
+   "words_first_10s": 26,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:world-crowd-holdouts",
+    "mechanic:orbiter-skims-the-ground",
+    "mechanic:half-empty-jet-tank"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "crowd of 100, orbiter below safe line, half-filled jet"
+  },
+  {
+   "slug": "lab-grown-diamond-price-collapse",
+   "directed_at": "2026-10-10",
+   "topic_category": "money",
+   "hook_type": "shock_stat",
+   "hook_text": "Your engagement ring just lost 90% of its price.",
+   "words_first_10s": 19,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:diamond-shrinks-with-price",
+    "mechanic:eleven-lab-stones-one-natural",
+    "mechanic:rings-light-up-by-year"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "shrinking stone, 11 lab stones = 1 natural, ring wall lights up"
   }
  ]
 }
