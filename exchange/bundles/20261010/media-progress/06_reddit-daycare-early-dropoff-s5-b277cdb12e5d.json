@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261010",
+  "bundle": {
+    "identity": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad",
+    "path": "exchange/bundles/20261010/bundle.json"
+  },
+  "request_id": "06_reddit-daycare-early-dropoff-s5-b277cdb12e5d",
+  "safe_request_id": "06_reddit-daycare-early-dropoff-s5-b277cdb12e5d",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "42a9315130a031b86927a4e1ce0e6b225ff876421aa490acfab5ea631df4109a",
+  "prompt_used": "An editorial illustration for a short-form video: signing paper pen closeup. It accompanies the narration: \"her own signature on the fee schedule from day one\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1HUyHu5Yf-duXsp9JEKEZ37VzxW2ZVmlA",
+    "filename": "20261010__06_reddit-daycare-early-dropoff-s5-b277cdb12e5d.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1HUyHu5Yf-duXsp9JEKEZ37VzxW2ZVmlA",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "filename": "20261010__06_reddit-daycare-early-dropoff-s5-b277cdb12e5d.png",
+    "sha256": "38976652863d096b2890ab8f5bf3a5e7ead50c0be680e932b8401669affe4923",
+    "bytes": 1693603,
+    "width": 941,
+    "height": 1672,
+    "format": "png"
+  },
+  "verified_at": "2026-10-10T11:27:12.811Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
