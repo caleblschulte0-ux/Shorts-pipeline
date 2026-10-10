@@ -383,6 +383,25 @@ constants blanked), never on the prose that explains it.
   change is said in words ("it nearly doubled"), and the listener picks
   the simpler, more fun story. `tests/test_the_narration_tells_a_story.py`.
 
+- **Nothing made to an older standard posts, and THE CHECKOUT is the bar**
+  (operator, 2026-10-09, after a twins video drawn on 10-07 went out: *"make
+  sure that this never happens again, that we always need to be running
+  that new updated art style"*; of the self-checkout opening: *"perfect,
+  beautiful. It's like what I want everything to look like"*, with one
+  note, *"Data maybe would have had a shopping cart and he would have been
+  moving down the line"*). Every brain scene carries a `# scene standard:`
+  stamp; one saved under an older `scene_author.STANDARD` is re-judged
+  (`recertify`: every check, the viewer with the narration, the look again)
+  before it is reused, and redrawn if it fails. `subject_scenes.
+  checkout_lanes` is that opening kept verbatim, the third bar beside THE
+  SHOT and THE PILE in the prompt and the look again; prompt rule 18 is the
+  cart note. Every render stamps `shared/currency.STANDARD` in its style
+  sidecar, and the posting run and the mailbox claim refuse a render from
+  an older standard, in a retired look, with a hook under the floor or a
+  narration readout (`not_current`, a hold, never a gate verdict). Bump a
+  STANDARD whenever a rule a scene or a video must meet changes.
+  `tests/test_nothing_out_of_date_posts.py`.
+
 - **A brain-drawn subject scene has to pass a VIEWER, not just the code**
   (operator, 2026-10-01: a coffin he "couldn't tell was a coffin", an urn
   of blue "ash" that read as water, a rope "pulling a liquid up"). Every

@@ -130,7 +130,7 @@ def download_artifact(run_id: str, name: str, member: str, dest: Path,
             raise RuntimeError(f"{member!r} is not in artifact {name!r}: {zf.namelist()[:8]}")
         dest.parent.mkdir(parents=True, exist_ok=True)
         dest.write_bytes(zf.read(member))
-        for side in (".manifest.json", ".showrunner.json"):
+        for side in (".manifest.json", ".showrunner.json", ".style.json"):
             sm = member[:-4] + side
             if sm in zf.namelist():
                 dest.with_suffix(side).write_bytes(zf.read(sm))
@@ -159,6 +159,15 @@ def _publish_explainer(req: dict, mp4: Path, verdict: dict,
     sc = next((s for s in cfg.get("stories", []) if s.get("slug") == req["slug"]), None)
     if not sc:
         raise RuntimeError(f"story {req['slug']!r} is no longer in niche.config.json")
+    # A KEPT RENDER IS FROM AN EARLIER RUN: it ships only if it was made to
+    # today's standard (operator, 2026-10-09: "none of this shit's going to
+    # happen again ... stuff posting that isn't updated"). Otherwise the
+    # story waits for the next posting run to render it fresh.
+    from shared import currency
+    stale = currency.problems(mp4, sc)
+    if stale:
+        raise RuntimeError(f"{req['slug']}: not made to today's standard — "
+                           + "; ".join(stale[:3]))
     log = ps._load_log(ps.LOG_PATH)
     prev = (log.get("posted") or {}).get(req["slug"])
     if isinstance(prev, dict) and prev.get("state") == "posted" and prev.get("url"):

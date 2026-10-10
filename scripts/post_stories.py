@@ -510,7 +510,7 @@ from shared.near_duplicate import (_DUP_JACCARD, _DUP_SEQ, _DUP_STOP,  # noqa: E
 # Outcomes a run can have. A gate HOLD is the fail-closed review working as
 # designed; it is not a fault and must never be reported as one.
 HELD_REASONS = {"editorial_hold", "showrunner_block", "duplicate_hold",
-                "arm_quota_full"}
+                "arm_quota_full", "not_current"}
 
 
 def classify_results(results: list[dict]) -> dict:
@@ -864,13 +864,26 @@ def main() -> int:
         # thing is just us reading off numbers to people"). A beat that reads
         # off a list, or names a group nobody knows, is retold by the brain
         # — validated like any rewrite, heard against the old one by a
-        # listener, persisted once. It never holds a story.
+        # listener, persisted once. A story still told as a readout after
+        # the retell is not rendered this run (operator, same day: "make
+        # sure that this never happens again ... stuff posting that isn't
+        # updated"): it stays in the queue and the next run retells it again.
         try:
             from shared import narration as _narration
             _narration.retell(sc, config_path=args.config,
                               log=lambda m: print(f"[{slug}] {m}", flush=True))
-        except Exception as _ne:  # noqa: BLE001 — the old words post as before
+        except Exception as _ne:  # noqa: BLE001
             print(f"[{slug}] retell skipped: {_ne}", flush=True)
+        if not args.dry_run:
+            from shared import narration as _narration
+            _told = _narration.problems(sc)
+            if _told:
+                print(f"[{slug}] NOT RENDERING — the narration is not to "
+                      f"today's standard: {_told[0]}; kept for the next "
+                      f"retell", flush=True)
+                results.append({"slug": slug, "ok": False,
+                                "error": "not_current", "reasons": _told})
+                continue
         pre = _eg.pre_render_verdict(sc)
         if not pre["ok"]:
             print(f"[{slug}] EDITORIAL HOLD (pre-render): "
@@ -908,6 +921,24 @@ def main() -> int:
         print(f"[{slug}] rendering -> {out}", flush=True)
         from data_learning import studio_render       # lazy: needs Pillow etc.
         studio_render.render(slug, out, config_path=args.config)
+
+        # MADE TO TODAY'S STANDARD, or not judged and not posted: the look,
+        # the hook the render settled on, the narration (shared/currency).
+        if not args.dry_run:
+            from shared import currency as _currency
+            try:
+                _fresh = next((s_ for s_ in json.loads(Path(args.config).read_text())
+                               .get("stories", []) if s_.get("slug") == slug), sc)
+            except Exception:  # noqa: BLE001
+                _fresh = sc
+            _stale = _currency.problems(out, _fresh)
+            if _stale:
+                print(f"[{slug}] NOT POSTING — not made to today's standard: "
+                      + "; ".join(_stale[:3]) + " — kept for another run",
+                      flush=True)
+                results.append({"slug": slug, "ok": False,
+                                "error": "not_current", "reasons": _stale})
+                continue
 
         # A render that fell back to a look with no slot today (operator,
         # 2026-10-09: "we are only posting b type videos from here on out" —

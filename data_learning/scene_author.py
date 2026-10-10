@@ -134,6 +134,31 @@ def check_source(code: str) -> None:
             raise Refused(f"{node.id} is not allowed")
 
 
+# ------------------------------------------------------------ the standard
+# Operator, 2026-10-09, after the twins video went out drawn on 10-07: "make
+# sure that this never happens again, that we always need to be running
+# that new updated art style". A scene saved on a story is replayed by
+# every later render, and until now nothing asked whether it had passed the
+# CURRENT viewer, look-again and story checks or only the ones that existed
+# the day it was drawn. Every scene the brain draws now carries the
+# standard it passed; one from an older standard is re-judged by today's
+# viewer and look again before it is used, and redrawn if it fails. Bump
+# STANDARD whenever a check or a bar a scene must pass is added.
+STANDARD = "2026-10-09"
+_STAMP = re.compile(r"^# scene standard: (\S+)\s*$", re.M)
+
+
+def standard_of(code) -> str | None:
+    m = _STAMP.search(code or "") if isinstance(code, str) else None
+    return m.group(1) if m else None
+
+
+def stamped(code: str) -> str:
+    """`code` marked as passing today's standard (any older mark replaced)."""
+    body = _STAMP.sub("", code or "").lstrip("\n")
+    return f"# scene standard: {STANDARD}\n{body}"
+
+
 def compile_scene(code: str):
     check_source(code)
     ns = kit_globals()
@@ -340,7 +365,7 @@ def glance_frames(fn, pts, out_dir, at=GLANCE_AT) -> list[str]:
     return paths
 
 
-def glance(fn, pts, log=print, say: str = "") -> list[str]:
+def glance(fn, pts, log=print, say: str = "", seen_by: list | None = None) -> list[str]:
     """Problems a VIEWER has with the picture alone: the hero is not
     recognisable, the substance reads as something else, the cause could
     not produce the effect. The viewer describes the frames UNAIDED first;
@@ -377,6 +402,8 @@ def glance(fn, pts, log=print, say: str = "") -> list[str]:
     if not isinstance(ans, dict):
         log("[scene_author] no viewer for the glance — passed on code checks only")
         return []
+    if seen_by is not None:
+        seen_by.append("viewer")
     why = str(ans.get("why") or "").strip()
     problems = []
     if ans.get("is_hero") is False:
@@ -1201,6 +1228,14 @@ piles up, empties or spreads until it is large, or set the thing beside \
 what it equals, so the PICTURE makes the comparison and the words do not.
 16. LAND IT, THEN HOLD IT. A scene is on screen for about {secs:.0f} seconds, and the owner called a fence whose last number arrived with under a second left "whiplash — I didn't even have time to process". Finish the story — every number, the final size, the last label — by u={payoff_by}, then HOLD that finished picture to the end so it can be read. After it lands the WORLD keeps moving (wind, a bottle rolling) and Data KEEPS DOING HIS ACT to the end (another toss, holding the load up, one more shove) — he never stands and points at what he made; the story does not move. A readout steps through at most {shows} values (landed(rows, k, f) does this). MEASURED: a number still arriving after u={payoff_by} is refused.
 17. THE PICTURE IS WHAT THE NARRATION SAYS HAPPENS. The owner, of a video whose first scene showed stores being taken over: "by the end it's just stacking boxes". A tower of boxes, a stack of blocks or coins, a filling bar or a pile of crates fits ANY story with a new label — refused when the beat is not about boxes. Theft is goods walking out unpaid, lost jobs are cashiers leaving their tills, a price is the tag on the shelf. Every beat of a story is drawn from that story's own world, the last as much as the first. A viewer is asked whether the picture shows what the narration says.
+18. DATA IS A CHARACTER IN THE STORY'S WORLD. THE CHECKOUT below is the \
+opening the owner called "perfect, beautiful ... what I want everything to \
+look like", and his one note on it was this: "Data maybe would have had a \
+shopping cart and he would have been moving down the line as the cashiers \
+got replaced". Put him inside the world the way a person in it would be — \
+a shopper with a cart, a farmer at the gate, a driver at the wheel — doing \
+the act that makes the number move, and travelling through the scene as it \
+changes, not standing at its edge.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \
@@ -1229,6 +1264,13 @@ THE PILE — drawn by a brain like you from this kit, and the scene the owner \
 picked over another that passed every check ("I like the pile one but the \
 bone one no"): one number, a heap that triples, its old size on it:
 {pile}
+
+THE CHECKOUT — drawn by a brain like you, the opening the owner called \
+"perfect, beautiful ... it had the creativity and everything that I want \
+all these things to have": a whole supermarket front end in depth, the \
+story's own objects (lanes, cashiers, kiosks, carts) doing the changing, \
+the share cut into the sign over it. THIS is the bar for every scene:
+{checkout}
 
 TWO TEACHER SCENES that pass every check — match this quality and style:
 {teachers}
@@ -1302,6 +1344,7 @@ def build_prompt(title, topic, say, pts, unit, brief="", secs=None):
                           palette=", ".join(sorted(SS.P)), sigs=_sigs(),
                           shot=inspect.getsource(SS.bird_flu_barn),
                           pile=inspect.getsource(SS.recycling_pile),
+                          checkout=inspect.getsource(SS.checkout_lanes),
                           teachers=teachers, title=title, topic=topic, say=say,
                           pts=json.dumps(pts), unit=unit, brief=brief)
 
@@ -1355,7 +1398,8 @@ def author(title, topic, say, pts, unit="", attempts=3, log=print, brief="",
         except Exception as e:  # noqa: BLE001 — refused or broken: tell it why
             problems = [f"{type(e).__name__}: {str(e)[:200]}"]
         if not problems:
-            return look_again(fn, code, prompt, pts, say, secs, log=log) or (fn, code)
+            fn, code = look_again(fn, code, prompt, pts, say, secs, log=log) or (fn, code)
+            return fn, stamped(code)
         why = "; ".join(problems[:4])
         log(f"[scene_author] attempt {k + 1} refused: {why}")
         prompt += ("\n\nYOUR PREVIOUS SCENE FAILED THESE CHECKS — fix every "
@@ -1381,6 +1425,7 @@ LOOK_SIZE = (540, 960)
 #: THE SHOT is drawn with stand-in rows: it is shown for its art, not its data.
 SHOT_ROWS = [["2021", 2.0], ["2022", 6.0], ["2023", 11.0], ["2024", 19.0]]
 PILE_ROWS = [["2019", 353.0], ["2060 (projected)", 1014.0]]
+CHECKOUT_ROWS = [["2000", 6.0], ["2012", 33.0], ["2023", 92.0]]
 
 _LOOK_AGAIN = """
 
@@ -1388,8 +1433,10 @@ YOUR SCENE PASSED EVERY CHECK. Now LOOK at it, the way the channel owner \
 will. READ these image files with the Read tool — your scene as a viewer \
 sees it:
 {yours}
-and the two frames the owner loved — THE SHOT (the barn) and THE PILE \
-(plastic, drawn by a brain like you from this same kit):
+and the frames the owner loved — THE SHOT (the barn), THE PILE (plastic) \
+and THE CHECKOUT (a supermarket's lanes turning into kiosks, the one he \
+called "perfect, beautiful ... what I want everything to look like"), the \
+last two drawn by a brain like you from this same kit:
 {shot}
 
 Two scenes that passed every check went to the owner together: a pile of \
@@ -1397,9 +1444,10 @@ plastic in a field that grew to three times its size under one number, and \
 a thigh bone built of circles and rectangles, small, in a bare room, with \
 three numbers beside it. His words: "I like the pile one but the bone one \
 no." Find the three things in YOUR frames that look most amateur beside \
-THE SHOT and THE PILE — a hero assembled from primitive shapes, a hero too small to \
+THE SHOT, THE PILE and THE CHECKOUT — a hero assembled from primitive shapes, a hero too small to \
 read, an empty backdrop, crowded or tiny text, a change you cannot see, \
-Data lost or covered — and fix them. Keep the idea, the data, the numbers \
+Data lost or covered, Data standing beside the action instead of in it — \
+and fix them. Keep the idea, the data, the numbers \
 and the HERO / SUBSTANCE / CAUSE declaration; redraw what looks cheap.
 
 YOUR CODE:
@@ -1436,7 +1484,7 @@ def seen_frames(fn, pts, out_dir, at=LOOK_AGAIN_AT, size=LOOK_SIZE) -> list[str]
 
 def look_again(fn, code, prompt, pts, say="", secs=None, log=print):
     """(fn, code) of the brain's redraw of a PASSING scene after it has seen
-    its own frames beside THE SHOT and THE PILE, or None — no budget, no
+    its own frames beside THE SHOT, THE PILE and THE CHECKOUT, or None — no budget, no
     brain, or every redraw failed a check — in which case the passing scene
     stands. A redraw that fails is told why and may try again, up to
     LOOK_AGAIN_TRIES, while the budget lasts."""
@@ -1449,6 +1497,8 @@ def look_again(fn, code, prompt, pts, say="", secs=None, log=print):
                                at=(0.85,))
             shot += seen_frames(SS.recycling_pile, PILE_ROWS, Path(td) / "pile",
                                 at=(0.95,))
+            shot += seen_frames(SS.checkout_lanes, CHECKOUT_ROWS,
+                                Path(td) / "checkout", at=(0.7,))
             ask = prompt + _LOOK_AGAIN.format(
                 yours="\n".join(f"- {p}" for p in yours),
                 shot="\n".join(f"- {p}" for p in shot), code=code)
@@ -1579,8 +1629,56 @@ def saved_scene(seg_cfg: dict, log=print):
         if probs:
             log(f"[scene_author] saved scene refused — {probs[0][:90]}")
             return None
+        if standard_of(code) != STANDARD:
+            got = recertify(fn, code, _seg_pts(seg_cfg), seg_cfg.get("say", ""),
+                            SCENE_SECS["beat"], topic=seg_cfg.get("topic", ""), log=log)
+            if got is None:
+                seg_cfg["illustrated_scene"] = None    # judged once: redraw it
+                return None
+            fn, code2 = got
+            if code2 != code:
+                seg_cfg["illustrated_scene"] = code2
         return fn
     return None
+
+
+def _seg_pts(seg_cfg) -> list:
+    try:
+        from shared import rewrite_mailbox as _rw
+        d = _rw._dataset(seg_cfg or {}) or {}
+        return [[str(p["label"]), float(p["value"])] for p in d.get("points") or []
+                if p.get("value") is not None]
+    except Exception:  # noqa: BLE001
+        return []
+
+
+def recertify(fn, code, pts, say="", secs=None, topic="", title="", brief="",
+              log=print):
+    """(fn, code) for a saved scene drawn under an OLDER standard once it has
+    passed today's: every code check, the viewer's glance (with the
+    narration, so a generic stack is refused) and the look again beside the
+    bars, which may replace it with a redraw that passes the same checks.
+    None when it fails — the caller redraws the beat. With no viewer to ask
+    it is used as it is and left unstamped, to be re-judged next time."""
+    if not pts:
+        return fn, code
+    try:
+        probs = verify(fn, pts, say, secs)
+        seen: list = []
+        if not probs:
+            probs = glance(fn, pts, log=log, say=say, seen_by=seen)
+    except Exception as e:  # noqa: BLE001
+        probs = [f"{type(e).__name__}: {str(e)[:160]}"]
+    if probs:
+        log(f"[scene_author] saved scene is below today's standard — "
+            f"{probs[0][:120]}; redrawing it")
+        return None
+    if not seen:
+        return fn, code
+    prompt = build_prompt(title, topic, say, pts, "", brief, secs)
+    fn, code = look_again(fn, code, prompt, pts, say, secs, log=log) or (fn, code)
+    log(f"[scene_author] saved scene re-judged and kept at standard {STANDARD}")
+    return fn, stamped(code)
 
 
 def _saved_craft(fn, seg_cfg, log, secs: float | None = None) -> list[str]:
@@ -1637,6 +1735,18 @@ def saved_bookend(story_cfg: dict, kind: str, n_beats: int, log=print):
         if probs:
             log(f"[scene_author] saved {kind} refused — {probs[0][:90]}")
             return None
+        if standard_of(code) != STANDARD:
+            got = recertify(fn, code, _seg_pts(segs[idx] if idx < len(segs) else {}),
+                            _story_say(story_cfg), SCENE_SECS.get(kind),
+                            topic=f"the {kind}: " + (story_cfg.get(kind) or ""),
+                            title=story_cfg.get("title", ""),
+                            brief=_brief(kind, story_cfg), log=log)
+            if got is None:
+                story_cfg[f"{kind}_scene"] = None      # judged once: redraw it
+                return None
+            fn, code2 = got
+            if code2 != code:
+                story_cfg[f"{kind}_scene"] = code2
         return fn, idx
     return None
 

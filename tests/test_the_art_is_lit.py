@@ -143,10 +143,10 @@ class TheVerifierMeasuresIt(unittest.TestCase):
                                                  {"label": "2025", "value": 4.41}]}):
             self.assertIsNone(SA.saved_scene(seg, log=lines.append))
             self.assertTrue(any("clip art" in ln for ln in lines), lines)
-            self.assertIsNotNone(SA.saved_scene({"illustrated_scene": LIT}, log=lines.append))
+            self.assertIsNotNone(SA.saved_scene({"illustrated_scene": SA.stamped(LIT)}, log=lines.append))
             story = {"hook_scene": FLAT, "hook_data": 0, "segments": [seg]}
             self.assertIsNone(SA.saved_bookend(story, "hook", 1, log=lines.append))
-            story["hook_scene"] = LIT
+            story["hook_scene"] = SA.stamped(LIT)
             self.assertIsNotNone(SA.saved_bookend(story, "hook", 1, log=lines.append))
 
     def test_the_threshold_is_where_the_posted_scenes_failed(self):
