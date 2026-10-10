@@ -12390,6 +12390,16 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The sharp picture is a thin strip, about a third of the canvas height, in nearly every frame. The blurred padding takes ; vision: The streamer's face cam is a tiny inset in the top-right corner for most of the clip (1s\u201326s), so the reaction is hard t; vision: The main content is a small scre",
       "ts": "2026-10-10T12:57:09.723723+00:00"
+    },
+    "clip-20261010-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/squeex/clip/BeautifulReliableHamsterThisIsSparta-mVSRBVOE-LYEuyCU",
+      "story_key": null,
+      "streamer": "squeex",
+      "title": "Squeex Asks What Sybau Means And Gets Shut Down Instantly",
+      "kind": "twitch_clip",
+      "ts": "2026-10-10T13:42:52.254662+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
