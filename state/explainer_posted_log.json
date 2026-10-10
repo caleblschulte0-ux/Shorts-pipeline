@@ -3204,6 +3204,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
       "duration_s": 19.7
+    },
+    "phone-checks-205-times-a-day": {
+      "claimed_at": "2026-10-10T22:11:37.163584+00:00",
+      "title": "Your Phone Trained You Like A Slot Machine",
+      "publish_at": "2026-10-10T19:36:31Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3998,6 +4005,14 @@
       "state": "posted",
       "slug": "medical-debt-credit-score-fix",
       "at": "2026-10-10T18:16:21.520731+00:00"
+    },
+    {
+      "claimed_at": "2026-10-10T22:11:37.163584+00:00",
+      "title": "Your Phone Trained You Like A Slot Machine",
+      "publish_at": "2026-10-10T19:36:31Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "phone-checks-205-times-a-day"
     }
   ]
 }
