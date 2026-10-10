@@ -1396,7 +1396,13 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                         "story_other_side_anon", 8))]
                 _have = {c.get("url") for c in pool}
                 _twitch, _added = {}, 0
+                _t_side = time.time()
                 for _name in _names:
+                    if time.time() - _t_side > float(spec.get(
+                            "story_other_side_budget_s", 180)):
+                        print("::warning::[story] the other side: out of "
+                              "search time", flush=True)
+                        break
                     time.sleep(0.8)
                     for h in hot_clips.about(
                             _name, spec.get("story_other_side_period",

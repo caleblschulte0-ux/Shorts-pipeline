@@ -79,32 +79,141 @@ def video_link(post: dict) -> tuple[str, str] | None:
     return None
 
 
+# Reddit refuses an anonymous JSON request from a cloud runner (backtest
+# 19, 2026-10-10: both listings HTTPError, 0 clips — the internet seeds
+# never reached the director). So every read tries, in order: the API
+# (app-only OAuth when REDDIT_CLIENT_ID/SECRET are set, else public), the
+# PullPush (a public archive of Reddit posts), then the subreddit's public
+# RSS feed of the same listing. Each returns Reddit's own listing shape, and
+# the run says which one answered.
+_PERIOD_S = {"hour": 3600, "day": 86400, "week": 7 * 86400,
+             "month": 30 * 86400, "year": 365 * 86400}
+
+
+def _fetch(url: str, headers: dict) -> bytes:
+    req = urllib.request.Request(url, headers=headers)
+    with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
+        return r.read()
+
+
 def _get(path: str) -> dict | None:
     from funnel import media_funnel
     token = media_funnel._reddit_token()
     host = "https://oauth.reddit.com" if token else "https://www.reddit.com"
-    url = f"{host}{path}"
     headers = {"User-Agent": media_funnel._UA_REDDIT}
     if token:
         headers["Authorization"] = f"bearer {token}"
     try:
-        req = urllib.request.Request(url, headers=headers)
-        with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
-            return json.loads(r.read().decode("utf-8", "replace"))
+        return json.loads(_fetch(f"{host}{path}", headers)
+                          .decode("utf-8", "replace"))
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[hot_clips] r/{SUB} {path.split('?')[0]} "
-              f"failed ({type(e).__name__})", flush=True)
+              f"API failed ({type(e).__name__})", flush=True)
         return None
 
 
+_ENTRY = re.compile(r"<entry>(.*?)</entry>", re.S)
+
+
+def _from_atom(xml: str) -> dict:
+    """Reddit's Atom feed as its JSON listing shape: title, permalink,
+    the post's own link (the "[link]" in the entry body), time. No vote
+    counts — a feed keeps the listing's ORDER, which is the ranking."""
+    import html
+    from datetime import datetime
+    kids = []
+    for body in _ENTRY.findall(xml or ""):
+        title = re.search(r"<title>(.*?)</title>", body, re.S)
+        link = re.search(r'<link href="([^"]+)"', body)
+        content = html.unescape((re.search(
+            r"<content[^>]*>(.*?)</content>", body, re.S) or [None, ""])[1])
+        out = re.search(r'<a href="([^"]+)">\[link\]</a>', content)
+        when = re.search(r"<(?:published|updated)>([^<]+)<", body)
+        try:
+            ts = datetime.fromisoformat(when.group(1)).timestamp() \
+                if when else 0.0
+        except ValueError:
+            ts = 0.0
+        perm = html.unescape(link.group(1)) if link else ""
+        kids.append({"data": {
+            "title": html.unescape(title.group(1)) if title else "",
+            "url": html.unescape(out.group(1)) if out else perm,
+            "permalink": re.sub(r"^https?://[^/]+", "", perm),
+            "created_utc": ts}})
+    return {"data": {"children": kids}}
+
+
+def _rss(path: str) -> dict | None:
+    from funnel import media_funnel
+    url = "https://www.reddit.com" + path.replace(".json?", ".rss?", 1)
+    try:
+        got = _from_atom(_fetch(url, {"User-Agent": media_funnel._UA_REDDIT})
+                         .decode("utf-8", "replace"))
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[hot_clips] r/{SUB} RSS failed "
+              f"({type(e).__name__})", flush=True)
+        return None
+    return got
+
+
+def _pullpush(query: str | None, period: str, limit: int) -> dict | None:
+    import time as _t
+    q = {"subreddit": SUB, "size": min(int(limit), 100),
+         "after": int(_t.time() - _PERIOD_S.get(period, _PERIOD_S["week"])),
+         "sort_type": "score", "sort": "desc"}
+    if query:
+        q["q"] = query
+    url = ("https://api.pullpush.io/reddit/search/submission/?"
+           + urllib.parse.urlencode(q))
+    try:
+        data = json.loads(_fetch(url, {"User-Agent": "shorts-pipeline/1.0"})
+                          .decode("utf-8", "replace"))
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[hot_clips] PullPush failed "
+              f"({type(e).__name__})", flush=True)
+        return None
+    posts = data.get("data") if isinstance(data, dict) else None
+    if not isinstance(posts, list):
+        return None
+    return {"data": {"children": [{"data": p} for p in posts]}}
+
+
+# A route that failed once is not asked again this run: the story pool
+# searches seventy names, and a host that hangs for TIMEOUT on each would
+# spend the run's whole budget waiting (PR 594's CI did exactly that).
+_DEAD: set[str] = set()
+
+
+def _first(path: str, query: str | None, period: str,
+           limit: int) -> dict | None:
+    # PullPush before RSS: it carries scores and the over_18 flag; a feed
+    # carries neither.
+    for name, fn in (("api", lambda: _get(path)),
+                     ("pullpush", lambda: _pullpush(query, period, limit)),
+                     ("rss", lambda: _rss(path))):
+        if name in _DEAD:
+            continue
+        got = fn()
+        if got is None:
+            _DEAD.add(name)
+            continue
+        if (got.get("data") or {}).get("children"):
+            if name != "api":
+                print(f"[hot_clips] r/{SUB} answered by {name}", flush=True)
+            return got
+    return None
+
+
 def _listing(period: str, limit: int) -> dict | None:
-    return _get(f"/r/{SUB}/top.json?t={period}&limit={limit}&raw_json=1")
+    return _first(f"/r/{SUB}/top.json?t={period}&limit={limit}&raw_json=1",
+                  None, period, limit)
 
 
 def _search(query: str, period: str, limit: int) -> dict | None:
     q = urllib.parse.quote(query)
-    return _get(f"/r/{SUB}/search.json?q={q}&restrict_sr=1&sort=relevance"
-                f"&t={period}&limit={limit}&raw_json=1")
+    return _first(f"/r/{SUB}/search.json?q={q}&restrict_sr=1"
+                  f"&sort=relevance&t={period}&limit={limit}&raw_json=1",
+                  query, period, limit)
 
 
 def livestreamfail(period: str = "week", limit: int = 100) -> list[dict]:
