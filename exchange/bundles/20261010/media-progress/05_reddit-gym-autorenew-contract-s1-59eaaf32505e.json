@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261010",
+  "bundle": {
+    "identity": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad",
+    "path": "exchange/bundles/20261010/bundle.json"
+  },
+  "request_id": "05_reddit-gym-autorenew-contract-s1-59eaaf32505e",
+  "safe_request_id": "05_reddit-gym-autorenew-contract-s1-59eaaf32505e",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "eeac0c1df9b90acba541945495b76167f9455a4f4f01f60ce07f00410b487b91",
+  "prompt_used": "An editorial illustration for a short-form video: closed office door sign. It accompanies the narration: \"only staffed two weekday mornings a month\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1i3an2q1RcoJ60ORcKit50FaJCypL3XfK",
+    "filename": "20261010__05_reddit-gym-autorenew-contract-s1-59eaaf32505e.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1i3an2q1RcoJ60ORcKit50FaJCypL3XfK",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "filename": "20261010__05_reddit-gym-autorenew-contract-s1-59eaaf32505e.png",
+    "sha256": "ef8e28c128a8000be7f11d085ec3ae64136a24b62fdf8c2d81affbcb0eb05954",
+    "bytes": 2466067,
+    "width": 941,
+    "height": 1672,
+    "format": "png"
+  },
+  "verified_at": "2026-10-10T11:26:59.475Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
