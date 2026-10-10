@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261010",
+  "bundle": {
+    "identity": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad",
+    "path": "exchange/bundles/20261010/bundle.json"
+  },
+  "request_id": "05_reddit-gym-autorenew-contract-s0-537277150bf5",
+  "safe_request_id": "05_reddit-gym-autorenew-contract-s0-537277150bf5",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "cb13848975749310b0c835d026effbe2fec592abad980e199cb62d131709494c",
+  "prompt_used": "An editorial illustration for a short-form video: gym front desk reception. It accompanies the narration: \"quietly started auto-renewing annual contracts\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "13ZYz-szfKUq4moRy--LrUSfs2_p1EfCp",
+    "filename": "20261010__05_reddit-gym-autorenew-contract-s0-537277150bf5.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=13ZYz-szfKUq4moRy--LrUSfs2_p1EfCp",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "filename": "20261010__05_reddit-gym-autorenew-contract-s0-537277150bf5.png",
+    "sha256": "3fb0ca4e5df729daad7b197d647ea97af10a3417deec7462c7f39c6299e9ff89",
+    "bytes": 1821302,
+    "width": 941,
+    "height": 1672,
+    "format": "png"
+  },
+  "verified_at": "2026-10-10T11:26:58.374Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
