@@ -1,0 +1,475 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261010",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 8,
+    "registry_sha256": "38f9546f84f2e78d10259e2bddcd676d753b7db1592b40f91aec54d38c4dd3a4",
+    "source_commit": "a0d1fa1e5d43324d511b2842e601a3d6696b8ccb",
+    "production_date": "20261010",
+    "bundle_sha256": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad"
+  },
+  "media": [
+    {
+      "request_id": "05_reddit-gym-autorenew-contract-s0-537277150bf5",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "13ZYz-szfKUq4moRy--LrUSfs2_p1EfCp",
+        "filename": "20261010__05_reddit-gym-autorenew-contract-s0-537277150bf5.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=13ZYz-szfKUq4moRy--LrUSfs2_p1EfCp",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261010__05_reddit-gym-autorenew-contract-s0-537277150bf5.png",
+        "sha256": "3fb0ca4e5df729daad7b197d647ea97af10a3417deec7462c7f39c6299e9ff89",
+        "bytes": 1821302,
+        "width": 941,
+        "height": 1672,
+        "format": "png"
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261010/media-progress/05_reddit-gym-autorenew-contract-s0-537277150bf5.json",
+        "verified_at": "2026-10-10T11:29:15.393Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-gym-autorenew-contract-s1-59eaaf32505e",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1i3an2q1RcoJ60ORcKit50FaJCypL3XfK",
+        "filename": "20261010__05_reddit-gym-autorenew-contract-s1-59eaaf32505e.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1i3an2q1RcoJ60ORcKit50FaJCypL3XfK",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261010__05_reddit-gym-autorenew-contract-s1-59eaaf32505e.png",
+        "sha256": "ef8e28c128a8000be7f11d085ec3ae64136a24b62fdf8c2d81affbcb0eb05954",
+        "bytes": 2466067,
+        "width": 941,
+        "height": 1672,
+        "format": "png"
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261010/media-progress/05_reddit-gym-autorenew-contract-s1-59eaaf32505e.json",
+        "verified_at": "2026-10-10T11:29:15.393Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-gym-autorenew-contract-s2-a746067a8827",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1Ic7x93Xu3jcbTmQRJ1Yq1CWOhNXRlKe7",
+        "filename": "20261010__05_reddit-gym-autorenew-contract-s2-a746067a8827.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1Ic7x93Xu3jcbTmQRJ1Yq1CWOhNXRlKe7",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261010__05_reddit-gym-autorenew-contract-s2-a746067a8827.png",
+        "sha256": "091163527650f462278d36aec78e021c711bc626ce326be31424d89c41bb04b8",
+        "bytes": 1827929,
+        "width": 1145,
+        "height": 1374,
+        "format": "png"
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261010/media-progress/05_reddit-gym-autorenew-contract-s2-a746067a8827.json",
+        "verified_at": "2026-10-10T11:29:15.393Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-gym-autorenew-contract-s3-a215ba2bb4eb",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1EpLnPk5u7qMF5lOi7WbiTCbR3f34VDOC",
+        "filename": "20261010__05_reddit-gym-autorenew-contract-s3-a215ba2bb4eb.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1EpLnPk5u7qMF5lOi7WbiTCbR3f34VDOC",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261010__05_reddit-gym-autorenew-contract-s3-a215ba2bb4eb.png",
+        "sha256": "fd7cebf276697834c16f7e4fe4010768670cceedbb94f173cf611d1cbeff6ebd",
+        "bytes": 2228241,
+        "width": 1536,
+        "height": 1024,
+        "format": "png"
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261010/media-progress/05_reddit-gym-autorenew-contract-s3-a215ba2bb4eb.json",
+        "verified_at": "2026-10-10T11:29:15.393Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-gym-autorenew-contract-s4-93859643cb8c",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "10mfKPbNu4Zim0ySwU7fpGTTJ-ZW4sgaT",
+        "filename": "20261010__05_reddit-gym-autorenew-contract-s4-93859643cb8c.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=10mfKPbNu4Zim0ySwU7fpGTTJ-ZW4sgaT",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261010__05_reddit-gym-autorenew-contract-s4-93859643cb8c.png",
+        "sha256": "9c95a41c4f76d6d51b73568dc73fd0bbda8164bc4561683e1c83658e9c0c37e2",
+        "bytes": 1584168,
+        "width": 1145,
+        "height": 1374,
+        "format": "png"
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261010/media-progress/05_reddit-gym-autorenew-contract-s4-93859643cb8c.json",
+        "verified_at": "2026-10-10T11:29:15.393Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-gym-autorenew-contract-s5-0df5c3a5ce71",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1hOMIMo3enEijaIw3xxASrqgqgwX44pf3",
+        "filename": "20261010__05_reddit-gym-autorenew-contract-s5-0df5c3a5ce71.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1hOMIMo3enEijaIw3xxASrqgqgwX44pf3",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261010__05_reddit-gym-autorenew-contract-s5-0df5c3a5ce71.png",
+        "sha256": "fc64b9bb8ee2bc2310b9a7bb9c534efef85b391301c808f3039d650cf3149a8b",
+        "bytes": 2348289,
+        "width": 941,
+        "height": 1672,
+        "format": "png"
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261010/media-progress/05_reddit-gym-autorenew-contract-s5-0df5c3a5ce71.json",
+        "verified_at": "2026-10-10T11:29:15.393Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-gym-autorenew-contract-s6-2cbe9c1913f3",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1v0qaG9TccV2nb4tML36CQoCE9oP_a9Tv",
+        "filename": "20261010__05_reddit-gym-autorenew-contract-s6-2cbe9c1913f3.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1v0qaG9TccV2nb4tML36CQoCE9oP_a9Tv",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261010__05_reddit-gym-autorenew-contract-s6-2cbe9c1913f3.png",
+        "sha256": "a2d81083d448110064a55dab2d81d3ab0ddf0e1e8fca3df1605ca27c6f664458",
+        "bytes": 1800040,
+        "width": 941,
+        "height": 1672,
+        "format": "png"
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261010/media-progress/05_reddit-gym-autorenew-contract-s6-2cbe9c1913f3.json",
+        "verified_at": "2026-10-10T11:29:15.393Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-gym-autorenew-contract-s7-21f4db44b47b",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1iGYkix7MNWPcDs7jy1LaiEMf2yNWfm6q",
+        "filename": "20261010__05_reddit-gym-autorenew-contract-s7-21f4db44b47b.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1iGYkix7MNWPcDs7jy1LaiEMf2yNWfm6q",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261010__05_reddit-gym-autorenew-contract-s7-21f4db44b47b.png",
+        "sha256": "80c0d38fca990db735af9a28f953ad88e692f4102dc948bd002b12287560798d",
+        "bytes": 2606124,
+        "width": 1145,
+        "height": 1374,
+        "format": "png"
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261010/media-progress/05_reddit-gym-autorenew-contract-s7-21f4db44b47b.json",
+        "verified_at": "2026-10-10T11:29:15.393Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-daycare-early-dropoff-s0-e58592b5a8c7",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1zry54x_FtLCf4JORb-Am9pDZpCz4qejY",
+        "filename": "20261010__06_reddit-daycare-early-dropoff-s0-e58592b5a8c7.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1zry54x_FtLCf4JORb-Am9pDZpCz4qejY",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261010__06_reddit-daycare-early-dropoff-s0-e58592b5a8c7.png",
+        "sha256": "fc662d971de560e0033621530e9bd3342d908a151579738446d25a9653f25c31",
+        "bytes": 2304781,
+        "width": 1145,
+        "height": 1374,
+        "format": "png"
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261010/media-progress/06_reddit-daycare-early-dropoff-s0-e58592b5a8c7.json",
+        "verified_at": "2026-10-10T11:29:15.393Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-daycare-early-dropoff-s1-407326e34526",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1juxepMLc67jfN_IV8DYwYSLIewMLLWMk",
+        "filename": "20261010__06_reddit-daycare-early-dropoff-s1-407326e34526.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1juxepMLc67jfN_IV8DYwYSLIewMLLWMk",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261010__06_reddit-daycare-early-dropoff-s1-407326e34526.png",
+        "sha256": "bf40eafc0ce2e78dd8a1a5243af282b5560cc12ab26e17584f9f2bac2eea31de",
+        "bytes": 1980676,
+        "width": 941,
+        "height": 1672,
+        "format": "png"
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261010/media-progress/06_reddit-daycare-early-dropoff-s1-407326e34526.json",
+        "verified_at": "2026-10-10T11:29:15.393Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-daycare-early-dropoff-s2-05d73b084651",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1DtjXvxa6hIIkooiHmcTMoy3Ns15ravQ-",
+        "filename": "20261010__06_reddit-daycare-early-dropoff-s2-05d73b084651.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1DtjXvxa6hIIkooiHmcTMoy3Ns15ravQ-",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261010__06_reddit-daycare-early-dropoff-s2-05d73b084651.png",
+        "sha256": "6e887085df06b2ce82fa649430fa073e54daa503d3c4b9a9f5cf7f83d08216e0",
+        "bytes": 2174462,
+        "width": 941,
+        "height": 1672,
+        "format": "png"
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261010/media-progress/06_reddit-daycare-early-dropoff-s2-05d73b084651.json",
+        "verified_at": "2026-10-10T11:29:15.393Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-daycare-early-dropoff-s3-c2f1d3110ab2",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1vG5RDACESLIvr0mHkIBOwLBJhHJLEoiE",
+        "filename": "20261010__06_reddit-daycare-early-dropoff-s3-c2f1d3110ab2.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1vG5RDACESLIvr0mHkIBOwLBJhHJLEoiE",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261010__06_reddit-daycare-early-dropoff-s3-c2f1d3110ab2.png",
+        "sha256": "7ac86386fdcf2b888ce160d9e64f826b5b841b52926956bf7afb4d9cd5655052",
+        "bytes": 1990569,
+        "width": 1024,
+        "height": 1536,
+        "format": "png"
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261010/media-progress/06_reddit-daycare-early-dropoff-s3-c2f1d3110ab2.json",
+        "verified_at": "2026-10-10T11:29:15.393Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-daycare-early-dropoff-s4-106e84d528e8",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "11mqIocQL-UuQ-38j7EkRafgk5cS3WzyZ",
+        "filename": "20261010__06_reddit-daycare-early-dropoff-s4-106e84d528e8.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=11mqIocQL-UuQ-38j7EkRafgk5cS3WzyZ",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261010__06_reddit-daycare-early-dropoff-s4-106e84d528e8.png",
+        "sha256": "73f942d2e7d5d0ac457757557ea07b46e90b912b28047dfc71e456d4b6dc0df6",
+        "bytes": 2208822,
+        "width": 1145,
+        "height": 1374,
+        "format": "png"
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261010/media-progress/06_reddit-daycare-early-dropoff-s4-106e84d528e8.json",
+        "verified_at": "2026-10-10T11:29:15.393Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-daycare-early-dropoff-s5-b277cdb12e5d",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1HUyHu5Yf-duXsp9JEKEZ37VzxW2ZVmlA",
+        "filename": "20261010__06_reddit-daycare-early-dropoff-s5-b277cdb12e5d.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1HUyHu5Yf-duXsp9JEKEZ37VzxW2ZVmlA",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261010__06_reddit-daycare-early-dropoff-s5-b277cdb12e5d.png",
+        "sha256": "38976652863d096b2890ab8f5bf3a5e7ead50c0be680e932b8401669affe4923",
+        "bytes": 1693603,
+        "width": 941,
+        "height": 1672,
+        "format": "png"
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261010/media-progress/06_reddit-daycare-early-dropoff-s5-b277cdb12e5d.json",
+        "verified_at": "2026-10-10T11:29:15.393Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-daycare-early-dropoff-s6-999ad6478b02",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1cZc3qDwe4sc0A2LgUsXYooMXZcT6LfXD",
+        "filename": "20261010__06_reddit-daycare-early-dropoff-s6-999ad6478b02.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1cZc3qDwe4sc0A2LgUsXYooMXZcT6LfXD",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261010__06_reddit-daycare-early-dropoff-s6-999ad6478b02.png",
+        "sha256": "ef0dec2debd0aa9551c96eb4e3bc8b38f1867bf5b0a86d89786ccd425ca187f4",
+        "bytes": 2229953,
+        "width": 1024,
+        "height": 1536,
+        "format": "png"
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261010/media-progress/06_reddit-daycare-early-dropoff-s6-999ad6478b02.json",
+        "verified_at": "2026-10-10T11:29:15.393Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-daycare-early-dropoff-s7-5ba792d5654f",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1N7Ieh9QektEgn-nh_2kibqqWJPXYuTf6",
+        "filename": "20261010__06_reddit-daycare-early-dropoff-s7-5ba792d5654f.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1N7Ieh9QektEgn-nh_2kibqqWJPXYuTf6",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261010__06_reddit-daycare-early-dropoff-s7-5ba792d5654f.png",
+        "sha256": "f33fea272242e0ba69a29f0d43c147f234aa9353b774c77cf73854272f714f61",
+        "bytes": 1845222,
+        "width": 941,
+        "height": 1672,
+        "format": "png"
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261010/media-progress/06_reddit-daycare-early-dropoff-s7-5ba792d5654f.json",
+        "verified_at": "2026-10-10T11:29:15.393Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "01_graph-duolingo-rosetta-stone",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title directly names Duolingo passing Rosetta Stone in revenue."
+    },
+    {
+      "slug": "02_graph-temu-amazon-downloads",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title cleanly lands Temu passing Amazon in app downloads."
+    },
+    {
+      "slug": "03_graph-shein-hm-revenue",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title directly frames Shein becoming larger than H&M in revenue."
+    },
+    {
+      "slug": "04_graph-netflix-box-office",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly states Netflix revenue passing Hollywood theater revenue."
+    },
+    {
+      "slug": "05_reddit-gym-autorenew-contract",
+      "script": "Paragraph nine did WHAT? Our gym's new manager quietly auto-renewed annual contracts to juice his retention numbers, then routed cancellations through a desk open only two weekday mornings a month. I got charged for a year I never agreed to, so I reread my signed contract. Paragraph nine said the gym had to send certified-mail notice sixty days before renewal—or the renewal was void. They'd sent nothing. I wrote a demand letter quoting the clause and the state's consumer protection statute, then copied corporate legal. Within a week, I had a refund and an apology call. Corporate checked the whole chain, found over two thousand members caught by the same silent renewal, and refunded roughly three hundred eighty thousand dollars. The manager's retention bonus was clawed back that quarter. Still proud of paragraph nine?",
+      "editor_note": "Tightened to 134 words, added a four-word question hook, front-loaded paragraph nine, and ended on the specific clause without changing claims or shot structure."
+    },
+    {
+      "slug": "06_reddit-daycare-early-dropoff",
+      "script": "Forty-five minutes early—daily? A mom dropped her son at our daycare before opening every morning, waited in her car, then sent him in alone the moment someone unlocked the door. When we charged the early-drop fee she'd signed at enrollment, she called it theft, threatened the state licensing board, and demanded every fee back. The inspector checked our timestamped sign-in log and security footage. It showed arrivals as early as five forty for an eight o'clock opening, going back four months, plus her signature on the fee schedule from day one. Then the camera exposed the bonus trick: she'd written later arrival times on the paper sheet, shaving minutes off her bill for months. She left owing back-fees instead of getting a refund. Still trust that paper sign-in sheet?",
+      "editor_note": "Tightened to 129 words, replaced the long opening with a four-word question hook, and landed the camera-versus-paper payoff without changing claims or shot structure."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal production Is 1.5x Higher Than In 1972",
+      "hook": "By the 1970s, experts were warning the world would run out of food.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8; by 2017, 91.3—1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons; by 2024, 1644.1—1.5 times higher.",
+        "China leads: 5.2; United States: 4.2; Australia: 3.6; Brazil: 2.4; Russia: 2.2 million square kilometers."
+      ],
+      "closing": "The famine everyone predicted never showed up.",
+      "question": "Which surprised you most—school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Combustible renewables and waste Is 3.0x Higher Than In 1990",
+      "hook": "One energy source has tripled since 1990; it isn't solar or wind.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 %; by 2024, 30.1 %—3.0 times higher.",
+        "In 1998, electricity access was 73.2 %; by 2024, 91.9 %—1.3 times higher.",
+        "In 1972, methane (ch4) waste emissions were 903.8 Mt CO2e; by 2024, 1,652—1.8 times higher."
+      ],
+      "closing": "A third of the world's energy now comes from waste.",
+      "question": "Which surprised you most—fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to accelerate forever; the number proves it didn't.",
+      "says": [
+        "In 1972, rural population was 63.1 %; by 2025, 42.2 %—67 percent of that.",
+        "In 1972, largest-city population was 18.2 %; by 2025, 16.2 %—barely moved.",
+        "In 1972, population growth was 2 annual %; by 2025, 0.91 annual %—46 percent."
+      ],
+      "closing": "The planet is still growing; it has almost stopped accelerating.",
+      "question": "Which surprised you most—rural, city, or growth?"
+    }
+  ],
+  "notes": [
+    "All 16 bundle media requests were generated, Drive-uploaded, raw-downloaded, byte/hash matched, PNG-decoded, and confirmed public via anyone-reader permission.",
+    "All six Trending packages received an editorial decision; four renderer-native graph races were retained and both Reddit stories were tightened to 110–140 words.",
+    "The bundle supplied the full six-package slate and no Trending authoring request, so no duplicate packages were invented.",
+    "Three Explainer rewrites preserve every protected number and entity and satisfy the frozen pacing limits."
+  ]
+}
