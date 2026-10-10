@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261010",
+  "bundle": {
+    "identity": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad",
+    "path": "exchange/bundles/20261010/bundle.json"
+  },
+  "request_id": "06_reddit-daycare-early-dropoff-s1-407326e34526",
+  "safe_request_id": "06_reddit-daycare-early-dropoff-s1-407326e34526",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "2f84c9c9730bc38fa615f743519cbd4c556acefbd48d6b35a39c3669ec509aef",
+  "prompt_used": "An editorial illustration for a short-form video: car parked waiting window. It accompanies the narration: \"waited in her car\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1juxepMLc67jfN_IV8DYwYSLIewMLLWMk",
+    "filename": "20261010__06_reddit-daycare-early-dropoff-s1-407326e34526.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1juxepMLc67jfN_IV8DYwYSLIewMLLWMk",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "filename": "20261010__06_reddit-daycare-early-dropoff-s1-407326e34526.png",
+    "sha256": "bf40eafc0ce2e78dd8a1a5243af282b5560cc12ab26e17584f9f2bac2eea31de",
+    "bytes": 1980676,
+    "width": 941,
+    "height": 1672,
+    "format": "png"
+  },
+  "verified_at": "2026-10-10T11:27:08.383Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
