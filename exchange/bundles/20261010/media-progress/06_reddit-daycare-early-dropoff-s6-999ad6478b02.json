@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261010",
+  "bundle": {
+    "identity": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad",
+    "path": "exchange/bundles/20261010/bundle.json"
+  },
+  "request_id": "06_reddit-daycare-early-dropoff-s6-999ad6478b02",
+  "safe_request_id": "06_reddit-daycare-early-dropoff-s6-999ad6478b02",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "a5ce0241554c0aa7fab713925458893f62a175606c00b88d4003e6e24a610604",
+  "prompt_used": "An editorial illustration for a short-form video: clipboard sign in sheet. It accompanies the narration: \"writing a later arrival time on the paper sign-in sheet\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1cZc3qDwe4sc0A2LgUsXYooMXZcT6LfXD",
+    "filename": "20261010__06_reddit-daycare-early-dropoff-s6-999ad6478b02.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1cZc3qDwe4sc0A2LgUsXYooMXZcT6LfXD",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "filename": "20261010__06_reddit-daycare-early-dropoff-s6-999ad6478b02.png",
+    "sha256": "ef0dec2debd0aa9551c96eb4e3bc8b38f1867bf5b0a86d89786ccd425ca187f4",
+    "bytes": 2229953,
+    "width": 1024,
+    "height": 1536,
+    "format": "png"
+  },
+  "verified_at": "2026-10-10T11:27:13.759Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
