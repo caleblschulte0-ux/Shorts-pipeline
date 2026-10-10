@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261010",
+  "bundle": {
+    "identity": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad",
+    "path": "exchange/bundles/20261010/bundle.json"
+  },
+  "request_id": "05_reddit-gym-autorenew-contract-s2-a746067a8827",
+  "safe_request_id": "05_reddit-gym-autorenew-contract-s2-a746067a8827",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "fb00aab24503a2659e1acfc98825c161f564caf90bf70bfbb094b4a3c1dbbfdb",
+  "prompt_used": "An editorial illustration for a short-form video: reading contract paperwork desk lamp. It accompanies the narration: \"reread my actual signed contract that night\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1Ic7x93Xu3jcbTmQRJ1Yq1CWOhNXRlKe7",
+    "filename": "20261010__05_reddit-gym-autorenew-contract-s2-a746067a8827.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1Ic7x93Xu3jcbTmQRJ1Yq1CWOhNXRlKe7",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "filename": "20261010__05_reddit-gym-autorenew-contract-s2-a746067a8827.png",
+    "sha256": "091163527650f462278d36aec78e021c711bc626ce326be31424d89c41bb04b8",
+    "bytes": 1827929,
+    "width": 1145,
+    "height": 1374,
+    "format": "png"
+  },
+  "verified_at": "2026-10-10T11:27:00.572Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
