@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261010",
+  "bundle": {
+    "identity": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad",
+    "path": "exchange/bundles/20261010/bundle.json"
+  },
+  "request_id": "06_reddit-daycare-early-dropoff-s3-c2f1d3110ab2",
+  "safe_request_id": "06_reddit-daycare-early-dropoff-s3-c2f1d3110ab2",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "8ca908d8f70fb91cdd8c86c8993060b3b276fdf137a22416cd4c2e87708087dd",
+  "prompt_used": "An editorial illustration for a short-form video: official letterhead document. It accompanies the narration: \"threatened to report us to the state licensing board\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1vG5RDACESLIvr0mHkIBOwLBJhHJLEoiE",
+    "filename": "20261010__06_reddit-daycare-early-dropoff-s3-c2f1d3110ab2.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1vG5RDACESLIvr0mHkIBOwLBJhHJLEoiE",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "filename": "20261010__06_reddit-daycare-early-dropoff-s3-c2f1d3110ab2.png",
+    "sha256": "7ac86386fdcf2b888ce160d9e64f826b5b841b52926956bf7afb4d9cd5655052",
+    "bytes": 1990569,
+    "width": 1024,
+    "height": 1536,
+    "format": "png"
+  },
+  "verified_at": "2026-10-10T11:27:10.809Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
