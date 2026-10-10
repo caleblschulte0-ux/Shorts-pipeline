@@ -1,0 +1,21 @@
+{
+ "slug": "youth-sports-dropout",
+ "ts": "20261010T182047Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg3:start to payoff@-0.4: the closing shrinks the scene into a bordered panel on a flat dark-navy ground. About 40% of the frame (the top band and the bottom band) is dead dark space holding only text, a card/UI widget instead of a shot.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "UI_WIDGET closing / payoff does not land",
+  "visible_evidence": "seg3:start to payoff@-0.4: the field scene is shrunk into a framed panel on a dark navy background, with dead bands above and below. The headline 'Data benched himself in 2013. Never looked back.' has nothing to do with what is on screen, and Data stands still in the corner waving. The number just jumps from 38% to 27% while a few players drift.",
+  "root_cause": "The closing reuses the beat-1 field inside a card template instead of building its own payoff shot. The closing line is a non-sequitur joke that no picture supports, and the '1.2 million fewer kids' beat never gets its own visual.",
+  "repair_goal": "Make the closing a full-bleed shot (no card) that lands the drop as a picture: Data, as the cause, walks the last players off the field and hangs their jerseys on the fence until only about 1 in 4 remain, and the empty field holds for a read. Rewrite the closing line to say what the picture means. Give the 1.2 million beat its own visual, such as a stadium of empty seats or a mountain of hung jerseys."
+ },
+ "scene_plan": {
+  "1": {
+   "viz": "comparison",
+   "perf": "catch_fall"
+  }
+ },
+ "scenes": []
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "ingenuity-mars-helicopter-flights",
+ "ts": "20261010T182047Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:mid: the 'Final flight' label is printed on top of the helicopter body. seg3:end: the '50th flight' label is crossed by the rotor blade. hook@2.2: the helicopter covers the 'E' of the 'END OF MISSION' sign.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "label_contradicts_narration_and_missing_beat",
+  "visible_evidence": "seg2:mid and seg2:end show the headline '1 flight \u00b7 Ingenuity on Mars \u00b7 first flight' while the caption says 'then snapped a\u2026 flight seventy-two'. seg2:start has a headline with no number ('Ingenuity / flights on Mars'). Data stands on the solar panel and the helicopter only lifts off. The 'over ten miles, seventeen times farther' claim is never drawn anywhere in the video.",
+  "root_cause": "The scene's readout counts up from the first flight instead of carrying this beat's claim, and the distance beat has no machine. The numbers on screen fight the voice, and the biggest payoff (17x distance) is never shown.",
+  "repair_goal": "Redraw seg2 as the distance beat. Data pilots Ingenuity along a ground track that unrolls the planned short distance once, then about 17 times as far, with one headline '10+ miles' and the 'planned' length ghosted on the same track for scale. Drop the '1 flight' label. Keep every label clear of the helicopter and its rotors."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

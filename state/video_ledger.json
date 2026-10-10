@@ -5118,6 +5118,40 @@
    "ending_type": "inversion",
    "franchise": "",
    "notes": "shrinking stone, 11 lab stones = 1 natural, ring wall lights up"
+  },
+  {
+   "slug": "daylight-saving-time-in-decline",
+   "directed_at": "2026-10-10",
+   "topic_category": "history",
+   "hook_type": "inversion",
+   "hook_text": "Your clock changes twice a year, but 64 countries quit.",
+   "words_first_10s": 18,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:clock-face-quit-wedge",
+    "mechanic:clock-wall-switching-off",
+    "scene:object-rows"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "clock hand paints the quitters; 144-clock wall goes dark"
+  },
+  {
+   "slug": "self-storage-outnumbers-starbucks",
+   "directed_at": "2026-10-10",
+   "topic_category": "money",
+   "hook_type": "shock_stat",
+   "hook_text": "Your town has more storage units than coffee shops: 66,000 of them.",
+   "words_first_10s": 18,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:storage-doors-roll-open",
+    "mechanic:storage-vs-cups-fill",
+    "scene:stack"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "roll-up doors open per chain; building vs cups fill; 10x stack"
   }
  ]
 }

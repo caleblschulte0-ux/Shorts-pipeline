@@ -19251,7 +19251,7 @@
   {
    "slug": "insect-planet",
    "title": "Earth Is Actually The Planet Of The Bugs",
-   "hook": "Earth is run by bugs: 80 percent of animal species are insects.",
+   "hook": "Earth is run by bugs, and eight out of every ten animal species is one.",
    "closing": "Somewhere right now, an unnamed beetle is judging you.",
    "question": "Weirdest bug you've ever seen? Tell me below.",
    "caption": "About 80% of all animal species on Earth are insects. Beetles alone outnumber every mammal and bird species combined. And most of them haven't even been named yet... What's the weirdest bug you've seen? 👇",
@@ -19315,7 +19315,7 @@
      "insight_type": "comparison",
      "role": "3 · STILL UNNAMED",
      "topic": "Named vs estimated bugs",
-     "say": "We've only named about one in five insect species scientists think exist.",
+     "say": "We've named only about 1 million insect species, but scientists think 5.5 million exist.",
      "scene": {
       "mechanic": "specimen-drawer-fill",
       "concept": "a museum specimen drawer fills with pinned, labeled beetles for the 1 million described species while a ghostly unlabeled swarm hovers above for the 4.5 million still unnamed",
@@ -19323,10 +19323,10 @@
      }
     }
    ],
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:27:32Z",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-09T10:46:48Z",
    "hook_was": "You're surrounded: 80% of every animal on Earth is a bug.",
-   "retold": "retell/v2"
+   "retold": "retell/v1"
   },
   {
    "slug": "photo-flood",
@@ -20254,7 +20254,7 @@
   {
    "slug": "lottery-odds-vs-real-life",
    "title": "The Real Odds Behind The Lottery Jackpot",
-   "hook": "Your Powerball ticket is a 292-million-to-one long shot.",
+   "hook": "Your Powerball ticket is a 1 in 292 million long shot.",
    "closing": "The jackpot isn't luck. It's the fine print.",
    "question": "Would you still play knowing the odds?",
    "caption": "Winning the Powerball jackpot is a 1 in 292 million shot — worse than a royal flush, worse than a lifetime shark attack, worse than getting struck by lightning nineteen thousand times over. And it's not an accident: in 2015 Powerball deliberately made the odds worse, on purpose, to grow the jackpot. 👇 Still buying a ticket?",
@@ -20317,7 +20317,7 @@
      "insight_type": "comparison",
      "role": "3 · ON PURPOSE",
      "topic": "Why odds got worse",
-     "say": "Then in 2015, the rules changed, and the odds got worse: 1 in 292 million.",
+     "say": "In 2015, the odds got worse, from 1 in 175 million to 1 in 292 million.",
      "scene": {
       "mechanic": "ball-drum-swell",
       "concept": "two lottery-ball drums stand side by side, the after-2015 drum visibly bigger and more crowded with balls, making 'more balls, worse odds' a physical fact",
@@ -20325,9 +20325,9 @@
      }
     }
    ],
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:27:32Z",
-   "retold": "retell/v2"
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-09T11:15:25Z",
+   "retold": "retell/v1"
   },
   {
    "slug": "nasa-astronaut-selection-odds",
@@ -21266,7 +21266,7 @@
   {
    "slug": "highest-point-illusion",
    "title": "Everest Isn't the Highest Point on Earth",
-   "hook": "Your 8,849-meter Everest champion just got dethroned. Twice.",
+   "hook": "Everest got crowned tallest by a trick. Measure fairly and it loses.",
    "closing": "Highest point on Earth? Highest from where?",
    "question": "Which mountain is the real winner?",
    "caption": "Everest is 8,849 meters above sea level - and still loses twice. Mauna Kea is 10,211 meters from its base on the Pacific floor, and because Earth bulges 21 kilometers at the equator, Chimborazo's summit sits about 2 kilometers farther from the planet's center than Everest's does. Highest, tallest and farthest are three different questions. Which one counts? 👇",
@@ -21341,7 +21341,8 @@
    ],
    "words_by": "claude-retell",
    "rewritten_at": "2026-10-10T10:40:23Z",
-   "retold": "retell/v2"
+   "retold": "retell/v2",
+   "hook_was": "Your 8,849-meter Everest champion just got dethroned. Twice."
   },
   {
    "slug": "gps-einstein-fix",
@@ -22064,7 +22065,7 @@
      "insight_type": "comparison",
      "role": "1 · IT SHOULDN'T WORK",
      "topic": "Frog survives frozen water",
-     "say": "Freezing just a tenth of its body kills most animals; wood frogs survive 65 percent.",
+     "say": "10 percent frozen kills most animals, but wood frogs survive 65 percent.",
      "scene": {
       "mechanic": "ice-fill-shatter-duel",
       "concept": "two frog cutouts fill with ice to their survival threshold; one shatters, one holds and glows",
@@ -22096,7 +22097,7 @@
      "insight_type": "comparison",
      "role": "3 · HOW FAR IT TAKES THEM",
      "topic": "Frog northernmost range",
-     "say": "Most frogs stop well short of the far north, but wood frogs live in Alaska.",
+     "say": "Most frogs stop near 45 degrees north, but wood frogs live as far north as 68.",
      "scene": {
       "mechanic": "arctic-range-creep",
       "concept": "frog photos climb a latitude ladder, most stopping well short of the Arctic Circle line",
@@ -22104,9 +22105,8 @@
      }
     }
    ],
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:27:32Z",
-   "retold": "retell/v2"
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-05T18:34:57Z"
   },
   {
    "slug": "betelgeuse-great-dimming",
@@ -22337,7 +22337,7 @@
   {
    "slug": "volcano-country-ranking",
    "title": "You'd Guess Indonesia. The Data Says Otherwise.",
-   "hook": "You'd bet Indonesia has the most volcanoes. The US has 165.",
+   "hook": "You'd bet it's Indonesia. It's not even close to first.",
    "closing": "Alaska: quietly winning at volcanoes since forever.",
    "question": "Seen a volcano in person? Where?",
    "caption": "The United States has more active volcanoes than any other country on Earth — 165, mostly hiding along Alaska's coastline. It's not a coincidence: the US, Japan, Russia, and Indonesia all sit on the same fault line, the Ring of Fire, which holds 75% of Earth's active volcanoes. Ever seen a volcano in person? Tell me where 🌋",
@@ -22367,7 +22367,7 @@
      "use_baseline": false,
      "role": "1 · SETUP",
      "topic": "Indonesia's volcano rank",
-     "say": "The US has the most volcanoes on Earth: 165, more than Japan or Indonesia.",
+     "say": "The US has 165 volcanoes active in 11,700 years; Japan has 118, Russia 107, Indonesia 101.",
      "scene": {
       "mechanic": "volcano-erupt-row",
       "concept": "five volcano photos stand in a row, each erupting a lava plume whose height is set by that country's volcano count — the US towering over Japan, Russia, Indonesia, Chile",
@@ -22384,7 +22384,7 @@
      "use_baseline": false,
      "role": "2 · TURN",
      "topic": "Indonesia versus Alaska",
-     "say": "Most of them, 130, sit in Alaska alone.",
+     "say": "130 of those 165 sit in Alaska alone; without Alaska, the US barely registers.",
      "scene": {
       "mechanic": "state-map-volcano-swarm",
       "concept": "a US map splits into two columns of tiny volcano icons, Alaska's column packed with 130 while the rest of the country barely fills 35",
@@ -22409,10 +22409,9 @@
      }
     }
    ],
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:27:32Z",
-   "hook_was": "Your guess is wrong: 165 volcanoes, and Indonesia isn't even close.",
-   "retold": "retell/v2"
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-08T23:39:26Z",
+   "hook_was": "Your guess is wrong: 165 volcanoes, and Indonesia isn't even close."
   },
   {
    "slug": "bnpl-checkout-takeover",
@@ -22948,7 +22947,7 @@
   {
    "slug": "peanut-allergy-guideline-flip",
    "title": "Doctors Had Peanut Allergies Backwards For Decades",
-   "hook": "Doctors had peanut allergies backwards, and the fix cut them 43 percent.",
+   "hook": "Your town's peanut allergies vanished 43% overnight, shocking everyone",
    "closing": "Sometimes the cure is simply eating peanuts",
    "question": "Did you avoid peanuts as a kid?",
    "caption": "Peanut allergies in American kids tripled between 1997 and 2008. Turns out doctors had the fix backwards: infants told to avoid peanut hit a 13.7% allergy rate by age 5, vs just 1.9% for infants fed peanut early. Guidelines flipped, and diagnoses have dropped 43% since. Did your family avoid peanuts? 👇",
@@ -22979,7 +22978,7 @@
      "insight_type": "trend",
      "role": "1 · SETUP",
      "topic": "Peanut Allergy Kids",
-     "say": "From 1997 to 2008, peanut allergies in kids more than tripled.",
+     "say": "Peanut allergy rose from 0.4% in 1997 to 1.4% in 2008.",
      "scene": {
       "mechanic": "peanut-rash-climb",
       "concept": "peanuts rise along a climbing trend line, growing larger and more inflamed at each higher prevalence year",
@@ -22996,7 +22995,7 @@
      "use_baseline": false,
      "role": "2 · THE TURN",
      "topic": "Peanut Trial",
-     "say": "Kids who avoided peanuts got allergic seven times more often than kids who ate them early.",
+     "say": "Avoiding peanuts led to 13.7% allergy rate, early feeding only 1.9%.",
      "scene": {
       "mechanic": "peanut-shield-crack-duel",
       "concept": "two round shields crack from the peanuts breaking through them -- one badly shattered (avoidance), one barely scratched (early exposure)",
@@ -23013,7 +23012,7 @@
      "use_baseline": false,
      "role": "3 · CONSEQUENCE",
      "topic": "Peanut Guidelines",
-     "say": "Once doctors flipped the advice, toddler peanut allergies fell by 43 percent.",
+     "say": "Early introduction cut allergy to 0.45%, a 43% drop from 0.79%.",
      "viz": "comparison",
      "scene": {
       "mechanic": "allergy-marker-drain",
@@ -23022,9 +23021,8 @@
      }
     }
    ],
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:27:32Z",
-   "retold": "retell/v2"
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T13:01:18Z"
   },
   {
    "slug": "landline-death-robocall-boom",
@@ -23272,7 +23270,7 @@
   {
    "slug": "parker-solar-probe-speed-record",
    "title": "Humans Just Built the Fastest Thing Ever Made",
-   "hook": "Humans just built something that flies 430,000 miles an hour.",
+   "hook": "Your species just broke its own speed record, and it wasn't close.",
    "closing": "And right now, it's diving straight into the sun.",
    "question": "Would you ride something this fast?",
    "caption": "In December 2024, Parker Solar Probe hit 430,000 miles per hour -- 17x faster than Apollo 10, the fastest speed any human has ever personally traveled. At that speed you could fly New York to Tokyo in 56 seconds. Would you ride it? 👇",
@@ -23320,7 +23318,7 @@
      "use_baseline": false,
      "role": "2 · THE GAP",
      "topic": "Fastest human ever",
-     "say": "That's 17 times faster than the fastest humans ever traveled, back in 1969.",
+     "say": "That's 17 times faster than Apollo 10, the fastest humans have ever traveled, in 1969.",
      "scene": {
       "mechanic": "rocket-vs-probe-race-lane",
       "concept": "two lanes race side by side: Parker Solar Probe streaks to the far edge while Apollo 10's capsule, the fastest a human has ever traveled, barely inches forward",
@@ -23338,7 +23336,7 @@
      "use_baseline": false,
      "role": "3 · THE PAYOFF",
      "topic": "Fastest thing, in seconds",
-     "say": "At that speed, you'd cross from New York to Tokyo in under a minute.",
+     "say": "At that speed, New York to Tokyo takes 56 seconds, and circling Earth takes 208.",
      "scene": {
       "mechanic": "world-globe-orbit-timer",
       "concept": "the probe circles a real Earth globe, one lit arc completing at 56 seconds (New York to Tokyo) and a full lap completing at 208 seconds (around the planet)",
@@ -23346,10 +23344,9 @@
      }
     }
    ],
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:27:32Z",
-   "hook_was": "We built something that hits 430 thousand miles an hour.",
-   "retold": "retell/v2"
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-05T16:32:38Z",
+   "hook_was": "We built something that hits 430 thousand miles an hour."
   },
   {
    "slug": "college-gender-gap",
@@ -23737,7 +23734,7 @@
   {
    "slug": "eclipse-recurrence-rarity",
    "title": "One Town Saw Two Total Eclipses In 7 Years (3 Charts)",
-   "hook": "One town got two total eclipses in 7 years. That almost never happens.",
+   "hook": "Your town got two total eclipses in 7 years. The odds? 375 years.",
    "closing": "Carbondale waits centuries, but 2044 and 2045 are coming.",
    "question": "Have you seen a total eclipse? Tell me.",
    "caption": "A total solar eclipse hits the same spot on Earth only once every 375 years on average. One lucky town in Illinois got hit twice in just 7 years -- 2017 and 2024. The next one to cross the US isn't until 2044, then 2045. Have you ever seen one? Tell me below 👇",
@@ -23769,7 +23766,7 @@
      "use_baseline": false,
      "role": "1 · THE PARADOX",
      "topic": "Total eclipse frequency",
-     "say": "Earth gets a total eclipse every year or two; one spot waits 375 years.",
+     "say": "Earth sees a total eclipse every year or two, but any one spot waits 375 years.",
      "scene": {
       "mechanic": "eclipse-shadow-sweep",
       "concept": "the Moon's narrow shadow band sweeps a world strip nonstop -- a fixed pin only lights on the rare pass that crosses it, drawing the actual astronomy behind 1.5 years vs 375",
@@ -23786,7 +23783,7 @@
      "ascending": true,
      "role": "2 · THE FLUKE",
      "topic": "Years between total eclipses",
-     "say": "Carbondale got two in just 7 years; the unluckiest spots wait a thousand.",
+     "say": "One Illinois town got two in seven years; unlucky spots wait over a thousand.",
      "scene": {
       "mechanic": "wait-years-ladder",
       "concept": "a ladder of climbing columns tops out with an eclipse disc, tallest column = longest wait",
@@ -23810,8 +23807,8 @@
      }
     }
    ],
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:27:32Z",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-10T14:10:27Z",
    "retold": "retell/v2"
   },
   {
@@ -24108,7 +24105,7 @@
      "insight_type": "trend",
      "role": "1 · THE DRIFT",
      "topic": "Moon drifting away",
-     "say": "The Moon drifts away a little every year, over 2 meters since 1969.",
+     "say": "Since Apollo, the Moon has crept more than two meters farther away.",
      "scene": {
       "mechanic": "earth-moon-tape-stretch",
       "concept": "a measuring tape unspools between Earth and the Moon, the gap widening year by year as cumulative drift climbs toward 2 meters",
@@ -24125,7 +24122,7 @@
      "use_baseline": false,
      "role": "2 · THE MECHANISM",
      "topic": "Moon distance over time",
-     "say": "Tides steal Earth's spin, pushing the Moon farther out, to 384,400 kilometers today.",
+     "say": "Tides steal Earth's spin, and the Moon has crept out to 384,400 kilometers.",
      "scene": {
       "mechanic": "tidal-drag-orbit-widen",
       "concept": "two side-by-side Earth-Moon orbits, the ancient orbit tight and the modern orbit visibly wider, moons circling at true relative radius",
@@ -24142,7 +24139,7 @@
      "ascending": false,
      "role": "3 · THE PAYOFF",
      "topic": "Moon eclipse deadline",
-     "say": "In 600 million years, total eclipses end for good.",
+     "say": "In 600 million years, the Moon will be too far away for total eclipses.",
      "scene": {
       "mechanic": "eclipse-deep-time-ruler",
       "concept": "a deep-time ruler stretching from today out to 600 million years, dinosaur markers at their epochs and a sun-moon eclipse disc sliding out to the vanishing point",
@@ -24150,8 +24147,8 @@
      }
     }
    ],
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:27:32Z",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-10T14:10:56Z",
    "retold": "retell/v2"
   },
   {
@@ -24387,8 +24384,8 @@
   {
    "slug": "clear-air-turbulence-increase",
    "title": "Why Flights Are Getting Bumpier",
-   "hook": "Severe turbulence on flights is up 55 percent, and it's getting worse.",
-   "closing": "Buckle up. That's not a suggestion anymore.",
+   "hook": "Severe turbulence on your flight jumped 55 percent since 1979.",
+   "closing": "So keep that seatbelt on.",
    "question": "Have you noticed flights getting bumpier lately?",
    "caption": "Severe turbulence over the North Atlantic has climbed 55% since 1979, and researchers say a warming climate could roughly double or triple it again by later this century. Have you noticed flights getting bumpier lately? Tell me below 👇",
    "hashtags": [
@@ -24418,7 +24415,7 @@
      "insight_type": "trend",
      "role": "1 · THE BUMP",
      "topic": "Bumpier North Atlantic flights",
-     "say": "Severe turbulence over the North Atlantic rose 55 percent since 1979.",
+     "say": "Severe turbulence over the North Atlantic is up about half since 1979.",
      "scene": {
       "mechanic": "shaking-jet-climb",
       "concept": "a small jet rides a widening zig-zag flight line whose jaggedness grows year by year with severe-turbulence hours",
@@ -24435,7 +24432,7 @@
      "ascending": false,
      "role": "2 · THE PATTERN",
      "topic": "Bumpier by severity",
-     "say": "Light and moderate bumps grew too, but the severe kind, the kind that hurts, grew most.",
+     "say": "Even the bumps that hurt people grew fastest, far more than the light ones.",
      "scene": {
       "mechanic": "rough-air-bands",
       "concept": "three horizontal turbulence bands fill left-to-right by severity, each edged with a jagged shake-line that gets rougher as the value rises",
@@ -24451,7 +24448,7 @@
      "insight_type": "trend",
      "role": "3 · WHY",
      "topic": "Bumpier flights, warming climate",
-     "say": "A warming jet stream sharpens wind shear, and severe turbulence could double this century.",
+     "say": "A warming jet stream is stirring the sky, and the worst bumps could double.",
      "scene": {
       "mechanic": "future-storm-panels",
       "concept": "three time panels (2020/2050/2080) darken with storm color and a jet shakes harder in each one, keyed to projected turbulence hours",
@@ -24459,8 +24456,8 @@
      }
     }
    ],
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:27:32Z",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-10T14:11:07Z",
    "retold": "retell/v2"
   },
   {
@@ -24632,7 +24629,7 @@
   {
    "slug": "human-domesticated-14-animals",
    "title": "Humans Have Only Ever Domesticated 14 Large Animals",
-   "hook": "In all of history, humans tamed just 14 big animals. Then we stopped.",
+   "hook": "Your world vanished 15,000 years ago",
    "closing": "Dog led the way; no new large species since",
    "question": "Which wild animal would you domesticate?",
    "caption": "Of roughly 148 candidate wild mammals big enough to be worth it, humans have only ever fully domesticated 14, starting with the dog about 15,000 years ago, and the list hasn't grown in about 3,000 years. If you could domesticate one wild animal, which would you pick? Tell me below 👇",
@@ -24681,7 +24678,7 @@
      "use_baseline": false,
      "role": "2 · WHY SO FEW",
      "topic": "Domestication candidates",
-     "say": "Only about one in ten large wild mammals ever let humans tame them.",
+     "say": "Only 14 of 148 large wild mammals were ever domesticated.",
      "scene": {
       "mechanic": "species-elimination-grid",
       "concept": "a grid of candidate-species tiles fills in, most fading grey (failed) while a lit few (the actual domesticates) survive next to a real dog photo",
@@ -24705,9 +24702,8 @@
      }
     }
    ],
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:27:32Z",
-   "retold": "retell/v2"
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-06T13:10:26Z"
   },
   {
    "slug": "melatonin-kids-er-surge",
@@ -25022,8 +25018,8 @@
   {
    "slug": "third-interstellar-visitor",
    "title": "The Third Visitor From Outside Our Solar System",
-   "hook": "Something from deep space just blasted past your planet at 246,000 kilometers an hour.",
-   "closing": "Three visitors, ever. Each one bigger.",
+   "hook": "Only three strangers from deep space ever came, and this one's the biggest.",
+   "closing": "Three visitors, ever. The newest is the biggest.",
    "question": "Will we ever catch one? Tell me.",
    "caption": "Only 3 objects have ever been confirmed passing through our solar system from interstellar space -- 'Oumuamua in 2017, Borisov in 2019, and 3I/ATLAS in 2025. Each one found has been bigger and faster than the last, and this one is the biggest yet: up to 5.6 km wide, moving at 246,000 km/h. Do you think we'll ever catch up to one? 👇",
    "hashtags": [
@@ -25053,7 +25049,7 @@
      "insight_type": "trend",
      "role": "1 · THE COUNT",
      "topic": "Visitor outside solar system",
-     "say": "We've confirmed visitors from outside our solar system just 3 times: 2017, 2019, then 2025.",
+     "say": "Only three visitors from outside our solar system have ever been confirmed.",
      "scene": {
       "mechanic": "portal-comet-count",
       "concept": "a glowing wormhole portal at the frame edge fires real comet cutouts across the sky one by one as the confirmed count climbs 1->3",
@@ -25071,12 +25067,13 @@
      "use_baseline": false,
      "role": "2 · GETTING FASTER",
      "topic": "Visitor peak speed",
-     "say": "Each one moved faster, and the newest hit 246,000 kilometers an hour.",
+     "say": "Each came in faster, and the newest moves nearly twice as fast as the first.",
      "scene": {
       "mechanic": "comet-speedway-race",
       "concept": "three real comet cutouts race down parallel lanes, each stopping at a finish position proportional to its peak km/h -- the newest visitor screaming past the others",
       "code": "comet = subject_image('interstellar comet with glowing tail')\nlane_h = (RBOT - RTOP - 60) // n\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    ly = RTOP + 40 + i * lane_h\n    d.line([RX0+20, ly+lane_h-20, RX1-20, ly+lane_h-20], fill=rgba(TEXT,90), width=3)\n    frac = clamp(v / vmax)\n    stage = clamp(reveal * 1.15)\n    x = int(lerp(RX0 + 100, RX0 + 60 + (RX1 - RX0 - 160) * frac, stage))\n    if comet is not None:\n        paste(comet, x - 55, ly, 130, 90)\n    else:\n        d.ellipse([x-40,ly+20,x+40,ly+60], fill=rgba(WARN if i==n-1 else ACCENT,220))\n    text(lab, RX0 + 10, ly - 6, size=24, color=TEXT)\n    if stage >= 1.0:\n        text(f'{int(v):,} km/h', x + 40, ly + 30, size=26,\n             color=WARN if i == n - 1 else HIGHLIGHT)\ntext('GETTING FASTER EACH TIME', (RX0+RX1)//2, RTOP, size=32, color=WARN, center=True)"
-     }
+     },
+     "illustrated_scene": "# scene standard: 2026-10-09\ndef _visitor(cr, x0, x, y, r, tint, t, speed, a=1.0):\n    # the trail it has drawn across the sky, widest at the head\n    L = x - x0\n    if L > 4:\n        cr.move_to(x0, y - r * 0.25)\n        cr.curve_to(x0 + L * 0.5, y - r * 0.7, x - r, y - r * 1.5, x, y - r * 1.15)\n        cr.line_to(x, y + r * 1.15)\n        cr.curve_to(x - r, y + r * 1.5, x0 + L * 0.5, y + r * 0.7, x0, y + r * 0.25)\n        cr.close_path()\n        g = cairo.LinearGradient(x0, y, x, y)\n        g.add_color_stop_rgba(0, tint[0] / 255, tint[1] / 255, tint[2] / 255, 0.0)\n        g.add_color_stop_rgba(0.7, tint[0] / 255, tint[1] / 255, tint[2] / 255, 0.55 * a)\n        g.add_color_stop_rgba(1, 1, 1, 1, 0.9 * a)\n        cr.set_source(g)\n        cr.fill_preserve()\n        cr.save()\n        cr.clip()\n        # streaks racing down the tail: the faster the visitor, the faster they run\n        cr.set_source_rgba(1, 1, 1, 0.55 * a)\n        cr.set_line_width(max(6, r * 0.22))\n        gap = 150.0\n        for i in range(int(L / gap) + 2):\n            sx = x - ((t * speed + i * gap) % (L + gap))\n            cr.move_to(sx, y - r * 1.4)\n            cr.line_to(sx - 50, y + r * 1.4)\n        cr.stroke()\n        cr.restore()\n    glow(cr, x, y, r * 3.0, tint, 0.55 * a)\n    # the visitor itself: a lit, tumbling lump of ice and rock\n    cr.save()\n    cr.translate(x, y)\n    cr.rotate(t * 0.8)\n    cr.scale(1.25, 0.85)\n    cr.arc(0, 0, r, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (176, 170, 160), finish=\"gloss\", a=a)\n\n\ndef _num(lab):\n    d = \"\"\n    for ch in str(lab):\n        if ch.isdigit():\n            d += ch\n        elif d:\n            break\n    return int(d) if d else 0\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: an icy interstellar comet streaking across space\n    SUBSTANCE: the comet's glowing trail\n    CAUSE: Data tosses each visitor across the sky, harder each time, and each trail runs further\n    Three visitors from outside the solar system, each tossed from the same\n    start line in the order they were found. A trail's length is how far it\n    travels in the same moment: its speed. 'Oumuamua's run stays up, then\n    Borisov's, then 3I/ATLAS's: the biggest, nearly twice as long. The first\n    run is laid as a ghost along the newest trail so one glance says \"about\n    twice as fast\". Done by 0.52 and held; the streaks in each tail keep\n    racing at that visitor's own speed.\"\"\"\n    raw = [(str(l), float(v)) for l, v in pts]\n    try:\n        raw = by_time(raw)\n    except Exception:\n        pass\n    # discovery order is in the designation itself: 1I, 2I, 3I\n    rows = sorted(raw, key=lambda r: _num(r[0]))\n    n = len(rows)\n    vmax = max(v for _, v in rows) or 1.0\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    fly = ease(seg(f, 0.15, 0.75))\n\n    X0, LMAX = 110.0, 860.0\n    ys = [1110 - 185 * j for j in range(n)]\n    rs = [30 + 18 * j for j in range(n)]\n\n    # deep space over a grey moonscape\n    vgrad(cr, [(0, (6, 8, 22)), (0.45, (18, 22, 52)), (0.7, (46, 44, 70)), (1, (60, 56, 66))], 0, H)\n    for i in range(90):\n        sx = (i * 389) % W\n        sy = (i * 211) % 1200\n        cr.set_source_rgba(1, 1, 1, 0.35 + 0.4 * ((i * 0.37) % 1.0))\n        cr.arc(sx, sy, 1.5 + (i % 3), 0, 2 * math.pi)\n        cr.fill()\n    glow(cr, 60, 160, 420, (255, 226, 170), 0.7)\n    disc(cr, 60, 160, 90, (255, 236, 196), finish=\"gloss\")\n    # a far ringed planet\n    glow(cr, 930, 330, 120, (210, 170, 120), 0.25)\n    disc(cr, 930, 330, 62, (206, 168, 120))\n    cr.set_source_rgba(*_c((236, 214, 176), 0.8))\n    cr.set_line_width(6)\n    cr.save()\n    cr.translate(930, 330)\n    cr.rotate(-0.3)\n    cr.scale(1, 0.25)\n    cr.arc(0, 0, 110, 0, 2 * math.pi)\n    cr.restore()\n    cr.stroke()\n    ridge(cr, 1250, 70, seed=1.3, n=6)\n    solid(cr, (92, 88, 96), edge=False)\n    haze(cr, 1160, 1300, (60, 56, 76), a=0.5)\n    ridge(cr, 1360, 45, seed=3.1, n=4)\n    solid(cr, (132, 126, 120), edge=False)\n\n    # the start line every visitor is tossed from\n    cr.set_source_rgba(*_c((244, 238, 226), 0.6))\n    cr.set_line_width(5)\n    cr.set_dash([14, 10])\n    cr.move_to(X0, ys[-1] - 110)\n    cr.line_to(X0, ys[0] + 70)\n    cr.stroke()\n    cr.set_dash([])\n\n    landed_to = -1\n    for j in range(n):\n        if u < a0 or j > k:\n            break\n        lab, v = rows[j]\n        L = LMAX * v / vmax\n        p = 1.0 if j < k else fly\n        if p >= 0.999:\n            landed_to = j\n        tint = P[\"accent2\"] if j == n - 1 else (150, 168, 196)\n        _visitor(cr, X0, X0 + L * p, ys[j], rs[j], tint, t, 120 + 520 * v / vmax)\n        text(cr, lab, X0 + 10, ys[j] - rs[j] * 1.5 - 12, 30, look.INK, face=\"bold\")\n\n    # THE SCALE on the newest trail: the first visitor's run as a ghost beside it\n    if landed_to == n - 1 and n > 1:\n        L0 = LMAX * rows[0][1] / vmax\n        y, r = ys[-1], rs[-1]\n        cr.rectangle(X0, y - r * 1.3, L0, r * 2.6)\n        ghost(cr, a=0.9 * ease(seg(u, a1 - 0.04, a1)))\n        text(cr, f\"{rows[-1][1] / (rows[0][1] or 1.0):.1f}x\", W - 80, 650, 90, look.INK,\n             face=\"display\", anchor=\"right\", alpha=ease(seg(u, a1 - 0.04, a1 + 0.02)))\n\n    # a boulder right by the camera, the dust\n    contact_shadow(cr, 880, 1820, 300, a=0.4)\n    disc(cr, 880, 1740, 120, (128, 122, 116))\n    foreground(cr, \"desert\")\n    vignette(cr, a=0.3)\n\n    # Data steps up to a fresh mark for each throw, further each time\n    if u < a0:\n        host(\"point\", 180, 1450, 220)\n    elif u < a1 + 0.04:\n        pos = k - 1 + ease(seg(f, 0.0, 0.15)) if k > 0 else 0.0\n        host(\"toss\", 180 + 170 * pos, 1450, 220, beat=k)\n    else:\n        host(\"hold_up\", 180 + 170 * (n - 1), 1450, 220)\n\n    if landed_to >= 0:\n        lab, v = rows[landed_to]\n        fit_readout(cr, f\"{int(round(v)):,} km/h\", f\"peak speed · {lab}\", 80, 520, size=130)\n    else:\n        fit_readout(cr, \"Interstellar visitors\", \"peak speed, in the order found\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.05)), size=110)\n"
     },
     {
      "source": "offline",
@@ -25088,7 +25085,7 @@
      "use_baseline": false,
      "role": "3 · GETTING BIGGER",
      "topic": "Visitor nucleus size",
-     "say": "It's the biggest yet, with a core over five times wider than the last.",
+     "say": "And the newest is the biggest, maybe five times wider than the last.",
      "scene": {
       "mechanic": "comet-scale-swell",
       "concept": "two real comet cutouts swell in place against a size-ruler backdrop to their true relative diameter -- the newest one dwarfing the old record holder",
@@ -25096,9 +25093,10 @@
      }
     }
    ],
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:27:32Z",
-   "retold": "retell/v2"
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-10T14:11:36Z",
+   "retold": "retell/v2",
+   "hook_was": "Something from deep space just blasted past your planet at 246,000 kilometers an hour."
   },
   {
    "slug": "bat-fungus-collapse",
@@ -25575,7 +25573,7 @@
   {
    "slug": "podcasts-passed-radio-spoken-word",
    "title": "Podcasts Just Beat Radio For The First Time (3 Charts)",
-   "hook": "After a century on top, radio just lost to podcasts.",
+   "hook": "Your radio just lost to podcasts, 40% to 39%.",
    "closing": "Radio had a hundred-year head start. Didn't matter.",
    "question": "Podcasts or radio: which do you play?",
    "caption": "Podcasts just passed AM/FM radio in spoken-word listening for the first time ever -- 40% to 39%. Radio spent a century building its audience; podcasts matched it in twenty years. Which do you listen to more? 👇",
@@ -25603,7 +25601,7 @@
      "insight_type": "comparison",
      "topic": "Podcasts, 2015 to 2025",
      "role": "1 · THE CLIMB",
-     "say": "In ten years, podcasts grew four times over, to 40% of spoken-word listening.",
+     "say": "Podcasts went from 10% of spoken-word listening in 2015 to 40% by 2025.",
      "scene": {
       "mechanic": "mic-rise-radio-fade",
       "concept": "a podcast microphone fills upward with the growing listening share while a vintage radio dial shrinks beside it",
@@ -25619,7 +25617,7 @@
      "insight_type": "comparison",
      "topic": "Podcasts beat radio",
      "role": "2 · THE CROSSOVER",
-     "say": "In late 2025, podcasts finally edged past talk radio for the first time.",
+     "say": "In 2025, podcasts hit 40% of spoken-word listening and AM/FM talk radio fell to 39%.",
      "scene": {
       "mechanic": "photo-finish-race",
       "concept": "a microphone and a radio tower race down parallel lanes toward a finish line, the microphone edging ahead by a single point",
@@ -25643,9 +25641,8 @@
      }
     }
    ],
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:27:32Z",
-   "retold": "retell/v2"
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-05T19:15:34Z"
   },
   {
    "slug": "chickenpox-vaccine-collapse",
@@ -25983,8 +25980,8 @@
   {
    "slug": "map-distortion-true-size",
    "title": "The Map In Your Head Is Lying To You",
-   "hook": "Africa is 14 times bigger than Greenland, but your map hides it.",
-   "closing": "Africa: still bigger than you think.",
+   "hook": "Your map just wiped out 14× Africa’s true size!",
+   "closing": "Africa: way bigger than your map says.",
    "question": "Which country looks wrong on maps?",
    "caption": "Africa is 14 times bigger than Greenland -- they just look the same size on your map. It's not an accident, it's math: the Mercator projection stretches land more the farther it sits from the equator. See how far off your mental map really is. Which country looks wrong to you? 👇",
    "hashtags": [
@@ -26013,7 +26010,7 @@
      "use_baseline": false,
      "role": "1 · THE ILLUSION",
      "topic": "Map Greenland vs Africa",
-     "say": "Africa is fourteen times bigger than Greenland, even if your map says otherwise.",
+     "say": "Greenland looks as big as Africa, but Africa is really fourteen times bigger.",
      "scene": {
       "mechanic": "greenland-shrink-to-true",
       "concept": "Greenland, drawn as big as Africa on the map, shrinks to its true 2.2 vs 30.4 million km2 size beside Africa",
@@ -26030,7 +26027,7 @@
      "ascending": false,
      "role": "2 · WHY IT HAPPENS",
      "topic": "Map distortion latitude",
-     "say": "At 60° latitude land appears four times larger than reality.",
+     "say": "Flat maps stretch land toward the poles, so far-north places look four times too big.",
      "scene": {
       "mechanic": "mercator-coin-inflate",
       "concept": "the same coin sits at five latitudes; the map inflates its area by the real Mercator factor, up to 33x near the pole",
@@ -26047,7 +26044,7 @@
      "use_baseline": true,
      "role": "3 · THE REAL SCALE",
      "topic": "Map Africa vs nations",
-     "say": "Africa is bigger than the US, China, India and Japan put together.",
+     "say": "Africa is bigger than the U.S., China, India and Japan squeezed together.",
      "ascending": false,
      "scene": {
       "mechanic": "africa-fills-with-nations",
@@ -26056,14 +26053,14 @@
      }
     }
    ],
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:27:32Z",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-10T14:39:46Z",
    "retold": "retell/v2"
   },
   {
    "slug": "left-brain-right-brain-myth",
    "title": "You're Not Actually Left-Brained Or Right-Brained",
-   "hook": "Scientists checked 7 brain networks. Not one matched the left-brain myth.",
+   "hook": "Your brain isn't left or right: 0 of 7 networks matched.",
    "closing": "Your brain works as one team.",
    "question": "Ever been called 'more right-brained'? Tell me below.",
    "caption": "A study scanned 1,011 brains looking for 'left-brained' and 'right-brained' personality types. It found zero. Some brain jobs really are lateralized (language leans 96% left) -- but your overall personality isn't one of them. Here's what the science actually shows. Ever been called 'more right-brained'? 👇",
@@ -26110,7 +26107,7 @@
      "use_baseline": true,
      "role": "2 · THE STUDY THAT TESTED IT",
      "topic": "The 2013 brain scan",
-     "say": "Scientists scanned over a thousand brains, and not one network matched the myth.",
+     "say": "In 2013, researchers scanned 1,011 brains and found 0 of 7 networks matched the myth.",
      "ascending": false,
      "illustrated_scene": "def _brain_half(cr, cx, cy, rx, ry, side):\n    cr.new_path()\n    cr.move_to(cx + side * 6, cy - ry * 0.96)\n    for i in range(0, 61):\n        a = -math.pi / 2 + math.pi * i / 60.0\n        bump = 1.0 + 0.035 * math.sin(a * 11.0 + side)\n        x = cx + side * (6 + rx * math.cos(a) * bump)\n        y = cy + ry * math.sin(a) * bump * (1.0 if a < 0 else 0.92)\n        cr.line_to(x, y)\n    cr.line_to(cx + side * 6, cy + ry * 0.84)\n    cr.close_path()\n\n\ndef _gyri(cr, cx, cy, rx, ry, side, rgb):\n    cr.set_source_rgba(*_c(rgb, 0.85))\n    cr.set_line_width(7)\n    for j in range(7):\n        yy = cy - ry * 0.75 + j * ry * 0.25\n        cr.move_to(cx + side * 30, yy)\n        for i in range(1, 13):\n            xx = cx + side * (30 + i * rx * 0.075)\n            cr.line_to(xx, yy + 18 * math.sin(i * 1.7 + j * 2.3))\n        cr.stroke()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a human brain, both halves\n    SUBSTANCE: glowing brain networks\n    CAUSE: Data cranks the scanner and each network lights up across both halves\n    The 2013 scan: a top-down brain split by its central fissure, the\n    myth's LEFT/RIGHT line down the middle. Each crank of the scanner\n    lights one network, and every one of them spans BOTH halves, so none\n    of the networks fits the myth's split.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    (ln, n_tot) = max(rows, key=lambda r: r[1])\n    (lz, n_zero) = min(rows, key=lambda r: r[1])\n    n = max(1, int(round(n_tot)))\n    acc = P[\"accent2\"]\n\n    # the lab: full-height ground (stops are (offset, rgb) pairs)\n    vgrad(cr, [(0.0, (14, 20, 34)), (0.6, (26, 36, 58)), (1.0, (40, 50, 72))], 0, 1300)\n    vgrad(cr, [(0.0, (52, 60, 78)), (1.0, (30, 34, 46))], 1300, H)\n    haze(cr, 0, 1300, (26, 36, 58), a=0.25)\n\n    # the scanner ring behind the brain\n    cx, cy = 540, 930\n    cr.new_path()\n    cr.arc(cx, cy, 440, 0, 2 * math.pi)\n    cr.arc_negative(cx, cy, 372, 2 * math.pi, 0)\n    cr.set_fill_rule(cairo.FILL_RULE_EVEN_ODD)\n    solid(cr, (196, 202, 214), finish=\"gloss\")\n    cr.set_fill_rule(cairo.FILL_RULE_WINDING)\n    contact_shadow(cr, cx, 1380, 620, a=0.4)\n    box(cr, cx - 260, 1380, 520, 40, (150, 158, 172), depth=40)\n\n    # the brain: two lit hemispheres and their folds\n    rx, ry = 300, 250\n    pink, pink_d = (232, 168, 170), (176, 104, 112)\n    for side in (-1, 1):\n        _brain_half(cr, cx, cy, rx, ry, side)\n        solid(cr, pink, finish=\"gloss\")\n        cr.save()\n        _brain_half(cr, cx, cy, rx, ry, side)\n        cr.clip()\n        _gyri(cr, cx, cy, rx, ry, side, pink_d)\n        cr.restore()\n        _brain_half(cr, cx, cy, rx, ry, side)\n        edge(cr, (90, 40, 50), width=5)\n\n    # the myth's line down the fissure\n    cr.set_source_rgba(*_c((240, 240, 250), 0.7))\n    cr.set_line_width(4)\n    cr.set_dash([18, 14])\n    cr.move_to(cx, cy - ry - 70)\n    cr.line_to(cx, cy + ry + 40)\n    cr.stroke()\n    cr.set_dash([])\n    text(cr, \"LEFT\", cx - 30, cy - ry - 40, 40, INK_2, anchor=\"right\")\n    text(cr, \"RIGHT\", cx + 30, cy - ry - 40, 40, INK_2, anchor=\"left\")\n\n    # the networks: each one lights in BOTH halves, joined across the line\n    spots = [(0.45, -0.55), (0.75, -0.15), (0.35, -0.05), (0.62, 0.35),\n             (0.28, 0.45), (0.82, 0.25), (0.55, -0.32)]\n    k, f = step_through(u, n, hold_first=0.16, hold_last=0.2)\n    lit = 0\n    for i in range(n):\n        if i < k:\n            a = 1.0\n        elif i == k:\n            a = ease(seg(f, 0.35, 0.75))\n        else:\n            a = 0.0\n        if a <= 0:\n            continue\n        if a >= 0.6:\n            lit += 1\n        fx, fy = spots[i % len(spots)]\n        lx, rxp = cx - rx * fx, cx + rx * fx\n        y = cy + ry * fy\n        r = 60 * pop(a)\n        glow(cr, lx, y, r * 1.6, acc, 0.55 * a)\n        glow(cr, rxp, y, r * 1.6, acc, 0.55 * a)\n        disc(cr, lx, y, 16 * a, acc, finish=\"gloss\")\n        disc(cr, rxp, y, 16 * a, acc, finish=\"gloss\")\n        cr.set_source_rgba(*_c(acc, 0.9 * a))\n        cr.set_line_width(6)\n        cr.move_to(lx, y)\n        cr.curve_to(lx + (cx - lx) * 0.5, y - 70 * a, rxp - (rxp - cx) * 0.5,\n                    y - 70 * a, lx + (rxp - lx) * a, y)\n        cr.stroke()\n\n    # the scanner console and its crank wheel\n    wx, wy = 300, 1330\n    contact_shadow(cr, 230, 1500, 220, a=0.4)\n    box(cr, 150, 1500, 170, 150, (120, 128, 146), depth=36)\n    turn = (k + ease(seg(f, 0.0, 0.6))) * math.pi * 1.2\n    disc(cr, wx, wy, 52, (180, 150, 70), finish=\"gloss\")\n    cr.set_source_rgba(*_c((60, 46, 20)))\n    cr.set_line_width(7)\n    for s in range(4):\n        aa = turn + s * math.pi / 2\n        cr.move_to(wx, wy)\n        cr.line_to(wx + 46 * math.cos(aa), wy + 46 * math.sin(aa))\n        cr.stroke()\n    hx, hy = wx + 46 * math.cos(turn), wy + 46 * math.sin(turn)\n    disc(cr, hx, hy, 12, (210, 210, 220), finish=\"gloss\")\n\n    # Data: points at the brain, cranks the scanner, reacts to the result\n    walk_in = ease(seg(u, 0.08, 0.16))\n    walk_out = ease(seg(u, 0.84, 0.92))\n    x = 120 + 260 * walk_in + 340 * walk_out\n    if u < 0.12:\n        role, bk = \"point\", 0\n    elif u < 0.84:\n        role, bk = \"crank\", k\n    else:\n        role, bk = \"shock\", 0\n    contact_shadow(cr, x, 1500, 140, a=0.35)\n    host(role, x, 1500, 220, beat=bk)\n\n    vignette(cr, 0.32)\n\n    # readouts\n    if u < 0.84:\n        fit_readout(cr, f\"{lit} of {n}\", f\"{ln.lower()} · each lights both halves\",\n                    80, 520, a=ease(seg(u, 0.0, 0.08)), size=130)\n    else:\n        fit_readout(cr, f\"{int(round(n_zero))} of {n}\", lz.lower(), 80, 520,\n                    a=ease(seg(u, 0.84, 0.9)), rgb=acc, size=150)\n",
      "scene": {
@@ -26138,14 +26135,13 @@
      }
     }
    ],
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:27:32Z",
-   "retold": "retell/v2"
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-07T12:20:04Z"
   },
   {
    "slug": "religious-nones-rise",
    "title": "One In Four Americans Now Has No Religion",
-   "hook": "Americans with no religion now outnumber Catholics, at 28 percent.",
+   "hook": "Americans who quit religion now outnumber Catholics.",
    "closing": "One in four now says none. Soon, the biggest pew.",
    "question": "Do you consider yourself religious? Tell me below.",
    "caption": "Only 8% of Americans had no religion in 1990. Today it's 29% -- and it's not random, it's generational: only 10% of the oldest Americans are unaffiliated, versus about a third of Gen Z. 'No religion' is now closing in on becoming the country's single biggest group. Do you consider yourself religious? 👇",
@@ -26196,7 +26192,8 @@
       "mechanic": "generation-pew-seats",
       "concept": "five rows of pews, one per generation, 20 seats each; seats empty out from the right as each generation's no-religion share sweeps in, oldest barely touched, youngest a third vacant",
       "code": "pew = subject_image('wooden church pew')\nn_seats = 20\nrowh = 250\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    y = RTOP + 50 + i * rowh\n    gone = int(round(n_seats * v / 100.0 * clamp(reveal * 1.15)))\n    if pew is not None:\n        paste(pew, RX0, y + 90, RX1 - RX0, 110)\n    sw = (RX1 - RX0 - 40) // n_seats\n    for s in range(n_seats):\n        x = RX0 + 20 + s * sw\n        out = s >= n_seats - gone\n        fall = int(40 * clamp(reveal * 3 - s * 0.1)) if out else 0\n        col = HIGHLIGHT if out else REST\n        d.ellipse([x + 6, y + 50 - fall, x + sw - 6, y + 50 + sw - 12 - fall], fill=rgba(col, 120 if out else 255))\n        d.rounded_rectangle([x + 4, y + 96 - fall, x + sw - 4, y + 150 - fall], radius=10, fill=rgba(col, 120 if out else 255))\n    text(lab, RX0 + 10, y, size=40, color=TEXT)\n    text(fmt(v), RX1 - 10, y, size=44, color=HIGHLIGHT)\nfor i, v in enumerate(values):\n    y = RTOP + 50 + i * rowh\n    for w in range(3):\n        ph = (reveal * 3.0 + w / 3.0 + i * 0.13) % 1.0\n        wx = RX0 + 20 + int((RX1 - RX0 - 120) * ph)\n        d.ellipse([wx, y + 4, wx + 26, y + 30], fill=rgba(HIGHLIGHT, 255))\n        d.rounded_rectangle([wx - 4, y + 32, wx + 30, y + 46], radius=6, fill=rgba(HIGHLIGHT, 255))\n"
-     }
+     },
+     "illustrated_scene": "# scene standard: 2026-10-09\ndef _np_person(cr, x, y, s, coat, t=0.0, walking=0.0, ph=0.0, i=0):\n    contact_shadow(cr, x, y, 50 * s, a=0.32)\n    sw = math.sin(t * 7 + ph) * walking * 9 * s\n    trou = [(52, 50, 60), (70, 62, 54), (44, 52, 70)][i % 3]\n    # legs: trousers, then shoes\n    for lx, d in ((-7, sw), (7, -sw)):\n        cr.move_to(x + (lx - 6) * s, y - 44 * s)\n        cr.line_to(x + (lx + 6) * s, y - 44 * s)\n        cr.line_to(x + (lx + 5) * s + d, y - 5 * s)\n        cr.line_to(x + (lx - 5) * s + d, y - 5 * s)\n        cr.close_path()\n        solid(cr, trou, rim=False)\n        cr.save()\n        cr.translate(x + lx * s + d + 2 * s, y - 3 * s)\n        cr.scale(1.0, 0.55)\n        cr.arc(0, 0, 8 * s, 0, 2 * math.pi)\n        cr.restore()\n        solid(cr, (30, 28, 30), rim=False)\n    # arms behind the coat, swinging against the stride\n    for ax, d in ((-19, -sw), (19, sw)):\n        cr.move_to(x + ax * s, y - 88 * s)\n        cr.curve_to(x + (ax * 1.15) * s, y - 70 * s, x + (ax * 1.1) * s + d * 0.8,\n                    y - 56 * s, x + (ax * 1.05) * s + d * 0.8, y - 46 * s)\n        cr.set_source_rgba(*_c(tuple(int(c * 0.72) for c in coat)))\n        cr.set_line_width(10 * s)\n        cr.set_line_cap(cairo.LINE_CAP_ROUND)\n        cr.stroke()\n        disc(cr, x + (ax * 1.05) * s + d * 0.8, y - 44 * s, 5 * s, (222, 182, 146))\n    # the coat: shoulders, a taper, a hem\n    cr.move_to(x - 20 * s, y - 40 * s)\n    cr.line_to(x - 18 * s, y - 84 * s)\n    cr.curve_to(x - 17 * s, y - 96 * s, x + 17 * s, y - 96 * s, x + 18 * s, y - 84 * s)\n    cr.line_to(x + 20 * s, y - 40 * s)\n    cr.close_path()\n    solid(cr, coat)\n    cr.move_to(x, y - 94 * s)\n    cr.line_to(x, y - 44 * s)\n    cr.set_source_rgba(*_c(tuple(int(c * 0.6) for c in coat), 0.7))\n    cr.set_line_width(2.5 * s)\n    cr.stroke()\n    # collar, head, hair or a hat\n    disc(cr, x, y - 97 * s, 7 * s, (210, 172, 138))\n    skin = [(226, 188, 152), (190, 140, 104), (150, 104, 74), (236, 200, 168)][i % 4]\n    disc(cr, x, y - 110 * s, 13 * s, skin)\n    hair = [(60, 44, 34), (200, 196, 190), (30, 26, 26), (150, 104, 60)][(i * 3) % 4]\n    if i % 5 == 2:\n        cr.save()\n        cr.translate(x, y - 119 * s)\n        cr.scale(1.0, 0.32)\n        cr.arc(0, 0, 21 * s, 0, 2 * math.pi)\n        cr.restore()\n        solid(cr, (64, 60, 66), rim=False)\n        cr.rectangle(x - 12 * s, y - 136 * s, 24 * s, 17 * s)\n        solid(cr, (64, 60, 66))\n    else:\n        cr.arc(x, y - 112 * s, 13.5 * s, math.pi * 1.02, math.pi * 1.98)\n        cr.close_path()\n        solid(cr, hair, rim=False)\n\n\ndef _np_mix(a, b, f):\n    return tuple(int(p + (q - p) * f) for p, q in zip(a, b))\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a white country church\n    SUBSTANCE: the congregation walking out\n    CAUSE: Data shoves the church doors open wider and each generation's share of the flock walks out\n    One congregation of twenty stands before one church: the WHOLE. Oldest\n    generation first, Data shoves the doors a little wider each time and that\n    generation's share of the crowd walks out of the churchyard and down the\n    path toward the camera, in the accent; the rest stay by the steps in a\n    neutral. The crowd IS the scale: twenty people, the share walking away\n    big by the camera, the rest still at the church, so how many left reads\n    at a glance. Done by 0.56 and held; the bell keeps swinging, the leavers\n    keep drifting down the path, Data keeps shoving the door.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: r[1])\n    n = len(rows)\n    N = 20\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.15, 0.75))\n    prev = rows[k - 1][1] if k > 0 else 0.0\n    share = 0.0 if u < a0 else clamp((prev + (rows[k][1] - prev) * slide) / 100.0)\n    landed_to = k if slide >= 0.999 else k - 1\n    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))\n                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))\n    named = max((i for i in keep if i <= landed_to), default=None)\n    shown = None if (u < a0 or named is None) else rows[named]\n\n    landscape(cr, t, \"field\")\n    # a gravel path from the church door down to the camera, right\n    cr.move_to(560, 1330)\n    cr.curve_to(640, 1480, 820, 1640, 860, H)\n    cr.line_to(W, H)\n    cr.line_to(W, 1500)\n    cr.curve_to(860, 1440, 700, 1380, 640, 1330)\n    cr.close_path()\n    solid(cr, (196, 178, 150), edge=False)\n    # a low stone churchyard wall behind the crowd\n    contact_shadow(cr, 160, 1352, 260, a=0.3)\n    box(cr, 20, 1352, 250, 46, (168, 162, 150), depth=24)\n\n    # the church, three-quarter, with its tower over the gable\n    BASE = 1330\n    cast_shadow(cr, 300, 860, BASE, length=320, a=0.3)\n    contact_shadow(cr, 580, BASE + 4, 620, a=0.4)\n    b = building(cr, 300, 860, BASE, 380, (236, 230, 216), roof_rgb=(86, 92, 106),\n                 roof=\"gable\", boards=False)\n    rx = (b[\"x0\"] + b[\"x1\"]) / 2\n    ty0 = b[\"top\"] + 30\n    ttop = b[\"peak\"] - 40\n    box(cr, rx - 60, ty0, 120, ty0 - ttop, (242, 236, 222), depth=30)\n    cr.move_to(rx - 66, ttop)\n    cr.line_to(rx + 4, ttop - 100)\n    cr.line_to(rx + 90, ttop - 6)\n    cr.close_path()\n    solid(cr, (86, 92, 106))\n    cr.set_source_rgba(*_c((60, 58, 62)))\n    cr.set_line_width(6)\n    cr.move_to(rx + 4, ttop - 100)\n    cr.line_to(rx + 4, ttop - 140)\n    cr.move_to(rx - 12, ttop - 124)\n    cr.line_to(rx + 20, ttop - 124)\n    cr.stroke()\n    # the belfry and its bell, ringing once the doors open\n    BY = ttop + 24\n    cr.rectangle(rx - 34, BY, 68, 86)\n    cr.set_source_rgba(*_c((40, 34, 36)))\n    cr.fill()\n    ang = 0.0 if u < a0 else 0.45 * math.sin((u - a0) * 30)\n    cr.save()\n    cr.rectangle(rx - 34, BY, 68, 86)\n    cr.clip()\n    cr.translate(rx, BY + 8)\n    cr.rotate(ang)\n    cr.move_to(-12, 6)\n    cr.curve_to(-14, 30, -22, 46, -28, 58)\n    cr.line_to(28, 58)\n    cr.curve_to(22, 46, 14, 30, 12, 6)\n    cr.close_path()\n    solid(cr, P[\"brass\"], finish=\"metal\")\n    cr.restore()\n    # tall arched windows either side\n    for wx in (rx - 200, rx - 130, rx + 130, rx + 200):\n        if wx < b[\"x0\"] + 20 or wx > b[\"x1\"] - 20:\n            continue\n        cr.move_to(wx - 20, BASE - 120)\n        cr.line_to(wx - 20, BASE - 270)\n        cr.arc(wx, BASE - 270, 20, math.pi, 2 * math.pi)\n        cr.line_to(wx + 20, BASE - 120)\n        cr.close_path()\n        solid(cr, (92, 120, 160), finish=\"glass\")\n    # a round rose window over the door\n    disc(cr, rx, b[\"top\"] + 70, 34, (150, 70, 90), finish=\"glass\")\n\n    # the doorway: warm light inside, two leaves swinging in as he shoves\n    DX0, DX1, DY = rx - 90, rx + 90, BASE - 240\n    cr.move_to(DX0, BASE)\n    cr.line_to(DX0, DY + 60)\n    cr.arc(rx, DY + 60, 90, math.pi, 2 * math.pi)\n    cr.line_to(DX1, BASE)\n    cr.close_path()\n    cr.save()\n    cr.clip()\n    vgrad(cr, [(0, (70, 46, 30)), (1, (210, 160, 96))], DY - 40, BASE, DX0, DX1)\n    glow(cr, rx, BASE - 60, 160, (255, 214, 140), 0.5)\n    o = 0.15 if u < a0 else clamp(0.15 + 0.85 * share / max(0.01, rows[-1][1] / 100.0))\n    lw = 90 * (1 - o)\n    for lx0 in (DX0, DX1 - lw):\n        cr.rectangle(lx0, DY - 40, lw, BASE - DY + 40)\n        solid(cr, (120, 70, 40))\n        if lw > 30:\n            cr.rectangle(lx0 + 10, DY + 20, lw - 20, 80)\n            cr.rectangle(lx0 + 10, DY + 120, lw - 20, 90)\n            edge(cr, (70, 40, 24))\n    cr.restore()\n    cr.set_source_rgba(*_c((60, 50, 44)))\n    cr.set_line_width(10)\n    cr.move_to(DX0, BASE)\n    cr.line_to(DX0, DY + 60)\n    cr.arc(rx, DY + 60, 90, math.pi, 2 * math.pi)\n    cr.line_to(DX1, BASE)\n    cr.stroke()\n    # the step in front\n    box(cr, 230, BASE + 16, 700, 16, (200, 196, 188), depth=40)\n\n    # the congregation: one whole of twenty, leavers go from the right,\n    # big by the camera as they walk down the path\n    X0, X1 = 150, 760\n    L = share * N\n    people = []\n    for i in range(N):\n        col, r = i // 2, i % 2\n        hx = X0 + col * (X1 - X0) / (N / 2 - 1) - 22 + r * 44\n        hy = 1420 + r * 80\n        p = clamp(L - (N - 1 - i))\n        e = ease(p)\n        j = N - 1 - i\n        dxx = 1000 - (j % 3) * 120 - (j // 3) * 26\n        dyy = 1600 + (j // 3) * 95 - (j % 3) * 20\n        drift = 40 * seg(u, a1, 1.0) if p >= 1 else 0.0\n        x = hx + (dxx - hx) * e + drift\n        y = hy + (dyy - hy) * e + drift * 0.6\n        s = 1.35 + 0.75 * e + (0.12 if r else 0.0)\n        coat = _np_mix(((132, 136, 148) if i % 3 else (110, 114, 128)), P[\"accent2\"],\n                       clamp(p * 3))\n        walking = 1.0 if 0 < p < 1 else (0.4 if p >= 1 and u > a1 else 0.0)\n        people.append((y, x, s, coat, walking, i))\n    for y, x, s, coat, walking, i in sorted(people):\n        _np_person(cr, x, y, s, coat, t, walking, i * 1.3, i)\n\n    # right by the camera: an old headstone in the churchyard grass\n    for gx, gy, gs in ((90, 1820, 1.7),):\n        contact_shadow(cr, gx, gy, 110 * gs, a=0.35)\n        cr.move_to(gx - 40 * gs, gy)\n        cr.line_to(gx - 40 * gs, gy - 90 * gs)\n        cr.arc(gx, gy - 90 * gs, 40 * gs, math.pi, 2 * math.pi)\n        cr.line_to(gx + 40 * gs, gy)\n        cr.close_path()\n        solid(cr, (150, 150, 146))\n    foreground(cr, \"field\")\n    vignette(cr, a=0.28)\n\n    # Data walks up the path to the door and shoves it wider for each generation\n    door_x = DX1 - lw + 30\n    if u < a0:\n        e0 = ease(seg(u, 0.0, a0))\n        host(\"point\", 960 + (door_x - 960) * e0, 1480 + (BASE + 8 - 1480) * e0, 220)\n    elif u < a1 + 0.04:\n        host(\"shove\", door_x, BASE + 8, 220, beat=k)\n    else:\n        host(\"shove\", door_x, BASE + 8, 220, beat=n)\n\n    if shown is not None:\n        lab, v = shown\n        fit_readout(cr, f\"{int(round(v))}%\", f\"{lab}: no religion\",\n                    80, 470, a=ease(seg(u, a0, a0 + 0.05)), size=130, max_w=440)\n    else:\n        fit_readout(cr, \"No religion\", \"by US generation\",\n                    80, 470, a=ease(seg(u, 0.0, 0.05)), size=110, max_w=440)\n"
     },
     {
      "source": "offline",
@@ -26212,11 +26209,13 @@
       "mechanic": "people-stack-overtake",
       "concept": "each affiliation is a column of stacked people; the Unaffiliated column climbs past the Catholic one and stops just under Protestants",
       "code": "person = subject_image('person silhouette icon')\nn_c = n\ncw = (RX1 - RX0) // n_c\nbase = RBOT - 120\nunit = 22\nmaxh = int(vmax / 2.0)\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    x = RX0 + i * cw + cw // 2\n    cnt = int(v / 2.0 * clamp(reveal * 1.1))\n    hi = lab.lower().startswith('unaff')\n    col = HIGHLIGHT if hi else REST\n    for j in range(cnt):\n        yy = base - (j + 1) * 54\n        d.ellipse([x - 22, yy, x + 22, yy + 24], fill=rgba(col, 255))\n        d.rounded_rectangle([x - 34, yy + 26, x + 34, yy + 50], radius=10, fill=rgba(col, 230))\n    if person is not None:\n        paste(person, x - 40, base + 10, 80, 80)\n    text(lab, x, base + 95, size=34, color=TEXT, center=True)\n    text(fmt(v), x, base - cnt * 54 - 50, size=46, color=HIGHLIGHT if hi else TEXT, center=True)\ncat = values[2]\nly = base - int(cat / 2.0) * 54\nd.line([RX0, ly, RX1, ly], fill=rgba(WARN, 200), width=4)\n"
-     }
+     },
+     "illustrated_scene": "# scene standard: 2026-10-09\ndef _rb_boat(cr, bow, y, s, sail_rgb, t, i):\n    \"\"\"A sailboat in three-quarter view, bow to the right: a glossy hull with\n    a sheer line, a wooden deck, a metal mast and a lit sail. Returns the\n    stern x, the deck y and where its name goes on the sail (drawn later,\n    clear of Data).\"\"\"\n    y = y + 5 * math.sin(t * 2.2 + i * 1.7)\n    L = 360 * s\n    st = bow - L\n    contact_shadow(cr, bow - L / 2, y + 8, L * 1.15, a=0.3)\n    cast_shadow(cr, st, bow, y + 4, length=160 * s, a=0.18)\n    # the hull\n    cr.move_to(st, y - 50 * s)\n    cr.line_to(bow + 24 * s, y - 58 * s)\n    cr.curve_to(bow + 4 * s, y - 22 * s, bow - 40 * s, y, bow - 96 * s, y)\n    cr.line_to(st + 34 * s, y)\n    cr.curve_to(st + 6 * s, y, st, y - 22 * s, st, y - 50 * s)\n    cr.close_path()\n    solid(cr, (40, 52, 70), finish=\"gloss\")\n    # the white sheer stripe\n    cr.move_to(st + 4 * s, y - 40 * s)\n    cr.line_to(bow + 10 * s, y - 46 * s)\n    cr.line_to(bow + 4 * s, y - 36 * s)\n    cr.line_to(st + 6 * s, y - 30 * s)\n    cr.close_path()\n    solid(cr, (236, 232, 222), rim=False)\n    # the deck, seen from a little above\n    cr.move_to(st, y - 50 * s)\n    cr.line_to(bow + 24 * s, y - 58 * s)\n    cr.line_to(bow - 10 * s, y - 70 * s)\n    cr.line_to(st + 16 * s, y - 64 * s)\n    cr.close_path()\n    solid(cr, (190, 146, 96), rim=False)\n    # the mast and the sail\n    mx = st + L * 0.6\n    top = y - 620 * s\n    cr.rectangle(mx - 5 * s, top, 10 * s, 560 * s)\n    solid(cr, (170, 172, 178), finish=\"metal\", rim=False)\n    cr.move_to(mx + 6 * s, top + 10 * s)\n    cr.curve_to(mx + 0.32 * L, top + 200 * s, mx + 0.46 * L, top + 400 * s,\n                mx + 0.5 * L, y - 96 * s)\n    cr.line_to(mx + 6 * s, y - 92 * s)\n    cr.close_path()\n    solid(cr, sail_rgb)\n    # the boom\n    cr.rectangle(mx, y - 98 * s, 0.52 * L, 8 * s)\n    solid(cr, (120, 96, 70), rim=False)\n    name_at = (mx + 0.17 * L, top + 300 * s, 0.28 * L, s)\n    return st, y - 64 * s, name_at\n\n\ndef _rb_name(cr, name, at):\n    x, y, w, s = at\n    sz = fit_size(cr, name, int(30 * s), w)\n    text(cr, name, x, y, sz, (34, 38, 48), face=\"bold\", anchor=\"center\",\n         shadow=False)\n\n\ndef _rb_pick(rows, key, fallback):\n    for l, v in rows:\n        if key in l.lower():\n            return l, v\n    return fallback\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a race of three sailboats\n    SUBSTANCE: the boats on the water\n    CAUSE: Data paddles the no-religion boat forward, stroke by stroke, past the Catholic boat\n    One regatta on a bay, every faith a boat, how far each has sailed from\n    the start buoys is its share of Americans. Protestant leads out at its\n    share, Catholic settles at its own, then Data, in the NO RELIGION boat by\n    the camera, paddles it out from the start in four strokes, each one a\n    surge and a glide, until its bow sits past the Catholic bow at its share,\n    still behind the Protestant leader. It lands by 0.68 and holds; the boats\n    bob, the waves roll, and Data keeps paddling. Every boat's name is on\n    its sail, high above Data, and the readout names only the share it\n    prints.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    srt = sorted(rows, key=lambda r: -r[1])\n    lp, vp = _rb_pick(rows, \"prot\", srt[0])\n    lu, vu = _rb_pick(rows, \"unaff\", srt[1 % len(srt)])\n    lc, vc = _rb_pick(rows, \"cath\", srt[2 % len(srt)])\n    top = max(vp, vu, vc) or 1.0\n\n    def bx(v):\n        return 380 + 620 * v / top\n\n    a0, b0, a1 = 0.06, 0.28, 0.68\n    out = ease(seg(u, a0, b0))\n    n = 4\n    span = (a1 - b0) / n\n    k = int(clamp((u - b0) / span, 0, n - 0.001))\n    f = clamp((u - b0 - k * span) / span)\n    surge = ease(seg(f, 0.12, 0.72))\n    prog = 0.0 if u < b0 else (k + surge) / n\n    if u >= a1:\n        prog = 1.0\n    xu = bx(vu * prog)\n\n    landscape(cr, t, \"coast\")\n    HZ = 1110\n    vgrad(cr, [(0, (120, 164, 196)), (0.5, (62, 112, 152)), (1, (34, 72, 108))],\n          HZ, 1540)\n    glow(cr, 260, HZ + 20, 380, (255, 226, 170), 0.35)\n    # rolling waves, dark troughs and bright crests\n    for r_ in range(9):\n        wy = HZ + 30 + r_ * r_ * 5.2\n        sp = 30 + r_ * 12\n        lw = 2 + r_ * 0.7\n        for c in range(7):\n            wx = ((c * 190 + t * sp + r_ * 70) % 1400) - 160\n            cr.set_source_rgba(*_c((22, 50, 80), 0.6))\n            cr.set_line_width(lw * 1.6)\n            cr.move_to(wx, wy)\n            cr.curve_to(wx + 30, wy - 8, wx + 60, wy - 8, wx + 90 + r_ * 6, wy)\n            cr.stroke()\n            cr.set_source_rgba(*_c((226, 240, 250), 0.55))\n            cr.set_line_width(lw)\n            cr.move_to(wx + 10, wy - 6)\n            cr.curve_to(wx + 34, wy - 12, wx + 58, wy - 12, wx + 80, wy - 6)\n            cr.stroke()\n    haze(cr, HZ, 1240, (190, 206, 220), a=0.35)\n\n    # the start line: a row of buoys the boats left from\n    for i, yy in enumerate((1196, 1318, 1462)):\n        sx = 380 - 360 * (0.62, 0.8, 1.0)[i] - 26\n        disc(cr, sx, yy - 14, 12 + 6 * i, (232, 120, 50), finish=\"gloss\")\n\n    # the boats, far first\n    _, _, name_p = _rb_boat(cr, bx(vp * out), 1180, 0.62, (232, 228, 216), t, 0)\n    _, _, name_c = _rb_boat(cr, bx(vc * out), 1300, 0.8, (196, 198, 204), t, 1)\n    if u > b0:\n        # where the no-religion boat started, a ghost of its hull\n        L = 360\n        cr.move_to(bx(0) - L, 1390)\n        cr.line_to(bx(0) + 24, 1382)\n        cr.line_to(bx(0) - 96, 1440)\n        cr.line_to(bx(0) - L + 34, 1440)\n        cr.close_path()\n        ghost(cr, a=0.7)\n    st, deck, name_u = _rb_boat(cr, xu, 1440, 1.0, P[\"accent2\"], t, 2)\n    # the wake behind it while it surges\n    if b0 < u < a1 and 0 < surge < 1:\n        for j in range(4):\n            cr.set_source_rgba(*_c((240, 248, 252), 0.8 - 0.18 * j))\n            cr.set_line_width(8 - j)\n            cr.move_to(st - 20 - 50 * j, 1440 - 6 + 8 * j)\n            cr.line_to(st - 80 - 70 * j, 1440 + 4 + 14 * j)\n            cr.stroke()\n\n    # the names ride high on the sails, well above where Data stands\n    _rb_name(cr, lp.upper(), name_p)\n    _rb_name(cr, lc.upper(), name_c)\n    _rb_name(cr, \"NO RELIGION\", name_u)\n\n    # the shore by the camera, a rock, the pebbles\n    cr.move_to(0, 1530)\n    cr.curve_to(300, 1500, 700, 1560, W, 1520)\n    cr.line_to(W, H)\n    cr.line_to(0, H)\n    cr.close_path()\n    solid(cr, (176, 156, 124), edge=False)\n    contact_shadow(cr, 880, 1760, 280, a=0.4)\n    cr.move_to(740, 1760)\n    cr.curve_to(760, 1620, 900, 1600, 1010, 1680)\n    cr.curve_to(1040, 1720, 1030, 1760, 1010, 1765)\n    cr.close_path()\n    solid(cr, (110, 106, 102))\n    disc(cr, 140, 1820, 46, (232, 120, 50), finish=\"gloss\")\n    foreground(cr, \"coast\", 1560)\n    vignette(cr, a=0.28)\n\n    hx = st + 80\n    if u < b0:\n        host(\"point\", hx, deck, 210)\n    elif u < 0.93:\n        host(\"paddle\", hx, deck, 210, beat=k if u < a1 else n + int((u - a1) / 0.08))\n    else:\n        host(\"cheer\", hx, deck, 210)\n\n    if u >= a1:\n        fit_readout(cr, f\"{int(round(vu))}%\", f\"of Americans are {lu.lower()}\",\n                    80, 520, a=ease(seg(u, a1, a1 + 0.04)), size=130)\n    else:\n        fit_readout(cr, \"No religion\", \"the race for America's faithful\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     }
    ],
    "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-10T11:10:48Z"
+   "rewritten_at": "2026-10-10T11:10:48Z",
+   "hook_was": "Americans with no religion now outnumber Catholics, at 28 percent."
   },
   {
    "slug": "hurricane-names-retired-growing-list",
@@ -27060,7 +27059,12 @@
      "topic": "World still changes clocks",
      "role": "1 · TODAY",
      "say": "Nearly two out of every three countries have quit changing their clocks.",
-     "ascending": false
+     "ascending": false,
+     "scene": {
+      "mechanic": "clock-face-quit-wedge",
+      "concept": "a real alarm clock face whose sweeping hand paints the 64 percent of countries that quit changing clocks",
+      "code": "clock = subject_image('analog alarm clock')\ncx, cy, R = (RX0 + RX1) // 2, RTOP + 640, 380\ntot = (values[0] + values[1]) if n > 1 else 100.0\nfrac = clamp(values[0] / tot)\ncur = frac * clamp(reveal / 0.92)\nif clock is not None:\n    paste(clock, cx - R, cy - R, 2 * R, 2 * R)\nelse:\n    d.ellipse([cx - R, cy - R, cx + R, cy + R], fill=rgba(REST, 120))\nd.pieslice([cx - R, cy - R, cx + R, cy + R], -90, -90 + 360 * cur, fill=rgba(HIGHLIGHT, 150))\na = math.radians(-90 + 360 * cur)\nd.line([cx, cy, cx + R * 0.95 * math.cos(a), cy + R * 0.95 * math.sin(a)], fill=rgba(TEXT, 255), width=14)\nb = math.radians(-90 + reveal * 3 * 360)\nd.line([cx, cy, cx + R * 0.9 * math.cos(b), cy + R * 0.9 * math.sin(b)], fill=rgba(WARN, 255), width=6)\nd.ellipse([cx - 20, cy - 20, cx + 20, cy + 20], fill=rgba(TEXT, 255))\ntext(fmt(values[0] * clamp(reveal / 0.92)), cx, cy + R + 50, size=130, color=HIGHLIGHT, center=True)\ntext(labels[0], cx, cy + R + 200, size=48, color=TEXT, center=True)\nif n > 1:\n    text('still change clocks: ' + fmt(values[1]), cx, cy + R + 280, size=44, color=SUBTLE, center=True)\n"
+     }
     },
     {
      "source": "offline",
@@ -27071,7 +27075,12 @@
      "insight_type": "trend",
      "topic": "Countries that gave up",
      "role": "2 · THE EXIT",
-     "say": "Back in 1980, about 140 countries did it. Now it's roughly half that."
+     "say": "Back in 1980, about 140 countries did it. Now it's roughly half that.",
+     "scene": {
+      "mechanic": "clock-wall-switching-off",
+      "concept": "a wall of 140 real clocks goes dark one by one through 1980 to 2026 until about half remain",
+      "code": "clk = subject_image('alarm clock')\npos = reveal * max(n - 1, 0)\ni = min(int(pos), max(n - 2, 0))\nt = pos - i\ncur = lerp(values[i], values[min(i + 1, n - 1)], t) if n > 1 else values[0]\nyr = labels[min(int(round(pos)), n - 1)]\ncols, rows, cs = 12, 12, 83\nx0, y0 = RX0 + 2, RTOP + 220\ntext(str(yr), (RX0 + RX1) / 2, RTOP + 20, size=110, color=HIGHLIGHT, center=True)\nfor k in range(144):\n    x = x0 + (k % cols) * cs\n    y = y0 + (k // cols) * cs\n    if k < cur:\n        if clk is not None:\n            paste(clk, x + 4, y + 4, cs - 8, cs - 8)\n        else:\n            d.ellipse([x + 6, y + 6, x + cs - 6, y + cs - 6], fill=rgba(HIGHLIGHT, 200))\n    else:\n        d.rounded_rectangle([x + 8, y + 8, x + cs - 8, y + cs - 8], radius=14, outline=rgba(REST, 70), width=2)\nsx = RX0 + 1000 * ((reveal * 5.0) % 1.0)\nd.rectangle([sx - 8, y0, sx + 8, y0 + 12 * cs], fill=rgba(TEXT, 40))\ntext(str(int(round(cur))) + ' countries still change clocks', (RX0 + RX1) / 2, y0 + 12 * cs + 70, size=52, color=TEXT, center=True)\n"
+     }
     },
     {
      "source": "offline",
@@ -27084,7 +27093,44 @@
      "topic": "Most populous countries",
      "role": "3 · THE REAL SCALE",
      "say": "India and China, home to nearly three billion people, never changed their clocks at all.",
-     "ascending": false
+     "ascending": false,
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "object",
+        "region": "ground-row",
+        "subject": "India crowd",
+        "data": {
+         "value_from": "item:0"
+        }
+       },
+       {
+        "type": "object",
+        "region": "ground-row",
+        "subject": "China crowd",
+        "data": {
+         "value_from": "item:1"
+        }
+       },
+       {
+        "type": "object",
+        "region": "ground-row",
+        "subject": "United States crowd",
+        "data": {
+         "value_from": "item:2"
+        }
+       },
+       {
+        "type": "object",
+        "region": "ground-row",
+        "subject": "Indonesia crowd",
+        "data": {
+         "value_from": "item:3"
+        }
+       }
+      ]
+     }
     }
    ],
    "words_by": "claude-retell",
@@ -27122,7 +27168,12 @@
      "use_baseline": true,
      "topic": "Storage vs. Starbucks",
      "role": "1 · THE COUNT",
-     "say": "America has about four storage facilities for every single Starbucks."
+     "say": "America has about four storage facilities for every single Starbucks.",
+     "scene": {
+      "mechanic": "storage-doors-roll-open",
+      "concept": "rows of real roll-up storage doors open one after another, 66 thousand facilities in four-per-door units against each chain",
+      "code": "sub = subject_image('self storage unit roll-up door')\nper = 4.0\nrows = min(n, 4)\ncols, cw, chh = 9, 104, 72\nband = (RBOT - RTOP - 180) / rows\ncnt = [min(values[i] / per, 40) for i in range(rows)]\narrived = reveal * sum(cnt)\ndone = 0.0\ntext('each door = ' + fmt(per), (RX0 + RX1) / 2, RTOP + 10, size=40, color=SUBTLE, center=True)\nfor i in range(rows):\n    y0 = RTOP + 90 + i * band\n    mine = clamp(arrived - done, 0, cnt[i])\n    done = done + cnt[i]\n    col = HIGHLIGHT if i == 0 else REST\n    text(labels[i], RX0, y0, size=42, color=TEXT)\n    text(fmt(values[i] * (mine / cnt[i] if cnt[i] else 1)), RX1 - 120, y0, size=46, color=TEXT, center=True)\n    if sub is not None and i == 0:\n        paste(sub, RX1 - 330, y0 - 6, 90, 70)\n    for k in range(int(math.ceil(cnt[i]))):\n        x = RX0 + (k % cols) * (cw + 6)\n        y = y0 + 70 + (k // cols) * (chh + 10)\n        f = clamp(mine - k)\n        if f <= 0:\n            continue\n        d.rectangle([x, y, x + cw, y + chh], outline=rgba(col, 200), width=3)\n        d.rectangle([x, y, x + cw, y + chh * f], fill=rgba(col, 170))\n        for s in range(1, 5):\n            d.line([x, y + s * chh / 5, x + cw, y + s * chh / 5], fill=rgba(TEXT, 60), width=1)\n"
+     }
     },
     {
      "source": "offline",
@@ -27135,7 +27186,12 @@
      "topic": "Storage vs. biggest chains",
      "role": "2 · THE SPLIT",
      "say": "Stack Subway, Starbucks and McDonald's together, and storage still has more buildings than all three.",
-     "ascending": false
+     "ascending": false,
+     "scene": {
+      "mechanic": "storage-vs-cups-fill",
+      "concept": "a storage building fills to 57 percent while coffee cups fill to the 43 percent the three chains hold, units dropping in",
+      "code": "st = subject_image('self storage facility building')\ncup = subject_image('coffee cup')\ntot = (values[0] + values[1]) if n > 1 else 100.0\nfa = values[0] / tot\nfb = (values[1] / tot) if n > 1 else 0.0\nw, h = 440, 600\ny = RTOP + 260\nxa, xb = RX0 + 30, RX1 - 30 - w\nprog = clamp(reveal / 0.95)\nfor (x, img, f, col, lab, v) in ((xa, st, fa, HIGHLIGHT, labels[0], values[0]), (xb, cup, fb, REST, labels[1] if n > 1 else '', values[1] if n > 1 else 0)):\n    d.rounded_rectangle([x, y, x + w, y + h], radius=40, fill=rgba(REST, 40), outline=rgba(REST, 150), width=3)\n    if img is not None:\n        fill_image(img, f * prog, x, y, w, h, direction='up')\n    else:\n        d.rounded_rectangle([x, y + h * (1 - f * prog), x + w, y + h], radius=40, fill=rgba(col, 200))\n    for q in range(6):\n        fy = y - 120 + ((reveal * 4 + q / 6.0) % 1.0) * 140\n        d.ellipse([x + w / 2 - 14 + (q - 3) * 30, fy - 14, x + w / 2 + 14 + (q - 3) * 30, fy + 14], fill=rgba(col, 220))\n    text(fmt(v * prog), x + w / 2, y + h + 70, size=80, color=col if col == HIGHLIGHT else TEXT, center=True)\n    text(lab, x + w / 2, y + h + 170, size=38, color=TEXT, center=True)\ntext('vs', (RX0 + RX1) / 2, y + h / 2, size=70, color=SUBTLE, center=True)\n"
+     }
     },
     {
      "source": "offline",
@@ -27146,7 +27202,21 @@
      "insight_type": "trend",
      "topic": "Storage boom",
      "role": "3 · THE REASON",
-     "say": "Back in 1984 there were about 6,600. Now there are ten times that."
+     "say": "Back in 1984 there were about 6,600. Now there are ten times that.",
+     "scene": {
+      "title": true,
+      "elements": [
+       {
+        "type": "stack",
+        "region": "hero",
+        "subject": "self storage unit",
+        "data": {
+         "value_from": "star",
+         "per_value": 6.6
+        }
+       }
+      ]
+     }
     }
    ],
    "words_by": "claude-retell",
@@ -27184,7 +27254,7 @@
      "insight_type": "trend",
      "role": "1 · THE CUTS",
      "topic": "video game industry layoffs",
-     "say": "Gaming layoffs climbed from 8,500 in 2022 to 10,500 in 2023, then 14,800 in 2024."
+     "say": "Job cuts rose every year since 2022, and 2024 hit 14,800."
     },
     {
      "source": "offline",
@@ -27197,11 +27267,12 @@
      "use_baseline": true,
      "role": "2 · WHO'S CUTTING",
      "topic": "Microsoft and Sony layoffs",
-     "say": "Microsoft cut 1,900 gaming jobs in January, and Sony cut 900 weeks later."
+     "say": "Microsoft alone cut 1,900 jobs, but most layoffs came from everywhere else."
     }
    ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-08T18:51:08Z"
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-10T15:04:47Z",
+   "retold": "retell/v2"
   },
   {
    "slug": "divorce-rate-quiet-decline",
@@ -27299,9 +27370,9 @@
   {
    "slug": "library-digital-shift",
    "title": "Why Is Nobody Walking Into Libraries Anymore?",
-   "hook": "Nobody's walking in anymore. So what happened?",
+   "hook": "Library visits crashed to 671 million, but the readers never left.",
    "closing": "The card just moved to your pocket.",
-   "question": "When's the last time you set foot in a library? Tell me below.",
+   "question": "When did you last visit a library?",
    "caption": "In-person visits to US public libraries crashed from 1.25 billion in 2019 to well under a billion today. But digital checkouts through library apps more than doubled over the same years, hitting 739 million in 2024. When's the last time you actually walked into one?",
    "hashtags": [
     "libraries",
@@ -27324,8 +27395,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE EMPTY BUILDING",
-     "topic": "physical library visits",
-     "say": "In 2019, Americans walked into a public library 1.25 billion times. By 2022, that crashed to 671 million — and even after rebounding to 800 million in 2023, it's still far below where it started."
+     "topic": "Libraries: physical visits",
+     "say": "By 2022, library visits had crashed to 671 million, barely half of 2019."
     },
     {
      "source": "offline",
@@ -27335,10 +27406,12 @@
      },
      "insight_type": "trend",
      "role": "2 · WHERE IT WENT",
-     "topic": "digital library checkouts",
-     "say": "But borrowing didn't stop — it moved. Digital checkouts through library apps climbed from 326 million in 2019 to 739 million in 2024, more than doubling."
+     "topic": "Libraries going digital",
+     "say": "Digital checkouts more than doubled to 739 million by 2024, so borrowing just moved."
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-10T15:05:28Z"
   },
   {
    "slug": "ocean-floor-vs-mars-mapped",
@@ -27496,7 +27569,7 @@
      "insight_type": "trend",
      "topic": "Cargo ship size, 1980-2024",
      "role": "1 · THE CLIMB",
-     "say": "In 1980, the biggest container ship carried about 4,000 boxes; today it carries 24,327."
+     "say": "Back in 1980, the biggest container ship hauled 4,000 boxes. Now it hauls six times that."
     },
     {
      "source": "offline",
@@ -27509,7 +27582,7 @@
      "ascending": false,
      "topic": "Cargo ship vs. Titanic",
      "role": "2 · THE SCALE",
-     "say": "The biggest one today is about 400 meters long, longer than the Titanic."
+     "say": "It's about 400 meters long, so it's longer than the Titanic."
     },
     {
      "source": "offline",
@@ -27521,12 +27594,12 @@
      "ascending": false,
      "topic": "Cargo ship crew",
      "role": "3 · THE CATCH",
-     "say": "Yet it runs on about 20 people, fewer than in 1980, for six times the cargo."
+     "say": "And it runs on 20 people, fewer than the crew back in 1980."
     }
    ],
    "words_by": "claude-retell",
-   "retold": "retell/v1",
-   "rewritten_at": "2026-10-09T12:45:57Z"
+   "retold": "retell/v2",
+   "rewritten_at": "2026-10-10T15:05:38Z"
   },
   {
    "slug": "ceo-executive-pay-gap",
@@ -27559,7 +27632,7 @@
      "insight_type": "trend",
      "topic": "CEO-to-worker pay ratio",
      "role": "1 · THE CLIMB",
-     "say": "CEOs earned 21 times a worker's pay in 1965, and 281 times today."
+     "say": "Back in 1965, a CEO made about twenty-one times what a worker did."
     },
     {
      "source": "offline",
@@ -27572,7 +27645,7 @@
      "ascending": false,
      "topic": "CEO vs. worker pay",
      "role": "2 · THE GAP",
-     "say": "CEO pay climbed 1,085 percent since 1978, while worker pay rose only 24 percent."
+     "say": "Since 1978, CEO pay has grown over ten times faster than a worker's."
     },
     {
      "source": "offline",
@@ -27584,11 +27657,12 @@
      "ascending": false,
      "topic": "Your year of pay",
      "role": "3 · THE MATH",
-     "say": "A CEO earns a typical worker's whole year of pay in barely a day or two."
+     "say": "A CEO earns a worker's whole year of pay in about a day."
     }
    ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-09T12:46:26Z"
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-10T15:05:50Z",
+   "retold": "retell/v2"
   },
   {
    "slug": "flying-safer-than-ever",
@@ -27653,7 +27727,7 @@
    "slug": "cursive-handwriting-comeback",
    "title": "Cursive Nearly Died. Schools Brought It Back.",
    "hook": "Schools killed cursive, then 25 states made it law again.",
-   "closing": "Soon nobody will read their own grandparents' letters.",
+   "closing": "Soon nobody will read their grandparents' letters.",
    "question": "Did you learn cursive in school?",
    "caption": "14 states required cursive in 2016. 25 do now. Meanwhile about 2 in 3 young Americans can't read it — and 80% of the National Archives is written in it. Did you learn cursive? Tell me below. 👇",
    "hashtags": [
@@ -27680,7 +27754,7 @@
      "insight_type": "trend",
      "topic": "States requiring cursive",
      "role": "1 · THE COMEBACK",
-     "say": "Cursive requirements nearly doubled, from 14 states in 2016 to 25 by 2024."
+     "say": "Cursive was nearly dead, but now 25 states have made schools teach it again."
     },
     {
      "source": "offline",
@@ -27692,7 +27766,7 @@
      "use_baseline": false,
      "topic": "Young Americans' cursive literacy",
      "role": "2 · THE GAP",
-     "say": "About 2 in 3 young Americans can't read cursive, a skill that skipped a generation."
+     "say": "Meanwhile, about two in three young Americans can't read it at all."
     },
     {
      "source": "offline",
@@ -27704,16 +27778,17 @@
      "use_baseline": false,
      "topic": "Archives' cursive documents",
      "role": "3 · THE STAKES",
-     "say": "About 80 percent of the National Archives' documents are written in cursive."
+     "say": "Yet roughly four in five National Archives documents are written in cursive."
     }
    ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-09T12:46:45Z"
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-10T15:06:03Z",
+   "retold": "retell/v2"
   },
   {
    "slug": "english-internet-share-decline",
    "title": "English Used To Be Most Of The Internet",
-   "hook": "English once ran 75 percent of the web. Not anymore.",
+   "hook": "English owned the web, until everyone else logged on.",
    "closing": "Half the internet still doesn't speak your language.",
    "question": "What language dominates the internet? Guess below.",
    "caption": "English was 75% of web pages in 1998. It's down to about 55% of websites today, while other languages grew 10x faster online. What language do you think runs the internet? Guess below. 👇",
@@ -27753,7 +27828,8 @@
      "ascending": false,
      "topic": "English content growth",
      "role": "2 · THE CATCH-UP",
-     "say": "Arabic content grew 2,501 percent in ten years, while English grew far less."
+     "say": "Arabic content grew 2,501 percent in ten years, while English grew far less.",
+     "illustrated_scene": "# scene standard: 2026-10-09\ndef _ar_line(cr, xe, y, lw, i):\n    \"\"\"One line of Arabic script, written right to left: joined strokes with\n    tall alifs and the dots above and below that mark the letters.\"\"\"\n    cr.set_line_width(4)\n    x, j = xe, 0\n    while x > xe - lw:\n        ww = min(26 + ((i * 7 + j * 11) % 5) * 10, x - (xe - lw))\n        if ww < 10:\n            break\n        cr.move_to(x, y)\n        cr.curve_to(x - ww * 0.3, y + 6, x - ww * 0.6, y - 9, x - ww, y)\n        if (i + j) % 2 == 0:\n            cr.move_to(x - ww * 0.2, y)\n            cr.line_to(x - ww * 0.2, y - 16)\n        cr.stroke()\n        cr.arc(x - ww * 0.5, y + (-12 if (i + j) % 3 else 10), 2.8, 0, 2 * math.pi)\n        cr.fill()\n        if j % 3 == 1:\n            cr.arc(x - ww * 0.5 + 7, y - 12, 2.8, 0, 2 * math.pi)\n            cr.fill()\n        x -= ww + 10\n        j += 1\n\n\ndef _en_line(cr, xa, y, lw, i):\n    \"\"\"One line of Latin text, left to right: words of block letters.\"\"\"\n    xx, j = xa, 0\n    while xx < xa + lw:\n        ww = min(22 + ((i * 7 + j * 13) % 5) * 9, xa + lw - xx)\n        cr.rectangle(xx, y - 5, ww, 7)\n        xx += ww + 10\n        j += 1\n    cr.fill()\n\n\ndef _laptop(cr, x0, w, base, arabic, name, bar_rgb):\n    \"\"\"A laptop open on the counter in three-quarter view: the keyboard deck\n    running back, keys and trackpad, the screen with a browser on it.\"\"\"\n    dx, dh, sh, m = 0.12 * w, 46, 230, 14\n    contact_shadow(cr, x0 + w / 2 + dx / 2, base + 4, w + 70, a=0.42)\n    cr.move_to(x0, base)\n    cr.line_to(x0 + w, base)\n    cr.line_to(x0 + w + dx, base - dh)\n    cr.line_to(x0 + dx, base - dh)\n    cr.close_path()\n    solid(cr, (184, 188, 198), finish=\"metal\")\n    cr.rectangle(x0, base, w, 9)\n    solid(cr, (118, 122, 132), finish=\"metal\", rim=False)\n    cr.set_source_rgba(*_c((62, 64, 74)))\n    for r in range(3):\n        z = (r + 0.6) / 4.2\n        for c in range(12):\n            kx = x0 + 0.1 * w + c * (0.8 * w / 12) + dx * z\n            cr.rectangle(kx, base - 10 - dh * z * 0.9, 0.8 * w / 12 - 4, 7)\n    cr.fill()\n    cr.rectangle(x0 + w * 0.38 + dx * 0.1, base - 10, w * 0.24, 6)\n    cr.set_source_rgba(*_c((150, 154, 164)))\n    cr.fill()\n    sx0, sy1 = x0 + dx, base - dh\n    sy0 = sy1 - sh\n    cr.rectangle(sx0, sy0, w, sh)\n    solid(cr, (38, 40, 48), finish=\"gloss\")\n    vgrad(cr, [(0, (252, 252, 254)), (1, (224, 228, 236))], sy0 + m + 34, sy1 - m,\n          sx0 + m, sx0 + w - m)\n    cr.rectangle(sx0 + m, sy0 + m, w - 2 * m, 34)\n    solid(cr, bar_rgb, rim=False, edge=False)\n    for j, col in enumerate([(232, 92, 80), (240, 190, 70), (96, 190, 100)]):\n        cr.arc(sx0 + m + 16 + j * 17, sy0 + m + 17, 5, 0, 2 * math.pi)\n        cr.set_source_rgba(*_c(col))\n        cr.fill()\n    cr.rectangle(sx0 + m + 70, sy0 + m + 7, w - 2 * m - 84, 20)\n    cr.set_source_rgba(*_c((250, 250, 252)))\n    cr.fill()\n    text(cr, name, sx0 + m + 80, sy0 + m + 24, 18, (60, 62, 72), face=\"bold\", shadow=False)\n    cr.set_source_rgba(*_c((66, 68, 80)))\n    y, i = sy0 + m + 64, 0\n    while y < sy1 - m - 8:\n        lw = (w - 2 * m - 30) * (0.55 + 0.4 * ((i * 0.618) % 1.0))\n        if arabic:\n            _ar_line(cr, sx0 + w - m - 14, y, lw, i)\n        else:\n            _en_line(cr, sx0 + m + 14, y, lw, i)\n        y += 24\n        i += 1\n    return sx0, sy0, sx0 + w\n\n\ndef _scroll(cr, t, cx, sw, base, L, arabic):\n    \"\"\"The page feeding up out of the screen: a sheet of the page's own text\n    hung from a wooden rod, its lines riding up with the paper.\"\"\"\n    top = base - L\n    if L > 3:\n        def rip(y):\n            return 8.0 * ((base - y) / 400.0) * math.sin((base - y) * 0.014 - t * 2.4)\n        n = 18\n        ys = [base - L * i / n for i in range(n + 1)]\n        x0 = cx - sw / 2\n        cr.move_to(x0 + rip(base), base)\n        for y in ys:\n            cr.line_to(x0 + rip(y), y)\n        for y in reversed(ys):\n            cr.line_to(x0 + sw + rip(y), y)\n        cr.close_path()\n        solid(cr, (246, 242, 232))\n        cr.save()\n        cr.rectangle(x0 - 20, top, sw + 40, L)\n        cr.clip()\n        cr.set_source_rgba(*_c((66, 68, 80)))\n        y, i = top + 32, 0\n        while y < base - 4:\n            lw = (sw - 40) * (0.55 + 0.4 * ((i * 0.618) % 1.0))\n            r = rip(y)\n            if arabic:\n                _ar_line(cr, x0 + sw - 20 + r, y, lw, i)\n            else:\n                _en_line(cr, x0 + 20 + r, y, lw, i)\n            y += 26\n            i += 1\n        cr.restore()\n    cr.rectangle(cx - sw / 2 - 16, top - 12, sw + 32, 22)\n    solid(cr, (140, 100, 62))\n    disc(cr, cx - sw / 2 - 16, top - 1, 13, P[\"brass\"], finish=\"metal\")\n    disc(cr, cx + sw / 2 + 16, top - 1, 13, P[\"brass\"], finish=\"metal\")\n    return top\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a laptop feeding out Arabic web pages\n    SUBSTANCE: pages of Arabic text\n    CAUSE: Data hauls a rope over a pulley that hoists each laptop's page up out of its screen\n    Two laptops on a cafe counter, one browsing in English, one in Arabic.\n    What is on each screen is the web of ten years ago; what grew since\n    feeds up out of the screen as a page of that language's own script,\n    hung from a rod Data hoists hand over hand. English's page rises a\n    hand's width; Arabic's towers over it, the English height marked\n    across it and 1x, 2x ... ticks of English's growth up its side, so the\n    gap reads at a glance. Lands by 0.66 and holds while he keeps hauling\n    taut and the pages ripple. Every label is clear of Data.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    ar = next((r for r in rows if r[0].lower() == \"arabic\"), max(rows, key=lambda r: r[1]))\n    en = next((r for r in rows if r[0].lower() == \"english\"), min(rows, key=lambda r: r[1]))\n    g_ar = max(ar[1], 1.0)\n    g_en = max(en[1], 0.0)\n    ratio = g_ar / g_en if g_en > 0 else 0.0\n\n    BASE = 1420\n    SY0 = BASE - 46 - 230\n    LMAX = SY0 - 650\n    L_ar_full = LMAX\n    L_en_full = LMAX * g_en / g_ar\n\n    def hoist(s0, s1, n):\n        if u < s0:\n            return 0, 0.0\n        span = (s1 - s0) / n\n        k = int(clamp((u - s0) / span, 0, n - 0.001))\n        f = clamp((u - s0 - k * span) / span)\n        return k, (k + ease(seg(f, 0.15, 0.75))) / n\n\n    e0, e1, ne = 0.06, 0.22, 2\n    a0, a1, na = 0.32, 0.66, 5\n    ke, pe = hoist(e0, e1, ne)\n    ka, pa = hoist(a0, a1, na)\n    L_en = L_en_full * pe\n    L_ar = L_ar_full * pa\n    en_done = pe >= 0.999\n    ar_done = pa >= 0.999\n\n    EX0, EW = 70, 290\n    AX0, AW = 520, 340\n    ecx = EX0 + 0.12 * EW + EW / 2\n    acx = AX0 + 0.12 * AW + AW / 2\n    PY = 300\n\n    cafe(cr, t, wy=(640, 1160), counter=BASE)\n\n    cast_shadow(cr, EX0, EX0 + EW, BASE, length=200, a=0.22)\n    cast_shadow(cr, AX0, AX0 + AW, BASE, length=260, a=0.22)\n    _laptop(cr, EX0, EW, BASE, False, en[0], (206, 210, 220))\n    _laptop(cr, AX0, AW, BASE, True, ar[0], P[\"accent2\"])\n    etop = _scroll(cr, t, ecx, 230, SY0, L_en, False)\n    atop = _scroll(cr, t, acx, 290, SY0, L_ar, True)\n\n    # the halyards: rod up to its pulley\n    cr.set_source_rgba(*_c((70, 54, 40)))\n    cr.set_line_width(4)\n    cr.move_to(ecx, etop - 12)\n    cr.line_to(ecx, PY)\n    cr.move_to(acx, atop - 12)\n    cr.line_to(acx, PY)\n    cr.stroke()\n    disc(cr, ecx, PY, 16, (96, 98, 106), finish=\"metal\")\n    disc(cr, acx, PY, 16, (96, 98, 106), finish=\"metal\")\n\n    # right by the camera: a coffee on the counter, steaming\n    steam(cr, 190, 1560, t, strength=1.2)\n    cup(cr, 190, 1760, s=2.6)\n    vignette(cr, a=0.28)\n\n    # Data on the counter: hauls English up, walks over, hauls Arabic up\n    FY = BASE\n    hx_e, hx_a = 455, 975\n    walk_f = ease(seg(u, 0.24, 0.32))\n    hx = hx_e + (hx_a - hx_e) * walk_f\n    cr.set_source_rgba(*_c((70, 54, 40)))\n    cr.set_line_width(4)\n    if u < 0.24:\n        cr.move_to(ecx, PY)\n        cr.line_to(hx_e - 20, FY - 130)\n    else:\n        cr.move_to(ecx, PY)\n        cr.line_to(EX0 + EW + 4, BASE - 8)      # English's rope, tied off\n        if u >= a0:\n            cr.move_to(acx, PY)\n            cr.line_to(hx_a - 20, FY - 130)\n    cr.stroke()\n    if u < e0:\n        host(\"point\", hx_e, FY, 200)\n    elif u < 0.24:\n        host(\"haul\", hx_e, FY, 200, beat=ke)\n    elif u < a0:\n        host(\"point\", hx, FY, 200)\n    elif u < a1:\n        host(\"haul\", hx_a, FY, 200, beat=10 + ka)\n    else:\n        host(\"haul\", hx_a, FY, 200, beat=20 + int((u - a1) / 0.1))\n\n    # THE SCALE on the Arabic page, drawn after Data and clear of him\n    if en_done and u >= a0:\n        then_mark(cr, ecx - 115, acx - 30, SY0 - L_en_full, en[0])\n        if L_en_full > 4 and ratio >= 1:\n            n_now = min(int(ratio), int(L_ar / L_en_full))\n            if n_now >= 1:\n                times_ticks(cr, AX0 + 20, SY0, L_en_full, n_now)\n\n    if ar_done:\n        fit_readout(cr, f\"{int(round(ar[1])):,}%\", f\"{ar[0]} content online · growth in ten years\",\n                    80, 520, size=130)\n    elif en_done:\n        fit_readout(cr, f\"{int(round(en[1])):,}%\", f\"{en[0]} content online · growth in ten years\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, \"Web content\", \"how much each language grew in ten years\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
      "source": "offline",
@@ -27769,7 +27845,8 @@
     }
    ],
    "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-10T11:14:13Z"
+   "rewritten_at": "2026-10-10T11:14:13Z",
+   "hook_was": "English once ran 75 percent of the web. Not anymore."
   },
   {
    "slug": "cash-payments-decade-decline",
@@ -27833,7 +27910,7 @@
    "slug": "oceanic-shark-collapse",
    "title": "The Ocean Lost 71% Of Its Sharks Since 1970",
    "hook": "Your ocean lost 71% of its sharks, and nobody noticed.",
-   "closing": "Apex predator. Zero say in survival.",
+   "closing": "The hunters got hunted. Nobody stopped it.",
    "question": "Did you know sharks vanished this fast?",
    "caption": "Oceanic sharks and rays are down 71% since 1970 -- some species like the oceanic whitetip are down 98%. Three out of four of these species are now threatened with extinction. What's the scariest wildlife stat you know? 👋",
    "hashtags": [
@@ -27860,7 +27937,7 @@
      "insight_type": "trend",
      "role": "1 · THE DROP",
      "topic": "shark and ray abundance",
-     "say": "By 1970 to 2020, 71% of oceanic sharks and rays were gone."
+     "say": "Sharks have been vanishing for fifty years, and now only about a third are left."
     },
     {
      "source": "offline",
@@ -27873,7 +27950,7 @@
      "use_baseline": true,
      "role": "2 · NOT EQUAL",
      "topic": "decline by species",
-     "say": "The oceanic whitetip fell 98%, and hammerheads dropped 80% right behind it."
+     "say": "The oceanic whitetip lost almost all of its kind, and hammerheads lost four in five."
     },
     {
      "source": "offline",
@@ -27884,11 +27961,12 @@
      "insight_type": "share",
      "role": "3 · THE RISK",
      "topic": "extinction risk today",
-     "say": "Today, three out of four of these species face extinction, because almost nothing limited catches."
+     "say": "Today, three out of four of these species are staring at extinction."
     }
    ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-08T18:51:22Z"
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-10T15:33:08Z",
+   "retold": "retell/v2"
   },
   {
    "slug": "sports-betting-legalization-surge",
@@ -31382,7 +31460,7 @@
   {
    "slug": "youth-sports-dropout",
    "title": "Only 41% Of American Boys Still Play Sports Regularly",
-   "hook": "Your son's team is quietly disappearing, and poor kids are losing it first.",
+   "hook": "Over a million kids lost their team in three years. Poor families got hit first.",
    "closing": "Data benched himself in 2013. Never looked back.",
    "question": "Did you play sports as a kid?",
    "caption": "In 2013, half of American boys played a sport regularly. Now it's 41 percent -- and the drop is steepest for the kids who can least afford to be left out. Here's the data 👇",
@@ -31410,7 +31488,8 @@
      "insight_type": "comparison",
      "role": "1 · THE DROP",
      "topic": "boys playing sports",
-     "say": "Ten years ago, half of American boys played team sports. Now it's barely four in ten."
+     "say": "Ten years ago, half of American boys played team sports. Now it's barely four in ten.",
+     "illustrated_scene": "# scene standard: 2026-10-09\ndef _rider(cr, x, y, s, rgb):\n    \"\"\"A boy in his team jersey, seen through a bus window.\"\"\"\n    cr.move_to(x - 24 * s, y + 46 * s)\n    cr.curve_to(x - 24 * s, y + 14 * s, x + 24 * s, y + 14 * s, x + 24 * s, y + 46 * s)\n    cr.close_path()\n    solid(cr, rgb)\n    cr.set_source_rgba(*_c((248, 248, 244)))\n    cr.set_line_width(5 * s)\n    cr.move_to(x - 20 * s, y + 32 * s)\n    cr.line_to(x + 20 * s, y + 32 * s)\n    cr.stroke()\n    disc(cr, x, y, 14 * s, (212, 166, 128))\n    cr.arc(x, y - 2 * s, 14 * s, math.pi * 1.05, math.pi * 1.95)\n    cr.close_path()\n    solid(cr, (52, 38, 30), rim=False)\n\n\ndef _rider_path(cr, x, y, s):\n    cr.new_sub_path()\n    cr.arc(x, y, 14 * s, 0, 2 * math.pi)\n    cr.move_to(x - 24 * s, y + 46 * s)\n    cr.curve_to(x - 24 * s, y + 14 * s, x + 24 * s, y + 14 * s, x + 24 * s, y + 46 * s)\n    cr.close_path()\n\n\nTEAM = (198, 42, 48)\n\n\ndef _player(cr, x, fy, s, ph):\n    \"\"\"A boy in full team kit — red jersey with white stripes, white shorts,\n    striped socks, cleats — walking away from the team, helmet in hand.\"\"\"\n    contact_shadow(cr, x, fy, 100 * s, a=0.35)\n    sw = 20 * s * math.sin(ph)\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for d in (-1, 1):\n        lx0, lx1 = x + d * 12 * s, x + d * 12 * s + d * sw\n        # leg: skin at the knee, then the tall team sock\n        cr.set_source_rgba(*_c((212, 166, 128)))\n        cr.set_line_width(17 * s)\n        cr.move_to(lx0, fy - 96 * s)\n        cr.line_to(lx0 + (lx1 - lx0) * 0.4, fy - 62 * s)\n        cr.stroke()\n        cr.set_source_rgba(*_c((244, 244, 240)))\n        cr.set_line_width(19 * s)\n        cr.move_to(lx0 + (lx1 - lx0) * 0.4, fy - 62 * s)\n        cr.line_to(lx1, fy - 12 * s)\n        cr.stroke()\n        cr.set_source_rgba(*_c(TEAM))\n        cr.set_line_width(19 * s)\n        cr.move_to(lx0 + (lx1 - lx0) * 0.5, fy - 52 * s)\n        cr.line_to(lx0 + (lx1 - lx0) * 0.55, fy - 44 * s)\n        cr.stroke()\n        # cleat\n        cr.set_source_rgba(*_c((26, 26, 30)))\n        cr.set_line_width(14 * s)\n        cr.move_to(lx1 - 8 * s, fy - 6 * s)\n        cr.line_to(lx1 + 12 * s, fy - 6 * s)\n        cr.stroke()\n    # white shorts\n    cr.move_to(x - 30 * s, fy - 128 * s)\n    cr.line_to(x + 30 * s, fy - 128 * s)\n    cr.line_to(x + 34 * s, fy - 92 * s)\n    cr.line_to(x - 34 * s, fy - 92 * s)\n    cr.close_path()\n    solid(cr, (238, 238, 234))\n    # arms swinging, one carrying the helmet\n    for d in (-1, 1):\n        cr.set_source_rgba(*_c((212, 166, 128)))\n        cr.set_line_width(14 * s)\n        cr.move_to(x + d * 36 * s, fy - 180 * s)\n        cr.line_to(x + d * 44 * s - d * sw * 0.6, fy - 118 * s)\n        cr.stroke()\n    # the jersey: short sleeves, white shoulder stripes, V collar\n    cr.move_to(x - 30 * s, fy - 124 * s)\n    cr.line_to(x - 32 * s, fy - 170 * s)\n    cr.line_to(x - 50 * s, fy - 160 * s)\n    cr.line_to(x - 44 * s, fy - 190 * s)\n    cr.curve_to(x - 30 * s, fy - 200 * s, x + 30 * s, fy - 200 * s, x + 44 * s, fy - 190 * s)\n    cr.line_to(x + 50 * s, fy - 160 * s)\n    cr.line_to(x + 32 * s, fy - 170 * s)\n    cr.line_to(x + 30 * s, fy - 124 * s)\n    cr.close_path()\n    solid(cr, TEAM)\n    cr.set_source_rgba(*_c((248, 248, 244)))\n    cr.set_line_width(7 * s)\n    for d in (-1, 1):\n        cr.move_to(x + d * 47 * s, fy - 178 * s)\n        cr.line_to(x + d * 42 * s, fy - 164 * s)\n    cr.move_to(x - 30 * s, fy - 150 * s)\n    cr.line_to(x + 30 * s, fy - 150 * s)\n    cr.move_to(x - 30 * s, fy - 138 * s)\n    cr.line_to(x + 30 * s, fy - 138 * s)\n    cr.move_to(x - 10 * s, fy - 196 * s)\n    cr.line_to(x, fy - 182 * s)\n    cr.line_to(x + 10 * s, fy - 196 * s)\n    cr.stroke()\n    # the helmet, hanging from his hand\n    hx = x + 50 * s - sw * 0.6\n    hy = fy - 104 * s\n    disc(cr, hx, hy, 20 * s, TEAM, finish=\"gloss\")\n    cr.set_source_rgba(*_c((230, 230, 226)))\n    cr.set_line_width(4 * s)\n    cr.move_to(hx + 6 * s, hy - 6 * s)\n    cr.line_to(hx + 24 * s, hy - 4 * s)\n    cr.move_to(hx + 6 * s, hy + 6 * s)\n    cr.line_to(hx + 24 * s, hy + 8 * s)\n    cr.move_to(hx + 22 * s, hy - 8 * s)\n    cr.line_to(hx + 22 * s, hy + 12 * s)\n    cr.stroke()\n    # head, short hair\n    disc(cr, x, fy - 222 * s, 25 * s, (212, 166, 128))\n    cr.arc(x, fy - 226 * s, 26 * s, math.pi * 1.0, math.pi * 2.0)\n    cr.close_path()\n    solid(cr, (58, 40, 30), rim=False)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a yellow school team bus\n    SUBSTANCE: boys in team jerseys\n    CAUSE: Data cranks the bus door open and a boy in his jersey steps off and walks away, one crank per boy\n    The team bus outside school is every American boy: a seat is a boy,\n    and the seats with a boy in a red team jersey are the share who play.\n    In 2013 half the bus is full. Data cranks the door open and a boy in\n    full kit — jersey, shorts, socks, helmet in hand — steps off and walks\n    out past the camera. Each crank lets one off, until the bus holds\n    2023's share. The stripe along the bus is cut at the true share, in the\n    accent; 2013's cut stays marked on it and the emptied seats keep dashed\n    outlines of the boys who left. Done by 0.56 and held, while the boys\n    who quit keep walking away.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    N = 20\n    out0 = int(round(N * v0 / 100.0))\n    out1 = int(round(N * v1 / 100.0))\n    lost = max(0, out0 - out1)\n    m = max(1, lost)\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / m\n    k = int(clamp((u - a0) / span, 0, m - 0.001))\n    f = 0.0 if u < a0 else clamp((u - a0 - k * span) / span)\n    started = u >= a0 and lost > 0\n    departed = (k + (1 if f >= 0.2 else 0)) if started else 0\n    on_bus = out0 - departed\n    prog = 0.0 if u < a0 else (1.0 if lost == 0 else clamp((k + ease(seg(f, 0.2, 0.5))) / m))\n    share = v0 + (v1 - v0) * prog\n    done = u >= a0 and prog >= 0.999\n\n    # the setting: a school car park in town, the school far behind\n    landscape(cr, t, \"town\")\n    building(cr, 560, 1060, 1175, 230, (170, 92, 70), roof=\"flat\", boards=False)\n    haze(cr, 700, 1185, (222, 210, 196), a=0.3)\n    cr.rectangle(0, 1180, W, H - 1180)\n    solid(cr, (92, 94, 100), edge=False, rim=False)\n    cr.set_source_rgba(*_c((236, 232, 214), 0.55))\n    cr.set_line_width(6)\n    for i in range(6):\n        cr.move_to(-60 + i * 240, H)\n        cr.line_to(140 + i * 200, 1400)\n    cr.stroke()\n\n    # THE HERO: the team bus, three-quarter, its front going back to the right\n    BX0, BX1, BB, BH, BD = 50, 880, 1330, 420, 150\n    cast_shadow(cr, BX0, BX1 + BD, BB, length=300, a=0.3)\n    contact_shadow(cr, (BX0 + BX1 + BD) / 2, BB + 6, BX1 - BX0 + BD + 40, a=0.45)\n    box(cr, BX0, BB, BX1 - BX0, BH, (242, 182, 36), depth=BD, finish=\"gloss\")\n    dy = BD * 0.55\n\n    def face(a_, off):\n        return BX1 + BD * a_, BB - BH - dy * a_ + off\n    pts_w = [face(0.1, 45), face(0.92, 45), face(0.92, 165), face(0.1, 165)]\n    cr.move_to(*pts_w[0])\n    for p_ in pts_w[1:]:\n        cr.line_to(*p_)\n    cr.close_path()\n    solid(cr, (120, 150, 172), finish=\"glass\")\n    for a_ in (0.2, 0.8):\n        hx_, hy_ = face(a_, 320)\n        disc(cr, hx_, hy_, 16, (250, 244, 214), finish=\"gloss\")\n    for ry in (1095, 1185, 1265):\n        cr.rectangle(BX0, ry, BX1 - BX0, 10)\n        solid(cr, (40, 40, 44), rim=False, edge=False)\n    # the share stripe along the whole bus, cut at the true share\n    SY0, SY1 = 1112, 1170\n    cut = BX1 - (BX1 - BX0) * share / 100.0\n    cr.rectangle(BX0, SY0, cut - BX0, SY1 - SY0)\n    solid(cr, (150, 152, 158), rim=False)\n    cr.rectangle(cut, SY0, BX1 - cut, SY1 - SY0)\n    solid(cr, P[\"accent2\"])\n    # side windows, two seats each, filled from the front\n    wins = []\n    for w_ in range(N // 2):\n        wx = 660 - 59 * (w_ + 1) + 5\n        wins.append(wx)\n        cr.rectangle(wx, 958, 49, 118)\n        solid(cr, (70, 92, 110), finish=\"glass\")\n\n    def seat(s_):\n        wx = wins[s_ // 2]\n        return (wx + 34, 1004) if s_ % 2 else (wx + 16, 1016)\n    for s_ in sorted(range(N), key=lambda q: -(q % 2)):\n        sx, sy = seat(s_)\n        if s_ < on_bus:\n            cr.save()\n            cr.rectangle(wins[s_ // 2], 958, 49, 118)\n            cr.clip()\n            _rider(cr, sx, sy + 2 * math.sin(t * 2.4 + s_), 0.95, TEAM)\n            cr.restore()\n        elif s_ < out0:\n            _rider_path(cr, sx, sy, 0.95)\n            ghost(cr, a=0.85)\n    # the door, folding open when Data cranks it\n    if started and f < 0.8:\n        door = ease(seg(f, 0.0, 0.2))\n    elif started and f < 0.95:\n        door = 1.0 - ease(seg(f, 0.8, 0.95))\n    else:\n        door = 0.0\n    DX0, DX1 = 680, 780\n    cr.rectangle(DX0, 950, DX1 - DX0, BB - 950 - 8)\n    solid(cr, (34, 32, 36), rim=False)\n    pw = (DX1 - DX0) / 2 * (1 - 0.82 * door)\n    for px, pw_ in ((DX0, pw), (DX1 - pw, pw)):\n        cr.rectangle(px, 950, pw_, BB - 958)\n        solid(cr, (226, 170, 34), finish=\"gloss\")\n        cr.rectangle(px + 6, 962, max(2, pw_ - 12), 150)\n        solid(cr, (110, 140, 160), finish=\"glass\", rim=False)\n    for wx in (220, 850):\n        cr.arc(wx, BB, 70, math.pi, 2 * math.pi)\n        solid(cr, (40, 36, 30), rim=False, edge=False)\n        disc(cr, wx, BB, 56, (34, 34, 38))\n        disc(cr, wx, BB, 22, (170, 172, 178), finish=\"metal\")\n    # THE SCALE on the bus: where 2013's share reached\n    if u >= a0:\n        ox = BX1 - (BX1 - BX0) * v0 / 100.0\n        cr.save()\n        cr.set_dash([14, 9])\n        cr.set_line_width(6)\n        cr.set_source_rgba(*_c(look.INK))\n        cr.move_to(ox, SY0 - 26)\n        cr.line_to(ox, SY1 + 26)\n        cr.stroke()\n        cr.restore()\n        text(cr, l0, ox, SY1 + 64, 34, look.INK, face=\"bold\", anchor=\"center\")\n        if done:\n            text(cr, l1, cut, SY0 - 36, 34, look.INK, face=\"bold\", anchor=\"center\")\n\n    # the boys who quit, off the bus in their kit, walking out past the camera\n    walkers = []\n    for j in range(lost):\n        te = a0 + j * span + 0.2 * span\n        if u < te:\n            continue\n        ta = te + 0.65 * span\n        p1 = (470 - 210 * j, 1490 + 30 * j, 1.0)\n        p2 = (330 - 230 * j, 1770 + 30 * j, 1.5)\n        if u < ta:\n            p = ease((u - te) / (ta - te))\n            x_ = 730 + (p1[0] - 730) * p\n            y_ = 1336 + (p1[1] - 1336) * p\n            s_ = 0.7 + (p1[2] - 0.7) * p\n        else:\n            p = clamp((u - ta) / max(0.01, 1.0 - ta))\n            x_ = p1[0] + (p2[0] - p1[0]) * p\n            y_ = p1[1] + (p2[1] - p1[1]) * p\n            s_ = p1[2] + (p2[2] - p1[2]) * p\n        walkers.append((y_, x_, s_, j))\n    for y_, x_, s_, j in sorted(walkers):\n        _player(cr, x_, y_, s_, t * 7 + j * 1.7)\n\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    # Data: walks along the bus to the door, then cranks it once per boy\n    hx = 600 + 260 * ease(seg(u, 0.0, a0))\n    fy = 1440\n    if u < a0:\n        host(\"point\", hx, fy, 220)\n    elif u < a1 + 0.04:\n        host(\"crank\", hx, fy, 220, beat=2 * k + (1 if f >= 0.8 else 0))\n    else:\n        host(\"hold_up\", hx, fy, 220)\n\n    if done:\n        fit_readout(cr, f\"{int(round(v1))}%\", f\"of American boys play team sports · {l1}\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, f\"{int(round(v0))}%\", f\"of American boys played team sports · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
      "source": "offline",
@@ -31444,7 +31523,7 @@
   {
    "slug": "vertical-farming-bust",
    "title": "Vertical Farms Raised 8 Billion Dollars. Then Investors Fled.",
-   "hook": "8 billion dollars to fix your food — and it vanished.",
+   "hook": "Investors dumped 8 billion dollars into the farms meant to feed you, then ran.",
    "closing": "Data grows basil on a windowsill. No investors required.",
    "question": "Would you eat vertical-farmed greens? Tell me below.",
    "caption": "Vertical farms raised 8 billion dollars promising to reinvent agriculture. Most of that money is gone, and so are the farms. Here's where it actually went wrong 👇",
@@ -31507,7 +31586,7 @@
    "title": "Secondhand Clothes Are Growing 5 Times Faster Than New",
    "hook": "Thrifting just became a 43 billion dollar habit.",
    "closing": "Data's whole wardrobe is secondhand. He calls it archival.",
-   "question": "Do you shop secondhand? What was your best find? Tell me below.",
+   "question": "Do you shop secondhand? Share your best find.",
    "caption": "The secondhand clothing market grew 5 times faster than regular retail in 2024, and most Americans are now in on it. Here's how fast thrifting actually took over 👇",
    "hashtags": [
     "secondhand",
@@ -31533,7 +31612,7 @@
      "insight_type": "comparison",
      "role": "1 · THE GAP",
      "topic": "secondhand clothing growing faster",
-     "say": "The secondhand clothing market grew 14 percent in 2024 -- 5 times faster than regular clothing retail."
+     "say": "Secondhand clothing grew 14 percent in 2024, five times faster than regular clothing retail."
     },
     {
      "source": "offline",
@@ -31544,7 +31623,7 @@
      "insight_type": "trend",
      "role": "2 · WHO'S BUYING IT",
      "topic": "americans shopping secondhand",
-     "say": "More than half of Americans now shop secondhand -- 58 percent in 2024, up from 52 the year before."
+     "say": "More than half of Americans now shop secondhand, 58 percent in 2024."
     },
     {
      "source": "offline",
@@ -31555,9 +31634,11 @@
      "insight_type": "trend",
      "role": "3 · WHERE IT'S HEADED",
      "topic": "secondhand market size growing",
-     "say": "The U.S. secondhand market was worth about 43 billion dollars in 2023. By 2029, it's projected to hit 74."
+     "say": "The U.S. secondhand market was worth about 43 billion dollars in 2023."
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-10T16:56:09Z"
   },
   {
    "slug": "back-to-sleep-campaign-cut-sids",
@@ -31703,8 +31784,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE JUMP",
-     "topic": "phone checks a day",
-     "say": "In just one year, our daily phone checks jumped by about 42 percent.",
+     "topic": "phone checks per day jumped in a year",
+     "say": "In 2023, Americans checked their phone 144 times a day -- in 2024, 205 times.",
      "illustrated_scene": "# scene standard: 2026-10-09\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a giant phone built like a slot machine\n    SUBSTANCE: red notification badges\n    CAUSE: Data cranks the phone's slot lever and every pull spills a load of red badges onto the heap\n    A phone as tall as a building stands in a town at dusk, built like a\n    slot machine: app icons on spinning reels, a lever on its side, a payout\n    tray under the screen. Every pull of the lever spins the reels and spills\n    red notification badges out of the tray onto a heap in front of it. The\n    heap starts at 2023's 144 checks a day and grows pull by pull to 2024's\n    205. 2023's heap stays on it as a dashed ghost with its top marked, so it\n    reads as about one and a half times as much. It is done by 0.56 and then\n    holds: Data keeps pulling, and the extra badges tumble off the heap.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    v0 = v0 or 1.0\n    ratio = v1 / v0\n    n = 6\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / n\n    if u < a1:\n        k = int(clamp((u - a0) / span, 0, n - 0.001))\n        f = clamp((u - a0 - k * span) / span)\n    else:                                   # he keeps pulling, the story holds\n        q = (u - a1) / 0.11\n        k = n + int(q)\n        f = q - int(q)\n    fly = seg(f, 0.2, 0.55)\n    grow = ease(seg(f, 0.4, 0.75))\n    if u < a0:\n        step = 0.0\n    elif u < a1:\n        step = (k + grow) / n\n    else:\n        step = 1.0\n    val = v0 + (v1 - v0) * step\n    done = u >= a1 or (k == n - 1 and grow >= 0.999)\n\n    CX, BASE = 540, 1460\n    H0 = 220.0\n    h = H0 * val / v0\n    hw = min(380.0, 1.15 * h)\n    h0, hw0 = H0, min(380.0, 1.15 * H0)\n\n    landscape(cr, t, \"town\")\n\n    # the phone: a slot machine as tall as a building\n    PX, PB, PW, PH, PD = 320, 1330, 400, 680, 70\n    cast_shadow(cr, PX, PX + PW + PD, PB, length=320, a=0.32)\n    contact_shadow(cr, PX + PW / 2 + 30, PB + 4, PW + 120, a=0.45)\n    box(cr, PX, PB, PW, PH, (34, 36, 44), depth=PD, finish=\"gloss\")\n    top = PB - PH\n    # the screen, glowing\n    sx0, sx1, sy0, sy1 = PX + 26, PX + PW - 26, top + 40, PB - 120\n    cr.save()\n    cr.rectangle(sx0, sy0, sx1 - sx0, sy1 - sy0)\n    cr.clip()\n    vgrad(cr, [(0, (40, 54, 110)), (1, (18, 22, 52))], sy0, sy1, sx0, sx1)\n    glow(cr, (sx0 + sx1) / 2, (sy0 + sy1) / 2, 260, (120, 150, 255), 0.35)\n    # three reels of app icons\n    ICONS = [(226, 52, 60), (60, 190, 110), (70, 140, 240), (250, 190, 50), (190, 80, 220)]\n    pitch = 120.0\n    rc = (sy0 + sy1) / 2 - 20\n    for r_ in range(3):\n        rx = sx0 + 24 + r_ * 112\n        cr.rectangle(rx, rc - 170, 96, 340)\n        cr.set_source_rgba(*_c((236, 238, 246)))\n        cr.fill()\n        spin = 0.0 if u < a0 else k * 4 + ease(seg(f, 0.05 + 0.08 * r_, 0.45 + 0.08 * r_)) * 4\n        base_i = int(spin)\n        off = (spin - base_i) * pitch\n        for j in range(-2, 3):\n            iy = rc + j * pitch + off - pitch * 0.5 + 60\n            col = ICONS[(base_i - j + r_ * 2) % len(ICONS)]\n            cr.rectangle(rx + 12, iy - 36, 72, 72)\n            solid(cr, col, finish=\"gloss\")\n        cr.rectangle(rx, rc - 170, 96, 340)\n        edge(cr, (20, 22, 30))\n    cr.restore()\n    # payline\n    cr.set_source_rgba(*_c((250, 200, 60), 0.9))\n    cr.set_line_width(5)\n    cr.move_to(sx0 + 10, rc + 0)\n    cr.line_to(sx1 - 10, rc + 0)\n    cr.stroke()\n    # the camera notch, the payout tray\n    cr.rectangle((PX + PX + PW) / 2 - 50, top + 14, 100, 14)\n    solid(cr, (14, 14, 18), rim=False)\n    TRX, TRY = PX + PW / 2, PB - 70\n    cr.rectangle(TRX - 120, TRY - 24, 240, 44)\n    solid(cr, (12, 12, 16), rim=False)\n    cr.rectangle(TRX - 130, TRY + 20, 260, 18)\n    solid(cr, (150, 150, 162), finish=\"metal\")\n\n    # the lever on the phone's side\n    pull = 0.0 if u < a0 else clamp(seg(f, 0.0, 0.15) - seg(f, 0.25, 0.5))\n    ang = -1.25 + 1.4 * ease(pull)\n    LX, LY, LL = PX + PW + PD - 4, 1130, 200\n    disc(cr, LX, LY, 22, (120, 120, 130), finish=\"metal\")\n    ex, ey = LX + LL * math.cos(ang), LY + LL * math.sin(ang)\n    cr.set_line_width(16)\n    cr.set_source_rgba(*_c((190, 190, 200)))\n    cr.move_to(LX, LY)\n    cr.line_to(ex, ey)\n    cr.stroke()\n    disc(cr, ex, ey, 30, (220, 40, 50), finish=\"gloss\")\n\n    def _badge(x, y, r):\n        disc(cr, x, y, r, (222, 42, 52), finish=\"gloss\")\n        cr.rectangle(x - r * 0.12, y - r * 0.45, r * 0.24, r * 0.9)\n        cr.set_source_rgba(*_c((250, 248, 246)))\n        cr.fill()\n\n    # the heap of badges in front of the phone\n    contact_shadow(cr, CX, BASE + 4, 2 * hw + 60, a=0.4)\n    heap_path(cr, CX, BASE, h, hw)\n    solid(cr, (170, 36, 46))\n    cr.save()\n    heap_path(cr, CX, BASE, h, hw)\n    cr.clip()\n    count = int(50 + 120 * (val - v0) / max(1.0, v1 - v0) + 0.5)\n    for i in range(count):\n        dx = ((i * 0.6180339) % 1.0) * 1.9 - 0.95\n        py = (i * 0.4142136) % 1.0\n        bx = CX + hw * dx\n        ty = heap_top(CX, BASE, h, hw, bx)\n        _badge(bx, BASE - (BASE - ty) * py * 0.95 - 8, 16 + 8 * ((i * 0.37) % 1.0))\n    cr.restore()\n    heap_path(cr, CX, BASE, h, hw)\n    edge(cr, (60, 14, 20))\n\n    # THE SCALE on the heap: 2023's heap as a ghost, its top marked\n    if step > 0.02:\n        heap_path(cr, CX, BASE, h0, hw0)\n        ghost(cr, a=0.9)\n        then_mark(cr, CX - 150, CX + 150, BASE - h0, l0)\n\n    # the payout: badges spilling from the tray onto the heap\n    if u >= a0 and 0 < fly < 1:\n        tx, ty = CX + 30, BASE - h - 14\n        for j in range(5):\n            ff = clamp(fly * 1.3 - j * 0.07)\n            if ff <= 0 or ff >= 1:\n                continue\n            bx = TRX + (j - 2) * 30 + (tx + (j - 2) * 40 - TRX - (j - 2) * 30) * ff\n            by = TRY + (ty - TRY) * ff * ff - 60 * math.sin(math.pi * ff)\n            _badge(bx, by, 26)\n    # after it lands, the extra badges tumble down the flanks\n    if u > a1:\n        for j in range(4):\n            ph = ((u - a1) / 0.14 + j / 4) % 1.0\n            side = 1 if j % 2 else -1\n            bx = CX + side * hw * (0.08 + 0.85 * ph)\n            _badge(bx, heap_top(CX, BASE, h, hw, bx) - 14, 24)\n\n    # right by the camera: badges scattered on the pavement\n    for i in range(5):\n        _badge(110 + i * 215, 1660 + (i % 2) * 70 + i * 12, 40 + 8 * (i % 2))\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    # Data walks in to the lever and cranks it, standing on the heap's flank\n    hx = 1020 - 150 * ease(seg(u, 0.0, a0 + 0.04))\n    hy = BASE\n    if abs(hx - CX) < hw:\n        hy = min(BASE, heap_top(CX, BASE, h, hw, hx) + 10)\n    hy = min(1500.0, hy)\n    if u < a0:\n        host(\"point\", hx, hy, 220)\n    else:\n        host(\"crank\", hx, hy, 220, beat=k)\n\n    if done:\n        fit_readout(cr, f\"{int(round(v1))} checks\", f\"phone pickups a day · {l1}\",\n                    80, 520, size=130)\n        text(cr, f\"{ratio:.1f}x\", W - 80, 640, 90, look.INK, face=\"display\",\n             anchor=\"right\", alpha=ease(seg(u, a1 - 0.04, a1 + 0.02)))\n    else:\n        fit_readout(cr, f\"{int(round(v0))} checks\", f\"phone pickups a day · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -31715,14 +31796,11 @@
      },
      "insight_type": "share",
      "role": "2 · WHAT THAT ACTUALLY ADDS UP TO",
-     "topic": "phone screen time",
-     "say": "That's nearly 5 hours a day on the screen, about a third of waking life.",
+     "topic": "phone screen time eats the waking day",
+     "say": "That's nearly 5 hours a day on the screen -- about a third of waking life.",
      "illustrated_scene": "# scene standard: 2026-10-09\ndef _ell(cr, cx, cy, rx, ry):\n    cr.new_sub_path()\n    cr.save()\n    cr.translate(cx, cy)\n    cr.scale(rx, ry)\n    cr.arc(0, 0, 1, 0, 2 * math.pi)\n    cr.restore()\n\n\ndef _sector(cr, cx, cy, rx, ry, a, r=1.0):\n    cr.new_sub_path()\n    cr.save()\n    cr.translate(cx, cy)\n    cr.scale(rx, ry)\n    cr.move_to(0, 0)\n    cr.arc(0, 0, r, -math.pi / 2, -math.pi / 2 + a)\n    cr.close_path()\n    cr.restore()\n\n\ndef _phone(cr, x, y, s, rot, flat=0.62):\n    \"\"\"A smartphone lying on the ground: dark glossy body, lit blue screen.\"\"\"\n    cr.save()\n    cr.translate(x, y)\n    cr.scale(1, flat)\n    cr.rotate(rot)\n    cr.rectangle(-15 * s, -27 * s, 30 * s, 54 * s)\n    cr.restore()\n    solid(cr, (28, 30, 38), finish=\"gloss\", rim=False)\n    cr.save()\n    cr.translate(x, y)\n    cr.scale(1, flat)\n    cr.rotate(rot)\n    cr.rectangle(-12 * s, -22 * s, 24 * s, 42 * s)\n    cr.restore()\n    solid(cr, (82, 162, 250), finish=\"glass\", rim=False, edge=False)\n\n\ndef _walker(cr, x, y, s, t, i):\n    \"\"\"A passer-by crossing the square, head bowed over a lit phone.\"\"\"\n    sw = math.sin(t * 5.0 + i * 1.7)\n    coat = [(70, 84, 120), (138, 62, 52), (88, 100, 72)][i % 3]\n    skin = [(214, 170, 138), (170, 120, 90), (232, 196, 166)][i % 3]\n    contact_shadow(cr, x, y, 100 * s, a=0.32)\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    cr.set_source_rgba(*_c((38, 36, 44)))\n    cr.set_line_width(17 * s)\n    for sg in (1, -1):\n        cr.move_to(x + sg * 8 * s, y - 88 * s)\n        cr.line_to(x + sg * 22 * s * sw, y - 8 * s)\n        cr.stroke()\n    for sg in (1, -1):\n        _ell(cr, x + sg * 22 * s * sw - 4 * s, y - 4 * s, 15 * s, 8 * s)\n        solid(cr, (24, 22, 26), finish=\"gloss\", rim=False)\n    # the coat: shoulders, a flared hem\n    cr.move_to(x - 30 * s, y - 80 * s)\n    cr.line_to(x - 28 * s, y - 150 * s)\n    cr.curve_to(x - 28 * s, y - 176 * s, x + 26 * s, y - 176 * s, x + 28 * s, y - 150 * s)\n    cr.line_to(x + 32 * s, y - 80 * s)\n    cr.close_path()\n    solid(cr, coat)\n    # head bowed over the phone, hair on top\n    disc(cr, x - 10 * s, y - 192 * s, 23 * s, skin)\n    cr.new_sub_path()\n    cr.arc(x - 8 * s, y - 196 * s, 23 * s, math.pi * 1.05, math.pi * 1.95)\n    cr.close_path()\n    solid(cr, (50, 38, 32), rim=False)\n    # the arm bent up to the phone\n    cr.set_source_rgba(*_c(coat))\n    cr.set_line_width(14 * s)\n    cr.move_to(x - 18 * s, y - 160 * s)\n    cr.line_to(x - 20 * s, y - 118 * s)\n    cr.line_to(x - 44 * s, y - 138 * s)\n    cr.stroke()\n    cr.set_line_cap(cairo.LINE_CAP_BUTT)\n    glow(cr, x - 46 * s, y - 150 * s, 50 * s, (120, 180, 255), 0.7)\n    cr.rectangle(x - 56 * s, y - 166 * s, 20 * s, 32 * s)\n    solid(cr, (90, 160, 250), finish=\"glass\")\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a giant clock face in a town square\n    SUBSTANCE: smartphones with lit screens\n    CAUSE: Data tosses phones onto the clock's hours and they pile up over a third of its face\n    A great clock laid into the paving of a town square is the whole waking\n    day, one tick per waking hour. Data walks round its rim from the top,\n    tossing armfuls of phones onto the hours; each throw lands and the hours\n    it covers vanish under a mound of glowing screens, until the phone's\n    share of the day is buried at its true size, about a third of the one\n    face. Done by 0.56 and held: Data holds up one more phone, loose phones\n    slide off the mound, and people keep crossing the square with their\n    heads bowed over their own.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    total = sum(v for _, v in rows) or 1.0\n    scr = next((r for r in rows if \"phone\" in r[0].lower() or \"screen\" in r[0].lower()),\n               min(rows, key=lambda r: r[1]))\n    v = scr[1]\n    share = v / total\n    full = 2 * math.pi * share\n    n = max(1, int(round(v)))\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    wk = ease(seg(f, 0.0, 0.3))\n    fly = seg(f, 0.25, 0.6)\n    grow = ease(seg(f, 0.5, 0.85))\n    if u < a0:\n        cov = 0.0\n    elif u >= a1:\n        cov = 1.0\n    else:\n        cov = (k + grow) / n\n    ang = full * cov\n    done = u >= a1\n\n    def mid(j):\n        return full * (j + 0.5) / n\n\n    CX, CY, RX, RY = 540, 1150, 440, 270\n\n    landscape(cr, t, \"town\", horizon=800)\n    # the square's own buildings round the far side, in three-quarter view\n    for x0, x1, wh, rgb, roof in ((-60, 260, 230, (176, 92, 70), \"gable\"),\n                                  (300, 640, 170, (206, 190, 160), \"flat\"),\n                                  (690, 1130, 250, (150, 120, 104), \"gable\")):\n        fr = building(cr, x0, x1, 820, wh, rgb, roof=roof, boards=False)\n        for wx in range(int(fr[\"x0\"]) + 30, int(fr[\"x1\"]) - 50, 70):\n            for wy in (fr[\"top\"] + 40, fr[\"top\"] + 120):\n                if wy + 50 < 810:\n                    cr.rectangle(wx, wy, 36, 50)\n                    solid(cr, (255, 214, 150), finish=\"glass\", rim=False)\n    haze(cr, 480, 830, (226, 206, 186), a=0.5)\n    birds(cr, t, y0=640, n=4, rgb=(50, 50, 62))\n\n    # the clock set into the square: a low stone dais, brass ring, cream face\n    cast_shadow(cr, CX - RX, CX + RX, CY + RY, length=300, a=0.28)\n    contact_shadow(cr, CX, CY + RY + 30, 2 * RX + 40, a=0.4)\n    _ell(cr, CX, CY + 34, RX + 26, RY + 18)\n    solid(cr, (120, 116, 110))\n    _ell(cr, CX, CY, RX + 26, RY + 18)\n    solid(cr, P[\"brass\"], finish=\"metal\")\n    _ell(cr, CX, CY, RX, RY)\n    solid(cr, (240, 234, 216), finish=\"gloss\")\n    for i in range(int(round(total))):\n        a = 2 * math.pi * i / total\n        big = i % 4 == 0\n        r0 = 0.84 if big else 0.9\n        cr.set_source_rgba(*_c((36, 34, 40)))\n        cr.set_line_width(12 if big else 7)\n        cr.move_to(CX + r0 * RX * math.sin(a), CY - r0 * RY * math.cos(a))\n        cr.line_to(CX + 0.97 * RX * math.sin(a), CY - 0.97 * RY * math.cos(a))\n        cr.stroke()\n    for ha, hl, hw in ((-1.05, 0.5, 18), (3.7, 0.72, 12)):\n        cr.set_source_rgba(*_c((0, 0, 0), 0.25))\n        cr.set_line_width(hw)\n        cr.move_to(CX + 8, CY + 10)\n        cr.line_to(CX + 8 + hl * RX * math.sin(ha), CY + 10 - hl * RY * math.cos(ha))\n        cr.stroke()\n        cr.set_source_rgba(*_c((30, 28, 34)))\n        cr.move_to(CX, CY)\n        cr.line_to(CX + hl * RX * math.sin(ha), CY - hl * RY * math.cos(ha))\n        cr.stroke()\n\n    # the buried hours: a MOUND of glowing phones, layer on layer\n    if ang > 0.002:\n        ma = ang / 2\n        glow(cr, CX + 0.5 * RX * math.sin(ma), CY - 0.5 * RY * math.cos(ma), 300,\n             (110, 170, 255), 0.5)\n        _sector(cr, CX, CY, RX, RY, ang, 0.98)\n        solid(cr, (40, 70, 130), finish=\"glass\", rim=False)\n        for L, cnt in ((0, 150), (1, 110), (2, 70), (3, 40)):\n            lift = L * 22\n            rr = 0.98 - 0.2 * L\n            cr.save()\n            _sector(cr, CX, CY - lift, RX, RY, ang, rr)\n            cr.clip()\n            for i in range(cnt):\n                pa = ((i * 0.6180339 + L * 0.13) % 1.0) * full\n                if pa > ang:\n                    continue\n                pr = rr * (0.12 + 0.86 * math.sqrt((i * 0.4142136 + L * 0.29) % 1.0))\n                _phone(cr, CX + pr * RX * math.sin(pa), CY - lift - pr * RY * math.cos(pa),\n                       1.35 + 0.3 * ((i * 0.37) % 1.0), i * 1.3 + L)\n            cr.restore()\n        _sector(cr, CX, CY, RX, RY, ang, 0.98)\n        edge(cr, (24, 40, 80))\n    disc(cr, CX, CY, 18, P[\"brass\"], finish=\"metal\")\n    if done:\n        ma = full / 2\n        text(cr, f\"{int(round(share * 100))}%\", CX + 0.45 * RX * math.sin(ma),\n             CY - 60 - 0.45 * RY * math.cos(ma) + 26, 96, look.INK, face=\"display\",\n             anchor=\"center\", alpha=ease(seg(u, a1, a1 + 0.05)))\n\n    # Data walks the rim clockwise, one throw per hour of screen time\n    if u < a0:\n        da = 0.0\n    elif done:\n        da = mid(n - 1)\n    else:\n        pa_ = mid(k - 1) if k > 0 else 0.0\n        da = pa_ + (mid(k) - pa_) * wk\n    hx = CX + 1.1 * RX * math.sin(da)\n    hy = min(1500.0, CY - 1.1 * RY * math.cos(da) + 6)\n\n    if a0 <= u < a1 and 0 < fly < 1:\n        sx, sy = hx, hy - 170\n        ex = CX + 0.55 * RX * math.sin(mid(k))\n        ey = CY - 40 - 0.55 * RY * math.cos(mid(k))\n        bx = sx + (ex - sx) * fly\n        by = sy + (ey - sy) * fly - 220 * math.sin(math.pi * fly)\n        glow(cr, bx, by, 70, (120, 180, 255), 0.6)\n        for j in range(3):\n            _phone(cr, bx + 26 * (j - 1), by + 10 * (j % 2), 2.0, fly * 7 + k + j * 1.9,\n                   flat=1.0)\n\n    # once the mound is done the world moves, not the story: phones slide off it\n    if u > a1:\n        for j in range(2):\n            ph = ((u - a1) / 0.18 + j / 2) % 1.0\n            pa = full * (0.3 + 0.4 * j)\n            pr = 0.5 + 0.55 * ph\n            _phone(cr, CX + pr * RX * math.sin(pa),\n                   CY - 50 * (1 - ph) - pr * RY * math.cos(pa), 1.8, ph * 6 + j, flat=0.8)\n\n    # right by the camera: people crossing the square, heads in their phones\n    for i in range(3):\n        wx = 1220 - ((t * 150 + i * 480) % 1440)\n        _walker(cr, wx, 1720 + i * 45, 1.45 + 0.1 * i, t, i)\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    if u < a0:\n        host(\"point\", hx, hy, 220)\n    elif u < a1 + 0.04:\n        host(\"toss\", hx, hy, 220, beat=k)\n    else:\n        host(\"hold_up\", hx, hy, 220)\n\n    if done:\n        fit_readout(cr, f\"{int(round(v))} hours\", \"of the waking day, on a phone screen\",\n                    80, 520, size=130, max_w=900)\n    else:\n        fit_readout(cr, \"Your waking day\", \"how much of it goes to a screen?\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130, max_w=900)\n"
     }
-   ],
-   "retold": "retell/v2",
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:23:04Z"
+   ]
   },
   {
    "slug": "the-penny-lost-money-19-years-straight",
@@ -31773,7 +31851,7 @@
   {
    "slug": "ingenuity-mars-helicopter-flights",
    "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
-   "hook": "A tiny helicopter wasn't supposed to last this long.",
+   "hook": "The Mars helicopter was a five-flight stunt. Then it refused to die.",
    "closing": "Five flights were the ask. Seventy-two was the answer.",
    "question": "Would you have guessed seventy-two?",
    "caption": "NASA's Ingenuity was built for just 5 flights on Mars. It flew 72 — and logged over 10 miles doing it. Here's how a helicopter kept flying far longer than anyone planned. Would you have bet on five or seventy-two? 👇",
@@ -31816,7 +31894,7 @@
      "role": "2 · THE CLIMB",
      "topic": "ingenuity's flights climbed for years on mars",
      "say": "It passed flight fifty in 2023, then snapped a rotor blade on flight seventy-two.",
-     "illustrated_scene": "def _rock(cr, x, y, r, seed, rgb=(156, 74, 44)):\n    # an angular Martian boulder: a flat-bottomed, faceted outline, lit\n    n = 9\n    for i in range(n):\n        ang = math.pi + i * math.pi / (n - 1)\n        rr = r * (0.74 + 0.26 * ((seed * 7.31 + i * 0.6180339) % 1.0))\n        px = x + 1.35 * rr * math.cos(ang)\n        py = y + 0.85 * rr * math.sin(ang)\n        if i == 0:\n            cr.move_to(px, py)\n        else:\n            cr.line_to(px, py)\n    cr.line_to(x + 1.2 * r, y + 0.12 * r)\n    cr.line_to(x - 1.2 * r, y + 0.12 * r)\n    cr.close_path()\n    solid(cr, rgb)\n\n\ndef _blade(cr, x0, x1, y, s, a=1.0):\n    # one rotor blade seen edge-on: wide chord near the root, tapering to the tip\n    d = 1.0 if x1 >= x0 else -1.0\n    L = abs(x1 - x0)\n    if L < 6:\n        return\n    cr.move_to(x0, y - 6 * s)\n    cr.curve_to(x0 + d * L * 0.3, y - 13 * s, x0 + d * L * 0.7, y - 9 * s, x1, y - 3 * s)\n    cr.line_to(x1, y + 3 * s)\n    cr.curve_to(x0 + d * L * 0.7, y + 6 * s, x0 + d * L * 0.3, y + 8 * s, x0, y + 6 * s)\n    cr.close_path()\n    solid(cr, (58, 58, 66), finish=\"metal\", a=a)\n\n\ndef _ingenuity(cr, cx, by, t, snap, s=1.3, a=1.0):\n    # Ingenuity: four bowed carbon legs, a gold-foil fuselage with its camera,\n    # a tall mast, two counter-rotating paddle rotors, the solar panel on top\n    for dx in (-118, -42, 42, 118):\n        fx = cx + dx * s\n        cr.move_to(cx + dx * 0.38 * s, by - 66 * s)\n        cr.curve_to(cx + dx * 0.75 * s, by - 52 * s, fx, by - 30 * s, fx, by - 6 * s)\n        cr.set_source_rgba(*_c((34, 34, 40), a))\n        cr.set_line_width(11 * s)\n        cr.stroke_preserve()\n        cr.set_source_rgba(*_c((172, 172, 180), a))\n        cr.set_line_width(6 * s)\n        cr.stroke()\n        disc(cr, fx, by - 6 * s, 10 * s, (120, 120, 128), finish=\"metal\", a=a)\n    # the fuselage, wrapped in crinkled gold foil\n    bw, bh = 150 * s, 100 * s\n    box(cr, cx - bw / 2, by - 56 * s, bw, bh, (214, 170, 84), depth=40 * s,\n        finish=\"metal\", a=a)\n    cr.set_source_rgba(*_c((150, 108, 40), 0.55 * a))\n    cr.set_line_width(2.5 * s)\n    for i in range(6):\n        y0 = by - 56 * s - bh * (0.12 + 0.15 * i)\n        cr.move_to(cx - bw / 2 + 6, y0)\n        for j in range(1, 7):\n            cr.line_to(cx - bw / 2 + 6 + j * (bw - 12) / 6,\n                       y0 + (5 if (i + j) % 2 else -5) * s)\n        cr.stroke()\n    disc(cr, cx - bw * 0.22, by - 56 * s - bh * 0.38, 13 * s, (30, 34, 44), finish=\"glass\", a=a)\n    # the mast\n    cylinder(cr, cx - 10 * s, by - 150 * s, 20 * s, 100 * s, (70, 70, 78), finish=\"metal\", a=a)\n    cylinder(cr, cx - 6 * s, by - 265 * s, 12 * s, 120 * s, (52, 52, 60), finish=\"metal\", a=a)\n    L = 245.0 * s\n    A = t * 2 * math.pi * 0.55\n    for ry, ang, upper in ((by - 195 * s, -A, False), (by - 248 * s, A, True)):\n        cr.save()\n        cr.translate(cx, ry)\n        cr.scale(1, 0.08)\n        cr.arc(0, 0, L, 0, 2 * math.pi)\n        cr.restore()\n        cr.set_source_rgba(*_c((40, 40, 46), 0.14 * a))\n        cr.fill()\n        for k_ in (0.0, math.pi):\n            c = math.cos(ang + k_)\n            reach = L * (0.45 if (snap and upper and k_ == 0.0) else 1.0)\n            _blade(cr, cx, cx + reach * c, ry, s, a)\n        disc(cr, cx, ry, 15 * s, (96, 96, 104), finish=\"metal\", a=a)\n    box(cr, cx - 62 * s, by - 268 * s, 124 * s, 14 * s, (40, 58, 120), depth=26 * s,\n        finish=\"glass\", a=a)\n    cr.set_source_rgba(*_c((150, 170, 220), 0.6 * a))\n    cr.set_line_width(2)\n    for j in range(1, 6):\n        gx = cx - 62 * s + j * 124 * s / 6\n        cr.move_to(gx, by - 282 * s)\n        cr.line_to(gx, by - 268 * s)\n        cr.stroke()\n    return by - 285 * s\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: Mars helicopter on a rock tower\n    SUBSTANCE: stacked red rock slabs\n    CAUSE: Data places slab after slab under the helicopter and it climbs with every block\n    Ingenuity's flight count is the height of the tower of red Martian rock\n    slabs it stands on: Data stacks the slabs and the little helicopter rides\n    the tower up, first flight to the 50th to the final one, where a rotor\n    blade snaps and falls to the sand. The labels carry no year, so the rows\n    are ordered by the count itself (a running flight tally only ever climbs)\n    — never by list order. The flight before the last stays on the tower as\n    a ghost of its top, so the last climb reads against it at a glance.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: (r[1], r[0]))\n    n = len(rows)\n    top = max(v for _, v in rows) or 1.0\n    a0, a1 = 0.08, 0.54\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.15, 0.8))\n    prev = rows[k - 1][1] if k > 0 else 0.0\n    val = 0.0 if u < a0 else prev + (rows[k][1] - prev) * slide\n    landed_to = k if slide >= 0.999 else k - 1\n    shown = rows[landed_to] if (u >= a0 and landed_to >= 0) else None\n    done = u >= a0 and k == n - 1 and slide >= 0.999\n\n    BASE, PAD, SH = 1440, 60, 46\n    PX = 340.0 / top\n    X0, X1 = 200, 840\n    top_y = lambda v: BASE - PAD - PX * v\n    ty = top_y(val)\n\n    # Mars: a rust sky, a small pale sun, crater rims fading into the dust\n    landscape(cr, t, \"desert\")\n    cr.set_source_rgba(*_c((196, 92, 50), 0.38))\n    cr.paint()\n    glow(cr, 250, 760, 160, (250, 222, 190), 0.5)\n    disc(cr, 250, 760, 34, (252, 236, 214), finish=\"gloss\")\n    ridge(cr, 1150, 120, seed=4.1, n=4)\n    solid(cr, (186, 104, 70), edge=False)\n    haze(cr, 880, 1220, (230, 168, 128), a=0.55)\n    ridge(cr, 1230, 80, seed=1.3)\n    solid(cr, (166, 82, 50), edge=False)\n    haze(cr, 1080, 1300, (226, 156, 116), a=0.3)\n    for i, (rx, ry, rr) in enumerate(((60, 1300, 26), (960, 1290, 22), (1030, 1330, 30))):\n        contact_shadow(cr, rx, ry + 4, rr * 2.6, a=0.3)\n        _rock(cr, rx, ry, rr, i + 3, (150, 72, 44))\n\n    # spare slabs waiting on the sand behind Data\n    for j in range(3):\n        contact_shadow(cr, 960, 1462 - j * 30, 190, a=0.3)\n        box(cr, 868 + 8 * (j % 2), 1462 - j * 30, 170, 30, (170, 78, 46), depth=30)\n\n    # the tower: red rock slabs stacked one on another\n    h_tot = BASE - ty\n    full = int(h_tot // SH)\n    rem = h_tot - full * SH\n    cast_shadow(cr, X0, X1, BASE, length=320, a=0.3)\n    contact_shadow(cr, (X0 + X1) / 2, BASE + 4, X1 - X0 + 60, a=0.45)\n    for i in range(full + 1):\n        hh = SH if i < full else rem\n        if hh < 1:\n            continue\n        jx = (((i * 0.6180339) % 1.0) - 0.5) * 36\n        wv = ((i * 0.4142136) % 1.0) * 36\n        sh_ = int(((i * 37) % 23) - 11)\n        col = (178 + sh_, 82 + sh_ // 2, 48 + sh_ // 3)\n        box(cr, X0 + jx + wv / 2, BASE - i * SH, (X1 - X0) - wv, hh, col, depth=40)\n        if hh > 20:                               # a chip in the slab's face\n            cx_ = X0 + 80 + ((i * 211) % 440)\n            cr.set_source_rgba(*_c((112, 46, 26), 0.55))\n            cr.set_line_width(3)\n            cr.move_to(cx_, BASE - i * SH - hh * 0.25)\n            cr.line_to(cx_ + 18, BASE - i * SH - hh * 0.55)\n            cr.line_to(cx_ + 8, BASE - i * SH - hh * 0.8)\n            cr.stroke()\n\n    # THE SCALE on the tower: where the flight before the last left it\n    if n >= 2 and landed_to >= n - 2 and u >= a0:\n        pl, pv = rows[n - 2]\n        y_prev = top_y(pv)\n        cr.rectangle(X0, y_prev, X1 - X0, BASE - y_prev)\n        ghost(cr, a=0.85)\n        then_mark(cr, X0 - 30, X1 - 30, y_prev, pl)\n\n    S = 1.3\n    hx = 470\n    _ingenuity(cr, hx, ty - 14, t, done, s=S)\n\n    # the snapped blade tip whirls down and lands on the sand by the tower\n    if done:\n        fl = ease(seg(u, a1, a1 + 0.06))\n        sx, sy = hx + 0.72 * 245 * S, ty - 14 - 248 * S\n        ex, ey = 120, 1500\n        bx = sx + (ex - sx) * fl\n        bly = sy + (ey - sy) * fl * fl - 120 * math.sin(math.pi * fl)\n        if fl >= 1:\n            contact_shadow(cr, ex, ey + 10, 170, a=0.4)\n        cr.save()\n        cr.translate(bx, bly)\n        cr.rotate(5.0 * fl + 0.15)\n        _blade(cr, -75, 75, 0, 1.5)\n        cr.restore()\n\n    # right by the camera: Martian boulders in the sand\n    for i, (rx, ry, rr) in enumerate(((120, 1720, 70), (930, 1790, 90), (560, 1870, 46))):\n        contact_shadow(cr, rx, ry + 10, rr * 3.0, a=0.4)\n        _rock(cr, rx, ry, rr, i + 1)\n    foreground(cr, \"desert\")\n    vignette(cr, a=0.28)\n\n    # Data: points from the ground, steps onto the tower, stacks it as it rises\n    if u < a0:\n        m = ease(seg(u, 0.0, a0))\n        host(\"point\", 960 - 190 * m, BASE, 220)\n    elif u < a1 + 0.04:\n        host(\"place\", 770, ty - 14, 220, beat=k * 4 + int(clamp(f, 0, 0.999) * 4))\n    elif u < 0.9:\n        host(\"hold_up\", 770, ty - 14, 220)\n    else:\n        host(\"shock\", 770, ty - 14, 220)\n\n    if shown is not None:\n        lab, v = shown\n        unit = \"flight\" if int(round(v)) == 1 else \"flights\"\n        fit_readout(cr, f\"{int(round(v))} {unit}\", f\"Ingenuity on Mars · {lab.lower()}\",\n                    80, 520, a=ease(seg(u, a0, a0 + 0.05)), size=130)\n    else:\n        fit_readout(cr, \"Ingenuity\", \"NASA's Mars helicopter\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.05)), size=130)\n"
+     "illustrated_scene": "# scene standard: 2026-10-09\ndef _ing_blade(cr, cx, cy, ang, R, w, rgb, a=1.0, broken=False):\n    cr.save()\n    cr.translate(cx, cy)\n    cr.scale(1.0, 0.24)\n    cr.rotate(ang)\n    cr.move_to(0, -w * 0.45)\n    if broken:\n        # a sheared stub: the blade ends in a jagged break\n        cr.line_to(R * 0.9, -w * 0.55)\n        cr.line_to(R * 0.8, -w * 0.15)\n        cr.line_to(R, w * 0.05)\n        cr.line_to(R * 0.84, w * 0.25)\n        cr.line_to(R * 0.95, w * 0.42)\n    else:\n        cr.line_to(R * 0.82, -w * 0.62)\n        cr.curve_to(R * 1.02, -w * 0.58, R * 1.02, w * 0.38, R * 0.9, w * 0.42)\n    cr.line_to(0, w * 0.45)\n    cr.close_path()\n    cr.restore()\n    solid(cr, rgb, finish=\"matte\", a=a)\n\n\ndef _ing_rock(cr, x, y, r, rgb, seed=0.0):\n    # a faceted Martian rock, flat-bottomed, lit from the upper left\n    n = 9\n    cr.move_to(x - r, y)\n    for i in range(1, n):\n        ang = math.pi + math.pi * i / n\n        rr = r * (0.78 + 0.22 * math.sin(seed * 3.1 + i * 1.7))\n        cr.line_to(x + rr * math.cos(ang), y + 0.72 * rr * math.sin(ang))\n    cr.line_to(x + r, y)\n    cr.close_path()\n    solid(cr, rgb)\n\n\ndef _ing_rover(cr, x, y, s):\n    # Perseverance in the middle distance: six wheels, a white deck, the mast head\n    contact_shadow(cr, x, y + 4, 260 * s, a=0.35)\n    cr.set_source_rgba(*_c((70, 70, 76)))\n    cr.set_line_width(6 * s)\n    cr.move_to(x - 110 * s, y - 24 * s)\n    cr.line_to(x - 60 * s, y - 60 * s)\n    cr.line_to(x + 10 * s, y - 24 * s)\n    cr.move_to(x + 10 * s, y - 24 * s)\n    cr.line_to(x + 60 * s, y - 60 * s)\n    cr.line_to(x + 110 * s, y - 24 * s)\n    cr.stroke()\n    for wx in (-110, 0, 110):\n        disc(cr, x + wx * s, y - 22 * s, 22 * s, (54, 54, 60), finish=\"metal\")\n    box(cr, x - 120 * s, y - 60 * s, 230 * s, 46 * s, (226, 222, 214), depth=40 * s,\n        finish=\"metal\")\n    cylinder(cr, x + 60 * s, y - 106 * s, 12 * s, 150 * s, (200, 198, 194), finish=\"metal\")\n    box(cr, x + 44 * s, y - 250 * s, 50 * s, 30 * s, (214, 210, 202), depth=14 * s,\n        finish=\"metal\")\n    disc(cr, x + 58 * s, y - 236 * s, 7 * s, (40, 50, 70), finish=\"glass\")\n\n\ndef _ing_tip(cr, x, y, ang, s=1.0):\n    # the snapped-off outer part of a rotor blade, its broken end jagged\n    cr.save()\n    cr.translate(x, y)\n    cr.rotate(ang)\n    cr.scale(s, s)\n    cr.move_to(-80, -13)\n    cr.line_to(-66, -4)\n    cr.line_to(-84, 2)\n    cr.line_to(-70, 13)\n    cr.line_to(72, 12)\n    cr.curve_to(90, 10, 90, -12, 72, -14)\n    cr.close_path()\n    cr.restore()\n    solid(cr, (66, 68, 78))\n\n\ndef _ing_heli(cr, x, fy, t, s, snapped, spin=1.0, tilt=0.0):\n    cr.save()\n    cr.translate(x, fy)\n    cr.rotate(tilt)\n    cr.scale(s, s)\n    # four splayed carbon legs on little feet\n    cr.set_source_rgba(*_c((214, 214, 220)))\n    cr.set_line_width(8)\n    for lx, ly, fx in ((-62, -100, -160), (62, -100, 160), (-30, -96, -72), (30, -96, 84)):\n        cr.move_to(lx, ly)\n        cr.line_to(fx, -4)\n    cr.stroke()\n    for fx in (-160, 160, -72, 84):\n        disc(cr, fx, -4, 11, (180, 182, 190), finish=\"metal\")\n    # the fuselage: a foil-wrapped cube with its camera and antenna\n    box(cr, -78, -92, 150, 116, (222, 178, 80), finish=\"metal\")\n    cr.set_source_rgba(*_c((150, 112, 40), 0.55))\n    cr.set_line_width(3)\n    for yy in (-170, -150, -128):\n        cr.move_to(-74, yy)\n        cr.line_to(68, yy + 6)\n    cr.stroke()\n    disc(cr, -20, -118, 14, (36, 40, 52), finish=\"glass\")\n    cr.set_source_rgba(*_c((60, 60, 66)))\n    cr.set_line_width(4)\n    cr.move_to(60, -200)\n    cr.line_to(92, -246)\n    cr.stroke()\n    # the mast\n    cylinder(cr, -9, -212, 18, 150, (176, 178, 186), finish=\"metal\")\n    # counter-rotating rotors, each a blur disc with its two long blades\n    ang = t * 5.0 * spin\n    for cy_ in (-262, -302):\n        cr.save()\n        cr.translate(0, cy_)\n        cr.scale(1.0, 0.24)\n        cr.arc(0, 0, 300, 0, 2 * math.pi)\n        cr.restore()\n        cr.set_source_rgba(*_c((60, 62, 70), 0.10 * spin))\n        cr.fill()\n    for j in range(2):\n        _ing_blade(cr, 0, -262, ang + j * math.pi, 300, 50, (52, 54, 62))\n    for j in range(2):\n        br = snapped and j == 0\n        _ing_blade(cr, 0, -302, -ang + 0.5 + j * math.pi, 140 if br else 300, 50,\n                   (66, 68, 78), broken=br)\n    disc(cr, 0, -282, 18, (120, 122, 130), finish=\"metal\")\n    # the solar panel on top\n    box(cr, -96, -326, 192, 14, (40, 58, 104), depth=56, finish=\"glass\")\n    cr.restore()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: NASA's Ingenuity Mars helicopter\n    SUBSTANCE: the helicopter climbing\n    CAUSE: Data cranks Ingenuity's rotor from its solar panel, one crank per flight milestone, and it climbs\n    On the red Martian plain, Perseverance parked in the distance, the\n    helicopter lifts off its scorch mark and climbs: its height is its\n    flight count, so the first flight is a hop, the 50th leaves a dashed\n    mark at the height it reached, and the 72nd is highest of all, marked\n    too. Then on that last flight a rotor blade SNAPS: the tip spins away,\n    the helicopter drops back onto the sand, tilted on its legs with a\n    jagged stub where the blade was, a puff of red dust where it hit. Data\n    jumps down and holds the broken blade up over his head; the stub keeps\n    turning slowly. Both marks stay in the sky above it: how high it got,\n    and where it ended. Everything has landed by 0.68.\"\"\"\n    rows = sorted(by_time([(str(l), float(v)) for l, v in pts]), key=lambda r: r[1])\n    n = len(rows)\n    top = rows[-1][1] or 1.0\n    a0, a1 = 0.08, 0.50\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.12, 0.75))\n    prev = rows[k - 1][1] if k > 0 else 0.0\n    val = 0.0 if u < a0 else prev + (rows[k][1] - prev) * slide\n    landed_to = k if slide >= 0.999 else k - 1\n    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))\n                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))\n    named = max((i for i in keep if i <= landed_to), default=None)\n    shown = None if (u < a0 or named is None) else rows[named]\n\n    BASE, CX, S = 1470, 700, 1.2\n    CLIMB = 604.0\n    GROUND = BASE - 6\n    fy_climb = GROUND - CLIMB * val / top\n    # the snap at 0.54, the fall back onto the sand by 0.62\n    SNAP, DOWN = 0.54, 0.62\n    snapped = u >= SNAP\n    fall = seg(u, SNAP + 0.01, DOWN) ** 2\n    fy = fy_climb + (GROUND - fy_climb) * fall if snapped else fy_climb\n    tilt = 0.2 * fall\n    lift = (GROUND - fy) / CLIMB\n\n    # Mars: a butterscotch sky, a small pale sun, far hills under dust haze\n    vgrad(cr, [(0, (140, 92, 74)), (0.55, (214, 162, 122)), (1, (236, 196, 156))], 0, 1200)\n    glow(cr, 230, 330, 170, (250, 236, 214), 0.55)\n    disc(cr, 230, 330, 30, (252, 244, 228), finish=\"gloss\")\n    ridge(cr, 1080, 150, seed=1.3, n=4)\n    solid(cr, (198, 132, 94), edge=False)\n    # a layered mesa: lit front face, shadowed side going back\n    cr.move_to(20, 1150)\n    cr.line_to(70, 930)\n    cr.line_to(330, 905)\n    cr.line_to(380, 1150)\n    cr.close_path()\n    solid(cr, (184, 108, 70))\n    cr.move_to(330, 905)\n    cr.line_to(420, 930)\n    cr.line_to(470, 1150)\n    cr.line_to(380, 1150)\n    cr.close_path()\n    solid(cr, (140, 76, 50))\n    cr.set_source_rgba(*_c((150, 84, 54), 0.6))\n    cr.set_line_width(4)\n    for yy in (980, 1030, 1085):\n        cr.move_to(60 + (yy - 930) * 0.2, yy)\n        cr.line_to(360 + (yy - 930) * 0.15, yy - 4)\n    cr.stroke()\n    haze(cr, 700, 1170, (232, 188, 148), a=0.5)\n    ridge(cr, 1190, 60, seed=4.1, n=6)\n    solid(cr, (186, 104, 64), edge=False)\n    vgrad(cr, [(0, (186, 104, 62)), (1, (122, 60, 36))], 1200, H)\n    # craters pocking the plain, rim lit, bowl in shade\n    for cx_, cy_, cr_ in ((150, 1300, 70), (980, 1270, 50), (420, 1250, 38)):\n        cr.save()\n        cr.translate(cx_, cy_)\n        cr.scale(1.0, 0.28)\n        cr.arc(0, 0, cr_, 0, 2 * math.pi)\n        cr.restore()\n        solid(cr, (130, 66, 40), rim=False)\n    # Perseverance rolls slowly in from the left to see what happened\n    _ing_rover(cr, 180 + 120 * ease(seg(u, 0.6, 1.0)), 1262, 0.8)\n\n    # the airfield: a scorch where it lifts off, its shadow shrinking below it\n    cr.save()\n    cr.translate(CX, BASE)\n    cr.scale(1.0, 0.22)\n    cr.arc(0, 0, 230, 0, 2 * math.pi)\n    cr.restore()\n    cr.set_source_rgba(*_c((70, 36, 22), 0.45))\n    cr.fill()\n    contact_shadow(cr, CX + 170 * lift, BASE, 380 * (1 - 0.45 * lift),\n                   a=0.45 * (1 - 0.5 * lift))\n    # rotor wash on take-off, and the red dust it throws up when it hits\n    if a0 <= u < SNAP:\n        wash = clamp(1.0 - lift * 2.5)\n        glow(cr, CX, BASE - 20, 260 * wash + 60, (214, 150, 108), 0.55 * wash)\n    if u >= DOWN:\n        puff = 1.0 - seg(u, DOWN, 0.9)\n        glow(cr, CX, BASE - 40, 220 + 160 * seg(u, DOWN, 0.9), (214, 150, 108), 0.6 * puff)\n\n    # THE SCALE: where it began, ghosted; the heights the 50th and the last reached\n    if snapped or lift > 0.08:\n        cr.rectangle(CX - 94, BASE - 116, 180, 140)\n        ghost(cr, a=0.8)\n    if u >= a0 and n >= 3 and landed_to >= n - 2:\n        y_mid = GROUND - CLIMB * rows[n - 2][1] / top\n        then_mark(cr, 160, CX - 40, y_mid, rows[n - 2][0])\n    if snapped:\n        then_mark(cr, 160, CX - 40, GROUND - CLIMB, rows[-1][0])\n\n    spin = 1.0 if not snapped else (1.0 - 0.7 * seg(u, SNAP, DOWN + 0.04))\n    _ing_heli(cr, CX, fy, t, S, snapped, spin=spin, tilt=tilt)\n\n    # Data: on top of it cranking, rides it down, then holds the broken tip up\n    DX, DFY = CX + 330, 1490.0\n    if snapped:\n        # the tip whirls off the rotor and lands by Data, then he lifts it\n        p = seg(u, SNAP, SNAP + 0.07)\n        sx, sy = CX + 220 * S, fy_climb - 302 * S\n        ex, ey = DX + 40, DFY - 10\n        up = ease(seg(u, DOWN, 0.68))\n        if p < 1:\n            px = sx + (ex - sx) * p\n            py = sy + (ey - sy) * p * p\n            _ing_tip(cr, px, py, p * 9.0, 1.3)\n        elif up <= 0:\n            contact_shadow(cr, ex, ey + 12, 180, a=0.4)\n            _ing_tip(cr, ex, ey, 0.15, 1.3)\n\n    # right by the camera: faceted red rocks\n    for rx, ry, rr, sd in ((120, 1760, 110, 0.3), (330, 1840, 60, 1.7), (930, 1800, 130, 2.9),\n                           (700, 1880, 45, 4.2)):\n        contact_shadow(cr, rx, ry + 4, rr * 2.4, a=0.4)\n        _ing_rock(cr, rx, ry, rr, (152, 78, 46), sd)\n    foreground(cr, \"desert\")\n    vignette(cr, a=0.28)\n\n    top_y = min(1500.0, fy - 340 * S)\n    if u < a0:\n        host(\"point\", CX + 10, top_y, 210)\n    elif u < SNAP:\n        host(\"crank\", CX + 10, top_y, 210, beat=k)\n    elif u < DOWN:\n        host(\"shock\", CX + 10 + 60 * fall, top_y + 20 * fall, 210)\n    else:\n        host(\"hold_up\", DX, DFY, 210)\n        up = ease(seg(u, DOWN, 0.68))\n        # the broken tip, lifted from the sand into his raised hands\n        bx = DX + 40 - 40 * up\n        by = (DFY - 10) + (DFY - 238 - (DFY - 10)) * up + 3 * math.sin(t * 2.2) * up\n        _ing_tip(cr, bx, by, 0.15 - 0.15 * up, 1.3)\n\n    if shown is not None:\n        lab, v = shown\n        iv = int(round(v))\n        sub = f\"Ingenuity on Mars · {lab.lower()}\"\n        if snapped and named == n - 1:\n            sub = f\"{lab.lower()} · a rotor blade snapped\"\n        fit_readout(cr, f\"{iv} flight\" + (\"\" if iv == 1 else \"s\"), sub,\n                    80, 520, a=ease(seg(u, a0, a0 + 0.05)), size=130, max_w=520)\n    else:\n        fit_readout(cr, \"Ingenuity\", \"flights on Mars\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.05)), size=130, max_w=400)\n"
     },
     {
      "source": "offline",
@@ -31831,12 +31909,13 @@
      "say": "It ended up flying over ten miles — seventeen times farther than planned.",
      "ascending": false
     }
-   ]
+   ],
+   "hook_was": "A tiny helicopter wasn't supposed to last this long."
   },
   {
    "slug": "hpv-vaccine-cancer-drop",
    "title": "The Cancer Vaccine Already Cut Cases By 88%",
-   "hook": "One shot is quietly wiping out a cancer, and almost nobody noticed.",
+   "hook": "What if a vaccine could just erase a cancer?",
    "closing": "Turns out prevention beats a cure. Who knew.",
    "question": "Did you know this vaccine worked?",
    "caption": "About 91% of cervical cancers start with one virus: HPV. Since the vaccine arrived in 2006, infections in teen girls have collapsed — and so has the cancer. Here's the data connecting the dots. Did you know the vaccine does this? 👇",
@@ -31863,7 +31942,7 @@
      },
      "insight_type": "share",
      "role": "1 · THE CAUSE",
-     "topic": "cancer from HPV",
+     "topic": "the virus behind almost all cervical cancer",
      "say": "About 91% of cervical cancers are caused by one virus, HPV.",
      "illustrated_scene": "# scene standard: 2026-10-09\ndef _hpv_virion(cr, x, y, r, rot, body=(206, 40, 54)):\n    # a virus particle: a lit capsid crowned with knob-tipped spikes, its\n    # surface pitted with darker facets so it reads as a virus, not a ball\n    cr.set_source_rgba(*_c((96, 16, 26)))\n    cr.set_line_width(max(2.5, r * 0.16))\n    for i in range(12):\n        a = rot + i * math.pi / 6\n        cr.move_to(x + math.cos(a) * r * 0.85, y + math.sin(a) * r * 0.85)\n        cr.line_to(x + math.cos(a) * r * 1.42, y + math.sin(a) * r * 1.42)\n    cr.stroke()\n    for i in range(12):\n        a = rot + i * math.pi / 6\n        cr.arc(x + math.cos(a) * r * 1.48, y + math.sin(a) * r * 1.48, r * 0.2, 0, 2 * math.pi)\n        cr.set_source_rgba(*_c((255, 150, 156)))\n        cr.fill()\n    disc(cr, x, y, r, body, finish=\"gloss\")\n    for j in range(5):\n        a = rot * 0.7 + j * 1.26\n        cr.arc(x + math.cos(a) * r * 0.5, y + math.sin(a) * r * 0.5, r * 0.16, 0, 2 * math.pi)\n        cr.set_source_rgba(*_c((120, 20, 32), 0.85))\n        cr.fill()\n\n\ndef _flask_outline(cr, cx, base, wb, wn, hb, hn):\n    # an Erlenmeyer flask: wide flat foot, sloped cone, straight neck\n    top = base - hb - hn\n    cr.move_to(cx - wn, top)\n    cr.line_to(cx - wn, base - hb)\n    cr.line_to(cx - wb, base - 22)\n    cr.curve_to(cx - wb - 4, base - 6, cx - wb + 8, base, cx - wb + 24, base)\n    cr.line_to(cx + wb - 24, base)\n    cr.curve_to(cx + wb - 8, base, cx + wb + 4, base - 6, cx + wb, base - 22)\n    cr.line_to(cx + wn, base - hb)\n    cr.line_to(cx + wn, top)\n    cr.close_path()\n\n\ndef _small_flask(cr, x, base, s, liquid):\n    cr.move_to(x - 10 * s, base - 70 * s)\n    cr.line_to(x - 10 * s, base - 40 * s)\n    cr.line_to(x - 32 * s, base)\n    cr.line_to(x + 32 * s, base)\n    cr.line_to(x + 10 * s, base - 40 * s)\n    cr.line_to(x + 10 * s, base - 70 * s)\n    cr.close_path()\n    solid(cr, liquid, finish=\"glass\")\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a giant glass lab flask\n    SUBSTANCE: red spiked virus particles\n    CAUSE: Data pours virus particles from a bucket into the flask until they fill it\n    One Erlenmeyer flask is every case of cervical cancer. A grey sediment\n    of the other causes lies in its foot from the start, its top dashed;\n    Data climbs a ladder leaned against the flask's shoulder and pours\n    bucket after bucket of spiked red HPV particles into its neck, one pour\n    per beat, until the virus fills its true share of the flask — the whole\n    is the flask, the virus is the share, the grey sliver is everything\n    else. Done by 0.58, then held: Data keeps pouring and the full flask\n    overflows, particles tumbling down its side and off across the floor.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    total = sum(v for _, v in rows) or 1.0\n    lh, vh = max(rows, key=lambda r: r[1])\n    hp = vh / total\n    op = 1.0 - hp\n\n    c0, c1 = 0.03, 0.13\n    a0, a1 = 0.13, 0.58\n    n = 4\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    grow = ease(seg(f, 0.15, 0.85))\n    if u < a0:\n        fill = 0.0\n    elif u >= a1:\n        fill = 1.0\n    else:\n        fill = (k + grow) / n\n    pouring = (a0 <= u < a1 and 0.08 < f < 0.9) or u >= a1\n\n    # the lab: a pale wall, a high window of morning light, shelves of glassware\n    vgrad(cr, [(0, (112, 126, 140)), (0.6, (192, 204, 212)), (1, (176, 188, 194))], 0, 1160)\n    cr.rectangle(660, 90, 320, 270)\n    solid(cr, (226, 236, 240), finish=\"glass\", rim=False)\n    glow(cr, 820, 225, 340, (255, 244, 214), 0.55)\n    cr.set_source_rgba(*_c((90, 98, 108)))\n    cr.set_line_width(10)\n    cr.rectangle(660, 90, 320, 270)\n    cr.move_to(820, 90)\n    cr.line_to(820, 360)\n    cr.stroke()\n    for sy in (800, 1030):\n        box(cr, 640, sy, 420, 18, (150, 132, 108), depth=30)\n        for i in range(6):\n            fx = 680 + i * 66\n            col = [(120, 170, 200), (200, 120, 110), (150, 190, 130), (220, 200, 120)][(i + sy // 10) % 4]\n            _small_flask(cr, fx, sy - 18, 0.9 + 0.2 * (i % 2), col)\n    haze(cr, 80, 1160, (206, 216, 222), a=0.5)\n    # the floor, tiles running to the camera\n    vgrad(cr, [(0, (150, 156, 160)), (1, (96, 100, 106))], 1150, H)\n    cr.save()\n    cr.rectangle(0, 1150, W, H - 1150)\n    cr.clip()\n    cr.set_source_rgba(*_c((70, 74, 80), 0.35))\n    cr.set_line_width(3)\n    for i in range(12):\n        cr.move_to(540, 900)\n        cr.line_to(-1200 + i * 300, H)\n    for j in range(7):\n        yy = 1150 + (j * j) * 18\n        cr.move_to(0, yy)\n        cr.line_to(W, yy)\n    cr.stroke()\n    cr.restore()\n\n    # the flask\n    CX, BASE = 460, 1440\n    WB, WN, HB, HN = 310, 70, 560, 140\n    TOP = BASE - HB - HN\n    iwb, iwn, ihb = WB - 16, WN - 14, HB - 16\n    ibase = BASE - 14\n    kk_ = (iwb - iwn) / ihb\n    area_all = ihb * (iwb + iwn)\n\n    def h_of(frac):\n        a = clamp(frac) * area_all\n        return (iwb - math.sqrt(max(0.0, iwb * iwb - kk_ * a))) / kk_\n\n    hg = h_of(op)\n    hl = h_of(op + hp * fill)\n    yg = ibase - hg\n    yl = ibase - hl\n\n    cast_shadow(cr, CX - WB, CX + WB, BASE, length=340, a=0.3)\n    contact_shadow(cr, CX, BASE + 4, 2 * WB + 60, a=0.45)\n    _flask_outline(cr, CX, BASE, WB, WN, HB, HN)\n    solid(cr, (214, 228, 234), finish=\"glass\", rim=False, edge=False)\n\n    churn = 1.0 + 0.8 * ease(seg(u, a1, a1 + 0.06))\n    neck_fill = ease(seg(u, a1, a1 + 0.08))\n    cr.save()\n    _flask_outline(cr, CX, BASE - 14, iwb, iwn, ihb, HN)\n    cr.clip()\n    # other causes: a grey sediment of stones in the foot\n    cr.rectangle(0, yg, W, BASE - yg)\n    solid(cr, (118, 120, 126), rim=False, edge=False)\n    for i in range(22):\n        sx_ = CX - iwb + 30 + ((i * 0.618) % 1.0) * (2 * iwb - 60)\n        sy_ = yg + 8 + ((i * 0.414) % 1.0) * max(1.0, hg - 14)\n        disc(cr, sx_, sy_, 9 + 3 * (i % 3), (170, 172, 178))\n    # the virus share, kept above the sediment\n    vtop = yl if neck_fill <= 0 else min(yl, ibase - ihb - HN * neck_fill)\n    if yg - vtop > 1:\n        cr.rectangle(0, vtop, W, yg - vtop)\n        solid(cr, (92, 16, 26), rim=False, edge=False)\n        cr.save()\n        cr.rectangle(0, 0, W, yg - 2)\n        cr.clip()\n        for i in range(64):\n            nx = (i * 0.6180339) % 1.0\n            nh = (i * 0.4142136) % 1.0\n            hh = hg + 34 + nh * (ihb - hg - 40)\n            w_ = iwb - kk_ * hh\n            px = CX + (2 * nx - 1) * max(0.0, w_ - 34)\n            py = ibase - hh\n            if py < yl + 14:\n                continue\n            px += 14 * churn * math.sin(t * 1.4 * churn + i * 0.7)\n            py += 10 * churn * math.cos(t * 1.2 * churn + i * 1.3)\n            _hpv_virion(cr, px, py, 26 + 5 * (i % 3), t * 0.7 * churn + i)\n        if neck_fill > 0:\n            for i in range(3):\n                py = ibase - ihb - 30 - i * 44\n                if py > vtop:\n                    _hpv_virion(cr, CX + 14 * math.sin(t * 2 + i), py, 22, t + i)\n        cr.restore()\n    # the dashed top of the other causes\n    cr.set_source_rgba(*_c((244, 238, 226)))\n    cr.set_line_width(5)\n    cr.set_dash([16, 10])\n    cr.move_to(CX - iwb, yg)\n    cr.line_to(CX + iwb, yg)\n    cr.stroke()\n    cr.set_dash([])\n    cr.restore()\n    # glass over the contents: graduation marks, a long highlight, the lip\n    _flask_outline(cr, CX, BASE, WB, WN, HB, HN)\n    cr.set_source_rgba(*_c((220, 236, 244), 0.2))\n    cr.fill_preserve()\n    edge(cr, (54, 64, 76), width=9)\n    cr.set_source_rgba(*_c((250, 252, 255), 0.85))\n    cr.set_line_width(5)\n    for j in range(1, 6):\n        hh = j * ihb / 6.0\n        x0 = CX - (iwb - kk_ * hh) + 18\n        cr.move_to(x0, ibase - hh)\n        cr.line_to(x0 + (60 if j % 2 else 34), ibase - hh)\n    cr.stroke()\n    cr.move_to(CX - WN * 0.4, TOP + 40)\n    cr.line_to(CX - WN * 0.4, BASE - HB - 10)\n    cr.line_to(CX - WB * 0.62, BASE - 90)\n    cr.set_source_rgba(*_c((255, 255, 255), 0.4))\n    cr.set_line_width(16)\n    cr.stroke()\n    cr.save()\n    cr.translate(CX, TOP)\n    cr.scale(1, 0.28)\n    cr.arc(0, 0, WN + 16, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (224, 236, 242), finish=\"glass\")\n\n    # the ladder, leaned against the flask's shoulder\n    LA0, LA1 = (870, 1452), (556, 900)\n    LB0, LB1 = (960, 1452), (636, 896)\n    contact_shadow(cr, 915, 1456, 150, a=0.35)\n    cr.set_source_rgba(*_c((84, 90, 98)))\n    cr.set_line_width(13)\n    cr.move_to(*LA0)\n    cr.line_to(*LA1)\n    cr.move_to(*LB0)\n    cr.line_to(*LB1)\n    for r_ in range(1, 9):\n        q = r_ / 9.0\n        cr.move_to(LA0[0] + (LA1[0] - LA0[0]) * q, LA0[1] + (LA1[1] - LA0[1]) * q)\n        cr.line_to(LB0[0] + (LB1[0] - LB0[0]) * q, LB0[1] + (LB1[1] - LB0[1]) * q)\n    cr.stroke()\n\n    # Data climbs it to the neck\n    climb = ease(seg(u, c0, c1)) * 0.86\n    hx = (LA0[0] + LB0[0]) / 2 + ((LA1[0] + LB1[0]) / 2 - (LA0[0] + LB0[0]) / 2) * climb\n    hy = 1452 + (898 - 1452) * climb\n\n    # the pour: particles arc from his bucket into the neck\n    if pouring:\n        sx, sy = hx - 40, hy - 170\n        ex, ey = CX + 10, TOP + 10\n        for j in range(5):\n            q = (t * 1.4 + j / 5.0) % 1.0\n            px = sx + (ex - sx) * q\n            py = sy + (ey - sy) * q - 50 * math.sin(math.pi * q)\n            _hpv_virion(cr, px, py, 22, t * 3 + j)\n\n    # once it is full the flask overflows: particles spill over the lip,\n    # tumble down its left flank and roll off toward the camera\n    if u > a1:\n        for j in range(5):\n            ph = ((u - a1) / 0.14 + j / 5.0) % 1.0\n            if ph < 0.2:\n                q = ph / 0.2\n                px, py = CX - WN - 20 - 10 * q, TOP - 10 + (HN - 10) * q\n            elif ph < 0.6:\n                q = (ph - 0.2) / 0.4\n                px = CX - WN - 30 - (WB - WN) * q\n                py = BASE - HB - 20 + (HB - 20) * q\n            else:\n                q = (ph - 0.6) / 0.4\n                px = CX - WB - 30 - 120 * q\n                py = BASE - 10 + 200 * q\n            _hpv_virion(cr, px, py, 32, ph * 14 + j)\n\n    # right by the camera: a rack of test tubes on the bench\n    contact_shadow(cr, 780, 1880, 520, a=0.4)\n    box(cr, 520, 1880, 520, 60, (226, 228, 230), depth=60)\n    for i in range(7):\n        tx = 548 + i * 70\n        cylinder(cr, tx, 1830, 40, 170, (214, 228, 236), finish=\"glass\", a=0.6)\n        lv = 60 + 30 * (i % 3)\n        cylinder(cr, tx + 4, 1826, 32, lv, (196, 48, 56) if i % 4 else (150, 152, 156), finish=\"glass\")\n    box(cr, 540, 1760, 480, 16, (200, 202, 206), depth=50)\n    vignette(cr, a=0.28)\n\n    if u < c0:\n        host(\"point\", hx, hy, 230)\n    elif u < a0:\n        host(\"climb\", hx, hy, 230)\n    elif u < a1:\n        host(\"pour\", hx, hy, 230, beat=k)\n    else:\n        host(\"pour\", hx, hy, 230, beat=n + int((u - a1) / 0.12))\n\n    # every word after Data, and none of it where he stands\n    text(cr, f\"{int(round(op * 100))}% other causes\", CX, 1520, 40, look.INK,\n         face=\"bold\", anchor=\"center\", alpha=ease(seg(u, 0.0, 0.05)))\n    b = ease(seg(u, a1, a1 + 0.05))\n    if b < 1:\n        fit_readout(cr, \"Cervical cancer\", \"every case, in one flask\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.05)) * (1 - b), size=130)\n    if b > 0:\n        fit_readout(cr, f\"{int(round(hp * 100))}%\", f\"caused by one virus, {lh.replace('Caused by ', '')}\",\n                    80, 520, a=b, size=130)\n"
     },
@@ -31876,8 +31955,8 @@
      "insight_type": "rank",
      "use_baseline": true,
      "role": "2 · THE INFECTION RATE",
-     "topic": "vaccine cut HPV",
-     "say": "Since the vaccine arrived, that virus in teen girls has dropped by about 85 percent.",
+     "topic": "how the vaccine cut hpv infections in teen girls",
+     "say": "Before the vaccine, 11.5% of teen girls carried it — now just 1.8%.",
      "ascending": false,
      "illustrated_scene": "# scene standard: 2026-10-09\ndef _germ(cr, x, y, r, a=1.0):\n    # a virus particle: a lit red ball ringed with knobbed spikes\n    cr.set_source_rgba(*_c((110, 26, 44), a))\n    cr.set_line_width(max(2.0, r * 0.2))\n    for i in range(12):\n        ang = i * 2 * math.pi / 12 + 0.2\n        cr.move_to(x + math.cos(ang) * r * 0.8, y + math.sin(ang) * r * 0.8)\n        cr.line_to(x + math.cos(ang) * r * 1.3, y + math.sin(ang) * r * 1.3)\n    cr.stroke()\n    for i in range(12):\n        ang = i * 2 * math.pi / 12 + 0.2\n        disc(cr, x + math.cos(ang) * r * 1.36, y + math.sin(ang) * r * 1.36,\n             max(2.5, r * 0.17), (232, 120, 70), a=a)\n    disc(cr, x, y, r, (206, 52, 78), finish=\"gloss\", a=a)\n    for i in range(3):\n        ang = i * 2.1 + 0.6\n        disc(cr, x + math.cos(ang) * r * 0.45, y + math.sin(ang) * r * 0.45,\n             max(2.0, r * 0.13), (150, 30, 54), a=a)\n\n\ndef _yrs(label):\n    if \"(\" in label and \")\" in label:\n        return label[label.index(\"(\") + 1:label.index(\")\")]\n    return label\n\n\ndef _hall_q(x):\n    # depth fraction along the LEFT wall: 0 at the camera, 1 at the far end\n    q = clamp(x / 400.0)\n    return q, 1380 - 300 * q, 380 + 440 * q\n\n\ndef _lockers(cr, mirror):\n    # a row of lockers running down one wall into the distance\n    N = 12\n    r = 0.8\n    tot = (1 - r ** N) / (1 - r)\n    xs = [0.0]\n    acc = 0.0\n    for j in range(N):\n        acc += r ** j\n        xs.append(400.0 * acc / tot)\n    for j in reversed(range(N)):\n        xa, xb = xs[j], xs[j + 1]\n        qa, fa, ca = _hall_q(xa)\n        qb, fb, cb = _hall_q(xb)\n        ta = fa - (fa - ca) * 0.6\n        tb = fb - (fb - cb) * 0.6\n        X = (lambda v: W - v) if mirror else (lambda v: v)\n        cr.move_to(X(xa), ta)\n        cr.line_to(X(xb), tb)\n        cr.line_to(X(xb), fb - 8 * (1 - qb))\n        cr.line_to(X(xa), fa - 8 * (1 - qa))\n        cr.close_path()\n        col = (62, 104, 162) if j % 2 == 0 else (54, 94, 148)\n        if mirror:\n            col = tuple(int(c * 0.82) for c in col)\n        solid(cr, col, finish=\"metal\")\n        # vents near the top, a handle at waist height\n        cr.set_source_rgba(*_c((28, 46, 80)))\n        cr.set_line_width(max(1.5, 4 * (1 - 0.8 * qa)))\n        for s_ in range(3):\n            fy0 = 0.12 + s_ * 0.05\n            y0 = ta + (fa - ta) * fy0\n            y1 = tb + (fb - tb) * fy0\n            cr.move_to(X(xa + (xb - xa) * 0.25), y0 + (y1 - y0) * 0.25)\n            cr.line_to(X(xa + (xb - xa) * 0.75), y0 + (y1 - y0) * 0.75)\n        cr.stroke()\n        hx = xa + (xb - xa) * 0.8\n        hy = ta + (fa - ta) * 0.5\n        cr.rectangle(X(hx) - 3, hy, 6 * (1 - 0.6 * qa) + 2, 40 * (1 - 0.6 * qa))\n        solid(cr, (190, 196, 206), finish=\"metal\", rim=False, edge=False)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a heap of spiky virus germs\n    SUBSTANCE: red virus germs\n    CAUSE: Data sweeps the heap of germs out of the school hallway with a broom, one sweep at a time\n    A school hallway running back between two rows of lockers, clogged\n    wall to wall by a heap of red, spiked virus particles: its height is the\n    share of teen girls who carried HPV before the vaccine. Each stroke of\n    Data's broom sends a clump of germs rolling away toward the camera, and\n    the heap shrinks until it stands at today's share while Data works his\n    way in after it. The old heap stays as a dashed ghost with its years on\n    it, and ticks up the side measure it in today's heap, so the old one\n    reads as about six times as big. Done by 0.56 and held: Data keeps\n    sweeping and the odd stray germ rolls off.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    v0 = v0 or 1.0\n    n = 5\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    shrink = ease(seg(f, 0.25, 0.7))\n    step = 0.0 if u < a0 else (k + shrink) / n\n    done = u >= a0 and k == n - 1 and shrink >= 0.999\n    val = v0 + (v1 - v0) * step\n\n    CX, BASE = 560, 1440\n    h0 = 580.0\n    h = h0 * val / v0\n    hw = 120 + 0.57 * h\n    h1 = h0 * v1 / v0\n    hw0 = 120 + 0.57 * h0\n\n    # the hallway in depth: ceiling, far doors, two walls, a polished floor\n    vgrad(cr, [(0, (176, 172, 160)), (1, (226, 222, 206))], 0, 840)\n    vgrad(cr, [(0, (214, 208, 190)), (1, (196, 188, 170))], 820, 1090)\n    # the far end: double doors with lit windows and an exit sign\n    for dx0 in (430, 545):\n        cr.rectangle(dx0, 900, 105, 180)\n        solid(cr, (150, 112, 74))\n        cr.rectangle(dx0 + 25, 920, 55, 70)\n        cr.set_source_rgba(*_c((250, 240, 210)))\n        cr.fill()\n    glow(cr, 540, 960, 200, (255, 240, 200), 0.5)\n    cr.rectangle(505, 860, 70, 28)\n    solid(cr, (40, 150, 80), rim=False)\n    text(cr, \"EXIT\", 540, 882, 20, (240, 255, 240), anchor=\"center\", shadow=False)\n    # side walls above the lockers\n    for mirror in (False, True):\n        X = (lambda v: W - v) if mirror else (lambda v: v)\n        cr.move_to(X(0), 0)\n        cr.line_to(X(400), 820)\n        cr.line_to(X(400), 1080)\n        cr.line_to(X(0), 1380)\n        cr.close_path()\n        cr.set_source_rgba(*_c((222, 214, 194) if not mirror else (196, 188, 170)))\n        cr.fill()\n    # the floor\n    cr.move_to(0, 1380)\n    cr.line_to(400, 1080)\n    cr.line_to(680, 1080)\n    cr.line_to(W, 1380)\n    cr.line_to(W, H)\n    cr.line_to(0, H)\n    cr.close_path()\n    cr.save()\n    cr.clip()\n    vgrad(cr, [(0, (170, 160, 140)), (1, (112, 104, 92))], 1080, H)\n    glow(cr, 540, 1500, 560, (255, 244, 220), 0.22)\n    cr.set_source_rgba(*_c((86, 80, 70), 0.35))\n    cr.set_line_width(3)\n    for i in range(15):\n        cr.move_to(540, 1000)\n        cr.line_to(-1200 + i * 250, H)\n    for y_ in (1110, 1150, 1210, 1300, 1430, 1620, 1880):\n        cr.move_to(0, y_)\n        cr.line_to(W, y_)\n    cr.stroke()\n    cr.restore()\n    _lockers(cr, False)\n    _lockers(cr, True)\n    # ceiling lights running back to the doors\n    for i in range(6):\n        z = i / 5.0\n        sc = 1.0 - 0.8 * z\n        ly = 150 + 640 * z ** 0.8\n        glow(cr, 540, ly + 20 * sc, 260 * sc, (255, 244, 214), 0.4)\n        box(cr, 540 - 130 * sc, ly, 260 * sc, 22 * sc, (248, 246, 236), depth=30 * sc)\n    haze(cr, 760, 1100, (226, 220, 204), a=0.4)\n\n    # the heap of germs, wall to wall\n    cast_shadow(cr, CX - hw, CX + hw, BASE, length=300, a=0.3)\n    contact_shadow(cr, CX, BASE + 4, 2 * hw + 60, a=0.45)\n    heap_path(cr, CX, BASE, h, hw)\n    solid(cr, (150, 38, 58))\n    cr.save()\n    heap_path(cr, CX, BASE, h, hw)\n    cr.clip()\n    for r_ in range(14):\n        gy = BASE - 26 - r_ * 50\n        off = 31 if r_ % 2 else 0\n        for c_ in range(16):\n            gx = CX - hw0 + off + c_ * 62\n            if gy < heap_top(CX, BASE, h, hw, gx) + 24:\n                continue\n            _germ(cr, gx, gy, 26)\n    cr.restore()\n    heap_path(cr, CX, BASE, h, hw)\n    edge(cr, (70, 18, 30))\n    nx_ = max(2, int((2 * hw - 60) / 64))\n    for i in range(nx_ + 1):\n        gx = CX - hw + 30 + (2 * hw - 60) * i / nx_\n        gy = heap_top(CX, BASE, h, hw, gx) + 10\n        _germ(cr, gx, gy, 30)\n\n    # each stroke sends a clump of germs rolling down the hall to the camera\n    def _roll(x0, ph, j):\n        x = x0 + (1180 - x0) * ph\n        y = BASE - 22 + 380 * ph * ph - 30 * abs(math.sin(ph * math.pi * 3 + j))\n        _germ(cr, x, y, 26 + 34 * ph)\n    if a0 <= u < a1 + 0.01:\n        ph = seg(f, 0.25, 1.0)\n        if 0 < ph < 1:\n            for j in range(3):\n                _roll(CX + hw * 0.6 - j * 50, clamp(ph * 1.1 - j * 0.06), j)\n    elif u >= a1 + 0.01:\n        g = (u - a1 - 0.01) / 0.12\n        ph = seg(g % 1.0, 0.25, 1.0)\n        if 0 < ph < 1:\n            _roll(CX + hw * 0.6, ph, int(g))\n\n    # right by the camera: a dropped backpack, germs that already rolled off\n    contact_shadow(cr, 190, 1890, 300, a=0.45)\n    cr.move_to(70, 1890)\n    cr.curve_to(50, 1750, 80, 1630, 190, 1620)\n    cr.curve_to(300, 1630, 330, 1750, 310, 1890)\n    cr.close_path()\n    solid(cr, (46, 132, 128))\n    cr.move_to(105, 1880)\n    cr.curve_to(95, 1800, 120, 1765, 190, 1765)\n    cr.curve_to(260, 1765, 285, 1800, 275, 1880)\n    cr.close_path()\n    solid(cr, (36, 110, 108))\n    cr.set_source_rgba(*_c((230, 200, 90)))\n    cr.set_line_width(5)\n    cr.move_to(110, 1790)\n    cr.curve_to(150, 1770, 230, 1770, 270, 1790)\n    cr.stroke()\n    cr.set_source_rgba(*_c((28, 70, 70)))\n    cr.set_line_width(12)\n    cr.move_to(145, 1632)\n    cr.curve_to(145, 1570, 235, 1570, 235, 1632)\n    cr.stroke()\n    contact_shadow(cr, 880, 1860, 150, a=0.4)\n    _germ(cr, 880, 1800, 58)\n    contact_shadow(cr, 700, 1900, 100, a=0.4)\n    _germ(cr, 700, 1862, 38)\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    # Data sweeps from the heap's left flank, working in as it shrinks\n    hx, fy = max(95.0, CX - hw - 25), 1440\n    if u < a0:\n        host(\"point\", hx, fy, 235)\n    elif u < a1 + 0.01:\n        host(\"broom\", hx, fy, 235, beat=k)\n    else:\n        host(\"broom\", hx, fy, 235, beat=n + int((u - a1 - 0.01) / 0.12))\n\n    # THE SCALE on the heap, drawn after Data and clear of him\n    if step > 0.02:\n        heap_path(cr, CX, BASE, h0, hw0)\n        ghost(cr, a=0.9)\n        then_mark(cr, CX - 110, CX + 150, BASE - h0, _yrs(l0))\n    if done:\n        times_ticks(cr, 1000, BASE, h1, max(1, int(v0 / v1)))\n\n    if done:\n        fit_readout(cr, f\"{v1:.1f}%\", f\"of teen girls carry HPV · {_yrs(l1)}\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, f\"{v0:.1f}%\", f\"of teen girls carried HPV · {_yrs(l0)}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
@@ -31890,20 +31969,17 @@
      "insight_type": "rank",
      "use_baseline": true,
      "role": "3 · THE PAYOFF",
-     "topic": "cervical cancer cases",
-     "say": "Girls vaccinated young cut their cervical cancer risk by 88 percent.",
+     "topic": "the vaccine's effect on cervical cancer cases",
+     "say": "Women vaccinated before age 17 cut their cervical cancer risk by 88%.",
      "ascending": false,
      "illustrated_scene": "# scene standard: 2026-10-09\ndef _ward_bed(cr, fx, yb, s, side, occ, a=1.0):\n    \"\"\"One hospital bed, foot at (fx, yb) on the aisle, head against the wall.\"\"\"\n    if a <= 0.01:\n        return\n    L = 300 * s\n    cr.save()\n    cr.translate(fx, yb)\n    if side > 0:\n        cr.scale(-1, 1)\n    x0 = -L\n    contact_shadow(cr, x0 + L / 2, 0, L * 1.15, a=0.32 * a)\n    # the IV pole at the head, its bag hanging\n    cr.set_source_rgba(*_c((120, 126, 136), a))\n    cr.set_line_width(max(2.0, 5 * s))\n    cr.move_to(x0 - 26 * s, 0)\n    cr.line_to(x0 - 26 * s, -250 * s)\n    cr.line_to(x0 - 6 * s, -250 * s)\n    cr.stroke()\n    cr.move_to(x0 - 18 * s, -244 * s)\n    cr.curve_to(x0 - 30 * s, -210 * s, x0 + 6 * s, -210 * s, x0 - 6 * s, -244 * s)\n    cr.close_path()\n    solid(cr, (226, 236, 240), finish=\"glass\", a=a)\n    # legs on castors\n    cr.set_source_rgba(*_c((70, 74, 82), a))\n    cr.set_line_width(max(2.0, 6 * s))\n    for lx in (x0 + 14 * s, -14 * s):\n        cr.move_to(lx, -6 * s)\n        cr.line_to(lx, -44 * s)\n    cr.stroke()\n    for lx in (x0 + 14 * s, -14 * s):\n        disc(cr, lx, -5 * s, 7 * s, (40, 42, 48), a=a)\n    # frame, mattress, headboard, foot rail, pillow\n    box(cr, x0, -40 * s, L, 18 * s, (176, 182, 192), depth=70 * s, finish=\"metal\", a=a)\n    box(cr, x0 + 4 * s, -58 * s, L - 8 * s, 18 * s, (236, 238, 240), depth=64 * s, a=a)\n    box(cr, x0 - 8 * s, -40 * s, 14 * s, 96 * s, (150, 158, 170), depth=70 * s,\n        finish=\"metal\", a=a)\n    box(cr, -12 * s, -40 * s, 10 * s, 54 * s, (150, 158, 170), depth=70 * s,\n        finish=\"metal\", a=a)\n    box(cr, x0 + 16 * s, -76 * s, 64 * s, 18 * s, (250, 250, 252), depth=50 * s, a=a)\n    if occ:\n        # a patient under the ward blanket, head on the pillow\n        disc(cr, x0 + 58 * s, -98 * s, 19 * s, (214, 170, 140), a=a)\n        cr.arc(x0 + 58 * s, -100 * s, 20 * s, math.pi * 0.9, math.pi * 1.9)\n        cr.close_path()\n        solid(cr, (70, 50, 40), a=a, rim=False)\n        cr.move_to(x0 + 84 * s, -60 * s)\n        cr.curve_to(x0 + 100 * s, -112 * s, -120 * s, -104 * s, -60 * s, -96 * s)\n        cr.curve_to(-30 * s, -92 * s, -18 * s, -80 * s, -16 * s, -60 * s)\n        cr.close_path()\n        solid(cr, (118, 160, 186), a=a)\n        # the blanket's folded hem and a stripe across it\n        cr.set_source_rgba(*_c((236, 242, 246), 0.8 * a))\n        cr.set_line_width(max(2.0, 5 * s))\n        cr.move_to(x0 + 96 * s, -86 * s)\n        cr.curve_to(x0 + 110 * s, -104 * s, x0 + 118 * s, -104 * s, x0 + 124 * s, -84 * s)\n        cr.stroke()\n    cr.restore()\n\n\ndef _ward_trolley(cr, x, y, s):\n    \"\"\"A linen trolley rolling through, right by the camera.\"\"\"\n    contact_shadow(cr, x + 130 * s, y, 280 * s, a=0.35)\n    for wx in (x + 20 * s, x + 230 * s):\n        disc(cr, wx, y - 10 * s, 14 * s, (40, 42, 48))\n    box(cr, x, y - 22 * s, 250 * s, 26 * s, (170, 176, 186), depth=60 * s, finish=\"metal\")\n    # the push handle\n    cr.set_source_rgba(*_c((90, 96, 106)))\n    cr.set_line_width(6 * s)\n    cr.move_to(x + 4 * s, y - 30 * s)\n    cr.line_to(x - 20 * s, y - 120 * s)\n    cr.line_to(x + 10 * s, y - 120 * s)\n    cr.stroke()\n    for i in range(3):\n        box(cr, x + 10 * s + i * 78 * s, y - 48 * s, 70 * s, 26 * s,\n            (246, 246, 248), depth=50 * s)\n        box(cr, x + 14 * s + i * 78 * s, y - 74 * s, 62 * s, 24 * s,\n            (214, 226, 236), depth=46 * s)\n        cr.rectangle(x + 10 * s + i * 78 * s, y - 38 * s, 70 * s, 6 * s)\n        cr.set_source_rgba(*_c((86, 132, 170)))\n        cr.fill()\n\n\ndef _ward_slot(i, side):\n    s = 1.9 * 0.74 ** i\n    return 540 + side * 80 * s, 900 + 560 * s / 1.9, s\n\n\ndef _wall_pt(x, f, side):\n    \"\"\"A point on a side wall at screen-x `x` (left-wall coords), f 0 top .. 1 floor.\"\"\"\n    top = x * 640 / 380\n    bot = 1500 - x * 540 / 380\n    return (x if side < 0 else W - x), top + (bot - top) * f\n\n\ndef _wall_quad(cr, xa, xb, f0, f1, side):\n    p = [_wall_pt(xa, f0, side), _wall_pt(xb, f0, side),\n         _wall_pt(xb, f1, side), _wall_pt(xa, f1, side)]\n    cr.move_to(*p[0])\n    for q in p[1:]:\n        cr.line_to(*q)\n    cr.close_path()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a cancer ward's hospital beds\n    SUBSTANCE: occupied hospital beds\n    CAUSE: Data shoves the patients' beds out of the ward one after another until 88% are gone\n    One cancer ward, ten occupied beds down both walls, big by the camera\n    and running back to the swinging doors: the WHOLE is the ward. Bed by\n    bed, far end first, Data puts both hands on the foot rail and shoves it\n    up the aisle and out through the doors, leaving its dashed ghost on\n    the floor where it stood, until the vaccinated share of the ward is\n    empty. The share is the ward itself — the empty floor against the one\n    bed still filled — never a bar laid over it. Done by 0.56 and held:\n    one patient's bed is left by the camera, Data at its rail, linen\n    trolleys keep rolling.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    lab, val = max(rows, key=lambda r: r[1])\n    share = clamp(val / 100.0)\n    N = 10\n    nroll = max(1, min(N, int(round(share * N))))\n    a0, a1 = 0.08, 0.56\n    dur = 0.14\n    gap = (a1 - a0 - dur) / max(1, nroll - 1)\n\n    slots = []\n    for i in range(4, -1, -1):\n        for side in (-1, 1):\n            slots.append((i, side))\n    starts = [a0 + b * gap for b in range(nroll)]\n    rolls = []\n    for b in range(N):\n        if b < nroll:\n            rolls.append(ease(seg(u, starts[b] + 0.03, starts[b] + dur)))\n        else:\n            rolls.append(0.0)\n\n    # the ward: ceiling, walls running back to the doors, a polished floor\n    VX, VY = 540, 880\n    vgrad(cr, [(0, (150, 160, 162)), (0.45, (206, 214, 212)), (1, (178, 186, 186))], 0, H)\n    cr.move_to(0, 0)\n    cr.line_to(380, 640)\n    cr.line_to(380, 960)\n    cr.line_to(0, 1500)\n    cr.close_path()\n    solid(cr, (196, 212, 206), edge=False)\n    cr.move_to(W, 0)\n    cr.line_to(700, 640)\n    cr.line_to(700, 960)\n    cr.line_to(W, 1500)\n    cr.close_path()\n    solid(cr, (184, 200, 196), edge=False)\n    cr.move_to(0, 0)\n    cr.line_to(W, 0)\n    cr.line_to(700, 640)\n    cr.line_to(380, 640)\n    cr.close_path()\n    solid(cr, (226, 228, 222), edge=False, rim=False)\n    # windows of daylight down both walls, a privacy curtain gathered by each\n    for xa, xb in ((30, 150), (190, 262), (285, 328), (342, 366)):\n        for side in (-1, 1):\n            _wall_quad(cr, xa, xb, 0.2, 0.5, side)\n            solid(cr, (176, 212, 232), finish=\"glass\")\n            _wall_quad(cr, xa, xb, 0.2, 0.5, side)\n            edge(cr, (236, 240, 240), width=max(2.0, (xb - xa) * 0.05))\n            cw = (xb - xa) * 0.35\n            _wall_quad(cr, xb + 4, xb + 4 + cw, 0.14, 0.78, side)\n            solid(cr, (118, 172, 166))\n            cr.set_source_rgba(*_c((80, 128, 124), 0.6))\n            cr.set_line_width(max(1.5, cw * 0.06))\n            for k in range(1, 4):\n                xx = xb + 4 + cw * k / 4\n                cr.move_to(*_wall_pt(xx, 0.16, side))\n                cr.line_to(*_wall_pt(xx, 0.76, side))\n            cr.stroke()\n    cr.save()\n    cr.move_to(380, 960)\n    cr.line_to(700, 960)\n    cr.line_to(W, 1500)\n    cr.line_to(W, H)\n    cr.line_to(0, H)\n    cr.line_to(0, 1500)\n    cr.close_path()\n    cr.clip()\n    vgrad(cr, [(0, (176, 182, 176)), (1, (120, 128, 126))], 960, H)\n    cr.set_source_rgba(*_c((90, 96, 94), 0.35))\n    cr.set_line_width(3)\n    for i in range(15):\n        cr.move_to(VX, VY)\n        cr.line_to(-1400 + i * 280, H)\n    for i in range(9):\n        yy = 960 + (H - 960) * (i / 8.0) ** 1.8\n        cr.move_to(0, yy)\n        cr.line_to(W, yy)\n    cr.stroke()\n    glow(cr, VX, 1250, 520, (255, 246, 222), 0.18)\n    cr.restore()\n    # ceiling lights running back\n    for i in range(6):\n        z = i / 5.0\n        sc = 1.0 - 0.75 * z\n        ly = 80 + 520 * z ** 0.8\n        glow(cr, VX, ly + 30 * sc, 220 * sc, (255, 248, 226), 0.45)\n        box(cr, VX - 110 * sc, ly, 220 * sc, 16 * sc, (248, 246, 236), depth=30 * sc)\n    # the back wall and its swinging doors\n    cr.rectangle(380, 640, 320, 320)\n    solid(cr, (210, 220, 216), edge=False)\n    text(cr, \"ONCOLOGY\", 540, 770, 30, look.INK, face=\"bold\", anchor=\"center\", shadow=False)\n    cr.rectangle(462, 800, 156, 160)\n    solid(cr, (40, 46, 50), rim=False)\n    swing = 0.0\n    for b in range(nroll):\n        swing = max(swing, math.sin(math.pi * seg(rolls[b], 0.7, 1.0)) if 0.7 < rolls[b] < 1 else 0.0)\n        if rolls[b] >= 1.0:\n            swing = max(swing, 0.5 * math.exp(-max(0.0, u - starts[b] - dur) * 18))\n    dw = 78 * (1 - 0.75 * swing)\n    for dx0 in (462, 618 - dw):\n        cr.rectangle(dx0, 800, dw, 160)\n        solid(cr, (130, 170, 186))\n        cr.rectangle(dx0 + dw * 0.25, 830, dw * 0.5, 40)\n        solid(cr, (200, 226, 236), finish=\"glass\", rim=False)\n    haze(cr, 600, 1000, (222, 228, 226), a=0.3)\n\n    # the beds, the rolled ones on their way out through the doors; each\n    # leaves its outline on the floor where a patient used to lie\n    items = []\n    for b, (i, side) in enumerate(slots):\n        fx, yb, s = _ward_slot(i, side)\n        r = rolls[b]\n        if r > 0.3:\n            cr.move_to(fx, yb)\n            cr.line_to(fx - side * 300 * s, yb)\n            cr.line_to(fx - side * 300 * s, yb - 70 * s)\n            cr.line_to(fx, yb - 70 * s)\n            cr.close_path()\n            ghost(cr, a=0.85 * seg(r, 0.3, 0.6))\n        cx = fx + (VX + side * 30 - fx) * r\n        cy = yb + (958 - yb) * r\n        cs = s + (0.3 - s) * r\n        al = 1.0 - seg(r, 0.85, 1.0)\n        items.append((cy, cx, cs, side, al))\n    for cy, cx, cs, side, al in sorted(items):\n        _ward_bed(cr, cx, cy, cs, side, True, a=al)\n\n    # right by the camera: linen trolleys rolling through\n    for j in range(2):\n        tx = -340 + ((t * 210 + j * 860) % 1720)\n        _ward_trolley(cr, tx, 1740 + j * 120, 1.25 + 0.2 * j)\n    vignette(cr, a=0.28)\n\n    # Data pushes each bed by its foot rail, walking it up the aisle, then\n    # crosses to the next; when the ward is done he stands at the last bed\n    cur = max([b for b in range(nroll) if u >= starts[b]], default=0)\n    ci, cside = slots[cur]\n    fx, yb, s = _ward_slot(ci, cside)\n    rf = min(rolls[cur], 0.45)\n    bx = fx + (VX + cside * 30 - fx) * rf\n    by = yb + (958 - yb) * rf\n    cs = s + (0.3 - s) * rf\n    hx = bx - cside * 30 * cs\n    hy = min(1500.0, by + 40 * cs)\n    hh = clamp(150 * cs, 180, 240)\n    if u < a0:\n        host(\"point\", hx, hy, hh)\n    elif u < a1 + 0.04:\n        host(\"shove\", hx, hy, hh, beat=cur)\n    else:\n        li, lside = slots[N - 1]\n        lx, ly, ls = _ward_slot(li, lside)\n        go = ease(seg(u, a1 + 0.04, a1 + 0.16))\n        ex, ey = lx - lside * 60, min(1500.0, ly + 36)\n        host(\"hold_up\", hx + (ex - hx) * go, hy + (ey - hy) * go, 240)\n\n    if u >= a1:\n        fit_readout(cr, f\"{int(round(val))}%\", f\"less cervical cancer · {lab.lower()}\",\n                    80, 520, a=ease(seg(u, a1, a1 + 0.05)), size=130)\n    else:\n        fit_readout(cr, \"Cervical cancer\", \"one ward, before the vaccine\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     }
-   ],
-   "retold": "retell/v2",
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:23:04Z"
+   ]
   },
   {
    "slug": "saharan-dust-feeds-amazon",
    "title": "Africa Sends The Amazon 27 Million Tons Of Dust A Year",
-   "hook": "Every year, the Sahara throws millions of tons of dust across an ocean.",
+   "hook": "Africa's desert is secretly feeding the Amazon rainforest.",
    "closing": "Dust: nature's slowest delivery service.",
    "question": "Guessed dust could feed a rainforest?",
    "caption": "Africa sends 182 million tons of dust into the sky every year. Most sinks into the ocean — but 27 million tons survives the 5,000-mile trip to the Amazon, carrying the exact nutrient the rainforest is starving for. Would you have guessed dust feeds a rainforest? 👇",
@@ -31965,7 +32041,7 @@
   {
    "slug": "medical-debt-credit-score-fix",
    "title": "One Rule Change Fixed 16 Million Credit Scores For Free",
-   "hook": "Medical debt stopped wrecking your credit score in 2022.",
+   "hook": "Credit bureaus let medical debt tank your score for years. Then the rule changed.",
    "closing": "Score went up. Debt didn't move an inch.",
    "question": "Did your credit score jump in 2022?",
    "caption": "Medical debt used to make up 58% of every collections account on a credit report. A 2022 rule change erased most of it — lifting scores for 16 million Americans without anyone paying a cent. Did your score change back then? 👇",
@@ -32022,9 +32098,10 @@
      "topic": "what the rule change did to credit scores",
      "say": "That single rule lifted average credit scores by about 20 points.",
      "ascending": false,
-     "illustrated_scene": "def scene(cr, t, u, pts, host):\n    \"\"\"HERO: a giant credit score dial\n    SUBSTANCE: the dial's red needle\n    CAUSE: Data turns the crank wheel and the gears push the needle up the dial\n    The before-the-fix score is the dashed ghost needle on the left; each\n    turn of the crank drives the needle 5 points further into the green,\n    one notch per point. It lands by 0.56 and holds. The flag keeps flying.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: r[1])\n    (lb, vb), (la, va) = rows[0], rows[-1]\n    gain = va - vb\n    n = 4\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    mv = ease(seg(f, 0.1, 0.8))\n    step = 0.0 if u < a0 else (k + mv) / n\n    done = u >= a0 and k == n - 1 and mv >= 0.999\n\n    CX, CY, R = 540, 1060, 320\n    AB, AA = math.pi * 1.12, math.pi * 1.88\n    ang = AB + (AA - AB) * step\n\n    landscape(cr, t, \"town\")\n    birds(cr, t, y0=760, n=4, rgb=(60, 60, 70))\n\n    # the plinth, the post, the dial housing in three-quarter view\n    cast_shadow(cr, 380, 770, 1440, length=380, a=0.3)\n    contact_shadow(cr, 575, 1444, 440, a=0.4)\n    box(cr, 380, 1440, 320, 110, (176, 170, 160))\n    box(cr, 500, 1330, 80, 210, (120, 126, 138), finish=\"metal\")\n    # housing thickness going back to the right\n    cr.new_path()\n    cr.arc(CX + 34, CY - 18, R + 40, math.pi, 2 * math.pi)\n    cr.line_to(CX + 34 + R + 40, CY + 52)\n    cr.line_to(CX + 34 - R - 40, CY + 52)\n    cr.close_path()\n    solid(cr, (46, 50, 60), finish=\"metal\")\n    cr.new_path()\n    cr.arc(CX, CY, R + 40, math.pi, 2 * math.pi)\n    cr.line_to(CX + R + 40, CY + 70)\n    cr.line_to(CX - R - 40, CY + 70)\n    cr.close_path()\n    solid(cr, (78, 84, 98), finish=\"metal\")\n    # the face\n    cr.new_path()\n    cr.arc(CX, CY, R, math.pi, 2 * math.pi)\n    cr.line_to(CX + R, CY + 40)\n    cr.line_to(CX - R, CY + 40)\n    cr.close_path()\n    solid(cr, (240, 236, 224), finish=\"gloss\")\n\n    # the band: grey before the old score, green as far as the needle has gone\n    BR = R - 60\n    cr.set_line_width(64)\n    cr.new_path()\n    cr.arc(CX, CY, BR, math.pi * 1.02, AB)\n    cr.set_source_rgba(*_c((150, 150, 156)))\n    cr.stroke()\n    cr.new_path()\n    cr.arc(CX, CY, BR, AB, math.pi * 1.98)\n    cr.set_source_rgba(*_c((206, 204, 198)))\n    cr.stroke()\n    if ang > AB + 0.001:\n        cr.new_path()\n        cr.arc(CX, CY, BR, AB, ang)\n        cr.set_source_rgba(*_c((60, 178, 98)))\n        cr.stroke()\n    # one notch per point of the gain: THE SCALE on the dial itself\n    ticks = max(1, int(round(gain)))\n    for i in range(ticks + 1):\n        a = AB + (AA - AB) * i / ticks\n        big = i % 5 == 0\n        r0, r1 = BR - 40, BR - (78 if big else 60)\n        cr.set_source_rgba(*_c((40, 40, 48)))\n        cr.set_line_width(7 if big else 4)\n        cr.move_to(CX + r0 * math.cos(a), CY + r0 * math.sin(a))\n        cr.line_to(CX + r1 * math.cos(a), CY + r1 * math.sin(a))\n        cr.stroke()\n\n    def needle(a):\n        L = R - 30\n        cr.new_path()\n        cr.move_to(CX + L * math.cos(a), CY + L * math.sin(a))\n        cr.line_to(CX + 18 * math.cos(a + math.pi / 2), CY + 18 * math.sin(a + math.pi / 2))\n        cr.line_to(CX - 40 * math.cos(a), CY - 40 * math.sin(a))\n        cr.line_to(CX + 18 * math.cos(a - math.pi / 2), CY + 18 * math.sin(a - math.pi / 2))\n        cr.close_path()\n\n    # the old score stays as a ghost needle\n    if step > 0.02:\n        needle(AB)\n        ghost(cr, a=0.9)\n        tx, ty = CX + (R + 70) * math.cos(AB), CY + (R + 70) * math.sin(AB)\n        text(cr, \"Before\", tx - 10, ty - 10, 34, look.INK, anchor=\"right\")\n    needle(ang)\n    solid(cr, (204, 42, 36), finish=\"gloss\")\n    disc(cr, CX, CY, 34, (60, 62, 70), finish=\"metal\")\n    # glass glint across the face\n    cr.new_path()\n    cr.arc(CX, CY, R - 10, math.pi * 1.15, math.pi * 1.35)\n    cr.set_source_rgba(1, 1, 1, 0.35)\n    cr.set_line_width(14)\n    cr.stroke()\n\n    # a flag on the housing's shoulder, always flying\n    px, ptop = CX + 260, 650\n    cr.set_source_rgba(*_c((60, 62, 70)))\n    cr.set_line_width(10)\n    cr.move_to(px, 830)\n    cr.line_to(px, ptop)\n    cr.stroke()\n    cr.new_path()\n    cr.move_to(px, ptop)\n    for j in range(9):\n        x = px + j * 20\n        cr.line_to(x, ptop + 18 * math.sin(t * 5 - j * 0.7) * j / 8)\n    for j in range(8, -1, -1):\n        x = px + j * 20\n        cr.line_to(x, ptop + 90 + 18 * math.sin(t * 5 - j * 0.7) * j / 8)\n    cr.close_path()\n    solid(cr, (60, 178, 98))\n\n    # the crank wheel on the plinth: it turns when the needle moves\n    wx, wy = 740, 1350\n    rot = step * 4 * 2 * math.pi\n    disc(cr, wx, wy, 26, (90, 94, 104), finish=\"metal\")\n    cr.set_source_rgba(*_c((70, 72, 80)))\n    cr.set_line_width(12)\n    cr.new_path()\n    cr.arc(wx, wy, 70, 0, 2 * math.pi)\n    cr.stroke()\n    for s_ in range(4):\n        a = rot + s_ * math.pi / 2\n        cr.move_to(wx, wy)\n        cr.line_to(wx + 70 * math.cos(a), wy + 70 * math.sin(a))\n        cr.stroke()\n    hx_, hy_ = wx + 70 * math.cos(rot), wy + 70 * math.sin(rot)\n    disc(cr, hx_, hy_, 14, (200, 160, 60), finish=\"metal\")\n\n    # right by the camera: a credit card lying on the pavement\n    cr.save()\n    cr.translate(260, 1720)\n    cr.rotate(-0.18)\n    cr.new_path()\n    r_ = 24\n    w_, h_ = 360, 220\n    cr.arc(r_, r_, r_, math.pi, 1.5 * math.pi)\n    cr.arc(w_ - r_, r_, r_, 1.5 * math.pi, 2 * math.pi)\n    cr.arc(w_ - r_, h_ - r_, r_, 0, 0.5 * math.pi)\n    cr.arc(r_, h_ - r_, r_, 0.5 * math.pi, math.pi)\n    cr.close_path()\n    solid(cr, (44, 92, 168), finish=\"gloss\")\n    cr.rectangle(40, 70, 70, 54)\n    solid(cr, (214, 182, 90), finish=\"metal\")\n    cr.restore()\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    walk_in = ease(seg(u, 0.0, a0))\n    dx = 1000 - 170 * walk_in\n    if u < a0:\n        host(\"point\", dx, 1452, 220)\n    elif u < a1 + 0.04:\n        host(\"crank\", dx, 1452, 220, beat=k)\n    elif u < 0.9:\n        host(\"hold_up\", dx, 1452, 220)\n    else:\n        host(\"cheer\", dx, 1452, 220)\n\n    if done:\n        fit_readout(cr, f\"+{int(round(gain))} points\", \"average credit score · after the fix\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, \"One rule change\", \"average credit score · before the fix\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
+     "illustrated_scene": "# scene standard: 2026-10-09\ndef _vd_pt(cx, cy, r, a, sx=0.88):\n    return (cx + sx * r * math.cos(a), cy + r * math.sin(a))\n\n\ndef _vd_ellipse(cr, cx, cy, r, sx=0.88):\n    cr.save()\n    cr.translate(cx, cy)\n    cr.scale(sx, 1.0)\n    cr.arc(0, 0, r, 0, 2 * math.pi)\n    cr.restore()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a round steel bank vault door\n    SUBSTANCE: gold-lit notches on the dial\n    CAUSE: Data cranks the vault's big spoked wheel and its pointer turns across the score notches\n    Inside a bank lobby, the vault door at the back: its spoked wheel is the\n    score's pointer, and the arc of notches over it counts one notch per\n    point. Data walks up and cranks the wheel, one crank at a time; with each\n    turn the pointer sweeps on and the notches it passes light gold, until it\n    has climbed the whole gain from the old score (a ghost of the pointer\n    where it started, \"Before\") to the new one. Lands by 0.56 and holds; then\n    the vault's bolts slide back one by one and light spills from the seam\n    while Data holds the wheel.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    lo = min(v for _, v in rows)\n    hi = max(v for _, v in rows)\n    gain = hi - lo\n    N = int(round(gain)) if 4 <= gain <= 40 else 20\n    n = 4\n    a0, a1 = 0.10, 0.56\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    turn = ease(seg(f, 0.12, 0.85))\n    frac = 0.0 if u < a0 else (k + turn) / n\n    done = u >= a0 and k == n - 1 and turn >= 0.999\n    ang = math.pi + math.pi * frac\n\n    CX, CY, R, SX = 520, 1010, 330, 0.88\n    GY = 1340\n\n    # the lobby: warm stone wall, lamps, columns, a polished floor\n    vgrad(cr, [(0, (58, 52, 48)), (0.35, (150, 138, 120)), (1, (206, 194, 174))], 0, GY)\n    for i in range(4):\n        lx = 140 + i * 270\n        glow(cr, lx, 250, 170, (255, 236, 196), 0.45)\n        disc(cr, lx, 250, 26, (250, 240, 214), finish=\"gloss\")\n    cr.rectangle(0, 420, W, 26)\n    solid(cr, (176, 164, 146), rim=False)\n    for i in range(6):\n        px = 60 + i * 190\n        cr.rectangle(px, 520, 120, 600)\n        solid(cr, (186, 174, 154), edge=False, rim=False, depth=0.4)\n    haze(cr, 0, 1000, (190, 178, 160), a=0.4)\n    vgrad(cr, [(0, (128, 116, 102)), (1, (58, 52, 48))], GY, H)\n    cr.save()\n    cr.rectangle(0, GY, W, H - GY)\n    cr.clip()\n    cr.set_source_rgba(*_c((40, 36, 32), 0.28))\n    cr.set_line_width(3)\n    for i in range(15):\n        cr.move_to(CX, 1060)\n        cr.line_to(-1000 + i * 220, H)\n    for j in range(5):\n        yy = GY + 40 * (j + 1) ** 1.5\n        cr.move_to(0, yy)\n        cr.line_to(W, yy)\n    cr.stroke()\n    cr.restore()\n    for cx_ in (-40, 960):\n        contact_shadow(cr, cx_ + 65, GY + 4, 170, a=0.35)\n        cylinder(cr, cx_, GY, 130, 1100, (214, 204, 186))\n\n    # the vault door, set into the wall\n    unlock = seg(u, 0.62, 0.95)\n    glow(cr, CX, GY + 10, 420, (255, 210, 120), 0.12 + 0.3 * unlock)\n    cast_shadow(cr, CX - 290, CX + 290, GY, length=260, a=0.28)\n    contact_shadow(cr, CX, GY + 4, 720, a=0.4)\n    _vd_ellipse(cr, CX, CY, R + 42, SX)\n    solid(cr, (92, 96, 104), finish=\"metal\")\n    _vd_ellipse(cr, CX + 8, CY + 6, R + 6, SX)\n    solid(cr, (34, 36, 42), rim=False)\n    # light leaking round the seam as it unlocks\n    if unlock > 0:\n        _vd_ellipse(cr, CX, CY, R + 6, SX)\n        cr.set_source_rgba(*_c((255, 214, 130), 0.85 * unlock))\n        cr.set_line_width(14)\n        cr.stroke()\n    _vd_ellipse(cr, CX + 24, CY, R, SX)\n    solid(cr, (84, 88, 98), finish=\"metal\")\n    _vd_ellipse(cr, CX, CY, R, SX)\n    solid(cr, (168, 172, 180), finish=\"metal\")\n    for rr, al in ((R - 20, 0.5), (R - 100, 0.35), (R - 170, 0.3)):\n        _vd_ellipse(cr, CX, CY, rr, SX)\n        cr.set_source_rgba(*_c((70, 74, 82), al))\n        cr.set_line_width(6)\n        cr.stroke()\n\n    # the locking bolts round the rim, sliding back one by one once it lands\n    NB = 10\n    for b in range(NB):\n        ba = math.pi * 2 * (b + 0.5) / NB\n        d = ease(seg(unlock, b / NB, (b + 1) / NB))\n        r0 = R - 34 - 70 * d\n        bx, by = _vd_pt(CX, CY, r0 + 40, ba, SX)\n        cr.save()\n        cr.translate(bx, by)\n        cr.rotate(ba)\n        cr.rectangle(-40, -17, 80, 34)\n        cr.restore()\n        solid(cr, (196, 198, 204), finish=\"metal\")\n\n    # the score dial: one notch per point, from the old score to the new\n    lit_n = int(frac * N + 1e-6)\n    for i in range(N + 1):\n        a = math.pi + math.pi * i / N\n        x0, y0 = _vd_pt(CX, CY, R - 82, a, SX)\n        x1, y1 = _vd_pt(CX, CY, R - 44, a, SX)\n        lit = i <= lit_n and u >= a0\n        if lit:\n            glow(cr, x1, y1, 30, P[\"coin\"], 0.55)\n        cr.set_source_rgba(*_c((64, 52, 20)))\n        cr.set_line_width(16)\n        cr.move_to(x0, y0)\n        cr.line_to(x1, y1)\n        cr.stroke()\n        cr.set_source_rgba(*_c(P[\"coin\"] if lit else (78, 82, 92)))\n        cr.set_line_width(10)\n        cr.move_to(x0, y0)\n        cr.line_to(x1, y1)\n        cr.stroke()\n\n    # THE SCALE: where the pointer stood before, as a ghost\n    gx0, gy0 = _vd_pt(CX, CY, 70, math.pi, SX)\n    gx1, gy1 = _vd_pt(CX, CY, R - 92, math.pi, SX)\n    if u >= a0:\n        cr.move_to(gx0, gy0)\n        cr.line_to(gx1, gy1)\n        ghost(cr, a=0.9)\n    text(cr, \"Before\", gx1 + 6, gy1 - 30, 30, (244, 238, 226), face=\"bold\")\n\n    # the spoked wheel — its long spoke is the pointer\n    for j in range(6):\n        a = ang + j * math.pi / 3\n        rr = R - 92 if j == 0 else 190\n        ex, ey = _vd_pt(CX, CY, rr, a, SX)\n        cr.set_source_rgba(*_c((46, 48, 56)))\n        cr.set_line_width(30)\n        cr.set_line_cap(cairo.LINE_CAP_ROUND)\n        cr.move_to(CX, CY)\n        cr.line_to(ex, ey)\n        cr.stroke()\n        cr.set_source_rgba(*_c((214, 216, 222)))\n        cr.set_line_width(12)\n        cr.move_to(CX, CY)\n        cr.line_to(ex, ey)\n        cr.stroke()\n        if j == 0:\n            disc(cr, ex, ey, 22, (214, 60, 50), finish=\"gloss\")\n        else:\n            disc(cr, ex, ey, 22, (190, 160, 90), finish=\"metal\")\n    disc(cr, CX, CY, 56, (196, 170, 100), finish=\"metal\")\n    disc(cr, CX, CY, 20, (90, 80, 60), finish=\"metal\")\n    if done:\n        ax, ay = _vd_pt(CX, CY, R - 60, 2 * math.pi, SX)\n        text(cr, \"After\", ax - 10, ay - 40, 30, (244, 238, 226), face=\"bold\",\n             anchor=\"right\")\n\n    # right by the camera: a credit card on the lobby floor\n    contact_shadow(cr, 860, 1860, 420, a=0.35)\n    cr.move_to(640, 1712)\n    cr.line_to(1010, 1655)\n    cr.line_to(1062, 1832)\n    cr.line_to(692, 1892)\n    cr.close_path()\n    solid(cr, (38, 58, 108), finish=\"gloss\")\n    cr.move_to(700, 1745)\n    cr.line_to(770, 1734)\n    cr.line_to(782, 1782)\n    cr.line_to(712, 1793)\n    cr.close_path()\n    solid(cr, P[\"coin\"], finish=\"metal\")\n    cr.set_source_rgba(*_c((200, 210, 230), 0.7))\n    cr.set_line_width(8)\n    cr.move_to(730, 1840)\n    cr.line_to(960, 1803)\n    cr.stroke()\n    vignette(cr, a=0.28)\n\n    # Data walks up to the vault and cranks the wheel round\n    walk_in = ease(seg(u, 0.0, a0))\n    hx = 170 + (400 - 170) * walk_in\n    if u < a0:\n        host(\"point\", hx, GY, 230)\n    elif u < a1 + 0.04:\n        host(\"crank\", hx, GY, 230, beat=k)\n    elif u < 0.92:\n        host(\"hold_up\", hx, GY, 230)\n    else:\n        host(\"cheer\", hx, GY, 230)\n\n    if done:\n        fit_readout(cr, f\"+{int(round(gain))} points\", \"average credit score, after the fix\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, \"Credit scores\", \"the average, before the rule change\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     }
-   ]
+   ],
+   "hook_was": "Medical debt stopped wrecking your credit score in 2022."
   },
   {
    "slug": "rabies-prevention-gap",
