@@ -3155,6 +3155,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 57,
       "duration_s": 15.7
+    },
+    "ingenuity-mars-helicopter-flights": {
+      "claimed_at": "2026-10-10T17:21:38.270030+00:00",
+      "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
+      "publish_at": "2026-10-10T20:41:24Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3931,6 +3938,14 @@
       "state": "posted",
       "slug": "youth-sports-dropout",
       "at": "2026-10-10T16:29:51.681163+00:00"
+    },
+    {
+      "claimed_at": "2026-10-10T17:21:38.270030+00:00",
+      "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
+      "publish_at": "2026-10-10T20:41:24Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "ingenuity-mars-helicopter-flights"
     }
   ]
 }
