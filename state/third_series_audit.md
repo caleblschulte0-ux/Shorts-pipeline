@@ -8,7 +8,7 @@
 | drama | 12 | 0.04 |
 | win | 7 | 0.03 |
 | argument | 6 | 0.055 |
-| rage | 5 | 0.21 |
+| rage | 5 | 0.2 |
 | jumpscare | 3 | 0.2 |
 | beef | 3 | 0.25 |
 | clutch | 3 | 0.02 |
