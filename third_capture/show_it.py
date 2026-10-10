@@ -9,28 +9,26 @@ raging about, the car, the person who isn't on stream. A repost editor
 cuts a picture of it in for a few seconds at the moment it is named.
 
 So the author (and the story director, per beat) names what is said but
-not shown: `{"thing": "...", "kind": "coin|stock|thing", "at": s}`.
-`fetch` finds its picture and draws the pop-up:
+not shown: `{"thing": "...", "look": "...", "kind": "coin|stock|thing",
+"at": s}` — `look` is what the picture must SHOW ("HAWK coin chart after
+the rug pull"). The picture comes from the SHARED finder
+(`funnel/find_image.py`): every source the media funnel reaches (news,
+Brave, Tavily, DuckDuckGo Images, Reddit, Bluesky, Imgur, YouTube,
+Wikipedia...), downloaded and CHECKED by the brain against `look`. A
+coin or a stock that no picture showed is drawn here from its real price
+data, so a rug pull still looks like one.
 
-  coin   its logo and its PRICE over the days around the clip, so a rug
-         pull looks like one (CoinGecko, then DEX pairs for meme coins)
-  stock  its price over the same window (Yahoo's chart API)
-  thing  the lead image of the Wikipedia article whose title IS the thing
-
-Only an exact match is shown. A thing nobody can find a picture of shows
-nothing: a wrong picture is worse than none, and nothing here is ever
-generated or guessed. Every network call degrades to None; a pop-up can
-never cost a clip its render.
+A brief inset in commentary on something else is fair use (operator,
+same night), so copyrighted pictures are admissible. A thing nobody can
+find a checked picture of shows nothing: a wrong picture is worse than
+none, and nothing here is ever generated. Every failure degrades to no
+pop-up; a pop-up can never cost a clip its render.
 """
 from __future__ import annotations
 
 import io
-import json
 import math
 import re
-import time
-import urllib.parse
-import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -43,11 +41,6 @@ MAX_SHOWS = 2
 SHOW_GAP = 3.0
 CARD_W = 820
 CARD_TOP = 300         # upper third: clear of the speech captions and the line
-WINDOW_DAYS = 21       # the price window ending at the clip
-
-UA = ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 "
-      "(KHTML, like Gecko) shorts-pipeline/1.0")
-TIMEOUT = 10
 
 UP, DOWN = (46, 204, 113), (235, 64, 52)
 PANEL, INK, SUB = (18, 18, 22), (255, 255, 255), (170, 170, 180)
@@ -72,7 +65,8 @@ def plan(items, dur: float, offset: float = 0.0) -> list[dict]:
                == thing.lower() for k in out):
             continue
         out.append({"thing": thing, "kind": kind, "at": round(at, 2),
-                    "secs": round(min(SHOW_S, dur - at - 0.2), 2)})
+                    "secs": round(min(SHOW_S, dur - at - 0.2), 2),
+                    "look": _look(r)})
         if len(out) >= MAX_SHOWS:
             break
     return out
@@ -93,11 +87,20 @@ def parse(raw, clip_dur: float = 0.0) -> list[dict]:
         kind = str(r.get("kind", "thing")).strip().lower()
         at = _num(r.get("at"), -1.0)
         if thing and at >= 0:
-            out.append({"thing": thing,
-                        "kind": kind if kind in KINDS else "thing",
-                        "at": round(min(at, clip_dur) if clip_dur else at,
-                                    2)})
+            row = {"thing": thing,
+                   "kind": kind if kind in KINDS else "thing",
+                   "at": round(min(at, clip_dur) if clip_dur else at, 2)}
+            if _look(r):
+                row["look"] = _look(r)
+            out.append(row)
     return out
+
+
+def _look(r: dict) -> str:
+    """What the picture must SHOW, in search words (the finder searches
+    for it and the brain checks the picture against it)."""
+    s = re.sub(r"\s+", " ", str(r.get("look") or "")).strip()
+    return s[:90]
 
 
 def _num(v, default: float = 0.0) -> float:
@@ -109,161 +112,6 @@ def _num(v, default: float = 0.0) -> float:
 
 def _norm(s: str) -> str:
     return re.sub(r"[^a-z0-9]+", "", str(s or "").lower())
-
-
-# ---------------------------------------------------------- network ----
-
-def _get(url: str) -> bytes:
-    req = urllib.request.Request(url, headers={
-        "User-Agent": UA, "Accept": "application/json,image/*,*/*"})
-    with urllib.request.urlopen(req, timeout=TIMEOUT) as r:
-        return r.read()
-
-
-def _json(url: str):
-    return json.loads(_get(url).decode("utf-8", "replace"))
-
-
-def _window(when: float | None) -> tuple[int, int]:
-    end = int(when or time.time()) + 86400
-    return end - (WINDOW_DAYS + 1) * 86400, end
-
-
-def coin(thing: str, when: float | None = None) -> dict | None:
-    """{"name","symbol","logo": bytes|None,"prices": [(ts, usd)]} for the
-    coin whose name or ticker IS `thing`, else None."""
-    want = _norm(thing.lstrip("$"))
-    lo, hi = _window(when)
-    try:
-        res = _json("https://api.coingecko.com/api/v3/search?query="
-                    + urllib.parse.quote(thing.lstrip("$")))
-        for c in res.get("coins") or []:
-            if want not in (_norm(c.get("name")), _norm(c.get("symbol"))):
-                continue
-            mc = _json(f"https://api.coingecko.com/api/v3/coins/{c['id']}"
-                       f"/market_chart/range?vs_currency=usd&from={lo}"
-                       f"&to={hi}")
-            prices = [(p[0] / 1000, p[1]) for p in mc.get("prices") or []]
-            if len(prices) >= 3:
-                return {"name": c.get("name"), "symbol": c.get("symbol"),
-                        "logo": _bytes(c.get("large")), "prices": prices}
-            break
-    except Exception:  # noqa: BLE001
-        pass
-    return dex_coin(thing, when)
-
-
-_GT_NET = {"ethereum": "eth", "bsc": "bsc", "solana": "solana",
-           "base": "base", "arbitrum": "arbitrum", "polygon": "polygon_pos"}
-
-
-def dex_coin(thing: str, when: float | None = None) -> dict | None:
-    """A meme coin that only trades on a DEX: the deepest pair whose token
-    name or ticker IS `thing`, priced from GeckoTerminal's daily candles."""
-    want = _norm(thing.lstrip("$"))
-    lo, hi = _window(when)
-    try:
-        res = _json("https://api.dexscreener.com/latest/dex/search?q="
-                    + urllib.parse.quote(thing.lstrip("$")))
-        pairs = [p for p in res.get("pairs") or []
-                 if want in (_norm((p.get("baseToken") or {}).get("name")),
-                             _norm((p.get("baseToken") or {}).get("symbol")))
-                 and p.get("chainId") in _GT_NET]
-        if not pairs:
-            return None
-        p = max(pairs, key=lambda p: _num((p.get("liquidity") or {})
-                                          .get("usd")))
-        oh = _json(f"https://api.geckoterminal.com/api/v2/networks/"
-                   f"{_GT_NET[p['chainId']]}/pools/{p['pairAddress']}/ohlcv/"
-                   f"day?before_timestamp={hi}&limit={WINDOW_DAYS + 1}")
-        rows = ((oh.get("data") or {}).get("attributes") or {}) \
-            .get("ohlcv_list") or []
-        prices = sorted((r[0], r[4]) for r in rows if r[0] >= lo)
-        if len(prices) < 3:
-            return None
-        bt = p.get("baseToken") or {}
-        return {"name": bt.get("name"), "symbol": bt.get("symbol"),
-                "logo": _bytes((p.get("info") or {}).get("imageUrl")),
-                "prices": prices}
-    except Exception:  # noqa: BLE001
-        return None
-
-
-def stock(thing: str, when: float | None = None) -> dict | None:
-    """The listed company whose ticker or name IS `thing`."""
-    lo, hi = _window(when)
-    want = _norm(thing.lstrip("$"))
-    try:
-        res = _json("https://query1.finance.yahoo.com/v1/finance/search?q="
-                    + urllib.parse.quote(thing.lstrip("$"))
-                    + "&quotesCount=5&newsCount=0")
-        sym, name = None, None
-        for q in res.get("quotes") or []:
-            if q.get("quoteType") not in ("EQUITY", "ETF"):
-                continue
-            names = {_norm(q.get("symbol")), _norm(q.get("shortname")),
-                     _norm(q.get("longname"))}
-            if want in names or any(n.startswith(want) and len(want) >= 4
-                                    for n in names if n):
-                sym = q["symbol"]
-                name = q.get("shortname") or q.get("longname") or sym
-                break
-        if not sym:
-            return None
-        ch = _json(f"https://query1.finance.yahoo.com/v8/finance/chart/"
-                   f"{urllib.parse.quote(sym)}?period1={lo}&period2={hi}"
-                   f"&interval=1d")
-        r = (ch.get("chart") or {}).get("result") or []
-        ts = r[0].get("timestamp") or []
-        cl = (((r[0].get("indicators") or {}).get("quote") or [{}])[0]
-              .get("close") or [])
-        prices = [(t, c) for t, c in zip(ts, cl) if c is not None]
-        if len(prices) < 3:
-            return None
-        return {"name": name, "symbol": sym, "logo": None, "prices": prices}
-    except Exception:  # noqa: BLE001
-        return None
-
-
-def wiki(thing: str) -> dict | None:
-    """The lead image of the article whose title IS `thing` (after
-    redirects), never a disambiguation page."""
-    qs = urllib.parse.urlencode({
-        "action": "query", "format": "json", "redirects": 1,
-        "prop": "pageimages|pageprops", "piprop": "thumbnail",
-        "pithumbsize": 900, "titles": thing})
-    try:
-        res = _json("https://en.wikipedia.org/w/api.php?" + qs)
-        q = res.get("query") or {}
-        titles = {_norm(thing)}
-        for r in (q.get("normalized") or []) + (q.get("redirects") or []):
-            if _norm(r.get("from")) in titles:
-                titles.add(_norm(r.get("to")))
-        for page in (q.get("pages") or {}).values():
-            if "disambiguation" in (page.get("pageprops") or {}):
-                return None
-            title = page.get("title") or ""
-            base = _norm(re.sub(r"\s*\(.*?\)\s*$", "", title))
-            if _norm(title) not in titles and base != _norm(thing):
-                return None
-            src = (page.get("thumbnail") or {}).get("source")
-            img = _bytes(src)
-            if img:
-                return {"name": re.sub(r"\s*\(.*?\)\s*$", "", title),
-                        "image": img}
-    except Exception:  # noqa: BLE001
-        pass
-    return None
-
-
-def _bytes(url) -> bytes | None:
-    if not url or not str(url).startswith("http"):
-        return None
-    try:
-        b = _get(str(url))
-        return b if len(b) > 200 else None
-    except Exception:  # noqa: BLE001
-        return None
 
 
 # -------------------------------------------------------------- cards --
@@ -365,18 +213,22 @@ def image_card(info: dict, out: Path) -> Path:
 
 
 def fetch(item: dict, work: Path, when: float | None = None) -> Path | None:
-    """The pop-up PNG for one planned item, or None. Never raises."""
-    thing, kind = item["thing"], item["kind"]
+    """The pop-up PNG for one planned item, or None. Never raises. The
+    picture comes from the SHARED finder (funnel/find_image.py: every
+    source, checked by the brain); a coin or a stock that no picture
+    showed is drawn from its real price data."""
+    from funnel import find_image
+    thing = item["thing"]
     out = Path(work) / f"show_{_norm(thing)[:24] or 'x'}.png"
     try:
-        if kind == "coin":
-            info = coin(thing, when)
-            return chart_card(info, out) if info else None
-        if kind == "stock":
-            info = stock(thing, when)
-            return chart_card(info, out) if info else None
-        info = wiki(thing)
-        return image_card(info, out) if info else None
+        hit = find_image.find(thing, item.get("look") or thing,
+                              kind=item["kind"], when=when, work=work)
+        if not hit:
+            return None
+        if hit.get("chart"):
+            return chart_card(hit["chart"], out)
+        return image_card({"name": item.get("name") or thing,
+                           "image": Path(hit["path"]).read_bytes()}, out)
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[show] {thing!r} failed ({type(e).__name__})",
               flush=True)
