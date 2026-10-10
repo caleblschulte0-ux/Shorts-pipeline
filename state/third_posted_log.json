@@ -12273,13 +12273,77 @@
       "ts": "2026-10-10T12:33:45.327719+00:00"
     },
     "clip-20261010-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/erobb221/clip/RealAttractivePeppermintFunRun-g6SLbf_an4PQXs0-",
-      "story_key": null,
-      "streamer": "erobb221",
+      "url": "https://youtube.com/shorts/FN740QWzXlo",
       "title": "Erobb221 Girlfriend Brings Him A Steak And Beer Mid-Game And It Goes Wrong",
       "kind": "twitch_clip",
-      "ts": "2026-10-10T12:36:30.901559+00:00",
+      "ts": "2026-10-10T12:36:38.795331+00:00",
+      "uploaded_at": "2026-10-10T12:36:38.795344+00:00",
+      "publish_at": "2026-10-10T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261010-erobb221-girlfriend-brings-him-a-steak-and-beer--88033147",
+        "tiktok": "queued for 2026-10-10T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/erobb221/clip/RealAttractivePeppermintFunRun-g6SLbf_an4PQXs0-",
+      "streamer": "erobb221",
+      "series": "chaos",
+      "hook": "Erobb221's lady brings him dinner mid-game \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 13091,
+      "banger": 0.62,
+      "cut": {
+        "start": 0.0,
+        "end": 28.77
+      },
+      "director_cut": true
+    },
+    "rejected-thirstymoistyakdogface-dq1ubxxpw56_xoea": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/ThirstyMoistYakDogFace-dQ1UbXxPw56_xOea",
+      "streamer": "kaicenat",
+      "title": "wiki stealer",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Man talking, nothing visible happens)",
+      "ts": "2026-10-10T12:37:24.496235+00:00"
+    },
+    "rejected-homelyimportantpoxtrihard-71unnfvhj0jwyx-0": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/HomelyImportantPoxTriHard-71unnFvhj0JwYX-0",
+      "streamer": "jasontheween",
+      "title": "bye",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (goodbye chatter, car door, no payoff)",
+      "ts": "2026-10-10T12:38:25.371448+00:00"
+    },
+    "rejected-tenaciousenchantingdoothoneybadger-oblluce3yfwxiizr": {
+      "source_url": "https://www.twitch.tv/hasanabi/clip/TenaciousEnchantingDootHoneyBadger-ObLLuCE3YfwxIIzR",
+      "streamer": "hasanabi",
+      "title": "CAUGHT",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Political debate talk; 'CAUGHT' title un)",
+      "ts": "2026-10-10T12:38:51.474941+00:00"
+    },
+    "rejected-agitatedsavagebarracudahotpokket-wigxmiksxoyssbml": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/AgitatedSavageBarracudaHotPokket-wIgXMIKSxOyssbML",
+      "streamer": "caseoh_",
+      "title": "ur welcome",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (Menu screen, setup talk, nothing happens)",
+      "ts": "2026-10-10T12:39:44.330772+00:00"
+    },
+    "clip-20261010-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/OutstandingOilyOrcaDoggo-nzD9VcfuL5VIrR7Y",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Can't Believe What Just Happened After This Crazy Escape",
+      "kind": "twitch_clip",
+      "ts": "2026-10-10T12:43:47.483387+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
