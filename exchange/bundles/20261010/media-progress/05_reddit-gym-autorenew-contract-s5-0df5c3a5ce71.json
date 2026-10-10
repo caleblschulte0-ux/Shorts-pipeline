@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261010",
+  "bundle": {
+    "identity": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad",
+    "path": "exchange/bundles/20261010/bundle.json"
+  },
+  "request_id": "05_reddit-gym-autorenew-contract-s5-0df5c3a5ce71",
+  "safe_request_id": "05_reddit-gym-autorenew-contract-s5-0df5c3a5ce71",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "8b317981023854d60ff1e5c627f4c409735e9632cbc596b367fdb0be26a43a5a",
+  "prompt_used": "An editorial illustration for a short-form video: phone call smiling relief. It accompanies the narration: \"Within a week I had my refund and an apology call\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1hOMIMo3enEijaIw3xxASrqgqgwX44pf3",
+    "filename": "20261010__05_reddit-gym-autorenew-contract-s5-0df5c3a5ce71.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1hOMIMo3enEijaIw3xxASrqgqgwX44pf3",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "filename": "20261010__05_reddit-gym-autorenew-contract-s5-0df5c3a5ce71.png",
+    "sha256": "fc64b9bb8ee2bc2310b9a7bb9c534efef85b391301c808f3039d650cf3149a8b",
+    "bytes": 2348289,
+    "width": 941,
+    "height": 1672,
+    "format": "png"
+  },
+  "verified_at": "2026-10-10T11:27:03.823Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
