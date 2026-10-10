@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261010",
+  "bundle": {
+    "identity": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad",
+    "path": "exchange/bundles/20261010/bundle.json"
+  },
+  "request_id": "05_reddit-gym-autorenew-contract-s3-a215ba2bb4eb",
+  "safe_request_id": "05_reddit-gym-autorenew-contract-s3-a215ba2bb4eb",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "97297071b654b5ba5158bde3307f6ea8ab9d86a9337330d98037d0818eed256c",
+  "prompt_used": "An editorial illustration for a short-form video: certified mail envelope stamp. It accompanies the narration: \"the gym had to mail written notice sixty days before any renewal\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1EpLnPk5u7qMF5lOi7WbiTCbR3f34VDOC",
+    "filename": "20261010__05_reddit-gym-autorenew-contract-s3-a215ba2bb4eb.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1EpLnPk5u7qMF5lOi7WbiTCbR3f34VDOC",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "filename": "20261010__05_reddit-gym-autorenew-contract-s3-a215ba2bb4eb.png",
+    "sha256": "fd7cebf276697834c16f7e4fe4010768670cceedbb94f173cf611d1cbeff6ebd",
+    "bytes": 2228241,
+    "width": 1536,
+    "height": 1024,
+    "format": "png"
+  },
+  "verified_at": "2026-10-10T11:27:01.606Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
