@@ -23,7 +23,7 @@
     },
     "argument": {
       "n": 6,
-      "median_vph": 0.055
+      "median_vph": 0.05
     },
     "rage": {
       "n": 5,
@@ -31,7 +31,7 @@
     },
     "jumpscare": {
       "n": 3,
-      "median_vph": 0.2
+      "median_vph": 0.19
     },
     "beef": {
       "n": 3,
@@ -45,7 +45,7 @@
   "excluded": {
     "story": {
       "n": 2,
-      "median_vph": 0.025
+      "median_vph": 0.035
     },
     "unknown": {
       "n": 1,
