@@ -93,6 +93,12 @@ def generate_one(spec: dict, cfg: dict, *, date_str: str, chart: bool) -> dict:
     return pkg
 
 
+def chart_note_for(pkg):
+    """Bounds-safe: a one-shot package passes QA, so never index shots[1]."""
+    has = any(s.get("image_url") for s in pkg.get("shots", []))
+    return "with chart" if has else "no chart"
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -163,7 +169,7 @@ def main() -> int:
         else:
             out_path.write_text(json.dumps(pkg, indent=2) + "\n")
             n_ok += 1
-            chart_note = "with chart" if pkg["shots"][1].get("image_url") else "no chart"
+            chart_note = chart_note_for(pkg)
             print(f"[{slug}] ok ({chart_note}) -> {out_path.relative_to(REPO)}")
 
     print(f"\n=== {n_ok} ok, {n_fail} failed -> {out_dir.relative_to(REPO)} ===")
