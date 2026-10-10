@@ -1,0 +1,19 @@
+{
+  "key": "chip_fab_concentration",
+  "title": "Share of the world's most advanced semiconductors made in-house",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Advanced logic chip manufacturing share",
+    "publisher": "Industry estimates (TSMC investor disclosures / semiconductor trade press)",
+    "url": "https://www.tsmc.com",
+    "officiality": "secondary",
+    "access_date": "2026-10-10"
+  },
+  "notes": "TSMC is estimated to fabricate roughly 90% of the world's most advanced (leading-edge) logic chips.",
+  "points": [
+    {"label": "TSMC", "value": 90},
+    {"label": "Everyone else", "value": 10}
+  ]
+}

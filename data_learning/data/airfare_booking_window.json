@@ -1,0 +1,20 @@
+{
+  "key": "airfare_booking_window",
+  "title": "Best-fare booking window (days before departure)",
+  "unit": "days",
+  "geography": "United States (domestic)",
+  "time_coverage": "n/a (booking-window study)",
+  "source": {
+    "name": "Airfare booking-window study",
+    "publisher": "CheapAir.com (917-million-fare analysis)",
+    "url": "https://www.cheapair.com",
+    "officiality": "secondary",
+    "access_date": "2026-10-10"
+  },
+  "notes": "The best-fare window ran from 164 days out (earliest edge) to 46 days out (latest edge), averaging 70 days before departure.",
+  "points": [
+    {"label": "Earliest good price", "value": 164},
+    {"label": "Average sweet spot", "value": 70},
+    {"label": "Last good price", "value": 46}
+  ]
+}

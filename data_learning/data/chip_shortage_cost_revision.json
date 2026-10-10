@@ -1,0 +1,19 @@
+{
+  "key": "chip_shortage_cost_revision",
+  "title": "Forecast 2021 auto industry revenue lost to the chip shortage (billion dollars)",
+  "unit": "billion dollars",
+  "geography": "Global auto industry",
+  "time_coverage": "2021",
+  "source": {
+    "name": "AlixPartners chip shortage forecasts",
+    "publisher": "AlixPartners",
+    "url": "https://www.alixpartners.com",
+    "officiality": "secondary",
+    "access_date": "2026-10-10"
+  },
+  "notes": "AlixPartners' May 2021 forecast of $110B in lost 2021 auto revenue was revised to $210B by September 2021 as the shortage deepened.",
+  "points": [
+    {"label": "May 2021 forecast", "value": 110},
+    {"label": "September 2021 forecast", "value": 210}
+  ]
+}

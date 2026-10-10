@@ -1,0 +1,19 @@
+{
+  "key": "pollen_concentration_index",
+  "title": "U.S. pollen concentration index (1990 = 100)",
+  "unit": "index",
+  "geography": "United States / Canada (60 pollen stations)",
+  "time_coverage": "1990-2018",
+  "source": {
+    "name": "Anderegg et al., climate change and pollen season trends",
+    "publisher": "Proceedings of the National Academy of Sciences (PNAS)",
+    "url": "https://www.pnas.org",
+    "officiality": "official",
+    "access_date": "2026-10-10"
+  },
+  "notes": "Pollen concentrations rose about 21% from 1990 to 2018, indexed here to a 1990 baseline of 100.",
+  "points": [
+    {"label": "1990", "value": 100, "period": "1990"},
+    {"label": "2018", "value": 121, "period": "2018"}
+  ]
+}

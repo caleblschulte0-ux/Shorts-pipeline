@@ -1,0 +1,20 @@
+{
+  "key": "airfare_domestic_vs_international_window",
+  "title": "Best-fare booking window by trip type (days before departure)",
+  "unit": "days",
+  "geography": "United States (departing)",
+  "time_coverage": "n/a (booking-window study)",
+  "source": {
+    "name": "Airfare booking-window study",
+    "publisher": "CheapAir.com international vs. domestic fare analysis",
+    "url": "https://www.cheapair.com",
+    "officiality": "secondary",
+    "access_date": "2026-10-10"
+  },
+  "notes": "International routes have far fewer seats and less last-minute availability, so the best-fare window opens much earlier than for domestic trips.",
+  "points": [
+    {"label": "Domestic", "value": 70},
+    {"label": "Europe", "value": 276},
+    {"label": "Asia", "value": 318}
+  ]
+}

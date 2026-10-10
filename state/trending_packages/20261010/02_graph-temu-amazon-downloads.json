@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "format": "graph_race",
+  "slug": "02_graph-temu-amazon-downloads",
+  "title": "Temu Passed Amazon In App Downloads",
+  "y_label": "Monthly app downloads (millions)",
+  "duration": 13,
+  "source": "Sources: Apptopia / Sensor Tower app download estimates (approx.)",
+  "hashtags": [
+    "temu",
+    "amazon",
+    "ecommerce",
+    "shopping",
+    "apps",
+    "data",
+    "chart",
+    "business",
+    "tech",
+    "fyp",
+    "shorts",
+    "trending",
+    "viral"
+  ],
+  "years": [2019, 2020, 2021, 2022, 2023, 2024],
+  "series": [
+    {
+      "name": "Amazon",
+      "color": "#4a90e2",
+      "icon": "Amazon",
+      "values": [18, 20, 17, 16, 16, 17]
+    },
+    {
+      "name": "Temu",
+      "color": "#ff3030",
+      "icon": "Temu",
+      "values": [0, 0, 0, 5, 45, 55]
+    }
+  ],
+  "music_vibe": "hiphop"
+}

@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "format": "graph_race",
+  "slug": "03_graph-shein-hm-revenue",
+  "title": "Shein Is Now Bigger Than H&M",
+  "y_label": "Annual revenue (billion dollars)",
+  "duration": 13,
+  "source": "Sources: company filings / Sacra, WSJ revenue estimates (approx.)",
+  "hashtags": [
+    "shein",
+    "hm",
+    "fastfashion",
+    "retail",
+    "fashion",
+    "business",
+    "data",
+    "chart",
+    "money",
+    "fyp",
+    "shorts",
+    "trending",
+    "viral"
+  ],
+  "years": [2018, 2019, 2020, 2021, 2022, 2023],
+  "series": [
+    {
+      "name": "H&M",
+      "color": "#e8114b",
+      "icon": "H&M",
+      "values": [24.0, 24.7, 21.0, 23.4, 21.4, 22.4]
+    },
+    {
+      "name": "Shein",
+      "color": "#111111",
+      "icon": "Shein",
+      "values": [1.4, 3.0, 9.8, 16.0, 22.7, 32.5]
+    }
+  ],
+  "music_vibe": "cinematic"
+}

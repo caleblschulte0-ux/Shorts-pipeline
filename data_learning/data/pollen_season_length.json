@@ -1,0 +1,19 @@
+{
+  "key": "pollen_season_length",
+  "title": "U.S. pollen season length, days longer than 1990",
+  "unit": "index",
+  "geography": "United States / Canada (60 pollen stations)",
+  "time_coverage": "1990-2018",
+  "source": {
+    "name": "Anderegg et al., climate change and pollen season trends",
+    "publisher": "Proceedings of the National Academy of Sciences (PNAS)",
+    "url": "https://www.pnas.org",
+    "officiality": "official",
+    "access_date": "2026-10-10"
+  },
+  "notes": "Pollen season across 60 North American stations runs about 20 days longer in 2018 than in 1990, driven mainly by warming.",
+  "points": [
+    {"label": "1990", "value": 0, "period": "1990"},
+    {"label": "2018", "value": 20, "period": "2018"}
+  ]
+}
