@@ -3206,11 +3206,28 @@
       "duration_s": 19.7
     },
     "phone-checks-205-times-a-day": {
-      "claimed_at": "2026-10-10T22:11:37.163584+00:00",
+      "url": "https://youtube.com/shorts/1NwI3iaxF6k",
       "title": "Your Phone Trained You Like A Slot Machine",
+      "at": "2026-10-10T22:11:48.567522+00:00",
       "publish_at": "2026-10-10T19:36:31Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "illustrated_beats": 2,
+      "fallback_beats": 0,
+      "beat_s_max": 3.39,
+      "beat_s": [
+        2.18,
+        3.36,
+        3.39,
+        4.13
+      ],
+      "n_beats": 2,
+      "story_structure": "auto+auto",
+      "narrative_score": 74,
+      "duration_s": 13.1
     }
   },
   "uploads": [
@@ -4010,9 +4027,10 @@
       "claimed_at": "2026-10-10T22:11:37.163584+00:00",
       "title": "Your Phone Trained You Like A Slot Machine",
       "publish_at": "2026-10-10T19:36:31Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "phone-checks-205-times-a-day"
+      "url": "https://youtube.com/shorts/1NwI3iaxF6k",
+      "state": "posted",
+      "slug": "phone-checks-205-times-a-day",
+      "at": "2026-10-10T22:11:48.567522+00:00"
     }
   ]
 }
