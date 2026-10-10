@@ -21,7 +21,9 @@ import shutil
 import subprocess
 from unittest import mock
 
-import pytest
+import tempfile
+import unittest
+from pathlib import Path
 
 from third_capture import show_it
 from third_capture import story_director as sd
@@ -51,11 +53,11 @@ def test_so_and_but_make_a_story():
     assert [b["link"] for b in edl["beats"]] == ["start", "so", "but"]
 
 
-@pytest.mark.parametrize("bad", ["and then", "", "then", None])
-def test_and_then_is_a_pile_not_a_story(bad):
-    rs = []
-    assert sd.validate_edl(_plan(["so", bad]), DUR, reasons=rs) is None
-    assert "not so/but" in "; ".join(rs)
+def test_and_then_is_a_pile_not_a_story():
+    for bad in ("and then", "", "then", None):
+        rs = []
+        assert sd.validate_edl(_plan(["so", bad]), DUR, reasons=rs) is None
+        assert "not so/but" in "; ".join(rs)
 
 
 def test_every_judge_is_told_the_chain():
@@ -175,8 +177,9 @@ def test_a_rug_pull_reads_off_its_peak(tmp_path):
 
 
 # --------------------------------------------------------- on the video
-@pytest.mark.skipif(not HAVE_FFMPEG, reason="ffmpeg unavailable")
 def test_the_picture_is_on_screen_for_its_seconds_only(tmp_path):
+    if not HAVE_FFMPEG:
+        raise unittest.SkipTest("ffmpeg unavailable")
     import numpy as np
     from PIL import Image
     pic = tmp_path / "p.png"
@@ -222,3 +225,27 @@ def test_sex_sells_with_dignity():
                    author._CONTENT_SYSTEM):
         assert "SEX SELLS" in prompt
         assert "under 18" in prompt and "age-restrict" in prompt
+
+
+class Everything(unittest.TestCase):
+    """CI runs `unittest discover`, which collects only TestCases; every
+    function above runs here as well as under pytest."""
+
+
+def _attach():
+    import inspect as _i
+    for name, fn in list(globals().items()):
+        if not (name.startswith("test_") and callable(fn)):
+            continue
+        takes_tmp = "tmp_path" in _i.signature(fn).parameters
+
+        def case(self, fn=fn, takes_tmp=takes_tmp):
+            if takes_tmp:
+                with tempfile.TemporaryDirectory() as d:
+                    fn(Path(d))
+            else:
+                fn()
+        setattr(Everything, name, case)
+
+
+_attach()
