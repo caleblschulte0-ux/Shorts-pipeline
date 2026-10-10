@@ -3179,6 +3179,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 74,
       "duration_s": 16.1
+    },
+    "medical-debt-credit-score-fix": {
+      "claimed_at": "2026-10-10T18:16:13.579782+00:00",
+      "title": "One Rule Change Fixed 16 Million Credit Scores For Free",
+      "publish_at": "2026-10-11T02:41:24Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3964,6 +3971,14 @@
       "state": "posted",
       "slug": "ingenuity-mars-helicopter-flights",
       "at": "2026-10-10T17:21:47.119130+00:00"
+    },
+    {
+      "claimed_at": "2026-10-10T18:16:13.579782+00:00",
+      "title": "One Rule Change Fixed 16 Million Credit Scores For Free",
+      "publish_at": "2026-10-11T02:41:24Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "medical-debt-credit-score-fix"
     }
   ]
 }
