@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261010",
+  "bundle": {
+    "identity": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad",
+    "path": "exchange/bundles/20261010/bundle.json"
+  },
+  "request_id": "05_reddit-gym-autorenew-contract-s4-93859643cb8c",
+  "safe_request_id": "05_reddit-gym-autorenew-contract-s4-93859643cb8c",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "737a765ab784d9fad4b78d708b9098cf18ded88557bc02eca97ed8ac9b5a64bb",
+  "prompt_used": "An editorial illustration for a short-form video: typing letter laptop closeup. It accompanies the narration: \"I wrote a demand letter quoting the clause\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "10mfKPbNu4Zim0ySwU7fpGTTJ-ZW4sgaT",
+    "filename": "20261010__05_reddit-gym-autorenew-contract-s4-93859643cb8c.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=10mfKPbNu4Zim0ySwU7fpGTTJ-ZW4sgaT",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "filename": "20261010__05_reddit-gym-autorenew-contract-s4-93859643cb8c.png",
+    "sha256": "9c95a41c4f76d6d51b73568dc73fd0bbda8164bc4561683e1c83658e9c0c37e2",
+    "bytes": 1584168,
+    "width": 1145,
+    "height": 1374,
+    "format": "png"
+  },
+  "verified_at": "2026-10-10T11:27:02.598Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
