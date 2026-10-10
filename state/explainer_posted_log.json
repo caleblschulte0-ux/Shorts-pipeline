@@ -3157,11 +3157,28 @@
       "duration_s": 15.7
     },
     "ingenuity-mars-helicopter-flights": {
-      "claimed_at": "2026-10-10T17:21:38.270030+00:00",
+      "url": "https://youtube.com/shorts/LrMy6Z8J9Ug",
       "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
+      "at": "2026-10-10T17:21:47.119130+00:00",
       "publish_at": "2026-10-10T20:41:24Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "illustrated_beats": 2,
+      "fallback_beats": 0,
+      "beat_s_max": 4.18,
+      "beat_s": [
+        4.04,
+        3.75,
+        4.18,
+        4.16
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 74,
+      "duration_s": 16.1
     }
   },
   "uploads": [
@@ -3943,9 +3960,10 @@
       "claimed_at": "2026-10-10T17:21:38.270030+00:00",
       "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
       "publish_at": "2026-10-10T20:41:24Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "ingenuity-mars-helicopter-flights"
+      "url": "https://youtube.com/shorts/LrMy6Z8J9Ug",
+      "state": "posted",
+      "slug": "ingenuity-mars-helicopter-flights",
+      "at": "2026-10-10T17:21:47.119130+00:00"
     }
   ]
 }
