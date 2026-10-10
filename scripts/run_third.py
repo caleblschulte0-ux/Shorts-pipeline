@@ -2765,7 +2765,9 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     whisper_model=wmodel,
                     auto=auto_flag, series=series,
                     direct=(meta or {}).get("edit"),
-                    edit_mode=edit_mode)
+                    edit_mode=edit_mode,
+                    when=(time.time() - float(pick["age_h"]) * 3600
+                          if pick.get("age_h") else None))
                 if meta:
                     _judge("title", source="authored", title=meta["title"])
                     led["authored_title"] = meta["title"]

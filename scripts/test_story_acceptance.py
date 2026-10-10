@@ -51,10 +51,10 @@ def main() -> int:  # noqa: C901
         "title": "A Challenges B", "hook_overlay": "HE CALLED HIM OUT",
         "target_duration": 45,
         "beats": [
-            {"source_id": "a", "start": 2, "end": 10, "role": "setup",
+            {"source_id": "a", "start": 2, "end": 10, "link": "so", "role": "setup",
              "purpose": "show the challenge", "transition": "hard_cut",
              "context_overlay": "", "effects": []},
-            {"source_id": "b", "start": 5, "end": 20, "role": "payoff",
+            {"source_id": "b", "start": 5, "end": 20, "link": "so", "role": "payoff",
              "purpose": "show the answer", "transition": "hard_cut",
              "context_overlay": "THEN HE RESPONDED", "effects": []},
         ],
@@ -329,11 +329,11 @@ def main() -> int:  # noqa: C901
                 "hook_overlay": "HE CALLED HIM OUT", "title": "T",
                 "ending": {"type": "reaction_hold", "duration": 1.0},
                 "beats": [
-                    {"source_id": "a", "start": 2, "end": 10, "role": "setup",
+                    {"source_id": "a", "start": 2, "end": 10, "link": "so", "role": "setup",
                      "purpose": "x", "transition": "hard_cut",
                      "context_overlay": "", "effects": [], "framing": "wide"},
                     {"source_id": "b", "start": b_start, "end": 20,
-                     "role": "payoff", "purpose": "y", "transition": t_into_b,
+                     "link": "so", "role": "payoff", "purpose": "y", "transition": t_into_b,
                      "context_overlay": "", "effects": [],
                      "framing": "wide"}]}
 
@@ -523,7 +523,7 @@ def main() -> int:  # noqa: C901
     e = dict(base)
     e["beats"] = [dict(base["beats"][0], role="setup"),
                   dict(base["beats"][1], role="payoff"),
-                  {"source_id": "c", "start": 2, "end": 8, "role": "context",
+                  {"source_id": "c", "start": 2, "end": 8, "link": "so", "role": "context",
                    "purpose": "trailing context", "transition": "hard_cut",
                    "context_overlay": "", "effects": []}]
     check("story ending on a context beat rejected (#8)",
@@ -1564,9 +1564,9 @@ def main() -> int:  # noqa: C901
              "premise": "p", "central_question": "q",
              "hook_overlay": "he said what now",
              "beats": [{"source_id": "a", "start": 1, "end": 8,
-                        "role": "setup", "purpose": "set it up"},
+                        "link": "so", "role": "setup", "purpose": "set it up"},
                        {"source_id": "b", "start": 1, "end": 8,
-                        "role": "payoff", "purpose": "pay it off"}]}
+                        "link": "so", "role": "payoff", "purpose": "pay it off"}]}
         e.update(over)
         return e
 
@@ -1576,9 +1576,9 @@ def main() -> int:  # noqa: C901
           any("not a story" in r for r in _rs))
     _rs = []
     _sd2.validate_edl(_edl(beats=[{"source_id": "zzz", "start": 1, "end": 8,
-                                   "role": "setup", "purpose": "x"},
+                                   "link": "so", "role": "setup", "purpose": "x"},
                                   {"source_id": "b", "start": 1, "end": 8,
-                                   "role": "payoff", "purpose": "y"}]),
+                                   "link": "so", "role": "payoff", "purpose": "y"}]),
                       _D, {}, reasons=_rs)
     check("a STRUCTURAL rejection names the gate, not 'no genuine arc'",
           any("unknown source" in r for r in _rs)
@@ -1607,14 +1607,14 @@ def main() -> int:  # noqa: C901
             (_edl(structure="nonsense"), "unknown structure"),
             (_edl(premise=""), "missing premise"),
             (_edl(beats=[{"source_id": "a", "start": 1, "end": 1.2,
-                          "role": "setup", "purpose": "x"},
+                          "link": "so", "role": "setup", "purpose": "x"},
                          {"source_id": "b", "start": 1, "end": 8,
-                          "role": "payoff", "purpose": "y"}]),
+                          "link": "so", "role": "payoff", "purpose": "y"}]),
              "sub-1.5s beat"),
             (_edl(beats=[{"source_id": "a", "start": 1, "end": 8,
-                          "role": "setup", "purpose": "x"},
+                          "link": "so", "role": "setup", "purpose": "x"},
                          {"source_id": "b", "start": 1, "end": 8,
-                          "role": "setup", "purpose": "y"}]),
+                          "link": "so", "role": "setup", "purpose": "y"}]),
              "must end on the payoff")):
         _rs = []
         check(f"narrative law still rejects: {_label}",

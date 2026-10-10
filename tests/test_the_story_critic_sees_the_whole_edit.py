@@ -33,9 +33,9 @@ def _edl(hook):
             "structure": "chronological", "title": "t",
             "hook_overlay": hook,
             "beats": [{"source_id": "a", "start": 0, "end": 10,
-                       "role": "setup", "purpose": "the claim"},
+                       "link": "so", "role": "setup", "purpose": "the claim"},
                       {"source_id": "b", "start": 0, "end": 10,
-                       "role": "payoff", "purpose": "the proof"}]}
+                       "link": "so", "role": "payoff", "purpose": "the proof"}]}
 
 
 class TheHookIsNeverCutMidPhrase(unittest.TestCase):
@@ -94,9 +94,9 @@ class TheLedgerSaysWhatTheEditAdded(unittest.TestCase):
                "narration": {"text": "Emiru is unboxing a mattress.",
                              "over_beat": 0},
                "beats": [{"source_id": "S", "start": 0.2, "end": 1.6,
-                          "role": "setup", "purpose": "a"},
+                          "link": "so", "role": "setup", "purpose": "a"},
                          {"source_id": "S", "start": 1.8, "end": 3.2,
-                          "role": "payoff", "purpose": "b",
+                          "link": "so", "role": "payoff", "purpose": "b",
                           "context_overlay": "LATER ON STREAM"}],
                "ending": {"duration": 0.3}}
         srcinfo = {"S": {"path": str(self.src), "words": [],

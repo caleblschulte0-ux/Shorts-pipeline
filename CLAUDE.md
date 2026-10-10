@@ -713,6 +713,23 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   changes the clip's speed. A dry run with `clips_only` publishes its renders
   to `preview-renders:third-dry/<run id>/`.
   `tests/test_a_clip_is_edited_like_the_reposts.py`.
+- **A story is a CHAIN, and the edit SHOWS what it talks about**
+  (operator, 2026-10-09, after backtest 17: *"it's not a collection of
+  clips or like 4 moments in a stream played in a row"*; of xQc on a rug
+  pull: *"put a picture of the stock he is talking about as a layover for
+  a few seconds so they can get it. Internalize what [we're] going for"*).
+  Every beat after the first carries `link` "so" (it happens because of
+  the beat before) or "but" (it turns against it); `validate_edl` refuses
+  "and then", and the scout, director, critic and reviser are all told.
+  A clip (`edit.show`) or a beat (`show`) names a thing that is said but
+  not seen; `third_capture/show_it.py` cuts in its picture for `SHOW_S`
+  at that second: a price chart around the clip's date for a coin or a
+  stock, else the lead image of the Wikipedia article whose title IS the
+  thing. No exact match, no picture. And sex sells, with dignity (same
+  night: *"we have the green light to goonbait not to much let's keep our
+  dignity"*): the picker and the writer lean into flirting and thirst,
+  adults only, nothing a platform would age-restrict.
+  `tests/test_a_story_is_a_chain_and_shows_what_it_talks_about.py`.
 - **Slots follow `_learned_prior()`, and it had no tests** until the day it
   was found inverted: kaicenat and buddha (median 5 and 8 views) at the
   maximum boost, jynxzi (1,355-view top video) below them, because flops and

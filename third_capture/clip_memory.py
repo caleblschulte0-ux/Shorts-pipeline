@@ -132,7 +132,9 @@ def said_from_words(words) -> str:
 #   3 — a plan is read and repaired on paper before it is rendered
 #   4 — a near-miss keeps its edit (keep_edit) and the table read screens
 #       only what reads as no story at all
-EDIT_VERSION = 4
+#   5 — every beat joins by so/but, never "and then", and a beat may cut
+#       in a picture of the thing it talks about (show_it)
+EDIT_VERSION = 5
 
 
 def note_story_tried(mem: dict, member_urls: list[str], *, premise: str = "",

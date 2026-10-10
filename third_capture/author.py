@@ -49,6 +49,7 @@ Return STRICT JSON:
  "edit": {"mood": str, "mood_at": number,
           "moves": [{"move": str, "at": number}, ...],
           "line2": {"text": str, "at": number},
+          "show": [{"thing": str, "kind": str, "at": number}, ...],
           "cut": {"start": number, "end": number}, "complete": bool}}
 
 This niche is REALITY TV: viewers follow PEOPLE and DRAMA — fights, beef,
@@ -69,6 +70,15 @@ Rules:
   gap. <= 90 chars, max 1 emoji, at most one ALL-CAPS emphasis word. NEVER
   invent an event the transcript/original title doesn't support — tease
   honestly, do not lie or clickbait a payoff that isn't there.
+- SEX SELLS, WITH DIGNITY (operator, 2026-10-09: "we have the green
+  light to goonbait not to much let's keep our dignity"). When the clip
+  has it (flirting, rizz, a thirsty chat, someone called fine, a jealous
+  partner, an outfit or a glow-up getting a reaction), the title and the
+  line lean into it, playful and suggestive, the way the big repost
+  channels tease it ("Kai's date had him speechless 😳"). The line:
+  adults only (never anyone who might be under 18), nothing explicit or
+  crude, nothing a platform would age-restrict, and never a tease the
+  clip does not deliver. Never invent it on a clip that has none.
 - hook: the ONE line of text on screen for the whole video, written the
   way the big Twitch repost channels write it: sentence case (never ALL
   CAPS), plain words, 3-9 words, saying the SITUATION a stranger needs to
@@ -124,6 +134,19 @@ Rules:
     the line of text may change to a second line at that second, same
     rules as hook ("Then chat noticed 💀", "He was not ready 😭"). Most
     clips keep one line: {"text": "", "at": 0}.
+  - show: the THING a stranger needs to see to get the clip, when it is
+    TALKED ABOUT but not on screen: the coin that got rug pulled, the
+    stock, the game he is raging about, the car, the person who is not
+    on stream, the product. The edit cuts its picture in for a few
+    seconds at the second it is named, so the viewer gets it. "thing" is
+    its exact real name as a search would find it ("Hawk Tuah",
+    "GameStop", "Elden Ring", "Lamborghini Urus"); "kind" is "coin" (a
+    crypto coin or meme coin: a price chart is shown), "stock" (a listed
+    company's stock: a price chart) or "thing" (anything else: its
+    picture); "at" is the second it is first named, from the
+    transcript. 0-2 of them, only when knowing what it LOOKS like or
+    what its price DID makes the clip land. Never a guess, never
+    something already on screen, never the streamer. Most clips: [].
   - cut: {"start","end"} in SECONDS into this clip — the span to KEEP so a
     first-time viewer instantly understands the moment. Use the [t.t-t.t]
     timestamps in the transcript. start early enough to include the SETUP
@@ -499,6 +522,11 @@ def _postprocess(out: dict, streamer: str, context: str,
             l2_at = 0.0
         if l2_at > 0:
             edit["line2"] = {"text": l2_text, "at": round(l2_at, 2)}
+
+    from third_capture import show_it
+    _shows = show_it.parse(edit_raw.get("show"), clip_dur)
+    if _shows:
+        edit["show"] = _shows
 
     # Narrative cut window (§9): trusted only when it's sane against the
     # known clip length — a >=3s span inside [0, clip_dur]. Anything off
@@ -913,6 +941,15 @@ disagreeing, roasting, betraying, or choosing sides; visible fear / shock /
 anger / crying / laughter; a challenge or bet with a visible win or failure; a
 wholesome moment that feels real; or a live event people are searching NOW.
 Gameplay mechanics and inside-baseball rarely travel.
+
+SEX SELLS, WITH DIGNITY (operator, 2026-10-09: "the internet is gooners so
+we have the green light to goonbait not to much let's keep our dignity but
+sex sells"). Flirting, rizz, a thirsty chat, a date going well or badly, a
+streamer getting called fine, a jealous partner, someone's outfit or glow-up
+causing a reaction: these travel, and they belong in GOOD or HIGH like any
+other drama. The line: adults only (never anyone who might be under 18),
+nothing explicit, no nudity, nothing a platform would age-restrict, and
+never a title that implies more happened than did.
 
 Score 0.0-1.0, anchored to a greenlight rubric (clarity, universal stakes,
 real emotion, a clear payoff, freshness, search/fan pull, commentability).
