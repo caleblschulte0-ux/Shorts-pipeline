@@ -23,6 +23,7 @@ from third_capture.author import (_call_claude, _call_gemini_vision,
 
 STRUCTURES = {"chronological", "cold_open", "mystery_reveal",
               "two_perspectives", "escalation", "before_after"}
+LINKS = {"so", "but"}     # how a beat follows the one before it
 ROLES = {"setup", "escalation", "climax", "payoff", "context", "reaction"}
 # What the brain calls a role it means. Backtests 2026-10-07/08 threw away
 # three repairs over "unknown beat role 'turn'", "'evidence'", "'proof'" —
@@ -201,6 +202,16 @@ funny moments about the same person is NOT a story. When the premise or
 payoff cannot be stated plainly from the sources, return
 {"is_story": false, "why_not": "<reason>"}.
 
+A STORY IS A CHAIN, NOT A LIST (operator, 2026-10-09: "it's not a
+collection of clips or like 4 moments in a stream played in a row").
+Join every beat to the one before it with SO or BUT, never AND THEN:
+"xQc hypes the coin, SO Buddha buys in, BUT it rugs, SO he is out $800."
+Each beat happens BECAUSE OF the beat before it (so) or turns AGAINST it
+(but). The opening raises ONE question ("is he about to lose it all?")
+and the last beat answers it. A beat that is merely the next funny thing
+in the same stream, however good, is "and then": it is cut, and a pile
+whose beats only join by "and then" is not a story at all.
+
 If it IS a story, DIRECT it. Choose ONE structure and justify it:
 - chronological: setup -> escalation -> payoff (natural timeline compels)
 - cold_open: strongest reaction first -> back to the beginning -> payoff
@@ -251,6 +262,16 @@ Then emit the COMPLETE timeline. Segment rules:
   visual — use when showing the person/evidence being discussed)
 - framing per beat: "wide" (default — full scene, use for the incident)
   | "tight" (closer punch-in — use for a response/reaction beat)
+- link: for every beat after the first, "so" (it happens BECAUSE of the
+  beat before) or "but" (it turns AGAINST it). If the honest answer is
+  "and then", that beat does not belong in the story.
+- show: when a beat TALKS ABOUT a thing a stranger cannot see — the coin
+  that got rug pulled, the stock, the game, the car, a person who is not
+  on stream — name it exactly ("thing": its real name as a search would
+  find it; "kind": "coin", "stock" or "thing"; "at": the SOURCE second it
+  is named). The edit cuts its picture (a price chart for a coin or a
+  stock) in for a few seconds so the viewer gets it. Only when seeing it
+  makes the beat land; never a guess; omit otherwise.
 - effects: always [] — this channel plays footage at its own speed, with
   no slowed replay and no flash (operator, 2026-10-09).
 - narration: OPTIONAL top-level LIST, at most ONE line per beat, each
@@ -287,6 +308,10 @@ Return STRICT JSON:
             "transition": "hard_cut|j_cut|l_cut",
             "framing": "wide|tight",
             "context_overlay": str,
+            "link": "so|but",     // how this beat follows the one
+                                  // before it; beat 0 has "start"
+            "show": {"thing": str, "kind": "coin|stock|thing",
+                     "at": s} | omitted,
             "effects": [{"type": "subtle_punch", "at": s}, ...]}, ...],
  "narration": [{"text": str, "over_beat": int,
                 "essential_because": str}, ...] | omitted,
@@ -315,6 +340,10 @@ of them:
 Use what you know about these streamers, their relationships and ongoing
 sagas to spot connections a keyword match would miss — but every proposal
 must be grounded in lines that are actually in the catalogue.
+
+A story is a CHAIN: each clip happens BECAUSE OF the one before it (so)
+or turns AGAINST it (but). If the only honest joining word between two
+clips is "and then", they are not one story.
 
 NOT a story: a streamer's greatest hits; clips that merely share a person;
 the same moment clipped twice; a pile of funny moments with no change.
@@ -408,6 +437,12 @@ create curiosity?  9. Does the ending answer it?  10. Is anything
 misleading?  11. Is emphasis on the right moment?  12. Does it feel like
 ONE story rather than several clips?
 
+A STORY IS A CHAIN: every beat follows from the one before it (SO) or
+turns against it (BUT). Beats joined only by AND THEN — the next moment
+in the same stream, another funny bit — are several clips, not a story,
+however good each is: score that below 60. Say which beat breaks the
+chain.
+
 Be stricter about coherence than cosmetics. Before you score, write the
 story the way a stranger would retell it to a friend, in ONE sentence — if
 you cannot, it is not a story yet. Then name the PAYOFF: the second at
@@ -456,6 +491,11 @@ EDL is in each SOURCE's own seconds. Each problem is mapped for you to the
 beat and source second it lands on, and THE CUT THE CRITIC WATCHED shows
 every line each beat kept, in source seconds: move a boundary to the line
 you mean — past a garbled or repeated line, onto a clean one.
+
+Every beat after the first keeps its "link": "so" or "but" (a beat whose
+only honest link is "and then" is removed, never relabelled), and its
+"show" when it has one; add a "show" when the critic could not tell what
+thing a beat is talking about and seeing it would fix that.
 
 You may NOT add new sources. Return the COMPLETE corrected EDL in the
 exact same JSON schema you used before (is_story true, same fields)."""
@@ -870,12 +910,31 @@ def validate_edl(edl: dict, durations: dict[str, float],
             framing = str(b.get("framing", "wide"))
             if framing not in FRAMINGS:
                 framing = "wide"
+            # A STORY IS A CHAIN (operator, 2026-10-09): every beat after
+            # the first follows from the one before (so) or turns against
+            # it (but). "and then" is the pile of moments the operator
+            # called not a story; a beat that cannot say so or but is not
+            # in the story.
+            link = re.sub(r"[^a-z]", "", str(b.get("link", "")).lower())
+            if beats and link not in LINKS:
+                rs.append(f"beat {len(beats) + 1} ({sid} {s:.1f}s) is "
+                          f"'{b.get('link') or 'and then'}', not so/but — "
+                          "a pile of moments, not a chain")
+                return None
+            show = None
+            if isinstance(b.get("show"), dict):
+                from third_capture import show_it
+                _sh = show_it.parse([b["show"]], float(dur))
+                if _sh and s <= _sh[0]["at"] <= e:
+                    show = _sh[0]
             beats.append({"source_id": sid, "start": round(s, 2),
                           "end": round(e, 2), "role": role,
                           "purpose": purpose[:120],
                           "transition": trans,
                           "framing": framing,
                           "context_overlay": overlay,
+                          "link": link if beats else "start",
+                          **({"show": show} if show else {}),
                           "effects": effects})
         beats = _no_replayed_seconds(beats, positions or {}, rs)
         beats = _no_repeated_lines(beats, words or {}, rs)

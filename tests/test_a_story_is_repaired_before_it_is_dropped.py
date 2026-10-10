@@ -307,10 +307,10 @@ def _with_narration(text):
     e = {"is_story": True, "premise": "p", "central_question": "q?",
          "structure": "chronological", "title": "t",
          "hook_overlay": "he says kai ignored him",
-         "beats": [{"source_id": "a", "start": 0, "end": 10, "role": "setup",
+         "beats": [{"source_id": "a", "start": 0, "end": 10, "link": "so", "role": "setup",
                     "purpose": "the claim"},
                    {"source_id": "b", "start": 0, "end": 10,
-                    "role": "payoff", "purpose": "the proof"}]}
+                    "link": "so", "role": "payoff", "purpose": "the proof"}]}
     e["narration"] = {"text": text, "over_beat": 0,
                       "essential_because": "source a, 0-6s"}
     return e
@@ -408,7 +408,7 @@ class NoSecondOfTheBroadcastPlaysTwice(unittest.TestCase):
            "C": ("vod2", 125.0)}
 
     def _beats(self, *spec):
-        return [{"source_id": s, "start": a, "end": b, "role": "setup",
+        return [{"source_id": s, "start": a, "end": b, "link": "so", "role": "setup",
                  "purpose": "p"} for s, a, b in spec]
 
     def test_the_kai_overlap_is_trimmed(self):
@@ -474,7 +474,7 @@ class NoLineIsSaidTwiceAcrossASeam(unittest.TestCase):
     }
 
     def _beats(self, *spec):
-        return [{"source_id": s, "start": a, "end": b, "role": "setup",
+        return [{"source_id": s, "start": a, "end": b, "link": "so", "role": "setup",
                  "purpose": "p"} for s, a, b in spec]
 
     def test_the_repeated_opening_is_trimmed(self):
@@ -548,7 +548,7 @@ class TheStoryEndsWhereTheSentenceEnds(unittest.TestCase):
 
     def _last(self, end, dur=60.0):
         beats = [{"source_id": "E", "start": 9.0, "end": end,
-                  "role": "payoff", "purpose": "p"}]
+                  "link": "so", "role": "payoff", "purpose": "p"}]
         rs = []
         out = story_director._finish_the_sentence(beats, self.W,
                                                   {"E": dur}, rs)
@@ -563,7 +563,7 @@ class TheStoryEndsWhereTheSentenceEnds(unittest.TestCase):
     def test_never_more_than_three_seconds(self):
         words = {"E": _w(" ".join(["word"] * 30), 10.0)}
         beats = [{"source_id": "E", "start": 9.0, "end": 10.1,
-                  "role": "payoff", "purpose": "p"}]
+                  "link": "so", "role": "payoff", "purpose": "p"}]
         out = story_director._finish_the_sentence(beats, words,
                                                   {"E": 60.0}, [])
         self.assertLessEqual(out[-1]["end"], 10.1 + 3.0 + 0.1)
@@ -575,7 +575,7 @@ class TheStoryEndsWhereTheSentenceEnds(unittest.TestCase):
     def test_an_end_in_a_pause_is_left_alone(self):
         words = {"E": _w("done", 10.0) + _w("later", 14.0)}
         beats = [{"source_id": "E", "start": 9.0, "end": 11.0,
-                  "role": "payoff", "purpose": "p"}]
+                  "link": "so", "role": "payoff", "purpose": "p"}]
         rs = []
         out = story_director._finish_the_sentence(beats, words,
                                                   {"E": 60.0}, rs)
@@ -588,7 +588,7 @@ class TheStoryEndsWhereTheSentenceEnds(unittest.TestCase):
         words = {"E": _w("this is really better than my bed. I have them",
                          10.0)}
         beats = [{"source_id": "E", "start": 9.0, "end": 13.6,
-                  "role": "payoff", "purpose": "p"}]
+                  "link": "so", "role": "payoff", "purpose": "p"}]
         rs = []
         out = story_director._finish_the_sentence(beats, words,
                                                   {"E": 13.6}, rs)
@@ -601,7 +601,7 @@ class TheStoryEndsWhereTheSentenceEnds(unittest.TestCase):
         words = {"E": _w("this is really better than my bed. I have them",
                          10.0)}                       # "them" ends 13.9
         beats = [{"source_id": "E", "start": 9.0, "end": 14.0,
-                  "role": "payoff", "purpose": "p"}]
+                  "link": "so", "role": "payoff", "purpose": "p"}]
         rs = []
         out = story_director._finish_the_sentence(beats, words,
                                                   {"E": 14.0}, rs)
@@ -612,7 +612,7 @@ class TheStoryEndsWhereTheSentenceEnds(unittest.TestCase):
         words = {"E": _w("this is really better than my bed I love it",
                          10.0)}                       # "it" ends 13.9
         beats = [{"source_id": "E", "start": 9.0, "end": 14.0,
-                  "role": "payoff", "purpose": "p"}]
+                  "link": "so", "role": "payoff", "purpose": "p"}]
         out = story_director._finish_the_sentence(beats, words,
                                                   {"E": 16.0}, [])
         self.assertEqual(out[-1]["end"], 14.0)
@@ -621,7 +621,7 @@ class TheStoryEndsWhereTheSentenceEnds(unittest.TestCase):
         words = {"E": _w("this is really better than my bed. I have them "
                          "all over the house and the cats love them", 10.0)}
         beats = [{"source_id": "E", "start": 9.0, "end": 11.5,
-                  "role": "payoff", "purpose": "p"}]
+                  "link": "so", "role": "payoff", "purpose": "p"}]
         out = story_director._finish_the_sentence(beats, words,
                                                   {"E": 60.0}, [])
         self.assertEqual(out[-1]["end"], 12.8)
@@ -629,7 +629,7 @@ class TheStoryEndsWhereTheSentenceEnds(unittest.TestCase):
     def test_never_cut_below_a_beat(self):
         words = {"E": _w("ok. and then I have them all", 10.0)}
         beats = [{"source_id": "E", "start": 9.5, "end": 12.2,
-                  "role": "payoff", "purpose": "p"}]
+                  "link": "so", "role": "payoff", "purpose": "p"}]
         out = story_director._finish_the_sentence(beats, words,
                                                   {"E": 12.2}, [])
         self.assertEqual(out[-1]["end"], 12.2, "'ok.' is under 1.5s in")

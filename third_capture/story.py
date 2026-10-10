@@ -48,6 +48,7 @@ import subprocess
 from pathlib import Path
 
 from third_capture import clip_edit
+from third_capture import show_it
 
 REPO = Path(__file__).resolve().parent.parent
 FONT = str(REPO / "assets" / "fonts" / "Anton-Regular.ttf")
@@ -397,7 +398,8 @@ def _extract_segment(src: Path, out: Path, work: Path, tag: str, *,
                      start: float, end: float, words: list[dict],
                      captions: list[dict] | None = None,
                      effects: list[dict] | None = None,
-                     framing: str = "wide", safe: bool = False) -> str:
+                     framing: str = "wide", safe: bool = False,
+                     shows: list[dict] | None = None) -> str:
     """One beat: exact cut, the clip arm's shot-plan framing (blur-fill
     when no plan applies; optional tight punch-in for reaction beats on
     that fallback, §15), captions, overlays, budgeted emphasis, loudness.
@@ -441,6 +443,13 @@ def _extract_segment(src: Path, out: Path, work: Path, tag: str, *,
     for d in draws:
         if d:
             vf += f",{d}"
+    # the thing they're talking about, cut in when it is named
+    # (third_capture/show_it.py); a one-frame PNG holds for its window
+    for i, sh in enumerate(shows or []):
+        a, b = sh["at"], sh["at"] + sh["secs"]
+        vf += (f"[pre{tag}_{i}];movie='{sh['png']}'[pic{tag}_{i}];"
+               f"[pre{tag}_{i}][pic{tag}_{i}]overlay=(W-w)/2:"
+               f"{show_it.CARD_TOP}:enable='between(t,{a:.2f},{b:.2f})'")
     vf += f",fps={FPS},format=yuv420p"
     # the framed cut is already trimmed to [start, end]
     inp = (["-i", str(framed)] if framed is not None else
@@ -759,6 +768,15 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
         caps = beat_captions(idx, end - start, edl.get("hook_overlay", ""),
                              beat.get("context_overlay", ""),
                              (narr_by_beat.get(idx) or {}).get("text", ""))
+        shows = []
+        if beat.get("show"):
+            shows = show_it.ready(
+                show_it.plan([beat["show"]], end - start, offset=start),
+                work, show_it.when_of(srcinfo.get("created_at")))
+        for sh in shows:
+            on_screen.append({"at": round(timeline + sh["at"], 1),
+                              "kind": "picture", "secs": sh["secs"],
+                              "text": f"picture of {sh['thing']}"})
         try:
             _lay = _extract_segment(
                 src, seg, work, str(idx), start=start, end=end,
@@ -767,7 +785,7 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
                 captions=caps,
                 effects=beat.get("effects") or [],
                 framing=beat.get("framing", "wide"),
-                safe=safe_framing)
+                safe=safe_framing, shows=shows)
         except Exception as e:  # noqa: BLE001
             if is_edge:
                 raise RuntimeError(

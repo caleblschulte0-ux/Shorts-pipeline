@@ -1059,7 +1059,8 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
          start: float = 0.0, end: float = 0.0,
          whisper_model: str = "small", words: list[dict] | None = None,
          auto: bool = True, series: str = "chaos",
-         direct: dict | None = None, edit_mode: bool = False) -> dict:
+         direct: dict | None = None, edit_mode: bool = False,
+         when: float | None = None) -> dict:
     """Compose the 9:16 edit. `credit` is the full on-screen label
     (e.g. "twitch.tv/xqc", "kick.com/adinross"). Pass precomputed `words`
     (from transcribe_words on the SAME uncut file) to skip re-transcribing —
@@ -1288,6 +1289,16 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             print(f"::warning::[edit] move sounds failed "
                   f"({type(e).__name__}) — no moves", flush=True)
             mv = moves_mod.plan({}, dur)
+        # the THING they're talking about, shown for a few seconds when
+        # it is named (operator, 2026-10-09: "put a picture of the stock
+        # he is talking about as a layover ... so they can get it") —
+        # only an exact match is shown (third_capture/show_it.py)
+        from third_capture import show_it
+        shows = []
+        if auto and direct and direct.get("show"):
+            shows = show_it.ready(show_it.plan(direct["show"], dur,
+                                               offset=t0), tmp, when)
+        ledger_ae["shown"] = [f"{s['thing']}@{s['at']}" for s in shows]
         _bed = mv["bed"]
         ledger_ae["mood"] = _bed["move"] if _bed else None
         ledger_ae["mood_at"] = _bed["at"] if _bed else None
@@ -1300,7 +1311,7 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         # audio slamming shut on the final frame
         afade = (f"loudnorm=I=-14:TP=-1.5,"
                  f"afade=t=out:st={max(0.0, dur - 0.25):.2f}:d=0.25")
-        _has_moves = bool(mv["hits"] or mv["bed"] or line2_png)
+        _has_moves = bool(mv["hits"] or mv["bed"] or line2_png or shows)
 
         def _compose(with_line: bool, with_mood: bool) -> tuple[str, list]:
             """(filter_complex, extra_input_paths); it ends in [vout] and
@@ -1330,6 +1341,12 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                     parts.append(f"[{cur}][{len(inputs)}:v]overlay=0:"
                                  f"{caption_line.LINE_Y}[ln]")
                 cur = "ln"
+            if with_mood:
+                for i, sh in enumerate(shows):
+                    inputs.append(sh["png"])
+                    parts.append(show_it.overlay(cur, len(inputs), sh,
+                                                 f"sh{i}"))
+                    cur = f"sh{i}"
             parts.append(f"[{cur}]null[vout]")
             a_in = "0:a"
             if with_mood and (mv["hits"] or mv["bed"]):
