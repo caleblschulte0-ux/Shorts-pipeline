@@ -942,9 +942,10 @@ def forge(count: int, dry_run: bool = False) -> int:
         # stable for a given story (one that re-forges keeps its shape) while
         # still varying WITHIN a theme — keying on the theme alone would have
         # given every health story ever made the identical length, which is a
-        # smaller template but still a template. Weighted toward 3 because that
-        # is the length the writing is tuned for: 2, 3, 3, 4.
-        target = (2, 3, 3, 4)[_stable_hash(
+        # smaller template but still a template. Three or four since
+        # 2026-10-10 (operator, of a sixteen-second video: "the videos need to
+        # be longer ... We say one fun fact, and then that's it"): 3, 3, 4, 4.
+        target = (3, 3, 4, 4)[_stable_hash(
             theme + (specs[0]["id"] if specs else "")) % 4]
         dss, tried, seen_fam = [], 0, set()
         while specs and len(dss) < target and tried < 40:
@@ -976,7 +977,7 @@ def forge(count: int, dry_run: bool = False) -> int:
     # checks. Coherence comes from the words the brain writes over them. The
     # count varies here too — a mixed story is not automatically a three.
     while made < count and len(leftovers) >= 2:
-        n_mix = min(len(leftovers), (2, 3, 3, 4)[_stable_hash(
+        n_mix = min(len(leftovers), (3, 3, 4, 4)[_stable_hash(
             leftovers[0].get("key", "")) % 4])
         keep(leftovers[:n_mix], "mixed")
         leftovers = leftovers[n_mix:]

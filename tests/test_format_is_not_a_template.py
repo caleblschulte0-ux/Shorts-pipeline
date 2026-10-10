@@ -40,7 +40,7 @@ _spec.loader.exec_module(forge)
 
 _FORGE_SRC = (_REPO / "scripts" / "story_forge.py").read_text()
 _DOCTRINE = (_REPO / "CLAUDE_ROUTINE_INSTRUCTIONS.md").read_text()
-_BEATS = (2, 3, 3, 4)
+_BEATS = (3, 3, 4, 4)
 
 
 def _target(theme: str, lead: str = "") -> int:

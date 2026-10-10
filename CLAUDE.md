@@ -381,7 +381,14 @@ constants blanked), never on the prose that explains it.
   the less numbers we just throw at them in a row, the better. And
   obviously we want it to be entertaining"* — so `MAX_NUMBERS` is ONE, a
   change is said in words ("it nearly doubled"), and the listener picks
-  the simpler, more fun story. `tests/test_the_narration_tells_a_story.py`.
+  the simpler, more fun story. And it is NEVER JUST A FUN FACT (operator,
+  2026-10-10, of a sixteen-second Mars helicopter video: *"the videos need
+  to be longer ... Why do we care? What does that mean? ... We say one fun
+  fact, and then that's it"*): a beat is its number AND what it means, up
+  to the registry's `say_words`; the closing says why the viewer should
+  care; a story whose beats average under `beat_min_words`
+  (`pacing.short`) is retold longer, never held; the forge makes three or
+  four beats. `tests/test_the_narration_tells_a_story.py`.
 
 - **Nothing made to an older standard posts, and THE CHECKOUT is the bar**
   (operator, 2026-10-09, after a twins video drawn on 10-07 went out: *"make
