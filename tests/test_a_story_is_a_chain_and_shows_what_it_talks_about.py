@@ -389,6 +389,99 @@ def test_livestreamfail_yields_twitch_clips_best_first():
         assert hot_clips.livestreamfail() == []
 
 
+
+# ---- THE OTHER SIDE (operator, 2026-10-10, of the Kai Cenat / Reggie
+# saga: "take whoever made those allegations originally, that stream, take
+# a clip from there, and then go to Kai's stream ... that's a story")
+
+def test_the_other_side_is_found_on_any_platform_in_the_order_it_was_said():
+    from funnel import hot_clips
+    found = {"data": {"children": [
+        {"data": {"url": "https://www.youtube.com/watch?v=part2",
+                  "title": "Reggie releases part 2", "ups": 3000,
+                  "created_utc": 300, "permalink": "/r/LSF/b"}},
+        {"data": {"url": "https://clips.twitch.tv/KaiSaysLie-x",
+                  "title": "Kai Cenat responds to Reggie", "ups": 9000,
+                  "created_utc": 200}},
+        {"data": {"url": "https://x.com/reggie/status/1",
+                  "title": "Reggie's original allegations", "ups": 5000,
+                  "created_utc": 100}},
+        {"data": {"url": "https://v.redd.it/abc", "permalink": "/r/LSF/c",
+                  "title": "Kai: part two had no evidence", "ups": 800,
+                  "created_utc": 400}},
+        {"data": {"url": "https://www.dexerto.com/article", "ups": 99999,
+                  "created_utc": 50, "title": "an article"}},
+        {"data": {"url": "https://streamable.com/n", "over_18": True,
+                  "created_utc": 60}}]}}
+    with mock.patch.object(hot_clips, "_search",
+                           return_value=found) as srch:
+        got = hot_clips.about("Kai Cenat")
+    assert srch.call_args[0][0] == "Kai Cenat"
+    assert [g["platform"] for g in got] == ["x", "twitch", "youtube",
+                                            "reddit"]
+    assert got[1]["slug"] == "KaiSaysLie-x"
+    assert got[3]["url"] == "https://www.reddit.com/r/LSF/c"
+    with mock.patch.object(hot_clips, "_search", return_value=None):
+        assert hot_clips.about("Kai Cenat") == []
+
+
+def test_the_scout_reads_the_other_side_even_with_no_twitch_views():
+    from third_capture import storyline
+    pool = [{"url": f"https://clips.twitch.tv/k{i}", "views": 50000 - i,
+             "channel": "kaicenat", "title": f"kai clip {i}", "age_h": 5}
+            for i in range(5)]
+    pool.append({"url": "https://www.youtube.com/watch?v=part2",
+                 "platform": "youtube", "channel": "", "views": 0,
+                 "title": "Reggie releases part 2", "age_h": 30,
+                 "internet": {"upvotes": 3000,
+                              "post_title": "Reggie releases part 2"}})
+    lines, ids = storyline.build_catalogue(storyline.from_discovery(pool),
+                                           max_fresh=3)
+    yt = [ln for ln in lines if "Reggie releases part 2" in ln]
+    assert yt, lines
+    assert "r/LSF" in yt[0] and " | ? | " in yt[0]
+    clip = [c for c in ids.values() if "youtube" in c["source_url"]][0]
+    assert clip["platform"] == "youtube"
+
+
+def test_every_judge_is_told_a_feud_is_both_sides_and_attributed():
+    assert "r/LSF" in sd._SCOUT_SYSTEM and "FEUD" in sd._SCOUT_SYSTEM
+    assert "BOTH CHANNELS" in sd._PLAN_SYSTEM
+    assert "ATTRIBUTED" in sd._PLAN_SYSTEM
+
+
+def test_an_off_twitch_source_is_not_given_a_streamer_it_does_not_have():
+    rep = {"source_id": "s", "channel": "", "platform": "youtube",
+           "duration_s": 40, "summary": ""}
+    txt = sd._fmt_reports([rep])
+    assert "streamer=unknown" in txt and "youtube" in txt
+
+
+def test_a_story_source_longer_than_a_clip_is_refused_before_download(
+        tmp_path):
+    from third_capture import clip_edit
+    with mock.patch.object(clip_edit, "_ytdlp") as y:
+        try:
+            clip_edit.download("https://youtube.com/watch?v=long",
+                               tmp_path, max_s=600)
+            raise AssertionError("a filtered video must not pass")
+        except ValueError:
+            pass
+    args = y.call_args[0][0]
+    assert args[args.index("--match-filter") + 1] == "duration<=?600"
+
+
+def test_the_story_pool_searches_for_the_other_side():
+    import ast
+    src = (Path(__file__).resolve().parents[1] / "scripts"
+           / "run_third.py").read_text()
+    calls = {f"{n.func.value.id}.{n.func.attr}"
+             for n in ast.walk(ast.parse(src))
+             if isinstance(n, ast.Call) and isinstance(n.func, ast.Attribute)
+             and isinstance(n.func.value, ast.Name)}
+    assert "hot_clips.about" in calls
+
+
 class Everything(unittest.TestCase):
     """CI runs `unittest discover`, which collects only TestCases; every
     function above runs here as well as under pytest."""

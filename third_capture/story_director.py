@@ -223,6 +223,19 @@ and the last beat answers it. A beat that is merely the next funny thing
 in the same stream, however good, is "and then": it is cut, and a pile
 whose beats only join by "and then" is not a story at all.
 
+A FEUD IS TOLD FROM BOTH CHANNELS (operator, 2026-10-10: the claim from
+the accuser's own stream, "then go to Kai's stream of him saying, oh,
+this is bullshit ... the guy saying, oh, here's part two ... Kai saying
+part two came and there was no evidence. Like, that's a story"). When
+the sources hold people answering EACH OTHER from their own streams or
+videos, the back-and-forth in the order it was said is the story: the
+claim, BUT the denial, SO the follow-up, BUT the answer to it. Every
+turn is that person's own footage, and the opening says who is fighting
+whom. An accusation is ATTRIBUTED, never told as fact: our words say
+"Reggie claims...", "Kai calls it a lie", never what the claim says as
+if it happened; the accused's answer is in the cut, and a cut that
+plays only one side is not a story — is_story false.
+
 If it IS a story, DIRECT it. Choose ONE structure and justify it:
 - chronological: setup -> escalation -> payoff (natural timeline compels)
 - cold_open: strongest reaction first -> back to the beginning -> payoff
@@ -334,6 +347,13 @@ The FIRST beat is the opening — moving footage from second zero, hook
 overlaid on it. 2-5 beats total. Honesty is law: never imply an event the
 sources don't show."""
 
+def _elsewhere(r: dict) -> str:
+    """A source from off Twitch (the other side of a feud) has no verified
+    streamer; say so rather than invent one."""
+    return (f"unknown — a {r.get('platform') or 'non-Twitch'} video; the "
+            f"post title and the footage say whose")
+
+
 _SCOUT_SYSTEM = """You are the STORY SCOUT for a streamer-clip channel.
 You get a CATALOGUE of recent clips across many streamers, one per line:
 id | date | streamer | views | title | broadcast position when known |
@@ -350,6 +370,13 @@ of them:
   keeps escalating
 - several streamers: A does something on stream, B reacts or answers on
   B's own stream; a group event seen from two sides
+- a FEUD across channels: A says something about B, B answers on B's
+  own stream, A comes back with "part two", B answers again. The other
+  side's turns are often NOT on Twitch: lines marked `r/LSF` are clips
+  strangers posted to r/LivestreamFail from anywhere (YouTube, Kick, X),
+  with the post's own title. A back-and-forth like that, both sides in
+  the order it was said, is one of the best stories there is; never
+  propose one side ranting alone when the other side's lines are there.
 Use what you know about these streamers, their relationships and ongoing
 sagas to spot connections a keyword match would miss — but every proposal
 must be grounded in lines that are actually in the catalogue.
@@ -560,7 +587,8 @@ def _fmt_reports(reports: list[dict]) -> str:
                     f"{str(net['post_title'])[:160]!r}\n")
         out.append(
             f"SOURCE {r['source_id']}\n"
-            f"  streamer={r['channel']} dur={r['duration_s']}s "
+            f"  streamer={r.get('channel') or _elsewhere(r)} "
+            f"dur={r['duration_s']}s "
             f"date={r.get('date', '?')}{at}{game}\n"
             f"  summary: {r['summary']}\n"
             f"  people: {', '.join(r.get('people', []))}\n"

@@ -1371,6 +1371,64 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                         pool.append(c)
                 print(f"[story] r/LivestreamFail: {len(_hot)} clip post(s), "
                       f"{len(_picked)} resolved on Twitch", flush=True)
+            # THE OTHER SIDE (operator, 2026-10-10, of the Kai Cenat /
+            # Reggie saga: "take whoever made those allegations originally,
+            # that stream, take a clip from there, and then go to Kai's
+            # stream ... that's a story"). Discovery only ever reached the
+            # Twitch clips of the streamers this channel follows, so it held
+            # Kai's half of that feud for weeks and never the accuser's:
+            # Reggie's videos are not on Twitch. Everything r/LivestreamFail
+            # posted ABOUT each followed streamer this month, on any platform
+            # yt-dlp downloads, joins the pool with its post title; the
+            # scout sees both sides of a back-and-forth and the director
+            # cuts it in the order it was said.
+            if spec.get("story_other_side", True):
+                from funnel import hot_clips
+                from funnel import media_funnel
+                _names = list(dict.fromkeys(
+                    storyline.SEARCH_NAMES.get(ch.lower(), ch)
+                    for chans in sources_cfg.values() for ch in chans))
+                # Reddit lets an app ~60 searches a minute and an anonymous
+                # caller ~10: without the app token only the first names
+                # (the list is ordered by priority) are searched.
+                if not media_funnel._reddit_token():
+                    _names = _names[:int(spec.get(
+                        "story_other_side_anon", 8))]
+                _have = {c.get("url") for c in pool}
+                _twitch, _added = {}, 0
+                for _name in _names:
+                    time.sleep(0.8)
+                    for h in hot_clips.about(
+                            _name, spec.get("story_other_side_period",
+                                            "month")):
+                        if h["url"] in _have:
+                            continue
+                        net = {"upvotes": h["upvotes"],
+                               "comments": h["comments"],
+                               "post_title": h["post_title"],
+                               "permalink": h["permalink"]}
+                        if h["platform"] == "twitch" and h.get("slug"):
+                            _twitch.setdefault(h["slug"], net)
+                            continue
+                        _have.add(h["url"])
+                        pool.append({
+                            "url": h["url"], "platform": h["platform"],
+                            "channel": "",
+                            "title": h["post_title"], "views": 0,
+                            "age_h": max(0.0, (time.time() - h["created"])
+                                         / 3600.0) if h["created"] else None,
+                            "internet": net})
+                        _added += 1
+                for c in clip_edit.helix_clips(list(_twitch)[:100]):
+                    if c["url"] in _have:
+                        continue
+                    _have.add(c["url"])
+                    c["internet"] = _twitch.get(c.get("slug")) or {}
+                    pool.append(c)
+                    _added += 1
+                print(f"[story] the other side: {_added} clip(s) posted "
+                      f"about {len(_names)} streamer(s), any platform",
+                      flush=True)
             # name each clip's game (Twitch's category): the critic's
             # commonest refusal is a stranger not knowing what this is
             _names = clip_edit.helix_game_names(
@@ -1610,7 +1668,9 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             _lost: list[str] = []
             for c in cluster["clips"][:6]:
                 try:
-                    info = clip_edit.download(c["source_url"], snip_dir)
+                    info = clip_edit.download(
+                        c["source_url"], snip_dir,
+                        max_s=float(spec.get("story_source_max_s", 600)))
                 except Exception as e:  # noqa: BLE001
                     print(f"::warning::[story] download failed "
                           f"{c.get('title', '?')[:40]!r} "
@@ -1670,6 +1730,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 rep["date"] = c.get("date", "")
                 if c.get("internet"):
                     rep["internet"] = c["internet"]
+                if c.get("platform"):
+                    rep["platform"] = c["platform"]
                 rep["vod_offset"] = c.get("vod_offset")
                 rep["video_id"] = c.get("video_id")
                 # where this source's second 0 sits in the broadcast, so the

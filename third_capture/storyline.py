@@ -99,6 +99,21 @@ ALIASES = {
     "soda": "sodapoppin", "sodapoppin": "sodapoppin",
 }
 
+# What people TYPE when they post about a streamer, where it is not the
+# login: r/LivestreamFail titles say "Kai Cenat", never "kaicenat", and a
+# search for the login misses the whole feud (funnel/hot_clips.about).
+SEARCH_NAMES = {
+    "kaicenat": "Kai Cenat", "caseoh_": "CaseOh", "zackrawrr": "Asmongold",
+    "moistcr1tikal": "Cr1TiKaL", "loltyler1": "Tyler1",
+    "stableronaldo": "Stable Ronaldo", "jasontheween": "Jason The Ween",
+    "plaqueboymax": "PlaqueBoyMax", "lospollostv": "LosPollosTV",
+    "tpain": "T-Pain", "brucedropemoff": "BruceDropEmOff",
+    "rayasianboy": "RayAsianBoy", "joe_bartolozzi": "Joe Bartolozzi",
+    "ishowspeed": "IShowSpeed", "deshaefrost": "Deshae Frost",
+    "connoreatspants": "Connor", "trainwreckstv": "Trainwreck",
+    "esfandtv": "Esfand", "hasanabi": "Hasan", "adinross": "Adin Ross",
+}
+
 
 def clip_key(url: str) -> str:
     """Canonical clip identity — the trailing URL slug, lowercased.
@@ -272,7 +287,12 @@ def from_discovery(pool: list[dict]) -> list[dict]:
                     "vod_offset": c.get("vod_offset"),
                     "duration": c.get("duration"),
                     # Twitch's own category: a fact, unlike the title
-                    "game": str(c.get("game", "") or "")})
+                    "game": str(c.get("game", "") or ""),
+                    **({"platform": c["platform"]}
+                       if c.get("platform") not in (None, "", "twitch")
+                       else {}),
+                    **({"internet": c["internet"]}
+                       if c.get("internet") else {})})
     return out
 
 
@@ -312,15 +332,21 @@ def build_catalogue(corpus: list[dict], *, max_fresh: int = 200,
         # are whatever the clipper typed. Keep the better of each field.
         if c.get("posted") is not None and "views" not in c:
             prev["title"] = c.get("title") or prev.get("title", "")
-        for k in ("views", "video_id", "vod_offset", "duration", "game"):
+        for k in ("views", "video_id", "vod_offset", "duration", "game",
+                  "internet"):
             if prev.get(k) in (None, "", 0) and c.get(k) not in (None, ""):
                 prev[k] = c[k]
         if not prev.get("date"):
             prev["date"] = c.get("date", "")
 
     items = list(merged.values())
-    fresh = sorted((c for c in items if c.get("views")),
-                   key=lambda c: -int(c.get("views") or 0))[:max_fresh]
+    # What r/LivestreamFail posted goes first: it is what strangers found
+    # worth watching, and the OTHER side of a feud (a video on YouTube or
+    # X, no Twitch views at all) only ever arrives that way.
+    fresh = sorted((c for c in items
+                    if c.get("views") or c.get("internet")),
+                   key=lambda c: (not c.get("internet"),
+                                  -int(c.get("views") or 0)))[:max_fresh]
     seen = {clip_key(c["source_url"]) for c in fresh}
     rest = [c for c in items if clip_key(c["source_url"]) not in seen]
     # HISTORY IS WHAT WE POSTED, across the whole window. "Most recent N"
@@ -366,9 +392,14 @@ def build_catalogue(corpus: list[dict], *, max_fresh: int = 200,
         title = re.sub(r"\s+", " ", str(c.get("title", ""))).strip()[:110]
         ev = clip_memory.evidence(mem, c["source_url"])
         game = f" | game={c['game']}" if c.get("game") else ""
+        net = c.get("internet") or {}
+        lsf = ""
+        if net.get("post_title"):
+            lsf = (f" | r/LSF {_views(net.get('upvotes'))} upvotes: "
+                   + re.sub(r"\s+", " ", str(net["post_title"]))[:140])
         lines.append(f"{cid} | {str(c.get('date', ''))[:10] or '?'} | "
-                     f"{c.get('channel', '?')} | {_views(c.get('views'))} | "
-                     f"{title}{pos}{game}" + (f" | {ev}" if ev else ""))
+                     f"{c.get('channel') or '?'} | {_views(c.get('views'))} | "
+                     f"{title}{pos}{game}{lsf}" + (f" | {ev}" if ev else ""))
     return lines, ids
 
 def find_vod_arcs(pool: list[dict], *, gap_s: float = 900.0,
