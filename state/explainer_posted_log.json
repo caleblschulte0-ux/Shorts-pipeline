@@ -3131,6 +3131,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 57,
       "duration_s": 27.8
+    },
+    "youth-sports-dropout": {
+      "claimed_at": "2026-10-10T16:29:42.602488+00:00",
+      "title": "Only 41% Of American Boys Still Play Sports Regularly",
+      "publish_at": "2026-10-10T14:41:24Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -3898,6 +3905,14 @@
       "state": "posted",
       "slug": "aquaculture-overtook-wild-fishing",
       "at": "2026-10-07T12:48:19.281853+00:00"
+    },
+    {
+      "claimed_at": "2026-10-10T16:29:42.602488+00:00",
+      "title": "Only 41% Of American Boys Still Play Sports Regularly",
+      "publish_at": "2026-10-10T14:41:24Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "youth-sports-dropout"
     }
   ]
 }
