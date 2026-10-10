@@ -486,6 +486,7 @@ def test_the_story_pool_searches_for_the_other_side():
 def test_reddit_refusing_the_api_still_reaches_the_posts():
     # backtest 19: both listings HTTPError from the runner, 0 clips
     from funnel import hot_clips
+    hot_clips._DEAD.clear()
     atom = ("<feed><entry><title>Reggie releases part 2 &amp; more</title>"
             '<link href="https://www.reddit.com/r/LivestreamFail/comments/'
             'x/reggie/"/><published>2026-10-08T12:00:00+00:00</published>'
@@ -500,6 +501,7 @@ def test_reddit_refusing_the_api_still_reaches_the_posts():
     assert got[0]["post_title"] == "Reggie releases part 2 & more"
     assert got[0]["permalink"].endswith("/comments/x/reggie/")
     assert got[0]["created"] > 0
+    hot_clips._DEAD.clear()
     pp = {"data": {"children": [{"data": {
         "url": "https://clips.twitch.tv/HotClip-1", "title": "t", "score": 70}}]}}
     with mock.patch.object(hot_clips, "_get", return_value=None), \
@@ -508,6 +510,16 @@ def test_reddit_refusing_the_api_still_reaches_the_posts():
         got = hot_clips.livestreamfail()
     assert got[0]["slug"] == "HotClip-1" and got[0]["upvotes"] == 70
     rss.assert_not_called()
+    # a route that failed is not asked again this run (seventy searches
+    # against a hung host would spend the whole run)
+    hot_clips._DEAD.clear()
+    with mock.patch.object(hot_clips, "_get", return_value=None) as api, \
+            mock.patch.object(hot_clips, "_pullpush", return_value=None), \
+            mock.patch.object(hot_clips, "_rss", return_value=None):
+        for name in ("a", "b", "c"):
+            hot_clips.about(name)
+    assert api.call_count == 1
+    hot_clips._DEAD.clear()
 
 
 class Everything(unittest.TestCase):

@@ -153,7 +153,7 @@ def _rss(path: str) -> dict | None:
         print(f"::warning::[hot_clips] r/{SUB} RSS failed "
               f"({type(e).__name__})", flush=True)
         return None
-    return got if got["data"]["children"] else None
+    return got
 
 
 def _pullpush(query: str | None, period: str, limit: int) -> dict | None:
@@ -173,9 +173,15 @@ def _pullpush(query: str | None, period: str, limit: int) -> dict | None:
               f"({type(e).__name__})", flush=True)
         return None
     posts = data.get("data") if isinstance(data, dict) else None
-    if not posts:
+    if not isinstance(posts, list):
         return None
     return {"data": {"children": [{"data": p} for p in posts]}}
+
+
+# A route that failed once is not asked again this run: the story pool
+# searches seventy names, and a host that hangs for TIMEOUT on each would
+# spend the run's whole budget waiting (PR 594's CI did exactly that).
+_DEAD: set[str] = set()
 
 
 def _first(path: str, query: str | None, period: str,
@@ -185,8 +191,13 @@ def _first(path: str, query: str | None, period: str,
     for name, fn in (("api", lambda: _get(path)),
                      ("pullpush", lambda: _pullpush(query, period, limit)),
                      ("rss", lambda: _rss(path))):
+        if name in _DEAD:
+            continue
         got = fn()
-        if got and (got.get("data") or {}).get("children"):
+        if got is None:
+            _DEAD.add(name)
+            continue
+        if (got.get("data") or {}).get("children"):
             if name != "api":
                 print(f"[hot_clips] r/{SUB} answered by {name}", flush=True)
             return got

@@ -123,8 +123,10 @@ class _Harness(unittest.TestCase):
             self.enterContext(p)
         # the table read is its own test file; here every review is a
         # render's (test_a_plan_is_read_before_it_is_rendered)
+        # r/LivestreamFail is the network: never asked from a test
         spec = {"kind": "twitch_clip", "sources": {"twitch": ["soda"]},
-                "story_table_reads": 0}
+                "story_table_reads": 0, "story_internet": False,
+                "story_other_side": False}
         spec.update(spec_extra or {})
         return rt._story_attempt({"capture": spec}, {"posted": {}},
                                  tmp, tmp / "out.mp4", "clip-x-1")
