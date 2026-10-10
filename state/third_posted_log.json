@@ -12225,6 +12225,25 @@
         "end": 38.6
       },
       "director_cut": true
+    },
+    "rejected-preciousrelievedcodcorgiderp-iqjahmal8jqqh78f": {
+      "source_url": "https://www.twitch.tv/shroud/clip/PreciousRelievedCodCorgiDerp-IqjaHMAL8JQQH78F",
+      "streamer": "shroud",
+      "title": "shroud out of touch take",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (MMO gameplay, talk about spending, no ev)",
+      "ts": "2026-10-10T12:08:40.906316+00:00"
+    },
+    "clip-20261010-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/HumbleKathishSheepDancingBaby-Q31lSZeeSkoBFdYL",
+      "story_key": null,
+      "streamer": "ohnepixel",
+      "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
+      "kind": "twitch_clip",
+      "ts": "2026-10-10T12:11:48.584007+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
