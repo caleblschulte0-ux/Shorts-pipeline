@@ -3,149 +3,6 @@
     {
       "date": "20260930",
       "dry_run": false,
-      "ts": "2026-09-30T12:26:51+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 113,
-        "with_retention": 102,
-        "with_curve": 15,
-        "fetched_at": "2026-09-30T08:46:27.034345+00:00"
-      },
-      "brain": {
-        "ok": 9,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20260930-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260930-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260930-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260930-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260930-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20260930-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague, possible reaction",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "argument, basketball toss; payoff unclea",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Silky Gets Put On The Spot And Has To Think Fast"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "frame at 12.0s shows mostly an empty room with no person visible",
-                "some frames are cropped tight at the edges (partial faces at 1.7s and 7.4s)"
-              ]
-            }
-          },
-          "took_s": 110.9
-        }
-      ]
-    },
-    {
-      "date": "20260930",
-      "dry_run": false,
       "ts": "2026-09-30T13:34:50+00:00",
       "feedback": {
         "snapshot": true,
@@ -8353,6 +8210,290 @@
             }
           },
           "took_s": 28.6
+        }
+      ]
+    },
+    {
+      "date": "20261010",
+      "dry_run": false,
+      "ts": "2026-10-10T14:55:23+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 10,
+        "opening_steer": false,
+        "retention_scope": true,
+        "videos": 131,
+        "with_retention": 111,
+        "with_curve": 14,
+        "fetched_at": "2026-10-10T12:57:22.145721+00:00"
+      },
+      "brain": {
+        "ok": 8,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261010-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261010-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261010-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261010-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261010-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261010-6",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about a third of the canvas height, with large black or blurred padding above and bel; vision: Most of the clip is almost entirely dark (1s to 21s). Very lit",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 60,
+                "refused_shown": 20,
+                "scouted": [
+                  {
+                    "premise": "xQc watches Tony lose in his GTA RP session, then makes a big call of his own that hits for 120K.",
+                    "shape": "one_stream",
+                    "n": 2
+                  },
+                  {
+                    "premise": "Buddha is pitched on pumping a coin beyond the multiverse, then loses $800 when Tony rug-pulls him on the GTA RP server.",
+                    "shape": "multi_stream",
+                    "n": 2
+                  },
+                  {
+                    "premise": "Jynxzi's Death 2 Minecraft run keeps getting wrecked by deaths, ending with Stableronaldo reacting to the run falling ap",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 290,
+                "moments": 40,
+                "candidates": 482,
+                "pool": 2843,
+                "pool_with_vod": 1974,
+                "arc_sizes": [
+                  2,
+                  3,
+                  2,
+                  2,
+                  5,
+                  4,
+                  2,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:xqc/xqc-blackjack-doubl-2026w41",
+                  "outcome": "narrative_failed",
+                  "why": "scores [55, 66, 66] after 2 revision(s) \u2014 @14s weak_payoff: The slot segment never shows the all-in actually losing. It ends on 'Wow. Wow. Wow.' and 'dog shit slot', so the 'sour' half of the contrast is only implied. Add a beat that shows the final slot resul; @24s confusing: 'It's under' and 'Burn"
+                },
+                {
+                  "cluster": "esfandtv@momentpunchysarcasticskirretsmorc-wx0qyiuanwgib-mx",
+                  "outcome": "already_refused",
+                  "why": "2026-10-09: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2821557824",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: director judged: not a story \u2014 The two sources are unrelated moments from one broadcast. The first is Kai role-playing a school authority who sends the hoodie g"
+                },
+                {
+                  "cluster": "scout:buddha",
+                  "outcome": "already_refused",
+                  "why": "2026-10-03: director judged: not a story \u2014 The footage does not show the scout's story. (1) The promise: the 09-10 clip has only one fragmentary line at 161-167s ('Don't sa"
+                },
+                {
+                  "cluster": "esfandtv@momentobliqueexquisitepiecharlietheunicorn-r8zee3bs",
+                  "outcome": "already_refused",
+                  "why": "2026-10-09: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2820831944",
+                  "outcome": "already_refused",
+                  "why": "2026-10-07: director judged: not a story \u2014 The three clips are consecutive bits from one Streamer University broadcast: Kai, playing university president, greets a line of "
+                },
+                {
+                  "cluster": "kaicenat@momentboldsuspiciouswatercressgrammarking-jifdf5_8p",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: every beat is from one source \u2014 a clip, not a story"
+                },
+                {
+                  "cluster": "kaicenat@vod2822355279",
+                  "outcome": "already_refused",
+                  "why": "2026-10-09: director judged: not a story \u2014 The two clips are consecutive bits from the same 'Streamer University' roleplay, but they show no change. In the first, Kai reads"
+                },
+                {
+                  "cluster": "kaicenat@momentcreativeflirtydunlinm4xheh-qmubymsa6rvij7jd",
+                  "outcome": "already_refused",
+                  "why": "2026-10-10: rendered; critic scored 58 after 2 revision(s) \u2014 @12s missing_context: Ron is never introduced. The overlay 'Kai told chat: get Ron in' gives a name but no reas"
+                },
+                {
+                  "cluster": "sodapoppin@vod2872274770",
+                  "outcome": "already_refused",
+                  "why": "2026-10-06: sources fail preflight: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "ishowspeed@momentmagnificentcaringlapwinglitfam--majf-ezbaoy",
+                  "outcome": "already_refused",
+                  "why": "2026-10-10: director judged: not a story \u2014 This is a run of unrelated reactions, not a chain. Before the clip, Speed checks whether his mic is too loud and reacts to a TikT"
+                },
+                {
+                  "cluster": "kaicenat@vod2872697283",
+                  "outcome": "already_refused",
+                  "why": "2026-10-07: director judged: not a story \u2014 The five clips are silent runway footage with no speech, so the sources never state a premise, a change, or a payoff. No frame id"
+                },
+                {
+                  "cluster": "shroud@momentpiercingrealmosquitohotpokket-zjo00ziwnbyim5bw",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "plaqueboymax@vod2874466121",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: director judged: not a story \u2014 The three clips are consecutive moments from one stream (11m, 27m, 32m in), but they don't form a setup, escalation and payoff. C"
+                },
+                {
+                  "cluster": "pokimane@momentwildbrighttardigradebrokeback-c1ugwcienk6ir1j",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "alinity@vod2892098335",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 preflight:source only 5.8s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "squeex@momentcrepuscularexcitedeggnogninjagrumpy-704iyhmzsyo",
+                  "outcome": "not_a_story",
+                  "why": "take 0: every beat is from one source \u2014 a clip, not a story; take 1: hook trimmed 8->5 words (repaired); take 1: every beat is from one source \u2014 a clip, not a story; take 2: every beat is from one source \u2014 a clip, not a story"
+                },
+                {
+                  "cluster": "stableronaldo@vod2871404003",
+                  "outcome": "already_refused",
+                  "why": "2026-10-07: director judged: not a story \u2014 The two clips are consecutive moments from one stream but form no arc. Clip one opens mid-sentence with stableronaldo telling som"
+                },
+                {
+                  "cluster": "kaicenat@momentcrazycarefultoadelegiggle-oiliilqfmy84fupf/ka",
+                  "outcome": "narrative_failed",
+                  "why": "scores [52, 52, 58] after 2 revision(s) \u2014 @34s weak_payoff: The ending ('you need medical attention, are you okay?') is a mild reaction, not an answer to 'Can anyone out-chaos the dean?'. End on a clear beat where Kai is visibly out-chaosed, or where the stude; @26s confusing: The climax comes from "
+                },
+                {
+                  "cluster": "jynxzi@vod2875798295/jynxzi-booklet-bunch-2026w38",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clips don't form a chain. The booklet clips (3h08m and 3h09m) show Jynxzi flipping through a manga booklet while chat tells him to stop, and he ends on 'Oh my god!'. Neither clip shows the page or"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "game death, possible reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "dark cave, death at end, unclear",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Begs For Help And Can't Believe No One Can Save Him \ud83d\ude2d"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.85,
+              "problems": [
+                "The sharp picture is a thin strip, about a third of the canvas height, with large black or blurred padding above and bel",
+                "Most of the clip is almost entirely dark (1s to 21s). Very little action is visible, and viewers can't tell what is happ",
+                "The only on-screen content is a facecam in the corner and tiny stream HUD elements, which are unreadable on a phone.",
+                "The hook text sits in the blurred bottom padding and runs for the whole clip, but the footage doesn't show Jynxzi beggin",
+                "The game-over screen at the end is mostly a different player's death message ('JunkoMC died'), which doesn't match the h"
+              ]
+            }
+          },
+          "took_s": 229.5
         }
       ]
     }

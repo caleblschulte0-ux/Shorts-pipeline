@@ -12463,6 +12463,24 @@
       "rejected_by": "director",
       "rejected_why": "clip incomplete (no setup / payoff cut off)",
       "ts": "2026-10-10T14:07:34.337246+00:00"
+    },
+    "rejected-gracefulcuriouschickentebowing-cxxivjpkjg6thmtb": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/GracefulCuriousChickenTebowing-cxXIVJPkjG6tHMtB",
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Can't Believe What Just Happened To Him On Stream \ud83d\ude33",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin letterboxed strip, about a third of the canvas height instead of roughly three quarters. The; vision: The subject (the streamer lying in bed) is tiny, dark and low-contrast, so he is hard to read on a phone.; vision: In the last frames (about 31-34s) the bed is em",
+      "ts": "2026-10-10T14:51:33.624247+00:00"
+    },
+    "rejected-punchyplacidgoblinbcouch-g9ysbify45rh8lba": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/PunchyPlacidGoblinBCouch-G9YsbIfy45RH8lba",
+      "streamer": "jynxzi",
+      "title": "Jynxzi Begs For Help And Can't Believe No One Can Save Him \ud83d\ude2d",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about a third of the canvas height, with large black or blurred padding above and bel; vision: Most of the clip is almost entirely dark (1s to 21s). Very little action is visible, and viewers can't tell what is happ; vision: The only on-screen content is a ",
+      "ts": "2026-10-10T14:55:23.124628+00:00"
     }
   }
 }
