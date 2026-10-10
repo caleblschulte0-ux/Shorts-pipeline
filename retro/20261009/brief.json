@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261009",
-  "generated_at": "2026-10-09T23:31:04Z",
+  "generated_at": "2026-10-10T00:31:00Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 15.76,
+          "days": 15.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 14.76,
+          "days": 14.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1746,10 +1746,14 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "787893b",
-    "commits_since": "2026-10-08",
+    "head": "568034b",
+    "commits_since": "2026-10-09",
     "commit_count": 50,
     "commits": [
+      "568034b exchange: phase A bundle for 20261010 [skip ci]",
+      "a0d1fa1 Nothing made to an older standard posts; the self-checkout opening is the bar (#586)",
+      "1834678 claim: mailbox verdicts 2026-10-09T23:47Z [skip ci]",
+      "3068f15 retro: brief + triage for 20261009 [skip ci]",
       "787893b claim: mailbox verdicts 2026-10-09T22:48Z [skip ci]",
       "434a9d2 explainer: update posted log + analytics [skip ci]",
       "df08934 claim: mailbox verdicts 2026-10-09T21:50Z [skip ci]",
@@ -1785,11 +1789,7 @@
       "56efa09 exchange: phase A bundle for 20261009 [skip ci]",
       "f0ecb80 third: the stacked and action layouts' blur fills skip stream captions too (#583)",
       "1b3aaec exchange: phase A bundle for 20261009 [skip ci]",
-      "14aaa1f third: make the blurred fill from the top so stream captions don't ghost (#581)",
-      "f5d7315 Explainer scenes fill their beat; a generic stack is refused (#582)",
-      "01a0981 claim: mailbox verdicts 2026-10-09T15:47Z [skip ci]",
-      "cd399b3 explainer: update posted log + analytics [skip ci]",
-      "222e256 explainer: posted twin-birth-rate-rise [skip ci]"
+      "14aaa1f third: make the blurred fill from the top so stream captions don't ghost (#581)"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
@@ -1917,6 +1917,7 @@
       "test_no_undefined_names.py",
       "test_no_ungated_publish.py",
       "test_no_window_is_left_empty.py",
+      "test_nothing_out_of_date_posts.py",
       "test_novelty_fail_closed.py",
       "test_one_fact_one_beat.py",
       "test_one_icon_one_thing.py",
