@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261010",
+  "bundle": {
+    "identity": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad",
+    "path": "exchange/bundles/20261010/bundle.json"
+  },
+  "request_id": "06_reddit-daycare-early-dropoff-s0-e58592b5a8c7",
+  "safe_request_id": "06_reddit-daycare-early-dropoff-s0-e58592b5a8c7",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "13685bdd2ab0be5712382d1c486f82c455574783f44b2d53a65f23feedc2c808",
+  "prompt_used": "An editorial illustration for a short-form video: empty parking lot sunrise. It accompanies the narration: \"dropped her son off forty-five minutes before opening\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1zry54x_FtLCf4JORb-Am9pDZpCz4qejY",
+    "filename": "20261010__06_reddit-daycare-early-dropoff-s0-e58592b5a8c7.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1zry54x_FtLCf4JORb-Am9pDZpCz4qejY",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "filename": "20261010__06_reddit-daycare-early-dropoff-s0-e58592b5a8c7.png",
+    "sha256": "fc662d971de560e0033621530e9bd3342d908a151579738446d25a9653f25c31",
+    "bytes": 2304781,
+    "width": 1145,
+    "height": 1374,
+    "format": "png"
+  },
+  "verified_at": "2026-10-10T11:27:07.182Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
