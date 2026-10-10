@@ -15,6 +15,7 @@ import shutil
 import sys
 import tempfile
 import unittest
+from unittest import mock
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -27,10 +28,10 @@ CFG_PATH = ROOT / "data_learning" / "niche.config.json"
 CFG = json.loads(CFG_PATH.read_text())
 SLUG = "measles-ninety-five-rule"
 RETOLD = {"segments": [
-    {"say": "One person with measles infects about 15 others, far more than the flu."},
-    {"say": "Stopping it takes 95 percent immunity, and kindergartners are just short of that."},
-    {"say": "That small gap brought measles roaring back: 2,566 cases this year."}],
-    "closing": "Measles only needs a small gap to come back."}
+    {"say": "One person with measles infects about 15 others. That makes it far more catching than the flu."},
+    {"say": "Stopping it takes 95 percent immunity. Kindergartners are just short of that, so it slips through."},
+    {"say": "That small gap brought measles roaring back: 2,566 cases this year, and kids pay for it."}],
+    "closing": "Measles only needs a small gap to come back, and it found one."}
 
 
 def _story():
@@ -168,6 +169,46 @@ class TheRetell(unittest.TestCase):
         r = N.retell(self.sc, config_path=self.cfg, brain=lambda p: None,
                      log=lambda m: None)
         self.assertFalse(r["changed"])
+
+
+class NeverJustAFunFact(unittest.TestCase):
+    """caaleb, 2026-10-10, of the sixteen-second Mars helicopter video: "the
+    videos need to be longer ... Why do we care? What does that mean? ... We
+    say one fun fact, and then that's it." """
+
+    HELI = {"slug": "heli", "title": "t", "hook": "h", "closing": "Five was the ask.",
+            "segments": [{"say": "NASA built it for five flights, but it flew seventy-two."},
+                         {"say": "It passed flight fifty in 2023."},
+                         {"say": "It flew over ten miles in the end."}]}
+
+    def test_a_fact_with_no_meaning_is_short(self):
+        from shared import pacing
+        self.assertTrue(pacing.short(self.HELI))
+
+    def test_a_beat_that_says_what_it_means_is_not(self):
+        from shared import pacing
+        sc = copy.deepcopy(self.HELI)
+        for s in sc["segments"]:
+            s["say"] += " Mars air is so thin nobody thought a rotor could even lift."
+        self.assertFalse(pacing.short(sc))
+
+    def test_a_short_story_is_retold_even_with_no_readout(self):
+        calls = []
+        def brain(p):
+            calls.append(p)
+            return None
+        sc = copy.deepcopy(self.HELI)
+        self.assertEqual(N.problems(sc), [])
+        with mock.patch("shared.rewrite_mailbox.word_holds", return_value=[]):
+            N.retell(sc, brain=brain, log=lambda m: None)
+        self.assertTrue(calls, "a story that is only a fun fact is retold")
+        self.assertIn("why it matters", calls[0])
+        self.assertIn("NEVER JUST A FUN FACT", calls[0])
+
+    def test_the_writers_are_asked_for_the_meaning(self):
+        from shared import pacing
+        self.assertIn("what it MEANS", pacing.rule())
+        self.assertIn("why it matters", N._LISTEN)
 
 
 class ItIsWiredIn(unittest.TestCase):

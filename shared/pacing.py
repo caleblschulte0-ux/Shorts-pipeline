@@ -32,8 +32,9 @@ REPO = Path(__file__).resolve().parents[1]
 #: Only for a registry that predates the key (fixtures, an old snapshot). The
 #: live registry carries it — tests/test_fifteen_seconds_a_beat_is_too_long.py
 #: checks — so production reads the registry's numbers, never these.
-IF_UNSET = {"beat_max_s": 8, "say_words": 16, "hook_words": 14,
-            "closing_words": 10, "question_words": 8, "tempo": 1.12}
+IF_UNSET = {"beat_max_s": 8, "say_words": 24, "hook_words": 14,
+            "closing_words": 18, "question_words": 8, "tempo": 1.12,
+            "beat_min_words": 15}
 
 WORDS_BY = "brain-tighten"
 
@@ -69,7 +70,7 @@ def problems(sc: dict, b: dict | None = None) -> list[str]:
         n = words(seg.get("say"))
         if n > b["say_words"]:
             out.append(f"beat {i + 1} says {n} words (max {b['say_words']}) — "
-                       f"one sentence, the number and what it means")
+                       f"the number and what it means, nothing else")
     c = words(sc.get("closing"))
     if c > b["closing_words"]:
         out.append(f"closing is {c} words (max {b['closing_words']})")
@@ -79,15 +80,27 @@ def problems(sc: dict, b: dict | None = None) -> list[str]:
     return out
 
 
+def short(sc: dict, b: dict | None = None) -> bool:
+    """The beats average under `beat_min_words`: a fact read out with no
+    "so what" (operator, 2026-10-10, of a 16-second video: "We say one fun
+    fact, and then that's it"). Never a hold; the retell makes it longer."""
+    b = b or budget()
+    segs = sc.get("segments") or []
+    return bool(segs) and (sum(words(s.get("say")) for s in segs)
+                           < len(segs) * b["beat_min_words"])
+
+
 def rule(b: dict | None = None) -> str:
     """The budget as one sentence for a writer's hard rules."""
     b = b or budget()
-    return (f"PACE: each SAY is ONE spoken sentence of at most {b['say_words']} "
-            f"words — the number and what it means, nothing else; the HOOK at "
-            f"most {b['hook_words']} words, the CLOSING at most "
-            f"{b['closing_words']}, the QUESTION at most {b['question_words']}. "
-            f"A beat is on screen about {b['beat_max_s']} seconds; a longer "
-            f"line is refused.")
+    return (f"PACE: each SAY is at most two short spoken sentences and "
+            f"{b['say_words']} words: the beat's number, then what it MEANS "
+            f"(why it is surprising, what it caused, why the viewer should "
+            f"care), nothing else; the HOOK at most {b['hook_words']} words, "
+            f"the CLOSING at most {b['closing_words']} words and it says why "
+            f"this matters to the viewer, the QUESTION at most "
+            f"{b['question_words']}. A beat is on screen about "
+            f"{b['beat_max_s']} seconds; a longer line is refused.")
 
 
 # ------------------------------------------------------------------ tighten

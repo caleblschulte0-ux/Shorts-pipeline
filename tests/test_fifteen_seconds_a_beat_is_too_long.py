@@ -56,7 +56,11 @@ class TheBudgetIsTheRegistrys(unittest.TestCase):
         for k in pacing.IF_UNSET:
             self.assertIn(k, pac, k)
             self.assertEqual(B[k], type(pacing.IF_UNSET[k])(pac[k]), k)
-        self.assertLessEqual(B["say_words"], 18)
+        # A beat still fits its seconds: the narration voice speaks about 3.8
+        # words a second at this tempo (posted 2026-10-10: 16-word beats ran
+        # 4.2 s), so the longest beat is under beat_max_s. Raised from 16 the
+        # day a sixteen-second video said "one fun fact, and then that's it".
+        self.assertLessEqual(B["say_words"] / 3.8, B["beat_max_s"])
         self.assertLessEqual(B["beat_max_s"], 9)
         self.assertGreater(B["tempo"], 1.0)
 

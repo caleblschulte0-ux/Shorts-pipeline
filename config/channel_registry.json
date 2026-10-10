@@ -269,12 +269,13 @@
           },
           "pacing": {
             "beat_max_s": 8,
-            "say_words": 16,
+            "say_words": 24,
             "hook_words": 14,
-            "closing_words": 10,
+            "closing_words": 18,
             "question_words": 8,
             "tempo": 1.12,
-            "note": "Operator 2026-10-05: '15 seconds per beat is far too long.' Posted beats ran 26 words at 130 spoken words a minute. A SAY is one sentence of at most say_words; the hook, closing and question have their own caps; tempo is the narration's playback rate over the engine's natural pace (shared/pacing.py). The forge writes to it, the takeover brief and the rewrite mailbox state it, the editorial gate HOLDS a story over it (a word reason, so the mailbox asks for a rewrite), and post_stories has the brain tighten a queued story before the gate sees it."
+            "beat_min_words": 15,
+            "note": "Operator 2026-10-05: '15 seconds per beat is far too long.' Posted beats ran 26 words at 130 spoken words a minute. A SAY is one sentence of at most say_words; the hook, closing and question have their own caps; tempo is the narration's playback rate over the engine's natural pace (shared/pacing.py). The forge writes to it, the takeover brief and the rewrite mailbox state it, the editorial gate HOLDS a story over it (a word reason, so the mailbox asks for a rewrite), and post_stories has the brain tighten a queued story before the gate sees it. Operator 2026-10-10, of a 16-second Mars helicopter video: 'the videos need to be longer ... Why do we care? What does that mean? ... We say one fun fact, and then that's it.' A beat is now the number AND what it means (up to two short sentences, say_words); the closing says why the viewer should care (closing_words). Beats spoken at about 4 seconds left half the 8-second beat empty: 24 words at the measured 3.8 words a second is about 6.3 seconds. beat_min_words is the average below which a story is retold longer (never a hold)."
           },
           "quality": {
             "target": 90,

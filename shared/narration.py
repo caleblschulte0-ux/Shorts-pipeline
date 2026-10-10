@@ -39,7 +39,7 @@ REPO = Path(__file__).resolve().parent.parent
 MAX_NUMBERS = 1
 #: Bumped when the retell doctrine changes, so stories retold under an older
 #: one are heard again.
-RETOLD = "retell/v2"
+RETOLD = "retell/v3"
 WORDS_BY = "claude-retell"
 
 #: Names a viewer knows without being told. Anything else in capitals is a
@@ -125,6 +125,15 @@ NASA, the White House, the FBI.
   - Each beat follows from the last: the setup, the turn, the payoff. A \
 viewer who hears it once, at full speed, with no picture, knows what is \
 happening and why it matters to them.
+  - NEVER JUST A FUN FACT. Every beat says its one number AND what it \
+means: why that is surprising or hard, what it caused, what it proved. By \
+the end the viewer knows WHY THEY SHOULD CARE, and the closing says it to \
+them. Not "It was built for five flights and flew seventy-two" and done, \
+but why five was the plan, what seventy-two proved, and what it changes. \
+(Operator, 2026-10-10, of a sixteen-second video: "Why do we care? What \
+does that mean? ... We say one fun fact, and then that's it.") Say only \
+what the data or plain common knowledge supports; a meaning is not a \
+licence to invent a cause or a number.
   - Entertaining: short punchy words, a little attitude, the surprise \
 landing at the end of the line. Plain words: no units a person has to \
 think about ("tons", not "megatonnes CO2e"), no jargon, no hedging, no \
@@ -140,7 +149,7 @@ HOOK (keep it): {hook}
 {beats}
 CLOSING: {closing}
 {refused}
-Rewrite the {n} beats and the closing so the video tells this story. Each \
+Rewrite the {n} beats and the closing so the video tells this story{longer}. Each \
 beat's TOPIC is the label printed on screen: keep it, or give a new one of \
 at most {topic_max} words that shares a word with the TITLE. Return STRICT \
 JSON: {{"segments": [{{"say": str, "topic": str}}, ...], "closing": str}} \
@@ -152,7 +161,7 @@ FAILS if it says anything the data does not support (a cause, a "never", a \
 number, a comparison), or if heard once at full speed it does not make \
 sense. Of the ones that pass, which would a distracted viewer scrolling \
 past FOLLOW and keep watching: the simpler, more fun story, not a list of \
-numbers?
+numbers, that leaves them knowing why it matters to them?
 
 DATA:
 {data}
@@ -209,10 +218,10 @@ def retell(sc: dict, *, config_path: Path | None = None, brain=None,
     under this doctrine, or with nothing to fix, costs no brain call."""
     if sc.get("retold") == RETOLD:
         return {"changed": False, "reasons": []}
-    found = problems(sc)
-    if not found:
-        return {"changed": False, "reasons": []}
     from shared import pacing
+    found = problems(sc)
+    if not found and not pacing.short(sc):
+        return {"changed": False, "reasons": []}
     from shared import rewrite_mailbox as rw
     held = rw.word_holds(sc)
     if held:
@@ -233,6 +242,10 @@ def retell(sc: dict, *, config_path: Path | None = None, brain=None,
             title=sc.get("title") or "", hook=sc.get("hook") or "",
             beats=beats, closing=sc.get("closing") or "",
             n=len(sc.get("segments") or []), topic_max=rw.MAX_TOPIC_WORDS,
+            longer=(" and the viewer learns why it matters: these beats are "
+                    "too short, a fact with no meaning; give each its number "
+                    "AND what it means, up to the PACE limit")
+            if pacing.short(sc) else "",
             refused=(f"\nYOUR LAST REWRITE WAS REFUSED — fix exactly this: "
                      f"{refused}\n" if refused else "")))
         ans = _parse(raw)
@@ -252,6 +265,13 @@ def retell(sc: dict, *, config_path: Path | None = None, brain=None,
         cand, probs = rw.validate(sc, full)
         if cand is not None:
             probs = problems(cand)
+            # Still a fact with no meaning. Asked again; on the last try a
+            # retell that cures a readout is kept anyway, since the readout
+            # holds the story and its length does not.
+            if not probs and pacing.short(cand) and (
+                    attempt < tries - 1 or not found):
+                probs = ["the beats are still a fact with no meaning: give "
+                         "each its number AND what it means"]
         if cand is None or probs:
             reasons = probs
             refused = "; ".join(probs)[:400]
