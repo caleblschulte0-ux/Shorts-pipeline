@@ -1,0 +1,42 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261010",
+  "bundle": {
+    "identity": "28d0e44e7866cd68ee80c1d5fa7fdb2892b96b8887cc677e98182a1ad56c9fad",
+    "path": "exchange/bundles/20261010/bundle.json"
+  },
+  "request_id": "06_reddit-daycare-early-dropoff-s2-05d73b084651",
+  "safe_request_id": "06_reddit-daycare-early-dropoff-s2-05d73b084651",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "4b1ffb98a1773ef748af620119677d66b335c62c47cf474751e8e5a9bdabe576",
+  "prompt_used": "An editorial illustration for a short-form video: angry woman arms crossed. It accompanies the narration: \"got furious when we started charging the early-drop fee\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1DtjXvxa6hIIkooiHmcTMoy3Ns15ravQ-",
+    "filename": "20261010__06_reddit-daycare-early-dropoff-s2-05d73b084651.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1DtjXvxa6hIIkooiHmcTMoy3Ns15ravQ-",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "filename": "20261010__06_reddit-daycare-early-dropoff-s2-05d73b084651.png",
+    "sha256": "6e887085df06b2ce82fa649430fa073e54daa503d3c4b9a9f5cf7f83d08216e0",
+    "bytes": 2174462,
+    "width": 941,
+    "height": 1672,
+    "format": "png"
+  },
+  "verified_at": "2026-10-10T11:27:09.647Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
