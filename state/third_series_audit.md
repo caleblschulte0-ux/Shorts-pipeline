@@ -8,9 +8,9 @@
 | drama | 12 | 0.04 |
 | win | 7 | 0.03 |
 | argument | 6 | 0.045 |
-| rage | 5 | 0.18 |
+| rage | 5 | 0.17 |
 | beef | 4 | 0.18 |
-| jumpscare | 3 | 0.19 |
+| jumpscare | 3 | 0.18 |
 | clutch | 3 | 0.02 |
 
 Excluded from the content-mix comparison (unclassified / non-series structure):
