@@ -107,6 +107,52 @@ def _unpostable(cfg: dict) -> set:
     return out
 
 
+def _repeats(cfg: dict, posted_titles=None) -> set:
+    """Slugs whose title repeats a video already up on a data channel, by the
+    same deterministic check the posting run applies first
+    (`near_duplicate.duplicate_of`) — the posting run holds them before it
+    renders, so drawing them spends the clock on nothing. 2026-10-11: three
+    of the six stories one batch drew (polio, esports, airfare) were held
+    that way."""
+    from shared import near_duplicate as nd
+    if posted_titles is None:
+        try:
+            log = json.loads(POSTED.read_text()).get("posted", {})
+            posted_titles = [v.get("title") for v in log.values()
+                             if isinstance(v, dict)]
+        except Exception:  # noqa: BLE001
+            posted_titles = []
+        try:
+            posted_titles = list(posted_titles) + nd.corpus_titles(
+                nd.posted_corpus(root=REPO))
+        except Exception:  # noqa: BLE001
+            pass
+    titles = [t for t in posted_titles if t]
+    out = set()
+    for s in cfg.get("stories", []):
+        try:
+            if nd.duplicate_of(s.get("title") or s.get("slug") or "", titles):
+                out.add(s.get("slug"))
+        except Exception:  # noqa: BLE001
+            continue
+    return out
+
+
+def _brain_repeat(sc: dict) -> str | None:
+    """The posted title this story repeats by the brain's reading — the same
+    call, with the same candidate, the posting run makes after its gate
+    (`post_stories`, "the same story as a video already up"). None when it
+    is new or no backend answers (fails open, as there)."""
+    try:
+        from shared import near_duplicate as nd
+        cand = {"title": sc.get("title"), "hook": sc.get("hook"),
+                "topic": " / ".join((g.get("topic") or "")
+                                    for g in sc.get("segments", [])[:3])}
+        return nd.brain_duplicate_of(cand, nd.corpus_titles(nd.posted_corpus(root=REPO)))
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def _save_scene(config_path: Path, slug: str, index: int, code: str) -> None:
     """Write one verified scene onto one segment — re-reading the file first
     so a concurrent edit to any other story or segment survives."""
@@ -178,10 +224,16 @@ def main(argv=None) -> int:
     except Exception:  # noqa: BLE001 — no log: nothing is posted yet
         posted = set()
     deadline = time.monotonic() + args.budget_min * 60
-    slugs = candidates(cfg, posted, args.stories, held=_held_slugs() | _unpostable(cfg))
+    # Three times as many as it will draw: a story the posting run would
+    # hold as a repeat is skipped below, and the next one takes its turn.
+    slugs = candidates(cfg, posted, args.stories * 3, held=_held_slugs() | _unpostable(cfg)
+                        | (_repeats(cfg) - posted))
     print(f"[predraw] next new-look stories: {slugs}", flush=True)
     complete = 0
+    tried = 0
     for slug in slugs:
+        if tried >= args.stories:
+            break
         if deadline - time.monotonic() < 120:
             print("[predraw] budget spent", flush=True)
             break
@@ -190,6 +242,12 @@ def main(argv=None) -> int:
         # narration was still a readout). A story whose words cannot be made
         # current is not drawn: the posting run would not take it.
         sc = next(s for s in cfg["stories"] if s.get("slug") == slug)
+        same = _brain_repeat(sc)
+        if same:
+            print(f"[predraw] {slug}: not drawn — the posting run would hold "
+                  f"it as the same story as {same!r}", flush=True)
+            continue
+        tried += 1
         try:
             from shared import narration
             narration.retell(sc, config_path=args.config,
@@ -213,7 +271,7 @@ def main(argv=None) -> int:
         print(f"[predraw] {slug}: drawn {r['drawn']}, kept {r['kept']}, "
               f"missing {r['missing']} — "
               f"{'READY for the new look' if ok else 'not ready yet'}", flush=True)
-    print(f"[predraw] {complete}/{len(slugs)} stories ready to render in the new look")
+    print(f"[predraw] {complete}/{tried} stories ready to render in the new look")
     return 0
 
 

@@ -100,3 +100,43 @@ class ThePredrawHasTheBudget(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ThePredrawSkipsRepeats(unittest.TestCase):
+    """2026-10-11: three of one batch's six stories (polio, esports, airfare)
+    were drawn, then held by the posting run as the same story as a video
+    already up. The batch now asks the same question first and draws the
+    next story instead."""
+
+    def test_a_title_repeat_is_flagged(self):
+        from scripts import predraw_scenes as P
+        cfg = {"stories": [{"slug": "a", "title": "Polio Cases Fell 99 Percent"},
+                           {"slug": "b", "title": "Saffron Costs More Than Gold"}]}
+        got = P._repeats(cfg, ["Polio Cases Fell 99 Percent Worldwide"])
+        self.assertIn("a", got)
+        self.assertNotIn("b", got)
+
+    def test_a_brain_repeat_is_skipped_and_the_next_is_drawn(self):
+        from unittest import mock
+        from scripts import predraw_scenes as P
+        from data_learning import scene_author as SA
+        cfg = {"stories": [{"slug": s, "title": s, "segments": []}
+                           for s in ("dup", "new1", "new2")]}
+        drawn = []
+
+        def fake_predraw(slug, *a, **k):
+            drawn.append(slug)
+            return {"drawn": [0], "kept": [], "missing": []}
+        with mock.patch.object(SA.shutil, "which", return_value="/bin/claude"), \
+             mock.patch.object(P, "candidates", return_value=["dup", "new1", "new2"]), \
+             mock.patch.object(P, "_held_slugs", return_value=set()), \
+             mock.patch.object(P, "_unpostable", return_value=set()), \
+             mock.patch.object(P, "_repeats", return_value=set()), \
+             mock.patch.object(P, "_brain_repeat",
+                               side_effect=lambda sc: "Old Video" if sc["slug"] == "dup" else None), \
+             mock.patch.object(P, "predraw", side_effect=fake_predraw), \
+             mock.patch("shared.narration.retell", return_value=None), \
+             mock.patch("shared.narration.problems", return_value=[]), \
+             mock.patch.object(P.Path, "read_text", return_value=__import__("json").dumps(cfg)):
+            P.main(["--stories", "1", "--budget-min", "10"])
+        self.assertEqual(drawn, ["new1"])
