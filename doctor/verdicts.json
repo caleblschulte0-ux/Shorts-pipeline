@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20261010",
+  "updated": "20261011",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -1278,10 +1278,16 @@
       ]
     },
     "b507d603aefb": {
-      "verdict": "doing",
-      "date": "20260904",
-      "because": "Confirmed: daily.yml, retro.yml, doctor.yml and exchange_phase_b.yml all pin actions/checkout and actions/setup-python by mutable major-version tags while running with contents:write. Legitimate supply-chain hardening; queued as a long-term repo-wide pinning + Dependabot/Renovate policy change rather than a one-off edit to avoid an unreviewed partial pin.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20261011",
+      "because": "picked up",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260904",
+          "because": "Confirmed: daily.yml, retro.yml, doctor.yml and exchange_phase_b.yml all pin actions/checkout and actions/setup-python by mutable major-version tags while running with contents:write. Legitimate supply-chain hardening; queued as a long-term repo-wide pinning + Dependabot/Renovate policy change rather than a one-off edit to avoid an unreviewed partial pin."
+        }
+      ]
     },
     "500b791bc671": {
       "verdict": "doing",

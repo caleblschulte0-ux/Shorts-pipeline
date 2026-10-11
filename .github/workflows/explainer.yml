@@ -140,10 +140,10 @@ jobs:
     outputs:
       new_count: ${{ steps.count.outputs.new_count }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           fetch-depth: 1
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Count un-posted stories
@@ -180,7 +180,7 @@ jobs:
       cancel-in-progress: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 1
@@ -197,7 +197,7 @@ jobs:
           fi
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
@@ -244,7 +244,7 @@ jobs:
       # Translation cache (audit Ticket 3): moved out of git into cache/,
       # persisted between runs via actions/cache (evolving-cache pattern).
       - name: Cache translations
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: |
             cache/translation/
@@ -256,7 +256,7 @@ jobs:
       # Narration line cache: a line a paid voice already read is reused,
       # never re-bought (studio_render._tts_cache_*). Same evolving pattern.
       - name: Cache narration lines
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: cache/tts/
           key: tts-lines-v1-${{ github.run_id }}
@@ -279,7 +279,7 @@ jobs:
 
       - name: Cache rembg model (~170MB)
         if: inputs.mode != 'verify'
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.u2net
           key: rembg-u2net-v1
@@ -288,7 +288,7 @@ jobs:
 
       - name: Cache Kokoro TTS models (~350MB)
         id: cache-kokoro
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: kokoro_models/
           key: kokoro-onnx-v1.0
@@ -309,7 +309,7 @@ jobs:
       - name: Cache b-roll strip clips
         if: inputs.mode != 'verify'
         id: cache-broll
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: data_learning/broll/styles/
           key: broll-styles-${{ hashFiles('data_learning/broll_gen.py') }}
@@ -326,7 +326,7 @@ jobs:
       - name: Cache music library (~110MB)
         if: inputs.mode != 'verify'
         id: cache-music
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: data_learning/music/
           key: music-kmcl-${{ hashFiles('scripts/fetch_music.py') }}
@@ -748,7 +748,7 @@ jobs:
       # for ChatGPT; claim_reviews.yml ships it later on a code-decided ship.
       - name: Keep held renders for the mailbox judge
         if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: held-renders-${{ github.run_id }}
           path: |
