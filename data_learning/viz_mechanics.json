@@ -740,5 +740,13 @@
   "topic": "divorce-rate-quiet-decline",
   "starred": false,
   "sig": "f75c55eac510"
+ },
+ {
+  "mechanic": "controllers-cut-pile",
+  "concept": "one game controller per 500 jobs cut drops into a stack for each year, the 2024 stack towering over 2022",
+  "code": "pad = subject_image('video game controller')\nper = 500.0\numax = max(1, round(max(values) / per))\ncol_w = (RX1 - RX0) // n\nbase = RBOT - 150\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    cx = RX0 + col_w * i + col_w // 2\n    units = max(1, round(v / per))\n    hot = (i == n - 1)\n    for k in range(units):\n        t = clamp((reveal - (0.04 + 0.86 * (k * n + i) / (umax * n))) / 0.07)\n        if t <= 0:\n            continue\n        gx = cx - 105 + (k % 4) * 70\n        gy = base - 60 - (k // 4) * 68\n        fy = int((1 - t) * -420)\n        if pad is not None:\n            paste(pad, gx - 28, gy + fy, 56, 56)\n        else:\n            d.rounded_rectangle([gx - 26, gy + fy, gx + 26, gy + fy + 40], radius=10, fill=rgba(WARN if hot else REST, 230))\n    shown = min(v, int(v * clamp(reveal * 1.05)))\n    text(labels[i], cx, base + 20, size=34, color=TEXT, center=True)\n    text(f'{shown:,}', cx, base + 70, size=46, color=WARN if hot else TEXT, center=True)\ntext('1 controller = 500 jobs cut', (RX0 + RX1) // 2, RTOP + 20, size=30, color=SUBTLE, center=True)\nd.line([RX0 + 10, base + 6, RX1 - 10, base + 6], fill=rgba(TEXT, 120), width=3)\n",
+  "topic": "game industry layoffs",
+  "starred": false,
+  "sig": "abdb6736291f"
  }
 ]

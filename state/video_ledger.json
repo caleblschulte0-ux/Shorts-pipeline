@@ -5156,68 +5156,52 @@
   {
    "slug": "bat-fungus-collapse",
    "directed_at": "2026-10-11",
-   "topic_category": "nature",
-   "hook_type": "shock_stat",
-   "hook_text": "Your bats are dying: 97 percent of one kind gone, and it started in one cave.",
-   "words_first_10s": 16,
-   "scene_changes_before_5s": 2,
+   "hook_type": "inversion",
+   "hook_text": "Your bats are dying: 97 percent of one kind gone",
    "depictions": [
     "viz:geo_us",
     "mechanic:bat-colony-collapse-columns",
     "mechanic:farmland-value-gauge"
    ],
-   "ending_type": "consequence",
-   "franchise": "",
-   "notes": "kept existing scenes; spread map, bats falling off ceilings, pest-value gauge"
+   "ending_type": "inversion",
+   "notes": "bats fall off the ceiling; unchanged depictions"
   },
   {
    "slug": "unclaimed-money-states-hold",
    "directed_at": "2026-10-11",
-   "topic_category": "money",
-   "hook_type": "shock_stat",
+   "hook_type": "inversion",
    "hook_text": "States are quietly holding 70 billion dollars of your money.",
-   "words_first_10s": 16,
-   "scene_changes_before_5s": 2,
    "depictions": [
     "viz:geo_us",
     "mechanic:vault-drain-trickle",
     "mechanic:crowd-glow-share"
    ],
-   "ending_type": "consequence",
-   "franchise": "",
-   "notes": "kept existing scenes; vault trickle, 1-in-7 crowd glow"
+   "ending_type": "inversion",
+   "notes": "vault vs trickle; unchanged depictions"
   },
   {
    "slug": "game-industry-layoffs-record",
    "directed_at": "2026-10-11",
-   "topic_category": "tech",
    "hook_type": "inversion",
-   "hook_text": "Games made record money in 2024 -- and 14,800 people lost their jobs.",
-   "words_first_10s": 16,
-   "scene_changes_before_5s": 2,
+   "hook_text": "Games hit record sales, and 14,800 people lost their jobs.",
    "depictions": [
-    "mechanic:controller-stacks-lopped",
-    "mechanic:badge-grid-pink-slips"
+    "mechanic:controllers-cut-pile",
+    "mechanic:controllers-three-bins"
    ],
    "ending_type": "inversion",
-   "franchise": "",
-   "notes": "controller towers per 1000 jobs; badge wall dropping by company"
+   "notes": "one controller per job block; headline firms are the small stacks"
   },
   {
    "slug": "divorce-rate-quiet-decline",
    "directed_at": "2026-10-11",
-   "topic_category": "society",
    "hook_type": "inversion",
-   "hook_text": "You've been told half of marriages fail. The numbers say otherwise.",
-   "words_first_10s": 16,
-   "scene_changes_before_5s": 2,
+   "hook_text": "Everyone says half of marriages end. The real number just fell by half.",
    "depictions": [
-    "mechanic:ring-pairs-pull-apart-less",
-    "mechanic:bride-walks-later-aisle"
+    "mechanic:rings-cracking-away",
+    "mechanic:bride-age-ruler"
    ],
    "ending_type": "inversion",
-   "franchise": "",
-   "notes": "rings split by divorce rate, bride walks to later age"
+   "notes": "rings vanish from a grid; ring travels age ruler"
   }
  ]
 }
