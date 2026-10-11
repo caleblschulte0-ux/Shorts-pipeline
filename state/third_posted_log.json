@@ -12593,13 +12593,50 @@
       "ts": "2026-10-11T12:43:03.309272+00:00"
     },
     "clip-20261011-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/cinna/clip/CrazyInexpensiveDotterelAMPEnergyCherry-KWaMDecdKl22d4gR",
-      "story_key": null,
-      "streamer": "cinna",
+      "url": "https://youtube.com/shorts/YtKMONHYdkc",
       "title": "Cinna Hears A Thunder Clap And Tiffy Needs Help Right Now",
       "kind": "twitch_clip",
-      "ts": "2026-10-11T12:44:55.546376+00:00",
+      "ts": "2026-10-11T12:45:02.421857+00:00",
+      "uploaded_at": "2026-10-11T12:45:02.421868+00:00",
+      "publish_at": "2026-10-11T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261011-cinna-hears-a-thunder-clap-and-tiffy-needs-help--3ebb82cf",
+        "tiktok": "queued for 2026-10-11T20:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/cinna/clip/CrazyInexpensiveDotterelAMPEnergyCherry-KWaMDecdKl22d4gR",
+      "streamer": "cinna",
+      "series": "chaos",
+      "hook": "Tiffy needs help \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4303,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 13.4
+      },
+      "director_cut": true
+    },
+    "rejected-excitedenticingechidnacoolstorybro-u5sibcgqguum2uic": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/ExcitedEnticingEchidnaCoolStoryBro-u5sIbcGqgUum2uic",
+      "streamer": "stableronaldo",
+      "title": "los plays with a baby villager",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Minecraft villager banter, no clear even)",
+      "ts": "2026-10-11T12:45:46.308937+00:00"
+    },
+    "clip-20261011-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/DifficultWildGullKappaPride-WIm1m9cAYbE56Pqp",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Demands Proof: \"Where Is Your Proof?\" After Being Told 'Part Two'",
+      "kind": "twitch_clip",
+      "ts": "2026-10-11T12:48:17.671117+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
