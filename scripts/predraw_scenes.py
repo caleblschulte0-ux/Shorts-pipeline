@@ -167,6 +167,22 @@ def _save_scene(config_path: Path, slug: str, index: int, code: str) -> None:
     write_json_if_changed(config_path, cfg, ensure_ascii=False)
 
 
+def _save_bookend(config_path: Path, slug: str, kind: str, code: str,
+                  idx: int) -> None:
+    """Write one verified hook or closing scene onto its story, re-reading
+    the file first, as `_save_scene` does for a beat."""
+    from shared.fsutil import write_json_if_changed
+    cfg = json.loads(config_path.read_text())
+    for s in cfg.get("stories", []):
+        if s.get("slug") == slug:
+            s[f"{kind}_scene"], s[f"{kind}_data"] = code, idx
+            break
+    write_json_if_changed(config_path, cfg, ensure_ascii=False)
+
+
+BOOKENDS = ("closing", "hook")
+
+
 def predraw(slug: str, cfg: dict, config_path: Path, deadline: float,
             log=print) -> dict:
     """Draw every missing beat of one story. {"drawn", "kept", "missing"}."""
@@ -202,6 +218,38 @@ def predraw(slug: str, cfg: dict, config_path: Path, deadline: float,
             res["drawn"].append(i)
         else:
             res["missing"].append(i)
+    # THE HOOK AND THE CLOSING TOO (2026-10-11: both videos that posted that
+    # day had every beat drawn here and no closing scene, because the closing
+    # was left to the posting run's clock and did not pass in time; without
+    # one the last beat is shrunk into a box under the closing line, a
+    # widget, not a shot). Same `scene_for_bookend` the renderer calls,
+    # drawn only once every beat is, and only with clock left.
+    res["bookends"] = []
+    if not res["missing"]:
+        insights = [getattr(sg, "insight", None) for sg in segs]
+        if all(x is not None for x in insights):
+            for kind in BOOKENDS:
+                if not (story_cfg.get(kind) or "").strip():
+                    continue
+                _was = story_cfg.get(f"{kind}_scene")
+                left = deadline - time.monotonic()
+                if SA.saved_bookend(story_cfg, kind, len(insights),
+                                    log=lambda m: log(f"[{slug}] {kind}: {m}")):
+                    if story_cfg.get(f"{kind}_scene") != _was:
+                        _save_bookend(config_path, slug, kind,
+                                      story_cfg[f"{kind}_scene"],
+                                      story_cfg.get(f"{kind}_data", 0))
+                    continue
+                if left < 120:
+                    continue
+                SA.set_budget(min(SA.BUDGET_S, left))
+                got = SA.scene_for_bookend(
+                    story_cfg, kind, insights,
+                    log=lambda m: log(f"[{slug}] {kind}: {m}"))
+                code = story_cfg.get(f"{kind}_scene")
+                if got is not None and isinstance(code, str) and code.strip():
+                    _save_bookend(config_path, slug, kind, code, got[1])
+                    res["bookends"].append(kind)
     return res
 
 
@@ -269,7 +317,7 @@ def main(argv=None) -> int:
         ok = not r["missing"]
         complete += ok
         print(f"[predraw] {slug}: drawn {r['drawn']}, kept {r['kept']}, "
-              f"missing {r['missing']} — "
+              f"missing {r['missing']}, bookends {r.get('bookends', [])} — "
               f"{'READY for the new look' if ok else 'not ready yet'}", flush=True)
     print(f"[predraw] {complete}/{tried} stories ready to render in the new look")
     return 0

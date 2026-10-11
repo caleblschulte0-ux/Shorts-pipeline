@@ -140,3 +140,49 @@ class ThePredrawSkipsRepeats(unittest.TestCase):
              mock.patch.object(P.Path, "read_text", return_value=__import__("json").dumps(cfg)):
             P.main(["--stories", "1", "--budget-min", "10"])
         self.assertEqual(drawn, ["new1"])
+
+
+class ThePredrawDrawsTheBookends(unittest.TestCase):
+    """2026-10-11: pollen and polio posted with every beat drawn and no
+    closing scene (left to the posting run's clock, which ran out), so each
+    ended on its last beat shrunk into a box under the closing line. The
+    predraw draws the hook and the closing once the beats are done."""
+
+    def _run(self, saved):
+        import json, tempfile, types
+        from unittest import mock
+        from scripts import predraw_scenes as P
+        from data_learning import scene_author as SA, story
+        cfg = {"stories": [{"slug": "s", "title": "T", "hook": "A hook.",
+                            "closing": "Why it matters.",
+                            "segments": [{"illustrated_scene": "x"},
+                                         {"illustrated_scene": "y"}]}]}
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "niche.config.json"
+            path.write_text(json.dumps(cfg))
+            built = types.SimpleNamespace(segments=[
+                types.SimpleNamespace(insight=object()) for _ in range(2)])
+
+            def draw(sc, kind, ins, log=print):
+                sc[f"{kind}_scene"], sc[f"{kind}_data"] = f"code-{kind}", 1
+                return (lambda *a: None), 1
+            with mock.patch.object(story, "build", return_value=built), \
+                 mock.patch.object(SA, "saved_scene", return_value=True), \
+                 mock.patch.object(SA, "saved_bookend", return_value=saved), \
+                 mock.patch.object(SA, "scene_for_bookend", side_effect=draw) as sfb:
+                import time
+                r = P.predraw("s", cfg, path, time.monotonic() + 3600,
+                              log=lambda m: None)
+            return r, json.loads(path.read_text())["stories"][0], sfb
+
+    def test_missing_bookends_are_drawn_and_saved(self):
+        r, saved, sfb = self._run(None)
+        self.assertEqual(sorted(r["bookends"]), ["closing", "hook"])
+        self.assertEqual(saved["closing_scene"], "code-closing")
+        self.assertEqual(saved["closing_data"], 1)
+        self.assertEqual(saved["hook_scene"], "code-hook")
+
+    def test_saved_bookends_are_not_redrawn(self):
+        r, _, sfb = self._run((lambda *a: None, 1))
+        self.assertEqual(r["bookends"], [])
+        sfb.assert_not_called()
