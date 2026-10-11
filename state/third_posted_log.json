@@ -12519,13 +12519,50 @@
       "ts": "2026-10-11T12:35:50.351139+00:00"
     },
     "clip-20261011-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/MoralAuspiciousMacaroniGOWSkull-K-ZZ_F1ZULCBM3qu",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/YldrA0JVY60",
       "title": "Lacy Has To Make A Burger For Sadie After They Run Out Of Chicken \ud83d\ude02",
       "kind": "twitch_clip",
-      "ts": "2026-10-11T12:39:10.719737+00:00",
+      "ts": "2026-10-11T12:39:23.790181+00:00",
+      "uploaded_at": "2026-10-11T12:39:23.790193+00:00",
+      "publish_at": "2026-10-11T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261011-lacy-has-to-make-a-burger-for-sadie-after-they-r-69b832ef",
+        "tiktok": "queued for 2026-10-11T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/MoralAuspiciousMacaroniGOWSkull-K-ZZ_F1ZULCBM3qu",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "Lacy has to make burgers \ud83d\ude02",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3070,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.8,
+        "end": 28.5
+      },
+      "director_cut": true
+    },
+    "rejected-inexpensivehotgrousenerfblueblaster--wdg-mrtfp79lgsc": {
+      "source_url": "https://www.twitch.tv/xqc/clip/InexpensiveHotGrouseNerfBlueBlaster--wdg-mRtFp79lgSC",
+      "streamer": "xqc",
+      "title": "breakup advice",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (static screen, advice talk, no event)",
+      "ts": "2026-10-11T12:40:52.706612+00:00"
+    },
+    "clip-20261011-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/alinity/clip/SeductiveShyAyeayeCeilingCat-VQzWmt7DOPwK9SE4",
+      "story_key": null,
+      "streamer": "alinity",
+      "title": "Alinity Screams 'Holy WHAT?!' And Needs A Second After This",
+      "kind": "twitch_clip",
+      "ts": "2026-10-11T12:42:16.446919+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
