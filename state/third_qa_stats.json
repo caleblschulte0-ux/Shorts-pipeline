@@ -3,152 +3,6 @@
     {
       "date": "20261001",
       "dry_run": false,
-      "ts": "2026-10-01T12:20:24+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 119,
-        "with_retention": 103,
-        "with_curve": 15,
-        "fetched_at": "2026-10-01T08:46:17.788742+00:00"
-      },
-      "brain": {
-        "ok": 6,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261001-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261001-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261001-3",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about a third of the canvas height, with large blurred areas above and below. It is n; vision: The game character and the action are tiny and hard to see on ",
-          "judges": {
-            "banger": {
-              "score": 0.68,
-              "why": "visible fail, boar snipe",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Death in WoW; hard to follow visually",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Summit1G Gets Sniped By A Boar And Can't Believe It"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.8,
-              "problems": [
-                "The sharp picture is a thin strip, about a third of the canvas height, with large blurred areas above and below. It is n",
-                "The game character and the action are tiny and hard to see on a phone. The boar sniping Summit1G can't be seen at all.",
-                "The facecam is a small thumbnail inside the strip, so the reaction is hard to read.",
-                "Two sets of captions appear: small burned-in subtitles in the strip and large captions in the blur. The in-strip subtitl",
-                "The framing does not look cropped toward the action. It looks like a reposted full-screen game capture."
-              ]
-            }
-          },
-          "took_s": 320.6
-        },
-        {
-          "slug": "clip-20261001-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261001-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261001-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20261001",
-      "dry_run": false,
       "ts": "2026-10-01T17:56:48+00:00",
       "feedback": {
         "snapshot": true,
@@ -8924,6 +8778,58 @@
         "with_retention": 113,
         "with_curve": 14,
         "fetched_at": "2026-10-11T08:46:11.435848+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 0
+      },
+      "dead_sources": {},
+      "clips": [
+        {
+          "slug": "clip-20261011-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261011-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261011-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261011-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261011-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261011-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261011",
+      "dry_run": false,
+      "ts": "2026-10-11T16:40:16+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 130,
+        "with_retention": 113,
+        "with_curve": 14,
+        "fetched_at": "2026-10-11T15:01:08.356245+00:00"
       },
       "brain": {
         "ok": 0,
