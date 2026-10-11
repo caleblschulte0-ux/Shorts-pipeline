@@ -705,6 +705,34 @@ def test_the_story_downloader_falls_back_to_the_converter(tmp_path):
         assert f.call_count == 1
 
 
+def test_the_free_converter_site_hands_back_the_file():
+    # loader.to answered from GitHub on 2026-10-11 when Piped, Invidious
+    # and cobalt all refused: start, then poll its own progress.php
+    from funnel import yt_convert as yc
+    answers = [
+        {"success": True, "id": "v2_x", "title": "Reggie part two",
+         "progress_url": "https://other/api/progress?id=v2_x"},
+        {"success": 0, "progress": 500, "text": "Converting", "download_url": ""},
+        {"success": 0, "progress": 50, "download_url": ""},
+        {"success": 1, "progress": 1000, "text": "Finished",
+         "download_url": "https://cdn/file.mp4"},
+    ]
+    asked = []
+
+    def fake(url, **kw):
+        asked.append(url)
+        return answers.pop(0)
+
+    with mock.patch.object(yc, "_json", side_effect=fake), \
+            mock.patch.object(yc.time, "sleep"):
+        got = yc._loader("https://loader.to", "abcdefghijk")
+    assert got[0] == "https://cdn/file.mp4"
+    assert got[2]["title"] == "Reggie part two"
+    assert "watch%3Fv%3Dabcdefghijk" in asked[0]
+    assert asked[1] == "https://loader.to/ajax/progress.php?id=v2_x"
+    assert yc.ROUTES[0][0] == "loader"
+
+
 class Everything(unittest.TestCase):
     """CI runs `unittest discover`, which collects only TestCases; every
     function above runs here as well as under pytest."""
