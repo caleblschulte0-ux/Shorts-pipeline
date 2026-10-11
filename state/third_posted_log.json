@@ -12630,13 +12630,50 @@
       "ts": "2026-10-11T12:45:46.308937+00:00"
     },
     "clip-20261011-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/DifficultWildGullKappaPride-WIm1m9cAYbE56Pqp",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/QCUMWhJGtbM",
       "title": "Kaicenat: Kai Cenat Demands Proof: \"Where Is Your Proof?\" After Being Told 'Part Two'",
       "kind": "twitch_clip",
-      "ts": "2026-10-11T12:48:17.671117+00:00",
+      "ts": "2026-10-11T12:48:28.361689+00:00",
+      "uploaded_at": "2026-10-11T12:48:28.361703+00:00",
+      "publish_at": "2026-10-11T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261011-kaicenat-kai-cenat-demands-proof-where-is-your-p-cf73bf39",
+        "tiktok": "queued for 2026-10-11T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/DifficultWildGullKappaPride-WIm1m9cAYbE56Pqp",
+      "streamer": "kaicenat",
+      "series": "argument",
+      "hook": "Kai wants proof, says he's done \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3693,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 22.1
+      },
+      "director_cut": true
+    },
+    "rejected-endearinggentlesheepvotenay-j8vrygwgn4-ee373": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/EndearingGentleSheepVoteNay-J8vrygWgN4-eE373",
+      "streamer": "caseoh_",
+      "title": "CASEOH LEECHING",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Insider streamer talk, nothing visible h)",
+      "ts": "2026-10-11T12:49:27.489153+00:00"
+    },
+    "clip-20261011-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/erobb221/clip/WrongAssiduousLemurOSkomodo-mfPa0uL805rOI_YJ",
+      "story_key": null,
+      "streamer": "erobb221",
+      "title": "Erobb221 Can't Believe How Big This Thing Is And Asks If It's Real",
+      "kind": "twitch_clip",
+      "ts": "2026-10-11T12:51:43.510394+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
