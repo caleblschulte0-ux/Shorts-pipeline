@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261011",
+  "bundle": {
+    "identity": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76",
+    "path": "exchange/bundles/20261011/bundle.json"
+  },
+  "request_id": "05_reddit-wifi-mooching-neighbor-s7-01fe4be8aebc",
+  "safe_request_id": "05_reddit-wifi-mooching-neighbor-s7-01fe4be8aebc",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "84b3bc6589b3aa59c4a2f5ca7e865abf5fcf62514ce000c4528cd6d7e59e0268",
+  "prompt_used": "An editorial illustration for a short-form video: internet technician van driveway. It accompanies the narration: \"He bought his own internet plan within the week\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1vbvo-tOnFzoZBLu8dsCqPz9N51_4E8HS",
+    "filename": "20261011__05_reddit-wifi-mooching-neighbor-s7-01fe4be8aebc.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1vbvo-tOnFzoZBLu8dsCqPz9N51_4E8HS",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "7e21ac1d3e89020053cc045ddf0505a0bbd1f6c5603adbf7f42bf4bf9a3873bd",
+    "bytes": 2065695,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-11T11:20:19.757Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
