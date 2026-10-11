@@ -20,14 +20,14 @@ jobs:
         run: echo "id=$(cat voice_lab/collect_run_id)" >> $GITHUB_OUTPUT
       - uses: actions/download-artifact@v4
         with: { path: dl/, run-id: '${{ steps.r.outputs.id }}', github-token: '${{ github.token }}' }
+      - run: sudo apt-get install -y -qq flac
       - run: |
-          mkdir -p voice_lab/young
-          find dl -type f \( -name '*.mp3' -o -name '*.txt' -o -name '*.json' -o -name '*.sha256' \) -exec cp {} voice_lab/young/ \;
-          find dl -name 'globe_*.wav' -exec sh -c 'ffmpeg -y -loglevel error -i "$1" -ac 1 -c:a libopus -b:a 96k voice_lab/young/$(basename "$1" .wav).ogg' _ {} \;
-          pip install -q openai-whisper
-          python voice_lab/heard_young.py voice_lab/young || true
+          D=voice_lab/clean2; mkdir -p $D
+          find dl -type f \( -name '*.mp3' -o -name '*.json' \) -exec cp {} $D/ \;
+          find dl -name 'log_*.txt' -exec sh -c 'cp "$1" '$D'/run2_$(basename "$1")' _ {} \;
+          find dl -name 'clean_*.wav' -exec sh -c 'flac -s -f --best -o '$D'/$(basename "$1" .wav).flac "$1"' _ {} \;
           git config user.name "voice-lab"
           git config user.email "voice-lab@users.noreply.github.com"
-          git add -f voice_lab/young
-          git commit -m "voice lab young results [skip ci]"
-          for i in 1 2 3 4; do git pull --rebase -q origin voice-lab && git push origin HEAD:voice-lab && break; sleep $((i*3)); done
+          git add -f $D
+          git commit -m "voice lab re-collect [skip ci]"
+          ok=0; for i in 1 2 3 4; do git pull --rebase -q origin voice-lab && git push origin HEAD:voice-lab && ok=1 && break; git rebase --abort 2>/dev/null; sleep $((i*3)); done; [ $ok = 1 ]
