@@ -24,9 +24,9 @@
   "image": {
     "sha256": "e39a9e32da738c3dd28d55aab109d22301d829759dd84923aa32cae1a293e044",
     "bytes": 2288733,
-    "fmt": "png",
     "width": 941,
-    "height": 1672
+    "height": 1672,
+    "format": "png"
   },
   "verified_at": "2026-10-11T11:16:55.812Z",
   "error": null,
