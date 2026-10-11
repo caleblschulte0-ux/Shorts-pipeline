@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261011",
+  "bundle": {
+    "identity": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76",
+    "path": "exchange/bundles/20261011/bundle.json"
+  },
+  "request_id": "05_reddit-wifi-mooching-neighbor-s5-6230590840f9",
+  "safe_request_id": "05_reddit-wifi-mooching-neighbor-s5-6230590840f9",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "a271f2b5c9a3a78eb87a9b946f9d4efe59476528146753bc6e8c925492eaf310",
+  "prompt_used": "An editorial illustration for a short-form video: smart tv buffering screen. It accompanies the narration: \"His smart TV buffered every single show\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1aKAFTydYiG57MvuAfXIZBYCOlid4F_7R",
+    "filename": "20261011__05_reddit-wifi-mooching-neighbor-s5-6230590840f9.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1aKAFTydYiG57MvuAfXIZBYCOlid4F_7R",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "465394d7243ec9a3cbe52aeecfb4587b728d5fb3074fded56cacb394e8cc3944",
+    "bytes": 1551748,
+    "format": "png",
+    "width": 1536,
+    "height": 1024
+  },
+  "verified_at": "2026-10-11T11:20:19.757Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
