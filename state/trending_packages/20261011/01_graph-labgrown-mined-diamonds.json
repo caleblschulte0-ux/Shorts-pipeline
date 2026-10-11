@@ -23,17 +23,38 @@
     "shorts",
     "viral"
   ],
-  "years": [2019, 2020, 2021, 2022, 2023, 2024],
+  "years": [
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
   "series": [
     {
       "name": "Mined Diamonds",
       "color": "#4a90e2",
-      "values": [88, 82, 76, 64, 54, 48]
+      "values": [
+        88,
+        82,
+        76,
+        64,
+        54,
+        48
+      ]
     },
     {
       "name": "Lab-Grown Diamonds",
       "color": "#58cc02",
-      "values": [12, 18, 24, 36, 46, 52]
+      "values": [
+        12,
+        18,
+        24,
+        36,
+        46,
+        52
+      ]
     }
   ],
   "music_vibe": "cinematic"

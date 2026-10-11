@@ -19,20 +19,60 @@
   ],
   "script": "I was comparing drill bits in the hardware aisle, wearing my own gray hoodie, when a woman shoved her cart into mine and demanded I find her the contractor discount code. I told her twice I didn't work there. She said my hoodie was basically the same color as the uniform and that stalling wouldn't get her out of helping. A real employee walked by in the actual branded vest and asked if everything was okay. The woman pointed at me and said I was refusing to do my job. The employee checked my hands, no store badge, no radio, and asked for my receipt, still sitting in my pocket from the register. She explained, slowly, that I was a customer, exactly like she was. The woman didn't apologize. Instead she asked the actual employee for the contractor discount, and got told the store had retired that discount two years ago. She turned around to argue with me about it anyway. I was already in my car by then.",
   "shots": [
-    {"phrase": "comparing drill bits in the hardware aisle", "query": "hardware store aisle drills"},
-    {"phrase": "shoved her cart into mine", "query": "shopping cart aisle collision"},
-    {"phrase": "demanded I find her the contractor discount code", "query": "store receipt discount sign"},
-    {"phrase": "A real employee walked by in the actual branded vest", "query": "store employee branded vest"},
-    {"phrase": "checked my hands, no store badge, no radio", "query": "empty hands closeup no badge"},
-    {"phrase": "still sitting in my pocket from the register", "query": "store receipt pocket closeup"},
-    {"phrase": "the store had retired that discount two years ago", "query": "store signage discount sign"},
-    {"phrase": "I was already in my car by then", "query": "parking lot car driving away"}
+    {
+      "phrase": "comparing drill bits in the hardware aisle",
+      "query": "hardware store aisle drills"
+    },
+    {
+      "phrase": "shoved her cart into mine",
+      "query": "shopping cart aisle collision"
+    },
+    {
+      "phrase": "demanded I find her the contractor discount code",
+      "query": "store receipt discount sign"
+    },
+    {
+      "phrase": "A real employee walked by in the actual branded vest",
+      "query": "store employee branded vest"
+    },
+    {
+      "phrase": "checked my hands, no store badge, no radio",
+      "query": "empty hands closeup no badge"
+    },
+    {
+      "phrase": "still sitting in my pocket from the register",
+      "query": "store receipt pocket closeup"
+    },
+    {
+      "phrase": "the store had retired that discount two years ago",
+      "query": "store signage discount sign"
+    },
+    {
+      "phrase": "I was already in my car by then",
+      "query": "parking lot car driving away"
+    }
   ],
   "punches": [
-    {"phrase": "contractor discount code", "text": "DISCOUNT?", "color": "#ffaa30"},
-    {"phrase": "no store badge, no radio", "text": "NOT STAFF", "color": "#ff3030"},
-    {"phrase": "retired that discount two years ago", "text": "DISCONTINUED", "color": "#ff3030"},
-    {"phrase": "I was already in my car by then", "text": "GONE", "color": "#50ff80"}
+    {
+      "phrase": "contractor discount code",
+      "text": "DISCOUNT?",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "no store badge, no radio",
+      "text": "NOT STAFF",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "retired that discount two years ago",
+      "text": "DISCONTINUED",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "I was already in my car by then",
+      "text": "GONE",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "dark"
 }

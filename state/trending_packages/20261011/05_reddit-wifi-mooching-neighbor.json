@@ -20,20 +20,60 @@
   ],
   "script": "My neighbor bragged at a cookout that he'd been using my home Wi-Fi for two years because I never changed the default password. He laughed and said I basically owed him for teaching me a lesson about security. I smiled, said nothing, and went home to actually learn my router's settings for the first time. Instead of changing the password, I logged into the admin panel and moved his device onto the guest network with a bandwidth cap of one megabit per second. He kept his free Wi-Fi, technically. His video calls started freezing mid-sentence. His smart TV buffered every single show. He texted me three days later asking if my internet was having issues too. I said mine was running great. He finally asked for my real password outright, like a tenant asking a landlord. I told him I would look into it and left the cap exactly where it was. He bought his own internet plan within the week.",
   "shots": [
-    {"phrase": "bragged at a cookout", "query": "backyard cookout barbecue party"},
-    {"phrase": "using my home Wi-Fi for two years", "query": "wifi router blinking lights"},
-    {"phrase": "actually learn my router's settings for the first time", "query": "router settings laptop screen"},
-    {"phrase": "moved his device onto the guest network", "query": "network admin panel laptop"},
-    {"phrase": "bandwidth cap of one megabit per second", "query": "slow loading spinner buffering"},
-    {"phrase": "His smart TV buffered every single show", "query": "smart tv buffering screen"},
-    {"phrase": "asking if my internet was having issues too", "query": "texting phone closeup"},
-    {"phrase": "He bought his own internet plan within the week", "query": "internet technician van driveway"}
+    {
+      "phrase": "bragged at a cookout",
+      "query": "backyard cookout barbecue party"
+    },
+    {
+      "phrase": "using my home Wi-Fi for two years",
+      "query": "wifi router blinking lights"
+    },
+    {
+      "phrase": "actually learn my router's settings for the first time",
+      "query": "router settings laptop screen"
+    },
+    {
+      "phrase": "moved his device onto the guest network",
+      "query": "network admin panel laptop"
+    },
+    {
+      "phrase": "bandwidth cap of one megabit per second",
+      "query": "slow loading spinner buffering"
+    },
+    {
+      "phrase": "His smart TV buffered every single show",
+      "query": "smart tv buffering screen"
+    },
+    {
+      "phrase": "asking if my internet was having issues too",
+      "query": "texting phone closeup"
+    },
+    {
+      "phrase": "He bought his own internet plan within the week",
+      "query": "internet technician van driveway"
+    }
   ],
   "punches": [
-    {"phrase": "two years", "text": "2 YEARS", "color": "#ffaa30"},
-    {"phrase": "bandwidth cap of one megabit per second", "text": "1 MBPS", "color": "#ff3030"},
-    {"phrase": "buffered every single show", "text": "BUFFERING", "color": "#ff3030"},
-    {"phrase": "He bought his own internet plan within the week", "text": "HE QUIT", "color": "#50ff80"}
+    {
+      "phrase": "two years",
+      "text": "2 YEARS",
+      "color": "#ffaa30"
+    },
+    {
+      "phrase": "bandwidth cap of one megabit per second",
+      "text": "1 MBPS",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "buffered every single show",
+      "text": "BUFFERING",
+      "color": "#ff3030"
+    },
+    {
+      "phrase": "He bought his own internet plan within the week",
+      "text": "HE QUIT",
+      "color": "#50ff80"
+    }
   ],
   "music_vibe": "dark"
 }
