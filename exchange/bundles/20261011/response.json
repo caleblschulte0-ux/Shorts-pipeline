@@ -1,0 +1,475 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261011",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 8,
+    "registry_sha256": "739ba5acec8a554601ef59cf31d118d2494a9457a36f9808738cd1337ee4cf36",
+    "source_commit": "040c8d0614f98e190a5096d68c1a0992fbc7ea99",
+    "production_date": "20261011",
+    "bundle_sha256": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76"
+  },
+  "media": [
+    {
+      "request_id": "05_reddit-wifi-mooching-neighbor-s0-4b027ea7296f",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1N2gHEB5chDp1XxytFi-MipznHQi8Igl2",
+        "filename": "20261011__05_reddit-wifi-mooching-neighbor-s0-4b027ea7296f.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1N2gHEB5chDp1XxytFi-MipznHQi8Igl2",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261011__05_reddit-wifi-mooching-neighbor-s0-4b027ea7296f.png",
+        "sha256": "e39a9e32da738c3dd28d55aab109d22301d829759dd84923aa32cae1a293e044",
+        "bytes": 2288733,
+        "fmt": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261011/media-progress/05_reddit-wifi-mooching-neighbor-s0-4b027ea7296f.json",
+        "verified_at": "2026-10-11T11:16:55.812Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-wifi-mooching-neighbor-s1-25bde0a24867",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1P_4CBuz1BP4krWch0mbHwmwBlwhq7Xsg",
+        "filename": "20261011__05_reddit-wifi-mooching-neighbor-s1-25bde0a24867.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1P_4CBuz1BP4krWch0mbHwmwBlwhq7Xsg",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261011__05_reddit-wifi-mooching-neighbor-s1-25bde0a24867.png",
+        "sha256": "d5b5877942943181c3d77d46f29ccae4570e1291c8c191c6196f12b38a6f714b",
+        "bytes": 1662308,
+        "fmt": "png",
+        "width": 1374,
+        "height": 1145
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261011/media-progress/05_reddit-wifi-mooching-neighbor-s1-25bde0a24867.json",
+        "verified_at": "2026-10-11T11:16:55.812Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-wifi-mooching-neighbor-s2-221c04be80f3",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1R6Q04qSe1XcPiDPGLazhk2RJheYBAmcx",
+        "filename": "20261011__05_reddit-wifi-mooching-neighbor-s2-221c04be80f3.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1R6Q04qSe1XcPiDPGLazhk2RJheYBAmcx",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261011__05_reddit-wifi-mooching-neighbor-s2-221c04be80f3.png",
+        "sha256": "c96bd27d9e79ce0a350d11c14241f950d342c4b008a263ef66c353c7e178e89c",
+        "bytes": 1869836,
+        "fmt": "png",
+        "width": 1536,
+        "height": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261011/media-progress/05_reddit-wifi-mooching-neighbor-s2-221c04be80f3.json",
+        "verified_at": "2026-10-11T11:16:55.812Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-wifi-mooching-neighbor-s3-ac94fce94d45",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1sx4G7wgG2FrAxJn5wZWB2_8YQP1Ahh1z",
+        "filename": "20261011__05_reddit-wifi-mooching-neighbor-s3-ac94fce94d45.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1sx4G7wgG2FrAxJn5wZWB2_8YQP1Ahh1z",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261011__05_reddit-wifi-mooching-neighbor-s3-ac94fce94d45.png",
+        "sha256": "5fff8e0ea7761b9feb6e912850663c40af2055f52c6693851e71f8738cdc7084",
+        "bytes": 1946793,
+        "fmt": "png",
+        "width": 1536,
+        "height": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261011/media-progress/05_reddit-wifi-mooching-neighbor-s3-ac94fce94d45.json",
+        "verified_at": "2026-10-11T11:16:55.812Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-wifi-mooching-neighbor-s4-c0eaf35686a8",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "19VYRypgT_agNs-C-S0zH6Ojb8dNjhnNc",
+        "filename": "20261011__05_reddit-wifi-mooching-neighbor-s4-c0eaf35686a8.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=19VYRypgT_agNs-C-S0zH6Ojb8dNjhnNc",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261011__05_reddit-wifi-mooching-neighbor-s4-c0eaf35686a8.png",
+        "sha256": "a89a793f6f0cb78756378b89e853d8911f36235306f7222e6c267ce67ae95952",
+        "bytes": 1883551,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261011/media-progress/05_reddit-wifi-mooching-neighbor-s4-c0eaf35686a8.json",
+        "verified_at": "2026-10-11T11:20:19.757Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-wifi-mooching-neighbor-s5-6230590840f9",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1aKAFTydYiG57MvuAfXIZBYCOlid4F_7R",
+        "filename": "20261011__05_reddit-wifi-mooching-neighbor-s5-6230590840f9.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1aKAFTydYiG57MvuAfXIZBYCOlid4F_7R",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261011__05_reddit-wifi-mooching-neighbor-s5-6230590840f9.png",
+        "sha256": "465394d7243ec9a3cbe52aeecfb4587b728d5fb3074fded56cacb394e8cc3944",
+        "bytes": 1551748,
+        "format": "png",
+        "width": 1536,
+        "height": 1024
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261011/media-progress/05_reddit-wifi-mooching-neighbor-s5-6230590840f9.json",
+        "verified_at": "2026-10-11T11:20:19.757Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-wifi-mooching-neighbor-s6-054f894197d7",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1bGWTtnDj59rQNAlRHwRC_8Jbw_zXTlpr",
+        "filename": "20261011__05_reddit-wifi-mooching-neighbor-s6-054f894197d7.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1bGWTtnDj59rQNAlRHwRC_8Jbw_zXTlpr",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261011__05_reddit-wifi-mooching-neighbor-s6-054f894197d7.png",
+        "sha256": "eb729617ade3d1af60e5ea6eebd29b23d3122149185615962cd3d336435b4e2d",
+        "bytes": 1835884,
+        "format": "png",
+        "width": 940,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261011/media-progress/05_reddit-wifi-mooching-neighbor-s6-054f894197d7.json",
+        "verified_at": "2026-10-11T11:20:19.757Z"
+      }
+    },
+    {
+      "request_id": "05_reddit-wifi-mooching-neighbor-s7-01fe4be8aebc",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1vbvo-tOnFzoZBLu8dsCqPz9N51_4E8HS",
+        "filename": "20261011__05_reddit-wifi-mooching-neighbor-s7-01fe4be8aebc.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1vbvo-tOnFzoZBLu8dsCqPz9N51_4E8HS",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261011__05_reddit-wifi-mooching-neighbor-s7-01fe4be8aebc.png",
+        "sha256": "7e21ac1d3e89020053cc045ddf0505a0bbd1f6c5603adbf7f42bf4bf9a3873bd",
+        "bytes": 2065695,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261011/media-progress/05_reddit-wifi-mooching-neighbor-s7-01fe4be8aebc.json",
+        "verified_at": "2026-10-11T11:20:19.757Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-not-store-staff-s0-193969852dde",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "16FXlN1QhRuUT15xKog38xXz8hUvHausb",
+        "filename": "20261011__06_reddit-not-store-staff-s0-193969852dde.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=16FXlN1QhRuUT15xKog38xXz8hUvHausb",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261011__06_reddit-not-store-staff-s0-193969852dde.png",
+        "sha256": "2fcd86600c50b37bd5d2e4702c5f42715c9fc65bae7f58d91996a43fe3af0cab",
+        "bytes": 2382312,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261011/media-progress/06_reddit-not-store-staff-s0-193969852dde.json",
+        "verified_at": "2026-10-11T11:24:37.674Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-not-store-staff-s1-5877bd1c0f9f",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1CR8SGyMxIODcz4hZ_T4VwLvPzL9bl6JH",
+        "filename": "20261011__06_reddit-not-store-staff-s1-5877bd1c0f9f.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1CR8SGyMxIODcz4hZ_T4VwLvPzL9bl6JH",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261011__06_reddit-not-store-staff-s1-5877bd1c0f9f.png",
+        "sha256": "569c8ce624956182900a461400acdc21089e92844d5101c55266e8a384de0268",
+        "bytes": 2355945,
+        "format": "png",
+        "width": 941,
+        "height": 1672
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261011/media-progress/06_reddit-not-store-staff-s1-5877bd1c0f9f.json",
+        "verified_at": "2026-10-11T11:24:37.674Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-not-store-staff-s2-fb86ffc2d9f9",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1IlKJVedz15yoZbfeB0NBbUmmT3jac4XC",
+        "filename": "20261011__06_reddit-not-store-staff-s2-fb86ffc2d9f9.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1IlKJVedz15yoZbfeB0NBbUmmT3jac4XC",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261011__06_reddit-not-store-staff-s2-fb86ffc2d9f9.png",
+        "sha256": "18fb97c76d0cafbe6bdfa3c382bf8ea2dcac1806dd16aa62e3d074509e64296a",
+        "bytes": 2000630,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261011/media-progress/06_reddit-not-store-staff-s2-fb86ffc2d9f9.json",
+        "verified_at": "2026-10-11T11:24:37.674Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-not-store-staff-s3-0b1aaae3712b",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1ZSAyVh3C-_PWhBMf1gFbQBss1mcb44k2",
+        "filename": "20261011__06_reddit-not-store-staff-s3-0b1aaae3712b.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1ZSAyVh3C-_PWhBMf1gFbQBss1mcb44k2",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261011__06_reddit-not-store-staff-s3-0b1aaae3712b.png",
+        "sha256": "c7e1d36eaaf66c7c59813ea96afc1fe290be10c289b58991ec9299474e5ae18d",
+        "bytes": 2140646,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261011/media-progress/06_reddit-not-store-staff-s3-0b1aaae3712b.json",
+        "verified_at": "2026-10-11T11:24:37.674Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-not-store-staff-s4-f77daf93e532",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1enoi8USF3ds47dq1vue-lujeJWvBkRyZ",
+        "filename": "20261011__06_reddit-not-store-staff-s4-f77daf93e532.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1enoi8USF3ds47dq1vue-lujeJWvBkRyZ",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261011__06_reddit-not-store-staff-s4-f77daf93e532.png",
+        "sha256": "97f96f51ebbc2dfe59ebfcf4469ed8c0904b5dafd167ec272325837a463c0acb",
+        "bytes": 1873114,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261011/media-progress/06_reddit-not-store-staff-s4-f77daf93e532.json",
+        "verified_at": "2026-10-11T11:27:21.133Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-not-store-staff-s5-247bef50869b",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1m7Jiqw1NqOoZfbu0ZEBS3AJFzYwCpzVs",
+        "filename": "20261011__06_reddit-not-store-staff-s5-247bef50869b.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1m7Jiqw1NqOoZfbu0ZEBS3AJFzYwCpzVs",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261011__06_reddit-not-store-staff-s5-247bef50869b.png",
+        "sha256": "4e64d49aa5e714ddbe3a10b6c46761cc4069418b42aa32d7b82e66466b99d54a",
+        "bytes": 2609468,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261011/media-progress/06_reddit-not-store-staff-s5-247bef50869b.json",
+        "verified_at": "2026-10-11T11:27:21.133Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-not-store-staff-s6-f38a6c8548ae",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1JVnzVgtC-YI2KJApDZavaopkyHS6jLdv",
+        "filename": "20261011__06_reddit-not-store-staff-s6-f38a6c8548ae.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1JVnzVgtC-YI2KJApDZavaopkyHS6jLdv",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261011__06_reddit-not-store-staff-s6-f38a6c8548ae.png",
+        "sha256": "010f7c20df40627fef9de6892d5d059a2838b937c6df6d860562c72c3620b4be",
+        "bytes": 2318224,
+        "format": "png",
+        "width": 1024,
+        "height": 1536
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261011/media-progress/06_reddit-not-store-staff-s6-f38a6c8548ae.json",
+        "verified_at": "2026-10-11T11:27:21.133Z"
+      }
+    },
+    {
+      "request_id": "06_reddit-not-store-staff-s7-ade29f5b75be",
+      "status": "fulfilled",
+      "drive": {
+        "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+        "file_id": "1s6-yAnKKshSI60fs3MgUP4MCL8tZZvFe",
+        "filename": "20261011__06_reddit-not-store-staff-s7-ade29f5b75be.png",
+        "download_url": "https://drive.google.com/uc?export=download&id=1s6-yAnKKshSI60fs3MgUP4MCL8tZZvFe",
+        "sharing": "anyone_with_link"
+      },
+      "image": {
+        "filename": "20261011__06_reddit-not-store-staff-s7-ade29f5b75be.png",
+        "sha256": "72cdfc757420cf69cd0a0fb09c1372cf42ccfaf68dd496b8a9a15f622d83fa89",
+        "bytes": 2206831,
+        "format": "png",
+        "width": 1145,
+        "height": 1374
+      },
+      "verified": {
+        "read_back": true,
+        "checkpoint": "exchange/bundles/20261011/media-progress/06_reddit-not-store-staff-s7-ade29f5b75be.json",
+        "verified_at": "2026-10-11T11:27:21.133Z"
+      }
+    }
+  ],
+  "packages": [
+    {
+      "slug": "01_graph-labgrown-mined-diamonds",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title directly names lab-grown diamonds passing mined diamonds."
+    },
+    {
+      "slug": "02_graph-tsmc-intel-revenue",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title cleanly lands TSMC passing Intel in chip revenue."
+    },
+    {
+      "slug": "03_graph-mrbeast-tseries",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title directly frames MrBeast passing T-Series on YouTube."
+    },
+    {
+      "slug": "04_graph-digital-tv-adspend",
+      "kept": true,
+      "editor_note": "Renderer-native graph race has no spoken script; the title clearly states digital ad spending overtaking TV advertising."
+    },
+    {
+      "slug": "05_reddit-wifi-mooching-neighbor",
+      "script": "Free Wi-Fi for two years? My neighbor bragged at a cookout that he'd used my default password the whole time, then said I owed him for the security lesson. I finally learned my router settings for the first time. Instead of changing the password, I moved his device to the guest network and capped it at one megabit per second. He kept the free Wi-Fi—technically. His video calls froze. His smart TV buffered every show. Three days later he texted, asking if my internet was broken too. I said mine was great. Then he asked for my real password like a tenant asking a landlord. I promised to look into it and left the cap untouched. Within the week, he bought his own internet plan. Still think the default password was free?",
+      "editor_note": "Tightened to 132 words, added a five-word question hook, accelerated the router-cap payoff, and ended on the default-password irony without changing claims or shot structure."
+    },
+    {
+      "slug": "06_reddit-not-store-staff",
+      "script": "Discount? I don't work here! I was comparing drill bits in a hardware aisle, wearing my gray hoodie, when a woman shoved her cart into mine and demanded the contractor discount code. I told her twice I didn't work there. She said my hoodie matched the uniform and accused me of stalling. A real employee arrived in the actual branded vest. The woman pointed at me and said I was refusing my job. The employee checked: no store badge, no radio, empty hands—then asked for my receipt, still in my pocket from the register. She explained that I was a customer. The woman skipped the apology and demanded the contractor discount anyway. The store had retired that discount two years ago. She turned to argue with me, but I was already in my car. Who needed the employee badge?",
+      "editor_note": "Tightened to 139 words, replaced the long setup with a one-word question hook, and landed the badge payoff without changing claims or shot structure."
+    }
+  ],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal production Is 1.5x Higher Than In 1972",
+      "hook": "By the 1970s, experts were warning the world would run out of food.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8; by 2017, 91.3—1.2 times higher.",
+        "In 1972, cereal production was 1083.7 million metric tons; by 2024, 1644.1—1.5 times higher.",
+        "China leads: 5.2; United States: 4.2; Australia: 3.6; Brazil: 2.4; Russia: 2.2 million square kilometers."
+      ],
+      "closing": "The famine everyone predicted never showed up.",
+      "question": "Which surprised you most—school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Combustible renewables and waste Is 3.0x Higher Than In 1990",
+      "hook": "One energy source has tripled since 1990; it isn't solar or wind.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 %; by 2024, 30.1 %—3.0 times higher.",
+        "In 1998, electricity access was 73.2 %; by 2024, 91.9 %—1.3 times higher.",
+        "In 1972, methane (ch4) waste emissions were 903.8 Mt CO2e; by 2024, 1,652—1.8 times higher."
+      ],
+      "closing": "A third of the world's energy now comes from waste.",
+      "question": "Which surprised you most—fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to accelerate forever; the number proves it didn't.",
+      "says": [
+        "In 1972, rural population was 63.1 %; by 2025, 42.2 %—67 percent of that.",
+        "In 1972, largest-city population was 18.2 %; by 2025, 16.2 %—barely moved.",
+        "In 1972, population growth was 2 annual %; by 2025, 0.91 annual %—46 percent."
+      ],
+      "closing": "The planet is still growing; it has almost stopped accelerating.",
+      "question": "Which surprised you most—rural, city, or growth?"
+    }
+  ],
+  "notes": [
+    "All 16 bundle media requests were generated, Drive-uploaded, raw-downloaded, byte/hash matched, PNG-decoded, and confirmed public via anyone-reader permission.",
+    "All six Trending packages received an editorial decision; four renderer-native graph races were retained and both Reddit stories were tightened to 110–140 words.",
+    "The bundle supplied the full six-package slate and no Trending authoring request, so no duplicate packages were invented.",
+    "Three Explainer rewrites preserve every protected number and entity and satisfy the frozen pacing limits."
+  ]
+}
