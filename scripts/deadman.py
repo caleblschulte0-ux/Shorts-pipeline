@@ -72,7 +72,9 @@ FIRST_JUDGE_HOUR_UTC = 11
 #: but never fired — the switch will not guess at a delivery path.
 WORKFLOWS = {
     "explainer": "explainer.yml",
-    "trending": "daily.yml",
+    # Baller Bro is sports moments since 2026-10-11; daily.yml renders
+    # packages, and that channel has none to render any more.
+    "trending": "sports.yml",
     "third": "third.yml",
 }
 
@@ -127,7 +129,9 @@ WORKFLOWS = {
 #: package from being uploaded twice").
 DISPATCH_INPUTS = {
     "explainer": {"mode": "schedule"},
-    "trending": {"force": "true"},
+    # sports.yml tops up only what today is still missing, so a repair
+    # dispatch needs no force: run_sports counts today's uploads first.
+    "trending": {},
     "third": {},
 }
 

@@ -411,7 +411,8 @@ class TestSlotFillReportIsDateScoped(AlarmCase):
         self.assertIn("trending_short_after_retries", self.codes(r))
         a = next(x for x in r["alarms"]
                  if x["code"] == "trending_short_after_retries")
-        self.assertIn("2/6", a["detail"])
+        from shared import channel_registry as _reg
+        self.assertIn(f"2/{_reg.target_count('trending')}", a["detail"])
 
     def test_mixed_dates_count_only_the_requested_day(self):
         # 2 shipped rows for DATE + 6 shipped rows for the other day: only
@@ -422,7 +423,8 @@ class TestSlotFillReportIsDateScoped(AlarmCase):
         r = alarm.check(DATE, now=LATE)
         a = next(x for x in r["alarms"]
                  if x["code"] == "trending_short_after_retries")
-        self.assertIn("2/6", a["detail"])
+        from shared import channel_registry as _reg
+        self.assertIn(f"2/{_reg.target_count('trending')}", a["detail"])
 
     def test_publish_at_alone_is_enough_to_date_a_row(self):
         self._report([self._row(DATE, ok=False, via="publish_at")

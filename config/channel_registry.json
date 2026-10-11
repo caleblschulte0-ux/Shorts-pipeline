@@ -1,7 +1,7 @@
 {
   "schema_version": "channel-registry/v1",
-  "revision": 8,
-  "revision_note": "2026-10-05: explainer pacing added (operator: '15 seconds per beat is far too long' \u2014 26 words a beat spoken at 130 words a minute). Revision 7 note, kept: 2026-10-02: no_repeat_subject_days added to defaults (operator: 'why do we keep reposting the same videos? ... those landline videos' \u2014 the mobile-vs-landline race shipped under four different titles across two channels). Revision 6 note, kept: Operator ruling 2026-08-05: explainer 1 -> 4/day (193 unposted stories in the queue, so the depth is there), third 3 -> 6/day, curiosity DISABLED (long-form is deliberately not publishing right now; leaving it enabled made the alarm cry no_posts_curiosity every night for a channel nobody expected to post). Trending stays 4 graph_race + 2 reddit_story with text_card retired.",
+  "revision": 9,
+  "revision_note": "2026-10-11: trending (Baller Bro) switched to SPORTS MOMENTS, 3/day at 11:00/15:00/19:00 Central, made by scripts/run_sports.py (.github/workflows/sports.yml); graph_race and reddit_story retired (operator: 'we'll switch it to sports moments'). Revision 8 note, kept: 2026-10-05: explainer pacing added (operator: '15 seconds per beat is far too long' \u2014 26 words a beat spoken at 130 words a minute). Revision 7 note, kept: 2026-10-02: no_repeat_subject_days added to defaults (operator: 'why do we keep reposting the same videos? ... those landline videos' \u2014 the mobile-vs-landline race shipped under four different titles across two channels). Revision 6 note, kept: Operator ruling 2026-08-05: explainer 1 -> 4/day (193 unposted stories in the queue, so the depth is there), third 3 -> 6/day, curiosity DISABLED (long-form is deliberately not publishing right now; leaving it enabled made the alarm cry no_posts_curiosity every night for a channel nobody expected to post). Trending stays 4 graph_race + 2 reddit_story with text_card retired.",
   "_readme": [
     "THIS FILE IS THE ONLY AUTHORITY for mutable operational channel policy:",
     "which channels run, how many videos each ships, which formats are active",
@@ -64,42 +64,54 @@
         "post": false
       },
       "enabled": true,
-      "display_name": "Trending / daily shorts",
+      "display_name": "Baller Bro / sports moments",
       "cadence": {
-        "per_day": 6,
+        "per_day": 3,
         "publish_slots_central": [
-          [
-            8,
-            0
-          ],
-          [
-            9,
-            30
-          ],
           [
             11,
             0
           ],
           [
-            12,
-            30
-          ],
-          [
-            14,
+            15,
             0
           ],
           [
-            15,
-            30
+            19,
+            0
           ]
         ],
-        "slots_owner": "scripts/run_trending_daily.py:DEFAULT_PUBLISH_SLOTS_CENTRAL"
+        "slots_owner": "config/channel_registry.json (read by scripts/run_sports.py)"
       },
-      "target_count": 6,
+      "target_count": 3,
       "formats": {
-        "graph_race": {
+        "sports_moment": {
           "state": "active",
-          "target": 4,
+          "target": 3,
+          "renderer": "scripts/run_sports.py",
+          "authoring": "capture",
+          "authoring_note": "Not authored as packages. scripts/run_sports.py finds the week's most upvoted sports video posts on Reddit, the brain picks the moments with people in them, the Twitch channel's editor cuts them, the showrunner judges them and the trending posted log claims them before upload. Nothing \u2014 the Routine, Phase A, ChatGPT \u2014 writes a package for this format.",
+          "detect": {
+            "field": "format",
+            "equals": "sports_moment"
+          },
+          "required_fields": [
+            "format",
+            "title",
+            "topic"
+          ],
+          "media": {
+            "shots": false,
+            "chatgpt_supplies_images": false,
+            "note": "The footage is the clip itself. No shot media is requested or accepted."
+          },
+          "chatgpt_roles": [
+            "production_supervisor"
+          ]
+        },
+        "graph_race": {
+          "state": "retired",
+          "target": 0,
           "renderer": "make_graph_race.py",
           "detect": {
             "field": "format",
@@ -123,14 +135,14 @@
             "note": "The renderer draws the chart. No shot media is requested or accepted for this format."
           },
           "chatgpt_roles": [
-            "editorial_review",
-            "takeover_authoring",
-            "production_supervisor"
-          ]
+            "none"
+          ],
+          "retired_on": "2026-10-11",
+          "retired_because": "Operator ruling 2026-10-11: Baller Bro (the OG channel, 439 posts at ~3 views each) becomes a SPORTS MOMENTS channel ('we'll switch it to sports moments'). The renderer is kept so already-posted packages stay reproducible, but nothing may author this format again."
         },
         "reddit_story": {
-          "state": "active",
-          "target": 2,
+          "state": "retired",
+          "target": 0,
           "renderer": "make_reddit_story.py",
           "detect": {
             "absent": "format",
@@ -159,11 +171,10 @@
             "note": "Every shot needs an image. On a takeover ChatGPT generates them and attaches each to its shot as `media`, with an `authored_shot` checkpoint."
           },
           "chatgpt_roles": [
-            "media_worker",
-            "editorial_review",
-            "takeover_authoring",
-            "production_supervisor"
-          ]
+            "none"
+          ],
+          "retired_on": "2026-10-11",
+          "retired_because": "Operator ruling 2026-10-11: Baller Bro (the OG channel, 439 posts at ~3 views each) becomes a SPORTS MOMENTS channel ('we'll switch it to sports moments'). The renderer is kept so already-posted packages stay reproducible, but nothing may author this format again."
         },
         "text_card": {
           "state": "retired",
@@ -181,9 +192,6 @@
         }
       },
       "chatgpt_roles": [
-        "media_worker",
-        "editorial_review",
-        "takeover_authoring",
         "production_supervisor"
       ],
       "queue": null,
@@ -201,27 +209,18 @@
         "shared/levity.py"
       ],
       "protected_fields": [
-        "numbers",
-        "percentages",
-        "money_amounts",
-        "dates",
-        "years",
-        "named_entities",
-        "shot_count",
-        "shot_query"
+        "source_url",
+        "named_entities"
       ],
       "protected_fields_enforced_by": "shared/punchup_guard.py",
       "allowed_editorial_mutations": [
         "title",
         "hook",
-        "script_wording",
-        "sentence_order",
-        "hashtags",
-        "shot_phrase"
+        "hashtags"
       ],
       "no_repeat_days": 6,
       "failure_policy": {
-        "on_short_slate": "chatgpt_takeover_authoring"
+        "on_short_slate": "rerun_capture"
       }
     },
     "explainer": {

@@ -220,7 +220,13 @@ def main() -> int:
     # dead authoring night stayed invisible — put an authoring brief in the
     # bundle and let ChatGPT be the brain.
     authoring_request = None
-    if len(packages) < target:
+    if reg.captured(args.channel):
+        # A CAPTURED channel (trending's sports moments, 2026-10-11) is made
+        # by its own run from real footage; a takeover here would have
+        # ChatGPT author packages for a format nothing renders from them.
+        print(f"[phase-a] {args.channel} is made by capture "
+              f"({reg.mix_sentence(args.channel)}) — nothing to author")
+    elif len(packages) < target:
         authoring_request = brief.build_request(
             args.date, args.channel, have_packages=packages,
             target=args.target,

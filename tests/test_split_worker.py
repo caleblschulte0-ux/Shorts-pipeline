@@ -90,7 +90,13 @@ class TestTakeoverMatrix(unittest.TestCase):
         so this keeps working through any future mix change."""
         mix = reg.target_mix("trending")
         makers = {"reddit_story": reddit_pkg, "text_card": text_card_pkg,
-                  "graph_race": graph_pkg}
+                  "graph_race": graph_pkg,
+                  # captured, not authored (2026-10-11): what run_sports
+                  # would record, so the slate is "full" the same way
+                  "sports_moment": lambda slug: {
+                      "format": "sports_moment", "slug": slug,
+                      "title": f"Sports moment {slug}",
+                      "topic": f"https://www.reddit.com/r/nba/{slug}"}}
         have, i = [], 0
         for fid, n in mix.items():
             maker = makers.get(fid)
@@ -110,7 +116,13 @@ class TestTakeoverMatrix(unittest.TestCase):
     def _full_slate():
         """A complete slate for whatever the registry currently asks for."""
         makers = {"reddit_story": reddit_pkg, "text_card": text_card_pkg,
-                  "graph_race": graph_pkg}
+                  "graph_race": graph_pkg,
+                  # captured, not authored (2026-10-11): what run_sports
+                  # would record, so the slate is "full" the same way
+                  "sports_moment": lambda slug: {
+                      "format": "sports_moment", "slug": slug,
+                      "title": f"Sports moment {slug}",
+                      "topic": f"https://www.reddit.com/r/nba/{slug}"}}
         out, i = [], 0
         for fid, n in reg.target_mix("trending").items():
             for _ in range(n):
@@ -477,10 +489,17 @@ class TestPhaseBHonoursTheCheckpoints(unittest.TestCase):
         out = self._run()
         self.assertEqual(out.returncode, 0, out.stdout + out.stderr)
         names = sorted(p.name for p in self.day.glob("*.json"))
-        self.assertEqual(len(names), 1, names)
-        self.assertIn("split-good", names[0])
         quarantine = json.loads(
             (self.bundle / "authored_report.json").read_text())
+        if not reg.is_authorable("trending", "reddit_story"):
+            # reddit_story is RETIRED (trending is sports moments since
+            # 2026-10-11): the gate refuses the good one too, and nothing
+            # reaches the slate by any other door.
+            self.assertEqual(names, [])
+            self.assertEqual(len(quarantine["rejected"]), 2)
+            return
+        self.assertEqual(len(names), 1, names)
+        self.assertIn("split-good", names[0])
         self.assertEqual(len(quarantine["rejected"]), 1)
 
 

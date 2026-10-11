@@ -46,7 +46,8 @@ WF = ROOT / ".github" / "workflows"
 #: actually be able to SEE a PAUSED file committed on main, not an empty
 #: fresh-runner workspace. (doctor finding 73ecfd950397, 2026-09-09.)
 SCHEDULED_PUBLISHERS = ["daily.yml", "explainer.yml", "third.yml",
-                        "curiosity.yml", "story_forge.yml", "longform.yml"]
+                        "curiosity.yml", "story_forge.yml", "longform.yml",
+                        "sports.yml"]
 
 #: Workflows that publish a channel/format the operator has switched off.
 #: To re-enable one: turn it on in the registry (or add the format), then
@@ -148,7 +149,7 @@ class TestTheRegistryAndTheWorkflowsAgree(unittest.TestCase):
         from shared import channel_registry as reg
         self.assertEqual(
             {c: reg.channel(c).get("target_count") for c in reg.channel_ids()},
-            {"explainer": 4, "third": 6, "trending": 6})
+            {"explainer": 4, "third": 6, "trending": 3})
 
     def test_long_form_is_not_a_format_any_channel_ships(self):
         """If long-form ever becomes a registered format, this test failing

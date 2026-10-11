@@ -1,0 +1,151 @@
+name: Sports moments (Baller Bro)
+
+# The trending channel, Baller Bro, is a SPORTS MOMENTS channel since
+# 2026-10-11 (operator: "we'll switch it to sports moments"). The registry
+# says how many (`sports_moment` in config/channel_registry.json, made by
+# capture, so nothing authors a package for it); scripts/run_sports.py
+# finds the week's most upvoted sports video posts on Reddit, cuts the
+# moments with people in them with the Twitch channel's editor, has the
+# SHOWRUNNER watch every cut (fail-closed, its block is sovereign), claims
+# each upload on main before the API call, and schedules it into the
+# registry's publish slots.
+#
+# One run in the morning makes the whole day: posts go up private with a
+# publishAt, so the 11:00 / 15:00 / 19:00 Central slots are YouTube's to
+# keep, not this runner's. A re-run tops up only what today is still
+# missing (run_sports counts today's sports_moment uploads first).
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Render and judge only, upload nothing'
+        required: false
+        type: boolean
+        default: false
+      count:
+        description: 'How many to post (blank = the registry)'
+        required: false
+        default: ''
+  schedule:
+    - cron: '0 12 * * *'    # 07:00 Central summer / 06:00 winter
+
+permissions:
+  contents: write          # the posted-log claim, the verdict ledger
+  id-token: write          # TikTok cross-post (only if the registry turns it on)
+
+jobs:
+  sports:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    concurrency:
+      # The same posted log as daily.yml: never two writers at once.
+      group: daily-shorts
+      cancel-in-progress: false
+    steps:
+      # The branch tip, not the event's SHA: a queued run must decide on
+      # the posted log as it is when it starts (daily.yml, 2026-09-29).
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.ref }}
+          fetch-depth: 1
+
+      - name: Pre-flight — a fail-closed gate needs a judge
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          set -e
+          # A FAIL-CLOSED GATE WITH NO JUDGE HOLDS EVERYTHING: every cut
+          # would be rendered and none posted, green the whole way.
+          if [ -z "$CLAUDE_CODE_OAUTH_TOKEN" ] && [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::no showrunner judge available (set CLAUDE_CODE_OAUTH_TOKEN or GEMINI_API_KEY) — sports moments fail closed, so every cut would be held"
+            exit 1
+          fi
+
+      - name: Pre-flight — kill switch
+        id: preflight
+        run: |
+          # PAUSED = every channel. PAUSED_DAILY = this channel (it was
+          # daily.yml's switch and it is the same channel).
+          if [ -f PAUSED ] || [ -f PAUSED_DAILY ]; then
+            echo "Sports moments paused: PAUSED or PAUSED_DAILY exists in the repo root."
+            echo "skip=1" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Setup Python
+        if: steps.preflight.outputs.skip == ''
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install system deps
+        if: steps.preflight.outputs.skip == ''
+        run: |
+          sudo rm -f /etc/apt/sources.list.d/microsoft*.list \
+                     /etc/apt/sources.list.d/*microsoft* 2>/dev/null || true
+          sudo apt-get update -qq || sudo apt-get update -qq || true
+          sudo apt-get install -y -q ffmpeg fonts-dejavu-core fonts-noto-color-emoji tesseract-ocr
+
+      - name: Install python deps
+        if: steps.preflight.outputs.skip == ''
+        run: |
+          pip install -q -r requirements.txt
+          pip install -q pillow numpy edge-tts yt-dlp curl_cffi openai-whisper "opencv-python-headless<5"
+
+      - name: Install Claude CLI (the brain and the showrunner)
+        if: steps.preflight.outputs.skip == ''
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || true
+          if ! command -v claude >/dev/null 2>&1 && [ -z "$GEMINI_API_KEY" ]; then
+            echo "::error::no showrunner judge available (Claude CLI install failed and GEMINI_API_KEY is empty)"
+            exit 1
+          fi
+
+      - name: Make, judge and post the sports moments
+        if: steps.preflight.outputs.skip == ''
+        env:
+          CI_COMMIT_BRANCH: ${{ github.ref_name }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
+          SHOWRUNNER: 'on'
+          THIRD_ASR: groq
+          DRY_RUN: ${{ inputs.dry_run }}
+          COUNT: ${{ inputs.count }}
+        run: |
+          ARGS=""
+          [ "$DRY_RUN" = "true" ] && ARGS="$ARGS --dry-run"
+          [ -n "$COUNT" ] && ARGS="$ARGS --count $COUNT"
+          echo "Running: python scripts/run_sports.py $ARGS"
+          python scripts/run_sports.py $ARGS
+
+      - name: Commit the posted log + verdicts
+        if: always() && steps.preflight.outputs.skip == ''
+        env:
+          CI_COMMIT_BRANCH: ${{ github.ref_name }}
+        run: |
+          bash scripts/ci_commit_state.sh \
+            "sports: $(date -u +%Y-%m-%d) posted log + verdicts [skip ci]" \
+            state/posted_log.json state/showrunner_verdicts.jsonl sports_report.json
+
+      - name: Keep the cuts (dry run)
+        if: always() && inputs.dry_run && steps.preflight.outputs.skip == ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: sports-cuts-${{ github.run_id }}
+          path: |
+            output/sports/*.mp4
+            sports_report.json
+          if-no-files-found: ignore
+          retention-days: 7

@@ -421,6 +421,19 @@ def is_authorable(cid: str, fid: str | None, reg=None) -> bool:
         return False
 
 
+def captured(cid: str, reg=None) -> bool:
+    """Is this channel made by CAPTURE rather than authored as packages?
+
+    True when every active format says `"authoring": "capture"` — the
+    footage is found and cut by the channel's own run (trending's
+    `sports_moment`, 2026-10-11), so nothing may write it a package: not
+    the Routine, not Phase A's takeover, not ChatGPT. A channel with no
+    active format is not captured; it is off."""
+    fmts = formats(cid, reg)
+    return bool(fmts) and all(f.get("authoring") == "capture"
+                              for f in fmts.values())
+
+
 def shortfall(cid: str, have_packages, reg=None) -> dict:
     """{format: how many still to write}, from what genuinely exists.
 

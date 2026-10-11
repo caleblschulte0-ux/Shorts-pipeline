@@ -474,14 +474,18 @@ and the takeover went on asking for a retired format with everything green.
   on 2026-08-06 — long-form was three days from uploading a video the
   2026-08-05 ruling had switched off everywhere except that one file.
 
-Trending's formats are `reddit_story` (gameplay + post card + TTS) and
-`graph_race` (animated chart); `text_card` is retired. **Those are the
-current values, not a rule — read the registry.** It is NOT the old single
-stacked/gameplay format, which is a fallback shape only. Per-format writing
-specs: `CLAUDE_ROUTINE_INSTRUCTIONS.md` and
-`shared/authoring_brief.py:FORMAT_SPECS`. It regressed to 6-of-one on
-2026-07-30 because the spec lived only in the Routine's prompt; if you ever
-see a slate of one format, that is the bug.
+Trending (Baller Bro) is a SPORTS MOMENTS channel since 2026-10-11
+(operator: *"we'll switch it to sports moments"*): `sports_moment`, made
+by CAPTURE — `scripts/run_sports.py` (`sports.yml`) takes the week's most
+upvoted sports video posts on Reddit, the brain picks the moments with
+people in them, the Twitch channel's editor cuts them, the shared
+showrunner gate judges them, and the trending posted log claims each
+upload on main first (the Reddit permalink is the `topic`, so a post is
+never cut twice). `graph_race` and `reddit_story` are RETIRED, their
+renderers kept. A captured channel (`channel_registry.captured`) gets no
+package from anyone: Phase A asks ChatGPT for none, the Routine skips
+Part 1, and `run_trending_daily` exits clean if a hand-off still reaches
+it. **Those are the current values, not a rule — read the registry.**
 
 ## Repo layout: the funnel (reorg 2026-07-30 — docs/PIPELINE_LAYOUT.md)
 

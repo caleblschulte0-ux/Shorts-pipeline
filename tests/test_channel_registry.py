@@ -45,15 +45,18 @@ class TestTheLiveRuling(unittest.TestCase):
     def test_the_registry_is_valid(self):
         self.assertEqual(reg.validate(reg.load()), [])
 
-    def test_trending_is_graph_led_with_text_cards_retired(self):
-        """Operator ruling v5, 2026-07-31. Before the registry existed this
-        lived only in daily.yml's prompt while four other places still said
-        2+2+2."""
-        self.assertEqual(reg.target_mix("trending"),
-                         {"graph_race": 4, "reddit_story": 2})
-        self.assertEqual(reg.target_count("trending"), 6)
-        self.assertEqual(reg.retired_formats("trending"), ["text_card"])
-        self.assertNotIn("text_card", reg.active_formats("trending"))
+    def test_trending_is_sports_moments_made_by_capture(self):
+        """Operator, 2026-10-11, of Baller Bro: "we'll switch it to sports
+        moments". Graph races and Reddit stories are retired, and the
+        channel is CAPTURED — nothing may author it a package."""
+        self.assertEqual(reg.target_mix("trending"), {"sports_moment": 3})
+        self.assertEqual(reg.target_count("trending"), 3)
+        self.assertEqual(sorted(reg.retired_formats("trending")),
+                         ["graph_race", "reddit_story", "text_card"])
+        self.assertTrue(reg.captured("trending"))
+        self.assertFalse(reg.has_role("trending", "takeover_authoring"))
+        for cid in ("explainer", "third"):
+            self.assertFalse(reg.captured(cid), cid)
 
     def test_every_channel_is_accounted_for(self):
         """Only ENABLED channels resolve. Curiosity was disabled 2026-08-05

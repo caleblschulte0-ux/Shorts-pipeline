@@ -10,7 +10,15 @@
 > skipped, nobody fired the explainer posting, and the channel sat dark
 > until a human noticed at 10am Central.
 >
-> 1. **Author the trending slate** (Part 1 below) and open the PR.
+> 1. **Author the trending slate** (Part 1 below) and open the PR — **ONLY
+>    if trending is still authored.** Since 2026-10-11 it is not: Baller
+>    Bro became a SPORTS MOMENTS channel, made by `scripts/run_sports.py`
+>    from real footage (`sports.yml`), and the registry marks it
+>    `"authoring": "capture"`. Check with
+>    `python -c "from shared import channel_registry as r; print(r.captured('trending'))"`;
+>    `True` means write NO trending package — skip Part 1 entirely and
+>    open the PR with Part 2 alone. Part 1 is kept below for the day the
+>    registry says otherwise.
 > 2. **Author the 4 explainer stories** (Part 2 below) into the same PR.
 > 3. **FIRE THE EXPLAINER POSTING YOURSELF** after the PR merges —
 >    `mcp__github__actions_run_trigger` on `explainer.yml` with
@@ -114,9 +122,9 @@ disagree with itself.**
 |---|---|---|---|---|
 | `explainer` | 4 | 4x `data_story` | — | editorial_review, takeover_authoring, production_supervisor |
 | `third` | 6 | 6x `clip` | — | production_supervisor |
-| `trending` | 6 | 4x `graph_race`, 2x `reddit_story` | `text_card` | media_worker, editorial_review, takeover_authoring, production_supervisor |
+| `trending` | 3 | 3x `sports_moment` | `graph_race`, `reddit_story`, `text_card` | production_supervisor |
 
-<!-- generated from config/channel_registry.json rev 5 — do not edit by hand; run `python -m shared.channel_registry --markdown` -->
+<!-- generated from config/channel_registry.json rev 9 — do not edit by hand; run `python -m shared.channel_registry --markdown` -->
 
 
 The registry also decides which formats are RETIRED. A retired format is
@@ -155,11 +163,11 @@ write and HOW MANY; those say HOW.
    similar metadata instead; the narrative itself should read as evergreen
    as of the moment it airs.
 
-   **Rule 2 does not structurally apply to the current mix — read this
+   **Rule 2 does not structurally apply to the package formats — read this
    before applying it.** Rule 2 (below) was written for the old single
-   stacked/quirky-news format. The live mix is 4x `graph_race` + 2x
-   `reddit_story` (`config/channel_registry.json`), and neither format is a
-   quirky-news pick: `graph_race` is a head-to-head numeric comparison gated
+   stacked/quirky-news format. The package formats were `graph_race` and
+   `reddit_story` (both RETIRED 2026-10-11 — read the registry before
+   writing either), and neither format is a quirky-news pick: `graph_race` is a head-to-head numeric comparison gated
    by `engines.chart_race.assess` (needs a real swing/crossover across
    6-8+ years of two comparable series — pick topics that can clear THAT
    gate, not the quirky bucket, and prefer a clean winner/loser shape over
