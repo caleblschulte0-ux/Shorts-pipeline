@@ -24,9 +24,9 @@
         "filename": "20261011__05_reddit-wifi-mooching-neighbor-s0-4b027ea7296f.png",
         "sha256": "e39a9e32da738c3dd28d55aab109d22301d829759dd84923aa32cae1a293e044",
         "bytes": 2288733,
-        "fmt": "png",
         "width": 941,
-        "height": 1672
+        "height": 1672,
+        "format": "png"
       },
       "verified": {
         "read_back": true,
@@ -48,9 +48,9 @@
         "filename": "20261011__05_reddit-wifi-mooching-neighbor-s1-25bde0a24867.png",
         "sha256": "d5b5877942943181c3d77d46f29ccae4570e1291c8c191c6196f12b38a6f714b",
         "bytes": 1662308,
-        "fmt": "png",
         "width": 1374,
-        "height": 1145
+        "height": 1145,
+        "format": "png"
       },
       "verified": {
         "read_back": true,
@@ -72,9 +72,9 @@
         "filename": "20261011__05_reddit-wifi-mooching-neighbor-s2-221c04be80f3.png",
         "sha256": "c96bd27d9e79ce0a350d11c14241f950d342c4b008a263ef66c353c7e178e89c",
         "bytes": 1869836,
-        "fmt": "png",
         "width": 1536,
-        "height": 1024
+        "height": 1024,
+        "format": "png"
       },
       "verified": {
         "read_back": true,
@@ -96,9 +96,9 @@
         "filename": "20261011__05_reddit-wifi-mooching-neighbor-s3-ac94fce94d45.png",
         "sha256": "5fff8e0ea7761b9feb6e912850663c40af2055f52c6693851e71f8738cdc7084",
         "bytes": 1946793,
-        "fmt": "png",
         "width": 1536,
-        "height": 1024
+        "height": 1024,
+        "format": "png"
       },
       "verified": {
         "read_back": true,
@@ -423,8 +423,8 @@
     },
     {
       "slug": "06_reddit-not-store-staff",
-      "script": "Discount? I don't work here! I was comparing drill bits in a hardware aisle, wearing my gray hoodie, when a woman shoved her cart into mine and demanded the contractor discount code. I told her twice I didn't work there. She said my hoodie matched the uniform and accused me of stalling. A real employee arrived in the actual branded vest. The woman pointed at me and said I was refusing my job. The employee checked: no store badge, no radio, empty hands—then asked for my receipt, still in my pocket from the register. She explained that I was a customer. The woman skipped the apology and demanded the contractor discount anyway. The store had retired that discount two years ago. She turned to argue with me, but I was already in my car. Who needed the employee badge?",
-      "editor_note": "Tightened to 139 words, replaced the long setup with a one-word question hook, and landed the badge payoff without changing claims or shot structure."
+      "script": "Discount? I don't work here! I was comparing drill bits in a hardware aisle, wearing my gray hoodie, when a woman shoved her cart into mine and demanded the contractor discount code. I told her twice I didn't work there. She said my hoodie matched the uniform and accused me of stalling. A real employee arrived in the actual branded vest. The woman pointed at me and said I was refusing my job. The employee checked: no store badge, no radio, empty hands—then asked for my receipt, still in my pocket from the register. She explained that I was a customer. The woman skipped the apology and demanded the contractor discount anyway. The store had retired that discount two years ago. She turned around to argue with me about it anyway. I was already in my car by then?",
+      "editor_note": "Tightened to 139 words, replaced the long setup with a one-word question hook, and kept the original car-by-then kicker wording without changing claims or shot structure."
     }
   ],
   "authored": [],
@@ -470,6 +470,7 @@
     "All 16 bundle media requests were generated, Drive-uploaded, raw-downloaded, byte/hash matched, PNG-decoded, and confirmed public via anyone-reader permission.",
     "All six Trending packages received an editorial decision; four renderer-native graph races were retained and both Reddit stories were tightened to 110–140 words.",
     "The bundle supplied the full six-package slate and no Trending authoring request, so no duplicate packages were invented.",
-    "Three Explainer rewrites preserve every protected number and entity and satisfy the frozen pacing limits."
+    "Three Explainer rewrites preserve every protected number and entity and satisfy the frozen pacing limits.",
+    "Phase B repair: normalized image.format in the first four checkpoints and removed a guard-rejected added entity from the second Reddit punch-up."
   ]
 }
