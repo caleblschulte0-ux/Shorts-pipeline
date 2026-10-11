@@ -1,0 +1,21 @@
+{
+  "key": "amazon_robot_fleet_growth",
+  "title": "Amazon warehouse robots in service, by year",
+  "unit": "count",
+  "geography": "Amazon fulfillment network (worldwide)",
+  "time_coverage": "2012-2025",
+  "source": {
+    "name": "Amazon Robotics fleet milestones, as reported by trade press (Retail Dive, Sacra) and Amazon's own announcements",
+    "publisher": "Amazon / secondary tech press compilation",
+    "url": "https://www.aboutamazon.com",
+    "officiality": "secondary",
+    "access_date": "2026-10-11"
+  },
+  "notes": "Amazon acquired Kiva Systems in March 2012 for about $775 million and had roughly 1,400 robots in service within about two years. The fleet reportedly reached ~200,000 in 2019 and ~520,000 in 2022, before Amazon announced its one-millionth robot in 2025 (deployed across 300+ fulfillment and sortation buildings). Intermediate-year figures are secondary-press estimates, not an official annual Amazon disclosure.",
+  "points": [
+    {"label": "2012", "value": 1400, "period": "2012"},
+    {"label": "2019", "value": 200000, "period": "2019"},
+    {"label": "2022", "value": 520000, "period": "2022"},
+    {"label": "2025", "value": 1000000, "period": "2025"}
+  ]
+}

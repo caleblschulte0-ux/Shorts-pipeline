@@ -1,0 +1,20 @@
+{
+  "key": "us_bank_branch_count",
+  "title": "US bank branch count",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2009-2024",
+  "source": {
+    "name": "FDIC Summary of Deposits; branch-count trend analysis",
+    "publisher": "Federal Deposit Insurance Corporation (FDIC); Federal Reserve Bank of Richmond",
+    "url": "https://www.richmondfed.org/banking/research_analysis/qsr_highlights/branch_banking",
+    "officiality": "official",
+    "access_date": "2026-10-11"
+  },
+  "notes": "US bank branch count peaked at 99,550 in 2009. FDIC data put it at 94,725 by mid-2014. The Richmond Fed reports total closures have outpaced openings every year since 2010, with the branch count falling by roughly 20,000 from the 2009 peak; the 2024 figure here (79,550) is derived from that reported decline, not a separately cited exact total.",
+  "points": [
+    {"label": "2009 (peak)", "value": 99550, "period": "2009"},
+    {"label": "2014", "value": 94725, "period": "2014"},
+    {"label": "2024", "value": 79550, "period": "2024"}
+  ]
+}

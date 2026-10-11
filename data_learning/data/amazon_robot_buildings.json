@@ -1,0 +1,19 @@
+{
+  "key": "amazon_robot_buildings",
+  "title": "Amazon buildings using warehouse robots",
+  "unit": "count",
+  "geography": "Amazon fulfillment network (worldwide)",
+  "time_coverage": "2012 vs 2025",
+  "source": {
+    "name": "Amazon Robotics deployment footprint, as reported alongside the 2025 one-millionth-robot/DeepFleet announcement",
+    "publisher": "Amazon / secondary tech press compilation",
+    "url": "https://www.aboutamazon.com",
+    "officiality": "secondary",
+    "access_date": "2026-10-11"
+  },
+  "notes": "Robots were piloted in a single facility after the 2012 Kiva Systems acquisition. By the 2025 one-millionth-robot milestone, Amazon said its robots operated across more than 300 fulfillment and sortation buildings.",
+  "points": [
+    {"label": "2012 (first site)", "value": 1},
+    {"label": "2025", "value": 300}
+  ]
+}

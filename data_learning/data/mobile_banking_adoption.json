@@ -1,0 +1,19 @@
+{
+  "key": "mobile_banking_adoption",
+  "title": "US households using mobile/online banking as their main way to bank",
+  "unit": "percent",
+  "geography": "United States (urban households)",
+  "time_coverage": "2013-2019",
+  "source": {
+    "name": "FDIC National Survey of Unbanked and Underbanked Households",
+    "publisher": "Federal Deposit Insurance Corporation (FDIC)",
+    "url": "https://www.fdic.gov",
+    "officiality": "official",
+    "access_date": "2026-10-11"
+  },
+  "notes": "Per FDIC survey data, the share of urban households using online or mobile banking as their most common way to access their account rose from 35.9% in 2013 to 54.9% in 2019. Rural households rose from 26.1% to 40.4% over the same period.",
+  "points": [
+    {"label": "2013", "value": 35.9, "period": "2013"},
+    {"label": "2019", "value": 54.9, "period": "2019"}
+  ]
+}

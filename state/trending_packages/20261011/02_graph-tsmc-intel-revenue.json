@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "format": "graph_race",
+  "slug": "02_graph-tsmc-intel-revenue",
+  "title": "TSMC Just Passed Intel In Chip Revenue",
+  "y_label": "Annual revenue (billion dollars)",
+  "duration": 13,
+  "hook": "Intel ruled chips since 1992",
+  "source": "Sources: company annual reports; 2023 crossover per Dan Nystedt/Taiwan News analysis of TSMC and Intel filings. Some years approximate.",
+  "hashtags": [
+    "tsmc",
+    "intel",
+    "semiconductors",
+    "chips",
+    "tech",
+    "business",
+    "data",
+    "chart",
+    "money",
+    "manufacturing",
+    "trending",
+    "fyp",
+    "shorts",
+    "viral"
+  ],
+  "years": [2019, 2020, 2021, 2022, 2023, 2024],
+  "series": [
+    {
+      "name": "Intel",
+      "color": "#4a90e2",
+      "icon": "Intel",
+      "values": [72.0, 77.9, 79.0, 63.1, 54.2, 53.1]
+    },
+    {
+      "name": "TSMC",
+      "color": "#58cc02",
+      "icon": "TSMC",
+      "values": [34.6, 47.9, 56.8, 75.9, 69.3, 90.0]
+    }
+  ],
+  "music_vibe": "hiphop"
+}

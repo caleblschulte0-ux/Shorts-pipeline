@@ -1,0 +1,19 @@
+{
+  "key": "red_hair_gene_copies",
+  "title": "Chance of visible red hair, by number of MC1R gene copies",
+  "unit": "percent",
+  "geography": "General genetics",
+  "time_coverage": "n/a (Mendelian inheritance)",
+  "source": {
+    "name": "MC1R recessive inheritance of red hair",
+    "publisher": "Standard human genetics (textbook Mendelian recessive-trait inheritance)",
+    "url": "https://en.wikipedia.org/wiki/Red_hair",
+    "officiality": "secondary",
+    "access_date": "2026-10-11"
+  },
+  "notes": "Red hair is a classic recessive trait: one copy of a red-hair MC1R variant does not produce visible red hair (the person is a silent carrier); it takes two copies, one inherited from each parent, for the trait to show.",
+  "points": [
+    {"label": "One gene copy", "value": 0},
+    {"label": "Two gene copies", "value": 100}
+  ]
+}
