@@ -1,0 +1,81 @@
+{
+ "picked": {
+  "clean_vctk_p334": {
+   "age": 18,
+   "region": "Chicago",
+   "mic": "mic2",
+   "stoi": 0.973,
+   "pesq": 4.12,
+   "si_sdr": 24.3,
+   "bandwidth_khz": 4.5,
+   "finalist": null,
+   "sim_11": 0.342,
+   "sim_24": 0.132,
+   "p_us": 0.941,
+   "speaker": "p334",
+   "source": "vctk"
+  },
+  "clean_vctk_p315": {
+   "age": 18,
+   "region": "New England (Text and mic2 files unavailable)",
+   "mic": "mic1",
+   "stoi": 1.0,
+   "pesq": 4.17,
+   "si_sdr": 21.3,
+   "bandwidth_khz": 6.4,
+   "finalist": null,
+   "sim_11": 0.333,
+   "sim_24": 0.187,
+   "p_us": 0.996,
+   "speaker": "p315",
+   "source": "vctk"
+  },
+  "clean_vctk_p311": {
+   "age": 21,
+   "region": "Iowa",
+   "mic": "mic1",
+   "stoi": 0.999,
+   "pesq": 4.2,
+   "si_sdr": 25.7,
+   "bandwidth_khz": 5.3,
+   "finalist": null,
+   "sim_11": 0.222,
+   "sim_24": 0.291,
+   "p_us": 1.0,
+   "speaker": "p311",
+   "source": "vctk"
+  },
+  "clean_vctk_p345": {
+   "age": 22,
+   "region": "Florida",
+   "mic": "mic2",
+   "stoi": 0.998,
+   "pesq": 4.04,
+   "si_sdr": 25.0,
+   "bandwidth_khz": 5.0,
+   "finalist": null,
+   "sim_11": 0.059,
+   "sim_24": 0.166,
+   "p_us": 0.988,
+   "speaker": "p345",
+   "source": "vctk"
+  },
+  "clean_vctk_p360": {
+   "age": 19,
+   "region": "New Jersey",
+   "mic": "mic1",
+   "stoi": 0.999,
+   "pesq": 3.94,
+   "si_sdr": 21.9,
+   "bandwidth_khz": 9.8,
+   "finalist": null,
+   "sim_11": 0.118,
+   "sim_24": 0.14,
+   "p_us": 0.019,
+   "speaker": "p360",
+   "source": "vctk"
+  }
+ },
+ "finalists": {},
+ "candidates": 5
+}

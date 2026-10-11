@@ -1,0 +1,71 @@
+{
+ "picked": {
+  "clean_libritts_2428": {
+   "subset": "dev-clean",
+   "stoi": 0.999,
+   "pesq": 4.13,
+   "si_sdr": 28.5,
+   "bandwidth_khz": 3.9,
+   "finalist": null,
+   "sim_11": 0.49,
+   "sim_24": 0.379,
+   "p_us": 0.999,
+   "speaker": "2428",
+   "source": "libritts"
+  },
+  "clean_libritts_8108": {
+   "subset": "train-clean-100",
+   "stoi": 0.999,
+   "pesq": 4.23,
+   "si_sdr": 27.8,
+   "bandwidth_khz": 8.6,
+   "finalist": null,
+   "sim_11": 0.488,
+   "sim_24": 0.334,
+   "p_us": 1.0,
+   "speaker": "8108",
+   "source": "libritts"
+  },
+  "clean_libritts_839": {
+   "subset": "train-clean-100",
+   "stoi": 0.999,
+   "pesq": 4.12,
+   "si_sdr": 28.5,
+   "bandwidth_khz": 8.0,
+   "finalist": null,
+   "sim_11": 0.336,
+   "sim_24": 0.433,
+   "p_us": 1.0,
+   "speaker": "839",
+   "source": "libritts"
+  },
+  "clean_libritts_2952": {
+   "subset": "train-clean-100",
+   "stoi": 0.999,
+   "pesq": 4.24,
+   "si_sdr": 27.2,
+   "bandwidth_khz": 4.5,
+   "finalist": null,
+   "sim_11": 0.381,
+   "sim_24": 0.145,
+   "p_us": 1.0,
+   "speaker": "2952",
+   "source": "libritts"
+  },
+  "clean_libritts_5536": {
+   "subset": "dev-clean",
+   "stoi": 0.998,
+   "pesq": 4.21,
+   "si_sdr": 26.5,
+   "bandwidth_khz": 3.4,
+   "finalist": null,
+   "sim_11": 0.375,
+   "sim_24": 0.232,
+   "p_us": 1.0,
+   "speaker": "5536",
+   "source": "libritts"
+  }
+ },
+ "finalists": {},
+ "candidates": 157
+}
