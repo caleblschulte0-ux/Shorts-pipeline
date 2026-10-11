@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261011",
+  "bundle": {
+    "identity": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76",
+    "path": "exchange/bundles/20261011/bundle.json"
+  },
+  "request_id": "06_reddit-not-store-staff-s4-f77daf93e532",
+  "safe_request_id": "06_reddit-not-store-staff-s4-f77daf93e532",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "b7d1338370dc805d007d14b1e9c7a13cd56714c3584b8fb64ab174a65ef45e36",
+  "prompt_used": "An editorial illustration for a short-form video: empty hands closeup no badge. It accompanies the narration: \"checked my hands, no store badge, no radio\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1enoi8USF3ds47dq1vue-lujeJWvBkRyZ",
+    "filename": "20261011__06_reddit-not-store-staff-s4-f77daf93e532.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1enoi8USF3ds47dq1vue-lujeJWvBkRyZ",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "97f96f51ebbc2dfe59ebfcf4469ed8c0904b5dafd167ec272325837a463c0acb",
+    "bytes": 1873114,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-11T11:27:21.133Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
