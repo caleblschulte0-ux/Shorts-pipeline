@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261011",
+  "bundle": {
+    "identity": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76",
+    "path": "exchange/bundles/20261011/bundle.json"
+  },
+  "request_id": "05_reddit-wifi-mooching-neighbor-s1-25bde0a24867",
+  "safe_request_id": "05_reddit-wifi-mooching-neighbor-s1-25bde0a24867",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "5eea35ed4eb02018d0c547e0d9fe8821e8692582549b3f56381b15262fc30ce2",
+  "prompt_used": "An editorial illustration for a short-form video: wifi router blinking lights. It accompanies the narration: \"using my home Wi-Fi for two years\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1P_4CBuz1BP4krWch0mbHwmwBlwhq7Xsg",
+    "filename": "20261011__05_reddit-wifi-mooching-neighbor-s1-25bde0a24867.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1P_4CBuz1BP4krWch0mbHwmwBlwhq7Xsg",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "d5b5877942943181c3d77d46f29ccae4570e1291c8c191c6196f12b38a6f714b",
+    "bytes": 1662308,
+    "fmt": "png",
+    "width": 1374,
+    "height": 1145
+  },
+  "verified_at": "2026-10-11T11:16:55.812Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
