@@ -1737,9 +1737,14 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                         c["source_url"], snip_dir,
                         max_s=float(spec.get("story_source_max_s", 600)))
                 except Exception as e:  # noqa: BLE001
+                    # yt-dlp's own last line says WHY (backtest 21: every
+                    # YouTube source of the Reggie side failed and the log
+                    # said only "CalledProcessError")
+                    _why = str(getattr(e, "output", "") or e).strip()
+                    _why = _why.splitlines()[-1][:160] if _why else ""
                     print(f"::warning::[story] download failed "
                           f"{c.get('title', '?')[:40]!r} "
-                          f"({type(e).__name__})", flush=True)
+                          f"({type(e).__name__}: {_why})", flush=True)
                     _lost.append(f"download:{type(e).__name__}")
                     continue
                 src = Path(info["path"])
