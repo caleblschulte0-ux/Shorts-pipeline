@@ -12667,13 +12667,50 @@
       "ts": "2026-10-11T12:49:27.489153+00:00"
     },
     "clip-20261011-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/erobb221/clip/WrongAssiduousLemurOSkomodo-mfPa0uL805rOI_YJ",
-      "story_key": null,
-      "streamer": "erobb221",
+      "url": "https://youtube.com/shorts/rGjiu5k_0xY",
       "title": "Erobb221 Can't Believe How Big This Thing Is And Asks If It's Real",
       "kind": "twitch_clip",
-      "ts": "2026-10-11T12:51:43.510394+00:00",
+      "ts": "2026-10-11T12:51:52.281456+00:00",
+      "uploaded_at": "2026-10-11T12:51:52.281471+00:00",
+      "publish_at": "2026-10-11T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261011-erobb221-can-t-believe-how-big-this-thing-is-and-1b35e3ea",
+        "tiktok": "queued for 2026-10-11T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/erobb221/clip/WrongAssiduousLemurOSkomodo-mfPa0uL805rOI_YJ",
+      "streamer": "erobb221",
+      "series": "chaos",
+      "hook": "erobb221 finds something huge \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 9174,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 26.0
+      },
+      "director_cut": true
+    },
+    "rejected-annoyingbadarugulacharliebitme-z7divfweyld-bqjc": {
+      "source_url": "https://www.twitch.tv/dougdoug/clip/AnnoyingBadArugulaCharlieBitMe-z7DivfweyLD-BQJC",
+      "streamer": "dougdoug",
+      "title": "AAAAAAAAAAAAAAAAAA",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.0s \u2014 too short to edit",
+      "ts": "2026-10-11T12:52:00.115082+00:00"
+    },
+    "clip-20261011-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/alinity/clip/TransparentBlatantRuffDatSheffy-37-0Sc9jTFznFtTO",
+      "story_key": null,
+      "streamer": "alinity",
+      "title": "Alinity Is About To Land In Austin And Has To Pee Right Now",
+      "kind": "twitch_clip",
+      "ts": "2026-10-11T12:55:12.935221+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
