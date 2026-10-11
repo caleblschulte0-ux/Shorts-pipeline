@@ -31650,7 +31650,7 @@
    "slug": "lightning-deaths-collapsed-not-the-storms",
    "title": "Lightning Deaths Collapsed. The Storms Didn't.",
    "hook": "Lightning killed 350 Americans a year in the 1940s.",
-   "closing": "Data still ducks inside at the first rumble. Smart machine.",
+   "closing": "Storms haven't gone anywhere. When thunder rumbles, get indoors, because that habit saves lives.",
    "question": "Do you run inside the second thunder hits?",
    "caption": "Lightning used to kill 300-400 Americans every year. Now it's under 20 -- but the storms never got weaker. Here's what actually changed. Do you run inside the second you hear thunder? 👇",
    "hashtags": [
@@ -31676,8 +31676,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE COLLAPSE",
-     "topic": "lightning deaths fell since the 1940s",
-     "say": "US lightning deaths averaged 350 a year in the 1940s -- by 2023, just 18."
+     "topic": "Lightning deaths fell",
+     "say": "By 2023 it was down to 18 a year. Lightning is just as real, but now it rarely kills."
     },
     {
      "source": "offline",
@@ -31687,8 +31687,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · NOT JUST FEWER PEOPLE OUTSIDE",
-     "topic": "lightning risk per person collapsed too",
-     "say": "Even with 2.5 times more people alive today, your personal odds fell about 40 times over."
+     "topic": "Lightning risk collapsed",
+     "say": "Counting every person, your personal odds of dying from lightning fell about forty times. You are far safer than your grandparents were."
     },
     {
      "source": "offline",
@@ -31698,10 +31698,13 @@
      },
      "insight_type": "share",
      "role": "3 · WHO IT STILL FINDS",
-     "topic": "lightning still finds people outdoors fishing",
-     "say": "Farm work disappeared, so now fishing alone accounts for 1 in 10 lightning deaths."
+     "topic": "Lightning fishing deaths",
+     "say": "Fishing is now one in ten lightning deaths. Open water is where lightning still finds people."
     }
-   ]
+   ],
+   "retold": "retell/v3",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-11T11:30:03Z"
   },
   {
    "slug": "phone-checks-205-times-a-day",
