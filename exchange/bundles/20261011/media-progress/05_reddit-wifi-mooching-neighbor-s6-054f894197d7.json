@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261011",
+  "bundle": {
+    "identity": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76",
+    "path": "exchange/bundles/20261011/bundle.json"
+  },
+  "request_id": "05_reddit-wifi-mooching-neighbor-s6-054f894197d7",
+  "safe_request_id": "05_reddit-wifi-mooching-neighbor-s6-054f894197d7",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "0d8bd45b30f16b308d4ce9ce0ba205a6567d695baea06c7a1050c458908be754",
+  "prompt_used": "An editorial illustration for a short-form video: texting phone closeup. It accompanies the narration: \"asking if my internet was having issues too\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1bGWTtnDj59rQNAlRHwRC_8Jbw_zXTlpr",
+    "filename": "20261011__05_reddit-wifi-mooching-neighbor-s6-054f894197d7.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1bGWTtnDj59rQNAlRHwRC_8Jbw_zXTlpr",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "eb729617ade3d1af60e5ea6eebd29b23d3122149185615962cd3d336435b4e2d",
+    "bytes": 1835884,
+    "format": "png",
+    "width": 940,
+    "height": 1672
+  },
+  "verified_at": "2026-10-11T11:20:19.757Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
