@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261011",
+  "bundle": {
+    "identity": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76",
+    "path": "exchange/bundles/20261011/bundle.json"
+  },
+  "request_id": "05_reddit-wifi-mooching-neighbor-s4-c0eaf35686a8",
+  "safe_request_id": "05_reddit-wifi-mooching-neighbor-s4-c0eaf35686a8",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "55c15b7dc0b356f83b551b033da8d62172a6d74496efa5d9514d0c620f52cfec",
+  "prompt_used": "An editorial illustration for a short-form video: slow loading spinner buffering. It accompanies the narration: \"bandwidth cap of one megabit per second\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "19VYRypgT_agNs-C-S0zH6Ojb8dNjhnNc",
+    "filename": "20261011__05_reddit-wifi-mooching-neighbor-s4-c0eaf35686a8.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=19VYRypgT_agNs-C-S0zH6Ojb8dNjhnNc",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "a89a793f6f0cb78756378b89e853d8911f36235306f7222e6c267ce67ae95952",
+    "bytes": 1883551,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-11T11:20:19.757Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
