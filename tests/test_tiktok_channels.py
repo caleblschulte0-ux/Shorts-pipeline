@@ -121,6 +121,25 @@ class TikTokFollowsTheYouTubeSlot(unittest.TestCase):
         title = list(log["posted"].values())[-1]["title"]
         self.assertTrue(t.passed_the_gate("third", title))
 
+    def test_a_video_pulled_from_youtube_is_not_posted(self):
+        # 2026-10-11: the Alinity clip was unscheduled on YouTube; its
+        # posted-log record stays, so the TikTok queue must read the list
+        sys.path.insert(0, str(ROOT / "scripts"))
+        import tiktok_post_release as t
+        self.assertTrue(t.pulled({"url": "https://youtube.com/shorts/nLqPyL9ojo8"}))
+        self.assertFalse(t.pulled({"url": "https://youtube.com/shorts/abcdefghijk"}))
+        rel = {"tag_name": "video-third-20261011-x", "name": "T", "assets": [
+            {"name": "v.mp4", "created_at": "2026-10-11T12:56:00Z"}]}
+        entry = {"url": "https://youtube.com/shorts/nLqPyL9ojo8",
+                 "publish_at": "2026-10-12T00:30:00Z"}
+        from datetime import datetime, timezone
+        with mock.patch.object(t, "_gh", return_value=[rel]), \
+                mock.patch.object(t, "posted_entry", return_value=entry), \
+                mock.patch.object(t, "_download"), \
+                mock.patch.object(t, "post", return_value="PUBLISH_COMPLETE") as post:
+            t.due(datetime(2026, 10, 12, 0, 35, tzinfo=timezone.utc))
+        self.assertFalse(post.called)
+
 
 class FiveHashtags(unittest.TestCase):
     def test_caption_keeps_the_first_five(self):

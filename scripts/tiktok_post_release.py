@@ -66,6 +66,22 @@ def posted_entry(channel: str, title: str) -> dict | None:
     return None
 
 
+#: YouTube videos pulled from their schedule (scripts/pull_videos.py,
+#: --unschedule): their posted-log record stays (it is dedupe state and
+#: never edited), so this list is what keeps TikTok from posting a video
+#: YouTube no longer will. {"<youtube id>": "why"}.
+PULLED = ROOT / "state" / "pulled_videos.json"
+
+
+def pulled(entry: dict) -> bool:
+    try:
+        ids = json.loads(PULLED.read_text())
+    except (OSError, ValueError):
+        return False
+    url = str(entry.get("url") or "")
+    return any(vid and vid in url for vid in ids)
+
+
 def passed_the_gate(channel: str, title: str) -> bool:
     return posted_entry(channel, title) is not None
 
@@ -182,6 +198,10 @@ def due(now: datetime | None = None) -> int:
             continue
         entry = posted_entry(channel, rel.get("name", ""))
         if not entry or not is_due(entry, now):
+            continue
+        if pulled(entry):
+            print(f"[tiktok] {tag}: pulled from YouTube — not posted",
+                  flush=True)
             continue
         if not same_render(rel, entry):
             print(f"[tiktok] {tag}: an older render of {rel.get('name')!r} "
