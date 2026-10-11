@@ -19,114 +19,49 @@
     }
   },
   "media": {
-    "fulfilled": 12,
-    "self_filled": 4,
+    "fulfilled": 16,
+    "self_filled": 0,
     "unfilled": 0,
-    "refused": 4
+    "refused": 0
   },
   "checkpoints": {
     "bundle_identity": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76",
     "required": true,
     "checked": 16,
-    "ok": 12,
-    "rejected": 4,
+    "ok": 16,
+    "rejected": 0,
     "warnings": 0,
-    "rejected_detail": [
-      {
-        "request_id": "05_reddit-wifi-mooching-neighbor-s0-4b027ea7296f",
-        "where": "response.media",
-        "problems": [
-          "image.format missing",
-          "checkpoint: image.format missing"
-        ]
-      },
-      {
-        "request_id": "05_reddit-wifi-mooching-neighbor-s1-25bde0a24867",
-        "where": "response.media",
-        "problems": [
-          "image.format missing",
-          "checkpoint: image.format missing"
-        ]
-      },
-      {
-        "request_id": "05_reddit-wifi-mooching-neighbor-s2-221c04be80f3",
-        "where": "response.media",
-        "problems": [
-          "image.format missing",
-          "checkpoint: image.format missing"
-        ]
-      },
-      {
-        "request_id": "05_reddit-wifi-mooching-neighbor-s3-ac94fce94d45",
-        "where": "response.media",
-        "problems": [
-          "image.format missing",
-          "checkpoint: image.format missing"
-        ]
-      }
-    ],
+    "rejected_detail": [],
     "warnings_detail": [],
     "recovered_rejected_detail": []
   },
   "punchup": {
-    "applied": 1,
+    "applied": 2,
     "kept": 4,
-    "rejected": 1,
+    "rejected": 0,
     "absent": 0
   },
   "contract_refused": [],
   "details": [
     {
       "request_id": "05_reddit-wifi-mooching-neighbor-s0-4b027ea7296f",
-      "outcome": "refused",
-      "problems": [
-        "image.format missing",
-        "checkpoint: image.format missing"
-      ]
-    },
-    {
-      "request_id": "05_reddit-wifi-mooching-neighbor-s0-4b027ea7296f",
-      "outcome": "self_fill",
-      "url": "https://pixabay.com/get/geee7b692fc94ba34ec9c7c86b8d8959ab151a36541b222ecbafc22895ee8160a50645581dd664c063e4bec37303e202a824794f02ea9b8b6943229f6868b5a54_1280.jpg"
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-wifi-mooching-neighbor-s0-4b027ea7296f.png"
     },
     {
       "request_id": "05_reddit-wifi-mooching-neighbor-s1-25bde0a24867",
-      "outcome": "refused",
-      "problems": [
-        "image.format missing",
-        "checkpoint: image.format missing"
-      ]
-    },
-    {
-      "request_id": "05_reddit-wifi-mooching-neighbor-s1-25bde0a24867",
-      "outcome": "self_fill",
-      "url": "https://images.pexels.com/photos/28348054/pexels-photo-28348054.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-wifi-mooching-neighbor-s1-25bde0a24867.png"
     },
     {
       "request_id": "05_reddit-wifi-mooching-neighbor-s2-221c04be80f3",
-      "outcome": "refused",
-      "problems": [
-        "image.format missing",
-        "checkpoint: image.format missing"
-      ]
-    },
-    {
-      "request_id": "05_reddit-wifi-mooching-neighbor-s2-221c04be80f3",
-      "outcome": "self_fill",
-      "url": "https://pixabay.com/get/g0b8fd7c73cf1573daffd46379fb017b0703df15b58828b765d3e9a934e62fc1b80f15c4a7c210aefbefa4ed992fe384d82b6631c9c20f4becb9bae27259d86c1_1280.jpg"
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-wifi-mooching-neighbor-s2-221c04be80f3.png"
     },
     {
       "request_id": "05_reddit-wifi-mooching-neighbor-s3-ac94fce94d45",
-      "outcome": "refused",
-      "problems": [
-        "image.format missing",
-        "checkpoint: image.format missing"
-      ]
-    },
-    {
-      "request_id": "05_reddit-wifi-mooching-neighbor-s3-ac94fce94d45",
-      "outcome": "self_fill",
-      "url": "https://pixabay.com/get/gef7bb854b8d98fb3c1a8f5aa11bdaf7cb3b2ac561519e4cd374ab93f9f8f9ca3fa7c02380010701483814dbcf13a1a016c8b939f3063ebabc6df8fad33aad91a_1280.jpg"
+      "outcome": "chatgpt",
+      "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/05_reddit-wifi-mooching-neighbor-s3-ac94fce94d45.png"
     },
     {
       "request_id": "05_reddit-wifi-mooching-neighbor-s4-c0eaf35686a8",
@@ -187,13 +122,6 @@
       "request_id": "06_reddit-not-store-staff-s7-ade29f5b75be",
       "outcome": "chatgpt",
       "path": "/home/runner/work/Shorts-pipeline/Shorts-pipeline/cache/exchange/06_reddit-not-store-staff-s7-ade29f5b75be.png"
-    },
-    {
-      "slug": "06_reddit-not-store-staff",
-      "outcome": "punchup_rejected",
-      "problems": [
-        "INVENTED named entity(ies): who"
-      ]
     }
   ]
 }

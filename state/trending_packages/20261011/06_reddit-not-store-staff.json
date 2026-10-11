@@ -17,7 +17,7 @@
     "story",
     "viral"
   ],
-  "script": "I was comparing drill bits in the hardware aisle, wearing my own gray hoodie, when a woman shoved her cart into mine and demanded I find her the contractor discount code. I told her twice I didn't work there. She said my hoodie was basically the same color as the uniform and that stalling wouldn't get her out of helping. A real employee walked by in the actual branded vest and asked if everything was okay. The woman pointed at me and said I was refusing to do my job. The employee checked my hands, no store badge, no radio, and asked for my receipt, still sitting in my pocket from the register. She explained, slowly, that I was a customer, exactly like she was. The woman didn't apologize. Instead she asked the actual employee for the contractor discount, and got told the store had retired that discount two years ago. She turned around to argue with me about it anyway. I was already in my car by then.",
+  "script": "Discount? I don't work here! I was comparing drill bits in a hardware aisle, wearing my gray hoodie, when a woman shoved her cart into mine and demanded the contractor discount code. I told her twice I didn't work there. She said my hoodie matched the uniform and accused me of stalling. A real employee arrived in the actual branded vest. The woman pointed at me and said I was refusing my job. The employee checked: no store badge, no radio, empty hands\u2014then asked for my receipt, still in my pocket from the register. She explained that I was a customer. The woman skipped the apology and demanded the contractor discount anyway. The store had retired that discount two years ago. She turned around to argue with me about it anyway. I was already in my car by then?",
   "shots": [
     {
       "phrase": "comparing drill bits in the hardware aisle",
@@ -114,5 +114,6 @@
       "color": "#50ff80"
     }
   ],
-  "music_vibe": "dark"
+  "music_vibe": "dark",
+  "punched_up": true
 }
