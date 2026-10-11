@@ -93,10 +93,10 @@ jobs:
     outputs:
       new_count: ${{ steps.count.outputs.new_count }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           fetch-depth: 1
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
       - name: Count un-posted stories
@@ -130,7 +130,7 @@ jobs:
       cancel-in-progress: false
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 1
@@ -157,7 +157,7 @@ jobs:
           echo "Pre-flight OK."
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: ${{ env.PYTHON_VERSION }}
           cache: 'pip'
@@ -184,14 +184,14 @@ jobs:
 
       - name: Cache rembg model (~170MB)
         if: inputs.mode != 'verify'
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: ~/.u2net
           key: rembg-u2net-v1
 
       - name: Cache Kokoro TTS models (~350MB)
         id: cache-kokoro
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: kokoro_models/
           key: kokoro-onnx-v1.0
@@ -209,7 +209,7 @@ jobs:
       - name: Cache music library (~110MB)
         if: inputs.mode != 'verify'
         id: cache-music
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
         with:
           path: data_learning/music/
           key: music-kmcl-${{ hashFiles('scripts/fetch_music.py') }}
@@ -238,7 +238,7 @@ jobs:
       # a result that cannot be read after the runner disappears is missing.
       - name: Upload media probe
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: curiosity-media-probe
           path: output/media_probe.json
@@ -398,7 +398,7 @@ jobs:
       # session surviving.
       - name: Upload preview artifact
         if: always() && (inputs.mode == 'preview' || inputs.mode == 'pro')
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: curiosity-preview
           path: |
@@ -437,7 +437,7 @@ jobs:
 
       - name: Upload judging evidence (every judge, every attempt)
         if: always() && inputs.mode != 'verify'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: curiosity-judging
           path: |
@@ -447,7 +447,7 @@ jobs:
 
       - name: Upload batch video + package
         if: always() && inputs.mode == 'batch'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: curiosity-batch-video
           path: |
@@ -462,7 +462,7 @@ jobs:
 
       - name: Upload status + batch reports
         if: always() && inputs.mode != 'verify'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: curiosity-status
           path: |
