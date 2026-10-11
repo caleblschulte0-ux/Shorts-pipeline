@@ -12556,13 +12556,50 @@
       "ts": "2026-10-11T12:40:52.706612+00:00"
     },
     "clip-20261011-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/alinity/clip/SeductiveShyAyeayeCeilingCat-VQzWmt7DOPwK9SE4",
-      "story_key": null,
-      "streamer": "alinity",
+      "url": "https://youtube.com/shorts/wVfbLGpCToI",
       "title": "Alinity Screams 'Holy WHAT?!' And Needs A Second After This",
       "kind": "twitch_clip",
-      "ts": "2026-10-11T12:42:16.446919+00:00",
+      "ts": "2026-10-11T12:42:26.393904+00:00",
+      "uploaded_at": "2026-10-11T12:42:26.393915+00:00",
+      "publish_at": "2026-10-11T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261011-alinity-screams-holy-what-and-needs-a-second-aft-dc762a1c",
+        "tiktok": "queued for 2026-10-11T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/alinity/clip/SeductiveShyAyeayeCeilingCat-VQzWmt7DOPwK9SE4",
+      "streamer": "alinity",
+      "series": "chaos",
+      "hook": "Alinity needs a second \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 23749,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 12.6
+      },
+      "director_cut": true
+    },
+    "rejected-solidsmoothdumplingsninjagrumpy-36er9rwy_e85bcdp": {
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/SolidSmoothDumplingsNinjaGrumpy-36ER9Rwy_E85bCDp",
+      "streamer": "joe_bartolozzi",
+      "title": "chop caught in 4k",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA RP chasing dog, no clear payoff)",
+      "ts": "2026-10-11T12:43:03.309272+00:00"
+    },
+    "clip-20261011-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/cinna/clip/CrazyInexpensiveDotterelAMPEnergyCherry-KWaMDecdKl22d4gR",
+      "story_key": null,
+      "streamer": "cinna",
+      "title": "Cinna Hears A Thunder Clap And Tiffy Needs Help Right Now",
+      "kind": "twitch_clip",
+      "ts": "2026-10-11T12:44:55.546376+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
