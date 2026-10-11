@@ -2891,17 +2891,20 @@ def process(pkg: dict, pkg_path: Path | None, *,
             # starts mid-action with no context OR its payoff is cut off,
             # skip it — a confusing clip is worse than a lost slot. Blocklist
             # so it can't be re-picked (same as a QA rejection).
-            if meta and meta.get("edit", {}).get("complete") is False:
+            _dangling = author.cut_off_mid_sentence(
+                words, ((meta or {}).get("edit", {}).get("cut") or {})
+                .get("end"), clip_dur) if words else None
+            if _dangling or (meta
+                             and meta.get("edit", {}).get("complete") is False):
+                _why = _dangling or "clip incomplete (no setup / payoff cut off)"
                 _blocklist(log, f"rejected-{_clip_key(info['url']) or slug}", {
                     "source_url": info["url"], "streamer": streamer,
                     "title": info["title"], "qa_rejected": True,
                     "rejected_by": "director",
-                    "rejected_why": "clip incomplete (no setup / payoff cut "
-                                    "off)",
+                    "rejected_why": _why,
                     "ts": datetime.now(timezone.utc).isoformat(),
                 })
-                raise RuntimeError(
-                    "director: clip incomplete (no setup / payoff cut off)")
+                raise RuntimeError(f"director: {_why}")
 
             # Render + QA gate (playbook §16-18), with SELF-HEAL: if the
             # full auto-edit fails QA, re-render once as the plain simple

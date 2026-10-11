@@ -184,6 +184,37 @@ HONESTY (hard rules):
 - Spell the streamer's handle EXACTLY as given.
 """
 
+# A clip that ENDS MID-SENTENCE has no payoff (operator, 2026-10-11, of
+# Alinity's "...so I pee and" ending where the Twitch clip did: "some girl
+# talking about how she needs to pee and then it cuts off"). The director
+# is told "when unsure, true", so the words decide this one: kept to the
+# clip's last second, the speaker still talking at it, and the last word
+# one a sentence cannot end on.
+DANGLING = frozenset(
+    "and so but or because cause cuz then like the a an to of i if when "
+    "with my your his her their our is was were are that um uh".split())
+
+
+def cut_off_mid_sentence(words: list | None, cut_end: float | None,
+                         clip_dur: float) -> str | None:
+    """Why the kept span stops mid-sentence at the end of the source, or
+    None. `words` are transcript words [{w, s, e}] in source seconds."""
+    if not words or not clip_dur:
+        return None
+    end = clip_dur if cut_end is None else min(float(cut_end), clip_dur)
+    if end < clip_dur - 0.6:
+        return None                     # the cut stops before the source does
+    said = [w for w in words if float(w.get("s", 0)) < end]
+    if not said:
+        return None
+    last = said[-1]
+    word = re.sub(r"[^a-z']", "", str(last.get("w", "")).lower())
+    if float(last.get("e", 0)) >= end - 0.7 and word in DANGLING \
+            and not re.search(r"[.!?]\s*$", str(last.get("w", ""))):
+        return f'the clip ends mid-sentence on "{last.get("w", "").strip()}"'
+    return None
+
+
 # themes the author may not invent: if one of these appears in the
 # authored title/hook but nowhere in the source material, the output is
 # rejected and we fall back to the raw clip title

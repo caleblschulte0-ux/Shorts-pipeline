@@ -5,6 +5,10 @@ un-scheduling (private, no publishAt); if that also fails, prints the Studio
 link so a human can remove it. Never raises on a single failure.
 
   python scripts/pull_videos.py --channel explainer VIDEOID1 VIDEOID2 ...
+  python scripts/pull_videos.py --channel third --unschedule VIDEOID
+
+--unschedule never deletes: the video goes private with no publish time,
+and can be put back in Studio.
 """
 from __future__ import annotations
 import argparse, sys
@@ -16,6 +20,8 @@ sys.path.insert(0, str(ROOT))
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--channel", default="explainer")
+    ap.add_argument("--unschedule", action="store_true",
+                    help="set private and clear publishAt; never delete")
     ap.add_argument("ids", nargs="+")
     a = ap.parse_args()
     from shared.uploaders import YouTubeUploader
@@ -23,6 +29,8 @@ def main() -> int:
     bad = 0
     for vid in a.ids:
         try:
+            if a.unschedule:
+                raise RuntimeError("--unschedule: not deleting")
             svc.videos().delete(id=vid).execute()
             print(f"DELETED {vid}")
             continue
