@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261011",
+  "bundle": {
+    "identity": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76",
+    "path": "exchange/bundles/20261011/bundle.json"
+  },
+  "request_id": "06_reddit-not-store-staff-s1-5877bd1c0f9f",
+  "safe_request_id": "06_reddit-not-store-staff-s1-5877bd1c0f9f",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "e16e525fa22deeb0147c5666c087b401db07cf044e3184652a60dc406e687a52",
+  "prompt_used": "An editorial illustration for a short-form video: shopping cart aisle collision. It accompanies the narration: \"shoved her cart into mine\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1CR8SGyMxIODcz4hZ_T4VwLvPzL9bl6JH",
+    "filename": "20261011__06_reddit-not-store-staff-s1-5877bd1c0f9f.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1CR8SGyMxIODcz4hZ_T4VwLvPzL9bl6JH",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "569c8ce624956182900a461400acdc21089e92844d5101c55266e8a384de0268",
+    "bytes": 2355945,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-11T11:24:37.674Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
