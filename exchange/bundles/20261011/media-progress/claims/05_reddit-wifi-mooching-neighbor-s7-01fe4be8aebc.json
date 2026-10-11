@@ -1,0 +1,14 @@
+{
+  "schema": "chatgpt-media-claim/v1",
+  "date": "20261011",
+  "bundle": {
+    "identity": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76"
+  },
+  "request_id": "05_reddit-wifi-mooching-neighbor-s7-01fe4be8aebc",
+  "safe_request_id": "05_reddit-wifi-mooching-neighbor-s7-01fe4be8aebc",
+  "worker": "daily_producer",
+  "worker_run_id": "daily-producer-20261011-1791717152274",
+  "created_at": "2026-10-11T11:12:32.274Z",
+  "expires_at": "2026-10-11T11:27:32.274Z",
+  "lease_seconds": 900
+}
