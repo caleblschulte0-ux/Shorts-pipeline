@@ -630,15 +630,27 @@ def download(url: str, work: Path, *, max_s: float | None = None) -> dict:
     raw = work / f"{stem}.mp4"
     meta = work / f"{stem}.meta"
     meta.unlink(missing_ok=True)
-    _ytdlp(["-q", "--force-overwrites",
+    try:
+        _ytdlp(["-q", "--force-overwrites",
             "-o", str(work / (stem + ".%(ext)s")),
-            "--recode-video", "mp4",
-            "--print-to-file",
-            "%(id)s\t%(title)s\t%(uploader)s\t%(view_count|0)s\t%(duration)s",
-            str(meta)]
-           + (["--match-filter", f"duration<=?{int(max_s)}"] if max_s else [])
-           + [url],
-           impersonate=_needs_impersonation(url))
+                "--recode-video", "mp4",
+                "--print-to-file",
+                "%(id)s\t%(title)s\t%(uploader)s\t%(view_count|0)s\t%(duration)s",
+                str(meta)]
+               + (["--match-filter", f"duration<=?{int(max_s)}"] if max_s else [])
+               + [url],
+               impersonate=_needs_impersonation(url))
+    except subprocess.CalledProcessError:
+        # YouTube refuses yt-dlp from a datacenter ("not a bot"); the same
+        # video through a public converter (operator, 2026-10-11).
+        from funnel import yt_convert
+        if not yt_convert.video_id(url):
+            raise
+        got = yt_convert.fetch(url, raw, max_s=max_s)
+        if not got:
+            raise
+        got.pop("via", None)
+        return got
     if max_s and not meta.exists():
         raise ValueError(f"longer than {int(max_s)}s")
     cid, title, clipper, views, dur = \

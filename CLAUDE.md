@@ -772,6 +772,11 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   backtests 7-20 proposed Kai's half of that feud and were refused every
   time. Reddit refuses the runner's API calls, so every r/LSF read falls
   back to PullPush then the public RSS feed (`hot_clips._first`).
+  YouTube refuses yt-dlp from GitHub's servers, so a YouTube source goes
+  through a public converter when yt-dlp fails (operator, 2026-10-11:
+  *"put those YouTube videos in a ... YouTube converter"*):
+  `funnel/yt_convert.fetch` tries Piped, Invidious, then cobalt, and keeps
+  a file only if ffprobe reads video and sound from it.
   `tests/test_a_story_is_a_chain_and_shows_what_it_talks_about.py`.
 - **Slots follow `_learned_prior()`, and it had no tests** until the day it
   was found inverted: kaicenat and buddha (median 5 and 8 views) at the

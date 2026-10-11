@@ -626,6 +626,85 @@ def test_a_rate_limited_feed_waits_and_asks_again():
     assert f.call_count == 2 and got["data"]["children"]
 
 
+# ---- YouTube through a converter (operator, 2026-10-11) -----------------
+# "put those YouTube videos in a fucking YouTube converter" — backtest 21
+# found four of Reggie's videos and yt-dlp could download none of them.
+
+def test_a_youtube_link_is_known_by_its_video_id():
+    from funnel import yt_convert as yc
+    for u in ("https://www.youtube.com/watch?v=abcdefghijk&t=3",
+              "https://youtu.be/abcdefghijk", "https://youtube.com/shorts/abcdefghijk"):
+        assert yc.video_id(u) == "abcdefghijk", u
+    assert yc.video_id("https://clips.twitch.tv/SomeClipSlug-abc") is None
+
+
+def test_a_blocked_youtube_video_comes_through_a_converter(tmp_path):
+    from funnel import yt_convert as yc
+    yc._DEAD.clear()
+    out = tmp_path / "raw.mp4"
+
+    def piped(host, vid):
+        if host == "down":
+            raise OSError("refused")
+        return "https://media", {}, {"title": "Reggie part two",
+                                     "uploader": "Reggie", "duration": 40}
+
+    def save(url, hdr, path):
+        path.write_bytes(b"x" * 60_000)
+        return True
+
+    def to_mp4(src, mp4):
+        src.replace(mp4)
+        return mp4
+
+    with mock.patch.object(yc, "_hosts", return_value=["down", "up"]), \
+            mock.patch.object(yc, "ROUTES", (("piped", piped),)), \
+            mock.patch.object(yc, "_save", side_effect=save), \
+            mock.patch.object(yc, "_to_mp4", side_effect=to_mp4), \
+            mock.patch.object(yc, "_probe", return_value=40.0):
+        got = yc.fetch("https://www.youtube.com/watch?v=abcdefghijk", out)
+    assert got and got["path"] == out and out.exists()
+    assert got["title"] == "Reggie part two" and got["clipper"] == "Reggie"
+    assert got["via"] == "piped" and "down" in yc._DEAD
+    yc._DEAD.clear()
+
+
+def test_a_converter_still_refuses_a_video_longer_than_a_clip(tmp_path):
+    from funnel import yt_convert as yc
+    yc._DEAD.clear()
+    route = mock.Mock(return_value=("https://m", {}, {"duration": 2400}))
+    with mock.patch.object(yc, "_hosts", return_value=["h"]), \
+            mock.patch.object(yc, "ROUTES", (("piped", route),)), \
+            mock.patch.object(yc, "_save") as save:
+        got = yc.fetch("https://youtu.be/abcdefghijk", tmp_path / "r.mp4",
+                       max_s=600)
+    assert got is None and not save.called
+
+
+def test_the_story_downloader_falls_back_to_the_converter(tmp_path):
+    from third_capture import clip_edit
+    from funnel import yt_convert as yc
+    blocked = subprocess.CalledProcessError(1, ["yt-dlp"], "Sign in to "
+                                            "confirm you're not a bot")
+    conv = {"path": tmp_path / "x.mp4", "clip_id": "abcdefghijk",
+            "title": "t", "clipper": "c", "views": 0, "duration": 30.0,
+            "url": "u", "via": "cobalt"}
+    with mock.patch.object(clip_edit, "_ytdlp", side_effect=blocked), \
+            mock.patch.object(yc, "fetch", return_value=dict(conv)) as f:
+        got = clip_edit.download("https://www.youtube.com/watch?v="
+                                 "abcdefghijk", tmp_path, max_s=600)
+        assert f.call_args.kwargs["max_s"] == 600
+        assert got["clip_id"] == "abcdefghijk" and "via" not in got
+        try:
+            clip_edit.download("https://clips.twitch.tv/SomeClip-abcdef",
+                               tmp_path)
+        except subprocess.CalledProcessError:
+            pass
+        else:
+            raise AssertionError("a Twitch failure is not a YouTube one")
+        assert f.call_count == 1
+
+
 class Everything(unittest.TestCase):
     """CI runs `unittest discover`, which collects only TestCases; every
     function above runs here as well as under pytest."""
