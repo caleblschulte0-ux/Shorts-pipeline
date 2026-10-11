@@ -3230,11 +3230,29 @@
       "duration_s": 13.1
     },
     "co2-pollen-season-stretch": {
-      "claimed_at": "2026-10-11T20:19:33.621062+00:00",
+      "url": "https://youtube.com/shorts/6dlQVU9CpTE",
       "title": "Pollen Season Just Got 20 Days Longer",
+      "at": "2026-10-11T20:19:44.065644+00:00",
       "publish_at": "2026-10-11T20:20:53Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.82,
+      "beat_s": [
+        3.74,
+        5.82,
+        4.76,
+        4.56,
+        5.53
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 74,
+      "duration_s": 24.3
     }
   },
   "uploads": [
@@ -4043,9 +4061,10 @@
       "claimed_at": "2026-10-11T20:19:33.621062+00:00",
       "title": "Pollen Season Just Got 20 Days Longer",
       "publish_at": "2026-10-11T20:20:53Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "co2-pollen-season-stretch"
+      "url": "https://youtube.com/shorts/6dlQVU9CpTE",
+      "state": "posted",
+      "slug": "co2-pollen-season-stretch",
+      "at": "2026-10-11T20:19:44.065644+00:00"
     }
   ]
 }
