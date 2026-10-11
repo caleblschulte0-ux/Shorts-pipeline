@@ -27,6 +27,10 @@ EMOJI_STRIKE = 109           # Noto Color Emoji's only bitmap size
 CANVAS_W = 1080
 LINE_Y = 1400                # top of the line: the bottom third
 SPEECH_Y = 1210              # centre of the word-pop speech captions
+# where the line goes when the footage has its OWN text in the bottom third
+# (a repost's burned-in title, a show's subtitles): the top of the frame,
+# under the status bar (clip_edit.line_spot)
+TOP_Y = 230
 SIZE = 64
 MAX_W = CANVAS_W - 2 * 70
 STROKE = 7

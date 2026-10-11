@@ -95,9 +95,18 @@ def _brain(user: str, system: str) -> dict | None:
 def discover(period: str) -> list[dict]:
     pool = []
     for i, sub in enumerate(SUBS):
-        if i:
-            time.sleep(6)       # the RSS route 429s a second quick read
-        got = hot_clips.top_videos(sub, period=period, limit=50)
+        got = []
+        # The RSS route 429s quick reads, and one 429 marks the route dead
+        # for the whole run (hot_clips._DEAD): the first samples got r/nfl's
+        # 429 and then never asked r/soccer, r/MMA... at all. A rate limit
+        # on one subreddit is not a dead route, so each sub gets it back,
+        # after a pause, and one more try after a longer one.
+        for wait in ((12 if i else 0), 30):
+            time.sleep(wait)
+            hot_clips._DEAD.discard("rss")
+            got = hot_clips.top_videos(sub, period=period, limit=50)
+            if got:
+                break
         print(f"[sports] r/{sub}: {len(got)} video posts", flush=True)
         pool += got[:15]
     return pool
