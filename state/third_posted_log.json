@@ -12499,6 +12499,34 @@
       "rejected_by": "director",
       "rejected_why": "clip incomplete (no setup / payoff cut off)",
       "ts": "2026-10-10T16:40:36.615924+00:00"
+    },
+    "rejected-courageoustolerantoryxmcat-pl4mimgzf-_ppy-j": {
+      "source_url": "https://www.twitch.tv/xqc/clip/CourageousTolerantOryxMcaT-pl4mimgzF-_PPY-J",
+      "streamer": "xqc",
+      "title": "Buddha wins big on roulette off stream",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (slot-machine screen, xQc barely visible,)",
+      "ts": "2026-10-11T12:35:39.215509+00:00"
+    },
+    "rejected-wimpyblushingmooncharlietheunicorn-gbcvrp4g0jehmgjx": {
+      "source_url": "https://www.twitch.tv/forsen/clip/WimpyBlushingMoonCharlietheUnicorn-GBcVrP4G0JehmGJX",
+      "streamer": "forsen",
+      "title": "forsen proves a dono wrong",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source too dark (avg luma 25/255) \u2014 unwatchable IRL/night footage; source barely moves (avg frame delta 0.55) \u2014 static image/paused screen, not a clip",
+      "ts": "2026-10-11T12:35:50.351139+00:00"
+    },
+    "clip-20261011-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/MoralAuspiciousMacaroniGOWSkull-K-ZZ_F1ZULCBM3qu",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Has To Make A Burger For Sadie After They Run Out Of Chicken \ud83d\ude02",
+      "kind": "twitch_clip",
+      "ts": "2026-10-11T12:39:10.719737+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
