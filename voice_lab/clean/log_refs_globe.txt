@@ -1,0 +1,183 @@
+corpus
+corpus/train-00025-of-00164.parquet
+corpus/train-00034-of-00164.parquet
+corpus/train-00008-of-00164.parquet
+corpus/train-00002-of-00164.parquet
+corpus/train-00012-of-00164.parquet
+corpus/train-00004-of-00164.parquet
+corpus/train-00009-of-00164.parquet
+corpus/train-00020-of-00164.parquet
+corpus/train-00015-of-00164.parquet
+corpus/train-00027-of-00164.parquet
+corpus/train-00022-of-00164.parquet
+corpus/train-00006-of-00164.parquet
+corpus/train-00033-of-00164.parquet
+corpus/val-00000-of-00002.parquet
+corpus/train-00017-of-00164.parquet
+corpus/train-00003-of-00164.parquet
+corpus/train-00037-of-00164.parquet
+corpus/train-00016-of-00164.parquet
+corpus/train-00007-of-00164.parquet
+/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/speechbrain/utils/autocast.py:188: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  wrapped_fwd = torch.cuda.amp.custom_fwd(fwd, cast_inputs=cast_inputs)
+CategoricalEncoder.expect_len was never called: assuming category count of 16 to be correct! Sanity check your encoder using `.expect_len`. Ensure that downstream code also uses the correct size. If you are sure this does not apply to you, use `.ignore_len`.
+  0%|          | 0.00/28.2M [00:00<?, ?B/s]100%|██████████| 28.2M/28.2M [00:00<00:00, 406MB/s]
+test-00000-of-00002.parquet 197
+test-00001-of-00002.parquet 390
+train-00000-of-00164.parquet 455
+train-00001-of-00164.parquet 535
+train-00002-of-00164.parquet 609
+train-00003-of-00164.parquet 647
+train-00004-of-00164.parquet 707
+train-00005-of-00164.parquet 793
+train-00006-of-00164.parquet 862
+train-00007-of-00164.parquet 915
+train-00008-of-00164.parquet 993
+train-00009-of-00164.parquet 1085
+train-00010-of-00164.parquet 1151
+train-00011-of-00164.parquet 1237
+train-00012-of-00164.parquet 1330
+train-00013-of-00164.parquet 1339
+train-00014-of-00164.parquet 1426
+train-00015-of-00164.parquet 1489
+train-00016-of-00164.parquet 1551
+train-00017-of-00164.parquet 1630
+train-00018-of-00164.parquet 1702
+train-00019-of-00164.parquet 1759
+train-00020-of-00164.parquet 1853
+train-00021-of-00164.parquet 1923
+train-00022-of-00164.parquet 2019
+train-00023-of-00164.parquet 2084
+train-00024-of-00164.parquet 2183
+train-00025-of-00164.parquet 2262
+train-00026-of-00164.parquet 2325
+train-00027-of-00164.parquet 2356
+train-00028-of-00164.parquet 2356
+train-00029-of-00164.parquet 2399
+train-00030-of-00164.parquet 2431
+train-00031-of-00164.parquet 2478
+train-00032-of-00164.parquet 2551
+train-00033-of-00164.parquet 2579
+train-00034-of-00164.parquet 2667
+train-00035-of-00164.parquet 2727
+train-00036-of-00164.parquet 2777
+train-00037-of-00164.parquet 2820
+train-00038-of-00164.parquet 2874
+train-00039-of-00164.parquet 2965
+val-00000-of-00002.parquet 3135
+val-00001-of-00002.parquet 3305
+globe candidates: 3305
+scored: 1807
+{
+ "picked": {
+  "clean_globe_S_000305": {
+   "age": "teens",
+   "stoi": 0.978,
+   "pesq": 3.14,
+   "si_sdr": 20.2,
+   "bandwidth_khz": 3.3,
+   "finalist": null,
+   "sim_11": 0.472,
+   "sim_24": 0.251,
+   "p_us": 1.0,
+   "speaker": "S_000305",
+   "source": "globe"
+  },
+  "clean_globe_S_009205": {
+   "age": "twenties",
+   "stoi": 0.979,
+   "pesq": 3.1,
+   "si_sdr": 15.7,
+   "bandwidth_khz": 7.1,
+   "finalist": null,
+   "sim_11": 0.118,
+   "sim_24": 0.469,
+   "p_us": 1.0,
+   "speaker": "S_009205",
+   "source": "globe"
+  },
+  "clean_globe_S_009667": {
+   "age": "twenties",
+   "stoi": 0.985,
+   "pesq": 3.13,
+   "si_sdr": 17.2,
+   "bandwidth_khz": 5.9,
+   "finalist": null,
+   "sim_11": 0.454,
+   "sim_24": 0.299,
+   "p_us": 0.999,
+   "speaker": "S_009667",
+   "source": "globe"
+  },
+  "clean_globe_S_001273": {
+   "age": "teens",
+   "stoi": 0.984,
+   "pesq": 3.29,
+   "si_sdr": 16.3,
+   "bandwidth_khz": 6.2,
+   "finalist": null,
+   "sim_11": 0.261,
+   "sim_24": 0.444,
+   "p_us": 0.988,
+   "speaker": "S_001273",
+   "source": "globe"
+  }
+ },
+ "finalists": {
+  "11": {
+   "age": "teens",
+   "stoi": 0.973,
+   "pesq": 2.65,
+   "si_sdr": 13.5,
+   "bandwidth_khz": 5.1,
+   "finalist": "11",
+   "sim_11": 0.93,
+   "sim_24": 0.287,
+   "speaker": "S_008118"
+  },
+  "24": {
+   "age": "twenties",
+   "stoi": 0.96,
+   "pesq": 2.4,
+   "si_sdr": 11.6,
+   "bandwidth_khz": 8.1,
+   "finalist": "24",
+   "sim_11": 0.385,
+   "sim_24": 0.801,
+   "speaker": "S_019178"
+  },
+  "38": {
+   "age": "teens",
+   "stoi": 0.976,
+   "pesq": 2.8,
+   "si_sdr": 12.8,
+   "bandwidth_khz": 6.4,
+   "finalist": "38",
+   "sim_11": 0.467,
+   "sim_24": 0.287,
+   "speaker": "S_001818"
+  },
+  "34": {
+   "age": "twenties",
+   "stoi": 0.971,
+   "pesq": 2.64,
+   "si_sdr": 9.9,
+   "bandwidth_khz": 3.4,
+   "finalist": "34",
+   "sim_11": 0.324,
+   "sim_24": 0.548,
+   "speaker": "S_019135"
+  },
+  "39": {
+   "age": "twenties",
+   "stoi": 0.961,
+   "pesq": 2.53,
+   "si_sdr": 13.1,
+   "bandwidth_khz": 8.5,
+   "finalist": "39",
+   "sim_11": 0.457,
+   "sim_24": 0.407,
+   "speaker": "S_007123"
+  }
+ }
+}

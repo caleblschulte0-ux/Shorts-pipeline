@@ -1,0 +1,114 @@
+{
+ "picked": {
+  "clean_globe_S_000305": {
+   "age": "teens",
+   "stoi": 0.978,
+   "pesq": 3.14,
+   "si_sdr": 20.2,
+   "bandwidth_khz": 3.3,
+   "finalist": null,
+   "sim_11": 0.472,
+   "sim_24": 0.251,
+   "p_us": 1.0,
+   "speaker": "S_000305",
+   "source": "globe"
+  },
+  "clean_globe_S_009205": {
+   "age": "twenties",
+   "stoi": 0.979,
+   "pesq": 3.1,
+   "si_sdr": 15.7,
+   "bandwidth_khz": 7.1,
+   "finalist": null,
+   "sim_11": 0.118,
+   "sim_24": 0.469,
+   "p_us": 1.0,
+   "speaker": "S_009205",
+   "source": "globe"
+  },
+  "clean_globe_S_009667": {
+   "age": "twenties",
+   "stoi": 0.985,
+   "pesq": 3.13,
+   "si_sdr": 17.2,
+   "bandwidth_khz": 5.9,
+   "finalist": null,
+   "sim_11": 0.454,
+   "sim_24": 0.299,
+   "p_us": 0.999,
+   "speaker": "S_009667",
+   "source": "globe"
+  },
+  "clean_globe_S_001273": {
+   "age": "teens",
+   "stoi": 0.984,
+   "pesq": 3.29,
+   "si_sdr": 16.3,
+   "bandwidth_khz": 6.2,
+   "finalist": null,
+   "sim_11": 0.261,
+   "sim_24": 0.444,
+   "p_us": 0.988,
+   "speaker": "S_001273",
+   "source": "globe"
+  }
+ },
+ "finalists": {
+  "11": {
+   "age": "teens",
+   "stoi": 0.973,
+   "pesq": 2.65,
+   "si_sdr": 13.5,
+   "bandwidth_khz": 5.1,
+   "finalist": "11",
+   "sim_11": 0.93,
+   "sim_24": 0.287,
+   "speaker": "S_008118"
+  },
+  "24": {
+   "age": "twenties",
+   "stoi": 0.96,
+   "pesq": 2.4,
+   "si_sdr": 11.6,
+   "bandwidth_khz": 8.1,
+   "finalist": "24",
+   "sim_11": 0.385,
+   "sim_24": 0.801,
+   "speaker": "S_019178"
+  },
+  "38": {
+   "age": "teens",
+   "stoi": 0.976,
+   "pesq": 2.8,
+   "si_sdr": 12.8,
+   "bandwidth_khz": 6.4,
+   "finalist": "38",
+   "sim_11": 0.467,
+   "sim_24": 0.287,
+   "speaker": "S_001818"
+  },
+  "34": {
+   "age": "twenties",
+   "stoi": 0.971,
+   "pesq": 2.64,
+   "si_sdr": 9.9,
+   "bandwidth_khz": 3.4,
+   "finalist": "34",
+   "sim_11": 0.324,
+   "sim_24": 0.548,
+   "speaker": "S_019135"
+  },
+  "39": {
+   "age": "twenties",
+   "stoi": 0.961,
+   "pesq": 2.53,
+   "si_sdr": 13.1,
+   "bandwidth_khz": 8.5,
+   "finalist": "39",
+   "sim_11": 0.457,
+   "sim_24": 0.407,
+   "speaker": "S_007123"
+  }
+ },
+ "candidates": 1807
+}
