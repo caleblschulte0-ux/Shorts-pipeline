@@ -1,8 +1,9 @@
-name: Pull Videos (explainer)
+name: Pull Videos
 
-# One-shot: yank scheduled videos by id from the explainer channel (used when a
-# batch shouldn't publish). Deletes; falls back to un-scheduling; prints a
-# Studio link if the token lacks the scope for either.
+# One-shot: yank scheduled videos by id (used when a video shouldn't
+# publish). Deletes, or with mode=unschedule only sets it private with no
+# publish time (reversible in Studio); prints a Studio link if the token
+# lacks the scope for either.
 
 on:
   workflow_dispatch:
@@ -10,7 +11,19 @@ on:
       ids:
         description: 'Space-separated YouTube video IDs to pull'
         required: true
-        default: 'KroC__pKIj0 5VfwDT9MflU _iQMTPlguFg'
+        default: ''
+      channel:
+        description: 'Which channel token'
+        required: false
+        default: 'explainer'
+        type: choice
+        options: [explainer, third, trending]
+      mode:
+        description: 'delete, or unschedule (private, reversible)'
+        required: false
+        default: 'unschedule'
+        type: choice
+        options: [unschedule, delete]
 
 permissions:
   contents: read
@@ -30,6 +43,13 @@ jobs:
       - name: Pull videos
         env:
           YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
           YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+          YOUTUBE_TOKEN_JSON_THIRD: ${{ secrets.YOUTUBE_TOKEN_JSON_THIRD }}
+          CHANNEL: ${{ github.event.inputs.channel }}
+          MODE: ${{ github.event.inputs.mode }}
+          IDS: ${{ github.event.inputs.ids }}
         run: |
-          python scripts/pull_videos.py --channel explainer ${{ github.event.inputs.ids }}
+          flag=""; [ "$MODE" = "unschedule" ] && flag="--unschedule"
+          ch="${CHANNEL:-explainer}"; [ "$ch" = trending ] && ch=""   # trending's token has no suffix
+          python scripts/pull_videos.py --channel "$ch" $flag $IDS

@@ -47,6 +47,11 @@ TWOSHOT_H = 0.16          # min face height to count as a conversation party
 FACECAM_H_MIN = 0.08      # smaller than this = too mushy to blow up (Law 8)
 FACECAM_JITTER = 0.05     # locked cam: center wanders < 5% of frame width
 MAX_UPSCALE = 3.2         # never enlarge a cam region beyond this (Law 8)
+# A facecam is a small box in a corner of the stream. A face whose cam
+# panel would take more than this share of the frame IS the frame — an IRL
+# camera — and stacking it put the same picture on screen twice (operator,
+# 2026-10-11, of Alinity in her kitchen: "what the fuck was this video").
+CAM_AREA_MAX = 0.15
 
 # stacked facecam_gameplay layout (16:9-ish sources)
 CAM_PANEL_H = 560         # top: blown-up facecam
@@ -184,6 +189,14 @@ def analyze(video: Path) -> dict | None:
         return None
 
 
+def _cam_area(s: "Subject", sw: float, sh: float) -> float:
+    """Share of the frame the stacked layout's cam panel would crop —
+    the same rectangle `_render_stacked` takes."""
+    ch = s.med_h() * 2.4
+    cw = ch * (CANVAS_W / CAM_PANEL_H)
+    return (min(cw, sw) * min(ch, sh)) / float(sw * sh)
+
+
 def classify(an: dict) -> tuple[str, list, str]:
     """(layout, ranked_subjects, reason). Ranked by subject SCORE — presence
     + talk activity + size — never just the biggest face (§4)."""
@@ -215,6 +228,9 @@ def classify(an: dict) -> tuple[str, list, str]:
     if top.med_h() >= CLOSEUP_H * sh:
         return ("closeup", [top],
                 "one large persistent face — the face is the content")
+    if _cam_area(top, sw, sh) > CAM_AREA_MAX:
+        return ("wide", [top], "face too big for a facecam — the camera IS "
+                "the content, show the whole frame")
     if top.jitter() <= FACECAM_JITTER * sw:
         return ("facecam_gameplay", [top],
                 "small locked facecam + screen content — stacked layout "
