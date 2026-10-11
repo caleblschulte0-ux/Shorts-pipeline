@@ -2989,10 +2989,18 @@ def _resolve_scene(slug: str, story_cfg: dict, i: int, insight):
     return scene
 
 
+class RetiredLook(RuntimeError):
+    """The render would fall back to a look the registry gives no slot, so
+    nothing it encodes can post. Raised (when the caller asks) after the
+    beats that DID draw are saved on the story."""
+
+
 def render(slug: str, out_path: Path, voice: str | None = None,
-           config_path: Path | None = None) -> Path:
+           config_path: Path | None = None, stop_if_retired: bool = False) -> Path:
     """`config_path` lets a sibling channel (e.g. curiosity) render from its
-    own story config; default stays the explainer's niche.config.json."""
+    own story config; default stays the explainer's niche.config.json.
+    `stop_if_retired` (the posting run) stops before encoding a video in a
+    look with no slot today — see RetiredLook."""
     config_path = Path(config_path) if config_path else PKG_DIR / "niche.config.json"
     cfg = json.loads(config_path.read_text())
     story_cfg = next((s for s in cfg.get("stories", []) if s["slug"] == slug), None)
@@ -3124,6 +3132,16 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                       f"no verified subject scene ({_kept} drawn and kept for "
                       f"the next render), and one video has one look",
                       flush=True)
+                # 2026-10-11: the morning run rendered seven stories this
+                # way, each finished in the retired look and refused at the
+                # door (currency) — nothing posted. Stop here instead; the
+                # beats that drew are kept, so the story is closer next time.
+                from shared import style_arms as _sa_w
+                if stop_if_retired and "current" not in _sa_w.weights():
+                    _save_persisted_mechanics(config_path, story_cfg, slug)
+                    raise RetiredLook(
+                        f"beat(s) {_missing} have no verified scene and the "
+                        f"'current' look has no slot ({_kept} drawn, kept)")
 
         # TRUE 30fps: re-render each chart at frames = span*30 now that the beat
         # length is known, so the build animates smoothly across the WHOLE window
