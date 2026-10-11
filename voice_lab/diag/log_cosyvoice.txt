@@ -1,0 +1,21 @@
+v41 ref text: It came about with such uncanny swiftness and terror, the light was so uncertain, the movements of the black cat so difficult to follow on the dark carpet, and the dark
+diag_v41_F failed: y", line 221, in load
+    with soundfile.SoundFile(filepath, "r") as file_:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/soundfile.py", line 708, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/soundfile.py", line 1290, in _open
+    raise TypeError(f"Invalid file: {self.name!r}")
+TypeError: Invalid file: tensor([[ 0.0017,  0.0019,  0.0017,  ...,  0.0106, -0.0317, -0.0934]])
+
+v46 ref text: If the red of the second bow falls upon the green of the first, the result is to give a bow with an abnormally wide yellow band, since red and green light when mixed form yellow.
+diag_v46_F failed: y", line 221, in load
+    with soundfile.SoundFile(filepath, "r") as file_:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/soundfile.py", line 708, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/soundfile.py", line 1290, in _open
+    raise TypeError(f"Invalid file: {self.name!r}")
+TypeError: Invalid file: tensor([[-0.0007, -0.0010, -0.0014,  ...,  0.0050,  0.0049,  0.0052]])

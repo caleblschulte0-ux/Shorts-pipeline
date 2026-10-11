@@ -1,60 +1,60 @@
+2026-10-11 20:30:03,500 DEBUG https://huggingface.co:443 "GET /api/models/FunAudioLLM/CosyVoice2-0.5B/xet-read-token/eec1ae6c79877dbd9379285cf8789c9e0879293d HTTP/1.1" 200 490
+2026-10-11 20:30:03,503 DEBUG https://huggingface.co:443 "GET /api/models/FunAudioLLM/CosyVoice2-0.5B/xet-read-token/eec1ae6c79877dbd9379285cf8789c9e0879293d HTTP/1.1" 200 490
+2026-10-11 20:30:03,509 DEBUG https://huggingface.co:443 "GET /api/models/FunAudioLLM/CosyVoice2-0.5B/xet-read-token/eec1ae6c79877dbd9379285cf8789c9e0879293d HTTP/1.1" 200 490
+2026-10-11 20:30:04,056 DEBUG Attempting to release lock 139771188744272 on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/7f04815e2e676d31b089af6fa270135f3214f2193d5e0ad98b491d007d48f1c6.lock
+2026-10-11 20:30:04,057 DEBUG Lock 139771188744272 released on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/7f04815e2e676d31b089af6fa270135f3214f2193d5e0ad98b491d007d48f1c6.lock
+2026-10-11 20:30:04,115 DEBUG https://huggingface.co:443 "HEAD /FunAudioLLM/CosyVoice2-0.5B/resolve/eec1ae6c79877dbd9379285cf8789c9e0879293d/speech_tokenizer_v2.onnx HTTP/1.1" 302 0
+2026-10-11 20:30:04,116 DEBUG Attempting to acquire lock 139771227204048 on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/d43342aa12163a80bf07bffb94c9de2e120a8df2f9917cd2f642e7f4219c6f71.lock
+2026-10-11 20:30:04,117 DEBUG Lock 139771227204048 acquired on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/d43342aa12163a80bf07bffb94c9de2e120a8df2f9917cd2f642e7f4219c6f71.lock
+2026-10-11 20:30:04,190 DEBUG https://huggingface.co:443 "GET /api/models/FunAudioLLM/CosyVoice2-0.5B/xet-read-token/eec1ae6c79877dbd9379285cf8789c9e0879293d HTTP/1.1" 200 490
+2026-10-11 20:30:04,524 DEBUG Attempting to release lock 139771188549072 on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/a6ac6a63997761ae2997373e2ee1c47040854b4b759ea41ec48e4e42df0f4d73.lock
+2026-10-11 20:30:04,524 DEBUG Lock 139771188549072 released on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/a6ac6a63997761ae2997373e2ee1c47040854b4b759ea41ec48e4e42df0f4d73.lock
+2026-10-11 20:30:04,897 DEBUG Attempting to release lock 139771188506384 on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/3386cc880324d4e98e05987b99107f49e40ed925b8ecc87c1f4939432d429879.lock
+2026-10-11 20:30:04,897 DEBUG Lock 139771188506384 released on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/3386cc880324d4e98e05987b99107f49e40ed925b8ecc87c1f4939432d429879.lock
+2026-10-11 20:30:08,013 DEBUG Attempting to release lock 139771188422928 on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/5b45a98572ed21e3a3ebf50201f3020567f7db40e9a57509b790b2982f5c07b7.lock
+2026-10-11 20:30:08,013 DEBUG Lock 139771188422928 released on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/5b45a98572ed21e3a3ebf50201f3020567f7db40e9a57509b790b2982f5c07b7.lock
+2026-10-11 20:30:09,547 DEBUG Attempting to release lock 139771188456592 on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/cd54e4281701e6630730da64502d77b7e8b6e5c057cca65128bffb50f85cbf98.lock
+2026-10-11 20:30:09,547 DEBUG Lock 139771188456592 released on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/cd54e4281701e6630730da64502d77b7e8b6e5c057cca65128bffb50f85cbf98.lock
+2026-10-11 20:30:13,489 DEBUG Attempting to release lock 139771227204048 on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/d43342aa12163a80bf07bffb94c9de2e120a8df2f9917cd2f642e7f4219c6f71.lock
+2026-10-11 20:30:13,489 DEBUG Lock 139771227204048 released on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/d43342aa12163a80bf07bffb94c9de2e120a8df2f9917cd2f642e7f4219c6f71.lock
+Fetching 19 files:  84%|████████▍ | 16/19 [00:10<00:01,  1.53it/s]2026-10-11 20:30:13,490 DEBUG Attempting to release lock 139771188743760 on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/ff4c2f867674411e0a08cee702996df13fa67c1cd864c06108da88d16d088541.lock
+2026-10-11 20:30:13,490 DEBUG Lock 139771188743760 released on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/ff4c2f867674411e0a08cee702996df13fa67c1cd864c06108da88d16d088541.lock
+2026-10-11 20:30:14,243 DEBUG Attempting to release lock 139771208581264 on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/130282af0dfa9fe5840737cc49a0d339d06075f83c5a315c3372c9a0740d0b96.lock
+2026-10-11 20:30:14,243 DEBUG Lock 139771208581264 released on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/130282af0dfa9fe5840737cc49a0d339d06075f83c5a315c3372c9a0740d0b96.lock
+Fetching 19 files:  95%|█████████▍| 18/19 [00:11<00:00,  1.61it/s]2026-10-11 20:30:18,893 DEBUG Attempting to release lock 139771188424272 on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/b144ef55b51ce8cfb79a73c90dbba0bdaba4e451c0ebcfab20f769264f84a608.lock
+2026-10-11 20:30:18,893 DEBUG Lock 139771188424272 released on /home/runner/.cache/huggingface/hub/.locks/models--FunAudioLLM--CosyVoice2-0.5B/b144ef55b51ce8cfb79a73c90dbba0bdaba4e451c0ebcfab20f769264f84a608.lock
+Fetching 19 files: 100%|██████████| 19/19 [00:15<00:00,  1.20it/s]
+Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
+2026-10-11 20:30:18,984 WARNING Sliding Window Attention is enabled but not implemented for `sdpa`; unexpected results may be encountered.
+/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/diffusers/models/lora.py:391: FutureWarning: `LoRACompatibleLinear` is deprecated and will be removed in version 1.0.0. Use of `LoRACompatibleLinear` is deprecated. Please switch to PEFT backend by installing PEFT: `pip install peft`.
+  deprecate("LoRACompatibleLinear", "1.0.0", deprecation_message)
+2026-10-11 20:30:22,595 INFO input frame rate=25
 /opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/torch/nn/utils/weight_norm.py:143: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
   WeightNorm.apply(module, name, dim)
-Traceback (most recent call last):
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/pydoc.py", line 457, in safeimport
-    module = __import__(path)
-             ^^^^^^^^^^^^^^^^
-  File "/home/runner/work/Shorts-pipeline/Shorts-pipeline/CosyVoice/cosyvoice/dataset/processor.py", line 17, in <module>
-    import pyarrow.parquet as pq
-ModuleNotFoundError: No module named 'pyarrow'
+2026-10-11 20:30:25,432 INFO use wetext frontend
+/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/whisper/transcribe.py:132: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+  0%|          | 0/1 [00:00<?, ?it/s]  0%|          | 0/1 [00:00<?, ?it/s]
+diag_v41_F failed: y", line 221, in load
+    with soundfile.SoundFile(filepath, "r") as file_:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/soundfile.py", line 708, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/soundfile.py", line 1290, in _open
+    raise TypeError(f"Invalid file: {self.name!r}")
+TypeError: Invalid file: tensor([[ 0.0017,  0.0019,  0.0017,  ...,  0.0106, -0.0317, -0.0934]])
 
-During handling of the above exception, another exception occurred:
+/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/whisper/transcribe.py:132: UserWarning: FP16 is not supported on CPU; using FP32 instead
+  warnings.warn("FP16 is not supported on CPU; using FP32 instead")
+  0%|          | 0/1 [00:00<?, ?it/s]  0%|          | 0/1 [00:00<?, ?it/s]
+diag_v46_F failed: y", line 221, in load
+    with soundfile.SoundFile(filepath, "r") as file_:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/soundfile.py", line 708, in __init__
+    self._file = self._open(file, mode_int, closefd)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/soundfile.py", line 1290, in _open
+    raise TypeError(f"Invalid file: {self.name!r}")
+TypeError: Invalid file: tensor([[-0.0007, -0.0010, -0.0014,  ...,  0.0050,  0.0049,  0.0052]])
 
-Traceback (most recent call last):
-  File "/home/runner/work/Shorts-pipeline/Shorts-pipeline/voice_lab/gen_diag.py", line 75, in <module>
-    m = CosyVoice2(snapshot_download("FunAudioLLM/CosyVoice2-0.5B"), load_jit=False, load_trt=False, fp16=False)
-        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/Shorts-pipeline/Shorts-pipeline/CosyVoice/cosyvoice/cli/cosyvoice.py", line 150, in __init__
-    configs = load_hyperpyyaml(f, overrides={'qwen_pretrain_path': os.path.join(model_dir, 'CosyVoice-BlankEN')})
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/hyperpyyaml/core.py", line 189, in load_hyperpyyaml
-    hparams = yaml.load(yaml_stream, Loader=loader)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/yaml/__init__.py", line 81, in load
-    return loader.get_single_data()
-           ^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/ruamel/yaml/constructor.py", line 119, in get_single_data
-    return self.construct_document(node)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/ruamel/yaml/constructor.py", line 123, in construct_document
-    data = self.construct_object(node)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/ruamel/yaml/constructor.py", line 150, in construct_object
-    data = self.construct_non_recursive_object(node)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/ruamel/yaml/constructor.py", line 191, in construct_non_recursive_object
-    for _dummy in generator:
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/ruamel/yaml/constructor.py", line 629, in construct_yaml_map
-    value = self.construct_mapping(node)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/ruamel/yaml/constructor.py", line 425, in construct_mapping
-    return BaseConstructor.construct_mapping(self, node, deep=deep)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/ruamel/yaml/constructor.py", line 247, in construct_mapping
-    value = self.construct_object(value_node, deep=deep)
-            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/ruamel/yaml/constructor.py", line 150, in construct_object
-    data = self.construct_non_recursive_object(node)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/ruamel/yaml/constructor.py", line 186, in construct_non_recursive_object
-    data = constructor(self, tag_suffix, node)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/site-packages/hyperpyyaml/core.py", line 490, in _construct_name
-    name = pydoc.locate(callable_string)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/pydoc.py", line 1802, in locate
-    nextmodule = safeimport('.'.join(parts[:n+1]), forceload)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/pydoc.py", line 472, in safeimport
-    raise ErrorDuringImport(path, sys.exc_info())
-pydoc.ErrorDuringImport: problem in cosyvoice.dataset.processor - ModuleNotFoundError: No module named 'pyarrow'
