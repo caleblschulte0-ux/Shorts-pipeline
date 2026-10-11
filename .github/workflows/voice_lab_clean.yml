@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        src: [vctk, libritts, globe]
+        src: [vctk, libritts]   # globe ran in the first pass
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -56,7 +56,6 @@ jobs:
           mkdir -p out; L=out/log_refs_${{ matrix.src }}.txt
           pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu 2>&1 | tail -5 | tee -a $L
           pip install -q soundfile numpy librosa pyarrow speechbrain==1.0.3 "huggingface_hub<0.26" 2>&1 | tail -5 | tee -a $L
-          find corpus -maxdepth 3 | head -20 | tee -a $L
           python voice_lab/clean_refs.py ${{ matrix.src }} corpus out voice_lab 2>&1 | tee -a $L; exit ${PIPESTATUS[0]}
       - uses: actions/upload-artifact@v4
         if: always()
