@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261011",
+  "bundle": {
+    "identity": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76",
+    "path": "exchange/bundles/20261011/bundle.json"
+  },
+  "request_id": "06_reddit-not-store-staff-s5-247bef50869b",
+  "safe_request_id": "06_reddit-not-store-staff-s5-247bef50869b",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "a763ed1ee9ad4f6d740656a062038d6acf03a33406e538256664850e9e9f691e",
+  "prompt_used": "An editorial illustration for a short-form video: store receipt pocket closeup. It accompanies the narration: \"still sitting in my pocket from the register\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1m7Jiqw1NqOoZfbu0ZEBS3AJFzYwCpzVs",
+    "filename": "20261011__06_reddit-not-store-staff-s5-247bef50869b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1m7Jiqw1NqOoZfbu0ZEBS3AJFzYwCpzVs",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "4e64d49aa5e714ddbe3a10b6c46761cc4069418b42aa32d7b82e66466b99d54a",
+    "bytes": 2609468,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-11T11:27:21.133Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
