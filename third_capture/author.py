@@ -124,10 +124,14 @@ Rules:
     turn lands; 0 if it holds from the start.
   - moves: the HITS a repost editor puts on single moments, 0-3 of them,
     at least 2s apart, each on the exact second from the transcript:
-    "zoom": a hard punch-in with a bass boom on THE reaction or the
-    punchline (the stunned face, the "BRO", the line that lands);
-    "shake": the frame shakes, with the boom, on a scream, a jump scare,
-    a slam, someone losing it;
+    "zoom": a hard punch-in, silent, on THE reaction or the punchline
+    (the stunned face, the "BRO", the line that lands);
+    "whoa": the punch-in WITH the Vine boom, for the one moment a viewer
+    goes "whoa": the jaw-drop reveal, the unbelievable play, the line
+    nobody saw coming. EMPHASIS, so at most ONE per clip and only when
+    the moment is genuinely a whoa; most clips have none;
+    "shake": the frame shakes, silent, on a scream, a jump scare, a
+    slam, someone losing it;
     "awkward": a slow push-in with crickets on a cringe silence or a
     dead joke. Use one only where an editor obviously would; a clip with
     no such moment gets []. Never on the first second.
@@ -546,7 +550,7 @@ def _postprocess(out: dict, streamer: str, context: str,
             at = max(0.0, float(m.get("at") or 0.0))
         except (TypeError, ValueError):
             continue
-        if name in ("zoom", "shake", "awkward"):
+        if name in ("zoom", "whoa", "shake", "awkward"):
             _moves.append({"move": name,
                            "at": round(min(at, clip_dur) if clip_dur
                                        else at, 2)})

@@ -277,29 +277,41 @@ def test_the_stacked_and_action_layouts_leave_them_out_too():
         assert "crop=iw:ih*{BG_TOP}:0:0," in _inspect.getsource(fn), fn
 
 
-class TheBoomIsTheOneEveryoneUses(unittest.TestCase):
-    """Operator, 2026-10-11: "what's that duh sound ... it sounds nothing
-    like how everybody else does it". The old boom was a 38-88 Hz sub a
-    phone barely plays; the meme boom's weight is in harmonics a phone
-    speaker CAN play, with a room ringing after it."""
+class TheBoomIsAWhoaNotAZoom(unittest.TestCase):
+    """Operator, 2026-10-11: the synthesised booms were "not it", then of
+    the real one: "not on every Zoom. You just use it in certain moments
+    ... it's an emphasis. It's like a whoa." So the Vine boom is its own
+    hit, the REAL file, at most once per clip, and nothing else booms."""
 
-    def test_most_of_it_is_where_a_phone_can_play_it(self):
-        import numpy as np
+    def test_it_is_the_real_vine_boom(self):
+        import wave
         from third_capture import moves
-        x = moves._boom()
-        mag = np.abs(np.fft.rfft(x))
-        f = np.fft.rfftfreq(len(x), 1 / moves.RATE)
-        audible = mag[(f >= 100) & (f < 500)].sum() / mag.sum()
-        self.assertGreater(audible, 0.4)
+        self.assertEqual(moves.sound("vine_boom"), moves.VINE_BOOM)
+        with wave.open(str(moves.VINE_BOOM)) as w:
+            secs = w.getnframes() / w.getframerate()
+        self.assertTrue(0.5 < secs < 3.0, secs)
 
-    def test_it_rings_out(self):
-        import numpy as np
+    def test_only_the_whoa_booms(self):
         from third_capture import moves
-        x = moves._boom()
-        tail = x[int(0.9 * moves.RATE):int(1.2 * moves.RATE)]
-        self.assertGreater(np.abs(tail).max(), 0.05)
+        self.assertEqual({m for m, (snd, _) in moves._SFX.items()
+                          if snd == "vine_boom"}, {"whoa"})
+        p = {"hits": [{"move": "zoom", "at": 2.0},
+                      {"move": "shake", "at": 5.0}], "bed": None}
+        _, files = moves.audio_graph(p, "0:a", 1, 10.0, "aout")
+        self.assertEqual(files, [])
 
-    def test_a_cached_old_boom_is_never_played(self):
+    def test_one_whoa_per_clip(self):
         from third_capture import moves
-        self.assertGreaterEqual(moves._VERSION["boom"], 2)
-        self.assertTrue(str(moves.sound("boom")).endswith("boom_v2.wav"))
+        p = moves.plan({"moves": [{"move": "whoa", "at": 3},
+                                  {"move": "whoa", "at": 8},
+                                  {"move": "zoom", "at": 12}]}, 20.0)
+        self.assertEqual([h["move"] for h in p["hits"]], ["whoa", "zoom"])
+
+    def test_the_author_is_told_and_heard(self):
+        from pathlib import Path
+        from third_capture import author
+        src = Path(author.__file__).read_text()
+        self.assertIn('"whoa": the punch-in WITH the Vine boom', src)
+        self.assertIn('("zoom", "whoa", "shake", "awkward")', src)
+
+
