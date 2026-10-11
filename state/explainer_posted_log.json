@@ -3255,11 +3255,28 @@
       "duration_s": 24.3
     },
     "polio-cases-fell-99-percent": {
-      "claimed_at": "2026-10-11T22:06:25.687612+00:00",
+      "url": "https://youtube.com/shorts/0b94SLBdzfo",
       "title": "Polio Cases Fell 99.9% In One Generation",
+      "at": "2026-10-11T22:06:33.446876+00:00",
       "publish_at": "2026-10-12T02:20:53Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "illustrated_beats": 2,
+      "fallback_beats": 0,
+      "beat_s_max": 6.49,
+      "beat_s": [
+        3.06,
+        6.43,
+        6.49,
+        6.64
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 83,
+      "duration_s": 22.6
     }
   },
   "uploads": [
@@ -4077,9 +4094,10 @@
       "claimed_at": "2026-10-11T22:06:25.687612+00:00",
       "title": "Polio Cases Fell 99.9% In One Generation",
       "publish_at": "2026-10-12T02:20:53Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "polio-cases-fell-99-percent"
+      "url": "https://youtube.com/shorts/0b94SLBdzfo",
+      "state": "posted",
+      "slug": "polio-cases-fell-99-percent",
+      "at": "2026-10-11T22:06:33.446876+00:00"
     }
   ]
 }
