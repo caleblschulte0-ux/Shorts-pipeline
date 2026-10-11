@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261011",
+  "bundle": {
+    "identity": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76",
+    "path": "exchange/bundles/20261011/bundle.json"
+  },
+  "request_id": "06_reddit-not-store-staff-s0-193969852dde",
+  "safe_request_id": "06_reddit-not-store-staff-s0-193969852dde",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "01833c41aa194354217bd69e10bf055710aba7f1589efbeff632ddc64bf075b5",
+  "prompt_used": "An editorial illustration for a short-form video: hardware store aisle drills. It accompanies the narration: \"comparing drill bits in the hardware aisle\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "16FXlN1QhRuUT15xKog38xXz8hUvHausb",
+    "filename": "20261011__06_reddit-not-store-staff-s0-193969852dde.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=16FXlN1QhRuUT15xKog38xXz8hUvHausb",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "2fcd86600c50b37bd5d2e4702c5f42715c9fc65bae7f58d91996a43fe3af0cab",
+    "bytes": 2382312,
+    "format": "png",
+    "width": 941,
+    "height": 1672
+  },
+  "verified_at": "2026-10-11T11:24:37.674Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
