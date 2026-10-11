@@ -144,7 +144,7 @@ def check_source(code: str) -> None:
 # standard it passed; one from an older standard is re-judged by today's
 # viewer and look again before it is used, and redrawn if it fails. Bump
 # STANDARD whenever a check or a bar a scene must pass is added.
-STANDARD = "2026-10-09"
+STANDARD = "2026-10-11"
 _STAMP = re.compile(r"^# scene standard: (\S+)\s*$", re.M)
 
 
@@ -276,13 +276,16 @@ sentence>",
 compare closely), 'clear' or 'dramatic'>",
  "shot": "<'a place' if it is somewhere you could stand, with ground, light \
 and near-and-far depth; 'a diagram' if it is an object shown front-on \
-against a backdrop>"}}"""
+against a backdrop>",
+ "heap": "<'yes' if the main thing that changes is a heap, pile or stack of \
+many copies of one object growing or shrinking; else 'no'>"}}"""
 
 _JUDGE = """A viewer saw two frames of an animated scene with every word \
 and the mascot removed, and described it unaided:
   object: {object}
   substance: {substance}
   change: {change}
+  a heap of copies of one object: {heap}
 
 The scene's author says it shows:
   HERO: {hero}
@@ -303,6 +306,12 @@ label — a tower of boxes, a stack of blocks or coins, a filling bar, a \
 rising pile of crates — when the narration is about something that is not \
 boxes or blocks. Theft is goods walking out unpaid, lost jobs are people \
 leaving, a price is a tag or a till; the picture must be made of THAT>,
+ "heap_fits": <true unless the viewer saw a heap AND the beat's narration is \
+given below AND that heap is a TOKEN COUNT standing in for an amount — \
+envelopes for debts, diapers for babies, coins for anything but money \
+paid out — rather than the narration's own stuff really piling up in its \
+own place (plastic in a landfill, coins out of a slot machine, snow on a \
+roof)>,
  "why": "<one sentence on anything you answered false>"}}"""
 
 
@@ -393,10 +402,11 @@ def glance(fn, pts, log=print, say: str = "", seen_by: list | None = None) -> li
     frm = str(seen.get("object_from") or "").strip().lower()
     tells = str(seen.get("tells") or "").strip()
     much = str(seen.get("how_much") or "").strip().lower()
+    heap = str(seen.get("heap") or "no").strip().lower()
     shot = str(seen.get("shot") or "").strip().lower()
     story = (f"\nThe beat's narration (what the picture must SHOW): {say}\n"
              if str(say or "").strip() else "")
-    ans = ask_glance(_JUDGE.format(object=obj, substance=sub, change=chg,
+    ans = ask_glance(_JUDGE.format(object=obj, substance=sub, change=chg, heap=heap,
                                    hero=decl["HERO"], substance_said=decl["SUBSTANCE"],
                                    cause=decl["CAUSE"], story=story), [])
     if not isinstance(ans, dict):
@@ -427,8 +437,10 @@ def glance(fn, pts, log=print, say: str = "", seen_by: list | None = None) -> li
     if much in ("none", "barely"):
         problems.append(f"a viewer saw the change as {much!r} ({chg!r}) — the "
                         f"thing that moves must change BIG enough to see at a "
-                        f"glance; draw what piles up, empties or spreads until "
-                        f"it is large, not an object that barely differs")
+                        f"glance; draw the story's own change until it is large "
+                        f"(a needle swings across, a crowd leaves, a line "
+                        f"grows out the door), not an object that barely "
+                        f"differs")
     if "diagram" in shot:
         problems.append("a viewer called it a diagram, not a place — an object "
                         "front-on on a backdrop; build the SETTING around it "
@@ -443,6 +455,14 @@ def glance(fn, pts, log=print, say: str = "", seen_by: list | None = None) -> li
                         f"the narration says HAPPENS (goods leaving unpaid, "
                         f"cashiers walking out, the price tag rising), made "
                         f"of this story's own objects. {why}".rstrip())
+    if story and heap.startswith("y") and ans.get("heap_fits") is False:
+        # operator, 2026-10-11: "we kind of overuse piles. Like, a pile of
+        # envelopes, pile of baby diapers ... we need to relax on the piles"
+        problems.append(f"the picture is a pile of copies ({chg!r}) counting "
+                        f"out a beat about {str(say)[:120]!r} — a heap of "
+                        f"tokens fits any amount. Show what the number DOES "
+                        f"in this story's world instead (rule 19). "
+                        f"{why}".rstrip())
     if ans.get("cause_makes_sense") is False:
         problems.append(f"{decl['CAUSE']!r} could not cause what a viewer saw "
                         f"({chg!r}) — Data's act must be the one that would really "
@@ -1223,8 +1243,8 @@ did not like a bone standing still in a window with -1.5%, 1% and 1.5x \
 stacked beside it. At most {max_heads} big numbers in any frame — MEASURED \
 — and never a label on top of Data. What moves must be the biggest thing \
 in the frame and change shape you can see from across a room. A small \
-percentage drawn literally (a bone 1.5% thinner) is invisible: draw what \
-piles up, empties or spreads until it is large, or set the thing beside \
+percentage drawn literally (a bone 1.5% thinner) is invisible: draw the \
+story's own change until it is large (rule 19), or set the thing beside \
 what it equals, so the PICTURE makes the comparison and the words do not.
 16. LAND IT, THEN HOLD IT. A scene is on screen for about {secs:.0f} seconds, and the owner called a fence whose last number arrived with under a second left "whiplash — I didn't even have time to process". Finish the story — every number, the final size, the last label — by u={payoff_by}, then HOLD that finished picture to the end so it can be read. After it lands the WORLD keeps moving (wind, a bottle rolling) and Data KEEPS DOING HIS ACT to the end (another toss, holding the load up, one more shove) — he never stands and points at what he made; the story does not move. A readout steps through at most {shows} values (landed(rows, k, f) does this). MEASURED: a number still arriving after u={payoff_by} is refused.
 17. THE PICTURE IS WHAT THE NARRATION SAYS HAPPENS. The owner, of a video whose first scene showed stores being taken over: "by the end it's just stacking boxes". A tower of boxes, a stack of blocks or coins, a filling bar or a pile of crates fits ANY story with a new label — refused when the beat is not about boxes. Theft is goods walking out unpaid, lost jobs are cashiers leaving their tills, a price is the tag on the shelf. Every beat of a story is drawn from that story's own world, the last as much as the first. A viewer is asked whether the picture shows what the narration says.
@@ -1236,6 +1256,17 @@ got replaced". Put him inside the world the way a person in it would be — \
 a shopper with a cart, a farmer at the gate, a driver at the wheel — doing \
 the act that makes the number move, and travelling through the scene as it \
 changes, not standing at its edge.
+19. NOT EVERYTHING IS A PILE. The owner, 2026-10-11: "we kind of overuse \
+piles. Like, a pile of envelopes, pile of baby diapers, a pile of stuff \
+coming out of slot machines. The slot machine one makes a lot more sense \
+... we need to relax on the piles". A heap of copies (envelopes for debts, \
+diapers for babies) is a token count that fits any number. Draw a pile \
+ONLY when the narration's own stuff really piles up in its own place \
+(plastic in a landfill, coins pouring out of a slot machine). Otherwise \
+show what the number DOES in the story's world: a score's needle swings, \
+a line of people walks out, a door closes, a road empties, a helicopter \
+lifts off again and again. A viewer is asked whether a pile is a token \
+count; THE PILE below is a pile because plastic waste IS a pile.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \

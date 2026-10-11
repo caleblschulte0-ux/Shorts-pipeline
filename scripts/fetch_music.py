@@ -26,8 +26,10 @@ BASE = "https://incompetech.com/music/royalty-free/mp3-royaltyfree"
 # keeps one atmospheric track (Lightless Dawn) for space/nature awe. Each vibe
 # has a few so videos still vary.
 LIBRARY = {
-    "calm":      ["Wholesome", "Carefree", "Almost New"],
-    "dark":      ["Inspired", "Cool Vibes", "Almost New"],
+    # "Almost New" is banned (operator, 2026-10-11) — see
+    # studio_render.BANNED_TRACKS, which also skips any cached copy.
+    "calm":      ["Wholesome", "Carefree"],
+    "dark":      ["Inspired", "Cool Vibes"],
     "cinematic": ["Cool Vibes", "Inspired", "Lightless Dawn"],
     "pulse":     ["Cool Vibes", "Bossa Antigua", "Inspired"],
 }
