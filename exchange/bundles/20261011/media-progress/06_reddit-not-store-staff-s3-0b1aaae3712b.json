@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261011",
+  "bundle": {
+    "identity": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76",
+    "path": "exchange/bundles/20261011/bundle.json"
+  },
+  "request_id": "06_reddit-not-store-staff-s3-0b1aaae3712b",
+  "safe_request_id": "06_reddit-not-store-staff-s3-0b1aaae3712b",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "7e28fbc3e040a4d95f7960f80cde9d1ca80d2eede7df40eba46b33a6869f871c",
+  "prompt_used": "An editorial illustration for a short-form video: store employee branded vest. It accompanies the narration: \"A real employee walked by in the actual branded vest\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1ZSAyVh3C-_PWhBMf1gFbQBss1mcb44k2",
+    "filename": "20261011__06_reddit-not-store-staff-s3-0b1aaae3712b.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1ZSAyVh3C-_PWhBMf1gFbQBss1mcb44k2",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c7e1d36eaaf66c7c59813ea96afc1fe290be10c289b58991ec9299474e5ae18d",
+    "bytes": 2140646,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-11T11:24:37.674Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
