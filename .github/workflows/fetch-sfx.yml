@@ -1,0 +1,70 @@
+name: Fetch a sound effect
+
+# Pulls a well-known meme sound (the Vine boom, first) from a public
+# soundboard so the clip editor can use the real one instead of a
+# synthesised look-alike (operator, 2026-10-11: "the Vine boom sound
+# effect ... go get it"). scripts/fetch_sfx.py trims and normalises it;
+# the file goes to `preview-renders:sfx/<run_id>/` for a session to check
+# and commit under assets/sfx/. Manual only; it posts nothing.
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'File name to write (no extension)'
+        required: false
+        default: 'vine_boom'
+      query:
+        description: 'What to search the soundboard for'
+        required: false
+        default: 'vine boom'
+
+permissions:
+  contents: write        # push the sound to preview-renders
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 1
+
+      - name: Install ffmpeg
+        run: |
+          sudo apt-get update -qq || true
+          sudo apt-get install -y -q ffmpeg
+
+      - name: Fetch
+        run: |
+          python scripts/fetch_sfx.py --out "$RUNNER_TEMP/sfx" \
+            --name "${{ inputs.name || 'vine_boom' }}" \
+            --query "${{ inputs.query || 'vine boom' }}"
+
+      - name: Publish to the preview-renders orphan branch
+        if: always()
+        run: |
+          set -euo pipefail
+          dest="sfx/${{ github.run_id }}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin preview-renders --depth=1 || true
+          if git checkout -B preview-renders origin/preview-renders 2>/dev/null; then
+            :
+          else
+            git checkout --orphan preview-renders
+            git rm -rq --cached . 2>/dev/null || true
+            git clean -fdq 2>/dev/null || true
+          fi
+          mkdir -p "$dest"
+          cp -r "$RUNNER_TEMP/sfx/." "$dest/" 2>/dev/null || true
+          git add -f "$dest"
+          git commit -m "sfx ${{ github.run_id }}" || { echo "nothing new"; exit 0; }
+          for i in 1 2 3 4; do
+            git push origin preview-renders && break
+            git pull --rebase origin preview-renders || true
+            sleep $((i * 2))
+          done
+          echo "published -> preview-renders:$dest"
