@@ -5152,6 +5152,72 @@
    "ending_type": "consequence",
    "franchise": "",
    "notes": "roll-up doors open per chain; building vs cups fill; 10x stack"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-11",
+   "topic_category": "nature",
+   "hook_type": "shock_stat",
+   "hook_text": "Your bats are dying: 97 percent of one kind gone, and it started in one cave.",
+   "words_first_10s": 16,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "kept existing scenes; spread map, bats falling off ceilings, pest-value gauge"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-11",
+   "topic_category": "money",
+   "hook_type": "shock_stat",
+   "hook_text": "States are quietly holding 70 billion dollars of your money.",
+   "words_first_10s": 16,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "kept existing scenes; vault trickle, 1-in-7 crowd glow"
+  },
+  {
+   "slug": "game-industry-layoffs-record",
+   "directed_at": "2026-10-11",
+   "topic_category": "tech",
+   "hook_type": "inversion",
+   "hook_text": "Games made record money in 2024 -- and 14,800 people lost their jobs.",
+   "words_first_10s": 16,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:controller-stacks-lopped",
+    "mechanic:badge-grid-pink-slips"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "controller towers per 1000 jobs; badge wall dropping by company"
+  },
+  {
+   "slug": "divorce-rate-quiet-decline",
+   "directed_at": "2026-10-11",
+   "topic_category": "society",
+   "hook_type": "inversion",
+   "hook_text": "You've been told half of marriages fail. The numbers say otherwise.",
+   "words_first_10s": 16,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:ring-pairs-pull-apart-less",
+    "mechanic:bride-walks-later-aisle"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "rings split by divorce rate, bride walks to later age"
   }
  ]
 }
