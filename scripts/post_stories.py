@@ -608,6 +608,12 @@ def _plan_restore(slug: str, snapshot) -> None:
         print(f"[{slug}] plan restore skipped: {e}", flush=True)
 
 
+def _beats_to_draw(sc: dict) -> int:
+    """How many of a story's beats have no saved subject scene yet."""
+    segs = [g for g in (sc.get("segments") or []) if isinstance(g, dict)]
+    return sum(1 for g in segs if not g.get("illustrated_scene"))
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--slugs", nargs="*",
@@ -689,6 +695,17 @@ def main() -> int:
             slugs.sort(key=lambda s: s in recently_blocked)  # stable sort
             print(f"[post_stories] {len(recently_blocked)} recently-blocked "
                   f"stor(y/ies) rotated to the back of the queue", flush=True)
+    # DRAWN FIRST. Only the illustrated look posts, and a story renders in
+    # it only when every beat has a verified scene; the drawing clock is
+    # ~20 minutes a video, so a story with none drawn rarely finishes. On
+    # 2026-10-11 the morning run spent four hours on seven such stories and
+    # posted nothing while stories with two of three beats drawn waited. A
+    # stable sort: fewest beats still to draw go first, nothing is skipped.
+    # A story the showrunner blocked recently still goes behind the rest
+    # (the rotation above), whatever it has drawn — the posting workflow
+    # passes its queue as --slugs, so this is where that list is ordered.
+    _blocked = _recent_gate_blocks()
+    slugs.sort(key=lambda s: (s in _blocked, _beats_to_draw(stories.get(s) or {})))
     unknown = [s for s in slugs if s not in stories]
     if unknown:
         print(f"unknown slugs: {unknown}\navailable: {list(stories)}",
@@ -920,7 +937,15 @@ def main() -> int:
         out = OUTPUT_DIR / f"story_{slug}.mp4"
         print(f"[{slug}] rendering -> {out}", flush=True)
         from data_learning import studio_render       # lazy: needs Pillow etc.
-        studio_render.render(slug, out, config_path=args.config)
+        try:
+            studio_render.render(slug, out, config_path=args.config,
+                                 stop_if_retired=not args.force)
+        except studio_render.RetiredLook as _rl:
+            print(f"[{slug}] NOT RENDERED — {_rl}; the next run finishes "
+                  f"drawing it", flush=True)
+            results.append({"slug": slug, "ok": False,
+                            "error": "not_current", "reasons": [str(_rl)]})
+            continue
 
         # MADE TO TODAY'S STANDARD, or not judged and not posted: the look,
         # the hook the render settled on, the narration (shared/currency).

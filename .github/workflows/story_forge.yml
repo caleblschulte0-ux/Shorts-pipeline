@@ -30,11 +30,11 @@ on:
       predraw_stories:
         description: 'draw (or re-judge) scenes for this many stories ahead of posting'
         required: false
-        default: '3'
+        default: '6'
       predraw_minutes:
         description: 'minutes the drawing brain may spend'
         required: false
-        default: '35'
+        default: '90'
 
 permissions:
   contents: write
@@ -109,6 +109,9 @@ jobs:
         # 2026-10-07 (scripts/predraw_scenes.py). Same verifier, its own clock;
         # each verified scene is saved the moment it passes. Best-effort: a
         # missing brain or a spent budget leaves the renderer to try as before.
+        # Six stories / 90 minutes (was 3 / 35): on 2026-10-11 the morning
+        # run found no fully drawn story it could post and drew none in time
+        # itself; this is where a postable video's scenes actually get made.
         continue-on-error: true
         timeout-minutes: 150
         env:
@@ -118,7 +121,7 @@ jobs:
             echo "::notice::CLAUDE_CODE_OAUTH_TOKEN not set — nothing can be drawn ahead"
             exit 0
           fi
-          python3 scripts/predraw_scenes.py --stories "${{ inputs.predraw_stories || 3 }}" --budget-min "${{ inputs.predraw_minutes || 35 }}"
+          python3 scripts/predraw_scenes.py --stories "${{ inputs.predraw_stories || 6 }}" --budget-min "${{ inputs.predraw_minutes || 90 }}"
 
       - name: Show what the editorial gate makes of the queue
         run: python3 scripts/editorial_gate.py 2>&1 | tail -20
