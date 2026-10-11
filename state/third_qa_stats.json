@@ -3,279 +3,6 @@
     {
       "date": "20261001",
       "dry_run": false,
-      "ts": "2026-10-01T11:49:32+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 119,
-        "with_retention": 103,
-        "with_curve": 15,
-        "fetched_at": "2026-10-01T08:46:17.788742+00:00"
-      },
-      "brain": {
-        "ok": 37,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261001-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.7,
-              "why": "visible chase, real payoff",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Dark GTA chase, little visible payoff",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Xqc Gets Pulled Over In NoPixel And Tells The Cop This Is The Last You'll See"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.6,
-              "problems": [
-                "Two caption styles show at once: a big-word overlay in the middle of the car and a subtitle line below it. It looks clut",
-                "The first frame shows the hook text twice: 'STOP THE FUCKING CAR' at the top and 'STOP THE FUCKING' over the car.",
-                "The mid-frame caption overlay covers the car's rear and license plate. This is minor, since the car is the subject and n",
-                "The clip is dark and repetitive: the same rear view of the car on a night road in most frames. The subject is clear and "
-              ]
-            }
-          },
-          "took_s": 219.3
-        },
-        {
-          "slug": "clip-20261001-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "unclear what happens",
-              "blind": false
-            },
-            "content": {
-              "score": 0.62,
-              "why": "GTA RP chase, cop tackles runner into wa",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Xqc Gets Captured And Chat Can't Believe It"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "Last three frames (14.0s to 17.0s) are very dark with a green tint, and the subject is hard to make out underwater",
-                "The hook card text sits close to the top edge of the sharp region, but it doesn't cover the subject"
-              ]
-            }
-          },
-          "took_s": 177.2
-        },
-        {
-          "slug": "clip-20261001-3",
-          "ok": false,
-          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague reaction, unclear trigger",
-              "blind": false
-            },
-            "content": {
-              "score": 0.45,
-              "why": "Street Fighter match, timer mistake, sma",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            }
-          },
-          "took_s": 30.7
-        },
-        {
-          "slug": "clip-20261001-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.55,
-              "why": "GTA RP shop theft chase, hard to follow",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Buddha Catches A Local Shoplifting Gang Mid-Steal And Shouts Them Down"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.72,
-              "problems": [
-                "4.2s: the subject is just the back of a head at the bottom of the frame",
-                "Duplicate captions at 2.5s and 4.2s: a burned-in 'No' plus the stylised caption, with the 'No' sitting in the picture ar",
-                "12.5s to 14.1s: the frame barely changes, so it reads as near-static"
-              ]
-            }
-          },
-          "took_s": 216.0
-        },
-        {
-          "slug": "clip-20261001-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "vague title, high velocity",
-              "blind": false
-            },
-            "content": {
-              "score": 0.62,
-              "why": "Visible laugh, dread over political quiz",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Zackrawrr Can't Believe His Reaction After Seeing Turkey Pop Up"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.62,
-              "problems": [
-                "Hook card text sits over his lower face and beard in the first ~3s",
-                "The same captions appear twice (small in the picture, large below), with a ghosted blurred copy at the bottom",
-                "The gameplay/screen picture is small and the text in it is unreadable, but the facecam on top carries the clip"
-              ]
-            }
-          },
-          "took_s": 120.4
-        },
-        {
-          "slug": "clip-20261001-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20261001",
-      "dry_run": false,
       "ts": "2026-10-01T12:20:24+00:00",
       "feedback": {
         "snapshot": true,
@@ -9181,6 +8908,58 @@
             }
           },
           "took_s": 158.9
+        }
+      ]
+    },
+    {
+      "date": "20261011",
+      "dry_run": false,
+      "ts": "2026-10-11T12:57:44+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 130,
+        "with_retention": 113,
+        "with_curve": 14,
+        "fetched_at": "2026-10-11T08:46:11.435848+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 0
+      },
+      "dead_sources": {},
+      "clips": [
+        {
+          "slug": "clip-20261011-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261011-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261011-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261011-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261011-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261011-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }
