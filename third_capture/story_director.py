@@ -24,6 +24,13 @@ from third_capture.author import (_call_claude, _call_gemini_vision,
 STRUCTURES = {"chronological", "cold_open", "mystery_reveal",
               "two_perspectives", "escalation", "before_after"}
 NOT_FUN_MAX = 59       # a coherent cut nobody would enjoy is no near-miss
+# A critic's own problems that mean a stranger cannot follow or finish the
+# story. Any one of them caps the cut below the bar and blocks publish.
+UNFINISHED = frozenset({"missing_context", "confusing", "misleading",
+                        "weak_payoff"})
+UNFINISHED_MAX = 79
+_CUT_OFF = re.compile(r"mid[- ]sentence|cuts? (?:it )?off|cut off|"
+                      r"trailing fragment|ends? on a fragment", re.I)
 LINKS = {"so", "but"}     # how a beat follows the one before it
 ROLES = {"setup", "escalation", "climax", "payoff", "context", "reaction"}
 # What the brain calls a role it means. Backtests 2026-10-07/08 threw away
@@ -1390,6 +1397,18 @@ def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
                                 "gasp or cringe. Build the cut around the "
                                 "funniest or most shocking moment the "
                                 "footage holds, or drop the story."})
+    # THE CRITIC'S OWN NOTES BIND ITS SCORE (operator, 2026-10-11, of the
+    # Kai detention story that shipped at 81: "That was not very good").
+    # That verdict said the guest is never introduced and the cut ends
+    # mid-sentence; the same critic had scored the same problems 64 one
+    # repair earlier. A cut a stranger cannot follow, or that stops
+    # mid-sentence, is not a story at 80 whatever number came with it.
+    # Code only ADDS this block; a repair that fixes the note clears it.
+    left = [p for p in problems
+            if p["type"] in UNFINISHED or _CUT_OFF.search(p["fix"])]
+    if left:
+        publish = False
+        score = min(score, UNFINISHED_MAX)
     return {"publish": publish,
             "story_score": score,
             "stranger_summary": summary, "payoff_at": payoff_at,

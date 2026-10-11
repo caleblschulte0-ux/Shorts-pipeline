@@ -755,3 +755,37 @@ def _attach():
 
 
 _attach()
+
+
+# ------------------------------- the critic's own notes bind its score
+# Operator, 2026-10-11, of the Kai detention story backtest 23 passed at
+# 81: "How did that one score an 81? That was not very good." The verdict
+# that passed it said, in its own words, that the guest is never
+# introduced and the cut ends mid-sentence.
+_DETENTION = {
+    "publish": True, "story_score": 81, "payoff_at": 38.5,
+    "stranger_summary": "Kai sentences a guest to the first detention.",
+    "entertaining_at": 30.0, "entertaining_why": "the guest begs",
+    "problems": [
+        {"type": "missing_context", "at": 8.0,
+         "fix": "The guest is never named or introduced."},
+        {"type": "pacing", "at": 42.0,
+         "fix": "The transcript ends mid-sentence ('I don't even know "
+                "why he even got'). End the cut on 'This is over.'"},
+        {"type": "repetition", "at": 22.0,
+         "fix": "'You have detention' is said three times in a row."}]}
+
+
+def test_a_cut_its_critic_says_a_stranger_cannot_follow_does_not_pass():
+    r = _critic(_DETENTION)
+    assert not r["publish"] and r["story_score"] <= sd.UNFINISHED_MAX < 80
+
+
+def test_a_cut_that_ends_mid_sentence_does_not_pass_whatever_its_label():
+    r = _critic({**_DETENTION, "problems": _DETENTION["problems"][1:]})
+    assert not r["publish"] and r["story_score"] < 80
+
+
+def test_cosmetic_notes_alone_still_pass():
+    r = _critic({**_DETENTION, "problems": _DETENTION["problems"][2:]})
+    assert r["publish"] and r["story_score"] == 81

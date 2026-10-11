@@ -685,6 +685,11 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   to be better ... it's also the story"*). The critic had passed every story
   it saw (66-80); only the 80 held viewers. It must also retell the story in
   a sentence and name the payoff second, or its pass is a fail.
+  And its own notes bind its number (2026-10-11, of a Kai detention story
+  passed at 81 with "the guest is never introduced" and "ends
+  mid-sentence" in the same verdict: *"That was not very good"*): a
+  `missing_context`, `confusing`, `misleading` or `weak_payoff` note, or
+  a cut it says stops mid-sentence, caps the score at `UNFINISHED_MAX`.
 - **A plan is READ before it is rendered, and a near-miss KEEPS ITS EDIT**
   (2026-10-08, backtests 7-8). The critic reads the words a plan would
   hold (`story.plan_ledger`, held equal to the render's ledger) and the
