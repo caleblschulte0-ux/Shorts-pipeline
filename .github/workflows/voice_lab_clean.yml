@@ -7,8 +7,6 @@ on:
     paths: ['voice_lab/clean_refs.py', 'voice_lab/gen_clean.py', '.github/workflows/voice_lab_clean.yml']
 permissions:
   contents: read
-env:
-  PIP_DEPS: soundfile numpy librosa pyarrow speechbrain==1.0.3 "huggingface_hub<0.26"
 jobs:
   refs:
     runs-on: ubuntu-latest
@@ -53,10 +51,13 @@ jobs:
             done
           fi
           df -h . | tail -1
-      - run: |
-          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
-          pip install -q $PIP_DEPS
-          python voice_lab/clean_refs.py ${{ matrix.src }} corpus out voice_lab
+      - shell: bash
+        run: |
+          mkdir -p out; L=out/log_refs_${{ matrix.src }}.txt
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu 2>&1 | tail -5 | tee -a $L
+          pip install -q soundfile numpy librosa pyarrow speechbrain==1.0.3 "huggingface_hub<0.26" 2>&1 | tail -5 | tee -a $L
+          find corpus -maxdepth 3 | head -20 | tee -a $L
+          python voice_lab/clean_refs.py ${{ matrix.src }} corpus out voice_lab 2>&1 | tee -a $L; exit ${PIPESTATUS[0]}
       - uses: actions/upload-artifact@v4
         if: always()
         with: { name: 'clean_refs_${{ matrix.src }}', path: out/ }
