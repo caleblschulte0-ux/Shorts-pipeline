@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261011",
+  "bundle": {
+    "identity": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76",
+    "path": "exchange/bundles/20261011/bundle.json"
+  },
+  "request_id": "05_reddit-wifi-mooching-neighbor-s2-221c04be80f3",
+  "safe_request_id": "05_reddit-wifi-mooching-neighbor-s2-221c04be80f3",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "3155c314ebf02e2672d63b18feeeb279583748da565ed33bb09facd59e6f9cf9",
+  "prompt_used": "An editorial illustration for a short-form video: router settings laptop screen. It accompanies the narration: \"actually learn my router's settings for the first time\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1R6Q04qSe1XcPiDPGLazhk2RJheYBAmcx",
+    "filename": "20261011__05_reddit-wifi-mooching-neighbor-s2-221c04be80f3.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1R6Q04qSe1XcPiDPGLazhk2RJheYBAmcx",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "c96bd27d9e79ce0a350d11c14241f950d342c4b008a263ef66c353c7e178e89c",
+    "bytes": 1869836,
+    "fmt": "png",
+    "width": 1536,
+    "height": 1024
+  },
+  "verified_at": "2026-10-11T11:16:55.812Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
