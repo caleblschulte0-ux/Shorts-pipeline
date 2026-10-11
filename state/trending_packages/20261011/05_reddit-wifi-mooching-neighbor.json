@@ -18,39 +18,67 @@
     "story",
     "viral"
   ],
-  "script": "My neighbor bragged at a cookout that he'd been using my home Wi-Fi for two years because I never changed the default password. He laughed and said I basically owed him for teaching me a lesson about security. I smiled, said nothing, and went home to actually learn my router's settings for the first time. Instead of changing the password, I logged into the admin panel and moved his device onto the guest network with a bandwidth cap of one megabit per second. He kept his free Wi-Fi, technically. His video calls started freezing mid-sentence. His smart TV buffered every single show. He texted me three days later asking if my internet was having issues too. I said mine was running great. He finally asked for my real password outright, like a tenant asking a landlord. I told him I would look into it and left the cap exactly where it was. He bought his own internet plan within the week.",
+  "script": "Free Wi-Fi for two years? My neighbor bragged at a cookout that he'd used my default password the whole time, then said I owed him for the security lesson. I finally learned my router settings for the first time. Instead of changing the password, I moved his device to the guest network and capped it at one megabit per second. He kept the free Wi-Fi\u2014technically. His video calls froze. His smart TV buffered every show. Three days later he texted, asking if my internet was broken too. I said mine was great. Then he asked for my real password like a tenant asking a landlord. I promised to look into it and left the cap untouched. Within the week, he bought his own internet plan. Still think the default password was free?",
   "shots": [
     {
       "phrase": "bragged at a cookout",
-      "query": "backyard cookout barbecue party"
+      "query": "backyard cookout barbecue party",
+      "image_url": "https://pixabay.com/get/geee7b692fc94ba34ec9c7c86b8d8959ab151a36541b222ecbafc22895ee8160a50645581dd664c063e4bec37303e202a824794f02ea9b8b6943229f6868b5a54_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "using my home Wi-Fi for two years",
-      "query": "wifi router blinking lights"
+      "query": "wifi router blinking lights",
+      "image_url": "https://images.pexels.com/photos/28348054/pexels-photo-28348054.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "actually learn my router's settings for the first time",
-      "query": "router settings laptop screen"
+      "query": "router settings laptop screen",
+      "image_url": "https://pixabay.com/get/g0b8fd7c73cf1573daffd46379fb017b0703df15b58828b765d3e9a934e62fc1b80f15c4a7c210aefbefa4ed992fe384d82b6631c9c20f4becb9bae27259d86c1_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "moved his device onto the guest network",
-      "query": "network admin panel laptop"
+      "query": "network admin panel laptop",
+      "image_url": "https://pixabay.com/get/gef7bb854b8d98fb3c1a8f5aa11bdaf7cb3b2ac561519e4cd374ab93f9f8f9ca3fa7c02380010701483814dbcf13a1a016c8b939f3063ebabc6df8fad33aad91a_1280.jpg",
+      "media_origin": "self_fill"
     },
     {
       "phrase": "bandwidth cap of one megabit per second",
-      "query": "slow loading spinner buffering"
+      "query": "slow loading spinner buffering",
+      "image_url": "https://drive.google.com/uc?export=download&id=19VYRypgT_agNs-C-S0zH6Ojb8dNjhnNc",
+      "media_origin": "chatgpt",
+      "media_file_id": "19VYRypgT_agNs-C-S0zH6Ojb8dNjhnNc",
+      "media_sha256": "a89a793f6f0cb78756378b89e853d8911f36235306f7222e6c267ce67ae95952",
+      "media_bytes": 1883551
     },
     {
       "phrase": "His smart TV buffered every single show",
-      "query": "smart tv buffering screen"
+      "query": "smart tv buffering screen",
+      "image_url": "https://drive.google.com/uc?export=download&id=1aKAFTydYiG57MvuAfXIZBYCOlid4F_7R",
+      "media_origin": "chatgpt",
+      "media_file_id": "1aKAFTydYiG57MvuAfXIZBYCOlid4F_7R",
+      "media_sha256": "465394d7243ec9a3cbe52aeecfb4587b728d5fb3074fded56cacb394e8cc3944",
+      "media_bytes": 1551748
     },
     {
       "phrase": "asking if my internet was having issues too",
-      "query": "texting phone closeup"
+      "query": "texting phone closeup",
+      "image_url": "https://drive.google.com/uc?export=download&id=1bGWTtnDj59rQNAlRHwRC_8Jbw_zXTlpr",
+      "media_origin": "chatgpt",
+      "media_file_id": "1bGWTtnDj59rQNAlRHwRC_8Jbw_zXTlpr",
+      "media_sha256": "eb729617ade3d1af60e5ea6eebd29b23d3122149185615962cd3d336435b4e2d",
+      "media_bytes": 1835884
     },
     {
       "phrase": "He bought his own internet plan within the week",
-      "query": "internet technician van driveway"
+      "query": "internet technician van driveway",
+      "image_url": "https://drive.google.com/uc?export=download&id=1vbvo-tOnFzoZBLu8dsCqPz9N51_4E8HS",
+      "media_origin": "chatgpt",
+      "media_file_id": "1vbvo-tOnFzoZBLu8dsCqPz9N51_4E8HS",
+      "media_sha256": "7e21ac1d3e89020053cc045ddf0505a0bbd1f6c5603adbf7f42bf4bf9a3873bd",
+      "media_bytes": 2065695
     }
   ],
   "punches": [
@@ -75,5 +103,6 @@
       "color": "#50ff80"
     }
   ],
-  "music_vibe": "dark"
+  "music_vibe": "dark",
+  "punched_up": true
 }
