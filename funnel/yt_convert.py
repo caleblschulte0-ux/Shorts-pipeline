@@ -10,10 +10,14 @@ putting together"* — a fair-use excerpt, cut to seconds in the story.
 `fetch(url, out)` asks the public converters, one after another, for a
 file of the video and saves it to `out`:
 
-  1. Piped       (``/streams/<id>`` — a combined audio+video stream)
-  2. Invidious   (``/latest_version?itag=18&local=true`` — 360p mp4,
+  1. loader.to   (the free converter site: ``/ajax/download.php`` starts
+                  a 720p mp4, its ``progress_url`` hands back the file —
+                  the one that answered from GitHub on 2026-10-11, when
+                  every route below refused or was down)
+  2. Piped       (``/streams/<id>`` — a combined audio+video stream)
+  3. Invidious   (``/latest_version?itag=18&local=true`` — 360p mp4,
                   proxied through the instance)
-  3. cobalt      (``POST /`` — a tunnel or redirect URL)
+  4. cobalt      (``POST /`` — a tunnel or redirect URL)
 
 Instances come from each project's public instance list, with a few known
 hosts behind it. Every one is a stranger's server that can be down, so a
@@ -36,11 +40,13 @@ import urllib.request
 from pathlib import Path
 
 TIMEOUT = 30
-BUDGET_S = 240          # all converters together, per video
+BUDGET_S = 360          # all converters together, per video
 MAX_BYTES = 400 << 20
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/128.0 Safari/537.36")
 
+LOADER = ["https://loader.to"]
+LOADER_WAIT_S = 180     # it converts before it hands the file over
 PIPED = ["https://pipedapi.kavin.rocks", "https://pipedapi.adminforge.de",
          "https://api.piped.private.coffee", "https://pipedapi.r4fo.com"]
 INVIDIOUS = ["https://inv.nadeko.net", "https://invidious.nerdvpn.de",
@@ -97,12 +103,38 @@ def _hosts(kind: str) -> list[str]:
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[yt_convert] {kind} instance list "
               f"({type(e).__name__})", flush=True)
-    known = {"piped": PIPED, "invidious": INVIDIOUS, "cobalt": COBALT}[kind]
+    known = {"loader": LOADER, "piped": PIPED, "invidious": INVIDIOUS, "cobalt": COBALT}[kind]
     _HOSTS[kind] = list(dict.fromkeys(found + known))
     return _HOSTS[kind]
 
 
 # ---- each converter: (media url, headers for it, meta) or None -----------
+
+def _loader(host: str, vid: str):
+    watch = urllib.parse.quote(f"https://www.youtube.com/watch?v={vid}",
+                               safe="")
+    j = _json(f"{host}/ajax/download.php?format=720&url={watch}")
+    if not j.get("success"):
+        return None
+    # the site's own progress.php reports "Finished" with the file while
+    # the progress_url it hands out can sit at 50% (seen 2026-10-11)
+    polls = [u for u in (f"{host}/ajax/progress.php?id={j.get('id', '')}"
+                         if j.get("id") else None, j.get("progress_url")) if u]
+    meta = {"title": (j.get("info") or {}).get("title") or j.get("title") or ""}
+    t0 = time.monotonic()
+    while polls and time.monotonic() - t0 < LOADER_WAIT_S:
+        for poll in polls:
+            try:
+                p = _json(poll)
+            except Exception:  # noqa: BLE001 — the other poll may answer
+                continue
+            if p.get("download_url"):
+                return p["download_url"], {}, meta
+            if str(p.get("text", "")).lower().startswith("error"):
+                return None
+        time.sleep(3)
+    return None
+
 
 def _piped(host: str, vid: str):
     j = _json(f"{host}/streams/{vid}")
@@ -146,7 +178,7 @@ def _cobalt(host: str, vid: str):
     return None
 
 
-ROUTES = (("piped", _piped), ("invidious", _invidious), ("cobalt", _cobalt))
+ROUTES = (("loader", _loader), ("piped", _piped), ("invidious", _invidious), ("cobalt", _cobalt))
 
 
 def _api_meta(vid: str) -> dict:
