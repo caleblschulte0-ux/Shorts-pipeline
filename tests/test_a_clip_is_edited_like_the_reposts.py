@@ -284,11 +284,19 @@ class TheBoomIsAWhoaNotAZoom(unittest.TestCase):
     hit, the REAL file, at most once per clip, and nothing else booms."""
 
     def test_it_is_the_real_vine_boom(self):
-        import wave
+        import shutil
+        import subprocess
         from third_capture import moves
         self.assertEqual(moves.sound("vine_boom"), moves.VINE_BOOM)
-        with wave.open(str(moves.VINE_BOOM)) as w:
-            secs = w.getnframes() / w.getframerate()
+        self.assertTrue(moves.VINE_BOOM.exists())
+        # Ogg, not wav: the sanity gate refuses a committed .wav.
+        self.assertEqual(moves.VINE_BOOM.suffix, ".ogg")
+        if not shutil.which("ffprobe"):
+            self.skipTest("ffprobe not installed")
+        secs = float(subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "csv=p=0", str(moves.VINE_BOOM)],
+            capture_output=True, text=True).stdout)
         self.assertTrue(0.5 < secs < 3.0, secs)
 
     def test_only_the_whoa_booms(self):

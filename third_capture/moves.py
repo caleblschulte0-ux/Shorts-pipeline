@@ -52,11 +52,11 @@ _SHAPE = {"zoom": (0.10, 1.3, 0.22, 0.24),
           "shake": (0.04, 0.55, 0.12, 0.09),
           "awkward": (2.8, 0.9, 0.3, 0.15)}
 #: Only the "whoa" booms, and it is the REAL Vine boom
-#: (assets/sfx/vine_boom.wav, fetched by scripts/fetch_sfx.py): the
+#: (assets/sfx/vine_boom.ogg, fetched by scripts/fetch_sfx.py): the
 #: operator heard two synthesised look-alikes and said "that's not it".
 #: A zoom or a shake is silent; a boom on every zoom stops meaning "whoa".
 _SFX = {"whoa": ("vine_boom", 0.9), "awkward": ("crickets", 0.55)}
-VINE_BOOM = REPO / "assets" / "sfx" / "vine_boom.wav"
+VINE_BOOM = REPO / "assets" / "sfx" / "vine_boom.ogg"
 
 
 # ---------------------------------------------------------------- plan --
