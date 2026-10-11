@@ -285,16 +285,26 @@ def _synth_sfx(work: Path) -> dict[str, Path]:
 
 MUSIC_DIR = PKG_DIR / "music"
 
+#: Tracks never played again, by file stem. Operator, 2026-10-11, of the
+#: medical-debt video ("calm" bed, rotated by slug to Almost New): "Whatever
+#: song we're using in the background of the medical debt videos, never use
+#: that song again." A cached copy can outlive its removal from
+#: scripts/fetch_music.py (the CI cache restores by prefix), so the picker
+#: skips these by name, not by trusting the folder.
+BANNED_TRACKS = frozenset({"almost-new"})
+
 
 def _music_track(vibe: str, slug: str) -> Path | None:
     """A real royalty-free track for this vibe (rotated by slug), or None to
     fall back to the synthesized bed. Populated by scripts/fetch_music.py."""
     import hashlib
     d = MUSIC_DIR / vibe
-    files = sorted(d.glob("*.mp3")) if d.is_dir() else []
+    files = [f for f in sorted(d.glob("*.mp3")) if f.stem not in BANNED_TRACKS] \
+        if d.is_dir() else []
     if not files:
         # try any vibe so a partial library still gives real music
-        files = sorted(MUSIC_DIR.glob("*/*.mp3")) if MUSIC_DIR.is_dir() else []
+        files = [f for f in sorted(MUSIC_DIR.glob("*/*.mp3"))
+                 if f.stem not in BANNED_TRACKS] if MUSIC_DIR.is_dir() else []
     if not files:
         return None
     h = int(hashlib.md5(slug.encode()).hexdigest(), 16)

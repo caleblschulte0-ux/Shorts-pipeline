@@ -335,6 +335,13 @@ constants blanked), never on the prose that explains it.
   stacking boxes"*): the glance's judge is given the beat's narration and
   refuses a generic stack, tower or bar (`story_fit`), prompt rule 17.
   `tests/test_the_build_fills_the_beat.py`.
+  And NOT EVERYTHING IS A PILE (operator, 2026-10-11: *"we kind of overuse
+  piles ... a pile of envelopes, pile of baby diapers ... we need to relax on
+  the piles"*): the blind viewer says whether the change is a heap of copies,
+  the judge refuses one that is a token count rather than the story's own
+  stuff really piling up, prompt rule 19. `tests/test_not_everything_is_a_pile.py`.
+  The song under the medical-debt video is banned for good
+  (`studio_render.BANNED_TRACKS`, skipped even from a stale cache).
   And the OPENING IS THE SHOCK (operator, 2026-10-08: *"our hook and first
   10 seconds need to be better ... we need to be really hooking the
   audience"*; 55-70% of viewers swiped in the first seconds). Rendered,
