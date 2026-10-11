@@ -107,7 +107,7 @@ def _get(path: str) -> dict | None:
         return json.loads(_fetch(f"{host}{path}", headers)
                           .decode("utf-8", "replace"))
     except Exception as e:  # noqa: BLE001
-        print(f"::warning::[hot_clips] r/{SUB} {path.split('?')[0]} "
+        print(f"::warning::[hot_clips] {path.split('?')[0]} "
               f"API failed ({type(e).__name__})", flush=True)
         return None
 
@@ -143,7 +143,7 @@ def _from_atom(xml: str) -> dict:
     return {"data": {"children": kids}}
 
 
-def _rss(path: str) -> dict | None:
+def _rss(path: str, sub: str = SUB) -> dict | None:
     from funnel import media_funnel
     import time as _t
     import urllib.error
@@ -162,15 +162,16 @@ def _rss(path: str) -> dict | None:
             raw = _fetch(url, hdr)
         got = _from_atom(raw.decode("utf-8", "replace"))
     except Exception as e:  # noqa: BLE001
-        print(f"::warning::[hot_clips] r/{SUB} RSS failed "
+        print(f"::warning::[hot_clips] r/{sub} RSS failed "
               f"({type(e).__name__})", flush=True)
         return None
     return got
 
 
-def _pullpush(query: str | None, period: str, limit: int) -> dict | None:
+def _pullpush(query: str | None, period: str, limit: int,
+              sub: str = SUB) -> dict | None:
     import time as _t
-    q = {"subreddit": SUB, "size": min(int(limit), 100),
+    q = {"subreddit": sub, "size": min(int(limit), 100),
          "after": int(_t.time() - _PERIOD_S.get(period, _PERIOD_S["week"])),
          "sort_type": "score", "sort": "desc"}
     if query:
@@ -197,12 +198,13 @@ _DEAD: set[str] = set()
 
 
 def _first(path: str, query: str | None, period: str,
-           limit: int) -> dict | None:
+           limit: int, sub: str = SUB) -> dict | None:
     # PullPush before RSS: it carries scores and the over_18 flag; a feed
     # carries neither.
     for name, fn in (("api", lambda: _get(path)),
-                     ("pullpush", lambda: _pullpush(query, period, limit)),
-                     ("rss", lambda: _rss(path))):
+                     ("pullpush", lambda: _pullpush(query, period, limit,
+                                                    sub)),
+                     ("rss", lambda: _rss(path, sub))):
         if name in _DEAD:
             continue
         got = fn()
@@ -211,7 +213,7 @@ def _first(path: str, query: str | None, period: str,
             continue
         if (got.get("data") or {}).get("children"):
             if name != "api":
-                print(f"[hot_clips] r/{SUB} answered by {name}", flush=True)
+                print(f"[hot_clips] r/{sub} answered by {name}", flush=True)
             return got
     return None
 
@@ -276,6 +278,45 @@ def about(query: str, period: str = "month", limit: int = 50) -> list[dict]:
                                  + str(p.get("permalink") or ""),
                     "created": float(p.get("created_utc") or 0)})
     out.sort(key=lambda c: c["created"])
+    return out
+
+
+def top_videos(sub: str, period: str = "week",
+               limit: int = 100) -> list[dict]:
+    """Any subreddit's top posts for `period` that link to footage on a
+    platform yt-dlp downloads, most upvoted first (a feed carries no
+    votes, so there the listing's own order stands): [{url, platform,
+    media, post_title, upvotes, comments, permalink, created, sub}].
+    `media` is the v.redd.it address of a Reddit-hosted video (what
+    `funnel.reddit_video.fetch` reads when reddit.com refuses the
+    runner), else the url. Same routes as r/LivestreamFail (API, PullPush,
+    RSS). [] when Reddit cannot be reached.
+
+    Shared capability: Baller Bro's sports moments (operator, 2026-10-11)
+    are r/nba, r/nfl, r/soccer... read exactly as the Twitch channel
+    reads r/LivestreamFail."""
+    data = _first(f"/r/{sub}/top.json?t={period}&limit={limit}&raw_json=1",
+                  None, period, limit, sub) or {}
+    out, seen = [], set()
+    for ch in ((data.get("data") or {}).get("children") or []):
+        p = ch.get("data") or {}
+        if p.get("over_18") or p.get("removed_by_category"):
+            continue
+        link = video_link(p)
+        if not link or link[0] in seen:
+            continue
+        seen.add(link[0])
+        raw = str(p.get("url_overridden_by_dest") or p.get("url") or "")
+        out.append({"url": link[0], "platform": link[1],
+                    "media": raw if "v.redd.it" in raw.lower() else link[0],
+                    "post_title": str(p.get("title") or "")[:200],
+                    "upvotes": int(p.get("ups") or p.get("score") or 0),
+                    "comments": int(p.get("num_comments") or 0),
+                    "permalink": "https://www.reddit.com"
+                                 + str(p.get("permalink") or ""),
+                    "created": float(p.get("created_utc") or 0),
+                    "sub": sub})
+    out.sort(key=lambda c: -c["upvotes"])
     return out
 
 

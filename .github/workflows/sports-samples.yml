@@ -1,0 +1,119 @@
+name: Sports samples
+
+# Finished sample cuts for Baller Bro's new direction, SPORTS MOMENTS
+# (operator, 2026-10-11, of the OG channel: "we need to turn that into
+# something", then picked "sports moments"). scripts/sports_samples.py
+# reads the week's top video posts on the sports subreddits, has the brain
+# pick the moments with people in them, and cuts each with the Twitch
+# channel's editor. The cuts go to `preview-renders:sports/<run_id>/`,
+# phone-sized, for the operator to see in the thread.
+#
+# Manual only. It carries no YouTube credentials, so it cannot publish.
+
+on:
+  workflow_dispatch:
+    inputs:
+      n:
+        description: 'Sample videos to make'
+        required: false
+        default: '6'
+      period:
+        description: 'Reddit top-of window (day, week, month)'
+        required: false
+        default: 'week'
+
+permissions:
+  contents: write        # push the cuts to preview-renders
+
+jobs:
+  samples:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    concurrency:
+      group: sports-samples
+      cancel-in-progress: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install system deps
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg fonts-dejavu-core fonts-noto-color-emoji tesseract-ocr
+
+      - name: Install python deps
+        run: pip install -q pillow numpy edge-tts yt-dlp curl_cffi openai-whisper "opencv-python-headless<5"
+
+      - name: Install Claude CLI (the brain)
+        run: npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || echo "::warning::claude-code install failed — falls to Gemini/Groq"
+
+      - name: Make the samples
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+          REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+          NEWSAPI_KEY: ${{ secrets.NEWSAPI_KEY }}
+          GNEWS_KEY: ${{ secrets.GNEWS_KEY }}
+          BRAVE_KEY: ${{ secrets.BRAVE_KEY }}
+          TAVILY_KEY: ${{ secrets.TAVILY_KEY }}
+          NEWSDATA_KEY: ${{ secrets.NEWSDATA_KEY }}
+          IMGUR_CLIENT_ID: ${{ secrets.IMGUR_CLIENT_ID }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+          THIRD_ASR: groq
+        run: |
+          python scripts/sports_samples.py --out sports \
+            --n "${{ inputs.n || '6' }}" --period "${{ inputs.period || 'week' }}"
+
+      - name: Phone-sized copies
+        if: always()
+        run: |
+          set -u
+          mkdir -p "$RUNNER_TEMP/payload"
+          cp sports/index.json sports/pool.json "$RUNNER_TEMP/payload/" 2>/dev/null || true
+          for f in sports/*.mp4; do
+            [ -f "$f" ] || continue
+            ffmpeg -y -v error -i "$f" -vf scale=720:-2 -c:v libx264 -crf 26 \
+              -preset veryfast -c:a aac -b:a 128k "$RUNNER_TEMP/payload/$(basename "$f")"
+          done
+          ls -la "$RUNNER_TEMP/payload"
+
+      - name: Publish to the preview-renders orphan branch
+        if: always()
+        run: |
+          set -euo pipefail
+          dest="sports/${{ github.run_id }}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          rm -rf sports
+          # ADD to the branch, never replace it (backtest-preview.yml)
+          git fetch origin preview-renders --depth=1 || true
+          if git checkout -B preview-renders origin/preview-renders 2>/dev/null; then
+            :
+          else
+            git checkout --orphan preview-renders
+            git rm -rq --cached . 2>/dev/null || true
+            git clean -fdq 2>/dev/null || true
+          fi
+          mkdir -p "$dest"
+          cp -r "$RUNNER_TEMP/payload/." "$dest/"
+          git add -f "$dest"
+          git commit -m "sports samples ${{ github.run_id }}" \
+            || { echo "nothing new to commit"; exit 0; }
+          for i in 1 2 3 4; do
+            git push origin preview-renders && break
+            git pull --rebase origin preview-renders || true
+            sleep $((i * 2))
+          done
+          echo "published -> preview-renders:$dest"
