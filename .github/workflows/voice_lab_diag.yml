@@ -14,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        engine: [chatterbox, zonos, cosyvoice]
+        engine: [zonos, cosyvoice]   # chatterbox variants came in on the first pass
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -26,12 +26,12 @@ jobs:
           pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu >> $L 2>&1
           case ${{ matrix.engine }} in
             chatterbox) pip install -q chatterbox-tts==0.1.7 --extra-index-url https://download.pytorch.org/whl/cpu >> $L 2>&1 ;;
-            zonos) pip install -q "git+https://github.com/Zyphra/Zonos.git" >> $L 2>&1 ;;
+            zonos) pip install -q "git+https://github.com/Zyphra/Zonos.git" "transformers==4.49.0" >> $L 2>&1 ;;
             cosyvoice)
               git clone -q --recursive https://github.com/FunAudioLLM/CosyVoice.git >> $L 2>&1
               pip install -q conformer diffusers gdown hydra-core HyperPyYAML inflect librosa lightning matplotlib \
                 modelscope networkx omegaconf onnx onnxruntime openai-whisper protobuf pydantic rich soundfile \
-                tensorboard transformers x-transformers wget pyworld wetext huggingface_hub >> $L 2>&1 ;;
+                tensorboard "transformers==4.49.0" x-transformers wget pyworld wetext huggingface_hub >> $L 2>&1 ;;
           esac
           tail -20 $L > $L.t; mv $L.t $L
           python voice_lab/gen_diag.py ${{ matrix.engine }} out 2>&1 | tail -60 > out/log_run_${{ matrix.engine }}.txt || true
