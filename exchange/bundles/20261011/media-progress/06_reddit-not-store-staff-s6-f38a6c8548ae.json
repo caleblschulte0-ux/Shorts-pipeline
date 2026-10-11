@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261011",
+  "bundle": {
+    "identity": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76",
+    "path": "exchange/bundles/20261011/bundle.json"
+  },
+  "request_id": "06_reddit-not-store-staff-s6-f38a6c8548ae",
+  "safe_request_id": "06_reddit-not-store-staff-s6-f38a6c8548ae",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "2771953df91c5860aa065a413d6367d7db77e364a5f3f19241874c6ee7b61fd1",
+  "prompt_used": "An editorial illustration for a short-form video: store signage discount sign. It accompanies the narration: \"the store had retired that discount two years ago\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1JVnzVgtC-YI2KJApDZavaopkyHS6jLdv",
+    "filename": "20261011__06_reddit-not-store-staff-s6-f38a6c8548ae.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1JVnzVgtC-YI2KJApDZavaopkyHS6jLdv",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "010f7c20df40627fef9de6892d5d059a2838b937c6df6d860562c72c3620b4be",
+    "bytes": 2318224,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-11T11:27:21.133Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
