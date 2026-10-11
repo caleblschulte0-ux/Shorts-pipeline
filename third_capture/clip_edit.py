@@ -830,6 +830,96 @@ def own_captions(video: Path, words: list[dict], samples: int = 8) -> bool:
     return hits >= 2 and hits >= 0.4 * max(1, read)
 
 
+def _ocr_words(img: Path) -> list[str]:
+    """Words tesseract reads in a picture with confidence (>= 70), letters
+    only, 3+ long: what a person would read as text, not the noise a
+    textured shirt or a crowd gives it."""
+    out = []
+    try:
+        r = subprocess.run(["tesseract", str(img), "-", "--psm", "11",
+                            "tsv"], capture_output=True, text=True,
+                           timeout=60)
+    except Exception:  # noqa: BLE001
+        return out
+    for row in (r.stdout or "").splitlines()[1:]:
+        cols = row.split("\t")
+        if len(cols) < 12:
+            continue
+        try:
+            conf = float(cols[10])
+        except ValueError:
+            continue
+        word = re.sub(r"[^A-Za-z]", "", cols[11])
+        if conf >= 70 and len(word) >= 3:
+            out.append(word.lower())
+    return out
+
+
+def _has_text(words: list[str]) -> bool:
+    return len(words) >= 2 and any(len(w) >= 4 for w in words)
+
+
+def line_spot(src: Path, picture_vf: str, dur: float, line_h: int,
+              samples: int = 6) -> tuple[int, str]:
+    """(y, why) for the one line of text: the bottom third, unless the
+    footage already has text THERE.
+
+    Operator, 2026-10-09: *"don't put captions over the captions of the
+    video"*. `own_captions` catches a stream captioning its speech; it
+    cannot catch a reposted clip's burned-in title or a show's subtitles,
+    and the first Baller Bro samples (2026-10-11) laid our line straight
+    over both. The PICTURE the line goes on (`picture_vf`, the reframe
+    graph ending in [vout], no captions) is read at `samples` moments; a
+    band where real words show up in a third of them is taken, and the
+    line moves to the top (`caption_line.TOP_Y`). Both taken: the one with
+    less text. No tesseract, or anything failing: the bottom, as before."""
+    import shutil
+    from third_capture import caption_line as cl
+    bands = {"bottom": cl.LINE_Y, "top": cl.TOP_Y}
+    if not shutil.which("tesseract") or dur <= 0:
+        return cl.LINE_Y, "unchecked"
+    hits = {k: 0 for k in bands}
+    read = 0
+    with tempfile.TemporaryDirectory() as td:
+        for k in range(samples):
+            t = dur * (k + 0.5) / samples
+            fr = Path(td) / f"p{k}.png"
+            try:
+                _run(["ffmpeg", "-y", "-v", "error", "-ss", f"{t:.2f}",
+                      "-i", str(src), "-filter_complex", picture_vf,
+                      "-map", "[vout]", "-frames:v", "1", str(fr)],
+                     timeout=60)
+            except Exception:  # noqa: BLE001
+                continue
+            read += 1
+            for name, y in bands.items():
+                crop = Path(td) / f"p{k}_{name}.png"
+                y0 = max(0, y - 40)
+                h = min(CANVAS_H - y0, line_h + 80)
+                try:
+                    _run(["ffmpeg", "-y", "-v", "error", "-i", str(fr),
+                          "-vf", f"crop={CANVAS_W}:{h}:0:{y0},"
+                          "scale=iw*1.5:-2,format=gray", str(crop)],
+                         timeout=60)
+                except Exception:  # noqa: BLE001
+                    continue
+                if _has_text(_ocr_words(crop)):
+                    hits[name] += 1
+    if not read:
+        return cl.LINE_Y, "unchecked"
+
+    def taken(n):
+        return n >= 2 and n >= read / 3
+
+    if not taken(hits["bottom"]):
+        return cl.LINE_Y, "bottom free"
+    if not taken(hits["top"]):
+        return cl.TOP_Y, (f"footage has text in the bottom third "
+                          f"({hits['bottom']}/{read} frames)")
+    y = cl.TOP_Y if hits["top"] < hits["bottom"] else cl.LINE_Y
+    return y, f"text top {hits['top']}/{read}, bottom {hits['bottom']}/{read}"
+
+
 def transcribe_words(video: Path, model_name: str = "small") -> list[dict]:
     import os
     if os.environ.get("THIRD_ASR", "").lower() == "groq":
@@ -1345,6 +1435,23 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             except Exception as e:  # noqa: BLE001
                 print(f"::warning::[edit] caption line failed "
                       f"({type(e).__name__})", flush=True)
+        # NOT OVER THE FOOTAGE'S OWN TEXT EITHER (2026-10-11): a reposted
+        # clip's burned-in title or a show's subtitles sit right where the
+        # line goes; the line moves to the top when they do
+        line_y = caption_line.LINE_Y
+        if auto and line_png:
+            try:
+                from PIL import Image as _Img
+                with _Img.open(line_png) as _im:
+                    _lh = _im.height
+                line_y, _why = line_spot(src, plain_vf, dur, _lh)
+                ledger_ae["line_y"] = line_y
+                if line_y != caption_line.LINE_Y:
+                    print(f"[edit] the line goes on top: {_why}", flush=True)
+            except Exception as e:  # noqa: BLE001
+                print(f"::warning::[edit] line spot failed "
+                      f"({type(e).__name__}) — bottom third", flush=True)
+                line_y = caption_line.LINE_Y
         try:
             # make every sound now, so a synth failure drops the moves
             # rather than the render
@@ -1395,15 +1502,15 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                 if with_mood and line2_png:
                     a2 = mv["line2"]["at"]
                     parts.append(f"[{cur}][{len(inputs)}:v]overlay=0:"
-                                 f"{caption_line.LINE_Y}:"
+                                 f"{line_y}:"
                                  f"enable='lt(t,{a2:.2f})'[ln1]")
                     inputs.append(line2_png)
                     parts.append(f"[ln1][{len(inputs)}:v]overlay=0:"
-                                 f"{caption_line.LINE_Y}:"
+                                 f"{line_y}:"
                                  f"enable='gte(t,{a2:.2f})'[ln]")
                 else:
                     parts.append(f"[{cur}][{len(inputs)}:v]overlay=0:"
-                                 f"{caption_line.LINE_Y}[ln]")
+                                 f"{line_y}[ln]")
                 cur = "ln"
             if with_mood:
                 for i, sh in enumerate(shows):

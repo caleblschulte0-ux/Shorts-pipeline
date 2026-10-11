@@ -63,5 +63,20 @@ class RedditVideo(unittest.TestCase):
         ff.assert_not_called()
 
 
+
+class TwoWordNames(unittest.TestCase):
+    """A two-word name already in the title is not prefixed again (the
+    first samples: "Jaylen Brown: Jaylen Brown Claps Back...")."""
+
+    def test_no_double_name(self):
+        from third_capture import author
+        t = "Jaylen Brown Claps Back At Anthony Edwards"
+        self.assertEqual(author.anchor_streamer(t, "Jaylen Brown"), t)
+
+    def test_missing_name_still_anchored(self):
+        from third_capture import author
+        self.assertEqual(
+            author.anchor_streamer("Claps Back At Ant", "Jaylen Brown"),
+            "Jaylen Brown: Claps Back At Ant")
 if __name__ == "__main__":
     unittest.main()

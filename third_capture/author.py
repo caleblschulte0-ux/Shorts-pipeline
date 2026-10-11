@@ -459,6 +459,11 @@ def anchor_streamer(title: str, streamer: str) -> str:
     import difflib
     if not streamer:
         return title
+    # a name of two or more words ("Jaylen Brown", "Duke Dennis") is never
+    # one word of the title, so the word match below missed it and the
+    # first sports samples went out "Jaylen Brown: Jaylen Brown Claps..."
+    if len(streamer.split()) > 1 and _norm(streamer) in _norm(title):
+        return title
     pretty = streamer.strip("_").title()
     fixed_words = []
     matched = False
