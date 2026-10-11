@@ -32779,6 +32779,235 @@
      "say": "That would make it as deadly as cancer is today."
     }
    ]
+  },
+  {
+   "slug": "amazon-warehouse-robot-army",
+   "title": "Amazon Now Runs 1 Million Warehouse Robots",
+   "hook": "Amazon just hit 1 million robots.",
+   "closing": "The robots didn't replace the warehouse. They became it.",
+   "question": "Did you expect a robot army?",
+   "caption": "Amazon's warehouse robot fleet just crossed 1 million machines — up from about 1,400 when it first bought the technology in 2012. Here's how fast that army actually grew, and what it means for the humans working next to it. Did you know it was already this big? 👇",
+   "hashtags": [
+    "amazonrobots",
+    "automation",
+    "warehouse",
+    "robotics",
+    "amazon",
+    "supplychain",
+    "tech",
+    "futureofwork",
+    "didyouknow",
+    "dataviz",
+    "innovation",
+    "logistics"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "amazon_robot_fleet_growth",
+     "params": {
+      "file": "amazon_robot_fleet_growth.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE START",
+     "topic": "Amazon's robot fleet size",
+     "say": "Amazon had about 1,400 warehouse robots in 2012. It now runs over 1 million."
+    },
+    {
+     "source": "offline",
+     "key": "amazon_robot_buildings",
+     "params": {
+      "file": "amazon_robot_buildings.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · HOW FAR IT SPREAD",
+     "topic": "how many warehouses run Amazon's robots",
+     "say": "Robots started in one building. Now they run in over 300 Amazon warehouses worldwide."
+    },
+    {
+     "source": "offline",
+     "key": "amazon_robots_vs_workforce",
+     "params": {
+      "file": "amazon_robots_vs_workforce.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · WHY IT STILL NEEDS YOU",
+     "topic": "Amazon's robots compared to its own workforce",
+     "say": "Amazon now runs 1 million robots alongside about 1.5 million employees. Neither replaced the other."
+    }
+   ]
+  },
+  {
+   "slug": "back-pain-leading-disability",
+   "title": "619 Million People Live With Back Pain Right Now",
+   "hook": "Back pain disables more people than anything else.",
+   "closing": "Your back isn't broken. It's just asked to sit too much.",
+   "question": "How's your back right now?",
+   "caption": "619 million people are living with lower back pain right now — more than any other cause of disability on Earth. It's not a rare injury; it's mostly how modern life sits, stands, and lifts. Here's why it quietly became the world's #1 disabler. How's your back doing today? 👇",
+   "hashtags": [
+    "backpain",
+    "health",
+    "disability",
+    "chronicpain",
+    "publichealth",
+    "sciencefacts",
+    "wellness",
+    "spine",
+    "didyouknow",
+    "globalhealth",
+    "ergonomics",
+    "dataviz"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "back_pain_global_burden",
+     "params": {
+      "file": "back_pain_global_burden.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE SCALE",
+     "topic": "how many people live with back pain",
+     "say": "In 2020, 619 million people lived with chronic low back pain. By 2050 that climbs to 843 million."
+    },
+    {
+     "source": "offline",
+     "key": "back_pain_preventable_share",
+     "params": {
+      "file": "back_pain_preventable_share.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · WHY IT HAPPENS",
+     "topic": "what causes most back pain",
+     "say": "Researchers say fixing weight, smoking, and workplace ergonomics could cut that burden by 39 percent."
+    },
+    {
+     "source": "offline",
+     "key": "back_pain_working_age_growth",
+     "params": {
+      "file": "back_pain_working_age_growth.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · STILL GETTING WORSE",
+     "topic": "back pain cases since 1990",
+     "say": "Working-age back pain cases have grown 53 percent since 1990."
+    }
+   ]
+  },
+  {
+   "slug": "red-hair-recessive-gene",
+   "title": "Only 2% Of People Have Red Hair. Here's Why.",
+   "hook": "Why is red hair so rare?",
+   "closing": "For every redhead you meet, a few more nearby are hiding the gene too.",
+   "question": "Are you secretly a carrier?",
+   "caption": "Only about 1-2% of people worldwide have naturally red hair — but in Scotland, where it's most concentrated, over a third of the population actually carries the gene without ever showing it. Here's why a recessive gene can hide in plain sight. Are you secretly a carrier? 👇",
+   "hashtags": [
+    "redhair",
+    "genetics",
+    "mc1r",
+    "didyouknow",
+    "biology",
+    "sciencefacts",
+    "dna",
+    "rare",
+    "scotland",
+    "ireland",
+    "traits",
+    "geneticscience"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "red_hair_by_region",
+     "params": {
+      "file": "red_hair_by_region.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "1 · HOW RARE",
+     "topic": "how common red hair actually is",
+     "say": "Worldwide, about 1.5 percent of people have red hair. In Scotland, it's closer to 13."
+    },
+    {
+     "source": "offline",
+     "key": "red_hair_carriers_vs_expressed",
+     "params": {
+      "file": "red_hair_carriers_vs_expressed.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE HIDDEN CARRIERS",
+     "topic": "why more people carry red hair genes than show it",
+     "say": "But 37 percent of Scots carry the gene — nearly three times more than actually show it."
+    },
+    {
+     "source": "offline",
+     "key": "red_hair_gene_copies",
+     "params": {
+      "file": "red_hair_gene_copies.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · WHY IT HIDES",
+     "topic": "why the red hair gene hides",
+     "say": "One copy of the gene hides completely. You need two copies, one from each parent, to actually show it."
+    }
+   ]
+  },
+  {
+   "slug": "bank-branches-mobile-banking-crossover",
+   "title": "20,000 US Bank Branches Have Closed Since 2009",
+   "hook": "Banking didn't shrink. It just moved.",
+   "closing": "So did banking shrink, or did it just relocate?",
+   "question": "When did you last walk into a branch?",
+   "caption": "US banks have closed roughly 20,000 branches since the 2009 peak — but banking didn't shrink, it just moved. Mobile and online banking adoption nearly doubled in the years that followed. Here's the real story behind the empty storefronts. When did you last actually walk into a branch? 👇",
+   "hashtags": [
+    "banking",
+    "fintech",
+    "mobilebanking",
+    "bankbranches",
+    "moneytips",
+    "finance",
+    "fdic",
+    "personalfinance",
+    "didyouknow",
+    "dataviz",
+    "economy",
+    "banks"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "us_bank_branch_count",
+     "params": {
+      "file": "us_bank_branch_count.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE EMPTY STOREFRONTS",
+     "topic": "how many bank branches have closed",
+     "say": "US bank branches peaked at 99,550 in 2009. They've since dropped by roughly 20,000."
+    },
+    {
+     "source": "offline",
+     "key": "mobile_banking_adoption",
+     "params": {
+      "file": "mobile_banking_adoption.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · WHERE EVERYONE WENT INSTEAD",
+     "topic": "how many people bank on their phone now",
+     "say": "Meanwhile, mobile and online banking as people's main way to bank jumped from 36 percent to 55."
+    },
+    {
+     "source": "offline",
+     "key": "bank_branch_closures_2020_spike",
+     "params": {
+      "file": "bank_branch_closures_2020_spike.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THEN THE PANDEMIC HIT",
+     "topic": "why bank branch closures suddenly sped up",
+     "say": "A typical year closes about 1,300 branches. In 2020 alone, it was over 4,000."
+    }
+   ]
   }
  ],
  "videos": [

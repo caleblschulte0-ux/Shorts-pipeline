@@ -1,0 +1,19 @@
+{
+  "key": "red_hair_carriers_vs_expressed",
+  "title": "Scotland: visible red hair vs MC1R gene carriers",
+  "unit": "percent",
+  "geography": "Scotland",
+  "time_coverage": "2013 survey",
+  "source": {
+    "name": "Britain's DNA ancestry-testing study (2013, n=2,343)",
+    "publisher": "Britain's DNA, as reported by Scottish and Irish press",
+    "url": "https://www.irishcentral.com/news/experts-map-shows-20-million-redheads-across-ireland-and-uk-221299751-237772471",
+    "officiality": "secondary",
+    "access_date": "2026-10-11"
+  },
+  "notes": "The 2013 Britain's DNA study found about 6% of Scots visibly have red hair in its sample (other sources cite up to ~13% for Scotland depending on methodology), while over 36.5% carry at least one MC1R red-hair gene variant -- rounded here to 37%. The gap exists because red hair is recessive: carrying one copy of the gene does not make it visible.",
+  "points": [
+    {"label": "Visibly red-haired", "value": 13},
+    {"label": "Carries the gene", "value": 37}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "red_hair_by_region",
+  "title": "Share of people with visible red hair, by region",
+  "unit": "percent",
+  "geography": "Worldwide / Ireland / Scotland",
+  "time_coverage": "current",
+  "source": {
+    "name": "Red hair prevalence estimates compiled from genetics literature and population surveys",
+    "publisher": "Encyclopedic/genetics-research compilation (Wikipedia-derived; Britain's DNA 2013 ancestry study)",
+    "url": "https://en.wikipedia.org/wiki/Red_hair",
+    "officiality": "secondary",
+    "access_date": "2026-10-11"
+  },
+  "notes": "Roughly 1-2% of the world's population has naturally red hair. Ireland and Scotland have the highest concentrations; commonly cited figures put Ireland around 10% and Scotland around 13%, though exact rates vary by source and survey method.",
+  "points": [
+    {"label": "World", "value": 1.5},
+    {"label": "Ireland", "value": 10},
+    {"label": "Scotland", "value": 13}
+  ]
+}

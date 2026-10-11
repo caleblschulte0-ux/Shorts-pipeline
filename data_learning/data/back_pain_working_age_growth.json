@@ -1,0 +1,19 @@
+{
+  "key": "back_pain_working_age_growth",
+  "title": "Working-age (15-64) low back pain cases, indexed to 1990",
+  "unit": "index",
+  "geography": "Worldwide",
+  "time_coverage": "1990-2021",
+  "source": {
+    "name": "Global Burden of Disease-based analysis of working-age low back pain",
+    "publisher": "Peer-reviewed epidemiology research, as compiled in mainstream health coverage",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/40342503/",
+    "officiality": "secondary",
+    "access_date": "2026-10-11"
+  },
+  "notes": "A GBD-based analysis of people aged 15-64 found 452.8 million working-age low back pain cases, a 52.66% increase since 1990. Shown here as an index (1990 = 100) so the percent change is the number on screen; the underlying 1990 case count is not separately reported.",
+  "points": [
+    {"label": "1990", "value": 100},
+    {"label": "2021", "value": 152.7}
+  ]
+}

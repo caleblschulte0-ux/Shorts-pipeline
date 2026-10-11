@@ -1,0 +1,19 @@
+{
+  "key": "back_pain_preventable_share",
+  "title": "Low back pain burden: current vs if major risk factors were fixed",
+  "unit": "percent",
+  "geography": "Worldwide",
+  "time_coverage": "2020 estimate",
+  "source": {
+    "name": "Global Burden of Disease 2021 study, modifiable risk factor analysis for low back pain",
+    "publisher": "Lancet Rheumatology / Global Burden of Disease collaboration",
+    "url": "https://www.healthdata.org/news-events/newsroom/news-releases/lancet-new-study-shows-low-back-pain-leading-cause-disability",
+    "officiality": "secondary",
+    "access_date": "2026-10-11"
+  },
+  "notes": "Researchers estimated that addressing obesity, smoking, and occupational ergonomic risk factors could reduce the global burden of low back pain by about 39%, framed here as the share of today's burden that is tied to those preventable factors.",
+  "points": [
+    {"label": "Tied to preventable risk factors", "value": 39},
+    {"label": "Not explained by those factors", "value": 61}
+  ]
+}

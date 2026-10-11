@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "format": "graph_race",
+  "slug": "03_graph-mrbeast-tseries",
+  "title": "MrBeast Just Passed T-Series On YouTube",
+  "y_label": "YouTube subscribers (millions)",
+  "duration": 13,
+  "hook": "The king fell in 2024",
+  "source": "Sources: Social Blade historical subscriber tracking; subscriber counts at the June 2024 crossover as reported by Tubefilter and others; earlier years approximate.",
+  "hashtags": [
+    "mrbeast",
+    "tseries",
+    "youtube",
+    "subscribers",
+    "creators",
+    "youtuber",
+    "data",
+    "chart",
+    "socialmedia",
+    "trending",
+    "fyp",
+    "shorts",
+    "viral"
+  ],
+  "years": [2019, 2020, 2021, 2022, 2023, 2024],
+  "series": [
+    {
+      "name": "T-Series",
+      "color": "#e74c3c",
+      "icon": "T-Series",
+      "values": [120, 150, 190, 230, 250, 270]
+    },
+    {
+      "name": "MrBeast",
+      "color": "#58cc02",
+      "icon": "MrBeast",
+      "values": [24, 48, 77, 115, 211, 271]
+    }
+  ],
+  "music_vibe": "hiphop"
+}

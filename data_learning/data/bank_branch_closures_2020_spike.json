@@ -1,0 +1,19 @@
+{
+  "key": "bank_branch_closures_2020_spike",
+  "title": "US bank branch closures per year: typical vs 2020",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "typical year vs 2020",
+  "source": {
+    "name": "Federal Reserve Bank of Richmond branch-banking research",
+    "publisher": "Federal Reserve Bank of Richmond",
+    "url": "https://www.richmondfed.org/banking/research_analysis/qsr_highlights/branch_banking",
+    "officiality": "official",
+    "access_date": "2026-10-11"
+  },
+  "notes": "The Richmond Fed reports roughly 20,000 net branch closures across the ~15 years since the 2009 peak (an average close to 1,300/year), with closures spiking to more than 4,000 in 2020 alone as the pandemic accelerated existing digital-adoption trends.",
+  "points": [
+    {"label": "Typical year", "value": 1300},
+    {"label": "2020", "value": 4000}
+  ]
+}

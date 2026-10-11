@@ -1,0 +1,20 @@
+{
+  "key": "amazon_robots_vs_workforce",
+  "title": "Amazon robots vs Amazon employees",
+  "unit": "million",
+  "geography": "Amazon (worldwide)",
+  "time_coverage": "2025",
+  "source": {
+    "name": "Amazon Robotics one-millionth-robot announcement (2025); Amazon global workforce size, as reported by trade press",
+    "publisher": "Amazon / secondary tech press compilation",
+    "url": "https://www.aboutamazon.com",
+    "officiality": "secondary",
+    "access_date": "2026-10-11",
+    "note": "Employee figure is Amazon's total global workforce (all roles, not warehouse-only); it is the closest publicly reported headcount to compare against the robot fleet."
+  },
+  "notes": "Amazon's robot fleet passed 1 million machines in 2025. Amazon's global headcount peaked near 1.6 million employees in 2021 and was reported around 1.5 million more recently -- so the robot fleet is now roughly two-thirds the size of the entire human workforce.",
+  "points": [
+    {"label": "Robots", "value": 1.0},
+    {"label": "Employees", "value": 1.5}
+  ]
+}

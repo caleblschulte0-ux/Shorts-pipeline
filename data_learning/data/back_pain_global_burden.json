@@ -1,0 +1,19 @@
+{
+  "key": "back_pain_global_burden",
+  "title": "People living with low back pain worldwide",
+  "unit": "million",
+  "geography": "Worldwide",
+  "time_coverage": "2020 vs 2050 (projected)",
+  "source": {
+    "name": "Global Burden of Disease 2021 study, low back pain prevalence and projections",
+    "publisher": "Lancet Rheumatology / Global Burden of Disease collaboration",
+    "url": "https://www.healthdata.org/news-events/newsroom/news-releases/lancet-new-study-shows-low-back-pain-leading-cause-disability",
+    "officiality": "secondary",
+    "access_date": "2026-10-11"
+  },
+  "notes": "The 2023 Global Burden of Disease analysis (published in Lancet Rheumatology) found low back pain affected 619 million people in 2020 and is projected to reach 843 million by 2050, driven mostly by population growth and aging. It has ranked as the world's leading cause of years lived with disability for three decades.",
+  "points": [
+    {"label": "2020", "value": 619, "period": "2020"},
+    {"label": "2050 (projected)", "value": 843, "period": "2050"}
+  ]
+}
