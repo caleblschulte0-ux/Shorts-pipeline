@@ -55,6 +55,7 @@ if engine == "chatterbox":
         run(f"diag_v{v}_C", LINES, lambda t: (m.generate(t, exaggeration=0.5, cfg_weight=0.5), m.sr))
         run(f"diag_v{v}_D", two, lambda t: (m.generate(t, exaggeration=0.5, cfg_weight=0.5), m.sr))
 elif engine == "zonos":
+    sys.path.insert(0, "zonos_src")
     from zonos.model import Zonos
     from zonos.conditioning import make_cond_dict
     m = Zonos.from_pretrained("Zyphra/Zonos-v0.1-transformer", device="cpu")
