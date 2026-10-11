@@ -275,3 +275,31 @@ def test_the_stacked_and_action_layouts_leave_them_out_too():
     from third_capture import shot_plan as _sp
     for fn in (_sp._render_stacked, _sp._render_action_crop):
         assert "crop=iw:ih*{BG_TOP}:0:0," in _inspect.getsource(fn), fn
+
+
+class TheBoomIsTheOneEveryoneUses(unittest.TestCase):
+    """Operator, 2026-10-11: "what's that duh sound ... it sounds nothing
+    like how everybody else does it". The old boom was a 38-88 Hz sub a
+    phone barely plays; the meme boom's weight is in harmonics a phone
+    speaker CAN play, with a room ringing after it."""
+
+    def test_most_of_it_is_where_a_phone_can_play_it(self):
+        import numpy as np
+        from third_capture import moves
+        x = moves._boom()
+        mag = np.abs(np.fft.rfft(x))
+        f = np.fft.rfftfreq(len(x), 1 / moves.RATE)
+        audible = mag[(f >= 100) & (f < 500)].sum() / mag.sum()
+        self.assertGreater(audible, 0.4)
+
+    def test_it_rings_out(self):
+        import numpy as np
+        from third_capture import moves
+        x = moves._boom()
+        tail = x[int(0.9 * moves.RATE):int(1.2 * moves.RATE)]
+        self.assertGreater(np.abs(tail).max(), 0.05)
+
+    def test_a_cached_old_boom_is_never_played(self):
+        from third_capture import moves
+        self.assertGreaterEqual(moves._VERSION["boom"], 2)
+        self.assertTrue(str(moves.sound("boom")).endswith("boom_v2.wav"))

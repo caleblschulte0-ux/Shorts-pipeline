@@ -172,17 +172,44 @@ def _norm(x, peak=0.9):
 
 
 def _boom():
-    """A deep cinematic boom: a falling sub, saturated, with a click."""
+    """THE boom every clipper uses (the "vine boom"), synthesised.
+
+    Operator, 2026-10-11: *"what's that duh sound ... it sounds nothing
+    like how everybody else does it"*. The first boom was a 38-88 Hz sub:
+    a phone speaker plays almost nothing under ~100 Hz, so on a phone it
+    was a dull "duh". The meme boom is a bass drum pitched DOWN from the
+    low-mids (a fast drop from ~170 Hz to ~55 Hz), driven hard so its
+    harmonics land where a phone can play them, a felt thump on the
+    attack, and a big dark room ringing out after it for about a second
+    and a half. Made here, never sampled (Content ID)."""
     import numpy as np
-    n = int(1.4 * RATE)
+    n = int(2.0 * RATE)
     t = np.arange(n) / RATE
-    f = 38 + 50 * np.exp(-t * 6)
+    rng = np.random.default_rng(11)
+    # the drum: a pitch drop, two detuned voices so it is thick, not a sine
+    f = 55 + 115 * np.exp(-t * 22)
     ph = 2 * np.pi * np.cumsum(f) / RATE
-    body = np.sin(ph) + 0.35 * np.sin(2 * ph)
-    env = np.minimum(1, t / 0.004) * np.exp(-t * 2.4)
-    rng = np.random.default_rng(7)
-    click = rng.standard_normal(n) * np.exp(-t * 90) * 0.5
-    return _norm(np.tanh(2.2 * body * env) + click)
+    ph2 = 2 * np.pi * np.cumsum(f * 1.012) / RATE
+    body = np.sin(ph) + 0.6 * np.sin(ph2) + 0.25 * np.sin(2 * ph)
+    env = np.minimum(1, t / 0.003) * np.exp(-t * 3.2)
+    # overdriven, so the 110-500 Hz harmonics carry it on a phone
+    drum = np.tanh(4.5 * body * env)
+    # the thump of the beater: a short low-passed noise burst
+    burst = rng.standard_normal(n) * np.exp(-t * 60)
+    k = int(0.0012 * RATE) or 1
+    burst = np.convolve(burst, np.ones(k) / k, mode="same")
+    dry = drum + 0.35 * burst
+    # the room: dark decaying noise as an impulse response
+    m = int(1.6 * RATE)
+    tr = np.arange(m) / RATE
+    ir = rng.standard_normal(m) * np.exp(-tr * 3.4)
+    k = int(0.004 * RATE)
+    ir = np.convolve(ir, np.ones(k) / k, mode="same")
+    ir[: int(0.012 * RATE)] = 0           # the reflections arrive late
+    wet = np.fft.irfft(np.fft.rfft(dry, 2 * n) * np.fft.rfft(ir, 2 * n))[:n]
+    mix = _norm(dry) + 0.55 * _norm(wet)
+    # glue: a soft clip over the whole thing, as the reposted file is
+    return _norm(np.tanh(1.6 * _norm(mix)), 0.95)
 
 
 def _crickets():
@@ -258,14 +285,16 @@ def _hype():
     return _norm(mix)
 
 
+_VERSION = {"boom": 2}
 _MAKERS = {"boom": _boom, "crickets": _crickets, "hype": _hype}
 
 
 def sound(name: str) -> Path:
-    """cache/music/<name>_v1.wav, made once."""
+    """cache/music/<name>_v<N>.wav, made once (N moves when a sound is
+    remade, so a cached old one is never played again)."""
     if name == "sad":
         return mood_mod.bed()
-    path = MUSIC / f"{name}_v1.wav"
+    path = MUSIC / f"{name}_v{_VERSION.get(name, 1)}.wav"
     if path.exists() and path.stat().st_size > 1000:
         return path
     return _write(path, _MAKERS[name]())
