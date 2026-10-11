@@ -1,0 +1,266 @@
+#!/usr/bin/env python3
+"""Baller Bro's daily posts: SPORTS MOMENTS (registry channel `trending`).
+
+Operator, 2026-10-11, of the OG channel (439 graph races and Reddit
+stories at ~3 views each): *"we need to turn that into something"*,
+picked "sports moments" off the samples, then *"we'll switch it to
+sports moments"*. The registry's `sports_moment` format says how many;
+this is the run that makes and posts them.
+
+Each slot is the sample maker's pipeline (`scripts/sports_samples.py`:
+the week's most upvoted video posts on the sports subreddits, the brain
+picks the moments with PEOPLE in them, the Twitch channel's editor cuts
+them) plus the two things a post owes that a sample does not:
+
+  * the SHOWRUNNER watches it and its block is sovereign, through the
+    one shared policy (`shared/showrunner_gate`), fail-closed on a
+    publish run;
+  * the upload is CLAIMED ON MAIN before the API call, through the
+    trending posted log's own `_guarded_upload` (`ClaimNotDurable`
+    refuses an upload no later run could see). The Reddit permalink is
+    the `topic`, so the same post is never cut twice whatever the title
+    says.
+
+    python scripts/run_sports.py              # post the registry's count
+    python scripts/run_sports.py --dry-run    # render + judge, upload nothing
+"""
+from __future__ import annotations
+
+import argparse
+import json
+import os
+import re
+import sys
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+from scripts import run_trending_daily as rt  # noqa: E402
+from scripts import sports_samples as ss  # noqa: E402
+from shared import channel_registry as reg  # noqa: E402
+
+CHANNEL = "trending"
+FORMAT = "sports_moment"
+OUT = ROOT / "output" / "sports"
+REPORT = ROOT / "sports_report.json"
+#: Candidates one run may cut per slot it owes. Each costs a download, a
+#: transcription, an author call, a render and a judge, and a gate that
+#: refuses everything on a bad day must not eat the whole job timeout.
+TRIES_PER_SLOT = 3
+
+def permalink_key(c: dict) -> str:
+    """The post's identity: its Reddit permalink, else its video URL."""
+    p = (c.get("permalink") or "").strip()
+    if p.startswith("/"):
+        p = "https://www.reddit.com" + p
+    return (p or c.get("url") or "").split("?")[0].rstrip("/")
+
+
+def already_used(pool: list[dict], log: dict) -> set[str]:
+    """Keys of pool posts the channel has already posted or claimed."""
+    seen = {rt._norm(e.get("topic")) for e in log.get("posted") or []}
+    seen |= {rt._norm(u.get("topic")) for u in log.get("uploads") or []}
+    seen.discard("")
+    return {permalink_key(c) for c in pool
+            if rt._norm(permalink_key(c)) in seen}
+
+
+def next_slot(slots, *, after: str = "", now: datetime | None = None) -> str:
+    """The next publish slot at least five minutes out AND later than the
+    one the last post took — asked at upload time, not run start, because
+    a run that spent an hour on cuts the gate refused must not hand
+    YouTube a publishAt that has already passed."""
+    n = max(1, len(slots or rt._publish_slots())) * 2
+    for t in rt.schedule_times(now or datetime.now(timezone.utc), n, slots):
+        if t > after:
+            return t
+    return rt.schedule_times(now or datetime.now(timezone.utc), n, slots)[-1]
+
+
+def description(meta: dict, c: dict) -> str:
+    """Caption, the call to action, the credit, the tags."""
+    parts = [meta.get("caption") or c.get("post_title") or "",
+             meta.get("cta") or ""]
+    parts.append(f"Via r/{c.get('sub')}: {permalink_key(c)}")
+    tags = " ".join(f"#{t.lstrip('#')}" for t in meta.get("hashtags") or [])
+    if tags:
+        parts.append(tags)
+    return "\n\n".join(p for p in parts if p.strip())
+
+
+def tags(meta: dict, c: dict) -> list[str]:
+    out = [t.lstrip("#") for t in meta.get("hashtags") or []]
+    out += [c.get("who") or "", c.get("sub") or "", "sports", "shorts"]
+    return [t for i, t in enumerate(out) if t and t not in out[:i]][:15]
+
+
+def judge(mp4: Path, c: dict, meta: dict, hook: str, *,
+          will_upload: bool) -> dict:
+    from shared import showrunner_gate
+    slug = rt._slug(f"sports {c.get('who')} {permalink_key(c)[-12:]}")
+    ctx = {"slug": slug, "title": meta.get("title"), "hook": hook,
+           "format": FORMAT, "topic": permalink_key(c),
+           "segments": [c.get("post_title"), meta.get("caption")]}
+    gate = showrunner_gate.run(mp4, slug=slug, context=ctx,
+                               will_upload=will_upload)
+    showrunner_gate.log(gate, slug)
+    return gate
+
+
+def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--count", type=int, default=None,
+                    help="default: the registry's sports_moment target")
+    ap.add_argument("--period", default="week")
+    ap.add_argument("--dry-run", action="store_true")
+    a = ap.parse_args()
+
+    want = a.count if a.count is not None else \
+        reg.target_mix(CHANNEL).get(FORMAT, 0)
+    report = {"date": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+              "format": FORMAT, "want": want, "dry_run": a.dry_run,
+              "slots": []}
+
+    def _save():
+        REPORT.write_text(json.dumps(report, indent=1, default=str))
+
+    if not want:
+        print(f"[sports] the registry asks for no {FORMAT} today", flush=True)
+        _save()
+        return 0
+
+    rt._refresh_log_from_origin()
+    log = rt.load_log()
+    today = datetime.now(timezone.utc).strftime("%Y%m%d")
+    done_today = [e for e in rt.uploaded_on(log, today)
+                  if e.get("format") == FORMAT]
+    need = max(0, want - len(done_today))
+    report["already_today"] = len(done_today)
+    if not need and not a.dry_run:
+        print(f"[sports] {len(done_today)}/{want} already posted today",
+              flush=True)
+        _save()
+        return 0
+    need = need or want
+
+    pool = ss.discover(a.period)
+    used = already_used(pool, log)
+    fresh = [c for c in pool if permalink_key(c) not in used]
+    report.update(pool=len(pool), already_posted=len(used))
+    print(f"[sports] {len(pool)} posts, {len(used)} already used, "
+          f"{len(fresh)} fresh", flush=True)
+    if not fresh:
+        print("::error::no fresh sports video posts reached the runner",
+              flush=True)
+        _save()
+        return 1
+
+    picks = ss.pick(fresh, need * TRIES_PER_SLOT)
+    slots = [tuple(s) for s in
+             reg.channel(CHANNEL).get("cadence", {})
+             .get("publish_slots_central") or []] or None
+    last_slot = ""
+    work = OUT / "work"
+    work.mkdir(parents=True, exist_ok=True)
+    shipped = 0
+    for c in picks:
+        if shipped >= need:
+            break
+        row = {k: c.get(k) for k in ("sub", "who", "why", "post_title",
+                                     "upvotes", "url")}
+        row["topic"] = permalink_key(c)
+        report["slots"].append(row)
+        _save()
+        t0 = time.time()
+        info = ss.fetch(c, work)
+        if not info:
+            row["skipped"] = "download failed"
+            continue
+        slug = re.sub(r"[^a-z0-9]+", "-", (c.get("who") or "").lower()
+                      ).strip("-")[:40] or "clip"
+        mp4 = OUT / f"{len(report['slots']):02d}_{slug}.mp4"
+        try:
+            made = ss.make(c, info, mp4)
+        except Exception as e:  # noqa: BLE001
+            row["skipped"] = f"render failed: {type(e).__name__}: {e}"[:300]
+            continue
+        if made.get("skipped") or not mp4.exists():
+            row["skipped"] = made.get("skipped") or "no render"
+            continue
+        meta = made.get("meta") or {}
+        if not meta.get("title"):
+            # no brain wrote it: a post with no title of ours is not a post
+            row["skipped"] = "author: no title"
+            continue
+        row.update(title=meta["title"], hook=made.get("hook"),
+                   ledger=made.get("ledger"))
+
+        gate = judge(mp4, c, meta, made.get("hook") or "",
+                     will_upload=not a.dry_run)
+        row["showrunner"] = {"blocked": gate["blocked"],
+                             "reason": gate.get("reason"),
+                             "score": (gate.get("verdict") or {})
+                             .get("score")}
+        if gate["blocked"]:
+            row["skipped"] = f"showrunner_block: {gate.get('reason')}"
+            continue
+        if a.dry_run:
+            row.update(ok=True, video_url="(dry-run)", file=mp4.name)
+            shipped += 1
+            continue
+
+        publish_at = next_slot(slots, after=last_slot)
+        desc, tg = description(meta, c), tags(meta, c)
+
+        def _do_upload():
+            from shared.uploaders import YouTubeUploader
+            up = YouTubeUploader(channel="").upload(
+                file_path=mp4, title=meta["title"][:100], description=desc,
+                tags=tg, publish_at=publish_at, category="17")
+            return getattr(up, "url", None) or str(up)
+        try:
+            row["video_url"] = rt._guarded_upload(
+                title=meta["title"], topic=row["topic"], fmt=FORMAT,
+                publish_at=publish_at, do_upload=_do_upload)
+        except rt.DuplicateUpload as e:
+            row["skipped"] = f"duplicate: {e}"
+            continue
+        except rt.ClaimNotDurable as e:
+            row["error"] = f"claim not durable: {e}"
+            print(f"::error::{e}", flush=True)
+            break
+        except Exception as e:  # noqa: BLE001
+            row["error"] = f"upload failed: {type(e).__name__}: {e}"[:300]
+            print(f"::error::[sports] {row['error']}", flush=True)
+            continue
+        last_slot = publish_at
+        row.update(ok=True, publish_at=publish_at,
+                   seconds=round(time.time() - t0))
+        shipped += 1
+        print(f"[sports] POSTED {meta['title']!r} -> {row['video_url']} "
+              f"(goes live {publish_at})", flush=True)
+        try:
+            from shared.crosspost import crosspost
+            x = crosspost(CHANNEL, mp4, meta["title"][:100], desc, tg,
+                          publish_at=publish_at)
+            if x:
+                row["crossposts"] = x
+        except Exception as e:  # noqa: BLE001
+            print(f"[sports] crosspost skipped: {e}", flush=True)
+        _save()
+
+    report["shipped"] = shipped
+    _save()
+    print(f"[sports] shipped {shipped}/{need}", flush=True)
+    for r in report["slots"]:
+        print(f"  {'OK  ' if r.get('ok') else 'SKIP'} r/{r['sub']} "
+              f"{r['who']}: {r.get('title') or r['post_title'][:60]!r} "
+              f"{r.get('skipped') or r.get('error') or ''}", flush=True)
+    return 0 if shipped else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

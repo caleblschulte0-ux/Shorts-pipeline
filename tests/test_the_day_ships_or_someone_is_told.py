@@ -304,15 +304,15 @@ class TheDispatCHActuallyREACHESTheWorkflow(unittest.TestCase):
         accident — the empty ones are a decision."""
         self.assertEqual(set(dm.DISPATCH_INPUTS), set(dm.WORKFLOWS))
 
-    def test_a_trending_repair_says_force(self):
-        """`run_trending_daily` refuses to run when anything posted in the
-        last six hours — the duplicate-trigger guard. A repair is a second
-        firing on purpose: on 2026-09-22 the switch re-dispatched Daily
-        Shorts for a 2-of-6 day and the orchestrator exited in under a
-        second, green, having rendered nothing. `force` is daily.yml's own
-        repair input."""
-        self.assertEqual(dm.DISPATCH_INPUTS["trending"].get("force"), "true")
-        self.assertIn("force", self._declared_inputs(dm.WORKFLOWS["trending"]))
+    def test_a_trending_repair_reaches_the_sports_run(self):
+        """Baller Bro is sports moments since 2026-10-11, and daily.yml has
+        no package to render for it: a repair dispatched there would exit
+        green having made nothing. sports.yml tops up only what today is
+        missing, so it needs no `force`."""
+        self.assertEqual(dm.WORKFLOWS["trending"], "sports.yml")
+        self.assertEqual(dm.DISPATCH_INPUTS["trending"], {})
+        src = (ROOT / "scripts" / "run_sports.py").read_text()
+        self.assertIn("uploaded_on(", src)
 
     def test_the_explainer_is_not_dispatched_into_VERIFY(self):
         """Its `mode` defaults to 'verify', which posts nothing. A repair

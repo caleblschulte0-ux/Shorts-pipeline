@@ -1575,6 +1575,23 @@ def main() -> int:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     STATE_DIR.mkdir(parents=True, exist_ok=True)
 
+    # The channel is made by CAPTURE now (sports moments, operator
+    # 2026-10-11): scripts/run_sports.py posts it, and no package is ever
+    # written for it. A Phase B hand-off, a dead-man or a trigger file that
+    # still reaches this renderer has nothing to render — and "the manifest
+    # is incomplete" would read a switched format as a failed day.
+    from shared import channel_registry as _reg
+    if _reg.captured("trending") and not args.only:
+        msg = (f"trending is made by capture — "
+               f"{_reg.mix_sentence('trending')}, posted by "
+               f"scripts/run_sports.py (.github/workflows/sports.yml). "
+               f"Nothing for the package renderer to do.")
+        print(f"[run_trending_daily] {msg}", flush=True)
+        REPORT_PATH.write_text(f"# Daily Trending Shorts\n\n{msg}\n")
+        REPORT_JSON.write_text(json.dumps({"skipped": True,
+                                           "captured": True}, indent=2))
+        return 0
+
     # Skip if we already posted in the last 6 hours. Multiple triggers
     # can fire daily.yml in quick succession (workflow_run from auto-
     # merge AND push-paths AND manual dispatch) — without this guard

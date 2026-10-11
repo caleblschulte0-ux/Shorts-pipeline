@@ -151,6 +151,28 @@ def _format_directive(ctx: dict) -> str:
             "here, mark decorative_mascot present. If none appears, grade "
             "mascot=4 for correct channel-brand separation. A one-series "
             "growth chart has a scale payoff, not a competitive winner.")
+    if fmt == "sports_moment":
+        # Baller Bro, 2026-10-11: real footage of a real sports moment, cut
+        # the way the repost channels cut clips. Nothing here relaxes a
+        # check; it says what each one MEANS for footage with no chart.
+        return (
+            "FORMAT = SPORTS MOMENT. Real footage of a real moment in sports "
+            "(a player, coach, fan or interview), cut like the big repost "
+            "channels: one line of text on screen, zooms and sound hits on "
+            "the reaction, no narrator. Grade data_demo by whether the "
+            "moment the on-screen line promises is actually SHOWN and lands "
+            "(the reaction, the line, the thing they react to) — do not "
+            "demand numbers or a chart. hook = does the first two seconds "
+            "make a stranger stay; payoff = does the moment land before it "
+            "ends. junk_imagery = the footage does not show what the line or "
+            "title claims, or names the wrong person. unreadable applies to "
+            "OUR line of text: cut off, unreadable, or printed over the "
+            "footage's own captions or a TV graphic. bare_number_card only "
+            "if one appears. dead_air = a stretch where nothing happens and "
+            "nobody speaks. Data is the separate Explainer channel mascot: "
+            "if any mascot appears here, mark decorative_mascot present. If "
+            "none appears, grade mascot=4 for correct channel-brand "
+            "separation.")
     return "Apply the general director rubric exactly as written."
 
 
