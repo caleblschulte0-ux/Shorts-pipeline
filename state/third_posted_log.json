@@ -12704,14 +12704,32 @@
       "ts": "2026-10-11T12:52:00.115082+00:00"
     },
     "clip-20261011-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/alinity/clip/TransparentBlatantRuffDatSheffy-37-0Sc9jTFznFtTO",
-      "story_key": null,
-      "streamer": "alinity",
+      "url": "https://youtube.com/shorts/nLqPyL9ojo8",
       "title": "Alinity Is About To Land In Austin And Has To Pee Right Now",
       "kind": "twitch_clip",
-      "ts": "2026-10-11T12:55:12.935221+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-11T12:55:20.681096+00:00",
+      "uploaded_at": "2026-10-11T12:55:20.681109+00:00",
+      "publish_at": "2026-10-12T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261011-alinity-is-about-to-land-in-austin-and-has-to-pe-a860407a",
+        "tiktok": "queued for 2026-10-12T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/alinity/clip/TransparentBlatantRuffDatSheffy-37-0Sc9jTFznFtTO",
+      "streamer": "alinity",
+      "series": "chaos",
+      "hook": "Alinity really had to pee on the plane \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3444,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.2,
+        "end": 30.0
+      },
+      "director_cut": true
     }
   }
 }
