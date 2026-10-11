@@ -3228,6 +3228,13 @@
       "story_structure": "auto+auto",
       "narrative_score": 74,
       "duration_s": 13.1
+    },
+    "co2-pollen-season-stretch": {
+      "claimed_at": "2026-10-11T20:19:33.621062+00:00",
+      "title": "Pollen Season Just Got 20 Days Longer",
+      "publish_at": "2026-10-11T20:20:53Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4031,6 +4038,14 @@
       "state": "posted",
       "slug": "phone-checks-205-times-a-day",
       "at": "2026-10-10T22:11:48.567522+00:00"
+    },
+    {
+      "claimed_at": "2026-10-11T20:19:33.621062+00:00",
+      "title": "Pollen Season Just Got 20 Days Longer",
+      "publish_at": "2026-10-11T20:20:53Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "co2-pollen-season-stretch"
     }
   ]
 }
