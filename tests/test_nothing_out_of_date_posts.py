@@ -80,7 +80,7 @@ class EveryUploadPathChecksIt(unittest.TestCase):
 
     def test_the_posting_run_checks_before_the_review(self):
         src = _src("scripts/post_stories.py")
-        render = src.index("studio_render.render(slug, out, config_path=args.config)")
+        render = src.index("studio_render.render(slug, out, config_path=args.config,")
         check = src.index("_currency.problems(out, _fresh)", render)
         self.assertLess(check, src.index("SHOWRUNNER gate", render))
         retell = src.index("_narration.retell(")

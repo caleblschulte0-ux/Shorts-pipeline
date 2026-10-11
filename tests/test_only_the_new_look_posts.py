@@ -40,7 +40,7 @@ class TheRegistrySaysBOnly(unittest.TestCase):
 class AFallbackIsNotJudged(unittest.TestCase):
     def test_the_rendered_look_is_checked_before_the_showrunner(self):
         code = _code((ROOT / "scripts" / "post_stories.py").read_text())
-        render = code.index("studio_render.render(slug, out, config_path=args.config)")
+        render = code.index("studio_render.render(slug, out, config_path=args.config,")
         check = code.index("_style_arms0.read(out)", render)
         review = code.index("will_upload = ", render)
         self.assertLess(check, review)

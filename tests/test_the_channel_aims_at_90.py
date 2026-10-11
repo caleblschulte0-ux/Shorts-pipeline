@@ -422,7 +422,7 @@ class TheSplitIsASlate(unittest.TestCase):
     def test_a_full_look_waits_before_the_render_and_after_it(self):
         code = _code((ROOT / "scripts" / "post_stories.py").read_text())
         pre = code.index("_planned = _arms_q.choose(slug)")
-        self.assertLess(pre, code.index("studio_render.render(slug, out, config_path=args.config)"))
+        self.assertLess(pre, code.index("studio_render.render(slug, out, config_path=args.config,"))
         self.assertIn("'error': 'arm_quota_full'", code)
         self.assertIn("_arm_done[_arm_now] = _arm_done.get(_arm_now, 0) + 1", code)
         from scripts import post_stories as ps
