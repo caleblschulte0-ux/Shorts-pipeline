@@ -76,7 +76,7 @@ else:
     m = CosyVoice2(snapshot_download("FunAudioLLM/CosyVoice2-0.5B"), load_jit=False, load_trt=False, fp16=False)
     for v, ref in REFS.items():
         r = str(wav_of(ref)); txt = asr.transcribe(r)["text"].strip(); log.append(f"v{v} ref text: {txt}")
-        p = load_wav(r, 16000)
+        p = r  # current CosyVoice takes the prompt as a file path
         def say(t):
             return torch.cat([j["tts_speech"] for j in m.inference_zero_shot(t, txt, p, stream=False)], 1), m.sample_rate
         run(f"diag_v{v}_F", LINES, say)
