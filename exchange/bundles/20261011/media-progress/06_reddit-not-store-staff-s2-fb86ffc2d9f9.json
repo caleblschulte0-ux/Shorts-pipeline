@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261011",
+  "bundle": {
+    "identity": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76",
+    "path": "exchange/bundles/20261011/bundle.json"
+  },
+  "request_id": "06_reddit-not-store-staff-s2-fb86ffc2d9f9",
+  "safe_request_id": "06_reddit-not-store-staff-s2-fb86ffc2d9f9",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "652f38d01a2a6f39f4b0fd8039f19ee70723ff5aaf3da97fd9eff73f5330f18c",
+  "prompt_used": "An editorial illustration for a short-form video: store receipt discount sign. It accompanies the narration: \"demanded I find her the contractor discount code\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1IlKJVedz15yoZbfeB0NBbUmmT3jac4XC",
+    "filename": "20261011__06_reddit-not-store-staff-s2-fb86ffc2d9f9.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1IlKJVedz15yoZbfeB0NBbUmmT3jac4XC",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "18fb97c76d0cafbe6bdfa3c382bf8ea2dcac1806dd16aa62e3d074509e64296a",
+    "bytes": 2000630,
+    "format": "png",
+    "width": 1024,
+    "height": 1536
+  },
+  "verified_at": "2026-10-11T11:24:37.674Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
