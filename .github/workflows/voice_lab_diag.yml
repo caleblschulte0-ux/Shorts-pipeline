@@ -1,0 +1,60 @@
+# Voice lab round 10: what in the PROCESS makes every clone sound off.
+# No secrets; read-only token; only collect writes, and only to this branch.
+name: Voice lab diag
+on:
+  push:
+    branches: [voice-lab]
+    paths: ['voice_lab/gen_diag.py', '.github/workflows/voice_lab_diag.yml']
+permissions:
+  contents: read
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix:
+        engine: [chatterbox, zonos, cosyvoice]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg espeak-ng sox libsox-dev
+      - shell: bash
+        run: |
+          mkdir -p out; L=out/log_install_${{ matrix.engine }}.txt
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu >> $L 2>&1
+          case ${{ matrix.engine }} in
+            chatterbox) pip install -q chatterbox-tts==0.1.7 --extra-index-url https://download.pytorch.org/whl/cpu >> $L 2>&1 ;;
+            zonos) pip install -q "git+https://github.com/Zyphra/Zonos.git" >> $L 2>&1 ;;
+            cosyvoice)
+              git clone -q --recursive https://github.com/FunAudioLLM/CosyVoice.git >> $L 2>&1
+              pip install -q conformer diffusers gdown hydra-core HyperPyYAML inflect librosa lightning matplotlib \
+                modelscope networkx omegaconf onnx onnxruntime openai-whisper protobuf pydantic rich soundfile \
+                tensorboard transformers x-transformers wget pyworld wetext huggingface_hub >> $L 2>&1 ;;
+          esac
+          tail -20 $L > $L.t; mv $L.t $L
+          python voice_lab/gen_diag.py ${{ matrix.engine }} out 2>&1 | tail -60 > out/log_run_${{ matrix.engine }}.txt || true
+          cat out/log_run_${{ matrix.engine }}.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: 'diag_${{ matrix.engine }}', path: out/ }
+  collect:
+    needs: gen
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { path: dl/ }
+      - shell: bash
+        run: |
+          D=voice_lab/diag; mkdir -p $D
+          find dl -type f \( -name '*.mp3' -o -name 'log_*.txt' \) -exec cp {} $D/ \;
+          git config user.name "voice-lab"
+          git config user.email "voice-lab@users.noreply.github.com"
+          git add -f $D
+          git commit -m "voice lab diag results [skip ci]"
+          ok=0; for i in 1 2 3 4; do git pull --rebase -q origin voice-lab && git push origin HEAD:voice-lab && ok=1 && break; git rebase --abort 2>/dev/null; sleep $((i*3)); done; [ $ok = 1 ]
