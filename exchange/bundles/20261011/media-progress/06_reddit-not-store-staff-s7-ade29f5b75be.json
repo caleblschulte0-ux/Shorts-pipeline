@@ -1,0 +1,41 @@
+{
+  "schema": "chatgpt-media-checkpoint/v1",
+  "schema_version": 1,
+  "date": "20261011",
+  "bundle": {
+    "identity": "9d23840a30aaa029f4c201d38f6e7fbeaf869b55002c7c6fa360bae2134eae76",
+    "path": "exchange/bundles/20261011/bundle.json"
+  },
+  "request_id": "06_reddit-not-store-staff-s7-ade29f5b75be",
+  "safe_request_id": "06_reddit-not-store-staff-s7-ade29f5b75be",
+  "request_kind": "bundle_request",
+  "prompt_sha256": "b26add6d0f45c6f85daa6e7a8b0ddde330e69f1a0bb445f83034ec53ceed3097",
+  "prompt_used": "An editorial illustration for a short-form video: parking lot car driving away. It accompanies the narration: \"I was already in my car by then\" Photographic realism, dramatic lighting, single clear subject, centered, no text, no watermarks, no logos, no user interfaces, no screenshots, no code.",
+  "status": "verified",
+  "attempt": 1,
+  "worker": "finalizer",
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "file_id": "1s6-yAnKKshSI60fs3MgUP4MCL8tZZvFe",
+    "filename": "20261011__06_reddit-not-store-staff-s7-ade29f5b75be.png",
+    "download_url": "https://drive.google.com/uc?export=download&id=1s6-yAnKKshSI60fs3MgUP4MCL8tZZvFe",
+    "sharing": "anyone_with_link"
+  },
+  "image": {
+    "sha256": "72cdfc757420cf69cd0a0fb09c1372cf42ccfaf68dd496b8a9a15f622d83fa89",
+    "bytes": 2206831,
+    "format": "png",
+    "width": 1145,
+    "height": 1374
+  },
+  "verified_at": "2026-10-11T11:27:21.133Z",
+  "error": null,
+  "retryable": false,
+  "verification": {
+    "metadata_readback": true,
+    "size_matches_uploaded_source": true,
+    "byte_sha256_readback": true,
+    "full_png_decode": true,
+    "public_reader_permission": true
+  }
+}
