@@ -184,14 +184,14 @@ jobs:
 
       - name: Cache rembg model (~170MB)
         if: inputs.mode != 'verify'
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: ~/.u2net
           key: rembg-u2net-v1
 
       - name: Cache Kokoro TTS models (~350MB)
         id: cache-kokoro
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: kokoro_models/
           key: kokoro-onnx-v1.0
@@ -209,7 +209,7 @@ jobs:
       - name: Cache music library (~110MB)
         if: inputs.mode != 'verify'
         id: cache-music
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: data_learning/music/
           key: music-kmcl-${{ hashFiles('scripts/fetch_music.py') }}
