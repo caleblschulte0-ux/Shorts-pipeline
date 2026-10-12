@@ -1640,9 +1640,17 @@ def revise_edl(edl: dict, problems: list[dict],
                             reasons=rs, positions=_positions(reports),
                             words=_words(reports))
         edl2 = _ground(edl2, reports, rs)
+        # every law that moved the reviser's edit, and the edit it ended
+        # with: backtests 25-26 repaired "end on the first 'blur this'"
+        # three times at 76/72/76 with nothing logged to say whether the
+        # trim was made and then undone (2026-10-12).
         for r in rs:
-            if r.startswith("narration dropped") or not edl2:
-                print(f"[story] revision: {r}", flush=True)
+            print(f"[story] revision: {r}", flush=True)
+        if edl2:
+            print("[story] revision beats: " + "; ".join(
+                f"{b.get('source_id')} {float(b.get('start', 0)):.1f}-"
+                f"{float(b.get('end', 0)):.1f}s"
+                for b in edl2.get("beats") or []), flush=True)
         if edl2 or not out:
             return edl2
         user += ("\n\nYOUR REVISION WAS REJECTED by the edit laws: "
