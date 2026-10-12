@@ -12980,14 +12980,32 @@
       "ts": "2026-10-12T13:48:46.426544+00:00"
     },
     "clip-20261012-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ishowspeed/clip/AuspiciousLittleAlligatorOptimizePrime-2g0Do7sxvt0e9ttH",
-      "story_key": null,
-      "streamer": "ishowspeed",
+      "url": "https://youtube.com/shorts/tSdeWzCIs4Y",
       "title": "Ishowspeed Does A Magic Trick At His Talent Show And Almost Forgets The Ending",
       "kind": "twitch_clip",
-      "ts": "2026-10-12T13:51:53.096869+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-12T13:52:01.359643+00:00",
+      "uploaded_at": "2026-10-12T13:52:01.359655+00:00",
+      "publish_at": "2026-10-13T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261012-ishowspeed-does-a-magic-trick-at-his-talent-show-6bf4c39a",
+        "tiktok": "queued for 2026-10-13T03:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/AuspiciousLittleAlligatorOptimizePrime-2g0Do7sxvt0e9ttH",
+      "streamer": "ishowspeed",
+      "series": "chaos",
+      "hook": "Speed does a magic trick at the talent show \ud83c\udfaa",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2975,
+      "banger": 0.62,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
     }
   }
 }
