@@ -1,0 +1,262 @@
+{
+ "date": "2026-10-11",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": true,
+ "slots": [
+  {
+   "sub": "baseball",
+   "who": "Junior Caminero",
+   "why": "A player gleefully taunts Yankees fans in a loud, mic'd-up victory rant.",
+   "post_title": "[highlight] Junior Caminero- \u201cLet the Yankees fans talk now. Let them watch the whole thing. Talk Now. What ya gonna say? Daaaaa Yankees lose\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1x0rfl0/highlight_junior_caminero_let_the_yankees_fans/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1x0rfl0/highlight_junior_caminero_let_the_yankees_fans",
+   "title": "Junior Caminero Hushes Yankees Fans After This Moment",
+   "hook": "Caminero tells Yankees fans to talk now",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      360,
+      480,
+      174,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 82
+   },
+   "ok": true,
+   "video_url": "(dry-run)",
+   "file": "01_junior-caminero.mp4"
+  },
+  {
+   "sub": "nba",
+   "who": "Jaylen Brown",
+   "why": "He fires back at Anthony Edwards with a savage, unexpected joke about Adidas.",
+   "post_title": "Jaylen Brown claps back at Anthony Edwards for taking shots at him and LeBron: \"Adidas doing anything for my boy, they need to give my boy some condoms",
+   "upvotes": 0,
+   "url": "https://streamable.com/f4zgsr",
+   "topic": "https://www.reddit.com/r/nba/comments/1x21qyh/jaylen_brown_claps_back_at_anthony_edwards_for",
+   "title": "Jaylen Brown Claps Back At Anthony Edwards Over Adidas Jokes About Him And LeBron",
+   "hook": "Jaylen Brown fires back at Ant",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      810,
+      1080,
+      244,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: blocked before vision review: effective_fps 10.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "score": 14
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: blocked before vision review: effective_fps 10.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+  },
+  {
+   "sub": "nba",
+   "who": "Jonathan Kuminga",
+   "why": "He threatens to slap the fan who called him 'Kum Bucket'.",
+   "post_title": "Jonathan Kuminga responds to fan who calls him \u201cKum Bucket\u201d: \u2018Whoever said that, imma come find you and I\u2019ll slap you.\u201d",
+   "upvotes": 0,
+   "url": "https://streamable.com/12ssok",
+   "topic": "https://www.reddit.com/r/nba/comments/1x0iyi6/jonathan_kuminga_responds_to_fan_who_calls_him",
+   "title": "Jonathan Kuminga Threatens To Find The Fan Who Called Him 'Kum Bucket'",
+   "hook": "Kuminga hears the 'Kum Bucket' nickname",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The real moment is in here, but the clip opens on a distant walk-away. His threat is never captioned or shown on a close shot, so the payoff the title promises does not land.",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The real moment is in here, but the clip opens on a distant walk-away. His threat is never captioned or shown on a close shot, so the payoff the title promises does not land."
+  },
+  {
+   "sub": "nfl",
+   "who": "Dak Prescott",
+   "why": "Dak spots the person who said 'Embarrassing' and orders him out.",
+   "post_title": "[Highlight] New video shows Dak Prescott pointing out the person who said \"Embarrassing\" to a Cowboys employee and telling him to \"Get him outta here\".",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x1fra7/highlight_new_video_shows_dak_prescott_pointing/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x1fra7/highlight_new_video_shows_dak_prescott_pointing",
+   "title": "Dak Prescott Points Out A Heckler And Tells Staff To Get Him Out Of Here",
+   "hook": "Dak points out the heckler \ud83d\ude33",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The promised moment, Dak pointing out the heckler, never clearly appears: 51s of raw, shaky tunnel walking with the action buried.",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The promised moment, Dak pointing out the heckler, never clearly appears: 51s of raw, shaky tunnel walking with the action buried."
+  },
+  {
+   "sub": "nfl",
+   "who": "Eli Manning",
+   "why": "Eli jokes about an official looking jacked and his brother fires back about the boys' medium shirt.",
+   "post_title": "[Highlight] Eli Manning sees Land Clark looking jacked and asks whether officials are lifting more these days, to which his brother responds \"It's just tighter shirts. They got a boys' medium on.\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1wyrcrz/highlight_eli_manning_sees_land_clark_looking/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1wyrcrz/highlight_eli_manning_sees_land_clark_looking",
+   "title": "Eli Manning Asks If NFL Refs Are Lifting More And His Brother's Answer Is Perfect",
+   "hook": "Eli asks if the refs are lifting more \ud83d\ude02",
+   "ledger": {
+    "moves": [
+     "zoom@22.1"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "facecam_gameplay",
+     "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible",
+     "shots": [
+      {
+       "mode": "stacked",
+       "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible"
+      }
+     ],
+     "n_subjects": 2,
+     "face_bands": [
+      [
+       0.0,
+       0.292
+      ]
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The moment is real and correctly identified, but the punchline (the boys'-medium shirt joke) never reads on screen: the caption is garbled and printed over the ESPN scorebug, so the payoff doesn't land.",
+    "score": 70
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The moment is real and correctly identified, but the punchline (the boys'-medium shirt joke) never reads on screen: the caption is garbled and printed over the ESPN scorebug, so the payoff doesn't land."
+  },
+  {
+   "sub": "MMA",
+   "who": "Dustin Poirier",
+   "why": "He tells a hilariously blunt story about helping a friend make weight.",
+   "post_title": "Dustin Poirier on helping his friend make weight: \"I grabbed a handful of hairy man ass cheek and I lifted him up a little bit\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/h9222u",
+   "topic": "https://www.reddit.com/r/MMA/comments/1wyqefm/dustin_poirier_on_helping_his_friend_make_weight",
+   "title": "Dustin Poirier Reveals The Wild Thing He Did To Help A Friend Make Weight \ud83d\ude2d",
+   "hook": "Poirier helped a buddy make weight \ud83d\ude2d",
+   "ledger": {
+    "moves": [
+     "zoom@12.2"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      358,
+      478,
+      198,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The story is genuinely funny and the close-ups land, but the opening is a static wide shot where Poirier is barely visible, and the video ends mid-sentence on 'YOUR' instead of on the laugh.",
+    "score": 66
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The story is genuinely funny and the close-ups land, but the opening is a static wide shot where Poirier is barely visible, and the video ends mid-sentence on 'YOUR' instead of on the laugh."
+  },
+  {
+   "sub": "hockey",
+   "who": "Devin Cooley",
+   "why": "A goalie walks into the arena with his pet rabbit.",
+   "post_title": "[Sportsnet] Devin Cooley arrives to tonight's game with his pet rabbit, Tito",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1x2vc92/sportsnet_devin_cooley_arrives_to_tonights_game/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1x2vc92/sportsnet_devin_cooley_arrives_to_tonights_game",
+   "title": "Devin Cooley Shows Up To The Game With His Pet Rabbit Tito \ud83d\udc30",
+   "hook": "Devin Cooley brings his pet bunny to the game \ud83d\udc30",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The moment works (a goalie walking in with a bunny in a Flames jersey), but our text sits on top of the broadcast's cropped lower-third, and the clip ends mid-sentence on 'tough start in'.",
+    "score": 75
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The moment works (a goalie walking in with a bunny in a Flames jersey), but our text sits on top of the broadcast's cropped lower-third, and the clip ends mid-sentence on 'tough start in'."
+  }
+ ],
+ "already_today": 0,
+ "pool": 87,
+ "already_posted": 0,
+ "shipped": 1
+}
