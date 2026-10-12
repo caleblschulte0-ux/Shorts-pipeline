@@ -7,22 +7,7 @@
     "registry_sha256": "773f2adbffe8d3efc8b64a009156c4a58d706653a334ba77870455590a4dd213",
     "source_commit": "5724df697eda8481d3dda53aeacccd0f0f848e56",
     "production_date": "20261012",
-    "bundle_sha256": {
-      "content": [
-        {
-          "type": "text",
-          "text": "Action completed."
-        }
-      ],
-      "structuredContent": {
-        "content": "c1e95a5ecb2bba626f8cbc9bdce3666888ba43b05b02e29b6724c52e157c070b\n",
-        "encoding": "utf-8",
-        "sha": "440d4e19f0ff324bb9551cd035b1fefbe268772d",
-        "display_url": "https://github.com/caleblschulte0-ux/Shorts-pipeline/blob/main/exchange/bundles/20261012/BUNDLE_ID",
-        "display_title": "BUNDLE_ID"
-      },
-      "isError": false
-    }
+    "bundle_sha256": "c1e95a5ecb2bba626f8cbc9bdce3666888ba43b05b02e29b6724c52e157c070b"
   },
   "media": [],
   "packages": [],
