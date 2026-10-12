@@ -1860,7 +1860,9 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 _who = story_director.known_people(
                     reports[0].get("channel", "") if reports else "",
                     sorted({str(p) for r in reports
-                            for p in r.get("people") or []}))
+                            for p in r.get("people") or []}
+                           | set(story_director.premise_names(
+                               cluster.get("premise") or ""))))
                 for r in reports:
                     if _who:
                         r["known_people"] = _who
