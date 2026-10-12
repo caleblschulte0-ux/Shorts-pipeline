@@ -724,7 +724,10 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   time-jump overlay or a line of context replaces it long enough to read).
   The line may say who someone is when the footage never does, from
   `story_director.known_people`: one model proposes, a DIFFERENT model
-  must confirm, events and accusations never qualify.
+  must confirm, events and accusations never qualify. Both read the
+  Google News headlines on the streamer and that name (`_news`), because
+  the feud people are newer than any model: backtest 24's Kai/Reggie
+  cuts all failed on "who is Reggie?".
   `tests/test_a_story_has_no_narrator_only_a_line_of_text.py`.
 - **A clip is edited like the reposts, not by an effects engine**
   (operator, 2026-10-09: *"That weird slowdown thing we do never works,
