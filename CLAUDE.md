@@ -342,6 +342,18 @@ constants blanked), never on the prose that explains it.
   stuff really piling up, prompt rule 19. `tests/test_not_everything_is_a_pile.py`.
   The song under the medical-debt video is banned for good
   (`studio_render.BANNED_TRACKS`, skipped even from a stale cache).
+  And the OPENING READS IN A SECOND, NOTHING IS CROPPED (operator,
+  2026-10-11, of a gas tank under dashed circles: *"I have no idea what
+  ... is going on here. It makes me instantly want to scroll"*; of the
+  pollen ending: *"cropped terribly and cut off"*). A hook may not draw
+  `ghost`/`then_mark`/`times_ticks`/dashes (`scene_author.opening_problems`,
+  at draw and on a saved hook); `verify` refuses a word past the frame
+  edge; the closing is never shrunk into a box — a closing scene is laid
+  full frame, and without one the last beat's finished picture plays
+  wordless under the line (`subject_scenes.wordless_finish`); the predraw
+  draws the hook and closing too. A new beat of the same act waits for
+  the last to land (`act_phase`, `REST_S`).
+  `tests/test_the_first_shot_reads_and_nothing_is_cropped.py`.
   And the OPENING IS THE SHOCK (operator, 2026-10-08: *"our hook and first
   10 seconds need to be better ... we need to be really hooking the
   audience"*; 55-70% of viewers swiped in the first seconds). Rendered,
