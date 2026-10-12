@@ -47,9 +47,11 @@ FORMAT = "sports_moment"
 OUT = ROOT / "output" / "sports"
 REPORT = ROOT / "sports_report.json"
 #: Candidates one run may cut per slot it owes. Each costs a download, a
-#: transcription, an author call, a render and a judge, and a gate that
-#: refuses everything on a bad day must not eat the whole job timeout.
-TRIES_PER_SLOT = 3
+#: transcription, an author call, a render and a judge (about three
+#: minutes), and a gate that refuses everything on a bad day must not eat
+#: the whole job timeout. The first dry run (2026-10-11) passed one cut in
+#: seven, so three tries a slot would post one video a day, not three.
+TRIES_PER_SLOT = 5
 
 def permalink_key(c: dict) -> str:
     """The post's identity: its Reddit permalink, else its video URL."""
