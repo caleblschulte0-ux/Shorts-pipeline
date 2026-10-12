@@ -3277,6 +3277,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 83,
       "duration_s": 22.6
+    },
+    "esports-prize-pool-25x": {
+      "claimed_at": "2026-10-12T23:10:39.220004+00:00",
+      "title": "One Tournament's Prize Pool Grew 25x",
+      "publish_at": "2026-10-12T23:06:34Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4098,6 +4105,14 @@
       "state": "posted",
       "slug": "polio-cases-fell-99-percent",
       "at": "2026-10-11T22:06:33.446876+00:00"
+    },
+    {
+      "claimed_at": "2026-10-12T23:10:39.220004+00:00",
+      "title": "One Tournament's Prize Pool Grew 25x",
+      "publish_at": "2026-10-12T23:06:34Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "esports-prize-pool-25x"
     }
   ]
 }
