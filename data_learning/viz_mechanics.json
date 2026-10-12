@@ -756,5 +756,13 @@
   "topic": "blood supply decline",
   "starred": false,
   "sig": "f037cb397f85"
+ },
+ {
+  "mechanic": "unmapped-holds-1-77-marses",
+  "concept": "Mars discs stacked into the unmapped ocean outline until 257 holds 1.77 Marses",
+  "code": "mars = subject_image('planet Mars photo NASA')\nun, ms = values[0], values[1]\nbx0, bx1 = RX0 + 40, RX1 - 40\nby0, by1 = RTOP + 180, RTOP + 1000\nbw, bh = bx1 - bx0, by1 - by0\nd.rounded_rectangle([bx0, by0, bx1, by1], radius=20, fill=rgba(REST, 70), outline=rgba(HIGHLIGHT, 220), width=5)\ntext(fmt(un) + ' UNMAPPED OCEAN', (RX0 + RX1) // 2, RTOP + 90, size=44, color=HIGHLIGHT, center=True)\nn = un / ms\nper_row = 2\ndia = (bw - 60) // per_row\ndia = min(dia, 360)\ntotal_t = n * clamp(reveal * 1.1)\nfor k in range(4):\n    r, c = k // per_row, k % per_row\n    part = clamp(total_t - k)\n    if part <= 0:\n        continue\n    x = bx0 + 40 + c * (dia + 20)\n    y = by0 + 30 + r * (dia + 20)\n    if mars is not None:\n        paste(mars, x, y, dia, dia)\n        if part < 1:\n            d.rectangle([x, y + int(dia * part), x + dia, y + dia], fill=rgba(REST, 235))\n    else:\n        d.ellipse([x, y, x + dia, y + dia], fill=rgba(WARN, 200))\n    text('MARS', x + dia // 2, y + dia // 2, size=34, color=TEXT, center=True)\ntext('= ' + str(round(total_t, 2)) + ' MARSES', (RX0 + RX1) // 2, by1 + 70, size=60, color=WARN, center=True)\ntext('Mars surface: ' + fmt(ms), (RX0 + RX1) // 2, by1 + 150, size=34, color=SUBTLE, center=True)\n",
+  "topic": "unmapped ocean vs Mars",
+  "starred": false,
+  "sig": "91ed2ea9378d"
  }
 ]

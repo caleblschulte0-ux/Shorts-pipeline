@@ -5254,60 +5254,30 @@
    "notes": "visitors thin; books migrate to phone"
   },
   {
-   "slug": "bat-fungus-collapse",
-   "directed_at": "2026-10-12",
-   "hook_type": "shock_stat",
-   "hook_text": "Your bats are dying: 97 percent of one kind gone, and it started in one cave.",
-   "topic_category": "nature",
-   "depictions": [
-    "viz:geo_us",
-    "mechanic:bat-colony-collapse-columns",
-    "mechanic:farmland-value-gauge"
-   ],
-   "ending_type": "consequence",
-   "notes": "kept existing scenes; spread map -> colonies fall -> pest-control gauge"
-  },
-  {
-   "slug": "unclaimed-money-states-hold",
-   "directed_at": "2026-10-12",
-   "hook_type": "shock_stat",
-   "hook_text": "States are quietly holding 70 billion dollars of your money.",
-   "topic_category": "money",
-   "depictions": [
-    "viz:geo_us",
-    "mechanic:vault-drain-trickle",
-    "mechanic:crowd-glow-share"
-   ],
-   "ending_type": "consequence",
-   "notes": "kept existing scenes"
-  },
-  {
    "slug": "ocean-floor-vs-mars-mapped",
    "directed_at": "2026-10-12",
    "hook_type": "inversion",
-   "hook_text": "We have mapped all of Mars... but not even a third of the ocean floor under our own ships.",
-   "topic_category": "space",
+   "hook_text": "We have mapped 99 percent of Mars, but only 28 percent of the ocean under our own ships.",
    "depictions": [
-    "mechanic:sonar-ping-seabed-grid",
-    "mechanic:two-planets-pixel-reveal",
-    "mechanic:mars-fits-in-the-unmapped"
+    "mechanic:seafloor-survey-grid",
+    "mechanic:two-planets-fill-race",
+    "mechanic:unmapped-holds-1-77-marses"
    ],
    "ending_type": "escalation",
-   "notes": "sonar lights cells; Mars vs ocean tiles; 1.77 Mars of unmapped sea"
+   "notes": "fogged sonar grid clears 6->28.7; two discs scanned; Mars discs fill the unmapped outline 1.77x"
   },
   {
    "slug": "freshwater-accessible",
    "directed_at": "2026-10-12",
-   "hook_type": "inversion",
+   "hook_type": "shock_stat",
    "hook_text": "Earth is drowning in water and you still can't drink almost any of it.",
-   "topic_category": "nature",
    "depictions": [
-    "mechanic:hundred-drops-three-sweet",
-    "scene:illustrated-ice-glass",
-    "mechanic:ten-thousand-dots-less-than-one"
+    "mechanic:drop-rain-200",
+    "illustrated:glacier-glass",
+    "mechanic:thin-sliver-of-the-sea"
    ],
-   "ending_type": "escalation",
-   "notes": "100 drops -> ice glass -> 10,000 dots, less than one drinkable"
+   "ending_type": "consequence",
+   "notes": "200 drops, 7 fresh; ice tossed into glass; lakes+rivers a hair-thin sliver"
   }
  ]
 }
