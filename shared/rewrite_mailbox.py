@@ -476,6 +476,35 @@ def _entities_ok(new_text: str, original: str, label_words: set) -> list[str]:
     return sorted(out)
 
 
+def _forms(w: str) -> set:
+    """The word and the roots it could have been inflected from, so a label's
+    "Collapse" meets the narration's "collapsed" and "Losses" meets "loss"."""
+    w = w.lower().removesuffix("'s")
+    out = {w}
+    for suf in ("ing", "ed", "es", "s", "d"):
+        if len(w) > len(suf) + 2 and w.endswith(suf):
+            root = w[: -len(suf)]
+            out |= {root, root + "e"}
+    return out
+
+
+def _topic_entities(topic: str, original: str, label_words: set,
+                    plain_text: str) -> list[str]:
+    """A topic is an ON-SCREEN LABEL, written in Title Case, so a capital
+    there says nothing; checked as part of the beat's sentence every word of
+    "Bats Collapse Versus Farms" read as a newly named thing, and on
+    2026-10-12 that refused a third of the morning's retells. A label word
+    is a NAME only if the writing never uses it as an ordinary word: a word
+    (or its stem) that the old words or the new narration use in lower case
+    is a common word. "France" is never written "france", so it still
+    counts."""
+    plain: set = set()
+    for w in re.findall(r"\b[a-z][a-z'\-]*", plain_text or ""):
+        plain |= _forms(w)
+    cand = _entities_ok("x " + (topic or ""), original, label_words)
+    return [w for w in cand if not (_forms(w) & plain)]
+
+
 def validate(sc: dict, ans: dict) -> tuple[dict | None, list[str]]:
     """(candidate story, problems). A candidate is returned only with no
     problems; it is `sc` with the words replaced, and it has PASSED the same
@@ -525,7 +554,11 @@ def validate(sc: dict, ans: dict) -> tuple[dict | None, list[str]]:
         if bad:
             problems.append(f"segment {i}: number(s) not derivable from this beat's data: "
                             + ", ".join(f"{b:,.6g}" for b in bad[:4]))
-        ents = _entities_ok(say + " " + topic, orig_all, label_words)
+        plain = " ".join([orig_all, str(ans.get("closing") or "")]
+                         + [str((x or {}).get("say") or "") for x in new_segs
+                            if isinstance(x, dict)])
+        ents = sorted(set(_entities_ok(say, orig_all, label_words))
+                      | set(_topic_entities(topic, orig_all, label_words, plain)))
         if ents:
             problems.append(f"segment {i}: new named entity not in the data: " + ", ".join(ents[:4]))
     for f in ("title", "hook", "closing"):

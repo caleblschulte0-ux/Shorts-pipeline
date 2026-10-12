@@ -153,7 +153,9 @@ Rewrite the {n} beats and the closing so the video tells this story{longer}. Eac
 beat's TOPIC is the label printed on screen: keep it, or give a new one of \
 at most {topic_max} words that shares a word with the TITLE. Return STRICT \
 JSON: {{"segments": [{{"say": str, "topic": str}}, ...], "closing": str}} \
-with exactly {n} segments in the same order."""
+with exactly {n} segments in the same order. COUNT THE WORDS of every \
+say before you answer: aim for about {aim} words, because a say of even \
+one word over {say_max} is refused and the story does not post."""
 
 _LISTEN = """You are a viewer and a fact-checker. Two narrations for the same \
 YouTube Short follow, with the data each beat is drawn from. A narration \
@@ -203,6 +205,22 @@ def _parse(raw) -> dict | None:
     return got if isinstance(got, dict) else None
 
 
+# A writer told "at most 24" writes 25 to 28: on 2026-10-12, 44 of the
+# morning's 106 refused retells were over by one to four words, and every
+# story they belonged to stayed held. It is asked for a few under the cap,
+# and a refusal says how many words to cut.
+AIM_UNDER = 4
+_OVER = re.compile(r"say is (\d+) words \(max (\d+)\)")
+
+
+def _cut_by(problem: str) -> str:
+    m = _OVER.search(problem)
+    if not m:
+        return problem
+    cut = int(m.group(1)) - int(m.group(2)) + AIM_UNDER
+    return f"{problem}: cut {cut} words from it"
+
+
 def _default_brain(prompt: str):
     try:
         from data_learning import scene_author as sa
@@ -242,6 +260,7 @@ def retell(sc: dict, *, config_path: Path | None = None, brain=None,
             title=sc.get("title") or "", hook=sc.get("hook") or "",
             beats=beats, closing=sc.get("closing") or "",
             n=len(sc.get("segments") or []), topic_max=rw.MAX_TOPIC_WORDS,
+            say_max=rw.MAX_SAY_WORDS, aim=rw.MAX_SAY_WORDS - AIM_UNDER,
             longer=(" and the viewer learns why it matters: these beats are "
                     "too short, a fact with no meaning; give each its number "
                     "AND what it means, up to the PACE limit")
@@ -274,7 +293,7 @@ def retell(sc: dict, *, config_path: Path | None = None, brain=None,
                          "each its number AND what it means"]
         if cand is None or probs:
             reasons = probs
-            refused = "; ".join(probs)[:400]
+            refused = "; ".join(_cut_by(p) for p in probs)[:400]
             log(f"[retell] {sc.get('slug')}: rewrite {attempt + 1} refused: "
                 f"{refused[:160]}")
             continue
