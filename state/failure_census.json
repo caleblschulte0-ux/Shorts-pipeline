@@ -2,113 +2,86 @@
  "n_verdicts": 20,
  "classes": {
   "empty_void": {
-   "count": 6,
+   "count": 3,
    "stories": {
-    "giant_rats_make_themselves_at_home__driv": 2,
-    "one_parent_timed_every_drop_off_to_dodge": 1,
-    "waterspout_caught_on_camera_in_crescent_": 1,
-    "youth-sports-dropout": 1,
-    "he_admitted_he_was_stealing_my_wi_fi__i_": 1
-   },
-   "timestamps": [
-    "2026-10-10T11:48:13+00:00",
-    "2026-10-10T13:10:55+00:00",
-    "2026-10-10T13:19:11+00:00",
-    "2026-10-10T16:23:30+00:00",
-    "2026-10-11T11:41:47+00:00",
-    "2026-10-11T11:50:38+00:00"
-   ],
-   "examples": [
-    "empty_void: mid4/mid5/payoff@-0.4: a flat emoji sits centred on a dark navy gradient, leaving most of the top half as dead dark space; mid3 is a murky grey wall",
-    "empty_void: mid2: a small flat camera icon sits on a near-black gradient, and the gameplay below is a dark, featureless purple floor. Most of the frame is dead dark space.",
-    "empty_void: mid3 to payoff@-0.4: the top half is a dark navy void with one flat icon, about 40% of the frame wasted."
-   ],
-   "recurred_after_fix": false
-  },
-  "dead_air": {
-   "count": 4,
-   "stories": {
-    "one_parent_timed_every_drop_off_to_dodge": 2,
-    "waterspout_caught_on_camera_in_crescent_": 1,
-    "he_admitted_he_was_stealing_my_wi_fi__i_": 1
-   },
-   "timestamps": [
-    "2026-10-10T11:44:42+00:00",
-    "2026-10-10T13:10:55+00:00",
-    "2026-10-10T13:19:11+00:00",
-    "2026-10-11T11:41:47+00:00"
-   ],
-   "examples": [
-    "dead_air: The top-half picture is the same 'PAST DUE' bill in mid2 (19.9s), mid3, mid4, mid5 and payoff@-0.4 (47.7s). That is about 28s across at least five story beats (fee, threat, log/footage, sign",
-    "dead_air: The top-panel illustration is the same PAST DUE photo from mid3 (25.98s) through mid4, mid5, payoff@-1.8 and payoff@-0.4 (43.23s). That is about 17s and four story beats (footage, her signat",
-    "dead_air: The identical static wave icon fills the top half from mid3 (23.8s) to payoff@-0.4 (39.6s). That is about 16s with no change, and mid5 and payoff@-1.8 are the same frame. Only the gameplay u"
-   ],
-   "recurred_after_fix": false
-  },
-  "junk_imagery": {
-   "count": 4,
-   "stories": {
+    "he_admitted_he_was_stealing_my_wi_fi__i_": 1,
     "giant_rats_make_themselves_at_home__driv": 1,
-    "waterspout_caught_on_camera_in_crescent_": 1,
-    "he_admitted_he_was_stealing_my_wi_fi__i_": 2
+    "sports_jonathan_kuminga_ho_calls_him": 1
    },
    "timestamps": [
-    "2026-10-10T11:48:13+00:00",
-    "2026-10-10T13:19:11+00:00",
     "2026-10-11T11:41:47+00:00",
-    "2026-10-11T11:59:18+00:00"
+    "2026-10-11T11:50:38+00:00",
+    "2026-10-11T23:58:32+00:00"
    ],
    "examples": [
-    "junk_imagery: mid4: a generic clip-art wooden CHAIR icon fills the top half over 'THE MANAGER PANICKED' \u2014 it has nothing to do with rats, a manager or panic; mid1 is an off-key AI rat in a grey jumpsu",
-    "junk_imagery: mid3 through payoff@-0.4: a generic blue wave icon (left over from the waterspout news topic) fills the top half while the story is about a fake VIP badge in a cafe. It has nothing to do",
-    "junk_imagery: mid3 (t=25.10s) to payoff@-0.4: a generic stock/AI photo of a smiling cable installer holding a coil of blue cable sits on screen while the captions say 'HIS SMART TV' buffered. It does "
+    "empty_void: mid5 (t=40.17s) and payoff@-1.8: the bottom gameplay half is almost entirely black, with one small green portal and the caption.",
+    "empty_void: From mid1 onward the top half is a dark navy panel with one small flat emoji (hospital mid1, silhouettes mid3/mid4, cup mid5). It wastes about 40% of the frame on a blank gradient.",
+    "empty_void: In hook@0.3, hook@1.5, mid2 and payoff@-0.4, half or more of the frame is empty grey concrete floor. The subjects are small and pushed to the left edge, and in mid2 they are cut off at the"
+   ],
+   "recurred_after_fix": false
+  },
+  "temporal_gate": {
+   "count": 3,
+   "stories": {
+    "longform:foreign-aid-never-broke-0-32-of-health-spending": 2,
+    "sports_jaylen_brown__edwards_for": 1
+   },
+   "timestamps": [
+    "2026-10-11T17:22:49+00:00",
+    "2026-10-11T20:56:51+00:00",
+    "2026-10-11T23:57:32+00:00"
+   ],
+   "examples": [
+    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "temporal_gate: effective_fps 10.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
    ],
    "recurred_after_fix": false
   },
   "other": {
    "count": 3,
    "stories": {
-    "one_parent_timed_every_drop_off_to_dodge": 1,
-    "youth-sports-dropout": 1,
-    "ingenuity-mars-helicopter-flights": 1
+    "co2-pollen-season-stretch": 1,
+    "sports_eli_manning_lark_looking": 1,
+    "sports_devin_cooley_onights_game": 1
    },
    "timestamps": [
-    "2026-10-10T13:10:55+00:00",
-    "2026-10-10T16:23:30+00:00",
-    "2026-10-10T17:21:36+00:00"
+    "2026-10-11T20:13:30+00:00",
+    "2026-10-12T00:04:01+00:00",
+    "2026-10-12T00:07:28+00:00"
    ],
    "examples": [
-    "unreadable: mid3 caption reads '5 .40 FOR', a number split by a stray space that a viewer has to puzzle out. The other captions and the post card (hook@0.3) are legible.",
-    "unreadable: In seg1:mid and seg1:end the '2023' marker is printed on top of the kid figures in the bus windows, next to a garbled white ghost outline. In seg3:mid the '1' in 'about 1 in 4' is crossed ",
-    "unreadable: seg3:mid: the 'Final flight' label is printed on top of the helicopter body. seg3:end: the '50th flight' label is crossed by the rotor blade. hook@2.2: the helicopter covers the 'E' of the"
+    "unreadable: In hook@0.3 and hook@1.5 the subtitle 'carbon dioxide in the air \u00b7 2024' runs into the dashed ghost circles, so '2024' sits on the marks. In seg3:start and seg4:mid the '1990' ghost label ",
+    "unreadable: mid4: during the punch-in our word caption 'IT YOU'VE GOT A S.' is printed on top of the ESPN scorebug and reads as garbled nonsense. mid3: 'ARE THEY LIFTING' has a stray glyph splitting t",
+    "unreadable: In every frame (hook@0.3 through payoff@-0.4), our line 'Devin Cooley brings his pet bunny to the game' sits on top of the cropped Sportsnet/ROGERS lower-third graphic, which shows as a cu"
    ],
    "recurred_after_fix": false
   },
-  "temporal_gate": {
+  "junk_imagery": {
    "count": 2,
    "stories": {
-    "longform:foreign-aid-never-broke-0-32-of-health-spending": 2
+    "he_admitted_he_was_stealing_my_wi_fi__i_": 2
    },
    "timestamps": [
-    "2026-10-11T17:22:49+00:00",
-    "2026-10-11T20:56:51+00:00"
+    "2026-10-11T11:41:47+00:00",
+    "2026-10-11T11:59:18+00:00"
    ],
    "examples": [
-    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+    "junk_imagery: mid3 (t=25.10s) to payoff@-0.4: a generic stock/AI photo of a smiling cable installer holding a coil of blue cable sits on screen while the captions say 'HIS SMART TV' buffered. It does ",
+    "junk_imagery: mid2 (t=17.82s) through payoff@-0.4: the same AI stock photo of a smiling cable installer stays on screen while the captions say 'HIS SMART TV' and 'PASSWORD,'. It has nothing to do with"
    ],
    "recurred_after_fix": false
   },
-  "decorative_mascot": {
+  "dead_air": {
    "count": 1,
    "stories": {
-    "youth-sports-dropout": 1
+    "he_admitted_he_was_stealing_my_wi_fi__i_": 1
    },
    "timestamps": [
-    "2026-10-10T16:23:30+00:00"
+    "2026-10-11T11:41:47+00:00"
    ],
    "examples": [
-    "decorative_mascot: In the bus scene (hook@0.8, seg0:end, seg1:mid, seg1:end) Data stands in one spot by the door and waves or points while the kids get off without him. On the field (seg2:start to seg"
+    "dead_air: The illustration half is frozen on the same installer photo from mid3 (25.1s) through payoff@-0.4 (41.8s), about 17s, which covers the last four story beats (TV buffering, asking about the i"
    ],
    "recurred_after_fix": false
   }
@@ -130,12 +103,12 @@
    "max": 4
   },
   "craft": {
-   "median": 2,
+   "median": 1,
    "min": 0,
    "max": 2
   },
   "pace": {
-   "median": 1,
+   "median": 2,
    "min": 0,
    "max": 2
   },
@@ -146,22 +119,11 @@
   },
   "temporal_craft": {
    "median": 3,
-   "min": 3,
+   "min": 2,
    "max": 3
   }
  },
  "scores": [
-  78,
-  75,
-  57,
-  57,
-  57,
-  49,
-  57,
-  74,
-  79,
-  74,
-  78,
   78,
   78,
   83,
@@ -170,6 +132,17 @@
   57,
   57,
   14,
-  14
+  14,
+  74,
+  66,
+  79,
+  83,
+  82,
+  14,
+  57,
+  57,
+  70,
+  66,
+  75
  ]
 }

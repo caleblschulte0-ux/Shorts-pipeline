@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261011",
-  "generated_at": "2026-10-11T23:31:02Z",
+  "generated_at": "2026-10-12T00:31:08Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -17,7 +17,7 @@
     "sample_size": "Bands listed in `thin_bands` have fewer than 5 samples. Do not build a theory on them \u2014 say the data is thin instead.",
     "channel_scale": "This channel is small. Single-digit view counts are normal and mostly noise. Prefer explanations that survive that fact over ones that require a 9-view video to mean something."
   },
-  "posted_today": 2,
+  "posted_today": 3,
   "continuity": {
     "my_verdicts_on_your_last_proposals": [],
     "decision_history": {
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 17.76,
+          "days": 17.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 16.76,
+          "days": 16.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -365,16 +365,16 @@
     "explainer": {
       "channel": "explainer",
       "available": true,
-      "fetched_at": "2026-10-11T19:04:33.330805+00:00",
+      "fetched_at": "2026-10-12T00:05:04.008160+00:00",
       "today": [
         {
           "title": "One Rule Change Fixed 16 Million Credit Scores For Free",
           "url": "https://youtube.com/shorts/RITO4fF3tqY",
           "published_at": "2026-10-11T02:41:41Z",
-          "age_hours": 16.4,
+          "age_hours": 21.4,
           "age_band": "6-24h",
-          "views": 118,
-          "engaged_views": 118,
+          "views": 138,
+          "engaged_views": 138,
           "likes": 0,
           "comments": 0,
           "avg_view_pct": null,
@@ -387,104 +387,128 @@
             "impressions",
             "ctr"
           ],
-          "views_per_hour": 7.1951,
+          "views_per_hour": 6.4486,
+          "percentile_vs_same_age": null,
+          "verdict": "no comparable history"
+        },
+        {
+          "title": "Pollen Season Just Got 20 Days Longer",
+          "url": "https://youtube.com/shorts/6dlQVU9CpTE",
+          "published_at": "2026-10-11T20:21:22Z",
+          "age_hours": 3.7,
+          "age_band": "0-6h",
+          "views": 276,
+          "engaged_views": 276,
+          "likes": 1,
+          "comments": 0,
+          "avg_view_pct": null,
+          "avg_view_duration": null,
+          "impressions": null,
+          "ctr": null,
+          "missing_metrics": [
+            "avg_view_pct",
+            "avg_view_duration",
+            "impressions",
+            "ctr"
+          ],
+          "views_per_hour": 74.5946,
           "percentile_vs_same_age": null,
           "verdict": "no comparable history"
         }
       ],
       "last_7d": {
         "videos": 23,
-        "total_views": 3850,
-        "median_views": 117.0,
-        "median_vph": 1.0803,
-        "best": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
-        "worst": "More People Are Displaced Right Now Than Ever Recorded"
+        "total_views": 4002,
+        "median_views": 135.0,
+        "median_vph": 1.0442,
+        "best": "Pollen Season Just Got 20 Days Longer",
+        "worst": "Kids Are Being Diagnosed With ADHD Way More Than Before"
       },
       "last_30d": {
-        "videos": 69,
-        "total_views": 9185,
-        "median_views": 66.0,
-        "median_vph": 0.2695,
-        "best": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
-        "worst": "More People Are Displaced Right Now Than Ever Recorded"
+        "videos": 70,
+        "total_views": 9542,
+        "median_views": 68.0,
+        "median_vph": 0.2658,
+        "best": "Pollen Season Just Got 20 Days Longer",
+        "worst": "Why Is There A Vault Built For The End Of The World?"
       },
       "all_time_summary": {
-        "total_videos": 122,
-        "total_views": 16802,
-        "avg_views_per_video": 137.7,
+        "total_videos": 123,
+        "total_views": 17159,
+        "avg_views_per_video": 139.5,
         "median_views_per_hour": 0.11,
         "top_5_by_vph": [
           {
+            "title": "Pollen Season Just Got 20 Days Longer",
+            "views_per_hour": 74.03,
+            "views": 276,
+            "age_hours": 3.7,
+            "url": "https://youtube.com/shorts/6dlQVU9CpTE"
+          },
+          {
             "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
-            "views_per_hour": 22.48,
-            "views": 503,
-            "age_hours": 22.4,
+            "views_per_hour": 19.5,
+            "views": 534,
+            "age_hours": 27.4,
             "url": "https://youtube.com/shorts/LrMy6Z8J9Ug"
           },
           {
             "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
-            "views_per_hour": 7.28,
-            "views": 533,
-            "age_hours": 73.3,
+            "views_per_hour": 6.86,
+            "views": 537,
+            "age_hours": 78.3,
             "url": "https://youtube.com/shorts/fxJsmvFzAqs"
           },
           {
             "title": "One Rule Change Fixed 16 Million Credit Scores For Free",
-            "views_per_hour": 7.2,
-            "views": 118,
-            "age_hours": 16.4,
+            "views_per_hour": 6.45,
+            "views": 138,
+            "age_hours": 21.4,
             "url": "https://youtube.com/shorts/RITO4fF3tqY"
           },
           {
-            "title": "Super Shoes Just Broke The Marathon World Record Again",
-            "views_per_hour": 5.6,
-            "views": 343,
-            "age_hours": 61.3,
-            "url": "https://youtube.com/shorts/InVYGU9plr0"
-          },
-          {
             "title": "Your Phone Trained You Like A Slot Machine",
-            "views_per_hour": 5.6,
-            "views": 117,
-            "age_hours": 20.9,
+            "views_per_hour": 5.22,
+            "views": 135,
+            "age_hours": 25.9,
             "url": "https://youtube.com/shorts/1NwI3iaxF6k"
           }
         ],
         "bottom_5_by_vph": [
           {
-            "title": "More People Are Displaced Right Now Than Ever Recorded",
-            "views_per_hour": 0.0,
-            "views": 0,
-            "age_hours": 49.6,
-            "url": "https://youtube.com/shorts/YC6kYj8fXy0"
-          },
-          {
             "title": "Why Is There A Vault Built For The End Of The World?",
             "views_per_hour": 0.0,
             "views": 1,
-            "age_hours": 530.2,
+            "age_hours": 535.2,
             "url": "https://youtube.com/shorts/kkODTt8nWuQ"
           },
           {
             "title": "Why Cargo Ships Started Losing Containers Again (3 Charts)",
             "views_per_hour": 0.0,
             "views": 2,
-            "age_hours": 763.3,
+            "age_hours": 768.3,
             "url": "https://youtube.com/shorts/NhR15EjR3uI"
           },
           {
             "title": "Why Empty Offices Will Never Fill Back Up (3 Charts)",
             "views_per_hour": 0.0,
             "views": 0,
-            "age_hours": 864.8,
+            "age_hours": 869.8,
             "url": "https://youtube.com/shorts/fReGr_FMIEw"
           },
           {
             "title": "$124 Trillion Is About To Change Hands",
             "views_per_hour": 0.0,
             "views": 3,
-            "age_hours": 866.1,
+            "age_hours": 871.1,
             "url": "https://youtube.com/shorts/GDCGj6kpbqo"
+          },
+          {
+            "title": "Why NASA Waits Almost Two Days For One Reply",
+            "views_per_hour": 0.0,
+            "views": 3,
+            "age_hours": 915.9,
+            "url": "https://youtube.com/shorts/6hKXyKNTK9E"
           }
         ],
         "opening": {
@@ -589,29 +613,31 @@
           "n_mature_total": 0,
           "enough_data": false
         },
-        "pending_scheduled": 7,
+        "pending_scheduled": 8,
         "format_coverage": {
           "with_format": 0,
-          "total": 122,
+          "total": 123,
           "fraction": 0.0
         }
       },
       "band_sample_sizes": {
-        "1-3d": 7,
-        "1-4w": 44,
+        "0-6h": 1,
+        "1-3d": 8,
+        "1-4w": 45,
         "3-7d": 13,
         "4w+": 55,
-        "6-24h": 3
+        "6-24h": 1
       },
       "thin_bands": [
+        "0-6h",
         "6-24h"
       ],
       "maturity": {
         "24h": {
           "all_formats": {
             "n": 3,
-            "median_vph": 5.5981,
-            "median_views": 117.0,
+            "median_vph": 6.4486,
+            "median_views": 138.0,
             "median_view_pct": null,
             "view_pct_reported_for": "0/3",
             "enough_to_judge": false
@@ -619,8 +645,8 @@
           "by_format": {
             "other_topic": {
               "n": 3,
-              "median_vph": 5.5981,
-              "median_views": 117.0,
+              "median_vph": 6.4486,
+              "median_views": 138.0,
               "median_view_pct": null,
               "view_pct_reported_for": "0/3",
               "enough_to_judge": false
@@ -638,7 +664,7 @@
         "72h": {
           "all_formats": {
             "n": 4,
-            "median_vph": 5.158,
+            "median_vph": 4.7999,
             "median_views": 349.0,
             "median_view_pct": null,
             "view_pct_reported_for": "0/4",
@@ -647,7 +673,7 @@
           "by_format": {
             "other_topic": {
               "n": 4,
-              "median_vph": 5.158,
+              "median_vph": 4.7999,
               "median_views": 349.0,
               "median_view_pct": null,
               "view_pct_reported_for": "0/4",
@@ -665,20 +691,20 @@
         },
         "7d": {
           "all_formats": {
-            "n": 4,
-            "median_vph": 0.3799,
-            "median_views": 65.5,
+            "n": 3,
+            "median_vph": 0.4786,
+            "median_views": 84.0,
             "median_view_pct": null,
-            "view_pct_reported_for": "0/4",
+            "view_pct_reported_for": "0/3",
             "enough_to_judge": false
           },
           "by_format": {
             "other_topic": {
-              "n": 4,
-              "median_vph": 0.3799,
-              "median_views": 65.5,
+              "n": 3,
+              "median_vph": 0.4786,
+              "median_views": 84.0,
               "median_view_pct": null,
-              "view_pct_reported_for": "0/4",
+              "view_pct_reported_for": "0/3",
               "enough_to_judge": false
             },
             "superlative_topic": {
@@ -695,33 +721,33 @@
       "mature_enough_to_judge": [
         {
           "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
-          "vph": 22.4554,
+          "vph": 19.4891,
           "fmt": "other_topic",
-          "age_hours": 22.4
+          "age_hours": 27.4
         },
         {
           "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
-          "vph": 7.2715,
+          "vph": 6.8582,
           "fmt": "other_topic",
-          "age_hours": 73.3
+          "age_hours": 78.3
+        },
+        {
+          "title": "One Rule Change Fixed 16 Million Credit Scores For Free",
+          "vph": 6.4486,
+          "fmt": "other_topic",
+          "age_hours": 21.4
         },
         {
           "title": "Your Phone Trained You Like A Slot Machine",
-          "vph": 5.5981,
+          "vph": 5.2124,
           "fmt": "other_topic",
-          "age_hours": 20.9
+          "age_hours": 25.9
         },
         {
           "title": "Super Shoes Just Broke The Marathon World Record Again",
-          "vph": 5.5954,
+          "vph": 5.1735,
           "fmt": "other_topic",
-          "age_hours": 61.3
-        },
-        {
-          "title": "The Monarch Butterfly Is Running Out of Forest",
-          "vph": 4.7207,
-          "fmt": "other_topic",
-          "age_hours": 75.2
+          "age_hours": 66.3
         }
       ],
       "worst_mature": [
@@ -729,31 +755,31 @@
           "title": "World Hydropower Fell Below Its 1990 Level",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 1223.7
+          "age_hours": 1228.7
         },
         {
           "title": "Cereal production Is 1.5x Higher Than In 1972",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 996.3
+          "age_hours": 1001.3
         },
         {
           "title": "Central Banks Are Hoarding Gold Like It's 1967",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 958.5
+          "age_hours": 963.5
         },
         {
           "title": "Why Empty Offices Will Never Fill Back Up (3 Charts)",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 864.8
+          "age_hours": 869.8
         },
         {
-          "title": "More People Are Displaced Right Now Than Ever Recorded",
-          "vph": 0.0,
-          "fmt": "other_topic",
-          "age_hours": 49.6
+          "title": "World Coal Power Fell Below Its 1990 Level",
+          "vph": 0.0009,
+          "fmt": "unknown",
+          "age_hours": 1133.2
         }
       ]
     },
@@ -1282,11 +1308,11 @@
       }
     },
     "slots": {
-      "target": 6,
+      "target": 3,
       "shipped": 0,
       "held": 2,
       "backfilled": 1,
-      "short": 6,
+      "short": 3,
       "held_reasons": [
         "showrunner_block: showrunner BLOCK: The petty-revenge story is good, but one irrelevant installer stock photo covers the",
         "quarantined: vision QA: broken \u2014 The frames do not match the described format. The video is supposed to have the TOP hal"
@@ -1294,120 +1320,93 @@
     },
     "showrunner": {
       "recent": 40,
-      "blocks": 23,
-      "avg_score": 55.6
+      "blocks": 18,
+      "avg_score": 63.1
     },
     "failure_census": {
       "n_verdicts": 20,
       "classes": {
         "empty_void": {
-          "count": 6,
+          "count": 3,
           "stories": {
-            "giant_rats_make_themselves_at_home__driv": 2,
-            "one_parent_timed_every_drop_off_to_dodge": 1,
-            "waterspout_caught_on_camera_in_crescent_": 1,
-            "youth-sports-dropout": 1,
-            "he_admitted_he_was_stealing_my_wi_fi__i_": 1
-          },
-          "timestamps": [
-            "2026-10-10T11:48:13+00:00",
-            "2026-10-10T13:10:55+00:00",
-            "2026-10-10T13:19:11+00:00",
-            "2026-10-10T16:23:30+00:00",
-            "2026-10-11T11:41:47+00:00",
-            "2026-10-11T11:50:38+00:00"
-          ],
-          "examples": [
-            "empty_void: mid4/mid5/payoff@-0.4: a flat emoji sits centred on a dark navy gradient, leaving most of the top half as dead dark space; mid3 is a murky grey wall",
-            "empty_void: mid2: a small flat camera icon sits on a near-black gradient, and the gameplay below is a dark, featureless purple floor. Most of the frame is dead dark space.",
-            "empty_void: mid3 to payoff@-0.4: the top half is a dark navy void with one flat icon, about 40% of the frame wasted."
-          ],
-          "recurred_after_fix": false
-        },
-        "dead_air": {
-          "count": 4,
-          "stories": {
-            "one_parent_timed_every_drop_off_to_dodge": 2,
-            "waterspout_caught_on_camera_in_crescent_": 1,
-            "he_admitted_he_was_stealing_my_wi_fi__i_": 1
-          },
-          "timestamps": [
-            "2026-10-10T11:44:42+00:00",
-            "2026-10-10T13:10:55+00:00",
-            "2026-10-10T13:19:11+00:00",
-            "2026-10-11T11:41:47+00:00"
-          ],
-          "examples": [
-            "dead_air: The top-half picture is the same 'PAST DUE' bill in mid2 (19.9s), mid3, mid4, mid5 and payoff@-0.4 (47.7s). That is about 28s across at least five story beats (fee, threat, log/footage, sign",
-            "dead_air: The top-panel illustration is the same PAST DUE photo from mid3 (25.98s) through mid4, mid5, payoff@-1.8 and payoff@-0.4 (43.23s). That is about 17s and four story beats (footage, her signat",
-            "dead_air: The identical static wave icon fills the top half from mid3 (23.8s) to payoff@-0.4 (39.6s). That is about 16s with no change, and mid5 and payoff@-1.8 are the same frame. Only the gameplay u"
-          ],
-          "recurred_after_fix": false
-        },
-        "junk_imagery": {
-          "count": 4,
-          "stories": {
+            "he_admitted_he_was_stealing_my_wi_fi__i_": 1,
             "giant_rats_make_themselves_at_home__driv": 1,
-            "waterspout_caught_on_camera_in_crescent_": 1,
-            "he_admitted_he_was_stealing_my_wi_fi__i_": 2
+            "sports_jonathan_kuminga_ho_calls_him": 1
           },
           "timestamps": [
-            "2026-10-10T11:48:13+00:00",
-            "2026-10-10T13:19:11+00:00",
             "2026-10-11T11:41:47+00:00",
-            "2026-10-11T11:59:18+00:00"
+            "2026-10-11T11:50:38+00:00",
+            "2026-10-11T23:58:32+00:00"
           ],
           "examples": [
-            "junk_imagery: mid4: a generic clip-art wooden CHAIR icon fills the top half over 'THE MANAGER PANICKED' \u2014 it has nothing to do with rats, a manager or panic; mid1 is an off-key AI rat in a grey jumpsu",
-            "junk_imagery: mid3 through payoff@-0.4: a generic blue wave icon (left over from the waterspout news topic) fills the top half while the story is about a fake VIP badge in a cafe. It has nothing to do",
-            "junk_imagery: mid3 (t=25.10s) to payoff@-0.4: a generic stock/AI photo of a smiling cable installer holding a coil of blue cable sits on screen while the captions say 'HIS SMART TV' buffered. It does "
+            "empty_void: mid5 (t=40.17s) and payoff@-1.8: the bottom gameplay half is almost entirely black, with one small green portal and the caption.",
+            "empty_void: From mid1 onward the top half is a dark navy panel with one small flat emoji (hospital mid1, silhouettes mid3/mid4, cup mid5). It wastes about 40% of the frame on a blank gradient.",
+            "empty_void: In hook@0.3, hook@1.5, mid2 and payoff@-0.4, half or more of the frame is empty grey concrete floor. The subjects are small and pushed to the left edge, and in mid2 they are cut off at the"
+          ],
+          "recurred_after_fix": false
+        },
+        "temporal_gate": {
+          "count": 3,
+          "stories": {
+            "longform:foreign-aid-never-broke-0-32-of-health-spending": 2,
+            "sports_jaylen_brown__edwards_for": 1
+          },
+          "timestamps": [
+            "2026-10-11T17:22:49+00:00",
+            "2026-10-11T20:56:51+00:00",
+            "2026-10-11T23:57:32+00:00"
+          ],
+          "examples": [
+            "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+            "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+            "temporal_gate: effective_fps 10.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
           ],
           "recurred_after_fix": false
         },
         "other": {
           "count": 3,
           "stories": {
-            "one_parent_timed_every_drop_off_to_dodge": 1,
-            "youth-sports-dropout": 1,
-            "ingenuity-mars-helicopter-flights": 1
+            "co2-pollen-season-stretch": 1,
+            "sports_eli_manning_lark_looking": 1,
+            "sports_devin_cooley_onights_game": 1
           },
           "timestamps": [
-            "2026-10-10T13:10:55+00:00",
-            "2026-10-10T16:23:30+00:00",
-            "2026-10-10T17:21:36+00:00"
+            "2026-10-11T20:13:30+00:00",
+            "2026-10-12T00:04:01+00:00",
+            "2026-10-12T00:07:28+00:00"
           ],
           "examples": [
-            "unreadable: mid3 caption reads '5 .40 FOR', a number split by a stray space that a viewer has to puzzle out. The other captions and the post card (hook@0.3) are legible.",
-            "unreadable: In seg1:mid and seg1:end the '2023' marker is printed on top of the kid figures in the bus windows, next to a garbled white ghost outline. In seg3:mid the '1' in 'about 1 in 4' is crossed ",
-            "unreadable: seg3:mid: the 'Final flight' label is printed on top of the helicopter body. seg3:end: the '50th flight' label is crossed by the rotor blade. hook@2.2: the helicopter covers the 'E' of the"
+            "unreadable: In hook@0.3 and hook@1.5 the subtitle 'carbon dioxide in the air \u00b7 2024' runs into the dashed ghost circles, so '2024' sits on the marks. In seg3:start and seg4:mid the '1990' ghost label ",
+            "unreadable: mid4: during the punch-in our word caption 'IT YOU'VE GOT A S.' is printed on top of the ESPN scorebug and reads as garbled nonsense. mid3: 'ARE THEY LIFTING' has a stray glyph splitting t",
+            "unreadable: In every frame (hook@0.3 through payoff@-0.4), our line 'Devin Cooley brings his pet bunny to the game' sits on top of the cropped Sportsnet/ROGERS lower-third graphic, which shows as a cu"
           ],
           "recurred_after_fix": false
         },
-        "temporal_gate": {
+        "junk_imagery": {
           "count": 2,
           "stories": {
-            "longform:foreign-aid-never-broke-0-32-of-health-spending": 2
+            "he_admitted_he_was_stealing_my_wi_fi__i_": 2
           },
           "timestamps": [
-            "2026-10-11T17:22:49+00:00",
-            "2026-10-11T20:56:51+00:00"
+            "2026-10-11T11:41:47+00:00",
+            "2026-10-11T11:59:18+00:00"
           ],
           "examples": [
-            "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-            "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+            "junk_imagery: mid3 (t=25.10s) to payoff@-0.4: a generic stock/AI photo of a smiling cable installer holding a coil of blue cable sits on screen while the captions say 'HIS SMART TV' buffered. It does ",
+            "junk_imagery: mid2 (t=17.82s) through payoff@-0.4: the same AI stock photo of a smiling cable installer stays on screen while the captions say 'HIS SMART TV' and 'PASSWORD,'. It has nothing to do with"
           ],
           "recurred_after_fix": false
         },
-        "decorative_mascot": {
+        "dead_air": {
           "count": 1,
           "stories": {
-            "youth-sports-dropout": 1
+            "he_admitted_he_was_stealing_my_wi_fi__i_": 1
           },
           "timestamps": [
-            "2026-10-10T16:23:30+00:00"
+            "2026-10-11T11:41:47+00:00"
           ],
           "examples": [
-            "decorative_mascot: In the bus scene (hook@0.8, seg0:end, seg1:mid, seg1:end) Data stands in one spot by the door and waves or points while the kids get off without him. On the field (seg2:start to seg"
+            "dead_air: The illustration half is frozen on the same installer photo from mid3 (25.1s) through payoff@-0.4 (41.8s), about 17s, which covers the last four story beats (TV buffering, asking about the i"
           ],
           "recurred_after_fix": false
         }
@@ -1429,12 +1428,12 @@
           "max": 4
         },
         "craft": {
-          "median": 2,
+          "median": 1,
           "min": 0,
           "max": 2
         },
         "pace": {
-          "median": 1,
+          "median": 2,
           "min": 0,
           "max": 2
         },
@@ -1445,22 +1444,11 @@
         },
         "temporal_craft": {
           "median": 3,
-          "min": 3,
+          "min": 2,
           "max": 3
         }
       },
       "scores": [
-        78,
-        75,
-        57,
-        57,
-        57,
-        49,
-        57,
-        74,
-        79,
-        74,
-        78,
         78,
         78,
         83,
@@ -1469,14 +1457,25 @@
         57,
         57,
         14,
-        14
+        14,
+        74,
+        66,
+        79,
+        83,
+        82,
+        14,
+        57,
+        57,
+        70,
+        66,
+        75
       ]
     }
   },
   "depictions": {
     "note": "best judge `bespoke` grade per video vs views-per-hour at >= 24h",
     "buckets": {},
-    "ungraded": 119,
+    "ungraded": 121,
     "thin": []
   },
   "style_arms": {
@@ -1484,13 +1483,13 @@
     "arms": {
       "current": {
         "n": 22,
-        "median_percentile": 31.1,
+        "median_percentile": 34.5,
         "thin": true
       },
       "illustrated": {
-        "n": 28,
-        "median_percentile": 59.0,
-        "thin": true
+        "n": 30,
+        "median_percentile": 60.0,
+        "thin": false
       }
     },
     "enough_to_judge": false,
@@ -1504,10 +1503,18 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "9fa975c",
-    "commits_since": "2026-10-10",
+    "head": "eb0dfad",
+    "commits_since": "2026-10-11",
     "commit_count": 50,
     "commits": [
+      "eb0dfad sports: 2026-10-12 posted log + verdicts [skip ci]",
+      "054432a explainer: update posted log + analytics [skip ci]",
+      "a0d91d0 exchange: phase A bundle for 20261012 [skip ci]",
+      "5724df6 The Vine boom is a whoa, once, and it is the real one (#615)",
+      "717f9f0 claim: mailbox verdicts 2026-10-11T23:48Z [skip ci]",
+      "d767ac2 Baller Bro becomes a sports moments channel, 3 a day, gated (#617)",
+      "aa8770a Fetch the real Vine boom instead of a synthesised look-alike (#618)",
+      "70ac8ed retro: brief + triage for 20261011 [skip ci]",
       "9fa975c predraw: draw the hook and closing scenes too, once every beat is drawn (#614)",
       "b2fa335 Third stories: the critic's own notes cap its score (#616)",
       "61c6e38 claim: mailbox verdicts 2026-10-11T22:47Z [skip ci]",
@@ -1539,15 +1546,7 @@
       "e1939d4 claim: mailbox verdicts 2026-10-11T16:48Z [skip ci]",
       "bafef3f third: analytics [skip ci]",
       "3f77ec7 third: update posted log + analytics [skip ci]",
-      "b6833b7 watchdog: phase A readiness 20261011 [skip ci]",
-      "1b6ce69 Third: an IRL camera is not a facecam, and a clip may not end mid-sentence (#609)",
-      "93d55cf Baller Bro sports moments: sample cuts from the sports subreddits (#608)",
-      "6628540 watchdog: phase A readiness 20261011 [skip ci]",
-      "15947a3 claim: mailbox verdicts 2026-10-11T15:48Z [skip ci]",
-      "e81f10e story forge: new real-data stories [skip ci]",
-      "4c9eace watchdog: chatgpt task verdicts 20261011 [skip ci]",
-      "912fc88 Explainer: drawn stories post first; a render bound for the retired look stops early (#607)",
-      "ca940cc third: analytics snapshot [skip ci]"
+      "b6833b7 watchdog: phase A readiness 20261011 [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
@@ -1600,6 +1599,7 @@
       "test_authoring_takeover.py",
       "test_automerge_gate.py",
       "test_backfill.py",
+      "test_baller_bro_is_sports_moments.py",
       "test_beats_match_the_words.py",
       "test_blocked_slug_churn.py",
       "test_bubbles_use_the_frame.py",
@@ -1815,8 +1815,8 @@
     ]
   },
   "channel_contract": {
-    "registry_revision": 8,
-    "registry_sha256": "739ba5acec8a554601ef59cf31d118d2494a9457a36f9808738cd1337ee4cf36",
+    "registry_revision": 9,
+    "registry_sha256": "773f2adbffe8d3efc8b64a009156c4a58d706653a334ba77870455590a4dd213",
     "channels": {
       "explainer": {
         "target_count": 4,
@@ -1833,12 +1833,13 @@
         "retired": []
       },
       "trending": {
-        "target_count": 6,
+        "target_count": 3,
         "target_mix": {
-          "graph_race": 4,
-          "reddit_story": 2
+          "sports_moment": 3
         },
         "retired": [
+          "graph_race",
+          "reddit_story",
           "text_card"
         ]
       }
