@@ -12897,14 +12897,32 @@
       "ts": "2026-10-12T12:50:45.090007+00:00"
     },
     "clip-20261012-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/plaqueboymax/clip/DreamyPuzzledMushroom4Head-yBuKIUDx_uI2M5xi",
-      "story_key": null,
-      "streamer": "plaqueboymax",
+      "url": "https://youtube.com/shorts/OtX8PoOLv1I",
       "title": "Plaqueboymax Shows His Stitched Chin After A Rough Week And Roasts Chat",
       "kind": "twitch_clip",
-      "ts": "2026-10-12T12:53:44.239771+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-12T12:53:51.531498+00:00",
+      "uploaded_at": "2026-10-12T12:53:51.531511+00:00",
+      "publish_at": "2026-10-13T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261012-plaqueboymax-shows-his-stitched-chin-after-a-rou-9fffe7da",
+        "tiktok": "queued for 2026-10-13T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/DreamyPuzzledMushroom4Head-yBuKIUDx_uI2M5xi",
+      "streamer": "plaqueboymax",
+      "series": "chaos",
+      "hook": "Plaqueboymax shows his chin healing \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2382,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 30.0
+      },
+      "director_cut": true
     }
   }
 }
