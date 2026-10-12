@@ -12741,13 +12741,77 @@
       "ts": "2026-10-12T12:27:10.074435+00:00"
     },
     "clip-20261012-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/cinna/clip/SaltySlipperyWrenBrainSlug-mY_88Ki5b72sJiv3",
-      "story_key": null,
-      "streamer": "cinna",
+      "url": "https://youtube.com/shorts/5kGBPoooNW0",
       "title": "Cinna Scene Turns Ugly After John Bobby Shoots Kalita Dub",
       "kind": "twitch_clip",
-      "ts": "2026-10-12T12:32:03.029679+00:00",
+      "ts": "2026-10-12T12:32:17.542949+00:00",
+      "uploaded_at": "2026-10-12T12:32:17.542961+00:00",
+      "publish_at": "2026-10-12T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261012-cinna-scene-turns-ugly-after-john-bobby-shoots-k-244cc48b",
+        "tiktok": "queued for 2026-10-12T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/cinna/clip/SaltySlipperyWrenBrainSlug-mY_88Ki5b72sJiv3",
+      "streamer": "cinna",
+      "series": "beef",
+      "hook": "John Bobby shoots Kalita Dub after an argument \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4162,
+      "banger": 0.62,
+      "cut": {
+        "start": 0.0,
+        "end": 60.0
+      },
+      "director_cut": true
+    },
+    "rejected-jazzymuddycroquettekappapride-4s8-fb_cjxgv_lge": {
+      "source_url": "https://www.twitch.tv/valkyrae/clip/JazzyMuddyCroquetteKappaPride-4s8-Fb_cjXGv_lgE",
+      "streamer": "valkyrae",
+      "title": "The Paperbois Alvis, Bogg, and Donnie took down Ray Mond",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA RP balcony, confusing, no payoff)",
+      "ts": "2026-10-12T12:40:11.386551+00:00"
+    },
+    "rejected-enthusiasticplayfulpheasantthetarfu-anssqp7c4u-0mhi3": {
+      "source_url": "https://www.twitch.tv/valkyrae/clip/EnthusiasticPlayfulPheasantTheTarFu-aNssQP7c4U-0mHI3",
+      "streamer": "valkyrae",
+      "title": "\"is he stupid\" - Rae",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Dashboard screen, talk, no visible event)",
+      "ts": "2026-10-12T12:40:44.773492+00:00"
+    },
+    "rejected-credulousblightedsquirreloskomodo-gdy_netxjeziz_gm": {
+      "source_url": "https://www.twitch.tv/forsen/clip/CredulousBlightedSquirrelOSkomodo-GdY_nETXjEzIz_gm",
+      "streamer": "forsen",
+      "title": "mind blowing hehehe",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (vague insider talk, no visible event)",
+      "ts": "2026-10-12T12:41:13.526986+00:00"
+    },
+    "rejected-sparklingclevermoosenotatk-alrgtsejybddkve-": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/SparklingCleverMooseNotATK-AlRGtSeJYBdDkVe-",
+      "streamer": "caseoh_",
+      "title": "happy birthday buttons",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (Chat dashboard, sub alerts, no event)",
+      "ts": "2026-10-12T12:42:33.477711+00:00"
+    },
+    "clip-20261012-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/zackrawrr/clip/HealthyVivaciousShingleMikeHogu-xcpr2mqnqDCFsisp",
+      "story_key": null,
+      "streamer": "zackrawrr",
+      "title": "Zackrawrr Asks If God Just Anointed The Olympus Meeting After This Happens",
+      "kind": "twitch_clip",
+      "ts": "2026-10-12T12:45:03.773945+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
