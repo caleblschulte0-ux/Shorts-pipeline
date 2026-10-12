@@ -154,6 +154,9 @@ _MAP: list[tuple[tuple[str, ...], str]] = [
     (("plane travel", "tourism", "tourist", "passenger"), "1f9f3"),
     (("ship", "shipping", "port", "container"), "1f6a2"),
     (("road", "highway", "truck"), "1f6e3"),
+    # Before the generic worker key: the boss in the suit, not a hard hat.
+    (("ceo", "executive", "businessman", "businesswoman", "business suit",
+      "in suit"), "1f468-200d-1f4bc"),
     (("worker", "labor", "labour", "employ", "job"), "1f477"),
     (("heart", "cardiac", "blood"), "2764"),
     (("bone", "skeleton"), "1f9b4"),

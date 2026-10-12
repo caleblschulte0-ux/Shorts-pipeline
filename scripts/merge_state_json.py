@@ -29,7 +29,9 @@ The posted logs never had this problem because they are UNIONED
              ours-only appended; a slug on both sides takes OUR story (the
              run that just rendered it — the status quo for the conflict
              case), except that a segment `scene` carrying a `grade` or
-             `code` on their side is kept if ours has none for that key.
+             `code` on their side is kept if ours has none for that key,
+             and a drawn scene (`STORY_SCENES`, `SEGMENT_SCENES`) only
+             their side has is kept while the words it was drawn for agree.
 
 Fails CLOSED on unparseable input, like merge_posted_log: a corrupt side
 must never be pushed over a good one.
@@ -113,14 +115,33 @@ def merge_mechanics(theirs, ours) -> list:
     return keep + rest[-max(0, LIB_CAP - len(keep)):]
 
 
+#: A drawn scene, keyed on the words it was drawn for. THE AFTERNOON THE
+#: SCENES VANISHED: on 2026-10-12 the predraw saved three stories' last
+#: scenes at 21:05; at 21:07 a posting run that had checked out at 18:20 lost
+#: the push race, took OUR story for every slug, and the hook, closing and
+#: beat scenes it never had were gone. A scene only one side has is kept
+#: while both sides still tell the story in the same words; a story whose
+#: words changed is a new story to draw (`rewrite_mailbox.apply`).
+STORY_SCENES = (("hook_scene", "hook"), ("hook_data", "hook"),
+                ("closing_scene", "closing"), ("closing_data", "closing"))
+SEGMENT_SCENES = ("illustrated_scene",)
+
+
 def _merge_story(t: dict, o: dict) -> dict:
     out = dict(o)
+    for key, words in STORY_SCENES:
+        if key in t and key not in o and t.get(words) == o.get(words):
+            out[key] = t[key]
     ts, os_ = t.get("segments"), o.get("segments")
     if isinstance(ts, list) and isinstance(os_, list) and len(ts) == len(os_):
         segs = []
         for a, b in zip(ts, os_):
             seg = dict(b) if isinstance(b, dict) else b
             if isinstance(a, dict) and isinstance(b, dict):
+                if a.get("say") == b.get("say"):
+                    for key in SEGMENT_SCENES:
+                        if key in a and key not in b:
+                            seg[key] = a[key]
                 asc, bsc = a.get("scene"), b.get("scene")
                 if isinstance(asc, dict) and (asc.get("grade") or asc.get("code")) \
                         and not (isinstance(bsc, dict) and (bsc.get("grade") or bsc.get("code"))):
