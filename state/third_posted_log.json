@@ -12730,6 +12730,25 @@
         "end": 30.0
       },
       "director_cut": true
+    },
+    "rejected-triumphantartisticplumagemrdestructoid-u5wdapw98-mqa4wn": {
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/TriumphantArtisticPlumageMrDestructoid-u5Wdapw98-mqa4WN",
+      "streamer": "ishowspeed",
+      "title": "F8",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Just driving in GTA, no visible event)",
+      "ts": "2026-10-12T12:27:10.074435+00:00"
+    },
+    "clip-20261012-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/cinna/clip/SaltySlipperyWrenBrainSlug-mY_88Ki5b72sJiv3",
+      "story_key": null,
+      "streamer": "cinna",
+      "title": "Cinna Scene Turns Ugly After John Bobby Shoots Kalita Dub",
+      "kind": "twitch_clip",
+      "ts": "2026-10-12T12:32:03.029679+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
