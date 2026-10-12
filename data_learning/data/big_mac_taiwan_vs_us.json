@@ -1,0 +1,19 @@
+{
+  "key": "big_mac_taiwan_vs_us",
+  "title": "Big Mac price: Taiwan vs US baseline",
+  "unit": "dollars",
+  "geography": "Taiwan, United States",
+  "time_coverage": "January 2026",
+  "source": {
+    "name": "The Big Mac Index",
+    "publisher": "The Economist",
+    "url": "https://www.economist.com/big-mac-index",
+    "officiality": "official",
+    "access_date": "2026-10-12"
+  },
+  "notes": "The US price ($6.12) is the index's reference value. Taiwan's $2.47 is far below it, which the index reads as the Taiwan dollar trading well under its dollar-adjusted purchasing power. The Economist has run this comparison since 1986.",
+  "points": [
+    {"label": "US (baseline)", "value": 6.12},
+    {"label": "Taiwan", "value": 2.47}
+  ]
+}

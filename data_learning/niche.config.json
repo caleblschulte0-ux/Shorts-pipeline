@@ -33111,6 +33111,192 @@
      "say": "A typical year closes about 1,300 branches. In 2020 alone, it was over 4,000."
     }
    ]
+  },
+  {
+   "slug": "doomsday-clock-89-seconds",
+   "title": "The Doomsday Clock Just Hit 89 Seconds To Midnight",
+   "hook": "This clock has never been closer to midnight.",
+   "closing": "The scientists aren't being dramatic. That's just where we are.",
+   "question": "Does this number worry you? Tell me.",
+   "caption": "Scientists just set the Doomsday Clock to 89 seconds to midnight -- the closest it's ever been since 1947. Here's why they moved it, and what's actually driving it. Does this number worry you? Tell me below 👇",
+   "hashtags": ["doomsdayclock", "bulletinoftheatomicscientists", "nuclearrisk", "climatechange", "sciencefacts", "globalrisk", "didyouknow", "dataviz", "science", "ai", "biothreats", "nuclearwar"],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "doomsday_clock_history",
+     "params": {
+      "file": "doomsday_clock_history.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · WHERE IT STARTED",
+     "topic": "when the Doomsday Clock was first set",
+     "say": "In 1947, scientists set the Doomsday Clock to 7 minutes before midnight, and they've been moving it ever since."
+    },
+    {
+     "source": "offline",
+     "key": "doomsday_clock_1991_vs_2025",
+     "params": {
+      "file": "doomsday_clock_1991_vs_2025.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · HOW CLOSE NOW",
+     "topic": "how close the Doomsday Clock has gotten to midnight",
+     "say": "Back in 1991, that same clock sat at its safest point ever. Today it's down to just 89 seconds -- the closest ever."
+    },
+    {
+     "source": "offline",
+     "key": "doomsday_clock_threat_count",
+     "params": {
+      "file": "doomsday_clock_threat_count.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · WHY IT MOVED",
+     "topic": "what's driving the Doomsday Clock to 89 seconds",
+     "say": "Back then it was just nuclear war. Today the scientists point to 4 converging threats: nuclear risk, climate change, bio threats, and AI."
+    }
+   ]
+  },
+  {
+   "slug": "pentagon-ufo-reports-surge",
+   "title": "Why Did UFO Reports To The Pentagon Triple?",
+   "hook": "The Pentagon just logged 757 new UFO reports.",
+   "closing": "Mostly drones. Occasionally weather balloons. Rarely aliens.",
+   "question": "Ever seen one? Tell me below.",
+   "caption": "The Pentagon's UFO office just logged 757 new reports in a single year -- nearly triple the year before. Most came from one surprising source. Ever seen something weird in the sky? Tell me below 👇",
+   "hashtags": ["ufo", "uap", "pentagon", "aaro", "government", "unexplained", "didyouknow", "nightsky", "mystery", "science", "dataviz", "airtrafficcontrol"],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "uap_reports_per_period",
+     "params": {
+      "file": "uap_reports_per_period.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "1 · THE SURGE",
+     "topic": "UFO reports surging at the Pentagon",
+     "say": "The Pentagon's UFO office took in 757 new reports last year -- nearly triple what it logged the year before."
+    },
+    {
+     "source": "offline",
+     "key": "uap_reports_source_share",
+     "params": {
+      "file": "uap_reports_source_share.json"
+     },
+     "insight_type": "share",
+     "role": "2 · THE SOURCE",
+     "topic": "where the new UFO reports actually come from",
+     "say": "Over half of those new reports -- 392 of them -- came from one place: the government's own air traffic controllers."
+    },
+    {
+     "source": "offline",
+     "key": "uap_reports_unexplained",
+     "params": {
+      "file": "uap_reports_unexplained.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · THE CATCH",
+     "topic": "how many UFO reports are actually unexplained",
+     "say": "Out of every report filed so far, only 21 were flagged as something officials genuinely can't explain."
+    }
+   ]
+  },
+  {
+   "slug": "panama-canal-drought-transit-cuts",
+   "title": "Panama Canal Transits Just Dropped From 36 To 24",
+   "hook": "A drought just throttled global shipping.",
+   "closing": "Water: the one thing a canal can't fake its way around.",
+   "question": "Ever had a shipment stuck? Tell me.",
+   "caption": "A historic drought forced the Panama Canal to cut its daily ship crossings by a third. Here's what actually caused it, and what it did to cargo. Ever had a shipment stuck? Tell me below 👇",
+   "hashtags": ["panamacanal", "shipping", "drought", "globaltrade", "supplychain", "climate", "cargo", "gatunlake", "didyouknow", "dataviz", "science", "logistics"],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "panama_canal_daily_transits",
+     "params": {
+      "file": "panama_canal_daily_transits.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "1 · THE CUT",
+     "topic": "Panama Canal transits getting cut by a drought",
+     "say": "A historic drought forced the Panama Canal to cut its normal daily ship crossings down to just 24."
+    },
+    {
+     "source": "offline",
+     "key": "gatun_lake_level_2024",
+     "params": {
+      "file": "gatun_lake_level_2024.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · THE CAUSE",
+     "topic": "why the Panama Canal's lake level dropped",
+     "say": "The lake that feeds the canal's locks dropped to just 80.3 feet -- well below its normal average."
+    },
+    {
+     "source": "offline",
+     "key": "panama_canal_draft_limit",
+     "params": {
+      "file": "panama_canal_draft_limit.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · THE SQUEEZE",
+     "topic": "what the Panama Canal drought did to cargo ships",
+     "say": "That forced ships to carry less cargo too -- the maximum draft dropped to just 44 feet."
+    }
+   ]
+  },
+  {
+   "slug": "big-mac-index-currency-gap",
+   "title": "A Big Mac Costs 9 Dollars In Switzerland. 2 In Taiwan.",
+   "hook": "Same burger. Wildly different price.",
+   "closing": "Fries are extra. So, apparently, is your currency.",
+   "question": "What's a Big Mac cost near you?",
+   "caption": "The exact same Big Mac costs $9.08 in Switzerland and just $2.47 in Taiwan. That price gap is actually a real economic tool. What's a Big Mac cost near you? Tell me below 👇",
+   "hashtags": ["bigmac", "economist", "currency", "purchasingpower", "economics", "finance", "moneyfacts", "didyouknow", "mcdonalds", "dataviz", "science", "switzerland"],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "big_mac_prices_by_country",
+     "params": {
+      "file": "big_mac_prices_by_country.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "1 · THE GAP",
+     "topic": "Big Mac prices around the world",
+     "say": "The exact same Big Mac costs $9.08 in Switzerland -- but just $2.47 in Taiwan."
+    },
+    {
+     "source": "offline",
+     "key": "big_mac_switzerland_vs_us",
+     "params": {
+      "file": "big_mac_switzerland_vs_us.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · THE BASELINE",
+     "topic": "why the US Big Mac price is the baseline",
+     "say": "That's 48% more than the US price -- which is exactly what economists use as the baseline."
+    },
+    {
+     "source": "offline",
+     "key": "big_mac_taiwan_vs_us",
+     "params": {
+      "file": "big_mac_taiwan_vs_us.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · THE TELL",
+     "topic": "what the Big Mac price gap actually means",
+     "say": "That same logic says Taiwan's currency looks undervalued -- this quirky index has run since 1986."
+    }
+   ]
   }
  ],
  "videos": [

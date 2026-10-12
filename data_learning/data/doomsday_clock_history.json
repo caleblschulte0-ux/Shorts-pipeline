@@ -1,0 +1,20 @@
+{
+  "key": "doomsday_clock_history",
+  "title": "Doomsday Clock setting, seconds to midnight (lower = more dangerous)",
+  "unit": "seconds",
+  "geography": "Global",
+  "time_coverage": "1947-2025",
+  "source": {
+    "name": "Doomsday Clock annual statement",
+    "publisher": "Bulletin of the Atomic Scientists",
+    "url": "https://thebulletin.org/doomsday-clock/",
+    "officiality": "official",
+    "access_date": "2026-10-12"
+  },
+  "notes": "The Bulletin of the Atomic Scientists (founded by Manhattan Project scientists) has set the Doomsday Clock every year since 1947. Lower seconds-to-midnight means the Bulletin judges humanity closer to catastrophe. 1947: 7 minutes (420s). 1991 (post-Cold War): 17 minutes (1020s), the furthest from midnight it has ever been set. 2025: 89 seconds, the closest ever, citing nuclear risk, climate change, biological threats, and disruptive technology including AI.",
+  "points": [
+    {"label": "1947", "value": 420, "period": "1947"},
+    {"label": "1991", "value": 1020, "period": "1991"},
+    {"label": "2025", "value": 89, "period": "2025"}
+  ]
+}

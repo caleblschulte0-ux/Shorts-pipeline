@@ -1,0 +1,19 @@
+{
+  "key": "panama_canal_daily_transits",
+  "title": "Panama Canal daily ship transits: normal vs drought-restricted",
+  "unit": "count",
+  "geography": "Panama",
+  "time_coverage": "normal operations vs January 2024",
+  "source": {
+    "name": "Panama Canal Authority transit advisories",
+    "publisher": "Panama Canal Authority (ACP)",
+    "url": "https://pancanal.com/en/",
+    "officiality": "official",
+    "access_date": "2026-10-12"
+  },
+  "notes": "The Panama Canal normally schedules 36 transits a day. A historic 2023 drought (tied to El Nino) lowered Gatun Lake so far that the ACP cut daily transit slots step by step, reaching 24 a day by January 16, 2024, before conditions eased and slots were raised again through 2024.",
+  "points": [
+    {"label": "Normal", "value": 36},
+    {"label": "January 2024 (drought cut)", "value": 24}
+  ]
+}
