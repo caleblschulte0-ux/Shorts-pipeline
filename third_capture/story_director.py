@@ -146,6 +146,26 @@ def _news(streamer: str, names: list[str]) -> list[str]:
     return list(dict.fromkeys(lines))[:24]
 
 
+_NOT_A_NAME = frozenset("""I A An The And But So Then When After Before
+His Her Their Our My Your This That It He She They We You Chat Stream
+Streamer University Twitch YouTube Reddit GTA RP""".split())
+
+
+def premise_names(text: str) -> list[str]:
+    """The people a story's premise names (capitalised words that are not
+    a sentence opener or a stock word): the scout writes "Tony rugs
+    Buddha" while the scene analysis may only see "a suited man", and
+    that man is who the critic then asks about (2026-10-12)."""
+    out: list[str] = []
+    for sent in re.split(r"[.!?;:]\s+", str(text or "")):
+        words = re.findall(r"[A-Za-z][\w']*", sent)
+        for w in words[1:]:
+            w = re.sub(r"'s$", "", w)
+            if w[:1].isupper() and w not in _NOT_A_NAME and len(w) > 1:
+                out.append(w)
+    return list(dict.fromkeys(out))
+
+
 def known_people(streamer: str, names: list[str]) -> dict:
     """{name: who they are to the streamer} for the people a story's
     sources name but never introduce — proposed by one model, kept only
@@ -157,9 +177,9 @@ def known_people(streamer: str, names: list[str]) -> dict:
     allowed a line of text on screen (2026-10-08); this is where its
     "who" may come from when the footage never says it. Best-effort:
     any failure or doubt returns nothing, and the cut is as before."""
+    me = str(streamer).strip().lower()
     names = [str(n).strip() for n in names or []
-             if str(n).strip() and str(n).strip().lower()
-             != str(streamer).strip().lower()][:8]
+             if str(n).strip() and str(n).strip().lower() not in me][:8]
     if not names:
         return {}
     key = (str(streamer).lower(), tuple(sorted(n.lower() for n in names)))

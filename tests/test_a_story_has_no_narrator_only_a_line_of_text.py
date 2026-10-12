@@ -199,6 +199,28 @@ class WhoSomeoneIsIsCheckedTwice(unittest.TestCase):
                            {"Reggie": True})
         self.assertEqual(out, {"Reggie": "Kai Cenat's cousin"})
 
+    def test_the_people_the_premise_names_are_looked_up_too(self):
+        """Live run 2026-10-12: the scout wrote "Tony rugs" Buddha, the
+        scene analysis saw "a suited man", and the critic held the story
+        at 68 for never saying who he is."""
+        self.assertEqual(story_director.premise_names(
+            "Buddha is promised his coin will pump, then loses $800 when "
+            "Tony rugs him"), ["Tony"])
+        src = (ROOT / "scripts" / "run_third.py").read_text()
+        self.assertIn("story_director.premise_names(", src)
+
+    def test_a_short_form_of_the_streamer_is_not_asked_about(self):
+        seen = {}
+
+        def claude(user, system=None, **k):
+            seen["user"] = user
+            return {"who": {}}
+        with mock.patch.object(story_director, "_call_claude",
+                               side_effect=claude):
+            story_director.known_people("kaicenat", ["Kai", "Ron"])
+        self.assertNotIn('"Kai"', seen["user"])
+        self.assertIn('"Ron"', seen["user"])
+
     def test_the_story_arm_asks(self):
         src = (ROOT / "scripts" / "run_third.py").read_text()
         self.assertIn("story_director.known_people(", src)
