@@ -221,6 +221,19 @@ class WhoSomeoneIsIsCheckedTwice(unittest.TestCase):
         self.assertNotIn('"Kai"', seen["user"])
         self.assertIn('"Ron"', seen["user"])
 
+    def test_the_story_is_about_the_followed_streamer_not_the_clipper(self):
+        """Live run 2026-10-12: the Kai/Reggie story's first source was the
+        27club clip channel, so Reggie was looked up "to 27club"."""
+        reps = [{"channel": "27club"}, {"channel": "kaicenat"},
+                {"channel": "xevi"}]
+        self.assertEqual(story_director.lead_streamer(reps), "kaicenat")
+        self.assertEqual(story_director.lead_streamer(
+            [{"channel": "27club"}], ["27club", "kaicenat"]), "kaicenat")
+        self.assertEqual(story_director.lead_streamer(
+            [{"channel": "someone"}]), "someone")
+        src = (ROOT / "scripts" / "run_third.py").read_text()
+        self.assertIn("story_director.lead_streamer(", src)
+
     def test_the_story_arm_asks(self):
         src = (ROOT / "scripts" / "run_third.py").read_text()
         self.assertIn("story_director.known_people(", src)

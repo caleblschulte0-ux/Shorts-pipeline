@@ -1858,7 +1858,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             # a second model — the line of text on screen may say it
             try:
                 _who = story_director.known_people(
-                    reports[0].get("channel", "") if reports else "",
+                    story_director.lead_streamer(reports, cluster.get("who")),
                     sorted({str(p) for r in reports
                             for p in r.get("people") or []}
                            | set(story_director.premise_names(
