@@ -1,0 +1,16 @@
+{
+ "slug": "divorce-rate-quiet-decline",
+ "ts": "20261012T045623Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:mid/payoff@-0.4: the label 'years old, her first wedding \u00b7 2024 \u00b7 +4.7 since 1990' is tiny and runs over the hourglass's top funnel and frame. You can't read it at arm's length",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable_label_and_repeated_stat",
+  "visible_evidence": "seg3:start to payoff@-0.4: the picture shrinks into a bordered inset card on navy. It restates the 23.9\u219228.6 marriage-age stat seg2 already showed. Its subtitle label is microscopic and collides with the hourglass funnel",
+  "root_cause": "The closing reuses the marriage-age data in a new machine instead of landing the divorce payoff. The composer laid the label across the scene geometry without measuring it, and wrapped the shot in a card",
+  "repair_goal": "Make the closing land on the divorce payoff: the ring fully reforms, or 'your odds' gets drawn on the ring itself. Use the scene full-bleed with no inset card. If there is any label, keep it short and large, in clear space, and never over the art"
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "divorce-rate-quiet-decline",
+ "ts": "20261012T045623Z",
+ "failure_class": "junk_imagery",
+ "evidence": "junk_imagery: seg1:start/mid/end: a cluster of maroon and grey spheres, like a bunch of grapes or balloons, sits behind the captions at the bottom right and doesn't belong to the ring scene",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "unreadable_label_and_repeated_stat",
+  "visible_evidence": "seg3:start to payoff@-0.4: the picture shrinks into a bordered inset card on navy. It restates the 23.9\u219228.6 marriage-age stat seg2 already showed. Its subtitle label is microscopic and collides with the hourglass funnel",
+  "root_cause": "The closing reuses the marriage-age data in a new machine instead of landing the divorce payoff. The composer laid the label across the scene geometry without measuring it, and wrapped the shot in a card",
+  "repair_goal": "Make the closing land on the divorce payoff: the ring fully reforms, or 'your odds' gets drawn on the ring itself. Use the scene full-bleed with no inset card. If there is any label, keep it short and large, in clear space, and never over the art"
+ },
+ "scene_plan": {},
+ "scenes": []
+}
