@@ -166,6 +166,17 @@ def premise_names(text: str) -> list[str]:
     return list(dict.fromkeys(out))
 
 
+def lead_streamer(reports: list[dict], who: list | None = None) -> str:
+    """The followed streamer a story is about. A scouted story's first
+    source is often a clip channel (27club, zylok), and asking the news or
+    a model who Reggie is "to 27club" finds nothing (2026-10-12)."""
+    from third_capture import storyline
+    for c in ([r.get("channel") for r in reports or []] + list(who or [])):
+        if str(c or "").lower() in storyline.SEARCH_NAMES:
+            return str(c).lower()
+    return str((reports or [{}])[0].get("channel") or "")
+
+
 def known_people(streamer: str, names: list[str]) -> dict:
     """{name: who they are to the streamer} for the people a story's
     sources name but never introduce — proposed by one model, kept only
@@ -203,6 +214,8 @@ def known_people(streamer: str, names: list[str]) -> dict:
                 f"STREAMER: {streamer}\n" + json.dumps(lines) + "\n" + head,
                 system=_WHO_VERIFY_SYSTEM, tag="who") or {}).get("ok") or {}
             out = {n: v for n, v in lines.items() if ok.get(n) is True}
+        print(f"[who] {streamer}: asked {names}, {len(news)} headline(s), "
+              f"proposed {got}, kept {lines}, confirmed {sorted(out)}", flush=True)
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[director] known_people failed ({e})", flush=True)
         out = {}
