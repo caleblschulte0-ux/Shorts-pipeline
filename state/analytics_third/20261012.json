@@ -1,5 +1,5 @@
 {
-  "fetched_at": "2026-10-12T13:52:10.461078+00:00",
+  "fetched_at": "2026-10-12T13:54:30.239905+00:00",
   "videos": [
     {
       "video_id": "V3hJr2XCDkU",
@@ -27,13 +27,13 @@
       "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
       "published_at": "2026-10-10T17:00:28Z",
       "age_hours": 44.9,
-      "views": 783,
-      "engaged_views": 783,
+      "views": 785,
+      "engaged_views": 785,
       "likes": 2,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 17.45
+      "views_per_hour": 17.48
     },
     {
       "video_id": "Lq01D3HtSC4",
@@ -603,13 +603,13 @@
       "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
       "published_at": "2026-10-05T21:30:38Z",
       "age_hours": 160.4,
-      "views": 386,
+      "views": 382,
       "engaged_views": 110,
       "likes": 2,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": true,
-      "views_per_hour": 2.41,
+      "views_per_hour": 2.38,
       "average_view_percentage": 77.8,
       "average_view_duration_s": 15.0,
       "estimated_minutes_watched": 30.0,
@@ -2957,13 +2957,13 @@
       "title": "Erobb221 Can't Believe How Big This Thing Is And Asks If It's Real",
       "published_at": "2026-10-11T23:00:36Z",
       "age_hours": 14.9,
-      "views": 9,
-      "engaged_views": 9,
+      "views": 8,
+      "engaged_views": 8,
       "likes": 0,
       "comments": 0,
       "is_public": true,
       "usable_for_retention": false,
-      "views_per_hour": 0.61
+      "views_per_hour": 0.54
     },
     {
       "video_id": "qC3LzK0bUBE",
@@ -12225,14 +12225,14 @@
   ],
   "summary": {
     "total_videos": 131,
-    "total_views": 7165,
+    "total_views": 7162,
     "avg_views_per_video": 54.7,
     "median_views_per_hour": 0.05,
     "top_5_by_vph": [
       {
         "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-        "views_per_hour": 17.45,
-        "views": 783,
+        "views_per_hour": 17.48,
+        "views": 785,
         "age_hours": 44.9,
         "url": "https://youtube.com/shorts/V3hJr2XCDkU"
       },
@@ -12245,8 +12245,8 @@
       },
       {
         "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-        "views_per_hour": 2.41,
-        "views": 386,
+        "views_per_hour": 2.38,
+        "views": 382,
         "age_hours": 160.4,
         "url": "https://youtube.com/shorts/s8y7xYyiG44"
       },
