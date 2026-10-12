@@ -1,0 +1,16 @@
+{
+ "slug": "co2-pollen-season-stretch",
+ "ts": "20261012T000504Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In hook@0.3 and hook@1.5 the subtitle 'carbon dioxide in the air \u00b7 2024' runs into the dashed ghost circles, so '2024' sits on the marks. In seg3:start and seg4:mid the '1990' ghost label is jammed against the right frame edge.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "payoff_not_landed",
+  "visible_evidence": "seg3:start, seg3:mid and seg3:end are nearly the same frame. The header reads 'Pollen / how thick it hangs in the air \u00b7 1990' through the whole beat while the narration says '21 percent thicker'. The pollen cloud only edges past its dashed 1990 outline, and '+21%' first appears in the closing card (seg4:mid). Data stands beside a stalk with his arm out and does nothing.",
+  "root_cause": "The number lands after the beat ends, so the scene spends its whole window in the 'before' state. The change the cloud shows is too small to see at a glance. Data has no act that causes the pollen.",
+  "repair_goal": "Land '+21%' and a 2018 header by about 70% of seg3, and make the cloud clearly thicker and denser than its 1990 outline, not just a little bigger. Give Data a causal act, such as shaking or striking the ragweed stalk so a burst of pollen thickens the cloud. Keep the '1990' ghost label fully inside the frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

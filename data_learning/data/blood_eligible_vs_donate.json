@@ -14,12 +14,12 @@
   "notes": "Real Red Cross figures. 'Actually donate' (3%) is the share of the eligible population who give blood in a given year, not a share of the total population.",
   "points": [
     {
-      "label": "Eligible to donate",
+      "label": "Eligible to donate (share of Americans)",
       "value": 38
     },
     {
-      "label": "Eligible to donate",
-      "value": 38
+      "label": "Actually donate each year (share of eligible)",
+      "value": 3
     }
   ]
 }

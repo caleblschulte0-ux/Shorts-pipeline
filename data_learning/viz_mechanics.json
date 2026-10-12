@@ -748,5 +748,13 @@
   "topic": "game industry layoffs",
   "starred": false,
   "sig": "abdb6736291f"
+ },
+ {
+  "mechanic": "blood-bag-drains-to-sixty",
+  "concept": "a blood bag drains from 100 to 60 while drops fall out the bottom",
+  "code": "bag = subject_image('blood donation bag')\nx0, w = 300, 480\ny0, h = RTOP + 160, 820\nv0, v1 = values[0], values[-1]\ncur = lerp(v0, v1, clamp(reveal * 1.1))\nlvl = clamp(cur / max(v0, 1e-6))\nd.rounded_rectangle([x0, y0, x0 + w, y0 + h], radius=60, outline=rgba(TEXT, 200), width=8)\ntop_y = y0 + h * (1 - lvl)\nd.rounded_rectangle([x0 + 10, top_y, x0 + w - 10, y0 + h - 10], radius=50, fill=rgba(WARN, 210))\nd.line([x0 - 40, y0 + h * (1 - v1 / max(v0, 1e-6)), x0 + w + 40, y0 + h * (1 - v1 / max(v0, 1e-6))], fill=rgba(HIGHLIGHT, 220), width=4)\nfor k in range(7):\n    ph = (reveal * 5.0 + k / 7.0) % 1.0\n    dx = x0 + 120 + (k * 53) % (w - 240)\n    dy = y0 + h + ph * 260\n    d.ellipse([dx - 16, dy - 16, dx + 16, dy + 24], fill=rgba(WARN, int(240 * (1 - ph))))\nif bag is not None:\n    paste(bag, x0 + 90, y0 + 180, w - 180, 420)\ntext(labels[0] + ': 100', x0 - 30, y0 - 40, size=36, color=TEXT)\ntext(f'{int(round(cur))}', x0 + w // 2, y0 + h + 300, size=110, color=HIGHLIGHT, center=True)\ntext(f'DOWN {int(round(100 - cur))}% SINCE {labels[0]}', x0 + w // 2, y0 + h + 420, size=44, color=WARN, center=True)\n",
+  "topic": "blood supply decline",
+  "starred": false,
+  "sig": "f037cb397f85"
  }
 ]
