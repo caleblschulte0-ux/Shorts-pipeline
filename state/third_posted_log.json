@@ -12923,6 +12923,34 @@
         "end": 30.0
       },
       "director_cut": true
+    },
+    "rejected-adventuroustrappedclintmullinssquadgoals-9axk0imzwnexnm4k": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/AdventurousTrappedClintmullinsSquadGoals-9AXk0ImZwNExNM4k",
+      "streamer": "kaicenat",
+      "title": "Coming out the Closet.. \u203c\ufe0f Who Is He? Who Are You? Are You HIM? \ud83e\udd37\ud83c\udffd\u200d\u2642\ufe0f",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Confusing costume banter, no clear payof)",
+      "ts": "2026-10-12T13:38:28.963939+00:00"
+    },
+    "rejected-fitnurturingporpoiseunsane-sdn0zixeo3wfmkch": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/FitNurturingPorpoiseUnSane-sDn0zIXeO3WFmkcH",
+      "streamer": "stableronaldo",
+      "title": "what even happened",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (dark Minecraft, unclear event, insider)",
+      "ts": "2026-10-12T13:39:12.002322+00:00"
+    },
+    "clip-20261012-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/SpicyZanyDuckItsBoshyTime-njk25rMW_nCVUWC2",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Demands His Money Back From The Casino After These Poker Hands",
+      "kind": "twitch_clip",
+      "ts": "2026-10-12T13:43:45.384201+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }

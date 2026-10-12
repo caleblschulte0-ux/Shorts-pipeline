@@ -2537,7 +2537,7 @@
         "https://www.twitch.tv/xqc/clip/BetterOpenCroquetteFrankerZ-xM3H4tYDh9HA1GCZ"
       ],
       "published_versions": [],
-      "last_updated": "2026-10-08"
+      "last_updated": "2026-10-12"
     },
     "brucedropemoff-arrow-basketball-2026w39": {
       "event_id": "brucedropemoff-arrow-basketball-2026w39",
@@ -4073,17 +4073,16 @@
       "published_versions": [],
       "last_updated": "2026-10-10"
     },
-    "kaicenat-reggie-xevi-zylok-cenat-part-2026w41": {
-      "event_id": "kaicenat-reggie-xevi-zylok-cenat-part-2026w41",
+    "27club-kaicenat-xevi-call-cenat-2026w41": {
+      "event_id": "27club-kaicenat-xevi-call-cenat-2026w41",
       "people": [
+        "27club",
         "kaicenat",
-        "reggie",
-        "xevi",
-        "zylok"
+        "xevi"
       ],
       "actions": [
+        "call",
         "cenat",
-        "part",
         "reggie",
         "says"
       ],
@@ -4091,25 +4090,26 @@
       "first_seen": "2026-10-12",
       "known_claims": [],
       "candidate_sources": [
-        "https://www.youtube.com/watch?v=i6ERauOb2sI",
-        "https://www.youtube.com/watch?v=N9vh4spfRwc",
+        "https://www.twitch.tv/kaicenat/clip/MildInspiringStorkNerfRedBlaster-txnQqPC2ANXWFYiJ",
         "https://www.youtube.com/watch?v=yFP-Cto7zgM",
+        "https://www.youtube.com/watch?v=DhUgDg4f3v4",
         "https://www.twitch.tv/kaicenat/clip/ObeseOptimisticVampireEagleEye-Hjdc_814uO3OZkH-",
+        "https://www.youtube.com/watch?v=TgROjcW4icU",
         "https://www.twitch.tv/kaicenat/clip/DifficultWildGullKappaPride-WIm1m9cAYbE56Pqp"
       ],
       "published_versions": [],
       "last_updated": "2026-10-12"
     },
-    "joebartolozzi-about-bartolozzi-2026w41": {
-      "event_id": "joebartolozzi-about-bartolozzi-2026w41",
+    "joebartolozzi-about-camera-2026w41": {
+      "event_id": "joebartolozzi-about-camera-2026w41",
       "people": [
         "joebartolozzi"
       ],
       "actions": [
         "about",
-        "bartolozzi",
-        "food",
-        "from"
+        "camera",
+        "goon",
+        "room"
       ],
       "event_type": "storyline",
       "first_seen": "2026-10-12",
@@ -4121,16 +4121,16 @@
       "published_versions": [],
       "last_updated": "2026-10-12"
     },
-    "kaicenat-cenat-climb-2026w41": {
-      "event_id": "kaicenat-cenat-climb-2026w41",
+    "kaicenat-breath-climb-2026w41": {
+      "event_id": "kaicenat-breath-climb-2026w41",
       "people": [
         "kaicenat"
       ],
       "actions": [
-        "cenat",
+        "breath",
         "climb",
-        "near",
-        "says"
+        "helmet",
+        "orange"
       ],
       "event_type": "storyline",
       "first_seen": "2026-10-12",
@@ -4138,30 +4138,6 @@
       "candidate_sources": [
         "https://www.twitch.tv/kaicenat/clip/PiliableBreakableWatermelonUncleNox-RPYGbsTotJp__Red",
         "https://www.twitch.tv/kaicenat/clip/AstuteKawaiiHerbsSpicyBoy-yXpye-zl3Sf314sb"
-      ],
-      "published_versions": [],
-      "last_updated": "2026-10-12"
-    },
-    "ishowspeed-count-ishowspe-2026w41": {
-      "event_id": "ishowspeed-count-ishowspe-2026w41",
-      "people": [
-        "ishowspeed"
-      ],
-      "actions": [
-        "count",
-        "ishowspe",
-        "manchest",
-        "shirt"
-      ],
-      "event_type": "storyline",
-      "first_seen": "2026-10-12",
-      "known_claims": [],
-      "candidate_sources": [
-        "https://www.twitch.tv/ishowspeed/clip/PlayfulBeautifulCheesecakeHeyGuys-XGk579sA3V2OPeXp",
-        "https://www.twitch.tv/ishowspeed/clip/AgitatedSucculentVanillaYouDontSay-pcb45T-lMoBp69lJ",
-        "https://www.twitch.tv/ishowspeed/clip/CleanPunchyLettuceStoneLightning-txOfL2tbAN-Zp5HY",
-        "https://www.twitch.tv/ishowspeed/clip/PlumpAlertKuduCmonBruh-WJMi_0Fh82BKYTu0",
-        "https://www.twitch.tv/ishowspeed/clip/MagnificentCaringLapwingLitFam--mAJF-ezbaOYkTFm"
       ],
       "published_versions": [],
       "last_updated": "2026-10-12"
