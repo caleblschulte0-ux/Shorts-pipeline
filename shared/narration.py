@@ -119,6 +119,13 @@ attack, their own body, their own town) when the data gives you one. \
 "Half", "double", "one in ten" beat a figure.
   - Every number you keep must be one that beat's DATA shows, written the \
 way the data has it or as its share or change.
+  - Say WHAT this is about, by the name the DATA gives it: the game, the \
+event, the product, the place. Not "one tournament" and "the game's \
+maker" but "The International, the Dota 2 world championship". A viewer \
+who cannot name the thing has no story. (Operator, 2026-10-12, of exactly \
+that video: "I don't even know what the fuck it's talking about.") Keep \
+every beat's own point: a retell that turns the story's twist into a \
+repeat of an earlier beat has lost the story.
   - No organisation names a viewer would not know. "The OECD forecast" is \
 "the experts' best guess". Name it only if everyone knows it: the WHO, \
 NASA, the White House, the FBI.
@@ -160,8 +167,9 @@ one word over {say_max} is refused and the story does not post."""
 _LISTEN = """You are a viewer and a fact-checker. Two narrations for the same \
 YouTube Short follow, with the data each beat is drawn from. A narration \
 FAILS if it says anything the data does not support (a cause, a "never", a \
-number, a comparison), or if heard once at full speed it does not make \
-sense. Of the ones that pass, which would a distracted viewer scrolling \
+number, a comparison), if heard once at full speed it does not make \
+sense, if it never says WHAT it is about by name (the game, the event, the \
+product), or if two of its beats say the same thing. Of the ones that pass, which would a distracted viewer scrolling \
 past FOLLOW and keep watching: the simpler, more fun story, not a list of \
 numbers, that leaves them knowing why it matters to them?
 

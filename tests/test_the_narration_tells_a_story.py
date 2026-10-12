@@ -227,3 +227,55 @@ class ItIsWiredIn(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TheNarrationSaysWhatItIsAbout(unittest.TestCase):
+    """2026-10-12, of "One Tournament's Prize Pool Grew 25x": *"I don't even
+    know what the fuck it's talking about."* It never named the game or the
+    event, and its last beat repeated its first."""
+
+    def test_the_writer_and_the_listener_are_told(self):
+        from shared import narration as N
+        self.assertIn("Say WHAT this is about", N.DOCTRINE)
+        self.assertIn("never says WHAT it is about", N._LISTEN)
+        self.assertIn("two of its beats say the same thing", N._LISTEN)
+
+    def test_the_same_row_twice_is_held(self):
+        import json
+        import tempfile
+        from pathlib import Path
+        from unittest import mock
+        sys.path.append(str(Path(__file__).resolve().parent.parent / "scripts"))
+        import editorial_gate as G
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / "d.json"
+            p.write_text(json.dumps({"insight_type": "rank", "points": [
+                {"label": "2021 peak", "value": 40},
+                {"label": "2021 peak", "value": 40}]}))
+            with mock.patch.object(G, "_seg_data_path", return_value=p):
+                got = G.data_is_a_finding({"segments": [{}]})
+            self.assertTrue(any("same row" in r for r in got.get("reasons", [])), got)
+            p.write_text(json.dumps({"insight_type": "trend", "points": [
+                {"label": "2011", "value": 1.6}, {"label": "2021", "value": 40}]}))
+            with mock.patch.object(G, "_seg_data_path", return_value=p):
+                got = G.data_is_a_finding({"segments": [{}]})
+            self.assertFalse(any("same row" in r for r in got.get("reasons", [])), got)
+
+
+class TheNormalizerKeepsTheOtherPoint(unittest.TestCase):
+    def test_a_baseline_already_in_the_points_is_not_doubled(self):
+        import json
+        import tempfile
+        from pathlib import Path
+        sys.path.append(str(Path(__file__).resolve().parent.parent / "scripts"))
+        import normalize_charts as NC
+        with tempfile.TemporaryDirectory() as td:
+            p = Path(td) / "d.json"
+            p.write_text(json.dumps({
+                "baseline": {"label": "1988", "value": 350000},
+                "points": [{"label": "1988", "value": 350000},
+                           {"label": "2023", "value": 12}]}))
+            NC._normalise_datafile(p)
+            d = json.loads(p.read_text())
+            self.assertEqual([x["label"] for x in d["points"]], ["1988", "2023"])
+            self.assertNotIn("baseline", d)

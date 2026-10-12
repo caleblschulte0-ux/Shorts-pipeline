@@ -43,6 +43,14 @@ def _normalise_datafile(path: Path) -> bool:
     base = d.get("baseline")
     pts = d.get("points", [])
     if base and len(pts) >= 1:
+        # A baseline the points ALREADY carry is not merged in again: on
+        # 2026-10-09 ten "X vs now" files had points [baseline, now] and
+        # this wrote [baseline, baseline], dropping "now". The polio and
+        # esports videos posted a beat with nothing to compare.
+        if any(p.get("label") == base.get("label") for p in pts):
+            d.pop("baseline", None)
+            path.write_text(json.dumps(d, indent=2, ensure_ascii=True) + "\n")
+            return True
         merged = [
             {"label": base["label"], "value": base["value"]},
             {"label": pts[0]["label"], "value": pts[0]["value"]},
