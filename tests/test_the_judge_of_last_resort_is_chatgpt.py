@@ -127,7 +127,7 @@ class TheRenderIsKeptAndTheAskIsFiled(_Sandbox):
                 mock.patch.object(SR, "_motion_evidence", lambda *a: {}), \
                 mock.patch.object(SR, "_temporal_evidence", lambda *a: {}), \
                 mock.patch.object(SR, "temporal_unmeasured", lambda t: None), \
-                mock.patch.object(SR, "temporal_hard_fail", lambda t: None), \
+                mock.patch.object(SR, "temporal_hard_fail", lambda t, **k: None), \
                 mock.patch.object(RM, "file_request",
                                   lambda **kw: filed.append(kw) or "x__abc"):
             with self.assertRaises(RuntimeError) as cm:
@@ -143,7 +143,7 @@ class TheRenderIsKeptAndTheAskIsFiled(_Sandbox):
                 mock.patch.object(SR, "_motion_evidence", lambda *a: {}), \
                 mock.patch.object(SR, "_temporal_evidence", lambda *a: {}), \
                 mock.patch.object(SR, "temporal_unmeasured", lambda t: None), \
-                mock.patch.object(SR, "temporal_hard_fail", lambda t: None), \
+                mock.patch.object(SR, "temporal_hard_fail", lambda t, **k: None), \
                 mock.patch.object(RM, "file_request", lambda **kw: filed.append(kw)):
             with self.assertRaises(RuntimeError):
                 SR.review_video(self.mp4, context={"slug": "x"})

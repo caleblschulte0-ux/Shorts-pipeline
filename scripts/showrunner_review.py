@@ -370,6 +370,19 @@ def _max_block_diff(a, b, w: int, grid: int = 12) -> float:
 # above the noise floor and far below real motion (measured 10-60 on live
 # builds) — see data_learning/tests/test_showrunner_scoring.py.
 BLOCK_MOTION_THRESH = 6.0
+#: A pair of frames this close is the SAME frame shown twice (a low-fps
+#: source doubled into the 30fps master, or a frozen stream), whatever
+#: the encoder's noise. Measured 2026-10-12: a 10fps or 8fps source pushed
+#: to 30fps puts 62-67% of its pairs under it; a real 30fps press
+#: conference (Kyle Shanahan at a podium, which the operator liked) 25%.
+FROZEN_THRESH = 1.5
+#: Formats made of REAL FOOTAGE. A person standing at a podium moves less
+#: than BLOCK_MOTION_THRESH between frames, and that is a quiet shot, not
+#: a held one: the 2026-10-12 Baller Bro run blocked that press
+#: conference as "too many held frames" with not one repeated frame in
+#: it. On these the cadence floors count frames that are really the same
+#: (FROZEN_THRESH). The floors themselves do not move.
+REAL_FOOTAGE_FORMATS = frozenset({"sports_moment"})
 
 
 def _motion_evidence(mp4: Path, td: Path) -> dict:
@@ -464,6 +477,17 @@ def _temporal_evidence(mp4: Path, td: Path) -> dict:
             else:
                 run = 0
         pairs = n - 1
+        frozen = frun = fmax = 0
+        for _d in diffs:
+            if _d < FROZEN_THRESH:
+                frozen += 1
+                frun += 1
+                fmax = max(fmax, frun)
+            else:
+                frun = 0
+        ev["frozen_ratio"] = round(frozen / pairs, 3)
+        ev["frozen_fps"] = round(sf * (1 - frozen / pairs), 1)
+        ev["max_frozen_run"] = fmax + 1       # frames
         ev["duplicate_ratio"] = round(dup / pairs, 3)
         ev["effective_fps"] = round(sf * (1 - dup / pairs), 1)
         # JUDDER, not stillness. A low-fps source doubled into the 30fps
@@ -566,7 +590,7 @@ def temporal_grade(ev: dict) -> int:
     return 0
 
 
-def temporal_hard_fail(ev: dict) -> str | None:
+def temporal_hard_fail(ev: dict, footage: bool = False) -> str | None:
     """CODE hard-fail on measured cadence, evaluated BEFORE the vision review
     (ChatGPT: 'add a hard build failure ... do this before the expensive vision
     review'). Thresholds come from the active quality phase (milestones), so the
@@ -575,10 +599,17 @@ def temporal_hard_fail(ev: dict) -> str | None:
     This gate only ADDS blocks on measured badness — it never blocks blind.
     Unknown evidence still returns None here, but it no longer reaches this
     function on a real review: `review_video` raises on an unmeasured probe
-    so the outer gate decides publish-vs-preview (3de32f29a8e4)."""
+    so the outer gate decides publish-vs-preview (3de32f29a8e4).
+
+    `footage=True` (a REAL_FOOTAGE_FORMATS render) measures the same floors
+    on frames that are really repeated (`frozen_*`), not on quiet ones."""
     fps = ev.get("effective_fps")
     dup = ev.get("duplicate_ratio")
     run = ev.get("max_dup_run")
+    if footage and ev.get("frozen_fps") is not None:
+        fps = ev.get("frozen_fps")
+        dup = ev.get("frozen_ratio")
+        run = ev.get("max_frozen_run")
     if fps is None or dup is None:
         return None
     try:
@@ -1003,7 +1034,9 @@ def review_video(mp4: Path, context: dict | None = None) -> dict:
         # a render whose measured cadence is below the active quality phase's
         # hard floor is invalid — block it outright without spending a vision
         # call. This only ever ADDS a block (never overrides a brain BLOCK).
-        gate = temporal_hard_fail(temporal)
+        gate = temporal_hard_fail(
+            temporal, footage=str(ctx.get("format") or "").strip().lower()
+            in REAL_FOOTAGE_FORMATS)
         if gate:
             dims = {k: 0 for k in WEIGHTS}
             dims["temporal_craft"] = temporal_grade(temporal)
