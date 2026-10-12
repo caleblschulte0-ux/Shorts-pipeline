@@ -764,5 +764,21 @@
   "topic": "unmapped ocean vs Mars",
   "starred": false,
   "sig": "91ed2ea9378d"
+ },
+ {
+  "mechanic": "crew-walks-off-deck",
+  "concept": "a muster of 34 real sailors from 1980 stands on deck; 14 of them walk off one by one until only today's 20 remain",
+  "code": "p = subject_image('sailor in orange safety vest')\ncols = 7\ntot = int(values[0])\nnow = int(values[1])\ngone = int(round((tot - now) * clamp(reveal * 1.1, 0, 1)))\ncw = (RX1 - RX0) / cols\nrows = math.ceil(tot / cols)\nch = 190\ny0 = 330\nfor k in range(tot):\n    r = k // cols\n    c = k % cols\n    x = RX0 + c * cw\n    y = y0 + r * ch\n    leaving = k >= tot - gone\n    if k >= now and leaving:\n        off = clamp((reveal * 1.1 * (tot - now) - (tot - 1 - k)) , 0, 1)\n        x = x + off * (RX1 + 200 - x)\n        y = y - off * 40\n    if p is not None:\n        paste(p, x + 10, y, cw - 20, ch - 10)\n    else:\n        d.ellipse([x + 30, y + 10, x + cw - 30, y + ch - 20], fill=rgba(REST if k < now else HIGHLIGHT))\ncnt = tot - gone\ntext('crew aboard', (RX0 + RX1) / 2, RTOP + 10, size=48, color=SUBTLE, center=True)\ntext(str(cnt), (RX0 + RX1) / 2, RTOP + 80, size=170, color=HIGHLIGHT, center=True)\ntext(labels[0] + ': ' + fmt(values[0]), RX0, 1330, size=44, color=TEXT)\ntext(labels[1] + ': ' + fmt(values[1]), RX0, 1400, size=44, color=HIGHLIGHT)",
+  "topic": "cargo crew",
+  "starred": false,
+  "sig": "143ce1a819ea"
+ },
+ {
+  "mechanic": "coin-tower-vs-worker-coin",
+  "concept": "a worker is one gold coin; the CEO's coin tower grows year by year to 21, 31, 398 and 281 coins for every one",
+  "code": "ceo = subject_image('CEO in suit')\nwk = subject_image('factory worker')\nt = reveal * (n - 1)\ni = min(int(t), n - 2)\nv = lerp(values[i], values[i + 1], t - i)\nyr = labels[i] if t - i < 0.5 else labels[i + 1]\nbase = 1380\nunit = 1000.0 / vmax * 1.0\nch = max(unit, 1.0)\ncx = 720\ncnt = int(v)\nfor k in range(cnt):\n    y = base - (k + 1) * ch\n    d.rectangle([cx - 110, y, cx + 110, y + max(ch - 1, 1)], fill=rgba(HIGHLIGHT if k % 2 else REST, 240))\nd.rectangle([cx - 110, base - 6, cx + 110, base], fill=rgba(TEXT, 255))\nd.rectangle([260, base - ch, 360, base], fill=rgba(HIGHLIGHT, 255))\nif wk is not None:\n    paste(wk, 230, base - 330, 180, 320)\nif ceo is not None:\n    paste(ceo, cx - 130, base - cnt * ch - 280, 260, 280)\ntext(str(yr), RX0, RTOP + 20, size=110, color=TEXT)\ntext(fmt(v) + ' to 1', RX0, RTOP + 150, size=64, color=HIGHLIGHT)\ntext('worker = 1 coin', 220, base + 20, size=34, color=SUBTLE)",
+  "topic": "ceo pay ratio",
+  "starred": false,
+  "sig": "2faada722f49"
  }
 ]
