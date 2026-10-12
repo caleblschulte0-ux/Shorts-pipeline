@@ -126,10 +126,12 @@ Rules:
     at least 2s apart, each on the exact second from the transcript:
     "zoom": a hard punch-in, silent, on THE reaction or the punchline
     (the stunned face, the "BRO", the line that lands);
-    "whoa": the punch-in WITH the Vine boom, for the one moment a viewer
-    goes "whoa": the jaw-drop reveal, the unbelievable play, the line
-    nobody saw coming. EMPHASIS, so at most ONE per clip and only when
-    the moment is genuinely a whoa; most clips have none;
+    "whoa": the punch-in WITH the Vine boom, on the ONE second the clip
+    exists for when that second is a shock or a flex: the clap back,
+    the hush, the threat, the reveal, the jaw-drop play, the line nobody
+    saw coming. Most clips worth posting have that second, so they get
+    exactly one whoa on it. EMPHASIS: never two, never on every zoom; a
+    calm, sweet or sad clip gets none;
     "shake": the frame shakes, silent, on a scream, a jump scare, a
     slam, someone losing it;
     "awkward": a slow push-in with crickets on a cringe silence or a
