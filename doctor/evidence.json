@@ -7,6 +7,12 @@
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_doctor",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261011 (the doctor is a daily read).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261011.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
         "code": "short_slate_explainer",
         "severity": "warning",
         "detail": "explainer: 2/4 posted for 20261011.",
@@ -17,12 +23,6 @@
         "severity": "critical",
         "detail": "trending 20261011: production outcome says 5/6 uploaded and repair never completed (1 quarantined, 1 failed).",
         "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
-      },
-      {
-        "code": "trending_short_after_retries",
-        "severity": "warning",
-        "detail": "trending shipped 0/3; 1 re-authored replacement(s) also failed to fill it.",
-        "fix": "Read daily_report.json for each hold reason. The gate being right is not the bug \u2014 the authoring feeding it is. NEVER weaken the gate to close this alarm."
       },
       {
         "code": "doctor_reviewer_silent",
@@ -222,570 +222,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-10-09T12:45:21+00:00",
-      "slug": "freshwater-accessible",
-      "score": 40,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "The payoff is broken: '0.007%' is drawn as a growing 100.0% disc next to '0.0%', so the video ends by showing the opposite of 'this small', with three chart beats and Data standing around.",
-      "auto_fails": [
-        "decorative_mascot: Data stands at the edge of the scale in hook@0.3 to seg0:end, beside the bar in seg1:mid, beside the column in seg2:mid, and on top of the circle in seg3:start to seg4:end. He never pours, tips or causes anything. He only stands, rides or cheers.",
-        "bare_number_card: seg3:start to seg4:end is a single blue disc with '100.0%' printed in it, plus a tiny '0.0%' at the right edge. It is a number on a blob that demonstrates nothing.",
-        "dead_air: seg3 and seg4 show the same disc, '100.0%' label and Data from seg3:start (15.9s) to seg4:end (23.4s). The disc only grows, so two beats are effectively identical.",
-        "empty_void: In seg3:start and seg3:mid the small disc sits in a large empty dark field and the upper half of the frame is bare. Most of the frame below the scale in hook@0.3 is also unused.",
-        "unreadable: In hook@0.8 to seg0:end Data stands on top of the '96.5%' label, so it reads '6.5%'. The seg2/seg3 header is cut off as 'LOCKED AWAY (OCEANS, ICE, DEEP GROUNDWATER\u2026'. 'Rivers & lakes (accessible)' in seg3/seg4 is tiny low-contrast text pinned to the right edge."
-      ],
-      "problems": [
-        "seg3/seg4: 0.007% is rounded to '0.0%' and the locked-away disc labelled '100.0%' grows to fill the frame. This contradicts the narration and the closing question 'this small?'.",
-        "Hook and seg0 render the same balance scale, and seg1 repeats 96.5 vs 3.5 as bars, so one fact is shown three times.",
-        "Data never causes anything. He stands beside the scale, the bar and the column, and stands on the disc.",
-        "Data covers the '96.5%' label in hook@0.8 to seg0:end.",
-        "The seg2/seg3 header is truncated with an ellipsis, and 'Rivers & lakes (accessible)' is tiny edge text.",
-        "seg1 and seg2 are plain charts (bars, stacked column) with no water physics."
-      ],
-      "fixes": [
-        "Rebuild seg3 as the payoff: Data fills a huge tank (all of Earth's water) and scoops a single drop or thimble for lakes and rivers, labelled '0.007%'. Format small shares with significant figures, never one decimal place.",
-        "Cut the duplicate seg1 bars. Use the hook scale once, with Data tipping it by dumping ocean water on one pan.",
-        "Make seg2 an iceberg or ice sheet where Data chips a pick into a 69% frozen block, so 'locked up' is drawn as ice.",
-        "Keep Data's body clear of every number label.",
-        "Shorten the header so it is never truncated, and make the accessible-water label large and next to its mark.",
-        "Give the closing beat a distinct final image, the lone drop beside the ocean, instead of holding the seg3 disc."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 72
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "dead_air",
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "payoff_contradicts_claim",
-        "visible_evidence": "The narration says lakes and rivers hold 0.007%. On screen there is a growing disc labelled '100.0%' and a sliver label '0.0%'. Then the closing asks 'Would you have guessed it was this small?' over a disc that fills the frame.",
-        "root_cause": "A two-part share chart was rounded to one decimal place, so 0.007% shows as 0.0%. The animation grows the LOCKED-AWAY share instead of revealing the tiny reachable one, so the picture proves the opposite of the line.",
-        "repair_goal": "Make the reachable water the hero. Data pours the whole Earth's water into a giant tank, then dips a tiny cup or drop out of it for lakes and rivers. Label it '0.007%' (never 0.0%), have it land by 4s, and keep the huge locked-away mass as the scale reference behind it."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.162,
-        "effective_fps": 20.1,
-        "max_dup_run": 14,
-        "measured": true,
-        "judder_ratio": 0.003,
-        "judder_fps": 23.9,
-        "held_s": 1.88,
-        "max_dup_at_s": 0.0,
-        "duration_s": 23.92
-      },
-      "fingerprint": "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|payoff_contradicts_claim",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T12:53:05+00:00",
-      "slug": "marathon-super-shoes-record-pace",
-      "score": 14,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "blocked before vision review: duplicate_ratio 0.504 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-      "auto_fails": [
-        "temporal_gate: duplicate_ratio 0.504 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
-      ],
-      "problems": [
-        "duplicate_ratio 0.504 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 71
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "temporal_gate"
-      ],
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.504,
-        "effective_fps": 11.9,
-        "max_dup_run": 26,
-        "measured": true,
-        "judder_ratio": 0.011,
-        "judder_fps": 23.7,
-        "held_s": 7.79,
-        "max_dup_at_s": 4.83,
-        "duration_s": 23.79
-      },
-      "fingerprint": "?|temporal_gate|-",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T13:01:02+00:00",
-      "slug": "billionaire-count-record-2025",
-      "score": 31,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 2
-      },
-      "one_line": "Three generic bar charts followed by a broken comparison: both circles say 'Billionaire wealth 127%', so the S&P 500's 195% payoff never appears on screen.",
-      "auto_fails": [
-        "decorative_mascot: In the hook and seg0, Data stands on a ladder beside the 2025 bar and points (hook@0.3 to seg0:end). In seg1 he raises his arms beside the line, and from seg3 to seg4 he just perches on top of a circle. None of it causes the motion.",
-        "bare_number_card: In seg3:start to seg3:end and seg4, the scene is two plain teal circles with a percentage in each and nothing else. The bottom caption at seg3:start also repeats a big '127%'.",
-        "dead_air: The hook (0.3s) through seg0:end (3.88s) shows the same finished bar chart with only small mascot arm moves. seg4:start to seg4:end shows the same two-circle frame with only small pulses.",
-        "empty_void: At seg2:start, a three-bar chart sits in the lower third and the upper half of the frame is empty. In seg3 and seg4 there is a large empty band between the title and the circles.",
-        "unreadable: In seg3:mid and seg3:end, BOTH circles are labelled 'Billionaire wealth 127%', so the S&P 500's 195% never appears and the comparison is wrong on screen. At seg1:start the x-axis years '20242025' run together, and at seg2:start the caption 'than doubled, from' is greyed out at low contrast."
-      ],
-      "problems": [
-        "seg3/seg4: the second circle is labelled 'Billionaire wealth 127%' when it should be 'S&P 500 195%'. The payoff is factually wrong on screen.",
-        "The hook, seg0 and seg2 are plain bar charts, with no physical depiction of billionaires or wealth.",
-        "Data stands on a ladder pointing, then perches on circles. He never causes any of the motion.",
-        "The hook and seg0 hold the same finished chart for about 4 seconds.",
-        "Hook caption '1,200 new billionaires' is a number argument. The chart opens already finished, with no build.",
-        "The x-axis labels '20242025' collide at seg1."
-      ],
-      "fixes": [
-        "Fix the comparison data binding so the second mark is the S&P 500 at 195% and drawn visibly larger than the 127% mark.",
-        "Replace the bar charts with a bespoke picture, for example a crowd of billionaire figures or a vault of gold bars that Data stacks, growing from 1,826 to 3,028.",
-        "Show the wealth doubling as a money pile Data shovels onto, which then doubles in size.",
-        "Make Data the cause in every scene, for example driving the stock-market rocket that outruns the billionaire pile.",
-        "Put space between the 2024 and 2025 axis labels, and keep the captions at full contrast."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 90
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "dead_air",
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "bare_number_card",
-        "visible_evidence": "seg3:start to seg3:end: two identical teal circles, both labelled 'Billionaire wealth' and '127%', while the narration says the S&P 500 grew 195 percent. The second circle should be the S&P at 195% and never is.",
-        "root_cause": "The comparison machine bound the same series to both slots, so the S&P 500 value never reached the second mark. Both circles are also the same size, so they show no difference at all.",
-        "repair_goal": "Bind the second mark to the S&P 500 at 195% with its own label. Draw the two as things that grow (billionaire wealth vs a stock-chart rocket or tower), with the S&P one visibly bigger and passing the other. Data should be the one driving the stock side up, for example pumping or climbing it, so the "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.247,
-        "effective_fps": 18.1,
-        "max_dup_run": 18,
-        "measured": true,
-        "judder_ratio": 0.053,
-        "judder_fps": 22.7,
-        "held_s": 3.29,
-        "max_dup_at_s": 0.0,
-        "duration_s": 29.88
-      },
-      "fingerprint": "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|bare_number_card",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T13:07:06+00:00",
-      "slug": "permafrost-thaw",
-      "score": 48,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 2,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Two charts in a row for the temperature, then a generic pink block stack. Nothing looks like frozen ground or carbon, and Data does nothing until the second half.",
-      "auto_fails": [
-        "decorative_mascot: In seg0:start, seg0:mid and seg0:end Data just hangs from or floats between the empty bars with his arms up, and in seg1:start, seg1:mid and seg1:end he stands on top of the 870B bubble. Neither scene gives him a bit tied to the number. He only becomes the cause from seg2 on, stacking the blocks from a ladder.",
-        "bare_number_card: In seg0:mid and seg0:end the five bars are all the same length and empty. The numbers -8, -6.5, -5, -3.5 and -2.3 appear only as text in the right-hand column, so the beat is a list of numbers with nothing demonstrated.",
-        "empty_void: In seg2:start three thin blocks sit alone in a large empty navy field, and the top 40% of the frame is blank above the stack. In seg1:start two small circles float in a mostly empty frame.",
-        "unreadable: In seg1:end the '870B' label turns dark ink with a broken outline on the pink circle and is hard to make out at phone size. In the hook frames the chart labels ('-8', '1983') are tiny grey text that disappears on the dark ground."
-      ],
-      "problems": [
-        "The hook opens on a bar chart building from -8. It is the chart kind of opening, with no shock in the first frame and no picture of permafrost.",
-        "seg0 redraws the same temperature data as empty bars with text values, a bare number list, and Data hangs uselessly between the rows.",
-        "seg1 is a bubble chart with Data parked on top, and its '870B' label goes dark-on-pink and becomes hard to read by seg1:end.",
-        "seg2 to seg4 is a pink-bar stacking machine with no subject in it, so the blocks could stand for anything.",
-        "The frames are often half empty (seg2:start, seg1:start), and the end of seg4 holds a finished stack while the header '2030 10B \u2192 2100   150B' reads awkwardly."
-      ],
-      "fixes": [
-        "Replace the hook and seg0 with a single cutaway of permafrost ground. Data drives a thermometer or melts the ice lens so the number rises toward 0 in the soil itself, with a ghost mark at -8.",
-        "In seg1, draw the carbon as a physical mass, for example frozen soil blocks against a thin band of sky, rather than two circles. Keep the label in white ink with a solid outline.",
-        "In seg2, have Data dig or chip frozen chunks out of the ground and release them as dark gas clouds that pile up in the sky. Show the 1.7 trillion store as a ghost so the 150B reads as a share of it.",
-        "Fill the frame: stage the scene full-bleed with ground and sky, and remove the crammed range header in favour of one headline number."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 88
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg0",
-        "index": 1,
-        "failure_class": "bare_number_card",
-        "visible_evidence": "seg0:mid and seg0:end show five identical, empty, dark bar tracks labelled 1983\u20132023, with the temperatures only as right-aligned text. Data dangles between the 1983 and 2000 rows doing nothing. It is also the second chart in a row after the hook's bar chart of the same data.",
-        "root_cause": "The 'warming toward zero' relationship was drawn as a ranked bar chart whose bars never filled, so neither the chart nor Data carries the change from -8 to -2.3. It repeats the hook's picture of the same data as a weaker chart.",
-        "repair_goal": "Make the permafrost itself carry the number. Draw a cutaway of frozen ground with a thermometer driven into it, where Data pushes or hammers the thermometer's level up from -8 to just under 0. As the ice in the soil visibly softens into mud, a ghost mark stays at -8 so the scale is on screen. Land o"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.266,
-        "effective_fps": 17.6,
-        "max_dup_run": 16,
-        "measured": true,
-        "judder_ratio": 0.013,
-        "judder_fps": 23.7,
-        "held_s": 5.38,
-        "max_dup_at_s": 8.75,
-        "duration_s": 29.17
-      },
-      "fingerprint": "?|bare_number_card+decorative_mascot+empty_void+unreadable|bare_number_card",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T13:12:21+00:00",
-      "slug": "permafrost-thaw",
-      "score": 48,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 2,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Three of four data beats are charts (one has broken empty bars that repeat the hook), and Data is only a real performer in the closing block stack.",
-      "auto_fails": [
-        "decorative_mascot: In hook@0.3 to seg0:end Data walks along the axis with his hands on his head. In seg1:mid and seg1:end he floats between the year rows. In seg2:start to seg2:end he just stands on the 870B bubble. Only seg3 and seg4 give him a real job, climbing the ladder to stack blocks."
-      ],
-      "problems": [
-        "seg1 bar ranking renders empty tracks for negative temperatures, so the bars show nothing and only the numbers on the right change",
-        "seg1 shows the same temperature series as the hook and seg0, so the same data appears twice",
-        "The hook opens on a slow bar-chart build with Data clutching his head; no shock image of thawing ground",
-        "seg2 is two generic bubbles with Data standing on one, so he is decoration",
-        "No permafrost, ice, ground or carbon imagery anywhere; nothing is made of the subject",
-        "The final payoff label '2030 10B \u2192 2100 150B' is crowded and Data's head collides with it"
-      ],
-      "fixes": [
-        "Rebuild seg1 as a frozen-ground cross-section with a thermometer or frost line rising toward a marked 0\u00b0 line, with Data pushing it up",
-        "Open the hook on the finished thaw image (ground slumping, ice melting), not a bar chart",
-        "Draw seg2 as a sky reservoir beside a much bigger frozen-soil reservoir, with Data shoveling or pouring carbon between them",
-        "Make the seg3 and seg4 blocks frozen carbon or ice chunks Data pulls out of thawing ground, and give the final label room clear of Data"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 85
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot"
-      ],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "broken_chart",
-        "visible_evidence": "In seg1:start the bars for 1983, 2000, 2010, 2016 and 2023 are empty dark tracks with no fill. Only the values (-8, -6.5, -5, -3.5, -2.3) on the right change. Data floats between rows (seg1:mid, seg1:end) doing nothing. It also repeats the hook's chart, so the same data appears twice.",
-        "root_cause": "A bar ranking was used for negative temperatures, so the bars have no length and render empty. The subject is ground warming toward the thaw point, which a ranking cannot show. Data has no agent role.",
-        "repair_goal": "Replace it with a picture made of the subject: a cross-section of frozen ground with a thermometer, or a frost line, rising from -8 at 1983 to -2.3 at 2023 and closing in on a marked 0\u00b0 melt line. Data should be the cause, for example pushing the thermometer up or chipping at ice that turns to mud. "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.274,
-        "effective_fps": 17.4,
-        "max_dup_run": 15,
-        "measured": true,
-        "judder_ratio": 0.015,
-        "judder_fps": 23.6,
-        "held_s": 5.08,
-        "max_dup_at_s": 0.0,
-        "duration_s": 28.38
-      },
-      "fingerprint": "?|decorative_mascot|broken_chart",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T13:17:38+00:00",
-      "slug": "permafrost-thaw",
-      "score": 57,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 2,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A three-chart explainer about thawing ground with almost no ground in it: seg1's bar chart renders as empty tracks, and only the closing block-stack gives Data a real job.",
-      "auto_fails": [
-        "bare_number_card: In seg1:mid and seg1:end every bar track is empty. Only the right-hand values (-8, -6.5, -5, -3.5, -2.3) carry the data, so it is a column of numbers, not a demonstration."
-      ],
-      "problems": [
-        "seg1: the bar chart's bars are empty tracks; it is a column of numbers that repeats seg0's data.",
-        "seg0/seg1 show the same temperature series twice in a row, both as charts.",
-        "seg2: generic bubble comparison; Data just stands on the pink bubble with his hands on his head.",
-        "Nothing in the video depicts permafrost, ice, soil or carbon; every scene is a chart or abstract blocks.",
-        "Payoff: the stack ends on a small text range '2030 10B \u2192 2100 150B' instead of a visual hit tying 150B to something felt."
-      ],
-      "fixes": [
-        "Redraw seg1 as frozen ground warming: a soil cross-section with an embedded thermometer rising from -8 to -2.3 while the ice recedes, with Data pushing it.",
-        "Make seg2 a physical comparison: the atmosphere's carbon as one sky-volume beside a nearly twice-as-large mass buried in frozen soil, with Data digging it up.",
-        "Turn the seg3/seg4 blocks into something made of the subject (thawing slabs of carbon-rich soil or plumes rising out of the ground), keeping Data as the one releasing them.",
-        "Cut the duplicate temperature scene so the hook goes straight into the single best temperature visual."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 85
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card"
-      ],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "bare_number_card",
-        "visible_evidence": "seg1:start through seg1:end show a horizontal bar chart of permafrost temperature (1983-2023). Every bar track is empty, with only a tiny nub at the left. The values sit in a column on the right, and Data wanders between rows with no task.",
-        "root_cause": "Bars for negative temperatures were drawn with zero or negative length, so the chart renders as empty tracks. The scene also repeats the same five numbers seg0 already showed, as a plainer chart.",
-        "repair_goal": "Replace it with a scene made of the subject: a cross-section of frozen ground whose ice line or frost-blue fill recedes as a thermometer embedded in the soil climbs from -8 to -2.3. Data should do the warming, for example by pushing the needle or chipping at ice that shrinks, and the payoff number s"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.274,
-        "effective_fps": 17.4,
-        "max_dup_run": 15,
-        "measured": true,
-        "judder_ratio": 0.015,
-        "judder_fps": 23.6,
-        "held_s": 5.08,
-        "max_dup_at_s": 0.0,
-        "duration_s": 28.38
-      },
-      "fingerprint": "?|bare_number_card|bare_number_card",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T13:35:33+00:00",
-      "slug": "body-renewal-clock",
-      "score": 27,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "A run of stock bubble, bar and line charts behind a garbled AI skeleton opening, with overlapping unreadable labels and Data used as decoration. Nothing here shows the body being renewed.",
-      "auto_fails": [
-        "junk_imagery: hook@0.3\u2013seg0:end: a garbled AI-style skeleton torso cutout with no arms below the elbow and no legs, over a dark void. Glossy generic 'cell' blobs (green sphere, green drop) also sit beside it.",
-        "decorative_mascot: seg1:start\u2013seg4:end: Data stands beside or on top of the chart in the same bobbing pose throughout. At seg1 he covers the '5 days' label, at seg3:end he perches on the line end, and at seg4 he idles in the top-left corner. Nothing he does causes the data's motion.",
-        "bare_number_card: seg4:mid\u2013seg4:end: the closing is just five circles labelled 0T/8.3T/16.5T/24.8T/30T on a dark background, a bubble version of the line chart already shown in seg3.",
-        "empty_void: hook@0.8 / seg0:start: about 55% of the frame below the skeleton is an empty dark gradient, with one small figure at the top.",
-        "unreadable: hook@0.3 and seg0:end: '120 d28 d5 days' and 'Red blood cellSkin Stomach lining' print on top of each other. seg1:start\u2013seg1:end: '5 day28 days' collides and Data covers it, and 'Stomach lining' is tiny. seg4:mid/seg4:end: the 30T circle is cut off by the caption band, and '0T' and 'Day 0' are tiny and sit under Data."
-      ],
-      "problems": [
-        "Hook: a garbled skeleton cutout over a void, the 330-billion hook number is never shown, and the hook-frame labels overlap into nonsense.",
-        "seg1\u2013seg2: '5 day28 days' collides and Data covers the stomach-lining label.",
-        "Every segment is a chart (bubbles, bars, a line, bubbles), with nothing made of the subject.",
-        "Data bobs beside or on the charts and causes none of the motion.",
-        "seg4: the closing repeats seg3's data as circles; the 30T circle is cut off by the caption band and there is no picture of the phone or skin.",
-        "The title of seg3 says 'per day' while the data is a cumulative total."
-      ],
-      "fixes": [
-        "Replace the skeleton with a lit body scene where cells visibly shed. Data shovels the 330-billion pile while the hook line is on screen from frame one.",
-        "Measure label extents so labels never overlap, and keep Data off the labels.",
-        "Show turnover as the tissue itself: a stomach lining peeling off and regrowing on a 5-day clock beside a bone with one sliver replaced in a decade.",
-        "Close on a picture of skin beside a phone with ages marked on them, not a repeat of the cell totals.",
-        "Have Data be the cause in every beat (stacking the new cells, peeling the old skin) with a tool, not standing beside a chart."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 72
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "decorative_mascot",
-        "empty_void",
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "junk_imagery+unreadable",
-        "visible_evidence": "An armless, legless AI skeleton torso floats at the top of an empty dark frame. Under it, the labels '120 days', '28 days' and '5 days' and their tissue names are printed on top of one another. The hook line '330 billion cells vanish every day' never appears on screen; the caption shows seg0's line ",
-        "root_cause": "The opening picture is a stock-icon size comparison that uses a generated skeleton cutout. Its label layout is placed by order, not measured, so the labels collide. The hook number (330 billion a day) has no picture at all.",
-        "repair_goal": "Open on the 330-billion claim drawn as a lit scene: a body shedding a visible stream of cells, with Data sweeping or shovelling the pile away. Put the hook line on the plate from frame one. Remove the skeleton cutout and the overlapping labels."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.283,
-        "effective_fps": 17.2,
-        "max_dup_run": 15,
-        "measured": true,
-        "judder_ratio": 0.005,
-        "judder_fps": 23.9,
-        "held_s": 3.79,
-        "max_dup_at_s": 0.0,
-        "duration_s": 24.0
-      },
-      "fingerprint": "?|bare_number_card+decorative_mascot+empty_void+junk_imagery+unreadable|junk_imagery+unreadable",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T13:39:57+00:00",
-      "slug": "body-renewal-clock",
-      "score": 27,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "",
-      "auto_fails": [
-        "junk_imagery: hook@0.3 through seg0:end: a glossy AI-style 3D skeleton torso with no arms or legs, plus generic blob icons (a red dot cluster, a green ball, a green drop) standing in for red blood cells, skin and stomach lining",
-        "decorative_mascot: seg1:start-end, Data stands on top of the '5 days' bubble with his hands up; seg2:mid-end, he stands beside the pink bar; seg4:start-end, he stands still over '0T'. He never does anything to the data",
-        "bare_number_card: seg4:start-end, the payoff is five circles labelled 0T, 8.3T, 16.5T, 24.8T and 30T under 'skin is younger than your phone'. They are bare numbers on blobs and none of them is about skin or phones",
-        "empty_void: hook@0.8, seg0:start and hook@1.5: the whole bottom half of the frame, between the skeleton and the caption, is empty dark gradient",
-        "unreadable: hook@0.3 and seg0:end: '120 d28 d5days' and 'Red blood cellSkin Stomach lining' are printed on top of each other; seg1:mid shows '5 day28 days' overlapping; seg4:mid/end: the 30T bubble is cut off by the bottom edge; seg3:end: the circled '30T' sits under Data's feet"
-      ],
-      "problems": [],
-      "fixes": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 72
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "decorative_mascot",
-        "empty_void",
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg0",
-        "index": 0,
-        "failure_class": "unreadable_overlap_and_void",
-        "visible_evidence": "The opening scene is a limbless AI skeleton torso over '3,650 days', with three tissue labels and values stacked on top of one another ('120 d28 d5days'). The bottom half of the frame is empty, and the scene doesn't show the hook line (330 billion cells vanishing) at all",
-        "root_cause": "The labels of a horizontal icon row are placed at fixed spacing without measuring their width, so they collide. The hook picture shows the seg0 comparison instead of the hook's claim, and nothing fills the lower frame",
-        "repair_goal": "Open on the finished picture of cells vanishing: show 330 billion as a body shedding a visible stream of cells in the first frame. Lay the turnover clocks out with measured, non-overlapping labels across the full frame, have Data cause the action (e.g. scrubbing off the stomach lining while the skel"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.282,
-        "effective_fps": 17.2,
-        "max_dup_run": 15,
-        "measured": true,
-        "judder_ratio": 0.005,
-        "judder_fps": 23.9,
-        "held_s": 3.79,
-        "max_dup_at_s": 0.0,
-        "duration_s": 24.0
-      },
-      "fingerprint": "?|bare_number_card+decorative_mascot+empty_void+junk_imagery+unreadable|unreadable_overlap_and_void",
-      "style_arm": "current"
-    },
     {
       "ts": "2026-10-09T13:45:08+00:00",
       "slug": "body-renewal-clock",
@@ -4277,11 +3713,491 @@
       },
       "fingerprint": "?|junk_imagery+unreadable|unreadable_label_and_repeated_stat",
       "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-12T11:39:18+00:00",
+      "slug": "sports_jaylen_brown__edwards_for",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+      "auto_fails": [
+        "temporal_gate: effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "problems": [
+        "effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 26.0,
+        "dark_fraction": 0.0,
+        "sampled": 96
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.547,
+        "effective_fps": 10.9,
+        "max_dup_run": 36,
+        "measured": true,
+        "judder_ratio": 0.01,
+        "judder_fps": 23.7,
+        "held_s": 14.0,
+        "max_dup_at_s": 0.29,
+        "duration_s": 31.96
+      },
+      "fingerprint": "?|temporal_gate|-"
+    },
+    {
+      "ts": "2026-10-12T11:41:23+00:00",
+      "slug": "sports_dustin_poirier__make_weight",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The story itself is a strong moment, but the edit wastes the punchline on a small letterboxed wide shot and never punches in on the reaction.",
+      "auto_fails": [],
+      "problems": [
+        "Wide shots are letterboxed with blurred bands, so about 35% of the frame is wasted and Poirier is small and off-centre (mid0, mid3, payoff)",
+        "No zoom or sound hit on the punchline; the ending wide shot gives no visible reaction",
+        "Hook line partly overlaps the WATERS logo in the set background (hook@0.3)"
+      ],
+      "fixes": [
+        "Crop the wide shots to 9:16 on Poirier instead of letterboxing",
+        "Punch in with a hit on the 'lifted him up' line and hold on the hosts' laughter",
+        "End on the close-up reaction"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 82
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "payoff",
+        "index": 11,
+        "failure_class": "weak_payoff",
+        "visible_evidence": "payoff@-0.4 and mid3 are a static wide shot of the panel. Poirier is small at the right edge, with no punch-in on the laugh or reaction.",
+        "root_cause": "The edit goes back to the letterboxed wide shot for the punchline and aftermath instead of holding the close-up framing used in mid1/mid2",
+        "repair_goal": "Punch in on Poirier and the hosts' reaction as the 'hairy man ass cheek' line lands. End on that reaction in close framing, not the wide letterboxed shot."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.303,
+        "effective_fps": 16.7,
+        "max_dup_run": 15,
+        "measured": true,
+        "judder_ratio": 0.003,
+        "judder_fps": 23.9,
+        "held_s": 4.46,
+        "max_dup_at_s": 2.75,
+        "duration_s": 27.25
+      },
+      "fingerprint": "?|-|weak_payoff"
+    },
+    {
+      "ts": "2026-10-12T11:44:30+00:00",
+      "slug": "sports_anne_hathaway_y_guesses_og",
+      "score": 70,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "A real, on-promise celebrity moment, but the opening is a static wide shot and the ending trails off over two overlapping captions instead of landing the friends' disbelief.",
+      "auto_fails": [
+        "unreadable: payoff@-1.8: the word caption 'YOU JUST CAN'T.' is printed on top of a second garbled caption, so both are illegible at phone size"
+      ],
+      "problems": [
+        "The hook opens on a static wide shot (hook@0.3-1.5) with filler captions ('TOO.', 'YOU GUYS DID', 'THIS.') before the zoom at hook@2.2",
+        "payoff@-1.8 shows two word captions stacked over each other, both unreadable",
+        "The cut ends on Dakota listening mid-sentence (payoff@-0.4) with no clear reaction payoff",
+        "The title promises friends who 'can't believe it', but no clear disbelief reaction from the friends is shown",
+        "Blurred letterbox bands top and bottom waste some of the frame"
+      ],
+      "fixes": [
+        "Open on the zoomed shot where Anne says the name with the card raised (as at hook@2.2), not on the wide shot",
+        "Remove the overlapping caption cue near 43.6s so only one caption shows at a time",
+        "End on the strongest reaction, either Anne's 'I'M SO HAPPY.' or a friend's stunned reaction, and hold it for about a second",
+        "Crop the footage to fill the vertical frame instead of leaving blurred bands"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 136
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 1,
+        "failure_class": "unreadable_overlap_and_flat_payoff",
+        "visible_evidence": "payoff@-1.8 shows two stacked word captions over each other ('YOU JUST CAN'T.' over a garbled line), then payoff@-0.4 ends on Dakota Johnson listening mid-reaction with no closing beat",
+        "root_cause": "The caption timing lets two subtitle cues overlap at the cut, and the edit ends mid-conversation instead of on the strongest reaction (Anne's 'I'M SO HAPPY.' at mid2 or the friends' disbelief)",
+        "repair_goal": "Show only one caption cue at a time near the end, and end the cut on a clear payoff beat: the correct guess landing and the friends reacting in disbelief, held long enough to read"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.301,
+        "effective_fps": 16.8,
+        "max_dup_run": 21,
+        "measured": true,
+        "judder_ratio": 0.103,
+        "judder_fps": 21.5,
+        "held_s": 5.96,
+        "max_dup_at_s": 32.75,
+        "duration_s": 45.42
+      },
+      "fingerprint": "?|unreadable|unreadable_overlap_and_flat_payoff"
+    },
+    {
+      "ts": "2026-10-12T11:46:04+00:00",
+      "slug": "sports_kyle_shanahan_uel_theres_a",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: duplicate_ratio 0.51 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+      "auto_fails": [
+        "temporal_gate: duplicate_ratio 0.51 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+      ],
+      "problems": [
+        "duplicate_ratio 0.51 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 82
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.51,
+        "effective_fps": 11.8,
+        "max_dup_run": 50,
+        "measured": true,
+        "judder_ratio": 0.003,
+        "judder_fps": 23.9,
+        "held_s": 11.33,
+        "max_dup_at_s": 15.0,
+        "duration_s": 27.42
+      },
+      "fingerprint": "?|temporal_gate|-"
+    },
+    {
+      "ts": "2026-10-12T11:49:00+00:00",
+      "slug": "sports_eli_manning_lark_looking",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The jacked ref is real and on screen, but the second half drifts to Falcons players, and Peyton's comeback and the brothers' reaction get no zoom or hit, so the payoff is weak.",
+      "auto_fails": [],
+      "problems": [
+        "After mid3 the cut leaves the subject of the joke for unrelated player footage (mid4\u2013payoff@-0.8)",
+        "The reaction to Peyton's 'boys' medium' line is never punched in or marked with a sound hit; the only visible reaction is a small Eli smile at payoff@-0.4",
+        "The ref is small in the inset in the hook frames, so 'jacked' does not read in the first 2s",
+        "The bottom ~40% of every frame is blurred fill, which leaves the real footage small on a phone"
+      ],
+      "fixes": [
+        "Open on a tight crop of the ref's arms so the hook reads at once",
+        "Trim the footage after ~20s that shows players and no ref",
+        "Punch in on Eli and Peyton laughing at the comeback, with a sound hit, and end on that",
+        "Scale the broadcast panel up to use more of the frame instead of the blurred fill"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 81
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid4",
+        "index": 4,
+        "failure_class": "payoff_not_shown",
+        "visible_evidence": "From mid4 (20.66s) through payoff@-0.8 the shot cuts away from the jacked referee to Falcons players (#33 and #56) celebrating. The ref's arms, which are the whole joke, are only on screen in mid1\u2013mid3. The only reaction is Eli's smile at payoff@-0.4, and there is no zoom or sound hit on it",
+        "root_cause": "The cut follows the broadcast's own camera instead of the joke. The source clip runs past the ref moment into unrelated play, and nothing marks the reaction or Peyton's 'boys' medium' comeback",
+        "repair_goal": "End the cut on the referee: punch in on Land Clark's arms while Eli asks the question, then punch in on Peyton/Eli laughing at 'they got a boys' medium on', with a sound hit. Trim the Falcons player footage after 20s so the video ends on the reaction"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.039,
+        "effective_fps": 23.1,
+        "max_dup_run": 8,
+        "measured": true,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.79,
+        "max_dup_at_s": 11.75,
+        "duration_s": 26.96
+      },
+      "fingerprint": "?|-|payoff_not_shown"
+    },
+    {
+      "ts": "2026-10-12T11:50:56+00:00",
+      "slug": "sports_mike_ditka_he_ball_game",
+      "score": 87,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A genuinely funny real moment that lands on the arm-raised 'BALL GAME!', but it is weighed down by a burned-in caption from a prior repost stacked under our own text.",
+      "auto_fails": [],
+      "problems": [
+        "The source carries another channel's burned-in caption, 'Mike Ditka sings Da quickest...', in every frame, which repeats our top line and stacks three text layers.",
+        "Blurred letterbox bands at the top and bottom show this is a re-upload of a repost, which costs craft.",
+        "The first half-second is the interviewer's back and a 'MR.' caption rather than Ditka singing."
+      ],
+      "fixes": [
+        "Mask or crop out the inherited burned-in caption, or suppress our word captions where it overlaps the same space.",
+        "Find a cleaner, earlier-generation source without the blurred bands.",
+        "Start the cut on Ditka mid-song so the first frame is the moment itself."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 87
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "cluttered_text_stack",
+        "visible_evidence": "In hook@0.3 to hook@1.5 the frame carries three text layers at once: our top line, our yellow and white word captions, and the source's burned-in 'Mike Ditka sings Da quickest Take Me Out to the Ball Game ever'. The opening shot is the interviewer's back, not Ditka singing.",
+        "root_cause": "The source is a repost of a repost with someone else's caption and blurred bands burned in. Our word captions were added on top of it instead of being skipped or moved.",
+        "repair_goal": "Crop or mask the burned-in repost caption, or drop our word captions where the source already labels the moment. Open on Ditka mid-song (as in mid1) rather than on the interviewer's shoulder."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.003,
+        "effective_fps": 23.9,
+        "max_dup_run": 2,
+        "measured": true,
+        "judder_ratio": 0.001,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 6.92,
+        "duration_s": 29.08
+      },
+      "fingerprint": "?|-|cluttered_text_stack"
+    },
+    {
+      "ts": "2026-10-12T11:54:02+00:00",
+      "slug": "sports_dak_prescott_ott_pointing",
+      "score": 53,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The line promises Dak pointing out a heckler, but the sampled frames never show the point. It is 51s of shaky tunnel walking that ends on an ambiguous man at a rope.",
+      "auto_fails": [
+        "dead_air: From hook@0.3 to mid0, then mid2, mid3 and the payoff frames, it is shaky phone footage of people walking a tunnel. The point the line promises never shows in a sampled frame, so long stretches deliver nothing."
+      ],
+      "problems": [
+        "The hook (0-2.5s) shows two coaches walking with Dak tiny in the background, which gives a stranger no reason to stay.",
+        "The moment the title sells (Dak pointing, 'get him outta here') is not visible in any sampled frame.",
+        "Most of the 51s runtime is untrimmed walking footage, including a blurry over-the-shoulder shot at mid2.",
+        "The payoff frames (payoff@-1.8, payoff@-0.4) show a man at a rope barrier with no clear removal and no reaction, so the ending does not land.",
+        "No zoom, punch-in or sound hit marks the reaction, which the format contract calls for."
+      ],
+      "fixes": [
+        "Trim to the 15-25s around the point and the removal.",
+        "Flash forward the pointing frame into the first second and punch in on Dak's arm and face.",
+        "Add a second line or a punch-in at the turn naming who is being pointed at.",
+        "End on the heckler being clearly escorted out, held long enough to read."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 153
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "dead_air"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "promise_not_shown",
+        "visible_evidence": "From hook@0.3 to hook@2.2 two staffers walk toward the camera and Dak is a tiny figure far in the background. At mid1 Dak is seen from behind, walking. mid2 is a close-up of a staffer's shoulder, and mid3/mid4 show a staffer walking off with someone talking into a phone. No sampled frame shows Dak p",
+        "root_cause": "The cut runs the whole 51s phone video as-is instead of trimming to the moment of the point and the 'get him outta here'. The opening spends its first seconds on two coaches who are not the subject.",
+        "repair_goal": "Open on (or flash forward to) the second Dak turns and points, with a punch-in on his arm and face. Cut the walk-up to 2-3s. End on the heckler being led away so the payoff is clearly visible, and trim the total to about 20-25s."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.0,
+        "effective_fps": 24.0,
+        "max_dup_run": 1,
+        "measured": true,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 51.08
+      },
+      "fingerprint": "?|dead_air|promise_not_shown"
+    },
+    {
+      "ts": "2026-10-12T11:56:31+00:00",
+      "slug": "sports_dan_campbell_nounced_that",
+      "score": 87,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A real, emotional Campbell game-ball moment that lands with him wiping his eyes, held back only by a cut-off broadcast sponsor banner and one garbled word caption.",
+      "auto_fails": [],
+      "problems": [
+        "A broadcast sponsor lower third ('DIT UNION OF THE DETROIT LIONS UMCU.ORG', later 'SAVE TODAY!') takes up a big band of every frame and is cut off at both edges",
+        "The word caption at mid3, 'DAN IS SALT', reads as a mis-transcription",
+        "The hook opens on Campbell looking down at the ball. His emotion isn't visible until about 2s, so the first second relies on the text line"
+      ],
+      "fixes": [
+        "Crop or zoom the source to cut out the broadcast sponsor band",
+        "Correct the mid3 caption against the audio, or skip the word captions where the transcript is unsure",
+        "Consider opening on the most choked-up frame (the eye wipe at the end) as a flash-forward so the emotion is clear from frame one"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 101
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid3",
+        "index": 3,
+        "failure_class": "craft_caption_and_broadcast_clutter",
+        "visible_evidence": "At mid3 the word caption reads 'DAN IS SALT', which looks like a mis-transcription that a viewer can't parse. Below it, a large cut-off sponsor lower third ('SAVE TODAY!') fills the bottom band from mid2 to the end.",
+        "root_cause": "The source was taken straight from a broadcast stream, so the sponsor ticker came with it, and the auto-transcript fragment was not checked against the audio.",
+        "repair_goal": "Crop or scale the source to remove the broadcast sponsor band. Fix the word caption at mid3 so it reads what Campbell actually says (e.g. 'Dan is the salt of the earth'), or drop the word captions for that stretch."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.051,
+        "effective_fps": 22.8,
+        "max_dup_run": 4,
+        "measured": true,
+        "judder_ratio": 0.005,
+        "judder_fps": 23.9,
+        "held_s": 0.0,
+        "max_dup_at_s": 18.75,
+        "duration_s": 33.5
+      },
+      "fingerprint": "?|-|craft_caption_and_broadcast_clutter"
     }
   ],
   "showrunner_recurrence": {
     "?|bare_number_card+decorative_mascot+empty_void+unreadable|bare_number_card": {
-      "count": 5,
+      "count": 4,
       "days": [
         "2026-10-09"
       ]
@@ -4293,17 +4209,18 @@
         "2026-10-11"
       ]
     },
-    "?|temporal_gate|-": {
-      "count": 2,
+    "?|-|weak_payoff": {
+      "count": 3,
       "days": [
-        "2026-10-09",
-        "2026-10-11"
+        "2026-10-10",
+        "2026-10-12"
       ]
     },
-    "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|bare_number_card": {
-      "count": 2,
+    "?|temporal_gate|-": {
+      "count": 3,
       "days": [
-        "2026-10-09"
+        "2026-10-11",
+        "2026-10-12"
       ]
     },
     "?|-|slow_chart_build_hook": {
@@ -4313,47 +4230,10 @@
         "2026-10-11"
       ]
     },
-    "?|-|weak_payoff": {
-      "count": 2,
-      "days": [
-        "2026-10-10",
-        "2026-10-12"
-      ]
-    },
     "longform|temporal_gate|-": {
       "count": 2,
       "days": [
         "2026-10-11"
-      ]
-    },
-    "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|payoff_contradicts_claim": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
-      ]
-    },
-    "?|decorative_mascot|broken_chart": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
-      ]
-    },
-    "?|bare_number_card|bare_number_card": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
-      ]
-    },
-    "?|bare_number_card+decorative_mascot+empty_void+junk_imagery+unreadable|junk_imagery+unreadable": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
-      ]
-    },
-    "?|bare_number_card+decorative_mascot+empty_void+junk_imagery+unreadable|unreadable_overlap_and_void": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
       ]
     },
     "?|decorative_mascot+empty_void+unreadable|unreadable_overlap_layout": {
@@ -4363,6 +4243,12 @@
       ]
     },
     "?|dead_air+decorative_mascot+empty_void+unreadable|chart_fallback_unreadable": {
+      "count": 1,
+      "days": [
+        "2026-10-09"
+      ]
+    },
+    "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|bare_number_card": {
       "count": 1,
       "days": [
         "2026-10-09"
@@ -4571,11 +4457,41 @@
       "days": [
         "2026-10-12"
       ]
+    },
+    "?|unreadable|unreadable_overlap_and_flat_payoff": {
+      "count": 1,
+      "days": [
+        "2026-10-12"
+      ]
+    },
+    "?|-|payoff_not_shown": {
+      "count": 1,
+      "days": [
+        "2026-10-12"
+      ]
+    },
+    "?|-|cluttered_text_stack": {
+      "count": 1,
+      "days": [
+        "2026-10-12"
+      ]
+    },
+    "?|dead_air|promise_not_shown": {
+      "count": 1,
+      "days": [
+        "2026-10-12"
+      ]
+    },
+    "?|-|craft_caption_and_broadcast_clutter": {
+      "count": 1,
+      "days": [
+        "2026-10-12"
+      ]
     }
   },
   "recent_commits": [
-    "1203a5f 2026-10-12 explainer: update posted log + analytics [skip ci]",
-    "10bcb41 2026-10-12 claim: mailbox verdicts 2026-10-12T04:48Z [skip ci]"
+    "99a845a 2026-10-12 deadman: repaired 2026-10-12 [skip ci]",
+    "d5f2b07 2026-10-12 third: analytics [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4592,10 +4508,11 @@
         "2026-10-08": 1,
         "2026-10-09": 5,
         "2026-10-10": 5,
-        "2026-10-11": 5
+        "2026-10-11": 5,
+        "2026-10-12": 3
       },
-      "total_posted": 439,
-      "attempted": 439,
+      "total_posted": 442,
+      "attempted": 442,
       "rejected_or_pending": 0
     },
     "explainer": {
@@ -4634,11 +4551,12 @@
         "2026-10-09": 7,
         "2026-10-10": 6,
         "2026-10-11": 6,
-        "2026-10-12": 1
+        "2026-10-12": 4,
+        "2026-10-13": 1
       },
-      "total_posted": 396,
-      "attempted": 926,
-      "rejected_or_pending": 530
+      "total_posted": 400,
+      "attempted": 939,
+      "rejected_or_pending": 539
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4652,62 +4570,62 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 123,
+      "videos": 124,
       "top_by_vph": [
         {
           "title": "Pollen Season Just Got 20 Days Longer",
-          "vph": 40.66,
-          "views": 349
+          "vph": 24.95,
+          "views": 384
         },
         {
           "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
-          "vph": 17.71,
-          "views": 571
+          "vph": 15.39,
+          "views": 601
+        },
+        {
+          "title": "Polio Cases Fell 99.9% In One Generation",
+          "vph": 13.1,
+          "views": 123
         },
         {
           "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
-          "vph": 6.46,
+          "vph": 5.97,
           "views": 537
         },
         {
           "title": "One Rule Change Fixed 16 Million Credit Scores For Free",
-          "vph": 5.56,
-          "views": 146
-        },
-        {
-          "title": "Super Shoes Just Broke The Marathon World Record Again",
-          "vph": 4.81,
-          "views": 342
+          "vph": 4.87,
+          "views": 161
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 130,
+      "videos": 131,
       "top_by_vph": [
         {
           "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 26.07,
-          "views": 617
+          "vph": 17.59,
+          "views": 772
         },
         {
           "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
-          "vph": 3.45,
-          "views": 651
-        },
-        {
-          "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 2.37,
-          "views": 1361
+          "vph": 3.26,
+          "views": 682
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 2.36,
-          "views": 328
+          "vph": 2.43,
+          "views": 387
+        },
+        {
+          "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
+          "vph": 2.29,
+          "views": 1361
         },
         {
           "title": "Plaqueboymax Dance Fails And Hits His Mouth On Camera",
-          "vph": 1.76,
+          "vph": 1.36,
           "views": 121
         }
       ],
@@ -4869,7 +4787,7 @@
       "title": "Executable direct pushes to main bypass the full suite",
       "horizon": "long_term",
       "severity": "medium",
-      "ruling": "doing"
+      "ruling": "in_progress"
     },
     {
       "signature": "38fd2900770d",
