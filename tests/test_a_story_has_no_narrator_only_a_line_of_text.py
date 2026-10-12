@@ -148,6 +148,25 @@ class WhoSomeoneIsIsCheckedTwice(unittest.TestCase):
             story_director.known_people("kaicenat", ["KaiCenat", "Reggie"])
         self.assertNotIn('"KaiCenat"', seen["user"])
 
+    def test_the_analysis_descriptions_become_bare_names(self):
+        # backtest 25's own `people` strings: asked verbatim, the news
+        # found 0 headlines and both models answered None for Reggie.
+        seen = {}
+
+        def claude(user, system=None, **k):
+            seen["user"] = user
+            return {"who": {}}
+        with mock.patch.object(story_director, "_call_claude",
+                               side_effect=claude):
+            story_director.known_people("kaicenat", [
+                "Kai Cenat (streamer, speaking to camera)",
+                "Reggie (the contact in the on-screen tex",
+                "Rod (mentioned, not shown)", "a shirtless friend",
+                "Other players on the side facecams", "Reggie"])
+        self.assertIn('NAMES: ["Reggie", "Rod"]', seen["user"])
+        self.assertIn("Reggie", self.entries.call_args_list[0].args[0])
+        self.assertNotIn("contact", self.entries.call_args_list[0].args[0])
+
     def test_a_dead_brain_costs_nothing(self):
         with mock.patch.object(story_director, "_call_claude",
                                side_effect=RuntimeError("down")):

@@ -166,6 +166,25 @@ def premise_names(text: str) -> list[str]:
     return list(dict.fromkeys(out))
 
 
+_NOT_A_PERSON = re.compile(r"^(?:a|an|the|other|some|his|her|their|unknown|"
+                           r"several|two|three|chat|viewers?)\b", re.I)
+
+
+def bare_name(text: str) -> str:
+    """The proper name in a scene-analysis `people` entry, or "". The
+    analysis writes "Reggie (the contact in the on-screen tex" and "a
+    shirtless friend", and backtest 25 asked the news and both models
+    about those strings verbatim: 0 headlines, nothing confirmed, Reggie
+    unexplained again (2026-10-12)."""
+    t = re.split(r"\s*[(\[,;:]|\s+-\s+", str(text or ""), maxsplit=1)[0]
+    t = " ".join(t.split("/")[0].split()).strip(" .'\"")
+    words = t.split()
+    if (not words or len(words) > 3 or len(t) < 3 or _NOT_A_PERSON.match(t)
+            or not all(w[:1].isupper() or w[:1].isdigit() for w in words)):
+        return ""
+    return t
+
+
 def lead_streamer(reports: list[dict], who: list | None = None) -> str:
     """The followed streamer a story is about. A scouted story's first
     source is often a clip channel (27club, zylok), and asking the news or
@@ -188,9 +207,14 @@ def known_people(streamer: str, names: list[str]) -> dict:
     allowed a line of text on screen (2026-10-08); this is where its
     "who" may come from when the footage never says it. Best-effort:
     any failure or doubt returns nothing, and the cut is as before."""
-    me = str(streamer).strip().lower()
-    names = [str(n).strip() for n in names or []
-             if str(n).strip() and str(n).strip().lower() not in me][:8]
+    me = re.sub(r"\W", "", str(streamer).lower())
+    seen: dict = {}
+    for n in names or []:
+        b = bare_name(n)
+        k = re.sub(r"\W", "", b.lower())
+        if b and k not in me and k not in seen:
+            seen[k] = b
+    names = list(seen.values())[:8]
     if not names:
         return {}
     key = (str(streamer).lower(), tuple(sorted(n.lower() for n in names)))
