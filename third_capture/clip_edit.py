@@ -860,7 +860,7 @@ def _has_text(words: list[str]) -> bool:
 
 
 def line_spot(src: Path, picture_vf: str, dur: float, line_h: int,
-              samples: int = 6) -> tuple[int, str]:
+              samples: int = 6, speech: bool = False):
     """(y, why) for the one line of text: the bottom third, unless the
     footage already has text THERE.
 
@@ -872,12 +872,32 @@ def line_spot(src: Path, picture_vf: str, dur: float, line_h: int,
     graph ending in [vout], no captions) is read at `samples` moments; a
     band where real words show up in a third of them is taken, and the
     line moves to the top (`caption_line.TOP_Y`). Both taken: the one with
-    less text. No tesseract, or anything failing: the bottom, as before."""
+    less text. No tesseract, or anything failing: the bottom, as before.
+
+    `speech=True` also reads the band the word captions pop in
+    (`caption_line.SPEECH_Y`) in the same frames and returns
+    (y, why, speech_taken). On a 16:9 broadcast fitted into the 9:16
+    canvas that band is the bottom strip of the picture, where a scorebug
+    and a lower third sit: the 2026-10-11 Baller Bro dry run printed the
+    speech captions over ESPN's scorebug ("the caption is garbled and
+    printed over the ESPN scorebug, so the payoff doesn't land"). Taken
+    means the words are not burned, the same rule as `own_captions`."""
     import shutil
     from third_capture import caption_line as cl
     bands = {"bottom": cl.LINE_Y, "top": cl.TOP_Y}
+    if speech:
+        bands["speech"] = max(0, cl.SPEECH_Y - line_h // 2)
+
+    def done(y, why, hits=None, read=0):
+        if not speech:
+            return y, why
+        return y, why, bool(hits and taken(hits["speech"], read))
+
+    def taken(n, read):
+        return n >= 2 and n >= read / 3
+
     if not shutil.which("tesseract") or dur <= 0:
-        return cl.LINE_Y, "unchecked"
+        return done(cl.LINE_Y, "unchecked")
     hits = {k: 0 for k in bands}
     read = 0
     with tempfile.TemporaryDirectory() as td:
@@ -906,18 +926,16 @@ def line_spot(src: Path, picture_vf: str, dur: float, line_h: int,
                 if _has_text(_ocr_words(crop)):
                     hits[name] += 1
     if not read:
-        return cl.LINE_Y, "unchecked"
-
-    def taken(n):
-        return n >= 2 and n >= read / 3
-
-    if not taken(hits["bottom"]):
-        return cl.LINE_Y, "bottom free"
-    if not taken(hits["top"]):
-        return cl.TOP_Y, (f"footage has text in the bottom third "
-                          f"({hits['bottom']}/{read} frames)")
+        return done(cl.LINE_Y, "unchecked")
+    if not taken(hits["bottom"], read):
+        return done(cl.LINE_Y, "bottom free", hits, read)
+    if not taken(hits["top"], read):
+        return done(cl.TOP_Y, (f"footage has text in the bottom third "
+                               f"({hits['bottom']}/{read} frames)"),
+                    hits, read)
     y = cl.TOP_Y if hits["top"] < hits["bottom"] else cl.LINE_Y
-    return y, f"text top {hits['top']}/{read}, bottom {hits['bottom']}/{read}"
+    return done(y, f"text top {hits['top']}/{read}, bottom "
+                   f"{hits['bottom']}/{read}", hits, read)
 
 
 def transcribe_words(video: Path, model_name: str = "small") -> list[dict]:
@@ -1209,6 +1227,43 @@ def fetch_age_hours(url: str) -> float:
 from third_capture.shot_plan import BG_TOP  # noqa: E402,F401  one share, both fills
 
 
+#: A pause at least this long ends a spoken phrase.
+PHRASE_GAP_S = 0.45
+#: How far past the planned end a cut may run to finish the phrase.
+FINISH_MAX_S = 6.0
+#: Room after the last word, so the line lands before the cut.
+FINISH_TAIL_S = 0.8
+
+
+def finish_the_line(words: list[dict], t1: float, src_dur: float) -> float:
+    """The cut's end, moved so it never lands while someone is talking.
+
+    Speech runs across `t1` when a word straddles it or starts just after
+    it. Then the cut runs on to the end of the first word followed by a
+    pause (`PHRASE_GAP_S`), or by the end of the source, plus
+    `FINISH_TAIL_S`. That pause has to come within `FINISH_MAX_S`; when it
+    does not, the cut is left where it was (a stream that never stops
+    talking is not a reason for a 45s clip). It only ever moves the end
+    later: it cannot cut a payoff off."""
+    ws = sorted((w for w in words if w.get("e", 0) > w.get("s", 0)),
+                key=lambda w: w["s"])
+    if not ws or t1 >= src_dur - 0.05:
+        return t1
+    talking = any(w["s"] < t1 - 0.05 < w["e"] - 0.05 or
+                  t1 - 0.05 <= w["s"] < t1 + 0.25 for w in ws)
+    if not talking:
+        return t1
+    for i, w in enumerate(ws):
+        if w["e"] <= t1 - 0.05:
+            continue
+        if w["e"] > t1 + FINISH_MAX_S:
+            return t1
+        nxt = ws[i + 1]["s"] if i + 1 < len(ws) else None
+        if nxt is None or nxt - w["e"] >= PHRASE_GAP_S:
+            return min(src_dur, max(t1, w["e"] + FINISH_TAIL_S))
+    return t1
+
+
 def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
          start: float = 0.0, end: float = 0.0,
          whisper_model: str = "small", words: list[dict] | None = None,
@@ -1264,6 +1319,12 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             # keep the whole clip (front 45s) instead of a cut from nothing.
             if t1 - t0 < 8.0 or len(words) < 4:
                 t0, t1 = 0.0, min(src_dur, 45.0)
+    # NEVER END MID-SENTENCE (2026-10-11 Baller Bro dry run: two of seven
+    # cuts blocked for ending "mid-sentence on 'YOUR' instead of on the
+    # laugh" and "mid-sentence on 'tough start in'"): when someone is still
+    # talking across the end of the cut, carry it to their next pause.
+    if not start and not end and words:
+        t1 = finish_the_line(words, t1, src_dur)
     # OPENING GUARD (opening visual craft): never open on a dead frame —
     # nudge t0 past a black/near-black/frozen lead-in. Runs for EVERY cut
     # (auto, director, explicit, whole-clip) and BEFORE the caption rebase so
@@ -1444,10 +1505,18 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                 from PIL import Image as _Img
                 with _Img.open(line_png) as _im:
                     _lh = _im.height
-                line_y, _why = line_spot(src, plain_vf, dur, _lh)
+                line_y, _why, _speech_taken = line_spot(src, plain_vf, dur,
+                                                        _lh, speech=True)
                 ledger_ae["line_y"] = line_y
                 if line_y != caption_line.LINE_Y:
                     print(f"[edit] the line goes on top: {_why}", flush=True)
+                if _speech_taken and words and not own_subs:
+                    # the footage's own graphics sit where the words pop:
+                    # rewrite the captions file with no words in it
+                    build_ass([], credit, dur, tmp / "caps.ass")
+                    own_subs = True
+                    print("[edit] the footage has text where the words "
+                          "go — no speech captions", flush=True)
                     # footage that carries its own text in the bottom
                     # third (a show's subtitles, a repost's captions) gets
                     # no word captions either: two sets of words on one

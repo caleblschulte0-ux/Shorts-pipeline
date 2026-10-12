@@ -82,6 +82,13 @@ SPORTS_BRIEF = (
     "(not the score), honest. Hashtags lead with the athlete and team "
     "names and the league, and end with 'sports' (never streamerclips). "
     "A clip that is only a play with no person reacting gets "
+    "complete=false. The cut OPENS on the moment or the line that sets it "
+    "up, with the person clear in the shot: never on a wide shot, a walk "
+    "up a tunnel or a crowd before anything happens (the judge blocked "
+    "'opens on a distant walk-away' and 'a static wide shot where he is "
+    "barely visible'). It ENDS after the payoff line has been said in "
+    "full and the reaction to it, never in the middle of a sentence. When "
+    "the footage never shows the moment the post title promises, "
     "complete=false.")
 
 
