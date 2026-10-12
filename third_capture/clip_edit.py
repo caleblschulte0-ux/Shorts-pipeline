@@ -1448,6 +1448,15 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                 ledger_ae["line_y"] = line_y
                 if line_y != caption_line.LINE_Y:
                     print(f"[edit] the line goes on top: {_why}", flush=True)
+                    # footage that carries its own text in the bottom
+                    # third (a show's subtitles, a repost's captions) gets
+                    # no word captions either: two sets of words on one
+                    # frame read as clutter (the Jaylen Brown sample,
+                    # 2026-10-11). base_vf reads the .ass by path.
+                    if not own_subs and words:
+                        build_ass([], credit, dur, tmp / "caps.ass")
+                        own_subs = True
+                        print("[edit] ...and no word captions", flush=True)
             except Exception as e:  # noqa: BLE001
                 print(f"::warning::[edit] line spot failed "
                       f"({type(e).__name__}) — bottom third", flush=True)

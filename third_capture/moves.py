@@ -35,19 +35,28 @@ REPO = Path(__file__).resolve().parent.parent
 MUSIC = REPO / "cache" / "music"
 RATE = 44100
 
-HITS = {"zoom", "shake", "awkward"}
+HITS = {"zoom", "whoa", "shake", "awkward"}
 BEDS = {"sad", "hype"}
 MOVES = HITS | BEDS
 MAX_HITS = 3
+#: The Vine boom is EMPHASIS, one per clip at most (operator, 2026-10-11:
+#: "not on every zoom. You just use it in certain moments ... it's an
+#: emphasis. It's like a whoa.")
+MAX_WHOA = 1
 HIT_GAP = 2.0          # seconds between two hits: more is a seizure
 HYPE_LOOK = "eq=saturation=1.35:contrast=1.08"
 
 # (rise, hold, fall) seconds and peak zoom per hit
 _SHAPE = {"zoom": (0.10, 1.3, 0.22, 0.24),
+          "whoa": (0.05, 1.1, 0.20, 0.30),
           "shake": (0.04, 0.55, 0.12, 0.09),
           "awkward": (2.8, 0.9, 0.3, 0.15)}
-_SFX = {"zoom": ("boom", 0.85), "shake": ("boom", 0.95),
-        "awkward": ("crickets", 0.55)}
+#: Only the "whoa" booms, and it is the REAL Vine boom
+#: (assets/sfx/vine_boom.ogg, fetched by scripts/fetch_sfx.py): the
+#: operator heard two synthesised look-alikes and said "that's not it".
+#: A zoom or a shake is silent; a boom on every zoom stops meaning "whoa".
+_SFX = {"whoa": ("vine_boom", 0.9), "awkward": ("crickets", 0.55)}
+VINE_BOOM = REPO / "assets" / "sfx" / "vine_boom.ogg"
 
 
 # ---------------------------------------------------------------- plan --
@@ -93,6 +102,9 @@ def plan(edit: dict | None, dur: float, offset: float = 0.0) -> dict:
     for h in sorted(hits, key=lambda h: h["at"]):
         if len(out["hits"]) >= MAX_HITS:
             break
+        if h["move"] == "whoa" and sum(
+                k["move"] == "whoa" for k in out["hits"]) >= MAX_WHOA:
+            continue
         if all(abs(h["at"] - k["at"]) >= HIT_GAP for k in out["hits"]):
             out["hits"].append(h)
     l2 = edit.get("line2") or {}
@@ -171,20 +183,6 @@ def _norm(x, peak=0.9):
     return x / (np.abs(x).max() or 1.0) * peak
 
 
-def _boom():
-    """A deep cinematic boom: a falling sub, saturated, with a click."""
-    import numpy as np
-    n = int(1.4 * RATE)
-    t = np.arange(n) / RATE
-    f = 38 + 50 * np.exp(-t * 6)
-    ph = 2 * np.pi * np.cumsum(f) / RATE
-    body = np.sin(ph) + 0.35 * np.sin(2 * ph)
-    env = np.minimum(1, t / 0.004) * np.exp(-t * 2.4)
-    rng = np.random.default_rng(7)
-    click = rng.standard_normal(n) * np.exp(-t * 90) * 0.5
-    return _norm(np.tanh(2.2 * body * env) + click)
-
-
 def _crickets():
     """Two crickets in an empty room, ~3.5s."""
     import numpy as np
@@ -258,14 +256,18 @@ def _hype():
     return _norm(mix)
 
 
-_MAKERS = {"boom": _boom, "crickets": _crickets, "hype": _hype}
+_VERSION: dict = {}
+_MAKERS = {"crickets": _crickets, "hype": _hype}
 
 
 def sound(name: str) -> Path:
-    """cache/music/<name>_v1.wav, made once."""
+    """cache/music/<name>_v<N>.wav, made once (N moves when a sound is
+    remade, so a cached old one is never played again)."""
     if name == "sad":
         return mood_mod.bed()
-    path = MUSIC / f"{name}_v1.wav"
+    if name == "vine_boom":
+        return VINE_BOOM
+    path = MUSIC / f"{name}_v{_VERSION.get(name, 1)}.wav"
     if path.exists() and path.stat().st_size > 1000:
         return path
     return _write(path, _MAKERS[name]())
@@ -289,6 +291,8 @@ def audio_graph(p: dict, voice: str, first_input: int, dur: float,
         cur = "abed"
     sfx = []
     for i, k in enumerate(p.get("hits", [])):
+        if k["move"] not in _SFX:
+            continue                     # a silent hit: picture only
         name, gain = _SFX[k["move"]]
         files.append(sound(name))
         idx = first_input + len(files) - 1

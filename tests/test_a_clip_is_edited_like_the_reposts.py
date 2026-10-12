@@ -275,3 +275,51 @@ def test_the_stacked_and_action_layouts_leave_them_out_too():
     from third_capture import shot_plan as _sp
     for fn in (_sp._render_stacked, _sp._render_action_crop):
         assert "crop=iw:ih*{BG_TOP}:0:0," in _inspect.getsource(fn), fn
+
+
+class TheBoomIsAWhoaNotAZoom(unittest.TestCase):
+    """Operator, 2026-10-11: the synthesised booms were "not it", then of
+    the real one: "not on every Zoom. You just use it in certain moments
+    ... it's an emphasis. It's like a whoa." So the Vine boom is its own
+    hit, the REAL file, at most once per clip, and nothing else booms."""
+
+    def test_it_is_the_real_vine_boom(self):
+        import shutil
+        import subprocess
+        from third_capture import moves
+        self.assertEqual(moves.sound("vine_boom"), moves.VINE_BOOM)
+        self.assertTrue(moves.VINE_BOOM.exists())
+        # Ogg, not wav: the sanity gate refuses a committed .wav.
+        self.assertEqual(moves.VINE_BOOM.suffix, ".ogg")
+        if not shutil.which("ffprobe"):
+            self.skipTest("ffprobe not installed")
+        secs = float(subprocess.run(
+            ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+             "-of", "csv=p=0", str(moves.VINE_BOOM)],
+            capture_output=True, text=True).stdout)
+        self.assertTrue(0.5 < secs < 3.0, secs)
+
+    def test_only_the_whoa_booms(self):
+        from third_capture import moves
+        self.assertEqual({m for m, (snd, _) in moves._SFX.items()
+                          if snd == "vine_boom"}, {"whoa"})
+        p = {"hits": [{"move": "zoom", "at": 2.0},
+                      {"move": "shake", "at": 5.0}], "bed": None}
+        _, files = moves.audio_graph(p, "0:a", 1, 10.0, "aout")
+        self.assertEqual(files, [])
+
+    def test_one_whoa_per_clip(self):
+        from third_capture import moves
+        p = moves.plan({"moves": [{"move": "whoa", "at": 3},
+                                  {"move": "whoa", "at": 8},
+                                  {"move": "zoom", "at": 12}]}, 20.0)
+        self.assertEqual([h["move"] for h in p["hits"]], ["whoa", "zoom"])
+
+    def test_the_author_is_told_and_heard(self):
+        from pathlib import Path
+        from third_capture import author
+        src = Path(author.__file__).read_text()
+        self.assertIn('"whoa": the punch-in WITH the Vine boom', src)
+        self.assertIn('("zoom", "whoa", "shake", "awkward")', src)
+
+
