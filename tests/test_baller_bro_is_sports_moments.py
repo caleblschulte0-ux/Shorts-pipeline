@@ -132,5 +132,25 @@ class ThePackageChainStandsDown(unittest.TestCase):
         self.assertIn("r.captured('trending')", text)
 
 
+class AFiveSecondPostIsTooShort(unittest.TestCase):
+    """Operator, 2026-10-12, of samples that ran 5-14s, each the whole
+    post: "the clips are too short"."""
+
+    def test_a_short_post_is_skipped(self):
+        from unittest import mock
+        from scripts import sports_samples as ss
+        with mock.patch.object(ss, "_dur", return_value=5.7):
+            self.assertIn("too short", ss.too_short({"path": "x.mp4"}))
+        with mock.patch.object(ss, "_dur", return_value=24.0):
+            self.assertEqual(ss.too_short({"path": "x.mp4"}), "")
+        with mock.patch.object(ss, "_dur", return_value=0.0):
+            self.assertEqual(ss.too_short({"path": "x.mp4"}), "")
+
+    def test_the_post_run_checks_before_cutting(self):
+        code = _code(SRC)
+        self.assertLess(code.index("ss.too_short(info)"),
+                        code.index("ss.make(c, info, mp4)"))
+
+
 if __name__ == "__main__":
     unittest.main()
