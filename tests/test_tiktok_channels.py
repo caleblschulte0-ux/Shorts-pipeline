@@ -1,4 +1,5 @@
-"""TikTok posts only where the registry turns it on (explainer and third),
+"""TikTok posts only where the registry turns it on (explainer, third and,
+since 2026-10-12, Baller Bro: the operator, "Yes do it"),
 and the uploader asks the site for the registry's handle, so a channel
 needs no TIKTOK_HANDLE_<CHANNEL> repo variable to post."""
 from __future__ import annotations
@@ -19,7 +20,7 @@ class OnlyTheExplainerPostsToTikTok(unittest.TestCase):
     def test_registry_switches(self):
         self.assertTrue(crosspost.tiktok_posting_on("explainer"))
         self.assertTrue(crosspost.tiktok_posting_on("third"))
-        self.assertFalse(crosspost.tiktok_posting_on("trending"))
+        self.assertTrue(crosspost.tiktok_posting_on("trending"))
         self.assertFalse(crosspost.tiktok_posting_on("no-such-channel"))
 
     def test_a_static_token_cannot_turn_an_off_channel_on(self):
@@ -27,7 +28,9 @@ class OnlyTheExplainerPostsToTikTok(unittest.TestCase):
                "TIKTOK_HANDLE_THIRD": "third.brain.down"}
         env = {"TIKTOK_ACCESS_TOKEN": "t", "TIKTOK_ACCESS_TOKEN_TRENDING": "t",
                "TIKTOK_HANDLE_TRENDING": "ballerbro2.1"}
-        with mock.patch.dict(os.environ, env, clear=True):
+        off = mock.patch.object(crosspost, "tiktok_posting_on",
+                                lambda ch: ch != "trending")
+        with mock.patch.dict(os.environ, env, clear=True), off:
             for ch in ("trending",):
                 ready, why = crosspost._tiktok_ready(ch)
                 self.assertFalse(ready)
