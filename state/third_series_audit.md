@@ -6,11 +6,11 @@
 | wholesome | 15 | 0.08 |
 | fail | 13 | 0.04 |
 | drama | 10 | 0.035 |
-| argument | 7 | 0.06 |
 | win | 7 | 0.03 |
-| rage | 6 | 0.215 |
-| beef | 4 | 0.16 |
-| jumpscare | 3 | 0.18 |
+| argument | 6 | 0.055 |
+| rage | 6 | 0.21 |
+| beef | 5 | 0.11 |
+| jumpscare | 3 | 0.17 |
 | clutch | 3 | 0.02 |
 
 Excluded from the content-mix comparison (unclassified / non-series structure):
