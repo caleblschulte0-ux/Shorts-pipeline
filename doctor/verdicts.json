@@ -1,6 +1,6 @@
 {
   "schema": "shorts-doctor-verdicts/v1",
-  "updated": "20261011",
+  "updated": "20261012",
   "verdicts": {
     "a5318d0404da": {
       "verdict": "done",
@@ -1290,10 +1290,16 @@
       ]
     },
     "500b791bc671": {
-      "verdict": "doing",
-      "date": "20260904",
-      "because": "Confirmed: .github/workflows/auto-merge.yml only triggers on pull_request and gates every job to startsWith(github.head_ref,'claude/'); exchange_phase_a.yml:38-42 explicitly documents direct human/PAT pushes to main as a supported path with no equivalent full-suite gate. Real coverage gap; fix is a new scoped push-to-main verification workflow reusing the PR gate's test environment \u2014 a new workflow file, queued rather than rushed.",
-      "history": []
+      "verdict": "in_progress",
+      "date": "20261012",
+      "because": "PR #623 opened: main_verify.yml runs the full suite on executable pushes to main",
+      "history": [
+        {
+          "verdict": "doing",
+          "date": "20260904",
+          "because": "Confirmed: .github/workflows/auto-merge.yml only triggers on pull_request and gates every job to startsWith(github.head_ref,'claude/'); exchange_phase_a.yml:38-42 explicitly documents direct human/PAT pushes to main as a supported path with no equivalent full-suite gate. Real coverage gap; fix is a new scoped push-to-main verification workflow reusing the PR gate's test environment \u2014 a new workflow file, queued rather than rushed."
+        }
+      ]
     },
     "e61446f7bc2a": {
       "verdict": "in_progress",
