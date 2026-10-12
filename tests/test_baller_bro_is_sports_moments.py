@@ -156,5 +156,18 @@ class AFiveSecondPostIsTooShort(unittest.TestCase):
                         code.index("ss.make(c, info, mp4)"))
 
 
+class ItReachesTikTok(unittest.TestCase):
+    """Operator, 2026-10-12: "Yes do it". A post reaches TikTok through its
+    release, so the run must be able to make one."""
+
+    def test_the_run_can_make_the_release(self):
+        wf = (ROOT / ".github" / "workflows" / "sports.yml").read_text()
+        step = wf[wf.index("Make, judge and post"):]
+        step = step[:step.index("- name:")]
+        self.assertIn("GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}", step)
+        self.assertIn("GITHUB_REPOSITORY:", step)
+        self.assertIn("crosspost(CHANNEL", SRC)
+
+
 if __name__ == "__main__":
     unittest.main()
