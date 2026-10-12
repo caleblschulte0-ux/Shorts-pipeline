@@ -12842,13 +12842,68 @@
       "ts": "2026-10-12T12:46:21.170832+00:00"
     },
     "clip-20261012-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/emiru/clip/SpotlessAggressiveHorseradishShazBotstix-SAfGW4-c8iV5cKpC",
-      "story_key": null,
-      "streamer": "emiru",
+      "url": "https://youtube.com/shorts/wP8pUWRtuoA",
       "title": "Emiru Says Hello To Shutter And Gets The Cutest Meow Back",
       "kind": "twitch_clip",
-      "ts": "2026-10-12T12:47:57.193178+00:00",
+      "ts": "2026-10-12T12:48:07.187906+00:00",
+      "uploaded_at": "2026-10-12T12:48:07.187917+00:00",
+      "publish_at": "2026-10-12T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261012-emiru-says-hello-to-shutter-and-gets-the-cutest--34f7754b",
+        "tiktok": "queued for 2026-10-12T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/emiru/clip/SpotlessAggressiveHorseradishShazBotstix-SAfGW4-c8iV5cKpC",
+      "streamer": "emiru",
+      "series": "wholesome",
+      "hook": "Shutter just meowed at Emiru \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 29823,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 12.28
+      },
+      "director_cut": true
+    },
+    "rejected-boringsmellyalpacalitfam-jrcfceloctqxyu-x": {
+      "source_url": "https://www.twitch.tv/lirik/clip/BoringSmellyAlpacaLitFam-JrcfCelOCTQxyu-X",
+      "streamer": "lirik",
+      "title": "nothing",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (game physics oddity, no clear payoff)",
+      "ts": "2026-10-12T12:49:42.306191+00:00"
+    },
+    "rejected-enthusiasticopenleopardkevinturtle-9epkessfmjprwwyq": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/EnthusiasticOpenLeopardKevinTurtle-9ePKesSFMJPrWwyQ",
+      "streamer": "kaicenat",
+      "title": "???????????????????",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (eating stream, chat spam, no event)",
+      "ts": "2026-10-12T12:50:01.736353+00:00"
+    },
+    "rejected-kitschysucculentbeanstrawbeary-2km8hz6fru8ulxis": {
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/KitschySucculentBeanStrawBeary-2km8HZ6Fru8uLXIs",
+      "streamer": "rayasianboy",
+      "title": "LIL D",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Insider DL talk, no visible event)",
+      "ts": "2026-10-12T12:50:45.090007+00:00"
+    },
+    "clip-20261012-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/DreamyPuzzledMushroom4Head-yBuKIUDx_uI2M5xi",
+      "story_key": null,
+      "streamer": "plaqueboymax",
+      "title": "Plaqueboymax Shows His Stitched Chin After A Rough Week And Roasts Chat",
+      "kind": "twitch_clip",
+      "ts": "2026-10-12T12:53:44.239771+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
