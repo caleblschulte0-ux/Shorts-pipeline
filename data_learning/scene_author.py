@@ -43,7 +43,7 @@ TIMEOUT_S = int(os.environ.get("SCENE_AUTHOR_TIMEOUT", "420"))
 
 # A VIDEO'S DRAWING TIME IS BOUNDED. An explainer run renders four videos in
 # one 300-minute job, each needing up to five first drafts (hook, beats,
-# closing) at three attempts apiece — unbounded, one slow brain could time the
+# closing) at `ATTEMPTS` attempts apiece — unbounded, one slow brain could time the
 # whole job out with nothing posted. `set_budget` starts a video's clock;
 # once it is spent `author` stops asking, the video falls back to the current
 # look (one video, one look), and the drafts that did land are saved for the
@@ -1445,7 +1445,16 @@ def opening_problems(code) -> list[str]:
             f"in the beats"]
 
 
-def author(title, topic, say, pts, unit="", attempts=3, log=print, brief="",
+#: First drafts per scene. The CLOCK is the real bound (`_remaining`), so a
+#: scene that keeps tripping a different check keeps its turn while the
+#: video's budget lasts. At three, 2026-10-12 spent five hours on twelve
+#: stories and posted none: most beats gave up with half the budget unused
+#: (hurricane names: two beats drawn, the third refused three times in three
+#: minutes, story dropped with eight minutes left). Same checks, more tries.
+ATTEMPTS = 5
+
+
+def author(title, topic, say, pts, unit="", attempts=ATTEMPTS, log=print, brief="",
            secs: float | None = None, opening: bool = False):
     """(scene_fn, code) for a verified brain-drawn scene, or (None, reason).
     `brief` adds the job on top of the rules: a closing, or a repair."""
