@@ -130,7 +130,9 @@ QUESTION ({qw} words): {question}
 Return STRICT JSON: {{"hook": str, "closing": str, "question": str, \
 "segments": [{{"topic": str, "say": str}}, ...]}} with exactly {n} segments \
 in the same order. A "topic" is printed on the video: at most {tw} words — \
-keep the beat's when it fits, shorten it when it does not."""
+keep the beat's when it fits, shorten it when it does not. COUNT THE \
+WORDS of every say before you answer and aim for about {aim}: one word \
+over the limit is refused."""
 
 
 def _prompt(sc: dict, b: dict, note: str | None = None) -> str:
@@ -146,7 +148,7 @@ def _prompt(sc: dict, b: dict, note: str | None = None) -> str:
                        closing=sc.get("closing") or "",
                        qw=words(sc.get("question")),
                        question=sc.get("question") or "", n=len(segs),
-                       tw=_topic_words())
+                       tw=_topic_words(), aim=b["say_words"] - 4)
     if note:
         p += f"\n\nYour previous rewrite was REFUSED — fix exactly this:\n{note}"
     return p
@@ -223,7 +225,8 @@ def tighten(sc: dict, *, config_path: Path | None = None, brain=None,
         cand, probs = rw.validate(sc, ans)
         if cand is None:
             reasons = probs
-            note = "; ".join(probs)[:400]
+            from shared.narration import _cut_by
+            note = "; ".join(_cut_by(p) for p in probs)[:400]
             log(f"[pace] {sc.get('slug')}: rewrite {attempt + 1} refused: {note[:160]}")
             continue
         _apply(sc, cand, config_path, log)
