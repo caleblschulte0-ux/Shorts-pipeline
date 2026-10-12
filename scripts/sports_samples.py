@@ -76,6 +76,14 @@ Return STRICT JSON:
 `who` is the main person's name as fans search it (the athlete, coach
 or team when no one person carries it), from the post title only.
 `why` is one short sentence: what a stranger sees that makes them stay.
+NOT A RESTREAM: skip a post that is someone else's stream or video
+REACTING to the moment (a streamer's webcam in the corner, a chat column,
+a video playing inside a video, "X reacts to"): it is cropped wrong and the
+viewer sees the reaction, not the moment. And skip a post whose point is a
+reference a stranger would not get from the clip alone (operator, of a
+reaction-stream Jaylen Brown clip: "What the fuck are they even talking
+about?").
+
 LENGTH: the post must run long enough to tell the moment, at least 15-20
 seconds with the build-up and the reaction: an interview answer, a mic'd
 up exchange, a podcast bit, a fan's whole encounter. A post that is only
@@ -102,7 +110,10 @@ SPORTS_BRIEF = (
     "complete=false. Keep at least 15 seconds, more when the build-up "
     "and the reaction are there (the operator: 'the clips are too short'): "
     "keep the setup before the moment and the reaction after it, never "
-    "only the moment itself.")
+    "only the moment itself. complete=false when the clip is a "
+    "streamer or YouTuber reacting to the moment (someone talking over "
+    "it, chat being read) rather than the moment itself, or when a "
+    "stranger could not tell from the clip what they are talking about.")
 
 
 def _brain(user: str, system: str) -> dict | None:

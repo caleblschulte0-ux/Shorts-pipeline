@@ -59,6 +59,10 @@ class TheGateComesBeforeTheUpload(unittest.TestCase):
         self.assertIn("SPORTS MOMENT", text)
         self.assertIn("mark decorative_mascot present", text)
         self.assertIn("junk_imagery", text)
+        # operator, 2026-10-12, of a reaction-stream cut: "What the fuck
+        # are they even talking about?"
+        self.assertIn("restream", text)
+        self.assertIn("what they are talking about", text)
         self.assertEqual(run_sports.FORMAT, "sports_moment")
 
 
