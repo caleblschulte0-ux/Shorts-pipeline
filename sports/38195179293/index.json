@@ -1,0 +1,143 @@
+[
+ {
+  "sub": "soccer",
+  "who": "Jorge Jesus",
+  "why": "A manager bristles on camera when asked if he owes Ronaldo an apology, and his heated back-and-forth plays out in full.",
+  "post_title": "Jorge Jesus Responds When Asked If He Owes Ronaldo an Apology: \u201cWhat did you say? Wait a minute? What did you say?\u201d \u201cApologize? To whom am I apologizing? What did I do to have to apologize?\u201d",
+  "upvotes": 0,
+  "url": "https://www.reddit.com/r/soccer/comments/1wye05d/jorge_jesus_responds_when_asked_if_he_owes/",
+  "permalink": "https://www.reddit.com/r/soccer/comments/1wye05d/jorge_jesus_responds_when_asked_if_he_owes/",
+  "skipped": "too short: the post runs 10.7s (< 15s)"
+ },
+ {
+  "sub": "nba",
+  "who": "Jonathan Kuminga",
+  "why": "He threatens to slap whoever came up with the 'Kum Bucket' nickname, and the reaction makes it worth watching.",
+  "post_title": "Jonathan Kuminga responds to fan who calls him \u201cKum Bucket\u201d: \u2018Whoever said that, imma come find you and I\u2019ll slap you.\u201d",
+  "upvotes": 0,
+  "url": "https://streamable.com/12ssok",
+  "permalink": "https://www.reddit.com/r/nba/comments/1x0iyi6/jonathan_kuminga_responds_to_fan_who_calls_him/",
+  "skipped": "too short: the post runs 9.1s (< 15s)"
+ },
+ {
+  "sub": "nba",
+  "who": "Jaylen Brown",
+  "why": "He fires back at Anthony Edwards with a savage line about Adidas and condoms.",
+  "post_title": "Jaylen Brown claps back at Anthony Edwards for taking shots at him and LeBron: \"Adidas doing anything for my boy, they need to give my boy some condoms",
+  "upvotes": 0,
+  "url": "https://streamable.com/f4zgsr",
+  "permalink": "https://www.reddit.com/r/nba/comments/1x21qyh/jaylen_brown_claps_back_at_anthony_edwards_for/",
+  "meta": {
+   "title": "Jaylen Brown Claps Back At Anthony Edwards Over Adidas And Goes There",
+   "hook": "Jaylen Brown claps back at Ant over Adidas \ud83d\ude2d",
+   "caption": "Jaylen Brown fires back at Anthony Edwards after his shots at him and LeBron, joking about what Adidas should give him.",
+   "cta": "Was Jaylen's clap back fair or did he go too far? \ud83d\udc47",
+   "hashtags": [
+    "jaylenbrown",
+    "anthonyedwards",
+    "celtics",
+    "nba",
+    "adidas",
+    "basketball",
+    "sports"
+   ],
+   "series": "beef",
+   "edit": {
+    "mood": "",
+    "mood_at": 0.0,
+    "complete": true,
+    "moves": [
+     {
+      "move": "whoa",
+      "at": 4.5
+     }
+    ],
+    "cut": {
+     "start": 0.0,
+     "end": 29.2
+    }
+   }
+  },
+  "hook": "Jaylen Brown claps back at Ant over Adidas \ud83d\ude2d",
+  "ledger": {
+   "moves": [
+    "whoa@4.5"
+   ],
+   "mood": null,
+   "shot_plan": {
+    "layout": "action",
+    "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+    "shots": [
+     {
+      "mode": "action",
+      "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+     }
+    ],
+    "n_subjects": 1,
+    "crop": [
+     810,
+     1080,
+     248,
+     0
+    ]
+   }
+  },
+  "file": "01_jaylen-brown.mp4"
+ },
+ {
+  "sub": "nfl",
+  "who": "Kyle Shanahan",
+  "why": "He tells a funny story about the no-rules tackle game he and Deebo Samuel used to play.",
+  "post_title": "[Highlight] Kyle Shanahan on Deebo Samuel: \"There's a game we used to play when we were younger that I can't say the name of it anymore. It's tackle the guy with the ball with no rules to it, and I al",
+  "upvotes": 0,
+  "url": "https://www.reddit.com/r/nfl/comments/1x0zwxi/highlight_kyle_shanahan_on_deebo_samuel_theres_a/",
+  "permalink": "https://www.reddit.com/r/nfl/comments/1x0zwxi/highlight_kyle_shanahan_on_deebo_samuel_theres_a/",
+  "meta": {
+   "title": "Kyle Shanahan Says Deebo Samuel Would Be His First Pick In A No-Rules Tackle Game",
+   "hook": "Shanahan on Deebo: first pick, no rules \ud83d\ude02",
+   "caption": "Kyle Shanahan explains why he'd draft Deebo Samuel first if the game was tackle the guy with the ball, no rules.",
+   "cta": "Is Deebo the hardest player in the NFL to tackle? \ud83d\udc47",
+   "hashtags": [
+    "kyleshanahan",
+    "deebosamuel",
+    "49ers",
+    "nfl",
+    "footballclips",
+    "sports"
+   ],
+   "series": "win",
+   "edit": {
+    "mood": "",
+    "mood_at": 0.0,
+    "complete": true,
+    "cut": {
+     "start": 0.0,
+     "end": 27.4
+    }
+   }
+  },
+  "hook": "Shanahan on Deebo: first pick, no rules \ud83d\ude02",
+  "ledger": {
+   "moves": [],
+   "mood": null,
+   "shot_plan": {
+    "layout": "action",
+    "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+    "shots": [
+     {
+      "mode": "action",
+      "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+     }
+    ],
+    "n_subjects": 0,
+    "crop": [
+     354,
+     472,
+     244,
+     0
+    ]
+   }
+  },
+  "file": "02_kyle-shanahan.mp4"
+ }
+]
