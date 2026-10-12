@@ -2,7 +2,7 @@
   "mature_hours": 72.0,
   "content_series": {
     "chaos": {
-      "n": 43,
+      "n": 44,
       "median_vph": 0.03
     },
     "wholesome": {
@@ -11,27 +11,27 @@
     },
     "fail": {
       "n": 13,
-      "median_vph": 0.02
+      "median_vph": 0.04
     },
     "drama": {
-      "n": 12,
-      "median_vph": 0.04
+      "n": 10,
+      "median_vph": 0.035
+    },
+    "argument": {
+      "n": 7,
+      "median_vph": 0.06
     },
     "win": {
       "n": 7,
       "median_vph": 0.03
     },
-    "argument": {
-      "n": 6,
-      "median_vph": 0.045
-    },
     "rage": {
-      "n": 5,
-      "median_vph": 0.17
+      "n": 6,
+      "median_vph": 0.215
     },
     "beef": {
       "n": 4,
-      "median_vph": 0.18
+      "median_vph": 0.16
     },
     "jumpscare": {
       "n": 3,
@@ -45,11 +45,11 @@
   "excluded": {
     "story": {
       "n": 2,
-      "median_vph": 0.03
+      "median_vph": 0.025
     },
     "unknown": {
       "n": 1,
-      "median_vph": 0.43
+      "median_vph": 0.41
     }
   }
 }
