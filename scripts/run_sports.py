@@ -181,6 +181,10 @@ def main() -> int:
         if not info:
             row["skipped"] = "download failed"
             continue
+        short = ss.too_short(info)
+        if short:
+            row["skipped"] = short
+            continue
         slug = re.sub(r"[^a-z0-9]+", "-", (c.get("who") or "").lower()
                       ).strip("-")[:40] or "clip"
         mp4 = OUT / f"{len(report['slots']):02d}_{slug}.mp4"

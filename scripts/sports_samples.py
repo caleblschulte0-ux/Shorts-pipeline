@@ -42,8 +42,13 @@ from third_capture import author, clip_edit  # noqa: E402
 
 SUBS = ("sports", "nba", "nfl", "soccer", "MMA", "baseball", "hockey",
         "CollegeBasketball")
-PER_SUB = 2
+PER_SUB = 4
 MAX_SOURCE_S = 180
+#: The shortest post worth cutting. Operator, 2026-10-12, of four samples
+#: that ran 5 to 14 seconds (each the WHOLE post, so the edit was not what
+#: shortened them): "the clips are too short". A five-second highlight has
+#: no setup and no reaction for the cut to keep.
+MIN_SOURCE_S = 15.0
 
 PICK_SYSTEM = """You run a sports Shorts channel called Baller Bro. Its
 videos are MOMENTS WITH PEOPLE in them, cut like the big repost channels
@@ -71,7 +76,12 @@ Return STRICT JSON:
 `who` is the main person's name as fans search it (the athlete, coach
 or team when no one person carries it), from the post title only.
 `why` is one short sentence: what a stranger sees that makes them stay.
-Best first. At most N picks, at most 2 from one subreddit."""
+LENGTH: the post must run long enough to tell the moment, at least 15-20
+seconds with the build-up and the reaction: an interview answer, a mic'd
+up exchange, a podcast bit, a fan's whole encounter. A post that is only
+the five seconds of the play itself is too short; skip it.
+
+Best first. At most N picks, at most 4 from one subreddit."""
 
 SPORTS_BRIEF = (
     "This is a SPORTS clip for the Baller Bro channel, not a Twitch clip. "
@@ -89,7 +99,10 @@ SPORTS_BRIEF = (
     "barely visible'). It ENDS after the payoff line has been said in "
     "full and the reaction to it, never in the middle of a sentence. When "
     "the footage never shows the moment the post title promises, "
-    "complete=false.")
+    "complete=false. Keep at least 15 seconds, more when the build-up "
+    "and the reaction are there (the operator: 'the clips are too short'): "
+    "keep the setup before the moment and the reaction after it, never "
+    "only the moment itself.")
 
 
 def _brain(user: str, system: str) -> dict | None:
@@ -158,6 +171,14 @@ def fetch(c: dict, work: Path) -> dict | None:
     return None
 
 
+def too_short(info: dict) -> str:
+    """Why a downloaded post is too short to cut, or ''."""
+    secs = _dur(Path(info["path"]))
+    if 0 < secs < MIN_SOURCE_S:
+        return f"too short: the post runs {secs:.1f}s (< {MIN_SOURCE_S:.0f}s)"
+    return ""
+
+
 def _dur(path: Path) -> float:
     try:
         return float(subprocess.check_output(
@@ -212,6 +233,10 @@ def main() -> int:
         info = fetch(c, work)
         if not info:
             row["skipped"] = "download failed"
+            index.append(row)
+            continue
+        if too_short(info):
+            row["skipped"] = too_short(info)
             index.append(row)
             continue
         slug = re.sub(r"[^a-z0-9]+", "-", c["who"].lower()).strip("-")[:40]
