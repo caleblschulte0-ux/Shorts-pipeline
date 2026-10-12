@@ -1,0 +1,19 @@
+{
+  "key": "panama_canal_draft_limit",
+  "title": "Panama Canal maximum vessel draft: normal vs drought-restricted",
+  "unit": "feet",
+  "geography": "Panama",
+  "time_coverage": "normal operations vs early 2024",
+  "source": {
+    "name": "Panama Canal Authority draft-restriction advisories",
+    "publisher": "Panama Canal Authority (ACP)",
+    "url": "https://pancanal.com/en/",
+    "officiality": "official",
+    "access_date": "2026-10-12"
+  },
+  "notes": "The Panama Canal's Neopanamax locks normally allow a maximum vessel draft of 50 feet. During the 2023-2024 drought the ACP cut the maximum allowed draft to 44 feet, forcing many container ships to leave cargo behind so they would float high enough to pass.",
+  "points": [
+    {"label": "Normal max draft", "value": 50},
+    {"label": "Drought-restricted", "value": 44}
+  ]
+}

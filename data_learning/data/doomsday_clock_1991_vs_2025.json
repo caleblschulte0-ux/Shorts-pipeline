@@ -1,0 +1,19 @@
+{
+  "key": "doomsday_clock_1991_vs_2025",
+  "title": "Doomsday Clock: 1991 (safest ever) vs 2025 (closest ever)",
+  "unit": "seconds",
+  "geography": "Global",
+  "time_coverage": "1991 vs 2025",
+  "source": {
+    "name": "Doomsday Clock annual statement",
+    "publisher": "Bulletin of the Atomic Scientists",
+    "url": "https://thebulletin.org/doomsday-clock/",
+    "officiality": "official",
+    "access_date": "2026-10-12"
+  },
+  "notes": "In 1991, after the Cold War ended, the Bulletin set the clock to 17 minutes (1020 seconds) to midnight -- the furthest it has ever been set. In January 2025 the Bulletin set it to 89 seconds to midnight, the closest in the clock's history.",
+  "points": [
+    {"label": "1991 (safest)", "value": 1020},
+    {"label": "2025 (closest)", "value": 89}
+  ]
+}

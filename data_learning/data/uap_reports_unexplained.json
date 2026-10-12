@@ -1,0 +1,19 @@
+{
+  "key": "uap_reports_unexplained",
+  "title": "Cumulative UAP reports vs cases flagged unexplained",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "through October 2024",
+  "source": {
+    "name": "Annual Report on Unidentified Anomalous Phenomena",
+    "publisher": "All-domain Anomaly Resolution Office (AARO), U.S. Department of Defense",
+    "url": "https://www.aaro.mil/",
+    "officiality": "official",
+    "access_date": "2026-10-12"
+  },
+  "notes": "As of October 24, 2024, AARO had received 1,652 UAP reports total since the office opened. Only 21 of those were flagged as having 'anomalous characteristics and/or behaviors' that merit further analysis -- the rest were resolved as balloons, drones, aircraft, birds, or other mundane explanations.",
+  "points": [
+    {"label": "Total reports", "value": 1652},
+    {"label": "Flagged unexplained", "value": 21}
+  ]
+}

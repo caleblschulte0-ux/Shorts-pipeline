@@ -1,0 +1,19 @@
+{
+  "key": "uap_reports_per_period",
+  "title": "New UAP reports to AARO, per annual review period",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2022-23 report vs 2023-24 report",
+  "source": {
+    "name": "Annual Report on Unidentified Anomalous Phenomena",
+    "publisher": "All-domain Anomaly Resolution Office (AARO), U.S. Department of Defense",
+    "url": "https://www.aaro.mil/",
+    "officiality": "official",
+    "access_date": "2026-10-12"
+  },
+  "notes": "AARO's prior annual report cited 281 new UAP reports for its review period. The following annual report (covering May 2023-June 2024) logged 757 new reports -- 485 from that window plus 272 older 2021-2022 cases not previously forwarded. AARO attributed most of the jump to increased reporting awareness, not more sightings.",
+  "points": [
+    {"label": "2022-23 report", "value": 281},
+    {"label": "2023-24 report", "value": 757}
+  ]
+}

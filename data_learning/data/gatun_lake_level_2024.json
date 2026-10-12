@@ -1,0 +1,19 @@
+{
+  "key": "gatun_lake_level_2024",
+  "title": "Gatun Lake level: 5-year average vs February 2024",
+  "unit": "feet",
+  "geography": "Panama",
+  "time_coverage": "5-year average vs February 2024",
+  "source": {
+    "name": "Panama Canal Authority water-level reporting",
+    "publisher": "Panama Canal Authority (ACP)",
+    "url": "https://pancanal.com/en/",
+    "officiality": "official",
+    "access_date": "2026-10-12"
+  },
+  "notes": "Gatun Lake feeds the Panama Canal's locks. The ACP's February 2024 average lake level was 80.3 feet, versus a five-year moving average of 83.9 feet for that time of year -- near the lake's record lows, driven by a severe El Nino-linked drought.",
+  "points": [
+    {"label": "5-year average", "value": 83.9},
+    {"label": "February 2024", "value": 80.3}
+  ]
+}

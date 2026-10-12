@@ -1,0 +1,19 @@
+{
+  "key": "doomsday_clock_threat_count",
+  "title": "Doomsday Clock: named threats, 1947 vs 2025",
+  "unit": "count",
+  "geography": "Global",
+  "time_coverage": "1947 vs 2025",
+  "source": {
+    "name": "Doomsday Clock annual statement",
+    "publisher": "Bulletin of the Atomic Scientists",
+    "url": "https://thebulletin.org/doomsday-clock/",
+    "officiality": "official",
+    "access_date": "2026-10-12"
+  },
+  "notes": "In 1947 the Bulletin's clock was a response to a single threat: nuclear war. The Bulletin's January 2025 statement names four converging threats driving the record-close setting: nuclear risk, climate change, biological threats, and disruptive technologies including AI.",
+  "points": [
+    {"label": "1947 (nuclear war)", "value": 1},
+    {"label": "2025 (converging threats)", "value": 4}
+  ]
+}

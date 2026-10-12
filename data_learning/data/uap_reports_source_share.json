@@ -1,0 +1,19 @@
+{
+  "key": "uap_reports_source_share",
+  "title": "Where the 2023-24 UAP reports came from",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "May 2023-June 2024",
+  "source": {
+    "name": "Annual Report on Unidentified Anomalous Phenomena",
+    "publisher": "All-domain Anomaly Resolution Office (AARO), U.S. Department of Defense",
+    "url": "https://www.aaro.mil/",
+    "officiality": "official",
+    "access_date": "2026-10-12"
+  },
+  "notes": "Of the 757 new UAP reports in AARO's May 2023-June 2024 review period, 392 came from the Federal Aviation Administration -- which accounts for all FAA-sourced UAP reports since 2021. The remaining 365 came from military and other government sources.",
+  "points": [
+    {"label": "FAA", "value": 392},
+    {"label": "All other sources", "value": 365}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "big_mac_prices_by_country",
+  "title": "Big Mac price by country, January 2026 index",
+  "unit": "dollars",
+  "geography": "Switzerland, United States, Taiwan",
+  "time_coverage": "January 2026",
+  "source": {
+    "name": "The Big Mac Index",
+    "publisher": "The Economist",
+    "url": "https://www.economist.com/big-mac-index",
+    "officiality": "official",
+    "access_date": "2026-10-12"
+  },
+  "notes": "The Economist's Big Mac Index (started 1986) prices an identical Big Mac around the world, converted to US dollars, as a rough gauge of currency valuation. January 2026 edition: Switzerland is the most expensive at $9.08; the US (the index's reference price) is $6.12; Taiwan is the cheapest at $2.47.",
+  "points": [
+    {"label": "Switzerland", "value": 9.08},
+    {"label": "United States", "value": 6.12},
+    {"label": "Taiwan", "value": 2.47}
+  ]
+}
