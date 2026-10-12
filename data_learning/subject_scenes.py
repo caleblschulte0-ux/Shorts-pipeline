@@ -2258,6 +2258,53 @@ def render_build(scene, insight, out_dir, name, frames, t0=0.0):
     return str(out_dir / f"{name}_build%02d.png"), []
 
 
+#: Where the closing line is burned in over a scene (studio_render: y 140..480).
+TOP_SCRIM_H = 620
+
+
+def top_scrim(cr):
+    """A soft dark fade from the top of the frame, under the closing line —
+    `caption_scrim` turned upside down. No edge, no card."""
+    g = cairo.LinearGradient(0, 0, 0, TOP_SCRIM_H)
+    g.add_color_stop_rgba(0.0, 0.02, 0.03, 0.07, 0.62)
+    g.add_color_stop_rgba(0.6, 0.02, 0.03, 0.07, 0.38)
+    g.add_color_stop_rgba(1.0, 0.02, 0.03, 0.07, 0.0)
+    cr.set_source(g)
+    cr.rectangle(0, 0, W, TOP_SCRIM_H)
+    cr.fill()
+
+
+def wordless_finish(scene):
+    """The last beat's scene as the CLOSING's picture when the story has no
+    closing scene of its own: the FINISHED picture (u held at 1), still
+    alive on its own clock, with none of its words, so the closing line owns
+    the top of the frame.
+
+    Until 2026-10-11 that case shrank the last beat into a box between the
+    closing line and the comment prompt, trimmed top and bottom — the
+    operator, of the pollen video: "cropped terribly and cut off at the
+    end". The picture stays full frame now."""
+    def _quiet(*a, **k):
+        return None
+
+    def closing(cr, t, u, pts, host):
+        g = getattr(scene, "__globals__", {})
+        saved = {k: g[k] for k in ("text", "fit_readout") if k in g}
+        real = globals()["text"]
+        try:
+            for k in saved:
+                g[k] = _quiet
+            globals()["text"] = _quiet
+            scene(cr, t, 1.0, pts, host)
+        finally:
+            g.update(saved)
+            globals()["text"] = real
+        top_scrim(cr)
+    closing.__name__ = f"{getattr(scene, '__name__', 'scene')}_finish"
+    closing.__doc__ = getattr(scene, "__doc__", None)
+    return closing
+
+
 #: Where the narration is burned in (studio_render: anchored at y=1734,
 #: two lines reach ~1560). A full-bleed scene put its clouds and bricks
 #: right under it: "subtitles lost in clouds and bricks" held a 79.
@@ -2284,14 +2331,28 @@ def caption_scrim(cr):
 #: time, which read as flailing.
 ACT_S = 1.1
 
+#: How long he holds a finished act before the same act may play again. A
+#: scene that advances `beat` faster than an act plays (the brain's scenes
+#: bumped it every tenth of the beat, ~0.6s) restarted the swing before it
+#: landed, 7 to 12 times in a 6s beat, and he never stood still (operator,
+#: 2026-10-11: "he'll do something, and then instead of ... standing still
+#: ... he'll just flail his arms around a bunch").
+REST_S = 0.2
+
 
 def act_phase(clock: dict, role, f: int, fps: int = 30) -> float:
     """The act's clock 0..1 at frame f: it restarts when `role` changes and
     holds at 1 once the act has played. `role` may be a (role, beat) pair:
     a scene advances `beat` each time the thing changes, and the act plays
-    again — one pick swing per crack, never a wobble (2026-10-02)."""
-    if clock.get("role") != role:
-        clock["role"], clock["start"] = role, f
+    again — one pick swing per crack, never a wobble (2026-10-02). A new
+    beat of the SAME act waits until the last one has landed and held for
+    `REST_S`; a new act starts at once."""
+    cur = clock.get("role")
+    if cur != role:
+        same_act = (isinstance(cur, tuple) and isinstance(role, tuple)
+                    and cur[0] == role[0])
+        if not same_act or f - clock["start"] >= (ACT_S + REST_S) * fps:
+            clock["role"], clock["start"] = role, f
     return min(1.0, (f - clock["start"]) / (ACT_S * fps))
 
 

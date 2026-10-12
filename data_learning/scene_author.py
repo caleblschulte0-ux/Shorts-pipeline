@@ -144,7 +144,7 @@ def check_source(code: str) -> None:
 # standard it passed; one from an older standard is re-judged by today's
 # viewer and look again before it is used, and redrawn if it fails. Bump
 # STANDARD whenever a check or a bar a scene must pass is added.
-STANDARD = "2026-10-11"
+STANDARD = "2026-10-11.2"
 _STAMP = re.compile(r"^# scene standard: (\S+)\s*$", re.M)
 
 
@@ -845,6 +845,11 @@ MIN_DWELL_S = 0.7
 HEADLINE_PX = 64
 MAX_HEADLINES = 2
 
+#: How far past the frame's edge a word may reach before it is cut off. The
+#: pollen video of 2026-10-11 ended on "199" — its "1990" mark sat past the
+#: right edge — and the operator called it "cropped terribly".
+OFF_PX = 2
+
 
 #: Operator, 2026-10-07, of the bird flu closing: "the picket fence at the
 #: end is already hard to understand, then we only have it on screen for like
@@ -969,6 +974,7 @@ def verify(fn, pts, say: str = "", secs: float | None = None) -> list[str]:
     on_data = []                       # text drawn AFTER him, over him
     crowded = []                       # (frame u, headline numbers in it)
     heads = []                         # headline numbers visible in THIS frame
+    off = []                           # text that runs off the frame's edge
 
     def spy(cr, s, *a, **k):
         texts.append(str(s))
@@ -977,6 +983,9 @@ def verify(fn, pts, say: str = "", secs: float | None = None) -> list[str]:
         box = real(cr, s, *a, **k)
         alpha = k.get("alpha", a[6] if len(a) > 6 else 1.0)
         if box and str(s).strip() and (alpha or 0) > 0.3:
+            if (box[0] < -OFF_PX or box[2] > SS.W + OFF_PX
+                    or box[1] < -OFF_PX or box[3] > SS.H + OFF_PX):
+                off.append(str(s))
             for other, ob in boxes:
                 if _overlap(box, ob) > 0.15:
                     overlaps.append((other, str(s)))
@@ -1070,6 +1079,10 @@ def verify(fn, pts, say: str = "", secs: float | None = None) -> list[str]:
                         f"({', '.join(map(repr, hs))}) — a viewer glances, they "
                         f"do not read a table; at most {MAX_HEADLINES} big "
                         f"numbers on screen, and let the PICTURE carry the rest")
+    if off:
+        problems.append(f"prints {off[0]!r} running off the edge of the frame "
+                        f"— a label cut off by the frame reads as a cropping "
+                        f"mistake; keep every word inside the picture")
     if overlaps:
         a_, b_ = overlaps[0]
         problems.append(f"prints {b_!r} over {a_!r} — two pieces of text overlap "
@@ -1406,8 +1419,34 @@ def ask_brain(prompt: str, model: str | None = None,
     return _strip_fence(proc.stdout or "") if proc.returncode == 0 else None
 
 
+#: What an OPENING may not draw: the scale marks belong to the beats. Read
+#: in the first second they are a puzzle of dashed lines, not a picture.
+OPENING_REFUSES = ("ghost", "then_mark", "times_ticks", "set_dash")
+
+
+def opening_problems(code) -> list[str]:
+    """Why a HOOK scene is not an instant read: the dashed scale marks
+    (operator, 2026-10-11: "the dotted lines make it really confusing ...
+    our first shots need to be great. They need to be instantly
+    recognizable")."""
+    try:
+        tree = ast.parse(code if isinstance(code, str) else "")
+    except SyntaxError:
+        return []
+    used = sorted({(n.func.attr if isinstance(n.func, ast.Attribute)
+                    else getattr(n.func, "id", ""))
+                   for n in ast.walk(tree) if isinstance(n, ast.Call)}
+                  & set(OPENING_REFUSES))
+    if not used:
+        return []
+    return [f"the OPENING draws {', '.join(used)} — dashed outlines and scale "
+            f"marks are a puzzle in the first second; the hook is one big "
+            f"familiar thing doing the surprising thing, and the scale goes "
+            f"in the beats"]
+
+
 def author(title, topic, say, pts, unit="", attempts=3, log=print, brief="",
-           secs: float | None = None):
+           secs: float | None = None, opening: bool = False):
     """(scene_fn, code) for a verified brain-drawn scene, or (None, reason).
     `brief` adds the job on top of the rules: a closing, or a repair."""
     if os.environ.get("SCENE_AUTHOR", "on").lower() in ("0", "off", "false"):
@@ -1423,13 +1462,17 @@ def author(title, topic, say, pts, unit="", attempts=3, log=print, brief="",
         try:
             fn = compile_scene(code)
             problems = verify(fn, pts, say, secs)
+            if opening:
+                problems += opening_problems(code)
             if not problems:
                 # the code agrees; now a VIEWER has to (hero, substance, cause)
                 problems = glance(fn, pts, log=log, say=say)
         except Exception as e:  # noqa: BLE001 — refused or broken: tell it why
             problems = [f"{type(e).__name__}: {str(e)[:200]}"]
         if not problems:
-            fn, code = look_again(fn, code, prompt, pts, say, secs, log=log) or (fn, code)
+            got = look_again(fn, code, prompt, pts, say, secs, log=log)
+            if got and not (opening and opening_problems(got[1])):
+                fn, code = got
             return fn, stamped(code)
         why = "; ".join(problems[:4])
         log(f"[scene_author] attempt {k + 1} refused: {why}")
@@ -1735,7 +1778,14 @@ of the subject: "{hook}". Open mid-action — the thing is already happening \
 in the very first frame; no build-up, no title card. u runs 0..1 over those \
 ~3 seconds, so move FAST. The hook line is captioned below y=1650. It must \
 not be the picture the first beat will show — it is the teaser for the \
-whole story, the contrast at its heart.
+whole story, the contrast at its heart. A thumb decides in under a second \
+whether to stay, so the first frame is ONE big, everyday thing a stranger \
+names from across a room (a calendar, a nose, a car, a house), doing the \
+surprising thing — never a lab gadget, a gas tank, a symbol or a diagram, and \
+NO dashed outlines, ghost(), then_mark() or times_ticks(): the scale is \
+drawn in the beats, the opening is the shock alone (operator, 2026-10-11, of \
+a gas tank under dashed circles: "I have no idea what ... is going on here. \
+It makes me instantly want to scroll").
 
 """
 
@@ -1763,6 +1813,8 @@ def saved_bookend(story_cfg: dict, kind: str, n_beats: int, log=print):
         segs = story_cfg.get("segments") or []
         probs = _saved_craft(fn, segs[idx] if idx < len(segs) else {}, log,
                              SCENE_SECS.get(kind, SCENE_SECS["beat"]))
+        if kind == "hook":
+            probs = list(probs or []) + opening_problems(code)
         if probs:
             log(f"[scene_author] saved {kind} refused — {probs[0][:90]}")
             return None
@@ -1822,7 +1874,7 @@ def scene_for_bookend(story_cfg: dict, kind: str, insights: list, log=print):
                      _story_say(story_cfg), pts,
                      str(getattr(insights[idx], "unit", "") or ""), log=log,
                      brief=_brief(kind, story_cfg) + siblings(story_cfg, kind),
-                     secs=SCENE_SECS[kind])
+                     secs=SCENE_SECS[kind], opening=kind == "hook")
     if fn is None:
         log(f"[scene_author] no verified {kind}: {got}")
         return None
@@ -1853,4 +1905,5 @@ def redraw(story_cfg: dict, index, insight, prior_code: str, critique: str,
         brief = _brief(index, story_cfg) + brief
     return author(story_cfg.get("title", ""), topic, say, _pts(insight),
                   str(getattr(insight, "unit", "") or ""), log=log, brief=brief,
-                  secs=SCENE_SECS.get(index, SCENE_SECS["beat"]))
+                  secs=SCENE_SECS.get(index, SCENE_SECS["beat"]),
+                  opening=index == "hook")

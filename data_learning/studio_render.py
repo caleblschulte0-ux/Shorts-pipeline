@@ -3278,6 +3278,27 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                     if _cpath:
                         end = _c0
                         dur = max(0.0, end - start)
+                _finished = False
+                # NO CLOSING SCENE: the last beat's own picture, finished and
+                # wordless, full frame under the closing line — never shrunk
+                # into a box (`subject_scenes.wordless_finish`).
+                if (_scene is not None and _cpath is None and i == last_i
+                        and lead_payoff and windows[-1][0] > start + 1.0):
+                    _c0 = windows[-1][0]
+                    _fin = _ss.wordless_finish(_scene)
+                    try:
+                        _cpath, _ = _ss.render_build(
+                            _fin, seg.insight, chart_dir,
+                            f"{slug}_closing_ss",
+                            int(max(30, min(1800, _mfr.ceil((end - _c0) * 30)))),
+                            t0=_c0)
+                    except Exception as e:  # noqa: BLE001
+                        print(f"[studio] closing finish failed: {e}", flush=True)
+                        _cpath = None
+                    if _cpath:
+                        _close, _finished = (_fin, i), True
+                        end = _c0
+                        dur = max(0.0, end - start)
                 if _scene is not None:
                     try:
                         _spath, _ = _ss.render_build(
@@ -3303,9 +3324,12 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                                 {"kind": "subject_scene", "path": _cpath,
                                  "anchors": [], "t0": end,
                                  "t1": windows[-1][1], "full_by": 1.0,
-                                 "host_baked": True,
+                                 "host_baked": True, "closing": True,
                                  "scene": _close[0].__name__})
-                            _style["closing_scene"] = True
+                            if _finished:
+                                _style["closing_finish"] = True
+                            else:
+                                _style["closing_scene"] = True
                             print(f"[studio] closing: subject scene "
                                   f"{_close[0].__name__}", flush=True)
                         seg.chart_path = _spath
@@ -4124,7 +4148,11 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                 # these frames was leaving empty anyway. Nothing overlaps,
                 # nothing dims, and the frame finally uses its bottom.
                 _close0 = windows[-1][0] if windows else t1
-                if t1 - _close0 > 0.35 and t0 < _close0 + 0.05:
+                # A CLOSING SCENE IS THE WHOLE SHOT. It is drawn full frame
+                # with the closing line's band left clear (CLOSING_BRIEF), so
+                # it is laid like any scene, never shrunk into the recap box.
+                if (t1 - _close0 > 0.35 and t0 < _close0 + 0.05
+                        and not sp.get("closing")):
                     _rg = recap_geometry(vw, vh)
                     _rw, _rh, _rx, _ry = _rg["rw"], _rg["rh"], _rg["rx"], _rg["ry"]
                     _ch = _rg["crop_h"]           # centred trim: no offsets
