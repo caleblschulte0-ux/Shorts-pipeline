@@ -103,13 +103,18 @@ words, as a stranger would need it: "Kai Cenat's cousin", "a streamer in
 Kai's AMP group", "Lacy's duo partner". Only what is widely known and
 stable — a relationship or a role. Never an event, a claim, an
 accusation, a motive or anything you are unsure of: then null.
+Someone may be too recent for you to know: NEWS HEADLINES about the
+streamer and each name are given when found. Use them for the
+relationship or role they state ("Kai Cenat's former friend"), never for
+what anyone is accused of or did.
 Return STRICT JSON: {"who": {"<name>": "<line>" | null, ...}}"""
 
 _WHO_VERIFY_SYSTEM = """You fact-check captions on a streamer-clip
 channel. For each NAME and LINE about who they are to the streamer,
-answer true only if you are confident the line is accurate and widely
-known; false if it is wrong, unsure, or says anything beyond who the
-person is. Return STRICT JSON: {"ok": {"<name>": true|false, ...}}"""
+answer true only if you are confident the line is accurate, from what
+you know or from the NEWS HEADLINES given; false if it is wrong, unsure,
+or says anything beyond who the person is. Return STRICT JSON:
+{"ok": {"<name>": true|false, ...}}"""
 
 # a who-line names a relationship or a role, never an event
 _BAD_WHO = re.compile(
@@ -117,6 +122,28 @@ _BAD_WHO = re.compile(
     r"|drama|stole|steal|charged|lawsuit|sued|controvers|ex-)", re.I)
 
 _WHO_CACHE: dict = {}
+NEWS_PER_NAME = 6
+
+
+def _news(streamer: str, names: list[str]) -> list[str]:
+    """Recent headlines about the streamer and each name (Google News),
+    "- <date>: <title>" lines; [] on any failure. The feud people are
+    usually newer than any model (Reggie, 2026-10: every critic asked
+    who he is and no model knew), but the press wrote it down."""
+    from urllib.parse import quote_plus
+    from funnel import feeds
+    from third_capture import storyline
+    streamer = storyline.SEARCH_NAMES.get(str(streamer).lower(), streamer)
+    lines: list[str] = []
+    for n in names:
+        q = quote_plus(f'"{streamer}" "{n}"')
+        url = (f"https://news.google.com/rss/search?q={q}"
+               "&hl=en-US&gl=US&ceid=US:en")
+        for e in feeds.entries(url, limit=NEWS_PER_NAME):
+            t = " ".join(str(e.get("title") or "").split())
+            if t:
+                lines.append(f"- {str(e.get('published') or '')[:16]}: {t}")
+    return list(dict.fromkeys(lines))[:24]
 
 
 def known_people(streamer: str, names: list[str]) -> dict:
@@ -140,7 +167,12 @@ def known_people(streamer: str, names: list[str]) -> dict:
         return dict(_WHO_CACHE[key])
     out: dict = {}
     try:
-        ask = f"STREAMER: {streamer}\nNAMES: " + json.dumps(names)
+        try:
+            news = _news(streamer, names) if streamer else []
+        except Exception:  # noqa: BLE001 — headlines are a help, not a need
+            news = []
+        head = ("NEWS HEADLINES:\n" + "\n".join(news) + "\n") if news else ""
+        ask = f"STREAMER: {streamer}\nNAMES: " + json.dumps(names) + "\n" + head
         got = (_call_claude(ask, system=_WHO_SYSTEM) or {}).get("who") or {}
         lines = {n: " ".join(str(v).split()) for n, v in got.items()
                  if n in names and v and len(str(v).split()) <= 12
@@ -148,7 +180,7 @@ def known_people(streamer: str, names: list[str]) -> dict:
                  and not _BAD_NARRATION.search(str(v))}
         if lines:
             ok = (_call_text_fallback(
-                f"STREAMER: {streamer}\n" + json.dumps(lines),
+                f"STREAMER: {streamer}\n" + json.dumps(lines) + "\n" + head,
                 system=_WHO_VERIFY_SYSTEM, tag="who") or {}).get("ok") or {}
             out = {n: v for n, v in lines.items() if ok.get(n) is True}
     except Exception as e:  # noqa: BLE001

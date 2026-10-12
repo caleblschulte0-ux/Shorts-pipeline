@@ -110,6 +110,10 @@ class TheCriticKnowsTheCaptionStays(unittest.TestCase):
 class WhoSomeoneIsIsCheckedTwice(unittest.TestCase):
     def setUp(self):
         story_director._WHO_CACHE.clear()
+        from funnel import feeds
+        p = mock.patch.object(feeds, "entries", return_value=[])
+        self.entries = p.start()
+        self.addCleanup(p.stop)
 
     def _run(self, proposed, verdict):
         with mock.patch.object(story_director, "_call_claude",
@@ -160,6 +164,40 @@ class WhoSomeoneIsIsCheckedTwice(unittest.TestCase):
             "Reggie is Kai Cenat's cousin", [dict(rep[0], known_people={})]))
         self.assertIn("Reggie = Kai Cenat's cousin",
                       story_director._fmt_reports(rep))
+
+    def test_someone_too_new_for_the_models_is_found_in_the_news(self):
+        """Backtest 24 (2026-10-12): every Kai/Reggie cut failed on "who
+        is Reggie?" — no model knew him, the press did."""
+        self.entries.return_value = [
+            {"title": "Kai Cenat Says He Is Suing Reggie, his former "
+                      "friend", "published": "Thu, 01 Oct 2026"}]
+        seen = []
+
+        def claude(user, system=None, **k):
+            seen.append(user)
+            return {"who": {"Reggie": "Kai Cenat's former friend"}}
+
+        def verify(user, system=None, **k):
+            seen.append(user)
+            return {"ok": {"Reggie": True}}
+        with mock.patch.object(story_director, "_call_claude",
+                               side_effect=claude), \
+                mock.patch.object(story_director, "_call_text_fallback",
+                                  side_effect=verify):
+            out = story_director.known_people("kaicenat", ["Reggie"])
+        self.assertEqual(out, {"Reggie": "Kai Cenat's former friend"})
+        self.assertTrue(all("his former friend" in u for u in seen))
+        self.assertEqual(len(seen), 2)
+        url = self.entries.call_args[0][0]
+        self.assertIn("news.google.com", url)
+        self.assertIn("Reggie", url)
+        self.assertIn("Kai+Cenat", url)   # the name people write, not the login
+
+    def test_no_news_is_no_harm(self):
+        self.entries.side_effect = RuntimeError("offline")
+        out, _ = self._run({"Reggie": "Kai Cenat's cousin"},
+                           {"Reggie": True})
+        self.assertEqual(out, {"Reggie": "Kai Cenat's cousin"})
 
     def test_the_story_arm_asks(self):
         src = (ROOT / "scripts" / "run_third.py").read_text()
