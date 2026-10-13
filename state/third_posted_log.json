@@ -13006,6 +13006,25 @@
         "end": 30.0
       },
       "director_cut": true
+    },
+    "rejected-wonderfullightbasenjisaltbae-lw8veq6nohgmv4xa": {
+      "source_url": "https://www.twitch.tv/buddha/clip/WonderfulLightBasenjiSaltBae-LW8VEq6nOhGMv4XA",
+      "streamer": "buddha",
+      "title": "Lang Misses a JP call",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (no observable event)",
+      "ts": "2026-10-13T11:43:55.964780+00:00"
+    },
+    "clip-20261013-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/forsen/clip/ConfidentSpineyOrcaHeyGirl-3bRGzUJSNyhBYaOM",
+      "story_key": null,
+      "streamer": "forsen",
+      "title": "The Forsen Clip Everyone's Talking About",
+      "kind": "twitch_clip",
+      "ts": "2026-10-13T11:44:36.731344+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
