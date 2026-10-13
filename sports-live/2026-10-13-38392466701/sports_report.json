@@ -1,0 +1,351 @@
+{
+ "date": "2026-10-13",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Lionel Messi",
+   "why": "Emotional farewell speech that shows his gratitude and love for fans",
+   "post_title": "Lionel Messi: \u201cI leave in peace, I gave it my all. Thank you for loving me so much.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1wz6yn9/lionel_messi_i_leave_in_peace_i_gave_it_my_all/",
+   "topic": "https://www.reddit.com/r/sports/comments/1wz6yn9/lionel_messi_i_leave_in_peace_i_gave_it_my_all",
+   "title": "Lionel Messi Leaves In Peace After Dream Shirt Moment \ud83d\ude22",
+   "hook": "Messi says goodbye on the field",
+   "ledger": {
+    "moves": [
+     "zoom@12.0",
+     "sad@10.0"
+    ],
+    "mood": "sad",
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request"
+  },
+  {
+   "sub": "soccer",
+   "who": "Lionel Messi",
+   "why": "Heart\u2011warming tunnel walk surrounded by family and chanting crowd",
+   "post_title": "Messi goes down the tunnel surrounded by his wife, his children, his teammates, his fans and the crowd chanting his name.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1wzll4o/messi_goes_down_the_tunnel_surrounded_by_his_wife/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1wzll4o/messi_goes_down_the_tunnel_surrounded_by_his_wife",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "soccer",
+   "who": "Harry Maguire",
+   "why": "He calmly laughs and waves off a teammate after a red card, diffusing tension",
+   "post_title": "Harry Maguire laughs and waves off Rodrigo Bentancur following his red card.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1x2x6ah/harry_maguire_laughs_and_waves_off_rodrigo/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1x2x6ah/harry_maguire_laughs_and_waves_off_rodrigo",
+   "skipped": "too short: the post runs 3.8s (< 15s)"
+  },
+  {
+   "sub": "soccer",
+   "who": "R\u00faben Dias",
+   "why": "Steps in to calm a teammate, only to witness a second yellow card drama",
+   "post_title": "R\u00faben Dias rushed over to calm Concei\u00e7\u00e3o down following his initial booking. Just as Dias turned to walk away, Concei\u00e7\u00e3o gives a thumbs up to the referee prompting a second yellow card.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1wz18uz/r\u00faben_dias_rushed_over_to_calm_concei\u00e7\u00e3o_down/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1wz18uz/r\u00faben_dias_rushed_over_to_calm_concei\u00e7\u00e3o_down",
+   "skipped": "render failed: RuntimeError: Failed to load audio: ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers\n  built with gcc 13 (Ubuntu 13.2.0-23ubuntu3)\n  configuration: --prefix=/usr --extra-version=3ubuntu5 --toolchain=hardened --libdir=/usr/lib/x86_64-linux-gnu --incdir=/usr/i"
+  },
+  {
+   "sub": "nfl",
+   "who": "Cam Little",
+   "why": "Runs across the London field after his 57\u2011yard FG to strike a Jude Bellingham pose",
+   "post_title": "[Highlight] Cam Little doesn't even watch to see if his kick goes in, running all the way across the field to hit the Jude Bellingham pose in front of the London crowd.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x3lc6q/highlight_cam_little_doesnt_even_watch_to_see_if/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x3lc6q/highlight_cam_little_doesnt_even_watch_to_see_if",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nfl",
+   "who": "Jalon Daniels",
+   "why": "Touching celebration with his mom after his first career win",
+   "post_title": "[Highlight] Jalon Daniels and his mom celebrate the QB's first career win",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x1azni/highlight_jalon_daniels_and_his_mom_celebrate_the/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x1azni/highlight_jalon_daniels_and_his_mom_celebrate_the",
+   "title": "Jalon Daniels Celebrates His First Career Win With Mom",
+   "hook": "Jalon and his mom celebrate the win",
+   "ledger": {
+    "moves": [
+     "zoom@2.0",
+     "hype@0.3"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  },
+  {
+   "sub": "nfl",
+   "who": "Mike Evans",
+   "why": "Funny confused reaction when he finally meets Trevon Diggs after the game",
+   "post_title": "[Highlight] Mike Evans on his exchange with Trevon Diggs: \"I honestly didn't know it was him ... I was like, Who are you?' Then I looked and made sure: 'Oh, it's fucking Diggs.'\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x47kf7/highlight_mike_evans_on_his_exchange_with_trevon/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x47kf7/highlight_mike_evans_on_his_exchange_with_trevon",
+   "title": "Mike Evans Realizes He\u2019s Blocking Trevon Diggs \ud83d\ude33",
+   "hook": "Mike finally spots Diggs on the field",
+   "ledger": {
+    "moves": [
+     "whoa@7.6"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: blocked before vision review: max_dup_run 50 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=18.92s of 21.0s (~2.1s frozen)",
+    "score": 14
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: blocked before vision review: max_dup_run 50 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=18.92s of 21.0s (~2.1s frozen)"
+  },
+  {
+   "sub": "nba",
+   "who": "Jonathan Kuminga",
+   "why": "Threatens the fan who called him \u201cKum Bucket\u201d with a slap, raw trash\u2011talk",
+   "post_title": "Jonathan Kuminga responds to fan who calls him \u201cKum Bucket\u201d: \u2018Whoever said that, imma come find you and I\u2019ll slap you.\u201d",
+   "upvotes": 0,
+   "url": "https://streamable.com/12ssok",
+   "topic": "https://www.reddit.com/r/nba/comments/1x0iyi6/jonathan_kuminga_responds_to_fan_who_calls_him",
+   "skipped": "too short: the post runs 9.1s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Jaylen Brown",
+   "why": "Mic\u2011d up rant calling out LeBron and others, full of swagger",
+   "post_title": "Jaylen Brown claps back at Anthony Edwards for taking shots at him and LeBron: \"Adidas doing anything for my boy, they need to give my boy some condoms",
+   "upvotes": 0,
+   "url": "https://streamable.com/f4zgsr",
+   "topic": "https://www.reddit.com/r/nba/comments/1x21qyh/jaylen_brown_claps_back_at_anthony_edwards_for",
+   "title": "Jaylen Brown Claps Back at Anthony Edwards \u2013 Shocking Line About Condoms",
+   "hook": "Jaylen fires back at Edwards",
+   "ledger": {
+    "moves": [
+     "zoom@4.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      810,
+      1080,
+      314,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  },
+  {
+   "sub": "nba",
+   "who": "Kevin Durant",
+   "why": "Sincere tribute to Russell Westbrook that shows genuine emotion",
+   "post_title": "Kevin Durant: \"I was a little sad because I still thought Russ (Westbrook) had five or six more years left. He's an athletic body that can still impact the game positively\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/d0c0ba",
+   "topic": "https://www.reddit.com/r/nba/comments/1x1mhvc/kevin_durant_i_was_a_little_sad_because_i_still",
+   "title": "Kevin Durant Reflects On Russ Westbrook\u2019s Future And Gives Congrats",
+   "hook": "Kevin Durant honors Russ Westbrook\u2019s career",
+   "ledger": {
+    "moves": [
+     "zoom@1.6",
+     "whoa@15.6",
+     "sad@0.3"
+    ],
+    "mood": "sad",
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      540,
+      720,
+      250,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  },
+  {
+   "sub": "MMA",
+   "who": "Islam Makhachev",
+   "why": "Shows his cat on camera, a cute break from the fighter persona",
+   "post_title": "Islam Makhachev shows his cat, Toni",
+   "upvotes": 0,
+   "url": "https://streamable.com/eoqtpo",
+   "topic": "https://www.reddit.com/r/MMA/comments/1x0vep3/islam_makhachev_shows_his_cat_toni",
+   "title": "Islam Makhachev Shows His Cat Toni \ud83d\udc31",
+   "hook": "Islam shows his cat Toni",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  },
+  {
+   "sub": "MMA",
+   "who": "Ben Askren",
+   "why": "Humorous banter with Jorge Masvidal about their past fight",
+   "post_title": "Ben Askren and Jorge Masvidal talk about their fight",
+   "upvotes": 0,
+   "url": "https://streamable.com/4gr2fx",
+   "topic": "https://www.reddit.com/r/MMA/comments/1x1bdy5/ben_askren_and_jorge_masvidal_talk_about_their",
+   "title": "Ben Askren Breaks Down Missed Flying Knee With Masvidal",
+   "hook": "Ben Askren explains the missed flying knee",
+   "ledger": {
+    "moves": [
+     "zoom@5.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  },
+  {
+   "sub": "MMA",
+   "who": "Dana White",
+   "why": "Awkward press\u2011conference answer that went viral for its cringe factor",
+   "post_title": "Dana White crashes out again when asked about Eddie Hearn at Contender Series Press conference",
+   "upvotes": 0,
+   "url": "https://x.com/ChampRDS/status/2107643659114209338",
+   "topic": "https://www.reddit.com/r/MMA/comments/1x00xuv/dana_white_crashes_out_again_when_asked_about",
+   "title": "Dana White Crashes Out Again When Asked About Eddie Hearn",
+   "hook": "Dana White gets grilled on Eddie Hearn",
+   "ledger": {
+    "moves": [
+     "whoa@68.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      810,
+      1080,
+      570,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  }
+ ],
+ "already_today": 0,
+ "pool": 107,
+ "already_posted": 2,
+ "shipped": 0
+}
