@@ -1,6 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-10-13T13:51:51Z",
+ "updated": "2026-10-13T14:48:21Z",
  "open": [
   {
    "id": "hpv-vaccine-cancer-drop__c448021988",
@@ -13,16 +13,6 @@
    "answer_path": "exchange/reviews/20261013/hpv-vaccine-cancer-drop__c448021988.verdict.json"
   },
   {
-   "id": "hpv-vaccine-cancer-drop__9476319045",
-   "channel": "explainer",
-   "slug": "hpv-vaccine-cancer-drop",
-   "title": "The Cancer Vaccine Already Cut Cases By 88%",
-   "filed": "2026-10-13T13:00:14Z",
-   "request": "exchange/reviews/20261013/hpv-vaccine-cancer-drop__9476319045.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261013/hpv-vaccine-cancer-drop__9476319045/sheet.jpg",
-   "answer_path": "exchange/reviews/20261013/hpv-vaccine-cancer-drop__9476319045.verdict.json"
-  },
-  {
    "id": "back-pain-leading-disability__5ef4f35230",
    "channel": "explainer",
    "slug": "back-pain-leading-disability",
@@ -31,16 +21,6 @@
    "request": "exchange/reviews/20261013/back-pain-leading-disability__5ef4f35230.request.json",
    "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261013/back-pain-leading-disability__5ef4f35230/sheet.jpg",
    "answer_path": "exchange/reviews/20261013/back-pain-leading-disability__5ef4f35230.verdict.json"
-  },
-  {
-   "id": "hpv-vaccine-cancer-drop__54134d7783",
-   "channel": "explainer",
-   "slug": "hpv-vaccine-cancer-drop",
-   "title": "The Cancer Vaccine Already Cut Cases By 88%",
-   "filed": "2026-10-13T11:50:11Z",
-   "request": "exchange/reviews/20261013/hpv-vaccine-cancer-drop__54134d7783.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261013/hpv-vaccine-cancer-drop__54134d7783/sheet.jpg",
-   "answer_path": "exchange/reviews/20261013/hpv-vaccine-cancer-drop__54134d7783.verdict.json"
   }
  ],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
