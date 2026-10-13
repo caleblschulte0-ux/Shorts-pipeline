@@ -1,0 +1,171 @@
+{
+ "date": "2026-10-13",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Lionel Messi",
+   "why": "Emotional farewell speech that shows his gratitude and tears",
+   "post_title": "Lionel Messi: \u201cI leave in peace, I gave it my all. Thank you for loving me so much.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1wz6yn9/lionel_messi_i_leave_in_peace_i_gave_it_my_all/",
+   "topic": "https://www.reddit.com/r/sports/comments/1wz6yn9/lionel_messi_i_leave_in_peace_i_gave_it_my_all",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "nfl",
+   "who": "Cam Little",
+   "why": "Runs across London field after game\u2011winning kick to strike a Jude Bellingham pose for fans",
+   "post_title": "[Highlight] Cam Little doesn't even watch to see if his kick goes in, running all the way across the field to hit the Jude Bellingham pose in front of the London crowd.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x3lc6q/highlight_cam_little_doesnt_even_watch_to_see_if/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x3lc6q/highlight_cam_little_doesnt_even_watch_to_see_if",
+   "title": "Cam Little Dashes Across Field to Pull Off Jude Bellingham Pose",
+   "hook": "Cam Little pulls off the Bellingham pose",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 503: Service Unavaila",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 503: Service Unavaila"
+  },
+  {
+   "sub": "nfl",
+   "who": "Jalon Daniels",
+   "why": "Heart\u2011warming moment celebrating his first career win with his mom",
+   "post_title": "[Highlight] Jalon Daniels and his mom celebrate the QB's first career win",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x1azni/highlight_jalon_daniels_and_his_mom_celebrate_the/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x1azni/highlight_jalon_daniels_and_his_mom_celebrate_the",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nba",
+   "who": "Jonathan Kuminga",
+   "why": "Directly confronts a fan\u2019s nickname with a threatening comeback",
+   "post_title": "Jonathan Kuminga responds to fan who calls him \u201cKum Bucket\u201d: \u2018Whoever said that, imma come find you and I\u2019ll slap you.\u201d",
+   "upvotes": 0,
+   "url": "https://streamable.com/12ssok",
+   "topic": "https://www.reddit.com/r/nba/comments/1x0iyi6/jonathan_kuminga_responds_to_fan_who_calls_him",
+   "skipped": "too short: the post runs 9.1s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Kevin Durant",
+   "why": "Reflective interview about Russ\u202fWestbrook\u2019s future that reveals genuine respect",
+   "post_title": "Kevin Durant: \"I was a little sad because I still thought Russ (Westbrook) had five or six more years left. He's an athletic body that can still impact the game positively\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/d0c0ba",
+   "topic": "https://www.reddit.com/r/nba/comments/1x1mhvc/kevin_durant_i_was_a_little_sad_because_i_still",
+   "title": "Kevin Durant Reflects on Russ Westbrook\u2019s Future and Wishes Him Success",
+   "hook": "Kevin Durant talks about Russ Westbrook\u2019s next chapter",
+   "ledger": {
+    "moves": [
+     "zoom@1.6",
+     "whoa@14.6",
+     "sad@0.3"
+    ],
+    "mood": "sad",
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      540,
+      720,
+      250,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: HTTP Error 429: Too",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: HTTP Error 429: Too"
+  },
+  {
+   "sub": "nba",
+   "who": "Jaylen Brown",
+   "why": "Claps back at Anthony Edwards with a bold, profanity\u2011filled mic\u2011up retort",
+   "post_title": "Jaylen Brown claps back at Anthony Edwards for taking shots at him and LeBron: \"Adidas doing anything for my boy, they need to give my boy some condoms",
+   "upvotes": 0,
+   "url": "https://streamable.com/f4zgsr",
+   "topic": "https://www.reddit.com/r/nba/comments/1x21qyh/jaylen_brown_claps_back_at_anthony_edwards_for",
+   "title": "Jaylen Brown Claps Back at Anthony Edwards Over Shot, Demands Condoms \ud83d\ude02",
+   "hook": "Jaylen Brown fires back at Edwards",
+   "ledger": {
+    "moves": [
+     "zoom@4.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      810,
+      1080,
+      314,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  },
+  {
+   "sub": "soccer",
+   "who": "Harry Maguire",
+   "why": "Laughs and waves off teammate after a red\u2011card incident, showing light\u2011hearted team chemistry",
+   "post_title": "Harry Maguire laughs and waves off Rodrigo Bentancur following his red card.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1x2x6ah/harry_maguire_laughs_and_waves_off_rodrigo/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1x2x6ah/harry_maguire_laughs_and_waves_off_rodrigo",
+   "skipped": "too short: the post runs 3.8s (< 15s)"
+  },
+  {
+   "sub": "MMA",
+   "who": "Islam Makhachev",
+   "why": "Shows his cat on camera, a rare personal glimpse of a fighter\u2019s off\u2011court life",
+   "post_title": "Islam Makhachev shows his cat, Toni",
+   "upvotes": 0,
+   "url": "https://streamable.com/eoqtpo",
+   "topic": "https://www.reddit.com/r/MMA/comments/1x0vep3/islam_makhachev_shows_his_cat_toni",
+   "skipped": "author: no setup or no payoff in the clip"
+  }
+ ],
+ "already_today": 0,
+ "pool": 107,
+ "already_posted": 2,
+ "shipped": 0
+}
