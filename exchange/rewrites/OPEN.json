@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-13T20:56:26Z",
+ "updated": "2026-10-13T22:50:11Z",
  "open": [
+  {
+   "id": "cursive-handwriting-comeback__7ccbd374",
+   "slug": "cursive-handwriting-comeback",
+   "filed": "2026-10-13T22:50:11Z",
+   "why": [
+    "premise: brain: Uses multiple numbers instead of a single consequential, verifiable figure, failing the one-number requirement."
+   ],
+   "request": "exchange/rewrites/20261013/cursive-handwriting-comeback__7ccbd374.request.json",
+   "answer_path": "exchange/rewrites/20261013/cursive-handwriting-comeback__7ccbd374.answer.json"
+  },
   {
    "id": "red-hair-recessive-gene__e4e29bf0",
    "slug": "red-hair-recessive-gene",
@@ -602,16 +612,6 @@
    ],
    "request": "exchange/rewrites/20261012/amazon-warehouse-robot-army__587faefb.request.json",
    "answer_path": "exchange/rewrites/20261012/amazon-warehouse-robot-army__587faefb.answer.json"
-  },
-  {
-   "id": "cursive-handwriting-comeback__0bdbde6c",
-   "slug": "cursive-handwriting-comeback",
-   "filed": "2026-10-12T04:56:12Z",
-   "why": [
-    "premise: brain: The claim hinges on a specific, likely inaccurate number (25 states) and does not convincingly reverse a clear viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261012/cursive-handwriting-comeback__0bdbde6c.request.json",
-   "answer_path": "exchange/rewrites/20261012/cursive-handwriting-comeback__0bdbde6c.answer.json"
   },
   {
    "id": "plastic-in-your-body__003bd131",
