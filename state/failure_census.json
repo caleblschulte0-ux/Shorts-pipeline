@@ -1,57 +1,82 @@
 {
  "n_verdicts": 20,
  "classes": {
+  "temporal_gate": {
+   "count": 6,
+   "stories": {
+    "sports_jaylen_brown__edwards_for": 1,
+    "sports_kyle_shanahan_uel_theres_a": 1,
+    "vertical-farming-bust": 2,
+    "saharan-dust-feeds-amazon": 1,
+    "sports_mike_evans__with_trevon": 1
+   },
+   "timestamps": [
+    "2026-10-12T11:39:18+00:00",
+    "2026-10-12T11:46:04+00:00",
+    "2026-10-12T23:53:37+00:00",
+    "2026-10-13T04:58:25+00:00",
+    "2026-10-13T06:48:00+00:00",
+    "2026-10-13T12:07:21+00:00"
+   ],
+   "examples": [
+    "temporal_gate: effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "temporal_gate: duplicate_ratio 0.51 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
+    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.58s of 26.83s (~2.0s frozen)"
+   ],
+   "recurred_after_fix": false
+  },
   "other": {
    "count": 5,
    "stories": {
-    "co2-pollen-season-stretch": 1,
-    "sports_eli_manning_lark_looking": 1,
     "sports_devin_cooley_onights_game": 1,
     "divorce-rate-quiet-decline": 1,
-    "sports_anne_hathaway_y_guesses_og": 1
+    "sports_anne_hathaway_y_guesses_og": 1,
+    "doomsday-clock-89-seconds": 1,
+    "sports_lionel_messi_ve_it_my_all": 1
    },
    "timestamps": [
-    "2026-10-11T20:13:30+00:00",
-    "2026-10-12T00:04:01+00:00",
     "2026-10-12T00:07:28+00:00",
     "2026-10-12T01:26:34+00:00",
-    "2026-10-12T11:44:30+00:00"
+    "2026-10-12T11:44:30+00:00",
+    "2026-10-13T06:11:58+00:00",
+    "2026-10-13T11:31:10+00:00"
    ],
    "examples": [
-    "unreadable: In hook@0.3 and hook@1.5 the subtitle 'carbon dioxide in the air \u00b7 2024' runs into the dashed ghost circles, so '2024' sits on the marks. In seg3:start and seg4:mid the '1990' ghost label ",
-    "unreadable: mid4: during the punch-in our word caption 'IT YOU'VE GOT A S.' is printed on top of the ESPN scorebug and reads as garbled nonsense. mid3: 'ARE THEY LIFTING' has a stray glyph splitting t",
-    "unreadable: In every frame (hook@0.3 through payoff@-0.4), our line 'Devin Cooley brings his pet bunny to the game' sits on top of the cropped Sportsnet/ROGERS lower-third graphic, which shows as a cu"
+    "unreadable: In every frame (hook@0.3 through payoff@-0.4), our line 'Devin Cooley brings his pet bunny to the game' sits on top of the cropped Sportsnet/ROGERS lower-third graphic, which shows as a cu",
+    "unreadable: seg3:mid/payoff@-0.4: the label 'years old, her first wedding \u00b7 2024 \u00b7 +4.7 since 1990' is tiny and runs over the hourglass's top funnel and frame. You can't read it at arm's length",
+    "unreadable: payoff@-1.8: the word caption 'YOU JUST CAN'T.' is printed on top of a second garbled caption, so both are illegible at phone size"
    ],
    "recurred_after_fix": false
   },
-  "temporal_gate": {
-   "count": 3,
+  "dead_air": {
+   "count": 2,
    "stories": {
-    "sports_jaylen_brown__edwards_for": 2,
-    "sports_kyle_shanahan_uel_theres_a": 1
+    "sports_dak_prescott_ott_pointing": 1,
+    "rubiks-cube-record-vs-robot": 1
    },
    "timestamps": [
-    "2026-10-11T23:57:32+00:00",
-    "2026-10-12T11:39:18+00:00",
-    "2026-10-12T11:46:04+00:00"
+    "2026-10-12T11:54:02+00:00",
+    "2026-10-13T05:31:29+00:00"
    ],
    "examples": [
-    "temporal_gate: effective_fps 10.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "temporal_gate: effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "temporal_gate: duplicate_ratio 0.51 > 0.45 (phase-1 ceiling) \u2014 too many held frames"
+    "dead_air: From hook@0.3 to mid0, then mid2, mid3 and the payoff frames, it is shaky phone footage of people walking a tunnel. The point the line promises never shows in a sampled frame, so long stretc",
+    "dead_air: seg4:start (24.59s) to payoff@-0.4 (28.60s): about 4s of one frame. Data holds the same cheer, the robot sits idle and the closing text is static. Only the gripper twitches."
    ],
    "recurred_after_fix": false
   },
-  "empty_void": {
-   "count": 1,
+  "decorative_mascot": {
+   "count": 2,
    "stories": {
-    "sports_jonathan_kuminga_ho_calls_him": 1
+    "rubiks-cube-record-vs-robot": 1,
+    "back-pain-leading-disability": 1
    },
    "timestamps": [
-    "2026-10-11T23:58:32+00:00"
+    "2026-10-13T05:31:29+00:00",
+    "2026-10-13T17:44:29+00:00"
    ],
    "examples": [
-    "empty_void: In hook@0.3, hook@1.5, mid2 and payoff@-0.4, half or more of the frame is empty grey concrete floor. The subjects are small and pushed to the left edge, and in mid2 they are cut off at the"
+    "decorative_mascot: seg0:mid to seg1:end: Data stands at the cube's corner waving or pointing while the cube solves itself. seg2:mid: he stands beside a control box. seg3:start to seg3:end: he waves be",
+    "decorative_mascot: In seg0:start and seg0:mid, the mascot stands next to a box, observing the main character with back pain, but doesn't perform a specific action tied to the stat. In seg3:start and s"
    ],
    "recurred_after_fix": false
   },
@@ -67,41 +92,28 @@
     "junk_imagery: seg1:start/mid/end: a cluster of maroon and grey spheres, like a bunch of grapes or balloons, sits behind the captions at the bottom right and doesn't belong to the ring scene"
    ],
    "recurred_after_fix": false
-  },
-  "dead_air": {
-   "count": 1,
-   "stories": {
-    "sports_dak_prescott_ott_pointing": 1
-   },
-   "timestamps": [
-    "2026-10-12T11:54:02+00:00"
-   ],
-   "examples": [
-    "dead_air: From hook@0.3 to mid0, then mid2, mid3 and the payoff frames, it is shaky phone footage of people walking a tunnel. The point the line promises never shows in a sampled frame, so long stretc"
-   ],
-   "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
    "median": 3,
    "min": 0,
-   "max": 3
+   "max": 4
   },
   "data_demo": {
    "median": 3,
    "min": 0,
-   "max": 4
+   "max": 5
   },
   "mascot": {
-   "median": 4,
+   "median": 3,
    "min": 0,
    "max": 4
   },
   "craft": {
    "median": 2,
    "min": 0,
-   "max": 2
+   "max": 3
   },
   "pace": {
    "median": 2,
@@ -120,15 +132,6 @@
   }
  },
  "scores": [
-  66,
-  79,
-  83,
-  82,
-  14,
-  57,
-  57,
-  70,
-  66,
   75,
   74,
   14,
@@ -139,6 +142,15 @@
   87,
   53,
   87,
-  70
+  70,
+  14,
+  14,
+  52,
+  79,
+  14,
+  87,
+  14,
+  96,
+  100
  ]
 }
