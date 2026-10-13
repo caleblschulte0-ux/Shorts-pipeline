@@ -20,8 +20,12 @@
       "value": 9000
     },
     {
-      "label": "Active satellites",
-      "value": 9000
+      "label": "Tracked debris (>10 cm)",
+      "value": 27500
+    },
+    {
+      "label": "Estimated debris (>1 cm)",
+      "value": 130000
     }
   ]
 }

@@ -141,10 +141,22 @@ def data_is_a_finding(sc: dict) -> dict:
             d = json.loads(p.read_text())
         except Exception:  # noqa: BLE001 — data_provenance reports this
             continue
-        if str(d.get("insight_type", "")).strip().lower() != "rank":
-            continue
         pts = [x for x in (d.get("points") or [])
                if isinstance(x, dict) and x.get("value") is not None]
+        # THE SAME ROW TWICE IS ONE NUMBER, NOT A COMPARISON. 2026-10-12
+        # posted "One Tournament's Prize Pool Grew 25x" whose third beat was
+        # meant to be the drop after the funding change; its dataset read
+        # "2021 peak 40, 2021 peak 40", so the beat restated the peak and the
+        # story lost its turn. Any insight type, never a single real point.
+        if len(pts) >= 2 and len({(str(x.get("label")), x.get("value"))
+                                  for x in pts}) == 1:
+            reasons.append(
+                f"seg{i} ({p.name}): every point is the same row "
+                f"({pts[0].get('label')!r} = {pts[0].get('value')}) — the "
+                f"comparison this beat is about is missing from its data")
+            continue
+        if str(d.get("insight_type", "")).strip().lower() != "rank":
+            continue
         if len(pts) < 2:
             continue
         try:
