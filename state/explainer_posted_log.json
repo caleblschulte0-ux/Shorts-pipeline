@@ -3329,12 +3329,30 @@
       "duration_s": 28.4
     },
     "hpv-vaccine-cancer-drop": {
+      "url": "https://youtube.com/shorts/rhIsWn2SDwo",
       "title": "The Cancer Vaccine Already Cut Cases By 88%",
+      "at": "2026-10-13T17:44:37Z",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "claimed_at": "2026-10-13T17:44:32Z",
-      "via": "showrunner-rejudge"
+      "state": "posted",
+      "via": "showrunner-rejudge",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.93,
+      "beat_s": [
+        3.15,
+        6.18,
+        5.58,
+        6.93,
+        6.07
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 100,
+      "duration_s": 27.8
     }
   },
   "uploads": [
@@ -4178,11 +4196,12 @@
     {
       "title": "The Cancer Vaccine Already Cut Cases By 88%",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
+      "url": "https://youtube.com/shorts/rhIsWn2SDwo",
+      "state": "posted",
       "claimed_at": "2026-10-13T17:44:32Z",
       "via": "showrunner-rejudge",
-      "slug": "hpv-vaccine-cancer-drop"
+      "slug": "hpv-vaccine-cancer-drop",
+      "at": "2026-10-13T17:44:37Z"
     }
   ]
 }
