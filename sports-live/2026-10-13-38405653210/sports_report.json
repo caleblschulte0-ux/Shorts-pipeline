@@ -1,0 +1,82 @@
+{
+ "date": "2026-10-13",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "sports",
+   "why": "most upvoted",
+   "post_title": "Lionel Messi: \u201cI leave in peace, I gave it my all. Thank you for loving me so much.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1wz6yn9/lionel_messi_i_leave_in_peace_i_gave_it_my_all/",
+   "topic": "https://www.reddit.com/r/sports/comments/1wz6yn9/lionel_messi_i_leave_in_peace_i_gave_it_my_all",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "nba",
+   "who": "nba",
+   "why": "most upvoted",
+   "post_title": "[Highlight] The behind-the-back dime from Nikola Jokic at a new angle",
+   "upvotes": 0,
+   "url": "https://streamable.com/5rkgpy",
+   "topic": "https://www.reddit.com/r/nba/comments/1wzhhue/highlight_the_behindtheback_dime_from_nikola",
+   "skipped": "too short: the post runs 12.0s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "nfl",
+   "why": "most upvoted",
+   "post_title": "[Highlight] Mike Evans turns around Diggs to see who he is, Diggs gives him a shot after being embarrassed",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x3ku7b/highlight_mike_evans_turns_around_diggs_to_see/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x3ku7b/highlight_mike_evans_turns_around_diggs_to_see",
+   "skipped": "too short: the post runs 5.7s (< 15s)"
+  },
+  {
+   "sub": "soccer",
+   "who": "soccer",
+   "why": "most upvoted",
+   "post_title": "Lionel Messi: \u201cI leave in peace, I gave it my all. Thank you for loving me so much.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1wz5c1m/lionel_messi_i_leave_in_peace_i_gave_it_my_all/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1wz5c1m/lionel_messi_i_leave_in_peace_i_gave_it_my_all",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "MMA",
+   "who": "MMA",
+   "why": "most upvoted",
+   "post_title": "Sean Strickland on X I gotta be honest unless things change with the UFC Im kinda over it. McGregor makes 30 million to fight for 30 second and they dont want to pay us a fraction of it. Contemplating",
+   "upvotes": 0,
+   "url": "https://x.com/sstricklandmma/status/2107946336758997347?s=46",
+   "topic": "https://www.reddit.com/r/MMA/comments/1x09qse/sean_strickland_on_x_i_gotta_be_honest_unless",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "hockey",
+   "who": "hockey",
+   "why": "most upvoted",
+   "post_title": "The Canadiens give the fans giant inflatable hotdog and bun with a goal of putting them together. The fans instead throw them on the ice with the bun hitting the Habs bench.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1x2xpc2/the_canadiens_give_the_fans_giant_inflatable/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1x2xpc2/the_canadiens_give_the_fans_giant_inflatable",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "CollegeBasketball",
+   "why": "most upvoted",
+   "post_title": "17 year old Joaquim Boumtje-Boumtje vs Belmont: 19 PTS | 7-11 FG | 2-5 3PT | 7 REB | 3 BLK | 2 STL | 22 Mins",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1x1jvj4/17_year_old_joaquim_boumtjeboumtje_vs_belmont_19/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1x1jvj4/17_year_old_joaquim_boumtjeboumtje_vs_belmont_19",
+   "skipped": "author: no title"
+  }
+ ],
+ "already_today": 0,
+ "pool": 92,
+ "already_posted": 2,
+ "shipped": 0
+}
