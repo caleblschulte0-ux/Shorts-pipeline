@@ -223,6 +223,24 @@
    "caller": "_call_llm",
    "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
    "user": "TITLE: Humans Have Only Ever Domesticated 14 Large Animals\nHOOK: In all of history, humans tamed just 14 big animals. Then we stopped.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "eb1f742d2b67ddbc": {
+   "filed": "2026-10-13T15:03:32Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: Video Games Broke Records. So Did The Layoffs.\nHOOK: Games hit record sales, and 14,800 people lost their jobs.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "f0c35b7b5d200bc6": {
+   "filed": "2026-10-13T15:04:53Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: Why Is Nobody Walking Into Libraries Anymore?\nHOOK: America's libraries lost 46% of their visits, but the readers never left.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "8d9e7ba7469e7cb7": {
+   "filed": "2026-10-13T15:07:55Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: Secondhand Clothes Are Growing 5 Times Faster Than New\nHOOK: Thrifting just became a 43 billion dollar habit.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
   }
  },
  "answer_path": "exchange/asks/20261013.answers.json",
