@@ -339,6 +339,57 @@ def _discover_helix(channel: str, top: int, hours: int = 24) -> list[dict]:
     return clips
 
 
+# Twitch's most-watched clips across a whole category for the week — the
+# moments the platform itself watched most, from any streamer. Operator,
+# 2026-10-13: "the clips are trash ... its the clips at their raw". The
+# followed streamers' own top clips are often their least boring minute;
+# a category's top clips are the week's real moments.
+TOP_CATEGORIES = {"509658": "Just Chatting", "32982": "Grand Theft Auto V",
+                  "509672": "IRL"}
+
+
+def top_by_category(game_ids=None, *, days: int = 7,
+                    top: int = 40) -> list[dict]:
+    """The `top` most-viewed Twitch clips of the last `days` in each
+    category, in discovery's own shape. [] without creds or on failure."""
+    import time
+    import requests
+    from datetime import datetime, timezone, timedelta
+    if not _helix_creds():
+        return []
+    started = (datetime.now(timezone.utc) - timedelta(days=days)) \
+        .strftime("%Y-%m-%dT%H:%M:%SZ")
+    out, now = [], time.time()
+    for gid in list(game_ids or TOP_CATEGORIES):
+        try:
+            r = requests.get("https://api.twitch.tv/helix/clips",
+                             params={"game_id": str(gid),
+                                     "started_at": started,
+                                     "first": min(int(top), 100)},
+                             headers=_helix_headers(), timeout=20)
+            r.raise_for_status()
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[helix] top clips for game {gid} failed "
+                  f"({type(e).__name__})", flush=True)
+            continue
+        for c in r.json().get("data", [])[:top]:
+            created = datetime.fromisoformat(
+                c["created_at"].replace("Z", "+00:00")).timestamp()
+            out.append({"url": c["url"], "views": int(c["view_count"]),
+                        "duration": float(c.get("duration", 0)),
+                        "title": c["title"],
+                        "channel": str(c.get("broadcaster_name",
+                                             "")).lower(),
+                        "platform": "twitch", "slug": c["id"],
+                        "age_h": max(0.05, (now - created) / 3600),
+                        "vod_offset": c.get("vod_offset"),
+                        "video_id": c.get("video_id"),
+                        "game_id": c.get("game_id") or "",
+                        "category_top": TOP_CATEGORIES.get(str(gid),
+                                                           str(gid))})
+    return out
+
+
 def helix_clips(ids) -> list[dict]:
     """Twitch clips by id (slug), in discovery's own shape — the clips
     the internet picked (funnel/hot_clips.py) join the story pool with

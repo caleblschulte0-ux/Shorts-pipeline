@@ -1421,6 +1421,20 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                         pool.append(c)
                 print(f"[story] r/LivestreamFail: {len(_hot)} clip post(s), "
                       f"{len(_picked)} resolved on Twitch", flush=True)
+            # THE WEEK'S MOST-WATCHED MOMENTS on Twitch, from any streamer
+            # (operator, 2026-10-13: "the clips are trash ... its the clips
+            # at their raw"). Reddit refuses the runner most days, so the
+            # internet's picks are one week's feed at best; Twitch's own
+            # category charts always answer.
+            if spec.get("story_category_top", True):
+                _have = {c.get("url") for c in pool}
+                _cat = [c for c in clip_edit.top_by_category(
+                            spec.get("story_categories"),
+                            top=int(spec.get("story_category_n", 40)))
+                        if c["url"] not in _have]
+                pool += _cat
+                print(f"[story] Twitch category charts: {len(_cat)} "
+                      "clip(s)", flush=True)
             # THE OTHER SIDE (operator, 2026-10-10, of the Kai Cenat /
             # Reggie saga: "take whoever made those allegations originally,
             # that stream, take a clip from there, and then go to Kai's
