@@ -1,0 +1,55 @@
+{
+ "floor": 80,
+ "cuts": [
+  {
+   "file": "01_66_pokimane-vod2878624939-pokimane-down-outfit-2026w41.mp4",
+   "score": 66,
+   "passes": false,
+   "label": "pokimane@vod2878624939/pokimane-down-outfit-2026w41",
+   "repair": 1,
+   "title": "Pokimane Left Stream And Came Back With Chicken From Two Places",
+   "hook": "Pokimane left mid-stream and came back",
+   "retelling": "Pokimane says 'and chicken', leaves her chair mid-stream, and comes back bragging that she got fried chicken from two different places."
+  },
+  {
+   "file": "02_64_joebartolozzi-vod2894517660-joebartolozzi-about-charact-2026.mp4",
+   "score": 64,
+   "passes": false,
+   "label": "joebartolozzi@vod2894517660/joebartolozzi-about-charact-2026w41",
+   "repair": 2,
+   "title": "Joe Bartolozzi begs his editor to blur this GTA scene",
+   "hook": "Joe begs his editor to blur GTA",
+   "retelling": "Joe is playing GTA 5, gets stuck watching an awkward scene where the characters chat casually, begs his editor to blur it, then when the game cuts back to his character he panics about eye contact, keeps asking to shoot them, and runs."
+  },
+  {
+   "file": "03_58_kaicenat-vod2874428374-kaicenat-about-blue-2026w38.mp4",
+   "score": 58,
+   "passes": false,
+   "label": "kaicenat@vod2874428374/kaicenat-about-blue-2026w38",
+   "repair": 2,
+   "title": "Kai Cenat DMed Bruce and got 'are you hacked?'",
+   "hook": "Kai reached out to Bruce",
+   "retelling": "Kai thought of his estranged friend Bruce at a gas station, texted him, got 'are you hacked?' back, and then had a sincere dinner with him, but the cut stops before we learn whether they actually made up."
+  },
+  {
+   "file": "04_58_burn-momentnurturingrealeggwoop-eee1hwygln8ccoby-burn-about-.mp4",
+   "score": 58,
+   "passes": false,
+   "label": "burn@momentnurturingrealeggwoop-eee1hwygln8ccoby/burn-about-casino-2026w41",
+   "repair": 1,
+   "title": "Casino owner loses his best customer on purpose",
+   "hook": "Tony asks the casino to ban him",
+   "retelling": "A gambler named Tony asks the casino owner to ban him from playing, the owner agrees even though it will hurt his business, and a streamer confirms Tony is blocked, though only until tomorrow."
+  },
+  {
+   "file": "05_58_scout-kaicenat-kaicenat-cenat-detent-2026w30.mp4",
+   "score": 58,
+   "passes": false,
+   "label": "scout:kaicenat/kaicenat-cenat-detent-2026w30",
+   "repair": 1,
+   "title": "Kai lets two guests off, then gives the first detention ever",
+   "hook": "Kai Cenat gives the first detention ever",
+   "retelling": "Kai tells two guests they're fine, then learns a guest named Sin was vaping, and sends him to detention in the library, the first detention ever."
+  }
+ ]
+}
