@@ -1,0 +1,51 @@
+{
+  "schema": "chatgpt-producer-blocking/v1",
+  "date": "20261013",
+  "status": "partial",
+  "failed_step": "Sports moments (Baller Bro): Make, judge and post the sports moments",
+  "required": 3,
+  "shipped": 0,
+  "workflow_runs": [
+    {
+      "run_id": 38389391034,
+      "attempts": 2,
+      "conclusion": "failure",
+      "url": "https://github.com/caleblschulte0-ux/Shorts-pipeline/actions/runs/38389391034"
+    },
+    {
+      "run_id": 38392466701,
+      "attempts": 1,
+      "conclusion": "failure",
+      "url": "https://github.com/caleblschulte0-ux/Shorts-pipeline/actions/runs/38392466701"
+    }
+  ],
+  "blocker": {
+    "primary": "No vision judge was available on publish runs.",
+    "claude": "Weekly usage limit exhausted; reset reported as 00:00 UTC.",
+    "gemini": "HTTP 429 / out of budget.",
+    "safety_behavior": "Fail-closed prevented unreviewed uploads.",
+    "additional_quality_failure": "Mike Evans cut exceeded the frozen-frame ceiling (50 duplicate frames > 45)."
+  },
+  "evidence": {
+    "sports_report_commit": "eda7e56d89b68c23cc0b1026959b6c79436a32dd",
+    "sports_report": "sports_report.json",
+    "preview_runs": [
+      "sports-live/2026-10-13-38389391034",
+      "sports-live/2026-10-13-38392466701"
+    ]
+  },
+  "completed": [
+    "STARTED committed before production work",
+    "Google Drive destination verified accessible; bundle requested no media",
+    "Three Explainer rewrites authored and accepted by Phase B",
+    "response.json read back and validated",
+    "DONE committed separately",
+    "Phase B completed successfully with zero rejections",
+    "Primary Third Channel worker completed successfully"
+  ],
+  "pending_at_write": [
+    "Explainer render worker final completion",
+    "Third Channel duplicate dedupe run final completion"
+  ],
+  "retry_policy": "No further immediate Sports retry: repeated rate-limit/capacity failures are transient and retries would stampede the same unavailable judges."
+}
