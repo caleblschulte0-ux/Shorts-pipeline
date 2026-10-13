@@ -4142,16 +4142,65 @@
       "published_versions": [],
       "last_updated": "2026-10-12"
     },
-    "esfandtv-about-says-2026w37": {
-      "event_id": "esfandtv-about-says-2026w37",
+    "kaicenat-xevi-zylok-accus-cenat-2026w41": {
+      "event_id": "kaicenat-xevi-zylok-accus-cenat-2026w41",
+      "people": [
+        "kaicenat",
+        "xevi",
+        "zylok"
+      ],
+      "actions": [
+        "accus",
+        "cenat",
+        "kaicenat",
+        "reggie"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-13",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.youtube.com/watch?v=i6ERauOb2sI",
+        "https://www.twitch.tv/kaicenat/clip/MildInspiringStorkNerfRedBlaster-txnQqPC2ANXWFYiJ",
+        "https://www.youtube.com/watch?v=yFP-Cto7zgM",
+        "https://www.twitch.tv/kaicenat/clip/SnappyNimbleRatYee-i_wcqMjdyNTK4jnW",
+        "https://www.twitch.tv/kaicenat/clip/ScaryWildWatermelonHoneyBadger-Zys1uz_KyciD_dzL",
+        "https://www.twitch.tv/kaicenat/clip/AmazonianClearCookieDancingBanana-MPyC26edNNWJPaC_"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-13"
+    },
+    "jerma985-pokelawls-catch-charact-2026w41": {
+      "event_id": "jerma985-pokelawls-catch-charact-2026w41",
+      "people": [
+        "jerma985",
+        "pokelawls"
+      ],
+      "actions": [
+        "catch",
+        "charact",
+        "donnie",
+        "fire"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-13",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/jerma985/clip/BetterPhilanthropicMacaroniKappaPride-Zgmhg9bYK74DGByD",
+        "https://www.twitch.tv/pokelawls/clip/BlatantRamshackleFennelBudStar-oONXchJ3dhai26Bz"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-13"
+    },
+    "esfandtv-about-area-2026w37": {
+      "event_id": "esfandtv-about-area-2026w37",
       "people": [
         "esfandtv"
       ],
       "actions": [
         "about",
-        "says",
-        "someth",
-        "will"
+        "area",
+        "costume",
+        "seen"
       ],
       "event_type": "storyline",
       "first_seen": "2026-10-13",
@@ -4159,6 +4208,74 @@
       "candidate_sources": [
         "https://www.twitch.tv/esfandtv/clip/AbstruseObliviousElkGivePLZ-g6ZrUjKPI8PKIGZq",
         "https://www.twitch.tv/esfandtv/clip/PunchySarcasticSkirretSMOrc-wX0QYiuANwgIb-mX"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-13"
+    },
+    "yuliabaka-have-kind-2026w41": {
+      "event_id": "yuliabaka-have-kind-2026w41",
+      "people": [
+        "yuliabaka"
+      ],
+      "actions": [
+        "have",
+        "kind",
+        "later",
+        "says"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-13",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/yuliabaka/clip/HotQuaintBibimbapDogFace-gFF3MHV1B53EOiDH",
+        "https://www.twitch.tv/yuliabaka/clip/PleasantObliqueHamCclamChamp-cYHopen_-MoV3tGM"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-13"
+    },
+    "ishowspeed-about-danny-2026w41": {
+      "event_id": "ishowspeed-about-danny-2026w41",
+      "people": [
+        "ishowspeed"
+      ],
+      "actions": [
+        "about",
+        "danny",
+        "deliv",
+        "speed"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-13",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/ishowspeed/clip/PlayfulBeautifulCheesecakeHeyGuys-XGk579sA3V2OPeXp",
+        "https://www.twitch.tv/ishowspeed/clip/AgitatedSucculentVanillaYouDontSay-pcb45T-lMoBp69lJ",
+        "https://www.twitch.tv/ishowspeed/clip/CleanPunchyLettuceStoneLightning-txOfL2tbAN-Zp5HY",
+        "https://www.twitch.tv/ishowspeed/clip/PlumpAlertKuduCmonBruh-WJMi_0Fh82BKYTu0",
+        "https://www.twitch.tv/ishowspeed/clip/MagnificentCaringLapwingLitFam--mAJF-ezbaOYkTFm",
+        "https://www.twitch.tv/ishowspeed/clip/FurtiveMistyBulgogiPipeHype-Uo5PMqk5U40zvov8"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-13"
+    },
+    "plaqueboymax-about-matt-2026w38": {
+      "event_id": "plaqueboymax-about-matt-2026w38",
+      "people": [
+        "plaqueboymax"
+      ],
+      "actions": [
+        "about",
+        "matt",
+        "says",
+        "shoot"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-13",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/plaqueboymax/clip/ModernTangentialFalconJKanStyle-FbEsdaYzjPFyqgQX",
+        "https://www.twitch.tv/plaqueboymax/clip/UgliestThirstyReindeerNerfBlueBlaster-yarcDfYUzXsfOvi1",
+        "https://www.twitch.tv/plaqueboymax/clip/OptimisticCrunchyJalapenoOSsloth--bTqCGH7YuV0wQOy"
       ],
       "published_versions": [],
       "last_updated": "2026-10-13"
