@@ -804,5 +804,21 @@
   "topic": "sharks",
   "starred": false,
   "sig": "522ed07edaa3"
+ },
+ {
+  "mechanic": "shark-school-vanishes",
+  "concept": "a 10x10 school of real sharks drifts while the years tick by and sharks are struck out until 29 of 100 remain",
+  "code": "shark = subject_image('oceanic shark cutout side view')\ncols, rows = 10, 10\ncw = (RX1 - RX0) // cols\nch = 118\nk = clamp(reveal * 1.05)\npos = k * (n - 1)\ni0 = min(n - 2, int(pos))\ncur = lerp(values[i0], values[i0 + 1], pos - i0)\nyr = labels[min(n - 1, int(round(pos)))]\nalive = int(round(cur))\nfor idx in range(100):\n    r, cc = idx // cols, idx % cols\n    x = RX0 + cc * cw\n    y = RTOP + 150 + r * ch\n    drift = math.sin(reveal * 14 + idx) * 6\n    if idx < alive:\n        if shark is not None:\n            paste(shark, int(x + 4 + drift), y, cw - 8, 70)\n        else:\n            d.ellipse([x + 8, y, x + cw - 8, y + 50], fill=rgba(HIGHLIGHT, 220))\n    else:\n        d.line([x + 20, y + 10, x + cw - 20, y + 50], fill=rgba(WARN, 90), width=3)\n        d.line([x + cw - 20, y + 10, x + 20, y + 50], fill=rgba(WARN, 90), width=3)\nsx = RX0 + int((RX1 - RX0) * ((reveal * 8.0) % 1.0))\nd.rectangle([sx - 60, RTOP + 140, sx + 60, RBOT - 120], fill=rgba(HIGHLIGHT, 70))\ntext(str(yr), RX0 + 20, RTOP + 20, size=84, color=TEXT)\ntext(f'{cur:.0f} of every 100 sharks left', RX1 - 20, RTOP + 50, size=36, color=HIGHLIGHT)\ntext(f'{100 - cur:.0f}% GONE', (RX0 + RX1) // 2, RBOT - 60, size=64, color=WARN, center=True)\n",
+  "topic": "shark-school-vanishes",
+  "starred": false,
+  "sig": "0fa9f5cb0395"
+ },
+ {
+  "mechanic": "torso-ink-fill-duel",
+  "concept": "two torsos fill with ink to 37% of women vs 32% of all adults while ink drops fall",
+  "code": "person = subject_image('person torso silhouette')\ncolw = (RX1 - RX0) // 2\nfor i, (lab, v) in enumerate(zip(labels, values)):\n    cx = RX0 + colw * i + colw // 2\n    top, h, w = RTOP + 120, 900, 400\n    if person is not None:\n        paste(person, cx - w // 2, top, w, h)\n    else:\n        d.rounded_rectangle([cx - w // 2, top, cx + w // 2, top + h], radius=60, outline=rgba(TEXT, 120), width=5)\n    frac = clamp(v / 100.0) * clamp(reveal * 1.2)\n    if person is not None:\n        fill_image(person, frac, cx - w // 2, top, w, h, direction='up', color=HIGHLIGHT)\n    else:\n        d.rounded_rectangle([cx - w // 2, top + int(h * (1 - frac)), cx + w // 2, top + h], radius=60, fill=rgba(HIGHLIGHT, 200))\n    for k in range(4):\n        ph = (reveal * 3.0 + k / 4.0 + i * 0.3) % 1.0\n        dy = top - 20 + int(ph * 180)\n        d.ellipse([cx - 14 + (k - 2) * 50, dy, cx + 14 + (k - 2) * 50, dy + 34], fill=rgba(TEXT, int(230 * (1 - ph))))\n    text(lab, cx, top + h + 30, size=36, color=TEXT, center=True)\n    text(f'{v * clamp(reveal * 1.2):.0f}%', cx, top + h + 90, size=80, color=HIGHLIGHT if i == 0 else TEXT, center=True)\n",
+  "topic": "torso-ink-fill-duel",
+  "starred": false,
+  "sig": "095a2abd8f0a"
  }
 ]

@@ -1,0 +1,9 @@
+{
+ "slug": "vertical-farming-bust",
+ "ts": "20261013T071909Z",
+ "failure_class": "temporal_gate",
+ "evidence": "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.25s of 26.5s (~2.0s frozen)",
+ "weakest_scene": {},
+ "scene_plan": {},
+ "scenes": []
+}

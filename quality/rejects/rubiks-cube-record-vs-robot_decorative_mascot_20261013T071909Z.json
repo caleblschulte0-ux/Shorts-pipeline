@@ -1,0 +1,16 @@
+{
+ "slug": "rubiks-cube-record-vs-robot",
+ "ts": "20261013T071909Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg0:mid to seg1:end: Data stands at the cube's corner waving or pointing while the cube solves itself. seg2:mid: he stands beside a control box. seg3:start to seg3:end: he waves beside the robot rig. seg4:start to seg4:end: he cheers on the same spot. He never solves a cube, star",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "claim_mismatch_and_static_number",
+  "visible_evidence": "seg3:start to seg3:end: the caption says 'record hit 3.47' while the screen reads '3.13 sec the best human solve \u00b7 2023'. The narration says 2018 and 3.47. The scene is a ROBOT rig eating cubes during the HUMAN-record beat, the 3.13 never changes, and Data just waves at the side. It also plays after seg2 has already revealed the robot's 0.38s, so the build-up runs backwards.",
+  "root_cause": "The scene was authored against a different dataset row (2023, 3.13) than the narration (2018, 3.47). It reuses the robot arena instead of showing human hands getting faster. Beat order puts the robot reveal before the human record.",
+  "repair_goal": "Make the 2018 human-record beat show 3.47s, matching the narration. Draw it as human speed: Data's own hands blurring through a solve while a stopwatch stops at 3.47, with a ghost of the 1982 23s marked on the same dial so the six-times drop shows on the dial itself. Order the beats 1982, then 2018, then the robot, so the robot's 0.38 is the final reveal."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

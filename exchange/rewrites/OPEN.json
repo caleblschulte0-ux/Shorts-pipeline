@@ -1,7 +1,178 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-13T04:11:23Z",
+ "updated": "2026-10-13T07:19:00Z",
  "open": [
+  {
+   "id": "divorce-rate-quiet-decline__d6b27d36",
+   "slug": "divorce-rate-quiet-decline",
+   "filed": "2026-10-13T07:19:00Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261013/divorce-rate-quiet-decline__d6b27d36.request.json",
+   "answer_path": "exchange/rewrites/20261013/divorce-rate-quiet-decline__d6b27d36.answer.json"
+  },
+  {
+   "id": "rabies-prevention-gap__a36d7b3a",
+   "slug": "rabies-prevention-gap",
+   "filed": "2026-10-13T07:19:00Z",
+   "why": [
+    "premise: brain: The premise relies on multiple numbers (59,000 and 100%) rather than a single verifiable figure, failing the one-number requirement."
+   ],
+   "request": "exchange/rewrites/20261013/rabies-prevention-gap__a36d7b3a.request.json",
+   "answer_path": "exchange/rewrites/20261013/rabies-prevention-gap__a36d7b3a.answer.json"
+  },
+  {
+   "id": "secondhand-apparel-resale-boom__4cb7c7e8",
+   "slug": "secondhand-apparel-resale-boom",
+   "filed": "2026-10-13T07:19:00Z",
+   "why": [
+    "premise: brain: It relies on multiple numbers (5× growth and $43 billion) rather than a single consequential verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261013/secondhand-apparel-resale-boom__4cb7c7e8.request.json",
+   "answer_path": "exchange/rewrites/20261013/secondhand-apparel-resale-boom__4cb7c7e8.answer.json"
+  },
+  {
+   "id": "global-remittances-record-2023__21255dfc",
+   "slug": "global-remittances-record-2023",
+   "filed": "2026-10-13T07:18:59Z",
+   "why": [
+    "premise: brain: It lacks a reversal of a viewer expectation and only presents a large figure without a specific, surprising twist."
+   ],
+   "request": "exchange/rewrites/20261013/global-remittances-record-2023__21255dfc.request.json",
+   "answer_path": "exchange/rewrites/20261013/global-remittances-record-2023__21255dfc.answer.json"
+  },
+  {
+   "id": "humpback-whale-recovery__9bfbe8e1",
+   "slug": "humpback-whale-recovery",
+   "filed": "2026-10-13T07:18:59Z",
+   "why": [
+    "premise: brain: The premise relies on multiple numbers (450 and 25,000) rather than a single consequential, verifiable figure, failing the one-number requirement."
+   ],
+   "request": "exchange/rewrites/20261013/humpback-whale-recovery__9bfbe8e1.request.json",
+   "answer_path": "exchange/rewrites/20261013/humpback-whale-recovery__9bfbe8e1.answer.json"
+  },
+  {
+   "id": "billionaire-count-record-2025__a388e951",
+   "slug": "billionaire-count-record-2025",
+   "filed": "2026-10-13T07:18:59Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on vague numbers rather than a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261013/billionaire-count-record-2025__a388e951.request.json",
+   "answer_path": "exchange/rewrites/20261013/billionaire-count-record-2025__a388e951.answer.json"
+  },
+  {
+   "id": "nobel-prize-discovery-age__ae313610",
+   "slug": "nobel-prize-discovery-age",
+   "filed": "2026-10-13T07:18:59Z",
+   "why": [
+    "pace: hook is 16 words (max 14)"
+   ],
+   "request": "exchange/rewrites/20261013/nobel-prize-discovery-age__ae313610.request.json",
+   "answer_path": "exchange/rewrites/20261013/nobel-prize-discovery-age__ae313610.answer.json"
+  },
+  {
+   "id": "north-american-bird-collapse__58c079e0",
+   "slug": "north-american-bird-collapse",
+   "filed": "2026-10-13T07:18:58Z",
+   "why": [
+    "premise: brain: The claim lacks a clear, verifiable statistic and does not convincingly overturn a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261013/north-american-bird-collapse__58c079e0.request.json",
+   "answer_path": "exchange/rewrites/20261013/north-american-bird-collapse__58c079e0.answer.json"
+  },
+  {
+   "id": "moon-drifting-away__904b95b2",
+   "slug": "moon-drifting-away",
+   "filed": "2026-10-13T07:18:58Z",
+   "why": [
+    "premise: brain: The hook does not clearly reverse a common viewer expectation and relies on a vague, non‑impactful timescale."
+   ],
+   "request": "exchange/rewrites/20261013/moon-drifting-away__904b95b2.request.json",
+   "answer_path": "exchange/rewrites/20261013/moon-drifting-away__904b95b2.answer.json"
+  },
+  {
+   "id": "podcasts-passed-radio-spoken-word__dfe89d18_r1",
+   "slug": "podcasts-passed-radio-spoken-word",
+   "filed": "2026-10-13T07:18:58Z",
+   "why": [
+    "premise: brain: It lacks a single, verifiable numerical claim despite reversing the expectation about radio vs podcasts."
+   ],
+   "request": "exchange/rewrites/20261013/podcasts-passed-radio-spoken-word__dfe89d18_r1.request.json",
+   "answer_path": "exchange/rewrites/20261013/podcasts-passed-radio-spoken-word__dfe89d18_r1.answer.json"
+  },
+  {
+   "id": "betelgeuse-great-dimming__e2882181",
+   "slug": "betelgeuse-great-dimming",
+   "filed": "2026-10-13T07:18:57Z",
+   "why": [
+    "premise: brain: The premise is vague and does not clearly reverse a specific viewer expectation with a single, verifiable numeric claim."
+   ],
+   "request": "exchange/rewrites/20261013/betelgeuse-great-dimming__e2882181.request.json",
+   "answer_path": "exchange/rewrites/20261013/betelgeuse-great-dimming__e2882181.answer.json"
+  },
+  {
+   "id": "california-condor-comeback__660176fa_r1",
+   "slug": "california-condor-comeback",
+   "filed": "2026-10-13T07:18:57Z",
+   "why": [
+    "premise: brain: It relies on two numbers (27 and over 500) instead of a single consequential, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261013/california-condor-comeback__660176fa_r1.request.json",
+   "answer_path": "exchange/rewrites/20261013/california-condor-comeback__660176fa_r1.answer.json"
+  },
+  {
+   "id": "chess-online-boom__cf203384",
+   "slug": "chess-online-boom",
+   "filed": "2026-10-13T07:18:57Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation despite citing a number."
+   ],
+   "request": "exchange/rewrites/20261013/chess-online-boom__cf203384.request.json",
+   "answer_path": "exchange/rewrites/20261013/chess-online-boom__cf203384.answer.json"
+  },
+  {
+   "id": "hurricane-names-retired-growing-list__4dcbc649",
+   "slug": "hurricane-names-retired-growing-list",
+   "filed": "2026-10-13T07:18:56Z",
+   "why": [
+    "premise: brain: The claim that 100 hurricane names are permanently banned is likely inaccurate and lacks a verifiable single consequential number.",
+    "pace: hook is 15 words (max 14)"
+   ],
+   "request": "exchange/rewrites/20261013/hurricane-names-retired-growing-list__4dcbc649.request.json",
+   "answer_path": "exchange/rewrites/20261013/hurricane-names-retired-growing-list__4dcbc649.answer.json"
+  },
+  {
+   "id": "pitch-drop-slowest-experiment__75598276_r1",
+   "slug": "pitch-drop-slowest-experiment",
+   "filed": "2026-10-13T07:18:56Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and does not hinge on a single verifiable number."
+   ],
+   "request": "exchange/rewrites/20261013/pitch-drop-slowest-experiment__75598276_r1.request.json",
+   "answer_path": "exchange/rewrites/20261013/pitch-drop-slowest-experiment__75598276_r1.answer.json"
+  },
+  {
+   "id": "saharan-dust-feeds-amazon__4e3dcf52",
+   "slug": "saharan-dust-feeds-amazon",
+   "filed": "2026-10-13T07:18:56Z",
+   "why": [
+    "judge: blocked before vision review: max_dup_run 46 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=20.83s of 26.08s (~1.9s frozen)"
+   ],
+   "request": "exchange/rewrites/20261013/saharan-dust-feeds-amazon__4e3dcf52.request.json",
+   "answer_path": "exchange/rewrites/20261013/saharan-dust-feeds-amazon__4e3dcf52.answer.json"
+  },
+  {
+   "id": "rubiks-cube-record-vs-robot__52f298b4",
+   "slug": "rubiks-cube-record-vs-robot",
+   "filed": "2026-10-13T07:18:55Z",
+   "why": [
+    "judge: The cube-solving scenes are nicely made, but the on-screen record (3.13s, 2023) contradicts the narration (3.47s, 2018), the robot reveal comes before the human record, and Data only waves beside machines that do the work."
+   ],
+   "request": "exchange/rewrites/20261013/rubiks-cube-record-vs-robot__52f298b4.request.json",
+   "answer_path": "exchange/rewrites/20261013/rubiks-cube-record-vs-robot__52f298b4.answer.json"
+  },
   {
    "id": "coldest-place-in-the-universe-is-human-made__d62a1233",
    "slug": "coldest-place-in-the-universe-is-human-made",
@@ -61,16 +232,6 @@
    ],
    "request": "exchange/rewrites/20261013/cargo-ship-size-growth__df70770f.request.json",
    "answer_path": "exchange/rewrites/20261013/cargo-ship-size-growth__df70770f.answer.json"
-  },
-  {
-   "id": "podcasts-passed-radio-spoken-word__381281ff",
-   "slug": "podcasts-passed-radio-spoken-word",
-   "filed": "2026-10-13T04:11:23Z",
-   "why": [
-    "premise: brain: It lacks a single consequential, verifiable number to support the claim."
-   ],
-   "request": "exchange/rewrites/20261013/podcasts-passed-radio-spoken-word__381281ff.request.json",
-   "answer_path": "exchange/rewrites/20261013/podcasts-passed-radio-spoken-word__381281ff.answer.json"
   },
   {
    "id": "world-wetlands-lost__92a0d2d9",
@@ -273,16 +434,6 @@
    "answer_path": "exchange/rewrites/20261013/insect-planet__3c4a491b.answer.json"
   },
   {
-   "id": "california-condor-comeback__1b28d7ea",
-   "slug": "california-condor-comeback",
-   "filed": "2026-10-13T04:11:21Z",
-   "why": [
-    "premise: brain: It relies on two numbers (27 and over 500) instead of a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261013/california-condor-comeback__1b28d7ea.request.json",
-   "answer_path": "exchange/rewrites/20261013/california-condor-comeback__1b28d7ea.answer.json"
-  },
-  {
    "id": "english-internet-share-decline__21efaa68",
    "slug": "english-internet-share-decline",
    "filed": "2026-10-13T04:11:21Z",
@@ -291,16 +442,6 @@
    ],
    "request": "exchange/rewrites/20261013/english-internet-share-decline__21efaa68.request.json",
    "answer_path": "exchange/rewrites/20261013/english-internet-share-decline__21efaa68.answer.json"
-  },
-  {
-   "id": "pitch-drop-slowest-experiment__121959a4",
-   "slug": "pitch-drop-slowest-experiment",
-   "filed": "2026-10-13T04:11:21Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and lacks a single, pivotal verifiable number."
-   ],
-   "request": "exchange/rewrites/20261013/pitch-drop-slowest-experiment__121959a4.request.json",
-   "answer_path": "exchange/rewrites/20261013/pitch-drop-slowest-experiment__121959a4.answer.json"
   },
   {
    "id": "vertical-farming-bust__88943771",
@@ -413,36 +554,6 @@
    "answer_path": "exchange/rewrites/20261012/amazon-warehouse-robot-army__587faefb.answer.json"
   },
   {
-   "id": "divorce-rate-quiet-decline__d6b27d36",
-   "slug": "divorce-rate-quiet-decline",
-   "filed": "2026-10-12T11:44:28Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261012/divorce-rate-quiet-decline__d6b27d36.request.json",
-   "answer_path": "exchange/rewrites/20261012/divorce-rate-quiet-decline__d6b27d36.answer.json"
-  },
-  {
-   "id": "hurricane-names-retired-growing-list__84bbf5fc",
-   "slug": "hurricane-names-retired-growing-list",
-   "filed": "2026-10-12T11:44:24Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on a vague number rather than a single, verifiable consequential figure."
-   ],
-   "request": "exchange/rewrites/20261012/hurricane-names-retired-growing-list__84bbf5fc.request.json",
-   "answer_path": "exchange/rewrites/20261012/hurricane-names-retired-growing-list__84bbf5fc.answer.json"
-  },
-  {
-   "id": "rubiks-cube-record-vs-robot__66847e13",
-   "slug": "rubiks-cube-record-vs-robot",
-   "filed": "2026-10-12T11:44:23Z",
-   "why": [
-    "premise: brain: Unclear reversal of a specific viewer expectation; ambiguous premise."
-   ],
-   "request": "exchange/rewrites/20261012/rubiks-cube-record-vs-robot__66847e13.request.json",
-   "answer_path": "exchange/rewrites/20261012/rubiks-cube-record-vs-robot__66847e13.answer.json"
-  },
-  {
    "id": "hpv-vaccine-cancer-drop__d23144d8",
    "slug": "hpv-vaccine-cancer-drop",
    "filed": "2026-10-12T11:44:20Z",
@@ -451,16 +562,6 @@
    ],
    "request": "exchange/rewrites/20261012/hpv-vaccine-cancer-drop__d23144d8.request.json",
    "answer_path": "exchange/rewrites/20261012/hpv-vaccine-cancer-drop__d23144d8.answer.json"
-  },
-  {
-   "id": "rabies-prevention-gap__a66db590",
-   "slug": "rabies-prevention-gap",
-   "filed": "2026-10-12T04:56:14Z",
-   "why": [
-    "premise: brain: It states known facts without reversing a viewer expectation, despite including a single statistic."
-   ],
-   "request": "exchange/rewrites/20261012/rabies-prevention-gap__a66db590.request.json",
-   "answer_path": "exchange/rewrites/20261012/rabies-prevention-gap__a66db590.answer.json"
   },
   {
    "id": "red-hair-recessive-gene__e4e29bf0",
@@ -473,26 +574,6 @@
    "answer_path": "exchange/rewrites/20261012/red-hair-recessive-gene__e4e29bf0.answer.json"
   },
   {
-   "id": "global-remittances-record-2023__21255dfc",
-   "slug": "global-remittances-record-2023",
-   "filed": "2026-10-12T04:56:13Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation despite citing a single number."
-   ],
-   "request": "exchange/rewrites/20261012/global-remittances-record-2023__21255dfc.request.json",
-   "answer_path": "exchange/rewrites/20261012/global-remittances-record-2023__21255dfc.answer.json"
-  },
-  {
-   "id": "humpback-whale-recovery__9bfbe8e1",
-   "slug": "humpback-whale-recovery",
-   "filed": "2026-10-12T04:56:13Z",
-   "why": [
-    "premise: brain: The claim relies on a range of numbers (450 to 25,000) rather than a single verifiable figure, failing the one-number requirement."
-   ],
-   "request": "exchange/rewrites/20261012/humpback-whale-recovery__9bfbe8e1.request.json",
-   "answer_path": "exchange/rewrites/20261012/humpback-whale-recovery__9bfbe8e1.answer.json"
-  },
-  {
    "id": "cursive-handwriting-comeback__0bdbde6c",
    "slug": "cursive-handwriting-comeback",
    "filed": "2026-10-12T04:56:12Z",
@@ -501,16 +582,6 @@
    ],
    "request": "exchange/rewrites/20261012/cursive-handwriting-comeback__0bdbde6c.request.json",
    "answer_path": "exchange/rewrites/20261012/cursive-handwriting-comeback__0bdbde6c.answer.json"
-  },
-  {
-   "id": "north-american-bird-collapse__58c079e0",
-   "slug": "north-american-bird-collapse",
-   "filed": "2026-10-12T04:56:10Z",
-   "why": [
-    "premise: brain: The claim hinges on an unverified, likely inaccurate figure without clear, verifiable evidence."
-   ],
-   "request": "exchange/rewrites/20261012/north-american-bird-collapse__58c079e0.request.json",
-   "answer_path": "exchange/rewrites/20261012/north-american-bird-collapse__58c079e0.answer.json"
   },
   {
    "id": "plastic-in-your-body__003bd131",
@@ -541,36 +612,6 @@
    ],
    "request": "exchange/rewrites/20261012/blood-supply-three-percent__b017adda.request.json",
    "answer_path": "exchange/rewrites/20261012/blood-supply-three-percent__b017adda.answer.json"
-  },
-  {
-   "id": "saharan-dust-feeds-amazon__7bf5430c",
-   "slug": "saharan-dust-feeds-amazon",
-   "filed": "2026-10-11T14:03:50Z",
-   "why": [
-    "premise: brain: Unclear if it truly reverses a common viewer expectation despite the numeric claim"
-   ],
-   "request": "exchange/rewrites/20261011/saharan-dust-feeds-amazon__7bf5430c.request.json",
-   "answer_path": "exchange/rewrites/20261011/saharan-dust-feeds-amazon__7bf5430c.answer.json"
-  },
-  {
-   "id": "moon-drifting-away__f1146b92",
-   "slug": "moon-drifting-away",
-   "filed": "2026-10-11T14:03:49Z",
-   "why": [
-    "premise: brain: The hook does not clearly invert a common viewer expectation and relies on a vague, non‑impactful timescale."
-   ],
-   "request": "exchange/rewrites/20261011/moon-drifting-away__f1146b92.request.json",
-   "answer_path": "exchange/rewrites/20261011/moon-drifting-away__f1146b92.answer.json"
-  },
-  {
-   "id": "betelgeuse-great-dimming__4a620e19",
-   "slug": "betelgeuse-great-dimming",
-   "filed": "2026-10-11T14:03:47Z",
-   "why": [
-    "premise: brain: The premise lacks a clear, verifiable numeric claim tied to a specific expectation reversal, making it too vague."
-   ],
-   "request": "exchange/rewrites/20261011/betelgeuse-great-dimming__4a620e19.request.json",
-   "answer_path": "exchange/rewrites/20261011/betelgeuse-great-dimming__4a620e19.answer.json"
   },
   {
    "id": "ants-outnumber-humans__85ceee4a",
@@ -611,16 +652,6 @@
    ],
    "request": "exchange/rewrites/20261009/monarch-butterfly-collapse__f5453757.request.json",
    "answer_path": "exchange/rewrites/20261009/monarch-butterfly-collapse__f5453757.answer.json"
-  },
-  {
-   "id": "billionaire-count-record-2025__13fb03d3_r1",
-   "slug": "billionaire-count-record-2025",
-   "filed": "2026-10-09T13:18:10Z",
-   "why": [
-    "judge: Three generic bar charts followed by a broken comparison: both circles say 'Billionaire wealth 127%', so the S&P 500's 195% payoff never appears on screen."
-   ],
-   "request": "exchange/rewrites/20261009/billionaire-count-record-2025__13fb03d3_r1.request.json",
-   "answer_path": "exchange/rewrites/20261009/billionaire-count-record-2025__13fb03d3_r1.answer.json"
   },
   {
    "id": "marathon-super-shoes-record-pace__129ca870",
@@ -695,16 +726,6 @@
    ],
    "request": "exchange/rewrites/20261009/adhd-diagnosis-surge__5cd541a0.request.json",
    "answer_path": "exchange/rewrites/20261009/adhd-diagnosis-surge__5cd541a0.answer.json"
-  },
-  {
-   "id": "nobel-prize-discovery-age__f8c0f758",
-   "slug": "nobel-prize-discovery-age",
-   "filed": "2026-10-09T00:20:17Z",
-   "why": [
-    "premise: brain: It lacks a clear reversal of a common viewer expectation and relies on a vague, unverifiable time span."
-   ],
-   "request": "exchange/rewrites/20261009/nobel-prize-discovery-age__f8c0f758.request.json",
-   "answer_path": "exchange/rewrites/20261009/nobel-prize-discovery-age__f8c0f758.answer.json"
   },
   {
    "id": "youth-sports-dropout__00a41695",
@@ -867,18 +888,6 @@
    "answer_path": "exchange/rewrites/20261006/dating-app-user-exodus__b6c4222d.answer.json"
   },
   {
-   "id": "secondhand-apparel-resale-boom__e3a857dc",
-   "slug": "secondhand-apparel-resale-boom",
-   "filed": "2026-10-06T13:45:33Z",
-   "why": [
-    "pace: beat 1 says 17 words (max 16) — one sentence, the number and what it means",
-    "pace: beat 2 says 19 words (max 16) — one sentence, the number and what it means",
-    "pace: beat 3 says 19 words (max 16) — one sentence, the number and what it means"
-   ],
-   "request": "exchange/rewrites/20261006/secondhand-apparel-resale-boom__e3a857dc.request.json",
-   "answer_path": "exchange/rewrites/20261006/secondhand-apparel-resale-boom__e3a857dc.answer.json"
-  },
-  {
    "id": "twin-birth-rate-rise__32203474",
    "slug": "twin-birth-rate-rise",
    "filed": "2026-10-06T13:45:29Z",
@@ -909,16 +918,6 @@
    ],
    "request": "exchange/rewrites/20261006/sand-mining-crisis__6010dfc1.request.json",
    "answer_path": "exchange/rewrites/20261006/sand-mining-crisis__6010dfc1.answer.json"
-  },
-  {
-   "id": "chess-online-boom__00589e49",
-   "slug": "chess-online-boom",
-   "filed": "2026-10-06T12:36:11Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on a vague, unverified 200‑million figure."
-   ],
-   "request": "exchange/rewrites/20261006/chess-online-boom__00589e49.request.json",
-   "answer_path": "exchange/rewrites/20261006/chess-online-boom__00589e49.answer.json"
   },
   {
    "id": "phone-call-avoidance__25158303",

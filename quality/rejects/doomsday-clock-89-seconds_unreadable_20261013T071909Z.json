@@ -1,0 +1,16 @@
+{
+ "slug": "doomsday-clock-89-seconds",
+ "ts": "20261013T071909Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg3:mid the BIO warning sign's label is cut to 'BI' by a fuse, and in seg3:end the 'AI' sign is half hidden behind the bomb. In seg2:start the caption 'sat at its' is pale and nearly invisible against the sand.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "redundant_and_desynced",
+  "visible_evidence": "seg1:start already shows '1,020 seconds \u00b7 1991' while the caption is still on 'set the Doomsday' (the 1947 line). By seg1:mid it is '89 seconds \u00b7 2025' under 'minutes before midnight', and that frame repeats the hook's opening frame (hook@0.3) pixel for pixel. seg1:end is the same picture again.",
+  "root_cause": "The beat replays the whole 1947\u21921991\u21922025 sweep on the same clock the hook already used, ahead of a narration that only talks about 1947. It also takes the 1991-to-89-seconds comparison that the hourglass (seg2) is built to deliver.",
+  "repair_goal": "Make seg1 only about 1947. Data sets the hands to 7 minutes (420 seconds) as the narration says it, and the scene ends on 1947. Do not show 1991 or 2025 here; leave that drop to the seg2 hourglass, so the clock picture does not repeat the hook."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
