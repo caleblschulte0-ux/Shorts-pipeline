@@ -3302,6 +3302,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 70,
       "duration_s": 24.0
+    },
+    "doomsday-clock-89-seconds": {
+      "claimed_at": "2026-10-13T06:20:19.600236+00:00",
+      "title": "The Doomsday Clock Just Hit 89 Seconds To Midnight",
+      "publish_at": "2026-10-13T05:29:07Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4132,6 +4139,14 @@
       "state": "posted",
       "slug": "esports-prize-pool-25x",
       "at": "2026-10-12T23:10:48.779816+00:00"
+    },
+    {
+      "claimed_at": "2026-10-13T06:20:19.600236+00:00",
+      "title": "The Doomsday Clock Just Hit 89 Seconds To Midnight",
+      "publish_at": "2026-10-13T05:29:07Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "doomsday-clock-89-seconds"
     }
   ]
 }
