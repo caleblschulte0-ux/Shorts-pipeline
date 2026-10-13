@@ -140,7 +140,7 @@ jobs:
     outputs:
       new_count: ${{ steps.count.outputs.new_count }}
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.ref }}
           fetch-depth: 1
@@ -189,7 +189,7 @@ jobs:
       # twelve stories from scratch, and none of the fixes merged in between
       # were in it. A ref makes checkout fetch the tip when the job STARTS.
       - name: Checkout
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ github.ref }}
