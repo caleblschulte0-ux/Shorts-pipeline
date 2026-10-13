@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-13T12:41:35Z",
+ "updated": "2026-10-13T18:17:35Z",
  "open": [
+  {
+   "id": "bat-fungus-collapse__45262d36",
+   "slug": "bat-fungus-collapse",
+   "filed": "2026-10-13T18:17:34Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer's expectation and relies on a vague claim rather than a single, verifiable numeric hook."
+   ],
+   "request": "exchange/rewrites/20261013/bat-fungus-collapse__45262d36.request.json",
+   "answer_path": "exchange/rewrites/20261013/bat-fungus-collapse__45262d36.answer.json"
+  },
   {
    "id": "self-storage-outnumbers-starbucks__97599610",
    "slug": "self-storage-outnumbers-starbucks",
@@ -770,18 +780,6 @@
    ],
    "request": "exchange/rewrites/20261009/chatgpt-fastest-adoption-ever__cb5bfb31.request.json",
    "answer_path": "exchange/rewrites/20261009/chatgpt-fastest-adoption-ever__cb5bfb31.answer.json"
-  },
-  {
-   "id": "bat-fungus-collapse__8cadb9b4",
-   "slug": "bat-fungus-collapse",
-   "filed": "2026-10-09T00:20:14Z",
-   "why": [
-    "thesis: seg1 ('bat population decline') has no bridge to the headline (\"A Fungus Is Erasing North America's Bats\") — brain: no genuine bridge to the headline",
-    "pace: hook is 16 words (max 14)",
-    "pace: beat 1 says 24 words (max 16) — one sentence, the number and what it means"
-   ],
-   "request": "exchange/rewrites/20261009/bat-fungus-collapse__8cadb9b4.request.json",
-   "answer_path": "exchange/rewrites/20261009/bat-fungus-collapse__8cadb9b4.answer.json"
   },
   {
    "id": "daylight-saving-time-in-decline__d148cd57",
