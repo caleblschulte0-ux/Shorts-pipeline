@@ -26238,7 +26238,7 @@
   {
    "slug": "hurricane-names-retired-growing-list",
    "title": "Why Some Hurricane Names Get Retired Forever",
-   "hook": "Nobody will ever name a hurricane Katrina again, and 100 names are banned for good.",
+   "hook": "Nobody will name a hurricane Katrina again, and 100 names are banned for good.",
    "closing": "Twenty major disasters a year. The list only grows.",
    "question": "Whose name should be retired next? Tell me.",
    "caption": "About 100 hurricane names have been permanently retired since 1954 -- and the list is growing faster than ever. It's not about wind speed, it's about damage: Katrina alone cost about $125 billion. Coastlines are more crowded and oceans are warmer, so the list keeps climbing. Know anyone whose name got retired? 👇",
@@ -26266,8 +26266,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE GROWING LIST",
-     "topic": "Retired hurricane names",
-     "say": "By 1954, one name was retired. By 2024, 100 were banned for good.",
+     "topic": "Retired names",
+     "say": "By 1954 one name was retired; by 2024 a total of 100 names are banned forever.",
      "scene": {
       "mechanic": "retired-name-roll",
       "concept": "a hundred name plaques stamp RETIRED one by one as the years run 1954 to 2024; the stamping speeds up toward the present",
@@ -26284,8 +26284,8 @@
      "ascending": false,
      "use_baseline": true,
      "role": "2 · THE THRESHOLD",
-     "topic": "Costliest retired hurricanes",
-     "say": "It's not wind speed. A name goes when reusing it would feel wrong; Katrina alone cost about $125 billion.",
+     "topic": "Costliest names",
+     "say": "A name is retired for impact, not wind speed; Katrina alone caused about $125 billion in damage.",
      "scene": {
       "mechanic": "flood-line-houses",
       "concept": "one house per storm; floodwater rises on each to a height set by its damage bill, waves sloshing, Katrina and Harvey tied at the roofline",
@@ -26301,8 +26301,8 @@
      "insight_type": "rank",
      "use_baseline": true,
      "role": "3 · WHY IT'S ACCELERATING",
-     "topic": "Names retired, disasters rising",
-     "say": "Crowded coasts and warmer oceans mean the US now averages over 20 major disasters a year, several times the 1980s rate.",
+     "topic": "Hurricane disasters",
+     "say": "Warmer oceans and crowded coasts push the US to over 20 major disasters each year, many times the 1980s rate.",
      "ascending": false,
      "scene": {
       "mechanic": "disaster-pins-year-strip",
@@ -26313,7 +26313,7 @@
     }
    ],
    "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-11T16:41:10Z",
+   "rewritten_at": "2026-10-13T13:01:43Z",
    "hook_was": "Some storm names are banned forever, and the list just hit 100."
   },
   {
