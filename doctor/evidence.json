@@ -7,6 +7,12 @@
     "ok": false,
     "alarms": [
       {
+        "code": "chatgpt_task_failed_doctor",
+        "severity": "critical",
+        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261012 (the doctor is a daily read).",
+        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261012.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
+      },
+      {
         "code": "short_slate_explainer",
         "severity": "warning",
         "detail": "explainer: 2/4 posted for 20261012.",
@@ -213,469 +219,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-10-09T13:55:45+00:00",
-      "slug": "activity-inequality-steps",
-      "score": 35,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "Every beat after the hook is a default chart with overlapping or low-contrast labels and a mascot who just perches. Nothing here would stop a scroll.",
-      "auto_fails": [
-        "decorative_mascot: Data stands above the bar with his hands on his head from hook@0.3 to seg0:end, sits on top of the bars in seg1:mid, perches on the 297 column in seg2:mid/end, and slides up the side of the stacked bar in seg3/seg4. He never causes anything to move.",
-        "dead_air: hook@0.3 through seg0:end (0.3s-3.75s) is the same hurdle frame with only a small mascot head shift, plus the measured 6.21s hold at 13.75s, which matches seg2:mid to seg2:end being nearly identical.",
-        "empty_void: seg2:start leaves the top half and both sides empty around two thin bars, and the hurdle frames (hook@0.3) leave the lower third an empty slab.",
-        "unreadable: seg2: the two x-axis labels print on top of each other ('US, Canada, Egypt)' over 'inequality countries'). seg1:end: Data covers the '6,880' value and the label is cut to 'United States o\u2026'. seg3:start: the 'Explained by the gender step gap 43%' label is too low-contrast to read. seg2 kicker cut off with '(E.G. US,\u2026'. payoff@-0.4: a large empty ellipse cuts off at the right frame edge."
-      ],
-      "problems": [
-        "Hook (hook@0.3 to seg0:end) is a static hurdle frame. Nothing happens, and the hurdle metaphor does not show the Hong Kong vs Indonesia gap.",
-        "seg1 is a generic bar race with a map. Data covers the 6,880 value, and 'United States o\u2026' is truncated.",
-        "seg2's x-axis labels overprint each other and the kicker is cut off. The bars hold for about 6s.",
-        "seg3 kicker 'OTHER FACTORS IS 57% OF THE WHOLE' features the wrong slice, and the 43% label is nearly invisible.",
-        "seg4 repeats the seg3 chart, and an empty ellipse at the right edge points at nothing.",
-        "Data never performs a cause act: he only perches, holds his head, or slides beside the bars."
-      ],
-      "fixes": [
-        "Open on the finished shock: two walkers side by side, Hong Kong's step trail twice as long as Indonesia's.",
-        "Draw the obesity ratio as a physical weight or crowd that triples, with Data loading it.",
-        "Draw the gender gap as two footprint trails, women's shorter, with the shortfall marked as 43% of the whole gap. Keep labels short, measured, and high-contrast.",
-        "Remove the floating empty ellipse, and keep every label inside the frame and clear of the mascot."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 74
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "dead_air",
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "chart_fallback_unreadable",
-        "visible_evidence": "Two plain bar columns indexed 297 vs 100, with the x-axis labels printed on top of each other. Data perches on the tall bar doing nothing, and the frame holds still for about 6s (seg2:mid to seg2:end).",
-        "root_cause": "A 'ratio' relationship fell back to a default two-bar chart. The category labels are too long and were not measured, so they collide. No mascot act was tied to the moving part.",
-        "repair_goal": "Replace with a picture made of the subject: two crowds of walkers or two scales of bodies where the high-inequality side is about 3x heavier. Data causes the change by pushing the weight onto the scale. Use one short label per side (\"Unequal\" / \"Equal\") with measured widths, no overlap, and keep mot"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.3,
-        "effective_fps": 16.8,
-        "max_dup_run": 18,
-        "measured": true,
-        "judder_ratio": 0.009,
-        "judder_fps": 23.8,
-        "held_s": 6.21,
-        "max_dup_at_s": 13.75,
-        "duration_s": 24.5
-      },
-      "fingerprint": "?|dead_air+decorative_mascot+empty_void+unreadable|chart_fallback_unreadable",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T14:00:41+00:00",
-      "slug": "activity-inequality-steps",
-      "score": 44,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A run of generic bar charts with overlapping, truncated labels and a mascot who only stands beside the data. The obesity claim, the story's actual point, is a bare 297-vs-100 pill pair.",
-      "auto_fails": [
-        "decorative_mascot: hook@0.3 to seg0:end: Data stands on the dashed line with his hands on his head and never jumps the bar. seg1:start/end: he slides along the bars. seg2: he perches on top of a bar. seg3/seg4: he stands beside the stacked column. Nothing he does causes the data to change.",
-        "bare_number_card: seg2:end is two plain pill bars labelled \"297\" and \"100\" with \"vs\" between them. The 'three times as likely to be obese' claim gets no demonstration.",
-        "dead_air: hook@0.3 through seg0:end (0.3-3.75s) is the same high-jump frame. Only the caption karaoke changes and Data never jumps. The measured max_dup_run of 18 lands at 13.75s, in the seg3 column hold.",
-        "empty_void: seg2:start/end: roughly the top 40% above the bars is empty dark gridlines. hook@0.3: about a third of the frame below the platform is empty dark gradient.",
-        "unreadable: seg2:end: the two category labels print on top of each other (\"US, Canada, Egypt)\" collides with \"Low activity-inequality\"). The seg2 header is cut off at \"(E.G. US,...\". seg1:end: \"United States o...\" is truncated and Data's arm covers the \"6,880\" bar label. seg3:start: the 43%/57% labels are too low-contrast to read."
-      ],
-      "problems": [
-        "The hook is a static high-jump frame for about 3.5s. Data never jumps, so nothing happens on screen.",
-        "seg1 is a plain ranked bar chart. 'United States o...' is truncated and Data covers the '6,880' value label.",
-        "seg2 shows the obesity claim as two pill bars with index values 297/100. The category labels overprint each other and the header is truncated.",
-        "seg2 leaves the top ~40% of the frame empty.",
-        "seg3 and seg4 reuse the same stacked column. Its 43%/57% labels are near-invisible at low contrast.",
-        "Data is decorative throughout: hands on head, sliding along bars, perching. He never causes the motion."
-      ],
-      "fixes": [
-        "Make Data actually attempt the jump in the hook: Hong Kong's runner clears the bar while Indonesia's falls short, and show the gap in motion from frame one.",
-        "Replace seg2 with a bespoke depiction of '3x as likely obese' (crowds or silhouettes filling in) and use one headline number, '~3x'.",
-        "Measure and shorten every label so none truncates or overlaps: 'USA', short group names, a short header.",
-        "Raise label contrast on the share column, or replace it with a men-vs-women walking picture that shows the 43% visually.",
-        "Give Data a causal act in each scene: pushing a bar, stacking steps, walking the gap.",
-        "Remove the stray ellipse and make the closing a fresh visual payoff rather than a repeat of seg3."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 74
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "dead_air",
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "bare_number_card",
-        "visible_evidence": "seg2:end shows two rounded pill bars reading 297 vs 100 over mostly empty dark space. The x-axis labels overprint each other and the header is truncated. Data stands on top of the left bar doing nothing.",
-        "root_cause": "The 'widest activity gaps are three times as likely to be obese' relationship was drawn as a generic two-bar comparison with index values (297/100). Long category names were not measured, so they collide, and Data is placed decoratively instead of causing the change.",
-        "repair_goal": "Show the obesity ratio physically. Two crowds of people side by side, the high-inequality one with nearly 3x as many figures filled in as obese, and Data adding them one at a time. Use short labels ('Unequal countries' / 'Equal countries') that fit without overlap, and show one headline number: '~3x"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.296,
-        "effective_fps": 16.9,
-        "max_dup_run": 18,
-        "measured": true,
-        "judder_ratio": 0.009,
-        "judder_fps": 23.8,
-        "held_s": 6.17,
-        "max_dup_at_s": 13.75,
-        "duration_s": 24.5
-      },
-      "fingerprint": "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|bare_number_card",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T14:05:24+00:00",
-      "slug": "activity-inequality-steps",
-      "score": 35,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "A stack of generic charts (hurdle, bars, pills, stacked bar) with overlapping, cut-off labels and a mascot that decorates instead of performing; nothing draws walking, steps or bodies.",
-      "auto_fails": [
-        "decorative_mascot: Data cheers above a hurdle in the hook (hook@0.3 to seg0:end), rides the end of a bar in seg1:mid and stands at the top of a bar in seg2:mid. He never causes the bars to grow, and from seg3 to seg4 he slides up beside the stacked bar with no act tied to the 43%.",
-        "dead_air: The hook frame barely changes from hook@0.3 to seg0:end (about 3.4s). Only the karaoke word and Data's arms move, and the measured hold is 5.83s at t=0.",
-        "empty_void: In seg2:start the top half is an empty dark field with two thin pills. In seg3 and seg4 one narrow stacked bar fills about a quarter of the frame width, with dark space on both sides.",
-        "unreadable: In seg2:start through seg2:end the two category labels print on top of each other ('e.g. US, Canada, Egypt' overlaps 'quality countries'). The header is cut off ('E.G. US,...'), the label reads 'United States o...', and Hong Kong's value '6,880' is covered by the bar end and mascot in seg1:mid and seg1:end. The '43%' label is faint grey on navy in seg3:start."
-      ],
-      "problems": [
-        "The hook is a near-static hurdle frame for about 3.4s (hook@0.3 to seg0:end); the measured hold is 5.83s.",
-        "seg1: Hong Kong's '6,880' is hidden under the mascot and bar end, the label is truncated to 'United States o...', and the header is a generic 'HONG KONG LEADS THE MAP'.",
-        "seg2: the two category labels overprint each other, the header is cut off ('E.G. US,...'), and the top half of the frame is empty.",
-        "seg3: the header says 'OTHER FACTORS IS 57% OF THE WHOLE' (ungrammatical, wrong emphasis), and the 43% label is near-invisible grey until late.",
-        "seg4 repeats the seg3 bar unchanged, and its highlight ellipse circles empty space off-frame right (payoff@-0.4).",
-        "Data never causes the motion: he cheers, rides a bar, stands and slides beside a bar."
-      ],
-      "fixes": [
-        "Open with the finished shock image: a crowd of footprints/walkers in Hong Kong vs a sparse line in Indonesia, with the whole picture on screen from frame one.",
-        "Draw steps as footprints. Data walks one trail while the other falls short, so his walking is what grows the gap.",
-        "Show the 3x obesity claim as three figures on a scale against one. Data loads the scale, with one readable label per side and no overprint.",
-        "Draw the 43% as a split trail of men's vs women's footprints, with the gap shaded and Data pacing it out; make 43% the headline, not 'other factors'.",
-        "Measure every label against the frame, never overprint, never let the mascot cover a value, and aim the highlight ellipse at the actual mark."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 73
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "dead_air",
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "chart_with_overlapping_labels",
-        "visible_evidence": "seg2:mid shows two plain pill bars, 297 vs 100, with category labels printed on top of each other, a cut-off header, and a large empty void in the upper frame. Data just stands on the bar top.",
-        "root_cause": "The 'three times as likely to be obese' claim fell back to a generic two-bar compare. The label layout was never measured, and the mascot has no causal act.",
-        "repair_goal": "Draw the 3x as a bespoke subject scene: three bodies or three scale readings against one, built by Data as he does it (for example, stacking weights on a scale). Give it one short readable label per side, with no overlap, filling the frame."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.291,
-        "effective_fps": 17.0,
-        "max_dup_run": 18,
-        "measured": true,
-        "judder_ratio": 0.009,
-        "judder_fps": 23.8,
-        "held_s": 5.83,
-        "max_dup_at_s": 0.0,
-        "duration_s": 24.42
-      },
-      "fingerprint": "?|dead_air+decorative_mascot+empty_void+unreadable|chart_with_overlapping_labels",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T14:09:41+00:00",
-      "slug": "highest-point-illusion",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A good three-way 'highest from where?' story is told with bubble charts and target rings: no mountain, no ocean and no Earth bulge, smeared numbers, and a mascot who decorates instead of causing.",
-      "auto_fails": [
-        "decorative_mascot: In seg1:mid, seg1:end, seg2:mid and seg2:end Data stands or cheers on top of a bubble without causing anything. In seg3:start/mid he is pasted twice as two copies beside the numbers. In the hook he is clipped at the right edge, holding a dot. He never makes a mountain rise or measures one.",
-        "bare_number_card: seg1 and seg2 are labelled circles holding a number ('8,849', '10.2K', '4,207'). seg3:mid is two big numbers ('13.4', '11.3') beside two copies of the mascot on lines, with no mountain or Earth bulge.",
-        "empty_void: seg4:start/mid: a thin line and ladder stand in the right third over a large empty dark field. seg0/hook: the lower half under the target rings is empty.",
-        "unreadable: seg1:end: '8,849' overlaps itself and smears where the bubble scales ('8,8\u03364\u03369'). seg2:end: '10.2K' smears and is crossed by the highlight ring. seg1:start: the numbers ghost-double ('8,6611', '8,5586'). seg2 kicker cut off: 'TOPS THE\u2026'. hook@0.3: Data is clipped by the right frame edge."
-      ],
-      "problems": [
-        "The hook shows target rings with 'all within 364' while the caption says the tallest mountain is a different one. The opening image does not show the twist.",
-        "seg1 and seg2 are bubble charts. The near-identical circles show nothing about seafloor vs sea level.",
-        "Number labels smear and ghost while the bubbles scale ('8,849' in seg1:end, '10.2K' in seg2:end, doubled digits in seg1:start).",
-        "seg3 shows two copies of Data side by side and never draws the equatorial bulge.",
-        "seg4 leaves most of the frame empty, with a thin bar and ladder squeezed against the right edge.",
-        "Data is clipped by the frame edge in the hook, and the seg2 kicker text is truncated."
-      ],
-      "fixes": [
-        "Open on a finished cross-section: three mountains on a bulging Earth, with Everest's crown visibly knocked off.",
-        "seg2: draw Mauna Kea rising from the seafloor through a waterline, with Data lowering the water to reveal the hidden 6,000 m.",
-        "seg3: draw Earth as an oblate curve with Chimborazo on the equatorial bulge and Everest further north. Data stretches a tape measure from the core to each summit.",
-        "Put one label per value on the ground, not inside a scaling circle. Stop the text from scaling or doubling.",
-        "Keep a single Data, fully inside the frame, causing the motion in every beat.",
-        "Fill the frame in the closing scene: make the two measuring bars large and centered."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 80
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "bare_number_card",
-        "visible_evidence": "seg2:start\u2013end: three circles labelled '10.2K', '8,849' and '4,207' sit on an empty dark field with Data standing on the first one. Nothing shows a mountain, the seafloor or a waterline, and '10.2K' renders smeared.",
-        "root_cause": "The relationship was drawn as a size-ranked bubble chart instead of a picture of the subject. The beat's claim is about where you measure from (seafloor vs sea level), and a circle area cannot show that.",
-        "repair_goal": "Draw Mauna Kea as a mountain cross-section rising from the seafloor through a waterline. Only the top 4,207 m shows above the water, and most of the 10,211 m sits below. Put Everest beside it on land, standing on sea level, so its 8,849 m reads shorter base to summit. Data drains or lowers the water"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.249,
-        "effective_fps": 18.0,
-        "max_dup_run": 20,
-        "measured": true,
-        "judder_ratio": 0.03,
-        "judder_fps": 23.3,
-        "held_s": 3.12,
-        "max_dup_at_s": 15.75,
-        "duration_s": 26.5
-      },
-      "fingerprint": "?|bare_number_card+decorative_mascot+empty_void+unreadable|bare_number_card",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T14:13:49+00:00",
-      "slug": "highest-point-illusion",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A great topic, three ways to measure 'highest', told through generic bubbles, bars and number readouts. No mountain, ocean floor or globe ever appears, and the closing is a static ladder.",
-      "auto_fails": [
-        "junk_imagery: seg1:start through seg1:end: blue wave/crescent icons sit over the bars as glyphs that mean nothing. In seg0 (hook@0.3 to seg0:end) the mascot tosses abstract teal blobs into concentric rings with no mountain in sight.",
-        "decorative_mascot: seg1:mid/end: Data sways beside the bars and changes nothing. seg2:start/mid/end: two Data copies just stand beside the numbers 13.4 and 11.3. seg3: he poses on a ladder and nothing rises because of him.",
-        "bare_number_card: seg2:start through seg2:end are big numbers 13.4 and 11.3 next to labels and a dotted ruler. Nothing shows a sphere or the distance from Earth's centre.",
-        "dead_air: seg3:mid, payoff@-1.8, seg4:start, seg4:mid, seg4:end and payoff@-0.4 show the same ladder frame for about 2.5s. seg0:start to seg0:end (about 3s) is one static ring with small blob jitter.",
-        "empty_void: seg3:start through payoff@-0.4: the top-left half of the frame is empty dark gradient around one thin pole and the ladder. Hook frames also leave the bottom third empty below the rings.",
-        "unreadable: seg0:end: the Everest number reads '8,s49' as overlapping digits. seg1:start/mid: the labels 'Mauna Kea, ocean floor to summit' and 'Everest, sea level to summit' are covered by the blue icons. seg0:start: the bubble labels are ghosted, nearly invisible. The 'MAUNA KEA... PULLS AHE\u2026' kicker is cut off."
-      ],
-      "problems": [
-        "The hook opens on abstract teal blobs in concentric rings with 'all within 364'. Nothing says 'mountain' or 'dethroned' in the first second.",
-        "seg0: a bubble chart with overlapping digits in Everest's bubble (seg0:end '8,s49'), and the start frames are ghosted.",
-        "seg1: a bar chart where blue wave icons cover the labels. The 'from the seafloor' idea is never pictured.",
-        "seg2: a bare-number card with two mascot copies standing beside it. Nothing demonstrates the equatorial bulge.",
-        "seg3/seg4: one static ladder frame for about 2.5s with a mostly empty frame. '2.1 apart' has no unit.",
-        "The mascot never causes the motion: he sways, poses and stands beside the marks."
-      ],
-      "fixes": [
-        "Hook: open on the finished payoff, Mauna Kea rising out of a cutaway ocean and towering past Everest, with Data planting a flag on top.",
-        "seg0: draw the Himalayan peaks as mountain silhouettes on a sea-level line, with Data climbing Everest to the 8,849 mark. Fix the overlapping digits.",
-        "seg1: draw a sea surface cut through Mauna Kea, with most of its 10,211 m hidden under water and only 4,207 m showing. Data pumps the water down to reveal the base.",
-        "seg2: draw a cutaway globe with a sphere outline and Data running tapes from the core to each summit, so Chimborazo's tape overshoots more.",
-        "Closing: animate the three podiums flipping as the reference point changes, and give '2.1 apart' a unit (km)."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 83
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "dead_air",
-        "decorative_mascot",
-        "empty_void",
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 3,
-        "failure_class": "bare_number_card",
-        "visible_evidence": "seg2:start/mid/end show '13.4' and '11.3' as large numbers beside two standing mascot copies and a dotted ruler. There is no globe, no sphere and no centre-of-Earth distance anywhere.",
-        "root_cause": "The 'farther from Earth's centre because of the equatorial bulge' claim was drawn as a two-row number readout instead of a physical picture of the planet's shape.",
-        "repair_goal": "Draw a cutaway of the bulging Earth with a perfect-sphere outline. Data extends two measuring tapes from the core, one to Chimborazo near the equator and one to Everest farther north, and Chimborazo's tape visibly overshoots the sphere by more. Lift Everest off the top of the scale. Show one headlin"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.251,
-        "effective_fps": 18.0,
-        "max_dup_run": 16,
-        "measured": true,
-        "judder_ratio": 0.038,
-        "judder_fps": 23.1,
-        "held_s": 3.08,
-        "max_dup_at_s": 0.0,
-        "duration_s": 27.75
-      },
-      "fingerprint": "?|bare_number_card+dead_air+decorative_mascot+empty_void+junk_imagery+unreadable|bare_number_card",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T14:17:47+00:00",
-      "slug": "highest-point-illusion",
-      "score": 39,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A great 'it depends how you measure' story told as bubbles, bars and two bare numbers. The surprising part, Chimborazo winning from Earth's centre, is never shown.",
-      "auto_fails": [
-        "decorative_mascot: In seg3:start to seg3:end, Data is just two copies posing beside the 13.4 and 11.3 numbers. In seg1:mid he cheers on top of the Everest bubble, and in seg2:mid/end he stands between bars. Nothing he does causes the numbers. Only the hook, where he shoves a dot, has any action.",
-        "bare_number_card: seg3:mid and seg3:end show the large numbers '13.4' and '11.3' on two plain baselines with a dotted ruler. Nothing shows a summit standing past a sphere. It is two big numbers with labels.",
-        "empty_void: In seg4:start/mid, the whole left half and the middle of the frame are empty dark ground above a thin baseline. The figure is squeezed against the right edge. In hook@0.3, the rings take the top half and the lower third is empty.",
-        "unreadable: seg1:start shows the values and names as near-invisible ghost text ('8,_49', 'Everest', 'Lhotse'). In seg1:end, the Everest bubble's '8,849' is garbled under a ring overlay. In seg2:start, blue tape icons cover 'Mauna Kea, ocean floor to summit' and 'Everest, sea level to summit'. In hook@0.3, the mascot is cut off by the right edge, and 'all within 364' has no unit and no meaning."
-      ],
-      "problems": [
-        "The hook opens on abstract target rings captioned 'all within 364' with no unit or meaning. It is not about Everest being dethroned, and the mascot is cut off by the right edge.",
-        "seg1 is a bubble chart, and its first frames show ghost-faint unreadable labels. In seg1:end a ring overlay garbles the Everest value.",
-        "In seg2, the tape-measure icons sit on top of the bar labels, so the labels can't be read. The scene is a bar chart instead of a mountain rising from the seafloor through the water line.",
-        "seg3, the payoff of the whole story, is two big numbers with idle mascots and no picture of Earth's bulge.",
-        "Data never causes anything after the hook. He stands on, beside or between the marks.",
-        "The closing (seg4) packs everything against the right edge. The rest of the frame is an empty void, and the labels crowd each other."
-      ],
-      "fixes": [
-        "Open the hook on the finished payoff: Everest's peak being overtaken twice, by a mountain rising out of the ocean and a peak sitting on Earth's bulge. Do not open on abstract rings.",
-        "seg1: draw Everest as a mountain on a sea-level line, with Data planting a flag at 8,849 m.",
-        "seg2: draw Mauna Kea as a cross-section from the seafloor with a water line cutting it at 4,207 m. Data unspools a tape from the seafloor to the summit. Keep labels clear of the icons.",
-        "seg3: draw an Earth cross-section with the equatorial bulge. Data measures from the core to both summits, and Chimborazo's tape reaches past Everest's.",
-        "seg4: centre the composition and use the whole frame. Put one headline number on screen, not several stacked labels."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 79
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "bare_number_card",
-        "visible_evidence": "seg3:start to seg3:end: the numbers '13.4' and '11.3' sit on two horizontal lines beside a dotted vertical ruler. Two idle Data copies stand next to them. There is no Earth, no bulge and no sphere.",
-        "root_cause": "This beat is the twist of the whole video: the equatorial bulge pushes Chimborazo furthest from Earth's centre. It was drawn as a two-row number comparison instead of the physical idea, so the 'whoa' is only ever read out, never seen.",
-        "repair_goal": "Draw a cross-section of a bulging Earth from its centre. Data stretches a measuring tape from the core out to the Chimborazo peak at the equator, then to the Everest peak further north. Chimborazo's tape visibly reaches past Everest's, and only the single headline '2.1 km further' appears."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.237,
-        "effective_fps": 18.3,
-        "max_dup_run": 20,
-        "measured": true,
-        "judder_ratio": 0.025,
-        "judder_fps": 23.4,
-        "held_s": 3.38,
-        "max_dup_at_s": 15.62,
-        "duration_s": 26.38
-      },
-      "fingerprint": "?|bare_number_card+decorative_mascot+empty_void+unreadable|bare_number_card",
-      "style_arm": "current"
-    },
     {
       "ts": "2026-10-09T14:24:16+00:00",
       "slug": "volcano-country-ranking",
@@ -4147,27 +3690,402 @@
       },
       "fingerprint": "?|temporal_gate|-",
       "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-13T04:58:25+00:00",
+      "slug": "vertical-farming-bust",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.25s of 26.5s (~2.0s frozen)",
+      "auto_fails": [
+        "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.25s of 26.5s (~2.0s frozen)"
+      ],
+      "problems": [
+        "max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.25s of 26.5s (~2.0s frozen)"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 22.67,
+        "dark_fraction": 0.0,
+        "sampled": 80
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.283,
+        "effective_fps": 17.2,
+        "max_dup_run": 48,
+        "measured": true,
+        "frozen_ratio": 0.161,
+        "frozen_fps": 20.1,
+        "max_frozen_run": 28,
+        "judder_ratio": 0.011,
+        "judder_fps": 23.7,
+        "held_s": 5.25,
+        "max_dup_at_s": 21.25,
+        "duration_s": 26.5
+      },
+      "fingerprint": "?|temporal_gate|-",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-13T05:31:29+00:00",
+      "slug": "rubiks-cube-record-vs-robot",
+      "score": 52,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The cube-solving scenes are nicely made, but the on-screen record (3.13s, 2023) contradicts the narration (3.47s, 2018), the robot reveal comes before the human record, and Data only waves beside machines that do the work.",
+      "auto_fails": [
+        "decorative_mascot: seg0:mid to seg1:end: Data stands at the cube's corner waving or pointing while the cube solves itself. seg2:mid: he stands beside a control box. seg3:start to seg3:end: he waves beside the robot rig. seg4:start to seg4:end: he cheers on the same spot. He never solves a cube, starts the stopwatch or works the robot.",
+        "dead_air: seg4:start (24.59s) to payoff@-0.4 (28.60s): about 4s of one frame. Data holds the same cheer, the robot sits idle and the closing text is static. Only the gripper twitches."
+      ],
+      "problems": [
+        "seg3: the screen says '3.13 sec \u00b7 2023' while the narration says '3.47' and '2018'. A viewer sees two different records.",
+        "seg2/seg3 order: the robot's 0.38s ('8x faster') is revealed before the human 2018 record, so the story peaks too early and then goes backwards.",
+        "seg0 to seg1: the cube solves itself while Data waves or points at its corner. He is not the cause of the solve.",
+        "seg3: a robot rig is used for the human-record beat, and the number never changes on screen.",
+        "seg4:start to the end: about 4s of an identical closing frame with Data frozen in a cheer pose.",
+        "seg2: '8x faster' is only a label. Nothing shows the eightfold gap between the human and robot times."
+      ],
+      "fixes": [
+        "Make seg3's number 3.47 and its year 2018 to match the narration, or change the narration to the source's 3.13/2023. One number, said and shown.",
+        "Order the beats 1982 (23s), then 2018 (3.47s), then robot (0.38s), so the machine is the final reveal.",
+        "Have Data hold and solve the cube himself in seg0 and seg1, with his hands turning the faces as the stopwatch runs.",
+        "In the human-record beat, put the old 23s on the same stopwatch dial as a ghost tick and stop the hand at 3.47 to show the drop.",
+        "In the robot beat, run the human time and the robot time side by side on twin dials and let the robot's dial stop at 0.38 while the human's is still sweeping. That makes '8x' visible.",
+        "Give the closing a resolving action, such as Data slamming the stopwatch while the robot tosses a solved cube, instead of a 4s frozen cheer."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 87
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "dead_air",
+        "decorative_mascot"
+      ],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "claim_mismatch_and_static_number",
+        "visible_evidence": "seg3:start to seg3:end: the caption says 'record hit 3.47' while the screen reads '3.13 sec the best human solve \u00b7 2023'. The narration says 2018 and 3.47. The scene is a ROBOT rig eating cubes during the HUMAN-record beat, the 3.13 never changes, and Data just waves at the side. It also plays after",
+        "root_cause": "The scene was authored against a different dataset row (2023, 3.13) than the narration (2018, 3.47). It reuses the robot arena instead of showing human hands getting faster. Beat order puts the robot reveal before the human record.",
+        "repair_goal": "Make the 2018 human-record beat show 3.47s, matching the narration. Draw it as human speed: Data's own hands blurring through a solve while a stopwatch stops at 3.47, with a ghost of the 1982 23s marked on the same dial so the six-times drop shows on the dial itself. Order the beats 1982, then 2018,"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.26,
+        "effective_fps": 17.7,
+        "max_dup_run": 44,
+        "measured": true,
+        "frozen_ratio": 0.073,
+        "frozen_fps": 22.2,
+        "max_frozen_run": 15,
+        "judder_ratio": 0.006,
+        "judder_fps": 23.9,
+        "held_s": 5.67,
+        "max_dup_at_s": 24.17,
+        "duration_s": 29.0
+      },
+      "fingerprint": "?|dead_air+decorative_mascot|claim_mismatch_and_static_number",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-13T06:11:58+00:00",
+      "slug": "doomsday-clock-89-seconds",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong subject-made pictures and a working mascot, but the headlines run out of step with the narration and the pictures. The clock beat repeats the hook, and the closing just restates the four threats.",
+      "auto_fails": [
+        "unreadable: In seg3:mid the BIO warning sign's label is cut to 'BI' by a fuse, and in seg3:end the 'AI' sign is half hidden behind the bomb. In seg2:start the caption 'sat at its' is pale and nearly invisible against the sand."
+      ],
+      "problems": [
+        "seg1: the headline jumps to 1991 and then 2025 while the narration is still on 1947, and the settled frame is the same as the hook's opening frame.",
+        "seg3:mid: the headline says '1 threat' while three or four fuses are lit and the narration says '4 converging threats'.",
+        "seg3: the BIO and AI sign labels are hidden behind the fuses and the bomb.",
+        "seg4:start/mid: the headline says '1 threat \u00b7 nuclear war \u00b7 1947' while two to four flags are already flying. It sits right under the closing caption and crowds it.",
+        "seg2:start: the caption 'sat at its' is low-contrast against the sand.",
+        "The payoff restates seg3's four threats with a new prop instead of landing on 89 seconds or a new turn."
+      ],
+      "fixes": [
+        "Limit seg1 to 1947 and 7 minutes. Let the seg2 hourglass carry the drop from 1991 to 89 seconds.",
+        "Update the seg3 and seg4 headlines in step with each fuse or flag as it appears.",
+        "Move the BIO and AI signs clear of the bomb and the fuses so both labels read in full.",
+        "Leave a clear gap between the closing caption and the headline, or drop the headline in the closing.",
+        "Put a dark backing behind the captions over light sand.",
+        "End the closing on the clock at 89 seconds with all four threats bearing on it, so the payoff is the time left and not a repeat of the count."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 85
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 1,
+        "failure_class": "redundant_and_desynced",
+        "visible_evidence": "seg1:start already shows '1,020 seconds \u00b7 1991' while the caption is still on 'set the Doomsday' (the 1947 line). By seg1:mid it is '89 seconds \u00b7 2025' under 'minutes before midnight', and that frame repeats the hook's opening frame (hook@0.3) pixel for pixel. seg1:end is the same picture again.",
+        "root_cause": "The beat replays the whole 1947\u21921991\u21922025 sweep on the same clock the hook already used, ahead of a narration that only talks about 1947. It also takes the 1991-to-89-seconds comparison that the hourglass (seg2) is built to deliver.",
+        "repair_goal": "Make seg1 only about 1947. Data sets the hands to 7 minutes (420 seconds) as the narration says it, and the scene ends on 1947. Do not show 1991 or 2025 here; leave that drop to the seg2 hourglass, so the clock picture does not repeat the hook."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.224,
+        "effective_fps": 18.6,
+        "max_dup_run": 13,
+        "measured": true,
+        "frozen_ratio": 0.074,
+        "frozen_fps": 22.2,
+        "max_frozen_run": 13,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 3.17,
+        "max_dup_at_s": 0.0,
+        "duration_s": 28.38
+      },
+      "fingerprint": "?|unreadable|redundant_and_desynced",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-13T06:48:00+00:00",
+      "slug": "saharan-dust-feeds-amazon",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: max_dup_run 46 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=20.83s of 26.08s (~1.9s frozen)",
+      "auto_fails": [
+        "temporal_gate: max_dup_run 46 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=20.83s of 26.08s (~1.9s frozen)"
+      ],
+      "problems": [
+        "max_dup_run 46 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=20.83s of 26.08s (~1.9s frozen)"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 22.0,
+        "dark_fraction": 0.0,
+        "sampled": 78
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.325,
+        "effective_fps": 16.2,
+        "max_dup_run": 46,
+        "measured": true,
+        "frozen_ratio": 0.114,
+        "frozen_fps": 21.3,
+        "max_frozen_run": 14,
+        "judder_ratio": 0.002,
+        "judder_fps": 24.0,
+        "held_s": 5.42,
+        "max_dup_at_s": 20.83,
+        "duration_s": 26.08
+      },
+      "fingerprint": "?|temporal_gate|-",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-13T11:31:10+00:00",
+      "slug": "sports_lionel_messi_ve_it_my_all",
+      "score": 87,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 0,
+        "temporal_craft": 2
+      },
+      "one_line": "A compelling montage of Messi's career moments is undermined by a confusing and cut-off final message.",
+      "auto_fails": [
+        "unreadable: The text \"will farewell speech with me.\" in frame payoff@-0.4 is cut off and incomplete, making it unreadable and nonsensical."
+      ],
+      "problems": [
+        "The final on-screen text is cut off and grammatically incomplete, making the payoff unclear and confusing."
+      ],
+      "fixes": [
+        "Ensure the final on-screen text is fully visible, grammatically correct, and provides a clear concluding statement for the video."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.009,
+        "sampled": 107
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "payoff",
+        "index": -1,
+        "failure_class": "Unreadable text",
+        "visible_evidence": "The text \"will farewell speech with me.\" in frame payoff@-0.4 is cut off at the bottom and grammatically incomplete, failing to deliver a clear concluding message.",
+        "root_cause": "Incorrect text overlay or improper text positioning/sizing for the final frame, leading to truncation and a nonsensical message.",
+        "repair_goal": "Replace the cut-off text in the final frame with a complete, clear, and impactful concluding statement that aligns with the video's theme."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.14,
+        "effective_fps": 20.6,
+        "max_dup_run": 8,
+        "measured": true,
+        "frozen_ratio": 0.11,
+        "frozen_fps": 21.4,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.088,
+        "judder_fps": 21.9,
+        "held_s": 0.54,
+        "max_dup_at_s": 1.92,
+        "duration_s": 35.54
+      },
+      "fingerprint": "?|unreadable|Unreadable text"
+    },
+    {
+      "ts": "2026-10-13T12:07:21+00:00",
+      "slug": "sports_mike_evans__with_trevon",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: max_dup_run 50 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=18.92s of 21.0s (~2.1s frozen)",
+      "auto_fails": [
+        "temporal_gate: max_dup_run 50 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=18.92s of 21.0s (~2.1s frozen)"
+      ],
+      "problems": [
+        "max_dup_run 50 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=18.92s of 21.0s (~2.1s frozen)"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 1.0,
+        "static_at_s": 19.67,
+        "dark_fraction": 0.0,
+        "sampled": 63
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.404,
+        "effective_fps": 14.3,
+        "max_dup_run": 50,
+        "measured": true,
+        "frozen_ratio": 0.125,
+        "frozen_fps": 21.0,
+        "max_frozen_run": 50,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 5.54,
+        "max_dup_at_s": 18.92,
+        "duration_s": 21.0
+      },
+      "fingerprint": "?|temporal_gate|-"
     }
   ],
   "showrunner_recurrence": {
+    "?|temporal_gate|-": {
+      "count": 7,
+      "days": [
+        "2026-10-11",
+        "2026-10-12",
+        "2026-10-13"
+      ]
+    },
     "?|-|weak_hook": {
       "count": 4,
       "days": [
         "2026-10-10",
         "2026-10-11"
-      ]
-    },
-    "?|temporal_gate|-": {
-      "count": 4,
-      "days": [
-        "2026-10-11",
-        "2026-10-12"
-      ]
-    },
-    "?|bare_number_card+decorative_mascot+empty_void+unreadable|bare_number_card": {
-      "count": 3,
-      "days": [
-        "2026-10-09"
       ]
     },
     "?|-|weak_payoff": {
@@ -4190,30 +4108,6 @@
         "2026-10-11"
       ]
     },
-    "?|dead_air+decorative_mascot+empty_void+unreadable|chart_fallback_unreadable": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
-      ]
-    },
-    "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|bare_number_card": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
-      ]
-    },
-    "?|dead_air+decorative_mascot+empty_void+unreadable|chart_with_overlapping_labels": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
-      ]
-    },
-    "?|bare_number_card+dead_air+decorative_mascot+empty_void+junk_imagery+unreadable|bare_number_card": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
-      ]
-    },
     "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|meaningless_closing_visual": {
       "count": 1,
       "days": [
@@ -4221,6 +4115,12 @@
       ]
     },
     "?|decorative_mascot+unreadable|chart_with_decorative_mascot": {
+      "count": 1,
+      "days": [
+        "2026-10-09"
+      ]
+    },
+    "?|bare_number_card+decorative_mascot+empty_void+unreadable|bare_number_card": {
       "count": 1,
       "days": [
         "2026-10-09"
@@ -4441,11 +4341,29 @@
       "days": [
         "2026-10-12"
       ]
+    },
+    "?|dead_air+decorative_mascot|claim_mismatch_and_static_number": {
+      "count": 1,
+      "days": [
+        "2026-10-13"
+      ]
+    },
+    "?|unreadable|redundant_and_desynced": {
+      "count": 1,
+      "days": [
+        "2026-10-13"
+      ]
+    },
+    "?|unreadable|Unreadable text": {
+      "count": 1,
+      "days": [
+        "2026-10-13"
+      ]
     }
   },
   "recent_commits": [
-    "1e75eac 2026-10-13 claim: mailbox verdicts 2026-10-13T04:48Z [skip ci]",
-    "8546f10 2026-10-12 explainer: a queued run starts on main as it is when the run starts (#642)"
+    "20841e7 2026-10-13 sports: 2026-10-13 posted log + verdicts [skip ci]",
+    "b1697b7 2026-10-13 watchdog: chatgpt task verdicts 20261013 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4483,10 +4401,11 @@
         "2026-10-09": 5,
         "2026-10-10": 3,
         "2026-10-11": 2,
-        "2026-10-12": 2
+        "2026-10-12": 2,
+        "2026-10-13": 1
       },
-      "total_posted": 323,
-      "attempted": 323,
+      "total_posted": 324,
+      "attempted": 324,
       "rejected_or_pending": 0
     },
     "third": {
@@ -4504,11 +4423,11 @@
         "2026-10-10": 6,
         "2026-10-11": 6,
         "2026-10-12": 4,
-        "2026-10-13": 3
+        "2026-10-13": 4
       },
-      "total_posted": 402,
-      "attempted": 944,
-      "rejected_or_pending": 542
+      "total_posted": 403,
+      "attempted": 948,
+      "rejected_or_pending": 545
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4522,63 +4441,63 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 123,
+      "videos": 124,
       "top_by_vph": [
         {
+          "title": "The Doomsday Clock Just Hit 89 Seconds To Midnight",
+          "vph": 42.15,
+          "views": 41
+        },
+        {
           "title": "Pollen Season Just Got 20 Days Longer",
-          "vph": 13.44,
+          "vph": 12.24,
           "views": 428
         },
         {
           "title": "Polio Cases Fell 99.9% In One Generation",
-          "vph": 13.24,
+          "vph": 11.81,
           "views": 342
         },
         {
           "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
-          "vph": 11.3,
+          "vph": 10.7,
           "views": 627
         },
         {
           "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
-          "vph": 5.07,
-          "views": 539
-        },
-        {
-          "title": "One Rule Change Fixed 16 Million Credit Scores For Free",
-          "vph": 3.7,
-          "views": 183
+          "vph": 4.93,
+          "views": 540
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 131,
+      "videos": 132,
       "top_by_vph": [
         {
           "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 16.06,
-          "views": 823
+          "vph": 12.97,
+          "views": 874
         },
         {
           "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
-          "vph": 3.2,
-          "views": 693
+          "vph": 3.03,
+          "views": 705
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 2.42,
-          "views": 403
+          "vph": 2.36,
+          "views": 431
         },
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 2.26,
+          "vph": 2.2,
           "views": 1361
         },
         {
           "title": "Plaqueboymax Dance Fails And Hits His Mouth On Camera",
-          "vph": 1.26,
-          "views": 121
+          "vph": 1.09,
+          "views": 123
         }
       ],
       "full_data": "state/analytics_third/latest.json"
