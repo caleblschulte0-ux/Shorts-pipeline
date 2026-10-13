@@ -752,6 +752,11 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   changes the clip's speed. A dry run with `clips_only` publishes its renders
   to `preview-renders:third-dry/<run id>/`.
   `tests/test_a_clip_is_edited_like_the_reposts.py`.
+  And a face BESIDE what it shows gets both (operator, 2026-10-13, of a
+  commentator next to the texts he was reading: one crop "split the
+  difference and ended up catching nothing"): `shot_plan.face_and_content`
+  puts what is shown on top and the face below, two halves, no overlap.
+  `tests/test_a_face_beside_what_it_shows_gets_both.py`.
 - **A story is a CHAIN, and the edit SHOWS what it talks about**
   (operator, 2026-10-09, after backtest 17: *"it's not a collection of
   clips or like 4 moments in a stream played in a row"*; of xQc on a rug

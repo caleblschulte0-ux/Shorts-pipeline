@@ -127,6 +127,7 @@ def analyze(video: Path) -> dict | None:
         prev_gray, idx, samples = None, 0, 0
         col_energy = np.zeros(sw, dtype=np.float64)
         row_energy = np.zeros(sh, dtype=np.float64)
+        col_detail = np.zeros(sw, dtype=np.float64)
         while True:
             ok, frame = cap.read()
             if not ok:
@@ -174,6 +175,11 @@ def analyze(video: Path) -> dict | None:
                                - prev_gray.astype(np.int16))
                     col_energy += d.mean(axis=0)
                     row_energy += d.mean(axis=1)
+                # WHERE there is something to SEE, still or not: a texted
+                # screenshot or a call log beside a commentator does not
+                # move, so the motion profile above cannot find it.
+                g16 = gray.astype(np.int16)
+                col_detail[1:] += np.abs(np.diff(g16, axis=1)).mean(axis=0)
                 prev_gray = gray
             idx += 1
         cap.release()
@@ -184,7 +190,8 @@ def analyze(video: Path) -> dict | None:
         return {"sw": sw, "sh": sh, "samples": samples,
                 "subjects": subjects,
                 "col_energy": col_energy.tolist(),
-                "row_energy": row_energy.tolist()}
+                "row_energy": row_energy.tolist(),
+                "col_detail": col_detail.tolist()}
     except Exception:  # noqa: BLE001
         return None
 
@@ -318,6 +325,75 @@ def action_window(an: dict, aspect: tuple = ACTION_CROP_ASPECT) -> tuple | None:
     x = max(0, min(int(x), sw - want_w))
     # even dimensions keep libx264 happy
     return (want_w - want_w % 2, sh - sh % 2, x - x % 2, 0)
+
+
+# A FACE BESIDE WHAT IT IS TALKING ABOUT (operator, 2026-10-13, of a
+# Kai/Reggie cut: a commentator on one side of the frame and the texts he
+# was reading on the other, and one crop "split the difference and ended
+# up catching nothing"). When a persistent face sits to one side and the
+# rest of the frame has something on it, show both: what is shown on top,
+# the face below, each its own half of the canvas. Nothing overlaps, so
+# nothing is on screen twice.
+SIDE_FACE = 0.40          # face centre outside the middle 20% of the width
+CONTENT_MIN_W = 0.30      # the other side is at least this share of width
+CONTENT_DETAIL = 0.6      # ...and at least this busy, relative to the frame
+FACE_PANEL = 2.8          # face panel height, in face heights
+PANEL_H = CANVAS_H // 2
+PANEL_ASPECT = CANVAS_W / PANEL_H          # 9:8
+
+
+def face_and_content(an: dict) -> dict | None:
+    """{"face": (w,h,x,y), "content": (w,h,x,y), "side": "left"|"right"}
+    for a landscape source whose persistent face sits to one side of
+    something worth seeing; None otherwise."""
+    sw, sh = int(an.get("sw") or 0), int(an.get("sh") or 0)
+    if sw <= 0 or sh <= 0 or sw / sh < 1.5:
+        return None
+    faces = [s for s in an.get("subjects") or []
+             if getattr(s, "presence", 0) >= PERSIST_MIN
+             and s.med_h() >= FACECAM_H_MIN * sh]
+    if len(faces) != 1:
+        return None                      # two faces are the split's job
+    f = faces[0]
+    if SIDE_FACE * sw <= f.cx <= (1 - SIDE_FACE) * sw:
+        return None
+    fh = min(float(sh), f.med_h() * FACE_PANEL)
+    fw = fh * PANEL_ASPECT
+    if fw > sw * 0.6 or CANVAS_W / fw > MAX_UPSCALE:
+        return None
+    fx = min(max(f.cx - fw / 2, 0.0), sw - fw)
+    fy = min(max(f.cy - fh / 2, 0.0), sh - fh)
+    right = f.cx > sw / 2
+    c0, c1 = (0.0, fx) if right else (fx + fw, float(sw))
+    cw = c1 - c0
+    if cw < CONTENT_MIN_W * sw or CANVAS_W / cw > MAX_UPSCALE:
+        return None
+    det = [float(v) for v in an.get("col_detail") or []]
+    if len(det) != sw or sum(det) <= 0:
+        return None
+    side = det[int(c0):int(c1)]
+    if sum(side) / len(side) < CONTENT_DETAIL * sum(det) / sw:
+        return None                      # a blank wall beside him
+    ch = min(float(sh), cw / PANEL_ASPECT)
+    cw = ch * PANEL_ASPECT
+    cx = c1 - cw if right else c0        # keep the edge next to the face
+    cy = (sh - ch) / 2
+
+    def ev(*v):
+        return tuple(int(x) - int(x) % 2 for x in v)
+    return {"face": ev(fw, fh, fx, fy), "content": ev(cw, ch, cx, cy),
+            "side": "right" if right else "left"}
+
+
+def _render_face_content(video: Path, boxes: dict, out: Path) -> Path | None:
+    """What is shown on top, the face below: two 1080x960 halves."""
+    cw, ch, cx, cy = boxes["content"]
+    fw, fh, fx, fy = boxes["face"]
+    fc = (f"[0:v]split=2[a][b];"
+          f"[a]crop={cw}:{ch}:{cx}:{cy},scale={CANVAS_W}:{PANEL_H}[top];"
+          f"[b]crop={fw}:{fh}:{fx}:{fy},scale={CANVAS_W}:{PANEL_H}[bot];"
+          f"[top][bot]vstack=inputs=2[vout]")
+    return _ff_complex(video, fc, out)
 
 
 def _render_single_crop(video: Path, shot: Shot, out: Path) -> Path | None:
@@ -476,6 +552,19 @@ def build(video: Path, work: Path,
                        n_subjects=len([s for s in an["subjects"]
                                        if getattr(s, "presence", 0)
                                        >= PERSIST_MIN]))
+        if layout in ("wide", "closeup"):
+            boxes = face_and_content(an)
+            if boxes is not None:
+                out = work / "shotplan.mp4"
+                rendered = _render_face_content(video, boxes, out)
+                if rendered is not None:
+                    why = (f"face on the {boxes['side']} beside what it is "
+                           "showing — that on top, the face below")
+                    summary.update(layout="face_content", reason=why,
+                                   shots=[{"mode": "face_content",
+                                           "reason": why}],
+                                   face_bands=[[0.5, 1.0]])
+                    return rendered, summary
         if layout == "wide":
             # NO TRACKABLE FACE IS NOT A REASON TO GIVE UP ON FRAMING.
             # This returned None, and the caller then blur-filled the whole
