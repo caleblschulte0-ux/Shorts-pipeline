@@ -169,5 +169,13 @@ class ItReachesTikTok(unittest.TestCase):
         self.assertIn("crosspost(CHANNEL", SRC)
 
 
+class WhatWentLiveCanBeWatched(unittest.TestCase):
+    def test_every_cut_goes_to_preview_renders(self):
+        wf = (ROOT / ".github" / "workflows" / "sports.yml").read_text()
+        self.assertIn("sports-live/", wf)
+        self.assertIn("for f in output/sports/*.mp4", wf)
+        self.assertIn("git push origin preview-renders", wf)
+
+
 if __name__ == "__main__":
     unittest.main()

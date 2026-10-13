@@ -153,3 +153,51 @@ jobs:
             sports_report.json
           if-no-files-found: ignore
           retention-days: 7
+
+      # Every cut this run made, posted or held, phone-sized on the
+      # preview-renders branch, so what went live can be watched and
+      # reviewed after the runner is gone (operator, 2026-10-13: "Make this
+      # better" about videos nobody could pull back up).
+      - name: Phone-sized copies of every cut
+        if: always() && steps.preflight.outputs.skip == ''
+        run: |
+          set -u
+          mkdir -p "$RUNNER_TEMP/payload"
+          cp sports_report.json "$RUNNER_TEMP/payload/" 2>/dev/null || true
+          for f in output/sports/*.mp4; do
+            [ -f "$f" ] || continue
+            ffmpeg -y -v error -i "$f" -vf scale=720:-2 -c:v libx264 -crf 26 \
+              -preset veryfast -c:a aac -b:a 128k "$RUNNER_TEMP/payload/$(basename "$f")"
+          done
+          ls -la "$RUNNER_TEMP/payload"
+
+      - name: Publish them to the preview-renders orphan branch
+        if: always() && steps.preflight.outputs.skip == ''
+        run: |
+          set -euo pipefail
+          ls "$RUNNER_TEMP"/payload/*.mp4 >/dev/null 2>&1 || { echo "no cuts"; exit 0; }
+          dest="sports-live/$(date -u +%Y-%m-%d)-${{ github.run_id }}"
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          rm -rf output
+          git stash -u -q || true
+          # ADD to the branch, never replace it (backtest-preview.yml)
+          git fetch origin preview-renders --depth=1 || true
+          if git checkout -B preview-renders origin/preview-renders 2>/dev/null; then
+            :
+          else
+            git checkout --orphan preview-renders
+            git rm -rq --cached . 2>/dev/null || true
+            git clean -fdq 2>/dev/null || true
+          fi
+          mkdir -p "$dest"
+          cp -r "$RUNNER_TEMP/payload/." "$dest/"
+          git add -f "$dest"
+          git commit -m "sports live ${{ github.run_id }}" \
+            || { echo "nothing new to commit"; exit 0; }
+          for i in 1 2 3 4; do
+            git push origin preview-renders && break
+            git pull --rebase origin preview-renders || true
+            sleep $((i * 2))
+          done
+          echo "published -> preview-renders:$dest"
