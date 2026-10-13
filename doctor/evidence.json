@@ -1,42 +1,33 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261012",
-  "judged_date": "20261011",
+  "date": "20261013",
+  "judged_date": "20261012",
   "alarm": {
-    "date": "20261011",
+    "date": "20261012",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_doctor",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261011 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261011.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
         "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "explainer: 2/4 posted for 20261011.",
+        "detail": "explainer: 2/4 posted for 20261012.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
-        "code": "production_repair_trending",
-        "severity": "critical",
-        "detail": "trending 20261011: production outcome says 5/6 uploaded and repair never completed (1 quarantined, 1 failed).",
-        "fix": "The repair path is a push to .github/triggers/daily (resumes the unposted remainder; posted-title dedupe makes it safe). A held video may also just be the showrunner doing its job \u2014 read the run log before re-kicking."
+        "code": "short_slate_third",
+        "severity": "warning",
+        "detail": "third: 4/6 posted for 20261012.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (33 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (34 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
       "chatgpt finalizer: artifact present",
-      "chatgpt media: artifact present",
-      "third: 6/6 posted",
-      "trending: 5/3 posted",
-      "exchange: 16/16 ChatGPT images pinned"
+      "trending: 3/3 posted"
     ],
     "deferred": false
   },
@@ -222,155 +213,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-10-09T13:45:08+00:00",
-      "slug": "body-renewal-clock",
-      "score": 31,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 0,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "A chart slideshow with labels that collide and get cut off. The hook's 330-billion claim is never shown, Data is decoration, and the phone punchline sits over unrelated bubbles.",
-      "auto_fails": [
-        "decorative_mascot: seg1:start-end: Data stands over the labels with his arms raised and does nothing to the circles. seg2:mid/end: he hovers beside the pink bar. seg4:start-end: he is parked on the 0T label for the whole closing. None of it is a setup, action and payoff tied to the number.",
-        "empty_void: hook@0.8 to seg0:end: the skeleton sits in the top third, a small strip of labels follows, and the bottom half of the frame from y\u2248420 to 650 is empty dark gradient.",
-        "unreadable: seg0:end and hook@0.3: the labels collide as \"120 d28sdays\" and \"Red blood cellSkin\"/\"cellSIStomach lining\". seg1:mid shows \"5 da28 days\" overlapped and covered by Data. seg4:mid/end: the 24.8T and 30T circles are clipped by the caption bar. The hook caption reads the stomach line while the narration says 330 billion cells."
-      ],
-      "problems": [
-        "hook: the narration's 330 billion cells a day is never visualised, and the caption already shows the seg0 stomach line",
-        "seg0/hook: the labels overlap into \"120 d28sdays\" and \"Red blood cellSkin\", and the bottom half of the frame is empty",
-        "seg1: the \"5 days\" and \"28 days\" labels overlap each other and are covered by Data",
-        "seg1-seg3: three plain charts (bubbles, bars, a line) where the story needs physical renewal",
-        "seg2: the brain value is printed as 29.2K days, an unreadable abstraction for \"as old as you\"",
-        "seg3: the chart is titled \"New cells per day\" but plots a cumulative total"
-      ],
-      "fixes": [
-        "Draw the hook number: cells shedding off a body or a pile growing to 330 billion, on screen from frame one, with Data sweeping or shovelling it",
-        "Measure label widths and give each its own slot; never print text under the mascot",
-        "Show renewal as clocks or calendars made of each tissue (a stomach lining flipping every 5 days vs a bone clock barely moving), with Data turning the hands",
-        "Show brain vs skin in years or lifetimes (your age vs 4 weeks), not 29.2K days",
-        "For the closing, draw the skin's age beside a phone's age so the punchline is visible; keep the circles inside the frame above the caption bar"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 72
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg0",
-        "index": 1,
-        "failure_class": "unreadable_overlap_layout",
-        "visible_evidence": "The skeleton floats alone at the top. Three tissue labels and their day counts print on top of each other (\"120 d28sdays\", \"Red blood cellSkin\"), and the lower half of the frame is empty. The hook's own claim (330 billion cells a day) is never shown; the caption is already on the stomach-lining line",
-        "root_cause": "A row of fixed-width label slots was used with no measured text extents, so the labels collide. The hook scene reuses seg0's comparison instead of drawing its own number, and nothing fills the bottom of the frame.",
-        "repair_goal": "Redraw the opening as a shot of the hook's number: a body shedding cells (a stream or pile falling away, with Data sweeping it up) that lands 330 billion. Then lay out the tissue comparison with measured, non-overlapping labels across the whole frame (stomach 5 days vs skeleton 3,650 days as a physi"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.279,
-        "effective_fps": 17.3,
-        "max_dup_run": 15,
-        "measured": true,
-        "judder_ratio": 0.005,
-        "judder_fps": 23.9,
-        "held_s": 3.83,
-        "max_dup_at_s": 0.0,
-        "duration_s": 23.92
-      },
-      "fingerprint": "?|decorative_mascot+empty_void+unreadable|unreadable_overlap_layout",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T13:49:23+00:00",
-      "slug": "insect-planet",
-      "score": 44,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "The hook seesaw is decent. After it, the video turns into a stacked bar, a bar race and bubble circles, with Data posing beside them. The beetle-judging-you closing is two numbers on a card.",
-      "auto_fails": [
-        "decorative_mascot: In seg1:mid and seg1:end Data poses with his hands on his head beside a stacked bar that fills by itself. In seg3 he stands on top of the circle without making it grow. In seg4 he is two static copies, one cheering and one pointing. He causes no data motion anywhere.",
-        "bare_number_card: seg4:start through seg4:end show only '5.5M' and '1M' as text on two lines with Data figures, with no demonstration. The closing is a number card.",
-        "empty_void: seg3:start shows one 5.5M circle and one tiny 1M dot in a big empty frame. In seg2:start the bird and mammal rows are empty tracks across most of the frame.",
-        "unreadable: In seg3:mid and seg3:end '5.5M' is dark text with an outline on yellow and looks smeared. In seg2:end Data covers '1.5M'. In seg2:start the beetle icon overlaps 'Beetles (estimated)'. In seg1:start 'All other animals 20%' is low-contrast grey on navy."
-      ],
-      "problems": [
-        "seg1: plain stacked bar repeats the hook's 80/20 without a new demonstration, and Data only poses beside it",
-        "seg2: bird and mammal bars are empty tracks, the beetle icon overlaps its label, and Data covers '1.5M' at the end",
-        "seg3: bubble chart with dark-outlined '5.5M' smeared on yellow, and Data stands on top doing nothing",
-        "seg4: closing is a bare number card with two static Data copies, and the joke line has no visual",
-        "Data never causes any motion. He is decorative throughout",
-        "The hook and seg1 show the same 80% fact twice in a row"
-      ],
-      "fixes": [
-        "seg1: cut it, or turn it into a crowd of 10 animals where Data swaps 8 for beetles one by one",
-        "seg2: show 1.5M beetles as a swarm that Data shovels onto a pile next to small bird and mammal piles, and keep Data off the number",
-        "seg3: Data stamps name tags on 1M beetles while a 5.5M swarm streams past, with the number in light ink",
-        "seg4: show a dark field of unnamed beetles, one of which turns to stare at the camera. Use one headline number and no text-row card"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 77
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "bare_number_card",
-        "visible_evidence": "seg4:start to seg4:end show two text labels '5.5M' and '1M' with two Data copies cheering and pointing on a plain navy ground. The 5.5M number only slides sideways, and the bottom of the frame is a CTA.",
-        "root_cause": "The closing re-states the seg3 numbers as text rows with mascot stickers instead of paying off the 'unnamed beetle judging you' line. No picture carries the 4.5M unnamed gap.",
-        "repair_goal": "Make the closing a shot of the joke. Data, with a magnifying glass, labels a few beetles in a jar marked 1M while a dark field of about 5x as many unnamed beetle eyes appears behind him. One beetle turns to stare at the camera. Show one headline number, the gap, landing early enough to read."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.211,
-        "effective_fps": 18.9,
-        "max_dup_run": 19,
-        "measured": true,
-        "judder_ratio": 0.011,
-        "judder_fps": 23.7,
-        "held_s": 3.46,
-        "max_dup_at_s": 18.92,
-        "duration_s": 25.75
-      },
-      "fingerprint": "?|bare_number_card+decorative_mascot+empty_void+unreadable|bare_number_card",
-      "style_arm": "current"
-    },
     {
       "ts": "2026-10-09T13:55:45+00:00",
       "slug": "activity-inequality-steps",
@@ -4193,15 +4035,121 @@
         "duration_s": 33.5
       },
       "fingerprint": "?|-|craft_caption_and_broadcast_clutter"
+    },
+    {
+      "ts": "2026-10-12T23:01:34+00:00",
+      "slug": "esports-prize-pool-25x",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "",
+      "auto_fails": [],
+      "problems": [],
+      "fixes": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 72
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "restated_number_no_scale",
+        "visible_evidence": "seg3:start-end: a glass cylinder fills with coins to a 'PEAK' label and $40M is shown again. Nothing in the frame shows an earlier level or anything lower, so 'the peak, the highest point in this whole run' is only stated. It also repeats the $40M already shown in seg1.",
+        "root_cause": "The beat's claim is a peak compared with other years, but the scene draws a single amount filling a container. With no earlier year marked on the subject, the picture cannot show that this is the highest point.",
+        "repair_goal": "Show the run on the cylinder itself. Mark the earlier years' levels (2011 at $1.6M near the bottom, 2017 at $24.7M) as then-marks on the glass. Data pours the coins up past each mark to the 2021 rim, so the viewer sees 2021 rise above every earlier level without reading a label."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.329,
+        "effective_fps": 16.1,
+        "max_dup_run": 24,
+        "measured": true,
+        "frozen_ratio": 0.035,
+        "frozen_fps": 23.2,
+        "max_frozen_run": 12,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 5.25,
+        "max_dup_at_s": 20.58,
+        "duration_s": 24.0
+      },
+      "fingerprint": "?|-|restated_number_no_scale",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-12T23:53:37+00:00",
+      "slug": "vertical-farming-bust",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.58s of 26.83s (~2.0s frozen)",
+      "auto_fails": [
+        "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.58s of 26.83s (~2.0s frozen)"
+      ],
+      "problems": [
+        "max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.58s of 26.83s (~2.0s frozen)"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 23.0,
+        "dark_fraction": 0.0,
+        "sampled": 81
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.297,
+        "effective_fps": 16.9,
+        "max_dup_run": 48,
+        "measured": true,
+        "frozen_ratio": 0.16,
+        "frozen_fps": 20.2,
+        "max_frozen_run": 28,
+        "judder_ratio": 0.011,
+        "judder_fps": 23.7,
+        "held_s": 5.42,
+        "max_dup_at_s": 21.58,
+        "duration_s": 26.83
+      },
+      "fingerprint": "?|temporal_gate|-",
+      "style_arm": "illustrated"
     }
   ],
   "showrunner_recurrence": {
-    "?|bare_number_card+decorative_mascot+empty_void+unreadable|bare_number_card": {
-      "count": 4,
-      "days": [
-        "2026-10-09"
-      ]
-    },
     "?|-|weak_hook": {
       "count": 4,
       "days": [
@@ -4209,17 +4157,23 @@
         "2026-10-11"
       ]
     },
+    "?|temporal_gate|-": {
+      "count": 4,
+      "days": [
+        "2026-10-11",
+        "2026-10-12"
+      ]
+    },
+    "?|bare_number_card+decorative_mascot+empty_void+unreadable|bare_number_card": {
+      "count": 3,
+      "days": [
+        "2026-10-09"
+      ]
+    },
     "?|-|weak_payoff": {
       "count": 3,
       "days": [
         "2026-10-10",
-        "2026-10-12"
-      ]
-    },
-    "?|temporal_gate|-": {
-      "count": 3,
-      "days": [
-        "2026-10-11",
         "2026-10-12"
       ]
     },
@@ -4234,12 +4188,6 @@
       "count": 2,
       "days": [
         "2026-10-11"
-      ]
-    },
-    "?|decorative_mascot+empty_void+unreadable|unreadable_overlap_layout": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
       ]
     },
     "?|dead_air+decorative_mascot+empty_void+unreadable|chart_fallback_unreadable": {
@@ -4487,16 +4435,21 @@
       "days": [
         "2026-10-12"
       ]
+    },
+    "?|-|restated_number_no_scale": {
+      "count": 1,
+      "days": [
+        "2026-10-12"
+      ]
     }
   },
   "recent_commits": [
-    "99a845a 2026-10-12 deadman: repaired 2026-10-12 [skip ci]",
-    "d5f2b07 2026-10-12 third: analytics [skip ci]"
+    "1e75eac 2026-10-13 claim: mailbox verdicts 2026-10-13T04:48Z [skip ci]",
+    "8546f10 2026-10-12 explainer: a queued run starts on main as it is when the run starts (#642)"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-09-28": 10,
         "2026-09-29": 6,
         "2026-09-30": 5,
         "2026-10-01": 4,
@@ -4530,15 +4483,14 @@
         "2026-10-09": 5,
         "2026-10-10": 3,
         "2026-10-11": 2,
-        "2026-10-12": 1
+        "2026-10-12": 2
       },
-      "total_posted": 322,
-      "attempted": 322,
+      "total_posted": 323,
+      "attempted": 323,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-09-28": 2,
         "2026-09-30": 5,
         "2026-10-01": 5,
         "2026-10-02": 4,
@@ -4552,11 +4504,11 @@
         "2026-10-10": 6,
         "2026-10-11": 6,
         "2026-10-12": 4,
-        "2026-10-13": 1
+        "2026-10-13": 3
       },
-      "total_posted": 400,
-      "attempted": 939,
-      "rejected_or_pending": 539
+      "total_posted": 402,
+      "attempted": 944,
+      "rejected_or_pending": 542
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4570,32 +4522,32 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 124,
+      "videos": 123,
       "top_by_vph": [
         {
           "title": "Pollen Season Just Got 20 Days Longer",
-          "vph": 24.95,
-          "views": 384
-        },
-        {
-          "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
-          "vph": 15.39,
-          "views": 601
+          "vph": 13.44,
+          "views": 428
         },
         {
           "title": "Polio Cases Fell 99.9% In One Generation",
-          "vph": 13.1,
-          "views": 123
+          "vph": 13.24,
+          "views": 342
+        },
+        {
+          "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
+          "vph": 11.3,
+          "views": 627
         },
         {
           "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
-          "vph": 5.97,
-          "views": 537
+          "vph": 5.07,
+          "views": 539
         },
         {
           "title": "One Rule Change Fixed 16 Million Credit Scores For Free",
-          "vph": 4.87,
-          "views": 161
+          "vph": 3.7,
+          "views": 183
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
@@ -4605,36 +4557,36 @@
       "top_by_vph": [
         {
           "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 17.59,
-          "views": 772
+          "vph": 16.06,
+          "views": 823
         },
         {
           "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
-          "vph": 3.26,
-          "views": 682
+          "vph": 3.2,
+          "views": 693
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 2.43,
-          "views": 387
+          "vph": 2.42,
+          "views": 403
         },
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 2.29,
+          "vph": 2.26,
           "views": 1361
         },
         {
           "title": "Plaqueboymax Dance Fails And Hits His Mouth On Camera",
-          "vph": 1.36,
+          "vph": 1.26,
           "views": 121
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261009/brief.json",
       "retro/20261010/brief.json",
-      "retro/20261011/brief.json"
+      "retro/20261011/brief.json",
+      "retro/20261012/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
