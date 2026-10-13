@@ -5434,6 +5434,102 @@
      "detail": "English owned three of every four web pages. Now it's under half."
     }
    ]
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-12",
+   "topic_category": "nature",
+   "hook_type": "shock_stat",
+   "hook_text": "One cave fungus wiped out 97 percent of a bat species.",
+   "words_first_10s": 18,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "spread map, colonies dropping, bat-needle gauge to $53B",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "One cave fungus wiped out 97 percent of a bat species."
+    }
+   ]
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-12",
+   "topic_category": "records",
+   "hook_type": "shock_stat",
+   "hook_text": "States are quietly holding 70 billion dollars of your money.",
+   "words_first_10s": 18,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "question",
+   "franchise": "",
+   "notes": "vault drains a trickle; 1-in-7 crowd lights",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "States are quietly holding 70 billion dollars of your money."
+    }
+   ]
+  },
+  {
+   "slug": "oceanic-shark-collapse",
+   "directed_at": "2026-10-12",
+   "topic_category": "animals",
+   "hook_type": "stake",
+   "hook_text": "Your ocean lost 71% of its sharks, and nobody noticed.",
+   "words_first_10s": 18,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:shark-shoal-thins",
+    "mechanic:shark-bitten-away",
+    "mechanic:shark-fins-red-water"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "shoal of 48 thins to 29%; species bitten away; 3 of 4 fins in red water",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "Your ocean lost 71% of its sharks, and nobody noticed."
+    }
+   ]
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-10-12",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "words_first_10s": 18,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:trend",
+    "mechanic:tattoo-ink-fills-arm",
+    "scene:illustrated-habit"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "two arms inked to 37% vs 32%",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "Once you get one tattoo, you almost never stop at one."
+    }
+   ]
   }
  ]
 }
