@@ -777,7 +777,27 @@ def main() -> int:
               "uploading. Pass --publish (or set PUBLISH_ENABLED=1) to upload.",
               flush=True)
 
+    # WHERE THE RUN IS (shared/run_progress.py; operator, 2026-10-12: "you
+    # need to add something so we have a better guess"). Bookkeeping only.
+    from shared import run_progress as _run_progress
+    _prog = _run_progress.Tracker(
+        args.channel or "explainer",
+        push=bool(os.environ.get("GITHUB_ACTIONS")) and not args.dry_run)
+    _prog_slug = None
+
+    def _prog_close():
+        if _prog_slug is None:
+            return
+        _r = next((r for r in reversed(results)
+                   if r.get("slug") == _prog_slug), None)
+        if _r and _r.get("ok") and _r.get("url"):
+            _prog.finish(_prog_slug, "posted", _r.get("url"))
+        else:
+            _prog.finish(_prog_slug, str((_r or {}).get("error") or "skipped"))
+
     for slug in slugs:
+        _prog_close()
+        _prog_slug = None
         sc = stories[slug]
         if not args.force and slug in log["posted"]:
             _rec = log["posted"][slug]
@@ -871,6 +891,8 @@ def main() -> int:
         # brain gets to tighten it first — validated like any rewrite (the
         # numbers derivable, no new entity, the gate still passes) and
         # persisted to the config the renderer re-reads, once.
+        _prog_slug = slug
+        _prog.mark(slug, "prep")
         try:
             from shared import pacing as _pacing
             _pacing.tighten(sc, config_path=args.config,
@@ -936,6 +958,7 @@ def main() -> int:
         attempts += 1
         out = OUTPUT_DIR / f"story_{slug}.mp4"
         print(f"[{slug}] rendering -> {out}", flush=True)
+        _prog.mark(slug, "render")
         from data_learning import studio_render       # lazy: needs Pillow etc.
         try:
             studio_render.render(slug, out, config_path=args.config,
@@ -1015,6 +1038,7 @@ def main() -> int:
             _rid = os.environ.get("GITHUB_RUN_ID", "")
             ctx["mailbox"] = {"channel": args.channel, "run_id": _rid,
                               "artifact": f"held-renders-{_rid or 'local'}"}
+        _prog.mark(slug, "review")
         gate = _gate.run(out, slug=slug, context=ctx, will_upload=will_upload)
         _gate.log(gate, slug)
         blocked = gate["blocked"]
@@ -1255,6 +1279,7 @@ def main() -> int:
         log["posted"][slug] = _claim
         log.setdefault("uploads", []).append(dict(_claim, slug=slug))
         _save_log(log, args.log)
+        _prog.mark(slug, "upload")
         if not _persist_posted_log_now(args.log, slug, why="claim upload slot"):
             # A CLAIM NOBODY ELSE CAN SEE PROTECTS NOBODY. If it did not
             # reach main, a queued run would decide on a ledger without it
@@ -1366,6 +1391,8 @@ def main() -> int:
     # (see the workflow's day-level check), because a quiet day and a broken
     # day need different reactions.
     # ------------------------------------------------------------------ #
+    _prog_close()
+    _prog.end()
     _b = classify_results(results)
     posted, held, faults, dry = (_b["posted"], _b["held"],
                                  _b["faults"], _b["dry"])
