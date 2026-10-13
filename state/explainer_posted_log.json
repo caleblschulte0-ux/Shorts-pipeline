@@ -3327,6 +3327,14 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
       "duration_s": 28.4
+    },
+    "hpv-vaccine-cancer-drop": {
+      "title": "The Cancer Vaccine Already Cut Cases By 88%",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "claimed_at": "2026-10-13T17:44:32Z",
+      "via": "showrunner-rejudge"
     }
   },
   "uploads": [
@@ -4166,6 +4174,15 @@
       "state": "posted",
       "slug": "doomsday-clock-89-seconds",
       "at": "2026-10-13T06:20:29.126111+00:00"
+    },
+    {
+      "title": "The Cancer Vaccine Already Cut Cases By 88%",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "claimed_at": "2026-10-13T17:44:32Z",
+      "via": "showrunner-rejudge",
+      "slug": "hpv-vaccine-cancer-drop"
     }
   ]
 }
