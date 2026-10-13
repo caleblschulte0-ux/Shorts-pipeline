@@ -142,6 +142,7 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
+          ref: ${{ github.ref }}
           fetch-depth: 1
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
@@ -179,10 +180,19 @@ jobs:
       group: explainer-stories
       cancel-in-progress: false
     steps:
+      # THE BRANCH TIP, NOT THE EVENT'S SHA (2026-10-13; daily.yml learned
+      # it 2026-09-29). This group queues one run behind another, and with no
+      # `ref` checkout fetches github.sha — the commit main was at when the
+      # run was QUEUED. The run queued at 23:36 on 10-12 started at 04:11 on
+      # a config five hours old: every scene the run before it had drawn and
+      # persisted at 04:11:36 was missing, so it began redrawing the same
+      # twelve stories from scratch, and none of the fixes merged in between
+      # were in it. A ref makes checkout fetch the tip when the job STARTS.
       - name: Checkout
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.ref }}
           fetch-depth: 1
 
       - name: Pre-flight — kill switch
