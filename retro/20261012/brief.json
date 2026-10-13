@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261012",
-  "generated_at": "2026-10-12T23:31:03Z",
+  "generated_at": "2026-10-13T00:31:08Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 18.76,
+          "days": 18.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 17.76,
+          "days": 17.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1501,10 +1501,15 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "37a9d6c",
-    "commits_since": "2026-10-11",
+    "head": "942adc2",
+    "commits_since": "2026-10-12",
     "commit_count": 50,
     "commits": [
+      "942adc2 Third: the who-line skips the streamer's own name in underscore logins, and platform names (#636)",
+      "65202ac exchange: phase A bundle for 20261013 [skip ci]",
+      "2805478 explainer: a story says what it is about, and keeps the number it compares (#637)",
+      "48879b2 claim: mailbox verdicts 2026-10-12T23:47Z [skip ci]",
+      "2a1f1e0 retro: brief + triage for 20261012 [skip ci]",
       "37a9d6c explainer: update posted log + analytics [skip ci]",
       "f102d39 explainer: posted esports-prize-pool-25x [skip ci]",
       "79a3d70 explainer: claim upload slot esports-prize-pool-25x [skip ci]",
@@ -1539,12 +1544,7 @@
       "7a3e62c watchdog: chatgpt task verdicts 20261012 [skip ci]",
       "25a4fbe Baller Bro posts to TikTok, at the YouTube slot (#630)",
       "beb433d claim: mailbox verdicts 2026-10-12T14:48Z [skip ci]",
-      "b2de507 watchdog: chatgpt task verdicts 20261012 [skip ci]",
-      "3f95ebe Third stories: ask who someone is to the followed streamer, and log it (#629)",
-      "08e9a95 Real footage is not held for standing still (#628)",
-      "a18c57d story forge: new real-data stories [skip ci]",
-      "14eb162 third: analytics [skip ci]",
-      "fee11e0 third: update posted log + analytics [skip ci]"
+      "b2de507 watchdog: chatgpt task verdicts 20261012 [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
