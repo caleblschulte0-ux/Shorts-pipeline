@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-13T18:17:35Z",
+ "updated": "2026-10-13T20:56:26Z",
  "open": [
+  {
+   "id": "red-hair-recessive-gene__e4e29bf0",
+   "slug": "red-hair-recessive-gene",
+   "filed": "2026-10-13T20:56:26Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies only on a general statistic without a surprising twist."
+   ],
+   "request": "exchange/rewrites/20261013/red-hair-recessive-gene__e4e29bf0.request.json",
+   "answer_path": "exchange/rewrites/20261013/red-hair-recessive-gene__e4e29bf0.answer.json"
+  },
   {
    "id": "bat-fungus-collapse__45262d36",
    "slug": "bat-fungus-collapse",
@@ -592,16 +602,6 @@
    ],
    "request": "exchange/rewrites/20261012/amazon-warehouse-robot-army__587faefb.request.json",
    "answer_path": "exchange/rewrites/20261012/amazon-warehouse-robot-army__587faefb.answer.json"
-  },
-  {
-   "id": "red-hair-recessive-gene__e4e29bf0",
-   "slug": "red-hair-recessive-gene",
-   "filed": "2026-10-12T04:56:14Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies only on a generic rarity statistic."
-   ],
-   "request": "exchange/rewrites/20261012/red-hair-recessive-gene__e4e29bf0.request.json",
-   "answer_path": "exchange/rewrites/20261012/red-hair-recessive-gene__e4e29bf0.answer.json"
   },
   {
    "id": "cursive-handwriting-comeback__0bdbde6c",
