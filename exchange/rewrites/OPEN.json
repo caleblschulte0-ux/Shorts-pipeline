@@ -1,7 +1,37 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-13T07:19:00Z",
+ "updated": "2026-10-13T12:41:35Z",
  "open": [
+  {
+   "id": "self-storage-outnumbers-starbucks__97599610",
+   "slug": "self-storage-outnumbers-starbucks",
+   "filed": "2026-10-13T12:41:35Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a common expectation and relies on an unverified, vague number."
+   ],
+   "request": "exchange/rewrites/20261013/self-storage-outnumbers-starbucks__97599610.request.json",
+   "answer_path": "exchange/rewrites/20261013/self-storage-outnumbers-starbucks__97599610.answer.json"
+  },
+  {
+   "id": "saffron-red-gold-myth__572913ae",
+   "slug": "saffron-red-gold-myth",
+   "filed": "2026-10-13T12:41:34Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies only on a generic price claim."
+   ],
+   "request": "exchange/rewrites/20261013/saffron-red-gold-myth__572913ae.request.json",
+   "answer_path": "exchange/rewrites/20261013/saffron-red-gold-myth__572913ae.answer.json"
+  },
+  {
+   "id": "hpv-vaccine-cancer-drop__d23144d8",
+   "slug": "hpv-vaccine-cancer-drop",
+   "filed": "2026-10-13T12:41:32Z",
+   "why": [
+    "judge: blocked by the showrunner"
+   ],
+   "request": "exchange/rewrites/20261013/hpv-vaccine-cancer-drop__d23144d8.request.json",
+   "answer_path": "exchange/rewrites/20261013/hpv-vaccine-cancer-drop__d23144d8.answer.json"
+  },
   {
    "id": "divorce-rate-quiet-decline__d6b27d36",
    "slug": "divorce-rate-quiet-decline",
@@ -554,16 +584,6 @@
    "answer_path": "exchange/rewrites/20261012/amazon-warehouse-robot-army__587faefb.answer.json"
   },
   {
-   "id": "hpv-vaccine-cancer-drop__d23144d8",
-   "slug": "hpv-vaccine-cancer-drop",
-   "filed": "2026-10-12T11:44:20Z",
-   "why": [
-    "premise: brain: The claim relies on an unverified 88% reduction without clear evidence and does not convincingly overturn a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261012/hpv-vaccine-cancer-drop__d23144d8.request.json",
-   "answer_path": "exchange/rewrites/20261012/hpv-vaccine-cancer-drop__d23144d8.answer.json"
-  },
-  {
    "id": "red-hair-recessive-gene__e4e29bf0",
    "slug": "red-hair-recessive-gene",
    "filed": "2026-10-12T04:56:14Z",
@@ -594,16 +614,6 @@
    "answer_path": "exchange/rewrites/20261012/plastic-in-your-body__003bd131.answer.json"
   },
   {
-   "id": "saffron-red-gold-myth__572913ae",
-   "slug": "saffron-red-gold-myth",
-   "filed": "2026-10-12T04:56:08Z",
-   "why": [
-    "premise: brain: The premise relies on a generic searchable phrase and lacks a clear reversal of a specific viewer expectation despite a single number."
-   ],
-   "request": "exchange/rewrites/20261012/saffron-red-gold-myth__572913ae.request.json",
-   "answer_path": "exchange/rewrites/20261012/saffron-red-gold-myth__572913ae.answer.json"
-  },
-  {
    "id": "blood-supply-three-percent__b017adda",
    "slug": "blood-supply-three-percent",
    "filed": "2026-10-12T04:56:06Z",
@@ -622,16 +632,6 @@
    ],
    "request": "exchange/rewrites/20261011/ants-outnumber-humans__85ceee4a.request.json",
    "answer_path": "exchange/rewrites/20261011/ants-outnumber-humans__85ceee4a.answer.json"
-  },
-  {
-   "id": "self-storage-outnumbers-starbucks__5f5e8e3e",
-   "slug": "self-storage-outnumbers-starbucks",
-   "filed": "2026-10-10T22:12:00Z",
-   "why": [
-    "premise: brain: The claim lacks a clear reversal of a specific viewer expectation and relies on an ambiguous, unverifiable number."
-   ],
-   "request": "exchange/rewrites/20261010/self-storage-outnumbers-starbucks__5f5e8e3e.request.json",
-   "answer_path": "exchange/rewrites/20261010/self-storage-outnumbers-starbucks__5f5e8e3e.answer.json"
   },
   {
    "id": "medical-debt-credit-score-fix__c967088f",
