@@ -1,0 +1,96 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "back-pain-leading-disability__5ef4f35230",
+ "video_sha256": "5ef4f352302d0910b7976eb823ef181c53e958f8aa01dbee3bfcefb3a64b65a9",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-10-13T17:44:29Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 3,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "No AI/stock images or garbled cutouts observed."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "In seg0:start and seg0:mid, the mascot stands next to a box, observing the main character with back pain, but doesn't perform a specific action tied to the stat. In seg3:start and seg3:mid, the mascot is perched on the stack of boxes, observing, but not actively performing a bit with setup->action->payoff."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "All numbers are integrated into visual demonstrations."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "longest_static_s is 0.0, indicating no static frames for 4+ seconds."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "The frames are well-composed with elements filling the space; no large dead/black areas."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All text, including numbers and labels, is clear and readable against its background."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg0",
+   "index": 0,
+   "failure_class": "mascot_performance",
+   "visible_evidence": "The mascot stands next to a box, observing the main character with back pain, but doesn't perform a specific action tied to the stat or the pain in the hook.",
+   "root_cause": "The mascot's action is passive observation rather than an active demonstration or interaction with the data, especially in a critical hook segment.",
+   "repair_goal": "Integrate the mascot into the visual demonstration of back pain or its impact, perhaps by interacting with the suffering character or the '619M people' concept, to make its role more active and engaging from the start."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "The visual of multiple people bent over with glowing back pain directly illustrates '619M people live with back pain' and 'disables more people'."
+   },
+   {
+    "id": "seg1",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "The growing line of people extending from the hospital, measured by the mascot, clearly shows the projected increase in chronic back pain cases."
+   },
+   {
+    "id": "seg2",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "The spine model being adjusted by a machine, with a blue bar indicating 'fixable' and a gray bar for 'other causes', effectively demonstrates the 39% vs 61% breakdown."
+   },
+   {
+    "id": "seg3",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "The worker carrying an increasing stack of boxes, with the year changing, visually represents the '+53% working-age back pain' over time."
+   },
+   {
+    "id": "seg4",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "The person being pulled down by a heavy bag and then standing up with the mascot's help is a strong, direct metaphor for preventing back pain and giving the back a break."
+   }
+  ],
+  "one_line": "A visually engaging video with strong data demonstrations and good pacing, though the mascot could be more actively integrated in some early scenes.",
+  "problems": [
+   "The mascot is somewhat decorative in the hook (seg0) and seg3, not performing a distinct bit with a clear setup, action, and payoff."
+  ],
+  "fixes": [
+   "In seg0, give the mascot a more active role related to the back pain, e.g., trying to help the person, or pointing to the scale of the problem.",
+   "In seg3, have the mascot interact more directly with the boxes or the worker to emphasize the burden or the increase."
+  ]
+ }
+}

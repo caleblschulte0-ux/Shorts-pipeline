@@ -1,0 +1,88 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "hpv-vaccine-cancer-drop__9fe735c522",
+ "video_sha256": "9fe735c522f7cad4b49645b335fd185edfca9afce5feb3203b8ca80be4c8e5a1",
+ "by": "showrunner:gemini-fallback",
+ "graded_at": "2026-10-13T17:44:07Z",
+ "grades": {
+  "dimensions": {
+   "hook": 4,
+   "data_demo": 5,
+   "mascot": 4,
+   "craft": 3,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All imagery appears to be custom animation."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "The mascot is actively pouring viruses, sweeping, and clearing beds in various scenes (e.g., Frame hook@0.3, Frame seg2:mid, Frame seg3:mid)."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "All numbers are demonstrated visually through flask filling, virus sweeping, or bed clearing (e.g., Frame hook@0.3, Frame seg2:mid, Frame seg3:end)."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "The longest_static_s is 0.0s, indicating no prolonged static frames."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "Frames are well-composed with no large empty or black areas."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "All text is legible and clearly contrasted against its background."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg0",
+   "index": 0,
+   "failure_class": "Visual Craft",
+   "visible_evidence": "The flask instantly fills completely between Frame seg0:end (t=2.68s) and Frame seg1:start (t=4.70s) without a continuous animation.",
+   "root_cause": "Lack of smooth animation for the full data representation across a segment boundary.",
+   "repair_goal": "Ensure continuous and smooth animation for the flask filling to represent the data proportion without abrupt jumps."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "machine",
+    "bespoke": 2,
+    "proves_claim": 3,
+    "note": "A flask filling with viruses to represent the proportion of cervical cancers caused by HPV."
+   },
+   {
+    "id": "seg1",
+    "kind": "machine",
+    "bespoke": 2,
+    "proves_claim": 3,
+    "note": "A flask full of viruses representing the 91% of cervical cancers caused by HPV."
+   },
+   {
+    "id": "seg2",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "The mascot sweeping away a pile of viruses in a hallway to visually demonstrate the reduction in HPV carriage."
+   },
+   {
+    "id": "seg3",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 3,
+    "note": "The mascot clearing beds from a hospital ward to show the reduction in cervical cancer cases."
+   }
+  ],
+  "one_line": "The video effectively demonstrates the impact of the HPV vaccine through engaging visual metaphors and an active mascot.",
+  "problems": [
+   "The transition of the flask filling between the end of seg0 and the start of seg1 is abrupt, lacking continuous animation."
+  ],
+  "fixes": [
+   "Smooth out the animation of the flask filling to ensure a continuous visual representation of the data across segments."
+  ]
+ }
+}
