@@ -180,6 +180,7 @@ def bare_name(text: str) -> str:
     t = " ".join(t.split("/")[0].split()).strip(" .'\"")
     words = t.split()
     if (not words or len(words) > 3 or len(t) < 3 or _NOT_A_PERSON.match(t)
+            or t in _NOT_A_NAME
             or not all(w[:1].isupper() or w[:1].isdigit() for w in words)):
         return ""
     return t
@@ -207,11 +208,11 @@ def known_people(streamer: str, names: list[str]) -> dict:
     allowed a line of text on screen (2026-10-08); this is where its
     "who" may come from when the footage never says it. Best-effort:
     any failure or doubt returns nothing, and the cut is as before."""
-    me = re.sub(r"\W", "", str(streamer).lower())
+    me = re.sub(r"[\W_]", "", str(streamer).lower())
     seen: dict = {}
     for n in names or []:
         b = bare_name(n)
-        k = re.sub(r"\W", "", b.lower())
+        k = re.sub(r"[\W_]", "", b.lower())
         if b and k not in me and k not in seen:
             seen[k] = b
     names = list(seen.values())[:8]

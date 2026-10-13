@@ -167,6 +167,19 @@ class WhoSomeoneIsIsCheckedTwice(unittest.TestCase):
         self.assertIn("Reggie", self.entries.call_args_list[0].args[0])
         self.assertNotIn("contact", self.entries.call_args_list[0].args[0])
 
+    def test_a_login_with_an_underscore_is_still_the_streamer(self):
+        # backtest 27 asked who "Joe Bartolozzi" is to joe_bartolozzi
+        seen = {}
+
+        def claude(user, system=None, **k):
+            seen["user"] = user
+            return {"who": {}}
+        with mock.patch.object(story_director, "_call_claude",
+                               side_effect=claude):
+            story_director.known_people(
+                "joe_bartolozzi", ["Joe Bartolozzi", "Twitch", "Franklin"])
+        self.assertIn('NAMES: ["Franklin"]', seen["user"])
+
     def test_a_dead_brain_costs_nothing(self):
         with mock.patch.object(story_director, "_call_claude",
                                side_effect=RuntimeError("down")):
