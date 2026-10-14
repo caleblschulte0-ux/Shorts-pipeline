@@ -13147,6 +13147,88 @@
       "rejected_by": "content gate",
       "rejected_why": "0.30 < 0.35 (Valorant pro gameplay, no clear payoff)",
       "ts": "2026-10-14T12:31:50.034663+00:00"
+    },
+    "rejected-inventivebumblingjamstinkycheese-6y8btoa-3ecppei6": {
+      "source_url": "https://www.twitch.tv/lacy/clip/InventiveBumblingJamStinkyCheese-6y8BTOA-3eCPpEI6",
+      "streamer": "lacy",
+      "title": "HE SAID IM  ANGRY",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Fortnite building footage, no visible ev)",
+      "ts": "2026-10-14T13:31:13.861156+00:00"
+    },
+    "rejected-drabmanlyfinchhassaanchop-l7g5fw5h-f8c-o8s": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/DrabManlyFinchHassaanChop-l7g5Fw5H-f8c-O8s",
+      "streamer": "jynxzi",
+      "title": "Jynxzi Swears He'll Get A Tattoo On His Cheek If This Guy Doesn't Go First Pick",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp picture is a thin 16:9 strip, about a third of the 9:16 canvas, with most of the frame blurred padding; the target; vision: The main picture is a static wide football-field shot with tiny, unreadable players, and it never changes across the 19s; vision: The streamer (Jynxzi) is a small",
+      "ts": "2026-10-14T13:33:58.488435+00:00"
+    },
+    "rejected-sneakyshortnigiripogchamp-pi1-oizqxwttftyh": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/SneakyShortNigiriPogChamp-PI1-OIZQXwtTFTYH",
+      "streamer": "caseoh_",
+      "title": "crazy timing",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (Minecraft mountain talk, then paused men)",
+      "ts": "2026-10-14T13:34:33.262171+00:00"
+    },
+    "rejected-curiousrepletedolphinmrdestructoid-7kgujfdv-ytlk2h8": {
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/CuriousRepleteDolphinMrDestructoid-7KGuJfdv-YTlk2h8",
+      "streamer": "ohnepixel",
+      "title": "Giga Donk and s0mple",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.0s \u2014 too short to edit",
+      "ts": "2026-10-14T13:34:52.463570+00:00"
+    },
+    "rejected-boringcaringwaffledancingbaby-oujz2rwpdkne9xn1": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/BoringCaringWaffleDancingBaby-OUjz2rWpDkne9xn1",
+      "streamer": "caseoh_",
+      "title": "AUGHHH LAWD",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (dark webcam, reading note, no event)",
+      "ts": "2026-10-14T13:35:44.489850+00:00"
+    },
+    "rejected-blightedblazingmelonkevinturtle-3gkikw6lnt5-feem": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/BlightedBlazingMelonKevinTurtle-3gKIkw6lNt5-Feem",
+      "streamer": "caseoh_",
+      "title": "CASEOH SPITTIN BARS \ud83d\udd25 W VOCALS \ud83c\udfb5\ud83c\udfa4",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (static frame, freestyle joke, no visible)",
+      "ts": "2026-10-14T13:37:49.163263+00:00"
+    },
+    "rejected-funcrepuscularparrottebowing-8dioobxzxcs0cxqr": {
+      "source_url": "https://www.twitch.tv/ludwig/clip/FunCrepuscularParrotTebowing-8dIoOBxZXcs0cXqR",
+      "streamer": "ludwig",
+      "title": "top 2",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Talking only, no visible event)",
+      "ts": "2026-10-14T13:38:29.434666+00:00"
+    },
+    "rejected-faintrenownedchamoistbcheesepull-cqyaap5ynlk6ea45": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/FaintRenownedChamoisTBCheesePull-CQyaAP5YNlk6ea45",
+      "streamer": "caseoh_",
+      "title": "caseoh teaching sister to drive",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (game driving, crash then static screen)",
+      "ts": "2026-10-14T13:39:11.740742+00:00"
+    },
+    "clip-20261014-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/SecretiveCulturedMelonShazBotstix-DKo3Q0WZeWD5J1ZB",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Gets Pushed By Cops After Telling Them She Just Had Surgery",
+      "kind": "twitch_clip",
+      "ts": "2026-10-14T13:42:19.977758+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
