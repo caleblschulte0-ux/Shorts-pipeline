@@ -569,6 +569,10 @@ def pre_render_verdict(sc: dict, *, use_llm: bool = True) -> dict:
     # brain tighten the story before this verdict is taken.
     from shared import pacing as _pacing
     pace = _pacing.problems(sc)
+    # LENGTH (operator, 2026-10-14: "Why are they coming out so short"). Not
+    # a word reason: a rewrite keeps the beat count, so the mailbox cannot
+    # fix it; the story waits for the forge to give it more beats.
+    few = _pacing.too_few_beats(sc)
     reasons = ([f"data: {r}" for r in prov["reasons"]]
                + [f"data: {r}" for r in finding["reasons"]]
                + [f"premise: {r}" for r in prem["reasons"]]
@@ -576,15 +580,17 @@ def pre_render_verdict(sc: dict, *, use_llm: bool = True) -> dict:
                + [f"beats: {r}" for r in spoken["reasons"]]
                + [f"thesis: {r}" for r in thesis["reasons"]]
                + [f"pace: {r}" for r in pace]
+               + ([f"length: {few}"] if few else [])
                # Reported, not refused — see `WILD_NUMBER`.
                + [f"beats (noted): {r}" for r in spoken["notes"]])
-    return {"ok": other_ok and thesis["ok"] and not pace,
+    return {"ok": other_ok and thesis["ok"] and not pace and not few,
             "reasons": reasons,
             "data_ok": prov["ok"] and finding["ok"],
             "premise_ok": prem["ok"],
             "beats_ok": dist["ok"] and spoken["ok"],
             "thesis_ok": thesis["ok"],
-            "pace_ok": not pace}
+            "pace_ok": not pace,
+            "length_ok": not few}
 
 
 if __name__ == "__main__":

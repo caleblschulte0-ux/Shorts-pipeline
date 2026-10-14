@@ -40,7 +40,7 @@ _spec.loader.exec_module(forge)
 
 _FORGE_SRC = (_REPO / "scripts" / "story_forge.py").read_text()
 _DOCTRINE = (_REPO / "CLAUDE_ROUTINE_INSTRUCTIONS.md").read_text()
-_BEATS = (3, 3, 4, 4)
+_BEATS = forge.BEATS
 
 
 def _target(theme: str, lead: str = "") -> int:
@@ -64,7 +64,7 @@ class TheBeatCountVaries(unittest.TestCase):
 
     def test_every_length_is_one_a_video_can_carry(self):
         for t in self.THEMES:
-            self.assertIn(_target(t), (2, 3, 4))
+            self.assertIn(_target(t), (3, 4, 5))
 
     def test_it_is_stable_for_a_given_theme(self):
         """`hash()` is salted per process, so using it would give the same
@@ -77,13 +77,17 @@ class TheBeatCountVaries(unittest.TestCase):
         self.assertNotRegex(_FORGE_SRC, r"(?<![_a-z])hash\(theme\)")
         self.assertIn("_stable_hash(", _FORGE_SRC)
 
-    def test_the_floor_is_two_not_three(self):
-        """One measurement is a stat, not a story you can build to — but two
-        is a real comparison and the forge used to bank it as unusable."""
-        self.assertIn("if len(dss) < 2:", _FORGE_SRC)
-        self.assertNotIn("if len(dss) < 3:", _FORGE_SRC)
+    def test_the_floor_is_the_registrys_min_beats(self):
+        """Two was the floor until 2026-10-14, when an 18-second two-beat
+        video drew "Why are they coming out so short". The floor is the
+        registry's `pacing.min_beats`, the same number the gate holds a
+        story to, never a literal here."""
+        self.assertIn("if len(dss) < MIN_BEATS:", _FORGE_SRC)
+        from shared import pacing
+        self.assertEqual(forge.MIN_BEATS, pacing.budget()["min_beats"])
 
-    def test_nothing_still_collects_a_hardcoded_three(self):
+    def test_nothing_still_collects_a_hardcoded_floor(self):
+        self.assertNotIn("len(dss) < 2", _FORGE_SRC)
         self.assertNotIn("len(dss) < 3", _FORGE_SRC)
 
 

@@ -34,7 +34,7 @@ REPO = Path(__file__).resolve().parents[1]
 #: checks — so production reads the registry's numbers, never these.
 IF_UNSET = {"beat_max_s": 8, "say_words": 24, "hook_words": 14,
             "closing_words": 18, "question_words": 8, "tempo": 1.12,
-            "beat_min_words": 15}
+            "beat_min_words": 18, "min_beats": 3}
 
 WORDS_BY = "brain-tighten"
 
@@ -78,6 +78,21 @@ def problems(sc: dict, b: dict | None = None) -> list[str]:
     if q > b["question_words"]:
         out.append(f"question is {q} words (max {b['question_words']})")
     return out
+
+
+def too_few_beats(sc: dict, b: dict | None = None) -> str | None:
+    """A story with fewer than `min_beats` beats is a fact and a footnote,
+    not a story (operator, 2026-10-14, of an 18-second two-beat video: "Why
+    are they coming out so short"). A retell cannot add a beat — every beat
+    is a dataset — so this is a hold, not a rewrite."""
+    b = b or budget()
+    n = len(sc.get("segments") or [])
+    need = int(b.get("min_beats") or 0)
+    if need and n < need:
+        return (f"only {n} beat{'s' if n != 1 else ''} — a story needs at "
+                f"least {need} to say the number, what it means and why it "
+                f"matters")
+    return None
 
 
 def short(sc: dict, b: dict | None = None) -> bool:

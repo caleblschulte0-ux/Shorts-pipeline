@@ -435,6 +435,12 @@ _HOOK_DOCTRINE = _hook_doctrine()
 from shared import pacing as _pace  # noqa: E402 — the beat budget, from the registry
 from shared import narration as _narration  # noqa: E402 — a story, not a readout
 
+#: How many beats a forged story gets, by stable hash (see HOW MANY BEATS
+#: below), and the fewest it may have: the registry's `pacing.min_beats`,
+#: which the editorial gate also holds a story to.
+BEATS = (4, 4, 4, 5)
+MIN_BEATS = int(_pace.budget().get("min_beats") or 3)
+
 
 def _brain_words(dss: list[dict], reject_note: str | None = None) -> dict | None:
     brief = []
@@ -945,7 +951,10 @@ def forge(count: int, dry_run: bool = False) -> int:
         # smaller template but still a template. Three or four since
         # 2026-10-10 (operator, of a sixteen-second video: "the videos need to
         # be longer ... We say one fun fact, and then that's it"): 3, 3, 4, 4.
-        target = (3, 3, 4, 4)[_stable_hash(
+        # Four or five since 2026-10-14 ("Why are they coming out so short",
+        # of an 18-second two-beat video); three is the floor a story must
+        # reach to render (registry `pacing.min_beats`).
+        target = BEATS[_stable_hash(
             theme + (specs[0]["id"] if specs else "")) % 4]
         dss, tried, seen_fam = [], 0, set()
         while specs and len(dss) < target and tried < 40:
@@ -964,7 +973,7 @@ def forge(count: int, dry_run: bool = False) -> int:
             used_keys.add(ds["key"])
             seen_fam.add(fam)
             dss.append(ds)
-        if len(dss) < 2:
+        if len(dss) < MIN_BEATS:
             # A thin theme's series are still REAL, fetched data — bank them
             # instead of throwing the fetch away; they become a cross-theme
             # story below rather than a wasted API round trip. Two is the floor:
@@ -976,8 +985,8 @@ def forge(count: int, dry_run: bool = False) -> int:
     # Cross-theme fill: banked series that each cleared the same quality
     # checks. Coherence comes from the words the brain writes over them. The
     # count varies here too — a mixed story is not automatically a three.
-    while made < count and len(leftovers) >= 2:
-        n_mix = min(len(leftovers), (3, 3, 4, 4)[_stable_hash(
+    while made < count and len(leftovers) >= MIN_BEATS:
+        n_mix = min(len(leftovers), BEATS[_stable_hash(
             leftovers[0].get("key", "")) % 4])
         keep(leftovers[:n_mix], "mixed")
         leftovers = leftovers[n_mix:]
