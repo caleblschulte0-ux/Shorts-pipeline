@@ -13221,13 +13221,50 @@
       "ts": "2026-10-14T13:39:11.740742+00:00"
     },
     "clip-20261014-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/SecretiveCulturedMelonShazBotstix-DKo3Q0WZeWD5J1ZB",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/mcbBGf2sGZk",
       "title": "Lacy Gets Pushed By Cops After Telling Them She Just Had Surgery",
       "kind": "twitch_clip",
-      "ts": "2026-10-14T13:42:19.977758+00:00",
+      "ts": "2026-10-14T13:42:31.659737+00:00",
+      "uploaded_at": "2026-10-14T13:42:31.659751+00:00",
+      "publish_at": "2026-10-15T02:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261014-lacy-gets-pushed-by-cops-after-telling-them-she--ebca1d5d",
+        "tiktok": "queued for 2026-10-15T02:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/SecretiveCulturedMelonShazBotstix-DKo3Q0WZeWD5J1ZB",
+      "streamer": "lacy",
+      "series": "drama",
+      "hook": "Lacy told cops she just had surgery",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2491,
+      "banger": 0.45,
+      "cut": {
+        "start": 4.3,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "rejected-flaccidbrightkoalacopythis-5elrg1uleo-7fdst": {
+      "source_url": "https://www.twitch.tv/alinity/clip/FlaccidBrightKoalaCopyThis-5ElrG1ulEo-7FdSt",
+      "streamer": "alinity",
+      "title": "wow",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Climbing for breaker, no clear payoff)",
+      "ts": "2026-10-14T13:43:50.412487+00:00"
+    },
+    "clip-20261014-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caseoh_/clip/SpunkySuperWoodpeckerCoolStoryBro-0FR3uCZfmTdzkc0l",
+      "story_key": null,
+      "streamer": "caseoh_",
+      "title": "Caseoh Throws Together A Base After Things Get Out Of Hand",
+      "kind": "twitch_clip",
+      "ts": "2026-10-14T13:48:09.642237+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
