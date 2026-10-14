@@ -3463,6 +3463,13 @@
       ],
       "words_first_10s": 26,
       "scene_changes_before_5s": 2
+    },
+    "billionaire-count-record-2025": {
+      "claimed_at": "2026-10-14T18:12:54.954569+00:00",
+      "title": "The World Now Has Over 3,000 Billionaires For The First Time",
+      "publish_at": "2026-10-14T22:20:57Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4349,6 +4356,14 @@
       "state": "posted",
       "slug": "hurricane-names-retired-growing-list",
       "at": "2026-10-14T16:37:57.903841+00:00"
+    },
+    {
+      "claimed_at": "2026-10-14T18:12:54.954569+00:00",
+      "title": "The World Now Has Over 3,000 Billionaires For The First Time",
+      "publish_at": "2026-10-14T22:20:57Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "billionaire-count-record-2025"
     }
   ]
 }
