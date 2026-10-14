@@ -3378,6 +3378,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 74,
       "duration_s": 24.6
+    },
+    "the-penny-lost-money-19-years-straight": {
+      "claimed_at": "2026-10-14T13:32:44.606023+00:00",
+      "title": "The US Government Lost Money On Every Penny For 19 Years",
+      "publish_at": "2026-10-14T17:23:36Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4236,6 +4243,14 @@
       "state": "posted",
       "slug": "airfare-booking-window-trap",
       "at": "2026-10-14T11:41:34.545924+00:00"
+    },
+    {
+      "claimed_at": "2026-10-14T13:32:44.606023+00:00",
+      "title": "The US Government Lost Money On Every Penny For 19 Years",
+      "publish_at": "2026-10-14T17:23:36Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "the-penny-lost-money-19-years-straight"
     }
   ]
 }
