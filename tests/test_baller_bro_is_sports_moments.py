@@ -156,6 +156,152 @@ class AFiveSecondPostIsTooShort(unittest.TestCase):
                         code.index("ss.make(c, info, mp4)"))
 
 
+class APostIsCutWithoutItsSponsorCard(unittest.TestCase):
+    """2026-10-13: a Mike Evans post ended on a sponsor logo held two
+    seconds; it was cut in and the gate held the render as a freeze. A
+    Ruben Dias post had no audio track and died in the render."""
+
+    @classmethod
+    def setUpClass(cls):
+        import shutil
+        import subprocess
+        import tempfile
+        if not shutil.which("ffmpeg"):
+            raise unittest.SkipTest("no ffmpeg")
+        cls.tmp = Path(tempfile.mkdtemp())
+
+        def make(name, still_s, audio=True):
+            out = cls.tmp / name
+            vf = "testsrc2=size=320x240:rate=30:duration=16"
+            args = ["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", vf]
+            if still_s:
+                args += ["-f", "lavfi", "-i",
+                         f"color=white:size=320x240:rate=30:duration={still_s}"]
+            if audio:
+                args += ["-f", "lavfi", "-i",
+                         f"sine=frequency=440:duration={16 + still_s}"]
+            fc = ("[0:v][1:v]concat=n=2:v=1:a=0[v]" if still_s
+                  else "[0:v]null[v]")
+            args += ["-filter_complex", fc, "-map", "[v]"]
+            if audio:
+                args += ["-map", f"{2 if still_s else 1}:a", "-shortest"]
+            args += ["-c:v", "libx264", "-pix_fmt", "yuv420p", str(out)]
+            subprocess.run(args, check=True)
+            return out
+        cls.card = make("card.mp4", 3)
+        cls.moving = make("moving.mp4", 0)
+        cls.silent = make("silent.mp4", 0, audio=False)
+
+    def test_the_card_on_the_end_is_cut_off(self):
+        from scripts import sports_samples as ss
+        info = {"path": str(self.card)}
+        self.assertEqual(ss.unfit(info), "")
+        self.assertIn("nocard", info["path"])
+        self.assertLess(ss._dur(Path(info["path"])), 16.0)
+        self.assertGreater(ss._dur(Path(info["path"])), 14.5)
+
+    def test_a_post_that_moves_to_its_end_is_left_alone(self):
+        from scripts import sports_samples as ss
+        info = {"path": str(self.moving)}
+        self.assertEqual(ss.unfit(info), "")
+        self.assertEqual(info["path"], str(self.moving))
+
+    def test_a_post_with_no_sound_is_refused(self):
+        from scripts import sports_samples as ss
+        self.assertIn("no sound", ss.unfit({"path": str(self.silent)}))
+
+    def test_both_runs_check_it_before_cutting(self):
+        code = _code(SRC)
+        self.assertLess(code.index("ss.unfit(info)"),
+                        code.index("ss.too_short(info)"))
+        samples = _code((ROOT / "scripts" / "sports_samples.py").read_text())
+        self.assertIn("unfit(info) or too_short(info)", samples)
+
+
+class ARefusedCutIsRepaired(unittest.TestCase):
+    """2026-10-14: an Ovechkin cut scored 83 and was held for our line over
+    the source's banner and an ending that drifted; the run dropped it."""
+
+    VERDICT = {
+        "score": 83, "verdict": "block",
+        "one_line": "Warm moment, but our line sits over the banner.",
+        "problems": ["hook@0.3: our caption is drawn over the source's "
+                     "dark lower-third banner"],
+        "fixes": ["End on the stick salute, not him skating away."],
+        "weakest_scene": {"failure_class": "text_over_source_graphic"}}
+
+    def _run(self, gates):
+        from unittest import mock
+        from scripts import run_sports as rs
+        c = {"sub": "hockey", "who": "Alex Ovechkin", "why": "",
+             "post_title": "Ovechkin's sons introduce him", "upvotes": 0,
+             "url": "https://v.redd.it/x",
+             "permalink": "/r/hockey/comments/abc/x/"}
+        made = []
+
+        def make(c, info, mp4, notes="", line_top=False):
+            made.append({"notes": notes, "line_top": line_top})
+            mp4.parent.mkdir(parents=True, exist_ok=True)
+            mp4.write_bytes(b"x")
+            return {"meta": {"title": f"cut {len(made)}", "hook": "h",
+                             "edit": {"cut": {"start": 1, "end": 30}}},
+                    "hook": "h", "ledger": {}}
+        g = iter(gates)
+        with mock.patch.object(rs.rt, "_refresh_log_from_origin"), \
+                mock.patch.object(rs.rt, "load_log", return_value={}), \
+                mock.patch.object(rs.rt, "uploaded_on", return_value=[]), \
+                mock.patch.object(rs.ss, "discover", return_value=[c]), \
+                mock.patch.object(rs.ss, "pick", return_value=[c]), \
+                mock.patch.object(rs.ss, "fetch",
+                                  return_value={"path": "x.mp4"}), \
+                mock.patch.object(rs.ss, "unfit", return_value=""), \
+                mock.patch.object(rs.ss, "too_short", return_value=""), \
+                mock.patch.object(rs.ss, "make", side_effect=make), \
+                mock.patch.object(rs, "judge",
+                                  side_effect=lambda *a, **k: next(g)), \
+                mock.patch.object(rs, "REPORT",
+                                  Path(self.tmp) / "r.json"), \
+                mock.patch.object(rs, "OUT", Path(self.tmp) / "out"), \
+                mock.patch.object(sys, "argv",
+                                  ["run_sports", "--count", "1",
+                                   "--dry-run"]):
+            code = rs.main()
+        return code, made
+
+    def setUp(self):
+        import tempfile
+        self.tmp = tempfile.mkdtemp()
+
+    def test_a_near_miss_is_cut_again_from_the_verdict_and_ships(self):
+        code, made = self._run([
+            {"blocked": True, "reason": "BLOCK", "verdict": self.VERDICT},
+            {"blocked": False, "reason": "ship", "verdict": {"score": 88}}])
+        self.assertEqual(code, 0)
+        self.assertEqual(len(made), 2)
+        self.assertIn("stick salute", made[1]["notes"])
+        self.assertIn("83", made[1]["notes"])
+        self.assertTrue(made[1]["line_top"])
+
+    def test_the_repair_is_judged_by_the_same_gate_and_can_stay_refused(self):
+        block = {"blocked": True, "reason": "BLOCK", "verdict": self.VERDICT}
+        code, made = self._run([block, block, block])
+        self.assertEqual(code, 1)
+        from scripts import run_sports as rs
+        self.assertEqual(len(made), 1 + rs.REPAIRS)
+
+    def test_a_weak_cut_is_not_worth_repairing(self):
+        weak = {"blocked": True, "reason": "BLOCK",
+                "verdict": {"score": 40, "problems": ["no moment"]}}
+        code, made = self._run([weak])
+        self.assertEqual(len(made), 1)
+
+    def test_the_line_only_moves_for_a_graphic(self):
+        from scripts import run_sports as rs
+        self.assertTrue(rs.over_graphic(self.VERDICT))
+        self.assertFalse(rs.over_graphic(
+            {"problems": ["the ending drifts"], "weakest_scene": {}}))
+
+
 class ItReachesTikTok(unittest.TestCase):
     """Operator, 2026-10-12: "Yes do it". A post reaches TikTok through its
     release, so the run must be able to make one."""

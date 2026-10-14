@@ -52,6 +52,14 @@ REPORT = ROOT / "sports_report.json"
 #: the whole job timeout. The first dry run (2026-10-11) passed one cut in
 #: seven, so three tries a slot would post one video a day, not three.
 TRIES_PER_SLOT = 5
+# A refused cut is REPAIRED before the post is dropped (2026-10-14: an
+# Ovechkin cut scored 83 and was held for our line over the source's
+# banner and an ending that drifted off the emotion, and the run moved on
+# to weaker posts). The judge's own problems and fixes go back to the
+# author, the post is cut again and judged again by the same gate, up to
+# REPAIRS times. Below REPAIR_MIN there is no moment worth repairing.
+REPAIR_MIN = 60
+REPAIRS = 2
 
 def permalink_key(c: dict) -> str:
     """The post's identity: its Reddit permalink, else its video URL."""
@@ -97,6 +105,33 @@ def tags(meta: dict, c: dict) -> list[str]:
     out = [t.lstrip("#") for t in meta.get("hashtags") or []]
     out += [c.get("who") or "", c.get("sub") or "", "sports", "shorts"]
     return [t for i, t in enumerate(out) if t and t not in out[:i]][:15]
+
+
+def over_graphic(v: dict) -> bool:
+    """The judge saw our line over a graphic the footage carries."""
+    ws = v.get("weakest_scene") or {}
+    text = " ".join([str(ws.get("failure_class") or "")]
+                    + [str(x) for x in v.get("auto_fails") or []]
+                    + [str(x) for x in v.get("problems") or []]).lower()
+    return ("text_over_source" in text or "over the source" in text
+            or "banner" in text or "lower-third" in text
+            or "lower third" in text or "scorebug" in text)
+
+
+def repair_notes(v: dict, meta: dict) -> str:
+    """The refused cut's verdict, in words the author can cut from."""
+    cut = (meta.get("edit") or {}).get("cut") or {}
+    lines = [f"THE JUDGE REFUSED YOUR LAST CUT ({v.get('score')}/100). "
+             f"It was titled {meta.get('title')!r} with the line "
+             f"{meta.get('hook')!r}, cut from {cut.get('start')}s to "
+             f"{cut.get('end')}s of the source. Cut it again so every "
+             "problem below is gone: move the start and end, rewrite the "
+             "title and line so they promise only what the footage shows. "
+             "If it cannot be fixed from this footage, complete=false.",
+             f"Verdict: {v.get('one_line') or ''}"]
+    lines += [f"Problem: {p}" for p in (v.get("problems") or [])[:5]]
+    lines += [f"Fix: {f}" for f in (v.get("fixes") or [])[:5]]
+    return "\n".join(lines)
 
 
 def judge(mp4: Path, c: dict, meta: dict, hook: str, *,
@@ -181,7 +216,7 @@ def main() -> int:
         if not info:
             row["skipped"] = "download failed"
             continue
-        short = ss.too_short(info)
+        short = ss.unfit(info) or ss.too_short(info)
         if short:
             row["skipped"] = short
             continue
@@ -206,6 +241,28 @@ def main() -> int:
 
         gate = judge(mp4, c, meta, made.get("hook") or "",
                      will_upload=not a.dry_run)
+        line_top = False
+        for _ in range(REPAIRS):
+            v = gate.get("verdict") or {}
+            if not gate["blocked"] or (v.get("score") or 0) < REPAIR_MIN:
+                break
+            line_top = line_top or over_graphic(v)
+            row.setdefault("repairs", []).append(
+                {"score": v.get("score"), "reason": gate.get("reason")})
+            try:
+                again = ss.make(c, info, mp4, notes=repair_notes(v, meta),
+                                line_top=line_top)
+            except Exception as e:  # noqa: BLE001
+                print(f"[sports] repair failed: {e}", flush=True)
+                break
+            if (again.get("skipped") or not mp4.exists()
+                    or not (again.get("meta") or {}).get("title")):
+                break
+            made, meta = again, again["meta"]
+            row.update(title=meta["title"], hook=made.get("hook"),
+                       ledger=made.get("ledger"))
+            gate = judge(mp4, c, meta, made.get("hook") or "",
+                         will_upload=not a.dry_run)
         row["showrunner"] = {"blocked": gate["blocked"],
                              "reason": gate.get("reason"),
                              "score": (gate.get("verdict") or {})
