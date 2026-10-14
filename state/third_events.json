@@ -4387,6 +4387,91 @@
       ],
       "published_versions": [],
       "last_updated": "2026-10-14"
+    },
+    "kaicenat-detent-first-2026w29": {
+      "event_id": "kaicenat-detent-first-2026w29",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "detent",
+        "first",
+        "guest",
+        "screen"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-14",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/StrongOriginalTitanAsianGlow-tbeO2ffjoyWNmcWy",
+        "https://www.twitch.tv/kaicenat/clip/DaintyBoldCiderStrawBeary-WFhL2jI0QYXRH2J-"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-14"
+    },
+    "kaicenat-announc-cenat-2026w30": {
+      "event_id": "kaicenat-announc-cenat-2026w30",
+      "people": [
+        "kaicenat"
+      ],
+      "actions": [
+        "announc",
+        "cenat",
+        "university",
+        "will"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-14",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/TangentialDeterminedAlmondSpicyBoy-oeitzoU0UBXPhjHW",
+        "https://www.twitch.tv/kaicenat/clip/RudeDaintyWitchRitzMitz-2_lP-wruMXUo8Fkm"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-14"
+    },
+    "rubius-craft-fake-2026w41": {
+      "event_id": "rubius-craft-fake-2026w41",
+      "people": [
+        "rubius"
+      ],
+      "actions": [
+        "craft",
+        "fake",
+        "minecraft",
+        "rubiu"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-14",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2894472752/1342-1582",
+        "https://www.twitch.tv/rubius/clip/IgnorantTardyTildeDansGame-ZIDPVwytzhCYqn_y",
+        "vodmine://2894472752/1588-1828"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-14"
+    },
+    "erobb221-beer-over-2026w41": {
+      "event_id": "erobb221-beer-over-2026w41",
+      "people": [
+        "erobb221"
+      ],
+      "actions": [
+        "beer",
+        "over",
+        "saying",
+        "steak"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-14",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/erobb221/clip/OnerousMoistHamCurseLit-rtK8ilENaapVYM0P",
+        "https://www.twitch.tv/erobb221/clip/RealAttractivePeppermintFunRun-g6SLbf_an4PQXs0-"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-14"
     }
   }
 }

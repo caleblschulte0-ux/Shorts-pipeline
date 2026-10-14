@@ -13284,6 +13284,34 @@
         "end": 27.0
       },
       "director_cut": true
+    },
+    "rejected-amazoniankitschyshrewninjagrumpy-ny46p_tnppvtisx3": {
+      "source_url": "https://www.twitch.tv/agent00/clip/AmazonianKitschyShrewNinjaGrumpy-nY46p_TnpPvtisX3",
+      "streamer": "agent00",
+      "title": "EWWWW DOOKIE CRUMBS",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source only 5.3s \u2014 too short to edit",
+      "ts": "2026-10-14T14:13:43.742463+00:00"
+    },
+    "rejected-distinctdarksalamanderralpherz-zemjvslohzrxycgd": {
+      "source_url": "https://www.twitch.tv/zackrawrr/clip/DistinctDarkSalamanderRalpherZ-zEmjvSLohZRXycGD",
+      "streamer": "zackrawrr",
+      "title": "parenting skills",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source too dark (avg luma 25/255) \u2014 unwatchable IRL/night footage",
+      "ts": "2026-10-14T14:13:56.718191+00:00"
+    },
+    "clip-20261014-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/AuspiciousCaringEggnogOMGScoots-zrNflpZO40ocfSnB",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Can't Believe What Rukah Just Said About High School",
+      "kind": "twitch_clip",
+      "ts": "2026-10-14T14:19:01.711480+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
