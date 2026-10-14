@@ -3355,11 +3355,29 @@
       "duration_s": 27.8
     },
     "airfare-booking-window-trap": {
-      "claimed_at": "2026-10-14T11:41:22.313542+00:00",
+      "url": "https://youtube.com/shorts/t3jcTe7wRyE",
       "title": "Why Plane Tickets Cost More The Closer You Book",
+      "at": "2026-10-14T11:41:34.545924+00:00",
       "publish_at": "2026-10-14T11:23:36Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.84,
+      "beat_s": [
+        3.1,
+        5.03,
+        5.27,
+        6.84,
+        4.5
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 74,
+      "duration_s": 24.6
     }
   },
   "uploads": [
@@ -4214,9 +4232,10 @@
       "claimed_at": "2026-10-14T11:41:22.313542+00:00",
       "title": "Why Plane Tickets Cost More The Closer You Book",
       "publish_at": "2026-10-14T11:23:36Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "airfare-booking-window-trap"
+      "url": "https://youtube.com/shorts/t3jcTe7wRyE",
+      "state": "posted",
+      "slug": "airfare-booking-window-trap",
+      "at": "2026-10-14T11:41:34.545924+00:00"
     }
   ]
 }
