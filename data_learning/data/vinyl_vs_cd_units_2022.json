@@ -1,0 +1,25 @@
+{
+  "key": "vinyl_vs_cd_units_2022",
+  "title": "US units sold: vinyl albums vs. CDs, 2022",
+  "unit": "million units",
+  "geography": "United States",
+  "time_coverage": "2022",
+  "source": {
+    "name": "RIAA U.S. Year-End Music Industry Revenue Report",
+    "publisher": "Recording Industry Association of America (RIAA)",
+    "url": "https://www.riaa.com/u-s-sales-database/",
+    "officiality": "primary",
+    "access_date": "2026-10-14"
+  },
+  "notes": "RIAA's 2022 data: roughly 41 million vinyl albums sold in the US versus roughly 33 million CDs.",
+  "points": [
+    {
+      "label": "Vinyl albums",
+      "value": 41
+    },
+    {
+      "label": "CDs",
+      "value": 33
+    }
+  ]
+}

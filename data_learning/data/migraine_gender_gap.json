@@ -1,0 +1,25 @@
+{
+  "key": "migraine_gender_gap",
+  "title": "Migraine prevalence by gender",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "Recent (AMPP study era)",
+  "source": {
+    "name": "American Migraine Prevalence and Prevention (AMPP) Study",
+    "publisher": "American Migraine Foundation",
+    "url": "https://americanmigrainefoundation.org/resource-library/migraine-facts/",
+    "officiality": "secondary",
+    "access_date": "2026-10-14"
+  },
+  "notes": "Widely-cited figures from US migraine-prevalence research: migraine affects roughly 18% of women versus roughly 6% of men -- close to a 3-to-1 gap.",
+  "points": [
+    {
+      "label": "Women",
+      "value": 18
+    },
+    {
+      "label": "Men",
+      "value": 6
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "key": "saturn_ring_rain_pool_equivalent",
+  "title": "Ring rain, by volume, vs. an Olympic-size swimming pool",
+  "unit": "pools",
+  "geography": "Saturn",
+  "time_coverage": "NASA/Cassini estimate, published 2018",
+  "source": {
+    "name": "Cassini ring-rain findings (O'Donoghue et al.)",
+    "publisher": "NASA / NASA Jet Propulsion Laboratory",
+    "url": "https://www.nasa.gov/missions/cassini/saturn-is-losing-its-iconic-rings-at-worst-case-rate/",
+    "officiality": "official",
+    "access_date": "2026-10-14"
+  },
+  "notes": "NASA described the rate of icy ring material raining into Saturn's atmosphere as enough to fill an Olympic-size swimming pool roughly every 30 minutes.",
+  "points": [
+    {
+      "label": "Ring rain, per 30 minutes",
+      "value": 1
+    },
+    {
+      "label": "1 Olympic-size pool",
+      "value": 1
+    }
+  ]
+}

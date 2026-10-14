@@ -1,0 +1,33 @@
+{
+  "key": "migraine_disability_rank",
+  "title": "Approximate share of global years-lived-with-disability (YLDs), top causes",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "Global Burden of Disease Study",
+  "source": {
+    "name": "Global Burden of Disease Study",
+    "publisher": "Institute for Health Metrics and Evaluation / World Health Organization",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/headache-disorders",
+    "officiality": "secondary",
+    "access_date": "2026-10-14"
+  },
+  "notes": "The Global Burden of Disease Study's top causes of years lived with disability (YLDs) worldwide, in order: low back pain, migraine, depression, neck pain. Values are approximate published shares, rounded for illustration.",
+  "points": [
+    {
+      "label": "Low back pain",
+      "value": 7
+    },
+    {
+      "label": "Migraine",
+      "value": 5
+    },
+    {
+      "label": "Depression",
+      "value": 4
+    },
+    {
+      "label": "Neck pain",
+      "value": 3
+    }
+  ]
+}

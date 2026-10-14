@@ -1,0 +1,30 @@
+{
+  "key": "music_format_revenue_share",
+  "title": "Share of total US recorded-music revenue by format",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "Recent year",
+  "source": {
+    "name": "RIAA U.S. Year-End Music Industry Revenue Report",
+    "publisher": "Recording Industry Association of America (RIAA)",
+    "url": "https://www.riaa.com/u-s-sales-database/",
+    "officiality": "primary",
+    "access_date": "2026-10-14"
+  },
+  "notes": "RIAA reporting puts streaming at roughly 84% of total US recorded music revenue, with all physical formats (vinyl + CDs combined) at roughly 11% and everything else making up the remainder.",
+  "points": [
+    {
+      "label": "Streaming",
+      "value": 84
+    },
+    {
+      "label": "Physical (vinyl + CDs)",
+      "value": 11
+    },
+    {
+      "label": "Other",
+      "value": 5
+    }
+  ],
+  "ascending": false
+}

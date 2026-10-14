@@ -1,0 +1,25 @@
+{
+  "key": "vinyl_vs_cd_revenue_2022",
+  "title": "US recorded-music revenue: vinyl vs. CD, 2022",
+  "unit": "million dollars",
+  "geography": "United States",
+  "time_coverage": "2022",
+  "source": {
+    "name": "RIAA U.S. Year-End Music Industry Revenue Report",
+    "publisher": "Recording Industry Association of America (RIAA)",
+    "url": "https://www.riaa.com/u-s-sales-database/",
+    "officiality": "primary",
+    "access_date": "2026-10-14"
+  },
+  "notes": "RIAA's 2022 year-end report found vinyl album revenue ($1.2 billion) outpaced CD revenue ($483 million) for the first time since 1987.",
+  "points": [
+    {
+      "label": "Vinyl",
+      "value": 1200
+    },
+    {
+      "label": "CDs",
+      "value": 483
+    }
+  ]
+}

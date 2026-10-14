@@ -1,0 +1,32 @@
+{
+  "key": "pickleball_players_us_trend",
+  "title": "US pickleball participants",
+  "unit": "million players",
+  "geography": "United States",
+  "time_coverage": "2019-2023 (annual)",
+  "source": {
+    "name": "SFIA Topline Participation Report",
+    "publisher": "Sports & Fitness Industry Association (SFIA)",
+    "url": "https://sfia.org/reports/",
+    "officiality": "primary",
+    "access_date": "2026-10-14"
+  },
+  "notes": "SFIA's annual participation study tracked pickleball players growing from about 3.3 million in 2019 to about 13.6 million in 2023 -- naming it the fastest-growing sport in America for multiple years running.",
+  "points": [
+    {
+      "label": "2019",
+      "value": 3.3,
+      "period": "2019"
+    },
+    {
+      "label": "2021",
+      "value": 4.8,
+      "period": "2021"
+    },
+    {
+      "label": "2023",
+      "value": 13.6,
+      "period": "2023"
+    }
+  ]
+}
