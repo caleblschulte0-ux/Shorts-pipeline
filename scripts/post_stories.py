@@ -1215,18 +1215,9 @@ def main() -> int:
             posted += 1        # it cleared every gate; publishing is frozen
             continue
 
-        publish_at = None
-        if args.every_hours > 0:
-            publish_at = when.replace(microsecond=0).isoformat().replace(
-                "+00:00", "Z")
-            when += timedelta(hours=args.every_hours)
-
         if uploader is None:                 # lazy import → clear error if deps
             from shared.uploaders import YouTubeUploader
             uploader = YouTubeUploader(channel=args.channel)
-        print(f"[{slug}] uploading"
-              + (f" (scheduled {publish_at})" if publish_at else " (public now)"),
-              flush=True)
         # studio_render writes a title-aligned thumbnail next to the mp4.
         thumb = out.with_suffix(".jpg")
         # Localized titles/descriptions (best-effort; English always ships).
@@ -1271,6 +1262,22 @@ def main() -> int:
                             "error": "duplicate_hold",
                             "duplicate_of": log["posted"][slug].get("title")})
             continue
+        # THE GO-LIVE TIME IS PICKED HERE, against the log just refreshed
+        # from main — not at run start, and never alone (operator,
+        # 2026-10-14: "we can't drop 3 videos in 2 hours"). A run that
+        # rendered past its own `when`, or a mailbox ship that went out
+        # meanwhile, pushes this one to the next time the registry's gap
+        # allows (shared/post_spacing).
+        from shared import post_spacing
+        publish_at = post_spacing.schedule(
+            args.channel or "explainer", log, want=when if args.every_hours > 0 else None)
+        if args.every_hours > 0:
+            when = max(when, post_spacing.parse(publish_at)
+                       or datetime.now(timezone.utc)) \
+                + timedelta(hours=args.every_hours)
+        print(f"[{slug}] uploading"
+              + (f" (scheduled {publish_at})" if publish_at else " (public now)"),
+              flush=True)
         _claim = {
             "claimed_at": datetime.now(timezone.utc).isoformat(),
             "title": sc.get("title"), "publish_at": publish_at,

@@ -78,16 +78,23 @@ def already_used(pool: list[dict], log: dict) -> set[str]:
             if rt._norm(permalink_key(c)) in seen}
 
 
-def next_slot(slots, *, after: str = "", now: datetime | None = None) -> str:
-    """The next publish slot at least five minutes out AND later than the
-    one the last post took — asked at upload time, not run start, because
-    a run that spent an hour on cuts the gate refused must not hand
-    YouTube a publishAt that has already passed."""
-    n = max(1, len(slots or rt._publish_slots())) * 2
-    for t in rt.schedule_times(now or datetime.now(timezone.utc), n, slots):
-        if t > after:
-            return t
-    return rt.schedule_times(now or datetime.now(timezone.utc), n, slots)[-1]
+def next_slot(slots, *, after: str = "", now: datetime | None = None,
+              log: dict | None = None) -> str:
+    """The next publish slot at least fifteen minutes out, later than the
+    one the last post took AND the registry's gap clear of every other
+    Baller Bro video going live (`log`, the trending posted log) — asked
+    at upload time, not run start, because a run that spent an hour on
+    cuts the gate refused must not hand YouTube a publishAt that has
+    already passed, and a catch-up run must not land on a slot an earlier
+    run or a mailbox ship already filled (operator, 2026-10-14: "we can't
+    drop 3 videos in 2 hours")."""
+    from shared import post_spacing
+    now = now or datetime.now(timezone.utc)
+    busy = post_spacing.taken(log or {}, now=now)
+    gap = post_spacing.min_gap(CHANNEL)
+    t = post_spacing.next_free_slot(slots or rt._publish_slots(), busy, gap,
+                                    after=post_spacing.parse(after), now=now)
+    return post_spacing.iso(t)
 
 
 def description(meta: dict, c: dict) -> str:
@@ -275,7 +282,8 @@ def main() -> int:
             shipped += 1
             continue
 
-        publish_at = next_slot(slots, after=last_slot)
+        rt._refresh_log_from_origin()
+        publish_at = next_slot(slots, after=last_slot, log=rt.load_log())
         desc, tg = description(meta, c), tags(meta, c)
 
         def _do_upload():
