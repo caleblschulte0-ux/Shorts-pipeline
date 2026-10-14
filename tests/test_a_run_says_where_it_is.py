@@ -67,6 +67,18 @@ class TheRunReportsEachStep(unittest.TestCase):
         self.assertEqual(store["explainer.json"]["done"][0]["outcome"],
                          "editorial_hold")
 
+    def test_a_render_refused_at_the_start_teaches_nothing(self):
+        # 2026-10-13: 60 stories refused 0.2 min into render (no drawn
+        # scenes) filled the history and put a render's median at 0.3 min
+        t, store = _tracker()
+        t.mark("c", "prep")
+        t.mark("c", "render")
+        t.finish("c", "not_current")
+        self.assertEqual(store["explainer.json"]["history"], [])
+        junk = [{"outcome": "not_current", "phases": {"render": 0.2}}] * 10
+        self.assertEqual(rp.typical(junk)["render"], rp.DEFAULT_MIN["render"])
+        self.assertEqual(rp.post_rate(junk), rp.DEFAULT_POST_RATE)
+
     def test_history_survives_from_the_last_run(self):
         old = [{"slug": f"s{i}", "outcome": "posted",
                 "phases": {"render": 40.0}} for i in range(5)]
@@ -99,8 +111,8 @@ class TheGuessComesFromWhatRunsReallyTook(unittest.TestCase):
         self.assertEqual(e["this_story_min"], round(want))
 
     def test_holds_push_the_next_post_out(self):
-        passing = [{"outcome": "posted", "phases": {"render": 30}}] * 4
-        failing = [{"outcome": "blocked", "phases": {"render": 30}}] * 4
+        passing = [{"outcome": "posted", "phases": {"render": 30, "review": 9}}] * 4
+        failing = [{"outcome": "blocked", "phases": {"render": 30, "review": 9}}] * 4
         st = {"current": {}}
         a = rp.estimate({**st, "history": passing})
         b = rp.estimate({**st, "history": passing + failing})

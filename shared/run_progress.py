@@ -53,6 +53,7 @@ def typical(history: list[dict]) -> dict:
     for ph in PHASES:
         xs = [h["phases"][ph] for h in history
               if isinstance(h.get("phases"), dict)
+              and "review" in h["phases"]
               and isinstance(h["phases"].get(ph), (int, float))]
         if len(xs) >= 3:
             out[ph] = round(statistics.median(xs), 1)
@@ -60,8 +61,8 @@ def typical(history: list[dict]) -> dict:
 
 
 def post_rate(history: list[dict]) -> float:
-    """Share of stories that reached render and then posted."""
-    tried = [h for h in history if "render" in (h.get("phases") or {})]
+    """Share of stories that reached review and then posted."""
+    tried = [h for h in history if "review" in (h.get("phases") or {})]
     if len(tried) < 3:
         return DEFAULT_POST_RATE
     return max(0.1, sum(1 for h in tried if h.get("outcome") == "posted")
@@ -185,7 +186,10 @@ class Tracker:
         if url:
             rec["url"] = url
         self.state["done"].append(rec)
-        if "render" in rec["phases"]:
+        # Only a story that got as far as review taught us anything about
+        # timing: one refused at the start of render (no drawn scenes,
+        # 2026-10-13) took 0.2 min and would drag every median to zero.
+        if "review" in rec["phases"]:
             self.state["history"] = (self.state["history"] + [rec])[-HISTORY:]
         self.state["current"] = {}
         self._story = {}
