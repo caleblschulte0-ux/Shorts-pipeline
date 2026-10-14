@@ -13360,14 +13360,32 @@
       "director_cut": true
     },
     "clip-20261014-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/alinity/clip/InnocentRamshackleTigerRaccAttack-Us3tc4MVx1NsvTQE",
-      "story_key": null,
-      "streamer": "alinity",
+      "url": "https://youtube.com/shorts/Dl6RtYtvWXw",
       "title": "Alinity Says She\u2019s About To Take Care Of Something",
       "kind": "twitch_clip",
-      "ts": "2026-10-14T14:49:32.511779+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-14T14:49:42.248890+00:00",
+      "uploaded_at": "2026-10-14T14:49:42.248905+00:00",
+      "publish_at": "2026-10-15T08:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261014-alinity-says-she-s-about-to-take-care-of-somethi-c37b19d2",
+        "tiktok": "queued for 2026-10-15T08:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/alinity/clip/InnocentRamshackleTigerRaccAttack-Us3tc4MVx1NsvTQE",
+      "streamer": "alinity",
+      "series": "drama",
+      "hook": "Alinity\u2019s about to take action",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 11550,
+      "banger": 0.45,
+      "cut": {
+        "start": 2.1,
+        "end": 8.0
+      },
+      "director_cut": true
     }
   }
 }
