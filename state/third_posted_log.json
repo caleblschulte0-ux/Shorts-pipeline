@@ -13304,13 +13304,41 @@
       "ts": "2026-10-14T14:13:56.718191+00:00"
     },
     "clip-20261014-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/AuspiciousCaringEggnogOMGScoots-zrNflpZO40ocfSnB",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/JDMiMd1PCug",
       "title": "Kaicenat: Kai Cenat Can't Believe What Rukah Just Said About High School",
       "kind": "twitch_clip",
-      "ts": "2026-10-14T14:19:01.711480+00:00",
+      "ts": "2026-10-14T14:19:12.533257+00:00",
+      "uploaded_at": "2026-10-14T14:19:12.533268+00:00",
+      "publish_at": "2026-10-15T05:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261014-kaicenat-kai-cenat-can-t-believe-what-rukah-just-d21990e3",
+        "tiktok": "queued for 2026-10-15T05:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/AuspiciousCaringEggnogOMGScoots-zrNflpZO40ocfSnB",
+      "streamer": "kaicenat",
+      "series": "chaos",
+      "hook": "Kai finds out Rukah skipped grades \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3821,
+      "banger": 0.4,
+      "cut": {
+        "start": 3.9,
+        "end": 45.5
+      },
+      "director_cut": true
+    },
+    "clip-20261014-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/buddha/clip/AmazingFitChickenKeyboardCat-dCESCPlktvUmD32I",
+      "story_key": null,
+      "streamer": "buddha",
+      "title": "Buddha Keeps Dying In TTT T\u2011UNIT \u2013 What Triggers The Chaos?",
+      "kind": "twitch_clip",
+      "ts": "2026-10-14T14:47:54.721030+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
