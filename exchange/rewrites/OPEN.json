@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-14T15:02:00Z",
+ "updated": "2026-10-14T18:13:18Z",
  "open": [
+  {
+   "id": "game-industry-layoffs-record__47b9280e",
+   "slug": "game-industry-layoffs-record",
+   "filed": "2026-10-14T18:13:18Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a viewer expectation and relies on an unrelated specific number, making it weak."
+   ],
+   "request": "exchange/rewrites/20261014/game-industry-layoffs-record__47b9280e.request.json",
+   "answer_path": "exchange/rewrites/20261014/game-industry-layoffs-record__47b9280e.answer.json"
+  },
+  {
+   "id": "helium-supply-squeeze__067a945d",
+   "slug": "helium-supply-squeeze",
+   "filed": "2026-10-14T18:13:17Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a common viewer expectation and relies on an unverified, vague number without verifiable context."
+   ],
+   "request": "exchange/rewrites/20261014/helium-supply-squeeze__067a945d.request.json",
+   "answer_path": "exchange/rewrites/20261014/helium-supply-squeeze__067a945d.answer.json"
+  },
   {
    "id": "back-pain-leading-disability__1ec1e63d",
    "slug": "back-pain-leading-disability",
@@ -594,16 +614,6 @@
    "answer_path": "exchange/rewrites/20261013/gulf-dead-zone-growth__a4939372.answer.json"
   },
   {
-   "id": "game-industry-layoffs-record__47b9280e",
-   "slug": "game-industry-layoffs-record",
-   "filed": "2026-10-13T04:11:21Z",
-   "why": [
-    "premise: brain: It does not present a clear reversal of a single viewer expectation hinged on one verifiable number."
-   ],
-   "request": "exchange/rewrites/20261013/game-industry-layoffs-record__47b9280e.request.json",
-   "answer_path": "exchange/rewrites/20261013/game-industry-layoffs-record__47b9280e.answer.json"
-  },
-  {
    "id": "vertical-farming-bust__88943771",
    "slug": "vertical-farming-bust",
    "filed": "2026-10-13T04:11:21Z",
@@ -612,16 +622,6 @@
    ],
    "request": "exchange/rewrites/20261013/vertical-farming-bust__88943771.request.json",
    "answer_path": "exchange/rewrites/20261013/vertical-farming-bust__88943771.answer.json"
-  },
-  {
-   "id": "helium-supply-squeeze__067a945d",
-   "slug": "helium-supply-squeeze",
-   "filed": "2026-10-13T04:11:20Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on an unsubstantiated, vague claim rather than a single verifiable number."
-   ],
-   "request": "exchange/rewrites/20261013/helium-supply-squeeze__067a945d.request.json",
-   "answer_path": "exchange/rewrites/20261013/helium-supply-squeeze__067a945d.answer.json"
   },
   {
    "id": "tattoo-mainstream-shift__8da41eb1",
