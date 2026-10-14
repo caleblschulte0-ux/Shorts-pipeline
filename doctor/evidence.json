@@ -1,39 +1,38 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261013",
-  "judged_date": "20261012",
+  "date": "20261014",
+  "judged_date": "20261013",
   "alarm": {
-    "date": "20261012",
+    "date": "20261013",
     "ok": false,
     "alarms": [
       {
-        "code": "chatgpt_task_failed_doctor",
-        "severity": "critical",
-        "detail": "CHATGPT TASK FAILED / NO ARTIFACT \u2014 the doctor task left nothing in the repo for 20261012 (the doctor is a daily read).",
-        "fix": "The scheduled task fired and committed nothing. Its work is judged only by what reaches the repo, so this is a FAILED run, not an idle one. Expected: doctor/reports/20261012.json. Re-fire the task in the ChatGPT app; the repo side needs no changes."
-      },
-      {
         "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "explainer: 2/4 posted for 20261012.",
+        "detail": "explainer: 2/4 posted for 20261013.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 4/6 posted for 20261012.",
+        "detail": "third: 4/6 posted for 20261013.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
+        "code": "no_posts_trending",
+        "severity": "critical",
+        "detail": "trending: ZERO videos posted for 20261013 (registry wants 3).",
+        "fix": "Check the trending workflow run for 20261013. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (34 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (35 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
-      "chatgpt finalizer: artifact present",
-      "trending: 3/3 posted"
+      "chatgpt finalizer: artifact present"
     ],
     "deferred": false
   },
@@ -219,833 +218,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-10-09T14:24:16+00:00",
-      "slug": "volcano-country-ranking",
-      "score": 35,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "This is a ranking table, a bar chart and two bubbles with a cloned, posing mascot. Nothing shows a volcano erupting, the labels collide, and the closing visual doesn't match the punchline.",
-      "auto_fails": [
-        "decorative_mascot: hook@0.3 to seg0:end shows five copies of Data standing beside the numbers and pointing. In seg3:mid he stands on a bubble with his hands on his head, and in seg2 he poses beside the scale without causing anything to move.",
-        "bare_number_card: seg3:start/mid show two circles labelled 75% and 25%. That is a number on a blob, with nothing about the Ring of Fire.",
-        "dead_air: Across hook@0.3 to seg0:end (about 3.3s) and on into seg1:start, the same five-row ranking repeats with only the mascot sliding. seg4:mid to the end is a held ruler.",
-        "empty_void: In seg0:end the lower third of the frame is empty. In seg2:mid the upper-left half is empty dark space, and seg3:start is mostly empty with two small circles.",
-        "unreadable: In seg4:mid/end, 'Everywhere else on Earth 25%' is tiny and printed on top of 'On the Ring of Fire 75%'. In seg1:start the map label 'Jnited States of America' is cut off and 'United States o...' is truncated. In seg1:end '185' is printed over by the mascot and a ring, and '118'/'107' are covered by rings."
-      ],
-      "problems": [
-        "Hook (hook@0.3): five identical copies of Data beside a static number table. Nothing shocking happens, and the title 'Indonesia's volcano rank' contradicts the claim.",
-        "seg1: the map label 'Jnited States of America' and the row 'United States o...' are truncated, and rings plus the mascot cover the 165/118/107 values.",
-        "seg2: the scene title 'Indonesia versus Alaska' is wrong because the scale compares Alaska to the rest of the US. Data stands at the frame edge and doesn't load the pan.",
-        "seg3: a bare 75%/25% bubble pair with Data standing on top. It is a number on a blob.",
-        "seg4: a generic ruler reads '50% apart' (a meaningless derived figure), the small 25% label collides with the 75% label, and none of it lands the Alaska joke.",
-        "Three different scene headers ('Indonesia's volcano rank' over a US-first chart, 'Indonesia's Ring of Fire') misframe the story."
-      ],
-      "fixes": [
-        "Open on the finished picture: a towering US volcano pile with Indonesia's smaller pile beside it, erupting from frame one, and Data stacking the last cone.",
-        "Replace the rank table and map with one bespoke shot: four rows of volcano cones, each country's count drawn as cones. Keep one name in view and nothing truncated or covered.",
-        "seg2: have Data drop Alaska's volcanoes onto the pan so the tilt is visibly caused by him, and fix the title to 'Alaska versus the rest of the US'.",
-        "seg3: draw the Ring of Fire as a glowing ring around the Pacific with 3 of every 4 volcano dots lighting up along it, not two bubbles.",
-        "seg4: end on Alaska. Drop the gap ruler and the '50% apart' figure, and show one big number with no overlapping labels."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 92
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "dead_air",
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "meaningless_closing_visual",
-        "visible_evidence": "seg4:mid/end show a generic two-post ruler reading '50% apart', with 'Everywhere else on Earth 25%' printed over 'On the Ring of Fire 75%'. Data stands on a ladder, and the caption 'Alaska: quietly winning at volcanoes since forever.' has nothing to do with the picture.",
-        "root_cause": "The closing reused a generic gap-ruler machine on the previous beat's percentages instead of drawing the Alaska payoff. The label layout collides, and '50% apart' is a meaningless derived number.",
-        "repair_goal": "Make the closing land the Alaska punchline. Draw Alaska's 130 volcanoes as a dense chain of peaks along the Aleutian arc that dwarfs the 35 left in the rest of the US, have Data place the last cone, and show at most one number with no overlapping labels."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.134,
-        "effective_fps": 20.8,
-        "max_dup_run": 19,
-        "measured": true,
-        "judder_ratio": 0.007,
-        "judder_fps": 23.8,
-        "held_s": 2.04,
-        "max_dup_at_s": 0.0,
-        "duration_s": 30.58
-      },
-      "fingerprint": "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|meaningless_closing_visual",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T14:29:59+00:00",
-      "slug": "adhd-diagnosis-surge",
-      "score": 48,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A chart-led explainer in which Data is mostly a sticker: bars, a timeline, circles and a stock scale, none of them made of the subject, and the payoff label is covered by the mascot.",
-      "auto_fails": [
-        "decorative_mascot: seg3:start-end: Data only stands on top of the 53.6% circle while it grows. He does nothing to cause or show the number. seg1:mid: he walks the timeline with his hands on his head, which is a reaction, not the cause of the rising bars. The hook ladder pose (hook@0.8) is the only bit that comes close.",
-        "unreadable: seg4:start through payoff@-0.4: Data is parked over the left pan's '53.6%' label and covers its leading '5', so it reads like '3.6%'. In seg2:start the bottom caption '15%' is ghosted to near-invisible grey on navy."
-      ],
-      "problems": [
-        "Hook (hook@0.3) opens on a finished generic bar chart, and the on-screen caption is seg1's 'Boys used to get\u2026' line instead of the hook's '11.4 percent' line, so the hook's words do not match its picture.",
-        "seg0 and seg1 show the same 7.8 to 11.4 rise twice: the bar chart in the hook/seg0, then a timeline spike chart in seg1. It is redundant and chart-based.",
-        "seg2: 'girls are catching up' is never shown. The figures just slide sideways beside static 8% and 15% labels.",
-        "seg3: proportional circles with Data standing idle on top, a chart with a decorative mascot.",
-        "seg4: Data sits over the '53.6%' label (payoff@-0.4) and hides the '5'. The scale tilt is almost flat, so the 'not enough help' payoff does not land visually.",
-        "seg2:start: the bottom caption '15%' is ghosted grey and nearly invisible."
-      ],
-      "fixes": [
-        "Make the hook a subject-made shock image of 11.4%: a classroom of about 9 desks with one kid flagged, revealed on frame one with the hook's own words captioned.",
-        "Merge seg0 and seg1 into one rise shown on the subject (the classroom filling with labelled kids from 2003 to 2022), with Data handing out the labels.",
-        "seg2: show the girls' lane visibly gaining on the boys' lane, e.g. a race between figures where the girls close the distance.",
-        "seg3: replace the circles with about 100 kids, where Data hands medication to 54 and 46 stay empty-handed.",
-        "seg4: move Data off the label, onto the beam or loading the pan, and make the closing image show the unmet-help gap rather than a near-level scale.",
-        "Give every caption full ink contrast. Never fade the number card to grey."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 82
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "chart_with_decorative_mascot",
-        "visible_evidence": "seg3:start-end: two plain circles labelled 53.6% and 46.4% that grow. Data stands on the yellow circle doing nothing. The 'Taking ADHD medication tops the list' kicker and the source line are UI-widget framing, and the bottom half of the frame is empty.",
-        "root_cause": "The treated-vs-untreated split fell back to a generic proportional-bubble chart with no subject-made form. The mascot was placed on top as a sticker instead of being the agent of the number.",
-        "repair_goal": "Draw the 53.6% as the subject itself: a row of 100 kids or pill bottles where Data hands out medication to about 54 of them, and the untreated 46 stay visibly empty-handed. Data performs the handing-out in one arc. Fill the lower frame, and drop the kicker/source widget chrome."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.201,
-        "effective_fps": 19.2,
-        "max_dup_run": 17,
-        "measured": true,
-        "judder_ratio": 0.043,
-        "judder_fps": 23.0,
-        "held_s": 3.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 27.25
-      },
-      "fingerprint": "?|decorative_mascot+unreadable|chart_with_decorative_mascot",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T14:34:21+00:00",
-      "slug": "parker-solar-probe-speed-record",
-      "score": 35,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "A record about the fastest object ever built is shown as static bar, lollipop and bubble charts, with no probe, no sun and no felt speed anywhere.",
-      "auto_fails": [
-        "decorative_mascot: hook@0.3 to seg0:end: Data stands on a ladder pointing at the 430K bar. seg1:start to seg1:end: arms raised, sliding along the timeline. seg2: two copies of Data stand beside the numbers. seg4: he points at an hourglass. He never causes the speed or the motion; he only points and cheers.",
-        "bare_number_card: seg2:start to seg2:end: '24.8K' and '430K' as big text beside two Data figures, with no picture of the 17x gap. seg3: '56' and '208' printed inside plain circles.",
-        "empty_void: seg1:start to seg1:end: the timeline is a thin line at mid-frame, and the area below it down to the caption (about 35% of the frame) is empty dark gradient. seg3:start: two small circles in a mostly empty frame.",
-        "unreadable: seg4:start to seg4:end: Data's ladder covers the 'w' of the 'New York to Tokyo' label, which reads 'Ne  York'. seg3:end: the '56' inside the yellow bubble is doubled and smeared ('5\u0431')."
-      ],
-      "problems": [
-        "The hook opens on a finished bar chart with Data pointing. Nothing moves fast, so the speed claim gets no visual punch in the first second.",
-        "The Parker Solar Probe and the sun never appear. The subject is missing from its own video.",
-        "seg2 presents the 17x Apollo comparison as two numbers beside two cloned mascots, which is a bare number card.",
-        "seg3 bubbles: the '56' label is doubled and garbled at seg3:end.",
-        "seg4: the ladder covers the 'New York to Tokyo' label, and the closing line 'diving straight into the sun' sits over unrelated hourglasses, so the payoff never lands.",
-        "Data is decoration throughout: he points, raises his arms, and appears twice in seg2."
-      ],
-      "fixes": [
-        "Hook: open on the probe streaking across the frame past Earth toward the sun, with motion blur and the 430,000 mph readout slamming in on frame one.",
-        "seg2: race an Apollo capsule against the probe on one track. The probe laps it 17 times, Data hits the throttle, and one headline reads 17x.",
-        "seg3: draw a globe with the probe circling New York to Tokyo in 56s and a full lap of Earth in 208s, with a stopwatch on screen and Data starting the clock.",
-        "Closing: show the probe diving into the sun's corona so the last line has a picture.",
-        "Move Data and the ladder off the labels, and fix the doubled 56 glyph rendering.",
-        "Fill the empty lower half of seg1 and seg3 with the scene, such as space, the sun, or the Earth's curve."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 85
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "bare_number_card",
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "bare_number_card",
-        "visible_evidence": "seg2:start to seg2:end show 'Apollo 10 ... 24.8K' and 'Parker Solar Probe 430K' as two rows of large text, each with a standing Data, with gray ticks down the right edge. Nothing shows 17 times faster.",
-        "root_cause": "The 17x comparison is drawn as two numeric labels side by side instead of a race or distance picture, and Data is copied in as decoration rather than driving the comparison.",
-        "repair_goal": "Show the 17x as motion. A tiny Apollo capsule and the Parker probe launch together across a long track, and the probe covers 17 lengths while Apollo covers one. Data fires or throttles the probe as the cause. Put one headline number (17x) on screen, and land it by second 3."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.204,
-        "effective_fps": 19.1,
-        "max_dup_run": 17,
-        "measured": true,
-        "judder_ratio": 0.043,
-        "judder_fps": 23.0,
-        "held_s": 2.83,
-        "max_dup_at_s": 0.0,
-        "duration_s": 28.29
-      },
-      "fingerprint": "?|bare_number_card+decorative_mascot+empty_void+unreadable|bare_number_card",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T14:57:18+00:00",
-      "slug": "twin-birth-rate-rise",
-      "score": 35,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "Four plain charts in a row (two of them the same data), wrong units, a 'five times' claim the picture doesn't show, and a mascot that only points and poses.",
-      "auto_fails": [
-        "decorative_mascot: In hook@0.3 and seg0:end Data stands on a ladder beside the bars and points. In seg1:mid and seg1:end he floats between bar rows, in seg2:mid he stands on the 35-39 bar, and in seg3:mid and seg4:end he rides the line with his arms up. He never causes any of the motion.",
-        "unreadable: In seg2:end Data's body sits on top of the '46%' label so it reads as a fragment. In payoff@-0.4 Data covers the end of the line next to '2%', and two empty outline circles mark nothing. In seg3:start the caption 'fell from 28%' is too faint to read."
-      ],
-      "problems": [
-        "The hook opens on a finished bar chart under a 'Twin birth rate US' title, which is a chart, not a shock.",
-        "seg0 and seg1 show the same 1980-2022 series twice, first as columns and then as horizontal bars.",
-        "The rates are per 1,000 births but are labelled '18.9%' and '33.9%' (seg0, seg1), which is factually wrong on screen.",
-        "seg2 claims 'nearly five times' versus under-20 moms, but the chart has no under-20 row and shows 46% against 15% (about 3x).",
-        "Data points from a ladder, floats between rows and raises his arms on a line, so he causes nothing in any scene.",
-        "In seg2:end Data covers the 46% label, and in payoff@-0.4 he covers the end of the line."
-      ],
-      "fixes": [
-        "Draw the subject: a maternity ward where twin cribs fill in pairs as the rate climbs from about 19 to 34 per 1,000, with Data wheeling the cribs in.",
-        "Fix the units everywhere to 'per 1,000 births'.",
-        "Delete the duplicate horizontal-bar scene (seg1).",
-        "Show 5x as five pairs of cribs beside an over-40 mother against one pair beside an under-20 mother, and supply the under-20 data.",
-        "Show the IVF drop as embryos per transfer going from two to one, with Data taking one embryo away. That makes 'two became one' land.",
-        "Keep Data and all labels clear of each other, and remove the stray circles."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 70
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "chart_contradicts_claim",
-        "visible_evidence": "seg1:start to seg2:end show a plain horizontal bar chart titled 'Twin age factor' with values 46/38/28/21/15%. The narration says mothers over 40 have twins 'nearly five times more often than under-20 moms', but there is no under-20 row, and 46 against 15 is about 3x. In seg2:end Data covers the 46%",
-        "root_cause": "A generic rank chart was used for a ratio claim, with no group the claim actually compares and no picture of 'five times'. The mascot is placed on the value label instead of on a moving part.",
-        "repair_goal": "Show the 5x as the subject itself: two mothers (under 20 and over 40), with one pair of twin cribs beside the young mother and five beside the older one, which Data rolls in one at a time. Show one number, '5x', placed clear of Data, and fit the data to the claim (include the under-20 group)."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.235,
-        "effective_fps": 18.4,
-        "max_dup_run": 25,
-        "measured": true,
-        "judder_ratio": 0.034,
-        "judder_fps": 23.2,
-        "held_s": 3.62,
-        "max_dup_at_s": 8.38,
-        "duration_s": 23.25
-      },
-      "fingerprint": "?|decorative_mascot+unreadable|chart_contradicts_claim",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T15:07:51+00:00",
-      "slug": "twin-birth-rate-rise",
-      "score": 35,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "A reused chart deck with wrong units (twin rate per 1,000 shown as %) and a mascot who only points and floats. Nothing here is made of twins.",
-      "auto_fails": [
-        "decorative_mascot: hook@0.3 to seg0:end: Data stands on a ladder pointing at a static bar. seg1:mid/end and seg2:start/mid: he floats between bar rows doing nothing to them. seg3 and seg4: he stands arms-up on the line. Nothing he does pours, pushes or drives the number.",
-        "unreadable: seg2:end: Data's head covers the '4' of the 46% value label. seg1:start: the subtitle 'from 18.9 to' is faded nearly into the background. payoff@-0.4: empty rings float over the chart, implying callouts that say nothing."
-      ],
-      "problems": [
-        "The hook opens on a fully built static bar chart for about 3s, with no shock and no motion beyond Data's arm.",
-        "seg0/seg1 label the per-1,000 twin rate as percentages (18.9%...33.9%), which falsely says a third of births are twins.",
-        "seg2's bars (40+ at 46% vs 20-24 at 15%) have no under-20 row and do not support 'nearly five times more often'. Their unit is undefined.",
-        "seg2:end: Data covers the 46% label.",
-        "Every beat is a chart: two bar charts and a line chart reused twice. There is no bespoke depiction of twins.",
-        "Data is decorative throughout: he stands on a ladder, floats between rows and raises his arms on a line, but never causes the motion."
-      ],
-      "fixes": [
-        "Fix the formatter: show 'per 1,000' (19 \u2192 34), never %, and check every label's unit against the narration.",
-        "Replace the seg1 bars with a physical twin depiction: 1,000 cradles or strollers in which pairs double over time, with Data pushing in the extra pairs.",
-        "For seg2, show the actual under-20 vs 40+ comparison as five pairs of twins against one, built by Data. Drop the unlabeled %.",
-        "For seg3, show an IVF picture where Data swaps two embryos for one, with the 28% \u2192 2% drop happening on the subject itself.",
-        "Open the hook on the finished, shocking state (twin count doubled) with immediate motion, not a static chart.",
-        "Remove the stray rings, and keep the mascot clear of value labels."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 70
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "wrong_data_label",
-        "visible_evidence": "seg1:start to seg1:end label the rows 18.9%, 22.6%, 29.3%, 33.9% and 31.2%, while the narration says '18.9 to almost 34 per 1,000'. The screen claims about a third of US births are twins. The same % labels appear on the hook bars (hook@0.3).",
-        "root_cause": "The value formatter appends % to a per-1,000 rate, and the visual is a generic horizontal bar chart picked by chart kind, not by the story's relationship.",
-        "repair_goal": "Show the twin rate per 1,000 births with correct units, for example a grid of 1,000 cradles where twin pairs light up from 19 to 34 as Data places them. The doubling should be visible as a physical change Data causes, ending on 'about 34 per 1,000' by 2014."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.235,
-        "effective_fps": 18.4,
-        "max_dup_run": 25,
-        "measured": true,
-        "judder_ratio": 0.034,
-        "judder_fps": 23.2,
-        "held_s": 3.62,
-        "max_dup_at_s": 8.38,
-        "duration_s": 23.25
-      },
-      "fingerprint": "?|decorative_mascot+unreadable|wrong_data_label",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T15:31:14+00:00",
-      "slug": "twin-birth-rate-rise",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The illustrated world and Data's pump, stack and haul acts are good, but the 40+ scene contradicts its own narration (3.1x vs 20-24 on screen, 'nearly five times vs under-20' spoken) and the IVF payoff number reaches the screen a beat late.",
-      "auto_fails": [
-        "unreadable: In seg2:mid and seg2:end the label 'twin births per thousand \u00b7 mothers 40+' is printed in dark ink on the brown crossbeam and crossed by the rope, so it is hard to read at phone size. In seg2:mid a half-faded ghost '3.1x vs 20-24' overlaps. In the hook frames the bottom caption sits over the magnifier icons."
-      ],
-      "problems": [
-        "seg2: the screen says '3.1x vs 20-24' while the narration says 'nearly five times more often than under-20 moms'. The visual contradicts the spoken claim.",
-        "seg2: the 'mothers 40+' label is printed over the brown crossbeam and cut by the rope, and a faded ghost '3.1x' overlaps in seg2:mid.",
-        "seg3:end: the readout still shows '15% \u00b7 2012' while the caption says 'just 2% today'. The payoff number lands late, in the closing card.",
-        "seg1: the blocks carry arbitrary letters A-G that mean nothing to a viewer. It is a generic tower, not made of twins.",
-        "seg0: the balloons hardly change size between 18.9 and 31.2, so 'nearly doubled' is not felt. The readout also jumps 31.2 \u2192 18.9 \u2192 31.2 across the hook.",
-        "seg4: the closing letterboxes the scene into an inset card between navy bands, and the line 'Two really did become the new one' does not match the falling-IVF ending."
-      ],
-      "fixes": [
-        "seg2: set the baseline to the under-20 rate and extend the tick scale so the cradle rises to about 5x. The headline should read '~5x vs under-20'.",
-        "seg2: move the number and label into open sky, clear of the beam and rope, and remove the ghost readout.",
-        "seg3: step the readout to 2% \u00b7 2022 by land_by() inside seg3 so the payoff is readable while it is spoken. Have Data physically pull the pink patches off the line instead of pointing.",
-        "seg1: replace the A-G letters with twin-themed blocks (pairs of baby blocks) or no labels.",
-        "seg0: let the balloons visibly roughly double in volume against a dashed 1980 ghost outline so the doubling reads at a glance.",
-        "seg4: keep the scene full-bleed instead of inset in a card, and rewrite the closing line to land the rise-then-fall twist."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 70
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "claim_mismatch_and_label_collision",
-        "visible_evidence": "The narration says 40+ mothers twin 'nearly five times more often than under-20 moms'. The screen reads '46 \u2026 mothers 40+' and '3.1x vs 20-24', with a baseline marked 20-24. Its label sits on top of the wooden crossbeam, and the rope cuts through it (seg2:mid, seg2:end).",
-        "root_cause": "The scene compares 40+ against the 20-24 group while the script compares against under-20, so the number on screen contradicts the spoken claim. The headline label was placed where the swing frame's beam and rope cross it.",
-        "repair_goal": "Make the baseline the under-20 rate and have the cradle rise to about 5x on the tick scale, so the headline reads ~5x vs under-20 and matches the narration. Move the number and its label into clear sky away from the beam and rope, and drop the ghost readout."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.28,
-        "effective_fps": 17.3,
-        "max_dup_run": 18,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 2.83,
-        "max_dup_at_s": 0.0,
-        "duration_s": 23.25
-      },
-      "fingerprint": "?|unreadable|claim_mismatch_and_label_collision",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-09T16:13:30+00:00",
-      "slug": "twin-birth-rate-rise",
-      "score": 35,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 1,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "",
-      "auto_fails": [
-        "decorative_mascot: hook@0.3 to seg0:end: Data stands on a ladder pointing at a static bar. seg1:mid/end and seg3: he slides along the bars and line with his hands on his head. He never drives the bars or the line; he only reacts beside them.",
-        "unreadable: seg2:end: Data's arm and body sit on top of the '46%' label so it reads '6%'. seg1:start: a faded, half-transparent caption 'from 18.9 to' is printed over the bottom bar. seg4:mid onward: the line has lost its x-axis years and title, so the viewer cannot tell what the 2% belongs to."
-      ],
-      "problems": [],
-      "fixes": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 70
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "chart_restates_hook_with_wrong_units",
-        "visible_evidence": "seg1:start to seg1:end shows a horizontal-bar chart of exactly the same six numbers as the hook's vertical bars (18.9, 22.6, 29.3, 33.9, 31.2), labelled as PERCENT ('18.9%'). The narration says 18.9 to 34 PER 1,000, which is about 1.9% to 3.4%. Data walks across the bars with his hands on his head.",
-        "root_cause": "The rate per 1,000 was formatted as a percentage, and the beat re-draws the hook's chart instead of demonstrating the doubling. The picture was chosen as a chart kind, not from the relationship (a near-doubling).",
-        "repair_goal": "Replace the bar chart with a bespoke depiction of twins doubling per 1,000 births. For example, a crowd of 1,000 cradles where Data rolls in a second cradle beside each twin pair until the twin cluster visibly doubles from about 19 to 34. Label it 'per 1,000 births', never '%', and do not repeat the"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.241,
-        "effective_fps": 18.2,
-        "max_dup_run": 25,
-        "measured": true,
-        "judder_ratio": 0.034,
-        "judder_fps": 23.2,
-        "held_s": 3.83,
-        "max_dup_at_s": 8.54,
-        "duration_s": 23.42
-      },
-      "fingerprint": "?|decorative_mascot+unreadable|chart_restates_hook_with_wrong_units",
-      "style_arm": "current"
-    },
-    {
-      "ts": "2026-10-09T16:32:55+00:00",
-      "slug": "twin-birth-rate-rise",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The pictures are clear and Data really does the work, but seg2 shows 3.1x against 20-24 moms while the voice says nearly five times against under-20 moms, and the hook's number whiplash and the closing that contradicts the fall weaken the payoff.",
-      "auto_fails": [],
-      "problems": [
-        "seg2: the picture's 3.1x against moms 20-24 contradicts the narration's 'nearly five times more often than under-20 moms'.",
-        "seg2: Data only points from beside the ladder and does not cause the pile to grow.",
-        "hook: the headline number jumps 31.2 -> 18.9 -> 33.9 -> 31.2 within about two seconds, so the viewer cannot tell which number matters.",
-        "seg3: the cargo ship and containers do not map clearly to IVF twin births, so the 28% -> 2% drop is not felt.",
-        "seg4: the closing line 'Two really did become the new one' sits over a scene showing twins falling to 2%, which contradicts the payoff. The stray '1997' tag on the hospital is unexplained.",
-        "seg4: the closing is boxed in letterbox bands while every other scene is full bleed."
-      ],
-      "fixes": [
-        "Rebuild seg2 against the under-20 baseline so the multiplier shows about 5x, or change the narration to the 3.1x the picture shows.",
-        "Give Data an agent act in seg2: lowering twin babies into the cradle from the ladder.",
-        "Make the hook's flash-forward hold the finished 33.9 peak instead of cycling through three values.",
-        "Replace the seg3 ship with a subject-made form, such as IVF cribs where the twin pairs empty down to 2%.",
-        "Rewrite the closing line to land the turn (twins rose, then IVF sent them falling) and remove the orphan '1997' label."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 70
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "claim_picture_mismatch",
-        "visible_evidence": "The narration says moms over 40 have twins 'nearly five times more often than under-20 moms'. The picture compares moms 40+ with a 'moms 20-24' baseline and lands on '3.1x' (seg2:end), so the screen contradicts the voice. Data stands at the foot of the ladder pointing and never touches the pile (seg",
-        "root_cause": "The scene was built from a different comparison group (20-24) than the one the narration names (under 20). The mascot was given a point act instead of an agent act.",
-        "repair_goal": "Make the baseline the under-20 group so the multiplier shown matches 'nearly five times', or rewrite the line to match the 3.1x shown. Have Data cause the rise by lowering babies into the cradle from the ladder so the pile climbs past the 1x/2x/3x marks."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.135,
-        "effective_fps": 20.7,
-        "max_dup_run": 19,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.75,
-        "max_dup_at_s": 0.0,
-        "duration_s": 23.42
-      },
-      "fingerprint": "?|-|claim_picture_mismatch",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-09T16:43:10+00:00",
-      "slug": "twin-birth-rate-rise",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The pile, tower and crib are strong subject pictures, but the age-gap scene shows 3.1x against the wrong group while the voice says nearly five times, the cargo ship is off-subject, and the closing line contradicts the 'it's falling' story.",
-      "auto_fails": [
-        "unreadable: In seg2:end the '3.1x vs moms 20-24' callout lands right on top of the '3x' tick, and the 'moms 20-24 1x' label is printed over the busy baby pile and the crib post (seg2:mid). You have to work out what they say on a phone."
-      ],
-      "problems": [
-        "seg2: the narration says ~5x vs under-20 moms, but the picture and callout say 3.1x vs moms 20-24, so the numbers disagree on screen.",
-        "seg2: the '3.1x vs moms 20-24' callout collides with the '3x' tick, and the '1x' baseline label sits on the busy pile.",
-        "seg3: a cargo ship and shipping containers are an arbitrary metaphor for IVF twin births, and the 28% to 2% shrink is hard to read from gray vs pink containers.",
-        "seg4: the closing scene repeats seg3's 2% instead of a new payoff, and it is squeezed into an inset card with dark bands, so the picture loses scale.",
-        "Closing line 'Two really did become the new one' contradicts the hook's 'already ending' arc, so the payoff does not land."
-      ],
-      "fixes": [
-        "Rebuild seg2 against the under-20 baseline so the crib overfills to about 5x its baseline line, and have the callout read '~5x vs under-20'.",
-        "Lay out the seg2 scale ticks and multiplier callout with measured collision checks, and keep labels off the pile.",
-        "Replace the seg3 cargo ship with a subject form, such as IVF embryo transfers where paired cribs or double strollers empty down to a single pair.",
-        "Let the closing picture run full bleed rather than in an inset card, and give it a new beat (e.g. the overall twin rate turning down) instead of repeating 2%.",
-        "Rewrite the closing line to land the arc: the boom was manmade and it is now unwinding."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 68
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "claim_mismatch",
-        "visible_evidence": "The narration says moms over 40 have twins 'nearly five times more often than under-20 moms', but the picture compares against moms 20-24 and lands on 3.1x (seg2:end). The 3.1x callout also collides with the 3x tick, and the 1x baseline label sits on the pile.",
-        "root_cause": "The scene was built from a different baseline series (moms 20-24) than the one the narration names (under-20), so the picture's payoff number disagrees with the spoken claim. The scale ticks and callout were placed without checking for collisions.",
-        "repair_goal": "Use the under-20 rate as the baseline so the crib overfills to roughly 5x its under-20 line and the callout matches the narration (or rewrite the line to say 3x vs moms 20-24). Move the multiplier callout clear of the tick labels and keep the baseline label off the pile."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.137,
-        "effective_fps": 20.7,
-        "max_dup_run": 17,
-        "measured": true,
-        "judder_ratio": 0.002,
-        "judder_fps": 24.0,
-        "held_s": 0.67,
-        "max_dup_at_s": 0.0,
-        "duration_s": 22.79
-      },
-      "fingerprint": "?|unreadable|claim_mismatch",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-10T11:34:00+00:00",
-      "slug": "duolingo_passed_rosetta_stone_in_revenue",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean, honest line race with a clearly marked crossover, but the hook opens on the dull 2019 start, the year counter runs ahead of the line, and Rosetta Stone sits at exactly $180M for four years, which looks held flat rather than measured.",
-      "auto_fails": [],
-      "problems": [
-        "Hook (hook@0.3 to hook@2.2) is a slow chart build that starts with Duolingo far behind. There is no shock in the first second.",
-        "The year counter disagrees with the plotted tip: it reads 2020 at hook@1.5 while the tip is mid-2019, and 2021 at mid1 while the tip is around late 2020.",
-        "Rosetta Stone holds at exactly $180M from 2020 to 2024 (mid1 to payoff@-0.4), and the source line credits only 'Duolingo SEC filings'. Rosetta Stone was taken private around 2020, so the flat line may be a held-forward value presented as real data.",
-        "The payoff (payoff@-0.4) adds only a small '#1 Duolingo' line under the counter. The roughly 4x gap is never called out, so the ending does not land.",
-        "Small grey axis text and tip labels are readable but thin for a phone."
-      ],
-      "fixes": [
-        "Flash-forward the final 2024 frame or the crossover over the first second, then run the race.",
-        "Drive the year counter from the tip's x-value so the two always agree.",
-        "Either cite a real source for each Rosetta Stone year or end its line where reported data stops, with a 'taken private, no longer reported' marker, instead of holding it flat.",
-        "End on a big gap callout, such as a bracket between the tips reading 'about 4x' or '$568M ahead', held long enough to read.",
-        "Raise the size and contrast of the tip labels and axis text."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "slow_chart_build_hook",
-        "visible_evidence": "hook@0.3 to hook@2.2 show Rosetta Stone at about $182M and Duolingo at about $83M in the first half of 2019, the start of a line chart. The big counter already says 2020 at hook@1.5, while the tip is still mid-2019 on the x-axis.",
-        "root_cause": "The race opens at the least interesting moment: Duolingo far behind, with nothing happening but two lines extending. The year counter also runs ahead of the plotted tip, so the hook's on-screen year contradicts the axis.",
-        "repair_goal": "Open on the shock. Flash forward to the 2024 end state ($748M vs $180M, about 4x) or to the crossover moment in the first second, then rewind and race. Lock the year counter to the tip's actual x-position so it never shows a year the line has not reached."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.078,
-        "effective_fps": 22.1,
-        "max_dup_run": 26,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.04,
-        "max_dup_at_s": 13.29,
-        "duration_s": 14.38
-      },
-      "fingerprint": "?|-|slow_chart_build_hook"
-    },
-    {
-      "ts": "2026-10-10T11:35:19+00:00",
-      "slug": "temu_passed_amazon_in_app_downloads",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "The race clearly shows the crossover and lands on Temu at 3x Amazon, but the first two seconds are a flat 'Temu 0' with no reason to stay.",
-      "auto_fails": [],
-      "problems": [
-        "The hook (hook@0.3 to hook@2.2) shows Amazon alone and Temu at 0. The reversal the title promises is not teased until about 10s.",
-        "The year counter runs ahead of the line: it shows '2020' at hook@1.5 while the tip is around mid-2019.",
-        "The right half of the plot is empty for the first beats (hook@0.3, mid0), so the composition is thin early on."
-      ],
-      "fixes": [
-        "Flash the finished crossover frame (Temu 55M vs Amazon 17M) over the first second before the race replays, or start the race at 2021.",
-        "Drive the year counter off the tip's x-position so it matches the axis.",
-        "Compress 2019-2021, where both lines are flat, so the crossover arrives by about 5s and the rest of the run shows Temu pulling away."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook",
-        "visible_evidence": "hook@0.3 to hook@2.2 show a lone blue Amazon line at about 18M and Temu flat at 0 on an otherwise empty plot. The crossover the title promises does not appear until about 10s (mid4).",
-        "root_cause": "The race builds chronologically from 2019, so the first seconds show the dullest part of the data: Temu at zero. Nothing teases the reversal.",
-        "repair_goal": "Open on the payoff: flash the finished 2024 frame (Temu 55M towering over Amazon 17M with the crossover marker) for about the first second, then rewind and race. Or start the timeline at 2021 so Temu's line is already climbing by frame 1."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.096,
-        "effective_fps": 21.7,
-        "max_dup_run": 34,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.38,
-        "max_dup_at_s": 12.96,
-        "duration_s": 14.38
-      },
-      "fingerprint": "?|-|weak_hook"
-    },
-    {
-      "ts": "2026-10-10T11:36:45+00:00",
-      "slug": "shein_is_now_bigger_than_h_m",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean, readable two-line race with a clear 2022 crossover, but the subject wears the neutral grey and the '#1 Shein' payoff is a dim afterthought.",
-      "auto_fails": [],
-      "problems": [
-        "Shein, the story's subject, is drawn in neutral grey while H&M gets the red accent, so the winner looks disabled (mid3 to payoff@-0.4).",
-        "The payoff text '#1 Shein' is low-contrast grey squeezed under the progress bar (payoff@-0.4) and arrives in the last moment.",
-        "The hook (hook@0.3) opens on a near-flat chart with a 22B gap and nothing at stake visible yet. The title states the outcome, but the first frame shows no tension.",
-        "The year counter runs ahead of the drawn line (hook@1.5 shows '2019' while the tips are still mid-2018).",
-        "The 'Shein passes H&M' label is dim grey and small (mid4)."
-      ],
-      "fixes": [
-        "Assign the accent to Shein (the subject) and draw H&M in look.REST.",
-        "Render the final '#1 Shein' card in ink at headline size inside the chart, and hold it about 1.5 s.",
-        "Open on the gap as the hook: flash the 2023 crossover or put a 'Shein was 15x smaller' setup line on frame 1.",
-        "Sync the year counter to the tips' x-position.",
-        "Make the crossover marker label high-contrast and pulse the crossing point when it happens."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "payoff",
-        "index": 11,
-        "failure_class": "weak_payoff",
-        "visible_evidence": "payoff@-0.4: the winner text '#1 Shein' is drawn in dim grey at the bottom edge, below the progress bar. Shein's line is the neutral grey while the loser H&M gets the red accent, so the winner never gets the emphasis.",
-        "root_cause": "The accent is handed out by series order rather than by the story's subject. Shein, the subject of the title, is drawn in look.REST grey, so its overtake and its final card read as muted.",
-        "repair_goal": "Give Shein the single accent colour and make H&M the neutral. Put the final '#1 Shein' card in high-contrast ink, large, inside the chart area, and hold it for at least 1.5 s, possibly with a pulse on the 2022 crossover."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.096,
-        "effective_fps": 21.7,
-        "max_dup_run": 34,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.38,
-        "max_dup_at_s": 12.96,
-        "duration_s": 14.38
-      },
-      "fingerprint": "?|-|weak_payoff"
-    },
     {
       "ts": "2026-10-10T11:37:49+00:00",
       "slug": "netflix_s_revenue_just_beat_all_of_holly",
@@ -4070,6 +3242,791 @@
         "duration_s": 21.0
       },
       "fingerprint": "?|temporal_gate|-"
+    },
+    {
+      "ts": "2026-10-13T17:44:29+00:00",
+      "slug": "back-pain-leading-disability",
+      "score": 96,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 3,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A visually engaging video with strong data demonstrations and good pacing, though the mascot could be more actively integrated in some early scenes.",
+      "auto_fails": [
+        "decorative_mascot: In seg0:start and seg0:mid, the mascot stands next to a box, observing the main character with back pain, but doesn't perform a specific action tied to the stat. In seg3:start and seg3:mid, the mascot is perched on the stack of boxes, observing, but not actively performing a bit with setup->action->payoff."
+      ],
+      "problems": [
+        "The mascot is somewhat decorative in the hook (seg0) and seg3, not performing a distinct bit with a clear setup, action, and payoff."
+      ],
+      "fixes": [
+        "In seg0, give the mascot a more active role related to the back pain, e.g., trying to help the person, or pointing to the scale of the problem.",
+        "In seg3, have the mascot interact more directly with the boxes or the worker to emphasize the burden or the increase."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 74
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "decorative_mascot"
+      ],
+      "weakest_scene": {
+        "id": "seg0",
+        "index": 0,
+        "failure_class": "mascot_performance",
+        "visible_evidence": "The mascot stands next to a box, observing the main character with back pain, but doesn't perform a specific action tied to the stat or the pain in the hook.",
+        "root_cause": "The mascot's action is passive observation rather than an active demonstration or interaction with the data, especially in a critical hook segment.",
+        "repair_goal": "Integrate the mascot into the visual demonstration of back pain or its impact, perhaps by interacting with the suffering character or the '619M people' concept, to make its role more active and engaging from the start."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.149,
+        "effective_fps": 20.4,
+        "max_dup_run": 32,
+        "measured": true,
+        "frozen_ratio": 0.061,
+        "frozen_fps": 22.5,
+        "max_frozen_run": 15,
+        "judder_ratio": 0.005,
+        "judder_fps": 23.9,
+        "held_s": 2.04,
+        "max_dup_at_s": 20.5,
+        "duration_s": 24.58
+      },
+      "fingerprint": "?|decorative_mascot|mascot_performance"
+    },
+    {
+      "ts": "2026-10-13T17:44:29+00:00",
+      "slug": "hpv-vaccine-cancer-drop",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The video effectively demonstrates the impact of the HPV vaccine through engaging visual metaphors and an active mascot.",
+      "auto_fails": [],
+      "problems": [
+        "The transition of the flask filling between the end of seg0 and the start of seg1 is abrupt, lacking continuous animation."
+      ],
+      "fixes": [
+        "Smooth out the animation of the flask filling to ensure a continuous visual representation of the data across segments."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 83
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg0",
+        "index": 0,
+        "failure_class": "Visual Craft",
+        "visible_evidence": "The flask instantly fills completely between Frame seg0:end (t=2.68s) and Frame seg1:start (t=4.70s) without a continuous animation.",
+        "root_cause": "Lack of smooth animation for the full data representation across a segment boundary.",
+        "repair_goal": "Ensure continuous and smooth animation for the flask filling to represent the data proportion without abrupt jumps."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.053,
+        "effective_fps": 22.7,
+        "max_dup_run": 13,
+        "measured": true,
+        "frozen_ratio": 0.032,
+        "frozen_fps": 23.2,
+        "max_frozen_run": 13,
+        "judder_ratio": 0.003,
+        "judder_fps": 23.9,
+        "held_s": 0.71,
+        "max_dup_at_s": 0.0,
+        "duration_s": 27.79
+      },
+      "fingerprint": "?|-|Visual Craft"
+    },
+    {
+      "ts": "2026-10-14T00:18:51+00:00",
+      "slug": "sports_anne_hathaway_y_guesses_og",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "The moment is genuinely charming: an Oscar winner correctly guessing an NBA player. But it opens on a distant wide shot, never shows the Game 4 play she describes, and ends on a cutaway to Dakota rather than a punchline.",
+      "auto_fails": [],
+      "problems": [
+        "Hook (0-2.2s) is a far wide shot. The card and Anne are small, and most of the frame is tablecloth.",
+        "The Game 4 play she explains is never shown, so the 'explains his play' half of the title has nothing on screen.",
+        "The ending (mid5, payoff@-0.4) cuts to Dakota Johnson reacting with no captions, so there is no clear landing.",
+        "Blurred pad bands at the top and bottom waste about 20% of the frame throughout.",
+        "Around 45s is long for a single talk-show bit. The middle (mid2 to mid4) drifts."
+      ],
+      "fixes": [
+        "Start on the close-up card reveal (mid0), or punch in on the wide shot from frame 1.",
+        "Cut in a few seconds of OG Anunoby's Game 4 basket when she describes it, as a show-it layover.",
+        "End on her best line about the play, or the strongest reaction, instead of a silent Dakota cutaway.",
+        "Trim to about 25-30s around the guess, the explanation and the reaction."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 136
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_framing",
+        "visible_evidence": "hook@0.3 to hook@2.2 is a distant wide shot: Anne is small in the middle, the 'OG ANUNOBY' card can barely be read at phone size, and most of the frame is tablecloth and wall.",
+        "root_cause": "The cut opens on the source's wide establishing shot rather than the close-up of her reveal, which only arrives at mid0 (2.5s).",
+        "repair_goal": "Open on the mid0 close-up, where the card reading 'OG ANUNOBY' fills the top of the frame, or punch in on the wide shot from frame 1. The reveal should be legible in the first second, and the cut should end on the Game 4 explanation landing rather than on a reaction mid-sentence."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.301,
+        "effective_fps": 16.8,
+        "max_dup_run": 20,
+        "measured": true,
+        "frozen_ratio": 0.16,
+        "frozen_fps": 20.2,
+        "max_frozen_run": 4,
+        "judder_ratio": 0.103,
+        "judder_fps": 21.5,
+        "held_s": 5.92,
+        "max_dup_at_s": 32.75,
+        "duration_s": 45.42
+      },
+      "fingerprint": "?|-|weak_hook_framing"
+    },
+    {
+      "ts": "2026-10-14T00:22:53+00:00",
+      "slug": "sports_alex_ovechkin_heir_dad_for",
+      "score": 83,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A genuine, warm moment: the sons at the mic, then Ovechkin skating out under the spotlight. But our line sits over the source's banner in the opening, and the ending fades into generic skating instead of landing on the emotion.",
+      "auto_fails": [
+        "unreadable: In hook@0.3 through mid0, our line 'Ovechkin's sons introduce him one last time' is printed on top of the source's own dark lower-third banner, which has a Capitals logo at its left edge. Our text is stacked over the footage's graphic."
+      ],
+      "problems": [
+        "hook@0.3 to mid0: our caption is drawn over the source's dark lower-third banner with the Capitals logo.",
+        "The frames never show the moment the boys actually say his name. mid1 cuts to the skate-out with only 'THANK YOU.' as the caption.",
+        "mid5 and payoff@-0.4 end on low-energy skating near the bench, not on a final emotional beat (a crowd roar or him hugging the boys)."
+      ],
+      "fixes": [
+        "Move or reposition our line during the intro so it never overlaps the source's banner, or crop the banner out.",
+        "Keep the line where the boys introduce him in full, with word captions, so the promise of the hook is heard.",
+        "End on the strongest reaction (the stick salute at mid4, or the family), not on him skating away."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.006,
+        "sampled": 175
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "text_over_source_graphic",
+        "visible_evidence": "From hook@0.3 to mid0, our caption sits directly over the source clip's dark lower-third banner, which has the Capitals logo at its left.",
+        "root_cause": "The caption line is placed at a fixed bottom-third Y position without detecting the burned-in banner in the source footage.",
+        "repair_goal": "Move our line above the source banner during the intro segment, or crop the banner out, so our text never overlaps the footage's own graphic. Also keep the boys' spoken introduction audible and captioned so a stranger hears them say their dad's name."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.094,
+        "effective_fps": 21.7,
+        "max_dup_run": 5,
+        "measured": true,
+        "frozen_ratio": 0.027,
+        "frozen_fps": 23.3,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.014,
+        "judder_fps": 23.7,
+        "held_s": 0.17,
+        "max_dup_at_s": 5.96,
+        "duration_s": 58.25
+      },
+      "fingerprint": "?|unreadable|text_over_source_graphic"
+    },
+    {
+      "ts": "2026-10-14T00:28:10+00:00",
+      "slug": "sports_dana_white__asked_about",
+      "score": 61,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The title promises Dana 'losing it', but 84 seconds of calm press-conference talking head never shows a snap, and the opening is a slow reporter question.",
+      "auto_fails": [],
+      "problems": [
+        "Hook (hook@0.3-2.2) is Dana sitting still while the reporter's question scrolls. Nothing in the first two seconds makes a stranger stay.",
+        "No frame shows an outburst. He is calm or smirking in mid1-mid4 and smiling at payoff@-0.4, which contradicts 'Loses It On Camera'.",
+        "About 84 seconds of one locked medium shot with almost no zooms or sound hits, far longer than the moment needs.",
+        "Blurred letterbox bands eat about 28% of the frame at top and bottom.",
+        "A stranger gets no context for the Eddie Hearn breach-of-contract claim, so the jab doesn't land."
+      ],
+      "fixes": [
+        "Open on the most heated line Dana says, with a punch-in and a sound hit in the first second.",
+        "Cut to the 25-40 seconds around the actual retort and drop the long setup.",
+        "Add punch-ins on his sharpest words so the reaction reads as a snap.",
+        "Reframe to fill 9:16 so the blurred bands go.",
+        "If the footage really shows a calm brush-off, change the line to match what is shown (e.g. 'Dana White shuts down Eddie Hearn question') rather than promising a meltdown."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 251
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "promise_not_delivered",
+        "visible_evidence": "From hook@0.3 to mid0 Dana sits calmly with his hands folded and lips pursed while the reporter's question scrolls in captions (\"YOUR FRIEND EDDIE\", \"ARIEL HELWANI TODAY.\"). In mid1-mid4 he talks evenly or smirks, and in payoff@-0.4 he smiles. No frame shows anything that reads as 'snapping' or 'los",
+        "root_cause": "The cut opens on a slow reporter question and runs about 84 seconds of a calm, static, medium-wide talking head. There are no punch-ins or sound hits at the heated line, so the outburst the title promises never visibly arrives, and the payoff ends on a smile.",
+        "repair_goal": "Start on Dana's sharpest retort (the most heated second of his answer) with a punch-in and a sound hit, and keep only a 2-3 second fragment of the question for context. Trim to the 25-40 seconds around the actual blow-up and end on his hardest line, not a smile. Crop tighter to fill the frame and re"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.253,
+        "effective_fps": 17.9,
+        "max_dup_run": 32,
+        "measured": true,
+        "frozen_ratio": 0.057,
+        "frozen_fps": 22.6,
+        "max_frozen_run": 9,
+        "judder_ratio": 0.001,
+        "judder_fps": 24.0,
+        "held_s": 13.33,
+        "max_dup_at_s": 56.33,
+        "duration_s": 83.67
+      },
+      "fingerprint": "?|-|promise_not_delivered"
+    },
+    {
+      "ts": "2026-10-14T00:51:02+00:00",
+      "slug": "sports_mike_evans__with_trevon",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "It's a real moment with the right people, but the on-field exchange sits frozen for 32 seconds under a press-conference monologue. The 'Who are you? ... oh, it's Diggs' punchline is never shown or punched up, and the clip ends mid-sentence.",
+      "auto_fails": [],
+      "problems": [
+        "The bottom game-footage panel is the same frozen frame from mid0 (2.5s) to the end, so the exchange the hook promises is never seen happening.",
+        "The hook (hook@0.3 to hook@2.2) is a man looking down at a podium. Nothing happens in the first two seconds that would make a stranger stay.",
+        "There's no zoom, punch-in or sound hit on the reveal line. A 35-second talking head plays flat.",
+        "It ends on 'IS WHAT' (payoff@-0.4), mid-thought. The payoff line 'it's fucking Diggs' isn't clearly landed at the end.",
+        "The word captions sit tight above the hook line and crowd the lower-middle of the field panel."
+      ],
+      "fixes": [
+        "Use the moving on-field clip of the exchange, looped or replayed, rather than a held frame.",
+        "Cold-open on the quote 'I was like, who are you?' with the field exchange playing, then cut to the explanation.",
+        "Trim the monologue to the setup and the reveal. End right after 'Oh, it's Diggs' with a punch-in on Evans and a sound hit.",
+        "Move the word captions up or into the gap so they stay well clear of the hook line."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 105
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid1",
+        "index": 1,
+        "failure_class": "frozen_reaction_panel",
+        "visible_evidence": "From mid0 (2.5s) through payoff@-0.4 (34.7s), the bottom field panel shows the same frame: #5 grappling #16 DIGGS in the same positions. Only the caption words change. The duplicate run of 27 at 19.29s and held_s 7.46 back this up.",
+        "root_cause": "The on-field exchange is a very short clip, or a single frame, held under a 35-second press-conference monologue. The moment the line promises is a frozen picture rather than something the viewer watches happen, and nothing zooms, punches in or hits a sound on 'Who are you?' or 'Oh, it's Diggs'.",
+        "repair_goal": "Loop or replay the real on-field exchange footage in the bottom panel, timed so the moment Evans says 'Who are you?' and 'it's fucking Diggs' lines up with the face-to-face shot. Add a punch-in and sound hit on that line so the payoff lands visibly before the end, and trim the dead middle of the mon"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.38,
+        "effective_fps": 14.9,
+        "max_dup_run": 27,
+        "measured": true,
+        "frozen_ratio": 0.044,
+        "frozen_fps": 22.9,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.007,
+        "judder_fps": 23.8,
+        "held_s": 7.46,
+        "max_dup_at_s": 19.29,
+        "duration_s": 35.08
+      },
+      "fingerprint": "?|-|frozen_reaction_panel"
+    },
+    {
+      "ts": "2026-10-14T00:57:50+00:00",
+      "slug": "sports_anne_hathaway_y_guesses_og",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "A real, on-brand celebrity-meets-NBA moment with a clear hook card, but the ending trails off on a listening shot instead of landing the reaction.",
+      "auto_fails": [],
+      "problems": [
+        "The ending (payoff@-0.4) stops on Dakota listening, with no reaction or punchline.",
+        "The 'explains his Game 4 play' half is talk only. A viewer who doesn't know the play gets no picture of it.",
+        "Word captions are fragmentary ('SOMETHING GOES WAY', 'I COULDN'T LET'), so the explanation is hard to follow at a glance."
+      ],
+      "fixes": [
+        "Trim the end so it closes on the friends' surprised reaction or Anne's punchline sentence.",
+        "Optionally cut in a few seconds of OG Anunoby's Game 4 play as a layover while she describes it.",
+        "Keep word captions to complete short phrases so the explanation reads."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 160
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "payoff",
+        "index": 11,
+        "failure_class": "weak_payoff",
+        "visible_evidence": "payoff@-0.4 ends on Dakota Johnson listening mid-sentence with her hands clasped. The final word captions are fragments ('I MEAN,' at mid5, 'CHAMPIONSHIP.' at mid4), and there is no clear reaction beat or punchline on screen.",
+        "root_cause": "The cut runs on through Anne's explanation and stops on a listener instead of ending on the reaction that lands it: the friends' amazement, or her explanation's closing line.",
+        "repair_goal": "End the cut on the strongest reaction, such as Josh or Dakota reacting with surprise to her knowing OG Anunoby, or on Anne's last complete sentence about the Game 4 play. Trim the trailing listening shot so the payoff lands in the last 2 seconds."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.337,
+        "effective_fps": 15.9,
+        "max_dup_run": 20,
+        "measured": true,
+        "frozen_ratio": 0.169,
+        "frozen_fps": 20.0,
+        "max_frozen_run": 6,
+        "judder_ratio": 0.103,
+        "judder_fps": 21.5,
+        "held_s": 8.83,
+        "max_dup_at_s": 40.75,
+        "duration_s": 53.42
+      },
+      "fingerprint": "?|-|weak_payoff"
+    },
+    {
+      "ts": "2026-10-14T01:01:43+00:00",
+      "slug": "sports_pat_murphy_kubal_i_just",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "An 81-second unedited presser answer with a garbled first caption; the viral 'step on his throat' line is buried instead of leading the clip.",
+      "auto_fails": [],
+      "problems": [
+        "The hook is a static talking head with a misspelled ASR caption ('MIZ AGAINST SCOOBL') in the first frame",
+        "At 81s the clip is far too long for one presser quote; the promised line is never put front and center",
+        "There are no zooms, punch-ins or sound hits on the key line, so it does not feel like a repost-style edit",
+        "Letterbox bands top and bottom waste about a quarter of the frame",
+        "Caption glitch 'IF\u266aYOU'RE' at mid3",
+        "The payoff frames ('HE CAN LOSE', then no caption) end on a mid-thought, not a punchline"
+      ],
+      "fixes": [
+        "Trim to about 20-30s centered on 'I just want to step on his throat. I mean that respectfully.'",
+        "Open on that line or flash-forward it into the first 2 seconds, with a punch-in zoom and a sound hit",
+        "Correct the transcript for proper names (Skubal) and strip the stray glyphs",
+        "Crop to fill 9:16 with no letterbox bands",
+        "End on the 'I mean that respectfully' beat so the payoff lands"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 3.33,
+        "dark_fraction": 0.0,
+        "sampled": 244
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook",
+        "visible_evidence": "hook@0.3 to hook@2.2 show a static medium shot of a manager sitting at a presser table. The first caption is a garbled transcript ('MIZ AGAINST SCOOBL') followed by 'IT'S A SPECIAL'. No zoom, no sound hit, and the 'step on his throat' line the title promises is not in the opening",
+        "root_cause": "The cut runs the whole 81s presser answer from the beginning instead of opening on the quotable line, and the ASR caption misspells Skubal's name in the first frame",
+        "repair_goal": "Open on (or flash-forward to) 'I just want to step on his throat. I mean that respectfully.' with a punch-in zoom and a hit. Trim the answer to about 20-30s around that line, fix the transcript so it reads 'Skubal', and remove the letterbox bands with a tighter crop"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.471,
+        "effective_fps": 12.7,
+        "max_dup_run": 36,
+        "measured": true,
+        "frozen_ratio": 0.164,
+        "frozen_fps": 20.1,
+        "max_frozen_run": 32,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 31.75,
+        "max_dup_at_s": 8.42,
+        "duration_s": 81.21
+      },
+      "fingerprint": "?|-|weak_hook"
+    },
+    {
+      "ts": "2026-10-14T01:03:32+00:00",
+      "slug": "sports_kyle_shanahan_uel_theres_a",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A real Shanahan press-conference moment, but it's a static talking head that opens on a reporter's question and buries the joke, so the first two seconds don't hold a stranger and the payoff barely lands.",
+      "auto_fails": [],
+      "problems": [
+        "The hook is a reporter's mid-sentence question over a motionless coach, with no reason to stay",
+        "The joke payoff ('no-rules tackle game, I'd pick Deebo first') arrives late and ends on a held 'PICK IN THE' caption at payoff@-1.8 to -0.4 without clearly landing",
+        "No zooms, punch-ins or sound hits on the funny line, despite the sports-moment contract asking for them",
+        "The word captions misspell 'DEBO' at hook@1.5 and mid1, and 'KICK RETURNER,' at mid2 has a stray overlapping glyph",
+        "The footage is letterboxed between blurred bands, and the low-fps source shows as duplicate frames (effective 11.7fps)"
+      ],
+      "fixes": [
+        "Cut straight to 'there's a game we used to play... I can't say the name of it anymore' in the first second",
+        "Punch in, with a sound hit, on the 'tackle the guy with the ball, no rules' and 'first pick' lines so the payoff lands before the end",
+        "Spell Deebo correctly in the word captions and clean the caption glyph artifact",
+        "Crop the source to fill more of the frame instead of using blurred bands"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 82
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook",
+        "visible_evidence": "hook@0.3 to hook@2.2: a static, stone-faced coach at a podium under the caption 'HOW MUCH OF ... YOUR PLAYBOOK CAN'. A reporter's question starts mid-sentence, with no reaction, zoom or sound hit",
+        "root_cause": "The cut starts on the reporter's question instead of the funny line. The payoff ('tackle the guy with the ball with no rules ... first pick') only arrives around 16-25s, and it ends on a held 'PICK IN THE' with the caption vanishing at payoff@-0.4",
+        "repair_goal": "Open on Shanahan's 'there's a game we used to play... I can't say the name of it anymore' with a punch-in. Trim the playbook preamble to a second or two. Land a zoom and sound hit on 'I'd pick Deebo first', and fix the 'DEBO' spelling in the word captions"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.514,
+        "effective_fps": 11.7,
+        "max_dup_run": 50,
+        "measured": true,
+        "frozen_ratio": 0.209,
+        "frozen_fps": 19.0,
+        "max_frozen_run": 13,
+        "judder_ratio": 0.003,
+        "judder_fps": 23.9,
+        "held_s": 11.38,
+        "max_dup_at_s": 15.0,
+        "duration_s": 27.42
+      },
+      "fingerprint": "?|-|weak_hook"
+    },
+    {
+      "ts": "2026-10-14T01:05:57+00:00",
+      "slug": "sports_steven_gerrard__else_steven",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Right person and a real quote, but our caption is printed over the clip's own burned-in captions for a full minute, and it's a 66-second talking head with no visual payoff.",
+      "auto_fails": [
+        "unreadable: In mid1 through payoff@-0.4 our white line 'Gerrard says City took memories from everyone' sits directly on top of the footage's own burned-in captions ('SIT HERE', 'IN THAT DEPARTMENT', 'AND SPURS FANS', 'FROM EVERYONE ELSE'). Both texts collide and the top half of each source word is cut off."
+      ],
+      "problems": [
+        "Our line overlaps the source's burned-in captions in every frame from mid1 to the end, so both are unreadable on a phone.",
+        "The hook duplicates the source's own blue quote card with our line, which is redundant, and the split-screen top/bottom layout from the source repost is kept.",
+        "66 seconds of an unbroken talking head: no punch-in, no sound hit and no cut-in of the City title or the Gerrard slip that the story refers to.",
+        "The payoff (payoff@-0.4 'FROM EVERYONE ELSE') ends on the same quote the hook already showed, so nothing builds."
+      ],
+      "fixes": [
+        "Move our line out of the source's caption band (top third), or suppress it where OCR finds burned-in captions.",
+        "Cut to the 15-25s around 'they've stolen memories from everyone else' and open on him saying it.",
+        "Add a punch-in on the line delivery and a short cut-in of the 2014 title race or City celebrating so a stranger knows what memories he means."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 199
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg0",
+        "index": 1,
+        "failure_class": "unreadable",
+        "visible_evidence": "From mid1 to payoff@-0.4 our caption line overlaps the source's burned-in white capitals at y\u2248550-610. In the hook (hook@0.3-2.2) our line also repeats the source's blue quote card and covers the interviewer below it.",
+        "root_cause": "Our line is placed at a fixed bottom-third y without detecting that the repost already carries its own burned-in captions in that same band.",
+        "repair_goal": "Detect the source's burned-in caption band (OCR) and move our line clear of it, either to the top third above Gerrard's head or into a band the source captions never use. Alternatively, drop our line while the source's own quote card is on screen. Then trim the 66s monologue to the 'stolen memories'"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.299,
+        "effective_fps": 16.8,
+        "max_dup_run": 39,
+        "measured": true,
+        "frozen_ratio": 0.144,
+        "frozen_fps": 20.5,
+        "max_frozen_run": 9,
+        "judder_ratio": 0.042,
+        "judder_fps": 23.0,
+        "held_s": 9.71,
+        "max_dup_at_s": 24.58,
+        "duration_s": 66.25
+      },
+      "fingerprint": "?|unreadable|unreadable"
+    },
+    {
+      "ts": "2026-10-14T01:07:26+00:00",
+      "slug": "sports_steven_gerrard__else_steven",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Genuine Gerrard quote, but it's 31 seconds of one flat talking head with no zooms or hits, opening mid-sentence and missing the context a stranger needs to see why City 'stole' memories.",
+      "auto_fails": [],
+      "problems": [
+        "Hook (0\u20132.2s) starts mid-sentence on 'City players\u2026 a lot of\u2026 City fans and' with no motion, zoom or strong line",
+        "No repost-style edit moves (punch-ins, sound hits) on the key line. Nearly all of it is one medium shot, apart from the wide angle at mid2",
+        "Our line is stacked directly on the burned-in OVERLAP DAILY / sky vegas/sky bet sponsor logo, which clutters the top-left",
+        "Never explains what City is accused of (the 115 charges), so the 'stolen memories' payoff is hard for a stranger to understand",
+        "The two payoff frames (29.4s, 30.8s) show the caption 'POTENTIALLY' and then 'FROM EVERYONE ELSE'. The line lands, but in a flat delivery with no emphasis"
+      ],
+      "fixes": [
+        "Cold-open on 'They've stolen memories from everyone else' with a punch-in and a sound hit, then play the setup",
+        "Add a punch-in or zoom with a hit on the payoff line at the end",
+        "Move or position our line so it does not sit on the Overlap/sky logo, or crop the sponsor logo out of the frame",
+        "Add a second line of context at the turn (e.g. 'City face 115 charges') so a stranger knows why the memories are in dispute",
+        "Trim the middle (mid1\u2013mid4) so the clip reaches the quote sooner"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 94
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_missing_context",
+        "visible_evidence": "At hook@0.3\u20132.2 we see a seated medium shot of Gerrard mid-sentence ('CITY PLAYERS', 'A LOT OF', 'CITY FANS AND'). There is no zoom, no sound hit and no strong line in the first two seconds, and the sponsor logo sits under our line.",
+        "root_cause": "The cut opens partway through a long answer instead of on its sharpest line ('They've stolen memories from everyone else'). No repost-style move is used, and the viewer is never told why City's memories are in dispute (the 115 charges).",
+        "repair_goal": "Open on the quote 'they've stolen memories from everyone else' with a punch-in and a sound hit. Then cut back to the setup about City fans saying 'you can't take our moments', and end on the quote again with a zoom. Move our line below the OVERLAP/sky logo, or crop the logo out."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.211,
+        "effective_fps": 18.9,
+        "max_dup_run": 18,
+        "measured": true,
+        "frozen_ratio": 0.111,
+        "frozen_fps": 21.3,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.035,
+        "judder_fps": 23.2,
+        "held_s": 2.54,
+        "max_dup_at_s": 14.42,
+        "duration_s": 31.21
+      },
+      "fingerprint": "?|-|weak_hook_missing_context"
+    },
+    {
+      "ts": "2026-10-14T01:11:18+00:00",
+      "slug": "sports_alex_ovechkin_heir_dad_for",
+      "score": 87,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A real, heartfelt moment that delivers what the line promises: the sons introduce him and Ovechkin skates out, but the letterboxed hook leaves the boys small in the frame.",
+      "auto_fails": [],
+      "problems": [
+        "The 16:9 source is letterboxed with blurred pads, so about 25% of the vertical frame is wasted",
+        "In the hook the boys are small and cut off on the right edge (hook@0.3 to mid0)",
+        "In the hook our line sits over a dark banner strip from the source footage",
+        "The sons' actual words are not captioned in the hook, so the sweetest line is not on screen"
+      ],
+      "fixes": [
+        "Reframe the hook vertically on the two sons and the mic instead of padding it",
+        "Caption the sons' introduction line so a viewer with the sound off gets it",
+        "Punch in on Ovechkin's reaction in mid3 and on the skate-out in payoff@-0.4"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.006,
+        "sampled": 164
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "letterbox_pad",
+        "visible_evidence": "hook@0.3 to mid0: the 16:9 source sits in a center band with blurred pads top and bottom. The boys are small and cut off on the right edge, and the mic speech is not captioned in the hook",
+        "root_cause": "a horizontal source was padded rather than reframed vertically on the speaking child",
+        "repair_goal": "crop the hook full-height on the two sons and the mic, and caption what they say into the mic so the first two seconds carry the sweet line"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.097,
+        "effective_fps": 21.7,
+        "max_dup_run": 5,
+        "measured": true,
+        "frozen_ratio": 0.027,
+        "frozen_fps": 23.4,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.012,
+        "judder_fps": 23.7,
+        "held_s": 0.17,
+        "max_dup_at_s": 5.96,
+        "duration_s": 54.79
+      },
+      "fingerprint": "?|-|letterbox_pad"
     }
   ],
   "showrunner_recurrence": {
@@ -4082,84 +4039,24 @@
       ]
     },
     "?|-|weak_hook": {
-      "count": 4,
+      "count": 5,
       "days": [
         "2026-10-10",
-        "2026-10-11"
+        "2026-10-11",
+        "2026-10-14"
       ]
     },
     "?|-|weak_payoff": {
       "count": 3,
       "days": [
-        "2026-10-10",
-        "2026-10-12"
-      ]
-    },
-    "?|-|slow_chart_build_hook": {
-      "count": 2,
-      "days": [
-        "2026-10-10",
-        "2026-10-11"
+        "2026-10-12",
+        "2026-10-14"
       ]
     },
     "longform|temporal_gate|-": {
       "count": 2,
       "days": [
         "2026-10-11"
-      ]
-    },
-    "?|bare_number_card+dead_air+decorative_mascot+empty_void+unreadable|meaningless_closing_visual": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
-      ]
-    },
-    "?|decorative_mascot+unreadable|chart_with_decorative_mascot": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
-      ]
-    },
-    "?|bare_number_card+decorative_mascot+empty_void+unreadable|bare_number_card": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
-      ]
-    },
-    "?|decorative_mascot+unreadable|chart_contradicts_claim": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
-      ]
-    },
-    "?|decorative_mascot+unreadable|wrong_data_label": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
-      ]
-    },
-    "?|unreadable|claim_mismatch_and_label_collision": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
-      ]
-    },
-    "?|decorative_mascot+unreadable|chart_restates_hook_with_wrong_units": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
-      ]
-    },
-    "?|-|claim_picture_mismatch": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
-      ]
-    },
-    "?|unreadable|claim_mismatch": {
-      "count": 1,
-      "days": [
-        "2026-10-09"
       ]
     },
     "?|-|generic_illustration": {
@@ -4214,6 +4111,12 @@
       "count": 1,
       "days": [
         "2026-10-10"
+      ]
+    },
+    "?|-|slow_chart_build_hook": {
+      "count": 1,
+      "days": [
+        "2026-10-11"
       ]
     },
     "?|-|slow_hook": {
@@ -4359,16 +4262,69 @@
       "days": [
         "2026-10-13"
       ]
+    },
+    "?|decorative_mascot|mascot_performance": {
+      "count": 1,
+      "days": [
+        "2026-10-13"
+      ]
+    },
+    "?|-|Visual Craft": {
+      "count": 1,
+      "days": [
+        "2026-10-13"
+      ]
+    },
+    "?|-|weak_hook_framing": {
+      "count": 1,
+      "days": [
+        "2026-10-14"
+      ]
+    },
+    "?|unreadable|text_over_source_graphic": {
+      "count": 1,
+      "days": [
+        "2026-10-14"
+      ]
+    },
+    "?|-|promise_not_delivered": {
+      "count": 1,
+      "days": [
+        "2026-10-14"
+      ]
+    },
+    "?|-|frozen_reaction_panel": {
+      "count": 1,
+      "days": [
+        "2026-10-14"
+      ]
+    },
+    "?|unreadable|unreadable": {
+      "count": 1,
+      "days": [
+        "2026-10-14"
+      ]
+    },
+    "?|-|weak_hook_missing_context": {
+      "count": 1,
+      "days": [
+        "2026-10-14"
+      ]
+    },
+    "?|-|letterbox_pad": {
+      "count": 1,
+      "days": [
+        "2026-10-14"
+      ]
     }
   },
   "recent_commits": [
-    "20841e7 2026-10-13 sports: 2026-10-13 posted log + verdicts [skip ci]",
-    "b1697b7 2026-10-13 watchdog: chatgpt task verdicts 20261013 [skip ci]"
+    "e32291a 2026-10-14 claim: mailbox verdicts 2026-10-14T04:48Z [skip ci]",
+    "0453ab2 2026-10-14 claim: mailbox verdicts 2026-10-14T03:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-09-29": 6,
         "2026-09-30": 5,
         "2026-10-01": 4,
         "2026-10-02": 4,
@@ -4380,15 +4336,15 @@
         "2026-10-09": 5,
         "2026-10-10": 5,
         "2026-10-11": 5,
-        "2026-10-12": 3
+        "2026-10-12": 3,
+        "2026-10-14": 3
       },
-      "total_posted": 442,
-      "attempted": 442,
+      "total_posted": 445,
+      "attempted": 445,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-09-29": 1,
         "2026-09-30": 3,
         "2026-10-01": 4,
         "2026-10-02": 3,
@@ -4402,10 +4358,10 @@
         "2026-10-10": 3,
         "2026-10-11": 2,
         "2026-10-12": 2,
-        "2026-10-13": 1
+        "2026-10-13": 2
       },
-      "total_posted": 324,
-      "attempted": 324,
+      "total_posted": 325,
+      "attempted": 325,
       "rejected_or_pending": 0
     },
     "third": {
@@ -4441,32 +4397,32 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 124,
+      "videos": 123,
       "top_by_vph": [
         {
-          "title": "The Doomsday Clock Just Hit 89 Seconds To Midnight",
-          "vph": 42.15,
-          "views": 41
+          "title": "Polio Cases Fell 99.9% In One Generation",
+          "vph": 9.06,
+          "views": 403
         },
         {
           "title": "Pollen Season Just Got 20 Days Longer",
-          "vph": 12.24,
+          "vph": 8.48,
           "views": 428
         },
         {
-          "title": "Polio Cases Fell 99.9% In One Generation",
-          "vph": 11.81,
-          "views": 342
-        },
-        {
           "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
-          "vph": 10.7,
+          "vph": 8.46,
           "views": 627
         },
         {
+          "title": "The Doomsday Clock Just Hit 89 Seconds To Midnight",
+          "vph": 5.15,
+          "views": 85
+        },
+        {
           "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
-          "vph": 4.93,
-          "views": 540
+          "vph": 4.33,
+          "views": 541
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
@@ -4476,36 +4432,36 @@
       "top_by_vph": [
         {
           "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 12.97,
+          "vph": 11.91,
           "views": 874
         },
         {
           "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
-          "vph": 3.03,
-          "views": 705
+          "vph": 2.97,
+          "views": 708
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 2.36,
-          "views": 431
+          "vph": 2.3,
+          "views": 434
         },
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 2.2,
+          "vph": 2.18,
           "views": 1361
         },
         {
           "title": "Plaqueboymax Dance Fails And Hits His Mouth On Camera",
-          "vph": 1.09,
+          "vph": 1.04,
           "views": 123
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261010/brief.json",
       "retro/20261011/brief.json",
-      "retro/20261012/brief.json"
+      "retro/20261012/brief.json",
+      "retro/20261013/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
