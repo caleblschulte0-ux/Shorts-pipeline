@@ -5,19 +5,54 @@
  "dry_run": false,
  "slots": [
   {
-   "sub": "nba",
-   "who": "Jaylen Brown",
-   "why": "Mic'd-up style clap back at Anthony Edwards with a savage condom line about Adidas.",
-   "post_title": "Jaylen Brown claps back at Anthony Edwards for taking shots at him and LeBron: \"Adidas doing anything for my boy, they need to give my boy some condoms",
+   "sub": "nfl",
+   "who": "Mike Evans",
+   "why": "Evans tells the story of not knowing it was Diggs, with the funny 'Who are you?' beat, a mic'd-up style reaction.",
+   "post_title": "[Highlight] Mike Evans on his exchange with Trevon Diggs: \"I honestly didn't know it was him ... I was like, Who are you?' Then I looked and made sure: 'Oh, it's fucking Diggs.'\"",
    "upvotes": 0,
-   "url": "https://streamable.com/f4zgsr",
-   "topic": "https://www.reddit.com/r/nba/comments/1x21qyh/jaylen_brown_claps_back_at_anthony_edwards_for",
-   "skipped": "author: no setup or no payoff in the clip"
+   "url": "https://www.reddit.com/r/nfl/comments/1x47kf7/highlight_mike_evans_on_his_exchange_with_trevon/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x47kf7/highlight_mike_evans_on_his_exchange_with_trevon",
+   "title": "Mike Evans Didn't Know It Was Trevon Diggs Until He Looked Twice",
+   "hook": "Mike Evans asks Diggs who are you \ud83d\udc80",
+   "ledger": {
+    "moves": [
+     "zoom@24.6"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    }
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: It's a real moment with the right people, but the on-field exchange sits frozen for 32 seconds under a press-conference monologue. The 'Who are you? ... oh, it's Diggs' punchline is never shown or punched up, and the clip ends mid-sentence."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: It's a real moment with the right people, but the on-field exchange sits frozen for 32 seconds under a press-conference monologue. The 'Who are you? ... oh, it's Diggs' punchline is never shown or punched up, and the clip ends mid-sentence.",
+    "score": 66
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: It's a real moment with the right people, but the on-field exchange sits frozen for 32 seconds under a press-conference monologue. The 'Who are you? ... oh, it's Diggs' punchline is never shown or punched up, and the clip ends mid-sentence."
+  },
+  {
+   "sub": "nfl",
+   "who": "Mike Evans",
+   "why": "Evans spins Diggs around to see who he is and Diggs gives him a shot, a scuffle with real personality.",
+   "post_title": "[Highlight] Mike Evans turns around Diggs to see who he is, Diggs gives him a shot after being embarrassed",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x3ku7b/highlight_mike_evans_turns_around_diggs_to_see/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x3ku7b/highlight_mike_evans_turns_around_diggs_to_see",
+   "skipped": "too short: the post runs 5.7s (< 15s)"
   },
   {
    "sub": "nba",
    "who": "Jonathan Kuminga",
-   "why": "He threatens to slap a fan who called him 'Kum Bucket', a raw and funny reaction.",
+   "why": "Kuminga threatens to slap whoever called him 'Kum Bucket', a funny interview answer.",
    "post_title": "Jonathan Kuminga responds to fan who calls him \u201cKum Bucket\u201d: \u2018Whoever said that, imma come find you and I\u2019ll slap you.\u201d",
    "upvotes": 0,
    "url": "https://streamable.com/12ssok",
@@ -26,17 +61,27 @@
   },
   {
    "sub": "nba",
+   "who": "Jaylen Brown",
+   "why": "Brown claps back at Anthony Edwards with a savage Adidas joke, trash talk in his own words.",
+   "post_title": "Jaylen Brown claps back at Anthony Edwards for taking shots at him and LeBron: \"Adidas doing anything for my boy, they need to give my boy some condoms",
+   "upvotes": 0,
+   "url": "https://streamable.com/f4zgsr",
+   "topic": "https://www.reddit.com/r/nba/comments/1x21qyh/jaylen_brown_claps_back_at_anthony_edwards_for",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nba",
    "who": "Anne Hathaway",
-   "why": "An Oscar winner nails OG Anunoby's name and breaks down his game to confused co-stars.",
+   "why": "An Oscar winner correctly guesses OG Anunoby's name and explains his Game 4 play to her castmates.",
    "post_title": "Oscar winner Anne Hathaway correctly guesses OG Anunoby\u2019s name and explains his Game 4 play to Dakota Johnson and Josh Hartnett",
    "upvotes": 0,
    "url": "https://streamable.com/bxz217",
    "topic": "https://www.reddit.com/r/nba/comments/1x0utpc/oscar_winner_anne_hathaway_correctly_guesses_og",
-   "title": "Anne Hathaway Guesses OG Anunoby And Explains His Game 4 Play \ud83c\udfc0",
-   "hook": "Anne Hathaway saves her team with OG Anunoby \ud83c\udfc0",
+   "title": "Anne Hathaway Nails OG Anunoby's Name And Saves Her Friends Mid-Game",
+   "hook": "Anne Hathaway guesses OG Anunoby \ud83d\ude33",
    "ledger": {
     "moves": [
-     "zoom@18.2"
+     "zoom@26.2"
     ],
     "mood": null,
     "shot_plan": {
@@ -58,36 +103,174 @@
     }
    },
    "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: The moment is genuinely charming: an Oscar winner correctly guessing an NBA player. But it opens on a distant wide shot, never shows the Game 4 play she describes, and ends on a cutaway to Dakota rather than a punchline.",
-    "score": 66
+    "blocked": false,
+    "reason": "",
+    "score": 74
    },
-   "skipped": "showrunner_block: showrunner BLOCK: The moment is genuinely charming: an Oscar winner correctly guessing an NBA player. But it opens on a distant wide shot, never shows the Game 4 play she describes, and ends on a cutaway to Dakota rather than a punchline."
+   "video_url": "https://youtube.com/shorts/1yUfQnbmKi8",
+   "ok": true,
+   "publish_at": "2026-10-14T16:00:00Z",
+   "seconds": 188,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261014-anne-hathaway-nails-og-anunoby-s-name-and-saves--060b911a",
+    "tiktok": "queued for 2026-10-14T16:00:00Z"
+   }
   },
   {
-   "sub": "hockey",
-   "who": "Darnell Nurse",
-   "why": "He calls out a reporter face to face over years of personal attacks.",
-   "post_title": "Nurse telling off Mark Spector for the personal attacks and hit pieces directed at him while he was an Oiler",
+   "sub": "baseball",
+   "who": "Junior Caminero",
+   "why": "Caminero taunts Yankees fans live on camera with 'Daaaa Yankees lose'.",
+   "post_title": "[highlight] Junior Caminero- \u201cLet the Yankees fans talk now. Let them watch the whole thing. Talk Now. What ya gonna say? Daaaaa Yankees lose\u201d",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/hockey/comments/1x23esm/nurse_telling_off_mark_spector_for_the_personal/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1x23esm/nurse_telling_off_mark_spector_for_the_personal",
+   "url": "https://www.reddit.com/r/baseball/comments/1x0rfl0/highlight_junior_caminero_let_the_yankees_fans/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1x0rfl0/highlight_junior_caminero_let_the_yankees_fans",
+   "skipped": "too short: the post runs 14.0s (< 15s)"
+  },
+  {
+   "sub": "baseball",
+   "who": "Pat Murphy",
+   "why": "The Brewers manager says he wants to step on Skubal's throat, then adds 'respectfully'.",
+   "post_title": "Brewers Manager Pat Murphy on Tarik Skubal: \u201cI just want to step on his throat. I mean that respectfully.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1x3lfe2/brewers_manager_pat_murphy_on_tarik_skubal_i_just/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1x3lfe2/brewers_manager_pat_murphy_on_tarik_skubal_i_just",
+   "title": "Pat Murphy Says He Wants To Step On Tarik Skubal's Throat Before Game Time",
+   "hook": "Pat Murphy on facing Skubal \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "zoom@34.8"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      540,
+      720,
+      364,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: An 81-second unedited presser answer with a garbled first caption; the viral 'step on his throat' line is buried instead of leading the clip.",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: An 81-second unedited presser answer with a garbled first caption; the viral 'step on his throat' line is buried instead of leading the clip."
+  },
+  {
+   "sub": "baseball",
+   "who": "Manny Machado",
+   "why": "Machado spots Verlander and asks if he just retired, a friendly and funny exchange.",
+   "post_title": "Manny Machado was shocked to see Justin Verlander: \"Hey, didn't you just retire man!?\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1wzpkrt/manny_machado_was_shocked_to_see_justin_verlander/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1wzpkrt/manny_machado_was_shocked_to_see_justin_verlander",
+   "skipped": "too short: the post runs 13.3s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Kyle Shanahan",
+   "why": "Shanahan jokes about the childhood game he can't name anymore when asked about Deebo Samuel.",
+   "post_title": "[Highlight] Kyle Shanahan on Deebo Samuel: \"There's a game we used to play when we were younger that I can't say the name of it anymore. It's tackle the guy with the ball with no rules to it, and I al",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x0zwxi/highlight_kyle_shanahan_on_deebo_samuel_theres_a/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x0zwxi/highlight_kyle_shanahan_on_deebo_samuel_theres_a",
+   "title": "Kyle Shanahan Says Deebo Samuel Would Be His First Pick In A No-Rules Tackle Game",
+   "hook": "Shanahan's wild Deebo Samuel take \ud83d\ude02",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      354,
+      472,
+      244,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A real Shanahan press-conference moment, but it's a static talking head that opens on a reporter's question and buries the joke, so the first two seconds don't hold a stranger and the payoff barely lands.",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A real Shanahan press-conference moment, but it's a static talking head that opens on a reporter's question and buries the joke, so the first two seconds don't hold a stranger and the payoff barely lands."
+  },
+  {
+   "sub": "soccer",
+   "who": "Reading",
+   "why": "A staff member swings at a player, misses, falls, fakes an injury, then tries to start a fight.",
+   "post_title": "\u200bA Franchise staff member attempted to barge into a Reading player, completely missed, and fell to the floor. After feigning an injury on the ground, they got back up and attempted to start a fight wi",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1x390rl/a_franchise_staff_member_attempted_to_barge_into/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1x390rl/a_franchise_staff_member_attempted_to_barge_into",
    "skipped": "author: no setup or no payoff in the clip"
   },
   {
-   "sub": "hockey",
-   "who": "Nate Schmidt",
-   "why": "A pro hockey player lights up talking about his worm farm.",
-   "post_title": "Nate Schmidt is very excited to talk about his worm farm \ud83e\udeb1",
+   "sub": "soccer",
+   "who": "Steven Gerrard",
+   "why": "Gerrard passionately says Manchester City stole memories from everyone else.",
+   "post_title": "\u201cThey\u2019ve stolen memories from everyone else!\u201d Steven Gerrard speaks about the memories he feels were taken away by Manchester City.",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/hockey/comments/1x1cbhb/nate_schmidt_is_very_excited_to_talk_about_his/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1x1cbhb/nate_schmidt_is_very_excited_to_talk_about_his",
-   "skipped": "author: no setup or no payoff in the clip"
+   "url": "https://www.reddit.com/r/soccer/comments/1x43jrm/theyve_stolen_memories_from_everyone_else_steven/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1x43jrm/theyve_stolen_memories_from_everyone_else_steven",
+   "title": "Steven Gerrard: Gerrard Fires Back At City Fans Who Say 'You Can't Take Our Moments'",
+   "hook": "Gerrard answers City fans \ud83e\udd40",
+   "ledger": {
+    "moves": [
+     "zoom@5.0",
+     "whoa@26.4"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    }
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: Right person and a real quote, but our caption is printed over the clip's own burned-in captions for a full minute, and it's a 66-second talking head with no visual payoff."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 70
+   },
+   "video_url": "https://youtube.com/shorts/WhZzWGjgwVM",
+   "ok": true,
+   "publish_at": "2026-10-14T20:00:00Z",
+   "seconds": 228,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261014-steven-gerrard-gerrard-fires-back-at-city-fans-w-9b0d4704",
+    "tiktok": "queued for 2026-10-14T20:00:00Z"
+   }
   },
   {
    "sub": "hockey",
    "who": "Devin Cooley",
-   "why": "A goalie shows up to the arena with his pet rabbit Tito.",
+   "why": "A goalie arrives at the game with his pet rabbit, Tito.",
    "post_title": "[Sportsnet] Devin Cooley arrives to tonight's game with his pet rabbit, Tito",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/hockey/comments/1x2vc92/sportsnet_devin_cooley_arrives_to_tonights_game/",
@@ -97,13 +280,13 @@
   {
    "sub": "hockey",
    "who": "Alex Ovechkin",
-   "why": "His sons introduce him for his final home opener, a heartfelt family moment.",
+   "why": "Ovechkin's sons introduce their dad at his last home opener, a family moment.",
    "post_title": "Sergei and Ilya Ovechkin introduce their dad for his final home opener of his NHL career",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/hockey/comments/1x0c3u1/sergei_and_ilya_ovechkin_introduce_their_dad_for/",
    "topic": "https://www.reddit.com/r/hockey/comments/1x0c3u1/sergei_and_ilya_ovechkin_introduce_their_dad_for",
-   "title": "Alex Ovechkin's Sons Introduce Their Dad For His Final Home Opener",
-   "hook": "Ovechkin's sons introduce him one last time",
+   "title": "Alex Ovechkin: Ovechkin's Sons Introduce Their Dad For His Final Home Opener",
+   "hook": "Ovechkin's sons introduce him for the last time",
    "ledger": {
     "moves": [],
     "mood": null,
@@ -126,95 +309,22 @@
     }
    },
    "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: A genuine, warm moment: the sons at the mic, then Ovechkin skating out under the spotlight. But our line sits over the source's banner in the opening, and the ending fades into generic skating instead of landing on the emotion.",
-    "score": 83
+    "blocked": false,
+    "reason": "",
+    "score": 87
    },
-   "skipped": "showrunner_block: showrunner BLOCK: A genuine, warm moment: the sons at the mic, then Ovechkin skating out under the spotlight. But our line sits over the source's banner in the opening, and the ending fades into generic skating instead of landing on the emotion."
-  },
-  {
-   "sub": "soccer",
-   "who": "Harry Maguire",
-   "why": "He laughs and waves off Bentancur after a red card, a funny player reaction.",
-   "post_title": "Harry Maguire laughs and waves off Rodrigo Bentancur following his red card.",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/soccer/comments/1x2x6ah/harry_maguire_laughs_and_waves_off_rodrigo/",
-   "topic": "https://www.reddit.com/r/soccer/comments/1x2x6ah/harry_maguire_laughs_and_waves_off_rodrigo",
-   "skipped": "too short: the post runs 3.8s (< 15s)"
-  },
-  {
-   "sub": "nba",
-   "who": "Draymond Green",
-   "why": "Draymond gives sideline advice to a rookie, a mic'd-up mentor moment.",
-   "post_title": "Draymond Green gives some advice to Darius Acuff Jr. on the sideline",
-   "upvotes": 0,
-   "url": "https://streamable.com/nwqtvq",
-   "topic": "https://www.reddit.com/r/nba/comments/1x2zaqv/draymond_green_gives_some_advice_to_darius_acuff",
-   "skipped": "author: no setup or no payoff in the clip"
-  },
-  {
-   "sub": "MMA",
-   "who": "Islam Makhachev",
-   "why": "A UFC champ shows off his cat Toni.",
-   "post_title": "Islam Makhachev shows his cat, Toni",
-   "upvotes": 0,
-   "url": "https://streamable.com/eoqtpo",
-   "topic": "https://www.reddit.com/r/MMA/comments/1x0vep3/islam_makhachev_shows_his_cat_toni",
-   "skipped": "author: no setup or no payoff in the clip"
-  },
-  {
-   "sub": "MMA",
-   "who": "Dana White",
-   "why": "He visibly loses it when asked about Eddie Hearn at a press conference.",
-   "post_title": "Dana White crashes out again when asked about Eddie Hearn at Contender Series Press conference",
-   "upvotes": 0,
-   "url": "https://x.com/ChampRDS/status/2107643659114209338",
-   "topic": "https://www.reddit.com/r/MMA/comments/1x00xuv/dana_white_crashes_out_again_when_asked_about",
-   "title": "Dana White Loses It On Camera When Asked About Eddie Hearn's Lawsuit Claim",
-   "hook": "Dana White snaps at Eddie Hearn question \ud83d\ude33",
-   "ledger": {
-    "moves": [
-     "whoa@67.1"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "action",
-     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
-     "shots": [
-      {
-       "mode": "action",
-       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
-      }
-     ],
-     "n_subjects": 1,
-     "crop": [
-      810,
-      1080,
-      570,
-      0
-     ]
-    }
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: The title promises Dana 'losing it', but 84 seconds of calm press-conference talking head never shows a snap, and the opening is a slow reporter question.",
-    "score": 61
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: The title promises Dana 'losing it', but 84 seconds of calm press-conference talking head never shows a snap, and the opening is a slow reporter question."
-  },
-  {
-   "sub": "soccer",
-   "who": "Lionel Messi",
-   "why": "He walks down the tunnel with his family and teammates as the crowd chants his name.",
-   "post_title": "Messi goes down the tunnel surrounded by his wife, his children, his teammates, his fans and the crowd chanting his name.",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/soccer/comments/1wzll4o/messi_goes_down_the_tunnel_surrounded_by_his_wife/",
-   "topic": "https://www.reddit.com/r/soccer/comments/1wzll4o/messi_goes_down_the_tunnel_surrounded_by_his_wife",
-   "skipped": "author: no setup or no payoff in the clip"
+   "video_url": "https://youtube.com/shorts/r-6THe4vfpY",
+   "ok": true,
+   "publish_at": "2026-10-15T00:00:00Z",
+   "seconds": 227,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261014-alex-ovechkin-ovechkin-s-sons-introduce-their-da-d690ceec",
+    "tiktok": "queued for 2026-10-15T00:00:00Z"
+   }
   }
  ],
  "already_today": 0,
- "pool": 77,
- "already_posted": 1,
- "shipped": 0
+ "pool": 105,
+ "already_posted": 2,
+ "shipped": 3
 }
