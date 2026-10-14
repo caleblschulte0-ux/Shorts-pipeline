@@ -1,0 +1,9 @@
+{
+ "slug": "amazon-warehouse-robot-army",
+ "ts": "20261014T150300Z",
+ "failure_class": "temporal_gate",
+ "evidence": "temporal_gate: max_dup_run 60 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=24.92s of 29.25s (~2.5s frozen)",
+ "weakest_scene": {},
+ "scene_plan": {},
+ "scenes": []
+}

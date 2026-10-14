@@ -820,5 +820,29 @@
   "topic": "torso-ink-fill-duel",
   "starred": false,
   "sig": "095a2abd8f0a"
+ },
+ {
+  "mechanic": "swipe-left-phone-exodus",
+  "concept": "a grid of 18 profile-card phones, one per million 2022 users; seven get swiped off the left edge one after another until 11 remain",
+  "code": "phone = subject_image('smartphone showing dating app profile card')\ntotal = int(round(values[0]))\nkeep = int(round(values[-1]))\ncols = 6\nrows = (total + cols - 1) // cols\ncw = (RX1 - RX0) // cols\nch = 330\ny0 = RTOP + 150\nt = clamp(reveal * 1.15)\nfor i in range(total):\n    r = i // cols\n    cidx = i % cols\n    x = RX0 + cidx * cw + 12\n    y = y0 + r * (ch + 20)\n    gone = i >= keep\n    off = 0\n    a = 255\n    if gone:\n        k = i - keep\n        p = clamp((t - 0.15 - k * 0.07) * 3.0)\n        off = int(-1100 * p * p)\n        a = 255\n    px, py = x + off, y + int(40 * math.sin(off / 90.0)) * (1 if gone else 0)\n    if phone is not None:\n        paste(phone, px, py, cw - 24, ch)\n    else:\n        d.rounded_rectangle([px, py, px + cw - 24, py + ch], radius=24, fill=rgba(HIGHLIGHT if not gone else REST, 220))\n    if gone and off < -40:\n        text('X', px + (cw - 24) // 2, py + ch // 2 - 30, size=70, color=WARN, center=True)\ncur = lerp(values[0], values[-1], clamp(t * 1.3))\ntext(fmt(cur), (RX0 + RX1) // 2, RTOP + 30, size=84, color=HIGHLIGHT, center=True)\ntext(str(labels[0]) + '  to  ' + str(labels[-1]), (RX0 + RX1) // 2, RBOT - 60, size=34, color=SUBTLE, center=True)",
+  "topic": "dating apps",
+  "starred": false,
+  "sig": "60d0989b344d"
+ },
+ {
+  "mechanic": "hearts-fall-off-the-hundred",
+  "concept": "a hundred hearts stand for 2023 usage and sixteen shake loose and fall to the floor",
+  "code": "heart = subject_image('red heart icon')\ncols, rows = 10, 10\ngap = 6\ncell = (RX1 - RX0 - gap * (cols - 1)) // cols\nlost = int(round(values[0] - values[-1]))\nt = clamp(reveal * 1.2)\nbase_y = RTOP + 40\nfloor_y = RBOT - 180\nfor i in range(cols * rows):\n    r = i // cols\n    cidx = i % cols\n    x = RX0 + cidx * (cell + gap)\n    y = base_y + r * (cell + gap)\n    n_from_end = cols * rows - 1 - i\n    if n_from_end < lost:\n        p = clamp((t - 0.2 - n_from_end * 0.03) * 2.5)\n        y = int(lerp(y, floor_y + (n_from_end % 4) * 20, p * p))\n        x = x + int(40 * math.sin(i * 1.7 + p * 5.0) * p)\n        col = WARN\n    else:\n        col = HIGHLIGHT\n    if heart is not None:\n        paste(heart, x, y, cell, cell)\n    else:\n        d.ellipse([x, y, x + cell, y + cell], fill=rgba(col, 230))\nremaining = lerp(values[0], values[-1], clamp((t - 0.2) * 1.3))\ntext(fmt(remaining), (RX0 + RX1) // 2, RBOT - 90, size=66, color=HIGHLIGHT, center=True)\ntext('-' + str(lost) + '% of ' + str(labels[0]), (RX0 + RX1) // 2, RBOT - 20, size=34, color=WARN, center=True)",
+  "topic": "dating apps",
+  "starred": false,
+  "sig": "5b518e336087"
+ },
+ {
+  "mechanic": "battery-drained-by-swiping",
+  "concept": "a phone battery drains to the 78 percent who feel drained, leaving a sliver of charge",
+  "code": "phone = subject_image('smartphone battery low icon')\ndrained = values[0] / 100.0\ncx = (RX0 + RX1) // 2\nbw, bh = 520, 980\nbx0, by0 = cx - bw // 2, RTOP + 160\nt = clamp(reveal * 1.1)\nd.rounded_rectangle([cx - 80, by0 - 50, cx + 80, by0], radius=14, fill=rgba(TEXT, 220))\nd.rounded_rectangle([bx0, by0, bx0 + bw, by0 + bh], radius=50, outline=rgba(TEXT, 240), width=10)\nlevel = 1.0 - drained * clamp(t * 1.2)\ninner = bh - 40\ntop = by0 + 20 + int(inner * (1.0 - level))\nd.rounded_rectangle([bx0 + 20, top, bx0 + bw - 20, by0 + bh - 20], radius=34, fill=rgba(WARN if level < 0.35 else HIGHLIGHT, 235))\nif phone is not None:\n    paste(phone, cx - 150, by0 + 330, 300, 300)\nfor k in range(7):\n    ph = (reveal * 3.0 + k / 7.0) % 1.0\n    sx = bx0 + 60 + ((k * 71) % 9) * 45\n    sy = top - 20 + int(ph * (by0 + bh - top))\n    d.ellipse([sx, sy, sx + 26, sy + 26], fill=rgba(TEXT, 170))\ntext(fmt(values[0] * clamp(t * 1.2)) + ' DRAINED', cx, by0 + bh + 50, size=56, color=WARN, center=True)\ntext(str(labels[1]) + ': ' + fmt(values[1]), cx, by0 + bh + 125, size=32, color=SUBTLE, center=True)",
+  "topic": "dating apps",
+  "starred": false,
+  "sig": "59543372b1ff"
  }
 ]

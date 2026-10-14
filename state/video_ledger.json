@@ -5530,6 +5530,30 @@
      "detail": "Once you get one tattoo, you almost never stop at one."
     }
    ]
+  },
+  {
+   "slug": "dating-app-user-exodus",
+   "directed_at": "2026-10-14",
+   "topic_category": "tech",
+   "hook_type": "shock_stat",
+   "hook_text": "Tinder lost nearly 40% of its US users in two years.",
+   "words_first_10s": 20,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:swipe-left-phone-exodus",
+    "mechanic:hearts-fall-off-the-hundred",
+    "mechanic:battery-drained-by-swiping"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "phones swiped off, hearts falling, draining battery",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "Tinder lost nearly 40% of its US users in two years."
+    }
+   ]
   }
  ]
 }

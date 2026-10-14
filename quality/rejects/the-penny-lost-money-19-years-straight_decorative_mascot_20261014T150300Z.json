@@ -1,0 +1,16 @@
+{
+ "slug": "the-penny-lost-money-19-years-straight",
+ "ts": "20261014T150300Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg0:start through seg1:end Data stands at the base of the scale, waving or pointing, while the penny stack grows and tips the beam on its own. In seg2 and seg3 he stands beside the press with a hand near a small lever, but the press, gauge and pennies move without him. He neve",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 2,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "In seg1:start, mid and end the penny stack grows to '3X' and the beam tips while Data stands below the scale's base. He waves in seg1:mid and seg1:end and holds nothing.",
+  "root_cause": "The scale scene is built so the data moves itself. Data is placed beside the machine as a reactor, not as the agent stacking pennies onto the pan.",
+  "repair_goal": "Make Data the cause. He hauls or shovels pennies onto the right pan, one load per beat, so each load visibly drops the beam toward 3x. His hands should sit on the pan or stack, and he should hold a pose of strain or triumph as the 3X lands."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
