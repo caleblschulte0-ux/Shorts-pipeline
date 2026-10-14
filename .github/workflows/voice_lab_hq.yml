@@ -1,0 +1,87 @@
+# Voice lab round 12: native-rate takes, rebuilt to 48 kHz and mastered.
+# No secrets; read-only token; only collect writes, and only to this branch.
+name: Voice lab hq
+on:
+  push:
+    branches: [voice-lab]
+    paths: ['voice_lab/gen_hq.py', 'voice_lab/enhance_hq.py', '.github/workflows/voice_lab_hq.yml']
+permissions:
+  contents: read
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix:
+        job: ['chatterbox 44', 'cosyvoice 43,44', 'cosyvoice 45,42', 'zonos 44', 'zonos 41']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg espeak-ng sox libsox-dev
+      - shell: bash
+        run: |
+          set -- ${{ matrix.job }}; E=$1; V=$2; mkdir -p out
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          case $E in
+            chatterbox) pip install -q chatterbox-tts==0.1.7 --extra-index-url https://download.pytorch.org/whl/cpu ;;
+            zonos) git clone -q https://github.com/Zyphra/Zonos.git zonos_src; pip install -q -e zonos_src "transformers==4.49.0" ;;
+            cosyvoice)
+              git clone -q --recursive https://github.com/FunAudioLLM/CosyVoice.git
+              pip install -q conformer diffusers gdown hydra-core HyperPyYAML inflect librosa lightning matplotlib \
+                modelscope networkx omegaconf onnx onnxruntime openai-whisper protobuf pydantic rich soundfile \
+                tensorboard "transformers==4.49.0" x-transformers wget pyworld wetext huggingface_hub pyarrow ;;
+          esac
+          python voice_lab/gen_hq.py $E out $V 2>&1 | grep -v "it/s\]" | tail -30
+      - id: n
+        run: echo "n=$(echo '${{ matrix.job }}' | tr ' ,' '__')" >> $GITHUB_OUTPUT
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: 'hq_${{ steps.n.outputs.n }}', path: out/ }
+  enhance:
+    needs: gen
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.10' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with: { pattern: 'hq_*', merge-multiple: true, path: takes/ }
+      - shell: bash
+        run: |
+          ls takes; mkdir -p out
+          # Resemble Enhance in its own venv: it pins its own torch.
+          python -m venv /tmp/re && /tmp/re/bin/pip install -q resemble-enhance 2>&1 | tail -3 || true
+          mkdir -p re_in re_out; cp takes/hq_*_raw.wav re_in/ 2>/dev/null || true
+          /tmp/re/bin/resemble-enhance re_in re_out --device cpu 2>&1 | tail -5 || true
+          for f in re_out/*.wav; do [ -f "$f" ] && cp "$f" "takes/$(basename "$f" _raw.wav)_re.wav"; done
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q clearvoice 2>&1 | tail -3 || true
+          python voice_lab/enhance_hq.py takes out sr 2>&1 | grep -v "it/s\]" | tail -40 || python voice_lab/enhance_hq.py takes out
+          cp takes/log_*.txt out/ 2>/dev/null || true
+          ls out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: 'hq_final', path: out/ }
+  collect:
+    needs: enhance
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { name: hq_final, path: dl/ }
+      - shell: bash
+        run: |
+          D=voice_lab/hq; mkdir -p $D; cp dl/* $D/
+          git config user.name "voice-lab"
+          git config user.email "voice-lab@users.noreply.github.com"
+          git add -f $D
+          git commit -m "voice lab hq results [skip ci]"
+          ok=0; for i in 1 2 3 4; do git pull --rebase -q origin voice-lab && git push origin HEAD:voice-lab && ok=1 && break; git rebase --abort 2>/dev/null; sleep $((i*3)); done; [ $ok = 1 ]
