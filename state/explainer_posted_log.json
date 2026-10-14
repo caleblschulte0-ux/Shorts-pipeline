@@ -3465,11 +3465,29 @@
       "scene_changes_before_5s": 2
     },
     "billionaire-count-record-2025": {
-      "claimed_at": "2026-10-14T18:12:54.954569+00:00",
+      "url": "https://youtube.com/shorts/HWqWKRO74p4",
       "title": "The World Now Has Over 3,000 Billionaires For The First Time",
+      "at": "2026-10-14T18:13:05.101734+00:00",
       "publish_at": "2026-10-14T22:20:57Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.4,
+      "beat_s": [
+        3.14,
+        6.24,
+        7.4,
+        6.44,
+        5.5
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 79,
+      "duration_s": 28.6
     }
   },
   "uploads": [
@@ -4361,9 +4379,10 @@
       "claimed_at": "2026-10-14T18:12:54.954569+00:00",
       "title": "The World Now Has Over 3,000 Billionaires For The First Time",
       "publish_at": "2026-10-14T22:20:57Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "billionaire-count-record-2025"
+      "url": "https://youtube.com/shorts/HWqWKRO74p4",
+      "state": "posted",
+      "slug": "billionaire-count-record-2025",
+      "at": "2026-10-14T18:13:05.101734+00:00"
     }
   ]
 }
