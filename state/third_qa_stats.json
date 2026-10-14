@@ -1,177 +1,6 @@
 {
   "runs": [
     {
-      "date": "20261004",
-      "dry_run": false,
-      "ts": "2026-10-04T15:51:36+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 125,
-        "with_retention": 109,
-        "with_curve": 15,
-        "fetched_at": "2026-10-04T14:16:51.009766+00:00"
-      },
-      "brain": {
-        "ok": 14,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:dukedennis": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:esfand": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:alinity": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261004-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261004-2",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Watching space stream; no visible event)",
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "odd novelty moment, unclear payoff",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "Watching space stream; no visible event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 17.8
-        },
-        {
-          "slug": "clip-20261004-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261004-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261004-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, possible reaction",
-              "blind": false
-            },
-            "content": {
-              "score": 0.82,
-              "why": "Fortnite finals win, emotional victory r",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Stableronaldo Screams 'My Neck!' After A 2v1 Goes Wrong"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "Hook card text 'MY NECK!' is clipped at the top edge at 1.5s",
-                "Emoji/money overlay sits over the lower-third caption at 9.8s and 10.8s",
-                "Subject is partly cropped at the frame edge at 9.8s and 11.8s"
-              ]
-            }
-          },
-          "took_s": 115.4
-        },
-        {
-          "slug": "clip-20261004-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
       "date": "20261005",
       "dry_run": false,
       "ts": "2026-10-05T12:35:02+00:00",
@@ -9217,6 +9046,533 @@
           "slug": "clip-20261013-6",
           "ok": false,
           "skipped": "brain down \u2014 blind-slate gate"
+        }
+      ]
+    },
+    {
+      "date": "20261014",
+      "dry_run": false,
+      "ts": "2026-10-14T12:31:59+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 12,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 127,
+        "with_retention": 115,
+        "with_curve": 15,
+        "fetched_at": "2026-10-14T08:46:26.912662+00:00"
+      },
+      "brain": {
+        "ok": 29,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:qtcinderella": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261014-1",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Watching concert footage, no clear event)",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 82,
+                "refused_shown": 20,
+                "scouted": [
+                  {
+                    "premise": "Kai Cenat's Streamer University dean character escalates: he says Ron is in trouble, snaps on the guidance counselor, th",
+                    "shape": "multi_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Ron ruins Jasontheween's new car intro, Jasontheween reacts when Ron says 'neither', and Kai then says Ron is in trouble",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Lacy exposes Ron for what he did while she was asleep. Later she sets a rule for him and he breaks it instantly.",
+                    "shape": "multi_stream",
+                    "n": 2
+                  }
+                ],
+                "vod_arcs": 309,
+                "moments": 40,
+                "candidates": 500,
+                "pool": 2993,
+                "pool_with_vod": 2123,
+                "arc_sizes": [
+                  2,
+                  3,
+                  3,
+                  2,
+                  2,
+                  5,
+                  3,
+                  3,
+                  2,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:kaicenat/kaicenat-cenat-detent-2026w30",
+                  "outcome": "narrative_failed",
+                  "why": "scores [58, 52, 44] after 2 revision(s) \u2014 @0s confusing: The opening bus line is garbled ('come on first one by one every bus on screen says he's going to detention') and never says who Kai is threatening or why. Use a cleaner line or cut the bus beat.; @4s other: The chain breaks here. The bus beat"
+                },
+                {
+                  "cluster": "yuliabaka@momentproductivegoldennuggetsripepperonis-l8ifwhba",
+                  "outcome": "already_refused",
+                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2821557824",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: director judged: not a story \u2014 The two sources are unrelated moments from one broadcast. The first is Kai role-playing a school authority who sends the hoodie g"
+                },
+                {
+                  "cluster": "scout:jasontheween+kaicenat/jasontheween-kaicenat-driv-gras-",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not confirm the scout's chain, and only one of the two sources holds a story. The 170s clip (2026-09-23) is a real mini-story: Jasontheween waits to film his new car intro, a baby-blu"
+                },
+                {
+                  "cluster": "lyasyaa@momentcrypticcogentbubbletearulefive-do-xxp1gppbegbh",
+                  "outcome": "already_refused",
+                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2822355279/kaicenat-beside-blaz-2026w29",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The three clips don't form a chain. Clip 1 is Kai reading a roll call of names to the 'main office', with no consequence shown. Clip 2 is an unexplained tense exchange with a woman in a blazer: the di"
+                },
+                {
+                  "cluster": "scout:lacy/lacy-about-lacy-2026w36",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not support the scout's story. The rule clip (2026-08-25) is about 'wrap', a basketball player, not Ron. Lacy tells him not to shoot, then a man in white shoots, and no shot or ball t"
+                },
+                {
+                  "cluster": "yuliabaka@momenthotquaintbibimbapdogface-gff3mhv1b53eoidh",
+                  "outcome": "already_refused",
+                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "plaqueboymax@vod2874466121",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: director judged: not a story \u2014 The three clips are consecutive moments from one stream (11m, 27m, 32m in), but they don't form a setup, escalation and payoff. C"
+                },
+                {
+                  "cluster": "yololaryy@momentaggressivelongjaypartytime-au0nfaeeycihjf8k",
+                  "outcome": "already_refused",
+                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "yuliabaka@vod2894221660",
+                  "outcome": "already_refused",
+                  "why": "2026-10-13: director judged: not a story \u2014 The provided clips contain only isolated, out\u2011of\u2011context fragments of speech with no identifiable characters, conflict, goal, or "
+                },
+                {
+                  "cluster": "yuliabaka@momentsmoggymanlygalagogrammarking-l6ku2mzdja58jox",
+                  "outcome": "already_refused",
+                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "ohnepixel@vod2896011569",
+                  "outcome": "already_refused",
+                  "why": "2026-10-10: director judged: not a story \u2014 The sources don't show why ohnepixel is crying, so the premise can't be stated plainly. Clip 1 has no speech and clip 2 only has "
+                },
+                {
+                  "cluster": "joebartolozzi@momenttireddependablegoblinmrdestructoid-3x7wq",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The only moment is Joe stumbling into an explicit sex scene in GTA and shouting 'Editor, blur this'. Its funny part is the explicit footage itself, which would be age-restricted, and the channel's 'di"
+                },
+                {
+                  "cluster": "ishowspeed@vod2875841671",
+                  "outcome": "already_refused",
+                  "why": "2026-10-13: director judged: not a story \u2014 The source consists of a disjointed monologue without a meaningful change, conflict, or resolution; it lacks a clear setup\u2011escala"
+                },
+                {
+                  "cluster": "t2x2@momentfancyclearpassionfruitpogchamp-kwziplikyybbjlam",
+                  "outcome": "already_refused",
+                  "why": "2026-10-13: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "jynxzi@vod2875798295",
+                  "outcome": "already_refused",
+                  "why": "2026-10-10: director judged: not a story \u2014 The clips don't form a chain. The booklet clips (3h08m and 3h09m) show Jynxzi flipping through a manga booklet while chat tells h"
+                },
+                {
+                  "cluster": "yuliabaka@momentwimpyflaccidtardigradevoteyea-jthdayhkupgyo2",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "Vague title, likely hype reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "Watching concert footage, no clear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 49.8
+        },
+        {
+          "slug": "clip-20261014-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about 25-30% of the 9:16 canvas, far below the roughly 75% target. Most of the frame ; vision: The framing is a wide, full-stream capture, so the gameplay is",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 92,
+                "refused_shown": 20,
+                "scouted": [
+                  {
+                    "premise": "Buddha and xQc both lose money to the same in-game coin rug pull in the GTA server, seen from two streams.",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Harmless baits Jerma into pressing F while riding a motorcycle, and Jerma later fuels his new bike and sets it on fire.",
+                    "shape": "multi_streamer",
+                    "n": 5
+                  },
+                  {
+                    "premise": "Kai Cenat demands proof from Reggie, who answered his accusations with 'part two'.",
+                    "shape": "multi_stream",
+                    "n": 6
+                  }
+                ],
+                "vod_arcs": 309,
+                "moments": 40,
+                "candidates": 499,
+                "pool": 2993,
+                "pool_with_vod": 2123,
+                "arc_sizes": [
+                  2,
+                  3,
+                  3,
+                  2,
+                  2,
+                  5,
+                  3,
+                  3,
+                  2,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "yuliabaka@momentproductivegoldennuggetsripepperonis-l8ifwhba",
+                  "outcome": "already_refused",
+                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2821557824",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: director judged: not a story \u2014 The two sources are unrelated moments from one broadcast. The first is Kai role-playing a school authority who sends the hoodie g"
+                },
+                {
+                  "cluster": "scout:cowboylover69+elbertson+harmless+jerma985+unusualindiv",
+                  "outcome": "already_refused",
+                  "why": "2026-10-11: rendered; critic scored 66 after 2 revision(s) \u2014 @0s confusing: The cold open shows a fire and a garbled 'No! Donny' before anyone knows who Jerma is, which bik"
+                },
+                {
+                  "cluster": "lyasyaa@momentcrypticcogentbubbletearulefive-do-xxp1gppbegbh",
+                  "outcome": "already_refused",
+                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "kaicenat@vod2822355279",
+                  "outcome": "already_refused",
+                  "why": "2026-10-14: director judged: not a story \u2014 The three clips don't form a chain. Clip 1 is Kai reading a roll call of names to the 'main office', with no consequence shown. C"
+                },
+                {
+                  "cluster": "yuliabaka@momenthotquaintbibimbapdogface-gff3mhv1b53eoidh",
+                  "outcome": "already_refused",
+                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "plaqueboymax@vod2874466121",
+                  "outcome": "already_refused",
+                  "why": "2026-10-08: director judged: not a story \u2014 The three clips are consecutive moments from one stream (11m, 27m, 32m in), but they don't form a setup, escalation and payoff. C"
+                },
+                {
+                  "cluster": "yololaryy@momentaggressivelongjaypartytime-au0nfaeeycihjf8k",
+                  "outcome": "already_refused",
+                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "yuliabaka@vod2894221660",
+                  "outcome": "already_refused",
+                  "why": "2026-10-13: director judged: not a story \u2014 The provided clips contain only isolated, out\u2011of\u2011context fragments of speech with no identifiable characters, conflict, goal, or "
+                },
+                {
+                  "cluster": "yuliabaka@momentsmoggymanlygalagogrammarking-l6ku2mzdja58jox",
+                  "outcome": "already_refused",
+                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "ohnepixel@vod2896011569",
+                  "outcome": "already_refused",
+                  "why": "2026-10-10: director judged: not a story \u2014 The sources don't show why ohnepixel is crying, so the premise can't be stated plainly. Clip 1 has no speech and clip 2 only has "
+                },
+                {
+                  "cluster": "joebartolozzi@momenttireddependablegoblinmrdestructoid-3x7wq",
+                  "outcome": "already_refused",
+                  "why": "2026-10-14: director judged: not a story \u2014 The only moment is Joe stumbling into an explicit sex scene in GTA and shouting 'Editor, blur this'. Its funny part is the explic"
+                },
+                {
+                  "cluster": "ishowspeed@vod2875841671",
+                  "outcome": "already_refused",
+                  "why": "2026-10-13: director judged: not a story \u2014 The source consists of a disjointed monologue without a meaningful change, conflict, or resolution; it lacks a clear setup\u2011escala"
+                },
+                {
+                  "cluster": "t2x2@momentfancyclearpassionfruitpogchamp-kwziplikyybbjlam",
+                  "outcome": "already_refused",
+                  "why": "2026-10-13: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "jynxzi@vod2875798295",
+                  "outcome": "already_refused",
+                  "why": "2026-10-10: director judged: not a story \u2014 The clips don't form a chain. The booklet clips (3h08m and 3h09m) show Jynxzi flipping through a manga booklet while chat tells h"
+                },
+                {
+                  "cluster": "yuliabaka@momentwimpyflaccidtardigradevoteyea-jthdayhkupgyo2",
+                  "outcome": "already_refused",
+                  "why": "2026-10-14: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "joebartolozzi@vod2894517660/joebartolozzi-charact-scene-2026",
+                  "outcome": "not_a_story",
+                  "why": "take 0: every beat is from one source \u2014 a clip, not a story; take 1: hook trimmed 9->6 words (repaired); take 1: every beat is from one source \u2014 a clip, not a story; take 2: every beat is from one source \u2014 a clip, not a story"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.62,
+              "why": "jump scare reaction, visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Dark horror gameplay, jump scare unclear",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat Gets Jump Scared And Loses It On Stream"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.85,
+              "problems": [
+                "The sharp picture is a thin strip, about 25-30% of the 9:16 canvas, far below the roughly 75% target. Most of the frame ",
+                "The framing is a wide, full-stream capture, so the gameplay is small and the facecam is a tiny corner thumbnail. The cro",
+                "The scenes are very dark, and from 15s onward they are nearly black. Almost nothing reads on a phone, and the jump scare",
+                "The streamer's face is tiny and green-tinted in the corner, and no clear subject or reaction is shown for a 'jump scared",
+                "Stream chat and UI overlays are tiny and unreadable. The blurred padding also repeats a bleed-through of the stream's vi"
+              ]
+            }
+          },
+          "took_s": 237.9
+        },
+        {
+          "slug": "clip-20261014-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261014-3",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unknown event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "GTA RP verdict, outcome unclear, little ",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Xqc Hears The Verdict On The Murder Charge And Can't Believe It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "The facecam on top and the game footage below are two stacked halves, which is a bit busy, but it matches the intended f",
+                "The hook caption stays on screen the whole video. It doesn't cover any faces.",
+                "The word captions are small, but they're readable."
+              ]
+            }
+          },
+          "took_s": 160.5
+        },
+        {
+          "slug": "clip-20261014-4",
+          "ok": false,
+          "error": "CalledProcessError: Command '['yt-dlp', '-q', '--force-overwrites', '-o', '/home/runner/work/Shorts-pipeline/Shorts-pipeline/output/third/raw_4fa405b11b.%(ext)s', '--recode-video', 'mp4', '--print-to-file', '%(id)s\\t%(title)s\\t%(uploader)s\\t%(view_count|0)s\\t%(duration)s', '/home/runner/work/Shorts-pipeline/Shorts-pipeline/output/third/raw_4fa405b11b.meta', 'https://www.twitch.tv/joe_bartolozzi/clip/TiredDependableGoblinMrDestructoid-3x7WQdn4voV78eQ9']' returned non-zero exit status 1.",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261014-4",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "generic gameplay, no event",
+              "blind": false
+            }
+          },
+          "took_s": 0.7
+        },
+        {
+          "slug": "clip-20261014-5",
+          "ok": false,
+          "error": "CalledProcessError: Command '['yt-dlp', '-q', '--force-overwrites', '-o', '/home/runner/work/Shorts-pipeline/Shorts-pipeline/output/third/raw_4fa405b11b.%(ext)s', '--recode-video', 'mp4', '--print-to-file', '%(id)s\\t%(title)s\\t%(uploader)s\\t%(view_count|0)s\\t%(duration)s', '/home/runner/work/Shorts-pipeline/Shorts-pipeline/output/third/raw_4fa405b11b.meta', 'https://www.twitch.tv/joe_bartolozzi/clip/TiredDependableGoblinMrDestructoid-3x7WQdn4voV78eQ9']' returned non-zero exit status 1.",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261014-5",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "generic gameplay, no event",
+              "blind": false
+            }
+          },
+          "took_s": 0.7
+        },
+        {
+          "slug": "clip-20261014-6",
+          "ok": false,
+          "error": "CalledProcessError: Command '['yt-dlp', '-q', '--force-overwrites', '-o', '/home/runner/work/Shorts-pipeline/Shorts-pipeline/output/third/raw_4fa405b11b.%(ext)s', '--recode-video', 'mp4', '--print-to-file', '%(id)s\\t%(title)s\\t%(uploader)s\\t%(view_count|0)s\\t%(duration)s', '/home/runner/work/Shorts-pipeline/Shorts-pipeline/output/third/raw_4fa405b11b.meta', 'https://www.twitch.tv/joe_bartolozzi/clip/TiredDependableGoblinMrDestructoid-3x7WQdn4voV78eQ9']' returned non-zero exit status 1.",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261014-6",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "generic gameplay, no event",
+              "blind": false
+            }
+          },
+          "took_s": 0.7
         }
       ]
     }
