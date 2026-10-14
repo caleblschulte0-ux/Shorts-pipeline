@@ -29702,7 +29702,7 @@
   {
    "slug": "kelp-forest-sea-star-collapse",
    "title": "California Lost 96% Of Its Kelp Forests. Blame One Missing Predator.",
-   "hook": "A disease wiped out 99% of California's sunflower sea stars in two years.",
+   "hook": "One disease killed 99 of every 100 sea stars, and the ocean forest started dying.",
    "closing": "Lose one predator and a whole ocean forest falls. Nature's balance is thinner than you think.",
    "question": "Could one disease topple a forest? Tell me.",
    "caption": "In 2013, a mystery wasting disease killed up to 99% of Pacific sunflower sea stars. Without them, purple urchins exploded more than 10,000% -- and mowed California's north coast kelp forests down to almost nothing: a 96% loss. One missing predator, one collapsed ecosystem. Did you know this? 👇",
@@ -29730,7 +29730,12 @@
      "insight_type": "comparison",
      "role": "1 · THE DIE-OFF",
      "topic": "Sea star bodyguards vanish",
-     "say": "A mystery disease left about one sunflower sea star in a hundred alive. They were the kelp's bodyguards, and almost none were left."
+     "say": "A mystery disease left about one sunflower sea star in a hundred alive. They were the kelp's bodyguards, and almost none were left.",
+     "scene": {
+      "mechanic": "sea-star-vanishing-grid",
+      "concept": "a hundred sunflower sea stars hang in a grid and ninety-nine drop away, leaving a single ringed survivor",
+      "code": "star = subject_image('orange sunflower sea star')\ncols, rows = 10, 10\ncw = (RX1 - RX0) // cols\nch = (RBOT - RTOP - 200) // rows\nalive_n = max(1, round(cols * rows * values[1] / values[0]))\nstage = clamp(reveal * 1.15)\nfor r in range(rows):\n    for c in range(cols):\n        idx = r * cols + c\n        x = RX0 + c * cw + cw // 2\n        y = RTOP + 40 + r * ch\n        if idx == 0:\n            if star is not None:\n                paste(star, x - 30, y - 6, 60, 60)\n            d.ellipse([x-38, y-14, x+38, y+62], outline=rgba(HIGHLIGHT, 255), width=5)\n            continue\n        t = clamp((stage - 0.15 - (idx % 17) * 0.02) * 3.0)\n        fall = int(t * t * (RBOT - y - 60))\n        a = int(255 * (1 - 0.7 * t))\n        if star is not None:\n            paste(star, x - 22, y + fall, 44, 44)\n        else:\n            d.ellipse([x-20, y+fall, x+20, y+fall+40], fill=rgba(HIGHLIGHT, a))\n        if t > 0:\n            d.rectangle([x-22, y + fall + 44 - int(44*t), x+22, y + fall + 44], fill=rgba(WARN, int(150*t)))\nshown = int(round(lerp(values[0], values[1], clamp((stage - 0.2) * 1.6))))\ntext(f'{shown}% LEFT', (RX0 + RX1) // 2, RBOT - 120, size=60, color=WARN, center=True)\ntext('1 sea star in 100 survived', (RX0 + RX1) // 2, RBOT - 50, size=30, color=TEXT, center=True)\n"
+     }
     },
     {
      "source": "offline",
@@ -29741,7 +29746,12 @@
      "insight_type": "comparison",
      "role": "2 · THE EXPLOSION",
      "topic": "Urchins eat kelp unchecked",
-     "say": "With no sea stars, purple urchins multiplied about a hundred times over. Nothing was left to eat them, and they're hungry."
+     "say": "With no sea stars, purple urchins multiplied about a hundred times over. Nothing was left to eat them, and they're hungry.",
+     "scene": {
+      "mechanic": "urchin-bloom-swarm",
+      "concept": "one purple urchin spawns a swarm that spirals outward until the count reads a hundred times the start",
+      "code": "urchin = subject_image('purple sea urchin')\nmult = values[1] / values[0]\ncx, cy = (RX0 + RX1) // 2, (RTOP + RBOT) // 2 - 80\nstage = clamp(reveal * 1.1)\ntotal = 140\nshown = int(total * stage * stage)\nif urchin is not None:\n    paste(urchin, cx - 70, cy - 70, 140, 140)\nfor k in range(1, shown):\n    ang = k * 2.39996\n    rad = 80 + 640 * math.sqrt(k / total)\n    x = cx + rad * math.cos(ang) * 0.62\n    y = cy + rad * math.sin(ang) * 0.95\n    s = 52 + (k % 5) * 6\n    x = clamp(x, RX0 + s // 2, RX1 - s // 2)\n    y = clamp(y, RTOP + 20, RBOT - 200)\n    if urchin is not None:\n        paste(urchin, int(x - s // 2), int(y - s // 2), s, s)\n    else:\n        d.ellipse([x - s // 2, y - s // 2, x + s // 2, y + s // 2], fill=rgba(HIGHLIGHT, 230))\ncur = lerp(1.0, mult, stage)\ntext(f'x{cur:.0f}', cx, RBOT - 130, size=88, color=HIGHLIGHT, center=True)\ntext('purple urchins vs. before', cx, RBOT - 50, size=30, color=TEXT, center=True)\n"
+     }
     },
     {
      "source": "offline",
@@ -29753,7 +29763,12 @@
      "ascending": false,
      "role": "3 · THE COLLAPSE",
      "topic": "Kelp forests collapse",
-     "say": "The urchins ate the kelp down to almost nothing. The North Coast lost 96% of its forest, home to fish, crabs and abalone."
+     "say": "The urchins ate the kelp down to almost nothing. The North Coast lost 96% of its forest, home to fish, crabs and abalone.",
+     "scene": {
+      "mechanic": "kelp-stalks-mown",
+      "concept": "a sixteen-stalk kelp forest is mown down by the urchins at its base until only stubs remain, 4% of the canopy",
+      "code": "kelp = subject_image('giant kelp forest underwater')\nn = 16\nsw = (RX1 - RX0) // n\nfloor = RBOT - 180\nfull_h = 1100\nstage = clamp(reveal * 1.1)\nfrac = lerp(values[0], values[1], clamp((stage - 0.1) * 1.3)) / 100.0\nd.rectangle([RX0, floor, RX1, floor + 24], fill=rgba(REST, 220))\nfor i in range(n):\n    x = RX0 + i * sw + sw // 2\n    h = int(full_h * frac * (0.9 + 0.1 * math.sin(i * 1.7)))\n    h = max(h, 14)\n    sway = 14 * math.sin(reveal * 14 + i)\n    d.line([x, floor, x + sway, floor - h], fill=rgba(HIGHLIGHT, 230), width=16)\n    for j in range(1, 6):\n        yy = floor - h * j / 6.0\n        d.ellipse([x + sway - 18, yy - 8, x + sway + 18, yy + 8], fill=rgba(HIGHLIGHT, 190))\nif kelp is not None:\n    paste(kelp, RX0, RTOP, RX1 - RX0, 360)\nurchin = subject_image('purple sea urchin')\nfor i in range(n):\n    x = RX0 + i * sw + sw // 2\n    if urchin is not None:\n        paste(urchin, x - 26, floor - 40, 52, 52)\n    else:\n        d.ellipse([x-24, floor-40, x+24, floor+8], fill=rgba(WARN, 230))\ntext(f'{frac*100:.0f}% OF THE FOREST', (RX0 + RX1) // 2, RBOT - 120, size=58, color=WARN, center=True)\ntext('only 4 in 100 stalks left standing', (RX0 + RX1) // 2, RBOT - 50, size=30, color=TEXT, center=True)\n"
+     }
     }
    ],
    "hook_was": "A mystery disease wiped out billions of sea stars in 2013.",

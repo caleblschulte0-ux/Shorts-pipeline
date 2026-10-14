@@ -5554,6 +5554,35 @@
      "detail": "Tinder lost nearly 40% of its US users in two years."
     }
    ]
+  },
+  {
+   "slug": "kelp-forest-sea-star-collapse",
+   "directed_at": "2026-10-14",
+   "topic_category": "nature",
+   "hook_type": "shock_stat",
+   "hook_text": "One disease killed 99 of every 100 sea stars, and the ocean forest started dying.",
+   "words_first_10s": 20,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:sea-star-vanishing-grid",
+    "mechanic:urchin-bloom-swarm",
+    "mechanic:kelp-stalks-mown"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "99 of 100 stars drop away, urchin swarm spirals out, kelp stalks mown to stubs",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "One disease killed 99 of every 100 sea stars"
+    },
+    {
+     "t": 25,
+     "event": "payoff",
+     "detail": "kelp at 4% of canopy"
+    }
+   ]
   }
  ]
 }
