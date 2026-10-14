@@ -3430,11 +3430,39 @@
       "duration_s": 24.6
     },
     "hurricane-names-retired-growing-list": {
-      "claimed_at": "2026-10-14T16:37:43.250575+00:00",
+      "url": "https://youtube.com/shorts/KMqRMbfiCG0",
       "title": "Why Some Hurricane Names Get Retired Forever",
+      "at": "2026-10-14T16:37:57.903841+00:00",
       "publish_at": "2026-10-14T16:20:57Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.82,
+      "beat_s": [
+        3.94,
+        3.43,
+        5.42,
+        5.82,
+        5.78
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 79,
+      "duration_s": 24.3,
+      "hook": "stake",
+      "topic_category": "nature",
+      "ending_type": "escalation",
+      "depictions": [
+        "mechanic:retired-name-roll",
+        "mechanic:flood-line-houses",
+        "mechanic:disaster-pins-year-strip"
+      ],
+      "words_first_10s": 26,
+      "scene_changes_before_5s": 2
     }
   },
   "uploads": [
@@ -4317,9 +4345,10 @@
       "claimed_at": "2026-10-14T16:37:43.250575+00:00",
       "title": "Why Some Hurricane Names Get Retired Forever",
       "publish_at": "2026-10-14T16:20:57Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "hurricane-names-retired-growing-list"
+      "url": "https://youtube.com/shorts/KMqRMbfiCG0",
+      "state": "posted",
+      "slug": "hurricane-names-retired-growing-list",
+      "at": "2026-10-14T16:37:57.903841+00:00"
     }
   ]
 }
