@@ -1558,6 +1558,11 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                     _lh = _im.height
                 line_y, _why, _speech_taken = line_spot(src, plain_vf, dur,
                                                         _lh, speech=True)
+                if direct and str(direct.get("line") or "") == "top":
+                    # a repair: the judge saw our line over a graphic the
+                    # footage carries with no words in it, which OCR
+                    # cannot read (the Ovechkin banner, 2026-10-14)
+                    line_y, _why = caption_line.TOP_Y, "the judge asked"
                 ledger_ae["line_y"] = line_y
                 if line_y != caption_line.LINE_Y:
                     print(f"[edit] the line goes on top: {_why}", flush=True)

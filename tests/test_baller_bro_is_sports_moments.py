@@ -218,6 +218,90 @@ class APostIsCutWithoutItsSponsorCard(unittest.TestCase):
         self.assertIn("unfit(info) or too_short(info)", samples)
 
 
+class ARefusedCutIsRepaired(unittest.TestCase):
+    """2026-10-14: an Ovechkin cut scored 83 and was held for our line over
+    the source's banner and an ending that drifted; the run dropped it."""
+
+    VERDICT = {
+        "score": 83, "verdict": "block",
+        "one_line": "Warm moment, but our line sits over the banner.",
+        "problems": ["hook@0.3: our caption is drawn over the source's "
+                     "dark lower-third banner"],
+        "fixes": ["End on the stick salute, not him skating away."],
+        "weakest_scene": {"failure_class": "text_over_source_graphic"}}
+
+    def _run(self, gates):
+        from unittest import mock
+        from scripts import run_sports as rs
+        c = {"sub": "hockey", "who": "Alex Ovechkin", "why": "",
+             "post_title": "Ovechkin's sons introduce him", "upvotes": 0,
+             "url": "https://v.redd.it/x",
+             "permalink": "/r/hockey/comments/abc/x/"}
+        made = []
+
+        def make(c, info, mp4, notes="", line_top=False):
+            made.append({"notes": notes, "line_top": line_top})
+            mp4.parent.mkdir(parents=True, exist_ok=True)
+            mp4.write_bytes(b"x")
+            return {"meta": {"title": f"cut {len(made)}", "hook": "h",
+                             "edit": {"cut": {"start": 1, "end": 30}}},
+                    "hook": "h", "ledger": {}}
+        g = iter(gates)
+        with mock.patch.object(rs.rt, "_refresh_log_from_origin"), \
+                mock.patch.object(rs.rt, "load_log", return_value={}), \
+                mock.patch.object(rs.rt, "uploaded_on", return_value=[]), \
+                mock.patch.object(rs.ss, "discover", return_value=[c]), \
+                mock.patch.object(rs.ss, "pick", return_value=[c]), \
+                mock.patch.object(rs.ss, "fetch",
+                                  return_value={"path": "x.mp4"}), \
+                mock.patch.object(rs.ss, "unfit", return_value=""), \
+                mock.patch.object(rs.ss, "too_short", return_value=""), \
+                mock.patch.object(rs.ss, "make", side_effect=make), \
+                mock.patch.object(rs, "judge",
+                                  side_effect=lambda *a, **k: next(g)), \
+                mock.patch.object(rs, "REPORT",
+                                  Path(self.tmp) / "r.json"), \
+                mock.patch.object(rs, "OUT", Path(self.tmp) / "out"), \
+                mock.patch.object(sys, "argv",
+                                  ["run_sports", "--count", "1",
+                                   "--dry-run"]):
+            code = rs.main()
+        return code, made
+
+    def setUp(self):
+        import tempfile
+        self.tmp = tempfile.mkdtemp()
+
+    def test_a_near_miss_is_cut_again_from_the_verdict_and_ships(self):
+        code, made = self._run([
+            {"blocked": True, "reason": "BLOCK", "verdict": self.VERDICT},
+            {"blocked": False, "reason": "ship", "verdict": {"score": 88}}])
+        self.assertEqual(code, 0)
+        self.assertEqual(len(made), 2)
+        self.assertIn("stick salute", made[1]["notes"])
+        self.assertIn("83", made[1]["notes"])
+        self.assertTrue(made[1]["line_top"])
+
+    def test_the_repair_is_judged_by_the_same_gate_and_can_stay_refused(self):
+        block = {"blocked": True, "reason": "BLOCK", "verdict": self.VERDICT}
+        code, made = self._run([block, block, block])
+        self.assertEqual(code, 1)
+        from scripts import run_sports as rs
+        self.assertEqual(len(made), 1 + rs.REPAIRS)
+
+    def test_a_weak_cut_is_not_worth_repairing(self):
+        weak = {"blocked": True, "reason": "BLOCK",
+                "verdict": {"score": 40, "problems": ["no moment"]}}
+        code, made = self._run([weak])
+        self.assertEqual(len(made), 1)
+
+    def test_the_line_only_moves_for_a_graphic(self):
+        from scripts import run_sports as rs
+        self.assertTrue(rs.over_graphic(self.VERDICT))
+        self.assertFalse(rs.over_graphic(
+            {"problems": ["the ending drifts"], "weakest_scene": {}}))
+
+
 class ItReachesTikTok(unittest.TestCase):
     """Operator, 2026-10-12: "Yes do it". A post reaches TikTok through its
     release, so the run must be able to make one."""

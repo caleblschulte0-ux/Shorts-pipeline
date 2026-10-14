@@ -271,13 +271,18 @@ def _dur(path: Path) -> float:
         return 0.0
 
 
-def make(c: dict, info: dict, out_mp4: Path) -> dict:
+def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
+         line_top: bool = False) -> dict:
+    """Author and cut one post. `notes` is a refused cut's verdict for the
+    author to repair from; `line_top` puts our line at the top because
+    the judge saw it over the footage's own graphic."""
     raw = Path(info["path"])
     words = clip_edit.transcribe_words(raw)
     dur = _dur(raw)
     meta = author.author_package(
         c["who"], c["post_title"], " ".join(w["w"] for w in words),
-        c["upvotes"], words=words, clip_dur=dur, guidance=SPORTS_BRIEF)
+        c["upvotes"], words=words, clip_dur=dur,
+        guidance=SPORTS_BRIEF + (f"\n\n{notes}" if notes else ""))
     if meta and (meta.get("edit") or {}).get("complete") is False:
         return {"skipped": "author: no setup or no payoff in the clip",
                 "meta": meta}
@@ -285,7 +290,8 @@ def make(c: dict, info: dict, out_mp4: Path) -> dict:
     led = clip_edit.edit(raw, out_mp4, credit=f"r/{c['sub']}", hook=hook,
                          words=words, series=(meta or {}).get("series",
                                                               "unknown"),
-                         direct=(meta or {}).get("edit"))
+                         direct=dict((meta or {}).get("edit") or {},
+                                     **({"line": "top"} if line_top else {})))
     return {"meta": meta, "hook": hook,
             "ledger": {k: led.get(k) for k in ("duration", "moves", "mood",
                                                "shot_plan") if k in led}}
