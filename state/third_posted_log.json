@@ -13258,14 +13258,32 @@
       "ts": "2026-10-14T13:43:50.412487+00:00"
     },
     "clip-20261014-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/caseoh_/clip/SpunkySuperWoodpeckerCoolStoryBro-0FR3uCZfmTdzkc0l",
-      "story_key": null,
-      "streamer": "caseoh_",
+      "url": "https://youtube.com/shorts/81ZK4lRQsPg",
       "title": "Caseoh Throws Together A Base After Things Get Out Of Hand",
       "kind": "twitch_clip",
-      "ts": "2026-10-14T13:48:09.642237+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-14T13:48:17.079698+00:00",
+      "uploaded_at": "2026-10-14T13:48:17.079711+00:00",
+      "publish_at": "2026-10-15T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261014-caseoh-throws-together-a-base-after-things-get-o-49872172",
+        "tiktok": "queued for 2026-10-15T03:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/caseoh_/clip/SpunkySuperWoodpeckerCoolStoryBro-0FR3uCZfmTdzkc0l",
+      "streamer": "caseoh_",
+      "series": "chaos",
+      "hook": "caseoh_ builds a quick base \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2792,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.5,
+        "end": 27.0
+      },
+      "director_cut": true
     }
   }
 }
