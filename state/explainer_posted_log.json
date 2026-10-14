@@ -3402,6 +3402,14 @@
       "story_structure": "auto+auto",
       "narrative_score": 57,
       "duration_s": 18.0
+    },
+    "back-pain-leading-disability": {
+      "title": "619 Million People Live With Back Pain Right Now",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "claimed_at": "2026-10-14T15:50:06Z",
+      "via": "showrunner-rejudge"
     }
   },
   "uploads": [
@@ -4269,6 +4277,15 @@
       "state": "posted",
       "slug": "the-penny-lost-money-19-years-straight",
       "at": "2026-10-14T13:32:54.467937+00:00"
+    },
+    {
+      "title": "619 Million People Live With Back Pain Right Now",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "claimed_at": "2026-10-14T15:50:06Z",
+      "via": "showrunner-rejudge",
+      "slug": "back-pain-leading-disability"
     }
   ]
 }
