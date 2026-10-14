@@ -190,6 +190,78 @@ def too_short(info: dict) -> str:
     return ""
 
 
+# 2026-10-13: a Mike Evans post ended on a Marin Health sponsor card, a
+# coloured wipe then a logo held for two seconds; the editor cut it in and
+# the gate held the render as a freeze. A post that ENDS on a still
+# stretch has its tail cut off, wipe and all.
+TAIL_FREEZE_S = 1.0     # a still this long that runs to the end is a card
+CARD_LEAD_S = 0.6       # the wipe that brings a card in (measured: 0.3-0.4s)
+
+
+def unfit(info: dict) -> str:
+    """Make a downloaded post fit to cut, or say why it never can be.
+    Trims a frozen card off its end (`info["path"]` becomes the trimmed
+    file) and refuses a post with no sound: the cut is captioned from what
+    is said, and whisper cannot open a file with no audio track at all
+    (a Ruben Dias post died in the render that way, 2026-10-13)."""
+    path = Path(info["path"])
+    if not _has_audio(path):
+        return "no sound: the post has no audio track"
+    end = _card_starts(path)
+    if end:
+        trimmed = path.with_name(path.stem + ".nocard" + path.suffix)
+        try:
+            subprocess.run(
+                ["ffmpeg", "-v", "error", "-y", "-i", str(path), "-t",
+                 f"{end:.2f}", "-c:v", "libx264", "-preset", "veryfast",
+                 "-crf", "18", "-c:a", "aac", str(trimmed)],
+                check=True, timeout=300)
+            info["path"] = str(trimmed)
+            info["trimmed_card_at"] = round(end, 2)
+        except Exception:  # noqa: BLE001 — untrimmed still goes to the gate
+            pass
+    return ""
+
+
+def _has_audio(path: Path) -> bool:
+    try:
+        out = subprocess.check_output(
+            ["ffprobe", "-v", "quiet", "-select_streams", "a",
+             "-show_entries", "stream=index", "-of", "csv=p=0", str(path)],
+            text=True, timeout=30)
+    except Exception:  # noqa: BLE001 — unprobed: let the render decide
+        return True
+    return bool(out.strip())
+
+
+def _card_starts(path: Path) -> float:
+    """Where a still card that runs to the end of the post begins, backed
+    up past the wipe that brings it in, or 0.0 when the post has none. A
+    wipe over half the frame scores too low for scene detection to find,
+    so the lead is a fixed margin: at worst the cut loses half a second
+    of the post's end, never shows a logo."""
+    dur = _dur(path)
+    if dur <= 0:
+        return 0.0
+    try:
+        log = subprocess.run(
+            ["ffmpeg", "-v", "info", "-i", str(path), "-an", "-vf",
+             f"freezedetect=n=0.003:d={TAIL_FREEZE_S}", "-f", "null", "-"],
+            capture_output=True, text=True, timeout=300).stderr
+    except Exception:  # noqa: BLE001
+        return 0.0
+    starts = [float(x) for x in re.findall(r"freeze_start: ([\d.]+)", log)]
+    ends = [float(x) for x in re.findall(r"freeze_end: ([\d.]+)", log)]
+    if not starts:
+        return 0.0
+    at = starts[-1]
+    if len(ends) >= len(starts) and ends[-1] < dur - 0.3:
+        return 0.0              # the last still ended: the post moves again
+    if at < dur * 0.5:
+        return 0.0              # a long still post, not a card on its end
+    return max(0.0, at - CARD_LEAD_S)
+
+
 def _dur(path: Path) -> float:
     try:
         return float(subprocess.check_output(
@@ -246,8 +318,9 @@ def main() -> int:
             row["skipped"] = "download failed"
             index.append(row)
             continue
-        if too_short(info):
-            row["skipped"] = too_short(info)
+        why = unfit(info) or too_short(info)
+        if why:
+            row["skipped"] = why
             index.append(row)
             continue
         slug = re.sub(r"[^a-z0-9]+", "-", c["who"].lower()).strip("-")[:40]

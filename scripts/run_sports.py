@@ -181,7 +181,7 @@ def main() -> int:
         if not info:
             row["skipped"] = "download failed"
             continue
-        short = ss.too_short(info)
+        short = ss.unfit(info) or ss.too_short(info)
         if short:
             row["skipped"] = short
             continue

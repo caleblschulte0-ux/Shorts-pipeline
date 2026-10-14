@@ -156,6 +156,68 @@ class AFiveSecondPostIsTooShort(unittest.TestCase):
                         code.index("ss.make(c, info, mp4)"))
 
 
+class APostIsCutWithoutItsSponsorCard(unittest.TestCase):
+    """2026-10-13: a Mike Evans post ended on a sponsor logo held two
+    seconds; it was cut in and the gate held the render as a freeze. A
+    Ruben Dias post had no audio track and died in the render."""
+
+    @classmethod
+    def setUpClass(cls):
+        import shutil
+        import subprocess
+        import tempfile
+        if not shutil.which("ffmpeg"):
+            raise unittest.SkipTest("no ffmpeg")
+        cls.tmp = Path(tempfile.mkdtemp())
+
+        def make(name, still_s, audio=True):
+            out = cls.tmp / name
+            vf = "testsrc2=size=320x240:rate=30:duration=16"
+            args = ["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", vf]
+            if still_s:
+                args += ["-f", "lavfi", "-i",
+                         f"color=white:size=320x240:rate=30:duration={still_s}"]
+            if audio:
+                args += ["-f", "lavfi", "-i",
+                         f"sine=frequency=440:duration={16 + still_s}"]
+            fc = ("[0:v][1:v]concat=n=2:v=1:a=0[v]" if still_s
+                  else "[0:v]null[v]")
+            args += ["-filter_complex", fc, "-map", "[v]"]
+            if audio:
+                args += ["-map", f"{2 if still_s else 1}:a", "-shortest"]
+            args += ["-c:v", "libx264", "-pix_fmt", "yuv420p", str(out)]
+            subprocess.run(args, check=True)
+            return out
+        cls.card = make("card.mp4", 3)
+        cls.moving = make("moving.mp4", 0)
+        cls.silent = make("silent.mp4", 0, audio=False)
+
+    def test_the_card_on_the_end_is_cut_off(self):
+        from scripts import sports_samples as ss
+        info = {"path": str(self.card)}
+        self.assertEqual(ss.unfit(info), "")
+        self.assertIn("nocard", info["path"])
+        self.assertLess(ss._dur(Path(info["path"])), 16.0)
+        self.assertGreater(ss._dur(Path(info["path"])), 14.5)
+
+    def test_a_post_that_moves_to_its_end_is_left_alone(self):
+        from scripts import sports_samples as ss
+        info = {"path": str(self.moving)}
+        self.assertEqual(ss.unfit(info), "")
+        self.assertEqual(info["path"], str(self.moving))
+
+    def test_a_post_with_no_sound_is_refused(self):
+        from scripts import sports_samples as ss
+        self.assertIn("no sound", ss.unfit({"path": str(self.silent)}))
+
+    def test_both_runs_check_it_before_cutting(self):
+        code = _code(SRC)
+        self.assertLess(code.index("ss.unfit(info)"),
+                        code.index("ss.too_short(info)"))
+        samples = _code((ROOT / "scripts" / "sports_samples.py").read_text())
+        self.assertIn("unfit(info) or too_short(info)", samples)
+
+
 class ItReachesTikTok(unittest.TestCase):
     """Operator, 2026-10-12: "Yes do it". A post reaches TikTok through its
     release, so the run must be able to make one."""
