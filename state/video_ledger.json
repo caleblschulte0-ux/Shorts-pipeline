@@ -5583,6 +5583,102 @@
      "detail": "kelp at 4% of canopy"
     }
    ]
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-14",
+   "topic_category": "animals",
+   "hook_type": "shock_stat",
+   "hook_text": "One cave fungus wiped out 97 percent of a bat species.",
+   "words_first_10s": 19,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "colonies drop off the ceiling, then $3.7B->$53B pest-control gauge",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "One cave fungus wiped out 97 percent of a bat species."
+    }
+   ]
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-14",
+   "topic_category": "money",
+   "hook_type": "shock_stat",
+   "hook_text": "States are quietly holding 70 billion dollars of your money.",
+   "words_first_10s": 18,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "vault full, thin trickle returned, 1-in-7 crowd lights up",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "States are quietly holding 70 billion dollars of your money."
+    }
+   ]
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-10-14",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "words_first_10s": 19,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:trend",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "100-person grid stamped with one or several ink marks",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "Once you get one tattoo, you almost never stop at one."
+    }
+   ]
+  },
+  {
+   "slug": "humpback-whale-recovery",
+   "directed_at": "2026-10-14",
+   "topic_category": "nature",
+   "hook_type": "shock_stat",
+   "hook_text": "Whalers left 450 humpbacks in the South Atlantic. Today there are 25,000.",
+   "words_first_10s": 20,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:whale-school-regrowth",
+    "mechanic:whale-fourteen-pods-lift",
+    "mechanic:whaling-ban-spigot"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "school thickens, 10 of 14 pods surface, ban gate closes the kill stream",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "Whalers left 450 humpbacks in the South Atlantic. Today there are 25,000."
+    }
+   ]
   }
  ]
 }
