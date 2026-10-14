@@ -3356,7 +3356,10 @@ def main() -> int:
     # Slot cadence: with a higher daily count we tighten spacing so the extra
     # volume concentrates in US prime time (17:00 UTC = 1pm ET) instead of
     # spilling into dead overnight hours. 90 min × 8 slots ≈ 17:00→03:30 UTC.
-    slot_gap = timedelta(minutes=90)
+    # The spacing is the registry's cadence.min_gap_hours (1.5h) — the same
+    # gap every channel's uploads are held to (shared/post_spacing).
+    from shared import post_spacing
+    slot_gap = post_spacing.min_gap("third")
     log = _load_log()
     publish_base = None
     if not args.no_schedule and not args.dry_run:

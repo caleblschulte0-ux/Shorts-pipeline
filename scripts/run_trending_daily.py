@@ -281,7 +281,8 @@ def _guarded_upload(*, title: str, topic: str, fmt, publish_at,
             f"the claim in state/posted_log.json 'uploads'")
     now_s = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     claim = {"slug": _slug(title or topic), "title": title, "topic": topic,
-             "claimed_at": now_s, "state": "uploading", "url": None}
+             "claimed_at": now_s, "state": "uploading", "url": None,
+             "publish_at": publish_at}
     log.setdefault("uploads", []).append(claim)
     save_log(log)
     if not _persist_log_now(f"claim upload slot {claim['slug']}"):

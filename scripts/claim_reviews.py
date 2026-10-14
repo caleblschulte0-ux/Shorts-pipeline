@@ -172,7 +172,13 @@ def _publish_explainer(req: dict, mp4: Path, verdict: dict,
     prev = (log.get("posted") or {}).get(req["slug"])
     if isinstance(prev, dict) and prev.get("state") == "posted" and prev.get("url"):
         raise RuntimeError(f"{req['slug']} is already posted: {prev['url']}")
-    claim = {"title": sc.get("title"), "publish_at": None, "url": None,
+    # A mailbox ship used to go PUBLIC THE MOMENT IT UPLOADED, wherever the
+    # day's scheduled videos sat (2026-10-14: live at 15:50Z between 16:20Z
+    # and 17:23Z). It takes the next time the registry's gap allows.
+    from shared import post_spacing
+    ps._refresh_from_origin(log, ps.LOG_PATH)
+    publish_at = post_spacing.schedule("explainer", log)
+    claim = {"title": sc.get("title"), "publish_at": publish_at, "url": None,
              "state": "uploading", "claimed_at": _now(), "via": judge}
     log.setdefault("posted", {})[req["slug"]] = claim
     log.setdefault("uploads", []).append(dict(claim, slug=req["slug"]))
@@ -180,11 +186,12 @@ def _publish_explainer(req: dict, mp4: Path, verdict: dict,
     ps._persist_posted_log_now(ps.LOG_PATH, req["slug"], why="claim upload slot (mailbox)")
     res = YouTubeUploader(channel="explainer").upload(
         file_path=mp4, title=sc.get("title", req["slug"])[:100],
-        description=ps._description(sc, mp4), tags=ps._merged_tags(sc), publish_at=None)
+        description=ps._description(sc, mp4), tags=ps._merged_tags(sc),
+        publish_at=publish_at)
     url = getattr(res, "url", None) or str(res)
     log = ps._load_log(ps.LOG_PATH)
     log["posted"][req["slug"]] = {
-        "url": url, "title": sc.get("title"), "at": _now(), "publish_at": None,
+        "url": url, "title": sc.get("title"), "at": _now(), "publish_at": publish_at,
         "state": "posted", "via": judge,
         **ps._creative_facts(req["slug"], sc, mp4, verdict)}
     for u in reversed(log.get("uploads") or []):
@@ -195,7 +202,8 @@ def _publish_explainer(req: dict, mp4: Path, verdict: dict,
     ps._persist_posted_log_now(ps.LOG_PATH, req["slug"])
     from shared.crosspost import crosspost
     crosspost("explainer", mp4, sc.get("title", req["slug"])[:100],
-              ps._description(sc, mp4), ps._merged_tags(sc))
+              ps._description(sc, mp4), ps._merged_tags(sc),
+              publish_at=publish_at)
     return url
 
 
@@ -212,12 +220,15 @@ def _publish_trending(req: dict, mp4: Path, judge: str = JUDGE) -> str:
     # The same claim -> upload -> record path every trending upload takes,
     # so a mailbox ship can never race a render run into a duplicate (the
     # 2026-09-28/29 double uploads). It raises on a topic already posted.
+    from shared import post_spacing
+    rt._refresh_log_from_origin()
+    publish_at = post_spacing.schedule("trending", rt.load_log())
     url = rt._guarded_upload(
-        title=title, topic=topic, fmt=pkg.get("format"), publish_at=None,
+        title=title, topic=topic, fmt=pkg.get("format"), publish_at=publish_at,
         do_upload=lambda: (lambda r: getattr(r, "url", None) or str(r))(
             YouTubeUploader(channel=channel).upload(
                 file_path=mp4, title=title, description=rt._description(pkg),
-                tags=rt._tags(pkg), publish_at=None)))
+                tags=rt._tags(pkg), publish_at=publish_at)))
     log = rt.load_log()
     for e in reversed(log.get("posted") or []):
         if e.get("video_url") == url:
@@ -226,7 +237,7 @@ def _publish_trending(req: dict, mp4: Path, judge: str = JUDGE) -> str:
     rt.save_log(log)
     from shared.crosspost import crosspost
     crosspost("trending", mp4, (req.get("title") or pkg.get("title") or topic)[:100],
-              rt._description(pkg), rt._tags(pkg))
+              rt._description(pkg), rt._tags(pkg), publish_at=publish_at)
     return url
 
 
