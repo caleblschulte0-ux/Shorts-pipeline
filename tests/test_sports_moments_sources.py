@@ -80,3 +80,22 @@ class TwoWordNames(unittest.TestCase):
             "Jaylen Brown: Claps Back At Ant")
 if __name__ == "__main__":
     unittest.main()
+
+
+class ASurnameIsTheName(unittest.TestCase):
+    """2026-10-14: 'Steven Gerrard: Gerrard Fires Back At City Fans' and
+    'Alex Ovechkin: Ovechkin's Sons Introduce...' went live."""
+
+    def test_the_surname_becomes_the_full_name_once(self):
+        from third_capture import author
+        self.assertEqual(
+            author.anchor_streamer("Gerrard Fires Back At City Fans",
+                                   "Steven Gerrard"),
+            "Steven Gerrard Fires Back At City Fans")
+        self.assertEqual(
+            author.anchor_streamer("Ovechkin's Sons Introduce Their Dad",
+                                   "Alex Ovechkin"),
+            "Alex Ovechkin's Sons Introduce Their Dad")
+        self.assertEqual(
+            author.anchor_streamer("Watch Anunoby Cook", "OG Anunoby"),
+            "Watch OG Anunoby Cook")

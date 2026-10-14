@@ -470,6 +470,20 @@ def anchor_streamer(title: str, streamer: str) -> str:
     # first sports samples went out "Jaylen Brown: Jaylen Brown Claps..."
     if len(streamer.split()) > 1 and _norm(streamer) in _norm(title):
         return title
+    # a title that says only the SURNAME ("Gerrard Fires Back...",
+    # "Ovechkin's Sons...") got "Steven Gerrard: Gerrard Fires Back" on
+    # 2026-10-14. The surname is the person: it becomes the full name
+    # once, where it stands.
+    if len(streamer.split()) > 1:
+        import re as _re
+        full = streamer if streamer != streamer.lower() else streamer.title()
+        last = streamer.split()[-1]
+        words = title.split()
+        for i, word in enumerate(words):
+            m = _re.match(r"^(\W*)(.+?)((?:['\u2019]s)?\W*)$", word)
+            if m and _norm(m.group(2)) == _norm(last):
+                words[i] = m.group(1) + full + m.group(3)
+                return " ".join(words)
     pretty = streamer.strip("_").title()
     fixed_words = []
     matched = False
