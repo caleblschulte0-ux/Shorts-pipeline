@@ -13332,13 +13332,41 @@
       "director_cut": true
     },
     "clip-20261014-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/buddha/clip/AmazingFitChickenKeyboardCat-dCESCPlktvUmD32I",
-      "story_key": null,
-      "streamer": "buddha",
+      "url": "https://youtube.com/shorts/iyN-laQnSIE",
       "title": "Buddha Keeps Dying In TTT T\u2011UNIT \u2013 What Triggers The Chaos?",
       "kind": "twitch_clip",
-      "ts": "2026-10-14T14:47:54.721030+00:00",
+      "ts": "2026-10-14T14:48:05.568128+00:00",
+      "uploaded_at": "2026-10-14T14:48:05.568143+00:00",
+      "publish_at": "2026-10-15T06:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261014-buddha-keeps-dying-in-ttt-t-unit-what-triggers-t-68736650",
+        "tiktok": "queued for 2026-10-15T06:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/buddha/clip/AmazingFitChickenKeyboardCat-dCESCPlktvUmD32I",
+      "streamer": "buddha",
+      "series": "fail",
+      "hook": "buddha keeps dying \ud83d\ude02",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3489,
+      "banger": 0.4,
+      "cut": {
+        "start": 3.6,
+        "end": 25.0
+      },
+      "director_cut": true
+    },
+    "clip-20261014-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/alinity/clip/InnocentRamshackleTigerRaccAttack-Us3tc4MVx1NsvTQE",
+      "story_key": null,
+      "streamer": "alinity",
+      "title": "Alinity Says She\u2019s About To Take Care Of Something",
+      "kind": "twitch_clip",
+      "ts": "2026-10-14T14:49:32.511779+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
