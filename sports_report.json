@@ -1,33 +1,23 @@
 {
- "date": "2026-10-13",
+ "date": "2026-10-14",
  "format": "sports_moment",
  "want": 3,
  "dry_run": false,
  "slots": [
   {
-   "sub": "nfl",
-   "who": "Cam Little",
-   "why": "Runs across the London field after his 57\u2011yard FG to strike the Jude Bellingham pose, ignoring the result",
-   "post_title": "[Highlight] Cam Little doesn't even watch to see if his kick goes in, running all the way across the field to hit the Jude Bellingham pose in front of the London crowd.",
+   "sub": "nba",
+   "who": "Jaylen Brown",
+   "why": "Mic'd-up style clap back at Anthony Edwards with a savage condom line about Adidas.",
+   "post_title": "Jaylen Brown claps back at Anthony Edwards for taking shots at him and LeBron: \"Adidas doing anything for my boy, they need to give my boy some condoms",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1x3lc6q/highlight_cam_little_doesnt_even_watch_to_see_if/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1x3lc6q/highlight_cam_little_doesnt_even_watch_to_see_if",
-   "skipped": "author: no title"
-  },
-  {
-   "sub": "nfl",
-   "who": "Jalon Daniels",
-   "why": "Emotional celebration with his mom after his first career win as a quarterback",
-   "post_title": "[Highlight] Jalon Daniels and his mom celebrate the QB's first career win",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1x1azni/highlight_jalon_daniels_and_his_mom_celebrate_the/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1x1azni/highlight_jalon_daniels_and_his_mom_celebrate_the",
-   "skipped": "author: no title"
+   "url": "https://streamable.com/f4zgsr",
+   "topic": "https://www.reddit.com/r/nba/comments/1x21qyh/jaylen_brown_claps_back_at_anthony_edwards_for",
+   "skipped": "author: no setup or no payoff in the clip"
   },
   {
    "sub": "nba",
    "who": "Jonathan Kuminga",
-   "why": "Mic\u2011up response promising to find and slap the fan who called him \u201cKum Bucket\u201d",
+   "why": "He threatens to slap a fan who called him 'Kum Bucket', a raw and funny reaction.",
    "post_title": "Jonathan Kuminga responds to fan who calls him \u201cKum Bucket\u201d: \u2018Whoever said that, imma come find you and I\u2019ll slap you.\u201d",
    "upvotes": 0,
    "url": "https://streamable.com/12ssok",
@@ -36,28 +26,116 @@
   },
   {
    "sub": "nba",
-   "who": "Jaylen Brown",
-   "why": "Claps back at Anthony Edwards with a wild line about needing condoms for his boy",
-   "post_title": "Jaylen Brown claps back at Anthony Edwards for taking shots at him and LeBron: \"Adidas doing anything for my boy, they need to give my boy some condoms",
+   "who": "Anne Hathaway",
+   "why": "An Oscar winner nails OG Anunoby's name and breaks down his game to confused co-stars.",
+   "post_title": "Oscar winner Anne Hathaway correctly guesses OG Anunoby\u2019s name and explains his Game 4 play to Dakota Johnson and Josh Hartnett",
    "upvotes": 0,
-   "url": "https://streamable.com/f4zgsr",
-   "topic": "https://www.reddit.com/r/nba/comments/1x21qyh/jaylen_brown_claps_back_at_anthony_edwards_for",
-   "skipped": "author: no title"
+   "url": "https://streamable.com/bxz217",
+   "topic": "https://www.reddit.com/r/nba/comments/1x0utpc/oscar_winner_anne_hathaway_correctly_guesses_og",
+   "title": "Anne Hathaway Guesses OG Anunoby And Explains His Game 4 Play \ud83c\udfc0",
+   "hook": "Anne Hathaway saves her team with OG Anunoby \ud83c\udfc0",
+   "ledger": {
+    "moves": [
+     "zoom@18.2"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      542,
+      722,
+      88,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The moment is genuinely charming: an Oscar winner correctly guessing an NBA player. But it opens on a distant wide shot, never shows the Game 4 play she describes, and ends on a cutaway to Dakota rather than a punchline.",
+    "score": 66
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The moment is genuinely charming: an Oscar winner correctly guessing an NBA player. But it opens on a distant wide shot, never shows the Game 4 play she describes, and ends on a cutaway to Dakota rather than a punchline."
   },
   {
-   "sub": "nfl",
-   "who": "Mike Evans",
-   "why": "Hilariously admits he didn\u2019t recognize Trevon Diggs before the exchange after the catch",
-   "post_title": "[Highlight] Mike Evans on his exchange with Trevon Diggs: \"I honestly didn't know it was him ... I was like, Who are you?' Then I looked and made sure: 'Oh, it's fucking Diggs.'\"",
+   "sub": "hockey",
+   "who": "Darnell Nurse",
+   "why": "He calls out a reporter face to face over years of personal attacks.",
+   "post_title": "Nurse telling off Mark Spector for the personal attacks and hit pieces directed at him while he was an Oiler",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1x47kf7/highlight_mike_evans_on_his_exchange_with_trevon/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1x47kf7/highlight_mike_evans_on_his_exchange_with_trevon",
-   "skipped": "author: no title"
+   "url": "https://www.reddit.com/r/hockey/comments/1x23esm/nurse_telling_off_mark_spector_for_the_personal/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1x23esm/nurse_telling_off_mark_spector_for_the_personal",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "hockey",
+   "who": "Nate Schmidt",
+   "why": "A pro hockey player lights up talking about his worm farm.",
+   "post_title": "Nate Schmidt is very excited to talk about his worm farm \ud83e\udeb1",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1x1cbhb/nate_schmidt_is_very_excited_to_talk_about_his/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1x1cbhb/nate_schmidt_is_very_excited_to_talk_about_his",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "hockey",
+   "who": "Devin Cooley",
+   "why": "A goalie shows up to the arena with his pet rabbit Tito.",
+   "post_title": "[Sportsnet] Devin Cooley arrives to tonight's game with his pet rabbit, Tito",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1x2vc92/sportsnet_devin_cooley_arrives_to_tonights_game/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1x2vc92/sportsnet_devin_cooley_arrives_to_tonights_game",
+   "skipped": "too short: the post runs 7.3s (< 15s)"
+  },
+  {
+   "sub": "hockey",
+   "who": "Alex Ovechkin",
+   "why": "His sons introduce him for his final home opener, a heartfelt family moment.",
+   "post_title": "Sergei and Ilya Ovechkin introduce their dad for his final home opener of his NHL career",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1x0c3u1/sergei_and_ilya_ovechkin_introduce_their_dad_for/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1x0c3u1/sergei_and_ilya_ovechkin_introduce_their_dad_for",
+   "title": "Alex Ovechkin's Sons Introduce Their Dad For His Final Home Opener",
+   "hook": "Ovechkin's sons introduce him one last time",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A genuine, warm moment: the sons at the mic, then Ovechkin skating out under the spotlight. But our line sits over the source's banner in the opening, and the ending fades into generic skating instead of landing on the emotion.",
+    "score": 83
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A genuine, warm moment: the sons at the mic, then Ovechkin skating out under the spotlight. But our line sits over the source's banner in the opening, and the ending fades into generic skating instead of landing on the emotion."
   },
   {
    "sub": "soccer",
    "who": "Harry Maguire",
-   "why": "Laughs and waves off Rodrigo Bentancur\u2019s red card, turning a tense moment into comedy",
+   "why": "He laughs and waves off Bentancur after a red card, a funny player reaction.",
    "post_title": "Harry Maguire laughs and waves off Rodrigo Bentancur following his red card.",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/soccer/comments/1x2x6ah/harry_maguire_laughs_and_waves_off_rodrigo/",
@@ -65,48 +143,78 @@
    "skipped": "too short: the post runs 3.8s (< 15s)"
   },
   {
+   "sub": "nba",
+   "who": "Draymond Green",
+   "why": "Draymond gives sideline advice to a rookie, a mic'd-up mentor moment.",
+   "post_title": "Draymond Green gives some advice to Darius Acuff Jr. on the sideline",
+   "upvotes": 0,
+   "url": "https://streamable.com/nwqtvq",
+   "topic": "https://www.reddit.com/r/nba/comments/1x2zaqv/draymond_green_gives_some_advice_to_darius_acuff",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "MMA",
+   "who": "Islam Makhachev",
+   "why": "A UFC champ shows off his cat Toni.",
+   "post_title": "Islam Makhachev shows his cat, Toni",
+   "upvotes": 0,
+   "url": "https://streamable.com/eoqtpo",
+   "topic": "https://www.reddit.com/r/MMA/comments/1x0vep3/islam_makhachev_shows_his_cat_toni",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "MMA",
+   "who": "Dana White",
+   "why": "He visibly loses it when asked about Eddie Hearn at a press conference.",
+   "post_title": "Dana White crashes out again when asked about Eddie Hearn at Contender Series Press conference",
+   "upvotes": 0,
+   "url": "https://x.com/ChampRDS/status/2107643659114209338",
+   "topic": "https://www.reddit.com/r/MMA/comments/1x00xuv/dana_white_crashes_out_again_when_asked_about",
+   "title": "Dana White Loses It On Camera When Asked About Eddie Hearn's Lawsuit Claim",
+   "hook": "Dana White snaps at Eddie Hearn question \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "whoa@67.1"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      810,
+      1080,
+      570,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The title promises Dana 'losing it', but 84 seconds of calm press-conference talking head never shows a snap, and the opening is a slow reporter question.",
+    "score": 61
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The title promises Dana 'losing it', but 84 seconds of calm press-conference talking head never shows a snap, and the opening is a slow reporter question."
+  },
+  {
    "sub": "soccer",
    "who": "Lionel Messi",
-   "why": "Delivers a heartfelt, full\u2011length farewell speech after his last Argentina match",
-   "post_title": "Lionel Messi's full farewell speech after his last match for Argentina",
+   "why": "He walks down the tunnel with his family and teammates as the crowd chants his name.",
+   "post_title": "Messi goes down the tunnel surrounded by his wife, his children, his teammates, his fans and the crowd chanting his name.",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/soccer/comments/1wzkut8/lionel_messis_full_farewell_speech_after_his_last/",
-   "topic": "https://www.reddit.com/r/soccer/comments/1wzkut8/lionel_messis_full_farewell_speech_after_his_last",
-   "skipped": "download failed"
-  },
-  {
-   "sub": "nba",
-   "who": "Kevin Durant",
-   "why": "Shares a sincere, nostalgic tribute to Russ Westbrook\u2019s lingering impact",
-   "post_title": "Kevin Durant: \"I was a little sad because I still thought Russ (Westbrook) had five or six more years left. He's an athletic body that can still impact the game positively\"",
-   "upvotes": 0,
-   "url": "https://streamable.com/d0c0ba",
-   "topic": "https://www.reddit.com/r/nba/comments/1x1mhvc/kevin_durant_i_was_a_little_sad_because_i_still",
-   "skipped": "author: no title"
-  },
-  {
-   "sub": "baseball",
-   "who": "Pat Murphy",
-   "why": "Humorously says he wants to \u201cstep on Tarik Skubal\u2019s throat\u201d in a post\u2011game interview",
-   "post_title": "Brewers Manager Pat Murphy on Tarik Skubal: \u201cI just want to step on his throat. I mean that respectfully.\u201d",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/baseball/comments/1x3lfe2/brewers_manager_pat_murphy_on_tarik_skubal_i_just/",
-   "topic": "https://www.reddit.com/r/baseball/comments/1x3lfe2/brewers_manager_pat_murphy_on_tarik_skubal_i_just",
-   "skipped": "author: no title"
-  },
-  {
-   "sub": "soccer",
-   "who": "Robert Lewandowski",
-   "why": "Throws the ceremonial first pitch at a White Sox playoff game, a football star in a baseball setting",
-   "post_title": "Robert Lewandowski threw the ceremonial first pitch at the Chicago White Sox playoff game",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/soccer/comments/1x18f2y/robert_lewandowski_threw_the_ceremonial_first/",
-   "topic": "https://www.reddit.com/r/soccer/comments/1x18f2y/robert_lewandowski_threw_the_ceremonial_first",
-   "skipped": "author: no title"
+   "url": "https://www.reddit.com/r/soccer/comments/1wzll4o/messi_goes_down_the_tunnel_surrounded_by_his_wife/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1wzll4o/messi_goes_down_the_tunnel_surrounded_by_his_wife",
+   "skipped": "author: no setup or no payoff in the clip"
   }
  ],
  "already_today": 0,
- "pool": 92,
- "already_posted": 2,
+ "pool": 77,
+ "already_posted": 1,
  "shipped": 0
 }
