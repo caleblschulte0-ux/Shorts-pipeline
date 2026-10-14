@@ -7,7 +7,7 @@
 | fail | 14 | 0.12 |
 | drama | 8 | 0.03 |
 | argument | 7 | 0.03 |
-| rage | 6 | 0.17 |
+| rage | 6 | 0.16 |
 | win | 5 | 0.03 |
 | beef | 5 | 0.08 |
 | jumpscare | 3 | 0.16 |
