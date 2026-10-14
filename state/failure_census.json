@@ -1,78 +1,69 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "temporal_gate": {
-   "count": 5,
-   "stories": {
-    "sports_kyle_shanahan_uel_theres_a": 1,
-    "vertical-farming-bust": 2,
-    "saharan-dust-feeds-amazon": 1,
-    "sports_mike_evans__with_trevon": 1
-   },
-   "timestamps": [
-    "2026-10-12T11:46:04+00:00",
-    "2026-10-12T23:53:37+00:00",
-    "2026-10-13T04:58:25+00:00",
-    "2026-10-13T06:48:00+00:00",
-    "2026-10-13T12:07:21+00:00"
-   ],
-   "examples": [
-    "temporal_gate: duplicate_ratio 0.51 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.58s of 26.83s (~2.0s frozen)",
-    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.25s of 26.5s (~2.0s frozen)"
-   ],
-   "recurred_after_fix": false
-  },
   "other": {
    "count": 4,
    "stories": {
-    "sports_anne_hathaway_y_guesses_og": 1,
-    "doomsday-clock-89-seconds": 1,
-    "sports_lionel_messi_ve_it_my_all": 1,
-    "sports_alex_ovechkin_heir_dad_for": 1
+    "sports_alex_ovechkin_heir_dad_for": 1,
+    "sports_steven_gerrard__else_steven": 1,
+    "rubiks-cube-record-vs-robot": 1,
+    "billionaire-count-record-2025": 1
    },
    "timestamps": [
-    "2026-10-12T11:44:30+00:00",
-    "2026-10-13T06:11:58+00:00",
-    "2026-10-13T11:31:10+00:00",
-    "2026-10-14T00:22:53+00:00"
+    "2026-10-14T00:22:53+00:00",
+    "2026-10-14T01:05:57+00:00",
+    "2026-10-14T15:50:21+00:00",
+    "2026-10-14T17:43:53+00:00"
    ],
    "examples": [
-    "unreadable: payoff@-1.8: the word caption 'YOU JUST CAN'T.' is printed on top of a second garbled caption, so both are illegible at phone size",
-    "unreadable: In seg3:mid the BIO warning sign's label is cut to 'BI' by a fuse, and in seg3:end the 'AI' sign is half hidden behind the bomb. In seg2:start the caption 'sat at its' is pale and nearly i",
-    "unreadable: The text \"will farewell speech with me.\" in frame payoff@-0.4 is cut off and incomplete, making it unreadable and nonsensical."
+    "unreadable: In hook@0.3 through mid0, our line 'Ovechkin's sons introduce him one last time' is printed on top of the source's own dark lower-third banner, which has a Capitals logo at its left edge. ",
+    "unreadable: In mid1 through payoff@-0.4 our white line 'Gerrard says City took memories from everyone' sits directly on top of the footage's own burned-in captions ('SIT HERE', 'IN THAT DEPARTMENT', '",
+    "unreadable: In seg3:start through seg4 the caption sits on the busy cube at the bottom, and in seg4:start the grey 'Could you solve a cube that fast?' is low-contrast over the cube. In seg0/seg1 the s"
    ],
    "recurred_after_fix": false
   },
-  "dead_air": {
+  "temporal_gate": {
    "count": 2,
    "stories": {
-    "sports_dak_prescott_ott_pointing": 1,
-    "rubiks-cube-record-vs-robot": 1
+    "amazon-warehouse-robot-army": 1,
+    "saharan-dust-feeds-amazon": 1
    },
    "timestamps": [
-    "2026-10-12T11:54:02+00:00",
-    "2026-10-13T05:31:29+00:00"
+    "2026-10-14T12:06:11+00:00",
+    "2026-10-14T14:49:22+00:00"
    ],
    "examples": [
-    "dead_air: From hook@0.3 to mid0, then mid2, mid3 and the payoff frames, it is shaky phone footage of people walking a tunnel. The point the line promises never shows in a sampled frame, so long stretc",
-    "dead_air: seg4:start (24.59s) to payoff@-0.4 (28.60s): about 4s of one frame. Data holds the same cheer, the robot sits idle and the closing text is static. Only the gripper twitches."
+    "temporal_gate: max_dup_run 60 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=24.92s of 29.25s (~2.5s frozen)",
+    "temporal_gate: max_dup_run 46 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.33s of 26.58s (~1.9s frozen)"
    ],
    "recurred_after_fix": false
   },
   "decorative_mascot": {
    "count": 2,
    "stories": {
-    "rubiks-cube-record-vs-robot": 1,
-    "back-pain-leading-disability": 1
+    "the-penny-lost-money-19-years-straight": 1,
+    "rubiks-cube-record-vs-robot": 1
    },
    "timestamps": [
-    "2026-10-13T05:31:29+00:00",
-    "2026-10-13T17:44:29+00:00"
+    "2026-10-14T13:32:43+00:00",
+    "2026-10-14T15:50:21+00:00"
    ],
    "examples": [
-    "decorative_mascot: seg0:mid to seg1:end: Data stands at the cube's corner waving or pointing while the cube solves itself. seg2:mid: he stands beside a control box. seg3:start to seg3:end: he waves be",
-    "decorative_mascot: In seg0:start and seg0:mid, the mascot stands next to a box, observing the main character with back pain, but doesn't perform a specific action tied to the stat. In seg3:start and s"
+    "decorative_mascot: In seg0:start through seg1:end Data stands at the base of the scale, waving or pointing, while the penny stack grows and tips the beam on its own. In seg2 and seg3 he stands beside ",
+    "decorative_mascot: Data waves or points beside the giant cube in seg0:end, seg1:mid and seg1:end, and waves next to the rig in seg3:mid and seg3:end. In seg4:start through payoff@-0.4 he only cheers i"
+   ],
+   "recurred_after_fix": false
+  },
+  "dead_air": {
+   "count": 1,
+   "stories": {
+    "rubiks-cube-record-vs-robot": 1
+   },
+   "timestamps": [
+    "2026-10-14T15:50:21+00:00"
+   ],
+   "examples": [
+    "dead_air: seg4:start (24.59s) through payoff@-0.4 (28.60s) are almost the same frame: a static closing text block, a parked rig and Data in one cheer pose. Measured held_s is 5.67 at 24.17s."
    ],
    "recurred_after_fix": false
   }
@@ -81,15 +72,15 @@
   "hook": {
    "median": 2,
    "min": 0,
-   "max": 4
+   "max": 3
   },
   "data_demo": {
    "median": 3,
    "min": 0,
-   "max": 5
+   "max": 4
   },
   "mascot": {
-   "median": 4,
+   "median": 3,
    "min": 0,
    "max": 4
   },
@@ -115,25 +106,25 @@
   }
  },
  "scores": [
-  79,
-  70,
-  14,
-  66,
-  87,
-  53,
-  87,
-  70,
-  14,
-  14,
-  52,
-  79,
-  14,
-  87,
-  14,
-  96,
-  100,
-  66,
   83,
-  61
+  61,
+  66,
+  74,
+  57,
+  57,
+  66,
+  70,
+  87,
+  70,
+  74,
+  14,
+  57,
+  14,
+  78,
+  48,
+  79,
+  79,
+  70,
+  75
  ]
 }
