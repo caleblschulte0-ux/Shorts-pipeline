@@ -53,6 +53,12 @@ class TwoBeatsIsNotAStory(unittest.TestCase):
         self.assertTrue(any("only 2 beats" in r for r in v["reasons"]),
                         v["reasons"])
 
+    def test_it_is_not_sent_for_a_rewrite_that_cannot_fix_it(self):
+        # a rewrite keeps the beat count (rewrite_mailbox.validate), so a
+        # beat-count hold must not read as a word reason
+        from shared import rewrite_mailbox as rw
+        self.assertFalse(any(p.startswith("length") for p in rw._WORD_PREFIX))
+
 
 if __name__ == "__main__":
     unittest.main()

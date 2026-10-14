@@ -34,6 +34,7 @@ if str(ROOT) not in sys.path:
 
 from shared import rewrite_mailbox as RW                     # noqa: E402
 from scripts import editorial_gate as EG                     # noqa: E402
+from shared import pacing                                    # noqa: E402
 
 
 def _data(td: Path, name: str, points, unit="percent"):
@@ -78,10 +79,12 @@ class _Box(unittest.TestCase):
         self.td = Path(tempfile.mkdtemp(prefix="rw-"))
         self.rewrites = self.td / "rewrites"
         # distinctness is the gate's own rule, held elsewhere; this fixture's
-        # two beats are about the numbers/entities/premise checks
+        # two beats are about the numbers/entities/premise checks (and so
+        # under the three-beat floor, held in its own test)
         self._p = [mock.patch.object(EG, "DATA_DIR", self.td),
                    mock.patch.object(EG, "beats_are_distinct",
                                      lambda sc: {"ok": True, "reasons": []}),
+                   mock.patch.object(pacing, "too_few_beats", lambda sc, b=None: None),
                    mock.patch.object(RW, "REWRITES_DIR", self.rewrites),
                    mock.patch.object(RW, "PLANS_DIR", self.td / "plans"),
                    mock.patch.object(RW, "REPO", self.td)]
