@@ -144,6 +144,35 @@ class TikTokFollowsTheYouTubeSlot(unittest.TestCase):
         self.assertFalse(post.called)
 
 
+class AClaimedUploadHasItsSlot(unittest.TestCase):
+    """2026-10-14: Baller Bro's first scheduled TikTok never went. The
+    trending log keeps the upload twice (`posted` is a LIST there), a claim in `uploads` with no
+    publish_at and the `posted` record with it, and only the claim was
+    read, so the video was never due."""
+
+    def test_both_records_are_read_as_one(self):
+        import json
+        import tempfile
+        sys.path.insert(0, str(ROOT / "scripts"))
+        import tiktok_post_release as t
+        from datetime import datetime, timezone
+        log = {"uploads": [{"title": "T", "state": "posted",
+                            "claimed_at": "2026-10-14T00:57:50Z",
+                            "url": "https://youtube.com/shorts/x"}],
+               "posted": [{"title": "T", "posted_at":
+                           "2026-10-14T00:58:01Z",
+                           "publish_at": "2026-10-14T16:00:00Z"}]}
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d) / "log.json").write_text(json.dumps(log))
+            with mock.patch.object(t, "ROOT", Path(d)), \
+                    mock.patch.dict(t.POSTED_LOGS, {"trending": "log.json"}):
+                e = t.posted_entry("trending", "T")
+        self.assertEqual(e["publish_at"], "2026-10-14T16:00:00Z")
+        self.assertEqual(e["url"], "https://youtube.com/shorts/x")
+        self.assertTrue(t.is_due(
+            e, datetime(2026, 10, 14, 16, 10, tzinfo=timezone.utc)))
+
+
 class FiveHashtags(unittest.TestCase):
     def test_caption_keeps_the_first_five(self):
         cap = uploaders.cap_hashtags(

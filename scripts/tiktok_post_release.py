@@ -51,6 +51,8 @@ def _entries(log) -> list[dict]:
     posted = log.get("posted")
     if isinstance(posted, dict):
         out += [e for e in posted.values() if isinstance(e, dict)]
+    elif isinstance(posted, list):      # the trending log keeps a list
+        out += [e for e in posted if isinstance(e, dict)]
     return out
 
 
@@ -60,10 +62,18 @@ def posted_entry(channel: str, title: str) -> dict | None:
     p = ROOT / POSTED_LOGS.get(channel, "")
     if not p.is_file():
         return None
+    # One upload is two records in a posted log that has both lists: the
+    # claim in `uploads` (no publish_at) and the `posted` record (with it).
+    # Taking only the first left Baller Bro's scheduled videos with no
+    # slot, never due (2026-10-14): every match is merged, first wins.
+    found: dict | None = None
     for e in _entries(json.loads(p.read_text())):
         if e.get("title") == title and e.get("state", "posted") == "posted":
-            return e
-    return None
+            found = found or {}
+            for k, v in e.items():
+                if found.get(k) in (None, ""):
+                    found[k] = v
+    return found
 
 
 #: YouTube videos pulled from their schedule (scripts/pull_videos.py,
@@ -118,7 +128,8 @@ RENDER_SLACK = timedelta(minutes=30)
 def uploaded_at(entry: dict) -> datetime | None:
     """When YouTube took it, by the posted log (not when it goes live)."""
     return _when(entry.get("at")) or _when(entry.get("ts")) \
-        or _when(entry.get("posted_at")) or _when(entry.get("uploaded_at"))
+        or _when(entry.get("posted_at")) or _when(entry.get("uploaded_at")) \
+        or _when(entry.get("claimed_at"))
 
 
 def same_render(rel: dict, entry: dict) -> bool:
