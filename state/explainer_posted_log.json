@@ -3428,6 +3428,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 78,
       "duration_s": 24.6
+    },
+    "hurricane-names-retired-growing-list": {
+      "claimed_at": "2026-10-14T16:37:43.250575+00:00",
+      "title": "Why Some Hurricane Names Get Retired Forever",
+      "publish_at": "2026-10-14T16:20:57Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4305,6 +4312,14 @@
       "via": "showrunner-rejudge",
       "slug": "back-pain-leading-disability",
       "at": "2026-10-14T15:50:13Z"
+    },
+    {
+      "claimed_at": "2026-10-14T16:37:43.250575+00:00",
+      "title": "Why Some Hurricane Names Get Retired Forever",
+      "publish_at": "2026-10-14T16:20:57Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "hurricane-names-retired-growing-list"
     }
   ]
 }
