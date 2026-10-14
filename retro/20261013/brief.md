@@ -1,6 +1,6 @@
 # Retro — 20261013
 
-generated 2026-10-13T23:31:09Z · 7 video(s) posted today
+generated 2026-10-14T00:31:03Z · 7 video(s) posted today
 
 ## trending
 
@@ -51,9 +51,9 @@ _nothing published today_
 ## Running experiments
 
 - `20260924-third-story-arm-slot-beats-mature-clip-baseline-on` — Third story-arm slot beats mature clip baseline on views-per-hour
-    - 19.76d, 2 samples, needs 28d / 25 samples · 19.8/28 days elapsed — too early to read
+    - 19.8d, 2 samples, needs 28d / 25 samples · 19.8/28 days elapsed — too early to read
 - `20260925-superlative-science-family-explainer-topics-beat-t` — Superlative/science-family explainer topics beat the broad mix on average-view-percentage
-    - 18.76d, 1 samples, needs 28d / 25 samples · 18.8/28 days elapsed — too early to read
+    - 18.8d, 1 samples, needs 28d / 25 samples · 18.8/28 days elapsed — too early to read
 
 ## Bespoke pictures vs performance
 
@@ -74,10 +74,10 @@ _views-per-hour percentile vs same-age explainer videos, by style arm, videos >=
 - consecutive failures: 0
 - exchange: {"media": {"fulfilled": 0, "self_filled": 0, "unfilled": 0, "refused": 0}, "punchup": {"applied": 0, "kept": 0, "rejected": 0, "absent": 0}, "done_marker": true, "authored": {"promoted": 0, "rejected"
 - slots: {"note": "no daily_report.json \u2014 the trending run has not reported since this clone was made"}
-- showrunner: {"recent": 40, "blocks": 24, "avg_score": 60.0}
+- showrunner: {"recent": 40, "blocks": 27, "avg_score": 59.5}
 
 ## Repo
 
-- HEAD 0945d78, 50 commit(s) since 2026-10-12
+- HEAD 0c899b3, 50 commit(s) since 2026-10-13
 
 Write proposals per `retro/README.md`. Nothing you write is applied automatically.

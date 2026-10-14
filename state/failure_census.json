@@ -2,16 +2,14 @@
  "n_verdicts": 20,
  "classes": {
   "temporal_gate": {
-   "count": 6,
+   "count": 5,
    "stories": {
-    "sports_jaylen_brown__edwards_for": 1,
     "sports_kyle_shanahan_uel_theres_a": 1,
     "vertical-farming-bust": 2,
     "saharan-dust-feeds-amazon": 1,
     "sports_mike_evans__with_trevon": 1
    },
    "timestamps": [
-    "2026-10-12T11:39:18+00:00",
     "2026-10-12T11:46:04+00:00",
     "2026-10-12T23:53:37+00:00",
     "2026-10-13T04:58:25+00:00",
@@ -19,32 +17,30 @@
     "2026-10-13T12:07:21+00:00"
    ],
    "examples": [
-    "temporal_gate: effective_fps 10.9 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
     "temporal_gate: duplicate_ratio 0.51 > 0.45 (phase-1 ceiling) \u2014 too many held frames",
-    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.58s of 26.83s (~2.0s frozen)"
+    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.58s of 26.83s (~2.0s frozen)",
+    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.25s of 26.5s (~2.0s frozen)"
    ],
    "recurred_after_fix": false
   },
   "other": {
-   "count": 5,
+   "count": 4,
    "stories": {
-    "sports_devin_cooley_onights_game": 1,
-    "divorce-rate-quiet-decline": 1,
     "sports_anne_hathaway_y_guesses_og": 1,
     "doomsday-clock-89-seconds": 1,
-    "sports_lionel_messi_ve_it_my_all": 1
+    "sports_lionel_messi_ve_it_my_all": 1,
+    "sports_alex_ovechkin_heir_dad_for": 1
    },
    "timestamps": [
-    "2026-10-12T00:07:28+00:00",
-    "2026-10-12T01:26:34+00:00",
     "2026-10-12T11:44:30+00:00",
     "2026-10-13T06:11:58+00:00",
-    "2026-10-13T11:31:10+00:00"
+    "2026-10-13T11:31:10+00:00",
+    "2026-10-14T00:22:53+00:00"
    ],
    "examples": [
-    "unreadable: In every frame (hook@0.3 through payoff@-0.4), our line 'Devin Cooley brings his pet bunny to the game' sits on top of the cropped Sportsnet/ROGERS lower-third graphic, which shows as a cu",
-    "unreadable: seg3:mid/payoff@-0.4: the label 'years old, her first wedding \u00b7 2024 \u00b7 +4.7 since 1990' is tiny and runs over the hourglass's top funnel and frame. You can't read it at arm's length",
-    "unreadable: payoff@-1.8: the word caption 'YOU JUST CAN'T.' is printed on top of a second garbled caption, so both are illegible at phone size"
+    "unreadable: payoff@-1.8: the word caption 'YOU JUST CAN'T.' is printed on top of a second garbled caption, so both are illegible at phone size",
+    "unreadable: In seg3:mid the BIO warning sign's label is cut to 'BI' by a fuse, and in seg3:end the 'AI' sign is half hidden behind the bomb. In seg2:start the caption 'sat at its' is pale and nearly i",
+    "unreadable: The text \"will farewell speech with me.\" in frame payoff@-0.4 is cut off and incomplete, making it unreadable and nonsensical."
    ],
    "recurred_after_fix": false
   },
@@ -79,24 +75,11 @@
     "decorative_mascot: In seg0:start and seg0:mid, the mascot stands next to a box, observing the main character with back pain, but doesn't perform a specific action tied to the stat. In seg3:start and s"
    ],
    "recurred_after_fix": false
-  },
-  "junk_imagery": {
-   "count": 1,
-   "stories": {
-    "divorce-rate-quiet-decline": 1
-   },
-   "timestamps": [
-    "2026-10-12T01:26:34+00:00"
-   ],
-   "examples": [
-    "junk_imagery: seg1:start/mid/end: a cluster of maroon and grey spheres, like a bunch of grapes or balloons, sits behind the captions at the bottom right and doesn't belong to the ring scene"
-   ],
-   "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 3,
+   "median": 2,
    "min": 0,
    "max": 4
   },
@@ -106,7 +89,7 @@
    "max": 5
   },
   "mascot": {
-   "median": 3,
+   "median": 4,
    "min": 0,
    "max": 4
   },
@@ -116,7 +99,7 @@
    "max": 3
   },
   "pace": {
-   "median": 2,
+   "median": 1,
    "min": 0,
    "max": 2
   },
@@ -132,9 +115,6 @@
   }
  },
  "scores": [
-  75,
-  74,
-  14,
   79,
   70,
   14,
@@ -151,6 +131,9 @@
   87,
   14,
   96,
-  100
+  100,
+  66,
+  83,
+  61
  ]
 }
