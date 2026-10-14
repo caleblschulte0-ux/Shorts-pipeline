@@ -20,6 +20,8 @@ from __future__ import annotations
 
 from datetime import datetime, timedelta, timezone
 
+from shared.centraltime import TZ as PUBLISH_TZ
+
 #: YouTube refuses a publishAt that is not in the future, and a run that
 #: hands it one only minutes out risks the same — so nothing is scheduled
 #: closer than this to now.
@@ -28,8 +30,6 @@ LEAD = timedelta(minutes=15)
 #: How far back an earlier post still counts. A gap is hours, so two days
 #: covers every neighbour with room to spare.
 WINDOW = timedelta(hours=48)
-
-PUBLISH_TZ = "America/Chicago"
 
 _WHEN_KEYS = ("publish_at", "at", "posted_at", "uploaded_at", "claimed_at")
 
