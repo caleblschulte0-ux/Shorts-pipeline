@@ -394,6 +394,42 @@ def _seg_words(words: list[dict], start: float, end: float) -> list[dict]:
     return out
 
 
+def _line_spot(src: Path, framed: Path | None, vf: str, work: Path,
+               tag: str, start: float, end: float,
+               text: str) -> tuple[int, bool]:
+    """(y, speech_taken) for the beat's line of text: the clip arm's
+    `clip_edit.line_spot`, read on the picture this beat will show.
+
+    Search 31's 88 (Pikaboo and Payo, 2026-10-14) laid the hook line
+    straight over the second source's own on-screen text for half the
+    video: the clip arm had moved its line off a repost's burned-in
+    captions since 2026-10-11, the story arm never asked. A blur-filled
+    beat has no framed file, so its picture is cut once, silent, to read.
+    Anything failing: the bottom third, as before."""
+    dur = end - start
+    lines, size = _wrap(text, 64)
+    line_h = len(lines) * int(size * 1.25) + 24
+    try:
+        pic = framed
+        if pic is None:
+            pic = work / f"pic_{tag}.mp4"
+            _run(["ffmpeg", "-y", "-v", "error", "-ss", f"{start:.2f}",
+                  "-to", f"{end:.2f}", "-i", str(src), "-vf", vf, "-an",
+                  "-c:v", "libx264", "-preset", "ultrafast", "-crf", "30",
+                  str(pic)])
+        y, why, speech_taken = clip_edit.line_spot(
+            Path(pic), "[0:v]null[vout]", dur, line_h, samples=4,
+            speech=True)
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[story] beat {tag}: line spot failed "
+              f"({type(e).__name__}) — bottom third", flush=True)
+        return CAPTION_Y, False
+    if y != CAPTION_Y:
+        print(f"[story] beat {tag}: the line goes on top: {why}",
+              flush=True)
+    return y, speech_taken
+
+
 def _extract_segment(src: Path, out: Path, work: Path, tag: str, *,
                      start: float, end: float, words: list[dict],
                      captions: list[dict] | None = None,
@@ -426,6 +462,16 @@ def _extract_segment(src: Path, out: Path, work: Path, tag: str, *,
               f"[fg]scale={CANVAS_W}:{CANVAS_H}:force_original_aspect_ratio="
               f"decrease[fgs];[bgb][fgs]overlay=(W-w)/2:(H-h)/2")
     seg_words = _seg_words(words, start, end)
+    line_y = CAPTION_Y
+    text = next((c["text"] for c in captions or []
+                 if (c.get("text") or "").strip()), "")
+    if text:
+        line_y, speech_taken = _line_spot(src, framed, vf, work, tag,
+                                          start, end, text)
+        if speech_taken and seg_words:
+            print(f"[story] beat {tag}: the footage has text where the "
+                  "words go — no word captions", flush=True)
+            seg_words = []
     if seg_words:
         ass = work / f"cap_{tag}.ass"
         clip_edit.build_ass(seg_words, "", dur, ass)
@@ -433,7 +479,7 @@ def _extract_segment(src: Path, out: Path, work: Path, tag: str, *,
     draws = []
     for i, c in enumerate(captions or []):
         draws.append(_overlay_draw(c["text"], work, f"c{tag}_{i}",
-                                   y=CAPTION_Y, size=64, start=c["at"],
+                                   y=line_y, size=64, start=c["at"],
                                    dur=c["secs"]))
     for i, fx in enumerate(effects or []):
         if fx.get("type") == "subtle_punch":
