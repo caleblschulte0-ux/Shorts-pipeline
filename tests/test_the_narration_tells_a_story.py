@@ -28,9 +28,9 @@ CFG_PATH = ROOT / "data_learning" / "niche.config.json"
 CFG = json.loads(CFG_PATH.read_text())
 SLUG = "measles-ninety-five-rule"
 RETOLD = {"segments": [
-    {"say": "One person with measles infects about 15 others. That makes it far more catching than the flu."},
-    {"say": "Stopping it takes 95 percent immunity. Kindergartners are just short of that, so it slips through."},
-    {"say": "That small gap brought measles roaring back: 2,566 cases this year, and kids pay for it."}],
+    {"say": "One person with measles infects about 15 others. That makes it far more catching than the flu, which barely spreads at all."},
+    {"say": "Stopping it takes 95 percent immunity. Kindergartners are just short of that now, so the virus quietly slips through the gap."},
+    {"say": "That small gap brought measles roaring back: 2,566 cases this year, and it is the kids who end up paying for it."}],
     "closing": "Measles only needs a small gap to come back, and it found one."}
 
 

@@ -39,7 +39,7 @@ REPO = Path(__file__).resolve().parent.parent
 MAX_NUMBERS = 1
 #: Bumped when the retell doctrine changes, so stories retold under an older
 #: one are heard again.
-RETOLD = "retell/v3"
+RETOLD = "retell/v4"  # v4 2026-10-14: beats under 18 words are retold longer
 WORDS_BY = "claude-retell"
 
 #: Names a viewer knows without being told. Anything else in capitals is a

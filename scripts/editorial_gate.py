@@ -569,6 +569,10 @@ def pre_render_verdict(sc: dict, *, use_llm: bool = True) -> dict:
     # brain tighten the story before this verdict is taken.
     from shared import pacing as _pacing
     pace = _pacing.problems(sc)
+    _few = _pacing.too_few_beats(sc)
+    if _few:
+        dist = {**dist, "ok": False, "reasons": list(dist["reasons"]) + [_few]}
+        other_ok = False
     reasons = ([f"data: {r}" for r in prov["reasons"]]
                + [f"data: {r}" for r in finding["reasons"]]
                + [f"premise: {r}" for r in prem["reasons"]]
