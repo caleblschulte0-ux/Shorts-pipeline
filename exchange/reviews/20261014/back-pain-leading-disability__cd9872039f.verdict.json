@@ -1,0 +1,94 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "back-pain-leading-disability__cd9872039f",
+ "video_sha256": "cd9872039f9e891ebe9aafd02b8b53298fcd2f8fa4487755a385479fe2494606",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-14T15:49:18Z",
+ "grades": {
+  "dimensions": {
+   "hook": 3,
+   "data_demo": 3,
+   "mascot": 3,
+   "craft": 2,
+   "pace": 2,
+   "payoff": 2
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "Every frame is in-house illustration on topic: a hunched man with a red pain burst (hook@0.3), a clinic queue (seg1:start), a spine on a stand (seg2:start), a warehouse worker under boxes (seg3:start), a man under a sack (seg4:start)."
+   },
+   "decorative_mascot": {
+    "present": false,
+    "evidence": "Data mostly does the work in each scene: he holds the queue rope at the post as the line grows (seg1:mid/end), turns the vise crank by the spine (seg2:mid/end), stands on the box stack piling it onto the worker (seg3:mid/end) and hauls the rope that lifts the sack off the man's back (seg4:mid, payoff@-1.8). The hook is the exception: there he only sways on a cardboard box."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "Each number sits on a picture that acts it out: 843M over a longer queue (seg1:end), +53% over a taller box stack with a 2021 ghost box (seg3:end), 1.5x over a sack bigger than its 1990 outline (seg4:end)."
+   },
+   "dead_air": {
+    "present": false,
+    "evidence": "Measured longest_static_s is 0 and the longest duplicate run is about 1.3s. Things move in every segment: the queue lengthens, the spine straightens, boxes stack, the sack lifts."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "Full-bleed scenes use the whole frame (seg1, seg2, seg3, seg4). There are no dark empty areas (dark_fraction 0.0)."
+   },
+   "unreadable": {
+    "present": false,
+    "evidence": "Headlines and captions read at phone size. The small labels '2020' over the queue (seg1:mid), '61% other causes' (seg2:end) and '1990'/'2021' by the boxes (seg3:end) are small but legible. The faint captions in seg1:start and seg3:start are mid-fade, not stuck that way."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg2",
+   "index": 2,
+   "failure_class": "weak_data_demo",
+   "visible_evidence": "In seg2:start through seg2:end a bent, glowing spine straightens a little on a stand beside a vise. '39%' shows top-left and '61% other causes' sits on a thin grey arc with 'fixable' on a short cyan arc, small labels floating beside the spine. A viewer cannot see four in ten of the cases being fixed.",
+   "root_cause": "The split is carried by two thin arcs and text labels beside the spine. Nothing in the spine itself splits into a fixable 39% and an unfixable 61%. Data only turns a crank and nothing visibly follows from it.",
+   "repair_goal": "Make the spine show the split. Turn about 4 of every 10 vertebrae (or 39% of the glowing pain) into the fixable part, and have Data clear that part with each turn of the crank while the other 61% stays lit, so the claim reads without the labels."
+  },
+  "depictions": [
+   {
+    "id": "seg1",
+    "kind": "bespoke",
+    "bespoke": 2,
+    "proves_claim": 2,
+    "note": "A queue of bent-over back-pain patients outside a clinic grows longer from 619M to 843M with a 2020 marker. The growth is visible, but how much longer the line gets is not easy to read."
+   },
+   {
+    "id": "seg2",
+    "kind": "machine",
+    "bespoke": 2,
+    "proves_claim": 1,
+    "note": "A spine on a stand with a vise. The 39/61 split is carried by thin arcs and labels, not by the spine."
+   },
+   {
+    "id": "seg3",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 2,
+    "note": "A worker bent under a growing box stack with a ghost box for 2021. The load is made of the subject, though the size of the +53% is only partly readable."
+   },
+   {
+    "id": "seg4",
+    "kind": "bespoke",
+    "bespoke": 3,
+    "proves_claim": 2,
+    "note": "A sack bigger than its 1990 dashed outline weighs on the man's back. Data hoists it off and the man straightens up, a good payoff."
+   }
+  ],
+  "one_line": "Strong illustrated scenes with Data doing the work. The spine beat is the weak link: its 39% split lives in labels, not in the picture.",
+  "problems": [
+   "Hook: Data sways on a cardboard box without doing anything about the man's pain (hook@0.3 to hook@2.2).",
+   "seg2: the 39% fixable vs 61% split shows only as thin arcs and floating labels next to the spine, and Data's crank has no visible effect.",
+   "seg1: the 2020 marker and how much the queue grew are hard to see. The line gets longer but the third more is not obvious.",
+   "seg3: the '1990' label sits on the worker's hard hat and '2021' floats by a faint ghost box, both small."
+  ],
+  "fixes": [
+   "seg2: draw the 39% inside the spine (about 4 of 10 vertebrae marked fixable) and have each turn of Data's crank clear the pain from those vertebrae while the rest stays red.",
+   "Hook: give Data one quick action from the first frame, such as reaching to steady the man's back or pulling a pain marker off him.",
+   "seg1: mark the 2020 end of the queue clearly so the extra third added by 2050 stands out as new people joining the line.",
+   "seg3: put the 1990 and 2021 heights as clear marks on the stack itself, not on the hard hat."
+  ]
+ }
+}

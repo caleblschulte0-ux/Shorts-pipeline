@@ -1,0 +1,105 @@
+{
+ "schema": "shorts-review-verdict/v1",
+ "request_id": "rubiks-cube-record-vs-robot__8af3824391",
+ "video_sha256": "8af3824391d9bcb54839f1262713881a3660fbbfef9e80f1b711d0b6e893fa2f",
+ "by": "showrunner:headless-claude",
+ "graded_at": "2026-10-14T15:50:05Z",
+ "grades": {
+  "dimensions": {
+   "hook": 2,
+   "data_demo": 1,
+   "mascot": 1,
+   "craft": 2,
+   "pace": 1,
+   "payoff": 1
+  },
+  "checks": {
+   "junk_imagery": {
+    "present": false,
+    "evidence": "All imagery is on-topic illustrated cubes, a stage, a stopwatch and a robot rig (hook@0.8, seg2:mid, seg3:start); no stock or garbled cutouts."
+   },
+   "decorative_mascot": {
+    "present": true,
+    "evidence": "Data waves or points beside the giant cube in seg0:end, seg1:mid and seg1:end, and waves next to the rig in seg3:mid and seg3:end. In seg4:start through payoff@-0.4 he only cheers in place. He never turns the cube, never runs the stopwatch and never races the robot."
+   },
+   "bare_number_card": {
+    "present": false,
+    "evidence": "Each number sits over an illustrated cube or robot scene (seg1:mid, seg2:end, seg3:start), not a plain blob. But the picture never shows the number's size."
+   },
+   "dead_air": {
+    "present": true,
+    "evidence": "seg4:start (24.59s) through payoff@-0.4 (28.60s) are almost the same frame: a static closing text block, a parked rig and Data in one cheer pose. Measured held_s is 5.67 at 24.17s."
+   },
+   "empty_void": {
+    "present": false,
+    "evidence": "Frames are filled with curtains, stage, workshop or arena backgrounds. The black stage front in seg3/seg4 is a solid surface, not a void."
+   },
+   "unreadable": {
+    "present": true,
+    "evidence": "In seg3:start through seg4 the caption sits on the busy cube at the bottom, and in seg4:start the grey 'Could you solve a cube that fast?' is low-contrast over the cube. In seg0/seg1 the subtitle 'first world championship solve \u00b7 Today' over '3.13 s' contradicts the spoken '23 seconds', so a viewer cannot work out what the label means."
+   }
+  },
+  "weakest_scene": {
+   "id": "seg1",
+   "index": 1,
+   "failure_class": "misleading_label",
+   "visible_evidence": "seg1:mid and seg1:end show a big '3.13 s' labelled 'first world championship solve \u00b7 Today' while the narration says the 1982 solve took almost 23 seconds. In seg0 the headline is just 'Today'. The giant cube only rotates its faces and nothing shows 23 seconds passing.",
+   "root_cause": "The readout pulled the current record value and date instead of the 1982 datum for this beat, and the scene has no mechanism that turns elapsed time into something the viewer can see. The cube spins its layers whatever the number is.",
+   "repair_goal": "Show 22.95s / 1982 as the headline. Make the time physical: Data turns the giant cube layer by layer while the hanging stopwatch sweeps all the way to ~23s, and the solve lands with the stopwatch near a full sweep. Later beats can then rerun that same sweep as a sliver (3.47s) and a hairline (0.38s)."
+  },
+  "depictions": [
+   {
+    "id": "seg0",
+    "kind": "bespoke",
+    "bespoke": 2,
+    "proves_claim": 0,
+    "note": "A giant scrambling Rubik's cube on a stage is made of the subject, but the headline 'Today' and the barely moving stopwatch assert no 23-second solve."
+   },
+   {
+    "id": "seg1",
+    "kind": "bespoke",
+    "bespoke": 2,
+    "proves_claim": 0,
+    "note": "The same cube turns its faces under a '3.13 s / first world championship \u00b7 Today' label that contradicts the narration's 23 seconds."
+   },
+   {
+    "id": "seg2",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 1,
+    "note": "A workshop with the cube and robot arms; the readout flips from 3.13s to 0.38s with '8x faster' text, but the arms never visibly solve faster than a human."
+   },
+   {
+    "id": "seg3",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 0,
+    "note": "A robot rig removes cubes from a stage under '3.13 sec / 2023' while the narration says 3.47 in 2018; nothing shows six times faster."
+   },
+   {
+    "id": "seg4",
+    "kind": "machine",
+    "bespoke": 1,
+    "proves_claim": 0,
+    "note": "The closing is a frozen rig and a cheering Data under a text block; there is no picture of 'under half a second'."
+   }
+  ],
+  "one_line": "Pretty cube and stage art, but the on-screen numbers contradict the narration ('3.13 s \u00b7 first world championship \u00b7 Today' against 23 seconds in 1982, '3.13 sec \u00b7 2023' against 3.47 in 2018), no picture shows any speed gap, and the closing freezes for about 5.7s.",
+  "problems": [
+   "seg0/seg1: the headline reads 'Today', then '3.13 s first world championship solve \u00b7 Today', while the narration says almost 23 seconds in 1982. The data label is wrong and misleading.",
+   "seg3: the readout says '3.13 sec the best human solve \u00b7 2023' but the narration says 3.47 seconds by 2018.",
+   "seg2: the robot's 0.38s is shown only as a text flip and an '8x faster' line; no robot solve or race is drawn.",
+   "No beat makes the time physical. The stopwatch hand barely moves, so 23s against 3.47s against 0.38s is never seen.",
+   "Data waves and points beside the props in every beat and cheers in place at the close; he never solves, times or races anything.",
+   "seg4:start to payoff@-0.4 is a ~5.7s near-static hold of a text block over a parked rig.",
+   "The bottom captions in seg3/seg4 sit on top of the busy foreground cube, and the closing question is low-contrast grey."
+  ],
+  "fixes": [
+   "Bind each beat's readout to its own datum: 22.95s/1982, 3.47s/2018, 0.38s/robot. Never show 'Today' on the first-championship beat.",
+   "Use one time mechanic for all three beats. Data solves the giant cube while the stopwatch sweeps ~23s; the next beat reruns the sweep and stops at 3.47s; then the robot rig snaps the cube solved while the hand barely twitches at 0.38s.",
+   "Make Data the cause: he turns the layers in beat 1, then sits at the robot's control lever and pulls it as the rig solves in beat 3.",
+   "Keep the closing moving: the robot re-solves the cube in a flash on loop and the stopwatch resets while the line reads, so the ending is not one frozen frame.",
+   "Move the captions off the foreground cube or give them a dark band, and render the closing question in full-contrast ink."
+  ]
+ }
+}
