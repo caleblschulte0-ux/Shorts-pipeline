@@ -3353,6 +3353,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 100,
       "duration_s": 27.8
+    },
+    "airfare-booking-window-trap": {
+      "claimed_at": "2026-10-14T11:41:22.313542+00:00",
+      "title": "Why Plane Tickets Cost More The Closer You Book",
+      "publish_at": "2026-10-14T11:23:36Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4202,6 +4209,14 @@
       "via": "showrunner-rejudge",
       "slug": "hpv-vaccine-cancer-drop",
       "at": "2026-10-13T17:44:37Z"
+    },
+    {
+      "claimed_at": "2026-10-14T11:41:22.313542+00:00",
+      "title": "Why Plane Tickets Cost More The Closer You Book",
+      "publish_at": "2026-10-14T11:23:36Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "airfare-booking-window-trap"
     }
   ]
 }
