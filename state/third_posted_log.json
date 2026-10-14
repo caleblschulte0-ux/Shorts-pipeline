@@ -13056,6 +13056,70 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (no observable event)",
       "ts": "2026-10-13T11:45:21.414063+00:00"
+    },
+    "rejected-brightabstruseeyeballdoggo-3ocfifrzv7bumnyw": {
+      "source_url": "https://www.twitch.tv/forsen/clip/BrightAbstruseEyeballDoggo-3oCfiFrzV7bUMnyw",
+      "streamer": "forsen",
+      "title": "ForsenChatter CrossDresser",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Chat-reading over Terraria, nothing visi)",
+      "ts": "2026-10-14T12:00:44.265656+00:00"
+    },
+    "rejected-frozengoodsardineninjagrumpy-pnwlu6rgt7-rtjnd": {
+      "source_url": "https://www.twitch.tv/buddha/clip/FrozenGoodSardineNinjaGrumpy-PNWLu6rgt7-rTJnD",
+      "streamer": "buddha",
+      "title": "Saab's very dramatic pause",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA RP talk, no payoff, insider)",
+      "ts": "2026-10-14T12:02:11.234329+00:00"
+    },
+    "rejected-spoopyabstrusebulgogipicomause-f8dsikwhm38z9ih7": {
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/SpoopyAbstruseBulgogiPicoMause-F8dsIkwHM38Z9iH7",
+      "streamer": "plaqueboymax",
+      "title": "hell yaahh",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Watching concert footage, no clear event)",
+      "ts": "2026-10-14T12:03:00.997024+00:00"
+    },
+    "rejected-seductivecoldbloodedbunnydoggo-nu_sejvz1len42ke": {
+      "source_url": "https://www.twitch.tv/northernlion/clip/SeductiveColdbloodedBunnyDoggo-nu_sEJVZ1lEN42KE",
+      "streamer": "northernlion",
+      "title": "Guy who powers up for the pearly gates",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Party game menus, talk, no clear payoff)",
+      "ts": "2026-10-14T12:18:17.324732+00:00"
+    },
+    "rejected-curioushardsamosasaltbae-6gtpt4f8bpyk_b_6": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/CuriousHardSamosaSaltBae-6GtPT4f8BPYK_B_6",
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Gets Jump Scared And Loses It On Stream",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about 25-30% of the 9:16 canvas, far below the roughly 75% target. Most of the frame ; vision: The framing is a wide, full-stream capture, so the gameplay is small and the facecam is a tiny corner thumbnail. The cro; vision: The scenes are very dark, and fr",
+      "ts": "2026-10-14T12:22:15.203276+00:00"
+    },
+    "rejected-obliviousseductivepuddingampenergy-b4btnmbxf2eqoi93": {
+      "source_url": "https://www.twitch.tv/xqc/clip/ObliviousSeductivePuddingAMPEnergy-b4bTnMBxf2eQoi93",
+      "streamer": "xqc",
+      "title": "Xqc Pays Off ALL His Loans After This Wild Moment... Unless?",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about 25-30% of the canvas height. The rest is blurred padding, so it reads as a repo; vision: xQC's webcam face is tiny, in the corner of the strip, and hard to read on a phone. The slot machine takes up most of th; vision: The same hook caption stays on t",
+      "ts": "2026-10-14T12:28:27.905638+00:00"
+    },
+    "clip-20261014-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/xqc/clip/SmellyObedientMeatloafAliens-VVcb46rSOt_mGtVi",
+      "story_key": null,
+      "streamer": "xqc",
+      "title": "Xqc Hears The Verdict On The Murder Charge And Can't Believe It",
+      "kind": "twitch_clip",
+      "ts": "2026-10-14T12:30:58.572281+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
