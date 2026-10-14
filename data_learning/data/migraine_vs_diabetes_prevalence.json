@@ -1,0 +1,25 @@
+{
+  "key": "migraine_vs_diabetes_prevalence",
+  "title": "Global prevalence: migraine vs. diabetes",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "Recent estimates",
+  "source": {
+    "name": "Global migraine and diabetes prevalence estimates",
+    "publisher": "World Health Organization / International Diabetes Federation",
+    "url": "https://www.who.int/news-room/fact-sheets/detail/headache-disorders",
+    "officiality": "secondary",
+    "access_date": "2026-10-14"
+  },
+  "notes": "WHO fact sheets put global migraine prevalence at roughly 14% of people (over 1 in 7). The International Diabetes Federation puts global adult diabetes prevalence at roughly 11%.",
+  "points": [
+    {
+      "label": "Migraine",
+      "value": 14
+    },
+    {
+      "label": "Diabetes",
+      "value": 11
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "key": "pickleball_injury_cost_estimate",
+  "title": "Estimated US pickleball injury cost (ER + outpatient)",
+  "unit": "million dollars",
+  "geography": "United States",
+  "time_coverage": "2018 vs. 2023 (estimate)",
+  "source": {
+    "name": "Pickleball injury cost projection",
+    "publisher": "UCLA Anderson School of Management",
+    "url": "https://www.anderson.ucla.edu/",
+    "officiality": "secondary",
+    "access_date": "2026-10-14"
+  },
+  "notes": "A UCLA Anderson study projected the US healthcare cost of pickleball injuries (ER visits plus outpatient care) climbing from roughly $150 million in 2018 to roughly $400 million by 2023 as participation exploded.",
+  "points": [
+    {
+      "label": "2018",
+      "value": 150,
+      "period": "2018"
+    },
+    {
+      "label": "2023",
+      "value": 400,
+      "period": "2023"
+    }
+  ]
+}

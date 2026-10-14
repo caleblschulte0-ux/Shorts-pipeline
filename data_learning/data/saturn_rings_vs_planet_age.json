@@ -1,0 +1,25 @@
+{
+  "key": "saturn_rings_vs_planet_age",
+  "title": "Saturn's age vs. its rings' remaining lifespan",
+  "unit": "million years",
+  "geography": "Saturn",
+  "time_coverage": "Present day",
+  "source": {
+    "name": "Cassini ring-rain findings (O'Donoghue et al.)",
+    "publisher": "NASA / NASA Jet Propulsion Laboratory",
+    "url": "https://www.nasa.gov/missions/cassini/saturn-is-losing-its-iconic-rings-at-worst-case-rate/",
+    "officiality": "official",
+    "access_date": "2026-10-14"
+  },
+  "notes": "Saturn itself is roughly 4,500 million years old (part of the early solar system). NASA's Cassini-based estimate gives the rings under 300 million years left -- a sliver of the planet's own age.",
+  "points": [
+    {
+      "label": "Saturn's age",
+      "value": 4500
+    },
+    {
+      "label": "Years the rings have left",
+      "value": 300
+    }
+  ]
+}

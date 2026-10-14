@@ -1,0 +1,25 @@
+{
+  "key": "pickleball_vs_tennis_players_us",
+  "title": "US players: tennis vs. pickleball, 2023",
+  "unit": "million players",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "SFIA Topline Participation Report",
+    "publisher": "Sports & Fitness Industry Association (SFIA)",
+    "url": "https://sfia.org/reports/",
+    "officiality": "primary",
+    "access_date": "2026-10-14"
+  },
+  "notes": "SFIA's 2023 participation data: about 23.6 million tennis players in the US versus about 13.6 million pickleball players -- pickleball closing the gap fast after years of explosive growth.",
+  "points": [
+    {
+      "label": "Tennis",
+      "value": 23.6
+    },
+    {
+      "label": "Pickleball",
+      "value": 13.6
+    }
+  ]
+}

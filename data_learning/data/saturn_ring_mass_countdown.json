@@ -1,0 +1,37 @@
+{
+  "key": "saturn_ring_mass_countdown",
+  "title": "Saturn's rings: estimated years remaining before 'ring rain' depletes them",
+  "unit": "million years",
+  "geography": "Saturn",
+  "time_coverage": "NASA/Cassini estimate, published 2018",
+  "source": {
+    "name": "Cassini ring-rain findings (O'Donoghue et al.)",
+    "publisher": "NASA / NASA Jet Propulsion Laboratory",
+    "url": "https://www.nasa.gov/missions/cassini/saturn-is-losing-its-iconic-rings-at-worst-case-rate/",
+    "officiality": "official",
+    "access_date": "2026-10-14"
+  },
+  "notes": "NASA's Cassini-based 'ring rain' measurement found icy ring material falling into Saturn's atmosphere fast enough that the rings have under 300 million years left. This is a simplified straight-line illustration of that published lifespan estimate, not a precise physical model.",
+  "points": [
+    {
+      "label": "Now",
+      "value": 300,
+      "period": "0"
+    },
+    {
+      "label": "In 100M years",
+      "value": 200,
+      "period": "100000000"
+    },
+    {
+      "label": "In 200M years",
+      "value": 100,
+      "period": "200000000"
+    },
+    {
+      "label": "Gone",
+      "value": 0,
+      "period": "300000000"
+    }
+  ]
+}

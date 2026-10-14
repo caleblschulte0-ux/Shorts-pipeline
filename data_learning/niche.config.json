@@ -33549,6 +33549,242 @@
    "retold": "retell/v3",
    "words_by": "claude-retell",
    "rewritten_at": "2026-10-14T06:29:46Z"
+  },
+  {
+   "slug": "saturn-rings-vanishing",
+   "title": "Saturn's Rings Have Under 300 Million Years Left",
+   "hook": "Something is secretly raining into Saturn.",
+   "closing": "Catch them while they last. Geologically, they're already going.",
+   "question": "Did you know Saturn's rings vanish? Comment below.",
+   "caption": "NASA says Saturn's rings have less than 300 million years left -- they're literally raining into the planet right now. Here's the countdown nobody told you about. Did you know Saturn could lose its rings? 👇",
+   "hashtags": [
+    "saturn",
+    "saturnsrings",
+    "nasa",
+    "space",
+    "spacefacts",
+    "didyouknow",
+    "astronomy",
+    "solarsystem",
+    "sciencefacts",
+    "cassini",
+    "planets",
+    "spaceexploration"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "saturn_ring_mass_countdown",
+     "params": {
+      "file": "saturn_ring_mass_countdown.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE COUNTDOWN",
+     "topic": "saturn's rings running out of time",
+     "say": "NASA says Saturn's rings are raining into the planet right now, and at that rate they'll be completely gone in under 300 million years."
+    },
+    {
+     "source": "offline",
+     "key": "saturn_rings_vs_planet_age",
+     "params": {
+      "file": "saturn_rings_vs_planet_age.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · THE COMPARISON",
+     "topic": "how young saturn's rings are next to saturn itself",
+     "say": "Saturn itself has existed for about 4,500 million years. Its rings have 300 million left -- a blink by comparison."
+    },
+    {
+     "source": "offline",
+     "key": "saturn_ring_rain_pool_equivalent",
+     "params": {
+      "file": "saturn_ring_rain_pool_equivalent.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "3 · THE MECHANISM",
+     "topic": "how saturn's ring rain actually works",
+     "say": "It's happening because of 'ring rain' -- icy ring material falling into Saturn's atmosphere fast enough to fill an Olympic-size pool every half hour."
+    }
+   ]
+  },
+  {
+   "slug": "migraine-global-disability-burden",
+   "title": "Migraines Affect More People Than Diabetes Does",
+   "hook": "Globally, about 1 in 7 people get them.",
+   "closing": "It's not 'just a headache.' It's the world's quiet epidemic.",
+   "question": "Do you get migraines? Tell me below.",
+   "caption": "About 1 in 7 people worldwide live with migraine -- more than live with diabetes -- and women get hit nearly 3 times as often as men. Here's how big the gap really is. Do you get migraines? 👇",
+   "hashtags": [
+    "migraine",
+    "migraines",
+    "headache",
+    "healthfacts",
+    "publichealth",
+    "didyouknow",
+    "womenshealth",
+    "neurology",
+    "globalhealth",
+    "chronicpain",
+    "sciencefacts",
+    "wellness"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "migraine_gender_gap",
+     "params": {
+      "file": "migraine_gender_gap.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "1 · WHO IT HITS HARDER",
+     "topic": "migraines hitting women harder than men",
+     "say": "Women get migraines at almost three times the rate men do -- about 18% of women compared to 6% of men."
+    },
+    {
+     "source": "offline",
+     "key": "migraine_vs_diabetes_prevalence",
+     "params": {
+      "file": "migraine_vs_diabetes_prevalence.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · THE SCALE",
+     "topic": "how common migraine is compared to diabetes",
+     "say": "Globally, about 14% of people live with migraine -- more than the 11% who live with diabetes."
+    },
+    {
+     "source": "offline",
+     "key": "migraine_disability_rank",
+     "params": {
+      "file": "migraine_disability_rank.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "3 · WHERE IT RANKS",
+     "topic": "migraines and their rank among causes of disability worldwide",
+     "say": "The WHO's global disability study ranks low back pain the single biggest cause of disability worldwide -- migraine ranks second."
+    }
+   ]
+  },
+  {
+   "slug": "vinyl-beats-cd-sales-again",
+   "title": "Vinyl Records Beat CD Sales In America Again",
+   "hook": "In 2022, vinyl beat CD sales for the first time since 1987.",
+   "closing": "Soda didn't just slow down. It got replaced by a record.",
+   "question": "Do you still own a CD?",
+   "caption": "In 2022, vinyl album sales passed CDs in America for the first time since 1987 -- but the twist is what it says about the entire music industry. Do you still own a CD? 👇",
+   "hashtags": [
+    "vinyl",
+    "vinylrecords",
+    "cds",
+    "musicindustry",
+    "riaa",
+    "didyouknow",
+    "retro",
+    "music",
+    "streaming",
+    "popculture",
+    "musicfacts",
+    "nostalgia"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "vinyl_vs_cd_revenue_2022",
+     "params": {
+      "file": "vinyl_vs_cd_revenue_2022.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "1 · THE CROSSOVER",
+     "topic": "vinyl beating cd sales in america",
+     "say": "In 2022, vinyl records pulled in $1.2 billion -- more than CDs' $483 million -- the first time vinyl has out-earned CDs since 1987."
+    },
+    {
+     "source": "offline",
+     "key": "vinyl_vs_cd_units_2022",
+     "params": {
+      "file": "vinyl_vs_cd_units_2022.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "2 · THE UNITS",
+     "topic": "vinyl and cd units sold in america",
+     "say": "That same year, 41 million vinyl records sold compared to 33 million CDs."
+    },
+    {
+     "source": "offline",
+     "key": "music_format_revenue_share",
+     "params": {
+      "file": "music_format_revenue_share.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "3 · THE CATCH",
+     "topic": "vinyl's comeback inside the total music industry",
+     "say": "Streaming now makes up 84% of all US recorded music revenue -- vinyl's comeback is a tiny slice of a much bigger shift."
+    }
+   ]
+  },
+  {
+   "slug": "pickleball-fastest-growing-sport",
+   "title": "Pickleball Players Quadrupled In Just 4 Years",
+   "hook": "It's officially America's fastest-growing sport again.",
+   "closing": "Grab a paddle. Everyone else already did.",
+   "question": "Have you played pickleball yet?",
+   "caption": "US pickleball participation went from 3.3 million players in 2019 to 13.6 million in 2023, and it's now closing in on tennis itself. Here's how fast the boom really happened. Have you played pickleball yet? 👇",
+   "hashtags": [
+    "pickleball",
+    "pickleballlife",
+    "sportstrends",
+    "didyouknow",
+    "fitness",
+    "tennis",
+    "sportsbusiness",
+    "dataviz",
+    "activelifestyle",
+    "pickleballnation",
+    "fastestgrowingsport"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "pickleball_players_us_trend",
+     "params": {
+      "file": "pickleball_players_us_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE EXPLOSION",
+     "topic": "pickleball's player count exploding in america",
+     "say": "In 2019, about 3.3 million Americans played pickleball. By 2023 that hit 13.6 million -- over four times as many."
+    },
+    {
+     "source": "offline",
+     "key": "pickleball_vs_tennis_players_us",
+     "params": {
+      "file": "pickleball_vs_tennis_players_us.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · CATCHING UP",
+     "topic": "pickleball closing the gap with tennis in america",
+     "say": "The US still has more tennis players, about 23.6 million -- but pickleball's 13.6 million is closing that gap fast."
+    },
+    {
+     "source": "offline",
+     "key": "pickleball_injury_cost_estimate",
+     "params": {
+      "file": "pickleball_injury_cost_estimate.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · THE CATCH",
+     "topic": "the hidden cost of pickleball's boom in america",
+     "say": "UCLA researchers estimate pickleball injuries will cost the US healthcare system 400 million dollars in 2023 -- nearly triple 2018's levels."
+    }
+   ]
   }
  ],
  "videos": [
