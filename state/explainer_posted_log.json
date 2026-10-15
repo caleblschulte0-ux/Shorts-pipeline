@@ -3540,11 +3540,29 @@
       "duration_s": 27.1
     },
     "panama-canal-drought-transit-cuts": {
-      "claimed_at": "2026-10-15T14:30:24.979259+00:00",
+      "url": "https://youtube.com/shorts/OY6xP0IThkQ",
       "title": "Panama Canal Transits Just Dropped From 36 To 24",
+      "at": "2026-10-15T14:30:38.461841+00:00",
       "publish_at": "2026-10-15T20:46:09Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.27,
+      "beat_s": [
+        3.13,
+        6.27,
+        6.06,
+        5.31,
+        4.95
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 79,
+      "duration_s": 25.6
     }
   },
   "uploads": [
@@ -4463,9 +4481,10 @@
       "claimed_at": "2026-10-15T14:30:24.979259+00:00",
       "title": "Panama Canal Transits Just Dropped From 36 To 24",
       "publish_at": "2026-10-15T20:46:09Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "panama-canal-drought-transit-cuts"
+      "url": "https://youtube.com/shorts/OY6xP0IThkQ",
+      "state": "posted",
+      "slug": "panama-canal-drought-transit-cuts",
+      "at": "2026-10-15T14:30:38.461841+00:00"
     }
   ]
 }
