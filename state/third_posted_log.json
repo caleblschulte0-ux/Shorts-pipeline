@@ -13599,13 +13599,59 @@
       "ts": "2026-10-15T13:08:03.787175+00:00"
     },
     "clip-20261015-3": {
-      "pending": true,
-      "source_url": "https://kick.com/adinross/clips/clip_01M4YFB1BJV1HAEVPK4NVW17MJ",
-      "story_key": null,
-      "streamer": "adinross",
+      "url": "https://youtube.com/shorts/eGBsoc18xDk",
       "title": "Adinross: Adin Ross Tells Amanda's Guy \"It's Cap\" And Demands To Know Why He Thinks So",
       "kind": "twitch_clip",
-      "ts": "2026-10-15T13:10:11.800259+00:00",
+      "ts": "2026-10-15T13:10:22.138833+00:00",
+      "uploaded_at": "2026-10-15T13:10:22.138842+00:00",
+      "publish_at": "2026-10-16T02:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261015-adinross-adin-ross-tells-amanda-s-guy-it-s-cap-a-e065d27f",
+        "tiktok": "queued for 2026-10-16T02:00:00Z"
+      },
+      "source_url": "https://kick.com/adinross/clips/clip_01M4YFB1BJV1HAEVPK4NVW17MJ",
+      "streamer": "adinross",
+      "series": "argument",
+      "hook": "Adin calls cap on live stream",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2797,
+      "banger": 0.5,
+      "cut": {
+        "start": 91.2,
+        "end": 108.2
+      },
+      "director_cut": true
+    },
+    "rejected-yawningrockygaragecclamchamp-aowjr2erxd5rbzfj": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/YawningRockyGarageCclamChamp-AowjR2eRXd5RBzFj",
+      "streamer": "jynxzi",
+      "title": "he called you out",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Menu screen, streamer talking, insider l)",
+      "ts": "2026-10-15T13:31:08.990670+00:00"
+    },
+    "rejected-venomousrelentlesscaribounerfblueblaster-4p5wnubf9vvrm8f-": {
+      "source_url": "https://www.twitch.tv/agent00/clip/VenomousRelentlessCaribouNerfBlueBlaster-4p5WnubF9VvRm8F-",
+      "streamer": "agent00",
+      "title": "nearly crashed",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-10-15T13:31:47.832746+00:00"
+    },
+    "clip-20261015-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/buddha/clip/AltruisticHeadstrongSangThunBeast-5_YopUWIGoB-7Vlu",
+      "story_key": null,
+      "streamer": "buddha",
+      "title": "Buddha Screams For Martin's Help In Total Chaos",
+      "kind": "twitch_clip",
+      "ts": "2026-10-15T13:34:47.541674+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
