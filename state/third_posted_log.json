@@ -13579,6 +13579,34 @@
         "end": 32.4
       },
       "director_cut": true
+    },
+    "rejected-fragilelaconichamgowskull-5pyk9n7wk113t7d_": {
+      "source_url": "https://www.twitch.tv/lacy/clip/FragileLaconicHamGOWSkull-5pyK9n7Wk113t7D_",
+      "streamer": "lacy",
+      "title": "Ron Pulls Up On Lacy! \ud83d\ude02",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Seafood boil chatter, no clear event)",
+      "ts": "2026-10-15T13:07:31.744945+00:00"
+    },
+    "rejected-furiousnurturingfalconresidentsleeper-74js1qxezxmbakny": {
+      "source_url": "https://www.twitch.tv/silky/clip/FuriousNurturingFalconResidentSleeper-74JS1qXeZXmbakny",
+      "streamer": "silky",
+      "title": "Noway Drew said the N word",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (slur moment, ad-unsafe, little visible a)",
+      "ts": "2026-10-15T13:08:03.787175+00:00"
+    },
+    "clip-20261015-3": {
+      "pending": true,
+      "source_url": "https://kick.com/adinross/clips/clip_01M4YFB1BJV1HAEVPK4NVW17MJ",
+      "story_key": null,
+      "streamer": "adinross",
+      "title": "Adinross: Adin Ross Tells Amanda's Guy \"It's Cap\" And Demands To Know Why He Thinks So",
+      "kind": "twitch_clip",
+      "ts": "2026-10-15T13:10:11.800259+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
