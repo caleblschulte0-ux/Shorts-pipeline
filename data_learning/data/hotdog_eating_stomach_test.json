@@ -1,0 +1,19 @@
+{
+  "key": "hotdog_eating_stomach_test",
+  "title": "Hot dogs eaten in a fluoroscopy stomach-capacity test",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2007 study",
+  "source": {
+    "name": "Fluoroscopy study of a competitive eater's stomach capacity",
+    "publisher": "University of Pennsylvania (Marc Levine et al.), reported via American Journal of Roentgenology",
+    "url": "https://www.diagnosticimaging.com/view/competitive-speed-eaters-risk-long-term-health-consequences",
+    "officiality": "official",
+    "access_date": "2026-10-15"
+  },
+  "notes": "Penn radiologists used real-time X-ray (fluoroscopy) with barium-coated hot dogs to compare a control subject against a top-ten competitive eater. The control stopped after 7; researchers stopped the competitive eater at 36 in 10 minutes. The competitor's stomach distended into a food-filled sac with almost no peristalsis.",
+  "points": [
+    {"label": "Control subject (stopped eating)", "value": 7},
+    {"label": "Competitive eater (researchers stopped him)", "value": 36}
+  ]
+}

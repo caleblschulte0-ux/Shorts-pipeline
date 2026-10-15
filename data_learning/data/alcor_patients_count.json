@@ -1,0 +1,20 @@
+{
+  "key": "alcor_patients_count",
+  "title": "Alcor cryopreserved patients (year-end count)",
+  "unit": "count",
+  "geography": "Worldwide (Alcor Life Extension Foundation)",
+  "time_coverage": "2019-2023 (year-end snapshots)",
+  "source": {
+    "name": "Alcor membership statistics",
+    "publisher": "Alcor Life Extension Foundation",
+    "url": "https://www.alcor.org",
+    "officiality": "official",
+    "access_date": "2026-10-15"
+  },
+  "notes": "Official Alcor year-end patient counts (people who have died and been cryopreserved). 2019/2021 from Alcor's own published membership-statistics page; 2023 from Alcor's current figures as cited by its Wikipedia entry.",
+  "points": [
+    {"label": "2019", "value": 175, "period": "2019"},
+    {"label": "2021", "value": 189, "period": "2021"},
+    {"label": "2023", "value": 222, "period": "2023"}
+  ]
+}

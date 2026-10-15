@@ -33877,6 +33877,247 @@
    "words_by": "claude-retell",
    "rewritten_at": "2026-10-14T14:09:36Z",
    "hook_was": "It's officially America's fastest-growing sport again."
+  },
+  {
+   "slug": "cryonics-client-count",
+   "title": "Nearly 2,000 People Signed Up To Be Frozen",
+   "hook": "1,927 people are waiting to be frozen when they die.",
+   "closing": "Science still has no idea how to wake anyone back up.",
+   "question": "Would you ever sign up to be frozen?",
+   "caption": "1,927 people have paid to be cryogenically frozen when they die. Only 222 have actually made it into the tank. Here's the gap between signing up and actually freezing -- and the one problem nobody's solved yet. Would you do it? 👇",
+   "hashtags": [
+    "cryonics",
+    "cryogenics",
+    "alcor",
+    "frozen",
+    "lifeextension",
+    "futurism",
+    "science",
+    "deathtech",
+    "biohacking",
+    "longevity",
+    "immortality",
+    "mindblown",
+    "didyouknow",
+    "facts",
+    "data"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "alcor_patients_count",
+     "params": {
+      "file": "alcor_patients_count.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE PATIENTS",
+     "topic": "frozen patients at Alcor",
+     "say": "By 2023, Alcor had actually frozen 222 people. That number barely moves, because you can only join it after you die."
+    },
+    {
+     "source": "offline",
+     "key": "alcor_members_vs_patients",
+     "params": {
+      "file": "alcor_members_vs_patients.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE GAP",
+     "topic": "signed up vs frozen people",
+     "say": "1,927 people have already signed the paperwork. Only 222 have actually been frozen, because the rest are all still alive."
+    },
+    {
+     "source": "offline",
+     "key": "alcor_pricing",
+     "params": {
+      "file": "alcor_pricing.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE PRICE",
+     "topic": "cost to be frozen",
+     "say": "It costs $200,000 to freeze your whole body, or $80,000 for just your head. Most members pay for it with a life insurance policy."
+    }
+   ]
+  },
+  {
+   "slug": "dog-breed-popularity-flip",
+   "title": "The Labrador's 31-Year Reign Just Ended",
+   "hook": "One dog breed ruled America for 31 years straight.",
+   "closing": "That's the price of being the world's favorite dog.",
+   "question": "Which breed do you think deserves #1?",
+   "caption": "For 31 years, the Labrador Retriever was America's most popular dog. In 2022, one breed finally took the crown, with registrations up over 1,000% since 2012. But that popularity comes at a real cost to the dog itself. Would you still get one? 👇",
+   "hashtags": [
+    "dogs",
+    "frenchbulldog",
+    "labrador",
+    "akc",
+    "dogbreeds",
+    "puppies",
+    "doglovers",
+    "mostpopulardog",
+    "dogdata",
+    "frenchie",
+    "bulldog",
+    "animals",
+    "pets",
+    "vetcompass",
+    "data"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "akc_top5_2022",
+     "params": {
+      "file": "akc_top5_2022.json"
+     },
+     "insight_type": "rank",
+     "ascending": true,
+     "role": "1 · THE UPSET",
+     "topic": "most popular dog breed ranking",
+     "say": "In 2022, the French Bulldog finally knocked the Labrador off the number 1 spot."
+    },
+    {
+     "source": "offline",
+     "key": "french_bulldog_registration_growth",
+     "params": {
+      "file": "french_bulldog_registration_growth.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE SURGE",
+     "topic": "that dog breed's registration surge",
+     "say": "That dog breed's registrations have grown by 1,000% since 2012."
+    },
+    {
+     "source": "offline",
+     "key": "dog_breed_lifespan_comparison",
+     "params": {
+      "file": "dog_breed_lifespan_comparison.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE COST",
+     "topic": "dog breed life expectancy",
+     "say": "Here's the cost of being that popular. That breed's life expectancy is just 4.5 years. A Labrador's is 11.8."
+    }
+   ]
+  },
+  {
+   "slug": "competitive-eating-record-climb",
+   "title": "One Man Ate 76 Hot Dogs In 10 Minutes",
+   "hook": "The hot dog eating record used to be 25. Now it's 76.",
+   "closing": "Nobody's beaten 76. Someone's definitely training to.",
+   "question": "Could you eat 10 hot dogs that fast?",
+   "caption": "The Nathan's hot dog eating record used to be 25. Then it jumped to 50, then 76 -- and a real stomach-capacity study shows exactly how a trained eater pulls it off. Could you keep up? 👇",
+   "hashtags": [
+    "hotdogs",
+    "competitiveeating",
+    "nathansfamous",
+    "worldrecord",
+    "joeychestnut",
+    "fourthofjuly",
+    "mindblown",
+    "didyouknow",
+    "facts",
+    "science",
+    "humanbody",
+    "foodfacts",
+    "guinnessworldrecords",
+    "data",
+    "weirdfacts"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "hotdog_eating_record_trend",
+     "params": {
+      "file": "hotdog_eating_record_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE CLIMB",
+     "topic": "hot dog eating record over time",
+     "say": "The hot dog eating record was 25. Then one man ate 50. Now it's 76."
+    },
+    {
+     "source": "offline",
+     "key": "hotdog_eating_stomach_test",
+     "params": {
+      "file": "hotdog_eating_stomach_test.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · HOW",
+     "topic": "hot dog eating stomach test",
+     "say": "In one study, a normal eater managed 7 hot dogs. A competitive eater ate 36 before researchers made him stop."
+    },
+    {
+     "source": "offline",
+     "key": "hotdog_eating_record_today",
+     "params": {
+      "file": "hotdog_eating_record_today.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE RECORD TODAY",
+     "topic": "the hot dog eating record today",
+     "say": "That record has stood firm. The most recent attempt landed at 70.5, still short of the 76 nobody's topped."
+    }
+   ]
+  },
+  {
+   "slug": "blockbuster-to-one-store",
+   "title": "Blockbuster Went From 9,000 Stores To Just 1",
+   "hook": "How did 9,000 video stores become just one?",
+   "closing": "One store, one town, still renting movies in 2026.",
+   "question": "Have you ever rented from that store?",
+   "caption": "Blockbuster once had over 9,000 stores worldwide. While it was still near its peak, Netflix's mail-order subscribers were already tripling. Today exactly one Blockbuster is still open, in Bend, Oregon. So what's keeping it alive? 👇",
+   "hashtags": [
+    "blockbuster",
+    "netflix",
+    "90s",
+    "nostalgia",
+    "videostores",
+    "retail",
+    "streamingwars",
+    "bendoregon",
+    "mindblown",
+    "didyouknow",
+    "businesshistory",
+    "90skid",
+    "facts",
+    "data",
+    "throwback"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "netflix_dvd_subscriber_growth",
+     "params": {
+      "file": "netflix_dvd_subscriber_growth.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE THREAT",
+     "topic": "the streaming threat to video stores",
+     "say": "Netflix's mail subscribers grew from 4.2 million in 2005 to 7.5 million, then 12.3 million."
+    },
+    {
+     "source": "offline",
+     "key": "blockbuster_stores_then_now",
+     "params": {
+      "file": "blockbuster_stores_then_now.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE COLLAPSE",
+     "topic": "blockbuster stores then and now",
+     "say": "Blockbuster once had 9,000 stores. By 2014, it had zero that it still owned itself."
+    },
+    {
+     "source": "offline",
+     "key": "blockbuster_last_stores_remaining",
+     "params": {
+      "file": "blockbuster_last_stores_remaining.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · THE LAST ONE",
+     "topic": "the last blockbuster stores standing",
+     "say": "By 2018, only 2 Blockbuster stores were left on Earth. By 2019, there was just 1."
+    }
+   ]
   }
  ],
  "videos": [

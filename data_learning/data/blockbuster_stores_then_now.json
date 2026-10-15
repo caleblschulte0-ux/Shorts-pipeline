@@ -1,0 +1,19 @@
+{
+  "key": "blockbuster_stores_then_now",
+  "title": "Blockbuster store count, peak vs. corporate-owned",
+  "unit": "count",
+  "geography": "Worldwide",
+  "time_coverage": "2004-2014",
+  "source": {
+    "name": "Blockbuster LLC history",
+    "publisher": "Associated Press / Wikipedia (Blockbuster LLC)",
+    "url": "https://en.wikipedia.org/wiki/Blockbuster_LLC",
+    "officiality": "official",
+    "access_date": "2026-10-15"
+  },
+  "notes": "Blockbuster peaked at over 9,000 stores worldwide (widely reported peak year, 2004). It filed for bankruptcy in 2010, and closed every store it still owned and operated itself (corporate-owned) in 2014; the handful of stores still open afterward were independently owned franchises.",
+  "points": [
+    {"label": "Peak stores (2004)", "value": 9000},
+    {"label": "Corporate-owned stores (2014)", "value": 0}
+  ]
+}

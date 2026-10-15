@@ -1,0 +1,19 @@
+{
+  "key": "french_bulldog_registration_growth",
+  "title": "French Bulldog AKC registration growth since 2012",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2012-2022",
+  "source": {
+    "name": "Most Popular Dog Breeds of 2022",
+    "publisher": "American Kennel Club (AKC)",
+    "url": "https://www.akc.org/expert-advice/news/most-popular-dog-breeds-of-2022/",
+    "officiality": "official",
+    "access_date": "2026-10-15"
+  },
+  "notes": "AKC reported French Bulldog registrations rose over 1,000% from 2012 (ranked 14th) to 2022 (ranked 1st). Shown as cumulative growth since 2012=0%.",
+  "points": [
+    {"label": "2012", "value": 0, "period": "2012"},
+    {"label": "2022", "value": 1000, "period": "2022"}
+  ]
+}

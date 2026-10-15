@@ -1,0 +1,22 @@
+{
+  "key": "akc_top5_2022",
+  "title": "AKC most popular dog breeds, 2022 rank",
+  "unit": "rank",
+  "geography": "United States",
+  "time_coverage": "2022",
+  "source": {
+    "name": "2022 Most Popular Dog Breeds",
+    "publisher": "American Kennel Club (AKC)",
+    "url": "https://www.akc.org/expert-advice/news/most-popular-dog-breeds-of-2022/",
+    "officiality": "official",
+    "access_date": "2026-10-15"
+  },
+  "notes": "AKC's annual registration-based popularity ranking. AKC does not publicly release exact per-breed registration counts, only the rank order.",
+  "points": [
+    {"label": "French Bulldog", "value": 1},
+    {"label": "Labrador Retriever", "value": 2},
+    {"label": "Golden Retriever", "value": 3},
+    {"label": "German Shepherd", "value": 4},
+    {"label": "Poodle", "value": 5}
+  ]
+}
