@@ -3513,6 +3513,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
       "duration_s": 27.0
+    },
+    "saharan-dust-feeds-amazon": {
+      "claimed_at": "2026-10-15T13:22:44.142962+00:00",
+      "title": "Africa Sends The Amazon 27 Million Tons Of Dust A Year",
+      "publish_at": "2026-10-15T17:46:09Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4417,6 +4424,14 @@
       "state": "posted",
       "slug": "secondhand-apparel-resale-boom",
       "at": "2026-10-15T11:46:17.955242+00:00"
+    },
+    {
+      "claimed_at": "2026-10-15T13:22:44.142962+00:00",
+      "title": "Africa Sends The Amazon 27 Million Tons Of Dust A Year",
+      "publish_at": "2026-10-15T17:46:09Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "saharan-dust-feeds-amazon"
     }
   ]
 }
