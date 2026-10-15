@@ -5835,6 +5835,21 @@
    "ending_type": "inversion",
    "franchise": "",
    "notes": "existing scenes kept; verified"
+  },
+  {
+   "slug": "nobel-prize-discovery-age",
+   "directed_at": "2026-10-15",
+   "topic_category": "history",
+   "hook_type": "inversion",
+   "hook_text": "The Nobel Prize quietly became a prize for the old.",
+   "depictions": [
+    "scene:illustrated-candles",
+    "scene:illustrated-medal",
+    "mechanic:nobel-young-flask-grid"
+   ],
+   "ending_type": "escalation",
+   "franchise": "Data Minute",
+   "notes": "Flask bench goes dark: 66% of 20th-century chemistry laureates under 40 vs 0% now; classic-chart fallbacks under illustrated scenes."
   }
  ]
 }
