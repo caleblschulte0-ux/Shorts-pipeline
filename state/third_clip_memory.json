@@ -497,6 +497,11 @@
     "Jynxzi (named in tit"
    ]
   },
+  "darktardystarlinghumblelife-zawts9zg27hzrnu7": {
+   "ch": "erobb221",
+   "d": "2026-10-15",
+   "said": "I'm like 42 today, bro. I'm actually never coming back in here again. This actually sucks."
+  },
   "deadevilhedgehogpupper--dyrarudpzaetryw": {
    "ch": "plaqueboymax",
    "d": "2026-09-15",
@@ -778,11 +783,11 @@
    "ch": "squeex",
    "d": "2026-09-17",
    "said": "Because guess what they want to bring me oh my god",
-   "saw": "Squeex streams a GTA roleplay scene at an outdoor amphitheater where a suited character is shot, a body lies on the ground, and police with ",
+   "saw": "Squeex, in a GTA-style roleplay server, reacts as a suited character appears to be shot or killed in an amphitheater crowd, after which arme",
    "who": [
     "squeex (streamer, fa",
-    "a suited character i",
-    "a police officer cha"
+    "a suited character (",
+    "police officers (in-"
    ]
   },
   "funnyadorabledeerelegiggle-r09ihpj14q_vcmyk": {
@@ -915,6 +920,11 @@
    "who": [
     "yuliabaka"
    ]
+  },
+  "humbleantediluvianherdralpherz-lum3pgkpvrgsioi-": {
+   "ch": "buddha",
+   "d": "2026-10-15",
+   "said": "you want me to go rob this guy? I'll do it right now. Well, I mean, Thomas the"
   },
   "humblekathishsheepdancingbaby-q31lszeeskobfdyl": {
    "ch": "ohnepixel",
@@ -1290,6 +1300,17 @@
    "saw": "xqc drives a blue sports car through city streets, then complains that someone shot his tire instead of hitting him, saying he could have di",
    "who": [
     "xqc"
+   ]
+  },
+  "polishedfunnygrasshopperdancingbanana-evdssa3i2vrenl3h": {
+   "ch": "squeex",
+   "d": "2026-09-18",
+   "said": "am bleeding through my ear, a ringing in my right ear as if I already have tinnitus. I get",
+   "saw": "In a GTA RP office, a character in a suit gives a mock-dramatic statement about an attack on stage, saying he was bleeding from his ear, saw",
+   "who": [
+    "Ramasquamy (GTA RP m",
+    "squeex (streamer, fa",
+    "Carmella (mentioned,"
    ]
   },
   "polishedhypertoothkeyboardcat-lyxt3_2oqjyu0qwe": {
@@ -1949,17 +1970,94 @@
    ]
   }
  },
- "kept_edits": [],
- "stories_tried": [
+ "kept_edits": [
   {
-   "d": "2026-10-10",
-   "edit": 5,
-   "members": [
-    "sincerespunkyeaglepetezaroll-bter63wup8q4ewnv"
-   ],
-   "premise": "IShowSpeed rages at the referee in an EA FC match, the game ends 5-6 in extra time, and straight afterwards on a call he",
-   "why": "rendered; critic scored 64 after 2 revision(s) \u2014 @0s missing_context: Open by saying which penalty or foul decided the match. The cut never shows the call that "
-  },
+   "d": "2026-10-15",
+   "edl": {
+    "beats": [
+     {
+      "context_overlay": "GTA RP mayoral debate",
+      "effects": [],
+      "end": 37.6,
+      "framing": "wide",
+      "link": "start",
+      "purpose": "Vivek says his opponents see him as a fork in the machine and he gives them the kiss of death.",
+      "role": "setup",
+      "source_id": "https://www.twitch.tv/squeex/clip/FunEncouragingOpossumTTours-1NEmUxPg-ISzRxpE",
+      "start": 28.0,
+      "transition": "hard_cut"
+     },
+     {
+      "context_overlay": "",
+      "effects": [],
+      "end": 57.4,
+      "framing": "wide",
+      "link": "so",
+      "purpose": "The shooting starts mid-speech and Vivek shouts 'fight for me, remember me' as the crowd scatters.",
+      "role": "escalation",
+      "source_id": "https://www.twitch.tv/squeex/clip/FunEncouragingOpossumTTours-1NEmUxPg-ISzRxpE",
+      "start": 47.4,
+      "transition": "hard_cut"
+     },
+     {
+      "context_overlay": "",
+      "effects": [],
+      "end": 28.0,
+      "framing": "tight",
+      "link": "so",
+      "purpose": "The next day Ramasquamy dictates a dramatic account of the attack to an officer.",
+      "role": "climax",
+      "source_id": "https://www.twitch.tv/squeex/clip/PolishedFunnyGrasshopperDancingBanana-EVDssA3i2VrENL3h",
+      "start": 0.0,
+      "transition": "hard_cut"
+     },
+     {
+      "context_overlay": "",
+      "effects": [],
+      "end": 131.0,
+      "framing": "tight",
+      "link": "but",
+      "purpose": "He vows to fight like hell, then argues with the officer over where 'god damn it' goes, and the officer agrees to read i",
+      "role": "payoff",
+      "source_id": "https://www.twitch.tv/squeex/clip/PolishedFunnyGrasshopperDancingBanana-EVDssA3i2VrENL3h",
+      "start": 91.0,
+      "transition": "hard_cut"
+     }
+    ],
+    "central_question": "How does a man who was just shot at turn it into a campaign speech?",
+    "ending": {
+     "duration": 1.0,
+     "type": "reaction_hold"
+    },
+    "ending_emotion": "amusement",
+    "hook_overlay": "Mayor candidate says he's threatened, gets shot",
+    "is_story": true,
+    "narration": [
+     {
+      "essential_because": "Scene report: Vivek (mayoral candidate, played by squeex); stream_title 'Mayoral Debate'; game Grand Theft Auto V.",
+      "over_beat": 0,
+      "text": "Squeex plays Vivek, a mayoral candidate in GTA roleplay."
+     },
+     {
+      "essential_because": "Scene report: Ramasquamy (squeex's GTA RP character) dictates a statement to a police officer acting as scribe.",
+      "over_beat": 2,
+      "text": "Same character, now called Ramasquamy, dictates to a police officer."
+     }
+    ],
+    "premise": "In a GTA roleplay mayoral debate, candidate Vivek says his opponents are out to get him, gunfire breaks out mid-speech, and the next day his character Ramasquamy dictates a melodramatic statement abou",
+    "structure": "chronological",
+    "structure_reason": "The timeline is the joke: the claim of being threatened, then the shots, then the grand statement and the squabble over its wording.",
+    "target_duration": 75,
+    "title": "Squeex's mayor candidate gets shot at mid-debate, then dictates a statement"
+   },
+   "score": 72,
+   "sources": [
+    "https://www.twitch.tv/squeex/clip/FunEncouragingOpossumTTours-1NEmUxPg-ISzRxpE",
+    "https://www.twitch.tv/squeex/clip/PolishedFunnyGrasshopperDancingBanana-EVDssA3i2VrENL3h"
+   ]
+  }
+ ],
+ "stories_tried": [
   {
    "d": "2026-10-10",
    "edit": 5,
@@ -2519,6 +2617,17 @@
    ],
    "premise": "isthisemmiep@momentwittyantsynigirihotpokket-ky7nbggbgbqfd3ie",
    "why": "director judged: not a story \u2014 There is no meaningful change and no payoff. The three sources show a She-Hulk cosplayer walking through a crowded NYCC floor whi"
+  },
+  {
+   "d": "2026-10-15",
+   "edit": 5,
+   "members": [
+    "funencouragingopossumttours-1nemuxpg-iszrxpe",
+    "polishedfunnygrasshopperdancingbanana-evdssa3i2vrenl3h"
+   ],
+   "premise": "In a GTA roleplay mayoral debate, candidate Vivek says his opponents are out to get him, gunfire breaks out mid-speech, ",
+   "retries_left": 2,
+   "why": "rendered; critic scored 64 after 2 revision(s) \u2014 @55s weak_payoff: The opening question is how he turns being shot at into a campaign speech. The cut never answ"
   }
  ]
 }

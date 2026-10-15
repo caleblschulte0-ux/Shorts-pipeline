@@ -13388,13 +13388,59 @@
       "director_cut": true
     },
     "clip-20261015-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ludwig/clip/GenerousSarcasticRuffRickroll-q92hhthP6BKpuBJO",
-      "story_key": null,
-      "streamer": "ludwig",
+      "url": "https://youtube.com/shorts/kNEbMtodHlo",
       "title": "Ludwig Crashes Out After Losing To A 8,000-Hour Player In An Influencer Tournament",
       "kind": "twitch_clip",
-      "ts": "2026-10-15T12:01:07.729398+00:00",
+      "ts": "2026-10-15T12:01:22.277840+00:00",
+      "uploaded_at": "2026-10-15T12:01:22.277852+00:00",
+      "publish_at": "2026-10-15T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261015-ludwig-crashes-out-after-losing-to-a-8-000-hour--874bf623",
+        "tiktok": "queued for 2026-10-15T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ludwig/clip/GenerousSarcasticRuffRickroll-q92hhthP6BKpuBJO",
+      "streamer": "ludwig",
+      "series": "rage",
+      "hook": "Ludwig crashes out after tournament loss \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 9455,
+      "banger": 0.55,
+      "cut": {
+        "start": 1.8,
+        "end": 50.1
+      },
+      "director_cut": true
+    },
+    "rejected-humbleantediluvianherdralpherz-lum3pgkpvrgsioi-": {
+      "source_url": "https://www.twitch.tv/buddha/clip/HumbleAntediluvianHerdRalpherZ-Lum3PgKpvrgSioi-",
+      "streamer": "buddha",
+      "title": "Burn exposes Owner RP (REAL)",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (Static GTA RP talking, no visible event)",
+      "ts": "2026-10-15T12:16:31.646645+00:00"
+    },
+    "rejected-darktardystarlinghumblelife-zawts9zg27hzrnu7": {
+      "source_url": "https://www.twitch.tv/erobb221/clip/DarkTardyStarlingHumbleLife-ZawTS9ZG27hZRnU7",
+      "streamer": "erobb221",
+      "title": "Erobb loses all his money but then gets good news",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA RP phone scrolling, no clear payoff)",
+      "ts": "2026-10-15T12:17:21.138822+00:00"
+    },
+    "clip-20261015-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/AuspiciousCarefulPizzaBatChest-C17vrdTbMiXPC9GT",
+      "story_key": null,
+      "streamer": "ishowspeed",
+      "title": "Ishowspeed John Bobby Rookie Cop Raid Goes Totally Wrong",
+      "kind": "twitch_clip",
+      "ts": "2026-10-15T12:21:56.899550+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
