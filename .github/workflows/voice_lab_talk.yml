@@ -1,0 +1,87 @@
+# Voice lab round 13: conversational engines and a spoken script.
+# No secrets; read-only token; only collect writes, and only to this branch.
+name: Voice lab talk
+on:
+  push:
+    branches: [voice-lab]
+    paths: ['voice_lab/gen_human.py', 'voice_lab/spoken_lines.json', '.github/workflows/voice_lab_talk.yml']
+permissions:
+  contents: read
+jobs:
+  gen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    strategy:
+      fail-fast: false
+      matrix:
+        job: ['orpheus leo spoken,written', 'orpheus dan spoken,written', 'orpheus zac spoken,written',
+              'dia 43 spoken', 'dia 44 spoken', 'dia 46 spoken', 'cosyvoice 43 spoken']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg sox libsox-dev
+      - shell: bash
+        run: |
+          set -- ${{ matrix.job }}; E=$1; mkdir -p out
+          case $E in
+            orpheus)
+              pip install -q torch==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+              pip install -q llama-cpp-python --extra-index-url https://abetlen.github.io/llama-cpp-python/whl/cpu
+              pip install -q snac soundfile numpy huggingface_hub ;;
+            dia)
+              pip install -q torch==2.8.0 torchaudio==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+              pip install -q "transformers>=4.54" accelerate soundfile numpy openai-whisper descript-audio-codec 2>&1 | tail -2 ;;
+            cosyvoice)
+              pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+              git clone -q --recursive https://github.com/FunAudioLLM/CosyVoice.git
+              pip install -q conformer diffusers gdown hydra-core HyperPyYAML inflect librosa lightning matplotlib \
+                modelscope networkx omegaconf onnx onnxruntime openai-whisper protobuf pydantic rich soundfile \
+                tensorboard "transformers==4.49.0" x-transformers wget pyworld wetext huggingface_hub pyarrow ;;
+          esac
+          python voice_lab/gen_human.py $E out $2 $3 2>&1 | grep -v "it/s\]" | tail -40
+      - id: n
+        run: echo "n=$(echo '${{ matrix.job }}' | tr ' ,' '__')" >> $GITHUB_OUTPUT
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: 'talk_${{ steps.n.outputs.n }}', path: out/ }
+  enhance:
+    needs: gen
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.10' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with: { pattern: 'talk_*', merge-multiple: true, path: takes/ }
+      - shell: bash
+        run: |
+          ls takes; mkdir -p out
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q clearvoice 2>&1 | tail -2 || true
+          python voice_lab/enhance_hq.py takes out sr 2>&1 | grep -v "it/s\]" | tail -40 || python voice_lab/enhance_hq.py takes out
+          cp takes/log_*.txt out/ 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: 'talk_final', path: out/ }
+  collect:
+    needs: enhance
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { name: talk_final, path: dl/ }
+      - shell: bash
+        run: |
+          D=voice_lab/talk; mkdir -p $D; cp dl/* $D/
+          git config user.name "voice-lab"
+          git config user.email "voice-lab@users.noreply.github.com"
+          git add -f $D
+          git commit -m "voice lab talk results [skip ci]"
+          ok=0; for i in 1 2 3 4; do git pull --rebase -q origin voice-lab && git push origin HEAD:voice-lab && ok=1 && break; git rebase --abort 2>/dev/null; sleep $((i*3)); done; [ $ok = 1 ]
