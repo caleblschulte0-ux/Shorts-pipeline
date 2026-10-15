@@ -1,38 +1,28 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261014",
-  "judged_date": "20261013",
+  "date": "20261015",
+  "judged_date": "20261014",
   "alarm": {
-    "date": "20261013",
+    "date": "20261014",
     "ok": false,
     "alarms": [
       {
-        "code": "short_slate_explainer",
-        "severity": "warning",
-        "detail": "explainer: 2/4 posted for 20261013.",
-        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
-      },
-      {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 4/6 posted for 20261013.",
+        "detail": "third: 1/6 posted for 20261014.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
-      },
-      {
-        "code": "no_posts_trending",
-        "severity": "critical",
-        "detail": "trending: ZERO videos posted for 20261013 (registry wants 3).",
-        "fix": "Check the trending workflow run for 20261013. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (35 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (36 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
-      "chatgpt finalizer: artifact present"
+      "chatgpt finalizer: artifact present",
+      "explainer: 5/4 posted",
+      "trending: 3/3 posted"
     ],
     "deferred": false
   },
@@ -218,745 +208,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-10-10T11:37:49+00:00",
-      "slug": "netflix_s_revenue_just_beat_all_of_holly",
-      "score": 78,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean two-series graph race with a clear crossover payoff, but the hook opens on the slow pre-2020 build instead of the crash.",
-      "auto_fails": [],
-      "problems": [
-        "The hook starts at 2017 with a big, static-looking gap, so the dramatic 2020 box office collapse arrives late",
-        "The x-axis has very few tick labels early on (only '2018' in the hook), so time is hard to read until the counter takes over",
-        "The bottom band under the progress bar is sparse until '#1 Netflix' appears at the end"
-      ],
-      "fixes": [
-        "Start the race at 2019 or flash the finished crossover frame in the first second so the hook carries the twist",
-        "Hold the 'Netflix passes Global Box Office' callout with a brief emphasis pulse when the crossover happens",
-        "Show '#1 Netflix' or the leader badge earlier, as soon as the crossover happens, so the bottom band carries the story"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 25
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook",
-        "visible_evidence": "At hook@0.3 the chart has already started: global box office sits at 40.9B against Netflix at 13.1B, with a 3x gap and nothing dramatic happening. The x-axis shows only '2018'. The chart builds slowly before the 2020 crash at mid0",
-        "root_cause": "The graph race opens on its least interesting state. The shock (box office collapsing in 2020 and Netflix overtaking it) does not arrive until about 2.5-4s",
-        "repair_goal": "Open on the crash and crossover: flash the finished crossover frame or start the race near 2019, so the 'Netflix passes Global Box Office' moment lands in the first 2 seconds"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.165,
-        "effective_fps": 20.0,
-        "max_dup_run": 34,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.38,
-        "max_dup_at_s": 6.96,
-        "duration_s": 8.38
-      },
-      "fingerprint": "?|-|weak_hook"
-    },
-    {
-      "ts": "2026-10-10T11:41:04+00:00",
-      "slug": "the_gym_auto_renewed_my_contract__paragr",
-      "score": 75,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Clean reddit-story layout with relevant photos, but the climax beat uses a generic envelope icon and one cash photo sits unchanged for the final 10 seconds, so the payoff lands flat.",
-      "auto_fails": [],
-      "problems": [
-        "mid3: generic emoji-style envelope icon for the demand-letter climax, and a second envelope in a row after mid2",
-        "mid4-payoff: the same cash-stack photo is held from about 35s to 45s, so the top half freezes through the payoff",
-        "mid2: certified-mail image shows while the caption says 'my signed contract', so picture and words are out of sync",
-        "The hook is a static post card over gameplay with no illustration of the conflict in the first 2.5s",
-        "The payoff ends on 'PARAGRAPH 9?' over the same cash photo, so there is no visual punchline"
-      ],
-      "fixes": [
-        "Replace mid3 with a demand letter, or a contract page with paragraph nine highlighted",
-        "Split the ending into two images: the refund/apology (for example a refund check) and then the 2,000-member, $380k class-wide refund (for example a crowd or a huge pile)",
-        "Shift the mid2 certified-mail image so it appears on the 'written notice sixty days before renewal' line",
-        "Consider a quick cut-in of the renewal charge or the contract inside the first 2s of the hook"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.059,
-        "sampled": 136
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid3",
-        "index": 3,
-        "failure_class": "generic_illustration",
-        "visible_evidence": "mid3 shows a flat emoji-style envelope icon on a dark gradient while the caption says 'THE CLAUSE AND'; the story's turning point (the demand letter quoting paragraph nine) is just a stock mail icon, and mid2 had already used an envelope",
-        "root_cause": "The image picker matched 'letter' to a generic envelope icon instead of showing the demand letter or the highlighted contract clause, so the climax beat repeats the previous picture in a weaker style",
-        "repair_goal": "Replace mid3 with a photoreal close-up of a typed demand letter, or a contract page with paragraph nine highlighted or circled, so the viewer sees the clause being turned against the gym. Change the payoff's top half too, so the cash photo is not held unchanged for the last 10 seconds (use a refund "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.005,
-        "effective_fps": 23.9,
-        "max_dup_run": 3,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 25.58,
-        "duration_s": 45.29
-      },
-      "fingerprint": "?|-|generic_illustration"
-    },
-    {
-      "ts": "2026-10-10T11:44:42+00:00",
-      "slug": "one_parent_timed_every_drop_off_to_dodge",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The story's turn, the camera exposing the parent, is never shown: one 'PAST DUE' bill sits on screen for the last ~28s across five beats.",
-      "auto_fails": [
-        "dead_air: The top-half picture is the same 'PAST DUE' bill in mid2 (19.9s), mid3, mid4, mid5 and payoff@-0.4 (47.7s). That is about 28s across at least five story beats (fee, threat, log/footage, signature, falsified sheet, back-fees) with no new picture; only the gameplay underneath moves."
-      ],
-      "problems": [
-        "mid2 through payoff@-0.4 reuse one 'PAST DUE' bill image for about 28s across the evidence, signature, falsified sheet and payoff beats.",
-        "mid1 has no story picture at all, just full-screen gameplay during the fee and threat beats.",
-        "The title promises 'The Camera Didn't Lie' but no security footage, timestamp or sign-in log ever appears.",
-        "The hook (hook@0.3 to 2.2) is a static Reddit card over gameplay with no shot illustrating the drop-off.",
-        "The payoff image is the same as the previous 25s, so the ending has no visual change."
-      ],
-      "fixes": [
-        "Give every story beat its own illustration and never hold one picture for more than about 6s.",
-        "Add a security-cam style frame with a timestamp showing her car in the lot 45 minutes early, and make it the reveal.",
-        "Show the signed fee schedule with her signature circled, and the paper sign-in sheet with the overwritten later time.",
-        "Save the 'PAST DUE' or back-fees image for the final payoff beat only.",
-        "Add an illustration to mid1 (the fee notice or the angry confrontation) instead of gameplay alone."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 144
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "dead_air"
-      ],
-      "weakest_scene": {
-        "id": "mid3",
-        "index": 3,
-        "failure_class": "static_reused_illustration",
-        "visible_evidence": "The same 'PAST DUE' bill photo shows in mid2, mid3, mid4, mid5 and payoff@-0.4, while the narration moves through the threat to report, the pulled timestamped log and security footage, her signature on the fee schedule, and the faked arrival time.",
-        "root_cause": "The shot planner gave one image to the whole second half instead of one picture per story beat. The turn ('the camera didn't lie') is never shown.",
-        "repair_goal": "Give each beat from mid2 on its own picture: a parent threatening the licensing board, a security-camera still with a timestamp showing her car in the lot at dawn, a signed fee schedule with the signature circled, a paper sign-in sheet with a time written over, then the back-fees bill only at the pa"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.0,
-        "effective_fps": 24.0,
-        "max_dup_run": 1,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 48.08
-      },
-      "fingerprint": "?|dead_air|static_reused_illustration"
-    },
-    {
-      "ts": "2026-10-10T11:48:13+00:00",
-      "slug": "giant_rats_make_themselves_at_home__driv",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The story's beats are hardly illustrated. The shots that do appear are generic emojis (one, a chair, is irrelevant) and an uncanny AI rat, so the cause and effect is never shown.",
-      "auto_fails": [
-        "junk_imagery: mid4: a generic clip-art wooden CHAIR icon fills the top half over 'THE MANAGER PANICKED' \u2014 it has nothing to do with rats, a manager or panic; mid1 is an off-key AI rat in a grey jumpsuit with human feet",
-        "empty_void: mid4/mid5/payoff@-0.4: a flat emoji sits centred on a dark navy gradient, leaving most of the top half as dead dark space; mid3 is a murky grey wall"
-      ],
-      "problems": [
-        "mid4: the chair emoji has nothing to do with 'the manager panicked'. This is junk imagery",
-        "mid1: the AI rat in a human jumpsuit with human-like feet looks uncanny, and it shows neither the pastries nor the feast",
-        "mid0, mid2, mid3: the key beats (the pest-control scam, the pepper jar, the rats bolting) have no shot illustration at all",
-        "mid4 to payoff: each emoji floats alone on a dark navy gradient, so the top half is wasted",
-        "The payoff (a raise) lands as a static cash emoji with no comic beat"
-      ],
-      "fixes": [
-        "Replace the seg4 chair with an illustration of the panicking manager and the rats fleeing the shop",
-        "Add story-specific shots for seg0 (the fake nightly 'pest control'), seg2 (the tiny jar of super-strong pepper) and seg3 (rats bolting out the door)",
-        "Swap the AI jumpsuit rat for rats raiding a pastry case",
-        "Fill the top panel with full-bleed, story-specific art instead of lone emojis on a gradient",
-        "Make the payoff visual a moment: the narrator handed a raise, or the manager's face, rather than a stock money icon"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 126
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void",
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "junk_imagery",
-        "visible_evidence": "mid4 (t=32.5s): a generic chair emoji on a dark gradient sits above the caption 'THE MANAGER PANICKED,'",
-        "root_cause": "The shot illustration was picked by matching a loose keyword to an icon library, so it shows an object that is unrelated to the beat (panic, rats bolting, the manager)",
-        "repair_goal": "Replace it with a picture of the beat itself: a frantic manager with rats scattering out of the bakery, or rats bolting past a pepper jar. It must be specific to the story, fill the top panel and not sit as a lone icon on a void"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.001,
-        "effective_fps": 24.0,
-        "max_dup_run": 2,
-        "measured": true,
-        "judder_ratio": 0.001,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 38.25,
-        "duration_s": 42.04
-      },
-      "fingerprint": "?|empty_void+junk_imagery|junk_imagery"
-    },
-    {
-      "ts": "2026-10-10T13:10:55+00:00",
-      "slug": "one_parent_timed_every_drop_off_to_dodge",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The story is satisfying, but its whole reveal (camera, signature, faked sign-in sheet) plays over one repeated PAST DUE stock photo, so the payoff is never shown.",
-      "auto_fails": [
-        "dead_air: The top-panel illustration is the same PAST DUE photo from mid3 (25.98s) through mid4, mid5, payoff@-1.8 and payoff@-0.4 (43.23s). That is about 17s and four story beats (footage, her signature, the faked sign-in sheet, back-fees) with one picture. Only the gameplay underneath moves.",
-        "empty_void: mid2: a small flat camera icon sits on a near-black gradient, and the gameplay below is a dark, featureless purple floor. Most of the frame is dead dark space.",
-        "unreadable: mid3 caption reads '5 .40 FOR', a number split by a stray space that a viewer has to puzzle out. The other captions and the post card (hook@0.3) are legible."
-      ],
-      "problems": [
-        "The top panel stays on the same PAST DUE image for about 17s (mid3 to the end) across four distinct story beats.",
-        "mid2 is a tiny clip-art camera icon on a dark void over dark purple gameplay, which wastes the frame.",
-        "The hook is just the post card over gameplay. Nothing story-specific moves in the first 2s.",
-        "Caption '5 .40 FOR' (mid3) has a broken number token.",
-        "The climax (the footage and the timestamp contradicting her) is never visualised, so the payoff lands only in audio."
-      ],
-      "fixes": [
-        "Assign a distinct shot to each segment from mid3 on: CCTV still with a timestamp, the signed fee schedule, the paper sign-in sheet with the altered time, then the bill.",
-        "Replace the camera emoji with a security-camera POV frame of a car parked at a dark daycare entrance before opening hours.",
-        "Fix the caption tokenizer so the number reads as one word (e.g. '$5.40').",
-        "Open the hook with a CCTV-style frame (timestamp overlay, car outside the closed door) behind the post card so the first second shows the 'camera didn't lie' premise."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 131
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "dead_air",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid4",
-        "index": 4,
-        "failure_class": "stale_illustration",
-        "visible_evidence": "mid3, mid4, mid5 and both payoff frames show the identical PAST DUE hand-and-bill photo while the narration moves through the security footage, her own fee-schedule signature, the faked later time on the paper sheet and the back-fees reversal.",
-        "root_cause": "One stock image was assigned to the whole back half of the script instead of one shot per segment, so the reveal beats have no picture of their own.",
-        "repair_goal": "Give each closing beat its own shot: a timestamped CCTV frame of a car at a daycare door before opening, a signed fee-schedule page with her signature highlighted, a paper sign-in sheet with a time scribbled over, then the PAST DUE bill only on 'left owing us back-fees'. Change the image at least ev"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.006,
-        "effective_fps": 23.9,
-        "max_dup_run": 4,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 36.0,
-        "duration_s": 43.62
-      },
-      "fingerprint": "?|dead_air+empty_void+unreadable|stale_illustration"
-    },
-    {
-      "ts": "2026-10-10T13:19:11+00:00",
-      "slug": "waterspout_caught_on_camera_in_crescent_",
-      "score": 49,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 0,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "From 23.8s to the end, a leftover waterspout wave icon fills the top half of a cafe VIP story and never changes.",
-      "auto_fails": [
-        "junk_imagery: mid3 through payoff@-0.4: a generic blue wave icon (left over from the waterspout news topic) fills the top half while the story is about a fake VIP badge in a cafe. It has nothing to do with the story.",
-        "dead_air: The identical static wave icon fills the top half from mid3 (23.8s) to payoff@-0.4 (39.6s). That is about 16s with no change, and mid5 and payoff@-1.8 are the same frame. Only the gameplay underneath moves.",
-        "empty_void: mid3 to payoff@-0.4: the top half is a dark navy void with one flat icon, about 40% of the frame wasted."
-      ],
-      "problems": [
-        "A wave icon from the waterspout headline topic is used as the story illustration from mid3 to the end. It doesn't match the cafe/VIP narrative.",
-        "The same static icon fills the top half for about 16s across three beats (mid3, mid4, mid5/payoff), so nothing there changes.",
-        "None of the six story beats (badge, line, trash, security, glowing badge, $0 receipt) is shown visually. The middle of the video is gameplay and captions only.",
-        "The top half becomes a dark navy void around one flat icon, wasting much of the frame.",
-        "The payoff ('cup of water and a receipt for $0') is never shown, so the ending lands on 'ENTITLEMENT.' over the same wave icon."
-      ],
-      "fixes": [
-        "Build illustrations from each story segment's own words, never from the trend headline topic.",
-        "Change the illustration at every beat: fake VIP badge, a restless line of customers, the badge going into the trash, security checking an ID, the badge glowing under fluorescent lights, a cup of water beside a $0 receipt.",
-        "If no relevant picture exists for a beat, use full-frame gameplay instead of filling the top half with an unrelated icon.",
-        "Land the payoff on a clear shot of the $0 receipt."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 120
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "dead_air",
-        "empty_void",
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "junk_imagery",
-        "visible_evidence": "From mid3 to the end, the illustration panel shows the same blue wave/water icon for every beat (security, glowing badge, the $0 water receipt). The icon is the News4JAX waterspout topic's art, not the cafe story's.",
-        "root_cause": "The illustration lookup used the trend headline's topic (Waterspout in Crescent Beach) instead of the story beats. One mismatched icon was reused for every later beat and never changed.",
-        "repair_goal": "Give each beat its own changing illustration from its own words: a security guard checking an ID for seg3, a fake VIP badge glinting under fluorescent lights for seg4, a cup of water beside a $0 receipt for seg5. Never reuse one panel across beats, and never draw from the headline topic."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.004,
-        "effective_fps": 23.9,
-        "max_dup_run": 2,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 40.0
-      },
-      "fingerprint": "?|dead_air+empty_void+junk_imagery|junk_imagery"
-    },
-    {
-      "ts": "2026-10-10T16:23:30+00:00",
-      "slug": "youth-sports-dropout",
-      "score": 57,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 1,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The bus and the emptying-field ideas fit the subject, but Data is a bystander, the 1.2 million beat has no picture, and the closing collapses into a card with a non-sequitur line.",
-      "auto_fails": [
-        "decorative_mascot: In the bus scene (hook@0.8, seg0:end, seg1:mid, seg1:end) Data stands in one spot by the door and waves or points while the kids get off without him. On the field (seg2:start to seg2:end) he slides along the fence gesturing, and in seg3 he is parked in the bottom-right corner waving. He never causes a kid to leave or hangs a jersey.",
-        "empty_void: seg3:start to payoff@-0.4: the closing shrinks the scene into a bordered panel on a flat dark-navy ground. About 40% of the frame (the top band and the bottom band) is dead dark space holding only text, a card/UI widget instead of a shot.",
-        "unreadable: In seg1:mid and seg1:end the '2023' marker is printed on top of the kid figures in the bus windows, next to a garbled white ghost outline. In seg3:mid the '1' in 'about 1 in 4' is crossed by a ghost figure's line, and in seg2:start the caption 'hit hardest: only' is grey on dark grass."
-      ],
-      "problems": [
-        "Data never causes anything. He waves and points beside the bus (seg0, seg1) and slides along the fence (seg2) while the kids leave on their own.",
-        "The closing (seg3) is a framed panel on a dark navy ground with dead top and bottom bands, the forbidden card/widget look.",
-        "The closing line 'Data benched himself in 2013. Never looked back.' does not follow from anything shown and does not pay off the story.",
-        "The narrated '1.2 million fewer kids in three years' beat has no visual of its own anywhere in the timeline.",
-        "The '2023' label sits over the kid figures and a garbled white ghost sketch in the bus windows (seg1:mid).",
-        "The bus scene's number moves on a generic side-gauge bar, and only two kids get off, which does not read as a drop from half to four in ten."
-      ],
-      "fixes": [
-        "Make Data the agent: he walks kids off the bus as its driver, or hangs each departing player's jersey on the fence, one act per beat, with his hands on the moving part.",
-        "Rebuild the closing full-bleed with no card: the field empties down to about 1 in 4 players and holds long enough to read.",
-        "Rewrite the closing line to state what the picture means (for example, the field is emptying and poor kids leave first) instead of a mascot gag.",
-        "Give the 1.2 million beat its own picture: rows of empty bleacher seats or a growing pile of jerseys that visibly dwarfs Data.",
-        "Move the 2013/2023 markers clear of the window figures and remove the ghost outline overlapping the kids.",
-        "Let the bus visibly lose about a fifth of its riders between 50% and 41% so the drop is seen, not read."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 47
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "UI_WIDGET closing / payoff does not land",
-        "visible_evidence": "seg3:start to payoff@-0.4: the field scene is shrunk into a framed panel on a dark navy background, with dead bands above and below. The headline 'Data benched himself in 2013. Never looked back.' has nothing to do with what is on screen, and Data stands still in the corner waving. The number just j",
-        "root_cause": "The closing reuses the beat-1 field inside a card template instead of building its own payoff shot. The closing line is a non-sequitur joke that no picture supports, and the '1.2 million fewer kids' beat never gets its own visual.",
-        "repair_goal": "Make the closing a full-bleed shot (no card) that lands the drop as a picture: Data, as the cause, walks the last players off the field and hangs their jerseys on the fence until only about 1 in 4 remain, and the empty field holds for a read. Rewrite the closing line to say what the picture means. G"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.099,
-        "effective_fps": 21.6,
-        "max_dup_run": 12,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.92,
-        "max_dup_at_s": 0.0,
-        "duration_s": 15.67
-      },
-      "fingerprint": "?|decorative_mascot+empty_void+unreadable|UI_WIDGET closing / payoff does not land",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-10T17:21:36+00:00",
-      "slug": "ingenuity-mars-helicopter-flights",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The 5-vs-72 hop trail is a great bespoke picture, but the middle beat's '1 flight' readout contradicts the voice and the 17x-farther distance payoff is never shown.",
-      "auto_fails": [
-        "unreadable: seg3:mid: the 'Final flight' label is printed on top of the helicopter body. seg3:end: the '50th flight' label is crossed by the rotor blade. hook@2.2: the helicopter covers the 'E' of the 'END OF MISSION' sign."
-      ],
-      "problems": [
-        "seg2: the headline reads '1 flight \u00b7 first flight' while the narration says flight fifty and flight seventy-two, so the on-screen number contradicts the voice.",
-        "seg2:start: the headline 'Ingenuity / flights on Mars' has no number.",
-        "The 'over ten miles, seventeen times farther than planned' claim is never visualised in any frame.",
-        "seg1 reuses seg0's 72-hop picture unchanged, so the frame doesn't advance to the flight-50 or rotor-snap story.",
-        "seg3: flight milestones are drawn as altitude lines ('50th flight', 'Final flight'), which suggests height, not count.",
-        "seg3:mid: 'Final flight' is printed on the helicopter body, and seg3:end: '50th flight' is crossed by the rotor blade."
-      ],
-      "fixes": [
-        "Redraw seg2 as the distance beat: a ground track that unrolls the planned short distance, then about 17 times as far, with Data piloting and the planned length ghosted on the track for scale.",
-        "Make each scene's headline carry that beat's own claim (72, then flight 50 / snapped blade, then 10+ miles). Never use a counter that starts at 1.",
-        "Give seg1 its own moment: the hop counter passing 50, then the blade snapping on hop 72, with Data at the console reacting.",
-        "Move the milestone labels off the helicopter and rotor path, or tie them to the hop trail instead of altitude lines.",
-        "Keep the END OF MISSION sign clear of the helicopter's flight path."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 48
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "label_contradicts_narration_and_missing_beat",
-        "visible_evidence": "seg2:mid and seg2:end show the headline '1 flight \u00b7 Ingenuity on Mars \u00b7 first flight' while the caption says 'then snapped a\u2026 flight seventy-two'. seg2:start has a headline with no number ('Ingenuity / flights on Mars'). Data stands on the solar panel and the helicopter only lifts off. The 'over ten",
-        "root_cause": "The scene's readout counts up from the first flight instead of carrying this beat's claim, and the distance beat has no machine. The numbers on screen fight the voice, and the biggest payoff (17x distance) is never shown.",
-        "repair_goal": "Redraw seg2 as the distance beat. Data pilots Ingenuity along a ground track that unrolls the planned short distance once, then about 17 times as far, with one headline '10+ miles' and the 'planned' length ghosted on the same track for scale. Drop the '1 flight' label. Keep every label clear of the "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.047,
-        "effective_fps": 22.9,
-        "max_dup_run": 19,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.75,
-        "max_dup_at_s": 0.0,
-        "duration_s": 16.12
-      },
-      "fingerprint": "?|unreadable|label_contradicts_narration_and_missing_beat",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-10T18:16:12+00:00",
-      "slug": "medical-debt-credit-score-fix",
-      "score": 79,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong envelope-pile and shrinking-stack scenes carry the first two numbers, but the closing vault dial is a generic gauge that overstates a 20-point rise.",
-      "auto_fails": [],
-      "problems": [
-        "seg3/seg4: a dial with no real score scale makes +20 points look like a doubling",
-        "seg3: the subtitle reads 'before the rule change' while the needle rises",
-        "seg4: the closing line 'Debt didn't move an inch' has no picture; only the score is shown",
-        "seg2: the 'before' tag sits on the hospital sign and reads as part of the sign",
-        "seg4: Data just waves at the end with no payoff action"
-      ],
-      "fixes": [
-        "Redraw seg3 on an honest 300-850 arc with a ghost needle at the old score and a short +20 sweep driven by Data's crank",
-        "Switch the seg3 subtitle to 'after the fix' when the needle lands",
-        "In the closing, keep the medical-bill pile beside the vault, untouched, while the score rises, so 'debt didn't move' is seen",
-        "Move the 'before' tag onto the dashed ghost outline in seg2, off the hospital sign"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 59
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "misleading_scale_stock_machine",
-        "visible_evidence": "A 20-point average rise is shown as the dial needle sweeping from 9 o'clock to past 12 (seg3:start to seg3:end), then to 3 o'clock (seg4:mid). That reads as a huge jump. The subtitle stays on 'the average, before the rule change' while the needle climbs (seg3:end), and the vault is a generic gauge w",
-        "root_cause": "The dial is not scaled to the credit-score range, so +20 fills half the gauge. The subtitle is not updated as the value changes. A vault-dial machine does not tie to credit reports the way the envelope pile does.",
-        "repair_goal": "Scale the sweep to a real 300-850 arc so +20 is an honest, visible nudge, marked with a then_mark ghost at the old position. Update the label to 'after' as the needle lands. Have Data's crank visibly drive the needle (or tie it to the medical envelopes leaving the report) so the cause reads."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.119,
-        "effective_fps": 21.2,
-        "max_dup_run": 14,
-        "measured": true,
-        "judder_ratio": 0.008,
-        "judder_fps": 23.8,
-        "held_s": 1.17,
-        "max_dup_at_s": 0.0,
-        "duration_s": 19.71
-      },
-      "fingerprint": "?|-|misleading_scale_stock_machine",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-10T22:11:35+00:00",
-      "slug": "phone-checks-205-times-a-day",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The slot-machine pile and the screen-filled clock land, but the hook counts backward (205 to 144) and the closing is a framed end card that repeats 5 hours.",
-      "auto_fails": [],
-      "problems": [
-        "The hook's number drops from 205 (hook@0.3) to 144 (hook@0.8) within half a second: a confusing reversal at the moment meant to shock.",
-        "seg3 boxes the scene in a bordered panel on dark navy bands: a card/widget layout, not full bleed.",
-        "seg3 repeats seg2's '5 hours / 31%' instead of a new payoff, and the sand barely moves.",
-        "In seg2:mid Data only waves on the clock rim and causes nothing.",
-        "A small bird glyph overlaps the seg3 subtitle text."
-      ],
-      "fixes": [
-        "Hold the hook on 205 at its full pile, or count up from 144 to 205, never down.",
-        "Render the closing full bleed with the closing line over the shot, and drop the panel border and navy bands.",
-        "Have Data drive the change in the clock (shovel the screens into the wedge) and in the hourglass (crank the valve so the sand pours to a third).",
-        "Give the closing a fresh payoff tied to the slot-machine idea rather than repeating 5 hours.",
-        "Keep stray scenery off the label text."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 39
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "weak_payoff_card_layout",
-        "visible_evidence": "seg3:start to payoff@-0.4: the hourglass is boxed in a bordered panel on a dark navy ground with the closing line and CTA stacked in the bands. It repeats '5 hours / about 31%' from seg2, the sand barely changes between seg3:mid and seg3:end, and Data stands on the ladder holding the valve without v",
-        "root_cause": "The closing reuses the previous beat's number in a framed end-card layout instead of a full-bleed shot with a new payoff. The valve Data holds does not visibly drive the sand.",
-        "repair_goal": "Make the closing full bleed with no panel. Have Data crank the valve so sand visibly pours into the 'on the phone' bulb until it reaches about a third, then hold. Land one new payoff tied to the 205 checks, not a repeat of 5 hours, and remove the overlapping bird glyph from the subtitle."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.134,
-        "effective_fps": 20.8,
-        "max_dup_run": 19,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.38,
-        "max_dup_at_s": 0.0,
-        "duration_s": 13.08
-      },
-      "fingerprint": "?|-|weak_payoff_card_layout",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-11T11:33:36+00:00",
-      "slug": "lab_grown_diamonds_just_passed_mined_dia",
-      "score": 78,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean, readable two-line race that lands a real crossover payoff, but the hook opens on an empty, slow chart build and the year counter runs ahead of the lines.",
-      "auto_fails": [],
-      "problems": [
-        "The hook (hook@0.3) opens on an almost empty chart: two stubs in the left corner and a black right half.",
-        "The year counter leads the data: it shows 2020 at hook@0.8 and 2021 at mid0 while the tips sit before those ticks.",
-        "The tip labels crowd together at the crossover (mid5) just as the payoff arrives.",
-        "The video is only about 8.4s, so the crossover payoff gets about 1.5s on screen."
-      ],
-      "fixes": [
-        "Flash-forward the opening: show the finished crossover frame for the first ~0.5s, then run the race.",
-        "Drive the year counter from the interpolated x position of the tips, not from a separate timer.",
-        "At the crossover, put the two labels on opposite sides (one above, one below) and hold the swapped leaderboard about 1s longer.",
-        "Add a short closing beat after the 52/48 swap so the '#1 Lab-Grown Diamonds' banner can be read."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 25
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "slow_chart_build_hook",
-        "visible_evidence": "hook@0.3 shows a nearly empty chart: an 87% blue stub and a 13% green stub at the left edge, a yellow caption box and a black right half. The counter reads 2020 at hook@0.8 while the tips are still before the 2020 tick.",
-        "root_cause": "The race starts from its smallest state in 2019, so the first second has no shock. The year counter runs ahead of the line tips.",
-        "repair_goal": "Open on the crossover: flash forward to the 2024 frame where the green line passes the blue at 52/48, then rewind and run the race. Tie the year counter to the tip position."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.13,
-        "effective_fps": 20.9,
-        "max_dup_run": 25,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.0,
-        "max_dup_at_s": 7.33,
-        "duration_s": 8.38
-      },
-      "fingerprint": "?|-|slow_chart_build_hook"
-    },
     {
       "ts": "2026-10-11T11:34:57+00:00",
       "slug": "tsmc_just_passed_intel_in_chip_revenue",
@@ -4027,21 +3278,753 @@
         "duration_s": 54.79
       },
       "fingerprint": "?|-|letterbox_pad"
+    },
+    {
+      "ts": "2026-10-14T10:57:55+00:00",
+      "slug": "airfare-booking-window-trap",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong airport world and a great fare-inflation pump beat. The globe ending muddles its number and parks Data, so the payoff fizzles.",
+      "auto_fails": [],
+      "problems": [
+        "seg3: an unexplained '3.9x' competes with '276 days', and the narration never says a ratio",
+        "seg3/seg4: Data just stands by the globe, then cheers. He is not the cause of the motion",
+        "seg0: while shrinking, the calendar face shows 'DAYS TO GO' with no number, so the page looks blank",
+        "seg1:start: the caption 'the sweet spot' is caught pale mid-fade over the luggage cart"
+      ],
+      "fixes": [
+        "Remove the 3.9x readout. Show Europe's 276 days as the plane or calendar pushing far past the 70-day domestic mark",
+        "Give Data the lever or crank beside the globe so that he launches or drives the plane's longer route",
+        "Put the live day count on the calendar face as it tears down",
+        "Make the closing a payoff picture, for example the inflated tag deflating back to 1x on a ten-week booking, rather than a held globe"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 74
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "unclear_payoff",
+        "visible_evidence": "seg3:mid: the plane runs along a 1x/2x/3x track to \"Europe\" next to a floating \"3.9x\" with no unit, while \"276 days\" sits on top. Data stands still by the globe stand from seg3:start to seg3:end.",
+        "root_cause": "The scene plots a ratio (276/70 = 3.9x) that the narration never says. The viewer gets two competing numbers, and the mascot has no job in the scene.",
+        "repair_goal": "Make the Europe lead time felt as DISTANCE IN TIME. Show the domestic 70-day mark and then the plane pushing much further back to the 276-day mark, with ONE headline number. Have Data DO the work, for example cranking the globe or launching the plane from the lever beside him, and drop the unexplain"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.136,
+        "effective_fps": 20.7,
+        "max_dup_run": 19,
+        "measured": true,
+        "frozen_ratio": 0.036,
+        "frozen_fps": 23.1,
+        "max_frozen_run": 11,
+        "judder_ratio": 0.007,
+        "judder_fps": 23.8,
+        "held_s": 1.17,
+        "max_dup_at_s": 0.0,
+        "duration_s": 24.62
+      },
+      "fingerprint": "?|-|unclear_payoff",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-14T11:31:01+00:00",
+      "slug": "airfare-booking-window-trap",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The middle beats are solid and Data is the cause in each, but the hook is a static ticket prop that doesn't say the opening line, and the ending just reuses the globe under a text card.",
+      "auto_fails": [],
+      "problems": [
+        "The hook (hook@0.3 to seg0:end) is a nearly static boarding pass marked 'LATE' with a small waving Data. Nothing shows 'nearly double', and it doesn't match the narrated hook about the 70-day cheapest fare.",
+        "The closing (seg4) reuses the seg3 globe unchanged under a text block, so the 'skip paying double' payoff is never shown.",
+        "The 'the sweet spot' caption at seg1:start is faded and low-contrast against the floor.",
+        "In seg2 the 1x/2x scale ticks sit at the right edge, so the tag's 92% growth against 2x is hard to read at a glance."
+      ],
+      "fixes": [
+        "Rebuild the hook so frame one shows the fare doubling: a ticket or price swelling to twice its size, driven by Data. Tie it to the 70-day line.",
+        "Give the closing its own payoff picture: put the 70-day calendar and the doubled tag side by side, or deflate the tag back to 1x when Data books at ten weeks.",
+        "Bring the seg1 caption in at full contrast.",
+        "Move the 1x/2x scale onto the tag itself, so its growth to near 2x reads without hunting at the frame edge."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 74
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_static_opening",
+        "visible_evidence": "From hook@0.3 to seg0:end the frame is the same airport with a boarding pass reading 'LATE' and a 'Same seat' headline, while a small Data waves in the corner. Nothing on screen doubles or jumps, and the picture never shows the 70-day claim the hook narration makes.",
+        "root_cause": "The opening is a labelled ticket prop, not a shock. 'Nearly double' is spelled out in text instead of shown, and the scene does not match the hook line about the 70-day cheapest fare.",
+        "repair_goal": "Open on the finished payoff: the same boarding pass with its price visibly ballooning to nearly twice its size, or a price tag on it slamming from $X to almost 2x, as Data does the inflating. Keep Data large and acting from frame one, and match the hook's line (the cheapest fare is 70 days out / wai"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.176,
+        "effective_fps": 19.8,
+        "max_dup_run": 19,
+        "measured": true,
+        "frozen_ratio": 0.044,
+        "frozen_fps": 22.9,
+        "max_frozen_run": 11,
+        "judder_ratio": 0.012,
+        "judder_fps": 23.7,
+        "held_s": 2.21,
+        "max_dup_at_s": 0.0,
+        "duration_s": 24.62
+      },
+      "fingerprint": "?|-|weak_hook_static_opening",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-14T12:06:11+00:00",
+      "slug": "amazon-warehouse-robot-army",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: max_dup_run 60 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=24.92s of 29.25s (~2.5s frozen)",
+      "auto_fails": [
+        "temporal_gate: max_dup_run 60 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=24.92s of 29.25s (~2.5s frozen)"
+      ],
+      "problems": [
+        "max_dup_run 60 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=24.92s of 29.25s (~2.5s frozen)"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 25.67,
+        "dark_fraction": 0.0,
+        "sampled": 88
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.367,
+        "effective_fps": 15.2,
+        "max_dup_run": 60,
+        "measured": true,
+        "frozen_ratio": 0.147,
+        "frozen_fps": 20.5,
+        "max_frozen_run": 20,
+        "judder_ratio": 0.001,
+        "judder_fps": 24.0,
+        "held_s": 5.88,
+        "max_dup_at_s": 24.92,
+        "duration_s": 29.25
+      },
+      "fingerprint": "?|temporal_gate|-",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-14T13:32:43+00:00",
+      "slug": "the-penny-lost-money-19-years-straight",
+      "score": 57,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The penny scale is a good idea, but Data is a bystander waving beside machines that run themselves, and the ending sits on a frozen gauge.",
+      "auto_fails": [
+        "decorative_mascot: In seg0:start through seg1:end Data stands at the base of the scale, waving or pointing, while the penny stack grows and tips the beam on its own. In seg2 and seg3 he stands beside the press with a hand near a small lever, but the press, gauge and pennies move without him. He never causes the motion."
+      ],
+      "problems": [
+        "seg0 and seg1: Data stands beside the scale and waves or points while the penny stack grows itself. He is decorative, not the cause.",
+        "hook@0.3 shows 3.69\u00a2 and 3X, then seg0:start snaps back to 1.23\u00a2 with a reset scale. The flash-forward reads as a glitch rather than a build.",
+        "In seg2:start and seg2:mid the headline says '$32M what those pennies were worth' while the narration says '$118 million'. Label and voice disagree.",
+        "seg2's number is carried by a generic COST dial. The gap between $118M and $32M is never drawn as money.",
+        "seg3 holds the same press and gauge for about 3s with nothing new. The payoff line has no picture of its own.",
+        "In seg2:start the gauge needle covers the '1x' tick label."
+      ],
+      "fixes": [
+        "Have Data shovel or carry pennies onto the right pan so his action tips the beam, holding a strain or triumph pose at 3X.",
+        "In seg2, Data should pull the press lever as each coin stamps. Show $118M as a heap of cash going in and a small $32M penny pile coming out.",
+        "Show $118M first, matching the narration, then reveal $32M as what came out.",
+        "Give the closing its own shot: a lone penny in a couch cushion with a 3.69\u00a2 cost tag Data pins to it, or the scale tipping one last time.",
+        "Keep the gauge needle clear of its tick labels."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 54
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "decorative_mascot"
+      ],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 2,
+        "failure_class": "decorative_mascot",
+        "visible_evidence": "In seg1:start, mid and end the penny stack grows to '3X' and the beam tips while Data stands below the scale's base. He waves in seg1:mid and seg1:end and holds nothing.",
+        "root_cause": "The scale scene is built so the data moves itself. Data is placed beside the machine as a reactor, not as the agent stacking pennies onto the pan.",
+        "repair_goal": "Make Data the cause. He hauls or shovels pennies onto the right pan, one load per beat, so each load visibly drops the beam toward 3x. His hands should sit on the pan or stack, and he should hold a pose of strain or triumph as the 3X lands."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.323,
+        "effective_fps": 16.2,
+        "max_dup_run": 35,
+        "measured": true,
+        "frozen_ratio": 0.133,
+        "frozen_fps": 20.8,
+        "max_frozen_run": 18,
+        "judder_ratio": 0.002,
+        "judder_fps": 23.9,
+        "held_s": 3.79,
+        "max_dup_at_s": 14.62,
+        "duration_s": 17.96
+      },
+      "fingerprint": "?|decorative_mascot|decorative_mascot",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-14T14:49:22+00:00",
+      "slug": "saharan-dust-feeds-amazon",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: max_dup_run 46 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.33s of 26.58s (~1.9s frozen)",
+      "auto_fails": [
+        "temporal_gate: max_dup_run 46 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.33s of 26.58s (~1.9s frozen)"
+      ],
+      "problems": [
+        "max_dup_run 46 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.33s of 26.58s (~1.9s frozen)"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 22.67,
+        "dark_fraction": 0.0,
+        "sampled": 80
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.314,
+        "effective_fps": 16.5,
+        "max_dup_run": 46,
+        "measured": true,
+        "frozen_ratio": 0.119,
+        "frozen_fps": 21.1,
+        "max_frozen_run": 11,
+        "judder_ratio": 0.002,
+        "judder_fps": 24.0,
+        "held_s": 5.5,
+        "max_dup_at_s": 21.33,
+        "duration_s": 26.58
+      },
+      "fingerprint": "?|temporal_gate|-",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-14T15:50:05+00:00",
+      "slug": "back-pain-leading-disability",
+      "score": 78,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong illustrated scenes with Data doing the work. The spine beat is the weak link: its 39% split lives in labels, not in the picture.",
+      "auto_fails": [],
+      "problems": [
+        "Hook: Data sways on a cardboard box without doing anything about the man's pain (hook@0.3 to hook@2.2).",
+        "seg2: the 39% fixable vs 61% split shows only as thin arcs and floating labels next to the spine, and Data's crank has no visible effect.",
+        "seg1: the 2020 marker and how much the queue grew are hard to see. The line gets longer but the third more is not obvious.",
+        "seg3: the '1990' label sits on the worker's hard hat and '2021' floats by a faint ghost box, both small."
+      ],
+      "fixes": [
+        "seg2: draw the 39% inside the spine (about 4 of 10 vertebrae marked fixable) and have each turn of Data's crank clear the pain from those vertebrae while the rest stays red.",
+        "Hook: give Data one quick action from the first frame, such as reaching to steady the man's back or pulling a pain marker off him.",
+        "seg1: mark the 2020 end of the queue clearly so the extra third added by 2050 stands out as new people joining the line.",
+        "seg3: put the 1990 and 2021 heights as clear marks on the stack itself, not on the hard hat."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 74
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "weak_data_demo",
+        "visible_evidence": "In seg2:start through seg2:end a bent, glowing spine straightens a little on a stand beside a vise. '39%' shows top-left and '61% other causes' sits on a thin grey arc with 'fixable' on a short cyan arc, small labels floating beside the spine. A viewer cannot see four in ten of the cases being fixed",
+        "root_cause": "The split is carried by two thin arcs and text labels beside the spine. Nothing in the spine itself splits into a fixable 39% and an unfixable 61%. Data only turns a crank and nothing visibly follows from it.",
+        "repair_goal": "Make the spine show the split. Turn about 4 of every 10 vertebrae (or 39% of the glowing pain) into the fixable part, and have Data clear that part with each turn of the crank while the other 61% stays lit, so the claim reads without the labels."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.149,
+        "effective_fps": 20.4,
+        "max_dup_run": 32,
+        "measured": true,
+        "frozen_ratio": 0.061,
+        "frozen_fps": 22.5,
+        "max_frozen_run": 15,
+        "judder_ratio": 0.005,
+        "judder_fps": 23.9,
+        "held_s": 2.04,
+        "max_dup_at_s": 20.5,
+        "duration_s": 24.58
+      },
+      "fingerprint": "?|-|weak_data_demo"
+    },
+    {
+      "ts": "2026-10-14T15:50:21+00:00",
+      "slug": "rubiks-cube-record-vs-robot",
+      "score": 48,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 1,
+        "mascot": 1,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Pretty cube and stage art, but the on-screen numbers contradict the narration ('3.13 s \u00b7 first world championship \u00b7 Today' against 23 seconds in 1982, '3.13 sec \u00b7 2023' against 3.47 in 2018), no picture shows any speed gap, and the closing freezes for about 5.7s.",
+      "auto_fails": [
+        "decorative_mascot: Data waves or points beside the giant cube in seg0:end, seg1:mid and seg1:end, and waves next to the rig in seg3:mid and seg3:end. In seg4:start through payoff@-0.4 he only cheers in place. He never turns the cube, never runs the stopwatch and never races the robot.",
+        "dead_air: seg4:start (24.59s) through payoff@-0.4 (28.60s) are almost the same frame: a static closing text block, a parked rig and Data in one cheer pose. Measured held_s is 5.67 at 24.17s.",
+        "unreadable: In seg3:start through seg4 the caption sits on the busy cube at the bottom, and in seg4:start the grey 'Could you solve a cube that fast?' is low-contrast over the cube. In seg0/seg1 the subtitle 'first world championship solve \u00b7 Today' over '3.13 s' contradicts the spoken '23 seconds', so a viewer cannot work out what the label means."
+      ],
+      "problems": [
+        "seg0/seg1: the headline reads 'Today', then '3.13 s first world championship solve \u00b7 Today', while the narration says almost 23 seconds in 1982. The data label is wrong and misleading.",
+        "seg3: the readout says '3.13 sec the best human solve \u00b7 2023' but the narration says 3.47 seconds by 2018.",
+        "seg2: the robot's 0.38s is shown only as a text flip and an '8x faster' line; no robot solve or race is drawn.",
+        "No beat makes the time physical. The stopwatch hand barely moves, so 23s against 3.47s against 0.38s is never seen.",
+        "Data waves and points beside the props in every beat and cheers in place at the close; he never solves, times or races anything.",
+        "seg4:start to payoff@-0.4 is a ~5.7s near-static hold of a text block over a parked rig."
+      ],
+      "fixes": [
+        "Bind each beat's readout to its own datum: 22.95s/1982, 3.47s/2018, 0.38s/robot. Never show 'Today' on the first-championship beat.",
+        "Use one time mechanic for all three beats. Data solves the giant cube while the stopwatch sweeps ~23s; the next beat reruns the sweep and stops at 3.47s; then the robot rig snaps the cube solved while the hand barely twitches at 0.38s.",
+        "Make Data the cause: he turns the layers in beat 1, then sits at the robot's control lever and pulls it as the rig solves in beat 3.",
+        "Keep the closing moving: the robot re-solves the cube in a flash on loop and the stopwatch resets while the line reads, so the ending is not one frozen frame.",
+        "Move the captions off the foreground cube or give them a dark band, and render the closing question in full-contrast ink."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 87
+      },
+      "judge": "showrunner-rejudge",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "dead_air",
+        "decorative_mascot",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 1,
+        "failure_class": "misleading_label",
+        "visible_evidence": "seg1:mid and seg1:end show a big '3.13 s' labelled 'first world championship solve \u00b7 Today' while the narration says the 1982 solve took almost 23 seconds. In seg0 the headline is just 'Today'. The giant cube only rotates its faces and nothing shows 23 seconds passing.",
+        "root_cause": "The readout pulled the current record value and date instead of the 1982 datum for this beat, and the scene has no mechanism that turns elapsed time into something the viewer can see. The cube spins its layers whatever the number is.",
+        "repair_goal": "Show 22.95s / 1982 as the headline. Make the time physical: Data turns the giant cube layer by layer while the hanging stopwatch sweeps all the way to ~23s, and the solve lands with the stopwatch near a full sweep. Later beats can then rerun that same sweep as a sliver (3.47s) and a hairline (0.38s)"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.26,
+        "effective_fps": 17.7,
+        "max_dup_run": 44,
+        "measured": true,
+        "frozen_ratio": 0.073,
+        "frozen_fps": 22.2,
+        "max_frozen_run": 15,
+        "judder_ratio": 0.006,
+        "judder_fps": 23.9,
+        "held_s": 5.67,
+        "max_dup_at_s": 24.17,
+        "duration_s": 29.0
+      },
+      "fingerprint": "?|dead_air+decorative_mascot+unreadable|misleading_label"
+    },
+    {
+      "ts": "2026-10-14T16:28:05+00:00",
+      "slug": "hurricane-names-retired-growing-list",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 3,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong lit scenes where Data really causes each number (chiseling names, ringing up damage, boarding windows), but the closing is a ~4s replay of the last beat, so the payoff never lands on screen.",
+      "auto_fails": [],
+      "problems": [
+        "seg4 / closing: the finished seg3 house is replayed for ~4s with Data standing still. The payoff line gets no picture of its own.",
+        "seg1 repeats the hook's tombstone build (50 to 100 names), so the first beat after the hook adds no new picture.",
+        "Tombstone engravings are blank bars, not names. Katrina is never visibly carved even though the hook names it.",
+        "The header numbers (\"100 names\", \"$125B\") overlap the top of the tombstone and the receipt column in places, which crowds the top third."
+      ],
+      "fixes": [
+        "Give the closing its own scene: Data carves a fresh blank line on the tombstone, or the storm swirl moves onto a row of coastal houses, so the ending moves and pays off \"your coast could be next\".",
+        "In the hook, have Data carve KATRINA as the visible last line so the stone reads as names, not bars.",
+        "Give seg1 a distinct beat, for example a tiny 1954 headstone beside the huge 2024 one, rather than replaying the hook's fill.",
+        "Push the header block up or shrink the tombstone and receipt so the numbers sit clear of the subject."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 73
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg4",
+        "index": 4,
+        "failure_class": "static_reused_closing",
+        "visible_evidence": "seg4:start, seg4:mid, payoff@-1.8, seg4:end and payoff@-0.4 are the same finished boarded house from seg3:end. Data stands still holding a hammer and nothing new happens while the line says \"the list only grows, and your coast could be next.\"",
+        "root_cause": "The closing has no scene of its own. It replays the last beat's finished frame wordlessly, so the payoff line, about the list growing and your coast being next, gets no picture and the video ends on a ~4s hold.",
+        "repair_goal": "Draw a closing that pays off \"the list only grows / your coast could be next\". For example, Data chisels a new blank line onto the tombstone as the storm swirl moves toward a coastline of houses, so the ending moves and lands the threat instead of holding the seg3 picture."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.246,
+        "effective_fps": 18.1,
+        "max_dup_run": 43,
+        "measured": true,
+        "frozen_ratio": 0.041,
+        "frozen_fps": 23.0,
+        "max_frozen_run": 14,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 3.92,
+        "max_dup_at_s": 19.71,
+        "duration_s": 24.25
+      },
+      "fingerprint": "?|-|static_reused_closing",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-14T17:06:34+00:00",
+      "slug": "billionaire-count-record-2025",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong bag and slot-machine beats with Data as the cause, but the stock-market comparison is half told and ends on a static reused frame with a stray dashed box.",
+      "auto_fails": [],
+      "problems": [
+        "seg3: a stray empty dashed rectangle sits on the ground under the S&P balloon and stays through the closing.",
+        "seg3: only +195% is shown; the billionaires' +127% never appears, so the comparison the narration makes is not readable on screen.",
+        "seg3:start opens on a bare 'Billionaires' title with no number while the narration is already saying 127 percent.",
+        "The closing is the seg3 end frame held under the text, so the payoff lands weakly.",
+        "The on-screen hook line ('Billionaires doubled their fortunes, and they still lost to the stock market') differs from the script hook ('While you were paying rent...').",
+        "seg2: a half-cropped trash can full of coins sits at the bottom right under the caption and reads as clutter."
+      ],
+      "fixes": [
+        "Delete the stray dashed box from the balloon scene.",
+        "Show +127% on the billionaires balloon and +195% on the S&P balloon together, with a dashed then-mark for the billionaires' altitude, so the gap reads at a glance.",
+        "Give the closing its own action, such as Data stepping out of the higher balloon holding a stock certificate, instead of reusing the finished frame.",
+        "Make the on-screen hook text match the narrated hook.",
+        "Remove or fully frame the trash-can prop in the slot-machine scene."
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 27.33,
+        "dark_fraction": 0.0,
+        "sampled": 86
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "weak_depiction",
+        "visible_evidence": "A stray empty dashed rectangle sits on the ground under the S&P balloon throughout seg3 and the closing (seg3:start, seg3:mid, payoff@-0.4). The scene opens on a bare 'Billionaires' title with no number (seg3:start). Only +195% is ever shown. The billionaires' 127% is never put on screen, so the com",
+        "root_cause": "A leftover placeholder or ghost mark was drawn without a subject. The scene's readout shows only the market's number, so the left balloon's height carries no stated value.",
+        "repair_goal": "Remove the stray dashed box. Show +127% on the billionaires balloon as a then-mark at its lower altitude, beside +195% on the S&P balloon, so the gap between them reads in one glance. Use the balloons' real lift: Data feeds the S&P burner and that balloon visibly climbs past the other."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.356,
+        "effective_fps": 15.5,
+        "max_dup_run": 44,
+        "measured": true,
+        "frozen_ratio": 0.153,
+        "frozen_fps": 20.3,
+        "max_frozen_run": 13,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 7.71,
+        "max_dup_at_s": 24.25,
+        "duration_s": 28.58
+      },
+      "fingerprint": "?|-|weak_depiction",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-14T17:43:53+00:00",
+      "slug": "billionaire-count-record-2025",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The bag, slot-machine and tree pictures work, but the closing stacks its caption on top of its own headline, and the balance scale tips the wrong way for 'the market grew faster'.",
+      "auto_fails": [
+        "unreadable: The closing caption's last line 'too.' is printed on top of the 'Own the market' headline in seg4:start and seg4:mid, and sits right against '+195%' in seg4:end. Two text blocks collide at the top of the frame."
+      ],
+      "problems": [
+        "seg4: the closing caption overlaps the 'Own the market' headline ('too.' printed on the letters) and crowds '+195%'. That is unreadable on a phone.",
+        "seg3: the scale's 127% pan sits lower than the bigger gold-bar stack in seg3:mid and seg3:end, which shows the billionaires as heavier, the opposite of the claim.",
+        "seg2 and seg3: Data stands beside the machine and points. He does not pull the slot lever or load the bars, so he is not the cause of the motion.",
+        "Hook: the on-screen hook line ('Billionaires doubled their fortunes, and a plain index fund still beat them.') differs from the script hook ('While you were paying rent...'), and the hook flashes 3,028 then drops back to 1,826 with no context.",
+        "seg3: '+127%' is printed twice (the headline and the pan label), which wastes the one big number."
+      ],
+      "fixes": [
+        "seg4: remove the 'Own the market' headline or move the closing caption clear of it and of the '+195%' readout. Keep one text layer at the top and leave the CTA alone at the bottom.",
+        "seg3: make the 195% side visibly heavier so its pan drops as the gold bars stack. Better still, have Data load the bars onto that pan so the tilt is his doing.",
+        "seg2: have Data pull the slot lever on each payout, so the coin pile rises because he pulls it.",
+        "Hook: make the plate's hook line match the narrated hook, so the first words and the first picture make one claim.",
+        "seg3: drop the duplicate +127% pan label, or use the headline for the 195% vs 127% comparison."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 86
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg4",
+        "index": 4,
+        "failure_class": "unreadable",
+        "visible_evidence": "The closing caption block ('Billionaires got richer mostly by holding stocks, and anyone can own those too.') overlaps the 'Own the market' headline, so 'too.' sits on the headline's letters (seg4:start, seg4:mid). It then crowds '+195%' (seg4:end). The 'COMMENT BELOW' CTA and the subtitles pile up ",
+        "root_cause": "The closing line is laid in the top band where the scene's own headline and readout also sit, and nothing measures for a collision between them. Three text layers (caption, headline/readout, CTA) compete in one frame.",
+        "repair_goal": "Use one text layer at the top. Either drop the 'Own the market' headline or move the closing caption so it clears the headline and the '+195%' readout by a measured margin. Keep the tree crossing the 'billionaires +127%' line as the wordless payoff. The final frame should carry the line, the 195 vs "
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.144,
+        "effective_fps": 20.6,
+        "max_dup_run": 19,
+        "measured": true,
+        "frozen_ratio": 0.045,
+        "frozen_fps": 22.9,
+        "max_frozen_run": 14,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 2.62,
+        "max_dup_at_s": 3.33,
+        "duration_s": 28.75
+      },
+      "fingerprint": "?|unreadable|unreadable",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-14T18:12:53+00:00",
+      "slug": "billionaire-count-record-2025",
+      "score": 75,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The bag and slot-machine beats are good, but the video ends on a reused static balloon frame with the text pasted on, so the 'anyone can own stocks' payoff is never shown.",
+      "auto_fails": [],
+      "problems": [
+        "seg4: the closing reuses the seg3 balloon picture with text over it, the numbers vanish, and no new image or action lands the payoff",
+        "seg2: Data stands beside the slot machine with his arm out, the lever is pulled by no one, and he does not visibly cause the payout",
+        "seg3/seg4: two grey canisters with red buttons in the bottom-right corner are never explained and read as stray props",
+        "seg2: a tin can sits in the bottom-right corner with no purpose",
+        "seg1: the bag (wealth) stands in for the billionaire COUNT, which muddies the claim that the number of people grew"
+      ],
+      "fixes": [
+        "Write a real closing scene in which a viewer-figure gets a seat in the S&P balloon (or many small baskets rise with the market), with +195% vs +127% still on screen",
+        "In seg2, have Data pull the slot machine's lever on the beat so each pull drops a jackpot of coins onto the pile",
+        "Remove the grey canisters and the tin can, or make them the balloons' burner fuel that Data actually works",
+        "In seg1, show the count as figures or chairs filling up (1,826 to 3,028) and keep the bag for the fortune beat"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 85
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg4",
+        "index": 4,
+        "failure_class": "static_closing_no_payoff_visual",
+        "visible_evidence": "seg4:start, seg4:mid and seg4:end are the same balloon frame as seg3:end with the closing sentence pasted over both balloons. The +127% and +195% readouts are gone, Data sits still in the basket, and the two unexplained grey canisters with red buttons stay in the bottom-right corner.",
+        "root_cause": "No closing scene was authored, so the last beat's finished picture plays under the closing line. The line ('anyone can own those too') gets no picture of its own, and the scene's numbers are removed rather than paid off.",
+        "repair_goal": "Give the closing a full-frame payoff that shows the line: Data reaches down from the S&P balloon and pulls an ordinary viewer-figure into the basket, or the S&P balloon pulls a crowd of small baskets up past the billionaire balloon. Keep the +195% vs +127% gap visible while it lands, and remove or e"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.338,
+        "effective_fps": 15.9,
+        "max_dup_run": 44,
+        "measured": true,
+        "frozen_ratio": 0.126,
+        "frozen_fps": 21.0,
+        "max_frozen_run": 11,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 6.71,
+        "max_dup_at_s": 23.92,
+        "duration_s": 28.25
+      },
+      "fingerprint": "?|-|static_closing_no_payoff_visual",
+      "style_arm": "illustrated"
     }
   ],
   "showrunner_recurrence": {
     "?|temporal_gate|-": {
-      "count": 7,
+      "count": 9,
       "days": [
         "2026-10-11",
         "2026-10-12",
-        "2026-10-13"
+        "2026-10-13",
+        "2026-10-14"
       ]
     },
     "?|-|weak_hook": {
-      "count": 5,
+      "count": 4,
       "days": [
-        "2026-10-10",
         "2026-10-11",
         "2026-10-14"
       ]
@@ -4059,64 +4042,10 @@
         "2026-10-11"
       ]
     },
-    "?|-|generic_illustration": {
-      "count": 1,
+    "?|unreadable|unreadable": {
+      "count": 2,
       "days": [
-        "2026-10-10"
-      ]
-    },
-    "?|dead_air|static_reused_illustration": {
-      "count": 1,
-      "days": [
-        "2026-10-10"
-      ]
-    },
-    "?|empty_void+junk_imagery|junk_imagery": {
-      "count": 1,
-      "days": [
-        "2026-10-10"
-      ]
-    },
-    "?|dead_air+empty_void+unreadable|stale_illustration": {
-      "count": 1,
-      "days": [
-        "2026-10-10"
-      ]
-    },
-    "?|dead_air+empty_void+junk_imagery|junk_imagery": {
-      "count": 1,
-      "days": [
-        "2026-10-10"
-      ]
-    },
-    "?|decorative_mascot+empty_void+unreadable|UI_WIDGET closing / payoff does not land": {
-      "count": 1,
-      "days": [
-        "2026-10-10"
-      ]
-    },
-    "?|unreadable|label_contradicts_narration_and_missing_beat": {
-      "count": 1,
-      "days": [
-        "2026-10-10"
-      ]
-    },
-    "?|-|misleading_scale_stock_machine": {
-      "count": 1,
-      "days": [
-        "2026-10-10"
-      ]
-    },
-    "?|-|weak_payoff_card_layout": {
-      "count": 1,
-      "days": [
-        "2026-10-10"
-      ]
-    },
-    "?|-|slow_chart_build_hook": {
-      "count": 1,
-      "days": [
-        "2026-10-11"
+        "2026-10-14"
       ]
     },
     "?|-|slow_hook": {
@@ -4299,12 +4228,6 @@
         "2026-10-14"
       ]
     },
-    "?|unreadable|unreadable": {
-      "count": 1,
-      "days": [
-        "2026-10-14"
-      ]
-    },
     "?|-|weak_hook_missing_context": {
       "count": 1,
       "days": [
@@ -4316,16 +4239,63 @@
       "days": [
         "2026-10-14"
       ]
+    },
+    "?|-|unclear_payoff": {
+      "count": 1,
+      "days": [
+        "2026-10-14"
+      ]
+    },
+    "?|-|weak_hook_static_opening": {
+      "count": 1,
+      "days": [
+        "2026-10-14"
+      ]
+    },
+    "?|decorative_mascot|decorative_mascot": {
+      "count": 1,
+      "days": [
+        "2026-10-14"
+      ]
+    },
+    "?|-|weak_data_demo": {
+      "count": 1,
+      "days": [
+        "2026-10-14"
+      ]
+    },
+    "?|dead_air+decorative_mascot+unreadable|misleading_label": {
+      "count": 1,
+      "days": [
+        "2026-10-14"
+      ]
+    },
+    "?|-|static_reused_closing": {
+      "count": 1,
+      "days": [
+        "2026-10-14"
+      ]
+    },
+    "?|-|weak_depiction": {
+      "count": 1,
+      "days": [
+        "2026-10-14"
+      ]
+    },
+    "?|-|static_closing_no_payoff_visual": {
+      "count": 1,
+      "days": [
+        "2026-10-14"
+      ]
     }
   },
   "recent_commits": [
-    "56879ba 2026-10-14 claim: mailbox verdicts 2026-10-14T09:48Z [skip ci]",
-    "c006931 2026-10-14 claim: mailbox verdicts 2026-10-14T08:48Z [skip ci]"
+    "dde8a87 2026-10-15 claim: mailbox verdicts 2026-10-15T04:48Z [skip ci]",
+    "c1c8bac 2026-10-15 claim: mailbox verdicts 2026-10-15T03:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-09-30": 5,
         "2026-10-01": 4,
         "2026-10-02": 4,
         "2026-10-03": 5,
@@ -4345,7 +4315,6 @@
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-09-30": 3,
         "2026-10-01": 4,
         "2026-10-02": 3,
         "2026-10-03": 2,
@@ -4358,15 +4327,15 @@
         "2026-10-10": 3,
         "2026-10-11": 2,
         "2026-10-12": 2,
-        "2026-10-13": 2
+        "2026-10-13": 2,
+        "2026-10-14": 5
       },
-      "total_posted": 325,
-      "attempted": 325,
+      "total_posted": 330,
+      "attempted": 330,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-09-30": 5,
         "2026-10-01": 5,
         "2026-10-02": 4,
         "2026-10-03": 6,
@@ -4379,11 +4348,13 @@
         "2026-10-10": 6,
         "2026-10-11": 6,
         "2026-10-12": 4,
-        "2026-10-13": 4
+        "2026-10-13": 4,
+        "2026-10-14": 1,
+        "2026-10-15": 5
       },
-      "total_posted": 403,
-      "attempted": 948,
-      "rejected_or_pending": 545
+      "total_posted": 409,
+      "attempted": 972,
+      "rejected_or_pending": 563
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4397,32 +4368,32 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 123,
+      "videos": 127,
       "top_by_vph": [
         {
-          "title": "Polio Cases Fell 99.9% In One Generation",
-          "vph": 9.06,
-          "views": 403
+          "title": "Why Plane Tickets Cost More The Closer You Book",
+          "vph": 117.78,
+          "views": 1082
         },
         {
-          "title": "Pollen Season Just Got 20 Days Longer",
-          "vph": 8.48,
-          "views": 428
+          "title": "Why Some Hurricane Names Get Retired Forever",
+          "vph": 13.19,
+          "views": 56
         },
         {
           "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
-          "vph": 8.46,
-          "views": 627
+          "vph": 6.51,
+          "views": 626
         },
         {
-          "title": "The Doomsday Clock Just Hit 89 Seconds To Midnight",
-          "vph": 5.15,
-          "views": 85
+          "title": "Polio Cases Fell 99.9% In One Generation",
+          "vph": 6.19,
+          "views": 412
         },
         {
-          "title": "The Ozone Hole Is Quietly Healing. Here's Proof.",
-          "vph": 4.33,
-          "views": 541
+          "title": "Pollen Season Just Got 20 Days Longer",
+          "vph": 5.93,
+          "views": 430
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
@@ -4432,36 +4403,36 @@
       "top_by_vph": [
         {
           "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 9.96,
-          "views": 874
+          "vph": 9.23,
+          "views": 875
         },
         {
           "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
-          "vph": 2.85,
-          "views": 720
+          "vph": 2.79,
+          "views": 725
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 2.27,
-          "views": 461
+          "vph": 2.22,
+          "views": 466
         },
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 2.13,
+          "vph": 2.11,
           "views": 1361
         },
         {
           "title": "The Forsen Clip Everyone's Talking About",
-          "vph": 1.59,
-          "views": 25
+          "vph": 1.4,
+          "views": 32
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261011/brief.json",
       "retro/20261012/brief.json",
-      "retro/20261013/brief.json"
+      "retro/20261013/brief.json",
+      "retro/20261014/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
