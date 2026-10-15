@@ -31,7 +31,7 @@
       "hook": "One energy source tripled since 1990; it isn't solar or wind.",
       "says": [
         "In 1990, combustible renewables and waste was 10.2 %; by 2024, 30.1 %—3.0 times higher. Waste-derived fuel remains a surprisingly large share.",
-        "In 1998, electricity access was 73.2 %; by 2024, 91.9 %—1.3 times higher. Power moved much closer to universal reach.",
+        "In 1998, electricity access was 73.2 %; by 2024, 91.9 %—1.3 times higher.",
         "In 1972, methane (ch4) emissions from waste were 903.8 Mt CO2e; by 2024, 1,652—1.8 times higher, revealing the climate tradeoff."
       ],
       "closing": "Waste can supply energy, but its methane cost still reaches everyone.",
@@ -54,6 +54,7 @@
     "Frozen registry revision 10 assigns Trending sports_moment and Third clip production to their registered workers under ChatGPT production_supervisor; retired graph_race, reddit_story, and text_card formats were not authored.",
     "The bundle contained zero image requests. The configured Drive folder was verified accessible, share-capable, and public as anyone-with-link reader; no Drive assets were required or generated.",
     "Completed all three requested Explainer word rewrites while preserving protected numbers, percentages, years, countries, named entities, segment count, and segment order.",
-    "Trending, Third, and Explainer production are supervised through the downstream capture, render, fail-closed QA, spacing, and upload workflows after exchange closure."
+    "Trending, Third, and Explainer production are supervised through the downstream capture, render, fail-closed QA, spacing, and upload workflows after exchange closure.",
+    "Phase B guard repair: removed the invented named entity `power` from the second renewables segment; all protected claims remain unchanged."
   ]
 }
