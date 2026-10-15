@@ -3488,6 +3488,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
       "duration_s": 28.6
+    },
+    "secondhand-apparel-resale-boom": {
+      "claimed_at": "2026-10-15T11:46:09.054930+00:00",
+      "title": "Secondhand Clothes Are Growing 5 Times Faster Than New",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4383,6 +4390,14 @@
       "state": "posted",
       "slug": "billionaire-count-record-2025",
       "at": "2026-10-14T18:13:05.101734+00:00"
+    },
+    {
+      "claimed_at": "2026-10-15T11:46:09.054930+00:00",
+      "title": "Secondhand Clothes Are Growing 5 Times Faster Than New",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "secondhand-apparel-resale-boom"
     }
   ]
 }
