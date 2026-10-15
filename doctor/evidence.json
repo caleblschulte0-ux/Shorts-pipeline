@@ -4290,8 +4290,8 @@
     }
   },
   "recent_commits": [
-    "dde8a87 2026-10-15 claim: mailbox verdicts 2026-10-15T04:48Z [skip ci]",
-    "c1c8bac 2026-10-15 claim: mailbox verdicts 2026-10-15T03:48Z [skip ci]"
+    "90727f0 2026-10-15 claim: mailbox verdicts 2026-10-15T09:48Z [skip ci]",
+    "7790ebd 2026-10-15 claim: mailbox verdicts 2026-10-15T08:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4399,32 +4399,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 127,
+      "videos": 133,
       "top_by_vph": [
         {
           "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 9.23,
-          "views": 875
+          "vph": 7.86,
+          "views": 879
         },
         {
           "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
-          "vph": 2.79,
-          "views": 725
+          "vph": 2.65,
+          "views": 734
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 2.22,
-          "views": 466
+          "vph": 2.19,
+          "views": 497
         },
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 2.11,
+          "vph": 2.06,
           "views": 1361
         },
         {
           "title": "The Forsen Clip Everyone's Talking About",
-          "vph": 1.4,
-          "views": 32
+          "vph": 1.28,
+          "views": 51
         }
       ],
       "full_data": "state/analytics_third/latest.json"
