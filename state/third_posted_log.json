@@ -13553,14 +13553,32 @@
       "ts": "2026-10-15T12:34:50.678742+00:00"
     },
     "clip-20261015-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ishowspeed/clip/AgitatedSucculentVanillaYouDontSay-pcb45T-lMoBp69lJ",
-      "story_key": null,
-      "streamer": "ishowspeed",
+      "url": "https://youtube.com/shorts/Sgqpdlku_ko",
       "title": "Ishowspeed Gets Called Out In Front Of Everyone And Can't Believe It",
       "kind": "twitch_clip",
-      "ts": "2026-10-15T12:36:08.789290+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-15T12:36:19.666465+00:00",
+      "uploaded_at": "2026-10-15T12:36:19.666478+00:00",
+      "publish_at": "2026-10-16T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261015-ishowspeed-gets-called-out-in-front-of-everyone--c0a06157",
+        "tiktok": "queued for 2026-10-16T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/AgitatedSucculentVanillaYouDontSay-pcb45T-lMoBp69lJ",
+      "streamer": "ishowspeed",
+      "series": "chaos",
+      "hook": "Speed gets called out \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3173,
+      "banger": 0.45,
+      "cut": {
+        "start": 22.0,
+        "end": 32.4
+      },
+      "director_cut": true
     }
   }
 }
