@@ -1,3 +1,5 @@
 {
-  "date": "20261015"
+  "date": "20261015",
+  "retry": 1,
+  "retry_reason": "Phase B rejected one Explainer segment for invented named entity `power`; response repaired and revalidated."
 }
