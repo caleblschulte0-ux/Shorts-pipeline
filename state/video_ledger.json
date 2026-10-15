@@ -5775,6 +5775,66 @@
      "detail": "Gen Z just killed a drinking habit their parents never questioned."
     }
    ]
+  },
+  {
+   "slug": "global-remittances-record-2023",
+   "directed_at": "2026-10-15",
+   "topic_category": "economy",
+   "hook_type": "shock_stat",
+   "hook_text": "Workers mailed home more money than the world's biggest companies invested: $685 billion.",
+   "depictions": [
+    "mechanic:remit-plane-vault-rise",
+    "mechanic:remit-streams-home",
+    "mechanic:paycheck-tower-vs-boardroom"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "Paycheck tower overtakes the investment skyscraper by the 270B gap"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-15",
+   "topic_category": "nature",
+   "hook_type": "shock_stat",
+   "hook_text": "One cave fungus wiped out 97 percent of a bat species.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "existing scenes kept; verified"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-15",
+   "topic_category": "finance",
+   "hook_type": "shock_stat",
+   "hook_text": "States are quietly holding 70 billion dollars of your money.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "existing scenes kept; verified"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-10-15",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "depictions": [
+    "viz:trend",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "existing scenes kept; verified"
   }
  ]
 }

@@ -1,0 +1,16 @@
+{
+ "slug": "panama-canal-drought-transit-cuts",
+ "ts": "20261015T175036Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:start: the caption 'locks, sank to' is faint grey on dark green and nearly vanishes. seg1:start: the ghosted 'to 24 ships' is unreadable on the water. seg4:mid/end: the crane jib cable runs through the subtitle 'max draft now \u00b7 ships ride high, cargo stays'. seg3:start: the mooring ",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable",
+  "visible_evidence": "At seg4:mid and seg4:end the 44 ft subtitle 'max draft now \u00b7 ships ride high, cargo stays' sits right on the crane's jib and cable line, so the words are struck through. 'crosses the Panama Canal' at seg4:start also touches the jib. A long closing caption in the sky stacks on top of the headline, giving three text blocks in the top half.",
+  "root_cause": "The closing layout puts the headline block in the same band as the crane jib. Its text placement is not measured against the drawn crane geometry, and the closing caption plus headline plus CTA crowd the frame.",
+  "repair_goal": "Move the headline and subtitle clear of the crane jib and cable, or lower the jib below the text band, so no line crosses any text. Trim to one headline and keep the closing caption, so the closing reads in a glance on a phone."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,16 @@
+{
+ "slug": "amazon-warehouse-robot-army",
+ "ts": "20261015T175036Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:start: the caption \"building in 2012.\" is covered by the delivery van, with its first word cut off and pale on pale. seg1:start/mid/end: the \"2012 \u2014\" marker on the pods is tiny white text over cluttered pods. seg4:start: \"Sources in the description\" is very small.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg3:start and seg3:mid show a roll-up door slowly opening on six brown blocks while Data stands at the left edge pointing. The '2 robots for every 3 people' claim only appears at seg3:end, as two loose groups, with Data waving on top of the pods.",
+  "root_cause": "The beat's claim is a ratio, but the scene spends most of its time on a door reveal with no subject inside. Data is placed as a pointer instead of the cause of the motion.",
+  "repair_goal": "Data drives the pods out of the door into lanes alongside the workers, two pods slotting in next to each three-person row as he steers them. The 2:3 pairing should build visibly in rows from the first second and land by about 70% of the beat."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
