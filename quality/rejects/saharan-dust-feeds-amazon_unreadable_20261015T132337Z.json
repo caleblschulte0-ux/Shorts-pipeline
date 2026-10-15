@@ -1,0 +1,16 @@
+{
+ "slug": "saharan-dust-feeds-amazon",
+ "ts": "20261015T132337Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg1:mid, the outline of the scalloped dust wall runs straight through the small line 'lifted into the sky every year'. At seg1:end, 'of Sahara dust lifted a year \u00b7 30x the Great Pyramid of Giza's mass' is tiny thin type over textured dust and can't be read at phone size. At seg4:star",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "weak_depiction_scale_not_shown",
+  "visible_evidence": "seg1:start to seg1:end: a wall of beige scallop arcs rises behind one pyramid that never changes size, with one thin dust wisp next to Data's shovel. The '30x the Great Pyramid' comparison is only in tiny text, and the scallop wall reads as wallpaper, not dust in the sky. The cloud outline crosses the small text line.",
+  "root_cause": "The 182M-ton number is shown as a flat patterned backdrop instead of dust riding the sky. The pyramid comparison is in the label, not in the picture, and the scallop outlines collide with the text.",
+  "repair_goal": "Make the number visible as dust on the move. Have a churning, lit dust plume lift off the dunes, with Data pumping a bellows or shovelling into the wind, until it towers over a row of 30 small pyramid silhouettes that it swallows (a then_mark at one pyramid's height). Keep the plume below the headline and drop the small text over the texture, so nothing crosses the words."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

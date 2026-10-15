@@ -5679,6 +5679,102 @@
      "detail": "Whalers left 450 humpbacks in the South Atlantic. Today there are 25,000."
     }
    ]
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-15",
+   "topic_category": "nature",
+   "hook_type": "stat",
+   "hook_text": "One cave fungus wiped out 97 percent of a bat species.",
+   "words_first_10s": 18,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "bats drop off the ceiling; crop-pest gauge sweeps to $53B",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "One cave fungus wiped out 97 percent of a bat species."
+    }
+   ]
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-15",
+   "topic_category": "finance",
+   "hook_type": "stat",
+   "hook_text": "States are quietly holding 70 billion dollars of your money.",
+   "words_first_10s": 18,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "call_to_action",
+   "franchise": "",
+   "notes": "vault fills, thin trickle returned; 1 in 7 glow",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "States are quietly holding 70 billion dollars of your money."
+    }
+   ]
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-10-15",
+   "topic_category": "culture",
+   "hook_type": "reversal",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "words_first_10s": 18,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "viz:trend",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "ink goes from rebel to human",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "Once you get one tattoo, you almost never stop at one."
+    }
+   ]
+  },
+  {
+   "slug": "genz-drinking-decline",
+   "directed_at": "2026-10-15",
+   "topic_category": "culture",
+   "hook_type": "reversal",
+   "hook_text": "Gen Z just killed a drinking habit their parents never questioned.",
+   "words_first_10s": 18,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:glass-level-three-eras",
+    "mechanic:ten-mugs-half-empty",
+    "mechanic:coaster-shrink-week"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "glasses drain 72-59-50, mugs tip empty 7 to 3.5, coasters shrink",
+   "timeline": [
+    {
+     "t": 0,
+     "event": "hook",
+     "detail": "Gen Z just killed a drinking habit their parents never questioned."
+    }
+   ]
   }
  ]
 }
