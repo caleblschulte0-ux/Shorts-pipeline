@@ -5850,6 +5850,62 @@
    "ending_type": "escalation",
    "franchise": "Data Minute",
    "notes": "Flask bench goes dark: 66% of 20th-century chemistry laureates under 40 vs 0% now; classic-chart fallbacks under illustrated scenes."
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-15",
+   "topic_category": "animals",
+   "hook_type": "shock_stat",
+   "hook_text": "One cave fungus wiped out 97 percent of a bat species.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "notes": "pre-render pass: kept existing scenes, all validate"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-15",
+   "topic_category": "money",
+   "hook_type": "shock_stat",
+   "hook_text": "States are quietly holding 70 billion dollars of your money.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "consequence",
+   "notes": "pre-render pass: kept existing scenes, all validate"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-10-15",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "depictions": [
+    "illustrated:tattoo-arm",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "notes": "pre-render pass: kept existing scenes, all validate"
+  },
+  {
+   "slug": "nobel-prize-discovery-age",
+   "directed_at": "2026-10-15",
+   "topic_category": "science",
+   "hook_type": "inversion",
+   "hook_text": "The Nobel stopped rewarding young geniuses. Now it's a prize for the patient.",
+   "depictions": [
+    "illustrated:nobel-candles",
+    "illustrated:nobel-medal",
+    "mechanic:nobel-young-flask-grid"
+   ],
+   "ending_type": "escalation",
+   "notes": "added viz fallbacks to the two illustrated segs so validator passes"
   }
  ]
 }
