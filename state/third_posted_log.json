@@ -13434,13 +13434,68 @@
       "ts": "2026-10-15T12:17:21.138822+00:00"
     },
     "clip-20261015-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ishowspeed/clip/AuspiciousCarefulPizzaBatChest-C17vrdTbMiXPC9GT",
-      "story_key": null,
-      "streamer": "ishowspeed",
+      "url": "https://youtube.com/shorts/aaP9PWosrQw",
       "title": "Ishowspeed John Bobby Rookie Cop Raid Goes Totally Wrong",
       "kind": "twitch_clip",
-      "ts": "2026-10-15T12:21:56.899550+00:00",
+      "ts": "2026-10-15T12:22:13.517879+00:00",
+      "uploaded_at": "2026-10-15T12:22:13.517890+00:00",
+      "publish_at": "2026-10-15T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261015-ishowspeed-john-bobby-rookie-cop-raid-goes-total-51f3525e",
+        "tiktok": "queued for 2026-10-15T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/AuspiciousCarefulPizzaBatChest-C17vrdTbMiXPC9GT",
+      "streamer": "ishowspeed",
+      "series": "chaos",
+      "hook": "Speed's rookie cop raid goes wrong \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 9154,
+      "banger": 0.62,
+      "cut": {
+        "start": 0.0,
+        "end": 60.0
+      },
+      "director_cut": true
+    },
+    "rejected-clip_01m4yd8bd86g3f2rcne85zzgdc": {
+      "source_url": "https://kick.com/adinross/clips/clip_01M4YD8BD86G3F2RCNE85ZZGDC",
+      "streamer": "adinross",
+      "title": "dwadws",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (press conference talk, no visible event)",
+      "ts": "2026-10-15T12:22:56.086529+00:00"
+    },
+    "rejected-cooperativespikypicklesrlytho-oo323tbdyyihdeuf": {
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/CooperativeSpikyPicklesRlyTho-oo323TbDyYIhdeuf",
+      "streamer": "joe_bartolozzi",
+      "title": "Joe Joe_Bartolozzi Loses It: \"We Both Suck!\" After The Last Game",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin letterboxed strip, roughly a third of the 9:16 canvas, instead of about three quarters. The ; vision: The crop isn't centred on the action. The head is cut off at 13.9s and 16.0s, and the torso or shoulders fill the frame ; vision: The stream's chat overlay and we",
+      "ts": "2026-10-15T12:28:09.883062+00:00"
+    },
+    "rejected-coyblushingwrenchanele-q7ibge2_sjkl5ypl": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/CoyBlushingWrenchANELE-q7ibgE2_SjkL5YpL",
+      "streamer": "jynxzi",
+      "title": "Jynxzi reflects on his league tournament",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (talking opinion, no visible event)",
+      "ts": "2026-10-15T12:28:41.218565+00:00"
+    },
+    "clip-20261015-4": {
+      "pending": true,
+      "source_url": "https://kick.com/adinross/clips/clip_01M4YBGWKEH7YB4V7KFGN2BG2M",
+      "story_key": null,
+      "streamer": "adinross",
+      "title": "Adinross Makes Two Girls Fight Over Who Brought Up Whose Mom First",
+      "kind": "twitch_clip",
+      "ts": "2026-10-15T12:32:01.298763+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
