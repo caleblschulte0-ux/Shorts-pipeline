@@ -3490,11 +3490,29 @@
       "duration_s": 28.6
     },
     "secondhand-apparel-resale-boom": {
-      "claimed_at": "2026-10-15T11:46:09.054930+00:00",
+      "url": "https://youtube.com/shorts/3N-U_I3N2_g",
       "title": "Secondhand Clothes Are Growing 5 Times Faster Than New",
+      "at": "2026-10-15T11:46:17.955242+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.17,
+      "beat_s": [
+        3.3,
+        5.1,
+        6.17,
+        5.97,
+        6.53
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 79,
+      "duration_s": 27.0
     }
   },
   "uploads": [
@@ -4395,9 +4413,10 @@
       "claimed_at": "2026-10-15T11:46:09.054930+00:00",
       "title": "Secondhand Clothes Are Growing 5 Times Faster Than New",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "secondhand-apparel-resale-boom"
+      "url": "https://youtube.com/shorts/3N-U_I3N2_g",
+      "state": "posted",
+      "slug": "secondhand-apparel-resale-boom",
+      "at": "2026-10-15T11:46:17.955242+00:00"
     }
   ]
 }
