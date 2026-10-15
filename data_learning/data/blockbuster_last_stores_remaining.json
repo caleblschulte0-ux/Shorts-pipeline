@@ -1,0 +1,19 @@
+{
+  "key": "blockbuster_last_stores_remaining",
+  "title": "Blockbuster stores remaining worldwide",
+  "unit": "count",
+  "geography": "Worldwide",
+  "time_coverage": "2018-2019",
+  "source": {
+    "name": "Last Blockbuster",
+    "publisher": "Associated Press / Wikipedia (Last Blockbuster)",
+    "url": "https://en.wikipedia.org/wiki/Last_Blockbuster",
+    "officiality": "official",
+    "access_date": "2026-10-15"
+  },
+  "notes": "Bend, Oregon's franchise store became the last Blockbuster in the United States in 2018, while a Perth, Australia store was still open. It became the last one on Earth in 2019 after the Perth store closed.",
+  "points": [
+    {"label": "2018 (Bend + Perth)", "value": 2, "period": "2018"},
+    {"label": "2019 (Bend only)", "value": 1, "period": "2019"}
+  ]
+}

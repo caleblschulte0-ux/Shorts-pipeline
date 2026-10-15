@@ -1,0 +1,19 @@
+{
+  "key": "hotdog_eating_record_today",
+  "title": "Hot dog eating record vs. most recent attempt",
+  "unit": "count",
+  "geography": "Coney Island, United States",
+  "time_coverage": "2021 vs 2025",
+  "source": {
+    "name": "Nathan's Famous Hot Dog Eating Contest results",
+    "publisher": "Major League Eating / Guinness World Records",
+    "url": "https://www.guinnessworldrecords.com/world-records/546575-most-wins-of-the-nathans-hot-dog-eating-contest-male",
+    "officiality": "official",
+    "access_date": "2026-10-15"
+  },
+  "notes": "Joey Chestnut's 76-hot-dog record from 2021 remains unbeaten. His own most recent winning total, in 2025, was 70.5 -- still short of his own record.",
+  "points": [
+    {"label": "2021 world record", "value": 76},
+    {"label": "2025 winning total", "value": 70.5}
+  ]
+}

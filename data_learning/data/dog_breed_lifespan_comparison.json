@@ -1,0 +1,19 @@
+{
+  "key": "dog_breed_lifespan_comparison",
+  "title": "Life expectancy at birth, by dog breed",
+  "unit": "years",
+  "geography": "United Kingdom (VetCompass)",
+  "time_coverage": "2022 study",
+  "source": {
+    "name": "Life tables of annual life expectancy of UK companion dogs",
+    "publisher": "VetCompass (Royal Veterinary College) / Scientific Reports (Teng et al. 2022)",
+    "url": "https://www.rvc.ac.uk/vetcompass",
+    "officiality": "official",
+    "access_date": "2026-10-15"
+  },
+  "notes": "Life expectancy at birth from VetCompass's UK dog life-table study. Researchers note the French Bulldog figure is pulled down by the breed's very recent surge of young dogs in the population. Rounded to one decimal.",
+  "points": [
+    {"label": "French Bulldog", "value": 4.5},
+    {"label": "Labrador Retriever", "value": 11.8}
+  ]
+}

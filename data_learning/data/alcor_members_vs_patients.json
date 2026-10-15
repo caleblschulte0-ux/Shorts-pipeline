@@ -1,0 +1,19 @@
+{
+  "key": "alcor_members_vs_patients",
+  "title": "Signed up to be frozen vs. actually frozen",
+  "unit": "count",
+  "geography": "Worldwide (Alcor Life Extension Foundation)",
+  "time_coverage": "2023",
+  "source": {
+    "name": "Alcor membership statistics",
+    "publisher": "Alcor Life Extension Foundation",
+    "url": "https://www.alcor.org",
+    "officiality": "official",
+    "access_date": "2026-10-15"
+  },
+  "notes": "Living members have completed legal/financial cryopreservation arrangements but are still alive; patients have died and actually been cryopreserved. Figures as of Alcor's most recent published count (cited via its Wikipedia entry, October 2023).",
+  "points": [
+    {"label": "Signed up (living members)", "value": 1927},
+    {"label": "Actually frozen (patients)", "value": 222}
+  ]
+}

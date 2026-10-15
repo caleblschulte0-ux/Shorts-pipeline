@@ -1,0 +1,20 @@
+{
+  "key": "hotdog_eating_record_trend",
+  "title": "Nathan's Hot Dog Eating Contest winning total",
+  "unit": "count",
+  "geography": "Coney Island, United States",
+  "time_coverage": "2000-2021",
+  "source": {
+    "name": "Nathan's Famous Hot Dog Eating Contest results",
+    "publisher": "Major League Eating / Guinness World Records",
+    "url": "https://www.guinnessworldrecords.com/world-records/546575-most-wins-of-the-nathans-hot-dog-eating-contest-male",
+    "officiality": "official",
+    "access_date": "2026-10-15"
+  },
+  "notes": "Pre-2001 record was 25 hot dogs in 12 minutes. Takeru Kobayashi more than doubled it to 50 in 2001. Joey Chestnut set the current record of 76 in 2021 (10-minute format); it has not been beaten since.",
+  "points": [
+    {"label": "2000", "value": 25, "period": "2000"},
+    {"label": "2001", "value": 50, "period": "2001"},
+    {"label": "2021", "value": 76, "period": "2021"}
+  ]
+}

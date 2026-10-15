@@ -1,0 +1,19 @@
+{
+  "key": "alcor_pricing",
+  "title": "Cost to be cryopreserved at Alcor",
+  "unit": "dollars",
+  "geography": "United States (Alcor Life Extension Foundation)",
+  "time_coverage": "2026",
+  "source": {
+    "name": "Alcor cryopreservation fee schedule",
+    "publisher": "Alcor Life Extension Foundation",
+    "url": "https://www.alcor.org/library/alcor-fee-schedule/",
+    "officiality": "official",
+    "access_date": "2026-10-15"
+  },
+  "notes": "Base minimum cryopreservation funding amounts; members typically fund these through a life-insurance policy rather than paying cash.",
+  "points": [
+    {"label": "Whole-body preservation", "value": 200000},
+    {"label": "Neuro (head-only) preservation", "value": 80000}
+  ]
+}
