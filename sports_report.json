@@ -5,92 +5,9 @@
  "dry_run": false,
  "slots": [
   {
-   "sub": "nfl",
-   "who": "Mike Evans",
-   "why": "Evans tells the story of turning around to see who he was jawing with and realizing it's Trevon Diggs, with the swearing and the grin.",
-   "post_title": "[Highlight] Mike Evans on his exchange with Trevon Diggs: \"I honestly didn't know it was him ... I was like, Who are you?' Then I looked and made sure: 'Oh, it's fucking Diggs.'\"",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1x47kf7/highlight_mike_evans_on_his_exchange_with_trevon/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1x47kf7/highlight_mike_evans_on_his_exchange_with_trevon",
-   "title": "Mike Evans Didn't Know It Was Trevon Diggs Until He Looked Twice",
-   "hook": "Mike Evans didn't know it was Diggs",
-   "ledger": {
-    "moves": [
-     "zoom@37.8"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "wide",
-     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
-     "shots": [],
-     "n_subjects": 1
-    }
-   },
-   "repairs": [
-    {
-     "score": 66,
-     "reason": "showrunner BLOCK: A real moment with a good quote, but the field footage freezes on one frame for the last 28 seconds, so 'Oh, it's Diggs' lands over a still."
-    }
-   ],
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: A real moment with a good quote, but the field footage freezes on one frame for the last 28 seconds, so 'Oh, it's Diggs' lands over a still.",
-    "score": 66
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: A real moment with a good quote, but the field footage freezes on one frame for the last 28 seconds, so 'Oh, it's Diggs' lands over a still."
-  },
-  {
-   "sub": "nfl",
-   "who": "Sam Cosmi",
-   "why": "A player walking off the field after a tie, audibly asking 'What are we doing?', is raw and funny.",
-   "post_title": "[Highlight] Washington Commanders guard Sam Cosmi leaving the field after the 27-27 tie against the Giants: \"What the fuck are we doing? What are we doing?\"",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1x49c92/highlight_washington_commanders_guard_sam_cosmi/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1x49c92/highlight_washington_commanders_guard_sam_cosmi",
-   "skipped": "too short: the post runs 10.8s (< 15s)"
-  },
-  {
-   "sub": "nfl",
-   "who": "Kyle Shanahan",
-   "why": "Shanahan hints at a no-rules tackle game he can't name anymore while talking about Deebo Samuel.",
-   "post_title": "[Highlight] Kyle Shanahan on Deebo Samuel: \"There's a game we used to play when we were younger that I can't say the name of it anymore. It's tackle the guy with the ball with no rules to it, and I al",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1x0zwxi/highlight_kyle_shanahan_on_deebo_samuel_theres_a/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1x0zwxi/highlight_kyle_shanahan_on_deebo_samuel_theres_a",
-   "title": "Kyle Shanahan Says Deebo Samuel Would Be His First Pick In A Game He Can't Name",
-   "hook": "Shanahan on why Deebo is his first pick \ud83d\ude02",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "action",
-     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
-     "shots": [
-      {
-       "mode": "action",
-       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
-      }
-     ],
-     "n_subjects": 0,
-     "crop": [
-      354,
-      472,
-      244,
-      0
-     ]
-    }
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: A real, funny Shanahan quote, buried behind the reporter's question and shown as a static podium shot, so the hook is cold and the payoff barely lands.",
-    "score": 57
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: A real, funny Shanahan quote, buried behind the reporter's question and shown as a static podium shot, so the hook is cold and the payoff barely lands."
-  },
-  {
    "sub": "baseball",
    "who": "Junior Caminero",
-   "why": "Caminero trash-talks Yankees fans mid-celebration, and the mic'd-up taunt is the whole clip.",
+   "why": "A player's loud, mic'd trash talk at Yankees fans, funny and quotable with no game context needed.",
    "post_title": "[highlight] Junior Caminero- \u201cLet the Yankees fans talk now. Let them watch the whole thing. Talk Now. What ya gonna say? Daaaaa Yankees lose\u201d",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/baseball/comments/1x0rfl0/highlight_junior_caminero_let_the_yankees_fans/",
@@ -100,16 +17,16 @@
   {
    "sub": "baseball",
    "who": "Pat Murphy",
-   "why": "A manager says he wants to step on Skubal's throat, then adds 'respectfully'.",
+   "why": "A manager says he wants to step on Tarik Skubal's throat, then adds 'respectfully', which is a blunt line in a press conference.",
    "post_title": "Brewers Manager Pat Murphy on Tarik Skubal: \u201cI just want to step on his throat. I mean that respectfully.\u201d",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/baseball/comments/1x3lfe2/brewers_manager_pat_murphy_on_tarik_skubal_i_just/",
    "topic": "https://www.reddit.com/r/baseball/comments/1x3lfe2/brewers_manager_pat_murphy_on_tarik_skubal_i_just",
-   "title": "Brewers Manager Pat Murphy Says He Wants To Step On Tarik Skubal's Throat",
-   "hook": "Murphy on facing Skubal \ud83d\ude33",
+   "title": "Pat Murphy On Tarik Skubal: \"I Just Want To Step On His Throat\"",
+   "hook": "Pat Murphy on facing Skubal \ud83d\ude33",
    "ledger": {
     "moves": [
-     "whoa@35.1"
+     "whoa@11.1"
     ],
     "mood": null,
     "shot_plan": {
@@ -125,218 +42,34 @@
      "crop": [
       540,
       720,
-      364,
-      0
-     ]
-    }
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: The right moment from the right person, but posted as an uncut 81-second press answer. The 'step on his throat' line the title sells is buried, so a stranger swipes before it lands.",
-    "score": 57
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: The right moment from the right person, but posted as an uncut 81-second press answer. The 'step on his throat' line the title sells is buried, so a stranger swipes before it lands."
-  },
-  {
-   "sub": "baseball",
-   "who": "Pat Murphy",
-   "why": "A manager furious over a balk that cost an inning-ending pickoff.",
-   "post_title": "Brewers nearly had an inning-ending pickoff, but instead Jacob Misiorowski got called for a balk. Pat Murphy is not happy.",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/baseball/comments/1x3p250/brewers_nearly_had_an_inningending_pickoff_but/",
-   "topic": "https://www.reddit.com/r/baseball/comments/1x3p250/brewers_nearly_had_an_inningending_pickoff_but",
-   "skipped": "author: no setup or no payoff in the clip"
-  },
-  {
-   "sub": "nba",
-   "who": "Jaylen Brown",
-   "why": "Brown claps back at Anthony Edwards with a savage Adidas joke.",
-   "post_title": "Jaylen Brown claps back at Anthony Edwards for taking shots at him and LeBron: \"Adidas doing anything for my boy, they need to give my boy some condoms",
-   "upvotes": 0,
-   "url": "https://streamable.com/f4zgsr",
-   "topic": "https://www.reddit.com/r/nba/comments/1x21qyh/jaylen_brown_claps_back_at_anthony_edwards_for",
-   "skipped": "author: no setup or no payoff in the clip"
-  },
-  {
-   "sub": "nba",
-   "who": "Scottie Barnes",
-   "why": "His pants fall down in the middle of a 360 dunk.",
-   "post_title": "Scottie Barnes\u2019 pants fall down during a pre-game 360 dunk.",
-   "upvotes": 0,
-   "url": "https://streamable.com/bf2mro",
-   "topic": "https://www.reddit.com/r/nba/comments/1x61r59/scottie_barnes_pants_fall_down_during_a_pregame",
-   "skipped": "too short: the post runs 10.8s (< 15s)"
-  },
-  {
-   "sub": "nba",
-   "who": "Luka Doncic",
-   "why": "Luka watches a Lakers fan dance in his jersey and admits 'He's good'.",
-   "post_title": "Luka Doncic seems to be impressed by a Lakers fan dancing, wearing his jersey. \"He's good\"",
-   "upvotes": 0,
-   "url": "https://streamable.com/8tvy83",
-   "topic": "https://www.reddit.com/r/nba/comments/1x5iucq/luka_doncic_seems_to_be_impressed_by_a_lakers_fan",
-   "skipped": "author: no setup or no payoff in the clip"
-  },
-  {
-   "sub": "hockey",
-   "who": "Devin Cooley",
-   "why": "A goalie shows up to the arena with his pet rabbit, Tito.",
-   "post_title": "[Sportsnet] Devin Cooley arrives to tonight's game with his pet rabbit, Tito",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/hockey/comments/1x2vc92/sportsnet_devin_cooley_arrives_to_tonights_game/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1x2vc92/sportsnet_devin_cooley_arrives_to_tonights_game",
-   "skipped": "too short: the post runs 7.3s (< 15s)"
-  },
-  {
-   "sub": "hockey",
-   "who": "Nate Schmidt",
-   "why": "A hockey player lights up talking about his worm farm.",
-   "post_title": "Nate Schmidt is very excited to talk about his worm farm \ud83e\udeb1",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/hockey/comments/1x1cbhb/nate_schmidt_is_very_excited_to_talk_about_his/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1x1cbhb/nate_schmidt_is_very_excited_to_talk_about_his",
-   "skipped": "author: no setup or no payoff in the clip"
-  },
-  {
-   "sub": "hockey",
-   "who": "Darnell Nurse",
-   "why": "Nurse confronts a reporter over personal attacks and hit pieces.",
-   "post_title": "Nurse telling off Mark Spector for the personal attacks and hit pieces directed at him while he was an Oiler",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/hockey/comments/1x23esm/nurse_telling_off_mark_spector_for_the_personal/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1x23esm/nurse_telling_off_mark_spector_for_the_personal",
-   "title": "Darnell Nurse Shuts Down Reporter Mark Spector With A Savage 'Low IQ' Line",
-   "hook": "Nurse tells off Mark Spector \ud83d\ude33",
-   "ledger": {
-    "moves": [
-     "whoa@9.7"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "action",
-     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
-     "shots": [
-      {
-       "mode": "action",
-       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
-      }
-     ],
-     "n_subjects": 0,
-     "crop": [
-      550,
-      734,
-      40,
-      0
-     ]
-    }
-   },
-   "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 74
-   },
-   "video_url": "https://youtube.com/shorts/E7eJ3o6UKxI",
-   "ok": true,
-   "publish_at": "2026-10-15T16:00:00Z",
-   "seconds": 109,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261015-darnell-nurse-shuts-down-reporter-mark-spector-w-d588f069",
-    "tiktok": "queued for 2026-10-15T16:00:00Z"
-   }
-  },
-  {
-   "sub": "hockey",
-   "who": "Nathan MacKinnon",
-   "why": "MacKinnon and Hintz drop the gloves in a fight.",
-   "post_title": "[COL - DAL] Nathan MacKinnon and Roope Hintz drop the gloves",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/hockey/comments/1x5fe1e/col_dal_nathan_mackinnon_and_roope_hintz_drop_the/",
-   "topic": "https://www.reddit.com/r/hockey/comments/1x5fe1e/col_dal_nathan_mackinnon_and_roope_hintz_drop_the",
-   "title": "Nathan MacKinnon Drops The Gloves With Roope Hintz And Walks Away Cut",
-   "hook": "MacKinnon and Hintz drop the gloves \ud83e\udd4a",
-   "ledger": {
-    "moves": [
-     "zoom@21.5"
-    ],
-    "mood": null,
-    "shot_plan": {
-     "layout": "action",
-     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
-     "shots": [
-      {
-       "mode": "action",
-       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
-      }
-     ],
-     "n_subjects": 0,
-     "crop": [
-      540,
-      720,
-      368,
+      382,
       0
      ]
     }
    },
    "repairs": [
     {
-     "score": 66,
-     "reason": "showrunner BLOCK: The fight and MacKinnon's bloody face land, but the first eight seconds are distant zone play under someone else's burned-in captions, so a stranger scrolls past before the gloves drop."
+     "score": 61,
+     "reason": "showrunner BLOCK: Right person and the real quote, but it opens on him drinking mid-sentence and buries the 'step on his throat' line in 68 seconds of a seated presser with no reaction edit."
     }
    ],
    "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: The fight and MacKinnon's bloody face land, but the first eight seconds are distant zone play under someone else's burned-in captions, so a stranger scrolls past before the gloves drop.",
-    "score": 66
-   },
-   "skipped": "showrunner_block: showrunner BLOCK: The fight and MacKinnon's bloody face land, but the first eight seconds are distant zone play under someone else's burned-in captions, so a stranger scrolls past before the gloves drop."
-  },
-  {
-   "sub": "nfl",
-   "who": "Jalon Daniels",
-   "why": "A QB celebrates his first career win with his mom.",
-   "post_title": "[Highlight] Jalon Daniels and his mom celebrate the QB's first career win",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1x1azni/highlight_jalon_daniels_and_his_mom_celebrate_the/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1x1azni/highlight_jalon_daniels_and_his_mom_celebrate_the",
-   "title": "Jalon Daniels And His Mom Celebrate His First Career Win As A QB",
-   "hook": "Jalon Daniels celebrates first win with his mom",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "wide",
-     "reason": "no persistent subject \u2014 show the whole frame",
-     "shots": [],
-     "n_subjects": 0
-    }
-   },
-   "showrunner": {
     "blocked": false,
     "reason": "",
-    "score": 87
+    "score": 70
    },
-   "video_url": "https://youtube.com/shorts/nSuGvRrONB4",
+   "video_url": "https://youtube.com/shorts/rCqCMw1jR4I",
    "ok": true,
-   "publish_at": "2026-10-15T20:00:00Z",
-   "seconds": 93,
+   "publish_at": "2026-10-16T00:00:00Z",
+   "seconds": 345,
    "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261015-jalon-daniels-and-his-mom-celebrate-his-first-ca-f56a9304",
-    "tiktok": "queued for 2026-10-15T20:00:00Z"
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261015-pat-murphy-on-tarik-skubal-i-just-want-to-step-o-c7bfe9ab",
+    "tiktok": "queued for 2026-10-16T00:00:00Z"
    }
-  },
-  {
-   "sub": "MMA",
-   "who": "Islam Makhachev",
-   "why": "The champ shows off his cat Toni, a soft side people don't expect.",
-   "post_title": "Islam Makhachev shows his cat, Toni",
-   "upvotes": 0,
-   "url": "https://streamable.com/eoqtpo",
-   "topic": "https://www.reddit.com/r/MMA/comments/1x0vep3/islam_makhachev_shows_his_cat_toni",
-   "skipped": "author: no setup or no payoff in the clip"
   }
  ],
- "already_today": 0,
- "pool": 91,
- "already_posted": 3,
- "shipped": 2
+ "already_today": 2,
+ "pool": 105,
+ "already_posted": 5,
+ "shipped": 1
 }
