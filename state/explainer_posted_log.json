@@ -3563,6 +3563,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
       "duration_s": 25.6
+    },
+    "amazon-warehouse-robot-army": {
+      "claimed_at": "2026-10-15T17:50:02.584196+00:00",
+      "title": "Amazon Now Runs 1 Million Warehouse Robots",
+      "publish_at": "2026-10-16T02:46:09Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4485,6 +4492,14 @@
       "state": "posted",
       "slug": "panama-canal-drought-transit-cuts",
       "at": "2026-10-15T14:30:38.461841+00:00"
+    },
+    {
+      "claimed_at": "2026-10-15T17:50:02.584196+00:00",
+      "title": "Amazon Now Runs 1 Million Warehouse Robots",
+      "publish_at": "2026-10-16T02:46:09Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "amazon-warehouse-robot-army"
     }
   ]
 }
