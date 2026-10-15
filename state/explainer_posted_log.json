@@ -3538,6 +3538,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 74,
       "duration_s": 27.1
+    },
+    "panama-canal-drought-transit-cuts": {
+      "claimed_at": "2026-10-15T14:30:24.979259+00:00",
+      "title": "Panama Canal Transits Just Dropped From 36 To 24",
+      "publish_at": "2026-10-15T20:46:09Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4451,6 +4458,14 @@
       "state": "posted",
       "slug": "saharan-dust-feeds-amazon",
       "at": "2026-10-15T13:22:54.600204+00:00"
+    },
+    {
+      "claimed_at": "2026-10-15T14:30:24.979259+00:00",
+      "title": "Panama Canal Transits Just Dropped From 36 To 24",
+      "publish_at": "2026-10-15T20:46:09Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "panama-canal-drought-transit-cuts"
     }
   ]
 }
