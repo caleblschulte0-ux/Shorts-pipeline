@@ -1,0 +1,32 @@
+# Voice lab: transcribe a results folder (named in voice_lab/heard_dir) so a
+# take that read its stage directions aloud, or garbled, is caught before anyone hears it.
+name: Voice lab heard
+on:
+  push:
+    branches: [voice-lab]
+    paths: ['voice_lab/heard_dir', '.github/workflows/voice_lab_heard.yml']
+permissions:
+  contents: write
+jobs:
+  heard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - shell: bash
+        run: |
+          pip install -q faster-whisper==1.1.1
+          D=$(cat voice_lab/heard_dir)
+          python - "$D" <<'PY'
+          import sys, glob, json
+          from faster_whisper import WhisperModel
+          m = WhisperModel("small.en", device="cpu", compute_type="int8"); out = {}
+          for f in sorted(glob.glob(sys.argv[1] + "/*_sr.mp3")):
+              segs, _ = m.transcribe(f); out[f.split("/")[-1]] = " ".join(s.text.strip() for s in segs)
+              print(f, "::", out[f.split("/")[-1]], flush=True)
+          open(sys.argv[1] + "/heard.json", "w").write(json.dumps(out, indent=1))
+          PY
+          git config user.name "voice-lab"; git config user.email "voice-lab@users.noreply.github.com"
+          git add -f $D/heard.json; git commit -m "voice lab heard [skip ci]"
+          ok=0; for i in 1 2 3 4; do git pull --rebase -q origin voice-lab && git push origin HEAD:voice-lab && ok=1 && break; git rebase --abort 2>/dev/null; sleep $((i*3)); done; [ $ok = 1 ]
