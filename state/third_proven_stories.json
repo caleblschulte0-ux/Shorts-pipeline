@@ -1,0 +1,95 @@
+{
+ "stories": [
+  {
+   "label": "scout:payo+pikabooirl+xaryuclips/payo-pikabooirl-xaryuclips-duel-payo-2026w41",
+   "run": "38352788239",
+   "score": 88,
+   "edl": {
+    "title": "Pikaboo Duels Payo, Payo Quits, Then Pikaboo Messages Him",
+    "premise": "Pikaboo accuses WoW rogue Payo of stream sniping and duels him. Payo quits after one fight, and Pikaboo then sends him a patronizing message.",
+    "central_question": "Will Payo's quit get the last word, or will Pikaboo?",
+    "structure": "chronological",
+    "hook_overlay": "Pikaboo duels Payo, who quits",
+    "beats": [
+     {
+      "source_id": "https://www.youtube.com/watch?v=n5WiXe5qBWY",
+      "start": 10.0,
+      "end": 30.0,
+      "role": "setup",
+      "purpose": "Pikaboo accuses Payo of stream sniping and says he will play by his own rules, which sets up the duel.",
+      "transition": "hard_cut",
+      "framing": "wide",
+      "context_overlay": "",
+      "link": "start",
+      "effects": []
+     },
+     {
+      "source_id": "https://www.youtube.com/watch?v=n5WiXe5qBWY",
+      "start": 100.5,
+      "end": 107.0,
+      "role": "climax",
+      "purpose": "Duel ends, Payo quits after one fight: \"GGs, that's it, one and done, I'm out.\"",
+      "transition": "hard_cut",
+      "framing": "tight",
+      "context_overlay": "",
+      "link": "so",
+      "effects": []
+     },
+     {
+      "source_id": "https://www.twitch.tv/pikabooirl/clip/SmoothArborealAlmondBabyRage-OPhvuRN5fcL3_6ST",
+      "start": 9.4,
+      "end": 28.0,
+      "role": "payoff",
+      "purpose": "Pikaboo messages Payo: \"Good duels, brother\", then says Payo has zero shot against a player of his caliber.",
+      "transition": "hard_cut",
+      "framing": "tight",
+      "context_overlay": "Then he messaged him",
+      "link": "so",
+      "effects": []
+     }
+    ],
+    "narration": {
+     "text": "Pikaboo says Payo stream\u2011sniped him; Payo, WoW rogue streamer",
+     "over_beat": 0,
+     "essential_because": "The footage never says who Payo is to Pikaboo."
+    }
+   },
+   "sources": [
+    {
+     "url": "https://www.youtube.com/watch?v=XKtc_UCcmZA",
+     "channel": "Payo",
+     "date": "2026-10-01",
+     "summary": "Streamer Payo says he was banned by Blizzard for asking his viewers to buy him gold for a tournament, apologizes repeatedly, calls himself a hypocrite, and says he will never promote gold buying again"
+    },
+    {
+     "url": "https://www.youtube.com/watch?v=n5WiXe5qBWY",
+     "channel": "Pikabooirl",
+     "date": "2026-10-06",
+     "summary": "Pikabooirl reacts to Payoo, whom he accuses of stream sniping, and duels him in WoW. Payoo loses a short fight with Pika's pet and the stun, then says 'GGs, one and done, I'm out' and leaves. Pika lau"
+    },
+    {
+     "url": "https://www.twitch.tv/payo/clip/SourSquareKaleGOWSkull-5OZ_SpumzJvnfJIm",
+     "channel": "payo",
+     "date": "2026-10-09",
+     "summary": "Payo plays an MMO with a full inventory open, a delete-item confirmation prompt appears around 11s, and at the end he says he just deleted 'the bomb' and reacts with disbelief."
+    },
+    {
+     "url": "https://www.youtube.com/watch?v=2EWKx-LCdWA",
+     "channel": "Xaryu Clips",
+     "date": "2026-10-10",
+     "summary": "Xaryu reacts to a World of Warcraft clip in which a player, apparently Payo, misclicks a confirmation prompt and deletes a new item, and he laughs about it repeatedly."
+    },
+    {
+     "url": "https://www.twitch.tv/pikabooirl/clip/SmoothArborealAlmondBabyRage-OPhvuRN5fcL3_6ST",
+     "channel": "pikabooirl",
+     "date": "2026-10-11",
+     "summary": "The streamer reads out a message to an opponent after a duel, first offering 'good duels' and then a condescending line saying they have no chance against players of his caliber."
+    }
+   ],
+   "source_urls": [
+    "https://www.twitch.tv/pikabooirl/clip/SmoothArborealAlmondBabyRage-OPhvuRN5fcL3_6ST",
+    "https://www.youtube.com/watch?v=n5WiXe5qBWY"
+   ]
+  }
+ ]
+}
