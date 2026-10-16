@@ -4404,8 +4404,8 @@
     }
   },
   "recent_commits": [
-    "f5e6f18 2026-10-16 claim: mailbox verdicts 2026-10-16T04:48Z [skip ci]",
-    "2c0dafa 2026-10-16 third: story backtest 38352788239 passed a story [skip ci]"
+    "1daddf1 2026-10-16 claim: mailbox verdicts 2026-10-16T08:47Z [skip ci]",
+    "8983591 2026-10-16 third: analytics snapshot [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4514,32 +4514,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 133,
+      "videos": 139,
       "top_by_vph": [
         {
           "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 7.41,
-          "views": 879
+          "vph": 6.56,
+          "views": 891
         },
         {
           "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
-          "vph": 2.6,
-          "views": 736
+          "vph": 2.49,
+          "views": 749
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 2.17,
-          "views": 508
+          "vph": 2.34,
+          "views": 589
         },
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 2.03,
+          "vph": 1.98,
           "views": 1361
         },
         {
-          "title": "The Forsen Clip Everyone's Talking About",
-          "vph": 1.09,
-          "views": 51
+          "title": "Adinross Makes Two Girls Fight Over Who Brought Up Whose Mom First",
+          "vph": 1.95,
+          "views": 22
         }
       ],
       "full_data": "state/analytics_third/latest.json"
