@@ -1,8 +1,265 @@
 {
- "date": "2026-10-15",
+ "date": "2026-10-16",
  "format": "sports_moment",
  "want": 3,
  "dry_run": false,
- "slots": [],
- "already_today": 3
+ "slots": [
+  {
+   "sub": "nfl",
+   "who": "Mike Evans",
+   "why": "Mike Evans tells the story of squaring up to Trevon Diggs without knowing who he was, in his own words.",
+   "post_title": "[Highlight] Mike Evans on his exchange with Trevon Diggs: \"I honestly didn't know it was him ... I was like, Who are you?' Then I looked and made sure: 'Oh, it's fucking Diggs.'\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x47kf7/highlight_mike_evans_on_his_exchange_with_trevon/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x47kf7/highlight_mike_evans_on_his_exchange_with_trevon",
+   "title": "Mike Evans Had No Idea Who He Was Talking Trash To Until He Looked",
+   "hook": "Mike Evans didn't know it was Diggs \ud83d\ude2d",
+   "ledger": {
+    "moves": [
+     "zoom@39.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    }
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 75
+   },
+   "video_url": "https://youtube.com/shorts/23BkCEMFRDU",
+   "ok": true,
+   "publish_at": "2026-10-16T16:00:00Z",
+   "seconds": 135,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261016-mike-evans-had-no-idea-who-he-was-talking-trash--dd9e135d",
+    "tiktok": "queued for 2026-10-16T16:00:00Z"
+   }
+  },
+  {
+   "sub": "nba",
+   "who": "Luka Doncic",
+   "why": "Luka is impressed by a fan dancing in his jersey, and the fan gets a real moment with a hero.",
+   "post_title": "Luka Doncic seems to be impressed by a Lakers fan dancing, wearing his jersey. \"He's good\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/8tvy83",
+   "topic": "https://www.reddit.com/r/nba/comments/1x5iucq/luka_doncic_seems_to_be_impressed_by_a_lakers_fan",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nba",
+   "who": "Jaylen Brown",
+   "why": "Jaylen Brown claps back at Anthony Edwards with a savage line about Adidas.",
+   "post_title": "Jaylen Brown claps back at Anthony Edwards for taking shots at him and LeBron: \"Adidas doing anything for my boy, they need to give my boy some condoms",
+   "upvotes": 0,
+   "url": "https://streamable.com/f4zgsr",
+   "topic": "https://www.reddit.com/r/nba/comments/1x21qyh/jaylen_brown_claps_back_at_anthony_edwards_for",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nfl",
+   "who": "Sam Cosmi",
+   "why": "A Commanders lineman walks off after a 27-27 tie and says what everyone is thinking.",
+   "post_title": "[Highlight] Washington Commanders guard Sam Cosmi leaving the field after the 27-27 tie against the Giants: \"What the fuck are we doing? What are we doing?\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x49c92/highlight_washington_commanders_guard_sam_cosmi/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x49c92/highlight_washington_commanders_guard_sam_cosmi",
+   "skipped": "too short: the post runs 10.8s (< 15s)"
+  },
+  {
+   "sub": "hockey",
+   "who": "Devin Cooley",
+   "why": "A goalie walks into the arena with his pet rabbit.",
+   "post_title": "[Sportsnet] Devin Cooley arrives to tonight's game with his pet rabbit, Tito",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1x2vc92/sportsnet_devin_cooley_arrives_to_tonights_game/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1x2vc92/sportsnet_devin_cooley_arrives_to_tonights_game",
+   "skipped": "too short: the post runs 7.3s (< 15s)"
+  },
+  {
+   "sub": "soccer",
+   "who": "Santa Mar\u00eda vs Cabildo announcer",
+   "why": "An announcer smacks a fan on the head to get him out of the shot in the middle of a goal call.",
+   "post_title": "Announcer has to physically smack a fan on the head to get him to duck out of the camera's view during a goal play between Santa Mar\u00eda and Cabildo",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1x5g98c/announcer_has_to_physically_smack_a_fan_on_the/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1x5g98c/announcer_has_to_physically_smack_a_fan_on_the",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "soccer",
+   "who": "Reading",
+   "why": "A staff member lunges at a player, misses, falls over, fakes an injury, then gets up to start a fight.",
+   "post_title": "\u200bA Franchise staff member attempted to barge into a Reading player, completely missed, and fell to the floor. After feigning an injury on the ground, they got back up and attempted to start a fight wi",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1x390rl/a_franchise_staff_member_attempted_to_barge_into/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1x390rl/a_franchise_staff_member_attempted_to_barge_into",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "hockey",
+   "who": "Montreal Canadiens",
+   "why": "Fans are handed a giant inflatable hot dog and bun and throw them on the ice instead, and the bun hits the Habs bench.",
+   "post_title": "The Canadiens give the fans giant inflatable hotdog and bun with a goal of putting them together. The fans instead throw them on the ice with the bun hitting the Habs bench.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1x2xpc2/the_canadiens_give_the_fans_giant_inflatable/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1x2xpc2/the_canadiens_give_the_fans_giant_inflatable",
+   "title": "Montreal Canadiens Fans Throw Giant Hot Dog Onto The Ice And The Bun Hits Noah Dobson",
+   "hook": "Habs fans threw the hot dog on the ice \ud83c\udf2d",
+   "ledger": {
+    "moves": [
+     "zoom@15.5"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "repairs": [
+    {
+     "score": 75,
+     "reason": "showrunner BLOCK: It is a fun, real moment that is shown clearly, but the repost's own burned-in captions fight our line in every frame, and the cut ends partway through a sentence without showing the bun hitting Dobson."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: It is a fun, real moment that is shown clearly, but the repost's own burned-in captions fight our line in every frame, and the cut ends partway through a sentence without showing the bun hitting Dobson.",
+    "score": 75
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: It is a fun, real moment that is shown clearly, but the repost's own burned-in captions fight our line in every frame, and the cut ends partway through a sentence without showing the bun hitting Dobson."
+  },
+  {
+   "sub": "nfl",
+   "who": "Mike Evans",
+   "why": "Evans turns Diggs around to see who he is, and Diggs hits him after being embarrassed.",
+   "post_title": "[Highlight] Mike Evans turns around Diggs to see who he is, Diggs gives him a shot after being embarrassed",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x3ku7b/highlight_mike_evans_turns_around_diggs_to_see/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x3ku7b/highlight_mike_evans_turns_around_diggs_to_see",
+   "skipped": "too short: the post runs 5.7s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Cam Little",
+   "why": "A kicker runs the length of the field to hit the Bellingham pose without watching his kick.",
+   "post_title": "[Highlight] Cam Little doesn't even watch to see if his kick goes in, running all the way across the field to hit the Jude Bellingham pose in front of the London crowd.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x3lc6q/highlight_cam_little_doesnt_even_watch_to_see_if/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x3lc6q/highlight_cam_little_doesnt_even_watch_to_see_if",
+   "title": "Cam Little Doesn't Even Watch His Kick, Sprints Off To Do The Bellingham Pose In London",
+   "hook": "Cam Little doesn't watch his kick \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "hype@0.3"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 83
+   },
+   "video_url": "https://youtube.com/shorts/jDJq7hSDmak",
+   "ok": true,
+   "publish_at": "2026-10-16T20:00:00Z",
+   "seconds": 128,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261016-cam-little-doesn-t-even-watch-his-kick-sprints-o-8d9aea9c",
+    "tiktok": "queued for 2026-10-16T20:00:00Z"
+   }
+  },
+  {
+   "sub": "soccer",
+   "who": "Harry Maguire",
+   "why": "Maguire laughs and waves off Bentancur after the red card.",
+   "post_title": "Harry Maguire laughs and waves off Rodrigo Bentancur following his red card.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1x2x6ah/harry_maguire_laughs_and_waves_off_rodrigo/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1x2x6ah/harry_maguire_laughs_and_waves_off_rodrigo",
+   "skipped": "too short: the post runs 3.8s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Scottie Barnes",
+   "why": "His pants fall down in the middle of a pre-game 360 dunk.",
+   "post_title": "Scottie Barnes\u2019 pants fall down during a pre-game 360 dunk.",
+   "upvotes": 0,
+   "url": "https://streamable.com/bf2mro",
+   "topic": "https://www.reddit.com/r/nba/comments/1x61r59/scottie_barnes_pants_fall_down_during_a_pregame",
+   "skipped": "too short: the post runs 10.8s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Kevin Durant",
+   "why": "Durant says he was sad about Westbrook, in a candid interview answer.",
+   "post_title": "Kevin Durant: \"I was a little sad because I still thought Russ (Westbrook) had five or six more years left. He's an athletic body that can still impact the game positively\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/d0c0ba",
+   "topic": "https://www.reddit.com/r/nba/comments/1x1mhvc/kevin_durant_i_was_a_little_sad_because_i_still",
+   "title": "Kevin Durant Reacts To Russell Westbrook Stepping Away And Says He Was Sad About It",
+   "hook": "Durant on Westbrook retiring",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      540,
+      720,
+      258,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 70
+   },
+   "video_url": "https://youtube.com/shorts/njsNDLO2M9E",
+   "ok": true,
+   "publish_at": "2026-10-17T00:00:00Z",
+   "seconds": 109,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261016-kevin-durant-reacts-to-russell-westbrook-steppin-a1d6fbf9",
+    "tiktok": "queued for 2026-10-17T00:00:00Z"
+   }
+  }
+ ],
+ "already_today": 0,
+ "pool": 92,
+ "already_posted": 3,
+ "shipped": 3
 }
