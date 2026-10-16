@@ -80,7 +80,10 @@ KIT_NAMES = ("vgrad", "glow", "text", "fit_readout", "by_time", "tree", "stump",
              "treeline", "hen", "SUN", "SETTINGS", "heap_path", "heap_top", "bottle", "PLASTIC",
              # THE SCALE IN THE SHOT (2026-10-07, "boxes on top of the video
              # doesn't help ... glance at it and gauge the scale")
-             "then_mark", "ghost", "times_ticks")
+             "then_mark", "ghost", "times_ticks",
+             # A WORN THING WRAPS THE BODY (2026-10-16, of rabies-video dogs
+             # in floating blue hoops: "look how shit these collars look")
+             "dog", "COATS")
 SAFE_BUILTINS = {n: __builtins__[n] if isinstance(__builtins__, dict)
                  else getattr(__builtins__, n)
                  for n in ("range", "len", "min", "max", "abs", "int", "float",
@@ -144,7 +147,7 @@ def check_source(code: str) -> None:
 # standard it passed; one from an older standard is re-judged by today's
 # viewer and look again before it is used, and redrawn if it fails. Bump
 # STANDARD whenever a check or a bar a scene must pass is added.
-STANDARD = "2026-10-16.1"   # .1: a hand job is a grip, not a rope (rule 20)
+STANDARD = "2026-10-16.2"   # .1: a hand job is a grip, not a rope (rule 20)
 _STAMP = re.compile(r"^# scene standard: (\S+)\s*$", re.M)
 
 
@@ -1334,6 +1337,13 @@ pushing, carrying, dragging and turning a thing by hand is a GRIP, his \
 hands on that thing's own edge and moving with it. A rope, a lever or a \
 valve only where the real thing has one; never a rope that works a \
 whole row of things at once.
+21. WHAT IS WORN WRAPS THE BODY. The owner, 2026-10-16, of dogs drawn \
+with a blue hoop floating round each head: "look how shit these collars \
+look what is this". A collar, a strap, a belt, a bag's handle or a hat is \
+a SOLID BAND that sits ON the body and bows round it, its far side hidden \
+behind it, never an outline ring stroked over a body or hanging in the \
+air beside it. A dog is dog(...), whose collar= does exactly that; any \
+other worn thing is drawn the same way, as part of the body it is on.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \
@@ -1583,8 +1593,9 @@ three numbers beside it. His words: "I like the pile one but the bone one \
 no." Find the three things in YOUR frames that look most amateur beside \
 THE SHOT, THE PILE and THE CHECKOUT — a hero assembled from primitive shapes, a hero too small to \
 read, an empty backdrop, crowded or tiny text, a change you cannot see, \
-Data lost or covered, Data standing beside the action instead of in it — \
-and fix them. Keep the idea, the data, the numbers \
+Data lost or covered, Data standing beside the action instead of in it, \
+a worn thing (a collar, a strap, a hat) floating as an outline ring \
+instead of wrapping the body it is on — and fix them. Keep the idea, the data, the numbers \
 and the HERO / SUBSTANCE / CAUSE declaration; redraw what looks cheap.
 
 YOUR CODE:
