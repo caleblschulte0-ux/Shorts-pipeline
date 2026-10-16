@@ -144,7 +144,7 @@ def check_source(code: str) -> None:
 # standard it passed; one from an older standard is re-judged by today's
 # viewer and look again before it is used, and redrawn if it fails. Bump
 # STANDARD whenever a check or a bar a scene must pass is added.
-STANDARD = "2026-10-11.2"
+STANDARD = "2026-10-16.1"   # .1: a hand job is a grip, not a rope (rule 20)
 _STAMP = re.compile(r"^# scene standard: (\S+)\s*$", re.M)
 
 
@@ -352,7 +352,7 @@ def glance_frames(fn, pts, out_dir, at=GLANCE_AT) -> list[str]:
     def no_readout(cr, big, small, *a, **k):
         return None
 
-    def no_host(role, x, fy, h, pace=False, beat=0):
+    def no_host(role, x, fy, h, pace=False, beat=0, **kw):
         return None
     paths = []
     try:
@@ -636,9 +636,9 @@ def motion_profile(fn, pts, fps: int = 24, secs: float = 6.8) -> dict:
         cr = cairo.Context(surf)
         t = f / 30.0
         fn(cr, t, f / max(1, total - 1), pts,
-           lambda role, x, fy, h, pace=False, beat=0, _cr=cr, _f=f, _t=t: SS.place_host(
+           lambda role, x, fy, h, pace=False, beat=0, _cr=cr, _f=f, _t=t, **kw: SS.place_host(
                _cr, role, SS.act_phase(clock, (role, int(beat)), _f), None, x, fy, h,
-               _t, pace))
+               _t, pace, **SS._grip_kw(kw)))
         surf.flush()
         im = Image.frombuffer("RGBA", (SS.W, SS.H), bytes(surf.get_data()),
                               "raw", "BGRA", 0, 1)
@@ -716,6 +716,40 @@ ACT_ROLES = ("strain", "climb", "hold_up") + tuple(TOOL_ACTS)
 MIN_ACT = 0.5
 
 
+def grip_problems(grips) -> list[str]:
+    """A grip is his hands ON two points of the scene; are they? Every
+    (role, hands, x, foot_y, height) host() was called with."""
+    from data_learning import mascot_director as _md
+    out = []
+    for role, hands, x, fy, h in grips:
+        if role != "grip":
+            if hands:
+                out.append(f"hands= given to role {role!r}: hands= is for "
+                           f"role 'grip' only")
+                break
+            continue
+        try:
+            pts = [(float(a), float(b)) for a, b in hands]
+        except (TypeError, ValueError):
+            pts = []
+        if len(pts) != 2:
+            out.append("a grip needs hands=[(x, y), (x, y)]: his two hands ON "
+                       "the thing, in frame pixels, moving with it")
+            break
+        over = _md.grip_wrists(pts, x, fy, h)[2] * h / _md.RIG_TALL
+        if over > GRIP_SLACK:
+            out.append(f"a grip hand is {over:.0f}px past his reach (Data "
+                       f"{h:.0f}px tall at x={x:.0f}): stand him closer, or "
+                       f"put him on a ladder or a crate under it")
+            break
+    return out
+
+
+#: How far past his reach a grip hand may be, in frame px, before it is
+#: refused — a hair of slack for a point on a curved edge.
+GRIP_SLACK = 6.0
+
+
 def bit_problems(fn, pts) -> list[str]:
     """Does Data have a BIT in this scene, or is he a sticker? The coffee
     story's teachers failed this and the showrunner called that video's
@@ -726,7 +760,7 @@ def bit_problems(fn, pts) -> list[str]:
     for k in range(11):
         u = k / 10
         fn(cairo.Context(surf), 3.0 + u * 8, u, pts,
-           lambda role, x, fy, h, pace=False, beat=0: calls.append((role, x, fy)))
+           lambda role, x, fy, h, pace=False, beat=0, **kw: calls.append((role, x, fy)))
     if not calls:
         return []                        # "host not called" is reported above
     out = []
@@ -763,7 +797,7 @@ def tool_problems(fn, pts, decl: dict) -> list[str]:
     for k in range(11):
         u = k / 10
         fn(cairo.Context(surf), 3.0 + u * 8, u, pts,
-           lambda role, x, fy, h, pace=False, beat=0: roles.append(role))
+           lambda role, x, fy, h, pace=False, beat=0, **kw: roles.append(role))
     used = [r for r in roles if r in TOOL_ACTS]
     if used:
         return []
@@ -816,9 +850,9 @@ def craft_problems(fn, pts, at=(0.3, 0.85)) -> list[str]:
         clock: dict = {}
         f = int(u * 180)
 
-        def host(role, x, fy, h, pace=False, beat=0, _cr=cr, _f=f):
+        def host(role, x, fy, h, pace=False, beat=0, _cr=cr, _f=f, **kw):
             SS.place_host(_cr, role, SS.act_phase(clock, (role, int(beat)), _f),
-                          None, x, fy, h, _f / 30.0, pace)
+                          None, x, fy, h, _f / 30.0, pace, **SS._grip_kw(kw))
         with I.text_layer(cr):
             fn(cr, 3.0 + u * 8, u, pts, host)
         surf.flush()
@@ -955,7 +989,7 @@ def verify(fn, pts, say: str = "", secs: float | None = None) -> list[str]:
     from scripts import showrunner_review as sr
     problems = []
     surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, SS.W, SS.H)
-    texts, hosts = [], []
+    texts, hosts, grips = [], [], []
     real = SS.text
 
     real_ro = SS.fit_readout
@@ -1009,8 +1043,9 @@ def verify(fn, pts, say: str = "", secs: float | None = None) -> list[str]:
         fn.__globals__["text"] = spy
         SS.text = spy
         fn.__globals__["fit_readout"] = ro_spy
-        def host(role, x, fy, h, pace=False, beat=0):
+        def host(role, x, fy, h, pace=False, beat=0, **kw):
             hosts.append((role, x, fy, h))
+            grips.append((role, kw.get("hands"), x, fy, h))
             # Where Data can be while he performs: his body, widened by his
             # walk and lifted by his step when he paces.
             reach = SS.PACE_AMP if pace else 20.0
@@ -1093,6 +1128,7 @@ def verify(fn, pts, say: str = "", secs: float | None = None) -> list[str]:
     if any(fy > CAPTION_Y for _, _, fy, _ in hosts):
         problems.append(f"Data stands in the caption band (feet below "
                         f"y={CAPTION_Y}), where the narration burns in")
+    problems += grip_problems(grips)
     for role, x, fy, h in hosts:
         if role not in ROLES:
             problems.append(f"unknown role {role!r}")
@@ -1146,6 +1182,14 @@ with his feet at (x, foot_y). role is a STANCE — {stances} — or a TOOL ACT:
 An act plays ONCE (wind up, do it, hold) when the role changes; pass beat=k \
 and advance k each time the thing changes, and it plays again — one swing of \
 the pick per crack.
+GRIP is the act you MAKE for this scene: host("grip", x, foot_y, height, \
+hands=[(x1, y1), (x2, y2)], lower="stand"|"brace"|"crouch", \
+expr="strain"|"happy"|"shock") puts his two hands ON those two frame \
+points, every frame — compute them from the thing you draw (the door's \
+bottom edge as it rises, the cart's handle, the crate's corners) and he \
+lifts, pushes, carries or opens it with his own hands. A hand out of his \
+reach (about 0.48 x height from his shoulder) is refused: move him, or \
+stand him on something.
 
 THE RULES — every one is checked by code before your scene is used:
 1. The frame IS THE SUBJECT, never a chart. Draw the thing the story is about \
@@ -1280,6 +1324,16 @@ show what the number DOES in the story's world: a score's needle swings, \
 a line of people walks out, a door closes, a road empties, a helicopter \
 lifts off again and again. A viewer is asked whether a pile is a token \
 count; THE PILE below is a pile because plastic waste IS a pile.
+20. HE DOES IT WITH HIS OWN HANDS, THE WAY IT IS REALLY DONE. The owner, \
+2026-10-15, of a warehouse where Data pulled a rope and a row of garage \
+doors rolled up: "why is he not, like, lifting up the garage doors \
+himself ... we just get too stuck in the pre-made animations ... we \
+don't ever make ones on the fly". The tool acts are for work a tool \
+really does (a pick for ice, a bucket for water). Lifting, opening, \
+pushing, carrying, dragging and turning a thing by hand is a GRIP, his \
+hands on that thing's own edge and moving with it. A rope, a lever or a \
+valve only where the real thing has one; never a rope that works a \
+whole row of things at once.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \
@@ -1551,9 +1605,9 @@ def seen_frames(fn, pts, out_dir, at=LOOK_AGAIN_AT, size=LOOK_SIZE) -> list[str]
         f = int(round(u * 299))
         cr = cairo.Context(surf)
 
-        def host(role, x, fy, h, pace=False, beat=0, _cr=cr, _f=f):
+        def host(role, x, fy, h, pace=False, beat=0, _cr=cr, _f=f, **kw):
             SS.place_host(_cr, role, SS.act_phase(clock, (role, int(beat)), _f),
-                          None, x, fy, h, _f / 30.0, pace)
+                          None, x, fy, h, _f / 30.0, pace, **SS._grip_kw(kw))
         with SS.I.text_layer(cr):
             fn(cr, f / 30.0, u, pts, host)
             SS.I.finish(cr, SS.I.FINISH)

@@ -674,7 +674,8 @@ def act_for(scene_key, role: str) -> str:
     return _ACTS[key]
 
 
-def place_host(cr, role, phase, insight, x, fy, h, t, pace=False):
+def place_host(cr, role, phase, insight, x, fy, h, t, pace=False, hands=None,
+               lower="stand", expr="strain"):
     """Put Data in the scene at (x, fy). He stands where the scene puts him
     and moves when the scene moves him: pacing is opt-in, not a default.
     (He used to walk back and forth through every scene and it read as
@@ -682,8 +683,17 @@ def place_host(cr, role, phase, insight, x, fy, h, t, pace=False):
     movement".)"""
     if pace:
         x, fy = walk(x, fy, t)
+    if role == "grip" and hands:
+        # his hands ON the scene's own points (mascot_director.grip_wrists)
+        return I._grip_host(cr, hands, clamp(x, EDGE, W - EDGE), fy, h,
+                            lower, expr)
     return I._host(cr, act_for(_SCENE_KEY, role), phase, insight, "scene",
                    clamp(x, EDGE, W - EDGE), fy, h)
+
+
+def _grip_kw(kw: dict) -> dict:
+    """The keyword arguments a brain scene may pass host() for a grip."""
+    return {k: kw[k] for k in ("hands", "lower", "expr") if k in kw}
 
 
 def birds(cr, t, y0=520, n=5, rgb=(30, 26, 60)):
@@ -2373,9 +2383,9 @@ def _render_frames(scene, insight, out_dir, name, frames, pts, surf):
     for f in range(frames):
         cr = cairo.Context(surf)
 
-        def host(role, x, fy, h, pace=False, beat=0, _cr=cr, _f=f):
+        def host(role, x, fy, h, pace=False, beat=0, _cr=cr, _f=f, **kw):
             place_host(_cr, role, act_phase(clock, (role, int(beat)), _f),
-                       insight, x, fy, h, _f / 30.0, pace)
+                       insight, x, fy, h, _f / 30.0, pace, **_grip_kw(kw))
         with I.text_layer(cr):          # labels are painted last, on top
             scene(cr, f / 30.0,
                   _sa.paced(f / max(1, frames - 1), landed, target), pts, host)
