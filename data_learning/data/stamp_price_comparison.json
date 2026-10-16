@@ -1,0 +1,19 @@
+{
+ "key": "stamp_price_comparison",
+ "title": "Price of a First-Class stamp",
+ "unit": "dollars",
+ "geography": "United States",
+ "time_coverage": "1995 vs 2024",
+ "source": {
+  "name": "First-Class Mail rate history",
+  "publisher": "United States Postal Service (USPS)",
+  "url": "https://about.usps.com/newsroom/service-alerts/postal-facts.htm",
+  "officiality": "official",
+  "access_date": "2026-10-16"
+ },
+ "notes": "USPS first-class single-piece letter rate. $0.33 effective 1995; Forever stamp rose to $0.68 effective January 2024.",
+ "points": [
+  {"label": "1995", "value": 0.33, "period": "1995"},
+  {"label": "2024", "value": 0.68, "period": "2024"}
+ ]
+}

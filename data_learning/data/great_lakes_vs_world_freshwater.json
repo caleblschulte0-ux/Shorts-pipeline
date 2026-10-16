@@ -1,0 +1,19 @@
+{
+ "key": "great_lakes_vs_world_freshwater",
+ "title": "Share of world's fresh surface water",
+ "unit": "percent",
+ "geography": "World",
+ "time_coverage": "current",
+ "source": {
+  "name": "Great Lakes facts and figures",
+  "publisher": "U.S. Environmental Protection Agency (EPA)",
+  "url": "https://www.epa.gov/greatlakes/physical-features-great-lakes",
+  "officiality": "official",
+  "access_date": "2026-10-16"
+ },
+ "notes": "The five Great Lakes hold about 21% of the world's fresh surface water by volume.",
+ "points": [
+  {"label": "Great Lakes", "value": 21},
+  {"label": "Rest of world's fresh surface water", "value": 79}
+ ]
+}

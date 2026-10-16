@@ -34186,6 +34186,246 @@
      "say": "By 2018, only 2 Blockbuster stores were left on Earth. By 2019, there was just 1."
     }
    ]
+  },
+  {
+   "slug": "household-size-shrinking",
+   "title": "The Average US Household Shrank From 3.3 To 2.5",
+   "hook": "Your grandparents' house was way more crowded.",
+   "closing": "Welcome to the loneliest-looking boom in housing history.",
+   "question": "Do you live alone? Tell me below.",
+   "caption": "In 1960 the average American home had 3.3 people in it. Today it's 2.5 -- the smallest ever recorded. Households didn't shrink because families vanished, they just split into way more, smaller ones. 👇",
+   "hashtags": [
+    "householdsize",
+    "census",
+    "demographics",
+    "livingalone",
+    "familytrends",
+    "dataviz",
+    "didyouknow",
+    "housingtrends",
+    "population",
+    "usa",
+    "socialtrends",
+    "statistics",
+    "singlelife",
+    "homelife",
+    "generations"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "us_household_size_trend",
+     "params": {
+      "file": "us_household_size_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE SHRINK",
+     "topic": "average household size",
+     "say": "In 1960 the average American home held 3.3 people. By 2023 that's down to 2.5 -- the lowest it's ever been."
+    },
+    {
+     "source": "offline",
+     "key": "us_household_count_growth",
+     "params": {
+      "file": "us_household_count_growth.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE SPLIT",
+     "topic": "the US household count",
+     "say": "The population grew, but it split into way more homes: 53 million in 1960, 105 million by 2000, and over 131 million by 2023."
+    },
+    {
+     "source": "offline",
+     "key": "us_single_person_household_share",
+     "params": {
+      "file": "us_single_person_household_share.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE REASON",
+     "topic": "US household: who lives alone",
+     "say": "The biggest reason: living alone went from rare to normal. Just 13% of households were one person in 1960. Now it's nearly 29%."
+    }
+   ]
+  },
+  {
+   "slug": "livestock-methane-emissions",
+   "title": "Livestock Methane Could Hit 9.1 Billion Tons By 2050",
+   "hook": "Cow burps make up a third of the planet's methane.",
+   "closing": "Turns out the problem isn't the cows -- it's the burping.",
+   "question": "Would you cut meat to fix this?",
+   "caption": "Livestock, mostly cow burps, already cause 32% of all human-caused methane -- almost as much as every oil and gas operation on Earth combined. Left unchecked, FAO says it could hit 9.1 billion tons of CO2-equivalent a year by 2050. Would you cut back? 👇",
+   "hashtags": [
+    "methane",
+    "climatechange",
+    "livestock",
+    "cows",
+    "agriculture",
+    "emissions",
+    "globalwarming",
+    "sustainability",
+    "dataviz",
+    "didyouknow",
+    "science",
+    "climatedata",
+    "cowburps",
+    "foodsystems",
+    "environment"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "livestock_ghg_emissions_trend",
+     "params": {
+      "file": "livestock_ghg_emissions_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE TREND",
+     "topic": "livestock methane emissions",
+     "say": "Livestock already produces about 6.2 billion tons of greenhouse gas a year. Left unchecked, that climbs to 9.1 billion tons by 2050."
+    },
+    {
+     "source": "offline",
+     "key": "methane_sources_share",
+     "params": {
+      "file": "methane_sources_share.json"
+     },
+     "insight_type": "share",
+     "role": "2 · WHERE IT COMES FROM",
+     "topic": "methane sources",
+     "say": "Split up human-caused methane and livestock alone is 32 percent of it -- almost as much as all fossil fuels combined at 35 percent."
+    },
+    {
+     "source": "offline",
+     "key": "methane_warming_potential",
+     "params": {
+      "file": "methane_warming_potential.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · WHY IT MATTERS",
+     "topic": "methane's warming power",
+     "say": "Here's why it matters: pound for pound, methane traps about 80 times more heat than carbon dioxide over 20 years."
+    }
+   ]
+  },
+  {
+   "slug": "usps-mail-volume-collapse",
+   "title": "US Mail Volume Fell From 213 Billion To 109 Billion",
+   "hook": "You get way less mail than your parents did.",
+   "closing": "Somehow it still finds you every single day.",
+   "question": "When's the last time you got mail?",
+   "caption": "In 2006, the US Postal Service delivered 213 billion pieces of mail. Today it's barely half that -- even as a stamp's price doubled. Here's where all the mail went. 👇",
+   "hashtags": [
+    "uspsmail",
+    "postalservice",
+    "mail",
+    "stamps",
+    "snailmail",
+    "usps",
+    "didyouknow",
+    "dataviz",
+    "history",
+    "nostalgia",
+    "communication",
+    "letters",
+    "statistics",
+    "postage",
+    "mailvolume"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "usps_total_mail_volume_trend",
+     "params": {
+      "file": "usps_total_mail_volume_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE COLLAPSE",
+     "topic": "US mail volume",
+     "say": "US mail volume peaked at 213 billion pieces in 2006. Twenty years later, it's down to about 109 billion -- nearly cut in half."
+    },
+    {
+     "source": "offline",
+     "key": "usps_first_class_mail_volume_comparison",
+     "params": {
+      "file": "usps_first_class_mail_volume_comparison.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE LETTERS",
+     "topic": "First-Class mail volume",
+     "say": "First-Class letters fell even harder -- 103.7 billion pieces at their 2001 peak, down to just 46 billion by 2023."
+    },
+    {
+     "source": "offline",
+     "key": "stamp_price_comparison",
+     "params": {
+      "file": "stamp_price_comparison.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE IRONY",
+     "topic": "cost to mail a letter",
+     "say": "Meanwhile mailing a letter got more expensive -- a stamp cost 33 cents in 1995. By 2024 it was 68 cents, more than double."
+    }
+   ]
+  },
+  {
+   "slug": "great-lakes-freshwater-scale",
+   "title": "The Great Lakes Hold 21% Of Earth's Fresh Surface Water",
+   "hook": "One Great Lake holds more water than the other four.",
+   "closing": "And somehow Michiganders just call it 'the lake.'",
+   "question": "Which Great Lake have you swum in?",
+   "caption": "The five Great Lakes hold 21% of all the fresh surface water on Earth -- and Lake Superior alone holds more than the other four combined. Here's how they actually stack up. 👇",
+   "hashtags": [
+    "greatlakes",
+    "lakesuperior",
+    "freshwater",
+    "geography",
+    "michigan",
+    "didyouknow",
+    "dataviz",
+    "earthfacts",
+    "nature",
+    "science",
+    "greatlakesregion",
+    "water",
+    "geofacts",
+    "mapfacts",
+    "statistics"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "great_lakes_volume_share",
+     "params": {
+      "file": "great_lakes_volume_share.json"
+     },
+     "insight_type": "share",
+     "role": "1 · THE LAKES",
+     "topic": "Great Lakes volumes",
+     "say": "Start with the five lakes. Lake Superior alone holds about 2,900 cubic miles -- more than the other four Great Lakes combined."
+    },
+    {
+     "source": "offline",
+     "key": "great_lakes_vs_world_freshwater",
+     "params": {
+      "file": "great_lakes_vs_world_freshwater.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE SCALE",
+     "topic": "Great Lakes share of fresh water",
+     "say": "Add them all up and the Great Lakes hold 21 percent of all the fresh surface water on planet Earth."
+    },
+    {
+     "source": "offline",
+     "key": "great_lakes_area_vs_uk",
+     "params": {
+      "file": "great_lakes_area_vs_uk.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE SIZE",
+     "topic": "Great Lakes surface area",
+     "say": "Spread out flat, the five lakes cover about 94,250 square miles -- almost exactly the size of the entire United Kingdom."
+    }
+   ]
   }
  ],
  "videos": [

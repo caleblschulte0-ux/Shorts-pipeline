@@ -1,0 +1,21 @@
+{
+ "key": "methane_sources_share",
+ "title": "Human-caused methane emissions by source",
+ "unit": "percent",
+ "geography": "World",
+ "time_coverage": "2021",
+ "source": {
+  "name": "Global Methane Assessment: Benefits and Costs of Mitigating Methane Emissions",
+  "publisher": "United Nations Environment Programme (UNEP) and Climate and Clean Air Coalition (CCAC)",
+  "url": "https://www.unep.org/resources/report/global-methane-assessment-benefits-and-costs-mitigating-methane-emissions",
+  "officiality": "official",
+  "access_date": "2026-10-16"
+ },
+ "notes": "Share of human-caused (anthropogenic) methane emissions by sector. Livestock (manure + enteric fermentation) 32%, fossil fuels 35%, waste 20%, rice cultivation 8%; remainder (~5%) is biomass burning and other sources, not itemized here.",
+ "points": [
+  {"label": "Fossil fuels", "value": 35},
+  {"label": "Livestock", "value": 32},
+  {"label": "Waste", "value": 20},
+  {"label": "Rice cultivation", "value": 8}
+ ]
+}
