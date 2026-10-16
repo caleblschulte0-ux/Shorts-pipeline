@@ -11,10 +11,22 @@ out = Path(sys.argv[1]); out.mkdir(parents=True, exist_ok=True)
 key = os.environ["GEMINI_API_KEY"]; log = {}
 B = "https://generativelanguage.googleapis.com/v1beta/models"
 LINES = json.loads((HERE / "spoken_lines.json").read_text())["spoken"]
-NOTE = ("Read this the way a regular guy in his mid twenties tells a buddy a wild fact he just "
-        "learned. Low, relaxed, confident American voice. Natural rhythm, small pauses where a "
-        "person would breathe, a little grin in the voice. Not a narrator, not an announcer, not "
-        "a radio voice. Just talking:\n\n")
+# The first take read a plain-prose note ALOUD (45 s for a 25 s script).
+# Gemini's own prompting guide marks what is spoken under a TRANSCRIPT
+# heading and everything above it as direction.
+NOTE = """# AUDIO PROFILE: Mike
+A regular guy in his mid twenties from the Midwest. Low, relaxed, confident voice.
+
+## THE SCENE
+He's on the couch telling his buddy a wild fact he just read. Casual, not performing.
+
+### DIRECTOR'S NOTES
+Talk, don't narrate. Natural American rhythm, small pauses where a person breathes,
+a little grin in the voice on the funny parts. Not an announcer, not a radio voice,
+not a YouTube narrator. Read only the transcript below.
+
+#### TRANSCRIPT
+"""
 VOICES = os.environ.get("TTS_VOICES", "Charon,Orus,Algenib,Iapetus,Alnilam,Umbriel,Achird,Schedar").split(",")
 
 def get(url, body=None):
@@ -44,5 +56,5 @@ for v in VOICES:
     pcm = base64.b64decode(r["candidates"][0]["content"]["parts"][0]["inlineData"]["data"])
     with wave.open(str(out / f"hq_gemini_{v}_raw.wav"), "wb") as f:
         f.setnchannels(1); f.setsampwidth(2); f.setframerate(24000); f.writeframes(pcm)
-    log[v] = f"ok ({mdl})"; time.sleep(25)
+    log[v] = f"ok ({mdl}), {len(pcm) / 48000:.1f}s of audio"; time.sleep(25)
 (out / "log_gemini.txt").write_text(json.dumps(log, indent=1)); print(json.dumps(log, indent=1))
