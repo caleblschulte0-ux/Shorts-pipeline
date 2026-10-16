@@ -1323,6 +1323,56 @@ def _semantic_subclusters(reports: list[dict]) -> list[list[dict]]:
                                  min(str(r.get("date", "")) for r in g)))
 
 
+PROVEN_STORIES = REPO / "state" / "third_proven_stories.json"
+
+
+def _proven_clusters() -> list[dict]:
+    """Stories a backtest PASSED, as candidates that go first.
+
+    A backtest uploads nothing (scripts/story_backtest.py), so search
+    31's 88 (Pikaboo and Payo, 2026-10-13) had no way onto the channel;
+    `backtest-preview.yml` now records each passing story's plan and
+    sources in `PROVEN_STORIES`. Each comes back here as a scouted
+    candidate carrying its plan: the sources are downloaded and analysed
+    again, the plan is put back through `revalidate`, rendered and judged
+    by the same critic at the same `story_min_score`. Shipped or refused
+    stories drop out through the same story_key and clip-memory checks as
+    every other candidate. Not in a backtest: there they would only
+    re-render what already passed."""
+    if os.environ.get("STORY_BACKTEST_DIR"):
+        return []
+    try:
+        data = json.loads(PROVEN_STORIES.read_text())
+    except (OSError, ValueError):
+        return []
+    out = []
+    for st in data.get("stories") or []:
+        edl = st.get("edl") or {}
+        meta = {str(x.get("url")): x for x in st.get("sources") or []}
+        urls = st.get("source_urls") or []
+        if len(urls) < 2 or not edl.get("beats"):
+            continue
+        clips = [{"source_url": u,
+                  "channel": (meta.get(u) or {}).get("channel") or "",
+                  "date": (meta.get(u) or {}).get("date") or "",
+                  "title": (meta.get(u) or {}).get("summary") or ""}
+                 for u in urls]
+        clips.sort(key=lambda c: str(c.get("date", "")))
+        out.append({
+            "who": sorted({c["channel"].lower() for c in clips
+                           if c["channel"]}) or ["proven"],
+            "clips": clips, "score": 2e12, "kind": "scouted",
+            "premise": edl.get("premise") or edl.get("title") or "",
+            "why_connected": "a story a backtest passed at "
+                             f"{st.get('score')}",
+            "shape": "proven",
+            "proven_edl": edl, "proven_score": st.get("score")})
+    if out:
+        print(f"[story] {len(out)} story(ies) a backtest passed go first",
+              flush=True)
+    return out
+
+
 def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                    slug: str) -> dict | None:
     """STORY DIRECTOR pipeline (STORY_DIRECTOR_PLAYBOOK §4):
@@ -1614,6 +1664,11 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             _members_seen.append(urls_)
             _deduped.append(cl)
         clusters = _deduped
+        # A STORY A BACKTEST ALREADY PASSED goes first (operator,
+        # 2026-10-16: "Go"). It is re-analysed, re-rendered from its own
+        # plan and judged again at the same bar; nothing about it is
+        # trusted except where to start (`_proven_clusters`).
+        clusters = _proven_clusters() + clusters
         print(f"[story] {len(scouted)} scouted + {len(moments)} moment(s) + "
               f"{len(vod_arcs)} VOD arc(s) + people clusters = "
               f"{len(clusters)} candidate(s) after dedupe", flush=True)
@@ -1934,8 +1989,12 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 edl = None
                 try:
                     from third_capture import clip_memory as _cm
-                    _kept = _cm.kept_edit(
-                        _memory(), [r["source_id"] for r in sub])
+                    _kept = (
+                        {"edl": cluster["proven_edl"],
+                         "score": cluster.get("proven_score")}
+                        if cluster.get("proven_edl") else
+                        _cm.kept_edit(
+                            _memory(), [r["source_id"] for r in sub]))
                     if _kept:
                         edl = story_director.revalidate(_kept["edl"], sub)
                         if edl:

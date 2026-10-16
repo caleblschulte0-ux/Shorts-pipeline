@@ -12,7 +12,16 @@ score and the critic's retelling. `backtest-preview.yml` publishes the
 result to the `preview-renders` branch, where a session can fetch it with
 plain git and post it in the thread.
 
-    python scripts/backtest_preview.py <artifact dir> <dest dir>
+    python scripts/backtest_preview.py <artifact dir> <dest dir> [proven.json]
+
+A story that PASSES (operator, 2026-10-12: *"keep trying to make stories
+until we get a good one"*; 2026-10-16, on posting what passes: *"Go"*)
+used to die with the backtest: it uploads nothing and writes no repo
+state, so search 31's 88 had no way onto the channel. With a third
+argument each passing story's plan and sources are added to that file
+(`state/third_proven_stories.json`), and the channel's next real run
+tries it first: re-rendered, judged again at the same bar, posted only
+if it clears it (`run_third._proven_clusters`).
 """
 from __future__ import annotations
 
@@ -42,11 +51,43 @@ def best_cuts(report: dict) -> list[dict]:
     return sorted(best.values(), key=lambda c: c["_key"], reverse=True)
 
 
+def promote(report: dict, path: Path, run_id: str = "") -> int:
+    """Add each PASSING story's plan to the proven file; returns how many
+    were new. Keyed on the story's sources, so a story found twice is
+    kept once."""
+    try:
+        data = json.loads(path.read_text())
+    except (OSError, ValueError):
+        data = {"stories": []}
+    have = {tuple(x.get("source_urls") or [])
+            for x in data.get("stories") or []}
+    added = 0
+    for c in best_cuts(report):
+        if not c.get("passes"):
+            continue
+        urls = sorted({str(b.get("source_id")) for b in
+                       (c.get("edl") or {}).get("beats") or []
+                       if b.get("source_id")})
+        if len(urls) < 2 or tuple(urls) in have:
+            continue
+        have.add(tuple(urls))
+        data.setdefault("stories", []).append({
+            "label": c.get("label"), "run": str(run_id),
+            "score": int((c.get("review") or {}).get("story_score") or 0),
+            "edl": c.get("edl"), "sources": c.get("sources") or [],
+            "source_urls": urls})
+        added += 1
+    if added:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(data, indent=1, default=str) + "\n")
+    return added
+
+
 def _safe(label: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", label.lower()).strip("-")[:60]
 
 
-def main(src: str, dest: str) -> int:
+def main(src: str, dest: str, proven: str = "") -> int:
     src_p, dest_p = Path(src), Path(dest)
     reports = list(src_p.rglob("report.json"))
     if not reports:
@@ -80,8 +121,12 @@ def main(src: str, dest: str) -> int:
     (dest_p / "index.json").write_text(json.dumps(
         {"floor": report.get("floor"), "cuts": rows}, indent=1))
     print(json.dumps(rows, indent=1), flush=True)
+    if proven:
+        import os
+        n = promote(report, Path(proven), os.environ.get("RUN_ID", ""))
+        print(f"{n} passing story(ies) added to {proven}", flush=True)
     return 0 if rows else 1
 
 
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1], sys.argv[2]))
+    sys.exit(main(*sys.argv[1:4]))
