@@ -16,9 +16,10 @@ jobs:
         with: { python-version: '3.11' }
       - shell: bash
         run: |
-          pip install -q faster-whisper==1.1.1
+          set +e +o pipefail
           D=$(cat voice_lab/heard_dir)
-          python - "$D" <<'PY'
+          pip install -q faster-whisper==1.1.1 > $D/heard_log.txt 2>&1
+          python - "$D" >> $D/heard_log.txt 2>&1 <<'PY'
           import sys, glob, json
           from faster_whisper import WhisperModel
           m = WhisperModel("small.en", device="cpu", compute_type="int8"); out = {}
@@ -28,5 +29,5 @@ jobs:
           open(sys.argv[1] + "/heard.json", "w").write(json.dumps(out, indent=1))
           PY
           git config user.name "voice-lab"; git config user.email "voice-lab@users.noreply.github.com"
-          git add -f $D/heard.json; git commit -m "voice lab heard [skip ci]"
+          tail -c 6000 $D/heard_log.txt > $D/h.t; mv $D/h.t $D/heard_log.txt; git add -f $D/heard.json $D/heard_log.txt; git commit -m "voice lab heard [skip ci]"
           ok=0; for i in 1 2 3 4; do git pull --rebase -q origin voice-lab && git push origin HEAD:voice-lab && ok=1 && break; git rebase --abort 2>/dev/null; sleep $((i*3)); done; [ $ok = 1 ]
