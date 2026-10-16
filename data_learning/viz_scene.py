@@ -491,7 +491,7 @@ _ROLE_PNG = {"strain": "duck", "climb": "cheer", "hoist_stack": "cheer",
              "pump": "duck", "broom": "duck", "paddle": "duck", "cut": "duck",
              "pour": "duck", "haul": "duck", "shove": "duck", "crank": "duck",
              "stamp": "duck", "place": "duck", "tap": "duck", "toss": "duck",
-             "squeeze": "duck"}
+             "squeeze": "duck", "grip": "duck"}
 
 
 def scene_act(role: str, insight=None, kind: str = "") -> str:

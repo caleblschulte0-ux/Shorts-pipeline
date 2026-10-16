@@ -34,7 +34,7 @@ class TheGripResolves(unittest.TestCase):
 
     def test_a_hand_job_asks_for_hands_not_a_rope_or_a_valve(self):
         for cause in ("Data lifts the garage door as the robots roll out",
-                      "Data opens the barn door", "Data carries the crate in"):
+                      "Data opens the barn door", "Data drags the crate in"):
             self.assertEqual(M.tool_for_cause(cause)[1], "grip", cause)
 
     @unittest.skipIf(SA is None, "no cairo")

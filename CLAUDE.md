@@ -162,7 +162,14 @@ pump, broom, paddle, plus the agent acts) are one-shot wind-up → strike →
 hold, no sine anywhere; a subject scene lands one per `beat=` and the
 verifier refuses a `CAUSE:` whose verb has a tool when Data performs it
 empty-handed (`VERB_TOOLS`, `scene_author.tool_problems`). `strain` is
-for bearing a load, never for doing work. Add a tool act with its verb,
+for bearing a load, never for doing work. And a hand job is a GRIP, made for the scene (operator,
+2026-10-15, of Data pulling a rope while a row of garage doors rolled up:
+*"why is he not, like, lifting up the garage doors himself ... we don't
+ever make ones on the fly"*): `host("grip", ..., hands=[(x, y), (x, y)])`
+puts his two hands on two of the scene's own points every frame
+(`mascot_director.grip_wrists`), lift/open/raise/drag ask for it
+(`VERB_TOOLS`), out of reach is refused (`scene_author.grip_problems`),
+prompt rule 20. `tests/test_data_does_it_with_his_own_hands.py`. Add a tool act with its verb,
 its anchor at the business end, and the test that it RESOLVES.
 
 The RIG (how he is drawn) lives in `scripts/build_mascot_svg.py` and is the

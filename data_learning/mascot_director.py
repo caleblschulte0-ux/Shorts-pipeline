@@ -2171,8 +2171,8 @@ VERB_TOOLS: dict[str, str] = {
     "crank": "crank", "wind": "crank", "turn": "crank",
     "stamp": "stamp", "stack": "place", "pile": "place", "lay": "place",
     "open": "grip", "lift": "grip", "raise": "grip", "heave": "grip",
-    "carry": "grip", "carries": "grip", "carried": "grip", "drag": "grip",
-    "drain": "tap", "throw": "toss", "toss": "toss",
+    # not carry: bearing a load is `strain` (see TOOL_ACTS)
+    "drag": "grip", "drain": "tap", "throw": "toss", "toss": "toss",
     "squeeze": "squeeze", "crush": "squeeze",
 }
 
