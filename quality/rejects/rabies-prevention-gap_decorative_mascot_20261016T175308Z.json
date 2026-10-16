@@ -1,0 +1,16 @@
+{
+ "slug": "rabies-prevention-gap",
+ "ts": "20261016T175308Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: In seg1:mid and seg1:end Data stands beside the syringe barrel and points while the liquid drains by itself, and in seg2:mid and seg2:end he perches on the globe's ring pointing at Africa. Only in seg3:end does he do the work, putting collars or tags on the dogs. In the hook (hook",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "decorative_mascot / unclear depiction",
+  "visible_evidence": "In seg1:start to seg1:end the giant syringe's brown fluid drains while the label flips from '100% fatal' to '0% fatal with a shot'. Data stands beside the barrel pointing, never on the plunger. The four vials below fill and empty with no clear meaning, and a dog walks in at the end.",
+  "root_cause": "The drain is not tied to the claim (a shot before symptoms prevents death), and the mascot is placed beside the moving part instead of causing the motion.",
+  "repair_goal": "Have Data press the plunger with both hands so the dose visibly goes into a bitten patient or figure before a symptom clock runs out. Show the 100% doom state flipping to the 0% saved state because of his injection, and drop the unexplained vial row."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

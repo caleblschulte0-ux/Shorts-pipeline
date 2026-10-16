@@ -1,7 +1,97 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-16T13:40:39Z",
+ "updated": "2026-10-16T17:52:59Z",
  "open": [
+  {
+   "id": "pickleball-fastest-growing-sport__598b7568",
+   "slug": "pickleball-fastest-growing-sport",
+   "filed": "2026-10-16T17:52:59Z",
+   "why": [
+    "premise: brain: It includes multiple numbers (quadruple growth and hundreds of millions in injuries) instead of a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261016/pickleball-fastest-growing-sport__598b7568.request.json",
+   "answer_path": "exchange/rewrites/20261016/pickleball-fastest-growing-sport__598b7568.answer.json"
+  },
+  {
+   "id": "california-condor-comeback__d67b02c8",
+   "slug": "california-condor-comeback",
+   "filed": "2026-10-16T17:52:59Z",
+   "why": [
+    "premise: brain: Uses multiple numbers rather than a single consequential, verifiable figure"
+   ],
+   "request": "exchange/rewrites/20261016/california-condor-comeback__d67b02c8.request.json",
+   "answer_path": "exchange/rewrites/20261016/california-condor-comeback__d67b02c8.answer.json"
+  },
+  {
+   "id": "pitch-drop-slowest-experiment__a56289d5",
+   "slug": "pitch-drop-slowest-experiment",
+   "filed": "2026-10-16T17:52:58Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and does not hinge on a single consequential, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261016/pitch-drop-slowest-experiment__a56289d5.request.json",
+   "answer_path": "exchange/rewrites/20261016/pitch-drop-slowest-experiment__a56289d5.answer.json"
+  },
+  {
+   "id": "game-industry-layoffs-record__47b9280e",
+   "slug": "game-industry-layoffs-record",
+   "filed": "2026-10-16T17:52:57Z",
+   "why": [
+    "premise: brain: It lacks a clear reversal of a specific viewer expectation and relies on an unquantified claim about record sales alongside a single number."
+   ],
+   "request": "exchange/rewrites/20261016/game-industry-layoffs-record__47b9280e.request.json",
+   "answer_path": "exchange/rewrites/20261016/game-industry-layoffs-record__47b9280e.answer.json"
+  },
+  {
+   "id": "lightning-deaths-collapsed-not-the-storms__9241770b",
+   "slug": "lightning-deaths-collapsed-not-the-storms",
+   "filed": "2026-10-16T17:52:57Z",
+   "why": [
+    "premise: brain: It lacks a clear reversal of a common viewer expectation and relies on a generic statistic without a striking, single consequential number."
+   ],
+   "request": "exchange/rewrites/20261016/lightning-deaths-collapsed-not-the-storms__9241770b.request.json",
+   "answer_path": "exchange/rewrites/20261016/lightning-deaths-collapsed-not-the-storms__9241770b.answer.json"
+  },
+  {
+   "id": "bat-fungus-collapse__fb2808d3",
+   "slug": "bat-fungus-collapse",
+   "filed": "2026-10-16T17:52:57Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261016/bat-fungus-collapse__fb2808d3.request.json",
+   "answer_path": "exchange/rewrites/20261016/bat-fungus-collapse__fb2808d3.answer.json"
+  },
+  {
+   "id": "saturn-rings-vanishing__ba79433f",
+   "slug": "saturn-rings-vanishing",
+   "filed": "2026-10-16T17:52:56Z",
+   "why": [
+    "judge: blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=21.75s of 27.42s (~2.0s frozen)"
+   ],
+   "request": "exchange/rewrites/20261016/saturn-rings-vanishing__ba79433f.request.json",
+   "answer_path": "exchange/rewrites/20261016/saturn-rings-vanishing__ba79433f.answer.json"
+  },
+  {
+   "id": "helium-supply-squeeze__067a945d",
+   "slug": "helium-supply-squeeze",
+   "filed": "2026-10-16T17:52:55Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a common expectation and relies on an unverified, non‑consequential number."
+   ],
+   "request": "exchange/rewrites/20261016/helium-supply-squeeze__067a945d.request.json",
+   "answer_path": "exchange/rewrites/20261016/helium-supply-squeeze__067a945d.answer.json"
+  },
+  {
+   "id": "competitive-eating-record-climb__e38b83da",
+   "slug": "competitive-eating-record-climb",
+   "filed": "2026-10-16T17:52:55Z",
+   "why": [
+    "premise: brain: The premise merely states a higher record without reversing a clear viewer expectation, relying only on a notable number."
+   ],
+   "request": "exchange/rewrites/20261016/competitive-eating-record-climb__e38b83da.request.json",
+   "answer_path": "exchange/rewrites/20261016/competitive-eating-record-climb__e38b83da.answer.json"
+  },
   {
    "id": "coldest-place-in-the-universe-is-human-made__d62a1233",
    "slug": "coldest-place-in-the-universe-is-human-made",
@@ -123,16 +213,6 @@
    "answer_path": "exchange/rewrites/20261016/blood-type-rarity__962b83aa.answer.json"
   },
   {
-   "id": "california-condor-comeback__660176fa_r1",
-   "slug": "california-condor-comeback",
-   "filed": "2026-10-16T13:40:38Z",
-   "why": [
-    "premise: brain: It relies on multiple numbers (27 and over 500) instead of a single consequential, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261016/california-condor-comeback__660176fa_r1.request.json",
-   "answer_path": "exchange/rewrites/20261016/california-condor-comeback__660176fa_r1.answer.json"
-  },
-  {
    "id": "moon-drifting-away__904b95b2",
    "slug": "moon-drifting-away",
    "filed": "2026-10-16T13:40:38Z",
@@ -241,16 +321,6 @@
    ],
    "request": "exchange/rewrites/20261016/highest-point-illusion__5e00932f.request.json",
    "answer_path": "exchange/rewrites/20261016/highest-point-illusion__5e00932f.answer.json"
-  },
-  {
-   "id": "pitch-drop-slowest-experiment__75598276_r1",
-   "slug": "pitch-drop-slowest-experiment",
-   "filed": "2026-10-16T13:40:37Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and does not hinge on a single, verifiable consequential number."
-   ],
-   "request": "exchange/rewrites/20261016/pitch-drop-slowest-experiment__75598276_r1.request.json",
-   "answer_path": "exchange/rewrites/20261016/pitch-drop-slowest-experiment__75598276_r1.answer.json"
   },
   {
    "id": "earth-rotation-speeding-up__e26a5423",
@@ -413,16 +483,6 @@
    "answer_path": "exchange/rewrites/20261015/north-american-bird-collapse__58c079e0.answer.json"
   },
   {
-   "id": "bat-fungus-collapse__45262d36",
-   "slug": "bat-fungus-collapse",
-   "filed": "2026-10-15T17:50:23Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a viewer's expectation and relies on a generic statistic rather than a singular, consequential, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261015/bat-fungus-collapse__45262d36.request.json",
-   "answer_path": "exchange/rewrites/20261015/bat-fungus-collapse__45262d36.answer.json"
-  },
-  {
    "id": "black-holes-in-galaxy__4e789d36",
    "slug": "black-holes-in-galaxy",
    "filed": "2026-10-15T17:50:23Z",
@@ -431,36 +491,6 @@
    ],
    "request": "exchange/rewrites/20261015/black-holes-in-galaxy__4e789d36.request.json",
    "answer_path": "exchange/rewrites/20261015/black-holes-in-galaxy__4e789d36.answer.json"
-  },
-  {
-   "id": "pickleball-fastest-growing-sport__598b7568",
-   "slug": "pickleball-fastest-growing-sport",
-   "filed": "2026-10-15T17:50:21Z",
-   "why": [
-    "premise: brain: The claim relies on two numbers (quadruple and 4 years) rather than a single consequential, verifiable figure, and does not clearly reverse a strong viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261015/pickleball-fastest-growing-sport__598b7568.request.json",
-   "answer_path": "exchange/rewrites/20261015/pickleball-fastest-growing-sport__598b7568.answer.json"
-  },
-  {
-   "id": "helium-supply-squeeze__067a945d",
-   "slug": "helium-supply-squeeze",
-   "filed": "2026-10-15T17:50:20Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common expectation and relies on an unverified, overly specific number."
-   ],
-   "request": "exchange/rewrites/20261015/helium-supply-squeeze__067a945d.request.json",
-   "answer_path": "exchange/rewrites/20261015/helium-supply-squeeze__067a945d.answer.json"
-  },
-  {
-   "id": "lightning-deaths-collapsed-not-the-storms__9241770b",
-   "slug": "lightning-deaths-collapsed-not-the-storms",
-   "filed": "2026-10-15T13:23:22Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on a generic statistic without a striking, verifiable twist."
-   ],
-   "request": "exchange/rewrites/20261015/lightning-deaths-collapsed-not-the-storms__9241770b.request.json",
-   "answer_path": "exchange/rewrites/20261015/lightning-deaths-collapsed-not-the-storms__9241770b.answer.json"
   },
   {
    "id": "humpback-whale-recovery__b595edba",
@@ -513,16 +543,6 @@
    "answer_path": "exchange/rewrites/20261015/eclipse-recurrence-rarity__789a0737.answer.json"
   },
   {
-   "id": "game-industry-layoffs-record__47b9280e",
-   "slug": "game-industry-layoffs-record",
-   "filed": "2026-10-15T13:23:19Z",
-   "why": [
-    "premise: brain: It states two unrelated facts without reversing a viewer expectation, making the premise weak."
-   ],
-   "request": "exchange/rewrites/20261015/game-industry-layoffs-record__47b9280e.request.json",
-   "answer_path": "exchange/rewrites/20261015/game-industry-layoffs-record__47b9280e.answer.json"
-  },
-  {
    "id": "panama-canal-drought-transit-cuts__3cc174f2",
    "slug": "panama-canal-drought-transit-cuts",
    "filed": "2026-10-15T13:23:19Z",
@@ -551,16 +571,6 @@
    ],
    "request": "exchange/rewrites/20261014/saharan-dust-feeds-amazon__ba518d26.request.json",
    "answer_path": "exchange/rewrites/20261014/saharan-dust-feeds-amazon__ba518d26.answer.json"
-  },
-  {
-   "id": "saturn-rings-vanishing__e0bdef60",
-   "slug": "saturn-rings-vanishing",
-   "filed": "2026-10-14T15:01:59Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a common viewer expectation and the hook is unrelated, making it a weak premise."
-   ],
-   "request": "exchange/rewrites/20261014/saturn-rings-vanishing__e0bdef60.request.json",
-   "answer_path": "exchange/rewrites/20261014/saturn-rings-vanishing__e0bdef60.answer.json"
   },
   {
    "id": "amazon-warehouse-robot-army__587faefb",
