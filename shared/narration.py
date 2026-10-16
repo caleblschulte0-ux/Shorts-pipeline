@@ -114,6 +114,14 @@ ever gets recycled." Not "royal flush, 1 in 649,740; shark attack, 1 in \
 11.5 million, is far likelier than the jackpot." A change is said in \
 words around one number: "it nearly doubled, to 4,900", not "from 3,300 \
 to 4,900".
+  - A NUMBER COMES WITH ITS YARDSTICK. Nobody knows whether 24 ships a \
+day through the Panama Canal is a lot or a little (operator, 2026-10-15: \
+"maybe 24 is high, maybe it's low, I don't know ... not everyone knows \
+that"). Say what normal is, in words around the one number: "a third \
+fewer ships than normal, just 24 a day", "half what it used to be". A \
+number with no yardstick tells the viewer nothing.
+  - Never say the same thing twice. The hook is said right before beat \
+one: beat one does not repeat it, and no beat repeats another.
   - Compare to something the viewer already knows (the jackpot, a shark \
 attack, their own body, their own town) when the data gives you one. \
 "Half", "double", "one in ten" beat a figure.
@@ -169,7 +177,9 @@ YouTube Short follow, with the data each beat is drawn from. A narration \
 FAILS if it says anything the data does not support (a cause, a "never", a \
 number, a comparison), if heard once at full speed it does not make \
 sense, if it never says WHAT it is about by name (the game, the event, the \
-product), or if two of its beats say the same thing. Of the ones that pass, which would a distracted viewer scrolling \
+product), if two of its beats say the same thing or beat one repeats the \
+HOOK, or if it gives a number with no sense of whether that is a lot or a \
+little (what is normal, what it was before). Of the ones that pass, which would a distracted viewer scrolling \
 past FOLLOW and keep watching: the simpler, more fun story, not a list of \
 numbers, that leaves them knowing why it matters to them?
 

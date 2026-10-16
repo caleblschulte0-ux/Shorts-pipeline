@@ -379,7 +379,14 @@ constants blanked), never on the prose that explains it.
   look for the twist, the villain, the loss, the comeback or the secret,
   and the floor refuses two numbers, a "from X to Y" or a decimal in a
   hook. The video reads the numbers; the hook says what they MEAN.
-  `tests/test_the_hook_is_an_ad.py`.
+  `tests/test_the_hook_is_an_ad.py`. And the bar is THE THREAT, never beat
+  one said twice (operator, 2026-10-15, of a Panama Canal video that said
+  "24 ships a day" in the hook and again in beat one: *"the Panama Canal is
+  drying up, and it might already be too late"*): a threat is not a hedge
+  (`_STAKE`), a hook may not say a number beat one says
+  (`repeats_beat_one`, which also forces the old hook to be rewritten),
+  and a narration gives every number its yardstick, what normal is.
+  `tests/test_the_hook_is_the_threat_not_beat_one.py`.
   And the VOICE is handed WORDS (operator, same day: *"everything and
   anything it could mis read ... needs to be in word format"*).
   `shared/spoken.say` is the one speller: units, °F, decades, ordinals,
