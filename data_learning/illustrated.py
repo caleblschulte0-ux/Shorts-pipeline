@@ -984,6 +984,44 @@ def _host(cr, role, phase, insight, kind, cx, foot_y, height):
     return (x, y, x + img.width, y + img.height)
 
 
+_GRIP_CACHE: dict = {}
+
+
+def _grip_host(cr, hands, cx, foot_y, height, lower="stand", expr="strain"):
+    """Data with his two hands ON `hands` (canvas points), feet at
+    (cx, foot_y) — `mascot_director.grip_wrists`. No pre-made motion: the
+    scene moves the points and his hands go with them (the door's edge as
+    it rises). Returns his box, or None with no rasteriser."""
+    try:
+        import io
+        from PIL import Image as _PImage
+        from data_learning import mascot_director as _md
+        lh, rh, _over = _md.grip_wrists(hands, cx, foot_y, height)
+        key = (tuple(round(v) for v in lh[:2] + rh[:2]), lh[2], rh[2],
+               lower, expr)
+        img = _GRIP_CACHE.get(key)
+        if img is None:
+            svg = _md.compose_anim(_md.grip_spec(lh, rh, lower, expr), 0.5)
+            img = _PImage.open(io.BytesIO(_md._rasterise(svg, 300))).convert("RGBA")
+            if len(_GRIP_CACHE) > 600:
+                _GRIP_CACHE.clear()
+            _GRIP_CACHE[key] = img
+    except Exception:  # noqa: BLE001 — no rig available: no host, not a crash
+        return None
+    # rig -> raster is ANIM_VIEW ("-90 -60 520 520") into 300 px; rig ->
+    # canvas puts RIG_FOOT on (cx, foot_y) at height/RIG_TALL px per unit
+    k = float(height) / _md.RIG_TALL
+    sc = 300 / 520.0
+    s_ = k / sc
+    img = img.resize((max(1, int(img.width * s_)), max(1, int(img.height * s_))))
+    fx, fy = (_md.RIG_FOOT[0] + 90.0) * sc * s_, (_md.RIG_FOOT[1] + 60.0) * sc * s_
+    x, y = int(round(cx - fx)), int(round(foot_y - fy))
+    glow(cr, cx, foot_y - 6, height * 0.35, (0, 0, 0), 0.35)
+    cr.set_source_surface(pil_surface(img), x, y)
+    cr.paint()
+    return (x, y, x + img.width, y + img.height)
+
+
 def _agent(cr, verb, phase, insight, kind, at, height, floor=None,
            flip=False):
     """Data DOING the verb, his anchor on ``at`` — the world's own

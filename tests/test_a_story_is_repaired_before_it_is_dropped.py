@@ -74,6 +74,9 @@ class _Harness(unittest.TestCase):
         self.rt = rt
         tmp = Path(self.enterContext(tempfile.TemporaryDirectory()))
         rt.EVENTS_FILE = tmp / "events.json"
+        # a story a real backtest passed sits in state/ and the channel
+        # takes it FIRST, ahead of whatever this harness hands in
+        rt.PROVEN_STORIES = tmp / "proven.json"
         rt._STORY_POOL = None
         rt._CLIP_MEMORY = memory or clip_memory.empty()
         rt._JUDGES.clear()

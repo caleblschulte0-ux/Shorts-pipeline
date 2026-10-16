@@ -2149,6 +2149,7 @@ TOOL_ACTS: dict[str, str] = {
     "haul": "a rope, hand over hand", "shove": "both hands flat on it",
     "crank": "a crank handle", "stamp": "a stamp", "place": "the next block",
     "tap": "a valve", "toss": "the thing thrown", "squeeze": "both hands, squeezing",
+    "grip": "his own two hands, ON the thing (pass hands=)",
 }
 
 #: The verb a CAUSE line uses -> the tool act that does it. A scene whose
@@ -2169,7 +2170,9 @@ VERB_TOOLS: dict[str, str] = {
     "push": "shove", "shove": "shove",
     "crank": "crank", "wind": "crank", "turn": "crank",
     "stamp": "stamp", "stack": "place", "pile": "place", "lay": "place",
-    "open": "tap", "drain": "tap", "throw": "toss", "toss": "toss",
+    "open": "grip", "lift": "grip", "raise": "grip", "heave": "grip",
+    # not carry: bearing a load is `strain` (see TOOL_ACTS)
+    "drag": "grip", "drain": "tap", "throw": "toss", "toss": "toss",
     "squeeze": "squeeze", "crush": "squeeze",
 }
 
@@ -2695,7 +2698,73 @@ def data_action_spec(kind: str, phase: str = "action") -> dict:
 # (spooning soup off a can vs. gripping a bird's feathers mid-flight). The brain
 # authors these on the fly (author_performance); choose() is the fallback.
 # --------------------------------------------------------------------------
-_LOWER = {"stand": R.lower_stand, "seated": R.lower_seated, "ride": R.lower_ride}
+_LOWER = {"stand": R.lower_stand, "seated": R.lower_seated, "ride": R.lower_ride,
+          "brace": lambda: _braced_legs(crouch=0.35),
+          "crouch": lambda: _braced_legs(crouch=0.8)}
+
+
+# ==========================================================================
+# GRIP — his own hands, ON the thing, wherever the scene says it is.
+#
+# Operator, 2026-10-15, of a warehouse beat where Data pulled a rope and a
+# row of garage doors rolled up: "why is he not, like, lifting up the
+# garage doors himself ... we just get too stuck in the pre-made
+# animations ... we don't ever make ones on the fly". Every act a brain
+# scene could give him was a named, pre-made one, so "lift the door" came
+# out as `haul` (a rope, hand over hand) and "open" as `tap` (a valve).
+#
+# A grip has no pre-made motion. The scene says where his two hands are
+# on ITS OWN canvas — the door's bottom edge as it rises, the cart's
+# handle, the crate's corners — frame by frame, and the rig reaches them:
+# `grip_wrists` turns those points into wrist targets, and `_a_pose` draws
+# any wrist targets with the same rig. Out of reach is refused at verify
+# (`GRIP_REACH`), never stretched: a rubber arm reads as a glitch.
+# ==========================================================================
+#: The rig's frame: his feet's centre and how tall he stands, in rig units.
+RIG_FOOT = (170.0, 368.0)
+RIG_TALL = 344.0
+#: Shoulder to wrist at full stretch, rig units — the farthest any of the
+#: named acts reaches (the pick's swing, the bucket over the rim).
+GRIP_REACH = 165.0
+
+
+def grip_wrists(hands, x, fy, h):
+    """((lx, ly, bend), (rx, ry, bend), overreach) — the wrist targets that
+    put his hands on two CANVAS points, for Data standing with his feet at
+    (x, fy) and `h` px tall. `overreach` is how far past `GRIP_REACH` the
+    farther hand had to be pulled back, in rig units (0 = both reached)."""
+    k = float(h) / RIG_TALL
+    pts = sorted(((float(px), float(py)) for px, py in hands), key=lambda p: p[0])
+    out, over = [], 0.0
+    for (px, py), sh, bend in zip(pts, (R.SHL, R.SHR), (-10, 10)):
+        rx = RIG_FOOT[0] + (px - x) / max(k, 1e-6)
+        ry = RIG_FOOT[1] - (fy - py) / max(k, 1e-6)
+        dx, dy = rx - sh[0], ry - sh[1]
+        d = math.hypot(dx, dy)
+        if d > GRIP_REACH:
+            over = max(over, d - GRIP_REACH)
+            rx, ry = sh[0] + dx * GRIP_REACH / d, sh[1] + dy * GRIP_REACH / d
+        # an elbow bends away from the body: down for a reach overhead
+        out.append([rx, ry, bend if ry > sh[1] - 40 else -bend])
+    return out[0], out[1], over
+
+
+def grip_spec(lh, rh, lower="stand", expr="strain") -> dict:
+    """A `pose` spec with his wrists on `lh`/`rh` (from `grip_wrists`)."""
+    return {"action": "pose", "prop": "none", "ground": False,
+            "pose": {"lh": list(lh), "rh": list(rh),
+                     "lower": lower if lower in _LOWER else "stand",
+                     "expr": expr, "motion": {"limb": "none"}}}
+
+
+def _a_grip(t, prop):
+    """`grip` with no hands given (a machine, a test): both hands forward on
+    something at chest height, braced. A scene that knows where the thing is
+    passes hands= and never sees this."""
+    return _a_pose(t, grip_spec((236, 246, -10), (276, 246, 10), "brace"))
+
+
+ANIMATORS["grip"] = _a_grip
 
 
 def _a_pose(t, spec):
