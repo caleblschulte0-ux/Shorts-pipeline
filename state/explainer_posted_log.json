@@ -3590,11 +3590,29 @@
       "duration_s": 29.0
     },
     "bank-branches-mobile-banking-crossover": {
-      "claimed_at": "2026-10-16T10:46:40.061679+00:00",
+      "url": "https://youtube.com/shorts/6Kmm1Rb8k7Y",
       "title": "20,000 US Bank Branches Have Closed Since 2009",
+      "at": "2026-10-16T10:46:50.629407+00:00",
       "publish_at": "2026-10-16T11:08:23Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.05,
+      "beat_s": [
+        1.78,
+        5.0,
+        5.15,
+        6.05,
+        5.04
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 79,
+      "duration_s": 22.9
     }
   },
   "uploads": [
@@ -4531,9 +4549,10 @@
       "claimed_at": "2026-10-16T10:46:40.061679+00:00",
       "title": "20,000 US Bank Branches Have Closed Since 2009",
       "publish_at": "2026-10-16T11:08:23Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "bank-branches-mobile-banking-crossover"
+      "url": "https://youtube.com/shorts/6Kmm1Rb8k7Y",
+      "state": "posted",
+      "slug": "bank-branches-mobile-banking-crossover",
+      "at": "2026-10-16T10:46:50.629407+00:00"
     }
   ]
 }
