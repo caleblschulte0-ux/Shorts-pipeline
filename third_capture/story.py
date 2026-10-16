@@ -146,6 +146,38 @@ def _read_secs(text: str, floor: float) -> float:
     return max(floor, 0.5 + 0.3 * len((text or "").split()))
 
 
+def _display(channel: str) -> str:
+    c = str(channel or "").strip().lstrip("@")
+    return c[:1].upper() + c[1:] if c.islower() else c
+
+
+def beat_overlay(beats: list[dict], idx: int, sources: dict) -> str:
+    """The beat's line of context, saying WHOSE STREAM it cuts to.
+
+    The near-misses of searches 31-46 (2026-10-13..16) were stories told
+    across two streams, and the critic's commonest note was the switch:
+    "Pokelawls is never introduced before the cut to his stream. Make the
+    overlay say who he is and that it is his bike" (Jerma's bike fire,
+    capped at 79 three searches running). The director only sometimes
+    wrote that overlay. Now a beat on a different channel from the beat
+    before says so itself ("On Pokelawls's stream") unless its own
+    overlay already names that channel."""
+    beat = beats[idx]
+    own = str(beat.get("context_overlay") or "")
+    if idx == 0:
+        return own
+    cur = (sources.get(beat.get("source_id")) or {}).get("channel") or ""
+    prev = (sources.get(beats[idx - 1].get("source_id")) or {}).get(
+        "channel") or ""
+    if not cur or not prev or cur.lower() == prev.lower():
+        return own
+    if cur.lower() in own.lower().replace(" ", ""):
+        return own
+    name = _display(cur)
+    return f"On {name}{chr(39)}{'' if name.endswith('s') else 's'} stream" \
+        if not own else own
+
+
 def beat_captions(idx: int, beat_secs: float, hook: str = "",
                   overlay: str = "", text: str = "") -> list[dict]:
     """What caption is on screen during one beat, in the beat's seconds:
@@ -718,7 +750,7 @@ def plan_ledger(edl: dict, sources: dict[str, dict]) -> dict:
                 srcinfo.get("words") or [], end) - 0.05)
         for c in beat_captions(
                 idx, end - start, edl.get("hook_overlay", ""),
-                beat.get("context_overlay", ""),
+                beat_overlay(beats, idx, sources),
                 (narr_by_beat.get(idx) or {}).get("text", "")):
             on_screen.append({"at": round(timeline + c["at"], 1),
                               "kind": c["kind"], "secs": round(c["secs"], 1),
@@ -812,7 +844,7 @@ def render_story(edl: dict, sources: dict[str, dict], out_mp4: Path,
                 srcinfo.get("words") or [], end) - 0.05)
         seg = work / f"seg_{idx}.mp4"
         caps = beat_captions(idx, end - start, edl.get("hook_overlay", ""),
-                             beat.get("context_overlay", ""),
+                             beat_overlay(beats, idx, sources),
                              (narr_by_beat.get(idx) or {}).get("text", ""))
         shows = []
         if beat.get("show"):
