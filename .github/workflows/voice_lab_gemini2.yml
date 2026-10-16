@@ -1,0 +1,61 @@
+# Voice lab round 14: Gemini speech with a director's note, deeper male voices.
+# The key job runs only this repo's stdlib script; third-party code (the
+# 48 kHz rebuild) runs in a job with no secrets; only collect writes.
+name: Voice lab Gemini 2
+on:
+  push:
+    branches: [voice-lab]
+    paths: ['voice_lab/gen_gemini2.py', '.github/workflows/voice_lab_gemini2.yml']
+permissions:
+  contents: read
+jobs:
+  gemini:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.11' }
+      - env: { GEMINI_API_KEY: '${{ secrets.GEMINI_API_KEY }}' }
+        run: python voice_lab/gen_gemini2.py out
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: g2_raw, path: out/ }
+  enhance:
+    needs: gemini
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.10' }
+      - run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
+      - uses: actions/download-artifact@v4
+        with: { name: g2_raw, path: takes/ }
+      - shell: bash
+        run: |
+          mkdir -p out
+          pip install -q torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cpu
+          pip install -q clearvoice 2>&1 | tail -2 || true
+          python voice_lab/enhance_hq.py takes out sr 2>&1 | grep -v "it/s\]" | tail -30 || python voice_lab/enhance_hq.py takes out
+          cp takes/log_*.txt out/ 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: g2_final, path: out/ }
+  collect:
+    needs: enhance
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: { name: g2_final, path: dl/ }
+      - shell: bash
+        run: |
+          D=voice_lab/gemini2; mkdir -p $D; cp dl/* $D/
+          git config user.name "voice-lab"
+          git config user.email "voice-lab@users.noreply.github.com"
+          git add -f $D
+          git commit -m "voice lab gemini 2 results [skip ci]"
+          ok=0; for i in 1 2 3 4; do git pull --rebase -q origin voice-lab && git push origin HEAD:voice-lab && ok=1 && break; git rebase --abort 2>/dev/null; sleep $((i*3)); done; [ $ok = 1 ]
