@@ -13856,6 +13856,25 @@
       "rejected_by": "content gate",
       "rejected_why": "0.30 < 0.35 (Guessing game, off by 4,926x, low drama)",
       "ts": "2026-10-16T12:43:26.501223+00:00"
+    },
+    "rejected-softfitredpandaarsonnosexy-8wjxtwkzhhn7zd1x": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/SoftFitRedpandaArsonNoSexy-8wJXTwKzhHN7ZD1X",
+      "streamer": "caseoh_",
+      "title": "JPKenney \ud83d\ude02\ud83d\ude02\ud83d\ude02",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Brief shout, then empty mall walking)",
+      "ts": "2026-10-16T13:25:50.024596+00:00"
+    },
+    "clip-20261016-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/AntsyTenuousCaterpillarThunBeast-npvhBPqCmH8ihcwy",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Pulls Off Ron Magic And Chat Can't Believe It",
+      "kind": "twitch_clip",
+      "ts": "2026-10-16T13:28:14.560448+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }

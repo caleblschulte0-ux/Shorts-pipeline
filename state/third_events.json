@@ -4562,16 +4562,16 @@
       "published_versions": [],
       "last_updated": "2026-10-15"
     },
-    "pikabooirl-duel-opponent-2026w41": {
-      "event_id": "pikabooirl-duel-opponent-2026w41",
+    "pikabooirl-accus-duel-2026w41": {
+      "event_id": "pikabooirl-accus-duel-2026w41",
       "people": [
         "pikabooirl"
       ],
       "actions": [
+        "accus",
         "duel",
-        "opponent",
-        "payoo",
-        "pikabooirl"
+        "good",
+        "payoo"
       ],
       "event_type": "storyline",
       "first_seen": "2026-10-16",
@@ -4583,37 +4583,67 @@
       "published_versions": [],
       "last_updated": "2026-10-16"
     },
-    "plaqueboymax-chin-mouth-2026w42": {
-      "event_id": "plaqueboymax-chin-mouth-2026w42",
+    "xqc-believe-charact-2026w42": {
+      "event_id": "xqc-believe-charact-2026w42",
       "people": [
-        "plaqueboymax"
+        "xqc"
       ],
       "actions": [
-        "chin",
-        "mouth",
-        "plaqueboymax",
-        "rough"
+        "believe",
+        "charact",
+        "offic",
+        "police"
       ],
       "event_type": "storyline",
       "first_seen": "2026-10-16",
       "known_claims": [],
       "candidate_sources": [
-        "https://www.twitch.tv/plaqueboymax/clip/PeppyCrispyDonkeyKappa-vDcCpOvXdsrGuF18",
-        "https://www.twitch.tv/plaqueboymax/clip/DreamyPuzzledMushroom4Head-yBuKIUDx_uI2M5xi"
+        "https://www.twitch.tv/xqc/clip/FrailDullWatercressTheThing-DWH7T9vcg6gdLbAR",
+        "https://www.twitch.tv/xqc/clip/TransparentProductiveAntTBCheesePull-ZHgbQBb2YysBHbYw",
+        "https://www.twitch.tv/xqc/clip/SmellyObedientMeatloafAliens-VVcb46rSOt_mGtVi"
       ],
       "published_versions": [],
       "last_updated": "2026-10-16"
     },
-    "cinna-charact-cinna-2026w42": {
-      "event_id": "cinna-charact-cinna-2026w42",
+    "2xrakai-daplug-fsclipsss-kaicenat-undercookedclips-about-cenat-2026w41": {
+      "event_id": "2xrakai-daplug-fsclipsss-kaicenat-undercookedclips-about-cenat-2026w41",
+      "people": [
+        "2xrakai",
+        "daplug",
+        "fsclipsss",
+        "kaicenat",
+        "undercookedclips"
+      ],
+      "actions": [
+        "about",
+        "cenat",
+        "proof",
+        "reggie"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-16",
+      "known_claims": [],
+      "candidate_sources": [
+        "https://www.twitch.tv/kaicenat/clip/MildInspiringStorkNerfRedBlaster-txnQqPC2ANXWFYiJ",
+        "https://www.youtube.com/watch?v=2jZLHMnhOYo",
+        "https://www.youtube.com/watch?v=r_JnFZvSB5s",
+        "https://www.youtube.com/watch?v=ugGc8iwgXWU",
+        "https://www.twitch.tv/kaicenat/clip/ObeseOptimisticVampireEagleEye-Hjdc_814uO3OZkH-",
+        "https://www.twitch.tv/2xrakai/clip/RoundClumsyEndivePanicVis-tBekHF3pz59St4Hn"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-16"
+    },
+    "cinna-about-charact-2026w42": {
+      "event_id": "cinna-about-charact-2026w42",
       "people": [
         "cinna"
       ],
       "actions": [
+        "about",
         "charact",
         "cinna",
-        "driv",
-        "kalita"
+        "driv"
       ],
       "event_type": "storyline",
       "first_seen": "2026-10-16",
@@ -4648,45 +4678,23 @@
       "published_versions": [],
       "last_updated": "2026-10-16"
     },
-    "ishowspeed-ishowspe-manchest-2026w38": {
-      "event_id": "ishowspeed-ishowspe-manchest-2026w38",
+    "ludwig-gain-hour-2026w42": {
+      "event_id": "ludwig-gain-hour-2026w42",
       "people": [
-        "ishowspeed"
+        "ludwig"
       ],
       "actions": [
-        "ishowspe",
-        "manchest",
-        "peace",
-        "tiktok"
+        "gain",
+        "hour",
+        "ludwig",
+        "tournament"
       ],
       "event_type": "storyline",
       "first_seen": "2026-10-16",
       "known_claims": [],
       "candidate_sources": [
-        "vodmine://2875841671/1012-1252",
-        "https://www.twitch.tv/ishowspeed/clip/MagnificentCaringLapwingLitFam--mAJF-ezbaOYkTFm",
-        "vodmine://2875841671/1265-1505"
-      ],
-      "published_versions": [],
-      "last_updated": "2026-10-16"
-    },
-    "ishowspeed-charact-cinna-2026w42": {
-      "event_id": "ishowspeed-charact-cinna-2026w42",
-      "people": [
-        "ishowspeed"
-      ],
-      "actions": [
-        "charact",
-        "cinna",
-        "face",
-        "hospital"
-      ],
-      "event_type": "storyline",
-      "first_seen": "2026-10-16",
-      "known_claims": [],
-      "candidate_sources": [
-        "https://www.twitch.tv/ishowspeed/clip/FilthyDepressedSandstormKeyboardCat-EEcCtMDnfTLKP_q1",
-        "https://www.twitch.tv/ishowspeed/clip/TriumphantArtisticPlumageMrDestructoid-u5Wdapw98-mqa4WN"
+        "https://www.twitch.tv/ludwig/clip/BloodyAgreeableSheepDoubleRainbow-XdkDoBG103zF-4p7",
+        "https://www.twitch.tv/ludwig/clip/GenerousSarcasticRuffRickroll-q92hhthP6BKpuBJO"
       ],
       "published_versions": [],
       "last_updated": "2026-10-16"
