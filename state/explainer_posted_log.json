@@ -3638,6 +3638,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 66,
       "duration_s": 27.8
+    },
+    "big-mac-index-currency-gap": {
+      "claimed_at": "2026-10-16T16:52:48.377512+00:00",
+      "title": "A Big Mac Costs 9 Dollars In Switzerland. 2 In Taiwan.",
+      "publish_at": "2026-10-16T21:48:38Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4587,6 +4594,14 @@
       "state": "posted",
       "slug": "rabies-prevention-gap",
       "at": "2026-10-16T15:48:49.829258+00:00"
+    },
+    {
+      "claimed_at": "2026-10-16T16:52:48.377512+00:00",
+      "title": "A Big Mac Costs 9 Dollars In Switzerland. 2 In Taiwan.",
+      "publish_at": "2026-10-16T21:48:38Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "big-mac-index-currency-gap"
     }
   ]
 }
