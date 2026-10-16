@@ -13671,6 +13671,25 @@
         "end": 20.0
       },
       "director_cut": true
+    },
+    "rejected-relentlesssincerebork4head-w0ecadnuoks9ubdg": {
+      "source_url": "https://www.twitch.tv/xqc/clip/RelentlessSincereBork4Head-W0EcADnUOKs9uBdG",
+      "streamer": "xqc",
+      "title": "Dean disses xQcs driving skills",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (routine GTA RP driving, no visible event)",
+      "ts": "2026-10-16T12:01:46.138533+00:00"
+    },
+    "clip-20261016-1": {
+      "pending": true,
+      "source_url": "https://kick.com/adinross/clips/clip_01M4YFR37NS1N34AEVJCSGXNCR",
+      "story_key": null,
+      "streamer": "adinross",
+      "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Talk Gets Heated",
+      "kind": "twitch_clip",
+      "ts": "2026-10-16T12:08:03.825806+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
