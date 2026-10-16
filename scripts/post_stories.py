@@ -278,6 +278,8 @@ def _creative_facts(slug: str, sc: dict, mp4: Path, verdict: dict | None) -> dic
         facts["style_arm"] = _st.get("style_arm") or "current"
         if isinstance(_st.get("tts"), dict):     # which voice narrated it
             facts["tts"] = _st["tts"].get("engine")
+            if _st["tts"].get("why_not_gemini") and _st["tts"].get("engine") != "gemini":
+                facts["tts_why_not_gemini"] = _st["tts"]["why_not_gemini"]
             if _st["tts"].get("why_not_elevenlabs"):
                 facts["tts_why_not_elevenlabs"] = _st["tts"]["why_not_elevenlabs"]
         if _st.get("style_arm") == "illustrated":

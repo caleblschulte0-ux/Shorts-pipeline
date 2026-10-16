@@ -590,6 +590,9 @@ jobs:
           TTS_CACHE_DIR: cache/tts
           # The narrator: a voice number from the voice lab page (1-5) and
           # full | turbo. Repo variables, so a pick needs no code change.
+          # The narrator (caaleb, 2026-10-16): a Google Gemini voice on
+          # GEMINI_API_KEY's free quota, Chatterbox only when it cannot.
+          GEMINI_TTS_VOICE: ${{ vars.GEMINI_TTS_VOICE || 'Charon' }}
           CHATTERBOX_VOICE: ${{ vars.CHATTERBOX_VOICE || '38' }}
           CHATTERBOX_MODEL: ${{ vars.CHATTERBOX_MODEL || 'full' }}
           # PUBLISH OPT-IN. The editorial gate's freeze (PUBLISH_ENABLED) is the

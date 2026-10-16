@@ -484,7 +484,7 @@ def _speechify_try(text: str, out_wav: Path, key: str, voice: str, model: str):
 #: used. Recorded on the video (its style sidecar -> the posted log) so a day
 #: that silently fell back to the local voice is visible, not assumed.
 TTS_USED = {"engine": None, "voice": None, "why_not_elevenlabs": None,
-            "why_not_chatterbox": None}
+            "why_not_chatterbox": None, "why_not_gemini": None}
 _ELEVEN_DEAD = None       # the reason ElevenLabs is off for the rest of the run
 
 
@@ -747,6 +747,36 @@ def _speechify_list_voices_once(key: str) -> None:
         print(f"[tts] speechify voices list failed: {str(e)[:140]}", file=sys.stderr)
 
 
+def _gemini_lines(texts: list[str], workdir: Path) -> list[Path] | None:
+    """Every line in the channel's Gemini voice (shared/gemini_voice.py),
+    through the line cache: only lines it has not voiced before are asked
+    for, so the free daily quota goes on new words. None — with the reason
+    in TTS_USED — if any line fails, and the next engine voices it all."""
+    try:
+        from shared import gemini_voice as gv
+    except Exception as e:  # noqa: BLE001
+        TTS_USED["why_not_gemini"] = f"import failed: {e}"
+        return None
+    if not gv.available():
+        TTS_USED["why_not_gemini"] = gv.LAST_FAILURE or (
+            "no GEMINI_API_KEY" if not gv._key() else "every model is off for this run")
+        return None
+    name = gv.voice()
+    outs = [workdir / f"s{i}.wav" for i in range(len(texts))]
+    keys = [_tts_cache_path("gemini", name, gv.cache_model(), t) for t in texts]
+    todo = [i for i in range(len(texts)) if not _tts_cache_get(keys[i], outs[i])]
+    if todo:
+        got = gv.maybe_voice([texts[i] for i in todo], [outs[i] for i in todo],
+                             normalize=_tts_text)
+        if got is None:
+            TTS_USED["why_not_gemini"] = gv.LAST_FAILURE or "a line failed"
+            return None
+        for i in todo:
+            _tts_cache_put(keys[i], outs[i])
+    TTS_USED["voice"] = f"gemini {name}"
+    return outs
+
+
 def _chatterbox_lines(texts: list[str], workdir: Path) -> list[Path] | None:
     """Every line in the Chatterbox clone (engines/chatterbox_tts.py), through
     the line cache: only the lines it has not voiced before go to the model,
@@ -811,17 +841,31 @@ def synth_narration(sentences, workdir: Path, voice: str):
     # everything.
     wavs, windows, t = [], [], 0.0
     TTS_USED.update(engine=None, voice=None, why_not_elevenlabs=None,
-                    why_not_chatterbox=None)
+                    why_not_chatterbox=None, why_not_gemini=None)
     # PACE (operator, 2026-10-05: "15 seconds per beat is far too long").
     # Speechify's natural rate measured 130 words a minute on the posted
     # videos; every engine's lines play at the registry's tempo, applied
     # PER LINE before its length is measured so the windows stay exact.
     tempo = _tempo()
-    # CHATTERBOX FIRST (operator, 2026-10-08, on the voice lab: a clone of a
+    # GEMINI FIRST (caaleb, 2026-10-16, of the round-14 Google voices after
+    # every clone sounded "robotic": "I like these voices"). Free within a
+    # daily quota; a video it cannot voice whole goes to Chatterbox, then
+    # ElevenLabs/Speechify/Kokoro as before.
+    gm = _gemini_lines([_tts_text(s) for s in sentences], workdir)
+    if gm:
+        for w in gm:
+            _retime(w, tempo)
+            d = _dur(w) + 0.12
+            windows.append((t, t + d)); t += d; wavs.append(w)
+        TTS_USED["engine"] = "gemini"
+        print(f"[tts] {TTS_USED.get('voice')} ({len(wavs)} lines)", flush=True)
+    else:
+        print(f"[tts] Gemini NOT used: {TTS_USED['why_not_gemini']}", flush=True)
+    # CHATTERBOX NEXT (operator, 2026-10-08, on the voice lab: a clone of a
     # real narrator "lowkey sound[s] better than eleven labs", and it is
     # free). It runs on the runner's CPU; a line it cannot voice cleanly
     # hands the whole video to ElevenLabs/Speechify/Kokoro as before.
-    cb = _chatterbox_lines([_tts_text(s) for s in sentences], workdir)
+    cb = None if wavs else _chatterbox_lines([_tts_text(s) for s in sentences], workdir)
     if cb:
         for w in cb:
             _retime(w, tempo)
@@ -830,7 +874,7 @@ def synth_narration(sentences, workdir: Path, voice: str):
         TTS_USED["engine"] = "chatterbox"
         print(f"[tts] chatterbox {TTS_USED.get('voice')} ({len(wavs)} lines)",
               flush=True)
-    else:
+    elif not wavs:
         print(f"[tts] Chatterbox NOT used: {TTS_USED['why_not_chatterbox']}",
               flush=True)
     if not wavs:

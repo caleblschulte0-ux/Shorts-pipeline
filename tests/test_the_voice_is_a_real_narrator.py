@@ -227,9 +227,11 @@ class ChatterboxGoesFirstAndWhole(unittest.TestCase):
         calls = [n.func.id for n in ast.walk(ast.parse(src.lstrip()))
                  if isinstance(n, ast.Call) and isinstance(n.func, ast.Name)]
         self.assertIn("_chatterbox_lines", calls)
-        order = [c for c in calls if c in ("_chatterbox_lines", "_elevenlabs_wav",
-                                           "_speechify_wav")]
-        self.assertEqual(order[0], "_chatterbox_lines")
+        order = [c for c in calls if c in ("_gemini_lines", "_chatterbox_lines",
+                                           "_elevenlabs_wav", "_speechify_wav")]
+        # Gemini leads since 2026-10-16 (tests/test_the_voice_is_directed.py);
+        # Chatterbox is still ahead of anything paid.
+        self.assertEqual(order[:2], ["_gemini_lines", "_chatterbox_lines"])
 
 
 class ItsProcessHoldsNoSecret(unittest.TestCase):
