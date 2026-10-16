@@ -713,6 +713,13 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   mid-sentence" in the same verdict: *"That was not very good"*): a
   `missing_context`, `confusing`, `misleading` or `weak_payoff` note, or
   a cut it says stops mid-sentence, caps the score at `UNFINISHED_MAX`.
+- **A story a backtest PASSES reaches the channel** (operator, 2026-10-16:
+  *"Go"*, after search 31's 88 had no way to post). `backtest-preview.yml`
+  records each passing plan in `state/third_proven_stories.json`
+  (`backtest_preview.promote`); the channel's next run takes it first
+  (`run_third._proven_clusters`), re-analyses, revalidates, re-renders and
+  judges it again at the same 80. Nothing about it is trusted but where to
+  start. `tests/test_a_story_that_passes_a_search_reaches_the_channel.py`.
 - **A plan is READ before it is rendered, and a near-miss KEEPS ITS EDIT**
   (2026-10-08, backtests 7-8). The critic reads the words a plan would
   hold (`story.plan_ledger`, held equal to the render's ledger) and the

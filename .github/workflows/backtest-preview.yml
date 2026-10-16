@@ -45,11 +45,27 @@ jobs:
       - name: Pick each story's finished cut
         run: |
           set -euo pipefail
-          python scripts/backtest_preview.py dl "$RUNNER_TEMP/payload"
+          python scripts/backtest_preview.py dl "$RUNNER_TEMP/payload" \
+            state/third_proven_stories.json
           du -sh "$RUNNER_TEMP/payload"
           # out of dl/ now: the orphan-branch path below cleans the tree
           carry="$(find dl -name carry.json | head -1)"
           [ -n "$carry" ] && cp "$carry" "$RUNNER_TEMP/carry.json" || true
+
+      # A story that PASSED goes to main, where the channel's next real
+      # run re-renders it, judges it again at the same bar and posts it
+      # only if it clears (run_third._proven_clusters). Nothing is
+      # uploaded from here.
+      - name: Record passing stories for the channel
+        run: |
+          set -uo pipefail
+          if [ -n "$(git status --porcelain state/third_proven_stories.json)" ]; then
+            bash scripts/ci_commit_state.sh \
+              "third: story backtest $RUN_ID passed a story [skip ci]" \
+              state/third_proven_stories.json
+          else
+            echo "no passing story to record"
+          fi
 
       - name: Publish to the preview-renders orphan branch
         run: |
