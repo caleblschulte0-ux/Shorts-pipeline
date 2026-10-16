@@ -13867,14 +13867,32 @@
       "ts": "2026-10-16T13:25:50.024596+00:00"
     },
     "clip-20261016-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/AntsyTenuousCaterpillarThunBeast-npvhBPqCmH8ihcwy",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/EHCmhxJkiWQ",
       "title": "Stableronaldo Pulls Off Ron Magic And Chat Can't Believe It",
       "kind": "twitch_clip",
-      "ts": "2026-10-16T13:28:14.560448+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-16T13:28:23.493335+00:00",
+      "uploaded_at": "2026-10-16T13:28:23.493348+00:00",
+      "publish_at": "2026-10-17T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261016-stableronaldo-pulls-off-ron-magic-and-chat-can-t-d58a5399",
+        "tiktok": "queued for 2026-10-17T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/AntsyTenuousCaterpillarThunBeast-npvhBPqCmH8ihcwy",
+      "streamer": "stableronaldo",
+      "series": "chaos",
+      "hook": "Stableronaldo checks the other pocket \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1900,
+      "banger": 0.55,
+      "cut": {
+        "start": 3.5,
+        "end": 15.1
+      },
+      "director_cut": true
     }
   }
 }
