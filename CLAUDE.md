@@ -169,7 +169,12 @@ ever make ones on the fly"*): `host("grip", ..., hands=[(x, y), (x, y)])`
 puts his two hands on two of the scene's own points every frame
 (`mascot_director.grip_wrists`), lift/open/raise/drag ask for it
 (`VERB_TOOLS`), out of reach is refused (`scene_author.grip_problems`),
-prompt rule 20. `tests/test_data_does_it_with_his_own_hands.py`. Add a tool act with its verb,
+prompt rule 20. `tests/test_data_does_it_with_his_own_hands.py`. And what is WORN
+wraps the body (operator, 2026-10-16, of rabies dogs in floating blue
+hoops: *"look how shit these collars look"*): the kit's `dog` has a
+collar that is a band on the neck, prompt rule 21 holds every collar,
+strap and hat to that, and the look again looks for it.
+`tests/test_what_is_worn_wraps_the_body.py`. Add a tool act with its verb,
 its anchor at the business end, and the test that it RESOLVES.
 
 The RIG (how he is drawn) lives in `scripts/build_mascot_svg.py` and is the

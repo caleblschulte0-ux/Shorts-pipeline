@@ -523,6 +523,135 @@ def hen(cr, x, y, s, t, i=0, flip=False):
     cr.restore()
 
 
+
+#: A dog's coats: (coat, the far side in shadow, the chest and muzzle).
+COATS = {"tan": ((196, 142, 84), (150, 104, 60), (240, 226, 204)),
+         "black": ((60, 56, 58), (36, 34, 36), (226, 220, 212)),
+         "white": ((244, 240, 232), (206, 200, 190), (252, 250, 246)),
+         "brown": ((122, 80, 50), (88, 56, 36), (214, 186, 150))}
+
+#: Where a dog's collar sits, as a fraction of the way up its neck.
+COLLAR_AT = 0.42
+
+
+def _neck(p):
+    """The dog's neck, in its own units: the back edge and the throat edge
+    at fraction `p` of the way from the shoulders to the head."""
+    bx, by = 34 + 26 * p, -98 - 44 * p
+    fx, fy = 52 + 30 * p, -70 - 44 * p
+    return (bx, by), (fx, fy)
+
+
+def dog(cr, x, y, s, t, i=0, flip=False, coat="tan", collar=None, tag=None):
+    """A dog standing side-on at (x, y) (its feet), facing right, s ~1 is
+    150px tall, tail wagging (i staggers it). `collar` (rgb) is a band that
+    WRAPS its neck; `tag` (rgb) hangs from it at the throat. Returns where
+    the collar's tag hangs, (x, y), for a label or a hand."""
+    fur, far, pale = COATS.get(coat, COATS["tan"])
+    wag = math.sin(t * 7.0 + i * 1.3)
+    sniff = 0.5 + 0.5 * math.sin(t * 1.6 + i * 2.1)
+    contact_shadow(cr, x, y + 2 * s, 150 * s, a=0.38)
+    cr.save()
+    cr.translate(x, y)
+    cr.scale(-s if flip else s, s)
+
+    def hind(lx, rgb, lean=0.0):
+        cr.move_to(lx - 14, -78)                       # thigh to hock to paw
+        cr.curve_to(lx - 22, -56, lx - 18, -38, lx - 12 + lean, -26)
+        cr.curve_to(lx - 10 + lean, -16, lx - 4 + lean, -8, lx - 3 + lean, -4)
+        cr.curve_to(lx - 4 + lean, 1, lx + 10 + lean, 1, lx + 11 + lean, -3)
+        cr.curve_to(lx + 6 + lean, -10, lx + 2 + lean, -20, lx + 2, -32)
+        cr.curve_to(lx + 8, -44, lx + 14, -60, lx + 12, -80)
+        cr.close_path()
+        solid(cr, rgb, rim=False, depth=0.6)
+
+    def fore(lx, rgb, lean=0.0):
+        cr.move_to(lx - 9, -70)                        # shoulder to paw
+        cr.curve_to(lx - 9, -44, lx - 6 + lean, -20, lx - 5 + lean, -5)
+        cr.curve_to(lx - 6 + lean, 1, lx + 10 + lean, 1, lx + 11 + lean, -3)
+        cr.curve_to(lx + 5 + lean, -8, lx + 6, -40, lx + 9, -70)
+        cr.close_path()
+        solid(cr, rgb, rim=False, depth=0.6)
+
+    hind(-40, far, -2)                                 # the far legs
+    fore(32, far, 2)
+    hind(-30, fur, 2)                                  # the near legs, their
+    fore(44, fur, -2)                                  # tops under the body
+    cr.move_to(-58, -86)                               # tail
+    cr.curve_to(-78, -92 - 8 * wag, -86, -112 - 10 * wag,
+                -80 + 10 * wag, -132)
+    cr.curve_to(-76 + 8 * wag, -118 - 6 * wag, -70, -100, -54, -78)
+    cr.close_path()
+    solid(cr, fur, rim=False)
+    (b0x, b0y), (f0x, f0y) = _neck(0.0)
+    (b1x, b1y), (f1x, f1y) = _neck(1.0)
+    # body and neck, ONE silhouette: rump, back, up the neck, down the
+    # throat to the chest, the belly tucked up behind the ribs
+    cr.move_to(-62, -82)
+    cr.curve_to(-64, -100, -40, -104, -4, -100)
+    cr.curve_to(14, -98, 26, -98, b0x, b0y)
+    cr.curve_to(b0x + 8, b0y - 18, b1x - 4, b1y + 14, b1x, b1y)
+    cr.line_to(f1x, f1y)
+    cr.curve_to(f1x - 6, f1y + 18, f0x + 8, f0y - 10, f0x + 4, f0y + 4)
+    cr.curve_to(58, -58, 48, -48, 30, -50)
+    cr.curve_to(10, -52, -6, -60, -24, -58)
+    cr.curve_to(-44, -54, -60, -60, -62, -82)
+    cr.close_path()
+    solid(cr, fur)
+    cr.move_to(f0x - 8, f0y - 2)                       # pale chest
+    cr.curve_to(f0x, f0y - 6, f0x + 6, f0y, f0x + 3, f0y + 8)
+    cr.curve_to(f0x - 2, f0y + 18, f0x - 14, f0y + 18, f0x - 18, f0y + 12)
+    cr.close_path()
+    solid(cr, pale, edge=False, rim=False, depth=0.5)
+    hx, hy = 76 + 2 * sniff, -140 + 3 * sniff
+    cr.move_to(hx - 22, hy + 4)                        # head and muzzle
+    cr.curve_to(hx - 24, hy - 18, hx - 4, hy - 24, hx + 8, hy - 16)
+    cr.curve_to(hx + 18, hy - 10, hx + 34, hy - 8, hx + 40, hy - 2)
+    cr.curve_to(hx + 44, hy + 4, hx + 40, hy + 12, hx + 30, hy + 12)
+    cr.curve_to(hx + 16, hy + 14, hx + 4, hy + 20, hx - 8, hy + 18)
+    cr.curve_to(hx - 18, hy + 16, hx - 22, hy + 10, hx - 22, hy + 4)
+    cr.close_path()
+    solid(cr, fur)
+    cr.move_to(hx + 14, hy + 4)                        # pale muzzle
+    cr.curve_to(hx + 24, hy - 2, hx + 38, hy - 2, hx + 40, hy + 4)
+    cr.curve_to(hx + 38, hy + 12, hx + 22, hy + 14, hx + 12, hy + 12)
+    cr.close_path()
+    solid(cr, pale, edge=False, rim=False, depth=0.5)
+    cr.move_to(hx - 12, hy - 14)                       # ear
+    cr.curve_to(hx - 14, hy - 30, hx - 8, hy - 42, hx - 4, hy - 44)
+    cr.curve_to(hx + 0, hy - 34, hx + 2, hy - 22, hx + 2, hy - 16)
+    cr.close_path()
+    solid(cr, far, rim=False)
+    disc(cr, hx + 41, hy + 1, 4.5, (30, 26, 26), finish="gloss")  # nose
+    disc(cr, hx + 8, hy - 6, 3.2, (26, 22, 22), finish="gloss")   # eye
+    hang = None
+    if collar is not None:
+        # THE COLLAR WRAPS THE NECK: a band from the back edge to the throat,
+        # bowed the way a strap round a cylinder bows, never an outline ring
+        # floating over the head (operator, 2026-10-16, of rabies-video dogs
+        # in blue hoops: "look how shit these collars look").
+        w = 0.16
+        (ba, fa), (bb, fb) = _neck(COLLAR_AT - w / 2), _neck(COLLAR_AT + w / 2)
+        cr.move_to(*ba)
+        cr.curve_to(ba[0] + 6, ba[1] + 8, fa[0] - 6, fa[1] + 4, *fa)
+        cr.line_to(*fb)
+        cr.curve_to(fb[0] - 6, fb[1] + 4, bb[0] + 6, bb[1] + 8, *bb)
+        cr.close_path()
+        solid(cr, collar, finish="gloss", rim=False, depth=0.7)
+        (_, (fx, fy)) = _neck(COLLAR_AT)
+        sway = 2.5 * math.sin(t * 5.0 + i)
+        tx, ty = fx + 2 + sway, fy + 9
+        cr.set_source_rgba(*_c((180, 184, 190)))
+        cr.set_line_width(1.6)
+        cr.move_to(fx - 1, fy + 1)
+        cr.line_to(tx, ty - 4)
+        cr.stroke()
+        disc(cr, tx, ty, 5.0, tag or (226, 190, 80), finish="metal")
+        hang = (x + (-tx if flip else tx) * s, y + ty * s)
+    cr.restore()
+    return hang
+
+
 # ------------------------------------------------------- SCALE IN THE SHOT ---
 # Operator, 2026-10-07, on a bar strip laid over the top of the frame: "boxes
 # on top of the video doesn't help ... it just needs to be able to more
