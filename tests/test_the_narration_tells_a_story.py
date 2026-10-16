@@ -103,6 +103,13 @@ class TheRetell(unittest.TestCase):
             self.sc["segments"][0]["say"] = ("Measles infects 15 people per "
                                              "case; the flu infects 1.3.")
             self.sc.pop("retold", None)
+        # nor may the COPY on disk say it was retold: the live queue retells
+        # this story for real, and then "never saved" reads its stamp
+        cfg = json.loads(self.cfg.read_text())
+        for st in cfg["stories"]:
+            if st["slug"] == SLUG:
+                st.pop("retold", None)
+        self.cfg.write_text(json.dumps(cfg))
         self.assertTrue(N.problems(self.sc))
 
     def tearDown(self):

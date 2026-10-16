@@ -42,12 +42,21 @@ THE HOOK is the first sentence the viewer hears, over the first frame. It is \
 a TMZ / YouTube clickbait headline about a TRUE story: it has to stop a thumb \
 mid-scroll. Clickbait, never a scam.
 
+THE BAR (operator, 2026-10-15, of a Panama Canal video that opened on "The \
+Panama Canal is down to 24 ships a day, and a drought did it"): "The Panama \
+Canal is drying up, and it might already be too late." Fear and stakes, \
+in plain words, no number. Nobody knows whether 24 ships a day is a lot: a \
+number the viewer cannot size is not a hook. And the hook is NOT beat one \
+said early: beat one comes straight after it and gives the number, so the \
+hook says what that number MEANS and never the number beat one says.
+
 IT IS THE STORY, NOT THE STATISTIC. Find the drama in the data and say THAT:
   - the twist: what everyone believed, and it was backwards. "Doctors told \
 parents to keep peanuts away from babies. It backfired."
   - the villain or the blame: who did it, who got it wrong, who is paying.
   - the loss or the threat: what is being taken from the viewer, what is \
-coming for them. "Your diamond ring is worth almost nothing now."
+coming for them. "Your diamond ring is worth almost nothing now." "The \
+Panama Canal is drying up, and it might already be too late."
   - the comeback, the collapse, the record nobody saw coming.
   - the secret: what is happening that people are not looking at.
   Then the video proves it with the numbers. The hook does not read them out.
@@ -78,7 +87,9 @@ is not "gone", one trial is not "everyone".
   - Quiz or trivia openers: "Which animal...", "Did you know...", "Can you \
 guess...", "You won't believe...". A question is fine only if it accuses \
 ("Why is your coffee twice the price?").
-  - Hedges (might, may, perhaps), vague size words ("astonishing", \
+  - Hedges on the FACT ("it may have dropped", "perhaps"). A threat is not \
+a hedge: "it might already be too late", "it may never come back" is the \
+stakes, and is how a scary true story is told. Vague size words ("astonishing", \
 "gargantuan"), and scam tells ("click", "free", ALL CAPS).
 """
 
@@ -91,6 +102,13 @@ _HEDGE = re.compile(r"\b(might|may|possibly|perhaps|somewhat|a bit|arguably|"
                     r"kind of|sort of|some say)\b", re.I)
 _SCAM = re.compile(r"\b(click|link|free|guaranteed|doctors hate|one weird "
                    r"trick|subscribe)\b", re.I)
+#: A threat said as a possibility is the stakes, not a hedge: "the Panama
+#: Canal is drying up, and it might already be too late" (operator,
+#: 2026-10-15) — the hook they wrote themselves, which the hedge rule refused.
+_STAKE = re.compile(r"\b(might|may|could)\s+(already\s+|soon\s+|never\s+|not\s+)*"
+                    r"(be\s+too\s+late|be\s+gone|be\s+over|run\s+(dry|out)|"
+                    r"come\s+back|recover|survive|last|be\s+next|be\s+yours)\b",
+                    re.I)
 _SHOUT = re.compile(r"\b[A-Z]{4,}\b")
 _ACCUSE = re.compile(r"^\s*why (is|are|did|do|does) (your|you)\b", re.I)
 #: A size said with no size: "Your nose can detect an astonishing number of
@@ -138,7 +156,7 @@ def floor(line: str) -> list:
         out.append(f"long ({words} words)")
     if _QUIZ.match(s) and not _ACCUSE.match(s):
         out.append("quiz opener")
-    if _HEDGE.search(s):
+    if _HEDGE.search(_STAKE.sub(" ", s)):
         out.append("hedge")
     if _SCAM.search(s) or _SHOUT.search(s):
         out.append("scam tell")
@@ -252,6 +270,32 @@ def problems(line: str, story_cfg: dict, allowed: set, label_words: set) -> list
     return out
 
 
+def repeats_beat_one(line: str, story_cfg: dict) -> list:
+    """Why this hook is beat one said twice. Empty = it is not.
+
+    Operator, 2026-10-15: "we say, the Panama Canal ... only 24 ships could
+    go a day, and then we say that twice." The hook said 24 and the drought,
+    and beat one, straight after, said 24 and the drought again. Beat one
+    gives the number; the hook may not say a number beat one says.
+    """
+    segs = story_cfg.get("segments") or []
+    if not segs:
+        return []
+    said = {_num(t) for t in _FIGURE.findall(str(segs[0].get("say") or ""))}
+    said.discard(None)
+    mine = {_num(t) for t in _FIGURE.findall(" ".join(str(line or "").split()))}
+    both = sorted(x for x in mine & said if x is not None)
+    return ([f"says {both[0]:g}, which beat one says right after it: say what "
+             f"it means instead"] if both else [])
+
+
+def _num(tok: str):
+    try:
+        return float(re.sub(r"[^\d.]", "", tok).rstrip(".") or "x")
+    except ValueError:
+        return None
+
+
 def _facts_text(facts: list) -> str:
     return "\n".join(
         f"  - {f['value']:,g} {f['unit']}"
@@ -274,8 +318,10 @@ def _prompt(story_cfg: dict, n: int, facts: list | None = None,
                          f"  - {c} -> {w}" for c, w in refused.items()))
     return (DOCTRINE + "\n" + "\n".join(lines) +
             f"\n\nWrite {n} different hooks for THIS story, strongest first. "
-            "The hook is spoken over BEAT 1's picture, so any number in it "
-            "must be one BEAT 1 says — the viewer has to see it on screen. "
+            "The hook is spoken over BEAT 1's picture and BEAT 1 is said "
+            "straight after it: never repeat what BEAT 1 says, and never a "
+            "number BEAT 1 says. The strongest hook usually has no number "
+            "at all. "
             "Return STRICT "
             'JSON: {"hooks": [str, ...]}')
 
@@ -312,13 +358,21 @@ number of nothing, "your" stuck on something that is not the viewer's, a \
 thing "vanished" that did not);
   - it sounds like ad copy or a template nobody would say out loud \
 ("...and nobody told you", "...shocking everyone", "your town feels it");
-  - it is a quiz, a hedge, or vague ("astonishing", "gargantuan").
+  - it is a quiz, a hedge on the fact, or vague ("astonishing", \
+"gargantuan");
+  - it says what the story's first beat says (the same fact, the same \
+number): the viewer hears beat one right after it.
+
+A threat said as a possibility ("it might already be too late") is the \
+stakes, not a claim, when the story shows the threat coming.
 
 Then RANK the lines that pass, best first, as a TMZ / YouTube clickbait \
 editor would: which one would actually make YOU stop scrolling? Drama beats \
 data: a twist, a villain, a loss, a comeback or a secret beats a statistic \
 read aloud. A line that recites numbers ("went from 0.4% to 1.4%") ranks \
-below a line that says what they MEAN.
+below a line that says what they MEAN, and so does a number a viewer cannot \
+size: "down to 24 ships a day" ranks below "The Panama Canal is drying up, \
+and it might already be too late."
 
 STORY:
 {say}
@@ -402,7 +456,7 @@ def sharpen(story_cfg: dict, brain=_default_brain, n: int = 6,
     survived, or there is no verdict.
     """
     old = str(story_cfg.get("hook") or "").strip()
-    why_old = floor(old)
+    why_old = floor(old) + repeats_beat_one(old, story_cfg)
     if why_old:
         # a line under the floor is worth nothing, however loud it is
         log(f"[hook] {old!r} must be rewritten: {why_old[0]}")
@@ -417,7 +471,8 @@ def sharpen(story_cfg: dict, brain=_default_brain, n: int = 6,
     for rnd in range(ROUNDS):
         cands = [] if why_old else [old]
         for cand in _ask(_prompt(story_cfg, n, facts, refused), brain):
-            why = problems(cand, story_cfg, allowed, label_words) + floor(cand)
+            why = (problems(cand, story_cfg, allowed, label_words) + floor(cand)
+                   + repeats_beat_one(cand, story_cfg))
             if why:
                 log(f"[hook] refused {cand!r}: {'; '.join(dict.fromkeys(why))}")
                 refused[cand] = "; ".join(dict.fromkeys(why))
