@@ -1,0 +1,19 @@
+{
+ "key": "usps_first_class_mail_volume_comparison",
+ "title": "First-Class Mail volume",
+ "unit": "billion",
+ "geography": "United States",
+ "time_coverage": "2001 (peak) vs 2023",
+ "source": {
+  "name": "First-Class Mail Since 1926 (historical volume table)",
+  "publisher": "United States Postal Service (USPS)",
+  "url": "https://about.usps.com/who/profile/history/pdf/first-class-mail-since-1926.pdf",
+  "officiality": "official",
+  "access_date": "2026-10-16"
+ },
+ "notes": "First-Class Mail pieces, USPS historical table. 2001 was the all-time peak (103.656 billion pieces); FY2023 volume was 45.982 billion pieces.",
+ "points": [
+  {"label": "2001 (peak)", "value": 103.7, "period": "2001"},
+  {"label": "2023", "value": 46.0, "period": "2023"}
+ ]
+}

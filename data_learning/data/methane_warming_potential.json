@@ -1,0 +1,19 @@
+{
+ "key": "methane_warming_potential",
+ "title": "Warming power relative to CO2 (20-year)",
+ "unit": "",
+ "geography": "Global (atmospheric chemistry)",
+ "time_coverage": "AR6 (2021)",
+ "source": {
+  "name": "Sixth Assessment Report (AR6), Working Group I",
+  "publisher": "Intergovernmental Panel on Climate Change (IPCC)",
+  "url": "https://www.ipcc.ch/report/ar6/wg1/",
+  "officiality": "official",
+  "access_date": "2026-10-16"
+ },
+ "notes": "20-year global warming potential (GWP20): methane traps roughly 80 times more heat than an equal mass of CO2 over a 20-year horizon, per IPCC AR6.",
+ "points": [
+  {"label": "Carbon dioxide", "value": 1},
+  {"label": "Methane (20-yr)", "value": 80}
+ ]
+}

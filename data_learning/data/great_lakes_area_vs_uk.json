@@ -1,0 +1,19 @@
+{
+ "key": "great_lakes_area_vs_uk",
+ "title": "Great Lakes combined surface area vs. the United Kingdom",
+ "unit": "square miles",
+ "geography": "United States / Canada vs United Kingdom",
+ "time_coverage": "current",
+ "source": {
+  "name": "Great Lakes facts and figures; The World Factbook (United Kingdom, land area)",
+  "publisher": "U.S. Environmental Protection Agency (EPA); Central Intelligence Agency (CIA)",
+  "url": "https://www.epa.gov/greatlakes/physical-features-great-lakes",
+  "officiality": "secondary",
+  "access_date": "2026-10-16"
+ },
+ "notes": "Combined surface area of the five Great Lakes (~94,250 sq mi, EPA) compared with the United Kingdom's land area (~93,628 sq mi, CIA World Factbook) -- nearly identical.",
+ "points": [
+  {"label": "Great Lakes surface area", "value": 94250},
+  {"label": "United Kingdom land area", "value": 93628}
+ ]
+}

@@ -1,0 +1,19 @@
+{
+ "key": "usps_total_mail_volume_trend",
+ "title": "Total USPS mail volume",
+ "unit": "billion",
+ "geography": "United States",
+ "time_coverage": "2006 (peak) vs 2025",
+ "source": {
+  "name": "State of the Postal Service report",
+  "publisher": "Postal Regulatory Commission (PRC)",
+  "url": "https://www.prc.gov/state-of-the-postal-service",
+  "officiality": "official",
+  "access_date": "2026-10-16"
+ },
+ "notes": "Total pieces of mail (all classes) delivered annually. FY2006 was the all-time peak; FY2025 is down nearly 50% from that peak.",
+ "points": [
+  {"label": "2006 (peak)", "value": 213, "period": "2006"},
+  {"label": "2025", "value": 109, "period": "2025"}
+ ]
+}

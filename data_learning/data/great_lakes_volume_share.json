@@ -1,0 +1,22 @@
+{
+ "key": "great_lakes_volume_share",
+ "title": "Volume of each Great Lake",
+ "unit": "cubic miles",
+ "geography": "United States / Canada (Great Lakes)",
+ "time_coverage": "current",
+ "source": {
+  "name": "Great Lakes facts and figures",
+  "publisher": "U.S. Environmental Protection Agency (EPA)",
+  "url": "https://www.epa.gov/greatlakes/physical-features-great-lakes",
+  "officiality": "official",
+  "access_date": "2026-10-16"
+ },
+ "notes": "Water volume of each Great Lake, in cubic miles. Lake Superior alone (2,900) holds more than the other four lakes combined (2,539).",
+ "points": [
+  {"label": "Superior", "value": 2900},
+  {"label": "Michigan", "value": 1180},
+  {"label": "Huron", "value": 850},
+  {"label": "Ontario", "value": 393},
+  {"label": "Erie", "value": 116}
+ ]
+}

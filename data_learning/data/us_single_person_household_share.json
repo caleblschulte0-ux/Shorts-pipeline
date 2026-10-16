@@ -1,0 +1,19 @@
+{
+ "key": "us_single_person_household_share",
+ "title": "Share of US households with one person",
+ "unit": "percent",
+ "geography": "United States",
+ "time_coverage": "1960 vs 2022",
+ "source": {
+  "name": "Current Population Survey, Figure HH-4 \"The Rise of Living Alone\"",
+  "publisher": "U.S. Census Bureau",
+  "url": "https://www.census.gov/data/tables/time-series/demo/families/households.html",
+  "officiality": "official",
+  "access_date": "2026-10-16"
+ },
+ "notes": "Percent of all US households made up of one person living alone.",
+ "points": [
+  {"label": "1960", "value": 13.1, "period": "1960"},
+  {"label": "2022", "value": 28.9, "period": "2022"}
+ ]
+}
