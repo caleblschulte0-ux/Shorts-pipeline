@@ -13812,14 +13812,50 @@
       "ts": "2026-10-16T12:38:29.634565+00:00"
     },
     "clip-20261016-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/cinna/clip/TransparentConfidentLionCclamChamp-UhAtz7nMNVAhvuxB",
-      "story_key": null,
-      "streamer": "cinna",
+      "url": "https://youtube.com/shorts/Zov07f9GblY",
       "title": "Cinna Gets Begged For Help By Tiffy As She Breaks Down \ud83d\ude2d",
       "kind": "twitch_clip",
-      "ts": "2026-10-16T12:41:30.697510+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-16T12:41:40.375665+00:00",
+      "uploaded_at": "2026-10-16T12:41:40.375679+00:00",
+      "publish_at": "2026-10-16T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261016-cinna-gets-begged-for-help-by-tiffy-as-she-break-a6751c7e",
+        "tiktok": "queued for 2026-10-16T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/cinna/clip/TransparentConfidentLionCclamChamp-UhAtz7nMNVAhvuxB",
+      "streamer": "cinna",
+      "series": "wholesome",
+      "hook": "Tiffy cries to Cinna for help \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2745,
+      "banger": 0.55,
+      "cut": {
+        "start": 2.0,
+        "end": 19.0
+      },
+      "director_cut": true
+    },
+    "rejected-humblebloodycasettebcouch-y8sfjjwhlwhbbmkk": {
+      "source_url": "https://www.twitch.tv/lacy/clip/HumbleBloodyCasetteBCouch-Y8sfJJWhLWHBBmkk",
+      "streamer": "lacy",
+      "title": "LL YUGI",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Car chat, inside joke, no event)",
+      "ts": "2026-10-16T12:42:19.597954+00:00"
+    },
+    "rejected-furioustawdrycockroachmrdestructoid-xtr-t-r4ohakofp1": {
+      "source_url": "https://www.twitch.tv/northernlion/clip/FuriousTawdryCockroachMrDestructoid-xtr-T-R4ohakoFP1",
+      "streamer": "northernlion",
+      "title": "lol",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Guessing game, off by 4,926x, low drama)",
+      "ts": "2026-10-16T12:43:26.501223+00:00"
     }
   }
 }
