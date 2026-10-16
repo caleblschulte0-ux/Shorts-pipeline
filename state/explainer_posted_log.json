@@ -3615,11 +3615,29 @@
       "duration_s": 22.9
     },
     "rabies-prevention-gap": {
-      "claimed_at": "2026-10-16T15:48:38.723055+00:00",
+      "url": "https://youtube.com/shorts/b8ch2wyEBXM",
       "title": "Rabies Still Kills 59,000 People A Year",
+      "at": "2026-10-16T15:48:49.829258+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.32,
+      "beat_s": [
+        3.26,
+        5.39,
+        7.32,
+        5.63,
+        6.31
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 66,
+      "duration_s": 27.8
     }
   },
   "uploads": [
@@ -4565,9 +4583,10 @@
       "claimed_at": "2026-10-16T15:48:38.723055+00:00",
       "title": "Rabies Still Kills 59,000 People A Year",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "rabies-prevention-gap"
+      "url": "https://youtube.com/shorts/b8ch2wyEBXM",
+      "state": "posted",
+      "slug": "rabies-prevention-gap",
+      "at": "2026-10-16T15:48:49.829258+00:00"
     }
   ]
 }
