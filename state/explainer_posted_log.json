@@ -3588,6 +3588,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 57,
       "duration_s": 29.0
+    },
+    "bank-branches-mobile-banking-crossover": {
+      "claimed_at": "2026-10-16T10:46:40.061679+00:00",
+      "title": "20,000 US Bank Branches Have Closed Since 2009",
+      "publish_at": "2026-10-16T11:08:23Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4519,6 +4526,14 @@
       "state": "posted",
       "slug": "amazon-warehouse-robot-army",
       "at": "2026-10-15T17:50:13.720437+00:00"
+    },
+    {
+      "claimed_at": "2026-10-16T10:46:40.061679+00:00",
+      "title": "20,000 US Bank Branches Have Closed Since 2009",
+      "publish_at": "2026-10-16T11:08:23Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "bank-branches-mobile-banking-crossover"
     }
   ]
 }
