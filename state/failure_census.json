@@ -2,55 +2,82 @@
  "n_verdicts": 20,
  "classes": {
   "other": {
-   "count": 6,
+   "count": 9,
    "stories": {
-    "billionaire-count-record-2025": 1,
     "secondhand-apparel-resale-boom": 1,
     "saharan-dust-feeds-amazon": 1,
     "panama-canal-drought-transit-cuts": 2,
-    "amazon-warehouse-robot-army": 1
+    "amazon-warehouse-robot-army": 1,
+    "sports_montreal_canadiens_t_inflatable": 1,
+    "rabies-prevention-gap": 2,
+    "livestock-methane-emissions": 1
    },
    "timestamps": [
-    "2026-10-14T17:43:53+00:00",
     "2026-10-15T10:46:04+00:00",
     "2026-10-15T13:22:42+00:00",
     "2026-10-15T13:52:53+00:00",
     "2026-10-15T14:30:23+00:00",
-    "2026-10-15T17:50:00+00:00"
+    "2026-10-15T17:50:00+00:00",
+    "2026-10-16T11:36:28+00:00",
+    "2026-10-16T14:43:57+00:00",
+    "2026-10-16T15:19:33+00:00",
+    "2026-10-16T17:52:32+00:00"
    ],
    "examples": [
-    "unreadable: The closing caption's last line 'too.' is printed on top of the 'Own the market' headline in seg4:start and seg4:mid, and sits right against '+195%' in seg4:end. Two text blocks collide at",
     "unreadable: In seg1:mid a ghosted '5x faster' title and a pale subtitle fade over the sky and cannot be read. In seg4:start the small 'Do you shop secondhand? Best find?' line sits low-contrast over t",
-    "unreadable: At seg1:mid, the outline of the scalloped dust wall runs straight through the small line 'lifted into the sky every year'. At seg1:end, 'of Sahara dust lifted a year \u00b7 30x the Great Pyrami"
+    "unreadable: At seg1:mid, the outline of the scalloped dust wall runs straight through the small line 'lifted into the sky every year'. At seg1:end, 'of Sahara dust lifted a year \u00b7 30x the Great Pyrami",
+    "unreadable: seg3:end: the caption 'higher and carry' fades grey over red and blue containers and you have to work it out on a phone. seg4:start: the closing line is stacked straight onto the '50 ft' h"
    ],
    "recurred_after_fix": false
   },
   "decorative_mascot": {
-   "count": 2,
+   "count": 4,
    "stories": {
     "secondhand-apparel-resale-boom": 1,
-    "amazon-warehouse-robot-army": 1
+    "amazon-warehouse-robot-army": 1,
+    "rabies-prevention-gap": 2
    },
    "timestamps": [
     "2026-10-15T10:46:04+00:00",
-    "2026-10-15T17:50:00+00:00"
+    "2026-10-15T17:50:00+00:00",
+    "2026-10-16T14:43:57+00:00",
+    "2026-10-16T15:48:36+00:00"
    ],
    "examples": [
     "decorative_mascot: In seg1:start and seg1:end Data stands under the clothesline waving and pointing while the garments hang themselves. In seg3:start through seg3:end he stands by the awning pole and ",
-    "decorative_mascot: Data waves or points beside the subject in nearly every beat: hook@0.3 waves at the conveyor, seg1:end waves beside the pod army, seg2:mid points at a building, seg3:start/mid point"
+    "decorative_mascot: Data waves or points beside the subject in nearly every beat: hook@0.3 waves at the conveyor, seg1:end waves beside the pod army, seg2:mid points at a building, seg3:start/mid point",
+    "decorative_mascot: In seg1:start-end Data stands beside the syringe and waves while the plunger moves by itself. In seg2:mid he stands on the globe's ring and points. In seg3:start-end he is hidden be"
    ],
    "recurred_after_fix": false
   },
   "dead_air": {
-   "count": 1,
+   "count": 3,
    "stories": {
-    "secondhand-apparel-resale-boom": 1
+    "secondhand-apparel-resale-boom": 1,
+    "rabies-prevention-gap": 2
    },
    "timestamps": [
-    "2026-10-15T10:46:04+00:00"
+    "2026-10-15T10:46:04+00:00",
+    "2026-10-16T14:43:57+00:00",
+    "2026-10-16T15:19:33+00:00"
    ],
    "examples": [
-    "dead_air: The closing (seg4:start, seg4:mid, payoff@-1.8, seg4:end, payoff@-0.4) holds the same storefront from seg3 with Data frozen in a cheer for about 4s. Only small walkers move, and the scene is"
+    "dead_air: The closing (seg4:start, seg4:mid, payoff@-1.8, seg4:end, payoff@-0.4) holds the same storefront from seg3 with Data frozen in a cheer for about 4s. Only small walkers move, and the scene is",
+    "dead_air: From seg3:end (20.9s) to payoff@-0.4 (27.6s) the dog yard does not change. Only the closing text is added, so the last beat and the closing look the same for about 6.5s.",
+    "dead_air: The picture from seg2:end (14.9s) is the same shot through seg3:start, seg3:mid, seg3:end, seg4:start, seg4:mid and seg4:end (26.96s). Data barely changes pose. For about 12s only text overl"
+   ],
+   "recurred_after_fix": false
+  },
+  "temporal_gate": {
+   "count": 1,
+   "stories": {
+    "saturn-rings-vanishing": 1
+   },
+   "timestamps": [
+    "2026-10-16T17:23:43+00:00"
+   ],
+   "examples": [
+    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.75s of 27.42s (~2.0s frozen)"
    ],
    "recurred_after_fix": false
   }
@@ -58,27 +85,27 @@
  "weak_dims": {
   "hook": {
    "median": 3,
-   "min": 1,
+   "min": 0,
    "max": 3
   },
   "data_demo": {
    "median": 3,
-   "min": 2,
+   "min": 0,
    "max": 4
   },
   "mascot": {
    "median": 3,
-   "min": 1,
+   "min": 0,
    "max": 4
   },
   "craft": {
    "median": 2,
-   "min": 1,
-   "max": 3
+   "min": 0,
+   "max": 2
   },
   "pace": {
-   "median": 1,
-   "min": 1,
+   "median": 2,
+   "min": 0,
    "max": 2
   },
   "payoff": {
@@ -93,25 +120,25 @@
   }
  },
  "scores": [
+  57,
+  74,
+  79,
+  74,
   79,
   79,
-  70,
+  66,
+  57,
   75,
-  66,
-  57,
-  57,
-  74,
-  66,
-  87,
-  61,
+  75,
+  83,
   70,
+  79,
   57,
-  74,
-  79,
-  74,
-  79,
-  79,
   66,
-  57
+  66,
+  66,
+  74,
+  14,
+  70
  ]
 }
