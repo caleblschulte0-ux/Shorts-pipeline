@@ -244,6 +244,12 @@ class TestTheRequestBody(UploadCase):
         self.do()
         self.assertIs(self.body()["status"]["containsSyntheticMedia"], True)
 
+    def test_real_footage_is_not_labeled_synthetic(self):
+        """Twitch and sports clips are real footage; labeling them AI is
+        false."""
+        self.do(synthetic_media=False)
+        self.assertIs(self.body()["status"]["containsSyntheticMedia"], False)
+
     def test_not_made_for_kids(self):
         self.do()
         self.assertIs(self.body()["status"]["selfDeclaredMadeForKids"], False)
