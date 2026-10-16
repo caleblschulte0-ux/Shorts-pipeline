@@ -13747,13 +13747,41 @@
       "ts": "2026-10-16T12:26:29.606254+00:00"
     },
     "clip-20261016-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/SarcasticDarlingMagpieJKanStyle-yIAW930YdncYOF8X",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/OANli_kGW3s",
       "title": "Kaicenat: Kai Cenat's Wifi Man Goes Off On Captain Ray Over A Ponytail",
       "kind": "twitch_clip",
-      "ts": "2026-10-16T12:32:08.154856+00:00",
+      "ts": "2026-10-16T12:32:17.487951+00:00",
+      "uploaded_at": "2026-10-16T12:32:17.487967+00:00",
+      "publish_at": "2026-10-16T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261016-kaicenat-kai-cenat-s-wifi-man-goes-off-on-captai-26cf6e42",
+        "tiktok": "queued for 2026-10-16T20:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SarcasticDarlingMagpieJKanStyle-yIAW930YdncYOF8X",
+      "streamer": "kaicenat",
+      "series": "beef",
+      "hook": "Wifi Man pulls up on Captain Ray \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 2991,
+      "banger": 0.62,
+      "cut": {
+        "start": 2.0,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "clip-20261016-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/AbnegateVivaciousChimpanzeeWholeWheat-qcbKMPqZwOsmi2NJ",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Can't Believe How Good This Guy Is",
+      "kind": "twitch_clip",
+      "ts": "2026-10-16T12:36:13.108744+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
