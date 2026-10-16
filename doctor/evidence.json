@@ -1,27 +1,27 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261015",
-  "judged_date": "20261014",
+  "date": "20261016",
+  "judged_date": "20261015",
   "alarm": {
-    "date": "20261014",
+    "date": "20261015",
     "ok": false,
     "alarms": [
       {
-        "code": "short_slate_third",
+        "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "third: 1/6 posted for 20261014.",
+        "detail": "explainer: 3/4 posted for 20261015.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (36 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (37 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
       "chatgpt finalizer: artifact present",
-      "explainer: 5/4 posted",
+      "third: 8/6 posted",
       "trending: 3/3 posted"
     ],
     "deferred": false
@@ -208,992 +208,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-10-11T11:34:57+00:00",
-      "slug": "tsmc_just_passed_intel_in_chip_revenue",
-      "score": 78,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean, readable revenue race with a clear crossover payoff. The hook starts on an empty 2019 chart, and its 1992 claim is never shown.",
-      "auto_fails": [],
-      "problems": [
-        "The hook opens on two short line stubs. The crossover, which is the shock, doesn't arrive until about 4s (mid2).",
-        "The hook says 'since 1992', but the data starts in 2019, so the long reign is asserted and never shown.",
-        "The video runs only about 8.4s, so the payoff '#1 TSMC' gets well under a second to read (payoff@-0.4).",
-        "In mid2 the year counter says 2022 while the crossover marker sits around 2021.6, which feels slightly off against the counter."
-      ],
-      "fixes": [
-        "Flash the finished crossover frame, or the 'TSMC passes Intel' moment, in the first second, then race from 2019.",
-        "Either extend the series back to show Intel's long lead, or rewrite the hook to a claim the 2019-2024 window proves (for example, 'Intel's lead vanished in two years').",
-        "Hold the final '#1 TSMC' frame for about 1.5s so the payoff can be read."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 25
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook",
-        "visible_evidence": "hook@0.3 opens on a nearly empty chart: two short line stubs at 2019 and a boxed caption, 'Intel ruled chips since 1992'. The chart starts at 2019, so the 1992 claim is never shown, and nothing dramatic happens until the crossover in mid2 around 4s.",
-        "root_cause": "The race opens at its smallest state and makes the viewer wait for the crossover, which is the shock. The hook text names a 30-year reign the data window does not show.",
-        "repair_goal": "Open on the crossover moment, or flash the finished frame with the X and '#1 TSMC' in the first second, then rewind and race. Alternatively, extend the data window so Intel's long lead is visible before TSMC cuts through it."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.155,
-        "effective_fps": 20.3,
-        "max_dup_run": 29,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.17,
-        "max_dup_at_s": 7.17,
-        "duration_s": 8.38
-      },
-      "fingerprint": "?|-|weak_hook"
-    },
-    {
-      "ts": "2026-10-11T11:36:47+00:00",
-      "slug": "mrbeast_just_passed_t_series_on_youtube",
-      "score": 78,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean, correct graph race with a real crossover payoff, held back by a slow-build hook that starts as two stubs on an empty plot.",
-      "auto_fails": [],
-      "problems": [
-        "Hook (hook@0.3-2.2) opens on the chart's smallest state, with tiny lines at the left edge and a mostly empty plot.",
-        "The year counter runs ahead of the data: it reads 2020 at hook@1.5 and mid0 while the tips sit around 2019.5.",
-        "The crossover labels at payoff@-0.4 are stacked tightly over the overlapping dots."
-      ],
-      "fixes": [
-        "Flash-forward the finished 2024 crossover frame in the first second, then rewind and race.",
-        "Drive the year counter from the tip x-position so it always matches the axis.",
-        "Spread the final tip labels apart so they don't sit on the merged dots."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 43
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook",
-        "visible_evidence": "hook@0.3 opens on two tiny line stubs at the left edge with a large empty plot. The caption 'The king fell in 2024' covers the upper plot. At hook@1.5 the counter already says 2020 while the lines sit at about mid-2019.",
-        "root_cause": "The opening is the smallest state of the chart, so it starts as a slow build with nothing happening yet. The year counter rounds ahead of the line tips.",
-        "repair_goal": "Open on the crossover moment, or flash-forward to the finished 2024 frame with the lines meeting, then rewind. Keep the year counter in sync with the tip position so it never runs ahead."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.076,
-        "effective_fps": 22.2,
-        "max_dup_run": 27,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.08,
-        "max_dup_at_s": 13.25,
-        "duration_s": 14.38
-      },
-      "fingerprint": "?|-|weak_hook"
-    },
-    {
-      "ts": "2026-10-11T11:38:07+00:00",
-      "slug": "digital_ad_spending_buried_tv_advertisin",
-      "score": 83,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "Clean, readable graph race with a clear overtake and a widening-gap payoff, but it is short (8.4s) and spends its first two seconds before the crossover the hook promises.",
-      "auto_fails": [],
-      "problems": [
-        "The hook frames (hook@0.3 to hook@1.5) show TV still leading. The promised '2016' crossover lands at about 2.5s, a third of the way into an 8.4s video.",
-        "The whole video is 8.4s, so the post-crossover 'buried' story (2018 to 2021) goes by fast, with only about 1s of hold on the final gap.",
-        "The final payoff caption '#1 Digital Advertising' states the leaderboard, not the size of the gap (189B vs 66B, nearly 3x)."
-      ],
-      "fixes": [
-        "Compress 2014-2015 so the lines cross by about 1.2s, or open with the crossover already in frame.",
-        "Hold or slow the 2019-2021 surge so the gap widening reads, and land a payoff line such as 'Nearly 3x TV' before the end.",
-        "Consider extending to about 12-15s, spending the added time after the crossover rather than before it."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 1.0,
-        "sampled": 25
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "slow_hook",
-        "visible_evidence": "hook@0.3 opens on two short stubs, with TV ahead at 69.1B vs 52.9B. The crossover the hook line promises does not arrive until about 2.5s (mid0), and the video is only 8.4s long.",
-        "root_cause": "The race starts from 2014 at full lead-in pace, so the first two seconds show TV comfortably ahead and nothing has happened yet.",
-        "repair_goal": "Open nearer the crossover, or speed through 2014-2015, so the lines meet by about 1.2s. Then spend the extra time on the post-2016 gap widening to roughly 3x."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.125,
-        "effective_fps": 21.0,
-        "max_dup_run": 25,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.0,
-        "max_dup_at_s": 7.33,
-        "duration_s": 8.38
-      },
-      "fingerprint": "?|-|slow_hook"
-    },
-    {
-      "ts": "2026-10-11T11:41:47+00:00",
-      "slug": "he_admitted_he_was_stealing_my_wi_fi__i_",
-      "score": 62,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The petty-revenge payoff (a throttled neighbor's TV buffering until he buys his own plan) is never shown: one stock installer photo sits frozen over the last 17 seconds.",
-      "auto_fails": [
-        "junk_imagery: mid3 (t=25.10s) to payoff@-0.4: a generic stock/AI photo of a smiling cable installer holding a coil of blue cable sits on screen while the captions say 'HIS SMART TV' buffered. It does not show the buffering, the bandwidth cap or the neighbor. mid2 is a flat clip-art globe icon for 'device to the' guest network.",
-        "dead_air: The illustration half is frozen on the same installer photo from mid3 (25.1s) through payoff@-0.4 (41.8s), about 17s, which covers the last four story beats (TV buffering, asking about the internet, buying his own plan). Only the gameplay and captions move. Code shows no fully static frame, but the story picture is dead.",
-        "empty_void: mid5 (t=40.17s) and payoff@-1.8: the bottom gameplay half is almost entirely black, with one small green portal and the caption."
-      ],
-      "problems": [
-        "mid3 to payoff: the same stock installer photo is held about 17s across four story beats.",
-        "The core revenge beat (the 1 Mbps cap and the smart TV buffering) has no illustration at all.",
-        "mid2: a flat globe icon is weak clip art for the guest-network beat.",
-        "mid5 and payoff: the gameplay half is mostly black void with one small portal.",
-        "Hook: a plain Reddit card over gameplay, with no visual tease of the revenge."
-      ],
-      "fixes": [
-        "Replace the mid3 to payoff illustration with one shot per beat: a buffering TV spinner, the neighbor's question, then a new router or ISP box for the payoff.",
-        "Show the throttle itself, e.g. a speed-test dial pinned at 1 Mbps or a loading bar crawling.",
-        "Cap any single illustration at about 5s.",
-        "Pick a busier gameplay segment for the back half so the bottom panel is not mostly black.",
-        "Tease the punchline in the hook (a frozen 'buffering...' TV) so the first second promises the revenge."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.039,
-        "sampled": 127
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "dead_air",
-        "empty_void",
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "mid3",
-        "index": 3,
-        "failure_class": "stale_irrelevant_illustration",
-        "visible_evidence": "At mid3 (t=25.10s) the top half switches to a stock photo of a smiling cable installer with a blue cable coil. It never changes again through payoff@-0.4 (41.8s), while the narration moves from 'his smart TV buffered every single show' to 'asking if my internet was having issues' to 'bought his own ",
-        "root_cause": "The shot list ran out of matched illustrations after the guest-network beat. One loosely related stock image was held across the whole back half, including the comic payoff, so the revenge (the throttled, buffering TV) is never shown.",
-        "repair_goal": "Give each back-half beat its own picture: a TV frozen on a buffering spinner for 'buffered every single show', the neighbor at the door or a text-message screenshot asking 'is your internet having issues too?', and a new router box or 'plan activated' screen for the payoff. No single image may stay "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.002,
-        "effective_fps": 24.0,
-        "max_dup_run": 2,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 36.33,
-        "duration_s": 42.17
-      },
-      "fingerprint": "?|dead_air+empty_void+junk_imagery|stale_irrelevant_illustration"
-    },
-    {
-      "ts": "2026-10-11T11:44:47+00:00",
-      "slug": "she_demanded_i_find_her_a_discount__i_do",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A clean, relevant reddit story whose illustrations track every beat, but the opening is just a title card and the ending fades out instead of landing a punchline.",
-      "auto_fails": [],
-      "problems": [
-        "The hook (0 to 2.5s) is only the static Reddit card over gameplay, with no story image or caption.",
-        "The payoff is a moody car shot with no visible punchline about the customer's reaction.",
-        "The illustrations feel like generic AI stock concepts rather than a shot of the actual scene, with no characters interacting."
-      ],
-      "fixes": [
-        "Open on the cart-shove illustration with the caption running from the first frame.",
-        "End on a shot that delivers the punchline, for example the customer realising the code is dead, before cutting to the car.",
-        "Show the woman and the narrator together in at least one shot to sell the confrontation."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 145
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "static_title_card_hook",
-        "visible_evidence": "From hook@0.3 to mid0 the screen is only the Reddit post card over full-screen gameplay. There is no illustration and no caption yet, so the opening picture says nothing about the confrontation.",
-        "root_cause": "The reddit_story template opens on the post card with no story shot, so the hook rests only on the title text.",
-        "repair_goal": "Put the first story shot (the cart shoved into mine in the hardware aisle) on screen from the first frame, keep the title readable, and start the captions immediately."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.001,
-        "effective_fps": 24.0,
-        "max_dup_run": 2,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 48.25
-      },
-      "fingerprint": "?|-|static_title_card_hook"
-    },
-    {
-      "ts": "2026-10-11T11:50:38+00:00",
-      "slug": "giant_rats_make_themselves_at_home__driv",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A reddit story that never shows its rat: the story beats are illustrated with generic emoji on a dark half-panel, with one silhouette icon reused across two beats.",
-      "auto_fails": [
-        "empty_void: From mid1 onward the top half is a dark navy panel with one small flat emoji (hospital mid1, silhouettes mid3/mid4, cup mid5). It wastes about 40% of the frame on a blank gradient."
-      ],
-      "problems": [
-        "The titular rat or rat nest never appears in any frame, so the hook promises a disaster the visuals never show.",
-        "The hospital emoji at mid1 misrepresents 'health inspector'.",
-        "The same two-person silhouette emoji is held across mid3 and mid4, covering two different beats.",
-        "The top half of the frame from mid1 onward is a dark gradient panel with a small flat emoji: wasted space that reads cheap.",
-        "The hook is only the static post card over gameplay with no spoken caption visible in the first 2s, so there is weak motion beyond the gameplay."
-      ],
-      "fixes": [
-        "Open the hook on a picture of the giant rat or nest in a cafe alongside the post card.",
-        "Give each beat a distinct, specific illustration: a clipboard-wielding inspector, angry customers holding receipts, a phone recording with a view counter climbing, then the coffee.",
-        "Fill the top panel: scale the illustration up or use a full-bleed scene instead of a small icon on a void.",
-        "Never reuse the same illustration across consecutive beats."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 139
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void"
-      ],
-      "weakest_scene": {
-        "id": "mid3",
-        "index": 3,
-        "failure_class": "generic_illustration",
-        "visible_evidence": "mid3 and mid4 both show the same stock two-person silhouette emoji on a dark panel, covering both 'regulars demanding refunds' and 'viral marketing stunt'/'free publicity'. No rat, no cafe, no phone or crowd appears anywhere in the story.",
-        "root_cause": "The shot illustrator fell back to the most generic people emoji for an abstract beat and reused it across two beats. The story's actual subject, the giant rat nest, is never shown.",
-        "repair_goal": "Give each beat its own picture of its event: a rat nest or a giant rat in a cafe for the setup, angry customers waving receipts for refunds, a phone filming or a viral post with climbing views for the stunt, then the coffee payoff. No illustration should repeat across beats."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.001,
-        "effective_fps": 24.0,
-        "max_dup_run": 2,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 46.25
-      },
-      "fingerprint": "?|empty_void|generic_illustration"
-    },
-    {
-      "ts": "2026-10-11T11:59:18+00:00",
-      "slug": "he_admitted_he_was_stealing_my_wi_fi__i_",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The petty-revenge story is good, but one irrelevant installer stock photo covers the last ~25s, so the buffering payoff is never shown.",
-      "auto_fails": [
-        "junk_imagery: mid2 (t=17.82s) through payoff@-0.4: the same AI stock photo of a smiling cable installer stays on screen while the captions say 'HIS SMART TV' and 'PASSWORD,'. It has nothing to do with buffering or the guest network and only fits the final 'own internet plan' line."
-      ],
-      "problems": [
-        "mid2-mid5: the same AI installer photo stays up for ~25s across the smart TV buffering, the 'is your internet down too' moment and the password beats",
-        "mid1: a generic signal-bars icon does not show the guest-network move or the 1 Mbps cap",
-        "The hook is just the Reddit card over gameplay, with no visual twist in the first 2s",
-        "The payoff (him buying his own plan) lands on a photo that has been on screen for 20+ seconds, so it has no visual punch"
-      ],
-      "fixes": [
-        "Cut a new illustration per segment: a buffering spinner on a TV, the neighbor's text asking if the internet is down, a router admin page with a 1 Mbps limit slider",
-        "Show the installer photo only on the final 'bought his own internet plan' beat",
-        "Replace the signal-bars icon with a picture of his device being moved to a 'GUEST' network list"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 128
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "mid2",
-        "index": 3,
-        "failure_class": "junk_imagery",
-        "visible_evidence": "From mid2 to payoff@-0.4 (~25s), one AI stock photo of a cable installer with a blue cable coil sits over the beats 'His smart TV buffered every single show' and 'asking if my internet was having issues too'.",
-        "root_cause": "The illustration matched the last segment ('bought his own internet plan') and was held over the three beats before it instead of a new shot being cut for each beat.",
-        "repair_goal": "Give each beat its own shot: a TV stuck on a buffering spinner for the throttling beat, the neighbor at the door or a phone text asking 'is your internet down too?' for the irony beat, and the installer or a new modem only on the final 'own internet plan' line."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.008,
-        "effective_fps": 23.8,
-        "max_dup_run": 7,
-        "measured": true,
-        "judder_ratio": 0.001,
-        "judder_fps": 24.0,
-        "held_s": 0.25,
-        "max_dup_at_s": 23.62,
-        "duration_s": 42.79
-      },
-      "fingerprint": "?|junk_imagery|junk_imagery"
-    },
-    {
-      "ts": "2026-10-11T17:22:49+00:00",
-      "slug": "longform:foreign-aid-never-broke-0-32-of-health-spending",
-      "score": 14,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "problems": [
-        "effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 7.33,
-        "static_at_s": 55.33,
-        "dark_fraction": 0.026,
-        "sampled": 189
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": "longform",
-      "checks_hit": [
-        "temporal_gate"
-      ],
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.931,
-        "effective_fps": 1.7,
-        "max_dup_run": 83,
-        "measured": true,
-        "judder_ratio": 0.002,
-        "judder_fps": 24.0,
-        "held_s": 54.62,
-        "max_dup_at_s": 22.46,
-        "duration_s": 63.08
-      },
-      "fingerprint": "longform|temporal_gate|-"
-    },
-    {
-      "ts": "2026-10-11T20:56:51+00:00",
-      "slug": "longform:foreign-aid-never-broke-0-32-of-health-spending",
-      "score": 14,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "blocked before vision review: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "problems": [
-        "effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 7.33,
-        "static_at_s": 55.33,
-        "dark_fraction": 0.026,
-        "sampled": 189
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": "longform",
-      "checks_hit": [
-        "temporal_gate"
-      ],
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.931,
-        "effective_fps": 1.7,
-        "max_dup_run": 83,
-        "measured": true,
-        "judder_ratio": 0.002,
-        "judder_fps": 24.0,
-        "held_s": 54.62,
-        "max_dup_at_s": 22.46,
-        "duration_s": 63.08
-      },
-      "fingerprint": "longform|temporal_gate|-"
-    },
-    {
-      "ts": "2026-10-11T19:48:37+00:00",
-      "slug": "co2-pollen-season-stretch",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "There are clean, lit, on-topic scenes with Data doing real work early on, but the last beat's 21% payoff arrives only in the closing card and Data ends as a pointer.",
-      "auto_fails": [],
-      "problems": [
-        "seg3: the headline holds '1990' for the whole beat. +21% and the 1990 outline only appear in the closing (seg4:mid), so the payoff lands late.",
-        "seg3/seg4: Data just points beside the stalk and does nothing to the pollen cloud.",
-        "hook: 'carbon dioxide in the air \u00b7 2024' runs into the dashed circles (hook@0.3), so the subtitle looks cluttered.",
-        "seg4: the closing shrinks the scene into a bordered card on a dark ground, which reads as a widget rather than a shot.",
-        "The hook's 424 to 354 to 424 readout flicker (hook@0.3 to seg0:mid) is confusing in the opening seconds."
-      ],
-      "fixes": [
-        "Land +21% and the dashed 1990 cloud outline inside seg3 by about 70% of the beat.",
-        "Give Data an agent act in seg3: shaking the ragweed so pollen pours into the swelling cloud.",
-        "Move the hook subtitle clear of the dashed then-marks.",
-        "Keep the closing full-bleed instead of a bordered inset card.",
-        "Have the hook show its finished state (424) steadily instead of stepping back to 354."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 73
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "payoff_late_and_mascot_decorative",
-        "visible_evidence": "From seg3:start to seg3:end the headline stays 'Pollen \u00b7 how thick it hangs in the air \u00b7 1990' while the yellow cloud swells. '+21%' and the dashed 1990 outline only appear in the closing (seg4:mid). Data stands beside the stalk pointing the whole time.",
-        "root_cause": "The scene's readout and the then-mark are timed past the beat, so the number arrives in the closing card instead of on the beat. Data has no agent act tied to the cloud.",
-        "repair_goal": "In seg3, put the dashed 1990 cloud outline on screen from the start. Have the cloud swell past it and land '+21%' with '2018 vs 1990' by about 70% of the beat. Make Data the cause: he shakes or beats the ragweed stalk so the pollen visibly pours into the cloud."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.115,
-        "effective_fps": 21.2,
-        "max_dup_run": 12,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.71,
-        "max_dup_at_s": 0.0,
-        "duration_s": 24.29
-      },
-      "fingerprint": "?|-|payoff_late_and_mascot_decorative",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-11T20:13:30+00:00",
-      "slug": "co2-pollen-season-stretch",
-      "score": 66,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 2,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong bespoke scenes for CO2 and the season length, but the pollen-thickness beat stays on 1990 all the way through, its 21% arrives only in the closing card, and Data is idle there.",
-      "auto_fails": [
-        "unreadable: In hook@0.3 and hook@1.5 the subtitle 'carbon dioxide in the air \u00b7 2024' runs into the dashed ghost circles, so '2024' sits on the marks. In seg3:start and seg4:mid the '1990' ghost label is jammed against the right frame edge."
-      ],
-      "problems": [
-        "seg3: the header stays '1990' and '+21%' never appears during the beat; the payoff lands in the closing card instead",
-        "seg3/seg4: Data stands beside a stalk with his arm out and causes nothing",
-        "hook: the subtitle overlaps the dashed ghost circles, and a blue box at the bottom right is half hidden behind the captions",
-        "seg3/seg4: the '1990' ghost label sits on the right frame edge",
-        "The closing replays the seg3 picture shrunk into a card on a dark ground and adds nothing new"
-      ],
-      "fixes": [
-        "seg3: switch the header to 2018 and land '+21%' by about 70% of the beat, with the cloud visibly denser than its 1990 outline",
-        "seg3: have Data shake or strike the ragweed so the pollen burst he causes thickens the cloud",
-        "hook: move the label clear of the ghost circles, and remove the stray box or keep it out of the caption band",
-        "Pull the '1990' ghost label inside the safe margin",
-        "Closing: show a different payoff picture, such as Data with tissues in a pollen haze, instead of the shrunk seg3 frame"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 73
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "payoff_not_landed",
-        "visible_evidence": "seg3:start, seg3:mid and seg3:end are nearly the same frame. The header reads 'Pollen / how thick it hangs in the air \u00b7 1990' through the whole beat while the narration says '21 percent thicker'. The pollen cloud only edges past its dashed 1990 outline, and '+21%' first appears in the closing card (",
-        "root_cause": "The number lands after the beat ends, so the scene spends its whole window in the 'before' state. The change the cloud shows is too small to see at a glance. Data has no act that causes the pollen.",
-        "repair_goal": "Land '+21%' and a 2018 header by about 70% of seg3, and make the cloud clearly thicker and denser than its 1990 outline, not just a little bigger. Give Data a causal act, such as shaking or striking the ragweed stalk so a burst of pollen thickens the cloud. Keep the '1990' ghost label fully inside t"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.125,
-        "effective_fps": 21.0,
-        "max_dup_run": 12,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.17,
-        "max_dup_at_s": 0.0,
-        "duration_s": 24.29
-      },
-      "fingerprint": "?|unreadable|payoff_not_landed",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-11T21:40:28+00:00",
-      "slug": "polio-cases-fell-99-percent",
-      "score": 79,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong bespoke scenes (iron lungs, the syringe shattering the virus), but the 350,000\u219212 payoff label lags the picture and lands only in the shrunken closing card.",
-      "auto_fails": [],
-      "problems": [
-        "seg2 still shows the '350,000 cases' headline while the narration says 12 and the virus is already tiny.",
-        "The payoff number '12 cases \u00b7 2023' appears only after the scene is shrunk into the closing letterbox panel (seg3:mid).",
-        "The 'two countries' beat has no picture of its own; the hook globe stands in for it."
-      ],
-      "fixes": [
-        "Count the seg2 readout down to 12 (2023) as the virus shrinks, and land it by about 70% of the beat.",
-        "Show the final 12 at full frame before the closing card appears.",
-        "Give the two-countries beat its own end state on the globe: the dots go out until only two remain."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 68
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "label_contradicts_picture",
-        "visible_evidence": "At seg2:end the virus has shrunk to a speck and the narration says 'only 12 wild polio cases', but the headline still reads '350,000 cases \u00b7 1988'. The 12 only appears in the closing frame (seg3:mid), shrunk into a letterboxed panel.",
-        "root_cause": "The readout keeps the starting value for the whole beat and only reaches the end value after the scene has been squeezed into the closing card. The payoff number arrives too late to land in full frame.",
-        "repair_goal": "Count the headline down from 350,000 to 12 as the syringe shrinks the virus, and have it reach '12 cases \u00b7 2023' by about 70% of seg2, full frame, so the drop reads before the closing card appears."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.186,
-        "effective_fps": 19.5,
-        "max_dup_run": 19,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 3.21,
-        "max_dup_at_s": 0.0,
-        "duration_s": 22.71
-      },
-      "fingerprint": "?|-|label_contradicts_picture",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-11T22:01:38+00:00",
-      "slug": "polio-cases-fell-99-percent",
-      "score": 83,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A strong bespoke virus-shrink payoff with Data driving it, held back by a passive iron-lung beat and a 12-case number that lands only on the end card.",
-      "auto_fails": [],
-      "problems": [
-        "seg1: Data stands beside the iron lungs instead of causing the row to grow, and the 350,000 headline arrives only at seg1:end.",
-        "seg1: the hanging pendulum balls are unexplained decoration that compete with the subject.",
-        "seg2: the narration says '12 wild polio cases by 2023' while the screen shows '3,500 cases \u00b7 2000'. The 12 appears only once the closing card has shrunk the picture into an inset (seg3:mid).",
-        "The 'last two countries' claim is shown only in the hook globe and never gets its own beat picture."
-      ],
-      "fixes": [
-        "seg1: have Data wheel or pump each iron lung into the row, and bring the 350,000 count in by mid-beat.",
-        "Remove the pendulum balls from the iron-lung ward.",
-        "Time the virus shrink so it reaches '12 cases \u00b7 2023' inside seg2 while the narration says it, before the closing card insets the frame.",
-        "Cut the stray foreground props (beach ball, vials) that sit near the captions in seg2."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 68
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "passive_mascot_and_late_number",
-        "visible_evidence": "At seg1:start and seg1:mid Data stands beside one or two iron lungs while the header says only 'Polio / one year of it \u00b7 1988'. The '350,000' headline appears only at seg1:end. A row of hanging pendulum balls fills the top half but is never explained and does not connect to the lungs.",
-        "root_cause": "The scene's moving part, the iron-lung row stretching back, grows by itself. Data is not causing it. The pendulum decoration takes attention away from the subject, and the number arrives at the end of the beat instead of with the narration.",
-        "repair_goal": "Make Data the cause: he wheels each iron lung into the ward (or pumps its bellows) as the row stretches toward the windows to show how many there were. Drop the unexplained pendulum balls, and land '350,000 children' by mid-beat while the narration says it."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.133,
-        "effective_fps": 20.8,
-        "max_dup_run": 19,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 2.38,
-        "max_dup_at_s": 0.0,
-        "duration_s": 22.62
-      },
-      "fingerprint": "?|-|passive_mascot_and_late_number",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-11T23:55:40+00:00",
-      "slug": "sports_junior_caminero_yankees_fans",
-      "score": 82,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 2
-      },
-      "one_line": "A real, funny taunt that the hand-to-ear payoff lands, held back by soft, letterboxed footage and a mid-video crop that loses him during the hug.",
-      "auto_fails": [],
-      "problems": [
-        "mid3: the hug pushes Caminero out of the crop, leaving the empty field on screen for a beat",
-        "The source is low resolution and letterboxed with blurred bands, using only about 75% of the frame",
-        "The hook frames run through 2.2s before he delivers the energetic line; the shout ('THE YANKEES!') and the hand-to-ear gesture are the strongest frames and only arrive later"
-      ],
-      "fixes": [
-        "Make the crop follow Caminero through the hug at around 8s, or trim the hug",
-        "Consider opening on a flash of the hand-to-ear taunt (payoff@-0.4) to grab attention in the first frame",
-        "Punch in slightly on the footage to cut down the blurred letterbox bands"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 42
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid3",
-        "index": 3,
-        "failure_class": "framing",
-        "visible_evidence": "At t=8.2s Caminero leans into a hug, and his head and body leave the frame. For a moment we see the empty field with the interviewer at the right edge",
-        "root_cause": "The 9:16 crop is fixed and does not follow the subject when he moves sideways out of the interview framing",
-        "repair_goal": "Move the crop to follow Caminero through the hug, or cut straight from the 'THE YANKEES!' shout (mid2) to the hand-to-ear taunt (mid4), so the subject stays in frame"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.2,
-        "effective_fps": 19.2,
-        "max_dup_run": 3,
-        "measured": true,
-        "judder_ratio": 0.176,
-        "judder_fps": 19.8,
-        "held_s": 0.0,
-        "max_dup_at_s": 9.08,
-        "duration_s": 14.0
-      },
-      "fingerprint": "?|-|framing"
-    },
-    {
-      "ts": "2026-10-11T23:57:32+00:00",
-      "slug": "sports_jaylen_brown__edwards_for",
-      "score": 14,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "blocked before vision review: effective_fps 10.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-      "auto_fails": [
-        "temporal_gate: effective_fps 10.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "problems": [
-        "effective_fps 10.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.33,
-        "static_at_s": 26.0,
-        "dark_fraction": 0.0,
-        "sampled": 90
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "temporal_gate"
-      ],
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.554,
-        "effective_fps": 10.7,
-        "max_dup_run": 36,
-        "measured": true,
-        "judder_ratio": 0.01,
-        "judder_fps": 23.8,
-        "held_s": 13.25,
-        "max_dup_at_s": 0.29,
-        "duration_s": 30.0
-      },
-      "fingerprint": "?|temporal_gate|-"
-    },
-    {
-      "ts": "2026-10-11T23:58:32+00:00",
-      "slug": "sports_jonathan_kuminga_ho_calls_him",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The real moment is in here, but the clip opens on a distant walk-away. His threat is never captioned or shown on a close shot, so the payoff the title promises does not land.",
-      "auto_fails": [
-        "empty_void: In hook@0.3, hook@1.5, mid2 and payoff@-0.4, half or more of the frame is empty grey concrete floor. The subjects are small and pushed to the left edge, and in mid2 they are cut off at the frame edge."
-      ],
-      "problems": [
-        "The hook (0-2.2s) is two tiny figures walking away from an overhead camera, with no face, no reaction and no reason to stay.",
-        "Half of most frames is empty concrete floor, and the subjects sit cut off at the left edge (mid2, payoff@-0.4).",
-        "The line the title promises ('I'll come find you and slap you') is not captioned, and no visible close-up of him delivering it appears.",
-        "The video ends at payoff@-0.4 with him walking out of frame, with no button on the moment.",
-        "Nothing in the frames shows that this is Jonathan Kuminga; only our text line says so."
-      ],
-      "fixes": [
-        "Cold-open on the turn to the camera (mid4) and punch in on his face, adding a sound hit there.",
-        "Caption his actual threat word-for-word at the moment he says it.",
-        "Cut the opening walk-away and the closing walk-out tail so the short is the response itself.",
-        "Crop or zoom to recentre the subjects and get rid of the empty floor."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 27
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook_distant_subject",
-        "visible_evidence": "From hook@0.3 to hook@2.2, two small figures walk away down a garage ramp, shot from above, with the floor filling most of the frame. Nobody's face can be seen, and the reaction only arrives at mid4 (t=6.2s).",
-        "root_cause": "The cut starts at the beginning of the source clip, a wide shaky walk-away, instead of on the moment he turns and answers the fan. The promised line ('I'll come find you and slap you') is never clearly put on screen.",
-        "repair_goal": "Start on the turn-and-respond moment (around mid4/mid5, when he faces the camera holding the drink) and punch in on his face. Caption the threat line he actually says so the payoff lands on screen, then trim the walk-away tail."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.009,
-        "effective_fps": 23.8,
-        "max_dup_run": 3,
-        "measured": true,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 8.92,
-        "duration_s": 9.04
-      },
-      "fingerprint": "?|empty_void|weak_hook_distant_subject"
-    },
     {
       "ts": "2026-10-12T00:01:19+00:00",
       "slug": "sports_dak_prescott_ott_pointing",
@@ -4010,108 +3024,1136 @@
       },
       "fingerprint": "?|-|static_closing_no_payoff_visual",
       "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-15T11:33:16+00:00",
+      "slug": "sports_mike_evans__with_trevon",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A real moment with a good quote, but the field footage freezes on one frame for the last 28 seconds, so 'Oh, it's Diggs' lands over a still.",
+      "auto_fails": [],
+      "problems": [
+        "The bottom field footage is a held still from mid2 (20s) to the end, about 28s, and the shove is never replayed.",
+        "Nothing on screen marks the payoff line 'Oh, it's fucking Diggs': no zoom, no sound hit, no replay.",
+        "The word caption sits right on top of our hook line and stays on 'I MEAN,' from hook@0.3 to mid1 (11s), which looks stuck.",
+        "The hook is a calm presser shot plus a still-looking huddle, so nothing grabs in the first two seconds."
+      ],
+      "fixes": [
+        "Loop or replay the on-field exchange, so the bottom half never freezes, and sync the shove to the line where he looks and recognizes Diggs.",
+        "Punch in on Diggs's nameplate or face with a sound hit on 'it's Diggs'.",
+        "Move the word captions further from our line, or skip them over the presser, and make sure they advance with the speech.",
+        "Open on the shove itself or a zoomed reaction rather than the static presser framing."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 145
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid2",
+        "index": 2,
+        "failure_class": "frozen_broll",
+        "visible_evidence": "From mid2 (20s) through payoff@-0.4 (47.9s) the bottom half is the SAME still frame: #5 49ers player, #16 Diggs, the same helmets in the same places. That is about 28 seconds of a frozen picture under a talking head, and the shove is never seen playing out.",
+        "root_cause": "The on-field clip is much shorter than the press conference audio, and its last frame is held for the rest of the video instead of being looped, replayed or cut away from.",
+        "repair_goal": "Keep the bottom half moving for the whole video. Replay the shove in sync with 'I looked and made sure, oh it's Diggs' (punch in on Diggs's face or nameplate on that word), or cut the presser to the length of the footage, so the payoff line lands over the moment itself."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.287,
+        "effective_fps": 17.1,
+        "max_dup_run": 24,
+        "measured": true,
+        "frozen_ratio": 0.041,
+        "frozen_fps": 23.0,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.008,
+        "judder_fps": 23.8,
+        "held_s": 6.92,
+        "max_dup_at_s": 33.42,
+        "duration_s": 48.25
+      },
+      "fingerprint": "?|-|frozen_broll"
+    },
+    {
+      "ts": "2026-10-15T11:35:13+00:00",
+      "slug": "sports_kyle_shanahan_uel_theres_a",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A real, funny Shanahan quote, buried behind the reporter's question and shown as a static podium shot, so the hook is cold and the payoff barely lands.",
+      "auto_fails": [],
+      "problems": [
+        "The first ~3s are the reporter's question over a silent Shanahan (hook@0.3 to mid0); nothing makes a stranger stay.",
+        "The punchline ('tackle the guy with the ball with no rules') arrives around 16-20s, and the clip seems to end with little reaction or button (payoff@-0.4 shows no caption, just him at the podium).",
+        "It is a single static medium shot all the way through, with none of the zooms or sound hits the format asks for.",
+        "The word captions mis-transcribe ('DEBO', 'IT'S TACKLED THE'), which looks sloppy.",
+        "The blurred letterbox bands top and bottom waste about a quarter of the frame."
+      ],
+      "fixes": [
+        "Start the cut at 'There's a game we used to play...'.",
+        "Add a punch-in zoom and a sound hit on 'I can't say the name of it anymore' and on 'first pick'.",
+        "Fix the caption spelling to 'Deebo' and correct the 'tackle the guy' transcription.",
+        "Crop to fill the vertical frame instead of letterboxing.",
+        "End on Shanahan's reaction or the room's laugh right after the first-pick line."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 82
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "slow_cold_open",
+        "visible_evidence": "From hook@0.3 to mid0 the screen is a still Shanahan listening to the reporter's question ('HOW MUCH OF... DEBO SAMUEL EXECUTE... BACK?'). The funny line ('there's a game... I can't say the name of it anymore') does not start until about 16s (mid3).",
+        "root_cause": "The cut starts at the reporter's question, not at Shanahan's answer, so the first two seconds are a man standing silent at a podium.",
+        "repair_goal": "Trim the question and open on 'There's a game we used to play that I can't say the name of anymore'. Punch in on his face at the 'no rules' line, and end right after he names Deebo as his first pick so the payoff lands with a beat of reaction."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.516,
+        "effective_fps": 11.6,
+        "max_dup_run": 50,
+        "measured": true,
+        "frozen_ratio": 0.212,
+        "frozen_fps": 18.9,
+        "max_frozen_run": 13,
+        "judder_ratio": 0.003,
+        "judder_fps": 23.9,
+        "held_s": 11.38,
+        "max_dup_at_s": 15.0,
+        "duration_s": 27.42
+      },
+      "fingerprint": "?|-|slow_cold_open"
+    },
+    {
+      "ts": "2026-10-15T11:39:12+00:00",
+      "slug": "sports_pat_murphy_kubal_i_just",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The right moment from the right person, but posted as an uncut 81-second press answer. The 'step on his throat' line the title sells is buried, so a stranger swipes before it lands.",
+      "auto_fails": [],
+      "problems": [
+        "The hook (0-2.2s) is a static wide shot of preamble with nothing that makes a stranger stay.",
+        "The speech caption misspells Skubal as 'SCOOBL' and Murphy as 'MIZ' (hook@0.8).",
+        "81.5s runtime for a one-line moment. Most of the clip is setup and tail (mid1 drinking, mid2 'TO').",
+        "None of the 12 sampled frames shows the promised quote, and there is no zoom or sound hit marking it.",
+        "Black letterbox bands waste the top and bottom of the frame.",
+        "The clip ends on 'HE CAN LOSE' and then an uncaptioned tail rather than on 'I mean that respectfully'."
+      ],
+      "fixes": [
+        "Cut to the 10-15s window around 'step on his throat ... I mean that respectfully'.",
+        "Open on the line or within a second of it.",
+        "Punch in on Murphy's face at 'throat' and add a hit on 'respectfully'.",
+        "Correct the transcript spelling of Skubal.",
+        "Scale the footage to fill the vertical frame instead of letterboxing it.",
+        "End right after 'respectfully' so the payoff is the last thing seen."
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 3.67,
+        "dark_fraction": 0.0,
+        "sampled": 245
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_buried_payoff",
+        "visible_evidence": "hook@0.3 to hook@2.2 show a static wide press-conference shot with the garbled caption 'MIZ AGAINST SCOOBL.' then 'IT'S A SPECIAL'. Nothing happens. The promised 'step on his throat' line is not visible in any sampled frame. At 81s the clip ends on 'HE CAN LOSE' and then an uncaptioned tail.",
+        "root_cause": "The full 81-second press answer is posted uncut. The quoted line that is the entire reason for the clip is buried somewhere in the middle. There is no zoom or sound hit on the reaction, and the transcript misspells Skubal.",
+        "repair_goal": "Trim to the roughly 10-15s around 'I just want to step on his throat. I mean that respectfully.' Open within the first 2s on the line or its run-up. Punch in on Murphy as he says 'step on his throat', with a hit on 'respectfully'. Fix the caption spelling to 'Skubal'. Cut the opening preamble and th"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.472,
+        "effective_fps": 12.7,
+        "max_dup_run": 35,
+        "measured": true,
+        "frozen_ratio": 0.169,
+        "frozen_fps": 19.9,
+        "max_frozen_run": 35,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 31.38,
+        "max_dup_at_s": 8.75,
+        "duration_s": 81.5
+      },
+      "fingerprint": "?|-|weak_hook_buried_payoff"
+    },
+    {
+      "ts": "2026-10-15T11:42:02+00:00",
+      "slug": "sports_darnell_nurse_the_personal",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The real moment is there, but it opens on a boring setup question and never makes clear to a stranger who Spector is or what the savage line was.",
+      "auto_fails": [],
+      "problems": [
+        "Hook (0-2.2s) is Nurse looking down while a mundane question is captioned. Nothing in it makes a stranger stay.",
+        "The promised 'low IQ' line is not clearly shown or captioned in the sampled frames. The payoff reads as a smirk and 'NEXT.'",
+        "No context on who Mark Spector is or what the hit pieces were, so the takedown has no stakes.",
+        "The source carries another outlet's 'BLEED OIL BLUE' watermark, and blurred letterbox bands waste about a quarter of the frame."
+      ],
+      "fixes": [
+        "Cold-open on the burn line, then rewind to the question.",
+        "Add a second text line at the turn naming Spector as the columnist who wrote personal hit pieces on Nurse.",
+        "Make sure the 'low IQ' / 'above your head' words are captioned and hit with a punch-in and sound hit.",
+        "Crop tighter to fill the frame and reduce the blurred bands."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 58
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_and_unclear_payoff",
+        "visible_evidence": "From hook@0.3 to hook@2.2 Nurse looks down while the captions read a dull question, 'BIGGEST DIFFERENCE YOU'VE NOTICED SO FAR PLAYING IN A...'. The sampled frames never show the 'low IQ' line or Spector, and the clip ends on a smirk and 'NEXT.' (payoff@-0.4).",
+        "root_cause": "The cut opens on the setup question instead of the burn. There is no context on who Spector is or what the 'personal attacks' were, so a stranger sees a polite smirk rather than a takedown.",
+        "repair_goal": "Open on the 'low IQ' / 'above your head' line itself, or flash-forward to it, within the first second. Add a context line naming Spector as the columnist who wrote hit pieces on Nurse while he was an Oiler. Hold the caption for the burn long enough to read, then end on 'NEXT.'"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.221,
+        "effective_fps": 18.7,
+        "max_dup_run": 11,
+        "measured": true,
+        "frozen_ratio": 0.015,
+        "frozen_fps": 23.6,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.006,
+        "judder_fps": 23.8,
+        "held_s": 1.17,
+        "max_dup_at_s": 16.29,
+        "duration_s": 19.29
+      },
+      "fingerprint": "?|-|weak_hook_and_unclear_payoff"
+    },
+    {
+      "ts": "2026-10-15T11:45:00+00:00",
+      "slug": "sports_nathan_mackinnon_ntz_drop_the",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The fight and MacKinnon's bloody face land, but the first eight seconds are distant zone play under someone else's burned-in captions, so a stranger scrolls past before the gloves drop.",
+      "auto_fails": [],
+      "problems": [
+        "The hook (0-2.5s) is a wide, distant shot of routine play with no fight and no recognisable player. The gloves drop at about 8s.",
+        "The source is a reposted edit with its own karaoke captions and a 'LINK' watermark, so two text layers stack in the bottom half of hook@0.3, mid1, mid3 and payoff@-1.8.",
+        "The source's captions misname the players ('HANCE AND MCKINNON').",
+        "The ending in payoff@-0.4 is a blurry, glass-obscured shot of the back of MacKinnon's jersey, which weakens the last beat."
+      ],
+      "fixes": [
+        "Cold-open on the punch exchange or MacKinnon's bloodied face in the first second, then roll back to the drop if needed.",
+        "Cut the 2.5-8s zone-play build-up down to about 1s.",
+        "Use a clean broadcast clip without burned-in captions or a watermark, or crop and mask the source captions so our line is the only text.",
+        "End on the clear bloodied close-up (mid4/payoff@-1.8) rather than the blurry jersey shot behind the glass."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.021,
+        "sampled": 96
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "slow_hook_and_reposted_edit",
+        "visible_evidence": "hook@0.3 through mid0 is a wide, distant broadcast shot of neutral-zone play where nobody can be identified and no fight is visible. The gloves don't drop until about mid1 (8s). The source's own karaoke captions ('UP 2-1 ON', 'THE STARS.', 'DALLAS WORKS IT') and a 'LINK' watermark are burned in abov",
+        "root_cause": "The cut starts at the reposted edit's first frame instead of the moment, and the source is someone else's narrated, captioned edit rather than clean game footage, so the two caption layers stack and fight each other.",
+        "repair_goal": "Open on the fight itself: the punch exchange in mid1, or MacKinnon's bloodied face from mid3/mid4 as a flash-forward, inside the first second. Trim most of the 2.5-8s zone-play build-up. Use a clean broadcast source without burned-in captions or a watermark, so our one line is the only text on scree"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.0,
+        "effective_fps": 24.0,
+        "max_dup_run": 1,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 32.08
+      },
+      "fingerprint": "?|-|slow_hook_and_reposted_edit"
+    },
+    {
+      "ts": "2026-10-15T11:46:31+00:00",
+      "slug": "sports_jalon_daniels_elebrate_the",
+      "score": 87,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A real, warm moment: mother and son trade hand-hearts across a split screen, the line on screen promises exactly that, and it lands.",
+      "auto_fails": [],
+      "problems": [
+        "mid4: the lower half shows crowd backs and an NFL Films bug instead of Jalon",
+        "The ending holds on the mother alone and never brings the two together in one beat",
+        "The hook opens on cheering but needs a beat to set up who is who (the line does this job)"
+      ],
+      "fixes": [
+        "Replace the crowd B-roll at mid4 with Jalon's sideline reaction",
+        "End on the clearest moment of the two of them trading hearts rather than a solo shot of the mother"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 47
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid4",
+        "index": 4,
+        "failure_class": "weak_framing",
+        "visible_evidence": "At mid4 the lower half cuts to a crowd of backs-of-heads in white shirts, with an NFL Films bug in the corner. Jalon is not visible.",
+        "root_cause": "The split screen runs the source's B-roll in the lower half while the mother's reaction plays on top, so the son's half of the exchange drops out.",
+        "repair_goal": "Trim or replace the crowd B-roll in the lower half so Jalon's face stays on screen opposite his mother's heart gesture."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.0,
+        "effective_fps": 24.0,
+        "max_dup_run": 1,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 15.79
+      },
+      "fingerprint": "?|-|weak_framing"
+    },
+    {
+      "ts": "2026-10-15T12:02:05+00:00",
+      "slug": "sports_pat_murphy_kubal_i_just",
+      "score": 61,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Right person and the real quote, but it opens on him drinking mid-sentence and buries the 'step on his throat' line in 68 seconds of a seated presser with no reaction edit.",
+      "auto_fails": [],
+      "problems": [
+        "The first two seconds are Murphy drinking from a cup, face covered, mid-sentence ('balance those two things as a manager'), which gives a stranger no reason to stay",
+        "The promised line ('step on his throat... respectfully') is not visible in any sampled caption; it is buried somewhere in a 68s answer",
+        "There are no zooms, punch-ins or sound hits on the quote, just one locked static presser shot throughout",
+        "The ending ('he can lose tonight and be...') trails off and does not land the moment",
+        "Blurred letterbox bands top and bottom waste roughly a quarter of the vertical frame"
+      ],
+      "fixes": [
+        "Start the cut on the throat line, or one sentence before it",
+        "Trim the total to about 15-20 seconds around the quote",
+        "Punch in on Murphy's face at 'step on his throat' with an impact hit, and hold a beat on 'I mean that respectfully'",
+        "Crop tighter to fill the 9:16 frame instead of letterboxing over blur",
+        "End on his smirk or reaction just after the quote, not mid-sentence"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 205
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_buried_payoff",
+        "visible_evidence": "hook@0.3 to hook@2.2 show Murphy drinking from a tumbler, face hidden, mid-sentence ('BALANCE THOSE TWO', 'THINGS AS A'). The promised 'step on his throat' line never appears in any sampled caption, and the clip runs 68s of a seated talking head ending on 'HE CAN LOSE / TONIGHT AND BE'",
+        "root_cause": "The cut starts at an arbitrary point in a long press-conference answer instead of at the quotable line. It keeps about a minute of answer around the moment, with no zoom or sound hit on the line itself",
+        "repair_goal": "Trim to roughly 12-20s: open on or one beat before 'I just want to step on his throat', punch in with a hit on 'step on his throat' and again on 'I mean that respectfully', then end on his reaction. Cut the drinking shot and the long run-up"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.426,
+        "effective_fps": 13.8,
+        "max_dup_run": 36,
+        "measured": true,
+        "frozen_ratio": 0.087,
+        "frozen_fps": 21.9,
+        "max_frozen_run": 12,
+        "judder_ratio": 0.001,
+        "judder_fps": 24.0,
+        "held_s": 22.38,
+        "max_dup_at_s": 19.5,
+        "duration_s": 68.21
+      },
+      "fingerprint": "?|-|weak_hook_buried_payoff"
+    },
+    {
+      "ts": "2026-10-15T12:03:44+00:00",
+      "slug": "sports_pat_murphy_kubal_i_just",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Real moment, right person, and the throat line lands with a punch-in, but it's buried 12 seconds behind a mid-sentence, static-talking-head opening a stranger will swipe past.",
+      "auto_fails": [],
+      "problems": [
+        "The hook (0-2.2s) starts mid-sentence on 'me way too much credit for', so the first two seconds have no context and no punch",
+        "The headline quote arrives only at ~12s (mid3); the first half is the windup",
+        "The cut ends on a trailing 'GO' (payoff@-0.4) after 'That's it.', so the end trails off",
+        "Source cadence is low (effective_fps 11.1, duplicate_ratio 0.54), so motion looks choppy",
+        "Letterbox bands top and bottom waste about a quarter of the vertical frame"
+      ],
+      "fixes": [
+        "Cold-open on 'I just want to step on his throat' with the punch-in and a sound hit, then cut back to the setup",
+        "End on 'I mean that respectfully' / 'I really like Tarek. That's it.' and trim the trailing 'go'",
+        "Crop or zoom the footage to fill the 9:16 frame and remove the dark bands",
+        "Add a second punch-in on the 'respectfully' turn so the reaction has a beat of its own"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 61
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_mid_sentence",
+        "visible_evidence": "hook@0.3-2.2 opens mid-sentence on 'ME WAY TOO / MUCH CREDIT FOR / MY CREATIVE OR' over a static talking head; the 'step on his throat' line doesn't arrive until mid3 (~12s)",
+        "root_cause": "The cut starts at the windup of the answer, so the shocking quote is buried 12 seconds in with no visual change before it",
+        "repair_goal": "Open the cut on 'I just want to step on his throat' (or flash it forward in the first second), then play the windup and the 'I mean that respectfully / I really like Tarek' turn as the payoff, ending on a finished sentence instead of a trailing 'GO'"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.537,
+        "effective_fps": 11.1,
+        "max_dup_run": 36,
+        "measured": true,
+        "frozen_ratio": 0.086,
+        "frozen_fps": 21.9,
+        "max_frozen_run": 6,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 7.92,
+        "max_dup_at_s": 9.58,
+        "duration_s": 20.29
+      },
+      "fingerprint": "?|-|weak_hook_mid_sentence"
+    },
+    {
+      "ts": "2026-10-15T10:46:04+00:00",
+      "slug": "secondhand-apparel-resale-boom",
+      "score": 57,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "A strong clothesline and rack, but the third beat shows a $58B market while the narrator says 58% of Americans, the two market scenes give 2023 two different values ($43B and $52B), and Data mostly gestures beside the action.",
+      "auto_fails": [
+        "decorative_mascot: In seg1:start and seg1:end Data stands under the clothesline waving and pointing while the garments hang themselves. In seg3:start through seg3:end he stands by the awning pole and gestures, and the awning grows without him. In the closing (seg4:start to seg4:end) he cheers in the same spot. Only seg2:mid, where he pushes the rack, makes him the cause.",
+        "dead_air: The closing (seg4:start, seg4:mid, payoff@-1.8, seg4:end, payoff@-0.4) holds the same storefront from seg3 with Data frozen in a cheer for about 4s. Only small walkers move, and the scene is a reuse of seg3.",
+        "unreadable: In seg1:mid a ghosted '5x faster' title and a pale subtitle fade over the sky and cannot be read. In seg4:start the small 'Do you shop secondhand? Best find?' line sits low-contrast over the pavement and the walking figures."
+      ],
+      "problems": [
+        "seg3 shows a market size ($52B to $58B) while the narration claims 58 percent of Americans, so dollars are drawn for a share of people",
+        "seg2 says the 2023 market was $43B and seg3 says it was $52B: the same year has two values on screen",
+        "Data waves, points and cheers beside the clothesline (seg1) and the storefront (seg3, seg4); only seg2 makes him the cause",
+        "The closing reuses the seg3 store with a blank sign and a frozen cheer, so the payoff never lands",
+        "The narration order and the scene order look misaligned: the 74B narration plays over seg2 and the 58% narration over seg3's dollar figures",
+        "The CTA line at the bottom of the closing is small and low-contrast over the pavement"
+      ],
+      "fixes": [
+        "Redraw seg3 as a crowd share: 58 of 100 shoppers peel off into the thrift store, with Data holding the door, and one headline '58%'",
+        "Pick one consistent market series and remove the conflicting $52B/$58B figures",
+        "Make Data the cause in seg1: he pegs each garment onto the line as the multiples count up",
+        "Give the closing its own finished frame, e.g. Data in a full secondhand outfit in front of a busy store with its sign intact, instead of a frozen reuse",
+        "Raise the contrast of the CTA line, or move it onto a darker band"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 79
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "dead_air",
+        "decorative_mascot",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "misleading_depiction",
+        "visible_evidence": "The narration says '58 percent of Americans now shop secondhand', but seg3:mid and seg3:end show '$52B U.S. secondhand clothing market 2023' rising to '$58B 2024, +$6B'. Seg2 already said the 2023 market was $43B, so the two scenes give the same year different values. The awning barely gets longer, ",
+        "root_cause": "The scene draws a market-size series that does not belong to this beat, whose claim is a share of people (58%). The number on screen echoes the spoken '58' as dollars. Data is placed next to the moving part rather than driving it.",
+        "repair_goal": "Redraw seg3 as a share of people: a street crowd in which 58 of 100 shoppers turn into the thrift store, against a smaller crowd a year earlier. Show one headline, '58%'. Data should be the cause, e.g. holding the thrift door open or handing out bags as the crowd crosses over. Remove the conflicting"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.081,
+        "effective_fps": 22.1,
+        "max_dup_run": 10,
+        "measured": true,
+        "frozen_ratio": 0.027,
+        "frozen_fps": 23.4,
+        "max_frozen_run": 10,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.71,
+        "max_dup_at_s": 0.0,
+        "duration_s": 26.21
+      },
+      "fingerprint": "?|dead_air+decorative_mascot+unreadable|misleading_depiction",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-15T11:18:59+00:00",
+      "slug": "secondhand-apparel-resale-boom",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The scenes are well made, and Data drives the clothing rack and the awning, but the opening 5x clothesline never shows what 'new' is losing to, and the closing joke has no picture of its own.",
+      "auto_fails": [],
+      "problems": [
+        "seg1: the 1x to 5x garments have no new-clothing or mall side, so 'five times faster than regular stores' has no visible comparison.",
+        "seg1 replays the hook's flash-forward picture for its whole length, so the opening scene is used twice.",
+        "seg3: the change from 52% to 58% moves the awning only a little, which makes the change look small.",
+        "seg4: the closing line about Data's archival wardrobe is not drawn. Data just cheers under the awning from the previous beat."
+      ],
+      "fixes": [
+        "Redraw seg1 as a race: the secondhand line fills fast while a new-store rack crawls along beside it, and the end shows the 5x gap.",
+        "In seg3, make the awning's extension and the shoppers changing from grey to coloured the clear event, timed with the words '58 percent'.",
+        "In the closing, show the archival joke: Data in a vintage outfit with an 'ARCHIVAL' tag, or putting a used jacket on, so the payoff lands as a picture."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 79
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 1,
+        "failure_class": "abstract_counter_no_comparison",
+        "visible_evidence": "seg1:start to seg1:end: five garments labeled 1x to 5x hang on a line by a barn. Nothing on screen stands for new clothing or the mall, so '5 times faster than regular stores' has no loser to measure against. The same finished picture also repeats from the hook flash-forward.",
+        "root_cause": "The 5x ratio is drawn as five counting tokens on one line, not as two things growing at different speeds. The claim needs a baseline, and the picture has none.",
+        "repair_goal": "Show a race between two sides: a secondhand line or rack that grows fast, driven by Data hanging clothes quickly, next to a new-clothes store whose rack barely moves. The secondhand side should end visibly about five times further ahead, so a viewer sees used beating new without reading '+14% vs +2."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.067,
+        "effective_fps": 22.4,
+        "max_dup_run": 10,
+        "measured": true,
+        "frozen_ratio": 0.027,
+        "frozen_fps": 23.4,
+        "max_frozen_run": 10,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.71,
+        "max_dup_at_s": 0.0,
+        "duration_s": 26.21
+      },
+      "fingerprint": "?|-|abstract_counter_no_comparison",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-15T11:46:07+00:00",
+      "slug": "secondhand-apparel-resale-boom",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A strong rack race and rail-extension demo, but the ending repeats the 58% stat on a clothesline instead of landing the 'archival' punchline.",
+      "auto_fails": [],
+      "problems": [
+        "seg4 repeats the 58% stat already shown in seg3, so the payoff falls flat",
+        "seg3: Data stands in the crowd with no clear action tied to the share growing",
+        "hook@0.8 and seg0:start: the USED rack overlaps the NEW rack and the mall shopper, which clutters the opening composition",
+        "Closing caption block at the top of seg4 is three-plus lines and competes with the headline"
+      ],
+      "fixes": [
+        "Redraw seg4 as the joke's payoff: Data in a thrifted outfit labelled ARCHIVAL, with the world joining him; drop the duplicate 58%",
+        "In seg3, have Data wave people into the stall or hand out bags so the crowd grows because of him",
+        "Keep the used and new racks in separate lanes in the hook so nothing overlaps",
+        "Shorten the closing caption to a single line"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 81
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg4",
+        "index": 4,
+        "failure_class": "redundant_payoff",
+        "visible_evidence": "seg4:start and payoff@-0.4 show a clothesline that goes from grey 2023 shirts to colored 2024 shirts under '58%' again. That is the same stat seg3 already showed with the crowd. Data waves beside the rope while a three-line closing caption block sits at the top of the frame.",
+        "root_cause": "The closing scene reuses the 58% share instead of landing the 'archival / everyone will be' joke. The video ends on a repeated number, not a punchline.",
+        "repair_goal": "Make the closing a payoff for the joke. Data pulls an ARCHIVAL tag over a secondhand outfit he is wearing, and the clothesline fills toward 'everyone'. Do not show the 58% headline a second time."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.08,
+        "effective_fps": 22.1,
+        "max_dup_run": 12,
+        "measured": true,
+        "frozen_ratio": 0.036,
+        "frozen_fps": 23.1,
+        "max_frozen_run": 12,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 1.08,
+        "max_dup_at_s": 0.0,
+        "duration_s": 26.96
+      },
+      "fingerprint": "?|-|redundant_payoff",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-15T13:22:42+00:00",
+      "slug": "saharan-dust-feeds-amazon",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The beats are clear and Data acts in every one, but the Sahara beat's scale is a flat scallop backdrop, and the small text lines collide with the art and are too small to read on a phone.",
+      "auto_fails": [
+        "unreadable: At seg1:mid, the outline of the scalloped dust wall runs straight through the small line 'lifted into the sky every year'. At seg1:end, 'of Sahara dust lifted a year \u00b7 30x the Great Pyramid of Giza's mass' is tiny thin type over textured dust and can't be read at phone size. At seg4:start-end, 'of phosphorus a year \u00b7 the dust gives back what the rain takes' sits on the orange cloud blobs, low contrast and cramped under the closing text block."
+      ],
+      "problems": [
+        "seg1: the 182M-ton dust is a repeating scallop wall. The '30x the Great Pyramid' comparison is in 9pt text, not in the shot, and the pyramid never changes.",
+        "seg1:mid: the dust-wall outline crosses the text line 'lifted into the sky every year'.",
+        "seg1:end and seg4: small text sits on busy texture and is unreadable at phone size.",
+        "seg4: the closing repeats '22,000 tons' under a dense five-line closing block, so the ending stacks two text blocks and adds no new payoff.",
+        "The closing prompt 'Guessed dust could feed a rainforest?' is garbled English.",
+        "seg2: the dashed rounded-rectangle ghost reads a little like a UI box."
+      ],
+      "fixes": [
+        "Redraw seg1 as a lit, churning plume rising off the dunes that outgrows a row of 30 pyramid silhouettes, with Data driving it (bellows or a shovel into the wind).",
+        "Keep all small text off textured art. Give it clear ground, or drop it and let the picture carry the comparison.",
+        "In the closing, show the payoff (the forest greening as the dust settles), drop the repeated 22,000-tons readout, and give the closing line clear space.",
+        "Fix the CTA to 'Did you guess dust could feed a rainforest?'",
+        "Make seg2's ghost follow the cloud's own shape instead of a rounded rectangle."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 81
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 1,
+        "failure_class": "weak_depiction_scale_not_shown",
+        "visible_evidence": "seg1:start to seg1:end: a wall of beige scallop arcs rises behind one pyramid that never changes size, with one thin dust wisp next to Data's shovel. The '30x the Great Pyramid' comparison is only in tiny text, and the scallop wall reads as wallpaper, not dust in the sky. The cloud outline crosses t",
+        "root_cause": "The 182M-ton number is shown as a flat patterned backdrop instead of dust riding the sky. The pyramid comparison is in the label, not in the picture, and the scallop outlines collide with the text.",
+        "repair_goal": "Make the number visible as dust on the move. Have a churning, lit dust plume lift off the dunes, with Data pumping a bellows or shovelling into the wind, until it towers over a row of 30 small pyramid silhouettes that it swallows (a then_mark at one pyramid's height). Keep the plume below the headli"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.18,
+        "effective_fps": 19.7,
+        "max_dup_run": 15,
+        "measured": true,
+        "frozen_ratio": 0.049,
+        "frozen_fps": 22.8,
+        "max_frozen_run": 15,
+        "judder_ratio": 0.006,
+        "judder_fps": 23.9,
+        "held_s": 1.83,
+        "max_dup_at_s": 0.0,
+        "duration_s": 27.08
+      },
+      "fingerprint": "?|unreadable|weak_depiction_scale_not_shown",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-15T13:52:53+00:00",
+      "slug": "panama-canal-drought-transit-cuts",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong middle: the lock, the lake drop and the draft rise all show their numbers well, but the closing is a static restatement with floating labels and Data waving instead of a payoff.",
+      "auto_fails": [
+        "unreadable: seg3:end: the caption 'higher and carry' fades grey over red and blue containers and you have to work it out on a phone. seg4:start: the closing line is stacked straight onto the '50 ft' headline, and a lone '6 ft' floats at the left edge with nothing it clearly labels."
+      ],
+      "problems": [
+        "seg4: the closing scene does not change. The ship, the water and the cargo stay the same while the labels go 50 ft, 44 ft, 6 ft.",
+        "seg4: Data waves and cheers on the pump box instead of causing anything.",
+        "seg4: the closing narration crowds the '50 ft' headline, and '6 ft' floats alone at the left edge.",
+        "seg3:end: the faded caption 'higher and carry' disappears against the containers.",
+        "seg0/hook: the ship does not show the cut from 36 to 24. The drop is only in the subtitle."
+      ],
+      "fixes": [
+        "Redraw seg4 so the cargo left behind is visible: the ship rides high with gaps in its stack, or the water falls while Data works a pump that can't keep up.",
+        "In seg4 drop the extra labels. One number at most, drawn on the subject.",
+        "Keep the closing line clear of the headline: move it, or remove the headline under it.",
+        "Keep captions at full contrast during transitions, or put them on a darker band.",
+        "In the hook, show the cut in the picture, e.g. a line of ships where a third are turned away."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 77
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg4",
+        "index": 4,
+        "failure_class": "weak_payoff",
+        "visible_evidence": "Across seg4:start, mid and end the canal ship stays in the same place and its waterline never changes. Data stands on a pump box waving and then raising both arms. The headline swaps from '50 ft' to '44 ft', and a '6 ft' label appears by itself at the left edge. The closing line covers the top third",
+        "root_cause": "The closing scene repeats the draft numbers as labels instead of showing what they mean. The ship does not rise and no cargo comes off, so 'less cargo can cross' is never pictured, and Data cheers next to the machine instead of driving it.",
+        "repair_goal": "Make the closing the result: one ship riding visibly high in the lock with gaps where containers were left behind on the dock, or Data at the pump that can't keep up as the waterline falls to 44 ft. Show the change on the subject, keep one number at most, and give the closing line clear space away f"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.145,
+        "effective_fps": 20.5,
+        "max_dup_run": 14,
+        "measured": true,
+        "frozen_ratio": 0.065,
+        "frozen_fps": 22.4,
+        "max_frozen_run": 13,
+        "judder_ratio": 0.003,
+        "judder_fps": 23.9,
+        "held_s": 2.0,
+        "max_dup_at_s": 14.0,
+        "duration_s": 25.58
+      },
+      "fingerprint": "?|unreadable|weak_payoff",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-15T14:10:33+00:00",
+      "slug": "panama-canal-drought-transit-cuts",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "A coherent, well-lit, subject-made story (lock gate, draining lake, unloading for draft) with Data as the agent, but the closing re-shows 44 ft and ends on a wave instead of a payoff.",
+      "auto_fails": [],
+      "problems": [
+        "seg4 closing repeats seg3's 44 ft number and draws no consequence for world trade; Data just waves (seg4:end).",
+        "The hook barely changes between hook@0.3 and seg0:end: the grounded ship sits while Data turns a valve, with little visible escalation.",
+        "seg1's -12 is carried by a label instead of the ships visibly being held back or counted out.",
+        "The closing caption leaves 'it.' alone on its own line (seg4:start), and a crane cable crosses the 'the deepest' label (payoff@-1.8).",
+        "The karaoke caption 'to 24 ships' is low-contrast grey over the water (seg1:start)."
+      ],
+      "fixes": [
+        "Redraw the closing to show the consequence: a growing pile of cargo left on the dock and a backed-up line of ships, with Data still unloading through the end.",
+        "Give the hook a visible event in the first second, such as the hull settling onto the cracked bed or water draining out from under it.",
+        "In seg1, have the gate visibly turn back the last third of the queue so the drop from 36 to 24 can be read without the label.",
+        "Rebalance the closing caption line breaks and route the crane cable away from the label text.",
+        "Raise the contrast of the karaoke caption's unspoken words over water."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 76
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg4",
+        "index": 4,
+        "failure_class": "weak_payoff",
+        "visible_evidence": "seg4:start through seg4:end repeat '44 ft' from seg3. The ship shrinks into the distance and Data steps off a container stack to wave (seg4:end). The closing line about world trade feeling it is printed as a block of text at the top, and 'it.' sits alone on a line.",
+        "root_cause": "The closing scene re-shows the previous beat's number instead of drawing its own consequence (world trade feels it). Data has finished his act by mid-scene and falls back to a wave.",
+        "repair_goal": "Make the closing show the consequence in the picture. For example, Data stands on the dock beside the stack of containers the ship could not carry while that stack grows and a line of waiting ships backs up behind him. Keep him doing the unloading through the end instead of waving, rebalance the cap"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.142,
+        "effective_fps": 20.6,
+        "max_dup_run": 13,
+        "measured": true,
+        "frozen_ratio": 0.063,
+        "frozen_fps": 22.5,
+        "max_frozen_run": 11,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 1.75,
+        "max_dup_at_s": 13.62,
+        "duration_s": 25.25
+      },
+      "fingerprint": "?|-|weak_payoff",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-15T14:30:23+00:00",
+      "slug": "panama-canal-drought-transit-cuts",
+      "score": 66,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong bespoke canal, lake and draft-mark mechanics, but the hook is a near-static ship that never shows the 36-to-24 drop, and caption and crane-cable collisions hurt readability.",
+      "auto_fails": [
+        "unreadable: seg2:start: the caption 'locks, sank to' is faint grey on dark green and nearly vanishes. seg1:start: the ghosted 'to 24 ships' is unreadable on the water. seg4:mid/end: the crane jib cable runs through the subtitle 'max draft now \u00b7 ships ride high, cargo stays'. seg3:start: the mooring rope crosses the '50 ft' hull label."
+      ],
+      "problems": [
+        "The hook (hook@0.3 to seg0:end) holds an almost identical frame for about 2.2s. The ship and valves do not move, and nothing shows traffic being cut by a third.",
+        "seg1:start and seg2:start: transitional captions ('to 24 ships', 'locks, sank to') are grey on dark ground and unreadable on a phone.",
+        "seg4: the crane jib and cable strike through the subtitle 'ships ride high, cargo stays'. The closing caption, headline and CTA stack three text blocks.",
+        "seg3: Data only points from the deck while the crane does the work, so he is not the cause of the unloading.",
+        "seg2: the lake drops only slightly against the 5-year line, so the 'sank' change is barely visible.",
+        "Payoff: the closing repeats seg3's 44 ft unloading instead of landing a new 'whoa' about world trade."
+      ],
+      "fixes": [
+        "Open on the finished seg1 picture: ships backing up at a red-lit lock with a third of the lane emptied. Or have water visibly drain from under the stranded ship in the first second.",
+        "Fade captions in at full contrast, with a dark outline or backing on light text, and never leave a half-alpha caption on screen.",
+        "In seg4, move the headline and subtitle clear of the crane jib or lower the jib, and drop the redundant 44 ft headline under the closing caption.",
+        "In seg3, have Data run the crane controls (agent act) so his hands cause the containers to lift off and the hull to rise.",
+        "In seg2, exaggerate the drawn water drop with a then_mark ghost of the old shoreline on the pilings, so the 3.6 ft loss reads at a glance.",
+        "Give the closing a distinct payoff image, for example a queue of ships waiting outside the canal or cargo piling on the quay, tied to 'world trade feels it'."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 76
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg4",
+        "index": 4,
+        "failure_class": "unreadable",
+        "visible_evidence": "At seg4:mid and seg4:end the 44 ft subtitle 'max draft now \u00b7 ships ride high, cargo stays' sits right on the crane's jib and cable line, so the words are struck through. 'crosses the Panama Canal' at seg4:start also touches the jib. A long closing caption in the sky stacks on top of the headline, gi",
+        "root_cause": "The closing layout puts the headline block in the same band as the crane jib. Its text placement is not measured against the drawn crane geometry, and the closing caption plus headline plus CTA crowd the frame.",
+        "repair_goal": "Move the headline and subtitle clear of the crane jib and cable, or lower the jib below the text band, so no line crosses any text. Trim to one headline and keep the closing caption, so the closing reads in a glance on a phone."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.176,
+        "effective_fps": 19.8,
+        "max_dup_run": 14,
+        "measured": true,
+        "frozen_ratio": 0.079,
+        "frozen_fps": 22.1,
+        "max_frozen_run": 14,
+        "judder_ratio": 0.008,
+        "judder_fps": 23.8,
+        "held_s": 2.17,
+        "max_dup_at_s": 0.0,
+        "duration_s": 25.42
+      },
+      "fingerprint": "?|unreadable|unreadable",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-15T17:50:00+00:00",
+      "slug": "amazon-warehouse-robot-army",
+      "score": 57,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The robot army and the lighting-up warehouses are good subject pictures, but Data only points and waves through all five scenes, and the hook overclaims with 'robots are winning'.",
+      "auto_fails": [
+        "decorative_mascot: Data waves or points beside the subject in nearly every beat: hook@0.3 waves at the conveyor, seg1:end waves beside the pod army, seg2:mid points at a building, seg3:start/mid points at the door, seg3:end waves on top of the pods. He never drives a pod, flips the building lights or raises the door himself.",
+        "unreadable: seg2:start: the caption \"building in 2012.\" is covered by the delivery van, with its first word cut off and pale on pale. seg1:start/mid/end: the \"2012 \u2014\" marker on the pods is tiny white text over cluttered pods. seg4:start: \"Sources in the description\" is very small."
+      ],
+      "problems": [
+        "Data is a pointer or waver in every scene, never the cause of the motion (hook, seg1, seg2, seg3, seg4).",
+        "The hook caption 'almost as many robots as workers, and the robots are winning' editorialises a claim the data (1M vs 1.5M) does not support, and it is not the scripted hook line.",
+        "seg3 spends most of its time on a door opening onto blank blocks; the 2:3 ratio is never made countable.",
+        "seg2:start: the narration caption is hidden behind a van; the '2012 \u2014' pod label in seg1 is tiny and unreadable on a phone.",
+        "The closing (seg4) is a near-static diorama with a COMMENT BELOW card; the payoff lands softly."
+      ],
+      "fixes": [
+        "Make Data the agent: he drives or dispatches the pods in seg1, throws the breaker that lights the buildings in seg2, and steers pods into the rows in seg3.",
+        "Rebuild seg3 as countable rows: three workers and then two pods sliding in beside them, repeated, landing by 70% of the beat.",
+        "Keep the narration caption clear of moving vehicles, and drop or enlarge the '2012 \u2014' marker.",
+        "Use the scripted hook ('started with 1,400 ... now a million') and flash the 1,400-to-1M army over the first frame instead of the unsupported 'winning' line."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 87
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "decorative_mascot",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "decorative_mascot",
+        "visible_evidence": "seg3:start and seg3:mid show a roll-up door slowly opening on six brown blocks while Data stands at the left edge pointing. The '2 robots for every 3 people' claim only appears at seg3:end, as two loose groups, with Data waving on top of the pods.",
+        "root_cause": "The beat's claim is a ratio, but the scene spends most of its time on a door reveal with no subject inside. Data is placed as a pointer instead of the cause of the motion.",
+        "repair_goal": "Data drives the pods out of the door into lanes alongside the workers, two pods slotting in next to each three-person row as he steers them. The 2:3 pairing should build visibly in rows from the first second and land by about 70% of the beat."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.218,
+        "effective_fps": 18.8,
+        "max_dup_run": 20,
+        "measured": true,
+        "frozen_ratio": 0.072,
+        "frozen_fps": 22.3,
+        "max_frozen_run": 11,
+        "judder_ratio": 0.001,
+        "judder_fps": 24.0,
+        "held_s": 2.83,
+        "max_dup_at_s": 20.83,
+        "duration_s": 28.96
+      },
+      "fingerprint": "?|decorative_mascot+unreadable|decorative_mascot",
+      "style_arm": "illustrated"
     }
   ],
   "showrunner_recurrence": {
     "?|temporal_gate|-": {
-      "count": 9,
+      "count": 8,
       "days": [
-        "2026-10-11",
         "2026-10-12",
         "2026-10-13",
         "2026-10-14"
       ]
     },
-    "?|-|weak_hook": {
+    "?|-|weak_payoff": {
       "count": 4,
       "days": [
-        "2026-10-11",
-        "2026-10-14"
-      ]
-    },
-    "?|-|weak_payoff": {
-      "count": 3,
-      "days": [
         "2026-10-12",
-        "2026-10-14"
-      ]
-    },
-    "longform|temporal_gate|-": {
-      "count": 2,
-      "days": [
-        "2026-10-11"
+        "2026-10-14",
+        "2026-10-15"
       ]
     },
     "?|unreadable|unreadable": {
+      "count": 3,
+      "days": [
+        "2026-10-14",
+        "2026-10-15"
+      ]
+    },
+    "?|-|weak_hook": {
       "count": 2,
       "days": [
         "2026-10-14"
       ]
     },
-    "?|-|slow_hook": {
-      "count": 1,
+    "?|-|weak_hook_buried_payoff": {
+      "count": 2,
       "days": [
-        "2026-10-11"
-      ]
-    },
-    "?|dead_air+empty_void+junk_imagery|stale_irrelevant_illustration": {
-      "count": 1,
-      "days": [
-        "2026-10-11"
-      ]
-    },
-    "?|-|static_title_card_hook": {
-      "count": 1,
-      "days": [
-        "2026-10-11"
-      ]
-    },
-    "?|empty_void|generic_illustration": {
-      "count": 1,
-      "days": [
-        "2026-10-11"
-      ]
-    },
-    "?|junk_imagery|junk_imagery": {
-      "count": 1,
-      "days": [
-        "2026-10-11"
-      ]
-    },
-    "?|-|payoff_late_and_mascot_decorative": {
-      "count": 1,
-      "days": [
-        "2026-10-11"
-      ]
-    },
-    "?|unreadable|payoff_not_landed": {
-      "count": 1,
-      "days": [
-        "2026-10-11"
-      ]
-    },
-    "?|-|label_contradicts_picture": {
-      "count": 1,
-      "days": [
-        "2026-10-11"
-      ]
-    },
-    "?|-|passive_mascot_and_late_number": {
-      "count": 1,
-      "days": [
-        "2026-10-11"
-      ]
-    },
-    "?|-|framing": {
-      "count": 1,
-      "days": [
-        "2026-10-11"
-      ]
-    },
-    "?|empty_void|weak_hook_distant_subject": {
-      "count": 1,
-      "days": [
-        "2026-10-11"
+        "2026-10-15"
       ]
     },
     "?|-|buried_moment": {
@@ -4287,16 +4329,87 @@
       "days": [
         "2026-10-14"
       ]
+    },
+    "?|-|frozen_broll": {
+      "count": 1,
+      "days": [
+        "2026-10-15"
+      ]
+    },
+    "?|-|slow_cold_open": {
+      "count": 1,
+      "days": [
+        "2026-10-15"
+      ]
+    },
+    "?|-|weak_hook_and_unclear_payoff": {
+      "count": 1,
+      "days": [
+        "2026-10-15"
+      ]
+    },
+    "?|-|slow_hook_and_reposted_edit": {
+      "count": 1,
+      "days": [
+        "2026-10-15"
+      ]
+    },
+    "?|-|weak_framing": {
+      "count": 1,
+      "days": [
+        "2026-10-15"
+      ]
+    },
+    "?|-|weak_hook_mid_sentence": {
+      "count": 1,
+      "days": [
+        "2026-10-15"
+      ]
+    },
+    "?|dead_air+decorative_mascot+unreadable|misleading_depiction": {
+      "count": 1,
+      "days": [
+        "2026-10-15"
+      ]
+    },
+    "?|-|abstract_counter_no_comparison": {
+      "count": 1,
+      "days": [
+        "2026-10-15"
+      ]
+    },
+    "?|-|redundant_payoff": {
+      "count": 1,
+      "days": [
+        "2026-10-15"
+      ]
+    },
+    "?|unreadable|weak_depiction_scale_not_shown": {
+      "count": 1,
+      "days": [
+        "2026-10-15"
+      ]
+    },
+    "?|unreadable|weak_payoff": {
+      "count": 1,
+      "days": [
+        "2026-10-15"
+      ]
+    },
+    "?|decorative_mascot+unreadable|decorative_mascot": {
+      "count": 1,
+      "days": [
+        "2026-10-15"
+      ]
     }
   },
   "recent_commits": [
-    "90727f0 2026-10-15 claim: mailbox verdicts 2026-10-15T09:48Z [skip ci]",
-    "7790ebd 2026-10-15 claim: mailbox verdicts 2026-10-15T08:48Z [skip ci]"
+    "f5e6f18 2026-10-16 claim: mailbox verdicts 2026-10-16T04:48Z [skip ci]",
+    "2c0dafa 2026-10-16 third: story backtest 38352788239 passed a story [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-10-01": 4,
         "2026-10-02": 4,
         "2026-10-03": 5,
         "2026-10-04": 4,
@@ -4307,15 +4420,15 @@
         "2026-10-10": 5,
         "2026-10-11": 5,
         "2026-10-12": 3,
-        "2026-10-14": 3
+        "2026-10-14": 3,
+        "2026-10-15": 3
       },
-      "total_posted": 445,
-      "attempted": 445,
+      "total_posted": 448,
+      "attempted": 448,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-10-01": 4,
         "2026-10-02": 3,
         "2026-10-03": 2,
         "2026-10-04": 3,
@@ -4328,15 +4441,16 @@
         "2026-10-11": 2,
         "2026-10-12": 2,
         "2026-10-13": 2,
-        "2026-10-14": 5
+        "2026-10-14": 5,
+        "2026-10-15": 3,
+        "2026-10-16": 1
       },
-      "total_posted": 330,
-      "attempted": 330,
+      "total_posted": 334,
+      "attempted": 334,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-10-01": 5,
         "2026-10-02": 4,
         "2026-10-03": 6,
         "2026-10-04": 5,
@@ -4350,11 +4464,12 @@
         "2026-10-12": 4,
         "2026-10-13": 4,
         "2026-10-14": 1,
-        "2026-10-15": 5
+        "2026-10-15": 8,
+        "2026-10-16": 3
       },
-      "total_posted": 409,
-      "attempted": 972,
-      "rejected_or_pending": 563
+      "total_posted": 415,
+      "attempted": 991,
+      "rejected_or_pending": 576
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4368,32 +4483,32 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 127,
+      "videos": 130,
       "top_by_vph": [
         {
           "title": "Why Plane Tickets Cost More The Closer You Book",
-          "vph": 117.78,
-          "views": 1082
+          "vph": 35.39,
+          "views": 1162
         },
         {
           "title": "Why Some Hurricane Names Get Retired Forever",
-          "vph": 13.19,
-          "views": 56
+          "vph": 10.86,
+          "views": 303
         },
         {
           "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
-          "vph": 6.51,
+          "vph": 5.22,
           "views": 626
         },
         {
-          "title": "Polio Cases Fell 99.9% In One Generation",
-          "vph": 6.19,
-          "views": 412
+          "title": "Secondhand Clothes Are Growing 5 Times Faster Than New",
+          "vph": 4.8,
+          "views": 42
         },
         {
-          "title": "Pollen Season Just Got 20 Days Longer",
-          "vph": 5.93,
-          "views": 430
+          "title": "Polio Cases Fell 99.9% In One Generation",
+          "vph": 4.57,
+          "views": 412
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
@@ -4403,36 +4518,36 @@
       "top_by_vph": [
         {
           "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 7.86,
+          "vph": 7.41,
           "views": 879
         },
         {
           "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
-          "vph": 2.65,
-          "views": 734
+          "vph": 2.6,
+          "views": 736
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 2.19,
-          "views": 497
+          "vph": 2.17,
+          "views": 508
         },
         {
           "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 2.06,
+          "vph": 2.03,
           "views": 1361
         },
         {
           "title": "The Forsen Clip Everyone's Talking About",
-          "vph": 1.28,
+          "vph": 1.09,
           "views": 51
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261012/brief.json",
       "retro/20261013/brief.json",
-      "retro/20261014/brief.json"
+      "retro/20261014/brief.json",
+      "retro/20261015/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
