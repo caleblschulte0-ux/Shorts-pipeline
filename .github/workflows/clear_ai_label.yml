@@ -1,0 +1,41 @@
+name: Clear AI label
+
+# Clears YouTube's "altered or synthetic content" declaration on videos
+# already uploaded (scripts/clear_ai_label.py). Operator, 2026-10-16: no AI
+# tags on any of our stuff. Manual only, no cron, so the clock does not
+# cover it. Idempotent: run again after a quota-limited day to finish.
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: 'Type APPLY to change the videos; anything else lists them'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  clear:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.11'
+      - run: pip install -q google-api-python-client google-auth google-auth-oauthlib
+      - name: Clear the label on every channel
+        env:
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
+          YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+          YOUTUBE_TOKEN_JSON_THIRD: ${{ secrets.YOUTUBE_TOKEN_JSON_THIRD }}
+        run: |
+          flag=""
+          [ "${{ github.event.inputs.apply }}" = "APPLY" ] && flag="--apply"
+          rc=0
+          for ch in explainer third ""; do
+            python scripts/clear_ai_label.py --channel "$ch" $flag || rc=1
+          done
+          exit $rc

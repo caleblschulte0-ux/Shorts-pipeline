@@ -262,7 +262,7 @@ class YouTubeUploader(Uploader):
     def upload(self, file_path, *, title, description, tags=None, publish_at=None,
                thumbnail=None, localizations=None, default_language="en",
                audio_language=None, category="22", captions_srt=None,
-               synthetic_media=True):
+               synthetic_media=False):
         try:
             from googleapiclient.http import MediaFileUpload
         except ImportError as e:
@@ -279,10 +279,12 @@ class YouTubeUploader(Uploader):
         status = {
             "privacyStatus": "private" if publish_at else "public",
             "selfDeclaredMadeForKids": False,
-            # Altered/synthetic disclosure. Defaults on for channels that use
-            # a synthetic voiceover or generated imagery. Real-footage
-            # channels (Twitch clips, sports clips) pass synthetic_media=False:
-            # nothing in them is AI-made, so the label would be false.
+            # Altered/synthetic disclosure: OFF on every channel (operator,
+            # 2026-10-16: "I don't want to see AI tags on any of our stuff").
+            # YouTube requires it only for realistic content a viewer could
+            # mistake for real footage or a real person; Twitch and sports
+            # clips are real footage and the explainer is illustrated
+            # animation. Pass synthetic_media=True for anything realistic.
             "containsSyntheticMedia": bool(synthetic_media),
         }
         if publish_at:

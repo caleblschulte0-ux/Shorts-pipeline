@@ -238,17 +238,28 @@ class TestTheRequestBody(UploadCase):
         self.assertEqual(self.body()["status"]["privacyStatus"], "public")
         self.assertNotIn("publishAt", self.body()["status"])
 
-    def test_synthetic_media_is_declared(self):
-        """This channel uses synthetic voiceover and AI imagery. Not
-        declaring it is a policy problem, not a style choice."""
+    def test_no_ai_label_by_default(self):
+        """Operator, 2026-10-16: no AI tags on any channel. Real footage
+        and illustrated animation are not realistic synthetic media."""
         self.do()
+        self.assertIs(self.body()["status"]["containsSyntheticMedia"], False)
+
+    def test_realistic_synthetic_media_can_still_be_declared(self):
+        self.do(synthetic_media=True)
         self.assertIs(self.body()["status"]["containsSyntheticMedia"], True)
 
-    def test_real_footage_is_not_labeled_synthetic(self):
-        """Twitch and sports clips are real footage; labeling them AI is
-        false."""
-        self.do(synthetic_media=False)
-        self.assertIs(self.body()["status"]["containsSyntheticMedia"], False)
+    def test_clearing_the_label_keeps_the_schedule(self):
+        """Leaving a writable status field out of videos.update resets it;
+        a scheduled video would lose its publishAt."""
+        from scripts.clear_ai_label import cleared_status
+        st = cleared_status({"privacyStatus": "private",
+                             "publishAt": "2026-10-17T13:00:00Z",
+                             "containsSyntheticMedia": True,
+                             "madeForKids": False, "uploadStatus": "processed"})
+        self.assertEqual(st, {"privacyStatus": "private",
+                              "publishAt": "2026-10-17T13:00:00Z",
+                              "selfDeclaredMadeForKids": False,
+                              "containsSyntheticMedia": False})
 
     def test_not_made_for_kids(self):
         self.do()
