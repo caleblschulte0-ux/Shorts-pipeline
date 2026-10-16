@@ -3663,6 +3663,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 74,
       "duration_s": 24.4
+    },
+    "livestock-methane-emissions": {
+      "claimed_at": "2026-10-16T17:52:34.208326+00:00",
+      "title": "Livestock Methane Could Hit 9.1 Billion Tons By 2050",
+      "publish_at": "2026-10-17T03:48:38Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4621,6 +4628,14 @@
       "state": "posted",
       "slug": "big-mac-index-currency-gap",
       "at": "2026-10-16T16:52:58.450237+00:00"
+    },
+    {
+      "claimed_at": "2026-10-16T17:52:34.208326+00:00",
+      "title": "Livestock Methane Could Hit 9.1 Billion Tons By 2050",
+      "publish_at": "2026-10-17T03:48:38Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "livestock-methane-emissions"
     }
   ]
 }
