@@ -114,11 +114,13 @@ SPORTS_BRIEF = (
     "streamer or YouTuber reacting to the moment (someone talking over "
     "it, chat being read) rather than the moment itself, or when a "
     "stranger could not tell from the clip what they are talking about. "
-    "When someone looks back on a person or a time that is gone (an old "
-    "teammate, a friend they fell out with, a career ending, a title they "
-    "lost), that is a sad turn: mood 'sad' with a real song, and broll of "
-    "them together while it is said (the operator: 'when Russ is talking "
-    "about KD ... show highlights of the two together').")
+    "Make it OUR OWN video, not a lifted moment (the operator: 'maybe "
+    "that clip can spark a couple more clips ... making something of our "
+    "own'): whenever the person refers to something not on screen (the "
+    "play, the game, the player they are calling out, an old teammate, "
+    "the record), broll real footage of it at that second. When someone "
+    "looks back on a person or a time that is gone, that is also a sad "
+    "turn: mood 'sad' with a real song.")
 
 
 def _brain(user: str, system: str) -> dict | None:

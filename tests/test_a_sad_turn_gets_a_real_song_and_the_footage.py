@@ -98,6 +98,21 @@ class TheFootageIsCutIn(unittest.TestCase):
              "look": "Westbrook and Durant together on the Thunder",
              "at": 8.5}])
 
+    def test_any_clip_can_cut_in_not_only_a_sad_one(self):
+        # operator, 2026-10-17: "It doesn't just need to be about
+        # emotional moments ... making something of our own"
+        out = author._postprocess(
+            {"title": "Josh Allen Calls Out The Hurdle Doubters",
+             "hook": "Josh Allen on the hurdle", "hashtags": ["joshallen"],
+             "series": "win", "edit": {"mood": "", "broll": [
+                 {"who": "Josh Allen", "look": "Josh Allen hurdle",
+                  "at": 4}]}},
+            "Josh Allen", "allen talks about the hurdle", 30.0)
+        self.assertEqual(len(out["edit"]["broll"]), 1)
+        brief = author.SYSTEM[author.SYSTEM.index("- broll:"):]
+        self.assertIn("OUR OWN", brief[:200])
+        self.assertNotIn("sad", brief[:brief.index("- cut:")])
+
     def test_the_plan_is_on_the_cuts_clock_and_spaced(self):
         items = [{"who": "A", "at": 8}, {"who": "B", "at": 10},
                  {"who": "C", "at": 20}, {"who": "D", "at": 1.5},

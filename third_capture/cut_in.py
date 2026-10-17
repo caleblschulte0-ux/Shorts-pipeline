@@ -1,4 +1,8 @@
-"""Cut to footage of WHO is being talked about, while the voice goes on.
+"""Cut to footage of WHAT is being talked about, while the voice goes on.
+
+Operator, 2026-10-17: *"maybe that clip can spark a couple more clips
+that turns this not into just us stealing moments from the internet, but
+making something of our own"* — any clip, not only a sad one.
 
 Operator, 2026-10-17: *"when Russ is talking about KD and it's like all
 sad ... show highlights of the two together"*. The author names it
@@ -14,7 +18,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-MAX_CUTS = 2
+MAX_CUTS = 3
 GAP = 4.0               # seconds between two cut-ins
 
 

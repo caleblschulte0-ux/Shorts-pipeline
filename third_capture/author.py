@@ -168,16 +168,22 @@ Rules:
     THIS moment:
 {SONG_MENU}
     "" when mood is not "sad".
-  - broll: when someone TALKS ABOUT a person, a team or a moment that is
-    not on screen (an old teammate, a friend they fell out with, the
-    game everyone remembers), cut to real footage of it while they keep
-    talking, the way an editor would ("when Russ is talking about KD ...
-    show highlights of the two together"). "who" is the people as a
-    search would find them ("Russell Westbrook Kevin Durant"); "look" is
-    what the footage must SHOW, in search words ("Westbrook and Durant
-    together on the Thunder"); "at" is the second they are named, from
-    the transcript. 0-2 of them, only when seeing it makes the moment
-    hit; never the person already on screen talking. Most clips: [].
+  - broll: MAKE THE CLIP OUR OWN, not just a moment lifted off the
+    internet (operator, 2026-10-17: "maybe that clip can spark a couple
+    more clips that turns this not into just us stealing moments from
+    the internet, but making something of our own"). Whenever the clip
+    REFERS to something that is not on screen, cut to real footage of it
+    while the voice carries on: the play he is talking about, the game it
+    happened in, the player he is calling out, the old teammate, the
+    record, the earlier moment this one pays off, the thing everyone is
+    reacting to. "who" is the people or teams as a search would find them
+    ("Russell Westbrook Kevin Durant"); "look" is what the footage must
+    SHOW, in search words ("Westbrook and Durant together on the
+    Thunder", "Josh Allen hurdle vs Vikings"); "at" is the second it is
+    named, from the transcript. 0-3 of them, at least 4s apart. Most
+    clips with a person talking refer to something showable: give those
+    at least one. Never the person already on screen talking, never a
+    guess at something the words do not name.
   - cut: {"start","end"} in SECONDS into this clip — the span to KEEP so a
     first-time viewer instantly understands the moment. Use the [t.t-t.t]
     timestamps in the transcript. start early enough to include the SETUP
