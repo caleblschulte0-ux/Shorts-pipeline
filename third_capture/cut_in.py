@@ -75,7 +75,8 @@ def ready(items: list[dict], work: Path, title: str = "") -> list[dict]:
               f"{'cut in' if hit else 'no checked footage — not cut in'}",
               flush=True)
         if hit:
-            out.append({**it, "mp4": hit["path"], "url": hit["url"]})
+            out.append({**it, "mp4": hit["path"], "url": hit["url"],
+                        "secs": min(it["secs"], hit.get("secs") or it["secs"])})
     return out
 
 

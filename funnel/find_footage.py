@@ -31,6 +31,8 @@ MAX_S = 900                # a highlight reel, not a full game
 YEARS = 25                 # how far back the search reaches
 CANDIDATES = 3             # videos tried per request
 POINTS = (0.22, 0.40, 0.58, 0.76)   # where in a video a frame is judged
+MIN_SHOT = 1.6             # a shot shorter than this is a flash, not a cut-in
+SCENE = 0.3                # ffmpeg scene score that counts as a new shot
 
 
 def _norm(s) -> str:
@@ -113,6 +115,27 @@ def judge(frames: list[tuple[int, Path]], look: str, title: str = ""
         [(i, p, look) for i, p in frames], title=title or look)
 
 
+def shot_around(video: Path, at: float, span: float = 8.0) -> tuple[float, float]:
+    """(start, end) of the SHOT that holds second `at`: a highlight reel
+    cuts every second or two, and the first sample (2026-10-17) judged a
+    frame of Westbrook and Durant and cut in Kobe Bryant from the next
+    shot. Scene changes within `span` either side bound it."""
+    lo = max(0.0, at - span)
+    try:
+        log = subprocess.run(
+            ["ffmpeg", "-v", "info", "-ss", f"{lo:.2f}", "-t",
+             f"{2 * span:.2f}", "-i", str(video), "-an", "-vf",
+             f"scale=320:-2,select='gt(scene,{SCENE})',showinfo",
+             "-f", "null", "-"],
+            capture_output=True, text=True, timeout=120).stderr
+    except Exception:  # noqa: BLE001
+        return at, at
+    cuts = [lo + float(x) for x in re.findall(r"pts_time:([\d.]+)", log)]
+    start = max([c for c in cuts if c <= at] or [lo])
+    end = min([c for c in cuts if c > at] or [lo + 2 * span])
+    return start, end
+
+
 def cut(video: Path, start: float, secs: float, out: Path) -> Path | None:
     """`secs` of `video` from `start`, picture only, 30fps mp4."""
     try:
@@ -165,14 +188,22 @@ def find(who: str, look: str = "", *, secs: float = SECS,
                 return None
             for i, _p in frames:
                 if (verdicts.get(i) or {}).get("depicts"):
-                    start = max(0.0, dur * POINTS[i] - secs / 2)
-                    clip = cut(video, start, secs,
+                    at = dur * POINTS[i]
+                    s0, s1 = shot_around(video, at)
+                    if s1 - s0 < MIN_SHOT:
+                        continue
+                    # only the shot the brain saw, never the next one
+                    start = min(max(s0 + 0.1, at - secs / 2),
+                                max(s0 + 0.1, s1 - 0.1 - secs))
+                    length = min(secs, s1 - 0.1 - start)
+                    clip = cut(video, start, length,
                                work / f"foot_{tag}_{n}_cut.mp4")
                     if clip:
                         print(f"[footage] {who!r}: {v['title'][:60]!r} "
                               f"@{start:.1f}s", flush=True)
                         return {"path": str(clip), "url": v["url"],
-                                "title": v["title"], "from_s": round(start, 1)}
+                                "title": v["title"], "from_s": round(start, 1),
+                                "secs": round(length, 2)}
         print(f"[footage] {who!r}: no footage showed {look!r}", flush=True)
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[footage] {who!r} failed ({type(e).__name__})",
