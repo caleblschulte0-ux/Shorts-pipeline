@@ -59,8 +59,12 @@ def promote(report: dict, path: Path, run_id: str = "") -> int:
         data = json.loads(path.read_text())
     except (OSError, ValueError):
         data = {"stories": []}
+    # a story the operator turned down is never promoted again, however
+    # the critic scores it next time (Pikaboo vs Payo, 88: "That video
+    # sucked", 2026-10-17)
     have = {tuple(x.get("source_urls") or [])
-            for x in data.get("stories") or []}
+            for x in (data.get("stories") or []) + (data.get("rejected")
+                                                    or [])}
     added = 0
     for c in best_cuts(report):
         if not c.get("passes"):

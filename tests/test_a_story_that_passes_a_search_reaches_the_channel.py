@@ -66,6 +66,23 @@ class PromoteRecordsOnlyWhatPassed(unittest.TestCase):
                        path)
             self.assertFalse(path.exists())
 
+    def test_a_story_the_operator_rejected_is_never_promoted_again(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "proven.json"
+            path.write_text(json.dumps({"stories": [], "rejected": [
+                {"label": "a", "source_urls": ["u1", "u2"]}]}))
+            report = {"cuts": [_cut("a", 95, True, ["u2", "u1"])]}
+            self.assertEqual(bp.promote(report, path, "40"), 0)
+            self.assertEqual(json.loads(path.read_text())["stories"], [])
+
+    def test_pikaboo_vs_payo_is_rejected_and_off_the_list(self):
+        data = json.loads((ROOT / "state" /
+                           "third_proven_stories.json").read_text())
+        self.assertFalse([s for s in data["stories"]
+                          if "pikaboo" in s["label"]])
+        self.assertTrue([s for s in data["rejected"]
+                         if "pikaboo" in s["label"]])
+
 
 class TheChannelTakesItFirst(unittest.TestCase):
     def setUp(self):
