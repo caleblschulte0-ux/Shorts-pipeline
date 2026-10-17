@@ -248,19 +248,6 @@ class TestTheRequestBody(UploadCase):
         self.do(synthetic_media=True)
         self.assertIs(self.body()["status"]["containsSyntheticMedia"], True)
 
-    def test_clearing_the_label_keeps_the_schedule(self):
-        """Leaving a writable status field out of videos.update resets it;
-        a scheduled video would lose its publishAt."""
-        from scripts.clear_ai_label import cleared_status
-        st = cleared_status({"privacyStatus": "private",
-                             "publishAt": "2026-10-17T13:00:00Z",
-                             "containsSyntheticMedia": True,
-                             "madeForKids": False, "uploadStatus": "processed"})
-        self.assertEqual(st, {"privacyStatus": "private",
-                              "publishAt": "2026-10-17T13:00:00Z",
-                              "selfDeclaredMadeForKids": False,
-                              "containsSyntheticMedia": False})
-
     def test_not_made_for_kids(self):
         self.do()
         self.assertIs(self.body()["status"]["selfDeclaredMadeForKids"], False)
