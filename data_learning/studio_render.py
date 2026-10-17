@@ -202,7 +202,7 @@ def _theme_for(slug: str) -> dict:
 # --------------------------------------------------------------------------
 # Soundtrack — the thing that separates "slideshow" from "produced video".
 # A subtle per-theme music bed ducked under the voice, plus SFX synced to
-# the visuals: a whoosh when each chart sweeps in, a color-keyed tick when
+# the visuals: nothing on a scene change, a color-keyed tick when
 # the ring lands on a number, a pop when the closing bubble appears.
 # --------------------------------------------------------------------------
 _VIBES = {
@@ -247,9 +247,6 @@ def _synth_music(total: float, out: Path, vibe: str) -> None:
 def _synth_sfx(work: Path) -> dict[str, Path]:
     """Small synthesized one-shot library (no asset files needed)."""
     recipes = {
-        # Chart sweep-in: short filtered noise whoosh.
-        "whoosh": ("anoisesrc=duration=0.22:color=brown:amplitude=0.6",
-                   "highpass=f=400,lowpass=f=6000,volume=0.6"),
         # Ring lands on a number — tone keyed to the punch color.
         "pos": ("aevalsrc='0.45*sin(2*PI*880*t)*exp(-8*t)+"
                 "0.25*sin(2*PI*1320*t)*exp(-10*t)':d=0.35:s=44100",
@@ -331,10 +328,11 @@ def _build_soundtrack(narration: Path, windows, events, total: float,
     _build_music(total, music, vibe, slug)
     sfx = _synth_sfx(work)
 
-    # (time, file, volume) placements.
+    # (time, file, volume) placements. No sound on a scene change (caaleb,
+    # 2026-10-17: "The hell is that noise between the scene changes?" — a
+    # burst of filtered noise played on every cut, and it landed on the
+    # next line's first word).
     plays: list[tuple[float, Path, float]] = []
-    for i in range(1, len(windows) - 1):              # each chart sweeps in
-        plays.append((windows[i][0], sfx["whoosh"], 0.7))
     for e in events:                                  # ring lands on a number
         p = e["punch"]
         c = (p.get("color") or "").lower()
@@ -831,6 +829,31 @@ def _retime(wav: Path, tempo: float) -> None:
     tmp.replace(wav)
 
 
+#: The breath after every line. Each scene window is the line PLUS this, so
+#: the audio has to carry it too: the lines were once joined back to back
+#: while the windows counted the gap, and every scene change (and the sound
+#: on it) slid a little further into the next line's first word.
+LINE_GAP = 0.12
+
+
+def _join_lines(wavs: list[Path], workdir: Path) -> Path:
+    """The narration as it plays: each line followed by LINE_GAP of silence,
+    so line k starts exactly where its window does."""
+    padded = []
+    for w in wavs:
+        p = w.with_suffix(".gap.wav")
+        _run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(w),
+              "-af", f"apad=pad_dur={LINE_GAP}", "-c:a", "pcm_s16le", str(p)])
+        padded.append(p)
+    listf = workdir / "list.txt"
+    listf.write_text("\n".join(f"file '{w}'" for w in padded) + "\n")
+    raw = workdir / "raw.wav"
+    _run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0",
+          "-i", str(listf), "-af", "apad=pad_dur=0.18", "-c:a", "pcm_s16le",
+          str(raw)])
+    return raw
+
+
 def synth_narration(sentences, workdir: Path, voice: str):
     import os
     import soundfile as sf
@@ -855,7 +878,7 @@ def synth_narration(sentences, workdir: Path, voice: str):
     if gm:
         for w in gm:
             _retime(w, tempo)
-            d = _dur(w) + 0.12
+            d = _dur(w) + LINE_GAP
             windows.append((t, t + d)); t += d; wavs.append(w)
         TTS_USED["engine"] = "gemini"
         print(f"[tts] {TTS_USED.get('voice')} ({len(wavs)} lines)", flush=True)
@@ -869,7 +892,7 @@ def synth_narration(sentences, workdir: Path, voice: str):
     if cb:
         for w in cb:
             _retime(w, tempo)
-            d = _dur(w) + 0.12
+            d = _dur(w) + LINE_GAP
             windows.append((t, t + d)); t += d; wavs.append(w)
         TTS_USED["engine"] = "chatterbox"
         print(f"[tts] chatterbox {TTS_USED.get('voice')} ({len(wavs)} lines)",
@@ -884,7 +907,7 @@ def synth_narration(sentences, workdir: Path, voice: str):
                 wavs, windows, t = [], [], 0.0
                 break
             _retime(w, tempo)
-            d = _dur(w) + 0.12
+            d = _dur(w) + LINE_GAP
             windows.append((t, t + d)); t += d; wavs.append(w)
         if wavs:
             TTS_USED["engine"] = "elevenlabs"
@@ -901,7 +924,7 @@ def synth_narration(sentences, workdir: Path, voice: str):
                 ok = False
                 break
             _retime(w, tempo)
-            d = _dur(w) + 0.12
+            d = _dur(w) + LINE_GAP
             windows.append((t, t + d)); t += d; wavs.append(w)
         if ok and wavs:
             TTS_USED["engine"] = "speechify"
@@ -925,16 +948,11 @@ def synth_narration(sentences, workdir: Path, voice: str):
                                    lang="en-us")           # the same tempo, natively
             w = workdir / f"s{i}.wav"
             sf.write(str(w), samples, sr)
-            d = _dur(w) + 0.12       # tight breath between lines (pace = retention)
+            d = _dur(w) + LINE_GAP       # tight breath between lines (pace = retention)
             windows.append((t, t + d))
             t += d
             wavs.append(w)
-    listf = workdir / "list.txt"
-    listf.write_text("\n".join(f"file '{w}'" for w in wavs) + "\n")
-    raw = workdir / "raw.wav"
-    _run(["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0",
-          "-i", str(listf), "-af", "apad=pad_dur=0.18", "-c:a", "pcm_s16le",
-          str(raw)])
+    raw = _join_lines(wavs, workdir)
     narration = workdir / "narration.wav"
     # Optional gentle pitch shift (asetrate shifts pitch+tempo; atempo undoes
     # the tempo), then loudness-normalize. Skip the shift at natural pitch.

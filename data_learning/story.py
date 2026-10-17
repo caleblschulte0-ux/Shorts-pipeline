@@ -256,6 +256,15 @@ def _build_insight(seg_cfg: dict):
     return ins
 
 
+def _illustrated(story_cfg: dict) -> bool:
+    """True when this story renders in the illustrated look."""
+    try:
+        from shared import style_arms
+        return style_arms.choose(str(story_cfg.get("slug") or "")) == "illustrated"
+    except Exception:  # noqa: BLE001
+        return False
+
+
 def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
     """Construct a Story: fetch each segment's data, render its chart, and
     assemble the narration + punches."""
@@ -344,7 +353,13 @@ def build(story_cfg: dict, cfg: dict, workdir: Path, repo: Path) -> Story:
     # of the ORDER — which is what the code already did for the all-trend
     # case one line below. `timeline` is the other time-shaped kind, renders
     # full-frame, and falls back to `trend` on its own if it cannot produce.
-    if not story_cfg.get("keep_order") and inss:
+    # An ILLUSTRATED story keeps the order it was WRITTEN in. The sort below
+    # is a chart rule (where a line chart goes), and every illustrated beat
+    # is drawn for its own config beat: shuffled, the pictures got another
+    # beat's numbers and the narration was told out of order. The
+    # household-size video of 2026-10-17 ended on "131% of US homes hold one
+    # person" -- the share scene drawing the household count.
+    if not (story_cfg.get("keep_order") or _illustrated(story_cfg)) and inss:
         tail = sorted(range(1, len(inss)),
                       key=lambda i: (inss[i].kind == "trend", i))
         order = [0] + tail
