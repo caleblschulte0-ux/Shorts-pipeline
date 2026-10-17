@@ -1,0 +1,16 @@
+{
+ "slug": "migraine-global-disability-burden",
+ "ts": "20261017T182733Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg1:start the caption 'health problem, not' is grey on the dark grey pill-bottle band and almost disappears. In payoff@-1.8 the caption 'Do you get migraines? Tell me below.' is faded and printed over the walking man. In seg2:end the line 'about 1 in 7 \u00b7 diabetes: 11%' is tiny thin t",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void",
+  "visible_evidence": "The closing clinic queue (payoff@-1.8) cuts to a dark empty gradient in the last second (payoff@-0.4). Data stands alone at the bottom holding a blank price-tag prop, with no scene, text or story.",
+  "root_cause": "The scene ends before the narration and outro do. The renderer falls back to a default empty stage, and the mascot's default prop ('price_tag') fills the hole.",
+  "repair_goal": "Keep the clinic-queue picture on screen to the last frame (or reuse the last beat's finished picture with no words). Never fall back to the empty stage, and remove the blank price tag. Ideally Data leads the queue of patients through the clinic door as the payoff."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

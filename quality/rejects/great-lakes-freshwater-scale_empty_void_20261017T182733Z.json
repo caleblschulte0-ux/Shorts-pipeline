@@ -1,0 +1,16 @@
+{
+ "slug": "great-lakes-freshwater-scale",
+ "ts": "20261017T182733Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: The last frame (payoff@-0.4) is almost entirely a dark navy gradient. The only thing in it is a small Data at the bottom holding a blank yellow price tag, after the full-frame UK scene (seg4:end).",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void",
+  "visible_evidence": "After the closing line over the flooded UK map (seg4:end), the video cuts to a dark empty gradient (payoff@-0.4). Data stands in it holding a blank yellow price tag, with no text and no scene.",
+  "root_cause": "A generic fallback tail card was added after the closing: dark ground, default mascot pose, and the blank price-tag prop. It replaced the closing scene's own finished picture.",
+  "repair_goal": "End on the flooded-UK closing frame: hold the finished map, the closing line and COMMENT BELOW until the last frame. Remove the dark tail card, and never let the blank price-tag prop render."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

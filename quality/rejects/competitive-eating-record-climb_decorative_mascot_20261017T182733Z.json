@@ -1,0 +1,16 @@
+{
+ "slug": "competitive-eating-record-climb",
+ "ts": "20261017T182733Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: seg1:start to seg1:end: the giant hot dog grows from 25 to 76 while Data just stands at the right edge of the counter and waves. He does nothing to make it grow. In payoff@-0.4 he stands alone holding a blank yellow price tag.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void",
+  "visible_evidence": "payoff@-0.4: the boardwalk closing gives way to a blank dark gradient with a small Data holding an empty yellow price tag. The video's last frame is a void with no subject, text or story.",
+  "root_cause": "The video ends on a fallback outro: the default mascot pose (a blank price tag prop) on the default ground. It replaced the closing scene's finished picture instead of holding on it.",
+  "repair_goal": "End on the closing scene's finished frame: the bitten giant hot dog, the 76 flag, the '2025: 70.5' mark and Data with the mustard bottle, held under the closing line through the last frame. Remove the dark-gradient price-tag tail entirely."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

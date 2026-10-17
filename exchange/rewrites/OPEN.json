@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-17T15:25:42Z",
+ "updated": "2026-10-17T18:27:24Z",
  "open": [
+  {
+   "id": "california-condor-comeback__7f22c4ab",
+   "slug": "california-condor-comeback",
+   "filed": "2026-10-17T18:27:24Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and does not hinge on a single, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261017/california-condor-comeback__7f22c4ab.request.json",
+   "answer_path": "exchange/rewrites/20261017/california-condor-comeback__7f22c4ab.answer.json"
+  },
   {
    "id": "saturn-rings-vanishing__54929b8a",
    "slug": "saturn-rings-vanishing",
@@ -281,16 +291,6 @@
    ],
    "request": "exchange/rewrites/20261017/lottery-odds-vs-real-life__2ee01cb7.request.json",
    "answer_path": "exchange/rewrites/20261017/lottery-odds-vs-real-life__2ee01cb7.answer.json"
-  },
-  {
-   "id": "california-condor-comeback__2ad24585",
-   "slug": "california-condor-comeback",
-   "filed": "2026-10-17T12:56:19Z",
-   "why": [
-    "premise: brain: It relies on multiple numbers (27 and over 500) rather than a single consequential, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261017/california-condor-comeback__2ad24585.request.json",
-   "answer_path": "exchange/rewrites/20261017/california-condor-comeback__2ad24585.answer.json"
   },
   {
    "id": "back-to-sleep-campaign-cut-sids__1d5b6766",
