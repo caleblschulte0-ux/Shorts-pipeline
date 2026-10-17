@@ -5962,6 +5962,62 @@
    ],
    "ending_type": "escalation",
    "notes": "zero chemistry winners under 40 this century"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-17",
+   "topic_category": "nature",
+   "hook_type": "shock_stat",
+   "hook_text": "One cave fungus wiped out 97 percent of a bat species.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "notes": "re-validated unchanged: current-standard illustrated scenes kept; bats fall from colony; farm value lost"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-17",
+   "topic_category": "finance",
+   "hook_type": "shock_stat",
+   "hook_text": "States are quietly holding 70 billion dollars of your money.",
+   "depictions": [
+    "viz:geo_us",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "consequence",
+   "notes": "re-validated unchanged: current-standard illustrated scenes kept; vault vs trickle returned"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-10-17",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "depictions": [
+    "scene:illustrated-arm",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "notes": "re-validated unchanged: current-standard illustrated scenes kept; rebel look is the average look"
+  },
+  {
+   "slug": "nobel-prize-discovery-age",
+   "directed_at": "2026-10-17",
+   "topic_category": "science",
+   "hook_type": "inversion",
+   "hook_text": "Physics used to hand out Nobels at thirty-seven. Now it's fifty.",
+   "depictions": [
+    "scene:illustrated-candles",
+    "scene:illustrated",
+    "mechanic:nobel-young-flask-grid"
+   ],
+   "ending_type": "escalation",
+   "notes": "re-validated unchanged: current-standard illustrated scenes kept; zero chemistry winners under 40 this century"
   }
  ]
 }
