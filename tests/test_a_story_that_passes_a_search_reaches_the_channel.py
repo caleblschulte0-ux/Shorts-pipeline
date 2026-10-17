@@ -54,7 +54,10 @@ class PromoteRecordsOnlyWhatPassed(unittest.TestCase):
                                _cut("b", 79, False, ["u3", "u4"])]}
             self.assertEqual(bp.promote(report, path, "31"), 1)
             self.assertEqual(bp.promote(report, path, "31"), 0)
-            st = json.loads(path.read_text())["stories"]
+            data = json.loads(path.read_text())
+            self.assertEqual(data.get("stories", []), [],
+                             "a pass waits for the operator to watch it")
+            st = data["pending"]
             self.assertEqual([s["label"] for s in st], ["a"])
             self.assertEqual(st[0]["source_urls"], ["u1", "u2"])
             self.assertEqual(st[0]["score"], 88)

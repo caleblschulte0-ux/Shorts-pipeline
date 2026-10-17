@@ -64,7 +64,8 @@ def promote(report: dict, path: Path, run_id: str = "") -> int:
     # sucked", 2026-10-17)
     have = {tuple(x.get("source_urls") or [])
             for x in (data.get("stories") or []) + (data.get("rejected")
-                                                    or [])}
+                                                    or [])
+            + (data.get("pending") or [])}
     added = 0
     for c in best_cuts(report):
         if not c.get("passes"):
@@ -75,7 +76,10 @@ def promote(report: dict, path: Path, run_id: str = "") -> int:
         if len(urls) < 2 or tuple(urls) in have:
             continue
         have.add(tuple(urls))
-        data.setdefault("stories", []).append({
+        # a pass waits in `pending` until the operator has watched it: the
+        # channel posts only `stories`, and the critic's 88 for Pikaboo vs
+        # Payo was a video the operator called bad (2026-10-17)
+        data.setdefault("pending", []).append({
             "label": c.get("label"), "run": str(run_id),
             "score": int((c.get("review") or {}).get("story_score") or 0),
             "edl": c.get("edl"), "sources": c.get("sources") or [],
