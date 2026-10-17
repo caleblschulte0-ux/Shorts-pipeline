@@ -3715,11 +3715,30 @@
       "duration_s": 38.3
     },
     "migraine-global-disability-burden": {
-      "claimed_at": "2026-10-17T16:56:27.106965+00:00",
+      "url": "https://youtube.com/shorts/V89PQDREOgQ",
       "title": "Migraines Affect More People Than Diabetes Does",
+      "at": "2026-10-17T16:56:37.609795+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "tts_why_not_gemini": "line 3: gemini-3.8-flash-lite-tts: HTTP 429 {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.71,
+      "beat_s": [
+        3.21,
+        5.44,
+        4.84,
+        6.71,
+        5.93
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 70,
+      "duration_s": 26.6
     }
   },
   "uploads": [
@@ -4701,9 +4720,10 @@
       "claimed_at": "2026-10-17T16:56:27.106965+00:00",
       "title": "Migraines Affect More People Than Diabetes Does",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "migraine-global-disability-burden"
+      "url": "https://youtube.com/shorts/V89PQDREOgQ",
+      "state": "posted",
+      "slug": "migraine-global-disability-burden",
+      "at": "2026-10-17T16:56:37.609795+00:00"
     }
   ]
 }
