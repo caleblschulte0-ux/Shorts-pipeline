@@ -109,7 +109,11 @@ REGISTRY: dict[str, dict] = {
         # all photo categories rendered clean; flat art + text are refused
         # by the input suitability gate (see _suitable in parallax.py).
         # Production adoption per channel still requires a preview render.
-        "status": "active",
+        # DEMOTED to deferred 2026-10-17: its re-dated decision date
+        # (2026-10-16) passed with the trial never run, and the explainer now
+        # posts only the illustrated look, which has no photo beats to try
+        # it on. Re-promote only with the trial below passed.
+        "status": "deferred",
         "gated": True,
         "problem": "2.5D depth-parallax camera move from a single still — "
                    "genuinely new capability vs. flat Ken Burns zoom.",
@@ -164,7 +168,6 @@ REGISTRY: dict[str, dict] = {
         # trial to clear the gate would be worse than an honest extension.
         # Extending 30 days for a session with the bandwidth to actually run
         # `python -m engines.benchmarks.parallax_bench` and the named trial.
-        "decision_date": "2026-10-16",
         "trial": "preview render of one explainer story with parallax on "
                  "its photo beats (kenburns as the A side); adopt on a "
                  "showrunner score no worse than the A cut, else demote.",
@@ -257,7 +260,10 @@ REGISTRY: dict[str, dict] = {
         # grade cannot fix per-asset exposure/saturation spread. lookmatch
         # nudges each asset toward the house band BEFORE assembly; in-band
         # assets pass through untouched.
-        "status": "active",
+        # DEMOTED to deferred 2026-10-17: its re-dated decision date
+        # (2026-10-16) passed with the trial never run. Re-promote only with
+        # the trial below passed.
+        "status": "deferred",
         "gated": True,
         "problem": "Per-asset look harmonization so photos/clips from many "
                    "sources read as one shoot, not a keyword search.",
@@ -279,7 +285,6 @@ REGISTRY: dict[str, dict] = {
         # 2026-09-15 deadline expired the same way, unresolved): a daily
         # content-authoring PR is not the right context to run a real
         # third-channel clip-slate trial. Extending 30 days.
-        "decision_date": "2026-10-16",
         "trial": "harmonize one third-channel clip slate's mixed-source "
                  "media before assembly; adopt if the blind look judge "
                  "stops flagging 'never settles into one look', else demote.",
