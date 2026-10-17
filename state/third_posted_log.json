@@ -14041,14 +14041,32 @@
       "ts": "2026-10-17T12:46:20.216677+00:00"
     },
     "clip-20261017-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/DependableCoweringBaguetteTwitchRaid-muvueViSdcbPPnTK",
-      "story_key": null,
-      "streamer": "joe_bartolozzi",
+      "url": "https://youtube.com/shorts/DDupylwoI8o",
       "title": "Joe Joe_Bartolozzi Begs Chop NOOOO After Seeing This On His Weapon Wheel",
       "kind": "twitch_clip",
-      "ts": "2026-10-17T12:49:21.999303+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-17T12:49:34.632645+00:00",
+      "uploaded_at": "2026-10-17T12:49:34.632659+00:00",
+      "publish_at": "2026-10-18T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261017-joe-joe-bartolozzi-begs-chop-noooo-after-seeing--a1ee3ecf",
+        "tiktok": "queued for 2026-10-18T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/DependableCoweringBaguetteTwitchRaid-muvueViSdcbPPnTK",
+      "streamer": "joe_bartolozzi",
+      "series": "chaos",
+      "hook": "Joe sees a ball on the weapon wheel \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2883,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 25.0
+      },
+      "director_cut": true
     }
   }
 }
