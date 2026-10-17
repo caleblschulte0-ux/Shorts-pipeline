@@ -13986,13 +13986,68 @@
       "ts": "2026-10-17T12:37:30.505447+00:00"
     },
     "clip-20261017-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/clix/clip/PlausiblePhilanthropicFlyDatSheffy-_knPWAUYiBDsWdiJ",
-      "story_key": null,
-      "streamer": "clix",
+      "url": "https://youtube.com/shorts/8XDr0LRsSZw",
       "title": "Clix Says He's Done Fighting And Shows Kids How To Get In",
       "kind": "twitch_clip",
-      "ts": "2026-10-17T12:40:02.536855+00:00",
+      "ts": "2026-10-17T12:40:10.681366+00:00",
+      "uploaded_at": "2026-10-17T12:40:10.681380+00:00",
+      "publish_at": "2026-10-17T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261017-clix-says-he-s-done-fighting-and-shows-kids-how--93b0847d",
+        "tiktok": "queued for 2026-10-17T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/clix/clip/PlausiblePhilanthropicFlyDatSheffy-_knPWAUYiBDsWdiJ",
+      "streamer": "clix",
+      "series": "chaos",
+      "hook": "Clix tells the kids how you get in",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2773,
+      "banger": 0.55,
+      "cut": {
+        "start": 4.8,
+        "end": 14.9
+      },
+      "director_cut": true
+    },
+    "rejected-adorablespunkyduckpipehype-kzwrwfhwvxeoil5-": {
+      "source_url": "https://www.twitch.tv/esfandtv/clip/AdorableSpunkyDuckPipeHype-kZWRWFhWvXEOil5-",
+      "streamer": "esfandtv",
+      "title": "Twist",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (WoW gameplay, donation joke, insider)",
+      "ts": "2026-10-17T12:41:24.162272+00:00"
+    },
+    "rejected-frailfreezingcattlenotlikethis-kwy2xkiplu--lkch": {
+      "source_url": "https://www.twitch.tv/loltyler1/clip/FrailFreezingCattleNotLikeThis-KWY2XKipLu--lkcH",
+      "streamer": "loltyler1",
+      "title": "Loltyler1: Tyler1 Loses It And Crashes Out On Stream After This Happens",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about one third of the canvas height. The rest is blurred padding, well short of the ; vision: The subject is tiny and lost. It is a wide top-down game view, with the streamer only in a very small facecam in the cor; vision: No crop toward the action or the",
+      "ts": "2026-10-17T12:44:15.505023+00:00"
+    },
+    "rejected-difficultconfidentflamingosupervinlin-esrplzk9m9ld_hqm": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/DifficultConfidentFlamingoSuperVinlin-EsrPLzK9M9LD_HqM",
+      "streamer": "caseoh_",
+      "title": "Casoh Just met his long loos brother \u2764\ufe0f",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Menu screen, title invents brother event)",
+      "ts": "2026-10-17T12:46:20.216677+00:00"
+    },
+    "clip-20261017-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/DependableCoweringBaguetteTwitchRaid-muvueViSdcbPPnTK",
+      "story_key": null,
+      "streamer": "joe_bartolozzi",
+      "title": "Joe Joe_Bartolozzi Begs Chop NOOOO After Seeing This On His Weapon Wheel",
+      "kind": "twitch_clip",
+      "ts": "2026-10-17T12:49:21.999303+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
