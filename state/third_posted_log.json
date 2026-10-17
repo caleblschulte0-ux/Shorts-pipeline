@@ -14078,13 +14078,41 @@
       "ts": "2026-10-17T13:27:08.495501+00:00"
     },
     "clip-20261017-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/TrustworthyJoyousStapleStrawBeary-cxcWMRUi-UeeTNWa",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/5N0ltRXHv_4",
       "title": "Lacy Gets Kicked Out Of The Stadium At The Rams Vs Bills Game After Trying To Go Back In",
       "kind": "twitch_clip",
-      "ts": "2026-10-17T13:30:44.907073+00:00",
+      "ts": "2026-10-17T13:30:57.223712+00:00",
+      "uploaded_at": "2026-10-17T13:30:57.223729+00:00",
+      "publish_at": "2026-10-18T02:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261017-lacy-gets-kicked-out-of-the-stadium-at-the-rams--eaf7e7df",
+        "tiktok": "queued for 2026-10-18T02:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/TrustworthyJoyousStapleStrawBeary-cxcWMRUi-UeeTNWa",
+      "streamer": "lacy",
+      "series": "drama",
+      "hook": "Lacy tries to go back into the stadium",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1960,
+      "banger": 0.78,
+      "cut": {
+        "start": 17.9,
+        "end": 58.0
+      },
+      "director_cut": true
+    },
+    "clip-20261017-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/ProductiveTacitGrassOptimizePrime-e3AI79iuMrBBPLmI",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Says \"That's Beef\" After This Chat Moment Goes Wrong",
+      "kind": "twitch_clip",
+      "ts": "2026-10-17T13:48:19.186666+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
