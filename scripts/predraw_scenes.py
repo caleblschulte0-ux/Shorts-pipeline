@@ -180,7 +180,13 @@ def _save_bookend(config_path: Path, slug: str, kind: str, code: str,
     write_json_if_changed(config_path, cfg, ensure_ascii=False)
 
 
-BOOKENDS = ("closing", "hook")
+#: THE HOOK FIRST (operator, 2026-10-17, of a methane video that opened on
+#: ten seconds of Data feeding one cow: "that's boring. That can't be an
+#: opening clip. People are going to swipe away"). With the closing drawn
+#: first the clock ran out before the hook on most stories (10 queued
+#: stories fully drawn: 4 closings, 2 hooks), and a story with no hook scene
+#: opens on its first beat's picture for the hook AND the beat.
+BOOKENDS = ("hook", "closing")
 
 
 def predraw(slug: str, cfg: dict, config_path: Path, deadline: float,

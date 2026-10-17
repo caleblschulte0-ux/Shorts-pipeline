@@ -52,6 +52,18 @@ BUDGET_S = float(os.environ.get("SCENE_AUTHOR_BUDGET_S", "1200"))
 _DEADLINE = None
 
 
+#: The least drawing clock the HOOK is given, whatever the beats spent
+#: before it: the opening is the shot a viewer decides on.
+HOOK_MIN_S = float(os.environ.get("SCENE_AUTHOR_HOOK_MIN_S", "480"))
+
+
+def reserve(seconds: float) -> None:
+    """Make sure at least `seconds` of drawing clock are left (never less
+    than what is already left)."""
+    if _remaining() < seconds:
+        set_budget(seconds)
+
+
 def set_budget(seconds: float | None = None) -> None:
     import time
     global _DEADLINE

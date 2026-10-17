@@ -610,6 +610,14 @@ def _plan_restore(slug: str, snapshot) -> None:
         print(f"[{slug}] plan restore skipped: {e}", flush=True)
 
 
+def _opening_to_draw(sc: dict) -> int:
+    """1 when a story has a hook line but no saved hook scene: it would
+    open on its first beat's picture, held across the hook and the beat."""
+    return int(bool((sc.get("hook") or "").strip())
+               and not (isinstance(sc.get("hook_scene"), str)
+                        and sc["hook_scene"].strip()))
+
+
 def _beats_to_draw(sc: dict) -> int:
     """How many of a story's beats have no saved subject scene yet."""
     segs = [g for g in (sc.get("segments") or []) if isinstance(g, dict)]
@@ -707,7 +715,12 @@ def main() -> int:
     # (the rotation above), whatever it has drawn — the posting workflow
     # passes its queue as --slugs, so this is where that list is ordered.
     _blocked = _recent_gate_blocks()
-    slugs.sort(key=lambda s: (s in _blocked, _beats_to_draw(stories.get(s) or {})))
+    # And among those, a story whose OPENING is drawn goes first (operator,
+    # 2026-10-17, of three videos that each opened on their first beat's
+    # picture for ten seconds because no hook scene had been drawn: "That
+    # can't be an opening clip"). A tie-break, never a skip.
+    slugs.sort(key=lambda s: (s in _blocked, _beats_to_draw(stories.get(s) or {}),
+                              _opening_to_draw(stories.get(s) or {})))
     unknown = [s for s in slugs if s not in stories]
     if unknown:
         print(f"unknown slugs: {unknown}\navailable: {list(stories)}",
