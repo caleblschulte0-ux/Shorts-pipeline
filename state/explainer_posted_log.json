@@ -3713,6 +3713,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 57,
       "duration_s": 38.3
+    },
+    "migraine-global-disability-burden": {
+      "claimed_at": "2026-10-17T16:56:27.106965+00:00",
+      "title": "Migraines Affect More People Than Diabetes Does",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4689,6 +4696,14 @@
       "state": "posted",
       "slug": "household-size-shrinking",
       "at": "2026-10-17T12:05:25.247940+00:00"
+    },
+    {
+      "claimed_at": "2026-10-17T16:56:27.106965+00:00",
+      "title": "Migraines Affect More People Than Diabetes Does",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "migraine-global-disability-burden"
     }
   ]
 }
