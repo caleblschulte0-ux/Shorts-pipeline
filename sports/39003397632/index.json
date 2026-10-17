@@ -1,0 +1,131 @@
+[
+ {
+  "sub": "youtube",
+  "who": "Russell Westbrook",
+  "why": "named by the operator",
+  "post_title": "Westbrook's true reaction to OKC blowing a 3-1 lead to GS and KD joining GS in 2016 \ud83d\ude21.",
+  "upvotes": 0,
+  "url": "https://www.youtube.com/watch?v=MILncMjtvko",
+  "permalink": "https://www.youtube.com/watch?v=MILncMjtvko",
+  "meta": {
+   "title": "Russell Westbrook Laughs Instantly When Durant Picks Golden State After OKC Blew 3-1",
+   "hook": "Westbrook on hearing KD joined GS \ud83d\ude21",
+   "caption": "Russell Westbrook says he laughed when he heard Kevin Durant was going to the team that just beat OKC, then got pissed.",
+   "cta": "Was Westbrook right to be this mad at KD?",
+   "hashtags": [
+    "russellwestbrook",
+    "kevindurant",
+    "okcthunder",
+    "warriors",
+    "nba",
+    "sports"
+   ],
+   "series": "beef",
+   "edit": {
+    "mood": "sad",
+    "mood_at": 8.7,
+    "complete": true,
+    "moves": [
+     {
+      "move": "zoom",
+      "at": 20.1
+     }
+    ],
+    "song": "another_love",
+    "broll": [
+     {
+      "who": "Russell Westbrook Kevin Durant",
+      "look": "Westbrook and Durant together on the Thunder",
+      "at": 1.0
+     }
+    ],
+    "cut": {
+     "start": 0.0,
+     "end": 32.1
+    }
+   }
+  },
+  "hook": "Westbrook on hearing KD joined GS \ud83d\ude21",
+  "ledger": {
+   "moves": [
+    "zoom@20.1",
+    "sad@8.7(another_love)"
+   ],
+   "mood": "sad",
+   "shot_plan": {
+    "layout": "wide",
+    "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+    "shots": [],
+    "n_subjects": 1
+   }
+  },
+  "file": "01_russell-westbrook.mp4"
+ },
+ {
+  "sub": "youtube",
+  "who": "Russell Westbrook",
+  "why": "named by the operator",
+  "post_title": "Westbrook on KD leaving OKC \u201cI\u2019m pissed. I\u2019m livid. I feel like we let that opportunity slip away",
+  "upvotes": 0,
+  "url": "https://www.youtube.com/watch?v=5vN3jEK-thQ",
+  "permalink": "https://www.youtube.com/watch?v=5vN3jEK-thQ",
+  "meta": {
+   "title": "Russell Westbrook Still Pissed Over KD Leaving OKC For Golden State",
+   "hook": "Westbrook still livid over KD leaving \ud83e\udd40",
+   "caption": "Russell Westbrook opens up on the anger he felt when Kevin Durant left OKC for the Warriors.",
+   "cta": "Was Westbrook right to be this mad at KD? \ud83d\udc47",
+   "hashtags": [
+    "russellwestbrook",
+    "kevindurant",
+    "thunder",
+    "okc",
+    "warriors",
+    "nba",
+    "sports"
+   ],
+   "series": "drama",
+   "edit": {
+    "mood": "sad",
+    "mood_at": 37.9,
+    "complete": true,
+    "song": "another_love",
+    "broll": [
+     {
+      "who": "Russell Westbrook Kevin Durant",
+      "look": "Westbrook and Durant together on the Thunder",
+      "at": 42.6
+     }
+    ],
+    "cut": {
+     "start": 6.5,
+     "end": 106.3
+    }
+   }
+  },
+  "hook": "Westbrook still livid over KD leaving \ud83e\udd40",
+  "ledger": {
+   "moves": [
+    "sad@31.4(another_love)"
+   ],
+   "mood": "sad",
+   "shot_plan": {
+    "layout": "action",
+    "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+    "shots": [
+     {
+      "mode": "action",
+      "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+     }
+    ],
+    "n_subjects": 0,
+    "crop": [
+     540,
+     720,
+     384,
+     0
+    ]
+   }
+  },
+  "file": "02_russell-westbrook.mp4"
+ }
+]
