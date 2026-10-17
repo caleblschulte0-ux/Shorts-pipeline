@@ -21,6 +21,14 @@ on:
         description: 'Reddit top-of window (day, week, month)'
         required: false
         default: 'week'
+      find:
+        description: 'Cut a named moment from YouTube instead (search words)'
+        required: false
+        default: ''
+      who:
+        description: 'Who that moment is about (with find)'
+        required: false
+        default: ''
 
 permissions:
   contents: write        # push the cuts to preview-renders
@@ -72,9 +80,12 @@ jobs:
           PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
           THIRD_ASR: groq
+          FIND: ${{ inputs.find }}
+          WHO: ${{ inputs.who }}
         run: |
           python scripts/sports_samples.py --out sports \
-            --n "${{ inputs.n || '6' }}" --period "${{ inputs.period || 'week' }}"
+            --n "${{ inputs.n || '6' }}" --period "${{ inputs.period || 'week' }}" \
+            --find "$FIND" --who "$WHO"
 
       - name: Phone-sized copies
         if: always()

@@ -1604,6 +1604,16 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             shows = show_it.ready(show_it.plan(direct["show"], dur,
                                                offset=t0), tmp, when)
         ledger_ae["shown"] = [f"{s['thing']}@{s['at']}" for s in shows]
+        # FOOTAGE of who they are talking about, cut in while the voice
+        # carries on (operator, 2026-10-17: "when Russ is talking about KD
+        # ... show highlights of the two together") — only footage the
+        # brain checked (third_capture/cut_in.py, funnel/find_footage.py)
+        from third_capture import cut_in
+        cuts = []
+        if auto and direct and direct.get("broll"):
+            cuts = cut_in.ready(cut_in.plan(direct["broll"], dur, offset=t0),
+                                tmp, title=hook)
+        ledger_ae["cut_in"] = [f"{c['who']}@{c['at']}" for c in cuts]
         _bed = mv["bed"]
         ledger_ae["mood"] = _bed["move"] if _bed else None
         ledger_ae["mood_at"] = _bed["at"] if _bed else None
@@ -1616,7 +1626,8 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         # audio slamming shut on the final frame
         afade = (f"loudnorm=I=-14:TP=-1.5,"
                  f"afade=t=out:st={max(0.0, dur - 0.25):.2f}:d=0.25")
-        _has_moves = bool(mv["hits"] or mv["bed"] or line2_png or shows)
+        _has_moves = bool(mv["hits"] or mv["bed"] or line2_png or shows
+                          or cuts)
 
         def _compose(with_line: bool, with_mood: bool) -> tuple[str, list]:
             """(filter_complex, extra_input_paths); it ends in [vout] and
@@ -1628,8 +1639,18 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
                 pre = ",".join(f for f in (
                     moves_mod.camera(mv, CANVAS_W, CANVAS_H),
                     moves_mod.look(mv)) if f)
-                if pre:
-                    vf0 = vf0.replace("[base]ass=", f"[base]{pre},ass=")
+                # the footage goes in UNDER the camera and the colour, so
+                # a sad turn greys it too, and under the words
+                under, seg = "base", []
+                for i, ci in enumerate(cuts):
+                    inputs.append(ci["mp4"])
+                    seg.append(cut_in.overlay(under, len(inputs), ci,
+                                              CANVAS_W, CANVAS_H, f"cb{i}"))
+                    under = f"cb{i}"
+                if seg or pre:
+                    vf0 = vf0.replace("[base]ass=", "".join(
+                        f"{x};" for x in seg)
+                        + f"[{under}]{pre + ',' if pre else ''}ass=")
             parts, cur = [vf0], "capped"
             if with_line and line_png:
                 inputs.append(line_png)

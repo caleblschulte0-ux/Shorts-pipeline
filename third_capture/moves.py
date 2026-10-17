@@ -20,8 +20,11 @@ from the transcript; `plan` validates them and the renderer applies them.
 None of this changes the clip's speed: the slow-mo, replay and speed-ramp
 the operator called "that weird slowdown thing" stay retired.
 
-Every sound is SYNTHESISED here, never a sample or a song: the boom, the
-crickets and the beats would otherwise be Content ID claims. Made once
+Every hit and the hype beat are SYNTHESISED here: a boom on every clip
+would otherwise be a Content ID claim on every clip. The one exception is
+the sad turn, which carries a REAL song the author picks (operator,
+2026-10-17: "an actual like wistful sad song people might recognize"),
+funnel/songs.py; the synthesised piano is its fallback. Made once
 per run into cache/ (gitignored); nothing binary is committed.
 """
 from __future__ import annotations
@@ -45,6 +48,9 @@ MAX_HITS = 3
 MAX_WHOA = 1
 HIT_GAP = 2.0          # seconds between two hits: more is a seizure
 HYPE_LOOK = "eq=saturation=1.35:contrast=1.08"
+#: a mastered record is far louder than the synthesised beds; this sits it
+#: under the voices before the ducking
+SONG_GAIN = 0.22
 
 # (rise, hold, fall) seconds and peak zoom per hit
 _SHAPE = {"zoom": (0.10, 1.3, 0.22, 0.24),
@@ -107,6 +113,12 @@ def plan(edit: dict | None, dur: float, offset: float = 0.0) -> dict:
             continue
         if all(abs(h["at"] - k["at"]) >= HIT_GAP for k in out["hits"]):
             out["hits"].append(h)
+    # the REAL song under a sad turn (operator, 2026-10-17: "an actual
+    # like wistful sad song people might recognize"): funnel/songs.py
+    if out["bed"] and out["bed"]["move"] == "sad":
+        from funnel import songs
+        if songs.clean(edit.get("song")):
+            out["bed"]["song"] = songs.clean(edit.get("song"))
     l2 = edit.get("line2") or {}
     text = str(l2.get("text", "")).strip() if isinstance(l2, dict) else ""
     at = _at(l2.get("at")) if isinstance(l2, dict) else None
@@ -119,7 +131,8 @@ def summary(p: dict) -> list:
     """What the ledger records: ["zoom@3.2", "sad@7.0", "line2@9.1"]."""
     s = [f"{h['move']}@{h['at']}" for h in p.get("hits", [])]
     if p.get("bed"):
-        s.append(f"{p['bed']['move']}@{p['bed']['at']}")
+        s.append(f"{p['bed']['move']}@{p['bed']['at']}"
+                 + (f"({p['bed']['song']})" if p["bed"].get("song") else ""))
     if p.get("line2"):
         s.append(f"line2@{p['line2']['at']}")
     return s
@@ -281,10 +294,18 @@ def audio_graph(p: dict, voice: str, first_input: int, dur: float,
     parts, files, cur = [], [], voice
     b = p.get("bed")
     if b:
-        files.append(sound(b["move"]))
+        song = None
+        if b.get("song"):
+            from funnel import songs
+            song = songs.get(b["song"])
+            if song is None:
+                print(f"::warning::[moves] song {b['song']} not fetched — "
+                      "the piano instead", flush=True)
+        files.append(song or sound(b["move"]))
         idx = first_input + len(files) - 1
         t = {"at": b["at"], "fade": 1.2 if b["move"] == "sad" else 0.3}
-        gain = mood_mod.BED_GAIN if b["move"] == "sad" else 0.26
+        gain = (SONG_GAIN if song else mood_mod.BED_GAIN
+                if b["move"] == "sad" else 0.26)
         frag = mood_mod.audio_graph(t, cur, f"{idx}:a", dur, "abed")
         parts.append(frag.replace(f"volume={mood_mod.BED_GAIN}",
                                   f"volume={gain}"))
