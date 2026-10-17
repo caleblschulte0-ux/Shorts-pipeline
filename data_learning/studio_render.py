@@ -321,6 +321,13 @@ def _build_music(total: float, out: Path, vibe: str, slug: str) -> None:
     _synth_music(total, out, vibe)
 
 
+#: The music bed's level after it is loudness-normalised to the voice's
+#: -16 LUFS. It was 0.45, which sat it about 12 dB under the voice once
+#: ducked; caaleb, 2026-10-17: "The music is to loud". 0.25 puts it about
+#: 18 dB under, where a bed sits under speech.
+MUSIC_BED = 0.25
+
+
 def _build_soundtrack(narration: Path, windows, events, total: float,
                       vibe: str, work: Path, slug: str = "") -> Path:
     """Mix narration + ducked music bed + visual-synced SFX into one track."""
@@ -357,7 +364,7 @@ def _build_soundtrack(narration: Path, windows, events, total: float,
         # the voice instead of crushing it to nothing.
         # Bed is loudness-normalized to -16 LUFS (same as the voice), so it's
         # loud and present; it sits just under and ducks while the voice talks.
-        f"[1:a]volume=0.45,atrim=0:{total:.2f}[mraw]",
+        f"[1:a]volume={MUSIC_BED},atrim=0:{total:.2f}[mraw]",
         "[mraw][0:a]sidechaincompress=threshold=0.06:ratio=4:"
         "attack=80:release=400[duck]",
     ]
