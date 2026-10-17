@@ -54,7 +54,10 @@ class PromoteRecordsOnlyWhatPassed(unittest.TestCase):
                                _cut("b", 79, False, ["u3", "u4"])]}
             self.assertEqual(bp.promote(report, path, "31"), 1)
             self.assertEqual(bp.promote(report, path, "31"), 0)
-            st = json.loads(path.read_text())["stories"]
+            data = json.loads(path.read_text())
+            self.assertEqual(data.get("stories", []), [],
+                             "a pass waits for the operator to watch it")
+            st = data["pending"]
             self.assertEqual([s["label"] for s in st], ["a"])
             self.assertEqual(st[0]["source_urls"], ["u1", "u2"])
             self.assertEqual(st[0]["score"], 88)
@@ -65,6 +68,23 @@ class PromoteRecordsOnlyWhatPassed(unittest.TestCase):
             bp.promote({"cuts": [_cut("b", 79, False, ["u3", "u4"])]},
                        path)
             self.assertFalse(path.exists())
+
+    def test_a_story_the_operator_rejected_is_never_promoted_again(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "proven.json"
+            path.write_text(json.dumps({"stories": [], "rejected": [
+                {"label": "a", "source_urls": ["u1", "u2"]}]}))
+            report = {"cuts": [_cut("a", 95, True, ["u2", "u1"])]}
+            self.assertEqual(bp.promote(report, path, "40"), 0)
+            self.assertEqual(json.loads(path.read_text())["stories"], [])
+
+    def test_pikaboo_vs_payo_is_rejected_and_off_the_list(self):
+        data = json.loads((ROOT / "state" /
+                           "third_proven_stories.json").read_text())
+        self.assertFalse([s for s in data["stories"]
+                          if "pikaboo" in s["label"]])
+        self.assertTrue([s for s in data["rejected"]
+                         if "pikaboo" in s["label"]])
 
 
 class TheChannelTakesItFirst(unittest.TestCase):
@@ -87,6 +107,9 @@ class TheChannelTakesItFirst(unittest.TestCase):
             path = Path(td) / "proven.json"
             bp.promote({"cuts": [_cut("a", 88, True, ["u1", "u2"])]}, path)
             data = json.loads(path.read_text())
+        self.assertEqual(self._clusters(data), [],
+                         "a pass the operator has not watched never posts")
+        data["stories"], data["pending"] = data["pending"], []
         out = self._clusters(data)
         self.assertEqual(len(out), 1)
         c = out[0]

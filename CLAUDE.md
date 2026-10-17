@@ -732,6 +732,10 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   (`run_third._proven_clusters`), re-analyses, revalidates, re-renders and
   judges it again at the same 80. Nothing about it is trusted but where to
   start. `tests/test_a_story_that_passes_a_search_reaches_the_channel.py`.
+  But the critic is not the operator (2026-10-17, of that 88: *"That
+  video sucked"*): a pass lands in `pending` and reaches `stories` only
+  after the operator has watched it; what they turn down goes to
+  `rejected` and is never promoted again.
 - **A plan is READ before it is rendered, and a near-miss KEEPS ITS EDIT**
   (2026-10-08, backtests 7-8). The critic reads the words a plan would
   hold (`story.plan_ledger`, held equal to the render's ledger) and the
