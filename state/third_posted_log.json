@@ -13893,6 +13893,70 @@
         "end": 15.1
       },
       "director_cut": true
+    },
+    "rejected-obeseinexpensivealligatorsobayed-h_hrcrochqa14wxd": {
+      "source_url": "https://www.twitch.tv/loltyler1/clip/ObeseInexpensiveAlligatorSoBayed-h_HrcRochqa14WXD",
+      "streamer": "loltyler1",
+      "title": "kadeem outplay",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (League teamfight, streamer calm, no clea)",
+      "ts": "2026-10-17T12:03:29.773520+00:00"
+    },
+    "rejected-cooperativeroundmousesoonerlater-8xssysdkfg6i0mre": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/CooperativeRoundMouseSoonerLater-8xSsySdKFG6I0mRe",
+      "streamer": "jynxzi",
+      "title": "Jynxzi Rages After Getting Caught Behind The Wall In Rainbow Six",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, only about 30% of the canvas height. The rest is blurred padding, so the gameplay and; vision: The framing doesn't crop toward the action. The full 16:9 stream, including its HUD, is letterboxed without zooming in o; vision: The footage is Fortnite ('YOU PL",
+      "ts": "2026-10-17T12:06:42.240746+00:00"
+    },
+    "rejected-nastyspinelesspicklesmau5-bxn9t0qaplremjam": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/NastySpinelessPicklesMau5-BxN9T0QAPlrEmJaM",
+      "streamer": "stableronaldo",
+      "title": "WHATTT CLIX",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Spectating Fortnite builds, no clear eve)",
+      "ts": "2026-10-17T12:27:33.537673+00:00"
+    },
+    "rejected-nastyhonorablepigfunrun-oshhczur-uk2-wiv": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/NastyHonorablePigFunRun-oSHHCZUr-Uk2-wiV",
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat's Head Hits The Door And Chat Loses It",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about 25-30% of the canvas height, with large blurred padding above and below. That i; vision: The subject is tiny and far away in most frames, such as the person running down the hallway. Frames from about 8.7s to ; vision: The hook says 'Kai's head meets ",
+      "ts": "2026-10-17T12:30:38.235541+00:00"
+    },
+    "rejected-encouragingarborealfinchfrankerz-akmgyojh7dfnwit3": {
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/EncouragingArborealFinchFrankerZ-AkmgYoJH7dfNWIT3",
+      "streamer": "ishowspeed",
+      "title": "trying to loo good for Cinna \u2728\ud83e\udd79",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (GTA RP chatter, nothing visibly happens)",
+      "ts": "2026-10-17T12:31:12.848028+00:00"
+    },
+    "rejected-agitateddarkmochapermasmug-ufqd_ckeeoa9z7iz": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/AgitatedDarkMochaPermaSmug-UfqD_CKeEOa9z7iZ",
+      "streamer": "kaicenat",
+      "title": "gang got scared",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (dark hallway walking, no visible scare)",
+      "ts": "2026-10-17T12:32:38.528629+00:00"
+    },
+    "clip-20261017-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/ConcernedTenaciousRamenRlyTho-9M1UZxa3CWgUJofn",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Swears He's Not Scared Of Outlast, Then Says He'll Be The First To Play It",
+      "kind": "twitch_clip",
+      "ts": "2026-10-17T12:36:19.926037+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
