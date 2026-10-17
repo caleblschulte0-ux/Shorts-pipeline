@@ -3741,11 +3741,30 @@
       "duration_s": 26.6
     },
     "competitive-eating-record-climb": {
-      "claimed_at": "2026-10-17T17:44:07.192904+00:00",
+      "url": "https://youtube.com/shorts/sZJtOAQHsUc",
       "title": "One Man Ate 76 Hot Dogs In 10 Minutes",
+      "at": "2026-10-17T17:44:20.679274+00:00",
       "publish_at": "2026-10-17T22:56:27Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "tts_why_not_gemini": "line 3: gemini-3.8-flash-lite-tts: HTTP 429 {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.51,
+      "beat_s": [
+        3.6,
+        5.44,
+        6.51,
+        4.82,
+        5.54
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 74,
+      "duration_s": 26.4
     }
   },
   "uploads": [
@@ -4736,9 +4755,10 @@
       "claimed_at": "2026-10-17T17:44:07.192904+00:00",
       "title": "One Man Ate 76 Hot Dogs In 10 Minutes",
       "publish_at": "2026-10-17T22:56:27Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "competitive-eating-record-climb"
+      "url": "https://youtube.com/shorts/sZJtOAQHsUc",
+      "state": "posted",
+      "slug": "competitive-eating-record-climb",
+      "at": "2026-10-17T17:44:20.679274+00:00"
     }
   ]
 }
