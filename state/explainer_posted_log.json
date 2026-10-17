@@ -3739,6 +3739,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 70,
       "duration_s": 26.6
+    },
+    "competitive-eating-record-climb": {
+      "claimed_at": "2026-10-17T17:44:07.192904+00:00",
+      "title": "One Man Ate 76 Hot Dogs In 10 Minutes",
+      "publish_at": "2026-10-17T22:56:27Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4724,6 +4731,14 @@
       "state": "posted",
       "slug": "migraine-global-disability-burden",
       "at": "2026-10-17T16:56:37.609795+00:00"
+    },
+    {
+      "claimed_at": "2026-10-17T17:44:07.192904+00:00",
+      "title": "One Man Ate 76 Hot Dogs In 10 Minutes",
+      "publish_at": "2026-10-17T22:56:27Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "competitive-eating-record-climb"
     }
   ]
 }
