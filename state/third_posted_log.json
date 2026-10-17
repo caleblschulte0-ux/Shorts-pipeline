@@ -14067,6 +14067,25 @@
         "end": 25.0
       },
       "director_cut": true
+    },
+    "rejected-dreamyhelplessoctopussmorc-__fccwsrkvb_pfja": {
+      "source_url": "https://www.twitch.tv/ludwig/clip/DreamyHelplessOctopusSMOrc-__fCcwsrkVB_pfJa",
+      "streamer": "ludwig",
+      "title": "Kroko breaks Ludwig",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (League gameplay, insider, no clear payof)",
+      "ts": "2026-10-17T13:27:08.495501+00:00"
+    },
+    "clip-20261017-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/TrustworthyJoyousStapleStrawBeary-cxcWMRUi-UeeTNWa",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Gets Kicked Out Of The Stadium At The Rams Vs Bills Game After Trying To Go Back In",
+      "kind": "twitch_clip",
+      "ts": "2026-10-17T13:30:44.907073+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
