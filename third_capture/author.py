@@ -51,6 +51,8 @@ Return STRICT JSON:
           "line2": {"text": str, "at": number},
           "show": [{"thing": str, "look": str, "kind": str,
                     "at": number}, ...],
+          "song": str,
+          "broll": [{"who": str, "look": str, "at": number}, ...],
           "cut": {"start": number, "end": number}, "complete": bool}}
 
 This niche is REALITY TV: viewers follow PEOPLE and DRAMA — fights, beef,
@@ -114,9 +116,10 @@ Rules:
 - edit: you also DIRECT the edit (a human editor's judgement):
   - mood: the music and colour from one moment to the END, at most
     one, the way repost channels edit it:
-    "sad" ONLY on a genuinely sad turn (a loss, someone crying, a goodbye,
-    bad news, a friend falling out): the picture goes grey and a sad
-    piano comes in. Never for a joke or a rage moment.
+    "sad" ONLY on a genuinely sad or wistful turn (a loss, someone
+    crying, a goodbye, bad news, a friend falling out, someone missing
+    the old days with a person): the picture goes grey and the `song`
+    you pick comes in. Never for a joke or a rage moment.
     "hype" on a W: a win, a clutch, a big reveal going right, a crowd or
     chat going off: the colour pops and a hard 808 beat comes in.
     Otherwise "" (most clips).
@@ -159,6 +162,22 @@ Rules:
     transcript. 0-2 of them, only when knowing what it LOOKS like or
     what its price DID makes the clip land. Never a guess, never
     something already on screen, never the streamer. Most clips: [].
+  - song: with mood "sad", the REAL song that comes in, a record people
+    know (operator: "an actual like wistful sad song people might
+    recognize", never stock music). Pick the key whose feeling fits
+    THIS moment:
+{SONG_MENU}
+    "" when mood is not "sad".
+  - broll: when someone TALKS ABOUT a person, a team or a moment that is
+    not on screen (an old teammate, a friend they fell out with, the
+    game everyone remembers), cut to real footage of it while they keep
+    talking, the way an editor would ("when Russ is talking about KD ...
+    show highlights of the two together"). "who" is the people as a
+    search would find them ("Russell Westbrook Kevin Durant"); "look" is
+    what the footage must SHOW, in search words ("Westbrook and Durant
+    together on the Thunder"); "at" is the second they are named, from
+    the transcript. 0-2 of them, only when seeing it makes the moment
+    hit; never the person already on screen talking. Most clips: [].
   - cut: {"start","end"} in SECONDS into this clip — the span to KEEP so a
     first-time viewer instantly understands the moment. Use the [t.t-t.t]
     timestamps in the transcript. start early enough to include the SETUP
@@ -189,6 +208,10 @@ HONESTY (hard rules):
   transcript. A misheard word is not a subject.
 - Spell the streamer's handle EXACTLY as given.
 """
+
+# the song shelf is the one in funnel/songs.py, never a copy of it
+from funnel import songs as _songs  # noqa: E402
+SYSTEM = SYSTEM.replace("{SONG_MENU}", _songs.menu("sad"))
 
 # A clip that ENDS MID-SENTENCE has no payoff (operator, 2026-10-11, of
 # Alinity's "...so I pee and" ending where the Twitch clip did: "some girl
@@ -589,6 +612,14 @@ def _postprocess(out: dict, streamer: str, context: str,
     _shows = show_it.parse(edit_raw.get("show"), clip_dur)
     if _shows:
         edit["show"] = _shows
+
+    from funnel import songs
+    from third_capture import cut_in
+    if edit["mood"] == "sad" and songs.clean(edit_raw.get("song")):
+        edit["song"] = songs.clean(edit_raw.get("song"))
+    _cuts = cut_in.parse(edit_raw.get("broll"), clip_dur)
+    if _cuts:
+        edit["broll"] = _cuts
 
     # Narrative cut window (§9): trusted only when it's sane against the
     # known clip length — a >=3s span inside [0, clip_dur]. Anything off

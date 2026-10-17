@@ -113,7 +113,12 @@ SPORTS_BRIEF = (
     "only the moment itself. complete=false when the clip is a "
     "streamer or YouTuber reacting to the moment (someone talking over "
     "it, chat being read) rather than the moment itself, or when a "
-    "stranger could not tell from the clip what they are talking about.")
+    "stranger could not tell from the clip what they are talking about. "
+    "When someone looks back on a person or a time that is gone (an old "
+    "teammate, a friend they fell out with, a career ending, a title they "
+    "lost), that is a sad turn: mood 'sad' with a real song, and broll of "
+    "them together while it is said (the operator: 'when Russ is talking "
+    "about KD ... show highlights of the two together').")
 
 
 def _brain(user: str, system: str) -> dict | None:
@@ -169,7 +174,26 @@ def pick(pool: list[dict], n: int) -> list[dict]:
     return out[: n * 2]         # spares for downloads that fail
 
 
+def found(query: str, who: str, n: int) -> list[dict]:
+    """Candidates for `--find`: YouTube videos for `query` (any age, clip
+    length), shaped like a Reddit pick, so one moment the operator names
+    ("when Russ is talking about KD") can be cut as a sample."""
+    from funnel import hot_clips
+    return [{"sub": "youtube", "credit": v.get("channel") or "YouTube",
+             "who": who or query, "why": "named by the operator",
+             "post_title": v["title"], "upvotes": 0, "url": v["url"],
+             "permalink": v["url"]}
+            for v in hot_clips.youtube(query, days=365 * 15, n=n,
+                                       max_s=MAX_SOURCE_S)]
+
+
 def fetch(c: dict, work: Path) -> dict | None:
+    if c.get("sub") == "youtube":
+        # yt-dlp is refused from GitHub's runners; the converters are not
+        from funnel import find_footage
+        stem = re.sub(r"\W+", "", c["url"])[-12:]
+        p = find_footage.download(c["url"], work / f"yt_{stem}.mp4")
+        return {"path": str(p), "title": c["post_title"]} if p else None
     try:
         return clip_edit.download(c["url"], work, max_s=MAX_SOURCE_S)
     except Exception as e:  # noqa: BLE001
@@ -287,7 +311,8 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
         return {"skipped": "author: no setup or no payoff in the clip",
                 "meta": meta}
     hook = (meta or {}).get("hook") or c["post_title"][:60]
-    led = clip_edit.edit(raw, out_mp4, credit=f"r/{c['sub']}", hook=hook,
+    led = clip_edit.edit(raw, out_mp4, credit=c.get("credit")
+                         or f"r/{c['sub']}", hook=hook,
                          words=words, series=(meta or {}).get("series",
                                                               "unknown"),
                          direct=dict((meta or {}).get("edit") or {},
@@ -302,17 +327,21 @@ def main() -> int:
     ap.add_argument("--out", default="sports")
     ap.add_argument("--n", type=int, default=6)
     ap.add_argument("--period", default="week")
+    ap.add_argument("--find", default="",
+                    help="cut a named moment from YouTube instead of Reddit")
+    ap.add_argument("--who", default="")
     a = ap.parse_args()
     out = Path(a.out)
     work = out / "work"
     out.mkdir(parents=True, exist_ok=True)
 
-    pool = discover(a.period)
+    pool = (found(a.find, a.who, max(3, a.n * 2)) if a.find
+            else discover(a.period))
     (out / "pool.json").write_text(json.dumps(pool, indent=1))
     if not pool:
         print("::error::no sports video posts reached the runner", flush=True)
         return 1
-    picks = pick(pool, a.n)
+    picks = pool if a.find else pick(pool, a.n)
     index, made = [], 0
     for c in picks:
         if made >= a.n:

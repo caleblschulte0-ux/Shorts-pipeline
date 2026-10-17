@@ -1,0 +1,177 @@
+"""A REAL song for a clip's emotional turn, one people know.
+
+Operator, 2026-10-17, of Russell Westbrook talking about Kevin Durant:
+*"We put some sad music over it. Not sad like your fucking Kevin McLeod,
+whatever bullshit stock art sound we use, but like an actual like wistful
+sad song people might recognize"*. The synthesised piano
+(`third_capture/mood.py`) stays only as the fallback when no song can be
+fetched.
+
+`SONGS` is the shelf, by mood; the author picks one by its key
+(`edit.song`) from the clip's own words. `get(key)` fetches its 30-second
+store preview (the iTunes Search API, Deezer as the second source), the
+part of the song people recognise, into cache/ (gitignored); nothing
+binary is committed.
+
+A recognisable song will often draw a Content ID claim on YouTube: the
+claimant takes the ad money or, rarely, blocks the video in some
+countries. It is not a channel strike, and the operator asked for real
+songs knowing it. A song that gets a video BLOCKED comes off the shelf.
+"""
+from __future__ import annotations
+
+import json
+import re
+import subprocess
+import urllib.parse
+import urllib.request
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parent.parent
+CACHE = REPO / "cache" / "music" / "songs"
+TIMEOUT_S = 20
+MIN_S = 15.0               # a preview shorter than this is not the song
+
+#: key -> the song, the mood it carries and when it fits. The author is
+#: shown `fits` and picks by key; a key not here is no song.
+SONGS: dict[str, dict] = {
+    "see_you_again": {"artist": "Wiz Khalifa", "title": "See You Again",
+                      "mood": "sad",
+                      "fits": "a tribute: a teammate, friend or legend gone, "
+                              "retired or moved on, looking back together"},
+    "another_love": {"artist": "Tom Odell", "title": "Another Love",
+                     "mood": "sad",
+                     "fits": "heartbreak, a falling out, a bond that broke"},
+    "the_night_we_met": {"artist": "Lord Huron", "title": "The Night We Met",
+                         "mood": "sad",
+                         "fits": "wishing it could go back to how it was"},
+    "glimpse_of_us": {"artist": "Joji", "title": "Glimpse of Us",
+                      "mood": "sad",
+                      "fits": "missing someone, still thinking about them"},
+    "let_her_go": {"artist": "Passenger", "title": "Let Her Go",
+                   "mood": "sad",
+                   "fits": "only knowing what you had once it is gone"},
+    "fix_you": {"artist": "Coldplay", "title": "Fix You", "mood": "sad",
+                "fits": "someone broken down, crying, a loss that hurts"},
+    "memories": {"artist": "Maroon 5", "title": "Memories", "mood": "sad",
+                 "fits": "a fond look back at the good days"},
+    "somewhere_only_we_know": {"artist": "Keane",
+                               "title": "Somewhere Only We Know",
+                               "mood": "sad",
+                               "fits": "nostalgia, an old place or old "
+                                       "team, growing up"},
+    "daylight": {"artist": "David Kushner", "title": "Daylight",
+                 "mood": "sad",
+                 "fits": "a dark, heavy moment, a downfall"},
+    "too_good_at_goodbyes": {"artist": "Sam Smith",
+                             "title": "Too Good at Goodbyes", "mood": "sad",
+                             "fits": "a goodbye, a last game, leaving"},
+}
+
+
+def names(mood: str = "sad") -> list[str]:
+    return [k for k, s in SONGS.items() if s["mood"] == mood]
+
+
+def menu(mood: str = "sad") -> str:
+    """The shelf as prompt lines: `key: Title (Artist) - when it fits`."""
+    return "\n".join(f"    {k}: {SONGS[k]['title']} ({SONGS[k]['artist']})"
+                     f" - {SONGS[k]['fits']}" for k in names(mood))
+
+
+def clean(key) -> str:
+    """The key if it is on the shelf, else ''."""
+    k = re.sub(r"[^a-z0-9]+", "_", str(key or "").strip().lower()).strip("_")
+    return k if k in SONGS else ""
+
+
+def _norm(s: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "", str(s or "").lower())
+
+
+def _json(url: str):
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(req, timeout=TIMEOUT_S) as r:
+        return json.loads(r.read().decode("utf-8", "replace"))
+
+
+def _match(song: dict, title: str, artist: str) -> bool:
+    """The store's track is this song: the title starts with ours (a
+    "(feat. ...)" tail is fine) and the artist names ours."""
+    t, a = _norm(title), _norm(artist)
+    return t.startswith(_norm(song["title"])) and _norm(song["artist"]) in a
+
+
+def itunes(song: dict) -> str | None:
+    q = urllib.parse.urlencode({"term": f"{song['artist']} {song['title']}",
+                                "media": "music", "entity": "song",
+                                "limit": 10})
+    for r in (_json(f"https://itunes.apple.com/search?{q}")
+              .get("results") or []):
+        if r.get("previewUrl") and _match(song, r.get("trackName", ""),
+                                          r.get("artistName", "")):
+            return r["previewUrl"]
+    return None
+
+
+def deezer(song: dict) -> str | None:
+    q = urllib.parse.quote(f'artist:"{song["artist"]}" '
+                           f'track:"{song["title"]}"')
+    for r in (_json(f"https://api.deezer.com/search?q={q}")
+              .get("data") or []):
+        if r.get("preview") and _match(song, r.get("title", ""),
+                                       (r.get("artist") or {}).get("name",
+                                                                   "")):
+            return r["preview"]
+    return None
+
+
+SOURCES = (itunes, deezer)
+
+
+def _seconds(path: Path) -> float:
+    try:
+        out = subprocess.run(
+            ["ffprobe", "-v", "error", "-select_streams", "a:0",
+             "-show_entries", "format=duration", "-of", "csv=p=0",
+             str(path)], capture_output=True, text=True, timeout=30)
+        return float((out.stdout or "0").strip() or 0)
+    except Exception:  # noqa: BLE001
+        return 0.0
+
+
+def get(key: str) -> Path | None:
+    """The song's preview as a WAV in cache/, fetched once, or None when
+    the key is not on the shelf or no source handed over real audio.
+    Never raises."""
+    key = clean(key)
+    if not key:
+        return None
+    out = CACHE / f"{key}.wav"
+    if out.exists() and out.stat().st_size > 100_000:
+        return out
+    song = SONGS[key]
+    CACHE.mkdir(parents=True, exist_ok=True)
+    for src in SOURCES:
+        try:
+            url = src(song)
+            if not url:
+                continue
+            raw = CACHE / f"{key}.{src.__name__}.src"
+            req = urllib.request.Request(url,
+                                         headers={"User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, timeout=TIMEOUT_S) as r:
+                raw.write_bytes(r.read())
+            subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", str(raw),
+                            "-ac", "2", "-ar", "44100", str(out)],
+                           check=True, timeout=60, capture_output=True)
+            raw.unlink(missing_ok=True)
+            if _seconds(out) >= MIN_S:
+                print(f"[songs] {song['title']} ({song['artist']}) via "
+                      f"{src.__name__}", flush=True)
+                return out
+            out.unlink(missing_ok=True)
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[songs] {key} via {src.__name__} failed "
+                  f"({type(e).__name__})", flush=True)
+    return None
