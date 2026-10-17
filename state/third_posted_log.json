@@ -14106,13 +14106,59 @@
       "director_cut": true
     },
     "clip-20261017-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/ProductiveTacitGrassOptimizePrime-e3AI79iuMrBBPLmI",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/taNnsdY5Xgc",
       "title": "Stableronaldo Says \"That's Beef\" After This Chat Moment Goes Wrong",
       "kind": "twitch_clip",
-      "ts": "2026-10-17T13:48:19.186666+00:00",
+      "ts": "2026-10-17T13:48:27.909043+00:00",
+      "uploaded_at": "2026-10-17T13:48:27.909058+00:00",
+      "publish_at": "2026-10-18T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261017-stableronaldo-says-that-s-beef-after-this-chat-m-036ea081",
+        "tiktok": "queued for 2026-10-18T03:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/ProductiveTacitGrassOptimizePrime-e3AI79iuMrBBPLmI",
+      "streamer": "stableronaldo",
+      "series": "beef",
+      "hook": "Stableronaldo sees it coming \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2345,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.7,
+        "end": 8.2
+      },
+      "director_cut": true
+    },
+    "rejected-filthyspoopyheronwholewheat-h62rixhq2l_bghez": {
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/FilthySpoopyHeronWholeWheat-h62RIXHQ2L_bgheZ",
+      "streamer": "joe_bartolozzi",
+      "title": "no captions",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source too dark (avg luma 23/255) \u2014 unwatchable IRL/night footage",
+      "ts": "2026-10-17T13:48:45.145309+00:00"
+    },
+    "rejected-vainplaingarlicwutface-qgvetphfejwhthey": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/VainPlainGarlicWutFace-qGVETpHFEjwhtHEy",
+      "streamer": "jasontheween",
+      "title": "lol",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (scrolling screen, face-in-hands, no clea)",
+      "ts": "2026-10-17T13:49:24.220232+00:00"
+    },
+    "clip-20261017-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/AbrasiveOpenMeerkatHassanChop-joad3XYKdwHexbJq",
+      "story_key": null,
+      "streamer": "joe_bartolozzi",
+      "title": "Joe Joe_Bartolozzi Asks Chat If He Really Has A Bald Spot \ud83d\ude2d",
+      "kind": "twitch_clip",
+      "ts": "2026-10-17T13:50:52.130715+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
