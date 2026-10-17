@@ -14152,14 +14152,32 @@
       "ts": "2026-10-17T13:49:24.220232+00:00"
     },
     "clip-20261017-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/AbrasiveOpenMeerkatHassanChop-joad3XYKdwHexbJq",
-      "story_key": null,
-      "streamer": "joe_bartolozzi",
+      "url": "https://youtube.com/shorts/ERwdvF6yip4",
       "title": "Joe Joe_Bartolozzi Asks Chat If He Really Has A Bald Spot \ud83d\ude2d",
       "kind": "twitch_clip",
-      "ts": "2026-10-17T13:50:52.130715+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-17T13:50:57.204268+00:00",
+      "uploaded_at": "2026-10-17T13:50:57.204280+00:00",
+      "publish_at": "2026-10-18T05:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261017-joe-joe-bartolozzi-asks-chat-if-he-really-has-a--54bbeb58",
+        "tiktok": "queued for 2026-10-18T05:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/AbrasiveOpenMeerkatHassanChop-joad3XYKdwHexbJq",
+      "streamer": "joe_bartolozzi",
+      "series": "chaos",
+      "hook": "Chat says Joe has a bald spot \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2570,
+      "banger": 0.55,
+      "cut": {
+        "start": 5.9,
+        "end": 20.0
+      },
+      "director_cut": true
     }
   }
 }
