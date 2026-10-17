@@ -3765,6 +3765,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 74,
       "duration_s": 26.4
+    },
+    "great-lakes-freshwater-scale": {
+      "claimed_at": "2026-10-17T18:27:03.782365+00:00",
+      "title": "The Great Lakes Hold 21% Of Earth's Fresh Surface Water",
+      "publish_at": "2026-10-18T04:56:27Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4759,6 +4766,14 @@
       "state": "posted",
       "slug": "competitive-eating-record-climb",
       "at": "2026-10-17T17:44:20.679274+00:00"
+    },
+    {
+      "claimed_at": "2026-10-17T18:27:03.782365+00:00",
+      "title": "The Great Lakes Hold 21% Of Earth's Fresh Surface Water",
+      "publish_at": "2026-10-18T04:56:27Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "great-lakes-freshwater-scale"
     }
   ]
 }
