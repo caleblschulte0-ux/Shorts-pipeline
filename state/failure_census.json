@@ -2,69 +2,111 @@
  "n_verdicts": 20,
  "classes": {
   "other": {
-   "count": 9,
+   "count": 12,
    "stories": {
-    "secondhand-apparel-resale-boom": 1,
-    "saharan-dust-feeds-amazon": 1,
-    "panama-canal-drought-transit-cuts": 2,
-    "amazon-warehouse-robot-army": 1,
-    "sports_montreal_canadiens_t_inflatable": 1,
-    "rabies-prevention-gap": 2,
-    "livestock-methane-emissions": 1
+    "livestock-methane-emissions": 1,
+    "sports_steve_kerr_ng_lookalike": 1,
+    "sports_joaquin_buckley_ds_with_dana": 3,
+    "sports_ryan_fitzpatrick_os_qb_bo_nix": 2,
+    "household-size-shrinking": 1,
+    "migraine-global-disability-burden": 3,
+    "competitive-eating-record-climb": 1
    },
    "timestamps": [
-    "2026-10-15T10:46:04+00:00",
-    "2026-10-15T13:22:42+00:00",
-    "2026-10-15T13:52:53+00:00",
-    "2026-10-15T14:30:23+00:00",
-    "2026-10-15T17:50:00+00:00",
-    "2026-10-16T11:36:28+00:00",
-    "2026-10-16T14:43:57+00:00",
-    "2026-10-16T15:19:33+00:00",
-    "2026-10-16T17:52:32+00:00"
+    "2026-10-16T17:52:32+00:00",
+    "2026-10-17T11:36:38+00:00",
+    "2026-10-17T11:39:53+00:00",
+    "2026-10-17T11:41:42+00:00",
+    "2026-10-17T11:43:42+00:00",
+    "2026-10-17T11:47:10+00:00",
+    "2026-10-17T11:50:22+00:00",
+    "2026-10-17T11:43:37+00:00",
+    "2026-10-17T16:14:48+00:00",
+    "2026-10-17T16:36:46+00:00",
+    "2026-10-17T16:56:25+00:00",
+    "2026-10-17T17:15:44+00:00"
    ],
    "examples": [
-    "unreadable: In seg1:mid a ghosted '5x faster' title and a pale subtitle fade over the sky and cannot be read. In seg4:start the small 'Do you shop secondhand? Best find?' line sits low-contrast over t",
-    "unreadable: At seg1:mid, the outline of the scalloped dust wall runs straight through the small line 'lifted into the sky every year'. At seg1:end, 'of Sahara dust lifted a year \u00b7 30x the Great Pyrami",
-    "unreadable: seg3:end: the caption 'higher and carry' fades grey over red and blue containers and you have to work it out on a phone. seg4:start: the closing line is stacked straight onto the '50 ft' h"
+    "unreadable: hook@0.3 and seg1:end: the '1.5X' badge is drawn over the end of the subtitle, covering '(projected)'. seg2:start/mid: the ring-pattern slabs make the 'LIVESTOCK' slot unreadable until seg",
+    "unreadable: Burned-in word captions sit right on top of our line all video: 'TAKE CARE OF' (hook@0.3), 'STEVE CURRY.' (hook@1.5), 'METHOD.' (mid3), 'WELCOME TO TEXAS.' (mid3), 'LIKE THAT' (payoff@-0.4",
+    "unreadable: hook@1.5 and mid0: the auto word caption 'DENNIS HAND WHY' sits right on top of our line and on top of the faceoff. It is a garbled transcription a viewer cannot make sense of, and it stac"
+   ],
+   "recurred_after_fix": false
+  },
+  "empty_void": {
+   "count": 6,
+   "stories": {
+    "migraine-global-disability-burden": 2,
+    "competitive-eating-record-climb": 3,
+    "great-lakes-freshwater-scale": 1
+   },
+   "timestamps": [
+    "2026-10-17T16:36:46+00:00",
+    "2026-10-17T16:56:25+00:00",
+    "2026-10-17T17:15:44+00:00",
+    "2026-10-17T17:33:55+00:00",
+    "2026-10-17T17:44:05+00:00",
+    "2026-10-17T18:27:02+00:00"
+   ],
+   "examples": [
+    "empty_void: payoff@-0.4: the last frame is an empty dark navy field with a small Data in the lower third and nothing else. It is the frame the video ends on",
+    "empty_void: In the final frame (payoff@-0.4) the clinic scene is gone. What remains is a near-black gradient filling the whole frame, with Data small at the bottom holding a blank yellow price tag.",
+    "empty_void: payoff@-0.4: almost the whole frame is a black/navy gradient, with one small Data figure at the bottom and no scene, text or data."
+   ],
+   "recurred_after_fix": false
+  },
+  "junk_imagery": {
+   "count": 4,
+   "stories": {
+    "sports_steve_kerr_ng_lookalike": 1,
+    "migraine-global-disability-burden": 2,
+    "competitive-eating-record-climb": 1
+   },
+   "timestamps": [
+    "2026-10-17T11:36:38+00:00",
+    "2026-10-17T16:14:48+00:00",
+    "2026-10-17T16:36:46+00:00",
+    "2026-10-17T17:15:44+00:00"
+   ],
+   "examples": [
+    "junk_imagery: The footage contradicts our line 'Kerr spots Curry's twin in the crowd'. The look-alike is a grey-haired man in a grey top holding a beer (hook@0.3, mid0, mid1), and he looks like Steve ",
+    "junk_imagery: payoff@-0.4 (t=26.33s): the final frame is Data alone on a dark empty ground holding a BLANK yellow price tag. The tag has nothing to do with migraines (it's the old default prop).",
+    "junk_imagery: payoff@-0.4: the final frame is Data alone on a dark gradient holding a blank yellow price tag, a prop that has nothing to do with migraines"
    ],
    "recurred_after_fix": false
   },
   "decorative_mascot": {
    "count": 4,
    "stories": {
-    "secondhand-apparel-resale-boom": 1,
-    "amazon-warehouse-robot-army": 1,
-    "rabies-prevention-gap": 2
+    "migraine-global-disability-burden": 1,
+    "competitive-eating-record-climb": 3
    },
    "timestamps": [
-    "2026-10-15T10:46:04+00:00",
-    "2026-10-15T17:50:00+00:00",
-    "2026-10-16T14:43:57+00:00",
-    "2026-10-16T15:48:36+00:00"
+    "2026-10-17T16:14:48+00:00",
+    "2026-10-17T17:15:44+00:00",
+    "2026-10-17T17:33:55+00:00",
+    "2026-10-17T17:44:05+00:00"
    ],
    "examples": [
-    "decorative_mascot: In seg1:start and seg1:end Data stands under the clothesline waving and pointing while the garments hang themselves. In seg3:start through seg3:end he stands by the awning pole and ",
-    "decorative_mascot: Data waves or points beside the subject in nearly every beat: hook@0.3 waves at the conveyor, seg1:end waves beside the pod army, seg2:mid points at a building, seg3:start/mid point",
-    "decorative_mascot: In seg1:start-end Data stands beside the syringe and waves while the plunger moves by itself. In seg2:mid he stands on the globe's ring and points. In seg3:start-end he is hidden be"
+    "empty_void: payoff@-0.4 (t=26.33s): the whole frame is dark navy with one small mascot in the lower third and nothing else. The video ends on a dead black frame after the clinic payoff.",
+    "decorative_mascot: seg0:start to seg1:end: Data stands beside the growing hot dog and only waves or points (seg0:mid, seg1:mid). He is not the cause of it growing. The same thing happens at the end, w",
+    "decorative_mascot: seg1:start to seg1:end: Data stands beside the growing hot dog and waves while it stretches on its own. At payoff@-0.4 he holds a blank yellow price tag on an empty stage. His other"
    ],
    "recurred_after_fix": false
   },
   "dead_air": {
-   "count": 3,
+   "count": 2,
    "stories": {
-    "secondhand-apparel-resale-boom": 1,
-    "rabies-prevention-gap": 2
+    "sports_steve_kerr_ng_lookalike": 1,
+    "sports_joaquin_buckley_ds_with_dana": 1
    },
    "timestamps": [
-    "2026-10-15T10:46:04+00:00",
-    "2026-10-16T14:43:57+00:00",
-    "2026-10-16T15:19:33+00:00"
+    "2026-10-17T11:36:38+00:00",
+    "2026-10-17T11:39:53+00:00"
    ],
    "examples": [
-    "dead_air: The closing (seg4:start, seg4:mid, payoff@-1.8, seg4:end, payoff@-0.4) holds the same storefront from seg3 with Data frozen in a cheer for about 4s. Only small walkers move, and the scene is",
-    "dead_air: From seg3:end (20.9s) to payoff@-0.4 (27.6s) the dog yard does not change. Only the closing text is added, so the last beat and the closing look the same for about 6.5s.",
-    "dead_air: The picture from seg2:end (14.9s) is the same shot through seg3:start, seg3:mid, seg3:end, seg4:start, seg4:mid and seg4:end (26.96s). Data barely changes pose. For about 12s only text overl"
+    "dead_air: In mid4 and payoff@-0.4 the camera sits on a wide shot of the bench and crowd. Nothing readable happens and no reaction is framed.",
+    "dead_air: mid2 through payoff@-0.4 (~18s\u201344s): about 26 seconds of near-identical split frames. The reporter talks while Buckley stares silently. That silence is the point, but nothing new happens vis"
    ],
    "recurred_after_fix": false
   },
@@ -74,10 +116,10 @@
     "saturn-rings-vanishing": 1
    },
    "timestamps": [
-    "2026-10-16T17:23:43+00:00"
+    "2026-10-17T15:25:36+00:00"
    ],
    "examples": [
-    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.75s of 27.42s (~2.0s frozen)"
+    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.58s of 26.75s (~2.0s frozen)"
    ],
    "recurred_after_fix": false
   }
@@ -104,7 +146,7 @@
    "max": 2
   },
   "pace": {
-   "median": 2,
+   "median": 1,
    "min": 0,
    "max": 2
   },
@@ -120,25 +162,25 @@
   }
  },
  "scores": [
-  57,
-  74,
-  79,
-  74,
-  79,
-  79,
-  66,
-  57,
-  75,
-  75,
-  83,
   70,
+  87,
+  49,
+  62,
+  62,
+  66,
+  75,
   79,
+  70,
+  70,
+  53,
   57,
-  66,
-  66,
-  66,
-  74,
   14,
-  70
+  62,
+  70,
+  70,
+  57,
+  74,
+  70,
+  79
  ]
 }
