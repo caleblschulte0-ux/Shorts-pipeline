@@ -13949,13 +13949,50 @@
       "ts": "2026-10-17T12:32:38.528629+00:00"
     },
     "clip-20261017-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/ConcernedTenaciousRamenRlyTho-9M1UZxa3CWgUJofn",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/IN3D3Q8y4sM",
       "title": "Kaicenat: Kai Cenat Swears He's Not Scared Of Outlast, Then Says He'll Be The First To Play It",
       "kind": "twitch_clip",
-      "ts": "2026-10-17T12:36:19.926037+00:00",
+      "ts": "2026-10-17T12:36:30.525150+00:00",
+      "uploaded_at": "2026-10-17T12:36:30.525165+00:00",
+      "publish_at": "2026-10-17T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261017-kaicenat-kai-cenat-swears-he-s-not-scared-of-out-07f212b4",
+        "tiktok": "queued for 2026-10-17T20:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/ConcernedTenaciousRamenRlyTho-9M1UZxa3CWgUJofn",
+      "streamer": "kaicenat",
+      "series": "chaos",
+      "hook": "Kai says he's not scared of Outlast \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "simple_fallback",
+      "actual_structure": "simple_fallback",
+      "self_healed": true,
+      "source_views": 2360,
+      "banger": 0.5,
+      "cut": {
+        "start": 1.6,
+        "end": 15.38
+      },
+      "director_cut": true
+    },
+    "rejected-clip_01m53xkz7j7vgsntgthp6t7jhm": {
+      "source_url": "https://kick.com/adinross/clips/clip_01M53XKZ7J7VGSNTGTHP6T7JHM",
+      "streamer": "adinross",
+      "title": "opgkepor",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Boxing ring waiting, no clear event)",
+      "ts": "2026-10-17T12:37:30.505447+00:00"
+    },
+    "clip-20261017-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/clix/clip/PlausiblePhilanthropicFlyDatSheffy-_knPWAUYiBDsWdiJ",
+      "story_key": null,
+      "streamer": "clix",
+      "title": "Clix Says He's Done Fighting And Shows Kids How To Get In",
+      "kind": "twitch_clip",
+      "ts": "2026-10-17T12:40:02.536855+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
