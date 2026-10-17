@@ -238,7 +238,7 @@ jobs:
       # a result that cannot be read after the runner disappears is missing.
       - name: Upload media probe
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: curiosity-media-probe
           path: output/media_probe.json
@@ -398,7 +398,7 @@ jobs:
       # session surviving.
       - name: Upload preview artifact
         if: always() && (inputs.mode == 'preview' || inputs.mode == 'pro')
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: curiosity-preview
           path: |
@@ -437,7 +437,7 @@ jobs:
 
       - name: Upload judging evidence (every judge, every attempt)
         if: always() && inputs.mode != 'verify'
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: curiosity-judging
           path: |
@@ -447,7 +447,7 @@ jobs:
 
       - name: Upload batch video + package
         if: always() && inputs.mode == 'batch'
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: curiosity-batch-video
           path: |
@@ -462,7 +462,7 @@ jobs:
 
       - name: Upload status + batch reports
         if: always() && inputs.mode != 'verify'
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: curiosity-status
           path: |
