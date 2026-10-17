@@ -107,6 +107,9 @@ class TheChannelTakesItFirst(unittest.TestCase):
             path = Path(td) / "proven.json"
             bp.promote({"cuts": [_cut("a", 88, True, ["u1", "u2"])]}, path)
             data = json.loads(path.read_text())
+        self.assertEqual(self._clusters(data), [],
+                         "a pass the operator has not watched never posts")
+        data["stories"], data["pending"] = data["pending"], []
         out = self._clusters(data)
         self.assertEqual(len(out), 1)
         c = out[0]
