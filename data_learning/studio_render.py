@@ -3267,6 +3267,14 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                         _PERSISTED.append(slug)
                     if _hook is None:
                         _hadh = bool(story_cfg.get("hook_scene"))
+                        # THE OPENING GETS ITS OWN CLOCK (operator, 2026-10-17:
+                        # "the first 10 seconds of it is that one clip ...
+                        # People are going to swipe away"). The beats spend
+                        # the video's drawing clock first, and the hook came
+                        # last on whatever was left: "this video's drawing
+                        # budget is spent" after two tries, on all three
+                        # videos posted that day.
+                        _sa.reserve(_sa.HOOK_MIN_S)
                         _hook = _sa.scene_for_bookend(
                             story_cfg, "hook", [sg.insight for sg in st.segments],
                             log=lambda m: print(f"[studio] hook: {m}", flush=True))

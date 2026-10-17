@@ -399,6 +399,15 @@ constants blanked), never on the prose that explains it.
   (`repeats_beat_one`, which also forces the old hook to be rewritten),
   and a narration gives every number its yardstick, what normal is.
   `tests/test_the_hook_is_the_threat_not_beat_one.py`.
+  And the hook NAMES THE THING and the opening is ITS OWN SHOT (operator,
+  2026-10-17, of "Everyone blames cars ... The farm down the road is doing
+  it too": *"terrible hook"*; of ten seconds of Data feeding one cow:
+  *"That can't be an opening clip"*). The writer and listener want the
+  subject by its plain name ("Cow burps are cooking the planet"); the
+  predraw draws the hook BEFORE the closing, the render gives the hook
+  its own clock (`scene_author.HOOK_MIN_S`), and a story with its opening
+  drawn posts first (`post_stories._opening_to_draw`, a tie-break).
+  `tests/test_the_opening_is_its_own_shot.py`.
   And the VOICE is handed WORDS (operator, same day: *"everything and
   anything it could mis read ... needs to be in word format"*).
   `shared/spoken.say` is the one speller: units, °F, decades, ordinals,

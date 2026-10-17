@@ -50,6 +50,15 @@ number the viewer cannot size is not a hook. And the hook is NOT beat one \
 said early: beat one comes straight after it and gives the number, so the \
 hook says what that number MEANS and never the number beat one says.
 
+NAME THE THING (operator, 2026-10-17, of "Everyone blames cars for climate \
+change. The farm down the road is doing it too." over a cow-methane video: \
+"terrible hook"). The viewer has one second to know what this video is \
+ABOUT: say the subject by its plain name, the thing the picture shows — \
+"Cow burps", "Rabies", "The Panama Canal" — and then the threat. A stand-in \
+for the subject ("the farm down the road", "your dinner plate", "this", \
+"one thing") is a riddle, and a riddle is a swipe. Blaming something else \
+first ("everyone blames cars") spends the second on the wrong subject.
+
 IT IS THE STORY, NOT THE STATISTIC. Find the drama in the data and say THAT:
   - the twist: what everyone believed, and it was backwards. "Doctors told \
 parents to keep peanuts away from babies. It backfired."
@@ -364,7 +373,10 @@ thing "vanished" that did not);
 number): the viewer hears beat one right after it.
 
 A threat said as a possibility ("it might already be too late") is the \
-stakes, not a claim, when the story shows the threat coming.
+stakes, not a claim, when the story shows the threat coming. A line that never \
+names what the video is about (the subject by its plain name: "cow burps", \
+"rabies") and talks around it instead ("the farm down the road", "this \
+killer", "one thing") ranks below every line that names it.
 
 Then RANK the lines that pass, best first, as a TMZ / YouTube clickbait \
 editor would: which one would actually make YOU stop scrolling? Drama beats \
