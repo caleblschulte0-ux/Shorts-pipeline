@@ -3688,6 +3688,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 70,
       "duration_s": 26.2
+    },
+    "household-size-shrinking": {
+      "claimed_at": "2026-10-17T12:05:14.010342+00:00",
+      "title": "The Average US Household Shrank From 3.3 To 2.5",
+      "publish_at": "2026-10-17T12:34:21Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4655,6 +4662,14 @@
       "state": "posted",
       "slug": "livestock-methane-emissions",
       "at": "2026-10-16T17:52:44.921466+00:00"
+    },
+    {
+      "claimed_at": "2026-10-17T12:05:14.010342+00:00",
+      "title": "The Average US Household Shrank From 3.3 To 2.5",
+      "publish_at": "2026-10-17T12:34:21Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "household-size-shrinking"
     }
   ]
 }
