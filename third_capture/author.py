@@ -177,10 +177,14 @@ Rules:
     happened in, the player he is calling out, the old teammate, the
     record, the earlier moment this one pays off, the thing everyone is
     reacting to. "who" is the people or teams as a search would find them
-    ("Russell Westbrook Kevin Durant"); "look" is what the footage must
-    SHOW, in search words ("Westbrook and Durant together on the
-    Thunder", "Josh Allen hurdle vs Vikings"); "at" is the second it is
-    named, from the transcript. 0-3 of them, at least 4s apart. Most
+    ("Russell Westbrook Kevin Durant"); "look" is the GAME ACTION the
+    footage must SHOW, in search words ("Westbrook and Durant on the
+    Thunder dunking", "Josh Allen hurdle vs Vikings", "Warriors beat
+    Thunder Game 7 2016"): players playing, never a press conference,
+    news desk, podcast or interview (the operator, of a cut-in of a TV
+    host: "there was no basketball clips in there"). For news (a trade,
+    a signing, a retirement), show the player PLAYING for that team;
+    "at" is the second it is named, from the transcript. 0-3 of them, at least 4s apart. Most
     clips with a person talking refer to something showable: give those
     at least one. Never the person already on screen talking, never a
     guess at something the words do not name.

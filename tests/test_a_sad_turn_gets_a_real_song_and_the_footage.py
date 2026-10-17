@@ -121,6 +121,20 @@ class TheFootageIsCutIn(unittest.TestCase):
         self.assertEqual([(g["who"], g["at"]) for g in got],
                          [("A", 7.0), ("C", 19.0)])
 
+    def test_a_cut_in_is_the_game_not_people_talking(self):
+        # operator, 2026-10-17, of a cut-in of Stephen A at a news desk:
+        # "there was no basketball clips in there. There was maybe one"
+        self.assertTrue(find_footage.is_talk(
+            "Stephen A reacts to Kevin Durant joining the Warriors"))
+        self.assertTrue(find_footage.is_talk("Russ Westbrook FULL Interview"))
+        self.assertFalse(find_footage.is_talk(
+            "OKC vs GSW Game 7 2016 Western Conference Finals Highlights"))
+        with mock.patch("shared.shot_relevance.judge_panels",
+                        return_value={}) as jp:
+            find_footage.judge([(0, Path("f.png"))], "KD on the Warriors")
+        self.assertIn("NOT a studio show", jp.call_args[0][0][0][2])
+        self.assertIn("players playing", author.SYSTEM)
+
     def test_unchecked_footage_is_never_cut_in(self):
         with tempfile.TemporaryDirectory() as td, \
                 mock.patch("funnel.hot_clips.youtube", return_value=[

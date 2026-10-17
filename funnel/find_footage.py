@@ -35,6 +35,22 @@ MIN_SHOT = 1.6             # a shot shorter than this is a flash, not a cut-in
 SCENE = 0.3                # ffmpeg scene score that counts as a new shot
 
 
+#: What a cut-in must be: the GAME, not people talking about it (operator,
+#: 2026-10-17, of a Russ-on-KD sample that cut to Stephen A at a news desk:
+#: "there was no basketball clips in there. There was maybe one").
+ACTION = ("real game footage of play on the court or field, the athletes "
+          "playing; NOT a studio show, news desk, interview, podcast, press "
+          "conference or someone talking to the camera")
+#: A video whose title says it is talk is never downloaded.
+TALK = re.compile(r"\b(react(s|ion|ing)?|podcast|interview|press conference|"
+                  r"presser|breaking news|debate|first take|undisputed|"
+                  r"analysis|explains?|talks?|says|speaks|rant|show)\b", re.I)
+
+
+def is_talk(title: str) -> bool:
+    return bool(TALK.search(str(title or "")))
+
+
 def _norm(s) -> str:
     return re.sub(r"[^a-z0-9]+", "", str(s or "").lower())
 
@@ -112,7 +128,8 @@ def judge(frames: list[tuple[int, Path]], look: str, title: str = ""
     when no brain could look (shared.shot_relevance)."""
     from shared import shot_relevance
     return shot_relevance.judge_panels(
-        [(i, p, look) for i, p in frames], title=title or look)
+        [(i, p, f"{look} -- {ACTION}") for i, p in frames],
+        title=title or look)
 
 
 def shot_around(video: Path, at: float, span: float = 8.0) -> tuple[float, float]:
@@ -166,7 +183,7 @@ def find(who: str, look: str = "", *, secs: float = SECS,
         for q in queries(who, look):
             for v in hot_clips.youtube(q, days=365 * YEARS, n=CANDIDATES,
                                        max_s=MAX_S):
-                if v["url"] not in seen:
+                if v["url"] not in seen and not is_talk(v.get("title")):
                     seen.add(v["url"])
                     cands.append(v)
         for n, v in enumerate(cands[:CANDIDATES]):
