@@ -1,7 +1,97 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-17T12:56:21Z",
+ "updated": "2026-10-17T15:25:42Z",
  "open": [
+  {
+   "id": "saturn-rings-vanishing__54929b8a",
+   "slug": "saturn-rings-vanishing",
+   "filed": "2026-10-17T15:25:42Z",
+   "why": [
+    "judge: blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=21.58s of 26.75s (~2.0s frozen)"
+   ],
+   "request": "exchange/rewrites/20261017/saturn-rings-vanishing__54929b8a.request.json",
+   "answer_path": "exchange/rewrites/20261017/saturn-rings-vanishing__54929b8a.answer.json"
+  },
+  {
+   "id": "humpback-whale-recovery__b595edba",
+   "slug": "humpback-whale-recovery",
+   "filed": "2026-10-17T15:25:41Z",
+   "why": [
+    "premise: brain: It relies on two numbers (450 and 25,000) rather than a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261017/humpback-whale-recovery__b595edba.request.json",
+   "answer_path": "exchange/rewrites/20261017/humpback-whale-recovery__b595edba.answer.json"
+  },
+  {
+   "id": "pickleball-fastest-growing-sport__598b7568",
+   "slug": "pickleball-fastest-growing-sport",
+   "filed": "2026-10-17T15:25:41Z",
+   "why": [
+    "premise: brain: The premise does not reverse a viewer's existing expectation and merely states a growth statistic without a consequential, verifiable number tied to that reversal."
+   ],
+   "request": "exchange/rewrites/20261017/pickleball-fastest-growing-sport__598b7568.request.json",
+   "answer_path": "exchange/rewrites/20261017/pickleball-fastest-growing-sport__598b7568.answer.json"
+  },
+  {
+   "id": "dog-breed-popularity-flip__ed8cf925",
+   "slug": "dog-breed-popularity-flip",
+   "filed": "2026-10-17T15:25:41Z",
+   "why": [
+    "premise: brain: The claim relies on a vague, non‑verifiable notion of a dog breed 'ruling' America, lacking a clear factual reversal anchored to a single concrete number."
+   ],
+   "request": "exchange/rewrites/20261017/dog-breed-popularity-flip__ed8cf925.request.json",
+   "answer_path": "exchange/rewrites/20261017/dog-breed-popularity-flip__ed8cf925.answer.json"
+  },
+  {
+   "id": "game-industry-layoffs-record__47b9280e",
+   "slug": "game-industry-layoffs-record",
+   "filed": "2026-10-17T15:25:40Z",
+   "why": [
+    "premise: brain: It juxtaposes two facts without reversing a viewer expectation, despite using a specific number."
+   ],
+   "request": "exchange/rewrites/20261017/game-industry-layoffs-record__47b9280e.request.json",
+   "answer_path": "exchange/rewrites/20261017/game-industry-layoffs-record__47b9280e.answer.json"
+  },
+  {
+   "id": "genz-drinking-decline__b6725083",
+   "slug": "genz-drinking-decline",
+   "filed": "2026-10-17T15:25:40Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on a vague number without verifiable impact."
+   ],
+   "request": "exchange/rewrites/20261017/genz-drinking-decline__b6725083.request.json",
+   "answer_path": "exchange/rewrites/20261017/genz-drinking-decline__b6725083.answer.json"
+  },
+  {
+   "id": "lightning-deaths-collapsed-not-the-storms__9241770b",
+   "slug": "lightning-deaths-collapsed-not-the-storms",
+   "filed": "2026-10-17T15:25:40Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a generic statistic without a striking, verifiable contrast."
+   ],
+   "request": "exchange/rewrites/20261017/lightning-deaths-collapsed-not-the-storms__9241770b.request.json",
+   "answer_path": "exchange/rewrites/20261017/lightning-deaths-collapsed-not-the-storms__9241770b.answer.json"
+  },
+  {
+   "id": "plastic-in-your-body__cedc4bab",
+   "slug": "plastic-in-your-body",
+   "filed": "2026-10-17T15:25:40Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261017/plastic-in-your-body__cedc4bab.request.json",
+   "answer_path": "exchange/rewrites/20261017/plastic-in-your-body__cedc4bab.answer.json"
+  },
+  {
+   "id": "helium-supply-squeeze__067a945d",
+   "slug": "helium-supply-squeeze",
+   "filed": "2026-10-17T15:25:39Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on an unsubstantiated, vague claim rather than a single, verifiable numeric fact."
+   ],
+   "request": "exchange/rewrites/20261017/helium-supply-squeeze__067a945d.request.json",
+   "answer_path": "exchange/rewrites/20261017/helium-supply-squeeze__067a945d.answer.json"
+  },
   {
    "id": "kelp-forest-sea-star-collapse__a960cf2d",
    "slug": "kelp-forest-sea-star-collapse",
@@ -393,56 +483,6 @@
    "answer_path": "exchange/rewrites/20261017/blockbuster-to-one-store__857f036d.answer.json"
   },
   {
-   "id": "pickleball-fastest-growing-sport__598b7568",
-   "slug": "pickleball-fastest-growing-sport",
-   "filed": "2026-10-16T17:52:59Z",
-   "why": [
-    "premise: brain: It includes multiple numbers (quadruple growth and hundreds of millions in injuries) instead of a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261016/pickleball-fastest-growing-sport__598b7568.request.json",
-   "answer_path": "exchange/rewrites/20261016/pickleball-fastest-growing-sport__598b7568.answer.json"
-  },
-  {
-   "id": "game-industry-layoffs-record__47b9280e",
-   "slug": "game-industry-layoffs-record",
-   "filed": "2026-10-16T17:52:57Z",
-   "why": [
-    "premise: brain: It lacks a clear reversal of a specific viewer expectation and relies on an unquantified claim about record sales alongside a single number."
-   ],
-   "request": "exchange/rewrites/20261016/game-industry-layoffs-record__47b9280e.request.json",
-   "answer_path": "exchange/rewrites/20261016/game-industry-layoffs-record__47b9280e.answer.json"
-  },
-  {
-   "id": "lightning-deaths-collapsed-not-the-storms__9241770b",
-   "slug": "lightning-deaths-collapsed-not-the-storms",
-   "filed": "2026-10-16T17:52:57Z",
-   "why": [
-    "premise: brain: It lacks a clear reversal of a common viewer expectation and relies on a generic statistic without a striking, single consequential number."
-   ],
-   "request": "exchange/rewrites/20261016/lightning-deaths-collapsed-not-the-storms__9241770b.request.json",
-   "answer_path": "exchange/rewrites/20261016/lightning-deaths-collapsed-not-the-storms__9241770b.answer.json"
-  },
-  {
-   "id": "saturn-rings-vanishing__ba79433f",
-   "slug": "saturn-rings-vanishing",
-   "filed": "2026-10-16T17:52:56Z",
-   "why": [
-    "judge: blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=21.75s of 27.42s (~2.0s frozen)"
-   ],
-   "request": "exchange/rewrites/20261016/saturn-rings-vanishing__ba79433f.request.json",
-   "answer_path": "exchange/rewrites/20261016/saturn-rings-vanishing__ba79433f.answer.json"
-  },
-  {
-   "id": "helium-supply-squeeze__067a945d",
-   "slug": "helium-supply-squeeze",
-   "filed": "2026-10-16T17:52:55Z",
-   "why": [
-    "premise: brain: The claim lacks a clear reversal of a common expectation and relies on an unverified, non‑consequential number."
-   ],
-   "request": "exchange/rewrites/20261016/helium-supply-squeeze__067a945d.request.json",
-   "answer_path": "exchange/rewrites/20261016/helium-supply-squeeze__067a945d.answer.json"
-  },
-  {
    "id": "competitive-eating-record-climb__e38b83da",
    "slug": "competitive-eating-record-climb",
    "filed": "2026-10-16T17:52:55Z",
@@ -481,16 +521,6 @@
    ],
    "request": "exchange/rewrites/20261016/moon-drifting-away__904b95b2.request.json",
    "answer_path": "exchange/rewrites/20261016/moon-drifting-away__904b95b2.answer.json"
-  },
-  {
-   "id": "genz-drinking-decline__b6725083",
-   "slug": "genz-drinking-decline",
-   "filed": "2026-10-16T13:40:37Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation despite mentioning a number."
-   ],
-   "request": "exchange/rewrites/20261016/genz-drinking-decline__b6725083.request.json",
-   "answer_path": "exchange/rewrites/20261016/genz-drinking-decline__b6725083.answer.json"
   },
   {
    "id": "rabies-prevention-gap__a36d7b3a",
@@ -551,16 +581,6 @@
    ],
    "request": "exchange/rewrites/20261015/north-american-bird-collapse__58c079e0.request.json",
    "answer_path": "exchange/rewrites/20261015/north-american-bird-collapse__58c079e0.answer.json"
-  },
-  {
-   "id": "humpback-whale-recovery__b595edba",
-   "slug": "humpback-whale-recovery",
-   "filed": "2026-10-15T13:23:22Z",
-   "why": [
-    "premise: brain: The claim lacks a verifiable, single consequential number and likely does not reliably reverse a common viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261015/humpback-whale-recovery__b595edba.request.json",
-   "answer_path": "exchange/rewrites/20261015/humpback-whale-recovery__b595edba.answer.json"
   },
   {
    "id": "vinyl-beats-cd-sales-again__b2dd235b",
@@ -742,16 +762,6 @@
    ],
    "request": "exchange/rewrites/20261013/tattoo-mainstream-shift__8da41eb1.request.json",
    "answer_path": "exchange/rewrites/20261013/tattoo-mainstream-shift__8da41eb1.answer.json"
-  },
-  {
-   "id": "plastic-in-your-body__003bd131",
-   "slug": "plastic-in-your-body",
-   "filed": "2026-10-12T04:56:08Z",
-   "why": [
-    "premise: brain: The claim lacks a clear, verifiable statistic and does not convincingly overturn a common viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261012/plastic-in-your-body__003bd131.request.json",
-   "answer_path": "exchange/rewrites/20261012/plastic-in-your-body__003bd131.answer.json"
   },
   {
    "id": "blood-supply-three-percent__b017adda",
