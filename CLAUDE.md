@@ -583,7 +583,7 @@ Full registry, triage verdicts, and the ticket backlog (E1–E14):
 or `None`, never raise — safe to call best-effort from any renderer.
 
 Rules:
-- **`parallax` is active but GATED** (E2 verdict 2026-07-10: photos pass,
+- **`parallax` is DEFERRED** (2026-10-17: its decision date passed untried; E2 verdict 2026-07-10: photos pass,
   flat art/text refused by the input suitability gate). First adoption in
   any channel still requires a preview render before flipping a default.
   `still_motion.kenburns` is always the fallback.

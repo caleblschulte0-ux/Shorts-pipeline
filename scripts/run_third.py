@@ -3224,6 +3224,8 @@ def process(pkg: dict, pkg_path: Path | None, *,
                     tags=_yt_tags(pkg, led),
                     publish_at=publish_at,
                     localizations=localizations,
+                    # Real Twitch footage, no AI voice or imagery: no label.
+                    synthetic_media=False,
                 )
             except Exception:
                 print(f"::warning::[upload] {slug} failed mid-flight — the "

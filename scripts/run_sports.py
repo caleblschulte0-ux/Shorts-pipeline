@@ -290,7 +290,9 @@ def main() -> int:
             from shared.uploaders import YouTubeUploader
             up = YouTubeUploader(channel="").upload(
                 file_path=mp4, title=meta["title"][:100], description=desc,
-                tags=tg, publish_at=publish_at, category="17")
+                tags=tg, publish_at=publish_at, category="17",
+                # Real game footage, no AI voice or imagery: no label.
+                synthetic_media=False)
             return getattr(up, "url", None) or str(up)
         try:
             row["video_url"] = rt._guarded_upload(
