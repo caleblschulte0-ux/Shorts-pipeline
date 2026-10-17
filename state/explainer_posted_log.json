@@ -3690,11 +3690,29 @@
       "duration_s": 26.2
     },
     "household-size-shrinking": {
-      "claimed_at": "2026-10-17T12:05:14.010342+00:00",
+      "url": "https://youtube.com/shorts/oIV_9YsLSoo",
       "title": "The Average US Household Shrank From 3.3 To 2.5",
+      "at": "2026-10-17T12:05:25.247940+00:00",
       "publish_at": "2026-10-17T12:34:21Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 8.92,
+      "beat_s": [
+        4.85,
+        8.77,
+        8.92,
+        8.07,
+        7.85
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 57,
+      "duration_s": 38.3
     }
   },
   "uploads": [
@@ -4667,9 +4685,10 @@
       "claimed_at": "2026-10-17T12:05:14.010342+00:00",
       "title": "The Average US Household Shrank From 3.3 To 2.5",
       "publish_at": "2026-10-17T12:34:21Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "household-size-shrinking"
+      "url": "https://youtube.com/shorts/oIV_9YsLSoo",
+      "state": "posted",
+      "slug": "household-size-shrinking",
+      "at": "2026-10-17T12:05:25.247940+00:00"
     }
   ]
 }
