@@ -646,16 +646,19 @@ class TheStoryEndsWhereTheSentenceEnds(unittest.TestCase):
 
 class EverySlotTriesAStory(unittest.TestCase):
     """Operator, 2026-10-07: "this channel needs to be stories and edits
-    not just raw clips". Every slot tries the story arm first; the clip arm
-    is the fallback, and story_budget_min keeps the searches from eating
-    the time the day's clips need."""
+    not just raw clips", so every slot tried the story arm first. Then,
+    2026-10-18, after two posted stories at a median of 6 views and the
+    critic passing cuts the operator called bad: "we already should not be
+    posting stories because they suck ... if we're running our
+    subscription and trying to post stories and wasting it, turn that
+    off. Right now, we're just trying to workshop the whole stories
+    thing." The daily run makes no story attempts while it is workshopped;
+    story_budget_min still caps them when they come back."""
 
-    def test_the_template_makes_every_slot_a_story_slot(self):
-        from shared import channel_registry
+    def test_the_daily_run_makes_no_story_attempts_while_workshopped(self):
         tpl = json.loads((ROOT / "state" / "third_packages" /
                           "default_clip.json").read_text())
-        self.assertGreaterEqual(tpl["story_count"],
-                                channel_registry.target_count("third"))
+        self.assertEqual(tpl["story_count"], 0)
 
     def test_the_story_budget_leaves_the_clips_time(self):
         rt = _load_rt()
