@@ -24,6 +24,15 @@ class ReadsDurations(unittest.TestCase):
         ids = [v["id"] for v in s.pick_studied(ranked, 3, 2)]
         self.assertEqual(ids, ["0", "1", "2", "5", "6"])
 
+    def test_transcript_reads_clip_edit_words(self):
+        """clip_edit hands back {w, s, e}; the first study read "word" and
+        "start" and wrote sixteen blank transcripts."""
+        words = [{"w": "he", "s": 1.0, "e": 1.2},
+                 {"w": "fell.", "s": 1.2, "e": 1.5},
+                 {"w": "No", "s": 3.0, "e": 3.2}]
+        self.assertEqual(s.transcript_lines(words),
+                         ["[  1.0] he fell.", "[  3.0] No"])
+
     def test_it_never_uploads(self):
         src = (ROOT / "scripts" / "study_clippers.py").read_text()
         wf = (ROOT / ".github" / "workflows" / "study-clippers.yml").read_text()
