@@ -12,11 +12,11 @@
     "access_date": "2026-10-18"
   },
   "notes": "Approximate typical cost of a prescription hearing aid pair before the FDA's 2022 OTC rule vs. the starting price of new OTC options.",
-  "baseline": {
-    "label": "Prescription pair (before 2022)",
-    "value": 4700
-  },
   "points": [
+    {
+      "label": "Prescription pair (before 2022)",
+      "value": 4700
+    },
     {
       "label": "OTC pair (starting price)",
       "value": 300

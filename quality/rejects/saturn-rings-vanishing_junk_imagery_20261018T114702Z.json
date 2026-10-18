@@ -1,0 +1,16 @@
+{
+ "slug": "saturn-rings-vanishing",
+ "ts": "20261018T114702Z",
+ "failure_class": "junk_imagery",
+ "evidence": "junk_imagery: payoff@-0.4: the last frame cuts to an empty dark gradient where Data holds a blank yellow price tag, a stray prop that has nothing to do with Saturn",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg4:end still shows the telescope shot, but payoff@-0.4 cuts to a blank dark gradient where Data holds an empty price tag. The closing card also reuses the '1 Olympic pool' headline, which is not what the closing line says",
+  "root_cause": "the closing scene ends before the narration or video does, so the renderer falls back to a default Data pose with a price_tag prop on a bare background for the tail. The closing headline is carried over from beat 2 instead of saying what the closing means",
+  "repair_goal": "hold the closing Saturn/telescope shot (or the last beat's finished picture) to the final frame with no fallback tail. Drop the price-tag prop. Give the closing its own payoff picture, e.g. the rings visibly thinning through Data's telescope, with no stale '1 Olympic pool' headline"
+ },
+ "scene_plan": {},
+ "scenes": []
+}

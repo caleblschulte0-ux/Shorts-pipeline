@@ -12,11 +12,11 @@
     "access_date": "2026-10-18"
   },
   "notes": "Approximate total ISS program cost to date vs. NASA's current annual ISS operating budget, from NASA OIG budget reporting.",
-  "baseline": {
-    "label": "Total ISS program cost to date",
-    "value": 150
-  },
   "points": [
+    {
+      "label": "Total ISS program cost to date",
+      "value": 150
+    },
     {
       "label": "NASA's current annual ISS budget",
       "value": 3

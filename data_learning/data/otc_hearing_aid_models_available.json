@@ -12,14 +12,14 @@
     "access_date": "2026-10-18"
   },
   "notes": "Approximate number of distinct FDA-registered over-the-counter hearing aid models on the US market, before and after the 2022 rule took effect.",
-  "baseline": {
-    "label": "OTC models available (2022)",
-    "value": 0
-  },
   "points": [
     {
       "label": "OTC models available (2024)",
       "value": 80
+    },
+    {
+      "label": "OTC models available (2022)",
+      "value": 0
     }
   ]
 }

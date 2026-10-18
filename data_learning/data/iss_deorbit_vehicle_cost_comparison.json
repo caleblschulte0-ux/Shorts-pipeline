@@ -12,14 +12,14 @@
     "access_date": "2026-10-18"
   },
   "notes": "NASA's 2024 contract value for the ISS deorbit vehicle vs. the historical average cost of a single Space Shuttle launch.",
-  "baseline": {
-    "label": "One Space Shuttle launch (historical avg)",
-    "value": 450
-  },
   "points": [
     {
       "label": "ISS deorbit vehicle contract (2024)",
       "value": 843
+    },
+    {
+      "label": "One Space Shuttle launch (historical avg)",
+      "value": 450
     }
   ]
 }

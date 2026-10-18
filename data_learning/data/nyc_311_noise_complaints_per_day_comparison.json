@@ -12,14 +12,14 @@
     "access_date": "2026-10-18"
   },
   "notes": "Annual NYC 311 noise complaint totals converted to a daily average, 2010 vs. 2023.",
-  "baseline": {
-    "label": "Average per day, 2010",
-    "value": 959
-  },
   "points": [
     {
       "label": "Average per day, 2023",
       "value": 1918
+    },
+    {
+      "label": "Average per day, 2010",
+      "value": 959
     }
   ]
 }
