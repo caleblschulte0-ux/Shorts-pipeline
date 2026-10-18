@@ -289,6 +289,13 @@ def main(argv=None) -> int:
                             "status": f"failed: {type(e).__name__}: {str(e)[:160]}"})
     md = summary_md(results)
     print(md, flush=True)
+    if os.environ.get("GITHUB_ACTIONS"):
+        # One annotation per channel, so the replies can be read from the
+        # run's check annotations (the API) without downloading its log.
+        for r in results:
+            body = summary_md([r]).replace("%", "%25").replace("\r", "") \
+                .replace("\n", "%0A")
+            print(f"::notice title=comments {r['channel']}::{body}", flush=True)
     out = os.environ.get("GITHUB_STEP_SUMMARY")
     if out:
         with open(out, "a", encoding="utf-8") as f:
