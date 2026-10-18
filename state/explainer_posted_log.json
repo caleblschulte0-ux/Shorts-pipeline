@@ -3824,6 +3824,13 @@
         "scene:illustrated",
         "mechanic:nobel-young-flask-grid"
       ]
+    },
+    "saturn-rings-vanishing": {
+      "claimed_at": "2026-10-18T14:22:50.815943+00:00",
+      "title": "Saturn's Rings Have Under 300 Million Years Left",
+      "publish_at": "2026-10-18T18:58:20Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4836,6 +4843,14 @@
       "state": "posted",
       "slug": "nobel-prize-discovery-age",
       "at": "2026-10-18T12:45:21.162963+00:00"
+    },
+    {
+      "claimed_at": "2026-10-18T14:22:50.815943+00:00",
+      "title": "Saturn's Rings Have Under 300 Million Years Left",
+      "publish_at": "2026-10-18T18:58:20Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "saturn-rings-vanishing"
     }
   ]
 }
