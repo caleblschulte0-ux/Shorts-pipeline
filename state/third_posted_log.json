@@ -14363,13 +14363,54 @@
       "ts": "2026-10-18T11:50:29.743517+00:00"
     },
     "clip-20261018-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jasontheween/clip/BusyStylishStapleTTours-K1HsFTS5UQD5IEKy",
-      "story_key": null,
-      "streamer": "jasontheween",
+      "url": "https://youtube.com/shorts/0oAR45PO1wM",
       "title": "Jasontheween Loses It After OSCs Y'all Got Mail",
       "kind": "twitch_clip",
-      "ts": "2026-10-18T11:52:50.094850+00:00",
+      "ts": "2026-10-18T11:52:55.352810+00:00",
+      "uploaded_at": "2026-10-18T11:52:55.352821+00:00",
+      "publish_at": "2026-10-19T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261018-jasontheween-loses-it-after-oscs-y-all-got-mail-864dfd9c",
+        "tiktok": "queued for 2026-10-19T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jasontheween/clip/BusyStylishStapleTTours-K1HsFTS5UQD5IEKy",
+      "streamer": "jasontheween",
+      "series": "chaos",
+      "hook": "Y'all got mail \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1996,
+      "banger": 0.35
+    },
+    "rejected-amorphousdeafgarbagedancingbanana-ddp_v89xvr0aejxh": {
+      "source_url": "https://www.twitch.tv/forsen/clip/AmorphousDeafGarbageDancingBanana-ddp_V89xvr0AEjXh",
+      "streamer": "forsen",
+      "title": "rip",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Dark Terraria death, insider gripe)",
+      "ts": "2026-10-18T11:53:32.382648+00:00"
+    },
+    "rejected-concernedbettergiraffefeelsbadman-f62qfwu5qtdxobxe": {
+      "source_url": "https://www.twitch.tv/extraemily/clip/ConcernedBetterGiraffeFeelsBadMan-f62qfwU5QTdxOBxe",
+      "streamer": "extraemily",
+      "title": "Agent raids Emily",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (routine raid thanks, nothing happens)",
+      "ts": "2026-10-18T11:54:21.794826+00:00"
+    },
+    "clip-20261018-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/cinna/clip/AltruisticBoringManateeSeemsGood-ubtBJ9FvvoU7gIDS",
+      "story_key": null,
+      "streamer": "cinna",
+      "title": "Cinna Shows Off His Fake Gun And Swears It's Not Real",
+      "kind": "twitch_clip",
+      "ts": "2026-10-18T11:56:49.175426+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
