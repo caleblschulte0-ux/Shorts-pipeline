@@ -3851,11 +3851,29 @@
       "duration_s": 29.6
     },
     "blockbuster-to-one-store": {
-      "claimed_at": "2026-10-18T21:25:14.633075+00:00",
+      "url": "https://youtube.com/shorts/ikyylJukhcw",
       "title": "Blockbuster Went From 9,000 Stores To Just 1",
+      "at": "2026-10-18T21:25:24.568768+00:00",
       "publish_at": "2026-10-18T22:05:06Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.3,
+      "beat_s": [
+        4.5,
+        6.32,
+        6.7,
+        7.3,
+        7.08
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 66,
+      "duration_s": 32.4
     }
   },
   "uploads": [
@@ -4882,9 +4900,10 @@
       "claimed_at": "2026-10-18T21:25:14.633075+00:00",
       "title": "Blockbuster Went From 9,000 Stores To Just 1",
       "publish_at": "2026-10-18T22:05:06Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "blockbuster-to-one-store"
+      "url": "https://youtube.com/shorts/ikyylJukhcw",
+      "state": "posted",
+      "slug": "blockbuster-to-one-store",
+      "at": "2026-10-18T21:25:24.568768+00:00"
     }
   ]
 }
