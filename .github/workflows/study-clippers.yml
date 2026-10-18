@@ -15,7 +15,11 @@ on:
       channels:
         description: 'Comma-separated @handles or UC... channel ids'
         required: false
-        default: '@StableRonaldoYT'
+        default: ''
+      search:
+        description: 'Also study the most-viewed shorts anyone posted for these words (comma-separated)'
+        required: false
+        default: 'stable ronaldo'
       top:
         description: 'Best shorts to study per channel'
         required: false
@@ -61,8 +65,9 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           THIRD_ASR: groq
           CHANNELS: ${{ inputs.channels }}
+          SEARCH: ${{ inputs.search }}
         run: |
-          python scripts/study_clippers.py --out study --channels "$CHANNELS" \
+          python scripts/study_clippers.py --out study --channels "$CHANNELS" --search "$SEARCH" \
             --top "${{ inputs.top || '10' }}" --bottom "${{ inputs.bottom || '4' }}"
 
       - name: Publish to the preview-renders orphan branch
