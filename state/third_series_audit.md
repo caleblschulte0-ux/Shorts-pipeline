@@ -10,12 +10,12 @@
 | rage | 7 | 0.11 |
 | beef | 6 | 0.09 |
 | clutch | 3 | 0.01 |
-| jumpscare | 2 | 0.135 |
+| jumpscare | 2 | 0.13 |
 | win | 2 | 0.005 |
 
 Excluded from the content-mix comparison (unclassified / non-series structure):
 
 | label | n | median VPH |
 |---|---|---|
-| unknown | 2 | 0.46 |
+| unknown | 2 | 0.455 |
 | story | 2 | 0.015 |
