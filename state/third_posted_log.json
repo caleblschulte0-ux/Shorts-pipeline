@@ -14178,6 +14178,52 @@
         "end": 20.0
       },
       "director_cut": true
+    },
+    "rejected-moldycreativecobbleroskomodo-irua-uqncfs0fvqe": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/MoldyCreativeCobblerOSkomodo-IRUA-UQncFs0FvQE",
+      "streamer": "sodapoppin",
+      "title": "Crashout",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (WoW duel, unclear stakes, insider)",
+      "ts": "2026-10-18T11:24:31.206065+00:00"
+    },
+    "rejected-bloodydeterminedcrabanele-7oxhzo_t6ctmdfcc": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/BloodyDeterminedCrabANELE-7OXHZO_T6CtmdfCC",
+      "streamer": "sodapoppin",
+      "title": "SCREAM",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (WoW gameplay, unclear event, insider)",
+      "ts": "2026-10-18T11:24:58.279406+00:00"
+    },
+    "rejected-comfortablecogentgaragekappapride-sbfwsoxjwn0uyeh6": {
+      "source_url": "https://www.twitch.tv/esfandtv/clip/ComfortableCogentGarageKappaPride-sBFwSOxjwn0UyeH6",
+      "streamer": "esfandtv",
+      "title": "wtf",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (WoW gameplay, laughing, unclear cause)",
+      "ts": "2026-10-18T11:25:59.819895+00:00"
+    },
+    "rejected-bloodyshortsoymilkheyguys-rtuexxvg0gdri-wr": {
+      "source_url": "https://www.twitch.tv/summit1g/clip/BloodyShortSoymilkHeyGuys-RTUexXVG0GdrI-wr",
+      "streamer": "summit1g",
+      "title": "Cat",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (WoW crowd gameplay, no visible event)",
+      "ts": "2026-10-18T11:26:28.503512+00:00"
+    },
+    "clip-20261018-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/cinna/clip/YummyBrightKaleArsonNoSexy-ynR1OPI2PacYEXpw",
+      "story_key": null,
+      "streamer": "cinna",
+      "title": "Cinna Crew Goes Off On Lang And Carlitos Over Kalita",
+      "kind": "twitch_clip",
+      "ts": "2026-10-18T11:30:14.472806+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
