@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261017",
-  "generated_at": "2026-10-17T23:30:57Z",
+  "generated_at": "2026-10-18T00:31:01Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 23.76,
+          "days": 23.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 22.76,
+          "days": 22.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1591,10 +1591,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "889d6c6",
-    "commits_since": "2026-10-16",
+    "head": "76e987b",
+    "commits_since": "2026-10-17",
     "commit_count": 50,
     "commits": [
+      "76e987b claim: mailbox verdicts 2026-10-17T23:48Z [skip ci]",
+      "f77154c retro: brief + triage for 20261017 [skip ci]",
       "889d6c6 claim: mailbox verdicts 2026-10-17T22:31Z [skip ci]",
       "b3fd01a claim: mailbox verdicts 2026-10-17T21:47Z [skip ci]",
       "8ff61cc claim: mailbox verdicts 2026-10-17T20:47Z [skip ci]",
@@ -1632,9 +1634,7 @@
       "2248b9c third: update posted log + analytics [skip ci]",
       "6ebfc54 third: analytics [skip ci]",
       "8dc06f4 third: update posted log + analytics [skip ci]",
-      "295e3bb third: checkpoint posted log (claim upload slot) [skip ci]",
-      "d0d5b37 third: checkpoint posted log (claim upload slot) [skip ci]",
-      "f9d8d1d claim: mailbox verdicts 2026-10-17T13:47Z [skip ci]"
+      "295e3bb third: checkpoint posted log (claim upload slot) [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
