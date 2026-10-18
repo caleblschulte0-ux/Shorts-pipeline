@@ -72,6 +72,8 @@ DISPATCH_INPUTS = {
 #: Crons the clock deliberately leaves to GitHub, each with its reason.
 CRON_ONLY = {
     SELF: "the clock's own bootstrap — it must not dispatch itself here",
+    "comment_replies.yml": "idempotent: a thread already answered is skipped, "
+                           "so the next slot catches what a missed one left",
 }
 
 
