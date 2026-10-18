@@ -63,6 +63,12 @@
         "handle": "ballerbro2.1",
         "post": true
       },
+      "comments": {
+        "reply": true,
+        "max_per_run": 15,
+        "max_age_h": 72,
+        "voice": "The channel is Baller Bro: wild sports moments. Talk like a hyped sports fan in the group chat."
+      },
       "enabled": true,
       "display_name": "Baller Bro / sports moments",
       "cadence": {
@@ -229,6 +235,12 @@
       "tiktok": {
         "handle": "shortexplainer1",
         "post": true
+      },
+      "comments": {
+        "reply": true,
+        "max_per_run": 15,
+        "max_age_h": 72,
+        "voice": "The channel explains surprising data stories, hosted by a little robot mascot named Data. Sound curious, friendly and a bit playful, like a nerdy friend who loves this stuff."
       },
       "enabled": true,
       "display_name": "Explainer (data stories)",
@@ -421,6 +433,12 @@
       "tiktok": {
         "handle": "third.brain.down",
         "post": true
+      },
+      "comments": {
+        "reply": true,
+        "max_per_run": 15,
+        "max_age_h": 72,
+        "voice": "The channel posts funny and dramatic Twitch streamer moments. Sound like a chill clip channel that watches every stream: casual, quick, in on the joke."
       },
       "enabled": true,
       "display_name": "Third channel (Proof Mode / clips)",

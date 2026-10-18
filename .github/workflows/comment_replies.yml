@@ -1,0 +1,57 @@
+name: Comment replies
+
+# Replies to viewers' YouTube comments in each channel's voice
+# (scripts/reply_comments.py). The policy (which channels, how many, the
+# voice) is `comments` in config/channel_registry.json. Each run is
+# idempotent: a thread the channel already answered is skipped, so a
+# missed slot is simply caught by the next one.
+on:
+  schedule:
+    - cron: '20 14,19 * * *'
+    - cron: '20 1 * * *'
+  workflow_dispatch:
+    inputs:
+      channel:
+        description: 'One channel (explainer, third, trending); empty = all'
+        required: false
+        default: ''
+      dry_run:
+        description: 'true = print the replies, post nothing'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: comment-replies
+  cancel-in-progress: false
+
+jobs:
+  reply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.11'
+      - run: pip install -q google-api-python-client google-auth google-auth-oauthlib
+      - name: Install Claude Code CLI (the brain that writes the replies)
+        run: |
+          command -v claude >/dev/null 2>&1 && exit 0
+          npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 \
+            || echo "::warning::claude CLI install failed"
+      - name: Reply
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          YOUTUBE_CLIENT_SECRETS_JSON: ${{ secrets.YOUTUBE_CLIENT_SECRETS_JSON }}
+          YOUTUBE_TOKEN_JSON: ${{ secrets.YOUTUBE_TOKEN_JSON }}
+          YOUTUBE_TOKEN_JSON_EXPLAINER: ${{ secrets.YOUTUBE_TOKEN_JSON_EXPLAINER }}
+          YOUTUBE_TOKEN_JSON_THIRD: ${{ secrets.YOUTUBE_TOKEN_JSON_THIRD }}
+        run: |
+          args=""
+          [ -n "${{ inputs.channel }}" ] && args="--channel ${{ inputs.channel }}"
+          [ "${{ inputs.dry_run }}" = "true" ] && args="$args --dry-run"
+          python scripts/reply_comments.py $args
