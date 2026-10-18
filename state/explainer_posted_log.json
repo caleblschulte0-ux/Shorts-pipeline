@@ -3791,6 +3791,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
       "duration_s": 25.0
+    },
+    "nobel-prize-discovery-age": {
+      "claimed_at": "2026-10-18T12:45:11.376360+00:00",
+      "title": "Nobel-Winning Discoveries Now Happen 13 Years Later",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4794,6 +4801,14 @@
       "state": "posted",
       "slug": "great-lakes-freshwater-scale",
       "at": "2026-10-17T18:27:14.419078+00:00"
+    },
+    {
+      "claimed_at": "2026-10-18T12:45:11.376360+00:00",
+      "title": "Nobel-Winning Discoveries Now Happen 13 Years Later",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "nobel-prize-discovery-age"
     }
   ]
 }
