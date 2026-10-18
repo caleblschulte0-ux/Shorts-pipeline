@@ -1,7 +1,67 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-18T11:46:50Z",
+ "updated": "2026-10-18T14:23:09Z",
  "open": [
+  {
+   "id": "global-remittances-record-2023__21255dfc_r1",
+   "slug": "global-remittances-record-2023",
+   "filed": "2026-10-18T14:23:09Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies only on a large number without a verifiable, consequential hook."
+   ],
+   "request": "exchange/rewrites/20261018/global-remittances-record-2023__21255dfc_r1.request.json",
+   "answer_path": "exchange/rewrites/20261018/global-remittances-record-2023__21255dfc_r1.answer.json"
+  },
+  {
+   "id": "nyc-noise-complaints-per-day__499955a7",
+   "slug": "nyc-noise-complaints-per-day",
+   "filed": "2026-10-18T14:23:09Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of viewer expectation and does not hinge on a single, verifiable numeric claim."
+   ],
+   "request": "exchange/rewrites/20261018/nyc-noise-complaints-per-day__499955a7.request.json",
+   "answer_path": "exchange/rewrites/20261018/nyc-noise-complaints-per-day__499955a7.answer.json"
+  },
+  {
+   "id": "homeschool-surge__44c39d98",
+   "slug": "homeschool-surge",
+   "filed": "2026-10-18T14:23:08Z",
+   "why": [
+    "premise: brain: The premise does not clearly overturn a strong viewer expectation and the 5.4% figure isn’t a strikingly consequential reversal."
+   ],
+   "request": "exchange/rewrites/20261018/homeschool-surge__44c39d98.request.json",
+   "answer_path": "exchange/rewrites/20261018/homeschool-surge__44c39d98.answer.json"
+  },
+  {
+   "id": "lightning-deaths-collapsed-not-the-storms__9241770b",
+   "slug": "lightning-deaths-collapsed-not-the-storms",
+   "filed": "2026-10-18T14:23:08Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and does not hinge on a single consequential, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261018/lightning-deaths-collapsed-not-the-storms__9241770b.request.json",
+   "answer_path": "exchange/rewrites/20261018/lightning-deaths-collapsed-not-the-storms__9241770b.answer.json"
+  },
+  {
+   "id": "a-language-dies-every-2-weeks__8d6939dc",
+   "slug": "a-language-dies-every-2-weeks",
+   "filed": "2026-10-18T14:23:07Z",
+   "why": [
+    "premise: brain: The claim offers a single numeric claim but does not clearly overturn a well‑known viewer expectation in a compelling, verifiable way."
+   ],
+   "request": "exchange/rewrites/20261018/a-language-dies-every-2-weeks__8d6939dc.request.json",
+   "answer_path": "exchange/rewrites/20261018/a-language-dies-every-2-weeks__8d6939dc.answer.json"
+  },
+  {
+   "id": "highest-point-illusion__3d90af0a",
+   "slug": "highest-point-illusion",
+   "filed": "2026-10-18T14:23:07Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261018/highest-point-illusion__3d90af0a.request.json",
+   "answer_path": "exchange/rewrites/20261018/highest-point-illusion__3d90af0a.answer.json"
+  },
   {
    "id": "red-hair-recessive-gene__e4e29bf0",
    "slug": "red-hair-recessive-gene",
@@ -443,16 +503,6 @@
    "answer_path": "exchange/rewrites/20261017/pickleball-fastest-growing-sport__598b7568.answer.json"
   },
   {
-   "id": "lightning-deaths-collapsed-not-the-storms__9241770b",
-   "slug": "lightning-deaths-collapsed-not-the-storms",
-   "filed": "2026-10-17T15:25:40Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a generic statistic without a striking, verifiable contrast."
-   ],
-   "request": "exchange/rewrites/20261017/lightning-deaths-collapsed-not-the-storms__9241770b.request.json",
-   "answer_path": "exchange/rewrites/20261017/lightning-deaths-collapsed-not-the-storms__9241770b.answer.json"
-  },
-  {
    "id": "helium-supply-squeeze__067a945d",
    "slug": "helium-supply-squeeze",
    "filed": "2026-10-17T15:25:39Z",
@@ -503,16 +553,6 @@
    "answer_path": "exchange/rewrites/20261017/ants-outnumber-humans__1beccbad.answer.json"
   },
   {
-   "id": "highest-point-illusion__5e00932f",
-   "slug": "highest-point-illusion",
-   "filed": "2026-10-17T12:56:18Z",
-   "why": [
-    "premise: brain: It reverses a common belief but does not hinge on a single verifiable number, only mentioning Everest's height without providing the new definitive figure."
-   ],
-   "request": "exchange/rewrites/20261017/highest-point-illusion__5e00932f.request.json",
-   "answer_path": "exchange/rewrites/20261017/highest-point-illusion__5e00932f.answer.json"
-  },
-  {
    "id": "blockbuster-to-one-store__857f036d",
    "slug": "blockbuster-to-one-store",
    "filed": "2026-10-17T12:56:16Z",
@@ -541,16 +581,6 @@
    ],
    "request": "exchange/rewrites/20261016/cryonics-client-count__740eebbc.request.json",
    "answer_path": "exchange/rewrites/20261016/cryonics-client-count__740eebbc.answer.json"
-  },
-  {
-   "id": "global-remittances-record-2023__21255dfc_r1",
-   "slug": "global-remittances-record-2023",
-   "filed": "2026-10-16T13:40:39Z",
-   "why": [
-    "premise: brain: Unclear reversal of viewer expectation; premise is ambiguous."
-   ],
-   "request": "exchange/rewrites/20261016/global-remittances-record-2023__21255dfc_r1.request.json",
-   "answer_path": "exchange/rewrites/20261016/global-remittances-record-2023__21255dfc_r1.answer.json"
   },
   {
    "id": "moon-drifting-away__904b95b2",
@@ -732,16 +762,6 @@
    ],
    "request": "exchange/rewrites/20261013/hurricane-names-retired-growing-list__4dcbc649.request.json",
    "answer_path": "exchange/rewrites/20261013/hurricane-names-retired-growing-list__4dcbc649.answer.json"
-  },
-  {
-   "id": "homeschool-surge__44c39d98",
-   "slug": "homeschool-surge",
-   "filed": "2026-10-13T04:11:22Z",
-   "why": [
-    "premise: brain: The premise relies on a vague reversal and a single low percentage that doesn't compellingly invert a strong viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261013/homeschool-surge__44c39d98.request.json",
-   "answer_path": "exchange/rewrites/20261013/homeschool-surge__44c39d98.answer.json"
   },
   {
    "id": "vertical-farming-bust__88943771",

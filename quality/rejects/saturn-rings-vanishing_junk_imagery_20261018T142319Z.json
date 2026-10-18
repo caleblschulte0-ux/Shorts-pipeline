@@ -1,0 +1,16 @@
+{
+ "slug": "saturn-rings-vanishing",
+ "ts": "20261018T142319Z",
+ "failure_class": "junk_imagery",
+ "evidence": "junk_imagery: payoff@-0.4: the Saturn scene is gone and Data stands alone on a blank gradient holding an empty yellow price tag that has nothing to do with Saturn's rings (the fallback prop).",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg4:end at 28.12s still shows the Saturn sweep scene, but payoff@-0.4 at 29.2s cuts to a bare navy gradient with Data holding a blank yellow price tag. The video's last second is a void with a stray prop.",
+  "root_cause": "After the closing scene ends, the tail falls back to a default host-on-ground plate with the default price_tag prop instead of holding the closing scene's finished frame.",
+  "repair_goal": "Hold the closing scene's finished picture (Data sweeping the thinning rings, the 'Going, going...' headline and the CTA) through the end of the video. Never cut to the fallback host plate, and never hand Data the default price tag."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

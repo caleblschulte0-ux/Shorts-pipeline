@@ -1,0 +1,21 @@
+{
+ "slug": "nobel-prize-discovery-age",
+ "ts": "20261018T142319Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: payoff@-0.4 (t=32.57s) cuts to an empty dark gradient filling the frame, with only Data holding a blank price tag at the bottom. The video's last frame is a void.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void_tail_and_static_closing",
+  "visible_evidence": "seg4:start to seg4:end replay the finished seg3 laureate stage under the closing text, with no new picture and Data waving in the same spot. Then payoff@-0.4 drops to an empty dark gradient with Data holding a blank yellow price tag.",
+  "root_cause": "The closing has no scene of its own and reuses seg3's end frame. After it the render falls through to a default empty-stage Data pose with the fallback price_tag prop instead of ending on the closing picture.",
+  "repair_goal": "Hold the closing picture through the very last frame so no fallback stage or blank prop appears. Give the closing its own payoff action on the laureate stage: Data walks a young scientist forward, or a clock or calendar spins as the laureates wait, so 'the wait is' is shown, not just written."
+ },
+ "scene_plan": {
+  "2": {
+   "viz": "comparison",
+   "perf": "catch_fall"
+  }
+ },
+ "scenes": []
+}
