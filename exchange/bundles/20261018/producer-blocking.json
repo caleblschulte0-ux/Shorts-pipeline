@@ -1,0 +1,83 @@
+{
+  "schema": "chatgpt-producer-blocking/v1",
+  "date": "20261018",
+  "status": "partial",
+  "failed_step": "Sports moments (Baller Bro): complete registered 3-post quota",
+  "required": 3,
+  "posted_total": 2,
+  "shortfall": 1,
+  "successful_posts": [
+    {
+      "who": "Drew Brees",
+      "video_url": "https://youtube.com/shorts/KMaBUaQfPMc",
+      "publish_at": "2026-10-18T16:00:00Z",
+      "source_report_commit": "2800bc9ceb8f06a100f15df7b3eaa7c662832ad9"
+    },
+    {
+      "who": "Joaquin Buckley",
+      "video_url": "https://youtube.com/shorts/fjgqM_9JS4k",
+      "publish_at": "2026-10-18T20:00:00Z",
+      "source_report_commit": "dce65982da229a06890ca43c0098b79ae67dbd9b"
+    }
+  ],
+  "workflow_runs": [
+    {
+      "run_id": 39122915221,
+      "conclusion": "cancelled",
+      "note": "Targeted duplicate retry was superseded by an already-dispatched recovery.",
+      "url": "https://github.com/caleblschulte0-ux/Shorts-pipeline/actions/runs/39122915221"
+    },
+    {
+      "run_id": 39124482614,
+      "conclusion": "success",
+      "result": "Posted Joaquin Buckley; advanced durable total from 1/3 to 2/3.",
+      "url": "https://github.com/caleblschulte0-ux/Shorts-pipeline/actions/runs/39124482614"
+    },
+    {
+      "run_id": 39124647029,
+      "conclusion": "failure",
+      "result": "0 posted; no candidate survived the quality/download gates.",
+      "url": "https://github.com/caleblschulte0-ux/Shorts-pipeline/actions/runs/39124647029"
+    },
+    {
+      "run_id": 39126567432,
+      "conclusion": "failure",
+      "result": "0 posted; final recovery also found no acceptable downloadable candidate.",
+      "url": "https://github.com/caleblschulte0-ux/Shorts-pipeline/actions/runs/39126567432"
+    }
+  ],
+  "blocker": {
+    "primary": "The final two recovery runs exhausted the available candidate slate without finding a third clip that passed the fail-closed showrunner and source gates.",
+    "showrunner_blocks": [
+      "Kevin Garnett: promised reaction/payoff did not appear cleanly; clip opened on the wrong speaker and ended mid-sentence.",
+      "Steve Kerr: promised double-take/reaction was absent from the clip."
+    ],
+    "source_failures": [
+      "Pat Murphy: source was only 8.0 seconds (<15 second minimum).",
+      "Sam Cosmi: source was only 10.8 seconds (<15 second minimum).",
+      "Luka Doncic: no usable setup/payoff.",
+      "Additional Reddit/source downloads were refused by yt-dlp."
+    ],
+    "safety_behavior": "Fail-closed prevented misleading, incomplete, too-short, or undownloadable clips from being uploaded."
+  },
+  "evidence": {
+    "final_sports_report": "sports_report.json",
+    "final_sports_report_commit": "338600152fb695eb5469dd1d64e4d58b53b05a4a",
+    "phase_b_commit": "49251c5e639def4f9c96a60eb269a73b2158c34f"
+  },
+  "completed": [
+    "STARTED committed before production work.",
+    "Configured Google Drive destination verified accessible and publicly shared; bundle requested no media.",
+    "Three Explainer rewrites authored and accepted by Phase B.",
+    "response.json read back and validated.",
+    "DONE committed separately.",
+    "Phase B completed successfully with zero rejections.",
+    "Third Channel completed successfully.",
+    "Sports posted 2/3 and recorded all recovery verdicts."
+  ],
+  "pending_at_write": [
+    "Explainer render worker final completion.",
+    "One missing Sports post."
+  ],
+  "retry_policy": "No further immediate Sports retry: repeated runs exhausted the same candidate pool and would duplicate work without new source inventory."
+}
