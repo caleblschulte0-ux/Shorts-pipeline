@@ -7,17 +7,15 @@
   {
    "sub": "nba",
    "who": "Kevin Garnett",
-   "why": "Garnett's raw, unfiltered reaction to his jersey retirement is a mic'd-up human moment anyone can enjoy.",
+   "why": "Garnett's raw, unfiltered reaction to the Timberwolves retiring his jersey after a ten-year wait.",
    "post_title": "Kevin Garnett reacts to the Timberwolves retiring his jersey: \u201cThey made a motherf**ka wait 10 years\u2026 B*tch ass n***as.\u201d",
    "upvotes": 0,
    "url": "https://streamable.com/6etzlt",
    "topic": "https://www.reddit.com/r/nba/comments/1x7r7eh/kevin_garnett_reacts_to_the_timberwolves_retiring",
-   "title": "Kevin Garnett Says The Timberwolves Made Him Wait 10 Years For His Jersey",
-   "hook": "KG says they made him wait 10 years",
+   "title": "Kevin Garnett Reacts To The Timberwolves Finally Retiring His Jersey",
+   "hook": "Garnett hears his jersey is going up \ud83d\ude4c",
    "ledger": {
-    "moves": [
-     "whoa@1.7"
-    ],
+    "moves": [],
     "mood": null,
     "shot_plan": {
      "layout": "action",
@@ -32,34 +30,28 @@
      "crop": [
       270,
       360,
-      188,
+      192,
       0
      ]
     }
    },
-   "repairs": [
-    {
-     "score": 66,
-     "reason": "showrunner BLOCK: The KG moment is real and he delivers on camera, but the clip opens on the host instead of KG and our line is printed over the show's jersey-retirement graphic at 2.5s."
-    }
-   ],
    "showrunner": {
     "blocked": true,
-    "reason": "showrunner BLOCK: The line says 'KG says' but the first half shows a different man saying the quote, and the clip ends mid-sentence before Garnett's payoff.",
-    "score": 49
+    "reason": "showrunner BLOCK: The line promises Garnett's reaction, but the first ~18s is a different man (the host) and the clip ends before Garnett's punchline lands.",
+    "score": 57
    },
-   "skipped": "showrunner_block: showrunner BLOCK: The line says 'KG says' but the first half shows a different man saying the quote, and the clip ends mid-sentence before Garnett's payoff."
+   "skipped": "showrunner_block: showrunner BLOCK: The line promises Garnett's reaction, but the first ~18s is a different man (the host) and the clip ends before Garnett's punchline lands."
   },
   {
    "sub": "nba",
    "who": "Steve Kerr",
-   "why": "Kerr's stunned face at spotting his own look-alike in the crowd is instantly funny.",
+   "why": "Kerr's jaw-drop disbelief at a look-alike sitting right behind him in the crowd.",
    "post_title": "Steve Kerr is in disbelief after seeing look-alike sitting behind him in the crowd",
    "upvotes": 0,
    "url": "https://streamable.com/0x9uns",
    "topic": "https://www.reddit.com/r/nba/comments/1x82adj/steve_kerr_is_in_disbelief_after_seeing_lookalike",
-   "title": "Steve Kerr Can't Believe His Twin Is Sitting Right Behind Him \ud83d\ude33",
-   "hook": "Steve Kerr spots his look-alike in the crowd \ud83d\ude02",
+   "title": "Steve Kerr Can't Believe His Look-Alike Is Sitting Right Behind Him",
+   "hook": "Steve Kerr spots his twin in the crowd \ud83d\ude33",
    "ledger": {
     "moves": [
      "zoom@17.5"
@@ -72,27 +64,33 @@
      "n_subjects": 0
     }
    },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: Real footage of a man who looks like Kerr, but Kerr never visibly spots him, so the promised moment never lands and the back half wanders through the crowd."
+    }
+   ],
    "showrunner": {
     "blocked": true,
-    "reason": "showrunner BLOCK: The line promises Steve Kerr doing a double take, but the clip only follows his look-alike through the stands. Kerr's reaction never appears, and the captions call the fan 'STEVE CURRY'.",
-    "score": 57
+    "reason": "showrunner BLOCK: Real footage of a man who looks like Kerr, but Kerr never visibly spots him, so the promised moment never lands and the back half wanders through the crowd.",
+    "score": 66
    },
-   "skipped": "showrunner_block: showrunner BLOCK: The line promises Steve Kerr doing a double take, but the clip only follows his look-alike through the stands. Kerr's reaction never appears, and the captions call the fan 'STEVE CURRY'."
+   "skipped": "showrunner_block: showrunner BLOCK: Real footage of a man who looks like Kerr, but Kerr never visibly spots him, so the promised moment never lands and the back half wanders through the crowd."
   },
   {
-   "sub": "baseball",
-   "who": "Pat Murphy",
-   "why": "The Brewers manager's deadpan 'there will be pitching' answer to a reporter is a funny press-conference moment.",
-   "post_title": "Brewers reporter Mike Heller: \u201cPitching tomorrow Murph?\u201d Pat Murphy: \u201cYeah, there will be pitching.\u201d",
+   "sub": "nfl",
+   "who": "Mike Evans",
+   "why": "Evans spins Diggs around to see who he is, then Diggs retaliates after being embarrassed.",
+   "post_title": "[Highlight] Mike Evans turns around Diggs to see who he is, Diggs gives him a shot after being embarrassed",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/baseball/comments/1x6qwr1/brewers_reporter_mike_heller_pitching_tomorrow/",
-   "topic": "https://www.reddit.com/r/baseball/comments/1x6qwr1/brewers_reporter_mike_heller_pitching_tomorrow",
-   "skipped": "too short: the post runs 8.0s (< 15s)"
+   "url": "https://www.reddit.com/r/nfl/comments/1x3ku7b/highlight_mike_evans_turns_around_diggs_to_see/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x3ku7b/highlight_mike_evans_turns_around_diggs_to_see",
+   "skipped": "too short: the post runs 5.7s (< 15s)"
   },
   {
    "sub": "nfl",
    "who": "Sam Cosmi",
-   "why": "A player caught on a mic'd-up walk off the field, venting his disbelief after a 27-27 tie.",
+   "why": "A Commanders guard's frustrated, caught-on-mic rant as he walks off after the tie.",
    "post_title": "[Highlight] Washington Commanders guard Sam Cosmi leaving the field after the 27-27 tie against the Giants: \"What the fuck are we doing? What are we doing?\"",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/nfl/comments/1x49c92/highlight_washington_commanders_guard_sam_cosmi/",
@@ -100,62 +98,28 @@
    "skipped": "too short: the post runs 10.8s (< 15s)"
   },
   {
-   "sub": "nfl",
-   "who": "Drew Brees",
-   "why": "Brees tells the story of swapping jerseys with Justin Jefferson, a mic'd-up tale that holds attention.",
-   "post_title": "[Mic'd Up] Drew Brees shares the story of his jersey swap with Justin Jefferson in 2020",
+   "sub": "nba",
+   "who": "Luka Doncic",
+   "why": "Luka watches a fan dance in his jersey and gives a deadpan \"He's good.\"",
+   "post_title": "Luka Doncic seems to be impressed by a Lakers fan dancing, wearing his jersey. \"He's good\"",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1x6ucvg/micd_up_drew_brees_shares_the_story_of_his_jersey/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1x6ucvg/micd_up_drew_brees_shares_the_story_of_his_jersey",
-   "title": "Drew Brees Asks Justin Jefferson For A Jersey Swap, And The Reason Is For His Son",
-   "hook": "Drew Brees asks Jefferson for a jersey swap \ud83e\udd79",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "wide",
-     "reason": "no persistent subject \u2014 show the whole frame",
-     "shots": [],
-     "n_subjects": 0
-    }
-   },
-   "showrunner": {
-    "blocked": false,
-    "reason": "",
-    "score": 87
-   },
-   "video_url": "https://youtube.com/shorts/KMaBUaQfPMc",
-   "ok": true,
-   "publish_at": "2026-10-18T16:00:00Z",
-   "seconds": 162,
-   "crossposts": {
-    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261018-drew-brees-asks-justin-jefferson-for-a-jersey-sw-eaec9d49",
-    "tiktok": "queued for 2026-10-18T16:00:00Z"
-   }
-  },
-  {
-   "sub": "CollegeBasketball",
-   "who": "Pat Kelsey",
-   "why": "A college coach on the witness stand against the NCAA is a strange scene a stranger would stop for.",
-   "post_title": "Pat Kelsey on the witness stand vs NCAA",
-   "upvotes": 0,
-   "url": "https://youtu.be/hY_HIn4gj8I?si=nMMhUFbLXhfqjWHK",
-   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1x6p98g/pat_kelsey_on_the_witness_stand_vs_ncaa",
-   "skipped": "download failed"
+   "url": "https://streamable.com/8tvy83",
+   "topic": "https://www.reddit.com/r/nba/comments/1x5iucq/luka_doncic_seems_to_be_impressed_by_a_lakers_fan",
+   "skipped": "author: no setup or no payoff in the clip"
   },
   {
    "sub": "MMA",
    "who": "Joaquin Buckley",
-   "why": "Buckley snubs Dana White's handshake and ignores every reporter's question, a tense and awkward moment.",
+   "why": "Buckley snubs Dana White's handshake and ignores every reporter question in a tense faceoff.",
    "post_title": "Joaquin Buckley doesn't shake hands with Dana White during his faceoff with Mike Malott and ignores every interview question from the reporter backstage",
    "upvotes": 0,
    "url": "https://streamable.com/f2yvjt",
    "topic": "https://www.reddit.com/r/MMA/comments/1x7wr3a/joaquin_buckley_doesnt_shake_hands_with_dana",
-   "title": "Joaquin Buckley Snubs Dana White's Handshake, And His Coach Has To Be Held Back",
+   "title": "Joaquin Buckley Refuses Dana White's Handshake And Stays Silent For Every Question",
    "hook": "Buckley won't shake Dana's hand \ud83d\ude33",
    "ledger": {
     "moves": [
-     "zoom@10.0"
+     "zoom@2.5"
     ],
     "mood": null,
     "shot_plan": {
@@ -176,23 +140,24 @@
      ]
     }
    },
-   "repairs": [
-    {
-     "score": 71,
-     "reason": "showrunner BLOCK: The handshake snub is real and visible, but this is a re-cut of another repost with its own captions stacked on ours, and the last 15s is a static silent interview."
-    }
-   ],
    "showrunner": {
-    "blocked": true,
-    "reason": "showrunner BLOCK: The handshake snub is real and visible, but this is a re-cut of another repost with its own captions stacked on ours, and the last 15s is a static silent interview.",
-    "score": 71
+    "blocked": false,
+    "reason": "",
+    "score": 70
    },
-   "skipped": "showrunner_block: showrunner BLOCK: The handshake snub is real and visible, but this is a re-cut of another repost with its own captions stacked on ours, and the last 15s is a static silent interview."
+   "video_url": "https://youtube.com/shorts/fjgqM_9JS4k",
+   "ok": true,
+   "publish_at": "2026-10-18T20:00:00Z",
+   "seconds": 230,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261018-joaquin-buckley-refuses-dana-white-s-handshake-a-917f7848",
+    "tiktok": "queued for 2026-10-18T20:00:00Z"
+   }
   },
   {
    "sub": "soccer",
    "who": "Santa Mar\u00eda vs Cabildo announcer",
-   "why": "An announcer physically smacks a fan on the head to get him out of the camera shot, which is funny on its face.",
+   "why": "An announcer physically smacks a fan on the head to get him out of the camera shot mid-goal.",
    "post_title": "Announcer has to physically smack a fan on the head to get him to duck out of the camera's view during a goal play between Santa Mar\u00eda and Cabildo",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/soccer/comments/1x5g98c/announcer_has_to_physically_smack_a_fan_on_the/",
@@ -201,8 +166,8 @@
   },
   {
    "sub": "soccer",
-   "who": "Blandford United Royals u9s",
-   "why": "A kids' team talk gets interrupted by a surprise steam train and the kids' reactions are adorable.",
+   "who": "Blandford United Royals",
+   "why": "A kids' team talk is hijacked when a steam train surprises the under-9s.",
    "post_title": "[BBC Dorset] the team talk of Blandford United Royals u9s is interrupted when a steam train surprised the kids",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/soccer/comments/1x7da4o/bbc_dorset_the_team_talk_of_blandford_united/",
@@ -210,68 +175,64 @@
    "skipped": "author: no setup or no payoff in the clip"
   },
   {
-   "sub": "nba",
-   "who": "Luka Doncic",
-   "why": "Luka watches a fan dance in his jersey and says 'He's good', a fun fan and star moment.",
-   "post_title": "Luka Doncic seems to be impressed by a Lakers fan dancing, wearing his jersey. \"He's good\"",
-   "upvotes": 0,
-   "url": "https://streamable.com/8tvy83",
-   "topic": "https://www.reddit.com/r/nba/comments/1x5iucq/luka_doncic_seems_to_be_impressed_by_a_lakers_fan",
-   "skipped": "author: no setup or no payoff in the clip"
-  },
-  {
-   "sub": "soccer",
-   "who": "Reading",
-   "why": "A staff member swings at a player, misses, falls over, fakes an injury and then tries to start a fight.",
-   "post_title": "\u200bA Franchise staff member attempted to barge into a Reading player, completely missed, and fell to the floor. After feigning an injury on the ground, they got back up and attempted to start a fight wi",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/soccer/comments/1x390rl/a_franchise_staff_member_attempted_to_barge_into/",
-   "topic": "https://www.reddit.com/r/soccer/comments/1x390rl/a_franchise_staff_member_attempted_to_barge_into",
-   "skipped": "author: no setup or no payoff in the clip"
-  },
-  {
-   "sub": "nba",
-   "who": "Scottie Barnes",
-   "why": "His pants fall down mid-360 dunk in warmups, an embarrassing celebration-gone-wrong kind of moment.",
-   "post_title": "Scottie Barnes\u2019 pants fall down during a pre-game 360 dunk.",
-   "upvotes": 0,
-   "url": "https://streamable.com/bf2mro",
-   "topic": "https://www.reddit.com/r/nba/comments/1x61r59/scottie_barnes_pants_fall_down_during_a_pregame",
-   "skipped": "too short: the post runs 10.8s (< 15s)"
-  },
-  {
    "sub": "baseball",
-   "who": "Jackson Chourio",
-   "why": "A praying mantis clings to him and he can't shake it off on live TV, which is absurd and funny.",
-   "post_title": "[Highlight] Jackson Chourio tries to brush off a preying mantis but he is unable to rid himself of his new companion",
+   "who": "Pat Murphy",
+   "why": "Murphy's dry \"Yeah, there will be pitching\" answer to a reporter's question.",
+   "post_title": "Brewers reporter Mike Heller: \u201cPitching tomorrow Murph?\u201d Pat Murphy: \u201cYeah, there will be pitching.\u201d",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/baseball/comments/1x6a754/highlight_jackson_chourio_tries_to_brush_off_a/",
-   "topic": "https://www.reddit.com/r/baseball/comments/1x6a754/highlight_jackson_chourio_tries_to_brush_off_a",
-   "skipped": "too short: the post runs 11.2s (< 15s)"
+   "url": "https://www.reddit.com/r/baseball/comments/1x6qwr1/brewers_reporter_mike_heller_pitching_tomorrow/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1x6qwr1/brewers_reporter_mike_heller_pitching_tomorrow",
+   "skipped": "too short: the post runs 8.0s (< 15s)"
   },
   {
    "sub": "nfl",
-   "who": "Mike Evans",
-   "why": "Evans turns Diggs around to see who he is, then Diggs retaliates, so it builds into a quick scuffle.",
-   "post_title": "[Highlight] Mike Evans turns around Diggs to see who he is, Diggs gives him a shot after being embarrassed",
+   "who": "Marlon Humphrey",
+   "why": "Humphrey tells how Kyle Hamilton lit up the moment Tua entered the game, expecting an interception.",
+   "post_title": "[Highlight] Ravens CB Marlon Humphrey says as soon as Tua Tagovailoa entered the game, Kyle Hamilton knew he was getting an INT: \u201cKyle was like, \u2018TUA IN THE GAME.\u2019 It was the most excited I\u2019ve probabl",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1x3ku7b/highlight_mike_evans_turns_around_diggs_to_see/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1x3ku7b/highlight_mike_evans_turns_around_diggs_to_see",
-   "skipped": "too short: the post runs 5.7s (< 15s)"
-  },
-  {
-   "sub": "soccer",
-   "who": "Liverpool fans",
-   "why": "A stadium of fans chanting at Man City is loud, raw and fan-filmed.",
-   "post_title": "Liverpool fans chanting \"You cheating bastards, you know what you are\" before the Liverpool-Man City match",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/soccer/comments/1x3acmm/liverpool_fans_chanting_you_cheating_bastards_you/",
-   "topic": "https://www.reddit.com/r/soccer/comments/1x3acmm/liverpool_fans_chanting_you_cheating_bastards_you",
-   "skipped": "author: no setup or no payoff in the clip"
+   "url": "https://www.reddit.com/r/nfl/comments/1x5sx9u/highlight_ravens_cb_marlon_humphrey_says_as_soon/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x5sx9u/highlight_ravens_cb_marlon_humphrey_says_as_soon",
+   "title": "Marlon Humphrey Reveals Kyle Hamilton Knew He Was Getting A Pick The Second Tua Stepped On The ",
+   "hook": "Kyle Hamilton knew he'd get a pick \ud83d\udc40",
+   "ledger": {
+    "moves": [
+     "zoom@14.6"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      334,
+      0
+     ]
+    }
+   },
+   "repairs": [
+    {
+     "score": 61,
+     "reason": "showrunner BLOCK: A secondhand podcast anecdote about Kyle Hamilton's excitement that never shows Tua, Kyle or the interception, and ends mid-thought."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A secondhand podcast anecdote about Kyle Hamilton's excitement that never shows Tua, Kyle or the interception, and ends mid-thought.",
+    "score": 61
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A secondhand podcast anecdote about Kyle Hamilton's excitement that never shows Tua, Kyle or the interception, and ends mid-thought."
   }
  ],
- "already_today": 0,
+ "already_today": 1,
  "pool": 92,
- "already_posted": 7,
+ "already_posted": 8,
  "shipped": 1
 }
