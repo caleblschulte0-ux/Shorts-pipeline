@@ -43,6 +43,7 @@ if str(ROOT) not in sys.path:
 from shared import channel_registry                              # noqa: E402
 
 FORCE_SSL = "https://www.googleapis.com/auth/youtube.force-ssl"
+YOUTUBE = "https://www.googleapis.com/auth/youtube"
 #: Defaults when a channel's `comments` block leaves a knob out.
 DEFAULTS = {"max_per_run": 15, "max_age_h": 72}
 MAX_REPLY_CHARS = 220
@@ -229,9 +230,12 @@ def run_channel(cid: str, *, dry_run: bool, reg=None) -> dict:
     except Exception as e:  # noqa: BLE001
         return {"channel": cid, "status": f"no token: {str(e)[:120]}"}
     scopes = set(getattr(creds, "scopes", None) or [])
-    if scopes and FORCE_SSL not in scopes:
+    # The broad `youtube` scope is tried too: Google documents force-ssl
+    # for comments, and the API's own 403 is the honest answer either way.
+    if scopes and not scopes & {FORCE_SSL, YOUTUBE}:
         return {"channel": cid, "status": "token lacks youtube.force-ssl "
-                "(re-run setup_youtube.py for this channel)"}
+                f"(re-run setup_youtube.py for this channel; has: "
+                f"{', '.join(sorted(x.rsplit('/', 1)[-1] for x in scopes))})"}
     svc = _youtube(creds)
     me = up.whoami(svc)["id"]
     todo = pending(svc, me, max_age_h=int(cfg["max_age_h"]),
