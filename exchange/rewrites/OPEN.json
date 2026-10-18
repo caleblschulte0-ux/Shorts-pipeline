@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-18T15:35:21Z",
+ "updated": "2026-10-18T19:15:11Z",
  "open": [
+  {
+   "id": "betelgeuse-great-dimming__e2882181",
+   "slug": "betelgeuse-great-dimming",
+   "filed": "2026-10-18T19:15:11Z",
+   "why": [
+    "premise: brain: The premise lacks a clear, verifiable numerical claim tied to a specific expectation reversal."
+   ],
+   "request": "exchange/rewrites/20261018/betelgeuse-great-dimming__e2882181.request.json",
+   "answer_path": "exchange/rewrites/20261018/betelgeuse-great-dimming__e2882181.answer.json"
+  },
+  {
+   "id": "vertical-farming-bust__5b3e834e",
+   "slug": "vertical-farming-bust",
+   "filed": "2026-10-18T19:15:09Z",
+   "why": [
+    "judge: blocked before vision review: max_dup_run 47 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=24.29s of 32.71s (~2.0s frozen)"
+   ],
+   "request": "exchange/rewrites/20261018/vertical-farming-bust__5b3e834e.request.json",
+   "answer_path": "exchange/rewrites/20261018/vertical-farming-bust__5b3e834e.answer.json"
+  },
   {
    "id": "iss-deorbit-2031__1ecc9d62",
    "slug": "iss-deorbit-2031",
@@ -743,16 +763,6 @@
    "answer_path": "exchange/rewrites/20261013/secondhand-apparel-resale-boom__4cb7c7e8.answer.json"
   },
   {
-   "id": "betelgeuse-great-dimming__e2882181",
-   "slug": "betelgeuse-great-dimming",
-   "filed": "2026-10-13T07:18:57Z",
-   "why": [
-    "premise: brain: The premise is vague and does not clearly reverse a specific viewer expectation with a single, verifiable numeric claim."
-   ],
-   "request": "exchange/rewrites/20261013/betelgeuse-great-dimming__e2882181.request.json",
-   "answer_path": "exchange/rewrites/20261013/betelgeuse-great-dimming__e2882181.answer.json"
-  },
-  {
    "id": "chess-online-boom__cf203384",
    "slug": "chess-online-boom",
    "filed": "2026-10-13T07:18:57Z",
@@ -772,16 +782,6 @@
    ],
    "request": "exchange/rewrites/20261013/hurricane-names-retired-growing-list__4dcbc649.request.json",
    "answer_path": "exchange/rewrites/20261013/hurricane-names-retired-growing-list__4dcbc649.answer.json"
-  },
-  {
-   "id": "vertical-farming-bust__88943771",
-   "slug": "vertical-farming-bust",
-   "filed": "2026-10-13T04:11:21Z",
-   "why": [
-    "judge: blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=21.58s of 26.83s (~2.0s frozen)"
-   ],
-   "request": "exchange/rewrites/20261013/vertical-farming-bust__88943771.request.json",
-   "answer_path": "exchange/rewrites/20261013/vertical-farming-bust__88943771.answer.json"
   },
   {
    "id": "tattoo-mainstream-shift__8da41eb1",
