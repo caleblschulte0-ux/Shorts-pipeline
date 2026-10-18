@@ -118,6 +118,35 @@ def graph(n: int, durs: list[float], clip_s: float, w: int, h: int,
     return ";".join(parts)
 
 
+def _render(clip: Path, got: list[dict], song: Path, out: Path,
+            clip_s: float, w: int, h: int, line_png, line_y) -> list | None:
+    """One try at joining `got` to the clip into `out`; the shot lengths,
+    or None with ffmpeg's own reason printed."""
+    durs = [min(SHOT_S, float(g.get("secs") or SHOT_S)) for g in got]
+    with_line = bool(line_png) and line_y is not None
+    cmd = ["ffmpeg", "-y", "-v", "error", "-i", str(clip)]
+    for g in got:
+        cmd += ["-i", str(g["path"])]
+    cmd += ["-i", str(song)]
+    if with_line:
+        cmd += ["-loop", "1", "-i", str(line_png)]
+    cmd += ["-filter_complex",
+            graph(len(got), durs, clip_s, w, h,
+                  line_y if with_line else None),
+            "-map", "[vout]", "-map", "[aout]",
+            "-t", f"{clip_s - XFADE_S + sum(durs):.3f}",
+            "-c:v", "libx264", "-preset", "medium", "-crf", "19",
+            "-pix_fmt", "yuv420p", "-r", "30",
+            "-c:a", "aac", "-b:a", "160k", str(out)]
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=600)
+    if r.returncode != 0 or _seconds(out) < clip_s:
+        tail = " | ".join((r.stderr or "").strip().splitlines()[-3:])
+        print(f"[outro] {len(got)} shots would not join: {tail[:300]}",
+              flush=True)
+        return None
+    return durs
+
+
 def build(clip: Path, item: dict, work: Path, *, w: int, h: int,
           line_png: Path | None = None, line_y: int | None = None,
           title: str = "") -> dict | None:
@@ -136,28 +165,20 @@ def build(clip: Path, item: dict, work: Path, *, w: int, h: int,
             print(f"[outro] {len(got)} checked shot(s) — no outro",
                   flush=True)
             return None
-        durs = [min(SHOT_S, float(g.get("secs") or SHOT_S)) for g in got]
         clip_s = _seconds(clip)
         if clip_s <= XFADE_S + 1:
             return None
-        with_line = bool(line_png) and line_y is not None
-        cmd = ["ffmpeg", "-y", "-v", "error", "-i", str(clip)]
-        for g in got:
-            cmd += ["-i", str(g["path"])]
-        cmd += ["-i", str(song)]
-        if with_line:
-            cmd += ["-loop", "1", "-i", str(line_png)]
         out = Path(work) / "with_outro.mp4"
-        cmd += ["-filter_complex",
-                graph(len(got), durs, clip_s, w, h,
-                      line_y if with_line else None),
-                "-map", "[vout]", "-map", "[aout]",
-                "-t", f"{clip_s - XFADE_S + sum(durs):.3f}",
-                "-c:v", "libx264", "-preset", "medium", "-crf", "19",
-                "-pix_fmt", "yuv420p", "-r", "30",
-                "-c:a", "aac", "-b:a", "160k", str(out)]
-        subprocess.run(cmd, check=True, capture_output=True, timeout=600)
-        if _seconds(out) < clip_s:
+        # a shot ffmpeg cannot join is dropped, not the whole tribute
+        tries = [got] + ([got[:i] + got[i + 1:] for i in range(len(got))]
+                         if len(got) > MIN_SHOTS else [])
+        for use in tries:
+            durs = _render(clip, use, song, out, clip_s, w, h,
+                           line_png, line_y)
+            if durs:
+                got = use
+                break
+        else:
             return None
         out.replace(clip)
         print(f"[outro] {item['song']} over {len(got)} shots of "

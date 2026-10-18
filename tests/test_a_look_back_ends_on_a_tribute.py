@@ -66,7 +66,7 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
              "sine=f=600:d=30", "-ac", "2", str(td / "song.wav")],
             check=True)
 
-    def _edit(self, td: Path, shots: list[str]):
+    def _edit(self, td: Path, shots: list[str], item=OUTRO):
         from third_capture import clip_edit
         it = iter(shots)
 
@@ -83,7 +83,7 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
             return clip_edit.edit(
                 td / "src.mp4", td / "out.mp4", credit="r/nba",
                 hook="KD on Russ", words=words,
-                direct={"mood": "sad", "mood_at": 3, "outro": OUTRO})
+                direct={"mood": "sad", "mood_at": 3, "outro": item})
 
     def _px(self, path: Path, t: float) -> bytes:
         return subprocess.run(
@@ -106,6 +106,15 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
             self.assertGreater(clip[0], clip[2] + 60)      # red, in colour
             end = self._px(td / "out.mp4", dur - 3.4)
             self.assertGreater(end[2] + end[1], end[0] + 40)  # the footage
+
+    def test_a_shot_that_will_not_join_is_dropped_not_the_tribute(self):
+        with tempfile.TemporaryDirectory() as td:
+            td = Path(td)
+            self._media(td)
+            (td / "broken.mp4").write_bytes(b"not a video")
+            led = self._edit(td, ["blue", "broken", "green"], item={
+                **OUTRO, "looks": OUTRO["looks"] + ["Durant dunk on OKC"]})
+            self.assertEqual(led["outro"]["shots"], ["blue", "green"])
 
     def test_one_shot_is_not_a_tribute(self):
         with tempfile.TemporaryDirectory() as td:
