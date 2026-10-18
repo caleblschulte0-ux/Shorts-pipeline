@@ -1,142 +1,140 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "other": {
-   "count": 12,
+  "junk_imagery": {
+   "count": 8,
    "stories": {
-    "livestock-methane-emissions": 1,
-    "sports_steve_kerr_ng_lookalike": 1,
-    "sports_joaquin_buckley_ds_with_dana": 3,
-    "sports_ryan_fitzpatrick_os_qb_bo_nix": 2,
-    "household-size-shrinking": 1,
-    "migraine-global-disability-burden": 3,
-    "competitive-eating-record-climb": 1
+    "saturn-rings-vanishing": 2,
+    "sports_kevin_garnett_ves_retiring": 2,
+    "sports_steve_kerr_ng_lookalike": 3,
+    "vertical-farming-bust": 1
    },
    "timestamps": [
-    "2026-10-16T17:52:32+00:00",
-    "2026-10-17T11:36:38+00:00",
-    "2026-10-17T11:39:53+00:00",
-    "2026-10-17T11:41:42+00:00",
-    "2026-10-17T11:43:42+00:00",
-    "2026-10-17T11:47:10+00:00",
-    "2026-10-17T11:50:22+00:00",
-    "2026-10-17T11:43:37+00:00",
-    "2026-10-17T16:14:48+00:00",
-    "2026-10-17T16:36:46+00:00",
-    "2026-10-17T16:56:25+00:00",
-    "2026-10-17T17:15:44+00:00"
+    "2026-10-18T11:38:47+00:00",
+    "2026-10-18T11:56:37+00:00",
+    "2026-10-18T12:18:23+00:00",
+    "2026-10-18T12:20:48+00:00",
+    "2026-10-18T12:35:51+00:00",
+    "2026-10-18T14:10:34+00:00",
+    "2026-10-18T15:15:59+00:00",
+    "2026-10-18T20:33:48+00:00"
    ],
    "examples": [
-    "unreadable: hook@0.3 and seg1:end: the '1.5X' badge is drawn over the end of the subtitle, covering '(projected)'. seg2:start/mid: the ring-pattern slabs make the 'LIVESTOCK' slot unreadable until seg",
-    "unreadable: Burned-in word captions sit right on top of our line all video: 'TAKE CARE OF' (hook@0.3), 'STEVE CURRY.' (hook@1.5), 'METHOD.' (mid3), 'WELCOME TO TEXAS.' (mid3), 'LIKE THAT' (payoff@-0.4",
-    "unreadable: hook@1.5 and mid0: the auto word caption 'DENNIS HAND WHY' sits right on top of our line and on top of the faceoff. It is a garbled transcription a viewer cannot make sense of, and it stac"
+    "junk_imagery: payoff@-0.4: the last frame cuts to an empty dark gradient where Data holds a blank yellow price tag, a stray prop that has nothing to do with Saturn",
+    "junk_imagery: hook@0.3 to mid2 (0-14s): the on-screen line says 'Garnett hears his jersey is going up', but the man on screen is the podcast host, not Kevin Garnett. Garnett does not appear until mid3",
+    "junk_imagery: hook@0.3 through mid2 (t=14.3s): the line says 'KG reacts to his jersey retirement', but the man on screen is a podcast host in a black tee holding a basketball, not Kevin Garnett. KG fi"
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
    "count": 6,
    "stories": {
-    "migraine-global-disability-burden": 2,
-    "competitive-eating-record-climb": 3,
-    "great-lakes-freshwater-scale": 1
+    "saturn-rings-vanishing": 3,
+    "sports_kevin_garnett_ves_retiring": 1,
+    "nobel-prize-discovery-age": 1,
+    "blockbuster-to-one-store": 1
    },
    "timestamps": [
-    "2026-10-17T16:36:46+00:00",
-    "2026-10-17T16:56:25+00:00",
-    "2026-10-17T17:15:44+00:00",
-    "2026-10-17T17:33:55+00:00",
-    "2026-10-17T17:44:05+00:00",
-    "2026-10-17T18:27:02+00:00"
+    "2026-10-18T11:38:47+00:00",
+    "2026-10-18T11:56:37+00:00",
+    "2026-10-18T12:29:50+00:00",
+    "2026-10-18T13:55:21+00:00",
+    "2026-10-18T14:10:34+00:00",
+    "2026-10-18T21:14:29+00:00"
    ],
    "examples": [
-    "empty_void: payoff@-0.4: the last frame is an empty dark navy field with a small Data in the lower third and nothing else. It is the frame the video ends on",
-    "empty_void: In the final frame (payoff@-0.4) the clinic scene is gone. What remains is a near-black gradient filling the whole frame, with Data small at the bottom holding a blank yellow price tag.",
-    "empty_void: payoff@-0.4: almost the whole frame is a black/navy gradient, with one small Data figure at the bottom and no scene, text or data."
-   ],
-   "recurred_after_fix": false
-  },
-  "junk_imagery": {
-   "count": 4,
-   "stories": {
-    "sports_steve_kerr_ng_lookalike": 1,
-    "migraine-global-disability-burden": 2,
-    "competitive-eating-record-climb": 1
-   },
-   "timestamps": [
-    "2026-10-17T11:36:38+00:00",
-    "2026-10-17T16:14:48+00:00",
-    "2026-10-17T16:36:46+00:00",
-    "2026-10-17T17:15:44+00:00"
-   ],
-   "examples": [
-    "junk_imagery: The footage contradicts our line 'Kerr spots Curry's twin in the crowd'. The look-alike is a grey-haired man in a grey top holding a beer (hook@0.3, mid0, mid1), and he looks like Steve ",
-    "junk_imagery: payoff@-0.4 (t=26.33s): the final frame is Data alone on a dark empty ground holding a BLANK yellow price tag. The tag has nothing to do with migraines (it's the old default prop).",
-    "junk_imagery: payoff@-0.4: the final frame is Data alone on a dark gradient holding a blank yellow price tag, a prop that has nothing to do with migraines"
-   ],
-   "recurred_after_fix": false
-  },
-  "decorative_mascot": {
-   "count": 4,
-   "stories": {
-    "migraine-global-disability-burden": 1,
-    "competitive-eating-record-climb": 3
-   },
-   "timestamps": [
-    "2026-10-17T16:14:48+00:00",
-    "2026-10-17T17:15:44+00:00",
-    "2026-10-17T17:33:55+00:00",
-    "2026-10-17T17:44:05+00:00"
-   ],
-   "examples": [
-    "empty_void: payoff@-0.4 (t=26.33s): the whole frame is dark navy with one small mascot in the lower third and nothing else. The video ends on a dead black frame after the clinic payoff.",
-    "decorative_mascot: seg0:start to seg1:end: Data stands beside the growing hot dog and only waves or points (seg0:mid, seg1:mid). He is not the cause of it growing. The same thing happens at the end, w",
-    "decorative_mascot: seg1:start to seg1:end: Data stands beside the growing hot dog and waves while it stretches on its own. At payoff@-0.4 he holds a blank yellow price tag on an empty stage. His other"
+    "empty_void: payoff@-0.4: the final frame is almost entirely an empty dark gradient with only a small Data at the bottom. The video ends on a void instead of the Saturn shot",
+    "empty_void: Every frame from hook@0.3 to payoff@-0.4 has blurred dark letterbox bands above and below the footage, about 25% of the height. In mid0-mid2 the footage also shrinks to a wide shot, so the",
+    "empty_void: payoff@-0.4 (t=32.57s) cuts to an empty dark gradient filling the frame, with only Data holding a blank price tag at the bottom. The video's last frame is a void."
    ],
    "recurred_after_fix": false
   },
   "dead_air": {
-   "count": 2,
+   "count": 3,
    "stories": {
+    "sports_joaquin_buckley_ds_with_dana": 1,
     "sports_steve_kerr_ng_lookalike": 1,
-    "sports_joaquin_buckley_ds_with_dana": 1
+    "blockbuster-to-one-store": 1
    },
    "timestamps": [
-    "2026-10-17T11:36:38+00:00",
-    "2026-10-17T11:39:53+00:00"
+    "2026-10-18T11:43:55+00:00",
+    "2026-10-18T12:20:48+00:00",
+    "2026-10-18T21:14:29+00:00"
    ],
    "examples": [
-    "dead_air: In mid4 and payoff@-0.4 the camera sits on a wide shot of the bench and crowd. Nothing readable happens and no reaction is framed.",
-    "dead_air: mid2 through payoff@-0.4 (~18s\u201344s): about 26 seconds of near-identical split frames. The reporter talks while Buckley stares silently. That silence is the point, but nothing new happens vis"
+    "dead_air: From mid3 (23.8s) to payoff@-0.4 (39.6s) it is a static split of the reporter and a silent Buckley staring. The silence is the point, but about 15s of nobody speaking with no cut goes on too",
+    "dead_air: mid1-mid4 (about 9-31s): long stretches of wandering crowd footage where the promised moment never happens. The phone camera moves, but nothing meaningful happens and the captions are fragme",
+    "dead_air: The hook holds almost the same frame from hook@0.3 to seg0:end (about 0 to 4s+); only the reels and Data's pose change slightly. The measured max_dup_run is at 10.0s, held_s is 10.46, and th"
+   ],
+   "recurred_after_fix": false
+  },
+  "other": {
+   "count": 3,
+   "stories": {
+    "sports_joaquin_buckley_ds_with_dana": 1,
+    "vertical-farming-bust": 1,
+    "blockbuster-to-one-store": 1
+   },
+   "timestamps": [
+    "2026-10-18T11:43:55+00:00",
+    "2026-10-18T20:33:48+00:00",
+    "2026-10-18T21:14:29+00:00"
+   ],
+   "examples": [
+    "unreadable: The source's own burned-in captions sit right on top of our line: 'COACH HAS BEEN' at mid1, 'CELEBRATION OF ALL' at mid3, 'SAYS MORE THAN' at mid5 and 'ANY WORDS' at payoff@-0.4. Two capti",
+    "unreadable: seg4:end and payoff@-1.8: the closing caption 'Hype is not a harvest.' is printed on top of the '-91%' headline, so the two collide. In seg4:start the caption block sits flush on the 'Indo",
+    "unreadable: In seg4:start, seg4:mid and payoff@-1.8, the closing line 'Even giants can vanish fast when habits change...' is drawn on top of floating white light bars that cut through 'fast', 'change,"
    ],
    "recurred_after_fix": false
   },
   "temporal_gate": {
-   "count": 1,
+   "count": 3,
    "stories": {
-    "saturn-rings-vanishing": 1
+    "longform:foreign-aid-never-broke-0-32-of-health-spending": 2,
+    "vertical-farming-bust": 1
    },
    "timestamps": [
-    "2026-10-17T15:25:36+00:00"
+    "2026-10-18T17:26:02+00:00",
+    "2026-10-18T17:24:01+00:00",
+    "2026-10-18T19:21:57+00:00"
    ],
    "examples": [
-    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.58s of 26.75s (~2.0s frozen)"
+    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "temporal_gate: max_dup_run 47 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=24.29s of 32.71s (~2.0s frozen)",
+    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+   ],
+   "recurred_after_fix": false
+  },
+  "decorative_mascot": {
+   "count": 2,
+   "stories": {
+    "nobel-prize-discovery-age": 1,
+    "vertical-farming-bust": 1
+   },
+   "timestamps": [
+    "2026-10-18T12:29:50+00:00",
+    "2026-10-18T20:33:48+00:00"
+   ],
+   "examples": [
+    "decorative_mascot: In seg0:start through seg1:end Data stands beside the desk waving or pointing while the scientist ages. In seg2:mid he stands on the stage floor while the scale tips by itself. In s",
+    "empty_void: payoff@-0.4: almost the whole frame is a dark navy void with one small mascot at the bottom, no scene and no text"
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 3,
+   "median": 2,
    "min": 0,
    "max": 3
   },
   "data_demo": {
-   "median": 3,
+   "median": 2,
    "min": 0,
    "max": 4
   },
   "mascot": {
-   "median": 3,
+   "median": 4,
    "min": 0,
    "max": 4
   },
@@ -153,34 +151,34 @@
   "payoff": {
    "median": 1,
    "min": 0,
-   "max": 2
+   "max": 1
   },
   "temporal_craft": {
    "median": 3,
-   "min": 3,
+   "min": 2,
    "max": 3
   }
  },
  "scores": [
-  70,
-  87,
-  49,
-  62,
-  62,
-  66,
-  75,
+  71,
   79,
+  57,
+  66,
   70,
-  70,
+  61,
+  53,
   53,
   57,
+  53,
+  61,
+  79,
+  79,
+  66,
+  70,
   14,
-  62,
-  70,
-  70,
-  57,
-  74,
-  70,
-  79
+  14,
+  14,
+  75,
+  66
  ]
 }
