@@ -1373,7 +1373,7 @@ function githubHeaders() {
 // every .mp4/.mov/.webm attached to any release, newest first.
 async function githubVideos(repo, sid) {
   const res = await fetch(`${GITHUB_API}/repos/${repo}/releases?per_page=30`, { headers: githubHeaders() });
-  if (res.status === 404) throw new Error(`GitHub has no public repository called ${repo}.`);
+  if (res.status === 404) throw new Error(`GitHub has no public repository called ${repo}. Check the spelling, and that the repository is public, then paste its address again (for example https://github.com/you/shorts-pipeline).`);
   if (res.status === 403 || res.status === 429) throw new Error("GitHub is rate-limiting requests right now. Try again in a few minutes.");
   if (!res.ok) throw new Error(`GitHub answered ${res.status}.`);
   const releases = await res.json();
@@ -1596,9 +1596,9 @@ function sourcesPanel(lib) {
     <div class="addgrid">
       <form class="addcard" method="post" action="/app/sources">
         <input type="hidden" name="action" value="add-github">
-        <label class="flabel" for="repo">GitHub repository</label>
-        <input id="repo" name="repo" type="text" inputmode="url" placeholder="owner/repository" required maxlength="200" aria-describedby="repo-hint">
-        <p class="hint" id="repo-hint">Every .mp4, .mov or .webm attached to a public release of that repository is added.</p>
+        <label class="flabel" for="repo">Your GitHub repository</label>
+        <input id="repo" name="repo" type="text" inputmode="url" placeholder="https://github.com/you/shorts-pipeline" required maxlength="200" aria-describedby="repo-hint">
+        <p class="hint" id="repo-hint">Paste the repository's address from your browser (or type <em>you/repository</em>). Every video it publishes under Releases shows up here to post by hand. You don't need this for automatic posting: once TikTok is connected, a pipeline that is allowed to post does it on its own.</p>
         <button class="btn" type="submit">Add repository</button>
       </form>
       <form class="addcard" method="post" action="/app/sources">
@@ -2041,13 +2041,14 @@ exports.handler = async function(event) {
           const sid = sourceId("github", repo);
           if (!lib.sources.some((s) => s.id === sid) && lib.sources.length >= MAX_SOURCES) throw new Error(`You can have up to ${MAX_SOURCES} sources. Remove one first.`);
           const videos = await githubVideos(repo, sid);
-          if (!videos.length) throw new Error(`${repo} has no public release with a video file attached (.mp4, .mov or .webm).`);
           const src = lib.sources.find((s) => s.id === sid) || { id: sid, kind: "github", repo, added: new Date().toISOString() };
           src.synced = new Date().toISOString();
           delete src.error;
           if (!lib.sources.includes(src)) lib.sources.push(src);
           replaceVideos(lib, sid, videos);
-          text = `Added ${videos.length} video${videos.length === 1 ? "" : "s"} from ${repo}.`;
+          // A pipeline that has not published anything yet is still the
+          // right source: keep it, and say when its videos will show up.
+          text = videos.length ? `Added ${videos.length} video${videos.length === 1 ? "" : "s"} from ${repo}.` : `Added ${repo}. It has no videos yet: each video your pipeline publishes to that repository's Releases shows up here on its own (press "Check for new videos" to look now).`;
         } else if (f.action === "add-link") {
           const sid = sourceId("link", String(f.url || "").trim());
           if (lib.sources.some((s) => s.id === sid)) throw new Error("That link is already in your library.");

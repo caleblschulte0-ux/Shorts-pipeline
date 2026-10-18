@@ -65,6 +65,7 @@ global.fetch = async (url, opts = {}) => {
   if (url.startsWith("https://api.github.com/repos/")) {
     const repo = url.split("/repos/")[1].split("/releases")[0];
     if (repo === "nobody/nothing") return new Response("{}", { status: 404 });
+    if (repo === "friend/empty") return new Response("[]");
     return new Response(JSON.stringify([
       { tag_name: "v2", name: "Cargo Ships Quietly Got Six Times Bigger", body: "Six times. #ships", published_at: "2026-09-28T00:00:00Z", assets: [{ name: "cargo-ships.mp4", size: BIG.length, browser_download_url: "https://video.test/big.mp4", updated_at: "2026-09-28T00:00:00Z" }, { name: "notes.txt", size: 12, browser_download_url: "https://video.test/notes.txt" }] },
       { tag_name: "v1", name: "first", published_at: "2026-09-20T00:00:00Z", assets: [{ name: "small.mp4", size: SMALL.length, browser_download_url: "https://video.test/small.mp4", updated_at: "2026-09-20T00:00:00Z" }] },
@@ -157,6 +158,13 @@ srv.listen(0, async () => {
   // remove a source: its videos go too
   r = await handler(post("/app/sources", cookie, { action: "remove", source: r.body.match(/name="source" value="(github:[^"]+)"/)?.[1] || (await handler(ev("/app", { cookie }))).body.match(/name="source" value="(github:[^"]+)"/)[1] }));
   ok(/Removed\./.test(r.body) && (r.body.match(/Post to TikTok/g) || []).length === 2, "removing the repository removes its two videos");
+  // a pipeline that has published nothing yet is still a source, and says so
+  r = await handler(post("/app/sources", cookie, { action: "add-github", repo: "https://github.com/friend/empty" }));
+  ok(/Added friend\/empty\. It has no videos yet/.test(r.body), "a repository with no videos yet is added and says when they will appear");
+  cookie = merge(cookie, r);
+  r = await handler(post("/app/sources", cookie, { action: "remove", source: "github:" + require("crypto").createHash("sha256").update("github\nfriend/empty").digest("hex").slice(0, 12) }));
+  cookie = merge(cookie, r);
+  flush();
   flush();
   // ---- accounts (unchanged behaviour) ----
   const [k, v] = [...mem].find(([, x]) => { try { return JSON.parse(x.data).open_id === "oid1"; } catch { return false; } }); const rec = JSON.parse(v.data); rec.access_expires_at = Date.now(); mem.set(k, { data: Buffer.from(JSON.stringify(rec)), etag: v.etag });
