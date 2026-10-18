@@ -1537,6 +1537,14 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
         # (third_capture/moves.py).
         mv = moves_mod.plan(direct if (auto and direct) else {}, dur,
                             offset=t0)
+        # THE TRIBUTE ENDING (operator, 2026-10-18): the clip plays as it
+        # is and the song comes in AFTER it, over a montage of the people
+        # (third_capture/outro.py) — so a sad bed under the voice goes
+        from third_capture import outro as outro_mod
+        _outro = outro_mod.parse(direct.get("outro")) if (auto and direct) \
+            else None
+        if _outro and mv["bed"] and mv["bed"]["move"] == "sad":
+            mv["bed"] = None
         line_png, line2_png = None, None
         if hook:
             try:
@@ -1752,6 +1760,14 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             render_level = "raw"
         if render_level != "full":
             ledger_ae["render_fallback"] = render_level
+        ledger_ae["outro"] = None
+        if _outro:
+            ledger_ae["outro"] = outro_mod.build(
+                out_path, _outro, tmp, w=CANVAS_W, h=CANVAS_H,
+                line_png=line_png, line_y=line_y if line_png else None,
+                title=hook)
+            if ledger_ae["outro"]:
+                dur += ledger_ae["outro"]["secs"]
 
     return {"kind": "twitch_clip", "credit": credit,
             "render_level": render_level,

@@ -53,6 +53,7 @@ Return STRICT JSON:
                     "at": number}, ...],
           "song": str,
           "broll": [{"who": str, "look": str, "at": number}, ...],
+          "outro": {"song": str, "who": str, "looks": [str, ...]},
           "cut": {"start": number, "end": number}, "complete": bool}}
 
 This niche is REALITY TV: viewers follow PEOPLE and DRAMA — fights, beef,
@@ -188,6 +189,21 @@ Rules:
     clips with a person talking refer to something showable: give those
     at least one. Never the person already on screen talking, never a
     guess at something the words do not name.
+  - outro: the TRIBUTE ending, a different thing from broll (operator:
+    "when Kevin Durant was talking about how sad he was that him and Russ
+    aren't playing anymore, you play just that clip, and then after that
+    clip's done, play some sad music, and then cut to, like, clips of
+    them playing together"). Use it when the clip is someone LOOKING BACK
+    on a person, a team or a time that is gone: a teammate who left, a
+    partnership that broke up, a retired legend, a friend who passed, a
+    career ending. The clip plays untouched; after it, the `song` (a key
+    from the shelf above) comes in over 2-4 shots of them, in that order.
+    "who" is who the shots are of ("Kevin Durant Russell Westbrook");
+    "looks" are the shots, each the GAME ACTION in search words
+    ("Westbrook and Durant celebrating on the Thunder", "Durant alley-oop
+    from Westbrook", "Thunder 2012 NBA Finals"). With an outro, set mood
+    "" (the song comes after the words, not under them). Most clips have
+    no outro: null.
   - cut: {"start","end"} in SECONDS into this clip — the span to KEEP so a
     first-time viewer instantly understands the moment. Use the [t.t-t.t]
     timestamps in the transcript. start early enough to include the SETUP
@@ -630,6 +646,10 @@ def _postprocess(out: dict, streamer: str, context: str,
     _cuts = cut_in.parse(edit_raw.get("broll"), clip_dur)
     if _cuts:
         edit["broll"] = _cuts
+    from third_capture import outro as _outro_mod
+    _outro = _outro_mod.parse(edit_raw.get("outro"))
+    if _outro:
+        edit["outro"] = _outro
 
     # Narrative cut window (§9): trusted only when it's sane against the
     # known clip length — a >=3s span inside [0, clip_dur]. Anything off
