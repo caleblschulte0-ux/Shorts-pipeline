@@ -6018,6 +6018,20 @@
    ],
    "ending_type": "escalation",
    "notes": "re-validated unchanged: current-standard illustrated scenes kept; zero chemistry winners under 40 this century"
+  },
+  {
+   "slug": "vertical-farming-bust",
+   "directed_at": "2026-10-18",
+   "topic_category": "tech",
+   "hook_type": "inversion",
+   "hook_text": "Bowery was worth billions. Now it's gone, and so is the money.",
+   "depictions": [
+    "scene:illustrated-coin-jar",
+    "scene:illustrated",
+    "viz:fill_vessel"
+   ],
+   "ending_type": "inversion",
+   "notes": "illustrated scenes kept; added chart/kit fallbacks so validation passes; 91% funding drop"
   }
  ]
 }
