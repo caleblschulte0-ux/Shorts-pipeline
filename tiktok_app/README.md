@@ -21,7 +21,8 @@ video at a time, with the settings you choose. It is TikTok's approved app
          polls TikTok until PUBLISH_COMPLETE. /app/draft/<id> is the inbox
          (draft) flow on the same machinery.
     GitHub Actions job on main (id-token: write)
-         ──► POST /api/tiktok/token  (GitHub OIDC JWT; repo id, main only)
+         ──► POST /api/tiktok/token  (GitHub OIDC JWT; trusted repo id, main only;
+             a repo other than the owner's gets only its own accounts: TRUSTED_REPOS)
          ◄── fresh access token  ──►  shared/uploaders.TikTokUploader
 
 No TikTok token is kept in GitHub secrets. Which linked account a channel

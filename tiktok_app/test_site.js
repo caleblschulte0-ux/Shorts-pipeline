@@ -50,7 +50,7 @@ global.fetch = async (url, opts = {}) => {
     return new Response(JSON.stringify({ access_token: "at" + tokenCalls, refresh_token: "rt" + tokenCalls, open_id: global.NEXT_OPEN_ID || "oid1", expires_in: expiresIn, refresh_expires_in: 31536000, scope: "user.info.basic,video.upload,video.publish" }));
   }
   if (url.startsWith("https://open.tiktokapis.com/v2/user/info/")) return new Response(JSON.stringify({ data: { user: { display_name: "Caleb" } }, error: { code: "ok" } }));
-  if (url.startsWith("https://open.tiktokapis.com/v2/post/publish/creator_info/query/")) return new Response(JSON.stringify({ data: { creator_username: global.NEXT_OPEN_ID ? "second" : "thirdbraindown", creator_nickname: "Third", privacy_level_options: ["SELF_ONLY", "PUBLIC_TO_EVERYONE"] }, error: { code: "ok" } }));
+  if (url.startsWith("https://open.tiktokapis.com/v2/post/publish/creator_info/query/")) return new Response(JSON.stringify({ data: { creator_username: global.TT_USERNAME || (global.NEXT_OPEN_ID ? "second" : "thirdbraindown"), creator_nickname: "Third", privacy_level_options: ["SELF_ONLY", "PUBLIC_TO_EVERYONE"] }, error: { code: "ok" } }));
   if (url.startsWith("https://open.tiktokapis.com/v2/post/publish/video/init/") || url.startsWith("https://open.tiktokapis.com/v2/post/publish/inbox/video/init/")) {
     const body = JSON.parse(opts.body); uploads.push({ init: body, chunks: [] });
     return new Response(JSON.stringify({ data: { publish_id: "pub" + uploads.length, upload_url: "https://upload.test/" + uploads.length }, error: { code: "ok" } }));
@@ -207,5 +207,26 @@ srv.listen(0, async () => {
   ok(r.statusCode === 200 && JSON.parse(r.body).access_token, "broker hands main a fresh access token");
   r = await call("/api/tiktok/token", mk(Object.assign({}, good, { ref: "refs/heads/claude/x" })), "POST", JSON.stringify({ handle: "thirdbraindown" }));
   ok(r.statusCode === 401, "broker refuses a non-main branch");
+  // another repository: only the accounts named for it, never the owner's
+  const friend = Object.assign({}, good, { repository_id: "1423880652", repository: "nholthe/shorts-pipeline" });
+  r = await call("/api/tiktok/token", mk(friend), "POST", JSON.stringify({ handle: "thirdbraindown" }));
+  ok(r.statusCode === 404, "a friend's repository cannot get a token for the owner's account");
+  r = await call("/api/tiktok/accounts", mk(friend), "GET");
+  ok(r.statusCode === 200 && JSON.parse(r.body).accounts.length === 0, "a friend's repository does not even see the owner's accounts");
+  global.NEXT_OPEN_ID = "oid3"; global.TT_USERNAME = "checxsclips";
+  r = await handler(ev("/app/connect")); const stF = new URL(r.headers.Location).searchParams.get("state");
+  await handler(ev("/auth/tiktok/callback", { q: { code: "c", state: stF }, cookie: "sm_state=" + stF }));
+  global.NEXT_OPEN_ID = undefined; global.TT_USERNAME = undefined;
+  flush();
+  r = await call("/api/tiktok/token", mk(friend), "POST", JSON.stringify({ handle: "checxsclips" }));
+  ok(r.statusCode === 200 && JSON.parse(r.body).handle === "checxsclips" && JSON.parse(r.body).access_token, "a friend's repository gets a token for its own account");
+  r = await call("/api/tiktok/accounts", mk(friend), "GET");
+  ok(JSON.parse(r.body).accounts.map((a) => a.handle).join() === "checxsclips", "a friend's repository sees only its own account");
+  r = await call("/api/tiktok/accounts", mk(good), "GET");
+  ok(JSON.parse(r.body).accounts.length === 2, "the owner still sees every linked account");
+  r = await call("/api/tiktok/token", mk(Object.assign({}, friend, { repository: "caleblschulte0-ux/Shorts-pipeline" })), "POST", JSON.stringify({ handle: "thirdbraindown" }));
+  ok(r.statusCode === 401, "a repository id must come with its own name");
+  r = await call("/api/tiktok/token", mk(Object.assign({}, good, { repository_id: "999", repository: "someone/else" })), "POST", JSON.stringify({ handle: "thirdbraindown" }));
+  ok(r.statusCode === 401, "broker refuses a repository it does not trust");
   srv.close();
 });
