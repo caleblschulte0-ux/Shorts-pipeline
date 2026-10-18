@@ -1,0 +1,25 @@
+{
+  "key": "otc_hearing_aid_models_available",
+  "title": "FDA-registered OTC hearing aid models available",
+  "unit": "models",
+  "geography": "United States",
+  "time_coverage": "2022-2024",
+  "source": {
+    "name": "OTC hearing aid device registrations",
+    "publisher": "U.S. Food and Drug Administration (FDA)",
+    "url": "https://www.fda.gov/medical-devices/hearing-aids",
+    "officiality": "official",
+    "access_date": "2026-10-18"
+  },
+  "notes": "Approximate number of distinct FDA-registered over-the-counter hearing aid models on the US market, before and after the 2022 rule took effect.",
+  "baseline": {
+    "label": "OTC models available (2022)",
+    "value": 0
+  },
+  "points": [
+    {
+      "label": "OTC models available (2024)",
+      "value": 80
+    }
+  ]
+}

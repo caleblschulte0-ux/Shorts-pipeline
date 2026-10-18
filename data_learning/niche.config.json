@@ -34493,6 +34493,247 @@
    ],
    "hook_scene": "# scene standard: 2026-10-16.2\ndef _hk_glass(cr, cx, base, h, w):\n    cr.move_to(cx - w * 0.5, base - h)\n    cr.line_to(cx + w * 0.5, base - h)\n    cr.line_to(cx + w * 0.4, base)\n    cr.line_to(cx - w * 0.4, base)\n    cr.close_path()\n\n\ndef _hk_jug(cr, x0, x1, top, bot):\n    r = 46\n    cr.move_to(x0 + 30, top)\n    cr.line_to(x1 - 30, top)\n    cr.line_to(x1, top + 60)\n    cr.line_to(x1, bot - r)\n    cr.arc(x1 - r, bot - r, r, 0, math.pi / 2)\n    cr.line_to(x0 + r, bot)\n    cr.arc(x0 + r, bot - r, r, math.pi / 2, math.pi)\n    cr.line_to(x0, top + 60)\n    cr.close_path()\n\n\ndef _hk_wheel(cr, x, y, r, ang):\n    # a valve hand-wheel: a metal ring with four spokes and a hub\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for w_, col in ((16, (36, 38, 46)), (10, (196, 52, 42))):\n        cr.set_line_width(w_)\n        cr.set_source_rgba(*_c(col))\n        cr.new_sub_path()\n        cr.arc(x, y, r, 0, 2 * math.pi)\n        cr.stroke()\n        for k in range(4):\n            a = ang + k * math.pi / 2\n            cr.move_to(x, y)\n            cr.line_to(x + r * math.cos(a), y + r * math.sin(a))\n            cr.stroke()\n    disc(cr, x, y, 11, (150, 156, 166), finish=\"metal\")\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a giant glass water jug\n    SUBSTANCE: lake water\n    CAUSE: Data opens the jug's tap and its water fills four glasses with plenty left over\n    THE HOOK: one huge jug of Lake Superior's water, already pouring when\n    the video opens. Data spins the valve wheel on the jug's own outlet and\n    it fills four tumblers, one per other Great Lake and each as tall as\n    that lake's volume, biggest first. All four are full and the jug still\n    has water in it. The jug level is Superior minus what has been poured,\n    over Superior. Every glass is full by 0.53 and the picture holds; no\n    number arrives after the opening line. After it lands the wheel stops,\n    the water in the jug keeps sloshing and Data walks down to the glasses.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    sup = max(rows, key=lambda r: r[1])\n    others = sorted([r for r in rows if r is not sup], key=lambda r: -r[1])[:4]\n    v0 = sup[1] or 1.0\n    n = len(others)\n    a1 = 0.55\n    span = a1 / max(1, n)\n    fills = []\n    for i in range(n):\n        f = ease(seg(u, i * span - 0.03, (i + 1) * span - 0.02))\n        if i == 0:\n            f = 0.3 + 0.7 * ease(seg(u, 0.0, span - 0.02))   # already pouring at frame 1\n        fills.append(f)\n    poured = sum(v * f for (_, v), f in zip(others, fills))\n    left = max(0.0, v0 - poured)\n    level = left / v0\n    tap_open = u < a1\n\n    landscape(cr, t, \"coast\")\n    birds(cr, t, y0=760, n=4, rgb=(60, 64, 76))\n\n    # the timber stand and the giant jug on it, below the readout\n    JX0, JX1, JT, JB = 270, 790, 680, 1200\n    cast_shadow(cr, JX0 - 20, JX1 + 60, 1290, length=320, a=0.3)\n    contact_shadow(cr, 540, 1294, 640, a=0.4)\n    box(cr, 250, 1290, 580, 90, (150, 108, 70), depth=60)\n    for px in (300, 420, 540, 660, 780):            # plank seams on the stand\n        cr.set_source_rgba(*_c((96, 66, 40), 0.7))\n        cr.set_line_width(4)\n        cr.move_to(px, 1210)\n        cr.line_to(px, 1288)\n        cr.stroke()\n\n    # the handle: a thick glass loop fused to the left wall\n    hp = [(JX0 + 6, JT + 110), (JX0 - 170, JT + 100), (JX0 - 170, JT + 400), (JX0 + 6, JT + 410)]\n    for w_, col, al in ((52, (40, 56, 72), 0.9), (40, (178, 208, 228), 0.95), (12, (240, 250, 255), 0.8)):\n        cr.set_line_width(w_)\n        cr.set_line_cap(cairo.LINE_CAP_ROUND)\n        cr.set_source_rgba(*_c(col, al))\n        cr.move_to(*hp[0])\n        cr.curve_to(*hp[1], *hp[2], *hp[3])\n        cr.stroke()\n\n    _hk_jug(cr, JX0, JX1, JT, JB)\n    solid(cr, (196, 222, 238), finish=\"glass\", a=0.5)\n    # the water left in it, sloshing\n    inner_top, inner_bot = JT + 30, JB - 12\n    wy = inner_bot - (inner_bot - inner_top) * level\n    slosh = 12 * math.sin(t * 3.2) * (1.0 if tap_open else 0.7)\n    cr.save()\n    _hk_jug(cr, JX0 + 14, JX1 - 14, JT + 14, JB - 12)\n    cr.clip()\n    cr.move_to(JX0, wy - slosh)\n    cr.curve_to(JX0 + 170, wy - slosh - 16, JX1 - 170, wy + slosh + 16, JX1, wy + slosh)\n    cr.line_to(JX1, JB)\n    cr.line_to(JX0, JB)\n    cr.close_path()\n    solid(cr, (34, 112, 192), finish=\"gloss\", edge=False)\n    # light caustics in the water\n    for k in range(5):\n        cx_ = JX0 + 80 + k * 95 + 14 * math.sin(t * 1.3 + k)\n        glow(cr, cx_, (wy + JB) / 2, 40, (120, 190, 240), 0.25)\n    cr.move_to(JX0, wy - slosh)\n    cr.curve_to(JX0 + 170, wy - slosh - 16, JX1 - 170, wy + slosh + 16, JX1, wy + slosh)\n    cr.set_source_rgba(*_c((200, 234, 252)))\n    cr.set_line_width(9)\n    cr.stroke()\n    cr.restore()\n    # a tall glint down the lit side of the glass\n    cr.move_to(JX0 + 34, JT + 90)\n    cr.line_to(JX0 + 58, JT + 90)\n    cr.line_to(JX0 + 58, JB - 70)\n    cr.line_to(JX0 + 34, JB - 70)\n    cr.close_path()\n    cr.set_source_rgba(*_c((255, 255, 255), 0.35))\n    cr.fill()\n    _hk_jug(cr, JX0, JX1, JT, JB)\n    edge(cr, (30, 40, 54))\n    box(cr, JX0 + 40, JT, JX1 - JX0 - 80, 36, (60, 120, 190), depth=30, finish=\"gloss\")\n    text(cr, \"SUPERIOR\", (JX0 + JX1) / 2, JT + 140, 72, look.INK, face=\"display\",\n         anchor=\"center\")\n\n    # the jug's outlet: out of the right wall, through Data's valve wheel,\n    # down and along the row of glasses\n    PY, VX, RY = 1150, 880, 1262\n    cr.set_line_join(cairo.LINE_JOIN_ROUND)\n    for w_, col in ((30, (52, 56, 64)), (22, (150, 156, 166)), (6, (226, 232, 240))):\n        cr.set_line_width(w_)\n        cr.set_source_rgba(*_c(col))\n        cr.move_to(JX1 - 10, PY)\n        cr.line_to(VX, PY)\n        cr.line_to(VX, RY)\n        cr.line_to(90, RY)\n        cr.stroke()\n    spin = (t * 5.0) if tap_open else (a1 * 4.0 * 5.0)\n    _hk_wheel(cr, VX, PY, 46, spin)\n\n    # the four glasses, each as tall as its lake, biggest first\n    GB, GW = 1490, 172\n    hs = 210.0 / (others[0][1] if others else 1.0)\n    xs = [140 + i * 205 for i in range(n)]\n    for i, ((lab, v), f) in enumerate(zip(others, fills)):\n        cx = xs[i]\n        gh = max(56.0, v * hs)\n        cr.rectangle(cx - 13, RY, 26, 18)\n        solid(cr, (140, 146, 156), finish=\"metal\")\n        if tap_open and 0.0 < f < 0.999:\n            ty = GB - gh * f\n            cr.set_source_rgba(*_c((60, 140, 216)))\n            cr.set_line_width(18 + 3 * math.sin(t * 20 + i))\n            cr.move_to(cx, RY + 18)\n            cr.line_to(cx, ty)\n            cr.stroke()\n            glow(cr, cx, ty, 36, (210, 238, 255), 0.6)\n        contact_shadow(cr, cx, GB + 4, GW + 24, a=0.4)\n        cr.save()\n        _hk_glass(cr, cx, GB, gh, GW)\n        cr.clip()\n        cr.rectangle(cx - GW, GB - gh * f, 2 * GW, gh * f + 4)\n        solid(cr, (34, 112, 192), finish=\"gloss\", edge=False)\n        cr.restore()\n        _hk_glass(cr, cx, GB, gh, GW)\n        solid(cr, (206, 228, 242), finish=\"glass\", a=0.4)\n        text(cr, lab, cx, 1532, 34, look.INK, anchor=\"center\")\n\n    # right by the camera: the lake's own shore, a stone and a beached bottle\n    contact_shadow(cr, 980, 1640, 160, a=0.35)\n    cr.save()\n    cr.translate(980, 1610)\n    cr.scale(1.0, 0.55)\n    cr.arc(0, 0, 80, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (128, 122, 114))\n    foreground(cr, \"coast\")\n    vignette(cr, a=0.28)\n\n    # Data spins the valve on the outlet, then walks down to the full glasses\n    walk_f = ease(seg(u, a1 + 0.02, 0.8))\n    hx = 950 - 120 * walk_f\n    hy = 1330 + 150 * walk_f\n    if u < a1:\n        host(\"tap\", hx, hy, 220, beat=0)\n    else:\n        host(\"shock\", hx, hy, 220)\n\n    fit_readout(cr, \"Lake Superior\", \"holds more than the other four combined\", 80, 520,\n                a=ease(seg(u, 0.0, 0.05)), size=130)\n",
    "hook_data": 0
+  },
+  {
+   "slug": "a-language-dies-every-2-weeks",
+   "title": "A Language Goes Extinct Every 2 Weeks",
+   "hook": "Humanity speaks about 7,000 languages. Most are dying.",
+   "closing": "Lose the words, lose the story they told.",
+   "question": "Do you speak more than one language?",
+   "caption": "About 40% of the world's roughly 7,000 languages are endangered, and on average one disappears every 2 weeks. Linguists warn as many as half could be gone by 2100. Do you speak more than one language? Tell me below 👇",
+   "hashtags": [
+    "languages",
+    "endangeredlanguages",
+    "linguistics",
+    "culture",
+    "unesco",
+    "didyouknow",
+    "dataviz",
+    "anthropology",
+    "worldlanguages",
+    "heritage",
+    "science",
+    "society",
+    "globalculture",
+    "languageloss",
+    "explainer"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "world_languages_vitality_share",
+     "params": {
+      "file": "world_languages_vitality_share.json"
+     },
+     "insight_type": "share",
+     "role": "1 · THE COUNT",
+     "topic": "languages going extinct",
+     "say": "Of all the world's living languages, about 40% are endangered or already dying out — losing their last fluent speakers right now."
+    },
+    {
+     "source": "offline",
+     "key": "language_extinction_pace_trend",
+     "params": {
+      "file": "language_extinction_pace_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · WHY NOW",
+     "topic": "why languages are dying so fast",
+     "say": "So why now? As families move to cities for work, kids stop learning a parent's language — about 26 a year, every 2 weeks."
+    },
+    {
+     "source": "offline",
+     "key": "projected_language_loss_by_2100",
+     "params": {
+      "file": "projected_language_loss_by_2100.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · WHAT'S AT STAKE",
+     "topic": "half of languages could vanish",
+     "say": "Which is why linguists warn half of today's 7,000 languages could vanish by 2100 — each taking its own way of seeing the world."
+    }
+   ]
+  },
+  {
+   "slug": "hearing-aids-otc-price-drop",
+   "title": "US Hearing Aid Prices Dropped After A 2022 FDA Decision",
+   "hook": "You used to need a doctor's note.",
+   "closing": "Still not everyone wears one. Just got cheaper to.",
+   "question": "Do you know someone who needs one?",
+   "caption": "In 2022 the FDA let hearing aids sell over the counter -- prices dropped from about $4,700 a pair to as low as $300. Even so, only 1 in 5 adults who could benefit from one actually uses one. Know someone who needs one? Tell me below 👇",
+   "hashtags": [
+    "hearingaids",
+    "hearingloss",
+    "fda",
+    "health",
+    "healthfacts",
+    "didyouknow",
+    "dataviz",
+    "accessibility",
+    "publichealth",
+    "wellness",
+    "science",
+    "otc",
+    "hearinghealth",
+    "explainer"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "otc_hearing_aid_price_comparison",
+     "params": {
+      "file": "otc_hearing_aid_price_comparison.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "1 · THE RULE",
+     "topic": "hearing aid prices dropped",
+     "say": "In 2022 the FDA let hearing aids sell over the counter — no exam needed. Prescription pair ran $4,700; OTC options start near $300."
+    },
+    {
+     "source": "offline",
+     "key": "us_hearing_aid_adoption_gap_share",
+     "params": {
+      "file": "us_hearing_aid_adoption_gap_share.json"
+     },
+     "insight_type": "share",
+     "role": "2 · THE GAP",
+     "topic": "why so few use hearing aids",
+     "say": "So why the gap? Only about 1 in 5 adults with hearing loss ever used one — cost and doctor visits kept most away."
+    },
+    {
+     "source": "offline",
+     "key": "otc_hearing_aid_models_available",
+     "params": {
+      "file": "otc_hearing_aid_models_available.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · WHAT CHANGED",
+     "topic": "hearing aid access grew fast",
+     "say": "Which is why access exploded — zero FDA-registered OTC models existed in 2022; by 2024 there were over 80, from dozens of brands."
+    }
+   ]
+  },
+  {
+   "slug": "iss-deorbit-2031",
+   "title": "The ISS Will Be Deliberately Crashed Into The Ocean By 2031",
+   "hook": "NASA is going to sink its own space station.",
+   "closing": "Thirty years up there. One deliberate splash to end it.",
+   "question": "Will you miss watching it fly over?",
+   "caption": "The ISS has had people living aboard nonstop since November 2000. NASA now plans to deliberately crash it into the ocean by 2031 -- the deorbit vehicle contract alone is $843 million. Will you miss watching it fly over? Tell me below 👇",
+   "hashtags": [
+    "iss",
+    "spacestation",
+    "nasa",
+    "space",
+    "spacex",
+    "deorbit",
+    "didyouknow",
+    "dataviz",
+    "spacefacts",
+    "astronomy",
+    "science",
+    "spaceexploration",
+    "explainer"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "iss_continuous_occupation_years",
+     "params": {
+      "file": "iss_continuous_occupation_years.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE RECORD",
+     "topic": "nasa station marks decades",
+     "say": "The ISS has had people living aboard nonstop since November 2000 — by 2024 that's 24 straight years, the longest human presence in space."
+    },
+    {
+     "source": "offline",
+     "key": "iss_program_cost_comparison",
+     "params": {
+      "file": "iss_program_cost_comparison.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · WHY END IT",
+     "topic": "why nasa wants out",
+     "say": "So why end it? The ISS has cost over $150 billion total, and NASA alone still spends $3 billion a year keeping it running."
+    },
+    {
+     "source": "offline",
+     "key": "iss_deorbit_vehicle_cost_comparison",
+     "params": {
+      "file": "iss_deorbit_vehicle_cost_comparison.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · THE PLAN",
+     "topic": "nasa's plan to end the station",
+     "say": "Which is why NASA is already paying for it — the 2024 deorbit contract alone is $843 million, almost double one shuttle launch's cost."
+    }
+   ]
+  },
+  {
+   "slug": "nyc-noise-complaints-per-day",
+   "title": "NYC's 311 Line Now Gets Nearly 2,000 Noise Calls A Day",
+   "hook": "One single thing dominates every 311 call now.",
+   "closing": "New York never sleeps. Neither does its phone line.",
+   "question": "What's the noise near you right now?",
+   "caption": "Noise is the single biggest complaint New Yorkers make to 311 -- about 18% of every call. Complaints roughly doubled since 2010, and the city now logs nearly 1,918 noise calls a day. What's the noise near you right now? Tell me below 👇",
+   "hashtags": [
+    "nyc",
+    "noise",
+    "311",
+    "newyorkcity",
+    "urbanlife",
+    "didyouknow",
+    "dataviz",
+    "citylife",
+    "noisecomplaints",
+    "nycopendata",
+    "statistics",
+    "society",
+    "explainer"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "nyc_311_noise_complaint_share",
+     "params": {
+      "file": "nyc_311_noise_complaint_share.json"
+     },
+     "insight_type": "share",
+     "role": "1 · THE TOP COMPLAINT",
+     "topic": "noise calls dominate 311",
+     "say": "Noise is the single biggest complaint New Yorkers make — about 18% of every 311 call logged in the city was about noise."
+    },
+    {
+     "source": "offline",
+     "key": "nyc_311_noise_complaints_trend",
+     "params": {
+      "file": "nyc_311_noise_complaints_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · WHY IT DOUBLED",
+     "topic": "why noise calls doubled",
+     "say": "So why the jump? Denser buildings, late-night delivery, construction noise — complaints roughly doubled, from 350,000 in 2010 to 700,000 by 2023."
+    },
+    {
+     "source": "offline",
+     "key": "nyc_311_noise_complaints_per_day_comparison",
+     "params": {
+      "file": "nyc_311_noise_complaints_per_day_comparison.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "3 · EVERY DAY",
+     "topic": "noise calls every day",
+     "say": "Which is why it adds up — the city logs nearly 1,918 noise calls a day, up from under 1,000 in 2010."
+    }
+   ]
   }
  ],
  "videos": [

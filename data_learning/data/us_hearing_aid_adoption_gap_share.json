@@ -1,0 +1,25 @@
+{
+  "key": "us_hearing_aid_adoption_gap_share",
+  "title": "Share of US adults with hearing loss who use a hearing aid",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "pre-2022 baseline",
+  "source": {
+    "name": "Quick Statistics About Hearing",
+    "publisher": "National Institute on Deafness and Other Communication Disorders (NIDCD), NIH",
+    "url": "https://www.nidcd.nih.gov/health/statistics/quick-statistics-hearing",
+    "officiality": "official",
+    "access_date": "2026-10-18"
+  },
+  "notes": "Approximate share of US adults who could benefit from a hearing aid who actually use one, NIDCD reporting.",
+  "points": [
+    {
+      "label": "Use a hearing aid",
+      "value": 20
+    },
+    {
+      "label": "Don't, despite hearing loss",
+      "value": 80
+    }
+  ]
+}

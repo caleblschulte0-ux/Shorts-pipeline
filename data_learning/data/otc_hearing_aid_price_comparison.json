@@ -1,0 +1,25 @@
+{
+  "key": "otc_hearing_aid_price_comparison",
+  "title": "Hearing aid prices before vs. after OTC rule",
+  "unit": "dollars",
+  "geography": "United States",
+  "time_coverage": "2022 rule change",
+  "source": {
+    "name": "Over-the-Counter Hearing Aid Final Rule",
+    "publisher": "U.S. Food and Drug Administration (FDA)",
+    "url": "https://www.fda.gov/medical-devices/hearing-aids",
+    "officiality": "official",
+    "access_date": "2026-10-18"
+  },
+  "notes": "Approximate typical cost of a prescription hearing aid pair before the FDA's 2022 OTC rule vs. the starting price of new OTC options.",
+  "baseline": {
+    "label": "Prescription pair (before 2022)",
+    "value": 4700
+  },
+  "points": [
+    {
+      "label": "OTC pair (starting price)",
+      "value": 300
+    }
+  ]
+}

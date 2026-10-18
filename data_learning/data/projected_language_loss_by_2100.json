@@ -1,0 +1,25 @@
+{
+  "key": "projected_language_loss_by_2100",
+  "title": "Projected global language loss by 2100",
+  "unit": "languages",
+  "geography": "World",
+  "time_coverage": "today vs. 2100 projection",
+  "source": {
+    "name": "Linguistic endangerment projections",
+    "publisher": "UNESCO / linguistics research (e.g., Krauss 1992 and successors)",
+    "url": "https://en.wal.unesco.org/",
+    "officiality": "secondary",
+    "access_date": "2026-10-18"
+  },
+  "notes": "Commonly cited linguistics projection that as many as half of the world's roughly 7,000 languages could disappear by 2100 absent intervention.",
+  "baseline": {
+    "label": "Languages today",
+    "value": 7000
+  },
+  "points": [
+    {
+      "label": "Projected by 2100",
+      "value": 3500
+    }
+  ]
+}

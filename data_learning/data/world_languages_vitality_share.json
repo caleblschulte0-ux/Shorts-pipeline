@@ -1,0 +1,25 @@
+{
+  "key": "world_languages_vitality_share",
+  "title": "Vitality of the world's living languages",
+  "unit": "percent",
+  "geography": "World",
+  "time_coverage": "current",
+  "source": {
+    "name": "Atlas of the World's Languages in Danger",
+    "publisher": "UNESCO",
+    "url": "https://en.wal.unesco.org/",
+    "officiality": "secondary",
+    "access_date": "2026-10-18"
+  },
+  "notes": "Approximate share of the world's roughly 7,000 living languages classified as safe vs. endangered/dying, UNESCO Atlas methodology.",
+  "points": [
+    {
+      "label": "Safe",
+      "value": 60
+    },
+    {
+      "label": "Endangered or dying",
+      "value": 40
+    }
+  ]
+}
