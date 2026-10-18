@@ -14262,14 +14262,59 @@
       "ts": "2026-10-18T11:33:29.318159+00:00"
     },
     "clip-20261018-4": {
-      "pending": true,
-      "source_url": "https://kick.com/adinross/clips/clip_01M4YDWN02THK4A52JA0291A0D",
-      "story_key": null,
-      "streamer": "adinross",
+      "url": "https://youtube.com/shorts/HbqlGlVBs0A",
       "title": "Adinross Faceoff Gets Heated When Jani Is Told Her Mouth Is Too Big",
       "kind": "twitch_clip",
-      "ts": "2026-10-18T11:38:18.301526+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-18T11:38:28.607053+00:00",
+      "uploaded_at": "2026-10-18T11:38:28.607068+00:00",
+      "publish_at": "2026-10-18T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261018-adinross-faceoff-gets-heated-when-jani-is-told-h-0b3bfdde",
+        "tiktok": "queued for 2026-10-18T21:30:00Z"
+      },
+      "source_url": "https://kick.com/adinross/clips/clip_01M4YDWN02THK4A52JA0291A0D",
+      "streamer": "adinross",
+      "series": "beef",
+      "hook": "Adin's faceoff turns into a roast \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2525,
+      "banger": 0.5,
+      "cut": {
+        "start": 19.0,
+        "end": 42.0
+      },
+      "director_cut": true
+    },
+    "rejected-eagerspeedypartridgefailfish-q08udtkx9qijwmwp": {
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/EagerSpeedyPartridgeFailFish-q08udtkx9qIJwmWP",
+      "streamer": "plaqueboymax",
+      "title": "Plaqueboymax Announces He Will Be Taking A Trip To Australia! \ud83d\ude02",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Talking announcement, no visible event)",
+      "ts": "2026-10-18T11:39:13.657772+00:00"
+    },
+    "rejected-yummyresoluteelkampenergycherry-ijzbzqu2cnebfc-u": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/YummyResoluteElkAMPEnergyCherry-Ijzbzqu2CNEbFC-u",
+      "streamer": "stableronaldo",
+      "title": "caught",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-10-18T11:40:12.961923+00:00"
+    },
+    "rejected-neighborlytenderpelicancharlietheunicorn-5qcpwtbx3_gvwtfl": {
+      "source_url": "https://www.twitch.tv/cinna/clip/NeighborlyTenderPelicanCharlietheUnicorn-5QcPWtbx3_GvwTFL",
+      "streamer": "cinna",
+      "title": "Cinna Tire Blows Out Mid-Stream And He Has To Fix It Fast",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin horizontal strip, about a quarter of the canvas height. The rest is blurred padding, so the ; vision: The subject is tiny and hard to read on a phone. The characters are small in a wide game view, and the streamer's faceca; vision: The first ~6s show a game invent",
+      "ts": "2026-10-18T11:44:25.331691+00:00"
     }
   }
 }
