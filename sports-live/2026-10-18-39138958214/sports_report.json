@@ -1,0 +1,55 @@
+{
+ "date": "2026-10-18",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "nba",
+   "who": "Steve Kerr",
+   "why": "Kerr's jaw-drop at a crowd look-alike behind him is a pure human reaction a stranger gets instantly.",
+   "post_title": "Steve Kerr is in disbelief after seeing look-alike sitting behind him in the crowd",
+   "upvotes": 0,
+   "url": "https://streamable.com/0x9uns",
+   "topic": "https://www.reddit.com/r/nba/comments/1x82adj/steve_kerr_is_in_disbelief_after_seeing_lookalike",
+   "title": "Steve Kerr Can't Believe The Look-Alike Sitting Right Behind Him",
+   "hook": "Steve Kerr spots his own look-alike \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "zoom@10.6",
+     "zoom@13.6"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: The look-alike reveal is never shown clearly, the line names a 'Steve Curry' look-alike while the title says Kerr's own look-alike, and the clip ends on unrelated wide crowd footage."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 70
+   },
+   "video_url": "https://youtube.com/shorts/Hr4Wle5GfRE",
+   "ok": true,
+   "publish_at": "2026-10-19T00:00:00Z",
+   "seconds": 201,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261018-steve-kerr-can-t-believe-the-look-alike-sitting--04114f33",
+    "tiktok": "queued for 2026-10-19T00:00:00Z"
+   }
+  }
+ ],
+ "already_today": 2,
+ "pool": 92,
+ "already_posted": 9,
+ "shipped": 1
+}
