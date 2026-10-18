@@ -14216,13 +14216,59 @@
       "ts": "2026-10-18T11:26:28.503512+00:00"
     },
     "clip-20261018-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/cinna/clip/YummyBrightKaleArsonNoSexy-ynR1OPI2PacYEXpw",
-      "story_key": null,
-      "streamer": "cinna",
+      "url": "https://youtube.com/shorts/T7T95VWqXKA",
       "title": "Cinna Crew Goes Off On Lang And Carlitos Over Kalita",
       "kind": "twitch_clip",
-      "ts": "2026-10-18T11:30:14.472806+00:00",
+      "ts": "2026-10-18T11:30:26.726713+00:00",
+      "uploaded_at": "2026-10-18T11:30:26.726727+00:00",
+      "publish_at": "2026-10-18T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261018-cinna-crew-goes-off-on-lang-and-carlitos-over-ka-8be42e35",
+        "tiktok": "queued for 2026-10-18T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/cinna/clip/YummyBrightKaleArsonNoSexy-ynR1OPI2PacYEXpw",
+      "streamer": "cinna",
+      "series": "beef",
+      "hook": "Cinna's crew threatens to find him \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4116,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 49.77
+      },
+      "director_cut": true
+    },
+    "rejected-crunchyrockycrowbabyrage-i4j7arn1sk9cunku": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/CrunchyRockyCrowBabyRage-I4J7aRn1sK9cunKU",
+      "streamer": "jynxzi",
+      "title": "DANTES MEISTERDETEKTIV",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Stats-site sleuthing, no visible event)",
+      "ts": "2026-10-18T11:31:42.930988+00:00"
+    },
+    "rejected-fitmotionlesscucumberargieb8-rd52onfn_ukdyjpv": {
+      "source_url": "https://www.twitch.tv/forsen/clip/FitMotionlessCucumberArgieB8-RD52onfN_UKDyJPV",
+      "streamer": "forsen",
+      "title": "Forsen Gets Stun Locked And Demands Chat Ban Whoever Said Volcano",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "render_qa: freeze: 3.1s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The sharp picture is a thin strip, about a quarter of the canvas height, with large black bands above and below. It is m; vision: The streamer's face cam is tiny and sits in the lower-left corner. The game is a",
+      "ts": "2026-10-18T11:33:29.318159+00:00"
+    },
+    "clip-20261018-4": {
+      "pending": true,
+      "source_url": "https://kick.com/adinross/clips/clip_01M4YDWN02THK4A52JA0291A0D",
+      "story_key": null,
+      "streamer": "adinross",
+      "title": "Adinross Faceoff Gets Heated When Jani Is Told Her Mouth Is Too Big",
+      "kind": "twitch_clip",
+      "ts": "2026-10-18T11:38:18.301526+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
