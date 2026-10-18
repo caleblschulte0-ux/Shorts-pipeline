@@ -11,8 +11,8 @@ voices." What these tests hold:
     read aloud in the lab), and the line is the only thing after it;
   * a per-day 429 turns that model off and the next one is tried; a
     per-minute 429 waits the delay Google names;
-  * every line is LISTENED to, and one that will not come out right is a
-    fallback, never a shipped ad-lib;
+  * a video is ONE request, one take cut into lines where whisper heard
+    them, and a take with a line not heard is a fallback, never an ad-lib;
   * a line it voiced is never asked for again (the free quota is daily);
   * the voice is ONE setting, and an unknown one resolves to the default.
 """
@@ -128,24 +128,66 @@ class TheQuotaIsRespected(Base):
         self.assertFalse(gv.available())
 
 
-class EveryLineIsListenedTo(Base):
-    def test_a_line_that_ad_libs_twice_is_a_fallback(self):
-        with mock.patch("urllib.request.urlopen", _ok), \
-                mock.patch("engines.chatterbox_tts.heard",
-                           lambda w, t, n=None: (False, "said 'uh'")):
-            self.assertIsNone(gv.maybe_voice(["one two"], [self.tmp / "a.wav"]))
+def _heard(*lines, gap=0.4, said=None):
+    """What whisper would report for a take reading `lines` at 2.5 words/s."""
+    out, t = [], 0.0
+    for line in (said or lines):
+        for w in line.split():
+            out.append((" " + w, t, t + 0.3)); t += 0.4
+        t += gap
+    return out
+
+
+class ONETakePerVideo(Base):
+    """2026-10-17: per-line requests spent both models' free day on the first
+    video of the morning; the next three fell back to Chatterbox."""
+
+    LINES = ["Households are shrinking fast", "Most homes now hold two people",
+             "That changes what gets built"]
+
+    def _voice(self, said):
+        calls = []
+
+        def post(req, timeout=None):
+            calls.append(json.loads(req.data))
+            return _ok(req)
+
+        def cut(take, a, b, out):
+            gv._write(PCM, Path(out))
+        outs = [self.tmp / f"s{i}.wav" for i in range(len(self.LINES))]
+        with mock.patch("urllib.request.urlopen", post), \
+                mock.patch.object(gv, "_word_times", lambda w: said), \
+                mock.patch.object(gv, "_cut", cut):
+            got = gv.maybe_voice(self.LINES, outs)
+        return got, calls
+
+    def test_a_whole_video_is_one_request(self):
+        got, calls = self._voice(_heard(*self.LINES))
+        self.assertEqual(len(got), 3)
+        self.assertEqual(len(calls), 1)
+        text = calls[0]["contents"][0]["parts"][0]["text"]
+        self.assertTrue(text.endswith(" ".join(self.LINES)))
+
+    def test_a_take_that_ad_libs_twice_is_a_fallback(self):
+        bad = _heard(said=["Households are shrinking fast", "uh yeah", "That changes"])
+        got, calls = self._voice(bad)
+        self.assertIsNone(got)
+        self.assertEqual(len(calls), gv.REDRAWS + 1)
         self.assertIn("would not come out right", gv.LAST_FAILURE)
 
-    def test_a_redraw_that_comes_out_right_is_kept(self):
-        seen = []
+    def test_lines_are_cut_between_the_words(self):
+        spans, why = gv.split_take(_heard("one two", "three four"), ["one two", "three four"])
+        self.assertEqual(why, "ok")
+        (a0, b0), (a1, b1) = spans
+        self.assertEqual(a0, 0.0)
+        self.assertAlmostEqual(b0, (0.7 + 1.2) / 2)   # end of "two", start of "three"
+        self.assertEqual(a1, b0)
+        self.assertIsNone(b1)
 
-        def heard(w, t, n=None):
-            seen.append(t)
-            return len(seen) > 1, "mumbled"
-        with mock.patch("urllib.request.urlopen", _ok), \
-                mock.patch("engines.chatterbox_tts.heard", heard):
-            out = gv.maybe_voice(["one two"], [self.tmp / "a.wav"])
-        self.assertEqual(out, [self.tmp / "a.wav"])
+    def test_a_line_not_heard_fails_the_take(self):
+        spans, why = gv.split_take(_heard("one two"), ["one two", "three four five"])
+        self.assertIsNone(spans)
+        self.assertIn("line 1", why)
 
     def test_no_key_is_none_never_a_raise(self):
         with mock.patch.dict(os.environ, {"GEMINI_API_KEY": ""}):

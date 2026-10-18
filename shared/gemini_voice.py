@@ -12,14 +12,15 @@ guide puts the note above a `#### TRANSCRIPT` heading, so `NOTE` does.
 
 Free tier, measured: ~100 requests a day per model (the 429 quota says so
 whatever AI Studio shows), resetting at midnight Pacific; each model has its
-own quota, so `MODELS` is two. A line it voiced is never voiced again (the
-caller's line cache), so a redraft only pays for the lines it changed. A
+own quota, so `MODELS` is two. A video is ONE request: the whole narration
+in one take, cut into lines where the listener heard them; the caller's line
+cache means a video already voiced is never asked for again. A
 per-DAY 429 turns that model off for the run; a per-minute one waits the
 delay Google names, within `WAIT_MAX_S`.
 
-Like every voice here it is LISTENED to (`chatterbox_tts.heard`): an LLM
+Like every voice here it is LISTENED to (whisper, word by word): an LLM
 voice can ad-lib, or read its direction aloud, and the showrunner judges
-frames, not audio. A line that will not come out right makes `maybe_voice`
+frames, not audio. A take a line of which is not heard makes `maybe_voice`
 return None and the caller voices the WHOLE video with its next engine,
 never half and half. Standard library only; it never raises.
 """
@@ -179,10 +180,71 @@ def _fail(why: str) -> None:
     print(f"[tts] gemini failed: {why}", file=sys.stderr, flush=True)
 
 
+def _word_times(wav: Path) -> list[tuple[str, float, float]]:
+    """(word, start, end) for every word whisper hears in `wav`."""
+    import engines.chatterbox_tts as cb
+    import whisper
+    if cb._LISTENER is None:
+        cb._LISTENER = whisper.load_model(os.environ.get("CHATTERBOX_LISTENER", "base.en"))
+    got = cb._LISTENER.transcribe(str(wav), language="en", fp16=False,
+                                  temperature=0.0, word_timestamps=True)
+    return [(w["word"], float(w["start"]), float(w["end"]))
+            for seg in got.get("segments", []) for w in seg.get("words", [])]
+
+
+def split_take(words, texts: list[str], normalize=None):
+    """Where each line of a ONE-TAKE narration starts and ends, from what
+    the listener heard. [(start, end)] per line, or (None, why). A line has
+    to be heard (HEARD_MIN of its words, in order) or the take is no good."""
+    import difflib
+    from engines.chatterbox_tts import HEARD_MIN, _words
+    want, owner = [], []
+    for i, t in enumerate(texts):
+        ws = _words(t, normalize)
+        want += ws; owner += [i] * len(ws)
+    have, times = [], []
+    for w, a, b in words:
+        for x in _words(w, normalize):
+            have.append(x); times.append((a, b))
+    if not want or not have:
+        return None, "nothing heard"
+    hit = {}
+    for blk in difflib.SequenceMatcher(None, want, have, autojunk=False).get_matching_blocks():
+        for k in range(blk.size):
+            hit[blk.a + k] = blk.b + k
+    spans = []
+    for i, t in enumerate(texts):
+        idx = [k for k in range(len(want)) if owner[k] == i]
+        got = [hit[k] for k in idx if k in hit]
+        if len(got) < HEARD_MIN * len(idx) or not got:
+            return None, f"line {i} not heard ({len(got)}/{len(idx)} words)"
+        spans.append((times[min(got)][0], times[max(got)][1]))
+    cuts = [0.0]
+    for i in range(len(spans) - 1):
+        a, b = spans[i][1], spans[i + 1][0]
+        if b < a:
+            return None, f"lines {i} and {i + 1} overlap"
+        cuts.append((a + b) / 2)
+    return [(cuts[i], cuts[i + 1] if i + 1 < len(cuts) else None)
+            for i in range(len(texts))], "ok"
+
+
+def _cut(take: Path, a: float, b, out: Path) -> None:
+    import subprocess
+    trim = f"atrim=start={a:.3f}" + (f":end={b:.3f}" if b is not None else "")
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", str(take), "-af",
+                    f"{trim},asetpts=N/SR/TB", "-ar", str(RATE), "-ac", "1",
+                    "-c:a", "pcm_s16le", str(out)], check=True, capture_output=True)
+    _trim(out)
+
+
 def maybe_voice(texts: list[str], outs: list[Path], *, normalize=None,
                 listen: bool = True) -> list[Path] | None:
-    """Voice every line into its `outs` path, each one listened to. The
-    paths, or None on ANY failure (reason in LAST_FAILURE). Never raises."""
+    """Voice every line into its `outs` path as ONE TAKE (2026-10-17: per-
+    line requests spent both models' free day on the first video — and the
+    round-14 voices caaleb liked were one take, read through), cut into
+    lines where the listener heard them. The paths, or None on ANY failure
+    (reason in LAST_FAILURE). Never raises."""
     global LAST_FAILURE
     LAST_FAILURE = None
     try:
@@ -192,26 +254,41 @@ def maybe_voice(texts: list[str], outs: list[Path], *, normalize=None,
         if not _key():
             _fail("no GEMINI_API_KEY")
             return None
-        from engines.chatterbox_tts import heard
-        for i, text in enumerate(texts):
-            for attempt in range(REDRAWS + 1):
-                ok, why = voice_line(text, Path(outs[i]))
-                if not ok:
-                    _fail(f"line {i}: {why}")
-                    return None
-                if not listen:
-                    break
-                ok, why = heard(Path(outs[i]), text, normalize)
-                if ok:
-                    break
-                if why.startswith("listener unavailable"):
-                    _fail(f"line {i}: {why}")
-                    return None
-                print(f"[tts] gemini line {i} redraw: {why}", file=sys.stderr,
-                      flush=True)
-            else:
-                _fail(f"line {i} would not come out right: {why}")
+        take = Path(outs[0]).with_name(Path(outs[0]).stem + ".take.wav")
+        why = "no take"
+        for attempt in range(REDRAWS + 1):
+            ok, why = voice_line(" ".join(texts), take)
+            if not ok:
+                _fail(why)
                 return None
+            if not listen:
+                spans = [(None, None)]
+                break
+            try:
+                spans, why = split_take(_word_times(take), texts, normalize)
+            except Exception as e:  # noqa: BLE001
+                _fail(f"listener unavailable: {str(e)[:120]}")
+                return None
+            if spans:
+                break
+            print(f"[tts] gemini take redraw: {why}", file=sys.stderr, flush=True)
+        else:
+            _fail(f"the take would not come out right: {why}")
+            return None
+        if not listen:                       # tests and tools: one line, uncut
+            import shutil
+            shutil.copyfile(take, outs[0])
+            return [Path(o) for o in outs]
+        from engines.chatterbox_tts import RATE_MAX, RATE_MIN, _words
+        for (a, b), o, t in zip(spans, outs, texts):
+            _cut(take, a, b, Path(o))
+            with wave.open(str(o), "rb") as w:
+                secs = w.getnframes() / float(w.getframerate())
+            rate = len(_words(t, normalize)) / max(secs, 0.01)
+            if not RATE_MIN <= rate <= RATE_MAX:
+                _fail(f"a line came out at {rate:.1f} words/s")
+                return None
+        take.unlink(missing_ok=True)
         return [Path(o) for o in outs]
     except Exception as e:  # noqa: BLE001
         _fail(f"{type(e).__name__}: {str(e)[:200]}")
