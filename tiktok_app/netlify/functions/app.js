@@ -1042,6 +1042,16 @@ var require_account_service = __commonJS({
     var SITE2 = "https://shorts-media.netlify.app";
     var AUDIENCE = SITE2 + "/api/tiktok/token";
     var REPOSITORY_ID = "1251576094";
+    // The repositories whose GitHub Actions jobs on main may ask for a token,
+    // keyed on GitHub's repository id (a rename keeps it, a new repo with the
+    // same name does not get it). `handles: null` is the owner: every linked
+    // account. Any other repository gets only the TikTok accounts named for
+    // it, so a friend's copy of the pipeline can never post to the owner's
+    // channels (operator, 2026-10-18, giving the clipper to a friend).
+    var TRUSTED_REPOS = {
+      [REPOSITORY_ID]: { repository: "caleblschulte0-ux/Shorts-pipeline", handles: null },
+      "1423880652": { repository: "nholthe/shorts-pipeline", handles: ["checxsclips"] }
+    };
     var ISSUER = "https://token.actions.githubusercontent.com";
     var STORE_NAME = "shorts-media-tiktok-accounts";
     var TT_TOKEN_URL = "https://open.tiktokapis.com/v2/oauth/token/";
@@ -1147,25 +1157,34 @@ var require_account_service = __commonJS({
         return false;
       }
       const now = Math.floor(Date.now() / 1e3);
-      if (header.alg !== "RS256" || !header.kid || claims.iss !== ISSUER || claims.aud !== AUDIENCE || String(claims.repository_id) !== REPOSITORY_ID || claims.repository !== "caleblschulte0-ux/Shorts-pipeline" || claims.ref !== "refs/heads/main" || claims.event_name === "pull_request" || !Number.isFinite(claims.iat) || !Number.isFinite(claims.exp) || claims.iat > now + 60 || claims.exp <= now || claims.exp > now + 3600) return false;
+      if (header.alg !== "RS256" || !header.kid || claims.iss !== ISSUER || claims.aud !== AUDIENCE || !Object.prototype.hasOwnProperty.call(TRUSTED_REPOS, String(claims.repository_id)) || claims.repository !== TRUSTED_REPOS[String(claims.repository_id)].repository || claims.ref !== "refs/heads/main" || claims.event_name === "pull_request" || !Number.isFinite(claims.iat) || !Number.isFinite(claims.exp) || claims.iat > now + 60 || claims.exp <= now || claims.exp > now + 3600) return false;
       const response = await fetch(ISSUER + "/.well-known/jwks");
       if (!response.ok) return false;
       const jwks = await response.json();
       const jwk = (jwks.keys || []).find((key) => key.kid === header.kid && key.kty === "RSA" && key.use === "sig");
       if (!jwk) return false;
       try {
-        return crypto2.verify(
+        const valid = crypto2.verify(
           "RSA-SHA256",
           Buffer.from(parts[0] + "." + parts[1]),
           crypto2.createPublicKey({ key: jwk, format: "jwk" }),
           Buffer.from(parts[2], "base64url")
         );
+        return valid ? TRUSTED_REPOS[String(claims.repository_id)] : false;
       } catch {
         return false;
       }
     }
+    // The linked accounts a verified repository may see and post to.
+    function accountsFor(repo, records) {
+      if (!repo || !repo.handles) return records;
+      const allowed = repo.handles.map(safeHandle);
+      return records.filter((a) => allowed.includes(safeHandle(a.handle)));
+    }
     module2.exports = {
       AUDIENCE,
+      TRUSTED_REPOS,
+      accountsFor,
       connect,
       getRecord,
       keyFor,
@@ -1354,7 +1373,7 @@ function githubHeaders() {
 // every .mp4/.mov/.webm attached to any release, newest first.
 async function githubVideos(repo, sid) {
   const res = await fetch(`${GITHUB_API}/repos/${repo}/releases?per_page=30`, { headers: githubHeaders() });
-  if (res.status === 404) throw new Error(`GitHub has no public repository called ${repo}.`);
+  if (res.status === 404) throw new Error(`GitHub has no public repository called ${repo}. Check the spelling, and that the repository is public, then paste its address again (for example https://github.com/you/shorts-pipeline).`);
   if (res.status === 403 || res.status === 429) throw new Error("GitHub is rate-limiting requests right now. Try again in a few minutes.");
   if (!res.ok) throw new Error(`GitHub answered ${res.status}.`);
   const releases = await res.json();
@@ -1577,9 +1596,9 @@ function sourcesPanel(lib) {
     <div class="addgrid">
       <form class="addcard" method="post" action="/app/sources">
         <input type="hidden" name="action" value="add-github">
-        <label class="flabel" for="repo">GitHub repository</label>
-        <input id="repo" name="repo" type="text" inputmode="url" placeholder="owner/repository" required maxlength="200" aria-describedby="repo-hint">
-        <p class="hint" id="repo-hint">Every .mp4, .mov or .webm attached to a public release of that repository is added.</p>
+        <label class="flabel" for="repo">Your GitHub repository</label>
+        <input id="repo" name="repo" type="text" inputmode="url" placeholder="https://github.com/you/shorts-pipeline" required maxlength="200" aria-describedby="repo-hint">
+        <p class="hint" id="repo-hint">Paste the repository's address from your browser (or type <em>you/repository</em>). Every video it publishes under Releases shows up here to post by hand. You don't need this for automatic posting: once TikTok is connected, a pipeline that is allowed to post does it on its own.</p>
         <button class="btn" type="submit">Add repository</button>
       </form>
       <form class="addcard" method="post" action="/app/sources">
@@ -1867,9 +1886,10 @@ exports.handler = async function(event) {
     accounts.connect(event);
     if (path.startsWith("/api/tiktok/")) {
       if (path !== "/api/tiktok/token" && path !== "/api/tiktok/accounts") return jsonPage(404, { error: "not_found" });
-      if (!await accounts.verifyGithubOidc(event)) return jsonPage(401, { error: "unauthorized" });
+      const repo = await accounts.verifyGithubOidc(event);
+      if (!repo) return jsonPage(401, { error: "unauthorized" });
       if (path === "/api/tiktok/accounts" && event.httpMethod === "GET") {
-        const all2 = await accounts.listRecords();
+        const all2 = accounts.accountsFor(repo, await accounts.listRecords());
         return jsonPage(200, { accounts: all2.map((a) => ({ open_id: a.open_id, handle: a.handle, name: a.name, scopes: a.scopes })) });
       }
       if (path !== "/api/tiktok/token" || event.httpMethod !== "POST") return jsonPage(405, { error: "method_not_allowed" });
@@ -1881,7 +1901,7 @@ exports.handler = async function(event) {
       }
       const selector = String(requested.open_id || requested.handle || "");
       if (!selector || selector.length > 256) return jsonPage(400, { error: "account_required" });
-      const all = await accounts.listRecords();
+      const all = accounts.accountsFor(repo, await accounts.listRecords());
       const matches = all.filter((a) => a.open_id === selector || accounts.safeHandle(a.handle) === accounts.safeHandle(selector));
       if (matches.length !== 1) return jsonPage(404, { error: "account_not_found_or_ambiguous" });
       try {
@@ -2021,13 +2041,14 @@ exports.handler = async function(event) {
           const sid = sourceId("github", repo);
           if (!lib.sources.some((s) => s.id === sid) && lib.sources.length >= MAX_SOURCES) throw new Error(`You can have up to ${MAX_SOURCES} sources. Remove one first.`);
           const videos = await githubVideos(repo, sid);
-          if (!videos.length) throw new Error(`${repo} has no public release with a video file attached (.mp4, .mov or .webm).`);
           const src = lib.sources.find((s) => s.id === sid) || { id: sid, kind: "github", repo, added: new Date().toISOString() };
           src.synced = new Date().toISOString();
           delete src.error;
           if (!lib.sources.includes(src)) lib.sources.push(src);
           replaceVideos(lib, sid, videos);
-          text = `Added ${videos.length} video${videos.length === 1 ? "" : "s"} from ${repo}.`;
+          // A pipeline that has not published anything yet is still the
+          // right source: keep it, and say when its videos will show up.
+          text = videos.length ? `Added ${videos.length} video${videos.length === 1 ? "" : "s"} from ${repo}.` : `Added ${repo}. It has no videos yet: each video your pipeline publishes to that repository's Releases shows up here on its own (press "Check for new videos" to look now).`;
         } else if (f.action === "add-link") {
           const sid = sourceId("link", String(f.url || "").trim());
           if (lib.sources.some((s) => s.id === sid)) throw new Error("That link is already in your library.");

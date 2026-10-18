@@ -50,7 +50,7 @@ global.fetch = async (url, opts = {}) => {
     return new Response(JSON.stringify({ access_token: "at" + tokenCalls, refresh_token: "rt" + tokenCalls, open_id: global.NEXT_OPEN_ID || "oid1", expires_in: expiresIn, refresh_expires_in: 31536000, scope: "user.info.basic,video.upload,video.publish" }));
   }
   if (url.startsWith("https://open.tiktokapis.com/v2/user/info/")) return new Response(JSON.stringify({ data: { user: { display_name: "Caleb" } }, error: { code: "ok" } }));
-  if (url.startsWith("https://open.tiktokapis.com/v2/post/publish/creator_info/query/")) return new Response(JSON.stringify({ data: { creator_username: global.NEXT_OPEN_ID ? "second" : "thirdbraindown", creator_nickname: "Third", privacy_level_options: ["SELF_ONLY", "PUBLIC_TO_EVERYONE"] }, error: { code: "ok" } }));
+  if (url.startsWith("https://open.tiktokapis.com/v2/post/publish/creator_info/query/")) return new Response(JSON.stringify({ data: { creator_username: global.TT_USERNAME || (global.NEXT_OPEN_ID ? "second" : "thirdbraindown"), creator_nickname: "Third", privacy_level_options: ["SELF_ONLY", "PUBLIC_TO_EVERYONE"] }, error: { code: "ok" } }));
   if (url.startsWith("https://open.tiktokapis.com/v2/post/publish/video/init/") || url.startsWith("https://open.tiktokapis.com/v2/post/publish/inbox/video/init/")) {
     const body = JSON.parse(opts.body); uploads.push({ init: body, chunks: [] });
     return new Response(JSON.stringify({ data: { publish_id: "pub" + uploads.length, upload_url: "https://upload.test/" + uploads.length }, error: { code: "ok" } }));
@@ -65,6 +65,7 @@ global.fetch = async (url, opts = {}) => {
   if (url.startsWith("https://api.github.com/repos/")) {
     const repo = url.split("/repos/")[1].split("/releases")[0];
     if (repo === "nobody/nothing") return new Response("{}", { status: 404 });
+    if (repo === "friend/empty") return new Response("[]");
     return new Response(JSON.stringify([
       { tag_name: "v2", name: "Cargo Ships Quietly Got Six Times Bigger", body: "Six times. #ships", published_at: "2026-09-28T00:00:00Z", assets: [{ name: "cargo-ships.mp4", size: BIG.length, browser_download_url: "https://video.test/big.mp4", updated_at: "2026-09-28T00:00:00Z" }, { name: "notes.txt", size: 12, browser_download_url: "https://video.test/notes.txt" }] },
       { tag_name: "v1", name: "first", published_at: "2026-09-20T00:00:00Z", assets: [{ name: "small.mp4", size: SMALL.length, browser_download_url: "https://video.test/small.mp4", updated_at: "2026-09-20T00:00:00Z" }] },
@@ -157,6 +158,13 @@ srv.listen(0, async () => {
   // remove a source: its videos go too
   r = await handler(post("/app/sources", cookie, { action: "remove", source: r.body.match(/name="source" value="(github:[^"]+)"/)?.[1] || (await handler(ev("/app", { cookie }))).body.match(/name="source" value="(github:[^"]+)"/)[1] }));
   ok(/Removed\./.test(r.body) && (r.body.match(/Post to TikTok/g) || []).length === 2, "removing the repository removes its two videos");
+  // a pipeline that has published nothing yet is still a source, and says so
+  r = await handler(post("/app/sources", cookie, { action: "add-github", repo: "https://github.com/friend/empty" }));
+  ok(/Added friend\/empty\. It has no videos yet/.test(r.body), "a repository with no videos yet is added and says when they will appear");
+  cookie = merge(cookie, r);
+  r = await handler(post("/app/sources", cookie, { action: "remove", source: "github:" + require("crypto").createHash("sha256").update("github\nfriend/empty").digest("hex").slice(0, 12) }));
+  cookie = merge(cookie, r);
+  flush();
   flush();
   // ---- accounts (unchanged behaviour) ----
   const [k, v] = [...mem].find(([, x]) => { try { return JSON.parse(x.data).open_id === "oid1"; } catch { return false; } }); const rec = JSON.parse(v.data); rec.access_expires_at = Date.now(); mem.set(k, { data: Buffer.from(JSON.stringify(rec)), etag: v.etag });
@@ -207,5 +215,26 @@ srv.listen(0, async () => {
   ok(r.statusCode === 200 && JSON.parse(r.body).access_token, "broker hands main a fresh access token");
   r = await call("/api/tiktok/token", mk(Object.assign({}, good, { ref: "refs/heads/claude/x" })), "POST", JSON.stringify({ handle: "thirdbraindown" }));
   ok(r.statusCode === 401, "broker refuses a non-main branch");
+  // another repository: only the accounts named for it, never the owner's
+  const friend = Object.assign({}, good, { repository_id: "1423880652", repository: "nholthe/shorts-pipeline" });
+  r = await call("/api/tiktok/token", mk(friend), "POST", JSON.stringify({ handle: "thirdbraindown" }));
+  ok(r.statusCode === 404, "a friend's repository cannot get a token for the owner's account");
+  r = await call("/api/tiktok/accounts", mk(friend), "GET");
+  ok(r.statusCode === 200 && JSON.parse(r.body).accounts.length === 0, "a friend's repository does not even see the owner's accounts");
+  global.NEXT_OPEN_ID = "oid3"; global.TT_USERNAME = "checxsclips";
+  r = await handler(ev("/app/connect")); const stF = new URL(r.headers.Location).searchParams.get("state");
+  await handler(ev("/auth/tiktok/callback", { q: { code: "c", state: stF }, cookie: "sm_state=" + stF }));
+  global.NEXT_OPEN_ID = undefined; global.TT_USERNAME = undefined;
+  flush();
+  r = await call("/api/tiktok/token", mk(friend), "POST", JSON.stringify({ handle: "checxsclips" }));
+  ok(r.statusCode === 200 && JSON.parse(r.body).handle === "checxsclips" && JSON.parse(r.body).access_token, "a friend's repository gets a token for its own account");
+  r = await call("/api/tiktok/accounts", mk(friend), "GET");
+  ok(JSON.parse(r.body).accounts.map((a) => a.handle).join() === "checxsclips", "a friend's repository sees only its own account");
+  r = await call("/api/tiktok/accounts", mk(good), "GET");
+  ok(JSON.parse(r.body).accounts.length === 2, "the owner still sees every linked account");
+  r = await call("/api/tiktok/token", mk(Object.assign({}, friend, { repository: "caleblschulte0-ux/Shorts-pipeline" })), "POST", JSON.stringify({ handle: "thirdbraindown" }));
+  ok(r.statusCode === 401, "a repository id must come with its own name");
+  r = await call("/api/tiktok/token", mk(Object.assign({}, good, { repository_id: "999", repository: "someone/else" })), "POST", JSON.stringify({ handle: "thirdbraindown" }));
+  ok(r.statusCode === 401, "broker refuses a repository it does not trust");
   srv.close();
 });
