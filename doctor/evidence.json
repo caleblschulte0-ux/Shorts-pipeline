@@ -4609,8 +4609,8 @@
     }
   },
   "recent_commits": [
-    "dc8ff38 2026-10-18 claim: mailbox verdicts 2026-10-18T04:48Z [skip ci]",
-    "63d707a 2026-10-17 study_clippers: read clip_edit's {w, s} words (transcripts came back blank) (#672)"
+    "8395cb2 2026-10-18 claim: mailbox verdicts 2026-10-18T08:47Z [skip ci]",
+    "70f5267 2026-10-18 third: analytics snapshot [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4719,32 +4719,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 139,
+      "videos": 140,
       "top_by_vph": [
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 39.82,
-          "views": 844
+          "vph": 24.77,
+          "views": 985
         },
         {
           "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 5.45,
+          "vph": 4.9,
           "views": 900
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 3.2,
-          "views": 899
+          "vph": 3.45,
+          "views": 1031
         },
         {
           "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
-          "vph": 2.29,
-          "views": 757
+          "vph": 2.2,
+          "views": 766
         },
         {
-          "title": "Jynxzi Got Warned Not To Do It... Then This Happened",
-          "vph": 1.9,
-          "views": 1361
+          "title": "Joe Joe_Bartolozzi Begs Chop NOOOO After Seeing This On His Weapon Whe",
+          "vph": 1.45,
+          "views": 12
         }
       ],
       "full_data": "state/analytics_third/latest.json"
