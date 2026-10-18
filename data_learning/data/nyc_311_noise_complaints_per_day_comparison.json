@@ -1,0 +1,25 @@
+{
+  "key": "nyc_311_noise_complaints_per_day_comparison",
+  "title": "NYC 311 noise complaints per day",
+  "unit": "calls per day",
+  "geography": "New York City",
+  "time_coverage": "2010 vs. 2023 daily average",
+  "source": {
+    "name": "311 Service Requests from 2010 to Present",
+    "publisher": "NYC Open Data",
+    "url": "https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9",
+    "officiality": "official",
+    "access_date": "2026-10-18"
+  },
+  "notes": "Annual NYC 311 noise complaint totals converted to a daily average, 2010 vs. 2023.",
+  "baseline": {
+    "label": "Average per day, 2010",
+    "value": 959
+  },
+  "points": [
+    {
+      "label": "Average per day, 2023",
+      "value": 1918
+    }
+  ]
+}

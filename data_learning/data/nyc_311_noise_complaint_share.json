@@ -1,0 +1,25 @@
+{
+  "key": "nyc_311_noise_complaint_share",
+  "title": "Noise as a share of all NYC 311 complaints",
+  "unit": "percent",
+  "geography": "New York City",
+  "time_coverage": "recent year",
+  "source": {
+    "name": "311 Service Requests from 2010 to Present",
+    "publisher": "NYC Open Data",
+    "url": "https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2010-to-Present/erm2-nwe9",
+    "officiality": "official",
+    "access_date": "2026-10-18"
+  },
+  "notes": "Approximate share of all NYC 311 service requests classified under noise complaint categories, recent year.",
+  "points": [
+    {
+      "label": "Noise",
+      "value": 18
+    },
+    {
+      "label": "Everything else",
+      "value": 82
+    }
+  ]
+}

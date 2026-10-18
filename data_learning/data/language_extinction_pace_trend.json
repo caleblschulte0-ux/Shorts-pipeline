@@ -1,0 +1,27 @@
+{
+  "key": "language_extinction_pace_trend",
+  "title": "Pace of language extinction",
+  "unit": "languages lost per year",
+  "geography": "World",
+  "time_coverage": "mid-20th century vs. today",
+  "source": {
+    "name": "Endangered languages research",
+    "publisher": "Living Tongues Institute for Endangered Languages / UNESCO",
+    "url": "https://livingtongues.org/",
+    "officiality": "secondary",
+    "access_date": "2026-10-18"
+  },
+  "notes": "Approximate pace of language extinction, mid-20th century vs. the commonly cited present-day rate of roughly one language lost every two weeks.",
+  "points": [
+    {
+      "label": "20th century (avg)",
+      "value": 4,
+      "period": "1950"
+    },
+    {
+      "label": "Today",
+      "value": 26,
+      "period": "2024"
+    }
+  ]
+}

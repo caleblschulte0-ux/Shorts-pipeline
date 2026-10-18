@@ -1,0 +1,27 @@
+{
+  "key": "iss_continuous_occupation_years",
+  "title": "Years of continuous human presence aboard the ISS",
+  "unit": "years",
+  "geography": "International Space Station",
+  "time_coverage": "2000-2024",
+  "source": {
+    "name": "International Space Station Program",
+    "publisher": "NASA",
+    "url": "https://www.nasa.gov/international-space-station/",
+    "officiality": "official",
+    "access_date": "2026-10-18"
+  },
+  "notes": "Years of continuous crewed occupation of the ISS since Expedition 1 arrived in November 2000.",
+  "points": [
+    {
+      "label": "2000",
+      "value": 0,
+      "period": "2000"
+    },
+    {
+      "label": "2024",
+      "value": 24,
+      "period": "2024"
+    }
+  ]
+}

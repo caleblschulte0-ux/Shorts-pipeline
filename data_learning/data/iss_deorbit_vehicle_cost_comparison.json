@@ -1,0 +1,25 @@
+{
+  "key": "iss_deorbit_vehicle_cost_comparison",
+  "title": "ISS deorbit vehicle contract vs. a shuttle launch",
+  "unit": "million dollars",
+  "geography": "International Space Station",
+  "time_coverage": "2024 contract award",
+  "source": {
+    "name": "NASA's U.S. Deorbit Vehicle contract award",
+    "publisher": "NASA",
+    "url": "https://www.nasa.gov/news-release/nasa-selects-spacex-to-deorbit-international-space-station/",
+    "officiality": "official",
+    "access_date": "2026-10-18"
+  },
+  "notes": "NASA's 2024 contract value for the ISS deorbit vehicle vs. the historical average cost of a single Space Shuttle launch.",
+  "baseline": {
+    "label": "One Space Shuttle launch (historical avg)",
+    "value": 450
+  },
+  "points": [
+    {
+      "label": "ISS deorbit vehicle contract (2024)",
+      "value": 843
+    }
+  ]
+}

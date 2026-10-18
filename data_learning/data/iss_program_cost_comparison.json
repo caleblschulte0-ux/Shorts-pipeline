@@ -1,0 +1,25 @@
+{
+  "key": "iss_program_cost_comparison",
+  "title": "ISS program cost vs. annual NASA operating budget",
+  "unit": "billion dollars",
+  "geography": "International Space Station",
+  "time_coverage": "total program vs. current annual",
+  "source": {
+    "name": "ISS program budget reporting",
+    "publisher": "NASA Office of Inspector General",
+    "url": "https://oig.nasa.gov/",
+    "officiality": "official",
+    "access_date": "2026-10-18"
+  },
+  "notes": "Approximate total ISS program cost to date vs. NASA's current annual ISS operating budget, from NASA OIG budget reporting.",
+  "baseline": {
+    "label": "Total ISS program cost to date",
+    "value": 150
+  },
+  "points": [
+    {
+      "label": "NASA's current annual ISS budget",
+      "value": 3
+    }
+  ]
+}
