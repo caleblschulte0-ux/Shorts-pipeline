@@ -78,6 +78,10 @@ def uploads(ch: dict) -> list[dict]:
         token = j.get("nextPageToken")
         if not token:
             break
+    return videos(ids)
+
+
+def videos(ids: list[str]) -> list[dict]:
     now = datetime.now(timezone.utc)
     out = []
     for i in range(0, len(ids), 50):
@@ -95,9 +99,35 @@ def uploads(ch: dict) -> list[dict]:
                 "seconds": sec, "views": int(st.get("viewCount") or 0),
                 "likes": int(st.get("likeCount") or 0),
                 "comments": int(st.get("commentCount") or 0),
+                "channel": v["snippet"].get("channelTitle", ""),
                 "description": (v["snippet"].get("description") or "")[:300],
             })
     return out
+
+
+def search(query: str, pages: int = 2) -> list[dict]:
+    """The most-viewed short videos ANYONE posted for `query` — where a
+    streamer's best clips actually live is usually other people's channels.
+    100 quota units a page."""
+    ids, token = [], None
+    for _ in range(pages):
+        q = {"part": "id", "type": "video", "q": query, "order": "viewCount",
+             "videoDuration": "short", "maxResults": 50}
+        if token:
+            q["pageToken"] = token
+        j = _get("search", **q)
+        ids += [i["id"]["videoId"] for i in j.get("items") or []]
+        token = j.get("nextPageToken")
+        if not token:
+            break
+    return videos(ids)
+
+
+def pick_studied(ranked: list[dict], top: int, bottom: int) -> list[dict]:
+    """The best `top` and the worst `bottom`, never the same short twice."""
+    best = ranked[:top]
+    rest = ranked[len(best):]
+    return best + (rest[-bottom:] if bottom else [])
 
 
 def contact_sheet(video: Path, out: Path, cols: int = 6) -> bool:
@@ -143,7 +173,10 @@ def study(video_meta: dict, out: Path) -> dict:
 
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--channels", default="@StableRonaldoYT")
+    ap.add_argument("--channels", default="")
+    ap.add_argument("--search", default="",
+                    help="also study the most-viewed shorts anyone posted "
+                         "for these words (comma-separated queries)")
     ap.add_argument("--top", type=int, default=10)
     ap.add_argument("--bottom", type=int, default=4)
     ap.add_argument("--out", default="study")
@@ -162,7 +195,7 @@ def main(argv=None) -> int:
         shorts = sorted((v for v in vids if 0 < v["seconds"] <= SHORT_MAX_S),
                         key=lambda v: -v["views"])
         mature = [v for v in shorts if v["age_days"] >= MATURE_DAYS]
-        pick = mature[:a.top] + (mature[-a.bottom:] if a.bottom else [])
+        pick = pick_studied(mature, a.top, a.bottom)
         print(f"[study] {ref}: {len(vids)} uploads, {len(shorts)} shorts, "
               f"studying {len(pick)}", flush=True)
         studied = []
@@ -174,6 +207,19 @@ def main(argv=None) -> int:
             "subscribers": int((ch.get("statistics") or {})
                                .get("subscriberCount") or 0),
             "uploads": len(vids), "shorts": shorts, "studied": studied})
+        (out / "index.json").write_text(json.dumps(report, indent=1))
+    for query in [q.strip() for q in a.search.split(",") if q.strip()]:
+        found = sorted((v for v in search(query)
+                        if 0 < v["seconds"] <= SHORT_MAX_S),
+                       key=lambda v: -v["views"])
+        mature = [v for v in found if v["age_days"] >= MATURE_DAYS]
+        pick = pick_studied(mature, a.top, a.bottom)
+        print(f"[study] search {query!r}: {len(found)} shorts, studying "
+              f"{len(pick)}", flush=True)
+        studied = [study({**v, "group": "top" if i < a.top else "bottom"}, out)
+                   for i, v in enumerate(pick)]
+        report.setdefault("searches", []).append(
+            {"query": query, "shorts": found, "studied": studied})
         (out / "index.json").write_text(json.dumps(report, indent=1))
     (out / "index.json").write_text(json.dumps(report, indent=1))
     return 0

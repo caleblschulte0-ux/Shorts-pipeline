@@ -17,6 +17,13 @@ class ReadsDurations(unittest.TestCase):
         self.assertEqual(s.iso_seconds("P1DT1S"), 86401)
         self.assertEqual(s.iso_seconds(""), 0)
 
+    def test_best_and_worst_never_overlap(self):
+        ranked = [{"id": str(i)} for i in range(7)]
+        ids = [v["id"] for v in s.pick_studied(ranked, 10, 4)]
+        self.assertEqual(ids, [str(i) for i in range(7)])
+        ids = [v["id"] for v in s.pick_studied(ranked, 3, 2)]
+        self.assertEqual(ids, ["0", "1", "2", "5", "6"])
+
     def test_it_never_uploads(self):
         src = (ROOT / "scripts" / "study_clippers.py").read_text()
         wf = (ROOT / ".github" / "workflows" / "study-clippers.yml").read_text()
