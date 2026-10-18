@@ -3849,6 +3849,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
       "duration_s": 29.6
+    },
+    "blockbuster-to-one-store": {
+      "claimed_at": "2026-10-18T21:25:14.633075+00:00",
+      "title": "Blockbuster Went From 9,000 Stores To Just 1",
+      "publish_at": "2026-10-18T22:05:06Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4870,6 +4877,14 @@
       "state": "posted",
       "slug": "saturn-rings-vanishing",
       "at": "2026-10-18T14:23:01.302264+00:00"
+    },
+    {
+      "claimed_at": "2026-10-18T21:25:14.633075+00:00",
+      "title": "Blockbuster Went From 9,000 Stores To Just 1",
+      "publish_at": "2026-10-18T22:05:06Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "blockbuster-to-one-store"
     }
   ]
 }
