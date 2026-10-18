@@ -1,0 +1,16 @@
+{
+ "slug": "blockbuster-to-one-store",
+ "ts": "20261018T222819Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: In seg4:start, seg4:mid and payoff@-1.8, the closing line 'Even giants can vanish fast when habits change...' is drawn on top of floating white light bars that cut through 'fast', 'change,' and 'still rents'. The line also sits directly over the '2 stores' headline.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable_overlap_and_contradiction",
+  "visible_evidence": "seg4:start/mid: the closing sentence is printed over white ceiling-light bars and crowds the '2 stores' headline. The closing restates '2 stores, 2018' after seg3 already reached 1 store, so the story goes backwards before reaching 1 again at payoff@-1.8. The video then ends on an empty navy void with a blank tag (payoff@-0.4).",
+  "root_cause": "The closing scene's caption is placed in the same band as the scene's ceiling-light props and its own headline, the scene replays the previous beat's state change instead of moving on from it, and the end card is an empty fallback.",
+  "repair_goal": "Move the closing line into a clear band with no props behind it (or remove the light bars from the top band), and open the closing on the finished 1-store state (Bend lit, Perth dark) so it never steps back to 2. Replace the empty end card with the finished Bend shot held under the line."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

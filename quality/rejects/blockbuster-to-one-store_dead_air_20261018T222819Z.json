@@ -1,0 +1,16 @@
+{
+ "slug": "blockbuster-to-one-store",
+ "ts": "20261018T222819Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: The hook holds almost the same frame from hook@0.3 to seg0:end (about 0 to 4s+); only the reels and Data's pose change slightly. The measured max_dup_run is at 10.0s, held_s is 10.46, and the 2-store and 1-store scenes (seg2:start to seg3:end) are nearly the same frame.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "unreadable_overlap_and_contradiction",
+  "visible_evidence": "seg4:start/mid: the closing sentence is printed over white ceiling-light bars and crowds the '2 stores' headline. The closing restates '2 stores, 2018' after seg3 already reached 1 store, so the story goes backwards before reaching 1 again at payoff@-1.8. The video then ends on an empty navy void with a blank tag (payoff@-0.4).",
+  "root_cause": "The closing scene's caption is placed in the same band as the scene's ceiling-light props and its own headline, the scene replays the previous beat's state change instead of moving on from it, and the end card is an empty fallback.",
+  "repair_goal": "Move the closing line into a clear band with no props behind it (or remove the light bars from the top band), and open the closing on the finished 1-store state (Bend lit, Perth dark) so it never steps back to 2. Replace the empty end card with the finished Bend shot held under the line."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

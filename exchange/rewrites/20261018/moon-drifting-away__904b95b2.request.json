@@ -1,0 +1,165 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "moon-drifting-away__904b95b2",
+ "filed": "2026-10-18T22:28:10Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "moon-drifting-away",
+ "current": {
+  "title": "The Moon Is Slowly Leaving Us (3 Charts)",
+  "hook": "Your last total eclipse is only 600 million years away.",
+  "closing": "So you live in the rare era of perfect eclipses. Go see one while the Moon still fits.",
+  "question": "Does the Moon leaving freak you out?",
+  "segments": [
+   {
+    "topic": "Moon drifting away",
+    "say": "Within living memory, the Moon crept over two meters farther away. That's a tall person's height, gained without anyone feeling a thing."
+   },
+   {
+    "topic": "Moon distance over time",
+    "say": "Ocean tides steal Earth's spin, pushing the Moon outward. It now sits 384,400 kilometers away, much farther than it did long ago."
+   },
+   {
+    "topic": "Moon eclipse deadline",
+    "say": "In 600 million years, total eclipses end for good. The Moon will look too small to fully cover what it hides."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Moon drifting away",
+   "say": "Within living memory, the Moon crept over two meters farther away. That's a tall person's height, gained without anyone feeling a thing.",
+   "role": "1 · THE DRIFT",
+   "data": {
+    "file": "moon_recession_cumulative.json",
+    "unit": "meters",
+    "title": "Cumulative Moon recession since Apollo 11 (meters)",
+    "points": [
+     {
+      "label": "1969",
+      "value": 0,
+      "period": "1969"
+     },
+     {
+      "label": "1979",
+      "value": 0.38,
+      "period": "1979"
+     },
+     {
+      "label": "1989",
+      "value": 0.76,
+      "period": "1989"
+     },
+     {
+      "label": "1999",
+      "value": 1.14,
+      "period": "1999"
+     },
+     {
+      "label": "2009",
+      "value": 1.52,
+      "period": "2009"
+     },
+     {
+      "label": "2019",
+      "value": 1.9,
+      "period": "2019"
+     },
+     {
+      "label": "2026",
+      "value": 2.17,
+      "period": "2026"
+     }
+    ],
+    "n_points": 7
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Moon distance over time",
+   "say": "Ocean tides steal Earth's spin, pushing the Moon outward. It now sits 384,400 kilometers away, much farther than it did long ago.",
+   "role": "2 · THE MECHANISM",
+   "data": {
+    "file": "moon_day_length_comparison.json",
+    "unit": "kilometers",
+    "title": "Earth-Moon distance: 1.4 billion years ago vs today (km)",
+    "points": [
+     {
+      "label": "1.4 billion years ago",
+      "value": 340900
+     },
+     {
+      "label": "Today",
+      "value": 384400
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Moon eclipse deadline",
+   "say": "In 600 million years, total eclipses end for good. The Moon will look too small to fully cover what it hides.",
+   "role": "3 · THE PAYOFF",
+   "data": {
+    "file": "moon_eclipse_timescale.json",
+    "unit": "million years",
+    "title": "Deep-time distances: dinosaurs vs the last total solar eclipse (million years)",
+    "points": [
+     {
+      "label": "Dinosaurs went extinct",
+      "value": 66
+     },
+     {
+      "label": "First dinosaurs appeared",
+      "value": 230
+     },
+     {
+      "label": "Last total solar eclipse (future)",
+      "value": 600
+     }
+    ],
+    "n_points": 3
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a vague, non‑impactful number."
+ ],
+ "reasons": [
+  "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a vague, non‑impactful number."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261018/moon-drifting-away__904b95b2.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

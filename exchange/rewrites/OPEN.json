@@ -1,7 +1,47 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-18T20:42:47Z",
+ "updated": "2026-10-18T22:28:12Z",
  "open": [
+  {
+   "id": "lab-grown-diamond-price-collapse__d179596a",
+   "slug": "lab-grown-diamond-price-collapse",
+   "filed": "2026-10-18T22:28:12Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a common viewer expectation and relies only on a generic percentage without a specific, surprising premise."
+   ],
+   "request": "exchange/rewrites/20261018/lab-grown-diamond-price-collapse__d179596a.request.json",
+   "answer_path": "exchange/rewrites/20261018/lab-grown-diamond-price-collapse__d179596a.answer.json"
+  },
+  {
+   "id": "moon-drifting-away__904b95b2",
+   "slug": "moon-drifting-away",
+   "filed": "2026-10-18T22:28:10Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a vague, non‑impactful number."
+   ],
+   "request": "exchange/rewrites/20261018/moon-drifting-away__904b95b2.request.json",
+   "answer_path": "exchange/rewrites/20261018/moon-drifting-away__904b95b2.answer.json"
+  },
+  {
+   "id": "pickleball-fastest-growing-sport__598b7568",
+   "slug": "pickleball-fastest-growing-sport",
+   "filed": "2026-10-18T22:28:09Z",
+   "why": [
+    "premise: brain: The premise relies on vague figures like 'hundreds of millions' rather than a single, precise, verifiable number to overturn the expectation."
+   ],
+   "request": "exchange/rewrites/20261018/pickleball-fastest-growing-sport__598b7568.request.json",
+   "answer_path": "exchange/rewrites/20261018/pickleball-fastest-growing-sport__598b7568.answer.json"
+  },
+  {
+   "id": "genz-drinking-decline__8e6f5b2d",
+   "slug": "genz-drinking-decline",
+   "filed": "2026-10-18T22:28:08Z",
+   "why": [
+    "premise: brain: It lacks a clear reversal of a specific viewer expectation anchored to a single, verifiable numerical claim."
+   ],
+   "request": "exchange/rewrites/20261018/genz-drinking-decline__8e6f5b2d.request.json",
+   "answer_path": "exchange/rewrites/20261018/genz-drinking-decline__8e6f5b2d.answer.json"
+  },
   {
    "id": "hearing-aids-otc-price-drop__b159cfe2",
    "slug": "hearing-aids-otc-price-drop",
@@ -373,16 +413,6 @@
    "answer_path": "exchange/rewrites/20261018/game-industry-layoffs-record__47b9280e.answer.json"
   },
   {
-   "id": "genz-drinking-decline__b6725083",
-   "slug": "genz-drinking-decline",
-   "filed": "2026-10-18T11:46:47Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on a vague, non‑verifiable claim rather than a single consequential number."
-   ],
-   "request": "exchange/rewrites/20261018/genz-drinking-decline__b6725083.request.json",
-   "answer_path": "exchange/rewrites/20261018/genz-drinking-decline__b6725083.answer.json"
-  },
-  {
    "id": "index-funds-own-corporate-america__19285cc1",
    "slug": "index-funds-own-corporate-america",
    "filed": "2026-10-18T11:46:47Z",
@@ -573,16 +603,6 @@
    "answer_path": "exchange/rewrites/20261018/rubiks-cube-record-vs-robot__58c6aad4.answer.json"
   },
   {
-   "id": "pickleball-fastest-growing-sport__598b7568",
-   "slug": "pickleball-fastest-growing-sport",
-   "filed": "2026-10-17T15:25:41Z",
-   "why": [
-    "premise: brain: The premise does not reverse a viewer's existing expectation and merely states a growth statistic without a consequential, verifiable number tied to that reversal."
-   ],
-   "request": "exchange/rewrites/20261017/pickleball-fastest-growing-sport__598b7568.request.json",
-   "answer_path": "exchange/rewrites/20261017/pickleball-fastest-growing-sport__598b7568.answer.json"
-  },
-  {
    "id": "gulf-dead-zone-growth__a4939372",
    "slug": "gulf-dead-zone-growth",
    "filed": "2026-10-17T12:56:20Z",
@@ -621,16 +641,6 @@
    ],
    "request": "exchange/rewrites/20261016/cryonics-client-count__740eebbc.request.json",
    "answer_path": "exchange/rewrites/20261016/cryonics-client-count__740eebbc.answer.json"
-  },
-  {
-   "id": "moon-drifting-away__904b95b2",
-   "slug": "moon-drifting-away",
-   "filed": "2026-10-16T13:40:38Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a vague time frame rather than a single, compelling, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261016/moon-drifting-away__904b95b2.request.json",
-   "answer_path": "exchange/rewrites/20261016/moon-drifting-away__904b95b2.answer.json"
   },
   {
    "id": "rabies-prevention-gap__a36d7b3a",
@@ -1106,16 +1116,6 @@
    ],
    "request": "exchange/rewrites/20261005/muscle-loss-after-30__a6d6cd11.request.json",
    "answer_path": "exchange/rewrites/20261005/muscle-loss-after-30__a6d6cd11.answer.json"
-  },
-  {
-   "id": "lab-grown-diamond-price-collapse__147039f2",
-   "slug": "lab-grown-diamond-price-collapse",
-   "filed": "2026-10-05T10:56:50Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on vague comparison rather than a single verifiable number."
-   ],
-   "request": "exchange/rewrites/20261005/lab-grown-diamond-price-collapse__147039f2.request.json",
-   "answer_path": "exchange/rewrites/20261005/lab-grown-diamond-price-collapse__147039f2.answer.json"
   },
   {
    "id": "kids-phones-getting-younger__e1fceca3",
