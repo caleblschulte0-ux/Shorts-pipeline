@@ -100,6 +100,7 @@ def videos(ids: list[str]) -> list[dict]:
                 "likes": int(st.get("likeCount") or 0),
                 "comments": int(st.get("commentCount") or 0),
                 "channel": v["snippet"].get("channelTitle", ""),
+                "channel_id": v["snippet"].get("channelId", ""),
                 "description": (v["snippet"].get("description") or "")[:300],
             })
     return out
@@ -156,19 +157,25 @@ def study(video_meta: dict, out: Path) -> dict:
         words = clip_edit.transcribe_words(mp4)
     except Exception as e:  # noqa: BLE001
         print(f"::warning::transcribe {vid}: {e}", flush=True)
+    lines = transcript_lines(words)
+    sheet = contact_sheet(mp4, out / f"{vid}.jpg")
+    return {**video_meta, "fetched": True, "via": got.get("via"),
+            "transcript": lines, "sheet": f"{vid}.jpg" if sheet else None}
+
+
+def transcript_lines(words: list[dict]) -> list[str]:
+    """clip_edit's [{w, s, e}] words -> "[  3.2] a line of speech" lines."""
     lines, cur, start = [], [], None
     for w in words:
         if start is None:
-            start = w.get("start", 0)
-        cur.append(w.get("word", "").strip())
+            start = w.get("s", 0)
+        cur.append(str(w.get("w", "")).strip())
         if len(cur) >= 12 or str(cur[-1]).endswith((".", "?", "!")):
             lines.append(f"[{start:5.1f}] " + " ".join(cur))
             cur, start = [], None
     if cur:
         lines.append(f"[{start or 0:5.1f}] " + " ".join(cur))
-    sheet = contact_sheet(mp4, out / f"{vid}.jpg")
-    return {**video_meta, "fetched": True, "via": got.get("via"),
-            "transcript": lines, "sheet": f"{vid}.jpg" if sheet else None}
+    return lines
 
 
 def main(argv=None) -> int:
