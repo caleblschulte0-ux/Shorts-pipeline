@@ -111,7 +111,7 @@ class TheFootageIsCutIn(unittest.TestCase):
         self.assertEqual(len(out["edit"]["broll"]), 1)
         brief = author.SYSTEM[author.SYSTEM.index("- broll:"):]
         self.assertIn("OUR OWN", brief[:200])
-        self.assertNotIn("sad", brief[:brief.index("- cut:")])
+        self.assertNotIn("sad", brief[:brief.index("- outro:")])
 
     def test_the_plan_is_on_the_cuts_clock_and_spaced(self):
         items = [{"who": "A", "at": 8}, {"who": "B", "at": 10},
