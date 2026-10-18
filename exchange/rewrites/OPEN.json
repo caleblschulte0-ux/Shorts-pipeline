@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-18T19:15:11Z",
+ "updated": "2026-10-18T20:42:47Z",
  "open": [
+  {
+   "id": "hearing-aids-otc-price-drop__b159cfe2",
+   "slug": "hearing-aids-otc-price-drop",
+   "filed": "2026-10-18T20:42:47Z",
+   "why": [
+    "premise: brain: Lacks a specific, verifiable number and does not clearly reverse a viewer's expectation."
+   ],
+   "request": "exchange/rewrites/20261018/hearing-aids-otc-price-drop__b159cfe2.request.json",
+   "answer_path": "exchange/rewrites/20261018/hearing-aids-otc-price-drop__b159cfe2.answer.json"
+  },
+  {
+   "id": "red-hair-recessive-gene__df01797e",
+   "slug": "red-hair-recessive-gene",
+   "filed": "2026-10-18T20:42:46Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on a vague statistic rather than a single consequential, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261018/red-hair-recessive-gene__df01797e.request.json",
+   "answer_path": "exchange/rewrites/20261018/red-hair-recessive-gene__df01797e.answer.json"
+  },
   {
    "id": "betelgeuse-great-dimming__e2882181",
    "slug": "betelgeuse-great-dimming",
@@ -141,16 +161,6 @@
    ],
    "request": "exchange/rewrites/20261018/highest-point-illusion__3d90af0a.request.json",
    "answer_path": "exchange/rewrites/20261018/highest-point-illusion__3d90af0a.answer.json"
-  },
-  {
-   "id": "red-hair-recessive-gene__e4e29bf0",
-   "slug": "red-hair-recessive-gene",
-   "filed": "2026-10-18T11:46:50Z",
-   "why": [
-    "premise: brain: The premise offers a statistic but doesn't overturn a clear viewer expectation, failing the reversal requirement."
-   ],
-   "request": "exchange/rewrites/20261018/red-hair-recessive-gene__e4e29bf0.request.json",
-   "answer_path": "exchange/rewrites/20261018/red-hair-recessive-gene__e4e29bf0.answer.json"
   },
   {
    "id": "vinyl-beats-cd-sales-again__b2dd235b",

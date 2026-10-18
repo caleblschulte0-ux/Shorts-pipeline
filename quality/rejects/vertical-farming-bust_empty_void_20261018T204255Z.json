@@ -1,0 +1,16 @@
+{
+ "slug": "vertical-farming-bust",
+ "ts": "20261018T204255Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: payoff@-0.4: almost the whole frame is a dark navy void with one small mascot at the bottom, no scene and no text",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "text_collision_and_unclear_picture",
+  "visible_evidence": "seg4:start-end: the closing line is stacked over 'Indoor farm money', then over '-91%' (seg4:end, payoff@-1.8). A billboard reading THE FUTURE OF FOOD peels off in purple scraps that do not clearly read as money leaving. Then it cuts to a black void with Data holding a blank price tag (payoff@-0.4)",
+  "root_cause": "The closing caption is drawn in the headline band without measuring the headline under it. The closing scene's readout swaps to -91% under the caption, and the last frames fall through to the empty default host pose with a blank price-tag prop",
+  "repair_goal": "Lay the closing full frame with ONE text block. Move the closing line clear of the headline, or drop the headline in the closing. Make the billboard picture say 'the hype peeled away': Data tears the poster down to bare boards with an empty money slot. Hold that finished picture to the last frame, with no fall to the dark void and no price-tag prop"
+ },
+ "scene_plan": {},
+ "scenes": []
+}
