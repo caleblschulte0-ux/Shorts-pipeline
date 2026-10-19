@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-19T13:59:38Z",
+ "updated": "2026-10-19T14:30:00Z",
  "open": [
+  {
+   "id": "world-wetlands-lost__66020aa4",
+   "slug": "world-wetlands-lost",
+   "filed": "2026-10-19T14:29:59Z",
+   "why": [
+    "premise: brain: The claim does not clearly overturn a common viewer expectation, only presents a statistic."
+   ],
+   "request": "exchange/rewrites/20261019/world-wetlands-lost__66020aa4.request.json",
+   "answer_path": "exchange/rewrites/20261019/world-wetlands-lost__66020aa4.answer.json"
+  },
   {
    "id": "vinyl-beats-cd-sales-again__b2dd235b",
    "slug": "vinyl-beats-cd-sales-again",
@@ -633,16 +643,6 @@
    ],
    "request": "exchange/rewrites/20261018/nobel-prize-discovery-age__3e12dc3c.request.json",
    "answer_path": "exchange/rewrites/20261018/nobel-prize-discovery-age__3e12dc3c.answer.json"
-  },
-  {
-   "id": "world-wetlands-lost__66020aa4",
-   "slug": "world-wetlands-lost",
-   "filed": "2026-10-18T11:46:45Z",
-   "why": [
-    "premise: brain: It does not clearly overturn a common viewer expectation, only presents a statistic."
-   ],
-   "request": "exchange/rewrites/20261018/world-wetlands-lost__66020aa4.request.json",
-   "answer_path": "exchange/rewrites/20261018/world-wetlands-lost__66020aa4.answer.json"
   },
   {
    "id": "competitive-eating-record-climb__e38b83da",
