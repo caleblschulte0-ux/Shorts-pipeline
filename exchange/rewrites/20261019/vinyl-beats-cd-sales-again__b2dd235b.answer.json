@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "vinyl-beats-cd-sales-again__b2dd235b",
+  "slug": "vinyl-beats-cd-sales-again",
+  "by": "chatgpt",
+  "written_at": "2026-10-19T23:09:00Z",
+  "title": "Vinyl Made 2.5x CD Revenue, But Streaming Still Rules",
+  "hook": "Vinyl earned about 2.5 times what CDs did.",
+  "closing": "Physical music revived, but streaming still decides where most recording money goes.",
+  "question": "Would you buy vinyl or stream?",
+  "segments": [
+    {
+      "topic": "Vinyl Revenue Win",
+      "say": "Vinyl earned about 2.5 times CD revenue, proving the older format can still beat the disc it once lost to."
+    },
+    {
+      "topic": "Vinyl Unit Win",
+      "say": "Vinyl sold 41 million albums, enough to beat CDs by unit count as well as revenue."
+    },
+    {
+      "topic": "Vinyl Streaming Catch",
+      "say": "Streaming still captures 84% of music revenue, so vinyl's comeback remains a physical-format victory inside a digital market."
+    }
+  ]
+}
