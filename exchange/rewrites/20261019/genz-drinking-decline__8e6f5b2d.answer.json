@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "genz-drinking-decline__8e6f5b2d",
+  "slug": "genz-drinking-decline",
+  "by": "chatgpt",
+  "written_at": "2026-10-19T23:10:00Z",
+  "title": "Young Adult Drinking Fell To 50% Instead Of Rising",
+  "hook": "Only 50% of young adults now say they drink alcohol.",
+  "closing": "Drinking is no longer the default for young adults, changing what social pressure around alcohol looks like.",
+  "question": "Is drinking less becoming normal?",
+  "segments": [
+    {
+      "topic": "Drinking Rate Falls",
+      "say": "Young-adult drinking fell to 50%, making abstaining just as common as drinking in this group."
+    },
+    {
+      "topic": "Drinking Youngest Falls",
+      "say": "Among the youngest adults, drinking fell to 35%, showing the retreat is even sharper at the bottom of the age range."
+    },
+    {
+      "topic": "Drinking Weekly Falls",
+      "say": "Weekly drinking among young drinkers is 61%, showing the shift includes frequency, not just whether they drink at all."
+    }
+  ]
+}
