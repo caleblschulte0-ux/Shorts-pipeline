@@ -1,0 +1,69 @@
+{
+  "schema": "chatgpt-producer-blocking/v1",
+  "date": "20261019",
+  "status": "partial",
+  "failed_step": "Sports moments (Baller Bro): complete registered 3-post quota",
+  "required": 3,
+  "posted_total": 2,
+  "shortfall": 1,
+  "successful_posts": [
+    {
+      "who": "Kevin Garnett",
+      "video_url": "https://youtube.com/shorts/c8SRsLV7iMY",
+      "publish_at": "2026-10-19T16:00:00Z"
+    },
+    {
+      "who": "Marlon Humphrey",
+      "video_url": "https://youtube.com/shorts/olvsc2MwnhA",
+      "publish_at": "2026-10-19T20:00:00Z"
+    }
+  ],
+  "workflow_runs": [
+    {
+      "run_id": 39244790811,
+      "conclusion": "success",
+      "result": "Posted 2/3 Sports moments.",
+      "url": "https://github.com/caleblschulte0-ux/Shorts-pipeline/actions/runs/39244790811"
+    },
+    {
+      "run_id": 39246459209,
+      "conclusion": "failure",
+      "result": "Posted 0; no remaining candidate could pass the fail-closed source and vision-judge gates.",
+      "url": "https://github.com/caleblschulte0-ux/Shorts-pipeline/actions/runs/39246459209"
+    }
+  ],
+  "blocker": {
+    "primary": "No vision judge remained available for the last viable publish candidate.",
+    "claude": "Weekly usage limit exhausted; reset reported as October 21 at 00:00 UTC.",
+    "gemini": "HTTP 429 / out of budget.",
+    "source_failures": [
+      "Messi source ran 10.2 seconds (<15 second minimum).",
+      "Scottie Barnes source ran 10.8 seconds (<15 second minimum).",
+      "Josh Allen source ran 14.5 seconds (<15 second minimum).",
+      "Jackson Chourio source ran 11.2 seconds (<15 second minimum).",
+      "Several Reddit/source downloads were refused by yt-dlp."
+    ],
+    "safety_behavior": "Fail-closed prevented an unreviewed or under-length third upload."
+  },
+  "evidence": {
+    "sports_report": "sports_report.json",
+    "final_sports_report_commit": "b535a2d7e049dd20cdb0fde40849e5d7b4b1dedd",
+    "phase_b_commit": "b220f1100c78cd37212690b42d84c8561b04aac9"
+  },
+  "completed": [
+    "STARTED committed before production work.",
+    "Google Drive destination verified accessible and public; bundle requested no media.",
+    "Three Explainer rewrites authored and accepted by Phase B.",
+    "response.json read back and validated.",
+    "DONE committed separately.",
+    "Phase B completed successfully with zero rejections.",
+    "Both Daily Shorts passes completed successfully.",
+    "Third Channel completed successfully.",
+    "Sports posted 2/3 and committed its verdict evidence."
+  ],
+  "pending_at_write": [
+    "Explainer recovery worker final completion.",
+    "One missing Sports post."
+  ],
+  "retry_policy": "No further immediate Sports retry: Claude and Gemini judge capacity is exhausted, so another run would stampede the same transient limit. The recurring producer remains enabled."
+}
