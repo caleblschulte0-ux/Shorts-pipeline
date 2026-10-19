@@ -1,0 +1,13 @@
+{
+ "id": "vinyl-beats-cd-sales-again__b2dd235b",
+ "slug": "vinyl-beats-cd-sales-again",
+ "settled": "2026-10-19T23:09:59Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: number(s) not derivable from this beat's data: 2.5",
+  "segment 0: new named entity not in the data: Win",
+  "segment 1: new named entity not in the data: Win",
+  "segment 2: new named entity not in the data: Catch",
+  "hook: number(s) not derivable from any beat's data: 2.5"
+ ]
+}

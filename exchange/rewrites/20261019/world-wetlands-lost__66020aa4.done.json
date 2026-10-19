@@ -1,0 +1,11 @@
+{
+ "id": "world-wetlands-lost__66020aa4",
+ "slug": "world-wetlands-lost",
+ "settled": "2026-10-19T23:09:59Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 1: number(s) not derivable from this beat's data: 3",
+  "segment 1: new named entity not in the data: Beat",
+  "title: number(s) not derivable from any beat's data: 3"
+ ]
+}

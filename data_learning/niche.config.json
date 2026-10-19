@@ -21355,10 +21355,10 @@
   },
   {
    "slug": "gps-einstein-fix",
-   "title": "Every GPS Satellite Is Set to the Wrong Time on Purpose",
-   "hook": "Your GPS slides 10 kilometers off in one day, uncorrected.",
-   "closing": "Einstein's relativity is why your phone finds your street, not just your city.",
-   "question": "Your phone runs on relativity. Surprised?",
+   "title": "Why GPS Would Drift 10 Kilometers Without Einstein",
+   "hook": "Without relativity, GPS misses by 10 kilometers in one day.",
+   "closing": "Relativity is not abstract here; it is why turn-by-turn directions land on the right street.",
+   "question": "Would you trust GPS without relativity?",
    "caption": "A GPS satellite clock gains 38 microseconds a day on yours - weaker gravity speeds it up 45, orbital speed drags 7 back. Ignore that and your position slides about 10 kilometers off in a single day, so every satellite is launched running deliberately slow. That correction is why your blue dot lands within 4.9 meters. Did you know your phone runs on relativity? 👇",
    "hashtags": [
     "gps",
@@ -21387,8 +21387,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "1 · TWO CLOCKS, ONE ORBIT",
-     "topic": "Satellite clock drift",
-     "say": "Up in orbit, weaker gravity speeds a satellite's clock up, so it gains 38 microseconds every day. Tiny, but it adds up fast.",
+     "topic": "GPS Clock Drift",
+     "say": "GPS satellite clocks gain 38 microseconds each day, enough to make tiny timing errors grow into navigation errors.",
      "scene": {
       "mechanic": "satellite-tick-ledger",
       "concept": "45 real microsecond-cells light up one at a time under the satellite as gravity pulls its clock ahead, then orbital speed strikes out the last 7 - the 38 that survive ARE the net gain, counted, not asserted.",
@@ -21403,8 +21403,8 @@
      },
      "insight_type": "trend",
      "role": "2 · WHERE IT GOES WRONG",
-     "topic": "GPS error without fix",
-     "say": "Ignore that, and your map slides about 10 kilometers off by tomorrow. That's enough to put you in the wrong town.",
+     "topic": "GPS Error Grows",
+     "say": "Without the relativity correction, GPS position error reaches 10 kilometers, turning precise navigation into the wrong part of town.",
      "scene": {
       "mechanic": "pin-walks-off-the-map",
       "concept": "Your blue dot starts on target and every hour a fresh map pin lands further right, dragged by a widening error bar - the position visibly walking off the road as the day goes on.",
@@ -21419,8 +21419,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE FIX",
-     "topic": "GPS accuracy corrected",
-     "say": "So engineers launch the clocks set slow on purpose, and your phone lands within about five meters. The fix is why maps work.",
+     "topic": "GPS Fix Works",
+     "say": "With the correction, a typical GPS phone can land within 4.9 meters, which is why everyday maps stay useful.",
      "scene": {
       "mechanic": "gps-off-target-dial",
       "concept": "A log-scale rangefinder from the true spot: the corrected pin barely leaves home at 4.9m while the uncorrected one races almost the full width to 10,000m, same start, wildly different landing.",
@@ -21428,8 +21428,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-11T15:06:03Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-19T23:09:59Z",
    "retold": "retell/v3"
   },
   {

@@ -1,0 +1,9 @@
+{
+ "id": "nyc-noise-complaints-per-day__499955a7",
+ "slug": "nyc-noise-complaints-per-day",
+ "settled": "2026-10-19T23:09:59Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 2: new named entity not in the data: Daily"
+ ]
+}

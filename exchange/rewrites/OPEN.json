@@ -1,87 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-19T23:07:50Z",
+ "updated": "2026-10-19T23:09:59Z",
  "open": [
-  {
-   "id": "gps-einstein-fix__7df7a9d4",
-   "slug": "gps-einstein-fix",
-   "filed": "2026-10-19T17:48:58Z",
-   "why": [
-    "premise: brain: The premise lacks a single consequential, verifiable number to anchor the claim."
-   ],
-   "request": "exchange/rewrites/20261019/gps-einstein-fix__7df7a9d4.request.json",
-   "answer_path": "exchange/rewrites/20261019/gps-einstein-fix__7df7a9d4.answer.json"
-  },
-  {
-   "id": "world-wetlands-lost__66020aa4",
-   "slug": "world-wetlands-lost",
-   "filed": "2026-10-19T14:29:59Z",
-   "why": [
-    "premise: brain: The claim does not clearly overturn a common viewer expectation, only presents a statistic."
-   ],
-   "request": "exchange/rewrites/20261019/world-wetlands-lost__66020aa4.request.json",
-   "answer_path": "exchange/rewrites/20261019/world-wetlands-lost__66020aa4.answer.json"
-  },
-  {
-   "id": "vinyl-beats-cd-sales-again__b2dd235b",
-   "slug": "vinyl-beats-cd-sales-again",
-   "filed": "2026-10-19T13:59:38Z",
-   "why": [
-    "premise: brain: It only provides a year without a concrete, verifiable quantitative figure to support the reversal."
-   ],
-   "request": "exchange/rewrites/20261019/vinyl-beats-cd-sales-again__b2dd235b.request.json",
-   "answer_path": "exchange/rewrites/20261019/vinyl-beats-cd-sales-again__b2dd235b.answer.json"
-  },
-  {
-   "id": "nyc-noise-complaints-per-day__499955a7",
-   "slug": "nyc-noise-complaints-per-day",
-   "filed": "2026-10-19T13:59:38Z",
-   "why": [
-    "premise: brain: The premise lacks a specific, verifiable number and does not clearly reverse a viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261019/nyc-noise-complaints-per-day__499955a7.request.json",
-   "answer_path": "exchange/rewrites/20261019/nyc-noise-complaints-per-day__499955a7.answer.json"
-  },
-  {
-   "id": "black-holes-in-galaxy__4e789d36",
-   "slug": "black-holes-in-galaxy",
-   "filed": "2026-10-19T13:59:37Z",
-   "why": [
-    "premise: brain: The claim relies on an unverified estimate rather than a single, concrete, verifiable number, and does not clearly overturn a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261019/black-holes-in-galaxy__4e789d36.request.json",
-   "answer_path": "exchange/rewrites/20261019/black-holes-in-galaxy__4e789d36.answer.json"
-  },
-  {
-   "id": "genz-drinking-decline__8e6f5b2d",
-   "slug": "genz-drinking-decline",
-   "filed": "2026-10-19T13:59:35Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague, unverified 20-year figure."
-   ],
-   "request": "exchange/rewrites/20261019/genz-drinking-decline__8e6f5b2d.request.json",
-   "answer_path": "exchange/rewrites/20261019/genz-drinking-decline__8e6f5b2d.answer.json"
-  },
-  {
-   "id": "cursive-handwriting-comeback__90876971",
-   "slug": "cursive-handwriting-comeback",
-   "filed": "2026-10-19T12:10:13Z",
-   "why": [
-    "premise: brain: Uses multiple numbers instead of a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261019/cursive-handwriting-comeback__90876971.request.json",
-   "answer_path": "exchange/rewrites/20261019/cursive-handwriting-comeback__90876971.answer.json"
-  },
-  {
-   "id": "global-remittances-record-2023__21255dfc_r1",
-   "slug": "global-remittances-record-2023",
-   "filed": "2026-10-19T12:10:13Z",
-   "why": [
-    "premise: brain: Unclear reversal of a viewer expectation; the premise relies on a vague claim without a clear, specific expectation flip."
-   ],
-   "request": "exchange/rewrites/20261019/global-remittances-record-2023__21255dfc_r1.request.json",
-   "answer_path": "exchange/rewrites/20261019/global-remittances-record-2023__21255dfc_r1.answer.json"
-  },
   {
    "id": "dog-breed-popularity-flip__ed8cf925",
    "slug": "dog-breed-popularity-flip",
@@ -565,6 +485,16 @@
    "answer_path": "exchange/rewrites/20261018/moon-drifting-away__904b95b2.answer.json"
   },
   {
+   "id": "genz-drinking-decline__8e6f5b2d",
+   "slug": "genz-drinking-decline",
+   "filed": "2026-10-18T22:28:08Z",
+   "why": [
+    "premise: brain: It lacks a clear reversal of a specific viewer expectation anchored to a single, verifiable numerical claim."
+   ],
+   "request": "exchange/rewrites/20261018/genz-drinking-decline__8e6f5b2d.request.json",
+   "answer_path": "exchange/rewrites/20261018/genz-drinking-decline__8e6f5b2d.answer.json"
+  },
+  {
    "id": "betelgeuse-great-dimming__e2882181",
    "slug": "betelgeuse-great-dimming",
    "filed": "2026-10-18T19:15:11Z",
@@ -595,6 +525,16 @@
    "answer_path": "exchange/rewrites/20261018/iss-deorbit-2031__1ecc9d62.answer.json"
   },
   {
+   "id": "cursive-handwriting-comeback__90876971",
+   "slug": "cursive-handwriting-comeback",
+   "filed": "2026-10-18T15:35:20Z",
+   "why": [
+    "premise: brain: Uses multiple numbers instead of a single consequential, verifiable figure, failing the one-number requirement."
+   ],
+   "request": "exchange/rewrites/20261018/cursive-handwriting-comeback__90876971.request.json",
+   "answer_path": "exchange/rewrites/20261018/cursive-handwriting-comeback__90876971.answer.json"
+  },
+  {
    "id": "blockbuster-to-one-store__857f036d",
    "slug": "blockbuster-to-one-store",
    "filed": "2026-10-18T15:35:16Z",
@@ -603,6 +543,36 @@
    ],
    "request": "exchange/rewrites/20261018/blockbuster-to-one-store__857f036d.request.json",
    "answer_path": "exchange/rewrites/20261018/blockbuster-to-one-store__857f036d.answer.json"
+  },
+  {
+   "id": "global-remittances-record-2023__21255dfc_r1",
+   "slug": "global-remittances-record-2023",
+   "filed": "2026-10-18T14:23:09Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies only on a large number without a verifiable, consequential hook."
+   ],
+   "request": "exchange/rewrites/20261018/global-remittances-record-2023__21255dfc_r1.request.json",
+   "answer_path": "exchange/rewrites/20261018/global-remittances-record-2023__21255dfc_r1.answer.json"
+  },
+  {
+   "id": "nyc-noise-complaints-per-day__499955a7",
+   "slug": "nyc-noise-complaints-per-day",
+   "filed": "2026-10-18T14:23:09Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of viewer expectation and does not hinge on a single, verifiable numeric claim."
+   ],
+   "request": "exchange/rewrites/20261018/nyc-noise-complaints-per-day__499955a7.request.json",
+   "answer_path": "exchange/rewrites/20261018/nyc-noise-complaints-per-day__499955a7.answer.json"
+  },
+  {
+   "id": "vinyl-beats-cd-sales-again__b2dd235b",
+   "slug": "vinyl-beats-cd-sales-again",
+   "filed": "2026-10-18T11:46:50Z",
+   "why": [
+    "premise: brain: Uses multiple dates instead of a single consequential number, failing the one-number requirement."
+   ],
+   "request": "exchange/rewrites/20261018/vinyl-beats-cd-sales-again__b2dd235b.request.json",
+   "answer_path": "exchange/rewrites/20261018/vinyl-beats-cd-sales-again__b2dd235b.answer.json"
   },
   {
    "id": "saturn-rings-vanishing__acf09995",
@@ -615,6 +585,16 @@
    "answer_path": "exchange/rewrites/20261018/saturn-rings-vanishing__acf09995.answer.json"
   },
   {
+   "id": "black-holes-in-galaxy__4e789d36",
+   "slug": "black-holes-in-galaxy",
+   "filed": "2026-10-18T11:46:49Z",
+   "why": [
+    "premise: brain: The claim relies on an unverified large figure rather than a single, clearly verifiable number that definitively overturns a common viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261018/black-holes-in-galaxy__4e789d36.request.json",
+   "answer_path": "exchange/rewrites/20261018/black-holes-in-galaxy__4e789d36.answer.json"
+  },
+  {
    "id": "self-storage-outnumbers-starbucks__97599610",
    "slug": "self-storage-outnumbers-starbucks",
    "filed": "2026-10-18T11:46:49Z",
@@ -625,6 +605,16 @@
    "answer_path": "exchange/rewrites/20261018/self-storage-outnumbers-starbucks__97599610.answer.json"
   },
   {
+   "id": "gps-einstein-fix__7df7a9d4",
+   "slug": "gps-einstein-fix",
+   "filed": "2026-10-18T11:46:48Z",
+   "why": [
+    "premise: brain: Lacks a single verifiable numeric claim despite reversing expectations about GPS accuracy."
+   ],
+   "request": "exchange/rewrites/20261018/gps-einstein-fix__7df7a9d4.request.json",
+   "answer_path": "exchange/rewrites/20261018/gps-einstein-fix__7df7a9d4.answer.json"
+  },
+  {
    "id": "nobel-prize-discovery-age__3e12dc3c",
    "slug": "nobel-prize-discovery-age",
    "filed": "2026-10-18T11:46:45Z",
@@ -633,6 +623,16 @@
    ],
    "request": "exchange/rewrites/20261018/nobel-prize-discovery-age__3e12dc3c.request.json",
    "answer_path": "exchange/rewrites/20261018/nobel-prize-discovery-age__3e12dc3c.answer.json"
+  },
+  {
+   "id": "world-wetlands-lost__66020aa4",
+   "slug": "world-wetlands-lost",
+   "filed": "2026-10-18T11:46:45Z",
+   "why": [
+    "premise: brain: It does not clearly overturn a common viewer expectation, only presents a statistic."
+   ],
+   "request": "exchange/rewrites/20261018/world-wetlands-lost__66020aa4.request.json",
+   "answer_path": "exchange/rewrites/20261018/world-wetlands-lost__66020aa4.answer.json"
   },
   {
    "id": "competitive-eating-record-climb__e38b83da",
