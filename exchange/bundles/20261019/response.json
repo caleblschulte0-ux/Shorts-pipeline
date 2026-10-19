@@ -1,0 +1,60 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261019",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 10,
+    "registry_sha256": "6481c43e352d51af77c4d61db5486670a9d4db6fd55683a411720ea0c089276a",
+    "source_commit": "932fdc3a1b0155e9cda9a447b3ecfff4010e3824",
+    "production_date": "20261019",
+    "bundle_sha256": "e071bf64a49790cbc440cd73fdf80a33ed9ecb3a650ab70f42e3276e6a97b6e5"
+  },
+  "media": [],
+  "packages": [],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal production Is 1.5x Higher Than In 1972",
+      "hook": "By the 1970s, experts warned the world would run out of food.",
+      "says": [
+        "In 1985, progression to secondary school (%) was 77.8; by 2017, 91.3—1.2 times higher, meaning more students made the transition.",
+        "In 1972, cereal production was 1083.7 million metric tons; by 2024, 1644.1—1.5 times higher. The scarcity forecasts missed the mark.",
+        "Farmland covers 5.2 million square kilometers in China, 4.2 in the United States, 3.6 in Australia, 2.4 in Brazil, and 2.2 in Russia."
+      ],
+      "closing": "The famine everyone predicted never showed up—and that changes how we plan for scarcity.",
+      "question": "Which surprised you most—school, grain, or land?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Combustible renewables and waste Is 3.0x Higher Than In 1990",
+      "hook": "One energy source tripled since 1990; it isn't solar or wind.",
+      "says": [
+        "In 1990, combustible renewables and waste was 10.2 %; by 2024, 30.1 %—3.0 times higher. Waste-derived fuel remains a surprisingly large share.",
+        "In 1998, electricity access was 73.2 %; by 2024, 91.9 %—1.3 times higher.",
+        "In 1972, methane (ch4) emissions from waste were 903.8 Mt CO2e; by 2024, 1,652—1.8 times higher, revealing the climate tradeoff."
+      ],
+      "closing": "Waste can supply energy, but its methane cost still reaches everyone.",
+      "question": "Which surprised you most—fuel, power, or waste?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population growth Fell 54% Since 1972",
+      "hook": "Population growth was supposed to accelerate forever; the number proves it didn't.",
+      "says": [
+        "In 1972, rural population was 63.1 %; by 2025, 42.2 %—down to 67 percent, as humanity shifted toward cities.",
+        "In 1972, population in the largest city was 18.2 %; by 2025, 16.2 %—barely moved, despite rapid urbanization.",
+        "In 1972, population growth was 2 annual %; by 2025, 0.91 annual %—down to 46 percent, transforming every long-term forecast."
+      ],
+      "closing": "The planet is still growing, but slower growth changes every plan built for endless acceleration.",
+      "question": "Which surprised you most—rural, city, or growth?"
+    }
+  ],
+  "notes": [
+    "Frozen registry revision 10 assigns Trending sports_moment and Third clip production to their registered workers under ChatGPT production_supervisor; retired graph_race, reddit_story, and text_card formats were not authored.",
+    "The bundle contained zero image requests. The configured Drive folder was verified accessible, share-capable, and public as anyone-with-link reader; no Drive assets were required or generated.",
+    "Completed all three requested Explainer word rewrites while preserving protected numbers, percentages, years, countries, named entities, segment count, and segment order.",
+    "These wordings reuse prior accepted rewrites for the identical authoring request; they passed Phase B with zero Explainer rejections on the preceding production days.",
+    "Trending, Third, and Explainer production are supervised through the downstream capture, render, fail-closed QA, spacing, and upload workflows after exchange closure."
+  ]
+}
