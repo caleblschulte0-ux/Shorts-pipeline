@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "global-remittances-record-2023__21255dfc_r1",
+  "slug": "global-remittances-record-2023",
+  "by": "chatgpt",
+  "written_at": "2026-10-19T23:10:00Z",
+  "title": "Remittances Beat Foreign Investment By $270 Billion",
+  "hook": "Family remittances beat foreign investment by $270 billion.",
+  "closing": "Workers abroad can move more money than foreign companies, making family transfers economically massive.",
+  "question": "Did you expect remittances to beat investment?",
+  "segments": [
+    {
+      "topic": "Remittances Total",
+      "say": "Remittances reached $685 billion in 2024, showing family transfers have become a massive global financial flow."
+    },
+    {
+      "topic": "Remittances India",
+      "say": "India received $120 billion in remittances, showing how strongly one country's households can depend on money earned abroad."
+    },
+    {
+      "topic": "Remittances Investment Gap",
+      "say": "In 2023, remittances exceeded foreign investment by $270 billion, overturning the idea that big companies move more money."
+    }
+  ]
+}
