@@ -3,514 +3,6 @@
     {
       "date": "20261011",
       "dry_run": false,
-      "ts": "2026-10-11T12:55:20+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 130,
-        "with_retention": 113,
-        "with_curve": 14,
-        "fetched_at": "2026-10-11T08:46:11.435848+00:00"
-      },
-      "brain": {
-        "ok": 44,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261011-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 64,
-                "refused_shown": 20,
-                "scouted": [
-                  {
-                    "premise": "Buddha is promised his coin will pump beyond the multiverse, then loses $800 when Tony rugpulls him live.",
-                    "shape": "multi_stream",
-                    "n": 2
-                  },
-                  {
-                    "premise": "Professor Ludwig shuts down a heckler in his class, advises on handling hatefarming, then confronts TheMightyBA over the",
-                    "shape": "multi_stream",
-                    "n": 4
-                  },
-                  {
-                    "premise": "Jerma buys a motorcycle in GTA RP, gets baited into pressing F while riding it, and later blows up and dies.",
-                    "shape": "multi_stream",
-                    "n": 6
-                  },
-                  {
-                    "premise": "Payo gets upset over a duel and ends his stream, and Pikaboo sends a supportive message afterward.",
-                    "shape": "multi_streamer",
-                    "n": 2
-                  }
-                ],
-                "vod_arcs": 307,
-                "moments": 40,
-                "candidates": 504,
-                "pool": 2902,
-                "pool_with_vod": 1988,
-                "arc_sizes": [
-                  2,
-                  3,
-                  2,
-                  2,
-                  5,
-                  4,
-                  2,
-                  2,
-                  2,
-                  2
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:buddha",
-                  "outcome": "already_refused",
-                  "why": "2026-10-06: director judged: not a story \u2014 The provided clips do not contain any mention of a promised massive coin pump or a hopeful setup. They only show Buddha mumbling "
-                },
-                {
-                  "cluster": "esfandtv@momentpunchysarcasticskirretsmorc-wx0qyiuanwgib-mx",
-                  "outcome": "already_refused",
-                  "why": "2026-10-09: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@vod2821557824",
-                  "outcome": "already_refused",
-                  "why": "2026-10-08: director judged: not a story \u2014 The two sources are unrelated moments from one broadcast. The first is Kai role-playing a school authority who sends the hoodie g"
-                },
-                {
-                  "cluster": "scout:frontbacklot+ludwig/frontbacklot-ludwig-about-ludwig-2",
-                  "outcome": "narrative_failed",
-                  "why": "scores [58, 62] after 2 revision(s) (revision render failed) \u2014 @37s weak_payoff: The admission is flat and the cut runs on to a dangling 'Look, I think ultimately like,'. End on the clickbait admission, or on the line right after it, and cut the trailing 40-45s fragment.; @12s repetition: 'Pathetic'"
-                },
-                {
-                  "cluster": "esfandtv@momentobliqueexquisitepiecharlietheunicorn-r8zee3bs",
-                  "outcome": "already_refused",
-                  "why": "2026-10-09: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@vod2820831944",
-                  "outcome": "already_refused",
-                  "why": "2026-10-07: director judged: not a story \u2014 The three clips are consecutive bits from one Streamer University broadcast: Kai, playing university president, greets a line of "
-                },
-                {
-                  "cluster": "scout:cowboylover69+elbertson+harmless+jerma985+pokelawls+un",
-                  "outcome": "narrative_failed",
-                  "why": "scores [58, 66, 66] after 2 revision(s) \u2014 @0s confusing: The cold open shows a fire and a garbled 'No! Donny' before anyone knows who Jerma is, which bike it is, or what Donny means. Add a short line that Jerma is fueling his bike in GTA roleplay, or move t; @10s missing_context: There is no cause f"
-                },
-                {
-                  "cluster": "kaicenat@momentboldsuspiciouswatercressgrammarking-jifdf5_8p",
-                  "outcome": "already_refused",
-                  "why": "2026-10-08: every beat is from one source \u2014 a clip, not a story"
-                },
-                {
-                  "cluster": "alinity@vod2892098335",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: sources fail preflight: preflight:source only 5.8s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "scout:payo+pikabooirl/payo-pikabooirl-against-duel-2026w41",
-                  "outcome": "narrative_failed",
-                  "why": "scores [58, 62, 52] after 2 revision(s) \u2014 @0s confusing: Payo's shock at his character sheet is never tied to the duels or to Pikaboo's message. The setup seems to be about something else, such as a rank or gear score. Either show what is on the sheet (a ra; @6s missing_context: Pikaboo is shown col"
-                },
-                {
-                  "cluster": "kaicenat@momentcreativeflirtydunlinm4xheh-qmubymsa6rvij7jd",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: rendered; critic scored 58 after 2 revision(s) \u2014 @12s missing_context: Ron is never introduced. The overlay 'Kai told chat: get Ron in' gives a name but no reas"
-                },
-                {
-                  "cluster": "sodapoppin@vod2872274770",
-                  "outcome": "already_refused",
-                  "why": "2026-10-06: sources fail preflight: preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "kaicenat@momenttangentialdeterminedalmondspicyboy-oeitzou0ub",
-                  "outcome": "narrative_failed",
-                  "why": "scores [52, 52, 46] after 2 revision(s) \u2014 @15s pacing: From about 12s to 42s the picture is a static red slide (a Europe flag and 'UNIVERSITY 2027 HELD IN EUROPE', cropped so the text is cut off) while the audio runs on. The speaker is not shown for about; @50s weak_payoff: The cut ends mid-sentence"
-                },
-                {
-                  "cluster": "kaicenat@vod2872697283",
-                  "outcome": "already_refused",
-                  "why": "2026-10-07: director judged: not a story \u2014 The five clips are silent runway footage with no speech, so the sources never state a premise, a change, or a payoff. No frame id"
-                },
-                {
-                  "cluster": "ishowspeed@momentmagnificentcaringlapwinglitfam--majf-ezbaoy",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: director judged: not a story \u2014 This is a run of unrelated reactions, not a chain. Before the clip, Speed checks whether his mic is too loud and reacts to a TikT"
-                },
-                {
-                  "cluster": "plaqueboymax@vod2874466121",
-                  "outcome": "already_refused",
-                  "why": "2026-10-08: director judged: not a story \u2014 The three clips are consecutive moments from one stream (11m, 27m, 32m in), but they don't form a setup, escalation and payoff. C"
-                },
-                {
-                  "cluster": "squeex@momentfunencouragingopossumttours-1nemuxpg-iszrxpe/sq",
-                  "outcome": "narrative_failed",
-                  "why": "scores [66, 66, 66] after 2 revision(s) \u2014 @20s confusing: The shooting beat (about 11-20s) has no speech, and the next line, 'mind's been hit. It's my eyes!', is garbled and unattributed. Trim or replace it with a cleaner reaction line, or add a short overla; @2s missing_context: The intro text appe"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.55,
-              "why": "cooking moment, mild payoff",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Casual order chatter, mild amusement, no",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Lacy Has To Make A Burger For Sadie After They Run Out Of Chicken \ud83d\ude02"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.62,
-              "problems": [
-                "The sharp picture fills only about a third of the canvas height, with the subjects fairly small",
-                "The top third is a lightly blurred zoomed copy of the picture, so it reads as a near-duplicate of the middle strip",
-                "The word captions sit in the blurred area above the hook line, so they are slightly disconnected from the speakers"
-              ]
-            }
-          },
-          "took_s": 213.4
-        },
-        {
-          "slug": "clip-20261011-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261011-2",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, unknown event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Shocked reaction, cause unseen, ends emp",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Alinity Screams 'Holy WHAT?!' And Needs A Second After This"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.6,
-              "problems": [
-                "About 4 seconds (6.8s-8.9s) show an empty room with no person. This fits the joke, since she walks off, but it is a dead",
-                "At 3.7s she is bent over and partly cropped at the left edge.",
-                "The sharp picture fills roughly three quarters of the canvas, which is acceptable. The overlays do not cover her face."
-              ]
-            }
-          },
-          "took_s": 93.8
-        },
-        {
-          "slug": "clip-20261011-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261011-3",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "vague help request",
-              "blind": false
-            },
-            "content": {
-              "score": 0.68,
-              "why": "Ringside WWE reaction, visible slam, cha",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Cinna Hears A Thunder Clap And Tiffy Needs Help Right Now"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.75,
-              "problems": [
-                "Hook card overlaps the lower part of the picture and sits near a hand in a few frames, but it covers no faces or key act",
-                "Some mid-clip frames show only a hand or an empty ring, so there is no clear subject in them"
-              ]
-            }
-          },
-          "took_s": 119.1
-        },
-        {
-          "slug": "clip-20261011-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261011-4",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "implies a dispute, unclear",
-              "blind": false
-            },
-            "content": {
-              "score": 0.55,
-              "why": "Beef callout, but no visible event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat Demands Proof: \"Where Is Your Proof?\" After Being Told 'Part Two'"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": [
-                "Hook card sits over the lower torso and hands in some frames, but never covers the face",
-                "Hand briefly blurs and covers part of the face at 15.7s and 17.5s, which is the streamer's own motion and not a renderin"
-              ]
-            }
-          },
-          "took_s": 128.5
-        },
-        {
-          "slug": "clip-20261011-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261011-5",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "vague title, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.68,
-              "why": "Giant absurd poster unveiled, visible sh",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Erobb221 Can't Believe How Big This Thing Is And Asks If It's Real"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "The sharp picture is a fairly thin strip across the middle, so the subject is smallish on a phone.",
-                "The streamer is sometimes partly cropped at the left edge.",
-                "The word captions sit in the blurred bottom padding. They don't cover the face or the action."
-              ]
-            }
-          },
-          "took_s": 144.8
-        },
-        {
-          "slug": "clip-20261011-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261011-6",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "no title info, name pull",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "Storytelling anecdote, no visible event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Alinity Is About To Land In Austin And Has To Pee Right Now"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": []
-            }
-          },
-          "took_s": 158.9
-        }
-      ]
-    },
-    {
-      "date": "20261011",
-      "dry_run": false,
       "ts": "2026-10-11T12:57:44+00:00",
       "feedback": {
         "snapshot": true,
@@ -8081,6 +7573,120 @@
             }
           },
           "took_s": 0.5
+        },
+        {
+          "slug": "clip-20261019-6",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        }
+      ]
+    },
+    {
+      "date": "20261019",
+      "dry_run": false,
+      "ts": "2026-10-19T11:43:48+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 15,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 139,
+        "with_retention": 119,
+        "with_curve": 15,
+        "fetched_at": "2026-10-19T08:46:26.999196+00:00"
+      },
+      "brain": {
+        "ok": 1,
+        "fail": 0,
+        "limited_at": "2026-10-19T11:43:47+00:00",
+        "limit_detail": "You've hit your weekly limit \u00b7 resets Oct 21, 12am (UTC)"
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:kyedae": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261019-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261019-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261019-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261019-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261019-5",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 9.5
         },
         {
           "slug": "clip-20261019-6",
