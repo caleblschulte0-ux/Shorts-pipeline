@@ -14542,13 +14542,41 @@
       "director_cut": true
     },
     "clip-20261019-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/CallousPoliteMarjoramShazBotstix-GkzAD8Ce3ziB6q_L",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/zW-hP-_04Ic",
       "title": "Lacy Lost His LAMBO And Is Caught Driving This",
       "kind": "twitch_clip",
-      "ts": "2026-10-19T11:38:32.993491+00:00",
+      "ts": "2026-10-19T11:38:39.860367+00:00",
+      "uploaded_at": "2026-10-19T11:38:39.860381+00:00",
+      "publish_at": "2026-10-19T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261019-lacy-lost-his-lambo-and-is-caught-driving-this-f7a3bafd",
+        "tiktok": "queued for 2026-10-19T20:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/CallousPoliteMarjoramShazBotstix-GkzAD8Ce3ziB6q_L",
+      "streamer": "lacy",
+      "series": "drama",
+      "hook": "Lacy caught driving a Honda \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2165,
+      "banger": 0.35,
+      "cut": {
+        "start": 1.3,
+        "end": 20.2
+      },
+      "director_cut": true
+    },
+    "clip-20261019-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SmoggyGrotesqueAmazonKappaClaus-zUM7kW26OBpWIQLW",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Struggles Through Pain And Keeps Pushing",
+      "kind": "twitch_clip",
+      "ts": "2026-10-19T11:40:50.687221+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
