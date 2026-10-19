@@ -1,0 +1,124 @@
+{
+ "date": "2026-10-19",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "soccer",
+   "who": "Blandford United Royals u9s",
+   "why": "A children's soccer team talk is hilariously interrupted by a passing steam train.",
+   "post_title": "[BBC Dorset] the team talk of Blandford United Royals u9s is interrupted when a steam train surprised the kids",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1x7da4o/bbc_dorset_the_team_talk_of_blandford_united/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1x7da4o/bbc_dorset_the_team_talk_of_blandford_united",
+   "title": "Blandford United Royals u9s Shocked by Steam Train During Team Talk",
+   "hook": "Team talk interrupted \ud83d\ude82",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 21, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 21, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many"
+  },
+  {
+   "sub": "nba",
+   "who": "Scottie Barnes",
+   "why": "A player's pants hilariously fall down during a pre-game dunk.",
+   "post_title": "Scottie Barnes\u2019 pants fall down during a pre-game 360 dunk.",
+   "upvotes": 0,
+   "url": "https://streamable.com/bf2mro",
+   "topic": "https://www.reddit.com/r/nba/comments/1x61r59/scottie_barnes_pants_fall_down_during_a_pregame",
+   "skipped": "too short: the post runs 10.8s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Tom Brady",
+   "why": "A legendary quarterback jokes with his teammate about a memorable blunder.",
+   "post_title": "[Highlight] Tom Brady joking with Mike Evans about Mike throwing Tom\u2019s 600th career TD pass into the stands",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x5f6sx/highlight_tom_brady_joking_with_mike_evans_about/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x5f6sx/highlight_tom_brady_joking_with_mike_evans_about",
+   "title": "Tom Brady Jokes About 600th TD Pass With Mike Evans",
+   "hook": "Tom Brady teases Mike Evans \ud83d\ude04",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 21, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 21, 12am (UTC)\\n)\", 'gemini: out of budg"
+  },
+  {
+   "sub": "nfl",
+   "who": "Sam Cosmi",
+   "why": "A player expresses extreme frustration after a tie game.",
+   "post_title": "[Highlight] Washington Commanders guard Sam Cosmi leaving the field after the 27-27 tie against the Giants: \"What the fuck are we doing? What are we doing?\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x49c92/highlight_washington_commanders_guard_sam_cosmi/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x49c92/highlight_washington_commanders_guard_sam_cosmi",
+   "skipped": "too short: the post runs 10.8s (< 15s)"
+  },
+  {
+   "sub": "soccer",
+   "who": "Announcer",
+   "why": "An announcer takes matters into his own hands to get a fan out of the camera's view.",
+   "post_title": "Announcer has to physically smack a fan on the head to get him to duck out of the camera's view during a goal play between Santa Mar\u00eda and Cabildo",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1x5g98c/announcer_has_to_physically_smack_a_fan_on_the/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1x5g98c/announcer_has_to_physically_smack_a_fan_on_the",
+   "title": "Announcer Smacks Fan to Clear Camera During Goal",
+   "hook": "Announcer forces fan off camera \ud83d\ude33",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 21, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 21, 12am (UTC)\\n)\", 'gemini: out of budg"
+  }
+ ],
+ "already_today": 2,
+ "pool": 104,
+ "already_posted": 9,
+ "shipped": 0
+}
