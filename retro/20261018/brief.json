@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261018",
-  "generated_at": "2026-10-18T23:31:05Z",
+  "generated_at": "2026-10-19T00:30:59Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 24.76,
+          "days": 24.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 23.76,
+          "days": 23.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1713,10 +1713,13 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "445dcfd",
-    "commits_since": "2026-10-17",
+    "head": "a71a5ee",
+    "commits_since": "2026-10-18",
     "commit_count": 50,
     "commits": [
+      "a71a5ee claim: mailbox verdicts 2026-10-19T00:21Z [skip ci]",
+      "0c460a2 claim: mailbox verdicts 2026-10-18T23:48Z [skip ci]",
+      "b7a675a retro: brief + triage for 20261018 [skip ci]",
       "445dcfd claim: mailbox verdicts 2026-10-18T22:48Z [skip ci]",
       "fb61b6e explainer: update posted log + analytics [skip ci]",
       "0eb5a3e claim: mailbox verdicts 2026-10-18T21:40Z [skip ci]",
@@ -1753,10 +1756,7 @@
       "7c00dc5 explainer: posted saturn-rings-vanishing [skip ci]",
       "a792f1f explainer: claim upload slot saturn-rings-vanishing [skip ci]",
       "da3cea7 watchdog: phase A readiness 20261018 [skip ci]",
-      "032d9ba watchdog: phase A readiness 20261018 [skip ci]",
-      "f4c081e claim: mailbox verdicts 2026-10-18T13:47Z [skip ci]",
-      "37c6c66 watchdog: chatgpt task verdicts 20261018 [skip ci]",
-      "5449a5d claim: mailbox verdicts 2026-10-18T12:48Z [skip ci]"
+      "032d9ba watchdog: phase A readiness 20261018 [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
