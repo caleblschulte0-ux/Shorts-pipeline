@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "gps-einstein-fix__7df7a9d4",
+  "slug": "gps-einstein-fix",
+  "by": "chatgpt",
+  "written_at": "2026-10-19T23:08:00Z",
+  "title": "Why GPS Would Drift 10 Kilometers Without Einstein",
+  "hook": "Without relativity, GPS misses by 10 kilometers in one day.",
+  "closing": "Relativity is not abstract here; it is why turn-by-turn directions land on the right street.",
+  "question": "Would you trust GPS without relativity?",
+  "segments": [
+    {
+      "topic": "GPS Clock Drift",
+      "say": "GPS satellite clocks gain 38 microseconds each day, enough to make tiny timing errors grow into navigation errors."
+    },
+    {
+      "topic": "GPS Error Grows",
+      "say": "Without the relativity correction, GPS position error reaches 10 kilometers, turning precise navigation into the wrong part of town."
+    },
+    {
+      "topic": "GPS Fix Works",
+      "say": "With the correction, a typical GPS phone can land within 4.9 meters, which is why everyday maps stay useful."
+    }
+  ]
+}
