@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "iss-deorbit-2031__1ecc9d62",
+  "slug": "iss-deorbit-2031",
+  "by": "chatgpt",
+  "written_at": "2026-10-19T23:08:00Z",
+  "title": "Why The 24-Year ISS Era Ends On Purpose",
+  "hook": "NASA will spend $843 million to push the ISS down.",
+  "closing": "The ISS ends because aging orbit costs money, and its replacement choices shape what humans do next.",
+  "question": "What should replace the ISS?",
+  "segments": [
+    {
+      "topic": "ISS Record",
+      "say": "The ISS has carried people continuously for 24 years, turning one station into humanity's longest-running home in orbit."
+    },
+    {
+      "topic": "ISS Annual Cost",
+      "say": "The ISS costs NASA $3 billion each year, making retirement part of the mission's financial reality."
+    },
+    {
+      "topic": "ISS Deorbit Deal",
+      "say": "NASA's ISS deorbit vehicle contract is $843 million, paying for the final push that will bring the station down safely."
+    }
+  ]
+}
