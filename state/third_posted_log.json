@@ -14486,13 +14486,41 @@
       "ts": "2026-10-18T14:33:24.183991+00:00"
     },
     "clip-20261019-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/sodapoppin/clip/TrustworthyWimpyApeWow-pYSUI7tQ8Ar2YUrU",
-      "story_key": null,
-      "streamer": "sodapoppin",
+      "url": "https://youtube.com/shorts/GcsPDpkVJCQ",
       "title": "Sodapoppin Gets SMOKED After This Crit",
       "kind": "twitch_clip",
-      "ts": "2026-10-19T11:32:48.815900+00:00",
+      "ts": "2026-10-19T11:32:58.399275+00:00",
+      "uploaded_at": "2026-10-19T11:32:58.399289+00:00",
+      "publish_at": "2026-10-19T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261019-sodapoppin-gets-smoked-after-this-crit-8910eef0",
+        "tiktok": "queued for 2026-10-19T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/TrustworthyWimpyApeWow-pYSUI7tQ8Ar2YUrU",
+      "streamer": "sodapoppin",
+      "series": "fail",
+      "hook": "Soda gets crit and loses duel",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 9101,
+      "banger": 0.25,
+      "cut": {
+        "start": 20.8,
+        "end": 37.6
+      },
+      "director_cut": true
+    },
+    "clip-20261019-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/cinna/clip/CharmingDeafLlamaNerfRedBlaster-FiOopz3Owcqit_SS",
+      "story_key": null,
+      "streamer": "cinna",
+      "title": "Cinna: Kalita UNLEASHES On Dean and Larry After This Accusation",
+      "kind": "twitch_clip",
+      "ts": "2026-10-19T11:35:34.869615+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
