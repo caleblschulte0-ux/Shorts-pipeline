@@ -1,107 +1,68 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "junk_imagery": {
-   "count": 8,
+  "temporal_gate": {
+   "count": 9,
    "stories": {
-    "saturn-rings-vanishing": 2,
-    "sports_kevin_garnett_ves_retiring": 2,
-    "sports_steve_kerr_ng_lookalike": 3,
+    "longform:foreign-aid-never-broke-0-32-of-health-spending": 2,
+    "vertical-farming-bust": 1,
+    "rubiks-cube-record-vs-robot": 6
+   },
+   "timestamps": [
+    "2026-10-18T17:26:02+00:00",
+    "2026-10-18T17:24:01+00:00",
+    "2026-10-18T19:21:57+00:00",
+    "2026-10-19T12:02:28+00:00",
+    "2026-10-19T13:59:30+00:00",
+    "2026-10-19T14:29:54+00:00",
+    "2026-10-19T17:48:52+00:00",
+    "2026-10-19T19:53:41+00:00",
+    "2026-10-19T22:18:59+00:00"
+   ],
+   "examples": [
+    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
+    "temporal_gate: max_dup_run 47 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=24.29s of 32.71s (~2.0s frozen)",
+    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+   ],
+   "recurred_after_fix": false
+  },
+  "junk_imagery": {
+   "count": 4,
+   "stories": {
+    "sports_steve_kerr_ng_lookalike": 2,
+    "saturn-rings-vanishing": 1,
     "vertical-farming-bust": 1
    },
    "timestamps": [
-    "2026-10-18T11:38:47+00:00",
-    "2026-10-18T11:56:37+00:00",
-    "2026-10-18T12:18:23+00:00",
-    "2026-10-18T12:20:48+00:00",
     "2026-10-18T12:35:51+00:00",
     "2026-10-18T14:10:34+00:00",
     "2026-10-18T15:15:59+00:00",
     "2026-10-18T20:33:48+00:00"
    ],
    "examples": [
-    "junk_imagery: payoff@-0.4: the last frame cuts to an empty dark gradient where Data holds a blank yellow price tag, a stray prop that has nothing to do with Saturn",
-    "junk_imagery: hook@0.3 to mid2 (0-14s): the on-screen line says 'Garnett hears his jersey is going up', but the man on screen is the podcast host, not Kevin Garnett. Garnett does not appear until mid3",
-    "junk_imagery: hook@0.3 through mid2 (t=14.3s): the line says 'KG reacts to his jersey retirement', but the man on screen is a podcast host in a black tee holding a basketball, not Kevin Garnett. KG fi"
+    "junk_imagery: hook@0.3 through mid4 show only one Kerr-looking man, a grey-haired fan carrying a beer through the seats. No frame shows Kerr and the look-alike together or Kerr doing a double take, so",
+    "junk_imagery: payoff@-0.4: the Saturn scene is gone and Data stands alone on a blank gradient holding an empty yellow price tag that has nothing to do with Saturn's rings (the fallback prop).",
+    "junk_imagery: hook@0.3-mid5: the on-screen line promises a 'Steve Curry look-alike', but the title and footage are about Kerr's OWN look-alike (mid3 shows a grey-haired Kerr-like fan in the crowd). Th"
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
-   "count": 6,
+   "count": 4,
    "stories": {
-    "saturn-rings-vanishing": 3,
-    "sports_kevin_garnett_ves_retiring": 1,
     "nobel-prize-discovery-age": 1,
+    "saturn-rings-vanishing": 2,
     "blockbuster-to-one-store": 1
    },
    "timestamps": [
-    "2026-10-18T11:38:47+00:00",
-    "2026-10-18T11:56:37+00:00",
     "2026-10-18T12:29:50+00:00",
     "2026-10-18T13:55:21+00:00",
     "2026-10-18T14:10:34+00:00",
     "2026-10-18T21:14:29+00:00"
    ],
    "examples": [
-    "empty_void: payoff@-0.4: the final frame is almost entirely an empty dark gradient with only a small Data at the bottom. The video ends on a void instead of the Saturn shot",
-    "empty_void: Every frame from hook@0.3 to payoff@-0.4 has blurred dark letterbox bands above and below the footage, about 25% of the height. In mid0-mid2 the footage also shrinks to a wide shot, so the",
-    "empty_void: payoff@-0.4 (t=32.57s) cuts to an empty dark gradient filling the frame, with only Data holding a blank price tag at the bottom. The video's last frame is a void."
-   ],
-   "recurred_after_fix": false
-  },
-  "dead_air": {
-   "count": 3,
-   "stories": {
-    "sports_joaquin_buckley_ds_with_dana": 1,
-    "sports_steve_kerr_ng_lookalike": 1,
-    "blockbuster-to-one-store": 1
-   },
-   "timestamps": [
-    "2026-10-18T11:43:55+00:00",
-    "2026-10-18T12:20:48+00:00",
-    "2026-10-18T21:14:29+00:00"
-   ],
-   "examples": [
-    "dead_air: From mid3 (23.8s) to payoff@-0.4 (39.6s) it is a static split of the reporter and a silent Buckley staring. The silence is the point, but about 15s of nobody speaking with no cut goes on too",
-    "dead_air: mid1-mid4 (about 9-31s): long stretches of wandering crowd footage where the promised moment never happens. The phone camera moves, but nothing meaningful happens and the captions are fragme",
-    "dead_air: The hook holds almost the same frame from hook@0.3 to seg0:end (about 0 to 4s+); only the reels and Data's pose change slightly. The measured max_dup_run is at 10.0s, held_s is 10.46, and th"
-   ],
-   "recurred_after_fix": false
-  },
-  "other": {
-   "count": 3,
-   "stories": {
-    "sports_joaquin_buckley_ds_with_dana": 1,
-    "vertical-farming-bust": 1,
-    "blockbuster-to-one-store": 1
-   },
-   "timestamps": [
-    "2026-10-18T11:43:55+00:00",
-    "2026-10-18T20:33:48+00:00",
-    "2026-10-18T21:14:29+00:00"
-   ],
-   "examples": [
-    "unreadable: The source's own burned-in captions sit right on top of our line: 'COACH HAS BEEN' at mid1, 'CELEBRATION OF ALL' at mid3, 'SAYS MORE THAN' at mid5 and 'ANY WORDS' at payoff@-0.4. Two capti",
-    "unreadable: seg4:end and payoff@-1.8: the closing caption 'Hype is not a harvest.' is printed on top of the '-91%' headline, so the two collide. In seg4:start the caption block sits flush on the 'Indo",
-    "unreadable: In seg4:start, seg4:mid and payoff@-1.8, the closing line 'Even giants can vanish fast when habits change...' is drawn on top of floating white light bars that cut through 'fast', 'change,"
-   ],
-   "recurred_after_fix": false
-  },
-  "temporal_gate": {
-   "count": 3,
-   "stories": {
-    "longform:foreign-aid-never-broke-0-32-of-health-spending": 2,
-    "vertical-farming-bust": 1
-   },
-   "timestamps": [
-    "2026-10-18T17:26:02+00:00",
-    "2026-10-18T17:24:01+00:00",
-    "2026-10-18T19:21:57+00:00"
-   ],
-   "examples": [
-    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "temporal_gate: max_dup_run 47 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=24.29s of 32.71s (~2.0s frozen)",
-    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+    "empty_void: payoff@-0.4 (t=32.57s) cuts to an empty dark gradient filling the frame, with only Data holding a blank price tag at the bottom. The video's last frame is a void.",
+    "empty_void: payoff@-0.4 (t=29.2s): the frame is almost entirely an empty dark gradient, with only Data near the bottom holding a blank yellow price tag. The video ends on a dead frame.",
+    "empty_void: payoff@-0.4 (t=29.2s): the last frame is about 85% empty dark navy gradient with one small Data at the bottom and no subject. The video ends on a void."
    ],
    "recurred_after_fix": false
   },
@@ -120,28 +81,57 @@
     "empty_void: payoff@-0.4: almost the whole frame is a dark navy void with one small mascot at the bottom, no scene and no text"
    ],
    "recurred_after_fix": false
+  },
+  "other": {
+   "count": 2,
+   "stories": {
+    "vertical-farming-bust": 1,
+    "blockbuster-to-one-store": 1
+   },
+   "timestamps": [
+    "2026-10-18T20:33:48+00:00",
+    "2026-10-18T21:14:29+00:00"
+   ],
+   "examples": [
+    "unreadable: seg4:end and payoff@-1.8: the closing caption 'Hype is not a harvest.' is printed on top of the '-91%' headline, so the two collide. In seg4:start the caption block sits flush on the 'Indo",
+    "unreadable: In seg4:start, seg4:mid and payoff@-1.8, the closing line 'Even giants can vanish fast when habits change...' is drawn on top of floating white light bars that cut through 'fast', 'change,"
+   ],
+   "recurred_after_fix": false
+  },
+  "dead_air": {
+   "count": 1,
+   "stories": {
+    "blockbuster-to-one-store": 1
+   },
+   "timestamps": [
+    "2026-10-18T21:14:29+00:00"
+   ],
+   "examples": [
+    "dead_air: The hook holds almost the same frame from hook@0.3 to seg0:end (about 0 to 4s+); only the reels and Data's pose change slightly. The measured max_dup_run is at 10.0s, held_s is 10.46, and th"
+   ],
+   "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
    "median": 2,
    "min": 0,
-   "max": 3
-  },
-  "data_demo": {
-   "median": 2,
-   "min": 0,
    "max": 4
   },
+  "data_demo": {
+   "median": 1,
+   "min": 0,
+   "max": 5
+  },
   "mascot": {
-   "median": 4,
+   "median": 3,
    "min": 0,
    "max": 4
   },
   "craft": {
-   "median": 2,
+   "median": 1,
    "min": 0,
-   "max": 2
+   "max": 3
   },
   "pace": {
    "median": 1,
@@ -151,7 +141,7 @@
   "payoff": {
    "median": 1,
    "min": 0,
-   "max": 1
+   "max": 2
   },
   "temporal_craft": {
    "median": 3,
@@ -160,14 +150,6 @@
   }
  },
  "scores": [
-  71,
-  79,
-  57,
-  66,
-  70,
-  61,
-  53,
-  53,
   57,
   53,
   61,
@@ -179,6 +161,14 @@
   14,
   14,
   75,
-  66
+  66,
+  95,
+  78,
+  14,
+  14,
+  14,
+  14,
+  14,
+  14
  ]
 }
