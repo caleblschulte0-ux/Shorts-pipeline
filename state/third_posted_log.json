@@ -14514,13 +14514,41 @@
       "director_cut": true
     },
     "clip-20261019-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/cinna/clip/CharmingDeafLlamaNerfRedBlaster-FiOopz3Owcqit_SS",
-      "story_key": null,
-      "streamer": "cinna",
+      "url": "https://youtube.com/shorts/RJKEoDl3X_w",
       "title": "Cinna: Kalita UNLEASHES On Dean and Larry After This Accusation",
       "kind": "twitch_clip",
-      "ts": "2026-10-19T11:35:34.869615+00:00",
+      "ts": "2026-10-19T11:35:40.887602+00:00",
+      "uploaded_at": "2026-10-19T11:35:40.887616+00:00",
+      "publish_at": "2026-10-19T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261019-cinna-kalita-unleashes-on-dean-and-larry-after-t-02567593",
+        "tiktok": "queued for 2026-10-19T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/cinna/clip/CharmingDeafLlamaNerfRedBlaster-FiOopz3Owcqit_SS",
+      "streamer": "cinna",
+      "series": "argument",
+      "hook": "Kalita goes off on Dean and Larry \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 6474,
+      "banger": 0.3,
+      "cut": {
+        "start": 9.3,
+        "end": 30.0
+      },
+      "director_cut": true
+    },
+    "clip-20261019-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/CallousPoliteMarjoramShazBotstix-GkzAD8Ce3ziB6q_L",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Lost His LAMBO And Is Caught Driving This",
+      "kind": "twitch_clip",
+      "ts": "2026-10-19T11:38:32.993491+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
