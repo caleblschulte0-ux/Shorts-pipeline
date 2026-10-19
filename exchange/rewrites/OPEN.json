@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-19T17:48:59Z",
+ "updated": "2026-10-19T22:19:05Z",
  "open": [
+  {
+   "id": "kelp-forest-sea-star-collapse__45eeb910",
+   "slug": "kelp-forest-sea-star-collapse",
+   "filed": "2026-10-19T22:19:05Z",
+   "why": [
+    "thesis: seg0 ('Sea star bodyguards vanish') has no bridge to the headline ('California Lost 96% Of Its Kelp Forests. Blame One Missing Predator.') — brain: no genuine bridge to the headline"
+   ],
+   "request": "exchange/rewrites/20261019/kelp-forest-sea-star-collapse__45eeb910.request.json",
+   "answer_path": "exchange/rewrites/20261019/kelp-forest-sea-star-collapse__45eeb910.answer.json"
+  },
   {
    "id": "iss-deorbit-2031__1ecc9d62",
    "slug": "iss-deorbit-2031",
@@ -613,16 +623,6 @@
    ],
    "request": "exchange/rewrites/20261018/saturn-rings-vanishing__acf09995.request.json",
    "answer_path": "exchange/rewrites/20261018/saturn-rings-vanishing__acf09995.answer.json"
-  },
-  {
-   "id": "kelp-forest-sea-star-collapse__a960cf2d",
-   "slug": "kelp-forest-sea-star-collapse",
-   "filed": "2026-10-18T11:46:49Z",
-   "why": [
-    "premise: brain: Uses multiple percentages and lacks a single consequential verifiable number, failing the strict premise criteria."
-   ],
-   "request": "exchange/rewrites/20261018/kelp-forest-sea-star-collapse__a960cf2d.request.json",
-   "answer_path": "exchange/rewrites/20261018/kelp-forest-sea-star-collapse__a960cf2d.answer.json"
   },
   {
    "id": "self-storage-outnumbers-starbucks__97599610",
