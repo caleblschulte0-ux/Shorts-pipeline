@@ -1,0 +1,126 @@
+{
+ "date": "2026-10-19",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Messi",
+   "why": "A fan in Paris snatches a signed Messi jersey and captain's armband on camera.",
+   "post_title": "Guy in Paris steals a signed Messi jersey and captain's armband",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1x9frtz/guy_in_paris_steals_a_signed_messi_jersey_and/",
+   "topic": "https://www.reddit.com/r/sports/comments/1x9frtz/guy_in_paris_steals_a_signed_messi_jersey_and",
+   "skipped": "too short: the post runs 10.2s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Kenny Atkinson",
+   "why": "The Cavs coach steps onto the floor to take a half\u2011court shot himself.",
+   "post_title": "Cavs struggle to make a half court shot and Kenny Atkinson has to take matters in his own hands",
+   "upvotes": 0,
+   "url": "https://streamable.com/fvjdpd",
+   "topic": "https://www.reddit.com/r/nba/comments/1x942k0/cavs_struggle_to_make_a_half_court_shot_and_kenny",
+   "title": "Kenny Atkinson Steps In After Cavs Can't Make The Half-Court Shot",
+   "hook": "Kenny Atkinson takes matters into his own hands",
+   "ledger": {
+    "moves": [
+     "whoa@10.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 21, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 21, 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many"
+  },
+  {
+   "sub": "nba",
+   "who": "Scottie Barnes",
+   "why": "Barnes' pants hilariously drop during a pre\u2011game 360 dunk.",
+   "post_title": "Scottie Barnes\u2019 pants fall down during a pre-game 360 dunk.",
+   "upvotes": 0,
+   "url": "https://streamable.com/bf2mro",
+   "topic": "https://www.reddit.com/r/nba/comments/1x61r59/scottie_barnes_pants_fall_down_during_a_pregame",
+   "skipped": "too short: the post runs 10.8s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Luka Doncic",
+   "why": "Doncic watches a fan dancing in a jersey and gives a surprised thumbs\u2011up.",
+   "post_title": "Luka Doncic seems to be impressed by a Lakers fan dancing, wearing his jersey. \"He's good\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/8tvy83",
+   "topic": "https://www.reddit.com/r/nba/comments/1x5iucq/luka_doncic_seems_to_be_impressed_by_a_lakers_fan",
+   "title": "Luka Doncic Is Impressed By Lakers Fan Dancing in His Jersey",
+   "hook": "Luka smiles at a dancing fan",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 21, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 21, 12am (UTC)\\n)\", 'gemini: out of budg"
+  },
+  {
+   "sub": "nfl",
+   "who": "Tom Brady",
+   "why": "Brady jokes with Mike Evans about the crazy 600th TD pass landing in the stands.",
+   "post_title": "[Highlight] Tom Brady joking with Mike Evans about Mike throwing Tom\u2019s 600th career TD pass into the stands",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x5f6sx/highlight_tom_brady_joking_with_mike_evans_about/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x5f6sx/highlight_tom_brady_joking_with_mike_evans_about",
+   "title": "Tom Brady Jokes About 600th TD Pass With Mike Evans",
+   "hook": "Tom Brady teases Mike Evans on 600th TD \ud83d\ude04",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 21, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 21, 12am (UTC)\\n)\", 'gemini: out of budg"
+  }
+ ],
+ "already_today": 2,
+ "pool": 92,
+ "already_posted": 8,
+ "shipped": 0
+}
