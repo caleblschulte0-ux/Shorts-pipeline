@@ -29712,10 +29712,10 @@
   },
   {
    "slug": "kelp-forest-sea-star-collapse",
-   "title": "California Lost 96% Of Its Kelp Forests. Blame One Missing Predator.",
-   "hook": "California's kelp forests are being eaten alive, and it might already be too late.",
-   "closing": "Lose one predator and a whole ocean forest falls. Nature's balance is thinner than you think.",
-   "question": "Could one disease topple a forest? Tell me.",
+   "title": "Why 96% Of Kelp Vanished After Sea Stars Collapsed",
+   "hook": "California lost 96% of kelp after its key predator disappeared.",
+   "closing": "Kelp protects entire food webs, so losing one predator can reshape a coast.",
+   "question": "Can one predator save a forest?",
    "caption": "In 2013, a mystery wasting disease killed up to 99% of Pacific sunflower sea stars. Without them, purple urchins exploded more than 10,000% -- and mowed California's north coast kelp forests down to almost nothing: a 96% loss. One missing predator, one collapsed ecosystem. Did you know this? 👇",
    "hashtags": [
     "kelpforest",
@@ -29740,8 +29740,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE DIE-OFF",
-     "topic": "Sea star bodyguards vanish",
-     "say": "A mystery disease left about one sunflower sea star in a hundred alive. They were the kelp's bodyguards.",
+     "topic": "Kelp Predators Vanish",
+     "say": "Sunflower sea stars fell 99%, removing the predator that kept kelp-eating urchins in check.",
      "scene": {
       "mechanic": "sea-star-vanishing-grid",
       "concept": "a hundred sunflower sea stars hang in a grid and ninety-nine drop away, leaving a single ringed survivor",
@@ -29756,8 +29756,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE EXPLOSION",
-     "topic": "Urchins eat kelp unchecked",
-     "say": "With no sea stars, purple urchins multiplied about a hundred times over. Nothing was left to eat them.",
+     "topic": "Kelp Urchins Surge",
+     "say": "Purple urchins surged 101 times, so grazing pressure exploded after their main predator vanished.",
      "scene": {
       "mechanic": "urchin-bloom-swarm",
       "concept": "one purple urchin spawns a swarm that spirals outward until the count reads a hundred times the start",
@@ -29774,8 +29774,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "3 · THE COLLAPSE",
-     "topic": "Kelp forests collapse",
-     "say": "Urchins ate the kelp to almost nothing. The North Coast lost 96% of its forest, home to fish, crabs and abalone.",
+     "topic": "Kelp Forest Collapse",
+     "say": "Kelp canopy fell 96%, stripping away habitat that supports the North Coast food web.",
      "scene": {
       "mechanic": "kelp-stalks-mown",
       "concept": "a sixteen-stalk kelp forest is mown down by the urchins at its base until only stubs remain, 4% of the canopy",
@@ -29784,8 +29784,8 @@
     }
    ],
    "hook_was": "A mystery disease wiped out billions of sea stars in 2013.",
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-18T19:46:03Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-19T23:03:33Z",
    "retold": "retell/v3"
   },
   {
