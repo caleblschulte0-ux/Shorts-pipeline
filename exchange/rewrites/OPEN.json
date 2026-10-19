@@ -1,7 +1,97 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-19T11:44:43Z",
+ "updated": "2026-10-19T12:10:13Z",
  "open": [
+  {
+   "id": "cursive-handwriting-comeback__90876971",
+   "slug": "cursive-handwriting-comeback",
+   "filed": "2026-10-19T12:10:13Z",
+   "why": [
+    "premise: brain: Uses multiple numbers instead of a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261019/cursive-handwriting-comeback__90876971.request.json",
+   "answer_path": "exchange/rewrites/20261019/cursive-handwriting-comeback__90876971.answer.json"
+  },
+  {
+   "id": "global-remittances-record-2023__21255dfc_r1",
+   "slug": "global-remittances-record-2023",
+   "filed": "2026-10-19T12:10:13Z",
+   "why": [
+    "premise: brain: Unclear reversal of a viewer expectation; the premise relies on a vague claim without a clear, specific expectation flip."
+   ],
+   "request": "exchange/rewrites/20261019/global-remittances-record-2023__21255dfc_r1.request.json",
+   "answer_path": "exchange/rewrites/20261019/global-remittances-record-2023__21255dfc_r1.answer.json"
+  },
+  {
+   "id": "dog-breed-popularity-flip__ed8cf925",
+   "slug": "dog-breed-popularity-flip",
+   "filed": "2026-10-19T12:10:13Z",
+   "why": [
+    "premise: brain: The claim hinges on an unverified, sensational number without clear evidence, making it a weak premise."
+   ],
+   "request": "exchange/rewrites/20261019/dog-breed-popularity-flip__ed8cf925.request.json",
+   "answer_path": "exchange/rewrites/20261019/dog-breed-popularity-flip__ed8cf925.answer.json"
+  },
+  {
+   "id": "gulf-dead-zone-growth__a4939372",
+   "slug": "gulf-dead-zone-growth",
+   "filed": "2026-10-19T12:10:12Z",
+   "why": [
+    "premise: brain: Relies on a searchable phrase and lacks a clear reversal of a specific viewer expectation despite the single number."
+   ],
+   "request": "exchange/rewrites/20261019/gulf-dead-zone-growth__a4939372.request.json",
+   "answer_path": "exchange/rewrites/20261019/gulf-dead-zone-growth__a4939372.answer.json"
+  },
+  {
+   "id": "astronaut-bone-loss__262309b8",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-10-19T12:10:12Z",
+   "why": [
+    "premise: brain: The claim of a precise 1.5% monthly bone loss is unverified and likely inaccurate, failing the requirement for a verifiable consequential number."
+   ],
+   "request": "exchange/rewrites/20261019/astronaut-bone-loss__262309b8.request.json",
+   "answer_path": "exchange/rewrites/20261019/astronaut-bone-loss__262309b8.answer.json"
+  },
+  {
+   "id": "pickleball-fastest-growing-sport__598b7568",
+   "slug": "pickleball-fastest-growing-sport",
+   "filed": "2026-10-19T12:10:12Z",
+   "why": [
+    "premise: brain: The premise lacks a single precise, verifiable number and relies on vague figures, failing the strict criteria."
+   ],
+   "request": "exchange/rewrites/20261019/pickleball-fastest-growing-sport__598b7568.request.json",
+   "answer_path": "exchange/rewrites/20261019/pickleball-fastest-growing-sport__598b7568.answer.json"
+  },
+  {
+   "id": "usps-mail-volume-collapse__e8b27d6b",
+   "slug": "usps-mail-volume-collapse",
+   "filed": "2026-10-19T12:10:12Z",
+   "why": [
+    "premise: brain: It relies on two numbers rather than a single consequential, verifiable figure, violating the one-number rule."
+   ],
+   "request": "exchange/rewrites/20261019/usps-mail-volume-collapse__e8b27d6b.request.json",
+   "answer_path": "exchange/rewrites/20261019/usps-mail-volume-collapse__e8b27d6b.answer.json"
+  },
+  {
+   "id": "lightning-deaths-collapsed-not-the-storms__9241770b",
+   "slug": "lightning-deaths-collapsed-not-the-storms",
+   "filed": "2026-10-19T12:10:11Z",
+   "why": [
+    "premise: brain: The claim does not clearly overturn a specific viewer expectation and relies on a vague historical figure without a compelling, singular consequential number."
+   ],
+   "request": "exchange/rewrites/20261019/lightning-deaths-collapsed-not-the-storms__9241770b.request.json",
+   "answer_path": "exchange/rewrites/20261019/lightning-deaths-collapsed-not-the-storms__9241770b.answer.json"
+  },
+  {
+   "id": "rubiks-cube-record-vs-robot__5d087bf9",
+   "slug": "rubiks-cube-record-vs-robot",
+   "filed": "2026-10-19T12:10:10Z",
+   "why": [
+    "judge: blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+   ],
+   "request": "exchange/rewrites/20261019/rubiks-cube-record-vs-robot__5d087bf9.request.json",
+   "answer_path": "exchange/rewrites/20261019/rubiks-cube-record-vs-robot__5d087bf9.answer.json"
+  },
   {
    "id": "metric-system-holdouts__47450d37",
    "slug": "metric-system-holdouts",
@@ -415,16 +505,6 @@
    "answer_path": "exchange/rewrites/20261018/moon-drifting-away__904b95b2.answer.json"
   },
   {
-   "id": "pickleball-fastest-growing-sport__598b7568",
-   "slug": "pickleball-fastest-growing-sport",
-   "filed": "2026-10-18T22:28:09Z",
-   "why": [
-    "premise: brain: The premise relies on vague figures like 'hundreds of millions' rather than a single, precise, verifiable number to overturn the expectation."
-   ],
-   "request": "exchange/rewrites/20261018/pickleball-fastest-growing-sport__598b7568.request.json",
-   "answer_path": "exchange/rewrites/20261018/pickleball-fastest-growing-sport__598b7568.answer.json"
-  },
-  {
    "id": "genz-drinking-decline__8e6f5b2d",
    "slug": "genz-drinking-decline",
    "filed": "2026-10-18T22:28:08Z",
@@ -465,26 +545,6 @@
    "answer_path": "exchange/rewrites/20261018/iss-deorbit-2031__1ecc9d62.answer.json"
   },
   {
-   "id": "cursive-handwriting-comeback__90876971",
-   "slug": "cursive-handwriting-comeback",
-   "filed": "2026-10-18T15:35:20Z",
-   "why": [
-    "premise: brain: Uses multiple numbers instead of a single consequential, verifiable figure, failing the one-number requirement."
-   ],
-   "request": "exchange/rewrites/20261018/cursive-handwriting-comeback__90876971.request.json",
-   "answer_path": "exchange/rewrites/20261018/cursive-handwriting-comeback__90876971.answer.json"
-  },
-  {
-   "id": "usps-mail-volume-collapse__e8b27d6b",
-   "slug": "usps-mail-volume-collapse",
-   "filed": "2026-10-18T15:35:19Z",
-   "why": [
-    "premise: brain: It does not hinge on a single verifiable number and fails to clearly invert a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261018/usps-mail-volume-collapse__e8b27d6b.request.json",
-   "answer_path": "exchange/rewrites/20261018/usps-mail-volume-collapse__e8b27d6b.answer.json"
-  },
-  {
    "id": "blockbuster-to-one-store__857f036d",
    "slug": "blockbuster-to-one-store",
    "filed": "2026-10-18T15:35:16Z",
@@ -493,16 +553,6 @@
    ],
    "request": "exchange/rewrites/20261018/blockbuster-to-one-store__857f036d.request.json",
    "answer_path": "exchange/rewrites/20261018/blockbuster-to-one-store__857f036d.answer.json"
-  },
-  {
-   "id": "global-remittances-record-2023__21255dfc_r1",
-   "slug": "global-remittances-record-2023",
-   "filed": "2026-10-18T14:23:09Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies only on a large number without a verifiable, consequential hook."
-   ],
-   "request": "exchange/rewrites/20261018/global-remittances-record-2023__21255dfc_r1.request.json",
-   "answer_path": "exchange/rewrites/20261018/global-remittances-record-2023__21255dfc_r1.answer.json"
   },
   {
    "id": "nyc-noise-complaints-per-day__499955a7",
@@ -515,16 +565,6 @@
    "answer_path": "exchange/rewrites/20261018/nyc-noise-complaints-per-day__499955a7.answer.json"
   },
   {
-   "id": "lightning-deaths-collapsed-not-the-storms__9241770b",
-   "slug": "lightning-deaths-collapsed-not-the-storms",
-   "filed": "2026-10-18T14:23:08Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and does not hinge on a single consequential, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261018/lightning-deaths-collapsed-not-the-storms__9241770b.request.json",
-   "answer_path": "exchange/rewrites/20261018/lightning-deaths-collapsed-not-the-storms__9241770b.answer.json"
-  },
-  {
    "id": "vinyl-beats-cd-sales-again__b2dd235b",
    "slug": "vinyl-beats-cd-sales-again",
    "filed": "2026-10-18T11:46:50Z",
@@ -533,16 +573,6 @@
    ],
    "request": "exchange/rewrites/20261018/vinyl-beats-cd-sales-again__b2dd235b.request.json",
    "answer_path": "exchange/rewrites/20261018/vinyl-beats-cd-sales-again__b2dd235b.answer.json"
-  },
-  {
-   "id": "dog-breed-popularity-flip__ed8cf925",
-   "slug": "dog-breed-popularity-flip",
-   "filed": "2026-10-18T11:46:50Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague, unverifiable claim about a breed's dominance."
-   ],
-   "request": "exchange/rewrites/20261018/dog-breed-popularity-flip__ed8cf925.request.json",
-   "answer_path": "exchange/rewrites/20261018/dog-breed-popularity-flip__ed8cf925.answer.json"
   },
   {
    "id": "saturn-rings-vanishing__acf09995",
@@ -595,16 +625,6 @@
    "answer_path": "exchange/rewrites/20261018/gps-einstein-fix__7df7a9d4.answer.json"
   },
   {
-   "id": "astronaut-bone-loss__262309b8",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-10-18T11:46:48Z",
-   "why": [
-    "premise: brain: The claim relies on an unverified, likely inaccurate figure and doesn't convincingly reverse a clear viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261018/astronaut-bone-loss__262309b8.request.json",
-   "answer_path": "exchange/rewrites/20261018/astronaut-bone-loss__262309b8.answer.json"
-  },
-  {
    "id": "nobel-prize-discovery-age__3e12dc3c",
    "slug": "nobel-prize-discovery-age",
    "filed": "2026-10-18T11:46:45Z",
@@ -623,26 +643,6 @@
    ],
    "request": "exchange/rewrites/20261018/world-wetlands-lost__66020aa4.request.json",
    "answer_path": "exchange/rewrites/20261018/world-wetlands-lost__66020aa4.answer.json"
-  },
-  {
-   "id": "rubiks-cube-record-vs-robot__58c6aad4",
-   "slug": "rubiks-cube-record-vs-robot",
-   "filed": "2026-10-18T11:46:44Z",
-   "why": [
-    "premise: brain: It relies on multiple numbers and does not hinge on a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261018/rubiks-cube-record-vs-robot__58c6aad4.request.json",
-   "answer_path": "exchange/rewrites/20261018/rubiks-cube-record-vs-robot__58c6aad4.answer.json"
-  },
-  {
-   "id": "gulf-dead-zone-growth__a4939372",
-   "slug": "gulf-dead-zone-growth",
-   "filed": "2026-10-17T12:56:20Z",
-   "why": [
-    "premise: brain: Unclear reversal of a specific viewer expectation; premise is ambiguous."
-   ],
-   "request": "exchange/rewrites/20261017/gulf-dead-zone-growth__a4939372.request.json",
-   "answer_path": "exchange/rewrites/20261017/gulf-dead-zone-growth__a4939372.answer.json"
   },
   {
    "id": "competitive-eating-record-climb__e38b83da",
