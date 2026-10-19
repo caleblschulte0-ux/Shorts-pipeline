@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "black-holes-in-galaxy__4e789d36",
+  "slug": "black-holes-in-galaxy",
+  "by": "chatgpt",
+  "written_at": "2026-10-19T23:09:00Z",
+  "title": "Gravitational Waves Found 390 Black Holes We Could Not See",
+  "hook": "We found 390 black hole mergers by listening to gravity, not light.",
+  "closing": "A new way to detect black holes changed what we can count and could expose far more hidden objects.",
+  "question": "How many black holes remain hidden?",
+  "segments": [
+    {
+      "topic": "Black Hole Mergers",
+      "say": "Detectors logged 390 black hole mergers, revealing collisions that ordinary telescopes could not show us directly."
+    },
+    {
+      "topic": "Black Hole Discovery",
+      "say": "Gravitational waves found 390 black holes, turning gravity into a discovery tool for objects that light often misses."
+    },
+    {
+      "topic": "Black Hole Majority",
+      "say": "The Milky Way estimate reaches 100 million black holes, so the confirmed catalog may represent only a tiny fraction."
+    }
+  ]
+}
