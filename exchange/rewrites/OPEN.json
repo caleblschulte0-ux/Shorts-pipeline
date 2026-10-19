@@ -1,7 +1,47 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-19T12:10:13Z",
+ "updated": "2026-10-19T13:59:38Z",
  "open": [
+  {
+   "id": "vinyl-beats-cd-sales-again__b2dd235b",
+   "slug": "vinyl-beats-cd-sales-again",
+   "filed": "2026-10-19T13:59:38Z",
+   "why": [
+    "premise: brain: It only provides a year without a concrete, verifiable quantitative figure to support the reversal."
+   ],
+   "request": "exchange/rewrites/20261019/vinyl-beats-cd-sales-again__b2dd235b.request.json",
+   "answer_path": "exchange/rewrites/20261019/vinyl-beats-cd-sales-again__b2dd235b.answer.json"
+  },
+  {
+   "id": "nyc-noise-complaints-per-day__499955a7",
+   "slug": "nyc-noise-complaints-per-day",
+   "filed": "2026-10-19T13:59:38Z",
+   "why": [
+    "premise: brain: The premise lacks a specific, verifiable number and does not clearly reverse a viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261019/nyc-noise-complaints-per-day__499955a7.request.json",
+   "answer_path": "exchange/rewrites/20261019/nyc-noise-complaints-per-day__499955a7.answer.json"
+  },
+  {
+   "id": "black-holes-in-galaxy__4e789d36",
+   "slug": "black-holes-in-galaxy",
+   "filed": "2026-10-19T13:59:37Z",
+   "why": [
+    "premise: brain: The claim relies on an unverified estimate rather than a single, concrete, verifiable number, and does not clearly overturn a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261019/black-holes-in-galaxy__4e789d36.request.json",
+   "answer_path": "exchange/rewrites/20261019/black-holes-in-galaxy__4e789d36.answer.json"
+  },
+  {
+   "id": "genz-drinking-decline__8e6f5b2d",
+   "slug": "genz-drinking-decline",
+   "filed": "2026-10-19T13:59:35Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague, unverified 20-year figure."
+   ],
+   "request": "exchange/rewrites/20261019/genz-drinking-decline__8e6f5b2d.request.json",
+   "answer_path": "exchange/rewrites/20261019/genz-drinking-decline__8e6f5b2d.answer.json"
+  },
   {
    "id": "cursive-handwriting-comeback__90876971",
    "slug": "cursive-handwriting-comeback",
@@ -505,16 +545,6 @@
    "answer_path": "exchange/rewrites/20261018/moon-drifting-away__904b95b2.answer.json"
   },
   {
-   "id": "genz-drinking-decline__8e6f5b2d",
-   "slug": "genz-drinking-decline",
-   "filed": "2026-10-18T22:28:08Z",
-   "why": [
-    "premise: brain: It lacks a clear reversal of a specific viewer expectation anchored to a single, verifiable numerical claim."
-   ],
-   "request": "exchange/rewrites/20261018/genz-drinking-decline__8e6f5b2d.request.json",
-   "answer_path": "exchange/rewrites/20261018/genz-drinking-decline__8e6f5b2d.answer.json"
-  },
-  {
    "id": "betelgeuse-great-dimming__e2882181",
    "slug": "betelgeuse-great-dimming",
    "filed": "2026-10-18T19:15:11Z",
@@ -555,26 +585,6 @@
    "answer_path": "exchange/rewrites/20261018/blockbuster-to-one-store__857f036d.answer.json"
   },
   {
-   "id": "nyc-noise-complaints-per-day__499955a7",
-   "slug": "nyc-noise-complaints-per-day",
-   "filed": "2026-10-18T14:23:09Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of viewer expectation and does not hinge on a single, verifiable numeric claim."
-   ],
-   "request": "exchange/rewrites/20261018/nyc-noise-complaints-per-day__499955a7.request.json",
-   "answer_path": "exchange/rewrites/20261018/nyc-noise-complaints-per-day__499955a7.answer.json"
-  },
-  {
-   "id": "vinyl-beats-cd-sales-again__b2dd235b",
-   "slug": "vinyl-beats-cd-sales-again",
-   "filed": "2026-10-18T11:46:50Z",
-   "why": [
-    "premise: brain: Uses multiple dates instead of a single consequential number, failing the one-number requirement."
-   ],
-   "request": "exchange/rewrites/20261018/vinyl-beats-cd-sales-again__b2dd235b.request.json",
-   "answer_path": "exchange/rewrites/20261018/vinyl-beats-cd-sales-again__b2dd235b.answer.json"
-  },
-  {
    "id": "saturn-rings-vanishing__acf09995",
    "slug": "saturn-rings-vanishing",
    "filed": "2026-10-18T11:46:50Z",
@@ -593,16 +603,6 @@
    ],
    "request": "exchange/rewrites/20261018/kelp-forest-sea-star-collapse__a960cf2d.request.json",
    "answer_path": "exchange/rewrites/20261018/kelp-forest-sea-star-collapse__a960cf2d.answer.json"
-  },
-  {
-   "id": "black-holes-in-galaxy__4e789d36",
-   "slug": "black-holes-in-galaxy",
-   "filed": "2026-10-18T11:46:49Z",
-   "why": [
-    "premise: brain: The claim relies on an unverified large figure rather than a single, clearly verifiable number that definitively overturns a common viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261018/black-holes-in-galaxy__4e789d36.request.json",
-   "answer_path": "exchange/rewrites/20261018/black-holes-in-galaxy__4e789d36.answer.json"
   },
   {
    "id": "self-storage-outnumbers-starbucks__97599610",
