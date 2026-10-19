@@ -1,0 +1,149 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "homeschool-surge__44c39d98",
+ "filed": "2026-10-19T11:44:42Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "homeschool-surge",
+ "current": {
+  "title": "Homeschooling Never Went Back To Normal After Covid",
+  "hook": "Schools reopened, but families vanished: 5.4 percent still homeschool.",
+  "closing": "Schools reopened, but many families chose differently, so where kids learn is now a real choice.",
+  "question": "Would you ever homeschool your kids? Why?",
+  "segments": [
+   {
+    "topic": "Homeschooling share",
+    "say": "Homeschooling nearly quadrupled during the pandemic, and it's still about double what it was before. Plenty of families never went back."
+   },
+   {
+    "topic": "Why homeschooling stuck",
+    "say": "Eighty-three percent of homeschooling parents say worry about school safety is a reason. That fear, more than anything, keeps kids home."
+   },
+   {
+    "topic": "Homeschooling and private school",
+    "say": "Private school still holds nearly twice as many kids as homeschooling. But homeschooling is no longer a rounding error; it's a real rival."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Homeschooling share",
+   "say": "Homeschooling nearly quadrupled during the pandemic, and it's still about double what it was before. Plenty of families never went back.",
+   "role": "1 · THE SPIKE",
+   "data": {
+    "file": "homeschool_rate_trend.json",
+    "unit": "percent",
+    "title": "Share of US families homeschooling: before, during, and after the pandemic",
+    "points": [
+     {
+      "label": "2019 (pre-pandemic)",
+      "value": 2.8,
+      "period": "2019"
+     },
+     {
+      "label": "2020 (pandemic peak)",
+      "value": 11.1,
+      "period": "2020"
+     },
+     {
+      "label": "2023",
+      "value": 5.4,
+      "period": "2023"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Why homeschooling stuck",
+   "say": "Eighty-three percent of homeschooling parents say worry about school safety is a reason. That fear, more than anything, keeps kids home.",
+   "role": "2 · WHY IT STUCK",
+   "data": {
+    "file": "homeschool_top_reasons.json",
+    "unit": "percent",
+    "title": "Top reasons US parents give for homeschooling (2023)",
+    "points": [
+     {
+      "label": "Concern about school environment/safety",
+      "value": 83
+     },
+     {
+      "label": "Desire for moral instruction",
+      "value": 75
+     },
+     {
+      "label": "Desire for family time together",
+      "value": 72
+     },
+     {
+      "label": "Dissatisfied with academics elsewhere",
+      "value": 72
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Homeschooling and private school",
+   "say": "Private school still holds nearly twice as many kids as homeschooling. But homeschooling is no longer a rounding error; it's a real rival.",
+   "role": "3 · THE SCALE",
+   "data": {
+    "file": "homeschool_vs_private_2023.json",
+    "unit": "percent",
+    "title": "Homeschooled vs privately schooled share of US K-12 kids (2023)",
+    "points": [
+     {
+      "label": "Homeschooled",
+      "value": 5.4
+     },
+     {
+      "label": "Private school",
+      "value": 9.6
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The claim does not clearly overturn a common expectation and relies on a vague statistic without a strong, surprising reversal."
+ ],
+ "reasons": [
+  "premise: brain: The claim does not clearly overturn a common expectation and relies on a vague statistic without a strong, surprising reversal."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261019/homeschool-surge__44c39d98.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

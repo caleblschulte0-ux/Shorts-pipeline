@@ -1,7 +1,399 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-18T22:28:12Z",
+ "updated": "2026-10-19T11:44:43Z",
  "open": [
+  {
+   "id": "metric-system-holdouts__47450d37",
+   "slug": "metric-system-holdouts",
+   "filed": "2026-10-19T11:44:43Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a broad claim rather than a single, verifiable numerical hook."
+   ],
+   "request": "exchange/rewrites/20261019/metric-system-holdouts__47450d37.request.json",
+   "answer_path": "exchange/rewrites/20261019/metric-system-holdouts__47450d37.answer.json"
+  },
+  {
+   "id": "north-american-bird-collapse__58c079e0",
+   "slug": "north-american-bird-collapse",
+   "filed": "2026-10-19T11:44:43Z",
+   "why": [
+    "premise: brain: The claim lacks a verifiable, consequential number and does not convincingly reverse a common viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261019/north-american-bird-collapse__58c079e0.request.json",
+   "answer_path": "exchange/rewrites/20261019/north-american-bird-collapse__58c079e0.answer.json"
+  },
+  {
+   "id": "cargo-ship-size-growth__df70770f",
+   "slug": "cargo-ship-size-growth",
+   "filed": "2026-10-19T11:44:43Z",
+   "why": [
+    "premise: brain: The premise does not hinge on a single consequential verifiable number and its expectation reversal is unclear."
+   ],
+   "request": "exchange/rewrites/20261019/cargo-ship-size-growth__df70770f.request.json",
+   "answer_path": "exchange/rewrites/20261019/cargo-ship-size-growth__df70770f.answer.json"
+  },
+  {
+   "id": "podcasts-passed-radio-spoken-word__1c353e96",
+   "slug": "podcasts-passed-radio-spoken-word",
+   "filed": "2026-10-19T11:44:43Z",
+   "why": [
+    "premise: brain: It lacks a single consequential, verifiable number and relies on a vague claim rather than a specific metric."
+   ],
+   "request": "exchange/rewrites/20261019/podcasts-passed-radio-spoken-word__1c353e96.request.json",
+   "answer_path": "exchange/rewrites/20261019/podcasts-passed-radio-spoken-word__1c353e96.answer.json"
+  },
+  {
+   "id": "hearing-aids-otc-price-drop__b159cfe2",
+   "slug": "hearing-aids-otc-price-drop",
+   "filed": "2026-10-19T11:44:43Z",
+   "why": [
+    "premise: brain: The premise lacks a single verifiable number and does not clearly reverse a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261019/hearing-aids-otc-price-drop__b159cfe2.request.json",
+   "answer_path": "exchange/rewrites/20261019/hearing-aids-otc-price-drop__b159cfe2.answer.json"
+  },
+  {
+   "id": "red-hair-recessive-gene__f9405603",
+   "slug": "red-hair-recessive-gene",
+   "filed": "2026-10-19T11:44:43Z",
+   "why": [
+    "premise: brain: The premise offers a statistic but does not clearly invert a common viewer expectation, making it insufficient."
+   ],
+   "request": "exchange/rewrites/20261019/red-hair-recessive-gene__f9405603.request.json",
+   "answer_path": "exchange/rewrites/20261019/red-hair-recessive-gene__f9405603.answer.json"
+  },
+  {
+   "id": "chip-transistor-shrink-limit__72cdc200",
+   "slug": "chip-transistor-shrink-limit",
+   "filed": "2026-10-19T11:44:42Z",
+   "why": [
+    "premise: brain: It relies on multiple numbers (90% and 3 nm) rather than a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261019/chip-transistor-shrink-limit__72cdc200.request.json",
+   "answer_path": "exchange/rewrites/20261019/chip-transistor-shrink-limit__72cdc200.answer.json"
+  },
+  {
+   "id": "coldest-place-in-the-universe-is-human-made__d62a1233",
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "filed": "2026-10-19T11:44:42Z",
+   "why": [
+    "premise: brain: Lacks a specific, verifiable number to support the reversed expectation."
+   ],
+   "request": "exchange/rewrites/20261019/coldest-place-in-the-universe-is-human-made__d62a1233.request.json",
+   "answer_path": "exchange/rewrites/20261019/coldest-place-in-the-universe-is-human-made__d62a1233.answer.json"
+  },
+  {
+   "id": "homeschool-surge__44c39d98",
+   "slug": "homeschool-surge",
+   "filed": "2026-10-19T11:44:42Z",
+   "why": [
+    "premise: brain: The claim does not clearly overturn a common expectation and relies on a vague statistic without a strong, surprising reversal."
+   ],
+   "request": "exchange/rewrites/20261019/homeschool-surge__44c39d98.request.json",
+   "answer_path": "exchange/rewrites/20261019/homeschool-surge__44c39d98.answer.json"
+  },
+  {
+   "id": "parker-solar-probe-speed-record__e69da005",
+   "slug": "parker-solar-probe-speed-record",
+   "filed": "2026-10-19T11:44:42Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/parker-solar-probe-speed-record__e69da005.request.json",
+   "answer_path": "exchange/rewrites/20261019/parker-solar-probe-speed-record__e69da005.answer.json"
+  },
+  {
+   "id": "peanut-allergy-guideline-flip__78a48cd5",
+   "slug": "peanut-allergy-guideline-flip",
+   "filed": "2026-10-19T11:44:42Z",
+   "why": [
+    "premise: brain: The premise is vague, lacks a clear reversal of a viewer expectation, and the claim about a 43% fix is unsubstantiated."
+   ],
+   "request": "exchange/rewrites/20261019/peanut-allergy-guideline-flip__78a48cd5.request.json",
+   "answer_path": "exchange/rewrites/20261019/peanut-allergy-guideline-flip__78a48cd5.answer.json"
+  },
+  {
+   "id": "ants-outnumber-humans__1beccbad",
+   "slug": "ants-outnumber-humans",
+   "filed": "2026-10-19T11:44:42Z",
+   "why": [
+    "premise: brain: The claim presents a factual statistic without reversing a specific viewer expectation, so it fails the required premise criteria."
+   ],
+   "request": "exchange/rewrites/20261019/ants-outnumber-humans__1beccbad.request.json",
+   "answer_path": "exchange/rewrites/20261019/ants-outnumber-humans__1beccbad.answer.json"
+  },
+  {
+   "id": "lottery-odds-vs-real-life__2ee01cb7",
+   "slug": "lottery-odds-vs-real-life",
+   "filed": "2026-10-19T11:44:42Z",
+   "why": [
+    "premise: brain: It merely states the odds without overturning a viewer's expectation, failing the reversal requirement."
+   ],
+   "request": "exchange/rewrites/20261019/lottery-odds-vs-real-life__2ee01cb7.request.json",
+   "answer_path": "exchange/rewrites/20261019/lottery-odds-vs-real-life__2ee01cb7.answer.json"
+  },
+  {
+   "id": "body-renewal-clock__a57c67e5",
+   "slug": "body-renewal-clock",
+   "filed": "2026-10-19T11:44:41Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/body-renewal-clock__a57c67e5.request.json",
+   "answer_path": "exchange/rewrites/20261019/body-renewal-clock__a57c67e5.answer.json"
+  },
+  {
+   "id": "back-to-sleep-campaign-cut-sids__1d5b6766",
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "filed": "2026-10-19T11:44:41Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/back-to-sleep-campaign-cut-sids__1d5b6766.request.json",
+   "answer_path": "exchange/rewrites/20261019/back-to-sleep-campaign-cut-sids__1d5b6766.answer.json"
+  },
+  {
+   "id": "index-funds-own-corporate-america__19285cc1",
+   "slug": "index-funds-own-corporate-america",
+   "filed": "2026-10-19T11:44:41Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/index-funds-own-corporate-america__19285cc1.request.json",
+   "answer_path": "exchange/rewrites/20261019/index-funds-own-corporate-america__19285cc1.answer.json"
+  },
+  {
+   "id": "blood-type-rarity__962b83aa",
+   "slug": "blood-type-rarity",
+   "filed": "2026-10-19T11:44:41Z",
+   "why": [
+    "premise: brain: It states a fact without overturning a viewer expectation, relying only on a single statistic."
+   ],
+   "request": "exchange/rewrites/20261019/blood-type-rarity__962b83aa.request.json",
+   "answer_path": "exchange/rewrites/20261019/blood-type-rarity__962b83aa.answer.json"
+  },
+  {
+   "id": "pitch-drop-slowest-experiment__994072c3",
+   "slug": "pitch-drop-slowest-experiment",
+   "filed": "2026-10-19T11:44:41Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and does not hinge on a single, verifiable consequential number."
+   ],
+   "request": "exchange/rewrites/20261019/pitch-drop-slowest-experiment__994072c3.request.json",
+   "answer_path": "exchange/rewrites/20261019/pitch-drop-slowest-experiment__994072c3.answer.json"
+  },
+  {
+   "id": "humpback-whale-recovery__0a1256d1",
+   "slug": "humpback-whale-recovery",
+   "filed": "2026-10-19T11:44:41Z",
+   "why": [
+    "premise: brain: It relies on two numbers (450 and 25,000) rather than a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261019/humpback-whale-recovery__0a1256d1.request.json",
+   "answer_path": "exchange/rewrites/20261019/humpback-whale-recovery__0a1256d1.answer.json"
+  },
+  {
+   "id": "freshwater-accessible__94d3a9c8",
+   "slug": "freshwater-accessible",
+   "filed": "2026-10-19T11:44:40Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/freshwater-accessible__94d3a9c8.request.json",
+   "answer_path": "exchange/rewrites/20261019/freshwater-accessible__94d3a9c8.answer.json"
+  },
+  {
+   "id": "game-industry-layoffs-record__47b9280e",
+   "slug": "game-industry-layoffs-record",
+   "filed": "2026-10-19T11:44:40Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on a generic statistic rather than a striking, singular verifiable number."
+   ],
+   "request": "exchange/rewrites/20261019/game-industry-layoffs-record__47b9280e.request.json",
+   "answer_path": "exchange/rewrites/20261019/game-industry-layoffs-record__47b9280e.answer.json"
+  },
+  {
+   "id": "english-internet-share-decline__21efaa68",
+   "slug": "english-internet-share-decline",
+   "filed": "2026-10-19T11:44:40Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/english-internet-share-decline__21efaa68.request.json",
+   "answer_path": "exchange/rewrites/20261019/english-internet-share-decline__21efaa68.answer.json"
+  },
+  {
+   "id": "bat-fungus-collapse__fb2808d3",
+   "slug": "bat-fungus-collapse",
+   "filed": "2026-10-19T11:44:40Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/bat-fungus-collapse__fb2808d3.request.json",
+   "answer_path": "exchange/rewrites/20261019/bat-fungus-collapse__fb2808d3.answer.json"
+  },
+  {
+   "id": "highest-point-illusion__3d90af0a",
+   "slug": "highest-point-illusion",
+   "filed": "2026-10-19T11:44:40Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/highest-point-illusion__3d90af0a.request.json",
+   "answer_path": "exchange/rewrites/20261019/highest-point-illusion__3d90af0a.answer.json"
+  },
+  {
+   "id": "unclaimed-money-states-hold__d600f81b",
+   "slug": "unclaimed-money-states-hold",
+   "filed": "2026-10-19T11:44:40Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/unclaimed-money-states-hold__d600f81b.request.json",
+   "answer_path": "exchange/rewrites/20261019/unclaimed-money-states-hold__d600f81b.answer.json"
+  },
+  {
+   "id": "activity-inequality-steps__f0af7c7a",
+   "slug": "activity-inequality-steps",
+   "filed": "2026-10-19T11:44:39Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/activity-inequality-steps__f0af7c7a.request.json",
+   "answer_path": "exchange/rewrites/20261019/activity-inequality-steps__f0af7c7a.answer.json"
+  },
+  {
+   "id": "insect-planet__3c4a491b",
+   "slug": "insect-planet",
+   "filed": "2026-10-19T11:44:39Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/insect-planet__3c4a491b.request.json",
+   "answer_path": "exchange/rewrites/20261019/insect-planet__3c4a491b.answer.json"
+  },
+  {
+   "id": "california-condor-comeback__7f22c4ab",
+   "slug": "california-condor-comeback",
+   "filed": "2026-10-19T11:44:39Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a viewer expectation and relies on a vague numeric jump without a verifiable consequential fact."
+   ],
+   "request": "exchange/rewrites/20261019/california-condor-comeback__7f22c4ab.request.json",
+   "answer_path": "exchange/rewrites/20261019/california-condor-comeback__7f22c4ab.answer.json"
+  },
+  {
+   "id": "plastic-in-your-body__cedc4bab",
+   "slug": "plastic-in-your-body",
+   "filed": "2026-10-19T11:44:39Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/plastic-in-your-body__cedc4bab.request.json",
+   "answer_path": "exchange/rewrites/20261019/plastic-in-your-body__cedc4bab.answer.json"
+  },
+  {
+   "id": "a-language-dies-every-2-weeks__8d6939dc",
+   "slug": "a-language-dies-every-2-weeks",
+   "filed": "2026-10-19T11:44:39Z",
+   "why": [
+    "thesis: seg0 ('Languages in danger') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline",
+    "thesis: seg1 ('Why languages vanish') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline",
+    "thesis: seg2 ('Languages lost by 2100') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline"
+   ],
+   "request": "exchange/rewrites/20261019/a-language-dies-every-2-weeks__8d6939dc.request.json",
+   "answer_path": "exchange/rewrites/20261019/a-language-dies-every-2-weeks__8d6939dc.answer.json"
+  },
+  {
+   "id": "cryonics-client-count__57a93db8",
+   "slug": "cryonics-client-count",
+   "filed": "2026-10-19T11:44:39Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on a vague number without a verifiable consequential claim."
+   ],
+   "request": "exchange/rewrites/20261019/cryonics-client-count__57a93db8.request.json",
+   "answer_path": "exchange/rewrites/20261019/cryonics-client-count__57a93db8.answer.json"
+  },
+  {
+   "id": "earth-rotation-speeding-up__e26a5423",
+   "slug": "earth-rotation-speeding-up",
+   "filed": "2026-10-19T11:44:38Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/earth-rotation-speeding-up__e26a5423.request.json",
+   "answer_path": "exchange/rewrites/20261019/earth-rotation-speeding-up__e26a5423.answer.json"
+  },
+  {
+   "id": "divorce-rate-quiet-decline__d6b27d36",
+   "slug": "divorce-rate-quiet-decline",
+   "filed": "2026-10-19T11:44:38Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/divorce-rate-quiet-decline__d6b27d36.request.json",
+   "answer_path": "exchange/rewrites/20261019/divorce-rate-quiet-decline__d6b27d36.answer.json"
+  },
+  {
+   "id": "helium-supply-squeeze__067a945d",
+   "slug": "helium-supply-squeeze",
+   "filed": "2026-10-19T11:44:38Z",
+   "why": [
+    "premise: brain: The claim relies on an obscure, unverifiable figure and does not convincingly overturn a clear viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261019/helium-supply-squeeze__067a945d.request.json",
+   "answer_path": "exchange/rewrites/20261019/helium-supply-squeeze__067a945d.answer.json"
+  },
+  {
+   "id": "left-brain-right-brain-myth__9ae81e3c",
+   "slug": "left-brain-right-brain-myth",
+   "filed": "2026-10-19T11:44:38Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/left-brain-right-brain-myth__9ae81e3c.request.json",
+   "answer_path": "exchange/rewrites/20261019/left-brain-right-brain-myth__9ae81e3c.answer.json"
+  },
+  {
+   "id": "religious-nones-rise__677be75f",
+   "slug": "religious-nones-rise",
+   "filed": "2026-10-19T11:44:38Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/religious-nones-rise__677be75f.request.json",
+   "answer_path": "exchange/rewrites/20261019/religious-nones-rise__677be75f.answer.json"
+  },
+  {
+   "id": "volcano-country-ranking__692a9e46",
+   "slug": "volcano-country-ranking",
+   "filed": "2026-10-19T11:44:38Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/volcano-country-ranking__692a9e46.request.json",
+   "answer_path": "exchange/rewrites/20261019/volcano-country-ranking__692a9e46.answer.json"
+  },
+  {
+   "id": "third-interstellar-visitor__c92abc0a",
+   "slug": "third-interstellar-visitor",
+   "filed": "2026-10-19T11:44:38Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/third-interstellar-visitor__c92abc0a.request.json",
+   "answer_path": "exchange/rewrites/20261019/third-interstellar-visitor__c92abc0a.answer.json"
+  },
+  {
+   "id": "pentagon-ufo-reports-surge__e166beb3",
+   "slug": "pentagon-ufo-reports-surge",
+   "filed": "2026-10-19T11:44:37Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261019/pentagon-ufo-reports-surge__e166beb3.request.json",
+   "answer_path": "exchange/rewrites/20261019/pentagon-ufo-reports-surge__e166beb3.answer.json"
+  },
   {
    "id": "lab-grown-diamond-price-collapse__d179596a",
    "slug": "lab-grown-diamond-price-collapse",
@@ -41,26 +433,6 @@
    ],
    "request": "exchange/rewrites/20261018/genz-drinking-decline__8e6f5b2d.request.json",
    "answer_path": "exchange/rewrites/20261018/genz-drinking-decline__8e6f5b2d.answer.json"
-  },
-  {
-   "id": "hearing-aids-otc-price-drop__b159cfe2",
-   "slug": "hearing-aids-otc-price-drop",
-   "filed": "2026-10-18T20:42:47Z",
-   "why": [
-    "premise: brain: Lacks a specific, verifiable number and does not clearly reverse a viewer's expectation."
-   ],
-   "request": "exchange/rewrites/20261018/hearing-aids-otc-price-drop__b159cfe2.request.json",
-   "answer_path": "exchange/rewrites/20261018/hearing-aids-otc-price-drop__b159cfe2.answer.json"
-  },
-  {
-   "id": "red-hair-recessive-gene__df01797e",
-   "slug": "red-hair-recessive-gene",
-   "filed": "2026-10-18T20:42:46Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on a vague statistic rather than a single consequential, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261018/red-hair-recessive-gene__df01797e.request.json",
-   "answer_path": "exchange/rewrites/20261018/red-hair-recessive-gene__df01797e.answer.json"
   },
   {
    "id": "betelgeuse-great-dimming__e2882181",
@@ -103,16 +475,6 @@
    "answer_path": "exchange/rewrites/20261018/cursive-handwriting-comeback__90876971.answer.json"
   },
   {
-   "id": "chip-transistor-shrink-limit__72cdc200",
-   "slug": "chip-transistor-shrink-limit",
-   "filed": "2026-10-18T15:35:19Z",
-   "why": [
-    "premise: brain: The premise is vague and does not clearly reverse a specific viewer expectation with a single, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261018/chip-transistor-shrink-limit__72cdc200.request.json",
-   "answer_path": "exchange/rewrites/20261018/chip-transistor-shrink-limit__72cdc200.answer.json"
-  },
-  {
    "id": "usps-mail-volume-collapse__e8b27d6b",
    "slug": "usps-mail-volume-collapse",
    "filed": "2026-10-18T15:35:19Z",
@@ -121,16 +483,6 @@
    ],
    "request": "exchange/rewrites/20261018/usps-mail-volume-collapse__e8b27d6b.request.json",
    "answer_path": "exchange/rewrites/20261018/usps-mail-volume-collapse__e8b27d6b.answer.json"
-  },
-  {
-   "id": "helium-supply-squeeze__067a945d",
-   "slug": "helium-supply-squeeze",
-   "filed": "2026-10-18T15:35:16Z",
-   "why": [
-    "premise: brain: The premise relies on an unverified specific loss figure and lacks a clear reversal of a common viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261018/helium-supply-squeeze__067a945d.request.json",
-   "answer_path": "exchange/rewrites/20261018/helium-supply-squeeze__067a945d.answer.json"
   },
   {
    "id": "blockbuster-to-one-store__857f036d",
@@ -163,16 +515,6 @@
    "answer_path": "exchange/rewrites/20261018/nyc-noise-complaints-per-day__499955a7.answer.json"
   },
   {
-   "id": "homeschool-surge__44c39d98",
-   "slug": "homeschool-surge",
-   "filed": "2026-10-18T14:23:08Z",
-   "why": [
-    "premise: brain: The premise does not clearly overturn a strong viewer expectation and the 5.4% figure isn’t a strikingly consequential reversal."
-   ],
-   "request": "exchange/rewrites/20261018/homeschool-surge__44c39d98.request.json",
-   "answer_path": "exchange/rewrites/20261018/homeschool-surge__44c39d98.answer.json"
-  },
-  {
    "id": "lightning-deaths-collapsed-not-the-storms__9241770b",
    "slug": "lightning-deaths-collapsed-not-the-storms",
    "filed": "2026-10-18T14:23:08Z",
@@ -181,26 +523,6 @@
    ],
    "request": "exchange/rewrites/20261018/lightning-deaths-collapsed-not-the-storms__9241770b.request.json",
    "answer_path": "exchange/rewrites/20261018/lightning-deaths-collapsed-not-the-storms__9241770b.answer.json"
-  },
-  {
-   "id": "a-language-dies-every-2-weeks__8d6939dc",
-   "slug": "a-language-dies-every-2-weeks",
-   "filed": "2026-10-18T14:23:07Z",
-   "why": [
-    "premise: brain: The claim offers a single numeric claim but does not clearly overturn a well‑known viewer expectation in a compelling, verifiable way."
-   ],
-   "request": "exchange/rewrites/20261018/a-language-dies-every-2-weeks__8d6939dc.request.json",
-   "answer_path": "exchange/rewrites/20261018/a-language-dies-every-2-weeks__8d6939dc.answer.json"
-  },
-  {
-   "id": "highest-point-illusion__3d90af0a",
-   "slug": "highest-point-illusion",
-   "filed": "2026-10-18T14:23:07Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/highest-point-illusion__3d90af0a.request.json",
-   "answer_path": "exchange/rewrites/20261018/highest-point-illusion__3d90af0a.answer.json"
   },
   {
    "id": "vinyl-beats-cd-sales-again__b2dd235b",
@@ -233,16 +555,6 @@
    "answer_path": "exchange/rewrites/20261018/saturn-rings-vanishing__acf09995.answer.json"
   },
   {
-   "id": "coldest-place-in-the-universe-is-human-made__d62a1233",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-10-18T11:46:49Z",
-   "why": [
-    "premise: brain: It lacks a single verifiable number to anchor the reversed expectation."
-   ],
-   "request": "exchange/rewrites/20261018/coldest-place-in-the-universe-is-human-made__d62a1233.request.json",
-   "answer_path": "exchange/rewrites/20261018/coldest-place-in-the-universe-is-human-made__d62a1233.answer.json"
-  },
-  {
    "id": "kelp-forest-sea-star-collapse__a960cf2d",
    "slug": "kelp-forest-sea-star-collapse",
    "filed": "2026-10-18T11:46:49Z",
@@ -251,16 +563,6 @@
    ],
    "request": "exchange/rewrites/20261018/kelp-forest-sea-star-collapse__a960cf2d.request.json",
    "answer_path": "exchange/rewrites/20261018/kelp-forest-sea-star-collapse__a960cf2d.answer.json"
-  },
-  {
-   "id": "metric-system-holdouts__47450d37",
-   "slug": "metric-system-holdouts",
-   "filed": "2026-10-18T11:46:49Z",
-   "why": [
-    "premise: brain: The premise is a searchable factual claim about the number of non‑metric countries rather than a surprising reversal anchored to a single verifiable number."
-   ],
-   "request": "exchange/rewrites/20261018/metric-system-holdouts__47450d37.request.json",
-   "answer_path": "exchange/rewrites/20261018/metric-system-holdouts__47450d37.answer.json"
   },
   {
    "id": "black-holes-in-galaxy__4e789d36",
@@ -273,16 +575,6 @@
    "answer_path": "exchange/rewrites/20261018/black-holes-in-galaxy__4e789d36.answer.json"
   },
   {
-   "id": "cargo-ship-size-growth__df70770f",
-   "slug": "cargo-ship-size-growth",
-   "filed": "2026-10-18T11:46:49Z",
-   "why": [
-    "premise: brain: The premise uses multiple numbers and does not hinge on a single verifiable figure to reverse a clear viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261018/cargo-ship-size-growth__df70770f.request.json",
-   "answer_path": "exchange/rewrites/20261018/cargo-ship-size-growth__df70770f.answer.json"
-  },
-  {
    "id": "self-storage-outnumbers-starbucks__97599610",
    "slug": "self-storage-outnumbers-starbucks",
    "filed": "2026-10-18T11:46:49Z",
@@ -291,36 +583,6 @@
    ],
    "request": "exchange/rewrites/20261018/self-storage-outnumbers-starbucks__97599610.request.json",
    "answer_path": "exchange/rewrites/20261018/self-storage-outnumbers-starbucks__97599610.answer.json"
-  },
-  {
-   "id": "humpback-whale-recovery__b595edba",
-   "slug": "humpback-whale-recovery",
-   "filed": "2026-10-18T11:46:49Z",
-   "why": [
-    "premise: brain: The claim does not clearly reverse a specific viewer expectation and relies on multiple numbers rather than a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261018/humpback-whale-recovery__b595edba.request.json",
-   "answer_path": "exchange/rewrites/20261018/humpback-whale-recovery__b595edba.answer.json"
-  },
-  {
-   "id": "podcasts-passed-radio-spoken-word__1c353e96",
-   "slug": "podcasts-passed-radio-spoken-word",
-   "filed": "2026-10-18T11:46:49Z",
-   "why": [
-    "premise: brain: Lacks a single consequential, verifiable number to support the reversal claim"
-   ],
-   "request": "exchange/rewrites/20261018/podcasts-passed-radio-spoken-word__1c353e96.request.json",
-   "answer_path": "exchange/rewrites/20261018/podcasts-passed-radio-spoken-word__1c353e96.answer.json"
-  },
-  {
-   "id": "body-renewal-clock__a57c67e5",
-   "slug": "body-renewal-clock",
-   "filed": "2026-10-18T11:46:48Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/body-renewal-clock__a57c67e5.request.json",
-   "answer_path": "exchange/rewrites/20261018/body-renewal-clock__a57c67e5.answer.json"
   },
   {
    "id": "gps-einstein-fix__7df7a9d4",
@@ -333,36 +595,6 @@
    "answer_path": "exchange/rewrites/20261018/gps-einstein-fix__7df7a9d4.answer.json"
   },
   {
-   "id": "parker-solar-probe-speed-record__e69da005",
-   "slug": "parker-solar-probe-speed-record",
-   "filed": "2026-10-18T11:46:48Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/parker-solar-probe-speed-record__e69da005.request.json",
-   "answer_path": "exchange/rewrites/20261018/parker-solar-probe-speed-record__e69da005.answer.json"
-  },
-  {
-   "id": "peanut-allergy-guideline-flip__78a48cd5",
-   "slug": "peanut-allergy-guideline-flip",
-   "filed": "2026-10-18T11:46:48Z",
-   "why": [
-    "premise: brain: The premise is vague, lacks a clear reversal of a specific expectation, and does not hinge on a single verifiable numeric claim."
-   ],
-   "request": "exchange/rewrites/20261018/peanut-allergy-guideline-flip__78a48cd5.request.json",
-   "answer_path": "exchange/rewrites/20261018/peanut-allergy-guideline-flip__78a48cd5.answer.json"
-  },
-  {
-   "id": "blood-type-rarity__962b83aa",
-   "slug": "blood-type-rarity",
-   "filed": "2026-10-18T11:46:48Z",
-   "why": [
-    "premise: brain: The claim does not overturn a common viewer expectation and relies on a generic statistic rather than a surprising, verifiable reversal."
-   ],
-   "request": "exchange/rewrites/20261018/blood-type-rarity__962b83aa.request.json",
-   "answer_path": "exchange/rewrites/20261018/blood-type-rarity__962b83aa.answer.json"
-  },
-  {
    "id": "astronaut-bone-loss__262309b8",
    "slug": "astronaut-bone-loss",
    "filed": "2026-10-18T11:46:48Z",
@@ -371,166 +603,6 @@
    ],
    "request": "exchange/rewrites/20261018/astronaut-bone-loss__262309b8.request.json",
    "answer_path": "exchange/rewrites/20261018/astronaut-bone-loss__262309b8.answer.json"
-  },
-  {
-   "id": "lottery-odds-vs-real-life__2ee01cb7",
-   "slug": "lottery-odds-vs-real-life",
-   "filed": "2026-10-18T11:46:48Z",
-   "why": [
-    "premise: brain: It presents a known statistic without overturning a viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261018/lottery-odds-vs-real-life__2ee01cb7.request.json",
-   "answer_path": "exchange/rewrites/20261018/lottery-odds-vs-real-life__2ee01cb7.answer.json"
-  },
-  {
-   "id": "back-to-sleep-campaign-cut-sids__1d5b6766",
-   "slug": "back-to-sleep-campaign-cut-sids",
-   "filed": "2026-10-18T11:46:47Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/back-to-sleep-campaign-cut-sids__1d5b6766.request.json",
-   "answer_path": "exchange/rewrites/20261018/back-to-sleep-campaign-cut-sids__1d5b6766.answer.json"
-  },
-  {
-   "id": "freshwater-accessible__94d3a9c8",
-   "slug": "freshwater-accessible",
-   "filed": "2026-10-18T11:46:47Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/freshwater-accessible__94d3a9c8.request.json",
-   "answer_path": "exchange/rewrites/20261018/freshwater-accessible__94d3a9c8.answer.json"
-  },
-  {
-   "id": "game-industry-layoffs-record__47b9280e",
-   "slug": "game-industry-layoffs-record",
-   "filed": "2026-10-18T11:46:47Z",
-   "why": [
-    "premise: brain: The premise does not reverse a viewer expectation and merely states two unrelated facts despite the number."
-   ],
-   "request": "exchange/rewrites/20261018/game-industry-layoffs-record__47b9280e.request.json",
-   "answer_path": "exchange/rewrites/20261018/game-industry-layoffs-record__47b9280e.answer.json"
-  },
-  {
-   "id": "index-funds-own-corporate-america__19285cc1",
-   "slug": "index-funds-own-corporate-america",
-   "filed": "2026-10-18T11:46:47Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/index-funds-own-corporate-america__19285cc1.request.json",
-   "answer_path": "exchange/rewrites/20261018/index-funds-own-corporate-america__19285cc1.answer.json"
-  },
-  {
-   "id": "english-internet-share-decline__21efaa68",
-   "slug": "english-internet-share-decline",
-   "filed": "2026-10-18T11:46:47Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/english-internet-share-decline__21efaa68.request.json",
-   "answer_path": "exchange/rewrites/20261018/english-internet-share-decline__21efaa68.answer.json"
-  },
-  {
-   "id": "pitch-drop-slowest-experiment__994072c3",
-   "slug": "pitch-drop-slowest-experiment",
-   "filed": "2026-10-18T11:46:47Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and does not hinge on a single, verifiable consequential number."
-   ],
-   "request": "exchange/rewrites/20261018/pitch-drop-slowest-experiment__994072c3.request.json",
-   "answer_path": "exchange/rewrites/20261018/pitch-drop-slowest-experiment__994072c3.answer.json"
-  },
-  {
-   "id": "unclaimed-money-states-hold__d600f81b",
-   "slug": "unclaimed-money-states-hold",
-   "filed": "2026-10-18T11:46:47Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/unclaimed-money-states-hold__d600f81b.request.json",
-   "answer_path": "exchange/rewrites/20261018/unclaimed-money-states-hold__d600f81b.answer.json"
-  },
-  {
-   "id": "activity-inequality-steps__f0af7c7a",
-   "slug": "activity-inequality-steps",
-   "filed": "2026-10-18T11:46:46Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/activity-inequality-steps__f0af7c7a.request.json",
-   "answer_path": "exchange/rewrites/20261018/activity-inequality-steps__f0af7c7a.answer.json"
-  },
-  {
-   "id": "insect-planet__3c4a491b",
-   "slug": "insect-planet",
-   "filed": "2026-10-18T11:46:46Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/insect-planet__3c4a491b.request.json",
-   "answer_path": "exchange/rewrites/20261018/insect-planet__3c4a491b.answer.json"
-  },
-  {
-   "id": "bat-fungus-collapse__fb2808d3",
-   "slug": "bat-fungus-collapse",
-   "filed": "2026-10-18T11:46:46Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/bat-fungus-collapse__fb2808d3.request.json",
-   "answer_path": "exchange/rewrites/20261018/bat-fungus-collapse__fb2808d3.answer.json"
-  },
-  {
-   "id": "california-condor-comeback__7f22c4ab",
-   "slug": "california-condor-comeback",
-   "filed": "2026-10-18T11:46:46Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and does not hinge on a single verifiable number."
-   ],
-   "request": "exchange/rewrites/20261018/california-condor-comeback__7f22c4ab.request.json",
-   "answer_path": "exchange/rewrites/20261018/california-condor-comeback__7f22c4ab.answer.json"
-  },
-  {
-   "id": "plastic-in-your-body__cedc4bab",
-   "slug": "plastic-in-your-body",
-   "filed": "2026-10-18T11:46:46Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/plastic-in-your-body__cedc4bab.request.json",
-   "answer_path": "exchange/rewrites/20261018/plastic-in-your-body__cedc4bab.answer.json"
-  },
-  {
-   "id": "left-brain-right-brain-myth__9ae81e3c",
-   "slug": "left-brain-right-brain-myth",
-   "filed": "2026-10-18T11:46:45Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/left-brain-right-brain-myth__9ae81e3c.request.json",
-   "answer_path": "exchange/rewrites/20261018/left-brain-right-brain-myth__9ae81e3c.answer.json"
-  },
-  {
-   "id": "religious-nones-rise__677be75f",
-   "slug": "religious-nones-rise",
-   "filed": "2026-10-18T11:46:45Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/religious-nones-rise__677be75f.request.json",
-   "answer_path": "exchange/rewrites/20261018/religious-nones-rise__677be75f.answer.json"
-  },
-  {
-   "id": "third-interstellar-visitor__c92abc0a",
-   "slug": "third-interstellar-visitor",
-   "filed": "2026-10-18T11:46:45Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/third-interstellar-visitor__c92abc0a.request.json",
-   "answer_path": "exchange/rewrites/20261018/third-interstellar-visitor__c92abc0a.answer.json"
   },
   {
    "id": "nobel-prize-discovery-age__3e12dc3c",
@@ -553,46 +625,6 @@
    "answer_path": "exchange/rewrites/20261018/world-wetlands-lost__66020aa4.answer.json"
   },
   {
-   "id": "earth-rotation-speeding-up__e26a5423",
-   "slug": "earth-rotation-speeding-up",
-   "filed": "2026-10-18T11:46:44Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/earth-rotation-speeding-up__e26a5423.request.json",
-   "answer_path": "exchange/rewrites/20261018/earth-rotation-speeding-up__e26a5423.answer.json"
-  },
-  {
-   "id": "divorce-rate-quiet-decline__d6b27d36",
-   "slug": "divorce-rate-quiet-decline",
-   "filed": "2026-10-18T11:46:44Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/divorce-rate-quiet-decline__d6b27d36.request.json",
-   "answer_path": "exchange/rewrites/20261018/divorce-rate-quiet-decline__d6b27d36.answer.json"
-  },
-  {
-   "id": "volcano-country-ranking__692a9e46",
-   "slug": "volcano-country-ranking",
-   "filed": "2026-10-18T11:46:44Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/volcano-country-ranking__692a9e46.request.json",
-   "answer_path": "exchange/rewrites/20261018/volcano-country-ranking__692a9e46.answer.json"
-  },
-  {
-   "id": "pentagon-ufo-reports-surge__e166beb3",
-   "slug": "pentagon-ufo-reports-surge",
-   "filed": "2026-10-18T11:46:44Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261018/pentagon-ufo-reports-surge__e166beb3.request.json",
-   "answer_path": "exchange/rewrites/20261018/pentagon-ufo-reports-surge__e166beb3.answer.json"
-  },
-  {
    "id": "rubiks-cube-record-vs-robot__58c6aad4",
    "slug": "rubiks-cube-record-vs-robot",
    "filed": "2026-10-18T11:46:44Z",
@@ -613,16 +645,6 @@
    "answer_path": "exchange/rewrites/20261017/gulf-dead-zone-growth__a4939372.answer.json"
   },
   {
-   "id": "ants-outnumber-humans__1beccbad",
-   "slug": "ants-outnumber-humans",
-   "filed": "2026-10-17T12:56:19Z",
-   "why": [
-    "premise: brain: It presents a factual statistic without reversing a viewer's specific expectation."
-   ],
-   "request": "exchange/rewrites/20261017/ants-outnumber-humans__1beccbad.request.json",
-   "answer_path": "exchange/rewrites/20261017/ants-outnumber-humans__1beccbad.answer.json"
-  },
-  {
    "id": "competitive-eating-record-climb__e38b83da",
    "slug": "competitive-eating-record-climb",
    "filed": "2026-10-16T17:52:55Z",
@@ -631,16 +653,6 @@
    ],
    "request": "exchange/rewrites/20261016/competitive-eating-record-climb__e38b83da.request.json",
    "answer_path": "exchange/rewrites/20261016/competitive-eating-record-climb__e38b83da.answer.json"
-  },
-  {
-   "id": "cryonics-client-count__740eebbc",
-   "slug": "cryonics-client-count",
-   "filed": "2026-10-16T13:40:39Z",
-   "why": [
-    "premise: brain: It does not reverse a viewer expectation and merely presents numbers without a surprising twist."
-   ],
-   "request": "exchange/rewrites/20261016/cryonics-client-count__740eebbc.request.json",
-   "answer_path": "exchange/rewrites/20261016/cryonics-client-count__740eebbc.answer.json"
   },
   {
    "id": "rabies-prevention-gap__a36d7b3a",
@@ -681,16 +693,6 @@
    ],
    "request": "exchange/rewrites/20261015/daylight-saving-time-in-decline__1445ae6b.request.json",
    "answer_path": "exchange/rewrites/20261015/daylight-saving-time-in-decline__1445ae6b.answer.json"
-  },
-  {
-   "id": "north-american-bird-collapse__58c079e0",
-   "slug": "north-american-bird-collapse",
-   "filed": "2026-10-15T17:50:23Z",
-   "why": [
-    "premise: brain: The claim relies on a vague, unverified total count rather than a single, verifiable number and does not clearly overturn a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261015/north-american-bird-collapse__58c079e0.request.json",
-   "answer_path": "exchange/rewrites/20261015/north-american-bird-collapse__58c079e0.answer.json"
   },
   {
    "id": "eclipse-recurrence-rarity__789a0737",

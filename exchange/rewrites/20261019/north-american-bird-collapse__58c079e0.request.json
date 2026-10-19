@@ -1,0 +1,140 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "north-american-bird-collapse__58c079e0",
+ "filed": "2026-10-19T11:44:43Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "north-american-bird-collapse",
+ "current": {
+  "title": "North America Lost 3 Billion Birds Since 1970",
+  "hook": "Your backyard birds are vanishing — 3 billion gone since 1970.",
+  "closing": "When common birds go quiet, it warns us something's wrong, and it's happening in your own backyard.",
+  "question": "Noticed fewer birds near you? Tell me below.",
+  "segments": [
+   {
+    "topic": "birds lost since 1970",
+    "say": "North America lost about three billion birds since 1970. That's nearly one in every three, gone from the skies above your yard."
+   },
+   {
+    "topic": "birds by group",
+    "say": "Grassland birds lost over half their numbers, yet ducks and geese grew. So this isn't fate; some birds are bouncing back."
+   },
+   {
+    "topic": "birds in common families",
+    "say": "Nearly all the loss came from just twelve everyday families, like sparrows and finches. It's the common birds fading, not just rare ones."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "birds lost since 1970",
+   "say": "North America lost about three billion birds since 1970. That's nearly one in every three, gone from the skies above your yard.",
+   "role": "1 · THE SCALE",
+   "data": {
+    "file": "na_bird_abundance_1970_2017.json",
+    "unit": "billion",
+    "title": "Total breeding bird abundance, US & Canada (billion birds)",
+    "points": [
+     {
+      "label": "1970",
+      "value": 10.1,
+      "period": "1970"
+     },
+     {
+      "label": "2017",
+      "value": 7.2,
+      "period": "2017"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "birds by group",
+   "say": "Grassland birds lost over half their numbers, yet ducks and geese grew. So this isn't fate; some birds are bouncing back.",
+   "role": "2 · NOT EVEN",
+   "data": {
+    "file": "bird_population_change_by_group.json",
+    "unit": "percent",
+    "title": "Population change since 1970 by bird group (percent)",
+    "points": [
+     {
+      "label": "Grassland birds",
+      "value": -53
+     },
+     {
+      "label": "Shorebirds",
+      "value": -37
+     },
+     {
+      "label": "Waterfowl (ducks & geese)",
+      "value": 56
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 2,
+   "topic": "birds in common families",
+   "say": "Nearly all the loss came from just twelve everyday families, like sparrows and finches. It's the common birds fading, not just rare ones.",
+   "role": "3 · WHICH BIRDS",
+   "data": {
+    "file": "bird_loss_concentration_12_families.json",
+    "unit": "percent",
+    "title": "Share of the total bird loss concentrated in 12 common families",
+    "points": [
+     {
+      "label": "12 common families (sparrows, warblers, blackbirds, finches...)",
+      "value": 90
+     },
+     {
+      "label": "all other families combined",
+      "value": 10
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The claim lacks a verifiable, consequential number and does not convincingly reverse a common viewer expectation."
+ ],
+ "reasons": [
+  "premise: brain: The claim lacks a verifiable, consequential number and does not convincingly reverse a common viewer expectation."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261019/north-american-bird-collapse__58c079e0.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
