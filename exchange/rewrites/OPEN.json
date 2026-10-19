@@ -1,17 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-19T23:03:33Z",
+ "updated": "2026-10-19T23:07:50Z",
  "open": [
-  {
-   "id": "iss-deorbit-2031__1ecc9d62",
-   "slug": "iss-deorbit-2031",
-   "filed": "2026-10-19T17:48:59Z",
-   "why": [
-    "thesis: seg1 ('why nasa wants out') has no bridge to the headline ('The ISS Will Be Deliberately Crashed Into The Ocean By 2031') — brain: no genuine bridge to the headline"
-   ],
-   "request": "exchange/rewrites/20261019/iss-deorbit-2031__1ecc9d62.request.json",
-   "answer_path": "exchange/rewrites/20261019/iss-deorbit-2031__1ecc9d62.answer.json"
-  },
   {
    "id": "gps-einstein-fix__7df7a9d4",
    "slug": "gps-einstein-fix",
@@ -593,6 +583,16 @@
    ],
    "request": "exchange/rewrites/20261018/vertical-farming-bust__5b3e834e.request.json",
    "answer_path": "exchange/rewrites/20261018/vertical-farming-bust__5b3e834e.answer.json"
+  },
+  {
+   "id": "iss-deorbit-2031__1ecc9d62",
+   "slug": "iss-deorbit-2031",
+   "filed": "2026-10-18T15:35:21Z",
+   "why": [
+    "thesis: seg1 ('why nasa wants out') has no bridge to the headline ('The ISS Will Be Deliberately Crashed Into The Ocean By 2031') — brain: no genuine bridge to the headline"
+   ],
+   "request": "exchange/rewrites/20261018/iss-deorbit-2031__1ecc9d62.request.json",
+   "answer_path": "exchange/rewrites/20261018/iss-deorbit-2031__1ecc9d62.answer.json"
   },
   {
    "id": "blockbuster-to-one-store__857f036d",
