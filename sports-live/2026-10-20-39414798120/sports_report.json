@@ -1,0 +1,320 @@
+{
+ "date": "2026-10-20",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Messi",
+   "why": "A fan in Paris snatches a signed Messi jersey and captain's armband on camera",
+   "post_title": "Guy in Paris steals a signed Messi jersey and captain's armband",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1x9frtz/guy_in_paris_steals_a_signed_messi_jersey_and/",
+   "topic": "https://www.reddit.com/r/sports/comments/1x9frtz/guy_in_paris_steals_a_signed_messi_jersey_and",
+   "skipped": "too short: the post runs 10.2s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Scottie Barnes",
+   "why": "Barnes' pants fall down during a pre\u2011game 360 dunk, catching everyone off guard",
+   "post_title": "Scottie Barnes\u2019 pants fall down during a pre-game 360 dunk.",
+   "upvotes": 0,
+   "url": "https://streamable.com/bf2mro",
+   "topic": "https://www.reddit.com/r/nba/comments/1x61r59/scottie_barnes_pants_fall_down_during_a_pregame",
+   "skipped": "too short: the post runs 10.8s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Luka Doncic",
+   "why": "Doncic watches a fan dancing in his jersey and gives a genuine impressed reaction",
+   "post_title": "Luka Doncic seems to be impressed by a Lakers fan dancing, wearing his jersey. \"He's good\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/8tvy83",
+   "topic": "https://www.reddit.com/r/nba/comments/1x5iucq/luka_doncic_seems_to_be_impressed_by_a_lakers_fan",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nba",
+   "who": "Carmelo Anthony",
+   "why": "Anthony recounts how LeBron saved him from drowning in the Bahamas",
+   "post_title": "Carmelo Anthony says that when he nearly drowned in the Bahamas, LeBron swam over like Aquaman and saved his life.",
+   "upvotes": 0,
+   "url": "https://streamable.com/02in5m",
+   "topic": "https://www.reddit.com/r/nba/comments/1x9xqqd/carmelo_anthony_says_that_when_he_nearly_drowned",
+   "title": "Carmelo Anthony Reveals LeBron James Saved His Life In The Bahamas",
+   "hook": "Carmelo almost drowned in Bahamas",
+   "ledger": {
+    "moves": [
+     "zoom@8.8",
+     "whoa@21.3",
+     "zoom@25.3"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      304,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 95
+   },
+   "video_url": "https://youtube.com/shorts/WTiw-IKIDVo",
+   "ok": true,
+   "publish_at": "2026-10-20T16:00:00Z",
+   "seconds": 127,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261020-carmelo-anthony-reveals-lebron-james-saved-his-l-3703f3b5",
+    "tiktok": "queued for 2026-10-20T16:00:00Z"
+   }
+  },
+  {
+   "sub": "nba",
+   "who": "Jaylen Brown",
+   "why": "Brown gushes about playing with LeBron, sounding like a kid on a talk show",
+   "post_title": "Jaylen Brown on being teammates with Lebron: \"The 12 year old in me is like over the moon...no glaze but you playing with one of the greatest\" -VJ Edgecombe: \"He's exactly old enough to be my dad, whi",
+   "upvotes": 0,
+   "url": "https://streamable.com/kxrm4h",
+   "topic": "https://www.reddit.com/r/nba/comments/1xa63f8/jaylen_brown_on_being_teammates_with_lebron_the",
+   "title": "Jaylen Brown Is SHOCKED By LeBron James' Age: 'He's Old Enough To Be My Dad'",
+   "hook": "Jaylen Brown on LeBron's age \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "zoom@6.9",
+     "whoa@33.6",
+     "zoom@37.3",
+     "line2@33.4"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: blocked: judge response failed schema validation",
+    "score": 14
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: blocked: judge response failed schema validation"
+  },
+  {
+   "sub": "nfl",
+   "who": "Tom Brady",
+   "why": "Brady jokes with Mike Evans about the fan who caught his 600th TD in the stands",
+   "post_title": "[Highlight] Tom Brady joking with Mike Evans about Mike throwing Tom\u2019s 600th career TD pass into the stands",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x5f6sx/highlight_tom_brady_joking_with_mike_evans_about/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x5f6sx/highlight_tom_brady_joking_with_mike_evans_about",
+   "title": "Tom Brady Jokes With Mike Evans About His 600th TD Ball. What Did He Say?",
+   "hook": "Brady reminds Evans about the ball",
+   "ledger": {
+    "moves": [
+     "zoom@10.0",
+     "zoom@13.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    }
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 100
+   },
+   "video_url": "https://youtube.com/shorts/XYOB-5lV9Ns",
+   "ok": true,
+   "publish_at": "2026-10-20T20:00:00Z",
+   "seconds": 86,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261020-tom-brady-jokes-with-mike-evans-about-his-600th--c7f4548d",
+    "tiktok": "queued for 2026-10-20T20:00:00Z"
+   }
+  },
+  {
+   "sub": "nfl",
+   "who": "Aaron Rodgers",
+   "why": "Rodgers trades a heated one\u2011liner with opponent Josiah Trotter on the field",
+   "post_title": "[Highlight] Steelers QB Aaron Rodgers exchanges words on the field with Josiah Trotter, telling him: \u201cI know your dad.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x9gsmq/highlight_steelers_qb_aaron_rodgers_exchanges/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x9gsmq/highlight_steelers_qb_aaron_rodgers_exchanges",
+   "skipped": "too short: the post runs 7.0s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Cam Skattebo",
+   "why": "Skattebo explains why he got no carries, delivering a candid mic\u2011up rant",
+   "post_title": "[Highlight] Cam Skattebo on not getting any carries today: \"I got punished for what I did (last week). I understand it. I gotta be ready when Coach calls my name and that wasn't today. [...] I didn't ",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x9f326/highlight_cam_skattebo_on_not_getting_any_carries/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x9f326/highlight_cam_skattebo_on_not_getting_any_carries",
+   "title": "Cam Skattebo Takes Full Blame For His Punishment After Last Week's Fumble",
+   "hook": "Cam Skattebo accepts punishment for fumble",
+   "ledger": {
+    "moves": [
+     "zoom@0.3"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: HTTP Error 429: Too",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: HTTP Error 429: Too"
+  },
+  {
+   "sub": "soccer",
+   "who": "Emiliano Martinez",
+   "why": "Fans boo Martinez as he\u2019s carried off on a stretcher, showing raw stadium emotion",
+   "post_title": "Everton fans boo Emiliano Martinez as he is carried off the field on a stretcher due to injury",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1x8a935/everton_fans_boo_emiliano_martinez_as_he_is/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1x8a935/everton_fans_boo_emiliano_martinez_as_he_is",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "soccer",
+   "who": "Referee",
+   "why": "The official mistakenly pulls out a red card then quickly changes it to yellow, sparking confusion",
+   "post_title": "Referee pulls out a red card for Nwaneri by mistake, quickly changes it to yellow",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1x8z0nu/referee_pulls_out_a_red_card_for_nwaneri_by/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1x8z0nu/referee_pulls_out_a_red_card_for_nwaneri_by",
+   "title": "Referee Shows Nwaneri A RED Card By MISTAKE! \ud83d\ude33",
+   "hook": "Referee pulls out the wrong card \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "whoa@9.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      360,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  },
+  {
+   "sub": "soccer",
+   "who": "Dejan Kulusevski",
+   "why": "Kulusevski\u2019s emotional return to Tottenham after 526 days, captured on fan cam",
+   "post_title": "Kulusevski\u2019s Return to Tottenham After 526 Days",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xa8q43/kulusevskis_return_to_tottenham_after_526_days/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xa8q43/kulusevskis_return_to_tottenham_after_526_days",
+   "title": "Dejan Kulusevski Returns to Tottenham After 526 Days\u202f\u2014\u202fFans React",
+   "hook": "Kulusevski steps onto the pitch again \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "zoom@2.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  },
+  {
+   "sub": "soccer",
+   "who": "J3 League Coach",
+   "why": "Coach gets a straight red after kicking a bottle at the linesman, a wild bench incident",
+   "post_title": "In J3 League Coach gets sent off with a straight red card after kicking a bottle towards the linesman.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xa1h52/in_j3_league_coach_gets_sent_off_with_a_straight/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xa1h52/in_j3_league_coach_gets_sent_off_with_a_straight",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "baseball",
+   "who": "Jackson Chourio",
+   "why": "Chourio battles a preying mantis on the field, turning a game moment into comedy",
+   "post_title": "[Highlight] Jackson Chourio tries to brush off a preying mantis but he is unable to rid himself of his new companion",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1x6a754/highlight_jackson_chourio_tries_to_brush_off_a/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1x6a754/highlight_jackson_chourio_tries_to_brush_off_a",
+   "skipped": "too short: the post runs 11.2s (< 15s)"
+  }
+ ],
+ "already_today": 0,
+ "pool": 100,
+ "already_posted": 7,
+ "shipped": 2
+}
