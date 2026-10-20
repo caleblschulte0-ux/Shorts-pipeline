@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-20T11:26:50Z",
+ "updated": "2026-10-20T11:30:36Z",
  "open": [
   {
    "id": "rubiks-cube-record-vs-robot__5d087bf9",
@@ -11,16 +11,6 @@
    ],
    "request": "exchange/rewrites/20261019/rubiks-cube-record-vs-robot__5d087bf9.request.json",
    "answer_path": "exchange/rewrites/20261019/rubiks-cube-record-vs-robot__5d087bf9.answer.json"
-  },
-  {
-   "id": "back-to-sleep-campaign-cut-sids__1d5b6766",
-   "slug": "back-to-sleep-campaign-cut-sids",
-   "filed": "2026-10-19T11:44:41Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261019/back-to-sleep-campaign-cut-sids__1d5b6766.request.json",
-   "answer_path": "exchange/rewrites/20261019/back-to-sleep-campaign-cut-sids__1d5b6766.answer.json"
   },
   {
    "id": "index-funds-own-corporate-america__19285cc1",
@@ -563,6 +553,16 @@
    ],
    "request": "exchange/rewrites/20261018/lottery-odds-vs-real-life__2ee01cb7.request.json",
    "answer_path": "exchange/rewrites/20261018/lottery-odds-vs-real-life__2ee01cb7.answer.json"
+  },
+  {
+   "id": "back-to-sleep-campaign-cut-sids__1d5b6766",
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "filed": "2026-10-18T11:46:47Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261018/back-to-sleep-campaign-cut-sids__1d5b6766.request.json",
+   "answer_path": "exchange/rewrites/20261018/back-to-sleep-campaign-cut-sids__1d5b6766.answer.json"
   },
   {
    "id": "nobel-prize-discovery-age__3e12dc3c",
