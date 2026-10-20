@@ -6,8 +6,8 @@
  "slots": [
   {
    "sub": "sports",
-   "who": "Lionel Messi",
-   "why": "A fan in Paris snatches Messi\u2019s signed jersey and captain\u2019s armband, catching the eye with bold theft",
+   "who": "Messi",
+   "why": "A fan in Paris snatches a signed Messi jersey and captain's armband, sparking instant drama",
    "post_title": "Guy in Paris steals a signed Messi jersey and captain's armband",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/sports/comments/1x9frtz/guy_in_paris_steals_a_signed_messi_jersey_and/",
@@ -17,7 +17,7 @@
   {
    "sub": "nba",
    "who": "Scottie Barnes",
-   "why": "His pants drop during a pre\u2011game 360 dunk, prompting a hilarious on\u2011court reaction",
+   "why": "His pants drop mid\u2011air during a pre\u2011game 360 dunk, delivering a hilarious surprise",
    "post_title": "Scottie Barnes\u2019 pants fall down during a pre-game 360 dunk.",
    "upvotes": 0,
    "url": "https://streamable.com/bf2mro",
@@ -26,18 +26,18 @@
   },
   {
    "sub": "nba",
-   "who": "Luka Don\u010di\u0107",
-   "why": "He stops to praise a fan dancing in a Lakers jersey, delivering a genuine, feel\u2011good moment",
+   "who": "Luka Doncic",
+   "why": "Doncic watches a fan dancing in his jersey and gives an amused reaction",
    "post_title": "Luka Doncic seems to be impressed by a Lakers fan dancing, wearing his jersey. \"He's good\"",
    "upvotes": 0,
    "url": "https://streamable.com/8tvy83",
    "topic": "https://www.reddit.com/r/nba/comments/1x5iucq/luka_doncic_seems_to_be_impressed_by_a_lakers_fan",
-   "skipped": "author: no setup or no payoff in the clip"
+   "skipped": "author: no title"
   },
   {
    "sub": "nfl",
    "who": "Aaron Rodgers",
-   "why": "Rodgers trades barbs with opponent Josiah Trotter on the field, sparking a tense bench\u2011clearing vibe",
+   "why": "Rodgers confronts an opponent on the field with a personal jab, \u201cI know your dad.\u201d",
    "post_title": "[Highlight] Steelers QB Aaron Rodgers exchanges words on the field with Josiah Trotter, telling him: \u201cI know your dad.\u201d",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/nfl/comments/1x9gsmq/highlight_steelers_qb_aaron_rodgers_exchanges/",
@@ -45,39 +45,35 @@
    "skipped": "too short: the post runs 7.0s (< 15s)"
   },
   {
-   "sub": "nfl",
-   "who": "Cam Skattebo",
-   "why": "He candidly admits to being punished for a previous mistake, giving a raw, behind\u2011the\u2011scenes look",
-   "post_title": "[Highlight] Cam Skattebo on not getting any carries today: \"I got punished for what I did (last week). I understand it. I gotta be ready when Coach calls my name and that wasn't today. [...] I didn't ",
+   "sub": "soccer",
+   "who": "Referee",
+   "why": "A referee mistakenly shows a red card then quickly corrects it, creating a funny on\u2011field mix\u2011up",
+   "post_title": "Referee pulls out a red card for Nwaneri by mistake, quickly changes it to yellow",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1x9f326/highlight_cam_skattebo_on_not_getting_any_carries/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1x9f326/highlight_cam_skattebo_on_not_getting_any_carries",
-   "title": "Cam Skattebo Reveals Why He Was Benched After Last Week's Fumble",
-   "hook": "Cam Skattebo on getting benched",
+   "url": "https://www.reddit.com/r/soccer/comments/1x8z0nu/referee_pulls_out_a_red_card_for_nwaneri_by/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1x8z0nu/referee_pulls_out_a_red_card_for_nwaneri_by",
+   "title": "Referee Shows Nwaneri Red Card Mistake, Then Fixes It",
+   "hook": "Referee flips Nwaneri's card \ud83d\ude33",
    "ledger": {
-    "moves": [
-     "whoa@0.5",
-     "zoom@7.0",
-     "zoom@60.0"
-    ],
+    "moves": [],
     "mood": null,
     "shot_plan": {
-     "layout": "wide",
-     "reason": "no persistent subject \u2014 show the whole frame",
+     "layout": "facecam_gameplay",
+     "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible (render fell back to whole frame)",
      "shots": [],
-     "n_subjects": 0
+     "n_subjects": 1
     }
    },
    "showrunner": {
     "blocked": true,
-    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 503: Service Unavaila",
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request",
     "score": null
    },
-   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 503: Service Unavaila"
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request"
   }
  ],
  "already_today": 2,
- "pool": 73,
+ "pool": 100,
  "already_posted": 9,
  "shipped": 0
 }
