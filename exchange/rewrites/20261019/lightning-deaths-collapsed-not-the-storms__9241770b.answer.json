@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "lightning-deaths-collapsed-not-the-storms__9241770b",
+  "slug": "lightning-deaths-collapsed-not-the-storms",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:27:00Z",
+  "title": "Lightning Became 40 Times Less Deadly Per Person",
+  "hook": "Lightning's per-person death risk fell 40-fold, but exposed people still die.",
+  "closing": "Lower risk does not make an exposed spot safe; take thunder as a cue to get indoors.",
+  "question": "Where do you shelter during thunderstorms?",
+  "segments": [
+    {
+      "topic": "Lightning deaths collapse",
+      "say": "The latest supplied annual count is 18 lightning deaths. Fatalities fell sharply from the historical average."
+    },
+    {
+      "topic": "Lightning risk falls",
+      "say": "Per-person lightning death risk fell 40-fold across the compared eras. The improvement remains dramatic after accounting for population."
+    },
+    {
+      "topic": "Lightning fishing risk",
+      "say": "Fishing accounts for 10% of recent lightning deaths in these data. Exposure near open water remains a serious concern."
+    }
+  ]
+}
