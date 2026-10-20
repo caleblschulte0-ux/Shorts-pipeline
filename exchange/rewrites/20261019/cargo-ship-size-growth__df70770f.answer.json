@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cargo-ship-size-growth__df70770f",
+  "slug": "cargo-ship-size-growth",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:27:00Z",
+  "title": "Cargo Ships Grew Sixfold While Crews Shrank To 20",
+  "hook": "Cargo ships grew enormously, yet a typical crew shrank to 20 people.",
+  "closing": "More cargo and fewer hands mean enormous shipments depend on surprisingly small crews.",
+  "question": "Would you work on a ship this big?",
+  "segments": [
+    {
+      "topic": "Cargo capacity multiplies",
+      "say": "The largest container ship's capacity reached 24,327 standard container equivalents. That is roughly six times the earliest supplied capacity."
+    },
+    {
+      "topic": "Cargo ship scale",
+      "say": "The supplied giant container ship measures 400 meters long. It is substantially longer than the Titanic in the comparison."
+    },
+    {
+      "topic": "Cargo crew shrinks",
+      "say": "A typical crew fell to 20 people in these data. Larger cargo capacity did not require a larger crew."
+    }
+  ]
+}
