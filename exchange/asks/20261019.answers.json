@@ -1,25 +1,175 @@
 {
   "schema": "shorts-ask-answers/v1",
   "answers": {
-    "902fff3717624e1e": {"answer": "The French Bulldog Ended A 31-Year Reign", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "f4e86320f01664be": {"answer": "NONE", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "ea9fc3d104d23b88": {"answer": "NONE", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "e2e77a0e0cb293dd": {"answer": "NONE", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "c94af9d80b77accb": {"answer": "NONE", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "cedf4355e7694c0e": {"answer": "NONE", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "b2fefacabc3f9d13": {"answer": "NONE", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "d5ddd372c46c9c8c": {"answer": "NONE", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "99c7524d82b0ec43": {"answer": "NONE", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "fe22f0c62bb08861": {"answer": "Vinyl Quietly Buried The CD", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "d2951b0bd0d5b7d9": {"answer": "NONE", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "05687eb84d81c7ab": {"answer": "NONE", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "7f3fda452b70fc11": {"answer": "NONE", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "bdba9e50ac34a1cc": {"answer": "NONE", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "545daf701eb665ab": {"answer": "NONE", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "9f741f81bc5e15ae": {"answer": "NONE", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "86d7a57781e03ec2": {"answer": "The French Bulldog Ended A 31-Year Reign", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "fa205ad11ed7c91a": {"answer": "{\"verdict\":\"REJECT\",\"reason\":\"The 4-kilometer depth is descriptive rather than the consequential number driving a clear expectation reversal about deep-sea mining.\"}", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "bd94e47cdd6a16ea": {"answer": "{\"verdict\":\"PASS\",\"reason\":\"A 55 percent rise in severe turbulence directly overturns the expectation that routine air travel is not becoming materially bumpier.\"}", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"},
-    "08a8e3ffb2f08a53": {"answer": "{\"verdict\":\"PASS\",\"reason\":\"The claim overturns the expectation that humans domesticated many large animals and anchors that surprise to the consequential number 14.\"}", "by": "chatgpt", "at": "2026-10-19T23:05:00Z"}
+    "902fff3717624e1e": {
+      "answer": "The French Bulldog Ended A 31-Year Reign",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "f4e86320f01664be": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "ea9fc3d104d23b88": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "e2e77a0e0cb293dd": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "c94af9d80b77accb": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "cedf4355e7694c0e": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "b2fefacabc3f9d13": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "d5ddd372c46c9c8c": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "99c7524d82b0ec43": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "fe22f0c62bb08861": {
+      "answer": "Vinyl Quietly Buried The CD",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "d2951b0bd0d5b7d9": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "05687eb84d81c7ab": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "7f3fda452b70fc11": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "bdba9e50ac34a1cc": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "545daf701eb665ab": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "9f741f81bc5e15ae": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "86d7a57781e03ec2": {
+      "answer": "The French Bulldog Ended A 31-Year Reign",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "fa205ad11ed7c91a": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The 4-kilometer depth is descriptive rather than the consequential number driving a clear expectation reversal about deep-sea mining.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "bd94e47cdd6a16ea": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"A 55 percent rise in severe turbulence directly overturns the expectation that routine air travel is not becoming materially bumpier.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "08a8e3ffb2f08a53": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The claim overturns the expectation that humans domesticated many large animals and anchors that surprise to the consequential number 14.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-19T23:05:00Z"
+    },
+    "ffb5ad95e115df10": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The reversal has no consequential numerical anchor, and the universe-wide superlative is broader than the evidence supplied.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:22:00Z"
+    },
+    "f11a3bb904005c42": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:22:00Z"
+    },
+    "15f30f79cf38b996": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"Africa being 14 times Greenland's area overturns the familiar visual impression created by common world maps.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:22:00Z"
+    },
+    "8ecae8e623b49b46": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"Falling behind 36 countries reverses the expectation of continued American height leadership and gives the loss measurable scale.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:22:00Z"
+    },
+    "d1cec921b9db64c1": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The hook's claim that America never fixed a spacecraft unit error conflates a specific engineering failure with national metric adoption.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:22:00Z"
+    },
+    "72d54cc6ef7be039": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The vague title never identifies daylight saving time, and the hook leaves the consequential claim that 64 countries quit unsupported.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:22:00Z"
+    },
+    "13c3620b652ce9aa": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The hook turns a national facility count into a claim about the viewer's town and confuses storage facilities with individual units.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:22:00Z"
+    },
+    "dcb3778b3c832c3a": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The personal 281-times claim lacks a defined CEO and worker population, making the purported pay comparison misleading.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:22:00Z"
+    },
+    "3882a74174e5838e": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The undefined two-thirds literacy claim competes with the state count and does not substantiate the claimed revival.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:22:00Z"
+    },
+    "1d85f0fe788b991e": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"A nearly 40 percent US user decline reverses the expectation of dating-app growth with one consequential magnitude.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:22:00Z"
+    },
+    "060a2f87f3156c8d": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The 2 percent rarity figure does not establish the hook's inheritance reversal, and normal-looking is an unclear comparison.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:22:00Z"
+    },
+    "ff00ef3b1b1dbd0d": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The retirement date supplies a deadline rather than a consequential numerical measure explaining the surprising disposal decision.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:22:00Z"
+    },
+    "3c0ac0bae674b3fa": {
+      "answer": "{\"bridges\":{\"1\":true}}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:22:00Z"
+    },
+    "2a39da504bc74ca1": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The title measures human progress while the hook switches to a robot comparison without quantifying the consequential robot advantage.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:22:00Z"
+    }
   }
 }
