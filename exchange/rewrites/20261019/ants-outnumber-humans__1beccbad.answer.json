@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "ants-outnumber-humans__1beccbad",
+  "slug": "ants-outnumber-humans",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:22:00Z",
+  "title": "Ants Win The Headcount, But Humans Have 5 Times Their Carbon Biomass",
+  "hook": "Ants vastly outnumber humans, yet humans have 5 times their carbon biomass.",
+  "closing": "Being numerous and being heavy are different advantages; tiny ants dominate headcounts without outweighing humanity.",
+  "question": "Which matters more to you: numbers or mass?",
+  "segments": [
+    {
+      "topic": "Ants outweigh wildlife",
+      "say": "Ants hold 12 megatons of carbon biomass in this comparison. That exceeds the wild mammals and wild birds combined."
+    },
+    {
+      "topic": "Ants versus humans",
+      "say": "Humans have 5 times the ants' carbon biomass. Individual size reverses the impression created by the ants' enormous numbers."
+    },
+    {
+      "topic": "Ants dominate counts",
+      "say": "There are roughly 2.4 million ants per human in these data. Tiny individuals can dominate a headcount while losing on mass."
+    }
+  ]
+}
