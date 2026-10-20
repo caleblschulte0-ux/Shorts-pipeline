@@ -1,0 +1,182 @@
+{
+  "schema": "chatgpt-production-blocker/v1",
+  "date": "20261020",
+  "status": "partial",
+  "day_closed": false,
+  "observed_at": "2026-10-20T11:24:38Z",
+  "bundle_identity": "87679f133c343b798db74f4f996cff2b504538d0cafd3e595e38fdcf5cb3986d",
+  "failed_steps": [
+    {
+      "step": "daily_explainer_ingest",
+      "detail": "Phase B applied 2 of 3 requested rewrites and refused population-growth-fell-54-since-1972: segment 0: INVENTED named entity(ies): urban. No open answer request for that slug exists in the actual rewrite index or repository tree observed; did not overwrite a settled response/DONE or change a guard."
+    },
+    {
+      "step": "production_supervision_manual_kickoff",
+      "detail": "Available GitHub connected tools expose file writes, job reads, and job reruns, but no workflow_dispatch action. No direct manual Sports/Third/Explainer dispatch was available through these tools. GET to workflow-specific run-list URL also returned HTTPError 400: GitHub Fetch URL is not an allowed public GitHub repository or search endpoint. Global actions/runs and job logs work. No browser, local computer, other agent or metered model API was used."
+    },
+    {
+      "step": "verify_required_uploads",
+      "detail": "No today's accepted upload URLs are present in the three channel posted logs at the observed snapshot. Daily Shorts 39414063311 exited successfully because sports_moment is made by sports.yml, not its package renderer. It produced no sports upload. Other workers or their scheduled firings remain outstanding; a successful handoff is not production completion."
+    }
+  ],
+  "channels": {
+    "trending": {
+      "required": 3,
+      "verified_posted": 0,
+      "pending": 3
+    },
+    "third": {
+      "required": 6,
+      "verified_posted": 0,
+      "pending": 6
+    },
+    "explainer": {
+      "required": 4,
+      "verified_posted": 0,
+      "pending": 4
+    }
+  },
+  "mailboxes": {
+    "reviews": {
+      "indexed_open": 0,
+      "answered": 0,
+      "skipped": 0
+    },
+    "asks": {
+      "indexed_batches": 14,
+      "indexed_key_occurrences": 288,
+      "indexed_unique_keys": 232,
+      "newly_answered": 40,
+      "existing_answered_reused": 20,
+      "remaining_unique_unanswered": 172,
+      "deferred_reason": "Two rounds reached their 20-key cap; existing answers were preserved. The raw index has stale entries for already answered keys."
+    },
+    "rewrites": {
+      "indexed_open": 147,
+      "stories_answered": 20,
+      "answer_files_committed": 22,
+      "repair_answers": 2,
+      "accepted_unique_first_round": 8,
+      "pending_validation": "Second round plus repaired astronaut/gulf answers await existing claims.",
+      "skipped_reason": "Rubiks cube request needs real per-frame motion repair; wording cannot honestly fix its measured 48 duplicate frames exceeding 45. Additional backlog deferred at per-round caps."
+    }
+  },
+  "media": {
+    "requested": 0,
+    "generated": 0,
+    "regenerated": 0
+  },
+  "commits": {
+    "started": "d0b498b60f621c3d9b465edf434716ba19814415",
+    "asks": [
+      "a0d47752ffd4187b3426570027ecd1a85be6e22d",
+      "382b0f5554d39a66797f514b4d3ed4d6ddefc8c5",
+      "2f9f5708cf50f2a70c76bc09a869835395fa5af3",
+      "50a4c36b77709691b13ce1bfb6cfb2344a0c7886",
+      "bf10dd25cded6ee5306d51a29815da3e0bcfadab"
+    ],
+    "rewrites": [
+      {
+        "path": "exchange/rewrites/20261019/dog-breed-popularity-flip__ed8cf925.answer.json",
+        "commit_sha": "190a7c2ecf5df1a81de5e5d2d884c282b3935715"
+      },
+      {
+        "path": "exchange/rewrites/20261019/gulf-dead-zone-growth__a4939372.answer.json",
+        "commit_sha": "948151b6ae225de0bf8ef090e2510e3353f088e6"
+      },
+      {
+        "path": "exchange/rewrites/20261019/astronaut-bone-loss__262309b8.answer.json",
+        "commit_sha": "47e7f06fff730cd9862c524b92b779de6d37b6f5"
+      },
+      {
+        "path": "exchange/rewrites/20261019/pickleball-fastest-growing-sport__598b7568.answer.json",
+        "commit_sha": "b2bae8d3e31ca4230e2437db5449d37fea878929"
+      },
+      {
+        "path": "exchange/rewrites/20261019/usps-mail-volume-collapse__e8b27d6b.answer.json",
+        "commit_sha": "9582c9322a090c41037994390dd5cf8092c2630b"
+      },
+      {
+        "path": "exchange/rewrites/20261019/lightning-deaths-collapsed-not-the-storms__9241770b.answer.json",
+        "commit_sha": "6526bfdf4e225c5caa3c28379885114a9e7402aa"
+      },
+      {
+        "path": "exchange/rewrites/20261019/metric-system-holdouts__47450d37.answer.json",
+        "commit_sha": "2909a6fd9b1dfe5d8b8f2da0eb1783df95ce1343"
+      },
+      {
+        "path": "exchange/rewrites/20261019/north-american-bird-collapse__58c079e0.answer.json",
+        "commit_sha": "7c4ac8cb10d0357f9280f05ebb1ea9e823f77597"
+      },
+      {
+        "path": "exchange/rewrites/20261019/cargo-ship-size-growth__df70770f.answer.json",
+        "commit_sha": "22cb37eeb30165f054606a0ca1cfc67be10109e5"
+      },
+      {
+        "path": "exchange/rewrites/20261019/podcasts-passed-radio-spoken-word__1c353e96.answer.json",
+        "commit_sha": "d318686431852918329a142fa6adb5ef0e2eaede"
+      },
+      {
+        "path": "exchange/rewrites/20261019/hearing-aids-otc-price-drop__b159cfe2.answer.json",
+        "commit_sha": "78fcc6067a28aac10a6a6e8769d3d137988698ba"
+      },
+      {
+        "path": "exchange/rewrites/20261019/red-hair-recessive-gene__f9405603.answer.json",
+        "commit_sha": "27bb347e957553e19e9efba8a9f22333c860375e"
+      },
+      {
+        "path": "exchange/rewrites/20261019/chip-transistor-shrink-limit__72cdc200.answer.json",
+        "commit_sha": "a55b612722ab5bcd7d066c0d503117d701eac3be"
+      },
+      {
+        "path": "exchange/rewrites/20261019/coldest-place-in-the-universe-is-human-made__d62a1233.answer.json",
+        "commit_sha": "37da16888ab4d6b9b0248b8a4a7feeaba6c12c36"
+      },
+      {
+        "path": "exchange/rewrites/20261019/homeschool-surge__44c39d98.answer.json",
+        "commit_sha": "b08dd950cf6819aa03c3a4216af0e8ade8b099c3"
+      },
+      {
+        "path": "exchange/rewrites/20261019/parker-solar-probe-speed-record__e69da005.answer.json",
+        "commit_sha": "08f1e1448fbcd78743ae502e3ac6852d50c1e036"
+      },
+      {
+        "path": "exchange/rewrites/20261019/peanut-allergy-guideline-flip__78a48cd5.answer.json",
+        "commit_sha": "f28f472f0c2fc505704289b4f9be9a7dd0e78f08"
+      },
+      {
+        "path": "exchange/rewrites/20261019/ants-outnumber-humans__1beccbad.answer.json",
+        "commit_sha": "f8327df102a48b5619e74cb08d1df5f1d8e3bfad"
+      },
+      {
+        "path": "exchange/rewrites/20261019/lottery-odds-vs-real-life__2ee01cb7.answer.json",
+        "commit_sha": "c2728fe3c974b59d849731cb1a66bdfbb2bdc8eb"
+      },
+      {
+        "path": "exchange/rewrites/20261019/body-renewal-clock__a57c67e5.answer.json",
+        "commit_sha": "0227e13593dc41717d461175722099b82a6789e7"
+      },
+      {
+        "path": "exchange/rewrites/20261018/astronaut-bone-loss__262309b8.answer.json",
+        "commit_sha": "48b58324737b410172ccf768ef82d2cca6bbba0c"
+      },
+      {
+        "path": "exchange/rewrites/20261017/gulf-dead-zone-growth__a4939372.answer.json",
+        "commit_sha": "9bdb745b3960331e2d4b094d7d390e874fc84912"
+      }
+    ],
+    "response": "c74a85c65b3de3b25050d8a21d53814078b8c672",
+    "done": "1e5462c3717a36775e1d99eb1583f95ff5c16f87"
+  },
+  "runs": {
+    "phase_b": 39414037859,
+    "first_claim": 39413832913,
+    "second_claim": 39413853699,
+    "second_round_claim": 39414425090
+  },
+  "notes": [
+    "Only authorized exchange answer, response, DONE, and media-progress paths were written.",
+    "No review verdict was invented; no source data, video hash, media verification or publication count was fabricated.",
+    "Existing scheduled workers remain enabled; this is partial progress with pending claims and channel production, not a permanent full-block diagnosis."
+  ]
+}
