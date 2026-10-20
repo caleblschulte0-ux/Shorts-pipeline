@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "red-hair-recessive-gene__f9405603",
+  "slug": "red-hair-recessive-gene",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:22:00Z",
+  "title": "Red Hair Can Stay Hidden: 37% Carry The Gene In Scotland",
+  "hook": "In Scotland, 37% carry the red-hair gene; far fewer visibly show it.",
+  "closing": "Visible hair color does not reveal everything a family can pass on; inheritance is more complicated than appearances.",
+  "question": "Does red hair skip generations in your family?",
+  "segments": [
+    {
+      "topic": "Red hair rarity",
+      "say": "Visible red hair appears in 1.5% of people worldwide in these data. It is much more common in Scotland."
+    },
+    {
+      "topic": "Red hair carriers",
+      "say": "The Scotland carrier estimate reaches 37%. A visible trait misses many people carrying a related gene."
+    },
+    {
+      "topic": "Red hair model",
+      "say": "The simplified gene-copy model assigns 100% expression to paired copies. It illustrates recessive inheritance, not every real-world hair-color outcome."
+    }
+  ]
+}
