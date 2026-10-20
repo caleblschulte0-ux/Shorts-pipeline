@@ -1,7 +1,37 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-20T12:07:19Z",
+ "updated": "2026-10-20T14:12:32Z",
  "open": [
+  {
+   "id": "self-storage-outnumbers-starbucks__97599610",
+   "slug": "self-storage-outnumbers-starbucks",
+   "filed": "2026-10-20T14:12:32Z",
+   "why": [
+    "premise: brain: The claim lacks a clear, verifiable reversal of a common expectation and relies on an ambiguous number without context."
+   ],
+   "request": "exchange/rewrites/20261020/self-storage-outnumbers-starbucks__97599610.request.json",
+   "answer_path": "exchange/rewrites/20261020/self-storage-outnumbers-starbucks__97599610.answer.json"
+  },
+  {
+   "id": "lab-grown-diamond-price-collapse__d179596a",
+   "slug": "lab-grown-diamond-price-collapse",
+   "filed": "2026-10-20T14:12:32Z",
+   "why": [
+    "premise: brain: Unclear if it uniquely reverses a viewer expectation and hinges on a single verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261020/lab-grown-diamond-price-collapse__d179596a.request.json",
+   "answer_path": "exchange/rewrites/20261020/lab-grown-diamond-price-collapse__d179596a.answer.json"
+  },
+  {
+   "id": "saffron-red-gold-myth__572913ae",
+   "slug": "saffron-red-gold-myth",
+   "filed": "2026-10-20T14:12:31Z",
+   "why": [
+    "premise: brain: It lacks a clear reversal of a viewer expectation and only presents a single price without a consequential twist."
+   ],
+   "request": "exchange/rewrites/20261020/saffron-red-gold-myth__572913ae.request.json",
+   "answer_path": "exchange/rewrites/20261020/saffron-red-gold-myth__572913ae.answer.json"
+  },
   {
    "id": "rubiks-cube-record-vs-robot__5d087bf9",
    "slug": "rubiks-cube-record-vs-robot",
@@ -335,16 +365,6 @@
    "answer_path": "exchange/rewrites/20261019/cryonics-client-count__57a93db8.answer.json"
   },
   {
-   "id": "lab-grown-diamond-price-collapse__d179596a",
-   "slug": "lab-grown-diamond-price-collapse",
-   "filed": "2026-10-18T22:28:12Z",
-   "why": [
-    "premise: brain: The claim lacks a clear reversal of a common viewer expectation and relies only on a generic percentage without a specific, surprising premise."
-   ],
-   "request": "exchange/rewrites/20261018/lab-grown-diamond-price-collapse__d179596a.request.json",
-   "answer_path": "exchange/rewrites/20261018/lab-grown-diamond-price-collapse__d179596a.answer.json"
-  },
-  {
    "id": "moon-drifting-away__904b95b2",
    "slug": "moon-drifting-away",
    "filed": "2026-10-18T22:28:10Z",
@@ -535,16 +555,6 @@
    "answer_path": "exchange/rewrites/20261018/black-holes-in-galaxy__4e789d36.answer.json"
   },
   {
-   "id": "self-storage-outnumbers-starbucks__97599610",
-   "slug": "self-storage-outnumbers-starbucks",
-   "filed": "2026-10-18T11:46:49Z",
-   "why": [
-    "premise: brain: The claim lacks a clear reversal of a common expectation and relies on an ambiguous, unverifiable number for a specific town rather than a national, consequential figure."
-   ],
-   "request": "exchange/rewrites/20261018/self-storage-outnumbers-starbucks__97599610.request.json",
-   "answer_path": "exchange/rewrites/20261018/self-storage-outnumbers-starbucks__97599610.answer.json"
-  },
-  {
    "id": "podcasts-passed-radio-spoken-word__1c353e96",
    "slug": "podcasts-passed-radio-spoken-word",
    "filed": "2026-10-18T11:46:49Z",
@@ -603,16 +613,6 @@
    ],
    "request": "exchange/rewrites/20261018/world-wetlands-lost__66020aa4.request.json",
    "answer_path": "exchange/rewrites/20261018/world-wetlands-lost__66020aa4.answer.json"
-  },
-  {
-   "id": "ants-outnumber-humans__1beccbad",
-   "slug": "ants-outnumber-humans",
-   "filed": "2026-10-17T12:56:19Z",
-   "why": [
-    "premise: brain: It presents a factual statistic without reversing a viewer's specific expectation."
-   ],
-   "request": "exchange/rewrites/20261017/ants-outnumber-humans__1beccbad.request.json",
-   "answer_path": "exchange/rewrites/20261017/ants-outnumber-humans__1beccbad.answer.json"
   },
   {
    "id": "competitive-eating-record-climb__e38b83da",
@@ -675,6 +675,16 @@
    "answer_path": "exchange/rewrites/20261015/north-american-bird-collapse__58c079e0.answer.json"
   },
   {
+   "id": "ants-outnumber-humans__1beccbad",
+   "slug": "ants-outnumber-humans",
+   "filed": "2026-10-15T13:23:21Z",
+   "why": [
+    "premise: brain: The claim does not subvert a specific viewer expectation; it merely states a known statistic."
+   ],
+   "request": "exchange/rewrites/20261015/ants-outnumber-humans__1beccbad.request.json",
+   "answer_path": "exchange/rewrites/20261015/ants-outnumber-humans__1beccbad.answer.json"
+  },
+  {
    "id": "panama-canal-drought-transit-cuts__3cc174f2",
    "slug": "panama-canal-drought-transit-cuts",
    "filed": "2026-10-15T13:23:19Z",
@@ -723,16 +733,6 @@
    ],
    "request": "exchange/rewrites/20261014/billionaire-count-record-2025__a388e951.request.json",
    "answer_path": "exchange/rewrites/20261014/billionaire-count-record-2025__a388e951.answer.json"
-  },
-  {
-   "id": "saffron-red-gold-myth__572913ae",
-   "slug": "saffron-red-gold-myth",
-   "filed": "2026-10-13T12:41:34Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies only on a generic price claim."
-   ],
-   "request": "exchange/rewrites/20261013/saffron-red-gold-myth__572913ae.request.json",
-   "answer_path": "exchange/rewrites/20261013/saffron-red-gold-myth__572913ae.answer.json"
   },
   {
    "id": "hpv-vaccine-cancer-drop__d23144d8",

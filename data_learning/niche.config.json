@@ -19629,9 +19629,9 @@
   {
    "slug": "chatgpt-fastest-adoption-ever",
    "title": "ChatGPT Grew Faster Than Any App Ever Has",
-   "hook": "This app broke every growth record.",
-   "closing": "850 million people are riding free - somebody else is paying the server bill for that.",
-   "question": "Do you use ChatGPT every week? Tell me below.",
+   "hook": "This app hit 100 million faster",
+   "closing": "850 million ride free, so someone else foots the massive server costs you’ll never see",
+   "question": "Do you use ChatGPT weekly? Tell below",
    "caption": "ChatGPT hit 100 million users within 2 months of launch. TikTok took 9 months. Instagram took two and a half years. Here's the full curve 👇",
    "hashtags": [
     "chatgpt",
@@ -19656,8 +19656,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE ROCKET",
-     "topic": "ChatGPT users over time",
-     "say": "ChatGPT hit 100 million users just 2 months after launch. By February 2026, weekly active users had climbed to 900 million people using it every single week.",
+     "topic": "ChatGPT Users",
+     "say": "100 million users in two months, showing unprecedented adoption speed.",
      "scene": {
       "mechanic": "rocket-altitude-climb",
       "concept": "a rocket climbs an altitude scale marked by each user-count checkpoint, flame flickering as it rises toward 900 million weekly users",
@@ -19673,8 +19673,8 @@
      "insight_type": "rank",
      "ascending": true,
      "role": "2 · THE OLD GUARD",
-     "topic": "months to reach 100 million users",
-     "say": "Compare that to the old guard. TikTok took 9 months to reach 100 million users. Instagram took 30 months, two and a half years. ChatGPT did it in 2.",
+     "topic": "ChatGPT Speed",
+     "say": "TikTok needed nine months, Instagram thirty, but ChatGPT did it in two.",
      "scene": {
       "mechanic": "speed-race-track",
       "concept": "three lanes race toward a '100 million users' finish line, each app's marker positioned by how few months it took - ChatGPT nearly there instantly",
@@ -19689,15 +19689,17 @@
      },
      "insight_type": "share",
      "role": "3 · THE CATCH",
-     "topic": "paying vs free ChatGPT users",
-     "say": "And yet, of those 900 million weekly users, only 50 million actually pay. The other 850 million ride free, which is exactly why AI companies need so much investor cash.",
+     "topic": "ChatGPT Paying",
+     "say": "Only 50 million of 900 million weekly users pay, leaving 850 million free.",
      "scene": {
       "mechanic": "wallet-crowd-fill",
       "concept": "a 90-icon crowd grid stands for every weekly user; only the true, tiny gold-colored sliver actually pays",
       "code": "paying = values[0]; free = values[-1]\ntotal = paying + free\nperson = subject_image('tiny person icon')\ncoin = subject_image('gold coin stack')\ncols, rows = 10, 9\ncell = min((RX1 - RX0) // cols, 90)\ngx0 = RX0 + ((RX1 - RX0) - cell * cols) // 2\ngy0 = RTOP + 200\nshown = int(clamp(reveal) * cols * rows)\ngold_count = max(1, round(cols * rows * (paying / total)))\nfor k in range(shown):\n    r = k // cols; c = k % cols\n    x = gx0 + c * cell; y = gy0 + r * cell\n    is_gold = k < gold_count\n    if person is not None:\n        paste(person, x + 6, y + 6, cell - 14, cell - 14)\n        if is_gold:\n            d.rectangle([x, y, x + cell, y + cell], outline=rgba(HIGHLIGHT, 220), width=3)\n    else:\n        d.ellipse([x + 10, y + 10, x + cell - 10, y + cell - 10], fill=rgba(HIGHLIGHT, 220) if is_gold else rgba(TEXT, 70))\nif coin is not None:\n    paste(coin, RX0 + 20, RBOT - 140, 100, 100)\ntext(f'{int(paying)}M pay', RX0 + 140, RBOT - 120, size=36, color=HIGHLIGHT)\ntext(f'{int(free)}M ride free', RX0 + 20, RTOP + 140, size=32, color=TEXT)"
      }
     }
-   ]
+   ],
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-20T13:52:00Z"
   },
   {
    "slug": "sand-mining-crisis",
