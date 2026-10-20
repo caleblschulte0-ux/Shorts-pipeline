@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "game-industry-layoffs-record__47b9280e",
+  "slug": "game-industry-layoffs-record",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:28:30Z",
+  "title": "Game Industry Layoffs Reached 14,800 Despite Record-Sales Headlines",
+  "hook": "Game industry layoffs reached 14,800; record-sales headlines did not protect workers.",
+  "closing": "An industry's success story can hide workers losing jobs, so sales totals alone do not explain job security.",
+  "question": "What would make gaming careers more secure?",
+  "segments": [
+    {
+      "topic": "Game industry layoffs",
+      "say": "Game industry layoffs reached 14,800 in the latest supplied year. Cuts climbed sharply across the measured period."
+    },
+    {
+      "topic": "Game industry beyond giants",
+      "say": "The rest of the industry lost 12,000 jobs in the company breakdown. Headline companies were only part of the cuts."
+    }
+  ]
+}
