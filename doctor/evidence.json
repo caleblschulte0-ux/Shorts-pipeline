@@ -1,23 +1,33 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261019",
-  "judged_date": "20261018",
+  "date": "20261020",
+  "judged_date": "20261019",
   "alarm": {
-    "date": "20261018",
+    "date": "20261019",
     "ok": false,
     "alarms": [
       {
+        "code": "no_posts_explainer",
+        "severity": "critical",
+        "detail": "explainer: ZERO videos posted for 20261019 (registry wants 4).",
+        "fix": "Check the explainer workflow run for 20261019. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+      },
+      {
+        "code": "short_slate_trending",
+        "severity": "warning",
+        "detail": "trending: 2/3 posted for 20261019.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (40 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (41 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
       "chatgpt finalizer: artifact present",
-      "explainer: 4/4 posted",
-      "third: 7/6 posted",
-      "trending: 3/3 posted"
+      "third: 6/6 posted"
     ],
     "deferred": false
   },
@@ -203,560 +213,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-10-15T13:22:42+00:00",
-      "slug": "saharan-dust-feeds-amazon",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The beats are clear and Data acts in every one, but the Sahara beat's scale is a flat scallop backdrop, and the small text lines collide with the art and are too small to read on a phone.",
-      "auto_fails": [
-        "unreadable: At seg1:mid, the outline of the scalloped dust wall runs straight through the small line 'lifted into the sky every year'. At seg1:end, 'of Sahara dust lifted a year \u00b7 30x the Great Pyramid of Giza's mass' is tiny thin type over textured dust and can't be read at phone size. At seg4:start-end, 'of phosphorus a year \u00b7 the dust gives back what the rain takes' sits on the orange cloud blobs, low contrast and cramped under the closing text block."
-      ],
-      "problems": [
-        "seg1: the 182M-ton dust is a repeating scallop wall. The '30x the Great Pyramid' comparison is in 9pt text, not in the shot, and the pyramid never changes.",
-        "seg1:mid: the dust-wall outline crosses the text line 'lifted into the sky every year'.",
-        "seg1:end and seg4: small text sits on busy texture and is unreadable at phone size.",
-        "seg4: the closing repeats '22,000 tons' under a dense five-line closing block, so the ending stacks two text blocks and adds no new payoff.",
-        "The closing prompt 'Guessed dust could feed a rainforest?' is garbled English.",
-        "seg2: the dashed rounded-rectangle ghost reads a little like a UI box."
-      ],
-      "fixes": [
-        "Redraw seg1 as a lit, churning plume rising off the dunes that outgrows a row of 30 pyramid silhouettes, with Data driving it (bellows or a shovel into the wind).",
-        "Keep all small text off textured art. Give it clear ground, or drop it and let the picture carry the comparison.",
-        "In the closing, show the payoff (the forest greening as the dust settles), drop the repeated 22,000-tons readout, and give the closing line clear space.",
-        "Fix the CTA to 'Did you guess dust could feed a rainforest?'",
-        "Make seg2's ghost follow the cloud's own shape instead of a rounded rectangle."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 81
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "weak_depiction_scale_not_shown",
-        "visible_evidence": "seg1:start to seg1:end: a wall of beige scallop arcs rises behind one pyramid that never changes size, with one thin dust wisp next to Data's shovel. The '30x the Great Pyramid' comparison is only in tiny text, and the scallop wall reads as wallpaper, not dust in the sky. The cloud outline crosses t",
-        "root_cause": "The 182M-ton number is shown as a flat patterned backdrop instead of dust riding the sky. The pyramid comparison is in the label, not in the picture, and the scallop outlines collide with the text.",
-        "repair_goal": "Make the number visible as dust on the move. Have a churning, lit dust plume lift off the dunes, with Data pumping a bellows or shovelling into the wind, until it towers over a row of 30 small pyramid silhouettes that it swallows (a then_mark at one pyramid's height). Keep the plume below the headli"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.18,
-        "effective_fps": 19.7,
-        "max_dup_run": 15,
-        "measured": true,
-        "frozen_ratio": 0.049,
-        "frozen_fps": 22.8,
-        "max_frozen_run": 15,
-        "judder_ratio": 0.006,
-        "judder_fps": 23.9,
-        "held_s": 1.83,
-        "max_dup_at_s": 0.0,
-        "duration_s": 27.08
-      },
-      "fingerprint": "?|unreadable|weak_depiction_scale_not_shown",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-15T13:52:53+00:00",
-      "slug": "panama-canal-drought-transit-cuts",
-      "score": 79,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong middle: the lock, the lake drop and the draft rise all show their numbers well, but the closing is a static restatement with floating labels and Data waving instead of a payoff.",
-      "auto_fails": [
-        "unreadable: seg3:end: the caption 'higher and carry' fades grey over red and blue containers and you have to work it out on a phone. seg4:start: the closing line is stacked straight onto the '50 ft' headline, and a lone '6 ft' floats at the left edge with nothing it clearly labels."
-      ],
-      "problems": [
-        "seg4: the closing scene does not change. The ship, the water and the cargo stay the same while the labels go 50 ft, 44 ft, 6 ft.",
-        "seg4: Data waves and cheers on the pump box instead of causing anything.",
-        "seg4: the closing narration crowds the '50 ft' headline, and '6 ft' floats alone at the left edge.",
-        "seg3:end: the faded caption 'higher and carry' disappears against the containers.",
-        "seg0/hook: the ship does not show the cut from 36 to 24. The drop is only in the subtitle."
-      ],
-      "fixes": [
-        "Redraw seg4 so the cargo left behind is visible: the ship rides high with gaps in its stack, or the water falls while Data works a pump that can't keep up.",
-        "In seg4 drop the extra labels. One number at most, drawn on the subject.",
-        "Keep the closing line clear of the headline: move it, or remove the headline under it.",
-        "Keep captions at full contrast during transitions, or put them on a darker band.",
-        "In the hook, show the cut in the picture, e.g. a line of ships where a third are turned away."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 77
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "weak_payoff",
-        "visible_evidence": "Across seg4:start, mid and end the canal ship stays in the same place and its waterline never changes. Data stands on a pump box waving and then raising both arms. The headline swaps from '50 ft' to '44 ft', and a '6 ft' label appears by itself at the left edge. The closing line covers the top third",
-        "root_cause": "The closing scene repeats the draft numbers as labels instead of showing what they mean. The ship does not rise and no cargo comes off, so 'less cargo can cross' is never pictured, and Data cheers next to the machine instead of driving it.",
-        "repair_goal": "Make the closing the result: one ship riding visibly high in the lock with gaps where containers were left behind on the dock, or Data at the pump that can't keep up as the waterline falls to 44 ft. Show the change on the subject, keep one number at most, and give the closing line clear space away f"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.145,
-        "effective_fps": 20.5,
-        "max_dup_run": 14,
-        "measured": true,
-        "frozen_ratio": 0.065,
-        "frozen_fps": 22.4,
-        "max_frozen_run": 13,
-        "judder_ratio": 0.003,
-        "judder_fps": 23.9,
-        "held_s": 2.0,
-        "max_dup_at_s": 14.0,
-        "duration_s": 25.58
-      },
-      "fingerprint": "?|unreadable|weak_payoff",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-15T14:10:33+00:00",
-      "slug": "panama-canal-drought-transit-cuts",
-      "score": 79,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A coherent, well-lit, subject-made story (lock gate, draining lake, unloading for draft) with Data as the agent, but the closing re-shows 44 ft and ends on a wave instead of a payoff.",
-      "auto_fails": [],
-      "problems": [
-        "seg4 closing repeats seg3's 44 ft number and draws no consequence for world trade; Data just waves (seg4:end).",
-        "The hook barely changes between hook@0.3 and seg0:end: the grounded ship sits while Data turns a valve, with little visible escalation.",
-        "seg1's -12 is carried by a label instead of the ships visibly being held back or counted out.",
-        "The closing caption leaves 'it.' alone on its own line (seg4:start), and a crane cable crosses the 'the deepest' label (payoff@-1.8).",
-        "The karaoke caption 'to 24 ships' is low-contrast grey over the water (seg1:start)."
-      ],
-      "fixes": [
-        "Redraw the closing to show the consequence: a growing pile of cargo left on the dock and a backed-up line of ships, with Data still unloading through the end.",
-        "Give the hook a visible event in the first second, such as the hull settling onto the cracked bed or water draining out from under it.",
-        "In seg1, have the gate visibly turn back the last third of the queue so the drop from 36 to 24 can be read without the label.",
-        "Rebalance the closing caption line breaks and route the crane cable away from the label text.",
-        "Raise the contrast of the karaoke caption's unspoken words over water."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 76
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "weak_payoff",
-        "visible_evidence": "seg4:start through seg4:end repeat '44 ft' from seg3. The ship shrinks into the distance and Data steps off a container stack to wave (seg4:end). The closing line about world trade feeling it is printed as a block of text at the top, and 'it.' sits alone on a line.",
-        "root_cause": "The closing scene re-shows the previous beat's number instead of drawing its own consequence (world trade feels it). Data has finished his act by mid-scene and falls back to a wave.",
-        "repair_goal": "Make the closing show the consequence in the picture. For example, Data stands on the dock beside the stack of containers the ship could not carry while that stack grows and a line of waiting ships backs up behind him. Keep him doing the unloading through the end instead of waving, rebalance the cap"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.142,
-        "effective_fps": 20.6,
-        "max_dup_run": 13,
-        "measured": true,
-        "frozen_ratio": 0.063,
-        "frozen_fps": 22.5,
-        "max_frozen_run": 11,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 1.75,
-        "max_dup_at_s": 13.62,
-        "duration_s": 25.25
-      },
-      "fingerprint": "?|-|weak_payoff",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-15T14:30:23+00:00",
-      "slug": "panama-canal-drought-transit-cuts",
-      "score": 66,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 4,
-        "mascot": 2,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong bespoke canal, lake and draft-mark mechanics, but the hook is a near-static ship that never shows the 36-to-24 drop, and caption and crane-cable collisions hurt readability.",
-      "auto_fails": [
-        "unreadable: seg2:start: the caption 'locks, sank to' is faint grey on dark green and nearly vanishes. seg1:start: the ghosted 'to 24 ships' is unreadable on the water. seg4:mid/end: the crane jib cable runs through the subtitle 'max draft now \u00b7 ships ride high, cargo stays'. seg3:start: the mooring rope crosses the '50 ft' hull label."
-      ],
-      "problems": [
-        "The hook (hook@0.3 to seg0:end) holds an almost identical frame for about 2.2s. The ship and valves do not move, and nothing shows traffic being cut by a third.",
-        "seg1:start and seg2:start: transitional captions ('to 24 ships', 'locks, sank to') are grey on dark ground and unreadable on a phone.",
-        "seg4: the crane jib and cable strike through the subtitle 'ships ride high, cargo stays'. The closing caption, headline and CTA stack three text blocks.",
-        "seg3: Data only points from the deck while the crane does the work, so he is not the cause of the unloading.",
-        "seg2: the lake drops only slightly against the 5-year line, so the 'sank' change is barely visible.",
-        "Payoff: the closing repeats seg3's 44 ft unloading instead of landing a new 'whoa' about world trade."
-      ],
-      "fixes": [
-        "Open on the finished seg1 picture: ships backing up at a red-lit lock with a third of the lane emptied. Or have water visibly drain from under the stranded ship in the first second.",
-        "Fade captions in at full contrast, with a dark outline or backing on light text, and never leave a half-alpha caption on screen.",
-        "In seg4, move the headline and subtitle clear of the crane jib or lower the jib, and drop the redundant 44 ft headline under the closing caption.",
-        "In seg3, have Data run the crane controls (agent act) so his hands cause the containers to lift off and the hull to rise.",
-        "In seg2, exaggerate the drawn water drop with a then_mark ghost of the old shoreline on the pilings, so the 3.6 ft loss reads at a glance.",
-        "Give the closing a distinct payoff image, for example a queue of ships waiting outside the canal or cargo piling on the quay, tied to 'world trade feels it'."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 76
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "unreadable",
-        "visible_evidence": "At seg4:mid and seg4:end the 44 ft subtitle 'max draft now \u00b7 ships ride high, cargo stays' sits right on the crane's jib and cable line, so the words are struck through. 'crosses the Panama Canal' at seg4:start also touches the jib. A long closing caption in the sky stacks on top of the headline, gi",
-        "root_cause": "The closing layout puts the headline block in the same band as the crane jib. Its text placement is not measured against the drawn crane geometry, and the closing caption plus headline plus CTA crowd the frame.",
-        "repair_goal": "Move the headline and subtitle clear of the crane jib and cable, or lower the jib below the text band, so no line crosses any text. Trim to one headline and keep the closing caption, so the closing reads in a glance on a phone."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.176,
-        "effective_fps": 19.8,
-        "max_dup_run": 14,
-        "measured": true,
-        "frozen_ratio": 0.079,
-        "frozen_fps": 22.1,
-        "max_frozen_run": 14,
-        "judder_ratio": 0.008,
-        "judder_fps": 23.8,
-        "held_s": 2.17,
-        "max_dup_at_s": 0.0,
-        "duration_s": 25.42
-      },
-      "fingerprint": "?|unreadable|unreadable",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-15T17:50:00+00:00",
-      "slug": "amazon-warehouse-robot-army",
-      "score": 57,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 1,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The robot army and the lighting-up warehouses are good subject pictures, but Data only points and waves through all five scenes, and the hook overclaims with 'robots are winning'.",
-      "auto_fails": [
-        "decorative_mascot: Data waves or points beside the subject in nearly every beat: hook@0.3 waves at the conveyor, seg1:end waves beside the pod army, seg2:mid points at a building, seg3:start/mid points at the door, seg3:end waves on top of the pods. He never drives a pod, flips the building lights or raises the door himself.",
-        "unreadable: seg2:start: the caption \"building in 2012.\" is covered by the delivery van, with its first word cut off and pale on pale. seg1:start/mid/end: the \"2012 \u2014\" marker on the pods is tiny white text over cluttered pods. seg4:start: \"Sources in the description\" is very small."
-      ],
-      "problems": [
-        "Data is a pointer or waver in every scene, never the cause of the motion (hook, seg1, seg2, seg3, seg4).",
-        "The hook caption 'almost as many robots as workers, and the robots are winning' editorialises a claim the data (1M vs 1.5M) does not support, and it is not the scripted hook line.",
-        "seg3 spends most of its time on a door opening onto blank blocks; the 2:3 ratio is never made countable.",
-        "seg2:start: the narration caption is hidden behind a van; the '2012 \u2014' pod label in seg1 is tiny and unreadable on a phone.",
-        "The closing (seg4) is a near-static diorama with a COMMENT BELOW card; the payoff lands softly."
-      ],
-      "fixes": [
-        "Make Data the agent: he drives or dispatches the pods in seg1, throws the breaker that lights the buildings in seg2, and steers pods into the rows in seg3.",
-        "Rebuild seg3 as countable rows: three workers and then two pods sliding in beside them, repeated, landing by 70% of the beat.",
-        "Keep the narration caption clear of moving vehicles, and drop or enlarge the '2012 \u2014' marker.",
-        "Use the scripted hook ('started with 1,400 ... now a million') and flash the 1,400-to-1M army over the first frame instead of the unsupported 'winning' line."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 87
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "decorative_mascot",
-        "visible_evidence": "seg3:start and seg3:mid show a roll-up door slowly opening on six brown blocks while Data stands at the left edge pointing. The '2 robots for every 3 people' claim only appears at seg3:end, as two loose groups, with Data waving on top of the pods.",
-        "root_cause": "The beat's claim is a ratio, but the scene spends most of its time on a door reveal with no subject inside. Data is placed as a pointer instead of the cause of the motion.",
-        "repair_goal": "Data drives the pods out of the door into lanes alongside the workers, two pods slotting in next to each three-person row as he steers them. The 2:3 pairing should build visibly in rows from the first second and land by about 70% of the beat."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.218,
-        "effective_fps": 18.8,
-        "max_dup_run": 20,
-        "measured": true,
-        "frozen_ratio": 0.072,
-        "frozen_fps": 22.3,
-        "max_frozen_run": 11,
-        "judder_ratio": 0.001,
-        "judder_fps": 24.0,
-        "held_s": 2.83,
-        "max_dup_at_s": 20.83,
-        "duration_s": 28.96
-      },
-      "fingerprint": "?|decorative_mascot+unreadable|decorative_mascot",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-16T11:33:17+00:00",
-      "slug": "sports_mike_evans__with_trevon",
-      "score": 75,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A strong split-screen premise: Evans tells the story above the real Diggs exchange. But the game footage freezes for the last ~28s, and the video ends on 'but yeah ... is what' instead of the 'Oh, it's f***ing Diggs' punchline.",
-      "auto_fails": [],
-      "problems": [
-        "The bottom-half game footage is a frozen still from mid2 (20s) to the end (48s), so half the frame is dead for over half the video.",
-        "The payoff tails off ('BUT YEAH,' then 'IS WHAT' at payoff@-0.4). The recognition punchline promised by the hook is never visibly landed or emphasised.",
-        "At 48s, a single anecdote runs long. There is no zoom or sound hit on the reaction, which the format calls for."
-      ],
-      "fixes": [
-        "Loop the exchange clip or slow it down, and punch in on Diggs's nameplate when Evans says 'then I looked'.",
-        "Trim the presser to end right on 'Oh, it's f***ing Diggs', with a zoom and sound hit, and cut the 'but yeah' tail.",
-        "Cap the runtime at the length of the usable game footage so the bottom half never freezes."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 145
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid2",
-        "index": 2,
-        "failure_class": "frozen_broll",
-        "visible_evidence": "From mid2 (20.0s) through mid3, mid4, mid5 and payoff@-0.4 (47.9s), the bottom half shows the identical still: the #5 49er's helmet against Diggs #16, with no change in pose. For about 28s, half the frame is a held picture while Evans talks.",
-        "root_cause": "The on-field clip is only about 20s long. It ran out and its last frame was held for the rest of the presser audio instead of being looped, re-cut or replaced. The code's motion check missed it because the top half keeps moving.",
-        "repair_goal": "Keep the bottom half moving for the whole video. Loop the exchange or slow it down, and punch in on the instant Evans looks and recognises Diggs, timed to 'And I look ... oh, it's Diggs'. Or trim the presser to the roughly 20s of usable game footage so the video ends on the recognition line."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.284,
-        "effective_fps": 17.2,
-        "max_dup_run": 24,
-        "measured": true,
-        "frozen_ratio": 0.041,
-        "frozen_fps": 23.0,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.008,
-        "judder_fps": 23.8,
-        "held_s": 6.62,
-        "max_dup_at_s": 33.42,
-        "duration_s": 48.25
-      },
-      "fingerprint": "?|-|frozen_broll"
-    },
-    {
-      "ts": "2026-10-16T11:36:28+00:00",
-      "slug": "sports_montreal_canadiens_t_inflatable",
-      "score": 75,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "It is a fun, real moment that is shown clearly, but the repost's own burned-in captions fight our line in every frame, and the cut ends partway through a sentence without showing the bun hitting Dobson.",
-      "auto_fails": [
-        "unreadable: The source's own burned-in word captions sit just above our line the whole video, so two caption tracks compete. At hook@0.3 the source caption is garbled ('IT [A DOG OF] EN' with an overlapping box). At hook@0.8 and hook@1.5 'THE GAME ENTERTAINMENT' is stacked directly on top of our line."
-      ],
-      "problems": [
-        "The source's burned-in karaoke captions sit just above our line for the whole video, so two text tracks compete, and the source caption is garbled at hook@0.3",
-        "The title promises the bun hits Noah Dobson, but no frame clearly shows a player being hit",
-        "The ending at payoff@-0.4 cuts off the source narration on 'SURE IF', so it ends partway through a sentence",
-        "The source has its own narrator, so this is a repost of someone else's edit rather than the raw moment"
-      ],
-      "fixes": [
-        "Use an un-captioned source of the moment, or mask or crop the source caption band and keep our single line clear of it",
-        "Trim so the cut ends on the bun landing on the bench and a visible player reaction, with a punch-in on the hit",
-        "Change the title so it does not claim the bun hits Dobson unless the footage shows it"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 55
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "caption_collision",
-        "visible_evidence": "hook@0.3 to hook@2.2: the source repost's burned-in karaoke captions ('IT A DOG OF EN', 'THE GAME ENTERTAINMENT', 'BUT DON'T WORRY,') sit right on top of our line 'Habs fans threw the hot dog on the ice'. The source caption at hook@0.3 is garbled. The clip ends on 'SURE IF' at payoff@-0.4, partway t",
-        "root_cause": "The source is another creator's edited short with its own captions and narration burned in. own_captions should have caught that, but the line was placed directly under the source captions instead of clear of them. The cut also stops partway through the source narration.",
-        "repair_goal": "Move our line clear of the burned-in captions (top third, or crop/mask the source caption band), or pick an un-captioned source of the moment. Extend or trim the end so it lands on the bun hitting the bench and the players reacting, not partway through a narrated sentence."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.0,
-        "effective_fps": 24.0,
-        "max_dup_run": 1,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 18.29
-      },
-      "fingerprint": "?|unreadable|caption_collision"
-    },
-    {
-      "ts": "2026-10-16T11:38:35+00:00",
-      "slug": "sports_cam_little_ch_to_see_if",
-      "score": 83,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "The footage is real and the walk-off kick celebration lands, but the wide shot never shows the no-look kick or the Bellingham pose the line and title promise.",
-      "auto_fails": [],
-      "problems": [
-        "Hook (hook@0.3 to mid0): the kick is filmed from far up in the stands, and you cannot see that Little doesn't watch the kick.",
-        "None of the sampled frames clearly shows the Jude Bellingham pose named in the title.",
-        "The hook line 'Cam Little doesn't watch his kick' never pays off visually. The ending is a generic carry-off (mid5 to payoff)."
-      ],
-      "fixes": [
-        "Punch in on the kicker at contact and as he turns away, so the no-look is visible.",
-        "Add a zoom-and-boom move timed to the Bellingham pose, or rewrite the line around the game-winner and the carry-off that is actually shown.",
-        "Mention the walk-off context (0:00 on the clock) in the hook so a stranger knows what is at stake."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 105
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "claim_not_legible",
-        "visible_evidence": "From hook@0.3 to mid0 the kick is filmed wide from the stands. Little is a tiny figure in the pile, so a viewer cannot see that he doesn't watch the ball. By mid1 he is already sprinting (#39), and none of the sampled frames clearly shows the Bellingham pose the title promises.",
-        "root_cause": "The source is a far-away phone recording, and the edit never punches in on the kicker turning away or on the pose itself.",
-        "repair_goal": "Punch in on Little at the moment of the kick so he is visibly turning away before the ball reaches the posts. Add a zoom-and-boom move on the second he hits the Bellingham pose so the promised moment is unmistakable."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.001,
-        "effective_fps": 24.0,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.001,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 34.92
-      },
-      "fingerprint": "?|-|claim_not_legible"
-    },
     {
       "ts": "2026-10-16T11:40:37+00:00",
       "slug": "sports_kevin_durant_ause_i_still",
@@ -4321,29 +3777,473 @@
       },
       "fingerprint": "?|dead_air+empty_void+unreadable|unreadable_overlap_and_contradiction",
       "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-19T11:38:56+00:00",
+      "slug": "sports_kevin_garnett_ves_retiring",
+      "score": 95,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "Kevin Garnett reacts with passion to his jersey retirement.",
+      "auto_fails": [],
+      "problems": [
+        "The high duplicate frame ratio (0.321) and total held time (5.0s) indicate potential judder or lack of smooth motion, impacting temporal craft."
+      ],
+      "fixes": [
+        "Re-encode the source video to ensure a higher effective frame rate and reduce the number of duplicate frames for smoother playback."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 102
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid0",
+        "index": 0,
+        "failure_class": "temporal_craft",
+        "visible_evidence": "The video has a duplicate_ratio of 0.321 and held_s of 5.0s, suggesting choppiness or judder due to repeated frames.",
+        "root_cause": "Source video quality or encoding issues leading to a high number of duplicate frames.",
+        "repair_goal": "Ensure smoother motion throughout the video by reducing the duplicate frame ratio and improving effective FPS."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.321,
+        "effective_fps": 16.3,
+        "max_dup_run": 15,
+        "measured": true,
+        "frozen_ratio": 0.172,
+        "frozen_fps": 19.9,
+        "max_frozen_run": 15,
+        "judder_ratio": 0.081,
+        "judder_fps": 22.1,
+        "held_s": 5.0,
+        "max_dup_at_s": 7.17,
+        "duration_s": 34.0
+      },
+      "fingerprint": "?|-|temporal_craft"
+    },
+    {
+      "ts": "2026-10-19T11:41:50+00:00",
+      "slug": "sports_marlon_humphrey_says_as_soon",
+      "score": 78,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 1,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "The video recounts a sports moment through an interview rather than showing the moment itself.",
+      "auto_fails": [],
+      "problems": [
+        "The 'SPORTS MOMENT' format requires showing the actual event or reaction, not solely an interview about it.",
+        "The data demonstration is weak as the promised moment ('Kyle Hamilton knew he'd get a pick') is not visually depicted."
+      ],
+      "fixes": [
+        "Integrate actual game footage of Kyle Hamilton's interception or the lead-up to it.",
+        "If footage of Kyle Hamilton making the prediction exists, incorporate that.",
+        "Focus on visual storytelling of the event rather than solely relying on a talking head."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 89
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "data_demo",
+        "visible_evidence": "The video shows a person recounting a sports moment, but does not visually depict the actual moment (Kyle Hamilton making the prediction or the interception) as implied by the hook and format.",
+        "root_cause": "Misinterpretation of the 'SPORTS MOMENT' format, which requires showing the actual event or reaction, not just an interview about it.",
+        "repair_goal": "Replace the interview footage with actual game footage of Kyle Hamilton's interception or him making the prediction, or footage of him reacting to the prediction/interception."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.064,
+        "effective_fps": 22.5,
+        "max_dup_run": 4,
+        "measured": true,
+        "frozen_ratio": 0.05,
+        "frozen_fps": 22.8,
+        "max_frozen_run": 4,
+        "judder_ratio": 0.048,
+        "judder_fps": 22.9,
+        "held_s": 0.0,
+        "max_dup_at_s": 8.17,
+        "duration_s": 29.79
+      },
+      "fingerprint": "?|-|data_demo"
+    },
+    {
+      "ts": "2026-10-19T12:02:28+00:00",
+      "slug": "rubiks-cube-record-vs-robot",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)",
+      "auto_fails": [
+        "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+      ],
+      "problems": [
+        "max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 26.0,
+        "dark_fraction": 0.0,
+        "sampled": 98
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.264,
+        "effective_fps": 17.7,
+        "max_dup_run": 48,
+        "measured": true,
+        "frozen_ratio": 0.04,
+        "frozen_fps": 23.0,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 5.71,
+        "max_dup_at_s": 26.04,
+        "duration_s": 32.54
+      },
+      "fingerprint": "?|temporal_gate|-",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-19T13:59:30+00:00",
+      "slug": "rubiks-cube-record-vs-robot",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)",
+      "auto_fails": [
+        "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+      ],
+      "problems": [
+        "max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 26.0,
+        "dark_fraction": 0.0,
+        "sampled": 98
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.264,
+        "effective_fps": 17.7,
+        "max_dup_run": 48,
+        "measured": true,
+        "frozen_ratio": 0.04,
+        "frozen_fps": 23.0,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 5.71,
+        "max_dup_at_s": 26.04,
+        "duration_s": 32.54
+      },
+      "fingerprint": "?|temporal_gate|-",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-19T14:29:54+00:00",
+      "slug": "rubiks-cube-record-vs-robot",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)",
+      "auto_fails": [
+        "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+      ],
+      "problems": [
+        "max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 26.0,
+        "dark_fraction": 0.0,
+        "sampled": 98
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.264,
+        "effective_fps": 17.7,
+        "max_dup_run": 48,
+        "measured": true,
+        "frozen_ratio": 0.04,
+        "frozen_fps": 23.0,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 5.71,
+        "max_dup_at_s": 26.04,
+        "duration_s": 32.54
+      },
+      "fingerprint": "?|temporal_gate|-",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-19T17:48:52+00:00",
+      "slug": "rubiks-cube-record-vs-robot",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)",
+      "auto_fails": [
+        "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+      ],
+      "problems": [
+        "max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 26.0,
+        "dark_fraction": 0.0,
+        "sampled": 98
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.264,
+        "effective_fps": 17.7,
+        "max_dup_run": 48,
+        "measured": true,
+        "frozen_ratio": 0.04,
+        "frozen_fps": 23.0,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 5.71,
+        "max_dup_at_s": 26.04,
+        "duration_s": 32.54
+      },
+      "fingerprint": "?|temporal_gate|-",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-19T19:53:41+00:00",
+      "slug": "rubiks-cube-record-vs-robot",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)",
+      "auto_fails": [
+        "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+      ],
+      "problems": [
+        "max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 26.0,
+        "dark_fraction": 0.0,
+        "sampled": 98
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.264,
+        "effective_fps": 17.7,
+        "max_dup_run": 48,
+        "measured": true,
+        "frozen_ratio": 0.041,
+        "frozen_fps": 23.0,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 5.71,
+        "max_dup_at_s": 26.04,
+        "duration_s": 32.54
+      },
+      "fingerprint": "?|temporal_gate|-",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-19T22:18:59+00:00",
+      "slug": "rubiks-cube-record-vs-robot",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)",
+      "auto_fails": [
+        "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+      ],
+      "problems": [
+        "max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 26.0,
+        "dark_fraction": 0.0,
+        "sampled": 98
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.264,
+        "effective_fps": 17.7,
+        "max_dup_run": 48,
+        "measured": true,
+        "frozen_ratio": 0.04,
+        "frozen_fps": 23.0,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 5.71,
+        "max_dup_at_s": 26.04,
+        "duration_s": 32.54
+      },
+      "fingerprint": "?|temporal_gate|-",
+      "style_arm": "illustrated"
     }
   ],
   "showrunner_recurrence": {
     "?|temporal_gate|-": {
-      "count": 3,
+      "count": 9,
       "days": [
         "2026-10-16",
         "2026-10-17",
-        "2026-10-18"
-      ]
-    },
-    "?|-|weak_payoff": {
-      "count": 2,
-      "days": [
-        "2026-10-15",
-        "2026-10-17"
-      ]
-    },
-    "?|unreadable|unreadable": {
-      "count": 2,
-      "days": [
-        "2026-10-15",
-        "2026-10-17"
+        "2026-10-18",
+        "2026-10-19"
       ]
     },
     "?|decorative_mascot+empty_void|empty_void": {
@@ -4369,42 +4269,6 @@
       "count": 2,
       "days": [
         "2026-10-18"
-      ]
-    },
-    "?|unreadable|weak_depiction_scale_not_shown": {
-      "count": 1,
-      "days": [
-        "2026-10-15"
-      ]
-    },
-    "?|unreadable|weak_payoff": {
-      "count": 1,
-      "days": [
-        "2026-10-15"
-      ]
-    },
-    "?|decorative_mascot+unreadable|decorative_mascot": {
-      "count": 1,
-      "days": [
-        "2026-10-15"
-      ]
-    },
-    "?|-|frozen_broll": {
-      "count": 1,
-      "days": [
-        "2026-10-16"
-      ]
-    },
-    "?|unreadable|caption_collision": {
-      "count": 1,
-      "days": [
-        "2026-10-16"
-      ]
-    },
-    "?|-|claim_not_legible": {
-      "count": 1,
-      "days": [
-        "2026-10-16"
       ]
     },
     "?|-|weak_hook": {
@@ -4479,6 +4343,12 @@
         "2026-10-17"
       ]
     },
+    "?|unreadable|unreadable": {
+      "count": 1,
+      "days": [
+        "2026-10-17"
+      ]
+    },
     "?|unreadable|caption_over_tv_graphic": {
       "count": 1,
       "days": [
@@ -4486,6 +4356,12 @@
       ]
     },
     "?|unreadable|unreadable_caption_over_tv_graphic": {
+      "count": 1,
+      "days": [
+        "2026-10-17"
+      ]
+    },
+    "?|-|weak_payoff": {
       "count": 1,
       "days": [
         "2026-10-17"
@@ -4640,16 +4516,27 @@
       "days": [
         "2026-10-18"
       ]
+    },
+    "?|-|temporal_craft": {
+      "count": 1,
+      "days": [
+        "2026-10-19"
+      ]
+    },
+    "?|-|data_demo": {
+      "count": 1,
+      "days": [
+        "2026-10-19"
+      ]
     }
   },
   "recent_commits": [
-    "7aae65b 2026-10-19 watchdog: phase A readiness 20261019 [skip ci]",
-    "2ad9662 2026-10-19 exchange: phase A bundle for 20261019 [skip ci]"
+    "dcb1ad7 2026-10-20 claim: mailbox verdicts 2026-10-20T04:48Z [skip ci]",
+    "f5d6b4e 2026-10-20 claim: mailbox verdicts 2026-10-20T03:47Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-10-05": 5,
         "2026-10-06": 5,
         "2026-10-08": 1,
         "2026-10-09": 5,
@@ -4660,15 +4547,15 @@
         "2026-10-15": 3,
         "2026-10-16": 3,
         "2026-10-17": 3,
-        "2026-10-18": 3
+        "2026-10-18": 3,
+        "2026-10-19": 2
       },
-      "total_posted": 457,
-      "attempted": 457,
+      "total_posted": 459,
+      "attempted": 459,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-10-05": 3,
         "2026-10-06": 3,
         "2026-10-07": 5,
         "2026-10-08": 4,
@@ -4689,7 +4576,6 @@
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-10-05": 6,
         "2026-10-06": 5,
         "2026-10-07": 2,
         "2026-10-08": 6,
@@ -4703,10 +4589,10 @@
         "2026-10-16": 8,
         "2026-10-17": 3,
         "2026-10-18": 7,
-        "2026-10-19": 2
+        "2026-10-19": 6
       },
-      "total_posted": 432,
-      "attempted": 1046,
+      "total_posted": 436,
+      "attempted": 1050,
       "rejected_or_pending": 614
     },
     "analytics_curiosity": {
@@ -4721,32 +4607,32 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 143,
+      "videos": 142,
       "top_by_vph": [
         {
-          "title": "Saturn's Rings Have Under 300 Million Years Left",
-          "vph": 39.23,
-          "views": 137
+          "title": "Why Plane Tickets Cost More The Closer You Book",
+          "vph": 9.09,
+          "views": 1188
         },
         {
           "title": "The Great Lakes Hold 21% Of Earth's Fresh Surface Water",
-          "vph": 16.77,
-          "views": 294
+          "vph": 8.51,
+          "views": 352
+        },
+        {
+          "title": "Saturn's Rings Have Under 300 Million Years Left",
+          "vph": 7.5,
+          "views": 205
         },
         {
           "title": "Nobel-Winning Discoveries Now Happen 13 Years Later",
-          "vph": 11.64,
-          "views": 113
-        },
-        {
-          "title": "Why Plane Tickets Cost More The Closer You Book",
-          "vph": 11.12,
-          "views": 1187
+          "vph": 3.73,
+          "views": 125
         },
         {
           "title": "The Average US Household Shrank From 3.3 To 2.5",
-          "vph": 4.63,
-          "views": 157
+          "vph": 2.94,
+          "views": 170
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
@@ -4756,36 +4642,36 @@
       "top_by_vph": [
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 16.81,
-          "views": 1072
+          "vph": 14.86,
+          "views": 1077
         },
         {
           "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 4.34,
-          "views": 901
+          "vph": 4.17,
+          "views": 902
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 3.53,
-          "views": 1140
+          "vph": 3.6,
+          "views": 1195
         },
         {
           "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
-          "vph": 2.14,
-          "views": 798
+          "vph": 2.09,
+          "views": 799
         },
         {
           "title": "Adinross Makes Two Girls Fight Over Who Brought Up Whose Mom First",
-          "vph": 1.02,
+          "vph": 0.92,
           "views": 85
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261016/brief.json",
       "retro/20261017/brief.json",
-      "retro/20261018/brief.json"
+      "retro/20261018/brief.json",
+      "retro/20261019/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
