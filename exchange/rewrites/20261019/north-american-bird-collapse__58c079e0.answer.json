@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "north-american-bird-collapse__58c079e0",
+  "slug": "north-american-bird-collapse",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:27:00Z",
+  "title": "Common Birds Are Vanishing Too: 2.9 Billion Lost",
+  "hook": "Common birds aren't protected by being common: 2.9 billion breeding birds vanished.",
+  "closing": "Bird decline is not confined to rare species; familiar flocks can disappear while they still seem ordinary.",
+  "question": "Which birds have disappeared from your neighborhood?",
+  "segments": [
+    {
+      "topic": "Birds disappear quietly",
+      "say": "Breeding bird abundance fell by 2.9 billion between the supplied measurements. The loss extends beyond a few rare species."
+    },
+    {
+      "topic": "Birds decline unevenly",
+      "say": "Grassland birds declined 53% in the supplied comparison. Waterfowl increased, so the losses were not uniform across groups."
+    },
+    {
+      "topic": "Birds once common",
+      "say": "Common bird families account for 90% of the total loss. Familiarity did not protect their populations from shrinking."
+    }
+  ]
+}
