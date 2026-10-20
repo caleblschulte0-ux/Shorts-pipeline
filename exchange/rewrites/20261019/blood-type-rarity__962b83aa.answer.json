@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "blood-type-rarity__962b83aa",
+  "slug": "blood-type-rarity",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:28:30Z",
+  "title": "Blood Type Rarity Isn't Universal: AB Negative Is 1% In The US",
+  "hook": "AB negative is 1% in the US; blood-type frequency depends on the population.",
+  "closing": "A rare label needs a population attached; diverse donors help make blood supplies reflect the people needing them.",
+  "question": "Do you know your blood type?",
+  "segments": [
+    {
+      "topic": "Blood type rarity",
+      "say": "AB negative represents 1% in this US distribution. It is the rarest listed type, not necessarily the rarest blood classification worldwide."
+    },
+    {
+      "topic": "Blood type Rh",
+      "say": "Rh-negative blood accounts for 15% in this comparison. That subgroup is much smaller than the Rh-positive population."
+    },
+    {
+      "topic": "Blood type populations",
+      "say": "O-positive blood reaches 53% among Latin American donors in these data. Frequencies differ across the donor groups compared."
+    }
+  ]
+}
