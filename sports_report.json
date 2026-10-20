@@ -7,7 +7,7 @@
   {
    "sub": "sports",
    "who": "Messi",
-   "why": "A fan in Paris snatches a signed Messi jersey and captain's armband, sparking instant drama",
+   "why": "A fan in Paris snatches a signed Messi jersey and captain\u2019s armband, sparking instant drama.",
    "post_title": "Guy in Paris steals a signed Messi jersey and captain's armband",
    "upvotes": 0,
    "url": "https://www.reddit.com/r/sports/comments/1x9frtz/guy_in_paris_steals_a_signed_messi_jersey_and/",
@@ -17,7 +17,7 @@
   {
    "sub": "nba",
    "who": "Scottie Barnes",
-   "why": "His pants drop mid\u2011air during a pre\u2011game 360 dunk, delivering a hilarious surprise",
+   "why": "Barnes\u2019 pants rip off mid\u2011pre\u2011game 360 dunk, delivering a hilarious surprise.",
    "post_title": "Scottie Barnes\u2019 pants fall down during a pre-game 360 dunk.",
    "upvotes": 0,
    "url": "https://streamable.com/bf2mro",
@@ -27,53 +27,36 @@
   {
    "sub": "nba",
    "who": "Luka Doncic",
-   "why": "Doncic watches a fan dancing in his jersey and gives an amused reaction",
+   "why": "Doncic watches a fan dancing in his jersey and gives a genuine, amused reaction.",
    "post_title": "Luka Doncic seems to be impressed by a Lakers fan dancing, wearing his jersey. \"He's good\"",
    "upvotes": 0,
    "url": "https://streamable.com/8tvy83",
    "topic": "https://www.reddit.com/r/nba/comments/1x5iucq/luka_doncic_seems_to_be_impressed_by_a_lakers_fan",
-   "skipped": "author: no title"
+   "skipped": "author: no setup or no payoff in the clip"
   },
   {
-   "sub": "nfl",
-   "who": "Aaron Rodgers",
-   "why": "Rodgers confronts an opponent on the field with a personal jab, \u201cI know your dad.\u201d",
-   "post_title": "[Highlight] Steelers QB Aaron Rodgers exchanges words on the field with Josiah Trotter, telling him: \u201cI know your dad.\u201d",
+   "sub": "baseball",
+   "who": "Jackson Chourio",
+   "why": "Chourio battles a persistent mantis on the field, turning a routine at\u2011bat into comedy.",
+   "post_title": "[Highlight] Jackson Chourio tries to brush off a preying mantis but he is unable to rid himself of his new companion",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/nfl/comments/1x9gsmq/highlight_steelers_qb_aaron_rodgers_exchanges/",
-   "topic": "https://www.reddit.com/r/nfl/comments/1x9gsmq/highlight_steelers_qb_aaron_rodgers_exchanges",
-   "skipped": "too short: the post runs 7.0s (< 15s)"
+   "url": "https://www.reddit.com/r/baseball/comments/1x6a754/highlight_jackson_chourio_tries_to_brush_off_a/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1x6a754/highlight_jackson_chourio_tries_to_brush_off_a",
+   "skipped": "too short: the post runs 11.2s (< 15s)"
   },
   {
-   "sub": "soccer",
-   "who": "Referee",
-   "why": "A referee mistakenly shows a red card then quickly corrects it, creating a funny on\u2011field mix\u2011up",
-   "post_title": "Referee pulls out a red card for Nwaneri by mistake, quickly changes it to yellow",
+   "sub": "baseball",
+   "who": "Mike Heller",
+   "why": "Brewers reporter Mike Heller\u2019s mic\u2011up chat with Pat Murphy about tomorrow\u2019s pitching reveals locker\u2011room banter.",
+   "post_title": "Brewers reporter Mike Heller: \u201cPitching tomorrow Murph?\u201d Pat Murphy: \u201cYeah, there will be pitching.\u201d",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/soccer/comments/1x8z0nu/referee_pulls_out_a_red_card_for_nwaneri_by/",
-   "topic": "https://www.reddit.com/r/soccer/comments/1x8z0nu/referee_pulls_out_a_red_card_for_nwaneri_by",
-   "title": "Referee Shows Nwaneri Red Card Mistake, Then Fixes It",
-   "hook": "Referee flips Nwaneri's card \ud83d\ude33",
-   "ledger": {
-    "moves": [],
-    "mood": null,
-    "shot_plan": {
-     "layout": "facecam_gameplay",
-     "reason": "small locked facecam + screen content \u2014 stacked layout keeps the full-width action AND the reaction visible (render fell back to whole frame)",
-     "shots": [],
-     "n_subjects": 1
-    }
-   },
-   "showrunner": {
-    "blocked": true,
-    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request",
-    "score": null
-   },
-   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request"
+   "url": "https://www.reddit.com/r/baseball/comments/1x6qwr1/brewers_reporter_mike_heller_pitching_tomorrow/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1x6qwr1/brewers_reporter_mike_heller_pitching_tomorrow",
+   "skipped": "too short: the post runs 8.0s (< 15s)"
   }
  ],
  "already_today": 2,
- "pool": 100,
- "already_posted": 9,
+ "pool": 88,
+ "already_posted": 8,
  "shipped": 0
 }
