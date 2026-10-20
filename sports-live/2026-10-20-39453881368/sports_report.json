@@ -1,0 +1,92 @@
+{
+ "date": "2026-10-20",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Messi",
+   "why": "A fan in Paris snatches a signed Messi jersey and captain's armband, sparking instant drama",
+   "post_title": "Guy in Paris steals a signed Messi jersey and captain's armband",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1x9frtz/guy_in_paris_steals_a_signed_messi_jersey_and/",
+   "topic": "https://www.reddit.com/r/sports/comments/1x9frtz/guy_in_paris_steals_a_signed_messi_jersey_and",
+   "skipped": "too short: the post runs 10.2s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Scottie Barnes",
+   "why": "Barnes' pants hilariously drop during a pre\u2011game 360 dunk, catching everyone's attention",
+   "post_title": "Scottie Barnes\u2019 pants fall down during a pre-game 360 dunk.",
+   "upvotes": 0,
+   "url": "https://streamable.com/bf2mro",
+   "topic": "https://www.reddit.com/r/nba/comments/1x61r59/scottie_barnes_pants_fall_down_during_a_pregame",
+   "skipped": "too short: the post runs 10.8s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Luka Doncic",
+   "why": "Doncic watches a fan dancing in his jersey and gives a genuine, amused reaction",
+   "post_title": "Luka Doncic seems to be impressed by a Lakers fan dancing, wearing his jersey. \"He's good\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/8tvy83",
+   "topic": "https://www.reddit.com/r/nba/comments/1x5iucq/luka_doncic_seems_to_be_impressed_by_a_lakers_fan",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "soccer",
+   "who": "coach",
+   "why": "A J3 League coach gets ejected after kicking a bottle at the linesman, a wild on\u2011field outburst",
+   "post_title": "In J3 League Coach gets sent off with a straight red card after kicking a bottle towards the linesman.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xa1h52/in_j3_league_coach_gets_sent_off_with_a_straight/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xa1h52/in_j3_league_coach_gets_sent_off_with_a_straight",
+   "title": "Coach Kicks Bottle At Linesman And Gets Sent OFF",
+   "hook": "Coach loses his cool \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "whoa@5.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      270,
+      360,
+      184,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request"
+  },
+  {
+   "sub": "baseball",
+   "who": "Jackson Chourio",
+   "why": "Chourio battles a persistent mantis on the field, turning a routine play into a funny showdown",
+   "post_title": "[Highlight] Jackson Chourio tries to brush off a preying mantis but he is unable to rid himself of his new companion",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1x6a754/highlight_jackson_chourio_tries_to_brush_off_a/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1x6a754/highlight_jackson_chourio_tries_to_brush_off_a",
+   "skipped": "too short: the post runs 11.2s (< 15s)"
+  }
+ ],
+ "already_today": 2,
+ "pool": 85,
+ "already_posted": 5,
+ "shipped": 0
+}
