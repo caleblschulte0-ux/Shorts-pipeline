@@ -1,0 +1,83 @@
+{
+ "date": "2026-10-20",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Lionel Messi",
+   "why": "A fan in Paris snatches Messi\u2019s signed jersey and captain\u2019s armband, catching the eye with bold theft",
+   "post_title": "Guy in Paris steals a signed Messi jersey and captain's armband",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1x9frtz/guy_in_paris_steals_a_signed_messi_jersey_and/",
+   "topic": "https://www.reddit.com/r/sports/comments/1x9frtz/guy_in_paris_steals_a_signed_messi_jersey_and",
+   "skipped": "too short: the post runs 10.2s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Scottie Barnes",
+   "why": "His pants drop during a pre\u2011game 360 dunk, prompting a hilarious on\u2011court reaction",
+   "post_title": "Scottie Barnes\u2019 pants fall down during a pre-game 360 dunk.",
+   "upvotes": 0,
+   "url": "https://streamable.com/bf2mro",
+   "topic": "https://www.reddit.com/r/nba/comments/1x61r59/scottie_barnes_pants_fall_down_during_a_pregame",
+   "skipped": "too short: the post runs 10.8s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Luka Don\u010di\u0107",
+   "why": "He stops to praise a fan dancing in a Lakers jersey, delivering a genuine, feel\u2011good moment",
+   "post_title": "Luka Doncic seems to be impressed by a Lakers fan dancing, wearing his jersey. \"He's good\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/8tvy83",
+   "topic": "https://www.reddit.com/r/nba/comments/1x5iucq/luka_doncic_seems_to_be_impressed_by_a_lakers_fan",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nfl",
+   "who": "Aaron Rodgers",
+   "why": "Rodgers trades barbs with opponent Josiah Trotter on the field, sparking a tense bench\u2011clearing vibe",
+   "post_title": "[Highlight] Steelers QB Aaron Rodgers exchanges words on the field with Josiah Trotter, telling him: \u201cI know your dad.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x9gsmq/highlight_steelers_qb_aaron_rodgers_exchanges/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x9gsmq/highlight_steelers_qb_aaron_rodgers_exchanges",
+   "skipped": "too short: the post runs 7.0s (< 15s)"
+  },
+  {
+   "sub": "nfl",
+   "who": "Cam Skattebo",
+   "why": "He candidly admits to being punished for a previous mistake, giving a raw, behind\u2011the\u2011scenes look",
+   "post_title": "[Highlight] Cam Skattebo on not getting any carries today: \"I got punished for what I did (last week). I understand it. I gotta be ready when Coach calls my name and that wasn't today. [...] I didn't ",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x9f326/highlight_cam_skattebo_on_not_getting_any_carries/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x9f326/highlight_cam_skattebo_on_not_getting_any_carries",
+   "title": "Cam Skattebo Reveals Why He Was Benched After Last Week's Fumble",
+   "hook": "Cam Skattebo on getting benched",
+   "ledger": {
+    "moves": [
+     "whoa@0.5",
+     "zoom@7.0",
+     "zoom@60.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 503: Service Unavaila",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 503: Service Unavaila"
+  }
+ ],
+ "already_today": 2,
+ "pool": 73,
+ "already_posted": 9,
+ "shipped": 0
+}
