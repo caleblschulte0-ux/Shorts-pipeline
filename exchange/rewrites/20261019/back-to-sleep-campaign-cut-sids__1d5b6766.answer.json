@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "back-to-sleep-campaign-cut-sids__1d5b6766",
+  "slug": "back-to-sleep-campaign-cut-sids",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:28:30Z",
+  "title": "SIDS Death Rates Fell Below Half Their Earlier Level",
+  "hook": "The SIDS rate fell to 0.64 per thousand births after safer-sleep campaigning.",
+  "closing": "A falling death rate is progress, but families still lose babies to sleep-related causes.",
+  "question": "What helps families follow safer-sleep guidance?",
+  "segments": [
+    {
+      "topic": "SIDS rate declined",
+      "say": "The later SIDS rate was 0.64 deaths per thousand live births. That was less than half the earlier rate."
+    },
+    {
+      "topic": "SIDS sleep position",
+      "say": "Stomach-down placement accounted for 85.4% of cases in this comparison. Case shares alone are not a baby's individual risk."
+    },
+    {
+      "topic": "SIDS and other deaths",
+      "say": "Sleep-related infant deaths still total about 3,400 annually in the supplied count. That broader category is not identical to SIDS."
+    }
+  ]
+}
