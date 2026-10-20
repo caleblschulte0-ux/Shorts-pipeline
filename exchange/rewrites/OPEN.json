@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-20T18:43:17Z",
+ "updated": "2026-10-20T20:17:24Z",
  "open": [
+  {
+   "id": "betelgeuse-great-dimming__e2882181",
+   "slug": "betelgeuse-great-dimming",
+   "filed": "2026-10-20T20:17:24Z",
+   "why": [
+    "premise: brain: The unnamed star is called the sky's brightest and said to fake death without evidence connecting the 36-percent dimming to that claim."
+   ],
+   "request": "exchange/rewrites/20261020/betelgeuse-great-dimming__e2882181.request.json",
+   "answer_path": "exchange/rewrites/20261020/betelgeuse-great-dimming__e2882181.answer.json"
+  },
   {
    "id": "peanut-allergy-guideline-flip__65e90a17",
    "slug": "peanut-allergy-guideline-flip",
@@ -453,16 +463,6 @@
    ],
    "request": "exchange/rewrites/20261018/hearing-aids-otc-price-drop__b159cfe2.request.json",
    "answer_path": "exchange/rewrites/20261018/hearing-aids-otc-price-drop__b159cfe2.answer.json"
-  },
-  {
-   "id": "betelgeuse-great-dimming__e2882181",
-   "slug": "betelgeuse-great-dimming",
-   "filed": "2026-10-18T19:15:11Z",
-   "why": [
-    "premise: brain: The premise lacks a clear, verifiable numerical claim tied to a specific expectation reversal."
-   ],
-   "request": "exchange/rewrites/20261018/betelgeuse-great-dimming__e2882181.request.json",
-   "answer_path": "exchange/rewrites/20261018/betelgeuse-great-dimming__e2882181.answer.json"
   },
   {
    "id": "vertical-farming-bust__5b3e834e",
