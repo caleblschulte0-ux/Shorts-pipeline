@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "chip-transistor-shrink-limit__72cdc200",
+  "slug": "chip-transistor-shrink-limit",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:22:00Z",
+  "title": "Chip Transistor Doubling Slowed To 3 Years Instead Of Getting Easier",
+  "hook": "Chip transistor doubling stretched to 3 years, slowing a once-familiar pace.",
+  "closing": "More transistors still arrive, but the slower pace means fewer gains to expect between phone upgrades.",
+  "question": "What actually makes a phone upgrade worthwhile?",
+  "segments": [
+    {
+      "topic": "Chip transistor growth",
+      "say": "The supplied Apple phone-chip series reaches 19 billion transistors. Enormous counts can still coexist with slowing progress."
+    },
+    {
+      "topic": "Chip doubling slows",
+      "say": "Transistor doubling stretches to 3 years in this comparison. The same multiplication now takes longer."
+    },
+    {
+      "topic": "Chip process labels",
+      "say": "The latest process-node label is 2 nanometers. It describes a manufacturing generation, not the measured width of every transistor part."
+    }
+  ]
+}
