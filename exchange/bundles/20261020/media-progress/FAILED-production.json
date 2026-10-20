@@ -3,7 +3,7 @@
   "date": "20261020",
   "status": "partial",
   "day_closed": false,
-  "observed_at": "2026-10-20T11:24:38Z",
+  "observed_at": "2026-10-20T11:29:45Z",
   "bundle_identity": "87679f133c343b798db74f4f996cff2b504538d0cafd3e595e38fdcf5cb3986d",
   "failed_steps": [
     {
@@ -12,11 +12,12 @@
     },
     {
       "step": "production_supervision_manual_kickoff",
-      "detail": "Available GitHub connected tools expose file writes, job reads, and job reruns, but no workflow_dispatch action. No direct manual Sports/Third/Explainer dispatch was available through these tools. GET to workflow-specific run-list URL also returned HTTPError 400: GitHub Fetch URL is not an allowed public GitHub repository or search endpoint. Global actions/runs and job logs work. No browser, local computer, other agent or metered model API was used."
+      "detail": "Available GitHub connected tools expose file writes, job reads, and job reruns, but no workflow_dispatch action. No direct manual Sports/Third/Explainer dispatch was available through these tools. GET to workflow-specific run-list URL also returned HTTPError 400: GitHub Fetch URL is not an allowed public GitHub repository or search endpoint. Global actions/runs and job logs work. No browser, local computer, other agent or metered model API was used.",
+      "resolved_for_today": "The existing Dead-man backstop started Sports, Third and Explainer at about 11:25 UTC. Manual dispatch remains unavailable, but is no longer the immediate blocker."
     },
     {
       "step": "verify_required_uploads",
-      "detail": "No today's accepted upload URLs are present in the three channel posted logs at the observed snapshot. Daily Shorts 39414063311 exited successfully because sports_moment is made by sports.yml, not its package renderer. It produced no sports upload. Other workers or their scheduled firings remain outstanding; a successful handoff is not production completion."
+      "detail": "Zero accepted upload URLs in today's logs at the final snapshot; all 13 uploads remain unverified while the three channel workers run. Live unfinished Sports/Explainer job-log downloads returned GitHub API error 404 BlobNotFound. Pending work is transient, not a permanent no-capability finding."
     }
   ],
   "channels": {
@@ -46,19 +47,21 @@
       "indexed_batches": 14,
       "indexed_key_occurrences": 288,
       "indexed_unique_keys": 232,
-      "newly_answered": 40,
+      "newly_answered": 60,
       "existing_answered_reused": 20,
-      "remaining_unique_unanswered": 172,
-      "deferred_reason": "Two rounds reached their 20-key cap; existing answers were preserved. The raw index has stale entries for already answered keys."
+      "remaining_unique_unanswered": 152,
+      "deferred_reason": "Three rounds of 20 new keys completed; 20 prior answers reused; 152 unique keys remain deferred by round caps. Index still lists answered keys."
     },
     "rewrites": {
-      "indexed_open": 147,
-      "stories_answered": 20,
-      "answer_files_committed": 22,
-      "repair_answers": 2,
+      "indexed_open": 146,
+      "stories_answered": 27,
+      "answer_files_committed": 30,
+      "repair_answers": 3,
       "accepted_unique_first_round": 8,
-      "pending_validation": "Second round plus repaired astronaut/gulf answers await existing claims.",
-      "skipped_reason": "Rubiks cube request needs real per-frame motion repair; wording cannot honestly fix its measured 48 duplicate frames exceeding 45. Additional backlog deferred at per-round caps."
+      "pending_validation": "Seven additional stories plus ants correction awaiting claims at the observation; astronaut and Gulf corrections accepted in run 39414641900.",
+      "skipped_reason": "Rubiks cube request needs real per-frame motion repair; wording cannot honestly fix its measured 48 duplicate frames exceeding 45. Additional backlog deferred at per-round caps.",
+      "accepted_unique": 19,
+      "pending_validation_count": 8
     }
   },
   "media": {
@@ -73,7 +76,8 @@
       "382b0f5554d39a66797f514b4d3ed4d6ddefc8c5",
       "2f9f5708cf50f2a70c76bc09a869835395fa5af3",
       "50a4c36b77709691b13ce1bfb6cfb2344a0c7886",
-      "bf10dd25cded6ee5306d51a29815da3e0bcfadab"
+      "bf10dd25cded6ee5306d51a29815da3e0bcfadab",
+      "e151466f1eb8f15a5c9c55fb16ce1724b0581cd1"
     ],
     "rewrites": [
       {
@@ -163,6 +167,38 @@
       {
         "path": "exchange/rewrites/20261017/gulf-dead-zone-growth__a4939372.answer.json",
         "commit_sha": "9bdb745b3960331e2d4b094d7d390e874fc84912"
+      },
+      {
+        "path": "exchange/rewrites/20261019/back-to-sleep-campaign-cut-sids__1d5b6766.answer.json",
+        "commit_sha": "3cb1bdd9fb038af99065c0a3d2ec42659221eb61"
+      },
+      {
+        "path": "exchange/rewrites/20261019/index-funds-own-corporate-america__19285cc1.answer.json",
+        "commit_sha": "5dc481f88e94ee0bbbec60ee769bbba7b5994477"
+      },
+      {
+        "path": "exchange/rewrites/20261019/blood-type-rarity__962b83aa.answer.json",
+        "commit_sha": "b471596febfc1a3286eaa1d8171c0c345e2b3ce4"
+      },
+      {
+        "path": "exchange/rewrites/20261019/pitch-drop-slowest-experiment__994072c3.answer.json",
+        "commit_sha": "dfe99ecc8347922e4f576e4b5cb9bcc86563f582"
+      },
+      {
+        "path": "exchange/rewrites/20261019/humpback-whale-recovery__0a1256d1.answer.json",
+        "commit_sha": "fb325fece5925eea093075ea805585ae34cc6318"
+      },
+      {
+        "path": "exchange/rewrites/20261019/freshwater-accessible__94d3a9c8.answer.json",
+        "commit_sha": "d64cac2223d2daa4d01dfc269e1443acb39bb602"
+      },
+      {
+        "path": "exchange/rewrites/20261019/game-industry-layoffs-record__47b9280e.answer.json",
+        "commit_sha": "f22d71649a17883cac23ed431ce48b6e69b1c0eb"
+      },
+      {
+        "path": "exchange/rewrites/20261017/ants-outnumber-humans__1beccbad.answer.json",
+        "commit_sha": "1b483ff958b8247d9dfc2617b361d1264cb8d3bd"
       }
     ],
     "response": "c74a85c65b3de3b25050d8a21d53814078b8c672",
@@ -172,7 +208,12 @@
     "phase_b": 39414037859,
     "first_claim": 39413832913,
     "second_claim": 39413853699,
-    "second_round_claim": 39414425090
+    "second_round_claim": 39414425090,
+    "repair_claim": 39414641900,
+    "third_round_claim": 39415214767,
+    "sports": 39414798120,
+    "third": 39414776732,
+    "explainer": 39414792942
   },
   "notes": [
     "Only authorized exchange answer, response, DONE, and media-progress paths were written.",
