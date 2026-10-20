@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "hearing-aids-otc-price-drop__b159cfe2",
+  "slug": "hearing-aids-otc-price-drop",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:22:00Z",
+  "title": "Hearing Aids Started At $300 Instead Of Requiring A Prescription",
+  "hook": "A $300 starting price put hearing aids within reach of more shoppers.",
+  "closing": "Lower prices expand options, but choosing hearing help still means matching the device to the person's needs.",
+  "question": "What would make hearing aids easier to access?",
+  "segments": [
+    {
+      "topic": "Hearing aid prices",
+      "say": "Over-the-counter hearing aid pairs started at $300 in this comparison. The prescription pair cost far more."
+    },
+    {
+      "topic": "Hearing aid gap",
+      "say": "Only 20% of adults with hearing loss used hearing aids in these data. Most were not using that support."
+    },
+    {
+      "topic": "Hearing aid options",
+      "say": "Registered over-the-counter hearing aid models reached 80 in the supplied count. Shoppers gained choices that previously were unavailable."
+    }
+  ]
+}
