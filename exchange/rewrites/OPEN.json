@@ -1,7 +1,67 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-20T14:12:32Z",
+ "updated": "2026-10-20T15:36:24Z",
  "open": [
+  {
+   "id": "ceo-executive-pay-gap__20daafe8",
+   "slug": "ceo-executive-pay-gap",
+   "filed": "2026-10-20T15:36:24Z",
+   "why": [
+    "premise: brain: The personal 281-times claim lacks a defined CEO and worker population, making the purported pay comparison misleading."
+   ],
+   "request": "exchange/rewrites/20261020/ceo-executive-pay-gap__20daafe8.request.json",
+   "answer_path": "exchange/rewrites/20261020/ceo-executive-pay-gap__20daafe8.answer.json"
+  },
+  {
+   "id": "daylight-saving-time-in-decline__1445ae6b",
+   "slug": "daylight-saving-time-in-decline",
+   "filed": "2026-10-20T15:36:24Z",
+   "why": [
+    "premise: brain: The vague title never identifies daylight saving time, and the hook leaves the consequential claim that 64 countries quit unsupported."
+   ],
+   "request": "exchange/rewrites/20261020/daylight-saving-time-in-decline__1445ae6b.request.json",
+   "answer_path": "exchange/rewrites/20261020/daylight-saving-time-in-decline__1445ae6b.answer.json"
+  },
+  {
+   "id": "lego-minifigs-outnumber-humans__161409d0",
+   "slug": "lego-minifigs-outnumber-humans",
+   "filed": "2026-10-20T15:36:24Z",
+   "why": [
+    "premise: brain: The premise compares accumulated toy production with living people without establishing how the 10-billion total measures figures that still exist."
+   ],
+   "request": "exchange/rewrites/20261020/lego-minifigs-outnumber-humans__161409d0.request.json",
+   "answer_path": "exchange/rewrites/20261020/lego-minifigs-outnumber-humans__161409d0.answer.json"
+  },
+  {
+   "id": "moon-drifting-away__904b95b2",
+   "slug": "moon-drifting-away",
+   "filed": "2026-10-20T15:36:22Z",
+   "why": [
+    "premise: brain: The 600-million-year estimate is framed as the present viewer's last eclipse, creating a misleading personal stake rather than a defensible reversal."
+   ],
+   "request": "exchange/rewrites/20261020/moon-drifting-away__904b95b2.request.json",
+   "answer_path": "exchange/rewrites/20261020/moon-drifting-away__904b95b2.answer.json"
+  },
+  {
+   "id": "chess-online-boom__f9b7e085",
+   "slug": "chess-online-boom",
+   "filed": "2026-10-20T15:36:22Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on a vague, unverified 200‑million figure."
+   ],
+   "request": "exchange/rewrites/20261020/chess-online-boom__f9b7e085.request.json",
+   "answer_path": "exchange/rewrites/20261020/chess-online-boom__f9b7e085.answer.json"
+  },
+  {
+   "id": "cryonics-client-count__57a93db8",
+   "slug": "cryonics-client-count",
+   "filed": "2026-10-20T15:36:20Z",
+   "why": [
+    "premise: brain: It lacks a clear reversal of viewer expectation and relies only on a vague number without a consequential, verifiable claim."
+   ],
+   "request": "exchange/rewrites/20261020/cryonics-client-count__57a93db8.request.json",
+   "answer_path": "exchange/rewrites/20261020/cryonics-client-count__57a93db8.answer.json"
+  },
   {
    "id": "self-storage-outnumbers-starbucks__97599610",
    "slug": "self-storage-outnumbers-starbucks",
@@ -355,26 +415,6 @@
    "answer_path": "exchange/rewrites/20261020/pentagon-ufo-reports-surge__e166beb3.answer.json"
   },
   {
-   "id": "cryonics-client-count__57a93db8",
-   "slug": "cryonics-client-count",
-   "filed": "2026-10-19T11:44:39Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on a vague number without a verifiable consequential claim."
-   ],
-   "request": "exchange/rewrites/20261019/cryonics-client-count__57a93db8.request.json",
-   "answer_path": "exchange/rewrites/20261019/cryonics-client-count__57a93db8.answer.json"
-  },
-  {
-   "id": "moon-drifting-away__904b95b2",
-   "slug": "moon-drifting-away",
-   "filed": "2026-10-18T22:28:10Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a vague, non‑impactful number."
-   ],
-   "request": "exchange/rewrites/20261018/moon-drifting-away__904b95b2.request.json",
-   "answer_path": "exchange/rewrites/20261018/moon-drifting-away__904b95b2.answer.json"
-  },
-  {
    "id": "pickleball-fastest-growing-sport__598b7568",
    "slug": "pickleball-fastest-growing-sport",
    "filed": "2026-10-18T22:28:09Z",
@@ -645,26 +685,6 @@
    "answer_path": "exchange/rewrites/20261016/big-mac-index-currency-gap__beb75adc.answer.json"
   },
   {
-   "id": "ceo-executive-pay-gap__20daafe8",
-   "slug": "ceo-executive-pay-gap",
-   "filed": "2026-10-15T17:50:25Z",
-   "why": [
-    "premise: brain: It doesn’t clearly overturn a common viewer expectation, merely states a large ratio without a surprising reversal."
-   ],
-   "request": "exchange/rewrites/20261015/ceo-executive-pay-gap__20daafe8.request.json",
-   "answer_path": "exchange/rewrites/20261015/ceo-executive-pay-gap__20daafe8.answer.json"
-  },
-  {
-   "id": "daylight-saving-time-in-decline__1445ae6b",
-   "slug": "daylight-saving-time-in-decline",
-   "filed": "2026-10-15T17:50:25Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on a vague claim rather than a single, verifiable consequential number."
-   ],
-   "request": "exchange/rewrites/20261015/daylight-saving-time-in-decline__1445ae6b.request.json",
-   "answer_path": "exchange/rewrites/20261015/daylight-saving-time-in-decline__1445ae6b.answer.json"
-  },
-  {
    "id": "north-american-bird-collapse__58c079e0",
    "slug": "north-american-bird-collapse",
    "filed": "2026-10-15T17:50:23Z",
@@ -753,16 +773,6 @@
    ],
    "request": "exchange/rewrites/20261013/secondhand-apparel-resale-boom__4cb7c7e8.request.json",
    "answer_path": "exchange/rewrites/20261013/secondhand-apparel-resale-boom__4cb7c7e8.answer.json"
-  },
-  {
-   "id": "chess-online-boom__cf203384",
-   "slug": "chess-online-boom",
-   "filed": "2026-10-13T07:18:57Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation despite citing a number."
-   ],
-   "request": "exchange/rewrites/20261013/chess-online-boom__cf203384.request.json",
-   "answer_path": "exchange/rewrites/20261013/chess-online-boom__cf203384.answer.json"
   },
   {
    "id": "hurricane-names-retired-growing-list__4dcbc649",
@@ -1118,16 +1128,6 @@
    ],
    "request": "exchange/rewrites/20261005/map-distortion-true-size__569584c5.request.json",
    "answer_path": "exchange/rewrites/20261005/map-distortion-true-size__569584c5.answer.json"
-  },
-  {
-   "id": "lego-minifigs-outnumber-humans__1a1c49ff",
-   "slug": "lego-minifigs-outnumber-humans",
-   "filed": "2026-10-05T10:56:46Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/lego-minifigs-outnumber-humans__1a1c49ff.request.json",
-   "answer_path": "exchange/rewrites/20261005/lego-minifigs-outnumber-humans__1a1c49ff.answer.json"
   },
   {
    "id": "frog-freezes-and-revives__3f818177",
