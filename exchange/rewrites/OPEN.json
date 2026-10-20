@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-20T11:24:42Z",
+ "updated": "2026-10-20T11:26:50Z",
  "open": [
   {
    "id": "rubiks-cube-record-vs-robot__5d087bf9",
@@ -555,16 +555,6 @@
    "answer_path": "exchange/rewrites/20261018/peanut-allergy-guideline-flip__78a48cd5.answer.json"
   },
   {
-   "id": "astronaut-bone-loss__262309b8",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-10-18T11:46:48Z",
-   "why": [
-    "premise: brain: The claim relies on an unverified, likely inaccurate figure and doesn't convincingly reverse a clear viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261018/astronaut-bone-loss__262309b8.request.json",
-   "answer_path": "exchange/rewrites/20261018/astronaut-bone-loss__262309b8.answer.json"
-  },
-  {
    "id": "lottery-odds-vs-real-life__2ee01cb7",
    "slug": "lottery-odds-vs-real-life",
    "filed": "2026-10-18T11:46:48Z",
@@ -595,16 +585,6 @@
    "answer_path": "exchange/rewrites/20261018/world-wetlands-lost__66020aa4.answer.json"
   },
   {
-   "id": "gulf-dead-zone-growth__a4939372",
-   "slug": "gulf-dead-zone-growth",
-   "filed": "2026-10-17T12:56:20Z",
-   "why": [
-    "premise: brain: Unclear reversal of a specific viewer expectation; premise is ambiguous."
-   ],
-   "request": "exchange/rewrites/20261017/gulf-dead-zone-growth__a4939372.request.json",
-   "answer_path": "exchange/rewrites/20261017/gulf-dead-zone-growth__a4939372.answer.json"
-  },
-  {
    "id": "ants-outnumber-humans__1beccbad",
    "slug": "ants-outnumber-humans",
    "filed": "2026-10-17T12:56:19Z",
@@ -613,6 +593,16 @@
    ],
    "request": "exchange/rewrites/20261017/ants-outnumber-humans__1beccbad.request.json",
    "answer_path": "exchange/rewrites/20261017/ants-outnumber-humans__1beccbad.answer.json"
+  },
+  {
+   "id": "astronaut-bone-loss__262309b8",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-10-17T12:56:19Z",
+   "why": [
+    "premise: brain: The claim relies on an unverified, likely false statistic and does not convincingly reverse a clear viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261017/astronaut-bone-loss__262309b8.request.json",
+   "answer_path": "exchange/rewrites/20261017/astronaut-bone-loss__262309b8.answer.json"
   },
   {
    "id": "competitive-eating-record-climb__e38b83da",
@@ -784,6 +774,16 @@
    ],
    "request": "exchange/rewrites/20261013/hurricane-names-retired-growing-list__4dcbc649.request.json",
    "answer_path": "exchange/rewrites/20261013/hurricane-names-retired-growing-list__4dcbc649.answer.json"
+  },
+  {
+   "id": "gulf-dead-zone-growth__a4939372",
+   "slug": "gulf-dead-zone-growth",
+   "filed": "2026-10-13T04:11:22Z",
+   "why": [
+    "premise: brain: The premise relies on a comparative size claim using multiple numbers rather than a single verifiable figure and does not subvert a clear viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261013/gulf-dead-zone-growth__a4939372.request.json",
+   "answer_path": "exchange/rewrites/20261013/gulf-dead-zone-growth__a4939372.answer.json"
   },
   {
    "id": "tattoo-mainstream-shift__8da41eb1",

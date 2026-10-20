@@ -19244,7 +19244,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:40Z",
+   "rewritten_at": "2026-10-20T11:26:50Z",
    "retold": "retell/v1",
    "hook_was": "330 billion of your cells vanish every single day."
   },
@@ -20328,7 +20328,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:41Z",
+   "rewritten_at": "2026-10-20T11:26:50Z",
    "retold": "retell/v4"
   },
   {
@@ -20647,10 +20647,10 @@
   },
   {
    "slug": "astronaut-bone-loss",
-   "title": "Space Doesn't Just Float You. It Hollows You.",
-   "hook": "Space eats 1.5 percent of an astronaut's bones every month.",
-   "closing": "Bones only stay strong when gravity keeps pushing on them, so long trips need a plan.",
-   "question": "Would you risk Mars knowing this?",
+   "title": "Weightlessness Leaves Astronaut Bones Weaker Instead Of Rested",
+   "hook": "An unprotected Mars mission's estimated hip-bone loss reaches 30%.",
+   "closing": "Floating removes everyday loading; keeping bones strong becomes part of surviving a long mission.",
+   "question": "Would this change your Mars plans?",
    "caption": "Astronauts lose 1.5% of their bone density every single month in zero gravity — faster than a severe osteoporosis patient loses in a whole year. It's why NASA has them exercising 2.5 hours a day, and why a Mars mission might be the scariest part of getting there. Would you handle a Mars mission knowing the cost? 👇",
    "hashtags": [
     "astronautbones",
@@ -20679,8 +20679,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "1 · THE RATE",
-     "topic": "Space bone loss",
-     "say": "Astronauts lose 1.5 percent of their bone every month. Osteoporosis patients on Earth lose about one percent in a whole year.",
+     "topic": "Astronaut bones weaken",
+     "say": "The supplied spaceflight estimate is 1.5% bone mineral density loss monthly. It measures weakening density, not bones disappearing.",
      "scene": {
       "mechanic": "bone-erosion-duel",
       "concept": "two bone x-rays, astronaut on top and an osteoporosis patient below, each eaten away from both ends by a dark erosion mask that grows with reveal - the astronaut's bone erodes visibly faster",
@@ -20696,8 +20696,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · WHY",
-     "topic": "Space hits hips",
-     "say": "Your hip loses up to 2.2 percent a month in space, because it carries your weight. Your forearm barely loses any.",
+     "topic": "Astronaut bones unloaded",
+     "say": "The hip's monthly density loss reaches 2.2% in these data. Weight-bearing bones lose their usual loading in space.",
      "scene": {
       "mechanic": "region-erosion-columns",
       "concept": "four bone x-ray columns (hip, spine, pelvis, forearm) each filled from the bottom with a red erosion overlay to its monthly loss rate - the weight-bearing hip erodes tallest, the forearm barely at all",
@@ -20713,8 +20713,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "3 · THE MARS PROBLEM",
-     "topic": "Space trip to Mars",
-     "say": "Without any protection, a Mars trip could cost an astronaut's hip about 30 percent of its bone. Fragile bones break easily.",
+     "topic": "Astronaut bones protected",
+     "say": "Unmitigated Mars mission hip loss is estimated at 30%. That is a projection without protection, not an inevitable outcome.",
      "scene": {
       "mechanic": "mission-bone-gauge",
       "concept": "two vertical capsule gauges topped with an astronaut suit, each filling red upward to the total bone percentage lost on that mission - ISS short, Mars nearly to the top",
@@ -20722,8 +20722,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-15T12:12:16Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:26:50Z",
    "retold": "retell/v4"
   },
   {
@@ -20963,7 +20963,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:41Z",
+   "rewritten_at": "2026-10-20T11:26:50Z",
    "retold": "retell/v3"
   },
   {
@@ -22041,7 +22041,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:40Z",
+   "rewritten_at": "2026-10-20T11:26:50Z",
    "retold": "retell/v3"
   },
   {
@@ -23035,7 +23035,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:41Z",
+   "rewritten_at": "2026-10-20T11:26:50Z",
    "retold": "retell/v3"
   },
   {
@@ -23359,7 +23359,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:41Z",
+   "rewritten_at": "2026-10-20T11:26:50Z",
    "hook_was": "We built something that hits 430 thousand miles an hour.",
    "retold": "retell/v2"
   },
@@ -23918,10 +23918,10 @@
   },
   {
    "slug": "gulf-dead-zone-growth",
-   "title": "The Gulf Has A Dead Zone The Size Of New Jersey (3 Charts)",
-   "hook": "Your town’s summer vanished: 8,776‑sq‑mi Gulf dead zone matches New Jersey",
-   "closing": "Until farms use less fertilizer, the dead zone keeps coming back and sea life keeps suffocating.",
-   "question": "What’s your take on the Gulf dead zone?",
+   "title": "The Gulf Dead Zone More Than Doubled Instead Of Shrinking",
+   "hook": "The dead zone in the Gulf rebounded to 6,705 square miles instead of shrinking.",
+   "closing": "Runoff upstream can leave sea life downstream without enough oxygen; cleaner water starts before the coast.",
+   "question": "Who should pay to reduce farm runoff?",
    "caption": "Every summer, a patch of the Gulf of Mexico roughly the size of New Jersey loses so much oxygen that fish and shrimp can't survive there. It's fed by fertilizer runoff funneled down the Mississippi River from 41 percent of the continental US. Even in a good year it's nearly double the size regulators are aiming for by 2035. Did you know the Gulf has a dead zone? Tell me below 👇",
    "hashtags": [
     "deadzone",
@@ -23949,8 +23949,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE SWING",
-     "topic": "Gulf Size",
-     "say": "In 2024 the Gulf dead zone hit 6,705 square miles, more than double the year before. Sea life there can't breathe.",
+     "topic": "Gulf zone rebound",
+     "say": "The Gulf dead zone reached 6,705 square miles in the latest measurement. That more than doubled the previous measurement.",
      "scene": {
       "mechanic": "dead-zone-swing-towers",
       "concept": "four survey years rise as oxygen-starved towers against a New Jersey outline, the 2017 record tallest, particles rushing the river floor",
@@ -23966,8 +23966,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · STILL FAR FROM THE GOAL",
-     "topic": "Dead Zone Goal",
-     "say": "The goal is 1,900 square miles, but the recent average is nearly double that. We are still far behind.",
+     "topic": "Gulf zone target",
+     "say": "The reduction target is 1,900 square miles. The supplied recent average remains nearly double that goal.",
      "scene": {
       "mechanic": "dead-zone-map-overlay",
       "concept": "a dead-zone stain over a Gulf map grows to today's size, a bright ring marks the far smaller 2035 goal",
@@ -23983,8 +23983,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · WHY IT WON'T SHRINK",
-     "topic": "Nitrogen Load",
-     "say": "Farm nitrogen washing down the Mississippi has tripled since the 1950s. That fertilizer feeds algae that use up the oxygen.",
+     "topic": "Gulf zone cause",
+     "say": "Nitrogen loads reached 300% of their earlier level. The added fertilizer feeds algae whose decay consumes oxygen.",
      "scene": {
       "mechanic": "farm-runoff-grid",
       "concept": "a grid of farmland tiles multiplies from the 1950s baseline up to today's tripled nitrogen load",
@@ -23992,8 +23992,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-11T15:37:50Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:26:49Z",
    "retold": "retell/v3"
   },
   {
@@ -25514,7 +25514,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:41Z",
+   "rewritten_at": "2026-10-20T11:26:50Z",
    "hook_was": "The coldest place in the universe is 250 miles above your head",
    "retold": "retell/v3"
   },
@@ -25664,7 +25664,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:41Z",
+   "rewritten_at": "2026-10-20T11:22:26Z",
    "retold": "retell/v4"
   },
   {
@@ -26412,7 +26412,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:41Z",
+   "rewritten_at": "2026-10-20T11:22:26Z",
    "retold": "retell/v3"
   },
   {
@@ -26923,7 +26923,7 @@
    ],
    "words_by": "chatgpt-rewrite",
    "retold": "retell/v3",
-   "rewritten_at": "2026-10-20T11:24:41Z"
+   "rewritten_at": "2026-10-20T11:22:25Z"
   },
   {
    "slug": "lab-grown-diamond-price-collapse",
@@ -27686,7 +27686,7 @@
    ],
    "words_by": "chatgpt-rewrite",
    "retold": "retell/v3",
-   "rewritten_at": "2026-10-20T11:24:40Z"
+   "rewritten_at": "2026-10-20T11:22:25Z"
   },
   {
    "slug": "ceo-executive-pay-gap",
@@ -32052,7 +32052,7 @@
    ],
    "retold": "retell/v3",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:41Z"
+   "rewritten_at": "2026-10-20T11:22:25Z"
   },
   {
    "slug": "phone-checks-205-times-a-day",
@@ -33387,7 +33387,7 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:41Z",
+   "rewritten_at": "2026-10-20T11:26:50Z",
    "hook_was": "Why is red hair so rare?"
   },
   {
@@ -33982,7 +33982,7 @@
    ],
    "retold": "retell/v3",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:41Z",
+   "rewritten_at": "2026-10-20T11:22:26Z",
    "hook_was": "It's officially America's fastest-growing sport again."
   },
   {
@@ -34113,7 +34113,7 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:19:53Z"
+   "rewritten_at": "2026-10-20T11:22:25Z"
   },
   {
    "slug": "competitive-eating-record-climb",
@@ -34457,7 +34457,7 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:42Z",
+   "rewritten_at": "2026-10-20T11:22:26Z",
    "hook_was": "You get way less mail than your parents did."
   },
   {
@@ -34657,7 +34657,7 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:41Z"
+   "rewritten_at": "2026-10-20T11:26:50Z"
   },
   {
    "slug": "iss-deorbit-2031",
