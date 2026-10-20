@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "astronaut-bone-loss__262309b8",
+  "slug": "astronaut-bone-loss",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:23:45Z",
+  "title": "Weightlessness Leaves Astronaut Bones Weaker Instead Of Rested",
+  "hook": "An unprotected Mars mission's estimated hip-bone loss reaches 30%.",
+  "closing": "Floating removes everyday loading; keeping bones strong becomes part of surviving a long mission.",
+  "question": "Would this change your Mars plans?",
+  "segments": [
+    {
+      "topic": "Astronaut bones weaken",
+      "say": "The supplied spaceflight estimate is 1.5% bone mineral density loss monthly. It measures weakening density, not bones disappearing."
+    },
+    {
+      "topic": "Astronaut bones unloaded",
+      "say": "The hip's monthly density loss reaches 2.2% in these data. Weight-bearing bones lose their usual loading in space."
+    },
+    {
+      "topic": "Astronaut bones protected",
+      "say": "Unmitigated Mars mission hip loss is estimated at 30%. That is a projection without protection, not an inevitable outcome."
+    }
+  ]
+}
