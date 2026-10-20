@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "metric-system-holdouts__47450d37",
+  "slug": "metric-system-holdouts",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:27:00Z",
+  "title": "Metric Mix-Ups Left A Plane With Less Than Half Its Fuel",
+  "hook": "A metric mix-up left an airliner carrying just 20,400 pounds of fuel.",
+  "closing": "A number without its unit can turn a routine calculation into a dangerous mistake.",
+  "question": "Where have mixed units caused you trouble?",
+  "segments": [
+    {
+      "topic": "Metric adoption gap",
+      "say": "The dataset's non-metric country group contains 5% of the world's population. Unit systems remain uneven across borders."
+    },
+    {
+      "topic": "Metric orbiter error",
+      "say": "The orbiter's actual altitude was 57 kilometers in the supplied comparison. A unit mismatch sent it much lower than planned."
+    },
+    {
+      "topic": "Metric fuel error",
+      "say": "The airliner carried 20,400 pounds of fuel. That was less than half the amount needed, so the calculation mattered physically."
+    }
+  ]
+}
