@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "freshwater-accessible__94d3a9c8",
+  "slug": "freshwater-accessible",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:28:30Z",
+  "title": "Water Covers Earth, But Lakes And Rivers Hold Just 0.007%",
+  "hook": "Lakes and rivers hold just 0.007% of Earth's water—not an ocean-sized supply.",
+  "closing": "Freshwater availability depends on location and access; a watery planet does not guarantee water where people need it.",
+  "question": "What protects your local freshwater supply?",
+  "segments": [
+    {
+      "topic": "Water mostly saline",
+      "say": "Freshwater makes up 3.5% of Earth's water. Most of the planet's water is salty."
+    },
+    {
+      "topic": "Water frozen away",
+      "say": "Glaciers and ice caps hold 68.7% of freshwater in this breakdown. Fresh does not automatically mean accessible."
+    },
+    {
+      "topic": "Water within reach",
+      "say": "Lakes and rivers contain 0.007% of all Earth's water. Accessible water still requires checking and treatment before drinking."
+    }
+  ]
+}
