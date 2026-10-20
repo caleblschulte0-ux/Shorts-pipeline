@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261019",
-  "generated_at": "2026-10-19T23:31:07Z",
+  "generated_at": "2026-10-20T00:31:10Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 25.76,
+          "days": 25.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 24.76,
+          "days": 24.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1592,10 +1592,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "87ae6c7",
-    "commits_since": "2026-10-18",
+    "head": "d59fb8d",
+    "commits_since": "2026-10-19",
     "commit_count": 50,
     "commits": [
+      "d59fb8d claim: mailbox verdicts 2026-10-19T23:48Z [skip ci]",
+      "70ba5cf retro: brief + triage for 20261019 [skip ci]",
       "87ae6c7 claim: 1 ChatGPT rewrite(s) applied 2026-10-19T23:10Z",
       "8a0ea16 claim: mailbox verdicts 2026-10-19T23:07Z [skip ci]",
       "041f7f2 exchange: mailbox round 20261019",
@@ -1633,9 +1635,7 @@
       "2a10676 third: analytics snapshot [skip ci]",
       "725c6bf watchdog: chatgpt task verdicts 20261019 [skip ci]",
       "7c5ccd6 claim: mailbox verdicts 2026-10-19T14:48Z [skip ci]",
-      "f7981de watchdog: chatgpt task verdicts 20261019 [skip ci]",
-      "b0c39aa explainer: update posted log + analytics [skip ci]",
-      "535bc5e explainer: update posted log + analytics [skip ci]"
+      "f7981de watchdog: chatgpt task verdicts 20261019 [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
