@@ -19170,10 +19170,10 @@
   },
   {
    "slug": "body-renewal-clock",
-   "title": "How Much Of 'You' Is Actually New",
-   "hook": "Your body throws out a stomach lining every five days like it's nothing.",
-   "closing": "So technically, your skin is younger than your phone.",
-   "question": "How old are your oldest cells? Guess below.",
+   "title": "The Body Renews Its Stomach Lining In 5 Days, Not Every Cell",
+   "hook": "Your body renews stomach lining in 5 days, but other cells last decades.",
+   "closing": "The body has many renewal schedules; a fast-changing surface does not mean every cell is newly replaced.",
+   "question": "Which tissue's renewal surprised you most?",
    "caption": "Your stomach rebuilds itself every 5 days. Your skeleton takes 10 years. But scientists carbon-dated your brain cells and found something wild... How old do you think your oldest cells are? 👇",
    "hashtags": [
     "humanbody",
@@ -19202,8 +19202,8 @@
      "insight_type": "rank",
      "ascending": true,
      "role": "1 · RENEWAL SPEED",
-     "topic": "How new is tissue",
-     "say": "Your stomach lining is brand new every five days, but your bones take years.",
+     "topic": "Body renewal schedules",
+     "say": "The stomach lining renews in about 5 days in this comparison. Slower tissues show why the body has no single replacement date.",
      "scene": {
       "mechanic": "body-clock-dials",
       "concept": "four tissue photos sit inside round clock dials arranged 2x2, each hand sweeping to a log-scaled position so a 5-day stomach barely ticks while a 3,650-day skeleton nearly completes a full lap",
@@ -19218,8 +19218,8 @@
      },
      "insight_type": "trend",
      "role": "2 · IT ADDS UP",
-     "topic": "New cells per day",
-     "say": "In about three months, your body swaps out thirty trillion cells.",
+     "topic": "Body replacement totals",
+     "say": "The cumulative series reaches 30 trillion replaced cells. Replacement adds up over the measured interval rather than happening all at once.",
      "scene": {
       "mechanic": "cell-tally-swarm",
       "concept": "a human body silhouette fills with a growing swarm of tiny cell dots as a day-counter climbs from 0 to 100, tallying toward 30 trillion replaced cells",
@@ -19234,8 +19234,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · EXCEPT...",
-     "topic": "Old neurons, new skin",
-     "say": "Your brain cells are as old as you are, but your skin renews monthly.",
+     "topic": "Body cells persist",
+     "say": "The skin example is 28 days old in these data. The cortical-neuron comparison is vastly older, so renewal depends on cell type.",
      "scene": {
       "mechanic": "scale-break-lifetime-ruler",
       "concept": "a single ruler with a jagged scale-break: skin's renewal mark sits just past the start, neuron's mark lands far out near the ruler's end, dramatizing that one cell type is basically as old as the person",
@@ -19243,8 +19243,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T10:30:41Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:24:40Z",
    "retold": "retell/v1",
    "hook_was": "330 billion of your cells vanish every single day."
   },
@@ -20255,10 +20255,10 @@
   },
   {
    "slug": "lottery-odds-vs-real-life",
-   "title": "The Real Odds Behind The Lottery Jackpot",
-   "hook": "Your Powerball ticket is a 292-million-to-one long shot.",
-   "closing": "Know the real odds before you spend your money on a ticket.",
-   "question": "Would you still play knowing the odds?",
+   "title": "Powerball's Rules Made An Already Unlikely Jackpot Harder To Win",
+   "hook": "Powerball's jackpot odds worsened to about 1 in 292 million after rule changes.",
+   "closing": "A bigger-looking jackpot does not make a ticket likelier to win; check the odds before spending.",
+   "question": "Do changing odds change whether you play?",
    "caption": "Winning the Powerball jackpot is a 1 in 292 million shot — worse than a royal flush, worse than a lifetime shark attack, worse than getting struck by lightning nineteen thousand times over. And it's not an accident: in 2015 Powerball deliberately made the odds worse, on purpose, to grow the jackpot. 👇 Still buying a ticket?",
    "hashtags": [
     "powerball",
@@ -20284,8 +20284,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE ODDS",
-     "topic": "Lottery odds vs lightning",
-     "say": "Getting struck by lightning in your lifetime is about 1 in 15,300. That's thousands of times likelier than winning Powerball.",
+     "topic": "Powerball versus lightning",
+     "say": "Lifetime lightning odds are about one in 15,300 in this comparison. That lifetime risk is not a lottery ticket's single-draw chance.",
      "scene": {
       "mechanic": "odds-ring-zoom",
       "concept": "two targets built from concentric rings, one ring per power of ten -- the lightning target fills a handful of rings, the jackpot target keeps ringing out far past it",
@@ -20302,8 +20302,8 @@
      "ascending": true,
      "use_baseline": false,
      "role": "2 · STILL WORSE",
-     "topic": "Jackpot odds ranked",
-     "say": "A shark attack is about 1 in 11.5 million. Even that is far likelier than hitting the Powerball jackpot.",
+     "topic": "Powerball rarity comparison",
+     "say": "The listed lifetime shark-attack odds are one in 11.5 million. Rare events still need matching exposure periods for a fair comparison.",
      "scene": {
       "mechanic": "shrinking-rarity-circles",
       "concept": "three real photos sit inside circles that shrink log-scaled to how rare each event is, so the jackpot photo is a near-vanishing pinprick next to a big royal flush",
@@ -20318,8 +20318,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · ON PURPOSE",
-     "topic": "Why odds got worse",
-     "say": "Then the rules changed, and the odds got worse, to 1 in 292 million. Same game, tougher win.",
+     "topic": "Powerball rules changed",
+     "say": "The later jackpot odds became one in 292,201,338 per play. The rule change made an already unlikely win harder.",
      "scene": {
       "mechanic": "ball-drum-swell",
       "concept": "two lottery-ball drums stand side by side, the after-2015 drum visibly bigger and more crowded with balls, making 'more balls, worse odds' a physical fact",
@@ -20327,8 +20327,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-15T12:11:40Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:24:41Z",
    "retold": "retell/v4"
   },
   {
@@ -20888,10 +20888,10 @@
   },
   {
    "slug": "homeschool-surge",
-   "title": "Homeschooling Never Went Back To Normal After Covid",
-   "hook": "Schools reopened, but families vanished: 5.4 percent still homeschool.",
-   "closing": "Schools reopened, but many families chose differently, so where kids learn is now a real choice.",
-   "question": "Would you ever homeschool your kids? Why?",
+   "title": "Schools Reopened, But Homeschooling Stayed At 5.4%",
+   "hook": "Schools reopened, yet homeschooling remained at 5.4%, nearly double its earlier share.",
+   "closing": "Reopening classrooms did not restore the earlier pattern; families kept making different choices about where children learn.",
+   "question": "What matters most when choosing a school?",
    "caption": "Homeschooling spiked to 11.1% of families during COVID — then it was supposed to fall back to normal. It didn't. Years later it's still double the pre-pandemic rate, and closing in on the entire private school system. Would you ever homeschool your kids? 👇",
    "hashtags": [
     "homeschooling",
@@ -20919,8 +20919,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE SPIKE",
-     "topic": "Homeschooling share",
-     "say": "Homeschooling nearly quadrupled during the pandemic, and it's still about double what it was before. Plenty of families never went back.",
+     "topic": "Homeschooling stayed high",
+     "say": "The later homeschooling share was 5.4%. It fell from the pandemic peak but remained nearly double its earlier level.",
      "scene": {
       "mechanic": "empty-desk-swap",
       "concept": "a 5x4 grid of school desks swaps to little house icons as reveal sweeps 2019 to 2023, the house count tracking the homeschool share for that year - the grid fills with houses at the 2020 spike, then partly empties back",
@@ -20936,8 +20936,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · WHY IT STUCK",
-     "topic": "Why homeschooling stuck",
-     "say": "Eighty-three percent of homeschooling parents say worry about school safety is a reason. That fear, more than anything, keeps kids home.",
+     "topic": "Homeschooling parent concerns",
+     "say": "School environment or safety concerned 83% of homeschooling parents in this survey. It was a reported reason, not a measured cause.",
      "scene": {
       "mechanic": "concern-flag-row",
       "concept": "four flagpoles rise to each reason's percentage, topped with an icon for that reason (shield, heart, family, book) - safety concern rises tallest",
@@ -20953,8 +20953,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "3 · THE SCALE",
-     "topic": "Homeschooling and private school",
-     "say": "Private school still holds nearly twice as many kids as homeschooling. But homeschooling is no longer a rounding error; it's a real rival.",
+     "topic": "Homeschooling school comparison",
+     "say": "Private schooling accounted for 9.6% in the supplied comparison. Homeschooling had grown substantially but still served a smaller share.",
      "scene": {
       "mechanic": "house-vs-school-growth",
       "concept": "a small house and a school building grow side by side, each scaled to its own share of kids - the school building noticeably bigger at 9.6% versus the house at 5.4%",
@@ -20962,8 +20962,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-11T15:04:15Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:24:41Z",
    "retold": "retell/v3"
   },
   {
@@ -21972,10 +21972,10 @@
   },
   {
    "slug": "chip-transistor-shrink-limit",
-   "title": "Your Phone's Chip Just Hit A Wall",
-   "hook": "Your phone's chip shrank 90% less, vanished 3‑nanometer limit",
-   "closing": "Chips still grow, but each doubling now takes longer, so transistor gains between phones come slower.",
-   "question": "Feel faster than three years ago?",
+   "title": "Chip Transistor Doubling Slowed To 3 Years Instead Of Getting Easier",
+   "hook": "Chip transistor doubling stretched to 3 years, slowing a once-familiar pace.",
+   "closing": "More transistors still arrive, but the slower pace means fewer gains to expect between phone upgrades.",
+   "question": "What actually makes a phone upgrade worthwhile?",
    "hashtags": [
     "technology",
     "chips",
@@ -21999,8 +21999,8 @@
      },
      "insight_type": "trend",
      "role": "1 · STILL GROWING",
-     "topic": "Chip transistor count",
-     "say": "Apple's phone chip now has 19 billion transistors, almost ten times its 2015 count. Those tiny switches are what does your phone's thinking.",
+     "topic": "Chip transistor growth",
+     "say": "The supplied Apple phone-chip series reaches 19 billion transistors. Enormous counts can still coexist with slowing progress.",
      "scene": {
       "mechanic": "chip-die-density-swell",
       "concept": "a real chip photo fills with a growing grid of glowing transistor dots as the years climb",
@@ -22015,8 +22015,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE SLOWDOWN",
-     "topic": "Chip doubling speed",
-     "say": "Chips used to double their transistors every two years. Now the wait is about fifty percent longer, so progress is slowing.",
+     "topic": "Chip doubling slows",
+     "say": "Transistor doubling stretches to 3 years in this comparison. The same multiplication now takes longer.",
      "scene": {
       "mechanic": "moores-law-metronome",
       "concept": "two cadence tracks tick off doublings over the same 12 years, one visibly slower than the other",
@@ -22031,8 +22031,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE ATOMIC WALL",
-     "topic": "Chip size",
-     "say": "Chip parts were 10,000 nanometers wide in 1971. Today's are near two, five thousand times smaller, so billions can fit.",
+     "topic": "Chip process labels",
+     "say": "The latest process-node label is 2 nanometers. It describes a manufacturing generation, not the measured width of every transistor part.",
      "scene": {
       "mechanic": "atom-scale-zoom",
       "concept": "a real chip die shrinks from a huge square to a near-invisible dot next to the modern node size",
@@ -22040,8 +22040,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-11T15:08:47Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:24:40Z",
    "retold": "retell/v3"
   },
   {
@@ -22959,10 +22959,10 @@
   },
   {
    "slug": "peanut-allergy-guideline-flip",
-   "title": "Doctors Had Peanut Allergies Backwards For Decades",
-   "hook": "Doctors had peanut allergies backwards, and the fix cut them 43 percent.",
-   "closing": "Old advice can be wrong, so ask your doctor when your baby should try peanuts.",
-   "question": "Did you avoid peanuts as a kid?",
+   "title": "Peanut Avoidance Lost To Early Consumption: Diagnoses Later Fell 43%",
+   "hook": "Peanut diagnoses fell 43% after advice shifted toward early introduction.",
+   "closing": "Parents should discuss safe early introduction with their child's clinician; prevention advice depends on the child's situation.",
+   "question": "How did peanut advice change in your family?",
    "caption": "Peanut allergies in American kids tripled between 1997 and 2008. Turns out doctors had the fix backwards: infants told to avoid peanut hit a 13.7% allergy rate by age 5, vs just 1.9% for infants fed peanut early. Guidelines flipped, and diagnoses have dropped 43% since. Did your family avoid peanuts? 👇",
    "hashtags": [
     "peanutallergy",
@@ -22990,8 +22990,8 @@
      },
      "insight_type": "trend",
      "role": "1 · SETUP",
-     "topic": "Peanut Allergy Kids",
-     "say": "Peanut allergies in kids more than tripled in just over a decade, and the advice was to keep babies away from peanuts.",
+     "topic": "Peanut allergies rose",
+     "say": "Childhood peanut allergy prevalence reached 1.4% in the supplied historical series. It had more than tripled from the earliest measurement.",
      "scene": {
       "mechanic": "peanut-rash-climb",
       "concept": "peanuts rise along a climbing trend line, growing larger and more inflamed at each higher prevalence year",
@@ -23007,8 +23007,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · THE TURN",
-     "topic": "Peanut Trial",
-     "say": "Kids who avoided peanuts got allergic seven times more often than kids who ate them early. Protecting babies was actually raising the risk.",
+     "topic": "Peanut trial reversal",
+     "say": "The avoidance group's allergy rate was 13.7% in the trial. Children who ate peanut early had a much lower rate.",
      "scene": {
       "mechanic": "peanut-shield-crack-duel",
       "concept": "two round shields crack from the peanuts breaking through them -- one badly shattered (avoidance), one barely scratched (early exposure)",
@@ -23024,8 +23024,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · CONSEQUENCE",
-     "topic": "Peanut Guidelines",
-     "say": "Once doctors flipped the advice, toddler peanut allergies fell by 43 percent. Same food, opposite advice, far fewer allergic kids.",
+     "topic": "Peanut guidance changed",
+     "say": "Diagnoses declined about 43% in the before-and-after comparison. That decline followed changed guidance; this comparison alone does not isolate its cause.",
      "viz": "comparison",
      "scene": {
       "mechanic": "allergy-marker-drain",
@@ -23034,8 +23034,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T03:32:10Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:24:41Z",
    "retold": "retell/v3"
   },
   {
@@ -23283,10 +23283,10 @@
   },
   {
    "slug": "parker-solar-probe-speed-record",
-   "title": "Humans Just Built the Fastest Thing Ever Made",
-   "hook": "Humans just broke their own speed record, and it wasn't close.",
-   "closing": "And right now, it's diving straight into the sun.",
-   "question": "Would you ride something this fast?",
+   "title": "Parker Solar Probe Hit 430,000 MPH Without Carrying A Human",
+   "hook": "Parker Solar Probe reached 430,000 miles an hour; no human rode along.",
+   "closing": "The fastest machine is uncrewed; its record is a measure of engineering, not a speed people have experienced.",
+   "question": "What would you explore with this speed?",
    "caption": "In December 2024, Parker Solar Probe hit 430,000 miles per hour -- 17x faster than Apollo 10, the fastest speed any human has ever personally traveled. At that speed you could fly New York to Tokyo in 56 seconds. Would you ride it? 👇",
    "hashtags": [
     "parkersolarprobe",
@@ -23314,8 +23314,8 @@
      },
      "insight_type": "trend",
      "role": "1 · SETUP",
-     "topic": "Fastest thing built",
-     "say": "Parker Solar Probe hit 430 thousand miles an hour in December 2024, humanity's fastest ever.",
+     "topic": "Parker speed record",
+     "say": "Parker Solar Probe reached 430,000 miles an hour in the latest supplied record. Its speed kept rising across the measurements.",
      "scene": {
       "mechanic": "probe-speed-trail-streak",
       "concept": "Parker Solar Probe races toward the sun leaving a motion streak that lengthens as its speed record climbs from 153,000 to 430,000 mph",
@@ -23331,8 +23331,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · THE GAP",
-     "topic": "Fastest human ever",
-     "say": "That's 17 times faster than the fastest humans ever traveled, back in 1969.",
+     "topic": "Parker beats astronauts",
+     "say": "Parker travels roughly 17 times the fastest human speed in this comparison. A machine can endure a mission people have not ridden.",
      "scene": {
       "mechanic": "rocket-vs-probe-race-lane",
       "concept": "two lanes race side by side: Parker Solar Probe streaks to the far edge while Apollo 10's capsule, the fastest a human has ever traveled, barely inches forward",
@@ -23349,8 +23349,8 @@
      "ascending": true,
      "use_baseline": false,
      "role": "3 · THE PAYOFF",
-     "topic": "Fastest thing, in seconds",
-     "say": "At that speed, you'd cross from New York to Tokyo in under a minute.",
+     "topic": "Parker travel comparison",
+     "say": "At Parker's record speed, New York to Tokyo would take 56 seconds. This is a scale comparison, not an actual flight.",
      "scene": {
       "mechanic": "world-globe-orbit-timer",
       "concept": "the probe circles a real Earth globe, one lit arc completing at 56 seconds (New York to Tokyo) and a full lap completing at 208 seconds (around the planet)",
@@ -23358,8 +23358,8 @@
      }
     }
    ],
-   "words_by": "claude:shorts-ops-thread",
-   "rewritten_at": "2026-10-10T13:27:32Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:24:41Z",
    "hook_was": "We built something that hits 430 thousand miles an hour.",
    "retold": "retell/v2"
   },
@@ -25442,10 +25442,10 @@
   },
   {
    "slug": "coldest-place-in-the-universe-is-human-made",
-   "title": "The Coldest Place In The Universe Isn't In Space (3 Charts)",
-   "hook": "The coldest place in the universe isn't in space. Scientists built it.",
-   "closing": "Humans built the coldest place in the universe, and it's circling right above your head.",
-   "question": "Could you survive one second at absolute zero?",
+   "title": "A NASA Lab Makes Atoms Colder Than Deep Space",
+   "hook": "NASA cooled atoms to 0.0000000001 kelvin, below the natural temperatures listed.",
+   "closing": "Extreme cold is also an engineering achievement; a laboratory can reach temperatures below the natural examples compared here.",
+   "question": "What would you use ultracold atoms to study?",
    "caption": "The coldest known place in the universe isn't 5,000 light-years away -- it's 250 miles above your head. NASA's Cold Atom Lab chills atoms a billion times colder than deep space itself. Could you survive one second there? 👇",
    "hashtags": [
     "nasa",
@@ -25471,9 +25471,9 @@
      },
      "insight_type": "rank",
      "ascending": true,
-     "topic": "Coldest places known",
+     "topic": "Colder space background",
      "role": "1 · HOW COLD SPACE GETS",
-     "say": "Empty space is already freezing, just 2.7 degrees above absolute zero. Even nature's coldest known spot, the Boomerang Nebula, only dips a little lower.",
+     "say": "Deep space's background temperature is 2.7 kelvin in this comparison. Empty space is cold, but it is not absolute zero.",
      "scene": {
       "mechanic": "cryo-ladder-frost-climb",
       "concept": "a vertical thermometer scale drops from room temperature to deep space to the Boomerang Nebula, frost rings thickening at each colder marker",
@@ -25487,9 +25487,9 @@
       "file": "cold_atom_lab_vs_nebula.json"
      },
      "insight_type": "comparison",
-     "topic": "Coldest atom lab",
+     "topic": "Colder NASA atoms",
      "role": "2 · THE UPSET",
-     "say": "NASA's Cold Atom Lab on the space station chills atoms billions of times colder than that nebula. People beat nature's own record.",
+     "say": "NASA's Cold Atom Lab reaches 0.0000000001 kelvin in the supplied data. Its atoms are colder than the compared nebula.",
      "scene": {
       "mechanic": "frost-density-duel",
       "concept": "a nebula photo lightly dusted with frost sits beside NASA's ISS lab, frost particle density on the lab panel dialed up to a billion-times-colder extreme",
@@ -25503,9 +25503,9 @@
       "file": "nebula_vs_iss_distance.json"
      },
      "insight_type": "comparison",
-     "topic": "Coldest place distance",
+     "topic": "Colder atoms overhead",
      "role": "3 · THE TWIST",
-     "say": "The Boomerang Nebula is light-years away, but this freezer orbits just 250 miles up. The universe's record cold is not out there. It's overhead.",
+     "say": "The space-station laboratory orbits about 250 miles up. This extreme-cold experiment is nearby in space, rather than in a distant nebula.",
      "scene": {
       "mechanic": "earth-orbit-vs-deep-space-flyout",
       "concept": "the ISS orbits tight around Earth while a marker flies out toward the frame edge racking up quadrillions of miles to reach the nebula",
@@ -25513,8 +25513,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-11T15:43:11Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:24:41Z",
    "hook_was": "The coldest place in the universe is 250 miles above your head",
    "retold": "retell/v3"
   },
@@ -25664,7 +25664,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:22:26Z",
+   "rewritten_at": "2026-10-20T11:24:41Z",
    "retold": "retell/v4"
   },
   {
@@ -26412,7 +26412,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:22:26Z",
+   "rewritten_at": "2026-10-20T11:24:41Z",
    "retold": "retell/v3"
   },
   {
@@ -26923,7 +26923,7 @@
    ],
    "words_by": "chatgpt-rewrite",
    "retold": "retell/v3",
-   "rewritten_at": "2026-10-20T11:22:25Z"
+   "rewritten_at": "2026-10-20T11:24:41Z"
   },
   {
    "slug": "lab-grown-diamond-price-collapse",
@@ -27686,7 +27686,7 @@
    ],
    "words_by": "chatgpt-rewrite",
    "retold": "retell/v3",
-   "rewritten_at": "2026-10-20T11:22:25Z"
+   "rewritten_at": "2026-10-20T11:24:40Z"
   },
   {
    "slug": "ceo-executive-pay-gap",
@@ -32052,7 +32052,7 @@
    ],
    "retold": "retell/v3",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:22:25Z"
+   "rewritten_at": "2026-10-20T11:24:41Z"
   },
   {
    "slug": "phone-checks-205-times-a-day",
@@ -33330,10 +33330,10 @@
   },
   {
    "slug": "red-hair-recessive-gene",
-   "title": "Only 2% Of People Have Red Hair. Here's Why.",
-   "hook": "Two normal-looking parents can have a redheaded baby, and it's no accident.",
-   "closing": "Two parents who aren't redheads can still have a redheaded baby, because both carry the gene.",
-   "question": "Are you secretly a carrier?",
+   "title": "Red Hair Can Stay Hidden: 37% Carry The Gene In Scotland",
+   "hook": "In Scotland, 37% carry the red-hair gene; far fewer visibly show it.",
+   "closing": "Visible hair color does not reveal everything a family can pass on; inheritance is more complicated than appearances.",
+   "question": "Does red hair skip generations in your family?",
    "caption": "Only about 1-2% of people worldwide have naturally red hair — but in Scotland, where it's most concentrated, over a third of the population actually carries the gene without ever showing it. Here's why a recessive gene can hide in plain sight. Are you secretly a carrier? 👇",
    "hashtags": [
     "redhair",
@@ -33359,8 +33359,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "1 · HOW RARE",
-     "topic": "Red hair is rare",
-     "say": "Red hair is rare worldwide, just 1.5 percent of people, but Scotland has almost nine times as many redheads."
+     "topic": "Red hair rarity",
+     "say": "Visible red hair appears in 1.5% of people worldwide in these data. It is much more common in Scotland."
     },
     {
      "source": "offline",
@@ -33370,8 +33370,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE HIDDEN CARRIERS",
-     "topic": "Hidden red hair genes",
-     "say": "Scotland's redheads are only the tip. Nearly three times as many Scots, 37 percent, quietly carry the gene without looking red-haired."
+     "topic": "Red hair carriers",
+     "say": "The Scotland carrier estimate reaches 37%. A visible trait misses many people carrying a related gene."
     },
     {
      "source": "offline",
@@ -33381,13 +33381,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · WHY IT HIDES",
-     "topic": "Why red hair hides",
-     "say": "One copy of the gene does nothing. You need two, one from each parent, and then red hair is certain."
+     "topic": "Red hair model",
+     "say": "The simplified gene-copy model assigns 100% expression to paired copies. It illustrates recessive inheritance, not every real-world hair-color outcome."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-18T19:50:50Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:24:41Z",
    "hook_was": "Why is red hair so rare?"
   },
   {
@@ -33982,7 +33982,7 @@
    ],
    "retold": "retell/v3",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:22:26Z",
+   "rewritten_at": "2026-10-20T11:24:41Z",
    "hook_was": "It's officially America's fastest-growing sport again."
   },
   {
@@ -34113,7 +34113,7 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:22:25Z"
+   "rewritten_at": "2026-10-20T11:19:53Z"
   },
   {
    "slug": "competitive-eating-record-climb",
@@ -34457,7 +34457,7 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:22:26Z",
+   "rewritten_at": "2026-10-20T11:24:42Z",
    "hook_was": "You get way less mail than your parents did."
   },
   {
@@ -34595,10 +34595,10 @@
   },
   {
    "slug": "hearing-aids-otc-price-drop",
-   "title": "US Hearing Aid Prices Dropped After A 2022 FDA Decision",
-   "hook": "You used to need a doctor's note.",
-   "closing": "Hearing help just got far cheaper, so if you struggle to hear, it's worth a look.",
-   "question": "Do you know someone who needs one?",
+   "title": "Hearing Aids Started At $300 Instead Of Requiring A Prescription",
+   "hook": "A $300 starting price put hearing aids within reach of more shoppers.",
+   "closing": "Lower prices expand options, but choosing hearing help still means matching the device to the person's needs.",
+   "question": "What would make hearing aids easier to access?",
    "caption": "In 2022 the FDA let hearing aids sell over the counter -- prices dropped from about $4,700 a pair to as low as $300. Even so, only 1 in 5 adults who could benefit from one actually uses one. Know someone who needs one? Tell me below 👇",
    "hashtags": [
     "hearingaids",
@@ -34626,8 +34626,8 @@
      "insight_type": "rank",
      "use_baseline": true,
      "role": "1 · THE RULE",
-     "topic": "Hearing aid prices dropped",
-     "say": "The FDA let hearing aids go over the counter. Some pairs now cost a sixteenth of the old $4,700.",
+     "topic": "Hearing aid prices",
+     "say": "Over-the-counter hearing aid pairs started at $300 in this comparison. The prescription pair cost far more.",
      "ascending": false
     },
     {
@@ -34638,8 +34638,8 @@
      },
      "insight_type": "share",
      "role": "2 · THE GAP",
-     "topic": "Few use hearing aids",
-     "say": "Before, only one in five people with hearing loss wore one. Cost and doctor visits kept the rest away."
+     "topic": "Hearing aid gap",
+     "say": "Only 20% of adults with hearing loss used hearing aids in these data. Most were not using that support."
     },
     {
      "source": "offline",
@@ -34650,14 +34650,14 @@
      "insight_type": "rank",
      "use_baseline": true,
      "role": "3 · WHAT CHANGED",
-     "topic": "Hearing aid access grew",
-     "say": "Over-the-counter models went from none to more than 80, so shoppers finally have real choices.",
+     "topic": "Hearing aid options",
+     "say": "Registered over-the-counter hearing aid models reached 80 in the supplied count. Shoppers gained choices that previously were unavailable.",
      "ascending": false
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-18T19:51:28Z"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:24:41Z"
   },
   {
    "slug": "iss-deorbit-2031",

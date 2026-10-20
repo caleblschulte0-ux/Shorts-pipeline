@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-20T11:22:26Z",
+ "updated": "2026-10-20T11:24:42Z",
  "open": [
   {
    "id": "rubiks-cube-record-vs-robot__5d087bf9",
@@ -11,106 +11,6 @@
    ],
    "request": "exchange/rewrites/20261019/rubiks-cube-record-vs-robot__5d087bf9.request.json",
    "answer_path": "exchange/rewrites/20261019/rubiks-cube-record-vs-robot__5d087bf9.answer.json"
-  },
-  {
-   "id": "hearing-aids-otc-price-drop__b159cfe2",
-   "slug": "hearing-aids-otc-price-drop",
-   "filed": "2026-10-19T11:44:43Z",
-   "why": [
-    "premise: brain: The premise lacks a single verifiable number and does not clearly reverse a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261019/hearing-aids-otc-price-drop__b159cfe2.request.json",
-   "answer_path": "exchange/rewrites/20261019/hearing-aids-otc-price-drop__b159cfe2.answer.json"
-  },
-  {
-   "id": "red-hair-recessive-gene__f9405603",
-   "slug": "red-hair-recessive-gene",
-   "filed": "2026-10-19T11:44:43Z",
-   "why": [
-    "premise: brain: The premise offers a statistic but does not clearly invert a common viewer expectation, making it insufficient."
-   ],
-   "request": "exchange/rewrites/20261019/red-hair-recessive-gene__f9405603.request.json",
-   "answer_path": "exchange/rewrites/20261019/red-hair-recessive-gene__f9405603.answer.json"
-  },
-  {
-   "id": "chip-transistor-shrink-limit__72cdc200",
-   "slug": "chip-transistor-shrink-limit",
-   "filed": "2026-10-19T11:44:42Z",
-   "why": [
-    "premise: brain: It relies on multiple numbers (90% and 3 nm) rather than a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261019/chip-transistor-shrink-limit__72cdc200.request.json",
-   "answer_path": "exchange/rewrites/20261019/chip-transistor-shrink-limit__72cdc200.answer.json"
-  },
-  {
-   "id": "coldest-place-in-the-universe-is-human-made__d62a1233",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-10-19T11:44:42Z",
-   "why": [
-    "premise: brain: Lacks a specific, verifiable number to support the reversed expectation."
-   ],
-   "request": "exchange/rewrites/20261019/coldest-place-in-the-universe-is-human-made__d62a1233.request.json",
-   "answer_path": "exchange/rewrites/20261019/coldest-place-in-the-universe-is-human-made__d62a1233.answer.json"
-  },
-  {
-   "id": "homeschool-surge__44c39d98",
-   "slug": "homeschool-surge",
-   "filed": "2026-10-19T11:44:42Z",
-   "why": [
-    "premise: brain: The claim does not clearly overturn a common expectation and relies on a vague statistic without a strong, surprising reversal."
-   ],
-   "request": "exchange/rewrites/20261019/homeschool-surge__44c39d98.request.json",
-   "answer_path": "exchange/rewrites/20261019/homeschool-surge__44c39d98.answer.json"
-  },
-  {
-   "id": "parker-solar-probe-speed-record__e69da005",
-   "slug": "parker-solar-probe-speed-record",
-   "filed": "2026-10-19T11:44:42Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261019/parker-solar-probe-speed-record__e69da005.request.json",
-   "answer_path": "exchange/rewrites/20261019/parker-solar-probe-speed-record__e69da005.answer.json"
-  },
-  {
-   "id": "peanut-allergy-guideline-flip__78a48cd5",
-   "slug": "peanut-allergy-guideline-flip",
-   "filed": "2026-10-19T11:44:42Z",
-   "why": [
-    "premise: brain: The premise is vague, lacks a clear reversal of a viewer expectation, and the claim about a 43% fix is unsubstantiated."
-   ],
-   "request": "exchange/rewrites/20261019/peanut-allergy-guideline-flip__78a48cd5.request.json",
-   "answer_path": "exchange/rewrites/20261019/peanut-allergy-guideline-flip__78a48cd5.answer.json"
-  },
-  {
-   "id": "ants-outnumber-humans__1beccbad",
-   "slug": "ants-outnumber-humans",
-   "filed": "2026-10-19T11:44:42Z",
-   "why": [
-    "premise: brain: The claim presents a factual statistic without reversing a specific viewer expectation, so it fails the required premise criteria."
-   ],
-   "request": "exchange/rewrites/20261019/ants-outnumber-humans__1beccbad.request.json",
-   "answer_path": "exchange/rewrites/20261019/ants-outnumber-humans__1beccbad.answer.json"
-  },
-  {
-   "id": "lottery-odds-vs-real-life__2ee01cb7",
-   "slug": "lottery-odds-vs-real-life",
-   "filed": "2026-10-19T11:44:42Z",
-   "why": [
-    "premise: brain: It merely states the odds without overturning a viewer's expectation, failing the reversal requirement."
-   ],
-   "request": "exchange/rewrites/20261019/lottery-odds-vs-real-life__2ee01cb7.request.json",
-   "answer_path": "exchange/rewrites/20261019/lottery-odds-vs-real-life__2ee01cb7.answer.json"
-  },
-  {
-   "id": "body-renewal-clock__a57c67e5",
-   "slug": "body-renewal-clock",
-   "filed": "2026-10-19T11:44:41Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261019/body-renewal-clock__a57c67e5.request.json",
-   "answer_path": "exchange/rewrites/20261019/body-renewal-clock__a57c67e5.answer.json"
   },
   {
    "id": "back-to-sleep-campaign-cut-sids__1d5b6766",
@@ -405,6 +305,16 @@
    "answer_path": "exchange/rewrites/20261018/genz-drinking-decline__8e6f5b2d.answer.json"
   },
   {
+   "id": "hearing-aids-otc-price-drop__b159cfe2",
+   "slug": "hearing-aids-otc-price-drop",
+   "filed": "2026-10-18T20:42:47Z",
+   "why": [
+    "premise: brain: Lacks a specific, verifiable number and does not clearly reverse a viewer's expectation."
+   ],
+   "request": "exchange/rewrites/20261018/hearing-aids-otc-price-drop__b159cfe2.request.json",
+   "answer_path": "exchange/rewrites/20261018/hearing-aids-otc-price-drop__b159cfe2.answer.json"
+  },
+  {
    "id": "betelgeuse-great-dimming__e2882181",
    "slug": "betelgeuse-great-dimming",
    "filed": "2026-10-18T19:15:11Z",
@@ -443,6 +353,16 @@
    ],
    "request": "exchange/rewrites/20261018/cursive-handwriting-comeback__90876971.request.json",
    "answer_path": "exchange/rewrites/20261018/cursive-handwriting-comeback__90876971.answer.json"
+  },
+  {
+   "id": "chip-transistor-shrink-limit__72cdc200",
+   "slug": "chip-transistor-shrink-limit",
+   "filed": "2026-10-18T15:35:19Z",
+   "why": [
+    "premise: brain: The premise is vague and does not clearly reverse a specific viewer expectation with a single, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261018/chip-transistor-shrink-limit__72cdc200.request.json",
+   "answer_path": "exchange/rewrites/20261018/chip-transistor-shrink-limit__72cdc200.answer.json"
   },
   {
    "id": "usps-mail-volume-collapse__e8b27d6b",
@@ -485,6 +405,16 @@
    "answer_path": "exchange/rewrites/20261018/nyc-noise-complaints-per-day__499955a7.answer.json"
   },
   {
+   "id": "homeschool-surge__44c39d98",
+   "slug": "homeschool-surge",
+   "filed": "2026-10-18T14:23:08Z",
+   "why": [
+    "premise: brain: The premise does not clearly overturn a strong viewer expectation and the 5.4% figure isn’t a strikingly consequential reversal."
+   ],
+   "request": "exchange/rewrites/20261018/homeschool-surge__44c39d98.request.json",
+   "answer_path": "exchange/rewrites/20261018/homeschool-surge__44c39d98.answer.json"
+  },
+  {
    "id": "lightning-deaths-collapsed-not-the-storms__9241770b",
    "slug": "lightning-deaths-collapsed-not-the-storms",
    "filed": "2026-10-18T14:23:08Z",
@@ -523,6 +453,16 @@
    ],
    "request": "exchange/rewrites/20261018/saturn-rings-vanishing__acf09995.request.json",
    "answer_path": "exchange/rewrites/20261018/saturn-rings-vanishing__acf09995.answer.json"
+  },
+  {
+   "id": "coldest-place-in-the-universe-is-human-made__d62a1233",
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "filed": "2026-10-18T11:46:49Z",
+   "why": [
+    "premise: brain: It lacks a single verifiable number to anchor the reversed expectation."
+   ],
+   "request": "exchange/rewrites/20261018/coldest-place-in-the-universe-is-human-made__d62a1233.request.json",
+   "answer_path": "exchange/rewrites/20261018/coldest-place-in-the-universe-is-human-made__d62a1233.answer.json"
   },
   {
    "id": "metric-system-holdouts__47450d37",
@@ -575,6 +515,16 @@
    "answer_path": "exchange/rewrites/20261018/podcasts-passed-radio-spoken-word__1c353e96.answer.json"
   },
   {
+   "id": "body-renewal-clock__a57c67e5",
+   "slug": "body-renewal-clock",
+   "filed": "2026-10-18T11:46:48Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261018/body-renewal-clock__a57c67e5.request.json",
+   "answer_path": "exchange/rewrites/20261018/body-renewal-clock__a57c67e5.answer.json"
+  },
+  {
    "id": "gps-einstein-fix__7df7a9d4",
    "slug": "gps-einstein-fix",
    "filed": "2026-10-18T11:46:48Z",
@@ -585,6 +535,26 @@
    "answer_path": "exchange/rewrites/20261018/gps-einstein-fix__7df7a9d4.answer.json"
   },
   {
+   "id": "parker-solar-probe-speed-record__e69da005",
+   "slug": "parker-solar-probe-speed-record",
+   "filed": "2026-10-18T11:46:48Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261018/parker-solar-probe-speed-record__e69da005.request.json",
+   "answer_path": "exchange/rewrites/20261018/parker-solar-probe-speed-record__e69da005.answer.json"
+  },
+  {
+   "id": "peanut-allergy-guideline-flip__78a48cd5",
+   "slug": "peanut-allergy-guideline-flip",
+   "filed": "2026-10-18T11:46:48Z",
+   "why": [
+    "premise: brain: The premise is vague, lacks a clear reversal of a specific expectation, and does not hinge on a single verifiable numeric claim."
+   ],
+   "request": "exchange/rewrites/20261018/peanut-allergy-guideline-flip__78a48cd5.request.json",
+   "answer_path": "exchange/rewrites/20261018/peanut-allergy-guideline-flip__78a48cd5.answer.json"
+  },
+  {
    "id": "astronaut-bone-loss__262309b8",
    "slug": "astronaut-bone-loss",
    "filed": "2026-10-18T11:46:48Z",
@@ -593,6 +563,16 @@
    ],
    "request": "exchange/rewrites/20261018/astronaut-bone-loss__262309b8.request.json",
    "answer_path": "exchange/rewrites/20261018/astronaut-bone-loss__262309b8.answer.json"
+  },
+  {
+   "id": "lottery-odds-vs-real-life__2ee01cb7",
+   "slug": "lottery-odds-vs-real-life",
+   "filed": "2026-10-18T11:46:48Z",
+   "why": [
+    "premise: brain: It presents a known statistic without overturning a viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261018/lottery-odds-vs-real-life__2ee01cb7.request.json",
+   "answer_path": "exchange/rewrites/20261018/lottery-odds-vs-real-life__2ee01cb7.answer.json"
   },
   {
    "id": "nobel-prize-discovery-age__3e12dc3c",
@@ -623,6 +603,16 @@
    ],
    "request": "exchange/rewrites/20261017/gulf-dead-zone-growth__a4939372.request.json",
    "answer_path": "exchange/rewrites/20261017/gulf-dead-zone-growth__a4939372.answer.json"
+  },
+  {
+   "id": "ants-outnumber-humans__1beccbad",
+   "slug": "ants-outnumber-humans",
+   "filed": "2026-10-17T12:56:19Z",
+   "why": [
+    "premise: brain: It presents a factual statistic without reversing a viewer's specific expectation."
+   ],
+   "request": "exchange/rewrites/20261017/ants-outnumber-humans__1beccbad.request.json",
+   "answer_path": "exchange/rewrites/20261017/ants-outnumber-humans__1beccbad.answer.json"
   },
   {
    "id": "competitive-eating-record-climb__e38b83da",
