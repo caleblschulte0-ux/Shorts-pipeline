@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "humpback-whale-recovery__0a1256d1",
+  "slug": "humpback-whale-recovery",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:28:30Z",
+  "title": "Humpback Whales Rebounded To 25,000 After Near-Extinction In One Region",
+  "hook": "Western South Atlantic humpbacks rebounded to about 25,000 after near-extinction.",
+  "closing": "Recovery is possible, but a regional comeback does not mean every whale population is safe.",
+  "question": "What makes wildlife protection succeed long term?",
+  "segments": [
+    {
+      "topic": "Humpback whale comeback",
+      "say": "The western South Atlantic estimate reaches 25,000 humpbacks. That regional rebound shows a severely depleted population can recover."
+    },
+    {
+      "topic": "Humpback recovery uneven",
+      "say": "The supplied tally lists 10 recovered humpback populations. Other populations remain listed, so recovery is not universal."
+    },
+    {
+      "topic": "Humpback whaling context",
+      "say": "Commercial whaling killed about 2.9 million large whales during the measured century. This total covers large whales, not only humpbacks."
+    }
+  ]
+}
