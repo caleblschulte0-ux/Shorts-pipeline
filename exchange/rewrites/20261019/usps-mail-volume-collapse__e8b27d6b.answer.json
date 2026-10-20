@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "usps-mail-volume-collapse__e8b27d6b",
+  "slug": "usps-mail-volume-collapse",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:27:00Z",
+  "title": "Mail Nearly Halved While The Stamp Price More Than Doubled",
+  "hook": "Mailing a letter cost 68 cents even as mail volume nearly halved.",
+  "closing": "Less mail does not mean cheaper postage; a thinning mailbox can still come with rising costs.",
+  "question": "What still makes you buy a stamp?",
+  "segments": [
+    {
+      "topic": "Mail volume shrinks",
+      "say": "Total mail volume fell to 109 billion pieces in the supplied latest year. The peak was nearly twice as high."
+    },
+    {
+      "topic": "Mail letters fade",
+      "say": "First-Class Mail fell to 46 billion pieces in the measured comparison. Its decline outpaced the overall mail contraction."
+    },
+    {
+      "topic": "Mail stamps rise",
+      "say": "The stamp price reached 68 cents in the supplied historical comparison. That more than doubled the earlier price."
+    }
+  ]
+}
