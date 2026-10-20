@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "body-renewal-clock__a57c67e5",
+  "slug": "body-renewal-clock",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:22:00Z",
+  "title": "The Body Renews Its Stomach Lining In 5 Days, Not Every Cell",
+  "hook": "Your body renews stomach lining in 5 days, but other cells last decades.",
+  "closing": "The body has many renewal schedules; a fast-changing surface does not mean every cell is newly replaced.",
+  "question": "Which tissue's renewal surprised you most?",
+  "segments": [
+    {
+      "topic": "Body renewal schedules",
+      "say": "The stomach lining renews in about 5 days in this comparison. Slower tissues show why the body has no single replacement date."
+    },
+    {
+      "topic": "Body replacement totals",
+      "say": "The cumulative series reaches 30 trillion replaced cells. Replacement adds up over the measured interval rather than happening all at once."
+    },
+    {
+      "topic": "Body cells persist",
+      "say": "The skin example is 28 days old in these data. The cortical-neuron comparison is vastly older, so renewal depends on cell type."
+    }
+  ]
+}
