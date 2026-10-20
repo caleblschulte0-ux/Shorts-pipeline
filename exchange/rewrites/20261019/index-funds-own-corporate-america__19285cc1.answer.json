@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "index-funds-own-corporate-america__19285cc1",
+  "slug": "index-funds-own-corporate-america",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:28:30Z",
+  "title": "Index Funds Reached 52%—And Their Managers Cast The Votes",
+  "hook": "Index funds reached 52% of the measured assets; managers wield the voting power.",
+  "closing": "Fund ownership also concentrates voting responsibilities, so look beyond fees when deciding who manages investments.",
+  "question": "Who should decide how fund shares vote?",
+  "segments": [
+    {
+      "topic": "Index funds dominate",
+      "say": "Index funds reached 52% of assets in the supplied series. Passive investing had become the majority of the measured pool."
+    },
+    {
+      "topic": "Index funds' managers",
+      "say": "BlackRock, Vanguard and State Street hold a combined 22% stake in the average large company here. Concentrated management has consequences."
+    },
+    {
+      "topic": "Index funds' votes",
+      "say": "Vanguard casts 9% of the annual-meeting votes in this comparison. Owning through a fund is different from casting those votes personally."
+    }
+  ]
+}
