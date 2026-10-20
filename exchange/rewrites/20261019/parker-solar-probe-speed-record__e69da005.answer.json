@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "parker-solar-probe-speed-record__e69da005",
+  "slug": "parker-solar-probe-speed-record",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:22:00Z",
+  "title": "Parker Solar Probe Hit 430,000 MPH Without Carrying A Human",
+  "hook": "Parker Solar Probe reached 430,000 miles an hour; no human rode along.",
+  "closing": "The fastest machine is uncrewed; its record is a measure of engineering, not a speed people have experienced.",
+  "question": "What would you explore with this speed?",
+  "segments": [
+    {
+      "topic": "Parker speed record",
+      "say": "Parker Solar Probe reached 430,000 miles an hour in the latest supplied record. Its speed kept rising across the measurements."
+    },
+    {
+      "topic": "Parker beats astronauts",
+      "say": "Parker travels roughly 17 times the fastest human speed in this comparison. A machine can endure a mission people have not ridden."
+    },
+    {
+      "topic": "Parker travel comparison",
+      "say": "At Parker's record speed, New York to Tokyo would take 56 seconds. This is a scale comparison, not an actual flight."
+    }
+  ]
+}
