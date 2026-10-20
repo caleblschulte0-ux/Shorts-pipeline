@@ -25594,10 +25594,10 @@
   },
   {
    "slug": "podcasts-passed-radio-spoken-word",
-   "title": "Podcasts Just Beat Radio For The First Time (3 Charts)",
-   "hook": "After a century on top, radio just lost to podcasts.",
-   "closing": "Radio had a hundred years of head start, and it still lost. Your ears have moved on.",
-   "question": "Podcasts or radio: which do you play?",
+   "title": "Podcasts Overtook Radio By Just 1 Percentage Point",
+   "hook": "Radio lost its spoken-word lead to podcasts by just 1 percentage point.",
+   "closing": "A tiny lead marks a change in where people spend listening time, rather than radio disappearing.",
+   "question": "What do you choose for spoken audio?",
    "caption": "Podcasts just passed AM/FM radio in spoken-word listening for the first time ever -- 40% to 39%. Radio spent a century building its audience; podcasts matched it in twenty years. Which do you listen to more? 👇",
    "hashtags": [
     "podcasts",
@@ -25621,9 +25621,9 @@
       "file": "podcast_spoken_word_share.json"
      },
      "insight_type": "comparison",
-     "topic": "Podcasts growth",
+     "topic": "Podcasts gain share",
      "role": "1 · THE CLIMB",
-     "say": "In ten years, podcasts grew fourfold to 40% of spoken-word listening. Talk audio is moving off the dashboard and onto your phone.",
+     "say": "Podcasts reached 40% of spoken-word listening in the supplied comparison. Their share quadrupled over the measured decade.",
      "scene": {
       "mechanic": "mic-rise-radio-fade",
       "concept": "a podcast microphone fills upward with the growing listening share while a vintage radio dial shrinks beside it",
@@ -25637,9 +25637,9 @@
       "file": "podcast_vs_radio_q4_2025.json"
      },
      "insight_type": "comparison",
-     "topic": "Podcasts beat radio",
+     "topic": "Podcasts pass radio",
      "role": "2 · THE CROSSOVER",
-     "say": "Late last year podcasts edged ahead of radio by a single point. Tiny lead, but the old king of talk lost its crown.",
+     "say": "Podcasts led radio by 1 percentage point in the measured quarter. A narrow margin still reversed their positions.",
      "scene": {
       "mechanic": "photo-finish-race",
       "concept": "a microphone and a radio tower race down parallel lanes toward a finish line, the microphone edging ahead by a single point",
@@ -25653,9 +25653,9 @@
       "file": "podcast_weekly_reach_share.json"
      },
      "insight_type": "share",
-     "topic": "Podcasts: weekly listeners",
+     "topic": "Podcasts weekly habit",
      "role": "3 · THE SCALE",
-     "say": "About 35% of Americans now press play on a podcast every week. That is a habit, not a fad.",
+     "say": "Weekly podcast listening reached 35% of Americans in these data. Regular use extends beyond occasional curiosity.",
      "scene": {
       "mechanic": "listener-crowd-fill",
       "concept": "a crowd grid of person silhouettes lights up with headphones for the roughly 1-in-3 who listen weekly, the rest left plain",
@@ -25663,8 +25663,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-17T12:33:32Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:22:26Z",
    "retold": "retell/v4"
   },
   {
@@ -26326,10 +26326,10 @@
   },
   {
    "slug": "north-american-bird-collapse",
-   "title": "North America Lost 3 Billion Birds Since 1970",
-   "hook": "Your backyard birds are vanishing — 3 billion gone since 1970.",
-   "closing": "When common birds go quiet, it warns us something's wrong, and it's happening in your own backyard.",
-   "question": "Noticed fewer birds near you? Tell me below.",
+   "title": "Common Birds Are Vanishing Too: 2.9 Billion Lost",
+   "hook": "Common birds aren't protected by being common: 2.9 billion breeding birds vanished.",
+   "closing": "Bird decline is not confined to rare species; familiar flocks can disappear while they still seem ordinary.",
+   "question": "Which birds have disappeared from your neighborhood?",
    "caption": "North America has lost 3 billion birds -- 29% of all birds -- since 1970, and just 12 common families make up 90% of that loss. It's not rare species vanishing, it's the birds in your backyard. Proof it's fixable: waterfowl are up 56% thanks to conservation. Have you noticed fewer birds around you? 👇",
    "hashtags": [
     "birds",
@@ -26357,8 +26357,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE SCALE",
-     "topic": "birds lost since 1970",
-     "say": "North America lost about three billion birds since 1970. That's nearly one in every three, gone from the skies above your yard.",
+     "topic": "Birds disappear quietly",
+     "say": "Breeding bird abundance fell by 2.9 billion between the supplied measurements. The loss extends beyond a few rare species.",
      "scene": {
       "mechanic": "flock-thins-to-remainder",
       "concept": "a flock of 101 birds (0.1 billion each) fills the sky as 1970, then 29 lift off and fly out the top of frame, leaving the 72 that remain in 2017",
@@ -26375,8 +26375,8 @@
      "ascending": true,
      "use_baseline": false,
      "role": "2 · NOT EVEN",
-     "topic": "birds by group",
-     "say": "Grassland birds lost over half their numbers, yet ducks and geese grew. So this isn't fate; some birds are bouncing back.",
+     "topic": "Birds decline unevenly",
+     "say": "Grassland birds declined 53% in the supplied comparison. Waterfowl increased, so the losses were not uniform across groups.",
      "scene": {
       "mechanic": "flight-from-zero-lanes",
       "concept": "one bird per group leaves a zero line: losers fly left, the waterfowl flies right, each stopping at its percent change",
@@ -26392,8 +26392,8 @@
      "insight_type": "rank",
      "use_baseline": true,
      "role": "3 · WHICH BIRDS",
-     "topic": "birds in common families",
-     "say": "Nearly all the loss came from just twelve everyday families, like sparrows and finches. It's the common birds fading, not just rare ones.",
+     "topic": "Birds once common",
+     "say": "Common bird families account for 90% of the total loss. Familiarity did not protect their populations from shrinking.",
      "ascending": false,
      "scene": {
       "title": true,
@@ -26411,8 +26411,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T03:36:42Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:22:26Z",
    "retold": "retell/v3"
   },
   {
@@ -26849,10 +26849,10 @@
   },
   {
    "slug": "metric-system-holdouts",
-   "title": "The US Is One Of Only Three Countries Not Using The Metric System",
-   "hook": "A unit mix-up destroyed a 327 million dollar spacecraft, and America never fixed it.",
-   "closing": "Mix-ups like these cost millions and risk lives. One shared system would end them.",
-   "question": "Should the US switch to metric? Vote below.",
+   "title": "Metric Mix-Ups Left A Plane With Less Than Half Its Fuel",
+   "hook": "A metric mix-up left an airliner carrying just 20,400 pounds of fuel.",
+   "closing": "A number without its unit can turn a routine calculation into a dangerous mistake.",
+   "question": "Where have mixed units caused you trouble?",
    "caption": "Only three countries have never officially adopted the metric system: the US, Liberia, and Myanmar -- about 5% of the planet's population. Mixing up units isn't just confusing, it's cost real money and nearly cost real lives: a $327.6 million Mars orbiter in 1999, and a passenger jet that ran out of fuel mid-flight in 1983. Should the US finally switch?",
    "hashtags": [
     "metricsystem",
@@ -26880,8 +26880,8 @@
      },
      "insight_type": "share",
      "role": "1 · THE HOLDOUTS",
-     "topic": "Countries without metric",
-     "say": "Only three countries never went metric: the United States, Liberia and Myanmar. Together that's just five percent of the world's people.",
+     "topic": "Metric adoption gap",
+     "say": "The dataset's non-metric country group contains 5% of the world's population. Unit systems remain uneven across borders.",
      "scene": {
       "mechanic": "world-crowd-holdouts",
       "concept": "a crowd of 100 people stands for the planet; five step forward under a flag-red spotlight while ninety-five stay put",
@@ -26896,8 +26896,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE $327 MILLION MISTAKE",
-     "topic": "Mars Climate Orbiter altitude",
-     "say": "NASA lost a Mars orbiter because one team used pounds, another newtons. It dipped to 57 kilometers, far too low, and was destroyed.",
+     "topic": "Metric orbiter error",
+     "say": "The orbiter's actual altitude was 57 kilometers in the supplied comparison. A unit mismatch sent it much lower than planned.",
      "scene": {
       "mechanic": "orbiter-skims-the-ground",
       "concept": "a Mars orbiter falls past its safe 226 km line and keeps going to 57 km where the atmosphere tears it apart",
@@ -26912,8 +26912,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE PLANE THAT RAN DRY",
-     "topic": "Gimli Glider fuel shortfall",
-     "say": "A Canadian airliner loaded less than half the fuel it needed, 20,400 pounds. The pilots glided it down and everyone lived.",
+     "topic": "Metric fuel error",
+     "say": "The airliner carried 20,400 pounds of fuel. That was less than half the amount needed, so the calculation mattered physically.",
      "scene": {
       "mechanic": "half-empty-jet-tank",
       "concept": "an airliner silhouette fills with fuel only to 20,400 pounds while the dashed line of the 45,000 it needed sits far above",
@@ -26921,9 +26921,9 @@
      }
     }
    ],
-   "words_by": "claude-retell",
+   "words_by": "chatgpt-rewrite",
    "retold": "retell/v3",
-   "rewritten_at": "2026-10-11T17:12:21Z"
+   "rewritten_at": "2026-10-20T11:22:25Z"
   },
   {
    "slug": "lab-grown-diamond-price-collapse",
@@ -27613,10 +27613,10 @@
   },
   {
    "slug": "cargo-ship-size-growth",
-   "title": "Cargo Ships Quietly Got Six Times Bigger",
-   "hook": "20 people now run a ship longer than the Titanic.",
-   "closing": "Six times the cargo, fewer hands. Everything you buy crossed an ocean on a ship like this.",
-   "question": "Would you sail on one? Tell me below.",
+   "title": "Cargo Ships Grew Sixfold While Crews Shrank To 20",
+   "hook": "Cargo ships grew enormously, yet a typical crew shrank to 20 people.",
+   "closing": "More cargo and fewer hands mean enormous shipments depend on surprisingly small crews.",
+   "question": "Would you work on a ship this big?",
    "caption": "The biggest cargo ship in 1980 carried 4,000 containers. Today's record holder carries 24,327, with roughly the same size crew. Here's how shipping quietly scaled up. 👇",
    "hashtags": [
     "cargoships",
@@ -27639,9 +27639,9 @@
       "file": "container_ship_capacity_trend.json"
      },
      "insight_type": "trend",
-     "topic": "Cargo ship size",
+     "topic": "Cargo capacity multiplies",
      "role": "1 · THE CLIMB",
-     "say": "The biggest container ship once carried about 4,000 boxes. Today's carries six times that, so one trip moves far more stuff.",
+     "say": "The largest container ship's capacity reached 24,327 standard container equivalents. That is roughly six times the earliest supplied capacity.",
      "scene": {
       "mechanic": "deck-box-loadout",
       "concept": "one container ship's deck fills with real stacked boxes, a box landing every few frames as the years sweep 1980 to 2024 and capacity climbs from 4,000 to 24,327",
@@ -27657,9 +27657,9 @@
      "insight_type": "rank",
      "use_baseline": true,
      "ascending": false,
-     "topic": "Cargo ship vs. Titanic",
+     "topic": "Cargo ship scale",
      "role": "2 · THE SCALE",
-     "say": "The biggest one today is 400 meters long. That tops the Titanic, the famous giant of its day.",
+     "say": "The supplied giant container ship measures 400 meters long. It is substantially longer than the Titanic in the comparison.",
      "scene": {
       "mechanic": "hull-slides-past-titanic",
       "concept": "the Titanic is laid at its true length and the modern container ship slides in beside it, overshooting by 131 meters",
@@ -27674,9 +27674,9 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "Cargo ship crew",
+     "topic": "Cargo crew shrinks",
      "role": "3 · THE CATCH",
-     "say": "Yet it runs on about 20 people, fewer than in 1980. Six times the cargo, fewer hands: each worker moves far more.",
+     "say": "A typical crew fell to 20 people in these data. Larger cargo capacity did not require a larger crew.",
      "scene": {
       "mechanic": "crew-walks-off-deck",
       "concept": "a muster of 34 real sailors from 1980 stands on deck; 14 of them walk off one by one until only today's 20 remain",
@@ -27684,9 +27684,9 @@
      }
     }
    ],
-   "words_by": "claude-retell",
+   "words_by": "chatgpt-rewrite",
    "retold": "retell/v3",
-   "rewritten_at": "2026-10-12T10:49:27Z"
+   "rewritten_at": "2026-10-20T11:22:25Z"
   },
   {
    "slug": "ceo-executive-pay-gap",
@@ -31995,10 +31995,10 @@
   },
   {
    "slug": "lightning-deaths-collapsed-not-the-storms",
-   "title": "Lightning Deaths Collapsed. The Storms Didn't.",
-   "hook": "Lightning killed 350 Americans a year in the 1940s.",
-   "closing": "Storms haven't gone anywhere. When thunder rumbles, get indoors, because that habit saves lives.",
-   "question": "Do you run inside the second thunder hits?",
+   "title": "Lightning Became 40 Times Less Deadly Per Person",
+   "hook": "Lightning's per-person death risk fell 40-fold, but exposed people still die.",
+   "closing": "Lower risk does not make an exposed spot safe; take thunder as a cue to get indoors.",
+   "question": "Where do you shelter during thunderstorms?",
    "caption": "Lightning used to kill 300-400 Americans every year. Now it's under 20 -- but the storms never got weaker. Here's what actually changed. Do you run inside the second you hear thunder? 👇",
    "hashtags": [
     "lightning",
@@ -32023,8 +32023,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE COLLAPSE",
-     "topic": "Lightning deaths fell",
-     "say": "By 2023 it was down to 18 a year. Lightning is just as real, but now it rarely kills.",
+     "topic": "Lightning deaths collapse",
+     "say": "The latest supplied annual count is 18 lightning deaths. Fatalities fell sharply from the historical average.",
      "illustrated_scene": "# scene standard: 2026-10-11.2\ndef _lt_bolt(cr, x0, y0, x1, y1, seed, a, fork=True):\n    if a <= 0.01:\n        return\n    pts_ = [(x0, y0)]\n    n = 8\n    for i in range(1, n):\n        f = i / n\n        off = 40 * math.sin(seed * 3.1 + i * 2.3) * (1 - f * 0.7)\n        pts_.append((x0 + (x1 - x0) * f + off, y0 + (y1 - y0) * f))\n    pts_.append((x1, y1))\n    glow(cr, x1, y1, 150, (255, 240, 170), 0.85 * a)\n    mid = pts_[3]\n    side = 1 if math.sin(seed * 1.7) > 0 else -1\n    fk = [mid, (mid[0] + 50 * side, mid[1] + 50), (mid[0] + 40 * side, mid[1] + 110),\n          (mid[0] + 90 * side, mid[1] + 160)]\n    for wdt, col, al in ((30, (190, 200, 255), 0.35), (14, (255, 246, 200), 0.9),\n                         (5, (255, 255, 255), 1.0)):\n        cr.set_source_rgba(*_c(col, al * a))\n        cr.set_line_width(wdt)\n        cr.move_to(*pts_[0])\n        for p_ in pts_[1:]:\n            cr.line_to(*p_)\n        cr.stroke()\n        if fork:\n            cr.set_line_width(wdt * 0.5)\n            cr.move_to(*fk[0])\n            for p_ in fk[1:]:\n                cr.line_to(*p_)\n            cr.stroke()\n\n\ndef _lt_cloud(cr, t):\n    \"\"\"One storm cloud: a single mass of billows over a flat dark base, lit\n    on top from the upper left, inked only on its outer edge.\"\"\"\n    lobes = [(60, 490, 150), (230, 410, 175), (420, 330, 200), (620, 310, 210),\n             (820, 370, 180), (1000, 450, 160), (330, 530, 150), (720, 530, 160),\n             (520, 490, 170), (150, 600, 110), (900, 600, 120)]\n\n    def path():\n        for i, (cx, cy, r) in enumerate(lobes):\n            cr.new_sub_path()\n            cr.arc(cx + 16 * math.sin(t * 0.35 + i), cy, r, 0, 2 * math.pi)\n        cr.new_sub_path()\n        cr.rectangle(-60, 490, W + 120, 170)\n\n    path()\n    cr.set_source_rgba(*_c((24, 26, 34), 0.9))\n    cr.set_line_width(8)\n    cr.stroke()\n    cr.save()\n    path()\n    cr.clip()\n    vgrad(cr, [(0, (150, 154, 170)), (0.35, (98, 102, 118)), (0.75, (58, 62, 76)),\n               (1, (34, 36, 46))], 110, 670)\n    for i, (cx, cy, r) in enumerate(lobes):\n        x = cx + 16 * math.sin(t * 0.35 + i)\n        g = cairo.RadialGradient(x - r * 0.4, cy - r * 0.45, r * 0.1, x, cy, r * 1.05)\n        g.add_color_stop_rgba(0, 0.86, 0.87, 0.92, 0.38)\n        g.add_color_stop_rgba(0.55, 0.5, 0.52, 0.6, 0.0)\n        g.add_color_stop_rgba(1, 0.08, 0.09, 0.12, 0.35)\n        cr.set_source(g)\n        cr.arc(x, cy, r, 0, 2 * math.pi)\n        cr.fill()\n    vgrad(cr, [(0, (30, 32, 42)), (1, (22, 24, 32))], 620, 670)\n    cr.restore()\n\n\ndef _lt_scorch(cr, x, y, s, t, i):\n    \"\"\"Where a bolt hit the grass: a black burn with a grey smoke curl.\"\"\"\n    cr.save()\n    cr.translate(x, y)\n    cr.scale(1, 0.32)\n    cr.arc(0, 0, 70 * s, 0, 2 * math.pi)\n    cr.restore()\n    cr.set_source_rgba(*_c((96, 80, 46), 0.7))\n    cr.fill()\n    cr.save()\n    cr.translate(x, y)\n    cr.scale(1, 0.3)\n    cr.arc(0, 0, 50 * s, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (34, 28, 26), rim=False)\n    for j in range(3):\n        ph = (t * 0.45 + j / 3 + i * 0.27) % 1.0\n        glow(cr, x + 14 * math.sin(ph * 5 + i), y - 30 - 150 * ph, 26 + 34 * ph,\n             (150, 150, 156), 0.45 * (1 - ph) * s)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a red barn with lightning rods\n    SUBSTANCE: lightning bolts\n    CAUSE: Data hammers lightning rods onto the barn roof so the bolts strike the rods, not the field\n    One storm, the same eight bolts every volley. In the 1940s every bolt\n    comes down into the open field and leaves a smoking burn in the grass\n    where a person would have stood. Each later year Data hammers another\n    rod onto the ridge and the next volley bends into the rods, so only\n    that year's share of the 1940s toll (deaths over 350) still reaches the\n    field. The 1940s burns stay as dashed ghosts. Done by 0.56 and held:\n    the storm keeps striking, the rods take nearly every bolt, Data keeps\n    hammering.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    v0 = rows[0][1] or 1.0\n    NB = 8\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.3, 0.6)) if k == 0 else ease(seg(f, 0.5, 0.75))\n    landed_to = k if slide >= 0.999 else k - 1\n    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))\n                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))\n    named = max((i for i in keep if i <= landed_to), default=None)\n    shown = None if (u < a0 or named is None) else rows[named]\n\n    def cnt(v):\n        return max(1, min(NB, int(round(NB * v / v0)))) if v > 0 else 0\n\n    if u < a0 or (k == 0 and f < 0.3):\n        nf = 0\n    elif k == 0:\n        nf = NB\n    else:\n        nf = cnt(rows[k][1]) if f >= 0.5 else cnt(rows[k - 1][1])\n\n    # where the bolts land in the open field, in front of the barn\n    FT = [(840, 1460), (170, 1480), (560, 1500), (330, 1430), (980, 1500),\n          (700, 1420), (90, 1420), (440, 1520)]\n\n    # the farm, under a storm\n    landscape(cr, t, \"field\")\n    g = cairo.LinearGradient(0, 0, 0, H)\n    g.add_color_stop_rgba(0, 0.12, 0.13, 0.18, 0.8)\n    g.add_color_stop_rgba(0.6, 0.18, 0.2, 0.26, 0.5)\n    g.add_color_stop_rgba(1, 0.1, 0.12, 0.1, 0.25)\n    cr.rectangle(0, 0, W, H)\n    cr.set_source(g)\n    cr.fill()\n    _lt_cloud(cr, t)\n    haze(cr, 680, 1220, (70, 76, 90), a=0.3)\n\n    # the barn: gambrel roof, white trim, hayloft, big X doors\n    X0, X1, BASE, WALL, D = 360, 720, 1340, 220, 223\n    cast_shadow(cr, X0, X1 + D, BASE, length=280, a=0.3)\n    contact_shadow(cr, (X0 + X1) / 2 + 90, BASE, X1 - X0 + 260, a=0.4)\n    b = building(cr, X0, X1, BASE, WALL, (196, 56, 42), roof=\"gambrel\", depth=D)\n    rx_b = (X0 + X1) / 2\n    cr.rectangle(rx_b - 45, b[\"top\"] - 140, 90, 95)\n    solid(cr, (150, 36, 30), rim=False)\n    cr.set_source_rgba(*_c((244, 238, 226)))\n    cr.set_line_width(7)\n    cr.rectangle(rx_b - 45, b[\"top\"] - 140, 90, 95)\n    cr.move_to(rx_b - 45, b[\"top\"] - 140)\n    cr.line_to(rx_b + 45, b[\"top\"] - 45)\n    cr.move_to(rx_b + 45, b[\"top\"] - 140)\n    cr.line_to(rx_b - 45, b[\"top\"] - 45)\n    cr.stroke()\n    DX0, DX1, DY = 440, 640, BASE - 170\n    cr.rectangle(DX0, DY, DX1 - DX0, BASE - DY)\n    solid(cr, (176, 46, 36))\n    cr.set_source_rgba(*_c((244, 238, 226)))\n    cr.set_line_width(9)\n    cr.rectangle(DX0, DY, DX1 - DX0, BASE - DY)\n    cr.move_to(DX0, DY)\n    cr.line_to(DX1, BASE)\n    cr.move_to(DX1, DY)\n    cr.line_to(DX0, BASE)\n    cr.move_to((DX0 + DX1) / 2, DY)\n    cr.line_to((DX0 + DX1) / 2, BASE)\n    cr.stroke()\n\n    # the ridge line the rods go on\n    top, rise = BASE - WALL, 0.58 * (X1 - X0)\n    rA = (rx_b, top - rise)\n    rB = (X1 + D - (X1 - X0) * 0.4, top + D * 0.06 - rise * 0.8)\n\n    def ridge_at(p):\n        return rA[0] + (rB[0] - rA[0]) * p, rA[1] + (rB[1] - rA[1]) * p\n\n    nr = max(1, n - 1)\n    rod_p = [0.12 + 0.76 * j / max(1, nr - 1) for j in range(nr)]\n    rods = [ridge_at(p) for p in rod_p]\n    RH = 150\n    tips = []\n    for j in range(nr):\n        yr = j + 1\n        if u < a0 or yr > k:\n            tips.append(None)\n            continue\n        rise_r = 1.0 if yr < k else ease(seg(f, 0.12, 0.42))\n        if rise_r < 0.02:\n            tips.append(None)\n            continue\n        x, y = rods[j]\n        h = RH * rise_r\n        cylinder(cr, x - 7, y + 4, 14, h, (150, 156, 166), finish=\"metal\")\n        disc(cr, x, y - h * 0.55, 18, (90, 160, 210), finish=\"glass\")\n        cr.move_to(x, y - h - 32)\n        cr.line_to(x - 9, y - h)\n        cr.line_to(x + 9, y - h)\n        cr.close_path()\n        solid(cr, (170, 176, 186), finish=\"metal\")\n        tips.append((x, y - h - 32))\n    live = [tp for tp in tips if tp is not None]\n    CAB = [rods[0], (X1 - (X1 - X0) * 0.12, top - rise * 0.62), (X1 + 4, top),\n           (X1 + 4, BASE + 10)]\n    if live:\n        cr.set_source_rgba(*_c((40, 40, 46)))\n        cr.set_line_width(6)\n        cr.move_to(*CAB[0])\n        for p_ in CAB[1:]:\n            cr.line_to(*p_)\n        cr.stroke()\n        disc(cr, X1 + 4, BASE + 10, 10, (120, 110, 90), finish=\"metal\")\n\n    # a ladder leaning on the barn's flank\n    LX0, LY0, LX1, LY1 = 280, 1360, 372, 1090\n    contact_shadow(cr, LX0, LY0, 90, a=0.35)\n    for o in (-24, 24):\n        cr.move_to(LX0 + o - 5, LY0)\n        cr.line_to(LX1 + o - 5, LY1)\n        cr.line_to(LX1 + o + 5, LY1)\n        cr.line_to(LX0 + o + 5, LY0)\n        cr.close_path()\n        solid(cr, (140, 104, 66), rim=False)\n    cr.set_source_rgba(*_c((120, 90, 60)))\n    cr.set_line_width(7)\n    for i in range(1, 8):\n        q = i / 8\n        cr.move_to(LX0 - 24 + (LX1 - LX0) * q, LY0 + (LY1 - LY0) * q)\n        cr.line_to(LX0 + 24 + (LX1 - LX0) * q, LY0 + (LY1 - LY0) * q)\n    cr.stroke()\n\n    # the burns the bolts leave in the field; the 1940s ones stay as ghosts\n    for i in range(NB):\n        x, y = FT[i]\n        if i < nf:\n            s = pop(seg(f, 0.3, 0.45)) if (k == 0 and u >= a0) else 1.0\n            _lt_scorch(cr, x, y, max(0.05, s), t, i)\n        elif u >= a0 and k > 0:\n            cr.save()\n            cr.translate(x, y)\n            cr.scale(1, 0.32)\n            cr.arc(0, 0, 70, 0, 2 * math.pi)\n            cr.restore()\n            ghost(cr, a=0.85)\n    if u >= a0 and k > 0:\n        text(cr, rows[0][0], FT[6][0] - 30, FT[6][1] - 50, 30, look.INK, face=\"bold\")\n\n    # the volley: eight bolts; the share that still reaches the field, the\n    # rest caught by the rods and run down the cable into the ground\n    def volley(nfield, a, seed):\n        if a <= 0.01:\n            return 0.0\n        rod_n = NB - nfield if live else 0\n        for i in range(NB):\n            if i < nfield:\n                x1, y1 = FT[i]\n                _lt_bolt(cr, x1 - 60 + 40 * math.sin(i + seed), 640, x1, y1, seed + i, a,\n                         fork=i < 3)\n            elif rod_n > 0:\n                tp = live[i % len(live)]\n                _lt_bolt(cr, tp[0] - 150 + 45 * (i % 4), 630, tp[0], tp[1], seed + i, a,\n                         fork=False)\n        if rod_n > 0:\n            cr.set_source_rgba(*_c((255, 250, 210), 0.85 * a))\n            cr.set_line_width(9)\n            cr.move_to(*CAB[0])\n            for p_ in CAB[1:]:\n                cr.line_to(*p_)\n            cr.stroke()\n            glow(cr, X1 + 4, BASE + 10, 100, (255, 240, 170), 0.8 * a)\n        return a\n\n    flash = 0.0\n    if a0 <= u < a1 + 0.02:\n        if k == 0 and 0.28 <= f < 0.6:\n            flash = volley(NB, 1 - seg(f, 0.32, 0.6), 1)\n        elif k > 0 and 0.48 <= f < 0.8:\n            flash = volley(cnt(rows[k][1]), 1 - seg(f, 0.52, 0.8), 5 * k)\n    elif u >= a1 + 0.02:\n        ph = ((u - a1) / 0.13) % 1.0\n        q = int((u - a1) / 0.13)\n        if ph < 0.35:\n            flash = volley(cnt(rows[-1][1]), 1 - seg(ph, 0.05, 0.35), 20 + 3 * q)\n\n    # right by the camera: round hay bales in the wet grass\n    for bx, by, rr in ((130, 1800, 120), (960, 1830, 120)):\n        contact_shadow(cr, bx, by, 2.2 * rr, a=0.4)\n        disc(cr, bx, by - rr, rr, (210, 176, 98))\n        cr.set_source_rgba(*_c((150, 118, 60), 0.8))\n        cr.set_line_width(4)\n        for qq in (0.35, 0.65):\n            cr.arc(bx, by - rr, rr * qq, 0, 2 * math.pi)\n            cr.stroke()\n    foreground(cr, \"field\")\n    if flash > 0:\n        cr.set_source_rgba(0.85, 0.9, 1.0, 0.2 * flash)\n        cr.paint()\n    vignette(cr, a=0.3)\n\n    # Data: sees the field struck, climbs to the roof, hammers rod after rod\n    if u < a0:\n        host(\"shock\", 170, 1480, 220)\n    elif k == 0:\n        c = ease(seg(f, 0.4, 1.0))\n        fx = LX0 + (rods[0][0] - 50 - LX0) * c\n        fy = LY0 + (rods[0][1] + 6 - LY0) * c\n        host(\"climb\" if f > 0.4 else \"shock\", fx if f > 0.4 else 170,\n             fy if f > 0.4 else 1480, 220)\n    elif u < a1 + 0.04:\n        x, y = rods[k - 1]\n        host(\"hammer\", x - 52, y + 6, 220, beat=k)\n    else:\n        x, y = rods[-1]\n        host(\"hammer\", x - 52, y + 6, 220, beat=n + int((u - a1) / 0.13))\n\n    if shown is not None:\n        lab, v = shown\n        fit_readout(cr, f\"{int(round(v))} deaths\", f\"from lightning a year in the US · {lab}\",\n                    80, 520, a=ease(seg(u, a0, a0 + 0.05)), size=130)\n    else:\n        fit_readout(cr, \"Lightning\", f\"US deaths a year, {rows[0][0]} to {rows[-1][0]}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -32035,8 +32035,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · NOT JUST FEWER PEOPLE OUTSIDE",
-     "topic": "Lightning risk collapsed",
-     "say": "Counting every person, your personal odds of dying from lightning fell about forty times. You are far safer than your grandparents were."
+     "topic": "Lightning risk falls",
+     "say": "Per-person lightning death risk fell 40-fold across the compared eras. The improvement remains dramatic after accounting for population."
     },
     {
      "source": "offline",
@@ -32046,13 +32046,13 @@
      },
      "insight_type": "share",
      "role": "3 · WHO IT STILL FINDS",
-     "topic": "Lightning fishing deaths",
-     "say": "Fishing is now one in ten lightning deaths. Open water is where lightning still finds people."
+     "topic": "Lightning fishing risk",
+     "say": "Fishing accounts for 10% of recent lightning deaths in these data. Exposure near open water remains a serious concern."
     }
    ],
    "retold": "retell/v3",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-11T11:30:03Z"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:22:25Z"
   },
   {
    "slug": "phone-checks-205-times-a-day",
@@ -33925,10 +33925,10 @@
   },
   {
    "slug": "pickleball-fastest-growing-sport",
-   "title": "Pickleball Players Quadrupled In Just 4 Years",
-   "hook": "Pickleball looks harmless. Its injuries now cost Americans hundreds of millions.",
-   "closing": "Grab a paddle. Everyone else already did.",
-   "question": "Have you played pickleball yet?",
+   "title": "Pickleball's Easygoing Image Hides A $400 Million Injury Estimate",
+   "hook": "Pickleball looks gentle, but its estimated injury bill reached $400 million.",
+   "closing": "A casual-looking sport still needs preparation; a paddle does not make injuries harmless.",
+   "question": "What surprised you when you first played?",
    "caption": "US pickleball participation went from 3.3 million players in 2019 to 13.6 million in 2023, and it's now closing in on tennis itself. Here's how fast the boom really happened. Have you played pickleball yet? 👇",
    "hashtags": [
     "pickleball",
@@ -33952,8 +33952,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE EXPLOSION",
-     "topic": "Pickleball Player Boom",
-     "say": "In 2019, about 3.3 million Americans played pickleball. By 2023, that was over four times as many.",
+     "topic": "Pickleball player surge",
+     "say": "Pickleball participation reached 13.6 million Americans in the latest data. The player base more than quadrupled over the measured period.",
      "illustrated_scene": "# scene standard: 2026-10-11.2\ndef _pb_at(gx, gz):\n    s = 1.0 - 0.45 * gz\n    return 540 + (gx - 0.5) * 560 * s, 1090 - 330 * gz, s\n\n\ndef _pb_quad(cr, gx0, gz0, gx1, gz1):\n    q = [_pb_at(gx0, gz0), _pb_at(gx1, gz0), _pb_at(gx1, gz1), _pb_at(gx0, gz1)]\n    cr.move_to(q[0][0], q[0][1])\n    for p_ in q[1:]:\n        cr.line_to(p_[0], p_[1])\n    cr.close_path()\n\n\ndef _pb_line(cr, gx0, gz0, gx1, gz1, rgb, w, a=1.0):\n    x0, y0, s0 = _pb_at(gx0, gz0)\n    x1, y1, s1 = _pb_at(gx1, gz1)\n    cr.set_source_rgba(*_c(rgb, a))\n    cr.set_line_width(max(1.5, w * (s0 + s1) / 2))\n    cr.move_to(x0, y0)\n    cr.line_to(x1, y1)\n    cr.stroke()\n\n\ndef _pb_path():\n    return [(930, 1128), (930, 1235), (110, 1235), (110, 1360),\n            (970, 1360), (970, 1480), (300, 1480)]\n\n\ndef _pb_pt(path, d):\n    d = max(0.0, d)\n    for (x0, y0), (x1, y1) in zip(path, path[1:]):\n        L = math.hypot(x1 - x0, y1 - y0)\n        if d <= L:\n            f = d / L\n            return x0 + (x1 - x0) * f, y0 + (y1 - y0) * f\n        d -= L\n    (x0, y0), (x1, y1) = path[-2], path[-1]\n    L = math.hypot(x1 - x0, y1 - y0)\n    return x1 + (x1 - x0) / L * d, y1 + (y1 - y0) / L * d\n\n\ndef _pb_paddle(cr, x, y, r, ang, rgb, a=1.0):\n    cr.save()\n    cr.translate(x, y)\n    cr.rotate(ang)\n    cr.rectangle(-0.18 * r, 0.75 * r, 0.36 * r, 0.9 * r)\n    solid(cr, (40, 40, 44), a=a)\n    cr.save()\n    cr.scale(0.82, 1.0)\n    cr.arc(0, 0, r, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, rgb, finish=\"gloss\", a=a)\n    cr.restore()\n\n\ndef _pb_person(cr, x, y, s, t, i, a=1.0, swing=None):\n    if a <= 0.01:\n        return\n    shirts = [(214, 84, 70), (236, 236, 228), (70, 120, 190), (232, 176, 60),\n              (60, 150, 120), (150, 90, 170)]\n    skins = [(222, 178, 138), (176, 124, 88), (242, 204, 170), (128, 88, 60)]\n    pads = [(200, 60, 54), (40, 90, 170), (30, 150, 140), (232, 170, 40)]\n    x = x + 3 * s * math.sin(t * 1.6 + i * 1.7)\n    contact_shadow(cr, x, y, 40 * s, a=0.3 * a)\n    cr.set_source_rgba(*_c((40, 44, 58), a))\n    cr.set_line_width(max(2, 7 * s))\n    cr.move_to(x - 7 * s, y)\n    cr.line_to(x - 4 * s, y - 34 * s)\n    cr.move_to(x + 7 * s, y)\n    cr.line_to(x + 4 * s, y - 34 * s)\n    cr.stroke()\n    cr.rectangle(x - 13 * s, y - 70 * s, 26 * s, 38 * s)\n    solid(cr, shirts[i % len(shirts)], a=a)\n    disc(cr, x, y - 81 * s, 10 * s, skins[(i * 3) % len(skins)], a=a)\n    cr.arc(x, y - 83 * s, 10.5 * s, math.pi, 2 * math.pi)\n    cr.close_path()\n    solid(cr, (50, 40, 34), a=a, edge=False, rim=False)\n    if swing is None:\n        hx, hy, ang = x + 18 * s, y - 40 * s, 0.25\n    else:\n        hx = x + (16 + 14 * swing) * s\n        hy = y - (44 + 24 * swing) * s\n        ang = -0.9 + 1.4 * swing\n    cr.set_source_rgba(*_c(skins[(i * 3) % len(skins)], a))\n    cr.set_line_width(max(2, 6 * s))\n    cr.move_to(x + 10 * s, y - 64 * s)\n    cr.line_to(hx, hy)\n    cr.stroke()\n    _pb_paddle(cr, hx + 2 * s, hy - 12 * s, 11 * s, ang, pads[i % len(pads)], a=a)\n\n\ndef _pb_rope(cr, ry, x0, x1):\n    xs = []\n    nposts = max(2, int((x1 - x0) / 150) + 1)\n    for j in range(nposts):\n        xs.append(x0 + (x1 - x0) * j / (nposts - 1))\n    cr.set_source_rgba(*_c((150, 30, 40)))\n    cr.set_line_width(7)\n    for a_, b_ in zip(xs, xs[1:]):\n        cr.move_to(a_, ry - 62)\n        cr.curve_to(a_ + 40, ry - 46, b_ - 40, ry - 46, b_, ry - 62)\n    cr.stroke()\n    for px in xs:\n        contact_shadow(cr, px, ry, 26, a=0.3)\n        cylinder(cr, px - 6, ry, 12, 70, (170, 172, 180), finish=\"metal\")\n        disc(cr, px, ry - 72, 9, (190, 192, 200), finish=\"metal\")\n\n\ndef _pb_ball(cr, x, y, r, spin):\n    contact_shadow(cr, x, y + r, r * 2.4, a=0.35)\n    disc(cr, x, y, r, (222, 230, 72), finish=\"gloss\")\n    for j in range(5):\n        ang = spin + j * 2 * math.pi / 5\n        disc(cr, x + 0.55 * r * math.cos(ang), y + 0.55 * r * math.sin(ang) * 0.8,\n             0.12 * r, (150, 156, 40))\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a pickleball court and its waiting line\n    SUBSTANCE: players lining up with paddles\n    CAUSE: Data tosses paddles to newcomers, and each one who catches a paddle joins the line for the court\n    The boom is what it does at the court: the line to get on. One court,\n    one game going, and a roped queue snaking back from its gate. Its\n    length is the players: 2019's line, about a quarter of it, stays as a\n    dashed ghost with its year, and the 2023 line fills all three rows\n    of rope, about four times as long. Done by 0.60 and held; the rally\n    goes on, balls roll by, and Data keeps tossing paddles down the line.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    top = max(v for _, v in rows) or 1.0\n    v0 = rows[0][1] or 1.0\n    ratio = rows[-1][1] / v0\n    a0, a1 = 0.03, 0.6\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.0, 0.85))\n    prev = rows[k - 1][1] if k > 0 else 0.0\n    val = 0.0 if u < a0 else prev + (rows[k][1] - prev) * slide\n    landed_to = k if slide >= 0.999 else k - 1\n    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))\n                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))\n    named = max((i for i in keep if i <= landed_to), default=None)\n    shown = None if (u < a0 or named is None) else rows[named]\n\n    path = _pb_path()\n    total = sum(math.hypot(b[0] - a[0], b[1] - a[1]) for a, b in zip(path, path[1:]))\n    NMAX = 44\n    SP = total / NMAX\n    WIN = 6.0\n    cnt = NMAX * val / top\n    reach = cnt * (1 + WIN / NMAX)\n\n    # the setting: a town park under a low sun\n    landscape(cr, t, \"town\", horizon=740)\n    birds(cr, t, y0=700, n=4, rgb=(60, 60, 70))\n    haze(cr, 300, 760, (214, 206, 196), a=0.35)\n\n    # the back fence of the court\n    fx0, fy, fs = _pb_at(-0.22, 1.12)\n    fx1 = _pb_at(1.22, 1.12)[0]\n    fh = 150 * fs\n    cast_shadow(cr, fx0, fx1, fy, length=160, a=0.2)\n    cr.save()\n    cr.rectangle(fx0, fy - fh, fx1 - fx0, fh)\n    cr.clip()\n    cr.set_source_rgba(*_c((60, 70, 70), 0.3))\n    cr.set_line_width(2)\n    for j in range(40):\n        xx = fx0 - fh + j * 14\n        cr.move_to(xx, fy)\n        cr.line_to(xx + fh, fy - fh)\n        cr.move_to(xx + fh, fy)\n        cr.line_to(xx, fy - fh)\n    cr.stroke()\n    cr.restore()\n    for j in range(7):\n        px = fx0 + (fx1 - fx0) * j / 6\n        cylinder(cr, px - 4, fy, 8, fh, (90, 96, 104), finish=\"metal\")\n\n    # the plaza the line stands on, then the court and its green surround\n    cr.rectangle(0, 1110, W, H - 1110)\n    solid(cr, (176, 170, 158), edge=False, rim=False)\n    _pb_quad(cr, -0.22, -0.1, 1.22, 1.12)\n    solid(cr, (72, 128, 92), rim=False)\n    _pb_quad(cr, 0, 0, 1, 1)\n    solid(cr, (52, 98, 164), rim=False)\n    _pb_quad(cr, 0, 0.34, 1, 0.66)\n    solid(cr, (66, 122, 184), rim=False, edge=False)\n    for a_, b_, c_, d_ in ((0, 0, 1, 0), (1, 0, 1, 1), (1, 1, 0, 1), (0, 1, 0, 0),\n                           (0, 0.34, 1, 0.34), (0, 0.66, 1, 0.66),\n                           (0.5, 0, 0.5, 0.34), (0.5, 0.66, 0.5, 1)):\n        _pb_line(cr, a_, b_, c_, d_, (244, 244, 238), 5)\n    # the side fence posts and the gate the line enters by\n    for gx_ in (-0.22, 1.22):\n        for gz_ in (1.12, 0.75, 0.38, 0.02):\n            px, py, ps = _pb_at(gx_, gz_)\n            cylinder(cr, px - 4 * ps, py, 8 * ps, 150 * ps, (90, 96, 104), finish=\"metal\")\n\n    # the game in progress: far player, the net, the ball, the near player\n    swing_f = 0.5 + 0.5 * math.sin(t * 3.5)\n    swing_n = 0.5 + 0.5 * math.sin(t * 3.5 + math.pi)\n    x, y, s = _pb_at(0.62, 0.86)\n    _pb_person(cr, x, y, 1.55 * s, t, 1, swing=swing_f)\n    xa, ya, sa = _pb_at(-0.04, 0.5)\n    xb, yb, sb = _pb_at(1.04, 0.5)\n    nh = 76 * sa\n    cr.rectangle(xa, ya - nh, xb - xa, nh)\n    cr.set_source_rgba(*_c((24, 26, 32), 0.55))\n    cr.fill()\n    cr.set_source_rgba(*_c((246, 246, 240)))\n    cr.set_line_width(6)\n    cr.move_to(xa, ya - nh)\n    cr.line_to(xb, yb - nh)\n    cr.stroke()\n    for xp in (xa, xb):\n        cylinder(cr, xp - 5, ya, 10, nh + 6, (70, 72, 80), finish=\"metal\")\n    ph = (t / 1.8) % 1.0\n    q = ph * 2 if ph < 0.5 else 2 - ph * 2\n    bx, by, bs = _pb_at(0.4 + 0.2 * q, 0.12 + 0.72 * q)\n    hgt = 150 * math.sin(math.pi * ((ph * 2) % 1.0)) * bs\n    cr.save()\n    cr.translate(bx, by)\n    cr.scale(1, 0.4)\n    cr.arc(0, 0, 14 * bs, 0, 2 * math.pi)\n    cr.restore()\n    cr.set_source_rgba(*_c((20, 30, 50), 0.35))\n    cr.fill()\n    disc(cr, bx, by - hgt, 14 * bs, (226, 232, 80), finish=\"gloss\")\n    x, y, s = _pb_at(0.38, 0.1)\n    _pb_person(cr, x, y, 1.55 * s, t, 2, swing=swing_n)\n\n    # the line for the court: newcomers walk up the rope to their spot\n    people = []\n    for i in range(min(NMAX, int(math.ceil(reach)) + 1)):\n        p = clamp((reach - i) / WIN)\n        if p <= 0:\n            continue\n        d = (i + 0.5) * SP + (1 - ease(p)) * 220\n        px, py = _pb_pt(path, d)\n        ps = 1.5 + 0.3 * clamp((py - 1235) / 245)\n        people.append((py, px, ps, i, clamp(p * 4)))\n    people.sort(key=lambda r: (r[0], -r[1]))\n    ropes = [(1300, 200, 1050), (1422, 20, 880)]\n    ri = 0\n    for py, px, ps, i, a_ in people:\n        while ri < len(ropes) and py > ropes[ri][0]:\n            _pb_rope(cr, *ropes[ri])\n            ri += 1\n        _pb_person(cr, px, py, ps, t, i + 5, a=a_)\n    while ri < len(ropes):\n        _pb_rope(cr, *ropes[ri])\n        ri += 1\n\n    # THE SCALE in the line: where 2019's line ended, kept as a ghost\n    if u >= a0 and landed_to >= 0:\n        ex, ey = _pb_pt(path, NMAX * v0 / top * SP)\n        if ey < 1240:\n            cr.rectangle(ex - 35, 1062, 965 - (ex - 35), 1252 - 1062)\n            ghost(cr, a=0.9)\n            text(cr, rows[0][0], ex - 25, 1050, 34, look.INK, face=\"bold\")\n        else:\n            then_mark(cr, ex - 60, ex + 60, ey - 170, rows[0][0])\n\n    # Data walks down the line tossing paddles to whoever joins it\n    walkp = clamp((u - a0) / (a1 - a0))\n    hx = 900 - 520 * ease(walkp)\n    hy = 1500.0\n    hh = 230\n    TB = 0.075\n    b = int(max(0.0, u - a0) / TB)\n    tp = (max(0.0, u - a0) / TB) % 1.0\n    if u >= a0 and people and 0.3 < tp < 0.8:\n        newest = max(people, key=lambda r: r[3])\n        ty, tx, ts = newest[0], newest[1], newest[2]\n        fl = (tp - 0.3) / 0.5\n        sx, sy = hx + 20, hy - 0.8 * hh\n        ex, ey = tx, ty - 60 * ts\n        for j in range(3):\n            fx = sx + (ex - sx) * fl + 26 * (j - 1)\n            fy_ = sy + (ey - sy) * fl - 180 * math.sin(math.pi * fl) + 14 * (j % 2)\n            _pb_paddle(cr, fx, fy_, 26, fl * 7 + j * 2.0,\n                       [(200, 60, 54), (40, 90, 170), (30, 150, 140)][(b + j) % 3])\n\n    # right by the camera: a paddle on the pavement, loose balls rolling past\n    contact_shadow(cr, 220, 1800, 220, a=0.35)\n    _pb_paddle(cr, 210, 1730, 70, -0.4, (200, 60, 54))\n    for j in range(2):\n        rx = -120 + ((t * 430 + j * 700) % 1400)\n        ry = 1660 + j * 110\n        r = 58 + 10 * j\n        _pb_ball(cr, rx, ry, r, (rx / r) % (2 * math.pi))\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    if u < a0:\n        host(\"point\", hx, hy, hh)\n    else:\n        host(\"toss\", hx, hy, hh, beat=b)\n\n    if shown is not None:\n        lab, v = shown\n        fit_readout(cr, f\"{v:.1f}M players\", f\"Americans playing pickleball · {lab}\",\n                    80, 520, a=ease(seg(u, a0, a0 + 0.05)), size=130)\n    else:\n        fit_readout(cr, \"Pickleball\", f\"US players, {rows[0][0]}–{rows[-1][0]}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n    if u >= a1:\n        text(cr, f\"{ratio:.1f}x\", W - 80, 700, 90, look.INK, face=\"display\",\n             anchor=\"right\", alpha=ease(seg(u, a1, a1 + 0.05)))\n"
     },
     {
@@ -33965,8 +33965,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "2 · CATCHING UP",
-     "topic": "Pickleball Catching Tennis",
-     "say": "Tennis still has more players, about 23.6 million. But pickleball is already past halfway to catching it."
+     "topic": "Pickleball approaches tennis",
+     "say": "Tennis had 23.6 million players in the comparison. Pickleball had already grown beyond half that audience."
     },
     {
      "source": "offline",
@@ -33976,13 +33976,13 @@
      },
      "insight_type": "trend",
      "role": "3 · THE CATCH",
-     "topic": "Pickleball Injury Cost",
-     "say": "Pickleball injuries are estimated to cost about 400 million dollars in 2023. That's nearly triple 2018, so fun has a real price."
+     "topic": "Pickleball injury bill",
+     "say": "Estimated pickleball injury costs reached $400 million in the supplied projection. Popularity brings medical costs as well as new players."
     }
    ],
    "retold": "retell/v3",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-14T14:09:36Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:22:26Z",
    "hook_was": "It's officially America's fastest-growing sport again."
   },
   {
@@ -34113,7 +34113,7 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:19:53Z"
+   "rewritten_at": "2026-10-20T11:22:25Z"
   },
   {
    "slug": "competitive-eating-record-climb",
@@ -34397,10 +34397,10 @@
   },
   {
    "slug": "usps-mail-volume-collapse",
-   "title": "US Mail Volume Fell From 213 Billion To 109 Billion",
-   "hook": "Your mailbox is dying, and the Postal Service is charging you more for it.",
-   "closing": "Fewer letters, pricier stamps: the mail still arrives, but you're paying more for much less of it.",
-   "question": "When's the last time you got mail?",
+   "title": "Mail Nearly Halved While The Stamp Price More Than Doubled",
+   "hook": "Mailing a letter cost 68 cents even as mail volume nearly halved.",
+   "closing": "Less mail does not mean cheaper postage; a thinning mailbox can still come with rising costs.",
+   "question": "What still makes you buy a stamp?",
    "caption": "In 2006, the US Postal Service delivered 213 billion pieces of mail. Today it's barely half that -- even as a stamp's price doubled. Here's where all the mail went. 👇",
    "hashtags": [
     "uspsmail",
@@ -34428,8 +34428,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE COLLAPSE",
-     "topic": "US mail volume",
-     "say": "At its peak, US mail hit 213 billion pieces. Now it's nearly cut in half, so your mailbox is far emptier.",
+     "topic": "Mail volume shrinks",
+     "say": "Total mail volume fell to 109 billion pieces in the supplied latest year. The peak was nearly twice as high.",
      "illustrated_scene": "# scene standard: 2026-10-16.2\ndef _arch(cr, x, yb, w, wl):\n    # a mailbox's end: straight sides, a round dome over them\n    cr.move_to(x, yb)\n    cr.line_to(x, yb - wl)\n    cr.arc(x + w / 2, yb - wl, w / 2, math.pi, 2 * math.pi)\n    cr.line_to(x + w, yb)\n    cr.close_path()\n\n\ndef _letter(cr, cx, cy, w, h, ang, a=1.0):\n    # one white envelope: paper, its flap, a red stamp\n    if a <= 0.01:\n        return\n    cr.save()\n    cr.translate(cx, cy)\n    cr.rotate(ang)\n    cr.rectangle(-w / 2, -h / 2, w, h)\n    cr.restore()\n    solid(cr, (248, 245, 236), a=a)\n    cr.save()\n    cr.translate(cx, cy)\n    cr.rotate(ang)\n    cr.set_source_rgba(*_c((150, 140, 124), 0.9 * a))\n    cr.set_line_width(max(2.0, w * 0.04))\n    cr.move_to(-w / 2 + 2, -h / 2 + 2)\n    cr.line_to(0, h * 0.08)\n    cr.line_to(w / 2 - 2, -h / 2 + 2)\n    cr.stroke()\n    cr.rectangle(w / 2 - w * 0.24, -h / 2 + h * 0.12, w * 0.16, h * 0.26)\n    cr.set_source_rgba(*_c((200, 50, 42), a))\n    cr.fill()\n    cr.restore()\n\n\ndef _mailbox(cr, x, y, s, c):\n    # a curbside mailbox on its post, its door end facing the street;\n    # c = 0 the door hangs open on a mouth stuffed with letters, flag up,\n    # c = 1 the letters are out, the door is shut, the flag is down\n    contact_shadow(cr, x + 34 * s, y, 74 * s, a=0.35)\n    box(cr, x + 16 * s, y, 14 * s, 62 * s, (124, 92, 60), depth=6 * s)\n    yb = y - 60 * s\n    w, wl = 50 * s, 30 * s\n    ox, oy = 62 * s, -25 * s\n    _arch(cr, x + ox, yb + oy, w, wl)\n    solid(cr, (92, 96, 106), rim=False)\n    top = yb - wl - w / 2\n    cr.move_to(x + w / 2, top)\n    cr.line_to(x + w / 2 + ox, top + oy)\n    cr.line_to(x + w + ox, yb + oy)\n    cr.line_to(x + w, yb)\n    cr.close_path()\n    solid(cr, (182, 188, 198), finish=\"metal\")\n    # the red flag on its side: up for mail, swung down when there is none\n    px, py = x + w + ox * 0.55, yb + oy * 0.55 - wl * 0.35\n    ang = -math.pi / 2 * (1 - ease(c))\n    cr.save()\n    cr.translate(px, py)\n    cr.rotate(ang)\n    cr.rectangle(0, -3 * s, 46 * s, 6 * s)\n    cr.restore()\n    solid(cr, (150, 32, 28), rim=False)\n    cr.save()\n    cr.translate(px, py)\n    cr.rotate(ang)\n    cr.rectangle(28 * s, -2 * s, 20 * s, 16 * s)\n    cr.restore()\n    solid(cr, (206, 48, 40))\n    # the dark mouth\n    _arch(cr, x, yb, w, wl)\n    solid(cr, (30, 28, 32), rim=False, edge=False)\n    # the door, hinged along the bottom, swung up and shut\n    fy = -0.5 + 1.5 * ease(seg(c, 0.45, 1.0))\n    if abs(fy) < 0.04:\n        fy = 0.04 if fy >= 0 else -0.04\n    cr.save()\n    cr.translate(x, yb)\n    cr.scale(1, fy)\n    _arch(cr, 0, 0, w, wl)\n    cr.restore()\n    solid(cr, (198, 204, 214) if fy > 0 else (148, 154, 164), finish=\"metal\")\n    # the letters, a fat fan of white envelopes bursting out of the mouth;\n    # they come out toward the street first, then the door shuts\n    out = ease(seg(c, 0.0, 0.5))\n    la = 1.0 - clamp((c - 0.25) / 0.3)\n    spots = ((0.22, 0.30, -0.42), (0.50, 0.46, 0.10), (0.78, 0.30, 0.46),\n             (0.36, 0.64, -0.18), (0.66, 0.66, 0.30))\n    if c < 1:\n        for i, (dx, dy, a_) in enumerate(spots):\n            lx = x + w * dx - out * (40 + 14 * i) * s\n            ly = yb - (wl + w / 2) * dy - out * 26 * s\n            _letter(cr, lx, ly, 34 * s, 22 * s, a_ * (1 - 0.5 * out), la)\n    if c >= 1:\n        disc(cr, x + w / 2, yb - wl * 0.9, 4 * s, (70, 70, 76), finish=\"metal\")\n        # the letters that used to wait here, as a ghost on the shut door\n        cr.save()\n        cr.translate(x + w * 0.5, yb - (wl + w / 2) * 0.42)\n        cr.rotate(-0.12)\n        cr.rectangle(-17 * s, -11 * s, 34 * s, 22 * s)\n        cr.restore()\n        ghost(cr, a=0.8)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a street of mailboxes stuffed with letters\n    SUBSTANCE: white paper letters\n    CAUSE: Data pulls the letters out of each mailbox and shoves its door shut, box by box down the street\n    One street's row of mailboxes running from the camera back into town:\n    the WHOLE is the street's mail. In 2006 every door hangs open on a\n    mouth stuffed with white letters, flag up. Data walks the curb toward\n    the camera and, box by box, the letters come out and he shoves the\n    door shut — flag down, no mail — until the share of the street gone\n    quiet is the share of mail that is gone, about half. Each shut door\n    keeps a ghost of the letter it used to hold. Done by 0.62 and held:\n    he keeps shoving the last door, the mail van keeps driving by.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    v0 = v0 or 1.0\n    N = 8\n    nc = max(1, min(N - 1, int(round(N * (1 - v1 / v0)))))\n    boxes = []\n    x, y, s = 260.0, 1450.0, 2.4\n    for j in range(N):\n        boxes.append((x, y, s))\n        x += 70 * s\n        y -= 28 * s\n        s *= 0.86\n    a0, a1 = 0.06, 0.62\n    span = (a1 - a0) / nc\n    k = int(clamp((u - a0) / span, 0, nc - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    started = u >= a0\n    done = u >= a1\n\n    def shut(j):\n        if j >= nc or not started:\n            return 0.0\n        if done:\n            return 1.0\n        q = nc - 1 - j\n        if q < k:\n            return 1.0\n        if q > k:\n            return 0.0\n        return seg(f, 0.25, 0.9)\n\n    def pos(j):\n        bx, by, bs = boxes[j]\n        return bx - 50 * bs, min(1495.0, by + 30), clamp(110 * bs, 180, 240)\n\n    # the town\n    landscape(cr, t, \"town\", horizon=1060)\n    for hx0, hx1, hb, hh_, col in ((40, 330, 1130, 260, (214, 196, 170)),\n                                   (380, 600, 1100, 200, (176, 190, 204)),\n                                   (640, 820, 1078, 150, (206, 170, 150)),\n                                   (860, 1010, 1062, 110, (190, 200, 180))):\n        contact_shadow(cr, (hx0 + hx1) / 2, hb, hx1 - hx0 + 40, a=0.3)\n        building(cr, hx0, hx1, hb, hh_, col, roof_rgb=(110, 96, 92), roof=\"gable\")\n    haze(cr, 600, 1150, (206, 214, 224), a=0.3)\n    # the mail van doing its round on the back street\n    vx = -300 + (t * 170) % 1700\n    contact_shadow(cr, vx + 110, 1152, 230, a=0.3)\n    box(cr, vx, 1150, 170, 92, (236, 236, 240), depth=36)\n    cr.rectangle(vx + 4, 1106, 162, 12)\n    solid(cr, (42, 72, 146), edge=False, rim=False)\n    box(cr, vx + 170, 1150, 58, 66, (226, 228, 234), depth=30)\n    for wx in (vx + 36, vx + 190):\n        disc(cr, wx, 1150, 15, (40, 40, 46))\n\n    # the street in front of the row\n    cr.move_to(-50, 1576)\n    cr.line_to(1130, 1104)\n    cr.line_to(1130, 1194)\n    cr.line_to(-50, 1976)\n    cr.close_path()\n    solid(cr, (84, 86, 92), edge=False, rim=False)\n    cr.set_source_rgba(*_c((236, 220, 150), 0.85))\n    cr.set_line_width(8)\n    cr.set_dash([44, 34])\n    cr.move_to(-50, 1776)\n    cr.line_to(1130, 1149)\n    cr.stroke()\n    cr.set_dash([])\n\n    # the mailboxes, far first\n    cast_shadow(cr, 240, 1080, 1450, length=260, a=0.22)\n    for j in reversed(range(N)):\n        bx, by, bs = boxes[j]\n        _mailbox(cr, bx, by, bs, shut(j))\n\n    # right by the camera: the blue collection box on the near corner\n    contact_shadow(cr, 880, 1862, 280, a=0.4)\n    box(cr, 760, 1860, 220, 230, (38, 74, 150), depth=56)\n    cr.save()\n    cr.translate(870, 1630)\n    cr.scale(1, 0.45)\n    cr.arc(0, 0, 110, math.pi, 2 * math.pi)\n    cr.restore()\n    cr.close_path()\n    solid(cr, (44, 82, 162))\n    cr.rectangle(800, 1676, 140, 16)\n    solid(cr, (24, 30, 44), rim=False)\n    _letter(cr, 870, 1668, 96, 60, -0.12)\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    # Data walks the curb toward the camera, shoving each door shut\n    if not started:\n        hx, hy, hh = pos(nc)\n        host(\"point\", hx, hy, hh)\n    elif done:\n        hx, hy, hh = pos(0)\n        host(\"shove\", hx, hy, hh, beat=nc + int((u - a1) / 0.12))\n    else:\n        tgt, prv = nc - 1 - k, nc - k\n        g = ease(seg(f, 0.0, 0.25))\n        (x0, y0, h0), (x1, y1, h1) = pos(prv), pos(tgt)\n        hx, hy, hh = x0 + (x1 - x0) * g, y0 + (y1 - y0) * g, h0 + (h1 - h0) * g\n        host(\"shove\", hx, hy, hh, beat=k)\n\n    if done:\n        fit_readout(cr, f\"{int(round(v1))} billion\", f\"pieces of US mail a year · {l1}\",\n                    80, 520, size=130)\n        text(cr, \"nearly half the mail, gone\", 80, 720, 44, look.INK, face=\"bold\",\n             alpha=ease(seg(u, a1, a1 + 0.05)))\n    else:\n        fit_readout(cr, f\"{int(round(v0))} billion\", f\"pieces of US mail a year · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -34440,8 +34440,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE LETTERS",
-     "topic": "First-Class mail volume",
-     "say": "First-Class letters fell even harder. Since their peak, they've dropped by more than half, to just 46 billion pieces."
+     "topic": "Mail letters fade",
+     "say": "First-Class Mail fell to 46 billion pieces in the measured comparison. Its decline outpaced the overall mail contraction."
     },
     {
      "source": "offline",
@@ -34451,13 +34451,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE IRONY",
-     "topic": "Mail stamp price",
-     "say": "Mailing got pricier while volume shrank. A stamp now costs 68 cents, more than double the price a generation ago."
+     "topic": "Mail stamps rise",
+     "say": "The stamp price reached 68 cents in the supplied historical comparison. That more than doubled the earlier price."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-16T12:53:09Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:22:26Z",
    "hook_was": "You get way less mail than your parents did."
   },
   {
