@@ -1,0 +1,156 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "muscle-loss-after-30__51f127a7",
+ "filed": "2026-10-20T21:48:53Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "muscle-loss-after-30",
+ "current": {
+  "title": "You Start Losing Muscle Before You Turn 40",
+  "hook": "Your muscles started vanishing at 30.",
+  "closing": "Lifting weights can reverse it, so start now, whatever your age.",
+  "question": "How many days a week do you lift?",
+  "segments": [
+   {
+    "topic": "Muscle mass with age",
+    "say": "By eighty, you've lost over a third of your muscle. And the slide starts quietly, back in your thirties."
+   },
+   {
+    "topic": "Muscle loss rate",
+    "say": "Until seventy you lose about four percent a decade. After that the pace more than quadruples, so waiting costs you fast."
+   },
+   {
+    "topic": "Training stops muscle loss",
+    "say": "In one study, over a third of people had clinical muscle loss. After twelve weeks of lifting, none did."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Muscle mass with age",
+   "say": "By eighty, you've lost over a third of your muscle. And the slide starts quietly, back in your thirties.",
+   "role": "1 · THE DECLINE",
+   "data": {
+    "file": "muscle_mass_retained_by_age.json",
+    "unit": "percent",
+    "title": "Muscle mass retained, indexed to age 30 (percent)",
+    "points": [
+     {
+      "label": "30",
+      "value": 100,
+      "period": "30"
+     },
+     {
+      "label": "40",
+      "value": 96,
+      "period": "40"
+     },
+     {
+      "label": "50",
+      "value": 92,
+      "period": "50"
+     },
+     {
+      "label": "60",
+      "value": 87,
+      "period": "60"
+     },
+     {
+      "label": "70",
+      "value": 80,
+      "period": "70"
+     },
+     {
+      "label": "80",
+      "value": 65,
+      "period": "80"
+     }
+    ],
+    "n_points": 6
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Muscle loss rate",
+   "say": "Until seventy you lose about four percent a decade. After that the pace more than quadruples, so waiting costs you fast.",
+   "role": "2 · THE CLIFF",
+   "data": {
+    "file": "muscle_loss_rate_before_after_70.json",
+    "unit": "percent",
+    "title": "Muscle mass lost per decade (percent)",
+    "points": [
+     {
+      "label": "Per decade, ages 30-70",
+      "value": 4
+     },
+     {
+      "label": "Per decade, after 70",
+      "value": 18
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Training stops muscle loss",
+   "say": "In one study, over a third of people had clinical muscle loss. After twelve weeks of lifting, none did.",
+   "role": "3 · THE FIX",
+   "data": {
+    "file": "sarcopenia_training_intervention.json",
+    "unit": "percent",
+    "title": "Sarcopenia prevalence before/after a 12-week resistance training program (percent)",
+    "points": [
+     {
+      "label": "Before 12 weeks",
+      "value": 35.1
+     },
+     {
+      "label": "After 12 weeks",
+      "value": 0
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The ages supply onset dates rather than a consequential magnitude of muscle loss, and the categorical personal claim lacks qualification."
+ ],
+ "reasons": [
+  "premise: brain: The ages supply onset dates rather than a consequential magnitude of muscle loss, and the categorical personal claim lacks qualification."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261020/muscle-loss-after-30__51f127a7.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

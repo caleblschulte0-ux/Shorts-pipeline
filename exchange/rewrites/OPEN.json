@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-20T20:17:24Z",
+ "updated": "2026-10-20T21:48:53Z",
  "open": [
+  {
+   "id": "muscle-loss-after-30__51f127a7",
+   "slug": "muscle-loss-after-30",
+   "filed": "2026-10-20T21:48:53Z",
+   "why": [
+    "premise: brain: The ages supply onset dates rather than a consequential magnitude of muscle loss, and the categorical personal claim lacks qualification."
+   ],
+   "request": "exchange/rewrites/20261020/muscle-loss-after-30__51f127a7.request.json",
+   "answer_path": "exchange/rewrites/20261020/muscle-loss-after-30__51f127a7.answer.json"
+  },
+  {
+   "id": "seabed-mining-rush__94b642eb",
+   "slug": "seabed-mining-rush",
+   "filed": "2026-10-20T21:48:53Z",
+   "why": [
+    "premise: brain: The 4-kilometer depth is descriptive rather than the consequential number driving a clear expectation reversal about deep-sea mining."
+   ],
+   "request": "exchange/rewrites/20261020/seabed-mining-rush__94b642eb.request.json",
+   "answer_path": "exchange/rewrites/20261020/seabed-mining-rush__94b642eb.answer.json"
+  },
   {
    "id": "betelgeuse-great-dimming__e2882181",
    "slug": "betelgeuse-great-dimming",
@@ -1100,16 +1120,6 @@
    "answer_path": "exchange/rewrites/20261005/data-breach-exposure__02731549.answer.json"
   },
   {
-   "id": "muscle-loss-after-30__a6d6cd11",
-   "slug": "muscle-loss-after-30",
-   "filed": "2026-10-05T15:03:04Z",
-   "why": [
-    "premise: brain: Lacks a specific, verifiable number to anchor the reversed expectation."
-   ],
-   "request": "exchange/rewrites/20261005/muscle-loss-after-30__a6d6cd11.request.json",
-   "answer_path": "exchange/rewrites/20261005/muscle-loss-after-30__a6d6cd11.answer.json"
-  },
-  {
    "id": "kids-phones-getting-younger__e1fceca3",
    "slug": "kids-phones-getting-younger",
    "filed": "2026-10-05T10:56:49Z",
@@ -1328,16 +1338,6 @@
    ],
    "request": "exchange/rewrites/20260926/beaver-ecosystem-comeback__e235a087.request.json",
    "answer_path": "exchange/rewrites/20260926/beaver-ecosystem-comeback__e235a087.answer.json"
-  },
-  {
-   "id": "seabed-mining-rush__19acc403",
-   "slug": "seabed-mining-rush",
-   "filed": "2026-09-26T17:27:02Z",
-   "why": [
-    "premise: brain: This is a searchable noun-phrase premise about deep-sea mining dressed up with a metaphor, and it doesn't reverse a specific expectation the viewer holds — 'gold rush underwater' is evocative but not a stated belief being overturned, nor is there one consequential, verifiable number it hangs on."
-   ],
-   "request": "exchange/rewrites/20260926/seabed-mining-rush__19acc403.request.json",
-   "answer_path": "exchange/rewrites/20260926/seabed-mining-rush__19acc403.answer.json"
   },
   {
    "id": "waymo-robotaxi-surge__678d43a1",
