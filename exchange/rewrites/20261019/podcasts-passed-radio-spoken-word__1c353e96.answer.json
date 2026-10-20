@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "podcasts-passed-radio-spoken-word__1c353e96",
+  "slug": "podcasts-passed-radio-spoken-word",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:27:00Z",
+  "title": "Podcasts Overtook Radio By Just 1 Percentage Point",
+  "hook": "Radio lost its spoken-word lead to podcasts by just 1 percentage point.",
+  "closing": "A tiny lead marks a change in where people spend listening time, rather than radio disappearing.",
+  "question": "What do you choose for spoken audio?",
+  "segments": [
+    {
+      "topic": "Podcasts gain share",
+      "say": "Podcasts reached 40% of spoken-word listening in the supplied comparison. Their share quadrupled over the measured decade."
+    },
+    {
+      "topic": "Podcasts pass radio",
+      "say": "Podcasts led radio by 1 percentage point in the measured quarter. A narrow margin still reversed their positions."
+    },
+    {
+      "topic": "Podcasts weekly habit",
+      "say": "Weekly podcast listening reached 35% of Americans in these data. Regular use extends beyond occasional curiosity."
+    }
+  ]
+}
