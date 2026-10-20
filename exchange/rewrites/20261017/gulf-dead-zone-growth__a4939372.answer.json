@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "gulf-dead-zone-growth__a4939372",
+  "slug": "gulf-dead-zone-growth",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:23:45Z",
+  "title": "The Gulf Dead Zone More Than Doubled Instead Of Shrinking",
+  "hook": "The dead zone in the Gulf rebounded to 6,705 square miles instead of shrinking.",
+  "closing": "Runoff upstream can leave sea life downstream without enough oxygen; cleaner water starts before the coast.",
+  "question": "Who should pay to reduce farm runoff?",
+  "segments": [
+    {
+      "topic": "Gulf zone rebound",
+      "say": "The Gulf dead zone reached 6,705 square miles in the latest measurement. That more than doubled the previous measurement."
+    },
+    {
+      "topic": "Gulf zone target",
+      "say": "The reduction target is 1,900 square miles. The supplied recent average remains nearly double that goal."
+    },
+    {
+      "topic": "Gulf zone cause",
+      "say": "Nitrogen loads reached 300% of their earlier level. The added fertilizer feeds algae whose decay consumes oxygen."
+    }
+  ]
+}
