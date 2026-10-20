@@ -1,17 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-19T23:09:59Z",
+ "updated": "2026-10-20T11:19:53Z",
  "open": [
-  {
-   "id": "dog-breed-popularity-flip__ed8cf925",
-   "slug": "dog-breed-popularity-flip",
-   "filed": "2026-10-19T12:10:13Z",
-   "why": [
-    "premise: brain: The claim hinges on an unverified, sensational number without clear evidence, making it a weak premise."
-   ],
-   "request": "exchange/rewrites/20261019/dog-breed-popularity-flip__ed8cf925.request.json",
-   "answer_path": "exchange/rewrites/20261019/dog-breed-popularity-flip__ed8cf925.answer.json"
-  },
   {
    "id": "gulf-dead-zone-growth__a4939372",
    "slug": "gulf-dead-zone-growth",
@@ -573,6 +563,16 @@
    ],
    "request": "exchange/rewrites/20261018/vinyl-beats-cd-sales-again__b2dd235b.request.json",
    "answer_path": "exchange/rewrites/20261018/vinyl-beats-cd-sales-again__b2dd235b.answer.json"
+  },
+  {
+   "id": "dog-breed-popularity-flip__ed8cf925",
+   "slug": "dog-breed-popularity-flip",
+   "filed": "2026-10-18T11:46:50Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague, unverifiable claim about a breed's dominance."
+   ],
+   "request": "exchange/rewrites/20261018/dog-breed-popularity-flip__ed8cf925.request.json",
+   "answer_path": "exchange/rewrites/20261018/dog-breed-popularity-flip__ed8cf925.answer.json"
   },
   {
    "id": "saturn-rings-vanishing__acf09995",

@@ -34053,10 +34053,10 @@
   },
   {
    "slug": "dog-breed-popularity-flip",
-   "title": "The Labrador's 31-Year Reign Just Ended",
-   "hook": "One dog breed ruled America for 31 years straight.",
-   "closing": "A popular dog is not always a healthy one, so ask before you buy.",
-   "question": "Which breed do you think deserves #1?",
+   "title": "French Bulldog Registrations Rose 1,000%. Popularity Isn't Health.",
+   "hook": "French Bulldog registrations surged 1,000%, but popularity says nothing about lifespan.",
+   "closing": "Before choosing a popular breed, ask about its health and the care it needs.",
+   "question": "What matters most when choosing a dog?",
    "caption": "For 31 years, the Labrador Retriever was America's most popular dog. In 2022, one breed finally took the crown, with registrations up over 1,000% since 2012. But that popularity comes at a real cost to the dog itself. Would you still get one? 👇",
    "hashtags": [
     "dogs",
@@ -34085,8 +34085,8 @@
      "insight_type": "rank",
      "ascending": true,
      "role": "1 · THE UPSET",
-     "topic": "Labrador reign ended",
-     "say": "In 2022, the French Bulldog took the number one spot and pushed the Labrador Retriever down to second. That long reign was over."
+     "topic": "French Bulldog crown",
+     "say": "The French Bulldog reached number one in the rankings. The Labrador no longer led the list."
     },
     {
      "source": "offline",
@@ -34096,8 +34096,8 @@
      },
      "insight_type": "trend",
      "role": "2 · THE SURGE",
-     "topic": "Labrador reign, Bulldog surge",
-     "say": "French Bulldog registrations are up 1,000% since 2012. That is a flood of new puppies, and the breed is now everywhere."
+     "topic": "French Bulldog surge",
+     "say": "French Bulldog registrations rose 1,000% over the measured decade. Demand multiplied rather than merely nudging upward."
     },
     {
      "source": "offline",
@@ -34107,13 +34107,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE COST",
-     "topic": "Labrador lives longer",
-     "say": "Here's the cost of that popularity. A French Bulldog lives just 4.5 years, less than half as long as a Labrador."
+     "topic": "French Bulldog lifespan",
+     "say": "French Bulldog life expectancy at birth was estimated at 4.5 years. That population estimate is not every individual dog's lifespan."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-16T12:26:30Z"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:19:53Z"
   },
   {
    "slug": "competitive-eating-record-climb",
