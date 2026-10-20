@@ -115,6 +115,106 @@
       "answer": "{\"hook\":\"ChatGPT reached 100 million users in just 2 months.\",\"closing\":\"850 million free users still generate server costs; paying customers and investors help carry that bill.\",\"question\":\"Do you use ChatGPT every week?\",\"segments\":[{\"topic\":\"ChatGPT user growth\",\"say\":\"ChatGPT hit 100 million users 2 months after launch. By February 2026, weekly active users reached 900 million.\"},{\"topic\":\"ChatGPT growth comparison\",\"say\":\"Reaching 100 million users took TikTok 9 months, Instagram 30 months, two and a half years, and ChatGPT just 2.\"},{\"topic\":\"ChatGPT paying users\",\"say\":\"Of 900 million weekly ChatGPT users, 50 million pay and 850 million use it free. Investors help cover the gap.\"}]}",
       "by": "chatgpt",
       "at": "2026-10-20T11:20:30Z"
+    },
+    "4d31e7be275d686c": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The title universalizes all bananas and all taste while the hook makes an unsupported claim about the individual viewer's consumption.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "025118783f48191e": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The hook turns a bone-mineral-density rate into the loss of an astronaut's bones themselves, overstating what the number measures.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "f4ddda45b1b07a2f": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The hook generalizes a tissue concentration to every viewer's brain without identifying the measured sample or comparison establishing the change.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "2fd86bdac00d8479": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The deliberate clock offset reverses the expectation that accurate navigation requires unadjusted satellite clocks, with a consequential 10-kilometer daily error.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "16d9657b7844b66c": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The ages supply onset dates rather than a consequential magnitude of muscle loss, and the categorical personal claim lacks qualification.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "68f08d10f397fd79": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The enormous headcount is a scale fact but does not state a specific expectation that the ant-to-human ratio overturns.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "7e7c94cee8f86d09": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The title's freezing-solid claim and the hook's 65-percent claim do not clearly identify what actually freezes, overstating the survival reversal.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "c145b796eb614da2": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The unnamed star is called the sky's brightest and said to fake death without evidence connecting the 36-percent dimming to that claim.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "f96498f0ba1be61e": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"Calling the guidance change a fix that cut allergies by 43 percent asserts causality without defining the study population or comparison.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "c393828d6a4dbce3": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "b437e826e3b32f3f": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The premise compares accumulated toy production with living people without establishing how the 10-billion total measures figures that still exist.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "eb1f742d2b67ddbc": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The loss of 14,800 jobs despite record game sales reverses the expectation that a booming industry protects its workers.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "f0c35b7b5d200bc6": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"A 46-percent fall in library visits despite continued readership reverses the assumption that fewer building visits mean readers disappeared.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "8d9e7ba7469e7cb7": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"Growing five times faster than new clothing reverses the expectation that secondhand remains a marginal, slower retail category.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "7b7c888eea6d3274": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The repeat eclipse timing is a rarity fact rather than a consequential reversal of a stated viewer expectation.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "301e52afa444c6e3": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The hook wrongly turns a Gulf oxygen-depleted area into the disappearance of the viewer's town's summer, obscuring rather than proving the claim.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "d6c4daecb4fd6a23": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The 600-million-year estimate is framed as the present viewer's last eclipse, creating a misleading personal stake rather than a defensible reversal.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "66d78354bf15a271": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"An aggregate 70-billion-dollar balance does not establish that every state holds billions or that the individual viewer owns any of it.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "8d4dfdea5221b3db": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
+    },
+    "f05cd36d9fa85469": {
+      "answer": "{\"hook\":\"By 2024, 76% of US adults lived without a landline.\",\"closing\":\"Your phone still rings; strangers can reach it even when nobody you know is calling.\",\"question\":\"Do you answer numbers you don't recognize?\",\"segments\":[{\"topic\":\"America lost landlines\",\"say\":\"By 2024, 76% of US adults lacked landlines, up from 25% in 2010. A phone number no longer needs an address.\"},{\"topic\":\"America gets robocalls\",\"say\":\"Americans received 52.8 billion robocalls in 2024: 36% telemarketing and 22% scams. An unfamiliar number does not guarantee a trustworthy caller.\"},{\"topic\":\"America screens calls\",\"say\":\"Nearly 200 robocalls per adult approaches double 2016's 29.3 billion total. Unknown numbers face a familiar destination: voicemail.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-20T11:28:00Z"
     }
   }
 }
