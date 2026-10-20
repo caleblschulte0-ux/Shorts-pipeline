@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "peanut-allergy-guideline-flip__78a48cd5",
+  "slug": "peanut-allergy-guideline-flip",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:22:00Z",
+  "title": "Peanut Avoidance Lost To Early Consumption: Diagnoses Later Fell 43%",
+  "hook": "Peanut diagnoses fell 43% after advice shifted toward early introduction.",
+  "closing": "Parents should discuss safe early introduction with their child's clinician; prevention advice depends on the child's situation.",
+  "question": "How did peanut advice change in your family?",
+  "segments": [
+    {
+      "topic": "Peanut allergies rose",
+      "say": "Childhood peanut allergy prevalence reached 1.4% in the supplied historical series. It had more than tripled from the earliest measurement."
+    },
+    {
+      "topic": "Peanut trial reversal",
+      "say": "The avoidance group's allergy rate was 13.7% in the trial. Children who ate peanut early had a much lower rate."
+    },
+    {
+      "topic": "Peanut guidance changed",
+      "say": "Diagnoses declined about 43% in the before-and-after comparison. That decline followed changed guidance; this comparison alone does not isolate its cause."
+    }
+  ]
+}
