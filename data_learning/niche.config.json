@@ -19862,10 +19862,10 @@
   },
   {
    "slug": "blood-type-rarity",
-   "title": "The World's Rarest Blood Type, By The Numbers",
-   "hook": "Only 1 percent of Americans have AB negative blood, the rarest type.",
-   "closing": "Rare or common, your type matches someone, so your donation can matter.",
-   "question": "Know your blood type? Drop it below.",
+   "title": "Blood Type Rarity Isn't Universal: AB Negative Is 1% In The US",
+   "hook": "AB negative is 1% in the US; blood-type frequency depends on the population.",
+   "closing": "A rare label needs a population attached; diverse donors help make blood supplies reflect the people needing them.",
+   "question": "Do you know your blood type?",
    "caption": "AB negative is the rarest blood type in America, at just 1%. It comes down to one gene most people never think about — and it varies by ethnic background too, which is exactly why blood banks need donors from every community. 👇 Know your type?",
    "hashtags": [
     "bloodtype",
@@ -19893,8 +19893,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "1 · THE SPREAD",
-     "topic": "Blood type distribution",
-     "say": "Only 1 percent of Americans have AB negative, the rarest type. Most common is O positive, at over a third.",
+     "topic": "Blood type rarity",
+     "say": "AB negative represents 1% in this US distribution. It is the rarest listed type, not necessarily the rarest blood classification worldwide.",
      "scene": {
       "mechanic": "blood-vial-rack",
       "concept": "eight blood-sample vials stand in a lab rack, each filled to its share of the US population, O+ towering over a nearly-empty AB- vial",
@@ -19909,8 +19909,8 @@
      },
      "insight_type": "share",
      "role": "2 · THE FACTOR",
-     "topic": "Rh blood type",
-     "say": "Only 15 percent of Americans are Rh negative. That means a negative type is a small club, so fewer people share yours.",
+     "topic": "Blood type Rh",
+     "say": "Rh-negative blood accounts for 15% in this comparison. That subgroup is much smaller than the Rh-positive population.",
      "scene": {
       "mechanic": "rh-genetic-drop",
       "concept": "one giant blood-drop shape fills red from the bottom to the 85% Rh-positive line, leaving the top 15% Rh-negative sliver empty, a DNA strand overhead",
@@ -19926,8 +19926,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "3 · WHY DIVERSITY MATTERS",
-     "topic": "Blood type background",
-     "say": "Over half of Latin American donors are O positive, but only about a third of Caucasian donors. Who gives shapes the mix.",
+     "topic": "Blood type populations",
+     "say": "O-positive blood reaches 53% among Latin American donors in these data. Frequencies differ across the donor groups compared.",
      "scene": {
       "mechanic": "donor-meter-lineup",
       "concept": "four blood-donor photos stand over their own filling meter, height set by how common O-positive is in that ethnic background",
@@ -19935,8 +19935,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T19:57:44Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:32:37Z",
    "hook_was": "Only 1 percent of people carry the rarest blood type.",
    "retold": "retell/v3"
   },
@@ -27218,10 +27218,10 @@
   },
   {
    "slug": "game-industry-layoffs-record",
-   "title": "Video Games Broke Records. So Did The Layoffs.",
-   "hook": "Games hit record sales, and 14,800 people lost their jobs.",
-   "closing": "The big names get the headlines, but most layoffs hit quietly, even while games break sales records.",
-   "question": "Has your industry seen layoffs like this?",
+   "title": "Game Industry Layoffs Reached 14,800 Despite Record-Sales Headlines",
+   "hook": "Game industry layoffs reached 14,800; record-sales headlines did not protect workers.",
+   "closing": "An industry's success story can hide workers losing jobs, so sales totals alone do not explain job security.",
+   "question": "What would make gaming careers more secure?",
    "caption": "The video game industry cut 14,800 jobs in 2024 — its worst year ever — while posting some of its biggest revenue numbers ever. Microsoft and Sony alone cut nearly 2,800 of those jobs in back-to-back months. Have layoffs hit your industry too?",
    "hashtags": [
     "gaminglayoffs",
@@ -27246,8 +27246,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE CUTS",
-     "topic": "Video game layoffs",
-     "say": "Gaming layoffs nearly doubled since 2022, hitting 14,800 in 2024. Record sales didn't stop the cuts from climbing.",
+     "topic": "Game industry layoffs",
+     "say": "Game industry layoffs reached 14,800 in the latest supplied year. Cuts climbed sharply across the measured period.",
      "scene": {
       "mechanic": "controllers-cut-pile",
       "concept": "one game controller per 500 jobs cut drops into a stack for each year, the 2024 stack towering over 2022",
@@ -27264,8 +27264,8 @@
      "ascending": false,
      "use_baseline": true,
      "role": "2 · WHO'S CUTTING",
-     "topic": "Video game headlines",
-     "say": "Microsoft and Sony made the headlines. But the rest of the industry quietly lost 12,000 jobs, most of the year's cuts.",
+     "topic": "Game industry beyond giants",
+     "say": "The rest of the industry lost 12,000 jobs in the company breakdown. Headline companies were only part of the cuts.",
      "scene": {
       "mechanic": "controllers-three-bins",
       "concept": "controllers fall into three bins (Microsoft, Sony, rest of industry) at 400 jobs each, showing the headline cuts are a sliver beside the rest",
@@ -27273,8 +27273,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T00:59:03Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:32:37Z",
    "retold": "retell/v3"
   },
   {
@@ -27533,10 +27533,10 @@
   },
   {
    "slug": "freshwater-accessible",
-   "title": "How Much Of Earth's Water You Can Actually Drink",
-   "hook": "Earth is drowning in water and you still can't drink almost any of it.",
-   "closing": "Out of 10,000 drops on Earth, you can drink less than one.",
-   "question": "Would you have guessed it was this small?",
+   "title": "Water Covers Earth, But Lakes And Rivers Hold Just 0.007%",
+   "hook": "Lakes and rivers hold just 0.007% of Earth's water—not an ocean-sized supply.",
+   "closing": "Freshwater availability depends on location and access; a watery planet does not guarantee water where people need it.",
+   "question": "What protects your local freshwater supply?",
    "caption": "96.5% of Earth's water is ocean. Almost all the rest is frozen or buried underground. What's left in every lake and river combined? A rounding error. 👇",
    "hashtags": [
     "water",
@@ -27562,9 +27562,9 @@
      "insight_type": "rank",
      "use_baseline": true,
      "ascending": false,
-     "topic": "Earth's salty water",
+     "topic": "Water mostly saline",
      "role": "1 · THE SPLIT",
-     "say": "Only 3.5 percent of Earth's water is fresh; the rest is salty ocean.",
+     "say": "Freshwater makes up 3.5% of Earth's water. Most of the planet's water is salty.",
      "scene": {
       "mechanic": "hundred-drops-three-sweet",
       "concept": "100 water drops on a grid; a salt-blue wave sweeps across and turns 96 of them into brine, leaving 3.5 glowing fresh drops",
@@ -27579,9 +27579,9 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "Water locked away",
+     "topic": "Water frozen away",
      "role": "2 · THE CATCH",
-     "say": "Nearly all freshwater is locked up, with 68.7 percent frozen in glaciers and ice caps.",
+     "say": "Glaciers and ice caps hold 68.7% of freshwater in this breakdown. Fresh does not automatically mean accessible.",
      "illustrated_scene": "def scene(cr, t, u, pts, host):\n    \"\"\"HERO: a giant glass of Earth's freshwater\n    SUBSTANCE: chunks of glacier ice\n    CAUSE: Data tosses ice chunks into the glass, one throw at a time, until ice fills most of it\n    All of Earth's freshwater is one tall glass standing on the ice field.\n    The liquid part (groundwater plus surface water) sits blue at the bottom\n    at its true share. Data tosses ice into the glass, throw by throw, until\n    the frozen share fills its real 68.7% of the glass up to the brim. That\n    lands by 0.56 and holds. After that Data keeps throwing, and the extra\n    chunks bounce off the full brim and tumble down onto the snow. The scale\n    is the glass itself: brim to base is all the freshwater there is, and a\n    dashed mark shows where the liquid ends.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    tot = sum(v for _, v in rows) or 1.0\n    lab, vice = max(rows, key=lambda r: r[1])\n    share = vice / tot\n\n    n = 6\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    fly = seg(f, 0.0, 0.4)\n    grow = ease(seg(f, 0.35, 0.7))\n    step = 0.0 if u < a0 else (k + grow) / n\n    done = u >= a0 and k == n - 1 and grow >= 0.999\n\n    # the setting: an ice field under a low sun\n    gy = landscape(cr, t, \"snow\")\n    birds(cr, t, y0=760, n=3, rgb=(60, 66, 80))\n\n    GX0, GX1, BASE, TOP = 300, 780, 1440, 640\n    WALL = 14\n    IX0, IX1, IB, IT = GX0 + WALL, GX1 - WALL, BASE - WALL, TOP + 10\n    hin = IB - IT\n    water_h = hin * (1 - share)\n    yw = IB - water_h\n\n    cast_shadow(cr, GX0, GX1, BASE, length=340, a=0.3)\n    contact_shadow(cr, (GX0 + GX1) / 2, BASE + 4, GX1 - GX0 + 80, a=0.4)\n\n    # the contents, clipped to the inside of the glass\n    cr.save()\n    cr.rectangle(IX0, IT, IX1 - IX0, IB - IT)\n    cr.clip()\n    vgrad(cr, [(0, (196, 214, 228)), (1, (170, 190, 208))], IT, IB, IX0, IX1)\n    # the liquid share: blue water at the bottom\n    vgrad(cr, [(0, (86, 156, 214)), (1, (34, 84, 150))], yw, IB, IX0, IX1)\n    wave = 6 * math.sin(t * 2.2)\n    cr.set_source_rgba(*_c((210, 236, 252), 0.8))\n    cr.set_line_width(5)\n    cr.move_to(IX0, yw + wave)\n    cr.curve_to(IX0 + 150, yw - wave, IX1 - 150, yw + wave, IX1, yw - wave)\n    cr.stroke()\n    # the frozen share: ice chunks packed up from the waterline\n    cols, rh = 5, 64\n    cw = (IX1 - IX0) / cols\n    nrows = int(math.ceil(share * hin / rh))\n    total = cols * nrows\n    shown = int(total * step + 0.5)\n    ice = (206, 232, 246)\n    for i in range(shown):\n        r_, c = divmod(i, cols)\n        bx = IX0 + c * cw + 3 + (r_ % 2) * 8\n        by = yw - r_ * rh\n        box(cr, bx, by, cw - 18, rh - 8, ice, depth=12, finish=\"ice\")\n    cr.restore()\n\n    # the glass itself, over its contents\n    cr.rectangle(GX0, TOP, GX1 - GX0, BASE - TOP)\n    cr.rectangle(IX0, IT, IX1 - IX0, IB - IT)\n    cr.set_fill_rule(cairo.FILL_RULE_EVEN_ODD)\n    solid(cr, (200, 226, 240), finish=\"glass\", a=0.55)\n    cr.set_fill_rule(cairo.FILL_RULE_WINDING)\n    cr.set_source_rgba(*_c((255, 255, 255), 0.35))\n    cr.rectangle(GX0 + 30, TOP + 30, 22, BASE - TOP - 80)\n    cr.fill()\n    cr.rectangle(GX0, TOP, GX1 - GX0, BASE - TOP)\n    edge(cr, (40, 52, 66))\n    # the scale on the glass: brim is all freshwater, the liquid's top marked\n    if step > 0.02:\n        then_mark(cr, GX0 - 10, GX1 + 10, yw, \"liquid\", a=ease(seg(u, a0, a0 + 0.05)))\n\n    # Data walks in along the right of the glass as he throws\n    walk_in = ease(seg(u, a0, a1))\n    hx = 1000 - 160 * walk_in\n    hy = 1452\n\n    # the chunk in flight, from his hands into the glass\n    if u >= a0 and u < a1 + 0.01 and 0 < fly < 1:\n        r_, c = divmod(min(shown, total - 1), cols)\n        sx, sy = hx - 30, hy - 200\n        ex, ey = IX0 + c * cw + cw / 2, yw - r_ * rh - 40\n        bx = sx + (ex - sx) * fly\n        by = sy + (ey - sy) * fly - 300 * math.sin(math.pi * fly)\n        cr.save()\n        cr.translate(bx, by)\n        cr.rotate(fly * 5)\n        cr.rectangle(-40, -30, 80, 60)\n        solid(cr, ice, finish=\"ice\")\n        cr.restore()\n\n    # after it lands: he keeps throwing, the extra ice bounces off the brim\n    j = 0\n    if u > a1:\n        per = 0.14\n        j = int((u - a1) / per)\n        ph = ((u - a1) % per) / per\n        sx, sy = hx - 30, hy - 200\n        if ph < 0.5:\n            q = ph / 0.5\n            bx = sx + (GX1 - 60 - sx) * q\n            by = sy + (TOP - 20 - sy) * q - 260 * math.sin(math.pi * q)\n        else:\n            q = (ph - 0.5) / 0.5\n            bx = GX1 - 60 + 90 * q\n            by = TOP - 20 + (BASE - 30 - TOP + 20) * q * q\n        cr.save()\n        cr.translate(bx, by)\n        cr.rotate(ph * 7)\n        cr.rectangle(-36, -28, 72, 56)\n        solid(cr, ice, finish=\"ice\")\n        cr.restore()\n\n    # right by the camera: broken ice on the snow\n    for i in range(4):\n        box(cr, 70 + i * 260, 1700 + (i % 2) * 60, 120 + 20 * (i % 2), 80, ice,\n            depth=26, finish=\"ice\")\n    foreground(cr, \"snow\")\n    vignette(cr, a=0.28)\n\n    if u < a0:\n        host(\"point\", hx, hy, 220)\n    elif u <= a1:\n        host(\"toss\", hx, hy, 220, beat=k)\n    else:\n        host(\"toss\", hx, hy, 220, beat=n + j)\n\n    if done or u > a1:\n        fit_readout(cr, f\"{vice:g}%\", f\"of freshwater is frozen · {lab.lower()}\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, \"Freshwater\", \"all of it, in one glass\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.05)), size=130)\n",
      "scene": {
       "mechanic": "ice-locks-the-tap",
@@ -27597,9 +27597,9 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "Water you can reach",
+     "topic": "Water within reach",
      "role": "3 · THE LEFTOVER",
-     "say": "Every lake and river combined holds just 0.007% of Earth's water.",
+     "say": "Lakes and rivers contain 0.007% of all Earth's water. Accessible water still requires checking and treatment before drinking.",
      "scene": {
       "mechanic": "ten-thousand-dots-less-than-one",
       "concept": "a field of 10,000 ocean-blue dots floods in; the share you can drink is 0.007% - less than a single dot, which pulses alone in the corner",
@@ -27607,8 +27607,8 @@
      }
     }
    ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-09T12:28:39Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:32:37Z",
    "hook_was": "Only 3.5 percent of Earth's water isn't salty."
   },
   {
@@ -31107,10 +31107,10 @@
   },
   {
    "slug": "humpback-whale-recovery",
-   "title": "Humpback Whales Went From 450 To 25,000 In One Region",
-   "hook": "Humpbacks were supposed to be gone for good. They came back.",
-   "closing": "Whalers killed 2.9 million. The ban cut that to zero, and the oceans filled back up.",
-   "question": "Should whaling ever be allowed again? Tell me.",
+   "title": "Humpback Whales Rebounded To 25,000 After Near-Extinction In One Region",
+   "hook": "Western South Atlantic humpbacks rebounded to about 25,000 after near-extinction.",
+   "closing": "Recovery is possible, but a regional comeback does not mean every whale population is safe.",
+   "question": "What makes wildlife protection succeed long term?",
    "caption": "Commercial whaling killed an estimated 2.9 million whales in the 20th century alone, crashing one humpback population to just 450 animals. Since the 1986 whaling ban, that same population has rebuilt itself to about 25,000 -- and 10 of 14 tracked humpback populations worldwide are now fully recovered. Did you know whales almost went extinct?",
    "hashtags": [
     "whales",
@@ -31137,8 +31137,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE CRASH AND THE COMEBACK",
-     "topic": "Humpback whale recovery",
-     "say": "Whalers nearly wiped out South Atlantic humpbacks. After the ban, about 25,000 swim there today, which shows protection can undo the damage.",
+     "topic": "Humpback whale comeback",
+     "say": "The western South Atlantic estimate reaches 25,000 humpbacks. That regional rebound shows a severely depleted population can recover.",
      "scene": {
       "mechanic": "whale-school-regrowth",
       "concept": "a school of real humpback cutouts swims across the frame; the school thickens from 450 to 25,000 through the series",
@@ -31154,8 +31154,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · IT'S NOT JUST ONE GROUP",
-     "topic": "Humpback populations recovered",
-     "say": "Ten humpback populations are now off the endangered list. That means saving a species is not hopeless, though the rest still need help.",
+     "topic": "Humpback recovery uneven",
+     "say": "The supplied tally lists 10 recovered humpback populations. Other populations remain listed, so recovery is not universal.",
      "scene": {
       "mechanic": "whale-fourteen-pods-lift",
       "concept": "fourteen whale cutouts rest on the seabed; ten surface to a lit waterline one by one while four stay down",
@@ -31172,8 +31172,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · WHAT ACTUALLY FIXED IT",
-     "topic": "Whales killed before ban",
-     "say": "Last century whalers killed nearly 2.9 million whales. Under the ban, that number fell to zero, which is why the recovery is possible.",
+     "topic": "Humpback whaling context",
+     "say": "Commercial whaling killed about 2.9 million large whales during the measured century. This total covers large whales, not only humpbacks.",
      "scene": {
       "mechanic": "whaling-ban-spigot",
       "concept": "a stream of whale cutouts sinks for the 2.9 million killed, then the 1986 ban closes a gate and the stream stops at zero",
@@ -31181,8 +31181,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T03:42:00Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:32:38Z",
    "retold": "retell/v3",
    "hook_was": "Whalers left 450 humpbacks in the South Atlantic. Today there are 25,000."
   },
@@ -31990,7 +31990,7 @@
    ],
    "retold": "retell/v3",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:30:36Z",
+   "rewritten_at": "2026-10-20T11:32:37Z",
    "hook_was": "SIDS deaths fell 53% after one simple fix."
   },
   {
@@ -32492,10 +32492,10 @@
   },
   {
    "slug": "index-funds-own-corporate-america",
-   "title": "Who Actually Owns Corporate America Now?",
-   "hook": "Index funds quietly bought over half the market, and three firms hold the keys.",
-   "closing": "Your index fund has a vote. You don't.",
-   "question": "Do you know who actually votes your shares?",
+   "title": "Index Funds Reached 52%—And Their Managers Cast The Votes",
+   "hook": "Index funds reached 52% of the measured assets; managers wield the voting power.",
+   "closing": "Fund ownership also concentrates voting responsibilities, so look beyond fees when deciding who manages investments.",
+   "question": "Who should decide how fund shares vote?",
    "caption": "You think you picked your own stocks. Three index-fund giants now own over 20% of the average big US company -- and they're the ones casting the votes. Did you know this? Drop your reaction below 👇",
    "hashtags": [
     "indexfunds",
@@ -32521,8 +32521,8 @@
      "insight_type": "trend",
      "use_baseline": false,
      "role": "1 · THE SHIFT",
-     "topic": "Index Funds, Corporate America",
-     "say": "Index funds went from a rounding error to running over half the market."
+     "topic": "Index funds dominate",
+     "say": "Index funds reached 52% of assets in the supplied series. Passive investing had become the majority of the measured pool."
     },
     {
      "source": "offline",
@@ -32533,8 +32533,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · WHO OWNS",
-     "topic": "Who Actually Owns America",
-     "say": "BlackRock, Vanguard and State Street together own over a fifth of a typical big company."
+     "topic": "Index funds' managers",
+     "say": "BlackRock, Vanguard and State Street hold a combined 22% stake in the average large company here. Concentrated management has consequences."
     },
     {
      "source": "offline",
@@ -32546,14 +32546,14 @@
      "ascending": false,
      "use_baseline": false,
      "role": "3 · THE VOTE",
-     "topic": "Who Votes Your Shares",
-     "say": "Vanguard alone casts nearly one in ten votes at big company shareholder meetings.",
+     "topic": "Index funds' votes",
+     "say": "Vanguard casts 9% of the annual-meeting votes in this comparison. Owning through a fund is different from casting those votes personally.",
      "illustrated_scene": "# scene standard: 2026-10-11.2\ndef _ballot(cr, x, y, ang, s, tick, stamp=None):\n    # a paper ballot slip with its tick mark, raised by a shareholder\n    cr.save()\n    cr.translate(x, y)\n    cr.rotate(ang)\n    cr.rectangle(-17 * s, -11 * s, 34 * s, 22 * s)\n    cr.set_source_rgba(*_c((244, 240, 228)))\n    cr.fill_preserve()\n    cr.set_source_rgba(*_c((70, 66, 60), 0.6))\n    cr.set_line_width(1.5 * s)\n    cr.stroke()\n    if stamp is not None:\n        cr.rectangle(-15 * s, -9 * s, 30 * s, 18 * s)\n        cr.set_source_rgba(*_c(stamp))\n        cr.fill()\n        tick = (250, 250, 250)\n    cr.set_source_rgba(*_c(tick))\n    cr.set_line_width(3.2 * s)\n    cr.move_to(-8 * s, 0)\n    cr.line_to(-3 * s, 5 * s)\n    cr.line_to(8 * s, -6 * s)\n    cr.stroke()\n    cr.restore()\n\n\ndef _bale(cr, cx, base, w, h, strap, wrap=None):\n    # ONE bound block of ballot paper: its sheets show as strata on the\n    # front, a strap and a wax seal hold it; Vanguard's is wrapped in accent\n    x0 = cx - w / 2\n    d = 0.22 * w\n    box(cr, x0, base, w, h, wrap if wrap is not None else (238, 232, 214), depth=d,\n        finish=\"gloss\" if wrap is not None else \"matte\")\n    cr.save()\n    cr.rectangle(x0 + 2, base - h + 2, w - 4, h - 4)\n    cr.clip()\n    cr.set_source_rgba(*_c((120, 110, 92) if wrap is None else (20, 60, 70),\n                           0.35 if wrap is None else 0.3))\n    cr.set_line_width(1.5)\n    yy = base - 6\n    while yy > base - h + 4:\n        cr.move_to(x0 + 4, yy)\n        cr.line_to(x0 + w - 4, yy)\n        yy -= 7\n    cr.stroke()\n    cr.restore()\n    cr.rectangle(cx - 14, base - h, 28, h)\n    solid(cr, strap, rim=False)\n    cr.move_to(cx - 14, base - h)\n    cr.line_to(cx - 14 + d, base - h - d * 0.55)\n    cr.line_to(cx + 14 + d, base - h - d * 0.55)\n    cr.line_to(cx + 14, base - h)\n    cr.close_path()\n    solid(cr, strap, rim=False)\n    if h > 40:\n        disc(cr, cx, base - h / 2, 16, (170, 36, 34), finish=\"gloss\")\n\n\ndef _pan_back(cr, ex, ey, CH, R):\n    rim = ey + CH\n    cr.set_source_rgba(*_c((60, 56, 50)))\n    cr.set_line_width(6)\n    cr.move_to(ex, ey)\n    cr.line_to(ex - R + 10, rim)\n    cr.move_to(ex, ey)\n    cr.line_to(ex + R - 10, rim)\n    cr.stroke()\n    disc(cr, ex, ey, 16, P[\"brass\"], finish=\"metal\")\n    cr.save()\n    cr.translate(ex, rim)\n    cr.scale(1, 0.22)\n    cr.arc(0, 0, R, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, P[\"brass_shade\"], finish=\"metal\", rim=False)\n    return rim\n\n\ndef _pan_front(cr, ex, rim, R):\n    cr.save()\n    cr.translate(ex, rim)\n    cr.scale(1, 0.42)\n    cr.arc(0, 0, R, 0, math.pi)\n    cr.restore()\n    cr.close_path()\n    solid(cr, P[\"brass\"], finish=\"metal\")\n\n\ndef _listener(cr, x, y, s, body, hair, lift):\n    # a shareholder seen from behind, by the camera, ballot raised on the vote\n    cr.move_to(x - 120 * s, H + 10)\n    cr.curve_to(x - 120 * s, y + 80 * s, x - 80 * s, y + 30 * s, x, y + 30 * s)\n    cr.curve_to(x + 80 * s, y + 30 * s, x + 120 * s, y + 80 * s, x + 120 * s, H + 10)\n    cr.close_path()\n    solid(cr, body)\n    # ears, then the head, so it reads as a person and not a ball\n    for ex in (-50, 50):\n        cr.save()\n        cr.translate(x + ex * s, y - 18 * s)\n        cr.scale(0.55, 1.0)\n        cr.arc(0, 0, 15 * s, 0, 2 * math.pi)\n        cr.restore()\n        solid(cr, (196, 150, 120), rim=False)\n    disc(cr, x, y - 20 * s, 54 * s, hair)\n    if lift > 0.01:\n        hx, hy = x + 95 * s, y + 60 * s - 170 * s * lift\n        cr.set_source_rgba(*_c(tuple(int(c * 0.85) for c in body)))\n        cr.set_line_width(26 * s)\n        cr.set_line_cap(cairo.LINE_CAP_ROUND)\n        cr.move_to(x + 80 * s, y + 70 * s)\n        cr.line_to(hx, hy + 20 * s)\n        cr.stroke()\n        _ballot(cr, hx, hy - 10 * s, -0.15, 2.6 * s, (40, 44, 60))\n\n\ndef _curtain(cr, x0, x1, y1, flip):\n    # a heavy stage curtain, gathered, its folds lit from the upper left\n    n = 4\n    w = (x1 - x0) / n\n    for i in range(n):\n        fx = x0 + i * w\n        cr.move_to(fx, 0)\n        cr.line_to(fx + w, 0)\n        cr.curve_to(fx + w + 6, y1 * 0.5, fx + w - 4, y1 * 0.8, fx + w + (14 if flip else -14), y1)\n        cr.line_to(fx + (14 if flip else -14), y1)\n        cr.curve_to(fx - 4, y1 * 0.8, fx + 6, y1 * 0.5, fx, 0)\n        cr.close_path()\n        solid(cr, (128, 28, 34) if i % 2 else (156, 38, 42), finish=\"gloss\")\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a giant balance scale weighing ballots\n    SUBSTANCE: paper ballots\n    CAUSE: Data places Vanguard's bound block of ballots onto one pan and the scale tips down\n    One shareholder meeting, one vote, weighed on a brass balance on the\n    stage. Everyone else's ballots are two bound blocks, split evenly FOR\n    and AGAINST, so the beam hangs level. Data climbs the stepladder and\n    sets ONE more block on the AGAINST pan: Vanguard's, wrapped in the\n    accent, its height 9 for every 91 of everyone else's. It is not a heap\n    of copies — it is the weight that decides the vote: the beam swings\n    down under it, the level it hung at left as a dashed ghost. Landed by\n    0.62 and held; Data keeps his hands on the block, the audience keeps\n    raising its ballots. The whole balance sits in frame, centred.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    van = next((r for r in rows if \"vanguard\" in r[0].lower()), None)\n    if van is None:\n        van = max(rows, key=lambda r: r[1])\n    lab, val = van\n    rest = clamp(100.0 - val, 0.0, 100.0)\n    side = rest / 2.0\n    ACC = P[\"accent2\"]\n\n    carry = ease(seg(u, 0.16, 0.42))      # the block travels to the pan\n    tip = pop(seg(u, 0.42, 0.62))         # and the beam swings under it\n    landed_ = u >= 0.62\n    a = 0.36 * tip\n\n    KH = 4.6\n    BW = 210\n    R = 160\n    h_side = KH * side\n    h_van = max(30.0, KH * val)\n\n    PX, PY, L, CH = 520, 840, 290, 330\n    FLOOR = 1480\n\n    # --- the hall: panelled wall, tall windows, curtains, the banner ---\n    vgrad(cr, [(0, (44, 32, 30)), (0.6, (78, 58, 48)), (1, (104, 80, 64))], 0, 1220)\n    cr.set_source_rgba(*_c((28, 20, 18), 0.5))\n    cr.set_line_width(4)\n    for i in range(13):\n        cr.move_to(40 + i * 84, 280)\n        cr.line_to(40 + i * 84, 1220)\n    cr.stroke()\n    for i in range(3):\n        wx = 210 + i * 250\n        glow(cr, wx + 60, 640, 220, (255, 232, 196), 0.28)\n        # an arched window: a rounded head over the tall pane\n        cr.move_to(wx, 930)\n        cr.line_to(wx, 390)\n        cr.arc(wx + 60, 390, 60, math.pi, 2 * math.pi)\n        cr.line_to(wx + 120, 930)\n        cr.close_path()\n        solid(cr, (196, 210, 222), finish=\"glass\")\n        cr.set_source_rgba(*_c((60, 44, 38)))\n        cr.set_line_width(8)\n        cr.move_to(wx + 60, 330)\n        cr.line_to(wx + 60, 930)\n        cr.move_to(wx, 630)\n        cr.line_to(wx + 120, 630)\n        cr.stroke()\n        box(cr, wx - 14, 948, 148, 18, (92, 66, 52), depth=14)\n    for i in range(3):\n        glow(cr, 180 + i * 360, 70, 130, (255, 226, 170), 0.6)\n        disc(cr, 180 + i * 360, 70, 24, (252, 234, 196), finish=\"gloss\")\n    haze(cr, 0, 1220, (120, 96, 80), a=0.4)\n    _curtain(cr, -10, 170, 1240, False)\n    _curtain(cr, 910, 1090, 1240, True)\n    cr.rectangle(150, 150, 780, 90)\n    solid(cr, (34, 52, 92))\n    text(cr, \"ANNUAL SHAREHOLDER MEETING\", 540, 210, 36, (240, 232, 210),\n         face=\"bold\", anchor=\"center\", shadow=False)\n    # the stage\n    vgrad(cr, [(0, (164, 122, 86)), (1, (124, 90, 62))], 1220, 1590)\n    cr.save()\n    cr.rectangle(0, 1220, W, 370)\n    cr.clip()\n    cr.set_source_rgba(*_c((80, 56, 40), 0.35))\n    cr.set_line_width(3)\n    for i in range(16):\n        cr.move_to(540, 1050)\n        cr.line_to(-1500 + i * 260, H)\n    cr.stroke()\n    cr.restore()\n    glow(cr, PX + 80, 1320, 560, (255, 232, 190), 0.28)\n    box(cr, -20, 1600, W + 40, 34, (98, 66, 46), depth=12, finish=\"gloss\")\n    vgrad(cr, [(0, (52, 36, 30)), (1, (30, 22, 20))], 1600, H)\n\n    # --- the stepladder Data works from, beside the AGAINST pan ---\n    LX0, LX1, PLAT = 978, 1050, 1110\n    contact_shadow(cr, (LX0 + LX1) / 2, FLOOR + 4, 160, a=0.35)\n    for lx in (LX0, LX1):\n        cr.rectangle(lx, PLAT, 14, FLOOR - PLAT)\n        solid(cr, (176, 180, 190), finish=\"metal\")\n    cr.set_source_rgba(*_c((150, 154, 164)))\n    cr.set_line_width(10)\n    for ry in range(PLAT + 95, FLOOR, 95):\n        cr.move_to(LX0 + 7, ry)\n        cr.line_to(LX1 + 7, ry)\n    cr.stroke()\n    box(cr, LX0 - 10, PLAT + 6, LX1 - LX0 + 26, 18, (186, 190, 200), depth=14,\n        finish=\"metal\")\n\n    # --- the scale ---\n    cast_shadow(cr, PX - 170, PX + 170, FLOOR, length=360, a=0.32)\n    contact_shadow(cr, PX, FLOOR + 4, 400, a=0.42)\n    box(cr, PX - 170, FLOOR, 340, 50, (70, 48, 38), depth=56, finish=\"gloss\")\n    box(cr, PX - 100, FLOOR - 50, 200, 40, (86, 60, 46), depth=40, finish=\"gloss\")\n    cylinder(cr, PX - 26, FLOOR - 90, 52, FLOOR - 90 - PY, P[\"brass\"], finish=\"metal\")\n    cr.arc(PX, PY - 10, 100, math.pi * 1.2, math.pi * 1.8)\n    cr.set_source_rgba(*_c((236, 228, 206)))\n    cr.set_line_width(8)\n    cr.stroke()\n    cr.save()\n    cr.translate(PX, PY)\n    cr.rotate(a)\n    cr.move_to(-7, 0)\n    cr.line_to(0, -118)\n    cr.line_to(7, 0)\n    cr.close_path()\n    cr.restore()\n    solid(cr, (180, 40, 36), rim=False)\n\n    ca, sa = math.cos(a), math.sin(a)\n    lx_, ly_ = PX - L * ca, PY - L * sa\n    rx_, ry_ = PX + L * ca, PY + L * sa\n    lrim = _pan_back(cr, lx_, ly_, CH, R)\n    _bale(cr, lx_, lrim + 20, BW, h_side, (120, 100, 70))\n    _pan_front(cr, lx_, lrim, R)\n    rrim = _pan_back(cr, rx_, ry_, CH, R)\n    rbase = rrim + 20\n    _bale(cr, rx_, rbase, BW, h_side, (120, 100, 70))\n    if carry >= 0.999:\n        _bale(cr, rx_, rbase - h_side, BW, h_van, (244, 238, 226), wrap=ACC)\n    _pan_front(cr, rx_, rrim, R)\n\n    # THE SCALE in the picture: where the beam hung level, as a ghost\n    if tip > 0.05:\n        cr.rectangle(PX - L - 26, PY - 17, 2 * L + 52, 34)\n        ghost(cr, a=0.85)\n\n    cr.save()\n    cr.translate(PX, PY)\n    cr.rotate(a)\n    cr.rectangle(-L - 26, -17, 2 * L + 52, 34)\n    cr.restore()\n    solid(cr, P[\"brass\"], finish=\"metal\")\n    disc(cr, PX, PY, 30, P[\"brass_shade\"], finish=\"metal\")\n    disc(cr, PX, PY - 140, 24, P[\"brass\"], finish=\"metal\")\n\n    # --- Data: up the ladder, then sets Vanguard's block on the pan ---\n    climb_ = ease(seg(u, 0.03, 0.15))\n    hx = 1014 - 24 * climb_\n    hy = FLOOR + (PLAT - FLOOR) * climb_\n    if carry < 0.999:\n        sx0, sy0 = hx - 90, hy - 150\n        ex0, ey0 = rx_, rbase - h_side\n        bx = sx0 + (ex0 - sx0) * carry\n        by = sy0 + (ey0 - sy0) * carry - 60 * math.sin(math.pi * carry)\n        _bale(cr, bx, by, BW, h_van, (244, 238, 226), wrap=ACC)\n\n    # --- right by the camera: the audience, ballots going up on the vote ---\n    crowd = [(110, 1730, 1.05, (34, 40, 58), (40, 30, 26)),\n             (370, 1770, 1.15, (70, 44, 48), (96, 70, 44)),\n             (640, 1740, 1.0, (52, 60, 52), (24, 22, 24)),\n             (920, 1780, 1.15, (88, 80, 72), (150, 120, 84))]\n    for i, (x, y, s, body, hair) in enumerate(crowd):\n        ph = (t * 0.22 + i * 0.27) % 1.0\n        lift = ease(seg(ph, 0.0, 0.25)) * (1 - ease(seg(ph, 0.6, 0.85)))\n        _listener(cr, x, y, s, body, hair, lift)\n    vignette(cr, a=0.28)\n\n    if u < 0.03:\n        host(\"point\", hx, hy, 230)\n    elif u < 0.15:\n        host(\"climb\", hx, hy, 230)\n    elif u < 0.66:\n        host(\"place\", hx, hy, 230, beat=0)\n    else:\n        host(\"hold_up\", hx, hy, 230)\n\n    # the labels go on AFTER Data, under the pans and clear of him\n    text(cr, \"FOR\", lx_, lrim + 110, 40, look.INK, face=\"bold\", anchor=\"center\")\n    text(cr, \"AGAINST\", rx_, rrim + 110, 40, look.INK, face=\"bold\", anchor=\"center\")\n    if carry >= 0.999:\n        text(cr, lab, rx_ - BW / 2 - 16, rbase - h_side - h_van / 2 + 12, 36, look.INK,\n             face=\"bold\", anchor=\"right\", alpha=ease(seg(u, 0.42, 0.5)))\n\n    if landed_:\n        fit_readout(cr, f\"{int(round(val))}%\", f\"of shareholder votes · {lab} alone\",\n                    80, 520, a=ease(seg(u, 0.62, 0.66)), size=130, max_w=760)\n    else:\n        fit_readout(cr, \"Every vote\", \"who actually casts it\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130, max_w=760)\n"
     }
    ],
    "retold": "retell/v2",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-10T18:09:24Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:32:38Z",
    "hook_was": "3 companies now own 20%+ of the average big US stock."
   },
   {
@@ -32625,10 +32625,10 @@
   },
   {
    "slug": "pitch-drop-slowest-experiment",
-   "title": "9 Drops In 94 Years. That's The Whole Experiment.",
-   "hook": "They started staring at tar in 1930. The first drop took eight years.",
-   "closing": "Some science can't be rushed, and the best proof is often just waiting long enough.",
-   "question": "Could you wait 13 years for one drop?",
+   "title": "Pitch Looks Solid, Yet Its First Drop Took 8 Years",
+   "hook": "Pitch looks solid, but the first recorded drop took 8 years to fall.",
+   "closing": "A material can flow too slowly to notice; patience reveals behavior a quick glance misses.",
+   "question": "What would you wait years to measure?",
    "caption": "A physics experiment started in 1930 has only produced 9 drops -- ever. One sister experiment waited 69 years for its first. Could you wait that long? Drop your answer below 👇",
    "hashtags": [
     "physics",
@@ -32654,8 +32654,8 @@
      "insight_type": "trend",
      "use_baseline": false,
      "role": "1 · THE SETUP",
-     "topic": "The experiment barely moves",
-     "say": "The first drop of pitch took eight years to fall, so scientists waited nearly a decade for one blob."
+     "topic": "Pitch finally falls",
+     "say": "The first Queensland drop took 8 years in this timeline. A solid-looking material was flowing all along."
     },
     {
      "source": "offline",
@@ -32666,8 +32666,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · EVEN SLOWER",
-     "topic": "An even slower experiment",
-     "say": "Dublin made everyone wait 69 years for its first drop, nearly seven times the Queensland average.",
+     "topic": "Pitch filmed elsewhere",
+     "say": "Dublin's first filmed drop came after 69 years. First filmed does not necessarily mean the first drop ever fell.",
      "illustrated_scene": "# scene standard: 2026-10-09\ndef _pd_drop_path(cr, x, tip, L, r, w0=20):\n    # the pitch strand from the funnel tip, thinning, into a hanging bulb\n    by = tip + max(L - r, 0)\n    cr.move_to(x - w0, tip)\n    cr.curve_to(x - w0, tip + (by - tip) * 0.4, x - 7, by - r * 1.2, x - r * 0.75, by - r * 0.6)\n    cr.arc_negative(x, by, r, math.pi * 1.2, -0.2 * math.pi)\n    cr.curve_to(x + 7, by - r * 1.2, x + w0, tip + (by - tip) * 0.4, x + w0, tip)\n    cr.close_path()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a glass funnel dripping black pitch\n    SUBSTANCE: black tar pitch\n    CAUSE: Data pours bucket after bucket of pitch into the funnel and the drop stretches down until it falls\n    Dublin's pitch-drop experiment: a big glass funnel of black pitch on a\n    lab stand, a drop stretching out of its neck. Its length IS the\n    waiting. Queensland's 10-year mark is drawn on the drop's path as the\n    earlier level; Dublin's drop keeps stretching to 69 years, then lets go\n    and lands in the beaker by u=0.65. Held: the stretched drop stays as a\n    ghost where it hung, the clock keeps swinging and Data keeps pouring.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    slow = max(rows, key=lambda r: r[1])\n    fast = min(rows, key=lambda r: r[1])\n    Y1 = slow[1] or 1.0\n    Y0 = fast[1] or 1.0\n    ratio = Y1 / Y0\n\n    n = 6\n    a0, a1 = 0.10, 0.56\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    stream = seg(f, 0.0, 0.45) if a0 <= u < a1 + 0.01 else 0.0\n    grow = ease(seg(f, 0.25, 0.85))\n    step = 0.0 if u < a0 else min(1.0, (k + grow) / n)\n    years = Y1 * step\n    done = u >= a0 and k == n - 1 and grow >= 0.999\n\n    FX, RIM, NECK, TIP = 500, 620, 900, 960\n    PX = 350.0 / Y1                         # px of stretch per year\n    FLOOR = 1452\n    BENCH = 1180\n\n    # ---- the lab: plaster wall, a tall window of daylight\n    vgrad(cr, [(0, (52, 50, 50)), (0.5, (128, 122, 114)), (1, (170, 160, 146))], 0, BENCH)\n    cr.rectangle(40, 690, 200, 400)\n    cr.save()\n    cr.clip()\n    vgrad(cr, [(0, (150, 190, 226)), (0.7, (214, 228, 236)), (1, (188, 206, 170))], 690, 1090, 40, 240)\n    treeline(cr, 1090, (110, 140, 96), n=4, seed=3)\n    cr.restore()\n    glow(cr, 140, 890, 320, (255, 244, 214), 0.35)\n    cr.set_source_rgba(*_c((80, 66, 52)))\n    cr.set_line_width(14)\n    cr.rectangle(40, 690, 200, 400)\n    cr.move_to(140, 690)\n    cr.line_to(140, 1090)\n    cr.move_to(40, 890)\n    cr.line_to(240, 890)\n    cr.stroke()\n\n    # the back bench, stocked with jars and flasks\n    cr.rectangle(0, BENCH, W, FLOOR - BENCH)\n    solid(cr, (104, 76, 54), rim=False)\n    box(cr, -20, BENCH, W + 40, 22, (150, 112, 78), depth=30)\n    for i, (bx, bw, bh, col) in enumerate(((40, 60, 120, (120, 70, 40)), (120, 46, 80, (90, 120, 110)),\n                                           (180, 70, 150, (150, 96, 50)),\n                                           (820, 56, 110, (110, 80, 50)), (900, 80, 160, (84, 108, 124)),\n                                           (1000, 50, 90, (140, 90, 60)))):\n        contact_shadow(cr, bx + bw / 2, BENCH - 8, bw * 1.3, a=0.3)\n        cylinder(cr, bx, BENCH - 8, bw, bh, col, finish=\"glass\")\n        cylinder(cr, bx + bw * 0.3, BENCH - 8 - bh, bw * 0.4, 18, (60, 50, 44))\n    haze(cr, 600, BENCH, (176, 166, 150), a=0.25)\n    vgrad(cr, [(0, (150, 108, 70)), (1, (92, 62, 40))], FLOOR, H)\n\n    # ---- the wall clock, its pendulum always swinging\n    CX, CY = 990, 300\n    box(cr, CX - 55, 700, 110, 470, (96, 64, 40), depth=22)\n    disc(cr, CX, CY, 50, (238, 230, 210))\n    hand = t * 0.6\n    cr.set_source_rgba(*_c(INK))\n    cr.set_line_width(6)\n    cr.move_to(CX, CY)\n    cr.line_to(CX + 34 * math.sin(hand), CY - 34 * math.cos(hand))\n    cr.move_to(CX, CY)\n    cr.line_to(CX + 22 * math.sin(hand / 12), CY - 22 * math.cos(hand / 12))\n    cr.stroke()\n    sw = 0.28 * math.sin(t * math.pi)\n    px, py = CX + 240 * math.sin(sw), 400 + 240 * math.cos(sw)\n    cr.set_source_rgba(*_c((60, 44, 30)))\n    cr.set_line_width(8)\n    cr.move_to(CX, 400)\n    cr.line_to(px, py)\n    cr.stroke()\n    disc(cr, px, py, 34, P[\"brass\"], finish=\"metal\")\n\n    # ---- the retort stand and the beaker\n    cast_shadow(cr, 220, 760, FLOOR, length=300, a=0.3)\n    contact_shadow(cr, 480, FLOOR, 560, a=0.4)\n    box(cr, 210, FLOOR, 540, 26, (52, 54, 60), depth=60, finish=\"metal\")\n    cylinder(cr, 230, FLOOR - 20, 26, 880, (150, 154, 162), finish=\"metal\")\n    cr.rectangle(244, 872, FX - 244, 18)\n    solid(cr, (130, 134, 142), finish=\"metal\")\n    disc(cr, 250, 881, 18, (110, 112, 120), finish=\"metal\")\n    BK_TOP = FLOOR - 26 - 52\n    contact_shadow(cr, FX, FLOOR - 26, 240, a=0.3)\n    cylinder(cr, FX - 110, FLOOR - 26, 220, 52, (210, 226, 232), finish=\"glass\", a=0.6)\n\n    # ---- the funnel: a big glass cone, black pitch inside\n    cr.move_to(FX - 230, RIM)\n    cr.line_to(FX + 230, RIM)\n    cr.line_to(FX + 30, NECK - 40)\n    cr.line_to(FX + 20, TIP)\n    cr.line_to(FX - 20, TIP)\n    cr.line_to(FX - 30, NECK - 40)\n    cr.close_path()\n    solid(cr, (214, 230, 236), finish=\"glass\", a=0.55)\n    lvl = RIM + 50 - 34 * step\n    top_w = 200 * (NECK - 40 - lvl) / (NECK - 40 - RIM)\n    cr.move_to(FX - top_w, lvl)\n    cr.line_to(FX + top_w, lvl)\n    cr.line_to(FX + 22, NECK - 38)\n    cr.line_to(FX + 16, TIP)\n    cr.line_to(FX - 16, TIP)\n    cr.line_to(FX - 22, NECK - 38)\n    cr.close_path()\n    solid(cr, (26, 22, 20), finish=\"gloss\")\n    cr.save()\n    cr.translate(FX, RIM)\n    cr.scale(1, 0.16)\n    cr.arc(0, 0, 230, 0, 2 * math.pi)\n    cr.restore()\n    edge(cr, (150, 170, 180), width=6)\n    # a glint down the glass\n    cr.set_source_rgba(*_c((255, 255, 255), 0.5))\n    cr.set_line_width(8)\n    cr.move_to(FX - 190, RIM + 20)\n    cr.line_to(FX - 40, NECK - 60)\n    cr.stroke()\n\n    # ---- the drop: stretches with the years, lets go at the end\n    L = 30 + years * PX\n    r = 20 + 30 * step\n    fall = seg(u, a1 + 0.01, a1 + 0.09)\n    if fall <= 0:\n        _pd_drop_path(cr, FX, TIP, L, r)\n        solid(cr, (28, 24, 22), finish=\"gloss\")\n    else:\n        # where it hung for all those years, as a ghost\n        _pd_drop_path(cr, FX, TIP, 30 + Y1 * PX, 50)\n        ghost(cr, a=0.8)\n        sL = 30 + (L - 30) * (1 - ease(fall)) * 0.25\n        _pd_drop_path(cr, FX, TIP, max(sL, 36), 16)\n        solid(cr, (28, 24, 22), finish=\"gloss\")\n        if fall < 1:\n            y_from = TIP + L - r\n            dy = y_from + (BK_TOP + 28 - y_from) * fall * fall\n            disc(cr, FX, dy, r, (28, 24, 22), finish=\"gloss\")\n        else:\n            cr.save()\n            cr.translate(FX, BK_TOP + 30)\n            cr.scale(1, 0.35)\n            cr.arc(0, 0, r * 1.7, 0, 2 * math.pi)\n            cr.restore()\n            solid(cr, (28, 24, 22), finish=\"gloss\")\n\n    # THE SCALE, on the drop's own path: Queensland's wait where it reached\n    if years >= Y0:\n        then_mark(cr, FX - 150, FX + 90, TIP + 30 + Y0 * PX,\n                  f\"{fast[0].split(' (')[0]} {int(round(Y0))} yrs\")\n    if done:\n        then_mark(cr, FX - 150, FX + 90, TIP + 30 + Y1 * PX - 20,\n                  f\"{slow[0].split(' (')[0]} {int(round(Y1))} yrs\")\n\n    # ---- the stepladder Data works from, right against the funnel\n    LX, LT = 760, 790\n    contact_shadow(cr, LX + 65, FLOOR, 180, a=0.35)\n    for x0, x1, d in ((LX, LX + 22, 30), (LX + 110, LX + 132, -30)):\n        cr.move_to(x0, FLOOR)\n        cr.line_to(x0 + d, LT)\n        cr.line_to(x1 + d, LT)\n        cr.line_to(x1, FLOOR)\n        cr.close_path()\n        solid(cr, (176, 150, 112))\n    for i in range(1, 5):\n        yy = LT + i * (FLOOR - LT) / 5\n        cr.rectangle(LX + 12, yy, 110, 14)\n        solid(cr, (156, 128, 92))\n    box(cr, LX + 20, LT, 100, 16, (186, 160, 120), depth=20)\n\n    # the pitch pouring from his bucket into the funnel\n    pouring_on = u > a1 + 0.12 and 0.0 < seg(((u - a1 - 0.12) / 0.11) % 1.0, 0.1, 0.5) < 1.0\n    if stream > 0 or pouring_on:\n        cr.set_source_rgba(*_c((26, 22, 20)))\n        cr.set_line_width(16)\n        cr.move_to(LX + 20, LT - 150)\n        cr.curve_to(LX - 30, LT - 150, FX + 150, RIM - 40, FX + 110, lvl + 8)\n        cr.stroke()\n\n    # ---- right by the camera: old logbooks and broken pitch on the desk\n    vgrad(cr, [(0, (120, 84, 54)), (1, (70, 48, 32))], 1640, H)\n    for i, (bx, by, bw, col) in enumerate(((70, 1840, 360, (150, 40, 34)),\n                                           (90, 1790, 320, (54, 72, 104)),\n                                           (110, 1748, 290, (60, 92, 64)))):\n        if i == 0:\n            contact_shadow(cr, bx + bw / 2, by, bw * 1.1, a=0.45)\n        box(cr, bx, by, bw, 44, col, depth=60)\n        cr.rectangle(bx + 6, by - 36, bw - 12, 6)\n        solid(cr, (236, 226, 200), rim=False)\n    for x, y, s in ((640, 1790, 50), (770, 1850, 36), (900, 1770, 62)):\n        contact_shadow(cr, x, y + s * 0.6, s * 2.2, a=0.4)\n        cr.move_to(x - s, y + s * 0.3)\n        cr.line_to(x - s * 0.6, y - s * 0.6)\n        cr.line_to(x + s * 0.3, y - s * 0.8)\n        cr.line_to(x + s, y - s * 0.1)\n        cr.line_to(x + s * 0.7, y + s * 0.5)\n        cr.close_path()\n        solid(cr, (30, 26, 24), finish=\"gloss\")\n    vignette(cr, a=0.28)\n\n    # ---- Data: points, climbs the ladder, pours, and keeps pouring\n    climb = ease(seg(u, 0.03, a0))\n    hx = 960 - (960 - (LX + 70)) * climb\n    hy = FLOOR - (FLOOR - LT) * climb\n    if u < 0.03:\n        host(\"point\", hx, hy, 220)\n    elif u < a0:\n        host(\"climb\", hx, hy, 220)\n    elif u < a1 + 0.08:\n        host(\"pour\", hx, hy, 220, beat=k)\n    elif u < a1 + 0.12:\n        host(\"shock\", hx, hy, 220)\n    else:\n        host(\"pour\", hx, hy, 220, beat=n + int((u - a1 - 0.12) / 0.11))\n\n    # ---- the readout: Queensland's wait, then Dublin's\n    if done:\n        fit_readout(cr, f\"{int(round(Y1))} years\",\n                    f\"Dublin's first drop · {ratio:.1f}x Queensland's wait\",\n                    80, 520, size=130)\n    elif years >= Y0:\n        fit_readout(cr, f\"{int(round(Y0))} years\", \"Queensland's drip, between drops\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, \"Pitch drop\", \"Dublin's funnel, still waiting\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -32680,14 +32680,14 @@
      "ascending": false,
      "use_baseline": true,
      "role": "3 · WHY",
-     "topic": "Why the experiment crawls",
-     "say": "Pitch is 230 billion times thicker than water, and far thicker than honey. That's why one drop takes years."
+     "topic": "Pitch flows slowly",
+     "say": "Pitch is about 230 billion times as viscous as water in this comparison. Flow can be real while remaining almost invisible."
     }
    ],
    "hook_was": "What's the slowest experiment ever recorded?",
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-17T12:08:07Z"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-20T11:32:38Z"
   },
   {
    "slug": "california-condor-comeback",

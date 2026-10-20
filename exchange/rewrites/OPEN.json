@@ -1,6 +1,6 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-20T11:30:36Z",
+ "updated": "2026-10-20T11:32:38Z",
  "open": [
   {
    "id": "rubiks-cube-record-vs-robot__5d087bf9",
@@ -11,66 +11,6 @@
    ],
    "request": "exchange/rewrites/20261019/rubiks-cube-record-vs-robot__5d087bf9.request.json",
    "answer_path": "exchange/rewrites/20261019/rubiks-cube-record-vs-robot__5d087bf9.answer.json"
-  },
-  {
-   "id": "index-funds-own-corporate-america__19285cc1",
-   "slug": "index-funds-own-corporate-america",
-   "filed": "2026-10-19T11:44:41Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261019/index-funds-own-corporate-america__19285cc1.request.json",
-   "answer_path": "exchange/rewrites/20261019/index-funds-own-corporate-america__19285cc1.answer.json"
-  },
-  {
-   "id": "blood-type-rarity__962b83aa",
-   "slug": "blood-type-rarity",
-   "filed": "2026-10-19T11:44:41Z",
-   "why": [
-    "premise: brain: It states a fact without overturning a viewer expectation, relying only on a single statistic."
-   ],
-   "request": "exchange/rewrites/20261019/blood-type-rarity__962b83aa.request.json",
-   "answer_path": "exchange/rewrites/20261019/blood-type-rarity__962b83aa.answer.json"
-  },
-  {
-   "id": "pitch-drop-slowest-experiment__994072c3",
-   "slug": "pitch-drop-slowest-experiment",
-   "filed": "2026-10-19T11:44:41Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and does not hinge on a single, verifiable consequential number."
-   ],
-   "request": "exchange/rewrites/20261019/pitch-drop-slowest-experiment__994072c3.request.json",
-   "answer_path": "exchange/rewrites/20261019/pitch-drop-slowest-experiment__994072c3.answer.json"
-  },
-  {
-   "id": "humpback-whale-recovery__0a1256d1",
-   "slug": "humpback-whale-recovery",
-   "filed": "2026-10-19T11:44:41Z",
-   "why": [
-    "premise: brain: It relies on two numbers (450 and 25,000) rather than a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261019/humpback-whale-recovery__0a1256d1.request.json",
-   "answer_path": "exchange/rewrites/20261019/humpback-whale-recovery__0a1256d1.answer.json"
-  },
-  {
-   "id": "freshwater-accessible__94d3a9c8",
-   "slug": "freshwater-accessible",
-   "filed": "2026-10-19T11:44:40Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261019/freshwater-accessible__94d3a9c8.request.json",
-   "answer_path": "exchange/rewrites/20261019/freshwater-accessible__94d3a9c8.answer.json"
-  },
-  {
-   "id": "game-industry-layoffs-record__47b9280e",
-   "slug": "game-industry-layoffs-record",
-   "filed": "2026-10-19T11:44:40Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a specific viewer expectation and relies on a generic statistic rather than a striking, singular verifiable number."
-   ],
-   "request": "exchange/rewrites/20261019/game-industry-layoffs-record__47b9280e.request.json",
-   "answer_path": "exchange/rewrites/20261019/game-industry-layoffs-record__47b9280e.answer.json"
   },
   {
    "id": "english-internet-share-decline__21efaa68",
@@ -545,6 +485,16 @@
    "answer_path": "exchange/rewrites/20261018/peanut-allergy-guideline-flip__78a48cd5.answer.json"
   },
   {
+   "id": "blood-type-rarity__962b83aa",
+   "slug": "blood-type-rarity",
+   "filed": "2026-10-18T11:46:48Z",
+   "why": [
+    "premise: brain: The claim does not overturn a common viewer expectation and relies on a generic statistic rather than a surprising, verifiable reversal."
+   ],
+   "request": "exchange/rewrites/20261018/blood-type-rarity__962b83aa.request.json",
+   "answer_path": "exchange/rewrites/20261018/blood-type-rarity__962b83aa.answer.json"
+  },
+  {
    "id": "lottery-odds-vs-real-life__2ee01cb7",
    "slug": "lottery-odds-vs-real-life",
    "filed": "2026-10-18T11:46:48Z",
@@ -565,6 +515,46 @@
    "answer_path": "exchange/rewrites/20261018/back-to-sleep-campaign-cut-sids__1d5b6766.answer.json"
   },
   {
+   "id": "freshwater-accessible__94d3a9c8",
+   "slug": "freshwater-accessible",
+   "filed": "2026-10-18T11:46:47Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261018/freshwater-accessible__94d3a9c8.request.json",
+   "answer_path": "exchange/rewrites/20261018/freshwater-accessible__94d3a9c8.answer.json"
+  },
+  {
+   "id": "game-industry-layoffs-record__47b9280e",
+   "slug": "game-industry-layoffs-record",
+   "filed": "2026-10-18T11:46:47Z",
+   "why": [
+    "premise: brain: The premise does not reverse a viewer expectation and merely states two unrelated facts despite the number."
+   ],
+   "request": "exchange/rewrites/20261018/game-industry-layoffs-record__47b9280e.request.json",
+   "answer_path": "exchange/rewrites/20261018/game-industry-layoffs-record__47b9280e.answer.json"
+  },
+  {
+   "id": "index-funds-own-corporate-america__19285cc1",
+   "slug": "index-funds-own-corporate-america",
+   "filed": "2026-10-18T11:46:47Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261018/index-funds-own-corporate-america__19285cc1.request.json",
+   "answer_path": "exchange/rewrites/20261018/index-funds-own-corporate-america__19285cc1.answer.json"
+  },
+  {
+   "id": "pitch-drop-slowest-experiment__994072c3",
+   "slug": "pitch-drop-slowest-experiment",
+   "filed": "2026-10-18T11:46:47Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and does not hinge on a single, verifiable consequential number."
+   ],
+   "request": "exchange/rewrites/20261018/pitch-drop-slowest-experiment__994072c3.request.json",
+   "answer_path": "exchange/rewrites/20261018/pitch-drop-slowest-experiment__994072c3.answer.json"
+  },
+  {
    "id": "nobel-prize-discovery-age__3e12dc3c",
    "slug": "nobel-prize-discovery-age",
    "filed": "2026-10-18T11:46:45Z",
@@ -583,16 +573,6 @@
    ],
    "request": "exchange/rewrites/20261018/world-wetlands-lost__66020aa4.request.json",
    "answer_path": "exchange/rewrites/20261018/world-wetlands-lost__66020aa4.answer.json"
-  },
-  {
-   "id": "ants-outnumber-humans__1beccbad",
-   "slug": "ants-outnumber-humans",
-   "filed": "2026-10-17T12:56:19Z",
-   "why": [
-    "premise: brain: It presents a factual statistic without reversing a viewer's specific expectation."
-   ],
-   "request": "exchange/rewrites/20261017/ants-outnumber-humans__1beccbad.request.json",
-   "answer_path": "exchange/rewrites/20261017/ants-outnumber-humans__1beccbad.answer.json"
   },
   {
    "id": "astronaut-bone-loss__262309b8",
@@ -663,6 +643,16 @@
    ],
    "request": "exchange/rewrites/20261015/north-american-bird-collapse__58c079e0.request.json",
    "answer_path": "exchange/rewrites/20261015/north-american-bird-collapse__58c079e0.answer.json"
+  },
+  {
+   "id": "ants-outnumber-humans__1beccbad",
+   "slug": "ants-outnumber-humans",
+   "filed": "2026-10-15T13:23:21Z",
+   "why": [
+    "premise: brain: The claim does not subvert a specific viewer expectation; it merely states a known statistic."
+   ],
+   "request": "exchange/rewrites/20261015/ants-outnumber-humans__1beccbad.request.json",
+   "answer_path": "exchange/rewrites/20261015/ants-outnumber-humans__1beccbad.answer.json"
   },
   {
    "id": "eclipse-recurrence-rarity__789a0737",
