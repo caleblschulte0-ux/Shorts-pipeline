@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-20T15:36:24Z",
+ "updated": "2026-10-20T18:43:17Z",
  "open": [
+  {
+   "id": "peanut-allergy-guideline-flip__65e90a17",
+   "slug": "peanut-allergy-guideline-flip",
+   "filed": "2026-10-20T18:43:17Z",
+   "why": [
+    "premise: brain: It confirms rather than reverses a viewer expectation and lacks a surprising reversal tied to a single verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261020/peanut-allergy-guideline-flip__65e90a17.request.json",
+   "answer_path": "exchange/rewrites/20261020/peanut-allergy-guideline-flip__65e90a17.answer.json"
+  },
   {
    "id": "ceo-executive-pay-gap__20daafe8",
    "slug": "ceo-executive-pay-gap",
@@ -623,16 +633,6 @@
    ],
    "request": "exchange/rewrites/20261018/gps-einstein-fix__7df7a9d4.request.json",
    "answer_path": "exchange/rewrites/20261018/gps-einstein-fix__7df7a9d4.answer.json"
-  },
-  {
-   "id": "peanut-allergy-guideline-flip__78a48cd5",
-   "slug": "peanut-allergy-guideline-flip",
-   "filed": "2026-10-18T11:46:48Z",
-   "why": [
-    "premise: brain: The premise is vague, lacks a clear reversal of a specific expectation, and does not hinge on a single verifiable numeric claim."
-   ],
-   "request": "exchange/rewrites/20261018/peanut-allergy-guideline-flip__78a48cd5.request.json",
-   "answer_path": "exchange/rewrites/20261018/peanut-allergy-guideline-flip__78a48cd5.answer.json"
   },
   {
    "id": "nobel-prize-discovery-age__3e12dc3c",
