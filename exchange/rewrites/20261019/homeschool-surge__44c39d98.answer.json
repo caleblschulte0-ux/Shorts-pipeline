@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "homeschool-surge__44c39d98",
+  "slug": "homeschool-surge",
+  "by": "chatgpt",
+  "written_at": "2026-10-20T11:22:00Z",
+  "title": "Schools Reopened, But Homeschooling Stayed At 5.4%",
+  "hook": "Schools reopened, yet homeschooling remained at 5.4%, nearly double its earlier share.",
+  "closing": "Reopening classrooms did not restore the earlier pattern; families kept making different choices about where children learn.",
+  "question": "What matters most when choosing a school?",
+  "segments": [
+    {
+      "topic": "Homeschooling stayed high",
+      "say": "The later homeschooling share was 5.4%. It fell from the pandemic peak but remained nearly double its earlier level."
+    },
+    {
+      "topic": "Homeschooling parent concerns",
+      "say": "School environment or safety concerned 83% of homeschooling parents in this survey. It was a reported reason, not a measured cause."
+    },
+    {
+      "topic": "Homeschooling school comparison",
+      "say": "Private schooling accounted for 9.6% in the supplied comparison. Homeschooling had grown substantially but still served a smaller share."
+    }
+  ]
+}
