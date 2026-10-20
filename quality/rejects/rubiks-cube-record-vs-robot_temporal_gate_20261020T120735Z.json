@@ -1,0 +1,9 @@
+{
+ "slug": "rubiks-cube-record-vs-robot",
+ "ts": "20261020T120735Z",
+ "failure_class": "temporal_gate",
+ "evidence": "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)",
+ "weakest_scene": {},
+ "scene_plan": {},
+ "scenes": []
+}

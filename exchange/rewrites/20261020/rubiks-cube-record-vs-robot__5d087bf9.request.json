@@ -1,0 +1,156 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "rubiks-cube-record-vs-robot__5d087bf9",
+ "filed": "2026-10-20T12:07:19Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "rubiks-cube-record-vs-robot",
+ "current": {
+  "title": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
+  "hook": "The best cube solvers on Earth just lost to a robot, badly.",
+  "closing": "Humans spent decades getting fast, and a machine beat all of it in under half a second.",
+  "question": "Could you solve a cube that fast?",
+  "segments": [
+   {
+    "topic": "Rubik's Cube First Record",
+    "say": "In 1982, the first world championship solve took almost 23 seconds. For years, that was the number everyone chased."
+   },
+   {
+    "topic": "Rubik's Cube Record Falls",
+    "say": "By 2018 the record hit 3.47 seconds, over six times faster than 1982. Human hands kept getting quicker."
+   },
+   {
+    "topic": "Rubik's Cube Robot Record",
+    "say": "Then a robot solved the same cube in 0.38 seconds, about eight times faster than the best human."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Rubik's Cube First Record",
+   "say": "In 1982, the first world championship solve took almost 23 seconds. For years, that was the number everyone chased.",
+   "role": "1 · HOW SLOW IT STARTED",
+   "data": {
+    "file": "cube_record_1982_vs_now.json",
+    "unit": "seconds",
+    "title": "Rubik's Cube world record solve time, 1982 vs today",
+    "points": [
+     {
+      "label": "1982",
+      "value": 22.95
+     },
+     {
+      "label": "Today",
+      "value": 3.13
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Rubik's Cube Record Falls",
+   "say": "By 2018 the record hit 3.47 seconds, over six times faster than 1982. Human hands kept getting quicker.",
+   "role": "2 · THE RECORD KEPT FALLING",
+   "data": {
+    "file": "cube_record_decline_trend.json",
+    "unit": "seconds",
+    "title": "Rubik's Cube world record solve time, 1982-2023",
+    "points": [
+     {
+      "label": "1982",
+      "value": 22.95,
+      "period": "1982"
+     },
+     {
+      "label": "2000",
+      "value": 20,
+      "period": "2000"
+     },
+     {
+      "label": "2018",
+      "value": 3.47,
+      "period": "2018"
+     },
+     {
+      "label": "2023",
+      "value": 3.13,
+      "period": "2023"
+     }
+    ],
+    "n_points": 4
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Rubik's Cube Robot Record",
+   "say": "Then a robot solved the same cube in 0.38 seconds, about eight times faster than the best human.",
+   "role": "3 · THEN A MACHINE TRIED",
+   "data": {
+    "file": "cube_human_vs_robot_record.json",
+    "unit": "seconds",
+    "title": "Rubik's Cube record: fastest human vs fastest robot",
+    "points": [
+     {
+      "label": "Fastest human",
+      "value": 3.13
+     },
+     {
+      "label": "Fastest robot",
+      "value": 0.38
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "judge: blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+ ],
+ "reasons": [
+  "judge: blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+ ],
+ "judge": {
+  "ts": "2026-10-20T12:07:05+00:00",
+  "score": 14,
+  "one_line": "blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)",
+  "problems": [
+   "max_dup_run 48 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+  ],
+  "fixes": [
+   "raise real motion per output frame (see temporal thresholds)"
+  ]
+ },
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261020/rubiks-cube-record-vs-robot__5d087bf9.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
