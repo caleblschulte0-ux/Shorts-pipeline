@@ -247,7 +247,8 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
               skip: set | None = None,
               title_has: list[str] | None = None,
               max_s: int = MAX_S, per_video: int = 0,
-              title_not: re.Pattern | None = None) -> list[dict]:
+              title_not: re.Pattern | None = None,
+              query: str = "") -> list[dict]:
     """Up to `n` CHECKED shots showing `look`, from as few videos as it
     takes: a highlight reel of two players holds a dozen shots of them,
     and the tribute montage wants several (operator, 2026-10-21, of a
@@ -260,7 +261,9 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
     length and `per_video` (0: no cap) how many shots one video gives, so
     a montage can be made of short clips of one play each instead of a
     fan reel's wide shots and cutaways; a title matching `title_not` is
-    skipped. [] when none, or no brain. Never
+    skipped. `query` is what YouTube is searched for when `look` (what
+    the brain must see) is a sentence of rules — searching with the rules
+    themselves returned one wrong video per search all of 2026-10-21. [] when none, or no brain. Never
     raises."""
     who = str(who or "").strip()
     look = str(look or "").strip() or who
@@ -273,7 +276,7 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
     try:
         from funnel import hot_clips
         seen, cands = set(), []
-        for q in queries(who, look):
+        for q in queries(who, query or look):
             for v in hot_clips.youtube(q, days=365 * YEARS,
                                        n=MANY_CANDIDATES, max_s=max_s):
                 if v["url"] not in seen and not is_talk(v.get("title")) \
@@ -282,7 +285,8 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
                             v.get("title") or "")):
                     seen.add(v["url"])
                     cands.append(v)
-        print(f"[footage] {look[:50]!r}: {len(cands)} candidate(s)",
+        print(f"[footage] {(query or look)[:50]!r}: {len(cands)} "
+              "candidate(s)",
               flush=True)
         for k, v in enumerate(cands[:MANY_CANDIDATES]):
             if len(got) >= n:

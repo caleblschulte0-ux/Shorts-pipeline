@@ -105,14 +105,16 @@ def frame_look(look: str, people: list[str], team: str = "",
     the Warriors and Russ alone on the Clippers had passed as "them"; then
     KD on the Suns guarding Russ passed as "together")."""
     if len(people) > 1 and team and numbers:
-        # a face is too small to tell at broadcast distance; a number is
-        # not (then: shots of KD guarding Russ passed as "together")
-        nums = " and ".join(f"#{n}" for n in numbers)
-        return (f"{look}: {team} players wearing {nums} BOTH visible in "
-                f"this frame, both in {team} uniforms, as teammates in the "
-                "play; NOT one of them alone, NOT one of them guarding the "
-                "other on another team, a close-up of one face, a replay "
-                "graphic, a studio or the crowd")
+        # the clip's TITLE names all of them (`title_has`); the frame has
+        # to be their team's play with one of their numbers on it (a face
+        # is too small to tell at broadcast distance; then: KD guarding
+        # Russ passed as "together"; and asking for every number in one
+        # frame refused all 17 frames of a "Top 10 connections" reel)
+        nums = " or ".join(f"#{n}" for n in numbers)
+        return (f"{look}: the play itself, a {team} player wearing {nums} "
+                f"in a {team} uniform making it; NOT a player of another "
+                "team, a close-up of one face, a far-away wide shot, a "
+                "replay graphic, a studio or the crowd")
     if len(people) > 1 and team:
         # The clip's TITLE names every one of them (`title_has`); asking
         # the brain to pick both faces out of a 640px frame refused six
@@ -149,7 +151,7 @@ def shots(item: dict, work: Path, title: str = "") -> list[dict]:
             item["who"], frame_look(look, people, item.get("team", ""),
                                     item.get("numbers")),
             n=want, secs=SHOT_S, max_s=PLAY_MAX_S, per_video=PER_CLIP,
-            title_not=VERSUS if item.get("team") else None,
+            title_not=VERSUS if item.get("team") else None, query=look,
             work=d, title=title, skip=seen,
             title_has=[n.split()[-1] for n in people] if len(people) > 1
             else None)
