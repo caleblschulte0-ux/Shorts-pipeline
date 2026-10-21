@@ -275,10 +275,10 @@ def _save_once(media_url: str, headers: dict, out: Path) -> bool:
             if n > MAX_BYTES:
                 raise ValueError("too large")
             f.write(b)
-    head = tmp.read_bytes()[:400] if n < 400_000 else b""
+    head = tmp.read_bytes()[:3000] if n < 400_000 else b""
     if n < 50_000 or head.lstrip()[:15].lower().startswith((b"<!doctype", b"<html")):
         print(f"::warning::[yt_convert] {media_url[:90]} gave a {n}-byte "
-              f"page, not a video: {head[:300]!r}", flush=True)
+              f"page, not a video: {head!r}", flush=True)
         tmp.unlink(missing_ok=True)
         return False
     tmp.replace(out)
