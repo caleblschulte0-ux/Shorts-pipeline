@@ -208,6 +208,23 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
             outro.shots({**item, "team": "Oklahoma City Thunder"},
                         Path(tempfile.mkdtemp()))
         self.assertTrue(all(m <= 180 and 0 < p <= 2 for m, p in caps))
+        # then three shots of a "Westbrook vs Durant" video
+        nums = outro.parse({**OUTRO, "people": item["people"],
+                            "team": "Oklahoma City Thunder",
+                            "numbers": ["35", "0"]})
+        self.assertEqual(nums["numbers"], ["35", "0"])
+        look = outro.frame_look("x", nums["people"], nums["team"],
+                                nums["numbers"])
+        self.assertIn("#35 and #0 BOTH", look)
+        self.assertIn("guarding", look)
+        self.assertTrue(outro.VERSUS.search("Westbrook vs Durant 😳"))
+        self.assertFalse(outro.VERSUS.search("Westbrook to Durant alley oop"))
+        nots = []
+        with mock.patch.object(find_footage, "find_many", side_effect=(
+                lambda *a, **k: nots.append(k.get("title_not")) or [])):
+            outro.shots(nums, Path(tempfile.mkdtemp()))
+        self.assertTrue(all(n is outro.VERSUS for n in nots))
+        self.assertIn('"numbers"', author.SYSTEM)
         # and without a team, both faces in the frame, as teammates
         self.assertIn("opposing teams", outro.frame_look("x", item["people"]))
         self.assertIn('"team"', author.SYSTEM)

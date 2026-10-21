@@ -54,6 +54,7 @@ Return STRICT JSON:
           "song": str,
           "broll": [{"who": str, "look": str, "at": number}, ...],
           "outro": {"song": str, "who": str, "people": [str, ...], "team": str,
+                    "numbers": [str, ...],
                     "looks": [str, ...], "grade": str},
           "cut": {"start": number, "end": number}, "complete": bool}}
 
@@ -207,7 +208,10 @@ Rules:
     the frame together (operator: "not of Russ and KD" of shots of one of
     them alone); "team" is the team they played on TOGETHER when the
     look-back is about teammates ("Oklahoma City Thunder" — shots of them
-    on opposing teams do not count), else ""; "looks" are 3-4 searches
+    on opposing teams do not count), else ""; "numbers" are their jersey
+    numbers on that team, in the order of "people" (["35", "0"]) — the
+    shots are checked by the numbers, a face being too small to tell at
+    broadcast distance; "looks" are 3-4 searches
     for ONE famous play of them each, the way a clip of it is titled on
     YouTube ("Westbrook to Durant alley oop", "Durant Westbrook Thunder
     game winner") — each shot is cut from a short clip of that play. "grade": "grey" for the

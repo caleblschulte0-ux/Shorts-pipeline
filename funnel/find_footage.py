@@ -111,11 +111,12 @@ def download(url: str, out: Path) -> Path | None:
         return None
 
 
-def _frame(video: Path, at: float, out: Path) -> Path | None:
+def _frame(video: Path, at: float, out: Path, width: int = 640
+           ) -> Path | None:
     try:
         subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", f"{at:.2f}",
                         "-i", str(video), "-frames:v", "1", "-vf",
-                        "scale=640:-2", str(out)],
+                        f"scale={width}:-2", str(out)],
                        check=True, capture_output=True, timeout=60)
         return out if out.exists() else None
     except Exception:  # noqa: BLE001
@@ -245,7 +246,8 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
               work: Path | str = ".", title: str = "",
               skip: set | None = None,
               title_has: list[str] | None = None,
-              max_s: int = MAX_S, per_video: int = 0) -> list[dict]:
+              max_s: int = MAX_S, per_video: int = 0,
+              title_not: re.Pattern | None = None) -> list[dict]:
     """Up to `n` CHECKED shots showing `look`, from as few videos as it
     takes: a highlight reel of two players holds a dozen shots of them,
     and the tribute montage wants several (operator, 2026-10-21, of a
@@ -257,7 +259,8 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
     of them alone is never downloaded); `max_s` caps a candidate's
     length and `per_video` (0: no cap) how many shots one video gives, so
     a montage can be made of short clips of one play each instead of a
-    fan reel's wide shots and cutaways. [] when none, or no brain. Never
+    fan reel's wide shots and cutaways; a title matching `title_not` is
+    skipped. [] when none, or no brain. Never
     raises."""
     who = str(who or "").strip()
     look = str(look or "").strip() or who
@@ -274,7 +277,9 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
             for v in hot_clips.youtube(q, days=365 * YEARS,
                                        n=MANY_CANDIDATES, max_s=max_s):
                 if v["url"] not in seen and not is_talk(v.get("title")) \
-                        and titled(v.get("title"), title_has):
+                        and titled(v.get("title"), title_has) \
+                        and not (title_not and title_not.search(
+                            v.get("title") or "")):
                     seen.add(v["url"])
                     cands.append(v)
         for k, v in enumerate(cands[:MANY_CANDIDATES]):
@@ -288,7 +293,8 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
                 continue
             frames = [(i, p) for i, f in enumerate(MANY_POINTS)
                       if (p := _frame(video, dur * f,
-                                      work / f"many_{tag}_{k}_{i}.png"))]
+                                      work / f"many_{tag}_{k}_{i}.png",
+                                      width=1280))]   # numbers readable
             verdicts = judge(frames, look, title) if frames else None
             if verdicts is None:
                 print(f"[footage] {who!r}: no brain to check the footage — "
