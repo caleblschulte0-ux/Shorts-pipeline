@@ -14782,14 +14782,59 @@
       "ts": "2026-10-21T11:52:48.443024+00:00"
     },
     "clip-20261021-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/HelplessSpunkySproutTTours-6nJ8HHdnH83OwV4w",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/eoX4TnevTBk",
       "title": "Stableronaldo Asks Who Wins This Fight And Picks His Girlfriend Amanda \ud83d\ude33",
       "kind": "twitch_clip",
-      "ts": "2026-10-21T11:55:23.880718+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-21T11:55:32.602456+00:00",
+      "uploaded_at": "2026-10-21T11:55:32.602473+00:00",
+      "publish_at": "2026-10-21T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261021-stableronaldo-asks-who-wins-this-fight-and-picks-afc867dc",
+        "tiktok": "queued for 2026-10-21T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/HelplessSpunkySproutTTours-6nJ8HHdnH83OwV4w",
+      "streamer": "stableronaldo",
+      "series": "drama",
+      "hook": "Stableronaldo picks his girl to win the fight \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2194,
+      "banger": 0.5,
+      "cut": {
+        "start": 12.3,
+        "end": 29.9
+      },
+      "director_cut": true
+    },
+    "rejected-plausiblezanycroquetteopieop-qpbvhsaqzetckbhb": {
+      "source_url": "https://www.twitch.tv/valkyrae/clip/PlausibleZanyCroquetteOpieOP-qpBVHSaQzeTCkBhb",
+      "streamer": "valkyrae",
+      "title": "THE PHOTO \ud83d\ude2d",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (static illustration, no visible event)",
+      "ts": "2026-10-21T11:56:17.498933+00:00"
+    },
+    "rejected-refinedassiduouseagleyoudontsay-vcccp2kbgec9pmel": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/RefinedAssiduousEagleYouDontSay-vcCcp2kbgEc9PmEl",
+      "streamer": "caseoh_",
+      "title": "timing of doom",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Minecraft flying, no clear event)",
+      "ts": "2026-10-21T11:56:49.215077+00:00"
+    },
+    "rejected-boldcallousbatteryswiftrage-0pvsnfx9-vy4rlgu": {
+      "source_url": "https://www.twitch.tv/lacy/clip/BoldCallousBatterySwiftRage-0Pvsnfx9-VY4rlgu",
+      "streamer": "lacy",
+      "title": "Lacy Gets Told \"That's Assault\" After This Phone Grab Goes Wrong",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp picture is only about a third of the canvas height, a thin strip between large blurred and black areas. The subjec; vision: The picture doesn't match the title and hook. 'Phone grab' and 'That's assault' are promised, but most frames show a cro; vision: Frames at 3.5s and 5.9s are very",
+      "ts": "2026-10-21T12:02:11.037322+00:00"
     }
   }
 }
