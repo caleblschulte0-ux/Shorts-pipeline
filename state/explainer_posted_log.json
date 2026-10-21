@@ -3941,6 +3941,13 @@
       ],
       "words_first_10s": 20,
       "scene_changes_before_5s": 2
+    },
+    "genz-drinking-decline": {
+      "claimed_at": "2026-10-21T21:52:11.242008+00:00",
+      "title": "Gen Z Broke A 20-Year Drinking Habit",
+      "publish_at": "2026-10-21T22:09:00Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4989,6 +4996,14 @@
       "state": "posted",
       "slug": "kelp-forest-sea-star-collapse",
       "at": "2026-10-21T11:13:49.285515+00:00"
+    },
+    {
+      "claimed_at": "2026-10-21T21:52:11.242008+00:00",
+      "title": "Gen Z Broke A 20-Year Drinking Habit",
+      "publish_at": "2026-10-21T22:09:00Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "genz-drinking-decline"
     }
   ]
 }
