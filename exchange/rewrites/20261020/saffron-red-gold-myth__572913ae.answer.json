@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "saffron-red-gold-myth__572913ae",
+  "slug": "saffron-red-gold-myth",
+  "by": "chatgpt",
+  "written_at": "2026-10-21T11:27:52.896Z",
+  "title": "Saffron Costs $15 Per Gram Because Harvesting Takes 55 Hours",
+  "hook": "Saffron costs $15 per gram.",
+  "closing": "The price reflects painstaking hand labor, so a tiny amount carries hours of work.",
+  "question": "Have you cooked with real saffron?",
+  "segments": [
+    {
+      "topic": "Saffron Price",
+      "say": "Saffron costs $15 per gram. The price gap with ordinary spices is enormous."
+    },
+    {
+      "topic": "Saffron Price",
+      "say": "Saffron tops the comparison at $15 per gram. Even the specialty foods shown cost less."
+    },
+    {
+      "topic": "Saffron Labor",
+      "say": "Saffron requires 55 labor hours per pound. Hand harvesting makes the price easier to understand."
+    }
+  ]
+}
