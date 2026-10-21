@@ -14633,6 +14633,43 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (Monologue over unrelated routine gamepla)",
       "ts": "2026-10-20T11:31:57.202007+00:00"
+    },
+    "rejected-charmingobesegullkeepo-nrqirftmsorb8olz": {
+      "source_url": "https://www.twitch.tv/xqc/clip/CharmingObeseGullKeepo-nrQIrFTmSORb8olz",
+      "streamer": "xqc",
+      "title": "The Joker returns to Los Santos",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-10-21T11:34:17.598808+00:00"
+    },
+    "rejected-jazzyfaintstorkyoudontsay-g7id3rm9vdwkr9zg": {
+      "source_url": "https://www.twitch.tv/forsen/clip/JazzyFaintStorkYouDontSay-G7ID3Rm9VdwKr9zg",
+      "streamer": "forsen",
+      "title": "forsenCD",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (explicit game content, age-restrict risk)",
+      "ts": "2026-10-21T11:34:55.072380+00:00"
+    },
+    "rejected-cooperativelovelywasabiwow-zkqj1esxcz0ax7ki": {
+      "source_url": "https://www.twitch.tv/xqc/clip/CooperativeLovelyWasabiWow-ZkqJ1esXcz0ax7ki",
+      "streamer": "xqc",
+      "title": "PAPERLESS PAUL back 10-8 LOL",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (GTA RP traffic stop, no visible payoff)",
+      "ts": "2026-10-21T11:35:59.716708+00:00"
+    },
+    "clip-20261021-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/FaintPoisedCarabeefPeteZaroll-DS2Ig6BA3zO5HpIa",
+      "story_key": null,
+      "streamer": "plaqueboymax",
+      "title": "Plaqueboymax Gets Told Nobody In Australia Has Ever Seen Anyone Like Him",
+      "kind": "twitch_clip",
+      "ts": "2026-10-21T11:39:26.183651+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
