@@ -43,7 +43,11 @@ def best_cuts(report: dict) -> list[dict]:
         if not (c.get("files") or {}).get("mp4"):
             continue
         rv = c.get("review") or {}
+        # the audience arm has no score: its measured checks rank it
         key = (bool(c.get("passes")), int(rv.get("story_score") or 0),
+               bool(rv.get("structure_ok")),
+               -len(rv.get("problems") or [])
+               if rv.get("gate") == "structure" else 0,
                int(c.get("revision") or 0))
         cur = best.get(c.get("label", ""))
         if cur is None or key >= cur["_key"]:

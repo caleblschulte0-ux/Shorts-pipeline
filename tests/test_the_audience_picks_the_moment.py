@@ -62,14 +62,15 @@ class MeasuredChecks(unittest.TestCase):
 class TheArmNeverAsksTheCritic(unittest.TestCase):
     def test_the_audience_branch_continues_before_the_critic(self):
         src = (REPO / "scripts" / "run_third.py").read_text()
-        i = src.index("if _audience:\n                    from third_capture "
-                      "import structure_check")
+        i = src.index("from third_capture import structure_check")
         j = src.index("review = story_director.review_rough_cut(", i)
         branch = src[i:j]
         self.assertIn("continue", branch)
         self.assertNotIn("review_rough_cut", branch)
         # never publishes: nothing it keeps is a pass the channel promotes
         self.assertIn('"publish": False', branch)
+        # the director is told the picked clip is the core, kept whole
+        self.assertIn("_AUDIENCE_CUT if _audience", src)
         ast.parse(src)
 
 

@@ -42,39 +42,55 @@ def opening_line(led: dict, n: int = 8) -> str:
     return " ".join(str(w["w"]).strip() for w in _words(led)[:n])
 
 
-def check(led: dict, proven_source: str = "") -> list[str]:
-    """The cut's measured defects. `led` is `story.render_story`'s ledger
-    (final_words on the cut's own clock, beats with source_id and their
-    place on it, duration_s); `proven_source` is the source_id of the clip
-    the audience picked."""
-    out: list[str] = []
+def problems(led: dict, proven_source: str = "") -> list[dict]:
+    """The cut's measured defects, each as a repair the director can act
+    on ({type, at, fix}, the shape `story_director.revise_edl` reads).
+    `led` is `story.render_story`'s ledger (final_words on the cut's own
+    clock, beats with source_id and out_start/out_end, duration_s);
+    `proven_source` is the source_id of the clip the audience picked."""
+    out: list[dict] = []
+
+    def bad(at, what, fix):
+        out.append({"type": "structure", "at": float(at), "what": what,
+                    "fix": f"{what}: {fix}"})
     dur = float(led.get("duration_s") or 0.0)
     ws = _words(led)
     if not MIN_S <= dur <= MAX_S:
-        out.append(f"length {dur:.0f}s outside {MIN_S:.0f}-{MAX_S:.0f}s")
+        bad(dur, f"length {dur:.0f}s outside {MIN_S:.0f}-{MAX_S:.0f}s",
+            "keep the picked clip whole and only as much before it as a "
+            "stranger needs; the viral clips this copies run about 30s")
     if not ws:
-        return out + ["nobody speaks"]
+        bad(0, "nobody speaks", "open and end on lines that are said")
+        return out
     if float(ws[0]["s"]) > OPEN_BY_S:
-        out.append(f"opens on {float(ws[0]['s']):.1f}s of silence")
+        bad(0, f"opens on {float(ws[0]['s']):.1f}s of silence",
+            "start on the first line that states the situation")
     if FILLER.match(opening_line(led)):
-        out.append(f"opens on filler: {opening_line(led)!r}")
-    gaps = [(float(b["s"]) - float(a["e"]), float(a["e"]))
-            for a, b in zip(ws, ws[1:])]
-    gaps.append((dur - float(ws[-1]["e"]), float(ws[-1]["e"])))
-    for g, at in gaps[:-1]:
-        if g > MAX_GAP_S:
-            out.append(f"{g:.1f}s of dead air at {at:.0f}s")
+        bad(0, f"opens on filler: {opening_line(led)!r}",
+            "start on the line that states the situation, not the run-up")
+    for a, b in zip(ws, ws[1:]):
+        if float(b["s"]) - float(a["e"]) > MAX_GAP_S:
+            bad(a["e"], f"{float(b['s']) - float(a['e']):.1f}s of dead air "
+                f"at {float(a['e']):.0f}s", "cut the stretch nobody talks in")
             break
     last = str(ws[-1]["w"]).rstrip("\"'”’)")
-    if not last.endswith((".", "!", "?")) and gaps[-1][0] < 0.35:
-        out.append(f"ends mid-sentence on {ws[-1]['w']!r}")
+    if not last.endswith((".", "!", "?")) and dur - float(ws[-1]["e"]) < 0.35:
+        bad(ws[-1]["e"], f"ends mid-sentence on {ws[-1]['w']!r}",
+            "end after a finished line")
     if proven_source:
         mine = [b for b in led.get("beats") or []
                 if b.get("source_id") == proven_source]
         if not mine:
-            out.append("the moment the audience picked is not in the cut")
+            bad(0, "the moment the audience picked is not in the cut",
+                "the clip viewers made is the story; it must be in it")
         else:
             end = max(float(b.get("out_end", dur)) for b in mine)
             if dur - end > TAIL_AFTER_PROVEN_S:
-                out.append(f"trails {dur - end:.0f}s past the picked moment")
+                bad(end, f"trails {dur - end:.0f}s past the picked moment",
+                    "end on the picked clip's payoff or the reaction to it")
     return out
+
+
+def check(led: dict, proven_source: str = "") -> list[str]:
+    """`problems` as plain sentences; [] passes."""
+    return [p["what"] for p in problems(led, proven_source)]
