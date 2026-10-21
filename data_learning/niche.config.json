@@ -34914,8 +34914,8 @@
      },
      "insight_type": "trend",
      "role": "1 · HOW MANY AMERICANS STILL VOLUNTEER",
-     "topic": "how many americans still volunteer",
-     "say": "In 2008, nearly 3 in 10 Americans volunteered formally. That fell to a record-low 23% by 2021, before climbing to 28% in 2023."
+     "topic": "Americans who volunteer",
+     "say": "In 2021, formal volunteering hit a record low of 23%. By 2023 it had bounced most of the way back."
     },
     {
      "source": "offline",
@@ -34926,8 +34926,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · WHO STILL VOLUNTEERS THE MOST",
-     "topic": "who is most likely to volunteer",
-     "say": "But that drop isn't even. College graduates volunteer at more than double the rate of everyone else, 37% versus 16%."
+     "topic": "Volunteer rate by degree",
+     "say": "College graduates volunteer at more than double the rate of everyone else, 37%. Whether you finished college shapes who shows up."
     },
     {
      "source": "offline",
@@ -34938,10 +34938,13 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "3 · WHAT VOLUNTEERING IS ACTUALLY WORTH",
-     "topic": "what volunteer hours are worth",
-     "say": "AmeriCorps puts a dollar figure on that lost time: about 167 billion dollars of labor in 2023 alone, work nonprofits never got back."
+     "topic": "Value of volunteer hours",
+     "say": "In 2023, volunteer hours were worth about 167 billion dollars of labor. That's work nonprofits would otherwise have to pay for."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-21T17:59:14Z"
   },
   {
    "slug": "japan-vending-machine-density",
@@ -35010,7 +35013,7 @@
    "slug": "nuclear-stockpile-growth-reversal",
    "title": "The World's Nuclear Stockpile Is Growing Again After 35 Years",
    "hook": "The world stopped shrinking its nuclear arsenal.",
-   "closing": "The countdown that ran one direction for 35 years just flipped.",
+   "closing": "The long shrinking has hit a turn, and that matters to everyone living under these weapons.",
    "question": "Did that number surprise you?",
    "caption": "The global nuclear warhead count fell for nearly 40 straight years after the Cold War. Now it's turning back up, and one country's buildup is the biggest reason why. Did this surprise you? 👇",
    "hashtags": [
@@ -35036,8 +35039,9 @@
      },
      "insight_type": "trend",
      "role": "1 · HOW THE NUCLEAR STOCKPILE SHRANK",
-     "topic": "how the nuclear stockpile shrank for decades",
-     "say": "In 1986, the world had about 70,300 nuclear warheads. Treaties cut that to roughly 12,500 by 2023, a nearly 40-year streak of shrinking."
+     "topic": "Nuclear Stockpile Shrank",
+     "say": "In 1986 the world had about 70,300 nuclear warheads. By 2023 that had shrunk to less than a fifth.",
+     "illustrated_scene": "# scene standard: 2026-10-16.2\ndef _nk_trefoil(cr, x, y, r):\n    cr.new_path()\n    cr.arc(x, y, r * 1.25, 0, 2 * math.pi)\n    solid(cr, (240, 196, 40), rim=False)\n    cr.set_source_rgba(*_c((24, 22, 20)))\n    for i in range(3):\n        a = -math.pi / 2 + i * 2 * math.pi / 3\n        cr.new_path()\n        cr.arc(x, y, r, a - math.pi / 6, a + math.pi / 6)\n        cr.arc_negative(x, y, r * 0.32, a + math.pi / 6, a - math.pi / 6)\n        cr.close_path()\n        cr.fill()\n    cr.new_path()\n    cr.arc(x, y, r * 0.2, 0, 2 * math.pi)\n    cr.fill()\n\n\ndef _nk_ell(cr, x, y, rx, ry):\n    cr.save()\n    cr.translate(x, y)\n    cr.scale(rx, ry)\n    cr.arc(0, 0, 1, 0, 2 * math.pi)\n    cr.restore()\n\n\ndef _nk_missile(cr, x, bot, s):\n    # a white ICBM standing on `bot`: fins, a lit body, a black band, a dark warhead nose\n    w, hb, nose = 72 * s, 430 * s, 95 * s\n    for side in (-1, 1):\n        cr.move_to(x + side * (w / 2 - 3), bot - 110 * s)\n        cr.line_to(x + side * (w / 2 + 34 * s), bot)\n        cr.line_to(x + side * (w / 2 - 3), bot)\n        cr.close_path()\n        solid(cr, (92, 98, 110) if side < 0 else (76, 82, 94), finish=\"metal\")\n    cylinder(cr, x - w / 2, bot, w, hb, (230, 232, 236), finish=\"metal\")\n    cr.rectangle(x - w / 2, bot - hb + 34 * s, w, 18 * s)\n    solid(cr, (40, 42, 48), rim=False)\n    _nk_trefoil(cr, x, bot - hb * 0.5, 13 * s)\n    cr.move_to(x - w / 2, bot - hb)\n    cr.curve_to(x - w / 2, bot - hb - 50 * s, x - w * 0.18, bot - hb - nose, x, bot - hb - nose)\n    cr.curve_to(x + w * 0.18, bot - hb - nose, x + w / 2, bot - hb - 50 * s, x + w / 2, bot - hb)\n    cr.close_path()\n    solid(cr, (66, 72, 84), finish=\"metal\")\n\n\ndef _nk_outline(cr, x, base, s):\n    w, hb, nose = 72 * s, 430 * s, 95 * s\n    cr.new_path()\n    cr.move_to(x - w / 2, base)\n    cr.line_to(x - w / 2, base - hb)\n    cr.curve_to(x - w / 2, base - hb - 50 * s, x - w * 0.18, base - hb - nose, x, base - hb - nose)\n    cr.curve_to(x + w * 0.18, base - hb - nose, x + w / 2, base - hb - 50 * s, x + w / 2, base - hb)\n    cr.line_to(x + w / 2, base)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a row of nuclear missiles in silos\n    SUBSTANCE: white nuclear missiles\n    CAUSE: Data cranks each silo's winch and its missile sinks down out of sight\n    The world's stockpile is one missile field of ten silos running from the\n    camera back into the desert, every missile standing up out of its silo.\n    The WHOLE is the field; the share still standing is that year's warheads\n    over 1986's. Working from the far end toward the camera, Data cranks each\n    silo's winch and its missile sinks into the ground, until 2010's share is\n    left standing, then 2023's: less than two of the ten. Every missile that\n    went down leaves its dashed outline where it stood, so the few left read\n    at a glance against the 1986 field. Done by 0.56 and held; a patrol jeep\n    drives past by the camera.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    v0 = rows[0][1] or 1.0\n    N = 10\n    a0, a1 = 0.08, 0.56\n    nst = max(1, n - 1)\n    span = (a1 - a0) / nst\n    k = int(clamp((u - a0) / span, 0, nst - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.05, 0.85))\n    if u < a0 or n < 2:\n        val = rows[0][1]\n        landed_to = 0\n    else:\n        prev, cur = rows[k][1], rows[k + 1][1]\n        val = prev + (cur - prev) * slide\n        landed_to = k + 1 if slide >= 0.999 else k\n    R = clamp(val / v0) * N\n    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))\n                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))\n    named = max((i for i in keep if i <= landed_to), default=0)\n\n    # the silos, big by the camera on the left, running back to the right\n    silos = []\n    x, y, s = 250.0, 1440.0, 1.5\n    for j in range(N):\n        silos.append((x, y, s))\n        x += 85 * s\n        y -= 34 * s\n        s *= 0.88\n\n    def at(z):\n        z = clamp(z, 0, N - 1)\n        i = min(int(z), N - 2)\n        fr = z - i\n        (xa, ya, sa), (xb, yb, sb) = silos[i], silos[i + 1]\n        return xa + (xb - xa) * fr, ya + (yb - ya) * fr, sa + (sb - sa) * fr\n\n    raise_ = [clamp(R - j) for j in range(N)]\n\n    landscape(cr, t, \"desert\", horizon=1120)\n    birds(cr, t, y0=760, n=4, rgb=(70, 60, 60))\n\n    # long shadows of whatever is still standing, then the silos far to near\n    for j in reversed(range(N)):\n        sx, sy, ss = silos[j]\n        vis = raise_[j] * 525 * ss\n        if vis > 4:\n            cast_shadow(cr, sx - 36 * ss, sx + 36 * ss, sy, length=0.55 * vis, a=0.25)\n    for j in reversed(range(N)):\n        sx, sy, ss = silos[j]\n        contact_shadow(cr, sx, sy + 4 * ss, 140 * ss, a=0.35)\n        _nk_ell(cr, sx, sy, 62 * ss, 21 * ss)\n        solid(cr, (176, 170, 158), rim=False)\n        _nk_ell(cr, sx, sy, 44 * ss, 14 * ss)\n        cr.set_source_rgba(*_c((22, 20, 22)))\n        cr.fill()\n        # the winch he works, on the silo's camera side\n        box(cr, sx - 74 * ss, sy + 6 * ss, 26 * ss, 46 * ss, (232, 178, 40), depth=10 * ss)\n        disc(cr, sx - 61 * ss, sy - 26 * ss, 9 * ss, (60, 62, 70), finish=\"metal\")\n        r = raise_[j]\n        if r > 0:\n            bot = sy + (1 - r) * 545 * ss\n            cr.save()\n            cr.rectangle(0, 0, W, sy)\n            cr.clip()\n            _nk_missile(cr, sx, bot, ss)\n            cr.restore()\n        # the front lip of the silo collar, over the missile going in\n        cr.save()\n        cr.translate(sx, sy)\n        cr.scale(62 * ss, 21 * ss)\n        cr.arc(0, 0, 1, 0, math.pi)\n        cr.restore()\n        cr.save()\n        cr.translate(sx, sy)\n        cr.scale(44 * ss, 14 * ss)\n        cr.arc_negative(0, 0, 1, math.pi, 0)\n        cr.restore()\n        cr.close_path()\n        solid(cr, (158, 152, 140), rim=False)\n\n    # THE SCALE: every missile that went down leaves its outline where it stood\n    if u >= a0:\n        for j in range(N):\n            if raise_[j] < 0.98:\n                sx, sy, ss = silos[j]\n                _nk_outline(cr, sx, sy, ss)\n                ghost(cr, a=0.75)\n\n    # right by the camera: the perimeter fence, its warning sign, a patrol jeep\n    cr.set_source_rgba(*_c((70, 72, 78), 0.55))\n    cr.set_line_width(3)\n    for i in range(-2, 24):\n        cr.move_to(i * 50, 1600)\n        cr.line_to(i * 50 + 110, 1700)\n        cr.move_to(i * 50 + 110, 1600)\n        cr.line_to(i * 50, 1700)\n    cr.stroke()\n    for px in (60, 330, 600, 870):\n        cr.rectangle(px, 1580, 14, 140)\n        solid(cr, (90, 92, 98), finish=\"metal\", rim=False)\n    box(cr, 820, 1700, 150, 120, (240, 196, 40), depth=14)\n    _nk_trefoil(cr, 895, 1640, 38)\n    JX = -560 + 1800 * ease(seg(u, 0.6, 0.97))\n    if -540 < JX < 1100:\n        contact_shadow(cr, JX + 200, 1840, 440, a=0.45)\n        box(cr, JX, 1830, 300, 90, (92, 104, 72), depth=40)\n        box(cr, JX + 170, 1740, 120, 70, (82, 94, 64), depth=30)\n        cr.rectangle(JX + 182, 1690, 90, 40)\n        solid(cr, (150, 190, 210), finish=\"glass\", rim=False)\n        for wx in (JX + 60, JX + 240):\n            disc(cr, wx, 1838, 38, (36, 36, 40))\n    foreground(cr, \"desert\")\n    vignette(cr, a=0.28)\n\n    # Data works his way from the far silo toward the camera\n    if u < a0:\n        zx, zy, zs = silos[N - 1]\n    else:\n        zx, zy, zs = at(R - 0.5)\n    hx, hy = zx - 92 * zs, min(1490.0, zy + 12 * zs)\n    hh = clamp(150 * zs, 180, 240)\n    if u < a0:\n        host(\"point\", hx, hy, hh)\n    elif u < a1 + 0.04:\n        host(\"crank\", hx, hy, hh, beat=int(min(R, N - 0.001)))\n    elif u < 0.9:\n        host(\"hold_up\", hx, hy, hh)\n    else:\n        host(\"shock\", hx, hy, hh)\n\n    lab, v = rows[named]\n    fit_readout(cr, f\"{int(round(v)):,}\", f\"nuclear warheads worldwide · {lab}\",\n                80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
      "source": "offline",
@@ -35048,8 +35052,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · WHICH NUCLEAR ARSENAL IS GROWING FASTEST",
-     "topic": "which country's nuclear arsenal grew fastest",
-     "say": "But that streak is ending: China's stockpile jumped from 350 warheads in 2020 to 500 by 2023, the fastest growth of any nuclear power."
+     "topic": "China's Nuclear Stockpile",
+     "say": "China's stockpile grew nearly half in three years, to 500 warheads. That is the long decline reversing, at least there."
     },
     {
      "source": "offline",
@@ -35060,10 +35064,13 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "3 · HOW EVERY NUCLEAR ARSENAL RANKS NOW",
-     "topic": "how every nuclear arsenal ranks now",
-     "say": "Russia and the US still hold the overwhelming majority, more than 5,000 warheads each. But almost every arsenal here is now growing, not shrinking."
+     "topic": "Nuclear Stockpile Ranking",
+     "say": "Russia and the US still hold the most, over 5,000 warheads each. Everyone else, China included, has far fewer."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-21T18:51:23Z"
   }
  ],
  "videos": [
