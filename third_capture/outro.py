@@ -120,10 +120,11 @@ def graph(n: int, durs: list[float], clip_s: float, w: int, h: int,
             f"[{k}:v]setpts=PTS-STARTPTS,fps=30,setsar=1,split=2[b{k}][f{k}];"
             f"[b{k}]scale={w}:{h}:force_original_aspect_ratio=increase,"
             f"crop={w}:{h},gblur=sigma=24,eq=brightness=-0.05[bd{k}];"
-            f"[f{k}]scale={w}:{h}:force_original_aspect_ratio=decrease"
+            f"[f{k}]scale={w}:{h}:force_original_aspect_ratio=decrease:"
+            f"force_divisible_by=2"
             f"[fs{k}];"
             f"[bd{k}][fs{k}]overlay=(W-w)/2:(H-h)/2,{look},format=yuv420p,"
-            f"trim=0:{durs[i]:.2f},setpts=PTS-STARTPTS[s{k}]")
+            f"setsar=1,trim=0:{durs[i]:.2f},setpts=PTS-STARTPTS[s{k}]")
     parts.append("".join(f"[s{i + 1}]" for i in range(n))
                  + f"concat=n={n}:v=1:a=0[mont]")
     mont_s = sum(durs)

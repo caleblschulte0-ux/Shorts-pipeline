@@ -160,6 +160,19 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
         self.assertGreaterEqual(outro.TARGET_SHOTS, 6)
         self.assertTrue(all("on the court" in l for l, _n in asked))
 
+    def test_reels_of_different_shapes_still_join(self):
+        # 2026-10-21: a 16:9 reel beside a #shorts one scaled to sizes
+        # whose SAR differed, and concat refused every montage of the run
+        with tempfile.TemporaryDirectory() as td:
+            td = Path(td)
+            self._media(td)
+            subprocess.run(
+                ["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i",
+                 "color=c=green:s=406x720:r=30:d=3", "-c:v", "libx264",
+                 str(td / "tall.mp4")], check=True)
+            led = self._edit(td, ["blue", "tall"])
+            self.assertEqual(led["outro"]["shots"], ["blue", "tall"])
+
     def test_one_shot_is_not_a_tribute(self):
         with tempfile.TemporaryDirectory() as td:
             td = Path(td)
