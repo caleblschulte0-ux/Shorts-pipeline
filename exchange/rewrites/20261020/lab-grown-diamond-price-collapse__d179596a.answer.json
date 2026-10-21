@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "lab-grown-diamond-price-collapse__d179596a",
+  "slug": "lab-grown-diamond-price-collapse",
+  "by": "chatgpt",
+  "written_at": "2026-10-21T11:27:52.896Z",
+  "title": "Lab-Grown Diamond Prices Fell From $4,200 To $380",
+  "hook": "A lab-grown diamond fell to $380 wholesale.",
+  "closing": "The collapse matters because manufactured scarcity no longer supports the old premium.",
+  "question": "Would the price change your choice?",
+  "segments": [
+    {
+      "topic": "Lab-Grown Diamond",
+      "say": "A lab-grown diamond fell to $380 wholesale. The old luxury price collapsed."
+    },
+    {
+      "topic": "Lab-Grown Diamond",
+      "say": "The lab-grown price shown is $380. Its natural comparison remains far higher."
+    },
+    {
+      "topic": "Lab-Grown Diamond",
+      "say": "Lab-grown stones reached 47% of engagement-ring sales. Buyers increasingly chose the cheaper option."
+    }
+  ]
+}
