@@ -805,10 +805,21 @@ class AConverterPageIsNotAVideo(unittest.TestCase):
             with tempfile.TemporaryDirectory() as d, \
                     mock.patch.object(y, "_stream", lambda u, h, b=body: iter([b])):
                 out = Path(d) / "x.src"
-                self.assertEqual(y._save("https://host.example/dl", {}, out), kept)
+                with mock.patch.object(y.time, "sleep", lambda s: None):
+                    self.assertEqual(y._save("https://host.example/dl", {}, out), kept)
                 self.assertEqual(out.exists(), kept)
+
+    def test_a_page_first_then_the_file_is_kept(self):
+        from unittest import mock
+        from funnel import yt_convert as y
+        answers = iter([b"<!doctype html>" + b" " * 900,
+                        b"\x00\x00\x00\x20ftypisom" + b"\x00" * 60_000])
+        with tempfile.TemporaryDirectory() as d, \
+                mock.patch.object(y, "_stream", lambda u, h: iter([next(answers)])), \
+                mock.patch.object(y.time, "sleep", lambda s: None):
+            self.assertTrue(y._save("https://host.example/dl", {}, Path(d) / "x.src"))
 
     def test_the_file_is_fetched_as_a_browser(self):
         import inspect
         from funnel import yt_convert as y
-        self.assertIn('impersonate="chrome"', inspect.getsource(y._stream))
+        self.assertIn("impersonate=\"chrome\"", inspect.getsource(y._stream))

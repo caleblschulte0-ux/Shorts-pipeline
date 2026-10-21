@@ -45,7 +45,7 @@ MAX_BYTES = 400 << 20
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/128.0 Safari/537.36")
 
-LOADER = ["https://loader.to"]
+LOADER = ["https://loader.to", "https://p.oceansaver.in"]   # the same API
 LOADER_WAIT_S = 180     # it converts before it hands the file over
 PIPED = ["https://pipedapi.kavin.rocks", "https://pipedapi.adminforge.de",
          "https://api.piped.private.coffee", "https://pipedapi.r4fo.com"]
@@ -218,18 +218,24 @@ def _probe(path: Path) -> float:
         return 0.0
 
 
+_SESSION = None
+
+
 def _stream(media_url: str, headers: dict):
-    """The file's bytes, chunk by chunk. Through curl_cffi as Chrome when it
-    is installed: loader.to's file host answers anything that is not a
-    browser with an ad-redirect page to google.com (2026-10-21)."""
+    """The file's bytes, chunk by chunk. Through one curl_cffi session as
+    Chrome when it is installed: loader.to's file host answers a client
+    it has not seen with an ad-redirect page to google.com (2026-10-21),
+    and the session keeps the cookies it sets for the retry."""
+    global _SESSION
     try:
         from curl_cffi import requests as cr
     except ImportError:
         cr = None
     if cr is not None:
-        r = cr.get(media_url, headers={"User-Agent": UA, **headers},
-                   impersonate="chrome", stream=True, timeout=90,
-                   allow_redirects=True)
+        if _SESSION is None:
+            _SESSION = cr.Session(impersonate="chrome")
+        r = _SESSION.get(media_url, headers={"User-Agent": UA, **headers},
+                         stream=True, timeout=90, allow_redirects=True)
         try:
             r.raise_for_status()
             yield from r.iter_content(chunk_size=1 << 20)
@@ -244,7 +250,23 @@ def _stream(media_url: str, headers: dict):
             yield b
 
 
-def _save(media_url: str, headers: dict, out: Path) -> bool:
+def _save(media_url: str, headers: dict, out: Path, tries: int = 3) -> bool:
+    """Save the file; a host that answers with a page first is asked again
+    (with the cookies it just set) before it is given up on."""
+    for i in range(tries):
+        # the second ask goes without a Referer, in case that is the trip
+        hdr = headers if i != 1 else {k: v for k, v in headers.items()
+                                       if k != "Referer"}
+        if _save_once(media_url, hdr, out):
+            print(f"[yt_convert] {media_url[:60]}: the file on ask {i + 1}",
+                  flush=True)
+            return True
+        if i + 1 < tries:
+            time.sleep(4)
+    return False
+
+
+def _save_once(media_url: str, headers: dict, out: Path) -> bool:
     tmp = out.with_suffix(out.suffix + ".part")
     n = 0
     with open(tmp, "wb") as f:
