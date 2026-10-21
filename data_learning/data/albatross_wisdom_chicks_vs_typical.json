@@ -1,0 +1,25 @@
+{
+  "key": "albatross_wisdom_chicks_vs_typical",
+  "title": "Wisdom's lifetime chicks fledged vs. a typical albatross",
+  "unit": "chicks",
+  "geography": "Midway Atoll National Wildlife Refuge (Laysan albatross)",
+  "time_coverage": "banded 1956 - present",
+  "source": {
+    "name": "Wisdom the Laysan Albatross",
+    "publisher": "U.S. Fish & Wildlife Service",
+    "url": "https://www.fws.gov/refuge/midway-atoll/wisdom-oldest-known-wild-bird",
+    "officiality": "official",
+    "access_date": "2026-10-21"
+  },
+  "notes": "USFWS estimates Wisdom has fledged at least 30-36 chicks over her banding history. Typical lifetime fledging total estimated from a ~40-year breeding lifespan laying roughly every 1-2 years.",
+  "points": [
+    {
+      "label": "Typical lifetime chicks (estimated)",
+      "value": 15
+    },
+    {
+      "label": "Wisdom's chicks fledged (estimated)",
+      "value": 36
+    }
+  ]
+}

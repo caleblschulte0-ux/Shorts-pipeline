@@ -34795,6 +34795,242 @@
    "retold": "retell/v4",
    "words_by": "claude-retell",
    "rewritten_at": "2026-10-18T13:47:16Z"
+  },
+  {
+   "slug": "wisdom-albatross-74",
+   "title": "The World's Oldest Known Wild Bird Is Still Breeding At 74",
+   "hook": "Meet the bird older than the moon landing.",
+   "closing": "Wisdom's still raising chicks. The rest of us just have knees that hurt.",
+   "question": "What's the oldest living thing you've seen?",
+   "caption": "She's at least 74 years old, outliving every other wild bird we've ever tracked -- and she's still raising chicks. Here's how Wisdom the albatross has pulled it off. What's the oldest living thing you've seen in person? 👇",
+   "hashtags": [
+    "wisdomthealbatross",
+    "oldestbird",
+    "albatross",
+    "wildlife",
+    "usfws",
+    "midwayatoll",
+    "didyouknow",
+    "dataviz",
+    "animals",
+    "sciencefacts",
+    "nature",
+    "birdwatching",
+    "longevity"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "albatross_wisdom_age_vs_typical_lifespan",
+     "params": {
+      "file": "albatross_wisdom_age_vs_typical_lifespan.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "1 · HOW OLD THIS WILD BIRD REALLY IS",
+     "topic": "how old this wild bird is",
+     "say": "Wisdom the albatross is at least 74 years old. Most Laysan albatrosses live around 40 years in the wild. She's nearly doubled it."
+    },
+    {
+     "source": "offline",
+     "key": "albatross_wisdom_chicks_vs_typical",
+     "params": {
+      "file": "albatross_wisdom_chicks_vs_typical.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "2 · WHAT THIS BIRD DID WITH THE EXTRA TIME",
+     "topic": "chicks this bird has raised",
+     "say": "So she kept breeding. Wisdom has fledged an estimated 36 chicks, more than double what a typical albatross manages in a lifetime."
+    },
+    {
+     "source": "offline",
+     "key": "albatross_wisdom_midway_colony_share",
+     "params": {
+      "file": "albatross_wisdom_midway_colony_share.json"
+     },
+     "insight_type": "share",
+     "role": "3 · WHY THIS BIRD GOT TO LIVE THIS LONG",
+     "topic": "where this wild bird lives",
+     "say": "She nests at Midway Atoll, a protected refuge holding roughly a third of all Laysan albatrosses alive. Almost nothing preys on her there."
+    }
+   ]
+  },
+  {
+   "slug": "us-formal-volunteering-record-low",
+   "title": "Only 23% Of Americans Still Formally Volunteer",
+   "hook": "Fewer people are raising their hands to help.",
+   "closing": "Civic duty didn't die. It just stopped showing up to meetings.",
+   "question": "When did you last volunteer for something?",
+   "caption": "Formal volunteering through a group or organization hit a record low of 23% in 2021, and it still hasn't caught back up to 2008 levels. Here's where it went, and what it's worth in dollars. When's the last time you volunteered? 👇",
+   "hashtags": [
+    "volunteering",
+    "civicengagement",
+    "americorps",
+    "dataviz",
+    "didyouknow",
+    "society",
+    "statistics",
+    "community",
+    "explainer",
+    "demographics",
+    "givingback",
+    "nonprofits"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "us_volunteering_rate_trend",
+     "params": {
+      "file": "us_volunteering_rate_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · HOW MANY AMERICANS STILL VOLUNTEER",
+     "topic": "how many americans still volunteer",
+     "say": "In 2008, nearly 3 in 10 Americans volunteered formally. That fell to a record-low 23% by 2021, before climbing to 28% in 2023."
+    },
+    {
+     "source": "offline",
+     "key": "us_volunteering_education_gap",
+     "params": {
+      "file": "us_volunteering_education_gap.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "2 · WHO STILL VOLUNTEERS THE MOST",
+     "topic": "who is most likely to volunteer",
+     "say": "But that drop isn't even. College graduates volunteer at more than double the rate of everyone else, 37% versus 16%."
+    },
+    {
+     "source": "offline",
+     "key": "us_volunteering_economic_value",
+     "params": {
+      "file": "us_volunteering_economic_value.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "3 · WHAT VOLUNTEERING IS ACTUALLY WORTH",
+     "topic": "what volunteer hours are worth",
+     "say": "AmeriCorps puts a dollar figure on that lost time: about 167 billion dollars of labor in 2023 alone, work nonprofits never got back."
+    }
+   ]
+  },
+  {
+   "slug": "japan-vending-machine-density",
+   "title": "Japan Has One Vending Machine For Every 31 People",
+   "hook": "Japan basically turned itself into a giant vending machine.",
+   "closing": "Somewhere right now, a machine is selling hot soup to a total stranger.",
+   "question": "What's the strangest thing you've bought from one?",
+   "caption": "Japan still runs about 4 million vending machines, down from a peak of 5.6 million in 2000, but that's still one for roughly every 31 people. Here's why the count is shrinking, and what's actually inside them. What's the weirdest vending machine snack you've seen? 👇",
+   "hashtags": [
+    "japan",
+    "vendingmachine",
+    "japanfacts",
+    "didyouknow",
+    "dataviz",
+    "consumerbehavior",
+    "retail",
+    "tokyo",
+    "statistics",
+    "culture",
+    "explainer",
+    "quirky"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "japan_vending_machine_count_trend",
+     "params": {
+      "file": "japan_vending_machine_count_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · JAPAN VENDING MACHINE COUNT",
+     "topic": "japan vending machine count",
+     "say": "Japan had about 5.6 million vending machines in 2000. By 2023 that had fallen to roughly 4 million, as convenience stores spread."
+    },
+    {
+     "source": "offline",
+     "key": "japan_vending_machine_density_comparison",
+     "params": {
+      "file": "japan_vending_machine_density_comparison.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "2 · JAPAN VENDING MACHINE DENSITY",
+     "topic": "japan vending machine density",
+     "say": "Even then, Japan has one machine per 31 people, versus one per 70 in the US, more than double the density."
+    },
+    {
+     "source": "offline",
+     "key": "japan_vending_machine_category_share",
+     "params": {
+      "file": "japan_vending_machine_category_share.json"
+     },
+     "insight_type": "share",
+     "role": "3 · WHAT JAPAN VENDING MACHINES SELL",
+     "topic": "what japan vending machine contents are",
+     "say": "More than half of Japan's machines just sell drinks, hot and cold, side by side in the same box."
+    }
+   ]
+  },
+  {
+   "slug": "nuclear-stockpile-growth-reversal",
+   "title": "The World's Nuclear Stockpile Is Growing Again After 35 Years",
+   "hook": "The world stopped shrinking its nuclear arsenal.",
+   "closing": "The countdown that ran one direction for 35 years just flipped.",
+   "question": "Did that number surprise you?",
+   "caption": "The global nuclear warhead count fell for nearly 40 straight years after the Cold War. Now it's turning back up, and one country's buildup is the biggest reason why. Did this surprise you? 👇",
+   "hashtags": [
+    "nuclearweapons",
+    "geopolitics",
+    "sipri",
+    "didyouknow",
+    "dataviz",
+    "worldaffairs",
+    "globalrisk",
+    "statistics",
+    "explainer",
+    "science",
+    "coldwar",
+    "security"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "nuclear_warhead_global_trend",
+     "params": {
+      "file": "nuclear_warhead_global_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · HOW THE NUCLEAR STOCKPILE SHRANK",
+     "topic": "how the nuclear stockpile shrank for decades",
+     "say": "In 1986, the world had about 70,300 nuclear warheads. Treaties cut that to roughly 12,500 by 2023, a nearly 40-year streak of shrinking."
+    },
+    {
+     "source": "offline",
+     "key": "china_nuclear_arsenal_growth",
+     "params": {
+      "file": "china_nuclear_arsenal_growth.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "2 · WHICH NUCLEAR ARSENAL IS GROWING FASTEST",
+     "topic": "which country's nuclear arsenal grew fastest",
+     "say": "But that streak is ending: China's stockpile jumped from 350 warheads in 2020 to 500 by 2023, the fastest growth of any nuclear power."
+    },
+    {
+     "source": "offline",
+     "key": "nuclear_arsenal_by_country_rank",
+     "params": {
+      "file": "nuclear_arsenal_by_country_rank.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "3 · HOW EVERY NUCLEAR ARSENAL RANKS NOW",
+     "topic": "how every nuclear arsenal ranks now",
+     "say": "Russia and the US still hold the overwhelming majority, more than 5,000 warheads each. But almost every arsenal here is now growing, not shrinking."
+    }
+   ]
   }
  ],
  "videos": [

@@ -1,0 +1,25 @@
+{
+  "key": "japan_vending_machine_density_comparison",
+  "title": "People per vending machine, Japan vs. United States",
+  "unit": "people per machine",
+  "geography": "Japan vs. United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "Vending machine statistics",
+    "publisher": "Japan Vending System Manufacturers Association (JVMA); National Automatic Merchandising Association (NAMA)",
+    "url": "https://www.jvma.or.jp/english/",
+    "officiality": "official",
+    "access_date": "2026-10-21"
+  },
+  "notes": "Population divided by estimated installed vending machine count. Japan: ~124 million people / ~4.0 million machines. US: ~335 million people / ~4.8 million machines.",
+  "points": [
+    {
+      "label": "Japan (people per machine)",
+      "value": 31
+    },
+    {
+      "label": "United States (people per machine)",
+      "value": 70
+    }
+  ]
+}

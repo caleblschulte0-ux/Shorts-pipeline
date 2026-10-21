@@ -1,0 +1,25 @@
+{
+  "key": "china_nuclear_arsenal_growth",
+  "title": "China's estimated nuclear warhead stockpile",
+  "unit": "warheads",
+  "geography": "China",
+  "time_coverage": "2020 vs. 2023",
+  "source": {
+    "name": "Military and Security Developments Involving the People's Republic of China",
+    "publisher": "U.S. Department of Defense",
+    "url": "https://www.defense.gov/News/Releases/",
+    "officiality": "official",
+    "access_date": "2026-10-21"
+  },
+  "notes": "Pentagon's annual estimate of China's operational nuclear warhead stockpile, 2020 vs. 2023; the report projects roughly 1,000 warheads by 2030.",
+  "points": [
+    {
+      "label": "2020",
+      "value": 350
+    },
+    {
+      "label": "2023",
+      "value": 500
+    }
+  ]
+}

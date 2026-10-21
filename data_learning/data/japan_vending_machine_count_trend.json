@@ -1,0 +1,27 @@
+{
+  "key": "japan_vending_machine_count_trend",
+  "title": "Number of vending machines in Japan",
+  "unit": "machines",
+  "geography": "Japan",
+  "time_coverage": "2000-2023",
+  "source": {
+    "name": "Vending machine statistics",
+    "publisher": "Japan Vending System Manufacturers Association (JVMA)",
+    "url": "https://www.jvma.or.jp/english/",
+    "officiality": "official",
+    "access_date": "2026-10-21"
+  },
+  "notes": "Total installed vending machines in Japan, 2000 peak vs. 2023, per JVMA annual statistics. Count has declined gradually since 2000 due to convenience-store competition and a shrinking population.",
+  "points": [
+    {
+      "label": "2000",
+      "value": 5600000,
+      "period": "2000"
+    },
+    {
+      "label": "2023",
+      "value": 4000000,
+      "period": "2023"
+    }
+  ]
+}

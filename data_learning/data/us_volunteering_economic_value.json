@@ -1,0 +1,21 @@
+{
+  "key": "us_volunteering_economic_value",
+  "title": "Estimated dollar value of US formal volunteer hours, 2023",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "Volunteering and Civic Life in America",
+    "publisher": "AmeriCorps, with Independent Sector's value-of-volunteer-time rate",
+    "url": "https://www.americorps.gov/volunteering-civic-life-america",
+    "officiality": "official",
+    "access_date": "2026-10-21"
+  },
+  "notes": "AmeriCorps' 2023 estimate of the dollar value of formal volunteer hours nationwide, using Independent Sector's hourly value-of-volunteer-time rate.",
+  "points": [
+    {
+      "label": "Estimated value of 2023 volunteer hours",
+      "value": 167
+    }
+  ]
+}

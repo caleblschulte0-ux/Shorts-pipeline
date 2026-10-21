@@ -1,0 +1,25 @@
+{
+  "key": "albatross_wisdom_age_vs_typical_lifespan",
+  "title": "Wisdom the albatross's age vs. typical species lifespan",
+  "unit": "years",
+  "geography": "Midway Atoll National Wildlife Refuge (Laysan albatross)",
+  "time_coverage": "banded 1956 - present",
+  "source": {
+    "name": "Wisdom the Laysan Albatross",
+    "publisher": "U.S. Fish & Wildlife Service",
+    "url": "https://www.fws.gov/refuge/midway-atoll/wisdom-oldest-known-wild-bird",
+    "officiality": "official",
+    "access_date": "2026-10-21"
+  },
+  "notes": "Wisdom was banded as a breeding adult in 1956, making her at least 74 years old. Typical Laysan albatross lifespan in the wild is commonly cited around 40 years (Cornell Lab of Ornithology, All About Birds).",
+  "points": [
+    {
+      "label": "Typical Laysan albatross lifespan",
+      "value": 40
+    },
+    {
+      "label": "Wisdom's age today",
+      "value": 74
+    }
+  ]
+}
