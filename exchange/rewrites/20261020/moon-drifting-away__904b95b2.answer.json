@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "moon-drifting-away__904b95b2",
+  "slug": "moon-drifting-away",
+  "by": "chatgpt",
+  "written_at": "2026-10-21T11:21:35.951Z",
+  "title": "The Moon Has Drifted 2.17 Meters Farther",
+  "hook": "The Moon has moved 2.17 meters farther since lunar ranging began.",
+  "closing": "That slow drift changes eclipses only on a timescale far beyond any lifetime.",
+  "question": "Would you travel to see an eclipse?",
+  "segments": [
+    {
+      "topic": "Moon Drift Measured",
+      "say": "The Moon moved 2.17 meters farther over the measured span. The change is real but extremely gradual."
+    },
+    {
+      "topic": "Moon Distance Today",
+      "say": "The Moon is now 384,400 kilometers away. Long-term tidal effects slowly increase that distance."
+    },
+    {
+      "topic": "Moon Eclipse Future",
+      "say": "Total eclipses are projected to end in 600 million years. That deadline belongs to deep time, not any living viewer."
+    }
+  ]
+}
