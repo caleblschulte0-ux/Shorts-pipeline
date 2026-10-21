@@ -24090,10 +24090,10 @@
   },
   {
    "slug": "moon-drifting-away",
-   "title": "The Moon Is Slowly Leaving Us (3 Charts)",
-   "hook": "Your last total eclipse is only 600 million years away.",
-   "closing": "So you live in the rare era of perfect eclipses. Go see one while the Moon still fits.",
-   "question": "Does the Moon leaving freak you out?",
+   "title": "The Moon Has Drifted 2.17 Meters Farther",
+   "hook": "The Moon has moved 2.17 meters farther since lunar ranging began.",
+   "closing": "That slow drift changes eclipses only on a timescale far beyond any lifetime.",
+   "question": "Would you travel to see an eclipse?",
    "caption": "The Moon drifts 3.8 centimeters farther from Earth every single year, and it's been doing that since before dinosaurs existed. Keep that pace going and in 600 million years, the Moon will finally be too far away for a total solar eclipse to ever happen again. Does it freak you out that the Moon is leaving? Tell me below 👇",
    "hashtags": [
     "moon",
@@ -24121,8 +24121,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE DRIFT",
-     "topic": "Moon drifting away",
-     "say": "Within living memory, the Moon crept over two meters farther away. That's a tall person's height, gained without anyone feeling a thing.",
+     "topic": "Moon Drift Measured",
+     "say": "The Moon moved 2.17 meters farther over the measured span. The change is real but extremely gradual.",
      "scene": {
       "mechanic": "earth-moon-tape-stretch",
       "concept": "a measuring tape unspools between Earth and the Moon, the gap widening year by year as cumulative drift climbs toward 2 meters",
@@ -24138,8 +24138,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · THE MECHANISM",
-     "topic": "Moon distance over time",
-     "say": "Ocean tides steal Earth's spin, pushing the Moon outward. It now sits 384,400 kilometers away, much farther than it did long ago.",
+     "topic": "Moon Distance Today",
+     "say": "The Moon is now 384,400 kilometers away. Long-term tidal effects slowly increase that distance.",
      "scene": {
       "mechanic": "tidal-drag-orbit-widen",
       "concept": "two side-by-side Earth-Moon orbits, the ancient orbit tight and the modern orbit visibly wider, moons circling at true relative radius",
@@ -24155,8 +24155,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "3 · THE PAYOFF",
-     "topic": "Moon eclipse deadline",
-     "say": "In 600 million years, total eclipses end for good. The Moon will look too small to fully cover what it hides.",
+     "topic": "Moon Eclipse Future",
+     "say": "Total eclipses are projected to end in 600 million years. That deadline belongs to deep time, not any living viewer.",
      "scene": {
       "mechanic": "eclipse-deep-time-ruler",
       "concept": "a deep-time ruler stretching from today out to 600 million years, dinosaur markers at their epochs and a sun-moon eclipse disc sliding out to the vanishing point",
@@ -24164,8 +24164,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T20:00:51Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-21T11:25:44Z",
    "retold": "retell/v3"
   },
   {
@@ -24244,10 +24244,10 @@
   },
   {
    "slug": "seabed-mining-rush",
-   "title": "The Race To Mine A Place No One Owns (3 Charts)",
-   "hook": "There's a gold rush happening 4 kilometers underwater.",
-   "closing": "The deep ocean belongs to everyone, so whoever digs first decides for all of us.",
-   "question": "Should anyone mine the ocean floor?",
+   "title": "Seabed Mining Claims Climbed To 31",
+   "hook": "Seabed mining now has 31 exploration contracts.",
+   "closing": "The resource race is growing while more countries question whether digging should begin.",
+   "question": "Should seabed mining move forward?",
    "caption": "The Pacific seafloor holds more cobalt than every country's land reserves combined, 44 million tonnes down there versus 11 million tonnes on land. Mining companies have already filed 31 international claims to go get it, even as 37 countries now say the rules aren't ready. Should anyone be allowed to mine the ocean floor? Tell me below 👇",
    "hashtags": [
     "deepseamining",
@@ -24275,8 +24275,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE RUSH",
-     "topic": "Mining contracts",
-     "say": "Companies now hold four times more deep-sea mining claims than in 2001. A race for the ocean floor is on, and it's crowded.",
+     "topic": "Seabed Mining Claims",
+     "say": "There are 31 exploration contracts now. The race for the ocean floor is expanding.",
      "scene": {
       "mechanic": "seafloor-claim-flags-plant",
       "concept": "small claim flags plant themselves across a dark seafloor bed one by one as exploration contracts climb from 8 to 31",
@@ -24292,8 +24292,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · THE MECHANISM",
-     "topic": "Cobalt mining",
-     "say": "The seafloor holds four times more cobalt than every mine on land combined. That's the prize, and the stuff in your phone battery.",
+     "topic": "Seabed Mining Cobalt",
+     "say": "Seabed nodules hold 44 million tonnes of cobalt, making the ocean floor the larger measured prize.",
      "scene": {
       "mechanic": "nodule-pile-vs-landpile",
       "concept": "two rising mounds of polymetallic nodules, the seabed pile towering far above the land-reserves pile",
@@ -24309,8 +24309,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · THE CATCH",
-     "topic": "Mining pause",
-     "say": "Meanwhile, the countries asking for a pause grew by more than half in a year. The world is split on whether to dig.",
+     "topic": "Seabed Mining Pause",
+     "say": "The pause-or-ban camp reached 37 countries, showing resistance is growing with the race.",
      "scene": {
       "mechanic": "world-pause-flag-spread",
       "concept": "small pause-sign flags light up across a world map, spreading from 24 to 37 objecting countries",
@@ -24318,8 +24318,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T03:34:15Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-21T11:25:45Z",
    "retold": "retell/v3"
   },
   {
@@ -33995,10 +33995,10 @@
   },
   {
    "slug": "cryonics-client-count",
-   "title": "Nearly 2,000 People Signed Up To Be Frozen",
-   "hook": "The company that freezes the dead has a waiting list of the living.",
-   "closing": "Nobody knows how to wake them up, so these members are betting on the future.",
-   "question": "Would you ever sign up to be frozen?",
+   "title": "Only 222 People Have Been Cryopreserved By Alcor",
+   "hook": "Alcor has cryopreserved 222 patients.",
+   "closing": "The gap separates paid plans from completed preservation, so membership is not the same as patients.",
+   "question": "Would you pay for cryopreservation?",
    "caption": "1,927 people have paid to be cryogenically frozen when they die. Only 222 have actually made it into the tank. Here's the gap between signing up and actually freezing -- and the one problem nobody's solved yet. Would you do it? 👇",
    "hashtags": [
     "cryonics",
@@ -34026,8 +34026,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE PATIENTS",
-     "topic": "Frozen patients at Alcor",
-     "say": "Alcor has actually frozen 222 people so far. You only join that group after you die, so it grows slowly.",
+     "topic": "Alcor Patient Count",
+     "say": "Alcor had 222 cryopreserved patients. That is the completed-patient count, not everyone enrolled.",
      "illustrated_scene": "# scene standard: 2026-10-16.2\ndef _cz_slots(N=8):\n    # the bay's tank positions, nearest the camera first, running back to the right\n    out = []\n    x, y, s = 400.0, 1440.0, 1.3\n    for i in range(N):\n        out.append((x, y, s))\n        x += 74 * s\n        y -= 32 * s\n        s *= 0.9\n    return out\n\n\ndef _cz_crystal(cr, x, y, r, a):\n    # one frost crystal: a small six-armed star of ice on the steel\n    cr.set_source_rgba(*_c((240, 248, 255), 0.95 * a))\n    cr.set_line_width(max(1.5, r * 0.28))\n    for q in range(3):\n        an = q * math.pi / 3 + 0.3\n        cr.move_to(x - r * math.cos(an), y - r * math.sin(an))\n        cr.line_to(x + r * math.cos(an), y + r * math.sin(an))\n    cr.stroke()\n\n\ndef _cz_dewar(cr, cx, by, s, a, frost, t, i):\n    \"\"\"A cryonics dewar: a tall stainless cylinder on casters with a domed cap,\n    a narrow neck, a blue snowflake badge, a pressure gauge, steel bands and a\n    red valve wheel on its fill line. Frost is CRYSTALS, never a white band.\"\"\"\n    w, h = 110 * s, 400 * s\n    x0 = cx - w / 2\n    contact_shadow(cr, cx, by, w * 1.3, a=0.4 * a)\n    for wx in (x0 + w * 0.18, x0 + w * 0.82):\n        disc(cr, wx, by - 7 * s, 9 * s, (50, 52, 58), finish=\"metal\", a=a)\n    body_b = by - 12 * s\n    cylinder(cr, x0, body_b, w, h, (184, 190, 198), finish=\"metal\", a=a)\n    top = body_b - h\n    cr.save()\n    cr.translate(cx, top)\n    cr.scale(w / 2, w * 0.34)\n    cr.arc(0, 0, 1, math.pi, 2 * math.pi)\n    cr.restore()\n    cr.close_path()\n    solid(cr, (200, 206, 214), finish=\"metal\", a=a)\n    for z in (0.12, 0.62):\n        cr.rectangle(x0, body_b - h * z - 6 * s, w, 12 * s)\n        solid(cr, (116, 124, 136), finish=\"metal\", a=a, rim=False)\n    # the blue snowflake badge: the cold sign\n    bx, byy, br = cx - w * 0.12, body_b - h * 0.42, 24 * s\n    disc(cr, bx, byy, br, (44, 112, 196), finish=\"gloss\", a=a)\n    cr.set_source_rgba(*_c((248, 252, 255), a))\n    cr.set_line_width(max(2.0, 3.4 * s))\n    for q in range(3):\n        an = q * math.pi / 3 + math.pi / 2\n        cr.move_to(bx - br * 0.7 * math.cos(an), byy - br * 0.7 * math.sin(an))\n        cr.line_to(bx + br * 0.7 * math.cos(an), byy + br * 0.7 * math.sin(an))\n    cr.stroke()\n    # the pressure gauge\n    gx, gy, gr = cx + w * 0.24, body_b - h * 0.80, 15 * s\n    disc(cr, gx, gy, gr + 3 * s, (70, 74, 82), finish=\"metal\", a=a)\n    cr.arc(gx, gy, gr, 0, 2 * math.pi)\n    cr.set_source_rgba(*_c((244, 242, 234), a))\n    cr.fill()\n    an = -0.6 + 0.08 * math.sin(t * 3 + i)\n    cr.set_source_rgba(*_c((190, 40, 36), a))\n    cr.set_line_width(max(1.5, 2.6 * s))\n    cr.move_to(gx, gy)\n    cr.line_to(gx + gr * 0.85 * math.cos(an), gy + gr * 0.85 * math.sin(an))\n    cr.stroke()\n    # the fill line's red valve wheel, low on the front where a hand reaches it\n    vx, vy, vr = x0 + w * 0.2, body_b - h * 0.24, 17 * s\n    cr.rectangle(vx - 4 * s, vy, 8 * s, h * 0.12)\n    solid(cr, (110, 116, 126), finish=\"metal\", a=a, rim=False)\n    disc(cr, vx, vy, vr, (196, 44, 38), finish=\"gloss\", a=a)\n    disc(cr, vx, vy, vr * 0.35, (90, 20, 18), a=a)\n    # the neck on the dome\n    nw, nh = w * 0.30, 40 * s\n    ntop = top - w * 0.30\n    cylinder(cr, cx - nw / 2, ntop + 4 * s, nw, nh, (132, 140, 152), finish=\"metal\", a=a)\n    nky = ntop + 4 * s - nh\n    if frost > 0.05:\n        fa = a * frost\n        for q in range(9):\n            ph = q / 8.0\n            ex = cx + (w / 2) * math.cos(math.pi + math.pi * ph)\n            ey = top + w * 0.34 * math.sin(math.pi + math.pi * ph) * 0.9\n            _cz_crystal(cr, ex, ey + 4 * s, 7 * s, fa)\n        for z in (0.12, 0.62):\n            for q in range(5):\n                _cz_crystal(cr, x0 + w * (0.14 + 0.18 * q), body_b - h * z, 6 * s, fa)\n    return cx, nky\n\n\ndef _cz_hose(cr, x, y, s, a):\n    cr.move_to(x, y)\n    cr.curve_to(x, y - 60 * s, x - 40 * s, 900, x - 50 * s, 872)\n    cr.set_source_rgba(*_c((40, 44, 52), a))\n    cr.set_line_width(10 * s)\n    cr.stroke_preserve()\n    cr.set_source_rgba(*_c((120, 128, 140), a))\n    cr.set_line_width(4 * s)\n    cr.stroke()\n\n\ndef _cz_vapour(cr, x, y, s, t, i, a=1.0):\n    for b in range(2):\n        ph = (t * 0.45 + i * 0.29 + b * 0.5) % 1.0\n        glow(cr, x + 10 * s * math.sin(ph * 3 + i), y - 150 * s * ph,\n             (20 + 40 * ph) * s, (228, 236, 248), 0.5 * a * (1 - ph) * min(1.0, ph * 5))\n\n\ndef _cz_burst(cr, x, y, s, p):\n    # the boil-off a valve turn sends up out of the neck: one dense white cloud\n    if p <= 0 or p >= 1:\n        return\n    a = 0.92 * (1 - p) * min(1.0, p * 6)\n    for q in range(5):\n        dx = (q - 2) * 26 * s * (0.4 + p)\n        dy = -260 * s * ease(p) - 40 * s * (q % 2)\n        r = (30 + 80 * p) * s * (0.8 + 0.1 * q)\n        glow(cr, x + dx, y + dy, r * 1.5, (220, 232, 248), a * 0.6)\n        cr.arc(x + dx, y + dy, r, 0, 2 * math.pi)\n        cr.set_source_rgba(*_c((236, 242, 250), a * 0.8))\n        cr.fill()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a row of cryonics tanks\n    SUBSTANCE: stainless steel tanks\n    CAUSE: Data rolls each new steel tank into the row with his own hands, one per year's new patients\n    Alcor's patient bay: a row of big stainless dewars on casters, each with\n    a domed cap, a blue snowflake badge, a pressure gauge, a red fill valve\n    and a hose up to the nitrogen line. The row's LENGTH is the patient\n    count. Each year Data rolls a new steel tank in by hand from off the\n    left edge into the nearest, biggest slot by the camera; notches on the\n    floor line mark where 2019's row ended and where it ends now. Done by\n    about 0.6 and held: then Data works back along the new tanks opening\n    each fill valve, and each one vents a white cloud of nitrogen.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    vmax = max(v for _, v in rows) or 1.0\n    N = 8\n    HH = 220\n    SLIDE = 320\n    sl = _cz_slots(N)\n    counts = [max(1, min(N, int(round(N * v / vmax)))) for _, v in rows]\n    base = max(1, counts[0] - 1)\n    a0, a1 = 0.05, 0.6\n    span = (a1 - a0) / max(1, n)\n\n    arrivals = []          # (far slot j, step kk, g0, g1)\n    prev = base\n    for kk in range(n):\n        new = list(range(prev, max(prev, counts[kk])))\n        m = len(new)\n        for q, j in enumerate(new):\n            g0 = a0 + kk * span + span * q / m\n            arrivals.append((j, kk, g0, g0 + span / m))\n        prev = max(prev, counts[kk])\n    PUSH0, PUSH1 = 0.04, 0.82\n\n    def land_u(kk):\n        mine = [g0 + PUSH1 * (g1 - g0) for (_, k2, g0, g1) in arrivals if k2 == kk]\n        return max(mine) if mine else a0 + (kk + PUSH1) * span\n\n    landed_k = max((kk for kk in range(n) if u >= land_u(kk)), default=None)\n    shown = rows[landed_k] if landed_k is not None else None\n    done_u = max([land_u(kk) for kk in range(n)] + [a0])\n\n    state = {}             # far slot j -> (cx, alpha, frost)\n    for j in range(base):\n        state[j] = (sl[N - 1 - j][0], 1.0, 1.0)\n    for (j, kk, g0, g1) in arrivals:\n        if u < g0:\n            continue\n        g = clamp((u - g0) / (g1 - g0))\n        appear = ease(seg(g, 0.0, 0.08))\n        push = ease(seg(g, PUSH0, PUSH1))\n        lu = g0 + PUSH1 * (g1 - g0)\n        frost = ease(clamp((u - lu) / 0.15)) if u >= lu else 0.0\n        state[j] = (sl[N - 1 - j][0] - SLIDE * (1 - push), appear, frost)\n\n    # the after: Data opens the fill valve on each new tank, nearest first\n    new_js = sorted({j for (j, _, _, _) in arrivals}, reverse=True) or [base - 1]\n    T0 = done_u + 0.03\n    d = (0.99 - T0) / max(1, len(new_js))\n    tap_m, tap_f = None, 0.0\n    if u >= T0:\n        tap_m = min(len(new_js) - 1, int((u - T0) / d))\n        tap_f = clamp((u - T0 - tap_m * d) / d)\n\n    # the hall: a dark cold bay, lit from the ceiling\n    vgrad(cr, [(0, (26, 32, 44)), (0.6, (46, 56, 70)), (1, (70, 80, 94))], 0, 1180)\n    for i in range(7):\n        z = i / 6.0\n        lx = 60 + 860 * z ** 0.8\n        ly = 160 + 520 * z ** 0.9\n        sc = 1.0 - 0.7 * z\n        glow(cr, lx + 90 * sc, ly + 20 * sc, 190 * sc, (200, 225, 255), 0.35)\n        box(cr, lx, ly, 180 * sc, 20 * sc, (232, 240, 250), depth=40 * sc)\n    cr.rectangle(0, 840, W, 34)\n    solid(cr, (150, 158, 170), finish=\"metal\")\n    for i in range(9):\n        cr.rectangle(30 + i * 122, 834, 18, 46)\n        solid(cr, (96, 104, 116), finish=\"metal\", rim=False)\n    haze(cr, 600, 1180, (60, 72, 88), a=0.45)\n    vgrad(cr, [(0, (88, 96, 108)), (1, (146, 152, 162))], 1150, H)\n    cr.save()\n    cr.rectangle(0, 1150, W, H - 1150)\n    cr.clip()\n    cr.set_source_rgba(*_c((60, 66, 78), 0.35))\n    cr.set_line_width(3)\n    for i in range(14):\n        cr.move_to(1400, 1010)\n        cr.line_to(-900 + i * 200, H)\n    cr.stroke()\n    cr.restore()\n    glow(cr, 560, 1360, 520, (190, 215, 245), 0.18)\n    cast_shadow(cr, 330, 1050, 1440, length=240, a=0.22)\n    nx0, ny0, ns0 = sl[0]\n    fx_, fy_, fs_ = sl[N - 1]\n    cr.set_source_rgba(*_c((226, 188, 60)))\n    cr.set_line_width(8)\n    cr.move_to(nx0 - 120, ny0 + 14 + 120 * 32 / 74)\n    cr.line_to(fx_ + 40, fy_ + 14 - 40 * 32 / 74)\n    cr.stroke()\n\n    # the tanks, far first\n    necks = {}\n    for i in reversed(range(N)):\n        j = N - 1 - i\n        if j not in state:\n            continue\n        cx, a, frost = state[j]\n        x, y, s = sl[i]\n        nk = _cz_dewar(cr, cx, y, s, a, frost, t, j)\n        if frost > 0.02:\n            _cz_hose(cr, nk[0], nk[1], s, a * frost)\n        necks[j] = (nk, s)\n        _cz_vapour(cr, nk[0], nk[1], s, t, j, a=a * max(0.3, frost))\n    # the clouds each opened valve sends up\n    if tap_m is not None:\n        for m in range(tap_m + 1):\n            j = new_js[m]\n            if j in necks:\n                (bx, by), s = necks[j]\n                p = (u - (T0 + m * d + 0.4 * d)) / (1.4 * d)\n                _cz_burst(cr, bx, by, s, p)\n\n    # THE SCALE on the floor line: where 2019's row ended, where it ends now\n    if landed_k is not None:\n        for kk in range(landed_k + 1):\n            if not (kk == 0 or kk == landed_k):\n                continue\n            x, y, s = sl[N - counts[kk]]\n            mx = x - 55 * s - 10\n            my = y + 14 + 10 * 32 / 74\n            cr.set_source_rgba(*_c((244, 238, 226)))\n            cr.set_line_width(6)\n            cr.move_to(mx, my - 22)\n            cr.line_to(mx, my + 22)\n            cr.stroke()\n            text(cr, rows[kk][0], mx + 8, my + 50, 30, look.INK, face=\"bold\")\n\n    # right by the camera: a transfer dewar boiling off\n    _cz_dewar(cr, 915, 1900, 0.75, 1.0, 1.0, t, 7)\n    _cz_vapour(cr, 915, 1900 - 12 * 0.75 - 300 - 110 * 0.75 * 0.3 - 26, 1.4, t, 3)\n    vignette(cr, a=0.3)\n\n    def dpos(j, push):\n        x, y, s = sl[N - 1 - j]\n        cx = x - SLIDE * (1 - push)\n        left = cx - 55 * s\n        return max(70.0, left - 50), min(1500.0, y + 4), left\n\n    def tpos(j):\n        x, y, s = sl[N - 1 - j]\n        return x - 75 * s, min(1500.0, y + 40)\n\n    cur = None\n    for idx, (j, kk, g0, g1) in enumerate(arrivals):\n        if u >= g0:\n            cur = idx\n    if tap_m is not None:\n        tx, ty = tpos(new_js[tap_m])\n        if tap_m > 0:\n            px, py = tpos(new_js[tap_m - 1])\n        else:\n            px, py, _ = dpos(new_js[0], 1.0)\n        w_ = ease(seg(tap_f, 0.0, 0.35))\n        host(\"tap\", px + (tx - px) * w_, py + (ty - py) * w_, HH, beat=tap_m)\n    elif not arrivals:\n        hx, hy, left = dpos(base - 1, 1.0)\n        host(\"grip\", hx, hy, HH, hands=[(hx + 56, hy - 0.60 * HH), (hx + 56, hy - 0.42 * HH)],\n             lower=\"stand\", expr=\"happy\")\n    elif cur is None:\n        hx, hy, _ = dpos(arrivals[0][0], 0.0)\n        host(\"point\", hx, hy, HH)\n    else:\n        j, kk, g0, g1 = arrivals[cur]\n        g = clamp((u - g0) / (g1 - g0))\n        push = ease(seg(g, PUSH0, PUSH1))\n        hx, hy, left = dpos(j, push)\n        host(\"grip\", hx, hy, HH,\n             hands=[(hx + 56, hy - 0.60 * HH), (hx + 56, hy - 0.42 * HH)],\n             lower=\"brace\" if push < 0.999 else \"stand\",\n             expr=\"strain\" if push < 0.999 else \"happy\", beat=cur)\n\n    if shown is not None:\n        lab, v = shown\n        fit_readout(cr, f\"{int(round(v))} people\", f\"frozen at Alcor · {lab}\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, \"Alcor\", f\"frozen patients, {rows[0][0]}–{rows[-1][0]}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -34038,8 +34038,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE GAP",
-     "topic": "Signed up, not frozen",
-     "say": "About 1,927 people have signed up, but the vast majority are still alive and waiting. Only a small fraction are frozen."
+     "topic": "Alcor Living Members",
+     "say": "Alcor listed 1,927 living members signed up. Most of that membership had not become patients."
     },
     {
      "source": "offline",
@@ -34049,14 +34049,14 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE PRICE",
-     "topic": "Cost to be frozen",
-     "say": "Freezing your whole body costs $200,000, and head only is far cheaper. Most members pay for it with life insurance.",
+     "topic": "Alcor Preservation Cost",
+     "say": "Whole-body preservation costs $200,000. The price describes a service plan, not a guarantee of revival.",
      "illustrated_scene": "# scene standard: 2026-10-16.2\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a giant block of ice\n    SUBSTANCE: solid ice\n    CAUSE: Data saws through the ice block and the top chunk falls away, leaving the smaller head-only block\n    One price is a block of ice: whole-body preservation is the full block\n    standing in a cold-storage room. Data climbs a crate and saws across it at\n    the head-only share of the price. The top falls off and slides away, and\n    what is left is that share of the block. Then he hops down off the crate\n    and holds up the kept block beside it. The full block's old height stays\n    as a ghost outline with its top marked, so a glance shows the head-only\n    price is well under half.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts[:2]]\n    (lw, whole), (lh, head) = sorted(rows, key=lambda r: -r[1])\n    whole = whole or 1.0\n    share = clamp(head / whole)\n\n    BX, BW, BASE, H0 = 380, 360, 1440, 780\n    top = BASE - H0\n    hb = H0 * share\n    ht = H0 - hb\n    cutY = BASE - hb\n\n    a0, c0, c1 = 0.08, 0.16, 0.48\n    n = 4\n    span = (c1 - c0) / n\n    k = int(clamp((u - c0) / span, 0, n - 0.001))\n    f = clamp((u - c0 - k * span) / span)\n    if u < c0:\n        depth = 0.0\n    elif u < c1:\n        depth = (k + ease(seg(f, 0.3, 0.7))) / n\n    else:\n        depth = 1.0\n    tip = ease(seg(u, 0.49, 0.6))\n    drop = seg(u, 0.52, 0.62) ** 2\n    slide = seg(u, 0.62, 1.0)\n    fallen = u >= 0.6\n\n    # the cold room: steel walls, ceiling lights, a pale floor\n    vgrad(cr, [(0, (40, 52, 66)), (0.6, (96, 120, 140)), (1, (150, 172, 188))], 0, 1160)\n    for i in range(6):\n        px = 20 + i * 180\n        cr.rectangle(px, 720, 160, 420)\n        solid(cr, (118, 140, 158), finish=\"metal\", rim=False)\n    for i in range(3):\n        lx = 180 + i * 360\n        glow(cr, lx, 300, 260, (220, 240, 255), 0.45)\n        box(cr, lx - 110, 300, 220, 22, (236, 244, 250), depth=30)\n    haze(cr, 200, 1160, (170, 196, 214), a=0.45)\n    vgrad(cr, [(0, (176, 196, 210)), (1, (120, 140, 156))], 1150, H)\n    cr.set_source_rgba(*_c((90, 108, 124), 0.35))\n    cr.set_line_width(3)\n    for i in range(12):\n        cr.move_to(540, 900)\n        cr.line_to(-1200 + i * 300, H)\n    cr.stroke()\n    glow(cr, 560, 1300, 520, (220, 240, 255), 0.25)\n\n    ICE = (170, 214, 236)\n    # the block's shadow and the standing (kept) part\n    cast_shadow(cr, BX, BX + BW, BASE, length=300, a=0.3)\n    contact_shadow(cr, BX + BW / 2, BASE + 4, BW + 120, a=0.4)\n    box(cr, BX, BASE, BW, hb, ICE, finish=\"ice\")\n\n    # the top chunk: whole, then cut, then tipped off to the left and slid away\n    cr.save()\n    cr.translate(BX - 600 * slide, cutY + (BASE - cutY) * drop)\n    cr.rotate(-tip * math.pi / 2)\n    box(cr, 0, 0, BW, ht, ICE, finish=\"ice\")\n    cr.restore()\n\n    # the saw cut creeping in from Data's side\n    if 0 < depth and tip <= 0:\n        cr.set_source_rgba(*_c((30, 60, 90), 0.9))\n        cr.set_line_width(7)\n        cr.move_to(BX + BW + 0.22 * BW, cutY - 0.22 * BW * 0.5)\n        cr.line_to(BX + BW, cutY)\n        cr.line_to(BX + BW - depth * BW, cutY)\n        cr.stroke()\n\n    # THE SCALE on the block: the whole-body block as a ghost, its top marked\n    if fallen:\n        cr.rectangle(BX, top, BW, H0)\n        ghost(cr, a=0.9)\n        then_mark(cr, BX - 20, BX + BW + 90, top, \"whole body\")\n        steam(cr, BX + BW / 2, cutY - 10, t, 1.0)\n\n    # the crate he stands on to reach the cut\n    contact_shadow(cr, 910, BASE + 4, 170, a=0.4)\n    box(cr, 840, BASE, 140, 130, (150, 112, 72), depth=30)\n\n    # right by the camera: loose chunks of ice on the floor\n    for i, (cx, cy, s) in enumerate([(110, 1720, 90), (300, 1830, 120), (820, 1760, 100),\n                                     (960, 1880, 70)]):\n        contact_shadow(cr, cx + s / 2, cy + 4, s * 1.3, a=0.35)\n        box(cr, cx, cy, s, s * 0.7, ICE, finish=\"ice\")\n    foreground(cr, \"snow\")\n    vignette(cr, a=0.28)\n\n    # Data: points from the floor, climbs the crate, saws, then hops down\n    # beside the kept block and holds it up\n    sx, sy = 1010, 1440\n    ex, ey = 900, 1310\n    gx, gy = 800, 1500\n    if u < a0:\n        host(\"point\", sx, sy, 225)\n    elif u < c0:\n        q = ease(seg(u, a0, c0))\n        host(\"climb\", sx + (ex - sx) * q, sy + (ey - sy) * q, 225)\n    elif u < c1 + 0.03:\n        host(\"cut\", ex, ey, 225, beat=k)\n    elif u < 0.6:\n        host(\"shock\", ex, ey, 225)\n    else:\n        q = ease(seg(u, 0.6, 0.7))\n        host(\"hold_up\", ex + (gx - ex) * q, ey + (gy - ey) * q, 225)\n\n    if fallen:\n        fit_readout(cr, f\"${head:,.0f}\", f\"{lh.lower()} · {int(round((1 - share) * 100))}% less\",\n                    80, 520, a=ease(seg(u, 0.6, 0.65)), size=130)\n    else:\n        fit_readout(cr, f\"${whole:,.0f}\", f\"to freeze your {lw.split()[0].lower()} body\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-15T12:44:00Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-21T11:25:44Z",
    "hook_was": "1,927 people are waiting to be frozen when they die."
   },
   {
