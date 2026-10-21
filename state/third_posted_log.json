@@ -14864,14 +14864,32 @@
       "ts": "2026-10-21T12:09:05.832972+00:00"
     },
     "clip-20261021-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lirik/clip/NurturingHumblePotatoShazBotstix-Mo77Op-HfsnLCVtL",
-      "story_key": null,
-      "streamer": "lirik",
+      "url": "https://youtube.com/shorts/ZTCgoHb9Ogo",
       "title": "Lirik Can't Believe What He Just Watched On Stream",
       "kind": "twitch_clip",
-      "ts": "2026-10-21T12:12:38.246832+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-21T12:12:51.922610+00:00",
+      "uploaded_at": "2026-10-21T12:12:51.922624+00:00",
+      "publish_at": "2026-10-22T02:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261021-lirik-can-t-believe-what-he-just-watched-on-stre-fde4cb25",
+        "tiktok": "queued for 2026-10-22T02:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lirik/clip/NurturingHumblePotatoShazBotstix-Mo77Op-HfsnLCVtL",
+      "streamer": "lirik",
+      "series": "chaos",
+      "hook": "Lirik loses it watching this",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 7686,
+      "banger": 0.5,
+      "cut": {
+        "start": 29.5,
+        "end": 50.5
+      },
+      "director_cut": true
     }
   }
 }
