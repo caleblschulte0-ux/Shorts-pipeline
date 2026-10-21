@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "peanut-allergy-guideline-flip__65e90a17_r1",
+  "slug": "peanut-allergy-guideline-flip",
+  "by": "chatgpt",
+  "written_at": "2026-10-21T11:27:52.896Z",
+  "title": "Early Peanut Exposure Cut Allergy Rates To 1.9%",
+  "hook": "Avoiding peanuts produced a 13.7% allergy rate.",
+  "closing": "The reversal changed prevention advice, but families still need individualized medical guidance.",
+  "question": "Did your family receive avoidance advice?",
+  "segments": [
+    {
+      "topic": "Peanut Allergy",
+      "say": "Childhood peanut allergy prevalence reached 1.4% in the historical series. The earlier avoidance era did not stop the rise."
+    },
+    {
+      "topic": "Peanut Allergy",
+      "say": "Early peanut exposure's allergy rate was 1.9%, challenging the old avoidance advice."
+    },
+    {
+      "topic": "Peanut Allergy",
+      "say": "Diagnoses later fell to 0.45% after guidance changed. The timing supports scrutiny, not proof of cause."
+    }
+  ]
+}
