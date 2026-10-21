@@ -40,6 +40,14 @@ SHOT_S = 2.4            # each shot of the montage
 MIN_SHOTS = 2
 MAX_SHOTS = 4           # looks the author may name
 TARGET_SHOTS = 7        # shots the montage runs, taken across the looks
+#: Each shot comes from a SHORT clip of one play, one or two per clip: a
+#: long fan reel gave wide shots, cutaways and other players (2026-10-21:
+#: a Hornets guard and a Kobe close-up in a KD/Russ tribute).
+PLAY_MAX_S = 300        # a clip of a play, or the league's own short best-of
+PER_CLIP = 3
+#: A clip of them on opposite sides, when the tribute is to teammates
+#: (2026-10-21: three shots of a "Westbrook vs Durant" video).
+VERSUS = re.compile(r"\b(vs\.?|versus|against|v\.)\s", re.I)
 XFADE_S = 1.0           # the clip's last frame dissolves into the montage
 PRELAP_S = 5.0          # the song starts under the clip's last words
 PRELAP_GAIN = 0.35      # ... quietly, under the voice, until the cut
@@ -72,6 +80,9 @@ def parse(raw) -> dict | None:
     grade = str(raw.get("grade") or "").strip().lower()
     return {"song": song, "who": who, "looks": looks,
             "people": people or [who],
+            "numbers": [_text(x, 4) for x in (raw.get("numbers") or [])
+                        if _text(x, 4)][:len(people)]
+            if len(raw.get("numbers") or []) == len(people) else [],
             "team": _text(raw.get("team"), 40),
             "grade": grade if grade in GRADES else "faded"}
 
@@ -87,18 +98,37 @@ def _seconds(path: Path) -> float:
         return 0.0
 
 
-def frame_look(look: str, people: list[str], team: str = "") -> str:
+def frame_look(look: str, people: list[str], team: str = "",
+               numbers: list[str] | None = None) -> str:
     """What the brain must SEE in a montage frame (operator, 2026-10-21:
     *"the basketball clip was ass and not of Russ and KD"* — KD alone on
     the Warriors and Russ alone on the Clippers had passed as "them"; then
     KD on the Suns guarding Russ passed as "together")."""
+    if len(people) > 1 and team and numbers:
+        # the clip's TITLE names all of them (`title_has`); the frame has
+        # to be their team's play with one of their numbers on it (a face
+        # is too small to tell at broadcast distance; then: KD guarding
+        # Russ passed as "together"; and asking for every number in one
+        # frame refused all 17 frames of a "Top 10 connections" reel)
+        nums = " or ".join(f"#{n}" for n in numbers)
+        return (f"{look}: the play itself, a {team} player wearing {nums} "
+                f"in a {team} uniform making it; NOT a player of another "
+                "team, a close-up of one face, a far-away wide shot, a "
+                "replay graphic, a studio or the crowd")
+    if len(people) > 1 and team:
+        # The clip's TITLE names every one of them (`title_has`); asking
+        # the brain to pick both faces out of a 640px frame refused six
+        # shots in seven (2026-10-21) and the montage was dropped.
+        return (f"{look}: the play itself, {team} players in {team} "
+                "uniforms on the court, close enough to see them; NOT a "
+                "far-away wide shot, a close-up of one face, another "
+                "team's player, a replay graphic, a studio or the crowd")
     if len(people) > 1:
         both = " and ".join(people)
-        mates = (f"both wearing {team} uniforms, as teammates" if team
-                 else "on the same team, as teammates")
         return (f"{look}: {both} BOTH clearly visible in this same frame, "
-                f"{mates}, playing on the court; a frame with only one of "
-                "them, neither, or them on opposing teams does not count")
+                "on the same team, as teammates, playing on the court; a "
+                "frame with only one of them, neither, or them on opposing "
+                "teams does not count")
     return f"{look}: {people[0]} clearly visible, playing on the court"
 
 
@@ -118,8 +148,10 @@ def shots(item: dict, work: Path, title: str = "") -> list[dict]:
         d = Path(work) / f"outro{i}"
         d.mkdir(parents=True, exist_ok=True)
         hits = find_footage.find_many(
-            item["who"], frame_look(look, people, item.get("team", "")),
-            n=want, secs=SHOT_S,
+            item["who"], frame_look(look, people, item.get("team", ""),
+                                    item.get("numbers")),
+            n=want, secs=SHOT_S, max_s=PLAY_MAX_S, per_video=PER_CLIP,
+            title_not=VERSUS if item.get("team") else None, query=look,
             work=d, title=title, skip=seen,
             title_has=[n.split()[-1] for n in people] if len(people) > 1
             else None)

@@ -197,7 +197,38 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
         # then KD on the Suns guarding Russ passed as "together"
         mates = outro.frame_look("x", item["people"], "Oklahoma City Thunder")
         self.assertIn("Oklahoma City Thunder uniforms", mates)
-        self.assertIn("opposing teams", mates)
+        self.assertIn("another team's", mates)
+        # then a Hornets guard and a Kobe close-up from a long fan reel
+        self.assertIn("close-up of one face", mates)
+        self.assertIn("wide shot", mates)
+        caps = []
+        with mock.patch.object(find_footage, "find_many", side_effect=(
+                lambda *a, **k: caps.append((k["max_s"], k["per_video"]))
+                or [])):
+            outro.shots({**item, "team": "Oklahoma City Thunder"},
+                        Path(tempfile.mkdtemp()))
+        self.assertTrue(all(m <= 300 and 0 < p <= 3 for m, p in caps))
+        # then three shots of a "Westbrook vs Durant" video
+        nums = outro.parse({**OUTRO, "people": item["people"],
+                            "team": "Oklahoma City Thunder",
+                            "numbers": ["35", "0"]})
+        self.assertEqual(nums["numbers"], ["35", "0"])
+        look = outro.frame_look("x", nums["people"], nums["team"],
+                                nums["numbers"])
+        self.assertIn("#35 or #0 in a Oklahoma City Thunder uniform", look)
+        self.assertIn("another team", look)
+        self.assertTrue(outro.VERSUS.search("Westbrook vs Durant 😳"))
+        self.assertFalse(outro.VERSUS.search("Westbrook to Durant alley oop"))
+        nots = []
+        with mock.patch.object(find_footage, "find_many", side_effect=(
+                lambda *a, **k: nots.append(k) or [])):
+            outro.shots(nums, Path(tempfile.mkdtemp()))
+        self.assertTrue(all(k["title_not"] is outro.VERSUS for k in nots))
+        # YouTube is searched for the play, never for the rules
+        self.assertEqual([k["query"] for k in nots], nums["looks"])
+        self.assertIn('"numbers"', author.SYSTEM)
+        # and without a team, both faces in the frame, as teammates
+        self.assertIn("opposing teams", outro.frame_look("x", item["people"]))
         self.assertIn('"team"', author.SYSTEM)
 
     def test_the_song_is_heard_well_before_the_picture_changes(self):
