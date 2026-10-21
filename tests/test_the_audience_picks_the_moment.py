@@ -100,3 +100,50 @@ class TheArmNeverAsksTheCritic(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class AnExtendedClipIsItsOwnSlot(unittest.TestCase):
+    """Operator, 2026-10-21: "those were good extended clips ... add what
+    you just did as a secondary in-between clip and story type thing, but
+    the story still need work"."""
+
+    def test_the_template_asks_for_one(self):
+        import json
+        tpl = json.loads((REPO / "state" / "third_packages" /
+                          "default_clip.json").read_text())
+        self.assertGreaterEqual(int(tpl.get("extended_count", 0)), 1)
+
+    def test_its_slot_runs_the_audience_arm_and_story_slots_do_not(self):
+        import json
+        import tempfile
+        sys.path.append(str(REPO / "scripts"))
+        import run_third
+        tpl = json.loads((REPO / "state" / "third_packages" /
+                          "default_clip.json").read_text())
+        tpl["story_count"], tpl["extended_count"] = 1, 1
+        orig = run_third.PACKAGE_DIR
+        with tempfile.TemporaryDirectory() as td:
+            run_third.PACKAGE_DIR = Path(td)
+            (Path(td) / "default_clip.json").write_text(json.dumps(tpl))
+            try:
+                pkgs = [p for p, _ in
+                        run_third._synthesize_fallback_packages("20261022")]
+            finally:
+                run_third.PACKAGE_DIR = orig
+        ext = [p for p in pkgs if p["capture"].get("story_pick")
+               == "audience"]
+        story = [p for p in pkgs if p["story_mode"]
+                 and not p["capture"].get("story_pick")]
+        self.assertEqual(len(ext), 1)
+        self.assertTrue(ext[0]["story_mode"])
+        self.assertEqual(len(story), 1)
+        self.assertNotIn("extended_count", pkgs[0])
+
+    def test_it_ships_as_extended_never_as_a_story(self):
+        src = (REPO / "scripts" / "run_third.py").read_text()
+        self.assertIn('"series": "extended" if _extended else "story"',
+                      src.replace("\n                    ", " ")
+                      .replace('"series":\n', '"series": '))
+        # in a backtest nothing ships
+        self.assertIn('if _probs or os.environ.get("STORY_BACKTEST_DIR"):',
+                      src)
