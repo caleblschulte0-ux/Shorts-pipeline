@@ -6,8 +6,9 @@ name: Study clippers
 # short on each channel, then fetches, transcribes and contact-sheets its
 # best and worst. Results go to `preview-renders:study/<run_id>/`.
 #
-# Manual only. No brain is called and no YouTube upload credential is
-# present, so it spends nothing on the subscription and cannot publish.
+# Manual only. No YouTube upload credential is present, so it cannot
+# publish. A brain is called only with `judge`: our story critic scores
+# each studied short, to see whether its number tracks real views.
 
 on:
   workflow_dispatch:
@@ -28,6 +29,11 @@ on:
         description: 'Worst (mature) shorts to study per channel'
         required: false
         default: '4'
+      judge:
+        description: 'Also run our story critic on each studied short (uses the Claude subscription)'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write        # push the study to preview-renders
@@ -59,6 +65,10 @@ jobs:
       - name: Install python deps
         run: pip install -q pillow numpy yt-dlp curl_cffi openai-whisper
 
+      - name: Install Claude CLI (the critic, only when judging)
+        if: inputs.judge
+        run: npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || echo "::warning::claude-code install failed"
+
       - name: Study
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
@@ -66,9 +76,12 @@ jobs:
           THIRD_ASR: groq
           CHANNELS: ${{ inputs.channels }}
           SEARCH: ${{ inputs.search }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ inputs.judge && secrets.CLAUDE_CODE_OAUTH_TOKEN || '' }}
+          GEMINI_API_KEY: ${{ inputs.judge && secrets.GEMINI_API_KEY || '' }}
         run: |
           python scripts/study_clippers.py --out study --channels "$CHANNELS" --search "$SEARCH" \
-            --top "${{ inputs.top || '10' }}" --bottom "${{ inputs.bottom || '4' }}"
+            --top "${{ inputs.top || '10' }}" --bottom "${{ inputs.bottom || '4' }}" \
+            ${{ inputs.judge && '--judge' || '' }}
 
       - name: Publish to the preview-renders orphan branch
         if: always()

@@ -163,6 +163,62 @@ def study(video_meta: dict, out: Path) -> dict:
             "transcript": lines, "sheet": f"{vid}.jpg" if sheet else None}
 
 
+def judge(v: dict, out: Path) -> dict:
+    """Our own story critic (`story_director.review_rough_cut`, the gate a
+    story must clear at 80) on a video whose real views we know. If it cannot
+    rank a 91M-view clip above a 1.5M one, its score is not evidence of a
+    good story and no amount of tuning the cuts toward it will help."""
+    from third_capture import story_director
+    edl = {"premise": v["title"], "central_question": "",
+           "structure": "single moment",
+           "beats": [{"source_id": v["id"], "start": 0.0,
+                      "end": float(v["seconds"]), "role": "whole",
+                      "purpose": "the posted short, as published",
+                      "context_overlay": ""}]}
+    sheet = out / v["sheet"] if v.get("sheet") else None
+    try:
+        r = story_director.review_rough_cut(
+            edl, "\n".join(v.get("transcript") or []),
+            str(sheet) if sheet else None, float(v["seconds"]))
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::judge {v['id']}: {e}", flush=True)
+        return {**v, "critic": None}
+    print(f"[judge] {v['views']:>10} views  score {r.get('story_score')} "
+          f"publish={r.get('publish')}  {v['title'][:60]!r}", flush=True)
+    return {**v, "critic": r}
+
+
+def spearman(a: list[float], b: list[float]) -> float | None:
+    """Rank correlation; None under three pairs."""
+    if len(a) < 3:
+        return None
+
+    def ranks(x):
+        order = sorted(range(len(x)), key=lambda i: x[i])
+        r = [0.0] * len(x)
+        for k, i in enumerate(order):
+            r[i] = float(k)
+        return r
+    ra, rb = ranks(a), ranks(b)
+    ma, mb = sum(ra) / len(ra), sum(rb) / len(rb)
+    num = sum((x - ma) * (y - mb) for x, y in zip(ra, rb))
+    den = (sum((x - ma) ** 2 for x in ra)
+           * sum((y - mb) ** 2 for y in rb)) ** 0.5
+    return round(num / den, 3) if den else None
+
+
+def calibration(studied: list[dict]) -> dict:
+    """How the critic's scores line up with the views the audience gave."""
+    scored = [v for v in studied if (v.get("critic") or {}).get(
+        "story_score", -1) >= 0]
+    return {"judged": len(scored),
+            "would_publish": sum(1 for v in scored
+                                 if v["critic"].get("publish")),
+            "score_vs_views": spearman(
+                [v["critic"]["story_score"] for v in scored],
+                [v["views"] for v in scored])}
+
+
 def transcript_lines(words: list[dict]) -> list[str]:
     """clip_edit's [{w, s, e}] words -> "[  3.2] a line of speech" lines."""
     lines, cur, start = [], [], None
@@ -187,6 +243,8 @@ def main(argv=None) -> int:
     ap.add_argument("--top", type=int, default=10)
     ap.add_argument("--bottom", type=int, default=4)
     ap.add_argument("--out", default="study")
+    ap.add_argument("--judge", action="store_true",
+                    help="also run our story critic on each studied short")
     a = ap.parse_args(argv)
     out = Path(a.out)
     out.mkdir(parents=True, exist_ok=True)
@@ -225,8 +283,14 @@ def main(argv=None) -> int:
               f"{len(pick)}", flush=True)
         studied = [study({**v, "group": "top" if i < a.top else "bottom"}, out)
                    for i, v in enumerate(pick)]
-        report.setdefault("searches", []).append(
-            {"query": query, "shorts": found, "studied": studied})
+        if a.judge:
+            studied = [judge(v, out) if v.get("fetched") else v
+                       for v in studied]
+        entry = {"query": query, "shorts": found, "studied": studied}
+        if a.judge:
+            entry["calibration"] = calibration(studied)
+            print(f"[judge] calibration {entry['calibration']}", flush=True)
+        report.setdefault("searches", []).append(entry)
         (out / "index.json").write_text(json.dumps(report, indent=1))
     (out / "index.json").write_text(json.dumps(report, indent=1))
     return 0
