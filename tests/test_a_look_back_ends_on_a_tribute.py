@@ -50,6 +50,9 @@ class TheAuthorMarksIt(unittest.TestCase):
 
 @unittest.skipUnless(HAVE_FFMPEG, "ffmpeg unavailable")
 class TheClipPlaysThenTheTribute(unittest.TestCase):
+    """2026-10-21: "need to be significantly more basketball clips ...
+    The cut is abrasive. Maybe make it like gray ... just for this
+    one"."""
     def _media(self, td: Path):
         subprocess.run(
             ["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i",
@@ -70,16 +73,16 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
         from third_capture import clip_edit
         it = iter(shots)
 
-        def find(who, look, **k):
+        def find(who, look, n=1, **k):
             c = next(it, None)
-            return c and {"path": str(td / f"{c}.mp4"), "url": c,
-                          "title": c, "from_s": 0, "secs": 2.8}
+            return [{"path": str(td / f"{c}.mp4"), "url": c,
+                     "title": c, "from_s": 0, "secs": 2.8}] if c else []
         words = [{"w": w, "s": i * 0.5, "e": i * 0.5 + 0.4}
                  for i, w in enumerate(
                      ("me and him used to be so good together " * 3).split())]
         with mock.patch.object(songs, "get",
                                return_value=td / "song.wav"), \
-                mock.patch.object(find_footage, "find", side_effect=find):
+                mock.patch.object(find_footage, "find_many", side_effect=find):
             return clip_edit.edit(
                 td / "src.mp4", td / "out.mp4", credit="r/nba",
                 hook="KD on Russ", words=words,
@@ -116,6 +119,95 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
                 **OUTRO, "looks": OUTRO["looks"] + ["Durant dunk on OKC"]})
             self.assertEqual(led["outro"]["shots"], ["blue", "green"])
 
+    def test_grey_is_the_authors_call_and_drains_the_colour(self):
+        self.assertEqual(outro.parse(OUTRO)["grade"], "faded")
+        self.assertEqual(outro.parse({**OUTRO, "grade": "grey"})["grade"],
+                         "grey")
+        self.assertEqual(outro.parse({**OUTRO, "grade": "neon"})["grade"],
+                         "faded")
+        self.assertIn('"grade"', author.SYSTEM)
+        with tempfile.TemporaryDirectory() as td:
+            td = Path(td)
+            self._media(td)
+            led = self._edit(td, ["blue", "green"],
+                             item={**OUTRO, "grade": "grey"})
+            self.assertEqual(led["outro"]["grade"], "grey")
+            end = self._px(td / "out.mp4", outro._seconds(td / "out.mp4")
+                           - 3.4)
+            self.assertLess(max(end) - min(end), 30)        # grey, not blue
+
+    def test_the_cut_is_soft_and_the_last_word_is_kept(self):
+        g = outro.graph(3, [2.4] * 3, 12.0, 1080, 1920, None)
+        # the clip's last frame is held under the dissolve, not cut off
+        self.assertIn(f"stop_duration={outro.XFADE_S}", g)
+        self.assertIn("offset=12.00", g)
+        # the song starts under the clip's last words, before the picture
+        lead = 12.0 - outro.PRELAP_S
+        self.assertIn(f"adelay={int(lead * 1000)}", g)
+        self.assertGreaterEqual(outro.XFADE_S, 0.8)
+
+    def test_the_montage_asks_for_many_shots_of_them_playing(self):
+        asked = []
+
+        def many(who, look, n=1, **k):
+            asked.append((look, n))
+            return []
+        with mock.patch.object(find_footage, "find_many", side_effect=many):
+            outro.shots({**OUTRO, "looks": OUTRO["looks"] + ["x"]},
+                        Path(tempfile.mkdtemp()))
+        self.assertGreaterEqual(sum(n for _l, n in asked),
+                                outro.TARGET_SHOTS)
+        self.assertGreaterEqual(outro.TARGET_SHOTS, 6)
+        self.assertTrue(all("on the court" in l for l, _n in asked))
+
+    def test_reels_of_different_shapes_still_join(self):
+        # 2026-10-21: a 16:9 reel beside a #shorts one scaled to sizes
+        # whose SAR differed, and concat refused every montage of the run
+        with tempfile.TemporaryDirectory() as td:
+            td = Path(td)
+            self._media(td)
+            subprocess.run(
+                ["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i",
+                 "color=c=green:s=406x720:r=30:d=3", "-c:v", "libx264",
+                 str(td / "tall.mp4")], check=True)
+            led = self._edit(td, ["blue", "tall"])
+            self.assertEqual(led["outro"]["shots"], ["blue", "tall"])
+
+    def test_every_shot_shows_both_of_them(self):
+        # 2026-10-21: "the basketball clip was ass and not of Russ and KD"
+        item = outro.parse({**OUTRO, "people": ["Kevin Durant",
+                                                "Russell Westbrook"]})
+        self.assertEqual(item["people"], ["Kevin Durant",
+                                          "Russell Westbrook"])
+        look = outro.frame_look("Thunder highlights", item["people"])
+        self.assertIn("BOTH", look)
+        self.assertIn("only one of them", look)
+        asked = []
+        with mock.patch.object(find_footage, "find_many", side_effect=(
+                lambda *a, **k: asked.append(k.get("title_has")) or [])):
+            outro.shots(item, Path(tempfile.mkdtemp()))
+        self.assertTrue(all(t == ["Durant", "Westbrook"] for t in asked))
+        self.assertTrue(find_footage.titled(
+            "Kevin Durant & Russell Westbrook 2012 Highlights",
+            ["Durant", "Westbrook"]))
+        self.assertFalse(find_footage.titled(
+            "Russell Westbrook's Most EXPLOSIVE Dunks", ["Durant",
+                                                         "Westbrook"]))
+        self.assertIn('"people"', author.SYSTEM)
+        # then KD on the Suns guarding Russ passed as "together"
+        mates = outro.frame_look("x", item["people"], "Oklahoma City Thunder")
+        self.assertIn("Oklahoma City Thunder uniforms", mates)
+        self.assertIn("opposing teams", mates)
+        self.assertIn('"team"', author.SYSTEM)
+
+    def test_the_song_is_heard_well_before_the_picture_changes(self):
+        # 2026-10-21: "the music needs to start to fade in earlier ...
+        # before the clip switches"
+        self.assertGreaterEqual(outro.PRELAP_S, 4.0)
+        g = outro.graph(3, [2.4] * 3, 20.0, 1080, 1920, None)
+        self.assertIn(f"adelay={int((20.0 - outro.PRELAP_S) * 1000)}", g)
+        self.assertIn(f"{outro.PRELAP_GAIN}*t", g)       # under the voice
+
     def test_one_shot_is_not_a_tribute(self):
         with tempfile.TemporaryDirectory() as td:
             td = Path(td)
@@ -127,3 +219,40 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+@unittest.skipUnless(HAVE_FFMPEG, "ffmpeg unavailable")
+class AReelGivesSeveralShots(unittest.TestCase):
+    def test_find_many_takes_distinct_shots_from_one_reel(self):
+        from funnel import hot_clips
+        with tempfile.TemporaryDirectory() as td:
+            td = Path(td)
+            cols = ["red", "blue", "green", "yellow", "white", "purple",
+                    "orange", "cyan", "pink", "gray"]
+            ins = []
+            for c in cols:
+                ins += ["-f", "lavfi", "-i", f"color=c={c}:s=640x360:r=30:d=3"]
+            subprocess.run(
+                ["ffmpeg", "-v", "error", "-y", *ins, "-filter_complex",
+                 "".join(f"[{i}:v]" for i in range(len(cols)))
+                 + f"concat=n={len(cols)}:v=1:a=0", "-c:v", "libx264",
+                 str(td / "reel.mp4")], check=True)
+            vid = {"url": "u1", "title": "Durant Westbrook highlights"}
+            with mock.patch.object(hot_clips, "youtube",
+                                   return_value=[vid]), \
+                    mock.patch.object(find_footage, "download",
+                                      return_value=td / "reel.mp4"), \
+                    mock.patch.object(find_footage, "judge", side_effect=(
+                        lambda frames, *a, **k: {i: {"depicts": True}
+                                                 for i, _p in frames})):
+                skip = set()
+                got = find_footage.find_many("KD Russ", "them", n=4,
+                                             secs=2.4, work=td, skip=skip)
+                again = find_footage.find_many("KD Russ", "them", n=10,
+                                               secs=2.4, work=td, skip=skip)
+            self.assertEqual(len(got), 4)
+            starts = sorted(g["from_s"] for g in got + again)
+            self.assertTrue(all(b - a >= 2.4 for a, b in zip(starts,
+                                                              starts[1:])))
+            self.assertFalse({g["from_s"] for g in got}
+                             & {g["from_s"] for g in again})

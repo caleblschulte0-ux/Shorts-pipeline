@@ -53,7 +53,8 @@ Return STRICT JSON:
                     "at": number}, ...],
           "song": str,
           "broll": [{"who": str, "look": str, "at": number}, ...],
-          "outro": {"song": str, "who": str, "looks": [str, ...]},
+          "outro": {"song": str, "who": str, "people": [str, ...], "team": str,
+                    "looks": [str, ...], "grade": str},
           "cut": {"start": number, "end": number}, "complete": bool}}
 
 This niche is REALITY TV: viewers follow PEOPLE and DRAMA — fights, beef,
@@ -197,13 +198,24 @@ Rules:
     on a person, a team or a time that is gone: a teammate who left, a
     partnership that broke up, a retired legend, a friend who passed, a
     career ending. The clip plays untouched; after it, the `song` (a key
-    from the shelf above) comes in over 2-4 shots of them, in that order.
-    "who" is who the shots are of ("Kevin Durant Russell Westbrook");
-    "looks" are the shots, each the GAME ACTION in search words
-    ("Westbrook and Durant celebrating on the Thunder", "Durant alley-oop
-    from Westbrook", "Thunder 2012 NBA Finals"). With an outro, set mood
-    "" (the song comes after the words, not under them). Most clips have
-    no outro: null.
+    from the shelf above) comes in over a montage of THEM on the court
+    (operator: "significantly more basketball clips ... especially clips
+    of just them on the basketball court"), several shots from each
+    look. "who" is who the shots are of ("Kevin Durant Russell
+    Westbrook"); "people" lists each of them by full name (["Kevin
+    Durant", "Russell Westbrook"]) — every shot must show ALL of them in
+    the frame together (operator: "not of Russ and KD" of shots of one of
+    them alone); "team" is the team they played on TOGETHER when the
+    look-back is about teammates ("Oklahoma City Thunder" — shots of them
+    on opposing teams do not count), else ""; "looks" are 3-4 searches for highlight reels of them
+    PLAYING, together where it is about the two of them ("Westbrook and
+    Durant Thunder highlights", "Durant alley-oop from Westbrook",
+    "Thunder 2012 NBA Finals Durant Westbrook"). "grade": "grey" for the
+    sad edit (operator: "a little gray scale, just to make it sad, like
+    how people do on these sad type edits") when the look-back is a loss
+    — someone gone, a partnership over, a career ended; "faded"
+    otherwise. With an outro, set mood "" (the song comes after the
+    words, not under them). Most clips have no outro: null.
   - cut: {"start","end"} in SECONDS into this clip — the span to KEEP so a
     first-time viewer instantly understands the moment. Use the [t.t-t.t]
     timestamps in the transcript. start early enough to include the SETUP
