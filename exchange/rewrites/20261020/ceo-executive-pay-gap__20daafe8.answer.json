@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "ceo-executive-pay-gap__20daafe8",
+  "slug": "ceo-executive-pay-gap",
+  "by": "chatgpt",
+  "written_at": "2026-10-21T11:21:35.951Z",
+  "title": "CEO Pay Reached 281 Times Typical Worker Pay",
+  "hook": "CEO pay now equals 281 typical worker paychecks.",
+  "closing": "The ratio shows how differently compensation gains were distributed.",
+  "question": "What ratio would seem reasonable?",
+  "segments": [
+    {
+      "topic": "CEO Pay Ratio",
+      "say": "CEO compensation reached 281 times typical-worker pay. This ratio describes the measured groups, not every boss and worker."
+    },
+    {
+      "topic": "CEO Pay Growth",
+      "say": "CEO compensation grew 1,085% in the series. The gains concentrated sharply at the top."
+    },
+    {
+      "topic": "CEO Pay Speed",
+      "say": "A CEO earns a typical worker's annual pay in 1.3 days. The ratio compresses a work year into days."
+    }
+  ]
+}
