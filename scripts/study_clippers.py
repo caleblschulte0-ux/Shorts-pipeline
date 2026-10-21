@@ -148,6 +148,9 @@ def study(video_meta: dict, out: Path) -> dict:
     from third_capture import clip_edit
     vid = video_meta["id"]
     mp4 = out / "src" / f"{vid}.mp4"
+    # one dropped connection marks a converter dead for the whole run;
+    # the 2026-10-21 study lost 8 of 16 clips to a single loader.to drop
+    yt_convert._DEAD.clear()
     got = yt_convert.fetch(f"https://www.youtube.com/shorts/{vid}", mp4,
                            max_s=SHORT_MAX_S + 5)
     if not got:
@@ -163,11 +166,15 @@ def study(video_meta: dict, out: Path) -> dict:
             "transcript": lines, "sheet": f"{vid}.jpg" if sheet else None}
 
 
+RUBRICS = ("narrative", "audience")
+
+
 def judge(v: dict, out: Path) -> dict:
     """Our own story critic (`story_director.review_rough_cut`, the gate a
-    story must clear at 80) on a video whose real views we know. If it cannot
-    rank a 91M-view clip above a 1.5M one, its score is not evidence of a
-    good story and no amount of tuning the cuts toward it will help."""
+    story must clear at 80) on a video whose real views we know, once per
+    rubric. If a rubric cannot rank a 91M-view clip above a 9-view one, its
+    score is not evidence of a good story and no amount of tuning the cuts
+    toward it will help."""
     from third_capture import story_director
     edl = {"premise": v["title"], "central_question": "",
            "structure": "single moment",
@@ -176,16 +183,21 @@ def judge(v: dict, out: Path) -> dict:
                       "purpose": "the posted short, as published",
                       "context_overlay": ""}]}
     sheet = out / v["sheet"] if v.get("sheet") else None
-    try:
-        r = story_director.review_rough_cut(
-            edl, "\n".join(v.get("transcript") or []),
-            str(sheet) if sheet else None, float(v["seconds"]))
-    except Exception as e:  # noqa: BLE001
-        print(f"::warning::judge {v['id']}: {e}", flush=True)
-        return {**v, "critic": None}
-    print(f"[judge] {v['views']:>10} views  score {r.get('story_score')} "
-          f"publish={r.get('publish')}  {v['title'][:60]!r}", flush=True)
-    return {**v, "critic": r}
+    verdicts = {}
+    for rubric in RUBRICS:
+        try:
+            r = story_director.review_rough_cut(
+                edl, "\n".join(v.get("transcript") or []),
+                str(sheet) if sheet else None, float(v["seconds"]),
+                rubric=rubric)
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::judge {v['id']} {rubric}: {e}", flush=True)
+            continue
+        verdicts[rubric] = r
+        print(f"[judge] {rubric:9} {v['views']:>10} views  score "
+              f"{r.get('story_score')} publish={r.get('publish')}  "
+              f"{v['title'][:50]!r}", flush=True)
+    return {**v, "critic": verdicts.get("narrative"), "critics": verdicts}
 
 
 def spearman(a: list[float], b: list[float]) -> float | None:
@@ -207,15 +219,26 @@ def spearman(a: list[float], b: list[float]) -> float | None:
     return round(num / den, 3) if den else None
 
 
-def calibration(studied: list[dict]) -> dict:
-    """How the critic's scores line up with the views the audience gave."""
-    scored = [v for v in studied if (v.get("critic") or {}).get(
-        "story_score", -1) >= 0]
+def calibration(studied: list[dict], rubric: str = "narrative") -> dict:
+    """How one rubric's scores line up with the views the audience gave:
+    its rank correlation with views, and how often it would publish each
+    group (top = known winners, bottom/ours = known losers)."""
+    def verdict(v):
+        return (v.get("critics") or {}).get(rubric) or (
+            v.get("critic") if rubric == "narrative" else None)
+    scored = [v for v in studied
+              if (verdict(v) or {}).get("story_score", -1) >= 0]
+    groups = {}
+    for v in scored:
+        g = groups.setdefault(v.get("group", "?"), [0, 0])
+        g[0] += 1
+        g[1] += bool(verdict(v).get("publish"))
     return {"judged": len(scored),
-            "would_publish": sum(1 for v in scored
-                                 if v["critic"].get("publish")),
+            "would_publish": sum(p for _, p in groups.values()),
+            "publish_by_group": {k: f"{p}/{n}" for k, (n, p)
+                                 in sorted(groups.items())},
             "score_vs_views": spearman(
-                [v["critic"]["story_score"] for v in scored],
+                [verdict(v)["story_score"] for v in scored],
                 [v["views"] for v in scored])}
 
 
@@ -243,6 +266,10 @@ def main(argv=None) -> int:
     ap.add_argument("--top", type=int, default=10)
     ap.add_argument("--bottom", type=int, default=4)
     ap.add_argument("--out", default="study")
+    ap.add_argument("--ids", default="",
+                    help="also study these video ids (e.g. our own worst "
+                         "posts, as known losers)")
+    ap.add_argument("--ids-group", default="ours")
     ap.add_argument("--judge", action="store_true",
                     help="also run our story critic on each studied short")
     a = ap.parse_args(argv)
@@ -267,6 +294,9 @@ def main(argv=None) -> int:
         for rank, v in enumerate(pick):
             v = {**v, "group": "top" if rank < a.top else "bottom"}
             studied.append(study(v, out))
+        if a.judge:
+            studied = [judge(v, out) if v.get("fetched") else v
+                       for v in studied]
         report["channels"].append({
             "ref": ref, "found": True, "title": ch["snippet"]["title"],
             "subscribers": int((ch.get("statistics") or {})
@@ -287,10 +317,27 @@ def main(argv=None) -> int:
             studied = [judge(v, out) if v.get("fetched") else v
                        for v in studied]
         entry = {"query": query, "shorts": found, "studied": studied}
-        if a.judge:
-            entry["calibration"] = calibration(studied)
-            print(f"[judge] calibration {entry['calibration']}", flush=True)
         report.setdefault("searches", []).append(entry)
+        (out / "index.json").write_text(json.dumps(report, indent=1))
+    if a.ids:
+        # known losers with real views: our own posts, or any list of ids
+        ids = [i.strip() for i in a.ids.split(",") if i.strip()]
+        theirs = [{**v, "group": a.ids_group}
+                  for v in sorted(videos(ids), key=lambda v: -v["views"])
+                  if 0 < v["seconds"] <= SHORT_MAX_S]
+        print(f"[study] {len(theirs)} listed shorts", flush=True)
+        studied = [study(v, out) for v in theirs]
+        if a.judge:
+            studied = [judge(v, out) if v.get("fetched") else v
+                       for v in studied]
+        report["listed"] = {"group": a.ids_group, "studied": studied}
+    if a.judge:
+        every = [v for e in report.get("searches", []) for v in e["studied"]]
+        every += [v for c in report["channels"] for v in c.get("studied", [])]
+        every += (report.get("listed") or {}).get("studied", [])
+        report["calibration"] = {r: calibration(every, r) for r in RUBRICS}
+        for r, c in report["calibration"].items():
+            print(f"[judge] calibration {r}: {c}", flush=True)
         (out / "index.json").write_text(json.dumps(report, indent=1))
     (out / "index.json").write_text(json.dumps(report, indent=1))
     return 0

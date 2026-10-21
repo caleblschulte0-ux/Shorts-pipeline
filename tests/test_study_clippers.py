@@ -43,6 +43,30 @@ class ReadsDurations(unittest.TestCase):
         self.assertEqual(c["would_publish"], 1)
         self.assertEqual(c["score_vs_views"], 1.0)
 
+    def test_calibration_counts_each_rubric_by_group(self):
+        studied = [
+            {"views": 900, "group": "top", "critics": {
+                "narrative": {"story_score": 40, "publish": False},
+                "audience": {"story_score": 85, "publish": True}}},
+            {"views": 9, "group": "ours", "critics": {
+                "narrative": {"story_score": 70, "publish": False},
+                "audience": {"story_score": 30, "publish": False}}},
+            {"views": 5, "group": "ours", "critics": {
+                "audience": {"story_score": 20, "publish": False}}}]
+        a = s.calibration(studied, "audience")
+        self.assertEqual(a["publish_by_group"], {"ours": "0/2", "top": "1/1"})
+        self.assertEqual(a["score_vs_views"], 1.0)
+        self.assertEqual(s.calibration(studied, "narrative")["judged"], 2)
+
+    def test_both_rubrics_are_real(self):
+        from third_capture import story_director as sd
+        self.assertEqual(set(s.RUBRICS), set(sd.RUBRICS))
+        self.assertIn("premise_at", sd.RUBRICS["audience"])
+        # the gate itself is unchanged until calibration says otherwise
+        import inspect
+        sig = inspect.signature(sd.review_rough_cut)
+        self.assertEqual(sig.parameters["rubric"].default, "narrative")
+
     def test_it_never_uploads(self):
         src = (ROOT / "scripts" / "study_clippers.py").read_text()
         wf = (ROOT / ".github" / "workflows" / "study-clippers.yml").read_text()
