@@ -33,12 +33,23 @@ class ReadsDurations(unittest.TestCase):
         self.assertEqual(s.transcript_lines(words),
                          ["[  1.0] he fell.", "[  3.0] No"])
 
+    def test_calibration_ranks_scores_against_views(self):
+        studied = [{"views": v, "critic": {"story_score": sc, "publish": p}}
+                   for v, sc, p in [(100, 90, True), (50, 70, False),
+                                    (10, 40, False), (5, 30, False)]]
+        studied.append({"views": 1, "critic": {"story_score": -1}})
+        c = s.calibration(studied)
+        self.assertEqual(c["judged"], 4)
+        self.assertEqual(c["would_publish"], 1)
+        self.assertEqual(c["score_vs_views"], 1.0)
+
     def test_it_never_uploads(self):
         src = (ROOT / "scripts" / "study_clippers.py").read_text()
         wf = (ROOT / ".github" / "workflows" / "study-clippers.yml").read_text()
         self.assertNotIn("uploaders", src)
         self.assertNotIn("YOUTUBE_TOKEN", wf)
-        self.assertNotIn("CLAUDE_CODE_OAUTH_TOKEN", wf)
+        # the brain is handed over only when a run asks to judge
+        self.assertIn("inputs.judge && secrets.CLAUDE_CODE_OAUTH_TOKEN", wf)
 
 
 if __name__ == "__main__":
