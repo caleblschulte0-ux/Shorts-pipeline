@@ -1,0 +1,46 @@
+{
+ "floor": 80,
+ "cuts": [
+  {
+   "file": "01_0_marlon-momentbeautifulfrigidruffkappaclaus-yngm-5ilis1nqc7u-.mp4",
+   "score": 0,
+   "passes": false,
+   "label": "marlon@momentbeautifulfrigidruffkappaclaus-yngm_5ilis1nqc7u/marlon-holy-lion-2026w39",
+   "repair": 0,
+   "title": "Marlon swore he could pet a lion, then it roared",
+   "hook": "Marlon says he could pet a lion",
+   "retelling": "Marlon says he could walk up and pet a lion on a night safari, then spends the next minutes telling it to calm down. It roars about ten times and he claims he calmed it, then names it Gigu.",
+   "audience": {
+    "views": 25197,
+    "upvotes": 0,
+    "post_title": ""
+   },
+   "structure_ok": false,
+   "structure": [
+    "length 90s outside 18-75s",
+    "trails 41s past the picked moment"
+   ]
+  },
+  {
+   "file": "02_0_squeex-momentalertimpossiblebeecheffrank-jfr2fpy9lcfr1yt2-sq.mp4",
+   "score": 0,
+   "passes": false,
+   "label": "squeex@momentalertimpossiblebeecheffrank-jfr2fpy9lcfr1yt2/squeex-charact-goblin-2026w39",
+   "repair": 0,
+   "title": "He lost the mayor race so he took a party hostage",
+   "hook": "Squeex takes a whole party hostage",
+   "retelling": "Squeex, in a goblin mask after losing the mayoral race, crashes a house party, takes the guests hostage with a grenade and gives a mock-solemn speech, and the night ends with him shot and cuffed.",
+   "audience": {
+    "views": 29924,
+    "upvotes": 0,
+    "post_title": ""
+   },
+   "structure_ok": false,
+   "structure": [
+    "length 104s outside 18-75s",
+    "11.9s of dead air at 83s",
+    "the moment the audience picked is not in the cut"
+   ]
+  }
+ ]
+}
