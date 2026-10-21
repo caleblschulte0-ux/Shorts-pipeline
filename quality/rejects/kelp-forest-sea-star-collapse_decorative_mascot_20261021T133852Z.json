@@ -1,0 +1,16 @@
+{
+ "slug": "kelp-forest-sea-star-collapse",
+ "ts": "20261021T133852Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From hook@0.3 to seg0:end Data stands in one spot with his hands on his cheeks while the kelp vanishes around him. In seg2:start to seg2:end he stands among the urchins and does nothing to them. In seg3 he only leans on the last kelp stalk. Holding a dying sea star in seg1:mid to ",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "empty_void",
+  "visible_evidence": "seg3:start to seg3:end replays the 100%-to-4% kelp collapse that seg2 already showed. Then payoff@-0.4 cuts to a blank dark end card with Data holding an empty price tag and nothing else on screen.",
+  "root_cause": "The closing reuses the canopy machine as a recap instead of a payoff. A fallback end card with a default blank price-tag prop is shown after the scene ends.",
+  "repair_goal": "End on the closing scene's finished picture, with no blank end card. Make the closing a payoff Data CAUSES, for example Data replacing a sea star on the reef so the urchins scatter and kelp starts to rise, tied to 'that affects us too'. Remove the default price-tag prop."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

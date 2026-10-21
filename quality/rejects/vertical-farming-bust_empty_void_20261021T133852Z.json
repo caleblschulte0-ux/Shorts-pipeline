@@ -1,0 +1,16 @@
+{
+ "slug": "vertical-farming-bust",
+ "ts": "20261021T133852Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: seg4:end (t=31.77): the whole frame is a dark navy gradient with only Data holding a blank yellow price tag at the bottom. It is an empty-stage flash inside the closing, and dark_fraction=0.0 shows it is brief, but it is visible.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "text_collision_and_empty_flash",
+  "visible_evidence": "The closing line in white sits on top of 'Indoor farm money' and later on top of '-91%' (payoff@-1.8). 'peak year = 100' has no number to go with it. At seg4:end the scene cuts to a blank dark stage where Data holds a blank price tag. The billboard peel asserts nothing and Data stands still with his arms crossed.",
+  "root_cause": "The closing reuses the previous beat's headline slot and then re-headlines -91%, without reserving a separate band for the closing line. A fallback empty-stage frame with the default price-tag prop is spliced into the closing.",
+  "repair_goal": "Give the closing line its own band that nothing overlaps, and drop the stray 'Indoor farm money'/'-91%' headlines (or move them clear of it). Remove the blank-stage/price-tag frame. Have Data tear the 'FUTURE OF FOOD' poster down himself, peeling it off to reveal the dark, empty farm behind it, so the picture says 'hype without cash fails'."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

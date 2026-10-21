@@ -6074,6 +6074,62 @@
    ],
    "ending_type": "inversion",
    "notes": "re-validated unchanged: current-standard scenes kept; rebel look is the average look"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-21",
+   "topic_category": "nature",
+   "hook_type": "stake",
+   "hook_text": "A deadly fungus is wiping out the bats that protect your food.",
+   "depictions": [
+    "scene:illustrated-bat-spread",
+    "mechanic:species-decline",
+    "scene:kit"
+   ],
+   "ending_type": "consequence",
+   "notes": "re-validated unchanged 2026-10-21: current-standard scenes kept, validate_scenes OK"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-21",
+   "topic_category": "finance",
+   "hook_type": "shock_stat",
+   "hook_text": "Someone you know is owed money by their state and has no idea.",
+   "depictions": [
+    "scene:illustrated-money-bag",
+    "scene:kit",
+    "mechanic:kit"
+   ],
+   "ending_type": "consequence",
+   "notes": "re-validated unchanged 2026-10-21: current-standard scenes kept, validate_scenes OK"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-10-21",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "depictions": [
+    "scene:illustrated-tattoo-arm",
+    "scene:kit",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "notes": "re-validated unchanged 2026-10-21: current-standard scenes kept, validate_scenes OK"
+  },
+  {
+   "slug": "vertical-farming-bust",
+   "directed_at": "2026-10-21",
+   "topic_category": "tech",
+   "hook_type": "inversion",
+   "hook_text": "Bowery was worth billions. Now it's gone, and so is the money.",
+   "depictions": [
+    "scene:illustrated-coin-jar",
+    "scene:illustrated",
+    "viz:fill_vessel"
+   ],
+   "ending_type": "inversion",
+   "notes": "re-validated unchanged 2026-10-21: current-standard scenes kept, validate_scenes OK"
   }
  ]
 }
