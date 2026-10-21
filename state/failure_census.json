@@ -1,19 +1,114 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "temporal_gate": {
-   "count": 10,
+  "decorative_mascot": {
+   "count": 12,
    "stories": {
-    "longform:foreign-aid-never-broke-0-32-of-health-spending": 2,
-    "vertical-farming-bust": 1,
-    "rubiks-cube-record-vs-robot": 7
+    "sports_jaylen_brown_h_lebron_the": 1,
+    "kelp-forest-sea-star-collapse": 3,
+    "nyc-noise-complaints-per-day": 6,
+    "rubiks-cube-record-vs-robot": 2
    },
    "timestamps": [
-    "2026-10-18T17:26:02+00:00",
-    "2026-10-18T17:24:01+00:00",
-    "2026-10-18T19:21:57+00:00",
-    "2026-10-19T12:02:28+00:00",
-    "2026-10-19T13:59:30+00:00",
+    "2026-10-20T11:39:38+00:00",
+    "2026-10-21T10:43:49+00:00",
+    "2026-10-21T10:58:23+00:00",
+    "2026-10-21T11:13:33+00:00",
+    "2026-10-21T15:27:57+00:00",
+    "2026-10-21T15:27:57+00:00",
+    "2026-10-21T15:27:57+00:00",
+    "2026-10-21T15:46:38+00:00",
+    "2026-10-21T15:46:38+00:00",
+    "2026-10-21T15:58:41+00:00",
+    "2026-10-21T20:15:14+00:00",
+    "2026-10-21T20:42:20+00:00"
+   ],
+   "examples": [
+    "malformed_judge_response: checks.decorative_mascot.evidence missing or empty",
+    "decorative_mascot: hook@0.3 to seg0:end: Data stands in one spot with his hands on his face while the kelp vanishes. seg2:start to seg2:end: he stands still among the urchins. seg1:mid/end: he holds o",
+    "decorative_mascot: hook@0.3 to seg0:end: Data stands in one spot on the urchins with his hands on his head for about 4.5s while the kelp disappears around him. In seg2:start and seg2:mid he stands and"
+   ],
+   "recurred_after_fix": false
+  },
+  "empty_void": {
+   "count": 8,
+   "stories": {
+    "sports_jaylen_brown_h_lebron_the": 1,
+    "vertical-farming-bust": 1,
+    "kelp-forest-sea-star-collapse": 3,
+    "nyc-noise-complaints-per-day": 1,
+    "rubiks-cube-record-vs-robot": 2
+   },
+   "timestamps": [
+    "2026-10-20T11:39:38+00:00",
+    "2026-10-21T10:22:39+00:00",
+    "2026-10-21T10:43:49+00:00",
+    "2026-10-21T10:58:23+00:00",
+    "2026-10-21T11:13:33+00:00",
+    "2026-10-21T15:58:41+00:00",
+    "2026-10-21T20:15:14+00:00",
+    "2026-10-21T20:42:20+00:00"
+   ],
+   "examples": [
+    "malformed_judge_response: checks.empty_void.evidence missing or empty",
+    "empty_void: seg4:end (t=31.77): the whole frame is a dark navy gradient with only Data holding a blank yellow price tag at the bottom. It is an empty-stage flash inside the closing, and dark_fraction=",
+    "empty_void: payoff@-0.4: the last frame is an almost empty dark navy gradient with only a small Data at the bottom, a wasted end card after the closing"
+   ],
+   "recurred_after_fix": false
+  },
+  "other": {
+   "count": 7,
+   "stories": {
+    "sports_jaylen_brown_h_lebron_the": 1,
+    "vertical-farming-bust": 1,
+    "nyc-noise-complaints-per-day": 3,
+    "rubiks-cube-record-vs-robot": 2
+   },
+   "timestamps": [
+    "2026-10-20T11:39:38+00:00",
+    "2026-10-21T10:22:39+00:00",
+    "2026-10-21T15:27:57+00:00",
+    "2026-10-21T15:46:38+00:00",
+    "2026-10-21T15:58:41+00:00",
+    "2026-10-21T20:15:14+00:00",
+    "2026-10-21T20:42:20+00:00"
+   ],
+   "examples": [
+    "malformed_judge_response: checks.unreadable.evidence missing or empty",
+    "unreadable: seg4:start/mid: the closing line 'alone won't feed you.' is printed on top of the 'Indoor farm money' title. payoff@-1.8 and payoff@-0.4: the same line collides with the big '-91%' so both",
+    "unreadable: In seg1:end the caption 'huge slice of' sits over the road's yellow line and almost disappears. In seg2:end 'up the phone' is faded grey on grey. In seg1:end 'EVERYTHING ELSE' is printed o"
+   ],
+   "recurred_after_fix": false
+  },
+  "junk_imagery": {
+   "count": 6,
+   "stories": {
+    "sports_jaylen_brown_h_lebron_the": 1,
+    "kelp-forest-sea-star-collapse": 2,
+    "nyc-noise-complaints-per-day": 1,
+    "rubiks-cube-record-vs-robot": 2
+   },
+   "timestamps": [
+    "2026-10-20T11:39:38+00:00",
+    "2026-10-21T10:43:49+00:00",
+    "2026-10-21T10:58:23+00:00",
+    "2026-10-21T15:46:38+00:00",
+    "2026-10-21T20:15:14+00:00",
+    "2026-10-21T20:42:20+00:00"
+   ],
+   "examples": [
+    "malformed_judge_response: checks.junk_imagery.evidence missing or empty",
+    "junk_imagery: payoff@-0.4: Data stands on a blank dark gradient holding a blank yellow price tag, a stock pose that has nothing to do with kelp or sea stars",
+    "junk_imagery: payoff@-0.4: the last frame cuts to a dark gradient where Data holds up a BLANK yellow price tag. The tag has nothing to do with kelp or sea stars."
+   ],
+   "recurred_after_fix": false
+  },
+  "temporal_gate": {
+   "count": 5,
+   "stories": {
+    "rubiks-cube-record-vs-robot": 5
+   },
+   "timestamps": [
     "2026-10-19T14:29:54+00:00",
     "2026-10-19T17:48:52+00:00",
     "2026-10-19T19:53:41+00:00",
@@ -21,97 +116,9 @@
     "2026-10-20T12:07:05+00:00"
    ],
    "examples": [
-    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "temporal_gate: max_dup_run 47 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=24.29s of 32.71s (~2.0s frozen)",
-    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
-   ],
-   "recurred_after_fix": false
-  },
-  "junk_imagery": {
-   "count": 4,
-   "stories": {
-    "saturn-rings-vanishing": 1,
-    "sports_steve_kerr_ng_lookalike": 1,
-    "vertical-farming-bust": 1,
-    "sports_jaylen_brown_h_lebron_the": 1
-   },
-   "timestamps": [
-    "2026-10-18T14:10:34+00:00",
-    "2026-10-18T15:15:59+00:00",
-    "2026-10-18T20:33:48+00:00",
-    "2026-10-20T11:39:38+00:00"
-   ],
-   "examples": [
-    "junk_imagery: payoff@-0.4: the Saturn scene is gone and Data stands alone on a blank gradient holding an empty yellow price tag that has nothing to do with Saturn's rings (the fallback prop).",
-    "junk_imagery: hook@0.3-mid5: the on-screen line promises a 'Steve Curry look-alike', but the title and footage are about Kerr's OWN look-alike (mid3 shows a grey-haired Kerr-like fan in the crowd). Th",
-    "junk_imagery: payoff@-0.4: Data alone on an empty dark gradient holding a blank yellow price tag, a stock fallback prop that has nothing to do with vertical farms"
-   ],
-   "recurred_after_fix": false
-  },
-  "empty_void": {
-   "count": 3,
-   "stories": {
-    "saturn-rings-vanishing": 1,
-    "blockbuster-to-one-store": 1,
-    "sports_jaylen_brown_h_lebron_the": 1
-   },
-   "timestamps": [
-    "2026-10-18T14:10:34+00:00",
-    "2026-10-18T21:14:29+00:00",
-    "2026-10-20T11:39:38+00:00"
-   ],
-   "examples": [
-    "empty_void: payoff@-0.4 (t=29.2s): the last frame is about 85% empty dark navy gradient with one small Data at the bottom and no subject. The video ends on a void.",
-    "empty_void: payoff@-0.4 is a mostly empty dark-navy frame with Data holding a blank tag in the bottom third, at the very end of the video.",
-    "malformed_judge_response: checks.empty_void.evidence missing or empty"
-   ],
-   "recurred_after_fix": false
-  },
-  "other": {
-   "count": 3,
-   "stories": {
-    "vertical-farming-bust": 1,
-    "blockbuster-to-one-store": 1,
-    "sports_jaylen_brown_h_lebron_the": 1
-   },
-   "timestamps": [
-    "2026-10-18T20:33:48+00:00",
-    "2026-10-18T21:14:29+00:00",
-    "2026-10-20T11:39:38+00:00"
-   ],
-   "examples": [
-    "unreadable: seg4:end and payoff@-1.8: the closing caption 'Hype is not a harvest.' is printed on top of the '-91%' headline, so the two collide. In seg4:start the caption block sits flush on the 'Indo",
-    "unreadable: In seg4:start, seg4:mid and payoff@-1.8, the closing line 'Even giants can vanish fast when habits change...' is drawn on top of floating white light bars that cut through 'fast', 'change,",
-    "malformed_judge_response: checks.unreadable.evidence missing or empty"
-   ],
-   "recurred_after_fix": false
-  },
-  "decorative_mascot": {
-   "count": 2,
-   "stories": {
-    "vertical-farming-bust": 1,
-    "sports_jaylen_brown_h_lebron_the": 1
-   },
-   "timestamps": [
-    "2026-10-18T20:33:48+00:00",
-    "2026-10-20T11:39:38+00:00"
-   ],
-   "examples": [
-    "empty_void: payoff@-0.4: almost the whole frame is a dark navy void with one small mascot at the bottom, no scene and no text",
-    "malformed_judge_response: checks.decorative_mascot.evidence missing or empty"
-   ],
-   "recurred_after_fix": false
-  },
-  "dead_air": {
-   "count": 1,
-   "stories": {
-    "blockbuster-to-one-store": 1
-   },
-   "timestamps": [
-    "2026-10-18T21:14:29+00:00"
-   ],
-   "examples": [
-    "dead_air: The hook holds almost the same frame from hook@0.3 to seg0:end (about 0 to 4s+); only the reels and Data's pose change slightly. The measured max_dup_run is at 10.0s, held_s is 10.46, and th"
+    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)",
+    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)",
+    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
    ],
    "recurred_after_fix": false
   },
@@ -127,36 +134,49 @@
     "malformed_judge_response: checks.bare_number_card.evidence missing or empty"
    ],
    "recurred_after_fix": false
+  },
+  "dead_air": {
+   "count": 1,
+   "stories": {
+    "rubiks-cube-record-vs-robot": 1
+   },
+   "timestamps": [
+    "2026-10-21T20:15:14+00:00"
+   ],
+   "examples": [
+    "dead_air: seg4:start (22.96s), seg4:mid, payoff@-1.8 and seg4:end (26.53s) show the same frozen stopwatch. Only the CTA text fades in. That is about 3.5s or more held with nothing moving (measured max"
+   ],
+   "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 0,
+   "median": 2,
    "min": 0,
    "max": 4
   },
   "data_demo": {
-   "median": 0,
+   "median": 3,
    "min": 0,
    "max": 5
   },
   "mascot": {
-   "median": 0,
+   "median": 1,
    "min": 0,
    "max": 4
   },
   "craft": {
-   "median": 0,
+   "median": 2,
    "min": 0,
    "max": 3
   },
   "pace": {
-   "median": 0,
+   "median": 1,
    "min": 0,
    "max": 2
   },
   "payoff": {
-   "median": 0,
+   "median": 1,
    "min": 0,
    "max": 2
   },
@@ -167,18 +187,6 @@
   }
  },
  "scores": [
-  79,
-  66,
-  70,
-  14,
-  14,
-  14,
-  75,
-  66,
-  95,
-  78,
-  14,
-  14,
   14,
   14,
   14,
@@ -186,6 +194,18 @@
   95,
   14,
   100,
-  14
+  14,
+  70,
+  74,
+  83,
+  75,
+  61,
+  61,
+  61,
+  48,
+  53,
+  44,
+  52,
+  61
  ]
 }
