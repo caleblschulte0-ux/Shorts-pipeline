@@ -20,6 +20,11 @@ on:
         description: 'Candidates per attempt'
         required: false
         default: '6'
+      audience:
+        description: 'Audience arm: only proven moments, measured checks, no critic score'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
@@ -114,7 +119,8 @@ jobs:
             --attempts "${{ inputs.attempts || '4' }}" \
             --max-clusters "${{ inputs.max_clusters || '6' }}" \
             --out backtest \
-            --carry "$RUNNER_TEMP/carry.json"
+            --carry "$RUNNER_TEMP/carry.json" \
+            ${{ inputs.audience && '--audience' || '' }}
 
       - name: Keep every cut
         if: always()

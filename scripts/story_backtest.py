@@ -108,6 +108,11 @@ def main(argv=None) -> int:
     ap.add_argument("--carry", default="",
                     help="carry.json from earlier backtests: what they "
                          "already tried, so this one looks elsewhere")
+    ap.add_argument("--audience", action="store_true",
+                    help="the audience arm: only moments people already "
+                         "upvoted or watched, cut by the director, held to "
+                         "measured checks (third_capture/structure_check), "
+                         "no critic score")
     args = ap.parse_args(argv)
 
     out = Path(args.out).resolve()
@@ -133,6 +138,8 @@ def main(argv=None) -> int:
     base.pop("count", None)
     base.pop("story_count", None)
     base["capture"]["story_max_clusters"] = args.max_clusters
+    if args.audience:
+        base["capture"]["story_pick"] = "audience"
     # production caps the story arm at story_budget_min so the day's clips
     # keep their time; a backtest has nothing else to spend it on
     base["capture"].pop("story_budget_min", None)
@@ -232,6 +239,10 @@ def _report_md(floor: int, attempts: list, cuts: list) -> str:
               f"{rv.get('publish')})",
               f"- title: {e.get('title')} | hook: {e.get('hook_overlay')}",
               f"- premise: {e.get('premise')}",
+              *([f"- audience: {rv['audience']} | structure ok: "
+                 f"{rv.get('structure_ok')} | opens: "
+                 f"{rv.get('opening_line')!r}"] if rv.get("audience")
+                else []),
               f"- critic's retelling: {rv.get('stranger_summary') or '—'}"
               f" | payoff at: {rv.get('payoff_at')}"]
         for p in rv.get("problems") or []:
