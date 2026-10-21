@@ -14890,6 +14890,25 @@
         "end": 50.5
       },
       "director_cut": true
+    },
+    "rejected-littlefancysquidresidentsleeper-_2qdkifzn4vncnis": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/LittleFancySquidResidentSleeper-_2QDKiFZn4VncNIS",
+      "streamer": "caseoh_",
+      "title": "HOLY AURA LMAO\ud83e\udd23\ud83e\udd23\ud83e\udd23",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source has 3.9s of black frames \u2014 dropped feed / hard fade",
+      "ts": "2026-10-21T12:15:40.082557+00:00"
+    },
+    "clip-20261021-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jasontheween/clip/ThirstyLongWaspRlyTho-pfLU1WpbhpWVQJRU",
+      "story_key": null,
+      "streamer": "jasontheween",
+      "title": "Jasontheween Freaks Out After Something Grabs Him Mid-Stream",
+      "kind": "twitch_clip",
+      "ts": "2026-10-21T12:18:27.443949+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
