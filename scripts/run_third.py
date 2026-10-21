@@ -238,6 +238,12 @@ def _audit_dupes(log: dict) -> list:
 _PRIOR_CACHE: dict | None = None
 _STORY_POOL: list | None = None   # run-wide wide-sweep discovery cache
 _CLIP_MEMORY: dict | None = None  # what this channel has watched (lazy)
+_SAGA_TURN = 0                     # which lead streamer the next saga reads
+# The streamers whose history the saga arm reads, one per attempt: the
+# names the most-viewed story shorts in the clipper study were about.
+SAGA_LEADS = ("kaicenat", "ishowspeed", "yourrage", "jynxzi", "lacy",
+              "rayasianboy", "marlon", "stableronaldo", "plaqueboymax",
+              "jasontheween", "xqc", "adinross")
 # streamer -> story candidates examined THIS RUN, across every slot (see
 # the per-streamer cap in _story_attempt)
 _STREAMER_EXAMINED: dict = {}
@@ -281,6 +287,18 @@ _AUDIENCE_CUT = (
     "and at most a few seconds of reaction after it. The whole cut runs "
     "25-60 seconds, opens on a line that states the situation, and ends on "
     "the clip's payoff or the reaction to it.")
+
+
+# The saga arm's brief to the director: the turns are months apart, so a
+# stranger needs WHEN on screen.
+_SAGA_CUT = (
+    " This is a SAGA across streams months or years apart, in date order. "
+    "Every beat after the first opens with a context_overlay saying when "
+    "or how long after (\"A year later\", \"March 2024\"), and the hook "
+    "names the people and the change, like the most-viewed story shorts "
+    "do (\"When Kai met Tota\", \"Ray's origin story\"). Each beat is the "
+    "line of that clip that carries its turn, not the whole clip. 30-75 "
+    "seconds in all.")
 
 
 def _moment_segments(clip: dict, work: Path, wmodel: str, spec: dict,
@@ -1410,6 +1428,12 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         # cut to measured checks instead of a critic's score. Backtest only
         # for now (scripts/story_backtest.py --audience).
         _audience = spec.get("story_pick") == "audience"
+        # THE SAGA ARM (2026-10-21, "those weren't stories"): one
+        # streamer's history across years, the scout told to find an
+        # origin, a history, a betrayal, a rise or a fall in it, each turn
+        # a different stream (story_director._SAGA_SCOUT). Judged like any
+        # story, at story_min_score.
+        _saga = spec.get("story_pick") == "saga"
         # STORY TIME CAP. Every slot is a story slot now (operator,
         # 2026-10-07: "this channel needs to be stories and edits not just
         # raw clips"), and a story search costs 10-20 minutes. Past
@@ -1575,6 +1599,25 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 c["game"] = _names.get(str(c.get("game_id") or ""), "")
             _STORY_POOL = pool
         pool_by_url = {c.get("url"): c for c in _STORY_POOL}
+        _saga_lines = None
+        if _saga:
+            global _SAGA_TURN
+            _leads = list(spec.get("saga_streamers") or SAGA_LEADS)
+            lead = _leads[_SAGA_TURN % len(_leads)]
+            _SAGA_TURN += 1
+            _hist = clip_edit.history(
+                lead, years=float(spec.get("saga_years", 3)),
+                top=int(spec.get("saga_per_quarter", 12)))
+            _gn = clip_edit.helix_game_names([c.get("game_id")
+                                              for c in _hist])
+            for c in _hist:
+                c["game"] = _gn.get(str(c.get("game_id") or ""), "")
+                pool_by_url.setdefault(c["url"], c)
+            _saga_lines, _saga_ids = storyline.build_catalogue(
+                storyline.from_discovery(_hist), max_fresh=400,
+                memory=_memory())
+            print(f"[saga] {lead}: {len(_hist)} clip(s) across "
+                  f"{spec.get('saga_years', 3)} years", flush=True)
         corpus += storyline.from_discovery(_STORY_POOL)
         # VOD ARCS: clips cut from one broadcast minutes apart are one
         # incident by construction — Twitch's own coordinates say so. They
@@ -1612,14 +1655,14 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         # refused because the footage said otherwise, and nothing stopped it
         # proposing the same three the next day.
         from third_capture import clip_memory
-        cat_lines, cat_ids = storyline.build_catalogue(corpus,
-                                                       memory=_memory())
+        cat_lines, cat_ids = (_saga_lines, _saga_ids) if _saga else \
+            storyline.build_catalogue(corpus, memory=_memory())
         _refused = clip_memory.tried_lines(
             _memory(), {storyline.clip_key(c["source_url"]): cid
                         for cid, c in cat_ids.items()})
         scouted = []
         for st in ([] if _audience else story_director.scout_stories(
-                cat_lines, set(cat_ids), tried=_refused)):
+                cat_lines, set(cat_ids), tried=_refused, saga=_saga)):
             members = [cat_ids[m] for m in st["members"]]
             # THE OTHER SIDE, by name (operator, 2026-10-10, of Kai Cenat
             # and Reggie: "take whoever made those allegations originally,
@@ -1689,6 +1732,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         clusters = _proven_clusters() + clusters
         if _audience:
             clusters = moments      # upvotes first, then views
+        if _saga:
+            clusters = scouted      # the saga's turns, nothing else
         print(f"[story] {len(scouted)} scouted + {len(moments)} moment(s) + "
               f"{len(vod_arcs)} VOD arc(s) + people clusters = "
               f"{len(clusters)} candidate(s) after dedupe", flush=True)
@@ -2029,6 +2074,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     sub, event, guidance=_story_guidance(),
                     hypothesis=(f"{cluster.get('premise', '')} — "
                                 f"{cluster.get('why_connected', '')}"
+                                + (_SAGA_CUT if _saga else "")
                                 if is_scouted else ""),
                     moment=(_MOMENT_HYPOTHESIS
                             + (_AUDIENCE_CUT if _audience else "")

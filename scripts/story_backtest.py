@@ -113,6 +113,10 @@ def main(argv=None) -> int:
                          "upvoted or watched, cut by the director, held to "
                          "measured checks (third_capture/structure_check), "
                          "no critic score")
+    ap.add_argument("--saga", action="store_true",
+                    help="the saga arm: one streamer's history across "
+                         "years per attempt, the scout told to find an "
+                         "origin, a history, a betrayal, a rise or a fall")
     args = ap.parse_args(argv)
 
     out = Path(args.out).resolve()
@@ -140,6 +144,8 @@ def main(argv=None) -> int:
     base["capture"]["story_max_clusters"] = args.max_clusters
     if args.audience:
         base["capture"]["story_pick"] = "audience"
+    if args.saga:
+        base["capture"]["story_pick"] = "saga"
     # production caps the story arm at story_budget_min so the day's clips
     # keep their time; a backtest has nothing else to spend it on
     base["capture"].pop("story_budget_min", None)

@@ -518,9 +518,38 @@ catalogue already holds every side.
 Return {"stories": []} when the catalogue holds no real story."""
 
 
+# THE SAGA (2026-10-21). The operator, of four well-cut single moments:
+# "those weren't stories." What the most-viewed streamer story shorts are
+# (clipper study, run 39688618528): "Ray's Origin Story Is Insane" (7.1M),
+# "The History of SZA & Kai Cenat" (7.6M, "the full timeline starting all
+# the way back in 2022"), "YourRAGE's Best Friend Betrayed Him" (9.9M),
+# "When Kai Met Tota", "How IShowSpeed's 'Biggest' Stream Became
+# Controversial". Every one is told across streams months or years apart.
+_SAGA_SCOUT = """
+
+THIS CATALOGUE IS ONE STREAMER'S HISTORY: their most-watched clips of
+every quarter for years. Find a SAGA in it, the kind of story the most
+viewed streamer shorts tell:
+- an ORIGIN: how two people met, and what they became ("When Kai met
+  Tota", "Ray's origin story")
+- a HISTORY between two people: the first meeting, the turn, where it
+  stands now ("The history of SZA and Kai Cenat")
+- a BETRAYAL or falling-out: close, then the break, then the fallout
+- a RISE or FALL: the before, the moment it changed, the after
+- a RUNNING THING that changed over time: a promise kept or broken, a
+  rivalry settled, a goal finally reached
+Each member is a different stream, months apart, in date order, and
+each is a turn of the saga, never two clips of the same moment. 3-5
+members. The premise reads like those titles: the people by name and the
+change. Use what you know about these people's real history, but every
+member must be a catalogue line, and every turn must be one its line
+states. Shape: "saga"."""
+
+
 def scout_stories(lines: list[str], ids: set[str],
                   max_stories: int = 6,
-                  tried: list[str] | None = None) -> list[dict]:
+                  tried: list[str] | None = None,
+                  saga: bool = False) -> list[dict]:
     """Ask the brain which clips in the catalogue form stories.
 
     The scout PROPOSES; it never decides. A proposal only buys the expensive
@@ -541,7 +570,7 @@ def scout_stories(lines: list[str], ids: set[str],
         out = _brain("CATALOGUE:\n" + "\n".join(lines)
                      + ("\n\nALREADY REFUSED (the director watched these):\n"
                         + "\n".join(tried) if tried else ""),
-                     _SCOUT_SYSTEM)
+                     _SCOUT_SYSTEM + (_SAGA_SCOUT if saga else ""))
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[scout] failed ({e})", flush=True)
         return []

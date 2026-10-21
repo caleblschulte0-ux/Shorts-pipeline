@@ -25,6 +25,11 @@ on:
         type: boolean
         required: false
         default: false
+      saga:
+        description: 'Saga arm: one streamer history across years, origin/history/betrayal stories'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
@@ -120,7 +125,8 @@ jobs:
             --max-clusters "${{ inputs.max_clusters || '6' }}" \
             --out backtest \
             --carry "$RUNNER_TEMP/carry.json" \
-            ${{ inputs.audience && '--audience' || '' }}
+            ${{ inputs.audience && '--audience' || '' }} \
+            ${{ inputs.saga && '--saga' || '' }}
 
       - name: Keep every cut
         if: always()
