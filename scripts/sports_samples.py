@@ -211,6 +211,11 @@ def fetch(c: dict, work: Path) -> dict | None:
     except Exception as e:  # noqa: BLE001
         print(f"[sports] yt-dlp refused {c['url']} ({type(e).__name__})",
               flush=True)
+    if "streamable.com" in c.get("media", ""):
+        from funnel import find_footage
+        stem = re.sub(r"\W+", "", c["media"])[-12:]
+        p = find_footage.download(c["media"], work / f"st_{stem}.mp4")
+        return {"path": str(p), "title": c["post_title"]} if p else None
     if reddit_video.video_id(c.get("media", "")):
         stem = re.sub(r"\W+", "", c["media"])[-16:]
         return reddit_video.fetch(c["media"], work / f"rv_{stem}.mp4",

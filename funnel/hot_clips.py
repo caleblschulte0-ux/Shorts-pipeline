@@ -337,11 +337,16 @@ def reddit_videos(query: str, period: str = "all",
         return []
     got = _rss(f"/search.json?q={q}&sort=top&t={period}&type=link"
                f"&limit={int(limit)}", "all") or {}
-    out, seen = [], set()
+    out, seen, hosts = [], set(), {}
     for ch in ((got.get("data") or {}).get("children") or []):
         p = ch.get("data") or {}
         url = str(p.get("url") or "")
-        if "v.redd.it" not in url.lower() or url in seen:
+        host = urllib.parse.urlparse(url).netloc.lower()
+        hosts[host] = hosts.get(host, 0) + 1
+        # Reddit's own videos and streamable (r/nba's highlight host) — both
+        # download from a runner; YouTube links are what refuses it
+        if not any(h in host for h in ("v.redd.it", "streamable.com")) \
+                or url in seen:
             continue
         seen.add(url)
         perm = str(p.get("permalink") or "")
@@ -352,7 +357,9 @@ def reddit_videos(query: str, period: str = "all",
                     "sub": m.group(1) if m else "",
                     "created": float(p.get("created_utc") or 0)})
     print(f"[hot_clips] reddit search {query[:50]!r}: {len(out)} "
-          "video post(s)", flush=True)
+          f"video post(s) of {sum(hosts.values())} "
+          f"({', '.join(f'{h} {n}' for h, n in sorted(hosts.items(), key=lambda x: -x[1])[:6])})",
+          flush=True)
     return out
 
 
