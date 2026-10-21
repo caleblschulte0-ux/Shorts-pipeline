@@ -21744,10 +21744,10 @@
   },
   {
    "slug": "muscle-loss-after-30",
-   "title": "You Start Losing Muscle Before You Turn 40",
-   "hook": "Your muscles started vanishing at 30.",
-   "closing": "Lifting weights can reverse it, so start now, whatever your age.",
-   "question": "How many days a week do you lift?",
+   "title": "Muscle Loss Can Reach 35% By Age 80",
+   "hook": "Muscle mass can fall 35% by the oldest point shown.",
+   "closing": "Strength work matters because the decline accelerates later in life.",
+   "question": "How often do you train for strength?",
    "caption": "After age 30, you lose 3 to 5 percent of your muscle mass every decade -- and after 70, that jumps to as much as 24 percent a decade. It's called sarcopenia and almost nobody talks about it until it's already happened. Here's the good news: one study reversed it in 12 weeks. 👇",
    "hashtags": [
     "sarcopenia",
@@ -21772,8 +21772,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE DECLINE",
-     "topic": "Muscle mass with age",
-     "say": "By eighty, you've lost over a third of your muscle. And the slide starts quietly, back in your thirties.",
+     "topic": "Muscle by Age",
+     "say": "Muscle mass can fall 35% by the oldest point shown. That makes preserving strength increasingly important.",
      "scene": {
       "title": true,
       "elements": [
@@ -21792,8 +21792,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE CLIFF",
-     "topic": "Muscle loss rate",
-     "say": "Until seventy you lose about four percent a decade. After that the pace more than quadruples, so waiting costs you fast.",
+     "topic": "Muscle Loss Rate",
+     "say": "Muscle loss reaches 18% per decade in the later group. The decline accelerates with age.",
      "scene": {
       "mechanic": "muscle-cliff-drop",
       "concept": "a muscular silhouette walks down a gentle ramp scaled to the 4%-per-decade slope through the 30s-50s, then the ramp breaks into a sheer cliff at 70 where the same figure plunges at the much steeper 18%-per-decade rate",
@@ -21808,8 +21808,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE FIX",
-     "topic": "Training stops muscle loss",
-     "say": "In one study, over a third of people had clinical muscle loss. After twelve weeks of lifting, none did.",
+     "topic": "Muscle Training",
+     "say": "After training, clinical muscle loss fell to 0% in this study. Resistance work changed the measured outcome.",
      "scene": {
       "mechanic": "rep-count-cure-grid",
       "concept": "a 40-icon grid of people starts 35% shaded red for sarcopenia and clears to zero red as a pumping barbell counts up through 12 weeks of training",
@@ -21817,8 +21817,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-15T12:12:55Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-21T11:28:08Z",
    "retold": "retell/v4"
   },
   {
