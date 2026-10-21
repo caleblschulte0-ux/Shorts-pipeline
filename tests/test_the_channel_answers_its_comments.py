@@ -145,9 +145,15 @@ class ARunPostsWhatPassed(unittest.TestCase):
         up = mock.MagicMock()
         up._credentials.return_value = mock.MagicMock(scopes=[RC.FORCE_SSL])
         up.whoami.return_value = {"id": ME}
+        real = RC.pending
+        # the comments are dated against NOW; the run reads the real
+        # clock, so from 2026-10-21 every one was "too old" and nothing
+        # was ever answered
         with mock.patch("shared.uploaders.YouTubeUploader", return_value=up), \
              mock.patch.object(RC, "_youtube", return_value=svc), \
-             mock.patch.object(RC, "draft", return_value=replies):
+             mock.patch.object(RC, "draft", return_value=replies), \
+             mock.patch.object(RC, "pending", side_effect=(
+                 lambda *a, **k: real(*a, **{**k, "now": NOW}))):
             out = RC.run_channel("explainer", dry_run=dry)
         return svc, out
 
