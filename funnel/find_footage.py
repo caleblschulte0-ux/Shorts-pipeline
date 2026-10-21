@@ -335,7 +335,12 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
                     got.append({"path": str(clip), "url": v["url"],
                                 "title": v["title"],
                                 "from_s": round(start, 1),
-                                "secs": round(length, 2)})
+                                "secs": round(length, 2),
+                                # where the shot came from, so a caller can
+                                # let it play on (outro.play_out)
+                                "source": str(video),
+                                "source_s": round(dur, 1),
+                                "shot_end": round(s1 - 0.1, 2)})
                     print(f"[footage] {look!r}: {v['title'][:50]!r} "
                           f"@{start:.1f}s", flush=True)
     except Exception as e:  # noqa: BLE001

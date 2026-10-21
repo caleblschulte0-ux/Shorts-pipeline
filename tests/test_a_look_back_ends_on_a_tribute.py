@@ -287,3 +287,37 @@ class AReelGivesSeveralShots(unittest.TestCase):
                                                               starts[1:])))
             self.assertFalse({g["from_s"] for g in got}
                              & {g["from_s"] for g in again})
+
+
+@unittest.skipUnless(HAVE_FFMPEG, "ffmpeg unavailable")
+class TheLastShotPlaysOut(unittest.TestCase):
+    """2026-10-21: "why did we cut the clip at the end? ... At the very
+    least, let that last clip finish playing out"."""
+
+    def test_the_last_shot_runs_to_the_end_of_its_play(self):
+        with tempfile.TemporaryDirectory() as td:
+            td = Path(td)
+            subprocess.run(
+                ["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i",
+                 "color=c=blue:s=640x360:r=30:d=9", "-c:v", "libx264",
+                 str(td / "play.mp4")], check=True)
+            hit = {"path": "x", "url": "u", "from_s": 1.0, "secs": 2.4,
+                   "source": str(td / "play.mp4"), "source_s": 9.0,
+                   "shot_end": 3.4}
+            out = outro.play_out(hit, td)
+            self.assertTrue(out["hold"])
+            # a short clip of one play runs on past its camera cut
+            self.assertAlmostEqual(out["secs"], outro.LAST_MAX_S, delta=0.1)
+            self.assertGreater(outro._seconds(Path(out["path"])), 5.5)
+            # a long reel stops at the end of the shot, not in the next play
+            reel = outro.play_out({**hit, "source_s": 600.0,
+                                   "shot_end": 5.0}, td)
+            self.assertAlmostEqual(reel["secs"], 4.0, delta=0.1)
+            # nothing to play out: the hit as it was
+            self.assertIs(outro.play_out({**hit, "source": None}, td).get(
+                "hold"), None)
+
+    def test_the_montage_holds_the_last_shot_and_fades_after(self):
+        g = outro.graph(3, [2.4, 2.4, 6.0], 12.0, 1080, 1920, None)
+        self.assertIn("trim=0:6.00", g)
+        self.assertIn(f"st={10.8 - outro.TAIL_FADE_S:.2f}", g)

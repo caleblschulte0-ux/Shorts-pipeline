@@ -51,7 +51,12 @@ VERSUS = re.compile(r"\b(vs\.?|versus|against|v\.)\s", re.I)
 XFADE_S = 1.0           # the clip's last frame dissolves into the montage
 PRELAP_S = 5.0          # the song starts under the clip's last words
 PRELAP_GAIN = 0.35      # ... quietly, under the voice, until the cut
-TAIL_FADE_S = 1.6       # the song and the picture fade out together
+TAIL_FADE_S = 1.2       # the song and the picture fade out together
+#: The LAST shot plays the moment out instead of stopping at SHOT_S
+#: (operator, 2026-10-21: *"why did we cut the clip at the end? ... At the
+#: very least, let that last clip finish playing out"*).
+LAST_MAX_S = 6.5
+ONE_PLAY_S = 120        # a source this short is one play: run on past cuts
 #: The montage's colour, chosen by the author per clip.
 GRADES = {
     "faded": "eq=saturation=0.78:contrast=1.04",     # memory, not live
@@ -160,6 +165,29 @@ def shots(item: dict, work: Path, title: str = "") -> list[dict]:
     return got[:TARGET_SHOTS]
 
 
+def play_out(hit: dict, work: Path) -> dict:
+    """`hit` re-cut to play its moment out: to the end of a short clip of
+    one play (camera cuts and all), or to the end of its shot in a longer
+    reel, at most `LAST_MAX_S`. The hit as it was when it cannot be."""
+    from funnel import find_footage
+    src, start = hit.get("source"), float(hit.get("from_s") or 0)
+    if not src or not Path(src).exists():
+        return hit
+    total = float(hit.get("source_s") or 0)
+    end = (total - 0.2 if 0 < total <= ONE_PLAY_S
+           else float(hit.get("shot_end") or 0))
+    length = min(LAST_MAX_S, end - start)
+    if length <= float(hit.get("secs") or SHOT_S) + 0.3:
+        return hit
+    out = find_footage.cut(Path(src), start, length,
+                           Path(work) / f"outro_last_{Path(src).stem}_"
+                           f"{int(start * 10)}.mp4")
+    if not out:
+        return hit
+    print(f"[outro] last shot plays out: {length:.1f}s", flush=True)
+    return {**hit, "path": str(out), "secs": round(length, 2), "hold": True}
+
+
 def graph(n: int, durs: list[float], clip_s: float, w: int, h: int,
           line_y: int | None, grade: str = "faded") -> str:
     """filter_complex joining input 0 (the rendered clip) to inputs 1..n
@@ -220,7 +248,8 @@ def _render(clip: Path, got: list[dict], song: Path, out: Path,
             grade: str = "faded") -> list | None:
     """One try at joining `got` to the clip into `out`; the shot lengths,
     or None with ffmpeg's own reason printed."""
-    durs = [min(SHOT_S, float(g.get("secs") or SHOT_S)) for g in got]
+    durs = [min(LAST_MAX_S if g.get("hold") else SHOT_S,
+                float(g.get("secs") or SHOT_S)) for g in got]
     with_line = bool(line_png) and line_y is not None
     cmd = ["ffmpeg", "-y", "-v", "error", "-i", str(clip)]
     for g in got:
@@ -271,6 +300,7 @@ def build(clip: Path, item: dict, work: Path, *, w: int, h: int,
         tries = [got] + ([got[:i] + got[i + 1:] for i in range(len(got))]
                          if len(got) > MIN_SHOTS else [])
         for use in tries:
+            use = use[:-1] + [play_out(use[-1], work)]
             durs = _render(clip, use, song, out, clip_s, w, h,
                            line_png, line_y, item.get("grade", "faded"))
             if durs:
