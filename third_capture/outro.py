@@ -92,13 +92,20 @@ def frame_look(look: str, people: list[str], team: str = "") -> str:
     *"the basketball clip was ass and not of Russ and KD"* — KD alone on
     the Warriors and Russ alone on the Clippers had passed as "them"; then
     KD on the Suns guarding Russ passed as "together")."""
+    if len(people) > 1 and team:
+        # The reel's TITLE names every one of them (`title_has`); a frame
+        # only has to be their team's game. Asking the brain to pick both
+        # faces out of a 640px frame refused six shots in seven
+        # (2026-10-21) and the montage was dropped.
+        return (f"{look}: {team} game action, a player in a {team} "
+                "uniform making the play on the court; another team's "
+                "highlight, a studio or a crowd shot does not count")
     if len(people) > 1:
         both = " and ".join(people)
-        mates = (f"both wearing {team} uniforms, as teammates" if team
-                 else "on the same team, as teammates")
         return (f"{look}: {both} BOTH clearly visible in this same frame, "
-                f"{mates}, playing on the court; a frame with only one of "
-                "them, neither, or them on opposing teams does not count")
+                "on the same team, as teammates, playing on the court; a "
+                "frame with only one of them, neither, or them on opposing "
+                "teams does not count")
     return f"{look}: {people[0]} clearly visible, playing on the court"
 
 

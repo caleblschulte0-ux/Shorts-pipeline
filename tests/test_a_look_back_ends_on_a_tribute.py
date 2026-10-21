@@ -196,8 +196,10 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
         self.assertIn('"people"', author.SYSTEM)
         # then KD on the Suns guarding Russ passed as "together"
         mates = outro.frame_look("x", item["people"], "Oklahoma City Thunder")
-        self.assertIn("Oklahoma City Thunder uniforms", mates)
-        self.assertIn("opposing teams", mates)
+        self.assertIn("Oklahoma City Thunder uniform", mates)
+        self.assertIn("another team's", mates)
+        # and without a team, both faces in the frame, as teammates
+        self.assertIn("opposing teams", outro.frame_look("x", item["people"]))
         self.assertIn('"team"', author.SYSTEM)
 
     def test_the_song_is_heard_well_before_the_picture_changes(self):
