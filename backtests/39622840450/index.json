@@ -1,0 +1,75 @@
+{
+ "floor": 80,
+ "cuts": [
+  {
+   "file": "01_0_jynxzi-momentshortsnappymageitsboshytime-jg66h2erccmlmdgz-jy.mp4",
+   "score": 0,
+   "passes": false,
+   "label": "jynxzi@momentshortsnappymageitsboshytime-jg66h2erccmlmdgz/jynxzi-about-broadcast-2026w39",
+   "repair": 0,
+   "title": "Jynxzi's call with Aussie got stuck in an infinite loop",
+   "hook": "Jynxzi's call turned into an infinite loop",
+   "retelling": "Jynxzi, hyped for the FNCS Globals watch party, calls Aussie, and the call fills with a looping echo that turns out to be his own screen share.",
+   "audience": {
+    "views": 17008,
+    "upvotes": 0,
+    "post_title": ""
+   },
+   "structure_ok": true,
+   "structure": []
+  },
+  {
+   "file": "02_0_marlon-momentbeautifulfrigidruffkappaclaus-yngm-5ilis1nqc7u-.mp4",
+   "score": 0,
+   "passes": false,
+   "label": "marlon@momentbeautifulfrigidruffkappaclaus-yngm_5ilis1nqc7u/marlon-holy-lion-2026w39",
+   "repair": 0,
+   "title": "Marlon said he could pet a lion. Then it roared.",
+   "hook": "Marlon says he could pet a lion",
+   "retelling": "Marlon brags on a night safari that he could walk up and pet a lion five feet away. Then the lion starts to stir, he begs everyone to calm down, and it roars at him.",
+   "audience": {
+    "views": 25739,
+    "upvotes": 0,
+    "post_title": ""
+   },
+   "structure_ok": true,
+   "structure": []
+  },
+  {
+   "file": "03_0_ohnepixel-momentrespectfulsparklyraisinvohiyo-tyei14r8rjs4kg.mp4",
+   "score": 0,
+   "passes": false,
+   "label": "ohnepixel@momentrespectfulsparklyraisinvohiyo-tyei14r8rjs4kg4j/ohnepixel-chocolate-forgot-2026w39",
+   "repair": 0,
+   "title": "Ohnepixel warned us his hands would ruin the chocolate",
+   "hook": "Ohnepixel's hands vs warm chocolate",
+   "retelling": "Ohnepixel is trying a chocolate wafer on stream and warns that his warm hands will melt the chocolate. Moments later he is staring at his hands in dismay.",
+   "audience": {
+    "views": 14400,
+    "upvotes": 0,
+    "post_title": ""
+   },
+   "structure_ok": true,
+   "structure": []
+  },
+  {
+   "file": "04_0_maya-momentblushingfancyjackalrickroll-gt8gobjthn11-zns-maya.mp4",
+   "score": 0,
+   "passes": false,
+   "label": "maya@momentblushingfancyjackalrickroll-gt8gobjthn11-zns/maya-ambassador-eight-2026w42",
+   "repair": 2,
+   "title": "Maya teases ambassadors then can't count them",
+   "hook": "Maya teases new Alveus ambassadors",
+   "retelling": "Maya says she is at Alveus Sanctuary to announce new ambassadors, then says there is only a chance of eight, and a few minutes later she can't count how many.",
+   "audience": {
+    "views": 14995,
+    "upvotes": 0,
+    "post_title": ""
+   },
+   "structure_ok": false,
+   "structure": [
+    "trails 19s past the picked moment: end on the picked clip's payoff or the reaction to it"
+   ]
+  }
+ ]
+}
