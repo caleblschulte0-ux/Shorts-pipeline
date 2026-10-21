@@ -843,7 +843,7 @@ class FootageFromRedditsOwnVideos(unittest.TestCase):
             got = hot_clips.reddit_videos("Kobe 81")
         self.assertEqual([g["media"] for g in got], ["https://v.redd.it/abc123"])
         self.assertEqual(got[0]["sub"], "nba")
-        self.assertTrue(seen[0].startswith("/search.json?q=Kobe%2081"))
+        self.assertTrue(seen[0].startswith("/search.json?q=Kobe%2081%20site%3Av.redd.it"))
 
     def test_a_reddit_video_is_downloaded_from_v_redd_it(self):
         from funnel import find_footage, reddit_video

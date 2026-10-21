@@ -332,13 +332,19 @@ def reddit_videos(query: str, period: str = "all",
     runner and every free converter does too (2026-10-21) — r/nba,
     r/nbaclips, r/sports... carry the plays themselves, and v.redd.it
     serves them to anyone."""
-    q = urllib.parse.quote(str(query or "").strip())
-    if not q:
+    query = str(query or "").strip()
+    if not query:
         return []
-    got = _rss(f"/search.json?q={q}&sort=top&t={period}&type=link"
-               f"&limit={int(limit)}", "all") or {}
+    # Reddit's search takes site: — without it a moment's name returns the
+    # discussion threads about it (19 of 25 for "Kobe 81 points")
+    kids = []
+    for site in ("v.redd.it", "streamable.com"):
+        q = urllib.parse.quote(f"{query} site:{site}")
+        got = _rss(f"/search.json?q={q}&sort=top&t={period}&type=link"
+                   f"&limit={int(limit)}", "all") or {}
+        kids += (got.get("data") or {}).get("children") or []
     out, seen, hosts = [], set(), {}
-    for ch in ((got.get("data") or {}).get("children") or []):
+    for ch in kids:
         p = ch.get("data") or {}
         url = str(p.get("url") or "")
         host = urllib.parse.urlparse(url).netloc.lower()
