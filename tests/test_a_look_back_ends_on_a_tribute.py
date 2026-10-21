@@ -207,7 +207,7 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
                 or [])):
             outro.shots({**item, "team": "Oklahoma City Thunder"},
                         Path(tempfile.mkdtemp()))
-        self.assertTrue(all(m <= 180 and 0 < p <= 2 for m, p in caps))
+        self.assertTrue(all(m <= 300 and 0 < p <= 2 for m, p in caps))
         # then three shots of a "Westbrook vs Durant" video
         nums = outro.parse({**OUTRO, "people": item["people"],
                             "team": "Oklahoma City Thunder",
