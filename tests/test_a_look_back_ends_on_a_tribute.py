@@ -271,6 +271,8 @@ class AReelGivesSeveralShots(unittest.TestCase):
             vid = {"url": "u1", "title": "Durant Westbrook highlights"}
             with mock.patch.object(hot_clips, "youtube",
                                    return_value=[vid]), \
+                    mock.patch.object(hot_clips, "reddit_videos",
+                                      return_value=[]), \
                     mock.patch.object(find_footage, "download",
                                       return_value=td / "reel.mp4"), \
                     mock.patch.object(find_footage, "judge", side_effect=(

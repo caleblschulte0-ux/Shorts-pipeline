@@ -823,3 +823,35 @@ class AConverterPageIsNotAVideo(unittest.TestCase):
         import inspect
         from funnel import yt_convert as y
         self.assertIn("impersonate=\"chrome\"", inspect.getsource(y._stream))
+
+
+class FootageFromRedditsOwnVideos(unittest.TestCase):
+    """2026-10-21: YouTube and every free converter refused the runner; a
+    named moment's footage is searched on Reddit, whose v.redd.it serves
+    the plays themselves."""
+
+    def test_only_reddit_hosted_videos_come_back(self):
+        from funnel import hot_clips
+        listing = {"data": {"children": [
+            {"data": {"title": "Kobe drops 81", "url": "https://v.redd.it/abc123",
+                      "permalink": "/r/nba/comments/x/kobe_drops_81/"}},
+            {"data": {"title": "an article", "url": "https://espn.com/a",
+                      "permalink": "/r/nba/comments/y/an_article/"}}]}}
+        seen = []
+        with mock.patch.object(hot_clips, "_rss",
+                               lambda path, sub="": seen.append(path) or listing):
+            got = hot_clips.reddit_videos("Kobe 81")
+        self.assertEqual([g["media"] for g in got], ["https://v.redd.it/abc123"])
+        self.assertEqual(got[0]["sub"], "nba")
+        self.assertTrue(seen[0].startswith("/search.json?q=Kobe%2081"))
+
+    def test_a_reddit_video_is_downloaded_from_v_redd_it(self):
+        from funnel import find_footage, reddit_video
+        with tempfile.TemporaryDirectory() as d, \
+                mock.patch.object(reddit_video, "fetch",
+                                  lambda m, out, **k: (out.write_bytes(b"x"), {"path": out})[1]), \
+                mock.patch.object(find_footage, "_has_video", lambda p: True), \
+                mock.patch.object(find_footage.subprocess, "run",
+                                  side_effect=AssertionError("no yt-dlp")):
+            out = Path(d) / "a.mp4"
+            self.assertEqual(find_footage.download("https://v.redd.it/abc123", out), out)

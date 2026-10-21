@@ -91,6 +91,11 @@ def download(url: str, out: Path) -> Path | None:
     """The video at `url` as an mp4, or None. yt-dlp first; YouTube
     refuses it from GitHub's runners, so the converters next."""
     out.parent.mkdir(parents=True, exist_ok=True)
+    if "v.redd.it" in str(url).lower():
+        from funnel import reddit_video
+        got = reddit_video.fetch(url, out, max_s=MAX_S)
+        p = Path(got["path"]) if got and got.get("path") else None
+        return p if p and p.exists() and _has_video(p) else None
     try:
         subprocess.run(["yt-dlp", "-q", "--no-playlist", "-f",
                         "bv*[height<=720][ext=mp4]+ba/b[height<=720]/b",
@@ -277,8 +282,14 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
         from funnel import hot_clips
         seen, cands = set(), []
         for q in queries(who, query or look):
-            for v in hot_clips.youtube(q, days=365 * YEARS,
-                                       n=MANY_CANDIDATES, max_s=max_s):
+            # Reddit's own video posts first: they are short clips of one
+            # play, and v.redd.it serves them when YouTube and every free
+            # converter refuse the runner (2026-10-21)
+            found = [{"url": r["media"], "title": r["post_title"]}
+                     for r in hot_clips.reddit_videos(q, limit=25)]
+            found += hot_clips.youtube(q, days=365 * YEARS,
+                                       n=MANY_CANDIDATES, max_s=max_s)
+            for v in found:
                 if v["url"] not in seen and not is_talk(v.get("title")) \
                         and titled(v.get("title"), title_has) \
                         and not (title_not and title_not.search(
@@ -288,7 +299,7 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
         print(f"[footage] {(query or look)[:50]!r}: {len(cands)} "
               "candidate(s)",
               flush=True)
-        for k, v in enumerate(cands[:MANY_CANDIDATES]):
+        for k, v in enumerate(cands[:MANY_CANDIDATES * 2]):
             if len(got) >= n:
                 break
             video = download(v["url"], work / f"many_{tag}_{k}.mp4")

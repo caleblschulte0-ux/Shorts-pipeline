@@ -320,6 +320,42 @@ def top_videos(sub: str, period: str = "week",
     return out
 
 
+def reddit_videos(query: str, period: str = "all",
+                  limit: int = 25) -> list[dict]:
+    """Every Reddit post (any subreddit) that matches `query` and is a
+    Reddit-hosted video, top first: [{url, media, post_title, permalink,
+    sub, created}], `media` being the v.redd.it address
+    `funnel.reddit_video.fetch` downloads. Reddit's own site search, read
+    as RSS (the JSON API refuses runners). [] when Reddit cannot be read.
+
+    Shared capability: footage of a named moment when YouTube refuses the
+    runner and every free converter does too (2026-10-21) — r/nba,
+    r/nbaclips, r/sports... carry the plays themselves, and v.redd.it
+    serves them to anyone."""
+    q = urllib.parse.quote(str(query or "").strip())
+    if not q:
+        return []
+    got = _rss(f"/search.json?q={q}&sort=top&t={period}&type=link"
+               f"&limit={int(limit)}", "all") or {}
+    out, seen = [], set()
+    for ch in ((got.get("data") or {}).get("children") or []):
+        p = ch.get("data") or {}
+        url = str(p.get("url") or "")
+        if "v.redd.it" not in url.lower() or url in seen:
+            continue
+        seen.add(url)
+        perm = str(p.get("permalink") or "")
+        m = re.match(r"/r/([^/]+)/", perm)
+        out.append({"url": url, "media": url,
+                    "post_title": str(p.get("title") or "")[:200],
+                    "permalink": "https://www.reddit.com" + perm,
+                    "sub": m.group(1) if m else "",
+                    "created": float(p.get("created_utc") or 0)})
+    print(f"[hot_clips] reddit search {query[:50]!r}: {len(out)} "
+          "video post(s)", flush=True)
+    return out
+
+
 # ---- the other side, searched for by name -------------------------------
 
 def _yt(params: dict) -> dict:

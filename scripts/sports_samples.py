@@ -183,7 +183,15 @@ def found(query: str, who: str, n: int) -> list[dict]:
     length), shaped like a Reddit pick, so one moment the operator names
     ("when Russ is talking about KD") can be cut as a sample."""
     from funnel import hot_clips
-    return [{"sub": "youtube", "credit": v.get("channel") or "YouTube",
+    # Reddit's own video posts first: v.redd.it serves them when YouTube
+    # and the free converters refuse the runner (2026-10-21)
+    reddit = [{"sub": r["sub"] or "reddit", "credit": f"r/{r['sub']}",
+               "who": who or query, "why": "named by the operator",
+               "post_title": r["post_title"], "upvotes": 0,
+               "url": r["permalink"], "media": r["media"],
+               "permalink": r["permalink"]}
+              for r in hot_clips.reddit_videos(query, limit=25)][:n]
+    return reddit + [{"sub": "youtube", "credit": v.get("channel") or "YouTube",
              "who": who or query, "why": "named by the operator",
              "post_title": v["title"], "upvotes": 0, "url": v["url"],
              "permalink": v["url"]}
