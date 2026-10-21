@@ -1,33 +1,38 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261020",
-  "judged_date": "20261019",
+  "date": "20261021",
+  "judged_date": "20261020",
   "alarm": {
-    "date": "20261019",
+    "date": "20261020",
     "ok": false,
     "alarms": [
       {
         "code": "no_posts_explainer",
         "severity": "critical",
-        "detail": "explainer: ZERO videos posted for 20261019 (registry wants 4).",
-        "fix": "Check the explainer workflow run for 20261019. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+        "detail": "explainer: ZERO videos posted for 20261020 (registry wants 4).",
+        "fix": "Check the explainer workflow run for 20261020. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+      },
+      {
+        "code": "short_slate_third",
+        "severity": "warning",
+        "detail": "third: 1/6 posted for 20261020.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_trending",
         "severity": "warning",
-        "detail": "trending: 2/3 posted for 20261019.",
+        "detail": "trending: 2/3 posted for 20261020.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (41 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (42 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
-      "chatgpt finalizer: artifact present",
-      "third: 6/6 posted"
+      "chatgpt finalizer: artifact present"
     ],
     "deferred": false
   },
@@ -213,289 +218,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-10-16T11:40:37+00:00",
-      "slug": "sports_kevin_durant_ause_i_still",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "This is the real Durant quote and it plays clean, but it is 24 seconds of one static press-conference shot with no zoom or hit, so the hook and payoff are flat.",
-      "auto_fails": [],
-      "problems": [
-        "Hook (hook@0.3 to hook@2.2) is an unremarkable static talking head that starts mid-buildup with 'I WAS A'.",
-        "No zooms or sound hits on the emotional words ('sad', 'five or six more years', 'congrats'). The shot is locked off from mid0 to payoff@-0.4.",
-        "Blurred top and bottom bands waste about a quarter of the vertical frame in every shot.",
-        "The ending (payoff@-1.8, payoff@-0.4) is Durant silent and glancing sideways. There is no clear button on the moment."
-      ],
-      "fixes": [
-        "Start the cut on 'Russ had five or six more years left' and punch in on Durant's face for that line.",
-        "Add a punch-in plus a sound hit on 'sad' and on 'congrats', following the repost-channel kit.",
-        "Crop tighter so the footage fills more of the 9:16 frame.",
-        "End right after 'next phase of his life' instead of holding on the silent glance."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 72
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook",
-        "visible_evidence": "hook@0.3 to hook@2.2 is one static medium shot of Durant at a mic, captioned 'I WAS A' / 'I STILL THOUGHT', with no zoom or punch-in and no hit.",
-        "root_cause": "The cut opens at the start of a slow press-conference answer. The emotional line ('I was a little sad... five or six more years') is spread across a single locked-off shot, and none of the repost-style moves (punch-in, sound hit) were used on the key words.",
-        "repair_goal": "Open on the strongest phrase ('Russ had five or six more years left') with a punch-in zoom on Durant's face. Add a second punch-in on 'sad' and on 'congrats', and use a tighter crop so the blurred bands take less of the frame."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.553,
-        "effective_fps": 10.7,
-        "max_dup_run": 19,
-        "measured": true,
-        "frozen_ratio": 0.108,
-        "frozen_fps": 21.4,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 8.25,
-        "max_dup_at_s": 6.08,
-        "duration_s": 23.92
-      },
-      "fingerprint": "?|-|weak_hook"
-    },
-    {
-      "ts": "2026-10-16T10:34:27+00:00",
-      "slug": "bank-branches-mobile-banking-crossover",
-      "score": 79,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A good illustrated, causal opening and a 3x gate that reads at a glance, let down by a phone beat where Data stands idle and a closing that recycles the last picture instead of landing 'into your pocket'.",
-      "auto_fails": [],
-      "problems": [
-        "seg2: Data stands motionless at the building's door while the windows light; he does not cause the rise.",
-        "seg4: the closing claim ('moved into your pocket') has no visual. The seg3 gate is reused, so the payoff never lands as its own whoa.",
-        "seg3: odd floating ceiling slabs at the top of the frame read as clutter, and the closing text sits over them (seg4:start).",
-        "seg1: the 'one in five' share is not shown across the row of branches. Only the hero branch closes, so the 20% lives in the label."
-      ],
-      "fixes": [
-        "seg2: give Data an agent act on the moving fill, handing phones in at the windows or switching each floor on from a ladder, anchored on the windows that light.",
-        "seg4: a dedicated closing picture, e.g. the bank building shrinking into a phone in Data's hand or a branch sliding into a pocket, played full frame under the line.",
-        "seg3: remove or tone down the floating ceiling slabs so the headline and the closing text sit on clean ground.",
-        "seg1: have one of every five branches down the street board up too, so the share is visible without reading the -20%."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 69
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg2",
-        "index": 2,
-        "failure_class": "decorative_mascot",
-        "visible_evidence": "seg2:start to seg2:end: Data stands still at the apartment door, arms at his sides. Windows light floor by floor and a phone icon floats up past the 2013 line, but he does nothing to cause it.",
-        "root_cause": "The 'adoption rising' machine casts Data as a bystander instead of the AGENT driving the moving part (the lit floors). No agent act is anchored to the rising fill.",
-        "repair_goal": "Make Data the cause of the rise. For example, he climbs a ladder up the facade handing a glowing phone in at each window as it lights, or flips each floor's light switch, so his hands land on the moving fill as it climbs from 36% to 55%. Keep the single 55% headline and the 2013 ghost line."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.179,
-        "effective_fps": 19.7,
-        "max_dup_run": 4,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 10.92,
-        "duration_s": 22.92
-      },
-      "fingerprint": "?|-|decorative_mascot",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-16T14:43:57+00:00",
-      "slug": "rabies-prevention-gap",
-      "score": 57,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 1,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The dog-collar scene is a strong idea, but Data is hidden or just standing beside each machine rather than causing the change, and the closing is a 6-second still of the last beat.",
-      "auto_fails": [
-        "decorative_mascot: In seg1:start-end Data stands beside the syringe and waves while the plunger moves by itself. In seg2:mid he stands on the globe's ring and points. In seg3:start-end he is hidden behind the dogs and is never seen putting a collar on one.",
-        "dead_air: From seg3:end (20.9s) to payoff@-0.4 (27.6s) the dog yard does not change. Only the closing text is added, so the last beat and the closing look the same for about 6.5s.",
-        "unreadable: In seg2:mid and seg2:end Data's arm covers the start of the 'AFRICA' label, which reads as 'FRICA'. In seg3:mid and seg3:end Data is covered by the dogs. In hook@0.3 the card says '0% fatal' while the hook line talks about a death sentence, so the first frame contradicts itself."
-      ],
-      "problems": [
-        "seg1: Data waves beside the syringe while the plunger moves by itself. He should be pushing it.",
-        "hook@0.3: the first card reads '0% fatal', which contradicts the death-sentence hook line.",
-        "seg2:mid/end: Data's arm covers 'AFRICA' so it reads 'FRICA'.",
-        "seg3: Data is hidden behind the dogs and never seen vaccinating them.",
-        "seg3:end to seg4: the same frame holds for about 6.5s, so the payoff never lands as its own picture.",
-        "The closing CTA 'Did you know rabies still kills this many?' sits on a scene that never shows the 59,000 number."
-      ],
-      "fixes": [
-        "Have Data push the syringe plunger with both hands in seg1, using a grip on the plunger.",
-        "Open the hook on the 100% fatal state, not 0%.",
-        "Move Data off the AFRICA label, either onto the ring below it or onto the other side of the globe.",
-        "Put Data in front in seg3 with a syringe or collar, vaccinating each dog as the count rises.",
-        "Give the closing its own motion, for example the last snarling dog getting its collar from Data, and show the 59,000 lives the vaccine would save."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 84
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "dead_air",
-        "decorative_mascot",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "decorative_mascot",
-        "visible_evidence": "seg3:start to seg3:end: collars appear on the dogs one by one, but Data is hidden behind the dogs and never touches a collar. The same finished frame then stays on screen, unchanged, through the whole closing (seg4:start to payoff@-0.4).",
-        "root_cause": "Data is placed behind the dogs instead of being the one who vaccinates them, and the finished picture is reused as the closing without any new motion.",
-        "repair_goal": "Put Data in the foreground with a syringe or collar in his hands, walking down the row and vaccinating each dog. Each collar should land as he reaches that dog, so he is the cause. Show the 99% vs 1% split as dogs vs the bat. Give the closing its own move, for example the last unvaccinated snarling "
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.199,
-        "effective_fps": 19.2,
-        "max_dup_run": 15,
-        "measured": true,
-        "frozen_ratio": 0.064,
-        "frozen_fps": 22.5,
-        "max_frozen_run": 10,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 2.17,
-        "max_dup_at_s": 4.25,
-        "duration_s": 27.96
-      },
-      "fingerprint": "?|dead_air+decorative_mascot+unreadable|decorative_mascot",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-16T15:19:33+00:00",
-      "slug": "rabies-prevention-gap",
-      "score": 66,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong bespoke dog-collaring and globe scenes, but the closing reuses the dog yard for about 12 seconds, never shows the 59,000 deaths from the title, and puts small CTA text over the medical chest.",
-      "auto_fails": [
-        "dead_air: The picture from seg2:end (14.9s) is the same shot through seg3:start, seg3:mid, seg3:end, seg4:start, seg4:mid and seg4:end (26.96s). Data barely changes pose. For about 12s only text overlays change, even though small idle motion keeps the static counter at 0.",
-        "unreadable: In seg1:mid and seg1:end Data's arm and body cover the start of the 'AFRICA' label. In seg3:start through seg4:end, 'Did you know rabies still kills this many?' and 'COMMENT BELOW' are small white text over a white and blue medical chest and a dog, so they are hard to read on a phone. In seg0:end the caption 'before symptoms stops' is faded over the vial tray."
-      ],
-      "problems": [
-        "The headline number from the title (59,000 deaths a year) never appears in any frame, so 'kills this many?' points to nothing.",
-        "seg3 and seg4 reuse seg2's finished dog yard almost unchanged for about 12 seconds; the closing has no picture of its own.",
-        "In the opening, the hook frame shows '0% fatal' and then switches to '100%', which is confusing in the first second.",
-        "Data's body covers the 'AFRICA' label in seg1:mid and seg1:end.",
-        "The closing CTA ('Did you know...', 'COMMENT BELOW') is small white text over a white and blue medical chest and is hard to read.",
-        "The syringe in seg0 does not visibly carry the 100%-versus-0% contrast; only the labels do."
-      ],
-      "fixes": [
-        "Add a dedicated closing scene in which the 59,000 deaths shrink as Data collars the last dogs, and land the number on screen.",
-        "Open on the 100%-fatal threat (or on 59,000), not on 0%, so the first frame reads in a second.",
-        "Move the AFRICA label, or Data, so he does not cover it.",
-        "Put the CTA text on clear ground or the dark band, away from the medical chest.",
-        "In seg0, show two outcomes side by side, such as a patient line that ends with no shot and one that continues with a shot, so the 100% versus 0% contrast is visible."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 83
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "dead_air",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg3",
-        "index": 3,
-        "failure_class": "reused_scene_dead_hold",
-        "visible_evidence": "seg3:start through seg4:end repeat seg2's dog yard almost unchanged, with the closing line on top. The closing question 'kills this many?' points to a number that never appears in the video: 59,000 deaths a year is in the title but in no frame.",
-        "root_cause": "There is no closing scene. The last beat's finished picture plays under the closing line and the end card, so the payoff ('a cheap dog vaccine could stop it, saving thousands of lives') is never shown and the headline number is never drawn.",
-        "repair_goal": "Draw a closing scene in which Data, as the cause, finishes vaccinating the last dog, and the 59,000 deaths shrink toward zero (for example, a crowd of figures shrinking as collars go on). The headline number should land by about 70% of the closing. Put the CTA on clear ground, not over the medical c"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.126,
-        "effective_fps": 21.0,
-        "max_dup_run": 16,
-        "measured": true,
-        "frozen_ratio": 0.059,
-        "frozen_fps": 22.6,
-        "max_frozen_run": 12,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 2.08,
-        "max_dup_at_s": 4.08,
-        "duration_s": 27.79
-      },
-      "fingerprint": "?|dead_air+unreadable|reused_scene_dead_hold",
-      "style_arm": "illustrated"
-    },
     {
       "ts": "2026-10-16T15:48:36+00:00",
       "slug": "rabies-prevention-gap",
@@ -4234,16 +3956,250 @@
       },
       "fingerprint": "?|temporal_gate|-",
       "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-20T11:36:55+00:00",
+      "slug": "sports_carmelo_anthony_arly_drowned",
+      "score": 95,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 2
+      },
+      "one_line": "Carmelo Anthony recounts his near-drowning experience in the Bahamas.",
+      "auto_fails": [],
+      "problems": [],
+      "fixes": [],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 88
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "visual dynamism",
+        "visible_evidence": "The initial captions 'LIKE,' and 'YO,' are simple text overlays without significant visual animation or unique design.",
+        "root_cause": "Reliance on basic text overlays for initial engagement rather than more dynamic visual elements.",
+        "repair_goal": "Introduce more animated text or a brief, relevant visual element to enhance the hook's dynamism."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.248,
+        "effective_fps": 18.1,
+        "max_dup_run": 12,
+        "measured": true,
+        "frozen_ratio": 0.181,
+        "frozen_fps": 19.7,
+        "max_frozen_run": 4,
+        "judder_ratio": 0.11,
+        "judder_fps": 21.4,
+        "held_s": 1.21,
+        "max_dup_at_s": 5.17,
+        "duration_s": 29.29
+      },
+      "fingerprint": "?|-|visual dynamism"
+    },
+    {
+      "ts": "2026-10-20T11:39:38+00:00",
+      "slug": "sports_jaylen_brown_h_lebron_the",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked: judge response failed schema validation",
+      "auto_fails": [
+        "malformed_judge_response: checks.junk_imagery.evidence missing or empty",
+        "malformed_judge_response: checks.decorative_mascot.evidence missing or empty",
+        "malformed_judge_response: checks.bare_number_card.evidence missing or empty",
+        "malformed_judge_response: checks.empty_void.evidence missing or empty",
+        "malformed_judge_response: checks.unreadable.evidence missing or empty"
+      ],
+      "problems": [
+        "checks.junk_imagery.evidence missing or empty",
+        "checks.decorative_mascot.evidence missing or empty",
+        "checks.bare_number_card.evidence missing or empty",
+        "checks.empty_void.evidence missing or empty",
+        "checks.unreadable.evidence missing or empty"
+      ],
+      "fixes": [
+        "judge must answer every WEIGHTS dimension and every AUTOFAIL_CHECKS key with present(bool) + nonempty evidence, per _GRADE_PROMPT"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.035,
+        "sampled": 115
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "malformed_judge_response"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.186,
+        "effective_fps": 19.5,
+        "max_dup_run": 14,
+        "measured": true,
+        "frozen_ratio": 0.069,
+        "frozen_fps": 22.3,
+        "max_frozen_run": 13,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 4.12,
+        "max_dup_at_s": 17.5,
+        "duration_s": 38.42
+      },
+      "fingerprint": "?|malformed_judge_response|-"
+    },
+    {
+      "ts": "2026-10-20T11:40:56+00:00",
+      "slug": "sports_tom_brady__evans_about",
+      "score": 100,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 4,
+        "data_demo": 5,
+        "mascot": 4,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A well-executed sports moment capturing a humorous interaction between Tom Brady and Mike Evans.",
+      "auto_fails": [],
+      "problems": [
+        "The introductory text overlay is quite long and static, potentially overwhelming viewers in the first few seconds."
+      ],
+      "fixes": [
+        "Animate the introductory text to appear in stages or break it into shorter, more dynamic phrases."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 62
+      },
+      "judge": "gemini-fallback",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "craft",
+        "visible_evidence": "The long explanatory text at the bottom remains static for the entire hook segment.",
+        "root_cause": "Over-reliance on static text for context rather than dynamic visual storytelling.",
+        "repair_goal": "Introduce dynamic text animation or break the long text into smaller, more digestible phrases that appear sequentially."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.047,
+        "effective_fps": 22.9,
+        "max_dup_run": 4,
+        "measured": true,
+        "frozen_ratio": 0.002,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 2.75,
+        "duration_s": 20.5
+      },
+      "fingerprint": "?|-|craft"
+    },
+    {
+      "ts": "2026-10-20T12:07:05+00:00",
+      "slug": "rubiks-cube-record-vs-robot",
+      "score": 14,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 0,
+        "data_demo": 0,
+        "mascot": 0,
+        "craft": 0,
+        "pace": 0,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)",
+      "auto_fails": [
+        "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+      ],
+      "problems": [
+        "max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+      ],
+      "fixes": [
+        "raise real motion per output frame (see temporal thresholds)"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 26.0,
+        "dark_fraction": 0.0,
+        "sampled": 98
+      },
+      "judge": "code-temporal-pregate",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "temporal_gate"
+      ],
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.264,
+        "effective_fps": 17.7,
+        "max_dup_run": 48,
+        "measured": true,
+        "frozen_ratio": 0.041,
+        "frozen_fps": 23.0,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 5.71,
+        "max_dup_at_s": 26.04,
+        "duration_s": 32.54
+      },
+      "fingerprint": "?|temporal_gate|-",
+      "style_arm": "illustrated"
     }
   ],
   "showrunner_recurrence": {
     "?|temporal_gate|-": {
-      "count": 9,
+      "count": 10,
       "days": [
         "2026-10-16",
         "2026-10-17",
         "2026-10-18",
-        "2026-10-19"
+        "2026-10-19",
+        "2026-10-20"
       ]
     },
     "?|decorative_mascot+empty_void|empty_void": {
@@ -4269,30 +4225,6 @@
       "count": 2,
       "days": [
         "2026-10-18"
-      ]
-    },
-    "?|-|weak_hook": {
-      "count": 1,
-      "days": [
-        "2026-10-16"
-      ]
-    },
-    "?|-|decorative_mascot": {
-      "count": 1,
-      "days": [
-        "2026-10-16"
-      ]
-    },
-    "?|dead_air+decorative_mascot+unreadable|decorative_mascot": {
-      "count": 1,
-      "days": [
-        "2026-10-16"
-      ]
-    },
-    "?|dead_air+unreadable|reused_scene_dead_hold": {
-      "count": 1,
-      "days": [
-        "2026-10-16"
       ]
     },
     "?|decorative_mascot|decorative_mascot / unclear depiction": {
@@ -4528,16 +4460,33 @@
       "days": [
         "2026-10-19"
       ]
+    },
+    "?|-|visual dynamism": {
+      "count": 1,
+      "days": [
+        "2026-10-20"
+      ]
+    },
+    "?|malformed_judge_response|-": {
+      "count": 1,
+      "days": [
+        "2026-10-20"
+      ]
+    },
+    "?|-|craft": {
+      "count": 1,
+      "days": [
+        "2026-10-20"
+      ]
     }
   },
   "recent_commits": [
-    "a3fec90 2026-10-20 claim: mailbox verdicts 2026-10-20T09:48Z [skip ci]",
-    "d701f1c 2026-10-20 claim: mailbox verdicts 2026-10-20T08:47Z [skip ci]"
+    "78aba40 2026-10-20 third: audience arm tells the director the picked clip is the core, repairs from the measured checks (#680)",
+    "219ff22 2026-10-21 claim: mailbox verdicts 2026-10-21T04:47Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-10-06": 5,
         "2026-10-08": 1,
         "2026-10-09": 5,
         "2026-10-10": 5,
@@ -4548,15 +4497,15 @@
         "2026-10-16": 3,
         "2026-10-17": 3,
         "2026-10-18": 3,
-        "2026-10-19": 2
+        "2026-10-19": 2,
+        "2026-10-20": 2
       },
-      "total_posted": 459,
-      "attempted": 459,
+      "total_posted": 461,
+      "attempted": 461,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-10-06": 3,
         "2026-10-07": 5,
         "2026-10-08": 4,
         "2026-10-09": 5,
@@ -4576,7 +4525,6 @@
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-10-06": 5,
         "2026-10-07": 2,
         "2026-10-08": 6,
         "2026-10-09": 7,
@@ -4589,11 +4537,12 @@
         "2026-10-16": 8,
         "2026-10-17": 3,
         "2026-10-18": 7,
-        "2026-10-19": 6
+        "2026-10-19": 6,
+        "2026-10-20": 1
       },
-      "total_posted": 436,
-      "attempted": 1050,
-      "rejected_or_pending": 614
+      "total_posted": 437,
+      "attempted": 1052,
+      "rejected_or_pending": 615
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4607,32 +4556,32 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 142,
+      "videos": 141,
       "top_by_vph": [
         {
           "title": "Why Plane Tickets Cost More The Closer You Book",
-          "vph": 9.09,
-          "views": 1188
+          "vph": 7.7,
+          "views": 1187
         },
         {
           "title": "The Great Lakes Hold 21% Of Earth's Fresh Surface Water",
-          "vph": 8.51,
-          "views": 352
+          "vph": 5.49,
+          "views": 356
         },
         {
           "title": "Saturn's Rings Have Under 300 Million Years Left",
-          "vph": 7.5,
-          "views": 205
+          "vph": 4.23,
+          "views": 215
+        },
+        {
+          "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
+          "vph": 2.6,
+          "views": 628
         },
         {
           "title": "Nobel-Winning Discoveries Now Happen 13 Years Later",
-          "vph": 3.73,
-          "views": 125
-        },
-        {
-          "title": "The Average US Household Shrank From 3.3 To 2.5",
-          "vph": 2.94,
-          "views": 170
+          "vph": 2.31,
+          "views": 132
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
@@ -4642,36 +4591,36 @@
       "top_by_vph": [
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 12.31,
-          "views": 1080
+          "vph": 11.41,
+          "views": 1081
         },
         {
           "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 3.9,
+          "vph": 3.79,
           "views": 904
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 3.58,
-          "views": 1244
+          "vph": 3.56,
+          "views": 1260
         },
         {
           "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
-          "vph": 2.03,
-          "views": 805
+          "vph": 2.0,
+          "views": 806
         },
         {
           "title": "Adinross Makes Two Girls Fight Over Who Brought Up Whose Mom First",
-          "vph": 0.8,
+          "vph": 0.75,
           "views": 86
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261017/brief.json",
       "retro/20261018/brief.json",
-      "retro/20261019/brief.json"
+      "retro/20261019/brief.json",
+      "retro/20261020/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
