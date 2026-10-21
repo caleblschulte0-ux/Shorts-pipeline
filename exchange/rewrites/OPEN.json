@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-21T16:21:57Z",
+ "updated": "2026-10-21T20:53:54Z",
  "open": [
+  {
+   "id": "nyc-noise-complaints-per-day__7fcacd7a",
+   "slug": "nyc-noise-complaints-per-day",
+   "filed": "2026-10-21T20:53:54Z",
+   "why": [
+    "premise: brain: It does not clearly overturn a common viewer expectation, only presents a surprising statistic."
+   ],
+   "request": "exchange/rewrites/20261021/nyc-noise-complaints-per-day__7fcacd7a.request.json",
+   "answer_path": "exchange/rewrites/20261021/nyc-noise-complaints-per-day__7fcacd7a.answer.json"
+  },
+  {
+   "id": "rubiks-cube-record-vs-robot__5d087bf9",
+   "slug": "rubiks-cube-record-vs-robot",
+   "filed": "2026-10-21T20:53:53Z",
+   "why": [
+    "judge: Strong cube art, but the ending undercuts the story: the robot's 0.38 s never shows in the closing, and the video ends on an empty void with a blank price tag."
+   ],
+   "request": "exchange/rewrites/20261021/rubiks-cube-record-vs-robot__5d087bf9.request.json",
+   "answer_path": "exchange/rewrites/20261021/rubiks-cube-record-vs-robot__5d087bf9.answer.json"
+  },
   {
    "id": "lottery-odds-vs-real-life__335c9001",
    "slug": "lottery-odds-vs-real-life",
@@ -295,16 +315,6 @@
    "answer_path": "exchange/rewrites/20261021/third-interstellar-visitor__c92abc0a.answer.json"
   },
   {
-   "id": "rubiks-cube-record-vs-robot__5d087bf9",
-   "slug": "rubiks-cube-record-vs-robot",
-   "filed": "2026-10-20T12:07:19Z",
-   "why": [
-    "judge: blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
-   ],
-   "request": "exchange/rewrites/20261020/rubiks-cube-record-vs-robot__5d087bf9.request.json",
-   "answer_path": "exchange/rewrites/20261020/rubiks-cube-record-vs-robot__5d087bf9.answer.json"
-  },
-  {
    "id": "eclipse-recurrence-rarity__789a0737",
    "slug": "eclipse-recurrence-rarity",
    "filed": "2026-10-20T12:07:17Z",
@@ -513,16 +523,6 @@
    ],
    "request": "exchange/rewrites/20261018/global-remittances-record-2023__21255dfc_r1.request.json",
    "answer_path": "exchange/rewrites/20261018/global-remittances-record-2023__21255dfc_r1.answer.json"
-  },
-  {
-   "id": "nyc-noise-complaints-per-day__499955a7",
-   "slug": "nyc-noise-complaints-per-day",
-   "filed": "2026-10-18T14:23:09Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of viewer expectation and does not hinge on a single, verifiable numeric claim."
-   ],
-   "request": "exchange/rewrites/20261018/nyc-noise-complaints-per-day__499955a7.request.json",
-   "answer_path": "exchange/rewrites/20261018/nyc-noise-complaints-per-day__499955a7.answer.json"
   },
   {
    "id": "homeschool-surge__44c39d98",

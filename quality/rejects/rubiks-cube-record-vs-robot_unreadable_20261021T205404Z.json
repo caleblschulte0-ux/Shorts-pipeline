@@ -1,0 +1,16 @@
+{
+ "slug": "rubiks-cube-record-vs-robot",
+ "ts": "20261021T205404Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg4:mid/end: the small cube icon covers the word 'fast?' in the closing CTA. hook@0.3: a decorative cube sits on top of 'A robot'. seg1:end: the 1x-7x tick labels are tiny and hard to read on a phone.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "payoff_contradicts_claim_and_ends_in_void",
+  "visible_evidence": "seg4:start-end: the closing line says a machine beat humans in under half a second, but the only number on screen is '3.13 s the fastest human hands \u00b7 today'. The robot arm hovers and never visibly solves anything. Data holds a cube in front of his face. The CTA 'fast?' sits under a cube icon. payoff@-0.4 cuts to an empty dark frame with Data holding a blank price tag.",
+  "root_cause": "The closing reused the hook's human-record label instead of the robot's 0.38 s. A fallback end card with the default price-tag prop was appended after the scene.",
+  "repair_goal": "Make the closing land the robot's 0.38 s: the arm visibly solves the cube in a snap while a human-time ghost (3.13 s) shows how far behind people are. Data should physically time it or race it with his face visible. Keep the CTA clear of props and end on the finished scene, not the empty price-tag card."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
