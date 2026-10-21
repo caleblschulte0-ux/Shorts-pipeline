@@ -44,7 +44,9 @@ ACTION = ("real game footage of play on the court or field, the athletes "
 #: A video whose title says it is talk is never downloaded.
 TALK = re.compile(r"\b(react(s|ion|ing)?|podcast|interview|press conference|"
                   r"presser|breaking news|debate|first take|undisputed|"
-                  r"analysis|explains?|talks?|says|speaks|rant|show)\b", re.I)
+                  r"analysis|explains?|talks?|says|speaks|rant|show|"
+                  r"recalls?|opens? up|tells?|reveals?|remembers?|"
+                  r"on why|story of|storytime)\b", re.I)
 
 
 def is_talk(title: str) -> bool:
@@ -285,8 +287,11 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
             # Reddit's own video posts first: they are short clips of one
             # play, and v.redd.it serves them when YouTube and every free
             # converter refuse the runner (2026-10-21)
+            # Reddit's search ANDs loosely and "highlights" is not how its
+            # posts are titled: the words that name the play, without it
+            rq = re.sub(r"\s*\bhighlights?\b", "", q, flags=re.I).strip()
             found = [{"url": r["media"], "title": r["post_title"]}
-                     for r in hot_clips.reddit_videos(q, limit=25)]
+                     for r in hot_clips.reddit_videos(rq, limit=25)]
             found += hot_clips.youtube(q, days=365 * YEARS,
                                        n=MANY_CANDIDATES, max_s=max_s)
             for v in found:

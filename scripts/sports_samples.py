@@ -190,7 +190,11 @@ def found(query: str, who: str, n: int) -> list[dict]:
                "post_title": r["post_title"], "upvotes": 0,
                "url": r["permalink"], "media": r["media"],
                "permalink": r["permalink"]}
-              for r in hot_clips.reddit_videos(query, limit=25)][:n]
+              for r in hot_clips.reddit_videos(query, limit=25)
+              # Reddit's search matches loosely ("Kobe 81 points" returned a
+              # HistoryMemes post): the post must name who it is about
+              if (who or query).split()[-1].lower() in r["post_title"].lower()
+              ][:n]
     return reddit + [{"sub": "youtube", "credit": v.get("channel") or "YouTube",
              "who": who or query, "why": "named by the operator",
              "post_title": v["title"], "upvotes": 0, "url": v["url"],
