@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "betelgeuse-great-dimming__e2882181",
+  "slug": "betelgeuse-great-dimming",
+  "by": "chatgpt",
+  "written_at": "2026-10-21T11:21:35.951Z",
+  "title": "Betelgeuse Fell To 36% Brightness—Then Recovered",
+  "hook": "Betelgeuse dropped to 36% of normal brightness.",
+  "closing": "A dramatic dimming can be dust, not a countdown to explosion.",
+  "question": "Would that dimming have fooled you?",
+  "segments": [
+    {
+      "topic": "Betelgeuse Brightness Drop",
+      "say": "Betelgeuse fell to 36% of normal brightness. The sudden fade looked far more final than it was."
+    },
+    {
+      "topic": "Betelgeuse Dust Cover",
+      "say": "Dust obscured 50% of Betelgeuse's imaged disk. The star was partly hidden, not gone."
+    },
+    {
+      "topic": "Betelgeuse Supernova Clock",
+      "say": "The estimated supernova remains 100,000 years away. A brief dimming was not the finale."
+    }
+  ]
+}
