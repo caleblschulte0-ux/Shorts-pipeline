@@ -272,6 +272,17 @@ _MOMENT_HYPOTHESIS = (
     "neither the before nor the after holds either.")
 
 
+# The audience arm's brief to the director (2026-10-21 first run: it
+# padded both cuts to 90-104s and one dropped the clip people watched).
+_AUDIENCE_CUT = (
+    " The CLIP is the one viewers already made popular: it is the core of "
+    "the story and is kept whole, late in the cut. Add only the setup a "
+    "stranger needs before it (one or two lines that state the situation) "
+    "and at most a few seconds of reaction after it. The whole cut runs "
+    "25-60 seconds, opens on a line that states the situation, and ends on "
+    "the clip's payoff or the reaction to it.")
+
+
 def _moment_segments(clip: dict, work: Path, wmodel: str, spec: dict,
                      lost: list) -> list[dict]:
     """The BEFORE and AFTER of a moment candidate, each analysed as a
@@ -2019,7 +2030,9 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     hypothesis=(f"{cluster.get('premise', '')} — "
                                 f"{cluster.get('why_connected', '')}"
                                 if is_scouted else ""),
-                    moment=_MOMENT_HYPOTHESIS if is_moment else "",
+                    moment=(_MOMENT_HYPOTHESIS
+                            + (_AUDIENCE_CUT if _audience else "")
+                            if is_moment else ""),
                     takes=int(spec.get("story_takes", 3)))
                 if not edl:
                     # NAME THE GATE. plan_story returns None for an
@@ -2153,27 +2166,50 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 sheet = story_work / "rough.qa.jpg"
                 sheet_ok = clip_qa.contact_sheet(out_mp4, sheet) is not None
                 if _audience:
+                    # measured checks, repaired by the director from what
+                    # they name; never a critic's score (structure_check)
                     from third_capture import structure_check
-                    _probs = structure_check.check(
-                        led, cluster["clips"][0]["source_url"])
-                    _net = cluster["clips"][0].get("internet") or {}
-                    print(f"[story] {elbl}: structure "
-                          f"{'ok' if not _probs else '; '.join(_probs)}",
-                          flush=True)
-                    _backtest_keep(elbl, 0, out_mp4, edl, {
-                        "gate": "structure", "publish": False,
-                        "story_score": 0, "structure_ok": not _probs,
-                        "problems": [{"type": "structure", "at": None,
-                                      "fix": p} for p in _probs],
-                        "opening_line": structure_check.opening_line(led),
-                        "audience": {
-                            "views": cluster["clips"][0].get("views", 0),
-                            "upvotes": _net.get("upvotes", 0),
-                            "post_title": _net.get("post_title", "")},
-                        "stranger_summary": edl.get("premise", "")}, sub)
+                    _hot = cluster["clips"][0]
+                    _net = _hot.get("internet") or {}
+                    for _rev in range(int(spec.get("story_revisions", 2))
+                                      + 1):
+                        _probs = structure_check.problems(
+                            led, _hot["source_url"])
+                        print(f"[story] {elbl}: structure r{_rev} "
+                              + ("ok" if not _probs else "; ".join(
+                                  p["what"] for p in _probs)), flush=True)
+                        _backtest_keep(elbl, _rev, out_mp4, edl, {
+                            "gate": "structure", "publish": False,
+                            "story_score": 0, "structure_ok": not _probs,
+                            "problems": _probs,
+                            "opening_line":
+                                structure_check.opening_line(led),
+                            "duration_s": led.get("duration_s"),
+                            "audience": {
+                                "views": _hot.get("views", 0),
+                                "upvotes": _net.get("upvotes", 0),
+                                "post_title": _net.get("post_title", "")},
+                            "stranger_summary": edl.get("premise", "")}, sub)
+                        if not _probs or _deadline_passed() or \
+                                _rev >= int(spec.get("story_revisions", 2)):
+                            break
+                        _edl2 = story_director.revise_edl(
+                            edl, _probs, sub,
+                            cut=story_mod.plan_ledger(edl, src_map))
+                        if not _edl2:
+                            break
+                        try:
+                            led = story_mod.render_story(
+                                _edl2, src_map, out_mp4, story_work)
+                        except Exception as e:  # noqa: BLE001
+                            print(f"::warning::[story] {elbl}: repair "
+                                  f"render failed ({e})", flush=True)
+                            break
+                        edl = _edl2
                     _story_verdict(elbl, "structure_ok" if not _probs
                                    else "structure_failed",
-                                   "; ".join(_probs)[:300] or "kept")
+                                   "; ".join(p["what"] for p in _probs)[:300]
+                                   or "kept")
                     continue
                 tlines = scene_analysis._dialogue_lines(led["final_words"])
                 review = story_director.review_rough_cut(
