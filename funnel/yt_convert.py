@@ -280,10 +280,14 @@ def fetch(url: str, out: Path, *, max_s: float | None = None,
                     return None
                 raw = out.with_suffix(".src")
                 if not _save(media_url, hdr, raw):
+                    print(f"::warning::[yt_convert] {kind} {vid}: the file "
+                          f"it handed over was empty", flush=True)
                     continue
                 path = _to_mp4(raw, out)
                 real = _probe(path) if path == out else 0.0
                 if not real:
+                    print(f"::warning::[yt_convert] {kind} {vid}: the file "
+                          f"it handed over has no video and sound", flush=True)
                     path.unlink(missing_ok=True)
                     continue
                 if max_s and real > max_s:
