@@ -989,7 +989,7 @@ def _hashtags(pkg: dict, led: dict) -> list[str]:
     # "unknown"/"story" are internal taxonomy labels, not real hashtags --
     # never let an unclassified clip publish the literal tag "unknown".
     series_tag = _n(led.get("series") or "")
-    if series_tag in ("unknown", "story"):
+    if series_tag in ("unknown", "story", "extended"):
         series_tag = ""
     pool = ([s, f"{s}clips", f"{s}clip"] if s else []) + [
         series_tag, "streamerclips", "twitchclips",
@@ -1009,7 +1009,9 @@ def _yt_tags(pkg: dict, led: dict) -> list[str]:
     if led.get("kind") == "story":
         s = led.get("streamer", "")
         return [*led.get("who", []), f"{s} clips", "streamer clips",
-                "full story", "streamer drama"][:10]
+                *(["full clip", "extended clip"]
+                  if led.get("series") == "extended"
+                  else ["full story", "streamer drama"])][:10]
     if led.get("kind") != "twitch_clip":
         return list(pkg.get("hashtags") or [])[:10]
     s = led["streamer"]
@@ -2211,106 +2213,129 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                                    else "structure_failed",
                                    "; ".join(p["what"] for p in _probs)[:300]
                                    or "kept")
-                    continue
-                tlines = scene_analysis._dialogue_lines(led["final_words"])
-                review = story_director.review_rough_cut(
-                    edl, tlines, str(sheet) if sheet_ok else None,
-                    led["duration_s"], led.get("on_screen"))
-                _backtest_keep(elbl, 0, out_mp4, edl, review, sub)
-                # REPAIR, THEN RE-JUDGE — up to `story_revisions` times.
-                # The playbook allowed ONE revision. On 2026-10-01 and 10-02
-                # the only two stories the director accepted were rendered,
-                # revised once, scored 54 and 52, and thrown away — and the
-                # critic's problems were never even recorded. Operator,
-                # 2026-10-03: "Post a story." Same answer the explainer got
-                # ("make a system that makes better videos"): keep repairing
-                # what the critic names, same critic, same `publish` bar.
-                # Nothing here can ship a cut the critic did not pass.
-                #
-                # AND THE CRITIC'S "PUBLISH" IS NOT THE BAR (operator,
-                # 2026-10-05, of the first story in eleven days: "this needs
-                # to be better ... it's also the story"). It had passed every
-                # story it was ever shown — 66, 73, 74, 79, 80 — and the one
-                # that held viewers (98.7% viewed) was the 80. A story ships
-                # at `story_min_score` or above; below it, it is repaired
-                # toward the bar, never shipped. Code may only ADD blocks.
-                def _passes(rv):
-                    return bool(rv["publish"]) and \
-                        int(rv["story_score"]) >= _floor
-                _scores = [review["story_score"]]
-                _render_failed = False
-                max_rev = int(spec.get("story_revisions", 2))
-                # REPAIR FROM THE BEST CUT, NOT THE LATEST. In the third
-                # story backtest (2026-10-06) every repair chain that did
-                # not pass got WORSE as it went — CaseOh 70 -> 66 -> 58,
-                # Kai 58 -> 55 — because each repair rewrote the previous
-                # repair. A repair that scores lower is discarded as the
-                # base; the next one starts again from the best cut and its
-                # own critique. Shipping is unchanged: only a cut the
-                # critic passes at the floor ships.
-                _best = (review["story_score"], edl, review, led)
-                while (not _passes(review) and _best[2]["problems"]
-                       and revision_count < max_rev
-                       and not _deadline_passed()):
-                    edl2 = story_director.revise_edl(
-                        _best[1], _best[2]["problems"], sub,
-                        cut=_best[3])
-                    if not edl2:
-                        break
-                    revision_count += 1
-                    try:
-                        led = story_mod.render_story(
-                            edl2, src_map, out_mp4, story_work)
-                        edl = edl2
-                        tlines = scene_analysis._dialogue_lines(
-                            led["final_words"])
-                        sheet_ok = clip_qa.contact_sheet(
-                            out_mp4, sheet) is not None
-                        review = story_director.review_rough_cut(
-                            edl, tlines,
-                            str(sheet) if sheet_ok else None,
-                            led["duration_s"], led.get("on_screen"))
-                        _scores.append(review["story_score"])
-                        _backtest_keep(elbl, revision_count, out_mp4, edl,
-                                       review, sub)
-                        if review["story_score"] > _best[0]:
-                            _best = (review["story_score"], edl, review,
-                                     led)
-                    except Exception as e:  # noqa: BLE001
-                        print(f"::warning::[story] {elbl}: revision "
-                              f"render failed ({e})", flush=True)
-                        _render_failed = True
-                        break
-                _crit = "; ".join(
-                    f"@{p['at']:.0f}s {p['type']}: {p['fix']}"
-                    for p in review["problems"][:3])
-                if _render_failed or not _passes(review):
-                    if review["publish"] and not _render_failed:
-                        _crit = (f"critic passed it at {_scores[-1]}, under "
-                                 f"the {_floor} floor"
-                                 + (f"; {_crit}" if _crit else ""))
-                    print(f"[story] {elbl}: narrative review failed after "
-                          f"{revision_count} revision(s) "
-                          f"(scores={_scores}) — abandoned"
-                          + (f" — {_crit}" if _crit else ""), flush=True)
-                    # RECORD WHAT THE CRITIC SAID. Both of the 2026-10-0x
-                    # renders died here with nothing in the durable record —
-                    # not the score, not one of the problems it named.
-                    _story_verdict(elbl, "narrative_failed",
-                                   f"scores {_scores} after "
-                                   f"{revision_count} revision(s)"
-                                   + (" (revision render failed)"
-                                      if _render_failed else "")
-                                   + (f" — {_crit}" if _crit else ""))
-                    _keep_edit(_best[1], _best[0])
-                    _remember_refused(
-                        _refuse_urls, edl.get("premise") or who,
-                        f"rendered; critic scored {_scores[-1]} after "
-                        f"{revision_count} revision(s)"
-                        + (f" — {_crit}" if _crit else ""),
-                        rendered=True,
-                        near=_best[0] >= _cm_keep_min())
-                    continue
+                    # AN EXTENDED CLIP (operator, 2026-10-21: "those were
+                    # good extended clips ... add what you just did as a
+                    # secondary in-between clip and story type"): outside a
+                    # backtest a cut that passes every measured check goes
+                    # on to the same dedupe, duration and QA below, and
+                    # then to the showrunner gate every upload meets. It is
+                    # not a story and never says it is.
+                    if _probs and not os.environ.get("STORY_BACKTEST_DIR"):
+                        # the same moment is not cut again tomorrow
+                        _remember_refused(
+                            urls, edl.get("premise") or who,
+                            "extended clip failed its checks: "
+                            + "; ".join(p["what"] for p in _probs)[:200],
+                            rendered=True)
+                    if _probs or os.environ.get("STORY_BACKTEST_DIR"):
+                        continue
+                    review = {"story_score": 0, "publish": True,
+                              "problems": [],
+                              "stranger_summary": edl.get("premise", "")}
+                    revision_count, _crit = _rev, ""
+                    _extended = True
+                else:
+                    _extended = False
+                if not _extended:
+                    tlines = scene_analysis._dialogue_lines(led["final_words"])
+                    review = story_director.review_rough_cut(
+                        edl, tlines, str(sheet) if sheet_ok else None,
+                        led["duration_s"], led.get("on_screen"))
+                    _backtest_keep(elbl, 0, out_mp4, edl, review, sub)
+                    # REPAIR, THEN RE-JUDGE — up to `story_revisions` times.
+                    # The playbook allowed ONE revision. On 2026-10-01 and 10-02
+                    # the only two stories the director accepted were rendered,
+                    # revised once, scored 54 and 52, and thrown away — and the
+                    # critic's problems were never even recorded. Operator,
+                    # 2026-10-03: "Post a story." Same answer the explainer got
+                    # ("make a system that makes better videos"): keep repairing
+                    # what the critic names, same critic, same `publish` bar.
+                    # Nothing here can ship a cut the critic did not pass.
+                    #
+                    # AND THE CRITIC'S "PUBLISH" IS NOT THE BAR (operator,
+                    # 2026-10-05, of the first story in eleven days: "this needs
+                    # to be better ... it's also the story"). It had passed every
+                    # story it was ever shown — 66, 73, 74, 79, 80 — and the one
+                    # that held viewers (98.7% viewed) was the 80. A story ships
+                    # at `story_min_score` or above; below it, it is repaired
+                    # toward the bar, never shipped. Code may only ADD blocks.
+                    def _passes(rv):
+                        return bool(rv["publish"]) and \
+                            int(rv["story_score"]) >= _floor
+                    _scores = [review["story_score"]]
+                    _render_failed = False
+                    max_rev = int(spec.get("story_revisions", 2))
+                    # REPAIR FROM THE BEST CUT, NOT THE LATEST. In the third
+                    # story backtest (2026-10-06) every repair chain that did
+                    # not pass got WORSE as it went — CaseOh 70 -> 66 -> 58,
+                    # Kai 58 -> 55 — because each repair rewrote the previous
+                    # repair. A repair that scores lower is discarded as the
+                    # base; the next one starts again from the best cut and its
+                    # own critique. Shipping is unchanged: only a cut the
+                    # critic passes at the floor ships.
+                    _best = (review["story_score"], edl, review, led)
+                    while (not _passes(review) and _best[2]["problems"]
+                           and revision_count < max_rev
+                           and not _deadline_passed()):
+                        edl2 = story_director.revise_edl(
+                            _best[1], _best[2]["problems"], sub,
+                            cut=_best[3])
+                        if not edl2:
+                            break
+                        revision_count += 1
+                        try:
+                            led = story_mod.render_story(
+                                edl2, src_map, out_mp4, story_work)
+                            edl = edl2
+                            tlines = scene_analysis._dialogue_lines(
+                                led["final_words"])
+                            sheet_ok = clip_qa.contact_sheet(
+                                out_mp4, sheet) is not None
+                            review = story_director.review_rough_cut(
+                                edl, tlines,
+                                str(sheet) if sheet_ok else None,
+                                led["duration_s"], led.get("on_screen"))
+                            _scores.append(review["story_score"])
+                            _backtest_keep(elbl, revision_count, out_mp4, edl,
+                                           review, sub)
+                            if review["story_score"] > _best[0]:
+                                _best = (review["story_score"], edl, review,
+                                         led)
+                        except Exception as e:  # noqa: BLE001
+                            print(f"::warning::[story] {elbl}: revision "
+                                  f"render failed ({e})", flush=True)
+                            _render_failed = True
+                            break
+                    _crit = "; ".join(
+                        f"@{p['at']:.0f}s {p['type']}: {p['fix']}"
+                        for p in review["problems"][:3])
+                    if _render_failed or not _passes(review):
+                        if review["publish"] and not _render_failed:
+                            _crit = (f"critic passed it at {_scores[-1]}, under "
+                                     f"the {_floor} floor"
+                                     + (f"; {_crit}" if _crit else ""))
+                        print(f"[story] {elbl}: narrative review failed after "
+                              f"{revision_count} revision(s) "
+                              f"(scores={_scores}) — abandoned"
+                              + (f" — {_crit}" if _crit else ""), flush=True)
+                        # RECORD WHAT THE CRITIC SAID. Both of the 2026-10-0x
+                        # renders died here with nothing in the durable record —
+                        # not the score, not one of the problems it named.
+                        _story_verdict(elbl, "narrative_failed",
+                                       f"scores {_scores} after "
+                                       f"{revision_count} revision(s)"
+                                       + (" (revision render failed)"
+                                          if _render_failed else "")
+                                       + (f" — {_crit}" if _crit else ""))
+                        _keep_edit(_best[1], _best[0])
+                        _remember_refused(
+                            _refuse_urls, edl.get("premise") or who,
+                            f"rendered; critic scored {_scores[-1]} after "
+                            f"{revision_count} revision(s)"
+                            + (f" — {_crit}" if _crit else ""),
+                            rendered=True,
+                            near=_best[0] >= _cm_keep_min())
+                        continue
 
                 # ---- dedupe on the ACTUAL rendered members + duration band
                 skey = storyline.story_key(led["member_keys"])
@@ -2344,7 +2369,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # subject-centred picture per beat; it ships only if the
                 # critic passes it again at the floor AND the QA passes it.
                 if qa["verdict"] == "fail" and hard \
-                        and not _deadline_passed():
+                        and not _extended and not _deadline_passed():
                     print(f"[story] {elbl}: QA failed "
                           f"({'; '.join(hard)[:100]}) — re-framing as one "
                           f"picture per beat", flush=True)
@@ -2400,13 +2425,18 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     "authored_title": _st,
                     "clip_title": _st,
                     "authored_caption": author.scrub_text(
+                        edl["premise"] if _extended else
                         f"The full story, beginning to end: "
                         f"{edl['premise']}"),
-                    "authored_cta": "Rate this arc 1-10",
-                    "streamer": lead, "series": "story",
+                    "authored_cta": ("Would you have stayed calm?"
+                                     if _extended else "Rate this arc 1-10"),
+                    "streamer": lead,
+                    "series": "extended" if _extended else "story",
                     "who": cluster["who"], "event_id": event["event_id"],
-                    "story_key": skey, "experiment_arm": "story",
-                    "structure": "story", "self_healed": False,
+                    "story_key": skey,
+                    "experiment_arm": "extended" if _extended else "story",
+                    "structure": "extended" if _extended else "story",
+                    "self_healed": False,
                     # per-SUBCLUSTER (reviewer #11): only True when a source in
                     # THIS event was VOD-expanded, not when some unrelated
                     # source elsewhere in the original people-pile was
@@ -2486,7 +2516,8 @@ def process(pkg: dict, pkg_path: Path | None, *,
                                            slug)) is not None:
             ledger_path = work / f"{slug}.ledger.json"
             ledger_path.write_text(json.dumps(led, indent=2) + "\n")
-            result["experiment_arm"] = result["structure"] = "story"
+            result["experiment_arm"] = result["structure"] = \
+                led.get("series") or "story"
             result["n_beats"] = led.get("n_beats")
         elif pkg["capture"]["kind"] == "twitch_clip":
             from third_capture import clip_edit
@@ -3355,10 +3386,13 @@ def process(pkg: dict, pkg_path: Path | None, *,
                 entry["member_keys"] = led.get("member_keys")
                 entry["streamer"] = led.get("streamer")
                 entry["who"] = led.get("who")
-                entry["series"] = "story"
-                entry["experiment_arm"] = "story"
-                entry["structure"] = "story"
-                entry["actual_structure"] = "story"
+                # an extended clip rides the story ledger but is its own
+                # format in the log and the analytics
+                _fmt = led.get("series") or "story"
+                entry["series"] = _fmt
+                entry["experiment_arm"] = _fmt
+                entry["structure"] = _fmt
+                entry["actual_structure"] = _fmt
                 entry["n_beats"] = led.get("n_beats")
                 entry["story_structure"] = led.get("story_structure")
                 entry["duration_s"] = led.get("duration_s")
@@ -3442,15 +3476,27 @@ def _synthesize_fallback_packages(date: str) -> list[tuple[dict, None]]:
     slots = list(range(1, n + 1))
     _rnd.Random(f"third-ab-{date}").shuffle(slots)
     story_slots = set(slots[:story_count])
+    # EXTENDED CLIPS (operator, 2026-10-21): one popular moment with the
+    # stream around it, cut by the director and held to measured checks
+    # (`story_pick: audience`, third_capture/structure_check). Its own
+    # slots after the story slots; a miss falls back to a clip like a
+    # story slot does.
+    extended_count = min(int(base.pop("extended_count", 0)),
+                         n - len(story_slots))
+    extended_slots = set(slots[story_count:story_count + extended_count])
     packages: list[tuple[dict, None]] = []
     for i in range(1, n + 1):
         pkg = json.loads(json.dumps(base))
         pkg["slug"] = f"clip-{date}-{i}"
-        pkg["story_mode"] = i in story_slots
+        pkg["story_mode"] = i in story_slots or i in extended_slots
+        if i in extended_slots:
+            pkg["capture"]["story_pick"] = "audience"
         packages.append((pkg, None))
     print(f"no authored packages — synthesized {n} from registry target "
           f"({story_count} story-arm slots: "
-          f"{sorted(s for s in story_slots if s <= n)})")
+          f"{sorted(s for s in story_slots if s <= n)}; "
+          f"{extended_count} extended-clip slot(s): "
+          f"{sorted(extended_slots)})")
     return packages
 
 
