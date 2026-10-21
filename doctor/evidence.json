@@ -4481,8 +4481,8 @@
     }
   },
   "recent_commits": [
-    "78aba40 2026-10-20 third: audience arm tells the director the picked clip is the core, repairs from the measured checks (#680)",
-    "219ff22 2026-10-21 claim: mailbox verdicts 2026-10-21T04:47Z [skip ci]"
+    "4ea0e24 2026-10-21 explainer: 4 new data-explainer stories 2026-10-21 (#681)",
+    "14bfd3c 2026-10-21 claim: mailbox verdicts 2026-10-21T09:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4587,31 +4587,31 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 139,
+      "videos": 140,
       "top_by_vph": [
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 11.41,
+          "vph": 9.67,
           "views": 1081
         },
         {
+          "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
+          "vph": 3.58,
+          "views": 1330
+        },
+        {
           "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 3.79,
+          "vph": 3.53,
           "views": 904
         },
         {
-          "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 3.56,
-          "views": 1260
-        },
-        {
           "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
-          "vph": 2.0,
-          "views": 806
+          "vph": 1.93,
+          "views": 811
         },
         {
           "title": "Adinross Makes Two Girls Fight Over Who Brought Up Whose Mom First",
-          "vph": 0.75,
+          "vph": 0.66,
           "views": 86
         }
       ],
