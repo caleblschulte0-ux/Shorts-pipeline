@@ -306,8 +306,21 @@ def fetch(url: str, out: Path, *, max_s: float | None = None,
                 path = _to_mp4(raw, out)
                 real = _probe(path) if path == out else 0.0
                 if not real:
+                    try:
+                        info = subprocess.run(
+                            ["ffprobe", "-v", "error", "-show_entries",
+                             "stream=codec_type,codec_name:format=duration",
+                             "-of", "compact", str(path)], capture_output=True,
+                            text=True, timeout=30)
+                        head = path.read_bytes()[:200] if path.exists() else b""
+                        what = (f"{path.stat().st_size if path.exists() else 0}"
+                                f" bytes, {info.stdout.strip()[:200]!r} "
+                                f"{info.stderr.strip()[:120]!r} {head!r}")
+                    except Exception as e:  # noqa: BLE001
+                        what = type(e).__name__
                     print(f"::warning::[yt_convert] {kind} {vid}: the file "
-                          f"it handed over has no video and sound", flush=True)
+                          f"it handed over has no video and sound ({what})",
+                          flush=True)
                     path.unlink(missing_ok=True)
                     continue
                 if max_s and real > max_s:
