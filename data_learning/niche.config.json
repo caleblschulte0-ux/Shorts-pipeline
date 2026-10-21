@@ -21744,10 +21744,10 @@
   },
   {
    "slug": "muscle-loss-after-30",
-   "title": "You Start Losing Muscle Before You Turn 40",
-   "hook": "Your muscles started vanishing at 30.",
-   "closing": "Lifting weights can reverse it, so start now, whatever your age.",
-   "question": "How many days a week do you lift?",
+   "title": "Muscle Loss Can Reach 35% By Age 80",
+   "hook": "Muscle mass can fall 35% by the oldest point shown.",
+   "closing": "Strength work matters because the decline accelerates later in life.",
+   "question": "How often do you train for strength?",
    "caption": "After age 30, you lose 3 to 5 percent of your muscle mass every decade -- and after 70, that jumps to as much as 24 percent a decade. It's called sarcopenia and almost nobody talks about it until it's already happened. Here's the good news: one study reversed it in 12 weeks. 👇",
    "hashtags": [
     "sarcopenia",
@@ -21772,8 +21772,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE DECLINE",
-     "topic": "Muscle mass with age",
-     "say": "By eighty, you've lost over a third of your muscle. And the slide starts quietly, back in your thirties.",
+     "topic": "Muscle by Age",
+     "say": "Muscle mass can fall 35% by the oldest point shown. That makes preserving strength increasingly important.",
      "scene": {
       "title": true,
       "elements": [
@@ -21792,8 +21792,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE CLIFF",
-     "topic": "Muscle loss rate",
-     "say": "Until seventy you lose about four percent a decade. After that the pace more than quadruples, so waiting costs you fast.",
+     "topic": "Muscle Loss Rate",
+     "say": "Muscle loss reaches 18% per decade in the later group. The decline accelerates with age.",
      "scene": {
       "mechanic": "muscle-cliff-drop",
       "concept": "a muscular silhouette walks down a gentle ramp scaled to the 4%-per-decade slope through the 30s-50s, then the ramp breaks into a sheer cliff at 70 where the same figure plunges at the much steeper 18%-per-decade rate",
@@ -21808,8 +21808,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE FIX",
-     "topic": "Training stops muscle loss",
-     "say": "In one study, over a third of people had clinical muscle loss. After twelve weeks of lifting, none did.",
+     "topic": "Muscle Training",
+     "say": "After training, clinical muscle loss fell to 0% in this study. Resistance work changed the measured outcome.",
      "scene": {
       "mechanic": "rep-count-cure-grid",
       "concept": "a 40-icon grid of people starts 35% shaded red for sarcopenia and clears to zero red as a pumping barbell counts up through 12 weeks of training",
@@ -21817,16 +21817,16 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-15T12:12:55Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-21T11:30:13Z",
    "retold": "retell/v4"
   },
   {
    "slug": "saffron-red-gold-myth",
-   "title": "Why The World's Most Expensive Spice Costs $15 A Gram",
-   "hook": "Your wallet vanished: one spice costs $15 per gram!",
-   "closing": "The spice isn't special. The hand labor is, so you're paying for patience.",
-   "question": "Cooked with real saffron? Share below.",
+   "title": "Saffron Costs $15 Per Gram Because Harvesting Takes 55 Hours",
+   "hook": "Saffron costs $15 per gram.",
+   "closing": "The price reflects painstaking hand labor, so a tiny amount carries hours of work.",
+   "question": "Have you cooked with real saffron?",
    "caption": "Saffron retails for $10 to $30 a gram -- making it the most expensive spice on Earth by a mile. It's not rare magic, it's rare LABOR: about 150 hand-picked crocus flowers per gram, and 40 to 70 hours of hand-harvesting for a single pound. Here's the real math behind the price tag. 👇",
    "hashtags": [
     "saffron",
@@ -21851,8 +21851,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE PRICE",
-     "topic": "Spice price",
-     "say": "Gram for gram, saffron costs about 750 times more than black pepper. Same shelf, wildly different price tags.",
+     "topic": "Saffron Price",
+     "say": "Saffron costs $15 per gram. The price gap with ordinary spices is enormous.",
      "scene": {
       "mechanic": "price-scale-tip",
       "concept": "a balance beam scale with a pile of peppercorns on one pan and a pile of saffron threads on the other tips hard toward the saffron side as reveal builds, dramatizing the ~750x price gap",
@@ -21868,8 +21868,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · THE RANKING",
-     "topic": "Spice rank",
-     "say": "It even beats black truffle, the chef's fancy treat, by nearly four times. So this is no normal luxury food.",
+     "topic": "Saffron Price",
+     "say": "Saffron tops the comparison at $15 per gram. Even the specialty foods shown cost less.",
      "scene": {
       "mechanic": "spice-price-ladder",
       "concept": "five spice jars climb a log-scaled staircase of rising height, saffron alone lit by a spotlight beam at the peak",
@@ -21884,8 +21884,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE WHY",
-     "topic": "Spice labor",
-     "say": "Why? Every pound takes about 55 hours of picking flowers by hand. Pepper needs half an hour.",
+     "topic": "Saffron Labor",
+     "say": "Saffron requires 55 labor hours per pound. Hand harvesting makes the price easier to understand.",
      "scene": {
       "mechanic": "machine-vs-hand-harvest-split",
       "concept": "a split screen: a fast machine strips pepper on the left barely filling an hours bar, a hand plucks a single saffron flower on the right while its hours bar climbs far higher",
@@ -21893,8 +21893,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T03:08:22Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-21T11:30:12Z",
    "retold": "retell/v3"
   },
   {
@@ -22271,10 +22271,10 @@
   },
   {
    "slug": "chess-online-boom",
-   "title": "How A Netflix Show Turned Chess Into A 200-Million-Person Habit",
-   "hook": "Your town vanished as Netflix sparked a 200‑million chess surge",
-   "closing": "One show turned a niche game into a habit for millions, so what you watch matters.",
-   "question": "Can you play chess? Comment below",
+   "title": "Chess.com Reached 200 Million Registered Accounts",
+   "hook": "Chess.com reached 200 million registered accounts.",
+   "closing": "The platform boom is measurable without crediting one show for the whole surge.",
+   "question": "When did you start playing online?",
    "caption": "Chess.com had 30 million members when the pandemic began. Then The Queen's Gambit dropped on Netflix, and by 2025 membership hit 200 million — nearly seven times bigger in five years. Do you know how to play chess? Tell me below ♟️",
    "hashtags": [
     "chess",
@@ -22299,8 +22299,8 @@
      },
      "insight_type": "trend",
      "role": "1 · SETUP",
-     "topic": "Netflix Chess",
-     "say": "Before the pandemic boom, Chess.com had just 30 million members. Now it has nearly seven times that.",
+     "topic": "Chess.com Accounts",
+     "say": "Chess.com reached 200 million registered accounts. Online chess moved far beyond its earlier scale.",
      "scene": {
       "mechanic": "pawn-stack-timeline",
       "concept": "chess pawn photos stack into growing towers along a five-point timeline, the 2025 tower dwarfing 2020's single piece",
@@ -22316,8 +22316,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · TURN",
-     "topic": "Netflix Spike",
-     "say": "Then the Netflix show landed, and new signups nearly tripled, to 2.8 million a month. Normal had been about a million.",
+     "topic": "Chess.com Signups",
+     "say": "Monthly signups reached 2.8 million after the release. The timing shows a spike, not proof of sole causation.",
      "scene": {
       "mechanic": "queens-gambit-signup-flood",
       "concept": "a TV showing a chess board streams a flood of pawn icons into a signup funnel, the stream thickening hard the moment the show hits — 1M vs 2.8M members a month",
@@ -22333,8 +22333,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · CONSEQUENCE",
-     "topic": "Netflix Share",
-     "say": "Still, Chess.com holds only a third of the world's 605 million regular players, so there's plenty of room left to grow.",
+     "topic": "Chess.com Players",
+     "say": "The worldwide estimate was 605 million regular players. One platform still represents only part of global chess.",
      "scene": {
       "mechanic": "globe-pawn-fill-share",
       "concept": "a world globe fills with tiny pawn dots for every regular player on Earth, then a glowing chessboard wedge highlights the third of them that Chess.com alone claims",
@@ -22342,8 +22342,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-18T10:57:34Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-21T11:30:12Z",
    "retold": "retell/v4"
   },
   {
@@ -22961,10 +22961,10 @@
   },
   {
    "slug": "peanut-allergy-guideline-flip",
-   "title": "Peanut Avoidance Lost To Early Consumption: Diagnoses Later Fell 43%",
-   "hook": "Peanut diagnoses fell 43% after advice shifted toward early introduction.",
-   "closing": "Parents should discuss safe early introduction with their child's clinician; prevention advice depends on the child's situation.",
-   "question": "How did peanut advice change in your family?",
+   "title": "Early Peanut Exposure Cut Allergy Rates To 1.9%",
+   "hook": "Avoiding peanuts produced a 13.7% allergy rate.",
+   "closing": "The reversal changed prevention advice, but families still need individualized medical guidance.",
+   "question": "Did your family receive avoidance advice?",
    "caption": "Peanut allergies in American kids tripled between 1997 and 2008. Turns out doctors had the fix backwards: infants told to avoid peanut hit a 13.7% allergy rate by age 5, vs just 1.9% for infants fed peanut early. Guidelines flipped, and diagnoses have dropped 43% since. Did your family avoid peanuts? 👇",
    "hashtags": [
     "peanutallergy",
@@ -22992,8 +22992,8 @@
      },
      "insight_type": "trend",
      "role": "1 · SETUP",
-     "topic": "Peanut allergies rose",
-     "say": "Childhood peanut allergy prevalence reached 1.4% in the supplied historical series. It had more than tripled from the earliest measurement.",
+     "topic": "Peanut Allergy",
+     "say": "Childhood peanut allergy prevalence reached 1.4% in the historical series. The earlier avoidance era did not stop the rise.",
      "scene": {
       "mechanic": "peanut-rash-climb",
       "concept": "peanuts rise along a climbing trend line, growing larger and more inflamed at each higher prevalence year",
@@ -23009,8 +23009,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · THE TURN",
-     "topic": "Peanut trial reversal",
-     "say": "The avoidance group's allergy rate was 13.7% in the trial. Children who ate peanut early had a much lower rate.",
+     "topic": "Peanut Allergy",
+     "say": "Early peanut exposure's allergy rate was 1.9%, challenging the old avoidance advice.",
      "scene": {
       "mechanic": "peanut-shield-crack-duel",
       "concept": "two round shields crack from the peanuts breaking through them -- one badly shattered (avoidance), one barely scratched (early exposure)",
@@ -23026,8 +23026,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · CONSEQUENCE",
-     "topic": "Peanut guidance changed",
-     "say": "Diagnoses declined about 43% in the before-and-after comparison. That decline followed changed guidance; this comparison alone does not isolate its cause.",
+     "topic": "Peanut Allergy",
+     "say": "Diagnoses later fell to 0.45% after guidance changed. The timing supports scrutiny, not proof of cause.",
      "viz": "comparison",
      "scene": {
       "mechanic": "allergy-marker-drain",
@@ -23037,7 +23037,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:41Z",
+   "rewritten_at": "2026-10-21T11:30:13Z",
    "retold": "retell/v3"
   },
   {
@@ -24090,10 +24090,10 @@
   },
   {
    "slug": "moon-drifting-away",
-   "title": "The Moon Is Slowly Leaving Us (3 Charts)",
-   "hook": "Your last total eclipse is only 600 million years away.",
-   "closing": "So you live in the rare era of perfect eclipses. Go see one while the Moon still fits.",
-   "question": "Does the Moon leaving freak you out?",
+   "title": "The Moon Has Drifted 2.17 Meters Farther",
+   "hook": "The Moon has moved 2.17 meters farther since lunar ranging began.",
+   "closing": "That slow drift changes eclipses only on a timescale far beyond any lifetime.",
+   "question": "Would you travel to see an eclipse?",
    "caption": "The Moon drifts 3.8 centimeters farther from Earth every single year, and it's been doing that since before dinosaurs existed. Keep that pace going and in 600 million years, the Moon will finally be too far away for a total solar eclipse to ever happen again. Does it freak you out that the Moon is leaving? Tell me below 👇",
    "hashtags": [
     "moon",
@@ -24121,8 +24121,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE DRIFT",
-     "topic": "Moon drifting away",
-     "say": "Within living memory, the Moon crept over two meters farther away. That's a tall person's height, gained without anyone feeling a thing.",
+     "topic": "Moon Drift Measured",
+     "say": "The Moon moved 2.17 meters farther over the measured span. The change is real but extremely gradual.",
      "scene": {
       "mechanic": "earth-moon-tape-stretch",
       "concept": "a measuring tape unspools between Earth and the Moon, the gap widening year by year as cumulative drift climbs toward 2 meters",
@@ -24138,8 +24138,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · THE MECHANISM",
-     "topic": "Moon distance over time",
-     "say": "Ocean tides steal Earth's spin, pushing the Moon outward. It now sits 384,400 kilometers away, much farther than it did long ago.",
+     "topic": "Moon Distance Today",
+     "say": "The Moon is now 384,400 kilometers away. Long-term tidal effects slowly increase that distance.",
      "scene": {
       "mechanic": "tidal-drag-orbit-widen",
       "concept": "two side-by-side Earth-Moon orbits, the ancient orbit tight and the modern orbit visibly wider, moons circling at true relative radius",
@@ -24155,8 +24155,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "3 · THE PAYOFF",
-     "topic": "Moon eclipse deadline",
-     "say": "In 600 million years, total eclipses end for good. The Moon will look too small to fully cover what it hides.",
+     "topic": "Moon Eclipse Future",
+     "say": "Total eclipses are projected to end in 600 million years. That deadline belongs to deep time, not any living viewer.",
      "scene": {
       "mechanic": "eclipse-deep-time-ruler",
       "concept": "a deep-time ruler stretching from today out to 600 million years, dinosaur markers at their epochs and a sun-moon eclipse disc sliding out to the vanishing point",
@@ -24164,8 +24164,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T20:00:51Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-21T11:25:44Z",
    "retold": "retell/v3"
   },
   {
@@ -24244,10 +24244,10 @@
   },
   {
    "slug": "seabed-mining-rush",
-   "title": "The Race To Mine A Place No One Owns (3 Charts)",
-   "hook": "There's a gold rush happening 4 kilometers underwater.",
-   "closing": "The deep ocean belongs to everyone, so whoever digs first decides for all of us.",
-   "question": "Should anyone mine the ocean floor?",
+   "title": "Seabed Mining Claims Climbed To 31",
+   "hook": "Seabed mining now has 31 exploration contracts.",
+   "closing": "The resource race is growing while more countries question whether digging should begin.",
+   "question": "Should seabed mining move forward?",
    "caption": "The Pacific seafloor holds more cobalt than every country's land reserves combined, 44 million tonnes down there versus 11 million tonnes on land. Mining companies have already filed 31 international claims to go get it, even as 37 countries now say the rules aren't ready. Should anyone be allowed to mine the ocean floor? Tell me below 👇",
    "hashtags": [
     "deepseamining",
@@ -24275,8 +24275,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE RUSH",
-     "topic": "Mining contracts",
-     "say": "Companies now hold four times more deep-sea mining claims than in 2001. A race for the ocean floor is on, and it's crowded.",
+     "topic": "Seabed Mining Claims",
+     "say": "There are 31 exploration contracts now. The race for the ocean floor is expanding.",
      "scene": {
       "mechanic": "seafloor-claim-flags-plant",
       "concept": "small claim flags plant themselves across a dark seafloor bed one by one as exploration contracts climb from 8 to 31",
@@ -24292,8 +24292,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · THE MECHANISM",
-     "topic": "Cobalt mining",
-     "say": "The seafloor holds four times more cobalt than every mine on land combined. That's the prize, and the stuff in your phone battery.",
+     "topic": "Seabed Mining Cobalt",
+     "say": "Seabed nodules hold 44 million tonnes of cobalt, making the ocean floor the larger measured prize.",
      "scene": {
       "mechanic": "nodule-pile-vs-landpile",
       "concept": "two rising mounds of polymetallic nodules, the seabed pile towering far above the land-reserves pile",
@@ -24309,8 +24309,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · THE CATCH",
-     "topic": "Mining pause",
-     "say": "Meanwhile, the countries asking for a pause grew by more than half in a year. The world is split on whether to dig.",
+     "topic": "Seabed Mining Pause",
+     "say": "The pause-or-ban camp reached 37 countries, showing resistance is growing with the race.",
      "scene": {
       "mechanic": "world-pause-flag-spread",
       "concept": "small pause-sign flags light up across a world map, spreading from 24 to 37 objecting countries",
@@ -24318,8 +24318,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T03:34:15Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-21T11:25:45Z",
    "retold": "retell/v3"
   },
   {
@@ -24479,10 +24479,10 @@
   },
   {
    "slug": "lego-minifigs-outnumber-humans",
-   "title": "There Are Now More Lego Minifigures Than People",
-   "hook": "10 billion Lego minifigures just out-populated your entire planet.",
-   "closing": "Plastic is outgrowing us, so watch your step at home: that yellow army keeps growing.",
-   "question": "How many minifigures are in your house?",
+   "title": "LEGO Has Produced 10 Billion Minifigures",
+   "hook": "LEGO's cumulative minifigure count reached 10 billion.",
+   "closing": "The comparison is striking, but production totals are not a census of surviving toys.",
+   "question": "How many minifigures do you own?",
    "caption": "Lego has cranked out an estimated 10 billion minifigures since 1978, more than the 8.1 billion humans currently alive, and it makes around 400 million more every year. How many Lego minifigures do you think are in your house? Tell me below 👇",
    "hashtags": [
     "lego",
@@ -24511,8 +24511,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "1 · THE HEADLINE",
-     "topic": "Minifigures versus people",
-     "say": "Lego has made more minifigures than there are people alive. About ten billion, so everyone could get one, with plenty spare.",
+     "topic": "LEGO Minifigures",
+     "say": "LEGO has produced 10 billion minifigures cumulatively. That total spans decades, unlike a count of people alive now.",
      "scene": {
       "mechanic": "toy-vs-humanity-columns",
       "concept": "two rising columns, one built from a photo of stacked minifigures and one from a crowd of people, race to their totals",
@@ -24527,8 +24527,8 @@
      },
      "insight_type": "trend",
      "role": "2 · HOW",
-     "topic": "Minifigures made by 2019",
-     "say": "From zero in 1978, the count passed eight billion by 2019. A little toy outgrew the whole planet in four decades.",
+     "topic": "LEGO Produced",
+     "say": "By 2019, LEGO had produced 8.3 billion minifigures. The total reflects decades of accumulated production.",
      "scene": {
       "mechanic": "minifig-fill-sweep",
       "concept": "a giant minifigure silhouette fills bottom-up as the reveal sweeps across the production years toward the cumulative total",
@@ -24544,8 +24544,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · THE PACE",
-     "topic": "Minifigures versus babies",
-     "say": "Lego now makes 400 million a year, about three times the babies born. More new minifigures arrive than new people.",
+     "topic": "LEGO Minifigures",
+     "say": "LEGO produces 400 million minifigures yearly. New figures arrive faster than the comparison group shown.",
      "scene": {
       "mechanic": "assembly-line-density",
       "concept": "two streaming lanes of repeated icons, minifigures vs babies, whose count density encodes the per-year production rate race",
@@ -24553,8 +24553,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T03:35:04Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-21T11:30:12Z",
    "retold": "retell/v3"
   },
   {
@@ -26851,10 +26851,10 @@
   },
   {
    "slug": "metric-system-holdouts",
-   "title": "Metric Mix-Ups Left A Plane With Less Than Half Its Fuel",
-   "hook": "A metric mix-up left an airliner carrying just 20,400 pounds of fuel.",
-   "closing": "A number without its unit can turn a routine calculation into a dangerous mistake.",
-   "question": "Where have mixed units caused you trouble?",
+   "title": "Metric Unit Errors Put One Orbiter At 57 Kilometers",
+   "hook": "A unit error put one orbiter at 57 kilometers.",
+   "closing": "Units matter because a correct number with the wrong system can still cause failure.",
+   "question": "Where have mixed units caused trouble?",
    "caption": "Only three countries have never officially adopted the metric system: the US, Liberia, and Myanmar -- about 5% of the planet's population. Mixing up units isn't just confusing, it's cost real money and nearly cost real lives: a $327.6 million Mars orbiter in 1999, and a passenger jet that ran out of fuel mid-flight in 1983. Should the US finally switch?",
    "hashtags": [
     "metricsystem",
@@ -26882,8 +26882,8 @@
      },
      "insight_type": "share",
      "role": "1 · THE HOLDOUTS",
-     "topic": "Metric adoption gap",
-     "say": "The dataset's non-metric country group contains 5% of the world's population. Unit systems remain uneven across borders.",
+     "topic": "Metric Adoption",
+     "say": "Non-metric countries contain 5% of the world's population. Different systems still meet across borders.",
      "scene": {
       "mechanic": "world-crowd-holdouts",
       "concept": "a crowd of 100 people stands for the planet; five step forward under a flag-red spotlight while ninety-five stay put",
@@ -26898,8 +26898,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE $327 MILLION MISTAKE",
-     "topic": "Metric orbiter error",
-     "say": "The orbiter's actual altitude was 57 kilometers in the supplied comparison. A unit mismatch sent it much lower than planned.",
+     "topic": "Metric Orbiter",
+     "say": "The orbiter's actual altitude was 57 kilometers. A unit mismatch put it far below the plan.",
      "scene": {
       "mechanic": "orbiter-skims-the-ground",
       "concept": "a Mars orbiter falls past its safe 226 km line and keeps going to 57 km where the atmosphere tears it apart",
@@ -26914,8 +26914,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE PLANE THAT RAN DRY",
-     "topic": "Metric fuel error",
-     "say": "The airliner carried 20,400 pounds of fuel. That was less than half the amount needed, so the calculation mattered physically.",
+     "topic": "Metric Fuel",
+     "say": "The airliner loaded 20,400 pounds of fuel. The mistaken calculation left it far short of the needed amount.",
      "scene": {
       "mechanic": "half-empty-jet-tank",
       "concept": "an airliner silhouette fills with fuel only to 20,400 pounds while the dashed line of the 45,000 it needed sits far above",
@@ -26925,14 +26925,14 @@
    ],
    "words_by": "chatgpt-rewrite",
    "retold": "retell/v3",
-   "rewritten_at": "2026-10-20T11:24:41Z"
+   "rewritten_at": "2026-10-21T11:30:12Z"
   },
   {
    "slug": "lab-grown-diamond-price-collapse",
-   "title": "Lab-Grown Diamonds Just Lost 90% Of Their Value",
-   "hook": "Your engagement ring just lost 90% of its price.",
-   "closing": "Forever was only ever marketing, and your wallet just noticed.",
-   "question": "Natural or lab-grown: which would you pick?",
+   "title": "Lab-Grown Diamond Prices Fell From $4,200 To $380",
+   "hook": "A lab-grown diamond fell to $380 wholesale.",
+   "closing": "The collapse matters because manufactured scarcity no longer supports the old premium.",
+   "question": "Would the price change your choice?",
    "caption": "A lab-grown diamond now costs 14 times less than a natural one — factories can grow more than the world wants to buy. Here's how a $4,200 stone became a $380 one. 💍",
    "hashtags": [
     "labgrowndiamonds",
@@ -26955,9 +26955,9 @@
       "file": "lab_grown_diamond_price.json"
      },
      "insight_type": "trend",
-     "topic": "Lab-Grown Diamond Price",
+     "topic": "Lab-Grown Diamond",
      "role": "1 · THE CRASH",
-     "say": "A lab-grown diamond once cost $4,200. Now it's nearly pocket change, so the old luxury price tag stopped making sense.",
+     "say": "A lab-grown diamond fell to $380 wholesale. The old luxury price collapsed.",
      "scene": {
       "mechanic": "diamond-shrinks-with-price",
       "concept": "one diamond is sized by its price per carat and visibly shrinks year by year from 4200 dollars to 380 while its price tag falls",
@@ -26973,9 +26973,9 @@
      "insight_type": "rank",
      "ascending": false,
      "use_baseline": true,
-     "topic": "Natural vs Lab-Grown Diamond",
+     "topic": "Lab-Grown Diamond",
      "role": "2 · THE GAP",
-     "say": "Today the lab-grown twin costs about a tenth of the natural stone. That's thousands of dollars saved on one ring.",
+     "say": "The lab-grown price shown is $380. Its natural comparison remains far higher.",
      "scene": {
       "mechanic": "eleven-lab-stones-one-natural",
       "concept": "lab-grown stones rain one by one into a case until eleven of them add up to the price of a single natural diamond",
@@ -26989,9 +26989,9 @@
       "file": "lab_grown_ring_share.json"
      },
      "insight_type": "trend",
-     "topic": "Lab-Grown Diamond Rings",
+     "topic": "Lab-Grown Diamond",
      "role": "3 · THE SHIFT",
-     "say": "Nearly half of engagement rings now wear one, up from almost none. Buyers are voting with their wallets.",
+     "say": "Lab-grown stones reached 47% of engagement-ring sales. Buyers increasingly chose the cheaper option.",
      "scene": {
       "mechanic": "rings-light-up-by-year",
       "concept": "a wall of fifty engagement rings lights up gold ring by ring as the lab-grown share climbs year by year from three to forty-seven percent",
@@ -26999,8 +26999,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T10:48:30Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-21T11:30:12Z",
    "retold": "retell/v3"
   },
   {
@@ -27143,10 +27143,10 @@
   },
   {
    "slug": "self-storage-outnumbers-starbucks",
-   "title": "There Are More Storage Units Than Starbucks In America",
-   "hook": "Your town has more storage units than coffee shops: 66,000 of them.",
-   "closing": "Our towns now have more room for stuff than for coffee.",
-   "question": "How much stuff do you store?",
+   "title": "Self-Storage Has More US Locations Than Starbucks",
+   "hook": "Self-storage reached 66 thousand US facilities.",
+   "closing": "Storage's footprint shows how much physical space accumulated possessions now consume.",
+   "question": "How much do you keep in storage?",
    "caption": "There are more self-storage facilities in America than Starbucks, McDonald's, and Subway combined — about 66,000 of them. Here's why we're all quietly renting extra closets. 📦",
    "hashtags": [
     "selfstorage",
@@ -27170,9 +27170,9 @@
      "insight_type": "rank",
      "ascending": false,
      "use_baseline": true,
-     "topic": "Storage vs. Starbucks",
+     "topic": "Self-Storage Facilities",
      "role": "1 · THE COUNT",
-     "say": "America has about four storage facilities for every single Starbucks. Places to keep your stuff now outnumber places to buy your coffee.",
+     "say": "Self-storage reached 66 thousand US facilities, outnumbering each comparison chain shown.",
      "scene": {
       "mechanic": "storage-doors-roll-open",
       "concept": "rows of real roll-up storage doors open one after another, 66 thousand facilities in four-per-door units against each chain",
@@ -27187,9 +27187,9 @@
      },
      "insight_type": "rank",
      "use_baseline": true,
-     "topic": "Storage vs. biggest chains",
+     "topic": "Self-Storage Facilities",
      "role": "2 · THE SPLIT",
-     "say": "Add up Subway, Starbucks and McDonald's, and storage still wins. It's more than half of all those buildings put together.",
+     "say": "Self-storage represents 57% of the combined total shown. Storage wins even after three large chains are grouped.",
      "ascending": false,
      "scene": {
       "mechanic": "storage-vs-cups-fill",
@@ -27204,9 +27204,9 @@
       "file": "storage_facility_growth_trend.json"
      },
      "insight_type": "trend",
-     "topic": "Storage boom",
+     "topic": "Self-Storage Facilities",
      "role": "3 · THE REASON",
-     "say": "In the eighties America had about six thousand storage facilities. Now it has ten times that, more than Subway, Starbucks or McDonald's.",
+     "say": "Self-storage reached 66 thousand facilities in the latest year. The footprint grew roughly tenfold across the series.",
      "scene": {
       "mechanic": "storage-doors-tenfold",
       "concept": "doors roll into a block one by one from 1984's handful to ten times as many",
@@ -27214,8 +27214,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T20:28:54Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-21T11:30:12Z",
    "retold": "retell/v3"
   },
   {
@@ -27615,10 +27615,10 @@
   },
   {
    "slug": "cargo-ship-size-growth",
-   "title": "Cargo Ships Grew Sixfold While Crews Shrank To 20",
-   "hook": "Cargo ships grew enormously, yet a typical crew shrank to 20 people.",
-   "closing": "More cargo and fewer hands mean enormous shipments depend on surprisingly small crews.",
-   "question": "Would you work on a ship this big?",
+   "title": "Cargo Capacity Reached 24,327 Containers While Crews Shrunk",
+   "hook": "Cargo capacity reached 24,327 containers while crews got smaller.",
+   "closing": "Global shipments now depend on enormous vessels operated by surprisingly small teams.",
+   "question": "Would you work aboard this ship?",
    "caption": "The biggest cargo ship in 1980 carried 4,000 containers. Today's record holder carries 24,327, with roughly the same size crew. Here's how shipping quietly scaled up. 👇",
    "hashtags": [
     "cargoships",
@@ -27641,9 +27641,9 @@
       "file": "container_ship_capacity_trend.json"
      },
      "insight_type": "trend",
-     "topic": "Cargo capacity multiplies",
+     "topic": "Cargo Capacity",
      "role": "1 · THE CLIMB",
-     "say": "The largest container ship's capacity reached 24,327 standard container equivalents. That is roughly six times the earliest supplied capacity.",
+     "say": "Cargo capacity reached 24,327 container equivalents. The largest ships now move far more in one trip.",
      "scene": {
       "mechanic": "deck-box-loadout",
       "concept": "one container ship's deck fills with real stacked boxes, a box landing every few frames as the years sweep 1980 to 2024 and capacity climbs from 4,000 to 24,327",
@@ -27659,9 +27659,9 @@
      "insight_type": "rank",
      "use_baseline": true,
      "ascending": false,
-     "topic": "Cargo ship scale",
+     "topic": "Cargo Ship",
      "role": "2 · THE SCALE",
-     "say": "The supplied giant container ship measures 400 meters long. It is substantially longer than the Titanic in the comparison.",
+     "say": "The comparison ship measures 400 meters long. Modern container vessels operate at an immense physical scale.",
      "scene": {
       "mechanic": "hull-slides-past-titanic",
       "concept": "the Titanic is laid at its true length and the modern container ship slides in beside it, overshooting by 131 meters",
@@ -27676,9 +27676,9 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "Cargo crew shrinks",
+     "topic": "Cargo Crew",
      "role": "3 · THE CATCH",
-     "say": "A typical crew fell to 20 people in these data. Larger cargo capacity did not require a larger crew.",
+     "say": "A typical cargo crew fell to 20 people. Bigger ships did not require bigger teams.",
      "scene": {
       "mechanic": "crew-walks-off-deck",
       "concept": "a muster of 34 real sailors from 1980 stands on deck; 14 of them walk off one by one until only today's 20 remain",
@@ -27688,7 +27688,7 @@
    ],
    "words_by": "chatgpt-rewrite",
    "retold": "retell/v3",
-   "rewritten_at": "2026-10-20T11:24:40Z"
+   "rewritten_at": "2026-10-21T11:30:12Z"
   },
   {
    "slug": "ceo-executive-pay-gap",
@@ -33995,10 +33995,10 @@
   },
   {
    "slug": "cryonics-client-count",
-   "title": "Nearly 2,000 People Signed Up To Be Frozen",
-   "hook": "The company that freezes the dead has a waiting list of the living.",
-   "closing": "Nobody knows how to wake them up, so these members are betting on the future.",
-   "question": "Would you ever sign up to be frozen?",
+   "title": "Only 222 People Have Been Cryopreserved By Alcor",
+   "hook": "Alcor has cryopreserved 222 patients.",
+   "closing": "The gap separates paid plans from completed preservation, so membership is not the same as patients.",
+   "question": "Would you pay for cryopreservation?",
    "caption": "1,927 people have paid to be cryogenically frozen when they die. Only 222 have actually made it into the tank. Here's the gap between signing up and actually freezing -- and the one problem nobody's solved yet. Would you do it? 👇",
    "hashtags": [
     "cryonics",
@@ -34026,8 +34026,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE PATIENTS",
-     "topic": "Frozen patients at Alcor",
-     "say": "Alcor has actually frozen 222 people so far. You only join that group after you die, so it grows slowly.",
+     "topic": "Alcor Patient Count",
+     "say": "Alcor had 222 cryopreserved patients. That is the completed-patient count, not everyone enrolled.",
      "illustrated_scene": "# scene standard: 2026-10-16.2\ndef _cz_slots(N=8):\n    # the bay's tank positions, nearest the camera first, running back to the right\n    out = []\n    x, y, s = 400.0, 1440.0, 1.3\n    for i in range(N):\n        out.append((x, y, s))\n        x += 74 * s\n        y -= 32 * s\n        s *= 0.9\n    return out\n\n\ndef _cz_crystal(cr, x, y, r, a):\n    # one frost crystal: a small six-armed star of ice on the steel\n    cr.set_source_rgba(*_c((240, 248, 255), 0.95 * a))\n    cr.set_line_width(max(1.5, r * 0.28))\n    for q in range(3):\n        an = q * math.pi / 3 + 0.3\n        cr.move_to(x - r * math.cos(an), y - r * math.sin(an))\n        cr.line_to(x + r * math.cos(an), y + r * math.sin(an))\n    cr.stroke()\n\n\ndef _cz_dewar(cr, cx, by, s, a, frost, t, i):\n    \"\"\"A cryonics dewar: a tall stainless cylinder on casters with a domed cap,\n    a narrow neck, a blue snowflake badge, a pressure gauge, steel bands and a\n    red valve wheel on its fill line. Frost is CRYSTALS, never a white band.\"\"\"\n    w, h = 110 * s, 400 * s\n    x0 = cx - w / 2\n    contact_shadow(cr, cx, by, w * 1.3, a=0.4 * a)\n    for wx in (x0 + w * 0.18, x0 + w * 0.82):\n        disc(cr, wx, by - 7 * s, 9 * s, (50, 52, 58), finish=\"metal\", a=a)\n    body_b = by - 12 * s\n    cylinder(cr, x0, body_b, w, h, (184, 190, 198), finish=\"metal\", a=a)\n    top = body_b - h\n    cr.save()\n    cr.translate(cx, top)\n    cr.scale(w / 2, w * 0.34)\n    cr.arc(0, 0, 1, math.pi, 2 * math.pi)\n    cr.restore()\n    cr.close_path()\n    solid(cr, (200, 206, 214), finish=\"metal\", a=a)\n    for z in (0.12, 0.62):\n        cr.rectangle(x0, body_b - h * z - 6 * s, w, 12 * s)\n        solid(cr, (116, 124, 136), finish=\"metal\", a=a, rim=False)\n    # the blue snowflake badge: the cold sign\n    bx, byy, br = cx - w * 0.12, body_b - h * 0.42, 24 * s\n    disc(cr, bx, byy, br, (44, 112, 196), finish=\"gloss\", a=a)\n    cr.set_source_rgba(*_c((248, 252, 255), a))\n    cr.set_line_width(max(2.0, 3.4 * s))\n    for q in range(3):\n        an = q * math.pi / 3 + math.pi / 2\n        cr.move_to(bx - br * 0.7 * math.cos(an), byy - br * 0.7 * math.sin(an))\n        cr.line_to(bx + br * 0.7 * math.cos(an), byy + br * 0.7 * math.sin(an))\n    cr.stroke()\n    # the pressure gauge\n    gx, gy, gr = cx + w * 0.24, body_b - h * 0.80, 15 * s\n    disc(cr, gx, gy, gr + 3 * s, (70, 74, 82), finish=\"metal\", a=a)\n    cr.arc(gx, gy, gr, 0, 2 * math.pi)\n    cr.set_source_rgba(*_c((244, 242, 234), a))\n    cr.fill()\n    an = -0.6 + 0.08 * math.sin(t * 3 + i)\n    cr.set_source_rgba(*_c((190, 40, 36), a))\n    cr.set_line_width(max(1.5, 2.6 * s))\n    cr.move_to(gx, gy)\n    cr.line_to(gx + gr * 0.85 * math.cos(an), gy + gr * 0.85 * math.sin(an))\n    cr.stroke()\n    # the fill line's red valve wheel, low on the front where a hand reaches it\n    vx, vy, vr = x0 + w * 0.2, body_b - h * 0.24, 17 * s\n    cr.rectangle(vx - 4 * s, vy, 8 * s, h * 0.12)\n    solid(cr, (110, 116, 126), finish=\"metal\", a=a, rim=False)\n    disc(cr, vx, vy, vr, (196, 44, 38), finish=\"gloss\", a=a)\n    disc(cr, vx, vy, vr * 0.35, (90, 20, 18), a=a)\n    # the neck on the dome\n    nw, nh = w * 0.30, 40 * s\n    ntop = top - w * 0.30\n    cylinder(cr, cx - nw / 2, ntop + 4 * s, nw, nh, (132, 140, 152), finish=\"metal\", a=a)\n    nky = ntop + 4 * s - nh\n    if frost > 0.05:\n        fa = a * frost\n        for q in range(9):\n            ph = q / 8.0\n            ex = cx + (w / 2) * math.cos(math.pi + math.pi * ph)\n            ey = top + w * 0.34 * math.sin(math.pi + math.pi * ph) * 0.9\n            _cz_crystal(cr, ex, ey + 4 * s, 7 * s, fa)\n        for z in (0.12, 0.62):\n            for q in range(5):\n                _cz_crystal(cr, x0 + w * (0.14 + 0.18 * q), body_b - h * z, 6 * s, fa)\n    return cx, nky\n\n\ndef _cz_hose(cr, x, y, s, a):\n    cr.move_to(x, y)\n    cr.curve_to(x, y - 60 * s, x - 40 * s, 900, x - 50 * s, 872)\n    cr.set_source_rgba(*_c((40, 44, 52), a))\n    cr.set_line_width(10 * s)\n    cr.stroke_preserve()\n    cr.set_source_rgba(*_c((120, 128, 140), a))\n    cr.set_line_width(4 * s)\n    cr.stroke()\n\n\ndef _cz_vapour(cr, x, y, s, t, i, a=1.0):\n    for b in range(2):\n        ph = (t * 0.45 + i * 0.29 + b * 0.5) % 1.0\n        glow(cr, x + 10 * s * math.sin(ph * 3 + i), y - 150 * s * ph,\n             (20 + 40 * ph) * s, (228, 236, 248), 0.5 * a * (1 - ph) * min(1.0, ph * 5))\n\n\ndef _cz_burst(cr, x, y, s, p):\n    # the boil-off a valve turn sends up out of the neck: one dense white cloud\n    if p <= 0 or p >= 1:\n        return\n    a = 0.92 * (1 - p) * min(1.0, p * 6)\n    for q in range(5):\n        dx = (q - 2) * 26 * s * (0.4 + p)\n        dy = -260 * s * ease(p) - 40 * s * (q % 2)\n        r = (30 + 80 * p) * s * (0.8 + 0.1 * q)\n        glow(cr, x + dx, y + dy, r * 1.5, (220, 232, 248), a * 0.6)\n        cr.arc(x + dx, y + dy, r, 0, 2 * math.pi)\n        cr.set_source_rgba(*_c((236, 242, 250), a * 0.8))\n        cr.fill()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a row of cryonics tanks\n    SUBSTANCE: stainless steel tanks\n    CAUSE: Data rolls each new steel tank into the row with his own hands, one per year's new patients\n    Alcor's patient bay: a row of big stainless dewars on casters, each with\n    a domed cap, a blue snowflake badge, a pressure gauge, a red fill valve\n    and a hose up to the nitrogen line. The row's LENGTH is the patient\n    count. Each year Data rolls a new steel tank in by hand from off the\n    left edge into the nearest, biggest slot by the camera; notches on the\n    floor line mark where 2019's row ended and where it ends now. Done by\n    about 0.6 and held: then Data works back along the new tanks opening\n    each fill valve, and each one vents a white cloud of nitrogen.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    vmax = max(v for _, v in rows) or 1.0\n    N = 8\n    HH = 220\n    SLIDE = 320\n    sl = _cz_slots(N)\n    counts = [max(1, min(N, int(round(N * v / vmax)))) for _, v in rows]\n    base = max(1, counts[0] - 1)\n    a0, a1 = 0.05, 0.6\n    span = (a1 - a0) / max(1, n)\n\n    arrivals = []          # (far slot j, step kk, g0, g1)\n    prev = base\n    for kk in range(n):\n        new = list(range(prev, max(prev, counts[kk])))\n        m = len(new)\n        for q, j in enumerate(new):\n            g0 = a0 + kk * span + span * q / m\n            arrivals.append((j, kk, g0, g0 + span / m))\n        prev = max(prev, counts[kk])\n    PUSH0, PUSH1 = 0.04, 0.82\n\n    def land_u(kk):\n        mine = [g0 + PUSH1 * (g1 - g0) for (_, k2, g0, g1) in arrivals if k2 == kk]\n        return max(mine) if mine else a0 + (kk + PUSH1) * span\n\n    landed_k = max((kk for kk in range(n) if u >= land_u(kk)), default=None)\n    shown = rows[landed_k] if landed_k is not None else None\n    done_u = max([land_u(kk) for kk in range(n)] + [a0])\n\n    state = {}             # far slot j -> (cx, alpha, frost)\n    for j in range(base):\n        state[j] = (sl[N - 1 - j][0], 1.0, 1.0)\n    for (j, kk, g0, g1) in arrivals:\n        if u < g0:\n            continue\n        g = clamp((u - g0) / (g1 - g0))\n        appear = ease(seg(g, 0.0, 0.08))\n        push = ease(seg(g, PUSH0, PUSH1))\n        lu = g0 + PUSH1 * (g1 - g0)\n        frost = ease(clamp((u - lu) / 0.15)) if u >= lu else 0.0\n        state[j] = (sl[N - 1 - j][0] - SLIDE * (1 - push), appear, frost)\n\n    # the after: Data opens the fill valve on each new tank, nearest first\n    new_js = sorted({j for (j, _, _, _) in arrivals}, reverse=True) or [base - 1]\n    T0 = done_u + 0.03\n    d = (0.99 - T0) / max(1, len(new_js))\n    tap_m, tap_f = None, 0.0\n    if u >= T0:\n        tap_m = min(len(new_js) - 1, int((u - T0) / d))\n        tap_f = clamp((u - T0 - tap_m * d) / d)\n\n    # the hall: a dark cold bay, lit from the ceiling\n    vgrad(cr, [(0, (26, 32, 44)), (0.6, (46, 56, 70)), (1, (70, 80, 94))], 0, 1180)\n    for i in range(7):\n        z = i / 6.0\n        lx = 60 + 860 * z ** 0.8\n        ly = 160 + 520 * z ** 0.9\n        sc = 1.0 - 0.7 * z\n        glow(cr, lx + 90 * sc, ly + 20 * sc, 190 * sc, (200, 225, 255), 0.35)\n        box(cr, lx, ly, 180 * sc, 20 * sc, (232, 240, 250), depth=40 * sc)\n    cr.rectangle(0, 840, W, 34)\n    solid(cr, (150, 158, 170), finish=\"metal\")\n    for i in range(9):\n        cr.rectangle(30 + i * 122, 834, 18, 46)\n        solid(cr, (96, 104, 116), finish=\"metal\", rim=False)\n    haze(cr, 600, 1180, (60, 72, 88), a=0.45)\n    vgrad(cr, [(0, (88, 96, 108)), (1, (146, 152, 162))], 1150, H)\n    cr.save()\n    cr.rectangle(0, 1150, W, H - 1150)\n    cr.clip()\n    cr.set_source_rgba(*_c((60, 66, 78), 0.35))\n    cr.set_line_width(3)\n    for i in range(14):\n        cr.move_to(1400, 1010)\n        cr.line_to(-900 + i * 200, H)\n    cr.stroke()\n    cr.restore()\n    glow(cr, 560, 1360, 520, (190, 215, 245), 0.18)\n    cast_shadow(cr, 330, 1050, 1440, length=240, a=0.22)\n    nx0, ny0, ns0 = sl[0]\n    fx_, fy_, fs_ = sl[N - 1]\n    cr.set_source_rgba(*_c((226, 188, 60)))\n    cr.set_line_width(8)\n    cr.move_to(nx0 - 120, ny0 + 14 + 120 * 32 / 74)\n    cr.line_to(fx_ + 40, fy_ + 14 - 40 * 32 / 74)\n    cr.stroke()\n\n    # the tanks, far first\n    necks = {}\n    for i in reversed(range(N)):\n        j = N - 1 - i\n        if j not in state:\n            continue\n        cx, a, frost = state[j]\n        x, y, s = sl[i]\n        nk = _cz_dewar(cr, cx, y, s, a, frost, t, j)\n        if frost > 0.02:\n            _cz_hose(cr, nk[0], nk[1], s, a * frost)\n        necks[j] = (nk, s)\n        _cz_vapour(cr, nk[0], nk[1], s, t, j, a=a * max(0.3, frost))\n    # the clouds each opened valve sends up\n    if tap_m is not None:\n        for m in range(tap_m + 1):\n            j = new_js[m]\n            if j in necks:\n                (bx, by), s = necks[j]\n                p = (u - (T0 + m * d + 0.4 * d)) / (1.4 * d)\n                _cz_burst(cr, bx, by, s, p)\n\n    # THE SCALE on the floor line: where 2019's row ended, where it ends now\n    if landed_k is not None:\n        for kk in range(landed_k + 1):\n            if not (kk == 0 or kk == landed_k):\n                continue\n            x, y, s = sl[N - counts[kk]]\n            mx = x - 55 * s - 10\n            my = y + 14 + 10 * 32 / 74\n            cr.set_source_rgba(*_c((244, 238, 226)))\n            cr.set_line_width(6)\n            cr.move_to(mx, my - 22)\n            cr.line_to(mx, my + 22)\n            cr.stroke()\n            text(cr, rows[kk][0], mx + 8, my + 50, 30, look.INK, face=\"bold\")\n\n    # right by the camera: a transfer dewar boiling off\n    _cz_dewar(cr, 915, 1900, 0.75, 1.0, 1.0, t, 7)\n    _cz_vapour(cr, 915, 1900 - 12 * 0.75 - 300 - 110 * 0.75 * 0.3 - 26, 1.4, t, 3)\n    vignette(cr, a=0.3)\n\n    def dpos(j, push):\n        x, y, s = sl[N - 1 - j]\n        cx = x - SLIDE * (1 - push)\n        left = cx - 55 * s\n        return max(70.0, left - 50), min(1500.0, y + 4), left\n\n    def tpos(j):\n        x, y, s = sl[N - 1 - j]\n        return x - 75 * s, min(1500.0, y + 40)\n\n    cur = None\n    for idx, (j, kk, g0, g1) in enumerate(arrivals):\n        if u >= g0:\n            cur = idx\n    if tap_m is not None:\n        tx, ty = tpos(new_js[tap_m])\n        if tap_m > 0:\n            px, py = tpos(new_js[tap_m - 1])\n        else:\n            px, py, _ = dpos(new_js[0], 1.0)\n        w_ = ease(seg(tap_f, 0.0, 0.35))\n        host(\"tap\", px + (tx - px) * w_, py + (ty - py) * w_, HH, beat=tap_m)\n    elif not arrivals:\n        hx, hy, left = dpos(base - 1, 1.0)\n        host(\"grip\", hx, hy, HH, hands=[(hx + 56, hy - 0.60 * HH), (hx + 56, hy - 0.42 * HH)],\n             lower=\"stand\", expr=\"happy\")\n    elif cur is None:\n        hx, hy, _ = dpos(arrivals[0][0], 0.0)\n        host(\"point\", hx, hy, HH)\n    else:\n        j, kk, g0, g1 = arrivals[cur]\n        g = clamp((u - g0) / (g1 - g0))\n        push = ease(seg(g, PUSH0, PUSH1))\n        hx, hy, left = dpos(j, push)\n        host(\"grip\", hx, hy, HH,\n             hands=[(hx + 56, hy - 0.60 * HH), (hx + 56, hy - 0.42 * HH)],\n             lower=\"brace\" if push < 0.999 else \"stand\",\n             expr=\"strain\" if push < 0.999 else \"happy\", beat=cur)\n\n    if shown is not None:\n        lab, v = shown\n        fit_readout(cr, f\"{int(round(v))} people\", f\"frozen at Alcor · {lab}\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, \"Alcor\", f\"frozen patients, {rows[0][0]}–{rows[-1][0]}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -34038,8 +34038,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE GAP",
-     "topic": "Signed up, not frozen",
-     "say": "About 1,927 people have signed up, but the vast majority are still alive and waiting. Only a small fraction are frozen."
+     "topic": "Alcor Living Members",
+     "say": "Alcor listed 1,927 living members signed up. Most of that membership had not become patients."
     },
     {
      "source": "offline",
@@ -34049,14 +34049,14 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE PRICE",
-     "topic": "Cost to be frozen",
-     "say": "Freezing your whole body costs $200,000, and head only is far cheaper. Most members pay for it with life insurance.",
+     "topic": "Alcor Preservation Cost",
+     "say": "Whole-body preservation costs $200,000. The price describes a service plan, not a guarantee of revival.",
      "illustrated_scene": "# scene standard: 2026-10-16.2\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a giant block of ice\n    SUBSTANCE: solid ice\n    CAUSE: Data saws through the ice block and the top chunk falls away, leaving the smaller head-only block\n    One price is a block of ice: whole-body preservation is the full block\n    standing in a cold-storage room. Data climbs a crate and saws across it at\n    the head-only share of the price. The top falls off and slides away, and\n    what is left is that share of the block. Then he hops down off the crate\n    and holds up the kept block beside it. The full block's old height stays\n    as a ghost outline with its top marked, so a glance shows the head-only\n    price is well under half.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts[:2]]\n    (lw, whole), (lh, head) = sorted(rows, key=lambda r: -r[1])\n    whole = whole or 1.0\n    share = clamp(head / whole)\n\n    BX, BW, BASE, H0 = 380, 360, 1440, 780\n    top = BASE - H0\n    hb = H0 * share\n    ht = H0 - hb\n    cutY = BASE - hb\n\n    a0, c0, c1 = 0.08, 0.16, 0.48\n    n = 4\n    span = (c1 - c0) / n\n    k = int(clamp((u - c0) / span, 0, n - 0.001))\n    f = clamp((u - c0 - k * span) / span)\n    if u < c0:\n        depth = 0.0\n    elif u < c1:\n        depth = (k + ease(seg(f, 0.3, 0.7))) / n\n    else:\n        depth = 1.0\n    tip = ease(seg(u, 0.49, 0.6))\n    drop = seg(u, 0.52, 0.62) ** 2\n    slide = seg(u, 0.62, 1.0)\n    fallen = u >= 0.6\n\n    # the cold room: steel walls, ceiling lights, a pale floor\n    vgrad(cr, [(0, (40, 52, 66)), (0.6, (96, 120, 140)), (1, (150, 172, 188))], 0, 1160)\n    for i in range(6):\n        px = 20 + i * 180\n        cr.rectangle(px, 720, 160, 420)\n        solid(cr, (118, 140, 158), finish=\"metal\", rim=False)\n    for i in range(3):\n        lx = 180 + i * 360\n        glow(cr, lx, 300, 260, (220, 240, 255), 0.45)\n        box(cr, lx - 110, 300, 220, 22, (236, 244, 250), depth=30)\n    haze(cr, 200, 1160, (170, 196, 214), a=0.45)\n    vgrad(cr, [(0, (176, 196, 210)), (1, (120, 140, 156))], 1150, H)\n    cr.set_source_rgba(*_c((90, 108, 124), 0.35))\n    cr.set_line_width(3)\n    for i in range(12):\n        cr.move_to(540, 900)\n        cr.line_to(-1200 + i * 300, H)\n    cr.stroke()\n    glow(cr, 560, 1300, 520, (220, 240, 255), 0.25)\n\n    ICE = (170, 214, 236)\n    # the block's shadow and the standing (kept) part\n    cast_shadow(cr, BX, BX + BW, BASE, length=300, a=0.3)\n    contact_shadow(cr, BX + BW / 2, BASE + 4, BW + 120, a=0.4)\n    box(cr, BX, BASE, BW, hb, ICE, finish=\"ice\")\n\n    # the top chunk: whole, then cut, then tipped off to the left and slid away\n    cr.save()\n    cr.translate(BX - 600 * slide, cutY + (BASE - cutY) * drop)\n    cr.rotate(-tip * math.pi / 2)\n    box(cr, 0, 0, BW, ht, ICE, finish=\"ice\")\n    cr.restore()\n\n    # the saw cut creeping in from Data's side\n    if 0 < depth and tip <= 0:\n        cr.set_source_rgba(*_c((30, 60, 90), 0.9))\n        cr.set_line_width(7)\n        cr.move_to(BX + BW + 0.22 * BW, cutY - 0.22 * BW * 0.5)\n        cr.line_to(BX + BW, cutY)\n        cr.line_to(BX + BW - depth * BW, cutY)\n        cr.stroke()\n\n    # THE SCALE on the block: the whole-body block as a ghost, its top marked\n    if fallen:\n        cr.rectangle(BX, top, BW, H0)\n        ghost(cr, a=0.9)\n        then_mark(cr, BX - 20, BX + BW + 90, top, \"whole body\")\n        steam(cr, BX + BW / 2, cutY - 10, t, 1.0)\n\n    # the crate he stands on to reach the cut\n    contact_shadow(cr, 910, BASE + 4, 170, a=0.4)\n    box(cr, 840, BASE, 140, 130, (150, 112, 72), depth=30)\n\n    # right by the camera: loose chunks of ice on the floor\n    for i, (cx, cy, s) in enumerate([(110, 1720, 90), (300, 1830, 120), (820, 1760, 100),\n                                     (960, 1880, 70)]):\n        contact_shadow(cr, cx + s / 2, cy + 4, s * 1.3, a=0.35)\n        box(cr, cx, cy, s, s * 0.7, ICE, finish=\"ice\")\n    foreground(cr, \"snow\")\n    vignette(cr, a=0.28)\n\n    # Data: points from the floor, climbs the crate, saws, then hops down\n    # beside the kept block and holds it up\n    sx, sy = 1010, 1440\n    ex, ey = 900, 1310\n    gx, gy = 800, 1500\n    if u < a0:\n        host(\"point\", sx, sy, 225)\n    elif u < c0:\n        q = ease(seg(u, a0, c0))\n        host(\"climb\", sx + (ex - sx) * q, sy + (ey - sy) * q, 225)\n    elif u < c1 + 0.03:\n        host(\"cut\", ex, ey, 225, beat=k)\n    elif u < 0.6:\n        host(\"shock\", ex, ey, 225)\n    else:\n        q = ease(seg(u, 0.6, 0.7))\n        host(\"hold_up\", ex + (gx - ex) * q, ey + (gy - ey) * q, 225)\n\n    if fallen:\n        fit_readout(cr, f\"${head:,.0f}\", f\"{lh.lower()} · {int(round((1 - share) * 100))}% less\",\n                    80, 520, a=ease(seg(u, 0.6, 0.65)), size=130)\n    else:\n        fit_readout(cr, f\"${whole:,.0f}\", f\"to freeze your {lw.split()[0].lower()} body\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-15T12:44:00Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-21T11:25:44Z",
    "hook_was": "1,927 people are waiting to be frozen when they die."
   },
   {
@@ -34919,7 +34919,7 @@
    "slug": "japan-vending-machine-density",
    "title": "Japan Has One Vending Machine For Every 31 People",
    "hook": "Japan basically turned itself into a giant vending machine.",
-   "closing": "Somewhere right now, a machine is handing hot soup to a total stranger, no staff needed.",
+   "closing": "Somewhere right now, a machine is selling hot soup to a total stranger.",
    "question": "What's the strangest thing you've bought from one?",
    "caption": "Japan still runs about 4 million vending machines, down from a peak of 5.6 million in 2000, but that's still one for roughly every 31 people. Here's why the count is shrinking, and what's actually inside them. What's the weirdest vending machine snack you've seen? 👇",
    "hashtags": [
@@ -34946,8 +34946,7 @@
      "insight_type": "trend",
      "role": "1 · JAPAN VENDING MACHINE COUNT",
      "topic": "japan vending machine count",
-     "say": "Japan once had 5.6 million vending machines. Convenience stores spread, and now over a quarter of them are gone.",
-     "illustrated_scene": "# scene standard: 2026-10-16.2\ndef _vm(cr, x, y, s, col, j):\n    w, h = 140 * s, 420 * s\n    d = 0.22 * w\n    contact_shadow(cr, x + w * 0.55, y + 2, w * 1.5, a=0.4)\n    box(cr, x, y, w, h, col, depth=d, finish=\"gloss\")\n    # the lit header strip\n    cr.rectangle(x + 8 * s, y - h + 14 * s, w - 16 * s, 34 * s)\n    solid(cr, (246, 244, 236), finish=\"gloss\", rim=False)\n    glow(cr, x + w / 2, y - h + 31 * s, w * 0.7, (255, 250, 230), 0.25)\n    # the glass front, rows of drinks behind it\n    wx0, wy0, ww, wh = x + 10 * s, y - h + 60 * s, w - 20 * s, 200 * s\n    cr.save()\n    cr.rectangle(wx0, wy0, ww, wh)\n    cr.clip()\n    vgrad(cr, [(0, (44, 58, 74)), (1, (18, 24, 32))], wy0, wy0 + wh, wx0, wx0 + ww)\n    glow(cr, wx0 + ww / 2, wy0 + wh / 2, ww * 0.9, (220, 236, 255), 0.35)\n    cols = [(214, 60, 52), (240, 200, 70), (70, 140, 210), (120, 180, 90), (236, 236, 236)]\n    for r in range(3):\n        for c in range(4):\n            bw = ww / 4 * 0.55\n            bx = wx0 + (c + 0.5) * ww / 4 - bw / 2\n            by = wy0 + (r + 1) * wh / 3 - 8 * s\n            cylinder(cr, bx, by, bw, wh / 3 * 0.62, cols[(r * 4 + c + j) % 5], finish=\"gloss\")\n        cr.rectangle(wx0, wy0 + (r + 1) * wh / 3 - 8 * s, ww, 5 * s)\n        cr.set_source_rgba(*_c((150, 156, 166)))\n        cr.fill()\n    cr.move_to(wx0 + ww * 0.15, wy0)\n    cr.line_to(wx0 + ww * 0.45, wy0)\n    cr.line_to(wx0 + ww * 0.05, wy0 + wh)\n    cr.line_to(wx0 - ww * 0.25, wy0 + wh)\n    cr.close_path()\n    cr.set_source_rgba(*_c((255, 255, 255), 0.14))\n    cr.fill()\n    cr.restore()\n    cr.rectangle(wx0, wy0, ww, wh)\n    edge(cr, (30, 30, 34))\n    for c in range(4):\n        disc(cr, wx0 + (c + 0.5) * ww / 4, wy0 + wh + 18 * s, 6 * s, (250, 248, 236), finish=\"gloss\")\n    cr.rectangle(x + w - 46 * s, y - h + 300 * s, 30 * s, 62 * s)\n    solid(cr, (70, 72, 80), finish=\"metal\", rim=False)\n    cr.rectangle(x + 14 * s, y - 84 * s, w - 72 * s, 48 * s)\n    solid(cr, (30, 30, 34), rim=False)\n    return w, h, d\n\n\ndef _car(cr, x, y, s, col, flip=False):\n    contact_shadow(cr, x + 150 * s, y + 4, 310 * s, a=0.45)\n    cr.save()\n    if flip:\n        cr.translate(2 * x + 300 * s, 0)\n        cr.scale(-1, 1)\n    # a rounded hatchback body\n    cr.move_to(x + 8 * s, y - 20 * s)\n    cr.line_to(x + 8 * s, y - 60 * s)\n    cr.curve_to(x + 12 * s, y - 78 * s, x + 40 * s, y - 84 * s, x + 72 * s, y - 86 * s)\n    cr.line_to(x + 96 * s, y - 88 * s)\n    cr.curve_to(x + 116 * s, y - 128 * s, x + 132 * s, y - 138 * s, x + 156 * s, y - 138 * s)\n    cr.line_to(x + 226 * s, y - 138 * s)\n    cr.curve_to(x + 248 * s, y - 138 * s, x + 264 * s, y - 112 * s, x + 272 * s, y - 90 * s)\n    cr.curve_to(x + 290 * s, y - 86 * s, x + 298 * s, y - 74 * s, x + 298 * s, y - 56 * s)\n    cr.line_to(x + 298 * s, y - 20 * s)\n    cr.close_path()\n    solid(cr, col, finish=\"gloss\")\n    # windows\n    cr.move_to(x + 112 * s, y - 92 * s)\n    cr.curve_to(x + 126 * s, y - 120 * s, x + 138 * s, y - 128 * s, x + 158 * s, y - 128 * s)\n    cr.line_to(x + 186 * s, y - 128 * s)\n    cr.line_to(x + 186 * s, y - 92 * s)\n    cr.close_path()\n    solid(cr, (150, 180, 206), finish=\"glass\", rim=False)\n    cr.move_to(x + 196 * s, y - 92 * s)\n    cr.line_to(x + 196 * s, y - 128 * s)\n    cr.line_to(x + 224 * s, y - 128 * s)\n    cr.curve_to(x + 242 * s, y - 128 * s, x + 254 * s, y - 108 * s, x + 260 * s, y - 92 * s)\n    cr.close_path()\n    solid(cr, (150, 180, 206), finish=\"glass\", rim=False)\n    # lights and a door seam\n    disc(cr, x + 20 * s, y - 64 * s, 8 * s, (255, 236, 180), finish=\"gloss\")\n    cr.rectangle(x + 286 * s, y - 70 * s, 10 * s, 14 * s)\n    solid(cr, (200, 40, 36), rim=False)\n    cr.set_source_rgba(*_c((20, 20, 24), 0.5))\n    cr.set_line_width(2.5 * s)\n    cr.move_to(x + 190 * s, y - 90 * s)\n    cr.line_to(x + 190 * s, y - 26 * s)\n    cr.stroke()\n    for wx in (x + 66 * s, x + 236 * s):\n        disc(cr, wx, y - 18 * s, 28 * s, (30, 30, 34), finish=\"matte\")\n        disc(cr, wx, y - 18 * s, 12 * s, (186, 188, 194), finish=\"metal\")\n    cr.restore()\n\n\ndef _pole(cr, x, base, h):\n    cr.rectangle(x - 9, base - h, 18, h)\n    solid(cr, (120, 116, 110), rim=False)\n    for k, yy in enumerate((base - h + 30, base - h + 70)):\n        cr.rectangle(x - 60 + 10 * k, yy, 120 - 20 * k, 8)\n        solid(cr, (90, 86, 82), rim=False)\n    cylinder(cr, x + 14, base - h + 150, 26, 44, (150, 150, 146), finish=\"metal\")\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a row of Japanese vending machines\n    SUBSTANCE: the vending machines\n    CAUSE: Data grips each machine with his own hands and drags it off the sidewalk, one by one\n    One street's row of seven glowing drink machines is the WHOLE, big\n    and running from the camera back along a Japanese street under\n    utility wires, a convenience store behind them. The share that\n    disappeared between the first and last year (over a quarter) is how\n    many of the seven Data hauls away by hand, from the camera end: each\n    slot he empties keeps a dashed ghost of the machine that stood there,\n    and the curb under the row is cut at the true share, the gone part in\n    the accent. Done by 0.64, then held: Data braces his hands on the\n    next machine while cars keep passing. The readout prints only the\n    sourced counts and their years.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    v0 = v0 or 1.0\n    frac = clamp((v0 - v1) / v0)\n    N = 7\n    ngone = int(clamp(round(N * frac), 1, N - 1))\n    a0, a1 = 0.06, 0.64\n    span = (a1 - a0) / ngone\n    k = int(clamp((u - a0) / span, 0, ngone - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    walkf = ease(seg(f, 0.0, 0.18))\n    push = ease(seg(f, 0.22, 0.95)) if u >= a0 else 0.0\n    done = u >= a0 and k == ngone - 1 and push >= 0.999\n\n    lanes = []\n    x, y, s = 40.0, 1450.0, 1.5\n    for j in range(N):\n        lanes.append((x, y, s))\n        x += 150 * s\n        y -= 30 * s\n        s *= 0.85\n\n    def slide_of(j):\n        if j >= ngone or u < a0 or j > k:\n            return 0.0\n        return 1.0 if j < k else push\n\n    def dist_of(j):\n        lx, ly, ls = lanes[j]\n        return lx + 140 * ls * 1.22 - 40\n\n    # the town at evening, a convenience store glowing behind the row\n    landscape(cr, t, \"town\")\n    # utility poles and their wires across the sky — a Japanese street\n    _pole(cr, 360, 1190, 560)\n    _pole(cr, 1010, 1200, 640)\n    cr.set_source_rgba(*_c((40, 40, 46), 0.8))\n    cr.set_line_width(3)\n    for yy, sag in ((664, 60), (704, 70), (744, 80)):\n        cr.move_to(-20, yy + 40)\n        cr.curve_to(150, yy + 40 + sag, 260, yy + sag * 0.6, 360, yy - 30)\n        cr.curve_to(560, yy - 30 + sag * 1.4, 820, yy - 90 + sag, 1010, yy - 100)\n        cr.curve_to(1040, yy - 96, 1070, yy - 90, 1100, yy - 80)\n    cr.stroke()\n    st = building(cr, 560, 1060, 1190, 300, (232, 230, 224), roof=\"flat\", boards=False)\n    cr.rectangle(st[\"x0\"], st[\"top\"] + 10, st[\"x1\"] - st[\"x0\"], 30)\n    solid(cr, (60, 150, 90), rim=False)\n    cr.rectangle(st[\"x0\"], st[\"top\"] + 40, st[\"x1\"] - st[\"x0\"], 20)\n    solid(cr, (236, 130, 50), rim=False)\n    cr.rectangle(st[\"x0\"], st[\"top\"] + 60, st[\"x1\"] - st[\"x0\"], 12)\n    solid(cr, (60, 110, 190), rim=False)\n    cr.rectangle(st[\"x0\"] + 30, st[\"top\"] + 96, st[\"x1\"] - st[\"x0\"] - 60, 170)\n    solid(cr, (250, 240, 200), finish=\"glass\", rim=False)\n    glow(cr, (st[\"x0\"] + st[\"x1\"]) / 2, st[\"top\"] + 170, 320, (255, 240, 190),\n         0.25 + 0.25 * ease(seg(u, a0, a1)))\n    haze(cr, 640, 1200, (214, 206, 200), a=0.35)\n\n    # the sidewalk the machines stand on, the road by the camera\n    vgrad(cr, [(0, (196, 192, 184)), (1, (164, 160, 152))], 1190, 1476)\n    cr.set_source_rgba(*_c((130, 126, 120), 0.5))\n    cr.set_line_width(3)\n    for i in range(12):\n        cr.move_to(1400, 1120)\n        cr.line_to(-1100 + i * 230, 1476)\n    cr.stroke()\n    vgrad(cr, [(0, (74, 76, 82)), (1, (52, 54, 60))], 1490, H)\n    cr.set_source_rgba(*_c((236, 232, 220), 0.8))\n    cr.set_line_width(8)\n    for i in range(6):\n        cr.move_to(i * 220 - 40, 1700)\n        cr.line_to(i * 220 + 80, 1700)\n    cr.stroke()\n    # the curb under the row: the whole, cut at the share that is gone\n    rx0 = lanes[0][0]\n    rx1 = lanes[N - 1][0] + 140 * lanes[N - 1][2] * 1.22\n    cut = rx0 + (rx1 - rx0) * frac * ease(seg(u, a0, a1))\n    cr.rectangle(0, 1474, W, 18)\n    solid(cr, (150, 152, 158), rim=False)\n    if cut > rx0 + 2:\n        cr.rectangle(rx0, 1474, cut - rx0, 18)\n        solid(cr, P[\"accent2\"], rim=False)\n\n    cast_shadow(cr, lanes[ngone][0], rx1, 1440, length=220, a=0.22)\n\n    # the machines, far first; the hauled ones slide away and fade out\n    bodies = [(224, 60, 52), (238, 238, 234), (52, 104, 180)]\n    for j in reversed(range(N)):\n        lx, ly, ls = lanes[j]\n        sl = slide_of(j)\n        if j < ngone and sl > 0.02:\n            cr.rectangle(lx, ly - 420 * ls, 140 * ls, 420 * ls)\n            ghost(cr, a=0.85)\n        if sl >= 0.999:\n            continue\n        a = 1.0 - seg(sl, 0.75, 1.0)\n        cr.push_group()\n        _vm(cr, lx - dist_of(j) * sl, ly, ls, bodies[j % 3], j)\n        cr.pop_group_to_source()\n        cr.paint_with_alpha(a)\n\n    # right by the camera: cars passing both ways\n    for i in range(2):\n        cx = W + 100 - ((t * 560 + i * 760) % 1600)\n        _car(cr, cx, 1660, 1.15, [(200, 200, 206), (60, 64, 76)][i])\n    cx = -400 + ((t * 480 + 300) % 1600)\n    _car(cr, cx, 1800, 1.4, (214, 70, 56), flip=True)\n    foreground(cr, \"town\", y0=1840)\n    vignette(cr, a=0.28)\n\n    # Data: hands flat on the machine's edge, dragging it off, then back for the next\n    lx, ly, ls = lanes[k]\n    xr0 = lx + 140 * ls * 1.22\n    fy = ly + 8\n    if u < a0:\n        host(\"point\", lanes[0][0] + 140 * lanes[0][2] * 1.22 + 150, lanes[0][1] + 8, 220)\n    elif done:\n        # braced on the next machine in the row, ready to haul it too\n        gx, gy = lanes[ngone][0], lanes[ngone][1] + 8\n        host(\"grip\", gx - 52, gy, 220, beat=ngone,\n             hands=[(gx + 2, gy - 150), (gx + 2, gy - 96)], lower=\"brace\",\n             expr=\"strain\" if u < 0.9 else \"shock\")\n    elif f < 0.2 and k > 0:\n        px, py = 40 + 52, lanes[k - 1][1] + 8\n        host(\"point\", px + (xr0 + 52 - px) * walkf, py + (fy - py) * walkf, 220)\n    else:\n        xr = xr0 - dist_of(k) * push\n        host(\"grip\", xr + 52, fy, 220, beat=k,\n             hands=[(xr + 2, fy - 150), (xr + 2, fy - 96)], lower=\"brace\", expr=\"strain\")\n\n    if done:\n        fit_readout(cr, f\"{v1 / 1e6:.1f}M machines\", f\"vending machines in Japan · {l1}\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, f\"{v0 / 1e6:.1f}M machines\", f\"vending machines in Japan · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
+     "say": "Japan had about 5.6 million vending machines in 2000. By 2023 that had fallen to roughly 4 million, as convenience stores spread."
     },
     {
      "source": "offline",
@@ -34959,8 +34958,7 @@
      "use_baseline": false,
      "role": "2 · JAPAN VENDING MACHINE DENSITY",
      "topic": "japan vending machine density",
-     "say": "Even so, Japan has one machine for every 31 people. That's more than twice as many per person as the US.",
-     "illustrated_scene": "# scene standard: 2026-10-16.2\ndef _vm_rr(cr, x, y, w, h, r):\n    r = min(r, w / 2, h / 2)\n    cr.new_sub_path()\n    cr.arc(x + w - r, y + r, r, -math.pi / 2, 0)\n    cr.arc(x + w - r, y + h - r, r, 0, math.pi / 2)\n    cr.arc(x + r, y + h - r, r, math.pi / 2, math.pi)\n    cr.arc(x + r, y + r, r, math.pi, 1.5 * math.pi)\n    cr.close_path()\n\n\ndef _vm_len(path):\n    return sum(math.hypot(x1 - x0, y1 - y0) for (x0, y0), (x1, y1) in zip(path, path[1:]))\n\n\ndef _vm_at(path, d):\n    for (x0, y0), (x1, y1) in zip(path, path[1:]):\n        L = math.hypot(x1 - x0, y1 - y0)\n        if d <= L:\n            q = d / L if L else 0.0\n            return x0 + (x1 - x0) * q, y0 + (y1 - y0) * q\n        d -= L\n    return path[-1]\n\n\ndef _vm_person(cr, x, y, i, step, walking, s=None):\n    if s is None:\n        s = (0.8 + 0.5 * clamp((y - 1190) / 310.0)) * (0.9 + 0.2 * ((i * 0.37) % 1.0))\n    cols = [(214, 74, 64), (60, 110, 170), (236, 190, 80), (90, 150, 110),\n            (150, 96, 170), (232, 230, 222), (70, 72, 84), (230, 130, 70)]\n    pants = [(60, 62, 72), (40, 44, 56), (96, 84, 70)][i % 3]\n    c = cols[(i * 3) % len(cols)]\n    hair = [(40, 32, 30), (70, 50, 36), (30, 30, 34), (120, 100, 80)][i % 4]\n    sw = math.sin(step) if walking else 0.0\n    lift = 5 * s * abs(sw)\n    contact_shadow(cr, x, y + 2, 46 * s, a=0.3)\n    for side in (-1, 1):\n        cr.rectangle(x + side * 7 * s - 5 * s + 6 * s * sw * side, y - 50 * s, 10 * s, 50 * s)\n        solid(cr, pants, rim=False)\n    _vm_rr(cr, x - 18 * s, y - 104 * s - lift, 36 * s, 58 * s, 10 * s)\n    solid(cr, c)\n    if i % 4 == 1:   # a shoulder bag, its strap a band across the coat\n        cr.move_to(x - 17 * s, y - 100 * s - lift)\n        cr.line_to(x + 17 * s, y - 62 * s - lift)\n        cr.line_to(x + 17 * s, y - 55 * s - lift)\n        cr.line_to(x - 17 * s, y - 93 * s - lift)\n        cr.close_path()\n        solid(cr, (50, 44, 40), rim=False, edge=False)\n    disc(cr, x, y - 116 * s - lift, 13 * s, (232, 196, 160))\n    cr.arc(x, y - 118 * s - lift, 13.5 * s, math.pi, 2 * math.pi)\n    cr.close_path()\n    solid(cr, hair, rim=False)\n\n\ndef _vm_machine(cr, x, base, w, h, body, header):\n    cast_shadow(cr, x, x + w, base, length=240, a=0.25)\n    contact_shadow(cr, x + w / 2, base, w * 1.25, a=0.4)\n    box(cr, x, base, w, h, body, depth=0.22 * w, finish=\"gloss\")\n    top = base - h\n    cr.rectangle(x + 12, top + 12, w - 24, 40)\n    solid(cr, header, finish=\"gloss\")\n    dx0, dy0, dw, dh = x + 14, top + 64, w * 0.66, h * 0.52\n    glow(cr, dx0 + dw / 2, dy0 + dh / 2, w * 0.8, (230, 244, 255), 0.35)\n    cr.rectangle(dx0, dy0, dw, dh)\n    solid(cr, (214, 230, 242), finish=\"gloss\", rim=False)\n    cans = [(200, 40, 40), (240, 190, 60), (40, 120, 200), (60, 160, 90),\n            (250, 250, 250), (150, 90, 60)]\n    rh = dh / 4\n    cw = dw / 5\n    for r in range(4):\n        sy = dy0 + (r + 1) * rh - 10\n        for k in range(5):\n            cylinder(cr, dx0 + 5 + k * cw, sy, cw - 9, rh - 24,\n                     cans[(r * 2 + k) % len(cans)], finish=\"gloss\")\n        cr.rectangle(dx0, sy, dw, 8)\n        solid(cr, (90, 96, 108), rim=False, edge=False)\n    px0 = dx0 + dw + 8\n    pw = x + w - 12 - px0\n    cr.rectangle(px0, dy0 + dh * 0.35, pw, dh * 0.5)\n    solid(cr, (70, 74, 84), finish=\"metal\")\n    cr.rectangle(px0 + pw * 0.3, dy0 + dh * 0.42, pw * 0.4, 10)\n    solid(cr, (24, 24, 28), rim=False)\n    cr.rectangle(px0 + pw * 0.2, dy0 + dh * 0.6, pw * 0.6, 24)\n    solid(cr, (90, 200, 120), finish=\"gloss\", rim=False)\n    cr.rectangle(x + 14, base - h * 0.25, w * 0.66, h * 0.11)\n    solid(cr, (36, 38, 44), rim=False)\n    cr.rectangle(x + 8, base - 26, w - 16, 20)\n    solid(cr, (60, 62, 70), finish=\"metal\", rim=False)\n\n\ndef _vm_train(cr, tx):\n    for k in range(4):\n        cx = tx + k * 394\n        if cx > W + 20 or cx + 380 < -20:\n            continue\n        _vm_rr(cr, cx, 770, 380, 110, 18)\n        solid(cr, (238, 240, 242), finish=\"gloss\")\n        cr.rectangle(cx + 4, 846, 372, 14)\n        solid(cr, (40, 150, 90), rim=False, edge=False)\n        for j in range(5):\n            cr.rectangle(cx + 20 + j * 72, 790, 52, 40)\n            solid(cr, (40, 52, 70), finish=\"gloss\", rim=False)\n\n\ndef _vm_city(cr):\n    for i in range(13):\n        bx = -30 + i * 92\n        bh = 120 + (i * 53) % 170\n        box(cr, bx, 940, 78, bh, (150, 128, 148), depth=18)\n        for r in range(int(bh // 34)):\n            for c in range(3):\n                if (i * 7 + r * 3 + c) % 4 == 0:\n                    continue\n                cr.rectangle(bx + 10 + c * 22, 940 - bh + 14 + r * 34, 12, 14)\n                cr.set_source_rgba(*_c((255, 214, 150), 0.75))\n                cr.fill()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a glowing drink vending machine\n    SUBSTANCE: the queue of people\n    CAUSE: Data drags a second vending machine in by hand and the long line splits between the two\n    A Japanese station platform at dusk. It opens on the US ratio: one\n    vending machine and a single line of 70 people snaking over the whole\n    platform. Data drags a second machine in with his own hands, and the\n    crowd re-forms as Japan has it, 31 people to each machine. The 8 left\n    over walk off toward the next machine. The old 70-person line stays on\n    the floor as a dashed ghost drawn over the two short lines, so the\n    picture shows the US line was more than twice as long. Lands by 0.66,\n    then a train glides past and commuters cross by the camera while the\n    picture holds.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    hi = max(v for _, v in rows) or 1.0\n    lo = min(v for _, v in rows) or 1.0\n    hi_lab = max(rows, key=lambda r: r[1])[0].split(\"(\")[0].strip()\n    lo_lab = min(rows, key=lambda r: r[1])[0].split(\"(\")[0].strip()\n    N = max(1, min(90, int(round(hi))))\n    per = max(1, min(N, int(round(lo))))\n\n    BASE = 1160\n    MW, MH = 280, 520\n    slide = ease(seg(u, 0.08, 0.40))\n    mx = 1100 + (600 - 1100) * slide\n\n    path0 = [(210, 1190), (210, 1250), (1010, 1250), (1010, 1340), (70, 1340),\n             (70, 1430), (1010, 1430), (1010, 1500), (70, 1500)]\n    pathA = [(230, 1190), (230, 1250), (470, 1250), (470, 1340), (70, 1340),\n             (70, 1430), (470, 1430)]\n    pathB = [(740, 1190), (740, 1250), (1010, 1250), (1010, 1340), (590, 1340),\n             (590, 1430), (1010, 1430)]\n    sp0 = (_vm_len(path0) - 10) / N\n    spA = (_vm_len(pathA) - 10) / per\n    spB = (_vm_len(pathB) - 10) / per\n\n    # the sky over the city at dusk, the low sun upper left, lit windows\n    vgrad(cr, [(0, (250, 200, 150)), (0.55, (236, 156, 124)), (1, (150, 120, 150))], 0, 940)\n    glow(cr, 200, 560, 380, (255, 220, 160), 0.7)\n    _vm_city(cr)\n    haze(cr, 560, 940, (236, 170, 140), a=0.5)\n    # the elevated line, a train gliding through once the crowd has settled\n    if u > 0.6:\n        _vm_train(cr, 1150 - (u - 0.6) / 0.4 * 2400)\n    cr.rectangle(0, 880, W, 50)\n    solid(cr, (168, 160, 158), rim=False)\n    # the station wall and the platform floor\n    vgrad(cr, [(0, (216, 210, 200)), (1, (184, 178, 170))], 930, BASE)\n    cr.set_source_rgba(*_c((150, 144, 138), 0.6))\n    cr.set_line_width(2)\n    for yy in range(950, BASE, 42):\n        cr.move_to(0, yy)\n        cr.line_to(W, yy)\n    cr.stroke()\n    cr.rectangle(0, BASE - 20, W, 20)\n    solid(cr, (90, 88, 92), rim=False, edge=False)\n    vgrad(cr, [(0, (172, 168, 162)), (1, (118, 114, 112))], BASE, H)\n    # floor tiles running toward the camera give the platform depth\n    cr.save()\n    cr.rectangle(0, BASE, W, H - BASE)\n    cr.clip()\n    cr.set_source_rgba(*_c((96, 92, 90), 0.25))\n    cr.set_line_width(3)\n    for i in range(16):\n        cr.move_to(540 + (i - 7.5) * 60, BASE)\n        cr.line_to(540 + (i - 7.5) * 260, H)\n    cr.stroke()\n    cr.restore()\n    cr.rectangle(0, 1560, W, 44)\n    solid(cr, (236, 196, 60), rim=False, edge=False)\n    cr.set_source_rgba(*_c((200, 160, 40)))\n    for i in range(30):\n        cr.arc(18 + i * 37, 1582, 6, 0, 2 * math.pi)\n        cr.fill()\n    # the canopy over the platform\n    cr.move_to(0, 0)\n    cr.line_to(W, 0)\n    cr.line_to(W, 150)\n    cr.line_to(0, 230)\n    cr.close_path()\n    solid(cr, (70, 72, 82), finish=\"metal\")\n    for i in range(5):\n        glow(cr, 100 + i * 220, 220 - i * 16, 60, (255, 236, 190), 0.6)\n\n    # the machines: the first stands the whole beat, the second is dragged in\n    _vm_machine(cr, 90, BASE, MW, MH, (234, 236, 240), (40, 110, 200))\n    _vm_machine(cr, mx, BASE, MW, MH, (200, 48, 50), (240, 240, 236))\n\n    # Data drags the second machine in by its edge, then steadies it\n    hx = mx - 62\n    moving = 0.08 <= u < 0.40\n    if u < 0.08:\n        host(\"point\", 960, BASE, 236)\n    elif u < 0.9:\n        host(\"grip\", hx, BASE, 236, hands=[(mx + 3, BASE - 146), (mx + 3, BASE - 110)],\n             lower=\"brace\" if moving else \"stand\", expr=\"strain\" if moving else \"happy\")\n    else:\n        host(\"cheer\", hx, BASE, 236)\n\n    # the crowd: one line of N, re-forming at per to a machine\n    people = []\n    for i in range(N):\n        x0, y0 = _vm_at(path0, 10 + i * sp0)\n        if i < per:\n            x1, y1 = _vm_at(pathA, 10 + i * spA)\n        elif i < 2 * per:\n            x1, y1 = _vm_at(pathB, 10 + (i - per) * spB)\n        else:\n            x1, y1 = 1180 + (i - 2 * per) * 60, 1470\n        jx = 6 * (((i * 0.618) % 1.0) - 0.5)\n        st = 0.38 + 0.12 * i / max(1, N - 1)\n        f = ease(seg(u, st, st + 0.16))\n        x = x0 + (x1 - x0) * f + jx\n        y = y0 + (y1 - y0) * f\n        walking = 0 < f < 1\n        if x < W + 60:\n            people.append((y, x, i, walking))\n    for y, x, i, walking in sorted(people):\n        _vm_person(cr, x, y, i, t * 9 + i, walking)\n\n    # the old one-line queue, traced over the two short lines once it splits\n    ga = 0.9 * ease(seg(u, 0.5, 0.62))\n    if ga > 0:\n        cr.move_to(*path0[0])\n        for p_ in path0[1:]:\n            cr.line_to(*p_)\n        ghost(cr, a=ga)\n        text(cr, f\"{hi_lab}: one machine per {int(round(hi))}\", 80, 1530, 32,\n             look.INK, face=\"bold\", alpha=ga / 0.9)\n\n    # right by the camera: commuters crossing the platform\n    for j in range(2):\n        cx = -220 + ((t * 120 + j * 760) % 1520)\n        _vm_person(cr, cx, 1990 + j * 30, 40 + j * 3, t * 5 + j, True, s=2.5 + 0.3 * j)\n    foreground(cr, \"town\", y0=1620)\n    vignette(cr, a=0.28)\n\n    if u < 0.62:\n        fit_readout(cr, f\"{int(round(hi))} people\", f\"per vending machine · {hi_lab}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)) * (1 - ease(seg(u, 0.58, 0.62))),\n                    size=130)\n    else:\n        fit_readout(cr, f\"{int(round(lo))} people\", f\"per vending machine · {lo_lab}\",\n                    80, 520, a=ease(seg(u, 0.62, 0.66)), size=130)\n"
+     "say": "Even then, Japan has one machine per 31 people, versus one per 70 in the US, more than double the density."
     },
     {
      "source": "offline",
@@ -34970,16 +34968,10 @@
      },
      "insight_type": "share",
      "role": "3 · WHAT JAPAN VENDING MACHINES SELL",
-     "topic": "japan vending machine contents",
-     "say": "More than half of Japan's machines sell drinks, and one box can serve hot and cold side by side.",
-     "illustrated_scene": "# scene standard: 2026-10-16.2\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: one big Japanese vending machine\n    SUBSTANCE: hot and cold drink cans\n    CAUSE: Data places drink cans into the machine's slots, column by column, until drinks fill their share of it\n    The WHOLE is one machine standing for all of Japan's. Its window is\n    thirty-two slots, and every slot starts stocked with food, tickets and\n    everything else. Data stands on a stepladder against the open window\n    with a carton of cans on the ladder's shelf. He takes the cans one at a\n    time, and each can travels from his hands into its slot, where it pushes\n    the old packet back out of sight. He loads one column per placement and\n    moves the ladder along. Red HOT cans go in the top two rows and blue COLD\n    cans in the bottom two, the way one real machine serves both. He keeps\n    going until drinks hold their true share of the window. The lit header\n    over the window is cut at that share, with the drinks part in the accent.\n    It is done by 0.56 and held: a truck passes on the road behind and he\n    holds up one more can.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    tot = sum(v for _, v in rows) or 1.0\n    drink = max(rows, key=lambda r: (\"bever\" in r[0].lower() or \"drink\" in r[0].lower(), r[1]))\n    share = drink[1] / tot\n\n    COLS, RWS = 8, 4\n    D = max(1, min(COLS * RWS, int(round(share * COLS * RWS))))\n    n = (D + RWS - 1) // RWS\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    grow = seg(f, 0.08, 0.85)\n    placed = 0.0 if u < a0 else min(float(D), (k + grow) * RWS)\n    done = u >= a0 and k == n - 1 and grow >= 0.999\n\n    # the setting: a snowy village road at dusk, houses with lit windows\n    landscape(cr, t, \"snow\")\n    for bx, bw, bh in [(-20, 170, 130), (880, 220, 150)]:\n        b = building(cr, bx, bx + bw, 1190, bh, (128, 112, 100), roof_rgb=(70, 74, 86),\n                     roof=\"gable\", boards=False)\n        wx = (b[\"x0\"] + b[\"x1\"]) / 2\n        glow(cr, wx, b[\"top\"] + bh * 0.45, 70, (255, 200, 120), 0.5)\n        cr.rectangle(wx - 26, b[\"top\"] + bh * 0.3, 52, 40)\n        cr.set_source_rgba(*_c((255, 214, 140)))\n        cr.fill()\n    # a utility pole and its wires, the Japanese roadside\n    cr.rectangle(930, 700, 18, 500)\n    solid(cr, (92, 84, 78), rim=False)\n    cr.set_source_rgba(*_c((40, 40, 48), 0.8))\n    cr.set_line_width(3)\n    for dy in (0, 26):\n        cr.move_to(-20, 640 + dy)\n        cr.curve_to(400, 700 + dy, 700, 710 + dy, 939, 712 + dy)\n        cr.line_to(W + 20, 690 + dy)\n    cr.stroke()\n    tr = seg(u, 0.5, 0.97)\n    if tr > 0:\n        truck(cr, -320 + 1700 * ease(tr), 1160, 1.1)\n    haze(cr, 880, 1200, (214, 220, 234), a=0.45)\n\n    # THE MACHINE, in three-quarter view, glowing onto the snow\n    MX0, MX1, MB, MH = 150, 850, 1450, 820\n    top = MB - MH\n    glow(cr, (MX0 + MX1) / 2, MB + 60, 540, (255, 240, 205), 0.45)\n    cast_shadow(cr, MX0, MX1 + 110, MB, length=320, a=0.3)\n    contact_shadow(cr, (MX0 + MX1) / 2 + 40, MB + 4, MX1 - MX0 + 140, a=0.45)\n    box(cr, MX0, MB, MX1 - MX0, MH, (196, 40, 44), depth=120, finish=\"gloss\")\n    # snow lying on its roof\n    cr.move_to(MX0 - 8, top + 6)\n    cr.curve_to(MX0 + 120, top - 30, MX1 - 80, top - 26, MX1 + 6, top + 4)\n    cr.line_to(MX1 + 120, top - 100)\n    cr.curve_to(MX1 + 40, top - 128, MX0 + 160, top - 128, MX0 + 112, top - 100)\n    cr.close_path()\n    solid(cr, (244, 248, 252), rim=False)\n    # the white front panel set into the red body\n    cr.rectangle(MX0 + 22, top + 24, MX1 - MX0 - 44, MH - 48)\n    solid(cr, (236, 238, 242), finish=\"gloss\", rim=False)\n\n    # the lit header over the window, cut at the share\n    WX0, WX1, WY0, WY1 = 190, 770, 790, 1190\n    cw, rh = (WX1 - WX0) / COLS, (WY1 - WY0) / RWS\n    cut = WX0 + (WX1 - WX0) * (placed / (COLS * RWS))\n    HY = top + 44\n    cr.rectangle(WX0, HY, WX1 - WX0, 62)\n    solid(cr, (150, 152, 158), rim=False)\n    if cut > WX0 + 2:\n        cr.rectangle(WX0, HY, cut - WX0, 62)\n        solid(cr, P[\"accent2\"], rim=False)\n    if cut - WX0 > 170:\n        text(cr, \"DRINKS\", WX0 + 18, HY + 45, 38, look.INK, face=\"bold\", shadow=False)\n\n    # where Data stands: on the ladder just right of the column he loads\n    col_now = min(COLS - 1, int(placed / RWS)) if u >= a0 else 0\n    target = WX0 + col_now * cw + cw * 1.35\n    if u < a0:\n        hx = 900 + (target - 900) * ease(seg(u, 0.0, a0))\n    else:\n        prev_col = WX0 + max(0, col_now - 1) * cw + cw * 1.35\n        hx = prev_col + (target - prev_col) * ease(seg(f, 0.0, 0.1)) if k > 0 else target\n    FOOT = 1250.0\n    HH = 230\n    hand = (hx - 46, FOOT - 0.62 * HH)\n\n    # the window: dark glass, lit from inside, its door swung open for loading\n    cr.rectangle(WX0 - 12, WY0 - 12, WX1 - WX0 + 24, WY1 - WY0 + 24)\n    solid(cr, (30, 34, 46), finish=\"glass\")\n    glow(cr, (WX0 + WX1) / 2, (WY0 + WY1) / 2, 360, (255, 246, 220), 0.4)\n    flying = []\n    cr.save()\n    cr.rectangle(WX0, WY0, WX1 - WX0, WY1 - WY0)\n    cr.clip()\n    for c in range(COLS):\n        for r in range(RWS):\n            s = c * RWS + r\n            sx = WX0 + c * cw + cw / 2\n            sy = WY0 + (r + 1) * rh - 16\n            fill = clamp(placed - s) if s < D else 0.0\n            hot = r < 2\n            col = (206, 46, 40) if hot else (46, 110, 200)\n            if fill < 1.0:\n                # the old packet, pushed back into the dark as the can goes in\n                back = clamp((fill - 0.75) / 0.25)\n                a_ = 1.0 - back\n                if r % 2 == 0:\n                    box(cr, sx - 22 + 10 * back, sy, 38 * (1 - 0.4 * back), 56 * (1 - 0.4 * back),\n                        (226, 196, 140), depth=8, a=a_)\n                else:\n                    box(cr, sx - 22 + 10 * back, sy, 38 * (1 - 0.4 * back), 44 * (1 - 0.4 * back),\n                        (176, 192, 166), depth=8, a=a_)\n            if fill >= 1.0:\n                cylinder(cr, sx - 20, sy, 40, 66, col, finish=\"metal\")\n                cr.rectangle(sx - 20, sy - 40, 40, 10)\n                cr.set_source_rgba(*_c((246, 246, 250), 0.85))\n                cr.fill()\n            elif fill > 0:\n                flying.append((fill, sx, sy, col))\n            tag = ((214, 40, 36) if hot else (40, 100, 210)) if fill >= 1.0 else (150, 152, 158)\n            cr.rectangle(WX0 + c * cw + 4, sy + 2, cw - 8, 12)\n            cr.set_source_rgba(*_c(tag))\n            cr.fill()\n    cr.restore()\n    # the open glass door, swung out to the left\n    cr.move_to(WX0 - 12, WY0 - 12)\n    cr.line_to(WX0 - 120, WY0 + 30)\n    cr.line_to(WX0 - 120, WY1 - 30)\n    cr.line_to(WX0 - 12, WY1 + 12)\n    cr.close_path()\n    solid(cr, (150, 184, 210), finish=\"glass\", a=0.55)\n\n    # the buttons under each column, lit where drinks are sold\n    for c in range(COLS):\n        bx = WX0 + c * cw + cw / 2\n        on = (c + 1) * RWS <= placed + 0.001 or (c * RWS < placed and placed >= D)\n        if on:\n            glow(cr, bx, WY1 + 40, 22, P[\"accent2\"], 0.6)\n        disc(cr, bx, WY1 + 40, 12, P[\"accent2\"] if on else (170, 172, 178), finish=\"gloss\")\n    # coin slot and the pickup tray\n    box(cr, 690, 1290, 80, 56, (190, 192, 198), depth=10, finish=\"metal\")\n    cr.rectangle(230, 1340, 400, 70)\n    solid(cr, (34, 36, 44), rim=False)\n\n    # right by the camera: cans in the snow, the hot one steaming\n    for cx, cy, col in [(820, 1700, (206, 46, 40)), (950, 1760, (46, 110, 200)),\n                        (110, 1780, (206, 46, 40))]:\n        contact_shadow(cr, cx + 30, cy + 4, 90, a=0.35)\n        cylinder(cr, cx, cy, 60, 120, col, finish=\"metal\")\n    steam(cr, 850, 1570, t, strength=1.0)\n    foreground(cr, \"snow\")\n    vignette(cr, a=0.28)\n\n    # the stepladder he works from, and the carton of cans on its shelf\n    LX0, LX1 = hx - 56, hx + 56\n    contact_shadow(cr, hx, 1454, 170, a=0.4)\n    for lx_top, lx_bot in ((LX0 + 16, LX0 - 10), (LX1 - 16, LX1 + 10)):\n        cr.move_to(lx_top - 7, FOOT)\n        cr.line_to(lx_top + 7, FOOT)\n        cr.line_to(lx_bot + 7, 1452)\n        cr.line_to(lx_bot - 7, 1452)\n        cr.close_path()\n        solid(cr, (196, 200, 208), finish=\"metal\")\n    for i in range(1, 4):\n        yy = FOOT + i * (1452 - FOOT) / 4\n        w_ = (LX1 - LX0) - 32 + 26 * i / 4\n        cr.rectangle(hx - w_ / 2, yy - 6, w_, 12)\n        solid(cr, (176, 180, 188), finish=\"metal\", rim=False)\n    cr.rectangle(LX0 + 4, FOOT - 12, LX1 - LX0 - 8, 14)\n    solid(cr, (200, 204, 212), finish=\"metal\")\n    box(cr, LX1 - 4, FOOT + 60, 70, 56, (170, 126, 80), depth=16)\n    for j in range(3):\n        disc(cr, LX1 + 10 + j * 20, FOOT + 2, 9, (206, 46, 40) if j % 2 == 0 else (46, 110, 200),\n             finish=\"metal\")\n\n    if u < a0:\n        host(\"point\", hx, FOOT, HH)\n    elif u < a1 + 0.04:\n        host(\"place\", hx, FOOT, HH, beat=k)\n    elif u < 0.9:\n        host(\"hold_up\", hx, FOOT, HH)\n    else:\n        host(\"cheer\", hx, FOOT, HH)\n\n    # each can travels from his hands into its slot, in front of the glass\n    for fill, sx, sy, col in flying:\n        g = ease(fill)\n        cx = hand[0] + (sx - hand[0]) * g\n        cy = hand[1] + (sy - hand[1]) * g - 40 * math.sin(math.pi * g)\n        cylinder(cr, cx - 20, cy, 40, 66, col, finish=\"metal\")\n\n    if done:\n        fit_readout(cr, f\"{int(round(share * 100))}%\", \"of Japan's machines sell drinks, hot and cold\",\n                    80, 520, a=ease(seg(u, a1, a1 + 0.05)), size=130)\n    else:\n        fit_readout(cr, f\"{tot / 1e6:.1f}M machines\", \"across Japan, by what they sell\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
+     "topic": "what japan vending machine contents are",
+     "say": "More than half of Japan's machines just sell drinks, hot and cold, side by side in the same box."
     }
-   ],
-   "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-21T10:54:08Z",
-   "closing_scene": "# scene standard: 2026-10-16.2\ndef _soup_can(cr, cx, base, w, h, a=1.0):\n    \"\"\"A gold drink can of hot soup standing on (cx, base): a cream label with a bowl on it.\"\"\"\n    cylinder(cr, cx - w / 2, base, w, h, (222, 176, 64), finish=\"metal\", a=a)\n    ly = base - h * 0.72\n    lh = h * 0.48\n    cr.rectangle(cx - w / 2, ly, w, lh)\n    cr.set_source_rgba(*_c((248, 236, 206), a))\n    cr.fill()\n    br = w * 0.32\n    by = ly + lh * 0.62\n    cr.save()\n    cr.translate(cx, by)\n    cr.scale(1, 0.55)\n    cr.arc(0, 0, br, 0, math.pi)\n    cr.restore()\n    cr.set_source_rgba(*_c((150, 74, 40), a))\n    cr.fill()\n    cr.save()\n    cr.translate(cx, by)\n    cr.scale(1, 0.3)\n    cr.arc(0, 0, br, 0, 2 * math.pi)\n    cr.restore()\n    cr.set_source_rgba(*_c((240, 196, 80), a))\n    cr.fill()\n    cr.set_source_rgba(*_c((150, 120, 110), 0.8 * a))\n    cr.set_line_width(3)\n    for k in (-0.25, 0.15):\n        x = cx + k * w\n        cr.move_to(x, by - lh * 0.2)\n        cr.curve_to(x - 6, by - lh * 0.32, x + 6, by - lh * 0.42, x, by - lh * 0.55)\n    cr.stroke()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a big lit vending machine\n    SUBSTANCE: colorful drink cans\n    CAUSE: Data presses a button, the dark machine lights up and drops a can into its tray, and he lifts it out with his own two hands\n    The closing line, happening: a snowy roadside at night, nobody around, a\n    few far houses with their windows lit, one machine standing dark in the\n    cold. A stranger (Data) walks up through the snow, leaving footprints, and\n    presses a button: the whole machine LIGHTS UP, slot by slot, its rows of\n    colourful cans coming out of the dark, and its glow floods the snow. Its\n    window is the WHOLE of what Japan's machines sell, cut at the true share:\n    the drinks part as cans, the food-and-everything-else part in plain\n    packets. A big gold can of hot soup drops into the tray. He crouches,\n    grips it with both hands and lifts it to his chest, steam rising off it.\n    All of that is done by 0.55. Then the world keeps moving: a car's\n    headlights sweep along the far road, the steam keeps rising off the can,\n    and he keeps holding it close.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    tot = sum(v for _, v in rows) or 1.0\n    drink = next((v for l, v in rows if \"bever\" in l.lower() or \"drink\" in l.lower()),\n                 max(v for _, v in rows))\n    share = drink / tot\n    COLS, ROWS = 5, 4\n    N = COLS * ROWS\n    nd = int(round(N * share))\n\n    on = ease(seg(u, 0.22, 0.42))           # the machine wakes: the big change\n    drop = seg(u, 0.40, 0.45)\n    lift = ease(seg(u, 0.45, 0.55))\n\n    landscape(cr, t, \"snow\", horizon=1170)\n    # a far hamlet, its windows lit, and the power line along the road\n    for (x0, x1, wh, rgb) in ((30, 190, 120, (150, 92, 70)), (870, 1050, 140, (120, 110, 104))):\n        f = building(cr, x0, x1, 1176, wh, rgb, roof=\"gable\", boards=False)\n        for wx in (f[\"x0\"] + 30, f[\"x1\"] - 60):\n            cr.rectangle(wx, f[\"top\"] + 34, 30, 34)\n            cr.set_source_rgba(*_c((255, 214, 140)))\n            cr.fill()\n            glow(cr, wx + 15, f[\"top\"] + 50, 40, (255, 200, 120), 0.6)\n    for px in (120, 960):\n        cr.rectangle(px, 820, 14, 360)\n        solid(cr, (92, 80, 70), rim=False)\n        cr.rectangle(px - 40, 840, 94, 10)\n        solid(cr, (92, 80, 70), rim=False)\n    cr.set_source_rgba(*_c((40, 40, 48), 0.8))\n    cr.set_line_width(3)\n    cr.move_to(80, 845)\n    cr.curve_to(400, 930, 700, 930, 1000, 845)\n    cr.stroke()\n    # the far road, and a car sweeping along it once the story has landed\n    cr.rectangle(0, 1176, W, 26)\n    solid(cr, (120, 124, 134), edge=False, rim=False)\n    haze(cr, 800, 1200, (214, 222, 236), a=0.35)\n    # night settles over the whole roadside\n    cr.rectangle(0, 0, W, H)\n    cr.set_source_rgba(*_c((14, 20, 52), 0.55))\n    cr.fill()\n    cu = seg(u, 0.55, 0.95)\n    if 0 < cu < 1:\n        cx = -320 + 1720 * cu\n        glow(cr, cx + 300, 1190, 260, (255, 240, 200), 0.35)\n        contact_shadow(cr, cx + 90, 1200, 200, a=0.3)\n        box(cr, cx, 1200, 200, 50, (30, 36, 56), depth=30, finish=\"gloss\")\n        box(cr, cx + 40, 1150, 110, 40, (26, 30, 48), depth=24, finish=\"gloss\")\n        glow(cr, cx + 215, 1180, 140, (255, 246, 210), 0.95)\n        disc(cr, cx + 200, 1182, 11, (255, 250, 230), finish=\"gloss\")\n\n    # Data's footprints, from the camera up to the machine\n    walk_u = ease(seg(u, 0.0, 0.2))\n    for i in range(9):\n        fz = i / 8.0\n        if fz > walk_u + 0.05:\n            break\n        fx = 780 - 300 * fz + (18 if i % 2 else -18) * (1 - 0.5 * fz)\n        fy = 1880 - 420 * fz\n        cr.save()\n        cr.translate(fx, fy)\n        cr.scale(1, 0.45)\n        cr.arc(0, 0, 26 - 12 * fz, 0, 2 * math.pi)\n        cr.restore()\n        cr.set_source_rgba(*_c((70, 84, 120), 0.55))\n        cr.fill()\n\n    # the machine, big and alone on the snow; its light pools on the snow\n    MX, MB, MW, MH = 250, 1420, 500, 720\n    glow(cr, MX + MW / 2, 1150, 760, (236, 244, 255), 0.65 * on)\n    cr.save()\n    cr.translate(MX + MW / 2, 1520)\n    cr.scale(1, 0.32)\n    glow(cr, 0, 0, 560, (255, 240, 210), 0.75 * on)\n    cr.restore()\n    cast_shadow(cr, MX, MX + MW + 120, MB, length=320, a=0.3)\n    contact_shadow(cr, MX + MW / 2 + 40, MB + 4, MW + 160, a=0.45)\n    shade = 0.55 + 0.45 * on\n    box(cr, MX, MB, MW, MH, tuple(int(c * shade) for c in (232, 236, 242)),\n        depth=120, finish=\"gloss\")\n    # the header panel across its top, lit from inside\n    cr.rectangle(MX + 24, MB - MH + 24, MW - 48, 56)\n    solid(cr, tuple(int(c * shade) for c in (214, 56, 46)), finish=\"gloss\")\n    glow(cr, MX + MW / 2, MB - MH + 52, 220, (255, 230, 220), 0.35 * on)\n    # the recycle bin beside it, as every Japanese machine has\n    contact_shadow(cr, 960, 1424, 110, a=0.4)\n    cylinder(cr, 915, 1420, 90, 130, (54, 104, 176), finish=\"gloss\")\n\n    # the window: the whole of what the machines sell, cut at the drinks share\n    CW, CH = 88, 96\n    WX, WY = MX + (MW - COLS * CW) / 2, MB - MH + 110\n    WW, WH = COLS * CW, ROWS * CH\n    cr.save()\n    cr.rectangle(WX, WY, WW, WH)\n    cr.clip()\n    vgrad(cr, [(0, (60, 70, 92)), (1, (96, 110, 134))], WY, WY + WH, WX, WX + WW)\n    glow(cr, WX + WW / 2, WY + WH * 0.3, 360, (250, 252, 255), 0.7 * on)\n    cols = [(214, 168, 60), (196, 54, 44), (230, 230, 226), (70, 130, 80), (60, 90, 170)]\n    for i in range(N):\n        r_, c_ = divmod(i, COLS)\n        x = WX + c_ * CW + 20\n        yb = WY + (r_ + 1) * CH - 20\n        if i < nd:\n            hot = i < (nd + 1) // 2\n            cylinder(cr, x, yb, 48, 66, cols[(i * 3 + r_) % 5], finish=\"metal\")\n            tag = (220, 54, 44) if hot else (50, 110, 220)\n        else:\n            box(cr, x - 2, yb, 46, 58, (224, 206, 168), depth=8)\n            tag = (150, 152, 158)\n        cr.rectangle(x - 6, yb + 4, 58, 10)\n        cr.set_source_rgba(*_c(tag))\n        cr.fill()\n        # each slot lights in turn, top row first, as the machine wakes\n        so = clamp(on * 1.6 - i / N * 0.6)\n        cr.rectangle(WX + c_ * CW, WY + r_ * CH, CW, CH)\n        cr.set_source_rgba(*_c((10, 14, 26), 0.85 * (1 - so)))\n        cr.fill()\n    cr.restore()\n    cr.rectangle(WX, WY, WW, WH)\n    edge(cr, (40, 44, 52))\n\n    # the buttons; the one he presses lights white\n    BY = WY + WH + 30\n    for c_ in range(COLS):\n        bx = WX + CW / 2 + c_ * CW\n        disc(cr, bx, BY, 13, (200, 204, 210), finish=\"gloss\")\n    press = ease(seg(u, 0.2, 0.25))\n    if press > 0:\n        glow(cr, WX + CW / 2, BY, 40, (240, 248, 255), 0.6 * press)\n    # the coin panel and the delivery tray, lit inside once it vends\n    box(cr, MX + MW - 110, BY + 90, 60, 70, (190, 196, 204), depth=10, finish=\"metal\")\n    SX0, SX1, SY0, SY1 = MX + 70, MX + 330, 1252, 1372\n    cr.rectangle(SX0, SY0, SX1 - SX0, SY1 - SY0)\n    solid(cr, (28, 30, 36), rim=False)\n    glow(cr, (SX0 + SX1) / 2, SY1 - 20, 130, (240, 240, 232), 0.3 * clamp(drop * 2))\n\n    # right by the camera: another can, set down in the snow\n    contact_shadow(cr, 150, 1830, 150, a=0.4)\n    _soup_can(cr, 150, 1830, 120, 176)\n    cr.save()\n    cr.translate(150, 1656)\n    cr.scale(1, 0.32)\n    cr.arc(0, 0, 64, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (246, 248, 252), edge=False)\n    foreground(cr, \"snow\")\n    vignette(cr, a=0.32)\n\n    # Data, a stranger on the road, walks up, wakes the machine, takes the can\n    CANW, CANH = 92, 132\n    cxc = SX0 + 140 + 30 * lift\n    cyb = SY1 - 4 - 90 * lift\n    HH = 230\n    if u < 0.3:\n        hx = 980 - 520 * walk_u\n        host(\"point\", hx, 1450, HH)\n    else:\n        hx = cxc\n        hands = [(cxc - CANW / 2, cyb - 50), (cxc + CANW / 2, cyb - 50)]\n        host(\"grip\", hx, 1450, HH, hands=hands,\n             lower=\"crouch\" if lift < 0.5 else \"stand\", expr=\"happy\")\n\n    # the can, drawn in his hands so nothing hides it: dropped, then lifted\n    if drop > 0:\n        a_ = clamp(drop * 2)\n        dy = -70 * (1 - drop) * (1 - drop)\n        by_ = cyb + dy\n        _soup_can(cr, cxc, by_, CANW, CANH, a=a_)\n        if drop >= 1:\n            for k in range(3):\n                steam(cr, cxc - 24 + 24 * k, by_ - CANH - 6, t + k * 0.7,\n                      strength=1.8 + 0.6 * lift)\n\n    fit_readout(cr, f\"{int(round(share * 100))}%\", \"of Japan's machines sell drinks\",\n                80, 600, a=ease(seg(u, 0.3, 0.38)), size=110)\n",
-   "closing_data": 2
+   ]
   },
   {
    "slug": "nuclear-stockpile-growth-reversal",
