@@ -215,6 +215,66 @@
       "answer": "{\"hook\":\"By 2024, 76% of US adults lived without a landline.\",\"closing\":\"Your phone still rings; strangers can reach it even when nobody you know is calling.\",\"question\":\"Do you answer numbers you don't recognize?\",\"segments\":[{\"topic\":\"America lost landlines\",\"say\":\"By 2024, 76% of US adults lacked landlines, up from 25% in 2010. A phone number no longer needs an address.\"},{\"topic\":\"America gets robocalls\",\"say\":\"Americans received 52.8 billion robocalls in 2024: 36% telemarketing and 22% scams. An unfamiliar number does not guarantee a trustworthy caller.\"},{\"topic\":\"America screens calls\",\"say\":\"Nearly 200 robocalls per adult approaches double 2016's 29.3 billion total. Unknown numbers face a familiar destination: voicemail.\"}]}",
       "by": "chatgpt",
       "at": "2026-10-20T11:28:00Z"
+    },
+    "61730162e028fca0": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It reverses the expectation that common birds are stable and anchors the decline to 3 billion since 1970.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "ab70ef4ff204ae63": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It turns familiar summer abundance into measurable decline with 14 percent of firefly species threatened.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "8044e7d6ce084f03": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It reverses the expectation that diamonds retain value and hangs the premise on a 90% loss.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "844aaefb3f27881e": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It reverses the expectation that much larger ships need larger crews and anchors the contrast to 20 people.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "6ab3f7c422ed310d": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It reverses the expectation of a stable ocean predator population with a consequential 71% loss.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "81294ba2b094d7c0": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It reverses the expectation that kelp loss is independent of predators and anchors the collapse to 96%.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "75b3887b71a1208d": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"A record $685 billion total is large but does not reverse a specific expectation the viewer already holds.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "81036ff0252d1f3d": {
+      "answer": "Why Plane Tickets Cost More The Closer You Book",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "dbc297aa71e9cf75": {
+      "answer": "Amazon Now Runs 1 Million Warehouse Robots",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "407977772a06e58a": {
+      "answer": "Why Some Hurricane Names Get Retired Forever",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "19334c934500e680": {
+      "answer": "Homeschooling Just Passed Catholic Schools",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "bf27b426f75fd67a": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
     }
   }
 }
