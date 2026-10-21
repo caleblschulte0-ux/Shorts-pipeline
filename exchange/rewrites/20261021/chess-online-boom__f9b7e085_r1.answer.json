@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "chess-online-boom__f9b7e085_r1",
+  "slug": "chess-online-boom",
+  "by": "chatgpt",
+  "written_at": "2026-10-21T11:27:52.896Z",
+  "title": "Chess.com Reached 200 Million Registered Accounts",
+  "hook": "Chess.com reached 200 million registered accounts.",
+  "closing": "The platform boom is measurable without crediting one show for the whole surge.",
+  "question": "When did you start playing online?",
+  "segments": [
+    {
+      "topic": "Chess.com Accounts",
+      "say": "Chess.com reached 200 million registered accounts. Online chess moved far beyond its earlier scale."
+    },
+    {
+      "topic": "Chess.com Signups",
+      "say": "Monthly signups reached 2.8 million after the release. The timing shows a spike, not proof of sole causation."
+    },
+    {
+      "topic": "Chess.com Players",
+      "say": "The worldwide estimate was 605 million regular players. One platform still represents only part of global chess."
+    }
+  ]
+}
