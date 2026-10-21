@@ -656,6 +656,65 @@ You may NOT add new sources. Return the COMPLETE corrected EDL in the
 exact same JSON schema you used before (is_story true, same fields)."""
 
 
+# THE RUBRIC THE AUDIENCE GRADES BY — a CANDIDATE, not yet the gate
+# (operator, 2026-10-21: "What are we struggling with that it's so
+# difficult to get a passing story?"). The narrative critic above was run
+# on Stable Ronaldo's most-viewed clips (17-31 million views each) and
+# failed all eight, 28-64, every one for "missing context" and "weak
+# payoff" — while it passed a story the operator called bad at 88. It
+# grades exposition; what the audience rewards is a situation set up in
+# the first line, a peak, and an end on the peak. `review_rough_cut`
+# takes this with rubric="audience"; it becomes the default only once
+# `scripts/study_clippers.py --judge` shows it passing known winners and
+# failing known losers.
+_AUDIENCE_SYSTEM = """You judge whether a short vertical streamer clip or
+story would be WATCHED TO THE END and SENT TO A FRIEND by a stranger
+scrolling a feed. You receive its premise, its edit plan, the final
+transcript, a contact-sheet image path (read it if given), and the
+duration.
+
+What wins, measured on the most-viewed streamer clips (17-91 million
+views): ONE situation, set up in the first line or two ("Wait, is this
+sauna soundproof or not?", "Am I a famous YouTuber?"); it escalates; it
+ends on the peak or the reaction to it. They run 10-60 seconds. They do
+NOT introduce people, explain backstory, or use a narrator: a viewer who
+has never heard of these streamers still gets it, because the SITUATION
+is clear. Not knowing who someone is is NOT missing context. Missing
+context is only when a stranger cannot tell what is happening or why it
+is funny.
+
+Judge, in this order:
+1. HOOK: by about 3 seconds, does a stranger know what to watch for (a
+   question, a dare, a bet, a conflict, a strange thing)? Give the second
+   it is clear in "premise_at" (null if it never is).
+2. PEAK: the second a stranger laughs, gasps or cringes, in
+   "entertaining_at", and what it is in "entertaining_why" (null if
+   none; then publish is false and the score is below 60).
+3. ENDING: does it end ON the peak or the reaction to it, not trailing
+   on after, and not cut off mid-sentence? The ending second is
+   "payoff_at" (null if it never lands; then publish is false).
+4. DEAD AIR: any stretch of several seconds where nothing advances.
+5. For a cut from more than one source: every beat must follow from the
+   one before it (SO) or turn against it (BUT); "and then" is several
+   clips, not one story.
+
+Write the clip the way a stranger would retell it to a friend, in ONE
+sentence. 80+ means a stranger watches to the end and would send it to
+someone; 60-79 watchable but forgettable; below 60 they scroll past.
+List only problems that would make a stranger scroll away.
+
+Return STRICT JSON:
+{"publish": true|false, "story_score": 0-100,
+ "stranger_summary": "<the one-sentence retelling>",
+ "premise_at": <seconds> | null, "payoff_at": <seconds> | null,
+ "entertaining_at": <seconds> | null, "entertaining_why": str,
+ "problems": [{"type": "missing_context|repetition|weak_payoff|confusing|
+               misleading|pacing|other",
+               "at": <seconds>, "fix": "<specific instruction>"}, ...]}"""
+
+RUBRICS = {"narrative": _REVIEW_SYSTEM, "audience": _AUDIENCE_SYSTEM}
+
+
 def _fmt_reports(reports: list[dict]) -> str:
     out = []
     for r in reports:
@@ -1404,7 +1463,8 @@ def _fmt_on_screen(items: list[dict] | None) -> str:
 
 def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
                      duration_s: float,
-                     on_screen: list[dict] | None = None) -> dict:
+                     on_screen: list[dict] | None = None,
+                     rubric: str = "narrative") -> dict:
     """§18 narrative review of the assembled rough cut. Fails CLOSED on
     brain unreachability (publish=False, score -1): the story format's
     primary risk is incoherence, so an UNREVIEWED story must not ship.
@@ -1430,7 +1490,7 @@ def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
                if have_sheet else "")
             + _fmt_on_screen(on_screen)
             + f"FINAL TRANSCRIPT:\n{transcript_lines[:3000]}")
-    out = _brain(user, _REVIEW_SYSTEM, read_files=have_sheet,
+    out = _brain(user, RUBRICS[rubric], read_files=have_sheet,
                  require_vision=have_sheet,
                  image_path=str(sheet) if have_sheet else None)
     if not out:
