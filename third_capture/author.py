@@ -53,8 +53,8 @@ Return STRICT JSON:
                     "at": number}, ...],
           "song": str,
           "broll": [{"who": str, "look": str, "at": number}, ...],
-          "outro": {"song": str, "who": str, "looks": [str, ...],
-                    "grade": str},
+          "outro": {"song": str, "who": str, "people": [str, ...],
+                    "looks": [str, ...], "grade": str},
           "cut": {"start": number, "end": number}, "complete": bool}}
 
 This niche is REALITY TV: viewers follow PEOPLE and DRAMA — fights, beef,
@@ -202,7 +202,10 @@ Rules:
     (operator: "significantly more basketball clips ... especially clips
     of just them on the basketball court"), several shots from each
     look. "who" is who the shots are of ("Kevin Durant Russell
-    Westbrook"); "looks" are 3-4 searches for highlight reels of them
+    Westbrook"); "people" lists each of them by full name (["Kevin
+    Durant", "Russell Westbrook"]) — every shot must show ALL of them in
+    the frame together (operator: "not of Russ and KD" of shots of one of
+    them alone); "looks" are 3-4 searches for highlight reels of them
     PLAYING, together where it is about the two of them ("Westbrook and
     Durant Thunder highlights", "Durant alley-oop from Westbrook",
     "Thunder 2012 NBA Finals Durant Westbrook"). "grade": "grey" for the

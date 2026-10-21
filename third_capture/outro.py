@@ -41,7 +41,8 @@ MIN_SHOTS = 2
 MAX_SHOTS = 4           # looks the author may name
 TARGET_SHOTS = 7        # shots the montage runs, taken across the looks
 XFADE_S = 1.0           # the clip's last frame dissolves into the montage
-PRELAP_S = 2.0          # the song starts under the clip's last words
+PRELAP_S = 5.0          # the song starts under the clip's last words
+PRELAP_GAIN = 0.35      # ... quietly, under the voice, until the cut
 TAIL_FADE_S = 1.6       # the song and the picture fade out together
 #: The montage's colour, chosen by the author per clip.
 GRADES = {
@@ -62,12 +63,15 @@ def parse(raw) -> dict | None:
         return None
     song = songs.clean(raw.get("song"))
     who = _text(raw.get("who"), 80)
+    people = [_text(x, 40) for x in (raw.get("people") or [])
+              if isinstance(x, str) and _text(x, 40)][:4]
     looks = [_text(x, 90) for x in (raw.get("looks") or [])
              if isinstance(x, str) and _text(x, 90)][:MAX_SHOTS]
     if not (song and who and len(looks) >= MIN_SHOTS):
         return None
     grade = str(raw.get("grade") or "").strip().lower()
     return {"song": song, "who": who, "looks": looks,
+            "people": people or [who],
             "grade": grade if grade in GRADES else "faded"}
 
 
@@ -82,6 +86,18 @@ def _seconds(path: Path) -> float:
         return 0.0
 
 
+def frame_look(look: str, people: list[str]) -> str:
+    """What the brain must SEE in a montage frame (operator, 2026-10-21:
+    *"the basketball clip was ass and not of Russ and KD"* — KD alone on
+    the Warriors and Russ alone on the Clippers had passed as "them")."""
+    if len(people) > 1:
+        both = " and ".join(people)
+        return (f"{look}: {both} BOTH clearly visible in this same frame, "
+                "together, playing on the court; a frame with only one of "
+                "them, or neither, does not count")
+    return f"{look}: {people[0]} clearly visible, playing on the court"
+
+
 def shots(item: dict, work: Path, title: str = "") -> list[dict]:
     """The checked shots for the montage: `TARGET_SHOTS` across the
     looks, several from each good reel, every one of THEM on the court,
@@ -89,6 +105,7 @@ def shots(item: dict, work: Path, title: str = "") -> list[dict]:
     from funnel import find_footage
     got, seen = [], set()
     looks = item["looks"]
+    people = item.get("people") or [item["who"]]
     for i, look in enumerate(looks):
         left = TARGET_SHOTS - len(got)
         if left <= 0:
@@ -97,9 +114,10 @@ def shots(item: dict, work: Path, title: str = "") -> list[dict]:
         d = Path(work) / f"outro{i}"
         d.mkdir(parents=True, exist_ok=True)
         hits = find_footage.find_many(
-            item["who"], f"{look}: {item['who']} themselves, playing on "
-            "the court, not other players", n=want, secs=SHOT_S, work=d,
-            title=title, skip=seen)
+            item["who"], frame_look(look, people), n=want, secs=SHOT_S,
+            work=d, title=title, skip=seen,
+            title_has=[n.split()[-1] for n in people] if len(people) > 1
+            else None)
         got += hits
         print(f"[outro] {look!r}: {len(hits)} shot(s)", flush=True)
     return got[:TARGET_SHOTS]
@@ -140,12 +158,17 @@ def graph(n: int, durs: list[float], clip_s: float, w: int, h: int,
                  f"settb=1/30[clipv];"
                  f"[clipv][montf]xfade=transition=fade:duration={XFADE_S}:"
                  f"offset={clip_s:.2f}[vout]")
-    song_s = PRELAP_S + mont_s
-    lead_ms = int(max(0.0, clip_s - PRELAP_S) * 1000)
+    pre = min(PRELAP_S, clip_s * 0.5)
+    song_s = pre + mont_s
+    lead_ms = int((clip_s - pre) * 1000)
     parts.append(
         f"[{n + 1}:a]atrim=0:{song_s:.2f},asetpts=PTS-STARTPTS,"
         f"aformat=sample_rates=44100:channel_layouts=stereo,"
-        f"loudnorm=I=-15:TP=-1.5,afade=t=in:st=0:d={PRELAP_S + 0.6:.2f},"
+        f"loudnorm=I=-15:TP=-1.5,"
+        # rises to PRELAP_GAIN under the voice, then up to full at the cut
+        f"volume='if(lt(t,{pre:.2f}),{PRELAP_GAIN}*t/{max(pre, 0.01):.2f},"
+        f"min(1,{PRELAP_GAIN}+(1-{PRELAP_GAIN})*(t-{pre:.2f})/0.8))'"
+        f":eval=frame,"
         f"afade=t=out:st={song_s - TAIL_FADE_S:.2f}:d={TAIL_FADE_S},"
         f"adelay={lead_ms}|{lead_ms}[song];"
         f"[0:a]aformat=sample_rates=44100:channel_layouts=stereo,"
@@ -204,7 +227,7 @@ def build(clip: Path, item: dict, work: Path, *, w: int, h: int,
                   flush=True)
             return None
         clip_s = _seconds(clip)
-        if clip_s <= PRELAP_S + 1:
+        if clip_s <= 3:
             return None
         out = Path(work) / "with_outro.mp4"
         # a shot ffmpeg cannot join is dropped, not the whole tribute

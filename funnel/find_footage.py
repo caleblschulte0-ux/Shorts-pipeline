@@ -228,20 +228,29 @@ def find(who: str, look: str = "", *, secs: float = SECS,
     return None
 
 
+def titled(title: str, words: list[str] | None) -> bool:
+    """Every one of `words` is in `title` (case and punctuation aside)."""
+    t = _norm(title)
+    return all(_norm(w) in t for w in (words or []) if _norm(w))
+
+
 #: Where a video is sampled when a MONTAGE wants several shots from it.
 MANY_POINTS = (0.12, 0.2, 0.28, 0.36, 0.44, 0.52, 0.6, 0.68, 0.76, 0.84)
 
 
 def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
               work: Path | str = ".", title: str = "",
-              skip: set | None = None) -> list[dict]:
+              skip: set | None = None,
+              title_has: list[str] | None = None) -> list[dict]:
     """Up to `n` CHECKED shots showing `look`, from as few videos as it
     takes: a highlight reel of two players holds a dozen shots of them,
     and the tribute montage wants several (operator, 2026-10-21, of a
     three-shot montage: *"need to be significantly more basketball clips
     ... especially clips of just them on the basketball court"*). Each
     shot is its own scene, none overlapping another; `skip` holds
-    (url, second) keys already used. [] when none, or no brain. Never
+    (url, second) keys already used; `title_has` names words every
+    candidate's title must hold (each person's surname, so a reel of one
+    of them alone is never downloaded). [] when none, or no brain. Never
     raises."""
     who = str(who or "").strip()
     look = str(look or "").strip() or who
@@ -257,7 +266,8 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
         for q in queries(who, look):
             for v in hot_clips.youtube(q, days=365 * YEARS, n=CANDIDATES,
                                        max_s=MAX_S):
-                if v["url"] not in seen and not is_talk(v.get("title")):
+                if v["url"] not in seen and not is_talk(v.get("title")) \
+                        and titled(v.get("title"), title_has):
                     seen.add(v["url"])
                     cands.append(v)
         for k, v in enumerate(cands[:CANDIDATES]):

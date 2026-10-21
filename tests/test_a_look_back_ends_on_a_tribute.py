@@ -173,6 +173,36 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
             led = self._edit(td, ["blue", "tall"])
             self.assertEqual(led["outro"]["shots"], ["blue", "tall"])
 
+    def test_every_shot_shows_both_of_them(self):
+        # 2026-10-21: "the basketball clip was ass and not of Russ and KD"
+        item = outro.parse({**OUTRO, "people": ["Kevin Durant",
+                                                "Russell Westbrook"]})
+        self.assertEqual(item["people"], ["Kevin Durant",
+                                          "Russell Westbrook"])
+        look = outro.frame_look("Thunder highlights", item["people"])
+        self.assertIn("BOTH", look)
+        self.assertIn("only one of them", look)
+        asked = []
+        with mock.patch.object(find_footage, "find_many", side_effect=(
+                lambda *a, **k: asked.append(k.get("title_has")) or [])):
+            outro.shots(item, Path(tempfile.mkdtemp()))
+        self.assertTrue(all(t == ["Durant", "Westbrook"] for t in asked))
+        self.assertTrue(find_footage.titled(
+            "Kevin Durant & Russell Westbrook 2012 Highlights",
+            ["Durant", "Westbrook"]))
+        self.assertFalse(find_footage.titled(
+            "Russell Westbrook's Most EXPLOSIVE Dunks", ["Durant",
+                                                         "Westbrook"]))
+        self.assertIn('"people"', author.SYSTEM)
+
+    def test_the_song_is_heard_well_before_the_picture_changes(self):
+        # 2026-10-21: "the music needs to start to fade in earlier ...
+        # before the clip switches"
+        self.assertGreaterEqual(outro.PRELAP_S, 4.0)
+        g = outro.graph(3, [2.4] * 3, 20.0, 1080, 1920, None)
+        self.assertIn(f"adelay={int((20.0 - outro.PRELAP_S) * 1000)}", g)
+        self.assertIn(f"{outro.PRELAP_GAIN}*t", g)       # under the voice
+
     def test_one_shot_is_not_a_tribute(self):
         with tempfile.TemporaryDirectory() as td:
             td = Path(td)
