@@ -131,8 +131,7 @@ def _loader(host: str, vid: str):
             except Exception:  # noqa: BLE001 — the other poll may answer
                 continue
             if p.get("download_url"):
-                print(f"[yt_convert] loader {vid}: {str(p)[:200]}", flush=True)
-                return p["download_url"], {}, meta
+                return p["download_url"], {"Referer": f"{host}/"}, meta
             if str(p.get("text", "")).lower().startswith("error"):
                 print(f"::warning::[yt_convert] loader {vid}: "
                       f"{str(p)[:160]}", flush=True)
@@ -219,42 +218,46 @@ def _probe(path: Path) -> float:
         return 0.0
 
 
-_REDIRECT = re.compile(
-    rb"""(?:http-equiv=["']?refresh["']?[^>]*content=["'][^"']*?url=|"""
-    rb"""location(?:\.href)?\s*=\s*|location\.replace\(\s*)"""
-    rb"""["']?([^"'\s>)]+)""", re.I)
-
-
-def _save(media_url: str, headers: dict, out: Path, hops: int = 2) -> bool:
-    tmp = out.with_suffix(out.suffix + ".part")
-    n = 0
-    with _open(media_url, headers=headers, timeout=90) as r, \
-            open(tmp, "wb") as f:
+def _stream(media_url: str, headers: dict):
+    """The file's bytes, chunk by chunk. Through curl_cffi as Chrome when it
+    is installed: loader.to's file host answers anything that is not a
+    browser with an ad-redirect page to google.com (2026-10-21)."""
+    try:
+        from curl_cffi import requests as cr
+    except ImportError:
+        cr = None
+    if cr is not None:
+        r = cr.get(media_url, headers={"User-Agent": UA, **headers},
+                   impersonate="chrome", stream=True, timeout=90,
+                   allow_redirects=True)
+        try:
+            r.raise_for_status()
+            yield from r.iter_content(chunk_size=1 << 20)
+        finally:
+            r.close()
+        return
+    with _open(media_url, headers=headers, timeout=90) as r:
         while True:
             b = r.read(1 << 20)
             if not b:
-                break
+                return
+            yield b
+
+
+def _save(media_url: str, headers: dict, out: Path) -> bool:
+    tmp = out.with_suffix(out.suffix + ".part")
+    n = 0
+    with open(tmp, "wb") as f:
+        for b in _stream(media_url, headers):
             n += len(b)
             if n > MAX_BYTES:
                 raise ValueError("too large")
             f.write(b)
-    if n < 50_000:
-        body = tmp.read_bytes() if tmp.exists() else b""
+    head = tmp.read_bytes()[:400] if n < 400_000 else b""
+    if n < 50_000 or head.lstrip()[:15].lower().startswith((b"<!doctype", b"<html")):
+        print(f"::warning::[yt_convert] {media_url[:90]} gave a {n}-byte "
+              f"page, not a video: {head[:300]!r}", flush=True)
         tmp.unlink(missing_ok=True)
-        # a converter's file host can answer with a "Redirect" page that
-        # sends a browser on to the real file (loader.to, 2026-10-21)
-        m = _REDIRECT.search(body)
-        print(f"[yt_convert] {media_url[:90]} answered a page: {body[:1200]!r}",
-              flush=True)
-        if m and hops:
-            nxt = urllib.parse.urljoin(
-                media_url,
-                m.group(1).decode("utf-8", "replace").replace("&amp;", "&"))
-            if nxt != media_url:
-                return _save(nxt, {**headers, "Referer": media_url}, out,
-                             hops - 1)
-        print(f"::warning::[yt_convert] {media_url[:90]} gave {n} bytes: "
-              f"{body[:1000]!r}", flush=True)
         return False
     tmp.replace(out)
     return True

@@ -791,33 +791,24 @@ def test_cosmetic_notes_alone_still_pass():
     assert r["publish"] and r["story_score"] == 81
 
 
-class AConverterRedirectPageIsFollowed(unittest.TestCase):
-    """2026-10-21: loader.to's file host began answering with a 962-byte
-    "Redirect" page instead of the mp4, and every sample came out empty."""
+class AConverterPageIsNotAVideo(unittest.TestCase):
+    """2026-10-21: loader.to's file host began answering scripts with a
+    962-byte ad-redirect page instead of the mp4; the file is fetched as a
+    browser, and a page that comes back anyway is never kept as a video."""
 
-    def test_the_page_is_followed_to_the_file(self):
-        import io
+    def test_a_page_is_refused_and_a_video_is_kept(self):
         from unittest import mock
         from funnel import yt_convert as y
-        page = (b'<!doctype html><title>Redirect</title><meta http-equiv='
-                b'"refresh" content="0;url=/real/file.mp4?a=1&amp;b=2">')
-        video = b"\x00" * 60_000
-        seen = []
+        page = b"<!doctype html><title>Redirect</title>" + b" " * 60_000
+        video = b"\x00\x00\x00\x20ftypisom" + b"\x00" * 60_000
+        for body, kept in ((page, False), (video, True)):
+            with tempfile.TemporaryDirectory() as d, \
+                    mock.patch.object(y, "_stream", lambda u, h, b=body: iter([b])):
+                out = Path(d) / "x.src"
+                self.assertEqual(y._save("https://host.example/dl", {}, out), kept)
+                self.assertEqual(out.exists(), kept)
 
-        class R(io.BytesIO):
-            def __enter__(self):
-                return self
-
-            def __exit__(self, *a):
-                return False
-
-        def fake_open(url, **kw):
-            seen.append(url)
-            return R(video if "real" in url else page)
-
-        with tempfile.TemporaryDirectory() as d, \
-                mock.patch.object(y, "_open", fake_open):
-            out = Path(d) / "x.src"
-            self.assertTrue(y._save("https://host.example/dl/abc", {}, out))
-            self.assertEqual(out.stat().st_size, len(video))
-        self.assertEqual(seen[-1], "https://host.example/real/file.mp4?a=1&b=2")
+    def test_the_file_is_fetched_as_a_browser(self):
+        import inspect
+        from funnel import yt_convert as y
+        self.assertIn('impersonate="chrome"', inspect.getsource(y._stream))
