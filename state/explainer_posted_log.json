@@ -3876,11 +3876,37 @@
       "duration_s": 32.4
     },
     "vertical-farming-bust": {
-      "claimed_at": "2026-10-21T10:34:39.014178+00:00",
+      "url": "https://youtube.com/shorts/svXGtro3lDM",
       "title": "Vertical Farms Raised 8 Billion Dollars. Then Investors Fled.",
+      "at": "2026-10-21T10:34:52.526467+00:00",
       "publish_at": "2026-10-21T11:09:49Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.36,
+      "beat_s": [
+        5.47,
+        6.28,
+        7.36,
+        6.98,
+        6.69
+      ],
+      "n_beats": 3,
+      "story_structure": "comparison+scene+fill_vessel",
+      "narrative_score": 75,
+      "duration_s": 33.3,
+      "hook": "inversion",
+      "topic_category": "tech",
+      "ending_type": "inversion",
+      "depictions": [
+        "scene:illustrated-coin-jar",
+        "scene:illustrated",
+        "viz:fill_vessel"
+      ]
     }
   },
   "uploads": [
@@ -4916,9 +4942,10 @@
       "claimed_at": "2026-10-21T10:34:39.014178+00:00",
       "title": "Vertical Farms Raised 8 Billion Dollars. Then Investors Fled.",
       "publish_at": "2026-10-21T11:09:49Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "vertical-farming-bust"
+      "url": "https://youtube.com/shorts/svXGtro3lDM",
+      "state": "posted",
+      "slug": "vertical-farming-bust",
+      "at": "2026-10-21T10:34:52.526467+00:00"
     }
   ]
 }
