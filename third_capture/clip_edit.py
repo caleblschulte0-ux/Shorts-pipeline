@@ -339,6 +339,57 @@ def _discover_helix(channel: str, top: int, hours: int = 24) -> list[dict]:
     return clips
 
 
+def history(channel: str, *, years: float = 3.0, window_days: int = 90,
+            top: int = 12) -> list[dict]:
+    """A streamer's most-watched Twitch clips of EVERY quarter going back
+    `years`, in discovery's own shape. The saga arm reads these: the
+    story shorts that get millions of views ("Ray's Origin Story", "The
+    History of SZA & Kai Cenat", "YourRAGE's Best Friend Betrayed Him")
+    are told across months and years of streams, and discovery only ever
+    reached back 90 days. Each chapter is a clip the audience already
+    made big in its own quarter. [] without creds or on failure."""
+    import time
+    import requests
+    from datetime import datetime, timezone, timedelta
+    if not _helix_creds():
+        return []
+    bid = _helix_user_id(channel)
+    if not bid:
+        return []
+    fmt = "%Y-%m-%dT%H:%M:%SZ"
+    end = datetime.now(timezone.utc)
+    stop = end - timedelta(days=365.0 * years)
+    out, now = [], time.time()
+    while end > stop:
+        start = end - timedelta(days=window_days)
+        try:
+            r = requests.get("https://api.twitch.tv/helix/clips",
+                             params={"broadcaster_id": bid,
+                                     "started_at": start.strftime(fmt),
+                                     "ended_at": end.strftime(fmt),
+                                     "first": min(max(top, 1), 100)},
+                             headers=_helix_headers(), timeout=20)
+            r.raise_for_status()
+            data = r.json().get("data", [])
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[helix] {channel} history "
+                  f"{start:%Y-%m}: {type(e).__name__}", flush=True)
+            data = []
+        for c in data[:top]:
+            created = datetime.fromisoformat(
+                c["created_at"].replace("Z", "+00:00")).timestamp()
+            out.append({"url": c["url"], "views": int(c["view_count"]),
+                        "duration": float(c.get("duration", 0)),
+                        "title": c["title"], "channel": channel,
+                        "platform": "twitch", "slug": c["id"],
+                        "age_h": max(0.05, (now - created) / 3600),
+                        "vod_offset": c.get("vod_offset"),
+                        "video_id": c.get("video_id"),
+                        "game_id": c.get("game_id") or ""})
+        end = start
+    return out
+
+
 # Twitch's most-watched clips across a whole category for the week — the
 # moments the platform itself watched most, from any streamer. Operator,
 # 2026-10-13: "the clips are trash ... its the clips at their raw". The
