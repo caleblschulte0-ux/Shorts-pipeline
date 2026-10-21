@@ -3,324 +3,6 @@
     {
       "date": "20261013",
       "dry_run": false,
-      "ts": "2026-10-13T12:40:00+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 11,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 132,
-        "with_retention": 115,
-        "with_curve": 15,
-        "fetched_at": "2026-10-13T11:45:30.477589+00:00"
-      },
-      "brain": {
-        "ok": 1,
-        "fail": 0,
-        "limited_at": "2026-10-13T12:27:30+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:erobb221": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tenz": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:nickmercs": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:fuslie": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:alinity": {
-          "ok": 1,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261013-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261013-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 76,
-                "refused_shown": 20,
-                "scouted": [],
-                "vod_arcs": 307,
-                "moments": 40,
-                "candidates": 503,
-                "pool": 2991,
-                "pool_with_vod": 2117,
-                "arc_sizes": [
-                  2,
-                  3,
-                  4,
-                  2,
-                  2,
-                  2,
-                  6,
-                  3,
-                  3,
-                  2
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "tminnzy@momentbrightuglypresidentpupper-v_5eas1rabtzxwrn",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@vod2821557824",
-                  "outcome": "already_refused",
-                  "why": "2026-10-08: director judged: not a story \u2014 The two sources are unrelated moments from one broadcast. The first is Kai role-playing a school authority who sends the hoodie g"
-                },
-                {
-                  "cluster": "esfandtv@momentpunchysarcasticskirretsmorc-wx0qyiuanwgib-mx",
-                  "outcome": "already_refused",
-                  "why": "2026-10-09: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@vod2820831944",
-                  "outcome": "already_refused",
-                  "why": "2026-10-07: director judged: not a story \u2014 The three clips are consecutive bits from one Streamer University broadcast: Kai, playing university president, greets a line of "
-                },
-                {
-                  "cluster": "yuliabaka@momentproductivegoldennuggetsripepperonis-l8ifwhba",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "plaqueboymax@vod2874466121",
-                  "outcome": "already_refused",
-                  "why": "2026-10-08: director judged: not a story \u2014 The three clips are consecutive moments from one stream (11m, 27m, 32m in), but they don't form a setup, escalation and payoff. C"
-                },
-                {
-                  "cluster": "yuliabaka@momenthotquaintbibimbapdogface-gff3mhv1b53eoidh",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "esfandtv@vod2873268289",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: director judged: not a story \u2014 The footage only shows a streamer wandering a convention in costume with no clear conflict, decision, or payoff; there is no mean"
-                },
-                {
-                  "cluster": "lyasyaa@momentcrypticcogentbubbletearulefive-do-xxp1gppbegbh",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "yuliabaka@vod2894221660/yuliabaka-have-kind-2026w41",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The provided clips contain only isolated, out\u2011of\u2011context fragments of speech with no identifiable characters, conflict, goal, or meaningful change. There is no setup, escalation, or payoff, so a coher"
-                },
-                {
-                  "cluster": "yololaryy@momentaggressivelongjaypartytime-au0nfaeeycihjf8k",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "ohnepixel@vod2896011569",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: director judged: not a story \u2014 The sources don't show why ohnepixel is crying, so the premise can't be stated plainly. Clip 1 has no speech and clip 2 only has "
-                },
-                {
-                  "cluster": "kaicenat@momentboldsuspiciouswatercressgrammarking-jifdf5_8p",
-                  "outcome": "already_refused",
-                  "why": "2026-10-08: every beat is from one source \u2014 a clip, not a story"
-                },
-                {
-                  "cluster": "ishowspeed@vod2875841671/ishowspeed-about-danny-2026w41",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The source consists of a disjointed monologue without a meaningful change, conflict, or resolution; it lacks a clear setup\u2011escalation\u2011payoff structure and offers no entertaining narrative arc."
-                },
-                {
-                  "cluster": "yuliabaka@momentsmoggymanlygalagogrammarking-l6ku2mzdja58jox",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "jynxzi@vod2875798295",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: director judged: not a story \u2014 The clips don't form a chain. The booklet clips (3h08m and 3h09m) show Jynxzi flipping through a manga booklet while chat tells h"
-                },
-                {
-                  "cluster": "kaicenat@momentcreativeflirtydunlinm4xheh-qmubymsa6rvij7jd",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: rendered; critic scored 58 after 2 revision(s) \u2014 @12s missing_context: Ron is never introduced. The overlay 'Kai told chat: get Ron in' gives a name but no reas"
-                },
-                {
-                  "cluster": "plaqueboymax@vod2877749481/plaqueboymax-about-matt-2026w38",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The clips consist of fragmented, confused rambling about shooting without a clear conflict, escalation, or payoff, so they do not form a meaningful story arc."
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 809.7
-        },
-        {
-          "slug": "clip-20261013-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261013-3",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261013-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261013-4",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261013-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261013-5",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261013-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261013-6",
-                  "outcome": "brain_limited",
-                  "why": "usage limit this run"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
-      "date": "20261013",
-      "dry_run": false,
       "ts": "2026-10-13T13:44:41+00:00",
       "feedback": {
         "snapshot": true,
@@ -7279,6 +6961,135 @@
             }
           },
           "took_s": 226.1
+        }
+      ]
+    },
+    {
+      "date": "20261021",
+      "dry_run": false,
+      "ts": "2026-10-21T12:18:41+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 14,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 140,
+        "with_retention": 125,
+        "with_curve": 15,
+        "fetched_at": "2026-10-21T12:02:21.174177+00:00"
+      },
+      "brain": {
+        "ok": 6,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261021-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.62,
+              "why": "visible injury, strong flinch potential",
+              "blind": false
+            },
+            "content": {
+              "score": 0.45,
+              "why": "Dark horror game, monster attack, unclea",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jasontheween Freaks Out After Something Grabs Him Mid-Stream"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "The scene is dark and murky, though the action stays readable.",
+                "The sharp region fills only about 60% of the canvas, which is slightly small.",
+                "The caption sits over the subject's lower body in some frames. It does not cover any faces."
+              ]
+            }
+          },
+          "took_s": 136.9
+        },
+        {
+          "slug": "clip-20261021-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261021-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261021-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261021-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261021-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }
