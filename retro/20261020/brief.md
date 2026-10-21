@@ -1,6 +1,6 @@
 # Retro — 20261020
 
-generated 2026-10-20T23:31:04Z · 0 video(s) posted today
+generated 2026-10-21T00:30:59Z · 0 video(s) posted today
 
 ## trending
 
@@ -40,9 +40,9 @@ _nothing published today_
 ## Running experiments
 
 - `20260924-third-story-arm-slot-beats-mature-clip-baseline-on` — Third story-arm slot beats mature clip baseline on views-per-hour
-    - 26.76d, 2 samples, needs 28d / 25 samples · 26.8/28 days elapsed — too early to read
+    - 26.8d, 2 samples, needs 28d / 25 samples · 26.8/28 days elapsed — too early to read
 - `20260925-superlative-science-family-explainer-topics-beat-t` — Superlative/science-family explainer topics beat the broad mix on average-view-percentage
-    - 25.76d, 1 samples, needs 28d / 25 samples · 25.8/28 days elapsed — too early to read
+    - 25.8d, 1 samples, needs 28d / 25 samples · 25.8/28 days elapsed — too early to read
 
 ## Bespoke pictures vs performance
 
@@ -67,6 +67,6 @@ _views-per-hour percentile vs same-age explainer videos, by style arm, videos >=
 
 ## Repo
 
-- HEAD 5d8d888, 50 commit(s) since 2026-10-19
+- HEAD 1f561e8, 50 commit(s) since 2026-10-20
 
 Write proposals per `retro/README.md`. Nothing you write is applied automatically.
