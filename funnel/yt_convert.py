@@ -297,6 +297,43 @@ def _to_mp4(path: Path, mp4: Path) -> Path:
     return path
 
 
+# YouTube's other front doors: its TV, mobile-web and Safari players are
+# sometimes still served to a datacenter that its web player refuses
+# ("Sign in to confirm you're not a bot"). Tried before any converter.
+YTDLP_CLIENTS = ("tv_simply", "tv", "mweb", "web_safari", "ios", "android_vr")
+
+
+def _ytdlp(vid: str, out: Path, max_s: float | None) -> Path | None:
+    url = f"https://www.youtube.com/watch?v={vid}"
+    for client in YTDLP_CLIENTS:
+        if client in _DEAD:
+            continue
+        out.unlink(missing_ok=True)
+        try:
+            r = subprocess.run(
+                ["yt-dlp", "-q", "--no-playlist", "--no-warnings",
+                 "--extractor-args", f"youtube:player_client={client}",
+                 "-f", "bv*[height<=720]+ba/b[height<=720]/b",
+                 "--merge-output-format", "mp4", "-o", str(out)]
+                + (["--match-filter", f"duration<=?{int(max_s)}"]
+                   if max_s else []) + [url],
+                capture_output=True, text=True, timeout=300)
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[yt_convert] yt-dlp {client} {vid}: "
+                  f"{type(e).__name__}", flush=True)
+            continue
+        if out.exists() and _probe(out):
+            print(f"[yt_convert] {vid}: fetched by yt-dlp as {client}",
+                  flush=True)
+            return out
+        err = (r.stderr or "").strip().splitlines()
+        print(f"::warning::[yt_convert] yt-dlp {client} {vid}: "
+              f"{(err[-1] if err else 'no file')[:200]}", flush=True)
+        if any("bot" in e or "Sign in" in e for e in err[-2:]):
+            _DEAD.add(client)       # refused for this runner, not this video
+    return None
+
+
 def fetch(url: str, out: Path, *, max_s: float | None = None,
           budget_s: float = BUDGET_S) -> dict | None:
     """Save the YouTube video at `url` to `out` (an .mp4 path) through the
@@ -308,6 +345,14 @@ def fetch(url: str, out: Path, *, max_s: float | None = None,
         return None
     out.parent.mkdir(parents=True, exist_ok=True)
     t0 = time.monotonic()
+    got = _ytdlp(vid, out, max_s)
+    if got:
+        real = _probe(got)
+        meta = _api_meta(vid)
+        return {"path": got, "clip_id": vid, "title": meta.get("title") or "",
+                "clipper": meta.get("uploader") or "",
+                "views": int(meta.get("views") or 0), "duration": real,
+                "url": url, "via": "yt-dlp"}
     for kind, route in ROUTES:
         for host in _hosts(kind):
             if host in _DEAD:
