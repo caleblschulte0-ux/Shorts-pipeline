@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "daylight-saving-time-in-decline__1445ae6b",
+  "slug": "daylight-saving-time-in-decline",
+  "by": "chatgpt",
+  "written_at": "2026-10-21T11:21:35.951Z",
+  "title": "Daylight Saving Time Survives In Only 36% Of Countries",
+  "hook": "Only 36% of countries still observe daylight saving time.",
+  "closing": "Clock changing is now a minority practice, even if it still feels normal locally.",
+  "question": "Should your clocks stop changing?",
+  "segments": [
+    {
+      "topic": "Daylight Saving Share",
+      "say": "64% of countries either abandoned daylight saving time or never adopted it. Changing clocks is now the minority practice."
+    },
+    {
+      "topic": "Daylight Saving Decline",
+      "say": "Only 70 countries still observe it. The global count has fallen substantially."
+    },
+    {
+      "topic": "Daylight Saving Population",
+      "say": "India's 1.44 billion people do not use daylight saving time. Huge populations live without the seasonal switch."
+    }
+  ]
+}
