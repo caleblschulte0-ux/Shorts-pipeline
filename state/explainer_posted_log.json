@@ -3874,6 +3874,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 66,
       "duration_s": 32.4
+    },
+    "vertical-farming-bust": {
+      "claimed_at": "2026-10-21T10:34:39.014178+00:00",
+      "title": "Vertical Farms Raised 8 Billion Dollars. Then Investors Fled.",
+      "publish_at": "2026-10-21T11:09:49Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4904,6 +4911,14 @@
       "state": "posted",
       "slug": "blockbuster-to-one-store",
       "at": "2026-10-18T21:25:24.568768+00:00"
+    },
+    {
+      "claimed_at": "2026-10-21T10:34:39.014178+00:00",
+      "title": "Vertical Farms Raised 8 Billion Dollars. Then Investors Fled.",
+      "publish_at": "2026-10-21T11:09:49Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "vertical-farming-bust"
     }
   ]
 }
