@@ -1,0 +1,201 @@
+{
+  "schema": "shorts-production-blocker/v1",
+  "date": "20261021",
+  "recorded_at": "2026-10-21T11:44:18.100Z",
+  "status": "incomplete",
+  "day_closed": false,
+  "frozen_contract": {
+    "bundle_identity": "a172791ad44c6c59b1f9636b39ac9b2ccd27219a0aa6a82859ce288039e16368",
+    "registry_revision": 10,
+    "registry_sha256": "6481c43e352d51af77c4d61db5486670a9d4db6fd55683a411720ea0c089276a",
+    "source_commit": "e2a14a9394d758dfbc809d51a174d40020c352fe",
+    "required": {
+      "sports": {
+        "channel": "Trending",
+        "format": "sports_moment",
+        "count": 3
+      },
+      "third": {
+        "channel": "Third/Twitch",
+        "format": "clip",
+        "count": 6
+      },
+      "explainer": {
+        "channel": "Explainer",
+        "format": "data_story",
+        "count": 4
+      }
+    }
+  },
+  "verified_output": {
+    "sports": {
+      "required": 3,
+      "verified_posted": 2,
+      "pending": 1,
+      "accepted": [
+        {
+          "title": "Jaylen Brown Hires A Harpist To Play While His Chef Cooks Dinner",
+          "url": "https://youtube.com/shorts/IjyT4A3E59U",
+          "posted_at": "2026-10-21T11:39:11Z"
+        },
+        {
+          "title": "VJ Edgecombe Can't Believe LeBron Is Old Enough To Be His Dad",
+          "url": "https://youtube.com/shorts/GcagQ2ajkdY",
+          "posted_at": "2026-10-21T11:42:40Z"
+        }
+      ]
+    },
+    "third": {
+      "required": 6,
+      "verified_posted": 0,
+      "pending": 6,
+      "accepted": []
+    },
+    "explainer": {
+      "required": 4,
+      "verified_posted": 2,
+      "pending": 2,
+      "accepted": [
+        {
+          "title": "Vertical Farms Raised 8 Billion Dollars. Then Investors Fled.",
+          "url": "https://youtube.com/shorts/svXGtro3lDM",
+          "posted_at": "2026-10-21T10:34:52.526467+00:00"
+        },
+        {
+          "title": "Why 96% Of Kelp Vanished After Sea Stars Collapsed",
+          "url": "https://youtube.com/shorts/xhbJp1IFVFE",
+          "posted_at": "2026-10-21T11:13:49.285515+00:00"
+        }
+      ]
+    },
+    "total": {
+      "required": 13,
+      "verified_posted": 4,
+      "pending": 9
+    }
+  },
+  "mailbox": {
+    "rounds_completed": 3,
+    "reviews": {
+      "open": 0,
+      "answered": 0,
+      "skipped": 0,
+      "reason": "No review requests were open in any round."
+    },
+    "asks": {
+      "open_keys_after_rounds": 238,
+      "answered_this_run": 60,
+      "skipped_within_selected_caps": 0,
+      "deferred_reason": "Remaining historical backlog is beyond the 20-key per-round cap."
+    },
+    "rewrites": {
+      "open_after_rounds": 139,
+      "answer_files_committed_this_run": 19,
+      "distinct_story_slugs_answered": 18,
+      "skipped": 1,
+      "skipped_detail": [
+        {
+          "id": "rubiks-cube-record-vs-robot__5d087bf9",
+          "reason": "Motion-only failure: max_dup_run 48 frames > 45, frozen stretch near 26.04s; unsupported by a words-only rewrite."
+        }
+      ],
+      "deferred_reason": "Remaining historical backlog is beyond the 10-rewrite per-round cap."
+    }
+  },
+  "editorial": {
+    "response_authored_explainer_count": 3,
+    "phase_b": {
+      "applied": 2,
+      "rejected": 1,
+      "envelope_problems": [],
+      "media_required": 0
+    },
+    "note": "DONE triggered the existing downstream handoff; it is not evidence of completed uploads."
+  },
+  "media": {
+    "bundle_media_requests": 0,
+    "generated": 0,
+    "drive_folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "drive_folder_title": "shorts-pipeline-drops",
+    "drive_public_reader_verified": true,
+    "note": "No image-bearing format or media request existed, so no upload/download/hash/decode checkpoint was applicable."
+  },
+  "active_workers": [
+    {
+      "run_id": 39592308585,
+      "job_id": 119196053674,
+      "channel": "sports",
+      "status": "in_progress",
+      "step": "Make, judge and post the sports moments"
+    },
+    {
+      "run_id": 39592281451,
+      "job_id": 119195958378,
+      "channel": "third",
+      "status": "in_progress",
+      "step": "Render + upload"
+    },
+    {
+      "run_id": 39592305258,
+      "job_id": 119196043973,
+      "channel": "third",
+      "status": "pending",
+      "step": null
+    },
+    {
+      "run_id": 39580766605,
+      "job_id": 119157575760,
+      "channel": "explainer",
+      "status": "in_progress",
+      "step": "Run"
+    },
+    {
+      "run_id": 39592302028,
+      "job_id": 119196109014,
+      "channel": "explainer",
+      "status": "pending",
+      "step": null
+    }
+  ],
+  "exact_observed_blocker": "After a bounded live observation window, the existing render/upload workers remained in progress or pending and the posted logs contained only 4 of 13 required accepted YouTube URLs. No transport or capability error was observed. The unresolved condition is 9 unverified uploads.",
+  "commits": {
+    "started": "5e1025e6298757821ada38f2b0be68a9e2a920fc",
+    "ask_answers": [
+      "fb9bb7f88e9c08312ec03c603e5a2231590bd439",
+      "384bdee7cf9adb80ed6029614cf4aa5fc1afd06d",
+      "92b660e88fc618382bee37341c7a057330ab7ff9",
+      "8a28913a51c68f83c77bde21ab1c897de1ff3b9e"
+    ],
+    "rewrite_answers": [
+      "1ff5e9f84b7ffb632858ad9da21bcc9146306047",
+      "f9bef8cf6dd0f5bf249d6cf7b96bd1dc572495f0",
+      "6fa2327185d6b5527706eae170b76a983427dc5f",
+      "a094fb8b4db315d39644e284ccdd1fb81312308e",
+      "4c5420f2e0c23ea832b87470387bb5db0cef510f",
+      "29fea3fce76092d239355835eab28ac632d2119b",
+      "14482d610bb1dc8488d331b9bcf90e68c7649fa4",
+      "5d932415566b2892928c2391f93ef8b3e75d783a",
+      "aa119f1ecb2d9c44decbfbb42bff05d1af0a19e6",
+      "b53dbb76ed14ee2c470a96d895efeebf4deb3df6",
+      "6d33f110172d4ec22cb0532936df04bef8f46cfa",
+      "298f6063d6c0e3416b22cc582e74ab63a1fc8036",
+      "582aae401acc0e33a27067bad4331d505c7e6eea",
+      "5599de84fa7561f182a56ac5ba94739a27712eea",
+      "5dd179a040687c4c50cf3230f4e11fee5d696cc6",
+      "1e04d1866318a364303f20848b614d9ab2aa9b1a",
+      "21b20cdf43440932ece3634dfe920a27fc8427cb",
+      "9ec6b9c499e79f6b3829b80e150d692cdfa00fad",
+      "c534f1637afde483cfe16e28785bfc6c580d9476"
+    ],
+    "claim_apply": [
+      "97917eea5350f5e634fdba7c048535220fc4b482",
+      "ce345d254f6013f15d178c60e70d66be369ce626",
+      "edf95bfec20d64de3a5e7ba6720e25a3494d9c03",
+      "58e7aeaf312f673a450dc92c598b8cf3d07abb32"
+    ],
+    "response": "ef6c4eea6e50a0864f3ecbcd4dd79c6da2cd59c2",
+    "done": "135618b28a12be9ee57c19ef9fe88c83a27faf64",
+    "phase_b_application": "969569951fdac6d067e1969c108ba9d5d4fb9535",
+    "deadman": "4c42bb1be6e3a5f0e93d6fb52b417112b5ecde3b"
+  }
+}
