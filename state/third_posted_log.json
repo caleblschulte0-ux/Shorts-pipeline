@@ -14745,13 +14745,50 @@
       "ts": "2026-10-21T11:48:16.029859+00:00"
     },
     "clip-20261021-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/valkyrae/clip/HumbleGiftedMosquitoRalpherZ-Oy6kLFECbXlfcMGj",
-      "story_key": null,
-      "streamer": "valkyrae",
+      "url": "https://youtube.com/shorts/7qjiO5HGkVY",
       "title": "Valkyrae Gets Told She'll Need A Parachute And Loses It",
       "kind": "twitch_clip",
-      "ts": "2026-10-21T11:50:49.363608+00:00",
+      "ts": "2026-10-21T11:50:58.437997+00:00",
+      "uploaded_at": "2026-10-21T11:50:58.438010+00:00",
+      "publish_at": "2026-10-21T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261021-valkyrae-gets-told-she-ll-need-a-parachute-and-l-f577993a",
+        "tiktok": "queued for 2026-10-21T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/valkyrae/clip/HumbleGiftedMosquitoRalpherZ-Oy6kLFECbXlfcMGj",
+      "streamer": "valkyrae",
+      "series": "chaos",
+      "hook": "Valkyrae was warned about the parachute",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 6743,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.0,
+        "end": 16.7
+      },
+      "director_cut": true
+    },
+    "rejected-geniustacitbearnotatk-ekgwu2v2m5c_x4oy": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/GeniusTacitBearNotATK-eKgwu2v2m5C_x4OY",
+      "streamer": "caseoh_",
+      "title": "WTH",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Minecraft wandering, no visible event)",
+      "ts": "2026-10-21T11:52:48.443024+00:00"
+    },
+    "clip-20261021-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/HelplessSpunkySproutTTours-6nJ8HHdnH83OwV4w",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Asks Who Wins This Fight And Picks His Girlfriend Amanda \ud83d\ude33",
+      "kind": "twitch_clip",
+      "ts": "2026-10-21T11:55:23.880718+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
