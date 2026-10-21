@@ -131,6 +131,7 @@ def _loader(host: str, vid: str):
             except Exception:  # noqa: BLE001 — the other poll may answer
                 continue
             if p.get("download_url"):
+                print(f"[yt_convert] loader {vid}: {str(p)[:200]}", flush=True)
                 return p["download_url"], {}, meta
             if str(p.get("text", "")).lower().startswith("error"):
                 print(f"::warning::[yt_convert] loader {vid}: "
@@ -232,6 +233,9 @@ def _save(media_url: str, headers: dict, out: Path) -> bool:
                 raise ValueError("too large")
             f.write(b)
     if n < 50_000:
+        head = tmp.read_bytes()[:160] if tmp.exists() else b""
+        print(f"::warning::[yt_convert] {media_url[:90]} gave {n} bytes: "
+              f"{head!r}", flush=True)
         tmp.unlink(missing_ok=True)
         return False
     tmp.replace(out)
