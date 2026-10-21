@@ -207,10 +207,10 @@ Rules:
     the frame together (operator: "not of Russ and KD" of shots of one of
     them alone); "team" is the team they played on TOGETHER when the
     look-back is about teammates ("Oklahoma City Thunder" — shots of them
-    on opposing teams do not count), else ""; "looks" are 3-4 searches for highlight reels of them
-    PLAYING, together where it is about the two of them ("Westbrook and
-    Durant Thunder highlights", "Durant alley-oop from Westbrook",
-    "Thunder 2012 NBA Finals Durant Westbrook"). "grade": "grey" for the
+    on opposing teams do not count), else ""; "looks" are 3-4 searches
+    for ONE famous play of them each, the way a clip of it is titled on
+    YouTube ("Westbrook to Durant alley oop", "Durant Westbrook Thunder
+    game winner") — each shot is cut from a short clip of that play. "grade": "grey" for the
     sad edit (operator: "a little gray scale, just to make it sad, like
     how people do on these sad type edits") when the look-back is a loss
     — someone gone, a partnership over, a career ended; "faded"

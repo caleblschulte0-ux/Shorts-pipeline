@@ -196,8 +196,18 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
         self.assertIn('"people"', author.SYSTEM)
         # then KD on the Suns guarding Russ passed as "together"
         mates = outro.frame_look("x", item["people"], "Oklahoma City Thunder")
-        self.assertIn("Oklahoma City Thunder uniform", mates)
+        self.assertIn("Oklahoma City Thunder uniforms", mates)
         self.assertIn("another team's", mates)
+        # then a Hornets guard and a Kobe close-up from a long fan reel
+        self.assertIn("close-up of one face", mates)
+        self.assertIn("wide shot", mates)
+        caps = []
+        with mock.patch.object(find_footage, "find_many", side_effect=(
+                lambda *a, **k: caps.append((k["max_s"], k["per_video"]))
+                or [])):
+            outro.shots({**item, "team": "Oklahoma City Thunder"},
+                        Path(tempfile.mkdtemp()))
+        self.assertTrue(all(m <= 180 and 0 < p <= 2 for m, p in caps))
         # and without a team, both faces in the frame, as teammates
         self.assertIn("opposing teams", outro.frame_look("x", item["people"]))
         self.assertIn('"team"', author.SYSTEM)

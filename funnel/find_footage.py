@@ -244,7 +244,8 @@ MANY_CANDIDATES = 5
 def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
               work: Path | str = ".", title: str = "",
               skip: set | None = None,
-              title_has: list[str] | None = None) -> list[dict]:
+              title_has: list[str] | None = None,
+              max_s: int = MAX_S, per_video: int = 0) -> list[dict]:
     """Up to `n` CHECKED shots showing `look`, from as few videos as it
     takes: a highlight reel of two players holds a dozen shots of them,
     and the tribute montage wants several (operator, 2026-10-21, of a
@@ -253,7 +254,10 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
     shot is its own scene, none overlapping another; `skip` holds
     (url, second) keys already used; `title_has` names words every
     candidate's title must hold (each person's surname, so a reel of one
-    of them alone is never downloaded). [] when none, or no brain. Never
+    of them alone is never downloaded); `max_s` caps a candidate's
+    length and `per_video` (0: no cap) how many shots one video gives, so
+    a montage can be made of short clips of one play each instead of a
+    fan reel's wide shots and cutaways. [] when none, or no brain. Never
     raises."""
     who = str(who or "").strip()
     look = str(look or "").strip() or who
@@ -268,7 +272,7 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
         seen, cands = set(), []
         for q in queries(who, look):
             for v in hot_clips.youtube(q, days=365 * YEARS,
-                                       n=MANY_CANDIDATES, max_s=MAX_S):
+                                       n=MANY_CANDIDATES, max_s=max_s):
                 if v["url"] not in seen and not is_talk(v.get("title")) \
                         and titled(v.get("title"), title_has):
                     seen.add(v["url"])
@@ -292,7 +296,7 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
                 return got
             spans: list[tuple[float, float]] = []
             for i, _p in frames:
-                if len(got) >= n:
+                if len(got) >= n or (per_video and len(spans) >= per_video):
                     break
                 if not (verdicts.get(i) or {}).get("depicts"):
                     continue

@@ -40,6 +40,11 @@ SHOT_S = 2.4            # each shot of the montage
 MIN_SHOTS = 2
 MAX_SHOTS = 4           # looks the author may name
 TARGET_SHOTS = 7        # shots the montage runs, taken across the looks
+#: Each shot comes from a SHORT clip of one play, one or two per clip: a
+#: long fan reel gave wide shots, cutaways and other players (2026-10-21:
+#: a Hornets guard and a Kobe close-up in a KD/Russ tribute).
+PLAY_MAX_S = 120
+PER_CLIP = 2
 XFADE_S = 1.0           # the clip's last frame dissolves into the montage
 PRELAP_S = 5.0          # the song starts under the clip's last words
 PRELAP_GAIN = 0.35      # ... quietly, under the voice, until the cut
@@ -93,13 +98,13 @@ def frame_look(look: str, people: list[str], team: str = "") -> str:
     the Warriors and Russ alone on the Clippers had passed as "them"; then
     KD on the Suns guarding Russ passed as "together")."""
     if len(people) > 1 and team:
-        # The reel's TITLE names every one of them (`title_has`); a frame
-        # only has to be their team's game. Asking the brain to pick both
-        # faces out of a 640px frame refused six shots in seven
-        # (2026-10-21) and the montage was dropped.
-        return (f"{look}: {team} game action, a player in a {team} "
-                "uniform making the play on the court; another team's "
-                "highlight, a studio or a crowd shot does not count")
+        # The clip's TITLE names every one of them (`title_has`); asking
+        # the brain to pick both faces out of a 640px frame refused six
+        # shots in seven (2026-10-21) and the montage was dropped.
+        return (f"{look}: the play itself, {team} players in {team} "
+                "uniforms on the court, close enough to see them; NOT a "
+                "far-away wide shot, a close-up of one face, another "
+                "team's player, a replay graphic, a studio or the crowd")
     if len(people) > 1:
         both = " and ".join(people)
         return (f"{look}: {both} BOTH clearly visible in this same frame, "
@@ -126,7 +131,7 @@ def shots(item: dict, work: Path, title: str = "") -> list[dict]:
         d.mkdir(parents=True, exist_ok=True)
         hits = find_footage.find_many(
             item["who"], frame_look(look, people, item.get("team", "")),
-            n=want, secs=SHOT_S,
+            n=want, secs=SHOT_S, max_s=PLAY_MAX_S, per_video=PER_CLIP,
             work=d, title=title, skip=seen,
             title_has=[n.split()[-1] for n in people] if len(people) > 1
             else None)
