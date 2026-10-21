@@ -1,0 +1,62 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261021",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 10,
+    "registry_sha256": "6481c43e352d51af77c4d61db5486670a9d4db6fd55683a411720ea0c089276a",
+    "source_commit": "e2a14a9394d758dfbc809d51a174d40020c352fe",
+    "production_date": "20261021",
+    "bundle_sha256": "a172791ad44c6c59b1f9636b39ac9b2ccd27219a0aa6a82859ce288039e16368"
+  },
+  "media": [],
+  "packages": [],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Rose 1.5x; Land Area Alone Doesn't Explain The Harvest",
+      "hook": "Cereal production rose 1.5x; land area alone cannot explain the harvest.",
+      "says": [
+        "Progression to secondary school rose from 77.8 in 1985 to 91.3 in 2017, 1.2 times higher. More students made the transition.",
+        "Cereal production rose from 1083.7 million metric tons in 1972 to 1644.1 in 2024, 1.5 times higher. That means more grain.",
+        "Farmland: China 5.2, United States 4.2, Australia 3.6, Brazil 2.4, Russia 2.2 million square kilometers. That is land area, not harvest size."
+      ],
+      "closing": "Food supply depends on what land produces, so acreage alone cannot explain what reaches the table.",
+      "question": "What best explains rising cereal production?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Combustible Renewables And Waste Tripled In Share, Not Just Volume",
+      "hook": "Combustible renewables and waste reached 30.1% of the measured energy mix.",
+      "says": [
+        "Combustible renewables and waste rose from 10.2% of total energy in 1990 to 30.1% in 2024, 3.0 times higher. Its share tripled.",
+        "Electricity access rose from 73.2% of the population in 1998 to 91.9% in 2024, 1.3 times higher. Access became much more widespread.",
+        "Waste methane (ch4) emissions rose from 903.8 Mt CO2e in 1972 to 1,652 in 2024, 1.8 times higher. That still leaves emissions."
+      ],
+      "closing": "Energy from waste does not make waste harmless; its emissions still matter when comparing energy choices.",
+      "question": "How should waste energy account for emissions?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% While The Rural Share Shrunk",
+      "hook": "Population growth fell 54%, but the population kept growing.",
+      "says": [
+        "The rural population was 63.1% of the total in 1972 and 42.2% in 2025, down to 67 percent. Its share shifted.",
+        "The largest city's share of urban population was 18.2% in 1972 and 16.2% in 2025, barely moved. Growth spread beyond it.",
+        "Population growth fell from 2 annual % in 1972 to 0.91 annual % in 2025, down to 46 percent. It continued more slowly."
+      ],
+      "closing": "Slower population growth changes planning needs, but it does not mean the population has started shrinking.",
+      "question": "How should cities prepare for slower growth?"
+    }
+  ],
+  "notes": [
+    "The frozen contract requires Trending 3 sports_moment, Third 6 clip, and Explainer 4 data_story uploads; these are production targets, not completion claims.",
+    "No image requests or image-bearing formats are present. Drive destination metadata and public-reader sharing were checked; no media was generated or regenerated.",
+    "Editorial work covered all three requested Explainer rewrites; no package punch-ups were requested.",
+    "The cereal request combines unrelated school, grain and farmland segments. Every supported quantity and the segment order were preserved without inventing a causal link.",
+    "The energy request does not identify geographic coverage; wording does not relabel its percentages as global.",
+    "Mailbox round one: reviews 0; 20 newest ask keys answered; 10 newest story rewrites committed and read back.",
+    "DONE only hands off this response. Actual channel upload verification remains outstanding."
+  ]
+}
