@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "self-storage-outnumbers-starbucks__97599610",
+  "slug": "self-storage-outnumbers-starbucks",
+  "by": "chatgpt",
+  "written_at": "2026-10-21T11:27:52.896Z",
+  "title": "Self-Storage Has More US Locations Than Starbucks",
+  "hook": "Self-storage reached 66 thousand US facilities.",
+  "closing": "Storage's footprint shows how much physical space accumulated possessions now consume.",
+  "question": "How much do you keep in storage?",
+  "segments": [
+    {
+      "topic": "Self-Storage Facilities",
+      "say": "Self-storage reached 66 thousand US facilities, outnumbering each comparison chain shown."
+    },
+    {
+      "topic": "Self-Storage Facilities",
+      "say": "Self-storage represents 57% of the combined total shown. Storage wins even after three large chains are grouped."
+    },
+    {
+      "topic": "Self-Storage Facilities",
+      "say": "Self-storage reached 66 thousand facilities in the latest year. The footprint grew roughly tenfold across the series."
+    }
+  ]
+}
