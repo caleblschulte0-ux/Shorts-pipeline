@@ -244,6 +244,8 @@ def _save(media_url: str, headers: dict, out: Path, hops: int = 2) -> bool:
         # a converter's file host can answer with a "Redirect" page that
         # sends a browser on to the real file (loader.to, 2026-10-21)
         m = _REDIRECT.search(body)
+        print(f"[yt_convert] {media_url[:90]} answered a page: {body[:1200]!r}",
+              flush=True)
         if m and hops:
             nxt = urllib.parse.urljoin(
                 media_url,
