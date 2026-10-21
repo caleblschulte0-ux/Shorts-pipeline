@@ -1,0 +1,25 @@
+{
+  "key": "us_volunteering_education_gap",
+  "title": "US formal volunteering rate by education level",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "Volunteering and Civic Life in America",
+    "publisher": "AmeriCorps / U.S. Census Bureau Current Population Survey",
+    "url": "https://www.americorps.gov/volunteering-civic-life-america",
+    "officiality": "official",
+    "access_date": "2026-10-21"
+  },
+  "notes": "Formal volunteering rate by educational attainment, 2023 Current Population Survey Civic Engagement and Volunteering Supplement.",
+  "points": [
+    {
+      "label": "No college degree",
+      "value": 16
+    },
+    {
+      "label": "College graduates",
+      "value": 37
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "key": "us_volunteering_rate_trend",
+  "title": "US formal volunteering rate through a nonprofit or organization",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2008, 2021, 2023",
+  "source": {
+    "name": "Volunteering and Civic Life in America",
+    "publisher": "AmeriCorps / U.S. Census Bureau Current Population Survey",
+    "url": "https://www.americorps.gov/volunteering-civic-life-america",
+    "officiality": "official",
+    "access_date": "2026-10-21"
+  },
+  "notes": "Formal volunteering rate (volunteered through an organization in the past 12 months), Current Population Survey Civic Engagement and Volunteering Supplement.",
+  "points": [
+    {
+      "label": "2008",
+      "value": 29,
+      "period": "2008"
+    },
+    {
+      "label": "2021",
+      "value": 23,
+      "period": "2021"
+    },
+    {
+      "label": "2023",
+      "value": 28,
+      "period": "2023"
+    }
+  ]
+}

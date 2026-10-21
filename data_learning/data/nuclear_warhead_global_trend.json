@@ -1,0 +1,32 @@
+{
+  "key": "nuclear_warhead_global_trend",
+  "title": "Estimated global nuclear warhead inventory",
+  "unit": "warheads",
+  "geography": "World",
+  "time_coverage": "1986, 2010, 2023",
+  "source": {
+    "name": "Nuclear Notebook / SIPRI Yearbook",
+    "publisher": "Federation of American Scientists; Stockholm International Peace Research Institute (SIPRI)",
+    "url": "https://fas.org/initiative/status-world-nuclear-forces/",
+    "officiality": "secondary",
+    "access_date": "2026-10-21"
+  },
+  "notes": "Estimated total global nuclear warhead inventory (all categories), 1986 Cold War peak vs. 2010 vs. 2023, per FAS/SIPRI tracking.",
+  "points": [
+    {
+      "label": "1986",
+      "value": 70300,
+      "period": "1986"
+    },
+    {
+      "label": "2010",
+      "value": 22600,
+      "period": "2010"
+    },
+    {
+      "label": "2023",
+      "value": 12500,
+      "period": "2023"
+    }
+  ]
+}

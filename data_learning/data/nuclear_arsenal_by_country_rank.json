@@ -1,0 +1,53 @@
+{
+  "key": "nuclear_arsenal_by_country_rank",
+  "title": "Estimated nuclear warheads by country",
+  "unit": "warheads",
+  "geography": "World",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Nuclear Notebook / SIPRI Yearbook",
+    "publisher": "Federation of American Scientists; Stockholm International Peace Research Institute (SIPRI)",
+    "url": "https://fas.org/initiative/status-world-nuclear-forces/",
+    "officiality": "secondary",
+    "access_date": "2026-10-21"
+  },
+  "notes": "Estimated total nuclear warhead inventory by country, early-2024 FAS/SIPRI tracking, rounded.",
+  "points": [
+    {
+      "label": "Russia",
+      "value": 5580
+    },
+    {
+      "label": "United States",
+      "value": 5044
+    },
+    {
+      "label": "China",
+      "value": 500
+    },
+    {
+      "label": "France",
+      "value": 290
+    },
+    {
+      "label": "United Kingdom",
+      "value": 225
+    },
+    {
+      "label": "India",
+      "value": 172
+    },
+    {
+      "label": "Pakistan",
+      "value": 170
+    },
+    {
+      "label": "Israel",
+      "value": 90
+    },
+    {
+      "label": "North Korea",
+      "value": 30
+    }
+  ]
+}

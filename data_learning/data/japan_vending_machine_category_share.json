@@ -1,0 +1,25 @@
+{
+  "key": "japan_vending_machine_category_share",
+  "title": "Japan's vending machines by what they sell",
+  "unit": "machines",
+  "geography": "Japan",
+  "time_coverage": "current",
+  "source": {
+    "name": "Vending machine statistics",
+    "publisher": "Japan Vending System Manufacturers Association (JVMA)",
+    "url": "https://www.jvma.or.jp/english/",
+    "officiality": "official",
+    "access_date": "2026-10-21"
+  },
+  "notes": "Breakdown of Japan's roughly 4 million vending machines by product category, per JVMA. Beverage machines are the single largest category.",
+  "points": [
+    {
+      "label": "Beverages (hot and cold)",
+      "value": 2200000
+    },
+    {
+      "label": "Food, tickets, and everything else",
+      "value": 1800000
+    }
+  ]
+}

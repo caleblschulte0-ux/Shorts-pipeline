@@ -1,0 +1,25 @@
+{
+  "key": "albatross_wisdom_midway_colony_share",
+  "title": "Laysan albatrosses nesting at Midway Atoll vs. rest of world",
+  "unit": "birds",
+  "geography": "Midway Atoll vs. global Laysan albatross population",
+  "time_coverage": "current",
+  "source": {
+    "name": "Midway Atoll National Wildlife Refuge",
+    "publisher": "U.S. Fish & Wildlife Service",
+    "url": "https://www.fws.gov/refuge/midway-atoll",
+    "officiality": "official",
+    "access_date": "2026-10-21"
+  },
+  "notes": "Midway Atoll hosts the world's largest Laysan albatross colony, roughly 1 million birds, out of an estimated global population near 3 million.",
+  "points": [
+    {
+      "label": "Nests at Midway Atoll",
+      "value": 1000000
+    },
+    {
+      "label": "Rest of the world",
+      "value": 2000000
+    }
+  ]
+}
