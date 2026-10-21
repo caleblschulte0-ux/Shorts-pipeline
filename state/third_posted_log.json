@@ -14699,13 +14699,59 @@
       "ts": "2026-10-21T11:41:06.098522+00:00"
     },
     "clip-20261021-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/PeacefulMoralLettuceKeyboardCat-Ad6uc6tBHpbkrKrt",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/yq3g61HaICw",
       "title": "Jynxzi Spams Like Crazy Then Gets Told To Stop... Does It Work?",
       "kind": "twitch_clip",
-      "ts": "2026-10-21T11:46:45.481833+00:00",
+      "ts": "2026-10-21T11:47:03.238567+00:00",
+      "uploaded_at": "2026-10-21T11:47:03.238580+00:00",
+      "publish_at": "2026-10-21T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261021-jynxzi-spams-like-crazy-then-gets-told-to-stop-d-3441dddc",
+        "tiktok": "queued for 2026-10-21T20:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/PeacefulMoralLettuceKeyboardCat-Ad6uc6tBHpbkrKrt",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "hook": "Jynxzi tells himself to spam \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2737,
+      "banger": 0.3,
+      "cut": {
+        "start": 6.0,
+        "end": 51.4
+      },
+      "director_cut": true
+    },
+    "rejected-repleterelentlesssquirrelbleedpurple-jdtkzxx5p71dfliy": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/RepleteRelentlessSquirrelBleedPurple-jDtKZXX5P71DFLIy",
+      "streamer": "jynxzi",
+      "title": "Kroko GM confirmed",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Insider game talk, no visible event)",
+      "ts": "2026-10-21T11:47:45.768710+00:00"
+    },
+    "rejected-honestbenevolentkleepartytime-nrrw0quxyj02bf1g": {
+      "source_url": "https://www.twitch.tv/buddha/clip/HonestBenevolentKleePartyTime-NrrW0quXYj02Bf1G",
+      "streamer": "buddha",
+      "title": "m1 unlocks new sound",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (dark GTA RP group talking, no event)",
+      "ts": "2026-10-21T11:48:16.029859+00:00"
+    },
+    "clip-20261021-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/valkyrae/clip/HumbleGiftedMosquitoRalpherZ-Oy6kLFECbXlfcMGj",
+      "story_key": null,
+      "streamer": "valkyrae",
+      "title": "Valkyrae Gets Told She'll Need A Parachute And Loses It",
+      "kind": "twitch_clip",
+      "ts": "2026-10-21T11:50:49.363608+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
