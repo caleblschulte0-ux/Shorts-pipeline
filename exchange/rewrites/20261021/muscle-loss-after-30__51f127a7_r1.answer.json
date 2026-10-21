@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "muscle-loss-after-30__51f127a7_r1",
+  "slug": "muscle-loss-after-30",
+  "by": "chatgpt",
+  "written_at": "2026-10-21T11:26:08.383Z",
+  "title": "Muscle Loss Can Reach 35% By Age 80",
+  "hook": "Muscle mass can fall 35% by the oldest point shown.",
+  "closing": "Strength work matters because the decline accelerates later in life.",
+  "question": "How often do you train for strength?",
+  "segments": [
+    {
+      "topic": "Muscle by Age",
+      "say": "Muscle mass can fall 35% by the oldest point shown. That makes preserving strength increasingly important."
+    },
+    {
+      "topic": "Muscle Loss Rate",
+      "say": "Muscle loss reaches 18% per decade in the later group. The decline accelerates with age."
+    },
+    {
+      "topic": "Muscle Training",
+      "say": "After training, clinical muscle loss fell to 0% in this study. Resistance work changed the measured outcome."
+    }
+  ]
+}
