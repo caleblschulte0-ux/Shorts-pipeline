@@ -789,3 +789,35 @@ def test_a_cut_that_ends_mid_sentence_does_not_pass_whatever_its_label():
 def test_cosmetic_notes_alone_still_pass():
     r = _critic({**_DETENTION, "problems": _DETENTION["problems"][2:]})
     assert r["publish"] and r["story_score"] == 81
+
+
+class AConverterRedirectPageIsFollowed(unittest.TestCase):
+    """2026-10-21: loader.to's file host began answering with a 962-byte
+    "Redirect" page instead of the mp4, and every sample came out empty."""
+
+    def test_the_page_is_followed_to_the_file(self):
+        import io
+        from unittest import mock
+        from funnel import yt_convert as y
+        page = (b'<!doctype html><title>Redirect</title><meta http-equiv='
+                b'"refresh" content="0;url=/real/file.mp4?a=1&amp;b=2">')
+        video = b"\x00" * 60_000
+        seen = []
+
+        class R(io.BytesIO):
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *a):
+                return False
+
+        def fake_open(url, **kw):
+            seen.append(url)
+            return R(video if "real" in url else page)
+
+        with tempfile.TemporaryDirectory() as d, \
+                mock.patch.object(y, "_open", fake_open):
+            out = Path(d) / "x.src"
+            self.assertTrue(y._save("https://host.example/dl/abc", {}, out))
+            self.assertEqual(out.stat().st_size, len(video))
+        self.assertEqual(seen[-1], "https://host.example/real/file.mp4?a=1&b=2")

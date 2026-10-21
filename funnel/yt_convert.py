@@ -219,7 +219,13 @@ def _probe(path: Path) -> float:
         return 0.0
 
 
-def _save(media_url: str, headers: dict, out: Path) -> bool:
+_REDIRECT = re.compile(
+    rb"""(?:http-equiv=["']?refresh["']?[^>]*content=["'][^"']*?url=|"""
+    rb"""location(?:\.href)?\s*=\s*|location\.replace\(\s*)"""
+    rb"""["']?([^"'\s>)]+)""", re.I)
+
+
+def _save(media_url: str, headers: dict, out: Path, hops: int = 2) -> bool:
     tmp = out.with_suffix(out.suffix + ".part")
     n = 0
     with _open(media_url, headers=headers, timeout=90) as r, \
@@ -233,10 +239,20 @@ def _save(media_url: str, headers: dict, out: Path) -> bool:
                 raise ValueError("too large")
             f.write(b)
     if n < 50_000:
-        head = tmp.read_bytes()[:160] if tmp.exists() else b""
-        print(f"::warning::[yt_convert] {media_url[:90]} gave {n} bytes: "
-              f"{head!r}", flush=True)
+        body = tmp.read_bytes() if tmp.exists() else b""
         tmp.unlink(missing_ok=True)
+        # a converter's file host can answer with a "Redirect" page that
+        # sends a browser on to the real file (loader.to, 2026-10-21)
+        m = _REDIRECT.search(body)
+        if m and hops:
+            nxt = urllib.parse.urljoin(
+                media_url,
+                m.group(1).decode("utf-8", "replace").replace("&amp;", "&"))
+            if nxt != media_url:
+                return _save(nxt, {**headers, "Referer": media_url}, out,
+                             hops - 1)
+        print(f"::warning::[yt_convert] {media_url[:90]} gave {n} bytes: "
+              f"{body[:1000]!r}", flush=True)
         return False
     tmp.replace(out)
     return True
