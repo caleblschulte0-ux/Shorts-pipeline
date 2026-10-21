@@ -1,52 +1,22 @@
 {
- "date": "2026-10-20",
+ "date": "2026-10-21",
  "format": "sports_moment",
  "want": 3,
  "dry_run": false,
  "slots": [
   {
-   "sub": "sports",
-   "who": "Messi",
-   "why": "A fan in Paris snatches a signed Messi jersey and captain's armband, sparking instant drama",
-   "post_title": "Guy in Paris steals a signed Messi jersey and captain's armband",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/sports/comments/1x9frtz/guy_in_paris_steals_a_signed_messi_jersey_and/",
-   "topic": "https://www.reddit.com/r/sports/comments/1x9frtz/guy_in_paris_steals_a_signed_messi_jersey_and",
-   "skipped": "too short: the post runs 10.2s (< 15s)"
-  },
-  {
    "sub": "nba",
-   "who": "Scottie Barnes",
-   "why": "Barnes' pants hilariously drop during a pre\u2011game 360 dunk, catching everyone's attention",
-   "post_title": "Scottie Barnes\u2019 pants fall down during a pre-game 360 dunk.",
+   "who": "Jaylen Brown",
+   "why": "A star deadpans about a gold harp, a hired harpist and a personal chef while he watches the sunset.",
+   "post_title": "Jaylen Brown says he bought a gold harp for his home and hires a professional harpist to come over and play while he watches the sunset and waits for his personal chef to prepare dinner.",
    "upvotes": 0,
-   "url": "https://streamable.com/bf2mro",
-   "topic": "https://www.reddit.com/r/nba/comments/1x61r59/scottie_barnes_pants_fall_down_during_a_pregame",
-   "skipped": "too short: the post runs 10.8s (< 15s)"
-  },
-  {
-   "sub": "nba",
-   "who": "Luka Doncic",
-   "why": "Doncic watches a fan dancing in his jersey and gives a genuine, amused reaction",
-   "post_title": "Luka Doncic seems to be impressed by a Lakers fan dancing, wearing his jersey. \"He's good\"",
-   "upvotes": 0,
-   "url": "https://streamable.com/8tvy83",
-   "topic": "https://www.reddit.com/r/nba/comments/1x5iucq/luka_doncic_seems_to_be_impressed_by_a_lakers_fan",
-   "skipped": "author: no setup or no payoff in the clip"
-  },
-  {
-   "sub": "soccer",
-   "who": "coach",
-   "why": "A J3 League coach gets ejected after kicking a bottle at the linesman, a wild on\u2011field outburst",
-   "post_title": "In J3 League Coach gets sent off with a straight red card after kicking a bottle towards the linesman.",
-   "upvotes": 0,
-   "url": "https://www.reddit.com/r/soccer/comments/1xa1h52/in_j3_league_coach_gets_sent_off_with_a_straight/",
-   "topic": "https://www.reddit.com/r/soccer/comments/1xa1h52/in_j3_league_coach_gets_sent_off_with_a_straight",
-   "title": "Coach Kicks Bottle At Linesman And Gets Sent OFF",
-   "hook": "Coach loses his cool \ud83d\ude33",
+   "url": "https://streamable.com/yn3vsz",
+   "topic": "https://www.reddit.com/r/nba/comments/1xahmvc/jaylen_brown_says_he_bought_a_gold_harp_for_his",
+   "title": "Jaylen Brown Hires A Harpist To Play While His Chef Cooks Dinner",
+   "hook": "Jaylen's best purchase was a gold harp \ud83d\ude33",
    "ledger": {
     "moves": [
-     "whoa@5.0"
+     "zoom@13.5"
     ],
     "mood": null,
     "shot_plan": {
@@ -60,33 +30,123 @@
      ],
      "n_subjects": 0,
      "crop": [
-      270,
-      360,
-      184,
+      532,
+      710,
+      406,
       0
      ]
     }
    },
    "showrunner": {
-    "blocked": true,
-    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request",
-    "score": null
+    "blocked": false,
+    "reason": "",
+    "score": 70
    },
-   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request"
+   "video_url": "https://youtube.com/shorts/IjyT4A3E59U",
+   "ok": true,
+   "publish_at": "2026-10-21T16:00:00Z",
+   "seconds": 122,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261021-jaylen-brown-hires-a-harpist-to-play-while-his-c-07b402c8",
+    "tiktok": "queued for 2026-10-21T16:00:00Z"
+   }
   },
   {
    "sub": "baseball",
-   "who": "Jackson Chourio",
-   "why": "Chourio battles a persistent mantis on the field, turning a routine play into a funny showdown",
-   "post_title": "[Highlight] Jackson Chourio tries to brush off a preying mantis but he is unable to rid himself of his new companion",
+   "who": "Pat Murphy",
+   "why": "The Brewers manager gives a dry one-liner answer to a reporter, and the awkward beat that follows is the joke.",
+   "post_title": "Brewers reporter Mike Heller: \u201cPitching tomorrow Murph?\u201d Pat Murphy: \u201cYeah, there will be pitching.\u201d",
    "upvotes": 0,
-   "url": "https://www.reddit.com/r/baseball/comments/1x6a754/highlight_jackson_chourio_tries_to_brush_off_a/",
-   "topic": "https://www.reddit.com/r/baseball/comments/1x6a754/highlight_jackson_chourio_tries_to_brush_off_a",
-   "skipped": "too short: the post runs 11.2s (< 15s)"
+   "url": "https://www.reddit.com/r/baseball/comments/1x6qwr1/brewers_reporter_mike_heller_pitching_tomorrow/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1x6qwr1/brewers_reporter_mike_heller_pitching_tomorrow",
+   "skipped": "too short: the post runs 8.0s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "VJ Edgecombe",
+   "why": "Jaylen Brown gushes about playing with LeBron, then the rookie answers with a joke about LeBron being old enough to be his dad.",
+   "post_title": "Jaylen Brown on being teammates with Lebron: \"The 12 year old in me is like over the moon...no glaze but you playing with one of the greatest\" -VJ Edgecombe: \"He's exactly old enough to be my dad, whi",
+   "upvotes": 0,
+   "url": "https://streamable.com/kxrm4h",
+   "topic": "https://www.reddit.com/r/nba/comments/1xa63f8/jaylen_brown_on_being_teammates_with_lebron_the",
+   "title": "VJ Edgecombe Can't Believe LeBron Is Old Enough To Be His Dad",
+   "hook": "LeBron is old enough to be his dad \ud83d\ude2d",
+   "ledger": {
+    "moves": [
+     "zoom@33.5"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 74
+   },
+   "video_url": "https://youtube.com/shorts/GcagQ2ajkdY",
+   "ok": true,
+   "publish_at": "2026-10-21T20:00:00Z",
+   "seconds": 203,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261021-vj-edgecombe-can-t-believe-lebron-is-old-enough--04d5c1d7",
+    "tiktok": "queued for 2026-10-21T20:00:00Z"
+   }
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "Mic'd up, LeBron struggles to name the starters from his first game, and the bad guesses are funny.",
+   "post_title": "[All-Access] LeBron James tries to name all the starters from his first career game",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nba/comments/1xadvtr/allaccess_lebron_james_tries_to_name_all_the/",
+   "topic": "https://www.reddit.com/r/nba/comments/1xadvtr/allaccess_lebron_james_tries_to_name_all_the",
+   "title": "LeBron James Names Every Starter From His First Game, Then Gets Caught Off Guard",
+   "hook": "LeBron remembers his first game lineup \ud83d\udc10",
+   "ledger": {
+    "moves": [
+     "zoom@22.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 83
+   },
+   "video_url": "https://youtube.com/shorts/yk63StuVDzQ",
+   "ok": true,
+   "publish_at": "2026-10-22T00:00:00Z",
+   "seconds": 127,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261021-lebron-james-names-every-starter-from-his-first--c92eccc5",
+    "tiktok": "queued for 2026-10-22T00:00:00Z"
+   }
   }
  ],
- "already_today": 2,
+ "already_today": 0,
  "pool": 85,
  "already_posted": 5,
- "shipped": 0
+ "shipped": 3
 }
