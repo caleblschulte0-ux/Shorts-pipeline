@@ -119,10 +119,10 @@ SPORTS_BRIEF = (
     "own'): whenever the person refers to something not on screen (the "
     "play, the game, the player they are calling out, an old teammate, "
     "the record), broll real footage of it at that second. When someone "
-    "looks back on a person or a time that is gone (a teammate who left, "
-    "a partnership that ended, a career over), give it the outro: the "
-    "clip plays as it is, then the song over shots of them playing "
-    "together.")
+    "talks about something that happened that we can show (a teammate, "
+    "a rival, a game, a record, a title, a choke, a blooper), give it the "
+    "outro: the clip plays as it is, then a song in the story's mood "
+    "(sad, hype, triumph or funny) over the footage of it.")
 
 
 def _brain(user: str, system: str) -> dict | None:

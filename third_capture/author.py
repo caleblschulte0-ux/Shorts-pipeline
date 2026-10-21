@@ -191,35 +191,35 @@ Rules:
     clips with a person talking refer to something showable: give those
     at least one. Never the person already on screen talking, never a
     guess at something the words do not name.
-  - outro: the TRIBUTE ending, a different thing from broll (operator:
+  - outro: the PAYOFF ending, a different thing from broll (operator:
     "when Kevin Durant was talking about how sad he was that him and Russ
     aren't playing anymore, you play just that clip, and then after that
     clip's done, play some sad music, and then cut to, like, clips of
-    them playing together"). Use it when the clip is someone LOOKING BACK
-    on a person, a team or a time that is gone: a teammate who left, a
-    partnership that broke up, a retired legend, a friend who passed, a
-    career ending. The clip plays untouched; after it, the `song` (a key
-    from the shelf above) comes in over a montage of THEM on the court
-    (operator: "significantly more basketball clips ... especially clips
-    of just them on the basketball court"), several shots from each
-    look. "who" is who the shots are of ("Kevin Durant Russell
-    Westbrook"); "people" lists each of them by full name (["Kevin
-    Durant", "Russell Westbrook"]) — every shot must show ALL of them in
-    the frame together (operator: "not of Russ and KD" of shots of one of
-    them alone); "team" is the team they played on TOGETHER when the
-    look-back is about teammates ("Oklahoma City Thunder" — shots of them
-    on opposing teams do not count), else ""; "numbers" are their jersey
-    numbers on that team, in the order of "people" (["35", "0"]) — the
-    shots are checked by the numbers, a face being too small to tell at
-    broadcast distance; "looks" are 3-4 searches
-    for ONE famous play of them each, the way a clip of it is titled on
-    YouTube ("Westbrook to Durant alley oop", "Durant Westbrook Thunder
-    game winner") — each shot is cut from a short clip of that play. "grade": "grey" for the
-    sad edit (operator: "a little gray scale, just to make it sad, like
-    how people do on these sad type edits") when the look-back is a loss
-    — someone gone, a partnership over, a career ended; "faded"
-    otherwise. With an outro, set mood "" (the song comes after the
-    words, not under them). Most clips have no outro: null.
+    them playing together"; and then: "it's not just tributes ...
+    anytime we can do anything like that, whether it's a sad thing or a
+    happy thing or a tribute or whatever it is, we should do it"). Give
+    it to EVERY clip where the person talks about something that
+    happened on the field that we can show: a teammate or a rivalry, a
+    game they remember, a record, a title, a choke, a blooper, a
+    comeback. The clip plays untouched; after it, the `song` comes in
+    over a montage of that thing, and the song's mood is the story's:
+{OUTRO_MENU}
+    "who" is who the shots are of ("Kevin Durant Russell Westbrook",
+    "Kobe Bryant"); "people" lists each by full name — the footage
+    must show them; "team" is the team they played for in that footage
+    ("Oklahoma City Thunder", "Los Angeles Lakers") when it was one team,
+    else "" (shots of them on another team do not count); "numbers" are
+    their jersey numbers on that team, in the order of "people" (["35",
+    "0"], ["8"]) — the shots are checked by the numbers, a face being too
+    small to tell at broadcast distance; "looks" are 3-4 searches for the
+    exact plays or the moment the clip talks about, the way a clip of it
+    is titled on YouTube ("Westbrook to Durant alley oop", "Kobe 81 point
+    game highlights", "Dirk 2011 Finals game 6") — each shot is cut from
+    a short clip of that play. "grade": "grey" for a loss (someone gone,
+    a partnership over, a career ended), "hype" for hype, "clean" for a
+    triumph or a funny one, "faded" for a fond look back. With an outro,
+    set mood "" (the song comes after the words, not under them). A clip
+    that names nothing showable has no outro: null.
   - cut: {"start","end"} in SECONDS into this clip — the span to KEEP so a
     first-time viewer instantly understands the moment. Use the [t.t-t.t]
     timestamps in the transcript. start early enough to include the SETUP
@@ -253,7 +253,8 @@ HONESTY (hard rules):
 
 # the song shelf is the one in funnel/songs.py, never a copy of it
 from funnel import songs as _songs  # noqa: E402
-SYSTEM = SYSTEM.replace("{SONG_MENU}", _songs.menu("sad"))
+SYSTEM = SYSTEM.replace("{SONG_MENU}", _songs.menu("sad")).replace(
+    "{OUTRO_MENU}", _songs.menu(""))
 
 # A clip that ENDS MID-SENTENCE has no payoff (operator, 2026-10-11, of
 # Alinity's "...so I pee and" ending where the Twitch clip did: "some girl

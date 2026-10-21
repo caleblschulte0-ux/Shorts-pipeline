@@ -158,7 +158,7 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
         self.assertGreaterEqual(sum(n for _l, n in asked),
                                 outro.TARGET_SHOTS)
         self.assertGreaterEqual(outro.TARGET_SHOTS, 6)
-        self.assertTrue(all("on the court" in l for l, _n in asked))
+        self.assertTrue(all("the game" in l for l, _n in asked))
 
     def test_reels_of_different_shapes_still_join(self):
         # 2026-10-21: a 16:9 reel beside a #shorts one scaled to sizes
@@ -227,8 +227,8 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
         # YouTube is searched for the play, never for the rules
         self.assertEqual([k["query"] for k in nots], nums["looks"])
         self.assertIn('"numbers"', author.SYSTEM)
-        # and without a team, both faces in the frame, as teammates
-        self.assertIn("opposing teams", outro.frame_look("x", item["people"]))
+        # and without a team, both of them in the same play
+        self.assertIn("same play", outro.frame_look("x", item["people"]))
         self.assertIn('"team"', author.SYSTEM)
 
     def test_the_song_is_heard_well_before_the_picture_changes(self):
@@ -321,3 +321,39 @@ class TheLastShotPlaysOut(unittest.TestCase):
         g = outro.graph(3, [2.4, 2.4, 6.0], 12.0, 1080, 1920, None)
         self.assertIn("trim=0:6.00", g)
         self.assertIn(f"st={10.8 - outro.TAIL_FADE_S:.2f}", g)
+
+
+class ItIsAStoryNotATribute(unittest.TestCase):
+    """2026-10-21: "it's not just tributes ... anytime we can do anything
+    like that, whether it's a sad thing or a happy thing or a tribute or
+    whatever it is, we should do it"."""
+
+    def test_the_shelf_has_every_mood_a_payoff_can_have(self):
+        for mood in ("sad", "hype", "triumph", "funny"):
+            self.assertGreaterEqual(len(songs.names(mood)), 2, mood)
+        everything = songs.menu("")
+        for mood in songs.MOODS:
+            self.assertIn(f"[{mood}]", everything)
+
+    def test_the_author_is_told_to_use_it_on_any_showable_story(self):
+        self.assertIn("it's not just tributes", author.SYSTEM)
+        self.assertIn("till_i_collapse", author.SYSTEM)     # a hype song
+        self.assertIn("yakety_sax", author.SYSTEM)          # a funny one
+        self.assertNotIn("{OUTRO_MENU}", author.SYSTEM)
+
+    def test_a_hype_payoff_of_one_player(self):
+        item = outro.parse({"song": "till_i_collapse", "who": "Kobe Bryant",
+                            "people": ["Kobe Bryant"],
+                            "team": "Los Angeles Lakers", "numbers": ["8"],
+                            "grade": "hype",
+                            "looks": ["Kobe 81 point game highlights",
+                                      "Kobe 81 points fadeaway"]})
+        self.assertEqual(item["grade"], "hype")
+        self.assertIn("#8", outro.frame_look("x", item["people"],
+                                             item["team"], item["numbers"]))
+        asked = []
+        with mock.patch.object(find_footage, "find_many", side_effect=(
+                lambda *a, **k: asked.append(k["title_has"]) or [])):
+            outro.shots(item, Path(tempfile.mkdtemp()))
+        self.assertTrue(all(t == ["Bryant"] for t in asked))
+        self.assertIn("hype", outro.GRADES)
