@@ -115,6 +115,8 @@ def _loader(host: str, vid: str):
                                safe="")
     j = _json(f"{host}/ajax/download.php?format=720&url={watch}")
     if not j.get("success"):
+        print(f"::warning::[yt_convert] loader {vid}: refused "
+              f"({str(j)[:160]})", flush=True)
         return None
     # the site's own progress.php reports "Finished" with the file while
     # the progress_url it hands out can sit at 50% (seen 2026-10-11)
@@ -131,8 +133,12 @@ def _loader(host: str, vid: str):
             if p.get("download_url"):
                 return p["download_url"], {}, meta
             if str(p.get("text", "")).lower().startswith("error"):
+                print(f"::warning::[yt_convert] loader {vid}: "
+                      f"{str(p)[:160]}", flush=True)
                 return None
         time.sleep(3)
+    print(f"::warning::[yt_convert] loader {vid}: not ready after "
+          f"{LOADER_WAIT_S}s", flush=True)
     return None
 
 
