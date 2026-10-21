@@ -200,6 +200,46 @@
       "answer": "{\"hook\":\"76% of US adults now live without a landline.\",\"closing\":\"Your phone still rings. Most of the time, it isn't for you.\",\"question\":\"Do you answer unknown numbers?\",\"segments\":[{\"topic\":\"Landline Death\",\"say\":\"Now, 76% of US adults live without a landline. A phone number no longer points to one home.\"},{\"topic\":\"Landline Robocalls\",\"say\":\"Americans received 52.8 billion robocalls. Spoofing made familiar-looking numbers cheap.\"},{\"topic\":\"Landline Decline\",\"say\":\"Robocalls nearly doubled from 29.3 billion. Unknown numbers became easier to ignore than trust.\"}]}",
       "by": "chatgpt",
       "at": "2026-10-21T11:26:01.732Z"
+    },
+    "3a828a4ada4206b3": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It reverses the expectation that a routine conversion is harmless and anchors the danger to only 20,400 pounds of fuel.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "dcac8e1742c0aef3": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It reverses pickleball's gentle image with a consequential $400 million injury estimate.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "352bad5f8eac3286": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It reverses the myth that the whole body renews on one schedule and anchors the contrast to a 5-day stomach lining.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "484848be2b76878d": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The title is a searchable noun phrase, so the 1 percent figure in the hook cannot rescue the premise.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "fa0d9647f981a7db": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "a130f6969af93666": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It reverses the expectation that weightlessness rests the body and anchors the consequence to an estimated 30% hip-bone loss.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "28e4e3465cd7efc6": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It reverses old avoidance advice with a consequential 43% decline after early-introduction guidance.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
+    },
+    "1a6b91dfd0e4c1e6": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It reverses the expectation that black holes are rare in our galaxy and anchors the surprise to 100 million.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-21T11:28:36.491Z"
     }
   }
 }
