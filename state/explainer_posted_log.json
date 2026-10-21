@@ -3907,6 +3907,13 @@
         "scene:illustrated",
         "viz:fill_vessel"
       ]
+    },
+    "kelp-forest-sea-star-collapse": {
+      "claimed_at": "2026-10-21T11:13:35.056783+00:00",
+      "title": "Why 96% Of Kelp Vanished After Sea Stars Collapsed",
+      "publish_at": "2026-10-21T17:09:49Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -4946,6 +4953,14 @@
       "state": "posted",
       "slug": "vertical-farming-bust",
       "at": "2026-10-21T10:34:52.526467+00:00"
+    },
+    {
+      "claimed_at": "2026-10-21T11:13:35.056783+00:00",
+      "title": "Why 96% Of Kelp Vanished After Sea Stars Collapsed",
+      "publish_at": "2026-10-21T17:09:49Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "kelp-forest-sea-star-collapse"
     }
   ]
 }
