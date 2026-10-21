@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cargo-ship-size-growth__f9ab28c4",
+  "slug": "cargo-ship-size-growth",
+  "by": "chatgpt",
+  "written_at": "2026-10-21T11:27:52.896Z",
+  "title": "Cargo Capacity Reached 24,327 Containers While Crews Shrunk",
+  "hook": "Cargo capacity reached 24,327 containers while crews got smaller.",
+  "closing": "Global shipments now depend on enormous vessels operated by surprisingly small teams.",
+  "question": "Would you work aboard this ship?",
+  "segments": [
+    {
+      "topic": "Cargo Capacity",
+      "say": "Cargo capacity reached 24,327 container equivalents. The largest ships now move far more in one trip."
+    },
+    {
+      "topic": "Cargo Ship",
+      "say": "The comparison ship measures 400 meters long. Modern container vessels operate at an immense physical scale."
+    },
+    {
+      "topic": "Cargo Crew",
+      "say": "A typical cargo crew fell to 20 people. Bigger ships did not require bigger teams."
+    }
+  ]
+}
