@@ -911,7 +911,8 @@ def _has_text(words: list[str]) -> bool:
 
 
 def line_spot(src: Path, picture_vf: str, dur: float, line_h: int,
-              samples: int = 6, speech: bool = False):
+              samples: int = 6, speech: bool = False,
+              said_at: list[float] | None = None):
     """(y, why) for the one line of text: the bottom third, unless the
     footage already has text THERE.
 
@@ -932,7 +933,13 @@ def line_spot(src: Path, picture_vf: str, dur: float, line_h: int,
     and a lower third sit: the 2026-10-11 Baller Bro dry run printed the
     speech captions over ESPN's scorebug ("the caption is garbled and
     printed over the ESPN scorebug, so the payoff doesn't land"). Taken
-    means the words are not burned, the same rule as `own_captions`."""
+    means the words are not burned, the same rule as `own_captions`.
+
+    `said_at`: seconds someone is talking. A stream's live captions show
+    only WHILE someone talks, so evenly spaced samples land in the pauses
+    and miss them: the first audience backtest (2026-10-21) laid the line
+    over Maya's and Marlon's own purple-bar captions that way. Given
+    times, the samples are taken there."""
     import shutil
     from third_capture import caption_line as cl
     bands = {"bottom": cl.LINE_Y, "top": cl.TOP_Y}
@@ -952,8 +959,13 @@ def line_spot(src: Path, picture_vf: str, dur: float, line_h: int,
     hits = {k: 0 for k in bands}
     read = 0
     with tempfile.TemporaryDirectory() as td:
-        for k in range(samples):
-            t = dur * (k + 0.5) / samples
+        if said_at:
+            said = sorted(t for t in said_at if 0 <= t < dur)
+            step = max(1, len(said) // samples)
+            times = said[::step][:samples]
+        else:
+            times = [dur * (k + 0.5) / samples for k in range(samples)]
+        for k, t in enumerate(times):
             fr = Path(td) / f"p{k}.png"
             try:
                 _run(["ffmpeg", "-y", "-v", "error", "-ss", f"{t:.2f}",

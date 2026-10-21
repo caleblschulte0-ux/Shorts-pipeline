@@ -428,7 +428,8 @@ def _seg_words(words: list[dict], start: float, end: float) -> list[dict]:
 
 def _line_spot(src: Path, framed: Path | None, vf: str, work: Path,
                tag: str, start: float, end: float,
-               text: str) -> tuple[int, bool]:
+               text: str, said_at: list[float] | None = None
+               ) -> tuple[int, bool]:
     """(y, speech_taken) for the beat's line of text: the clip arm's
     `clip_edit.line_spot`, read on the picture this beat will show.
 
@@ -450,8 +451,8 @@ def _line_spot(src: Path, framed: Path | None, vf: str, work: Path,
                   "-c:v", "libx264", "-preset", "ultrafast", "-crf", "30",
                   str(pic)])
         y, why, speech_taken = clip_edit.line_spot(
-            Path(pic), "[0:v]null[vout]", dur, line_h, samples=4,
-            speech=True)
+            Path(pic), "[0:v]null[vout]", dur, line_h,
+            samples=6 if said_at else 4, speech=True, said_at=said_at)
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[story] beat {tag}: line spot failed "
               f"({type(e).__name__}) — bottom third", flush=True)
@@ -498,8 +499,9 @@ def _extract_segment(src: Path, out: Path, work: Path, tag: str, *,
     text = next((c["text"] for c in captions or []
                  if (c.get("text") or "").strip()), "")
     if text:
-        line_y, speech_taken = _line_spot(src, framed, vf, work, tag,
-                                          start, end, text)
+        line_y, speech_taken = _line_spot(
+            src, framed, vf, work, tag, start, end, text,
+            said_at=[w["s"] + 0.3 for w in seg_words])
         if speech_taken and seg_words:
             print(f"[story] beat {tag}: the footage has text where the "
                   "words go — no word captions", flush=True)

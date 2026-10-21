@@ -2174,7 +2174,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     for _rev in range(int(spec.get("story_revisions", 2))
                                       + 1):
                         _probs = structure_check.problems(
-                            led, _hot["source_url"])
+                            led, _hot["source_url"],
+                            structure_check.motion(out_mp4))
                         print(f"[story] {elbl}: structure r{_rev} "
                               + ("ok" if not _probs else "; ".join(
                                   p["what"] for p in _probs)), flush=True)

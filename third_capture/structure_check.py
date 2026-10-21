@@ -27,6 +27,11 @@ MAX_GAP_S = 4.0        # silence longer than this is dead air
 MIN_S, MAX_S = 18.0, 75.0   # study median 31s; Stable top 16-62s
 # what the proven moment may leave after it before the cut is "trailing on"
 TAIL_AFTER_PROVEN_S = 15.0
+# a picture that barely changes for this long in the opening seconds is a
+# still or a blank screen (2026-10-21: Jynxzi's cut opened on an idle Xbox
+# screen at 0.10 mean frame difference; the talking heads that passed sat
+# at 0.40 and up)
+STILL_YDIF, STILL_S, OPENING_S = 0.2, 2.0, 10.0
 # the weaker clips opened on these and reached the point 15s+ later
 FILLER = re.compile(
     r"^(?:um+|uh+|so+|okay so|ok so|alright so|anyway[s]?|you know what|"
@@ -42,7 +47,48 @@ def opening_line(led: dict, n: int = 8) -> str:
     return " ".join(str(w["w"]).strip() for w in _words(led)[:n])
 
 
-def problems(led: dict, proven_source: str = "") -> list[dict]:
+def motion(mp4) -> list[tuple[float, float]]:
+    """(t, YDIF) per frame of the picture above the captions (top 60%):
+    how much each frame differs from the one before it. [] on failure."""
+    import subprocess
+    try:
+        out = subprocess.run(
+            ["ffmpeg", "-v", "error", "-t", f"{OPENING_S:.0f}", "-i",
+             str(mp4), "-an", "-vf",
+             "crop=iw:ih*0.6:0:0,signalstats,metadata=print:"
+             "key=lavfi.signalstats.YDIF:file=-", "-f", "null", "-"],
+            capture_output=True, text=True, timeout=120).stdout
+    except Exception:  # noqa: BLE001
+        return []
+    rows, t = [], None
+    for ln in out.splitlines():
+        if "pts_time:" in ln:
+            try:
+                t = float(ln.split("pts_time:")[1].split()[0])
+            except (IndexError, ValueError):
+                t = None
+        elif "YDIF=" in ln and t is not None:
+            try:
+                rows.append((t, float(ln.split("=", 1)[1])))
+            except ValueError:
+                pass
+    return rows
+
+
+def still_opening(rows: list[tuple[float, float]]) -> float | None:
+    """When a STILL_S stretch of near-frozen picture starts inside the
+    opening, or None."""
+    rows = [r for r in rows if r[0] <= OPENING_S]
+    for i, (t0, _) in enumerate(rows):
+        win = [y for t, y in rows[i:] if t < t0 + STILL_S]
+        if rows[-1][0] >= t0 + STILL_S - 0.1 and win and \
+                sum(win) / len(win) < STILL_YDIF:
+            return t0
+    return None
+
+
+def problems(led: dict, proven_source: str = "",
+             frames: list[tuple[float, float]] | None = None) -> list[dict]:
     """The cut's measured defects, each as a repair the director can act
     on ({type, at, fix}, the shape `story_director.revise_edl` reads).
     `led` is `story.render_story`'s ledger (final_words on the cut's own
@@ -77,6 +123,12 @@ def problems(led: dict, proven_source: str = "") -> list[dict]:
     if not last.endswith((".", "!", "?")) and dur - float(ws[-1]["e"]) < 0.35:
         bad(ws[-1]["e"], f"ends mid-sentence on {ws[-1]['w']!r}",
             "end after a finished line")
+    if frames:
+        at = still_opening(frames)
+        if at is not None:
+            bad(at, f"the picture stands still for {STILL_S:.0f}s at "
+                f"{at:.0f}s", "open on the part where something is "
+                "happening on screen, not a still or blank screen")
     if proven_source:
         mine = [b for b in led.get("beats") or []
                 if b.get("source_id") == proven_source]
@@ -91,6 +143,7 @@ def problems(led: dict, proven_source: str = "") -> list[dict]:
     return out
 
 
-def check(led: dict, proven_source: str = "") -> list[str]:
+def check(led: dict, proven_source: str = "",
+          frames: list[tuple[float, float]] | None = None) -> list[str]:
     """`problems` as plain sentences; [] passes."""
-    return [p["what"] for p in problems(led, proven_source)]
+    return [p["what"] for p in problems(led, proven_source, frames)]

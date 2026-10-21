@@ -59,6 +59,30 @@ class MeasuredChecks(unittest.TestCase):
                             sc.check(_led(GOOD, 30, early), "hot")))
 
 
+class AStillOpeningIsRefused(unittest.TestCase):
+    """Jynxzi's first cut opened on an idle Xbox screen (mean frame
+    difference 0.10); the talking heads that passed sat at 0.40+."""
+    def _rows(self, ydif_at):
+        return [(i / 30, ydif_at(i / 30)) for i in range(300)]
+
+    def test_a_frozen_stretch_in_the_opening_is_named(self):
+        rows = self._rows(lambda t: 0.1 if 4 <= t < 8 else 3.0)
+        self.assertAlmostEqual(sc.still_opening(rows), 4.0, delta=0.2)
+        self.assertTrue(any("stands still" in p for p in
+                            sc.check(_led(GOOD, 30), "hot", rows)))
+
+    def test_a_quiet_talking_head_is_not(self):
+        self.assertIsNone(sc.still_opening(self._rows(lambda t: 0.4)))
+
+
+class LiveCaptionsAreLookedForWhileSomeoneTalks(unittest.TestCase):
+    def test_the_story_line_is_placed_from_speech_times(self):
+        src = (REPO / "third_capture" / "story.py").read_text()
+        self.assertIn("said_at=[w[\"s\"] + 0.3 for w in seg_words]", src)
+        ce = (REPO / "third_capture" / "clip_edit.py").read_text()
+        self.assertIn("said[::step][:samples]", ce)
+
+
 class TheArmNeverAsksTheCritic(unittest.TestCase):
     def test_the_audience_branch_continues_before_the_critic(self):
         src = (REPO / "scripts" / "run_third.py").read_text()
