@@ -282,6 +282,8 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
                             v.get("title") or "")):
                     seen.add(v["url"])
                     cands.append(v)
+        print(f"[footage] {look[:50]!r}: {len(cands)} candidate(s)",
+              flush=True)
         for k, v in enumerate(cands[:MANY_CANDIDATES]):
             if len(got) >= n:
                 break
@@ -300,6 +302,10 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
                 print(f"[footage] {who!r}: no brain to check the footage — "
                       "no montage shots", flush=True)
                 return got
+            yes = sum(bool((verdicts.get(i) or {}).get("depicts"))
+                      for i, _p in frames)
+            print(f"[footage] {v['title'][:60]!r} ({dur:.0f}s): {yes}/"
+                  f"{len(frames)} frames show it", flush=True)
             spans: list[tuple[float, float]] = []
             for i, _p in frames:
                 if len(got) >= n or (per_video and len(spans) >= per_video):

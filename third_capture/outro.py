@@ -43,7 +43,7 @@ TARGET_SHOTS = 7        # shots the montage runs, taken across the looks
 #: Each shot comes from a SHORT clip of one play, one or two per clip: a
 #: long fan reel gave wide shots, cutaways and other players (2026-10-21:
 #: a Hornets guard and a Kobe close-up in a KD/Russ tribute).
-PLAY_MAX_S = 120
+PLAY_MAX_S = 300        # a clip of a play, or the league's own short best-of
 PER_CLIP = 2
 #: A clip of them on opposite sides, when the tribute is to teammates
 #: (2026-10-21: three shots of a "Westbrook vs Durant" video).
