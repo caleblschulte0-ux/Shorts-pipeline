@@ -6130,6 +6130,20 @@
    ],
    "ending_type": "inversion",
    "notes": "re-validated unchanged 2026-10-21: current-standard scenes kept, validate_scenes OK"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-10-21",
+   "topic_category": "health",
+   "hook_type": "reveal",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "scene:illustrated-baby-flip",
+    "mechanic:crib-census"
+   ],
+   "ending_type": "consequence",
+   "notes": "added mechanics for seg0/seg2; validate_scenes OK"
   }
  ]
 }

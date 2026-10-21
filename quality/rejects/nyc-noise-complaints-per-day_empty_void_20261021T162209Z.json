@@ -1,0 +1,16 @@
+{
+ "slug": "nyc-noise-complaints-per-day",
+ "ts": "20261021T162209Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: The last frame (payoff@-0.4) is almost all empty dark-navy gradient, with a small Data and a blank yellow tag at the bottom. The video ends on a void.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "missing_beat_and_void_ending",
+  "visible_evidence": "The beat that says '1,918 noise calls every day, one every forty-five seconds' never gets its picture. The switchboard repeats '18%' (payoff@-1.8, seg3:end), the clock hand sweeps without a per-day count, and the video ends on an empty dark card with Data holding a blank price tag (payoff@-0.4).",
+  "root_cause": "The last data beat was folded into the closing scene, which reuses the share figure instead of the daily rate. The end card falls back to the default prop on an empty ground.",
+  "repair_goal": "Give the 1,918-a-day beat its own switchboard shot. Data should plug a cord into every jack that lights, keeping pace with the clock, while a counter climbs to 1,918 within the day, so 'one every 45 seconds' is something you see happen. End on that finished, fully lit board, not on an empty card with a blank tag."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
