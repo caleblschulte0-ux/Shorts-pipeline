@@ -1392,6 +1392,13 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         from third_capture import story as story_mod
         from shared.fsutil import atomic_write_json
         spec = pkg["capture"]
+        # THE AUDIENCE PICKS, THE BRAIN CUTS (2026-10-21). Both critic
+        # rubrics ran slightly AGAINST real views over 26 clips with known
+        # counts (third_capture/structure_check.py), so this arm takes only
+        # the moments the audience already proved, cuts each, and holds the
+        # cut to measured checks instead of a critic's score. Backtest only
+        # for now (scripts/story_backtest.py --audience).
+        _audience = spec.get("story_pick") == "audience"
         # STORY TIME CAP. Every slot is a story slot now (operator,
         # 2026-10-07: "this channel needs to be stories and edits not just
         # raw clips"), and a story search costs 10-20 minutes. Past
@@ -1600,8 +1607,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             _memory(), {storyline.clip_key(c["source_url"]): cid
                         for cid, c in cat_ids.items()})
         scouted = []
-        for st in story_director.scout_stories(cat_lines, set(cat_ids),
-                                               tried=_refused):
+        for st in ([] if _audience else story_director.scout_stories(
+                cat_lines, set(cat_ids), tried=_refused)):
             members = [cat_ids[m] for m in st["members"]]
             # THE OTHER SIDE, by name (operator, 2026-10-10, of Kai Cenat
             # and Reggie: "take whoever made those allegations originally,
@@ -1669,6 +1676,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         # plan and judged again at the same bar; nothing about it is
         # trusted except where to start (`_proven_clusters`).
         clusters = _proven_clusters() + clusters
+        if _audience:
+            clusters = moments      # upvotes first, then views
         print(f"[story] {len(scouted)} scouted + {len(moments)} moment(s) + "
               f"{len(vod_arcs)} VOD arc(s) + people clusters = "
               f"{len(clusters)} candidate(s) after dedupe", flush=True)
@@ -2063,7 +2072,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # critic sees frames the words leave out). At 65 the read
                 # blocked all but one render, so it screens only what reads
                 # as no story at all (`story_table_read_min`).
-                _tr_n = int(spec.get("story_table_reads", 2))
+                _tr_n = 0 if _audience else int(
+                    spec.get("story_table_reads", 2))
 
                 def _read(e):
                     pl = story_mod.plan_ledger(e, src_map)
@@ -2142,6 +2152,29 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # ---- narrative review + ONE revision (§18-19)
                 sheet = story_work / "rough.qa.jpg"
                 sheet_ok = clip_qa.contact_sheet(out_mp4, sheet) is not None
+                if _audience:
+                    from third_capture import structure_check
+                    _probs = structure_check.check(
+                        led, cluster["clips"][0]["source_url"])
+                    _net = cluster["clips"][0].get("internet") or {}
+                    print(f"[story] {elbl}: structure "
+                          f"{'ok' if not _probs else '; '.join(_probs)}",
+                          flush=True)
+                    _backtest_keep(elbl, 0, out_mp4, edl, {
+                        "gate": "structure", "publish": False,
+                        "story_score": 0, "structure_ok": not _probs,
+                        "problems": [{"type": "structure", "at": None,
+                                      "fix": p} for p in _probs],
+                        "opening_line": structure_check.opening_line(led),
+                        "audience": {
+                            "views": cluster["clips"][0].get("views", 0),
+                            "upvotes": _net.get("upvotes", 0),
+                            "post_title": _net.get("post_title", "")},
+                        "stranger_summary": edl.get("premise", "")}, sub)
+                    _story_verdict(elbl, "structure_ok" if not _probs
+                                   else "structure_failed",
+                                   "; ".join(_probs)[:300] or "kept")
+                    continue
                 tlines = scene_analysis._dialogue_lines(led["final_words"])
                 review = story_director.review_rough_cut(
                     edl, tlines, str(sheet) if sheet_ok else None,

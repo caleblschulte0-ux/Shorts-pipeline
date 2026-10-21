@@ -125,7 +125,12 @@ def main(src: str, dest: str, proven: str = "") -> int:
                      "repair": c.get("revision"),
                      "title": e.get("title"),
                      "hook": e.get("hook_overlay"),
-                     "retelling": rv.get("stranger_summary")})
+                     "retelling": rv.get("stranger_summary"),
+                     **({"audience": rv["audience"],
+                         "structure_ok": rv.get("structure_ok"),
+                         "structure": [p.get("fix") for p in
+                                       rv.get("problems") or []]}
+                        if rv.get("gate") == "structure" else {})})
     (dest_p / "index.json").write_text(json.dumps(
         {"floor": report.get("floor"), "cuts": rows}, indent=1))
     print(json.dumps(rows, indent=1), flush=True)
