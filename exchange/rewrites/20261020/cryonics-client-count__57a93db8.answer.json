@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cryonics-client-count__57a93db8",
+  "slug": "cryonics-client-count",
+  "by": "chatgpt",
+  "written_at": "2026-10-21T11:21:35.951Z",
+  "title": "Only 222 People Have Been Cryopreserved By Alcor",
+  "hook": "Alcor has cryopreserved 222 patients.",
+  "closing": "The gap separates paid plans from completed preservation, so membership is not the same as patients.",
+  "question": "Would you pay for cryopreservation?",
+  "segments": [
+    {
+      "topic": "Alcor Patient Count",
+      "say": "Alcor had 222 cryopreserved patients. That is the completed-patient count, not everyone enrolled."
+    },
+    {
+      "topic": "Alcor Living Members",
+      "say": "Alcor listed 1,927 living members signed up. Most of that membership had not become patients."
+    },
+    {
+      "topic": "Alcor Preservation Cost",
+      "say": "Whole-body preservation costs $200,000. The price describes a service plan, not a guarantee of revival."
+    }
+  ]
+}
