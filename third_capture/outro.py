@@ -72,6 +72,7 @@ def parse(raw) -> dict | None:
     grade = str(raw.get("grade") or "").strip().lower()
     return {"song": song, "who": who, "looks": looks,
             "people": people or [who],
+            "team": _text(raw.get("team"), 40),
             "grade": grade if grade in GRADES else "faded"}
 
 
@@ -86,15 +87,18 @@ def _seconds(path: Path) -> float:
         return 0.0
 
 
-def frame_look(look: str, people: list[str]) -> str:
+def frame_look(look: str, people: list[str], team: str = "") -> str:
     """What the brain must SEE in a montage frame (operator, 2026-10-21:
     *"the basketball clip was ass and not of Russ and KD"* — KD alone on
-    the Warriors and Russ alone on the Clippers had passed as "them")."""
+    the Warriors and Russ alone on the Clippers had passed as "them"; then
+    KD on the Suns guarding Russ passed as "together")."""
     if len(people) > 1:
         both = " and ".join(people)
+        mates = (f"both wearing {team} uniforms, as teammates" if team
+                 else "on the same team, as teammates")
         return (f"{look}: {both} BOTH clearly visible in this same frame, "
-                "together, playing on the court; a frame with only one of "
-                "them, or neither, does not count")
+                f"{mates}, playing on the court; a frame with only one of "
+                "them, neither, or them on opposing teams does not count")
     return f"{look}: {people[0]} clearly visible, playing on the court"
 
 
@@ -114,7 +118,8 @@ def shots(item: dict, work: Path, title: str = "") -> list[dict]:
         d = Path(work) / f"outro{i}"
         d.mkdir(parents=True, exist_ok=True)
         hits = find_footage.find_many(
-            item["who"], frame_look(look, people), n=want, secs=SHOT_S,
+            item["who"], frame_look(look, people, item.get("team", "")),
+            n=want, secs=SHOT_S,
             work=d, title=title, skip=seen,
             title_has=[n.split()[-1] for n in people] if len(people) > 1
             else None)

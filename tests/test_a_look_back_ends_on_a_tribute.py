@@ -194,6 +194,11 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
             "Russell Westbrook's Most EXPLOSIVE Dunks", ["Durant",
                                                          "Westbrook"]))
         self.assertIn('"people"', author.SYSTEM)
+        # then KD on the Suns guarding Russ passed as "together"
+        mates = outro.frame_look("x", item["people"], "Oklahoma City Thunder")
+        self.assertIn("Oklahoma City Thunder uniforms", mates)
+        self.assertIn("opposing teams", mates)
+        self.assertIn('"team"', author.SYSTEM)
 
     def test_the_song_is_heard_well_before_the_picture_changes(self):
         # 2026-10-21: "the music needs to start to fade in earlier ...

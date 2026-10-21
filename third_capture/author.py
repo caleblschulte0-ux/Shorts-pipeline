@@ -53,7 +53,7 @@ Return STRICT JSON:
                     "at": number}, ...],
           "song": str,
           "broll": [{"who": str, "look": str, "at": number}, ...],
-          "outro": {"song": str, "who": str, "people": [str, ...],
+          "outro": {"song": str, "who": str, "people": [str, ...], "team": str,
                     "looks": [str, ...], "grade": str},
           "cut": {"start": number, "end": number}, "complete": bool}}
 
@@ -205,7 +205,9 @@ Rules:
     Westbrook"); "people" lists each of them by full name (["Kevin
     Durant", "Russell Westbrook"]) — every shot must show ALL of them in
     the frame together (operator: "not of Russ and KD" of shots of one of
-    them alone); "looks" are 3-4 searches for highlight reels of them
+    them alone); "team" is the team they played on TOGETHER when the
+    look-back is about teammates ("Oklahoma City Thunder" — shots of them
+    on opposing teams do not count), else ""; "looks" are 3-4 searches for highlight reels of them
     PLAYING, together where it is about the two of them ("Westbrook and
     Durant Thunder highlights", "Durant alley-oop from Westbrook",
     "Thunder 2012 NBA Finals Durant Westbrook"). "grade": "grey" for the

@@ -235,7 +235,10 @@ def titled(title: str, words: list[str] | None) -> bool:
 
 
 #: Where a video is sampled when a MONTAGE wants several shots from it.
-MANY_POINTS = (0.12, 0.2, 0.28, 0.36, 0.44, 0.52, 0.6, 0.68, 0.76, 0.84)
+MANY_POINTS = tuple(round(0.1 + 0.05 * i, 2) for i in range(17))  # .1-.9
+#: Reels tried per montage look: the rule "both of them, as teammates"
+#: refuses most frames of most reels.
+MANY_CANDIDATES = 5
 
 
 def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
@@ -264,13 +267,13 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
         from funnel import hot_clips
         seen, cands = set(), []
         for q in queries(who, look):
-            for v in hot_clips.youtube(q, days=365 * YEARS, n=CANDIDATES,
-                                       max_s=MAX_S):
+            for v in hot_clips.youtube(q, days=365 * YEARS,
+                                       n=MANY_CANDIDATES, max_s=MAX_S):
                 if v["url"] not in seen and not is_talk(v.get("title")) \
                         and titled(v.get("title"), title_has):
                     seen.add(v["url"])
                     cands.append(v)
-        for k, v in enumerate(cands[:CANDIDATES]):
+        for k, v in enumerate(cands[:MANY_CANDIDATES]):
             if len(got) >= n:
                 break
             video = download(v["url"], work / f"many_{tag}_{k}.mp4")
