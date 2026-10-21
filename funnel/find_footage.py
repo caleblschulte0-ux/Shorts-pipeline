@@ -226,3 +226,86 @@ def find(who: str, look: str = "", *, secs: float = SECS,
         print(f"::warning::[footage] {who!r} failed ({type(e).__name__})",
               flush=True)
     return None
+
+
+#: Where a video is sampled when a MONTAGE wants several shots from it.
+MANY_POINTS = (0.12, 0.2, 0.28, 0.36, 0.44, 0.52, 0.6, 0.68, 0.76, 0.84)
+
+
+def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
+              work: Path | str = ".", title: str = "",
+              skip: set | None = None) -> list[dict]:
+    """Up to `n` CHECKED shots showing `look`, from as few videos as it
+    takes: a highlight reel of two players holds a dozen shots of them,
+    and the tribute montage wants several (operator, 2026-10-21, of a
+    three-shot montage: *"need to be significantly more basketball clips
+    ... especially clips of just them on the basketball court"*). Each
+    shot is its own scene, none overlapping another; `skip` holds
+    (url, second) keys already used. [] when none, or no brain. Never
+    raises."""
+    who = str(who or "").strip()
+    look = str(look or "").strip() or who
+    skip = skip if skip is not None else set()
+    got: list[dict] = []
+    if not who or n <= 0:
+        return got
+    work = Path(work)
+    tag = _norm(look)[:24] or "x"
+    try:
+        from funnel import hot_clips
+        seen, cands = set(), []
+        for q in queries(who, look):
+            for v in hot_clips.youtube(q, days=365 * YEARS, n=CANDIDATES,
+                                       max_s=MAX_S):
+                if v["url"] not in seen and not is_talk(v.get("title")):
+                    seen.add(v["url"])
+                    cands.append(v)
+        for k, v in enumerate(cands[:CANDIDATES]):
+            if len(got) >= n:
+                break
+            video = download(v["url"], work / f"many_{tag}_{k}.mp4")
+            if not video:
+                continue
+            dur = _seconds(video)
+            if dur < secs * 3:
+                continue
+            frames = [(i, p) for i, f in enumerate(MANY_POINTS)
+                      if (p := _frame(video, dur * f,
+                                      work / f"many_{tag}_{k}_{i}.png"))]
+            verdicts = judge(frames, look, title) if frames else None
+            if verdicts is None:
+                print(f"[footage] {who!r}: no brain to check the footage — "
+                      "no montage shots", flush=True)
+                return got
+            spans: list[tuple[float, float]] = []
+            for i, _p in frames:
+                if len(got) >= n:
+                    break
+                if not (verdicts.get(i) or {}).get("depicts"):
+                    continue
+                at = dur * MANY_POINTS[i]
+                s0, s1 = shot_around(video, at)
+                if s1 - s0 < MIN_SHOT or any(a < s1 and s0 < b
+                                             for a, b in spans):
+                    continue
+                key = (v["url"], round(s0))
+                if key in skip:
+                    continue
+                start = min(max(s0 + 0.1, at - secs / 2),
+                            max(s0 + 0.1, s1 - 0.1 - secs))
+                length = min(secs, s1 - 0.1 - start)
+                clip = cut(video, start, length,
+                           work / f"many_{tag}_{k}_{i}_cut.mp4")
+                if clip:
+                    spans.append((s0, s1))
+                    skip.add(key)
+                    got.append({"path": str(clip), "url": v["url"],
+                                "title": v["title"],
+                                "from_s": round(start, 1),
+                                "secs": round(length, 2)})
+                    print(f"[footage] {look!r}: {v['title'][:50]!r} "
+                          f"@{start:.1f}s", flush=True)
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[footage] {look!r} failed ({type(e).__name__})",
+              flush=True)
+    return got

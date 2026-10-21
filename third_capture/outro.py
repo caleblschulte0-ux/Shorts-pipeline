@@ -17,6 +17,18 @@ song (`funnel/songs.py`) under them alone, with the clip's line of text
 on top, and joins the montage to the end of the clip with a short
 crossfade. Fewer than `MIN_SHOTS` checked shots, or no song, and the
 clip ships as it was: an outro of one shot is a cut-in, not a tribute.
+
+Operator, 2026-10-21, of the first three-shot montage: *"need to be
+significantly more basketball clips ... especially clips of just them on
+the basketball court ... The cut is abrasive. Maybe make it like gray
+... a little gray scale, just to make it sad ... just for this one"*. So
+the montage runs `TARGET_SHOTS` shots, several from each good highlight
+reel (`find_footage.find_many`), every one checked to show THEM on the
+court; the song comes in under the last `PRELAP_S` of the clip and the
+clip's last frame dissolves into the montage over `XFADE_S`, so nothing
+it says is cut and the music arrives before the picture changes; and the
+author picks the montage's `grade` per clip — `faded` by default, `grey`
+for the sad edit.
 """
 from __future__ import annotations
 
@@ -24,12 +36,19 @@ import re
 import subprocess
 from pathlib import Path
 
-SHOT_S = 2.8            # each shot of the montage
+SHOT_S = 2.4            # each shot of the montage
 MIN_SHOTS = 2
-MAX_SHOTS = 4
-XFADE_S = 0.5           # clip -> montage
+MAX_SHOTS = 4           # looks the author may name
+TARGET_SHOTS = 7        # shots the montage runs, taken across the looks
+XFADE_S = 1.0           # the clip's last frame dissolves into the montage
+PRELAP_S = 2.0          # the song starts under the clip's last words
 TAIL_FADE_S = 1.6       # the song and the picture fade out together
-LOOK = "eq=saturation=0.78:contrast=1.04"   # a little faded: memory, not live
+#: The montage's colour, chosen by the author per clip.
+GRADES = {
+    "faded": "eq=saturation=0.78:contrast=1.04",     # memory, not live
+    "grey": "hue=s=0.12,eq=contrast=1.08:brightness=-0.03,vignette=PI/5",
+}
+LOOK = GRADES["faded"]
 
 
 def _text(v, n: int) -> str:
@@ -47,7 +66,9 @@ def parse(raw) -> dict | None:
              if isinstance(x, str) and _text(x, 90)][:MAX_SHOTS]
     if not (song and who and len(looks) >= MIN_SHOTS):
         return None
-    return {"song": song, "who": who, "looks": looks}
+    grade = str(raw.get("grade") or "").strip().lower()
+    return {"song": song, "who": who, "looks": looks,
+            "grade": grade if grade in GRADES else "faded"}
 
 
 def _seconds(path: Path) -> float:
@@ -62,28 +83,36 @@ def _seconds(path: Path) -> float:
 
 
 def shots(item: dict, work: Path, title: str = "") -> list[dict]:
-    """The checked shots for the montage, one per look, each distinct."""
+    """The checked shots for the montage: `TARGET_SHOTS` across the
+    looks, several from each good reel, every one of THEM on the court,
+    none used twice."""
     from funnel import find_footage
     got, seen = [], set()
-    for i, look in enumerate(item["looks"]):
+    looks = item["looks"]
+    for i, look in enumerate(looks):
+        left = TARGET_SHOTS - len(got)
+        if left <= 0:
+            break
+        want = -(-left // (len(looks) - i))        # share what is left
         d = Path(work) / f"outro{i}"
         d.mkdir(parents=True, exist_ok=True)
-        hit = find_footage.find(item["who"], look, secs=SHOT_S, work=d,
-                                title=title)
-        key = (hit or {}).get("url"), round((hit or {}).get("from_s") or 0)
-        if hit and key not in seen:
-            seen.add(key)
-            got.append(hit)
-        print(f"[outro] {look!r}: {'shot' if hit else 'no checked footage'}",
-              flush=True)
-    return got
+        hits = find_footage.find_many(
+            item["who"], f"{look}: {item['who']} themselves, playing on "
+            "the court, not other players", n=want, secs=SHOT_S, work=d,
+            title=title, skip=seen)
+        got += hits
+        print(f"[outro] {look!r}: {len(hits)} shot(s)", flush=True)
+    return got[:TARGET_SHOTS]
 
 
 def graph(n: int, durs: list[float], clip_s: float, w: int, h: int,
-          line_y: int | None) -> str:
+          line_y: int | None, grade: str = "faded") -> str:
     """filter_complex joining input 0 (the rendered clip) to inputs 1..n
     (the shots), with input n+1 the song and, when line_y is set, input
-    n+2 the line of text. Ends in [vout] and [aout]."""
+    n+2 the line of text. Ends in [vout] and [aout]; runs clip_s +
+    sum(durs): the clip's last frame is held under the dissolve, so
+    nothing it says is cut."""
+    look = GRADES.get(grade, LOOK)
     parts = []
     for i in range(n):
         k = i + 1
@@ -93,33 +122,41 @@ def graph(n: int, durs: list[float], clip_s: float, w: int, h: int,
             f"crop={w}:{h},gblur=sigma=24,eq=brightness=-0.05[bd{k}];"
             f"[f{k}]scale={w}:{h}:force_original_aspect_ratio=decrease"
             f"[fs{k}];"
-            f"[bd{k}][fs{k}]overlay=(W-w)/2:(H-h)/2,{LOOK},format=yuv420p,"
+            f"[bd{k}][fs{k}]overlay=(W-w)/2:(H-h)/2,{look},format=yuv420p,"
             f"trim=0:{durs[i]:.2f},setpts=PTS-STARTPTS[s{k}]")
     parts.append("".join(f"[s{i + 1}]" for i in range(n))
                  + f"concat=n={n}:v=1:a=0[mont]")
     mont_s = sum(durs)
+    total = clip_s + mont_s
     cur = "mont"
     if line_y is not None:
         parts.append(f"[{cur}][{n + 2}:v]overlay=0:{line_y}[montl]")
         cur = "montl"
     parts.append(f"[{cur}]fade=t=out:st={mont_s - TAIL_FADE_S:.2f}:"
                  f"d={TAIL_FADE_S},fps=30,settb=1/30[montf]")
-    parts.append(f"[0:v]fps=30,format=yuv420p,setsar=1,settb=1/30[clipv];"
+    parts.append(f"[0:v]fps=30,format=yuv420p,setsar=1,"
+                 f"tpad=stop_mode=clone:stop_duration={XFADE_S},"
+                 f"settb=1/30[clipv];"
                  f"[clipv][montf]xfade=transition=fade:duration={XFADE_S}:"
-                 f"offset={clip_s - XFADE_S:.2f}[vout]")
+                 f"offset={clip_s:.2f}[vout]")
+    song_s = PRELAP_S + mont_s
+    lead_ms = int(max(0.0, clip_s - PRELAP_S) * 1000)
     parts.append(
-        f"[{n + 1}:a]atrim=0:{mont_s:.2f},asetpts=PTS-STARTPTS,"
+        f"[{n + 1}:a]atrim=0:{song_s:.2f},asetpts=PTS-STARTPTS,"
         f"aformat=sample_rates=44100:channel_layouts=stereo,"
-        f"loudnorm=I=-15:TP=-1.5,afade=t=in:st=0:d=0.6,"
-        f"afade=t=out:st={mont_s - TAIL_FADE_S:.2f}:"
-        f"d={TAIL_FADE_S}[song];"
-        f"[0:a]aformat=sample_rates=44100:channel_layouts=stereo[clipa];"
-        f"[clipa][song]acrossfade=d={XFADE_S}[aout]")
+        f"loudnorm=I=-15:TP=-1.5,afade=t=in:st=0:d={PRELAP_S + 0.6:.2f},"
+        f"afade=t=out:st={song_s - TAIL_FADE_S:.2f}:d={TAIL_FADE_S},"
+        f"adelay={lead_ms}|{lead_ms}[song];"
+        f"[0:a]aformat=sample_rates=44100:channel_layouts=stereo,"
+        f"apad=whole_dur={total:.2f}[clipa];"
+        f"[clipa][song]amix=inputs=2:duration=longest:normalize=0,"
+        f"atrim=0:{total:.2f}[aout]")
     return ";".join(parts)
 
 
 def _render(clip: Path, got: list[dict], song: Path, out: Path,
-            clip_s: float, w: int, h: int, line_png, line_y) -> list | None:
+            clip_s: float, w: int, h: int, line_png, line_y,
+            grade: str = "faded") -> list | None:
     """One try at joining `got` to the clip into `out`; the shot lengths,
     or None with ffmpeg's own reason printed."""
     durs = [min(SHOT_S, float(g.get("secs") or SHOT_S)) for g in got]
@@ -132,9 +169,9 @@ def _render(clip: Path, got: list[dict], song: Path, out: Path,
         cmd += ["-loop", "1", "-i", str(line_png)]
     cmd += ["-filter_complex",
             graph(len(got), durs, clip_s, w, h,
-                  line_y if with_line else None),
+                  line_y if with_line else None, grade),
             "-map", "[vout]", "-map", "[aout]",
-            "-t", f"{clip_s - XFADE_S + sum(durs):.3f}",
+            "-t", f"{clip_s + sum(durs):.3f}",
             "-c:v", "libx264", "-preset", "medium", "-crf", "19",
             "-pix_fmt", "yuv420p", "-r", "30",
             "-c:a", "aac", "-b:a", "160k", str(out)]
@@ -166,7 +203,7 @@ def build(clip: Path, item: dict, work: Path, *, w: int, h: int,
                   flush=True)
             return None
         clip_s = _seconds(clip)
-        if clip_s <= XFADE_S + 1:
+        if clip_s <= PRELAP_S + 1:
             return None
         out = Path(work) / "with_outro.mp4"
         # a shot ffmpeg cannot join is dropped, not the whole tribute
@@ -174,17 +211,18 @@ def build(clip: Path, item: dict, work: Path, *, w: int, h: int,
                          if len(got) > MIN_SHOTS else [])
         for use in tries:
             durs = _render(clip, use, song, out, clip_s, w, h,
-                           line_png, line_y)
+                           line_png, line_y, item.get("grade", "faded"))
             if durs:
                 got = use
                 break
         else:
             return None
         out.replace(clip)
-        print(f"[outro] {item['song']} over {len(got)} shots of "
-              f"{item['who']!r}", flush=True)
-        return {"song": item["song"], "shots": [g["url"] for g in got],
-                "secs": round(sum(durs) - XFADE_S, 2)}
+        print(f"[outro] {item['song']} over {len(got)} {item.get('grade')} "
+              f"shots of {item['who']!r}", flush=True)
+        return {"song": item["song"], "grade": item.get("grade", "faded"),
+                "shots": [g["url"] for g in got],
+                "secs": round(sum(durs), 2)}
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[outro] failed ({type(e).__name__}) — the clip "
               "ships without it", flush=True)
