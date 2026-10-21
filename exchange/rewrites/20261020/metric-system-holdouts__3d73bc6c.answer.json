@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "metric-system-holdouts__3d73bc6c",
+  "slug": "metric-system-holdouts",
+  "by": "chatgpt",
+  "written_at": "2026-10-21T11:27:52.896Z",
+  "title": "Metric Unit Errors Put One Orbiter At 57 Kilometers",
+  "hook": "A unit error put one orbiter at 57 kilometers.",
+  "closing": "Units matter because a correct number with the wrong system can still cause failure.",
+  "question": "Where have mixed units caused trouble?",
+  "segments": [
+    {
+      "topic": "Metric Adoption",
+      "say": "Non-metric countries contain 5% of the world's population. Different systems still meet across borders."
+    },
+    {
+      "topic": "Metric Orbiter",
+      "say": "The orbiter's actual altitude was 57 kilometers. A unit mismatch put it far below the plan."
+    },
+    {
+      "topic": "Metric Fuel",
+      "say": "The airliner loaded 20,400 pounds of fuel. The mistaken calculation left it far short of the needed amount."
+    }
+  ]
+}
