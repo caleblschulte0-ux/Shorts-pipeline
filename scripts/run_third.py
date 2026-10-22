@@ -241,7 +241,7 @@ _CLIP_MEMORY: dict | None = None  # what this channel has watched (lazy)
 _SAGA_TURN = 0                     # which lead streamer the next saga reads
 # The streamers whose history the saga arm reads, one per attempt: the
 # names the most-viewed story shorts in the clipper study were about.
-SAGA_LEADS = ("kaicenat", "ishowspeed", "yourrage", "jynxzi", "lacy",
+SAGA_LEADS = ("kaicenat", "ishowspeed", "jynxzi", "lacy",
               "rayasianboy", "marlon", "stableronaldo", "plaqueboymax",
               "jasontheween", "xqc", "adinross")
 # streamer -> story candidates examined THIS RUN, across every slot (see
@@ -1850,7 +1850,10 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             # attempt, backtest 14 still gave Kai 3 of its 6 cuts, two
             # each from four attempts.
             _lead = str((cluster.get("who") or ["?"])[0]).lower()
-            if _per_streamer.get(_lead, 0) >= _per_streamer_max:
+            # a saga attempt reads ONE streamer's history by design; the
+            # cap above cut Kai's 431-deaths Malenia saga unread (2026-10-21)
+            if not _saga and \
+                    _per_streamer.get(_lead, 0) >= _per_streamer_max:
                 print(f"[story] {who}: {_per_streamer_max} {_lead} "
                       f"candidate(s) already examined — skipped for "
                       f"another streamer", flush=True)
