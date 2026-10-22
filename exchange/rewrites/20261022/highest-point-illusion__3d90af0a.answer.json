@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "highest-point-illusion__3d90af0a",
+  "slug": "highest-point-illusion",
+  "by": "chatgpt",
+  "written_at": "2026-10-22T11:18:33.938Z",
+  "title": "Everest Loses At 10,211 Meters From The Base",
+  "hook": "Everest is tallest only when the measurement starts at sea level.",
+  "closing": "Every record depends on its starting line, so the definition decides the winner.",
+  "question": "Which mountain counts as highest?",
+  "segments": [
+    {
+      "topic": "Everest sea level",
+      "say": "Everest reaches 8,849 meters above sea level. That familiar starting line makes it the official tallest peak."
+    },
+    {
+      "topic": "Everest base rival",
+      "say": "Mauna Kea measures 10,211 meters from its base. Most of the taller mountain is hidden underwater."
+    },
+    {
+      "topic": "Everest center rival",
+      "say": "Chimborazo extends 13.4 kilometers beyond a round Earth. The planet's shape pushes its summit farthest from the center."
+    }
+  ]
+}
