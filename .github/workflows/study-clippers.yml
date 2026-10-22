@@ -38,6 +38,11 @@ on:
         type: boolean
         required: false
         default: false
+      probe:
+        description: 'Instead: probe the free video routes (loader.to page, Dailymotion) for the first id and search words, log only'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: write        # push the study to preview-renders
@@ -86,6 +91,9 @@ jobs:
           CLAUDE_CODE_OAUTH_TOKEN: ${{ inputs.judge && secrets.CLAUDE_CODE_OAUTH_TOKEN || '' }}
           GEMINI_API_KEY: ${{ inputs.judge && secrets.GEMINI_API_KEY || '' }}
         run: |
+          if [ "${{ inputs.probe }}" = "true" ]; then
+            python scripts/yt_probe.py "${IDS%%,*}" "${SEARCH%%,*}"; exit 0
+          fi
           python scripts/study_clippers.py --out study --channels "$CHANNELS" --search "$SEARCH" --ids "$IDS" \
             --top "${{ inputs.top || '10' }}" --bottom "${{ inputs.bottom || '4' }}" \
             ${{ inputs.judge && '--judge' || '' }}
