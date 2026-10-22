@@ -14929,13 +14929,50 @@
       "director_cut": true
     },
     "clip-20261022-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/xqc/clip/SleepyAmazingGullMcaT-TZ0ymkDl60Jd0NlY",
-      "story_key": null,
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/JLOhQEg11Rg",
       "title": "Xqc Chaos As Chat Screams 'Where's The Key' During A Brickbois Heist",
       "kind": "twitch_clip",
-      "ts": "2026-10-22T11:35:43.721528+00:00",
+      "ts": "2026-10-22T11:35:53.398323+00:00",
+      "uploaded_at": "2026-10-22T11:35:53.398334+00:00",
+      "publish_at": "2026-10-22T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261022-xqc-chaos-as-chat-screams-where-s-the-key-during-a50cc560",
+        "tiktok": "queued for 2026-10-22T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/xqc/clip/SleepyAmazingGullMcaT-TZ0ymkDl60Jd0NlY",
+      "streamer": "xqc",
+      "series": "chaos",
+      "hook": "xqc's team can't find the key \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 5788,
+      "banger": 0.5,
+      "cut": {
+        "start": 5.8,
+        "end": 35.5
+      },
+      "director_cut": true
+    },
+    "rejected-spotlessmanlygrasstf2john-nr9q6jwuhbjd_e9m": {
+      "source_url": "https://www.twitch.tv/xqc/clip/SpotlessManlyGrassTF2John-nR9Q6jwuhBjD_E9M",
+      "streamer": "xqc",
+      "title": "Brickbois catch air1",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA driving, no clear event)",
+      "ts": "2026-10-22T11:37:44.965954+00:00"
+    },
+    "clip-20261022-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/atrioc/clip/FaithfulMuddySoymilkSSSsss-xMFLs_0GMCkH4-Js",
+      "story_key": null,
+      "streamer": "atrioc",
+      "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
+      "kind": "twitch_clip",
+      "ts": "2026-10-22T11:43:29.058333+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
