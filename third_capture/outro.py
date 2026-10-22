@@ -116,7 +116,7 @@ def _seconds(path: Path) -> float:
         return 0.0
 
 
-def frame_look(look: str, people: list[str], team: str = "",
+def _frame_look(look: str, people: list[str], team: str = "",
                numbers: list[str] | None = None) -> str:
     """What the brain must SEE in a montage frame (operator, 2026-10-21:
     *"the basketball clip was ass and not of Russ and KD"* — KD alone on
@@ -149,6 +149,17 @@ def frame_look(look: str, people: list[str], team: str = "",
     return (f"{look}: {people[0]} clearly visible in the game making the "
             "play; NOT a studio, an interview, a close-up of one face or "
             "the crowd")
+
+
+def frame_look(look: str, people: list[str], team: str = "",
+               numbers: list[str] | None = None) -> str:
+    """What the brain must see in a montage frame (`_frame_look`), and
+    never a phone's screen, a menu or a ranking card (2026-10-22: a
+    Josh Allen montage held a screen recording's control centre and a
+    fan reel's "#5-" title)."""
+    return (_frame_look(look, people, team, numbers)
+            + "; and NOT a phone or computer screen, an app menu, a title "
+            "card or text over a still")
 
 
 def shots(item: dict, work: Path, title: str = "") -> list[dict]:
