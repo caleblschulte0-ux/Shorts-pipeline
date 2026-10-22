@@ -1,177 +1,148 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "decorative_mascot": {
-   "count": 12,
-   "stories": {
-    "sports_jaylen_brown_h_lebron_the": 1,
-    "kelp-forest-sea-star-collapse": 3,
-    "nyc-noise-complaints-per-day": 6,
-    "rubiks-cube-record-vs-robot": 2
-   },
-   "timestamps": [
-    "2026-10-20T11:39:38+00:00",
-    "2026-10-21T10:43:49+00:00",
-    "2026-10-21T10:58:23+00:00",
-    "2026-10-21T11:13:33+00:00",
-    "2026-10-21T15:27:57+00:00",
-    "2026-10-21T15:27:57+00:00",
-    "2026-10-21T15:27:57+00:00",
-    "2026-10-21T15:46:38+00:00",
-    "2026-10-21T15:46:38+00:00",
-    "2026-10-21T15:58:41+00:00",
-    "2026-10-21T20:15:14+00:00",
-    "2026-10-21T20:42:20+00:00"
-   ],
-   "examples": [
-    "malformed_judge_response: checks.decorative_mascot.evidence missing or empty",
-    "decorative_mascot: hook@0.3 to seg0:end: Data stands in one spot with his hands on his face while the kelp vanishes. seg2:start to seg2:end: he stands still among the urchins. seg1:mid/end: he holds o",
-    "decorative_mascot: hook@0.3 to seg0:end: Data stands in one spot on the urchins with his hands on his head for about 4.5s while the kelp disappears around him. In seg2:start and seg2:mid he stands and"
-   ],
-   "recurred_after_fix": false
-  },
-  "empty_void": {
-   "count": 8,
-   "stories": {
-    "sports_jaylen_brown_h_lebron_the": 1,
-    "vertical-farming-bust": 1,
-    "kelp-forest-sea-star-collapse": 3,
-    "nyc-noise-complaints-per-day": 1,
-    "rubiks-cube-record-vs-robot": 2
-   },
-   "timestamps": [
-    "2026-10-20T11:39:38+00:00",
-    "2026-10-21T10:22:39+00:00",
-    "2026-10-21T10:43:49+00:00",
-    "2026-10-21T10:58:23+00:00",
-    "2026-10-21T11:13:33+00:00",
-    "2026-10-21T15:58:41+00:00",
-    "2026-10-21T20:15:14+00:00",
-    "2026-10-21T20:42:20+00:00"
-   ],
-   "examples": [
-    "malformed_judge_response: checks.empty_void.evidence missing or empty",
-    "empty_void: seg4:end (t=31.77): the whole frame is a dark navy gradient with only Data holding a blank yellow price tag at the bottom. It is an empty-stage flash inside the closing, and dark_fraction=",
-    "empty_void: payoff@-0.4: the last frame is an almost empty dark navy gradient with only a small Data at the bottom, a wasted end card after the closing"
-   ],
-   "recurred_after_fix": false
-  },
   "other": {
-   "count": 7,
+   "count": 14,
    "stories": {
-    "sports_jaylen_brown_h_lebron_the": 1,
-    "vertical-farming-bust": 1,
-    "nyc-noise-complaints-per-day": 3,
-    "rubiks-cube-record-vs-robot": 2
+    "sports_aaron_ashby__these_dudes": 2,
+    "sports_charles_barkley_g_this_close": 3,
+    "sports_miguel_rojas__that_was_my": 6,
+    "sports_brady_tkachuk_ed_after_his": 3
    },
    "timestamps": [
-    "2026-10-20T11:39:38+00:00",
-    "2026-10-21T10:22:39+00:00",
-    "2026-10-21T15:27:57+00:00",
-    "2026-10-21T15:46:38+00:00",
-    "2026-10-21T15:58:41+00:00",
-    "2026-10-21T20:15:14+00:00",
-    "2026-10-21T20:42:20+00:00"
+    "2026-10-22T14:00:11+00:00",
+    "2026-10-22T14:07:25+00:00",
+    "2026-10-22T14:11:14+00:00",
+    "2026-10-22T14:41:43+00:00",
+    "2026-10-22T14:53:20+00:00",
+    "2026-10-22T15:05:40+00:00",
+    "2026-10-22T15:22:58+00:00",
+    "2026-10-22T15:48:15+00:00",
+    "2026-10-22T16:48:49+00:00",
+    "2026-10-22T16:51:11+00:00",
+    "2026-10-22T17:04:42+00:00",
+    "2026-10-22T17:18:20+00:00",
+    "2026-10-22T17:29:21+00:00",
+    "2026-10-22T17:32:37+00:00"
    ],
    "examples": [
-    "malformed_judge_response: checks.unreadable.evidence missing or empty",
-    "unreadable: seg4:start/mid: the closing line 'alone won't feed you.' is printed on top of the 'Indoor farm money' title. payoff@-1.8 and payoff@-0.4: the same line collides with the big '-91%' so both",
-    "unreadable: In seg1:end the caption 'huge slice of' sits over the road's yellow line and almost disappears. In seg2:end 'up the phone' is faded grey on grey. In seg1:end 'EVERYTHING ELSE' is printed o"
+    "unreadable: From hook@1.5 through mid1 our line 'Aaron Ashby: \"I would die for any of these dudes\"' sits on top of the broadcast's 'POSTSEASON 2026' graphic and its gold rule lines. The letters run in",
+    "unreadable: In hook@0.3 to hook@2.2, our line 'Ashby after the Brewers punch a World Series ticket' sits on top of the broadcast's own 'POSTSEASON 2026' TV graphic. Our white text collides with the gr",
+    "unreadable: At mid4 our line 'Chuck won't stand near Shaq' sits on top of the TV's GIANNIS ANTETOKOUNMPO stat bar and is hard to read. The word captions are also garbled ('I HEY,T.' at hook@0.8) and c"
    ],
    "recurred_after_fix": false
   },
   "junk_imagery": {
    "count": 6,
    "stories": {
-    "sports_jaylen_brown_h_lebron_the": 1,
-    "kelp-forest-sea-star-collapse": 2,
-    "nyc-noise-complaints-per-day": 1,
-    "rubiks-cube-record-vs-robot": 2
+    "sports_charles_barkley_g_this_close": 3,
+    "japan-vending-machine-density": 1,
+    "sports_brady_tkachuk_ed_after_his": 2
    },
    "timestamps": [
-    "2026-10-20T11:39:38+00:00",
-    "2026-10-21T10:43:49+00:00",
-    "2026-10-21T10:58:23+00:00",
-    "2026-10-21T15:46:38+00:00",
-    "2026-10-21T20:15:14+00:00",
-    "2026-10-21T20:42:20+00:00"
+    "2026-10-22T14:11:14+00:00",
+    "2026-10-22T13:19:28+00:00",
+    "2026-10-22T15:22:58+00:00",
+    "2026-10-22T15:48:15+00:00",
+    "2026-10-22T16:51:11+00:00",
+    "2026-10-22T17:32:37+00:00"
    ],
    "examples": [
-    "malformed_judge_response: checks.junk_imagery.evidence missing or empty",
-    "junk_imagery: payoff@-0.4: Data stands on a blank dark gradient holding a blank yellow price tag, a stock pose that has nothing to do with kelp or sea stars",
-    "junk_imagery: payoff@-0.4: the last frame cuts to a dark gradient where Data holds up a BLANK yellow price tag. The tag has nothing to do with kelp or sea stars."
+    "junk_imagery: mid3/mid4 cut away to Giannis warm-up footage with a Bucks stat graphic, and payoff@-1.8/-0.4 is the ESPN TIP-OFF logo card. Neither has anything to do with Chuck and Shaq, so the second",
+    "junk_imagery: payoff@-0.4: on a blank dark screen, Data holds an empty yellow price tag, the generic default prop that has nothing to do with the soup ending.",
+    "junk_imagery: mid3 (19.6s) cuts to an unrelated Heat-arena dunk and mid4 (25.3s) to Giannis dribbling under a 'LAST SEASON W/ BUCKS' stat bar. Neither has Barkley or Shaq, so the footage stops showing"
    ],
    "recurred_after_fix": false
   },
-  "temporal_gate": {
-   "count": 5,
+  "empty_void": {
+   "count": 4,
    "stories": {
-    "rubiks-cube-record-vs-robot": 5
+    "japan-vending-machine-density": 3,
+    "pickleball-fastest-growing-sport": 1
    },
    "timestamps": [
-    "2026-10-19T14:29:54+00:00",
-    "2026-10-19T17:48:52+00:00",
-    "2026-10-19T19:53:41+00:00",
-    "2026-10-19T22:18:59+00:00",
-    "2026-10-20T12:07:05+00:00"
+    "2026-10-22T12:35:15+00:00",
+    "2026-10-22T12:59:30+00:00",
+    "2026-10-22T13:19:28+00:00",
+    "2026-10-22T16:30:30+00:00"
    ],
    "examples": [
-    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)",
-    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)",
-    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
-   ],
-   "recurred_after_fix": false
-  },
-  "bare_number": {
-   "count": 1,
-   "stories": {
-    "sports_jaylen_brown_h_lebron_the": 1
-   },
-   "timestamps": [
-    "2026-10-20T11:39:38+00:00"
-   ],
-   "examples": [
-    "malformed_judge_response: checks.bare_number_card.evidence missing or empty"
+    "empty_void: The last frame, payoff@-0.4, is a near-black empty gradient with only a small Data in the lower third holding a blank price tag. Nearly the whole frame is wasted on the final shot.",
+    "empty_void: payoff@-0.4 (t=27.10s): the closing scene drops to a near-black gradient with nothing in it except Data holding a blank yellow price tag. The last frame of the video is an empty void.",
+    "empty_void: payoff@-0.4: the last frame is an almost-black gradient filling the whole screen, with only a small Data and a blank price tag at the bottom. The soup street scene is gone."
    ],
    "recurred_after_fix": false
   },
   "dead_air": {
-   "count": 1,
+   "count": 3,
    "stories": {
-    "rubiks-cube-record-vs-robot": 1
+    "japan-vending-machine-density": 1,
+    "sports_charles_barkley_g_this_close": 2
    },
    "timestamps": [
-    "2026-10-21T20:15:14+00:00"
+    "2026-10-22T12:35:15+00:00",
+    "2026-10-22T15:22:58+00:00",
+    "2026-10-22T17:32:37+00:00"
    ],
    "examples": [
-    "dead_air: seg4:start (22.96s), seg4:mid, payoff@-1.8 and seg4:end (26.53s) show the same frozen stopwatch. Only the CTA text fades in. That is about 3.5s or more held with nothing moving (measured max"
+    "dead_air: The frame from seg3:end (20.59s) through seg4:start, seg4:mid, payoff@-1.8 and seg4:end (26.59s) is the same picture. Only a bird and the steam change, which is about 6s of nothing meaningfu",
+    "dead_air: mid5 (31.0s) through payoff@-0.4 (32.6s), plus the cutaways before it, are a static ESPN 'TIP-OFF presented by Lilly' logo bumper. Nobody is on screen and the joke has already ended.",
+    "dead_air: From payoff@-1.8 (32.27s) to payoff@-0.4 (33.67s) the clip ends on the ESPN TIP-OFF 'presented by Lilly' bumper. Nobody speaks and nothing happens; it is just a logo."
+   ],
+   "recurred_after_fix": false
+  },
+  "decorative_mascot": {
+   "count": 2,
+   "stories": {
+    "japan-vending-machine-density": 2
+   },
+   "timestamps": [
+    "2026-10-22T12:35:15+00:00",
+    "2026-10-22T12:59:30+00:00"
+   ],
+   "examples": [
+    "decorative_mascot: Data really drags a red machine off the row in seg0:start to seg0:end. After that he only stands and waves: seg2:start to seg2:end between the machines, seg3:mid to seg4:mid in fron",
+    "decorative_mascot: Data does real work in the hook and seg1: the cord runs to his hand as the shelves go dark (hook@0.8 to seg0:end), and he drags machines out of the row (seg1:mid). In seg2 (start/mi"
+   ],
+   "recurred_after_fix": false
+  },
+  "temporal_gate": {
+   "count": 1,
+   "stories": {
+    "ai-datacenter-water": 1
+   },
+   "timestamps": [
+    "2026-10-22T18:39:00+00:00"
+   ],
+   "examples": [
+    "temporal_gate: max_dup_run 68 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=27.92s of 35.88s (~2.8s frozen)"
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 2,
+   "median": 3,
    "min": 0,
-   "max": 4
+   "max": 3
   },
   "data_demo": {
    "median": 3,
    "min": 0,
-   "max": 5
+   "max": 4
   },
   "mascot": {
-   "median": 1,
+   "median": 4,
    "min": 0,
    "max": 4
   },
   "craft": {
-   "median": 2,
+   "median": 1,
    "min": 0,
-   "max": 3
+   "max": 2
   },
   "pace": {
-   "median": 1,
+   "median": 2,
    "min": 0,
    "max": 2
   },
@@ -182,30 +153,30 @@
   },
   "temporal_craft": {
    "median": 3,
-   "min": 2,
+   "min": 3,
    "max": 3
   }
  },
  "scores": [
-  14,
-  14,
-  14,
-  14,
-  95,
-  14,
-  100,
-  14,
+  75,
+  70,
+  58,
+  66,
   70,
   74,
   83,
-  75,
-  61,
-  61,
-  61,
-  48,
+  83,
+  83,
+  83,
+  58,
   53,
-  44,
-  52,
-  61
+  62,
+  49,
+  87,
+  83,
+  83,
+  58,
+  66,
+  14
  ]
 }
