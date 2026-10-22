@@ -72,9 +72,12 @@ a rival, a game or a record (Melo on LeBron saving him from drowning:
 then LeBron and Melo playing together); a retirement, a farewell, a
 tribute, a first game back, a parent watching their kid; the aftermath
 of a big win or loss (a locker-room speech, a tearful postgame, a
-celebration): then the win or the play that caused it. For each of
-those, `story` names what the ending shows, the way a YouTube clip of it
-is titled ("LeBron and Carmelo Team USA highlights"). Moments with no
+celebration). For each of those, `story` names what the ending shows:
+the story's SUBJECT, the person or thing the moment is about, who is
+often not the person on camera (Campbell giving the game ball to the
+Lions' radio voice: "Dan Miller's famous Lions radio calls", never Lions
+plays; Verlander's daughter running out to him: "Verlander with his
+kids over the years", never his pitching). Moments with no
 story (a fan doing something wild, a funny quote) come after, `story`
 "".
 

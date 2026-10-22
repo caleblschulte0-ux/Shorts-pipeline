@@ -53,7 +53,8 @@ Return STRICT JSON:
                     "at": number}, ...],
           "song": str,
           "broll": [{"who": str, "look": str, "at": number}, ...],
-          "outro": {"song": str, "who": str, "people": [str, ...], "team": str,
+          "outro": {"song": str, "shows": str, "who": str,
+                    "people": [str, ...], "team": str,
                     "numbers": [str, ...],
                     "looks": [str, ...], "grade": str},
           "cut": {"start": number, "end": number}, "complete": bool}}
@@ -197,17 +198,31 @@ Rules:
     clip's done, play some sad music, and then cut to, like, clips of
     them playing together"; and then: "it's not just tributes ...
     anytime we can do anything like that, whether it's a sad thing or a
-    happy thing or a tribute or whatever it is, we should do it"). Give
-    it to EVERY clip where the person talks about something that
-    happened on the field that we can show: a teammate or a rivalry, a
-    game they remember, a record, a title, a choke, a blooper, a
-    comeback. And every clip that is the AFTERMATH of something on the
-    field (a locker-room speech after the win, a drunk celebration, a
-    postgame tear, a coach losing it about a call): the payoff is the
-    play or the win that caused it. The clip plays untouched; after it, the `song` comes in
+    happy thing or a tribute or whatever it is, we should do it"). The
+    ending SHOWS WHAT THE CLIP IS ABOUT: first name the story's SUBJECT,
+    the person or thing the moment is about, who is often NOT the person
+    on camera; then show only that subject (operator, 2026-10-22: "that
+    Dan Campbell one. It was about that announcer, right? Why the fuck
+    would we show clips of the Lions? ... that Verlander one with his
+    daughter, why would we cut the clips of Verlander playing baseball
+    after that?"). So: KD on missing Russ -> KD and Russ playing
+    together; Campbell giving the game ball to the Lions' radio voice Dan
+    Miller -> Dan Miller in the booth making his famous calls, never
+    Lions plays; Team USA carrying Johnny Gaudreau's jersey -> Gaudreau
+    playing; Verlander's daughter running out to him in his last start ->
+    Verlander with his kids over the years, never his pitching; a QB in
+    tears about a loss -> the plays that lost it. Never the person on
+    camera's career, team or highlights just because they are on camera.
+    Give an outro whenever the subject is showable, sad or happy or
+    funny; when what the clip is about cannot be shown (no footage would
+    show it), outro null. The clip plays untouched; after it, the `song` comes in
     over a montage of that thing, and the song's mood is the story's:
 {OUTRO_MENU}
-    "who" is who the shots are of ("Kevin Durant Russell Westbrook",
+    "shows" is one sentence of what EVERY shot must show, the subject
+    doing the thing the story is about ("Dan Miller in the Lions radio
+    booth calling a play", "Justin Verlander with his young daughter",
+    "Kevin Durant and Russell Westbrook on the Thunder together"): each
+    shot is checked against it. "who" is who the shots are of ("Kevin Durant Russell Westbrook",
     "Kobe Bryant"); "people" lists each by full name — the footage
     must show them; "team" is the team they played for in that footage
     ("Oklahoma City Thunder", "Los Angeles Lakers") when it was one team,

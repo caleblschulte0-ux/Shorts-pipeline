@@ -97,6 +97,10 @@ def parse(raw) -> dict | None:
                         if _text(x, 4)][:len(people)]
             if len(raw.get("numbers") or []) == len(people) else [],
             "team": _text(raw.get("team"), 40),
+            # what every shot shows: the story's subject, who is often not
+            # the person on camera (Campbell's clip was about his radio
+            # voice Dan Miller, and it ended on Lions plays; 2026-10-22)
+            "shows": _text(raw.get("shows"), 160),
             "grade": grade if grade in GRADES else "faded",
             # the clip itself, by url and title: never a shot of the payoff
             # (a montage of the daughter hugging Verlander, cut from the
@@ -152,12 +156,24 @@ def _frame_look(look: str, people: list[str], team: str = "",
 
 
 def frame_look(look: str, people: list[str], team: str = "",
-               numbers: list[str] | None = None) -> str:
+               numbers: list[str] | None = None, shows: str = "") -> str:
     """What the brain must see in a montage frame (`_frame_look`), and
     never a phone's screen, a menu or a ranking card (2026-10-22: a
     Josh Allen montage held a screen recording's control centre and a
     fan reel's "#5-" title)."""
-    return (_frame_look(look, people, team, numbers)
+    if shows:
+        # the author named the story's subject: the frame shows THAT, and
+        # a game rule written for players would refuse an announcer in his
+        # booth or a father with his daughter
+        base = (f"{look}: {shows}; NOT someone else, a far-away wide shot "
+                "or the crowd")
+        if team and numbers:
+            nums = " or ".join(f"#{n}" for n in numbers)
+            base += (f" (in a game, tell them by the {team} uniform with "
+                     f"{nums}; a face is too small at broadcast distance)")
+    else:
+        base = _frame_look(look, people, team, numbers)
+    return (base
             + "; and NOT a phone or computer screen, an app menu, a title "
             "card or text over a still")
 
@@ -179,7 +195,8 @@ def shots(item: dict, work: Path, title: str = "") -> list[dict]:
         d.mkdir(parents=True, exist_ok=True)
         hits = find_footage.find_many(
             item["who"], frame_look(look, people, item.get("team", ""),
-                                    item.get("numbers")),
+                                    item.get("numbers"),
+                                    item.get("shows", "")),
             n=want, secs=SHOT_S, max_s=PLAY_MAX_S, per_video=PER_CLIP,
             title_not=VERSUS if item.get("team") else None, query=look,
             work=d, title=title, skip=seen, avoid=set(item.get("avoid") or []),
