@@ -538,3 +538,18 @@ class TheClipGetsToThePoint(unittest.TestCase):
                            "cut": {"start": 36.0, "end": 86.2}}, [], 90.0)
         self.assertAlmostEqual(e["cut"]["start"], 86.2 - ss.FRONT_MAX_S,
                                places=1)
+
+
+class TheTrimNeverEatsTheClip(unittest.TestCase):
+    """2026-10-22: a 17s cheer with no words before the next sentence left
+    Gaudreau's kids 8 seconds on screen."""
+
+    def test_a_late_sentence_is_not_where_it_starts(self):
+        from scripts import sports_samples as ss
+        words = [{"w": "Man.", "s": 10.0, "e": 10.5},
+                 {"w": "Wow", "s": 77.1, "e": 77.5}]
+        e = ss.trim_front({"outro": {"who": "x"},
+                           "cut": {"start": 0.0, "end": 85.1}}, words, 90.0)
+        kept = e["cut"]["end"] - e["cut"]["start"]
+        self.assertGreaterEqual(kept, ss.FRONT_MAX_S - ss.SNAP_S)
+        self.assertLessEqual(kept, ss.FRONT_MAX_S)

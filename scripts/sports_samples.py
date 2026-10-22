@@ -356,12 +356,17 @@ def _dur(path: Path) -> float:
 # is the START: the payoff and its reaction are at the end.
 FRONT_MAX_S = 25.0
 CLIP_MAX_S = 40.0
+# a sentence start this far past the cap is still taken; one later than
+# that would cut most of the clip away (a cheer with no words for 17s left
+# Gaudreau's kids 8 seconds), so the cut starts at the cap instead
+SNAP_S = 5.0
 
 
 def trim_front(edit: dict, words: list[dict], dur: float) -> dict:
     """Move the cut's start forward until the clip fits its cap, onto the
-    first sentence that begins there (a word after a pause or after . ? !),
-    so it never opens mid-sentence. The end is never moved."""
+    first sentence that begins within SNAP_S of it (a word after a pause
+    or after . ? !), so it never opens mid-sentence. The end is never
+    moved, and the clip keeps at least FRONT/CLIP_MAX_S - SNAP_S."""
     cut = edit.get("cut") or {"start": 0.0, "end": dur}
     lo, hi = float(cut.get("start") or 0.0), float(cut.get("end") or dur)
     cap = FRONT_MAX_S if edit.get("outro") else CLIP_MAX_S
@@ -369,7 +374,7 @@ def trim_front(edit: dict, words: list[dict], dur: float) -> dict:
         return edit
     want = hi - cap
     starts = [w["s"] for i, w in enumerate(words or [])
-              if want + 0.3 <= w["s"] < hi - 8
+              if want + 0.3 <= w["s"] <= want + SNAP_S
               and (i == 0 or w["s"] - words[i - 1]["e"] >= 0.5
                    or str(words[i - 1]["w"]).rstrip()[-1:] in ".?!")]
     new = max(lo, starts[0] - 0.3) if starts else want
