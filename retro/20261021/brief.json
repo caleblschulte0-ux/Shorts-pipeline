@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261021",
-  "generated_at": "2026-10-21T23:31:09Z",
+  "generated_at": "2026-10-22T00:31:02Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 27.76,
+          "days": 27.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 26.76,
+          "days": 26.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1596,10 +1596,13 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "7adb681",
-    "commits_since": "2026-10-20",
+    "head": "3771f7d",
+    "commits_since": "2026-10-21",
     "commit_count": 50,
     "commits": [
+      "3771f7d third: a saga arm that reads a streamer's history across years (#686)",
+      "49877f8 claim: mailbox verdicts 2026-10-21T23:48Z [skip ci]",
+      "7ed58e5 retro: brief + triage for 20261021 [skip ci]",
       "7adb681 third: extended clips are their own daily slot (#685)",
       "4db9e0b claim: mailbox verdicts 2026-10-21T22:35Z [skip ci]",
       "0f8fc02 story forge: new real-data stories [skip ci]",
@@ -1636,10 +1639,7 @@
       "fd0377a claim: mailbox verdicts 2026-10-21T12:48Z [skip ci]",
       "2d6edfb watchdog: chatgpt task verdicts 20261021 [skip ci]",
       "f33d1b4 third: analytics [skip ci]",
-      "2aea673 third: update posted log + analytics [skip ci]",
-      "be70711 third: checkpoint posted log (claim upload slot) [skip ci]",
-      "6a875ee sports: 2026-10-21 posted log + verdicts [skip ci]",
-      "65b7721 third: analytics [skip ci]"
+      "2aea673 third: update posted log + analytics [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
@@ -1687,6 +1687,7 @@
       "test_a_story_has_no_narrator_only_a_line_of_text.py",
       "test_a_story_hears_its_streamer.py",
       "test_a_story_is_a_chain_and_shows_what_it_talks_about.py",
+      "test_a_story_is_a_saga.py",
       "test_a_story_is_long_enough_to_mean_something.py",
       "test_a_story_is_planned_in_several_takes.py",
       "test_a_story_is_repaired_before_it_is_dropped.py",
