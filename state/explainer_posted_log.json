@@ -4002,6 +4002,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 70,
       "duration_s": 27.9
+    },
+    "japan-vending-machine-density": {
+      "claimed_at": "2026-10-22T13:19:31.075470+00:00",
+      "title": "Japan Has One Vending Machine For Every 31 People",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5068,6 +5075,14 @@
       "state": "posted",
       "slug": "rubiks-cube-record-vs-robot",
       "at": "2026-10-22T01:07:34.303770+00:00"
+    },
+    {
+      "claimed_at": "2026-10-22T13:19:31.075470+00:00",
+      "title": "Japan Has One Vending Machine For Every 31 People",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "japan-vending-machine-density"
     }
   ]
 }
