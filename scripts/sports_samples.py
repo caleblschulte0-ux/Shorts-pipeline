@@ -72,12 +72,17 @@ a rival, a game or a record (Melo on LeBron saving him from drowning:
 then LeBron and Melo playing together); a retirement, a farewell, a
 tribute, a first game back, a parent watching their kid; the aftermath
 of a big win or loss (a locker-room speech, a tearful postgame, a
-celebration). For each of those, `story` names what the ending shows:
+celebration). But a moment that is complete on screen is a CLIP,
+not a story (operator, 2026-10-22, of Verlander's daughter walking him
+off and Josh Allen in tears: "that doesn't need to be a story. That's
+just a singular clip"): `story` "" for those, they just play. A story
+points at something bigger the clip never shows (a teammate who is gone,
+a player who died, a broadcaster's decades in the booth). When in doubt,
+it is a clip. For each STORY, `story` names what the ending shows:
 the story's SUBJECT, the person or thing the moment is about, who is
 often not the person on camera (Campbell giving the game ball to the
 Lions' radio voice: "Dan Miller's famous Lions radio calls", never Lions
-plays; Verlander's daughter running out to him: "Verlander with his
-kids over the years", never his pitching; whoever GIVES a ball, a
+plays; whoever GIVES a ball, a
 captaincy or an award, the subject is who RECEIVES it: Thornton naming
 Celebrini captain is "Celebrini playing", never Thornton). Moments with no
 story (a fan doing something wild, a funny quote) come after, `story`
@@ -138,11 +143,15 @@ SPORTS_BRIEF = (
     "that clip can spark a couple more clips ... making something of our "
     "own'): whenever the person refers to something not on screen (the "
     "play, the game, the player they are calling out, an old teammate, "
-    "the record), broll real footage of it at that second. When someone "
-    "talks about something that happened that we can show (a teammate, "
-    "a rival, a game, a record, a title, a choke, a blooper), give it the "
-    "outro: the clip plays as it is, then a song in the story's mood "
-    "(sad, hype, triumph or funny) over the footage of it. Never name a "
+    "the record), broll real footage of it at that second: it plays "
+    "over their voice, then cuts back to them. Only a STORY gets the "
+    "outro (the clip plays as it is, then a song over footage of what it "
+    "is about): something bigger than the clip that it never shows. A "
+    "moment complete on screen (a tearful postgame, a family moment, a "
+    "celebration) is a clip: outro null. The cut OPENS on the moment: "
+    "never skating, warming up, walking or the crowd before it (the "
+    "operator: 'they skate around the ice for 30 seconds ... I would "
+    "swipe away'). Never name a "
     "team, a city, a year or a fact the post title and the transcript do "
     "not say (a title once put Case Keenum's Bears locker room in Dallas).")
 
@@ -339,6 +348,35 @@ def _dur(path: Path) -> float:
         return 0.0
 
 
+# How long the clip itself may run before what follows it (operator,
+# 2026-10-22: "they skate around the ice for 30 seconds ... I would swipe
+# away, I wouldn't even get to make it to the tribute part. So shorten
+# some of those beginning clips up"). A story's song and montage come
+# after FRONT_MAX_S; a clip on its own runs at most CLIP_MAX_S. What goes
+# is the START: the payoff and its reaction are at the end.
+FRONT_MAX_S = 25.0
+CLIP_MAX_S = 40.0
+
+
+def trim_front(edit: dict, words: list[dict], dur: float) -> dict:
+    """Move the cut's start forward until the clip fits its cap, onto the
+    first sentence that begins there (a word after a pause or after . ? !),
+    so it never opens mid-sentence. The end is never moved."""
+    cut = edit.get("cut") or {"start": 0.0, "end": dur}
+    lo, hi = float(cut.get("start") or 0.0), float(cut.get("end") or dur)
+    cap = FRONT_MAX_S if edit.get("outro") else CLIP_MAX_S
+    if hi - lo <= cap:
+        return edit
+    want = hi - cap
+    starts = [w["s"] for i, w in enumerate(words or [])
+              if want + 0.3 <= w["s"] < hi - 8
+              and (i == 0 or w["s"] - words[i - 1]["e"] >= 0.5
+                   or str(words[i - 1]["w"]).rstrip()[-1:] in ".?!")]
+    new = max(lo, starts[0] - 0.3) if starts else want
+    edit["cut"] = {"start": round(new, 2), "end": round(hi, 2)}
+    return edit
+
+
 def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
          line_top: bool = False, used_songs: list | None = None) -> dict:
     """Author and cut one post. `notes` is a refused cut's verdict for the
@@ -362,6 +400,8 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
     if meta and (meta.get("edit") or {}).get("complete") is False:
         return {"skipped": "author: no setup or no payoff in the clip",
                 "meta": meta}
+    if meta and isinstance(meta.get("edit"), dict):
+        trim_front(meta["edit"], words, dur)
     o = ((meta or {}).get("edit") or {}).get("outro")
     if isinstance(o, dict):
         perm = str(c.get("permalink") or "")

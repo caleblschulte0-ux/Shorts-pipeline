@@ -209,9 +209,7 @@ Rules:
     together; Campbell giving the game ball to the Lions' radio voice Dan
     Miller -> Dan Miller in the booth making his famous calls, never
     Lions plays; Team USA carrying Johnny Gaudreau's jersey -> Gaudreau
-    playing; Verlander's daughter running out to him in his last start ->
-    Verlander with his kids over the years, never his pitching; a QB in
-    tears about a loss -> the plays that lost it. When someone GIVES
+    playing. When someone GIVES
     something (a game ball, a captaincy, an award, a jersey), the subject
     is who RECEIVES it: Joe Thornton naming Macklin Celebrini the Sharks'
     captain -> Celebrini playing, never Thornton. Never the person on
@@ -219,8 +217,21 @@ Rules:
     and never the clip's own moment again from another angle: the ending
     ADDS what the clip does not show (Verlander's last start, re-shown
     from the dugout, told nothing new).
-    Give an outro whenever the subject is showable, sad or happy or
-    funny; when what the clip is about cannot be shown (no footage would
+    A STORY OR A CLIP (operator, 2026-10-22: "that Justin Verlander one,
+    that doesn't need to be a story. That's just a singular clip ... Josh
+    Allen one, too. Like, that is not a story. Don't cut the clips after
+    that. You can just play that clip"). An outro is only for a STORY:
+    the clip points at something BIGGER than itself that happened
+    somewhere else or over years, which the clip never shows and the
+    viewer has to see to feel it (KD missing the teammate he left; Team
+    USA carrying the jersey of a player who died; Campbell honouring a
+    broadcaster's decades in the booth). A moment that is complete on
+    screen is a CLIP, outro null, it just plays: a daughter running out
+    to her dad, a QB in tears at the podium, a celebration, a speech
+    that lands, a funny answer. When in doubt it is a clip. To show
+    something a clip TALKS about, use broll (the footage plays over his
+    voice, then cuts back to him), never an outro.
+    When it is a story whose subject cannot be shown (no footage would
     show it), outro null. The clip plays untouched; after it, the `song` comes in
     over a montage of that thing, and the song's mood is the story's:
 {OUTRO_MENU}

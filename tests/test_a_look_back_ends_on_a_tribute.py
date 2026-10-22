@@ -473,6 +473,16 @@ class TheEndingShowsWhatTheClipIsAbout(unittest.TestCase):
         self.assertIn("SHOWS WHAT THE CLIP IS ABOUT", src)
         self.assertIn('"shows"', src)
 
+    def test_a_moment_complete_on_screen_is_a_clip(self):
+        # 2026-10-22: Verlander's daughter and Josh Allen in tears got
+        # montages; "that's not a story. That's just one clip."
+        from third_capture import author as a
+        import inspect
+        from scripts import sports_samples as ss
+        self.assertIn("A STORY OR A CLIP", inspect.getsource(a))
+        self.assertIn("is a CLIP", ss.PICK_SYSTEM)
+        self.assertIn("outro null", ss.SPORTS_BRIEF)
+
     def test_who_receives_it_is_the_subject(self):
         # 2026-10-22: Thornton naming Celebrini captain ended on Thornton.
         from third_capture import author as a
@@ -480,3 +490,51 @@ class TheEndingShowsWhatTheClipIsAbout(unittest.TestCase):
         from scripts import sports_samples as ss
         for src in (inspect.getsource(a), ss.PICK_SYSTEM):
             self.assertIn("RECEIVES", src)
+
+
+class TheClipGetsToThePoint(unittest.TestCase):
+    """2026-10-22: "they skate around the ice for 30 seconds ... I would
+    swipe away, I wouldn't even get to make it to the tribute part."
+    """
+
+    def _words(self):
+        # a sentence every 5 seconds from 0 to 85
+        out = []
+        for k in range(18):
+            t = k * 5.0
+            out += [{"w": "So", "s": t, "e": t + 0.4},
+                    {"w": "this.", "s": t + 0.5, "e": t + 1.0}]
+        return out
+
+    def test_a_story_front_is_cut_to_its_cap_from_the_start(self):
+        from scripts import sports_samples as ss
+        e = ss.trim_front({"outro": {"who": "x"},
+                           "cut": {"start": 0.0, "end": 86.0}},
+                          self._words(), 90.0)
+        lo, hi = e["cut"]["start"], e["cut"]["end"]
+        self.assertEqual(hi, 86.0)
+        self.assertLessEqual(hi - lo, ss.FRONT_MAX_S)
+        self.assertGreater(hi - lo, ss.FRONT_MAX_S - 6)
+
+    def test_it_opens_on_a_sentence(self):
+        from scripts import sports_samples as ss
+        e = ss.trim_front({"outro": {"who": "x"}}, self._words(), 86.0)
+        lo = e["cut"]["start"]
+        self.assertAlmostEqual((lo + 0.3) % 5.0, 0.0, places=1)
+
+    def test_a_clip_alone_may_run_longer_and_a_short_one_is_untouched(self):
+        from scripts import sports_samples as ss
+        e = ss.trim_front({"cut": {"start": 0.0, "end": 60.0}},
+                          self._words(), 60.0)
+        self.assertLessEqual(e["cut"]["end"] - e["cut"]["start"],
+                             ss.CLIP_MAX_S)
+        short = {"cut": {"start": 2.0, "end": 20.0}}
+        self.assertEqual(ss.trim_front(short, [], 30.0)["cut"],
+                         {"start": 2.0, "end": 20.0})
+
+    def test_without_words_it_still_trims(self):
+        from scripts import sports_samples as ss
+        e = ss.trim_front({"outro": {"who": "x"},
+                           "cut": {"start": 36.0, "end": 86.2}}, [], 90.0)
+        self.assertAlmostEqual(e["cut"]["start"], 86.2 - ss.FRONT_MAX_S,
+                               places=1)
