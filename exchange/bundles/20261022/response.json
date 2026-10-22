@@ -15,38 +15,38 @@
   "authored_explainer": [
     {
       "slug": "cereal-production-is-1-5x-higher-than-in-1972",
-      "title": "Cereal Production Rose 1.5x; Farmland Rankings Explain Less",
-      "hook": "Cereal production climbed 1.5 times while land area told a different story.",
+      "title": "Cereal Production Is 1.5x Higher Than in 1972",
+      "hook": "The 1970s warned of food shortages. Cereal output did the opposite.",
       "says": [
-        "Progression to secondary school rose from 77.8% in 1985 to 91.3% in 2017. More students reached the next level.",
-        "Cereal production rose from 1083.7 million metric tons in 1972 to 1644.1 in 2024. The world harvested far more grain.",
-        "China has 5.2 million square kilometers of farmland; the United States 4.2, Australia 3.6, Brazil 2.4, Russia 2.2. Land alone does not determine harvests."
+        "In 1985, secondary-school progression was 77.8%; by 2017, 91.3%—1.2 times higher. Education access widened.",
+        "Cereal production rose from 1083.7 million metric tons in 1972 to 1644.1 million in 2024—1.5 times higher. Scarcity forecasts missed.",
+        "China leads farmland at 5.2 million square kilometers; United States 4.2, Australia 3.6, Brazil 2.4, Russia 2.2. Acreage isn't destiny."
       ],
-      "closing": "Food supply depends on what farmland produces, not simply how much land a country has.",
-      "question": "What drove the bigger harvest?"
+      "closing": "More food came from productivity, not simply adding farmland.",
+      "question": "What changed food production most?"
     },
     {
       "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
-      "title": "Waste Energy Reached 30.1% While Methane Kept Rising",
-      "hook": "Waste energy reached 30.1%, but its methane problem did not disappear.",
+      "title": "Waste Energy Is 3.0x Higher Than in 1990",
+      "hook": "Since 1990, waste energy tripled—and methane rose with it.",
       "says": [
-        "Combustible renewables and waste rose from 10.2% in 1990 to 30.1% in 2024. Its energy share tripled.",
-        "Electricity access climbed from 73.2% in 1998 to 91.9% in 2024. Far more people gained power.",
-        "Waste methane emissions rose from 903.8 Mt CO2e in 1972 to 1,652 in 2024. Recovering energy did not erase emissions."
+        "In 1990, combustible renewables and waste supplied 10.2% of energy; by 2024, 30.1%—3.0 times higher. Waste became fuel.",
+        "Electricity access rose from 73.2% in 1998 to 91.9% in 2024—1.3 times higher. More people gained power.",
+        "Waste methane rose from 903.8 Mt CO2e in 1972 to 1,652 Mt CO2e in 2024—1.8 times higher. Recovery didn't erase emissions."
       ],
-      "closing": "Calling waste renewable does not remove its emissions, so cleaner accounting still matters.",
+      "closing": "Using waste for energy still leaves an emissions problem to solve.",
       "question": "Should waste energy count as clean?"
     },
     {
       "slug": "population-growth-fell-54-since-1972",
-      "title": "Population Growth Fell 54% Without Population Decline",
-      "hook": "Population growth fell 54%, yet the population kept increasing.",
+      "title": "Population Growth Fell 54% Since 1972—But Population Rose",
+      "hook": "Population growth slowed sharply, but that never meant population decline.",
       "says": [
-        "Rural population fell from 63.1% in 1972 to 42.2% in 2025—down to 67% of its former share.",
-        "The largest city's urban share moved from 18.2% in 1972 to 16.2% in 2025. Growth spread beyond the largest city.",
-        "Population growth fell from 2% in 1972 to 0.91% in 2025—down to 46% of its old rate."
+        "Rural population fell from 63.1% in 1972 to 42.2% in 2025—down to 67% of its old share. Urbanization won.",
+        "The largest city's share moved from 18.2% in 1972 to 16.2% in 2025. Growth spread beyond the biggest city.",
+        "Population growth fell from 2% in 1972 to 0.91% in 2025—down to 46% of its old rate. Slower isn't smaller."
       ],
-      "closing": "Slower growth still adds people, so communities must plan for change rather than assume decline.",
+      "closing": "Slower growth still adds people, so cities must plan without assuming decline.",
       "question": "How should cities plan for slower growth?"
     }
   ],
@@ -54,7 +54,8 @@
     "The frozen 20261022 contract requires 3 sports_moment, 6 clip, and 4 data_story uploads; these are production targets, not completion claims.",
     "The bundle contains zero media requests and no image-bearing active formats, so no Drive upload, readback, hash, decode, or checkpoint was applicable.",
     "The configured Drive destination shorts-pipeline-drops was resolved as shared; no file-level public-sharing assertion was needed because no media file was requested.",
-    "No package punch-ups were requested. All three requested Explainer stories were rewritten from today's bundle while preserving segment order and supplied quantities.",
-    "Mandatory mailbox round one completed: 0 reviews, 20 ask keys, and 10 rewrite requests."
+    "No package punch-ups were requested. All three requested Explainer stories were rewritten from today's bundle while preserving every supplied number, entity, segment order, and segment count.",
+    "Mandatory mailbox round one completed: 0 reviews, 20 ask keys, and 10 rewrite requests.",
+    "Phase B initially rejected all three Explainer rewrites because the first wording dropped protected derived quantities; this response restores every supplied quantity."
   ]
 }
