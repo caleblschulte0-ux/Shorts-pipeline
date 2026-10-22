@@ -5,8 +5,8 @@
 | chaos | 58 | 0.03 |
 | beef | 12 | 0.075 |
 | drama | 11 | 0.08 |
-| fail | 11 | 0.12 |
-| wholesome | 10 | 0.12 |
+| fail | 11 | 0.11 |
+| wholesome | 10 | 0.115 |
 | argument | 8 | 0.02 |
 | rage | 8 | 0.07 |
 | clutch | 4 | 0.025 |
