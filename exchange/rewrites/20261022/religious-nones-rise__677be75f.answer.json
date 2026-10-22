@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "religious-nones-rise__677be75f",
+  "slug": "religious-nones-rise",
+  "by": "chatgpt",
+  "written_at": "2026-10-22T11:28:00Z",
+  "title": "28% With No Religion Now Outnumber Catholics",
+  "hook": "No religion now claims 28% of Americans, passing Catholics.",
+  "closing": "The country's religious map is changing with each generation.",
+  "question": "Do you consider yourself religious?",
+  "segments": [
+    {
+      "topic": "Religion Since 1990",
+      "say": "In 1990, 8% of US adults had no religion; that share has more than tripled."
+    },
+    {
+      "topic": "Religion By Generation",
+      "say": "Among millennials, 36% have no religion, more than triple the oldest generation."
+    },
+    {
+      "topic": "Religion Today",
+      "say": "Today 28% say none, passing Catholics while Protestants remain ahead."
+    }
+  ]
+}
