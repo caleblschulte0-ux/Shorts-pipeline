@@ -1,8 +1,329 @@
 {
- "date": "2026-10-21",
+ "date": "2026-10-22",
  "format": "sports_moment",
  "want": 3,
  "dry_run": false,
- "slots": [],
- "already_today": 3
+ "slots": [
+  {
+   "sub": "nba",
+   "who": "Tyrese Haliburton",
+   "why": "A star breaks down emotionally in his first game back, a raw human moment.",
+   "post_title": "[Highlight] Tyrese Haliburton gets incredibly emotional after his first game back",
+   "upvotes": 0,
+   "url": "https://streamable.com/yk9rqd",
+   "topic": "https://www.reddit.com/r/nba/comments/1xc6xxd/highlight_tyrese_haliburton_gets_incredibly",
+   "title": "Tyrese Haliburton Gets Emotional Saying What Being Back Means To Him",
+   "hook": "Haliburton gets emotional in his first game back \ud83d\ude2d",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 83
+   },
+   "video_url": "https://youtube.com/shorts/Fe7o1xqEXdE",
+   "ok": true,
+   "publish_at": "2026-10-22T16:00:00Z",
+   "seconds": 985,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261022-tyrese-haliburton-gets-emotional-saying-what-bei-83f06837",
+    "tiktok": "queued for 2026-10-22T16:00:00Z"
+   }
+  },
+  {
+   "sub": "baseball",
+   "who": "Miguel Rojas",
+   "why": "A player describes the last game of his career and the cleats he'll never wear again.",
+   "post_title": "[MLB on FOX] \u201cThis is it as a player, that was my last game played, that was the last time I put these cleats on and this uniform on as a player...\u201d Miguel Rojas shares his thoughts on playing the fin",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1x76wo7/mlb_on_fox_this_is_it_as_a_player_that_was_my/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1x76wo7/mlb_on_fox_this_is_it_as_a_player_that_was_my",
+   "title": "Miguel Rojas Says That Was His Last Game As A Player \ud83e\udd40",
+   "hook": "Rojas says that was his last game \ud83e\udd40",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "repairs": [
+    {
+     "score": 83,
+     "reason": "showrunner BLOCK: A strong, real retirement moment with a Game 7 home-run payoff, spoiled by three stacked caption layers and a hook line printed over the FOX logo."
+    },
+    {
+     "score": 79,
+     "reason": "showrunner BLOCK: The moment is real and lands: Rojas is visibly emotional saying it was his last game. But we put our captions on top of the source's captions and the FOX bug, so the first seconds are cluttered with three conflicting text layers."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The moment is real and lands, but our text collides with the source's own captions and the FOX bug, so the lower third shows two transcripts at once.",
+    "score": 79
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The moment is real and lands, but our text collides with the source's own captions and the FOX bug, so the lower third shows two transcripts at once."
+  },
+  {
+   "sub": "hockey",
+   "who": "Brady Tkachuk",
+   "why": "He reacts to being booed right after his tribute video in his old building.",
+   "post_title": "Brady Tkachuk reaction to getting booed after his video tribute in Ottawa",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xc3ml8/brady_tkachuk_reaction_to_getting_booed_after_his/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xc3ml8/brady_tkachuk_reaction_to_getting_booed_after_his",
+   "title": "Brady Tkachuk Gets Emotional After Ottawa Boos Him During His Tribute Video",
+   "hook": "Brady gets booed after his Ottawa tribute \ud83e\udd40",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: blocked before vision review: max_dup_run 53 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=54.54s of 57.92s (~2.2s frozen)",
+    "score": 14
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: blocked before vision review: max_dup_run 53 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=54.54s of 57.92s (~2.2s frozen)"
+  },
+  {
+   "sub": "sports",
+   "who": "Jake Bauers",
+   "why": "He and his wife tell how he nearly quit baseball before becoming a playoff hero.",
+   "post_title": "In an ABC News exclusive, Milwaukee Brewers playoff hero Jake Bauers and his wife, Lauren, speak with Will Reeve about how he revived his career after nearly walking away from baseball.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xcfyi1/in_an_abc_news_exclusive_milwaukee_brewers/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xcfyi1/in_an_abc_news_exclusive_milwaukee_brewers",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "soccer",
+   "who": "Dejan Kulusevski",
+   "why": "He returns to the pitch after 526 days out, a comeback fans feel.",
+   "post_title": "Kulusevski\u2019s Return to Tottenham After 526 Days",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xa8q43/kulusevskis_return_to_tottenham_after_526_days/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xa8q43/kulusevskis_return_to_tottenham_after_526_days",
+   "title": "Dejan Kulusevski Returns To Spurs After 526 Days And The Crowd Erupts",
+   "hook": "Kulusevski back after 526 days \ud83e\udd79",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The line promises Kulusevski's emotional return, but the opening shows a different player, the clip is a recut fan edit with its own captions, and the return itself is only seen as a tiny letterboxed figure clapping.",
+    "score": 53
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The line promises Kulusevski's emotional return, but the opening shows a different player, the clip is a recut fan edit with its own captions, and the return itself is only seen as a tiny letterboxed figure clapping."
+  },
+  {
+   "sub": "MMA",
+   "who": "Petr Yan",
+   "why": "A dad explains why his young son will corner him against Merab.",
+   "post_title": "\u2764\ufe0fPetr Yan CONFIRMS his son will corner him vs Merab \u201cHe wanted to do it. Who am I to say no? The kid is growing up and plays sports. I think it\u2019ll be good energy for him.\u201d",
+   "upvotes": 0,
+   "url": "https://x.com/DovySimuMMA/status/2112893425708331028",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xc0mtt/petr_yan_confirms_his_son_will_corner_him_vs",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "baseball",
+   "who": "Aaron Ashby",
+   "why": "A player's heartfelt line about his teammates after the pennant.",
+   "post_title": "Aaron Ashby: \"I would die for any of these dudes\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1x75fdb/aaron_ashby_i_would_die_for_any_of_these_dudes/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1x75fdb/aaron_ashby_i_would_die_for_any_of_these_dudes",
+   "title": "Aaron Ashby Says He'd Die For His Teammates After The Brewers Sweep",
+   "hook": "Ashby after the Brewers punch a World Series ticket",
+   "ledger": {
+    "moves": [
+     "whoa@18.8"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      538,
+      718,
+      424,
+      0
+     ]
+    }
+   },
+   "repairs": [
+    {
+     "score": 62,
+     "reason": "showrunner BLOCK: This is the right footage of the right player, but it is the raw 75-second interview starting on the reporter's preamble, under a flat on-screen line, and that line collides with the FOX graphic."
+    },
+    {
+     "score": 75,
+     "reason": "showrunner BLOCK: The real emotional Ashby interview fits the line, but our hook text overlaps a 'POSTSEASON 2026' TV graphic for the first eight seconds, and the promised quote never shows up in the sampled captions."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The real emotional Ashby interview is the right moment, but the opening has our line printed over a TV graphic, and the promised 'I would die for these dudes' line is never visibly landed: the clip fades out on mid-game field footage.",
+    "score": 70
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The real emotional Ashby interview is the right moment, but the opening has our line printed over a TV graphic, and the promised 'I would die for these dudes' line is never visibly landed: the clip fades out on mid-game field footage."
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "He gets heated with a heckling fan and fires back, 'I'm an Ohio baby'.",
+   "post_title": "LeBron James Heated With a Knicks Fan: \"Ain't nothing soft in the Midwest... I'm not from the West Coast, I'm from Ohio, baby. I'm an Ohio baby, fuck is you talking about?\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/idugt5",
+   "topic": "https://www.reddit.com/r/nba/comments/1xbds51/lebron_james_heated_with_a_knicks_fan_aint",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nba",
+   "who": "Charles Barkley",
+   "why": "A mic'd-up Barkley jokes at Shaq's expense on live TV.",
+   "post_title": "Charles Barkley: \"Should we be standing this close to Shaq?... He's been hanging out with Kash Patel. That's dangerous.\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/r0tqiq",
+   "topic": "https://www.reddit.com/r/nba/comments/1xc96lc/charles_barkley_should_we_be_standing_this_close",
+   "title": "Charles Barkley Warns Everyone To Stay Away From Shaq After This Joke",
+   "hook": "Chuck won't stand near Shaq \ud83d\ude02",
+   "ledger": {
+    "moves": [
+     "whoa@12.0",
+     "zoom@17.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The Chuck/Shaq bit lasts about 15s, then the cut runs into unrelated Giannis footage and ends on an ESPN logo, so the joke never pays off.",
+    "score": 58
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The Chuck/Shaq bit lasts about 15s, then the cut runs into unrelated Giannis footage and ends on an ESPN logo, so the joke never pays off."
+  },
+  {
+   "sub": "soccer",
+   "who": "Blandford United Royals",
+   "why": "A kids' team talk is interrupted by a surprise steam train and their faces say it all.",
+   "post_title": "[BBC Dorset] the team talk of Blandford United Royals u9s is interrupted when a steam train surprised the kids",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1x7da4o/bbc_dorset_the_team_talk_of_blandford_united/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1x7da4o/bbc_dorset_the_team_talk_of_blandford_united",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "baseball",
+   "who": "Pat Murphy",
+   "why": "The Brewers manager gives a deadpan answer to a reporter's question.",
+   "post_title": "Brewers reporter Mike Heller: \u201cPitching tomorrow Murph?\u201d Pat Murphy: \u201cYeah, there will be pitching.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1x6qwr1/brewers_reporter_mike_heller_pitching_tomorrow/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1x6qwr1/brewers_reporter_mike_heller_pitching_tomorrow",
+   "skipped": "too short: the post runs 8.0s (< 15s)"
+  },
+  {
+   "sub": "hockey",
+   "who": "Devin Cooley",
+   "why": "A goalie delivers a mic'd-up line that sounds like advice for life.",
+   "post_title": "Devin Cooley: \u201cThe past is dead, there\u2019s nothing for you there.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1x9mjuz/devin_cooley_the_past_is_dead_theres_nothing_for/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1x9mjuz/devin_cooley_the_past_is_dead_theres_nothing_for",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "sports",
+   "who": "Spurs and Thunder",
+   "why": "A scuffle breaks out in the conference finals rematch.",
+   "post_title": "Fight Ensues Between Spurs & Thunder in Western Conference Finals Rematch",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xbbdnk/fight_ensues_between_spurs_thunder_in_western/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xbbdnk/fight_ensues_between_spurs_thunder_in_western"
+  }
+ ],
+ "already_today": 0,
+ "pool": 84,
+ "already_posted": 6
 }
