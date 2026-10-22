@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "lottery-odds-vs-real-life__335c9001",
+  "slug": "lottery-odds-vs-real-life",
+  "by": "chatgpt",
+  "written_at": "2026-10-22T11:18:33.938Z",
+  "title": "Powerball Rules Cut Your Odds To 1 In 292,201,338",
+  "hook": "Powerball changed its rules and made the jackpot even harder to win.",
+  "closing": "Bigger jackpots advertise excitement, not better odds, so know the math before buying.",
+  "question": "Would these odds stop you?",
+  "segments": [
+    {
+      "topic": "Powerball lightning odds",
+      "say": "Lightning strikes about one person in 15,300 over a lifetime. A Powerball win is vastly less likely."
+    },
+    {
+      "topic": "Powerball rare odds",
+      "say": "A lifetime shark attack is about one in 11.5 million. Powerball still makes that look common."
+    },
+    {
+      "topic": "Powerball rule change",
+      "say": "Powerball odds worsened to one in 292,201,338 per play. The rule change manufactured bigger jackpots by creating fewer winners."
+    }
+  ]
+}
