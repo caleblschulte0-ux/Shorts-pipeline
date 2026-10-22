@@ -81,8 +81,12 @@ SNAP_ON = 2.5
 
 # §14: one consistent mix — every segment normalized to the same target
 _LOUDNORM = "highpass=f=60,loudnorm=I=-16:TP=-1.5:LRA=11,alimiter=limit=0.95"
-# §2: context overlays are brief, upper-third, over moving footage
-OVERLAY_DUR = 1.3
+# §2: context overlays are brief, upper-third, over moving footage. 2.5s,
+# not 1.3s: in saga backtest 39704571452 the critic asked four times for
+# "Four months later" / "Two days later" to be held "long enough to read"
+# (they were up 1.4-2.0s), and a time jump nobody read is a story that
+# reads as one night.
+OVERLAY_DUR = 2.5
 HOOK_DUR = 2.5
 
 
