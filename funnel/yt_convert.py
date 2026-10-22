@@ -10,6 +10,9 @@ putting together"* — a fair-use excerpt, cut to seconds in the story.
 `fetch(url, out)` asks the public converters, one after another, for a
 file of the video and saves it to `out`:
 
+  0. loader.to's page (its own form, pressed in a headless Chromium; the
+                  link it shows hands over the mp4 — since 2026-10-22,
+                  when the API route below began handing back an ad page)
   1. loader.to   (the free converter site: ``/ajax/download.php`` starts
                   a 720p mp4, its ``progress_url`` hands back the file —
                   the one that answered from GitHub on 2026-10-11, when
@@ -45,7 +48,11 @@ MAX_BYTES = 400 << 20
 UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/128.0 Safari/537.36")
 
-LOADER = ["https://loader.to"]
+LOADER = ["https://loader.to", "https://p.oceansaver.in"]   # the same API
+# loader.to's own page, used the way a person uses it (2026-10-22: its old
+# ``/ajax`` route now hands back an ad page; the page's own download link
+# points at a host that gives the mp4 to anyone holding the link)
+LOADER_PAGE = ["https://en.loader.to/4/"]
 LOADER_WAIT_S = 180     # it converts before it hands the file over
 PIPED = ["https://pipedapi.kavin.rocks", "https://pipedapi.adminforge.de",
          "https://api.piped.private.coffee", "https://pipedapi.r4fo.com"]
@@ -103,7 +110,7 @@ def _hosts(kind: str) -> list[str]:
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[yt_convert] {kind} instance list "
               f"({type(e).__name__})", flush=True)
-    known = {"loader": LOADER, "piped": PIPED, "invidious": INVIDIOUS, "cobalt": COBALT}[kind]
+    known = {"page": LOADER_PAGE, "loader": LOADER, "piped": PIPED, "invidious": INVIDIOUS, "cobalt": COBALT}[kind]
     _HOSTS[kind] = list(dict.fromkeys(found + known))
     return _HOSTS[kind]
 
@@ -115,6 +122,8 @@ def _loader(host: str, vid: str):
                                safe="")
     j = _json(f"{host}/ajax/download.php?format=720&url={watch}")
     if not j.get("success"):
+        print(f"::warning::[yt_convert] loader {vid}: refused "
+              f"({str(j)[:160]})", flush=True)
         return None
     # the site's own progress.php reports "Finished" with the file while
     # the progress_url it hands out can sit at 50% (seen 2026-10-11)
@@ -129,11 +138,49 @@ def _loader(host: str, vid: str):
             except Exception:  # noqa: BLE001 — the other poll may answer
                 continue
             if p.get("download_url"):
-                return p["download_url"], {}, meta
+                return p["download_url"], {"Referer": f"{host}/"}, meta
             if str(p.get("text", "")).lower().startswith("error"):
+                print(f"::warning::[yt_convert] loader {vid}: "
+                      f"{str(p)[:160]}", flush=True)
                 return None
         time.sleep(3)
+    print(f"::warning::[yt_convert] loader {vid}: not ready after "
+          f"{LOADER_WAIT_S}s", flush=True)
     return None
+
+
+def _loader_page(page_url: str, vid: str):
+    """loader.to driven through its own page in a headless Chromium: paste
+    the link, pick 720p, press Download, wait for the page's own download
+    link. Needs playwright + its Chromium; None without them."""
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        return None
+    watch = f"https://www.youtube.com/watch?v={vid}"
+    with sync_playwright() as pw:
+        b = pw.chromium.launch(headless=True)
+        try:
+            ctx = b.new_context(user_agent=UA)
+            page = ctx.new_page()
+            # the ad tabs it opens (registered after its own page, which
+            # this handler would otherwise close as it opened)
+            ctx.on("page", lambda pg: pg != page and pg.close())
+            page.goto(page_url, wait_until="domcontentloaded", timeout=60000)
+            page.fill("input#link", watch)
+            page.select_option("select#format", "720")
+            page.click("button#load")
+            link = page.wait_for_selector("a[id$='_downloadLink'][href^='http']",
+                                          state="attached",
+                                          timeout=LOADER_WAIT_S * 1000)
+            # the title comes from the Data API afterwards (fetch())
+            return link.get_attribute("href"), {"Referer": page.url}, {}
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[yt_convert] loader page {vid}: "
+                  f"{type(e).__name__} {str(e)[:120]}", flush=True)
+            return None
+        finally:
+            b.close()
 
 
 def _piped(host: str, vid: str):
@@ -178,7 +225,7 @@ def _cobalt(host: str, vid: str):
     return None
 
 
-ROUTES = (("loader", _loader), ("piped", _piped), ("invidious", _invidious), ("cobalt", _cobalt))
+ROUTES = (("page", _loader_page), ("loader", _loader), ("piped", _piped), ("invidious", _invidious), ("cobalt", _cobalt))
 
 
 def _api_meta(vid: str) -> dict:
@@ -212,20 +259,126 @@ def _probe(path: Path) -> float:
         return 0.0
 
 
-def _save(media_url: str, headers: dict, out: Path) -> bool:
-    tmp = out.with_suffix(out.suffix + ".part")
-    n = 0
-    with _open(media_url, headers=headers, timeout=90) as r, \
-            open(tmp, "wb") as f:
+_SESSION = None
+
+
+def _stream(media_url: str, headers: dict):
+    """The file's bytes, chunk by chunk. Through one curl_cffi session as
+    Chrome when it is installed: loader.to's file host answers a client
+    it has not seen with an ad-redirect page to google.com (2026-10-21),
+    and the session keeps the cookies it sets for the retry."""
+    global _SESSION
+    try:
+        from curl_cffi import requests as cr
+    except ImportError:
+        cr = None
+    if cr is not None:
+        if _SESSION is None:
+            _SESSION = cr.Session(impersonate="chrome")
+        r = _SESSION.get(media_url, headers={"User-Agent": UA, **headers},
+                         stream=True, timeout=90, allow_redirects=True)
+        try:
+            r.raise_for_status()
+            yield from r.iter_content(chunk_size=1 << 20)
+        finally:
+            r.close()
+        return
+    with _open(media_url, headers=headers, timeout=90) as r:
         while True:
             b = r.read(1 << 20)
             if not b:
-                break
+                return
+            yield b
+
+
+def _browser_save(media_url: str, headers: dict, out: Path,
+                  tries: int = 1) -> bool:
+    """The file, fetched the way a person gets it: a real (headless)
+    Chromium that has been to the converter's own page, clicking through
+    the ad its file host shows first (operator, 2026-10-22: *"we convert
+    them for free ... You're doing something wrong"* — loader.to's host
+    answers anything that is not a browser, and a browser's first try,
+    with an ad-redirect page). Needs playwright + its Chromium; False
+    without them."""
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        return False
+    ref = headers.get("Referer") or ""
+    try:
+        with sync_playwright() as pw:
+            b = pw.chromium.launch(headless=True)
+            ctx = b.new_context(accept_downloads=True, user_agent=UA)
+            page = ctx.new_page()
+            ctx.on("page", lambda pg: pg != page and pg.close())  # popunders
+            if ref:
+                try:
+                    page.goto(ref, wait_until="domcontentloaded",
+                              timeout=30000)
+                except Exception:  # noqa: BLE001
+                    pass
+            for i in range(tries):
+                try:
+                    with page.expect_download(timeout=45000) as dl:
+                        try:
+                            page.goto(media_url, referer=ref or None,
+                                      timeout=60000)
+                        except Exception:  # noqa: BLE001 — a download
+                            pass          # aborts the navigation itself
+                    dl.value.save_as(str(out))
+                    if out.exists() and out.stat().st_size > 50_000:
+                        print(f"[yt_convert] browser got the file on try "
+                              f"{i + 1}", flush=True)
+                        b.close()
+                        return True
+                except Exception as e:  # noqa: BLE001
+                    print(f"::warning::[yt_convert] browser try {i + 1}: "
+                          f"{type(e).__name__}, page {page.url[:80]!r} "
+                          f"{(page.title() if not page.is_closed() else '')[:60]!r}",
+                          flush=True)
+            b.close()
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[yt_convert] browser: {type(e).__name__} "
+              f"{str(e)[:160]}", flush=True)
+    return False
+
+
+def _save(media_url: str, headers: dict, out: Path, tries: int = 3) -> bool:
+    """Save the file; a host that answers with a page first is asked again
+    (with the cookies it just set) before it is given up on, then fetched
+    through a real browser."""
+    if _save_tries(media_url, headers, out, tries):
+        return True
+    return _browser_save(media_url, headers, out)
+
+
+def _save_tries(media_url: str, headers: dict, out: Path, tries: int) -> bool:
+    for i in range(tries):
+        # the second ask goes without a Referer, in case that is the trip
+        hdr = headers if i != 1 else {k: v for k, v in headers.items()
+                                       if k != "Referer"}
+        if _save_once(media_url, hdr, out):
+            print(f"[yt_convert] {media_url[:60]}: the file on ask {i + 1}",
+                  flush=True)
+            return True
+        if i + 1 < tries:
+            time.sleep(4)
+    return False
+
+
+def _save_once(media_url: str, headers: dict, out: Path) -> bool:
+    tmp = out.with_suffix(out.suffix + ".part")
+    n = 0
+    with open(tmp, "wb") as f:
+        for b in _stream(media_url, headers):
             n += len(b)
             if n > MAX_BYTES:
                 raise ValueError("too large")
             f.write(b)
-    if n < 50_000:
+    head = tmp.read_bytes()[:3000] if n < 400_000 else b""
+    if n < 50_000 or head.lstrip()[:15].lower().startswith((b"<!doctype", b"<html")):
+        print(f"::warning::[yt_convert] {media_url[:90]} gave a {n}-byte "
+              f"page, not a video: {head!r}", flush=True)
         tmp.unlink(missing_ok=True)
         return False
     tmp.replace(out)
@@ -244,6 +397,43 @@ def _to_mp4(path: Path, mp4: Path) -> Path:
     return path
 
 
+# YouTube's other front doors: its TV, mobile-web and Safari players are
+# sometimes still served to a datacenter that its web player refuses
+# ("Sign in to confirm you're not a bot"). Tried before any converter.
+YTDLP_CLIENTS = ("tv_simply", "tv", "mweb", "web_safari", "ios", "android_vr")
+
+
+def _ytdlp(vid: str, out: Path, max_s: float | None) -> Path | None:
+    url = f"https://www.youtube.com/watch?v={vid}"
+    for client in YTDLP_CLIENTS:
+        if client in _DEAD:
+            continue
+        out.unlink(missing_ok=True)
+        try:
+            r = subprocess.run(
+                ["yt-dlp", "-q", "--no-playlist", "--no-warnings",
+                 "--extractor-args", f"youtube:player_client={client}",
+                 "-f", "bv*[height<=720]+ba/b[height<=720]/b",
+                 "--merge-output-format", "mp4", "-o", str(out)]
+                + (["--match-filter", f"duration<=?{int(max_s)}"]
+                   if max_s else []) + [url],
+                capture_output=True, text=True, timeout=300)
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[yt_convert] yt-dlp {client} {vid}: "
+                  f"{type(e).__name__}", flush=True)
+            continue
+        if out.exists() and _probe(out):
+            print(f"[yt_convert] {vid}: fetched by yt-dlp as {client}",
+                  flush=True)
+            return out
+        err = (r.stderr or "").strip().splitlines()
+        print(f"::warning::[yt_convert] yt-dlp {client} {vid}: "
+              f"{(err[-1] if err else 'no file')[:200]}", flush=True)
+        if any("bot" in e or "Sign in" in e for e in err[-2:]):
+            _DEAD.add(client)       # refused for this runner, not this video
+    return None
+
+
 def fetch(url: str, out: Path, *, max_s: float | None = None,
           budget_s: float = BUDGET_S) -> dict | None:
     """Save the YouTube video at `url` to `out` (an .mp4 path) through the
@@ -255,6 +445,14 @@ def fetch(url: str, out: Path, *, max_s: float | None = None,
         return None
     out.parent.mkdir(parents=True, exist_ok=True)
     t0 = time.monotonic()
+    got = _ytdlp(vid, out, max_s)
+    if got:
+        real = _probe(got)
+        meta = _api_meta(vid)
+        return {"path": got, "clip_id": vid, "title": meta.get("title") or "",
+                "clipper": meta.get("uploader") or "",
+                "views": int(meta.get("views") or 0), "duration": real,
+                "url": url, "via": "yt-dlp"}
     for kind, route in ROUTES:
         for host in _hosts(kind):
             if host in _DEAD:
@@ -274,10 +472,27 @@ def fetch(url: str, out: Path, *, max_s: float | None = None,
                     return None
                 raw = out.with_suffix(".src")
                 if not _save(media_url, hdr, raw):
+                    print(f"::warning::[yt_convert] {kind} {vid}: the file "
+                          f"it handed over was empty", flush=True)
                     continue
                 path = _to_mp4(raw, out)
                 real = _probe(path) if path == out else 0.0
                 if not real:
+                    try:
+                        info = subprocess.run(
+                            ["ffprobe", "-v", "error", "-show_entries",
+                             "stream=codec_type,codec_name:format=duration",
+                             "-of", "compact", str(path)], capture_output=True,
+                            text=True, timeout=30)
+                        head = path.read_bytes()[:200] if path.exists() else b""
+                        what = (f"{path.stat().st_size if path.exists() else 0}"
+                                f" bytes, {info.stdout.strip()[:200]!r} "
+                                f"{info.stderr.strip()[:120]!r} {head!r}")
+                    except Exception as e:  # noqa: BLE001
+                        what = type(e).__name__
+                    print(f"::warning::[yt_convert] {kind} {vid}: the file "
+                          f"it handed over has no video and sound ({what})",
+                          flush=True)
                     path.unlink(missing_ok=True)
                     continue
                 if max_s and real > max_s:

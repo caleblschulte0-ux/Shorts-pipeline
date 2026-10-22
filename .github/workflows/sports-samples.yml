@@ -58,7 +58,10 @@ jobs:
           sudo apt-get install -y -q ffmpeg fonts-dejavu-core fonts-noto-color-emoji tesseract-ocr
 
       - name: Install python deps
-        run: pip install -q pillow numpy edge-tts yt-dlp curl_cffi openai-whisper "opencv-python-headless<5"
+        run: |
+          pip install -q pillow numpy edge-tts yt-dlp curl_cffi openai-whisper "opencv-python-headless<5" playwright
+          # a real browser for the free converter's file host (funnel/yt_convert)
+          python -m playwright install --with-deps chromium >/dev/null || echo "::warning::playwright chromium install failed"
 
       - name: Install Claude CLI (the brain)
         run: npm install -g @anthropic-ai/claude-code >/dev/null 2>&1 || echo "::warning::claude-code install failed — falls to Gemini/Groq"

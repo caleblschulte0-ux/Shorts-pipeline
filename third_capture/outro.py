@@ -1,5 +1,11 @@
-"""The TRIBUTE ending: the clip plays untouched, then a real sad song over
-a montage of the people it was about.
+"""The PAYOFF ending: the clip plays untouched, then a real song over a
+montage of what it was about. A tribute is one kind of it; any clip that
+talks about something we can show gets it, in that story's mood (operator,
+2026-10-21: *"it's not just tributes ... anytime we can do anything like
+that, whether it's a sad thing or a happy thing or a tribute or whatever
+it is, we should do it"*): a player recalling his 81 points, then the 81
+to a hype track; a champion on his dream, then the title run; a blooper,
+then the blooper reel to Yakety Sax.
 
 Operator, 2026-10-18, after the cut-ins (third_capture/cut_in.py, which
 stay the standard for any clip that names something): *"when Kevin
@@ -61,6 +67,8 @@ ONE_PLAY_S = 120        # a source this short is one play: run on past cuts
 GRADES = {
     "faded": "eq=saturation=0.78:contrast=1.04",     # memory, not live
     "grey": "hue=s=0.12,eq=contrast=1.08:brightness=-0.03,vignette=PI/5",
+    "hype": "eq=contrast=1.14:saturation=1.28:brightness=0.01",  # loud
+    "clean": "eq=contrast=1.03",                     # as it was broadcast
 }
 LOOK = GRADES["faded"]
 
@@ -89,7 +97,12 @@ def parse(raw) -> dict | None:
                         if _text(x, 4)][:len(people)]
             if len(raw.get("numbers") or []) == len(people) else [],
             "team": _text(raw.get("team"), 40),
-            "grade": grade if grade in GRADES else "faded"}
+            "grade": grade if grade in GRADES else "faded",
+            # the clip itself, by url and title: never a shot of the payoff
+            # (a montage of the daughter hugging Verlander, cut from the
+            # very post being told, 2026-10-22)
+            "avoid": [str(x)[:300] for x in (raw.get("avoid") or [])
+                      if isinstance(x, str) and x.strip()][:8]}
 
 
 def _seconds(path: Path) -> float:
@@ -103,13 +116,13 @@ def _seconds(path: Path) -> float:
         return 0.0
 
 
-def frame_look(look: str, people: list[str], team: str = "",
+def _frame_look(look: str, people: list[str], team: str = "",
                numbers: list[str] | None = None) -> str:
     """What the brain must SEE in a montage frame (operator, 2026-10-21:
     *"the basketball clip was ass and not of Russ and KD"* — KD alone on
     the Warriors and Russ alone on the Clippers had passed as "them"; then
     KD on the Suns guarding Russ passed as "together")."""
-    if len(people) > 1 and team and numbers:
+    if team and numbers:
         # the clip's TITLE names all of them (`title_has`); the frame has
         # to be their team's play with one of their numbers on it (a face
         # is too small to tell at broadcast distance; then: KD guarding
@@ -125,16 +138,28 @@ def frame_look(look: str, people: list[str], team: str = "",
         # the brain to pick both faces out of a 640px frame refused six
         # shots in seven (2026-10-21) and the montage was dropped.
         return (f"{look}: the play itself, {team} players in {team} "
-                "uniforms on the court, close enough to see them; NOT a "
+                "uniforms in the game, close enough to see them; NOT a "
                 "far-away wide shot, a close-up of one face, another "
                 "team's player, a replay graphic, a studio or the crowd")
     if len(people) > 1:
         both = " and ".join(people)
         return (f"{look}: {both} BOTH clearly visible in this same frame, "
-                "on the same team, as teammates, playing on the court; a "
-                "frame with only one of them, neither, or them on opposing "
-                "teams does not count")
-    return f"{look}: {people[0]} clearly visible, playing on the court"
+                "in the same play of the game; a frame with only one of "
+                "them, or neither, does not count")
+    return (f"{look}: {people[0]} clearly visible in the game making the "
+            "play; NOT a studio, an interview, a close-up of one face or "
+            "the crowd")
+
+
+def frame_look(look: str, people: list[str], team: str = "",
+               numbers: list[str] | None = None) -> str:
+    """What the brain must see in a montage frame (`_frame_look`), and
+    never a phone's screen, a menu or a ranking card (2026-10-22: a
+    Josh Allen montage held a screen recording's control centre and a
+    fan reel's "#5-" title)."""
+    return (_frame_look(look, people, team, numbers)
+            + "; and NOT a phone or computer screen, an app menu, a title "
+            "card or text over a still")
 
 
 def shots(item: dict, work: Path, title: str = "") -> list[dict]:
@@ -157,9 +182,8 @@ def shots(item: dict, work: Path, title: str = "") -> list[dict]:
                                     item.get("numbers")),
             n=want, secs=SHOT_S, max_s=PLAY_MAX_S, per_video=PER_CLIP,
             title_not=VERSUS if item.get("team") else None, query=look,
-            work=d, title=title, skip=seen,
-            title_has=[n.split()[-1] for n in people] if len(people) > 1
-            else None)
+            work=d, title=title, skip=seen, avoid=set(item.get("avoid") or []),
+            title_has=[n.split()[-1] for n in people if n.split()])
         got += hits
         print(f"[outro] {look!r}: {len(hits)} shot(s)", flush=True)
     return got[:TARGET_SHOTS]

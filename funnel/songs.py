@@ -1,5 +1,11 @@
 """A REAL song for a clip's emotional turn, one people know.
 
+Operator, 2026-10-21, after the first tribute: *"it's not just tributes
+... anytime we can do anything like that, whether it's a sad thing or a
+happy thing or a tribute or whatever it is, we should do it"*. So the
+shelf carries every mood a story's payoff can have — sad, hype, triumph,
+funny — and `menu()` with no mood lists them all.
+
 Operator, 2026-10-17, of Russell Westbrook talking about Kevin Durant:
 *"We put some sad music over it. Not sad like your fucking Kevin McLeod,
 whatever bullshit stock art sound we use, but like an actual like wistful
@@ -66,7 +72,52 @@ SONGS: dict[str, dict] = {
     "too_good_at_goodbyes": {"artist": "Sam Smith",
                              "title": "Too Good at Goodbyes", "mood": "sad",
                              "fits": "a goodbye, a last game, leaving"},
+    # hype: the trash talk, then the play that backs it up
+    "till_i_collapse": {"artist": "Eminem", "title": "Till I Collapse",
+                        "mood": "hype",
+                        "fits": "a legend going off, a scoring run, "
+                                "refusing to lose"},
+    "remember_the_name": {"artist": "Fort Minor",
+                          "title": "Remember the Name", "mood": "hype",
+                          "fits": "a young player announcing himself, "
+                                  "a breakout night"},
+    "power": {"artist": "Kanye West", "title": "POWER", "mood": "hype",
+              "fits": "pure dominance, a player bullying everyone"},
+    "x_gon_give_it_to_ya": {"artist": "DMX",
+                            "title": "X Gon' Give It to Ya", "mood": "hype",
+                            "fits": "a dunk or a hit so violent it is "
+                                    "disrespectful, trash talk paid off"},
+    "humble": {"artist": "Kendrick Lamar", "title": "HUMBLE.",
+               "mood": "hype",
+               "fits": "someone talking big, then proving it, cold"},
+    # triumph: the dream, then the moment it came true
+    "hall_of_fame": {"artist": "The Script", "title": "Hall of Fame",
+                     "mood": "triumph",
+                     "fits": "a career honoured, a record, the hall of "
+                             "fame"},
+    "eye_of_the_tiger": {"artist": "Survivor", "title": "Eye of the Tiger",
+                         "mood": "triumph",
+                         "fits": "an underdog, a comeback from nothing"},
+    "we_are_the_champions": {"artist": "Queen",
+                             "title": "We Are the Champions",
+                             "mood": "triumph",
+                             "fits": "winning the title, the trophy, the "
+                                     "parade"},
+    "cant_hold_us": {"artist": "Macklemore & Ryan Lewis",
+                     "title": "Can't Hold Us", "mood": "triumph",
+                     "fits": "a joyful run, a team on fire, everyone "
+                             "celebrating"},
+    # funny: the story is that it went wrong
+    "yakety_sax": {"artist": "Boots Randolph", "title": "Yakety Sax",
+                   "mood": "funny",
+                   "fits": "a blooper reel, chaos, everything going wrong"},
+    "frolic": {"artist": "Luciano Michelini", "title": "Frolic",
+               "mood": "funny",
+               "fits": "an awkward moment, a player getting clowned, "
+                       "Curb Your Enthusiasm energy"},
 }
+
+MOODS = ("sad", "hype", "triumph", "funny")
 
 
 def names(mood: str = "sad") -> list[str]:
@@ -74,9 +125,12 @@ def names(mood: str = "sad") -> list[str]:
 
 
 def menu(mood: str = "sad") -> str:
-    """The shelf as prompt lines: `key: Title (Artist) - when it fits`."""
+    """The shelf as prompt lines: `key: Title (Artist) - when it fits`;
+    with mood "" every mood, each line tagged with its own."""
+    keys = names(mood) if mood else list(SONGS)
     return "\n".join(f"    {k}: {SONGS[k]['title']} ({SONGS[k]['artist']})"
-                     f" - {SONGS[k]['fits']}" for k in names(mood))
+                     + ("" if mood else f" [{SONGS[k]['mood']}]")
+                     + f" - {SONGS[k]['fits']}" for k in keys)
 
 
 def clean(key) -> str:

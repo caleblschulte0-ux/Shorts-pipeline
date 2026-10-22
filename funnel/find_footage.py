@@ -44,7 +44,9 @@ ACTION = ("real game footage of play on the court or field, the athletes "
 #: A video whose title says it is talk is never downloaded.
 TALK = re.compile(r"\b(react(s|ion|ing)?|podcast|interview|press conference|"
                   r"presser|breaking news|debate|first take|undisputed|"
-                  r"analysis|explains?|talks?|says|speaks|rant|show)\b", re.I)
+                  r"analysis|explains?|talks?|says|speaks|rant|show|"
+                  r"recalls?|opens? up|tells?|reveals?|remembers?|"
+                  r"on why|story of|storytime)\b", re.I)
 
 
 def is_talk(title: str) -> bool:
@@ -91,6 +93,11 @@ def download(url: str, out: Path) -> Path | None:
     """The video at `url` as an mp4, or None. yt-dlp first; YouTube
     refuses it from GitHub's runners, so the converters next."""
     out.parent.mkdir(parents=True, exist_ok=True)
+    if "v.redd.it" in str(url).lower():
+        from funnel import reddit_video
+        got = reddit_video.fetch(url, out, max_s=MAX_S)
+        p = Path(got["path"]) if got and got.get("path") else None
+        return p if p and p.exists() and _has_video(p) else None
     try:
         subprocess.run(["yt-dlp", "-q", "--no-playlist", "-f",
                         "bv*[height<=720][ext=mp4]+ba/b[height<=720]/b",
@@ -240,6 +247,25 @@ MANY_POINTS = tuple(round(0.1 + 0.05 * i, 2) for i in range(17))  # .1-.9
 #: Reels tried per montage look: the rule "both of them, as teammates"
 #: refuses most frames of most reels.
 MANY_CANDIDATES = 5
+SAME_PICTURE = 14          # mean grey difference (0-255) under which two
+                           # shots are the same picture: Keenum's montage was
+                           # one pre-snap line-up three times (2026-10-22)
+
+
+def _thumb(png) -> bytes:
+    """A 16x16 grey thumbnail of a frame, b"" when it cannot be read."""
+    try:
+        return subprocess.run(
+            ["ffmpeg", "-v", "error", "-i", str(png), "-vf",
+             "scale=16:16,format=gray", "-f", "rawvideo", "-"],
+            capture_output=True, timeout=30).stdout
+    except Exception:  # noqa: BLE001
+        return b""
+
+
+def same_picture(a: bytes, b: bytes) -> bool:
+    return bool(a) and len(a) == len(b) and \
+        sum(abs(x - y) for x, y in zip(a, b)) / len(a) < SAME_PICTURE
 
 
 def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
@@ -248,7 +274,7 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
               title_has: list[str] | None = None,
               max_s: int = MAX_S, per_video: int = 0,
               title_not: re.Pattern | None = None,
-              query: str = "") -> list[dict]:
+              query: str = "", avoid: set | None = None) -> list[dict]:
     """Up to `n` CHECKED shots showing `look`, from as few videos as it
     takes: a highlight reel of two players holds a dozen shots of them,
     and the tribute montage wants several (operator, 2026-10-21, of a
@@ -263,22 +289,41 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
     fan reel's wide shots and cutaways; a title matching `title_not` is
     skipped. `query` is what YouTube is searched for when `look` (what
     the brain must see) is a sentence of rules — searching with the rules
-    themselves returned one wrong video per search all of 2026-10-21. [] when none, or no brain. Never
-    raises."""
+    themselves returned one wrong video per search all of 2026-10-21.
+    `avoid` holds the urls and the title of the clip being told: it is
+    never its own montage. [] when none, or no brain. Never raises."""
     who = str(who or "").strip()
     look = str(look or "").strip() or who
     skip = skip if skip is not None else set()
+    avoid = {a for a in (avoid or set()) if a}
+    avoid_t = {_norm(a) for a in avoid}
     got: list[dict] = []
     if not who or n <= 0:
         return got
     work = Path(work)
     tag = _norm(look)[:24] or "x"
+    thumbs: list[bytes] = []
     try:
         from funnel import hot_clips
         seen, cands = set(), []
         for q in queries(who, query or look):
-            for v in hot_clips.youtube(q, days=365 * YEARS,
-                                       n=MANY_CANDIDATES, max_s=max_s):
+            # YouTube first: a career's highlights live there, where
+            # Reddit's search holds this month's posts (2026-10-22: a
+            # "career highlights" montage cut from the clip being told).
+            # Then Reddit's own video posts, short clips of one play that
+            # v.redd.it serves when YouTube refuses the runner. Reddit's
+            # search ANDs loosely and "highlights" is not how its posts are
+            # titled: the words that name the play, without it
+            found = hot_clips.youtube(q, days=365 * YEARS,
+                                      n=MANY_CANDIDATES, max_s=max_s)
+            rq = re.sub(r"\s*\bhighlights?\b", "", q, flags=re.I).strip()
+            found += [{"url": r["media"], "title": r["post_title"],
+                       "permalink": r.get("permalink", "")}
+                      for r in hot_clips.reddit_videos(rq, limit=25)]
+            for v in found:
+                if v["url"] in avoid or v.get("permalink") in avoid \
+                        or _norm(v.get("title") or "") in avoid_t:
+                    continue
                 if v["url"] not in seen and not is_talk(v.get("title")) \
                         and titled(v.get("title"), title_has) \
                         and not (title_not and title_not.search(
@@ -288,7 +333,7 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
         print(f"[footage] {(query or look)[:50]!r}: {len(cands)} "
               "candidate(s)",
               flush=True)
-        for k, v in enumerate(cands[:MANY_CANDIDATES]):
+        for k, v in enumerate(cands[:MANY_CANDIDATES * 2]):
             if len(got) >= n:
                 break
             video = download(v["url"], work / f"many_{tag}_{k}.mp4")
@@ -316,6 +361,9 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
                     break
                 if not (verdicts.get(i) or {}).get("depicts"):
                     continue
+                th = _thumb(_p)
+                if any(same_picture(th, t) for t in thumbs):
+                    continue
                 at = dur * MANY_POINTS[i]
                 s0, s1 = shot_around(video, at)
                 if s1 - s0 < MIN_SHOT or any(a < s1 and s0 < b
@@ -331,6 +379,7 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
                            work / f"many_{tag}_{k}_{i}_cut.mp4")
                 if clip:
                     spans.append((s0, s1))
+                    thumbs.append(th)
                     skip.add(key)
                     got.append({"path": str(clip), "url": v["url"],
                                 "title": v["title"],

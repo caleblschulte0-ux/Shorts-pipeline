@@ -929,7 +929,13 @@ def own_captions(video: Path, words: list[dict], samples: int = 8) -> bool:
             if (sum(1 for n in near if len(n) >= 4 and n in seen) >= 2
                     or any(p in seen for p in pairs)):
                 hits += 1
-    return hits >= 2 and hits >= 0.4 * max(1, read)
+    print(f"[edit] own captions: {hits}/{read} frames show the words said",
+          flush=True)
+    # word-by-word captions (two or three words at a time, a yellow word
+    # among white) read in only 2 of 8 frames on the Anne Hathaway repost
+    # (2026-10-22) and our captions went on top of them: two frames each
+    # showing two words just said is no accident, a HUD never says them
+    return hits >= 2 and hits >= 0.25 * max(1, read)
 
 
 def _ocr_words(img: Path) -> list[str]:

@@ -323,3 +323,23 @@ class TheBoomIsAWhoaNotAZoom(unittest.TestCase):
         self.assertIn('("zoom", "whoa", "shake", "awkward")', src)
 
 
+
+
+class WordByWordCaptionsAreSeen(unittest.TestCase):
+    """2026-10-22: a repost's two-words-at-a-time captions read in 2 of 8
+    frames, under the old 40% bar, and ours went on top of them."""
+
+    def test_two_frames_of_eight_is_a_captioned_video(self):
+        import shutil as _sh
+        from unittest import mock
+        words = [{"w": w, "s": i * 0.5, "e": i * 0.5 + 0.4}
+                 for i, w in enumerate("somebody stole every chair from "
+                                       "this whole entire building today "
+                                       "while nobody watched closely "
+                                       "anything happening around".split())]
+        reads = iter(["somebodystole", "", "", "", "", "whilenobody", "", ""])
+        with mock.patch.object(_sh, "which", return_value="/usr/bin/tesseract"), \
+                mock.patch.object(clip_edit.subprocess, "run"), \
+                mock.patch.object(clip_edit, "_ocr_text",
+                                  side_effect=lambda fr: next(reads, "")):
+            self.assertTrue(clip_edit.own_captions(Path("x.mp4"), words))

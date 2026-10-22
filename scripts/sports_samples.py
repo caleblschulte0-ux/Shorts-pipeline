@@ -63,6 +63,21 @@ reaction, a scuffle or a bench clearing, a celebration that goes wrong,
 a funny interview or press conference answer, a kid meeting a hero, an
 athlete posting something unexpected. The PERSON is the story.
 
+STORIES FIRST (operator, 2026-10-21: "they're not tribute clips ...
+They are stories ... anytime we can do anything like that, whether it's
+a sad thing or a happy thing or a tribute or whatever it is, we should
+do it"). Rank first the posts that are a STORY with something on the
+field we can show after it: a player telling a story about a teammate,
+a rival, a game or a record (Melo on LeBron saving him from drowning:
+then LeBron and Melo playing together); a retirement, a farewell, a
+tribute, a first game back, a parent watching their kid; the aftermath
+of a big win or loss (a locker-room speech, a tearful postgame, a
+celebration): then the win or the play that caused it. For each of
+those, `story` names what the ending shows, the way a YouTube clip of it
+is titled ("LeBron and Carmelo Team USA highlights"). Moments with no
+story (a fan doing something wild, a funny quote) come after, `story`
+"".
+
 Skip: a plain highlight of a play with no human moment in it (a goal,
 a dunk, a catch on its own), anything a viewer needs the game's context
 to get, serious injuries, deaths, politics, gambling picks, and
@@ -72,7 +87,7 @@ league broadcasts get claimed; take a broadcast only when the human
 moment is the whole point.
 
 Return STRICT JSON:
-{"picks": [{"i": int, "who": str, "why": str}, ...]}
+{"picks": [{"i": int, "who": str, "why": str, "story": str}, ...]}
 `who` is the main person's name as fans search it (the athlete, coach
 or team when no one person carries it), from the post title only.
 `why` is one short sentence: what a stranger sees that makes them stay.
@@ -119,10 +134,12 @@ SPORTS_BRIEF = (
     "own'): whenever the person refers to something not on screen (the "
     "play, the game, the player they are calling out, an old teammate, "
     "the record), broll real footage of it at that second. When someone "
-    "looks back on a person or a time that is gone (a teammate who left, "
-    "a partnership that ended, a career over), give it the outro: the "
-    "clip plays as it is, then the song over shots of them playing "
-    "together.")
+    "talks about something that happened that we can show (a teammate, "
+    "a rival, a game, a record, a title, a choke, a blooper), give it the "
+    "outro: the clip plays as it is, then a song in the story's mood "
+    "(sad, hype, triumph or funny) over the footage of it. Never name a "
+    "team, a city, a year or a fact the post title and the transcript do "
+    "not say (a title once put Case Keenum's Bears locker room in Dallas).")
 
 
 def _brain(user: str, system: str) -> dict | None:
@@ -168,6 +185,7 @@ def pick(pool: list[dict], n: int) -> list[dict]:
         per[c["sub"]] = per.get(c["sub"], 0) + 1
         c["who"] = str(p.get("who") or "").strip() or c["sub"]
         c["why"] = str(p.get("why") or "").strip()
+        c["story"] = str(p.get("story") or "").strip()
         out.append(c)
     if not out:
         # no brain answered: the most upvoted, spread across subs
@@ -183,7 +201,19 @@ def found(query: str, who: str, n: int) -> list[dict]:
     length), shaped like a Reddit pick, so one moment the operator names
     ("when Russ is talking about KD") can be cut as a sample."""
     from funnel import hot_clips
-    return [{"sub": "youtube", "credit": v.get("channel") or "YouTube",
+    # Reddit's own video posts first: v.redd.it serves them when YouTube
+    # and the free converters refuse the runner (2026-10-21)
+    reddit = [{"sub": r["sub"] or "reddit", "credit": f"r/{r['sub']}",
+               "who": who or query, "why": "named by the operator",
+               "post_title": r["post_title"], "upvotes": 0,
+               "url": r["permalink"], "media": r["media"],
+               "permalink": r["permalink"]}
+              for r in hot_clips.reddit_videos(query, limit=25)
+              # Reddit's search matches loosely ("Kobe 81 points" returned a
+              # HistoryMemes post): the post must name who it is about
+              if (who or query).split()[-1].lower() in r["post_title"].lower()
+              ][:n]
+    return reddit + [{"sub": "youtube", "credit": v.get("channel") or "YouTube",
              "who": who or query, "why": "named by the operator",
              "post_title": v["title"], "upvotes": 0, "url": v["url"],
              "permalink": v["url"]}
@@ -203,6 +233,11 @@ def fetch(c: dict, work: Path) -> dict | None:
     except Exception as e:  # noqa: BLE001
         print(f"[sports] yt-dlp refused {c['url']} ({type(e).__name__})",
               flush=True)
+    if "streamable.com" in c.get("media", ""):
+        from funnel import find_footage
+        stem = re.sub(r"\W+", "", c["media"])[-12:]
+        p = find_footage.download(c["media"], work / f"st_{stem}.mp4")
+        return {"path": str(p), "title": c["post_title"]} if p else None
     if reddit_video.video_id(c.get("media", "")):
         stem = re.sub(r"\W+", "", c["media"])[-16:]
         return reddit_video.fetch(c["media"], work / f"rv_{stem}.mp4",
@@ -300,20 +335,34 @@ def _dur(path: Path) -> float:
 
 
 def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
-         line_top: bool = False) -> dict:
+         line_top: bool = False, used_songs: list | None = None) -> dict:
     """Author and cut one post. `notes` is a refused cut's verdict for the
     author to repair from; `line_top` puts our line at the top because
     the judge saw it over the footage's own graphic."""
     raw = Path(info["path"])
     words = clip_edit.transcribe_words(raw)
     dur = _dur(raw)
+    story = (f"\n\nTHE STORY'S ENDING: the picker saw a story here whose "
+             f"ending shows \"{c['story']}\". Give the outro for it unless "
+             f"the clip itself says otherwise.") if c.get("story") else ""
+    if used_songs:
+        story += ("\n\nSONGS ALREADY USED in this batch: "
+                  + ", ".join(used_songs) + ". Pick another song that fits "
+                  "this story's own mood; the same song on every video "
+                  "makes the channel sound like one video.")
     meta = author.author_package(
         c["who"], c["post_title"], " ".join(w["w"] for w in words),
         c["upvotes"], words=words, clip_dur=dur,
-        guidance=SPORTS_BRIEF + (f"\n\n{notes}" if notes else ""))
+        guidance=SPORTS_BRIEF + story + (f"\n\n{notes}" if notes else ""))
     if meta and (meta.get("edit") or {}).get("complete") is False:
         return {"skipped": "author: no setup or no payoff in the clip",
                 "meta": meta}
+    o = ((meta or {}).get("edit") or {}).get("outro")
+    if isinstance(o, dict):
+        perm = str(c.get("permalink") or "")
+        o["avoid"] = [x for x in (c.get("url"), c.get("media"), perm,
+                                  re.sub(r"^https?://[^/]+", "", perm),
+                                  c.get("post_title")) if x]
     hook = (meta or {}).get("hook") or c["post_title"][:60]
     led = clip_edit.edit(raw, out_mp4, credit=c.get("credit")
                          or f"r/{c['sub']}", hook=hook,
@@ -346,7 +395,7 @@ def main() -> int:
         print("::error::no sports video posts reached the runner", flush=True)
         return 1
     picks = pool if a.find else pick(pool, a.n)
-    index, made = [], 0
+    index, made, songs_used = [], 0, []
     for c in picks:
         if made >= a.n:
             break
@@ -365,13 +414,17 @@ def main() -> int:
         slug = re.sub(r"[^a-z0-9]+", "-", c["who"].lower()).strip("-")[:40]
         mp4 = out / f"{made + 1:02d}_{slug or 'clip'}.mp4"
         try:
-            row.update(make(c, info, mp4))
+            row.update(make(c, info, mp4, used_songs=songs_used))
         except Exception as e:  # noqa: BLE001
             row["skipped"] = f"render failed: {type(e).__name__}: {e}"[:300]
         if mp4.exists() and not row.get("skipped"):
             row["file"] = mp4.name
             made += 1
             m = row.get("meta") or {}
+            song = (((m.get("edit") or {}).get("outro") or {}).get("song")
+                    or (m.get("edit") or {}).get("song"))
+            if song and song not in songs_used:
+                songs_used.append(song)
             print(f"[sports] made {mp4.name}: {m.get('title')!r} / "
                   f"{row.get('hook')!r}", flush=True)
         index.append(row)

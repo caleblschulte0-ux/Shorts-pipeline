@@ -158,7 +158,7 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
         self.assertGreaterEqual(sum(n for _l, n in asked),
                                 outro.TARGET_SHOTS)
         self.assertGreaterEqual(outro.TARGET_SHOTS, 6)
-        self.assertTrue(all("on the court" in l for l, _n in asked))
+        self.assertTrue(all("the game" in l for l, _n in asked))
 
     def test_reels_of_different_shapes_still_join(self):
         # 2026-10-21: a 16:9 reel beside a #shorts one scaled to sizes
@@ -227,8 +227,8 @@ class TheClipPlaysThenTheTribute(unittest.TestCase):
         # YouTube is searched for the play, never for the rules
         self.assertEqual([k["query"] for k in nots], nums["looks"])
         self.assertIn('"numbers"', author.SYSTEM)
-        # and without a team, both faces in the frame, as teammates
-        self.assertIn("opposing teams", outro.frame_look("x", item["people"]))
+        # and without a team, both of them in the same play
+        self.assertIn("same play", outro.frame_look("x", item["people"]))
         self.assertIn('"team"', author.SYSTEM)
 
     def test_the_song_is_heard_well_before_the_picture_changes(self):
@@ -271,6 +271,8 @@ class AReelGivesSeveralShots(unittest.TestCase):
             vid = {"url": "u1", "title": "Durant Westbrook highlights"}
             with mock.patch.object(hot_clips, "youtube",
                                    return_value=[vid]), \
+                    mock.patch.object(hot_clips, "reddit_videos",
+                                      return_value=[]), \
                     mock.patch.object(find_footage, "download",
                                       return_value=td / "reel.mp4"), \
                     mock.patch.object(find_footage, "judge", side_effect=(
@@ -321,3 +323,121 @@ class TheLastShotPlaysOut(unittest.TestCase):
         g = outro.graph(3, [2.4, 2.4, 6.0], 12.0, 1080, 1920, None)
         self.assertIn("trim=0:6.00", g)
         self.assertIn(f"st={10.8 - outro.TAIL_FADE_S:.2f}", g)
+
+
+class ItIsAStoryNotATribute(unittest.TestCase):
+    """2026-10-21: "it's not just tributes ... anytime we can do anything
+    like that, whether it's a sad thing or a happy thing or a tribute or
+    whatever it is, we should do it"."""
+
+    def test_the_shelf_has_every_mood_a_payoff_can_have(self):
+        for mood in ("sad", "hype", "triumph", "funny"):
+            self.assertGreaterEqual(len(songs.names(mood)), 2, mood)
+        everything = songs.menu("")
+        for mood in songs.MOODS:
+            self.assertIn(f"[{mood}]", everything)
+
+    def test_the_author_is_told_to_use_it_on_any_showable_story(self):
+        self.assertIn("it's not just tributes", author.SYSTEM)
+        self.assertIn("till_i_collapse", author.SYSTEM)     # a hype song
+        self.assertIn("yakety_sax", author.SYSTEM)          # a funny one
+        self.assertNotIn("{OUTRO_MENU}", author.SYSTEM)
+
+    def test_a_hype_payoff_of_one_player(self):
+        item = outro.parse({"song": "till_i_collapse", "who": "Kobe Bryant",
+                            "people": ["Kobe Bryant"],
+                            "team": "Los Angeles Lakers", "numbers": ["8"],
+                            "grade": "hype",
+                            "looks": ["Kobe 81 point game highlights",
+                                      "Kobe 81 points fadeaway"]})
+        self.assertEqual(item["grade"], "hype")
+        self.assertIn("#8", outro.frame_look("x", item["people"],
+                                             item["team"], item["numbers"]))
+        asked = []
+        with mock.patch.object(find_footage, "find_many", side_effect=(
+                lambda *a, **k: asked.append(k["title_has"]) or [])):
+            outro.shots(item, Path(tempfile.mkdtemp()))
+        self.assertTrue(all(t == ["Bryant"] for t in asked))
+        self.assertIn("hype", outro.GRADES)
+
+
+class TheClipIsNeverItsOwnMontage(unittest.TestCase):
+    """2026-10-22: Verlander's "career highlights" montage was cut from
+    the very post being told (his daughter coming out to get him), and
+    Scherzer's from his own standing ovation: Reddit's search returns
+    the post itself. The outro carries the clip's urls and title as
+    `avoid`, and no candidate matching one is downloaded."""
+
+    def test_the_source_post_is_not_downloaded(self):
+        from funnel import find_footage, hot_clips
+        src = {"url": "https://v.redd.it/abc", "title": "Verlander's daughter "
+               "has come out to get her dad", "permalink": "/r/sports/x"}
+        other = {"url": "https://youtu.be/k", "title": "Verlander no-hitter"}
+        asked = []
+        with mock.patch.object(hot_clips, "youtube", return_value=[
+                    {"url": "https://youtu.be/same", "title": src["title"]},
+                    other]), \
+                mock.patch.object(hot_clips, "reddit_videos", return_value=[
+                    {"media": src["url"], "post_title": "something else",
+                     "permalink": src["permalink"]}]), \
+                mock.patch.object(find_footage, "download",
+                                  side_effect=lambda u, *a, **k:
+                                  asked.append(u)):
+            find_footage.find_many(
+                "Justin Verlander", "him pitching", n=2,
+                work=Path(tempfile.mkdtemp()),
+                avoid={src["permalink"], src["title"]})
+        self.assertEqual(asked, [other["url"]])
+
+    def test_the_outro_keeps_what_to_avoid(self):
+        item = outro.parse({**OUTRO, "avoid": ["https://v.redd.it/abc"]})
+        self.assertEqual(item["avoid"], ["https://v.redd.it/abc"])
+
+
+@unittest.skipUnless(HAVE_FFMPEG, "ffmpeg unavailable")
+class AMontageIsNotOnePictureThreeTimes(unittest.TestCase):
+    """2026-10-22: Keenum's payoff was one pre-snap line-up, three shots
+    of the same picture. A shot that looks like one already taken is
+    passed over."""
+
+    def test_a_still_reel_gives_one_shot(self):
+        from funnel import hot_clips
+        with tempfile.TemporaryDirectory() as td:
+            td = Path(td)
+            subprocess.run(
+                ["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i",
+                 "color=c=green:s=320x180:r=30:d=30", "-c:v", "libx264",
+                 str(td / "still.mp4")], check=True)
+            with mock.patch.object(hot_clips, "youtube", return_value=[
+                        {"url": "u1", "title": "Keenum hard count"}]), \
+                    mock.patch.object(hot_clips, "reddit_videos",
+                                      return_value=[]), \
+                    mock.patch.object(find_footage, "download",
+                                      return_value=td / "still.mp4"), \
+                    mock.patch.object(find_footage, "shot_around",
+                                      side_effect=lambda v, at: (at - 2, at + 2)), \
+                    mock.patch.object(find_footage, "judge", side_effect=(
+                        lambda frames, *a, **k: {i: {"depicts": True}
+                                                 for i, _p in frames})):
+                got = find_footage.find_many("Case Keenum", "him", n=4,
+                                             secs=2.4, work=td)
+            self.assertEqual(len(got), 1)
+
+
+class YouTubeSearchOutlivesTheQuota(unittest.TestCase):
+    """2026-10-22: the Data API's quota ran out and every montage fell
+    back to this month's Reddit posts. With no API answer, YouTube's own
+    search page (yt-dlp) is asked, and over-long videos are still left
+    out."""
+
+    def test_its_own_search_page_answers(self):
+        from funnel import hot_clips
+        with mock.patch.object(hot_clips, "_yt", return_value={}), \
+                mock.patch.object(hot_clips, "_ytsearch", return_value=[
+                    {"id": "a1", "title": "Scherzer 20 K", "channel": "MLB",
+                     "duration": 200},
+                    {"id": "b2", "title": "full game", "channel": "MLB",
+                     "duration": 9000}]):
+            got = hot_clips.youtube("Max Scherzer 20 strikeouts", max_s=600)
+        self.assertEqual([g["url"] for g in got],
+                         ["https://www.youtube.com/watch?v=a1"])

@@ -730,7 +730,7 @@ def test_the_free_converter_site_hands_back_the_file():
     assert got[2]["title"] == "Reggie part two"
     assert "watch%3Fv%3Dabcdefghijk" in asked[0]
     assert asked[1] == "https://loader.to/ajax/progress.php?id=v2_x"
-    assert yc.ROUTES[0][0] == "loader"
+    assert [r[0] for r in yc.ROUTES[:2]] == ["page", "loader"]
 
 
 class Everything(unittest.TestCase):
@@ -789,3 +789,70 @@ def test_a_cut_that_ends_mid_sentence_does_not_pass_whatever_its_label():
 def test_cosmetic_notes_alone_still_pass():
     r = _critic({**_DETENTION, "problems": _DETENTION["problems"][2:]})
     assert r["publish"] and r["story_score"] == 81
+
+
+class AConverterPageIsNotAVideo(unittest.TestCase):
+    """2026-10-21: loader.to's file host began answering scripts with a
+    962-byte ad-redirect page instead of the mp4; the file is fetched as a
+    browser, and a page that comes back anyway is never kept as a video."""
+
+    def test_a_page_is_refused_and_a_video_is_kept(self):
+        from unittest import mock
+        from funnel import yt_convert as y
+        page = b"<!doctype html><title>Redirect</title>" + b" " * 60_000
+        video = b"\x00\x00\x00\x20ftypisom" + b"\x00" * 60_000
+        for body, kept in ((page, False), (video, True)):
+            with tempfile.TemporaryDirectory() as d, \
+                    mock.patch.object(y, "_stream", lambda u, h, b=body: iter([b])), \
+                    mock.patch.object(y, "_browser_save", lambda *a, **k: False):
+                out = Path(d) / "x.src"
+                with mock.patch.object(y.time, "sleep", lambda s: None):
+                    self.assertEqual(y._save("https://host.example/dl", {}, out), kept)
+                self.assertEqual(out.exists(), kept)
+
+    def test_a_page_first_then_the_file_is_kept(self):
+        from unittest import mock
+        from funnel import yt_convert as y
+        answers = iter([b"<!doctype html>" + b" " * 900,
+                        b"\x00\x00\x00\x20ftypisom" + b"\x00" * 60_000])
+        with tempfile.TemporaryDirectory() as d, \
+                mock.patch.object(y, "_stream", lambda u, h: iter([next(answers)])), \
+                mock.patch.object(y.time, "sleep", lambda s: None):
+            self.assertTrue(y._save("https://host.example/dl", {}, Path(d) / "x.src"))
+
+    def test_the_file_is_fetched_as_a_browser(self):
+        import inspect
+        from funnel import yt_convert as y
+        self.assertIn("impersonate=\"chrome\"", inspect.getsource(y._stream))
+
+
+class FootageFromRedditsOwnVideos(unittest.TestCase):
+    """2026-10-21: YouTube and every free converter refused the runner; a
+    named moment's footage is searched on Reddit, whose v.redd.it serves
+    the plays themselves."""
+
+    def test_only_reddit_hosted_videos_come_back(self):
+        from funnel import hot_clips
+        listing = {"data": {"children": [
+            {"data": {"title": "Kobe drops 81", "url": "https://v.redd.it/abc123",
+                      "permalink": "/r/nba/comments/x/kobe_drops_81/"}},
+            {"data": {"title": "an article", "url": "https://espn.com/a",
+                      "permalink": "/r/nba/comments/y/an_article/"}}]}}
+        seen = []
+        with mock.patch.object(hot_clips, "_rss",
+                               lambda path, sub="": seen.append(path) or listing):
+            got = hot_clips.reddit_videos("Kobe 81")
+        self.assertEqual([g["media"] for g in got], ["https://v.redd.it/abc123"])
+        self.assertEqual(got[0]["sub"], "nba")
+        self.assertTrue(seen[0].startswith("/search.json?q=Kobe%2081%20site%3Av.redd.it"))
+
+    def test_a_reddit_video_is_downloaded_from_v_redd_it(self):
+        from funnel import find_footage, reddit_video
+        with tempfile.TemporaryDirectory() as d, \
+                mock.patch.object(reddit_video, "fetch",
+                                  lambda m, out, **k: (out.write_bytes(b"x"), {"path": out})[1]), \
+                mock.patch.object(find_footage, "_has_video", lambda p: True), \
+                mock.patch.object(find_footage.subprocess, "run",
+                                  side_effect=AssertionError("no yt-dlp")):
+            out = Path(d) / "a.mp4"
+            self.assertEqual(find_footage.download("https://v.redd.it/abc123", out), out)

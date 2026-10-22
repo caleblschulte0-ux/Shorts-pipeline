@@ -320,6 +320,55 @@ def top_videos(sub: str, period: str = "week",
     return out
 
 
+def reddit_videos(query: str, period: str = "all",
+                  limit: int = 25) -> list[dict]:
+    """Every Reddit post (any subreddit) that matches `query` and is a
+    Reddit-hosted video, top first: [{url, media, post_title, permalink,
+    sub, created}], `media` being the v.redd.it address
+    `funnel.reddit_video.fetch` downloads. Reddit's own site search, read
+    as RSS (the JSON API refuses runners). [] when Reddit cannot be read.
+
+    Shared capability: footage of a named moment when YouTube refuses the
+    runner and every free converter does too (2026-10-21) — r/nba,
+    r/nbaclips, r/sports... carry the plays themselves, and v.redd.it
+    serves them to anyone."""
+    query = str(query or "").strip()
+    if not query:
+        return []
+    # Reddit's search takes site: — without it a moment's name returns the
+    # discussion threads about it (19 of 25 for "Kobe 81 points")
+    kids = []
+    for site in ("v.redd.it", "streamable.com"):
+        q = urllib.parse.quote(f"{query} site:{site}")
+        got = _rss(f"/search.json?q={q}&sort=top&t={period}&type=link"
+                   f"&limit={int(limit)}", "all") or {}
+        kids += (got.get("data") or {}).get("children") or []
+    out, seen, hosts = [], set(), {}
+    for ch in kids:
+        p = ch.get("data") or {}
+        url = str(p.get("url") or "")
+        host = urllib.parse.urlparse(url).netloc.lower()
+        hosts[host] = hosts.get(host, 0) + 1
+        # Reddit's own videos and streamable (r/nba's highlight host) — both
+        # download from a runner; YouTube links are what refuses it
+        if not any(h in host for h in ("v.redd.it", "streamable.com")) \
+                or url in seen:
+            continue
+        seen.add(url)
+        perm = str(p.get("permalink") or "")
+        m = re.match(r"/r/([^/]+)/", perm)
+        out.append({"url": url, "media": url,
+                    "post_title": str(p.get("title") or "")[:200],
+                    "permalink": "https://www.reddit.com" + perm,
+                    "sub": m.group(1) if m else "",
+                    "created": float(p.get("created_utc") or 0)})
+    print(f"[hot_clips] reddit search {query[:50]!r}: {len(out)} "
+          f"video post(s) of {sum(hosts.values())} "
+          f"({', '.join(f'{h} {n}' for h, n in sorted(hosts.items(), key=lambda x: -x[1])[:6])})",
+          flush=True)
+    return out
+
+
 # ---- the other side, searched for by name -------------------------------
 
 def _yt(params: dict) -> dict:
@@ -334,8 +383,30 @@ def _yt(params: dict) -> dict:
                           .decode("utf-8", "replace"))
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[hot_clips] YouTube search failed "
-              f"({type(e).__name__})", flush=True)
+              f"({type(e).__name__} {getattr(e, 'code', '')})", flush=True)
         return {}
+
+
+def _ytsearch(query: str, n: int = 15) -> list[dict]:
+    """YouTube's own search page through yt-dlp (no API key, no quota):
+    the Data API's daily quota ran out on 2026-10-22 and every montage
+    fell back to this month's Reddit posts. [{id, title, channel,
+    duration}]; [] when it fails."""
+    import subprocess
+    try:
+        out = subprocess.run(
+            ["yt-dlp", "--flat-playlist", "-J", "--no-warnings",
+             f"ytsearch{n}:{query}"], capture_output=True, text=True,
+            timeout=90)
+        return [{"id": e.get("id"), "title": e.get("title") or "",
+                 "channel": e.get("channel") or e.get("uploader") or "",
+                 "duration": int(e.get("duration") or 0)}
+                for e in (json.loads(out.stdout or "{}").get("entries") or [])
+                if e.get("id")]
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[hot_clips] yt-dlp search failed "
+              f"({type(e).__name__})", flush=True)
+        return []
 
 
 def _iso_s(d: str) -> int:
@@ -362,7 +433,15 @@ def youtube(query: str, *, days: int = 45, n: int = 6,
     items = [i for i in (found.get("items") or [])
              if (i.get("id") or {}).get("videoId")]
     if not items:
-        return []
+        # no key, or its quota spent: YouTube's own search (no dates)
+        hits = [h for h in _ytsearch(query) if 0 < h["duration"] <= max_s]
+        if hits:
+            print(f"[hot_clips] YouTube search {query[:50]!r}: "
+                  f"{len(hits)} via its own search page", flush=True)
+        return [{"url": f"https://www.youtube.com/watch?v={h['id']}",
+                 "platform": "youtube", "title": h["title"][:200],
+                 "channel": h["channel"][:60], "created": 0.0}
+                for h in hits[:n]]
     ids = [i["id"]["videoId"] for i in items]
     lens = {v["id"]: _iso_s((v.get("contentDetails") or {})
                             .get("duration"))

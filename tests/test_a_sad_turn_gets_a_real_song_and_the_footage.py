@@ -28,7 +28,7 @@ class TheSongShelf(unittest.TestCase):
         for k, s in songs.SONGS.items():
             self.assertEqual(songs.clean(k), k)
             self.assertTrue(s["artist"] and s["title"] and s["fits"])
-            self.assertIn(s["mood"], moves.BEDS)
+            self.assertIn(s["mood"], songs.MOODS)
 
     def test_a_name_not_on_the_shelf_is_no_song(self):
         self.assertEqual(songs.clean("kevin macleod sad piano"), "")
