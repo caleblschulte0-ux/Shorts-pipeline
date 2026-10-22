@@ -25,7 +25,7 @@ from __future__ import annotations
 from pathlib import Path
 
 #: the date of the rules a video must meet; see the module docstring
-STANDARD = "2026-10-09"
+STANDARD = "2026-10-22"   # he pulls the scene's own lever (scene rule 22)
 
 
 def stamp() -> dict:

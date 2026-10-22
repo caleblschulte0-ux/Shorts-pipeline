@@ -652,6 +652,77 @@ def dog(cr, x, y, s, t, i=0, flip=False, coat="tan", collar=None, tag=None):
     return hang
 
 
+# -------------------------------------------------- HE WORKS THE MECHANISM ---
+# Operator, 2026-10-22, of a beer tower whose tap lever swung on its own
+# while Data turned a made-up wheel in the air beside it: "Why is he not
+# pulling the lever down on the tap? ... It's simple stuff like that". A
+# lever, a tap, a valve or a crank in a scene is drawn HERE, and each helper
+# RETURNS the two points his hands go on — one number (`pull`, `turn`)
+# drives the part AND his grip, so the part moves because his hands move it:
+#     hands = lever(cr, x, y, lever_pull(f))
+#     host("grip", gx, foot_y, h, hands=hands, lower="follow")
+
+def lever_pull(f, on=(0.0, 0.2), off=(0.8, 0.96)):
+    """One pull of a lever over a step's progress `f` (0..1): eased down
+    across `on`, held down, eased back up across `off`. 0 = up, 1 = down.
+    One arc, never a sine: what flows, flows while it is held down."""
+    return ease(seg(f, *on)) * (1.0 - ease(seg(f, *off)))
+
+
+def lever(cr, x, y, pull, length=96, up=-0.2, down=-1.25,
+          rgb=(44, 42, 48), knob=(30, 30, 34)):
+    """A lever on a pivot at (x, y), lit: a tap handle, a throttle, a power
+    lever. `pull` 0..1 swings it from angle `up` to `down` (radians from
+    straight up; negative leans LEFT, toward a Data standing left of it —
+    mirror both for one on the right). Draw the body it sits on first.
+    Returns the TWO points his hands grip — the knob and just below it —
+    for host("grip", ..., hands=lever(...))."""
+    ang = up + (down - up) * clamp(pull)
+    sx, sy = math.sin(ang), -math.cos(ang)
+    kx, ky = x + length * sx, y + length * sy
+    cr.save()
+    cr.set_line_cap(cairo.LINE_CAP_ROUND)
+    nx, ny = -sy * 7, sx * 7
+    cr.move_to(x + nx, y + ny)
+    cr.line_to(kx + nx * 0.7, ky + ny * 0.7)
+    cr.line_to(kx - nx * 0.7, ky - ny * 0.7)
+    cr.line_to(x - nx, y - ny)
+    cr.close_path()
+    solid(cr, rgb, finish="metal")
+    cr.restore()
+    disc(cr, x, y, 14, (150, 152, 160), finish="metal")
+    disc(cr, kx, ky, 17, knob, finish="gloss")
+    g = 0.72
+    return [(kx, ky), (x + length * g * sx, y + length * g * sy)]
+
+
+def handwheel(cr, x, y, turn, r=48, rgb=(196, 58, 50), spokes=4):
+    """A valve handwheel (or a crank wheel) at (x, y), lit, turned `turn`
+    revolutions (a number that RISES as he turns it: 0.75 is three
+    quarters round). Returns the TWO rim points his hands grip, which go
+    round with it — host("grip", ..., hands=handwheel(...))."""
+    rot = 2 * math.pi * float(turn)
+    cr.save()
+    cr.set_line_cap(cairo.LINE_CAP_ROUND)
+    cr.set_line_width(9)
+    for k in range(spokes):
+        a = rot + k * 2 * math.pi / spokes
+        cr.move_to(x, y)
+        cr.line_to(x + r * math.cos(a), y + r * math.sin(a))
+    cr.set_source_rgba(*_c((60, 22, 20)))
+    cr.stroke()
+    cr.new_sub_path()
+    cr.arc(x, y, r + 7, 0, 2 * math.pi)
+    cr.new_sub_path()
+    cr.arc_negative(x, y, r - 7, 2 * math.pi, 0)
+    solid(cr, rgb, finish="gloss")
+    cr.restore()
+    disc(cr, x, y, 12, (150, 152, 160), finish="metal")
+    a1, a2 = rot + math.pi * 1.2, rot + math.pi * 1.8
+    return [(x + r * math.cos(a1), y + r * math.sin(a1)),
+            (x + r * math.cos(a2), y + r * math.sin(a2))]
+
+
 # ------------------------------------------------------- SCALE IN THE SHOT ---
 # Operator, 2026-10-07, on a bar strip laid over the top of the frame: "boxes
 # on top of the video doesn't help ... it just needs to be able to more
