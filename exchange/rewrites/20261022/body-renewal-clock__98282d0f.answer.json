@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "body-renewal-clock__98282d0f",
+  "slug": "body-renewal-clock",
+  "by": "chatgpt",
+  "written_at": "2026-10-22T11:28:00Z",
+  "title": "The Body Renews Its Stomach Lining In 5 Days, Not Every Cell",
+  "hook": "Your stomach renews in 5 days; your whole body never does.",
+  "closing": "Every tissue keeps its own clock, so the replacement myth fails.",
+  "question": "Which body clock surprised you?",
+  "segments": [
+    {
+      "topic": "Body Renewal",
+      "say": "The stomach lining renews in about 5 days, while slower tissues follow different clocks."
+    },
+    {
+      "topic": "Body Replacement",
+      "say": "Replacement reaches 30 trillion cells cumulatively, not in one full-body reset."
+    },
+    {
+      "topic": "Body Persistence",
+      "say": "Skin is 28 days old here, while cortical neurons persist vastly longer."
+    }
+  ]
+}
