@@ -392,3 +392,52 @@ class TheClipIsNeverItsOwnMontage(unittest.TestCase):
     def test_the_outro_keeps_what_to_avoid(self):
         item = outro.parse({**OUTRO, "avoid": ["https://v.redd.it/abc"]})
         self.assertEqual(item["avoid"], ["https://v.redd.it/abc"])
+
+
+@unittest.skipUnless(HAVE_FFMPEG, "ffmpeg unavailable")
+class AMontageIsNotOnePictureThreeTimes(unittest.TestCase):
+    """2026-10-22: Keenum's payoff was one pre-snap line-up, three shots
+    of the same picture. A shot that looks like one already taken is
+    passed over."""
+
+    def test_a_still_reel_gives_one_shot(self):
+        from funnel import hot_clips
+        with tempfile.TemporaryDirectory() as td:
+            td = Path(td)
+            subprocess.run(
+                ["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i",
+                 "color=c=green:s=320x180:r=30:d=30", "-c:v", "libx264",
+                 str(td / "still.mp4")], check=True)
+            with mock.patch.object(hot_clips, "youtube", return_value=[
+                        {"url": "u1", "title": "Keenum hard count"}]), \
+                    mock.patch.object(hot_clips, "reddit_videos",
+                                      return_value=[]), \
+                    mock.patch.object(find_footage, "download",
+                                      return_value=td / "still.mp4"), \
+                    mock.patch.object(find_footage, "shot_around",
+                                      side_effect=lambda v, at: (at - 2, at + 2)), \
+                    mock.patch.object(find_footage, "judge", side_effect=(
+                        lambda frames, *a, **k: {i: {"depicts": True}
+                                                 for i, _p in frames})):
+                got = find_footage.find_many("Case Keenum", "him", n=4,
+                                             secs=2.4, work=td)
+            self.assertEqual(len(got), 1)
+
+
+class YouTubeSearchOutlivesTheQuota(unittest.TestCase):
+    """2026-10-22: the Data API's quota ran out and every montage fell
+    back to this month's Reddit posts. With no API answer, YouTube's own
+    search page (yt-dlp) is asked, and over-long videos are still left
+    out."""
+
+    def test_its_own_search_page_answers(self):
+        from funnel import hot_clips
+        with mock.patch.object(hot_clips, "_yt", return_value={}), \
+                mock.patch.object(hot_clips, "_ytsearch", return_value=[
+                    {"id": "a1", "title": "Scherzer 20 K", "channel": "MLB",
+                     "duration": 200},
+                    {"id": "b2", "title": "full game", "channel": "MLB",
+                     "duration": 9000}]):
+            got = hot_clips.youtube("Max Scherzer 20 strikeouts", max_s=600)
+        self.assertEqual([g["url"] for g in got],
+                         ["https://www.youtube.com/watch?v=a1"])

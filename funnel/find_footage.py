@@ -247,6 +247,25 @@ MANY_POINTS = tuple(round(0.1 + 0.05 * i, 2) for i in range(17))  # .1-.9
 #: Reels tried per montage look: the rule "both of them, as teammates"
 #: refuses most frames of most reels.
 MANY_CANDIDATES = 5
+SAME_PICTURE = 14          # mean grey difference (0-255) under which two
+                           # shots are the same picture: Keenum's montage was
+                           # one pre-snap line-up three times (2026-10-22)
+
+
+def _thumb(png) -> bytes:
+    """A 16x16 grey thumbnail of a frame, b"" when it cannot be read."""
+    try:
+        return subprocess.run(
+            ["ffmpeg", "-v", "error", "-i", str(png), "-vf",
+             "scale=16:16,format=gray", "-f", "rawvideo", "-"],
+            capture_output=True, timeout=30).stdout
+    except Exception:  # noqa: BLE001
+        return b""
+
+
+def same_picture(a: bytes, b: bytes) -> bool:
+    return bool(a) and len(a) == len(b) and \
+        sum(abs(x - y) for x, y in zip(a, b)) / len(a) < SAME_PICTURE
 
 
 def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
@@ -283,6 +302,7 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
         return got
     work = Path(work)
     tag = _norm(look)[:24] or "x"
+    thumbs: list[bytes] = []
     try:
         from funnel import hot_clips
         seen, cands = set(), []
@@ -341,6 +361,9 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
                     break
                 if not (verdicts.get(i) or {}).get("depicts"):
                     continue
+                th = _thumb(_p)
+                if any(same_picture(th, t) for t in thumbs):
+                    continue
                 at = dur * MANY_POINTS[i]
                 s0, s1 = shot_around(video, at)
                 if s1 - s0 < MIN_SHOT or any(a < s1 and s0 < b
@@ -356,6 +379,7 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
                            work / f"many_{tag}_{k}_{i}_cut.mp4")
                 if clip:
                     spans.append((s0, s1))
+                    thumbs.append(th)
                     skip.add(key)
                     got.append({"path": str(clip), "url": v["url"],
                                 "title": v["title"],

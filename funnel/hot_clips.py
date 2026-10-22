@@ -383,8 +383,30 @@ def _yt(params: dict) -> dict:
                           .decode("utf-8", "replace"))
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[hot_clips] YouTube search failed "
-              f"({type(e).__name__})", flush=True)
+              f"({type(e).__name__} {getattr(e, 'code', '')})", flush=True)
         return {}
+
+
+def _ytsearch(query: str, n: int = 15) -> list[dict]:
+    """YouTube's own search page through yt-dlp (no API key, no quota):
+    the Data API's daily quota ran out on 2026-10-22 and every montage
+    fell back to this month's Reddit posts. [{id, title, channel,
+    duration}]; [] when it fails."""
+    import subprocess
+    try:
+        out = subprocess.run(
+            ["yt-dlp", "--flat-playlist", "-J", "--no-warnings",
+             f"ytsearch{n}:{query}"], capture_output=True, text=True,
+            timeout=90)
+        return [{"id": e.get("id"), "title": e.get("title") or "",
+                 "channel": e.get("channel") or e.get("uploader") or "",
+                 "duration": int(e.get("duration") or 0)}
+                for e in (json.loads(out.stdout or "{}").get("entries") or [])
+                if e.get("id")]
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[hot_clips] yt-dlp search failed "
+              f"({type(e).__name__})", flush=True)
+        return []
 
 
 def _iso_s(d: str) -> int:
@@ -411,7 +433,15 @@ def youtube(query: str, *, days: int = 45, n: int = 6,
     items = [i for i in (found.get("items") or [])
              if (i.get("id") or {}).get("videoId")]
     if not items:
-        return []
+        # no key, or its quota spent: YouTube's own search (no dates)
+        hits = [h for h in _ytsearch(query) if 0 < h["duration"] <= max_s]
+        if hits:
+            print(f"[hot_clips] YouTube search {query[:50]!r}: "
+                  f"{len(hits)} via its own search page", flush=True)
+        return [{"url": f"https://www.youtube.com/watch?v={h['id']}",
+                 "platform": "youtube", "title": h["title"][:200],
+                 "channel": h["channel"][:60], "created": 0.0}
+                for h in hits[:n]]
     ids = [i["id"]["videoId"] for i in items]
     lens = {v["id"]: _iso_s((v.get("contentDetails") or {})
                             .get("duration"))
