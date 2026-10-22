@@ -3976,6 +3976,13 @@
       ],
       "words_first_10s": 18,
       "scene_changes_before_5s": 2
+    },
+    "rubiks-cube-record-vs-robot": {
+      "claimed_at": "2026-10-22T01:07:20.194187+00:00",
+      "title": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
+      "publish_at": "2026-10-22T04:09:00Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5033,6 +5040,14 @@
       "state": "posted",
       "slug": "genz-drinking-decline",
       "at": "2026-10-21T21:52:21.287154+00:00"
+    },
+    {
+      "claimed_at": "2026-10-22T01:07:20.194187+00:00",
+      "title": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
+      "publish_at": "2026-10-22T04:09:00Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "rubiks-cube-record-vs-robot"
     }
   ]
 }
