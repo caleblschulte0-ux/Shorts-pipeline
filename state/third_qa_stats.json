@@ -3,523 +3,6 @@
     {
       "date": "20261014",
       "dry_run": false,
-      "ts": "2026-10-14T14:49:42+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 127,
-        "with_retention": 115,
-        "with_curve": 15,
-        "fetched_at": "2026-10-14T12:32:11.294946+00:00"
-      },
-      "brain": {
-        "ok": 11,
-        "fail": 0,
-        "limited_at": "2026-10-14T14:44:53+00:00",
-        "limit_detail": "You've hit your session limit \u00b7 resets 3pm (UTC)"
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261014-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 84,
-                "refused_shown": 19,
-                "scouted": [],
-                "vod_arcs": 308,
-                "moments": 40,
-                "candidates": 496,
-                "pool": 2995,
-                "pool_with_vod": 2125,
-                "arc_sizes": [
-                  2,
-                  3,
-                  3,
-                  2,
-                  5,
-                  3,
-                  2,
-                  2,
-                  2,
-                  2
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "yuliabaka@momentproductivegoldennuggetsripepperonis-l8ifwhba",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@vod2821557824/kaicenat-detent-first-2026w29",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The only arc is inside the first clip. Kai, as the dean, lists the guest's offences, threatens him with detention, and puts 'CURRENTLY IN DETENTION' on the stream while the guest protests. He then sen"
-                },
-                {
-                  "cluster": "lyasyaa@momentcrypticcogentbubbletearulefive-do-xxp1gppbegbh",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@vod2822355279",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: director judged: not a story \u2014 The three clips don't form a chain. Clip 1 is Kai reading a roll call of names to the 'main office', with no consequence shown. C"
-                },
-                {
-                  "cluster": "yololaryy@momentaggressivelongjaypartytime-au0nfaeeycihjf8k",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "plaqueboymax@vod2874466121",
-                  "outcome": "already_refused",
-                  "why": "2026-10-08: director judged: not a story \u2014 The three clips are consecutive moments from one stream (11m, 27m, 32m in), but they don't form a setup, escalation and payoff. C"
-                },
-                {
-                  "cluster": "yuliabaka@momentsmoggymanlygalagogrammarking-l6ku2mzdja58jox",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "ohnepixel@vod2896011569",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: director judged: not a story \u2014 The sources don't show why ohnepixel is crying, so the premise can't be stated plainly. Clip 1 has no speech and clip 2 only has "
-                },
-                {
-                  "cluster": "t2x2@momentfancyclearpassionfruitpogchamp-kwziplikyybbjlam",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "ishowspeed@vod2875841671",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: director judged: not a story \u2014 The source consists of a disjointed monologue without a meaningful change, conflict, or resolution; it lacks a clear setup\u2011escala"
-                },
-                {
-                  "cluster": "yuliabaka@momentwimpyflaccidtardigradevoteyea-jthdayhkupgyo2",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "jynxzi@vod2875798295",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: director judged: not a story \u2014 The clips don't form a chain. The booklet clips (3h08m and 3h09m) show Jynxzi flipping through a manga booklet while chat tells h"
-                },
-                {
-                  "cluster": "kaicenat@momenttangentialdeterminedalmondspicyboy-oeitzou0ub",
-                  "outcome": "already_refused",
-                  "why": "2026-10-11: rendered; critic scored 46 after 2 revision(s) \u2014 @15s pacing: From about 12s to 42s the picture is a static red slide (a Europe flag and 'UNIVERSITY 2027 HELD I"
-                },
-                {
-                  "cluster": "kaicenat@vod2824281072/kaicenat-announc-cenat-2026w30",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 This is an announcement, not a story. In the first clip Kai says Streamer University 2027 will be held in Europe and that selected alumni can take part full-time. In the second clip, from the same bro"
-                },
-                {
-                  "cluster": "rubius@momentignoranttardytildedansgame-zidpvwytzhcyqn_y/rub",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 There is no meaningful change and no entertaining moment. All three sources are Rubius watching a Spanish-dubbed Minecraft speedrun tips video, with the presenter explaining version 1.16.1, F3 chest-f"
-                },
-                {
-                  "cluster": "lacy@vod2878632585",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "ishowspeed@momentmagnificentcaringlapwinglitfam--majf-ezbaoy",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: director judged: not a story \u2014 This is a run of unrelated reactions, not a chain. Before the clip, Speed checks whether his mic is too loud and reacts to a TikT"
-                },
-                {
-                  "cluster": "plaqueboymax@vod2877749481",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: director judged: not a story \u2014 The clips consist of fragmented, confused rambling about shooting without a clear conflict, escalation, or payoff, so they do not"
-                },
-                {
-                  "cluster": "squeex@momentfunencouragingopossumttours-1nemuxpg-iszrxpe",
-                  "outcome": "already_refused",
-                  "why": "2026-10-11: rendered; critic scored 66 after 2 revision(s) \u2014 @20s confusing: The shooting beat (about 11-20s) has no speech, and the next line, 'mind's been hit. It's my ey"
-                },
-                {
-                  "cluster": "erobb221@vod2896360593/erobb221-beer-over-2026w41",
-                  "outcome": "not_a_story",
-                  "why": "take 0: every beat is from one source \u2014 a clip, not a story; take 1: every beat is from one source \u2014 a clip, not a story; take 2: every beat is from one source \u2014 a clip, not a story"
-                },
-                {
-                  "cluster": "yuliabaka@momentdeterminedrelatedwolverinepmstwin-ezt64vfnqe",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "vague title, unknown",
-              "blind": false
-            },
-            "content": {
-              "score": 0.42,
-              "why": "Casual chat, mild shock, no clear payoff",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat Can't Believe What Rukah Just Said About High School"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.6,
-              "problems": [
-                "Top face-crop panel is sometimes badly framed: at 5.3s only a chin and torso show, and at 1.8s the face is cut off",
-                "At 23.0s and 26.5s the top panel shows only sky and trees with no person",
-                "The sharp middle strip is small and the subjects in it are far away, though the face panel makes up for it"
-              ]
-            }
-          },
-          "took_s": 315.8
-        },
-        {
-          "slug": "clip-20261014-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 91,
-                "refused_shown": 20,
-                "scouted": [
-                  {
-                    "premise": "In Jynxzi's Minecraft Death series, JunkoMC dies in the Nether and then dies again in the End. Stableronaldo watches the",
-                    "shape": "multi_streamer",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Ron answers a question on his own stream with a one-word answer, and Jasontheween reacts to it on his stream.",
-                    "shape": "multi_streamer",
-                    "n": 2
-                  }
-                ],
-                "vod_arcs": 308,
-                "moments": 40,
-                "candidates": 498,
-                "pool": 2995,
-                "pool_with_vod": 2125,
-                "arc_sizes": [
-                  2,
-                  3,
-                  3,
-                  2,
-                  5,
-                  3,
-                  2,
-                  2,
-                  2,
-                  2
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:jynxzi+stableronaldo/jynxzi-stableronaldo-about-death-",
-                  "outcome": "narrative_failed",
-                  "why": "scores [58, 48, 58] after 2 revision(s) \u2014 @35s weak_payoff: The cut ends mid-sentence on 'flick to your left and look at it'. The verdict line ('you got paid') that the EDL says it ends on is not in the transcript. Extend the final segment to include the full ; @0s missing_context: The opening is pi"
-                },
-                {
-                  "cluster": "yuliabaka@momentproductivegoldennuggetsripepperonis-l8ifwhba",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@vod2821557824",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: director judged: not a story \u2014 The only arc is inside the first clip. Kai, as the dean, lists the guest's offences, threatens him with detention, and puts 'CURR"
-                },
-                {
-                  "cluster": "scout:jasontheween+stableronaldo",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 preflight:source only 5.1s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "lyasyaa@momentcrypticcogentbubbletearulefive-do-xxp1gppbegbh",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@vod2822355279",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: director judged: not a story \u2014 The three clips don't form a chain. Clip 1 is Kai reading a roll call of names to the 'main office', with no consequence shown. C"
-                },
-                {
-                  "cluster": "yololaryy@momentaggressivelongjaypartytime-au0nfaeeycihjf8k",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "plaqueboymax@vod2874466121",
-                  "outcome": "already_refused",
-                  "why": "2026-10-08: director judged: not a story \u2014 The three clips are consecutive moments from one stream (11m, 27m, 32m in), but they don't form a setup, escalation and payoff. C"
-                },
-                {
-                  "cluster": "yuliabaka@momentsmoggymanlygalagogrammarking-l6ku2mzdja58jox",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "ohnepixel@vod2896011569",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: director judged: not a story \u2014 The sources don't show why ohnepixel is crying, so the premise can't be stated plainly. Clip 1 has no speech and clip 2 only has "
-                },
-                {
-                  "cluster": "t2x2@momentfancyclearpassionfruitpogchamp-kwziplikyybbjlam",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "ishowspeed@vod2875841671",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: director judged: not a story \u2014 The source consists of a disjointed monologue without a meaningful change, conflict, or resolution; it lacks a clear setup\u2011escala"
-                },
-                {
-                  "cluster": "yuliabaka@momentwimpyflaccidtardigradevoteyea-jthdayhkupgyo2",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "jynxzi@vod2875798295",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: director judged: not a story \u2014 The clips don't form a chain. The booklet clips (3h08m and 3h09m) show Jynxzi flipping through a manga booklet while chat tells h"
-                },
-                {
-                  "cluster": "kaicenat@momenttangentialdeterminedalmondspicyboy-oeitzou0ub",
-                  "outcome": "already_refused",
-                  "why": "2026-10-11: rendered; critic scored 46 after 2 revision(s) \u2014 @15s pacing: From about 12s to 42s the picture is a static red slide (a Europe flag and 'UNIVERSITY 2027 HELD I"
-                },
-                {
-                  "cluster": "kaicenat@vod2824281072",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: director judged: not a story \u2014 This is an announcement, not a story. In the first clip Kai says Streamer University 2027 will be held in Europe and that selecte"
-                },
-                {
-                  "cluster": "rubius@momentignoranttardytildedansgame-zidpvwytzhcyqn_y",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: director judged: not a story \u2014 There is no meaningful change and no entertaining moment. All three sources are Rubius watching a Spanish-dubbed Minecraft speedr"
-                },
-                {
-                  "cluster": "lacy@vod2878632585",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: sources fail preflight: preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "ishowspeed@momentmagnificentcaringlapwinglitfam--majf-ezbaoy",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: director judged: not a story \u2014 This is a run of unrelated reactions, not a chain. Before the clip, Speed checks whether his mic is too loud and reacts to a TikT"
-                },
-                {
-                  "cluster": "plaqueboymax@vod2877749481",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: director judged: not a story \u2014 The clips consist of fragmented, confused rambling about shooting without a clear conflict, escalation, or payoff, so they do not"
-                },
-                {
-                  "cluster": "squeex@momentfunencouragingopossumttours-1nemuxpg-iszrxpe",
-                  "outcome": "already_refused",
-                  "why": "2026-10-11: rendered; critic scored 66 after 2 revision(s) \u2014 @20s confusing: The shooting beat (about 11-20s) has no speech, and the next line, 'mind's been hit. It's my ey"
-                },
-                {
-                  "cluster": "erobb221@vod2896360593",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: take 0: every beat is from one source \u2014 a clip, not a story; take 1: every beat is from one source \u2014 a clip, not a story; take 2: every beat is from one source "
-                },
-                {
-                  "cluster": "yuliabaka@momentdeterminedrelatedwolverinepmstwin-ezt64vfnqe",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "emiru@vod2878603244/emiru-about-emiru-2026w38",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The three clips are unrelated moments from one stream, so they don't form a chain. (1) Emiru describes a WoW harasser who got around blocks with new accounts and a new computer. (2) She shows a shared"
-                },
-                {
-                  "cluster": "sondergaardlol@momentfantasticpunchybisonredcoat-pmq8vp3f-er",
-                  "outcome": "table_read_failed",
-                  "why": "table read 48 < 50 \u2014 not rendered; repetition: The setup repeats the same countdown ('3, 2, 1, go') four or five times between 25s and 38s. Cut it to one failed start and the real one so the 'they can't agree' premise lands in about 10s instead of; pacing: The first 20 seconds is people asking 'righ"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "vague title, insider",
-              "blind": false
-            },
-            "content": {
-              "score": 0.9,
-              "why": "Car explodes; player dies spectacularly",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Buddha Keeps Dying In TTT T\u2011UNIT \u2013 What Triggers The Chaos?"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 1733.0
-        },
-        {
-          "slug": "clip-20261014-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261014-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261014-4",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "vague title, unknown",
-              "blind": false
-            },
-            "content": {
-              "score": 0.7,
-              "why": "Surprised reaction to unexpected pineapp",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Alinity Says She\u2019s About To Take Care Of Something"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "unavailable"
-            }
-          },
-          "took_s": 96.7
-        },
-        {
-          "slug": "clip-20261014-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261014-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20261014",
-      "dry_run": false,
       "ts": "2026-10-14T15:49:14+00:00",
       "feedback": {
         "snapshot": true,
@@ -6152,6 +5635,58 @@
             }
           },
           "took_s": 144.0
+        }
+      ]
+    },
+    {
+      "date": "20261022",
+      "dry_run": false,
+      "ts": "2026-10-22T15:53:34+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 14,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 140,
+        "with_retention": 123,
+        "with_curve": 15,
+        "fetched_at": "2026-10-22T14:00:06.747474+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 0
+      },
+      "dead_sources": {},
+      "clips": [
+        {
+          "slug": "clip-20261022-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261022-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261022-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261022-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261022-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261022-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }
