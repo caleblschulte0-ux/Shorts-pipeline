@@ -63,6 +63,21 @@ reaction, a scuffle or a bench clearing, a celebration that goes wrong,
 a funny interview or press conference answer, a kid meeting a hero, an
 athlete posting something unexpected. The PERSON is the story.
 
+STORIES FIRST (operator, 2026-10-21: "they're not tribute clips ...
+They are stories ... anytime we can do anything like that, whether it's
+a sad thing or a happy thing or a tribute or whatever it is, we should
+do it"). Rank first the posts that are a STORY with something on the
+field we can show after it: a player telling a story about a teammate,
+a rival, a game or a record (Melo on LeBron saving him from drowning:
+then LeBron and Melo playing together); a retirement, a farewell, a
+tribute, a first game back, a parent watching their kid; the aftermath
+of a big win or loss (a locker-room speech, a tearful postgame, a
+celebration): then the win or the play that caused it. For each of
+those, `story` names what the ending shows, the way a YouTube clip of it
+is titled ("LeBron and Carmelo Team USA highlights"). Moments with no
+story (a fan doing something wild, a funny quote) come after, `story`
+"".
+
 Skip: a plain highlight of a play with no human moment in it (a goal,
 a dunk, a catch on its own), anything a viewer needs the game's context
 to get, serious injuries, deaths, politics, gambling picks, and
@@ -72,7 +87,7 @@ league broadcasts get claimed; take a broadcast only when the human
 moment is the whole point.
 
 Return STRICT JSON:
-{"picks": [{"i": int, "who": str, "why": str}, ...]}
+{"picks": [{"i": int, "who": str, "why": str, "story": str}, ...]}
 `who` is the main person's name as fans search it (the athlete, coach
 or team when no one person carries it), from the post title only.
 `why` is one short sentence: what a stranger sees that makes them stay.
@@ -168,6 +183,7 @@ def pick(pool: list[dict], n: int) -> list[dict]:
         per[c["sub"]] = per.get(c["sub"], 0) + 1
         c["who"] = str(p.get("who") or "").strip() or c["sub"]
         c["why"] = str(p.get("why") or "").strip()
+        c["story"] = str(p.get("story") or "").strip()
         out.append(c)
     if not out:
         # no brain answered: the most upvoted, spread across subs
@@ -324,10 +340,13 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
     raw = Path(info["path"])
     words = clip_edit.transcribe_words(raw)
     dur = _dur(raw)
+    story = (f"\n\nTHE STORY'S ENDING: the picker saw a story here whose "
+             f"ending shows \"{c['story']}\". Give the outro for it unless "
+             f"the clip itself says otherwise.") if c.get("story") else ""
     meta = author.author_package(
         c["who"], c["post_title"], " ".join(w["w"] for w in words),
         c["upvotes"], words=words, clip_dur=dur,
-        guidance=SPORTS_BRIEF + (f"\n\n{notes}" if notes else ""))
+        guidance=SPORTS_BRIEF + story + (f"\n\n{notes}" if notes else ""))
     if meta and (meta.get("edit") or {}).get("complete") is False:
         return {"skipped": "author: no setup or no payoff in the clip",
                 "meta": meta}
