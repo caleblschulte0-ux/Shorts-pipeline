@@ -162,8 +162,10 @@ def _loader_page(page_url: str, vid: str):
         b = pw.chromium.launch(headless=True)
         try:
             ctx = b.new_context(user_agent=UA)
-            ctx.on("page", lambda pg: pg.close())   # the ad tabs it opens
             page = ctx.new_page()
+            # the ad tabs it opens (registered after its own page, which
+            # this handler would otherwise close as it opened)
+            ctx.on("page", lambda pg: pg != page and pg.close())
             page.goto(page_url, wait_until="domcontentloaded", timeout=60000)
             page.fill("input#link", watch)
             page.select_option("select#format", "720")
@@ -290,7 +292,7 @@ def _stream(media_url: str, headers: dict):
 
 
 def _browser_save(media_url: str, headers: dict, out: Path,
-                  tries: int = 3) -> bool:
+                  tries: int = 1) -> bool:
     """The file, fetched the way a person gets it: a real (headless)
     Chromium that has been to the converter's own page, clicking through
     the ad its file host shows first (operator, 2026-10-22: *"we convert
@@ -317,7 +319,7 @@ def _browser_save(media_url: str, headers: dict, out: Path,
                     pass
             for i in range(tries):
                 try:
-                    with page.expect_download(timeout=90000) as dl:
+                    with page.expect_download(timeout=45000) as dl:
                         try:
                             page.goto(media_url, referer=ref or None,
                                       timeout=60000)
