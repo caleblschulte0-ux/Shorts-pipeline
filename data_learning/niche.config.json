@@ -20730,7 +20730,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-22T11:32:12Z",
+   "rewritten_at": "2026-10-22T11:46:37Z",
    "retold": "retell/v4"
   },
   {
@@ -20812,10 +20812,10 @@
   },
   {
    "slug": "activity-inequality-steps",
-   "title": "It's Not How Much You Walk. It's How Unequal It Is.",
-   "hook": "The countries where only some people walk are the ones getting fat.",
-   "closing": "It's not the steps. It's the gap.",
-   "question": "How many steps do you walk daily?",
+   "title": "Activity Inequality Raises Obesity Risk By 197%",
+   "hook": "Obesity tracks unequal activity more closely than average steps.",
+   "closing": "Closing the activity gap may matter more than telling everyone to walk equally farther.",
+   "question": "Who gets left behind where you live?",
    "caption": "Hong Kong walks 6,880 steps a day. Indonesia walks 3,513. But the real predictor of obesity isn't the average — it's the GAP between a country's most and least active people, and it makes obesity almost 200% more likely. How many steps do you actually walk a day? 👇",
    "hashtags": [
     "activityinequality",
@@ -20845,8 +20845,8 @@
      "ascending": false,
      "use_baseline": true,
      "role": "1 · THE STEPS",
-     "topic": "How much we walk",
-     "say": "In Hong Kong people walk about 6,880 steps a day; in Indonesia, barely half that.",
+     "topic": "Activity step gap",
+     "say": "Hong Kong averages 6,880 daily steps. Indonesia barely reaches half, showing how widely everyday movement differs.",
      "scene": {
       "mechanic": "footprint-trail-row",
       "concept": "a dotted footprint trail walks out from each country's name, longer trails for higher daily step counts, Hong Kong's trail nearly crossing the frame while Indonesia's stops short",
@@ -20863,8 +20863,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "2 · THE REAL PREDICTOR",
-     "topic": "How unequal activity is",
-     "say": "Countries where activity is most unequal are nearly three times as likely to be obese.",
+     "topic": "Activity inequality risk",
+     "say": "Obesity likelihood is 197% higher where activity is most unequal. The gap predicts risk better than an average.",
      "scene": {
       "mechanic": "risk-scale-tilt",
       "concept": "a balance beam tilts as reveal builds, a fit-silhouette icon on the low-inequality side stays level while an overweight-silhouette icon on the high-inequality side sinks toward the 297 risk index",
@@ -20879,8 +20879,8 @@
      },
      "insight_type": "share",
      "role": "3 · WHY THE GAP",
-     "topic": "Why it's so unequal",
-     "say": "Women walk fewer steps than men almost everywhere, and that explains 43 percent of the gap.",
+     "topic": "Activity gender gap",
+     "say": "The gender step gap explains 43% of worldwide activity inequality. Unequal opportunity to move becomes unequal health.",
      "scene": {
       "mechanic": "step-gap-scale",
       "concept": "a male and female walking-silhouette pair stand side by side, a red band rising up both figures to the 43% line that marks how much of the activity gap the gender difference alone explains",
@@ -20888,8 +20888,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T11:15:49Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-22T11:46:37Z",
    "hook_was": "Your steps won't stop obesity; this gap makes it almost 200 percent likelier.",
    "retold": "retell/v1"
   },
@@ -21280,10 +21280,10 @@
   },
   {
    "slug": "highest-point-illusion",
-   "title": "Everest Isn't the Highest Point on Earth",
-   "hook": "Everest has been getting credit that belongs to two other mountains.",
-   "closing": "Highest depends on where you start measuring, so check the starting line before you trust a record.",
-   "question": "Which mountain is the real winner?",
+   "title": "Everest Loses At 10,211 Meters From The Base",
+   "hook": "Everest is tallest only when the measurement starts at sea level.",
+   "closing": "Every record depends on its starting line, so the definition decides the winner.",
+   "question": "Which mountain counts as highest?",
    "caption": "Everest is 8,849 meters above sea level - and still loses twice. Mauna Kea is 10,211 meters from its base on the Pacific floor, and because Earth bulges 21 kilometers at the equator, Chimborazo's summit sits about 2 kilometers farther from the planet's center than Everest's does. Highest, tallest and farthest are three different questions. Which one counts? 👇",
    "hashtags": [
     "everest",
@@ -21312,8 +21312,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "1 · THE LEADERBOARD",
-     "topic": "Highest above sea level",
-     "say": "Everest, at 8,849 meters, tops every list because we measure from sea level. Change the starting line, and the winner changes.",
+     "topic": "Everest sea level",
+     "say": "Everest reaches 8,849 meters above sea level. That familiar starting line makes it the official tallest peak.",
      "scene": {
       "mechanic": "summit-skyline-ascent",
       "concept": "Five real snow-capped summits rise in a row from one sea-level baseline, each column landing in order, Everest tallest and glowing - a skyline so close together it needs a zoomed baseline to even show the gaps.",
@@ -21329,8 +21329,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · FROM THE BOTTOM",
-     "topic": "Highest from its base",
-     "say": "Measured from the seafloor, Mauna Kea is 10,211 meters tall. Most of it hides underwater, so sea level hides its true size.",
+     "topic": "Everest base rival",
+     "say": "Mauna Kea measures 10,211 meters from its base. Most of the taller mountain is hidden underwater.",
      "scene": {
       "mechanic": "ocean-drains-to-reveal",
       "concept": "The real mountain photo starts mostly underwater, at today's true waterline - only its snowy tip showing, exactly like Mauna Kea now. The ocean drains away through the beat, exposing more and more of the SAME photo, and the exposed height counts up to the full 10,211m. Everest's summit is a single fixed mark on that same rock, so the punchline is one picture: the water it takes to hide a taller mountain.",
@@ -21346,8 +21346,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE REAL WINNER",
-     "topic": "Highest from Earth's center",
-     "say": "Measure from Earth's center, and Chimborazo sticks out 13.4 kilometers past a round Earth, farther than Everest. Same mountains, different winner.",
+     "topic": "Everest center rival",
+     "say": "Chimborazo extends 13.4 kilometers beyond a round Earth. The planet's shape pushes its summit farthest from the center.",
      "scene": {
       "mechanic": "sphere-bulge-radial",
       "concept": "Earth drawn as a circle standing in for a perfect sphere, dashed all the way round. Two radius lines shoot out from the center past that dashed line to each summit's real photo - Chimborazo's line overshoots farther because it rides the equatorial bulge, even though its column onscreen a beat ago was shorter than Everest's. A pulse travels each line so the overshoot keeps reading as distance, not a static ruler.",
@@ -21355,8 +21355,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T19:58:48Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-22T11:46:38Z",
    "retold": "retell/v3",
    "hook_was": "Your 8,849-meter Everest champion just got dethroned. Twice."
   },
@@ -25127,10 +25127,10 @@
   },
   {
    "slug": "bat-fungus-collapse",
-   "title": "A Fungus Is Erasing North America's Bats",
-   "hook": "A deadly fungus is wiping out the bats that protect your food.",
-   "closing": "The fungus keeps spreading, and farmers could pay up to 53 billion dollars a year.",
-   "question": "Ever seen a bat near your home?",
+   "title": "One Fungus Erased 97% Of A Bat Species",
+   "hook": "A cave fungus erased 97% of one bat species.",
+   "closing": "Losing bats removes free pest control, leaving farms and food prices exposed.",
+   "question": "Have you seen fewer bats?",
    "caption": "Since 2006, a cold-loving fungus called white-nose syndrome has spread from a single New York cave to 35 states, killing over 90% of three major bat species. Bats aren't just creepy -- they save US farmers an estimated $3.7 billion a year eating crop pests. Ever seen a bat near your home? 👇",
    "hashtags": [
     "bats",
@@ -25157,8 +25157,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE SPREAD",
-     "topic": "Fungus spreading across states",
-     "say": "It began in one New York cave. Now it's confirmed in 35 states, and still spreading.",
+     "topic": "Bat fungus spread",
+     "say": "White-nose syndrome reached 35 states. A fungus that began in one cave became a continent-wide threat.",
      "viz": "geo_us",
      "illustrated_scene": "# scene standard: 2026-10-16.1\ndef _bat_fly(cr, x, y, s, flap):\n    up = 0.55 * math.sin(flap)\n    cr.move_to(x, y)\n    cr.curve_to(x - 30 * s, y - (20 + 30 * up) * s, x - 60 * s, y - (30 + 40 * up) * s,\n                x - 90 * s, y - (18 + 50 * up) * s)\n    cr.curve_to(x - 70 * s, y + 4 * s, x - 50 * s, y - 6 * s, x - 34 * s, y + 8 * s)\n    cr.line_to(x - 12 * s, y + 12 * s)\n    cr.line_to(x, y + 22 * s)\n    cr.line_to(x + 12 * s, y + 12 * s)\n    cr.line_to(x + 34 * s, y + 8 * s)\n    cr.curve_to(x + 50 * s, y - 6 * s, x + 70 * s, y + 4 * s, x + 90 * s, y - (18 + 50 * up) * s)\n    cr.curve_to(x + 60 * s, y - (30 + 40 * up) * s, x + 30 * s, y - (20 + 30 * up) * s, x, y)\n    cr.close_path()\n    solid(cr, (40, 32, 44), rim=False)\n    disc(cr, x, y + 6 * s, 9 * s, (58, 44, 50))\n\n\ndef _bat_perched(cr, x, y, s):\n    # a hibernating little brown bat clinging to the rock, white fungus on its muzzle\n    cr.save()\n    cr.translate(x, y)\n    cr.scale(s, s)\n    cr.move_to(-34, -10)\n    cr.curve_to(-40, 40, -20, 80, 0, 90)\n    cr.curve_to(20, 80, 40, 40, 34, -10)\n    cr.curve_to(20, -30, -20, -30, -34, -10)\n    cr.close_path()\n    solid(cr, (112, 80, 58))\n    cr.move_to(-26, -60)\n    cr.line_to(-36, -100)\n    cr.line_to(-8, -72)\n    cr.close_path()\n    solid(cr, (92, 64, 48))\n    cr.move_to(26, -60)\n    cr.line_to(36, -100)\n    cr.line_to(8, -72)\n    cr.close_path()\n    solid(cr, (92, 64, 48))\n    disc(cr, 0, -44, 32, (124, 90, 66))\n    for i in range(9):\n        ang = i * 0.7\n        disc(cr, 6 * math.cos(ang) * (i % 3), -30 + 4 * math.sin(ang * 2), 9 + (i % 3) * 2,\n             (240, 240, 234))\n    disc(cr, -12, -52, 5, (20, 16, 18), finish=\"gloss\")\n    disc(cr, 12, -52, 5, (20, 16, 18), finish=\"gloss\")\n    cr.restore()\n\n\ndef _us_pts():\n    return [(0.02, 0.05), (0.18, 0.05), (0.45, 0.08), (0.62, 0.10), (0.70, 0.18),\n            (0.76, 0.14), (0.82, 0.10), (0.90, 0.03), (0.97, 0.08), (0.93, 0.20),\n            (0.88, 0.30), (0.86, 0.42), (0.84, 0.55), (0.80, 0.68), (0.85, 0.85),\n            (0.82, 0.98), (0.76, 0.80), (0.66, 0.76), (0.56, 0.80), (0.48, 0.96),\n            (0.40, 0.78), (0.30, 0.72), (0.20, 0.70), (0.12, 0.62), (0.06, 0.48),\n            (0.02, 0.30), (0.00, 0.15)]\n\n\ndef _map_xy(x, y, dy=0.0):\n    return (540 + (x - 0.5) * 980 * (0.82 + 0.18 * y), 900 + 520 * y + dy)\n\n\ndef _map_path(cr, dy=0.0):\n    ps = _us_pts()\n    cr.move_to(*_map_xy(ps[0][0], ps[0][1], dy))\n    for x, y in ps[1:]:\n        cr.line_to(*_map_xy(x, y, dy))\n    cr.close_path()\n\n\ndef _fuzz_path(cr, nx, ny, R, t):\n    for i in range(49):\n        a = i / 48.0 * 2 * math.pi\n        r = R * (1 + 0.07 * math.sin(5 * a + 0.4 * t) + 0.04 * math.sin(11 * a))\n        px, py = nx + r * math.cos(a), ny + 0.55 * r * math.sin(a)\n        if i == 0:\n            cr.move_to(px, py)\n        else:\n            cr.line_to(px, py)\n    cr.close_path()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a map of the United States\n    SUBSTANCE: white bat-killing fungus\n    CAUSE: Data plants a white flag at each state the fungus has reached as it creeps west from New York\n    The country lies on the ground as a lit relief model. White-nose fungus\n    starts at one New York cave and spreads out over the land; its reach is\n    the count of states. Each year it lands on, Data plants a flag at the new\n    edge, so how far it went in a few years shows on the map itself. Data\n    works along the map's south side, below the flags, so no year label is\n    ever behind him; the labels are drawn after him. The last edge is in by\n    0.56 and holds while bats keep flying overhead.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    top = max(v for _, v in rows) or 1.0\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.15, 0.7))\n    prev = rows[k - 1][1] if k > 0 else 0.0\n    val = 0.0 if u < a0 else prev + (rows[k][1] - prev) * slide\n    landed_to = k if slide >= 0.999 else k - 1\n    if u < a0:\n        landed_to = -1\n    keep = sorted({round(i * (n - 1) / max(1, READOUT_SHOWS - 1))\n                   for i in range(READOUT_SHOWS)}) if n > READOUT_SHOWS else list(range(n))\n    named = max((i for i in keep if i <= landed_to), default=None)\n    shown = None if named is None else rows[named]\n\n    def reach(v):\n        return 0.0 if v <= 0 else 30 + 600 * v / top\n\n    NX, NY = _map_xy(0.86, 0.22)\n    R = reach(val)\n\n    landscape(cr, t, \"field\", horizon=860)\n    # bats streaming across the dusk sky\n    for i in range(4):\n        bx = -160 + ((t * 150 + i * 340) % 1420)\n        by = 700 + 50 * math.sin(t * 0.8 + i * 1.9) + (i % 2) * 60\n        _bat_fly(cr, bx, by, 0.9 + 0.25 * (i % 2), t * 9 + i)\n\n    # the country, a relief model on the ground\n    cast_shadow(cr, 80, 1000, 1420, length=280, a=0.28)\n    contact_shadow(cr, 540, 1420, 980, a=0.4)\n    _map_path(cr, dy=36)\n    solid(cr, (88, 76, 58), rim=False)\n    _map_path(cr)\n    solid(cr, (150, 170, 108))\n    cr.save()\n    _map_path(cr)\n    cr.clip()\n    cr.set_source_rgba(*_c((110, 128, 80), 0.7))\n    cr.set_line_width(3)\n    for x_ in (0.18, 0.32, 0.46, 0.60, 0.72):\n        cr.move_to(*_map_xy(x_, 0.0))\n        cr.curve_to(*_map_xy(x_ + 0.02, 0.35), *_map_xy(x_ - 0.03, 0.65), *_map_xy(x_ + 0.01, 1.0))\n    for y_ in (0.3, 0.55):\n        cr.move_to(*_map_xy(0.0, y_))\n        cr.curve_to(*_map_xy(0.35, y_ + 0.03), *_map_xy(0.65, y_ - 0.03), *_map_xy(1.0, y_))\n    cr.stroke()\n    # the fungus, white fuzz spreading out of the New York cave\n    if R > 0:\n        _fuzz_path(cr, NX, NY, R, t)\n        solid(cr, (238, 238, 232), edge=False)\n        cr.save()\n        _fuzz_path(cr, NX, NY, R, t)\n        cr.clip()\n        for i in range(70):\n            a = i * 2.39996\n            rr = R * math.sqrt(((i * 0.618) % 1.0))\n            cr.set_source_rgba(*_c((255, 255, 252), 0.8))\n            cr.arc(NX + rr * math.cos(a), NY + 0.55 * rr * math.sin(a), 6 + (i % 4) * 3, 0, 2 * math.pi)\n            cr.fill()\n        cr.restore()\n        _fuzz_path(cr, NX, NY, R, t)\n        edge(cr, (170, 170, 164))\n    cr.restore()\n    _map_path(cr)\n    edge(cr, (40, 46, 34))\n    # the cave it began in\n    cr.save()\n    cr.translate(NX, NY + 6)\n    cr.scale(1, 0.7)\n    cr.arc(0, 0, 22, math.pi, 2 * math.pi)\n    cr.restore()\n    cr.close_path()\n    solid(cr, (34, 28, 26), rim=False)\n\n    # THE SCALE on the map: the edge it had reached before, as a ghost\n    if named is not None and named >= 1:\n        _fuzz_path(cr, NX, NY, reach(rows[named - 1][1]), 0.0)\n        ghost(cr, a=0.8)\n\n    # flags Data has planted at each landed edge (their year labels come later,\n    # after Data, and sit well above his head)\n    flag_tops = []\n    for j in range(0, landed_to + 1):\n        Rj = reach(rows[j][1])\n        fx, fy = NX - Rj * 0.95, NY + 70\n        cr.set_source_rgba(*_c((60, 50, 44)))\n        cr.set_line_width(5)\n        cr.move_to(fx, fy)\n        cr.line_to(fx, fy - 90)\n        cr.stroke()\n        cr.move_to(fx, fy - 90)\n        cr.line_to(fx + 46, fy - 76)\n        cr.line_to(fx, fy - 62)\n        cr.close_path()\n        solid(cr, (244, 242, 236))\n        if j == named or j == 0:\n            flag_tops.append((rows[j][0], fx, fy - 102))\n\n    # right by the camera: a rock with a sick bat clinging to it\n    contact_shadow(cr, 200, 1760, 360, a=0.4)\n    heap_path(cr, 200, 1760, 200, 190)\n    solid(cr, (116, 110, 104))\n    _bat_perched(cr, 220, 1650, 1.1)\n    foreground(cr, \"field\")\n    vignette(cr, a=0.28)\n\n    # Data works along the south side of the flag line, his head below the labels\n    hx = max(170.0, NX - max(R, 30) * 0.85)\n    hy = NY + 250\n    if u < a0:\n        host(\"point\", NX - 40, hy, 200)\n    elif u < a1 + 0.04:\n        host(\"place\", hx, hy, 200, beat=k)\n    else:\n        host(\"hold_up\", hx, hy, 200)\n\n    for lab_, fx, ty in flag_tops:\n        text(cr, lab_, fx, ty, 30, look.INK, face=\"bold\", anchor=\"center\")\n\n    if shown is not None:\n        lab, v = shown\n        c = int(round(v))\n        fit_readout(cr, f\"{c} state\" + (\"\" if c == 1 else \"s\"),\n                    f\"with the bat-killing fungus · {lab}\",\n                    80, 520, a=ease(seg(u, a0, a0 + 0.05)), size=130)\n    else:\n        fit_readout(cr, \"White-nose\", f\"one New York cave, {rows[0][0]}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
@@ -25172,8 +25172,8 @@
      "ascending": false,
      "use_baseline": false,
      "role": "2 · THE DIE-OFF",
-     "topic": "Bats dying off",
-     "say": "White-nose syndrome has killed 97 percent of northern long-eared bats in under a decade. Barely any are left.",
+     "topic": "Bat species collapse",
+     "say": "Northern long-eared bats fell 97%. A once-common species nearly vanished within years.",
      "scene": {
       "mechanic": "bat-colony-collapse-columns",
       "concept": "three cave-ceiling colonies of real bat cutouts hang above their species label, then the fungus's toll drops most of each colony to the floor -- only a handful still hanging",
@@ -25189,8 +25189,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · WHAT WE LOSE",
-     "topic": "Bats and farmers",
-     "say": "Bats eat crop pests worth up to 53 billion dollars a year for US farmers. That free service is vanishing.",
+     "topic": "Bat farm value",
+     "say": "Bat pest control can be worth $53 billion yearly. Their collapse sends that hidden bill toward farmers.",
      "scene": {
       "mechanic": "farmland-value-gauge",
       "concept": "a bat cutout sweeps like a gauge needle over a farmland photo from the low to the high dollar estimate, crop icons filling in behind it as the value climbs",
@@ -25199,8 +25199,8 @@
     }
    ],
    "hook_was": "One fungus, one New York cave, 35 states of dead bats.",
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-12T20:26:49Z"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-22T11:46:37Z"
   },
   {
    "slug": "cremation-overtakes-burial",
@@ -25300,10 +25300,10 @@
   },
   {
    "slug": "unclaimed-money-states-hold",
-   "title": "Every State Is Secretly Holding Billions Of Your Money",
-   "hook": "Someone you know is owed money by their state and has no idea.",
-   "closing": "Search your name today, because it's free and it's your money.",
-   "question": "Have you checked if you're owed money?",
+   "title": "States Hold $70 Billion That Owners Never Claimed",
+   "hook": "States are holding $70 billion that still belongs to ordinary people.",
+   "closing": "A free name search could uncover money that has been waiting for you.",
+   "question": "Have you searched your name?",
    "caption": "US states are collectively holding about $70 billion in unclaimed money -- old paychecks, forgotten accounts, insurance payouts -- owed to 1 in 7 Americans. States only handed back $4.49 billion of it last year. Have you ever checked if you're owed money? 👇",
    "hashtags": [
     "unclaimedmoney",
@@ -25330,8 +25330,8 @@
      "ascending": false,
      "use_baseline": false,
      "role": "1 · IT'S EVERYWHERE",
-     "topic": "Money states hold",
-     "say": "California alone is sitting on 15 billion dollars of forgotten money. That's cash that belongs to regular people like you.",
+     "topic": "States hold money",
+     "say": "California holds $15 billion in unclaimed property. Forgotten accounts quietly become a massive public vault.",
      "viz": "geo_us",
      "illustrated_scene": "# scene standard: 2026-10-16.2\ndef _ufd_dollar(cr, x, cy, s, rgb):\n    \"\"\"A dollar sign cut into the bag, drawn as strokes so nothing reads as a label.\"\"\"\n    cr.set_source_rgba(*_c(rgb))\n    cr.set_line_width(6 * s)\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    cr.move_to(x + 13 * s, cy - 13 * s)\n    cr.curve_to(x + 6 * s, cy - 22 * s, x - 16 * s, cy - 21 * s, x - 14 * s, cy - 8 * s)\n    cr.curve_to(x - 12 * s, cy + 2 * s, x + 14 * s, cy - 2 * s, x + 14 * s, cy + 10 * s)\n    cr.curve_to(x + 14 * s, cy + 22 * s, x - 8 * s, cy + 24 * s, x - 15 * s, cy + 14 * s)\n    cr.move_to(x, cy - 27 * s)\n    cr.line_to(x, cy + 27 * s)\n    cr.stroke()\n    cr.set_line_cap(cairo.LINE_CAP_BUTT)\n\n\ndef _ufd_bag(cr, x, y, s):\n    contact_shadow(cr, x, y, 110 * s, a=0.4)\n    cr.move_to(x - 16 * s, y - 84 * s)\n    cr.curve_to(x - 70 * s, y - 64 * s, x - 62 * s, y, x, y)\n    cr.curve_to(x + 62 * s, y, x + 70 * s, y - 64 * s, x + 16 * s, y - 84 * s)\n    cr.close_path()\n    solid(cr, (204, 178, 124))\n    cr.move_to(x - 16 * s, y - 84 * s)\n    cr.line_to(x - 26 * s, y - 104 * s)\n    cr.line_to(x + 26 * s, y - 104 * s)\n    cr.line_to(x + 16 * s, y - 84 * s)\n    cr.close_path()\n    solid(cr, (184, 156, 104))\n    cr.rectangle(x - 20 * s, y - 90 * s, 40 * s, 9 * s)\n    solid(cr, (110, 80, 46), rim=False)\n    _ufd_dollar(cr, x, y - 38 * s, 0.9 * s, (64, 110, 62))\n\n\ndef _ufd_bundle(cr, x, y):\n    box(cr, x, y, 50, 22, (92, 146, 92), depth=12)\n    cr.rectangle(x + 20, y - 22, 10, 22)\n    solid(cr, (234, 224, 192), edge=False, rim=False)\n\n\ndef _ufd_car(cr, x, y, s):\n    contact_shadow(cr, x + 195 * s, y + 4, 400 * s, a=0.45)\n    cr.move_to(x + 4 * s, y - 30 * s)\n    cr.line_to(x, y - 66 * s)\n    cr.curve_to(x + 8 * s, y - 88 * s, x + 50 * s, y - 92 * s, x + 96 * s, y - 96 * s)\n    cr.line_to(x + 140 * s, y - 142 * s)\n    cr.curve_to(x + 190 * s, y - 150 * s, x + 236 * s, y - 150 * s, x + 262 * s, y - 140 * s)\n    cr.line_to(x + 306 * s, y - 96 * s)\n    cr.curve_to(x + 360 * s, y - 92 * s, x + 390 * s, y - 80 * s, x + 392 * s, y - 52 * s)\n    cr.line_to(x + 388 * s, y - 30 * s)\n    cr.close_path()\n    solid(cr, (58, 96, 150), finish=\"gloss\")\n    cr.move_to(x + 112 * s, y - 98 * s)\n    cr.line_to(x + 148 * s, y - 134 * s)\n    cr.line_to(x + 194 * s, y - 138 * s)\n    cr.line_to(x + 194 * s, y - 98 * s)\n    cr.close_path()\n    solid(cr, (176, 204, 224), finish=\"glass\", rim=False)\n    cr.move_to(x + 206 * s, y - 98 * s)\n    cr.line_to(x + 206 * s, y - 138 * s)\n    cr.line_to(x + 254 * s, y - 132 * s)\n    cr.line_to(x + 288 * s, y - 98 * s)\n    cr.close_path()\n    solid(cr, (176, 204, 224), finish=\"glass\", rim=False)\n    disc(cr, x + 380 * s, y - 64 * s, 8 * s, (255, 236, 180), finish=\"gloss\")\n    for wx in (x + 84 * s, x + 312 * s):\n        disc(cr, wx, y - 24 * s, 34 * s, (34, 34, 38), finish=\"matte\")\n        disc(cr, wx, y - 24 * s, 14 * s, (176, 178, 184), finish=\"metal\")\n\n\ndef _ufd_person(cr, x, y, s, t, i, coat, hair, walking):\n    \"\"\"A regular person seen from behind, walking up to the vault.\"\"\"\n    contact_shadow(cr, x, y, 80 * s, a=0.35)\n    sw = (math.sin(t * 6 + i * 1.7) * 14 * s) if walking else 0.0\n    cr.set_source_rgba(*_c((44, 46, 60)))\n    cr.set_line_width(16 * s)\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for d in (-1, 1):\n        cr.move_to(x + d * 10 * s, y - 70 * s)\n        cr.line_to(x + d * 10 * s + d * sw, y - 4 * s)\n    cr.stroke()\n    cr.set_line_cap(cairo.LINE_CAP_BUTT)\n    cr.move_to(x - 28 * s, y - 70 * s)\n    cr.curve_to(x - 34 * s, y - 120 * s, x - 34 * s, y - 150 * s, x - 18 * s, y - 158 * s)\n    cr.line_to(x + 18 * s, y - 158 * s)\n    cr.curve_to(x + 34 * s, y - 150 * s, x + 34 * s, y - 120 * s, x + 28 * s, y - 70 * s)\n    cr.close_path()\n    solid(cr, coat)\n    disc(cr, x, y - 178 * s, 21 * s, (214, 170, 136))\n    cr.arc(x, y - 180 * s, 22 * s, math.pi * 0.95, math.pi * 2.05)\n    cr.close_path()\n    solid(cr, hair, rim=False)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: the state treasury's unclaimed-money vault\n    SUBSTANCE: forgotten cash in the vault\n    CAUSE: Data grips the giant vault door and drags it open with his own hands, exposing the money held inside\n    A domed state capitol with a columned portico and steps on a plaza;\n    regular people walk up to it by the camera while a car goes by. In the\n    capitol's base is the UNCLAIMED PROPERTY vault, its steel door shut on\n    shelves of cash and money bags. Data grabs the door's handle and hauls\n    it aside, state by state: the door opens as far as that state's\n    forgotten money, Ohio's, then Texas's, then California's 15 billion\n    throws it fully open. Each state leaves a notch on the door's track,\n    named on the stone above, so a glance shows California's stash is about\n    three times Ohio's. Landed by 0.56 and held, the vault light spilling\n    onto the steps while the flag waves and cars pass.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: r[1])\n    n = len(rows)\n    top = rows[-1][1] or 1.0\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.15, 0.7))\n    prev = rows[k - 1][1] if k > 0 else 0.0\n    frac = 0.0 if u < a0 else (prev + (rows[k][1] - prev) * slide) / top\n    landed_to = k if slide >= 0.999 else k - 1\n    shown = None if (u < a0 or landed_to < 0) else rows[landed_to]\n\n    landscape(cr, t, \"town\")\n    birds(cr, t, y0=760, n=4, rgb=(60, 60, 70))\n\n    BASE = 1440\n    STONE = (230, 224, 210)\n    COL = (238, 233, 222)\n    cast_shadow(cr, 60, 1010, BASE, length=340, a=0.3)\n    contact_shadow(cr, 535, BASE + 4, 1000, a=0.4)\n    b = building(cr, 60, 1010, BASE, 560, STONE, roof_rgb=(150, 146, 138),\n                 roof=\"flat\", boards=False)\n    rx = (b[\"x0\"] + b[\"x1\"]) / 2\n    ty = b[\"top\"]\n\n    # the capitol dome: a colonnaded drum, a gilded ribbed dome, lantern, flag\n    cylinder(cr, rx - 160, ty, 320, 80, COL)\n    cr.set_source_rgba(*_c((170, 164, 150)))\n    cr.set_line_width(5)\n    for i in range(9):\n        cx_ = rx - 140 + i * 35\n        cr.move_to(cx_, ty - 8)\n        cr.line_to(cx_, ty - 64)\n    cr.stroke()\n    DR, DK = 150, 0.66\n    cr.save()\n    cr.translate(rx, ty - 80)\n    cr.scale(1, DK)\n    cr.arc(0, 0, DR, math.pi, 2 * math.pi)\n    cr.close_path()\n    cr.restore()\n    solid(cr, (214, 184, 106), finish=\"metal\")\n    cr.set_source_rgba(*_c((150, 120, 60), 0.7))\n    cr.set_line_width(4)\n    for i in range(1, 6):\n        ang = math.pi + i * math.pi / 6\n        cr.move_to(rx + DR * math.cos(ang), ty - 80)\n        cr.curve_to(rx + DR * math.cos(ang), ty - 80 + DR * DK * math.sin(ang) * 0.7,\n                    rx + DR * 0.4 * math.cos(ang), ty - 80 - DR * DK,\n                    rx, ty - 80 - DR * DK)\n    cr.stroke()\n    lt = ty - 80 - DR * DK + 4\n    cylinder(cr, rx - 20, lt, 40, 40, COL)\n    pole_top = lt - 40 - 40\n    cr.set_source_rgba(*_c((70, 70, 76)))\n    cr.set_line_width(5)\n    cr.move_to(rx, lt - 40)\n    cr.line_to(rx, pole_top)\n    cr.stroke()\n    fl = []\n    for i in range(13):\n        fx = rx + i * 9\n        fl.append((fx, pole_top + 7 * math.sin(t * 3.2 - i * 0.5) * (i / 12)))\n    cr.move_to(*fl[0])\n    for p_ in fl[1:]:\n        cr.line_to(*p_)\n    for p_ in reversed(fl):\n        cr.line_to(p_[0], p_[1] + 46)\n    cr.close_path()\n    solid(cr, (64, 92, 150), rim=False)\n\n    # the portico: pediment, entablature, columns\n    cr.move_to(50, 962)\n    cr.line_to(rx, 892)\n    cr.line_to(1020, 962)\n    cr.close_path()\n    solid(cr, (224, 218, 204))\n    box(cr, 50, 1000, 970, 40, (222, 216, 202), depth=20)\n    for cx in (78, 600, 680, 760, 840, 920):\n        cylinder(cr, cx, BASE, 36, 440, COL)\n\n    # the vault: shelves of cash and money bags behind the doorway\n    DX0, DX1, DY, GY = 130, 530, 1040, BASE\n    dw = DX1 - DX0\n    cr.save()\n    cr.rectangle(DX0, DY, dw, GY - DY)\n    cr.clip()\n    vgrad(cr, [(0, (52, 42, 30)), (1, (120, 92, 56))], DY, GY, DX0, DX1)\n    glow(cr, (DX0 + DX1) / 2, 1240, 300, (255, 214, 140), 0.25 + 0.35 * frac)\n    for sy in (1150, 1270):\n        cr.rectangle(DX0, sy, dw, 12)\n        solid(cr, (122, 92, 58), rim=False)\n        for j in range(7):\n            _ufd_bundle(cr, DX0 + 10 + j * 56, sy)\n        for j in range(6):\n            _ufd_bundle(cr, DX0 + 38 + j * 56, sy - 24)\n    for i, bx in enumerate((180, 280, 380, 480)):\n        _ufd_bag(cr, bx, GY - 4, 0.95 + 0.15 * (i % 2))\n    cr.restore()\n    cr.set_source_rgba(*_c((70, 72, 80)))\n    cr.set_line_width(14)\n    cr.rectangle(DX0, DY, dw, GY - DY)\n    cr.stroke()\n\n    # the steps up to the vault, its light spilling down them as it opens\n    box(cr, 30, 1474, 1010, 30, (214, 208, 194), depth=16)\n    box(cr, 0, 1508, 1080, 32, (204, 198, 184), depth=16)\n    if frac > 0:\n        glow(cr, DX0 + dw * frac / 2, GY + 40, 140 + 280 * frac,\n             (255, 214, 140), 0.5 * frac)\n\n    # the track, the door sliding along it\n    cr.set_source_rgba(*_c((46, 44, 48)))\n    cr.set_line_width(10)\n    cr.move_to(DX0 - 20, DY - 20)\n    cr.line_to(DX1 + dw + 30, DY - 20)\n    cr.stroke()\n    dx = DX0 + dw * frac\n    cr.rectangle(dx, DY - 8, dw, GY - DY + 8)\n    solid(cr, (128, 134, 144), finish=\"metal\")\n    cr.set_source_rgba(*_c((84, 88, 98)))\n    cr.set_line_width(6)\n    cr.rectangle(dx + 18, DY + 10, dw - 36, GY - DY - 28)\n    cr.stroke()\n    for i in range(6):\n        disc(cr, dx + 30 + i * (dw - 60) / 5, DY + 30, 7, (176, 180, 188), finish=\"metal\")\n        disc(cr, dx + 30 + i * (dw - 60) / 5, GY - 30, 7, (176, 180, 188), finish=\"metal\")\n    wx, wy = dx + dw / 2, 1250\n    disc(cr, wx, wy, 84, (150, 156, 166), finish=\"metal\")\n    rot = frac * 7.0\n    cr.set_source_rgba(*_c((60, 62, 70)))\n    cr.set_line_width(14)\n    for i in range(3):\n        ang = rot + i * math.pi / 3\n        cr.move_to(wx - 74 * math.cos(ang), wy - 74 * math.sin(ang))\n        cr.line_to(wx + 74 * math.cos(ang), wy + 74 * math.sin(ang))\n    cr.stroke()\n    disc(cr, wx, wy, 24, (180, 184, 192), finish=\"metal\")\n    box(cr, dx + 50, 1112, dw - 100, 40, (232, 214, 150), depth=6, finish=\"metal\")\n    text(cr, \"UNCLAIMED PROPERTY\", dx + dw / 2, 1102, 26, (50, 44, 36),\n         face=\"bold\", anchor=\"center\", shadow=False)\n    cr.rectangle(dx + dw - 40, 1280, 16, 110)\n    solid(cr, (60, 62, 70), finish=\"metal\")\n    for hx_ in (dx + 40, dx + dw - 40):\n        disc(cr, hx_, DY - 20, 11, (70, 70, 76), finish=\"metal\")\n\n    # THE SCALE on the track: a notch where each state's money opened it to,\n    # its name cut into the stone above, staggered so none collide\n    if u >= a0:\n        for j in range(0, landed_to + 1):\n            nx = DX0 + dw * rows[j][1] / top\n            cr.set_source_rgba(*_c((244, 238, 226)))\n            cr.set_line_width(6)\n            cr.move_to(nx, DY - 40)\n            cr.line_to(nx, DY - 4)\n            cr.stroke()\n            ly = DY - 50 if j % 2 == 0 else DY - 86\n            text(cr, rows[j][0], nx, ly, 30, look.INK, face=\"bold\", anchor=\"center\")\n\n    # right by the camera: regular people walking up to claim it, a car by\n    crowd = [(150, 1720, (176, 60, 52), (60, 40, 30)),\n             (320, 1700, (70, 120, 96), (30, 26, 24)),\n             (480, 1735, (214, 160, 60), (120, 80, 44))]\n    for i, (px, py, coat, hair) in enumerate(crowd):\n        g = ease(seg(u, 0.05 + 0.08 * i, 0.45 + 0.08 * i))\n        walking = 0.0 < g < 1.0\n        _ufd_person(cr, px - 360 * (1 - g), py, 1.3, t, i, coat, hair, walking)\n    cx = -480 + ((t * 230) % 2040)\n    _ufd_car(cr, cx, 1880, 1.15)\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    edge_x = dx + dw\n    hx = edge_x + 40\n    hands = [(edge_x - 32, 1306), (edge_x - 32, 1366)]\n    if u < a0:\n        host(\"point\", DX1 + 60, 1450, 240)\n    elif u < 0.9:\n        host(\"grip\", hx, 1450, 240, hands=hands, lower=\"brace\",\n             expr=\"strain\" if u < a1 + 0.04 else \"happy\")\n    else:\n        host(\"cheer\", hx, 1450, 240)\n\n    if shown is not None:\n        lab, v = shown\n        fit_readout(cr, f\"${v:g} billion\", f\"forgotten money held by {lab}\",\n                    80, 520, a=ease(seg(u, a0, a0 + 0.05)), size=130)\n    else:\n        fit_readout(cr, \"Forgotten money\", \"the state is holding it for you\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
@@ -25344,8 +25344,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · BARELY RECLAIMED",
-     "topic": "Money returned",
-     "say": "Last year, states handed back only 4.49 billion dollars. Most of the pile is still sitting there, waiting for its owners.",
+     "topic": "States return money",
+     "say": "States returned only $4.49 billion in the latest year. Most of the national pile still waits for owners.",
      "scene": {
       "mechanic": "vault-drain-trickle",
       "concept": "a bank vault photo fills to the brim with cash representing the total held, then only a thin trickle drains out the door to represent what actually got returned",
@@ -25360,8 +25360,8 @@
      },
      "insight_type": "share",
      "role": "3 · IS IT YOURS?",
-     "topic": "Who has money waiting",
-     "say": "About 1 in 7 Americans have money waiting, and checking is free. That's probably someone you know, maybe you.",
+     "topic": "States owe people",
+     "say": "About 14.3% of Americans have unclaimed property. Someone in almost every circle may be owed money.",
      "scene": {
       "mechanic": "crowd-glow-share",
       "concept": "a grid of real person silhouettes stands dim, and exactly 1-in-7 light up gold holding a dollar bill as the share reveals",
@@ -25369,8 +25369,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-11T15:42:07Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-22T11:46:39Z",
    "retold": "retell/v3",
    "hook_was": "States are quietly holding 70 billion dollars of your money."
   },
@@ -26177,10 +26177,10 @@
   },
   {
    "slug": "religious-nones-rise",
-   "title": "One In Four Americans Now Has No Religion",
-   "hook": "Americans with no religion now outnumber Catholics.",
-   "closing": "One in four now says none, so the religious map around you is quietly being redrawn.",
-   "question": "Do you consider yourself religious? Tell me below.",
+   "title": "28% With No Religion Now Outnumber Catholics",
+   "hook": "No religion now claims 28% of Americans, passing Catholics.",
+   "closing": "The country's religious map is changing with each generation.",
+   "question": "Do you consider yourself religious?",
    "caption": "Only 8% of Americans had no religion in 1990. Today it's 29% -- and it's not random, it's generational: only 10% of the oldest Americans are unaffiliated, versus about a third of Gen Z. 'No religion' is now closing in on becoming the country's single biggest group. Do you consider yourself religious? 👇",
    "hashtags": [
     "religion",
@@ -26206,8 +26206,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE RISE",
-     "topic": "Americans with no religion",
-     "say": "In 1990, only 8 percent of US adults had no religion. Today that has more than tripled, so faith's hold is loosening fast.",
+     "topic": "Religion Since 1990",
+     "say": "In 1990, 8% of US adults had no religion; that share has more than tripled.",
      "scene": {
       "mechanic": "empty-pew-exodus",
       "concept": "a hundred-person congregation under a church photo; as the years tick 1990 to 2021, people at the pews drop out of colour and walk off until 29 of 100 are gone",
@@ -26223,8 +26223,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · WHY",
-     "topic": "No religion by generation",
-     "say": "36 percent of millennials have no religion, more than triple the oldest generation. So the shift is built into who is growing up.",
+     "topic": "Religion By Generation",
+     "say": "Among millennials, 36% have no religion, more than triple the oldest generation.",
      "scene": {
       "mechanic": "generation-pew-seats",
       "concept": "five rows of pews, one per generation, 20 seats each; seats empty out from the right as each generation's no-religion share sweeps in, oldest barely touched, youngest a third vacant",
@@ -26240,8 +26240,8 @@
      },
      "insight_type": "share",
      "role": "3 · THE NEW MAP",
-     "topic": "No religion today",
-     "say": "Today 28 percent say none, passing Catholics. Only Protestants are still ahead, and the gap is closing.",
+     "topic": "Religion Today",
+     "say": "Today 28% say none, passing Catholics while Protestants remain ahead.",
      "scene": {
       "mechanic": "people-stack-overtake",
       "concept": "each affiliation is a column of stacked people; the Unaffiliated column climbs past the Catholic one and stops just under Protestants",
@@ -26250,8 +26250,8 @@
      "illustrated_scene": "# scene standard: 2026-10-11\ndef _rail(cr, y, s):\n    # the bed of ballast, lit, then the sleepers and the steel rail on it\n    cr.rectangle(0, y - 4 * s, W, 26 * s)\n    solid(cr, (150, 138, 118), edge=False, rim=False)\n    step = int(56 * s)\n    for x in range(-20, W + 40, step):\n        cr.rectangle(x, y - 8 * s, 22 * s, 14 * s)\n        cr.set_source_rgba(*_c((96, 70, 48)))\n        cr.fill()\n    cr.rectangle(0, y - 12 * s, W, 6 * s)\n    solid(cr, (120, 122, 130), finish=\"metal\", rim=False)\n\n\ndef _handcar(cr, x, y, s, rgb, label, t, rock, flap):\n    # a railway handcar on its rail at (x, y): wheels, a lit deck, the pump\n    # post and its rocking beam, and the group's flag streaming behind it\n    contact_shadow(cr, x, y + 4, 190 * s, a=0.4)\n    cast_shadow(cr, x - 85 * s, x + 85 * s, y, length=160 * s, a=0.22)\n    px = x - 72 * s\n    top = y - 232 * s\n    cr.rectangle(px - 3 * s, top, 6 * s, 200 * s)\n    solid(cr, (70, 72, 80), finish=\"metal\", rim=False)\n    fw, fh = 170 * s, 48 * s\n    cr.move_to(px, top)\n    for i in range(1, 9):\n        xx = px - fw * i / 8\n        cr.line_to(xx, top + flap * 7 * s * math.sin(t * 5 + i * 0.9) * i / 8)\n    for i in reversed(range(0, 9)):\n        xx = px - fw * i / 8\n        cr.line_to(xx, top + fh + flap * 7 * s * math.sin(t * 5 + i * 0.9) * i / 8)\n    cr.close_path()\n    solid(cr, rgb)\n    text(cr, label, px - fw / 2, top + fh * 0.7, int(22 * s), look.INK,\n         anchor=\"center\", shadow=False)\n    for wx in (x - 50 * s, x + 50 * s):\n        disc(cr, wx, y - 22 * s, 22 * s, (62, 62, 68), finish=\"metal\")\n    box(cr, x - 85 * s, y - 36 * s, 170 * s, 26 * s, rgb, depth=34 * s)\n    cylinder(cr, x - 7 * s, y - 60 * s, 14 * s, 60 * s, (84, 86, 94), finish=\"metal\")\n    cr.save()\n    cr.translate(x, y - 122 * s)\n    cr.rotate(rock)\n    cr.rectangle(-72 * s, -6 * s, 144 * s, 12 * s)\n    cr.restore()\n    solid(cr, (96, 74, 52))\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: three railway handcars racing\n    SUBSTANCE: the rolling handcars\n    CAUSE: Data cranks the no-religion handcar down the rails, past the Catholic car, chasing the Protestant one\n    Three handcars on three rails, each group's share of Americans is how far\n    down the line its car gets. Protestants roll out in front, Catholics\n    behind them, and Data cranks the no-religion car from the start line\n    past the parked Catholic car — its old place stays as a ghost on his\n    rail — and pulls up chasing the leader, the gap to it dashed on the\n    shot. Landed by 0.62, then held while flags stream and he keeps at it.\n    The readout prints only the no-religion share, under a line that names\n    no other group, so its number is never read as anyone else's.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n\n    def val(key, i):\n        for l, v in rows:\n            if key in l.lower():\n                return l, v\n        return rows[min(i, len(rows) - 1)]\n\n    lp, vp = val(\"protest\", 0)\n    lu, vu = val(\"unaff\", 1)\n    lc, vc = val(\"catholic\", 2)\n    top = max(vp, vu, vc) or 1.0\n\n    def X(v):\n        return 140 + v / top * 760\n\n    pP = seg(u, 0.06, 0.44)\n    pC = seg(u, 0.08, 0.40)\n    pU = seg(u, 0.10, 0.62)\n    xP = 140 + (X(vp) - 140) * ease(pP)\n    xC = 140 + (X(vc) - 140) * ease(pC)\n    xU = 140 + (X(vu) - 140) * ease(pU)\n\n    landscape(cr, t, \"field\", horizon=920)\n    birds(cr, t, y0=720, n=5, rgb=(50, 50, 60))\n\n    rails = [(1070, 0.9), (1260, 1.15), (1450, 1.5)]\n    for y, s in rails:\n        _rail(cr, y, s)\n\n    neutral, neutral2 = (150, 152, 158), (122, 126, 134)\n    rk = lambda p, ph: 0.28 * math.sin(t * 7 + ph) if 0 < p < 1 else 0.0\n    _handcar(cr, xP, 1070, 0.9, neutral2, lp.upper(), t, rk(pP, 0), 1.0)\n    _handcar(cr, xC, 1260, 1.15, neutral, lc.upper(), t, rk(pC, 1), 1.0)\n\n    # THE SCALE on the near rail: where the Catholic car stands, as a ghost\n    passed = xU > X(vc) + 40\n    if passed:\n        gs = 1.5\n        gx = X(vc)\n        cr.rectangle(gx - 85 * gs, 1450 - 36 * gs, 170 * gs, 26 * gs)\n        ghost(cr, a=0.85)\n        text(cr, f\"{lc} {int(round(vc))}%\", gx, 1450 + 50, 28, look.INK,\n             anchor=\"center\")\n\n    _handcar(cr, xU, 1450, 1.5, P[\"accent2\"], \"NO RELIGION\", t, rk(pU, 2), 1.0)\n\n    # the gap still to close, dashed from his car to the leader\n    if u >= 0.62:\n        then_mark(cr, xU + 110, X(vp), 1120, f\"{lp} {int(round(vp))}%\",\n                  a=ease(seg(u, 0.62, 0.66)))\n\n    foreground(cr, \"field\")\n    vignette(cr, a=0.28)\n\n    hx, hy = xU + 22, 1450 - 62 * 1.5\n    if u < 0.06:\n        host(\"point\", hx, hy, 220)\n    elif u < 0.88:\n        host(\"crank\", hx, hy, 220, beat=int((u - 0.06) / 0.1))\n    else:\n        host(\"cheer\", hx, hy, 220)\n\n    if u >= 0.62:\n        fit_readout(cr, f\"{int(round(vu))}%\", \"of Americans have no religion · today\",\n                    80, 520, a=ease(seg(u, 0.62, 0.66)), size=130)\n    else:\n        fit_readout(cr, \"No religion\", \"America's faiths, racing down the line\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T00:20:17Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-22T11:46:39Z",
    "retold": "retell/v3",
    "hook_was": "Americans with no religion now outnumber Catholics, at 28 percent."
   },
@@ -34435,10 +34435,10 @@
   },
   {
    "slug": "usps-mail-volume-collapse",
-   "title": "Mail Nearly Halved While The Stamp Price More Than Doubled",
-   "hook": "Mailing a letter cost 68 cents even as mail volume nearly halved.",
-   "closing": "Less mail does not mean cheaper postage; a thinning mailbox can still come with rising costs.",
-   "question": "What still makes you buy a stamp?",
+   "title": "Mail Fell To 109 Billion Pieces While Stamps Got Pricier",
+   "hook": "Mail fell to 109 billion pieces, yet stamps kept getting pricier.",
+   "closing": "A shrinking mailbox does not shrink delivery costs, so every remaining letter carries more pressure.",
+   "question": "What still makes you buy stamps?",
    "caption": "In 2006, the US Postal Service delivered 213 billion pieces of mail. Today it's barely half that -- even as a stamp's price doubled. Here's where all the mail went. 👇",
    "hashtags": [
     "uspsmail",
@@ -34466,8 +34466,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE COLLAPSE",
-     "topic": "Mail volume shrinks",
-     "say": "Total mail volume fell to 109 billion pieces in the supplied latest year. The peak was nearly twice as high.",
+     "topic": "Mail volume falls",
+     "say": "USPS mail volume fell to 109 billion pieces. The mailbox is thinning even while the delivery network remains.",
      "illustrated_scene": "# scene standard: 2026-10-16.2\ndef _arch(cr, x, yb, w, wl):\n    # a mailbox's end: straight sides, a round dome over them\n    cr.move_to(x, yb)\n    cr.line_to(x, yb - wl)\n    cr.arc(x + w / 2, yb - wl, w / 2, math.pi, 2 * math.pi)\n    cr.line_to(x + w, yb)\n    cr.close_path()\n\n\ndef _letter(cr, cx, cy, w, h, ang, a=1.0):\n    # one white envelope: paper, its flap, a red stamp\n    if a <= 0.01:\n        return\n    cr.save()\n    cr.translate(cx, cy)\n    cr.rotate(ang)\n    cr.rectangle(-w / 2, -h / 2, w, h)\n    cr.restore()\n    solid(cr, (248, 245, 236), a=a)\n    cr.save()\n    cr.translate(cx, cy)\n    cr.rotate(ang)\n    cr.set_source_rgba(*_c((150, 140, 124), 0.9 * a))\n    cr.set_line_width(max(2.0, w * 0.04))\n    cr.move_to(-w / 2 + 2, -h / 2 + 2)\n    cr.line_to(0, h * 0.08)\n    cr.line_to(w / 2 - 2, -h / 2 + 2)\n    cr.stroke()\n    cr.rectangle(w / 2 - w * 0.24, -h / 2 + h * 0.12, w * 0.16, h * 0.26)\n    cr.set_source_rgba(*_c((200, 50, 42), a))\n    cr.fill()\n    cr.restore()\n\n\ndef _mailbox(cr, x, y, s, c):\n    # a curbside mailbox on its post, its door end facing the street;\n    # c = 0 the door hangs open on a mouth stuffed with letters, flag up,\n    # c = 1 the letters are out, the door is shut, the flag is down\n    contact_shadow(cr, x + 34 * s, y, 74 * s, a=0.35)\n    box(cr, x + 16 * s, y, 14 * s, 62 * s, (124, 92, 60), depth=6 * s)\n    yb = y - 60 * s\n    w, wl = 50 * s, 30 * s\n    ox, oy = 62 * s, -25 * s\n    _arch(cr, x + ox, yb + oy, w, wl)\n    solid(cr, (92, 96, 106), rim=False)\n    top = yb - wl - w / 2\n    cr.move_to(x + w / 2, top)\n    cr.line_to(x + w / 2 + ox, top + oy)\n    cr.line_to(x + w + ox, yb + oy)\n    cr.line_to(x + w, yb)\n    cr.close_path()\n    solid(cr, (182, 188, 198), finish=\"metal\")\n    # the red flag on its side: up for mail, swung down when there is none\n    px, py = x + w + ox * 0.55, yb + oy * 0.55 - wl * 0.35\n    ang = -math.pi / 2 * (1 - ease(c))\n    cr.save()\n    cr.translate(px, py)\n    cr.rotate(ang)\n    cr.rectangle(0, -3 * s, 46 * s, 6 * s)\n    cr.restore()\n    solid(cr, (150, 32, 28), rim=False)\n    cr.save()\n    cr.translate(px, py)\n    cr.rotate(ang)\n    cr.rectangle(28 * s, -2 * s, 20 * s, 16 * s)\n    cr.restore()\n    solid(cr, (206, 48, 40))\n    # the dark mouth\n    _arch(cr, x, yb, w, wl)\n    solid(cr, (30, 28, 32), rim=False, edge=False)\n    # the door, hinged along the bottom, swung up and shut\n    fy = -0.5 + 1.5 * ease(seg(c, 0.45, 1.0))\n    if abs(fy) < 0.04:\n        fy = 0.04 if fy >= 0 else -0.04\n    cr.save()\n    cr.translate(x, yb)\n    cr.scale(1, fy)\n    _arch(cr, 0, 0, w, wl)\n    cr.restore()\n    solid(cr, (198, 204, 214) if fy > 0 else (148, 154, 164), finish=\"metal\")\n    # the letters, a fat fan of white envelopes bursting out of the mouth;\n    # they come out toward the street first, then the door shuts\n    out = ease(seg(c, 0.0, 0.5))\n    la = 1.0 - clamp((c - 0.25) / 0.3)\n    spots = ((0.22, 0.30, -0.42), (0.50, 0.46, 0.10), (0.78, 0.30, 0.46),\n             (0.36, 0.64, -0.18), (0.66, 0.66, 0.30))\n    if c < 1:\n        for i, (dx, dy, a_) in enumerate(spots):\n            lx = x + w * dx - out * (40 + 14 * i) * s\n            ly = yb - (wl + w / 2) * dy - out * 26 * s\n            _letter(cr, lx, ly, 34 * s, 22 * s, a_ * (1 - 0.5 * out), la)\n    if c >= 1:\n        disc(cr, x + w / 2, yb - wl * 0.9, 4 * s, (70, 70, 76), finish=\"metal\")\n        # the letters that used to wait here, as a ghost on the shut door\n        cr.save()\n        cr.translate(x + w * 0.5, yb - (wl + w / 2) * 0.42)\n        cr.rotate(-0.12)\n        cr.rectangle(-17 * s, -11 * s, 34 * s, 22 * s)\n        cr.restore()\n        ghost(cr, a=0.8)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a street of mailboxes stuffed with letters\n    SUBSTANCE: white paper letters\n    CAUSE: Data pulls the letters out of each mailbox and shoves its door shut, box by box down the street\n    One street's row of mailboxes running from the camera back into town:\n    the WHOLE is the street's mail. In 2006 every door hangs open on a\n    mouth stuffed with white letters, flag up. Data walks the curb toward\n    the camera and, box by box, the letters come out and he shoves the\n    door shut — flag down, no mail — until the share of the street gone\n    quiet is the share of mail that is gone, about half. Each shut door\n    keeps a ghost of the letter it used to hold. Done by 0.62 and held:\n    he keeps shoving the last door, the mail van keeps driving by.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    v0 = v0 or 1.0\n    N = 8\n    nc = max(1, min(N - 1, int(round(N * (1 - v1 / v0)))))\n    boxes = []\n    x, y, s = 260.0, 1450.0, 2.4\n    for j in range(N):\n        boxes.append((x, y, s))\n        x += 70 * s\n        y -= 28 * s\n        s *= 0.86\n    a0, a1 = 0.06, 0.62\n    span = (a1 - a0) / nc\n    k = int(clamp((u - a0) / span, 0, nc - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    started = u >= a0\n    done = u >= a1\n\n    def shut(j):\n        if j >= nc or not started:\n            return 0.0\n        if done:\n            return 1.0\n        q = nc - 1 - j\n        if q < k:\n            return 1.0\n        if q > k:\n            return 0.0\n        return seg(f, 0.25, 0.9)\n\n    def pos(j):\n        bx, by, bs = boxes[j]\n        return bx - 50 * bs, min(1495.0, by + 30), clamp(110 * bs, 180, 240)\n\n    # the town\n    landscape(cr, t, \"town\", horizon=1060)\n    for hx0, hx1, hb, hh_, col in ((40, 330, 1130, 260, (214, 196, 170)),\n                                   (380, 600, 1100, 200, (176, 190, 204)),\n                                   (640, 820, 1078, 150, (206, 170, 150)),\n                                   (860, 1010, 1062, 110, (190, 200, 180))):\n        contact_shadow(cr, (hx0 + hx1) / 2, hb, hx1 - hx0 + 40, a=0.3)\n        building(cr, hx0, hx1, hb, hh_, col, roof_rgb=(110, 96, 92), roof=\"gable\")\n    haze(cr, 600, 1150, (206, 214, 224), a=0.3)\n    # the mail van doing its round on the back street\n    vx = -300 + (t * 170) % 1700\n    contact_shadow(cr, vx + 110, 1152, 230, a=0.3)\n    box(cr, vx, 1150, 170, 92, (236, 236, 240), depth=36)\n    cr.rectangle(vx + 4, 1106, 162, 12)\n    solid(cr, (42, 72, 146), edge=False, rim=False)\n    box(cr, vx + 170, 1150, 58, 66, (226, 228, 234), depth=30)\n    for wx in (vx + 36, vx + 190):\n        disc(cr, wx, 1150, 15, (40, 40, 46))\n\n    # the street in front of the row\n    cr.move_to(-50, 1576)\n    cr.line_to(1130, 1104)\n    cr.line_to(1130, 1194)\n    cr.line_to(-50, 1976)\n    cr.close_path()\n    solid(cr, (84, 86, 92), edge=False, rim=False)\n    cr.set_source_rgba(*_c((236, 220, 150), 0.85))\n    cr.set_line_width(8)\n    cr.set_dash([44, 34])\n    cr.move_to(-50, 1776)\n    cr.line_to(1130, 1149)\n    cr.stroke()\n    cr.set_dash([])\n\n    # the mailboxes, far first\n    cast_shadow(cr, 240, 1080, 1450, length=260, a=0.22)\n    for j in reversed(range(N)):\n        bx, by, bs = boxes[j]\n        _mailbox(cr, bx, by, bs, shut(j))\n\n    # right by the camera: the blue collection box on the near corner\n    contact_shadow(cr, 880, 1862, 280, a=0.4)\n    box(cr, 760, 1860, 220, 230, (38, 74, 150), depth=56)\n    cr.save()\n    cr.translate(870, 1630)\n    cr.scale(1, 0.45)\n    cr.arc(0, 0, 110, math.pi, 2 * math.pi)\n    cr.restore()\n    cr.close_path()\n    solid(cr, (44, 82, 162))\n    cr.rectangle(800, 1676, 140, 16)\n    solid(cr, (24, 30, 44), rim=False)\n    _letter(cr, 870, 1668, 96, 60, -0.12)\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    # Data walks the curb toward the camera, shoving each door shut\n    if not started:\n        hx, hy, hh = pos(nc)\n        host(\"point\", hx, hy, hh)\n    elif done:\n        hx, hy, hh = pos(0)\n        host(\"shove\", hx, hy, hh, beat=nc + int((u - a1) / 0.12))\n    else:\n        tgt, prv = nc - 1 - k, nc - k\n        g = ease(seg(f, 0.0, 0.25))\n        (x0, y0, h0), (x1, y1, h1) = pos(prv), pos(tgt)\n        hx, hy, hh = x0 + (x1 - x0) * g, y0 + (y1 - y0) * g, h0 + (h1 - h0) * g\n        host(\"shove\", hx, hy, hh, beat=k)\n\n    if done:\n        fit_readout(cr, f\"{int(round(v1))} billion\", f\"pieces of US mail a year · {l1}\",\n                    80, 520, size=130)\n        text(cr, \"nearly half the mail, gone\", 80, 720, 44, look.INK, face=\"bold\",\n             alpha=ease(seg(u, a1, a1 + 0.05)))\n    else:\n        fit_readout(cr, f\"{int(round(v0))} billion\", f\"pieces of US mail a year · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -34479,7 +34479,7 @@
      "insight_type": "comparison",
      "role": "2 · THE LETTERS",
      "topic": "Mail letters fade",
-     "say": "First-Class Mail fell to 46 billion pieces in the measured comparison. Its decline outpaced the overall mail contraction."
+     "say": "First-Class Mail dropped to 46 billion pieces. Personal and business letters are disappearing faster than mail overall."
     },
     {
      "source": "offline",
@@ -34490,12 +34490,12 @@
      "insight_type": "comparison",
      "role": "3 · THE IRONY",
      "topic": "Mail stamps rise",
-     "say": "The stamp price reached 68 cents in the supplied historical comparison. That more than doubled the earlier price."
+     "say": "A First-Class stamp reached 68 cents. Sending fewer letters did not make each letter cheaper."
     }
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:42Z",
+   "rewritten_at": "2026-10-22T11:46:39Z",
    "hook_was": "You get way less mail than your parents did."
   },
   {

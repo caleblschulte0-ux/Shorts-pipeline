@@ -1,0 +1,11 @@
+{
+ "id": "a-language-dies-every-2-weeks__8d6939dc",
+ "slug": "a-language-dies-every-2-weeks",
+ "settled": "2026-10-22T11:46:37Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: number(s) not derivable from this beat's data: 4, 10",
+  "segment 1: number(s) not derivable from this beat's data: 6, 2",
+  "segment 2: new named entity not in the data: Future"
+ ]
+}
