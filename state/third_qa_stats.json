@@ -3,361 +3,6 @@
     {
       "date": "20261014",
       "dry_run": false,
-      "ts": "2026-10-14T13:48:17+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 127,
-        "with_retention": 115,
-        "with_curve": 15,
-        "fetched_at": "2026-10-14T08:46:26.912662+00:00"
-      },
-      "brain": {
-        "ok": 39,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261014-1",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.25 < 0.35 (Minecraft mountain talk, then paused men)",
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 82,
-                "refused_shown": 20,
-                "scouted": [
-                  {
-                    "premise": "Squeex's GTA RP character is at the amphitheater where Vivek is assassinated, and Squeex then reflects on what happened ",
-                    "shape": "one_stream",
-                    "n": 2
-                  },
-                  {
-                    "premise": "Burn plays Chris Handsome in GTA RP to catch weebs, and Pengwin's Chris Handsome catches his first weeb.",
-                    "shape": "multi_streamer",
-                    "n": 2
-                  },
-                  {
-                    "premise": "Jynxzi's Minecraft 'Death 2' challenge escalates from his first death on day 3 to a pile-up of deaths, ending with the 1",
-                    "shape": "one_stream",
-                    "n": 4
-                  }
-                ],
-                "vod_arcs": 308,
-                "moments": 40,
-                "candidates": 498,
-                "pool": 2961,
-                "pool_with_vod": 2125,
-                "arc_sizes": [
-                  2,
-                  3,
-                  3,
-                  2,
-                  2,
-                  5,
-                  3,
-                  2,
-                  2,
-                  2
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:squeex/squeex-about-anoth-2026w38",
-                  "outcome": "narrative_failed",
-                  "why": "scores [74, 72, 72] after 2 revision(s) \u2014 @2s missing_context: Name the candidate and say this is a GTA RP server. The caption and overlay never say who Ramasquamy is or that it is roleplay, so a cold viewer may take the shooting for real news.; @38s missing_context: Show or say that the second pers"
-                },
-                {
-                  "cluster": "yuliabaka@momentproductivegoldennuggetsripepperonis-l8ifwhba",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@vod2821557824",
-                  "outcome": "already_refused",
-                  "why": "2026-10-08: director judged: not a story \u2014 The two sources are unrelated moments from one broadcast. The first is Kai role-playing a school authority who sends the hoodie g"
-                },
-                {
-                  "cluster": "scout:burn+pengwin/burn-pengwin-baitline-catch-2026w42",
-                  "outcome": "narrative_failed",
-                  "why": "scores [62, 52, 55] after 2 revision(s) \u2014 @27s weak_payoff: The cut ends on the crew announcing it is here to catch a weeb. That is a setup line, not a result. Add the target's reaction or the catch itself, such as the confrontation, the bait working or the es; @3s missing_context: Never say what th"
-                },
-                {
-                  "cluster": "lyasyaa@momentcrypticcogentbubbletearulefive-do-xxp1gppbegbh",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@vod2822355279/kaicenat-cenat-main-2026w29",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The three clips share a stream but not a chain. Clip 1 is Kai reading names off a list to report to the main office. It opens mid-sentence, and its closing announcement is cut off. Clip 2 is Kai plead"
-                },
-                {
-                  "cluster": "scout:jynxzi/jynxzi-death-junkomc-2026w41",
-                  "outcome": "narrative_failed",
-                  "why": "scores [58, 58, 54] after 2 revision(s) \u2014 @0s confusing: The opening line is garbled (\"two pigment... I'm dead\") and the lava death is not clearly shown. Start on the clip's clearest lava-death moment and the Game Over screen so the reset rule lands at once; @2s missing_context: The on-screen text s"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, unknown event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.25,
-              "why": "Minecraft mountain talk, then paused men",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 34.8
-        },
-        {
-          "slug": "clip-20261014-2",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.25 < 0.35 (dark webcam, reading note, no event)",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261014-2",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "vague title, likely reaction, unknown",
-              "blind": false
-            },
-            "content": {
-              "score": 0.25,
-              "why": "dark webcam, reading note, no event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 21.2
-        },
-        {
-          "slug": "clip-20261014-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261014-4",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (static frame, freestyle joke, no visible)",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261014-4",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "Rapping clip, fan-based, no clear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "static frame, freestyle joke, no visible",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 24.4
-        },
-        {
-          "slug": "clip-20261014-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261014-5",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "vague reaction, unclear trigger",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Storytelling in car, police story, no vi",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Lacy Gets Pushed By Cops After Telling Them She Just Had Surgery"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": [
-                "frame at 7.5s: a hand blocks the face (from the source footage)",
-                "word caption sizes are inconsistent: 'I JUST GOT' at 22.5s is tiny",
-                "word captions sit near the chin and hand at 18.2s and 20.3s, and the hook card is close beneath them"
-              ]
-            }
-          },
-          "took_s": 199.9
-        },
-        {
-          "slug": "clip-20261014-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261014-6",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "vague title, unknown event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "Minecraft; distant figure, unclear payof",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Caseoh Throws Together A Base After Things Get Out Of Hand"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "Face-cam panel at the top is a bit soft and its crop is tight, with the head near the top edge in some frames",
-                "Gameplay panel is fairly small and the game's own text is tiny"
-              ]
-            }
-          },
-          "took_s": 213.5
-        }
-      ]
-    },
-    {
-      "date": "20261014",
-      "dry_run": false,
       "ts": "2026-10-14T14:49:42+00:00",
       "feedback": {
         "snapshot": true,
@@ -6378,6 +6023,135 @@
             }
           },
           "took_s": 524.3
+        }
+      ]
+    },
+    {
+      "date": "20261022",
+      "dry_run": false,
+      "ts": "2026-10-22T12:44:35+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 14,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 140,
+        "with_retention": 123,
+        "with_curve": 15,
+        "fetched_at": "2026-10-22T08:46:35.333831+00:00"
+      },
+      "brain": {
+        "ok": 6,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261022-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261022-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261022-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261022-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261022-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261022-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "Vague title; plausible physical surprise",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "Cash thrown at ceiling, hype reaction",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Goes Wild When The Money Stuck In The Ceiling Finally Comes Down"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "Hook caption sits over the lower torso and hands, and it overlaps the word captions in the first frames",
+                "A few frames (3.3s, 4.0s) show only the money and the ceiling, with no person, but that is the payoff moment",
+                "In the last frames, one person is partly cropped at the frame edge"
+              ]
+            }
+          },
+          "took_s": 144.0
         }
       ]
     }

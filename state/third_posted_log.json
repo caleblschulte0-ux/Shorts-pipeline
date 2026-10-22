@@ -15131,14 +15131,32 @@
       "ts": "2026-10-22T12:38:11.151713+00:00"
     },
     "clip-20261022-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/WanderingSpeedyPheasantPoooound-y7TREnNSELtem7pm",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/YPuARn6Q-i4",
       "title": "Lacy Goes Wild When The Money Stuck In The Ceiling Finally Comes Down",
       "kind": "twitch_clip",
-      "ts": "2026-10-22T12:44:26.813006+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-22T12:44:35.879092+00:00",
+      "uploaded_at": "2026-10-22T12:44:35.879108+00:00",
+      "publish_at": "2026-10-23T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261022-lacy-goes-wild-when-the-money-stuck-in-the-ceili-a89b32c2",
+        "tiktok": "queued for 2026-10-23T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/WanderingSpeedyPheasantPoooound-y7TREnNSELtem7pm",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "Lacy's money stuck in the ceiling \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1961,
+      "banger": 0.55,
+      "cut": {
+        "start": 3.5,
+        "end": 12.2
+      },
+      "director_cut": true
     }
   }
 }
