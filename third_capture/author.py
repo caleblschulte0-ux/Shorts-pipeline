@@ -211,7 +211,10 @@ Rules:
     Lions plays; Team USA carrying Johnny Gaudreau's jersey -> Gaudreau
     playing; Verlander's daughter running out to him in his last start ->
     Verlander with his kids over the years, never his pitching; a QB in
-    tears about a loss -> the plays that lost it. Never the person on
+    tears about a loss -> the plays that lost it. When someone GIVES
+    something (a game ball, a captaincy, an award, a jersey), the subject
+    is who RECEIVES it: Joe Thornton naming Macklin Celebrini the Sharks'
+    captain -> Celebrini playing, never Thornton. Never the person on
     camera's career, team or highlights just because they are on camera,
     and never the clip's own moment again from another angle: the ending
     ADDS what the clip does not show (Verlander's last start, re-shown

@@ -472,3 +472,11 @@ class TheEndingShowsWhatTheClipIsAbout(unittest.TestCase):
         src = inspect.getsource(a)
         self.assertIn("SHOWS WHAT THE CLIP IS ABOUT", src)
         self.assertIn('"shows"', src)
+
+    def test_who_receives_it_is_the_subject(self):
+        # 2026-10-22: Thornton naming Celebrini captain ended on Thornton.
+        from third_capture import author as a
+        import inspect
+        from scripts import sports_samples as ss
+        for src in (inspect.getsource(a), ss.PICK_SYSTEM):
+            self.assertIn("RECEIVES", src)

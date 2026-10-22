@@ -77,7 +77,9 @@ the story's SUBJECT, the person or thing the moment is about, who is
 often not the person on camera (Campbell giving the game ball to the
 Lions' radio voice: "Dan Miller's famous Lions radio calls", never Lions
 plays; Verlander's daughter running out to him: "Verlander with his
-kids over the years", never his pitching). Moments with no
+kids over the years", never his pitching; whoever GIVES a ball, a
+captaincy or an award, the subject is who RECEIVES it: Thornton naming
+Celebrini captain is "Celebrini playing", never Thornton). Moments with no
 story (a fan doing something wild, a funny quote) come after, `story`
 "".
 
