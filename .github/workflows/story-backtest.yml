@@ -30,6 +30,11 @@ on:
         type: boolean
         required: false
         default: false
+      moment_story:
+        description: 'One-stream story: setup before the popular clip, fallout after it'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
@@ -128,7 +133,8 @@ jobs:
             --out backtest \
             --carry "$RUNNER_TEMP/carry.json" \
             ${{ inputs.audience && '--audience' || '' }} \
-            ${{ inputs.saga && '--saga' || '' }}
+            ${{ inputs.saga && '--saga' || '' }} \
+            ${{ inputs.moment_story && '--moment-story' || '' }}
 
       - name: Keep every cut
         if: always()

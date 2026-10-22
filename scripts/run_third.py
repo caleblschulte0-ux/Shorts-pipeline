@@ -289,6 +289,24 @@ _AUDIENCE_CUT = (
     "the clip's payoff or the reaction to it.")
 
 
+# The one-stream story's brief to the director (2026-10-22). The audience
+# arm's cuts were the popular clip with a little before it, and the
+# operator called them extended clips, not stories. A story here has
+# three parts, all in this one stream.
+_MOMENT_STORY_CUT = (
+    " This is a STORY, not an extended clip: three parts, all from this one "
+    "stream. SETUP, from the stream before: the line where someone says "
+    "what they want, believe or are about to do. TURN: the clip viewers made "
+    "popular, kept whole. FALLOUT, from the stream after: what came of it, "
+    "a reaction that changes something (an apology, a rule, revenge, a "
+    "decision, a second attempt), not more laughing at it. Every beat's "
+    "link is so or but. Where the footage never says who someone is or "
+    "why this matters, a context_overlay says it the first time it "
+    "matters. 35-75 seconds, opening on the setup line.")
+# what a one-stream story may keep after the popular clip: its fallout
+MOMENT_STORY_TAIL_S = 30.0
+
+
 # The saga arm's brief to the director: the turns are months apart, so a
 # stranger needs WHEN on screen.
 _SAGA_CUT = (
@@ -1438,6 +1456,14 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         # a different stream (story_director._SAGA_SCOUT). Judged like any
         # story, at story_min_score.
         _saga = spec.get("story_pick") == "saga"
+        # ONE STREAM, TOLD AS A STORY (operator, 2026-10-22, of the saga
+        # cuts: "that clip made no fucking sense"; of the audience arm's
+        # extended clips: fine, "but those weren't stories"). The moment
+        # viewers already made popular is the turn; the stream before it
+        # holds the setup and the stream after it the fallout. It is held
+        # to the measured checks first, then judged as a story at
+        # story_min_score.
+        _mstory = spec.get("story_pick") == "moment_story"
         # STORY TIME CAP. Every slot is a story slot now (operator,
         # 2026-10-07: "this channel needs to be stories and edits not just
         # raw clips"), and a story search costs 10-20 minutes. Past
@@ -1734,7 +1760,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         # plan and judged again at the same bar; nothing about it is
         # trusted except where to start (`_proven_clusters`).
         clusters = _proven_clusters() + clusters
-        if _audience:
+        if _audience or _mstory:
             clusters = moments      # upvotes first, then views
         if _saga:
             clusters = scouted      # the saga's turns, nothing else
@@ -2085,6 +2111,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                                 if is_scouted else ""),
                     moment=(_MOMENT_HYPOTHESIS
                             + (_AUDIENCE_CUT if _audience else "")
+                            + (_MOMENT_STORY_CUT if _mstory else "")
                             if is_moment else ""),
                     takes=int(spec.get("story_takes", 3)))
                 if not edl:
@@ -2138,7 +2165,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # critic sees frames the words leave out). At 65 the read
                 # blocked all but one render, so it screens only what reads
                 # as no story at all (`story_table_read_min`).
-                _tr_n = 0 if _audience else int(
+                _tr_n = 0 if (_audience or _mstory) else int(
                     spec.get("story_table_reads", 2))
 
                 def _read(e):
@@ -2218,7 +2245,7 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # ---- narrative review + ONE revision (§18-19)
                 sheet = story_work / "rough.qa.jpg"
                 sheet_ok = clip_qa.contact_sheet(out_mp4, sheet) is not None
-                if _audience:
+                if _audience or _mstory:
                     # measured checks, repaired by the director from what
                     # they name; never a critic's score (structure_check)
                     from third_capture import structure_check
@@ -2228,7 +2255,9 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                                       + 1):
                         _probs = structure_check.problems(
                             led, _hot["source_url"],
-                            structure_check.motion(out_mp4))
+                            structure_check.motion(out_mp4),
+                            tail_s=MOMENT_STORY_TAIL_S if _mstory
+                            else structure_check.TAIL_AFTER_PROVEN_S)
                         print(f"[story] {elbl}: structure r{_rev} "
                               + ("ok" if not _probs else "; ".join(
                                   p["what"] for p in _probs)), flush=True)
@@ -2264,6 +2293,14 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                                    else "structure_failed",
                                    "; ".join(p["what"] for p in _probs)[:300]
                                    or "kept")
+                if _mstory:
+                    # a one-stream story that fails the measured checks is
+                    # not shown to the critic; one that passes is judged as
+                    # a story, like any other, below
+                    if _probs:
+                        continue
+                    _extended = False
+                elif _audience:
                     # AN EXTENDED CLIP (operator, 2026-10-21: "those were
                     # good extended clips ... add what you just did as a
                     # secondary in-between clip and story type"): outside a

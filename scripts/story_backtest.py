@@ -117,6 +117,11 @@ def main(argv=None) -> int:
                     help="the saga arm: one streamer's history across "
                          "years per attempt, the scout told to find an "
                          "origin, a history, a betrayal, a rise or a fall")
+    ap.add_argument("--moment-story", action="store_true",
+                    help="one-stream stories: the popular clip is the "
+                         "turn, the stream before it the setup, the stream "
+                         "after it the fallout; measured checks, then the "
+                         "critic at story_min_score")
     args = ap.parse_args(argv)
 
     out = Path(args.out).resolve()
@@ -146,6 +151,8 @@ def main(argv=None) -> int:
         base["capture"]["story_pick"] = "audience"
     if args.saga:
         base["capture"]["story_pick"] = "saga"
+    if args.moment_story:
+        base["capture"]["story_pick"] = "moment_story"
     # production caps the story arm at story_budget_min so the day's clips
     # keep their time; a backtest has nothing else to spend it on
     base["capture"].pop("story_budget_min", None)

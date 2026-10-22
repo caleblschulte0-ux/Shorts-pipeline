@@ -98,6 +98,32 @@ class TheArmNeverAsksTheCritic(unittest.TestCase):
         ast.parse(src)
 
 
+class AOneStreamStoryKeepsItsFallout(unittest.TestCase):
+    """2026-10-22: the popular clip is the turn; the setup is before it and
+    the fallout after it, so it may run longer past the clip than an
+    extended clip may, and it then meets the critic like any story."""
+
+    def test_the_fallout_is_allowed_where_an_extended_clip_trails(self):
+        # the popular clip ends at 8s and 20s of fallout follow it
+        beats = [{"source_id": "hot", "out_start": 0, "out_end": 8},
+                 {"source_id": "after", "out_start": 8, "out_end": 30}]
+        led = _led(GOOD, 30, beats)
+        self.assertTrue(any("trails" in p["what"]
+                            for p in sc.problems(led, "hot")))
+        self.assertFalse(any("trails" in p["what"]
+                             for p in sc.problems(led, "hot", tail_s=30)))
+
+    def test_it_is_judged_by_the_critic_after_its_checks(self):
+        src = (REPO / "scripts" / "run_third.py").read_text()
+        self.assertIn('spec.get("story_pick") == "moment_story"', src)
+        self.assertIn("_MOMENT_STORY_CUT if _mstory", src)
+        i = src.index("if _mstory:\n                    # a one-stream")
+        j = src.index("review = story_director.review_rough_cut(", i)
+        branch = src[i:j]
+        self.assertIn("_extended = False", branch)
+        self.assertIn("continue", branch)        # failed checks: no critic
+
+
 if __name__ == "__main__":
     unittest.main()
 
