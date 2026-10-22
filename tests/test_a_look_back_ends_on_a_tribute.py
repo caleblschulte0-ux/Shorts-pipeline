@@ -359,3 +359,36 @@ class ItIsAStoryNotATribute(unittest.TestCase):
             outro.shots(item, Path(tempfile.mkdtemp()))
         self.assertTrue(all(t == ["Bryant"] for t in asked))
         self.assertIn("hype", outro.GRADES)
+
+
+class TheClipIsNeverItsOwnMontage(unittest.TestCase):
+    """2026-10-22: Verlander's "career highlights" montage was cut from
+    the very post being told (his daughter coming out to get him), and
+    Scherzer's from his own standing ovation: Reddit's search returns
+    the post itself. The outro carries the clip's urls and title as
+    `avoid`, and no candidate matching one is downloaded."""
+
+    def test_the_source_post_is_not_downloaded(self):
+        from funnel import find_footage, hot_clips
+        src = {"url": "https://v.redd.it/abc", "title": "Verlander's daughter "
+               "has come out to get her dad", "permalink": "/r/sports/x"}
+        other = {"url": "https://youtu.be/k", "title": "Verlander no-hitter"}
+        asked = []
+        with mock.patch.object(hot_clips, "youtube", return_value=[
+                    {"url": "https://youtu.be/same", "title": src["title"]},
+                    other]), \
+                mock.patch.object(hot_clips, "reddit_videos", return_value=[
+                    {"media": src["url"], "post_title": "something else",
+                     "permalink": src["permalink"]}]), \
+                mock.patch.object(find_footage, "download",
+                                  side_effect=lambda u, *a, **k:
+                                  asked.append(u)):
+            find_footage.find_many(
+                "Justin Verlander", "him pitching", n=2,
+                work=Path(tempfile.mkdtemp()),
+                avoid={src["permalink"], src["title"]})
+        self.assertEqual(asked, [other["url"]])
+
+    def test_the_outro_keeps_what_to_avoid(self):
+        item = outro.parse({**OUTRO, "avoid": ["https://v.redd.it/abc"]})
+        self.assertEqual(item["avoid"], ["https://v.redd.it/abc"])

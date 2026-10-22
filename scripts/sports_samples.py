@@ -137,7 +137,9 @@ SPORTS_BRIEF = (
     "talks about something that happened that we can show (a teammate, "
     "a rival, a game, a record, a title, a choke, a blooper), give it the "
     "outro: the clip plays as it is, then a song in the story's mood "
-    "(sad, hype, triumph or funny) over the footage of it.")
+    "(sad, hype, triumph or funny) over the footage of it. Never name a "
+    "team, a city, a year or a fact the post title and the transcript do "
+    "not say (a title once put Case Keenum's Bears locker room in Dallas).")
 
 
 def _brain(user: str, system: str) -> dict | None:
@@ -333,7 +335,7 @@ def _dur(path: Path) -> float:
 
 
 def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
-         line_top: bool = False) -> dict:
+         line_top: bool = False, used_songs: list | None = None) -> dict:
     """Author and cut one post. `notes` is a refused cut's verdict for the
     author to repair from; `line_top` puts our line at the top because
     the judge saw it over the footage's own graphic."""
@@ -343,6 +345,11 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
     story = (f"\n\nTHE STORY'S ENDING: the picker saw a story here whose "
              f"ending shows \"{c['story']}\". Give the outro for it unless "
              f"the clip itself says otherwise.") if c.get("story") else ""
+    if used_songs:
+        story += ("\n\nSONGS ALREADY USED in this batch: "
+                  + ", ".join(used_songs) + ". Pick another song that fits "
+                  "this story's own mood; the same song on every video "
+                  "makes the channel sound like one video.")
     meta = author.author_package(
         c["who"], c["post_title"], " ".join(w["w"] for w in words),
         c["upvotes"], words=words, clip_dur=dur,
@@ -350,6 +357,12 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
     if meta and (meta.get("edit") or {}).get("complete") is False:
         return {"skipped": "author: no setup or no payoff in the clip",
                 "meta": meta}
+    o = ((meta or {}).get("edit") or {}).get("outro")
+    if isinstance(o, dict):
+        perm = str(c.get("permalink") or "")
+        o["avoid"] = [x for x in (c.get("url"), c.get("media"), perm,
+                                  re.sub(r"^https?://[^/]+", "", perm),
+                                  c.get("post_title")) if x]
     hook = (meta or {}).get("hook") or c["post_title"][:60]
     led = clip_edit.edit(raw, out_mp4, credit=c.get("credit")
                          or f"r/{c['sub']}", hook=hook,
@@ -382,7 +395,7 @@ def main() -> int:
         print("::error::no sports video posts reached the runner", flush=True)
         return 1
     picks = pool if a.find else pick(pool, a.n)
-    index, made = [], 0
+    index, made, songs_used = [], 0, []
     for c in picks:
         if made >= a.n:
             break
@@ -401,13 +414,17 @@ def main() -> int:
         slug = re.sub(r"[^a-z0-9]+", "-", c["who"].lower()).strip("-")[:40]
         mp4 = out / f"{made + 1:02d}_{slug or 'clip'}.mp4"
         try:
-            row.update(make(c, info, mp4))
+            row.update(make(c, info, mp4, used_songs=songs_used))
         except Exception as e:  # noqa: BLE001
             row["skipped"] = f"render failed: {type(e).__name__}: {e}"[:300]
         if mp4.exists() and not row.get("skipped"):
             row["file"] = mp4.name
             made += 1
             m = row.get("meta") or {}
+            song = (((m.get("edit") or {}).get("outro") or {}).get("song")
+                    or (m.get("edit") or {}).get("song"))
+            if song and song not in songs_used:
+                songs_used.append(song)
             print(f"[sports] made {mp4.name}: {m.get('title')!r} / "
                   f"{row.get('hook')!r}", flush=True)
         index.append(row)

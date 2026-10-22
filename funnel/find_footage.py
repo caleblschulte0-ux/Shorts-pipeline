@@ -255,7 +255,7 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
               title_has: list[str] | None = None,
               max_s: int = MAX_S, per_video: int = 0,
               title_not: re.Pattern | None = None,
-              query: str = "") -> list[dict]:
+              query: str = "", avoid: set | None = None) -> list[dict]:
     """Up to `n` CHECKED shots showing `look`, from as few videos as it
     takes: a highlight reel of two players holds a dozen shots of them,
     and the tribute montage wants several (operator, 2026-10-21, of a
@@ -270,11 +270,14 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
     fan reel's wide shots and cutaways; a title matching `title_not` is
     skipped. `query` is what YouTube is searched for when `look` (what
     the brain must see) is a sentence of rules — searching with the rules
-    themselves returned one wrong video per search all of 2026-10-21. [] when none, or no brain. Never
-    raises."""
+    themselves returned one wrong video per search all of 2026-10-21.
+    `avoid` holds the urls and the title of the clip being told: it is
+    never its own montage. [] when none, or no brain. Never raises."""
     who = str(who or "").strip()
     look = str(look or "").strip() or who
     skip = skip if skip is not None else set()
+    avoid = {a for a in (avoid or set()) if a}
+    avoid_t = {_norm(a) for a in avoid}
     got: list[dict] = []
     if not who or n <= 0:
         return got
@@ -284,17 +287,23 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
         from funnel import hot_clips
         seen, cands = set(), []
         for q in queries(who, query or look):
-            # Reddit's own video posts first: they are short clips of one
-            # play, and v.redd.it serves them when YouTube and every free
-            # converter refuse the runner (2026-10-21)
-            # Reddit's search ANDs loosely and "highlights" is not how its
-            # posts are titled: the words that name the play, without it
+            # YouTube first: a career's highlights live there, where
+            # Reddit's search holds this month's posts (2026-10-22: a
+            # "career highlights" montage cut from the clip being told).
+            # Then Reddit's own video posts, short clips of one play that
+            # v.redd.it serves when YouTube refuses the runner. Reddit's
+            # search ANDs loosely and "highlights" is not how its posts are
+            # titled: the words that name the play, without it
+            found = hot_clips.youtube(q, days=365 * YEARS,
+                                      n=MANY_CANDIDATES, max_s=max_s)
             rq = re.sub(r"\s*\bhighlights?\b", "", q, flags=re.I).strip()
-            found = [{"url": r["media"], "title": r["post_title"]}
-                     for r in hot_clips.reddit_videos(rq, limit=25)]
-            found += hot_clips.youtube(q, days=365 * YEARS,
-                                       n=MANY_CANDIDATES, max_s=max_s)
+            found += [{"url": r["media"], "title": r["post_title"],
+                       "permalink": r.get("permalink", "")}
+                      for r in hot_clips.reddit_videos(rq, limit=25)]
             for v in found:
+                if v["url"] in avoid or v.get("permalink") in avoid \
+                        or _norm(v.get("title") or "") in avoid_t:
+                    continue
                 if v["url"] not in seen and not is_talk(v.get("title")) \
                         and titled(v.get("title"), title_has) \
                         and not (title_not and title_not.search(

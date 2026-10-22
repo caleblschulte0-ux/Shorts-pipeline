@@ -97,7 +97,12 @@ def parse(raw) -> dict | None:
                         if _text(x, 4)][:len(people)]
             if len(raw.get("numbers") or []) == len(people) else [],
             "team": _text(raw.get("team"), 40),
-            "grade": grade if grade in GRADES else "faded"}
+            "grade": grade if grade in GRADES else "faded",
+            # the clip itself, by url and title: never a shot of the payoff
+            # (a montage of the daughter hugging Verlander, cut from the
+            # very post being told, 2026-10-22)
+            "avoid": [str(x)[:300] for x in (raw.get("avoid") or [])
+                      if isinstance(x, str) and x.strip()][:8]}
 
 
 def _seconds(path: Path) -> float:
@@ -166,7 +171,7 @@ def shots(item: dict, work: Path, title: str = "") -> list[dict]:
                                     item.get("numbers")),
             n=want, secs=SHOT_S, max_s=PLAY_MAX_S, per_video=PER_CLIP,
             title_not=VERSUS if item.get("team") else None, query=look,
-            work=d, title=title, skip=seen,
+            work=d, title=title, skip=seen, avoid=set(item.get("avoid") or []),
             title_has=[n.split()[-1] for n in people if n.split()])
         got += hits
         print(f"[outro] {look!r}: {len(hits)} shot(s)", flush=True)
