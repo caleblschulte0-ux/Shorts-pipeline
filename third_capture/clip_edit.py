@@ -929,6 +929,8 @@ def own_captions(video: Path, words: list[dict], samples: int = 8) -> bool:
             if (sum(1 for n in near if len(n) >= 4 and n in seen) >= 2
                     or any(p in seen for p in pairs)):
                 hits += 1
+    print(f"[edit] own captions: {hits}/{read} frames show the words said",
+          flush=True)
     return hits >= 2 and hits >= 0.4 * max(1, read)
 
 
