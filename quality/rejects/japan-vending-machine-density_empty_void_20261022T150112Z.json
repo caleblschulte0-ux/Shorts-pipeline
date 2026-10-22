@@ -1,0 +1,16 @@
+{
+ "slug": "japan-vending-machine-density",
+ "ts": "20261022T150112Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: payoff@-0.4: the last frame is an almost-black gradient filling the whole screen, with only a small Data and a blank price tag at the bottom. The soup street scene is gone.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void",
+  "visible_evidence": "payoff@-0.4 swaps the finished hot-soup street scene (seg4:end, 4,000,000 headline, stranger holding steaming soup) for a dark empty gradient with a small Data holding a blank yellow price tag.",
+  "root_cause": "A generic tail end card with the default price-tag prop is added after the closing scene, so the video ends on a void instead of its payoff picture.",
+  "repair_goal": "Hold the finished soup scene (seg4:end) with the CTA through the last frame and drop the dark end card and price-tag prop, so the final frame is the payoff picture."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
