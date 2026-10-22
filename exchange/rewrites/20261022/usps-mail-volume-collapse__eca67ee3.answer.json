@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "usps-mail-volume-collapse__eca67ee3",
+  "slug": "usps-mail-volume-collapse",
+  "by": "chatgpt",
+  "written_at": "2026-10-22T11:18:33.938Z",
+  "title": "Mail Fell To 109 Billion Pieces While Stamps Got Pricier",
+  "hook": "Mail fell to 109 billion pieces, yet stamps kept getting pricier.",
+  "closing": "A shrinking mailbox does not shrink delivery costs, so every remaining letter carries more pressure.",
+  "question": "What still makes you buy stamps?",
+  "segments": [
+    {
+      "topic": "Mail volume falls",
+      "say": "USPS mail volume fell to 109 billion pieces. The mailbox is thinning even while the delivery network remains."
+    },
+    {
+      "topic": "Mail letters fade",
+      "say": "First-Class Mail dropped to 46 billion pieces. Personal and business letters are disappearing faster than mail overall."
+    },
+    {
+      "topic": "Mail stamps rise",
+      "say": "A First-Class stamp reached 68 cents. Sending fewer letters did not make each letter cheaper."
+    }
+  ]
+}
