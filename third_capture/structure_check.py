@@ -88,12 +88,15 @@ def still_opening(rows: list[tuple[float, float]]) -> float | None:
 
 
 def problems(led: dict, proven_source: str = "",
-             frames: list[tuple[float, float]] | None = None) -> list[dict]:
+             frames: list[tuple[float, float]] | None = None,
+             tail_s: float = TAIL_AFTER_PROVEN_S) -> list[dict]:
     """The cut's measured defects, each as a repair the director can act
     on ({type, at, fix}, the shape `story_director.revise_edl` reads).
     `led` is `story.render_story`'s ledger (final_words on the cut's own
     clock, beats with source_id and out_start/out_end, duration_s);
-    `proven_source` is the source_id of the clip the audience picked."""
+    `proven_source` is the source_id of the clip the audience picked;
+    `tail_s` is how much may follow it (a one-stream story keeps its
+    fallout, so it allows more than an extended clip)."""
     out: list[dict] = []
 
     def bad(at, what, fix):
@@ -137,7 +140,7 @@ def problems(led: dict, proven_source: str = "",
                 "the clip viewers made is the story; it must be in it")
         else:
             end = max(float(b.get("out_end", dur)) for b in mine)
-            if dur - end > TAIL_AFTER_PROVEN_S:
+            if dur - end > tail_s:
                 bad(end, f"trails {dur - end:.0f}s past the picked moment",
                     "end on the picked clip's payoff or the reaction to it")
     return out
