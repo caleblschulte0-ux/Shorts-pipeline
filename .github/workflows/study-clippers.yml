@@ -67,7 +67,9 @@ jobs:
           sudo apt-get install -y -q ffmpeg fonts-dejavu-core
 
       - name: Install python deps
-        run: pip install -q pillow numpy yt-dlp curl_cffi openai-whisper
+        run: |
+          pip install -q pillow numpy yt-dlp curl_cffi openai-whisper playwright
+          python -m playwright install --with-deps chromium >/dev/null || echo "::warning::playwright chromium install failed"
 
       - name: Install Claude CLI (the critic, only when judging)
         if: inputs.judge
