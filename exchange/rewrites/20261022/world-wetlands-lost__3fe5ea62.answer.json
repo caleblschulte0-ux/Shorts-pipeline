@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "world-wetlands-lost__3fe5ea62",
+  "slug": "world-wetlands-lost",
+  "by": "chatgpt",
+  "written_at": "2026-10-22T11:28:00Z",
+  "title": "Wetlands Vanish 3 Times Faster Than Forests",
+  "hook": "Wetlands disappeared 3 times faster than forests, taking natural flood protection.",
+  "closing": "Losing wetlands means dirtier water and fewer buffers against floods.",
+  "question": "What wetland protects your area?",
+  "segments": [
+    {
+      "topic": "Wetlands Lost",
+      "say": "Since 1970, the world lost 35% of its wetlands, shrinking natural water filters."
+    },
+    {
+      "topic": "Wetlands Versus Forests",
+      "say": "Wetlands vanish about 3 times faster than forests, despite protecting water and absorbing floods."
+    },
+    {
+      "topic": "Wetlands In Europe",
+      "say": "Europe lost half its wetlands since 1970, the worst regional decline."
+    }
+  ]
+}
