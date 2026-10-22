@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "unclaimed-money-states-hold__d600f81b",
+  "slug": "unclaimed-money-states-hold",
+  "by": "chatgpt",
+  "written_at": "2026-10-22T11:18:33.938Z",
+  "title": "States Hold $70 Billion That Owners Never Claimed",
+  "hook": "States are holding $70 billion that still belongs to ordinary people.",
+  "closing": "A free name search could uncover money that has been waiting for you.",
+  "question": "Have you searched your name?",
+  "segments": [
+    {
+      "topic": "States hold money",
+      "say": "California holds $15 billion in unclaimed property. Forgotten accounts quietly become a massive public vault."
+    },
+    {
+      "topic": "States return money",
+      "say": "States returned only $4.49 billion in the latest year. Most of the national pile still waits for owners."
+    },
+    {
+      "topic": "States owe people",
+      "say": "About 14.3% of Americans have unclaimed property. Someone in almost every circle may be owed money."
+    }
+  ]
+}
