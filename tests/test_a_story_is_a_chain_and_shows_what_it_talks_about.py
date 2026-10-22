@@ -803,7 +803,8 @@ class AConverterPageIsNotAVideo(unittest.TestCase):
         video = b"\x00\x00\x00\x20ftypisom" + b"\x00" * 60_000
         for body, kept in ((page, False), (video, True)):
             with tempfile.TemporaryDirectory() as d, \
-                    mock.patch.object(y, "_stream", lambda u, h, b=body: iter([b])):
+                    mock.patch.object(y, "_stream", lambda u, h, b=body: iter([b])), \
+                    mock.patch.object(y, "_browser_save", lambda *a, **k: False):
                 out = Path(d) / "x.src"
                 with mock.patch.object(y.time, "sleep", lambda s: None):
                     self.assertEqual(y._save("https://host.example/dl", {}, out), kept)

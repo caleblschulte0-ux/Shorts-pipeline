@@ -250,9 +250,68 @@ def _stream(media_url: str, headers: dict):
             yield b
 
 
+def _browser_save(media_url: str, headers: dict, out: Path,
+                  tries: int = 3) -> bool:
+    """The file, fetched the way a person gets it: a real (headless)
+    Chromium that has been to the converter's own page, clicking through
+    the ad its file host shows first (operator, 2026-10-22: *"we convert
+    them for free ... You're doing something wrong"* — loader.to's host
+    answers anything that is not a browser, and a browser's first try,
+    with an ad-redirect page). Needs playwright + its Chromium; False
+    without them."""
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        return False
+    ref = headers.get("Referer") or ""
+    try:
+        with sync_playwright() as pw:
+            b = pw.chromium.launch(headless=True)
+            ctx = b.new_context(accept_downloads=True, user_agent=UA)
+            page = ctx.new_page()
+            ctx.on("page", lambda pg: pg != page and pg.close())  # popunders
+            if ref:
+                try:
+                    page.goto(ref, wait_until="domcontentloaded",
+                              timeout=30000)
+                except Exception:  # noqa: BLE001
+                    pass
+            for i in range(tries):
+                try:
+                    with page.expect_download(timeout=90000) as dl:
+                        try:
+                            page.goto(media_url, referer=ref or None,
+                                      timeout=60000)
+                        except Exception:  # noqa: BLE001 — a download
+                            pass          # aborts the navigation itself
+                    dl.value.save_as(str(out))
+                    if out.exists() and out.stat().st_size > 50_000:
+                        print(f"[yt_convert] browser got the file on try "
+                              f"{i + 1}", flush=True)
+                        b.close()
+                        return True
+                except Exception as e:  # noqa: BLE001
+                    print(f"::warning::[yt_convert] browser try {i + 1}: "
+                          f"{type(e).__name__}, page {page.url[:80]!r} "
+                          f"{(page.title() if not page.is_closed() else '')[:60]!r}",
+                          flush=True)
+            b.close()
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[yt_convert] browser: {type(e).__name__} "
+              f"{str(e)[:160]}", flush=True)
+    return False
+
+
 def _save(media_url: str, headers: dict, out: Path, tries: int = 3) -> bool:
     """Save the file; a host that answers with a page first is asked again
-    (with the cookies it just set) before it is given up on."""
+    (with the cookies it just set) before it is given up on, then fetched
+    through a real browser."""
+    if _save_tries(media_url, headers, out, tries):
+        return True
+    return _browser_save(media_url, headers, out)
+
+
+def _save_tries(media_url: str, headers: dict, out: Path, tries: int) -> bool:
     for i in range(tries):
         # the second ask goes without a Referer, in case that is the trip
         hdr = headers if i != 1 else {k: v for k, v in headers.items()
