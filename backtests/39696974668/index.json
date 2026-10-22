@@ -1,0 +1,35 @@
+{
+ "floor": 80,
+ "cuts": [
+  {
+   "file": "01_78_scout-ishowspeed-ishowspeed-crowd-ishowspe-2026w04.mp4",
+   "score": 78,
+   "passes": false,
+   "label": "scout:ishowspeed/ishowspeed-crowd-ishowspe-2026w04",
+   "repair": 0,
+   "title": "All of Kenya showed up, then Nigeria got angry",
+   "hook": "From Kenya's huge crowd to Nigeria's angry",
+   "retelling": "IShowSpeed gets mobbed by a huge welcoming crowd in Kenya, then in Nigeria he finds two angry people being held apart and ends up pairing them off as a couple."
+  },
+  {
+   "file": "02_66_scout-kaicenat-kaicenat-agree-cenat-2024w13.mp4",
+   "score": 66,
+   "passes": false,
+   "label": "scout:kaicenat/kaicenat-agree-cenat-2024w13",
+   "repair": 2,
+   "title": "Kai Cenat asks Tyla out live, then 'we're friends' follows him to bed",
+   "hook": "Kai asks streamer Tyla out live",
+   "retelling": "Kai asks his friend Tyla out on stream and she says 'but we're friends', then six days later the same line is played at him while he sleeps and he flops back down."
+  },
+  {
+   "file": "03_62_scout-jynxzi-streamerworld-togiclips-jynxzi-streamerworld-to.mp4",
+   "score": 62,
+   "passes": false,
+   "label": "scout:jynxzi+streamerworld+togiclips/jynxzi-streamerworld-togiclips-clan-clash-2025w44",
+   "repair": 1,
+   "title": "Jynxzi: \"I just left the clan\"",
+   "hook": "Jynxzi just left his Clash Royale clan",
+   "retelling": "Jynxzi quits his Clash Royale clan for not winning a game, then weeks later starts a 20 win challenge, wins his first game, and is outraged by who the matchmaking pairs him with."
+  }
+ ]
+}
