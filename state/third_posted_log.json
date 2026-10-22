@@ -14994,13 +14994,58 @@
       "director_cut": true
     },
     "clip-20261022-3": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-a8ab91258c0c4cfa",
-      "streamer": "marlon",
+      "url": "https://youtube.com/shorts/orzGQbyv0eM",
       "title": "Marlon says he could pet a lion. Then it charged.",
       "kind": "story",
-      "ts": "2026-10-22T12:14:28.821580+00:00",
+      "ts": "2026-10-22T12:14:38.093017+00:00",
+      "uploaded_at": "2026-10-22T12:14:38.093032+00:00",
+      "publish_at": "2026-10-22T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261022-marlon-says-he-could-pet-a-lion-then-it-charged-1203ef3c",
+        "tiktok": "queued for 2026-10-22T20:00:00Z"
+      },
+      "story_key": "story-a8ab91258c0c4cfa",
+      "member_keys": [
+        "vodmine://2884594674/6540-6780",
+        "https://www.twitch.tv/marlon/clip/BeautifulFrigidRuffKappaClaus-YnGM_5ilIs1Nqc7U",
+        "vodmine://2884594674/6813-7053"
+      ],
+      "streamer": "marlon",
+      "who": [
+        "marlon"
+      ],
+      "series": "extended",
+      "experiment_arm": "extended",
+      "structure": "extended",
+      "actual_structure": "extended",
+      "n_beats": 3,
+      "story_structure": "chronological",
+      "duration_s": 25.4,
+      "narrative_score": 0,
+      "narrative_summary": "Marlon says he could walk up and pet a lion on his night safari, then the lion walks toward the vehicle and he is telling everyone to calm down.",
+      "revision_count": 2,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 1,
+      "replay_count": 0
+    },
+    "rejected-tsunderebelovedfloofdatsheffy-ozib--tqd6exrm_p": {
+      "source_url": "https://www.twitch.tv/lirik/clip/TsundereBelovedFloofDatSheffy-oZIB--tQd6EXRm_p",
+      "streamer": "lirik",
+      "title": "2 Peasants got their chance to interact with a Lord",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Dark game footage, inside-joke dialogue,)",
+      "ts": "2026-10-22T12:15:39.154887+00:00"
+    },
+    "clip-20261022-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/DullAuspiciousPeppermintLitty-4pJjLnPSAsxRSbZD",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Finally Beats Rellana And Loses It",
+      "kind": "twitch_clip",
+      "ts": "2026-10-22T12:18:38.661800+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
