@@ -1,0 +1,153 @@
+{
+ "date": "2026-10-22",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "nfl",
+   "who": "Aaron Rodgers",
+   "why": "Rodgers drops 'I know your dad' on a rookie mid-game, a mic'd-up trash-talk line with a family twist.",
+   "post_title": "[Highlight] Steelers QB Aaron Rodgers exchanges words on the field with Josiah Trotter, telling him: \u201cI know your dad.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x9gsmq/highlight_steelers_qb_aaron_rodgers_exchanges/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x9gsmq/highlight_steelers_qb_aaron_rodgers_exchanges",
+   "skipped": "too short: the post runs 7.0s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "LeBron gets visibly heated with a heckling fan and fires back about being an Ohio baby.",
+   "post_title": "LeBron James Heated With a Knicks Fan: \"Ain't nothing soft in the Midwest... I'm not from the West Coast, I'm from Ohio, baby. I'm an Ohio baby, fuck is you talking about?\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/idugt5",
+   "topic": "https://www.reddit.com/r/nba/comments/1xbds51/lebron_james_heated_with_a_knicks_fan_aint",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "hockey",
+   "who": "Brady Tkachuk",
+   "why": "Tkachuk reacts as his old home crowd boos him right after a tribute video.",
+   "post_title": "Brady Tkachuk reaction to getting booed after his video tribute in Ottawa",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xc3ml8/brady_tkachuk_reaction_to_getting_booed_after_his/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xc3ml8/brady_tkachuk_reaction_to_getting_booed_after_his",
+   "title": "Brady Tkachuk Thanks Ottawa After His Tribute Video: 'This Means More Than You Know'",
+   "hook": "Brady Tkachuk thanks Ottawa after his tribute",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "repairs": [
+    {
+     "score": 62,
+     "reason": "showrunner BLOCK: The real moment (Brady looking up at the big screen) is buried mid-video. The ending is greyed tribute highlights instead of the boos or his thank-you, and our caption sits on the jumbotron and scoreboard graphics."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A restream of a jumbotron tribute topped with a made-up 'thanks Ottawa' line. He never thanks anyone on screen, and the source was about him being booed.",
+    "score": 49
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A restream of a jumbotron tribute topped with a made-up 'thanks Ottawa' line. He never thanks anyone on screen, and the source was about him being booed."
+  },
+  {
+   "sub": "baseball",
+   "who": "Miguel Rojas",
+   "why": "Rojas gets emotional describing the last game he'll ever play in his uniform and cleats.",
+   "post_title": "[MLB on FOX] \u201cThis is it as a player, that was my last game played, that was the last time I put these cleats on and this uniform on as a player...\u201d Miguel Rojas shares his thoughts on playing the fin",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1x76wo7/mlb_on_fox_this_is_it_as_a_player_that_was_my/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1x76wo7/mlb_on_fox_this_is_it_as_a_player_that_was_my",
+   "title": "Miguel Rojas Tells The Clubhouse That Was His Last Game As A Player",
+   "hook": "Rojas says that was his last game",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "repairs": [
+    {
+     "score": 87,
+     "reason": "showrunner BLOCK: An emotional real retirement moment that lands, but our top line overlaps the FOX 'AT THE MIC' graphic and the frame carries three layers of captions."
+    },
+    {
+     "score": 83,
+     "reason": "showrunner BLOCK: A real, emotional retirement moment that lands, but our hook line collides with the FOX 'AT THE MIC' graphic and is stacked on top of the source's own captions and banner."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A real emotional retirement moment with the Game 7 homer as payoff, but our captions are stacked on the source's captions and our line runs into the FOX badge.",
+    "score": 83
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A real emotional retirement moment with the Game 7 homer as payoff, but our captions are stacked on the source's captions and our line runs into the FOX badge."
+  },
+  {
+   "sub": "nba",
+   "who": "Charles Barkley",
+   "why": "Barkley cracks a Kash Patel joke about Shaq live on set while standing right next to him.",
+   "post_title": "Charles Barkley: \"Should we be standing this close to Shaq?... He's been hanging out with Kash Patel. That's dangerous.\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/r0tqiq",
+   "topic": "https://www.reddit.com/r/nba/comments/1xc96lc/charles_barkley_should_we_be_standing_this_close",
+   "title": "Charles Barkley Warns Shaq Over Who He's Been Hanging Out With",
+   "hook": "Barkley roasts Shaq on live TV \ud83d\ude02",
+   "ledger": {
+    "moves": [
+     "whoa@16.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The Barkley/Shaq bit is real and lands at around 14s, but the cut then runs 18 more seconds into unrelated Giannis warmups and ends on an ESPN logo bumper.",
+    "score": 58
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The Barkley/Shaq bit is real and lands at around 14s, but the cut then runs 18 more seconds into unrelated Giannis warmups and ends on an ESPN logo bumper."
+  }
+ ],
+ "already_today": 2,
+ "pool": 98,
+ "already_posted": 10,
+ "shipped": 0
+}
