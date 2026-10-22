@@ -1,7 +1,37 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-22T11:46:39Z",
+ "updated": "2026-10-22T19:24:44Z",
  "open": [
+  {
+   "id": "peanut-allergy-guideline-flip__675a4e77",
+   "slug": "peanut-allergy-guideline-flip",
+   "filed": "2026-10-22T19:24:44Z",
+   "why": [
+    "premise: brain: The premise is vague, does not clearly reverse a specific expectation, and the 43% figure is not presented as a clear, verifiable consequence."
+   ],
+   "request": "exchange/rewrites/20261022/peanut-allergy-guideline-flip__675a4e77.request.json",
+   "answer_path": "exchange/rewrites/20261022/peanut-allergy-guideline-flip__675a4e77.answer.json"
+  },
+  {
+   "id": "ai-datacenter-water__76f02e0c",
+   "slug": "ai-datacenter-water",
+   "filed": "2026-10-22T19:24:43Z",
+   "why": [
+    "judge: blocked before vision review: max_dup_run 68 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=27.92s of 35.88s (~2.8s frozen)"
+   ],
+   "request": "exchange/rewrites/20261022/ai-datacenter-water__76f02e0c.request.json",
+   "answer_path": "exchange/rewrites/20261022/ai-datacenter-water__76f02e0c.answer.json"
+  },
+  {
+   "id": "helium-supply-squeeze__067a945d",
+   "slug": "helium-supply-squeeze",
+   "filed": "2026-10-22T19:24:41Z",
+   "why": [
+    "premise: brain: The premise relies on an unverified, sensational figure and does not convincingly overturn a common expectation with a single, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261022/helium-supply-squeeze__067a945d.request.json",
+   "answer_path": "exchange/rewrites/20261022/helium-supply-squeeze__067a945d.answer.json"
+  },
   {
    "id": "world-wetlands-lost__3fe5ea62_r1",
    "slug": "world-wetlands-lost",
@@ -103,16 +133,6 @@
    "answer_path": "exchange/rewrites/20261021/coldest-place-in-the-universe-is-human-made__81f94a66.answer.json"
   },
   {
-   "id": "helium-supply-squeeze__067a945d",
-   "slug": "helium-supply-squeeze",
-   "filed": "2026-10-21T16:21:54Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on an unverifiable, ambiguous number."
-   ],
-   "request": "exchange/rewrites/20261021/helium-supply-squeeze__067a945d.request.json",
-   "answer_path": "exchange/rewrites/20261021/helium-supply-squeeze__067a945d.answer.json"
-  },
-  {
    "id": "ceo-executive-pay-gap__20daafe8",
    "slug": "ceo-executive-pay-gap",
    "filed": "2026-10-21T13:38:40Z",
@@ -161,16 +181,6 @@
    ],
    "request": "exchange/rewrites/20261021/parker-solar-probe-speed-record__c2b6b912.request.json",
    "answer_path": "exchange/rewrites/20261021/parker-solar-probe-speed-record__c2b6b912.answer.json"
-  },
-  {
-   "id": "peanut-allergy-guideline-flip__65e90a17",
-   "slug": "peanut-allergy-guideline-flip",
-   "filed": "2026-10-21T13:38:39Z",
-   "why": [
-    "premise: brain: It does not reverse a viewer's expectation, merely confirms the expected drop in diagnoses."
-   ],
-   "request": "exchange/rewrites/20261021/peanut-allergy-guideline-flip__65e90a17.request.json",
-   "answer_path": "exchange/rewrites/20261021/peanut-allergy-guideline-flip__65e90a17.answer.json"
   },
   {
    "id": "usps-mail-volume-collapse__eca67ee3",

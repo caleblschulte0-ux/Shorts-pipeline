@@ -1,0 +1,16 @@
+{
+ "slug": "pickleball-fastest-growing-sport",
+ "ts": "20261022T192453Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: In payoff@-0.4 the video ends on a near-black navy card. A small Data holds a blank yellow price tag at the bottom and the rest of the frame is empty.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void_endcard_and_static_closing",
+  "visible_evidence": "seg4:start to seg4:end hold the finished ER room with the closing text over the EMERGENCY sign while Data stands with his arms up. Then payoff@-0.4 cuts to a black card with Data holding a blank price tag.",
+  "root_cause": "The closing reuses the seg3 set with nothing new happening. The renderer then adds a generic dark mascot outro that falls back to the default price-tag prop.",
+  "repair_goal": "Remove the black end card and end on a closing shot where Data does something tied to the line, such as taping up his paddle wrist or stretching before he steps on court. Keep the full frame filled to the last frame and move the closing text so it does not sit on top of the sign."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,0 +1,9 @@
+{
+ "slug": "ai-datacenter-water",
+ "ts": "20261022T192453Z",
+ "failure_class": "temporal_gate",
+ "evidence": "temporal_gate: max_dup_run 68 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=27.92s of 35.88s (~2.8s frozen)",
+ "weakest_scene": {},
+ "scene_plan": {},
+ "scenes": []
+}
