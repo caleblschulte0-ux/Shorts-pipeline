@@ -1,0 +1,67 @@
+[
+ {
+  "sub": "sportsgossips",
+  "who": "Kevin Durant",
+  "why": "named by the operator",
+  "post_title": "Kevin Durant had a lot to say when asked about the Enes Kanter and Royce White situation involving the WNBA. His response didn\u2019t hold back.",
+  "upvotes": 0,
+  "url": "https://www.reddit.com/r/sportsgossips/comments/1wnn1hj/kevin_durant_had_a_lot_to_say_when_asked_about/",
+  "permalink": "https://www.reddit.com/r/sportsgossips/comments/1wnn1hj/kevin_durant_had_a_lot_to_say_when_asked_about/",
+  "meta": {
+   "title": "Kevin Durant Won't Hold Back On The WNBA Drama And Politics In Sports",
+   "hook": "Kevin Durant on WNBA drama: \"all noise\"",
+   "caption": "Kevin Durant gets asked about the WNBA drama and says he only cares about the purity of the sport and pushing the league forward.",
+   "cta": "Is Durant right that it's all just noise? \ud83d\udc47",
+   "hashtags": [
+    "kevindurant",
+    "durant",
+    "wnba",
+    "nba",
+    "enteskanter",
+    "roycewhite",
+    "basketball"
+   ],
+   "series": "argument",
+   "edit": {
+    "mood": "",
+    "mood_at": 0.0,
+    "complete": true,
+    "moves": [
+     {
+      "move": "whoa",
+      "at": 59.6
+     }
+    ],
+    "cut": {
+     "start": 0.0,
+     "end": 65.79
+    }
+   }
+  },
+  "hook": "Kevin Durant on WNBA drama: \"all noise\"",
+  "ledger": {
+   "moves": [
+    "whoa@59.1"
+   ],
+   "mood": null,
+   "shot_plan": {
+    "layout": "action",
+    "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+    "shots": [
+     {
+      "mode": "action",
+      "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+     }
+    ],
+    "n_subjects": 1,
+    "crop": [
+     540,
+     720,
+     402,
+     0
+    ]
+   }
+  },
+  "file": "01_kevin-durant.mp4"
+ }
+]
