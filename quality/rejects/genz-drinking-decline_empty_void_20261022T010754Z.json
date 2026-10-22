@@ -1,0 +1,16 @@
+{
+ "slug": "genz-drinking-decline",
+ "ts": "20261022T010754Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: payoff@-0.4 (t=28.93s) is an empty dark-navy frame with nothing but Data holding a blank price tag in the lower third. The video ends on wasted, empty space.",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "At seg3:start, seg3:mid and seg3:end Data stands in the doorway of 'THE CROWN' while a grey shutter slides a little way across the window by itself as the number goes 67% \u2192 64% \u2192 61%. The change in the picture is barely visible, and the full and empty glasses in the bottom-right corner are never explained. The closing (seg4) reuses this exact scene with Data still idle, and the video ends on a dark void with a blank price tag (payoff@-0.4).",
+  "root_cause": "The shutter has no agent, so Data is placed beside the moving part rather than driving it. Mapped onto a whole window, 67\u219261 is too small a change to read at a glance, and the ending falls through to the default empty host plate.",
+  "repair_goal": "Make Data the cause. He hauls the shutter down by its handle with a two-hand grip, or pulls pints off a tap row as each drinker leaves. Draw the 2001-2003 level as a big ghost or then-mark right on the shutter so the drop reads at a glance. Drop or explain the corner glasses, give the closing its own full-frame finished picture (not the seg3 plate reused), and remove the empty price-tag tail frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

@@ -1,7 +1,239 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-21T20:53:54Z",
+ "updated": "2026-10-22T01:07:44Z",
  "open": [
+  {
+   "id": "astronaut-bone-loss__315fba90",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-10-22T01:07:44Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a generic statistic rather than a single, striking, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261022/astronaut-bone-loss__315fba90.request.json",
+   "answer_path": "exchange/rewrites/20261022/astronaut-bone-loss__315fba90.answer.json"
+  },
+  {
+   "id": "usps-mail-volume-collapse__eca67ee3",
+   "slug": "usps-mail-volume-collapse",
+   "filed": "2026-10-22T01:07:43Z",
+   "why": [
+    "premise: brain: It presents multiple figures (volume halved and price more than doubled) rather than a single consequential number, and doesn't clearly reverse a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261022/usps-mail-volume-collapse__eca67ee3.request.json",
+   "answer_path": "exchange/rewrites/20261022/usps-mail-volume-collapse__eca67ee3.answer.json"
+  },
+  {
+   "id": "lottery-odds-vs-real-life__335c9001",
+   "slug": "lottery-odds-vs-real-life",
+   "filed": "2026-10-22T01:07:43Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/lottery-odds-vs-real-life__335c9001.request.json",
+   "answer_path": "exchange/rewrites/20261022/lottery-odds-vs-real-life__335c9001.answer.json"
+  },
+  {
+   "id": "activity-inequality-steps__f0af7c7a",
+   "slug": "activity-inequality-steps",
+   "filed": "2026-10-22T01:07:42Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/activity-inequality-steps__f0af7c7a.request.json",
+   "answer_path": "exchange/rewrites/20261022/activity-inequality-steps__f0af7c7a.answer.json"
+  },
+  {
+   "id": "insect-planet__3c4a491b",
+   "slug": "insect-planet",
+   "filed": "2026-10-22T01:07:42Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/insect-planet__3c4a491b.request.json",
+   "answer_path": "exchange/rewrites/20261022/insect-planet__3c4a491b.answer.json"
+  },
+  {
+   "id": "bat-fungus-collapse__fb2808d3",
+   "slug": "bat-fungus-collapse",
+   "filed": "2026-10-22T01:07:42Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/bat-fungus-collapse__fb2808d3.request.json",
+   "answer_path": "exchange/rewrites/20261022/bat-fungus-collapse__fb2808d3.answer.json"
+  },
+  {
+   "id": "plastic-in-your-body__cedc4bab",
+   "slug": "plastic-in-your-body",
+   "filed": "2026-10-22T01:07:42Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/plastic-in-your-body__cedc4bab.request.json",
+   "answer_path": "exchange/rewrites/20261022/plastic-in-your-body__cedc4bab.answer.json"
+  },
+  {
+   "id": "highest-point-illusion__3d90af0a",
+   "slug": "highest-point-illusion",
+   "filed": "2026-10-22T01:07:42Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/highest-point-illusion__3d90af0a.request.json",
+   "answer_path": "exchange/rewrites/20261022/highest-point-illusion__3d90af0a.answer.json"
+  },
+  {
+   "id": "unclaimed-money-states-hold__d600f81b",
+   "slug": "unclaimed-money-states-hold",
+   "filed": "2026-10-22T01:07:42Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/unclaimed-money-states-hold__d600f81b.request.json",
+   "answer_path": "exchange/rewrites/20261022/unclaimed-money-states-hold__d600f81b.answer.json"
+  },
+  {
+   "id": "japan-vending-machine-density__9e291189",
+   "slug": "japan-vending-machine-density",
+   "filed": "2026-10-22T01:07:42Z",
+   "why": [
+    "premise: brain: It does not clearly reverse a common viewer expectation, merely stating a statistic."
+   ],
+   "request": "exchange/rewrites/20261022/japan-vending-machine-density__9e291189.request.json",
+   "answer_path": "exchange/rewrites/20261022/japan-vending-machine-density__9e291189.answer.json"
+  },
+  {
+   "id": "left-brain-right-brain-myth__9ae81e3c",
+   "slug": "left-brain-right-brain-myth",
+   "filed": "2026-10-22T01:07:41Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/left-brain-right-brain-myth__9ae81e3c.request.json",
+   "answer_path": "exchange/rewrites/20261022/left-brain-right-brain-myth__9ae81e3c.answer.json"
+  },
+  {
+   "id": "religious-nones-rise__677be75f",
+   "slug": "religious-nones-rise",
+   "filed": "2026-10-22T01:07:41Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/religious-nones-rise__677be75f.request.json",
+   "answer_path": "exchange/rewrites/20261022/religious-nones-rise__677be75f.answer.json"
+  },
+  {
+   "id": "california-condor-comeback__7f22c4ab",
+   "slug": "california-condor-comeback",
+   "filed": "2026-10-22T01:07:41Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and does not hinge on a single, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261022/california-condor-comeback__7f22c4ab.request.json",
+   "answer_path": "exchange/rewrites/20261022/california-condor-comeback__7f22c4ab.answer.json"
+  },
+  {
+   "id": "a-language-dies-every-2-weeks__8d6939dc",
+   "slug": "a-language-dies-every-2-weeks",
+   "filed": "2026-10-22T01:07:41Z",
+   "why": [
+    "thesis: seg0 ('Languages in danger') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline",
+    "thesis: seg1 ('Why languages vanish') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline",
+    "thesis: seg2 ('Languages lost by 2100') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline"
+   ],
+   "request": "exchange/rewrites/20261022/a-language-dies-every-2-weeks__8d6939dc.request.json",
+   "answer_path": "exchange/rewrites/20261022/a-language-dies-every-2-weeks__8d6939dc.answer.json"
+  },
+  {
+   "id": "earth-rotation-speeding-up__e26a5423",
+   "slug": "earth-rotation-speeding-up",
+   "filed": "2026-10-22T01:07:40Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/earth-rotation-speeding-up__e26a5423.request.json",
+   "answer_path": "exchange/rewrites/20261022/earth-rotation-speeding-up__e26a5423.answer.json"
+  },
+  {
+   "id": "volcano-country-ranking__692a9e46",
+   "slug": "volcano-country-ranking",
+   "filed": "2026-10-22T01:07:40Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/volcano-country-ranking__692a9e46.request.json",
+   "answer_path": "exchange/rewrites/20261022/volcano-country-ranking__692a9e46.answer.json"
+  },
+  {
+   "id": "third-interstellar-visitor__c92abc0a",
+   "slug": "third-interstellar-visitor",
+   "filed": "2026-10-22T01:07:40Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/third-interstellar-visitor__c92abc0a.request.json",
+   "answer_path": "exchange/rewrites/20261022/third-interstellar-visitor__c92abc0a.answer.json"
+  },
+  {
+   "id": "coldest-place-in-the-universe-is-human-made__81f94a66",
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "filed": "2026-10-22T01:07:40Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/coldest-place-in-the-universe-is-human-made__81f94a66.request.json",
+   "answer_path": "exchange/rewrites/20261022/coldest-place-in-the-universe-is-human-made__81f94a66.answer.json"
+  },
+  {
+   "id": "body-renewal-clock__98282d0f",
+   "slug": "body-renewal-clock",
+   "filed": "2026-10-22T01:07:40Z",
+   "why": [
+    "judge: blocked before vision review: max_dup_run 46 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=26.5s of 34.67s (~1.9s frozen)"
+   ],
+   "request": "exchange/rewrites/20261022/body-renewal-clock__98282d0f.request.json",
+   "answer_path": "exchange/rewrites/20261022/body-renewal-clock__98282d0f.answer.json"
+  },
+  {
+   "id": "world-wetlands-lost__3fe5ea62",
+   "slug": "world-wetlands-lost",
+   "filed": "2026-10-22T01:07:40Z",
+   "why": [
+    "premise: brain: It presents a factual statistic without overturning a specific viewer expectation, failing the reversal requirement."
+   ],
+   "request": "exchange/rewrites/20261022/world-wetlands-lost__3fe5ea62.request.json",
+   "answer_path": "exchange/rewrites/20261022/world-wetlands-lost__3fe5ea62.answer.json"
+  },
+  {
+   "id": "divorce-rate-quiet-decline__d6b27d36",
+   "slug": "divorce-rate-quiet-decline",
+   "filed": "2026-10-22T01:07:39Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/divorce-rate-quiet-decline__d6b27d36.request.json",
+   "answer_path": "exchange/rewrites/20261022/divorce-rate-quiet-decline__d6b27d36.answer.json"
+  },
+  {
+   "id": "english-internet-share-decline__21efaa68",
+   "slug": "english-internet-share-decline",
+   "filed": "2026-10-22T01:07:39Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/english-internet-share-decline__21efaa68.request.json",
+   "answer_path": "exchange/rewrites/20261022/english-internet-share-decline__21efaa68.answer.json"
+  },
+  {
+   "id": "pentagon-ufo-reports-surge__e166beb3",
+   "slug": "pentagon-ufo-reports-surge",
+   "filed": "2026-10-22T01:07:39Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/pentagon-ufo-reports-surge__e166beb3.request.json",
+   "answer_path": "exchange/rewrites/20261022/pentagon-ufo-reports-surge__e166beb3.answer.json"
+  },
   {
    "id": "nyc-noise-complaints-per-day__7fcacd7a",
    "slug": "nyc-noise-complaints-per-day",
@@ -23,16 +255,6 @@
    "answer_path": "exchange/rewrites/20261021/rubiks-cube-record-vs-robot__5d087bf9.answer.json"
   },
   {
-   "id": "lottery-odds-vs-real-life__335c9001",
-   "slug": "lottery-odds-vs-real-life",
-   "filed": "2026-10-21T16:21:57Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/lottery-odds-vs-real-life__335c9001.request.json",
-   "answer_path": "exchange/rewrites/20261021/lottery-odds-vs-real-life__335c9001.answer.json"
-  },
-  {
    "id": "metric-system-holdouts__3d73bc6c_r1",
    "slug": "metric-system-holdouts",
    "filed": "2026-10-21T16:21:57Z",
@@ -41,16 +263,6 @@
    ],
    "request": "exchange/rewrites/20261021/metric-system-holdouts__3d73bc6c_r1.request.json",
    "answer_path": "exchange/rewrites/20261021/metric-system-holdouts__3d73bc6c_r1.answer.json"
-  },
-  {
-   "id": "coldest-place-in-the-universe-is-human-made__81f94a66",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-10-21T16:21:55Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/coldest-place-in-the-universe-is-human-made__81f94a66.request.json",
-   "answer_path": "exchange/rewrites/20261021/coldest-place-in-the-universe-is-human-made__81f94a66.answer.json"
   },
   {
    "id": "helium-supply-squeeze__067a945d",
@@ -83,16 +295,6 @@
    "answer_path": "exchange/rewrites/20261021/cargo-ship-size-growth__f9ab28c4.answer.json"
   },
   {
-   "id": "japan-vending-machine-density__4f918b7a",
-   "slug": "japan-vending-machine-density",
-   "filed": "2026-10-21T13:38:40Z",
-   "why": [
-    "premise: brain: The claim presents a statistic but does not subvert a clear viewer expectation, so it fails the reversal requirement."
-   ],
-   "request": "exchange/rewrites/20261021/japan-vending-machine-density__4f918b7a.request.json",
-   "answer_path": "exchange/rewrites/20261021/japan-vending-machine-density__4f918b7a.answer.json"
-  },
-  {
    "id": "self-storage-outnumbers-starbucks__97599610",
    "slug": "self-storage-outnumbers-starbucks",
    "filed": "2026-10-21T13:38:39Z",
@@ -101,16 +303,6 @@
    ],
    "request": "exchange/rewrites/20261021/self-storage-outnumbers-starbucks__97599610.request.json",
    "answer_path": "exchange/rewrites/20261021/self-storage-outnumbers-starbucks__97599610.answer.json"
-  },
-  {
-   "id": "astronaut-bone-loss__315fba90",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-10-21T13:38:39Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague expectation about weightlessness resting bones."
-   ],
-   "request": "exchange/rewrites/20261021/astronaut-bone-loss__315fba90.request.json",
-   "answer_path": "exchange/rewrites/20261021/astronaut-bone-loss__315fba90.answer.json"
   },
   {
    "id": "parker-solar-probe-speed-record__c2b6b912",
@@ -131,188 +323,6 @@
    ],
    "request": "exchange/rewrites/20261021/peanut-allergy-guideline-flip__65e90a17.request.json",
    "answer_path": "exchange/rewrites/20261021/peanut-allergy-guideline-flip__65e90a17.answer.json"
-  },
-  {
-   "id": "body-renewal-clock__dbae7bb1",
-   "slug": "body-renewal-clock",
-   "filed": "2026-10-21T13:38:38Z",
-   "why": [
-    "premise: brain: The claim lacks a clear reversal of a common viewer expectation and relies on a vague comparison rather than a single, consequential, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261021/body-renewal-clock__dbae7bb1.request.json",
-   "answer_path": "exchange/rewrites/20261021/body-renewal-clock__dbae7bb1.answer.json"
-  },
-  {
-   "id": "english-internet-share-decline__21efaa68",
-   "slug": "english-internet-share-decline",
-   "filed": "2026-10-21T13:38:37Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/english-internet-share-decline__21efaa68.request.json",
-   "answer_path": "exchange/rewrites/20261021/english-internet-share-decline__21efaa68.answer.json"
-  },
-  {
-   "id": "usps-mail-volume-collapse__eca67ee3",
-   "slug": "usps-mail-volume-collapse",
-   "filed": "2026-10-21T13:38:37Z",
-   "why": [
-    "premise: brain: It lacks a single pivotal, verifiable number and does not clearly subvert a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261021/usps-mail-volume-collapse__eca67ee3.request.json",
-   "answer_path": "exchange/rewrites/20261021/usps-mail-volume-collapse__eca67ee3.answer.json"
-  },
-  {
-   "id": "activity-inequality-steps__f0af7c7a",
-   "slug": "activity-inequality-steps",
-   "filed": "2026-10-21T13:38:36Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/activity-inequality-steps__f0af7c7a.request.json",
-   "answer_path": "exchange/rewrites/20261021/activity-inequality-steps__f0af7c7a.answer.json"
-  },
-  {
-   "id": "bat-fungus-collapse__fb2808d3",
-   "slug": "bat-fungus-collapse",
-   "filed": "2026-10-21T13:38:36Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/bat-fungus-collapse__fb2808d3.request.json",
-   "answer_path": "exchange/rewrites/20261021/bat-fungus-collapse__fb2808d3.answer.json"
-  },
-  {
-   "id": "plastic-in-your-body__cedc4bab",
-   "slug": "plastic-in-your-body",
-   "filed": "2026-10-21T13:38:36Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/plastic-in-your-body__cedc4bab.request.json",
-   "answer_path": "exchange/rewrites/20261021/plastic-in-your-body__cedc4bab.answer.json"
-  },
-  {
-   "id": "highest-point-illusion__3d90af0a",
-   "slug": "highest-point-illusion",
-   "filed": "2026-10-21T13:38:36Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/highest-point-illusion__3d90af0a.request.json",
-   "answer_path": "exchange/rewrites/20261021/highest-point-illusion__3d90af0a.answer.json"
-  },
-  {
-   "id": "unclaimed-money-states-hold__d600f81b",
-   "slug": "unclaimed-money-states-hold",
-   "filed": "2026-10-21T13:38:36Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/unclaimed-money-states-hold__d600f81b.request.json",
-   "answer_path": "exchange/rewrites/20261021/unclaimed-money-states-hold__d600f81b.answer.json"
-  },
-  {
-   "id": "insect-planet__3c4a491b",
-   "slug": "insect-planet",
-   "filed": "2026-10-21T13:38:35Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/insect-planet__3c4a491b.request.json",
-   "answer_path": "exchange/rewrites/20261021/insect-planet__3c4a491b.answer.json"
-  },
-  {
-   "id": "left-brain-right-brain-myth__9ae81e3c",
-   "slug": "left-brain-right-brain-myth",
-   "filed": "2026-10-21T13:38:35Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/left-brain-right-brain-myth__9ae81e3c.request.json",
-   "answer_path": "exchange/rewrites/20261021/left-brain-right-brain-myth__9ae81e3c.answer.json"
-  },
-  {
-   "id": "religious-nones-rise__677be75f",
-   "slug": "religious-nones-rise",
-   "filed": "2026-10-21T13:38:35Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/religious-nones-rise__677be75f.request.json",
-   "answer_path": "exchange/rewrites/20261021/religious-nones-rise__677be75f.answer.json"
-  },
-  {
-   "id": "california-condor-comeback__7f22c4ab",
-   "slug": "california-condor-comeback",
-   "filed": "2026-10-21T13:38:35Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on vague numbers without a single, verifiable consequential figure."
-   ],
-   "request": "exchange/rewrites/20261021/california-condor-comeback__7f22c4ab.request.json",
-   "answer_path": "exchange/rewrites/20261021/california-condor-comeback__7f22c4ab.answer.json"
-  },
-  {
-   "id": "a-language-dies-every-2-weeks__8d6939dc",
-   "slug": "a-language-dies-every-2-weeks",
-   "filed": "2026-10-21T13:38:35Z",
-   "why": [
-    "thesis: seg0 ('Languages in danger') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline",
-    "thesis: seg1 ('Why languages vanish') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline",
-    "thesis: seg2 ('Languages lost by 2100') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline"
-   ],
-   "request": "exchange/rewrites/20261021/a-language-dies-every-2-weeks__8d6939dc.request.json",
-   "answer_path": "exchange/rewrites/20261021/a-language-dies-every-2-weeks__8d6939dc.answer.json"
-  },
-  {
-   "id": "earth-rotation-speeding-up__e26a5423",
-   "slug": "earth-rotation-speeding-up",
-   "filed": "2026-10-21T13:38:34Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/earth-rotation-speeding-up__e26a5423.request.json",
-   "answer_path": "exchange/rewrites/20261021/earth-rotation-speeding-up__e26a5423.answer.json"
-  },
-  {
-   "id": "divorce-rate-quiet-decline__d6b27d36",
-   "slug": "divorce-rate-quiet-decline",
-   "filed": "2026-10-21T13:38:34Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/divorce-rate-quiet-decline__d6b27d36.request.json",
-   "answer_path": "exchange/rewrites/20261021/divorce-rate-quiet-decline__d6b27d36.answer.json"
-  },
-  {
-   "id": "volcano-country-ranking__692a9e46",
-   "slug": "volcano-country-ranking",
-   "filed": "2026-10-21T13:38:34Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/volcano-country-ranking__692a9e46.request.json",
-   "answer_path": "exchange/rewrites/20261021/volcano-country-ranking__692a9e46.answer.json"
-  },
-  {
-   "id": "pentagon-ufo-reports-surge__e166beb3",
-   "slug": "pentagon-ufo-reports-surge",
-   "filed": "2026-10-21T13:38:34Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/pentagon-ufo-reports-surge__e166beb3.request.json",
-   "answer_path": "exchange/rewrites/20261021/pentagon-ufo-reports-surge__e166beb3.answer.json"
-  },
-  {
-   "id": "third-interstellar-visitor__c92abc0a",
-   "slug": "third-interstellar-visitor",
-   "filed": "2026-10-21T13:38:34Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/third-interstellar-visitor__c92abc0a.request.json",
-   "answer_path": "exchange/rewrites/20261021/third-interstellar-visitor__c92abc0a.answer.json"
   },
   {
    "id": "eclipse-recurrence-rarity__789a0737",
@@ -613,16 +623,6 @@
    ],
    "request": "exchange/rewrites/20261018/nobel-prize-discovery-age__3e12dc3c.request.json",
    "answer_path": "exchange/rewrites/20261018/nobel-prize-discovery-age__3e12dc3c.answer.json"
-  },
-  {
-   "id": "world-wetlands-lost__66020aa4",
-   "slug": "world-wetlands-lost",
-   "filed": "2026-10-18T11:46:45Z",
-   "why": [
-    "premise: brain: It does not clearly overturn a common viewer expectation, only presents a statistic."
-   ],
-   "request": "exchange/rewrites/20261018/world-wetlands-lost__66020aa4.request.json",
-   "answer_path": "exchange/rewrites/20261018/world-wetlands-lost__66020aa4.answer.json"
   },
   {
    "id": "competitive-eating-record-climb__e38b83da",

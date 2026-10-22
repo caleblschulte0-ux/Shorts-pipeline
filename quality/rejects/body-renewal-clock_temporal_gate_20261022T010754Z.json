@@ -1,0 +1,14 @@
+{
+ "slug": "body-renewal-clock",
+ "ts": "20261022T010754Z",
+ "failure_class": "temporal_gate",
+ "evidence": "temporal_gate: max_dup_run 46 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=26.5s of 34.67s (~1.9s frozen)",
+ "weakest_scene": {},
+ "scene_plan": {
+  "0": {
+   "viz": "bubbles",
+   "perf": "get_buried"
+  }
+ },
+ "scenes": []
+}

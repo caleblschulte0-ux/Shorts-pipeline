@@ -1,0 +1,16 @@
+{
+ "slug": "rubiks-cube-record-vs-robot",
+ "ts": "20261022T010754Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: At payoff@-0.4 the whole frame is an empty dark navy gradient with only Data and a blank price tag in the lower third. Scene, number and closing line are all gone in the final frame.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void_tail",
+  "visible_evidence": "seg4:end is a strong robot-arm cube shot. By payoff@-0.4 it has cut to a blank dark gradient with Data holding an empty price tag, so the video ends on a void. Through seg4 the headline reads '3.13 s fastest human hands', not the robot's 0.38 s that the closing line is about. The CTA text overlaps a corner cube.",
+  "root_cause": "After the closing scene ends, the render falls back to a default mascot end card (a blank price-tag prop on an empty ground) instead of holding the closing picture. The closing headline repeats the human number, and the corner prop cubes are placed under the CTA text.",
+  "repair_goal": "Hold the finished closing shot (robot arm with a solved cube) to the last frame and remove the blank price-tag end card. Make the closing headline 0.38 s robot against 3.13 s human, and have Data fumbling his hand-held cube while the arm finishes. Move the corner cubes clear of the CTA line and render the CTA at full contrast from its first frame."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
