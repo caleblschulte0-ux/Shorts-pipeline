@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "coldest-place-in-the-universe-is-human-made__81f94a66",
+  "slug": "coldest-place-in-the-universe-is-human-made",
+  "by": "chatgpt",
+  "written_at": "2026-10-22T11:28:00Z",
+  "title": "NASA Made Atoms 0.0000000001 Kelvin—Colder Than Space",
+  "hook": "NASA chilled atoms to 0.0000000001 kelvin, colder than deep space.",
+  "closing": "The universe's deepest cold is now an engineering achievement.",
+  "question": "What would you test there?",
+  "segments": [
+    {
+      "topic": "NASA Space Baseline",
+      "say": "Deep space is 2.7 kelvin, cold but still above absolute zero."
+    },
+    {
+      "topic": "NASA Cold Atoms",
+      "say": "NASA's Cold Atom Lab reaches 0.0000000001 kelvin, colder than the Boomerang Nebula."
+    },
+    {
+      "topic": "NASA Lab Nearby",
+      "say": "The ISS lab orbits about 250 miles up, placing extreme cold surprisingly close."
+    }
+  ]
+}
