@@ -201,7 +201,10 @@ Rules:
     it to EVERY clip where the person talks about something that
     happened on the field that we can show: a teammate or a rivalry, a
     game they remember, a record, a title, a choke, a blooper, a
-    comeback. The clip plays untouched; after it, the `song` comes in
+    comeback. And every clip that is the AFTERMATH of something on the
+    field (a locker-room speech after the win, a drunk celebration, a
+    postgame tear, a coach losing it about a call): the payoff is the
+    play or the win that caused it. The clip plays untouched; after it, the `song` comes in
     over a montage of that thing, and the song's mood is the story's:
 {OUTRO_MENU}
     "who" is who the shots are of ("Kevin Durant Russell Westbrook",
