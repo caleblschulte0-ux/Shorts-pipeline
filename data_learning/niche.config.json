@@ -35083,6 +35083,246 @@
      "say": "Russia and the US still hold the overwhelming majority, more than 5,000 warheads each. But almost every arsenal here is now growing, not shrinking."
     }
    ]
+  },
+  {
+   "slug": "ai-datacenter-water",
+   "title": "AI Data Centers Are Quietly Drinking The Water Supply",
+   "hook": "Microsoft's water use jumped 34% in a year. Blame the AI boom.",
+   "closing": "The chatbot doesn't feel thirsty. The water bill says otherwise.",
+   "question": "Would a bigger water bill change your mind?",
+   "caption": "Microsoft's water consumption jumped 34% in a single year. Google used 21.2 million cubic meters in 2022 alone. Every AI conversation you have costs about a bottle of water somewhere in a data center. Did you know that? 👇",
+   "hashtags": [
+    "ai",
+    "datacenters",
+    "water",
+    "chatgpt",
+    "bigtech",
+    "microsoft",
+    "google",
+    "sustainability",
+    "tech",
+    "climate",
+    "dataviz",
+    "didyouknow"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "ms_datacenter_water",
+     "params": {
+      "file": "ms_datacenter_water.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE SPIKE",
+     "topic": "Microsoft's water use",
+     "say": "Microsoft used 1.95 million cubic meters of water in 2017. By 2022 that hit 6.4 million — a 34% jump in one year."
+    },
+    {
+     "source": "offline",
+     "key": "bigtech_water_2022",
+     "params": {
+      "file": "bigtech_water_2022.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "use_baseline": false,
+     "role": "2 · WHO'S DRINKING MOST",
+     "topic": "big tech's water use",
+     "say": "Google used 21.2 million cubic meters of water in 2022. Microsoft used 6.4 million — both totals come from data centers now running AI."
+    },
+    {
+     "source": "offline",
+     "key": "ai_query_water_cost",
+     "params": {
+      "file": "ai_query_water_cost.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "use_baseline": true,
+     "role": "3 · THE PRICE PER CHAT",
+     "topic": "water per AI conversation",
+     "say": "Every 20-to-50-question AI conversation costs about 500 milliliters of water somewhere in a data center — a whole bottle, just to think it through."
+    }
+   ]
+  },
+  {
+   "slug": "opioid-prescribing-decline-fentanyl-rise",
+   "title": "Opioid Prescriptions Fell 47%. Overdoses Kept Rising.",
+   "hook": "Doctors wrote way fewer opioid prescriptions. Deaths didn't fall.",
+   "closing": "Fewer pills didn't make the drug supply safer. It just changed what's in it.",
+   "question": "Did you know fentanyl was the real cause?",
+   "caption": "US opioid prescriptions fell 47% since 2012. Overdose deaths didn't follow — they kept climbing, because fentanyl filled the gap pain pills left behind. Did you know this? 👇",
+   "hashtags": [
+    "opioids",
+    "fentanyl",
+    "publichealth",
+    "overdose",
+    "cdc",
+    "drugcrisis",
+    "health",
+    "addiction",
+    "dataviz",
+    "didyouknow",
+    "science",
+    "explainer"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "opioid_dispensing_rate",
+     "params": {
+      "file": "opioid_dispensing_rate.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · FEWER PILLS",
+     "topic": "opioid prescriptions",
+     "say": "In 2012, US doctors wrote 81 opioid prescriptions for every 100 people. By 2020 that fell to 43, the lowest rate in a decade."
+    },
+    {
+     "source": "offline",
+     "key": "overdose_opioid_share_2021",
+     "params": {
+      "file": "overdose_opioid_share_2021.json"
+     },
+     "insight_type": "share",
+     "role": "2 · DEATHS DIDN'T FOLLOW",
+     "topic": "opioid overdose deaths",
+     "say": "But overdose deaths didn't fall. In 2021, more than 80,000 of the 107,000 Americans who overdosed had an opioid in their system."
+    },
+    {
+     "source": "offline",
+     "key": "synthetic_opioid_deaths_trend",
+     "params": {
+      "file": "synthetic_opioid_deaths_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · THE REAL CAUSE",
+     "topic": "fentanyl deaths",
+     "say": "Why? Fentanyl. Deaths from synthetic opioids rocketed from 3,100 in 2013 to over 70,600 in 2021 — the supply got deadlier, not smaller."
+    }
+   ]
+  },
+  {
+   "slug": "ghost-fishing-gear-ocean-plastic",
+   "title": "The Ocean Loses 640,000 Tons Of Fishing Gear Every Year",
+   "hook": "Nobody's fishing for this stuff. It's fishing on its own.",
+   "closing": "Six hundred years from now, some of it will still be catching things.",
+   "question": "Did you know nets keep fishing themselves?",
+   "caption": "640,000 tons of fishing gear are lost or abandoned in the ocean every single year — about 10% of all ocean litter. It can keep killing marine life for 600 years. Did you know that? 👇",
+   "hashtags": [
+    "ocean",
+    "ghostgear",
+    "fishing",
+    "marinelife",
+    "plastic",
+    "conservation",
+    "wildlife",
+    "noaa",
+    "fao",
+    "dataviz",
+    "didyouknow",
+    "climate"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "ghost_gear_ocean_litter_share",
+     "params": {
+      "file": "ghost_gear_ocean_litter_share.json"
+     },
+     "insight_type": "share",
+     "role": "1 · THE TENTH",
+     "topic": "fishing gear in the ocean",
+     "say": "About 10% of all litter floating in the ocean right now is fishing gear — nets, traps, and lines nobody ever collected."
+    },
+    {
+     "source": "offline",
+     "key": "ghost_gear_vs_eiffel_rank",
+     "params": {
+      "file": "ghost_gear_vs_eiffel_rank.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "use_baseline": false,
+     "role": "2 · THE SCALE",
+     "topic": "lost fishing gear",
+     "say": "That's 640,000 tons every year — about 63 Eiffel Towers' worth of nets and traps, dumped into the water."
+    },
+    {
+     "source": "offline",
+     "key": "ghost_gear_marine_toll",
+     "params": {
+      "file": "ghost_gear_marine_toll.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "use_baseline": false,
+     "role": "3 · THE TOLL",
+     "topic": "marine animals caught in gear",
+     "say": "It keeps working long after it's lost. Ghost gear traps over 100,000 whales, dolphins, seals and turtles a year, for up to 600 years."
+    }
+   ]
+  },
+  {
+   "slug": "airline-pilot-shortage",
+   "title": "Airlines Need 649,000 New Pilots By 2042",
+   "hook": "The world is about to run out of people who can fly a plane.",
+   "closing": "Nobody's handing out wings for free. Someone has to train them all.",
+   "question": "Would you ever train to become a pilot?",
+   "caption": "Boeing says the airline industry needs 649,000 new pilots by 2042 — plus hundreds of thousands of technicians and cabin crew. Here's why there aren't enough people to fly the planes we're building. 👇",
+   "hashtags": [
+    "aviation",
+    "pilots",
+    "boeing",
+    "airlines",
+    "aviationjobs",
+    "flying",
+    "pilotshortage",
+    "jobs",
+    "dataviz",
+    "didyouknow",
+    "careers",
+    "travel"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "aviation_workforce_needed_2042",
+     "params": {
+      "file": "aviation_workforce_needed_2042.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "use_baseline": false,
+     "role": "1 · THE SHORTAGE",
+     "topic": "new pilots needed",
+     "say": "Boeing says airlines will need 649,000 new pilots by 2042, plus 690,000 technicians and 938,000 cabin crew to keep planes flying."
+    },
+    {
+     "source": "offline",
+     "key": "pilot_demand_by_region_2042",
+     "params": {
+      "file": "pilot_demand_by_region_2042.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "use_baseline": false,
+     "role": "2 · WHERE IT'S WORST",
+     "topic": "where pilots are needed most",
+     "say": "You'd guess the US needs the most. It doesn't. Eurasia tops the list at 143,000, just ahead of China's 134,000 and North America's 127,000."
+    },
+    {
+     "source": "offline",
+     "key": "commercial_fleet_size_trend",
+     "params": {
+      "file": "commercial_fleet_size_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · WHY",
+     "topic": "why airlines need more pilots",
+     "say": "Why so many new workers? The world's commercial jet fleet is set to roughly double — from 24,000 planes today to 48,600 by 2042."
+    }
+   ]
   }
  ],
  "videos": [

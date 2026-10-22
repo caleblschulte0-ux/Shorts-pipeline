@@ -1,0 +1,25 @@
+{
+ "key": "bigtech_water_2022",
+ "title": "Big Tech 2022 total water withdrawal (million cubic meters)",
+ "unit": "million cubic meters",
+ "geography": "Global (company operations)",
+ "time_coverage": "2022",
+ "source": {
+  "name": "Google and Microsoft 2022 environmental/sustainability reports",
+  "publisher": "Google LLC; Microsoft Corporation",
+  "url": "https://sustainability.google/reports/",
+  "officiality": "official",
+  "access_date": "2026-10-22"
+ },
+ "notes": "Google reported 5.6 billion gallons (about 21.2 million cubic meters) of total water withdrawal in 2022, up roughly 20% year over year; Microsoft reported 6.4 million cubic meters, up 34%.",
+ "points": [
+  {
+   "label": "Google",
+   "value": 21.2
+  },
+  {
+   "label": "Microsoft",
+   "value": 6.4
+  }
+ ]
+}

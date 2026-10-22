@@ -1,0 +1,25 @@
+{
+ "key": "ghost_gear_vs_eiffel_rank",
+ "title": "Lost fishing gear each year vs. the Eiffel Tower (metric tons)",
+ "unit": "metric tons",
+ "geography": "World (oceans) / Paris, France",
+ "time_coverage": "Annual estimate vs. 1889 structure weight",
+ "source": {
+  "name": "Abandoned, lost or discarded fishing gear (640,000 t/yr); Eiffel Tower key figures (10,100 t)",
+  "publisher": "FAO/UNEP; Societe d'Exploitation de la Tour Eiffel",
+  "url": "https://www.toureiffel.paris/en/the-monument/key-figures",
+  "officiality": "official",
+  "access_date": "2026-10-22"
+ },
+ "notes": "640,000 metric tons of fishing gear are lost or abandoned in the ocean every year (FAO/UNEP); the Eiffel Tower weighs about 10,100 metric tons in total, so that is roughly 63 Eiffel Towers a year.",
+ "points": [
+  {
+   "label": "Eiffel Tower",
+   "value": 10100
+  },
+  {
+   "label": "Lost fishing gear (1 year)",
+   "value": 640000
+  }
+ ]
+}

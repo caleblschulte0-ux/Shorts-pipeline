@@ -1,0 +1,27 @@
+{
+ "key": "ghost_gear_ocean_litter_share",
+ "title": "Share of ocean litter that is abandoned fishing gear",
+ "unit": "percent",
+ "geography": "World (oceans)",
+ "time_coverage": "2009 estimate, still cited as current (FAO, 2021)",
+ "source": {
+  "name": "Abandoned, Lost or Discarded Fishing Gear",
+  "publisher": "Food and Agriculture Organization of the United Nations (FAO) / UN Environment Programme (UNEP)",
+  "url": "https://www.fao.org/newsroom/story/Our-oceans-are-haunted/en",
+  "officiality": "official",
+  "access_date": "2026-10-22"
+ },
+ "notes": "A joint FAO/UNEP assessment found abandoned, lost or discarded fishing gear makes up about 10% of all marine litter, or roughly 640,000 metric tons a year; FAO repeated the estimate in a 2021 article.",
+ "points": [
+  {
+   "label": "Fishing gear",
+   "value": 10,
+   "period": "gear"
+  },
+  {
+   "label": "Everything else",
+   "value": 90,
+   "period": "other"
+  }
+ ]
+}

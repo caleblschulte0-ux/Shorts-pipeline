@@ -1,0 +1,27 @@
+{
+ "key": "commercial_fleet_size_trend",
+ "title": "World commercial jet fleet size",
+ "unit": "aircraft",
+ "geography": "World",
+ "time_coverage": "2022-2042 (forecast)",
+ "source": {
+  "name": "Commercial Market Outlook 2023-2042",
+  "publisher": "The Boeing Company",
+  "url": "https://www.boeing.com/commercial/market/commercial-market-outlook",
+  "officiality": "official",
+  "access_date": "2026-10-22"
+ },
+ "notes": "Boeing's 2023 Commercial Market Outlook projects the world commercial jet fleet will roughly double by 2042 to about 48,600 aircraft, driven by 42,595 new jet deliveries; today's figure is this analysis's own rounding of Boeing's 'roughly doubles' framing, not a separately published Boeing number.",
+ "points": [
+  {
+   "label": "~2022",
+   "value": 24000,
+   "period": "2022"
+  },
+  {
+   "label": "2042 (projected)",
+   "value": 48600,
+   "period": "2042"
+  }
+ ]
+}

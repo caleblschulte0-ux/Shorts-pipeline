@@ -1,0 +1,21 @@
+{
+ "key": "ghost_gear_marine_toll",
+ "title": "Marine animals entangled or killed by ghost fishing gear each year",
+ "unit": "animals",
+ "geography": "World (oceans)",
+ "time_coverage": "Current estimate",
+ "source": {
+  "name": "The ghostly 600-year-old predators killing more than 100,000 whales, dolphins, seals and turtles a year",
+  "publisher": "World Animal Protection",
+  "url": "https://worldanimalprotection.org/news/ghostly-600-year-old-predators-killing-more-100000-whales-dolphins-seals-and-turtles-year",
+  "officiality": "secondary",
+  "access_date": "2026-10-22"
+ },
+ "notes": "Advocacy-group estimate, not a peer-reviewed count: World Animal Protection estimates lost and abandoned fishing gear traps more than 100,000 whales, dolphins, seals and turtles every year, and can keep doing so for up to 600 years before it decomposes.",
+ "points": [
+  {
+   "label": "Marine animals entangled per year",
+   "value": 100000
+  }
+ ]
+}
