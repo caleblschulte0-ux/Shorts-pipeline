@@ -15129,6 +15129,16 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The sharp picture is a thin 16:9 strip, about 30% of the 9:16 canvas, when it should be about three quarters. The render; vision: The streamer's webcam face and the game HUD are tiny and hard to read on a phone. The subject looks lost in the blurred ; vision: The sharp strip sits in the uppe",
       "ts": "2026-10-22T12:38:11.151713+00:00"
+    },
+    "clip-20261022-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/WanderingSpeedyPheasantPoooound-y7TREnNSELtem7pm",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Goes Wild When The Money Stuck In The Ceiling Finally Comes Down",
+      "kind": "twitch_clip",
+      "ts": "2026-10-22T12:44:26.813006+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
