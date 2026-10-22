@@ -3978,11 +3978,30 @@
       "scene_changes_before_5s": 2
     },
     "rubiks-cube-record-vs-robot": {
-      "claimed_at": "2026-10-22T01:07:20.194187+00:00",
+      "url": "https://youtube.com/shorts/zjuY7K1FvVc",
       "title": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
+      "at": "2026-10-22T01:07:34.303770+00:00",
       "publish_at": "2026-10-22T04:09:00Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "tts_why_not_gemini": "gemini-3.8-flash-lite-tts: HTTP 429 {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.07,
+      "beat_s": [
+        3.36,
+        6.06,
+        7.07,
+        4.98,
+        5.94
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 70,
+      "duration_s": 27.9
     }
   },
   "uploads": [
@@ -5045,9 +5064,10 @@
       "claimed_at": "2026-10-22T01:07:20.194187+00:00",
       "title": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
       "publish_at": "2026-10-22T04:09:00Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "rubiks-cube-record-vs-robot"
+      "url": "https://youtube.com/shorts/zjuY7K1FvVc",
+      "state": "posted",
+      "slug": "rubiks-cube-record-vs-robot",
+      "at": "2026-10-22T01:07:34.303770+00:00"
     }
   ]
 }
