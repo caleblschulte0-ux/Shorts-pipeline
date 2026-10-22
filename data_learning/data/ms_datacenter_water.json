@@ -1,0 +1,32 @@
+{
+ "key": "ms_datacenter_water",
+ "title": "Microsoft data center water consumption (million cubic meters)",
+ "unit": "million cubic meters",
+ "geography": "Global (Microsoft operations)",
+ "time_coverage": "2017-2022 (fiscal years)",
+ "source": {
+  "name": "Microsoft water consumption, FY2017-2022",
+  "publisher": "Microsoft Corporation (Environmental Sustainability Report)",
+  "url": "https://www.microsoft.com/en-us/corporate-responsibility/sustainability/report",
+  "officiality": "official",
+  "access_date": "2026-10-22"
+ },
+ "notes": "Total global water withdrawal across Microsoft's operations and data centers, as reported in its own sustainability disclosures and widely covered (Data Center Dynamics, Fortune, Sept 2023) as a 34% year-over-year jump from 2021 to 2022.",
+ "points": [
+  {
+   "label": "2017",
+   "value": 1.95,
+   "period": "2017"
+  },
+  {
+   "label": "2021",
+   "value": 4.8,
+   "period": "2021"
+  },
+  {
+   "label": "2022",
+   "value": 6.4,
+   "period": "2022"
+  }
+ ]
+}

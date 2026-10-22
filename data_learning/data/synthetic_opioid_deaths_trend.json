@@ -1,0 +1,27 @@
+{
+ "key": "synthetic_opioid_deaths_trend",
+ "title": "US overdose deaths involving synthetic opioids (mainly illicit fentanyl)",
+ "unit": "deaths",
+ "geography": "United States",
+ "time_coverage": "2013-2021 (annual)",
+ "source": {
+  "name": "Drug overdose deaths involving synthetic opioids, National Vital Statistics System",
+  "publisher": "CDC National Center for Health Statistics (NCHS)",
+  "url": "https://www.cdc.gov/nchs/products/databriefs/db491.htm",
+  "officiality": "official",
+  "access_date": "2026-10-22"
+ },
+ "notes": "Deaths involving synthetic opioids other than methadone (overwhelmingly illicit fentanyl) rose from about 3,105 in 2013 to over 70,600 in 2021, as illicit fentanyl increasingly replaced the prescription-opioid supply.",
+ "points": [
+  {
+   "label": "2013",
+   "value": 3105,
+   "period": "2013"
+  },
+  {
+   "label": "2021",
+   "value": 70601,
+   "period": "2021"
+  }
+ ]
+}

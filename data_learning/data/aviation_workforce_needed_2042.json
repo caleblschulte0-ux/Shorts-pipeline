@@ -1,0 +1,29 @@
+{
+ "key": "aviation_workforce_needed_2042",
+ "title": "New aviation personnel needed worldwide by 2042",
+ "unit": "people",
+ "geography": "World",
+ "time_coverage": "2023-2042 (20-year forecast)",
+ "source": {
+  "name": "Pilot and Technician Outlook 2023-2042",
+  "publisher": "The Boeing Company",
+  "url": "https://investors.boeing.com/investors/news/press-release-details/2023/Boeing-Forecasts-Demand-for-2.3-Million-New-Commercial-Pilots-Technicians-and-Cabin-Crew-in-Next-20-Years/",
+  "officiality": "official",
+  "access_date": "2026-10-22"
+ },
+ "notes": "Boeing's 2023 Pilot and Technician Outlook forecasts a need for 649,000 new commercial pilots, 690,000 new maintenance technicians, and 938,000 new cabin crew members worldwide between 2023 and 2042 -- about 2.3 million people total.",
+ "points": [
+  {
+   "label": "Pilots",
+   "value": 649000
+  },
+  {
+   "label": "Technicians",
+   "value": 690000
+  },
+  {
+   "label": "Cabin crew",
+   "value": 938000
+  }
+ ]
+}

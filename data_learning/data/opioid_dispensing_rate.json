@@ -1,0 +1,27 @@
+{
+ "key": "opioid_dispensing_rate",
+ "title": "US opioid prescriptions dispensed per 100 persons",
+ "unit": "per 100 persons",
+ "geography": "United States",
+ "time_coverage": "2012-2020 (annual)",
+ "source": {
+  "name": "U.S. Opioid Dispensing Rate Maps",
+  "publisher": "Centers for Disease Control and Prevention (CDC)",
+  "url": "https://www.cdc.gov/overdose-prevention/data-research/facts-stats/opioid-dispensing-rate-maps.html",
+  "officiality": "official",
+  "access_date": "2026-10-22"
+ },
+ "notes": "The national opioid prescribing rate peaked in 2012 at 81.3 prescriptions per 100 persons and fell to 43.3 per 100 persons by 2020, the lowest rate CDC had recorded in over a decade.",
+ "points": [
+  {
+   "label": "2012",
+   "value": 81.3,
+   "period": "2012"
+  },
+  {
+   "label": "2020",
+   "value": 43.3,
+   "period": "2020"
+  }
+ ]
+}

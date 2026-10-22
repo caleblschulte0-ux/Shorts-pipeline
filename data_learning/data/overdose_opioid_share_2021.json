@@ -1,0 +1,27 @@
+{
+ "key": "overdose_opioid_share_2021",
+ "title": "Share of 2021 US drug overdose deaths that involved an opioid",
+ "unit": "deaths",
+ "geography": "United States",
+ "time_coverage": "2021",
+ "source": {
+  "name": "Drug Overdose Deaths in the U.S. Top 100,000 Annually",
+  "publisher": "CDC National Center for Health Statistics (NCHS)",
+  "url": "https://www.cdc.gov/nchs/pressroom/releases/20211117.html",
+  "officiality": "official",
+  "access_date": "2026-10-22"
+ },
+ "notes": "Of the roughly 107,000 total US drug overdose deaths in 2021, CDC/NCHS reported that more than 80,000 (about 75%) involved an opioid.",
+ "points": [
+  {
+   "label": "Involved an opioid",
+   "value": 80250,
+   "period": "opioid"
+  },
+  {
+   "label": "Did not involve an opioid",
+   "value": 26750,
+   "period": "other"
+  }
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "key": "pilot_demand_by_region_2042",
+ "title": "New pilots needed by 2042, by world region",
+ "unit": "people",
+ "geography": "World, by region",
+ "time_coverage": "2023-2042 (20-year forecast)",
+ "source": {
+  "name": "Pilot and Technician Outlook 2023-2042 (regional table)",
+  "publisher": "The Boeing Company",
+  "url": "https://investors.boeing.com/investors/news/press-release-details/2023/Boeing-Forecasts-Demand-for-2.3-Million-New-Commercial-Pilots-Technicians-and-Cabin-Crew-in-Next-20-Years/",
+  "officiality": "official",
+  "access_date": "2026-10-22"
+ },
+ "notes": "Boeing's 2023 outlook includes Russia within 'Eurasia' for the first time, making it the single largest pilot-demand region at 143,000, just ahead of China (134,000) and North America (127,000).",
+ "points": [
+  {
+   "label": "Eurasia",
+   "value": 143000
+  },
+  {
+   "label": "China",
+   "value": 134000
+  },
+  {
+   "label": "North America",
+   "value": 127000
+  }
+ ]
+}

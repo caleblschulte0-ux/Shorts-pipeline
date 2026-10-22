@@ -1,0 +1,25 @@
+{
+ "key": "ai_query_water_cost",
+ "title": "Estimated water cost of an AI chatbot conversation (milliliters)",
+ "unit": "milliliters",
+ "geography": "Global (research estimate)",
+ "time_coverage": "2023 estimate",
+ "source": {
+  "name": "Making AI Less Thirsty (Li, Yang, Islam, Ren, 2023)",
+  "publisher": "University of California, Riverside / University of Texas at Arlington",
+  "url": "https://arxiv.org/abs/2304.03271",
+  "officiality": "primary",
+  "access_date": "2026-10-22"
+ },
+ "notes": "Researchers estimated a conversation of roughly 20-50 questions with a GPT-3-class chatbot consumes about 500 milliliters of water, counting both on-site cooling and the water used to generate the electricity.",
+ "points": [
+  {
+   "label": "One AI conversation (20-50 prompts)",
+   "value": 500
+  }
+ ],
+ "baseline": {
+  "label": "One bottle of water",
+  "value": 500
+ }
+}
