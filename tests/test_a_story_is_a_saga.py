@@ -93,6 +93,9 @@ class TheArmIsWired(unittest.TestCase):
         self.assertIn("saga=_saga", src)
         self.assertIn("clusters = scouted", src)
         self.assertIn("_SAGA_CUT if _saga", src)
+        # one streamer's history per attempt: the per-streamer cap would
+        # skip every proposal after the second unread
+        self.assertIn("if not _saga and", src)
         bt = (REPO / "scripts" / "story_backtest.py").read_text()
         self.assertIn('"saga"', bt)
 
