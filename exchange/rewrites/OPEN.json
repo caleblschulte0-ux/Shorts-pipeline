@@ -1,17 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-22T01:07:44Z",
+ "updated": "2026-10-22T11:32:12Z",
  "open": [
-  {
-   "id": "astronaut-bone-loss__315fba90",
-   "slug": "astronaut-bone-loss",
-   "filed": "2026-10-22T01:07:44Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on a generic statistic rather than a single, striking, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261022/astronaut-bone-loss__315fba90.request.json",
-   "answer_path": "exchange/rewrites/20261022/astronaut-bone-loss__315fba90.answer.json"
-  },
   {
    "id": "usps-mail-volume-collapse__eca67ee3",
    "slug": "usps-mail-volume-collapse",
@@ -303,6 +293,16 @@
    ],
    "request": "exchange/rewrites/20261021/self-storage-outnumbers-starbucks__97599610.request.json",
    "answer_path": "exchange/rewrites/20261021/self-storage-outnumbers-starbucks__97599610.answer.json"
+  },
+  {
+   "id": "astronaut-bone-loss__315fba90",
+   "slug": "astronaut-bone-loss",
+   "filed": "2026-10-21T13:38:39Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague expectation about weightlessness resting bones."
+   ],
+   "request": "exchange/rewrites/20261021/astronaut-bone-loss__315fba90.request.json",
+   "answer_path": "exchange/rewrites/20261021/astronaut-bone-loss__315fba90.answer.json"
   },
   {
    "id": "parker-solar-probe-speed-record__c2b6b912",

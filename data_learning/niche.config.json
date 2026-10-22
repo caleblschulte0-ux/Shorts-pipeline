@@ -20654,10 +20654,10 @@
   },
   {
    "slug": "astronaut-bone-loss",
-   "title": "Weightlessness Leaves Astronaut Bones Weaker Instead Of Rested",
-   "hook": "An unprotected Mars mission's estimated hip-bone loss reaches 30%.",
-   "closing": "Floating removes everyday loading; keeping bones strong becomes part of surviving a long mission.",
-   "question": "Would this change your Mars plans?",
+   "title": "Astronaut Bone Loss Can Reach 30% Before Mars",
+   "hook": "A Mars mission can cost astronauts 30% of their hip bone density.",
+   "closing": "Long missions need bone protection because weightlessness quietly weakens the body carrying you home.",
+   "question": "Would you still go to Mars?",
    "caption": "Astronauts lose 1.5% of their bone density every single month in zero gravity — faster than a severe osteoporosis patient loses in a whole year. It's why NASA has them exercising 2.5 hours a day, and why a Mars mission might be the scariest part of getting there. Would you handle a Mars mission knowing the cost? 👇",
    "hashtags": [
     "astronautbones",
@@ -20686,8 +20686,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "1 · THE RATE",
-     "topic": "Astronaut bones weaken",
-     "say": "The supplied spaceflight estimate is 1.5% bone mineral density loss monthly. It measures weakening density, not bones disappearing.",
+     "topic": "Astronaut bone rate",
+     "say": "Astronauts lose 1.5% of bone density each month. Weightlessness weakens bone faster than rest ever could.",
      "scene": {
       "mechanic": "bone-erosion-duel",
       "concept": "two bone x-rays, astronaut on top and an osteoporosis patient below, each eaten away from both ends by a dark erosion mask that grows with reveal - the astronaut's bone erodes visibly faster",
@@ -20703,8 +20703,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · WHY",
-     "topic": "Astronaut bones unloaded",
-     "say": "The hip's monthly density loss reaches 2.2% in these data. Weight-bearing bones lose their usual loading in space.",
+     "topic": "Astronaut hip loss",
+     "say": "Hip density can fall 2.2% monthly. Weight-bearing bones suffer most when gravity stops loading them.",
      "scene": {
       "mechanic": "region-erosion-columns",
       "concept": "four bone x-ray columns (hip, spine, pelvis, forearm) each filled from the bottom with a red erosion overlay to its monthly loss rate - the weight-bearing hip erodes tallest, the forearm barely at all",
@@ -20720,8 +20720,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "3 · THE MARS PROBLEM",
-     "topic": "Astronaut bones protected",
-     "say": "Unmitigated Mars mission hip loss is estimated at 30%. That is a projection without protection, not an inevitable outcome.",
+     "topic": "Astronaut Mars loss",
+     "say": "An unprotected Mars mission could cost 30% of hip density. Exercise and treatment become survival equipment.",
      "scene": {
       "mechanic": "mission-bone-gauge",
       "concept": "two vertical capsule gauges topped with an astronaut suit, each filling red upward to the total bone percentage lost on that mission - ISS short, Mars nearly to the top",
@@ -20730,7 +20730,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:35:26Z",
+   "rewritten_at": "2026-10-22T11:32:12Z",
    "retold": "retell/v4"
   },
   {
