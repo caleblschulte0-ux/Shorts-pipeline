@@ -16,8 +16,18 @@ def loader_page():
         ctx = b.new_context(accept_downloads=True, viewport={"width": 1280, "height": 900},
                             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36")
         page = ctx.new_page()
+        got = {}
         def resp(r):
-            if any(h in r.url for h in ("affadaffa", "download", "progress", "ajax")):
+            if "/api/progress" in r.url:
+                try:
+                    j = r.json()
+                except Exception:
+                    j = {}
+                if j.get("download_url") or j.get("success") == 1:
+                    print("  PROGRESS", json.dumps(j)[:500], flush=True)
+                    got["url"] = j.get("download_url")
+                return
+            if any(h in r.url for h in ("affadaffa", "download", "ajax")):
                 print("  resp", r.status, r.url[:140], r.headers.get("location", "")[:120],
                       r.headers.get("content-type", ""), flush=True)
         ctx.on("response", resp)
@@ -41,14 +51,31 @@ def loader_page():
         btn.click()
         deadline = time.time() + 240
         link = None
-        while time.time() < deadline:
-            for a in page.query_selector_all("a[href], button"):
-                h = a.get_attribute("href") or ""
-                t = (a.inner_text() or "").strip()[:40]
-                if ("download" in h.lower() and "affadaffa" in h) or (a.is_visible() and t.lower() == "download"):
-                    link = a; break
-            if link: break
+        while time.time() < deadline and not got.get("url"):
             time.sleep(3)
+        time.sleep(3)
+        print("url", got.get("url"), flush=True)
+        print("body after:", page.inner_text("body")[:1500], flush=True)
+        for a in page.query_selector_all("a[href]"):
+            h = a.get_attribute("href") or ""
+            if a.is_visible() and ("download" in h.lower() or "savenow" in h or "affadaffa" in h):
+                print("  anchor", a.evaluate("e=>e.outerHTML")[:300], flush=True)
+                link = link or a
+        if got.get("url"):
+            u = got["url"]
+            try:
+                from curl_cffi import requests as cr
+                r = cr.get(u, impersonate="chrome", timeout=120, headers={"Referer": "https://en.loader.to/"})
+                print("curl_cffi", r.status_code, r.headers.get("content-type"), len(r.content), r.content[:200], flush=True)
+            except Exception as e:
+                print("curl_cffi err", e, flush=True)
+            try:
+                with page.expect_download(timeout=60000) as dl:
+                    page.evaluate("u=>{const a=document.createElement('a');a.href=u;document.body.appendChild(a);a.click()}", u)
+                p = Path("/tmp/probe_a.mp4"); dl.value.save_as(str(p))
+                print("ANCHOR-CLICK DOWNLOAD", p.stat().st_size, flush=True)
+            except Exception as e:
+                print("anchor click:", type(e).__name__, [pg.url[:100] for pg in ctx.pages], flush=True)
         if not link:
             print("no download link; body:", page.inner_text("body")[:800], flush=True)
             b.close(); return
