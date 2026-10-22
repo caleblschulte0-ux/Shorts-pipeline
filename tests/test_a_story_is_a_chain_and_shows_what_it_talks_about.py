@@ -730,7 +730,7 @@ def test_the_free_converter_site_hands_back_the_file():
     assert got[2]["title"] == "Reggie part two"
     assert "watch%3Fv%3Dabcdefghijk" in asked[0]
     assert asked[1] == "https://loader.to/ajax/progress.php?id=v2_x"
-    assert yc.ROUTES[0][0] == "loader"
+    assert [r[0] for r in yc.ROUTES[:2]] == ["page", "loader"]
 
 
 class Everything(unittest.TestCase):

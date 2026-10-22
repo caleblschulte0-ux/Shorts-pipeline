@@ -10,6 +10,9 @@ putting together"* — a fair-use excerpt, cut to seconds in the story.
 `fetch(url, out)` asks the public converters, one after another, for a
 file of the video and saves it to `out`:
 
+  0. loader.to's page (its own form, pressed in a headless Chromium; the
+                  link it shows hands over the mp4 — since 2026-10-22,
+                  when the API route below began handing back an ad page)
   1. loader.to   (the free converter site: ``/ajax/download.php`` starts
                   a 720p mp4, its ``progress_url`` hands back the file —
                   the one that answered from GitHub on 2026-10-11, when
@@ -46,6 +49,10 @@ UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
       "(KHTML, like Gecko) Chrome/128.0 Safari/537.36")
 
 LOADER = ["https://loader.to", "https://p.oceansaver.in"]   # the same API
+# loader.to's own page, used the way a person uses it (2026-10-22: its old
+# ``/ajax`` route now hands back an ad page; the page's own download link
+# points at a host that gives the mp4 to anyone holding the link)
+LOADER_PAGE = ["https://en.loader.to/4/"]
 LOADER_WAIT_S = 180     # it converts before it hands the file over
 PIPED = ["https://pipedapi.kavin.rocks", "https://pipedapi.adminforge.de",
          "https://api.piped.private.coffee", "https://pipedapi.r4fo.com"]
@@ -103,7 +110,7 @@ def _hosts(kind: str) -> list[str]:
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[yt_convert] {kind} instance list "
               f"({type(e).__name__})", flush=True)
-    known = {"loader": LOADER, "piped": PIPED, "invidious": INVIDIOUS, "cobalt": COBALT}[kind]
+    known = {"page": LOADER_PAGE, "loader": LOADER, "piped": PIPED, "invidious": INVIDIOUS, "cobalt": COBALT}[kind]
     _HOSTS[kind] = list(dict.fromkeys(found + known))
     return _HOSTS[kind]
 
@@ -140,6 +147,38 @@ def _loader(host: str, vid: str):
     print(f"::warning::[yt_convert] loader {vid}: not ready after "
           f"{LOADER_WAIT_S}s", flush=True)
     return None
+
+
+def _loader_page(page_url: str, vid: str):
+    """loader.to driven through its own page in a headless Chromium: paste
+    the link, pick 720p, press Download, wait for the page's own download
+    link. Needs playwright + its Chromium; None without them."""
+    try:
+        from playwright.sync_api import sync_playwright
+    except ImportError:
+        return None
+    watch = f"https://www.youtube.com/watch?v={vid}"
+    with sync_playwright() as pw:
+        b = pw.chromium.launch(headless=True)
+        try:
+            ctx = b.new_context(user_agent=UA)
+            ctx.on("page", lambda pg: pg.close())   # the ad tabs it opens
+            page = ctx.new_page()
+            page.goto(page_url, wait_until="domcontentloaded", timeout=60000)
+            page.fill("input#link", watch)
+            page.select_option("select#format", "720")
+            page.click("button#load")
+            link = page.wait_for_selector("a[id$='_downloadLink'][href^='http']",
+                                          state="attached",
+                                          timeout=LOADER_WAIT_S * 1000)
+            # the title comes from the Data API afterwards (fetch())
+            return link.get_attribute("href"), {"Referer": page.url}, {}
+        except Exception as e:  # noqa: BLE001
+            print(f"::warning::[yt_convert] loader page {vid}: "
+                  f"{type(e).__name__} {str(e)[:120]}", flush=True)
+            return None
+        finally:
+            b.close()
 
 
 def _piped(host: str, vid: str):
@@ -184,7 +223,7 @@ def _cobalt(host: str, vid: str):
     return None
 
 
-ROUTES = (("loader", _loader), ("piped", _piped), ("invidious", _invidious), ("cobalt", _cobalt))
+ROUTES = (("page", _loader_page), ("loader", _loader), ("piped", _piped), ("invidious", _invidious), ("cobalt", _cobalt))
 
 
 def _api_meta(vid: str) -> dict:
