@@ -294,7 +294,9 @@ _AUDIENCE_CUT = (
 _SAGA_CUT = (
     " This is a SAGA across streams months or years apart, in date order. "
     "Every beat after the first opens with a context_overlay saying when "
-    "or how long after (\"A year later\", \"March 2024\"), and the hook "
+    "or how long after (\"A year later\", \"March 2024\"); the FIRST "
+    "beat has none (an overlay on every beat is refused as decoration), "
+    "and the hook "
     "names the people and the change, like the most-viewed story shorts "
     "do (\"When Kai met Tota\", \"Ray's origin story\"). Each beat is the "
     "line of that clip that carries its turn, not the whole clip. 30-75 "
