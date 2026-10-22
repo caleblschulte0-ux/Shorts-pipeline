@@ -59,6 +59,10 @@ class OneCaptionAtATime(unittest.TestCase):
             for c in caps:
                 self.assertLessEqual(c["at"] + c["secs"], secs + 1e-6)
 
+    def test_a_time_jump_is_up_long_enough_to_read(self):
+        caps = story.beat_captions(1, 8.0, self.HOOK, "Two days later", "")
+        self.assertGreaterEqual(caps[0]["secs"], 2.5)
+
     def test_no_hook_no_words_no_caption(self):
         self.assertEqual(story.beat_captions(1, 5.0), [])
 
