@@ -1,0 +1,60 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261022",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 10,
+    "registry_sha256": "6481c43e352d51af77c4d61db5486670a9d4db6fd55683a411720ea0c089276a",
+    "source_commit": "037a9e32b313830272183adb1dd00e32332b7f8c",
+    "production_date": "20261022",
+    "bundle_sha256": "94824ae3d643b7514aa8a387d50ad61f2cfe27e2801f1476e9082f08db52d580"
+  },
+  "media": [],
+  "packages": [],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Rose 1.5x; Farmland Rankings Explain Less",
+      "hook": "Cereal production climbed 1.5 times while land area told a different story.",
+      "says": [
+        "Progression to secondary school rose from 77.8% in 1985 to 91.3% in 2017. More students reached the next level.",
+        "Cereal production rose from 1083.7 million metric tons in 1972 to 1644.1 in 2024. The world harvested far more grain.",
+        "China has 5.2 million square kilometers of farmland; the United States 4.2, Australia 3.6, Brazil 2.4, Russia 2.2. Land alone does not determine harvests."
+      ],
+      "closing": "Food supply depends on what farmland produces, not simply how much land a country has.",
+      "question": "What drove the bigger harvest?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Waste Energy Reached 30.1% While Methane Kept Rising",
+      "hook": "Waste energy reached 30.1%, but its methane problem did not disappear.",
+      "says": [
+        "Combustible renewables and waste rose from 10.2% in 1990 to 30.1% in 2024. Its energy share tripled.",
+        "Electricity access climbed from 73.2% in 1998 to 91.9% in 2024. Far more people gained power.",
+        "Waste methane emissions rose from 903.8 Mt CO2e in 1972 to 1,652 in 2024. Recovering energy did not erase emissions."
+      ],
+      "closing": "Calling waste renewable does not remove its emissions, so cleaner accounting still matters.",
+      "question": "Should waste energy count as clean?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Without Population Decline",
+      "hook": "Population growth fell 54%, yet the population kept increasing.",
+      "says": [
+        "Rural population fell from 63.1% in 1972 to 42.2% in 2025—down to 67% of its former share.",
+        "The largest city's urban share moved from 18.2% in 1972 to 16.2% in 2025. Growth spread beyond the largest city.",
+        "Population growth fell from 2% in 1972 to 0.91% in 2025—down to 46% of its old rate."
+      ],
+      "closing": "Slower growth still adds people, so communities must plan for change rather than assume decline.",
+      "question": "How should cities plan for slower growth?"
+    }
+  ],
+  "notes": [
+    "The frozen 20261022 contract requires 3 sports_moment, 6 clip, and 4 data_story uploads; these are production targets, not completion claims.",
+    "The bundle contains zero media requests and no image-bearing active formats, so no Drive upload, readback, hash, decode, or checkpoint was applicable.",
+    "The configured Drive destination shorts-pipeline-drops was resolved as shared; no file-level public-sharing assertion was needed because no media file was requested.",
+    "No package punch-ups were requested. All three requested Explainer stories were rewritten from today's bundle while preserving segment order and supplied quantities.",
+    "Mandatory mailbox round one completed: 0 reviews, 20 ask keys, and 10 rewrite requests."
+  ]
+}
