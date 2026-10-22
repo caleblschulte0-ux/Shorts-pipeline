@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "activity-inequality-steps__f0af7c7a",
+  "slug": "activity-inequality-steps",
+  "by": "chatgpt",
+  "written_at": "2026-10-22T11:18:33.938Z",
+  "title": "Activity Inequality Raises Obesity Risk By 197%",
+  "hook": "Obesity tracks unequal activity more closely than average steps.",
+  "closing": "Closing the activity gap may matter more than telling everyone to walk equally farther.",
+  "question": "Who gets left behind where you live?",
+  "segments": [
+    {
+      "topic": "Activity step gap",
+      "say": "Hong Kong averages 6,880 daily steps. Indonesia barely reaches half, showing how widely everyday movement differs."
+    },
+    {
+      "topic": "Activity inequality risk",
+      "say": "Obesity likelihood is 197% higher where activity is most unequal. The gap predicts risk better than an average."
+    },
+    {
+      "topic": "Activity gender gap",
+      "say": "The gender step gap explains 43% of worldwide activity inequality. Unequal opportunity to move becomes unequal health."
+    }
+  ]
+}
