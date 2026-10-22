@@ -95,7 +95,10 @@ KIT_NAMES = ("vgrad", "glow", "text", "fit_readout", "by_time", "tree", "stump",
              "then_mark", "ghost", "times_ticks",
              # A WORN THING WRAPS THE BODY (2026-10-16, of rabies-video dogs
              # in floating blue hoops: "look how shit these collars look")
-             "dog", "COATS")
+             "dog", "COATS",
+             # HE WORKS THE SCENE'S OWN MECHANISM (2026-10-22, "Why is he not
+             # pulling the lever down on the tap?"): each returns his hands
+             "lever", "lever_pull", "handwheel")
 SAFE_BUILTINS = {n: __builtins__[n] if isinstance(__builtins__, dict)
                  else getattr(__builtins__, n)
                  for n in ("range", "len", "min", "max", "abs", "int", "float",
@@ -108,7 +111,7 @@ SAFE_BUILTINS = {n: __builtins__[n] if isinstance(__builtins__, dict)
 #: The seven stances, plus every TOOL act (mascot_director.TOOL_ACTS): work
 #: is done WITH the tool the job needs — operator, 2026-10-02: "give him
 #: like a pick axe and have it feel like he is breaking the ice".
-from data_learning.mascot_director import TOOL_ACTS, tool_for_cause  # noqa: E402
+from data_learning.mascot_director import TOOL_ACTS, MECHANISM_ACTS, tool_for_cause  # noqa: E402
 STANCES = ("point", "cheer", "strain", "climb", "shock", "think", "hold_up")
 ROLES = STANCES + tuple(TOOL_ACTS)
 
@@ -159,7 +162,7 @@ def check_source(code: str) -> None:
 # standard it passed; one from an older standard is re-judged by today's
 # viewer and look again before it is used, and redrawn if it fails. Bump
 # STANDARD whenever a check or a bar a scene must pass is added.
-STANDARD = "2026-10-16.2"   # .1: a hand job is a grip, not a rope (rule 20)
+STANDARD = "2026-10-22"     # he pulls the scene's own lever (rule 22)
 _STAMP = re.compile(r"^# scene standard: (\S+)\s*$", re.M)
 
 
@@ -802,7 +805,11 @@ def tool_problems(fn, pts, decl: dict) -> list[str]:
     scene said `strain`, which is a brace with empty hands. A CAUSE whose
     verb has a tool act (mascot_director.VERB_TOOLS) must perform that act
     (or another tool act) for part of the beat."""
-    need = tool_for_cause(decl.get("CAUSE", ""))
+    cause = decl.get("CAUSE", "")
+    need = tool_for_cause(cause)
+    part = mechanism_in(cause)
+    if part and (not need or need[1] != "grip"):
+        need = (part, "grip")
     if not need:
         return []
     verb, act = need
@@ -813,6 +820,18 @@ def tool_problems(fn, pts, decl: dict) -> list[str]:
         u = k / 10
         fn(cairo.Context(surf), 3.0 + u * 8, u, pts,
            lambda role, x, fy, h, pace=False, beat=0, **kw: roles.append(role))
+    if act == "grip":
+        # a hand job is only done by hand: any other tool act is the
+        # pre-made pantomime rule 20 and rule 22 exist to end
+        if "grip" in roles:
+            return []
+        how = (f"draw the {part} with lever(...) or handwheel(...) and put his "
+               f"hands on the points it returns" if part else
+               "compute his two hands from the thing you draw")
+        return [f"CAUSE says Data {verb}s{' the ' + part if part and part != verb else ''}"
+                f", but he performs {sorted(set(roles))} — he does it with his own "
+                f"hands: host('grip', x, foot_y, h, hands=[...], lower='follow'); "
+                f"{how}"]
     used = [r for r in roles if r in TOOL_ACTS]
     if used:
         return []
@@ -821,6 +840,61 @@ def tool_problems(fn, pts, decl: dict) -> list[str]:
             f"read as flailing. Do the work with the tool: host({act!r}, x, "
             f"foot_y, h, beat=k) ({TOOL_ACTS[act]}), and advance beat= each time "
             f"the thing changes so one swing lands per change"]
+
+
+#: A CAUSE that names a part worked by hand: whatever the verb ("works the
+#: tap", "taps the valve", "cranks the gate"), his hands go ON it (rule 22).
+MECHANISM_PARTS = ("lever", "tap", "valve", "handwheel", "crank",
+                   "handle", "faucet", "spigot", "throttle", "switch", "winch")
+
+
+def mechanism_in(cause: str) -> str:
+    """The hand-worked part a CAUSE line names, or ''. "Data works the tap
+    at the tower's foot" -> "tap"; "Data wheels his telescope" -> ''."""
+    words = re.findall(r"[a-z]+", (cause or "").lower())
+    for w in words:
+        if w in MECHANISM_PARTS:
+            return w
+    return ""
+
+
+#: HIS HANDS ARE ON WHAT MOVES (operator, 2026-10-22: the beer tap's lever
+#: swung by itself while Data turned a wheel in the air beside it). Measured
+#: on the scene drawn WITHOUT him: every time his grip hands travel, the
+#: picture under them has to change too — the part is moving with them.
+HAND_PATCH = 30          # px round each hand that the part must be in
+HAND_MOVE_PX = 3.0       # a hand moving less than this between frames is holding
+HAND_CHANGED = 24        # pixels in the patch that must change (40+ levels)
+HANDS_ON_MIN = 0.7       # share of his hand moves that must land on motion
+
+
+def _patch_changed(prev, cur, x, y, r=HAND_PATCH) -> int:
+    import numpy as np
+    h, w = cur.shape[:2]
+    x0, x1 = max(0, int(x - r)), min(w, int(x + r))
+    y0, y1 = max(0, int(y - r)), min(h, int(y + r))
+    if x1 <= x0 or y1 <= y0:
+        return 0
+    d = np.abs(cur[y0:y1, x0:x1, :3].astype(np.int16)
+               - prev[y0:y1, x0:x1, :3].astype(np.int16)).sum(axis=2)
+    return int((d > 40).sum())
+
+
+def hands_problems(moves: list) -> list[str]:
+    """`moves` is [(hand point, changed pixels under it), ...] for every
+    frame-to-frame step in which a grip hand moved. Refused when his hands
+    mostly move through pixels that do not: he is miming beside the part."""
+    if len(moves) < 3:
+        return []
+    on = sum(1 for _, c in moves if c >= HAND_CHANGED)
+    if on / len(moves) >= HANDS_ON_MIN:
+        return []
+    (x, y), _ = next(m for m in moves if m[1] < HAND_CHANGED)
+    return [f"his grip hands move through still air ({on}/{len(moves)} of their "
+            f"moves land on the moving part; first miss near ({x:.0f}, {y:.0f})) "
+            f"— the part must move WITH his hands: compute hands= from the "
+            f"part every frame (lever(...) and handwheel(...) return them) "
+            f"from the same number that moves the part"]
 
 
 #: THE ART IS LIT, NOT FLAT (operator, 2026-10-05: "the art in general on
@@ -1048,10 +1122,15 @@ def verify(fn, pts, say: str = "", secs: float | None = None) -> list[str]:
                 heads.append(str(s))
         return box
 
+    frame_grips = []                   # this frame's grip hands
+    prev_frame = []                    # (pixels, grip hands) of the last frame
+    hand_moves = []                    # (point, changed px under it)
+
     def run(rows, u, record=True):
         boxes.clear()
         bodies.clear()
         heads.clear()
+        frame_grips.clear()
         cr = cairo.Context(surf)
         # Spy on the kit too: a number printed through fit_readout or any
         # other helper is still a number on screen.
@@ -1061,6 +1140,11 @@ def verify(fn, pts, say: str = "", secs: float | None = None) -> list[str]:
         def host(role, x, fy, h, pace=False, beat=0, **kw):
             hosts.append((role, x, fy, h))
             grips.append((role, kw.get("hands"), x, fy, h))
+            if role == "grip" and kw.get("hands"):
+                try:
+                    frame_grips.append([(float(a), float(b)) for a, b in kw["hands"]])
+                except (TypeError, ValueError):
+                    pass
             # Where Data can be while he performs: his body, widened by his
             # walk and lifted by his step when he paces.
             reach = SS.PACE_AMP if pace else 20.0
@@ -1074,6 +1158,17 @@ def verify(fn, pts, say: str = "", secs: float | None = None) -> list[str]:
             fn(cr, 3.0 + u * 10, u, rows, host)
             if record and len(set(heads)) > MAX_HEADLINES:
                 crowded.append((u, list(dict.fromkeys(heads))))
+            if record:
+                surf.flush()
+                px = np.ndarray((SS.H, SS.W, 4), np.uint8, surf.get_data()).copy()
+                now = frame_grips[0] if frame_grips else None
+                if prev_frame and now and prev_frame[0][1] and \
+                        len(now) == len(prev_frame[0][1]):
+                    for (x0, y0), (x1, y1) in zip(prev_frame[0][1], now):
+                        if math.hypot(x1 - x0, y1 - y0) >= HAND_MOVE_PX:
+                            hand_moves.append(((x1, y1), _patch_changed(
+                                prev_frame[0][0], px, (x0 + x1) / 2, (y0 + y1) / 2)))
+                prev_frame[:] = [(px, now)]
         finally:
             fn.__globals__["text"] = real
             SS.text = real
@@ -1144,7 +1239,18 @@ def verify(fn, pts, say: str = "", secs: float | None = None) -> list[str]:
         problems.append(f"Data stands in the caption band (feet below "
                         f"y={CAPTION_Y}), where the narration burns in")
     problems += grip_problems(grips)
+    problems += hands_problems(hand_moves)
+    brought = sorted({r for r, *_ in hosts if r in MECHANISM_ACTS})
+    if brought:
+        problems.append(f"host({brought[0]!r}) draws {MECHANISM_ACTS[brought[0]]} in "
+                        f"his hands and turns it in the air beside your scene — "
+                        f"the owner: \"Why is he not pulling the lever down on the "
+                        f"tap?\" Draw the scene's own lever or valve with lever(...) "
+                        f"or handwheel(...) and host('grip', ..., hands=<what it "
+                        f"returns>, lower='follow')")
     for role, x, fy, h in hosts:
+        if role in MECHANISM_ACTS:
+            continue
         if role not in ROLES:
             problems.append(f"unknown role {role!r}")
         if not (0 < x < SS.W and 0 < fy < SS.H and h >= 150):
@@ -1170,6 +1276,7 @@ def verify(fn, pts, say: str = "", secs: float | None = None) -> list[str]:
                                 f"— print the narration's number")
                 break
     texts.clear()
+    prev_frame.clear()
     try:
         run(list(reversed(pts)), 1.0)
     except Exception as e:  # noqa: BLE001
@@ -1198,7 +1305,7 @@ An act plays ONCE (wind up, do it, hold) when the role changes; pass beat=k \
 and advance k each time the thing changes, and it plays again — one swing of \
 the pick per crack.
 GRIP is the act you MAKE for this scene: host("grip", x, foot_y, height, \
-hands=[(x1, y1), (x2, y2)], lower="stand"|"brace"|"crouch", \
+hands=[(x1, y1), (x2, y2)], lower="follow"|"stand"|"brace"|"crouch", \
 expr="strain"|"happy"|"shock") puts his two hands ON those two frame \
 points, every frame — compute them from the thing you draw (the door's \
 bottom edge as it rises, the cart's handle, the crate's corners) and he \
@@ -1356,6 +1463,18 @@ a SOLID BAND that sits ON the body and bows round it, its far side hidden \
 behind it, never an outline ring stroked over a body or hanging in the \
 air beside it. A dog is dog(...), whose collar= does exactly that; any \
 other worn thing is drawn the same way, as part of the body it is on.
+22. HE PULLS THE SCENE'S OWN LEVER. The owner, 2026-10-22, of a beer \
+tower whose tap handle swung by itself while Data turned a made-up wheel \
+in the air beside it: "He just sits there and he's spinning a circle ... \
+Why is he not pulling the lever down on the tap? ... It's simple stuff \
+like that". A lever, tap, valve, crank or wheel in your scene is drawn \
+with lever(cr, x, y, pull) or handwheel(cr, x, y, turn), and BOTH return \
+the two points his hands go on: host("grip", gx, foot_y, h, \
+hands=lever(cr, x, y, p), lower="follow"). ONE number (p, from \
+lever_pull(f) — down, held while it flows, back up) moves the part AND his \
+hands, and what flows only flows while he holds it down. There is no tap \
+or crank act: his hands are MEASURED on the scene drawn without him, and \
+hands that move where nothing in the picture moves are refused.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \

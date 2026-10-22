@@ -2147,9 +2147,22 @@ TOOL_ACTS: dict[str, str] = {
     "dig": "a shovel", "pump": "a bellows", "broom": "a broom",
     "paddle": "a paddle", "cut": "a saw", "pour": "a bucket",
     "haul": "a rope, hand over hand", "shove": "both hands flat on it",
-    "crank": "a crank handle", "stamp": "a stamp", "place": "the next block",
-    "tap": "a valve", "toss": "the thing thrown", "squeeze": "both hands, squeezing",
+    "stamp": "a stamp", "place": "the next block",
+    "toss": "the thing thrown", "squeeze": "both hands, squeezing",
     "grip": "his own two hands, ON the thing (pass hands=)",
+}
+
+#: Acts that bring their OWN mechanism: `tap` draws a red valve wheel in his
+#: hand and `crank` a crank on a post, and each turns it on the spot. A
+#: machine (viz_scene) puts that prop ON its part, so it stays theirs. A
+#: brain scene draws its own lever, valve or wheel, and the act's copy then
+#: floats beside it. Operator, 2026-10-22, of a beer tower whose tap lever
+#: swung by itself while Data turned an invented wheel in the air: "He just
+#: sits there and he's spinning a circle ... Why is he not pulling the lever
+#: down on the tap?" 41 saved scenes did it. In a brain scene the scene's own
+#: mechanism is drawn with the kit (`lever`, `handwheel`) and he GRIPs it.
+MECHANISM_ACTS: dict[str, str] = {
+    "tap": "a valve wheel of its own", "crank": "a crank of its own",
 }
 
 #: The verb a CAUSE line uses -> the tool act that does it. A scene whose
@@ -2168,11 +2181,14 @@ VERB_TOOLS: dict[str, str] = {
     "pour": "pour", "fill": "pour", "tip": "pour", "water": "pour",
     "haul": "haul", "hoist": "haul", "winch": "haul",
     "push": "shove", "shove": "shove",
-    "crank": "crank", "wind": "crank", "turn": "crank",
+    # a lever, a valve, a crank or a wheel is worked by HAND, on the scene's
+    # own handle (MECHANISM_ACTS, 2026-10-22: "pulling the lever down")
+    "crank": "grip", "wind": "grip", "turn": "grip", "pull": "grip",
+    "twist": "grip", "tap": "grip", "steer": "grip",
     "stamp": "stamp", "stack": "place", "pile": "place", "lay": "place",
     "open": "grip", "lift": "grip", "raise": "grip", "heave": "grip",
     # not carry: bearing a load is `strain` (see TOOL_ACTS)
-    "drag": "grip", "drain": "tap", "throw": "toss", "toss": "toss",
+    "drag": "grip", "drain": "grip", "throw": "toss", "toss": "toss",
     "squeeze": "squeeze", "crush": "squeeze",
 }
 
@@ -2749,8 +2765,27 @@ def grip_wrists(hands, x, fy, h):
     return out[0], out[1], over
 
 
+def follow_lower(lh, rh) -> str:
+    """The legs for hands at `lh`/`rh` (rig wrists, from `grip_wrists`):
+    his body FOLLOWS his hands. A hand pulled down past his chest bends his
+    knees into it, one at his belt crouches him over it, one at or above
+    his shoulders stands him up — so a lever pulled down takes his weight
+    down with it instead of his arms stretching off a straight body."""
+    y = (float(lh[1]) + float(rh[1])) / 2.0
+    sh = R.SHL[1]
+    if y > sh + 84:
+        return "crouch"
+    if y > sh + 30:
+        return "brace"
+    return "stand"
+
+
 def grip_spec(lh, rh, lower="stand", expr="strain") -> dict:
-    """A `pose` spec with his wrists on `lh`/`rh` (from `grip_wrists`)."""
+    """A `pose` spec with his wrists on `lh`/`rh` (from `grip_wrists`).
+    `lower="follow"` picks the legs from where the hands are
+    (`follow_lower`)."""
+    if lower == "follow":
+        lower = follow_lower(lh, rh)
     return {"action": "pose", "prop": "none", "ground": False,
             "pose": {"lh": list(lh), "rh": list(rh),
                      "lower": lower if lower in _LOWER else "stand",
