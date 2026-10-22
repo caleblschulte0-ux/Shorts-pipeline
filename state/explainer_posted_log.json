@@ -4029,11 +4029,29 @@
       "duration_s": 27.5
     },
     "pickleball-fastest-growing-sport": {
-      "claimed_at": "2026-10-22T16:43:34.415048+00:00",
+      "url": "https://youtube.com/shorts/LDJlUmK-1-k",
       "title": "Pickleball's Easygoing Image Hides A $400 Million Injury Estimate",
+      "at": "2026-10-22T16:43:46.088098+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 8.48,
+      "beat_s": [
+        5.96,
+        7.96,
+        6.12,
+        8.48,
+        7.26
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 66,
+      "duration_s": 36.3
     }
   },
   "uploads": [
@@ -5114,9 +5132,10 @@
       "claimed_at": "2026-10-22T16:43:34.415048+00:00",
       "title": "Pickleball's Easygoing Image Hides A $400 Million Injury Estimate",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "pickleball-fastest-growing-sport"
+      "url": "https://youtube.com/shorts/LDJlUmK-1-k",
+      "state": "posted",
+      "slug": "pickleball-fastest-growing-sport",
+      "at": "2026-10-22T16:43:46.088098+00:00"
     }
   ]
 }
