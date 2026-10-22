@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "earth-rotation-speeding-up__e26a5423",
+  "slug": "earth-rotation-speeding-up",
+  "by": "chatgpt",
+  "written_at": "2026-10-22T11:28:00Z",
+  "title": "Earth's 2024 Day Was 1.66 Milliseconds Shorter",
+  "hook": "Earth erased 1.66 milliseconds from a 2024 day.",
+  "closing": "Tiny changes could force clocks to subtract time for the first time.",
+  "question": "Would you notice a shorter day?",
+  "segments": [
+    {
+      "topic": "Earth Record",
+      "say": "A 2024 day ran 1.66 milliseconds short, setting the latest speed record."
+    },
+    {
+      "topic": "Earth Clock",
+      "say": "Since 1972, clocks added 27 leap seconds and removed none."
+    },
+    {
+      "topic": "Earth Next Step",
+      "say": "By 2035, a negative leap second has a 40% chance of becoming necessary."
+    }
+  ]
+}
