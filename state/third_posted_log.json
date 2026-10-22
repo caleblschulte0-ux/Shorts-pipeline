@@ -15085,14 +15085,50 @@
       "ts": "2026-10-22T12:24:09.642761+00:00"
     },
     "clip-20261022-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/SpookyModernLeopardAMPEnergyCherry-ogeg1fagVy3MldPB",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/b4dr9psJQMM",
       "title": "Kaicenat: Kai Cenat's Fans Block A Blind Woman's Path And Chat Panics",
       "kind": "twitch_clip",
-      "ts": "2026-10-22T12:27:16.933422+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-22T12:27:23.036968+00:00",
+      "uploaded_at": "2026-10-22T12:27:23.036983+00:00",
+      "publish_at": "2026-10-22T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261022-kaicenat-kai-cenat-s-fans-block-a-blind-woman-s--ffd9e56a",
+        "tiktok": "queued for 2026-10-22T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SpookyModernLeopardAMPEnergyCherry-ogeg1fagVy3MldPB",
+      "streamer": "kaicenat",
+      "series": "drama",
+      "hook": "Kai's fans block a blind woman \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 4161,
+      "banger": 0.72,
+      "cut": {
+        "start": 22.5,
+        "end": 41.3
+      },
+      "director_cut": true
+    },
+    "rejected-tangiblespineybeaverpartytime--fqva9j7h27o-eka": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/TangibleSpineyBeaverPartyTime--fqVa9J7h27O-ekA",
+      "streamer": "stableronaldo",
+      "title": "DREW WALL SAY THE WORD",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Outdoor chatter by a gate, no clear even)",
+      "ts": "2026-10-22T12:28:13.054732+00:00"
+    },
+    "rejected-hothelpfuljackalosfrog-39lp2tuqa4ytty_q": {
+      "source_url": "https://www.twitch.tv/squeex/clip/HotHelpfulJackalOSfrog-39LP2tUqa4YtTY_Q",
+      "streamer": "squeex",
+      "title": "Squeex Loses It Then Tries Positive Affirmations To Calm Down",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin 16:9 strip, about 30% of the 9:16 canvas, when it should be about three quarters. The render; vision: The streamer's webcam face and the game HUD are tiny and hard to read on a phone. The subject looks lost in the blurred ; vision: The sharp strip sits in the uppe",
+      "ts": "2026-10-22T12:38:11.151713+00:00"
     }
   }
 }
