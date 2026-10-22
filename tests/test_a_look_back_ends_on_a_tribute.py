@@ -441,3 +441,34 @@ class YouTubeSearchOutlivesTheQuota(unittest.TestCase):
             got = hot_clips.youtube("Max Scherzer 20 strikeouts", max_s=600)
         self.assertEqual([g["url"] for g in got],
                          ["https://www.youtube.com/watch?v=a1"])
+
+
+class TheEndingShowsWhatTheClipIsAbout(unittest.TestCase):
+    """2026-10-22, operator: "that Dan Campbell one. It was about that
+    announcer, right? Why the fuck would we show clips of the Lions? ...
+    that Verlander one with his daughter, why would we cut the clips of
+    Verlander playing baseball after that?" The ending shows the story's
+    SUBJECT, named by the author as `shows`, and each shot is checked
+    against it instead of a game rule written for players."""
+
+    def test_the_subject_is_what_every_shot_must_show(self):
+        item = outro.parse({**OUTRO, "people": ["Dan Miller"],
+                            "team": "", "numbers": [],
+                            "shows": "Dan Miller in the Lions radio booth "
+                                     "calling a play"})
+        self.assertIn("radio booth", item["shows"])
+        look = outro.frame_look("Dan Miller best calls", item["people"],
+                                shows=item["shows"])
+        self.assertIn("Dan Miller in the Lions radio booth", look)
+        self.assertNotIn("making the play", look)
+
+    def test_without_a_subject_the_game_rule_stands(self):
+        look = outro.frame_look("Kobe 81", ["Kobe Bryant"])
+        self.assertIn("making the play", look)
+
+    def test_the_author_is_told_to_show_the_subject(self):
+        from third_capture import author as a
+        import inspect
+        src = inspect.getsource(a)
+        self.assertIn("SHOWS WHAT THE CLIP IS ABOUT", src)
+        self.assertIn('"shows"', src)
