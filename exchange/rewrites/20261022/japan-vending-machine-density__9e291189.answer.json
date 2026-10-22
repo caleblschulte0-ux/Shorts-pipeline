@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "japan-vending-machine-density__9e291189",
+  "slug": "japan-vending-machine-density",
+  "by": "chatgpt",
+  "written_at": "2026-10-22T11:18:33.938Z",
+  "title": "Japan Lost 1.6 Million Vending Machines And Still Leads",
+  "hook": "Japan lost 1.6 million vending machines and still seems covered in them.",
+  "closing": "Convenience survives the decline because Japan still keeps machines close to nearly everyone.",
+  "question": "What should a machine sell?",
+  "segments": [
+    {
+      "topic": "Japan machine decline",
+      "say": "Japan lost 1.6 million vending machines. Even after that retreat, machines remain embedded in daily life."
+    },
+    {
+      "topic": "Japan machine density",
+      "say": "Japan keeps one vending machine for every 31 people. The United States is less than half as dense."
+    },
+    {
+      "topic": "Japan machine drinks",
+      "say": "About 2.2 million Japanese machines sell beverages. Hot and cold drinks keep the network useful year-round."
+    }
+  ]
+}
