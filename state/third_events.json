@@ -4809,6 +4809,74 @@
       ],
       "published_versions": [],
       "last_updated": "2026-10-17"
+    },
+    "squeex-charact-goblin-2026w39": {
+      "event_id": "squeex-charact-goblin-2026w39",
+      "people": [
+        "squeex"
+      ],
+      "actions": [
+        "charact",
+        "goblin",
+        "green",
+        "party"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-22",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2883000943/19681-19921",
+        "https://www.twitch.tv/squeex/clip/AlertImpossibleBeeChefFrank-JfR2fPY9lCFR1YT2",
+        "vodmine://2883000943/19981-20221"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-22"
+    },
+    "dinerowiner-around-blonde-2026w42": {
+      "event_id": "dinerowiner-around-blonde-2026w42",
+      "people": [
+        "dinerowiner"
+      ],
+      "actions": [
+        "around",
+        "blonde",
+        "camera",
+        "woman"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-22",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2901334018/2826-3066",
+        "https://www.twitch.tv/dinerowiner/clip/BeautifulNastyHorseNinjaGrumpy-3yCpzw948fd2WAbk",
+        "vodmine://2901334018/3077-3317"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-22"
+    },
+    "marlon-holy-lion-2026w39": {
+      "event_id": "marlon-holy-lion-2026w39",
+      "people": [
+        "marlon"
+      ],
+      "actions": [
+        "holy",
+        "lion",
+        "night",
+        "safari"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-22",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2884594674/6540-6780",
+        "https://www.twitch.tv/marlon/clip/BeautifulFrigidRuffKappaClaus-YnGM_5ilIs1Nqc7U",
+        "vodmine://2884594674/6813-7053"
+      ],
+      "published_versions": [
+        "story-a8ab91258c0c4cfa"
+      ],
+      "last_updated": "2026-10-22"
     }
   }
 }
