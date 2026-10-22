@@ -275,6 +275,106 @@
       "answer": "NONE",
       "by": "chatgpt",
       "at": "2026-10-21T11:28:36.491Z"
+    },
+    "562ea6c0aead2dce": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The 200-million figure is consequential, but the premise makes an unsupported Netflix-causation claim instead of cleanly reversing a specific expectation.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "ec0f22c9035ec928": {
+      "answer": "{\"hook\":\"76% ditched landlines—and unknown calls became suspect.\",\"closing\":\"The landline vanished, and trust in an incoming number vanished with it.\",\"question\":\"Do you answer unknown numbers?\",\"segments\":[{\"topic\":\"Landline death\",\"say\":\"By 2024, 76% of US adults had no landline, versus 25% in 2010. Phone numbers stopped meaning addresses.\"},{\"topic\":\"Landline vacuum\",\"say\":\"Americans received 52.8 billion robocalls in 2024; telemarketing was 36% and scams 22%. Spoofed numbers filled the landline vacuum.\"},{\"topic\":\"Landline aftermath\",\"say\":\"Adults got nearly 200 robocalls each, almost double 2016's 29.3 billion. Unknown calls became easy to ignore.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "21f08efaa99b988a": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The 97 percent loss is striking, but the premise states a disaster without overturning a specific expectation the viewer already holds.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "fa045791b1e39901": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "a2e9d90b6b7ec815": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "006fe8ac270c0c2b": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "59e97261832445d3": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The premise relies on 450, 25,000, and 2.9 million instead of one consequential number, so the reversal is unfocused.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "64ea8dcf3f000af6": {
+      "answer": "One Whale Boomed. Another Is Vanishing.",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "833a270d7699f5b9": {
+      "answer": "Money Sent Home Just Buried Foreign Aid",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "1626752cf06f0ded": {
+      "answer": "{\"hook\":\"Nobel breakthroughs now arrive 13 years later than they used to.\",\"closing\":\"Scientific careers peak later now, so your best work may still be ahead.\",\"question\":\"Could your best work still be ahead?\",\"segments\":[{\"topic\":\"Nobel discovery age\",\"say\":\"Nobel physics breakthroughs once came around age thirty-seven. Today, the winning ideas arrive later.\"},{\"topic\":\"Nobel physics youth\",\"say\":\"Since 2000, only one in five Nobel physics discoveries came from people under forty. Young breakthroughs became rare.\"},{\"topic\":\"Nobel chemistry youth\",\"say\":\"This century, not a single Nobel chemistry winner was under forty. The early-genius era disappeared.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "68945928c154a15c": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It reverses the expectation that lightning remains equally deadly and anchors the change to 350 American deaths a year in the 1940s.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "e78ccd4127bd6a71": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "2bf6ae07c74edc1c": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The title depends on both 36 and 24 rather than one consequential number, and the hook states a drought impact without a sharp expectation reversal.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "e60517edbeb7c11a": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "b682794cddb4a980": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "d6d27fac66d91f18": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "c01a570927306276": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "be950b1618657c55": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The malformed hook mixes 90 percent and 3 nanometers, so it lacks one clear, consequential number and a coherent expectation reversal.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "cec1b47c469a5f56": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The premise claims a first-time reversal but gives no consequential, verifiable audience number; “3 Charts” is not evidence.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
+    },
+    "b81bc489b69d649a": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-22T11:17:23.112Z"
     }
   }
 }
