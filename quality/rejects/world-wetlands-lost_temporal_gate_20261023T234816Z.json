@@ -1,0 +1,9 @@
+{
+ "slug": "world-wetlands-lost",
+ "ts": "20261023T234816Z",
+ "failure_class": "temporal_gate",
+ "evidence": "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=29.08s of 34.96s (~2.0s frozen)",
+ "weakest_scene": {},
+ "scene_plan": {},
+ "scenes": []
+}
