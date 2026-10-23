@@ -1,0 +1,11 @@
+{
+ "id": "self-storage-outnumbers-starbucks__97599610",
+ "slug": "self-storage-outnumbers-starbucks",
+ "settled": "2026-10-23T12:48:59Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Lead",
+  "segment 1: new named entity not in the data: Dominate",
+  "segment 2: new named entity not in the data: Multiplied"
+ ]
+}

@@ -20895,10 +20895,10 @@
   },
   {
    "slug": "homeschool-surge",
-   "title": "Schools Reopened, But Homeschooling Stayed At 5.4%",
-   "hook": "Schools reopened, yet homeschooling remained at 5.4%, nearly double its earlier share.",
-   "closing": "Reopening classrooms did not restore the earlier pattern; families kept making different choices about where children learn.",
-   "question": "What matters most when choosing a school?",
+   "title": "Homeschooling Stayed Nearly Double After Schools Reopened",
+   "hook": "Schools reopened, but homeschooling stayed at 5.4 percent.",
+   "closing": "Reopened classrooms did not undo families' new education choices.",
+   "question": "What matters most when choosing school?",
    "caption": "Homeschooling spiked to 11.1% of families during COVID — then it was supposed to fall back to normal. It didn't. Years later it's still double the pre-pandemic rate, and closing in on the entire private school system. Would you ever homeschool your kids? 👇",
    "hashtags": [
     "homeschooling",
@@ -20926,8 +20926,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE SPIKE",
-     "topic": "Homeschooling stayed high",
-     "say": "The later homeschooling share was 5.4%. It fell from the pandemic peak but remained nearly double its earlier level.",
+     "topic": "Homeschooling Stayed High",
+     "say": "Homeschooling settled at 5.4 percent, still nearly double its pre-pandemic share.",
      "scene": {
       "mechanic": "empty-desk-swap",
       "concept": "a 5x4 grid of school desks swaps to little house icons as reveal sweeps 2019 to 2023, the house count tracking the homeschool share for that year - the grid fills with houses at the 2020 spike, then partly empties back",
@@ -20943,8 +20943,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · WHY IT STUCK",
-     "topic": "Homeschooling parent concerns",
-     "say": "School environment or safety concerned 83% of homeschooling parents in this survey. It was a reported reason, not a measured cause.",
+     "topic": "Homeschooling Safety Concerns",
+     "say": "School environment or safety concerned 83 percent of homeschooling parents, making it the leading reported reason.",
      "scene": {
       "mechanic": "concern-flag-row",
       "concept": "four flagpoles rise to each reason's percentage, topped with an icon for that reason (shield, heart, family, book) - safety concern rises tallest",
@@ -20960,8 +20960,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "3 · THE SCALE",
-     "topic": "Homeschooling school comparison",
-     "say": "Private schooling accounted for 9.6% in the supplied comparison. Homeschooling had grown substantially but still served a smaller share.",
+     "topic": "Homeschooling Remains Smaller",
+     "say": "Private schooling held 9.6 percent, so homeschooling remained the smaller alternative.",
      "scene": {
       "mechanic": "house-vs-school-growth",
       "concept": "a small house and a school building grow side by side, each scaled to its own share of kids - the school building noticeably bigger at 9.6% versus the house at 5.4%",
@@ -20970,7 +20970,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:41Z",
+   "rewritten_at": "2026-10-23T12:49:00Z",
    "retold": "retell/v3"
   },
   {
@@ -22966,10 +22966,10 @@
   },
   {
    "slug": "peanut-allergy-guideline-flip",
-   "title": "Peanut Avoidance Lost To Early Consumption: Diagnoses Later Fell 43%",
-   "hook": "Doctors told parents to keep peanuts away from their babies. It backfired.",
-   "closing": "Parents should discuss safe early introduction with their child's clinician; prevention advice depends on the child's situation.",
-   "question": "How did peanut advice change in your family?",
+   "title": "Peanut Allergy Diagnoses Fell 43% After Advice Reversed",
+   "hook": "Peanut allergy diagnoses fell 43% after the advice flipped.",
+   "closing": "Early guidance can reshape a child's lifelong allergy risk.",
+   "question": "Did your family's peanut advice change?",
    "caption": "Peanut allergies in American kids tripled between 1997 and 2008. Turns out doctors had the fix backwards: infants told to avoid peanut hit a 13.7% allergy rate by age 5, vs just 1.9% for infants fed peanut early. Guidelines flipped, and diagnoses have dropped 43% since. Did your family avoid peanuts? 👇",
    "hashtags": [
     "peanutallergy",
@@ -22997,8 +22997,8 @@
      },
      "insight_type": "trend",
      "role": "1 · SETUP",
-     "topic": "Peanut allergies rose",
-     "say": "Childhood peanut allergy prevalence reached 1.4% in the supplied historical series. It had more than tripled from the earliest measurement.",
+     "topic": "Peanut Allergy Rose",
+     "say": "Peanut allergy reached 1.4 percent in 2008, more than tripling from the earliest measurement.",
      "scene": {
       "mechanic": "peanut-rash-climb",
       "concept": "peanuts rise along a climbing trend line, growing larger and more inflamed at each higher prevalence year",
@@ -23014,8 +23014,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · THE TURN",
-     "topic": "Peanut trial reversal",
-     "say": "The avoidance group's allergy rate was 13.7% in the trial. Children who ate peanut early had a much lower rate.",
+     "topic": "Peanut Allergy Trial",
+     "say": "Avoidance produced a 13.7 percent allergy rate, while early consumption was far lower.",
      "scene": {
       "mechanic": "peanut-shield-crack-duel",
       "concept": "two round shields crack from the peanuts breaking through them -- one badly shattered (avoidance), one barely scratched (early exposure)",
@@ -23031,8 +23031,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · CONSEQUENCE",
-     "topic": "Peanut guidance changed",
-     "say": "Diagnoses declined about 43% in the before-and-after comparison. That decline followed changed guidance; this comparison alone does not isolate its cause.",
+     "topic": "Peanut Allergy Fell",
+     "say": "Peanut allergy diagnoses fell about 43 percent after guidance changed, though comparison alone cannot prove cause.",
      "viz": "comparison",
      "scene": {
       "mechanic": "allergy-marker-drain",
@@ -23042,7 +23042,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:41Z",
+   "rewritten_at": "2026-10-23T12:49:00Z",
    "retold": "retell/v3",
    "hook_was": "Peanut diagnoses fell 43% after advice shifted toward early introduction."
   },
@@ -26861,10 +26861,10 @@
   },
   {
    "slug": "metric-system-holdouts",
-   "title": "Metric Mix-Ups Left A Plane With Less Than Half Its Fuel",
-   "hook": "A metric mix-up left an airliner carrying just 20,400 pounds of fuel.",
-   "closing": "A number without its unit can turn a routine calculation into a dangerous mistake.",
-   "question": "Where have mixed units caused you trouble?",
+   "title": "A Metric Mix-Up Left A Plane With 20,400 Pounds",
+   "hook": "A metric mix-up left a plane carrying only 20,400 pounds.",
+   "closing": "Units look small until the calculation becomes physical.",
+   "question": "Where have mixed units caused trouble?",
    "caption": "Only three countries have never officially adopted the metric system: the US, Liberia, and Myanmar -- about 5% of the planet's population. Mixing up units isn't just confusing, it's cost real money and nearly cost real lives: a $327.6 million Mars orbiter in 1999, and a passenger jet that ran out of fuel mid-flight in 1983. Should the US finally switch?",
    "hashtags": [
     "metricsystem",
@@ -26892,8 +26892,8 @@
      },
      "insight_type": "share",
      "role": "1 · THE HOLDOUTS",
-     "topic": "Metric adoption gap",
-     "say": "The dataset's non-metric country group contains 5% of the world's population. Unit systems remain uneven across borders.",
+     "topic": "Metric Adoption Gap",
+     "say": "Non-metric countries contain 5 percent of the world's population, leaving a small global holdout.",
      "scene": {
       "mechanic": "world-crowd-holdouts",
       "concept": "a crowd of 100 people stands for the planet; five step forward under a flag-red spotlight while ninety-five stay put",
@@ -26908,8 +26908,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE $327 MILLION MISTAKE",
-     "topic": "Metric orbiter error",
-     "say": "The orbiter's actual altitude was 57 kilometers in the supplied comparison. A unit mismatch sent it much lower than planned.",
+     "topic": "Metric Orbiter Error",
+     "say": "The orbiter dropped to 57 kilometers, showing how one unit mismatch can destroy a mission.",
      "scene": {
       "mechanic": "orbiter-skims-the-ground",
       "concept": "a Mars orbiter falls past its safe 226 km line and keeps going to 57 km where the atmosphere tears it apart",
@@ -26924,8 +26924,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE PLANE THAT RAN DRY",
-     "topic": "Metric fuel error",
-     "say": "The airliner carried 20,400 pounds of fuel. That was less than half the amount needed, so the calculation mattered physically.",
+     "topic": "Metric Fuel Error",
+     "say": "The plane carried 20,400 pounds, less than half the fuel it needed.",
      "scene": {
       "mechanic": "half-empty-jet-tank",
       "concept": "an airliner silhouette fills with fuel only to 20,400 pounds while the dashed line of the 45,000 it needed sits far above",
@@ -26935,7 +26935,7 @@
    ],
    "words_by": "chatgpt-rewrite",
    "retold": "retell/v3",
-   "rewritten_at": "2026-10-20T11:24:41Z"
+   "rewritten_at": "2026-10-23T12:49:00Z"
   },
   {
    "slug": "lab-grown-diamond-price-collapse",
@@ -27702,10 +27702,10 @@
   },
   {
    "slug": "ceo-executive-pay-gap",
-   "title": "The Gap Between CEO Pay And Your Pay Exploded",
-   "hook": "A CEO now makes 281 times what you do.",
-   "closing": "Your yearly pay, earned by a CEO before lunch tomorrow. That's why your raise feels small.",
-   "question": "Does that ratio surprise you? Tell me below.",
+   "title": "A CEO Earns Your Year's Pay In 1.3 Days",
+   "hook": "A CEO can earn a worker's yearly pay in 1.3 days.",
+   "closing": "That speed explains why ordinary raises feel so small.",
+   "question": "Does this pay gap feel defensible?",
    "caption": "CEO pay is up 1,085% since 1978. Typical worker pay? 24%. At today's ratio, a CEO earns your yearly salary before their first coffee break clears. 👇",
    "hashtags": [
     "ceopay",
@@ -27729,9 +27729,9 @@
       "file": "ceo_worker_pay_ratio_trend.json"
      },
      "insight_type": "trend",
-     "topic": "CEO Pay Gap",
+     "topic": "CEO Pay Ratio",
      "role": "1 · THE CLIMB",
-     "say": "A CEO used to earn about 21 times a worker's pay. Today that gap has exploded, and the bosses pulled away from everyone else.",
+     "say": "CEO compensation reached 281 times typical worker pay, widening the distance at the top.",
      "scene": {
       "mechanic": "coin-tower-vs-worker-coin",
       "concept": "a worker is one gold coin; the CEO's coin tower grows year by year to 21, 31, 398 and 281 coins for every one",
@@ -27747,9 +27747,9 @@
      "insight_type": "rank",
      "use_baseline": true,
      "ascending": false,
-     "topic": "CEO Pay Exploded",
+     "topic": "CEO Pay Growth",
      "role": "2 · THE GAP",
-     "say": "CEO pay climbed 1,085 percent since 1978, while worker pay only crept up. The raises went to the top, not to you.",
+     "say": "CEO pay climbed 1,085 percent, while worker compensation barely moved.",
      "scene": {
       "mechanic": "raise-skyscraper-vs-bungalow",
       "concept": "CEO pay growth is a skyscraper whose floors light up one by one past 1,085 percent, while the worker's 24 percent is a single-storey house beside it",
@@ -27764,9 +27764,9 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "Your Year Of Pay",
+     "topic": "CEO Pay Days",
      "role": "3 · THE MATH",
-     "say": "A CEO matches a typical worker's whole year of pay in just over one day. Your year of work, earned by lunch tomorrow.",
+     "say": "A CEO earns a typical worker's yearly pay in about 1.3 days.",
      "scene": {
       "mechanic": "year-calendar-beaten-by-lunch",
       "concept": "a 365-square calendar is a worker's whole year; a sweep crawls across it for the worker while the CEO lights the same year's worth of pay in 1.3 days and sits done",
@@ -27774,8 +27774,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T03:40:50Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-23T12:48:58Z",
    "retold": "retell/v3"
   },
   {

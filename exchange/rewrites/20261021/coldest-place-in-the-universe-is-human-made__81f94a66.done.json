@@ -1,0 +1,10 @@
+{
+ "id": "coldest-place-in-the-universe-is-human-made__81f94a66",
+ "slug": "coldest-place-in-the-universe-is-human-made",
+ "settled": "2026-10-23T12:48:58Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Benchmark",
+  "segment 2: new named entity not in the data: Earth"
+ ]
+}

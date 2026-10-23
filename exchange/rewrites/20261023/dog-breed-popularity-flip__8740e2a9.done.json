@@ -1,0 +1,9 @@
+{
+ "id": "dog-breed-popularity-flip__8740e2a9",
+ "slug": "dog-breed-popularity-flip",
+ "settled": "2026-10-23T12:49:00Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Retriever's"
+ ]
+}
