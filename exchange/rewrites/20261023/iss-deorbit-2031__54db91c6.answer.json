@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "iss-deorbit-2031__54db91c6",
+  "slug": "iss-deorbit-2031",
+  "by": "chatgpt",
+  "written_at": "2026-10-23T11:26:00Z",
+  "title": "NASA Will Spend 843 Million Dollars To Crash The ISS",
+  "hook": "NASA will spend 843 million dollars to crash the ISS.",
+  "closing": "Ending a space station costs almost as much as building spacecraft.",
+  "question": "Will you miss the ISS?",
+  "segments": [
+    {
+      "topic": "ISS Human Record",
+      "say": "The ISS has held people continuously for 24 years, creating humanity's longest home in space."
+    },
+    {
+      "topic": "ISS Annual Cost",
+      "say": "NASA spends 3 billion dollars yearly on the ISS, making retirement financially unavoidable."
+    },
+    {
+      "topic": "ISS Deorbit Cost",
+      "say": "NASA's deorbit vehicle costs 843 million dollars, turning disposal into another major mission."
+    }
+  ]
+}
