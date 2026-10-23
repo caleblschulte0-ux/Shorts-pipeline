@@ -2938,6 +2938,22 @@ def _opens_on_a_machine(kind: str) -> bool:
 #: `_save_persisted_mechanics` flushes them to disk once, after the loop.
 _PERSISTED: list = []
 
+#: Saved scene code a run re-judged and REFUSED, keyed (slug, where), where is
+#: a segment index or "hook_scene"/"closing_scene". The refusal clears the
+#: scene in memory ("judged once: redraw it"), but the flush only ever copied
+#: a scene that was there, so the stale code stayed in the file and every run
+#: re-judged and refused it again: red-hair, cryonics and body-renewal spent
+#: the drawing budget on the same refusals in 4 of 4 runs, 2026-10-22/23,
+#: and the channel posted nothing. The flush now writes the refusal down, but
+#: only over that exact code, never over a scene someone drew since.
+_REFUSED: dict = {}
+
+
+def _note_refused(slug: str, where, was) -> None:
+    if isinstance(was, str) and was.strip():
+        _REFUSED[(slug, where)] = was
+        _PERSISTED.append(slug)
+
 
 def _persist_rendered_mechanic(insight, slug: str,
                                rendered_as: str | None = None) -> None:
@@ -3018,6 +3034,14 @@ def _save_persisted_mechanics(config_path: Path, story_cfg: dict, slug: str) -> 
                     a["scene"] = b["scene"]
                 if b.get("illustrated_scene"):          # a verified brain scene
                     a["illustrated_scene"] = b["illustrated_scene"]
+            for i_, a in enumerate(st_.get("segments", [])):  # a refused one
+                gone = _REFUSED.pop((slug, i_), None)
+                if gone is not None and a.get("illustrated_scene") == gone:
+                    a["illustrated_scene"] = None
+            for k in ("hook_scene", "closing_scene"):
+                gone = _REFUSED.pop((slug, k), None)
+                if gone is not None and st_.get(k) == gone:
+                    st_[k] = None
             for k in ("closing_scene", "closing_data",     # its bookends
                       "hook_scene", "hook_data",
                       "hook", "hook_was"):                  # a sharpened hook
@@ -3048,6 +3072,8 @@ def _resolve_scene(slug: str, story_cfg: dict, i: int, insight):
     scene = _sa.saved_scene(seg_cfg, log=log)
     if scene is not None and seg_cfg.get("illustrated_scene") != _was:
         _PERSISTED.append(slug)             # re-judged to today's standard
+    if scene is None and _was and not seg_cfg.get("illustrated_scene"):
+        _note_refused(slug, i, _was)        # re-judged and refused
     if scene is None:
         scene = _ss.scene_for(slug, i)
     if scene is None:
@@ -3290,6 +3316,8 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                              or _ss.hook_for(slug))
                     if story_cfg.get("hook_scene") != _wash:
                         _PERSISTED.append(slug)
+                        if not story_cfg.get("hook_scene"):
+                            _note_refused(slug, "hook_scene", _wash)
                     if _hook is None:
                         _hadh = bool(story_cfg.get("hook_scene"))
                         # THE OPENING GETS ITS OWN CLOCK (operator, 2026-10-17:
@@ -3331,6 +3359,8 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                               or _ss.closing_for(slug))
                     if story_cfg.get("closing_scene") != _wasc:
                         _PERSISTED.append(slug)
+                        if not story_cfg.get("closing_scene"):
+                            _note_refused(slug, "closing_scene", _wasc)
                     if _close is None:
                         _hadc = bool(story_cfg.get("closing_scene"))
                         _close = _sa.scene_for_closing(
