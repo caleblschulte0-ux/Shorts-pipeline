@@ -1,17 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-23T04:44:32Z",
+ "updated": "2026-10-23T11:46:29Z",
  "open": [
-  {
-   "id": "nyc-noise-complaints-per-day__7fcacd7a",
-   "slug": "nyc-noise-complaints-per-day",
-   "filed": "2026-10-23T04:44:32Z",
-   "why": [
-    "premise: brain: It lacks a clear reversal of a viewer expectation and relies only on a single statistic without a surprising twist."
-   ],
-   "request": "exchange/rewrites/20261023/nyc-noise-complaints-per-day__7fcacd7a.request.json",
-   "answer_path": "exchange/rewrites/20261023/nyc-noise-complaints-per-day__7fcacd7a.answer.json"
-  },
   {
    "id": "peanut-allergy-guideline-flip__675a4e77",
    "slug": "peanut-allergy-guideline-flip",
@@ -141,6 +131,16 @@
    ],
    "request": "exchange/rewrites/20261022/japan-vending-machine-density__9e291189_r1.request.json",
    "answer_path": "exchange/rewrites/20261022/japan-vending-machine-density__9e291189_r1.answer.json"
+  },
+  {
+   "id": "nyc-noise-complaints-per-day__7fcacd7a",
+   "slug": "nyc-noise-complaints-per-day",
+   "filed": "2026-10-21T20:53:54Z",
+   "why": [
+    "premise: brain: It does not clearly overturn a common viewer expectation, only presents a surprising statistic."
+   ],
+   "request": "exchange/rewrites/20261021/nyc-noise-complaints-per-day__7fcacd7a.request.json",
+   "answer_path": "exchange/rewrites/20261021/nyc-noise-complaints-per-day__7fcacd7a.answer.json"
   },
   {
    "id": "rubiks-cube-record-vs-robot__5d087bf9",
