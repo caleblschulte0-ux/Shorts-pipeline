@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "chatgpt-fastest-adoption-ever__c2e9df7d",
+  "slug": "chatgpt-fastest-adoption-ever",
+  "by": "chatgpt",
+  "written_at": "2026-10-23T11:26:00Z",
+  "title": "ChatGPT Reached 100 Million Users In 2 Months",
+  "hook": "ChatGPT reached 100 million users in just 2 months.",
+  "closing": "Adoption this fast turns experiments into infrastructure.",
+  "question": "Do you use ChatGPT weekly?",
+  "segments": [
+    {
+      "topic": "ChatGPT Users",
+      "say": "ChatGPT reached 900 million active users, making a chatbot a mass habit."
+    },
+    {
+      "topic": "ChatGPT Adoption Speed",
+      "say": "ChatGPT reached the milestone in 2 months, faster than every comparison app."
+    },
+    {
+      "topic": "ChatGPT Free Users",
+      "say": "ChatGPT has 850 million free users, leaving a small paying base to fund the service."
+    }
+  ]
+}
