@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "ceo-executive-pay-gap__20daafe8",
+  "slug": "ceo-executive-pay-gap",
+  "by": "chatgpt",
+  "written_at": "2026-10-23T12:05:00Z",
+  "title": "A CEO Earns Your Year's Pay In 1.3 Days",
+  "hook": "A CEO can earn a worker's yearly pay in 1.3 days.",
+  "closing": "That speed explains why ordinary raises feel so small.",
+  "question": "Does this pay gap feel defensible?",
+  "segments": [
+    {
+      "topic": "CEO Pay Ratio",
+      "say": "CEO compensation reached 281 times typical worker pay, widening the distance at the top."
+    },
+    {
+      "topic": "CEO Pay Growth",
+      "say": "CEO pay climbed 1,085 percent, while worker compensation barely moved."
+    },
+    {
+      "topic": "CEO Pay Days",
+      "say": "A CEO earns a typical worker's yearly pay in about 1.3 days."
+    }
+  ]
+}
