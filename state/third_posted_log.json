@@ -15241,13 +15241,63 @@
       "ts": "2026-10-23T11:51:47.380137+00:00"
     },
     "clip-20261023-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jasontheween/clip/AggressivePiliableDelicataRuleFive-4kMM0YrNXYflQI45",
-      "story_key": null,
-      "streamer": "jasontheween",
+      "url": "https://youtube.com/shorts/fIF5Md-1JmY",
       "title": "Jasontheween Gets Blocked By A Lil Kid And Can't Believe It",
       "kind": "twitch_clip",
-      "ts": "2026-10-23T11:55:13.014539+00:00",
+      "ts": "2026-10-23T11:55:26.787341+00:00",
+      "uploaded_at": "2026-10-23T11:55:26.787359+00:00",
+      "publish_at": "2026-10-23T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261023-jasontheween-gets-blocked-by-a-lil-kid-and-can-t-adc34d55",
+        "tiktok": "queued for 2026-10-23T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jasontheween/clip/AggressivePiliableDelicataRuleFive-4kMM0YrNXYflQI45",
+      "streamer": "jasontheween",
+      "series": "fail",
+      "hook": "Jasontheween got blocked by a lil kid \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2075,
+      "banger": 0.5
+    },
+    "rejected-crunchypeacefulpigeonbirb-ts3nvdeppyg76bzc": {
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/CrunchyPeacefulPigeonBIRB-ts3nVDePpyG76BZC",
+      "streamer": "joe_bartolozzi",
+      "title": "JOE BARTTT SMALLFRYZ HANGING OUT? IRL??",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (insider talk, no visible event)",
+      "ts": "2026-10-23T11:56:11.327843+00:00"
+    },
+    "rejected-dirtybrightfriesfreakinstinkin-lmnexjmjl-uuakam": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/DirtyBrightFriesFreakinStinkin-LMnexJMjL-Uuakam",
+      "streamer": "jynxzi",
+      "title": "Jynxzi Reacts To Winning The Kaak Streamer Award \ud83d\ude33",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp picture is a thin strip, about 30% of the canvas height, with the rest blurred padding. The target is about 75%.; vision: Jynxzi is a tiny webcam in the corner and the main picture is Minecraft gameplay, so he is hard to read on a phone.; vision: The renderer did not crop toward the ac",
+      "ts": "2026-10-23T11:59:39.412567+00:00"
+    },
+    "rejected-poisedfrigidopossumpjsalt-nyagqldylqkmohgz": {
+      "source_url": "https://www.twitch.tv/hasanabi/clip/PoisedFrigidOpossumPJSalt-nyagqldYlQkMoHgZ",
+      "streamer": "hasanabi",
+      "title": "Unc Representation",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Watching other streams, no visible event)",
+      "ts": "2026-10-23T12:25:27.583142+00:00"
+    },
+    "clip-20261023-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kyedae/clip/SavoryKitschyCakeKappaClaus-80U8iwr9xzU22LEc",
+      "story_key": null,
+      "streamer": "kyedae",
+      "title": "Kyedae Says Her Name Is Being Dragged Through The Mud After The Tyson Breakup",
+      "kind": "twitch_clip",
+      "ts": "2026-10-23T12:28:06.402168+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
