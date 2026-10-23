@@ -130,6 +130,106 @@
       "answer": "{\"verdict\":\"PASS\",\"reason\":\"The $15-per-gram price reverses the expectation that a tiny pantry ingredient should be cheap.\"}",
       "by": "chatgpt",
       "at": "2026-10-23T11:22:00Z"
+    },
+    "138d9df50be85fe4": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"A day shortening by 1.66 milliseconds reverses the expectation that Earth’s rotation keeps perfectly fixed time.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "5f0cfc48f484a23f": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "65a0e8dfde67fc90": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "d39dffb974184f5b": {
+      "answer": "{\"hook\":\"Wireless-only homes jumped from 25% to 76% as landlines faded.\",\"closing\":\"Convenience replaced the household phone.\",\"question\":\"Do you still have a landline?\",\"segments\":[{\"topic\":\"Landlines Vanished\",\"say\":\"Wireless-only homes reached 76% in 2024, turning landlines into the exception.\"},{\"topic\":\"Landline Spam\",\"say\":\"Robocalls reached 52.8 billion, making the old household phone feel like spam.\"},{\"topic\":\"Landline Peak\",\"say\":\"America once had nearly 200 million landlines before mobile phones displaced them.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "a46ff8769f186143": {
+      "answer": "The Monarch Butterfly Is Running Out of Forest",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "3e8ad574a36b89c0": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The premise has a reversal, but its title and hook lack a single consequential numeric anchor.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "4d00756b438d8c7b": {
+      "answer": "{\"hook\":\"Severe clear-air turbulence rose 55% on a major flight corridor.\",\"closing\":\"Keeping your seatbelt fastened matters more now.\",\"question\":\"Have you felt a rougher flight?\",\"segments\":[{\"topic\":\"Turbulence Increased\",\"say\":\"Severe clear-air turbulence increased 55 percent, making sudden jolts more common.\"},{\"topic\":\"Turbulence Spread\",\"say\":\"Moderate turbulence rose 37 percent across the same busy corridor.\"},{\"topic\":\"Turbulence Future\",\"say\":\"Some models show turbulence could double later this century.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "0d95fd84ecb13e33": {
+      "answer": "Why Twin Births Nearly Doubled — Then Started Falling",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "10596687701da6b8": {
+      "answer": "Self-Checkout Is Quietly Replacing Cashiers (3 Charts)",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "79fdef71e2135cf9": {
+      "answer": "{\"hook\":\"The hurricane list has retired 100 names after deadly storms.\",\"closing\":\"Some names become memorials, not labels.\",\"question\":\"Which retired name do you remember?\",\"segments\":[{\"topic\":\"Hurricane Names\",\"say\":\"Retired hurricane names rose to 100 by 2024, marking storms too destructive to repeat.\"},{\"topic\":\"Hurricane Damage\",\"say\":\"Katrina caused about $125 billion in damage, making reuse feel wrong.\"},{\"topic\":\"Hurricane Disasters\",\"say\":\"The yearly US count climbed from about 3 in the 1980s.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "51a26c82380db0d7": {
+      "answer": "{\"hook\":\"North America lost nearly 3 billion birds in five decades.\",\"closing\":\"A quieter sky is the warning.\",\"question\":\"Are birds disappearing near you?\",\"segments\":[{\"topic\":\"Birds Disappeared\",\"say\":\"North America fell to 7.2 billion birds, emptying familiar skies.\"},{\"topic\":\"Bird Groups\",\"say\":\"Grassland birds fell 53 percent, while waterfowl were a rare exception.\"},{\"topic\":\"Bird Families\",\"say\":\"Just 12 familiar bird families produced 90 percent of the total loss.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "7c6574562d9293d9": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"Losing nearly 3 billion birds reverses the expectation that familiar backyard species remain abundant.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "fa51f8d0b853fd71": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"A 53% decline reverses the expectation that a simple sleep-position campaign could not halve infant deaths.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "86dd2fba9b3a618a": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "fdc5988a804240cd": {
+      "answer": "The US Government Lost Money On Every Penny For 19 Years",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "5b859090c2df28c6": {
+      "answer": "The World Is Quietly Running Out Of Sand",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "d4b6ee47f0a5188a": {
+      "answer": "{\"hook\":\"Six months in space can cost about 9% of your bone.\",\"closing\":\"Weightlessness leaves a recovery bill.\",\"question\":\"Would you risk your bones for space?\",\"segments\":[{\"topic\":\"Bone Loss\",\"say\":\"Astronauts can lose 1.5 percent of bone each month in weightlessness.\"},{\"topic\":\"Bone Strength\",\"say\":\"Hip strength can drop 2.2 percent monthly, raising injury risk after landing.\"},{\"topic\":\"Bone Recovery\",\"say\":\"Full recovery can take 30 months after a long mission.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "50c1de7fda4aef8b": {
+      "answer": "{\"hook\":\"Wireless-only homes jumped from 25% to 76% as landlines faded.\",\"closing\":\"Convenience replaced the household phone.\",\"question\":\"Do you still have a landline?\",\"segments\":[{\"topic\":\"Landlines Vanished\",\"say\":\"Wireless-only homes reached 76% in 2024, turning landlines into the exception.\"},{\"topic\":\"Landline Spam\",\"say\":\"Robocalls reached 52.8 billion, making the old household phone feel like spam.\"},{\"topic\":\"Landline Peak\",\"say\":\"America once had nearly 200 million landlines before mobile phones displaced them.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "d56cfca9ed806cf9": {
+      "answer": "{\"hook\":\"The Moon drifts 3.8 centimeters farther away every year.\",\"closing\":\"Our familiar sky is slowly changing.\",\"question\":\"Would you miss total eclipses?\",\"segments\":[{\"topic\":\"Moon Drifts\",\"say\":\"The Moon moves 3.8 centimeters farther from Earth each year.\"},{\"topic\":\"Moon Distance\",\"say\":\"It already sits about 384,400 kilometers away, so tiny annual changes accumulate.\"},{\"topic\":\"Moon Eclipses\",\"say\":\"In 600 million years, total solar eclipses could disappear.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
+    },
+    "4d14ba4ff88fbcc3": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"A twin-birth peak near 34 per 1,000 reverses the expectation that multiple births were always this common.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-23T12:00:00Z"
     }
   }
 }
