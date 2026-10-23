@@ -3,355 +3,6 @@
     {
       "date": "20261015",
       "dry_run": false,
-      "ts": "2026-10-15T13:34:58+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 133,
-        "with_retention": 118,
-        "with_curve": 15,
-        "fetched_at": "2026-10-15T08:46:16.443311+00:00"
-      },
-      "brain": {
-        "ok": 18,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261015-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261015-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261015-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 83,
-                "refused_shown": 18,
-                "scouted": [
-                  {
-                    "premise": "Buddha and xQc both lose money to the same in-game crypto coin rug pull in GTA roleplay, seen from two streams.",
-                    "shape": "multi_streamer",
-                    "n": 2
-                  },
-                  {
-                    "premise": "Jasontheween gets choked out at EA FC, then claps back at chat saying they're refunding EAFC 27.",
-                    "shape": "multi_stream",
-                    "n": 2
-                  },
-                  {
-                    "premise": "A chat-driven escalation that ends with a streamer crying on stream.",
-                    "shape": "multi_streamer",
-                    "n": 2
-                  }
-                ],
-                "vod_arcs": 313,
-                "moments": 40,
-                "candidates": 510,
-                "pool": 2983,
-                "pool_with_vod": 2107,
-                "arc_sizes": [
-                  2,
-                  3,
-                  4,
-                  6,
-                  2,
-                  2,
-                  3,
-                  3,
-                  2,
-                  2
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:buddha+xqc",
-                  "outcome": "already_refused",
-                  "why": "2026-10-12: rendered; critic scored 68 after 1 revision(s) \u2014 @2s missing_context: Say who the promoter is and what the coin is. 'Snack bits' is never explained, and a stran"
-                },
-                {
-                  "cluster": "yololaryy@momentaggressivelongjaypartytime-au0nfaeeycihjf8k",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@vod2823602117",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "scout:jasontheween+marlon/jasontheween-marlon-answ-asking-20",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The footage does not show the scout's story. Marlon's 2026-09-15 clip has a chokehold or grappling scene on a concrete floor, but the report says outright that who is choked out and how it ends is not"
-                },
-                {
-                  "cluster": "kaicenat@momenttangentialdeterminedalmondspicyboy-oeitzou0ub",
-                  "outcome": "already_refused",
-                  "why": "2026-10-11: rendered; critic scored 46 after 2 revision(s) \u2014 @15s pacing: From about 12s to 42s the picture is a static red slide (a Europe flag and 'UNIVERSITY 2027 HELD I"
-                },
-                {
-                  "cluster": "kaicenat@vod2822355279",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: director judged: not a story \u2014 The three clips don't form a chain. Clip 1 is Kai reading a roll call of names to the 'main office', with no consequence shown. C"
-                },
-                {
-                  "cluster": "scout:fr33th3robots+ohnepixel/fr33th3robots-ohnepixel-crying",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The footage does not show a chat-driven escalation or any link between these two clips. The fr33th3robots clip is a fishing catch: a woman lifts a large carp out of a net with a man's help, and nobody"
-                },
-                {
-                  "cluster": "ishowspeed@momentmagnificentcaringlapwinglitfam--majf-ezbaoy",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: director judged: not a story \u2014 This is a run of unrelated reactions, not a chain. Before the clip, Speed checks whether his mic is too loud and reacts to a TikT"
-                },
-                {
-                  "cluster": "kaicenat@vod2824281072/kaicenat-award-cenat-2026w30",
-                  "outcome": "narrative_failed",
-                  "why": "scores [52, 55, 52] after 2 revision(s) \u2014 @32s weak_payoff: The ending is an inspirational sign-off with no consequence for either speaker. The question 'what did the doubt turn into?' is never answered for Suburbb. Add a beat showing the result, such as the M; @17s confusing: The switch from Ludwig"
-                },
-                {
-                  "cluster": "sondergaardlol@momentfantasticpunchybisonredcoat-pmq8vp3f-er",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: table read 48 < 50 \u2014 not rendered; repetition: The setup repeats the same countdown ('3, 2, 1, go') four or five times between 25s and 38s. Cut it to one failed"
-                },
-                {
-                  "cluster": "northernlion@vod2880264709",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 preflight:source barely moves (avg frame delta 0.13) \u2014 static image/pa; preflight:source barely moves (avg fra"
-                },
-                {
-                  "cluster": "squeex@momentfunencouragingopossumttours-1nemuxpg-iszrxpe",
-                  "outcome": "already_refused",
-                  "why": "2026-10-11: rendered; critic scored 66 after 2 revision(s) \u2014 @20s confusing: The shooting beat (about 11-20s) has no speech, and the next line, 'mind's been hit. It's my ey"
-                },
-                {
-                  "cluster": "ohnepixel@vod2896011569",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: director judged: not a story \u2014 The sources don't show why ohnepixel is crying, so the premise can't be stated plainly. Clip 1 has no speech and clip 2 only has "
-                },
-                {
-                  "cluster": "sondergaardlol@momentartisticfamoustomatofreakinstinkin-f2jw",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The sources show no setup, change or payoff that can be stated plainly. The clip (13.7s) has two men bent over a desk, then laughing, with almost no usable dialogue and no visible cause for the laught"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, possible drama",
-              "blind": false
-            },
-            "content": {
-              "score": 0.62,
-              "why": "Weigh-in scuffle, security, visible tens",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Adinross: Adin Ross Tells Amanda's Guy \"It's Cap\" And Demands To Know Why He Thinks So"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.72,
-              "problems": [
-                "The bottom third is a heavily zoomed, dark blurred copy. It is deliberate padding and holds the caption, so it is not a ",
-                "The wide middle shot is small, but the sharp face crop above it keeps the speaker readable on a phone."
-              ]
-            }
-          },
-          "took_s": 138.4
-        },
-        {
-          "slug": "clip-20261015-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261015-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 91,
-                "refused_shown": 20,
-                "scouted": [
-                  {
-                    "premise": "Squeex's GTA roleplay character Vivek is assassinated at an amphitheater, and half an hour later the same stream reflect",
-                    "shape": "one_stream",
-                    "n": 2
-                  },
-                  {
-                    "premise": "Stableronaldo loses it and goes off on someone, then takes a punch to the face twelve minutes later in the same stream.",
-                    "shape": "one_stream",
-                    "n": 2
-                  },
-                  {
-                    "premise": "Cinna panics after Kalita Dub becomes her getaway driver, and the next day she blames Kalita for a wrong-side crash.",
-                    "shape": "multi_stream",
-                    "n": 2
-                  }
-                ],
-                "vod_arcs": 313,
-                "moments": 40,
-                "candidates": 509,
-                "pool": 2983,
-                "pool_with_vod": 2107,
-                "arc_sizes": [
-                  2,
-                  3,
-                  4,
-                  6,
-                  2,
-                  2,
-                  3,
-                  3,
-                  2,
-                  2
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:squeex/squeex-about-charact-2026w38",
-                  "outcome": "narrative_failed",
-                  "why": "scores [62, 58, 58] after 2 revision(s) \u2014 @61s weak_payoff: The cut ends on 'I will read this back to you' and never shows the readback, which the premise names as the payoff. Extend the final beat past 129.5s of the source to include the readback and the reac; @3s confusing: The cold open is a garb"
-                },
-                {
-                  "cluster": "yololaryy@momentaggressivelongjaypartytime-au0nfaeeycihjf8k",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@vod2823602117",
-                  "outcome": "already_refused",
-                  "why": "2026-10-15: sources fail preflight: preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "scout:stableronaldo/stableronaldo-face-inside-2026w39",
-                  "outcome": "narrative_failed",
-                  "why": "scores [62, 66, 52] after 2 revision(s) \u2014 @3s confusing: Make it clear which person is Ron and who he yells at. The frames show a shirtless guy in glasses and a black-shirt guy, and the yeller and the person who later gets hit are not clearly the same perso; @5s missing_context: The wall-climbing se"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, possible panic moment",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "GTA RP art heist, unclear payoff",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Buddha Screams For Martin's Help In Total Chaos"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.72,
-              "problems": [
-                "Hook caption sits at the top of the sharp region (not the bottom third) but doesn't cover any faces or action",
-                "Subject is somewhat small and wanders in a few frames (e.g. 20.6s, 28.9s)"
-              ]
-            }
-          },
-          "took_s": 190.8
-        },
-        {
-          "slug": "clip-20261015-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20261015",
-      "dry_run": false,
       "ts": "2026-10-15T15:35:30+00:00",
       "feedback": {
         "snapshot": true,
@@ -5697,6 +5348,58 @@
             }
           },
           "took_s": 176.6
+        },
+        {
+          "slug": "clip-20261023-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261023",
+      "dry_run": false,
+      "ts": "2026-10-23T16:38:46+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 15,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 140,
+        "with_retention": 120,
+        "with_curve": 14,
+        "fetched_at": "2026-10-23T13:42:38.391343+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 0
+      },
+      "dead_sources": {},
+      "clips": [
+        {
+          "slug": "clip-20261023-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261023-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261023-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261023-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261023-5",
+          "ok": true,
+          "skipped": "already posted"
         },
         {
           "slug": "clip-20261023-6",
