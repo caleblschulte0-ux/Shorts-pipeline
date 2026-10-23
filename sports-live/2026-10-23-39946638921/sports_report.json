@@ -1,0 +1,399 @@
+{
+ "date": "2026-10-23",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "hockey",
+   "who": "Brady Tkachuk",
+   "why": "A star returns to Ottawa for his video tribute and gets booed, and the camera catches his face as it happens.",
+   "post_title": "Brady Tkachuk reaction to getting booed after his video tribute in Ottawa",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xc3ml8/brady_tkachuk_reaction_to_getting_booed_after_his/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xc3ml8/brady_tkachuk_reaction_to_getting_booed_after_his",
+   "title": "Brady Tkachuk Gets Emotional As Ottawa Reacts To His Tribute",
+   "hook": "Brady Tkachuk speaks after his Ottawa tribute \ud83e\udd40",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "repairs": [
+    {
+     "score": 61,
+     "reason": "showrunner BLOCK: The line promises Brady Tkachuk speaking after his Ottawa tribute, but the clip only shows the tribute re-filmed off the jumbotron plus reaction b-roll, and never shows him speaking or the boos."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The line promises Brady Tkachuk speaking after his Ottawa tribute, but the clip only shows the tribute re-filmed off the jumbotron plus reaction b-roll, and never shows him speaking or the boos.",
+    "score": 61
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The line promises Brady Tkachuk speaking after his Ottawa tribute, but the clip only shows the tribute re-filmed off the jumbotron plus reaction b-roll, and never shows him speaking or the boos."
+  },
+  {
+   "sub": "nfl",
+   "who": "Tank Dell",
+   "why": "A receiver says what he will do on his first catch back after nearly two years away from the field.",
+   "post_title": "[Highlight] WR Tank Dell on playing this Sunday for the first time since December 2024: \u201cI don\u2019t care if the first catch is 2 yards, 5 yards, I\u2019m spiking the ball and doing what I gotta do. It\u2019s gonna",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xc0ccq/highlight_wr_tank_dell_on_playing_this_sunday_for/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xc0ccq/highlight_wr_tank_dell_on_playing_this_sunday_for",
+   "title": "Tank Dell Can't Wait To Get Tackled After Nearly Two Years Away",
+   "hook": "Tank Dell returns this Sunday \ud83e\udd79",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      266,
+      356,
+      178,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 74
+   },
+   "video_url": "https://youtube.com/shorts/tDWvewzDVlo",
+   "ok": true,
+   "publish_at": "2026-10-23T16:00:00Z",
+   "seconds": 1905,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261023-tank-dell-can-t-wait-to-get-tackled-after-nearly-1e87c3c1",
+    "tiktok": "queued for 2026-10-23T16:00:00Z"
+   }
+  },
+  {
+   "sub": "soccer",
+   "who": "Dejan Kulusevski",
+   "why": "A player walks back out in a Tottenham shirt for the first time in 526 days and the crowd responds.",
+   "post_title": "Kulusevski\u2019s Return to Tottenham After 526 Days",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xa8q43/kulusevskis_return_to_tottenham_after_526_days/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xa8q43/kulusevskis_return_to_tottenham_after_526_days",
+   "title": "Dejan Kulusevski Returns To Tottenham After 526 Days And The Fans Erupt",
+   "hook": "Kulusevski is finally back \ud83e\udd79",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: The real return (crowd clapping, #21 coming on) is buried inside another creator's narrated tribute montage of old clips, with a caption naming Kane."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The real return (crowd clapping, #21 coming on) is buried inside another creator's narrated tribute montage of old clips, with a caption naming Kane.",
+    "score": 66
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The real return (crowd clapping, #21 coming on) is buried inside another creator's narrated tribute montage of old clips, with a caption naming Kane."
+  },
+  {
+   "sub": "nfl",
+   "who": "Chris Olave",
+   "why": "A receiver answers people mocking his Guardian Cap by saying he wears it for his kids and his future.",
+   "post_title": "[Highlight/Interview] WR Chris Olave has a message for those who may mock him for his usage of a Gaurdian Cap: \u201cI put it on for my kids, to protect my brain and my future\u201d.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xby31g/highlightinterview_wr_chris_olave_has_a_message/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xby31g/highlightinterview_wr_chris_olave_has_a_message",
+   "title": "Chris Olave Says He Wears The Guardian Cap For His Kids",
+   "hook": "Olave on why he wears the Guardian Cap",
+   "ledger": {
+    "moves": [
+     "zoom@21.9"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      540,
+      720,
+      190,
+      0
+     ]
+    }
+   },
+   "repairs": [
+    {
+     "score": 61,
+     "reason": "showrunner BLOCK: A 34s static press-conference talking head about a Guardian Cap that is never shown, with no punch-in or cutaway, so the hook and the payoff both fall flat."
+    },
+    {
+     "score": 62,
+     "reason": "showrunner BLOCK: A real and fitting Olave moment, but it is 26s of one locked podium shot with him jammed against the right edge, overlapping captions at 6.8s, and no punch-in on the \"for my kids\" line it promises."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK:",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK:"
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "LeBron gets heated with a Knicks fan and shouts that he's an Ohio baby.",
+   "post_title": "LeBron James Heated With a Knicks Fan: \"Ain't nothing soft in the Midwest... I'm not from the West Coast, I'm from Ohio, baby. I'm an Ohio baby, fuck is you talking about?\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/idugt5",
+   "topic": "https://www.reddit.com/r/nba/comments/1xbds51/lebron_james_heated_with_a_knicks_fan_aint",
+   "title": "LeBron James Gets Heated With A Knicks Fan: \"I'm An Ohio Baby\"",
+   "hook": "LeBron fires back at a Knicks fan",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "repairs": [
+    {
+     "score": 79,
+     "reason": "showrunner BLOCK: The moment is real and lands at mid3, but our line is stacked on the repost's burned-in captions for the first 12 seconds, so the text is a cluttered three-layer collision."
+    },
+    {
+     "score": 79,
+     "reason": "showrunner BLOCK: The moment is real and it lands, but our caption is stacked on top of the source repost's own burned-in captions and title box, so the text collides and is hard to read on a phone."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The moment itself is good: LeBron's 'I'm an Ohio baby' shout lands at mid3. But it is someone else's captioned repost with our line stamped over their captions, and it trails off into 5s of unrelated game play.",
+    "score": 71
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The moment itself is good: LeBron's 'I'm an Ohio baby' shout lands at mid3. But it is someone else's captioned repost with our line stamped over their captions, and it trails off into 5s of unrelated game play."
+  },
+  {
+   "sub": "nfl",
+   "who": "Aaron Rodgers",
+   "why": "Rodgers tells Josiah Trotter \"I know your dad\" in the middle of a game.",
+   "post_title": "[Highlight] Steelers QB Aaron Rodgers exchanges words on the field with Josiah Trotter, telling him: \u201cI know your dad.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x9gsmq/highlight_steelers_qb_aaron_rodgers_exchanges/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x9gsmq/highlight_steelers_qb_aaron_rodgers_exchanges",
+   "skipped": "too short: the post runs 7.0s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Charles Barkley",
+   "why": "Barkley jokes on set about standing close to Shaq and Kash Patel.",
+   "post_title": "Charles Barkley: \"Should we be standing this close to Shaq?... He's been hanging out with Kash Patel. That's dangerous.\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/r0tqiq",
+   "topic": "https://www.reddit.com/r/nba/comments/1xc96lc/charles_barkley_should_we_be_standing_this_close",
+   "title": "Charles Barkley Jokes Shaq Is Dangerous Now And Shaq Has To Answer",
+   "hook": "Barkley won't stand near Shaq",
+   "ledger": {
+    "moves": [
+     "zoom@11.5"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The Barkley/Shaq bit is real and funny for its first 17 seconds, then the cut drifts into the show's highlight montage and title card and never lands Shaq's comeback.",
+    "score": 53
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The Barkley/Shaq bit is real and funny for its first 17 seconds, then the cut drifts into the show's highlight montage and title card and never lands Shaq's comeback."
+  },
+  {
+   "sub": "MMA",
+   "who": "Merab Dvalishvili",
+   "why": "At the face-off, Merab tells Petr Yan he'll eat him on Saturday, and Yan has to stand there for it.",
+   "post_title": "Merab Dvalishvili to Petr Yan during their face off: \"Talk now, enjoy. Saturday I will show you. I will eat you.\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/yo08ab",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xcjnda/merab_dvalishvili_to_petr_yan_during_their_face",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "LeBron answers the president taking shots at him with a calm one-liner.",
+   "post_title": "LeBron James responds to the president taking shots at him with a one-liner: \u201cSlow news day at the office, you know.\u201d",
+   "upvotes": 0,
+   "url": "https://streamable.com/hwd9qn",
+   "topic": "https://www.reddit.com/r/nba/comments/1xd4epv/lebron_james_responds_to_the_president_taking",
+   "title": "LeBron James Answers Trump's Shots With One Line",
+   "hook": "LeBron's one-line answer to Trump",
+   "ledger": {
+    "moves": [
+     "whoa@13.3"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "closeup",
+     "reason": "one large persistent face \u2014 the face is the content",
+     "shots": [
+      {
+       "mode": "closeup",
+       "reason": "one large persistent face \u2014 the face is the content"
+      }
+     ],
+     "n_subjects": 1,
+     "face_bands": [
+      [
+       0.001,
+       0.918
+      ]
+     ]
+    }
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: The one-liner is real and it lands, but about 11 of its 19 seconds show the top of LeBron's head, and the captions garble and pile onto the TV graphic."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 83
+   },
+   "video_url": "https://youtube.com/shorts/PkacE2udK0o",
+   "ok": true,
+   "publish_at": "2026-10-23T20:00:00Z",
+   "seconds": 184,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261023-lebron-james-answers-trump-s-shots-with-one-line-2d45caed",
+    "tiktok": "queued for 2026-10-23T20:00:00Z"
+   }
+  },
+  {
+   "sub": "nba",
+   "who": "Yaxel Lenderborg",
+   "why": "A rookie gives a blunt, funny review of his NBA debut against Luka, complete with the flopping and praying to the ref.",
+   "post_title": "Yaxel Lenderborg on his NBA debut and guarding Luka: \"I got to see what the NBA is like, man. Lot of flopping, lot of foul baiting, lot of praying to the ref. Interesting first game for me... Being in",
+   "upvotes": 0,
+   "url": "https://streamable.com/87r0qv",
+   "topic": "https://www.reddit.com/r/nba/comments/1xcboxn/yaxel_lenderborg_on_his_nba_debut_and_guarding",
+   "title": "Yaxel Lenderborg Says He Told Luka He Can't Score On Him After His NBA Debut",
+   "hook": "Yaxel lost all respect for Luka \ud83d\udc80",
+   "ledger": {
+    "moves": [
+     "zoom@8.16",
+     "whoa@36.96"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      538,
+      718,
+      360,
+      0
+     ]
+    }
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: The moment the line promises is really there, but the crop cuts off every burned-in caption at both edges and the clip ends on a weak trailing sentence, not the 'you can't score' punchline."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 83
+   },
+   "video_url": "https://youtube.com/shorts/FeV7kZsW6qo",
+   "ok": true,
+   "publish_at": "2026-10-24T00:00:00Z",
+   "seconds": 334,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261023-yaxel-lenderborg-says-he-told-luka-he-can-t-scor-7559d691",
+    "tiktok": "queued for 2026-10-24T00:00:00Z"
+   }
+  }
+ ],
+ "already_today": 0,
+ "pool": 99,
+ "already_posted": 5,
+ "shipped": 3
+}
