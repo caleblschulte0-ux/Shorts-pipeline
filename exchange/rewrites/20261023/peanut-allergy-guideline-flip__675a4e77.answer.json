@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "peanut-allergy-guideline-flip__675a4e77",
+  "slug": "peanut-allergy-guideline-flip",
+  "by": "chatgpt",
+  "written_at": "2026-10-23T11:26:00Z",
+  "title": "Peanut Allergy Diagnoses Fell 43% After Advice Reversed",
+  "hook": "Peanut allergy diagnoses fell 43% after the advice flipped.",
+  "closing": "Early guidance can reshape a child's lifelong allergy risk.",
+  "question": "Did your family's peanut advice change?",
+  "segments": [
+    {
+      "topic": "Peanut Allergy Rose",
+      "say": "Peanut allergy reached 1.4 percent in 2008, more than tripling from the earliest measurement."
+    },
+    {
+      "topic": "Peanut Allergy Trial",
+      "say": "Avoidance produced a 13.7 percent allergy rate, while early consumption was far lower."
+    },
+    {
+      "topic": "Peanut Allergy Fell",
+      "say": "Peanut allergy diagnoses fell about 43 percent after guidance changed, though comparison alone cannot prove cause."
+    }
+  ]
+}
