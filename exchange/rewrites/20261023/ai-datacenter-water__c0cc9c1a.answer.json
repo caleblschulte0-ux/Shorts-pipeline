@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "ai-datacenter-water__c0cc9c1a",
+  "slug": "ai-datacenter-water",
+  "by": "chatgpt",
+  "written_at": "2026-10-23T11:26:00Z",
+  "title": "One AI Conversation Can Cost 500 Milliliters Of Water",
+  "hook": "One AI conversation can consume 500 milliliters of water.",
+  "closing": "Every chat adds pressure to a shared water supply.",
+  "question": "Should AI disclose its water cost?",
+  "segments": [
+    {
+      "topic": "AI Water Tripled",
+      "say": "Microsoft's water use reached 6.4 million cubic meters, more than tripling since 2017."
+    },
+    {
+      "topic": "AI Water Leader",
+      "say": "Google used 21.2 million cubic meters, showing how large the AI water race became."
+    },
+    {
+      "topic": "AI Water Per Chat",
+      "say": "One AI conversation can cost 500 milliliters of water, turning prompts into physical demand."
+    }
+  ]
+}
