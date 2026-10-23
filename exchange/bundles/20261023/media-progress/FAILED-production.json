@@ -1,0 +1,99 @@
+{
+  "schema": "chatgpt-production-blocker/v1",
+  "date": "20261023",
+  "observed_at": "2026-10-23T11:29:00Z",
+  "bundle_sha256": "c55d857251d9b499274756dbee99cb54362eeae9dc4f0e9d870156cb87436f27",
+  "status": "blocked_downstream",
+  "closed": false,
+  "failed_step": "Verify actual channel output against the frozen contract using accepted upload URLs",
+  "completed": {
+    "started_commit": "68d6e12490c34c4f7c1fad9e7b522050363d1dbb",
+    "ask_answer_commits": [
+      "22a5b6c58d64fe0c568225258d8f199037af7234",
+      "d5ce585b76e5f868a82ccee55eeabddcc6a5a37a",
+      "57e82bca49a91946e0d8b9978f5bfd42fdc6d837"
+    ],
+    "asks_answered": 40,
+    "rewrites_answered": 20,
+    "reviews_answered": 0,
+    "response_commit": "177165576aba94439031374a8fa372d7abea1a34",
+    "done_commit": "88b578a01c926bfbdc456492b4e65776c78bb2b5",
+    "phase_b_commit": "9c5c61829ffaf1d35ca8b70930e5f50deaf89e6e",
+    "phase_b_result": "success; three Explainer rewrites applied, zero rejected",
+    "media_requests": 0,
+    "drive_verification": "not applicable: frozen bundle requested no media"
+  },
+  "channels": {
+    "sports": {
+      "required": 3,
+      "verified_posted": 0,
+      "pending": 3,
+      "evidence": "No accepted URL with a post/upload timestamp after the 20261023 handoff. The dedicated Sports worker had not started in the observed run window."
+    },
+    "third": {
+      "required": 6,
+      "verified_posted": 0,
+      "pending": 6,
+      "evidence": "No accepted Twitch/Third URL with a timestamp after the 20261023 handoff. No new Third Channel run appeared after the successful Daily Shorts handoff."
+    },
+    "explainer": {
+      "required": 4,
+      "verified_posted": 0,
+      "pending": 4,
+      "evidence": "Explainer run 39935413213 remained in progress at its Run step and the posted log had no 20261023 handoff-attributable URL."
+    }
+  },
+  "workflow_attempts": [
+    {
+      "run_id": 39945408004,
+      "name": "Exchange Phase B",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "run_id": 39945434630,
+      "name": "Daily Shorts",
+      "status": "completed",
+      "conclusion": "success",
+      "note": "The renderer reported sports_moment work belongs to the dedicated sports workflow; it uploaded no frozen-contract videos."
+    },
+    {
+      "run_id": 39945445954,
+      "name": "Daily Shorts",
+      "status": "in_progress",
+      "note": "Duplicate workflow_run remained in dependency installation."
+    },
+    {
+      "run_id": 39935413213,
+      "name": "Explainer Stories",
+      "status": "in_progress",
+      "note": "Long-running upload worker remained at Run; no accepted URL yet."
+    },
+    {
+      "run_id": 39945257927,
+      "name": "Claim mailbox verdicts",
+      "status": "in_progress",
+      "note": "Stalled in Install deps; later claim runs queued/cancelled by concurrency, so OPEN indexes were not refreshed."
+    }
+  ],
+  "mailboxes": {
+    "index_snapshot": {
+      "reviews_open": 0,
+      "ask_keys_open": 149,
+      "rewrites_open": 143
+    },
+    "answered_this_run": {
+      "reviews": 0,
+      "ask_keys": 40,
+      "rewrites": 20
+    },
+    "skipped_this_run": {
+      "reviews": 0,
+      "ask_keys": 0,
+      "rewrites": 0
+    },
+    "note": "The OPEN indexes predate these answer commits. Claim/apply was still queued or in progress, so index counts are stale and must not be mistaken for answer absence."
+  },
+  "exact_blocker": "The connected GitHub interface can read and write repository content but exposes no workflow-dispatch action. Existing channel workers had not produced accepted upload URLs, and the in-progress workers had not filed review requests. Fabricating URLs or marking the day closed would violate the contract.",
+  "remaining_shortfall": 13
+}
