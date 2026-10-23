@@ -15291,14 +15291,32 @@
       "ts": "2026-10-23T12:25:27.583142+00:00"
     },
     "clip-20261023-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kyedae/clip/SavoryKitschyCakeKappaClaus-80U8iwr9xzU22LEc",
-      "story_key": null,
-      "streamer": "kyedae",
+      "url": "https://youtube.com/shorts/bQ8SUcQ9fJg",
       "title": "Kyedae Says Her Name Is Being Dragged Through The Mud After The Tyson Breakup",
       "kind": "twitch_clip",
-      "ts": "2026-10-23T12:28:06.402168+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-23T12:28:16.010580+00:00",
+      "uploaded_at": "2026-10-23T12:28:16.010614+00:00",
+      "publish_at": "2026-10-24T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261023-kyedae-says-her-name-is-being-dragged-through-th-2aded023",
+        "tiktok": "queued for 2026-10-24T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/kyedae/clip/SavoryKitschyCakeKappaClaus-80U8iwr9xzU22LEc",
+      "streamer": "kyedae",
+      "series": "drama",
+      "hook": "Kyedae addresses the breakup rumors",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2601,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 29.0
+      },
+      "director_cut": true
     }
   }
 }

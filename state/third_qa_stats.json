@@ -1,58 +1,6 @@
 {
   "runs": [
     {
-      "date": "20261014",
-      "dry_run": false,
-      "ts": "2026-10-14T15:49:14+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 127,
-        "with_retention": 115,
-        "with_curve": 15,
-        "fetched_at": "2026-10-14T14:49:51.677098+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20261014-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261014-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261014-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261014-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261014-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261014-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
       "date": "20261015",
       "dry_run": false,
       "ts": "2026-10-15T12:36:19+00:00",
@@ -5687,6 +5635,364 @@
           "slug": "clip-20261022-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261023",
+      "dry_run": false,
+      "ts": "2026-10-23T12:28:16+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 15,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 140,
+        "with_retention": 120,
+        "with_curve": 14,
+        "fetched_at": "2026-10-23T11:10:42.723574+00:00"
+      },
+      "brain": {
+        "ok": 47,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261023-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "Speed with robot, possible reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "IShowSpeed dances with Knicks robot, cro",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ishowspeed Calls A Robot Over And Tries To Give It A Death Note"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "Word captions briefly overlap the hook card at 1.0s and 23.9s, giving a doubled 'New York robot' and 'gonna give you' ov",
+                "At 21.8s the robot is cut off at the right edge",
+                "Word captions sometimes drop into the blurred padding (21.8s)"
+              ]
+            }
+          },
+          "took_s": 238.9
+        },
+        {
+          "slug": "clip-20261023-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin 16:9 strip across the middle, about a third of the canvas height, not the roughly three quar; vision: The player character is tiny in the game footage. The boss is ",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "possible gameplay kill, unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "Boss kill, visible relief; gameplay-heav",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Runs Away After Hippo Goes Down And Chat Loses It"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.6,
+              "problems": [
+                "The sharp picture is a thin 16:9 strip across the middle, about a third of the canvas height, not the roughly three quar",
+                "The player character is tiny in the game footage. The boss is readable, but the action (running away, hippo going down) ",
+                "The word caption at 1.9s reads 'AWAY ANOTHER NIGHT', which looks garbled or mid-transition. The captions also sit over t",
+                "The large blurred padding above and below dominates the frame, so the clip feels letterboxed rather than framed."
+              ]
+            }
+          },
+          "took_s": 237.1
+        },
+        {
+          "slug": "clip-20261023-3",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, roughly 15-20% of the canvas height. The spec is about three quarters. The top third ; vision: The streamer is small in the strip, and most of the strip is t",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "inside reference, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "Wedding grudge joke, Forsen drama",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ludwig Says 4 Wedding Guests Are Dead To Him Till He Dies"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.7,
+              "problems": [
+                "The sharp picture is a thin strip, roughly 15-20% of the canvas height. The spec is about three quarters. The top third ",
+                "The streamer is small in the strip, and most of the strip is taken up by the chat panel. The face is hard to read on a p",
+                "The hook card sits in the blurred lower area as a large block of text. It competes with the picture and makes the frame ",
+                "Burned-in captions sit on the chat and the bottom of the strip. They don't cover the face, but they are crowded against "
+              ]
+            }
+          },
+          "took_s": 257.3
+        },
+        {
+          "slug": "clip-20261023-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, likely funny moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "Block, ref shirt grabbed, walks off",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jasontheween Gets Blocked By A Lil Kid And Can't Believe It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "speech caption 'Alright we out' overlaps the hook caption at ~16-19s",
+                "hook caption covers lower-body action in some frames",
+                "early wide shots have small subjects"
+              ]
+            }
+          },
+          "took_s": 219.4
+        },
+        {
+          "slug": "clip-20261023-5",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Sharp picture is a thin strip, about 30% of the canvas height, with the rest blurred padding. The target is about 75%.; vision: Jynxzi is a tiny webcam in the corner and the main picture is Mi",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "award talk, insider",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Minecraft death shown, but the context i",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Reacts To Winning The Kaak Streamer Award \ud83d\ude33"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.85,
+              "problems": [
+                "Sharp picture is a thin strip, about 30% of the canvas height, with the rest blurred padding. The target is about 75%.",
+                "Jynxzi is a tiny webcam in the corner and the main picture is Minecraft gameplay, so he is hard to read on a phone.",
+                "The renderer did not crop toward the action. It shows the full stream layout, including the stream HUD and a gameplay-te",
+                "The hook card 'Jynxzi at the streamer awards' and the title 'Winning the Kaak Streamer Award' do not match the footage. ",
+                "The caption sits on blurred padding and the sharp area has small illegible stream text, so the clip looks reposted rathe"
+              ]
+            }
+          },
+          "took_s": 153.8
+        },
+        {
+          "slug": "clip-20261023-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "face_content",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 99,
+                "refused_shown": 11,
+                "scouted": [],
+                "vod_arcs": 300,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 3011,
+                "pool_with_vod": 2092,
+                "arc_sizes": [
+                  6,
+                  3,
+                  2,
+                  3,
+                  3,
+                  2,
+                  2,
+                  3,
+                  2,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "chloeyummyyy@momentlongfurryyakinikufeelsbadman-r-cffs1dts-k",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The sources hold a mock-suspense bit, not a story. In the stream before, chloeyummyyy plucks rose petals in a bath saying 'he loves me / he loves me not'. It ends on a throwaway 'well, I guess he love"
+                },
+                {
+                  "cluster": "emiru@momentcharmingcogentwalrusomgscoots-v3zbwchhhbmjt98h",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.5,
+              "why": "Vague title, rumor topic, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Breakup talk, but only sitting talking",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kyedae Says Her Name Is Being Dragged Through The Mud After The Tyson Breakup"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "The top half of the frame is mostly empty plush-toy background with only a stream alert in it, so it adds little",
+                "The hook caption sits over her chin and neck, close to the face but not covering the eyes or mouth",
+                "The subscriber-alert overlays in the top section are distracting but don't block the action"
+              ]
+            }
+          },
+          "took_s": 168.4
         }
       ]
     }
