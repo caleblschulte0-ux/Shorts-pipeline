@@ -15393,14 +15393,32 @@
       "ts": "2026-10-23T12:42:21.032653+00:00"
     },
     "clip-20261023-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ohnepixel/clip/BlatantDaintyOwlKappaPride-p7y2x3f0Fsjma18Z",
-      "story_key": null,
-      "streamer": "ohnepixel",
+      "url": "https://youtube.com/shorts/hXkmtA5elp4",
       "title": "Ohnepixel Finds Out Someone Made This Shirt Of Him In One Day",
       "kind": "twitch_clip",
-      "ts": "2026-10-23T12:45:06.844986+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-23T12:45:17.643656+00:00",
+      "uploaded_at": "2026-10-23T12:45:17.643667+00:00",
+      "publish_at": "2026-10-24T05:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261023-ohnepixel-finds-out-someone-made-this-shirt-of-h-912ddc42",
+        "tiktok": "queued for 2026-10-24T05:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/BlatantDaintyOwlKappaPride-p7y2x3f0Fsjma18Z",
+      "streamer": "ohnepixel",
+      "series": "wholesome",
+      "hook": "Someone made an ohne shirt in one day \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2770,
+      "banger": 0.45,
+      "cut": {
+        "start": 2.1,
+        "end": 26.0
+      },
+      "director_cut": true
     }
   }
 }

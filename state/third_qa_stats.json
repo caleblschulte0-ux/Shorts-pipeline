@@ -3,506 +3,6 @@
     {
       "date": "20261015",
       "dry_run": false,
-      "ts": "2026-10-15T12:36:19+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 133,
-        "with_retention": 118,
-        "with_curve": 15,
-        "fetched_at": "2026-10-15T08:46:16.443311+00:00"
-      },
-      "brain": {
-        "ok": 42,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261015-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 82,
-                "refused_shown": 18,
-                "scouted": [
-                  {
-                    "premise": "Buddha is pitched on a coin pumping 'beyond the multiverse', then loses $800 when Tony rugpulls it live, while xQc watch",
-                    "shape": "multi_streamer",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Kai says Ron is in trouble, then his Dean character snaps at the guidance counselor and he is caught by the Dean.",
-                    "shape": "one_stream",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Kai Cenat answers Reggie's 'part two' by demanding proof, then shows the 2:32 AM call log to say Reggie lied, and addres",
-                    "shape": "one_stream",
-                    "n": 6
-                  }
-                ],
-                "vod_arcs": 310,
-                "moments": 40,
-                "candidates": 506,
-                "pool": 2978,
-                "pool_with_vod": 2105,
-                "arc_sizes": [
-                  2,
-                  3,
-                  4,
-                  6,
-                  2,
-                  2,
-                  3,
-                  3,
-                  2,
-                  2
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:buddha+xqc",
-                  "outcome": "already_refused",
-                  "why": "2026-10-12: rendered; critic scored 68 after 1 revision(s) \u2014 @2s missing_context: Say who the promoter is and what the coin is. 'Snack bits' is never explained, and a stran"
-                },
-                {
-                  "cluster": "yololaryy@momentaggressivelongjaypartytime-au0nfaeeycihjf8k",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@vod2823602117",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "scout:kaicenat/kaicenat-around-asking-2026w30",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The footage does not show the scout's threat, snap and caught-by-the-Dean chain. The 0h05m threat clip is not among the sources. The 0h36m clip shows Kai in a vest and tie shouting 'sorry!' and 'I'm g"
-                },
-                {
-                  "cluster": "kaicenat@momenttangentialdeterminedalmondspicyboy-oeitzou0ub",
-                  "outcome": "already_refused",
-                  "why": "2026-10-11: rendered; critic scored 46 after 2 revision(s) \u2014 @15s pacing: From about 12s to 42s the picture is a static red slide (a Europe flag and 'UNIVERSITY 2027 HELD I"
-                },
-                {
-                  "cluster": "kaicenat@vod2822355279",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: director judged: not a story \u2014 The three clips don't form a chain. Clip 1 is Kai reading a roll call of names to the 'main office', with no consequence shown. C"
-                },
-                {
-                  "cluster": "ishowspeed@momentmagnificentcaringlapwinglitfam--majf-ezbaoy",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: director judged: not a story \u2014 This is a run of unrelated reactions, not a chain. Before the clip, Speed checks whether his mic is too loud and reacts to a TikT"
-                },
-                {
-                  "cluster": "sondergaardlol@momentfantasticpunchybisonredcoat-pmq8vp3f-er",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: table read 48 < 50 \u2014 not rendered; repetition: The setup repeats the same countdown ('3, 2, 1, go') four or five times between 25s and 38s. Cut it to one failed"
-                },
-                {
-                  "cluster": "northernlion@vod2880264709",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 preflight:source barely moves (avg frame delta 0.13) \u2014 static image/pa; preflight:source barely moves (avg fra"
-                },
-                {
-                  "cluster": "squeex@momentfunencouragingopossumttours-1nemuxpg-iszrxpe",
-                  "outcome": "already_refused",
-                  "why": "2026-10-11: rendered; critic scored 66 after 2 revision(s) \u2014 @20s confusing: The shooting beat (about 11-20s) has no speech, and the next line, 'mind's been hit. It's my ey"
-                },
-                {
-                  "cluster": "ohnepixel@vod2896011569",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: director judged: not a story \u2014 The sources don't show why ohnepixel is crying, so the premise can't be stated plainly. Clip 1 has no speech and clip 2 only has "
-                },
-                {
-                  "cluster": "sondergaardlol@momentartisticfamoustomatofreakinstinkin-f2jw",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The sources hold no meaningful change that can be stated plainly. The clip shows two men fiddling at a desk and then laughing, and nothing says what the joke or event was. The stretch before it is fra"
-                },
-                {
-                  "cluster": "ishowspeed@vod2898041380/ishowspeed-about-driv-2026w42",
-                  "outcome": "narrative_failed",
-                  "why": "scores [68, 68, 66] after 2 revision(s) \u2014 @0s confusing: The opening lines (\"You are so ugly!\", \"bro calling me face\") have nothing to do with the premise and sound like a different argument. Open on a line that states he was shot and is on the ground, or c; @5s missing_context: A stranger is never "
-                },
-                {
-                  "cluster": "isthisemmiep@momentwittyantsynigirihotpokket-ky7nbggbgbqfd3i",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 There is no meaningful change and no payoff. The three sources show a She-Hulk cosplayer walking through a crowded NYCC floor while chatting about arriving late because of the makeup, other convention"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.55,
-              "why": "crashout, unclear trigger",
-              "blind": false
-            },
-            "content": {
-              "score": 0.7,
-              "why": "Visible tilt/meltdown after tournament l",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Ludwig Crashes Out After Losing To A 8,000-Hour Player In An Influencer Tournament"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.55,
-              "problems": [
-                "Ludwig sits at the right edge and is partly cropped out in some frames (10.1s face cut off, 6.0s, 14.1s and 18.1s near t",
-                "The left side of the frame is mostly stream chat and empty room, so the subject is small and pushed right.",
-                "The hook card sits over scrolling chat text, which looks messy but does not cover his face.",
-                "Word captions briefly cover his hand during gestures, which is minor."
-              ]
-            }
-          },
-          "took_s": 232.0
-        },
-        {
-          "slug": "clip-20261015-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "face_content",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 89,
-                "refused_shown": 19,
-                "scouted": [
-                  {
-                    "premise": "Squeex's GTA roleplay character Ramasquamy watches Vivek get assassinated at the amphitheater, then reflects on the even",
-                    "shape": "one_stream",
-                    "n": 2
-                  },
-                  {
-                    "premise": "Burn plays Chris Handsome in GTA RP to catch weebs, and Pengwin's stream shows Chris Handsome from Baitline catching his",
-                    "shape": "multi_streamer",
-                    "n": 2
-                  }
-                ],
-                "vod_arcs": 310,
-                "moments": 40,
-                "candidates": 507,
-                "pool": 2978,
-                "pool_with_vod": 2105,
-                "arc_sizes": [
-                  2,
-                  3,
-                  4,
-                  6,
-                  2,
-                  2,
-                  3,
-                  3,
-                  2,
-                  2
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:squeex/squeex-about-offic-2026w38",
-                  "outcome": "narrative_failed",
-                  "why": "scores [62, 72, 64] after 2 revision(s) \u2014 @55s weak_payoff: The opening question is how he turns being shot at into a campaign speech. The cut never answers it. It ends on a wording argument and the officer saying 'I will read this back'. End on a line that sh; @13s confusing: 'Wait, wait! fight for"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.62,
-              "why": "visible skit, physical comedy",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "Dark GTA RP, unclear event, mild reactio",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Ishowspeed John Bobby Rookie Cop Raid Goes Totally Wrong"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.6,
-              "problems": [
-                "Game footage in the top half is very dark for long stretches (about 37s-57s), so the action is hard to read",
-                "The hook caption sits over the lower face and chest of the facecam for the whole clip, though it does not cover the eyes"
-              ]
-            }
-          },
-          "took_s": 292.3
-        },
-        {
-          "slug": "clip-20261015-3",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin letterboxed strip, roughly a third of the 9:16 canvas, instead of about three quarters. The ; vision: The crop isn't centred on the action. The head is cut off at 1",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261015-3",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, unclear what happens",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Rage rant, shirt off, unclear trigger",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Joe Joe_Bartolozzi Loses It: \"We Both Suck!\" After The Last Game"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.8,
-              "problems": [
-                "The sharp picture is a thin letterboxed strip, roughly a third of the 9:16 canvas, instead of about three quarters. The ",
-                "The crop isn't centred on the action. The head is cut off at 13.9s and 16.0s, and the torso or shoulders fill the frame ",
-                "The stream's chat overlay and webcam clutter take up a large part of the small picture, which makes the subject read eve",
-                "Most of the canvas is blurred padding with a dark, mostly empty bottom area, so the clip looks reposted rather than edit"
-              ]
-            }
-          },
-          "took_s": 243.7
-        },
-        {
-          "slug": "clip-20261015-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261015-4",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "garbage title, unknown",
-              "blind": false
-            },
-            "content": {
-              "score": 0.62,
-              "why": "Press-conference women's spat, Adin medi",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Adinross Makes Two Girls Fight Over Who Brought Up Whose Mom First"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "girl's face is partly cropped at the right edge in the 13-18s frames",
-                "word caption overlaps the stream's own burned-in captions around 13s, so the text looks doubled"
-              ]
-            }
-          },
-          "took_s": 213.3
-        },
-        {
-          "slug": "clip-20261015-5",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Streamer talking, unclear beef, no visib)",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261015-5",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "garbage title, unknown content",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "Streamer talking, unclear beef, no visib",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 54.6
-        },
-        {
-          "slug": "clip-20261015-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "face_content",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261015-6",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "vague, Speed reaction unknown",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "Soccer juggling attempts, no clear payof",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Ishowspeed Gets Called Out In Front Of Everyone And Can't Believe It"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.55,
-              "problems": [
-                "Subject is partly cropped out of the top panel in several frames (4.8s, 6.5s, 9.1s, 10.0s)",
-                "Subject sits at the left edge of the bottom panel at 8.2\u20139.1s",
-                "The hook caption sits low in the bottom panel and stays on screen throughout"
-              ]
-            }
-          },
-          "took_s": 89.0
-        }
-      ]
-    },
-    {
-      "date": "20261015",
-      "dry_run": false,
       "ts": "2026-10-15T13:34:58+00:00",
       "feedback": {
         "snapshot": true,
@@ -5993,6 +5493,215 @@
             }
           },
           "took_s": 168.4
+        }
+      ]
+    },
+    {
+      "date": "20261023",
+      "dry_run": false,
+      "ts": "2026-10-23T12:45:17+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 15,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 140,
+        "with_retention": 120,
+        "with_curve": 14,
+        "fetched_at": "2026-10-23T11:10:42.723574+00:00"
+      },
+      "brain": {
+        "ok": 22,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261023-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261023-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "P.O box opening, mild curiosity",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Mansion walkabout, chat laughs, payoff u",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Gets Shown Something From Marlon's P.O. Box And Can't Hold It In"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "The first ~5s is mostly the back of Ron's head with Marlon tiny in the background",
+                "Some frames (17.7s, 19.8s) are motion-blurred or show a bare wall, but that comes from the source footage",
+                "The hook caption sits low over the subject's body in several frames, but it doesn't cover a face"
+              ]
+            }
+          },
+          "took_s": 190.5
+        },
+        {
+          "slug": "clip-20261023-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "face_content",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unknown event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "boss fight, unclear payoff, insider",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Begs 'If There's A Third One' And Then This Happens"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "Face cam is cropped tight at the forehead in a few frames",
+                "Hook caption sits across the chin and neck of the face cam, though the face stays readable",
+                "Game footage in the top panel is small and dark, so the action is hard to read"
+              ]
+            }
+          },
+          "took_s": 162.6
+        },
+        {
+          "slug": "clip-20261023-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261023-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "unclear, possible shirt moment",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Fan wearing his shirt, mild, insider",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ohnepixel Finds Out Someone Made This Shirt Of Him In One Day"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.75,
+              "problems": [
+                "Hook caption overlaps the shirt print in a few frames, but it doesn't cover a face",
+                "Some frames are tightly cropped on the shirt, which fits the story",
+                "Word captions sit over the lower body or shirt area, which is acceptable"
+              ]
+            }
+          },
+          "took_s": 176.6
+        },
+        {
+          "slug": "clip-20261023-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }
