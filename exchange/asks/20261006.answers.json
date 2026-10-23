@@ -40,6 +40,96 @@
       "answer": "{\"hook\":\"Your country hit 29% with no religion—and the youngest lead.\",\"closing\":\"Faith did not vanish; it stopped being default.\",\"question\":\"Do you consider yourself religious?\",\"segments\":[{\"topic\":\"Americans Without Religion\",\"say\":\"From 8% in 1990 to 29% in 2021, no religion now exceeds 1 in 4.\"},{\"topic\":\"Americans By Generation\",\"say\":\"Only 10% of the oldest Americans have no religion, versus roughly 1 in 3 Gen Z.\"},{\"topic\":\"American Religion Shift\",\"say\":\"Unaffiliated Americans now outnumber Catholics and are closing in on Protestants.\"}]}",
       "by": "chatgpt",
       "at": "2026-10-22T11:24:00Z"
+    },
+    "cb7dc081201ea6f6": {
+      "answer": "{\"hook\":\"Your storm name can vanish after 100 retirements.\",\"closing\":\"Some names become memorials, not labels.\",\"question\":\"Which retired name do you remember?\",\"segments\":[{\"topic\":\"Hurricane Names Retired\",\"say\":\"Retired hurricane names rose from 1 in 1954 to 100 by 2024.\"},{\"topic\":\"Hurricane Cost\",\"say\":\"Katrina caused about $125 billion in damage, making reuse feel wrong.\"},{\"topic\":\"Hurricane Disasters\",\"say\":\"The yearly US count climbed from about 3 in the 1980s.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "dae6a1d7322f8745": {
+      "answer": "{\"hook\":\"Your backyard lost nearly 3 billion birds.\",\"closing\":\"A quieter sky is the warning.\",\"question\":\"Are birds disappearing near you?\",\"segments\":[{\"topic\":\"America Lost Birds\",\"say\":\"North America fell from 10.1 billion birds in 1970 to 7.2 billion in 2017.\"},{\"topic\":\"Bird Groups Lost\",\"say\":\"Grassland birds fell 53 percent, while waterfowl grew 56 percent.\"},{\"topic\":\"Bird Families Lost\",\"say\":\"Just 12 familiar bird families produced 90 percent of the total loss.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "5250c408f5e7ddac": {
+      "answer": "{\"hook\":\"America gained 6 centimeters—and still lost the height race.\",\"closing\":\"Height tracks childhood conditions, not destiny.\",\"question\":\"Are you taller than your grandparents?\",\"segments\":[{\"topic\":\"Americans Gained Height\",\"say\":\"American men rose from 171 centimeters in 1914 to 177 in 2014.\"},{\"topic\":\"Americans Lost Ground\",\"say\":\"South Korean women gained 20.2 centimeters; Iranian men gained 16.5.\"},{\"topic\":\"Americans Fell Behind\",\"say\":\"Countries taller than the US jumped from 2 in 1914 to 36 in 2014.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "819b4b0b24be31fe": {
+      "answer": "{\"hook\":\"Your measurements isolate the US with only 3 countries.\",\"closing\":\"Mixed systems create expensive mistakes.\",\"question\":\"Should the US switch?\",\"segments\":[{\"topic\":\"US Metric Holdouts\",\"say\":\"Only 3 countries remain outside official metric adoption, covering about 5 percent of people.\"},{\"topic\":\"US Metric Failure\",\"say\":\"A $327.6 million orbiter passed at 57 kilometers instead of 226 in 1999.\"},{\"topic\":\"Metric Fuel Failure\",\"say\":\"A Canadian airliner loaded 20,400 pounds, not the 45,000 it needed.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "2e1ff737b38e9d98": {
+      "answer": "{\"hook\":\"Your divorce assumption collapsed from 4.7 to 2.4.\",\"closing\":\"Later marriages changed the curve.\",\"question\":\"What age feels right for marriage?\",\"segments\":[{\"topic\":\"Divorce Rate Fell\",\"say\":\"US divorces fell from 4.7 per 1,000 in 1990 to 2.4 in 2022.\"},{\"topic\":\"Marriage Age Rose\",\"say\":\"Women's first-marriage age rose from 23.9 to 28.6 over the same period.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "c01a923321d56b09": {
+      "answer": "{\"hook\":\"Your library lost 579 million visits after 2019.\",\"closing\":\"The library moved into your pocket.\",\"question\":\"When did you last visit?\",\"segments\":[{\"topic\":\"Library Visits Fell\",\"say\":\"Visits fell from 1.25 billion in 2019 to 671 million in 2022.\"},{\"topic\":\"Library Checkouts Grew\",\"say\":\"Digital checkouts climbed from 326 million in 2019 to 739 million in 2024.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "d43f62718bc0ec23": {
+      "answer": "{\"hook\":\"Your reachable water is only 0.007% of Earth's supply.\",\"closing\":\"Fresh water is almost invisible.\",\"question\":\"Did you expect it this low?\",\"segments\":[{\"topic\":\"Earth Water Salty\",\"say\":\"Oceans hold 96.5 percent of Earth's water; freshwater is only 3.5 percent.\"},{\"topic\":\"Earth Water Locked\",\"say\":\"Freshwater is 68.7 percent frozen and 30.1 percent underground.\"},{\"topic\":\"Earth Water Reachable\",\"say\":\"Lakes and rivers contain about 0.007% of all Earth's water.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "0bc33e6e4dc30556": {
+      "answer": "{\"hook\":\"Your cargo ship grew sixfold to 24,327 boxes.\",\"closing\":\"Bigger ships barely need bigger crews.\",\"question\":\"Would you work on one?\",\"segments\":[{\"topic\":\"Cargo Ships Grew\",\"say\":\"The largest cargo ship grew from 4,000 boxes in 1980 to 24,327 in 2024.\"},{\"topic\":\"Cargo Ship Length\",\"say\":\"The MSC Irina stretches about 400 meters, longer than the Titanic.\"},{\"topic\":\"Cargo Ship Crew\",\"say\":\"About 20 people run a ship carrying six times the cargo.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "62211948743ec7b0": {
+      "answer": "{\"hook\":\"Your CEO pay gap exploded from 21 to 281.\",\"closing\":\"One desk earns your year fast.\",\"question\":\"Does 281-to-1 feel defensible?\",\"segments\":[{\"topic\":\"CEO Pay Exploded\",\"say\":\"CEO pay rose from 21 times worker pay in 1965 to 281 in 2024.\"},{\"topic\":\"CEO Pay Growth\",\"say\":\"Since 1978, CEO pay climbed 1,085 percent; worker pay rose 24 percent.\"},{\"topic\":\"CEO Pay Days\",\"say\":\"At 281-to-1, a CEO earns your yearly pay in about 1.3 days.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "69d5b77b4b37558a": {
+      "answer": "{\"hook\":\"Your school revived cursive after only 14 states kept it.\",\"closing\":\"Unreadable history is still unreadable.\",\"question\":\"Can you still read cursive?\",\"segments\":[{\"topic\":\"Cursive States Return\",\"say\":\"Cursive requirements rose from 14 states in 2016 to 25 in 2024.\"},{\"topic\":\"Cursive Reading Fell\",\"say\":\"About 2 in 3 young Americans cannot read cursive.\"},{\"topic\":\"Cursive Archives Wait\",\"say\":\"About 80 percent of National Archives documents are written in cursive.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "33c6b988f3c91ecf": {
+      "answer": "{\"hook\":\"Your English internet collapsed from 75 to 45 percent.\",\"closing\":\"The web stopped speaking one language.\",\"question\":\"Which language dominates your feed?\",\"segments\":[{\"topic\":\"English Internet Fell\",\"say\":\"English web pages fell from 75 percent in 1998 to 45 by 2005.\"},{\"topic\":\"English Internet Growth\",\"say\":\"English content grew 281 percent; Arabic surged 2,501 percent.\"},{\"topic\":\"English Internet Today\",\"say\":\"English now covers 55 percent of websites; other languages hold 45 percent.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "7e1bab4c4e5a71f4": {
+      "answer": "{\"hook\":\"Your tattoo trend doubled from 16% to 32%.\",\"closing\":\"Ink became mainstream, not rebellion.\",\"question\":\"How many tattoos do you have?\",\"segments\":[{\"topic\":\"Americans Tattooed Doubled\",\"say\":\"Tattooed Americans rose from 16% in 2006 to 32% in 2023.\"},{\"topic\":\"Americans Tattooed Gender\",\"say\":\"Tattoos now cover 37% of women and 27% of men.\"},{\"topic\":\"Americans Tattooed More\",\"say\":\"Most of the 32% with ink already have more than one tattoo.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "45c7845d1c9890b6": {
+      "answer": "{\"hook\":\"Your dating pool lost 7 million Tinder users.\",\"closing\":\"Swipe fatigue is emptying the apps.\",\"question\":\"Did you delete a dating app?\",\"segments\":[{\"topic\":\"Dating Users Fell\",\"say\":\"Tinder's US users fell from 18 million in 2022 to about 11 million.\"},{\"topic\":\"Dating Industry Fell\",\"say\":\"Usage across the ten biggest dating apps dropped 16% in one year.\"},{\"topic\":\"Dating Users Drained\",\"say\":\"Now 78% of dating app users feel mentally or emotionally drained.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "3e831a17c24683f0": {
+      "answer": "{\"hook\":\"Your generation's drinking rate fell from 72% to 50%.\",\"closing\":\"Sober is becoming normal.\",\"question\":\"Do you drink less than your parents?\",\"segments\":[{\"topic\":\"Gen Z Drinking Fell\",\"say\":\"Drinking fell from 72% to 59% by 2023, then 50% now.\"},{\"topic\":\"Gen Z Youngest\",\"say\":\"Among 18 to 20 year-olds, drinking fell from 70% to 35%.\"},{\"topic\":\"Gen Z Weekly\",\"say\":\"Weekly drinking dropped from 67% in the early 2000s to 61% today.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "d513376cfac5fdcf": {
+      "answer": "{\"hook\":\"Your thrift habit became a 43 billion dollar market.\",\"closing\":\"Secondhand became first choice.\",\"question\":\"What was your best thrift find?\",\"segments\":[{\"topic\":\"Secondhand Clothes Growth\",\"say\":\"Secondhand clothing grew 14 percent in 2024, 5 times faster than regular retail.\"},{\"topic\":\"Secondhand Clothes Shoppers\",\"say\":\"American secondhand shoppers rose from 52 to 58 percent in 2024.\"},{\"topic\":\"Secondhand Clothes Market\",\"say\":\"The US market was 43 billion dollars in 2023 and could reach 74 by 2029.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "5c959c2e9cb7dfdc": {
+      "answer": "NONE",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "ce1c43854b3e9bef": {
+      "answer": "Why 'Just Recycle It' Barely Works",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
+    },
+    "54d5530960852129": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The $15-per-gram price reverses the expectation that a tiny pantry ingredient should be cheap.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-23T11:22:00Z"
     }
   }
 }
