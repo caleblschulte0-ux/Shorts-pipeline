@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "self-storage-outnumbers-starbucks__97599610",
+  "slug": "self-storage-outnumbers-starbucks",
+  "by": "chatgpt",
+  "written_at": "2026-10-23T12:05:00Z",
+  "title": "America Has 66,000 Storage Facilities—More Than Major Chains",
+  "hook": "America has 66,000 storage facilities—more than its biggest chains combined.",
+  "closing": "Our towns built more space for stuff than storefronts.",
+  "question": "How much stuff do you store?",
+  "segments": [
+    {
+      "topic": "Storage Facilities Lead",
+      "say": "Self-storage reached 66 thousand facilities, exceeding every listed restaurant and coffee chain."
+    },
+    {
+      "topic": "Storage Facilities Dominate",
+      "say": "Storage facilities make up 57 percent of this combined location count."
+    },
+    {
+      "topic": "Storage Facilities Multiplied",
+      "say": "Storage facilities reached 66 thousand after multiplying tenfold since the earliest point."
+    }
+  ]
+}
