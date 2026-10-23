@@ -268,6 +268,66 @@ def same_picture(a: bytes, b: bytes) -> bool:
         sum(abs(x - y) for x, y in zip(a, b)) / len(a) < SAME_PICTURE
 
 
+#: How far inside each end of a cut its own frames are checked.
+EDGE_S = 0.3
+
+
+def holds(video: Path, cuts: list[dict], look: str, title: str,
+          work: Path) -> list[dict]:
+    """The cuts whose OWN first and last frames show `look` too. One frame
+    judged in a reel says nothing about the 2.4s cut around it: the
+    2026-10-22 Dan Miller montage judged a frame of him in the booth and
+    played the field below it (operator: "there is a lot of videos of
+    football being played, not a lot of videos of the announcer. So, just
+    make sure that we're really getting the subject"). No brain: none."""
+    if not cuts:
+        return cuts
+    work = Path(work)
+    frames = []
+    for k, c in enumerate(cuts):
+        a, b = float(c["from_s"]), float(c["from_s"]) + float(c["secs"])
+        for j, at in enumerate((a + EDGE_S, b - EDGE_S)):
+            p = _frame(video, at, work / f"edge_{Path(video).stem}_"
+                       f"{int(a * 10)}_{j}.png", width=1280)
+            if p:
+                frames.append((2 * k + j, p))
+    verdicts = judge(frames, look, title) if frames else None
+    if not verdicts:
+        return []
+    keep = [c for k, c in enumerate(cuts)
+            if all((verdicts.get(2 * k + j) or {}).get("depicts")
+                   for j in (0, 1))]
+    if len(keep) < len(cuts):
+        print(f"[footage] {len(cuts) - len(keep)} cut(s) leave {look[:40]!r} "
+              "before they end: dropped", flush=True)
+    return keep
+
+
+def still_shows(video: Path, start: float, end: float, look: str,
+                title: str, work: Path, step: float = 1.5) -> float:
+    """How far past `start` the footage keeps showing `look`: frames every
+    `step` seconds up to `end` are judged, and it stops before the first
+    that does not. `start` when no brain could look."""
+    points = []
+    t = start + step
+    while t < end - 0.1:
+        points.append(t)
+        t += step
+    points.append(end - 0.1)
+    frames = [(i, p) for i, at in enumerate(points)
+              if (p := _frame(video, at, Path(work) / f"on_{Path(video).stem}"
+                              f"_{int(at * 10)}.png", width=1280))]
+    verdicts = judge(frames, look, title) if frames else None
+    if not verdicts:
+        return start
+    last = start
+    for i, _p in frames:
+        if not (verdicts.get(i) or {}).get("depicts"):
+            break
+        last = points[i]
+    return last
+
+
 def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
               work: Path | str = ".", title: str = "",
               skip: set | None = None,
@@ -356,6 +416,7 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
             print(f"[footage] {v['title'][:60]!r} ({dur:.0f}s): {yes}/"
                   f"{len(frames)} frames show it", flush=True)
             spans: list[tuple[float, float]] = []
+            mine = len(got)
             for i, _p in frames:
                 if len(got) >= n or (per_video and len(spans) >= per_video):
                     break
@@ -389,9 +450,11 @@ def find_many(who: str, look: str = "", *, n: int = 3, secs: float = SECS,
                                 # let it play on (outro.play_out)
                                 "source": str(video),
                                 "source_s": round(dur, 1),
-                                "shot_end": round(s1 - 0.1, 2)})
+                                "shot_end": round(s1 - 0.1, 2),
+                                "look": look, "judge_title": title})
                     print(f"[footage] {look!r}: {v['title'][:50]!r} "
                           f"@{start:.1f}s", flush=True)
+            got[mine:] = holds(video, got[mine:], look, title, work)
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[footage] {look!r} failed ({type(e).__name__})",
               flush=True)

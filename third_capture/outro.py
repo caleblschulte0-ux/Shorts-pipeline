@@ -220,6 +220,15 @@ def play_out(hit: dict, work: Path) -> dict:
     length = min(LAST_MAX_S, end - start)
     if length <= float(hit.get("secs") or SHOT_S) + 0.3:
         return hit
+    if hit.get("look"):
+        # what it plays on into is checked too: a booth cam of the
+        # announcer cuts to the play he is calling (2026-10-22)
+        shown = find_footage.still_shows(
+            Path(src), start + float(hit.get("secs") or SHOT_S),
+            start + length, hit["look"], hit.get("judge_title", ""), work)
+        length = min(length, shown - start)
+        if length <= float(hit.get("secs") or SHOT_S) + 0.3:
+            return hit
     out = find_footage.cut(Path(src), start, length,
                            Path(work) / f"outro_last_{Path(src).stem}_"
                            f"{int(start * 10)}.mp4")

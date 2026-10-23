@@ -553,3 +553,82 @@ class TheTrimNeverEatsTheClip(unittest.TestCase):
         kept = e["cut"]["end"] - e["cut"]["start"]
         self.assertGreaterEqual(kept, ss.FRONT_MAX_S - ss.SNAP_S)
         self.assertLessEqual(kept, ss.FRONT_MAX_S)
+
+
+@unittest.skipUnless(HAVE_FFMPEG, "ffmpeg unavailable")
+class EveryShotShowsTheSubject(unittest.TestCase):
+    """2026-10-23, of the Dan Miller montage: "there is a lot of videos of
+    football being played, not a lot of videos of the announcer. So, just
+    make sure that we're really getting the subject of who we're talking
+    about." One frame judged in a reel said nothing about the seconds
+    around it, or what the last shot played on into."""
+
+    def _reel(self, td):
+        subprocess.run(
+            ["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i",
+             "color=c=blue:s=640x360:r=30:d=30", "-c:v", "libx264",
+             str(td / "reel.mp4")], check=True)
+        return td / "reel.mp4"
+
+    def _many(self, td, judge):
+        from funnel import hot_clips
+        reel = self._reel(td)
+        with mock.patch.object(hot_clips, "youtube", return_value=[
+                    {"url": "u1", "title": "Dan Miller calls"}]), \
+                mock.patch.object(hot_clips, "reddit_videos",
+                                  return_value=[]), \
+                mock.patch.object(find_footage, "download",
+                                  return_value=reel), \
+                mock.patch.object(find_footage, "shot_around",
+                                  side_effect=lambda v, at: (at - 2, at + 2)), \
+                mock.patch.object(find_footage, "judge", side_effect=judge):
+            return find_footage.find_many("Dan Miller", "him in the booth",
+                                          n=3, secs=2.4, work=td)
+
+    def test_a_cut_that_leaves_the_subject_is_dropped(self):
+        def judge(frames, *a, **k):
+            # the sampled frames show him; every cut's last frame is the
+            # field
+            return {i: {"depicts": not (Path(p).name.startswith("edge_")
+                                        and Path(p).stem.endswith("_1"))}
+                    for i, p in frames}
+        with tempfile.TemporaryDirectory() as td:
+            self.assertEqual(self._many(Path(td), judge), [])
+
+    def test_cuts_that_hold_the_subject_are_kept(self):
+        with tempfile.TemporaryDirectory() as td:
+            got = self._many(Path(td), lambda frames, *a, **k: {
+                i: {"depicts": True} for i, _p in frames})
+            # one picture (a still reel), so one shot, and it is kept
+            self.assertEqual(len(got), 1)
+            self.assertEqual(got[0]["look"], "him in the booth")
+
+    def test_no_brain_no_shots(self):
+        calls = []
+
+        def judge(frames, *a, **k):
+            calls.append(1)
+            return ({i: {"depicts": True} for i, _p in frames}
+                    if len(calls) == 1 else None)
+        with tempfile.TemporaryDirectory() as td:
+            self.assertEqual(self._many(Path(td), judge), [])
+
+    def test_the_last_shot_stops_where_the_subject_leaves(self):
+        with tempfile.TemporaryDirectory() as td:
+            td = Path(td)
+            reel = self._reel(td)
+            hit = {"path": "x", "url": "u", "from_s": 1.0, "secs": 2.4,
+                   "source": str(reel), "source_s": 30.0, "shot_end": 20.0,
+                   "look": "him in the booth"}
+
+            def judge(frames, *a, **k):
+                # he is in the booth until 5s, then the play
+                return {i: {"depicts": float(Path(p).stem.split("_")[-1])
+                            / 10 < 5.0} for i, p in frames}
+            with mock.patch.object(find_footage, "judge", side_effect=judge):
+                out = outro.play_out(hit, td)
+            self.assertTrue(out["hold"])
+            self.assertLess(out["secs"], 4.1)
+            with mock.patch.object(find_footage, "judge",
+                                   return_value=None):
+                self.assertIs(outro.play_out(hit, td), hit)
