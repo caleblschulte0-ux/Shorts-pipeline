@@ -1,0 +1,20 @@
+{
+  "key": "mangrove_loss_rate_slowing",
+  "title": "Annual global mangrove loss rate",
+  "unit": "thousand hectares per year",
+  "geography": "Worldwide",
+  "time_coverage": "1980s vs. 2000-2005",
+  "source": {
+    "name": "The World's Mangroves 1980-2005",
+    "publisher": "Food and Agriculture Organization of the United Nations (FAO)",
+    "url": "https://www.fao.org/docrep/pdf/010/a1427e/a1427e04.pdf",
+    "officiality": "official",
+    "access_date": "2026-10-23"
+  },
+  "notes": "Annual mangrove clearing slowed from about 187,000 hectares/year in the 1980s to about 102,000 hectares/year in 2000-2005.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "1980s annual loss", "value": 187},
+    {"label": "2000-2005 annual loss", "value": 102}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "key": "naep_math_score_trend",
+  "title": "NAEP Long-Term Trend math score, age 13",
+  "unit": "score",
+  "geography": "United States",
+  "time_coverage": "1973-2025",
+  "source": {
+    "name": "NAEP Long-Term Trend Assessment, mathematics, age 13",
+    "publisher": "National Center for Education Statistics (NCES)",
+    "url": "https://www.nationsreportcard.gov/ltt/?age=13",
+    "officiality": "official",
+    "access_date": "2026-10-23"
+  },
+  "notes": "Average NAEP Long-Term Trend mathematics scale score for 13-year-olds. The 2023 score (271) was 9 points below 2020 and 14 points below 2012, but still 5 points above the 1973 baseline (266). The 2025 administration (270) did not recover.",
+  "points": [
+    {"label": "1973", "value": 266, "period": "1973"},
+    {"label": "2012", "value": 285, "period": "2012"},
+    {"label": "2020", "value": 280, "period": "2020"},
+    {"label": "2023", "value": 271, "period": "2023"},
+    {"label": "2025", "value": 270, "period": "2025"}
+  ]
+}

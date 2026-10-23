@@ -1,0 +1,19 @@
+{
+  "key": "mangrove_area_trend",
+  "title": "Global mangrove forest area",
+  "unit": "million hectares",
+  "geography": "Worldwide",
+  "time_coverage": "1980-2005",
+  "source": {
+    "name": "The World's Mangroves 1980-2005",
+    "publisher": "Food and Agriculture Organization of the United Nations (FAO)",
+    "url": "https://www.fao.org/docrep/pdf/010/a1427e/a1427e04.pdf",
+    "officiality": "official",
+    "access_date": "2026-10-23"
+  },
+  "notes": "FAO's global mangrove assessment found area fell from about 18.8 million hectares in 1980 to about 15.2 million hectares in 2005, a loss of roughly 20%.",
+  "points": [
+    {"label": "1980", "value": 18.8, "period": "1980"},
+    {"label": "2005", "value": 15.2, "period": "2005"}
+  ]
+}

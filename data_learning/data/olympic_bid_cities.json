@@ -1,0 +1,47 @@
+{
+  "key": "olympic_bid_cities",
+  "title": "Cities that formally bid to host the Summer Olympics",
+  "unit": "number of cities",
+  "geography": "Worldwide",
+  "time_coverage": "2004-2024 (per bid cycle)",
+  "source": {
+    "name": "List of bids for the Summer Olympics",
+    "publisher": "International Olympic Committee bid records, compiled via Wikipedia/topendsports.com",
+    "url": "https://en.wikipedia.org/wiki/List_of_bids_for_the_Summer_Olympics",
+    "officiality": "secondary",
+    "access_date": "2026-10-23"
+  },
+  "notes": "Count of cities that formally submitted a bid for each Summer Olympics host cycle. The IOC awarded 2024 and 2028 simultaneously in 2017 after most 2024 challengers withdrew, leaving only Paris and Los Angeles.",
+  "points": [
+    {
+      "label": "2004",
+      "value": 11,
+      "period": "2004"
+    },
+    {
+      "label": "2008",
+      "value": 10,
+      "period": "2008"
+    },
+    {
+      "label": "2012",
+      "value": 9,
+      "period": "2012"
+    },
+    {
+      "label": "2016",
+      "value": 7,
+      "period": "2016"
+    },
+    {
+      "label": "2020",
+      "value": 6,
+      "period": "2020"
+    },
+    {
+      "label": "2024",
+      "value": 2,
+      "period": "2024"
+    }
+  ]
+}
