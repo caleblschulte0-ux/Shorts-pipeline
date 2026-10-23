@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "rubiks-cube-record-vs-robot__5d087bf9",
+  "slug": "rubiks-cube-record-vs-robot",
+  "by": "chatgpt",
+  "written_at": "2026-10-23T12:05:00Z",
+  "title": "A Robot Solved Rubik's Cube In 0.38 Seconds",
+  "hook": "A robot solved Rubik's Cube in just 0.38 seconds.",
+  "closing": "At 0.38 seconds, the robot made elite human speed look slow.",
+  "question": "Could you even scramble it that fast?",
+  "segments": [
+    {
+      "topic": "Rubik Record Began",
+      "say": "Rubik's first world championship record took 22.95 seconds, setting the human chase."
+    },
+    {
+      "topic": "Rubik Record Fell",
+      "say": "The human record reached 3.13 seconds after decades of faster solving."
+    },
+    {
+      "topic": "Rubik Robot Won",
+      "say": "The robot finished in 0.38 seconds, leaving the fastest human far behind."
+    }
+  ]
+}
