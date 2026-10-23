@@ -2,127 +2,124 @@
  "n_verdicts": 20,
  "classes": {
   "other": {
-   "count": 14,
+   "count": 10,
    "stories": {
-    "sports_aaron_ashby__these_dudes": 2,
-    "sports_charles_barkley_g_this_close": 3,
-    "sports_miguel_rojas__that_was_my": 6,
-    "sports_brady_tkachuk_ed_after_his": 3
+    "sports_charles_barkley_g_this_close": 2,
+    "sports_brady_tkachuk_ed_after_his": 1,
+    "sports_chris_olave_as_a_message": 2,
+    "sports_lebron_james_cks_fan_aint": 3,
+    "sports_lebron_james_ident_taking": 1,
+    "sports_yaxel_lenderborg_and_guarding": 1
    },
    "timestamps": [
-    "2026-10-22T14:00:11+00:00",
-    "2026-10-22T14:07:25+00:00",
-    "2026-10-22T14:11:14+00:00",
-    "2026-10-22T14:41:43+00:00",
-    "2026-10-22T14:53:20+00:00",
-    "2026-10-22T15:05:40+00:00",
-    "2026-10-22T15:22:58+00:00",
-    "2026-10-22T15:48:15+00:00",
-    "2026-10-22T16:48:49+00:00",
-    "2026-10-22T16:51:11+00:00",
-    "2026-10-22T17:04:42+00:00",
-    "2026-10-22T17:18:20+00:00",
-    "2026-10-22T17:29:21+00:00",
-    "2026-10-22T17:32:37+00:00"
+    "2026-10-22T17:32:37+00:00",
+    "2026-10-23T12:10:01+00:00",
+    "2026-10-23T13:09:51+00:00",
+    "2026-10-23T13:11:12+00:00",
+    "2026-10-23T13:12:26+00:00",
+    "2026-10-23T13:13:31+00:00",
+    "2026-10-23T13:14:39+00:00",
+    "2026-10-23T13:17:04+00:00",
+    "2026-10-23T13:18:44+00:00",
+    "2026-10-23T13:22:32+00:00"
    ],
    "examples": [
-    "unreadable: From hook@1.5 through mid1 our line 'Aaron Ashby: \"I would die for any of these dudes\"' sits on top of the broadcast's 'POSTSEASON 2026' graphic and its gold rule lines. The letters run in",
-    "unreadable: In hook@0.3 to hook@2.2, our line 'Ashby after the Brewers punch a World Series ticket' sits on top of the broadcast's own 'POSTSEASON 2026' TV graphic. Our white text collides with the gr",
-    "unreadable: At mid4 our line 'Chuck won't stand near Shaq' sits on top of the TV's GIANNIS ANTETOKOUNMPO stat bar and is hard to read. The word captions are also garbled ('I HEY,T.' at hook@0.8) and c"
+    "unreadable: In mid4 (26.16s) our line 'Barkley roasts Shaq on live TV' is printed on top of the broadcast's 'GIANNIS ANTETOKOUNMPO ... LAST SEASON w/ BUCKS' stat graphic, and both become illegible.",
+    "unreadable: In mid1 our line sits on top of the jumbotron score bug (0 / SOG 3 / HITS / FACEOFF %), and in hook@0.3 to mid0 it lands on the 'BACK' board graphic. Both times it is printed over the foot",
+    "unreadable: In mid1 (t=6.84s) two word captions are printed on top of each other and read as garbled \"AI TO PUT SAFETY RY\". Olave's name placard is also partly covered by our line in hook@0.3 to mid4."
    ],
    "recurred_after_fix": false
   },
   "junk_imagery": {
-   "count": 6,
+   "count": 5,
    "stories": {
-    "sports_charles_barkley_g_this_close": 3,
-    "japan-vending-machine-density": 1,
-    "sports_brady_tkachuk_ed_after_his": 2
+    "sports_charles_barkley_g_this_close": 2,
+    "sports_brady_tkachuk_ed_after_his": 1,
+    "sports_dejan_kulusevski_ter_526_days": 1,
+    "red-hair-recessive-gene": 1
    },
    "timestamps": [
-    "2026-10-22T14:11:14+00:00",
-    "2026-10-22T13:19:28+00:00",
-    "2026-10-22T15:22:58+00:00",
-    "2026-10-22T15:48:15+00:00",
-    "2026-10-22T16:51:11+00:00",
-    "2026-10-22T17:32:37+00:00"
+    "2026-10-22T17:32:37+00:00",
+    "2026-10-23T12:10:01+00:00",
+    "2026-10-23T13:04:57+00:00",
+    "2026-10-23T13:17:04+00:00",
+    "2026-10-23T15:41:06+00:00"
    ],
    "examples": [
-    "junk_imagery: mid3/mid4 cut away to Giannis warm-up footage with a Bucks stat graphic, and payoff@-1.8/-0.4 is the ESPN TIP-OFF logo card. Neither has anything to do with Chuck and Shaq, so the second",
-    "junk_imagery: payoff@-0.4: on a blank dark screen, Data holds an empty yellow price tag, the generic default prop that has nothing to do with the soup ending.",
-    "junk_imagery: mid3 (19.6s) cuts to an unrelated Heat-arena dunk and mid4 (25.3s) to Giannis dribbling under a 'LAST SEASON W/ BUCKS' stat bar. Neither has Barkley or Shaq, so the footage stops showing"
+    "junk_imagery: mid3 (20.24s) shows a Heat arena warmup with a player dunking, and mid4 (26.16s) shows Giannis warming up under a Bucks stat graphic. Neither is Barkley or Shaq, so the second half doesn",
+    "junk_imagery: The line and title say Brady Tkachuk 'speaks' and 'gets emotional', but no frame shows him talking or at a mic. hook@0.3 to mid0 is a phone recording of the arena jumbotron playing the t",
+    "junk_imagery: mid1-mid3 are an old narrated tribute montage (Conte on the bench, a purple away-kit goal with a SPURS TV bug), not the 526-day return. At mid1 a word caption reads 'ON COMES KANE,' over"
    ],
    "recurred_after_fix": false
   },
   "empty_void": {
-   "count": 4,
+   "count": 3,
    "stories": {
-    "japan-vending-machine-density": 3,
-    "pickleball-fastest-growing-sport": 1
+    "pickleball-fastest-growing-sport": 1,
+    "sports_chris_olave_as_a_message": 1,
+    "red-hair-recessive-gene": 1
    },
    "timestamps": [
-    "2026-10-22T12:35:15+00:00",
-    "2026-10-22T12:59:30+00:00",
-    "2026-10-22T13:19:28+00:00",
-    "2026-10-22T16:30:30+00:00"
+    "2026-10-22T16:30:30+00:00",
+    "2026-10-23T13:11:12+00:00",
+    "2026-10-23T15:41:06+00:00"
    ],
    "examples": [
-    "empty_void: The last frame, payoff@-0.4, is a near-black empty gradient with only a small Data in the lower third holding a blank price tag. Nearly the whole frame is wasted on the final shot.",
-    "empty_void: payoff@-0.4 (t=27.10s): the closing scene drops to a near-black gradient with nothing in it except Data holding a blank yellow price tag. The last frame of the video is an empty void.",
-    "empty_void: payoff@-0.4: the last frame is an almost-black gradient filling the whole screen, with only a small Data and a blank price tag at the bottom. The soup street scene is gone."
+    "empty_void: In payoff@-0.4 the video ends on a near-black navy card. A small Data holds a blank yellow price tag at the bottom and the rest of the frame is empty.",
+    "empty_void: In every frame (hook@0.3 to payoff@-0.4) about the top 12% and bottom 12% are a blurred, darkened letterbox, and roughly 60% of the remaining frame is the sponsor backdrop. Olave is pushed",
+    "empty_void: payoff@-0.4 is almost all dark gradient with a small Data and a blank tag at the bottom. The last thing the viewer sees is an empty frame."
+   ],
+   "recurred_after_fix": false
+  },
+  "temporal_gate": {
+   "count": 3,
+   "stories": {
+    "ai-datacenter-water": 1,
+    "lightning-deaths-collapsed-not-the-storms": 1,
+    "hearing-aids-otc-price-drop": 1
+   },
+   "timestamps": [
+    "2026-10-22T18:39:00+00:00",
+    "2026-10-23T16:29:05+00:00",
+    "2026-10-23T17:12:58+00:00"
+   ],
+   "examples": [
+    "temporal_gate: max_dup_run 68 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=27.92s of 35.88s (~2.8s frozen)",
+    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.08s of 27.62s (~2.0s frozen)",
+    "temporal_gate: max_dup_run 67 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.42s of 29.62s (~2.8s frozen)"
    ],
    "recurred_after_fix": false
   },
   "dead_air": {
-   "count": 3,
+   "count": 1,
    "stories": {
-    "japan-vending-machine-density": 1,
-    "sports_charles_barkley_g_this_close": 2
+    "sports_charles_barkley_g_this_close": 1
    },
    "timestamps": [
-    "2026-10-22T12:35:15+00:00",
-    "2026-10-22T15:22:58+00:00",
     "2026-10-22T17:32:37+00:00"
    ],
    "examples": [
-    "dead_air: The frame from seg3:end (20.59s) through seg4:start, seg4:mid, payoff@-1.8 and seg4:end (26.59s) is the same picture. Only a bird and the steam change, which is about 6s of nothing meaningfu",
-    "dead_air: mid5 (31.0s) through payoff@-0.4 (32.6s), plus the cutaways before it, are a static ESPN 'TIP-OFF presented by Lilly' logo bumper. Nobody is on screen and the joke has already ended.",
     "dead_air: From payoff@-1.8 (32.27s) to payoff@-0.4 (33.67s) the clip ends on the ESPN TIP-OFF 'presented by Lilly' bumper. Nobody speaks and nothing happens; it is just a logo."
    ],
    "recurred_after_fix": false
   },
   "decorative_mascot": {
-   "count": 2,
-   "stories": {
-    "japan-vending-machine-density": 2
-   },
-   "timestamps": [
-    "2026-10-22T12:35:15+00:00",
-    "2026-10-22T12:59:30+00:00"
-   ],
-   "examples": [
-    "decorative_mascot: Data really drags a red machine off the row in seg0:start to seg0:end. After that he only stands and waves: seg2:start to seg2:end between the machines, seg3:mid to seg4:mid in fron",
-    "decorative_mascot: Data does real work in the hook and seg1: the cord runs to his hand as the shelves go dark (hook@0.8 to seg0:end), and he drags machines out of the row (seg1:mid). In seg2 (start/mi"
-   ],
-   "recurred_after_fix": false
-  },
-  "temporal_gate": {
    "count": 1,
    "stories": {
-    "ai-datacenter-water": 1
+    "red-hair-recessive-gene": 1
    },
    "timestamps": [
-    "2026-10-22T18:39:00+00:00"
+    "2026-10-23T15:41:06+00:00"
    ],
    "examples": [
-    "temporal_gate: max_dup_run 68 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=27.92s of 35.88s (~2.8s frozen)"
+    "decorative_mascot: In seg3:mid, seg3:end and all of seg4 Data stands waving beside the 'Dad' box. The levers never move and he does nothing to make the hair change. In seg2 he only stands in front of "
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 3,
+   "median": 2,
    "min": 0,
    "max": 3
   },
@@ -142,7 +139,7 @@
    "max": 2
   },
   "pace": {
-   "median": 2,
+   "median": 1,
    "min": 0,
    "max": 2
   },
@@ -153,30 +150,30 @@
   },
   "temporal_craft": {
    "median": 3,
-   "min": 3,
+   "min": 2,
    "max": 3
   }
  },
  "scores": [
-  75,
-  70,
   58,
   66,
-  70,
+  14,
+  61,
   74,
-  83,
-  83,
-  83,
-  83,
-  58,
-  53,
-  62,
-  49,
-  87,
-  83,
-  83,
-  58,
   66,
+  61,
+  62,
+  57,
+  79,
+  79,
+  71,
+  53,
+  66,
+  83,
+  66,
+  83,
+  53,
+  14,
   14
  ]
 }
