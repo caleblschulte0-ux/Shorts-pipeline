@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "world-wetlands-lost__3fe5ea62_r1",
+  "slug": "world-wetlands-lost",
+  "by": "chatgpt",
+  "written_at": "2026-10-23T12:05:00Z",
+  "title": "Wetlands Fell 35% While Forests Lost Far Less",
+  "hook": "Wetlands lost 35% even though forests get more attention.",
+  "closing": "Losing natural water filters raises flood and water costs.",
+  "question": "Is there a wetland near you?",
+  "segments": [
+    {
+      "topic": "Wetlands Lost Globally",
+      "say": "Global wetland extent fell 35 percent, shrinking nature's water filter."
+    },
+    {
+      "topic": "Wetlands Lost Faster",
+      "say": "Wetlands lost 35 percent, nearly triple the forest loss."
+    },
+    {
+      "topic": "Wetlands Lost Regionally",
+      "say": "Europe lost 50 percent of its wetlands, the largest regional decline."
+    }
+  ]
+}
