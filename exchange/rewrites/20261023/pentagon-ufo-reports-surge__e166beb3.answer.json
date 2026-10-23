@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "pentagon-ufo-reports-surge__e166beb3",
+  "slug": "pentagon-ufo-reports-surge",
+  "by": "chatgpt",
+  "written_at": "2026-10-23T12:05:00Z",
+  "title": "Only 21 Pentagon UFO Reports Stayed Unexplained",
+  "hook": "The Pentagon logged 757 new UFO reports in one year.",
+  "closing": "More reports mostly reveal better detection, not visitors.",
+  "question": "Have you ever seen something unexplained?",
+  "segments": [
+    {
+      "topic": "Pentagon UFO Surge",
+      "say": "The Pentagon received 757 new reports, nearly tripling the previous review period."
+    },
+    {
+      "topic": "Pentagon UFO Sources",
+      "say": "Air traffic controllers supplied 392 reports, making government observers the biggest source."
+    },
+    {
+      "topic": "Pentagon UFO Mystery",
+      "say": "Only 21 reports remained genuinely unexplained after officials reviewed the cases."
+    }
+  ]
+}
