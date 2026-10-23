@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261022",
-  "generated_at": "2026-10-22T23:31:12Z",
+  "generated_at": "2026-10-23T00:31:02Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 28.76,
+          "days": 28.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 27.76,
+          "days": 27.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -459,16 +459,16 @@
     "explainer": {
       "channel": "explainer",
       "available": true,
-      "fetched_at": "2026-10-22T19:24:53.635592+00:00",
+      "fetched_at": "2026-10-23T00:14:10.828760+00:00",
       "today": [
         {
           "title": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
           "url": "https://youtube.com/shorts/zjuY7K1FvVc",
           "published_at": "2026-10-22T04:09:14Z",
-          "age_hours": 15.3,
+          "age_hours": 20.1,
           "age_band": "6-24h",
-          "views": 1195,
-          "engaged_views": 1195,
+          "views": 1198,
+          "engaged_views": 1198,
           "likes": 9,
           "comments": 0,
           "avg_view_pct": null,
@@ -481,7 +481,7 @@
             "impressions",
             "ctr"
           ],
-          "views_per_hour": 78.1046,
+          "views_per_hour": 59.602,
           "percentile_vs_same_age": null,
           "verdict": "no comparable history"
         },
@@ -489,10 +489,10 @@
           "title": "Japan Has One Vending Machine For Every 31 People",
           "url": "https://youtube.com/shorts/n5yZaklhaz8",
           "published_at": "2026-10-22T13:20:06Z",
-          "age_hours": 6.1,
+          "age_hours": 10.9,
           "age_band": "6-24h",
-          "views": 8,
-          "engaged_views": 8,
+          "views": 23,
+          "engaged_views": 23,
           "likes": 0,
           "comments": 0,
           "avg_view_pct": null,
@@ -505,7 +505,7 @@
             "impressions",
             "ctr"
           ],
-          "views_per_hour": 1.3115,
+          "views_per_hour": 2.1101,
           "percentile_vs_same_age": null,
           "verdict": "no comparable history"
         },
@@ -513,10 +513,10 @@
           "title": "Pickleball's Easygoing Image Hides A $400 Million Injury Estimate",
           "url": "https://youtube.com/shorts/LDJlUmK-1-k",
           "published_at": "2026-10-22T16:44:05Z",
-          "age_hours": 2.7,
-          "age_band": "0-6h",
-          "views": 0,
-          "engaged_views": 0,
+          "age_hours": 7.5,
+          "age_band": "6-24h",
+          "views": 10,
+          "engaged_views": 10,
           "likes": 0,
           "comments": 0,
           "avg_view_pct": null,
@@ -529,104 +529,104 @@
             "impressions",
             "ctr"
           ],
-          "views_per_hour": 0.0,
+          "views_per_hour": 1.3333,
           "percentile_vs_same_age": null,
           "verdict": "no comparable history"
         }
       ],
       "last_7d": {
-        "videos": 19,
-        "total_views": 2608,
-        "median_views": 41.0,
-        "median_vph": 0.5556,
+        "videos": 18,
+        "total_views": 2607,
+        "median_views": 43.0,
+        "median_vph": 1.0923,
         "best": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
-        "worst": "Pickleball's Easygoing Image Hides A $400 Million Injury Estimate"
+        "worst": "A Big Mac Costs 9 Dollars In Switzerland. 2 In Taiwan."
       },
       "last_30d": {
         "videos": 83,
-        "total_views": 12046,
+        "total_views": 12079,
         "median_views": 53.0,
-        "median_vph": 0.1955,
+        "median_vph": 0.1946,
         "best": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
-        "worst": "Pickleball's Easygoing Image Hides A $400 Million Injury Estimate"
+        "worst": "Kids Are Being Diagnosed With ADHD Way More Than Before"
       },
       "all_time_summary": {
         "total_videos": 147,
-        "total_views": 22241,
-        "avg_views_per_video": 151.3,
-        "median_views_per_hour": 0.11,
+        "total_views": 22274,
+        "avg_views_per_video": 151.5,
+        "median_views_per_hour": 0.12,
         "top_5_by_vph": [
           {
             "title": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
-            "views_per_hour": 78.3,
-            "views": 1195,
-            "age_hours": 15.3,
+            "views_per_hour": 59.65,
+            "views": 1198,
+            "age_hours": 20.1,
             "url": "https://youtube.com/shorts/zjuY7K1FvVc"
           },
           {
             "title": "Why Plane Tickets Cost More The Closer You Book",
-            "views_per_hour": 5.96,
+            "views_per_hour": 5.82,
             "views": 1190,
-            "age_hours": 199.7,
+            "age_hours": 204.5,
             "url": "https://youtube.com/shorts/t3jcTe7wRyE"
           },
           {
             "title": "The Great Lakes Hold 21% Of Earth's Fresh Surface Water",
-            "views_per_hour": 3.22,
-            "views": 356,
-            "age_hours": 110.5,
+            "views_per_hour": 3.08,
+            "views": 355,
+            "age_hours": 115.3,
             "url": "https://youtube.com/shorts/IJU_bYy5JwI"
           },
           {
-            "title": "Saturn's Rings Have Under 300 Million Years Left",
-            "views_per_hour": 2.25,
-            "views": 217,
-            "age_hours": 96.4,
-            "url": "https://youtube.com/shorts/AJWcDwCyTJU"
+            "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
+            "views_per_hour": 2.15,
+            "views": 628,
+            "age_hours": 291.5,
+            "url": "https://youtube.com/shorts/LrMy6Z8J9Ug"
           },
           {
-            "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
-            "views_per_hour": 2.19,
-            "views": 628,
-            "age_hours": 286.7,
-            "url": "https://youtube.com/shorts/LrMy6Z8J9Ug"
+            "title": "Saturn's Rings Have Under 300 Million Years Left",
+            "views_per_hour": 2.14,
+            "views": 217,
+            "age_hours": 101.3,
+            "url": "https://youtube.com/shorts/AJWcDwCyTJU"
           }
         ],
         "bottom_5_by_vph": [
           {
-            "title": "Pickleball's Easygoing Image Hides A $400 Million Injury Estimate",
-            "views_per_hour": 0.0,
-            "views": 0,
-            "age_hours": 2.7,
-            "url": "https://youtube.com/shorts/LDJlUmK-1-k"
-          },
-          {
             "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
             "views_per_hour": 0.0,
             "views": 1,
-            "age_hours": 334.6,
+            "age_hours": 339.4,
             "url": "https://youtube.com/shorts/aCtti_E5Nqo"
           },
           {
             "title": "The World's Workforce Has Never Been This Big \u2014 Or This Free",
             "views_per_hour": 0.0,
             "views": 2,
-            "age_hours": 526.0,
+            "age_hours": 530.8,
             "url": "https://youtube.com/shorts/cY4-tgGIir4"
           },
           {
             "title": "Why Is There A Vault Built For The End Of The World?",
             "views_per_hour": 0.0,
             "views": 1,
-            "age_hours": 794.5,
+            "age_hours": 799.3,
             "url": "https://youtube.com/shorts/kkODTt8nWuQ"
           },
           {
             "title": "Why Cargo Ships Started Losing Containers Again (3 Charts)",
             "views_per_hour": 0.0,
             "views": 2,
-            "age_hours": 1027.6,
+            "age_hours": 1032.4,
             "url": "https://youtube.com/shorts/NhR15EjR3uI"
+          },
+          {
+            "title": "Why Empty Offices Will Never Fill Back Up (3 Charts)",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 1134.0,
+            "url": "https://youtube.com/shorts/fReGr_FMIEw"
           }
         ],
         "opening": {
@@ -739,24 +739,22 @@
         }
       },
       "band_sample_sizes": {
-        "0-6h": 1,
-        "1-3d": 2,
+        "1-3d": 3,
         "1-4w": 59,
-        "3-7d": 13,
-        "4w+": 69,
+        "3-7d": 12,
+        "4w+": 70,
         "6-24h": 3
       },
       "thin_bands": [
         "6-24h",
-        "1-3d",
-        "0-6h"
+        "1-3d"
       ],
       "maturity": {
         "24h": {
           "all_formats": {
             "n": 2,
-            "median_vph": 1.544,
-            "median_views": 37.0,
+            "median_vph": 30.3948,
+            "median_views": 614.5,
             "median_view_pct": null,
             "view_pct_reported_for": "0/2",
             "enough_to_judge": false
@@ -764,8 +762,8 @@
           "by_format": {
             "other_topic": {
               "n": 2,
-              "median_vph": 1.544,
-              "median_views": 37.0,
+              "median_vph": 30.3948,
+              "median_views": 614.5,
               "median_view_pct": null,
               "view_pct_reported_for": "0/2",
               "enough_to_judge": false
@@ -803,7 +801,7 @@
         "7d": {
           "all_formats": {
             "n": 5,
-            "median_vph": 0.1921,
+            "median_vph": 0.1866,
             "median_views": 32.0,
             "median_view_pct": null,
             "view_pct_reported_for": "0/5",
@@ -812,7 +810,7 @@
           "by_format": {
             "other_topic": {
               "n": 5,
-              "median_vph": 0.1921,
+              "median_vph": 0.1866,
               "median_views": 32.0,
               "median_view_pct": null,
               "view_pct_reported_for": "0/5",
@@ -831,34 +829,34 @@
       },
       "mature_enough_to_judge": [
         {
-          "title": "Why Plane Tickets Cost More The Closer You Book",
-          "vph": 5.9589,
+          "title": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
+          "vph": 59.602,
           "fmt": "other_topic",
-          "age_hours": 199.7
+          "age_hours": 20.1
+        },
+        {
+          "title": "Why Plane Tickets Cost More The Closer You Book",
+          "vph": 5.8191,
+          "fmt": "other_topic",
+          "age_hours": 204.5
         },
         {
           "title": "The Great Lakes Hold 21% Of Earth's Fresh Surface Water",
-          "vph": 3.2217,
+          "vph": 3.0789,
           "fmt": "other_topic",
-          "age_hours": 110.5
-        },
-        {
-          "title": "Saturn's Rings Have Under 300 Million Years Left",
-          "vph": 2.251,
-          "fmt": "other_topic",
-          "age_hours": 96.4
+          "age_hours": 115.3
         },
         {
           "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
-          "vph": 2.1904,
+          "vph": 2.1544,
           "fmt": "other_topic",
-          "age_hours": 286.7
+          "age_hours": 291.5
         },
         {
-          "title": "Why 96% Of Kelp Vanished After Sea Stars Collapsed",
-          "vph": 1.6794,
+          "title": "Saturn's Rings Have Under 300 Million Years Left",
+          "vph": 2.1422,
           "fmt": "other_topic",
-          "age_hours": 26.2
+          "age_hours": 101.3
         }
       ],
       "worst_mature": [
@@ -866,31 +864,31 @@
           "title": "Cereal production Is 1.5x Higher Than In 1972",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 1260.6
+          "age_hours": 1265.4
         },
         {
           "title": "Central Banks Are Hoarding Gold Like It's 1967",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 1222.8
+          "age_hours": 1227.6
         },
         {
           "title": "Why Empty Offices Will Never Fill Back Up (3 Charts)",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 1129.2
+          "age_hours": 1134.0
         },
         {
           "title": "World Coal Power Fell Below Its 1990 Level",
           "vph": 0.0007,
           "fmt": "unknown",
-          "age_hours": 1392.5
+          "age_hours": 1397.3
         },
         {
           "title": "Population growth Fell 54% Since 1972",
           "vph": 0.0007,
           "fmt": "unknown",
-          "age_hours": 1363.6
+          "age_hours": 1368.5
         }
       ]
     },
@@ -1636,7 +1634,7 @@
   "depictions": {
     "note": "best judge `bespoke` grade per video vs views-per-hour at >= 24h",
     "buckets": {},
-    "ungraded": 143,
+    "ungraded": 144,
     "thin": []
   },
   "style_arms": {
@@ -1644,7 +1642,7 @@
     "arms": {
       "current": {
         "n": 22,
-        "median_percentile": 29.6,
+        "median_percentile": 29.2,
         "thin": true
       },
       "illustrated": {
@@ -1664,10 +1662,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "1581ba0",
-    "commits_since": "2026-10-21",
+    "head": "23973bf",
+    "commits_since": "2026-10-22",
     "commit_count": 50,
     "commits": [
+      "23973bf explainer: update posted log + analytics [skip ci]",
+      "5b7903b retro: brief + triage for 20261022 [skip ci]",
       "1581ba0 claim: mailbox verdicts 2026-10-22T22:35Z [skip ci]",
       "eb2aee3 story forge: new real-data stories [skip ci]",
       "f29898e story forge: new real-data stories [skip ci]",
@@ -1705,9 +1705,7 @@
       "09c9143 explainer: posted japan-vending-machine-density [skip ci]",
       "c1845bc explainer: claim upload slot japan-vending-machine-density [skip ci]",
       "4dbaecc claim: mailbox verdicts 2026-10-22T12:55Z [skip ci]",
-      "2377909 third: analytics [skip ci]",
-      "7a785dd third: update posted log + analytics [skip ci]",
-      "e45bdb3 third: checkpoint posted log (claim upload slot) [skip ci]"
+      "2377909 third: analytics [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",

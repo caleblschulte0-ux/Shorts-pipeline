@@ -1,6 +1,6 @@
 # Retro — 20261022
 
-generated 2026-10-22T23:31:12Z · 6 video(s) posted today
+generated 2026-10-23T00:31:02Z · 6 video(s) posted today
 
 ## trending
 
@@ -16,13 +16,13 @@ generated 2026-10-22T23:31:12Z · 6 video(s) posted today
 
 | video | age | views | vph | vs same age |
 |---|---|---|---|---|
-| The Rubik's Cube Record Dropped From 22 To 3 | 15.3h | 1195 | 78.1046 | — · no comparable history |
-| Japan Has One Vending Machine For Every 31 P | 6.1h | 8 | 1.3115 | — · no comparable history |
-| Pickleball's Easygoing Image Hides A $400 Mi | 2.7h | 0 | 0.0 | — · no comparable history |
+| The Rubik's Cube Record Dropped From 22 To 3 | 20.1h | 1198 | 59.602 | — · no comparable history |
+| Japan Has One Vending Machine For Every 31 P | 10.9h | 23 | 2.1101 | — · no comparable history |
+| Pickleball's Easygoing Image Hides A $400 Mi | 7.5h | 10 | 1.3333 | — · no comparable history |
 
-- 7d: 19 videos, median 41.0 views
+- 7d: 18 videos, median 43.0 views
 - 30d: 83 videos, median 53.0 views
-- thin data (<5): 6-24h, 1-3d, 0-6h
+- thin data (<5): 6-24h, 1-3d
 
 ## curiosity
 
@@ -49,21 +49,21 @@ _nothing published today_
 ## Running experiments
 
 - `20260924-third-story-arm-slot-beats-mature-clip-baseline-on` — Third story-arm slot beats mature clip baseline on views-per-hour
-    - 28.76d, 2 samples, needs 28d / 25 samples · 2/25 samples — not enough videos have run under this change
+    - 28.8d, 2 samples, needs 28d / 25 samples · 2/25 samples — not enough videos have run under this change
 - `20260925-superlative-science-family-explainer-topics-beat-t` — Superlative/science-family explainer topics beat the broad mix on average-view-percentage
-    - 27.76d, 1 samples, needs 28d / 25 samples · 27.8/28 days elapsed — too early to read
+    - 27.8d, 1 samples, needs 28d / 25 samples · 27.8/28 days elapsed — too early to read
 
 ## Bespoke pictures vs performance
 
 _best judge `bespoke` grade per video vs views-per-hour at >= 24h_
 
-- ungraded (shipped before the judge graded depictions): 143
+- ungraded (shipped before the judge graded depictions): 144
 
 ## Style arms (A/B of the explainer's look)
 
 _views-per-hour percentile vs same-age explainer videos, by style arm, videos >= 24h old posted since the first illustrated upload_
 
-- current: n=22, median p30 _(noise: too few)_
+- current: n=22, median p29 _(noise: too few)_
 - illustrated: n=55, median p58
 - **fewer than 30 mature videos in at least one arm: this is noise, not a result**
 
@@ -76,6 +76,6 @@ _views-per-hour percentile vs same-age explainer videos, by style arm, videos >=
 
 ## Repo
 
-- HEAD 1581ba0, 50 commit(s) since 2026-10-21
+- HEAD 23973bf, 50 commit(s) since 2026-10-22
 
 Write proposals per `retro/README.md`. Nothing you write is applied automatically.

@@ -7,8 +7,8 @@
 ## Channels (mature videos only)
 
 - **trending**: nothing in the 24h window yet
-- **explainer**: 2 video(s) at ~24h, median 37.0 views _(thin)_
-    - best: Why Plane Tickets Cost More The Closer You Book (5.9589 vph)
+- **explainer**: 2 video(s) at ~24h, median 614.5 views _(thin)_
+    - best: The Rubik's Cube Record Dropped From 22 To 3 Seconds (59.602 vph)
     - worst: Cereal production Is 1.5x Higher Than In 1972 (0.0 vph)
 - **curiosity**: nothing in the 24h window yet
 - **third**: 1 video(s) at ~24h, median 18.0 views _(thin)_
