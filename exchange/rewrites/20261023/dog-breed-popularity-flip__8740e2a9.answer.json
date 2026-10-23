@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "dog-breed-popularity-flip__8740e2a9",
+  "slug": "dog-breed-popularity-flip",
+  "by": "chatgpt",
+  "written_at": "2026-10-23T11:26:00Z",
+  "title": "French Bulldog Popularity Rose 1,000% As Lifespan Hit 4.5 Years",
+  "hook": "French Bulldog registrations rose 1,000%, while lifespan stayed painfully short.",
+  "closing": "Popularity should never replace a careful look at breed health.",
+  "question": "What matters most when choosing dogs?",
+  "segments": [
+    {
+      "topic": "French Bulldog Crown",
+      "say": "The French Bulldog reached rank 1, ending the Labrador Retriever's lead."
+    },
+    {
+      "topic": "French Bulldog Surge",
+      "say": "French Bulldog registrations rose 1,000 percent, turning a niche breed into the favorite."
+    },
+    {
+      "topic": "French Bulldog Lifespan",
+      "say": "French Bulldog life expectancy was 4.5 years, far below the comparison breed."
+    }
+  ]
+}
