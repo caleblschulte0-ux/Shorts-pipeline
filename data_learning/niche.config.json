@@ -35356,6 +35356,249 @@
    "words_by": "claude-retell",
    "rewritten_at": "2026-10-22T23:23:01Z",
    "hook_was": "The world is about to run out of people who can fly a plane."
+  },
+  {
+   "slug": "olympic-bid-collapse",
+   "title": "Olympic Bids Have Fallen From 11 Cities To Just 2",
+   "hook": "Nobody wants to host the Olympics anymore.",
+   "closing": "Everyone wants the medals. Nobody wants the bill.",
+   "question": "Would your hometown ever host the Olympics?",
+   "caption": "Olympic bids have cratered — from 11 cities in 2004 to almost none by 2024. Turns out the Games are a financial trap most cities won't fall into twice. 👇",
+   "hashtags": [
+    "olympics",
+    "olympicgames",
+    "hostcity",
+    "sportsbusiness",
+    "ioc",
+    "megaprojects",
+    "costoverrun",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "sportsbiz",
+    "hostingcosts",
+    "paris2024",
+    "la2028",
+    "globalevents"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "olympic_bid_cities",
+     "params": {
+      "file": "olympic_bid_cities.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE DROP-OFF",
+     "topic": "Olympic bid cities",
+     "say": "Eleven cities used to line up to host the Olympics. By 2024, almost all of them had dropped out."
+    },
+    {
+     "source": "offline",
+     "key": "olympic_cost_overrun_rank",
+     "params": {
+      "file": "olympic_cost_overrun_rank.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "2 · WHY",
+     "topic": "why cities stopped bidding for the Olympics",
+     "say": "The reason: hosting costs blow up by an average of 156 percent, worse than any major project ever tracked."
+    },
+    {
+     "source": "offline",
+     "key": "montreal_olympic_debt_payoff",
+     "params": {
+      "file": "montreal_olympic_debt_payoff.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE BILL",
+     "topic": "the cost of winning the Olympic bid",
+     "say": "Montreal built its Olympic stadium in just two years. Paying off the debt it left behind took 30 years instead."
+    }
+   ]
+  },
+  {
+   "slug": "naep-math-pandemic-drop",
+   "title": "Why Did US Math Scores Just Drop The Most In 50 Years?",
+   "hook": "America's kids still haven't recovered from the pandemic.",
+   "closing": "Guess school really was more useful than we thought.",
+   "question": "Did your math skills ever bounce back?",
+   "caption": "US 13-year-olds just posted the worst math score drop NCES has recorded in 50 years — and five years after the pandemic, scores still haven't recovered. 👇",
+   "hashtags": [
+    "education",
+    "naep",
+    "mathscores",
+    "testscores",
+    "pandemiclearning",
+    "schools",
+    "nationsreportcard",
+    "achievementgap",
+    "students",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "learningloss",
+    "ncesdata",
+    "k12"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "naep_math_score_trend",
+     "params": {
+      "file": "naep_math_score_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE SCORE",
+     "topic": "the national math score",
+     "say": "Thirteen-year-olds' math scores held steady for decades, barely moving. Then they dropped to 271, the lowest score in 50 years."
+    },
+    {
+     "source": "offline",
+     "key": "naep_math_decline_by_percentile",
+     "params": {
+      "file": "naep_math_decline_by_percentile.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "2 · WHO FELL FURTHEST",
+     "topic": "which students' math scores fell the most",
+     "say": "The drop wasn't even. The lowest-scoring students lost 14 points, nearly double the decline of the average student."
+    },
+    {
+     "source": "offline",
+     "key": "naep_math_recovery_check",
+     "params": {
+      "file": "naep_math_recovery_check.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · NO RECOVERY",
+     "topic": "why math scores haven't recovered",
+     "say": "Five years after the pandemic hit, scores still haven't bounced back. Education officials call it the worst math decline on record."
+    }
+   ]
+  },
+  {
+   "slug": "escooter-er-visits-surge",
+   "title": "E-Scooter ER Visits Nearly Quadrupled In Just 2 Years",
+   "hook": "E-scooters got way more dangerous, way faster.",
+   "closing": "Fun until it isn't. Wear the helmet.",
+   "question": "Ever had a close call on a scooter?",
+   "caption": "E-scooter ER visits nearly quadrupled in just two years — and most head injuries happen to riders without a helmet. 👇",
+   "hashtags": [
+    "escooter",
+    "micromobility",
+    "cpsc",
+    "injuries",
+    "roadsafety",
+    "helmetsafety",
+    "publichealth",
+    "cityliving",
+    "transportation",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "urbansafety",
+    "emergencyroom",
+    "scooterlife"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "escooter_er_visits_trend",
+     "params": {
+      "file": "escooter_er_visits_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE SURGE",
+     "topic": "e-scooter ER visits",
+     "say": "E-scooter ER visits exploded almost overnight. In just two years, they nearly quadrupled, climbing from 7,700 to 27,700."
+    },
+    {
+     "source": "offline",
+     "key": "escooter_head_injury_helmet",
+     "params": {
+      "file": "escooter_head_injury_helmet.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · HOW THEY GET HURT",
+     "topic": "how e-scooter riders get hurt",
+     "say": "Head injuries are the most common. And among young riders hurt that way, 67 percent weren't wearing a helmet."
+    },
+    {
+     "source": "offline",
+     "key": "escooter_total_toll",
+     "params": {
+      "file": "escooter_total_toll.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE TOTAL TOLL",
+     "topic": "the total toll of e-scooter injuries",
+     "say": "Add it all up and e-scooters sent over 169,000 people to the ER in just six years on American streets."
+    }
+   ]
+  },
+  {
+   "slug": "mangrove-forest-loss",
+   "title": "The World Has Lost 20% Of Its Mangrove Forests Since 1980",
+   "hook": "Mangrove forests are quietly disappearing.",
+   "closing": "Good news: we're losing them slower than before.",
+   "question": "Had you ever heard of mangrove forests?",
+   "caption": "The world has lost a fifth of its mangrove forests since 1980 — but the pace of loss is finally slowing down. 👇",
+   "hashtags": [
+    "mangroves",
+    "mangroveforest",
+    "climatechange",
+    "coastalecosystems",
+    "deforestation",
+    "conservation",
+    "wildlife",
+    "oceans",
+    "nature",
+    "fao",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "biodiversity",
+    "coastalhabitat"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "mangrove_area_trend",
+     "params": {
+      "file": "mangrove_area_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE LOSS",
+     "topic": "the world's mangrove forests",
+     "say": "Mangrove forests covered 18.8 million hectares worldwide in 1980. By 2005, a fifth of that forest was already gone."
+    },
+    {
+     "source": "offline",
+     "key": "mangrove_loss_by_region",
+     "params": {
+      "file": "mangrove_loss_by_region.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "2 · WHERE",
+     "topic": "where the mangrove loss hit hardest",
+     "say": "Asia lost the most by far, nearly 1.9 million hectares gone. The Americas and Africa each lost a fraction of that."
+    },
+    {
+     "source": "offline",
+     "key": "mangrove_loss_rate_slowing",
+     "params": {
+      "file": "mangrove_loss_rate_slowing.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · A BRIGHT SPOT",
+     "topic": "whether mangrove loss is slowing down",
+     "say": "There's one bright spot: the pace of loss is slowing. Annual clearing dropped from 187,000 hectares a year to just 102,000."
+    }
+   ]
   }
  ],
  "videos": [

@@ -1,0 +1,22 @@
+{
+  "key": "naep_math_decline_by_percentile",
+  "title": "NAEP age-13 math score decline, 2020 to 2023, by performance group",
+  "unit": "points lost",
+  "geography": "United States",
+  "time_coverage": "2020-2023",
+  "source": {
+    "name": "NAEP Long-Term Trend Assessment, mathematics, age 13",
+    "publisher": "National Center for Education Statistics (NCES)",
+    "url": "https://www.nationsreportcard.gov/ltt/?age=13",
+    "officiality": "official",
+    "access_date": "2026-10-23"
+  },
+  "notes": "Score decline from 2020 to 2023 was uneven: the 10th percentile fell 14 points and the 25th percentile fell 12 points, both steeper than the 9-point decline for the national average.",
+  "insight_type": "rank",
+  "ascending": false,
+  "points": [
+    {"label": "Bottom 10% of students", "value": 14},
+    {"label": "Bottom 25% of students", "value": 12},
+    {"label": "National average", "value": 9}
+  ]
+}

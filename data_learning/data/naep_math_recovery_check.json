@@ -1,0 +1,19 @@
+{
+  "key": "naep_math_recovery_check",
+  "title": "NAEP age-13 math score, 2020 vs. 2025",
+  "unit": "score",
+  "geography": "United States",
+  "time_coverage": "2020-2025",
+  "source": {
+    "name": "NAEP Long-Term Trend Assessment, mathematics, age 13",
+    "publisher": "National Center for Education Statistics (NCES)",
+    "url": "https://www.nationsreportcard.gov/ltt/?age=13",
+    "officiality": "official",
+    "access_date": "2026-10-23"
+  },
+  "notes": "NCES described the 2020-2023 math decline as the largest it had recorded in roughly 50 years of the Long-Term Trend assessment. The 2025 administration scored even lower than 2023, confirming no recovery.",
+  "points": [
+    {"label": "2020", "value": 280, "period": "2020"},
+    {"label": "2025", "value": 270, "period": "2025"}
+  ]
+}

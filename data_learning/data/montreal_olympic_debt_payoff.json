@@ -1,0 +1,26 @@
+{
+  "key": "montreal_olympic_debt_payoff",
+  "title": "Montreal's 1976 Olympic Stadium: build time vs. debt payoff time",
+  "unit": "years",
+  "geography": "Montreal, Canada",
+  "time_coverage": "1973-2006",
+  "source": {
+    "name": "Olympic Stadium (\"the Big Owe\") debt retirement, paid off December 19, 2006",
+    "publisher": "R\u00e9gie des installations olympiques / widely reported (CBC, Reuters)",
+    "url": "https://en.wikipedia.org/wiki/Olympic_Stadium_(Montreal)",
+    "officiality": "secondary",
+    "access_date": "2026-10-23"
+  },
+  "notes": "The stadium was built in about 2 years (1973-1976); the debt it generated (further swollen by a 1974 fire and cost overruns) took 30 years to retire, finally paid off in 2006.",
+  "insight_type": "comparison",
+  "points": [
+    {
+      "label": "Years to build the stadium",
+      "value": 2
+    },
+    {
+      "label": "Years to pay off the debt",
+      "value": 30
+    }
+  ]
+}

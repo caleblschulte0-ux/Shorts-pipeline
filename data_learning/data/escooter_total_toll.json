@@ -1,0 +1,20 @@
+{
+  "key": "escooter_total_toll",
+  "title": "Cumulative US e-scooter ER visits",
+  "unit": "ED visits",
+  "geography": "United States",
+  "time_coverage": "2017-2022",
+  "source": {
+    "name": "Micromobility Products-Related Deaths, Injuries, and Hazard Patterns, 2017-2022",
+    "publisher": "U.S. Consumer Product Safety Commission (CPSC), NEISS",
+    "url": "https://toysafety.org/wp-content/uploads/2024/05/Micromobility-Products-Related-Deaths-Injuries-and-Hazard-Patterns-2017-2022.pdf",
+    "officiality": "official",
+    "access_date": "2026-10-23"
+  },
+  "notes": "CPSC's cumulative NEISS-based estimate of e-scooter emergency department visits over the 2017-2022 window, versus the 2017-2019 subtotal, showing an accelerating trend.",
+  "insight_type": "comparison",
+  "points": [
+    {"label": "2017-2019 total", "value": 49900},
+    {"label": "2017-2022 total", "value": 169300}
+  ]
+}

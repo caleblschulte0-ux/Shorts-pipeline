@@ -1,0 +1,20 @@
+{
+  "key": "escooter_er_visits_trend",
+  "title": "Estimated US emergency department visits for e-scooter injuries",
+  "unit": "ED visits",
+  "geography": "United States",
+  "time_coverage": "2017-2019",
+  "source": {
+    "name": "Micromobility Products-Related Deaths, Injuries, and Hazard Patterns, 2017-2019",
+    "publisher": "U.S. Consumer Product Safety Commission (CPSC), NEISS",
+    "url": "https://www.cpsc.gov/s3fs-public/Micromobility-Products-Related-Deaths-Injuries-and-Hazard-Patterns-2017%E2%80%932019.pdf",
+    "officiality": "official",
+    "access_date": "2026-10-23"
+  },
+  "notes": "CPSC's NEISS-based estimate of emergency department visits involving e-scooters, as e-scooter sharing programs spread across US cities.",
+  "points": [
+    {"label": "2017", "value": 7700, "period": "2017"},
+    {"label": "2018", "value": 14500, "period": "2018"},
+    {"label": "2019", "value": 27700, "period": "2019"}
+  ]
+}

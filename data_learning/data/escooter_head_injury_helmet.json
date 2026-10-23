@@ -1,0 +1,26 @@
+{
+  "key": "escooter_head_injury_helmet",
+  "title": "Helmet use among riders 18 and under with e-scooter head injuries",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2020-2021",
+  "source": {
+    "name": "Pediatric e-scooter injury study using CPSC NEISS data",
+    "publisher": "Children's Hospital of Philadelphia (CHOP) / American Academy of Pediatrics",
+    "url": "https://www.aap.org/en/news-room/news-releases/aap/2023/electric-scooter-injuries-increased-more-than-70-in-youth-age-18-and-younger-from-2020-2021/",
+    "officiality": "primary",
+    "access_date": "2026-10-23"
+  },
+  "notes": "Among e-scooter riders 18 and under who were treated for head injuries, nearly 67% were not wearing a helmet at the time.",
+  "insight_type": "comparison",
+  "points": [
+    {
+      "label": "No helmet",
+      "value": 67
+    },
+    {
+      "label": "Wearing a helmet",
+      "value": 33
+    }
+  ]
+}

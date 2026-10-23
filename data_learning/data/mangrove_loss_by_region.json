@@ -1,0 +1,22 @@
+{
+  "key": "mangrove_loss_by_region",
+  "title": "Net mangrove area lost by region, 1980-2005",
+  "unit": "million hectares lost",
+  "geography": "Worldwide",
+  "time_coverage": "1980-2005",
+  "source": {
+    "name": "The World's Mangroves 1980-2005",
+    "publisher": "Food and Agriculture Organization of the United Nations (FAO)",
+    "url": "https://www.fao.org/docrep/pdf/010/a1427e/a1427e04.pdf",
+    "officiality": "official",
+    "access_date": "2026-10-23"
+  },
+  "notes": "Asia had the largest net mangrove loss of any region (over 1.9 million hectares), versus about 0.69 million in North & Central America and about 0.51 million in Africa.",
+  "insight_type": "rank",
+  "ascending": false,
+  "points": [
+    {"label": "Asia", "value": 1.9},
+    {"label": "North & Central America", "value": 0.69},
+    {"label": "Africa", "value": 0.51}
+  ]
+}
