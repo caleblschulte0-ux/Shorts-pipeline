@@ -15317,6 +15317,25 @@
         "end": 29.0
       },
       "director_cut": true
+    },
+    "rejected-intelligentfunwalrusplanking-czpolifddnixsqrn": {
+      "source_url": "https://www.twitch.tv/ironmouse/clip/IntelligentFunWalrusPlanking-CZPoLiFdDnixsqrn",
+      "streamer": "ironmouse",
+      "title": "mouse has some problems with this house",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source has 3.1s of black frames \u2014 dropped feed / hard fade",
+      "ts": "2026-10-23T12:33:00.225227+00:00"
+    },
+    "clip-20261023-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/SpicyWildNarwhalDoritosChip-a6SkqkXnjFr8TeIC",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Gets Shown Something From Marlon's P.O. Box And Can't Hold It In",
+      "kind": "twitch_clip",
+      "ts": "2026-10-23T12:35:57.355913+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
