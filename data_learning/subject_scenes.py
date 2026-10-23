@@ -2510,6 +2510,7 @@ def wordless_finish(scene):
             g.update(saved)
             globals()["text"] = real
         top_scrim(cr)
+    closing.finish = True               # Data does not stand still in it
     closing.__name__ = f"{getattr(scene, '__name__', 'scene')}_finish"
     closing.__doc__ = getattr(scene, "__doc__", None)
     return closing
@@ -2566,8 +2567,30 @@ def act_phase(clock: dict, role, f: int, fps: int = 30) -> float:
     return min(1.0, (f - clock["start"]) / (ACT_S * fps))
 
 
+#: What Data does through a WORDLESS FINISH once his own last act has
+#: landed. The finish holds u at 1, so the story is done and only the
+#: world's own clock moves, and a one-shot act holds still after `ACT_S`.
+#: Three closings in two days (lightning deaths, hearing aids, data-center
+#: water) froze 2-3s from about a second in and the cadence gate held
+#: them: "a frozen stretch outside any intentional hold". So he takes the
+#: result in: his own reaction, then reading it, and again, never a cheer
+#: the story may not have earned.
+FINISH_ACTS = ("think",)
+
+
+def finish_role(role, f: int, fps: int = 30):
+    """The (role, beat) Data plays at frame f of a wordless finish: the
+    scene's own last role first, then turns between `FINISH_ACTS` and it,
+    one act per `ACT_S + REST_S`, so he is never still for longer than
+    `REST_S`."""
+    k = int(f // ((ACT_S + REST_S) * fps))
+    seq = (role,) + tuple(a for a in FINISH_ACTS if a != role)
+    return seq[k % len(seq)], k
+
+
 def _render_frames(scene, insight, out_dir, name, frames, pts, surf):
     clock: dict = {}
+    finish = bool(getattr(scene, "finish", False))
     # PACED to its window (operator, 2026-10-09: "some animations hold too
     # long at the end after all the cool stuff has already happened"). A
     # scene that finishes its story early is stretched to land by the
@@ -2584,6 +2607,11 @@ def _render_frames(scene, insight, out_dir, name, frames, pts, surf):
         cr = cairo.Context(surf)
 
         def host(role, x, fy, h, pace=False, beat=0, _cr=cr, _f=f, **kw):
+            if finish:
+                r, k = finish_role(role, _f)
+                if r != role:
+                    kw = {}             # his hands leave the scene's part
+                role, beat = r, k
             place_host(_cr, role, act_phase(clock, (role, int(beat)), _f),
                        insight, x, fy, h, _f / 30.0, pace, **_grip_kw(kw))
         with I.text_layer(cr):          # labels are painted last, on top
