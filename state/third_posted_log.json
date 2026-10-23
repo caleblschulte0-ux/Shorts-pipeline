@@ -15356,13 +15356,50 @@
       "director_cut": true
     },
     "clip-20261023-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/StylishGlamorousStorkPeanutButterJellyTime-tgfmua9duHEzxZlp",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/FOJJARrnGqk",
       "title": "Jynxzi Begs 'If There's A Third One' And Then This Happens",
       "kind": "twitch_clip",
-      "ts": "2026-10-23T12:39:58.170216+00:00",
+      "ts": "2026-10-23T12:40:06.261177+00:00",
+      "uploaded_at": "2026-10-23T12:40:06.261190+00:00",
+      "publish_at": "2026-10-24T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261023-jynxzi-begs-if-there-s-a-third-one-and-then-this-4c5c3a70",
+        "tiktok": "queued for 2026-10-24T03:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/StylishGlamorousStorkPeanutButterJellyTime-tgfmua9duHEzxZlp",
+      "streamer": "jynxzi",
+      "series": "chaos",
+      "hook": "Jynxzi swears there better not be a third",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2262,
+      "banger": 0.4,
+      "cut": {
+        "start": 10.5,
+        "end": 26.0
+      },
+      "director_cut": true
+    },
+    "rejected-slipperyspookywormwoop-_xuau8-zy9znbhuh": {
+      "source_url": "https://www.twitch.tv/marlon/clip/SlipperySpookyWormWOOP-_XUau8-zY9ZNBHUh",
+      "streamer": "marlon",
+      "title": "c",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Disjointed montage, no clear event)",
+      "ts": "2026-10-23T12:42:21.032653+00:00"
+    },
+    "clip-20261023-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ohnepixel/clip/BlatantDaintyOwlKappaPride-p7y2x3f0Fsjma18Z",
+      "story_key": null,
+      "streamer": "ohnepixel",
+      "title": "Ohnepixel Finds Out Someone Made This Shirt Of Him In One Day",
+      "kind": "twitch_clip",
+      "ts": "2026-10-23T12:45:06.844986+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
