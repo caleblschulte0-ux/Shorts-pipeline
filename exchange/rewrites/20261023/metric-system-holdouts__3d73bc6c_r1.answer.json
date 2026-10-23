@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "metric-system-holdouts__3d73bc6c_r1",
+  "slug": "metric-system-holdouts",
+  "by": "chatgpt",
+  "written_at": "2026-10-23T11:26:00Z",
+  "title": "A Metric Mix-Up Left A Plane With 20,400 Pounds",
+  "hook": "A metric mix-up left a plane carrying only 20,400 pounds.",
+  "closing": "Units look small until the calculation becomes physical.",
+  "question": "Where have mixed units caused trouble?",
+  "segments": [
+    {
+      "topic": "Metric Adoption Gap",
+      "say": "Non-metric countries contain 5 percent of the world's population, leaving a small global holdout."
+    },
+    {
+      "topic": "Metric Orbiter Error",
+      "say": "The orbiter dropped to 57 kilometers, showing how one unit mismatch can destroy a mission."
+    },
+    {
+      "topic": "Metric Fuel Error",
+      "say": "The plane carried 20,400 pounds, less than half the fuel it needed."
+    }
+  ]
+}
