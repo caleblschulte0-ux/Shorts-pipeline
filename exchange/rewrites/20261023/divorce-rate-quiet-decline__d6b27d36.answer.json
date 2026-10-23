@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "divorce-rate-quiet-decline__d6b27d36",
+  "slug": "divorce-rate-quiet-decline",
+  "by": "chatgpt",
+  "written_at": "2026-10-23T11:26:00Z",
+  "title": "US Divorce Fell From 4.7 To 2.4",
+  "hook": "US divorce fell to 2.4 per thousand.",
+  "closing": "Later marriages arrived alongside fewer divorces.",
+  "question": "What marriage age feels right?",
+  "segments": [
+    {
+      "topic": "US Divorce Fell",
+      "say": "US divorce reached 2.4 per thousand, nearly half its 1990 rate."
+    },
+    {
+      "topic": "Divorce Marriage Age",
+      "say": "Women's first-marriage age reached 28.6, almost five years later than in 1990."
+    }
+  ]
+}
