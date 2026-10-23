@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "lottery-odds-vs-real-life__335c9001",
+  "slug": "lottery-odds-vs-real-life",
+  "by": "chatgpt",
+  "written_at": "2026-10-23T12:05:00Z",
+  "title": "Powerball Odds Worsened To 1 In 292 Million",
+  "hook": "Powerball changed its rules and made winning even harder.",
+  "closing": "Bigger jackpots came with worse odds for every ticket.",
+  "question": "Do worse odds change whether you play?",
+  "segments": [
+    {
+      "topic": "Powerball Lightning Odds",
+      "say": "Powerball's one-in-292-million chance makes a lifetime lightning strike look ordinary."
+    },
+    {
+      "topic": "Powerball Rare Odds",
+      "say": "Even a lifetime shark attack at one in 11.5 million is far likelier."
+    },
+    {
+      "topic": "Powerball Rule Change",
+      "say": "The rule change worsened jackpot odds to one in 292 million per play."
+    }
+  ]
+}
