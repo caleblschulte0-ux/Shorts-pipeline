@@ -1,7 +1,77 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-22T19:24:44Z",
+ "updated": "2026-10-23T00:14:01Z",
  "open": [
+  {
+   "id": "metric-system-holdouts__3d73bc6c_r1",
+   "slug": "metric-system-holdouts",
+   "filed": "2026-10-23T00:14:01Z",
+   "why": [
+    "premise: brain: The premise lacks a clear expectation reversal and relies on an ambiguous number without verifiable significance."
+   ],
+   "request": "exchange/rewrites/20261023/metric-system-holdouts__3d73bc6c_r1.request.json",
+   "answer_path": "exchange/rewrites/20261023/metric-system-holdouts__3d73bc6c_r1.answer.json"
+  },
+  {
+   "id": "homeschool-surge__fb7d1599",
+   "slug": "homeschool-surge",
+   "filed": "2026-10-23T00:14:00Z",
+   "why": [
+    "premise: brain: The premise relies on a vague expectation reversal and uses multiple figures rather than a single, clear, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261023/homeschool-surge__fb7d1599.request.json",
+   "answer_path": "exchange/rewrites/20261023/homeschool-surge__fb7d1599.answer.json"
+  },
+  {
+   "id": "iss-deorbit-2031__54db91c6",
+   "slug": "iss-deorbit-2031",
+   "filed": "2026-10-23T00:13:58Z",
+   "why": [
+    "premise: brain: The claim lacks a verifiable, consequential number beyond a vague date and does not convincingly reverse a clear viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261023/iss-deorbit-2031__54db91c6.request.json",
+   "answer_path": "exchange/rewrites/20261023/iss-deorbit-2031__54db91c6.answer.json"
+  },
+  {
+   "id": "divorce-rate-quiet-decline__d6b27d36",
+   "slug": "divorce-rate-quiet-decline",
+   "filed": "2026-10-23T00:13:57Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261023/divorce-rate-quiet-decline__d6b27d36.request.json",
+   "answer_path": "exchange/rewrites/20261023/divorce-rate-quiet-decline__d6b27d36.answer.json"
+  },
+  {
+   "id": "helium-supply-squeeze__067a945d",
+   "slug": "helium-supply-squeeze",
+   "filed": "2026-10-23T00:13:57Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague claim rather than a single, verifiable consequential number."
+   ],
+   "request": "exchange/rewrites/20261023/helium-supply-squeeze__067a945d.request.json",
+   "answer_path": "exchange/rewrites/20261023/helium-supply-squeeze__067a945d.answer.json"
+  },
+  {
+   "id": "english-internet-share-decline__21efaa68",
+   "slug": "english-internet-share-decline",
+   "filed": "2026-10-23T00:13:57Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261023/english-internet-share-decline__21efaa68.request.json",
+   "answer_path": "exchange/rewrites/20261023/english-internet-share-decline__21efaa68.answer.json"
+  },
+  {
+   "id": "pentagon-ufo-reports-surge__e166beb3",
+   "slug": "pentagon-ufo-reports-surge",
+   "filed": "2026-10-23T00:13:57Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261023/pentagon-ufo-reports-surge__e166beb3.request.json",
+   "answer_path": "exchange/rewrites/20261023/pentagon-ufo-reports-surge__e166beb3.answer.json"
+  },
   {
    "id": "peanut-allergy-guideline-flip__675a4e77",
    "slug": "peanut-allergy-guideline-flip",
@@ -23,16 +93,6 @@
    "answer_path": "exchange/rewrites/20261022/ai-datacenter-water__76f02e0c.answer.json"
   },
   {
-   "id": "helium-supply-squeeze__067a945d",
-   "slug": "helium-supply-squeeze",
-   "filed": "2026-10-22T19:24:41Z",
-   "why": [
-    "premise: brain: The premise relies on an unverified, sensational figure and does not convincingly overturn a common expectation with a single, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261022/helium-supply-squeeze__067a945d.request.json",
-   "answer_path": "exchange/rewrites/20261022/helium-supply-squeeze__067a945d.answer.json"
-  },
-  {
    "id": "world-wetlands-lost__3fe5ea62_r1",
    "slug": "world-wetlands-lost",
    "filed": "2026-10-22T11:46:39Z",
@@ -51,36 +111,6 @@
    ],
    "request": "exchange/rewrites/20261022/japan-vending-machine-density__9e291189_r1.request.json",
    "answer_path": "exchange/rewrites/20261022/japan-vending-machine-density__9e291189_r1.answer.json"
-  },
-  {
-   "id": "divorce-rate-quiet-decline__d6b27d36",
-   "slug": "divorce-rate-quiet-decline",
-   "filed": "2026-10-22T01:07:39Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261022/divorce-rate-quiet-decline__d6b27d36.request.json",
-   "answer_path": "exchange/rewrites/20261022/divorce-rate-quiet-decline__d6b27d36.answer.json"
-  },
-  {
-   "id": "english-internet-share-decline__21efaa68",
-   "slug": "english-internet-share-decline",
-   "filed": "2026-10-22T01:07:39Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261022/english-internet-share-decline__21efaa68.request.json",
-   "answer_path": "exchange/rewrites/20261022/english-internet-share-decline__21efaa68.answer.json"
-  },
-  {
-   "id": "pentagon-ufo-reports-surge__e166beb3",
-   "slug": "pentagon-ufo-reports-surge",
-   "filed": "2026-10-22T01:07:39Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261022/pentagon-ufo-reports-surge__e166beb3.request.json",
-   "answer_path": "exchange/rewrites/20261022/pentagon-ufo-reports-surge__e166beb3.answer.json"
   },
   {
    "id": "nyc-noise-complaints-per-day__7fcacd7a",
@@ -111,16 +141,6 @@
    ],
    "request": "exchange/rewrites/20261021/lottery-odds-vs-real-life__335c9001.request.json",
    "answer_path": "exchange/rewrites/20261021/lottery-odds-vs-real-life__335c9001.answer.json"
-  },
-  {
-   "id": "metric-system-holdouts__3d73bc6c_r1",
-   "slug": "metric-system-holdouts",
-   "filed": "2026-10-21T16:21:57Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a common viewer expectation and its single number lacks a strong, verifiable consequence."
-   ],
-   "request": "exchange/rewrites/20261021/metric-system-holdouts__3d73bc6c_r1.request.json",
-   "answer_path": "exchange/rewrites/20261021/metric-system-holdouts__3d73bc6c_r1.answer.json"
   },
   {
    "id": "coldest-place-in-the-universe-is-human-made__81f94a66",
@@ -485,16 +505,6 @@
    "answer_path": "exchange/rewrites/20261018/vertical-farming-bust__5b3e834e.answer.json"
   },
   {
-   "id": "iss-deorbit-2031__1ecc9d62",
-   "slug": "iss-deorbit-2031",
-   "filed": "2026-10-18T15:35:21Z",
-   "why": [
-    "thesis: seg1 ('why nasa wants out') has no bridge to the headline ('The ISS Will Be Deliberately Crashed Into The Ocean By 2031') — brain: no genuine bridge to the headline"
-   ],
-   "request": "exchange/rewrites/20261018/iss-deorbit-2031__1ecc9d62.request.json",
-   "answer_path": "exchange/rewrites/20261018/iss-deorbit-2031__1ecc9d62.answer.json"
-  },
-  {
    "id": "cursive-handwriting-comeback__90876971",
    "slug": "cursive-handwriting-comeback",
    "filed": "2026-10-18T15:35:20Z",
@@ -533,16 +543,6 @@
    ],
    "request": "exchange/rewrites/20261018/global-remittances-record-2023__21255dfc_r1.request.json",
    "answer_path": "exchange/rewrites/20261018/global-remittances-record-2023__21255dfc_r1.answer.json"
-  },
-  {
-   "id": "homeschool-surge__44c39d98",
-   "slug": "homeschool-surge",
-   "filed": "2026-10-18T14:23:08Z",
-   "why": [
-    "premise: brain: The premise does not clearly overturn a strong viewer expectation and the 5.4% figure isn’t a strikingly consequential reversal."
-   ],
-   "request": "exchange/rewrites/20261018/homeschool-surge__44c39d98.request.json",
-   "answer_path": "exchange/rewrites/20261018/homeschool-surge__44c39d98.answer.json"
   },
   {
    "id": "lightning-deaths-collapsed-not-the-storms__9241770b",
