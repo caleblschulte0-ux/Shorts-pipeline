@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "english-internet-share-decline__21efaa68",
+  "slug": "english-internet-share-decline",
+  "by": "chatgpt",
+  "written_at": "2026-10-23T12:05:00Z",
+  "title": "English's Internet Share Fell From 75% To 45%",
+  "hook": "English fell from 75% of web pages to under half.",
+  "closing": "Your language still decides how much of the web you see.",
+  "question": "Which language dominates your feed?",
+  "segments": [
+    {
+      "topic": "English Internet Start",
+      "say": "English held 75 percent of web pages before the rest of the world logged on."
+    },
+    {
+      "topic": "English Internet Growth",
+      "say": "Arabic content grew 2,501 percent, rapidly changing the internet's language mix."
+    },
+    {
+      "topic": "English Internet Today",
+      "say": "English now covers 55 percent of websites, leaving nearly half outside its reach."
+    }
+  ]
+}
