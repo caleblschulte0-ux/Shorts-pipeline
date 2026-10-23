@@ -1,0 +1,9 @@
+{
+ "slug": "hearing-aids-otc-price-drop",
+ "ts": "20261023T184723Z",
+ "failure_class": "temporal_gate",
+ "evidence": "temporal_gate: max_dup_run 67 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.42s of 29.62s (~2.8s frozen)",
+ "weakest_scene": {},
+ "scene_plan": {},
+ "scenes": []
+}
