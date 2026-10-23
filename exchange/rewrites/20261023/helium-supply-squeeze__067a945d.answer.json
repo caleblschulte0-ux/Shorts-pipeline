@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "helium-supply-squeeze__067a945d",
+  "slug": "helium-supply-squeeze",
+  "by": "chatgpt",
+  "written_at": "2026-10-23T11:26:00Z",
+  "title": "Helium Demand Could Rise From 100 To 190 By 2035",
+  "hook": "Helium demand could climb to 190 by 2035.",
+  "closing": "More demand against limited reserves means higher costs for everyone.",
+  "question": "Where would helium shortages hurt most?",
+  "segments": [
+    {
+      "topic": "Helium Reserves Concentrated",
+      "say": "Qatar holds 10.1 billion cubic meters, concentrating a major share of helium supply."
+    },
+    {
+      "topic": "Helium Demand Rising",
+      "say": "Projected helium demand reaches 190 by 2035, nearly doubling today's index."
+    },
+    {
+      "topic": "Helium Prices Surged",
+      "say": "The helium price index reached 400 in 2013, showing how quickly shortages hit buyers."
+    }
+  ]
+}
