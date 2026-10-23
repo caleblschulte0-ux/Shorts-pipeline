@@ -1,7 +1,57 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-23T00:14:01Z",
+ "updated": "2026-10-23T04:44:32Z",
  "open": [
+  {
+   "id": "nyc-noise-complaints-per-day__7fcacd7a",
+   "slug": "nyc-noise-complaints-per-day",
+   "filed": "2026-10-23T04:44:32Z",
+   "why": [
+    "premise: brain: It lacks a clear reversal of a viewer expectation and relies only on a single statistic without a surprising twist."
+   ],
+   "request": "exchange/rewrites/20261023/nyc-noise-complaints-per-day__7fcacd7a.request.json",
+   "answer_path": "exchange/rewrites/20261023/nyc-noise-complaints-per-day__7fcacd7a.answer.json"
+  },
+  {
+   "id": "peanut-allergy-guideline-flip__675a4e77",
+   "slug": "peanut-allergy-guideline-flip",
+   "filed": "2026-10-23T04:44:31Z",
+   "why": [
+    "premise: brain: The premise is ambiguous and does not clearly reverse a specific viewer expectation with a single verifiable number."
+   ],
+   "request": "exchange/rewrites/20261023/peanut-allergy-guideline-flip__675a4e77.request.json",
+   "answer_path": "exchange/rewrites/20261023/peanut-allergy-guideline-flip__675a4e77.answer.json"
+  },
+  {
+   "id": "ai-datacenter-water__c0cc9c1a",
+   "slug": "ai-datacenter-water",
+   "filed": "2026-10-23T04:44:31Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261023/ai-datacenter-water__c0cc9c1a.request.json",
+   "answer_path": "exchange/rewrites/20261023/ai-datacenter-water__c0cc9c1a.answer.json"
+  },
+  {
+   "id": "dog-breed-popularity-flip__8740e2a9",
+   "slug": "dog-breed-popularity-flip",
+   "filed": "2026-10-23T04:44:31Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a common viewer expectation and relies on a vague link between popularity and health rather than a single verifiable consequence."
+   ],
+   "request": "exchange/rewrites/20261023/dog-breed-popularity-flip__8740e2a9.request.json",
+   "answer_path": "exchange/rewrites/20261023/dog-breed-popularity-flip__8740e2a9.answer.json"
+  },
+  {
+   "id": "chatgpt-fastest-adoption-ever__c2e9df7d",
+   "slug": "chatgpt-fastest-adoption-ever",
+   "filed": "2026-10-23T04:44:30Z",
+   "why": [
+    "premise: brain: The claim relies on a vague comparative speed without a single verifiable number, making it a weak premise."
+   ],
+   "request": "exchange/rewrites/20261023/chatgpt-fastest-adoption-ever__c2e9df7d.request.json",
+   "answer_path": "exchange/rewrites/20261023/chatgpt-fastest-adoption-ever__c2e9df7d.answer.json"
+  },
   {
    "id": "metric-system-holdouts__3d73bc6c_r1",
    "slug": "metric-system-holdouts",
@@ -73,26 +123,6 @@
    "answer_path": "exchange/rewrites/20261023/pentagon-ufo-reports-surge__e166beb3.answer.json"
   },
   {
-   "id": "peanut-allergy-guideline-flip__675a4e77",
-   "slug": "peanut-allergy-guideline-flip",
-   "filed": "2026-10-22T19:24:44Z",
-   "why": [
-    "premise: brain: The premise is vague, does not clearly reverse a specific expectation, and the 43% figure is not presented as a clear, verifiable consequence."
-   ],
-   "request": "exchange/rewrites/20261022/peanut-allergy-guideline-flip__675a4e77.request.json",
-   "answer_path": "exchange/rewrites/20261022/peanut-allergy-guideline-flip__675a4e77.answer.json"
-  },
-  {
-   "id": "ai-datacenter-water__76f02e0c",
-   "slug": "ai-datacenter-water",
-   "filed": "2026-10-22T19:24:43Z",
-   "why": [
-    "judge: blocked before vision review: max_dup_run 68 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=27.92s of 35.88s (~2.8s frozen)"
-   ],
-   "request": "exchange/rewrites/20261022/ai-datacenter-water__76f02e0c.request.json",
-   "answer_path": "exchange/rewrites/20261022/ai-datacenter-water__76f02e0c.answer.json"
-  },
-  {
    "id": "world-wetlands-lost__3fe5ea62_r1",
    "slug": "world-wetlands-lost",
    "filed": "2026-10-22T11:46:39Z",
@@ -111,16 +141,6 @@
    ],
    "request": "exchange/rewrites/20261022/japan-vending-machine-density__9e291189_r1.request.json",
    "answer_path": "exchange/rewrites/20261022/japan-vending-machine-density__9e291189_r1.answer.json"
-  },
-  {
-   "id": "nyc-noise-complaints-per-day__7fcacd7a",
-   "slug": "nyc-noise-complaints-per-day",
-   "filed": "2026-10-21T20:53:54Z",
-   "why": [
-    "premise: brain: It does not clearly overturn a common viewer expectation, only presents a surprising statistic."
-   ],
-   "request": "exchange/rewrites/20261021/nyc-noise-complaints-per-day__7fcacd7a.request.json",
-   "answer_path": "exchange/rewrites/20261021/nyc-noise-complaints-per-day__7fcacd7a.answer.json"
   },
   {
    "id": "rubiks-cube-record-vs-robot__5d087bf9",
@@ -565,16 +585,6 @@
    "answer_path": "exchange/rewrites/20261018/vinyl-beats-cd-sales-again__b2dd235b.answer.json"
   },
   {
-   "id": "dog-breed-popularity-flip__ed8cf925",
-   "slug": "dog-breed-popularity-flip",
-   "filed": "2026-10-18T11:46:50Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague, unverifiable claim about a breed's dominance."
-   ],
-   "request": "exchange/rewrites/20261018/dog-breed-popularity-flip__ed8cf925.request.json",
-   "answer_path": "exchange/rewrites/20261018/dog-breed-popularity-flip__ed8cf925.answer.json"
-  },
-  {
    "id": "saturn-rings-vanishing__acf09995",
    "slug": "saturn-rings-vanishing",
    "filed": "2026-10-18T11:46:50Z",
@@ -920,18 +930,6 @@
    ],
    "request": "exchange/rewrites/20261009/permafrost-thaw__a94a08e2.request.json",
    "answer_path": "exchange/rewrites/20261009/permafrost-thaw__a94a08e2.answer.json"
-  },
-  {
-   "id": "chatgpt-fastest-adoption-ever__cb5bfb31",
-   "slug": "chatgpt-fastest-adoption-ever",
-   "filed": "2026-10-09T00:20:14Z",
-   "why": [
-    "premise: no consequential number in the title or hook",
-    "beats: seg1: the line's headline number (1e+08) is 66,667x away from anything this beat's picture can show — say a number the picture shows",
-    "pace: beat 1 says 27 words (max 16) — one sentence, the number and what it means"
-   ],
-   "request": "exchange/rewrites/20261009/chatgpt-fastest-adoption-ever__cb5bfb31.request.json",
-   "answer_path": "exchange/rewrites/20261009/chatgpt-fastest-adoption-ever__cb5bfb31.answer.json"
   },
   {
    "id": "global-displacement-record__42f9a9e1_r1",
