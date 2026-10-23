@@ -19,7 +19,7 @@
     },
     "wholesome": {
       "n": 10,
-      "median_vph": 0.105
+      "median_vph": 0.1
     },
     "argument": {
       "n": 9,
@@ -39,7 +39,7 @@
     },
     "jumpscare": {
       "n": 1,
-      "median_vph": 0.11
+      "median_vph": 0.1
     }
   },
   "excluded": {
@@ -49,7 +49,7 @@
     },
     "unknown": {
       "n": 1,
-      "median_vph": 0.42
+      "median_vph": 0.41
     }
   }
 }
