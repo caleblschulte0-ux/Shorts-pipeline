@@ -3,7 +3,7 @@
     {
       "format": "graph_race",
       "videos": 54,
-      "views": 268,
+      "views": 270,
       "views_per_video": 5.0,
       "avg_views_per_hour": 0.01,
       "engaged_views": 83,
@@ -14,9 +14,9 @@
     },
     {
       "format": "reddit_story",
-      "videos": 23,
+      "videos": 22,
       "views": 24,
-      "views_per_video": 1.0,
+      "views_per_video": 1.1,
       "avg_views_per_hour": 0.0,
       "engaged_views": 11,
       "avg_view_pct": 48.2,
@@ -25,6 +25,6 @@
       "subs_gained": 0
     }
   ],
-  "matched": 77,
-  "unmatched": 43
+  "matched": 76,
+  "unmatched": 46
 }

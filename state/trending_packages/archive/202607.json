@@ -5410,5 +5410,371 @@
       ],
       "music_vibe": "dark"
     }
+  },
+  "20260725": {
+    "01_reddit-return-policy-test.json": {
+      "version": 1,
+      "subreddit": "MaliciousCompliance",
+      "slug": "01_reddit-return-policy-test",
+      "title": "My manager said enforce the return policy exactly. I didn't know he wrote it.",
+      "hashtags": [
+        "reddit",
+        "storytime",
+        "maliciouscompliance",
+        "revenge",
+        "justice",
+        "karma",
+        "fyp",
+        "shorts",
+        "story",
+        "viral",
+        "satisfying",
+        "workplace"
+      ],
+      "script": "My new manager told me to enforce our return policy exactly as written, no exceptions, after corporate caught him making favors for regulars. Two days later a man in an expensive suit slapped a receipt on my counter demanding a full refund on a generator he'd bought fourteen months ago and clearly run through three storm seasons already. I smiled, pointed at the ninety-day policy sign taped right where he'd been standing, and told him corporate said no exceptions, full stop. He turned red and shouted that he'd get my manager fired by lunch for hiring someone this rigid. An hour later my manager called me into his office grinning, because the man in the suit was the regional director who'd rewritten that policy himself last month specifically to test if anyone would actually follow it. I got a raise. He got a memo reminding him what he'd signed.",
+      "shots": [
+        {
+          "phrase": "enforce our return policy exactly as written",
+          "query": "retail store checkout counter receipt",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "slapped a receipt on my counter",
+          "query": "hand slapping receipt on store counter",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "a generator he'd bought fourteen months ago",
+          "query": "portable generator garage storm",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "pointed at the ninety-day policy sign",
+          "query": "store return policy sign taped counter",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "he'd get my manager fired by lunch",
+          "query": "angry customer pointing arguing retail",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the regional director who'd rewritten that policy himself",
+          "query": "businessman office suit hallway",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "I got a raise",
+          "query": "paycheck envelope raise",
+          "mascot_pose": "idle"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "no exceptions, full stop",
+          "text": "NO EXCEPTIONS",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "the regional director who'd rewritten that policy himself",
+          "text": "HE WROTE THE RULE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "I got a raise",
+          "text": "RAISE EARNED",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "a memo reminding him what he'd signed",
+          "text": "OWNED BY HIS OWN POLICY",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "dark"
+    },
+    "02_reddit-driveway-cones.json": {
+      "version": 1,
+      "subreddit": "pettyrevenge",
+      "slug": "02_reddit-driveway-cones",
+      "title": "My neighbor blocked my driveway every night. The cones exposed something else.",
+      "hashtags": [
+        "reddit",
+        "pettyrevenge",
+        "revenge",
+        "storytime",
+        "karma",
+        "fyp",
+        "shorts",
+        "story",
+        "viral",
+        "satisfying",
+        "neighbors",
+        "justice"
+      ],
+      "script": "My neighbor started parking his truck across both of our driveway aprons every single night, blocking half of mine so I had to reverse at an angle to avoid clipping his mirror. I asked him twice to move it over, and both times he laughed and said the street was public, deal with it. So I called the city about the exact width of a shared apron easement, got it in writing, and had orange cones delivered to my address the next morning. Every night I lined the cones along the legal boundary line, right against his tires, close enough that he had to get out and physically move his truck to leave for work. After eleven straight nights of this he finally parked in his own driveway, until the morning he found a two hundred dollar parking ticket taped to his windshield for blocking a fire hydrant sightline the cones had exposed the whole time.",
+      "shots": [
+        {
+          "phrase": "parking his truck across both of our driveway aprons",
+          "query": "truck parked blocking driveway",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "I had to reverse at an angle to avoid clipping his mirror",
+          "query": "car reversing tight driveway",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "the street was public, deal with it",
+          "query": "man shrugging dismissive sidewalk",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "had orange cones delivered to my address",
+          "query": "orange traffic cones delivery boxes",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "lined the cones along the legal boundary line",
+          "query": "orange cones lined driveway edge",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "he finally parked in his own driveway",
+          "query": "truck parked correctly in driveway",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a two hundred dollar parking ticket taped to his windshield",
+          "query": "parking ticket taped windshield closeup",
+          "mascot_pose": "shock"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "the street was public, deal with it",
+          "text": "DEAL WITH IT?",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "had orange cones delivered to my address",
+          "text": "CONES INCOMING",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "he had to get out and physically move his truck",
+          "text": "MOVE IT YOURSELF",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "a two hundred dollar parking ticket",
+          "text": "$200 TICKET",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "the cones had exposed the whole time",
+          "text": "EXPOSED",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "dark"
+    },
+    "03_textcard-cyclospora-recall.json": {
+      "version": 1,
+      "format": "text_card",
+      "slug": "03_textcard-cyclospora-recall",
+      "title": "There's a parasite hiding in your salad bag right now",
+      "duration": 6,
+      "broll_query": "bagged salad produce",
+      "hashtags": [
+        "foodsafety",
+        "recall",
+        "health",
+        "news",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending",
+        "didyouknow",
+        "salad",
+        "outbreak",
+        "warning"
+      ],
+      "text": "There's a parasite hiding in your salad bag right now, and washing it won't help.\n\nCyclospora is a microscopic parasite that survives on fresh produce even after rinsing, and outbreaks tied to bagged salad kits have sickened people across Michigan, Indiana, and several other states this month. Symptoms can take a full week to appear, and health officials say some contaminated product may already be in your refrigerator.\n\nCheck your bag against the recall list before you eat another bite.",
+      "highlights": [
+        "hiding in your salad bag",
+        "washing it won't help",
+        "survives on fresh produce even after rinsing",
+        "sickened people across Michigan, Indiana",
+        "this month",
+        "take a full week to appear",
+        "already be in your refrigerator",
+        "Check your bag against the recall list"
+      ],
+      "music_vibe": "dark"
+    },
+    "04_textcard-sperm-whale-sleep.json": {
+      "version": 1,
+      "format": "text_card",
+      "slug": "04_textcard-sperm-whale-sleep",
+      "title": "Sperm whales sleep standing straight up",
+      "duration": 6,
+      "broll_query": "sperm whale ocean",
+      "hashtags": [
+        "whales",
+        "ocean",
+        "wildlife",
+        "nature",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending",
+        "animals",
+        "science",
+        "didyouknow",
+        "interesting"
+      ],
+      "text": "Sperm whales sleep standing straight up, like the ocean's tallest exclamation marks.\n\nResearchers tracking pods found the whales drift motionless in vertical columns near the surface for up to 15 minutes at a time, occasionally releasing a slow trail of bubbles that scientists think helps them stay in that restful, near-paralyzed state. It's one of the shortest known sleep patterns of any mammal on Earth.\n\nA creature the size of a school bus, just floating there, dead asleep.",
+      "highlights": [
+        "sleep standing straight up",
+        "the ocean's tallest exclamation marks",
+        "drift motionless in vertical columns",
+        "up to 15 minutes at a time",
+        "a slow trail of bubbles",
+        "near-paralyzed state",
+        "shortest known sleep patterns of any mammal on Earth",
+        "the size of a school bus",
+        "dead asleep"
+      ],
+      "music_vibe": "dark"
+    },
+    "05_graph-rocket-launches.json": {
+      "version": 1,
+      "format": "graph_race",
+      "slug": "05_graph-rocket-launches",
+      "title": "Orbital Rocket Launches per Year by Provider",
+      "y_label": "Launches per year",
+      "duration": 13,
+      "source": "Sources: public launch-tracking data, BryceTech/Jonathan's Space Report (approx.)",
+      "hashtags": [
+        "space",
+        "spacex",
+        "rockets",
+        "science",
+        "data",
+        "chart",
+        "fyp",
+        "shorts",
+        "trending",
+        "viral",
+        "nasa",
+        "tech"
+      ],
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "SpaceX",
+          "color": "#4a90e2",
+          "values": [
+            26,
+            31,
+            61,
+            98,
+            134,
+            150
+          ]
+        },
+        {
+          "name": "China",
+          "color": "#ff3030",
+          "values": [
+            39,
+            55,
+            64,
+            67,
+            68,
+            70
+          ]
+        },
+        {
+          "name": "Russia",
+          "color": "#ffaa30",
+          "values": [
+            17,
+            25,
+            22,
+            19,
+            17,
+            15
+          ]
+        }
+      ],
+      "music_vibe": "dark"
+    },
+    "06_graph-lottery-jackpots.json": {
+      "version": 1,
+      "format": "graph_race",
+      "slug": "06_graph-lottery-jackpots",
+      "title": "Biggest Lottery Jackpots Ever: Mega Millions vs Powerball",
+      "y_label": "Record jackpot ($ billions)",
+      "duration": 13,
+      "source": "Sources: Mega Millions & Powerball official jackpot records (approx.)",
+      "hashtags": [
+        "lottery",
+        "megamillions",
+        "powerball",
+        "money",
+        "data",
+        "chart",
+        "fyp",
+        "shorts",
+        "trending",
+        "viral",
+        "jackpot",
+        "finance"
+      ],
+      "years": [
+        2012,
+        2016,
+        2018,
+        2019,
+        2022,
+        2023
+      ],
+      "series": [
+        {
+          "name": "Mega Millions",
+          "color": "#ffaa30",
+          "values": [
+            0.656,
+            0.656,
+            1.537,
+            1.537,
+            1.537,
+            1.602
+          ]
+        },
+        {
+          "name": "Powerball",
+          "color": "#4a90e2",
+          "values": [
+            0.588,
+            1.586,
+            1.586,
+            1.586,
+            2.04,
+            2.04
+          ]
+        }
+      ],
+      "music_vibe": "dark"
+    }
   }
 }
