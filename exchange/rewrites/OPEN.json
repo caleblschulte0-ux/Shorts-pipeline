@@ -1,96 +1,26 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-24T11:18:43Z",
+ "updated": "2026-10-24T11:21:39Z",
  "open": [
   {
-   "id": "lottery-odds-vs-real-life__335c9001_r1",
-   "slug": "lottery-odds-vs-real-life",
-   "filed": "2026-10-24T04:19:37Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261024/lottery-odds-vs-real-life__335c9001_r1.request.json",
-   "answer_path": "exchange/rewrites/20261024/lottery-odds-vs-real-life__335c9001_r1.answer.json"
-  },
-  {
-   "id": "california-condor-comeback__ada5193e",
-   "slug": "california-condor-comeback",
-   "filed": "2026-10-24T04:19:36Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on vague numbers without a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261024/california-condor-comeback__ada5193e.request.json",
-   "answer_path": "exchange/rewrites/20261024/california-condor-comeback__ada5193e.answer.json"
-  },
-  {
-   "id": "ghost-fishing-gear-ocean-plastic__43f99e61",
-   "slug": "ghost-fishing-gear-ocean-plastic",
-   "filed": "2026-10-24T04:19:36Z",
-   "why": [
-    "premise: brain: The claim presents a statistic without overturning a clear viewer expectation, failing the required reversal criterion."
-   ],
-   "request": "exchange/rewrites/20261024/ghost-fishing-gear-ocean-plastic__43f99e61.request.json",
-   "answer_path": "exchange/rewrites/20261024/ghost-fishing-gear-ocean-plastic__43f99e61.answer.json"
-  },
-  {
-   "id": "coldest-place-in-the-universe-is-human-made__81f94a66_r1",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-10-24T04:19:35Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261024/coldest-place-in-the-universe-is-human-made__81f94a66_r1.request.json",
-   "answer_path": "exchange/rewrites/20261024/coldest-place-in-the-universe-is-human-made__81f94a66_r1.answer.json"
-  },
-  {
-   "id": "parker-solar-probe-speed-record__af1b2837",
-   "slug": "parker-solar-probe-speed-record",
-   "filed": "2026-10-24T04:19:35Z",
-   "why": [
-    "premise: brain: The premise relies on a generic superlative and a single speed figure without overturning a clear viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261024/parker-solar-probe-speed-record__af1b2837.request.json",
-   "answer_path": "exchange/rewrites/20261024/parker-solar-probe-speed-record__af1b2837.answer.json"
-  },
-  {
-   "id": "frog-freezes-and-revives__74b0628c",
-   "slug": "frog-freezes-and-revives",
-   "filed": "2026-10-23T13:46:09Z",
-   "why": [
-    "premise: brain: The claim hinges on an unverified 65% freezing statistic without solid evidence, making it a weak premise."
-   ],
-   "request": "exchange/rewrites/20261023/frog-freezes-and-revives__74b0628c.request.json",
-   "answer_path": "exchange/rewrites/20261023/frog-freezes-and-revives__74b0628c.answer.json"
-  },
-  {
-   "id": "world-wetlands-lost__3fe5ea62_r1",
+   "id": "world-wetlands-lost__3fe5ea62_r2",
    "slug": "world-wetlands-lost",
-   "filed": "2026-10-23T13:46:05Z",
+   "filed": "2026-10-24T11:21:38Z",
    "why": [
     "premise: brain: The claim does not clearly overturn a common viewer expectation, only presents a statistic."
    ],
-   "request": "exchange/rewrites/20261023/world-wetlands-lost__3fe5ea62_r1.request.json",
-   "answer_path": "exchange/rewrites/20261023/world-wetlands-lost__3fe5ea62_r1.answer.json"
+   "request": "exchange/rewrites/20261024/world-wetlands-lost__3fe5ea62_r2.request.json",
+   "answer_path": "exchange/rewrites/20261024/world-wetlands-lost__3fe5ea62_r2.answer.json"
   },
   {
-   "id": "dog-breed-popularity-flip__8740e2a9_r1",
+   "id": "dog-breed-popularity-flip__8740e2a9_r2",
    "slug": "dog-breed-popularity-flip",
-   "filed": "2026-10-23T12:49:00Z",
+   "filed": "2026-10-24T11:21:37Z",
    "why": [
     "premise: brain: The claim lacks a clear reversal of a common viewer expectation and relies on a vague link between popularity and health rather than a single verifiable consequence."
    ],
-   "request": "exchange/rewrites/20261023/dog-breed-popularity-flip__8740e2a9_r1.request.json",
-   "answer_path": "exchange/rewrites/20261023/dog-breed-popularity-flip__8740e2a9_r1.answer.json"
-  },
-  {
-   "id": "iss-deorbit-2031__54db91c6_r1",
-   "slug": "iss-deorbit-2031",
-   "filed": "2026-10-23T12:49:00Z",
-   "why": [
-    "premise: brain: The claim lacks a verifiable, consequential number beyond a vague date and does not convincingly reverse a clear viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261023/iss-deorbit-2031__54db91c6_r1.request.json",
-   "answer_path": "exchange/rewrites/20261023/iss-deorbit-2031__54db91c6_r1.answer.json"
+   "request": "exchange/rewrites/20261024/dog-breed-popularity-flip__8740e2a9_r2.request.json",
+   "answer_path": "exchange/rewrites/20261024/dog-breed-popularity-flip__8740e2a9_r2.answer.json"
   },
   {
    "id": "ai-datacenter-water__c0cc9c1a_r1",
@@ -111,6 +41,26 @@
    ],
    "request": "exchange/rewrites/20261023/chatgpt-fastest-adoption-ever__c2e9df7d_r1.request.json",
    "answer_path": "exchange/rewrites/20261023/chatgpt-fastest-adoption-ever__c2e9df7d_r1.answer.json"
+  },
+  {
+   "id": "coldest-place-in-the-universe-is-human-made__81f94a66_r1",
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "filed": "2026-10-23T12:48:59Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261023/coldest-place-in-the-universe-is-human-made__81f94a66_r1.request.json",
+   "answer_path": "exchange/rewrites/20261023/coldest-place-in-the-universe-is-human-made__81f94a66_r1.answer.json"
+  },
+  {
+   "id": "lottery-odds-vs-real-life__335c9001_r1",
+   "slug": "lottery-odds-vs-real-life",
+   "filed": "2026-10-23T12:48:59Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261023/lottery-odds-vs-real-life__335c9001_r1.request.json",
+   "answer_path": "exchange/rewrites/20261023/lottery-odds-vs-real-life__335c9001_r1.answer.json"
   },
   {
    "id": "cargo-ship-size-growth__f9ab28c4_r1",
