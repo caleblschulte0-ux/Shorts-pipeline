@@ -15522,13 +15522,41 @@
       "replay_count": 0
     },
     "clip-20261024-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/TolerantHumbleEchidnaTheTarFu-sdCuo3dMhNzJZt7h",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/mXGPbiSAUrI",
       "title": "Jynxzi Finally Did It After 4 Hours Of Putrescent Knight",
       "kind": "twitch_clip",
-      "ts": "2026-10-24T12:22:55.367881+00:00",
+      "ts": "2026-10-24T12:23:06.190163+00:00",
+      "uploaded_at": "2026-10-24T12:23:06.190174+00:00",
+      "publish_at": "2026-10-24T23:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261024-jynxzi-finally-did-it-after-4-hours-of-putrescen-589ca5c4",
+        "tiktok": "queued for 2026-10-24T23:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/TolerantHumbleEchidnaTheTarFu-sdCuo3dMhNzJZt7h",
+      "streamer": "jynxzi",
+      "series": "win",
+      "hook": "Jynxzi finally beats Putrescent Knight \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2580,
+      "banger": 0.3,
+      "cut": {
+        "start": 28.5,
+        "end": 58.5
+      },
+      "director_cut": true
+    },
+    "clip-20261024-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/BoldCoweringMuleNomNom-usi5gO99Wcq5pUY5",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Conquers Midra And Can't Hold Back After This",
+      "kind": "twitch_clip",
+      "ts": "2026-10-24T12:32:20.379394+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
