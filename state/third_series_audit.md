@@ -8,7 +8,7 @@
 | wholesome | 11 | 0.13 |
 | fail | 11 | 0.08 |
 | argument | 9 | 0.02 |
-| rage | 6 | 0.06 |
+| rage | 6 | 0.055 |
 | win | 2 | 0.005 |
 | jumpscare | 1 | 0.1 |
 | clutch | 1 | 0.04 |
@@ -18,4 +18,4 @@ Excluded from the content-mix comparison (unclassified / non-series structure):
 | label | n | median VPH |
 |---|---|---|
 | story | 2 | 0.015 |
-| unknown | 1 | 0.38 |
+| unknown | 1 | 0.37 |
