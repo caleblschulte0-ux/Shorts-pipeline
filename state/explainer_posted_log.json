@@ -4054,11 +4054,29 @@
       "duration_s": 36.3
     },
     "olympic-bid-collapse": {
-      "claimed_at": "2026-10-24T01:59:36.614340+00:00",
+      "url": "https://youtube.com/shorts/pY0bZ7rY5rg",
       "title": "Olympic Bids Have Fallen From 11 Cities To Just 2",
+      "at": "2026-10-24T01:59:48.958618+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.78,
+      "beat_s": [
+        4.25,
+        5.4,
+        6.78,
+        5.55,
+        5.3
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 75,
+      "duration_s": 27.8
     }
   },
   "uploads": [
@@ -5148,9 +5166,10 @@
       "claimed_at": "2026-10-24T01:59:36.614340+00:00",
       "title": "Olympic Bids Have Fallen From 11 Cities To Just 2",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "olympic-bid-collapse"
+      "url": "https://youtube.com/shorts/pY0bZ7rY5rg",
+      "state": "posted",
+      "slug": "olympic-bid-collapse",
+      "at": "2026-10-24T01:59:48.958618+00:00"
     }
   ]
 }
