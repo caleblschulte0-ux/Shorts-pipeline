@@ -15631,6 +15631,25 @@
       "rejected_by": "director",
       "rejected_why": "clip incomplete (no setup / payoff cut off)",
       "ts": "2026-10-24T12:41:05.384181+00:00"
+    },
+    "rejected-naivesoftringwow-wvszqh6plxg27qag": {
+      "source_url": "https://www.twitch.tv/hasanabi/clip/NaiveSoftRingWow-WVsZqh6PlxG27QAG",
+      "streamer": "hasanabi",
+      "title": "Kaya Piker, the showstealer.",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Static policy talk, nothing observable h)",
+      "ts": "2026-10-24T14:30:22.758398+00:00"
+    },
+    "clip-20261024-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/extraemily/clip/StupidBlazingDragonHassanChop-fNOd7tiV_UKh4l2L",
+      "story_key": null,
+      "streamer": "extraemily",
+      "title": "Extraemily: Emily Gives Emmy Halloween Cookies And Asks For A Review",
+      "kind": "twitch_clip",
+      "ts": "2026-10-24T14:34:03.721929+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
