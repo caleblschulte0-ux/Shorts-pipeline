@@ -40,6 +40,106 @@
       "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The kiosk replacement claim lacks a consequential verifiable number, while '3 Charts' is only a format label.\"}",
       "by": "chatgpt",
       "at": "2026-10-24T11:29:00Z"
+    },
+    "57a9b1bf65e2bbdd": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It reverses the expectation that every diamond preserves value with the consequential claim that lab-grown stones lost 90%.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "d9bfa507ad9c3107": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It overturns the expectation that blood donation is broadly supported with the consequential figure that only 3% of eligible people donate.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "7bd76ffd01f3905c": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It reverses the expectation that ocean predators remain abundant with the consequential 71% loss since 1970.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "ce47501a6505b83a": {
+      "answer": "{\"picks\":[{\"index\":3,\"topic\":\"[bbc_world] [25m ago] Man charged over AI image of crocodile in Singapore reservoir\",\"score\":9,\"angle\":\"A fake crocodile image triggered a real reservoir search and now a criminal charge.\"},{\"index\":7,\"topic\":\"[guardian_world] ‘It’s hard to sell a house when it’s covered in baboon faeces’: Cape Town divide\",\"score\":9,\"angle\":\"Cape Town homes are being invaded by baboons while residents and activists fight over coexistence.\"},{\"index\":14,\"topic\":\"[guardian_us] Police dog’s heatstroke death prompts criminal investigation in Tennessee\",\"score\":8,\"angle\":\"A police dog's 101F heatstroke death is now a criminal investigation into its own handler.\"},{\"index\":33,\"topic\":\"[googlenews_floridaman] [1h ago] Firenado caught on camera during a prescribed burn in Florida - WFAA\",\"score\":9,\"angle\":\"A controlled burn spawned a camera-ready fire tornado in Florida.\"},{\"index\":35,\"topic\":\"[googlenews_floridaman] [2h ago] 72-year-old Florida man rescued after falling from wheelchair into water while f\",\"score\":8,\"angle\":\"A fishing trip became a water rescue after a wheelchair rolled in.\"},{\"index\":55,\"topic\":\"[googlenews_floridaman] [14h ago] CAUGHT ON CAMERA: Reported bobcat wanders through Portland area street - koin.co\",\"score\":8,\"angle\":\"A reported bobcat casually walked a Portland street on camera.\"},{\"index\":42,\"topic\":\"[googlenews_floridaman] [17h ago] Rare 'fire tornado' caught on camera during Florida controlled burn - WPEC\",\"score\":7,\"angle\":\"A second outlet confirms the rare fire tornado footage from a controlled burn.\"},{\"index\":23,\"topic\":\"[techcrunch] [8m ago] Still running iOS 26? Update your iPhones, iPads and Macs for this urgent securi\",\"score\":8,\"angle\":\"Apple says an actively exploited bug hit targeted users and demands an urgent update.\"},{\"index\":2,\"topic\":\"[bbc_world] [18m ago] Estonia blames Russia for arson at defence company supplying Ukraine\",\"score\":8,\"angle\":\"Estonia says Russian services ordered an arson attack on a named defense supplier.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "e4ccc699ba746e39": {
+      "answer": "{\"subreddit\":\"MaliciousCompliance\",\"title\":\"My Manager Oversold The Show. I Counted Every Seat.\",\"script\":\"My manager sold 40 extra tickets, then ordered me to “find space” without issuing refunds. I worked the lobby at a small comedy club, and the fire-code chart behind the desk showed exactly 120 legal seats. He kept pointing at empty aisles like chairs could magically appear there. So I followed his instruction literally. I found space by measuring every approved seat, checking every reservation, and placing the 40 oversold guests in a neat line beside his office. Then I handed each person a printed receipt showing who authorized the sale. The crowd grew louder while he tried to blame the ticket system. Right then, the venue owner arrived for the opening act. I showed her the fire-code chart, the receipts, and his message telling me to squeeze people in. She refunded every extra ticket from his event bonus and promoted me to front-desk lead before the first joke landed.\",\"hashtags\":[\"MaliciousCompliance\",\"workplace\",\"karma\",\"storytime\"],\"shots\":[{\"phrase\":\"40 extra tickets\",\"query\":\"ticket counter\"},{\"phrase\":\"fire-code chart\",\"query\":\"venue seating\"},{\"phrase\":\"empty aisles\",\"query\":\"theater aisle\"},{\"phrase\":\"printed receipt\",\"query\":\"paper receipt\"},{\"phrase\":\"venue owner\",\"query\":\"office manager\"},{\"phrase\":\"event bonus\",\"query\":\"payroll document\"}],\"punches\":[{\"phrase\":\"40 extra tickets\",\"text\":\"OVERSOLD\",\"color\":\"#ff3030\"},{\"phrase\":\"fire-code chart\",\"text\":\"120 SEATS\",\"color\":\"#ffaa30\"},{\"phrase\":\"promoted me\",\"text\":\"PROMOTED\",\"color\":\"#50ff80\"}],\"music_vibe\":\"cinematic\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "999203f0ed8a817c": {
+      "answer": "{\"subreddit\":\"TalesFromTheCustomer\",\"title\":\"The Free Upgrade Cost Him The Entire Order\",\"script\":\"A customer slammed his iced drink on the counter and demanded the “free premium upgrade” he claimed another cafe promised him. I explained that our tiny shop had no such offer, but he kept filming me and shouting that I was hiding the good menu. My manager whispered, “Give him exactly what he asked for,” then disappeared into the back. So I upgraded everything: the largest cup, double espresso, specialty foam, extra syrup, and the imported topping he pointed at. I placed the finished drink beside an itemized receipt. His grin vanished when the total hit 18 dollars. He argued that “upgrade” meant free, so I replayed his own video where he clearly said, “Charge whatever it costs.” The customers behind him laughed. He paid, took one sip, and quietly asked for a lid. My manager returned just in time to stamp his loyalty card: 1 purchase, 9 more to go.\",\"hashtags\":[\"TalesFromTheCustomer\",\"workplace\",\"karma\",\"storytime\"],\"shots\":[{\"phrase\":\"slammed his iced drink\",\"query\":\"iced coffee\"},{\"phrase\":\"kept filming me\",\"query\":\"phone recording\"},{\"phrase\":\"upgraded everything\",\"query\":\"coffee toppings\"},{\"phrase\":\"itemized receipt\",\"query\":\"receipt closeup\"},{\"phrase\":\"18 dollars\",\"query\":\"payment terminal\"},{\"phrase\":\"loyalty card\",\"query\":\"stamp card\"}],\"punches\":[{\"phrase\":\"free premium upgrade\",\"text\":\"FREE?\",\"color\":\"#ffaa30\"},{\"phrase\":\"18 dollars\",\"text\":\"$18\",\"color\":\"#ff3030\"},{\"phrase\":\"quietly asked\",\"text\":\"QUIET NOW\",\"color\":\"#50ff80\"}],\"music_vibe\":\"hiphop\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "afedfb566be291bd": {
+      "answer": "{\"unusable\":\"The seed centers on a named real eviction and political housing protest, which the story rules prohibit using.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "b411b94b68d4a50d": {
+      "answer": "{\"subreddit\":\"IDontWorkHereLady\",\"title\":\"She Mistook My Costume For A Store Uniform\",\"script\":\"A woman shoved a return box into my arms because my costume matched the shop's colors. I told her I was waiting for a rehearsal next door, not working there, but she snapped, “Then find someone who does.” The actual cashier was helping a long line, so the woman followed me through every aisle, demanding a refund for an item from a different store. Finally, she threatened to report me for ignoring customers. I smiled, walked to the service desk, and handed the cashier the box along with the woman’s loud complaint. The barcode scan beeped red: wrong retailer, opened package, no receipt. The woman pointed at my costume again. That was when the rehearsal director entered with 12 actors wearing the exact same outfit. The cashier asked whether she planned to report the entire cast. She grabbed her box and left while we walked next door for curtain call.\",\"hashtags\":[\"IDontWorkHereLady\",\"workplace\",\"karma\",\"storytime\"],\"shots\":[{\"phrase\":\"return box\",\"query\":\"cardboard box\"},{\"phrase\":\"my costume\",\"query\":\"theater costume\"},{\"phrase\":\"long line\",\"query\":\"checkout line\"},{\"phrase\":\"service desk\",\"query\":\"customer service\"},{\"phrase\":\"barcode scan\",\"query\":\"barcode scanner\"},{\"phrase\":\"12 actors\",\"query\":\"theater cast\"}],\"punches\":[{\"phrase\":\"not working there\",\"text\":\"NOT STAFF\",\"color\":\"#ffaa30\"},{\"phrase\":\"wrong retailer\",\"text\":\"WRONG STORE\",\"color\":\"#ff3030\"},{\"phrase\":\"entire cast\",\"text\":\"THE WHOLE CAST\",\"color\":\"#50ff80\"}],\"music_vibe\":\"cinematic\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "9eb51adc4ec4291d": {
+      "answer": "{\"unusable\":\"The seed is live sports coverage, which the request's hard rules exclude.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "b84a0ecffdde20dd": {
+      "answer": "{\"picks\":[{\"index\":3,\"topic\":\"[bbc_world] [28m ago] Man charged over AI image of crocodile in Singapore reservoir\",\"score\":9,\"angle\":\"A fake crocodile image triggered a real search and now a criminal charge.\"},{\"index\":7,\"topic\":\"[guardian_world] ‘It’s hard to sell a house when it’s covered in baboon faeces’: Cape Town divide\",\"score\":9,\"angle\":\"Cape Town homes face baboon break-ins as residents and activists clash.\"},{\"index\":14,\"topic\":\"[guardian_us] Police dog’s heatstroke death prompts criminal investigation in Tennessee\",\"score\":8,\"angle\":\"A police dog's heatstroke death has turned into a criminal investigation.\"},{\"index\":32,\"topic\":\"[googlenews_floridaman] [1h ago] Firenado caught on camera during a prescribed burn in Florida - WFAA\",\"score\":9,\"angle\":\"A prescribed burn produced a fire tornado caught clearly on camera.\"},{\"index\":34,\"topic\":\"[googlenews_floridaman] [2h ago] 72-year-old Florida man rescued after falling from wheelchair into water while f\",\"score\":8,\"angle\":\"A fishing trip became an emergency water rescue after a wheelchair rolled in.\"},{\"index\":54,\"topic\":\"[googlenews_floridaman] [14h ago] CAUGHT ON CAMERA: Reported bobcat wanders through Portland area street - koin.co\",\"score\":8,\"angle\":\"A reported bobcat calmly wandered through a Portland street on camera.\"},{\"index\":42,\"topic\":\"[googlenews_floridaman] [22h ago] Florida man hospitalized after car plunges into Massachusetts bay - WWLP\",\"score\":8,\"angle\":\"A car plunge into a Massachusetts bay turned a storm story into a visual rescue.\"},{\"index\":55,\"topic\":\"[googlenews_floridaman] [2h ago] In 1998, a Florida man mixed his father-in-law’s ashes into concrete and sank th\",\"score\":7,\"angle\":\"A memorial reef origin story resurfaces with the bizarre concrete-ashes detail.\"},{\"index\":23,\"topic\":\"[sciencedaily] [8h ago] NASA’s Crew-13 could go from Florida to the ISS in under 9 hours\",\"score\":8,\"angle\":\"NASA and SpaceX may cut the trip to the ISS below 9 hours.\"},{\"index\":22,\"topic\":\"[techcrunch] [11m ago] Still running iOS 26? Update your iPhones, iPads and Macs for this urgent securi\",\"score\":8,\"angle\":\"Apple says an actively exploited flaw demands an immediate security update.\"},{\"index\":2,\"topic\":\"[bbc_world] [21m ago] Estonia blames Russia for arson at defence company supplying Ukraine\",\"score\":8,\"angle\":\"Estonia says Russian services ordered an arson attack on a defense supplier.\"},{\"index\":25,\"topic\":\"[sciencedaily] [1d ago] Pomegranate compound improves heart function by up to 80% in study\",\"score\":7,\"angle\":\"An animal study reports an 80% heart-function improvement from a pomegranate-linked compound.\"}]}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "7c6574562d9293d9": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It overturns the expectation that familiar birds remain abundant with a consequential loss of 3 billion since 1970.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "6c460f2ef546fff0": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The 100 million figure is explicitly hedged and the premise offers no verifiable consequence for viewers.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "de463fd12fc0f388": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It reverses the expectation that kelp decline is gradual by tying a 96% collapse to one missing predator.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "576aba33af4ba9ff": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The before-40 framing reverses an expectation, but it lacks a consequential quantified loss.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "6b4e49e5eeff5f83": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It overturns the expectation that modern waste is recovered by showing only 1 in 5 of 62 million tons is recycled.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "309744f139d92eb6": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"It states an expensive price without reversing a specific viewer expectation.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "65d0a3424ba839ef": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It overturns the expectation that total eclipses rarely repeat locally with two events in just 7 years.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "de9993f3214c7966": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The medium flip is surprising, but the premise supplies no consequential verifiable number.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "bf651c20b81c3548": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The 2.5 million comparison is vivid but offers no consequential takeaway beyond scale.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
+    },
+    "f90ec6a8a45a6832": {
+      "answer": "{\"subreddit\":\"MaliciousCompliance\",\"title\":\"The Deleted Recordings Exposed My Manager's Promise\",\"script\":\"My manager promised every customer their saved recordings would survive our service change, then ordered me to stop mentioning the deletion deadline. I worked the help desk, where angry people kept arriving with phones full of screenshots. The policy clearly said recordings from removed channels would vanish in 3 days. I asked for written guidance. He replied, “Use the approved script only.” So I did. I read the approved script word for word, including the line promising “no interruption,” while displaying his email beside it. Customers immediately asked him to sign that promise. He refused. One customer happened to be the regional auditor, who requested the same policy document I had flagged. By closing time, the deadline notice was restored, refunds were approved, and my manager's script was retired. The next morning, the auditor thanked me for following instructions exactly. My manager transferred me off the help desk. The auditor transferred me to compliance.\",\"hashtags\":[\"MaliciousCompliance\",\"workplace\",\"karma\",\"storytime\"],\"shots\":[{\"phrase\":\"deletion deadline\",\"query\":\"calendar deadline\"},{\"phrase\":\"help desk\",\"query\":\"service counter\"},{\"phrase\":\"phones full of screenshots\",\"query\":\"phone screenshots\"},{\"phrase\":\"written guidance\",\"query\":\"office email\"},{\"phrase\":\"regional auditor\",\"query\":\"business auditor\"},{\"phrase\":\"deadline notice\",\"query\":\"warning notice\"}],\"punches\":[{\"phrase\":\"vanish in 3 days\",\"text\":\"3 DAYS\",\"color\":\"#ff3030\"},{\"phrase\":\"approved script\",\"text\":\"READ IT EXACTLY\",\"color\":\"#ffaa30\"},{\"phrase\":\"transferred me to compliance\",\"text\":\"PROMOTED\",\"color\":\"#50ff80\"}],\"music_vibe\":\"cinematic\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:45:00Z"
     }
   }
 }
