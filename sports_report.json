@@ -1,8 +1,297 @@
 {
- "date": "2026-10-23",
+ "date": "2026-10-24",
  "format": "sports_moment",
  "want": 3,
  "dry_run": false,
- "slots": [],
- "already_today": 3
+ "slots": [
+  {
+   "sub": "nba",
+   "who": "Luka Doncic",
+   "why": "Luka's mic'd-up line to a nervous rookie teammate is funny and human.",
+   "post_title": "Luka To Yaxel: \"Hey bro. You're 24 and a rookie. Relax.\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/6ezin1",
+   "topic": "https://www.reddit.com/r/nba/comments/1xdv4mr/luka_to_yaxel_hey_bro_youre_24_and_a_rookie_relax",
+   "skipped": "too short: the post runs 6.8s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "LeBron gets heated with a heckling fan and shouts 'I'm an Ohio baby'.",
+   "post_title": "LeBron James Heated With a Knicks Fan: \"Ain't nothing soft in the Midwest... I'm not from the West Coast, I'm from Ohio, baby. I'm an Ohio baby, fuck is you talking about?\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/idugt5",
+   "topic": "https://www.reddit.com/r/nba/comments/1xbds51/lebron_james_heated_with_a_knicks_fan_aint",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nfl",
+   "who": "Aaron Rodgers",
+   "why": "Rodgers tells a young linebacker 'I know your dad' mid-game.",
+   "post_title": "[Highlight] Steelers QB Aaron Rodgers exchanges words on the field with Josiah Trotter, telling him: \u201cI know your dad.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x9gsmq/highlight_steelers_qb_aaron_rodgers_exchanges/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x9gsmq/highlight_steelers_qb_aaron_rodgers_exchanges",
+   "skipped": "too short: the post runs 7.0s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Charles Barkley",
+   "why": "Barkley cracks a joke on air about Shaq and Kash Patel.",
+   "post_title": "Charles Barkley: \"Should we be standing this close to Shaq?... He's been hanging out with Kash Patel. That's dangerous.\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/r0tqiq",
+   "topic": "https://www.reddit.com/r/nba/comments/1xc96lc/charles_barkley_should_we_be_standing_this_close",
+   "title": "Charles Barkley Roasts Shaq Over Kash Patel And Shaq Can't Believe It",
+   "hook": "Barkley warns Shaq's too close to danger \ud83d\ude02",
+   "ledger": {
+    "moves": [
+     "zoom@11.5",
+     "line2@22.4"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The setup is real, but the video drifts into Giannis B-roll and ends on a show bumper, so the Kash Patel punchline and Barkley backing Shaq up never land.",
+    "score": 53
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The setup is real, but the video drifts into Giannis B-roll and ends on a show bumper, so the Kash Patel punchline and Barkley backing Shaq up never land."
+  },
+  {
+   "sub": "soccer",
+   "who": "Ruben Amorim",
+   "why": "Amorim laughs along as fans chant his own name at him.",
+   "post_title": "Ruben Amorim laughs listening to Bournemouth fans chant \"Ruben Amorim, its happened again\" after Milan go 3-0 down. For context: Amorim's Manchester United also lost 3-0 to Bournemouth in December 202",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xcw0ox/ruben_amorim_laughs_listening_to_bournemouth_fans/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xcw0ox/ruben_amorim_laughs_listening_to_bournemouth_fans",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "hockey",
+   "who": "Brady Tkachuk",
+   "why": "Tkachuk's reaction to being booed after his tribute video in his old arena.",
+   "post_title": "Brady Tkachuk reaction to getting booed after his video tribute in Ottawa",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xc3ml8/brady_tkachuk_reaction_to_getting_booed_after_his/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xc3ml8/brady_tkachuk_reaction_to_getting_booed_after_his",
+   "title": "Brady Tkachuk Gets Booed By Ottawa Right After His Video Tribute",
+   "hook": "Tkachuk gets booed after his tribute \ud83d\ude33",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "repairs": [
+    {
+     "score": 79,
+     "reason": "showrunner BLOCK: The tribute setup and the crowd boos are real and on topic, but Tkachuk's own reaction never clearly lands, a blurry filler shot sits in the middle, and our line collides with the jumbotron score strip."
+    },
+    {
+     "score": 83,
+     "reason": "showrunner BLOCK: The tribute-to-boos turn lands with real footage, but our line is printed on top of the broadcast scoreboard and the tribute's subtitles for the first ~8 seconds."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 79
+   },
+   "video_url": "https://youtube.com/shorts/frHicNg2A5A",
+   "ok": true,
+   "publish_at": "2026-10-24T16:00:00Z",
+   "seconds": 529,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261024-brady-tkachuk-gets-booed-by-ottawa-right-after-h-109b969a",
+    "tiktok": "queued for 2026-10-24T16:00:00Z"
+   }
+  },
+  {
+   "sub": "baseball",
+   "who": "Robin Yount",
+   "why": "Yount throws out the first pitch in a Bob Uecker jersey at the World Series.",
+   "post_title": "Robin Yount tossed out the first pitch for Game 1 of the World Series in a Bob Uecker jersey",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xdv1w4/robin_yount_tossed_out_the_first_pitch_for_game_1/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xdv1w4/robin_yount_tossed_out_the_first_pitch_for_game_1",
+   "title": "Robin Yount Walks Out For The World Series First Pitch In A Bob Uecker Jersey",
+   "hook": "Robin Yount throws first pitch in Uecker jersey",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      308,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 75
+   },
+   "video_url": "https://youtube.com/shorts/xcbyPwhsQZk",
+   "ok": true,
+   "publish_at": "2026-10-24T20:00:00Z",
+   "seconds": 1462,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261024-robin-yount-walks-out-for-the-world-series-first-ed3ee16c",
+    "tiktok": "queued for 2026-10-24T20:00:00Z"
+   }
+  },
+  {
+   "sub": "nfl",
+   "who": "Chris Olave",
+   "why": "Olave explains why he wears a Guardian Cap: for his kids and his future.",
+   "post_title": "[Highlight/Interview] WR Chris Olave has a message for those who may mock him for his usage of a Gaurdian Cap: \u201cI put it on for my kids, to protect my brain and my future\u201d.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xby31g/highlightinterview_wr_chris_olave_has_a_message/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xby31g/highlightinterview_wr_chris_olave_has_a_message",
+   "title": "Chris Olave Says He Wears The Guardian Cap For His Kids",
+   "hook": "Olave on why he wears the Guardian Cap \ud83e\udde0",
+   "ledger": {
+    "moves": [
+     "zoom@19.28"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      540,
+      720,
+      180,
+      0
+     ]
+    }
+   },
+   "repairs": [
+    {
+     "score": 61,
+     "reason": "showrunner BLOCK: The footage and line are clean and correctly attributed, but it is 34 seconds of one static presser angle about a cap the viewer never sees, so the hook is weak and the moment barely lands."
+    },
+    {
+     "score": 62,
+     "reason": "showrunner BLOCK: A real, on-topic Olave quote, but the edit opens mid-sentence on a static wide shot with him jammed against the right edge. No punch-ins or sound hits, and the 'for my kids' line is never clearly framed as the payoff."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A podium talking head with stacked caption layers (illegible at mid2), and the promised 'for my kids' payoff never appears on screen before the end.",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A podium talking head with stacked caption layers (illegible at mid2), and the promised 'for my kids' payoff never appears on screen before the end."
+  },
+  {
+   "sub": "nfl",
+   "who": "Alvin Kamara",
+   "why": "Kamara jokes about being nearly as old as Cam after a rare NFL milestone.",
+   "post_title": "[Highlight] RB Alvin Kamara comments on being one of the six people in NFL history to have 5,000 rushing and 5,000 receiving yards: \u201cIt's meaning I'm almost as old as Cam.\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xc56ut/highlight_rb_alvin_kamara_comments_on_being_one/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xc56ut/highlight_rb_alvin_kamara_comments_on_being_one",
+   "title": "Alvin Kamara Gets Asked About A Rare NFL Record And Jokes About Cam",
+   "hook": "Kamara answers the record question \ud83d\ude02",
+   "ledger": {
+    "moves": [
+     "whoa@15.5",
+     "zoom@18.1"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      270,
+      360,
+      184,
+      0
+     ]
+    }
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: The footage is the right press conference, but it is 40s of one locked shot with no edit moves, and it ends on 'So' mid-thought instead of landing the Cam punchline."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 79
+   },
+   "video_url": "https://youtube.com/shorts/1EHJrYhuXRQ",
+   "ok": true,
+   "publish_at": "2026-10-25T00:00:00Z",
+   "seconds": 261,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261024-alvin-kamara-gets-asked-about-a-rare-nfl-record--0a370664",
+    "tiktok": "queued for 2026-10-25T00:00:00Z"
+   }
+  }
+ ],
+ "already_today": 0,
+ "pool": 87,
+ "already_posted": 7,
+ "shipped": 3
 }
