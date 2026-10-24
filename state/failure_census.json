@@ -2,104 +2,113 @@
  "n_verdicts": 20,
  "classes": {
   "other": {
-   "count": 9,
+   "count": 6,
    "stories": {
-    "sports_brady_tkachuk_ed_after_his": 1,
-    "sports_chris_olave_as_a_message": 2,
-    "sports_lebron_james_cks_fan_aint": 3,
+    "sports_yaxel_lenderborg_and_guarding": 1,
     "sports_charles_barkley_g_this_close": 1,
-    "sports_lebron_james_ident_taking": 1,
-    "sports_yaxel_lenderborg_and_guarding": 1
+    "sports_brady_tkachuk_ed_after_his": 2,
+    "sports_chris_olave_as_a_message": 1,
+    "chip-shortage-tsmc-fragility": 1
    },
    "timestamps": [
-    "2026-10-23T12:10:01+00:00",
-    "2026-10-23T13:09:51+00:00",
-    "2026-10-23T13:11:12+00:00",
-    "2026-10-23T13:12:26+00:00",
-    "2026-10-23T13:13:31+00:00",
-    "2026-10-23T13:14:39+00:00",
-    "2026-10-23T13:17:04+00:00",
-    "2026-10-23T13:18:44+00:00",
-    "2026-10-23T13:22:32+00:00"
+    "2026-10-23T13:22:32+00:00",
+    "2026-10-24T11:34:22+00:00",
+    "2026-10-24T11:37:43+00:00",
+    "2026-10-24T11:40:31+00:00",
+    "2026-10-24T12:15:26+00:00",
+    "2026-10-24T13:00:15+00:00"
    ],
    "examples": [
-    "unreadable: In mid1 our line sits on top of the jumbotron score bug (0 / SOG 3 / HITS / FACEOFF %), and in hook@0.3 to mid0 it lands on the 'BACK' board graphic. Both times it is printed over the foot",
-    "unreadable: In mid1 (t=6.84s) two word captions are printed on top of each other and read as garbled \"AI TO PUT SAFETY RY\". Olave's name placard is also partly covered by our line in hook@0.3 to mid4.",
-    "unreadable: In mid3 the word captions overlap into garbled text, 'THE YOUBUT I JUSTRATION.', which can't be read. The hook line also sits low over the table and the blurred crowd."
+    "unreadable: Our crop cuts off both ends of the footage's own captions in every frame: 'omplaining the entire game and th' (mid1), 'hat, that's just weak, you know. S' (mid2), 'g him he sucks. He can't",
+    "unreadable: In mid4, our line 'Then he had Shaq's back' is printed directly over the TV's GIANNIS ANTETOKOUNMPO / LAST SEASON W/ BUCKS stat graphic, so both collide. In mid5 and payoff@-1.8 the word c",
+    "unreadable: mid1: our line 'Brady Tkachuk gets booed after his tribute' is printed over the jumbotron's score and stats strip (0 / SOG 3 / HITS / POWERPLAY / TAKEAWAYS), so our text collides with an a"
+   ],
+   "recurred_after_fix": false
+  },
+  "empty_void": {
+   "count": 4,
+   "stories": {
+    "red-hair-recessive-gene": 2,
+    "olympic-bid-collapse": 1,
+    "chip-shortage-tsmc-fragility": 1
+   },
+   "timestamps": [
+    "2026-10-23T15:41:06+00:00",
+    "2026-10-24T01:47:28+00:00",
+    "2026-10-24T03:54:21+00:00",
+    "2026-10-24T13:00:15+00:00"
+   ],
+   "examples": [
+    "empty_void: payoff@-0.4 is almost all dark gradient with a small Data and a blank tag at the bottom. The last thing the viewer sees is an empty frame.",
+    "empty_void: payoff@-0.4 (t=27.37s), the last frame, is a nearly empty dark navy screen with one small Data holding a blank yellow price tag in the bottom third. More than 70% of the frame is dead spac",
+    "empty_void: payoff@-0.4 (t=24.83s): the last frame is a near-black gradient filling the whole screen, with only Data holding a blank yellow price tag at the bottom. The video ends on a void."
    ],
    "recurred_after_fix": false
   },
   "temporal_gate": {
-   "count": 4,
+   "count": 3,
    "stories": {
-    "ai-datacenter-water": 1,
     "lightning-deaths-collapsed-not-the-storms": 1,
     "hearing-aids-otc-price-drop": 1,
     "world-wetlands-lost": 1
    },
    "timestamps": [
-    "2026-10-22T18:39:00+00:00",
     "2026-10-23T16:29:05+00:00",
     "2026-10-23T17:12:58+00:00",
     "2026-10-23T20:59:50+00:00"
    ],
    "examples": [
-    "temporal_gate: max_dup_run 68 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=27.92s of 35.88s (~2.8s frozen)",
     "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.08s of 27.62s (~2.0s frozen)",
-    "temporal_gate: max_dup_run 67 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.42s of 29.62s (~2.8s frozen)"
+    "temporal_gate: max_dup_run 67 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.42s of 29.62s (~2.8s frozen)",
+    "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=29.08s of 34.96s (~2.0s frozen)"
    ],
    "recurred_after_fix": false
   },
   "junk_imagery": {
-   "count": 4,
+   "count": 2,
    "stories": {
-    "sports_brady_tkachuk_ed_after_his": 1,
-    "sports_dejan_kulusevski_ter_526_days": 1,
-    "sports_charles_barkley_g_this_close": 1,
-    "red-hair-recessive-gene": 1
+    "red-hair-recessive-gene": 1,
+    "sports_charles_barkley_g_this_close": 1
    },
    "timestamps": [
-    "2026-10-23T12:10:01+00:00",
-    "2026-10-23T13:04:57+00:00",
-    "2026-10-23T13:17:04+00:00",
-    "2026-10-23T15:41:06+00:00"
+    "2026-10-23T15:41:06+00:00",
+    "2026-10-24T11:34:22+00:00"
    ],
    "examples": [
-    "junk_imagery: The line and title say Brady Tkachuk 'speaks' and 'gets emotional', but no frame shows him talking or at a mic. hook@0.3 to mid0 is a phone recording of the arena jumbotron playing the t",
-    "junk_imagery: mid1-mid3 are an old narrated tribute montage (Conte on the bench, a purple away-kit goal with a SPURS TV bug), not the 526-day return. At mid1 a word caption reads 'ON COMES KANE,' over",
-    "junk_imagery: mid3 (19.6s) cuts to an unrelated Heat-arena dunk and mid4 (25.3s) to Giannis Antetokounmpo dribbling with a Bucks stat bar; neither is Barkley or Shaq, so the footage stops showing what"
-   ],
-   "recurred_after_fix": false
-  },
-  "empty_void": {
-   "count": 3,
-   "stories": {
-    "pickleball-fastest-growing-sport": 1,
-    "sports_chris_olave_as_a_message": 1,
-    "red-hair-recessive-gene": 1
-   },
-   "timestamps": [
-    "2026-10-22T16:30:30+00:00",
-    "2026-10-23T13:11:12+00:00",
-    "2026-10-23T15:41:06+00:00"
-   ],
-   "examples": [
-    "empty_void: In payoff@-0.4 the video ends on a near-black navy card. A small Data holds a blank yellow price tag at the bottom and the rest of the frame is empty.",
-    "empty_void: In every frame (hook@0.3 to payoff@-0.4) about the top 12% and bottom 12% are a blurred, darkened letterbox, and roughly 60% of the remaining frame is the sponsor backdrop. Olave is pushed",
-    "empty_void: payoff@-0.4 is almost all dark gradient with a small Data and a blank tag at the bottom. The last thing the viewer sees is an empty frame."
+    "junk_imagery: seg0:end shows the Irish tricolour behind '1.5% have red hair \u00b7 World', and seg1:start shows the Saltire behind '10% have red hair \u00b7 Ireland'. The flags contradict their own labels, and ",
+    "junk_imagery: mid4 (t=25.3s) shows Giannis Antetokounmpo dribbling under a Bucks stat graphic while our line says 'Then he had Shaq's back'. The wrong person is on screen. mid3 (t=19.6s) is an unrelat"
    ],
    "recurred_after_fix": false
   },
   "decorative_mascot": {
-   "count": 1,
+   "count": 2,
    "stories": {
-    "red-hair-recessive-gene": 1
+    "red-hair-recessive-gene": 1,
+    "chip-shortage-tsmc-fragility": 1
    },
    "timestamps": [
-    "2026-10-23T15:41:06+00:00"
+    "2026-10-23T15:41:06+00:00",
+    "2026-10-24T13:00:15+00:00"
    ],
    "examples": [
-    "decorative_mascot: In seg3:mid, seg3:end and all of seg4 Data stands waving beside the 'Dad' box. The levers never move and he does nothing to make the hair change. In seg2 he only stands in front of "
+    "decorative_mascot: In seg3:mid, seg3:end and all of seg4 Data stands waving beside the 'Dad' box. The levers never move and he does nothing to make the hair change. In seg2 he only stands in front of ",
+    "decorative_mascot: In seg1:start to seg1:end Data stands beside the clock tower holding a lamp post while the hand sweeps by itself. In seg4:start to payoff@-1.8 he stands still at the end of the tape"
+   ],
+   "recurred_after_fix": false
+  },
+  "dead_air": {
+   "count": 2,
+   "stories": {
+    "sports_charles_barkley_g_this_close": 1,
+    "chip-shortage-tsmc-fragility": 1
+   },
+   "timestamps": [
+    "2026-10-24T11:34:22+00:00",
+    "2026-10-24T13:00:15+00:00"
+   ],
+   "examples": [
+    "dead_air: From mid5 (t=31.0s) through payoff@-0.4 (t=32.6s) the video ends on a static TIP-OFF show bumper, and from mid3 the footage is filler. The joke has already ended and nothing that matters hap",
+    "dead_air: Measured held_s 4.0, max_dup_run 24 at 24.17s. seg4:start, seg4:mid and payoff@-1.8 are the same frozen seg2 room with only the closing text added. Data barely changes pose."
    ],
    "recurred_after_fix": false
   }
@@ -121,7 +130,7 @@
    "max": 4
   },
   "craft": {
-   "median": 1,
+   "median": 2,
    "min": 0,
    "max": 2
   },
@@ -137,30 +146,30 @@
   },
   "temporal_craft": {
    "median": 3,
-   "min": 2,
+   "min": 3,
    "max": 3
   }
  },
  "scores": [
   66,
+  83,
+  53,
   14,
-  61,
-  74,
-  66,
+  14,
+  14,
+  75,
+  79,
+  75,
+  53,
+  79,
+  83,
+  79,
+  75,
   61,
   62,
   57,
-  79,
-  79,
-  71,
-  53,
   66,
-  83,
-  66,
-  83,
-  53,
-  14,
-  14,
-  14
+  79,
+  70
  ]
 }
