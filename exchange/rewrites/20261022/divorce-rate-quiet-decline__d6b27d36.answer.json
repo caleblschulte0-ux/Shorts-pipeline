@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "divorce-rate-quiet-decline__d6b27d36",
+  "slug": "divorce-rate-quiet-decline",
+  "by": "chatgpt",
+  "written_at": "2026-10-24T11:49:00Z",
+  "title": "US Divorce Fell From 4.7 To 2.4 Per 1,000",
+  "hook": "Divorce did not rise; it fell to 2.4 per 1,000.",
+  "closing": "The famous divorce scare describes an America that no longer exists.",
+  "question": "Did you think divorce was rising?",
+  "segments": [
+    {
+      "topic": "Divorce rate decline",
+      "say": "US divorce fell from 4.7 per 1,000 in 1990 to 2.4 in 2022."
+    },
+    {
+      "topic": "Divorce marriage timing",
+      "say": "Women's first-marriage age rose from 23.9 in 1990 to 28.6 in 2024."
+    }
+  ]
+}
