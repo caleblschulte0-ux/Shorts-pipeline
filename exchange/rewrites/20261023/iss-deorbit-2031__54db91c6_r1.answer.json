@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "iss-deorbit-2031__54db91c6_r1",
+  "slug": "iss-deorbit-2031",
+  "by": "chatgpt",
+  "written_at": "2026-10-24T11:34:00Z",
+  "title": "NASA Will Spend $843 Million To Bring The ISS Down",
+  "hook": "NASA will spend $843 million to deliberately end the ISS.",
+  "closing": "Ending our space home safely costs almost as much as building a new mission.",
+  "question": "What should replace the ISS?",
+  "segments": [
+    {
+      "topic": "ISS human presence",
+      "say": "The ISS supported 24 years of continuous human presence from 2000 to 2024."
+    },
+    {
+      "topic": "ISS annual cost",
+      "say": "NASA spends $3 billion yearly on the ISS after $150 billion total."
+    },
+    {
+      "topic": "ISS deorbit cost",
+      "say": "The ISS deorbit contract costs $843 million versus $450 million for a shuttle launch."
+    }
+  ]
+}
