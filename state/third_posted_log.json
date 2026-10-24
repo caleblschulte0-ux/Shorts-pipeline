@@ -15419,6 +15419,52 @@
         "end": 26.0
       },
       "director_cut": true
+    },
+    "rejected-steamyspikyopossummrdestructoid-ytajaptdawj1ngqe": {
+      "source_url": "https://www.twitch.tv/xqc/clip/SteamySpikyOpossumMrDestructoid-yTAjAptDAWJ1NGqE",
+      "streamer": "xqc",
+      "title": "TONY CRASH OUT LO",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-10-24T11:27:33.990596+00:00"
+    },
+    "rejected-pricklyauspicioussrirachatebowing-edkemw9g-bm5jcfp": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/PricklyAuspiciousSrirachaTebowing-edkEmW9G-bm5JcFp",
+      "streamer": "stableronaldo",
+      "title": "sakura is there",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Someone enters; no visible payoff)",
+      "ts": "2026-10-24T11:28:06.067017+00:00"
+    },
+    "rejected-curioustallgoshawkssssss-pp2otwfey_jpbyxj": {
+      "source_url": "https://www.twitch.tv/agent00/clip/CuriousTallGoshawkSSSsss-Pp2otwfeY_jPbyxj",
+      "streamer": "agent00",
+      "title": "Agent can't believe Emily didnt get Sapphire nomination",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (insider award-show chatter, no visible e)",
+      "ts": "2026-10-24T11:29:21.647335+00:00"
+    },
+    "rejected-obliqueblightedjamdatsheffy-ftgyuyfwfn7klcwd": {
+      "source_url": "https://www.twitch.tv/esfandtv/clip/ObliqueBlightedJamDatSheffy-FTgyUYFWFn7KLcwD",
+      "streamer": "esfandtv",
+      "title": "Esfand the Zombie Trainer",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (WoW gameplay instructions, insider, no p)",
+      "ts": "2026-10-24T11:30:24.101294+00:00"
+    },
+    "clip-20261024-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/kaicenat/clip/TolerantEnjoyablePheasantResidentSleeper-c8oQaAvc5ryJ8sBK",
+      "story_key": null,
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Gets Called Into Action And Goes Full Samurai On Stream",
+      "kind": "twitch_clip",
+      "ts": "2026-10-24T11:34:04.378187+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
