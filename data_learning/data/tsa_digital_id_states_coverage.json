@@ -1,0 +1,19 @@
+{
+  "key": "tsa_digital_id_states_coverage",
+  "title": "States with digital ID vs all US states",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2026",
+  "source": {
+    "name": "TSA Digital Identity program coverage vs total US states",
+    "publisher": "Transportation Security Administration, as reported by trade press",
+    "url": "https://www.tsa.gov/digital-id",
+    "officiality": "secondary",
+    "access_date": "2026-10-24"
+  },
+  "notes": "By 2026, 20 states plus Puerto Rico had a TSA-accepted digital ID program, out of 50 US states total.",
+  "points": [
+    {"label": "Accept digital ID", "value": 20},
+    {"label": "All US states", "value": 50}
+  ]
+}

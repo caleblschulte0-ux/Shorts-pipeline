@@ -1,0 +1,20 @@
+{
+  "key": "nps_top_sites_2025",
+  "title": "Most-visited NPS sites in 2025",
+  "unit": "million",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "NPS 2025 recreation visitation statistics by park unit",
+    "publisher": "National Park Service",
+    "url": "https://www.nps.gov/orgs/1207/03-13-26-2025-visitation-statsitics.htm",
+    "officiality": "official",
+    "access_date": "2026-10-24"
+  },
+  "notes": "Blue Ridge Parkway, Golden Gate NRA, and Great Smoky Mountains NP were the most-visited NPS units in 2025, even in a shutdown-shortened year.",
+  "points": [
+    {"label": "Blue Ridge Parkway", "value": 16.5},
+    {"label": "Golden Gate NRA", "value": 15.7},
+    {"label": "Great Smoky Mountains NP", "value": 11.5}
+  ]
+}

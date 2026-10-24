@@ -1,0 +1,19 @@
+{
+  "key": "tsa_digital_id_checkpoints",
+  "title": "TSA checkpoints accepting digital ID",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2024 vs 2025",
+  "source": {
+    "name": "TSA Digital Identity program airport checkpoint rollout",
+    "publisher": "Transportation Security Administration, as reported by trade press",
+    "url": "https://www.tsa.gov/digital-id",
+    "officiality": "secondary",
+    "access_date": "2026-10-24"
+  },
+  "notes": "TSA's digital ID program accepted mobile driver's licenses at 27 airport checkpoints when it launched in October 2024, and had expanded to more than 250 checkpoints by 2025.",
+  "points": [
+    {"label": "2024", "value": 27},
+    {"label": "2025", "value": 250}
+  ]
+}

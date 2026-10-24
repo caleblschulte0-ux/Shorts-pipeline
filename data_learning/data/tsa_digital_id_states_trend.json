@@ -1,0 +1,20 @@
+{
+  "key": "tsa_digital_id_states_trend",
+  "title": "US states with a TSA-accepted digital ID",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2024-2026",
+  "source": {
+    "name": "TSA Digital Identity program state rollout announcements",
+    "publisher": "Transportation Security Administration, as reported by trade and news press",
+    "url": "https://www.tsa.gov/digital-id",
+    "officiality": "secondary",
+    "access_date": "2026-10-24"
+  },
+  "notes": "TSA started accepting mobile driver's licenses from 11 states in October 2024. Coverage expanded to about 16 states by mid-2025 and to 20 states plus Puerto Rico by 2026.",
+  "points": [
+    {"label": "2024", "value": 11, "period": "2024"},
+    {"label": "2025", "value": 16, "period": "2025"},
+    {"label": "2026", "value": 20, "period": "2026"}
+  ]
+}

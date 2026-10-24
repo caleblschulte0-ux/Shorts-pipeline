@@ -1,0 +1,19 @@
+{
+  "key": "measles_vaccination_status_2025",
+  "title": "Vaccination status of 2025 US measles cases",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "CDC measles case surveillance, vaccination status",
+    "publisher": "Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/measles/data-research/index.html",
+    "officiality": "official",
+    "access_date": "2026-10-24"
+  },
+  "notes": "About 93% of 2025 US measles cases were in people who were unvaccinated; the remaining 7% had received at least one dose or had unknown status.",
+  "points": [
+    {"label": "Unvaccinated", "value": 93},
+    {"label": "Vaccinated or unknown", "value": 7}
+  ]
+}

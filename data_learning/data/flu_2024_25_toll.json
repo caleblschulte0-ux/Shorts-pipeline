@@ -1,0 +1,20 @@
+{
+  "key": "flu_2024_25_toll",
+  "title": "2024-25 US flu season toll",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2024-2025 season",
+  "source": {
+    "name": "CDC 2024-2025 influenza season burden estimates",
+    "publisher": "Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/flu-burden/php/data-vis-vac/2024-2025-prevented.html",
+    "officiality": "official",
+    "access_date": "2026-10-24"
+  },
+  "notes": "CDC estimates the 2024-2025 flu season caused about 51 million illnesses, 710,000 hospitalizations, and 45,000 deaths in the US.",
+  "points": [
+    {"label": "Illnesses", "value": 51000000},
+    {"label": "Hospitalizations", "value": 710000},
+    {"label": "Deaths", "value": 45000}
+  ]
+}
