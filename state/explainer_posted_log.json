@@ -4129,6 +4129,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 75,
       "duration_s": 27.8
+    },
+    "chip-shortage-tsmc-fragility": {
+      "claimed_at": "2026-10-24T13:11:33.213584+00:00",
+      "title": "The $210 Billion Chip Shortage Nobody Saw Coming",
+      "publish_at": "2026-10-24T16:59:36Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5240,6 +5247,14 @@
       "state": "posted",
       "slug": "hearing-aids-otc-price-drop",
       "at": "2026-10-24T04:19:28.654304+00:00"
+    },
+    {
+      "claimed_at": "2026-10-24T13:11:33.213584+00:00",
+      "title": "The $210 Billion Chip Shortage Nobody Saw Coming",
+      "publish_at": "2026-10-24T16:59:36Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "chip-shortage-tsmc-fragility"
     }
   ]
 }
