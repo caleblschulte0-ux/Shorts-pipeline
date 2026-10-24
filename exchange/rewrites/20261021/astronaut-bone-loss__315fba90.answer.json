@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "astronaut-bone-loss__315fba90",
+  "slug": "astronaut-bone-loss",
+  "by": "chatgpt",
+  "written_at": "2026-10-24T11:49:00Z",
+  "title": "A Mars Trip Could Cost Astronauts 30% Of Hip Bone Density",
+  "hook": "Weightlessness does not rest bones; a Mars trip could cost 30%.",
+  "closing": "Floating feels effortless while the skeleton quietly pays for it.",
+  "question": "Would 30% change your Mars plans?",
+  "segments": [
+    {
+      "topic": "Astronaut bone loss",
+      "say": "Astronaut bone density falls 1.5% monthly, exceeding Earth's 1% yearly osteoporosis loss."
+    },
+    {
+      "topic": "Astronaut hip loss",
+      "say": "Astronaut hips lose 2.2% monthly versus just 0.1% in the forearm."
+    },
+    {
+      "topic": "Astronaut Mars loss",
+      "say": "An unprotected 30-month Mars mission could cost 30% hip density versus 9% in 6 months."
+    }
+  ]
+}
