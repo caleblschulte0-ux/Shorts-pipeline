@@ -4103,6 +4103,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
       "duration_s": 25.2
+    },
+    "hearing-aids-otc-price-drop": {
+      "claimed_at": "2026-10-24T04:19:17.040117+00:00",
+      "title": "Hearing Aids Started At $300 Instead Of Requiring A Prescription",
+      "publish_at": "2026-10-24T13:59:36Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5205,6 +5212,14 @@
       "state": "posted",
       "slug": "red-hair-recessive-gene",
       "at": "2026-10-24T03:54:35.528181+00:00"
+    },
+    {
+      "claimed_at": "2026-10-24T04:19:17.040117+00:00",
+      "title": "Hearing Aids Started At $300 Instead Of Requiring A Prescription",
+      "publish_at": "2026-10-24T13:59:36Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "hearing-aids-otc-price-drop"
     }
   ]
 }
