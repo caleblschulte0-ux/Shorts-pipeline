@@ -27627,10 +27627,10 @@
   },
   {
    "slug": "cargo-ship-size-growth",
-   "title": "Cargo Ships Grew Sixfold While Crews Shrank To 20",
-   "hook": "Cargo ships grew enormously, yet a typical crew shrank to 20 people.",
-   "closing": "More cargo and fewer hands mean enormous shipments depend on surprisingly small crews.",
-   "question": "Would you work on a ship this big?",
+   "title": "Cargo Ships Grew To 24,327 Containers Without Bigger Crews",
+   "hook": "One cargo ship now moves 24,327 containers with a tiny crew.",
+   "closing": "Global trade now depends on huge ships and surprisingly few hands.",
+   "question": "Would you join this cargo crew?",
    "caption": "The biggest cargo ship in 1980 carried 4,000 containers. Today's record holder carries 24,327, with roughly the same size crew. Here's how shipping quietly scaled up. 👇",
    "hashtags": [
     "cargoships",
@@ -27653,9 +27653,9 @@
       "file": "container_ship_capacity_trend.json"
      },
      "insight_type": "trend",
-     "topic": "Cargo capacity multiplies",
+     "topic": "Cargo capacity",
      "role": "1 · THE CLIMB",
-     "say": "The largest container ship's capacity reached 24,327 standard container equivalents. That is roughly six times the earliest supplied capacity.",
+     "say": "Cargo capacity reached 24,327 containers, roughly six times the earliest ship shown.",
      "scene": {
       "mechanic": "deck-box-loadout",
       "concept": "one container ship's deck fills with real stacked boxes, a box landing every few frames as the years sweep 1980 to 2024 and capacity climbs from 4,000 to 24,327",
@@ -27671,9 +27671,9 @@
      "insight_type": "rank",
      "use_baseline": true,
      "ascending": false,
-     "topic": "Cargo ship scale",
+     "topic": "Cargo ship length",
      "role": "2 · THE SCALE",
-     "say": "The supplied giant container ship measures 400 meters long. It is substantially longer than the Titanic in the comparison.",
+     "say": "A cargo ship reached 400 meters, stretching far beyond the Titanic.",
      "scene": {
       "mechanic": "hull-slides-past-titanic",
       "concept": "the Titanic is laid at its true length and the modern container ship slides in beside it, overshooting by 131 meters",
@@ -27688,9 +27688,9 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "Cargo crew shrinks",
+     "topic": "Cargo crew",
      "role": "3 · THE CATCH",
-     "say": "A typical crew fell to 20 people in these data. Larger cargo capacity did not require a larger crew.",
+     "say": "Today's cargo crew fell to 20 people even as ships became enormous.",
      "scene": {
       "mechanic": "crew-walks-off-deck",
       "concept": "a muster of 34 real sailors from 1980 stands on deck; 14 of them walk off one by one until only today's 20 remain",
@@ -27700,7 +27700,7 @@
    ],
    "words_by": "chatgpt-rewrite",
    "retold": "retell/v3",
-   "rewritten_at": "2026-10-20T11:24:40Z"
+   "rewritten_at": "2026-10-24T11:18:42Z"
   },
   {
    "slug": "ceo-executive-pay-gap",

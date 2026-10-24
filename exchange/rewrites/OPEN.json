@@ -1,17 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-24T04:19:38Z",
+ "updated": "2026-10-24T11:18:43Z",
  "open": [
-  {
-   "id": "cargo-ship-size-growth__f9ab28c4_r1",
-   "slug": "cargo-ship-size-growth",
-   "filed": "2026-10-24T04:19:38Z",
-   "why": [
-    "premise: brain: It relies on multiple numbers (sixfold growth and crew of 20) instead of a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261024/cargo-ship-size-growth__f9ab28c4_r1.request.json",
-   "answer_path": "exchange/rewrites/20261024/cargo-ship-size-growth__f9ab28c4_r1.answer.json"
-  },
   {
    "id": "lottery-odds-vs-real-life__335c9001_r1",
    "slug": "lottery-odds-vs-real-life",
@@ -121,6 +111,16 @@
    ],
    "request": "exchange/rewrites/20261023/chatgpt-fastest-adoption-ever__c2e9df7d_r1.request.json",
    "answer_path": "exchange/rewrites/20261023/chatgpt-fastest-adoption-ever__c2e9df7d_r1.answer.json"
+  },
+  {
+   "id": "cargo-ship-size-growth__f9ab28c4_r1",
+   "slug": "cargo-ship-size-growth",
+   "filed": "2026-10-23T12:48:58Z",
+   "why": [
+    "premise: brain: It relies on multiple numbers (sixfold growth and crew size 20) rather than a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261023/cargo-ship-size-growth__f9ab28c4_r1.request.json",
+   "answer_path": "exchange/rewrites/20261023/cargo-ship-size-growth__f9ab28c4_r1.answer.json"
   },
   {
    "id": "peanut-allergy-guideline-flip__675a4e77",
