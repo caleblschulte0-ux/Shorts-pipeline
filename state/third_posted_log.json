@@ -15576,6 +15576,25 @@
         "end": 60.0
       },
       "director_cut": true
+    },
+    "rejected-alertcaringcheeseamptroppunch--ccwkh0xgve8o6nw": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/AlertCaringCheeseAMPTropPunch--ccwKH0xGvE8O6nw",
+      "streamer": "caseoh_",
+      "title": "OH LAWD HAVE MERCY",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Minecraft Nether mining, no visible even)",
+      "ts": "2026-10-24T12:36:13.413971+00:00"
+    },
+    "clip-20261024-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/HyperSmokyNarwhalNerfRedBlaster-fMVtTfjJFCrxKzZ8",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Loses It After Her Yo-Yo Does The Unthinkable \ud83d\ude2d",
+      "kind": "twitch_clip",
+      "ts": "2026-10-24T12:39:17.926988+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
