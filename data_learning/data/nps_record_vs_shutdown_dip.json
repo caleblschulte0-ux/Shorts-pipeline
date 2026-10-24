@@ -1,0 +1,19 @@
+{
+  "key": "nps_record_vs_shutdown_dip",
+  "title": "NPS visits: 2024 record vs 2025",
+  "unit": "million",
+  "geography": "United States",
+  "time_coverage": "2024 vs 2025",
+  "source": {
+    "name": "NPS annual recreation visitation statistics",
+    "publisher": "National Park Service",
+    "url": "https://www.nps.gov/orgs/1207/03-13-26-2025-visitation-statsitics.htm",
+    "officiality": "official",
+    "access_date": "2026-10-24"
+  },
+  "notes": "NPS logged a record 331.9 million recreation visits in 2024. A 43-day federal government shutdown in late 2025 helped push the 2025 total down 2.7% to 323.0 million.",
+  "points": [
+    {"label": "2024 (record)", "value": 331.9},
+    {"label": "2025 (shutdown year)", "value": 323.0}
+  ]
+}

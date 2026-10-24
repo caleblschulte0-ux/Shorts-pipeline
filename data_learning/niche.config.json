@@ -35635,6 +35635,239 @@
    "retold": "retell/v4",
    "words_by": "claude-retell",
    "rewritten_at": "2026-10-23T18:13:48Z"
+  },
+  {
+   "slug": "tsa-digital-id-states-growth",
+   "title": "20 States Now Let You Use A Digital ID At The Airport",
+   "hook": "Your phone just became a legit airport ID in 20 states.",
+   "closing": "Real ID 2.0 just lives in your phone now.",
+   "question": "Have you tried a digital ID yet?",
+   "caption": "TSA went from 11 states to 20 states accepting a digital driver's license at security in just two years. Here's how far -- and how fast -- it's spreading. Have you tried it yet? 👇",
+   "hashtags": [
+    "tsa",
+    "digitalid",
+    "mobiledriverslicense",
+    "airportsecurity",
+    "travel",
+    "traveltips",
+    "realid",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "technology",
+    "airtravel",
+    "privacy"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "tsa_digital_id_states_trend",
+     "params": {
+      "file": "tsa_digital_id_states_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE ROLLOUT",
+     "topic": "States accepting a digital ID at TSA",
+     "say": "In October 2024, only 11 states let TSA scan a digital ID. By 2026, that number has grown to 20."
+    },
+    {
+     "source": "offline",
+     "key": "tsa_digital_id_checkpoints",
+     "params": {
+      "file": "tsa_digital_id_checkpoints.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · WHERE YOU CAN USE IT",
+     "topic": "TSA checkpoints accepting a digital ID",
+     "say": "TSA checkpoints offering it jumped too -- just 27 airports accepted it in 2024, and now more than 250 do nationwide."
+    },
+    {
+     "source": "offline",
+     "key": "tsa_digital_id_states_coverage",
+     "params": {
+      "file": "tsa_digital_id_states_coverage.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · STILL THE MINORITY",
+     "topic": "States with digital ID vs all states",
+     "say": "Even so, 20 states is less than half the country -- most travelers still need their plastic ID for now."
+    }
+   ]
+  },
+  {
+   "slug": "national-parks-record-then-shutdown",
+   "title": "National Parks Broke A Record. Then A Shutdown Hit.",
+   "hook": "331.9 million visits -- the most ever, until the shutdown.",
+   "closing": "Even in a rough year, people still show up for the view.",
+   "question": "Which park would you brave a shutdown for?",
+   "caption": "National parks hit a record 331.9 million visits in 2024. Then a 43-day government shutdown in 2025 knocked visits back down -- but people still showed up in huge numbers. Which park would you brave a shutdown for? 👇",
+   "hashtags": [
+    "nationalparks",
+    "nps",
+    "nationalparkservice",
+    "travel",
+    "hiking",
+    "outdoors",
+    "usatravel",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "governmentshutdown",
+    "tourism",
+    "blueridgeparkway"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "nps_visits_climb",
+     "params": {
+      "file": "nps_visits_climb.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE CLIMB",
+     "topic": "National park visits climbing",
+     "say": "National parks logged 327.5 million visits back in 2019. That number climbed steadily to a record 331.9 million by 2024."
+    },
+    {
+     "source": "offline",
+     "key": "nps_record_vs_shutdown_dip",
+     "params": {
+      "file": "nps_record_vs_shutdown_dip.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE SHUTDOWN HIT",
+     "topic": "National park visits after the shutdown",
+     "say": "Then a 43-day government shutdown closed sites in 2025, and total visits slid to 323 million -- down 2.7%."
+    },
+    {
+     "source": "offline",
+     "key": "nps_top_sites_2025",
+     "params": {
+      "file": "nps_top_sites_2025.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "3 · WHERE THEY STILL WENT",
+     "topic": "Most-visited national park sites in 2025",
+     "say": "Even then, Blue Ridge Parkway alone still drew 16.5 million visits -- more than most countries' entire tourism totals."
+    }
+   ]
+  },
+  {
+   "slug": "measles-comeback-since-2000",
+   "title": "Why Is Measles Making A Comeback In America?",
+   "hook": "We eliminated measles in 2000. Cases just hit 2,289.",
+   "closing": "Elimination status took 25 years to earn, and it's now at risk.",
+   "question": "Did you know measles was ever eliminated?",
+   "caption": "The US declared measles eliminated in 2000. In 2025, cases hit 2,289 -- the worst year since. 93% of those who got sick were unvaccinated. Did you know it was ever gone? 👇",
+   "hashtags": [
+    "measles",
+    "publichealth",
+    "vaccines",
+    "cdc",
+    "outbreak",
+    "vaccination",
+    "healthfacts",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "science",
+    "texas",
+    "immunization"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "measles_cases_by_year",
+     "params": {
+      "file": "measles_cases_by_year.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE COMEBACK",
+     "topic": "US measles cases since elimination",
+     "say": "In 2000, the US had just 86 measles cases and declared the disease eliminated. By 2025, cases hit 2,289."
+    },
+    {
+     "source": "offline",
+     "key": "measles_vaccination_status_2025",
+     "params": {
+      "file": "measles_vaccination_status_2025.json"
+     },
+     "insight_type": "share",
+     "role": "2 · WHO GOT SICK",
+     "topic": "Vaccination status of measles cases",
+     "say": "93% of this year's measles cases were in unvaccinated people. This isn't bad luck -- it's a vaccine gap."
+    },
+    {
+     "source": "offline",
+     "key": "measles_texas_outbreak_vs_national",
+     "params": {
+      "file": "measles_texas_outbreak_vs_national.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · WHERE IT SPREAD",
+     "topic": "West Texas measles outbreak vs the nation",
+     "say": "One outbreak in West Texas alone reached 702 cases -- nearly a third of the whole year's 2,289 nationwide."
+    }
+   ]
+  },
+  {
+   "slug": "flu-season-2024-25-worst-in-years",
+   "title": "710,000 Hospital Visits: Last Flu Season Was Brutal",
+   "hook": "One flu season just beat every season since 2010.",
+   "closing": "The shot wasn't perfect, but it clearly helped.",
+   "question": "Did you get your flu shot last season?",
+   "caption": "The 2024-2025 flu season sent 710,000 Americans to the hospital -- the worst toll in over a decade. Only 32.4% of those hospitalized had gotten a flu shot. Did you get yours? 👇",
+   "hashtags": [
+    "flu",
+    "influenza",
+    "publichealth",
+    "cdc",
+    "fluseason",
+    "vaccines",
+    "healthfacts",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "hospitalization",
+    "fluvaccine"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "flu_2024_25_toll",
+     "params": {
+      "file": "flu_2024_25_toll.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "1 · THE TOLL",
+     "topic": "Flu illnesses, hospitalizations and deaths",
+     "say": "Last season alone, 51 million Americans caught the flu. 710,000 of them ended up hospitalized, and 45,000 died."
+    },
+    {
+     "source": "offline",
+     "key": "flu_hospitalization_rate_by_age",
+     "params": {
+      "file": "flu_hospitalization_rate_by_age.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · WHO IT HIT HARDEST",
+     "topic": "Flu hospitalization rate by age",
+     "say": "The hospitalization rate hit 127.1 overall -- the highest since 2010. For people 75 and older, it hit 598.8."
+    },
+    {
+     "source": "offline",
+     "key": "flu_vaccination_status_hospitalized",
+     "params": {
+      "file": "flu_vaccination_status_hospitalized.json"
+     },
+     "insight_type": "share",
+     "role": "3 · THE VACCINE GAP",
+     "topic": "Vaccination status of flu hospitalizations",
+     "say": "Only 32.4% of the people hospitalized with flu had actually gotten their flu shot earlier that same season."
+    }
+   ]
   }
  ],
  "videos": [

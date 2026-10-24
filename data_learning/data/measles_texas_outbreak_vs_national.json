@@ -1,0 +1,19 @@
+{
+  "key": "measles_texas_outbreak_vs_national",
+  "title": "West Texas outbreak vs the 2025 US total",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2025",
+  "source": {
+    "name": "Texas DSHS West Texas measles outbreak updates; CDC national 2025 total",
+    "publisher": "Texas Department of State Health Services / CDC",
+    "url": "https://www.dshs.texas.gov/news-alerts/measles-outbreak-2025",
+    "officiality": "official",
+    "access_date": "2026-10-24"
+  },
+  "notes": "A single outbreak centered in Gaines County, Texas, had reached 702 cases by May 2025 -- roughly a third of the entire year's US total of 2,289.",
+  "points": [
+    {"label": "Texas outbreak (by May 2025)", "value": 702},
+    {"label": "2025 US total", "value": 2289}
+  ]
+}

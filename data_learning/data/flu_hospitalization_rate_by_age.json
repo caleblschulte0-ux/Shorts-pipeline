@@ -1,0 +1,19 @@
+{
+  "key": "flu_hospitalization_rate_by_age",
+  "title": "Flu hospitalization rate per 100,000",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2024-2025 season",
+  "source": {
+    "name": "CDC FluSurv-NET cumulative hospitalization rates",
+    "publisher": "Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/flu-burden/php/data-vis-vac/2024-2025-prevented.html",
+    "officiality": "official",
+    "access_date": "2026-10-24"
+  },
+  "notes": "The cumulative flu hospitalization rate for the 2024-2025 season was 127.1 per 100,000 people overall -- the highest since the 2010-2011 season -- and 598.8 per 100,000 for adults 75 and older.",
+  "points": [
+    {"label": "All ages", "value": 127.1},
+    {"label": "Ages 75+", "value": 598.8}
+  ]
+}

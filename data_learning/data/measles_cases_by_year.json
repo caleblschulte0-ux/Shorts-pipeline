@@ -1,0 +1,20 @@
+{
+  "key": "measles_cases_by_year",
+  "title": "US measles cases by year",
+  "unit": "count",
+  "geography": "United States",
+  "time_coverage": "2000-2025",
+  "source": {
+    "name": "CDC measles case surveillance data",
+    "publisher": "Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/measles/data-research/index.html",
+    "officiality": "official",
+    "access_date": "2026-10-24"
+  },
+  "notes": "The US declared measles eliminated in 2000, with just 86 reported cases that year. Cases climbed to 1,274 in 2019, then to a post-elimination record 2,289 in 2025.",
+  "points": [
+    {"label": "2000", "value": 86, "period": "2000"},
+    {"label": "2019", "value": 1274, "period": "2019"},
+    {"label": "2025", "value": 2289, "period": "2025"}
+  ]
+}

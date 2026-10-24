@@ -1,0 +1,20 @@
+{
+  "key": "nps_visits_climb",
+  "title": "National Park Service recreation visits",
+  "unit": "million",
+  "geography": "United States",
+  "time_coverage": "2019-2024",
+  "source": {
+    "name": "NPS annual recreation visitation statistics",
+    "publisher": "National Park Service",
+    "url": "https://www.nps.gov/aboutus/visitation-numbers.htm",
+    "officiality": "official",
+    "access_date": "2026-10-24"
+  },
+  "notes": "NPS recreation visits totaled 327.5 million in 2019, dipped to 325.5 million in 2023, then set a record of 331.9 million in 2024.",
+  "points": [
+    {"label": "2019", "value": 327.5, "period": "2019"},
+    {"label": "2023", "value": 325.5, "period": "2023"},
+    {"label": "2024", "value": 331.9, "period": "2024"}
+  ]
+}

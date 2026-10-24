@@ -1,0 +1,19 @@
+{
+  "key": "flu_vaccination_status_hospitalized",
+  "title": "Vaccination status of flu hospitalizations",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2024-2025 season",
+  "source": {
+    "name": "CDC FluSurv-NET vaccination status among hospitalized flu patients",
+    "publisher": "Centers for Disease Control and Prevention",
+    "url": "https://www.cdc.gov/flu-burden/php/data-vis-vac/2024-2025-prevented.html",
+    "officiality": "official",
+    "access_date": "2026-10-24"
+  },
+  "notes": "Only 32.4% of adults hospitalized with flu in the 2024-2025 season had received a flu vaccine that season; CDC estimates vaccination still prevented about 180,000 hospitalizations.",
+  "points": [
+    {"label": "Vaccinated", "value": 32.4},
+    {"label": "Unvaccinated", "value": 67.6}
+  ]
+}
