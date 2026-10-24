@@ -1,0 +1,141 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "ai-datacenter-water__c0cc9c1a_r1",
+ "filed": "2026-10-24T12:22:48Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "ai-datacenter-water",
+ "current": {
+  "title": "AI Data Centers Are Quietly Drinking The Water Supply",
+  "hook": "Google and Microsoft are racing to build AI, and water is the price.",
+  "closing": "The chatbot doesn't feel thirsty, but the water bill says otherwise, and we all share it.",
+  "question": "Would a bigger water bill change your mind?",
+  "segments": [
+   {
+    "topic": "Microsoft's water use",
+    "say": "Microsoft's water use more than tripled to 6.4 million cubic meters. Data centers running AI are thirsty."
+   },
+   {
+    "topic": "Big tech's water use",
+    "say": "Google used 21.2 million cubic meters in 2022, about triple Microsoft's. Big Tech's AI race runs on water."
+   },
+   {
+    "topic": "Water per chat",
+    "say": "One long AI chat costs about half a liter of water, a bottle, in a data center. Those chats add up."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Microsoft's water use",
+   "say": "Microsoft's water use more than tripled to 6.4 million cubic meters. Data centers running AI are thirsty.",
+   "role": "1 · THE SPIKE",
+   "data": {
+    "file": "ms_datacenter_water.json",
+    "unit": "million cubic meters",
+    "title": "Microsoft data center water consumption (million cubic meters)",
+    "points": [
+     {
+      "label": "2017",
+      "value": 1.95,
+      "period": "2017"
+     },
+     {
+      "label": "2021",
+      "value": 4.8,
+      "period": "2021"
+     },
+     {
+      "label": "2022",
+      "value": 6.4,
+      "period": "2022"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Big tech's water use",
+   "say": "Google used 21.2 million cubic meters in 2022, about triple Microsoft's. Big Tech's AI race runs on water.",
+   "role": "2 · WHO'S DRINKING MOST",
+   "data": {
+    "file": "bigtech_water_2022.json",
+    "unit": "million cubic meters",
+    "title": "Big Tech 2022 total water withdrawal (million cubic meters)",
+    "points": [
+     {
+      "label": "Google",
+      "value": 21.2
+     },
+     {
+      "label": "Microsoft",
+      "value": 6.4
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Water per chat",
+   "say": "One long AI chat costs about half a liter of water, a bottle, in a data center. Those chats add up.",
+   "role": "3 · THE PRICE PER CHAT",
+   "data": {
+    "file": "ai_query_water_cost.json",
+    "unit": "milliliters",
+    "title": "Estimated water cost of an AI chatbot conversation (milliliters)",
+    "points": [
+     {
+      "label": "One bottle of water",
+      "value": 500
+     },
+     {
+      "label": "One AI conversation (20-50 prompts)",
+      "value": 500
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261024/ai-datacenter-water__c0cc9c1a_r1.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
