@@ -4131,11 +4131,29 @@
       "duration_s": 27.8
     },
     "chip-shortage-tsmc-fragility": {
-      "claimed_at": "2026-10-24T13:11:33.213584+00:00",
+      "url": "https://youtube.com/shorts/OpoIpGVIVNc",
       "title": "The $210 Billion Chip Shortage Nobody Saw Coming",
+      "at": "2026-10-24T13:11:46.467438+00:00",
       "publish_at": "2026-10-24T16:59:36Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.3,
+      "beat_s": [
+        4.01,
+        6.54,
+        6.05,
+        7.3,
+        6.71
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 70,
+      "duration_s": 31.1
     }
   },
   "uploads": [
@@ -5252,9 +5270,10 @@
       "claimed_at": "2026-10-24T13:11:33.213584+00:00",
       "title": "The $210 Billion Chip Shortage Nobody Saw Coming",
       "publish_at": "2026-10-24T16:59:36Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "chip-shortage-tsmc-fragility"
+      "url": "https://youtube.com/shorts/OpoIpGVIVNc",
+      "state": "posted",
+      "slug": "chip-shortage-tsmc-fragility",
+      "at": "2026-10-24T13:11:46.467438+00:00"
     }
   ]
 }
