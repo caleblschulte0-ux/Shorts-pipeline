@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "dog-breed-popularity-flip__8740e2a9_r1",
+  "slug": "dog-breed-popularity-flip",
+  "by": "chatgpt",
+  "written_at": "2026-10-24T11:34:00Z",
+  "title": "French Bulldog Popularity Hid A 4.5-Year Lifespan",
+  "hook": "The top French Bulldog ranking hides a 4.5-year life expectancy.",
+  "closing": "Popularity cannot tell you how long a breed is likely to live.",
+  "question": "Would lifespan change your breed choice?",
+  "segments": [
+    {
+      "topic": "French Bulldog rank",
+      "say": "French Bulldog ranked 1st, pushing Labrador Retriever to 2nd."
+    },
+    {
+      "topic": "French Bulldog growth",
+      "say": "French Bulldog registrations rose 1,000% between 2012 and 2022."
+    },
+    {
+      "topic": "French Bulldog lifespan",
+      "say": "French Bulldog life expectancy was 4.5 years versus Labrador Retriever's 11.8."
+    }
+  ]
+}
