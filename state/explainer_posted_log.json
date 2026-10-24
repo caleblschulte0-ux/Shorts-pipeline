@@ -4077,6 +4077,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 75,
       "duration_s": 27.8
+    },
+    "red-hair-recessive-gene": {
+      "claimed_at": "2026-10-24T03:54:22.956999+00:00",
+      "title": "Red Hair Can Stay Hidden: 37% Carry The Gene In Scotland",
+      "publish_at": "2026-10-24T07:59:36Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5170,6 +5177,14 @@
       "state": "posted",
       "slug": "olympic-bid-collapse",
       "at": "2026-10-24T01:59:48.958618+00:00"
+    },
+    {
+      "claimed_at": "2026-10-24T03:54:22.956999+00:00",
+      "title": "Red Hair Can Stay Hidden: 37% Carry The Gene In Scotland",
+      "publish_at": "2026-10-24T07:59:36Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "red-hair-recessive-gene"
     }
   ]
 }
