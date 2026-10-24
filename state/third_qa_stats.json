@@ -1,58 +1,6 @@
 {
   "runs": [
     {
-      "date": "20261015",
-      "dry_run": false,
-      "ts": "2026-10-15T15:35:30+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 12,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 133,
-        "with_retention": 118,
-        "with_curve": 15,
-        "fetched_at": "2026-10-15T13:36:36.702504+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20261015-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261015-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261015-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261015-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261015-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261015-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
       "date": "20261016",
       "dry_run": false,
       "ts": "2026-10-16T12:43:26+00:00",
@@ -5405,6 +5353,306 @@
           "slug": "clip-20261023-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261024",
+      "dry_run": false,
+      "ts": "2026-10-24T12:32:34+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 14,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 140,
+        "with_retention": 119,
+        "with_curve": 14,
+        "fetched_at": "2026-10-24T08:46:07.610265+00:00"
+      },
+      "brain": {
+        "ok": 31,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261024-1",
+          "ok": false,
+          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "crash out, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.42,
+              "why": "GTA RP bank robbery, unclear payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            }
+          },
+          "took_s": 29.1
+        },
+        {
+          "slug": "clip-20261024-2",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (insider award-show chatter, no visible e)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "nomination reaction, insider",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "insider award-show chatter, no visible e",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 21.2
+        },
+        {
+          "slug": "clip-20261024-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "unclear, possible stunt",
+              "blind": false
+            },
+            "content": {
+              "score": 0.68,
+              "why": "Visible samurai sword fight, stunt chore",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat Gets Called Into Action And Goes Full Samurai On Stream"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "Subject is small and distant in the 2.1s\u20134.8s frames, but still readable",
+                "The hook caption sits low over the action and covers the lower body in a few frames, which is minor"
+              ]
+            }
+          },
+          "took_s": 231.8
+        },
+        {
+          "slug": "clip-20261024-4",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 108,
+                "refused_shown": 11,
+                "scouted": [],
+                "vod_arcs": 294,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2990,
+                "pool_with_vod": 2058,
+                "arc_sizes": [
+                  6,
+                  6,
+                  3,
+                  2,
+                  3,
+                  3,
+                  2,
+                  6,
+                  4,
+                  6
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "chloeyummyyy@momentlongfurryyakinikufeelsbadman-r-cffs1dts-k",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                },
+                {
+                  "cluster": "chloeyummyyy@momentlongfurryyakinikufeelsbadman-r-cffs1dts-k",
+                  "outcome": "duration",
+                  "why": "23s outside 25-90s"
+                },
+                {
+                  "cluster": "squeex@momentalertimpossiblebeecheffrank-jfr2fpy9lcfr1yt2/sq",
+                  "outcome": "structure_failed",
+                  "why": "7.4s of dead air at 25s"
+                },
+                {
+                  "cluster": "joebartolozzi@momentadventuroussmellyciderresidentsleeper-7g",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "emiru@momentcharmingcogentwalrusomgscoots-v3zbwchhhbmjt98h",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "morpheya@momentcomfortableyawninggrousetwitchrpg-btezt2phduq",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                }
+              ]
+            }
+          },
+          "took_s": 2650.5
+        },
+        {
+          "slug": "clip-20261024-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "gameplay grind, vague",
+              "blind": false
+            },
+            "content": {
+              "score": 0.7,
+              "why": "Boss finally beaten after 4 hours, big r",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Finally Did It After 4 Hours Of Putrescent Knight"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "The first frame (1.2s) shows only part of a skeleton boss, with no clear subject.",
+                "The 'IT.' caption at 6.2s sits mid-frame and is slightly out of place.",
+                "The 'FOUR HOURS!' caption at 28.8s overlaps the in-game victory banner."
+              ]
+            }
+          },
+          "took_s": 279.8
+        },
+        {
+          "slug": "clip-20261024-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "face_content",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague title, likely gameplay win",
+              "blind": false
+            },
+            "content": {
+              "score": 0.68,
+              "why": "Boss kill, visible celebration, win payo",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Conquers Midra And Can't Hold Back After This"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "gameplay panel is small and dark; the action is hard to read on a phone",
+                "caption sits close to the chin/neck on the face cam"
+              ]
+            }
+          },
+          "took_s": 517.8
         }
       ]
     }

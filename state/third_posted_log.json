@@ -15550,14 +15550,32 @@
       "director_cut": true
     },
     "clip-20261024-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/BoldCoweringMuleNomNom-usi5gO99Wcq5pUY5",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/Pvi2XEdAnDQ",
       "title": "Jynxzi Conquers Midra And Can't Hold Back After This",
       "kind": "twitch_clip",
-      "ts": "2026-10-24T12:32:20.379394+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-24T12:32:34.539511+00:00",
+      "uploaded_at": "2026-10-24T12:32:34.539522+00:00",
+      "publish_at": "2026-10-25T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261024-jynxzi-conquers-midra-and-can-t-hold-back-after--a2d1d26b",
+        "tiktok": "queued for 2026-10-25T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/BoldCoweringMuleNomNom-usi5gO99Wcq5pUY5",
+      "streamer": "jynxzi",
+      "series": "win",
+      "hook": "Jynxzi conquered Midra \ud83d\udd25",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3491,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 60.0
+      },
+      "director_cut": true
     }
   }
 }
