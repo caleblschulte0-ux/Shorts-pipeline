@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "lottery-odds-vs-real-life__335c9001_r1",
+  "slug": "lottery-odds-vs-real-life",
+  "by": "chatgpt",
+  "written_at": "2026-10-24T11:34:00Z",
+  "title": "Powerball Odds Worsened To 1 In 292,201,338",
+  "hook": "Powerball made your jackpot chance 1 in 292,201,338.",
+  "closing": "Bigger jackpots came from making every ticket less likely to win.",
+  "question": "Do worse odds change your choice?",
+  "segments": [
+    {
+      "topic": "Powerball lightning odds",
+      "say": "Lightning's lifetime odds are 1 in 15,300, dramatically likelier than a Powerball jackpot."
+    },
+    {
+      "topic": "Powerball rarity",
+      "say": "A lifetime shark attack is 1 in 11.5 million, still far likelier than Powerball."
+    },
+    {
+      "topic": "Powerball rule change",
+      "say": "Powerball worsened from 1 in 175 million to 1 in 292,201,338 after 2015."
+    }
+  ]
+}
