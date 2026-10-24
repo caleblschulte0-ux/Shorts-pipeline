@@ -4105,11 +4105,30 @@
       "duration_s": 25.2
     },
     "hearing-aids-otc-price-drop": {
-      "claimed_at": "2026-10-24T04:19:17.040117+00:00",
+      "url": "https://youtube.com/shorts/OVx7o2iUhKU",
       "title": "Hearing Aids Started At $300 Instead Of Requiring A Prescription",
+      "at": "2026-10-24T04:19:28.654304+00:00",
       "publish_at": "2026-10-24T13:59:36Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "chatterbox",
+      "tts_why_not_gemini": "gemini-3.8-flash-lite-tts: HTTP 429 {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error,",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.11,
+      "beat_s": [
+        3.55,
+        6.11,
+        4.77,
+        5.92,
+        6.98
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 75,
+      "duration_s": 27.8
     }
   },
   "uploads": [
@@ -5217,9 +5236,10 @@
       "claimed_at": "2026-10-24T04:19:17.040117+00:00",
       "title": "Hearing Aids Started At $300 Instead Of Requiring A Prescription",
       "publish_at": "2026-10-24T13:59:36Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "hearing-aids-otc-price-drop"
+      "url": "https://youtube.com/shorts/OVx7o2iUhKU",
+      "state": "posted",
+      "slug": "hearing-aids-otc-price-drop",
+      "at": "2026-10-24T04:19:28.654304+00:00"
     }
   ]
 }
