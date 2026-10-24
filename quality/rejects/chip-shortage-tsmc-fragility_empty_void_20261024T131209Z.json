@@ -1,0 +1,16 @@
+{
+ "slug": "chip-shortage-tsmc-fragility",
+ "ts": "20261024T131209Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: payoff@-0.4 is an almost empty dark-navy frame: Data in the bottom quarter holding a blank tag, and nothing else.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "dead_air_and_empty_void_closing",
+  "visible_evidence": "seg4:start, seg4:mid and payoff@-1.8 replay seg2's finished chip-bill room, frozen, with the closing line pasted on top. Data stands idle at the tape end for about 4s (measured held 4.0s at 24.17s). Then payoff@-0.4 cuts to an empty dark void where Data holds a blank price tag.",
+  "root_cause": "The closing has no scene of its own. The renderer reused the last beat's finished frame as a wordless hold and appended a generic mascot end card whose prop resolved to a blank price tag.",
+  "repair_goal": "Draw a dedicated closing shot of 'one factory hiccup delays your next car for months'. For example, Data at a dealership lot pushing a car off an empty chip-starved assembly line, or a single factory light flickering out with a row of cars stalling. It needs continuous purposeful motion through the closing line, with no frozen hold of seg2. Remove the void end card with the blank tag, or give it a real prop over a filled background."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
