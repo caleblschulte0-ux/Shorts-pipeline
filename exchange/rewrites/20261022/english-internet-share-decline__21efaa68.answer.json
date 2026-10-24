@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "english-internet-share-decline__21efaa68",
+  "slug": "english-internet-share-decline",
+  "by": "chatgpt",
+  "written_at": "2026-10-24T11:49:00Z",
+  "title": "English Web Share Fell From 75% To 45%",
+  "hook": "English once owned 75% of the web; globalization cut it to 45%.",
+  "closing": "Using only English now hides nearly half the web from you.",
+  "question": "Which languages do you browse?",
+  "segments": [
+    {
+      "topic": "English web share",
+      "say": "English web pages fell from 75% in 1998 to 45% in 2005."
+    },
+    {
+      "topic": "English growth gap",
+      "say": "Arabic content grew 2,501% while English grew 281%, reshaping the web."
+    },
+    {
+      "topic": "English websites today",
+      "say": "English now holds 55% of websites; other languages combine for 45%."
+    }
+  ]
+}
