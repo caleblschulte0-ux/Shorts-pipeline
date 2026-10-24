@@ -15457,13 +15457,41 @@
       "ts": "2026-10-24T11:30:24.101294+00:00"
     },
     "clip-20261024-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/TolerantEnjoyablePheasantResidentSleeper-c8oQaAvc5ryJ8sBK",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/aNRK-E5zJr0",
       "title": "Kaicenat: Kai Cenat Gets Called Into Action And Goes Full Samurai On Stream",
       "kind": "twitch_clip",
-      "ts": "2026-10-24T11:34:04.378187+00:00",
+      "ts": "2026-10-24T11:34:15.877360+00:00",
+      "uploaded_at": "2026-10-24T11:34:15.877374+00:00",
+      "publish_at": "2026-10-24T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261024-kaicenat-kai-cenat-gets-called-into-action-and-g-2711dfda",
+        "tiktok": "queued for 2026-10-24T20:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/TolerantEnjoyablePheasantResidentSleeper-c8oQaAvc5ryJ8sBK",
+      "streamer": "kaicenat",
+      "series": "chaos",
+      "hook": "Kai goes full samurai on stream",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2278,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 16.6
+      },
+      "director_cut": true
+    },
+    "clip-20261024-4": {
+      "pending": true,
+      "source_url": "",
+      "story_key": "story-8ac94e5eb0277fae",
+      "streamer": "morphe_ya",
+      "title": "Morphe_Ya Party: Lera's Pool Plunge",
+      "kind": "story",
+      "ts": "2026-10-24T12:18:15.120283+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }

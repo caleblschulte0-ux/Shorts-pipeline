@@ -4876,7 +4876,74 @@
       "published_versions": [
         "story-a8ab91258c0c4cfa"
       ],
-      "last_updated": "2026-10-22"
+      "last_updated": "2026-10-24"
+    },
+    "chloeyummyyy-love-perfect-2026w42": {
+      "event_id": "chloeyummyyy-love-perfect-2026w42",
+      "people": [
+        "chloeyummyyy"
+      ],
+      "actions": [
+        "love",
+        "perfect",
+        "petal",
+        "rose"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-24",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2856736835/6056-6296",
+        "https://www.twitch.tv/chloeyummyyy/clip/LongFurryYakinikuFeelsBadMan-R-CfFS1DTs-KQPIF"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-24"
+    },
+    "squeex-crash-goblin-2026w39": {
+      "event_id": "squeex-crash-goblin-2026w39",
+      "people": [
+        "squeex"
+      ],
+      "actions": [
+        "crash",
+        "goblin",
+        "green",
+        "party"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-24",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2883000943/19681-19921",
+        "https://www.twitch.tv/squeex/clip/AlertImpossibleBeeChefFrank-JfR2fPY9lCFR1YT2",
+        "vodmine://2883000943/19981-20221"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-24"
+    },
+    "morpheya-blonde-night-2026w42": {
+      "event_id": "morpheya-blonde-night-2026w42",
+      "people": [
+        "morpheya"
+      ],
+      "actions": [
+        "blonde",
+        "night",
+        "pool",
+        "while"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-24",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2904276432/11137-11377",
+        "https://www.twitch.tv/morphe_ya/clip/ComfortableYawningGrouseTwitchRPG-BteZt2PHduQn3IvZ",
+        "vodmine://2904276432/11390-11630"
+      ],
+      "published_versions": [
+        "story-8ac94e5eb0277fae"
+      ],
+      "last_updated": "2026-10-24"
     }
   }
 }
