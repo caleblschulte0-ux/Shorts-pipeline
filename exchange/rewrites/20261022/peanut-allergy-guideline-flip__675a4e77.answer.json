@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "peanut-allergy-guideline-flip__675a4e77",
+  "slug": "peanut-allergy-guideline-flip",
+  "by": "chatgpt",
+  "written_at": "2026-10-24T11:49:00Z",
+  "title": "Early Peanut Eating Cut Allergy Rates From 13.7% To 1.9%",
+  "hook": "Avoiding peanuts produced 13.7% allergies; early eating produced 1.9%.",
+  "closing": "The old avoidance advice protected children from the wrong thing.",
+  "question": "Did your family get the old advice?",
+  "segments": [
+    {
+      "topic": "Peanut allergy rise",
+      "say": "Peanut allergy prevalence climbed from 0.4% in 1997 to 1.4% in 2008."
+    },
+    {
+      "topic": "Peanut early eating",
+      "say": "Peanut allergy reached 13.7% with avoidance versus 1.9% with early eating."
+    },
+    {
+      "topic": "Peanut diagnosis decline",
+      "say": "Diagnoses fell from 0.79% to 0.45%, about 43%, after guidance changed."
+    }
+  ]
+}
