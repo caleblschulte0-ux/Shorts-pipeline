@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "ghost-fishing-gear-ocean-plastic__43f99e61",
+  "slug": "ghost-fishing-gear-ocean-plastic",
+  "by": "chatgpt",
+  "written_at": "2026-10-24T11:34:00Z",
+  "title": "Lost Fishing Gear Keeps Killing 100,000 Animals A Year",
+  "hook": "Lost fishing gear kills 100,000 animals without anyone holding it.",
+  "closing": "Discarded gear keeps hunting long after crews leave the water.",
+  "question": "Who should retrieve lost fishing gear?",
+  "segments": [
+    {
+      "topic": "Fishing gear litter",
+      "say": "Fishing gear makes up 10% of ocean litter, becoming traps nobody monitors."
+    },
+    {
+      "topic": "Fishing gear weight",
+      "say": "Lost fishing gear weighs 640,000 metric tons yearly, about 63 Eiffel Towers."
+    },
+    {
+      "topic": "Fishing gear victims",
+      "say": "Ghost fishing gear traps 100,000 marine animals yearly, continuing to kill without fishers."
+    }
+  ]
+}
