@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "california-condor-comeback__ada5193e",
+  "slug": "california-condor-comeback",
+  "by": "chatgpt",
+  "written_at": "2026-10-24T11:34:00Z",
+  "title": "Half Of Wild California Condor Deaths Come From Lead",
+  "hook": "We saved 500 California condors, then poisoned their food.",
+  "closing": "A comeback only lasts if the danger that remains is removed.",
+  "question": "Should lead ammunition be restricted?",
+  "segments": [
+    {
+      "topic": "Condor comeback",
+      "say": "California condors rose from 27 to 500, proving extinction was not inevitable."
+    },
+    {
+      "topic": "Condor recovery",
+      "say": "California condors passed 300 in 2008 and reached 500 by 2023."
+    },
+    {
+      "topic": "Condor lead deaths",
+      "say": "Lead poisoning causes 50% of wild condor deaths, turning hunters' leftovers into lethal food."
+    }
+  ]
+}
