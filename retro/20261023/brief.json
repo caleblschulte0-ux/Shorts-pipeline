@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261023",
-  "generated_at": "2026-10-23T23:30:58Z",
+  "generated_at": "2026-10-24T00:30:56Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 29.76,
+          "days": 29.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 28.76,
+          "days": 28.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -441,64 +441,64 @@
     "explainer": {
       "channel": "explainer",
       "available": true,
-      "fetched_at": "2026-10-23T18:47:23.557039+00:00",
+      "fetched_at": "2026-10-23T23:48:16.750148+00:00",
       "today": [],
       "last_7d": {
-        "videos": 15,
-        "total_views": 2475,
-        "median_views": 51.0,
-        "median_vph": 0.7175,
+        "videos": 14,
+        "total_views": 2519,
+        "median_views": 54.5,
+        "median_vph": 0.8079,
         "best": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
-        "worst": "A Big Mac Costs 9 Dollars In Switzerland. 2 In Taiwan."
+        "worst": "Blockbuster Went From 9,000 Stores To Just 1"
       },
       "last_30d": {
-        "videos": 83,
-        "total_views": 12212,
+        "videos": 81,
+        "total_views": 11910,
         "median_views": 55.0,
-        "median_vph": 0.1855,
+        "median_vph": 0.1835,
         "best": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
         "worst": "Kids Are Being Diagnosed With ADHD Way More Than Before"
       },
       "all_time_summary": {
-        "total_videos": 147,
-        "total_views": 22407,
-        "avg_views_per_video": 152.4,
+        "total_videos": 146,
+        "total_views": 22452,
+        "avg_views_per_video": 153.8,
         "median_views_per_hour": 0.11,
         "top_5_by_vph": [
           {
             "title": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
-            "views_per_hour": 32.92,
-            "views": 1272,
-            "age_hours": 38.6,
+            "views_per_hour": 30.17,
+            "views": 1317,
+            "age_hours": 43.7,
             "url": "https://youtube.com/shorts/zjuY7K1FvVc"
           },
           {
             "title": "Why Plane Tickets Cost More The Closer You Book",
-            "views_per_hour": 5.34,
+            "views_per_hour": 5.22,
             "views": 1191,
-            "age_hours": 223.1,
+            "age_hours": 228.1,
             "url": "https://youtube.com/shorts/t3jcTe7wRyE"
           },
           {
             "title": "The Great Lakes Hold 21% Of Earth's Fresh Surface Water",
-            "views_per_hour": 2.65,
+            "views_per_hour": 2.56,
             "views": 355,
-            "age_hours": 133.8,
+            "age_hours": 138.9,
             "url": "https://youtube.com/shorts/IJU_bYy5JwI"
           },
           {
-            "title": "Japan Has One Vending Machine For Every 31 People",
-            "views_per_hour": 2.31,
-            "views": 68,
-            "age_hours": 29.5,
-            "url": "https://youtube.com/shorts/n5yZaklhaz8"
+            "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
+            "views_per_hour": 1.99,
+            "views": 628,
+            "age_hours": 315.1,
+            "url": "https://youtube.com/shorts/LrMy6Z8J9Ug"
           },
           {
-            "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
-            "views_per_hour": 2.03,
-            "views": 628,
-            "age_hours": 310.1,
-            "url": "https://youtube.com/shorts/LrMy6Z8J9Ug"
+            "title": "Japan Has One Vending Machine For Every 31 People",
+            "views_per_hour": 1.97,
+            "views": 68,
+            "age_hours": 34.5,
+            "url": "https://youtube.com/shorts/n5yZaklhaz8"
           }
         ],
         "bottom_5_by_vph": [
@@ -506,45 +506,45 @@
             "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
             "views_per_hour": 0.0,
             "views": 1,
-            "age_hours": 358.0,
+            "age_hours": 363.0,
             "url": "https://youtube.com/shorts/aCtti_E5Nqo"
           },
           {
             "title": "The World's Workforce Has Never Been This Big \u2014 Or This Free",
             "views_per_hour": 0.0,
             "views": 2,
-            "age_hours": 549.4,
+            "age_hours": 554.4,
             "url": "https://youtube.com/shorts/cY4-tgGIir4"
           },
           {
             "title": "Why Is There A Vault Built For The End Of The World?",
             "views_per_hour": 0.0,
             "views": 1,
-            "age_hours": 817.9,
+            "age_hours": 822.9,
             "url": "https://youtube.com/shorts/kkODTt8nWuQ"
           },
           {
             "title": "Why Cargo Ships Started Losing Containers Again (3 Charts)",
             "views_per_hour": 0.0,
             "views": 2,
-            "age_hours": 1051.0,
+            "age_hours": 1056.0,
             "url": "https://youtube.com/shorts/NhR15EjR3uI"
           },
           {
             "title": "Why Empty Offices Will Never Fill Back Up (3 Charts)",
             "views_per_hour": 0.0,
             "views": 0,
-            "age_hours": 1152.6,
+            "age_hours": 1157.6,
             "url": "https://youtube.com/shorts/fReGr_FMIEw"
           }
         ],
         "opening": {
-          "median_early_retention": 0.895,
-          "videos_with_curve": 14,
+          "median_early_retention": 0.889,
+          "videos_with_curve": 15,
           "worst": 0.75,
           "best": 0.971
         },
-        "videos_with_retention": 70,
+        "videos_with_retention": 72,
         "avg_view_percentage": 56.5,
         "top_5_by_retention": [
           {
@@ -643,47 +643,19 @@
         "pending_scheduled": 8,
         "format_coverage": {
           "with_format": 0,
-          "total": 147,
+          "total": 146,
           "fraction": 0.0
         }
       },
       "band_sample_sizes": {
         "1-3d": 6,
         "1-4w": 59,
-        "3-7d": 9,
+        "3-7d": 8,
         "4w+": 73
       },
       "thin_bands": [],
       "maturity": {
         "24h": {
-          "all_formats": {
-            "n": 2,
-            "median_vph": 1.4207,
-            "median_views": 41.0,
-            "median_view_pct": null,
-            "view_pct_reported_for": "0/2",
-            "enough_to_judge": false
-          },
-          "by_format": {
-            "other_topic": {
-              "n": 2,
-              "median_vph": 1.4207,
-              "median_views": 41.0,
-              "median_view_pct": null,
-              "view_pct_reported_for": "0/2",
-              "enough_to_judge": false
-            },
-            "superlative_topic": {
-              "n": 0,
-              "note": "no videos in this age window"
-            },
-            "unknown": {
-              "n": 0,
-              "note": "no videos in this age window"
-            }
-          }
-        },
-        "72h": {
           "all_formats": {
             "n": 0,
             "note": "no videos in this age window"
@@ -703,22 +675,50 @@
             }
           }
         },
+        "72h": {
+          "all_formats": {
+            "n": 1,
+            "median_vph": 0.231,
+            "median_views": 14.0,
+            "median_view_pct": null,
+            "view_pct_reported_for": "0/1",
+            "enough_to_judge": false
+          },
+          "by_format": {
+            "other_topic": {
+              "n": 1,
+              "median_vph": 0.231,
+              "median_views": 14.0,
+              "median_view_pct": null,
+              "view_pct_reported_for": "0/1",
+              "enough_to_judge": false
+            },
+            "superlative_topic": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "unknown": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        },
         "7d": {
           "all_formats": {
-            "n": 6,
-            "median_vph": 0.2603,
-            "median_views": 44.0,
+            "n": 5,
+            "median_vph": 0.3415,
+            "median_views": 56.0,
             "median_view_pct": null,
-            "view_pct_reported_for": "0/6",
+            "view_pct_reported_for": "0/5",
             "enough_to_judge": true
           },
           "by_format": {
             "other_topic": {
-              "n": 6,
-              "median_vph": 0.2603,
-              "median_views": 44.0,
+              "n": 5,
+              "median_vph": 0.3415,
+              "median_views": 56.0,
               "median_view_pct": null,
-              "view_pct_reported_for": "0/6",
+              "view_pct_reported_for": "0/5",
               "enough_to_judge": true
             },
             "superlative_topic": {
@@ -735,33 +735,33 @@
       "mature_enough_to_judge": [
         {
           "title": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
-          "vph": 32.9534,
+          "vph": 30.1373,
           "fmt": "other_topic",
-          "age_hours": 38.6
+          "age_hours": 43.7
         },
         {
           "title": "Why Plane Tickets Cost More The Closer You Book",
-          "vph": 5.3384,
+          "vph": 5.2214,
           "fmt": "other_topic",
-          "age_hours": 223.1
+          "age_hours": 228.1
         },
         {
           "title": "The Great Lakes Hold 21% Of Earth's Fresh Surface Water",
-          "vph": 2.6532,
+          "vph": 2.5558,
           "fmt": "other_topic",
-          "age_hours": 133.8
-        },
-        {
-          "title": "Japan Has One Vending Machine For Every 31 People",
-          "vph": 2.3051,
-          "fmt": "other_topic",
-          "age_hours": 29.5
+          "age_hours": 138.9
         },
         {
           "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
-          "vph": 2.0252,
+          "vph": 1.993,
           "fmt": "other_topic",
-          "age_hours": 310.1
+          "age_hours": 315.1
+        },
+        {
+          "title": "Japan Has One Vending Machine For Every 31 People",
+          "vph": 1.971,
+          "fmt": "other_topic",
+          "age_hours": 34.5
         }
       ],
       "worst_mature": [
@@ -769,31 +769,31 @@
           "title": "Cereal production Is 1.5x Higher Than In 1972",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 1284.0
+          "age_hours": 1289.0
         },
         {
           "title": "Central Banks Are Hoarding Gold Like It's 1967",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 1246.2
+          "age_hours": 1251.2
         },
         {
           "title": "Why Empty Offices Will Never Fill Back Up (3 Charts)",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 1152.6
+          "age_hours": 1157.6
         },
         {
           "title": "World Coal Power Fell Below Its 1990 Level",
           "vph": 0.0007,
           "fmt": "unknown",
-          "age_hours": 1415.9
+          "age_hours": 1420.9
         },
         {
           "title": "Population growth Fell 54% Since 1972",
           "vph": 0.0007,
           "fmt": "unknown",
-          "age_hours": 1387.0
+          "age_hours": 1392.0
         }
       ]
     },
@@ -1349,17 +1349,16 @@
       "n_verdicts": 20,
       "classes": {
         "other": {
-          "count": 10,
+          "count": 9,
           "stories": {
-            "sports_charles_barkley_g_this_close": 2,
             "sports_brady_tkachuk_ed_after_his": 1,
             "sports_chris_olave_as_a_message": 2,
             "sports_lebron_james_cks_fan_aint": 3,
+            "sports_charles_barkley_g_this_close": 1,
             "sports_lebron_james_ident_taking": 1,
             "sports_yaxel_lenderborg_and_guarding": 1
           },
           "timestamps": [
-            "2026-10-22T17:32:37+00:00",
             "2026-10-23T12:10:01+00:00",
             "2026-10-23T13:09:51+00:00",
             "2026-10-23T13:11:12+00:00",
@@ -1371,31 +1370,51 @@
             "2026-10-23T13:22:32+00:00"
           ],
           "examples": [
-            "unreadable: In mid4 (26.16s) our line 'Barkley roasts Shaq on live TV' is printed on top of the broadcast's 'GIANNIS ANTETOKOUNMPO ... LAST SEASON w/ BUCKS' stat graphic, and both become illegible.",
             "unreadable: In mid1 our line sits on top of the jumbotron score bug (0 / SOG 3 / HITS / FACEOFF %), and in hook@0.3 to mid0 it lands on the 'BACK' board graphic. Both times it is printed over the foot",
-            "unreadable: In mid1 (t=6.84s) two word captions are printed on top of each other and read as garbled \"AI TO PUT SAFETY RY\". Olave's name placard is also partly covered by our line in hook@0.3 to mid4."
+            "unreadable: In mid1 (t=6.84s) two word captions are printed on top of each other and read as garbled \"AI TO PUT SAFETY RY\". Olave's name placard is also partly covered by our line in hook@0.3 to mid4.",
+            "unreadable: In mid3 the word captions overlap into garbled text, 'THE YOUBUT I JUSTRATION.', which can't be read. The hook line also sits low over the table and the blurred crowd."
+          ],
+          "recurred_after_fix": false
+        },
+        "temporal_gate": {
+          "count": 4,
+          "stories": {
+            "ai-datacenter-water": 1,
+            "lightning-deaths-collapsed-not-the-storms": 1,
+            "hearing-aids-otc-price-drop": 1,
+            "world-wetlands-lost": 1
+          },
+          "timestamps": [
+            "2026-10-22T18:39:00+00:00",
+            "2026-10-23T16:29:05+00:00",
+            "2026-10-23T17:12:58+00:00",
+            "2026-10-23T20:59:50+00:00"
+          ],
+          "examples": [
+            "temporal_gate: max_dup_run 68 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=27.92s of 35.88s (~2.8s frozen)",
+            "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.08s of 27.62s (~2.0s frozen)",
+            "temporal_gate: max_dup_run 67 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.42s of 29.62s (~2.8s frozen)"
           ],
           "recurred_after_fix": false
         },
         "junk_imagery": {
-          "count": 5,
+          "count": 4,
           "stories": {
-            "sports_charles_barkley_g_this_close": 2,
             "sports_brady_tkachuk_ed_after_his": 1,
             "sports_dejan_kulusevski_ter_526_days": 1,
+            "sports_charles_barkley_g_this_close": 1,
             "red-hair-recessive-gene": 1
           },
           "timestamps": [
-            "2026-10-22T17:32:37+00:00",
             "2026-10-23T12:10:01+00:00",
             "2026-10-23T13:04:57+00:00",
             "2026-10-23T13:17:04+00:00",
             "2026-10-23T15:41:06+00:00"
           ],
           "examples": [
-            "junk_imagery: mid3 (20.24s) shows a Heat arena warmup with a player dunking, and mid4 (26.16s) shows Giannis warming up under a Bucks stat graphic. Neither is Barkley or Shaq, so the second half doesn",
             "junk_imagery: The line and title say Brady Tkachuk 'speaks' and 'gets emotional', but no frame shows him talking or at a mic. hook@0.3 to mid0 is a phone recording of the arena jumbotron playing the t",
-            "junk_imagery: mid1-mid3 are an old narrated tribute montage (Conte on the bench, a purple away-kit goal with a SPURS TV bug), not the 526-day return. At mid1 a word caption reads 'ON COMES KANE,' over"
+            "junk_imagery: mid1-mid3 are an old narrated tribute montage (Conte on the bench, a purple away-kit goal with a SPURS TV bug), not the 526-day return. At mid1 a word caption reads 'ON COMES KANE,' over",
+            "junk_imagery: mid3 (19.6s) cuts to an unrelated Heat-arena dunk and mid4 (25.3s) to Giannis Antetokounmpo dribbling with a Bucks stat bar; neither is Barkley or Shaq, so the footage stops showing what"
           ],
           "recurred_after_fix": false
         },
@@ -1415,38 +1434,6 @@
             "empty_void: In payoff@-0.4 the video ends on a near-black navy card. A small Data holds a blank yellow price tag at the bottom and the rest of the frame is empty.",
             "empty_void: In every frame (hook@0.3 to payoff@-0.4) about the top 12% and bottom 12% are a blurred, darkened letterbox, and roughly 60% of the remaining frame is the sponsor backdrop. Olave is pushed",
             "empty_void: payoff@-0.4 is almost all dark gradient with a small Data and a blank tag at the bottom. The last thing the viewer sees is an empty frame."
-          ],
-          "recurred_after_fix": false
-        },
-        "temporal_gate": {
-          "count": 3,
-          "stories": {
-            "ai-datacenter-water": 1,
-            "lightning-deaths-collapsed-not-the-storms": 1,
-            "hearing-aids-otc-price-drop": 1
-          },
-          "timestamps": [
-            "2026-10-22T18:39:00+00:00",
-            "2026-10-23T16:29:05+00:00",
-            "2026-10-23T17:12:58+00:00"
-          ],
-          "examples": [
-            "temporal_gate: max_dup_run 68 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=27.92s of 35.88s (~2.8s frozen)",
-            "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.08s of 27.62s (~2.0s frozen)",
-            "temporal_gate: max_dup_run 67 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.42s of 29.62s (~2.8s frozen)"
-          ],
-          "recurred_after_fix": false
-        },
-        "dead_air": {
-          "count": 1,
-          "stories": {
-            "sports_charles_barkley_g_this_close": 1
-          },
-          "timestamps": [
-            "2026-10-22T17:32:37+00:00"
-          ],
-          "examples": [
-            "dead_air: From payoff@-1.8 (32.27s) to payoff@-0.4 (33.67s) the clip ends on the ESPN TIP-OFF 'presented by Lilly' bumper. Nobody speaks and nothing happens; it is just a logo."
           ],
           "recurred_after_fix": false
         },
@@ -1502,7 +1489,6 @@
         }
       },
       "scores": [
-        58,
         66,
         14,
         61,
@@ -1521,6 +1507,7 @@
         83,
         53,
         14,
+        14,
         14
       ]
     }
@@ -1528,7 +1515,7 @@
   "depictions": {
     "note": "best judge `bespoke` grade per video vs views-per-hour at >= 24h",
     "buckets": {},
-    "ungraded": 147,
+    "ungraded": 146,
     "thin": []
   },
   "style_arms": {
@@ -1541,7 +1528,7 @@
       },
       "illustrated": {
         "n": 61,
-        "median_percentile": 58.5,
+        "median_percentile": 58.3,
         "thin": false
       }
     },
@@ -1556,10 +1543,13 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "c5a85ed",
-    "commits_since": "2026-10-22",
+    "head": "048e1b0",
+    "commits_since": "2026-10-23",
     "commit_count": 50,
     "commits": [
+      "048e1b0 explainer: update posted log + analytics [skip ci]",
+      "e82f07f claim: mailbox verdicts 2026-10-23T23:47Z [skip ci]",
+      "0521e00 retro: brief + triage for 20261023 [skip ci]",
       "c5a85ed explainer: Data keeps moving through a wordless finish (#699)",
       "9cffa6a story forge: new real-data stories [skip ci]",
       "bf428b5 claim: mailbox verdicts 2026-10-23T20:48Z [skip ci]",
@@ -1596,10 +1586,7 @@
       "c21b335 third: analytics [skip ci]",
       "598a3a2 third: update posted log + analytics [skip ci]",
       "b16938c third: checkpoint posted log (claim upload slot) [skip ci]",
-      "f149e74 trending: posted tank_dell_can_t_wait_to_get_tackled_afte [skip ci]",
-      "036ad91 trending: claim upload slot tank_dell_can_t_wait_to_get_tackled_afte [skip ci]",
-      "2a66de8 third: checkpoint posted log (claim upload slot) [skip ci]",
-      "d16fec0 third: checkpoint posted log (claim upload slot) [skip ci]"
+      "f149e74 trending: posted tank_dell_can_t_wait_to_get_tackled_afte [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",

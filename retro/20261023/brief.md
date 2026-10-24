@@ -1,6 +1,6 @@
 # Retro — 20261023
 
-generated 2026-10-23T23:30:58Z · 1 video(s) posted today
+generated 2026-10-24T00:30:56Z · 1 video(s) posted today
 
 ## trending
 
@@ -14,8 +14,8 @@ _nothing published today_
 
 _nothing published today_
 
-- 7d: 15 videos, median 51.0 views
-- 30d: 83 videos, median 55.0 views
+- 7d: 14 videos, median 54.5 views
+- 30d: 81 videos, median 55.0 views
 
 ## curiosity
 
@@ -41,15 +41,15 @@ _nothing published today_
 ## Running experiments
 
 - `20260924-third-story-arm-slot-beats-mature-clip-baseline-on` — Third story-arm slot beats mature clip baseline on views-per-hour
-    - 29.76d, 2 samples, needs 28d / 25 samples · 2/25 samples — not enough videos have run under this change
+    - 29.8d, 2 samples, needs 28d / 25 samples · 2/25 samples — not enough videos have run under this change
 - `20260925-superlative-science-family-explainer-topics-beat-t` — Superlative/science-family explainer topics beat the broad mix on average-view-percentage
-    - 28.76d, 1 samples, needs 28d / 25 samples · 1/25 samples — not enough videos have run under this change
+    - 28.8d, 1 samples, needs 28d / 25 samples · 1/25 samples — not enough videos have run under this change
 
 ## Bespoke pictures vs performance
 
 _best judge `bespoke` grade per video vs views-per-hour at >= 24h_
 
-- ungraded (shipped before the judge graded depictions): 147
+- ungraded (shipped before the judge graded depictions): 146
 
 ## Style arms (A/B of the explainer's look)
 
@@ -68,6 +68,6 @@ _views-per-hour percentile vs same-age explainer videos, by style arm, videos >=
 
 ## Repo
 
-- HEAD c5a85ed, 50 commit(s) since 2026-10-22
+- HEAD 048e1b0, 50 commit(s) since 2026-10-23
 
 Write proposals per `retro/README.md`. Nothing you write is applied automatically.
