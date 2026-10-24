@@ -4052,6 +4052,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 66,
       "duration_s": 36.3
+    },
+    "olympic-bid-collapse": {
+      "claimed_at": "2026-10-24T01:59:36.614340+00:00",
+      "title": "Olympic Bids Have Fallen From 11 Cities To Just 2",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5136,6 +5143,14 @@
       "state": "posted",
       "slug": "pickleball-fastest-growing-sport",
       "at": "2026-10-22T16:43:46.088098+00:00"
+    },
+    {
+      "claimed_at": "2026-10-24T01:59:36.614340+00:00",
+      "title": "Olympic Bids Have Fallen From 11 Cities To Just 2",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "olympic-bid-collapse"
     }
   ]
 }
