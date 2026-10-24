@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cargo-ship-size-growth__f9ab28c4_r1",
+  "slug": "cargo-ship-size-growth",
+  "by": "chatgpt",
+  "written_at": "2026-10-24T11:34:00Z",
+  "title": "Cargo Ships Grew To 24,327 Containers Without Bigger Crews",
+  "hook": "One cargo ship now moves 24,327 containers with a tiny crew.",
+  "closing": "Global trade now depends on huge ships and surprisingly few hands.",
+  "question": "Would you join this cargo crew?",
+  "segments": [
+    {
+      "topic": "Cargo capacity",
+      "say": "Cargo capacity reached 24,327 containers, roughly six times the earliest ship shown."
+    },
+    {
+      "topic": "Cargo ship length",
+      "say": "A cargo ship reached 400 meters, stretching far beyond the Titanic."
+    },
+    {
+      "topic": "Cargo crew",
+      "say": "Today's cargo crew fell to 20 people even as ships became enormous."
+    }
+  ]
+}
