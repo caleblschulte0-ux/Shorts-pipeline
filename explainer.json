@@ -1,0 +1,719 @@
+{
+ "channel": "explainer",
+ "run_id": "40089661289",
+ "run_started": "2026-10-24T12:35:52+00:00",
+ "current": {},
+ "done": [
+  {
+   "slug": "pentagon-ufo-reports-surge",
+   "outcome": "editorial_hold",
+   "at": "2026-10-24T12:35:53+00:00",
+   "phases": {
+    "prep": 0.0
+   }
+  },
+  {
+   "slug": "helium-supply-squeeze",
+   "outcome": "editorial_hold",
+   "at": "2026-10-24T12:35:57+00:00",
+   "phases": {
+    "prep": 0.0
+   }
+  },
+  {
+   "slug": "measles-ninety-five-rule",
+   "outcome": "editorial_hold",
+   "at": "2026-10-24T12:36:00+00:00",
+   "phases": {
+    "prep": 0.0
+   }
+  },
+  {
+   "slug": "divorce-rate-quiet-decline",
+   "outcome": "editorial_hold",
+   "at": "2026-10-24T12:36:03+00:00",
+   "phases": {
+    "prep": 0.0
+   }
+  },
+  {
+   "slug": "chip-shortage-tsmc-fragility",
+   "outcome": "posted",
+   "at": "2026-10-24T13:11:50+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 23.1,
+    "review": 12.3,
+    "upload": 0.3
+   },
+   "url": "https://youtube.com/shorts/OpoIpGVIVNc"
+  }
+ ],
+ "history": [
+  {
+   "slug": "secondhand-apparel-resale-boom",
+   "outcome": "not_current",
+   "at": "2026-10-13T22:09:02+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 0.2
+   }
+  },
+  {
+   "slug": "homeschool-surge",
+   "outcome": "not_current",
+   "at": "2026-10-13T22:09:56+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 0.2
+   }
+  },
+  {
+   "slug": "plastic-in-your-body",
+   "outcome": "not_current",
+   "at": "2026-10-13T22:11:22+00:00",
+   "phases": {
+    "prep": 1.2,
+    "render": 0.2
+   }
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "outcome": "not_current",
+   "at": "2026-10-13T22:28:57+00:00",
+   "phases": {
+    "prep": 1.3,
+    "render": 0.2
+   }
+  },
+  {
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "outcome": "not_current",
+   "at": "2026-10-13T22:30:53+00:00",
+   "phases": {
+    "prep": 1.3,
+    "render": 0.2
+   }
+  },
+  {
+   "slug": "podcasts-passed-radio-spoken-word",
+   "outcome": "not_current",
+   "at": "2026-10-13T22:36:55+00:00",
+   "phases": {
+    "prep": 1.3,
+    "render": 4.7
+   }
+  },
+  {
+   "slug": "humpback-whale-recovery",
+   "outcome": "not_current",
+   "at": "2026-10-13T22:50:05+00:00",
+   "phases": {
+    "prep": 1.3,
+    "render": 0.2
+   }
+  },
+  {
+   "slug": "airfare-booking-window-trap",
+   "outcome": "posted",
+   "at": "2026-10-14T11:41:42+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 32.7,
+    "review": 44.2,
+    "upload": 0.3
+   },
+   "url": "https://youtube.com/shorts/t3jcTe7wRyE"
+  },
+  {
+   "slug": "amazon-warehouse-robot-army",
+   "outcome": "showrunner_block",
+   "at": "2026-10-14T12:06:14+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 24.1,
+    "review": 0.3
+   }
+  },
+  {
+   "slug": "the-penny-lost-money-19-years-straight",
+   "outcome": "posted",
+   "at": "2026-10-14T13:32:58+00:00",
+   "phases": {
+    "prep": 0.7,
+    "render": 28.0,
+    "review": 0.9,
+    "upload": 0.2
+   },
+   "url": "https://youtube.com/shorts/3RZBcWVANuY"
+  },
+  {
+   "slug": "saharan-dust-feeds-amazon",
+   "outcome": "showrunner_block",
+   "at": "2026-10-14T14:49:25+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 14.9,
+    "review": 0.3
+   }
+  },
+  {
+   "slug": "rubiks-cube-record-vs-robot",
+   "outcome": "showrunner_block",
+   "at": "2026-10-14T14:56:01+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 6.2,
+    "review": 0.3
+   }
+  },
+  {
+   "slug": "back-pain-leading-disability",
+   "outcome": "showrunner_block",
+   "at": "2026-10-14T15:01:51+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 5.5,
+    "review": 0.2
+   }
+  },
+  {
+   "slug": "hurricane-names-retired-growing-list",
+   "outcome": "posted",
+   "at": "2026-10-14T16:38:06+00:00",
+   "phases": {
+    "prep": 0.3,
+    "render": 29.5,
+    "review": 10.5,
+    "upload": 0.4
+   },
+   "url": "https://youtube.com/shorts/KMqRMbfiCG0"
+  },
+  {
+   "slug": "billionaire-count-record-2025",
+   "outcome": "posted",
+   "at": "2026-10-14T18:13:09+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 27.3,
+    "review": 67.1,
+    "upload": 0.2
+   },
+   "url": "https://youtube.com/shorts/HWqWKRO74p4"
+  },
+  {
+   "slug": "secondhand-apparel-resale-boom",
+   "outcome": "posted",
+   "at": "2026-10-15T11:46:26+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 22.1,
+    "review": 61.0,
+    "upload": 0.3
+   },
+   "url": "https://youtube.com/shorts/3N-U_I3N2_g"
+  },
+  {
+   "slug": "saharan-dust-feeds-amazon",
+   "outcome": "posted",
+   "at": "2026-10-15T13:22:58+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 11.8,
+    "review": 0.9,
+    "upload": 0.2
+   },
+   "url": "https://youtube.com/shorts/5YaOTAA6mno"
+  },
+  {
+   "slug": "panama-canal-drought-transit-cuts",
+   "outcome": "posted",
+   "at": "2026-10-15T14:30:42+00:00",
+   "phases": {
+    "prep": 1.0,
+    "render": 11.7,
+    "review": 38.4,
+    "upload": 0.3
+   },
+   "url": "https://youtube.com/shorts/OY6xP0IThkQ"
+  },
+  {
+   "slug": "amazon-warehouse-robot-army",
+   "outcome": "posted",
+   "at": "2026-10-15T17:50:17+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 21.8,
+    "review": 0.8,
+    "upload": 0.3
+   },
+   "url": "https://youtube.com/shorts/eCi19jT6B74"
+  },
+  {
+   "slug": "bank-branches-mobile-banking-crossover",
+   "outcome": "posted",
+   "at": "2026-10-16T10:46:53+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 24.8,
+    "review": 13.0,
+    "upload": 0.2
+   },
+   "url": "https://youtube.com/shorts/6Kmm1Rb8k7Y"
+  },
+  {
+   "slug": "rabies-prevention-gap",
+   "outcome": "posted",
+   "at": "2026-10-16T15:48:57+00:00",
+   "phases": {
+    "prep": 0.3,
+    "render": 26.6,
+    "review": 65.7,
+    "upload": 0.3
+   },
+   "url": "https://youtube.com/shorts/b8ch2wyEBXM"
+  },
+  {
+   "slug": "big-mac-index-currency-gap",
+   "outcome": "posted",
+   "at": "2026-10-16T16:53:01+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 26.2,
+    "review": 37.5,
+    "upload": 0.2
+   },
+   "url": "https://youtube.com/shorts/setNAr0rXII"
+  },
+  {
+   "slug": "saturn-rings-vanishing",
+   "outcome": "showrunner_block",
+   "at": "2026-10-16T17:23:46+00:00",
+   "phases": {
+    "prep": 0.3,
+    "render": 30.1,
+    "review": 0.3
+   }
+  },
+  {
+   "slug": "livestock-methane-emissions",
+   "outcome": "posted",
+   "at": "2026-10-16T17:52:48+00:00",
+   "phases": {
+    "prep": 0.2,
+    "render": 25.9,
+    "review": 0.8,
+    "upload": 0.2
+   },
+   "url": "https://youtube.com/shorts/OaSmyhvF12s"
+  },
+  {
+   "slug": "household-size-shrinking",
+   "outcome": "posted",
+   "at": "2026-10-17T12:05:28+00:00",
+   "phases": {
+    "prep": 0.2,
+    "render": 7.7,
+    "review": 22.7,
+    "upload": 0.2
+   },
+   "url": "https://youtube.com/shorts/oIV_9YsLSoo"
+  },
+  {
+   "slug": "saturn-rings-vanishing",
+   "outcome": "showrunner_block",
+   "at": "2026-10-17T15:25:37+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 22.8,
+    "review": 0.2
+   }
+  },
+  {
+   "slug": "migraine-global-disability-burden",
+   "outcome": "posted",
+   "at": "2026-10-17T16:56:46+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 16.2,
+    "review": 42.7,
+    "upload": 0.3
+   },
+   "url": "https://youtube.com/shorts/V89PQDREOgQ"
+  },
+  {
+   "slug": "competitive-eating-record-climb",
+   "outcome": "posted",
+   "at": "2026-10-17T17:44:24+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 18.1,
+    "review": 29.1,
+    "upload": 0.3
+   },
+   "url": "https://youtube.com/shorts/sZJtOAQHsUc"
+  },
+  {
+   "slug": "great-lakes-freshwater-scale",
+   "outcome": "posted",
+   "at": "2026-10-17T18:27:17+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 21.7,
+    "review": 0.8,
+    "upload": 0.2
+   },
+   "url": "https://youtube.com/shorts/IJU_bYy5JwI"
+  },
+  {
+   "slug": "saturn-rings-vanishing",
+   "outcome": "showrunner_block",
+   "at": "2026-10-18T11:46:41+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 15.5,
+    "review": 8.8
+   }
+  },
+  {
+   "slug": "nobel-prize-discovery-age",
+   "outcome": "posted",
+   "at": "2026-10-18T12:45:29+00:00",
+   "phases": {
+    "prep": 0.3,
+    "render": 29.2,
+    "review": 16.5,
+    "upload": 0.3
+   },
+   "url": "https://youtube.com/shorts/1vWXKnvSBh8"
+  },
+  {
+   "slug": "saturn-rings-vanishing",
+   "outcome": "posted",
+   "at": "2026-10-18T14:23:04+00:00",
+   "phases": {
+    "prep": 0.2,
+    "render": 7.1,
+    "review": 28.3,
+    "upload": 0.2
+   },
+   "url": "https://youtube.com/shorts/AJWcDwCyTJU"
+  },
+  {
+   "slug": "vertical-farming-bust",
+   "outcome": "showrunner_block",
+   "at": "2026-10-18T17:24:03+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 25.0,
+    "review": 0.3
+   }
+  },
+  {
+   "slug": "vertical-farming-bust",
+   "outcome": "showrunner_block",
+   "at": "2026-10-18T20:42:40+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 20.9,
+    "review": 9.9
+   }
+  },
+  {
+   "slug": "blockbuster-to-one-store",
+   "outcome": "posted",
+   "at": "2026-10-18T21:25:27+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 8.3,
+    "review": 11.7,
+    "upload": 0.2
+   },
+   "url": "https://youtube.com/shorts/ikyylJukhcw"
+  },
+  {
+   "slug": "rubiks-cube-record-vs-robot",
+   "outcome": "showrunner_block",
+   "at": "2026-10-19T12:02:30+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 6.3,
+    "review": 0.3
+   }
+  },
+  {
+   "slug": "rubiks-cube-record-vs-robot",
+   "outcome": "showrunner_block",
+   "at": "2026-10-19T13:59:32+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 6.3,
+    "review": 0.3
+   }
+  },
+  {
+   "slug": "rubiks-cube-record-vs-robot",
+   "outcome": "showrunner_block",
+   "at": "2026-10-19T14:29:56+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 6.4,
+    "review": 0.3
+   }
+  },
+  {
+   "slug": "rubiks-cube-record-vs-robot",
+   "outcome": "showrunner_block",
+   "at": "2026-10-19T17:48:54+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 4.8,
+    "review": 0.2
+   }
+  },
+  {
+   "slug": "rubiks-cube-record-vs-robot",
+   "outcome": "showrunner_block",
+   "at": "2026-10-19T19:53:43+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 7.9,
+    "review": 0.3
+   }
+  },
+  {
+   "slug": "rubiks-cube-record-vs-robot",
+   "outcome": "showrunner_block",
+   "at": "2026-10-19T22:19:01+00:00",
+   "phases": {
+    "prep": 1.3,
+    "render": 4.9,
+    "review": 0.2
+   }
+  },
+  {
+   "slug": "rubiks-cube-record-vs-robot",
+   "outcome": "showrunner_block",
+   "at": "2026-10-20T12:07:08+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 7.9,
+    "review": 0.3
+   }
+  },
+  {
+   "slug": "vertical-farming-bust",
+   "outcome": "posted",
+   "at": "2026-10-21T10:34:55+00:00",
+   "phases": {
+    "prep": 0.6,
+    "render": 11.1,
+    "review": 13.1,
+    "upload": 0.3
+   },
+   "url": "https://youtube.com/shorts/svXGtro3lDM"
+  },
+  {
+   "slug": "kelp-forest-sea-star-collapse",
+   "outcome": "posted",
+   "at": "2026-10-21T11:13:53+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 7.6,
+    "review": 30.7,
+    "upload": 0.3
+   },
+   "url": "https://youtube.com/shorts/xhbJp1IFVFE"
+  },
+  {
+   "slug": "nyc-noise-complaints-per-day",
+   "outcome": "showrunner_block",
+   "at": "2026-10-21T15:58:41+00:00",
+   "phases": {
+    "prep": 0.5,
+    "render": 25.3,
+    "review": 31.4
+   }
+  },
+  {
+   "slug": "rubiks-cube-record-vs-robot",
+   "outcome": "showrunner_block",
+   "at": "2026-10-21T20:53:42+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 28.9,
+    "review": 39.4
+   }
+  },
+  {
+   "slug": "genz-drinking-decline",
+   "outcome": "posted",
+   "at": "2026-10-21T21:52:24+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 32.5,
+    "review": 10.4,
+    "upload": 0.2
+   },
+   "url": "https://youtube.com/shorts/qfW3QlxNl4s"
+  },
+  {
+   "slug": "body-renewal-clock",
+   "outcome": "showrunner_block",
+   "at": "2026-10-21T22:24:39+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 31.7,
+    "review": 0.3
+   }
+  },
+  {
+   "slug": "rubiks-cube-record-vs-robot",
+   "outcome": "posted",
+   "at": "2026-10-22T01:07:37+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 7.0,
+    "review": 1.0,
+    "upload": 0.3
+   },
+   "url": "https://youtube.com/shorts/zjuY7K1FvVc"
+  },
+  {
+   "slug": "japan-vending-machine-density",
+   "outcome": "posted",
+   "at": "2026-10-22T13:19:52+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 30.7,
+    "review": 45.3,
+    "upload": 0.4
+   },
+   "url": "https://youtube.com/shorts/n5yZaklhaz8"
+  },
+  {
+   "slug": "pickleball-fastest-growing-sport",
+   "outcome": "posted",
+   "at": "2026-10-22T16:43:52+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 29.9,
+    "review": 14.0,
+    "upload": 0.3
+   },
+   "url": "https://youtube.com/shorts/LDJlUmK-1-k"
+  },
+  {
+   "slug": "ai-datacenter-water",
+   "outcome": "showrunner_block",
+   "at": "2026-10-22T18:39:03+00:00",
+   "phases": {
+    "prep": 0.4,
+    "render": 29.8,
+    "review": 0.3
+   }
+  },
+  {
+   "slug": "red-hair-recessive-gene",
+   "outcome": "showrunner_block",
+   "at": "2026-10-23T15:53:54+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 26.8,
+    "review": 14.0
+   }
+  },
+  {
+   "slug": "lightning-deaths-collapsed-not-the-storms",
+   "outcome": "showrunner_block",
+   "at": "2026-10-23T16:29:07+00:00",
+   "phases": {
+    "prep": 0.2,
+    "render": 22.3,
+    "review": 0.3
+   }
+  },
+  {
+   "slug": "hearing-aids-otc-price-drop",
+   "outcome": "showrunner_block",
+   "at": "2026-10-23T17:13:00+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 23.9,
+    "review": 0.3
+   }
+  },
+  {
+   "slug": "world-wetlands-lost",
+   "outcome": "showrunner_block",
+   "at": "2026-10-23T20:59:52+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 24.9,
+    "review": 0.3
+   }
+  },
+  {
+   "slug": "olympic-bid-collapse",
+   "outcome": "posted",
+   "at": "2026-10-24T01:59:57+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 31.4,
+    "review": 13.2,
+    "upload": 0.4
+   },
+   "url": "https://youtube.com/shorts/pY0bZ7rY5rg"
+  },
+  {
+   "slug": "red-hair-recessive-gene",
+   "outcome": "posted",
+   "at": "2026-10-24T03:54:39+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 12.1,
+    "review": 1.1,
+    "upload": 0.3
+   },
+   "url": "https://youtube.com/shorts/v8SF-ybz3MU"
+  },
+  {
+   "slug": "hearing-aids-otc-price-drop",
+   "outcome": "posted",
+   "at": "2026-10-24T04:19:31+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 23.5,
+    "review": 1.0,
+    "upload": 0.2
+   },
+   "url": "https://youtube.com/shorts/OVx7o2iUhKU"
+  },
+  {
+   "slug": "chip-shortage-tsmc-fragility",
+   "outcome": "posted",
+   "at": "2026-10-24T13:11:50+00:00",
+   "phases": {
+    "prep": 0.1,
+    "render": 23.1,
+    "review": 12.3,
+    "upload": 0.3
+   },
+   "url": "https://youtube.com/shorts/OpoIpGVIVNc"
+  }
+ ],
+ "updated": "2026-10-24T13:11:58+00:00",
+ "eta": {
+  "this_story_min": null,
+  "next_post_min": 43,
+  "typical_min": {
+   "prep": 0.1,
+   "render": 22.3,
+   "review": 1.1,
+   "upload": 0.3
+  },
+  "post_rate": 0.55,
+  "full_story_min": 24
+ },
+ "ended": "2026-10-24T13:11:58+00:00"
+}
