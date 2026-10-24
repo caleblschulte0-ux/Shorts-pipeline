@@ -3,528 +3,6 @@
     {
       "date": "20261016",
       "dry_run": false,
-      "ts": "2026-10-16T12:43:26+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 14,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 139,
-        "with_retention": 120,
-        "with_curve": 15,
-        "fetched_at": "2026-10-16T08:46:22.421306+00:00"
-      },
-      "brain": {
-        "ok": 46,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261016-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 89,
-                "refused_shown": 20,
-                "scouted": [
-                  {
-                    "premise": "Plaqueboymax's dance fail smacks his mouth on camera, and days later he shows the stitched chin and roasts chat after a ",
-                    "shape": "multi_stream",
-                    "n": 2
-                  },
-                  {
-                    "premise": "Cinna's GTA RP run with Kalita Dub goes from Kalita's first time as getaway driver, to a wrong-side crash Cinna blames o",
-                    "shape": "multi_stream",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Buddha loses $800 when Tony rugpulls his in-game coin, and xQc reacts live to a similar coin rug pull in the same GTA ro",
-                    "shape": "multi_streamer",
-                    "n": 2
-                  }
-                ],
-                "vod_arcs": 312,
-                "moments": 40,
-                "candidates": 505,
-                "pool": 2948,
-                "pool_with_vod": 2088,
-                "arc_sizes": [
-                  2,
-                  4,
-                  6,
-                  2,
-                  2,
-                  3,
-                  3,
-                  2,
-                  3,
-                  5
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:plaqueboymax/plaqueboymax-chin-mouth-2026w42",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The footage does not support the scout's link. In the 10-08 clip (PeppyCrispyDonkey) a guest in a white tank top dances for a $10 cookie challenge, drops to the floor and hits his own mouth. plaqueboy"
-                },
-                {
-                  "cluster": "yololaryy@momentaggressivelongjaypartytime-au0nfaeeycihjf8k",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@vod2823602117",
-                  "outcome": "already_refused",
-                  "why": "2026-10-15: sources fail preflight: preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "scout:cinna/cinna-charact-cinna-2026w42",
-                  "outcome": "narrative_failed",
-                  "why": "scores [42, 58, 52] after 2 revision(s) \u2014 @36s weak_payoff: The cut ends on her plea and never shows Forehead's answer. The central question (does he hire them?) stays open. Extend the clip past 178.5s to include his reply or her reaction, or reframe the premi; @15s confusing: The crash argument and"
-                },
-                {
-                  "cluster": "sondergaardlol@momentfantasticpunchybisonredcoat-pmq8vp3f-er",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: table read 48 < 50 \u2014 not rendered; repetition: The setup repeats the same countdown ('3, 2, 1, go') four or five times between 25s and 38s. Cut it to one failed"
-                },
-                {
-                  "cluster": "kaicenat@vod2824281072",
-                  "outcome": "already_refused",
-                  "why": "2026-10-15: rendered; critic scored 52 after 2 revision(s) \u2014 @32s weak_payoff: The ending is an inspirational sign-off with no consequence for either speaker. The question "
-                },
-                {
-                  "cluster": "scout:buddha+xqc",
-                  "outcome": "already_refused",
-                  "why": "2026-10-12: rendered; critic scored 68 after 1 revision(s) \u2014 @2s missing_context: Say who the promoter is and what the coin is. 'Snack bits' is never explained, and a stran"
-                },
-                {
-                  "cluster": "isthisemmiep@momentwittyantsynigirihotpokket-ky7nbggbgbqfd3i",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 There is no meaningful change in these sources. The clip is a wordless rear-view walk through a convention floor. The VOD stretch before it is casual chatter about getting there late because the She-H"
-                },
-                {
-                  "cluster": "northernlion@vod2880264709",
-                  "outcome": "already_refused",
-                  "why": "2026-10-15: sources fail preflight: preflight:source barely moves (avg frame delta 0.13) \u2014 static image/pa; preflight:source barely moves (avg frame delta 0"
-                },
-                {
-                  "cluster": "kaicenat@momenttangentialdeterminedalmondspicyboy-oeitzou0ub",
-                  "outcome": "already_refused",
-                  "why": "2026-10-11: rendered; critic scored 46 after 2 revision(s) \u2014 @15s pacing: From about 12s to 42s the picture is a static red slide (a Europe flag and 'UNIVERSITY 2027 HELD I"
-                },
-                {
-                  "cluster": "ohnepixel@vod2896011569",
-                  "outcome": "already_refused",
-                  "why": "2026-10-10: director judged: not a story \u2014 The sources don't show why ohnepixel is crying, so the premise can't be stated plainly. Clip 1 has no speech and clip 2 only has "
-                },
-                {
-                  "cluster": "ishowspeed@momentmagnificentcaringlapwinglitfam--majf-ezbaoy",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 This is one stretch of Speed reacting to TikToks, and nothing in it changes. The before has chat saying his mic is too loud. He turns it down and tests it, then chants 'It's peace' over a TikTok. The "
-                },
-                {
-                  "cluster": "ishowspeed@vod2898041380/ishowspeed-charact-cinna-2026w42",
-                  "outcome": "not_a_story",
-                  "why": "take 0: every beat is from one source \u2014 a clip, not a story; take 1: every beat is from one source \u2014 a clip, not a story; take 2: every beat is from one source \u2014 a clip, not a story"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "name tease, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.45,
-              "why": "Faceoff setup, no visible event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Talk Gets Heated"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.55,
-              "problems": [
-                "The top crop in the first ~14s (2.0s, 6.1s, 10.1s) shows headless torsos, a shirt and a logo screen. No face or action i",
-                "In the wide strip, the subjects are tiny and far away, and the sharp region is a thin band. They are hard to read on a p",
-                "The hook card says 'Beasley and Delante face off', but for the first ~14s neither fighter is clearly shown.",
-                "Two stacked crops (a zoomed one above a wide one) over a large blurred area leave little usable picture. Captions and th"
-              ]
-            }
-          },
-          "took_s": 323.8
-        },
-        {
-          "slug": "clip-20261016-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 95,
-                "refused_shown": 20,
-                "scouted": [
-                  {
-                    "premise": "Ron ruins Jasontheween's new car intro, Jasontheween reacts to Ron's 'neither' answer, and Kai says Ron is in trouble.",
-                    "shape": "multi_streamer",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Lacy exposes Ron for what he did while she was asleep, with chat screaming at the Lacy and Ron saga around it.",
-                    "shape": "multi_stream",
-                    "n": 6
-                  },
-                  {
-                    "premise": "Buddha is pitched on a coin that will pump beyond the multiverse, and xQc and Buddha then watch the coin rug pull live.",
-                    "shape": "multi_streamer",
-                    "n": 6
-                  },
-                  {
-                    "premise": "Stableronaldo watches Jynxzi's team on a Minecraft Ender Dragon speedrun go wrong right as Jynxzi's death count climbs.",
-                    "shape": "multi_streamer",
-                    "n": 2
-                  }
-                ],
-                "vod_arcs": 312,
-                "moments": 40,
-                "candidates": 506,
-                "pool": 2948,
-                "pool_with_vod": 2088,
-                "arc_sizes": [
-                  2,
-                  4,
-                  6,
-                  2,
-                  2,
-                  3,
-                  3,
-                  2,
-                  3,
-                  5
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:jasontheween+kaicenat",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: director judged: not a story \u2014 The footage does not confirm the scout's chain, and only one of the two sources holds a story. The 170s clip (2026-09-23) is a re"
-                },
-                {
-                  "cluster": "yololaryy@momentaggressivelongjaypartytime-au0nfaeeycihjf8k",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@vod2823602117",
-                  "outcome": "already_refused",
-                  "why": "2026-10-15: sources fail preflight: preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "scout:clipathon+corefx+lacy+uncuthq/clipathon-corefx-lacy-un",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The scout's premise is that Lacy exposes Ron for what he did while she was asleep. The footage doesn't show a story with a payoff. Only the 2026-09-06 Lacy clip touches it, and it is one source. In it"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.3,
-              "why": "vague headline, unclear visual event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.66,
-              "why": "Car drives up wall, shocked reaction",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Agent00 Can't Believe Tesla's Flying Car Is Just Infinite Downforce"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.55,
-              "problems": [
-                "The game footage is small and very dark. The car is tiny in most frames.",
-                "The hook card sits in the same place for the whole clip, over the blurred padding."
-              ]
-            }
-          },
-          "took_s": 283.0
-        },
-        {
-          "slug": "clip-20261016-3",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261016-3",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.62,
-              "why": "versus matchup, likely visible reaction",
-              "blind": false
-            },
-            "content": {
-              "score": 0.66,
-              "why": "Costume scuffle in truck, visible, chaot",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat's Wifi Man Goes Off On Captain Ray Over A Ponytail"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "Sharp picture fills only about the middle third of the canvas, so it reads a bit small on a phone",
-                "The hook card sits in the blurred bottom padding and does not cover any faces or action",
-                "The streamer's own captions are small, and the word captions in the middle are partly redundant with them"
-              ]
-            }
-          },
-          "took_s": 347.9
-        },
-        {
-          "slug": "clip-20261016-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261016-4",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "vague praise, no visible event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.45,
-              "why": "LoL gameplay, reactions but unclear even",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Can't Believe How Good This Guy Is"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "The gameplay strip is fairly small and the action in it is hard to read on a phone",
-                "The bottom third is mostly empty blur and only holds the hook text"
-              ]
-            }
-          },
-          "took_s": 155.6
-        },
-        {
-          "slug": "clip-20261016-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261016-5",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.55,
-              "why": "visible crying, cause unclear",
-              "blind": false
-            },
-            "content": {
-              "score": 0.66,
-              "why": "Ringside WWE fan reactions, visible laug",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Cinna Gets Begged For Help By Tiffy As She Breaks Down \ud83d\ude2d"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.6,
-              "problems": [
-                "several mid-clip frames show only a hand or an empty ring corner, with no person visible",
-                "final frames show the ladder action with tiny, distant subjects",
-                "hook card text sits low over the lower part of the picture throughout"
-              ]
-            }
-          },
-          "took_s": 190.7
-        },
-        {
-          "slug": "clip-20261016-6",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Guessing game, off by 4,926x, low drama)",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261016-6",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "garbage title, unknown content",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "Guessing game, off by 4,926x, low drama",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 25.3
-        }
-      ]
-    },
-    {
-      "date": "20261016",
-      "dry_run": false,
       "ts": "2026-10-16T13:28:23+00:00",
       "feedback": {
         "snapshot": true,
@@ -5653,6 +5131,156 @@
             }
           },
           "took_s": 517.8
+        }
+      ]
+    },
+    {
+      "date": "20261024",
+      "dry_run": false,
+      "ts": "2026-10-24T12:41:05+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 14,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 140,
+        "with_retention": 119,
+        "with_curve": 14,
+        "fetched_at": "2026-10-24T08:46:07.610265+00:00"
+      },
+      "brain": {
+        "ok": 14,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261024-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "yo-yo trick, unclear payoff",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "Visible yo-yo trick, funny reaction, cha",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Loses It After Her Yo-Yo Does The Unthinkable \ud83d\ude2d"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "Frame at 1.2s is a close, blurry crop of a torso with no clear subject, and the frame at 20.8s is a whip-pan blur. Both ",
+                "The word captions sit right under the hook caption and nearly touch it, and some show raw asterisk bleeps.",
+                "The 28.2s frame crops a person at the right edge."
+              ]
+            }
+          },
+          "took_s": 195.0
+        },
+        {
+          "slug": "clip-20261024-2",
+          "ok": false,
+          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague reaction, unknown trigger",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Car banter, possible beef, unclear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            }
+          },
+          "took_s": 21.7
+        },
+        {
+          "slug": "clip-20261024-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261024-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261024-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261024-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }
