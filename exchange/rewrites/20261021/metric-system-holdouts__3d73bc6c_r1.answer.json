@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "metric-system-holdouts__3d73bc6c_r1",
+  "slug": "metric-system-holdouts",
+  "by": "chatgpt",
+  "written_at": "2026-10-24T11:49:00Z",
+  "title": "A Unit Mix-Up Left A Plane With 20,400 Pounds Of Fuel",
+  "hook": "A unit mix-up loaded 20,400 pounds when the plane needed 45,000.",
+  "closing": "Units look abstract until the missing fuel is carrying people.",
+  "question": "Where have mixed units failed you?",
+  "segments": [
+    {
+      "topic": "Unit adoption gap",
+      "say": "Non-metric countries contain 5% of people; the other 95% use metric."
+    },
+    {
+      "topic": "Unit orbiter error",
+      "say": "A unit error dropped the orbiter from 226 kilometers planned to 57 actual."
+    },
+    {
+      "topic": "Unit fuel error",
+      "say": "The plane loaded 20,400 pounds but needed 45,000, leaving less than half."
+    }
+  ]
+}
