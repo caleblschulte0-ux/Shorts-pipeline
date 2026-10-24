@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "production_date": "20261024",
+  "bundle_id": "309b08eedc9cbf7d2dc24ac90075f360c74ac02a7f15b4a8bff17927031467b4",
+  "status": "blocked_partial",
+  "failed_step": "post-DONE verification of required channel uploads",
+  "observed_at": "2026-10-24T12:00:00Z",
+  "attempts": [
+    "Committed and read back the authorized response.json.",
+    "Committed DONE separately and inspected the successful Phase B application.",
+    "Executed two takeover mailbox rounds across reviews, asks, and rewrites.",
+    "Read the three channel posted logs from main and counted distinct accepted YouTube Shorts URLs assigned to 2026-10-24.",
+    "Inspected available workflow results; no completed worker evidence closes the remaining five uploads."
+  ],
+  "channels": {
+    "sports": {
+      "required": 3,
+      "verified_posted": 1,
+      "pending": 2,
+      "urls": [
+        "https://youtube.com/shorts/FeV7kZsW6qo"
+      ]
+    },
+    "twitch": {
+      "required": 6,
+      "verified_posted": 4,
+      "pending": 2,
+      "urls": [
+        "https://youtube.com/shorts/bQ8SUcQ9fJg",
+        "https://youtube.com/shorts/VEcy2l0s3sY",
+        "https://youtube.com/shorts/FOJJARrnGqk",
+        "https://youtube.com/shorts/hXkmtA5elp4"
+      ]
+    },
+    "explainer": {
+      "required": 4,
+      "verified_posted": 3,
+      "pending": 1,
+      "urls": [
+        "https://youtube.com/shorts/pY0bZ7rY5rg",
+        "https://youtube.com/shorts/v8SF-ybz3MU",
+        "https://youtube.com/shorts/OVx7o2iUhKU"
+      ]
+    }
+  },
+  "totals": {
+    "required": 13,
+    "verified_posted": 8,
+    "pending": 5
+  },
+  "mailbox_rounds": [
+    {
+      "round": 1,
+      "reviews": {
+        "open": 0,
+        "answered": 0,
+        "skipped": 0
+      },
+      "asks": {
+        "answered": 20,
+        "skipped_reason": "remaining indexed items exceeded the 20-key per-round cap; settled answers were reused"
+      },
+      "rewrites": {
+        "answered": 10,
+        "skipped_reason": "remaining indexed items exceeded the 10-story per-round cap"
+      }
+    },
+    {
+      "round": 2,
+      "reviews": {
+        "open": 0,
+        "answered": 0,
+        "skipped": 0
+      },
+      "asks": {
+        "answered": 20,
+        "skipped_reason": "remaining indexed items exceeded the 20-key per-round cap; settled answers were reused"
+      },
+      "rewrites": {
+        "answered": 10,
+        "skipped_reason": "remaining indexed items exceeded the 10-story per-round cap"
+      }
+    }
+  ],
+  "retryable": true,
+  "day_closed": false,
+  "notes": [
+    "The frozen bundle requested no new media assets, so Drive image generation/upload verification was not applicable.",
+    "A successful exchange handoff or DONE marker is not proof of completed channel uploads.",
+    "Do not disable recurring production for this transient downstream shortfall."
+  ]
+}
