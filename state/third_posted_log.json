@@ -15642,14 +15642,32 @@
       "ts": "2026-10-24T14:30:22.758398+00:00"
     },
     "clip-20261024-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/extraemily/clip/StupidBlazingDragonHassanChop-fNOd7tiV_UKh4l2L",
-      "story_key": null,
-      "streamer": "extraemily",
+      "url": "https://youtube.com/shorts/lzaqpVnzYWA",
       "title": "Extraemily: Emily Gives Emmy Halloween Cookies And Asks For A Review",
       "kind": "twitch_clip",
-      "ts": "2026-10-24T14:34:03.721929+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-24T14:34:12.658928+00:00",
+      "uploaded_at": "2026-10-24T14:34:12.658945+00:00",
+      "publish_at": "2026-10-25T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261024-extraemily-emily-gives-emmy-halloween-cookies-an-139377c8",
+        "tiktok": "queued for 2026-10-25T03:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/extraemily/clip/StupidBlazingDragonHassanChop-fNOd7tiV_UKh4l2L",
+      "streamer": "extraemily",
+      "series": "wholesome",
+      "hook": "Emily made Emmy Halloween cookies \ud83c\udf83",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2498,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 33.0
+      },
+      "director_cut": true
     }
   }
 }

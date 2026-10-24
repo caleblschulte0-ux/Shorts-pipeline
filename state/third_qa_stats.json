@@ -3,248 +3,6 @@
     {
       "date": "20261016",
       "dry_run": false,
-      "ts": "2026-10-16T13:28:23+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 14,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 139,
-        "with_retention": 120,
-        "with_curve": 15,
-        "fetched_at": "2026-10-16T08:46:22.421306+00:00"
-      },
-      "brain": {
-        "ok": 6,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:qtcinderella": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261016-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261016-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261016-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261016-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261016-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261016-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 88,
-                "refused_shown": 20,
-                "scouted": [
-                  {
-                    "premise": "xQc gets pulled over in NoPixel and tells the cop it's the last they'll see of him, then gets captured, and days later h",
-                    "shape": "multi_stream",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Kai Cenat says Reggie lied about a 2:32 AM call. Rakai shows his own messages with Reggie on his stream. Kai then demand",
-                    "shape": "multi_streamer",
-                    "n": 6
-                  },
-                  {
-                    "premise": "Cinna's GTA RP run with Kalita Dub goes from Kalita accidentally becoming the getaway driver, to Cinna blaming Kalita fo",
-                    "shape": "multi_stream",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Ludwig grinds 100 hours of League for two Elo, then crashes out losing to an 8,000-hour player in an influencer tourname",
-                    "shape": "multi_stream",
-                    "n": 2
-                  }
-                ],
-                "vod_arcs": 309,
-                "moments": 40,
-                "candidates": 503,
-                "pool": 2946,
-                "pool_with_vod": 2086,
-                "arc_sizes": [
-                  2,
-                  4,
-                  6,
-                  2,
-                  2,
-                  3,
-                  3,
-                  2,
-                  5,
-                  3
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:pikabooirl/pikabooirl-accus-duel-2026w41",
-                  "outcome": "narrative_failed",
-                  "why": "scores [66, 66, 74] after 2 revision(s) \u2014 @2s missing_context: The opening is garbled ('a big mouth... finds our lair'; 'Tournament rules, you let me open'). Tighten the setup trim so it states the accusation cleanly and says what the duel is, and make the 'WoW r; @15s confusing: Payo's quit is buri"
-                },
-                {
-                  "cluster": "scout:xqc/xqc-believe-charact-2026w42",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The footage does not show the scout's arc. In the Oct 1 traffic-stop clip, xQc jokes with the officer ('the last you ever see of this') and is told the plate is stolen. The clip ends with the car stil"
-                },
-                {
-                  "cluster": "yololaryy@momentaggressivelongjaypartytime-au0nfaeeycihjf8k",
-                  "outcome": "already_refused",
-                  "why": "2026-10-13: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-                },
-                {
-                  "cluster": "kaicenat@vod2823602117",
-                  "outcome": "already_refused",
-                  "why": "2026-10-15: sources fail preflight: preflight:source only 5.0s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "scout:2xrakai+daplug+fsclipsss+kaicenat+undercookedclips/2xr",
-                  "outcome": "narrative_failed",
-                  "why": "scores [58, 58, 58] after 2 revision(s) \u2014 @0s missing_context: The allegations are never named. 'Serious allegations' and 'you pulled that card' mean nothing to a stranger. Add a line, or a short clip of Reggie's accusation, saying what Reggie claimed (for exampl; @18s confusing: The 'Kai shows his "
-                },
-                {
-                  "cluster": "sondergaardlol@momentfantasticpunchybisonredcoat-pmq8vp3f-er",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: table read 48 < 50 \u2014 not rendered; repetition: The setup repeats the same countdown ('3, 2, 1, go') four or five times between 25s and 38s. Cut it to one failed"
-                },
-                {
-                  "cluster": "kaicenat@vod2824281072",
-                  "outcome": "already_refused",
-                  "why": "2026-10-15: rendered; critic scored 52 after 2 revision(s) \u2014 @32s weak_payoff: The ending is an inspirational sign-off with no consequence for either speaker. The question "
-                },
-                {
-                  "cluster": "scout:cinna/cinna-about-charact-2026w42",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The footage does not show the chain the scout proposed. Clip 1 (Oct 5) is an SUV with a pink-clad character clinging to its side and one unattributed line, \"I swear I didn't mean to... where?\". The re"
-                },
-                {
-                  "cluster": "isthisemmiep@momentwittyantsynigirihotpokket-ky7nbggbgbqfd3i",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The sources hold a walk through a convention, with small talk and a camera-off card at the end. Nothing changes. The only claim is that She-Hulk makeup made the stream late. No conflict, accusation, c"
-                },
-                {
-                  "cluster": "northernlion@vod2880264709",
-                  "outcome": "already_refused",
-                  "why": "2026-10-15: sources fail preflight: preflight:source barely moves (avg frame delta 0.13) \u2014 static image/pa; preflight:source barely moves (avg frame delta 0"
-                },
-                {
-                  "cluster": "scout:ludwig/ludwig-gain-hour-2026w42",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The footage does not show the scout's story. The 'gained two Elo after 100 hours' clip is from 2026-08-24 and is a shooter. The scene report shows operator characters in the lobby, and Ludwig never sa"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.55,
-              "why": "possible stunt, unclear payoff",
-              "blind": false
-            },
-            "content": {
-              "score": 0.72,
-              "why": "card trick lands, group laughs, pocket r",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Stableronaldo Pulls Off Ron Magic And Chat Can't Believe It"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.6,
-              "problems": [
-                "The word captions collide with the hook card text at the bottom, as at 0.5s, 5.3s and 9.2s. The lines overlap and are cl",
-                "At 3.4s the main subject's face is partly cropped and the framing is awkward. It lasts one frame.",
-                "The subject shifts between shots, so the framing is somewhat inconsistent."
-              ]
-            }
-          },
-          "took_s": 153.5
-        }
-      ]
-    },
-    {
-      "date": "20261016",
-      "dry_run": false,
       "ts": "2026-10-16T15:22:10+00:00",
       "feedback": {
         "snapshot": true,
@@ -5261,6 +5019,134 @@
             }
           },
           "took_s": 21.7
+        },
+        {
+          "slug": "clip-20261024-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261024-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261024-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261024-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261024",
+      "dry_run": false,
+      "ts": "2026-10-24T14:34:12+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 14,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 140,
+        "with_retention": 119,
+        "with_curve": 14,
+        "fetched_at": "2026-10-24T12:51:29.413737+00:00"
+      },
+      "brain": {
+        "ok": 8,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261024-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261024-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "taste reaction, mild stakes",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Cookie handoff, mild fun, no payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Extraemily: Emily Gives Emmy Halloween Cookies And Asks For A Review"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "Around 15s the framing briefly holds on empty space, with one person cut off at the right edge and the other out of fram",
+                "Captions sit over the subjects' torsos, but none cover a face or the main action."
+              ]
+            }
+          },
+          "took_s": 229.9
         },
         {
           "slug": "clip-20261024-3",
