@@ -1,0 +1,45 @@
+{
+  "schema": "shorts-ask-answers/v1",
+  "answers": {
+    "fdb5a14347b0e733": {
+      "answer": "{\"subreddit\":\"pettyrevenge\",\"title\":\"I filmed my manager trash the tip and got sweet karma\",\"script\":\"I caught my manager literally trash the tip right after a frantic customer left a $5 tip on the counter, claiming the cafe was short‑changing them. I slipped my hidden camera into the sugar jar, waiting for the perfect moment. The manager’s smug grin widened as he tossed the cash into the waste bin, while the customer stared in disbelief, clutching their receipt. I waited until the cash register beep echoed, then the doorbell rings and the manager turned to see a police officer stepping inside, drawn by the live feed I’d sent to the local watchdog. The officer lifted the trash bag, exposing the stolen money, and the manager was escorted out as the customer cheered. I walked out with the $5 tip still in my pocket, feeling the sweet taste of justice.\",\"hashtags\":[\"pettyrevenge\",\"cafe\",\"revenge\",\"justice\",\"cash\"],\"shots\":[{\"phrase\":\"trash the tip\",\"query\":\"waste bin\"},{\"phrase\":\"manager’s smug grin\",\"query\":\"smug face\"},{\"phrase\":\"hidden camera\",\"query\":\"cafe interior\"},{\"phrase\":\"customer stared in disbelief\",\"query\":\"surprised patron\"},{\"phrase\":\"cash register beep\",\"query\":\"register screen\"},{\"phrase\":\"doorbell rings\",\"query\":\"cafe door\"}],\"punches\":[{\"phrase\":\"trash the tip\",\"text\":\"SCAM\",\"color\":\"#ff3030\"},{\"phrase\":\"manager’s smug grin\",\"text\":\"KARMA\",\"color\":\"#50ff80\"},{\"phrase\":\"hidden camera\",\"text\":\"REVEALED\",\"color\":\"#ffaa30\"}],\"music_vibe\":\"cinematic\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:29:00Z"
+    },
+    "f4f66b04193a9f95": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It overturns the expectation that a television show cannot reshape a mass pastime and hangs on 200 million participants.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:29:00Z"
+    },
+    "bce62911c16096ca": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"It presents an alarming phenomenon without a consequential numeric claim, because 'New Jersey' is only a size analogy.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:29:00Z"
+    },
+    "3e8ad574a36b89c0": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The reversal is intriguing, but the premise provides no consequential verifiable number.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:29:00Z"
+    },
+    "b5e86d9087434591": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"It overturns the expectation that humans domesticated many large animals with the single consequential number 14.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:29:00Z"
+    },
+    "67696dc99643e00d": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The location reversal is strong, but the premise hangs on no consequential verifiable number.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:29:00Z"
+    },
+    "4b3e0009c547cf3b": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":true}}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:29:00Z"
+    },
+    "bc6c324289c4a013": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The kiosk replacement claim lacks a consequential verifiable number, while '3 Charts' is only a format label.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-24T11:29:00Z"
+    }
+  }
+}
