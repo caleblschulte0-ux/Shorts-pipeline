@@ -1,7 +1,67 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-23T13:46:09Z",
+ "updated": "2026-10-24T04:19:38Z",
  "open": [
+  {
+   "id": "cargo-ship-size-growth__f9ab28c4_r1",
+   "slug": "cargo-ship-size-growth",
+   "filed": "2026-10-24T04:19:38Z",
+   "why": [
+    "premise: brain: It relies on multiple numbers (sixfold growth and crew of 20) instead of a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261024/cargo-ship-size-growth__f9ab28c4_r1.request.json",
+   "answer_path": "exchange/rewrites/20261024/cargo-ship-size-growth__f9ab28c4_r1.answer.json"
+  },
+  {
+   "id": "lottery-odds-vs-real-life__335c9001_r1",
+   "slug": "lottery-odds-vs-real-life",
+   "filed": "2026-10-24T04:19:37Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261024/lottery-odds-vs-real-life__335c9001_r1.request.json",
+   "answer_path": "exchange/rewrites/20261024/lottery-odds-vs-real-life__335c9001_r1.answer.json"
+  },
+  {
+   "id": "california-condor-comeback__ada5193e",
+   "slug": "california-condor-comeback",
+   "filed": "2026-10-24T04:19:36Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on vague numbers without a single consequential, verifiable figure."
+   ],
+   "request": "exchange/rewrites/20261024/california-condor-comeback__ada5193e.request.json",
+   "answer_path": "exchange/rewrites/20261024/california-condor-comeback__ada5193e.answer.json"
+  },
+  {
+   "id": "ghost-fishing-gear-ocean-plastic__43f99e61",
+   "slug": "ghost-fishing-gear-ocean-plastic",
+   "filed": "2026-10-24T04:19:36Z",
+   "why": [
+    "premise: brain: The claim presents a statistic without overturning a clear viewer expectation, failing the required reversal criterion."
+   ],
+   "request": "exchange/rewrites/20261024/ghost-fishing-gear-ocean-plastic__43f99e61.request.json",
+   "answer_path": "exchange/rewrites/20261024/ghost-fishing-gear-ocean-plastic__43f99e61.answer.json"
+  },
+  {
+   "id": "coldest-place-in-the-universe-is-human-made__81f94a66_r1",
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "filed": "2026-10-24T04:19:35Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261024/coldest-place-in-the-universe-is-human-made__81f94a66_r1.request.json",
+   "answer_path": "exchange/rewrites/20261024/coldest-place-in-the-universe-is-human-made__81f94a66_r1.answer.json"
+  },
+  {
+   "id": "parker-solar-probe-speed-record__af1b2837",
+   "slug": "parker-solar-probe-speed-record",
+   "filed": "2026-10-24T04:19:35Z",
+   "why": [
+    "premise: brain: The premise relies on a generic superlative and a single speed figure without overturning a clear viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261024/parker-solar-probe-speed-record__af1b2837.request.json",
+   "answer_path": "exchange/rewrites/20261024/parker-solar-probe-speed-record__af1b2837.answer.json"
+  },
   {
    "id": "frog-freezes-and-revives__74b0628c",
    "slug": "frog-freezes-and-revives",
@@ -11,16 +71,6 @@
    ],
    "request": "exchange/rewrites/20261023/frog-freezes-and-revives__74b0628c.request.json",
    "answer_path": "exchange/rewrites/20261023/frog-freezes-and-revives__74b0628c.answer.json"
-  },
-  {
-   "id": "ghost-fishing-gear-ocean-plastic__e0544892",
-   "slug": "ghost-fishing-gear-ocean-plastic",
-   "filed": "2026-10-23T13:46:06Z",
-   "why": [
-    "premise: brain: The premise does not clearly invert a common viewer expectation and relies only on a startling statistic without a specific expectation reversal."
-   ],
-   "request": "exchange/rewrites/20261023/ghost-fishing-gear-ocean-plastic__e0544892.request.json",
-   "answer_path": "exchange/rewrites/20261023/ghost-fishing-gear-ocean-plastic__e0544892.answer.json"
   },
   {
    "id": "world-wetlands-lost__3fe5ea62_r1",
@@ -33,194 +83,114 @@
    "answer_path": "exchange/rewrites/20261023/world-wetlands-lost__3fe5ea62_r1.answer.json"
   },
   {
-   "id": "nyc-noise-complaints-per-day__7fcacd7a",
-   "slug": "nyc-noise-complaints-per-day",
-   "filed": "2026-10-23T04:44:32Z",
+   "id": "dog-breed-popularity-flip__8740e2a9_r1",
+   "slug": "dog-breed-popularity-flip",
+   "filed": "2026-10-23T12:49:00Z",
    "why": [
-    "premise: brain: It lacks a clear reversal of a viewer expectation and relies only on a single statistic without a surprising twist."
+    "premise: brain: The claim lacks a clear reversal of a common viewer expectation and relies on a vague link between popularity and health rather than a single verifiable consequence."
    ],
-   "request": "exchange/rewrites/20261023/nyc-noise-complaints-per-day__7fcacd7a.request.json",
-   "answer_path": "exchange/rewrites/20261023/nyc-noise-complaints-per-day__7fcacd7a.answer.json"
+   "request": "exchange/rewrites/20261023/dog-breed-popularity-flip__8740e2a9_r1.request.json",
+   "answer_path": "exchange/rewrites/20261023/dog-breed-popularity-flip__8740e2a9_r1.answer.json"
+  },
+  {
+   "id": "iss-deorbit-2031__54db91c6_r1",
+   "slug": "iss-deorbit-2031",
+   "filed": "2026-10-23T12:49:00Z",
+   "why": [
+    "premise: brain: The claim lacks a verifiable, consequential number beyond a vague date and does not convincingly reverse a clear viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261023/iss-deorbit-2031__54db91c6_r1.request.json",
+   "answer_path": "exchange/rewrites/20261023/iss-deorbit-2031__54db91c6_r1.answer.json"
+  },
+  {
+   "id": "ai-datacenter-water__c0cc9c1a_r1",
+   "slug": "ai-datacenter-water",
+   "filed": "2026-10-23T12:48:59Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261023/ai-datacenter-water__c0cc9c1a_r1.request.json",
+   "answer_path": "exchange/rewrites/20261023/ai-datacenter-water__c0cc9c1a_r1.answer.json"
+  },
+  {
+   "id": "chatgpt-fastest-adoption-ever__c2e9df7d_r1",
+   "slug": "chatgpt-fastest-adoption-ever",
+   "filed": "2026-10-23T12:48:59Z",
+   "why": [
+    "premise: brain: The claim relies on a vague comparative speed without a single verifiable number, making it a weak premise."
+   ],
+   "request": "exchange/rewrites/20261023/chatgpt-fastest-adoption-ever__c2e9df7d_r1.request.json",
+   "answer_path": "exchange/rewrites/20261023/chatgpt-fastest-adoption-ever__c2e9df7d_r1.answer.json"
   },
   {
    "id": "peanut-allergy-guideline-flip__675a4e77",
    "slug": "peanut-allergy-guideline-flip",
-   "filed": "2026-10-23T04:44:31Z",
+   "filed": "2026-10-22T19:24:44Z",
    "why": [
-    "premise: brain: The premise is ambiguous and does not clearly reverse a specific viewer expectation with a single verifiable number."
+    "premise: brain: The premise is vague, does not clearly reverse a specific expectation, and the 43% figure is not presented as a clear, verifiable consequence."
    ],
-   "request": "exchange/rewrites/20261023/peanut-allergy-guideline-flip__675a4e77.request.json",
-   "answer_path": "exchange/rewrites/20261023/peanut-allergy-guideline-flip__675a4e77.answer.json"
-  },
-  {
-   "id": "ai-datacenter-water__c0cc9c1a",
-   "slug": "ai-datacenter-water",
-   "filed": "2026-10-23T04:44:31Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261023/ai-datacenter-water__c0cc9c1a.request.json",
-   "answer_path": "exchange/rewrites/20261023/ai-datacenter-water__c0cc9c1a.answer.json"
-  },
-  {
-   "id": "dog-breed-popularity-flip__8740e2a9",
-   "slug": "dog-breed-popularity-flip",
-   "filed": "2026-10-23T04:44:31Z",
-   "why": [
-    "premise: brain: The claim lacks a clear reversal of a common viewer expectation and relies on a vague link between popularity and health rather than a single verifiable consequence."
-   ],
-   "request": "exchange/rewrites/20261023/dog-breed-popularity-flip__8740e2a9.request.json",
-   "answer_path": "exchange/rewrites/20261023/dog-breed-popularity-flip__8740e2a9.answer.json"
-  },
-  {
-   "id": "chatgpt-fastest-adoption-ever__c2e9df7d",
-   "slug": "chatgpt-fastest-adoption-ever",
-   "filed": "2026-10-23T04:44:30Z",
-   "why": [
-    "premise: brain: The claim relies on a vague comparative speed without a single verifiable number, making it a weak premise."
-   ],
-   "request": "exchange/rewrites/20261023/chatgpt-fastest-adoption-ever__c2e9df7d.request.json",
-   "answer_path": "exchange/rewrites/20261023/chatgpt-fastest-adoption-ever__c2e9df7d.answer.json"
-  },
-  {
-   "id": "metric-system-holdouts__3d73bc6c_r1",
-   "slug": "metric-system-holdouts",
-   "filed": "2026-10-23T00:14:01Z",
-   "why": [
-    "premise: brain: The premise lacks a clear expectation reversal and relies on an ambiguous number without verifiable significance."
-   ],
-   "request": "exchange/rewrites/20261023/metric-system-holdouts__3d73bc6c_r1.request.json",
-   "answer_path": "exchange/rewrites/20261023/metric-system-holdouts__3d73bc6c_r1.answer.json"
-  },
-  {
-   "id": "homeschool-surge__fb7d1599",
-   "slug": "homeschool-surge",
-   "filed": "2026-10-23T00:14:00Z",
-   "why": [
-    "premise: brain: The premise relies on a vague expectation reversal and uses multiple figures rather than a single, clear, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261023/homeschool-surge__fb7d1599.request.json",
-   "answer_path": "exchange/rewrites/20261023/homeschool-surge__fb7d1599.answer.json"
-  },
-  {
-   "id": "iss-deorbit-2031__54db91c6",
-   "slug": "iss-deorbit-2031",
-   "filed": "2026-10-23T00:13:58Z",
-   "why": [
-    "premise: brain: The claim lacks a verifiable, consequential number beyond a vague date and does not convincingly reverse a clear viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261023/iss-deorbit-2031__54db91c6.request.json",
-   "answer_path": "exchange/rewrites/20261023/iss-deorbit-2031__54db91c6.answer.json"
-  },
-  {
-   "id": "divorce-rate-quiet-decline__d6b27d36",
-   "slug": "divorce-rate-quiet-decline",
-   "filed": "2026-10-23T00:13:57Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261023/divorce-rate-quiet-decline__d6b27d36.request.json",
-   "answer_path": "exchange/rewrites/20261023/divorce-rate-quiet-decline__d6b27d36.answer.json"
+   "request": "exchange/rewrites/20261022/peanut-allergy-guideline-flip__675a4e77.request.json",
+   "answer_path": "exchange/rewrites/20261022/peanut-allergy-guideline-flip__675a4e77.answer.json"
   },
   {
    "id": "helium-supply-squeeze__067a945d",
    "slug": "helium-supply-squeeze",
-   "filed": "2026-10-23T00:13:57Z",
+   "filed": "2026-10-22T19:24:41Z",
    "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague claim rather than a single, verifiable consequential number."
+    "premise: brain: The premise relies on an unverified, sensational figure and does not convincingly overturn a common expectation with a single, verifiable number."
    ],
-   "request": "exchange/rewrites/20261023/helium-supply-squeeze__067a945d.request.json",
-   "answer_path": "exchange/rewrites/20261023/helium-supply-squeeze__067a945d.answer.json"
+   "request": "exchange/rewrites/20261022/helium-supply-squeeze__067a945d.request.json",
+   "answer_path": "exchange/rewrites/20261022/helium-supply-squeeze__067a945d.answer.json"
+  },
+  {
+   "id": "divorce-rate-quiet-decline__d6b27d36",
+   "slug": "divorce-rate-quiet-decline",
+   "filed": "2026-10-22T01:07:39Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261022/divorce-rate-quiet-decline__d6b27d36.request.json",
+   "answer_path": "exchange/rewrites/20261022/divorce-rate-quiet-decline__d6b27d36.answer.json"
   },
   {
    "id": "english-internet-share-decline__21efaa68",
    "slug": "english-internet-share-decline",
-   "filed": "2026-10-23T00:13:57Z",
+   "filed": "2026-10-22T01:07:39Z",
    "why": [
     "premise: no consequential number in the title or hook"
    ],
-   "request": "exchange/rewrites/20261023/english-internet-share-decline__21efaa68.request.json",
-   "answer_path": "exchange/rewrites/20261023/english-internet-share-decline__21efaa68.answer.json"
+   "request": "exchange/rewrites/20261022/english-internet-share-decline__21efaa68.request.json",
+   "answer_path": "exchange/rewrites/20261022/english-internet-share-decline__21efaa68.answer.json"
   },
   {
    "id": "pentagon-ufo-reports-surge__e166beb3",
    "slug": "pentagon-ufo-reports-surge",
-   "filed": "2026-10-23T00:13:57Z",
+   "filed": "2026-10-22T01:07:39Z",
    "why": [
     "premise: no consequential number in the title or hook"
    ],
-   "request": "exchange/rewrites/20261023/pentagon-ufo-reports-surge__e166beb3.request.json",
-   "answer_path": "exchange/rewrites/20261023/pentagon-ufo-reports-surge__e166beb3.answer.json"
+   "request": "exchange/rewrites/20261022/pentagon-ufo-reports-surge__e166beb3.request.json",
+   "answer_path": "exchange/rewrites/20261022/pentagon-ufo-reports-surge__e166beb3.answer.json"
   },
   {
-   "id": "japan-vending-machine-density__9e291189_r1",
-   "slug": "japan-vending-machine-density",
-   "filed": "2026-10-22T11:46:38Z",
+   "id": "nyc-noise-complaints-per-day__7fcacd7a",
+   "slug": "nyc-noise-complaints-per-day",
+   "filed": "2026-10-21T20:53:54Z",
    "why": [
-    "premise: brain: It does not clearly reverse a common viewer expectation, merely stating a statistic."
+    "premise: brain: It does not clearly overturn a common viewer expectation, only presents a surprising statistic."
    ],
-   "request": "exchange/rewrites/20261022/japan-vending-machine-density__9e291189_r1.request.json",
-   "answer_path": "exchange/rewrites/20261022/japan-vending-machine-density__9e291189_r1.answer.json"
+   "request": "exchange/rewrites/20261021/nyc-noise-complaints-per-day__7fcacd7a.request.json",
+   "answer_path": "exchange/rewrites/20261021/nyc-noise-complaints-per-day__7fcacd7a.answer.json"
   },
   {
-   "id": "rubiks-cube-record-vs-robot__5d087bf9",
-   "slug": "rubiks-cube-record-vs-robot",
-   "filed": "2026-10-21T20:53:53Z",
-   "why": [
-    "judge: Strong cube art, but the ending undercuts the story: the robot's 0.38 s never shows in the closing, and the video ends on an empty void with a blank price tag."
-   ],
-   "request": "exchange/rewrites/20261021/rubiks-cube-record-vs-robot__5d087bf9.request.json",
-   "answer_path": "exchange/rewrites/20261021/rubiks-cube-record-vs-robot__5d087bf9.answer.json"
-  },
-  {
-   "id": "lottery-odds-vs-real-life__335c9001",
-   "slug": "lottery-odds-vs-real-life",
+   "id": "metric-system-holdouts__3d73bc6c_r1",
+   "slug": "metric-system-holdouts",
    "filed": "2026-10-21T16:21:57Z",
    "why": [
-    "premise: no consequential number in the title or hook"
+    "premise: brain: The premise does not clearly reverse a common viewer expectation and its single number lacks a strong, verifiable consequence."
    ],
-   "request": "exchange/rewrites/20261021/lottery-odds-vs-real-life__335c9001.request.json",
-   "answer_path": "exchange/rewrites/20261021/lottery-odds-vs-real-life__335c9001.answer.json"
-  },
-  {
-   "id": "coldest-place-in-the-universe-is-human-made__81f94a66",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-10-21T16:21:55Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/coldest-place-in-the-universe-is-human-made__81f94a66.request.json",
-   "answer_path": "exchange/rewrites/20261021/coldest-place-in-the-universe-is-human-made__81f94a66.answer.json"
-  },
-  {
-   "id": "ceo-executive-pay-gap__20daafe8",
-   "slug": "ceo-executive-pay-gap",
-   "filed": "2026-10-21T13:38:40Z",
-   "why": [
-    "premise: brain: The claim is a generic high multiple without reversing a clear viewer expectation and relies only on a vague statistic."
-   ],
-   "request": "exchange/rewrites/20261021/ceo-executive-pay-gap__20daafe8.request.json",
-   "answer_path": "exchange/rewrites/20261021/ceo-executive-pay-gap__20daafe8.answer.json"
-  },
-  {
-   "id": "cargo-ship-size-growth__f9ab28c4",
-   "slug": "cargo-ship-size-growth",
-   "filed": "2026-10-21T13:38:40Z",
-   "why": [
-    "premise: brain: It relies on multiple numbers (sixfold growth and crew size 20) rather than a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261021/cargo-ship-size-growth__f9ab28c4.request.json",
-   "answer_path": "exchange/rewrites/20261021/cargo-ship-size-growth__f9ab28c4.answer.json"
-  },
-  {
-   "id": "self-storage-outnumbers-starbucks__97599610",
-   "slug": "self-storage-outnumbers-starbucks",
-   "filed": "2026-10-21T13:38:39Z",
-   "why": [
-    "premise: brain: It lacks a clear reversal of a common expectation and the single number provided is not a verifiable, consequential statistic."
-   ],
-   "request": "exchange/rewrites/20261021/self-storage-outnumbers-starbucks__97599610.request.json",
-   "answer_path": "exchange/rewrites/20261021/self-storage-outnumbers-starbucks__97599610.answer.json"
+   "request": "exchange/rewrites/20261021/metric-system-holdouts__3d73bc6c_r1.request.json",
+   "answer_path": "exchange/rewrites/20261021/metric-system-holdouts__3d73bc6c_r1.answer.json"
   },
   {
    "id": "astronaut-bone-loss__315fba90",
@@ -231,16 +201,6 @@
    ],
    "request": "exchange/rewrites/20261021/astronaut-bone-loss__315fba90.request.json",
    "answer_path": "exchange/rewrites/20261021/astronaut-bone-loss__315fba90.answer.json"
-  },
-  {
-   "id": "parker-solar-probe-speed-record__c2b6b912",
-   "slug": "parker-solar-probe-speed-record",
-   "filed": "2026-10-21T13:38:39Z",
-   "why": [
-    "premise: brain: The claim does not clearly invert a common viewer expectation and relies only on a sensational speed figure without a strong, verifiable reversal."
-   ],
-   "request": "exchange/rewrites/20261021/parker-solar-probe-speed-record__c2b6b912.request.json",
-   "answer_path": "exchange/rewrites/20261021/parker-solar-probe-speed-record__c2b6b912.answer.json"
   },
   {
    "id": "usps-mail-volume-collapse__eca67ee3",
@@ -333,16 +293,6 @@
    "answer_path": "exchange/rewrites/20261021/religious-nones-rise__677be75f.answer.json"
   },
   {
-   "id": "california-condor-comeback__7f22c4ab",
-   "slug": "california-condor-comeback",
-   "filed": "2026-10-21T13:38:35Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and relies on vague numbers without a single, verifiable consequential figure."
-   ],
-   "request": "exchange/rewrites/20261021/california-condor-comeback__7f22c4ab.request.json",
-   "answer_path": "exchange/rewrites/20261021/california-condor-comeback__7f22c4ab.answer.json"
-  },
-  {
    "id": "a-language-dies-every-2-weeks__8d6939dc",
    "slug": "a-language-dies-every-2-weeks",
    "filed": "2026-10-21T13:38:35Z",
@@ -383,6 +333,16 @@
    ],
    "request": "exchange/rewrites/20261021/third-interstellar-visitor__c92abc0a.request.json",
    "answer_path": "exchange/rewrites/20261021/third-interstellar-visitor__c92abc0a.answer.json"
+  },
+  {
+   "id": "rubiks-cube-record-vs-robot__5d087bf9",
+   "slug": "rubiks-cube-record-vs-robot",
+   "filed": "2026-10-20T12:07:19Z",
+   "why": [
+    "judge: blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+   ],
+   "request": "exchange/rewrites/20261020/rubiks-cube-record-vs-robot__5d087bf9.request.json",
+   "answer_path": "exchange/rewrites/20261020/rubiks-cube-record-vs-robot__5d087bf9.answer.json"
   },
   {
    "id": "eclipse-recurrence-rarity__789a0737",
@@ -625,6 +585,16 @@
    "answer_path": "exchange/rewrites/20261018/black-holes-in-galaxy__4e789d36.answer.json"
   },
   {
+   "id": "self-storage-outnumbers-starbucks__97599610",
+   "slug": "self-storage-outnumbers-starbucks",
+   "filed": "2026-10-18T11:46:49Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a common expectation and relies on an ambiguous, unverifiable number for a specific town rather than a national, consequential figure."
+   ],
+   "request": "exchange/rewrites/20261018/self-storage-outnumbers-starbucks__97599610.request.json",
+   "answer_path": "exchange/rewrites/20261018/self-storage-outnumbers-starbucks__97599610.answer.json"
+  },
+  {
    "id": "podcasts-passed-radio-spoken-word__1c353e96",
    "slug": "podcasts-passed-radio-spoken-word",
    "filed": "2026-10-18T11:46:49Z",
@@ -683,6 +653,16 @@
    ],
    "request": "exchange/rewrites/20261016/big-mac-index-currency-gap__beb75adc.request.json",
    "answer_path": "exchange/rewrites/20261016/big-mac-index-currency-gap__beb75adc.answer.json"
+  },
+  {
+   "id": "ceo-executive-pay-gap__20daafe8",
+   "slug": "ceo-executive-pay-gap",
+   "filed": "2026-10-15T17:50:25Z",
+   "why": [
+    "premise: brain: It doesn’t clearly overturn a common viewer expectation, merely states a large ratio without a surprising reversal."
+   ],
+   "request": "exchange/rewrites/20261015/ceo-executive-pay-gap__20daafe8.request.json",
+   "answer_path": "exchange/rewrites/20261015/ceo-executive-pay-gap__20daafe8.answer.json"
   },
   {
    "id": "daylight-saving-time-in-decline__1445ae6b",

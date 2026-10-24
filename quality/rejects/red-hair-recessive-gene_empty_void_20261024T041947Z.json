@@ -1,0 +1,16 @@
+{
+ "slug": "red-hair-recessive-gene",
+ "ts": "20261024T041947Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: payoff@-0.4 (t=24.83s): the last frame is a near-black gradient filling the whole screen, with only Data holding a blank yellow price tag at the bottom. The video ends on a void.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void_tail",
+  "visible_evidence": "The closing picture (seg4:end, t=23.93) is replaced at payoff@-0.4 (t=24.83) by a near-black empty frame with Data holding a blank price tag. The video's last image is a void instead of the 100% redhead payoff.",
+  "root_cause": "A fallback end card with a blank price_tag prop is appended after the closing scene. It is the old silent-default prop/stage and it overrides the scene's finished frame.",
+  "repair_goal": "Remove the dark end card and hold the closing scene's finished frame (100% redhead in the pram between both parents) until the video ends, with no blank prop."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

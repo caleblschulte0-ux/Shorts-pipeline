@@ -1,0 +1,16 @@
+{
+ "slug": "olympic-bid-collapse",
+ "ts": "20261024T041947Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: payoff@-0.4 (t=27.37s), the last frame, is a nearly empty dark navy screen with one small Data holding a blank yellow price tag in the bottom third. More than 70% of the frame is dead space, and it lands exactly on the payoff.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void_payoff",
+  "visible_evidence": "seg4:start to seg4:end replay seg3's finished chained-Data picture under the closing line, then payoff@-0.4 cuts to a blank dark void with Data holding an empty price tag. The video ends on its emptiest frame.",
+  "root_cause": "The closing has no scene of its own. It reuses the last beat's picture, and an outro or end-card fallback puts in the default mascot pose with the 'price_tag' prop on an empty ground instead of holding on the finished shot.",
+  "repair_goal": "Give the closing its own full-frame shot of 'nobody wants the bill': for example, Data handing an enormous unpaid bill to an empty row of city podiums. Hold that finished picture through the last frame, and remove the empty-ground mascot tail and the blank price-tag prop."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
