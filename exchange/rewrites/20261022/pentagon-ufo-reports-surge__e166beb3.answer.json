@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "pentagon-ufo-reports-surge__e166beb3",
+  "slug": "pentagon-ufo-reports-surge",
+  "by": "chatgpt",
+  "written_at": "2026-10-24T11:49:00Z",
+  "title": "Only 21 Of 1,652 Pentagon UFO Reports Stayed Unexplained",
+  "hook": "The Pentagon logged 1,652 UFO reports, but only 21 stayed unexplained.",
+  "closing": "More reports made the mystery look bigger than the unresolved evidence.",
+  "question": "What should the Pentagon investigate next?",
+  "segments": [
+    {
+      "topic": "Pentagon UFO reports",
+      "say": "Pentagon UFO reports rose from 281 to 757, nearly tripling."
+    },
+    {
+      "topic": "Pentagon UFO sources",
+      "say": "FAA controllers filed 392 reports versus 365 from every other source."
+    },
+    {
+      "topic": "Pentagon UFO unexplained",
+      "say": "Only 21 of 1,652 Pentagon UFO reports remained flagged as unexplained."
+    }
+  ]
+}
