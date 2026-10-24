@@ -6256,6 +6256,62 @@
    ],
    "ending_type": "consequence",
    "notes": "re-validated unchanged 2026-10-23: current-standard scenes kept, validate_scenes OK"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-24",
+   "topic_category": "nature",
+   "hook_type": "stake",
+   "hook_text": "A deadly fungus is wiping out the bats that protect your food.",
+   "depictions": [
+    "scene:illustrated-bat-spread",
+    "mechanic:species-decline",
+    "scene:kit"
+   ],
+   "ending_type": "consequence",
+   "notes": "re-validated unchanged 2026-10-24: current-standard scenes kept, validate_scenes OK"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-24",
+   "topic_category": "money",
+   "hook_type": "stake",
+   "hook_text": "Someone you know is owed money by their state and has no idea.",
+   "depictions": [
+    "scene:illustrated-money-bag",
+    "scene:kit",
+    "mechanic:kit"
+   ],
+   "ending_type": "consequence",
+   "notes": "re-validated unchanged 2026-10-24: current-standard scenes kept, validate_scenes OK"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-10-24",
+   "topic_category": "culture",
+   "hook_type": "stake",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "depictions": [
+    "scene:illustrated-tattoo-arm",
+    "scene:kit",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "notes": "re-validated unchanged 2026-10-24: current-standard scenes kept, validate_scenes OK"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-10-24",
+   "topic_category": "health",
+   "hook_type": "stake",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "scene:illustrated-baby-flip",
+    "mechanic:crib-census"
+   ],
+   "ending_type": "consequence",
+   "notes": "re-validated unchanged 2026-10-24: current-standard scenes kept, validate_scenes OK"
   }
  ]
 }
