@@ -1,0 +1,10 @@
+{
+ "id": "astronaut-bone-loss__315fba90",
+ "slug": "astronaut-bone-loss",
+ "settled": "2026-10-24T11:23:40Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Earth's",
+  "segment 2: number(s) not derivable from this beat's data: 6"
+ ]
+}

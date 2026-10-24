@@ -1,0 +1,9 @@
+{
+ "id": "helium-supply-squeeze__067a945d",
+ "slug": "helium-supply-squeeze",
+ "settled": "2026-10-24T11:23:40Z",
+ "decision": "rejected",
+ "problems": [
+  "hook: number(s) not derivable from any beat's data: 2"
+ ]
+}

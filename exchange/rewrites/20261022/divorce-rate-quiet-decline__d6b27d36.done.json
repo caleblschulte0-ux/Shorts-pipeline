@@ -1,0 +1,12 @@
+{
+ "id": "divorce-rate-quiet-decline__d6b27d36",
+ "slug": "divorce-rate-quiet-decline",
+ "settled": "2026-10-24T11:23:40Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: number(s) not derivable from this beat's data: 1,000",
+  "title: number(s) not derivable from any beat's data: 1,000",
+  "hook: number(s) not derivable from any beat's data: 1,000",
+  "closing: new named entity not in the data: America"
+ ]
+}
