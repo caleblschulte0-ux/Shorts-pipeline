@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "frog-freezes-and-revives__74b0628c",
+  "slug": "frog-freezes-and-revives",
+  "by": "chatgpt",
+  "written_at": "2026-10-24T11:34:00Z",
+  "title": "Wood Frogs Survive 16 Degrees Below Freezing",
+  "hook": "A wood frog survives 16 degrees below freezing, then moves again.",
+  "closing": "This frog shows that frozen does not always mean dead.",
+  "question": "Would you believe this frog survived?",
+  "segments": [
+    {
+      "topic": "Frog frozen water",
+      "say": "Wood frogs survive with 65% of body water frozen; most vertebrates die at 10%."
+    },
+    {
+      "topic": "Frog cold survival",
+      "say": "Wood frogs survive 16 degrees below freezing while typical frogs reach only 2."
+    },
+    {
+      "topic": "Frog northern range",
+      "say": "Wood frogs reach 68 degrees latitude in Alaska, beyond most frogs' 45-degree limit."
+    }
+  ]
+}
