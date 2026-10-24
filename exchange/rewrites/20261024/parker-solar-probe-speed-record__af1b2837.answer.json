@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "parker-solar-probe-speed-record__af1b2837",
+  "slug": "parker-solar-probe-speed-record",
+  "by": "chatgpt",
+  "written_at": "2026-10-24T11:34:00Z",
+  "title": "Parker Hit 430,000 MPH Without A Human Aboard",
+  "hook": "Parker reached 430,000 MPH where no person could survive.",
+  "closing": "Our fastest machine reveals the places human bodies still cannot go.",
+  "question": "Where should Parker's speed take us?",
+  "segments": [
+    {
+      "topic": "Parker speed",
+      "say": "Parker reached 430,000 MPH in 2024 after climbing through every recorded pass."
+    },
+    {
+      "topic": "Parker human gap",
+      "say": "Parker travels 17 times faster than the 24,791 MPH human record."
+    },
+    {
+      "topic": "Parker travel time",
+      "say": "At Parker's speed, New York to Tokyo takes 56 seconds in scale."
+    }
+  ]
+}
