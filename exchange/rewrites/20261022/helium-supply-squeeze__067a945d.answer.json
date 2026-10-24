@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "helium-supply-squeeze__067a945d",
+  "slug": "helium-supply-squeeze",
+  "by": "chatgpt",
+  "written_at": "2026-10-24T11:49:00Z",
+  "title": "Helium Prices Quadrupled Between 2011 And 2013",
+  "hook": "Helium prices quadrupled in 2 years when supply tightened.",
+  "closing": "Medical and industrial users feel shortages long before party balloons do.",
+  "question": "Which helium use matters most?",
+  "segments": [
+    {
+      "topic": "Helium reserve concentration",
+      "say": "Qatar holds 10.1 billion cubic meters, ahead of United States 8.7, Algeria 8.2, and Russia 6.8."
+    },
+    {
+      "topic": "Helium demand growth",
+      "say": "Helium demand is projected to rise from index 100 in 2024 to 190 in 2035."
+    },
+    {
+      "topic": "Helium price shock",
+      "say": "Helium's price index jumped from 100 in 2011 to 400 in 2013."
+    }
+  ]
+}
