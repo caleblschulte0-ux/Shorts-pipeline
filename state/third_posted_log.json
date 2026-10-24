@@ -15485,13 +15485,50 @@
       "director_cut": true
     },
     "clip-20261024-4": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-8ac94e5eb0277fae",
-      "streamer": "morphe_ya",
+      "url": "https://youtube.com/shorts/Rl0L9wcxc4s",
       "title": "Morphe_Ya Party: Lera's Pool Plunge",
       "kind": "story",
-      "ts": "2026-10-24T12:18:15.120283+00:00",
+      "ts": "2026-10-24T12:18:26.345049+00:00",
+      "uploaded_at": "2026-10-24T12:18:26.345082+00:00",
+      "publish_at": "2026-10-24T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261024-morphe-ya-party-lera-s-pool-plunge-cc5c3948",
+        "tiktok": "queued for 2026-10-24T21:30:00Z"
+      },
+      "story_key": "story-8ac94e5eb0277fae",
+      "member_keys": [
+        "vodmine://2904276432/11137-11377",
+        "vodmine://2904276432/11137-11377",
+        "https://www.twitch.tv/morphe_ya/clip/ComfortableYawningGrouseTwitchRPG-BteZt2PHduQn3IvZ",
+        "vodmine://2904276432/11390-11630"
+      ],
+      "streamer": "morphe_ya",
+      "who": [
+        "morpheya"
+      ],
+      "series": "extended",
+      "experiment_arm": "extended",
+      "structure": "extended",
+      "actual_structure": "extended",
+      "n_beats": 4,
+      "story_structure": "chronological",
+      "duration_s": 48.2,
+      "narrative_score": 0,
+      "narrative_summary": "A wild birthday party prank sees Lera threatened and eventually dunked in the pool.",
+      "revision_count": 1,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 2,
+      "replay_count": 0
+    },
+    "clip-20261024-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/TolerantHumbleEchidnaTheTarFu-sdCuo3dMhNzJZt7h",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Finally Did It After 4 Hours Of Putrescent Knight",
+      "kind": "twitch_clip",
+      "ts": "2026-10-24T12:22:55.367881+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
