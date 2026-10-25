@@ -2,20 +2,20 @@
 
 | series | n | median VPH |
 |---|---|---|
-| chaos | 56 | 0.03 |
-| beef | 11 | 0.1 |
-| drama | 11 | 0.07 |
-| wholesome | 11 | 0.13 |
+| chaos | 58 | 0.03 |
+| drama | 12 | 0.075 |
+| beef | 11 | 0.09 |
+| wholesome | 11 | 0.12 |
 | fail | 11 | 0.08 |
-| argument | 9 | 0.02 |
-| rage | 6 | 0.055 |
+| argument | 7 | 0.04 |
+| rage | 5 | 0.06 |
+| jumpscare | 2 | 0.075 |
 | win | 2 | 0.005 |
-| jumpscare | 1 | 0.1 |
-| clutch | 1 | 0.04 |
+| clutch | 1 | 0.03 |
 
 Excluded from the content-mix comparison (unclassified / non-series structure):
 
 | label | n | median VPH |
 |---|---|---|
-| story | 2 | 0.015 |
-| unknown | 1 | 0.37 |
+| unknown | 1 | 0.35 |
+| story | 1 | 0.01 |
