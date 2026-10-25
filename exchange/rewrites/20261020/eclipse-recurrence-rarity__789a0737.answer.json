@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "eclipse-recurrence-rarity__789a0737",
+  "slug": "eclipse-recurrence-rarity",
+  "by": "chatgpt",
+  "written_at": "2026-10-25T12:32:00Z",
+  "title": "One Town Beat A 375-Year Eclipse Wait Twice",
+  "hook": "One town waited just 7 years between total eclipses.",
+  "closing": "Totality rewards location and timing, so every nearby chance matters.",
+  "question": "Have you seen totality?",
+  "segments": [
+    {
+      "topic": "Eclipse Global Wait",
+      "say": "One location normally waits 375 years for totality. Seeing it from home is extraordinarily rare."
+    },
+    {
+      "topic": "Eclipse Town Fluke",
+      "say": "Carbondale waited only 7 years between total eclipses. That town beat the typical wait by centuries."
+    },
+    {
+      "topic": "Eclipse US Gaps",
+      "say": "The next contiguous US crossing comes after a 20-year gap. Eclipse access changes dramatically by generation."
+    }
+  ]
+}
