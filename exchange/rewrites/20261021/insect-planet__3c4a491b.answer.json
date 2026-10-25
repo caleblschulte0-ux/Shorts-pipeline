@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "insect-planet__3c4a491b",
+  "slug": "insect-planet",
+  "by": "chatgpt",
+  "written_at": "2026-10-25T12:32:00Z",
+  "title": "80% Of Known Animal Species Are Insects",
+  "hook": "Eight in 10 known animal species are insects.",
+  "closing": "Most insect species remain unnamed, so this planet is still largely unexplored.",
+  "question": "What insect surprises you most?",
+  "segments": [
+    {
+      "topic": "Insect Animal Share",
+      "say": "Insects make up 80% of known animal species. Humans live on a planet dominated by six-legged life."
+    },
+    {
+      "topic": "Insect Beetle Count",
+      "say": "Beetles alone may total 1.5 million species. One insect group dwarfs entire vertebrate classes."
+    },
+    {
+      "topic": "Insect Species Gap",
+      "say": "Scientists estimate 5.5 million insect species exist. Most still have no scientific name."
+    }
+  ]
+}
