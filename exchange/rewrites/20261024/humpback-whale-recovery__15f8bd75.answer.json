@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "humpback-whale-recovery__15f8bd75",
+  "slug": "humpback-whale-recovery",
+  "by": "chatgpt",
+  "written_at": "2026-10-25T11:48:00Z",
+  "title": "25,000 Humpback Whales Prove Protection Can Work",
+  "hook": "One humpback population recovered to 25,000 after hunting stopped.",
+  "closing": "Protection can rebuild a species, but only while people keep the danger away.",
+  "question": "Should commercial whaling stay banned?",
+  "segments": [
+    {
+      "topic": "Humpback Recovery",
+      "say": "The humpback population reached 25,000. Protection turned a near-erasure into a real comeback."
+    },
+    {
+      "topic": "Humpback Populations",
+      "say": "Ten humpback populations are fully recovered. Species recovery is difficult, but it is not hopeless."
+    },
+    {
+      "topic": "Humpback Hunting Ban",
+      "say": "Whalers killed 2.9 million large whales last century. Ending commercial hunting finally gave survivors room to rebuild."
+    }
+  ]
+}
