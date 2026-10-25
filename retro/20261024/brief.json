@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261024",
-  "generated_at": "2026-10-24T23:31:02Z",
+  "generated_at": "2026-10-25T00:30:58Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 30.76,
+          "days": 30.8,
           "samples": 2,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 29.76,
+          "days": 29.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1754,10 +1754,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "fea9371",
-    "commits_since": "2026-10-23",
+    "head": "7878d77",
+    "commits_since": "2026-10-24",
     "commit_count": 50,
     "commits": [
+      "7878d77 claim: mailbox verdicts 2026-10-24T23:48Z [skip ci]",
+      "772c865 retro: brief + triage for 20261024 [skip ci]",
       "fea9371 claim: mailbox verdicts 2026-10-24T22:38Z [skip ci]",
       "f68467c claim: mailbox verdicts 2026-10-24T21:48Z [skip ci]",
       "e2cedf7 story forge: new real-data stories [skip ci]",
@@ -1795,9 +1797,7 @@
       "87ee604 claim: mailbox verdicts 2026-10-24T12:48Z [skip ci]",
       "6255d06 third: analytics [skip ci]",
       "259ed50 third: update posted log + analytics [skip ci]",
-      "77f5a2d third: checkpoint posted log (claim upload slot) [skip ci]",
-      "8a259c0 deadman: repaired 2026-10-24 [skip ci]",
-      "72b8783 third: analytics [skip ci]"
+      "77f5a2d third: checkpoint posted log (claim upload slot) [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
