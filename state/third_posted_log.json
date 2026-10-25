@@ -15807,14 +15807,40 @@
       "ts": "2026-10-25T12:01:20.480491+00:00"
     },
     "clip-20261025-6": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-abac00523ca0116b",
-      "streamer": "ishowspeed",
+      "url": "https://youtube.com/shorts/SnlclIWxGLk",
       "title": "Ishowspeed begs for one more walkout in FC 27",
       "kind": "story",
-      "ts": "2026-10-25T12:26:17.465697+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-25T12:26:26.499916+00:00",
+      "uploaded_at": "2026-10-25T12:26:26.499932+00:00",
+      "publish_at": "2026-10-26T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261025-ishowspeed-begs-for-one-more-walkout-in-fc-27-f8fd66a5",
+        "tiktok": "queued for 2026-10-26T00:30:00Z"
+      },
+      "story_key": "story-abac00523ca0116b",
+      "member_keys": [
+        "vodmine://2875841671/5035-5275",
+        "https://www.twitch.tv/ishowspeed/clip/AssiduousRoughWallabyStinkyCheese-xrY_l9jwzOVrO0Tz",
+        "vodmine://2875841671/5295-5535"
+      ],
+      "streamer": "ishowspeed",
+      "who": [
+        "ishowspeed"
+      ],
+      "series": "extended",
+      "experiment_arm": "extended",
+      "structure": "extended",
+      "actual_structure": "extended",
+      "n_beats": 3,
+      "story_structure": "chronological",
+      "duration_s": 49.6,
+      "narrative_score": 0,
+      "narrative_summary": "IShowSpeed, opening FC 27 packs on stream, says he'll stop after one more walkout. The pack gives him a mid 80-rated card and a name he can't pronounce, and a later pack finally gives him Alphonso Dav",
+      "revision_count": 0,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 2,
+      "replay_count": 0
     }
   }
 }

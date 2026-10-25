@@ -1,58 +1,6 @@
 {
   "runs": [
     {
-      "date": "20261016",
-      "dry_run": false,
-      "ts": "2026-10-16T15:22:10+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 14,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 139,
-        "with_retention": 120,
-        "with_curve": 15,
-        "fetched_at": "2026-10-16T13:28:30.613535+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20261016-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261016-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261016-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261016-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261016-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261016-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
       "date": "20261017",
       "dry_run": false,
       "ts": "2026-10-17T12:49:34+00:00",
@@ -5167,6 +5115,329 @@
           "slug": "clip-20261024-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261025",
+      "dry_run": false,
+      "ts": "2026-10-25T12:26:26+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 16,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 141,
+        "with_retention": 121,
+        "with_curve": 15,
+        "fetched_at": "2026-10-25T08:46:22.271175+00:00"
+      },
+      "brain": {
+        "ok": 37,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261025-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "Vague title, unknown content",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Laughing driver, unseen trigger, vague",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Can't Believe What He Just Saw On Stream"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": [
+                "word captions sit close to the chin in a few frames (e.g. 18.4s, 23.4s)",
+                "the face is cropped tightly in some frames, e.g. the forehead at 11.1s"
+              ]
+            }
+          },
+          "took_s": 277.3
+        },
+        {
+          "slug": "clip-20261025-2",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip across the middle, about a third of the canvas height. It is not the roughly three qua; vision: Most of the strip is empty black stream chrome and a tiny chat",
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "facetime drama, unclear payoff",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "FaceTime chat, scared, anthem ask; uncle",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ellysa Facetimes Jasontheween And Asks Him To Sing The National Anthem"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.9,
+              "problems": [
+                "The sharp picture is a thin strip across the middle, about a third of the canvas height. It is not the roughly three qua",
+                "Most of the strip is empty black stream chrome and a tiny chat panel. The actual action (Ellysa on FaceTime and Jason's ",
+                "Jason, the other person in the exchange, appears only as a tiny thumbnail in the top-right corner.",
+                "The crop did not follow the action. The full stream layout is letterboxed instead of cropping toward the face or the cal",
+                "The blurred padding above and below is large and busy. It shows a blurred ceiling and part of a face, which makes the cl"
+              ]
+            }
+          },
+          "took_s": 287.3
+        },
+        {
+          "slug": "clip-20261025-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unknown what's caught",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "Visible laughing banter, vague context",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Gets CAUGHT After Pointing At Something On Stream \ud83d\ude33"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "Hook card and word captions sit close together and slightly overlap at the bottom, but they are readable.",
+                "One frame at 8.1s shows only a foot and the floor, a brief off-subject cutaway.",
+                "A censored '*** *****' caption appears at 4.4s to 6.9s."
+              ]
+            }
+          },
+          "took_s": 152.4
+        },
+        {
+          "slug": "clip-20261025-4",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture fills only about a third of the 9:16 canvas, a thin strip. The renderer did not crop toward the action; vision: For the first ~8s the two men are tiny and far away in a wide ",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, inside joke",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Odd costume eating, no clear payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat Stream Erupts After Ray Does The La Fairs With La Peace"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.6,
+              "problems": [
+                "The sharp picture fills only about a third of the 9:16 canvas, a thin strip. The renderer did not crop toward the action",
+                "For the first ~8s the two men are tiny and far away in a wide shot with a lot of dead space. They are hard to read on a ",
+                "Framing is inconsistent. It jumps from the wide strip to extreme close-ups, and by 14.1s the face fills the frame and is",
+                "The 'FOR' overlay sits over the chin and chest area of the close-up."
+              ]
+            }
+          },
+          "took_s": 202.9
+        },
+        {
+          "slug": "clip-20261025-5",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Sharp picture fills only about a third of the 9:16 canvas, well short of the roughly three quarters expected. It is a th; vision: The streamer's face cam and the game action are both tiny, so ",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "unclear, possible reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Elden Ring boss fight, hyped chat, uncle",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Goes Off After This Wild Moment Happens On Stream"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.8,
+              "problems": [
+                "Sharp picture fills only about a third of the 9:16 canvas, well short of the roughly three quarters expected. It is a th",
+                "The streamer's face cam and the game action are both tiny, so they are hard to read on a phone. The renderer did not cro",
+                "The frame at 57.5s is nearly black, with a tiny stray overlay at the lower right. It looks like a broken or dead ending.",
+                "The hook caption sits in the blurred lower padding, away from the action. This is acceptable, but it adds to the sense t"
+              ]
+            }
+          },
+          "took_s": 569.2
+        },
+        {
+          "slug": "clip-20261025-6",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 108,
+                "refused_shown": 11,
+                "scouted": [],
+                "vod_arcs": 294,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2969,
+                "pool_with_vod": 2015,
+                "arc_sizes": [
+                  6,
+                  6,
+                  3,
+                  2,
+                  3,
+                  2,
+                  6,
+                  6,
+                  3,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "clix@momentgeniuscourageousjaguarbudblast-eqcr2aq92gulydq6/c",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The popular clip is a 9-second moment where a woman off to the side holds up a dark hoodie while Clix claps. The dialogue is garbled ('move your hair, show the... uh-huh'), and nothing changes in it, "
+                },
+                {
+                  "cluster": "ishowspeed@momentassiduousroughwallabystinkycheese-xry_l9jwz",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                }
+              ]
+            }
+          },
+          "took_s": 1506.0
         }
       ]
     }
