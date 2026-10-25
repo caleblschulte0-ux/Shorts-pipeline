@@ -4156,11 +4156,39 @@
       "duration_s": 31.1
     },
     "parker-solar-probe-speed-record": {
-      "claimed_at": "2026-10-25T11:08:24.702526+00:00",
+      "url": "https://youtube.com/shorts/UN-dVWVz6IM",
       "title": "Parker Solar Probe Hit 430,000 MPH Without Carrying A Human",
+      "at": "2026-10-25T11:08:36.867660+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.25,
+      "beat_s": [
+        5.64,
+        5.78,
+        6.25,
+        5.62,
+        7.31
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 65,
+      "duration_s": 31.1,
+      "hook": "shock_stat",
+      "topic_category": "space",
+      "ending_type": "escalation",
+      "depictions": [
+        "mechanic:probe-speed-trail-streak",
+        "mechanic:rocket-vs-probe-race-lane",
+        "mechanic:world-globe-orbit-timer"
+      ],
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -5286,9 +5314,10 @@
       "claimed_at": "2026-10-25T11:08:24.702526+00:00",
       "title": "Parker Solar Probe Hit 430,000 MPH Without Carrying A Human",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "parker-solar-probe-speed-record"
+      "url": "https://youtube.com/shorts/UN-dVWVz6IM",
+      "state": "posted",
+      "slug": "parker-solar-probe-speed-record",
+      "at": "2026-10-25T11:08:36.867660+00:00"
     }
   ]
 }
