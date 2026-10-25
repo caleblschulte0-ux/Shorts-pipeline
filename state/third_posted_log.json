@@ -15952,13 +15952,50 @@
       "ts": "2026-10-25T12:43:38.095351+00:00"
     },
     "clip-20261025-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/rayasianboy/clip/SmoothGlamorousCookieAMPEnergyCherry-6oHPrE7u3SPcKqhn",
-      "story_key": null,
-      "streamer": "rayasianboy",
+      "url": "https://youtube.com/shorts/38MTuqyvA1A",
       "title": "Rayasianboy Girl Breaks Down And Is Left Stunned On Stream",
       "kind": "twitch_clip",
-      "ts": "2026-10-25T12:46:06.166374+00:00",
+      "ts": "2026-10-25T12:46:14.944005+00:00",
+      "uploaded_at": "2026-10-25T12:46:14.944020+00:00",
+      "publish_at": "2026-10-26T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261025-rayasianboy-girl-breaks-down-and-is-left-stunned-f640a22b",
+        "tiktok": "queued for 2026-10-26T03:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/SmoothGlamorousCookieAMPEnergyCherry-6oHPrE7u3SPcKqhn",
+      "streamer": "rayasianboy",
+      "series": "drama",
+      "hook": "She was not ready \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1650,
+      "banger": 0.55,
+      "cut": {
+        "start": 28.0,
+        "end": 46.46
+      },
+      "director_cut": true
+    },
+    "rejected-blazingjollygarbagepupper-fu7wirlgy5bh5-di": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/BlazingJollyGarbagePupper-Fu7wiRlgY5Bh5-dI",
+      "streamer": "caseoh_",
+      "title": "\ud83c\udfb5ITS A VIBE\ud83d\udd25/Caseoh Dancing\ud83d\udd7a\ud83d\udc83\ud83e\udea9HALLOWEEN\u2026HALLOWEEN\ud83c\udf83\ud83c\udf83\ud83c\udf83\ud83d\udc79\ud83d\udc79\ud83d\udc79",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source too dark (avg luma 22/255) \u2014 unwatchable IRL/night footage",
+      "ts": "2026-10-25T12:47:19.314974+00:00"
+    },
+    "clip-20261025-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/HumbleWealthyShrimpSwiftRage--FPv5NydlWscX4nV",
+      "story_key": null,
+      "streamer": "joe_bartolozzi",
+      "title": "Joe Joe_Bartolozzi Can't Keep Watching This And Has To Turn It Off",
+      "kind": "twitch_clip",
+      "ts": "2026-10-25T12:50:05.379474+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
