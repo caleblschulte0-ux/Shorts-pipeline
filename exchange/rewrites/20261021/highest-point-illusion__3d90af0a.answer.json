@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "highest-point-illusion__3d90af0a",
+  "slug": "highest-point-illusion",
+  "by": "chatgpt",
+  "written_at": "2026-10-25T11:48:00Z",
+  "title": "10,211 Meters Proves Everest Is Not Always Highest",
+  "hook": "At 10,211 meters, another mountain can beat Everest.",
+  "closing": "Records depend on where measurement begins, so the starting line can decide the winner.",
+  "question": "Which definition of highest wins?",
+  "segments": [
+    {
+      "topic": "Highest Above Sea",
+      "say": "Everest reaches 8,849 meters above sea level. That starting line gives it the familiar record."
+    },
+    {
+      "topic": "Highest From Base",
+      "say": "Mauna Kea measures 10,211 meters from its base. Most of its height stays hidden underwater."
+    },
+    {
+      "topic": "Highest From Center",
+      "say": "Chimborazo extends 13.4 kilometers beyond a round Earth. The planet's bulge changes which summit reaches farthest."
+    }
+  ]
+}
