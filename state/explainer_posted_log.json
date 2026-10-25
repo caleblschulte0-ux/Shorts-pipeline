@@ -4191,11 +4191,39 @@
       "scene_changes_before_5s": 3
     },
     "body-renewal-clock": {
-      "claimed_at": "2026-10-25T12:08:03.005986+00:00",
+      "url": "https://youtube.com/shorts/Qz3UnREJdOI",
       "title": "The Body Renews Its Stomach Lining In 5 Days, Not Every Cell",
+      "at": "2026-10-25T12:08:15.668615+00:00",
       "publish_at": "2026-10-25T17:18:34Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.98,
+      "beat_s": [
+        4.63,
+        5.77,
+        5.98,
+        5.79,
+        7.82
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 70,
+      "duration_s": 30.5,
+      "hook": "shock_stat",
+      "topic_category": "body",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:body-clock-dials",
+        "mechanic:cell-tally-swarm",
+        "mechanic:scale-break-lifetime-ruler"
+      ],
+      "words_first_10s": 25,
+      "scene_changes_before_5s": 3
     }
   },
   "uploads": [
@@ -5330,9 +5358,10 @@
       "claimed_at": "2026-10-25T12:08:03.005986+00:00",
       "title": "The Body Renews Its Stomach Lining In 5 Days, Not Every Cell",
       "publish_at": "2026-10-25T17:18:34Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "body-renewal-clock"
+      "url": "https://youtube.com/shorts/Qz3UnREJdOI",
+      "state": "posted",
+      "slug": "body-renewal-clock",
+      "at": "2026-10-25T12:08:15.668615+00:00"
     }
   ]
 }
