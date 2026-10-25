@@ -1,0 +1,27 @@
+{
+  "key": "deepfake_video_count_trend",
+  "title": "Deepfake videos found online",
+  "unit": "videos",
+  "geography": "Worldwide",
+  "time_coverage": "2019-2023",
+  "source": {
+    "name": "State of Deepfakes report",
+    "publisher": "Home Security Heroes",
+    "url": "https://www.homesecurityheroes.com",
+    "officiality": "secondary",
+    "access_date": "2026-10-25"
+  },
+  "notes": "Cumulative count of deepfake videos identified online by deepfake-detection researchers.",
+  "points": [
+    {
+      "label": "2019",
+      "value": 14700,
+      "period": "2019"
+    },
+    {
+      "label": "2023",
+      "value": 95820,
+      "period": "2023"
+    }
+  ]
+}

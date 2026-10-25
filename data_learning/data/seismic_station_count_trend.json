@@ -1,0 +1,27 @@
+{
+  "key": "seismic_station_count_trend",
+  "title": "Global seismograph stations watching for earthquakes",
+  "unit": "stations",
+  "geography": "Worldwide",
+  "time_coverage": "1931-2024",
+  "source": {
+    "name": "Global Seismographic Network coverage",
+    "publisher": "USGS / IRIS",
+    "url": "https://www.usgs.gov",
+    "officiality": "official",
+    "access_date": "2026-10-25"
+  },
+  "notes": "Approximate count of operating seismograph stations contributing to global earthquake monitoring.",
+  "points": [
+    {
+      "label": "1931",
+      "value": 350,
+      "period": "1931"
+    },
+    {
+      "label": "2024",
+      "value": 8000,
+      "period": "2024"
+    }
+  ]
+}

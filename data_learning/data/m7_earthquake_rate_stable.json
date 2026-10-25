@@ -1,0 +1,25 @@
+{
+  "key": "m7_earthquake_rate_stable",
+  "title": "Magnitude 7+ earthquakes per year",
+  "unit": "earthquakes per year",
+  "geography": "Worldwide",
+  "time_coverage": "Early 1900s vs last 20 years",
+  "source": {
+    "name": "Earthquake Facts and Statistics",
+    "publisher": "U.S. Geological Survey",
+    "url": "https://www.usgs.gov",
+    "officiality": "official",
+    "access_date": "2026-10-25"
+  },
+  "notes": "USGS states the long-run average annual rate of magnitude 7.0+ earthquakes has stayed roughly flat for over a century.",
+  "points": [
+    {
+      "label": "Early 1900s average",
+      "value": 16
+    },
+    {
+      "label": "Last 20 years average",
+      "value": 17
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "key": "ai_fraud_losses_projection",
+  "title": "US generative-AI-enabled fraud losses",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "2023-2027 (projected)",
+  "source": {
+    "name": "Generative AI fraud loss projection",
+    "publisher": "Deloitte Center for Financial Services",
+    "url": "https://www.deloitte.com",
+    "officiality": "secondary",
+    "access_date": "2026-10-25"
+  },
+  "notes": "Deloitte's projection for fraud losses enabled by generative AI, deepfakes included.",
+  "points": [
+    {
+      "label": "2023",
+      "value": 12.3,
+      "period": "2023"
+    },
+    {
+      "label": "2027 (projected)",
+      "value": 40,
+      "period": "2027"
+    }
+  ]
+}
