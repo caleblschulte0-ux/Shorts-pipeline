@@ -15668,6 +15668,34 @@
         "end": 33.0
       },
       "director_cut": true
+    },
+    "rejected-speedysmellypepperoniralpherz-bjledhgvhcbogpdh": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/SpeedySmellyPepperoniRalpherZ-BjLEdHGVHCBOGpDH",
+      "streamer": "stableronaldo",
+      "title": "LOL KID",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Roblox aura game, insider, no clear even)",
+      "ts": "2026-10-25T11:30:35.624042+00:00"
+    },
+    "rejected-tenderauspiciousneanderthalcclamchamp-xnl-ixkjshks8jo-": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/TenderAuspiciousNeanderthalCclamChamp-xNl-iXKjsHks8Jo-",
+      "streamer": "jasontheween",
+      "title": "Pissed his pants",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source too dark (avg luma 24/255) \u2014 unwatchable IRL/night footage",
+      "ts": "2026-10-25T11:30:45.780095+00:00"
+    },
+    "clip-20261025-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/FantasticPlainMageTBCheesePull-VZiY4EgOK6fmtu_p",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Can't Believe What He Just Saw On Stream",
+      "kind": "twitch_clip",
+      "ts": "2026-10-25T11:35:12.561791+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
