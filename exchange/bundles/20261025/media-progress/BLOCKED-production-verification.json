@@ -1,0 +1,87 @@
+{
+  "schema": "shorts-production-blocker/v1",
+  "date": "20261025",
+  "written_at": "2026-10-25T11:45:00Z",
+  "bundle_id": "4b34c6621a2be2434e0c0dd3378d18467e351d8b61b1af83d1a1003e5fd9ea04",
+  "day_closed": false,
+  "retryable": true,
+  "blocked_step": "Step 8: verify all frozen-contract channel uploads by accepted posted-log URLs",
+  "reason": "The channel workers are still active or queued, and only 5 of 13 required UTC-day uploads currently have accepted URLs. DONE and successful handoff do not close the day.",
+  "media": {
+    "requested": 0,
+    "verified": 0,
+    "note": "The frozen active formats require no custom Drive images. The configured Drive folder was readable."
+  },
+  "channels": {
+    "sports": {
+      "required": 3,
+      "verified_posted": 1,
+      "pending": 2,
+      "accepted_urls": [
+        "https://youtube.com/shorts/1EHJrYhuXRQ"
+      ],
+      "workflow_run": 40188952786,
+      "workflow_status": "in_progress"
+    },
+    "third": {
+      "required": 6,
+      "verified_posted": 3,
+      "pending": 3,
+      "accepted_urls": [
+        "https://youtube.com/shorts/Pvi2XEdAnDQ",
+        "https://youtube.com/shorts/6_Vhs-xdBG4",
+        "https://youtube.com/shorts/lzaqpVnzYWA"
+      ],
+      "workflow_run": 40188940207,
+      "workflow_status": "in_progress",
+      "current_checkpoint": "clip-20261025-1 upload slot claimed; no accepted URL yet"
+    },
+    "explainer": {
+      "required": 4,
+      "verified_posted": 1,
+      "pending": 3,
+      "accepted_urls": [
+        "https://youtube.com/shorts/UN-dVWVz6IM"
+      ],
+      "workflow_run": 40188949850,
+      "workflow_status": "queued_after_plan_success"
+    }
+  },
+  "mailboxes": {
+    "reviews": {
+      "indexed_open": 0,
+      "answered_this_run": 0,
+      "skipped": 0
+    },
+    "asks": {
+      "indexed_entries": 149,
+      "answered_this_run": 40,
+      "settled_after_run": 118,
+      "remaining_genuine": 31,
+      "skipped_or_deferred": 31,
+      "reason": "two mandatory rounds reached the 20-key per-round cap"
+    },
+    "rewrites": {
+      "indexed_entries_after_claim": 134,
+      "answered_this_run": 20,
+      "settled_in_current_index": 10,
+      "remaining_genuine_or_revision_requests": 124,
+      "skipped_or_deferred": 124,
+      "reason": "two mandatory rounds reached the 10-request per-round cap; claim/apply generated new revision requests for rejected answers"
+    }
+  },
+  "exchange": {
+    "started_commit": "331a31e01ab9214b3eb9af4b49cd0aab1b6c19e7",
+    "response_commit": "b969c89c7896ffc00879890cda8c276afd1107ca",
+    "done_commit": "b11dda9295529c99e1f8eba99c90f4e40ece5cd7",
+    "phase_b_commit": "18800e903cc53e28eb79659885b85c6355d9b316",
+    "phase_b_status": "success"
+  },
+  "attempts": [
+    "Completed both capped takeover mailbox rounds and read back every answer file.",
+    "Validated response.json against bundle identity and pacing rules.",
+    "Committed DONE separately and verified Phase B applied three explainer stories with zero envelope problems.",
+    "Read posted logs and deduplicated accepted YouTube URLs for the UTC day.",
+    "Observed Sports and Third workers active and Explainer plan successful with render queued."
+  ]
+}
