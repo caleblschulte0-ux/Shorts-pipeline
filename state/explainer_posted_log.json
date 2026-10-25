@@ -4224,6 +4224,13 @@
       ],
       "words_first_10s": 25,
       "scene_changes_before_5s": 3
+    },
+    "us-formal-volunteering-record-low": {
+      "claimed_at": "2026-10-25T12:42:59.257240+00:00",
+      "title": "Only 23% Of Americans Still Formally Volunteer",
+      "publish_at": "2026-10-25T23:18:34Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5362,6 +5369,14 @@
       "state": "posted",
       "slug": "body-renewal-clock",
       "at": "2026-10-25T12:08:15.668615+00:00"
+    },
+    {
+      "claimed_at": "2026-10-25T12:42:59.257240+00:00",
+      "title": "Only 23% Of Americans Still Formally Volunteer",
+      "publish_at": "2026-10-25T23:18:34Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "us-formal-volunteering-record-low"
     }
   ]
 }
