@@ -3,463 +3,6 @@
     {
       "date": "20261017",
       "dry_run": false,
-      "ts": "2026-10-17T12:49:34+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 14,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 139,
-        "with_retention": 115,
-        "with_curve": 14,
-        "fetched_at": "2026-10-17T08:46:19.286858+00:00"
-      },
-      "brain": {
-        "ok": 49,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261017-1",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, only about 30% of the canvas height. The rest is blurred padding, so the gameplay and; vision: The framing doesn't crop toward the action. The full 16:9 stre",
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 87,
-                "refused_shown": 17,
-                "scouted": [
-                  {
-                    "premise": "Kai Cenat answers Reggie's allegations by demanding proof, then scoffs when Reggie's promised 'part two' arrives with no",
-                    "shape": "multi_stream",
-                    "n": 6
-                  },
-                  {
-                    "premise": "Reggie's attempt to manipulate Kai's cameraman leads to a falling-out. Rakai shows his own texts with Reggie, and Kai de",
-                    "shape": "multi_streamer",
-                    "n": 6
-                  },
-                  {
-                    "premise": "Jasontheween's camera guy gets the pass code to his room, and two days later he is dealing with someone trying to rizz h",
-                    "shape": "multi_stream",
-                    "n": 2
-                  }
-                ],
-                "vod_arcs": 317,
-                "moments": 40,
-                "candidates": 520,
-                "pool": 2960,
-                "pool_with_vod": 2082,
-                "arc_sizes": [
-                  6,
-                  2,
-                  6,
-                  2,
-                  5,
-                  4,
-                  2,
-                  3,
-                  3,
-                  3
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:27club+allurbancentral+kaicenat+okclippedit/27club-all",
-                  "outcome": "table_read_failed",
-                  "why": "table read 48 < 50 \u2014 not rendered; missing_context: Open with a line or caption that says who Reggie, Rakai and Kai are and what the claim is. A stranger hears 'somebody took advantage of Rekha' with no idea who is speaking or who it is about. The capt; confusing: The first beat is garbled, with 'Re"
-                },
-                {
-                  "cluster": "sondergaardlol@momentfantasticpunchybisonredcoat-pmq8vp3f-er",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: table read 48 < 50 \u2014 not rendered; repetition: The setup repeats the same countdown ('3, 2, 1, go') four or five times between 25s and 38s. Cut it to one failed"
-                },
-                {
-                  "cluster": "kaicenat@vod2824281072/kaicenat-alumni-announc-2026w30",
-                  "outcome": "narrative_failed",
-                  "why": "scores [66, 72] after 2 revision(s) (revision render failed) \u2014 @0s pacing: The cut opens mid-sentence on 'made the most valuable player of the class of 2026'. Start on the full announcement, or open on the name and the crowd reaction, so the opening reads as a deliberate hoo; @6s confusing: The seam"
-                },
-                {
-                  "cluster": "scout:2xrakai+kaicenat+reggie+xevi+zylok/2xrakai-kaicenat-re",
-                  "outcome": "table_read_failed",
-                  "why": "table read 38 < 50 \u2014 not rendered; weak_payoff: The cut ends on 'Did I see that?' with no answer. Never promised proof arrives and the question 'will the proof show up?' is never answered. End on a beat that actually shows or refutes the proof (Reg; missing_context: Who Reggie is, what the feud is a"
-                },
-                {
-                  "cluster": "piskulya@momentcogentcrunchycatoskomodo-yzpvprldw1wcxohf",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.8s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "jynxzi@vod2876675862/jynxzi-apologiz-cover-2026w38",
-                  "outcome": "not_a_story",
-                  "why": "take 0: every beat is from one source \u2014 a clip, not a story; take 1: every beat is from one source \u2014 a clip, not a story; take 2: beat references unknown source 'https://www.twitch.tv/twitch.tv/jynxzi/clip/BlightedSoftCaterpillarTheRinger-MyHx4AT0ohVAA3eL'"
-                },
-                {
-                  "cluster": "scout:jasontheween",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (1) \u2014 preflight:source only 5.9s \u2014 too short to edit"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "Rage title, unclear what happens",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Fortnite death, visible rage, unclear co",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Rages After Getting Caught Behind The Wall In Rainbow Six"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.8,
-              "problems": [
-                "The sharp picture is a thin strip, only about 30% of the canvas height. The rest is blurred padding, so the gameplay and",
-                "The framing doesn't crop toward the action. The full 16:9 stream, including its HUD, is letterboxed without zooming in o",
-                "The footage is Fortnite ('YOU PLACED #74', Battle Royale screen), but the title says Rainbow Six. The title is wrong for",
-                "The speech captions ('I'M THE', 'SCHMURDER!', 'MAN,') sit on top of the facecam and the in-game kill text, partly coveri",
-                "The hook card sits in the blurred lower area, apart from the sharp picture. Overall it looks like a reposted stream with"
-              ]
-            }
-          },
-          "took_s": 153.6
-        },
-        {
-          "slug": "clip-20261017-2",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (GTA RP chatter, nothing visibly happens)",
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 92,
-                "refused_shown": 20,
-                "scouted": [
-                  {
-                    "premise": "Burn's GTA RP character Chris Handsome sets out to catch weebs and lands the first one, which Pengwin sees from the othe",
-                    "shape": "multi_streamer",
-                    "n": 3
-                  },
-                  {
-                    "premise": "Ludwig, as 'Professor L' at Streamer University, gives his class a reality check and tells them what to do after being h",
-                    "shape": "multi_stream",
-                    "n": 5
-                  }
-                ],
-                "vod_arcs": 317,
-                "moments": 40,
-                "candidates": 519,
-                "pool": 2960,
-                "pool_with_vod": 2082,
-                "arc_sizes": [
-                  6,
-                  2,
-                  6,
-                  2,
-                  5,
-                  4,
-                  2,
-                  3,
-                  3,
-                  3
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "scout:burn+pengwin/burn-pengwin-baitline-chri-2026w42",
-                  "outcome": "narrative_failed",
-                  "why": "scores [58, 58, 54] after 2 revision(s) \u2014 @45s weak_payoff: The cut ends on Chris restating the premise ('we're here to catch a weeb') and never shows whether the weeb took the bait. Cut to a beat where Pengwin visibly reacts to being the target or the bit lan; @3s confusing: The overlays call Ken-s"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.55,
-              "why": "Speed, cute but unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.2,
-              "why": "GTA RP chatter, nothing visibly happens",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 34.6
-        },
-        {
-          "slug": "clip-20261017-3",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261017-3",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "unclear, possible stunt or dare",
-              "blind": false
-            },
-            "content": {
-              "score": 0.45,
-              "why": "Setup only, no payoff shown",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat Swears He's Not Scared Of Outlast, Then Says He'll Be The First To Play It"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.6,
-              "problems": [
-                "The sharp picture fills only about a third of the canvas height, well under the expected three quarters. The subject is ",
-                "The hook card sits over blurred padding and is not on the sharp picture, so it covers no face.",
-                "The 10.9s frame shows a tiny stream caption beside the big word captions. This is minor."
-              ]
-            }
-          },
-          "took_s": 232.0
-        },
-        {
-          "slug": "clip-20261017-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261017-4",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.55,
-              "why": "vague title, likely game kill",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "Fortnite build-fight, elimination, hard ",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Clix Says He's Done Fighting And Shows Kids How To Get In"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "Gameplay panel is fairly small; the facecam is stacked above it, so the action reads smaller than ideal on a phone",
-                "Burned-in game subtitles are tiny and sit close to the HUD"
-              ]
-            }
-          },
-          "took_s": 121.1
-        },
-        {
-          "slug": "clip-20261017-5",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about one third of the canvas height. The rest is blurred padding, well short of the ; vision: The subject is tiny and lost. It is a wide top-down game view,",
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261017-5",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.5,
-              "why": "crashout implies rage, unclear target",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "Rage over lost game, unclear cause",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Loltyler1: Tyler1 Loses It And Crashes Out On Stream After This Happens"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.85,
-              "problems": [
-                "The sharp picture is a thin strip, about one third of the canvas height. The rest is blurred padding, well short of the ",
-                "The subject is tiny and lost. It is a wide top-down game view, with the streamer only in a very small facecam in the cor",
-                "No crop toward the action or the face. The full stream layout, HUD and minimap are all kept, which looks reposted rather",
-                "The hook card sits in the blurred padding below the picture, away from the action.",
-                "The burned-in captions are crammed over the bottom of the small game frame and sit on top of the facecam."
-              ]
-            }
-          },
-          "took_s": 133.5
-        },
-        {
-          "slug": "clip-20261017-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261017-6",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "Vague title, unclear what happened",
-              "blind": false
-            },
-            "content": {
-              "score": 0.45,
-              "why": "GTA dog fetch, chat reacts, payoff uncle",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Joe Joe_Bartolozzi Begs Chop NOOOO After Seeing This On His Weapon Wheel"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": [
-                "Hook text sits in the blurred bottom area for the whole clip; this is fine and covers no face or action",
-                "The game footage is small in some frames, but the streamer's face stays clear and the action is readable"
-              ]
-            }
-          },
-          "took_s": 194.4
-        }
-      ]
-    },
-    {
-      "date": "20261017",
-      "dry_run": false,
       "ts": "2026-10-17T13:50:57+00:00",
       "feedback": {
         "snapshot": true,
@@ -5438,6 +4981,172 @@
             }
           },
           "took_s": 1506.0
+        }
+      ]
+    },
+    {
+      "date": "20261025",
+      "dry_run": false,
+      "ts": "2026-10-25T12:38:40+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 16,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 141,
+        "with_retention": 121,
+        "with_curve": 15,
+        "fetched_at": "2026-10-25T08:46:22.271175+00:00"
+      },
+      "brain": {
+        "ok": 27,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261025-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261025-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "visible reaction, searchable name",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "horror game jumpscare, visible scream re",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ishowspeed Gets Spooked And Screams After Smelling This"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "Word captions sit on the bottom of the facecam in a few frames (5.0s, 7.8s). This is minor and does not cover his face.",
+                "The footage is dark and desaturated, but that is the horror game's look and not a render defect."
+              ]
+            }
+          },
+          "took_s": 178.9
+        },
+        {
+          "slug": "clip-20261025-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261025-4",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.15 < 0.35 (static stats page, insider WoW talk)",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.15,
+              "why": "static stats page, insider WoW talk",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 35.0
+        },
+        {
+          "slug": "clip-20261025-5",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.20 < 0.35 (static award-voting talk, no event)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vote reveal hints drama, unclear",
+              "blind": false
+            },
+            "content": {
+              "score": 0.2,
+              "why": "static award-voting talk, no event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 48.7
+        },
+        {
+          "slug": "clip-20261025-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }

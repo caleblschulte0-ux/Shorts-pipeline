@@ -15861,14 +15861,86 @@
       "ts": "2026-10-25T12:31:27.109933+00:00"
     },
     "clip-20261025-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ishowspeed/clip/BitterDoubtfulEggnogFreakinStinkin-CozsYEaZNP6GjzZi",
-      "story_key": null,
-      "streamer": "ishowspeed",
+      "url": "https://youtube.com/shorts/SxkGfbiubsE",
       "title": "Ishowspeed Gets Spooked And Screams After Smelling This",
       "kind": "twitch_clip",
-      "ts": "2026-10-25T12:34:16.372900+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-25T12:34:25.991079+00:00",
+      "uploaded_at": "2026-10-25T12:34:25.991094+00:00",
+      "publish_at": "2026-10-26T02:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261025-ishowspeed-gets-spooked-and-screams-after-smelli-048e1341",
+        "tiktok": "queued for 2026-10-26T02:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/BitterDoubtfulEggnogFreakinStinkin-CozsYEaZNP6GjzZi",
+      "streamer": "ishowspeed",
+      "series": "jumpscare",
+      "hook": "Speed smells it and loses it \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2461,
+      "banger": 0.55,
+      "cut": {
+        "start": 16.0,
+        "end": 33.0
+      },
+      "director_cut": true
+    },
+    "rejected-spoopyephemeralhamburgerfailfish-ta1bo1ny72gsfesa": {
+      "source_url": "https://www.twitch.tv/cinna/clip/SpoopyEphemeralHamburgerFailFish-TA1Bo1nY72gSfesA",
+      "streamer": "cinna",
+      "title": "I'm BNE",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (GTA RP dancing, no clear event)",
+      "ts": "2026-10-25T12:35:00.238221+00:00"
+    },
+    "rejected-spotlessblindingwitchbigbrother-az-72znr6j66mgrc": {
+      "source_url": "https://www.twitch.tv/alinity/clip/SpotlessBlindingWitchBigBrother-Az-72znr6J66mGrC",
+      "streamer": "alinity",
+      "title": "stretch",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.12 < 0.35 (guided stretching, no event)",
+      "ts": "2026-10-25T12:35:47.692938+00:00"
+    },
+    "rejected-agreeableapatheticpheasantrulefive-kagdtwty7oyunbwk": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/AgreeableApatheticPheasantRuleFive-kagdtWtY7oYUnBwK",
+      "streamer": "sodapoppin",
+      "title": "xaryu owned me",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (static stats page, insider WoW talk)",
+      "ts": "2026-10-25T12:36:22.709982+00:00"
+    },
+    "rejected-protectivefilthylemuroptimizeprime-0icwpxaep-bh3tb3": {
+      "source_url": "https://www.twitch.tv/jinnytty/clip/ProtectiveFilthyLemurOptimizePrime-0ICWpXAep-bH3Tb3",
+      "streamer": "jinnytty",
+      "title": "Taiwan NEWS dramaa",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (Talking head, no visible event)",
+      "ts": "2026-10-25T12:37:06.540166+00:00"
+    },
+    "rejected-antediluvianhonestchamoism4xheh-378qcl4bx3-gfksj": {
+      "source_url": "https://www.twitch.tv/ludwig/clip/AntediluvianHonestChamoisM4xHeh-378QcL4Bx3-GfKsJ",
+      "streamer": "ludwig",
+      "title": "Lud feels bad for name dropping everyone on Wine About It",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Talking, inside-baseball, nothing visibl)",
+      "ts": "2026-10-25T12:37:52.122755+00:00"
+    },
+    "rejected-stylishcooperativezucchinithetarfu-_4xii5utju5liay1": {
+      "source_url": "https://www.twitch.tv/zackrawrr/clip/StylishCooperativeZucchiniTheTarFu-_4Xii5UTJu5liaY1",
+      "streamer": "zackrawrr",
+      "title": "he voted for who?",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (static award-voting talk, no event)",
+      "ts": "2026-10-25T12:38:40.865223+00:00"
     }
   }
 }
