@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "plastic-in-your-body__cedc4bab",
+  "slug": "plastic-in-your-body",
+  "by": "chatgpt",
+  "written_at": "2026-10-25T11:48:00Z",
+  "title": "Brain Plastic Rose To 4,900 Micrograms Per Gram",
+  "hook": "Human brain plastic reached 4,900 micrograms per gram.",
+  "closing": "Plastic exposure is no longer only environmental; researchers are measuring it inside the body.",
+  "question": "Should plastic exposure be tracked?",
+  "segments": [
+    {
+      "topic": "Brain Plastic",
+      "say": "Brain tissue reached 4,900 micrograms of plastic per gram. The measured concentration rose sharply in eight years."
+    },
+    {
+      "topic": "Body Plastic",
+      "say": "Microplastics appeared in 100 percent of tested placentas. Exposure is crossing into tissue that supports new life."
+    },
+    {
+      "topic": "Heart Plastic",
+      "say": "Plaque containing microplastics carried a 4.5 risk index. The association makes internal exposure a health question."
+    }
+  ]
+}
