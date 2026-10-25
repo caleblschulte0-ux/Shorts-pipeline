@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "activity-inequality-steps__f0af7c7a",
+  "slug": "activity-inequality-steps",
+  "by": "chatgpt",
+  "written_at": "2026-10-25T11:48:00Z",
+  "title": "43% Of The Walking Gap Comes From Gender",
+  "hook": "Gender explains 43% of the world's walking inequality.",
+  "closing": "Health improves when cities make everyday walking practical for everyone, not merely the already active.",
+  "question": "How walkable is your neighborhood?",
+  "segments": [
+    {
+      "topic": "Walking Averages",
+      "say": "Hong Kong averages 6,880 daily steps. Where people live can shape movement before motivation enters the picture."
+    },
+    {
+      "topic": "Walking Inequality",
+      "say": "High-inequality countries score 297 on obesity likelihood. Unequal movement tracks a much larger health burden."
+    },
+    {
+      "topic": "Walking Gender Gap",
+      "say": "Gender explains 43 percent of activity inequality. Women walking less drives nearly half the global gap."
+    }
+  ]
+}
