@@ -1,11 +1,11 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-25T11:24:08Z",
+ "updated": "2026-10-25T11:26:13Z",
  "open": [
   {
    "id": "ai-datacenter-water__c0cc9c1a_r2",
    "slug": "ai-datacenter-water",
-   "filed": "2026-10-25T11:24:08Z",
+   "filed": "2026-10-25T11:26:13Z",
    "why": [
     "premise: no consequential number in the title or hook"
    ],
@@ -13,44 +13,14 @@
    "answer_path": "exchange/rewrites/20261025/ai-datacenter-water__c0cc9c1a_r2.answer.json"
   },
   {
-   "id": "humpback-whale-recovery__15f8bd75",
-   "slug": "humpback-whale-recovery",
-   "filed": "2026-10-24T12:22:47Z",
-   "why": [
-    "premise: brain: It relies on multiple numbers (450 and 25,000) rather than a single verifiable figure, failing the one-number rule."
-   ],
-   "request": "exchange/rewrites/20261024/humpback-whale-recovery__15f8bd75.request.json",
-   "answer_path": "exchange/rewrites/20261024/humpback-whale-recovery__15f8bd75.answer.json"
-  },
-  {
-   "id": "library-digital-shift__bba2e477",
-   "slug": "library-digital-shift",
-   "filed": "2026-10-24T12:22:47Z",
-   "why": [
-    "premise: brain: The claim reverses expectation but hinges on an unverified, vague statement ('readers never left') rather than a clear, consequential number."
-   ],
-   "request": "exchange/rewrites/20261024/library-digital-shift__bba2e477.request.json",
-   "answer_path": "exchange/rewrites/20261024/library-digital-shift__bba2e477.answer.json"
-  },
-  {
-   "id": "airline-pilot-shortage__6e694dae",
+   "id": "airline-pilot-shortage__6e694dae_r1",
    "slug": "airline-pilot-shortage",
-   "filed": "2026-10-24T12:22:45Z",
+   "filed": "2026-10-25T11:26:13Z",
    "why": [
     "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies only on a raw figure without a verifiable, surprising twist."
    ],
-   "request": "exchange/rewrites/20261024/airline-pilot-shortage__6e694dae.request.json",
-   "answer_path": "exchange/rewrites/20261024/airline-pilot-shortage__6e694dae.answer.json"
-  },
-  {
-   "id": "chip-shortage-tsmc-fragility__a1b6010a",
-   "slug": "chip-shortage-tsmc-fragility",
-   "filed": "2026-10-24T12:22:44Z",
-   "why": [
-    "premise: brain: It lacks a clear reversal of a viewer's expectation, relying only on a surprising magnitude."
-   ],
-   "request": "exchange/rewrites/20261024/chip-shortage-tsmc-fragility__a1b6010a.request.json",
-   "answer_path": "exchange/rewrites/20261024/chip-shortage-tsmc-fragility__a1b6010a.answer.json"
+   "request": "exchange/rewrites/20261025/airline-pilot-shortage__6e694dae_r1.request.json",
+   "answer_path": "exchange/rewrites/20261025/airline-pilot-shortage__6e694dae_r1.answer.json"
   },
   {
    "id": "world-wetlands-lost__3fe5ea62_r2",
@@ -141,56 +111,6 @@
    ],
    "request": "exchange/rewrites/20261021/english-internet-share-decline__21efaa68.request.json",
    "answer_path": "exchange/rewrites/20261021/english-internet-share-decline__21efaa68.answer.json"
-  },
-  {
-   "id": "usps-mail-volume-collapse__eca67ee3",
-   "slug": "usps-mail-volume-collapse",
-   "filed": "2026-10-21T13:38:37Z",
-   "why": [
-    "premise: brain: It lacks a single pivotal, verifiable number and does not clearly subvert a specific viewer expectation."
-   ],
-   "request": "exchange/rewrites/20261021/usps-mail-volume-collapse__eca67ee3.request.json",
-   "answer_path": "exchange/rewrites/20261021/usps-mail-volume-collapse__eca67ee3.answer.json"
-  },
-  {
-   "id": "activity-inequality-steps__f0af7c7a",
-   "slug": "activity-inequality-steps",
-   "filed": "2026-10-21T13:38:36Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/activity-inequality-steps__f0af7c7a.request.json",
-   "answer_path": "exchange/rewrites/20261021/activity-inequality-steps__f0af7c7a.answer.json"
-  },
-  {
-   "id": "bat-fungus-collapse__fb2808d3",
-   "slug": "bat-fungus-collapse",
-   "filed": "2026-10-21T13:38:36Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/bat-fungus-collapse__fb2808d3.request.json",
-   "answer_path": "exchange/rewrites/20261021/bat-fungus-collapse__fb2808d3.answer.json"
-  },
-  {
-   "id": "plastic-in-your-body__cedc4bab",
-   "slug": "plastic-in-your-body",
-   "filed": "2026-10-21T13:38:36Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/plastic-in-your-body__cedc4bab.request.json",
-   "answer_path": "exchange/rewrites/20261021/plastic-in-your-body__cedc4bab.answer.json"
-  },
-  {
-   "id": "highest-point-illusion__3d90af0a",
-   "slug": "highest-point-illusion",
-   "filed": "2026-10-21T13:38:36Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/highest-point-illusion__3d90af0a.request.json",
-   "answer_path": "exchange/rewrites/20261021/highest-point-illusion__3d90af0a.answer.json"
   },
   {
    "id": "unclaimed-money-states-hold__d600f81b",
@@ -335,6 +255,16 @@
    "answer_path": "exchange/rewrites/20261020/blood-type-rarity__962b83aa.answer.json"
   },
   {
+   "id": "usps-mail-volume-collapse__eca67ee3",
+   "slug": "usps-mail-volume-collapse",
+   "filed": "2026-10-20T12:07:15Z",
+   "why": [
+    "premise: brain: It relies on two numbers (mail volume halved and stamp price more than doubled) instead of a single consequential, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261020/usps-mail-volume-collapse__eca67ee3.request.json",
+   "answer_path": "exchange/rewrites/20261020/usps-mail-volume-collapse__eca67ee3.answer.json"
+  },
+  {
    "id": "back-to-sleep-campaign-cut-sids__1d5b6766",
    "slug": "back-to-sleep-campaign-cut-sids",
    "filed": "2026-10-20T12:07:14Z",
@@ -383,6 +313,46 @@
    ],
    "request": "exchange/rewrites/20261020/game-industry-layoffs-record__47b9280e.request.json",
    "answer_path": "exchange/rewrites/20261020/game-industry-layoffs-record__47b9280e.answer.json"
+  },
+  {
+   "id": "bat-fungus-collapse__fb2808d3",
+   "slug": "bat-fungus-collapse",
+   "filed": "2026-10-20T12:07:13Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261020/bat-fungus-collapse__fb2808d3.request.json",
+   "answer_path": "exchange/rewrites/20261020/bat-fungus-collapse__fb2808d3.answer.json"
+  },
+  {
+   "id": "plastic-in-your-body__cedc4bab",
+   "slug": "plastic-in-your-body",
+   "filed": "2026-10-20T12:07:13Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261020/plastic-in-your-body__cedc4bab.request.json",
+   "answer_path": "exchange/rewrites/20261020/plastic-in-your-body__cedc4bab.answer.json"
+  },
+  {
+   "id": "highest-point-illusion__3d90af0a",
+   "slug": "highest-point-illusion",
+   "filed": "2026-10-20T12:07:13Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261020/highest-point-illusion__3d90af0a.request.json",
+   "answer_path": "exchange/rewrites/20261020/highest-point-illusion__3d90af0a.answer.json"
+  },
+  {
+   "id": "activity-inequality-steps__f0af7c7a",
+   "slug": "activity-inequality-steps",
+   "filed": "2026-10-20T12:07:12Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261020/activity-inequality-steps__f0af7c7a.request.json",
+   "answer_path": "exchange/rewrites/20261020/activity-inequality-steps__f0af7c7a.answer.json"
   },
   {
    "id": "cryonics-client-count__57a93db8",

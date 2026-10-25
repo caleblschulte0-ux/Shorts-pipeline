@@ -20812,10 +20812,10 @@
   },
   {
    "slug": "activity-inequality-steps",
-   "title": "It's Not How Much You Walk. It's How Unequal It Is.",
-   "hook": "The countries where only some people walk are the ones getting fat.",
-   "closing": "It's not the steps. It's the gap.",
-   "question": "How many steps do you walk daily?",
+   "title": "43% Of The Walking Gap Comes From Gender",
+   "hook": "Gender explains 43% of the world's walking inequality.",
+   "closing": "Health improves when cities make everyday walking practical for everyone, not merely the already active.",
+   "question": "How walkable is your neighborhood?",
    "caption": "Hong Kong walks 6,880 steps a day. Indonesia walks 3,513. But the real predictor of obesity isn't the average — it's the GAP between a country's most and least active people, and it makes obesity almost 200% more likely. How many steps do you actually walk a day? 👇",
    "hashtags": [
     "activityinequality",
@@ -20845,8 +20845,8 @@
      "ascending": false,
      "use_baseline": true,
      "role": "1 · THE STEPS",
-     "topic": "How much we walk",
-     "say": "In Hong Kong people walk about 6,880 steps a day; in Indonesia, barely half that.",
+     "topic": "Walking Averages",
+     "say": "Hong Kong averages 6,880 daily steps. Where people live can shape movement before motivation enters the picture.",
      "scene": {
       "mechanic": "footprint-trail-row",
       "concept": "a dotted footprint trail walks out from each country's name, longer trails for higher daily step counts, Hong Kong's trail nearly crossing the frame while Indonesia's stops short",
@@ -20863,8 +20863,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "2 · THE REAL PREDICTOR",
-     "topic": "How unequal activity is",
-     "say": "Countries where activity is most unequal are nearly three times as likely to be obese.",
+     "topic": "Walking Inequality",
+     "say": "High-inequality countries score 297 on obesity likelihood. Unequal movement tracks a much larger health burden.",
      "scene": {
       "mechanic": "risk-scale-tilt",
       "concept": "a balance beam tilts as reveal builds, a fit-silhouette icon on the low-inequality side stays level while an overweight-silhouette icon on the high-inequality side sinks toward the 297 risk index",
@@ -20879,8 +20879,8 @@
      },
      "insight_type": "share",
      "role": "3 · WHY THE GAP",
-     "topic": "Why it's so unequal",
-     "say": "Women walk fewer steps than men almost everywhere, and that explains 43 percent of the gap.",
+     "topic": "Walking Gender Gap",
+     "say": "Gender explains 43 percent of activity inequality. Women walking less drives nearly half the global gap.",
      "scene": {
       "mechanic": "step-gap-scale",
       "concept": "a male and female walking-silhouette pair stand side by side, a red band rising up both figures to the 43% line that marks how much of the activity gap the gender difference alone explains",
@@ -20888,8 +20888,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-09T11:15:49Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-25T11:26:12Z",
    "hook_was": "Your steps won't stop obesity; this gap makes it almost 200 percent likelier.",
    "retold": "retell/v1"
   },
@@ -21128,10 +21128,10 @@
   },
   {
    "slug": "plastic-in-your-body",
-   "title": "Your Brain Is Quietly Filling With Plastic",
-   "hook": "Your brain is quietly filling with plastic, and it might already be too late.",
-   "closing": "Plastic you can't see is inside us now, and it may be hurting our hearts.",
-   "question": "Does this freak you out too?",
+   "title": "Brain Plastic Rose To 4,900 Micrograms Per Gram",
+   "hook": "Human brain plastic reached 4,900 micrograms per gram.",
+   "closing": "Plastic exposure is no longer only environmental; researchers are measuring it inside the body.",
+   "question": "Should plastic exposure be tracked?",
    "caption": "Scientists found nanoplastics in human brain tissue — the amount jumped 50% between 2016 and 2024. It's not just your brain: it's in your blood, your placenta, even your arteries. Does this freak you out? 👇",
    "hashtags": [
     "microplastics",
@@ -21158,8 +21158,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE BUILDUP",
-     "topic": "Plastic in brain tissue",
-     "say": "Plastic in human brain tissue jumped by about half in eight years. Whatever we're breathing and eating, it's getting in, and fast.",
+     "topic": "Brain Plastic",
+     "say": "Brain tissue reached 4,900 micrograms of plastic per gram. The measured concentration rose sharply in eight years.",
      "scene": {
       "mechanic": "brain-speckle-accumulate",
       "concept": "a real brain cut-out speckles with plastic-particle dots that multiply from the 2016 density to the 2024 density, denser and more saturated as reveal advances",
@@ -21176,8 +21176,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · NOT JUST YOUR BRAIN",
-     "topic": "Plastic in the body",
-     "say": "Plastic showed up in every placenta tested, and in most donors' blood. It isn't staying outside us.",
+     "topic": "Body Plastic",
+     "say": "Microplastics appeared in 100 percent of tested placentas. Exposure is crossing into tissue that supports new life.",
      "scene": {
       "mechanic": "body-site-fill-trio",
       "concept": "three real body-part cut-outs (placenta, blood drop, artery) each fill bottom-up to the percent of tested samples where plastic was found — placenta nearly full, artery about half",
@@ -21193,8 +21193,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · WHY IT MATTERS",
-     "topic": "Plastic raises heart risk",
-     "say": "Plastic in artery plaque went with over four times the risk of heart attack, stroke or death. A link, not proven cause.",
+     "topic": "Heart Plastic",
+     "say": "Plaque containing microplastics carried a 4.5 risk index. The association makes internal exposure a health question.",
      "scene": {
       "mechanic": "heartbeat-risk-duel",
       "concept": "two heart cut-outs pulse on an ECG baseline; the clean heart beats calmly at 1x, the plastic-laden heart pulses violently to 4.5x with a spiking red line",
@@ -21202,8 +21202,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-11T15:04:50Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-25T11:26:12Z",
    "retold": "retell/v3",
    "hook_was": "Your brain now holds 4,900 micrograms of plastic per gram."
   },
@@ -21280,10 +21280,10 @@
   },
   {
    "slug": "highest-point-illusion",
-   "title": "Everest Isn't the Highest Point on Earth",
-   "hook": "Everest has been getting credit that belongs to two other mountains.",
-   "closing": "Highest depends on where you start measuring, so check the starting line before you trust a record.",
-   "question": "Which mountain is the real winner?",
+   "title": "10,211 Meters Proves Everest Is Not Always Highest",
+   "hook": "At 10,211 meters, another mountain can beat Everest.",
+   "closing": "Records depend on where measurement begins, so the starting line can decide the winner.",
+   "question": "Which definition of highest wins?",
    "caption": "Everest is 8,849 meters above sea level - and still loses twice. Mauna Kea is 10,211 meters from its base on the Pacific floor, and because Earth bulges 21 kilometers at the equator, Chimborazo's summit sits about 2 kilometers farther from the planet's center than Everest's does. Highest, tallest and farthest are three different questions. Which one counts? 👇",
    "hashtags": [
     "everest",
@@ -21312,8 +21312,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "1 · THE LEADERBOARD",
-     "topic": "Highest above sea level",
-     "say": "Everest, at 8,849 meters, tops every list because we measure from sea level. Change the starting line, and the winner changes.",
+     "topic": "Highest Above Sea",
+     "say": "Everest reaches 8,849 meters above sea level. That starting line gives it the familiar record.",
      "scene": {
       "mechanic": "summit-skyline-ascent",
       "concept": "Five real snow-capped summits rise in a row from one sea-level baseline, each column landing in order, Everest tallest and glowing - a skyline so close together it needs a zoomed baseline to even show the gaps.",
@@ -21329,8 +21329,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · FROM THE BOTTOM",
-     "topic": "Highest from its base",
-     "say": "Measured from the seafloor, Mauna Kea is 10,211 meters tall. Most of it hides underwater, so sea level hides its true size.",
+     "topic": "Highest From Base",
+     "say": "Mauna Kea measures 10,211 meters from its base. Most of its height stays hidden underwater.",
      "scene": {
       "mechanic": "ocean-drains-to-reveal",
       "concept": "The real mountain photo starts mostly underwater, at today's true waterline - only its snowy tip showing, exactly like Mauna Kea now. The ocean drains away through the beat, exposing more and more of the SAME photo, and the exposed height counts up to the full 10,211m. Everest's summit is a single fixed mark on that same rock, so the punchline is one picture: the water it takes to hide a taller mountain.",
@@ -21346,8 +21346,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE REAL WINNER",
-     "topic": "Highest from Earth's center",
-     "say": "Measure from Earth's center, and Chimborazo sticks out 13.4 kilometers past a round Earth, farther than Everest. Same mountains, different winner.",
+     "topic": "Highest From Center",
+     "say": "Chimborazo extends 13.4 kilometers beyond a round Earth. The planet's bulge changes which summit reaches farthest.",
      "scene": {
       "mechanic": "sphere-bulge-radial",
       "concept": "Earth drawn as a circle standing in for a perfect sphere, dashed all the way round. Two radius lines shoot out from the center past that dashed line to each summit's real photo - Chimborazo's line overshoots farther because it rides the equatorial bulge, even though its column onscreen a beat ago was shorter than Everest's. A pulse travels each line so the overshoot keeps reading as distance, not a static ruler.",
@@ -21355,8 +21355,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T19:58:48Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-25T11:26:12Z",
    "retold": "retell/v3",
    "hook_was": "Your 8,849-meter Everest champion just got dethroned. Twice."
   },
@@ -27418,10 +27418,10 @@
   },
   {
    "slug": "library-digital-shift",
-   "title": "Why Is Nobody Walking Into Libraries Anymore?",
-   "hook": "America's libraries lost 46% of their visits, but the readers never left.",
-   "closing": "The building emptied, but the borrowing never left. Your library card still works on your phone.",
-   "question": "Last time you visited a library in person?",
+   "title": "Library Visits Fell To 800 Million While Digital Borrowing Rose",
+   "hook": "Library visits fell to 800 million, but borrowing moved online.",
+   "closing": "Your library did not disappear; much of it moved onto the phone already in your hand.",
+   "question": "Do you borrow library books digitally?",
    "caption": "In-person visits to US public libraries crashed from 1.25 billion in 2019 to well under a billion today. But digital checkouts through library apps more than doubled over the same years, hitting 739 million in 2024. When's the last time you actually walked into one?",
    "hashtags": [
     "libraries",
@@ -27444,8 +27444,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE EMPTY BUILDING",
-     "topic": "Libraries: physical visits",
-     "say": "In 2019, Americans walked into libraries 1.25 billion times. By 2022 that nearly halved, and it never came back.",
+     "topic": "Library Visits",
+     "say": "Physical library visits reached 800 million in 2023. Buildings stayed quieter even after the sharp collapse.",
      "scene": {
       "mechanic": "library-turnstile-thinning",
       "concept": "a library photo with a row of visitors per year; the row of people thins from 1.25 billion to 671 million as figures keep filing through the door",
@@ -27460,8 +27460,8 @@
      },
      "insight_type": "trend",
      "role": "2 · WHERE IT WENT",
-     "topic": "Libraries: digital checkouts",
-     "say": "Borrowing didn't stop, it moved to apps. Digital checkouts more than doubled to 739 million by 2024.",
+     "topic": "Library Checkouts",
+     "say": "Digital library checkouts reached 739 million in 2024. Borrowers changed the doorway, not the habit.",
      "scene": {
       "mechanic": "phone-fills-with-books",
       "concept": "stacks of ebooks rise inside a phone for each year as books fly from the library building into the phone on a loop",
@@ -27469,8 +27469,8 @@
      }
     }
    ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-12T01:34:16Z"
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-25T11:26:13Z"
   },
   {
    "slug": "ocean-floor-vs-mars-mapped",
@@ -31129,10 +31129,10 @@
   },
   {
    "slug": "humpback-whale-recovery",
-   "title": "Humpback Whales Went From 450 To 25,000 In One Region",
-   "hook": "Humpback whales were nearly gone forever, then humans stopped hunting them.",
-   "closing": "Whalers killed 2.9 million. The ban cut that to zero, and the oceans filled back up.",
-   "question": "Should whaling ever be allowed again? Tell me.",
+   "title": "25,000 Humpback Whales Prove Protection Can Work",
+   "hook": "One humpback population recovered to 25,000 after hunting stopped.",
+   "closing": "Protection can rebuild a species, but only while people keep the danger away.",
+   "question": "Should commercial whaling stay banned?",
    "caption": "Commercial whaling killed an estimated 2.9 million whales in the 20th century alone, crashing one humpback population to just 450 animals. Since the 1986 whaling ban, that same population has rebuilt itself to about 25,000 -- and 10 of 14 tracked humpback populations worldwide are now fully recovered. Did you know whales almost went extinct?",
    "hashtags": [
     "whales",
@@ -31159,8 +31159,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE CRASH AND THE COMEBACK",
-     "topic": "Humpback whale recovery",
-     "say": "Whalers nearly wiped out South Atlantic humpbacks. After the ban, about 25,000 swim there today, proof protection works.",
+     "topic": "Humpback Recovery",
+     "say": "The humpback population reached 25,000. Protection turned a near-erasure into a real comeback.",
      "scene": {
       "mechanic": "whale-school-regrowth",
       "concept": "a school of real humpback cutouts swims across the frame; the school thickens from 450 to 25,000 through the series",
@@ -31176,8 +31176,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · IT'S NOT JUST ONE GROUP",
-     "topic": "Humpback populations recovered",
-     "say": "Ten humpback populations are now off the endangered list. Saving a species is not hopeless, though the rest still need help.",
+     "topic": "Humpback Populations",
+     "say": "Ten humpback populations are fully recovered. Species recovery is difficult, but it is not hopeless.",
      "scene": {
       "mechanic": "whale-fourteen-pods-lift",
       "concept": "fourteen whale cutouts rest on the seabed; ten surface to a lit waterline one by one while four stay down",
@@ -31194,8 +31194,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · WHAT ACTUALLY FIXED IT",
-     "topic": "Whales killed before ban",
-     "say": "Last century whalers killed nearly 2.9 million whales. Under the ban, that number fell to zero, so recovery became possible.",
+     "topic": "Humpback Hunting Ban",
+     "say": "Whalers killed 2.9 million large whales last century. Ending commercial hunting finally gave survivors room to rebuild.",
      "scene": {
       "mechanic": "whaling-ban-spigot",
       "concept": "a stream of whale cutouts sinks for the 2.9 million killed, then the 1986 ban closes a gate and the stream stops at zero",
@@ -31203,8 +31203,8 @@
      }
     }
    ],
-   "words_by": "brain-tighten",
-   "rewritten_at": "2026-10-24T11:58:31Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-25T11:26:13Z",
    "retold": "retell/v3",
    "hook_was": "Whalers left 450 humpbacks in the South Atlantic. Today there are 25,000."
   },
@@ -34456,10 +34456,10 @@
   },
   {
    "slug": "usps-mail-volume-collapse",
-   "title": "Mail Nearly Halved While The Stamp Price More Than Doubled",
-   "hook": "Mailing a letter cost 68 cents even as mail volume nearly halved.",
-   "closing": "Less mail does not mean cheaper postage; a thinning mailbox can still come with rising costs.",
-   "question": "What still makes you buy a stamp?",
+   "title": "Mail Volume Fell To 109 Billion While Stamps Rose",
+   "hook": "Mail volume fell to 109 billion, yet stamps got costlier.",
+   "closing": "A shrinking mailbox still costs more because the delivery network does not shrink as quickly.",
+   "question": "What do you still mail?",
    "caption": "In 2006, the US Postal Service delivered 213 billion pieces of mail. Today it's barely half that -- even as a stamp's price doubled. Here's where all the mail went. 👇",
    "hashtags": [
     "uspsmail",
@@ -34487,8 +34487,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE COLLAPSE",
-     "topic": "Mail volume shrinks",
-     "say": "Total mail volume fell to 109 billion pieces in the supplied latest year. The peak was nearly twice as high.",
+     "topic": "Mail Volume",
+     "say": "Total mail fell to 109 billion pieces. The delivery network now carries nearly half its peak volume.",
      "illustrated_scene": "# scene standard: 2026-10-16.2\ndef _arch(cr, x, yb, w, wl):\n    # a mailbox's end: straight sides, a round dome over them\n    cr.move_to(x, yb)\n    cr.line_to(x, yb - wl)\n    cr.arc(x + w / 2, yb - wl, w / 2, math.pi, 2 * math.pi)\n    cr.line_to(x + w, yb)\n    cr.close_path()\n\n\ndef _letter(cr, cx, cy, w, h, ang, a=1.0):\n    # one white envelope: paper, its flap, a red stamp\n    if a <= 0.01:\n        return\n    cr.save()\n    cr.translate(cx, cy)\n    cr.rotate(ang)\n    cr.rectangle(-w / 2, -h / 2, w, h)\n    cr.restore()\n    solid(cr, (248, 245, 236), a=a)\n    cr.save()\n    cr.translate(cx, cy)\n    cr.rotate(ang)\n    cr.set_source_rgba(*_c((150, 140, 124), 0.9 * a))\n    cr.set_line_width(max(2.0, w * 0.04))\n    cr.move_to(-w / 2 + 2, -h / 2 + 2)\n    cr.line_to(0, h * 0.08)\n    cr.line_to(w / 2 - 2, -h / 2 + 2)\n    cr.stroke()\n    cr.rectangle(w / 2 - w * 0.24, -h / 2 + h * 0.12, w * 0.16, h * 0.26)\n    cr.set_source_rgba(*_c((200, 50, 42), a))\n    cr.fill()\n    cr.restore()\n\n\ndef _mailbox(cr, x, y, s, c):\n    # a curbside mailbox on its post, its door end facing the street;\n    # c = 0 the door hangs open on a mouth stuffed with letters, flag up,\n    # c = 1 the letters are out, the door is shut, the flag is down\n    contact_shadow(cr, x + 34 * s, y, 74 * s, a=0.35)\n    box(cr, x + 16 * s, y, 14 * s, 62 * s, (124, 92, 60), depth=6 * s)\n    yb = y - 60 * s\n    w, wl = 50 * s, 30 * s\n    ox, oy = 62 * s, -25 * s\n    _arch(cr, x + ox, yb + oy, w, wl)\n    solid(cr, (92, 96, 106), rim=False)\n    top = yb - wl - w / 2\n    cr.move_to(x + w / 2, top)\n    cr.line_to(x + w / 2 + ox, top + oy)\n    cr.line_to(x + w + ox, yb + oy)\n    cr.line_to(x + w, yb)\n    cr.close_path()\n    solid(cr, (182, 188, 198), finish=\"metal\")\n    # the red flag on its side: up for mail, swung down when there is none\n    px, py = x + w + ox * 0.55, yb + oy * 0.55 - wl * 0.35\n    ang = -math.pi / 2 * (1 - ease(c))\n    cr.save()\n    cr.translate(px, py)\n    cr.rotate(ang)\n    cr.rectangle(0, -3 * s, 46 * s, 6 * s)\n    cr.restore()\n    solid(cr, (150, 32, 28), rim=False)\n    cr.save()\n    cr.translate(px, py)\n    cr.rotate(ang)\n    cr.rectangle(28 * s, -2 * s, 20 * s, 16 * s)\n    cr.restore()\n    solid(cr, (206, 48, 40))\n    # the dark mouth\n    _arch(cr, x, yb, w, wl)\n    solid(cr, (30, 28, 32), rim=False, edge=False)\n    # the door, hinged along the bottom, swung up and shut\n    fy = -0.5 + 1.5 * ease(seg(c, 0.45, 1.0))\n    if abs(fy) < 0.04:\n        fy = 0.04 if fy >= 0 else -0.04\n    cr.save()\n    cr.translate(x, yb)\n    cr.scale(1, fy)\n    _arch(cr, 0, 0, w, wl)\n    cr.restore()\n    solid(cr, (198, 204, 214) if fy > 0 else (148, 154, 164), finish=\"metal\")\n    # the letters, a fat fan of white envelopes bursting out of the mouth;\n    # they come out toward the street first, then the door shuts\n    out = ease(seg(c, 0.0, 0.5))\n    la = 1.0 - clamp((c - 0.25) / 0.3)\n    spots = ((0.22, 0.30, -0.42), (0.50, 0.46, 0.10), (0.78, 0.30, 0.46),\n             (0.36, 0.64, -0.18), (0.66, 0.66, 0.30))\n    if c < 1:\n        for i, (dx, dy, a_) in enumerate(spots):\n            lx = x + w * dx - out * (40 + 14 * i) * s\n            ly = yb - (wl + w / 2) * dy - out * 26 * s\n            _letter(cr, lx, ly, 34 * s, 22 * s, a_ * (1 - 0.5 * out), la)\n    if c >= 1:\n        disc(cr, x + w / 2, yb - wl * 0.9, 4 * s, (70, 70, 76), finish=\"metal\")\n        # the letters that used to wait here, as a ghost on the shut door\n        cr.save()\n        cr.translate(x + w * 0.5, yb - (wl + w / 2) * 0.42)\n        cr.rotate(-0.12)\n        cr.rectangle(-17 * s, -11 * s, 34 * s, 22 * s)\n        cr.restore()\n        ghost(cr, a=0.8)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a street of mailboxes stuffed with letters\n    SUBSTANCE: white paper letters\n    CAUSE: Data pulls the letters out of each mailbox and shoves its door shut, box by box down the street\n    One street's row of mailboxes running from the camera back into town:\n    the WHOLE is the street's mail. In 2006 every door hangs open on a\n    mouth stuffed with white letters, flag up. Data walks the curb toward\n    the camera and, box by box, the letters come out and he shoves the\n    door shut — flag down, no mail — until the share of the street gone\n    quiet is the share of mail that is gone, about half. Each shut door\n    keeps a ghost of the letter it used to hold. Done by 0.62 and held:\n    he keeps shoving the last door, the mail van keeps driving by.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    v0 = v0 or 1.0\n    N = 8\n    nc = max(1, min(N - 1, int(round(N * (1 - v1 / v0)))))\n    boxes = []\n    x, y, s = 260.0, 1450.0, 2.4\n    for j in range(N):\n        boxes.append((x, y, s))\n        x += 70 * s\n        y -= 28 * s\n        s *= 0.86\n    a0, a1 = 0.06, 0.62\n    span = (a1 - a0) / nc\n    k = int(clamp((u - a0) / span, 0, nc - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    started = u >= a0\n    done = u >= a1\n\n    def shut(j):\n        if j >= nc or not started:\n            return 0.0\n        if done:\n            return 1.0\n        q = nc - 1 - j\n        if q < k:\n            return 1.0\n        if q > k:\n            return 0.0\n        return seg(f, 0.25, 0.9)\n\n    def pos(j):\n        bx, by, bs = boxes[j]\n        return bx - 50 * bs, min(1495.0, by + 30), clamp(110 * bs, 180, 240)\n\n    # the town\n    landscape(cr, t, \"town\", horizon=1060)\n    for hx0, hx1, hb, hh_, col in ((40, 330, 1130, 260, (214, 196, 170)),\n                                   (380, 600, 1100, 200, (176, 190, 204)),\n                                   (640, 820, 1078, 150, (206, 170, 150)),\n                                   (860, 1010, 1062, 110, (190, 200, 180))):\n        contact_shadow(cr, (hx0 + hx1) / 2, hb, hx1 - hx0 + 40, a=0.3)\n        building(cr, hx0, hx1, hb, hh_, col, roof_rgb=(110, 96, 92), roof=\"gable\")\n    haze(cr, 600, 1150, (206, 214, 224), a=0.3)\n    # the mail van doing its round on the back street\n    vx = -300 + (t * 170) % 1700\n    contact_shadow(cr, vx + 110, 1152, 230, a=0.3)\n    box(cr, vx, 1150, 170, 92, (236, 236, 240), depth=36)\n    cr.rectangle(vx + 4, 1106, 162, 12)\n    solid(cr, (42, 72, 146), edge=False, rim=False)\n    box(cr, vx + 170, 1150, 58, 66, (226, 228, 234), depth=30)\n    for wx in (vx + 36, vx + 190):\n        disc(cr, wx, 1150, 15, (40, 40, 46))\n\n    # the street in front of the row\n    cr.move_to(-50, 1576)\n    cr.line_to(1130, 1104)\n    cr.line_to(1130, 1194)\n    cr.line_to(-50, 1976)\n    cr.close_path()\n    solid(cr, (84, 86, 92), edge=False, rim=False)\n    cr.set_source_rgba(*_c((236, 220, 150), 0.85))\n    cr.set_line_width(8)\n    cr.set_dash([44, 34])\n    cr.move_to(-50, 1776)\n    cr.line_to(1130, 1149)\n    cr.stroke()\n    cr.set_dash([])\n\n    # the mailboxes, far first\n    cast_shadow(cr, 240, 1080, 1450, length=260, a=0.22)\n    for j in reversed(range(N)):\n        bx, by, bs = boxes[j]\n        _mailbox(cr, bx, by, bs, shut(j))\n\n    # right by the camera: the blue collection box on the near corner\n    contact_shadow(cr, 880, 1862, 280, a=0.4)\n    box(cr, 760, 1860, 220, 230, (38, 74, 150), depth=56)\n    cr.save()\n    cr.translate(870, 1630)\n    cr.scale(1, 0.45)\n    cr.arc(0, 0, 110, math.pi, 2 * math.pi)\n    cr.restore()\n    cr.close_path()\n    solid(cr, (44, 82, 162))\n    cr.rectangle(800, 1676, 140, 16)\n    solid(cr, (24, 30, 44), rim=False)\n    _letter(cr, 870, 1668, 96, 60, -0.12)\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    # Data walks the curb toward the camera, shoving each door shut\n    if not started:\n        hx, hy, hh = pos(nc)\n        host(\"point\", hx, hy, hh)\n    elif done:\n        hx, hy, hh = pos(0)\n        host(\"shove\", hx, hy, hh, beat=nc + int((u - a1) / 0.12))\n    else:\n        tgt, prv = nc - 1 - k, nc - k\n        g = ease(seg(f, 0.0, 0.25))\n        (x0, y0, h0), (x1, y1, h1) = pos(prv), pos(tgt)\n        hx, hy, hh = x0 + (x1 - x0) * g, y0 + (y1 - y0) * g, h0 + (h1 - h0) * g\n        host(\"shove\", hx, hy, hh, beat=k)\n\n    if done:\n        fit_readout(cr, f\"{int(round(v1))} billion\", f\"pieces of US mail a year · {l1}\",\n                    80, 520, size=130)\n        text(cr, \"nearly half the mail, gone\", 80, 720, 44, look.INK, face=\"bold\",\n             alpha=ease(seg(u, a1, a1 + 0.05)))\n    else:\n        fit_readout(cr, f\"{int(round(v0))} billion\", f\"pieces of US mail a year · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -34499,8 +34499,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE LETTERS",
-     "topic": "Mail letters fade",
-     "say": "First-Class Mail fell to 46 billion pieces in the measured comparison. Its decline outpaced the overall mail contraction."
+     "topic": "Mail Letters",
+     "say": "First-Class Mail fell to 46 billion pieces. Personal letters and bills are disappearing faster than mail overall."
     },
     {
      "source": "offline",
@@ -34510,13 +34510,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE IRONY",
-     "topic": "Mail stamps rise",
-     "say": "The stamp price reached 68 cents in the supplied historical comparison. That more than doubled the earlier price."
+     "topic": "Mail Stamps",
+     "say": "A stamp reached 68 cents. Sending less mail did not make each letter cheaper."
     }
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:42Z",
+   "rewritten_at": "2026-10-25T11:26:12Z",
    "hook_was": "You get way less mail than your parents did."
   },
   {
