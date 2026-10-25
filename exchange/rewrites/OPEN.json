@@ -1,26 +1,26 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-25T11:26:13Z",
+ "updated": "2026-10-25T11:28:50Z",
  "open": [
-  {
-   "id": "ai-datacenter-water__c0cc9c1a_r2",
-   "slug": "ai-datacenter-water",
-   "filed": "2026-10-25T11:26:13Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261025/ai-datacenter-water__c0cc9c1a_r2.request.json",
-   "answer_path": "exchange/rewrites/20261025/ai-datacenter-water__c0cc9c1a_r2.answer.json"
-  },
   {
    "id": "airline-pilot-shortage__6e694dae_r1",
    "slug": "airline-pilot-shortage",
-   "filed": "2026-10-25T11:26:13Z",
+   "filed": "2026-10-25T11:28:50Z",
    "why": [
     "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies only on a raw figure without a verifiable, surprising twist."
    ],
    "request": "exchange/rewrites/20261025/airline-pilot-shortage__6e694dae_r1.request.json",
    "answer_path": "exchange/rewrites/20261025/airline-pilot-shortage__6e694dae_r1.answer.json"
+  },
+  {
+   "id": "ai-datacenter-water__c0cc9c1a_r2",
+   "slug": "ai-datacenter-water",
+   "filed": "2026-10-25T11:24:08Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261025/ai-datacenter-water__c0cc9c1a_r2.request.json",
+   "answer_path": "exchange/rewrites/20261025/ai-datacenter-water__c0cc9c1a_r2.answer.json"
   },
   {
    "id": "world-wetlands-lost__3fe5ea62_r2",
@@ -113,68 +113,6 @@
    "answer_path": "exchange/rewrites/20261021/english-internet-share-decline__21efaa68.answer.json"
   },
   {
-   "id": "unclaimed-money-states-hold__d600f81b",
-   "slug": "unclaimed-money-states-hold",
-   "filed": "2026-10-21T13:38:36Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/unclaimed-money-states-hold__d600f81b.request.json",
-   "answer_path": "exchange/rewrites/20261021/unclaimed-money-states-hold__d600f81b.answer.json"
-  },
-  {
-   "id": "insect-planet__3c4a491b",
-   "slug": "insect-planet",
-   "filed": "2026-10-21T13:38:35Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/insect-planet__3c4a491b.request.json",
-   "answer_path": "exchange/rewrites/20261021/insect-planet__3c4a491b.answer.json"
-  },
-  {
-   "id": "left-brain-right-brain-myth__9ae81e3c",
-   "slug": "left-brain-right-brain-myth",
-   "filed": "2026-10-21T13:38:35Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/left-brain-right-brain-myth__9ae81e3c.request.json",
-   "answer_path": "exchange/rewrites/20261021/left-brain-right-brain-myth__9ae81e3c.answer.json"
-  },
-  {
-   "id": "religious-nones-rise__677be75f",
-   "slug": "religious-nones-rise",
-   "filed": "2026-10-21T13:38:35Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/religious-nones-rise__677be75f.request.json",
-   "answer_path": "exchange/rewrites/20261021/religious-nones-rise__677be75f.answer.json"
-  },
-  {
-   "id": "a-language-dies-every-2-weeks__8d6939dc",
-   "slug": "a-language-dies-every-2-weeks",
-   "filed": "2026-10-21T13:38:35Z",
-   "why": [
-    "thesis: seg0 ('Languages in danger') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline",
-    "thesis: seg1 ('Why languages vanish') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline",
-    "thesis: seg2 ('Languages lost by 2100') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline"
-   ],
-   "request": "exchange/rewrites/20261021/a-language-dies-every-2-weeks__8d6939dc.request.json",
-   "answer_path": "exchange/rewrites/20261021/a-language-dies-every-2-weeks__8d6939dc.answer.json"
-  },
-  {
-   "id": "earth-rotation-speeding-up__e26a5423",
-   "slug": "earth-rotation-speeding-up",
-   "filed": "2026-10-21T13:38:34Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/earth-rotation-speeding-up__e26a5423.request.json",
-   "answer_path": "exchange/rewrites/20261021/earth-rotation-speeding-up__e26a5423.answer.json"
-  },
-  {
    "id": "divorce-rate-quiet-decline__d6b27d36",
    "slug": "divorce-rate-quiet-decline",
    "filed": "2026-10-21T13:38:34Z",
@@ -185,16 +123,6 @@
    "answer_path": "exchange/rewrites/20261021/divorce-rate-quiet-decline__d6b27d36.answer.json"
   },
   {
-   "id": "volcano-country-ranking__692a9e46",
-   "slug": "volcano-country-ranking",
-   "filed": "2026-10-21T13:38:34Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/volcano-country-ranking__692a9e46.request.json",
-   "answer_path": "exchange/rewrites/20261021/volcano-country-ranking__692a9e46.answer.json"
-  },
-  {
    "id": "pentagon-ufo-reports-surge__e166beb3",
    "slug": "pentagon-ufo-reports-surge",
    "filed": "2026-10-21T13:38:34Z",
@@ -203,36 +131,6 @@
    ],
    "request": "exchange/rewrites/20261021/pentagon-ufo-reports-surge__e166beb3.request.json",
    "answer_path": "exchange/rewrites/20261021/pentagon-ufo-reports-surge__e166beb3.answer.json"
-  },
-  {
-   "id": "third-interstellar-visitor__c92abc0a",
-   "slug": "third-interstellar-visitor",
-   "filed": "2026-10-21T13:38:34Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/third-interstellar-visitor__c92abc0a.request.json",
-   "answer_path": "exchange/rewrites/20261021/third-interstellar-visitor__c92abc0a.answer.json"
-  },
-  {
-   "id": "rubiks-cube-record-vs-robot__5d087bf9",
-   "slug": "rubiks-cube-record-vs-robot",
-   "filed": "2026-10-20T12:07:19Z",
-   "why": [
-    "judge: blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
-   ],
-   "request": "exchange/rewrites/20261020/rubiks-cube-record-vs-robot__5d087bf9.request.json",
-   "answer_path": "exchange/rewrites/20261020/rubiks-cube-record-vs-robot__5d087bf9.answer.json"
-  },
-  {
-   "id": "eclipse-recurrence-rarity__789a0737",
-   "slug": "eclipse-recurrence-rarity",
-   "filed": "2026-10-20T12:07:17Z",
-   "why": [
-    "premise: brain: It does not clearly reverse a common viewer expectation and relies only on a vague rarity claim rather than a single, verifiable consequential number."
-   ],
-   "request": "exchange/rewrites/20261020/eclipse-recurrence-rarity__789a0737.request.json",
-   "answer_path": "exchange/rewrites/20261020/eclipse-recurrence-rarity__789a0737.answer.json"
   },
   {
    "id": "astronaut-bone-loss__315fba90",
@@ -345,6 +243,16 @@
    "answer_path": "exchange/rewrites/20261020/highest-point-illusion__3d90af0a.answer.json"
   },
   {
+   "id": "unclaimed-money-states-hold__d600f81b",
+   "slug": "unclaimed-money-states-hold",
+   "filed": "2026-10-20T12:07:13Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261020/unclaimed-money-states-hold__d600f81b.request.json",
+   "answer_path": "exchange/rewrites/20261020/unclaimed-money-states-hold__d600f81b.answer.json"
+  },
+  {
    "id": "activity-inequality-steps__f0af7c7a",
    "slug": "activity-inequality-steps",
    "filed": "2026-10-20T12:07:12Z",
@@ -353,6 +261,88 @@
    ],
    "request": "exchange/rewrites/20261020/activity-inequality-steps__f0af7c7a.request.json",
    "answer_path": "exchange/rewrites/20261020/activity-inequality-steps__f0af7c7a.answer.json"
+  },
+  {
+   "id": "insect-planet__3c4a491b",
+   "slug": "insect-planet",
+   "filed": "2026-10-20T12:07:12Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261020/insect-planet__3c4a491b.request.json",
+   "answer_path": "exchange/rewrites/20261020/insect-planet__3c4a491b.answer.json"
+  },
+  {
+   "id": "religious-nones-rise__677be75f",
+   "slug": "religious-nones-rise",
+   "filed": "2026-10-20T12:07:12Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261020/religious-nones-rise__677be75f.request.json",
+   "answer_path": "exchange/rewrites/20261020/religious-nones-rise__677be75f.answer.json"
+  },
+  {
+   "id": "a-language-dies-every-2-weeks__8d6939dc",
+   "slug": "a-language-dies-every-2-weeks",
+   "filed": "2026-10-20T12:07:12Z",
+   "why": [
+    "thesis: seg0 ('Languages in danger') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline",
+    "thesis: seg1 ('Why languages vanish') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline",
+    "thesis: seg2 ('Languages lost by 2100') has no bridge to the headline ('A Language Goes Extinct Every 2 Weeks') — brain: no genuine bridge to the headline"
+   ],
+   "request": "exchange/rewrites/20261020/a-language-dies-every-2-weeks__8d6939dc.request.json",
+   "answer_path": "exchange/rewrites/20261020/a-language-dies-every-2-weeks__8d6939dc.answer.json"
+  },
+  {
+   "id": "earth-rotation-speeding-up__e26a5423",
+   "slug": "earth-rotation-speeding-up",
+   "filed": "2026-10-20T12:07:11Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261020/earth-rotation-speeding-up__e26a5423.request.json",
+   "answer_path": "exchange/rewrites/20261020/earth-rotation-speeding-up__e26a5423.answer.json"
+  },
+  {
+   "id": "left-brain-right-brain-myth__9ae81e3c",
+   "slug": "left-brain-right-brain-myth",
+   "filed": "2026-10-20T12:07:11Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261020/left-brain-right-brain-myth__9ae81e3c.request.json",
+   "answer_path": "exchange/rewrites/20261020/left-brain-right-brain-myth__9ae81e3c.answer.json"
+  },
+  {
+   "id": "volcano-country-ranking__692a9e46",
+   "slug": "volcano-country-ranking",
+   "filed": "2026-10-20T12:07:11Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261020/volcano-country-ranking__692a9e46.request.json",
+   "answer_path": "exchange/rewrites/20261020/volcano-country-ranking__692a9e46.answer.json"
+  },
+  {
+   "id": "third-interstellar-visitor__c92abc0a",
+   "slug": "third-interstellar-visitor",
+   "filed": "2026-10-20T12:07:11Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261020/third-interstellar-visitor__c92abc0a.request.json",
+   "answer_path": "exchange/rewrites/20261020/third-interstellar-visitor__c92abc0a.answer.json"
+  },
+  {
+   "id": "rubiks-cube-record-vs-robot__5d087bf9",
+   "slug": "rubiks-cube-record-vs-robot",
+   "filed": "2026-10-19T12:10:10Z",
+   "why": [
+    "judge: blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) — a frozen stretch outside any intentional hold starting at t=26.04s of 32.54s (~2.0s frozen)"
+   ],
+   "request": "exchange/rewrites/20261019/rubiks-cube-record-vs-robot__5d087bf9.request.json",
+   "answer_path": "exchange/rewrites/20261019/rubiks-cube-record-vs-robot__5d087bf9.answer.json"
   },
   {
    "id": "cryonics-client-count__57a93db8",
@@ -623,6 +613,16 @@
    ],
    "request": "exchange/rewrites/20261015/ants-outnumber-humans__1beccbad.request.json",
    "answer_path": "exchange/rewrites/20261015/ants-outnumber-humans__1beccbad.answer.json"
+  },
+  {
+   "id": "eclipse-recurrence-rarity__789a0737",
+   "slug": "eclipse-recurrence-rarity",
+   "filed": "2026-10-15T13:23:21Z",
+   "why": [
+    "premise: brain: It does not hinge on a single verifiable number and merely confirms a known rarity rather than reversing a clear viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261015/eclipse-recurrence-rarity__789a0737.request.json",
+   "answer_path": "exchange/rewrites/20261015/eclipse-recurrence-rarity__789a0737.answer.json"
   },
   {
    "id": "panama-canal-drought-transit-cuts__3cc174f2",
