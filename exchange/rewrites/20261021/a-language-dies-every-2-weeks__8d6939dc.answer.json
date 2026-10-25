@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "a-language-dies-every-2-weeks__8d6939dc",
+  "slug": "a-language-dies-every-2-weeks",
+  "by": "chatgpt",
+  "written_at": "2026-10-25T12:32:00Z",
+  "title": "A Language Goes Extinct Every 2 Weeks",
+  "hook": "One language disappears about every 2 weeks.",
+  "closing": "Every lost language erases knowledge that cannot be translated back.",
+  "question": "Which languages do you speak?",
+  "segments": [
+    {
+      "topic": "Language Danger",
+      "say": "About 40% of languages are endangered or dying. Their final speakers carry entire systems of knowledge."
+    },
+    {
+      "topic": "Language Loss Rate",
+      "say": "The loss rate now reaches 26 languages a year. Communities are falling silent far faster than before."
+    },
+    {
+      "topic": "Language By 2100",
+      "say": "Only 3,500 languages may remain by 2100. Half of today's linguistic diversity could disappear."
+    }
+  ]
+}
