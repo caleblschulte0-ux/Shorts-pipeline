@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "usps-mail-volume-collapse__eca67ee3",
+  "slug": "usps-mail-volume-collapse",
+  "by": "chatgpt",
+  "written_at": "2026-10-25T11:48:00Z",
+  "title": "Mail Volume Fell To 109 Billion While Stamps Rose",
+  "hook": "Mail volume fell to 109 billion, yet stamps got costlier.",
+  "closing": "A shrinking mailbox still costs more because the delivery network does not shrink as quickly.",
+  "question": "What do you still mail?",
+  "segments": [
+    {
+      "topic": "Mail Volume",
+      "say": "Total mail fell to 109 billion pieces. The delivery network now carries nearly half its peak volume."
+    },
+    {
+      "topic": "Mail Letters",
+      "say": "First-Class Mail fell to 46 billion pieces. Personal letters and bills are disappearing faster than mail overall."
+    },
+    {
+      "topic": "Mail Stamps",
+      "say": "A stamp reached 68 cents. Sending less mail did not make each letter cheaper."
+    }
+  ]
+}
