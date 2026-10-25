@@ -4249,6 +4249,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 74,
       "duration_s": 33.0
+    },
+    "opioid-prescribing-decline-fentanyl-rise": {
+      "claimed_at": "2026-10-25T13:47:53.563673+00:00",
+      "title": "Opioid Prescriptions Fell 47%. Overdoses Kept Rising.",
+      "publish_at": "2026-10-26T05:18:34Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5396,6 +5403,14 @@
       "state": "posted",
       "slug": "us-formal-volunteering-record-low",
       "at": "2026-10-25T12:43:10.008583+00:00"
+    },
+    {
+      "claimed_at": "2026-10-25T13:47:53.563673+00:00",
+      "title": "Opioid Prescriptions Fell 47%. Overdoses Kept Rising.",
+      "publish_at": "2026-10-26T05:18:34Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "opioid-prescribing-decline-fentanyl-rise"
     }
   ]
 }
