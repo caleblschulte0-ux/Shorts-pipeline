@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "chip-shortage-tsmc-fragility__a1b6010a",
+  "slug": "chip-shortage-tsmc-fragility",
+  "by": "chatgpt",
+  "written_at": "2026-10-25T11:48:00Z",
+  "title": "The $210 Billion Chip Shortage Exposed One Weak Link",
+  "hook": "A $210 billion shortage revealed how concentrated chip production became.",
+  "closing": "Your next car can stall when one concentrated chip supply chain breaks.",
+  "question": "Did chip shortages delay your purchase?",
+  "segments": [
+    {
+      "topic": "Chip Concentration",
+      "say": "TSMC makes 90 percent of the most advanced chips. One dominant producer makes every disruption spread farther."
+    },
+    {
+      "topic": "Chip Wait",
+      "say": "Chip lead times reached 27 weeks. Carmakers waited roughly half a year for tiny parts."
+    },
+    {
+      "topic": "Chip Shortage Bill",
+      "say": "The projected auto loss rose to 210 billion dollars. The shortage became almost twice as costly as first forecast."
+    }
+  ]
+}
