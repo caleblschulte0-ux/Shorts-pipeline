@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "rubiks-cube-record-vs-robot__5d087bf9",
+  "slug": "rubiks-cube-record-vs-robot",
+  "by": "chatgpt",
+  "written_at": "2026-10-25T12:32:00Z",
+  "title": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
+  "hook": "A robot crushed decades of human cube records.",
+  "closing": "Human speed kept rising, then a machine reset the scale.",
+  "question": "How fast can you solve one?",
+  "segments": [
+    {
+      "topic": "Cube First Record",
+      "say": "The first championship record was 22.95 seconds. That became the benchmark for human hands."
+    },
+    {
+      "topic": "Cube Human Record",
+      "say": "The human record fell to 3.13 seconds. Decades of technique removed nearly every pause."
+    },
+    {
+      "topic": "Cube Robot Record",
+      "say": "A robot solved it in 0.38 seconds. Machines now operate on a different speed scale."
+    }
+  ]
+}
