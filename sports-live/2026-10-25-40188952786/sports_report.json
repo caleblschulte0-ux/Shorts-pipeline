@@ -1,0 +1,331 @@
+{
+ "date": "2026-10-25",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "LeBron fires back at a heckling Knicks fan, 'I'm an Ohio baby', and the whole exchange is on camera.",
+   "post_title": "LeBron James Heated With a Knicks Fan: \"Ain't nothing soft in the Midwest... I'm not from the West Coast, I'm from Ohio, baby. I'm an Ohio baby, fuck is you talking about?\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/idugt5",
+   "topic": "https://www.reddit.com/r/nba/comments/1xbds51/lebron_james_heated_with_a_knicks_fan_aint",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "nfl",
+   "who": "Aaron Rodgers",
+   "why": "Rodgers tells Josiah Trotter 'I know your dad' mid-game, a veteran putting a rookie in his place.",
+   "post_title": "[Highlight] Steelers QB Aaron Rodgers exchanges words on the field with Josiah Trotter, telling him: \u201cI know your dad.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1x9gsmq/highlight_steelers_qb_aaron_rodgers_exchanges/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1x9gsmq/highlight_steelers_qb_aaron_rodgers_exchanges",
+   "skipped": "too short: the post runs 7.0s (< 15s)"
+  },
+  {
+   "sub": "nba",
+   "who": "Luka Doncic",
+   "why": "Luka tells a 24-year-old rookie to relax, a mic'd-up line a stranger can follow without context.",
+   "post_title": "Luka To Yaxel: \"Hey bro. You're 24 and a rookie. Relax.\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/6ezin1",
+   "topic": "https://www.reddit.com/r/nba/comments/1xdv4mr/luka_to_yaxel_hey_bro_youre_24_and_a_rookie_relax",
+   "skipped": "too short: the post runs 6.8s (< 15s)"
+  },
+  {
+   "sub": "MMA",
+   "who": "Merab Dvalishvili",
+   "why": "Merab tells Petr Yan 'I will eat you' at the face-off while Yan stares back.",
+   "post_title": "Merab Dvalishvili to Petr Yan during their face off: \"Talk now, enjoy. Saturday I will show you. I will eat you.\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/yo08ab",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xcjnda/merab_dvalishvili_to_petr_yan_during_their_face",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "MMA",
+   "who": "Rizvan Kuniev",
+   "why": "A fighter hands Volkov a birthday cake with a savage joke about his record, and Volkov has to react.",
+   "post_title": "Rizvan Kuniev gives Alexander Volkov a cake for his birthday tomorrow: \"Happy Birthday, New Record 40-12\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/ptswtq",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xdq5ck/rizvan_kuniev_gives_alexander_volkov_a_cake_for",
+   "skipped": "author: no setup or no payoff in the clip"
+  },
+  {
+   "sub": "baseball",
+   "who": "Christian Yelich",
+   "why": "Yelich invites a 98-year-old and a 102-year-old WWII veteran to the World Series and they meet his family.",
+   "post_title": "[MLBPA] Christian Yelich personally invited 98- and 102-year-old WWII veterans Bill Wattleton and Sverre Vinje to Game 1 of the World Series. They were able to meet Christian\u2019s mom Alecia, former Brew",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xe9r8k/mlbpa_christian_yelich_personally_invited_98_and/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xe9r8k/mlbpa_christian_yelich_personally_invited_98_and",
+   "title": "Christian Yelich Invites Two WWII Vets, 98 And 102, To The World Series",
+   "hook": "Yelich invites two WWII vets to Game 1 \ud83e\udd79",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: The real heart moment (the vets meeting Yelich's mom) is buried mid-clip, and our caption is printed on top of the source's own burned-in captions in the hook and at the end, making both unreadable."
+    },
+    {
+     "score": 75,
+     "reason": "showrunner BLOCK: The vets' welcome is real and touching but it's buried in the first third. The back half is unrelated at-bat broadcast footage, and the source's burned-in captions collide with our line."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A warm, real moment that lands, but our hook line sits on top of the footage's own 'Alecia Yelich' name graphic at the payoff.",
+    "score": 87
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A warm, real moment that lands, but our hook line sits on top of the footage's own 'Alecia Yelich' name graphic at the payoff."
+  },
+  {
+   "sub": "sports",
+   "who": "Jake Bauers",
+   "why": "Bauers and his wife tell how he nearly quit baseball before becoming a playoff hero.",
+   "post_title": "In an ABC News exclusive, Milwaukee Brewers playoff hero Jake Bauers and his wife, Lauren, speak with Will Reeve about how he revived his career after nearly walking away from baseball.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xcfyi1/in_an_abc_news_exclusive_milwaukee_brewers/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xcfyi1/in_an_abc_news_exclusive_milwaukee_brewers",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "MMA",
+   "who": "Petr Yan",
+   "why": "Yan says his young son will corner him against Merab because the boy wanted to.",
+   "post_title": "\u2764\ufe0fPetr Yan CONFIRMS his son will corner him vs Merab \u201cHe wanted to do it. Who am I to say no? The kid is growing up and plays sports. I think it\u2019ll be good energy for him.\u201d",
+   "upvotes": 0,
+   "url": "https://x.com/DovySimuMMA/status/2112893425708331028",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xc0mtt/petr_yan_confirms_his_son_will_corner_him_vs",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "hockey",
+   "who": "Mario Ferraro",
+   "why": "Ferraro stumbles over the lineup on the mic, swears, and owns the mistake in front of the crowd.",
+   "post_title": "Mario Ferraro reading the opening line up: \"On D we got myself. What the f-ck? Okay, I f-cked that up boys.\"",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xed9an/mario_ferraro_reading_the_opening_line_up_on_d_we/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xed9an/mario_ferraro_reading_the_opening_line_up_on_d_we",
+   "title": "Mario Ferraro Reads The Lineup And Instantly Messes Up His Own Name Spot \ud83d\ude02",
+   "hook": "Mario Ferraro botches the lineup \ud83d\ude02",
+   "ledger": {
+    "moves": [
+     "zoom@9.0",
+     "line2@14.5"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 74
+   },
+   "video_url": "https://youtube.com/shorts/aAaX0VUfQGY",
+   "ok": true,
+   "publish_at": "2026-10-25T16:00:00Z",
+   "seconds": 134,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261025-mario-ferraro-reads-the-lineup-and-instantly-mes-8644cd4b",
+    "tiktok": "queued for 2026-10-25T16:00:00Z"
+   }
+  },
+  {
+   "sub": "nba",
+   "who": "Charles Barkley",
+   "why": "Barkley jokes that Shaq has been hanging out with Kash Patel while standing next to him, and the studio cracks up.",
+   "post_title": "Charles Barkley: \"Should we be standing this close to Shaq?... He's been hanging out with Kash Patel. That's dangerous.\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/r0tqiq",
+   "topic": "https://www.reddit.com/r/nba/comments/1xc96lc/charles_barkley_should_we_be_standing_this_close",
+   "title": "Charles Barkley Asks If They Should Stand This Close To Shaq After A Kash Patel Joke",
+   "hook": "Barkley jokes about standing near Shaq \ud83d\ude02",
+   "ledger": {
+    "moves": [
+     "zoom@12.5"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The Barkley/Shaq moment is over by about 10s; the remaining 24s are unrelated Giannis practice and a sponsor bumper, so the clip never lands its joke.",
+    "score": 53
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The Barkley/Shaq moment is over by about 10s; the remaining 24s are unrelated Giannis practice and a sponsor bumper, so the clip never lands its joke."
+  },
+  {
+   "sub": "nfl",
+   "who": "Kenneth Walker",
+   "why": "Walker, who survived blood clots in both lungs, is asked about Hurts flying and answers with an unexpectedly personal story.",
+   "post_title": "[Highlight] Chiefs RB Kenneth Walker, who dealt with a pulmonary embolism with blood clots in both lungs in high school, was asked about Jalen Hurts today: \u201cHe went on the flight, huh? And everything?",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xdoqsi/highlight_chiefs_rb_kenneth_walker_who_dealt_with/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xdoqsi/highlight_chiefs_rb_kenneth_walker_who_dealt_with",
+   "title": "Kenneth Walker Tells Jalen Hurts To Stay Positive After His Blood Clots",
+   "hook": "Walker's message to Hurts on blood clots \ud83d\ude4f",
+   "ledger": {
+    "moves": [
+     "zoom@4.1",
+     "zoom@13.3"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      540,
+      720,
+      372,
+      0
+     ]
+    }
+   },
+   "repairs": [
+    {
+     "score": 61,
+     "reason": "showrunner BLOCK: This is the right person on the right topic, but it is 37 seconds of one static presser shot with no edit, no stake on screen and an ending cut mid-sentence."
+    },
+    {
+     "score": 61,
+     "reason": "showrunner BLOCK: Real and relevant press-conference footage, but it is one static talking-head shot that starts mid-answer and ends mid-sentence ('WE SHOULD TAKE') without landing the 'I'll be praying' payoff."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 70
+   },
+   "video_url": "https://youtube.com/shorts/Xcn0aaa2rLo",
+   "ok": true,
+   "publish_at": "2026-10-25T20:00:00Z",
+   "seconds": 517,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261025-kenneth-walker-tells-jalen-hurts-to-stay-positiv-075a67fb",
+    "tiktok": "queued for 2026-10-25T20:00:00Z"
+   }
+  },
+  {
+   "sub": "nfl",
+   "who": "Chris Olave",
+   "why": "Olave explains plainly why he wears a Guardian Cap, saying he does it for his kids and his future.",
+   "post_title": "[Highlight/Interview] WR Chris Olave has a message for those who may mock him for his usage of a Gaurdian Cap: \u201cI put it on for my kids, to protect my brain and my future\u201d.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xby31g/highlightinterview_wr_chris_olave_has_a_message/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xby31g/highlightinterview_wr_chris_olave_has_a_message",
+   "title": "Chris Olave On Wearing The Guardian Cap: 'Protect My Brain In The Future'",
+   "hook": "Olave on why he wears the cap",
+   "ledger": {
+    "moves": [
+     "zoom@3.3",
+     "zoom@21.3"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      540,
+      720,
+      190,
+      0
+     ]
+    }
+   },
+   "repairs": [
+    {
+     "score": 61,
+     "reason": "showrunner BLOCK: This is the right person saying the right thing, but it is 33s of one static presser shot that never shows the Guardian Cap and buries the quotable line, so a scrolling stranger has no reason to stay."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: A real, sympathetic quote, buried in a static presser that crops Olave at the frame edge, with a restreamed NBC segment in the middle and colliding captions.",
+    "score": 57
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: A real, sympathetic quote, buried in a static presser that crops Olave at the frame edge, with a restreamed NBC segment in the middle and colliding captions."
+  },
+  {
+   "sub": "sports",
+   "who": "Messi",
+   "why": "A guy walks off with a signed Messi jersey and captain's armband, and a stranger wants to see how.",
+   "post_title": "Guy in Paris steals a signed Messi jersey and captain's armband",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1x9frtz/guy_in_paris_steals_a_signed_messi_jersey_and/",
+   "topic": "https://www.reddit.com/r/sports/comments/1x9frtz/guy_in_paris_steals_a_signed_messi_jersey_and",
+   "skipped": "too short: the post runs 10.2s (< 15s)"
+  },
+  {
+   "sub": "hockey",
+   "who": "Hockey fans",
+   "why": "The whole arena chants 'Fuck your podcast' at someone, a crowd moment anyone gets right away.",
+   "post_title": "\"Fuck your podcast\" chants have broken out at the CTC",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xc6dug/fuck_your_podcast_chants_have_broken_out_at_the/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xc6dug/fuck_your_podcast_chants_have_broken_out_at_the",
+   "skipped": "too short: the post runs 11.0s (< 15s)"
+  },
+  {
+   "sub": "hockey",
+   "who": "Edmonton Oilers",
+   "why": "A hot mic catches something wild in the middle of the game.",
+   "post_title": "Wild hot mic in the Edmonton game",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xbckov/wild_hot_mic_in_the_edmonton_game/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xbckov/wild_hot_mic_in_the_edmonton_game",
+   "skipped": "too short: the post runs 10.5s (< 15s)"
+  }
+ ],
+ "already_today": 0,
+ "pool": 84,
+ "already_posted": 9,
+ "shipped": 2
+}
