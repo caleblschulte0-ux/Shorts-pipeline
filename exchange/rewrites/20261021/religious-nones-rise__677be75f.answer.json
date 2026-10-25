@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "religious-nones-rise__677be75f",
+  "slug": "religious-nones-rise",
+  "by": "chatgpt",
+  "written_at": "2026-10-25T12:32:00Z",
+  "title": "29% Of Americans Now Report No Religion",
+  "hook": "No religion grew from 8% to 29%.",
+  "closing": "The country's religious map is changing within a single generation.",
+  "question": "Has your community changed too?",
+  "segments": [
+    {
+      "topic": "Religion Since 1990",
+      "say": "In 1990, 8% of adults reported no religion. The unaffiliated share has climbed sharply since then."
+    },
+    {
+      "topic": "Religion By Generation",
+      "say": "Among millennials, 36% report no religion. The shift is strongest in younger generations."
+    },
+    {
+      "topic": "Religion Today",
+      "say": "Today, 28% identify as unaffiliated. That share now exceeds the Catholic share."
+    }
+  ]
+}
