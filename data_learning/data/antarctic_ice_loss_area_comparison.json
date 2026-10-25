@@ -1,0 +1,25 @@
+{
+  "key": "antarctic_ice_loss_area_comparison",
+  "title": "Antarctic sea ice missing vs. land area",
+  "unit": "million square kilometers",
+  "geography": "Antarctica / United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "Sea ice shortfall vs. US state land area",
+    "publisher": "NSIDC sea ice data; land area via U.S. Census Bureau",
+    "url": "https://nsidc.org",
+    "officiality": "secondary",
+    "access_date": "2026-10-25"
+  },
+  "notes": "Illustrative size comparison: the 2023 shortfall below the long-term February average, set beside the combined land area of Texas and California.",
+  "points": [
+    {
+      "label": "Missing vs. the long-term average",
+      "value": 1.3
+    },
+    {
+      "label": "Texas + California combined",
+      "value": 1.12
+    }
+  ]
+}

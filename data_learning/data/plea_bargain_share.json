@@ -1,0 +1,25 @@
+{
+  "key": "plea_bargain_share",
+  "title": "How federal convictions happen",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2022",
+  "source": {
+    "name": "Federal criminal case disposition data",
+    "publisher": "Administrative Office of the U.S. Courts / U.S. Sentencing Commission",
+    "url": "https://www.uscourts.gov",
+    "officiality": "secondary",
+    "access_date": "2026-10-25"
+  },
+  "notes": "Share of federal convictions obtained via guilty plea vs a trial verdict.",
+  "points": [
+    {
+      "label": "Convictions via guilty plea",
+      "value": 98
+    },
+    {
+      "label": "Convictions via trial verdict",
+      "value": 2
+    }
+  ]
+}

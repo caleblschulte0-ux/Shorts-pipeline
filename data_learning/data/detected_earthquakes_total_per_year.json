@@ -1,0 +1,25 @@
+{
+  "key": "detected_earthquakes_total_per_year",
+  "title": "Earthquakes located per year",
+  "unit": "earthquakes per year",
+  "geography": "Worldwide",
+  "time_coverage": "Early 1900s vs today",
+  "source": {
+    "name": "Earthquake Facts and Statistics",
+    "publisher": "U.S. Geological Survey",
+    "url": "https://www.usgs.gov",
+    "officiality": "official",
+    "access_date": "2026-10-25"
+  },
+  "notes": "USGS now locates roughly 20,000 earthquakes a year worldwide; a century ago only the largest, most strongly felt quakes were ever recorded.",
+  "points": [
+    {
+      "label": "Early 1900s (detectable only)",
+      "value": 100
+    },
+    {
+      "label": "Today (USGS NEIC catalog)",
+      "value": 20000
+    }
+  ]
+}

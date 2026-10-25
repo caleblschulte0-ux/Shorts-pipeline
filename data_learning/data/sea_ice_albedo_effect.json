@@ -1,0 +1,25 @@
+{
+  "key": "sea_ice_albedo_effect",
+  "title": "Sunlight reflected: sea ice vs. open ocean",
+  "unit": "percent",
+  "geography": "Polar regions",
+  "time_coverage": "general climate science",
+  "source": {
+    "name": "Polar albedo effect",
+    "publisher": "NASA / NSIDC climate science summaries",
+    "url": "https://www.nasa.gov",
+    "officiality": "secondary",
+    "access_date": "2026-10-25"
+  },
+  "notes": "Approximate share of incoming sunlight reflected by bright sea ice vs. absorbed by dark open ocean water.",
+  "points": [
+    {
+      "label": "Sunlight reflected by sea ice",
+      "value": 60
+    },
+    {
+      "label": "Sunlight reflected by open ocean",
+      "value": 10
+    }
+  ]
+}

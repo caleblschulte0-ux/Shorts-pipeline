@@ -1,0 +1,25 @@
+{
+  "key": "exonerees_who_pleaded_guilty",
+  "title": "Exonerated people who had pleaded guilty",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "Cumulative, National Registry of Exonerations",
+  "source": {
+    "name": "National Registry of Exonerations",
+    "publisher": "University of Michigan Law School",
+    "url": "https://www.law.umich.edu",
+    "officiality": "secondary",
+    "access_date": "2026-10-25"
+  },
+  "notes": "Share of people later proven innocent and exonerated who had pleaded guilty to the original charge.",
+  "points": [
+    {
+      "label": "Pleaded guilty despite innocence",
+      "value": 20
+    }
+  ],
+  "baseline": {
+    "label": "All exonerations",
+    "value": 100
+  }
+}

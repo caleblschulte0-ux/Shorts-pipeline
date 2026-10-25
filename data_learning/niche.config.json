@@ -35878,6 +35878,246 @@
      "say": "Only 32.4% of the people hospitalized with flu had actually gotten their flu shot earlier that same season."
     }
    ]
+  },
+  {
+   "slug": "deepfake-video-explosion",
+   "title": "Deepfake Videos Online Jumped Sixfold In Just 4 Years",
+   "hook": "You probably can't tell anymore. Nobody can.",
+   "closing": "So trust your eyes a little less than you used to.",
+   "question": "Could you spot a deepfake? Be honest below.",
+   "caption": "Deepfake videos online jumped from about 14,700 in 2019 to nearly 96,000 by 2023 — and most people can't reliably tell them apart from the real thing. Here's why that's about to get expensive. Could you spot a deepfake? Be honest below. 👇",
+   "hashtags": [
+    "deepfake",
+    "deepfakes",
+    "aifraud",
+    "generativeai",
+    "misinformation",
+    "cybersecurity",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "aisafety",
+    "onlinefraud",
+    "syntheticmedia",
+    "aiethics",
+    "scamalert",
+    "techfacts"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "deepfake_video_count_trend",
+     "params": {
+      "file": "deepfake_video_count_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE EXPLOSION",
+     "topic": "Deepfake videos found online",
+     "say": "In 2019, researchers found about 14,700 deepfake videos online. By 2023, that number hit nearly 96,000 — a sixfold jump in just 4 years."
+    },
+    {
+     "source": "offline",
+     "key": "deepfake_detection_accuracy",
+     "params": {
+      "file": "deepfake_detection_accuracy.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · WHY IT MATTERS",
+     "topic": "Spotting a deepfake video",
+     "say": "Humans catch a well-made deepfake barely better than a coin flip — about 55% of the time. That's the whole problem."
+    },
+    {
+     "source": "offline",
+     "key": "ai_fraud_losses_projection",
+     "params": {
+      "file": "ai_fraud_losses_projection.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE COST",
+     "topic": "Deepfake-driven fraud losses",
+     "say": "Generative-AI fraud cost the US $12.3 billion in 2023. Deloitte projects $40 billion by 2027 — deepfakes are the engine behind it."
+    }
+   ]
+  },
+  {
+   "slug": "earthquake-detection-illusion",
+   "title": "Magnitude 7+ Earthquakes Haven't Increased In Over 100 Years",
+   "hook": "It only feels like earthquakes are getting worse.",
+   "closing": "Turns out we just built really good ears.",
+   "question": "Ever actually felt an earthquake? Tell me below.",
+   "caption": "Magnitude 7+ earthquakes haven't gotten more common in over 100 years — USGS says that rate has barely moved. What exploded is our ability to detect every tremor, big or small. Have you ever felt an earthquake? Tell me below. 👇",
+   "hashtags": [
+    "earthquakes",
+    "usgs",
+    "seismology",
+    "earthquakefacts",
+    "geology",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "sciencefacts",
+    "naturalhazards",
+    "earthscience",
+    "seismograph",
+    "disasterprep",
+    "geofacts",
+    "naturaldisasters"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "seismic_station_count_trend",
+     "params": {
+      "file": "seismic_station_count_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · WATCHING FOR EARTHQUAKES",
+     "topic": "Watching for earthquakes worldwide",
+     "say": "In 1931, there were about 350 seismograph stations worldwide watching for earthquakes. Today there are more than 8,000."
+    },
+    {
+     "source": "offline",
+     "key": "m7_earthquake_rate_stable",
+     "params": {
+      "file": "m7_earthquake_rate_stable.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE BIG ONES, FLAT",
+     "topic": "How many big earthquakes happen a year",
+     "say": "The big ones — magnitude 7 or higher — haven't increased. USGS says that rate has held near 16 a year for a century."
+    },
+    {
+     "source": "offline",
+     "key": "detected_earthquakes_total_per_year",
+     "params": {
+      "file": "detected_earthquakes_total_per_year.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · MORE SENSORS, NOT MORE SHAKING",
+     "topic": "Earthquakes we can now detect",
+     "say": "What changed is detection, not danger: USGS now locates roughly 20,000 earthquakes a year, compared to maybe a few hundred a century ago."
+    }
+   ]
+  },
+  {
+   "slug": "jury-trial-collapse",
+   "title": "Fewer Than 2% Of Federal Criminal Cases Go To Trial",
+   "hook": "Your right to a jury trial basically doesn't happen anymore.",
+   "closing": "So 'see you in court' is mostly just a phrase now.",
+   "question": "Knew plea deals were this common? Tell below.",
+   "caption": "Fewer than 2% of federal criminal cases go to trial anymore — almost everyone pleads guilty instead. Some of them didn't actually do it. Did you know plea deals were this common? Tell me below. 👇",
+   "hashtags": [
+    "justicesystem",
+    "pleabargain",
+    "juryduty",
+    "criminaljustice",
+    "courts",
+    "law",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "legalfacts",
+    "usjustice",
+    "constitution",
+    "civilrights",
+    "courtsystem",
+    "lawfacts"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "jury_trial_rate_decline",
+     "params": {
+      "file": "jury_trial_rate_decline.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE DISAPPEARING TRIAL",
+     "topic": "Federal criminal cases going to trial",
+     "say": "In 1980, about 19% of federal criminal cases went to trial. By 2000 it was 6%. Today it's under 2%."
+    },
+    {
+     "source": "offline",
+     "key": "plea_bargain_share",
+     "params": {
+      "file": "plea_bargain_share.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · WHAT REPLACED IT",
+     "topic": "Guilty pleas vs criminal trial verdicts",
+     "say": "What replaced it is the plea bargain. Around 98% of federal convictions today come from a guilty plea, not a verdict."
+    },
+    {
+     "source": "offline",
+     "key": "exonerees_who_pleaded_guilty",
+     "params": {
+      "file": "exonerees_who_pleaded_guilty.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE COST",
+     "topic": "Innocent people who took a plea in criminal cases",
+     "say": "The catch: among people later proven innocent and exonerated, roughly 1 in 5 had pleaded guilty to a crime they never committed."
+    }
+   ]
+  },
+  {
+   "slug": "antarctic-sea-ice-record-low",
+   "title": "Antarctic Sea Ice Hit A Record Low In 2023",
+   "hook": "Antarctica broke a record nobody wanted broken.",
+   "closing": "Less ice means less sunlight bounced back into space.",
+   "question": "Surprised Antarctica keeps ice records too? Say below.",
+   "caption": "Antarctic sea ice hit its lowest level on record in 2023 — after decades of staying surprisingly stable while Arctic ice declined. Here's the physics behind why that matters. Surprised Antarctica keeps ice records too? Say below. 👇",
+   "hashtags": [
+    "antarctica",
+    "seaice",
+    "climatechange",
+    "nsidc",
+    "polar",
+    "climatedata",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "sciencefacts",
+    "globalwarming",
+    "polarice",
+    "climatescience",
+    "earthscience",
+    "climatefacts"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "antarctic_sea_ice_extent_trend",
+     "params": {
+      "file": "antarctic_sea_ice_extent_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE RECORD",
+     "topic": "Antarctic sea ice extent",
+     "say": "Antarctic sea ice used to average 3.1 million square kilometers each February. By 2023 it hit 1.79 — a new record low."
+    },
+    {
+     "source": "offline",
+     "key": "antarctic_ice_loss_area_comparison",
+     "params": {
+      "file": "antarctic_ice_loss_area_comparison.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE SCALE",
+     "topic": "How much Antarctic sea ice vanished",
+     "say": "That's about 1.3 million square kilometers missing — bigger than Texas and California combined, just gone from the map."
+    },
+    {
+     "source": "offline",
+     "key": "sea_ice_albedo_effect",
+     "params": {
+      "file": "sea_ice_albedo_effect.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · WHY IT MATTERS",
+     "topic": "Why Antarctic sea ice loss matters",
+     "say": "Sea ice bounces most sunlight back to space. Open ocean absorbs almost all of it — so losing ice warms the planet more."
+    }
+   ]
   }
  ],
  "videos": [

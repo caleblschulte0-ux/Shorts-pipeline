@@ -1,0 +1,32 @@
+{
+  "key": "jury_trial_rate_decline",
+  "title": "Federal criminal cases resolved by trial",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "1980-2022",
+  "source": {
+    "name": "Federal criminal case disposition data",
+    "publisher": "Administrative Office of the U.S. Courts / U.S. Sentencing Commission",
+    "url": "https://www.uscourts.gov",
+    "officiality": "secondary",
+    "access_date": "2026-10-25"
+  },
+  "notes": "Share of federal criminal defendants whose case was resolved by a jury or bench trial rather than a plea.",
+  "points": [
+    {
+      "label": "1980",
+      "value": 19,
+      "period": "1980"
+    },
+    {
+      "label": "2000",
+      "value": 6,
+      "period": "2000"
+    },
+    {
+      "label": "2022",
+      "value": 2,
+      "period": "2022"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "key": "antarctic_sea_ice_extent_trend",
+  "title": "Antarctic sea ice extent, February minimum",
+  "unit": "million square kilometers",
+  "geography": "Antarctica",
+  "time_coverage": "1981-2023",
+  "source": {
+    "name": "Sea Ice Index",
+    "publisher": "National Snow and Ice Data Center (NSIDC)",
+    "url": "https://nsidc.org",
+    "officiality": "official",
+    "access_date": "2026-10-25"
+  },
+  "notes": "February (summer minimum) Antarctic sea ice extent; 1981-2010 is the NSIDC climatological average.",
+  "points": [
+    {
+      "label": "1981-2010 average",
+      "value": 3.1,
+      "period": "1981-2010"
+    },
+    {
+      "label": "2022",
+      "value": 1.92,
+      "period": "2022"
+    },
+    {
+      "label": "2023 (record low)",
+      "value": 1.79,
+      "period": "2023"
+    }
+  ]
+}

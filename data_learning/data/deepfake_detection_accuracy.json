@@ -1,0 +1,25 @@
+{
+  "key": "deepfake_detection_accuracy",
+  "title": "Deepfake detection accuracy: human vs software",
+  "unit": "percent",
+  "geography": "Global",
+  "time_coverage": "2023-2024",
+  "source": {
+    "name": "Deepfake detection accuracy studies",
+    "publisher": "iProov Threat Intelligence",
+    "url": "https://www.iproov.com",
+    "officiality": "secondary",
+    "access_date": "2026-10-25"
+  },
+  "notes": "Human raters identifying well-made deepfakes vs purpose-built detection software in controlled studies.",
+  "points": [
+    {
+      "label": "Human detection accuracy",
+      "value": 55
+    },
+    {
+      "label": "Trained detection software",
+      "value": 87
+    }
+  ]
+}
