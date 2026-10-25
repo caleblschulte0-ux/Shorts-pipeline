@@ -1,0 +1,21 @@
+{
+ "slug": "body-renewal-clock",
+ "ts": "20261025T134828Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg3:end: the neuron's dendrite branches cross the subtitle 'about 80 years old', so the '80' is partly covered on a phone.",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg1:start to seg1:end shows the same stomach cut-away as the hook. The grey wall reaches Day 5 and then holds while Data stands next to it waving. The picture repeats what the hook already showed, with no new action.",
+  "root_cause": "Data was staged as a bystander to the renewal wipe instead of the agent driving it, and the beat reuses the hook's finished picture, so nothing new happens for about 4s.",
+  "repair_goal": "Make Data the cause: he rolls or scrubs the new pink lining across the stomach wall with a paint roller or mop, one stroke per day, ticking Day 1 to Day 5. In the same beat, show a slow tissue (bone or neuron) that is still untouched, so 'other tissues take far longer' is in the picture."
+ },
+ "scene_plan": {
+  "0": {
+   "viz": "bubbles",
+   "perf": "get_buried"
+  }
+ },
+ "scenes": []
+}

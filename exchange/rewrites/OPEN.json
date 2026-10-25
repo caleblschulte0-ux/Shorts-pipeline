@@ -1,7 +1,27 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-25T11:28:50Z",
+ "updated": "2026-10-25T13:48:15Z",
  "open": [
+  {
+   "id": "california-condor-comeback__ada5193e_r1",
+   "slug": "california-condor-comeback",
+   "filed": "2026-10-25T13:48:15Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation anchored to a single verifiable number."
+   ],
+   "request": "exchange/rewrites/20261025/california-condor-comeback__ada5193e_r1.request.json",
+   "answer_path": "exchange/rewrites/20261025/california-condor-comeback__ada5193e_r1.answer.json"
+  },
+  {
+   "id": "nyc-noise-complaints-per-day__7fcacd7a_r1",
+   "slug": "nyc-noise-complaints-per-day",
+   "filed": "2026-10-25T13:48:14Z",
+   "why": [
+    "premise: brain: It doesn't overturn a clear viewer expectation, merely reports a statistic."
+   ],
+   "request": "exchange/rewrites/20261025/nyc-noise-complaints-per-day__7fcacd7a_r1.request.json",
+   "answer_path": "exchange/rewrites/20261025/nyc-noise-complaints-per-day__7fcacd7a_r1.answer.json"
+  },
   {
    "id": "airline-pilot-shortage__6e694dae_r1",
    "slug": "airline-pilot-shortage",
@@ -15,7 +35,7 @@
   {
    "id": "ai-datacenter-water__c0cc9c1a_r2",
    "slug": "ai-datacenter-water",
-   "filed": "2026-10-25T11:24:08Z",
+   "filed": "2026-10-25T11:26:13Z",
    "why": [
     "premise: no consequential number in the title or hook"
    ],
@@ -51,16 +71,6 @@
    ],
    "request": "exchange/rewrites/20261024/dog-breed-popularity-flip__8740e2a9_r2.request.json",
    "answer_path": "exchange/rewrites/20261024/dog-breed-popularity-flip__8740e2a9_r2.answer.json"
-  },
-  {
-   "id": "nyc-noise-complaints-per-day__7fcacd7a_r1",
-   "slug": "nyc-noise-complaints-per-day",
-   "filed": "2026-10-24T11:23:40Z",
-   "why": [
-    "premise: brain: It does not clearly overturn a common viewer expectation, only presents a surprising statistic."
-   ],
-   "request": "exchange/rewrites/20261024/nyc-noise-complaints-per-day__7fcacd7a_r1.request.json",
-   "answer_path": "exchange/rewrites/20261024/nyc-noise-complaints-per-day__7fcacd7a_r1.answer.json"
   },
   {
    "id": "coldest-place-in-the-universe-is-human-made__81f94a66_r1",

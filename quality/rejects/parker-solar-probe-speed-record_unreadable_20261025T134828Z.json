@@ -1,0 +1,16 @@
+{
+ "slug": "parker-solar-probe-speed-record",
+ "ts": "20261025T134828Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg0:end and seg0:mid the small white subtitle 'the fastest thing ever built \u00b7 nobody aboard' is crossed by the probe's solar panel over a bright sky. At seg2:end the '430,000 mph' headline runs into the probe's panel, and at seg2:mid the dish sits on top of '24,791 mph'.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void_end_card",
+  "visible_evidence": "The closing (seg4:start to seg4:end) is a dense six-line text block over a probe tilting past an empty seat, while Data stands at a lever doing nothing. The video then cuts to a near-black void with Data holding a blank price tag (payoff@-0.4).",
+  "root_cause": "A generic fallback end card with a default blank price-tag prop is appended after the closing scene. The closing scene also has no bit for Data, and its payoff is carried by a text dump, not the picture.",
+  "repair_goal": "Remove the dark price-tag end card and let the closing picture hold to the last frame. Make Data the cause: he pulls the lever and the empty-seat probe blasts off, he is left on the ground looking up, and the empty seat is the payoff. Cut the on-screen closing text to one short line so the picture is readable."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

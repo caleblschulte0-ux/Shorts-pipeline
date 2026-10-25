@@ -1,0 +1,16 @@
+{
+ "slug": "parker-solar-probe-speed-record",
+ "ts": "20261025T134828Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data stands beside a console in the hook (hook@0.8 to seg0:end) and just perches on the probe in seg1:mid. In seg2:mid he stands still next to a plunger box. In seg3:mid he waves under a stopwatch floating over his head. He never causes the motion: the probe flies, the plume grows",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void_end_card",
+  "visible_evidence": "The closing (seg4:start to seg4:end) is a dense six-line text block over a probe tilting past an empty seat, while Data stands at a lever doing nothing. The video then cuts to a near-black void with Data holding a blank price tag (payoff@-0.4).",
+  "root_cause": "A generic fallback end card with a default blank price-tag prop is appended after the closing scene. The closing scene also has no bit for Data, and its payoff is carried by a text dump, not the picture.",
+  "repair_goal": "Remove the dark price-tag end card and let the closing picture hold to the last frame. Make Data the cause: he pulls the lever and the empty-seat probe blasts off, he is left on the ground looking up, and the empty seat is the payoff. Cut the on-screen closing text to one short line so the picture is readable."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

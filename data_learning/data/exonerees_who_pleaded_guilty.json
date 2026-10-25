@@ -14,12 +14,12 @@
   "notes": "Share of people later proven innocent and exonerated who had pleaded guilty to the original charge.",
   "points": [
     {
+      "label": "All exonerations",
+      "value": 100
+    },
+    {
       "label": "Pleaded guilty despite innocence",
       "value": 20
     }
-  ],
-  "baseline": {
-    "label": "All exonerations",
-    "value": 100
-  }
+  ]
 }

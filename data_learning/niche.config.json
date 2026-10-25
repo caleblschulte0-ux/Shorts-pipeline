@@ -20812,10 +20812,10 @@
   },
   {
    "slug": "activity-inequality-steps",
-   "title": "43% Of The Walking Gap Comes From Gender",
-   "hook": "Gender explains 43% of the world's walking inequality.",
-   "closing": "Health improves when cities make everyday walking practical for everyone, not merely the already active.",
-   "question": "How walkable is your neighborhood?",
+   "title": "It's Not How Much You Walk. It's How Unequal It Is.",
+   "hook": "The countries where only some people walk are the ones getting fat.",
+   "closing": "It's not the steps. It's the gap.",
+   "question": "How many steps do you walk daily?",
    "caption": "Hong Kong walks 6,880 steps a day. Indonesia walks 3,513. But the real predictor of obesity isn't the average — it's the GAP between a country's most and least active people, and it makes obesity almost 200% more likely. How many steps do you actually walk a day? 👇",
    "hashtags": [
     "activityinequality",
@@ -20845,8 +20845,8 @@
      "ascending": false,
      "use_baseline": true,
      "role": "1 · THE STEPS",
-     "topic": "Walking Averages",
-     "say": "Hong Kong averages 6,880 daily steps. Where people live can shape movement before motivation enters the picture.",
+     "topic": "How much we walk",
+     "say": "In Hong Kong people walk about 6,880 steps a day; in Indonesia, barely half that.",
      "scene": {
       "mechanic": "footprint-trail-row",
       "concept": "a dotted footprint trail walks out from each country's name, longer trails for higher daily step counts, Hong Kong's trail nearly crossing the frame while Indonesia's stops short",
@@ -20863,8 +20863,8 @@
      "insight_type": "comparison",
      "use_baseline": true,
      "role": "2 · THE REAL PREDICTOR",
-     "topic": "Walking Inequality",
-     "say": "High-inequality countries score 297 on obesity likelihood. Unequal movement tracks a much larger health burden.",
+     "topic": "How unequal activity is",
+     "say": "Countries where activity is most unequal are nearly three times as likely to be obese.",
      "scene": {
       "mechanic": "risk-scale-tilt",
       "concept": "a balance beam tilts as reveal builds, a fit-silhouette icon on the low-inequality side stays level while an overweight-silhouette icon on the high-inequality side sinks toward the 297 risk index",
@@ -20879,8 +20879,8 @@
      },
      "insight_type": "share",
      "role": "3 · WHY THE GAP",
-     "topic": "Walking Gender Gap",
-     "say": "Gender explains 43 percent of activity inequality. Women walking less drives nearly half the global gap.",
+     "topic": "Why it's so unequal",
+     "say": "Women walk fewer steps than men almost everywhere, and that explains 43 percent of the gap.",
      "scene": {
       "mechanic": "step-gap-scale",
       "concept": "a male and female walking-silhouette pair stand side by side, a red band rising up both figures to the 43% line that marks how much of the activity gap the gender difference alone explains",
@@ -20888,8 +20888,8 @@
      }
     }
    ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-25T11:28:49Z",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-09T11:15:49Z",
    "hook_was": "Your steps won't stop obesity; this gap makes it almost 200 percent likelier.",
    "retold": "retell/v1"
   },
@@ -21128,10 +21128,10 @@
   },
   {
    "slug": "plastic-in-your-body",
-   "title": "Brain Plastic Rose To 4,900 Micrograms Per Gram",
-   "hook": "Human brain plastic reached 4,900 micrograms per gram.",
-   "closing": "Plastic exposure is no longer only environmental; researchers are measuring it inside the body.",
-   "question": "Should plastic exposure be tracked?",
+   "title": "Your Brain Is Quietly Filling With Plastic",
+   "hook": "Your brain is quietly filling with plastic, and it might already be too late.",
+   "closing": "Plastic you can't see is inside us now, and it may be hurting our hearts.",
+   "question": "Does this freak you out too?",
    "caption": "Scientists found nanoplastics in human brain tissue — the amount jumped 50% between 2016 and 2024. It's not just your brain: it's in your blood, your placenta, even your arteries. Does this freak you out? 👇",
    "hashtags": [
     "microplastics",
@@ -21158,8 +21158,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE BUILDUP",
-     "topic": "Brain Plastic",
-     "say": "Brain tissue reached 4,900 micrograms of plastic per gram. The measured concentration rose sharply in eight years.",
+     "topic": "Plastic in brain tissue",
+     "say": "Plastic in human brain tissue jumped by about half in eight years. Whatever we're breathing and eating, it's getting in, and fast.",
      "scene": {
       "mechanic": "brain-speckle-accumulate",
       "concept": "a real brain cut-out speckles with plastic-particle dots that multiply from the 2016 density to the 2024 density, denser and more saturated as reveal advances",
@@ -21176,8 +21176,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · NOT JUST YOUR BRAIN",
-     "topic": "Body Plastic",
-     "say": "Microplastics appeared in 100 percent of tested placentas. Exposure is crossing into tissue that supports new life.",
+     "topic": "Plastic in the body",
+     "say": "Plastic showed up in every placenta tested, and in most donors' blood. It isn't staying outside us.",
      "scene": {
       "mechanic": "body-site-fill-trio",
       "concept": "three real body-part cut-outs (placenta, blood drop, artery) each fill bottom-up to the percent of tested samples where plastic was found — placenta nearly full, artery about half",
@@ -21193,8 +21193,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · WHY IT MATTERS",
-     "topic": "Heart Plastic",
-     "say": "Plaque containing microplastics carried a 4.5 risk index. The association makes internal exposure a health question.",
+     "topic": "Plastic raises heart risk",
+     "say": "Plastic in artery plaque went with over four times the risk of heart attack, stroke or death. A link, not proven cause.",
      "scene": {
       "mechanic": "heartbeat-risk-duel",
       "concept": "two heart cut-outs pulse on an ECG baseline; the clean heart beats calmly at 1x, the plastic-laden heart pulses violently to 4.5x with a spiking red line",
@@ -21202,8 +21202,8 @@
      }
     }
    ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-25T11:28:50Z",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-11T15:04:50Z",
    "retold": "retell/v3",
    "hook_was": "Your brain now holds 4,900 micrograms of plastic per gram."
   },
@@ -21280,10 +21280,10 @@
   },
   {
    "slug": "highest-point-illusion",
-   "title": "10,211 Meters Proves Everest Is Not Always Highest",
-   "hook": "At 10,211 meters, another mountain can beat Everest.",
-   "closing": "Records depend on where measurement begins, so the starting line can decide the winner.",
-   "question": "Which definition of highest wins?",
+   "title": "Everest Isn't the Highest Point on Earth",
+   "hook": "Everest has been getting credit that belongs to two other mountains.",
+   "closing": "Highest depends on where you start measuring, so check the starting line before you trust a record.",
+   "question": "Which mountain is the real winner?",
    "caption": "Everest is 8,849 meters above sea level - and still loses twice. Mauna Kea is 10,211 meters from its base on the Pacific floor, and because Earth bulges 21 kilometers at the equator, Chimborazo's summit sits about 2 kilometers farther from the planet's center than Everest's does. Highest, tallest and farthest are three different questions. Which one counts? 👇",
    "hashtags": [
     "everest",
@@ -21312,8 +21312,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "1 · THE LEADERBOARD",
-     "topic": "Highest Above Sea",
-     "say": "Everest reaches 8,849 meters above sea level. That starting line gives it the familiar record.",
+     "topic": "Highest above sea level",
+     "say": "Everest, at 8,849 meters, tops every list because we measure from sea level. Change the starting line, and the winner changes.",
      "scene": {
       "mechanic": "summit-skyline-ascent",
       "concept": "Five real snow-capped summits rise in a row from one sea-level baseline, each column landing in order, Everest tallest and glowing - a skyline so close together it needs a zoomed baseline to even show the gaps.",
@@ -21329,8 +21329,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · FROM THE BOTTOM",
-     "topic": "Highest From Base",
-     "say": "Mauna Kea measures 10,211 meters from its base. Most of its height stays hidden underwater.",
+     "topic": "Highest from its base",
+     "say": "Measured from the seafloor, Mauna Kea is 10,211 meters tall. Most of it hides underwater, so sea level hides its true size.",
      "scene": {
       "mechanic": "ocean-drains-to-reveal",
       "concept": "The real mountain photo starts mostly underwater, at today's true waterline - only its snowy tip showing, exactly like Mauna Kea now. The ocean drains away through the beat, exposing more and more of the SAME photo, and the exposed height counts up to the full 10,211m. Everest's summit is a single fixed mark on that same rock, so the punchline is one picture: the water it takes to hide a taller mountain.",
@@ -21346,8 +21346,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE REAL WINNER",
-     "topic": "Highest From Center",
-     "say": "Chimborazo extends 13.4 kilometers beyond a round Earth. The planet's bulge changes which summit reaches farthest.",
+     "topic": "Highest from Earth's center",
+     "say": "Measure from Earth's center, and Chimborazo sticks out 13.4 kilometers past a round Earth, farther than Everest. Same mountains, different winner.",
      "scene": {
       "mechanic": "sphere-bulge-radial",
       "concept": "Earth drawn as a circle standing in for a perfect sphere, dashed all the way round. Two radius lines shoot out from the center past that dashed line to each summit's real photo - Chimborazo's line overshoots farther because it rides the equatorial bulge, even though its column onscreen a beat ago was shorter than Everest's. A pulse travels each line so the overshoot keeps reading as distance, not a static ruler.",
@@ -21355,8 +21355,8 @@
      }
     }
    ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-25T11:28:49Z",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-12T19:58:48Z",
    "retold": "retell/v3",
    "hook_was": "Your 8,849-meter Everest champion just got dethroned. Twice."
   },
@@ -23294,7 +23294,7 @@
   {
    "slug": "parker-solar-probe-speed-record",
    "title": "Parker Solar Probe Hit 430,000 MPH Without Carrying A Human",
-   "hook": "The fastest thing humans ever built is racing toward the sun with nobody aboard.",
+   "hook": "We sent a robot into the sun's fire, and it's outrunning anything a human could survive.",
    "closing": "The fastest machine carries nobody, so its record shows engineering, not a speed any person has felt.",
    "question": "What would you explore with this speed?",
    "caption": "In December 2024, Parker Solar Probe hit 430,000 miles per hour -- 17x faster than Apollo 10, the fastest speed any human has ever personally traveled. At that speed you could fly New York to Tokyo in 56 seconds. Would you ride it? 👇",
@@ -23376,7 +23376,9 @@
    "hook_was": "We built something that hits 430 thousand miles an hour.",
    "retold": "retell/v2",
    "hook_scene": "# scene standard: 2026-10-22\ndef _hk_probe(cr, x, y, s, ang, t, burn):\n    # the probe in its own frame: +x points at the Sun, the shield leads\n    cr.save()\n    cr.translate(x, y)\n    cr.rotate(ang)\n    cr.scale(s, s)\n    # the engine's fire: it is already burning in frame one, and roars when\n    # the throttle goes down\n    L = (220 + 760 * burn) * (1.0 + 0.03 * math.sin(t * 3.0))\n    wd = 34 + 40 * burn\n    g = cairo.LinearGradient(-182, 0, -182 - L, 0)\n    g.add_color_stop_rgba(0, 1.0, 0.97, 0.82, 1.0)\n    g.add_color_stop_rgba(0.18, 1.0, 0.78, 0.32, 0.95)\n    g.add_color_stop_rgba(0.55, 0.98, 0.45, 0.12, 0.7)\n    g.add_color_stop_rgba(1, 0.85, 0.22, 0.06, 0.0)\n    cr.move_to(-182, -wd)\n    cr.curve_to(-300, -wd - 14, -182 - L * 0.6, -wd * 0.5, -182 - L, 0)\n    cr.curve_to(-182 - L * 0.6, wd * 0.5, -300, wd + 14, -182, wd)\n    cr.close_path()\n    cr.set_source(g)\n    cr.fill()\n    # the white-hot core of the flame\n    cr.move_to(-182, -wd * 0.4)\n    cr.curve_to(-240, -wd * 0.45, -182 - L * 0.35, -6, -182 - L * 0.45, 0)\n    cr.curve_to(-182 - L * 0.35, 6, -240, wd * 0.45, -182, wd * 0.4)\n    cr.close_path()\n    cr.set_source_rgba(*_c((255, 250, 230), 0.85))\n    cr.fill()\n    glow(cr, -190, 0, 90 + 90 * burn, (255, 214, 140), 0.55 + 0.4 * burn)\n    # the nozzle\n    cr.move_to(-150, -22)\n    cr.line_to(-186, -38)\n    cr.line_to(-186, 38)\n    cr.line_to(-150, 22)\n    cr.close_path()\n    solid(cr, (90, 90, 98), finish=\"metal\")\n    # solar wings, folded back behind the shield\n    for sy in (-1, 1):\n        cr.move_to(-120, sy * 40)\n        cr.line_to(-40, sy * 40)\n        cr.line_to(-70, sy * 160)\n        cr.line_to(-150, sy * 160)\n        cr.close_path()\n        solid(cr, (36, 58, 120), finish=\"glass\")\n        cr.set_source_rgba(*_c((150, 180, 230), 0.75))\n        cr.set_line_width(3)\n        for i in range(1, 5):\n            yy = sy * (40 + 24 * i)\n            cr.move_to(-120 - 30 * i / 5, yy)\n            cr.line_to(-40 - 30 * i / 5, yy)\n        cr.move_to(-95, sy * 40)\n        cr.line_to(-110, sy * 160)\n        cr.stroke()\n    # the body: a gold-foil box, crinkled\n    cr.rectangle(-150, -52, 140, 104)\n    solid(cr, (214, 168, 70), finish=\"metal\")\n    cr.set_source_rgba(*_c((150, 110, 40), 0.5))\n    cr.set_line_width(2)\n    for i in range(5):\n        cr.move_to(-145 + i * 28, -48)\n        cr.line_to(-130 + i * 26, 48)\n    cr.stroke()\n    cr.rectangle(-150, -52, 140, 104)\n    cr.set_source_rgba(*_c((110, 78, 28), 0.7))\n    cr.set_line_width(3)\n    cr.stroke()\n    # the antenna dish on its flank\n    cr.save()\n    cr.translate(-80, -62)\n    cr.scale(1.0, 0.4)\n    cr.arc(0, 0, 26, math.pi, 2 * math.pi)\n    cr.restore()\n    solid(cr, (226, 226, 220), finish=\"gloss\")\n    # struts to the shield\n    cr.set_source_rgba(*_c((70, 70, 78)))\n    cr.set_line_width(7)\n    for sy in (-1, 1):\n        cr.move_to(-10, sy * 40)\n        cr.line_to(30, sy * 120)\n    cr.stroke()\n    # the white heat shield, glowing on its sunward face\n    cr.save()\n    cr.translate(46, 0)\n    cr.scale(0.28, 1.0)\n    cr.arc(0, 0, 175, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (240, 238, 232), finish=\"gloss\")\n    glow(cr, 74, 0, 170, (255, 170, 70), 0.35 + 0.45 * burn)\n    cr.save()\n    cr.translate(62, 0)\n    cr.scale(0.12, 1.0)\n    cr.arc(0, 0, 165, -1.2, 1.2)\n    cr.restore()\n    cr.set_source_rgba(*_c((255, 196, 110), 0.9))\n    cr.set_line_width(6)\n    cr.stroke()\n    cr.restore()\n\n\ndef _hk_sun(cr, x, y, r, t, heat):\n    # the Sun, unmistakably: a blazing corona, a white-hot core, flare loops\n    glow(cr, x, y, r * 2.6, P[\"sun_glow\"], 0.85)\n    cr.save()\n    cr.translate(x, y)\n    cr.rotate(t * 0.04)\n    for i in range(18):\n        a = i * 2 * math.pi / 18\n        ln = r * (1.32 + 0.12 * (i % 3))\n        cr.move_to(r * 0.9 * math.cos(a - 0.09), r * 0.9 * math.sin(a - 0.09))\n        cr.line_to(ln * math.cos(a), ln * math.sin(a))\n        cr.line_to(r * 0.9 * math.cos(a + 0.09), r * 0.9 * math.sin(a + 0.09))\n        cr.close_path()\n    cr.set_source_rgba(*_c((255, 214, 120), 0.35))\n    cr.fill()\n    cr.restore()\n    disc(cr, x, y, r, (255, 170, 60), finish=\"gloss\")\n    glow(cr, x - r * 0.1, y - r * 0.1, r * 0.95, (255, 236, 170), 0.85)\n    glow(cr, x - r * 0.1, y - r * 0.1, r * 0.5, (255, 252, 236), 0.9)\n    # two flare loops arching off the limb\n    cr.set_line_width(10)\n    for a0, sz in ((3.6, 0.32), (4.5, 0.24)):\n        cx = x + r * math.cos(a0)\n        cy = y + r * math.sin(a0)\n        cr.arc(cx, cy, r * sz, a0 - 1.4, a0 + 1.4)\n        cr.set_source_rgba(*_c((255, 120, 40), 0.75 * heat + 0.2))\n        cr.stroke()\n\n\ndef _hk_cactus(cr, x, base, s):\n    contact_shadow(cr, x + 17 * s, base + 2, 90 * s, a=0.35)\n    cylinder(cr, x, base, 34 * s, 190 * s, (74, 122, 72))\n    cylinder(cr, x - 30 * s, base - 70 * s, 22 * s, 70 * s, (74, 122, 72))\n    box(cr, x - 30 * s, base - 70 * s, 34 * s, 16 * s, (74, 122, 72), depth=4 * s)\n    cylinder(cr, x + 40 * s, base - 95 * s, 22 * s, 60 * s, (74, 122, 72))\n    box(cr, x + 30 * s, base - 95 * s, 26 * s, 16 * s, (74, 122, 72), depth=4 * s)\n\n\ndef _hk_console(cr, x, base, glow_a):\n    # the mission console the probe is flown from: nobody is aboard it\n    contact_shadow(cr, x + 130, base + 2, 320, a=0.45)\n    box(cr, x, base, 260, 100, (64, 68, 80), finish=\"metal\")\n    cr.rectangle(x + 70, base - 88, 160, 50)\n    solid(cr, (16, 26, 40), finish=\"glass\", rim=False)\n    glow(cr, x + 150, base - 63, 80, (120, 200, 255), 0.35 + 0.45 * glow_a)\n    # the probe's track on the screen, a line climbing to the Sun\n    cr.set_source_rgba(*_c((140, 230, 255), 0.9))\n    cr.set_line_width(3)\n    cr.move_to(x + 82, base - 46)\n    cr.curve_to(x + 130, base - 50, x + 170, base - 70, x + 218, base - 80)\n    cr.stroke()\n    disc(cr, x + 218, base - 80, 7, (255, 200, 90), finish=\"gloss\")\n    for i in range(4):\n        disc(cr, x + 90 + i * 40, base - 20, 8,\n             (255, 120, 60) if i == 1 and glow_a > 0.5 else (90, 200, 120), finish=\"gloss\")\n\n\ndef _hk_dish(cr, x, base, aim):\n    # the tracking dish on the ground, following the probe\n    contact_shadow(cr, x, base + 2, 170, a=0.4)\n    cast_shadow(cr, x - 40, x + 40, base, length=180, a=0.25)\n    cylinder(cr, x - 14, base, 28, 150, (196, 196, 200), finish=\"metal\")\n    cr.save()\n    cr.translate(x, base - 170)\n    cr.rotate(aim)\n    cr.scale(0.42, 1.0)\n    cr.arc(0, 0, 95, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (232, 232, 228), finish=\"gloss\")\n    cr.set_source_rgba(*_c((80, 80, 88)))\n    cr.set_line_width(5)\n    cr.move_to(x, base - 170)\n    cr.line_to(x + 70 * math.cos(aim + math.pi), base - 170 + 70 * math.sin(aim + math.pi))\n    cr.stroke()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a spacecraft diving into the Sun\n    SUBSTANCE: its engine's fire\n    CAUSE: Data pulls the throttle lever down on the ground console and the probe's engine fires, its flame stretching as it races at the Sun\n    The hook: frame one is already mid-dive. The probe, big in the sky,\n    burns toward a blazing Sun low over an Earth desert of cactus and mesas.\n    Data, at the mission console beside the tracking dish, hauls its\n    throttle lever down with both hands: the engine roars, the flame\n    stretches across the sky, and the probe tears in at the Sun as it\n    swells. He flies it from the ground. Nobody is aboard.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    top = max(v for _, v in rows)\n\n    # the throttle: down fast, held while the engine burns, back up\n    p = lever_pull(u, on=(0.1, 0.2), off=(0.84, 0.95))\n    burn = 0.25 + 0.75 * p\n\n    # an Earth sky at dawn: deep blue overhead into a burning horizon\n    vgrad(cr, [(0, (22, 30, 70)), (0.4, (70, 60, 110)), (0.75, (226, 120, 72)),\n               (1, (252, 196, 120))], 0, 1220)\n    grow = ease(seg(u, 0.05, 0.7))\n    SX, SY = 860, 900\n    SR = 210 + 110 * grow\n    _hk_sun(cr, SX, SY, SR, t, burn)\n    # far mesas under haze, then the sand\n    ridge(cr, 1150, 110, seed=1.3, n=4)\n    solid(cr, (120, 92, 120), edge=False)\n    ridge(cr, 1205, 60, seed=4.1, n=6)\n    solid(cr, (168, 120, 104), edge=False)\n    haze(cr, 1020, 1215, (240, 170, 120), a=0.5)\n    vgrad(cr, [(0, (222, 186, 136)), (1, (176, 140, 98))], 1200, H)\n    # a dirt road out to the console\n    cr.move_to(470, 1230)\n    cr.curve_to(460, 1400, 300, 1700, 160, H)\n    cr.line_to(660, H)\n    cr.curve_to(640, 1700, 600, 1400, 520, 1230)\n    cr.close_path()\n    solid(cr, (196, 160, 112), edge=False)\n    _hk_cactus(cr, 120, 1300, 0.7)\n    _hk_cactus(cr, 930, 1290, 0.55)\n\n    # the probe: already burning at frame one, racing once the throttle is down\n    drift = 70 * seg(u, 0.0, 0.15)\n    m = ease(seg(u, 0.14, 0.75))\n    px = 200 + drift + 320 * m + 50 * seg(u, 0.75, 1.0)\n    py = 1000 - 25 * seg(u, 0.0, 0.15) - 140 * m - 25 * seg(u, 0.75, 1.0)\n    ang = math.atan2(SY - py, SX - px)\n    _hk_probe(cr, px, py, 1.4 + 0.25 * m, ang, t, burn)\n\n    # the tracking dish, following the probe across the sky\n    _hk_dish(cr, 830, 1460, math.atan2(py - 1290, px - 830))\n\n    # the console and its lever, low enough that the handle sits at his chest\n    CX, CB = 460, 1480\n    _hk_console(cr, CX, CB, p)\n    hands = lever(cr, CX + 20, CB - 95, p, length=80, knob=(200, 40, 34))\n\n    # right by the camera: desert rocks and a cactus\n    for rx, ry, rr in [(90, 1730, 70), (980, 1700, 80)]:\n        contact_shadow(cr, rx, ry + rr * 0.5, rr * 2.4, a=0.4)\n        disc(cr, rx, ry, rr, (150, 108, 78))\n    _hk_cactus(cr, 760, 1900, 1.5)\n    foreground(cr, \"desert\")\n    vignette(cr, a=0.28)\n\n    # Data runs to the console, hauls the lever down, then reacts\n    gx, fy, hh = 420, 1480, 220\n    if u < 0.1:\n        rx = 200 + (gx - 200) * ease(seg(u, 0.0, 0.1))\n        host(\"point\", rx, fy, hh)\n    elif u < 0.95:\n        host(\"grip\", gx, fy, hh, hands=hands, lower=\"brace\", expr=\"strain\")\n    else:\n        host(\"shock\", gx, fy, hh)\n\n    fit_readout(cr, f\"{int(round(top)):,} mph\", \"the fastest thing ever built · nobody aboard\",\n                80, 520, a=ease(seg(u, 0.0, 0.08)), size=130)\n",
-   "hook_data": 0
+   "hook_data": 0,
+   "closing_scene": "# scene standard: 2026-10-22\ndef _pk_probe(cr, s, heat):\n    # Parker, drawn about its own origin (the caller turns it toward the Sun):\n    # a big white heat shield on top, a gold body, two blue solar wings, and\n    # a cockpit window with an empty seat in it\n    for side in (-1, 1):\n        cr.move_to(side * 40 * s, 40 * s)\n        cr.line_to(side * 120 * s, 54 * s)\n        cr.line_to(side * 120 * s, 92 * s)\n        cr.line_to(side * 40 * s, 82 * s)\n        cr.close_path()\n        solid(cr, (40, 62, 118), finish=\"glass\")\n    box(cr, -46 * s, 132 * s, 92 * s, 112 * s, (206, 168, 84), finish=\"metal\")\n    cr.set_source_rgba(*_c((70, 70, 76)))\n    cr.set_line_width(max(2.0, 4 * s))\n    for dx in (-26, -9, 9, 26):\n        cr.move_to(dx * s, 22 * s)\n        cr.line_to(dx * 2.4 * s, -18 * s)\n    cr.stroke()\n    for dy, rgb, fin in ((8, (120, 120, 128), \"matte\"), (0, (244, 244, 238), \"gloss\")):\n        cr.save()\n        cr.translate(0, -28 * s + dy * s)\n        cr.scale(1, 0.3)\n        cr.arc(0, 0, 108 * s, 0, 2 * math.pi)\n        cr.restore()\n        solid(cr, rgb, finish=fin)\n    if heat > 0:\n        # the shield takes the Sun's heat and glows white-hot on its face\n        cr.save()\n        cr.translate(0, -30 * s)\n        cr.scale(1, 0.3)\n        cr.arc(0, 0, 104 * s, 0, 2 * math.pi)\n        cr.restore()\n        cr.set_source_rgba(*_c((255, 170, 70), 0.55 * heat))\n        cr.fill()\n        glow(cr, 0, -40 * s, 130 * s, (255, 214, 140), 0.7 * heat)\n    # the cockpit window, lit inside: a crew seat with nobody in it\n    wx, wy, wr = -4 * s, 76 * s, 34 * s\n    cr.arc(wx, wy, wr, 0, 2 * math.pi)\n    solid(cr, (34, 40, 54), finish=\"glass\")\n    glow(cr, wx, wy + 6 * s, wr * 1.1, (255, 226, 170), 0.5)\n    cr.save()\n    cr.arc(wx, wy, wr - 3 * s, 0, 2 * math.pi)\n    cr.clip()\n    _pk_seat(cr, wx, wy + 4 * s, 0.55 * s)\n    cr.restore()\n    cr.set_source_rgba(*_c((232, 234, 236)))\n    cr.set_line_width(max(3.0, 6 * s))\n    cr.arc(wx, wy, wr, 0, 2 * math.pi)\n    cr.stroke()\n\n\ndef _pk_flame(cr, s, L, t):\n    # the fire streaming back from its tail, white core to orange\n    y0 = 132 * s\n    if L < 4:\n        return\n    for w, k, c0, c1 in ((70, 1.0, (255, 150, 50), (230, 70, 30)),\n                         (44, 0.72, (255, 210, 110), (255, 130, 40)),\n                         (20, 0.42, (255, 246, 214), (255, 200, 100))):\n        ww = w * s * (1.0 + 0.06 * math.sin(t * 7 + k * 3))\n        ll = L * k\n        cr.move_to(-ww, y0)\n        cr.curve_to(-ww * 1.2, y0 + ll * 0.3, -ww * 0.35, y0 + ll * 0.7, 0, y0 + ll)\n        cr.curve_to(ww * 0.35, y0 + ll * 0.7, ww * 1.2, y0 + ll * 0.3, ww, y0)\n        cr.close_path()\n        g = cairo.LinearGradient(0, y0, 0, y0 + ll)\n        g.add_color_stop_rgba(0, c0[0] / 255, c0[1] / 255, c0[2] / 255, 1.0)\n        g.add_color_stop_rgba(0.6, c1[0] / 255, c1[1] / 255, c1[2] / 255, 0.85)\n        g.add_color_stop_rgba(1, c1[0] / 255, c1[1] / 255, c1[2] / 255, 0.0)\n        cr.set_source(g)\n        cr.fill()\n\n\ndef _pk_seat(cr, x, y, s=1.0):\n    # an astronaut's seat: a red bucket back, a headrest, a cushion, the\n    # harness straps hanging empty\n    cr.rectangle(x - 14 * s, y - 52 * s, 28 * s, 16 * s)\n    solid(cr, (150, 38, 34))\n    cr.move_to(x - 24 * s, y + 22 * s)\n    cr.line_to(x - 24 * s, y - 28 * s)\n    cr.curve_to(x - 24 * s, y - 44 * s, x + 24 * s, y - 44 * s, x + 24 * s, y - 28 * s)\n    cr.line_to(x + 24 * s, y + 22 * s)\n    cr.close_path()\n    solid(cr, (196, 52, 46))\n    box(cr, x - 30 * s, y + 36 * s, 60 * s, 16 * s, (160, 40, 36), depth=10 * s)\n    cr.set_source_rgba(*_c((214, 214, 220)))\n    cr.set_line_width(max(2.0, 4 * s))\n    for sd in (-1, 1):\n        cr.move_to(x + sd * 12 * s, y - 34 * s)\n        cr.curve_to(x + sd * 10 * s, y - 8 * s, x + sd * 4 * s, y + 6 * s, x + sd * 6 * s, y + 16 * s)\n    cr.stroke()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: an empty space probe diving at the Sun\n    SUBSTANCE: its rocket fire\n    CAUSE: Data turns the fuel valve's wheel open and the fire it feeds lifts the empty probe off its pad at the Sun\n    The closing, back in the desert the story opened in, at sundown with the\n    Sun huge and low. Parker stands on its launch stand, its cockpit window\n    lit on a crew seat with nobody in it, a fuel line running from the\n    stand to a valve by the pad. Data walks up to the valve and turns its\n    wheel open with both hands: fuel pulses down the line, the engine\n    lights, and the fire lifts the probe off the pad and turns its white\n    shield to the Sun, glowing white-hot as it dives. Landed by 0.55; he\n    holds the valve open, still turning it, and the empty probe keeps diving\n    into the glare. No headline: the closing line owns the sky, and the last\n    beat's numbers are not said again; the round trip over the city leg\n    sets only how long the fire streams.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: r[1])\n    v0, v1 = rows[0][1], rows[-1][1]\n    ratio = clamp(v1 / (v0 or 1.0), 1.0, 5.0)\n    S = 2.0\n    BASE = 1450\n\n    # the valve: he reaches it, turns it open, keeps it turning\n    opened = ease(seg(u, 0.12, 0.28))\n    turn = 1.5 * opened + 0.9 * max(0.0, u - 0.28)\n    flow = clamp((u - 0.14) / 0.06)\n\n    # the probe: on its stand, then lit, lifting and turning to the Sun\n    g = ease(seg(u, 0.32, 0.55))\n    drift = clamp((u - 0.55) / 0.45)\n    px = 600.0 - 20 * g - 110 * drift\n    py = 1116.0 - 256 * g - 40 * drift\n    th = -1.17 * g\n    fire = ease(seg(u, 0.24, 0.42))\n    L = 90 * ratio * fire\n    heat = ease(seg(u, 0.34, 0.55))\n\n    landscape(cr, t, \"desert\")\n    # the Sun, huge and low: what it dives at\n    glow(cr, SUN[0], SUN[1], 430, P[\"sun_glow\"], 0.85)\n    glow(cr, SUN[0], SUN[1], 230, P[\"sun_hot\"], 0.9)\n    disc(cr, SUN[0], SUN[1], 140, P[\"sun_hot\"], finish=\"gloss\")\n    # the mission's tracking dish, far right\n    cr.rectangle(960, 1000, 20, 180)\n    solid(cr, (150, 154, 162), finish=\"metal\", rim=False)\n    cr.save()\n    cr.translate(970, 990)\n    cr.scale(0.55, 1)\n    cr.arc(0, 0, 70, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (232, 234, 236), finish=\"metal\")\n    haze(cr, 900, 1200, (236, 196, 160), a=0.35)\n\n    # the launch stand, scorched once it lights\n    cast_shadow(cr, 470, 730, 1420, length=280, a=0.3)\n    contact_shadow(cr, 600, 1424, 300, a=0.4)\n    box(cr, 470, 1420, 260, 40, (120, 112, 104), depth=36, finish=\"metal\")\n    if fire > 0:\n        glow(cr, 600, 1380, 220, (255, 170, 80), 0.5 * fire * (1 - g * 0.7))\n\n    # the fuel line: valve post -> along the ground -> up into the probe's tail\n    WX, WY = 332.0, 1300.0\n    riser_top = 1300.0 + 120 * clamp(g * 4)        # it drops away as the probe lifts\n    pipe = [(WX + 20, BASE - 18), (470, BASE - 18), (470, 1360), (540, 1360)]\n    cr.set_source_rgba(*_c((60, 62, 70)))\n    cr.set_line_width(14)\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    cr.move_to(*pipe[0])\n    for p_ in pipe[1:]:\n        cr.line_to(*p_)\n    cr.move_to(540, 1360)\n    cr.line_to(540, max(1300.0, min(1360.0, riser_top)))\n    cr.stroke()\n    if flow > 0:\n        # fuel pulsing down the line while the valve is open\n        cr.save()\n        cr.set_source_rgba(*_c((255, 170, 60), 0.95 * flow))\n        cr.set_line_width(8)\n        cr.set_dash([26, 30], -t * 260)\n        cr.move_to(*pipe[0])\n        for p_ in pipe[1:]:\n            cr.line_to(*p_)\n        cr.stroke()\n        cr.restore()\n\n    cr.save()\n    cr.translate(px, py)\n    cr.rotate(th)\n    _pk_flame(cr, S, L, t)\n    _pk_probe(cr, S, heat)\n    cr.restore()\n\n    # the valve: a post, a gearbox, its handwheel\n    contact_shadow(cr, WX, BASE + 2, 70, a=0.35)\n    box(cr, WX - 12, BASE, 24, BASE - WY, (90, 92, 100), depth=10, finish=\"metal\")\n    box(cr, WX - 26, WY + 34, 52, 40, (70, 72, 80), depth=14, finish=\"metal\")\n    hands = handwheel(cr, WX, WY, turn, r=28)\n\n    # by the camera: the helmet nobody wore, on its crate\n    contact_shadow(cr, 900, 1812, 230, a=0.4)\n    box(cr, 800, 1810, 200, 110, (150, 112, 70), depth=40)\n    disc(cr, 905, 1640, 72, (240, 240, 236), finish=\"gloss\")\n    cr.save()\n    cr.translate(918, 1636)\n    cr.scale(1, 0.72)\n    cr.arc(0, 0, 50, 0, 2 * math.pi)\n    cr.restore()\n    solid(cr, (176, 132, 52), finish=\"glass\")\n    foreground(cr, \"desert\")\n    vignette(cr, a=0.28)\n\n    DXD = WX - 26\n    if u < 0.12:\n        host(\"point\", 110 + (DXD - 110) * ease(seg(u, 0.0, 0.12)), BASE, 220)\n    else:\n        host(\"grip\", DXD, BASE, 220, hands=hands, lower=\"brace\",\n             expr=\"strain\" if u < 0.55 else \"shock\")\n",
+   "closing_data": 2
   },
   {
    "slug": "college-gender-gap",
@@ -25048,10 +25050,10 @@
   },
   {
    "slug": "third-interstellar-visitor",
-   "title": "Only 3 Interstellar Visitors Have Ever Been Confirmed",
-   "hook": "Only 3 confirmed objects arrived from other stars.",
-   "closing": "Each visitor carries clues about worlds beyond our solar system.",
-   "question": "Will we ever intercept one?",
+   "title": "The Third Visitor From Outside Our Solar System",
+   "hook": "Something from another star just flew past us, and it's the biggest one yet.",
+   "closing": "Three visitors, each faster than the last. The next may show us what other stars build planets from.",
+   "question": "Will we ever catch one? Tell me.",
    "caption": "Only 3 objects have ever been confirmed passing through our solar system from interstellar space -- 'Oumuamua in 2017, Borisov in 2019, and 3I/ATLAS in 2025. Each one found has been bigger and faster than the last, and this one is the biggest yet: up to 5.6 km wide, moving at 246,000 km/h. Do you think we'll ever catch up to one? 👇",
    "hashtags": [
     "interstellar",
@@ -25079,8 +25081,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE COUNT",
-     "topic": "Interstellar Visitor Count",
-     "say": "Only 3 interstellar visitors have been confirmed. Each gives scientists a rare sample of another star system.",
+     "topic": "Visitor outside solar system",
+     "say": "Only three visitors from another star have ever been confirmed. Rare, but each one teaches us what other star systems are made of.",
      "scene": {
       "mechanic": "portal-comet-count",
       "concept": "a glowing wormhole portal at the frame edge fires real comet cutouts across the sky one by one as the confirmed count climbs 1->3",
@@ -25098,8 +25100,8 @@
      "ascending": false,
      "use_baseline": false,
      "role": "2 · GETTING FASTER",
-     "topic": "Interstellar Visitor Speed",
-     "say": "The newest visitor reached 246,000 kilometers an hour. Its speed reveals how violently it crossed our neighborhood.",
+     "topic": "Visitor peak speed",
+     "say": "Each one was faster, and the newest hit 246,000 kilometers an hour. That's an ocean crossed in minutes.",
      "scene": {
       "mechanic": "comet-speedway-race",
       "concept": "three real comet cutouts race down parallel lanes, each stopping at a finish position proportional to its peak km/h -- the newest visitor screaming past the others",
@@ -25116,8 +25118,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · GETTING BIGGER",
-     "topic": "Interstellar Visitor Size",
-     "say": "Its nucleus measures 5.6 kilometers. A larger target gives telescopes more material to study.",
+     "topic": "Visitor nucleus size",
+     "say": "It's also the biggest, with a core over five times wider than the last one. More to study means more clues about its home.",
      "scene": {
       "mechanic": "comet-scale-swell",
       "concept": "two real comet cutouts swell in place against a size-ruler backdrop to their true relative diameter -- the newest one dwarfing the old record holder",
@@ -25125,8 +25127,8 @@
      }
     }
    ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-25T11:28:50Z",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-11T15:41:35Z",
    "retold": "retell/v3",
    "hook_was": "Something from deep space just blasted past your planet at 246,000 kilometers an hour."
   },
@@ -25305,10 +25307,10 @@
   },
   {
    "slug": "unclaimed-money-states-hold",
-   "title": "States Hold $70 Billion That Belongs To Americans",
-   "hook": "About 1 in 7 Americans has forgotten money waiting.",
-   "closing": "A free search could reconnect you with money already yours.",
-   "question": "Have you checked your name?",
+   "title": "Every State Is Secretly Holding Billions Of Your Money",
+   "hook": "Someone you know is owed money by their state and has no idea.",
+   "closing": "Search your name today, because it's free and it's your money.",
+   "question": "Have you checked if you're owed money?",
    "caption": "US states are collectively holding about $70 billion in unclaimed money -- old paychecks, forgotten accounts, insurance payouts -- owed to 1 in 7 Americans. States only handed back $4.49 billion of it last year. Have you ever checked if you're owed money? 👇",
    "hashtags": [
     "unclaimedmoney",
@@ -25335,8 +25337,8 @@
      "ascending": false,
      "use_baseline": false,
      "role": "1 · IT'S EVERYWHERE",
-     "topic": "States Hold Money",
-     "say": "California holds $15 billion in forgotten money. Regular people still own every dollar.",
+     "topic": "Money states hold",
+     "say": "California alone is sitting on 15 billion dollars of forgotten money. That's cash that belongs to regular people like you.",
      "viz": "geo_us",
      "illustrated_scene": "# scene standard: 2026-10-16.2\ndef _ufd_dollar(cr, x, cy, s, rgb):\n    \"\"\"A dollar sign cut into the bag, drawn as strokes so nothing reads as a label.\"\"\"\n    cr.set_source_rgba(*_c(rgb))\n    cr.set_line_width(6 * s)\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    cr.move_to(x + 13 * s, cy - 13 * s)\n    cr.curve_to(x + 6 * s, cy - 22 * s, x - 16 * s, cy - 21 * s, x - 14 * s, cy - 8 * s)\n    cr.curve_to(x - 12 * s, cy + 2 * s, x + 14 * s, cy - 2 * s, x + 14 * s, cy + 10 * s)\n    cr.curve_to(x + 14 * s, cy + 22 * s, x - 8 * s, cy + 24 * s, x - 15 * s, cy + 14 * s)\n    cr.move_to(x, cy - 27 * s)\n    cr.line_to(x, cy + 27 * s)\n    cr.stroke()\n    cr.set_line_cap(cairo.LINE_CAP_BUTT)\n\n\ndef _ufd_bag(cr, x, y, s):\n    contact_shadow(cr, x, y, 110 * s, a=0.4)\n    cr.move_to(x - 16 * s, y - 84 * s)\n    cr.curve_to(x - 70 * s, y - 64 * s, x - 62 * s, y, x, y)\n    cr.curve_to(x + 62 * s, y, x + 70 * s, y - 64 * s, x + 16 * s, y - 84 * s)\n    cr.close_path()\n    solid(cr, (204, 178, 124))\n    cr.move_to(x - 16 * s, y - 84 * s)\n    cr.line_to(x - 26 * s, y - 104 * s)\n    cr.line_to(x + 26 * s, y - 104 * s)\n    cr.line_to(x + 16 * s, y - 84 * s)\n    cr.close_path()\n    solid(cr, (184, 156, 104))\n    cr.rectangle(x - 20 * s, y - 90 * s, 40 * s, 9 * s)\n    solid(cr, (110, 80, 46), rim=False)\n    _ufd_dollar(cr, x, y - 38 * s, 0.9 * s, (64, 110, 62))\n\n\ndef _ufd_bundle(cr, x, y):\n    box(cr, x, y, 50, 22, (92, 146, 92), depth=12)\n    cr.rectangle(x + 20, y - 22, 10, 22)\n    solid(cr, (234, 224, 192), edge=False, rim=False)\n\n\ndef _ufd_car(cr, x, y, s):\n    contact_shadow(cr, x + 195 * s, y + 4, 400 * s, a=0.45)\n    cr.move_to(x + 4 * s, y - 30 * s)\n    cr.line_to(x, y - 66 * s)\n    cr.curve_to(x + 8 * s, y - 88 * s, x + 50 * s, y - 92 * s, x + 96 * s, y - 96 * s)\n    cr.line_to(x + 140 * s, y - 142 * s)\n    cr.curve_to(x + 190 * s, y - 150 * s, x + 236 * s, y - 150 * s, x + 262 * s, y - 140 * s)\n    cr.line_to(x + 306 * s, y - 96 * s)\n    cr.curve_to(x + 360 * s, y - 92 * s, x + 390 * s, y - 80 * s, x + 392 * s, y - 52 * s)\n    cr.line_to(x + 388 * s, y - 30 * s)\n    cr.close_path()\n    solid(cr, (58, 96, 150), finish=\"gloss\")\n    cr.move_to(x + 112 * s, y - 98 * s)\n    cr.line_to(x + 148 * s, y - 134 * s)\n    cr.line_to(x + 194 * s, y - 138 * s)\n    cr.line_to(x + 194 * s, y - 98 * s)\n    cr.close_path()\n    solid(cr, (176, 204, 224), finish=\"glass\", rim=False)\n    cr.move_to(x + 206 * s, y - 98 * s)\n    cr.line_to(x + 206 * s, y - 138 * s)\n    cr.line_to(x + 254 * s, y - 132 * s)\n    cr.line_to(x + 288 * s, y - 98 * s)\n    cr.close_path()\n    solid(cr, (176, 204, 224), finish=\"glass\", rim=False)\n    disc(cr, x + 380 * s, y - 64 * s, 8 * s, (255, 236, 180), finish=\"gloss\")\n    for wx in (x + 84 * s, x + 312 * s):\n        disc(cr, wx, y - 24 * s, 34 * s, (34, 34, 38), finish=\"matte\")\n        disc(cr, wx, y - 24 * s, 14 * s, (176, 178, 184), finish=\"metal\")\n\n\ndef _ufd_person(cr, x, y, s, t, i, coat, hair, walking):\n    \"\"\"A regular person seen from behind, walking up to the vault.\"\"\"\n    contact_shadow(cr, x, y, 80 * s, a=0.35)\n    sw = (math.sin(t * 6 + i * 1.7) * 14 * s) if walking else 0.0\n    cr.set_source_rgba(*_c((44, 46, 60)))\n    cr.set_line_width(16 * s)\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for d in (-1, 1):\n        cr.move_to(x + d * 10 * s, y - 70 * s)\n        cr.line_to(x + d * 10 * s + d * sw, y - 4 * s)\n    cr.stroke()\n    cr.set_line_cap(cairo.LINE_CAP_BUTT)\n    cr.move_to(x - 28 * s, y - 70 * s)\n    cr.curve_to(x - 34 * s, y - 120 * s, x - 34 * s, y - 150 * s, x - 18 * s, y - 158 * s)\n    cr.line_to(x + 18 * s, y - 158 * s)\n    cr.curve_to(x + 34 * s, y - 150 * s, x + 34 * s, y - 120 * s, x + 28 * s, y - 70 * s)\n    cr.close_path()\n    solid(cr, coat)\n    disc(cr, x, y - 178 * s, 21 * s, (214, 170, 136))\n    cr.arc(x, y - 180 * s, 22 * s, math.pi * 0.95, math.pi * 2.05)\n    cr.close_path()\n    solid(cr, hair, rim=False)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: the state treasury's unclaimed-money vault\n    SUBSTANCE: forgotten cash in the vault\n    CAUSE: Data grips the giant vault door and drags it open with his own hands, exposing the money held inside\n    A domed state capitol with a columned portico and steps on a plaza;\n    regular people walk up to it by the camera while a car goes by. In the\n    capitol's base is the UNCLAIMED PROPERTY vault, its steel door shut on\n    shelves of cash and money bags. Data grabs the door's handle and hauls\n    it aside, state by state: the door opens as far as that state's\n    forgotten money, Ohio's, then Texas's, then California's 15 billion\n    throws it fully open. Each state leaves a notch on the door's track,\n    named on the stone above, so a glance shows California's stash is about\n    three times Ohio's. Landed by 0.56 and held, the vault light spilling\n    onto the steps while the flag waves and cars pass.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: r[1])\n    n = len(rows)\n    top = rows[-1][1] or 1.0\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / max(1, n)\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    slide = ease(seg(f, 0.15, 0.7))\n    prev = rows[k - 1][1] if k > 0 else 0.0\n    frac = 0.0 if u < a0 else (prev + (rows[k][1] - prev) * slide) / top\n    landed_to = k if slide >= 0.999 else k - 1\n    shown = None if (u < a0 or landed_to < 0) else rows[landed_to]\n\n    landscape(cr, t, \"town\")\n    birds(cr, t, y0=760, n=4, rgb=(60, 60, 70))\n\n    BASE = 1440\n    STONE = (230, 224, 210)\n    COL = (238, 233, 222)\n    cast_shadow(cr, 60, 1010, BASE, length=340, a=0.3)\n    contact_shadow(cr, 535, BASE + 4, 1000, a=0.4)\n    b = building(cr, 60, 1010, BASE, 560, STONE, roof_rgb=(150, 146, 138),\n                 roof=\"flat\", boards=False)\n    rx = (b[\"x0\"] + b[\"x1\"]) / 2\n    ty = b[\"top\"]\n\n    # the capitol dome: a colonnaded drum, a gilded ribbed dome, lantern, flag\n    cylinder(cr, rx - 160, ty, 320, 80, COL)\n    cr.set_source_rgba(*_c((170, 164, 150)))\n    cr.set_line_width(5)\n    for i in range(9):\n        cx_ = rx - 140 + i * 35\n        cr.move_to(cx_, ty - 8)\n        cr.line_to(cx_, ty - 64)\n    cr.stroke()\n    DR, DK = 150, 0.66\n    cr.save()\n    cr.translate(rx, ty - 80)\n    cr.scale(1, DK)\n    cr.arc(0, 0, DR, math.pi, 2 * math.pi)\n    cr.close_path()\n    cr.restore()\n    solid(cr, (214, 184, 106), finish=\"metal\")\n    cr.set_source_rgba(*_c((150, 120, 60), 0.7))\n    cr.set_line_width(4)\n    for i in range(1, 6):\n        ang = math.pi + i * math.pi / 6\n        cr.move_to(rx + DR * math.cos(ang), ty - 80)\n        cr.curve_to(rx + DR * math.cos(ang), ty - 80 + DR * DK * math.sin(ang) * 0.7,\n                    rx + DR * 0.4 * math.cos(ang), ty - 80 - DR * DK,\n                    rx, ty - 80 - DR * DK)\n    cr.stroke()\n    lt = ty - 80 - DR * DK + 4\n    cylinder(cr, rx - 20, lt, 40, 40, COL)\n    pole_top = lt - 40 - 40\n    cr.set_source_rgba(*_c((70, 70, 76)))\n    cr.set_line_width(5)\n    cr.move_to(rx, lt - 40)\n    cr.line_to(rx, pole_top)\n    cr.stroke()\n    fl = []\n    for i in range(13):\n        fx = rx + i * 9\n        fl.append((fx, pole_top + 7 * math.sin(t * 3.2 - i * 0.5) * (i / 12)))\n    cr.move_to(*fl[0])\n    for p_ in fl[1:]:\n        cr.line_to(*p_)\n    for p_ in reversed(fl):\n        cr.line_to(p_[0], p_[1] + 46)\n    cr.close_path()\n    solid(cr, (64, 92, 150), rim=False)\n\n    # the portico: pediment, entablature, columns\n    cr.move_to(50, 962)\n    cr.line_to(rx, 892)\n    cr.line_to(1020, 962)\n    cr.close_path()\n    solid(cr, (224, 218, 204))\n    box(cr, 50, 1000, 970, 40, (222, 216, 202), depth=20)\n    for cx in (78, 600, 680, 760, 840, 920):\n        cylinder(cr, cx, BASE, 36, 440, COL)\n\n    # the vault: shelves of cash and money bags behind the doorway\n    DX0, DX1, DY, GY = 130, 530, 1040, BASE\n    dw = DX1 - DX0\n    cr.save()\n    cr.rectangle(DX0, DY, dw, GY - DY)\n    cr.clip()\n    vgrad(cr, [(0, (52, 42, 30)), (1, (120, 92, 56))], DY, GY, DX0, DX1)\n    glow(cr, (DX0 + DX1) / 2, 1240, 300, (255, 214, 140), 0.25 + 0.35 * frac)\n    for sy in (1150, 1270):\n        cr.rectangle(DX0, sy, dw, 12)\n        solid(cr, (122, 92, 58), rim=False)\n        for j in range(7):\n            _ufd_bundle(cr, DX0 + 10 + j * 56, sy)\n        for j in range(6):\n            _ufd_bundle(cr, DX0 + 38 + j * 56, sy - 24)\n    for i, bx in enumerate((180, 280, 380, 480)):\n        _ufd_bag(cr, bx, GY - 4, 0.95 + 0.15 * (i % 2))\n    cr.restore()\n    cr.set_source_rgba(*_c((70, 72, 80)))\n    cr.set_line_width(14)\n    cr.rectangle(DX0, DY, dw, GY - DY)\n    cr.stroke()\n\n    # the steps up to the vault, its light spilling down them as it opens\n    box(cr, 30, 1474, 1010, 30, (214, 208, 194), depth=16)\n    box(cr, 0, 1508, 1080, 32, (204, 198, 184), depth=16)\n    if frac > 0:\n        glow(cr, DX0 + dw * frac / 2, GY + 40, 140 + 280 * frac,\n             (255, 214, 140), 0.5 * frac)\n\n    # the track, the door sliding along it\n    cr.set_source_rgba(*_c((46, 44, 48)))\n    cr.set_line_width(10)\n    cr.move_to(DX0 - 20, DY - 20)\n    cr.line_to(DX1 + dw + 30, DY - 20)\n    cr.stroke()\n    dx = DX0 + dw * frac\n    cr.rectangle(dx, DY - 8, dw, GY - DY + 8)\n    solid(cr, (128, 134, 144), finish=\"metal\")\n    cr.set_source_rgba(*_c((84, 88, 98)))\n    cr.set_line_width(6)\n    cr.rectangle(dx + 18, DY + 10, dw - 36, GY - DY - 28)\n    cr.stroke()\n    for i in range(6):\n        disc(cr, dx + 30 + i * (dw - 60) / 5, DY + 30, 7, (176, 180, 188), finish=\"metal\")\n        disc(cr, dx + 30 + i * (dw - 60) / 5, GY - 30, 7, (176, 180, 188), finish=\"metal\")\n    wx, wy = dx + dw / 2, 1250\n    disc(cr, wx, wy, 84, (150, 156, 166), finish=\"metal\")\n    rot = frac * 7.0\n    cr.set_source_rgba(*_c((60, 62, 70)))\n    cr.set_line_width(14)\n    for i in range(3):\n        ang = rot + i * math.pi / 3\n        cr.move_to(wx - 74 * math.cos(ang), wy - 74 * math.sin(ang))\n        cr.line_to(wx + 74 * math.cos(ang), wy + 74 * math.sin(ang))\n    cr.stroke()\n    disc(cr, wx, wy, 24, (180, 184, 192), finish=\"metal\")\n    box(cr, dx + 50, 1112, dw - 100, 40, (232, 214, 150), depth=6, finish=\"metal\")\n    text(cr, \"UNCLAIMED PROPERTY\", dx + dw / 2, 1102, 26, (50, 44, 36),\n         face=\"bold\", anchor=\"center\", shadow=False)\n    cr.rectangle(dx + dw - 40, 1280, 16, 110)\n    solid(cr, (60, 62, 70), finish=\"metal\")\n    for hx_ in (dx + 40, dx + dw - 40):\n        disc(cr, hx_, DY - 20, 11, (70, 70, 76), finish=\"metal\")\n\n    # THE SCALE on the track: a notch where each state's money opened it to,\n    # its name cut into the stone above, staggered so none collide\n    if u >= a0:\n        for j in range(0, landed_to + 1):\n            nx = DX0 + dw * rows[j][1] / top\n            cr.set_source_rgba(*_c((244, 238, 226)))\n            cr.set_line_width(6)\n            cr.move_to(nx, DY - 40)\n            cr.line_to(nx, DY - 4)\n            cr.stroke()\n            ly = DY - 50 if j % 2 == 0 else DY - 86\n            text(cr, rows[j][0], nx, ly, 30, look.INK, face=\"bold\", anchor=\"center\")\n\n    # right by the camera: regular people walking up to claim it, a car by\n    crowd = [(150, 1720, (176, 60, 52), (60, 40, 30)),\n             (320, 1700, (70, 120, 96), (30, 26, 24)),\n             (480, 1735, (214, 160, 60), (120, 80, 44))]\n    for i, (px, py, coat, hair) in enumerate(crowd):\n        g = ease(seg(u, 0.05 + 0.08 * i, 0.45 + 0.08 * i))\n        walking = 0.0 < g < 1.0\n        _ufd_person(cr, px - 360 * (1 - g), py, 1.3, t, i, coat, hair, walking)\n    cx = -480 + ((t * 230) % 2040)\n    _ufd_car(cr, cx, 1880, 1.15)\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    edge_x = dx + dw\n    hx = edge_x + 40\n    hands = [(edge_x - 32, 1306), (edge_x - 32, 1366)]\n    if u < a0:\n        host(\"point\", DX1 + 60, 1450, 240)\n    elif u < 0.9:\n        host(\"grip\", hx, 1450, 240, hands=hands, lower=\"brace\",\n             expr=\"strain\" if u < a1 + 0.04 else \"happy\")\n    else:\n        host(\"cheer\", hx, 1450, 240)\n\n    if shown is not None:\n        lab, v = shown\n        fit_readout(cr, f\"${v:g} billion\", f\"forgotten money held by {lab}\",\n                    80, 520, a=ease(seg(u, a0, a0 + 0.05)), size=130)\n    else:\n        fit_readout(cr, \"Forgotten money\", \"the state is holding it for you\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
@@ -25349,8 +25351,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · BARELY RECLAIMED",
-     "topic": "States Return Money",
-     "say": "States returned $4.49 billion last year. Most of the nationwide pile remains unclaimed.",
+     "topic": "Money returned",
+     "say": "Last year, states handed back only 4.49 billion dollars. Most of the pile is still sitting there, waiting for its owners.",
      "scene": {
       "mechanic": "vault-drain-trickle",
       "concept": "a bank vault photo fills to the brim with cash representing the total held, then only a thin trickle drains out the door to represent what actually got returned",
@@ -25365,8 +25367,8 @@
      },
      "insight_type": "share",
      "role": "3 · IS IT YOURS?",
-     "topic": "States Owe Americans",
-     "say": "About 14.3% of Americans have money waiting. A free search can reveal whether you are one of them.",
+     "topic": "Who has money waiting",
+     "say": "About 1 in 7 Americans have money waiting, and checking is free. That's probably someone you know, maybe you.",
      "scene": {
       "mechanic": "crowd-glow-share",
       "concept": "a grid of real person silhouettes stands dim, and exactly 1-in-7 light up gold holding a dollar bill as the share reveals",
@@ -25374,8 +25376,8 @@
      }
     }
    ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-25T11:28:50Z",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-11T15:42:07Z",
    "retold": "retell/v3",
    "hook_was": "States are quietly holding 70 billion dollars of your money."
   },
@@ -26099,10 +26101,10 @@
   },
   {
    "slug": "left-brain-right-brain-myth",
-   "title": "7 Brain Networks Found No Left-Brain Personality Type",
-   "hook": "Seven brain networks failed the personality-side test.",
-   "closing": "Your brain divides tasks, not your entire personality.",
-   "question": "Were you labeled left- or right-brained?",
+   "title": "You're Not Actually Left-Brained Or Right-Brained",
+   "hook": "Your \"right-brained\" personality? Your brain never heard of it.",
+   "closing": "Your brain works as one team, so stop blaming one side for your personality.",
+   "question": "Ever been called 'more right-brained'? Tell me below.",
    "caption": "A study scanned 1,011 brains looking for 'left-brained' and 'right-brained' personality types. It found zero. Some brain jobs really are lateralized (language leans 96% left) -- but your overall personality isn't one of them. Here's what the science actually shows. Ever been called 'more right-brained'? 👇",
    "hashtags": [
     "brain",
@@ -26129,8 +26131,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "1 · WHAT'S ACTUALLY LATERALIZED",
-     "topic": "Brain Language Side",
-     "say": "Language is 96% left-dominant in right-handers. Specialized tasks do not create a left-brained personality.",
+     "topic": "Left-brain jobs",
+     "say": "Language sits about 96 percent in the left side for right-handers. But personality doesn't split by side, so no \"left-brained\" type exists.",
      "scene": {
       "mechanic": "brain-lean-wipe",
       "concept": "a brain per task gets a left-side glow wiping across it to the real share of the job done by one hemisphere",
@@ -26146,8 +26148,8 @@
      "insight_type": "rank",
      "use_baseline": true,
      "role": "2 · THE STUDY THAT TESTED IT",
-     "topic": "Brain Myth Test",
-     "say": "Across 7 brain networks, the personality split never appeared. The popular label is not visible in the wiring.",
+     "topic": "Left-brain myth tested",
+     "say": "Scientists tested seven brain networks, and none matched the left-brain, right-brain myth. The idea just doesn't show up in the wiring.",
      "ascending": false,
      "illustrated_scene": "def _brain_half(cr, cx, cy, rx, ry, side):\n    cr.new_path()\n    cr.move_to(cx + side * 6, cy - ry * 0.96)\n    for i in range(0, 61):\n        a = -math.pi / 2 + math.pi * i / 60.0\n        bump = 1.0 + 0.035 * math.sin(a * 11.0 + side)\n        x = cx + side * (6 + rx * math.cos(a) * bump)\n        y = cy + ry * math.sin(a) * bump * (1.0 if a < 0 else 0.92)\n        cr.line_to(x, y)\n    cr.line_to(cx + side * 6, cy + ry * 0.84)\n    cr.close_path()\n\n\ndef _gyri(cr, cx, cy, rx, ry, side, rgb):\n    cr.set_source_rgba(*_c(rgb, 0.85))\n    cr.set_line_width(7)\n    for j in range(7):\n        yy = cy - ry * 0.75 + j * ry * 0.25\n        cr.move_to(cx + side * 30, yy)\n        for i in range(1, 13):\n            xx = cx + side * (30 + i * rx * 0.075)\n            cr.line_to(xx, yy + 18 * math.sin(i * 1.7 + j * 2.3))\n        cr.stroke()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a human brain, both halves\n    SUBSTANCE: glowing brain networks\n    CAUSE: Data cranks the scanner and each network lights up across both halves\n    The 2013 scan: a top-down brain split by its central fissure, the\n    myth's LEFT/RIGHT line down the middle. Each crank of the scanner\n    lights one network, and every one of them spans BOTH halves, so none\n    of the networks fits the myth's split.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    (ln, n_tot) = max(rows, key=lambda r: r[1])\n    (lz, n_zero) = min(rows, key=lambda r: r[1])\n    n = max(1, int(round(n_tot)))\n    acc = P[\"accent2\"]\n\n    # the lab: full-height ground (stops are (offset, rgb) pairs)\n    vgrad(cr, [(0.0, (14, 20, 34)), (0.6, (26, 36, 58)), (1.0, (40, 50, 72))], 0, 1300)\n    vgrad(cr, [(0.0, (52, 60, 78)), (1.0, (30, 34, 46))], 1300, H)\n    haze(cr, 0, 1300, (26, 36, 58), a=0.25)\n\n    # the scanner ring behind the brain\n    cx, cy = 540, 930\n    cr.new_path()\n    cr.arc(cx, cy, 440, 0, 2 * math.pi)\n    cr.arc_negative(cx, cy, 372, 2 * math.pi, 0)\n    cr.set_fill_rule(cairo.FILL_RULE_EVEN_ODD)\n    solid(cr, (196, 202, 214), finish=\"gloss\")\n    cr.set_fill_rule(cairo.FILL_RULE_WINDING)\n    contact_shadow(cr, cx, 1380, 620, a=0.4)\n    box(cr, cx - 260, 1380, 520, 40, (150, 158, 172), depth=40)\n\n    # the brain: two lit hemispheres and their folds\n    rx, ry = 300, 250\n    pink, pink_d = (232, 168, 170), (176, 104, 112)\n    for side in (-1, 1):\n        _brain_half(cr, cx, cy, rx, ry, side)\n        solid(cr, pink, finish=\"gloss\")\n        cr.save()\n        _brain_half(cr, cx, cy, rx, ry, side)\n        cr.clip()\n        _gyri(cr, cx, cy, rx, ry, side, pink_d)\n        cr.restore()\n        _brain_half(cr, cx, cy, rx, ry, side)\n        edge(cr, (90, 40, 50), width=5)\n\n    # the myth's line down the fissure\n    cr.set_source_rgba(*_c((240, 240, 250), 0.7))\n    cr.set_line_width(4)\n    cr.set_dash([18, 14])\n    cr.move_to(cx, cy - ry - 70)\n    cr.line_to(cx, cy + ry + 40)\n    cr.stroke()\n    cr.set_dash([])\n    text(cr, \"LEFT\", cx - 30, cy - ry - 40, 40, INK_2, anchor=\"right\")\n    text(cr, \"RIGHT\", cx + 30, cy - ry - 40, 40, INK_2, anchor=\"left\")\n\n    # the networks: each one lights in BOTH halves, joined across the line\n    spots = [(0.45, -0.55), (0.75, -0.15), (0.35, -0.05), (0.62, 0.35),\n             (0.28, 0.45), (0.82, 0.25), (0.55, -0.32)]\n    k, f = step_through(u, n, hold_first=0.16, hold_last=0.2)\n    lit = 0\n    for i in range(n):\n        if i < k:\n            a = 1.0\n        elif i == k:\n            a = ease(seg(f, 0.35, 0.75))\n        else:\n            a = 0.0\n        if a <= 0:\n            continue\n        if a >= 0.6:\n            lit += 1\n        fx, fy = spots[i % len(spots)]\n        lx, rxp = cx - rx * fx, cx + rx * fx\n        y = cy + ry * fy\n        r = 60 * pop(a)\n        glow(cr, lx, y, r * 1.6, acc, 0.55 * a)\n        glow(cr, rxp, y, r * 1.6, acc, 0.55 * a)\n        disc(cr, lx, y, 16 * a, acc, finish=\"gloss\")\n        disc(cr, rxp, y, 16 * a, acc, finish=\"gloss\")\n        cr.set_source_rgba(*_c(acc, 0.9 * a))\n        cr.set_line_width(6)\n        cr.move_to(lx, y)\n        cr.curve_to(lx + (cx - lx) * 0.5, y - 70 * a, rxp - (rxp - cx) * 0.5,\n                    y - 70 * a, lx + (rxp - lx) * a, y)\n        cr.stroke()\n\n    # the scanner console and its crank wheel\n    wx, wy = 300, 1330\n    contact_shadow(cr, 230, 1500, 220, a=0.4)\n    box(cr, 150, 1500, 170, 150, (120, 128, 146), depth=36)\n    turn = (k + ease(seg(f, 0.0, 0.6))) * math.pi * 1.2\n    disc(cr, wx, wy, 52, (180, 150, 70), finish=\"gloss\")\n    cr.set_source_rgba(*_c((60, 46, 20)))\n    cr.set_line_width(7)\n    for s in range(4):\n        aa = turn + s * math.pi / 2\n        cr.move_to(wx, wy)\n        cr.line_to(wx + 46 * math.cos(aa), wy + 46 * math.sin(aa))\n        cr.stroke()\n    hx, hy = wx + 46 * math.cos(turn), wy + 46 * math.sin(turn)\n    disc(cr, hx, hy, 12, (210, 210, 220), finish=\"gloss\")\n\n    # Data: points at the brain, cranks the scanner, reacts to the result\n    walk_in = ease(seg(u, 0.08, 0.16))\n    walk_out = ease(seg(u, 0.84, 0.92))\n    x = 120 + 260 * walk_in + 340 * walk_out\n    if u < 0.12:\n        role, bk = \"point\", 0\n    elif u < 0.84:\n        role, bk = \"crank\", k\n    else:\n        role, bk = \"shock\", 0\n    contact_shadow(cr, x, 1500, 140, a=0.35)\n    host(role, x, 1500, 220, beat=bk)\n\n    vignette(cr, 0.32)\n\n    # readouts\n    if u < 0.84:\n        fit_readout(cr, f\"{lit} of {n}\", f\"{ln.lower()} · each lights both halves\",\n                    80, 520, a=ease(seg(u, 0.0, 0.08)), size=130)\n    else:\n        fit_readout(cr, f\"{int(round(n_zero))} of {n}\", lz.lower(), 80, 520,\n                    a=ease(seg(u, 0.84, 0.9)), rgb=acc, size=150)\n",
      "scene": {
@@ -26165,8 +26167,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · WHY",
-     "topic": "Brain Halves Link",
-     "say": "About 200 million nerve fibers connect both halves. Your brain works as a coordinated system.",
+     "topic": "Left and right talking",
+     "say": "About 200 million nerve fibers link your brain's two halves. They swap signals constantly, so both sides work on everything together.",
      "illustrated_scene": "def _cc_pt(p0, p1, p2, p3, s):\n    m = 1.0 - s\n    a, b, c, d = m * m * m, 3 * m * m * s, 3 * m * s * s, s * s * s\n    return (a * p0[0] + b * p1[0] + c * p2[0] + d * p3[0],\n            a * p0[1] + b * p1[1] + c * p2[1] + d * p3[1])\n\n\ndef _cc_bundle(j):\n    return ((300.0, 1120.0 - 22 * j), (450.0, 1040.0 - 16 * j),\n            (630.0, 1040.0 - 16 * j), (780.0, 1120.0 - 22 * j))\n\n\ndef _cc_hemi(cr, side):\n    def X(x):\n        return x if side < 0 else W - x\n    cr.new_path()\n    cr.move_to(X(470), 640)\n    cr.curve_to(X(330), 600, X(120), 700, X(120), 920)\n    cr.curve_to(X(120), 1130, X(260), 1250, X(470), 1230)\n    cr.close_path()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a brain's two halves bridged\n    SUBSTANCE: white nerve-fibre bundles\n    CAUSE: Data places fibre bundles one by one across the bridge joining the halves\n    A front-on cut through the brain: two hemispheres with the corpus\n    callosum arching between them as a thick bridge of white, strand-textured\n    fibre bundles. Signals run along them as brighter white streaks in the\n    fibre's own colour, never coloured dots. Data walks the arch laying the\n    next bundle on the stack; far below, the anterior commissure is a thread\n    drawn at its true thickness against the bridge.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    (lc, cc) = max(rows, key=lambda r: r[1])\n    rest = [r for r in rows if r[0] != lc]\n    (la, ac) = rest[0] if rest else (\"other links\", 0.0)\n    tot = (cc + ac) or 1.0\n    share = cc / tot\n\n    # the scan room: dark, full height, a floor under the brain\n    vgrad(cr, [(0.0, (12, 16, 34)), (0.6, (22, 26, 52)), (1.0, (30, 30, 58))], 0, H)\n    vgrad(cr, [(0.0, (34, 34, 64)), (1.0, (18, 18, 36))], 1400, H)\n    glow(cr, 540, 930, 560, (90, 110, 200), 0.35)\n\n    # brainstem standing on the floor\n    contact_shadow(cr, 540, 1420, 260, a=0.45)\n    cylinder(cr, 495, 1420, 90, 230, (200, 140, 140))\n\n    # the two hemispheres, lit, with folds\n    pink = (226, 160, 160)\n    fold = (170, 104, 112)\n    for side in (-1, 1):\n        _cc_hemi(cr, side)\n        solid(cr, pink, finish=\"gloss\")\n        cr.save()\n        _cc_hemi(cr, side)\n        cr.clip()\n        cr.set_source_rgba(*_c(fold, 0.85))\n        cr.set_line_width(6)\n        for g in range(9):\n            gx = 160 + g * 36\n            gx = gx if side < 0 else W - gx\n            gy = 680 + (g * 61) % 420\n            cr.move_to(gx, gy)\n            cr.curve_to(gx + 40 * side, gy + 30, gx - 30 * side, gy + 70,\n                        gx + 20 * side, gy + 120)\n            cr.stroke()\n        cr.restore()\n\n    # the anterior commissure: a thread at its true thickness vs the bridge\n    thick = 18.0\n    n_total = 6\n    ac_w = max(3.0, n_total * thick * (ac / (cc or 1.0)))\n    cr.new_path()\n    cr.move_to(430, 1195)\n    cr.curve_to(500, 1172, 580, 1172, 650, 1195)\n    cr.set_source_rgba(*_c((236, 230, 214)))\n    cr.set_line_width(ac_w + 2)\n    cr.stroke()\n\n    # the corpus callosum: bundles stacked, one placed per step\n    k, f = step_through(u, n_total - 1, hold_first=0.14, hold_last=0.14)\n    placed = 1 + k\n    arriving = pop(f)\n\n    def bez(p, dy):\n        p0, p1, p2, p3 = p\n        cr.new_path()\n        cr.move_to(p0[0], p0[1] + dy)\n        cr.curve_to(p1[0], p1[1] + dy, p2[0], p2[1] + dy, p3[0], p3[1] + dy)\n\n    def draw_bundle(j, dy, a):\n        p = _cc_bundle(j)\n        g = cairo.LinearGradient(0, p[1][1] - 12 + dy, 0, p[1][1] + 12 + dy)\n        g.add_color_stop_rgba(0, *_c((252, 250, 242), a))\n        g.add_color_stop_rgba(1, *_c((206, 196, 176), a))\n        bez(p, dy)\n        cr.set_source_rgba(*_c((60, 48, 52), 0.9 * a))\n        cr.set_line_width(thick + 5)\n        cr.stroke()\n        bez(p, dy)\n        cr.set_source(g)\n        cr.set_line_width(thick)\n        cr.stroke()\n        # the strands of the bundle: thin fibres running its length\n        for o, col in ((-5, (226, 216, 196)), (0, (214, 204, 182)), (5, (200, 190, 168))):\n            bez(p, dy + o)\n            cr.set_source_rgba(*_c(col, 0.8 * a))\n            cr.set_line_width(1.6)\n            cr.stroke()\n        bez(p, dy - 6)\n        cr.set_source_rgba(*_c((255, 255, 255), 0.6 * a))\n        cr.set_line_width(2.5)\n        cr.stroke()\n\n    for j in range(placed):\n        draw_bundle(j, 0.0, 1.0)\n    top = placed - 1\n    if placed < n_total and f > 0:\n        draw_bundle(placed, -70 * (1 - arriving), clamp(f * 2))\n        if f >= 0.6:\n            top = placed\n\n    # signals trading both ways: bright white streaks running along the\n    # fibres themselves, the same white as the strands\n    for j in range(placed):\n        b = _cc_bundle(j)\n        for d, ph in ((1, 0.0), (-1, 0.5)):\n            s0 = (t * 0.28 + j * 0.23 + ph) % 1.0\n            s0 = s0 if d > 0 else 1.0 - s0\n            cr.new_path()\n            for i in range(8):\n                s = clamp(s0 - d * 0.012 * i)\n                px, py = _cc_pt(*b, s)\n                if i == 0:\n                    cr.move_to(px, py - 2)\n                else:\n                    cr.line_to(px, py - 2)\n            cr.set_source_rgba(*_c((255, 255, 250), 0.9))\n            cr.set_line_width(5)\n            cr.set_line_cap(cairo.LINE_CAP_ROUND)\n            cr.stroke()\n\n    haze(cr, 1300, 1540, (22, 22, 44), a=0.25)\n    vignette(cr, 0.35)\n\n    # Data walks the arch laying each bundle on top of the stack\n    dx = 380 + 320 * ease(seg(u, 0.12, 0.88))\n    b = _cc_bundle(top)\n    sx, sy = _cc_pt(*b, clamp((dx - 300) / 480.0))\n    if u < 0.12:\n        role, bt = \"point\", 0\n    elif u < 0.88:\n        role, bt = \"place\", k\n    else:\n        role, bt = \"cheer\", 0\n    host(role, dx, sy - thick / 2, 210, beat=bt)\n\n    # readouts — the commissure's label sits under its thread; the share\n    # line gets its own row well below it so the two never touch\n    fit_readout(cr, f\"{int(round(cc))}M\", f\"nerve fibers in the {lc.lower()}\", 80, 520,\n                a=ease(seg(u, 0.0, 0.1)), size=150)\n    ra = ease(seg(u, 0.55, 0.7))\n    text(cr, f\"{int(round(ac))}M\", 540, 1262, 54, INK_2, face=\"display\",\n         anchor=\"center\", alpha=ra)\n    _lab = la.split(\"(\")[0].strip().lower()\n    text(cr, _lab, 540, 1300, fit_size(cr, _lab, 30, 420), INK_2,\n         anchor=\"center\", alpha=ra)\n    _sh = f\"{share * 100:.1f}% of the crossing\"\n    text(cr, _sh, W - 80, 1470, fit_size(cr, _sh, 44, 600), look.INK,\n         anchor=\"right\", alpha=ra)\n",
      "scene": {
       "mechanic": "fiber-million-grid",
@@ -26175,17 +26177,17 @@
      }
     }
    ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-25T11:28:50Z",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-11T15:45:22Z",
    "retold": "retell/v3",
    "hook_was": "Scientists checked 7 brain networks. Not one matched the left-brain myth."
   },
   {
    "slug": "religious-nones-rise",
-   "title": "29% Of Americans Now Report No Religion",
-   "hook": "No religion grew from 8% to 29%.",
-   "closing": "The country's religious map is changing within a single generation.",
-   "question": "Has your community changed too?",
+   "title": "One In Four Americans Now Has No Religion",
+   "hook": "Americans with no religion now outnumber Catholics.",
+   "closing": "One in four now says none, so the religious map around you is quietly being redrawn.",
+   "question": "Do you consider yourself religious? Tell me below.",
    "caption": "Only 8% of Americans had no religion in 1990. Today it's 29% -- and it's not random, it's generational: only 10% of the oldest Americans are unaffiliated, versus about a third of Gen Z. 'No religion' is now closing in on becoming the country's single biggest group. Do you consider yourself religious? 👇",
    "hashtags": [
     "religion",
@@ -26211,8 +26213,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE RISE",
-     "topic": "Religion Since 1990",
-     "say": "In 1990, 8% of adults reported no religion. The unaffiliated share has climbed sharply since then.",
+     "topic": "Americans with no religion",
+     "say": "In 1990, only 8 percent of US adults had no religion. Today that has more than tripled, so faith's hold is loosening fast.",
      "scene": {
       "mechanic": "empty-pew-exodus",
       "concept": "a hundred-person congregation under a church photo; as the years tick 1990 to 2021, people at the pews drop out of colour and walk off until 29 of 100 are gone",
@@ -26228,8 +26230,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · WHY",
-     "topic": "Religion By Generation",
-     "say": "Among millennials, 36% report no religion. The shift is strongest in younger generations.",
+     "topic": "No religion by generation",
+     "say": "36 percent of millennials have no religion, more than triple the oldest generation. So the shift is built into who is growing up.",
      "scene": {
       "mechanic": "generation-pew-seats",
       "concept": "five rows of pews, one per generation, 20 seats each; seats empty out from the right as each generation's no-religion share sweeps in, oldest barely touched, youngest a third vacant",
@@ -26245,8 +26247,8 @@
      },
      "insight_type": "share",
      "role": "3 · THE NEW MAP",
-     "topic": "Religion Today",
-     "say": "Today, 28% identify as unaffiliated. That share now exceeds the Catholic share.",
+     "topic": "No religion today",
+     "say": "Today 28 percent say none, passing Catholics. Only Protestants are still ahead, and the gap is closing.",
      "scene": {
       "mechanic": "people-stack-overtake",
       "concept": "each affiliation is a column of stacked people; the Unaffiliated column climbs past the Catholic one and stops just under Protestants",
@@ -26255,8 +26257,8 @@
      "illustrated_scene": "# scene standard: 2026-10-11\ndef _rail(cr, y, s):\n    # the bed of ballast, lit, then the sleepers and the steel rail on it\n    cr.rectangle(0, y - 4 * s, W, 26 * s)\n    solid(cr, (150, 138, 118), edge=False, rim=False)\n    step = int(56 * s)\n    for x in range(-20, W + 40, step):\n        cr.rectangle(x, y - 8 * s, 22 * s, 14 * s)\n        cr.set_source_rgba(*_c((96, 70, 48)))\n        cr.fill()\n    cr.rectangle(0, y - 12 * s, W, 6 * s)\n    solid(cr, (120, 122, 130), finish=\"metal\", rim=False)\n\n\ndef _handcar(cr, x, y, s, rgb, label, t, rock, flap):\n    # a railway handcar on its rail at (x, y): wheels, a lit deck, the pump\n    # post and its rocking beam, and the group's flag streaming behind it\n    contact_shadow(cr, x, y + 4, 190 * s, a=0.4)\n    cast_shadow(cr, x - 85 * s, x + 85 * s, y, length=160 * s, a=0.22)\n    px = x - 72 * s\n    top = y - 232 * s\n    cr.rectangle(px - 3 * s, top, 6 * s, 200 * s)\n    solid(cr, (70, 72, 80), finish=\"metal\", rim=False)\n    fw, fh = 170 * s, 48 * s\n    cr.move_to(px, top)\n    for i in range(1, 9):\n        xx = px - fw * i / 8\n        cr.line_to(xx, top + flap * 7 * s * math.sin(t * 5 + i * 0.9) * i / 8)\n    for i in reversed(range(0, 9)):\n        xx = px - fw * i / 8\n        cr.line_to(xx, top + fh + flap * 7 * s * math.sin(t * 5 + i * 0.9) * i / 8)\n    cr.close_path()\n    solid(cr, rgb)\n    text(cr, label, px - fw / 2, top + fh * 0.7, int(22 * s), look.INK,\n         anchor=\"center\", shadow=False)\n    for wx in (x - 50 * s, x + 50 * s):\n        disc(cr, wx, y - 22 * s, 22 * s, (62, 62, 68), finish=\"metal\")\n    box(cr, x - 85 * s, y - 36 * s, 170 * s, 26 * s, rgb, depth=34 * s)\n    cylinder(cr, x - 7 * s, y - 60 * s, 14 * s, 60 * s, (84, 86, 94), finish=\"metal\")\n    cr.save()\n    cr.translate(x, y - 122 * s)\n    cr.rotate(rock)\n    cr.rectangle(-72 * s, -6 * s, 144 * s, 12 * s)\n    cr.restore()\n    solid(cr, (96, 74, 52))\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: three railway handcars racing\n    SUBSTANCE: the rolling handcars\n    CAUSE: Data cranks the no-religion handcar down the rails, past the Catholic car, chasing the Protestant one\n    Three handcars on three rails, each group's share of Americans is how far\n    down the line its car gets. Protestants roll out in front, Catholics\n    behind them, and Data cranks the no-religion car from the start line\n    past the parked Catholic car — its old place stays as a ghost on his\n    rail — and pulls up chasing the leader, the gap to it dashed on the\n    shot. Landed by 0.62, then held while flags stream and he keeps at it.\n    The readout prints only the no-religion share, under a line that names\n    no other group, so its number is never read as anyone else's.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n\n    def val(key, i):\n        for l, v in rows:\n            if key in l.lower():\n                return l, v\n        return rows[min(i, len(rows) - 1)]\n\n    lp, vp = val(\"protest\", 0)\n    lu, vu = val(\"unaff\", 1)\n    lc, vc = val(\"catholic\", 2)\n    top = max(vp, vu, vc) or 1.0\n\n    def X(v):\n        return 140 + v / top * 760\n\n    pP = seg(u, 0.06, 0.44)\n    pC = seg(u, 0.08, 0.40)\n    pU = seg(u, 0.10, 0.62)\n    xP = 140 + (X(vp) - 140) * ease(pP)\n    xC = 140 + (X(vc) - 140) * ease(pC)\n    xU = 140 + (X(vu) - 140) * ease(pU)\n\n    landscape(cr, t, \"field\", horizon=920)\n    birds(cr, t, y0=720, n=5, rgb=(50, 50, 60))\n\n    rails = [(1070, 0.9), (1260, 1.15), (1450, 1.5)]\n    for y, s in rails:\n        _rail(cr, y, s)\n\n    neutral, neutral2 = (150, 152, 158), (122, 126, 134)\n    rk = lambda p, ph: 0.28 * math.sin(t * 7 + ph) if 0 < p < 1 else 0.0\n    _handcar(cr, xP, 1070, 0.9, neutral2, lp.upper(), t, rk(pP, 0), 1.0)\n    _handcar(cr, xC, 1260, 1.15, neutral, lc.upper(), t, rk(pC, 1), 1.0)\n\n    # THE SCALE on the near rail: where the Catholic car stands, as a ghost\n    passed = xU > X(vc) + 40\n    if passed:\n        gs = 1.5\n        gx = X(vc)\n        cr.rectangle(gx - 85 * gs, 1450 - 36 * gs, 170 * gs, 26 * gs)\n        ghost(cr, a=0.85)\n        text(cr, f\"{lc} {int(round(vc))}%\", gx, 1450 + 50, 28, look.INK,\n             anchor=\"center\")\n\n    _handcar(cr, xU, 1450, 1.5, P[\"accent2\"], \"NO RELIGION\", t, rk(pU, 2), 1.0)\n\n    # the gap still to close, dashed from his car to the leader\n    if u >= 0.62:\n        then_mark(cr, xU + 110, X(vp), 1120, f\"{lp} {int(round(vp))}%\",\n                  a=ease(seg(u, 0.62, 0.66)))\n\n    foreground(cr, \"field\")\n    vignette(cr, a=0.28)\n\n    hx, hy = xU + 22, 1450 - 62 * 1.5\n    if u < 0.06:\n        host(\"point\", hx, hy, 220)\n    elif u < 0.88:\n        host(\"crank\", hx, hy, 220, beat=int((u - 0.06) / 0.1))\n    else:\n        host(\"cheer\", hx, hy, 220)\n\n    if u >= 0.62:\n        fit_readout(cr, f\"{int(round(vu))}%\", \"of Americans have no religion · today\",\n                    80, 520, a=ease(seg(u, 0.62, 0.66)), size=130)\n    else:\n        fit_readout(cr, \"No religion\", \"America's faiths, racing down the line\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     }
    ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-25T11:28:50Z",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-12T00:20:17Z",
    "retold": "retell/v3",
    "hook_was": "Americans with no religion now outnumber Catholics, at 28 percent."
   },
@@ -27418,10 +27420,10 @@
   },
   {
    "slug": "library-digital-shift",
-   "title": "Library Visits Fell To 800 Million While Digital Borrowing Rose",
-   "hook": "Library visits fell to 800 million, but borrowing moved online.",
-   "closing": "Your library did not disappear; much of it moved onto the phone already in your hand.",
-   "question": "Do you borrow library books digitally?",
+   "title": "Why Is Nobody Walking Into Libraries Anymore?",
+   "hook": "America's libraries lost 46% of their visits, but the readers never left.",
+   "closing": "The building emptied, but the borrowing never left. Your library card still works on your phone.",
+   "question": "Last time you visited a library in person?",
    "caption": "In-person visits to US public libraries crashed from 1.25 billion in 2019 to well under a billion today. But digital checkouts through library apps more than doubled over the same years, hitting 739 million in 2024. When's the last time you actually walked into one?",
    "hashtags": [
     "libraries",
@@ -27444,8 +27446,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE EMPTY BUILDING",
-     "topic": "Library Visits",
-     "say": "Physical library visits reached 800 million in 2023. Buildings stayed quieter even after the sharp collapse.",
+     "topic": "Libraries: physical visits",
+     "say": "In 2019, Americans walked into libraries 1.25 billion times. By 2022 that nearly halved, and it never came back.",
      "scene": {
       "mechanic": "library-turnstile-thinning",
       "concept": "a library photo with a row of visitors per year; the row of people thins from 1.25 billion to 671 million as figures keep filing through the door",
@@ -27460,8 +27462,8 @@
      },
      "insight_type": "trend",
      "role": "2 · WHERE IT WENT",
-     "topic": "Library Checkouts",
-     "say": "Digital library checkouts reached 739 million in 2024. Borrowers changed the doorway, not the habit.",
+     "topic": "Libraries: digital checkouts",
+     "say": "Borrowing didn't stop, it moved to apps. Digital checkouts more than doubled to 739 million by 2024.",
      "scene": {
       "mechanic": "phone-fills-with-books",
       "concept": "stacks of ebooks rise inside a phone for each year as books fly from the library building into the phone on a loop",
@@ -27469,8 +27471,8 @@
      }
     }
    ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-25T11:28:50Z"
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-12T01:34:16Z"
   },
   {
    "slug": "ocean-floor-vs-mars-mapped",
@@ -31129,10 +31131,10 @@
   },
   {
    "slug": "humpback-whale-recovery",
-   "title": "25,000 Humpback Whales Prove Protection Can Work",
-   "hook": "One humpback population recovered to 25,000 after hunting stopped.",
-   "closing": "Protection can rebuild a species, but only while people keep the danger away.",
-   "question": "Should commercial whaling stay banned?",
+   "title": "Humpback Whales Went From 450 To 25,000 In One Region",
+   "hook": "Humpback whales were nearly gone forever, then humans stopped hunting them.",
+   "closing": "Whalers killed 2.9 million. The ban cut that to zero, and the oceans filled back up.",
+   "question": "Should whaling ever be allowed again? Tell me.",
    "caption": "Commercial whaling killed an estimated 2.9 million whales in the 20th century alone, crashing one humpback population to just 450 animals. Since the 1986 whaling ban, that same population has rebuilt itself to about 25,000 -- and 10 of 14 tracked humpback populations worldwide are now fully recovered. Did you know whales almost went extinct?",
    "hashtags": [
     "whales",
@@ -31159,8 +31161,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE CRASH AND THE COMEBACK",
-     "topic": "Humpback Recovery",
-     "say": "The humpback population reached 25,000. Protection turned a near-erasure into a real comeback.",
+     "topic": "Humpback whale recovery",
+     "say": "Whalers nearly wiped out South Atlantic humpbacks. After the ban, about 25,000 swim there today, proof protection works.",
      "scene": {
       "mechanic": "whale-school-regrowth",
       "concept": "a school of real humpback cutouts swims across the frame; the school thickens from 450 to 25,000 through the series",
@@ -31176,8 +31178,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · IT'S NOT JUST ONE GROUP",
-     "topic": "Humpback Populations",
-     "say": "Ten humpback populations are fully recovered. Species recovery is difficult, but it is not hopeless.",
+     "topic": "Humpback populations recovered",
+     "say": "Ten humpback populations are now off the endangered list. Saving a species is not hopeless, though the rest still need help.",
      "scene": {
       "mechanic": "whale-fourteen-pods-lift",
       "concept": "fourteen whale cutouts rest on the seabed; ten surface to a lit waterline one by one while four stay down",
@@ -31194,8 +31196,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · WHAT ACTUALLY FIXED IT",
-     "topic": "Humpback Hunting Ban",
-     "say": "Whalers killed 2.9 million large whales last century. Ending commercial hunting finally gave survivors room to rebuild.",
+     "topic": "Whales killed before ban",
+     "say": "Last century whalers killed nearly 2.9 million whales. Under the ban, that number fell to zero, so recovery became possible.",
      "scene": {
       "mechanic": "whaling-ban-spigot",
       "concept": "a stream of whale cutouts sinks for the 2.9 million killed, then the 1986 ban closes a gate and the stream stops at zero",
@@ -31203,8 +31205,8 @@
      }
     }
    ],
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-25T11:28:50Z",
+   "words_by": "brain-tighten",
+   "rewritten_at": "2026-10-24T11:58:31Z",
    "retold": "retell/v3",
    "hook_was": "Whalers left 450 humpbacks in the South Atlantic. Today there are 25,000."
   },
@@ -34456,10 +34458,10 @@
   },
   {
    "slug": "usps-mail-volume-collapse",
-   "title": "Mail Volume Fell To 109 Billion While Stamps Rose",
-   "hook": "Mail volume fell to 109 billion, yet stamps got costlier.",
-   "closing": "A shrinking mailbox still costs more because the delivery network does not shrink as quickly.",
-   "question": "What do you still mail?",
+   "title": "Mail Nearly Halved While The Stamp Price More Than Doubled",
+   "hook": "Mailing a letter cost 68 cents even as mail volume nearly halved.",
+   "closing": "Less mail does not mean cheaper postage; a thinning mailbox can still come with rising costs.",
+   "question": "What still makes you buy a stamp?",
    "caption": "In 2006, the US Postal Service delivered 213 billion pieces of mail. Today it's barely half that -- even as a stamp's price doubled. Here's where all the mail went. 👇",
    "hashtags": [
     "uspsmail",
@@ -34487,8 +34489,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE COLLAPSE",
-     "topic": "Mail Volume",
-     "say": "Total mail fell to 109 billion pieces. The delivery network now carries nearly half its peak volume.",
+     "topic": "Mail volume shrinks",
+     "say": "Total mail volume fell to 109 billion pieces in the supplied latest year. The peak was nearly twice as high.",
      "illustrated_scene": "# scene standard: 2026-10-16.2\ndef _arch(cr, x, yb, w, wl):\n    # a mailbox's end: straight sides, a round dome over them\n    cr.move_to(x, yb)\n    cr.line_to(x, yb - wl)\n    cr.arc(x + w / 2, yb - wl, w / 2, math.pi, 2 * math.pi)\n    cr.line_to(x + w, yb)\n    cr.close_path()\n\n\ndef _letter(cr, cx, cy, w, h, ang, a=1.0):\n    # one white envelope: paper, its flap, a red stamp\n    if a <= 0.01:\n        return\n    cr.save()\n    cr.translate(cx, cy)\n    cr.rotate(ang)\n    cr.rectangle(-w / 2, -h / 2, w, h)\n    cr.restore()\n    solid(cr, (248, 245, 236), a=a)\n    cr.save()\n    cr.translate(cx, cy)\n    cr.rotate(ang)\n    cr.set_source_rgba(*_c((150, 140, 124), 0.9 * a))\n    cr.set_line_width(max(2.0, w * 0.04))\n    cr.move_to(-w / 2 + 2, -h / 2 + 2)\n    cr.line_to(0, h * 0.08)\n    cr.line_to(w / 2 - 2, -h / 2 + 2)\n    cr.stroke()\n    cr.rectangle(w / 2 - w * 0.24, -h / 2 + h * 0.12, w * 0.16, h * 0.26)\n    cr.set_source_rgba(*_c((200, 50, 42), a))\n    cr.fill()\n    cr.restore()\n\n\ndef _mailbox(cr, x, y, s, c):\n    # a curbside mailbox on its post, its door end facing the street;\n    # c = 0 the door hangs open on a mouth stuffed with letters, flag up,\n    # c = 1 the letters are out, the door is shut, the flag is down\n    contact_shadow(cr, x + 34 * s, y, 74 * s, a=0.35)\n    box(cr, x + 16 * s, y, 14 * s, 62 * s, (124, 92, 60), depth=6 * s)\n    yb = y - 60 * s\n    w, wl = 50 * s, 30 * s\n    ox, oy = 62 * s, -25 * s\n    _arch(cr, x + ox, yb + oy, w, wl)\n    solid(cr, (92, 96, 106), rim=False)\n    top = yb - wl - w / 2\n    cr.move_to(x + w / 2, top)\n    cr.line_to(x + w / 2 + ox, top + oy)\n    cr.line_to(x + w + ox, yb + oy)\n    cr.line_to(x + w, yb)\n    cr.close_path()\n    solid(cr, (182, 188, 198), finish=\"metal\")\n    # the red flag on its side: up for mail, swung down when there is none\n    px, py = x + w + ox * 0.55, yb + oy * 0.55 - wl * 0.35\n    ang = -math.pi / 2 * (1 - ease(c))\n    cr.save()\n    cr.translate(px, py)\n    cr.rotate(ang)\n    cr.rectangle(0, -3 * s, 46 * s, 6 * s)\n    cr.restore()\n    solid(cr, (150, 32, 28), rim=False)\n    cr.save()\n    cr.translate(px, py)\n    cr.rotate(ang)\n    cr.rectangle(28 * s, -2 * s, 20 * s, 16 * s)\n    cr.restore()\n    solid(cr, (206, 48, 40))\n    # the dark mouth\n    _arch(cr, x, yb, w, wl)\n    solid(cr, (30, 28, 32), rim=False, edge=False)\n    # the door, hinged along the bottom, swung up and shut\n    fy = -0.5 + 1.5 * ease(seg(c, 0.45, 1.0))\n    if abs(fy) < 0.04:\n        fy = 0.04 if fy >= 0 else -0.04\n    cr.save()\n    cr.translate(x, yb)\n    cr.scale(1, fy)\n    _arch(cr, 0, 0, w, wl)\n    cr.restore()\n    solid(cr, (198, 204, 214) if fy > 0 else (148, 154, 164), finish=\"metal\")\n    # the letters, a fat fan of white envelopes bursting out of the mouth;\n    # they come out toward the street first, then the door shuts\n    out = ease(seg(c, 0.0, 0.5))\n    la = 1.0 - clamp((c - 0.25) / 0.3)\n    spots = ((0.22, 0.30, -0.42), (0.50, 0.46, 0.10), (0.78, 0.30, 0.46),\n             (0.36, 0.64, -0.18), (0.66, 0.66, 0.30))\n    if c < 1:\n        for i, (dx, dy, a_) in enumerate(spots):\n            lx = x + w * dx - out * (40 + 14 * i) * s\n            ly = yb - (wl + w / 2) * dy - out * 26 * s\n            _letter(cr, lx, ly, 34 * s, 22 * s, a_ * (1 - 0.5 * out), la)\n    if c >= 1:\n        disc(cr, x + w / 2, yb - wl * 0.9, 4 * s, (70, 70, 76), finish=\"metal\")\n        # the letters that used to wait here, as a ghost on the shut door\n        cr.save()\n        cr.translate(x + w * 0.5, yb - (wl + w / 2) * 0.42)\n        cr.rotate(-0.12)\n        cr.rectangle(-17 * s, -11 * s, 34 * s, 22 * s)\n        cr.restore()\n        ghost(cr, a=0.8)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a street of mailboxes stuffed with letters\n    SUBSTANCE: white paper letters\n    CAUSE: Data pulls the letters out of each mailbox and shoves its door shut, box by box down the street\n    One street's row of mailboxes running from the camera back into town:\n    the WHOLE is the street's mail. In 2006 every door hangs open on a\n    mouth stuffed with white letters, flag up. Data walks the curb toward\n    the camera and, box by box, the letters come out and he shoves the\n    door shut — flag down, no mail — until the share of the street gone\n    quiet is the share of mail that is gone, about half. Each shut door\n    keeps a ghost of the letter it used to hold. Done by 0.62 and held:\n    he keeps shoving the last door, the mail van keeps driving by.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    v0 = v0 or 1.0\n    N = 8\n    nc = max(1, min(N - 1, int(round(N * (1 - v1 / v0)))))\n    boxes = []\n    x, y, s = 260.0, 1450.0, 2.4\n    for j in range(N):\n        boxes.append((x, y, s))\n        x += 70 * s\n        y -= 28 * s\n        s *= 0.86\n    a0, a1 = 0.06, 0.62\n    span = (a1 - a0) / nc\n    k = int(clamp((u - a0) / span, 0, nc - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    started = u >= a0\n    done = u >= a1\n\n    def shut(j):\n        if j >= nc or not started:\n            return 0.0\n        if done:\n            return 1.0\n        q = nc - 1 - j\n        if q < k:\n            return 1.0\n        if q > k:\n            return 0.0\n        return seg(f, 0.25, 0.9)\n\n    def pos(j):\n        bx, by, bs = boxes[j]\n        return bx - 50 * bs, min(1495.0, by + 30), clamp(110 * bs, 180, 240)\n\n    # the town\n    landscape(cr, t, \"town\", horizon=1060)\n    for hx0, hx1, hb, hh_, col in ((40, 330, 1130, 260, (214, 196, 170)),\n                                   (380, 600, 1100, 200, (176, 190, 204)),\n                                   (640, 820, 1078, 150, (206, 170, 150)),\n                                   (860, 1010, 1062, 110, (190, 200, 180))):\n        contact_shadow(cr, (hx0 + hx1) / 2, hb, hx1 - hx0 + 40, a=0.3)\n        building(cr, hx0, hx1, hb, hh_, col, roof_rgb=(110, 96, 92), roof=\"gable\")\n    haze(cr, 600, 1150, (206, 214, 224), a=0.3)\n    # the mail van doing its round on the back street\n    vx = -300 + (t * 170) % 1700\n    contact_shadow(cr, vx + 110, 1152, 230, a=0.3)\n    box(cr, vx, 1150, 170, 92, (236, 236, 240), depth=36)\n    cr.rectangle(vx + 4, 1106, 162, 12)\n    solid(cr, (42, 72, 146), edge=False, rim=False)\n    box(cr, vx + 170, 1150, 58, 66, (226, 228, 234), depth=30)\n    for wx in (vx + 36, vx + 190):\n        disc(cr, wx, 1150, 15, (40, 40, 46))\n\n    # the street in front of the row\n    cr.move_to(-50, 1576)\n    cr.line_to(1130, 1104)\n    cr.line_to(1130, 1194)\n    cr.line_to(-50, 1976)\n    cr.close_path()\n    solid(cr, (84, 86, 92), edge=False, rim=False)\n    cr.set_source_rgba(*_c((236, 220, 150), 0.85))\n    cr.set_line_width(8)\n    cr.set_dash([44, 34])\n    cr.move_to(-50, 1776)\n    cr.line_to(1130, 1149)\n    cr.stroke()\n    cr.set_dash([])\n\n    # the mailboxes, far first\n    cast_shadow(cr, 240, 1080, 1450, length=260, a=0.22)\n    for j in reversed(range(N)):\n        bx, by, bs = boxes[j]\n        _mailbox(cr, bx, by, bs, shut(j))\n\n    # right by the camera: the blue collection box on the near corner\n    contact_shadow(cr, 880, 1862, 280, a=0.4)\n    box(cr, 760, 1860, 220, 230, (38, 74, 150), depth=56)\n    cr.save()\n    cr.translate(870, 1630)\n    cr.scale(1, 0.45)\n    cr.arc(0, 0, 110, math.pi, 2 * math.pi)\n    cr.restore()\n    cr.close_path()\n    solid(cr, (44, 82, 162))\n    cr.rectangle(800, 1676, 140, 16)\n    solid(cr, (24, 30, 44), rim=False)\n    _letter(cr, 870, 1668, 96, 60, -0.12)\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    # Data walks the curb toward the camera, shoving each door shut\n    if not started:\n        hx, hy, hh = pos(nc)\n        host(\"point\", hx, hy, hh)\n    elif done:\n        hx, hy, hh = pos(0)\n        host(\"shove\", hx, hy, hh, beat=nc + int((u - a1) / 0.12))\n    else:\n        tgt, prv = nc - 1 - k, nc - k\n        g = ease(seg(f, 0.0, 0.25))\n        (x0, y0, h0), (x1, y1, h1) = pos(prv), pos(tgt)\n        hx, hy, hh = x0 + (x1 - x0) * g, y0 + (y1 - y0) * g, h0 + (h1 - h0) * g\n        host(\"shove\", hx, hy, hh, beat=k)\n\n    if done:\n        fit_readout(cr, f\"{int(round(v1))} billion\", f\"pieces of US mail a year · {l1}\",\n                    80, 520, size=130)\n        text(cr, \"nearly half the mail, gone\", 80, 720, 44, look.INK, face=\"bold\",\n             alpha=ease(seg(u, a1, a1 + 0.05)))\n    else:\n        fit_readout(cr, f\"{int(round(v0))} billion\", f\"pieces of US mail a year · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -34499,8 +34501,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE LETTERS",
-     "topic": "Mail Letters",
-     "say": "First-Class Mail fell to 46 billion pieces. Personal letters and bills are disappearing faster than mail overall."
+     "topic": "Mail letters fade",
+     "say": "First-Class Mail fell to 46 billion pieces in the measured comparison. Its decline outpaced the overall mail contraction."
     },
     {
      "source": "offline",
@@ -34510,13 +34512,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE IRONY",
-     "topic": "Mail Stamps",
-     "say": "A stamp reached 68 cents. Sending less mail did not make each letter cheaper."
+     "topic": "Mail stamps rise",
+     "say": "The stamp price reached 68 cents in the supplied historical comparison. That more than doubled the earlier price."
     }
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-25T11:28:50Z",
+   "rewritten_at": "2026-10-20T11:24:42Z",
    "hook_was": "You get way less mail than your parents did."
   },
   {
@@ -34587,9 +34589,9 @@
   {
    "slug": "a-language-dies-every-2-weeks",
    "title": "A Language Goes Extinct Every 2 Weeks",
-   "hook": "One language disappears about every 2 weeks.",
-   "closing": "Every lost language erases knowledge that cannot be translated back.",
-   "question": "Which languages do you speak?",
+   "hook": "Every couple of weeks, a whole language dies, and the world just scrolls past.",
+   "closing": "When a language dies, a whole way of seeing the world goes silent with it.",
+   "question": "Do you speak more than one language?",
    "caption": "About 40% of the world's roughly 7,000 languages are endangered, and on average one disappears every 2 weeks. Linguists warn as many as half could be gone by 2100. Do you speak more than one language? Tell me below 👇",
    "hashtags": [
     "languages",
@@ -34617,8 +34619,8 @@
      },
      "insight_type": "share",
      "role": "1 · THE COUNT",
-     "topic": "Language Danger",
-     "say": "About 40% of languages are endangered or dying. Their final speakers carry entire systems of knowledge.",
+     "topic": "Languages in danger",
+     "say": "About four in ten languages are endangered, down to their last fluent speakers. When those speakers go, so does the language.",
      "illustrated_scene": "# scene standard: 2026-10-16.2\ndef _stele(cr, x0, x1, top, base, crown=120):\n    r = (x1 - x0) / 2.0\n    cr.move_to(x0, base)\n    cr.line_to(x0, top + crown)\n    cr.save()\n    cr.translate(x0 + r, top + crown)\n    cr.scale(1.0, crown / r)\n    cr.arc(0, 0, r, math.pi, 2 * math.pi)\n    cr.restore()\n    cr.line_to(x1, base)\n    cr.close_path()\n\n\ndef _glyphs(cr, x0, x1, top, base, a):\n    if a <= 0.01:\n        return\n    for r in range(14):\n        y = top + 190 + r * 60\n        if y > base - 70:\n            break\n        for c in range(16):\n            x = x0 + 58 + c * 40\n            if x > x1 - 58:\n                break\n            s = (r * 7 + c * 13) % 5\n            cr.set_source_rgba(*_c((84, 66, 46), 0.9 * a))\n            cr.set_line_width(5)\n            if s == 0:\n                cr.move_to(x, y)\n                cr.line_to(x, y - 28)\n                cr.move_to(x - 9, y - 14)\n                cr.line_to(x + 9, y - 14)\n            elif s == 1:\n                cr.arc(x, y - 14, 10, 0, 2 * math.pi)\n            elif s == 2:\n                cr.move_to(x - 10, y)\n                cr.line_to(x, y - 28)\n                cr.line_to(x + 10, y)\n            elif s == 3:\n                cr.move_to(x - 10, y - 26)\n                cr.curve_to(x + 14, y - 26, x - 14, y, x + 10, y)\n            else:\n                cr.move_to(x - 10, y - 6)\n                cr.line_to(x + 10, y - 6)\n                cr.move_to(x, y - 28)\n                cr.line_to(x, y - 16)\n            cr.stroke()\n\n\n_RUB = [(0.0, 0.0), (1.0, 0.0), (0.94, -0.62), (0.74, -1.0), (0.46, -0.84),\n        (0.22, -0.96), (0.04, -0.5)]\n\n\ndef _rubble_path(cr, x, y, w, h, ang, dx=0.0, dy=0.0):\n    ca, sa = math.cos(ang), math.sin(ang)\n    for i, (px, py) in enumerate(_RUB):\n        lx, ly = px * w + dx, py * h + dy\n        X, Y = x + lx * ca - ly * sa, y + lx * sa + ly * ca\n        if i == 0:\n            cr.move_to(X, Y)\n        else:\n            cr.line_to(X, Y)\n    cr.close_path()\n\n\ndef _rubble(cr, x, y, w, h, col, ang=0.0, marks=True):\n    \"\"\"A broken lump of the carved slab: a jagged top, a shadowed broken\n    side going back, lit face, and a few letters still on it.\"\"\"\n    d = 0.16 * w\n    _rubble_path(cr, x, y, w, h, ang, d, -0.5 * d)\n    solid(cr, tuple(int(v * 0.62) for v in col))\n    _rubble_path(cr, x, y, w, h, ang)\n    solid(cr, col)\n    if marks:\n        cr.save()\n        _rubble_path(cr, x, y, w, h, ang)\n        cr.clip()\n        cr.translate(x, y)\n        cr.rotate(ang)\n        cr.set_source_rgba(*_c((84, 66, 46), 0.85))\n        cr.set_line_width(max(3, w / 40))\n        for i in range(3):\n            gx = w * (0.2 + 0.28 * i)\n            gy = -h * 0.42\n            if i % 3 == 0:\n                cr.move_to(gx, gy + h * 0.14)\n                cr.line_to(gx, gy - h * 0.14)\n                cr.move_to(gx - w * 0.05, gy)\n                cr.line_to(gx + w * 0.05, gy)\n            elif i % 3 == 1:\n                cr.arc(gx, gy, w * 0.05, 0, 2 * math.pi)\n            else:\n                cr.move_to(gx - w * 0.06, gy + h * 0.14)\n                cr.line_to(gx, gy - h * 0.14)\n                cr.line_to(gx + w * 0.06, gy + h * 0.14)\n            cr.stroke()\n        cr.restore()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a carved stone tablet of script\n    SUBSTANCE: the carved stone\n    CAUSE: Data hammers a sledgehammer into the crack and the endangered part splits off and tips away\n    One great stone of carved writing stands for every language on Earth,\n    among ruined columns in the desert. Data walks up to it and swings a\n    sledgehammer into it at the true share: each blow drives the crack\n    further up the stone, and the last one splits the endangered part off,\n    so it tips away and weathers to grey as its letters wear off. The safe\n    part stays standing, so the cut reads at a glance: four parts in ten\n    broken away. Landed by 0.62, then held while he keeps knocking jagged\n    chips off the leaning slab; broken carved lumps lie by the camera.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    tot = sum(v for _, v in rows) or 1.0\n    end = next((r for r in rows if \"endanger\" in r[0].lower() or \"dying\" in r[0].lower()),\n               min(rows, key=lambda r: r[1]))\n    safe = next((r for r in rows if r is not end), None)\n    share = end[1] / tot\n    safe_share = 1.0 - share\n\n    TX0, TX1, TOP, BASE, DEP = 140, 800, 700, 1440, 40\n    CUT = TX1 - (TX1 - TX0) * share\n    jag = [0, 18, -14, 22, -8, 16, -20, 10, -12, 20, -6, 14, 0]\n    crack = [(CUT + jag[i], TOP - 30 + (BASE - TOP + 60) * i / 12.0) for i in range(13)]\n\n    # the blows: four strikes drive the crack up, the fifth splits it off\n    S0, SP, NS = 0.10, 0.06, 4\n    if u < S0:\n        k, f = -1, 0.0\n    elif u < S0 + SP * (NS + 1):\n        k = int((u - S0) / SP)\n        f = clamp((u - S0 - k * SP) / SP)\n    else:\n        k, f = NS, 1.0\n    if k < 0:\n        cr_p = 0.0\n    elif k < NS:\n        cr_p = (k + ease(seg(f, 0.35, 0.7))) / NS\n    else:\n        cr_p = 1.0\n    T0 = S0 + SP * NS + SP * 0.4           # the split lands on the fifth blow\n    tilt = ease(seg(u, T0, 0.62))\n    wob = seg(u, 0.62, 0.72) * 0.03 * math.sin((t - 3.7) * 2.4)\n    ang = 0.22 * tilt + wob\n    fade = ease(seg(u, T0 + 0.02, 0.64))\n    PX, PY = TX1 + DEP * 0.5, BASE\n\n    def rot(x, y):\n        dx, dy = x - PX, y - PY\n        return (PX + dx * math.cos(ang) - dy * math.sin(ang),\n                PY + dx * math.sin(ang) + dy * math.cos(ang))\n\n    sand = (206, 182, 140)\n    grey = (150, 148, 144)\n    slab = tuple(int(a + (b - a) * fade) for a, b in zip(sand, grey))\n\n    gy = landscape(cr, t, \"desert\")\n    # far ruins on the horizon: broken columns and a fallen lintel, hazed\n    for cx_, ch_ in ((860, 260), (950, 170), (1010, 300)):\n        contact_shadow(cr, cx_ + 22, gy + 12, 70, a=0.25)\n        cylinder(cr, cx_, gy + 12, 44, ch_, (214, 192, 152), finish=\"matte\")\n    box(cr, 40, gy + 18, 170, 46, (210, 188, 148), depth=40)\n    cylinder(cr, 70, gy + 0, 40, 150, (214, 192, 152))\n    haze(cr, gy - 320, gy + 40, (236, 214, 182), a=0.55)\n    birds(cr, t, y0=820, n=3, rgb=(70, 60, 60))\n    cast_shadow(cr, TX0, TX1 + DEP, BASE, length=340, a=0.3)\n    contact_shadow(cr, (TX0 + TX1) / 2 + 20, BASE + 4, 760, a=0.4)\n\n    def piece(right, col, ga):\n        cr.save()\n        if right:\n            cr.translate(PX, PY)\n            cr.rotate(ang)\n            cr.translate(-PX, -PY)\n            cr.move_to(W + 600, TOP - 400)\n        else:\n            cr.move_to(-600, TOP - 400)\n        for p in crack:\n            cr.line_to(*p)\n        cr.line_to(crack[-1][0], BASE + 200)\n        cr.line_to((W + 600) if right else -600, BASE + 200)\n        cr.close_path()\n        cr.clip()\n        cr.save()\n        cr.translate(DEP, -DEP / 2)\n        _stele(cr, TX0, TX1, TOP, BASE)\n        solid(cr, tuple(int(v * 0.7) for v in col))\n        cr.restore()\n        _stele(cr, TX0, TX1, TOP, BASE)\n        solid(cr, col)\n        _glyphs(cr, TX0, TX1, TOP, BASE, ga)\n        cr.restore()\n\n    piece(False, sand, 1.0)\n    piece(True, slab, 1.0 - 0.85 * fade)\n\n    # rubble already at the stone's foot, broken from it long ago\n    _rubble(cr, TX0 - 60, BASE + 10, 110, 70, (200, 176, 136), ang=-0.08, marks=False)\n\n    # the crack, driven up the stone from the base by each blow\n    if cr_p > 0:\n        reach = BASE + 30 - (BASE - TOP + 60) * cr_p\n        rc = list(reversed(crack))\n        cr.set_source_rgba(*_c((46, 36, 26)))\n        cr.set_line_width(8 + 6 * cr_p)\n        cr.move_to(*rc[0])\n        for i, p in enumerate(rc[1:], 1):\n            if p[1] < reach:\n                q = rc[i - 1]\n                k_ = (q[1] - reach) / max(1.0, q[1] - p[1])\n                cr.line_to(q[0] + (p[0] - q[0]) * k_, reach)\n                break\n            cr.line_to(*p)\n        cr.stroke()\n\n    # after the split: each further blow knocks a jagged chip off the slab\n    post = max(0.0, u - 0.62)\n    pk = int(post / 0.09)\n    pf = clamp((post - pk * 0.09) / 0.09)\n    if u > 0.62:\n        for j in range(pk):\n            _rubble(cr, CUT + 110 + 64 * (j % 3) + 18 * j, BASE + 6, 46, 30,\n                    (140, 136, 130), ang=0.3 * ((j % 2) - 0.5), marks=False)\n        ph = seg(pf, 0.4, 1.0)\n        if ph > 0:\n            sx, sy = rot(CUT + 50, BASE - 180 - 40 * (pk % 3))\n            fy = min(BASE - 10, sy + 260 * ph * ph)\n            _rubble(cr, sx + 70 * ph, fy, 52, 36, (142, 138, 132), ang=ph * 2.4, marks=False)\n\n    # right by the camera: big broken carved lumps half sunk in the sand\n    contact_shadow(cr, 180, 1772, 300, a=0.4)\n    _rubble(cr, 40, 1770, 280, 150, (198, 174, 134), ang=-0.06)\n    contact_shadow(cr, 880, 1872, 340, a=0.4)\n    _rubble(cr, 720, 1870, 330, 170, (192, 168, 128), ang=0.05)\n    foreground(cr, \"desert\")\n    vignette(cr, a=0.28)\n\n    # Data walks in from the right to the crack and hammers it apart\n    FY = 1462\n    HX = CUT + 70\n    if u < S0:\n        w_ = ease(seg(u, 0.0, S0))\n        host(\"point\", 960 + (HX - 960) * w_, FY, 230)\n    elif u < 0.62:\n        host(\"hammer\", HX, FY, 230, beat=max(0, k))\n    elif u < 0.93:\n        host(\"hammer\", HX, FY, 230, beat=NS + 1 + pk)\n    else:\n        host(\"shock\", HX, FY, 230)\n\n    # the scale on the stone: the part still standing, named on its own face\n    sa = ease(seg(u, 0.44, 0.50))\n    if sa > 0 and safe is not None:\n        text(cr, f\"{int(round(safe_share * 100))}% safe\", (TX0 + CUT) / 2 - 10, TOP + 150, 60,\n             look.INK, face=\"bold\", anchor=\"center\", alpha=sa)\n\n    if u < T0:\n        fit_readout(cr, \"Every language\", \"spoken on Earth, as one stone\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.05)), size=130)\n    else:\n        fit_readout(cr, f\"{int(round(share * 100))}%\", f\"of languages are {end[0].lower()}\",\n                    80, 520, a=ease(seg(u, T0, T0 + 0.05)), rgb=P[\"accent2\"], size=130)\n"
     },
     {
@@ -34629,8 +34631,8 @@
      },
      "insight_type": "trend",
      "role": "2 · WHY NOW",
-     "topic": "Language Loss Rate",
-     "say": "The loss rate now reaches 26 languages a year. Communities are falling silent far faster than before.",
+     "topic": "Why languages vanish",
+     "say": "Languages now vanish about six times faster than last century, about one every two weeks. Families move to cities, and kids stop learning.",
      "illustrated_scene": "# scene standard: 2026-10-16.2\ndef _sb_order(pts):\n    # time order that does not depend on the order the rows arrive in: the\n    # rows are put in one canonical order first, and a \"today\"/\"now\" row is\n    # always the latest whatever its label parses as\n    rows = sorted((str(l), float(v)) for l, v in pts)\n\n    def _now(lab):\n        s = lab.lower()\n        return any(w in s for w in (\"today\", \"now\", \"current\", \"present\", \"latest\"))\n\n    flags = [_now(l) for l, _ in rows]\n    if any(flags) and not all(flags):\n        past = by_time([r for r, fl in zip(rows, flags) if not fl])\n        cur = [r for r, fl in zip(rows, flags) if fl]\n        return past + cur\n    return by_time(rows)\n\n\ndef _sb_bus(cr, x0, base, w, h, dist, kids=True):\n    # a yellow school bus side-on in three-quarter: long lit side, its nose going back\n    contact_shadow(cr, x0 + w / 2 + 30, base + 6, w + 80, a=0.45)\n    box(cr, x0, base - 34, w, h, (238, 182, 36), depth=70, finish=\"gloss\")\n    # black rub stripes along the side\n    for yy in (base - 34 - h * 0.30, base - 34 - h * 0.36):\n        cr.rectangle(x0, yy, w, 7)\n        solid(cr, (40, 36, 30), rim=False, edge=False)\n    # the window row, families in it\n    wy0, wh = base - 34 - h + 26, h * 0.34\n    nwin = 6\n    ww = (w - 120) / nwin\n    for i in range(nwin):\n        wx = x0 + 18 + i * ww\n        cr.rectangle(wx, wy0, ww - 12, wh)\n        solid(cr, (70, 96, 118), finish=\"glass\", rim=False)\n        if kids:\n            hx = wx + (ww - 12) / 2 + 6 * math.sin(i * 1.7)\n            disc(cr, hx, wy0 + wh - 22 - (i % 2) * 10, 17 + (i % 3) * 3,\n                 [(196, 140, 104), (120, 84, 60), (226, 184, 150)][i % 3])\n    # the door at the front, folding glass\n    cr.rectangle(x0 + w - 92, base - 34 - h + 22, 70, h - 40)\n    solid(cr, (60, 82, 100), finish=\"glass\", rim=False)\n    cr.set_source_rgba(*_c((40, 36, 30)))\n    cr.set_line_width(4)\n    cr.move_to(x0 + w - 57, base - 34 - h + 22)\n    cr.line_to(x0 + w - 57, base - 52)\n    cr.stroke()\n    # the red stop arm\n    cr.rectangle(x0 + w - 150, base - 34 - h * 0.62, 34, 34)\n    solid(cr, (200, 40, 34))\n    # wheels, turning with the distance\n    for wx in (x0 + 90, x0 + w - 130):\n        disc(cr, wx, base - 30, 44, (34, 34, 38))\n        disc(cr, wx, base - 30, 18, (170, 170, 176), finish=\"metal\")\n        ang = dist / 44.0\n        cr.set_source_rgba(*_c((90, 90, 96)))\n        cr.set_line_width(5)\n        for s_ in range(3):\n            a_ = ang + s_ * 2.094\n            cr.move_to(wx, base - 30)\n            cr.line_to(wx + 36 * math.cos(a_), base - 30 + 36 * math.sin(a_))\n        cr.stroke()\n\n\ndef _sb_car(cr, x, base):\n    contact_shadow(cr, x + 120, base + 4, 260, a=0.4)\n    box(cr, x, base - 20, 250, 70, (176, 52, 44), depth=40, finish=\"gloss\")\n    cr.move_to(x + 50, base - 90)\n    cr.line_to(x + 80, base - 140)\n    cr.line_to(x + 180, base - 140)\n    cr.line_to(x + 215, base - 90)\n    cr.close_path()\n    solid(cr, (150, 40, 34), finish=\"gloss\")\n    cr.rectangle(x + 90, base - 132, 80, 36)\n    solid(cr, (80, 104, 124), finish=\"glass\", rim=False)\n    for wx in (x + 55, x + 195):\n        disc(cr, wx, base - 18, 26, (30, 30, 34))\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a yellow school bus full of families\n    SUBSTANCE: the bus leaving the village\n    CAUSE: Data grips the wheel and drives the families out of the village to the city\n    Why languages vanish: families leave the village for the city and the\n    kids stop learning. One school bus, one road from the village gate to\n    the skyline. The 20th century's bus is a dashed ghost; today's bus\n    drives the same road at today's rate, so when they stop it has gone\n    about six and a half times as far, ticked off in the ghost's own\n    distance along the roadside (1x ... 6x). Done by 0.58, then held: the\n    bus stands at the city edge, Data still at the wheel, and traffic keeps\n    passing on the near lane. The rows are put in time order by _sb_order,\n    which gives the same answer whatever order the data arrives in.\"\"\"\n    rows = _sb_order(pts)\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    v1 = v1 or 1.0\n    a0, a1 = 0.08, 0.58\n    go = ease(seg(u, a0, a1))\n    BW, BH, BASE = 440, 290, 1440\n    X0, TRAVEL = 40, 480\n    dist = TRAVEL * go\n    gdist = TRAVEL * go * v0 / v1\n    bx = X0 + dist\n    gx = X0 + gdist\n    unit = TRAVEL * v0 / v1\n\n    landscape(cr, t, \"field\")\n    birds(cr, t, y0=760, n=4, rgb=(60, 60, 70))\n    # the city on the far right, under haze\n    for i in range(9):\n        cx_ = 600 + i * 56\n        hh = 140 + ((i * 53) % 5) * 45\n        box(cr, cx_, 1180, 48, hh, (150, 156, 170), depth=14)\n    # the village on the far left\n    for i, (hx0, hx1) in enumerate([(20, 130), (150, 250)]):\n        cast_shadow(cr, hx0, hx1, 1190, length=120, a=0.2)\n        building(cr, hx0, hx1, 1190, 70 + 14 * i, (214, 196, 160),\n                 roof_rgb=(150, 70, 52), roof=\"gable\", boards=False)\n    haze(cr, 900, 1200, (214, 206, 196), a=0.45)\n\n    # the road from the village to the city\n    cr.rectangle(0, 1380, W, 160)\n    solid(cr, (88, 88, 94), edge=False, rim=False)\n    cr.rectangle(0, 1376, W, 8)\n    solid(cr, (196, 190, 176), edge=False, rim=False)\n    cr.set_source_rgba(*_c((236, 220, 150)))\n    cr.set_line_width(7)\n    for i in range(10):\n        cr.move_to(20 + i * 120, 1468)\n        cr.line_to(80 + i * 120, 1468)\n    cr.stroke()\n\n    cast_shadow(cr, bx, bx + BW + 70, BASE, length=260, a=0.28)\n\n    # THE SCALE on the road: the old rate's distance, ticked off as the bus passes\n    F0 = X0 + BW + 70\n    if go > 0.02:\n        cr.rectangle(gx, BASE - 34 - BH, BW, BH)\n        ghost(cr, a=0.9)\n        text(cr, l0, gx + BW / 2, BASE - BH - 52, 30, look.INK, anchor=\"center\")\n        front = F0 + dist\n        for i in range(1, int(v1 / max(v0, 1e-6)) + 1):\n            tx = F0 + i * unit\n            if tx > front or tx > W - 20:\n                break\n            cr.set_source_rgba(*_c((244, 238, 226)))\n            cr.set_line_width(6)\n            cr.move_to(tx, 1500)\n            cr.line_to(tx, 1530)\n            cr.stroke()\n            text(cr, f\"{i}x\", tx, 1495, 28, look.INK, anchor=\"center\")\n\n    _sb_bus(cr, bx, BASE, BW, BH, dist)\n\n    # the steering wheel inside the door\n    dxm = bx + BW - 70\n    wcx, wcy = dxm + 45, BASE - 200\n    cr.arc(wcx, wcy, 34, 0, 2 * math.pi)\n    cr.set_source_rgba(*_c((30, 30, 34)))\n    cr.set_line_width(9)\n    cr.stroke()\n\n    # after it lands, the world keeps moving: cars pass on the near lane\n    if u > a1:\n        ph = ((u - a1) / 0.2) % 1.0\n        _sb_car(cr, W + 40 - (W + 420) * ph, 1560)\n\n    # right by the camera: a suitcase left at the roadside\n    box(cr, 120, 1780, 170, 120, (120, 76, 50), depth=40)\n    cr.rectangle(175, 1640, 60, 22)\n    solid(cr, (70, 46, 30), rim=False)\n    sack(cr, 900, 1820, 1.4, label=False)\n    foreground(cr, \"field\")\n    vignette(cr, a=0.28)\n\n    hands = [(wcx - 30, wcy + 4), (wcx + 28, wcy - 6)]\n    if u < a0:\n        host(\"point\", bx + BW + 120, 1500, 220)\n    elif u < 0.92:\n        host(\"grip\", dxm, BASE - 30, 220, hands=hands, lower=\"stand\",\n             expr=\"strain\" if u < a1 else \"happy\")\n    else:\n        host(\"shock\", dxm, BASE - 30, 220)\n\n    if go >= 0.999:\n        fit_readout(cr, f\"{int(round(v1))} a year\", f\"languages lost · {l1.lower()}\",\n                    80, 520, size=130)\n        text(cr, f\"{v1 / max(v0, 1e-6):.1f}x faster\", W - 80, 690, 64, look.INK,\n             face=\"display\", anchor=\"right\", alpha=ease(seg(u, a1, a1 + 0.05)))\n    else:\n        fit_readout(cr, f\"{int(round(v0))} a year\", f\"languages lost · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -34642,14 +34644,14 @@
      "insight_type": "rank",
      "use_baseline": true,
      "role": "3 · WHAT'S AT STAKE",
-     "topic": "Language By 2100",
-     "say": "Only 3,500 languages may remain by 2100. Half of today's linguistic diversity could disappear.",
+     "topic": "Languages lost by 2100",
+     "say": "Linguists warn half of today's languages could be gone by 2100. Each one carries its own way of seeing the world.",
      "ascending": false
     }
    ],
    "retold": "retell/v4",
-   "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-25T11:28:49Z",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-18T11:00:35Z",
    "hook_was": "Humanity speaks about 7,000 languages. Most are dying."
   },
   {
@@ -34727,7 +34729,7 @@
   {
    "slug": "iss-deorbit-2031",
    "title": "The ISS Will Be Deliberately Crashed Into The Ocean By 2031",
-   "hook": "NASA is about to crash the space station into the ocean on purpose.",
+   "hook": "Space's most famous home is about to become the world's priciest shipwreck.",
    "closing": "Our longest home in space ends in a planned splash, so what comes next matters.",
    "question": "Will you miss watching it fly over?",
    "caption": "The ISS has had people living aboard nonstop since November 2000. NASA now plans to deliberately crash it into the ocean by 2031 -- the deorbit vehicle contract alone is $843 million. Will you miss watching it fly over? Tell me below 👇",
@@ -35060,7 +35062,7 @@
   {
    "slug": "nuclear-stockpile-growth-reversal",
    "title": "The World's Nuclear Stockpile Is Growing Again After 35 Years",
-   "hook": "For a generation, the nuclear threat only shrank. Now it's growing again.",
+   "hook": "The bombs were finally going away. Now one country is building them faster than anyone.",
    "closing": "The countdown that ran one direction for decades just flipped, and that affects everyone.",
    "question": "Did that number surprise you?",
    "caption": "The global nuclear warhead count fell for nearly 40 straight years after the Cold War. Now it's turning back up, and one country's buildup is the biggest reason why. Did this surprise you? 👇",
@@ -35245,7 +35247,8 @@
      "insight_type": "trend",
      "role": "3 · THE REAL CAUSE",
      "topic": "fentanyl deaths",
-     "say": "Why? Fentanyl. Deaths from synthetic opioids grew more than twenty times over in eight years. The supply got deadlier, not smaller."
+     "say": "Why? Fentanyl. Deaths from synthetic opioids grew more than twenty times over in eight years. The supply got deadlier, not smaller.",
+     "illustrated_scene": "# scene standard: 2026-10-22\ndef _lab_flask(cr, cx, base, hb, hn, ys, yl):\n    cr.new_path()\n    cr.move_to(cx - hn, yl)\n    cr.line_to(cx - hn, ys)\n    cr.line_to(cx - hb, base - 26)\n    cr.curve_to(cx - hb - 6, base - 6, cx - hb + 12, base, cx - hb + 32, base)\n    cr.line_to(cx + hb - 32, base)\n    cr.curve_to(cx + hb - 12, base, cx + hb + 6, base - 6, cx + hb, base - 26)\n    cr.line_to(cx + hn, ys)\n    cr.line_to(cx + hn, yl)\n    cr.close_path()\n\n\ndef _lab_fan(cr, x, y, r, ang):\n    disc(cr, x, y, r + 18, (150, 156, 160), finish=\"metal\")\n    cr.arc(x, y, r + 4, 0, 2 * math.pi)\n    cr.set_source_rgba(*_c((34, 38, 42)))\n    cr.fill()\n    cr.save()\n    cr.translate(x, y)\n    cr.rotate(ang)\n    for i in range(3):\n        cr.rotate(2 * math.pi / 3)\n        cr.save()\n        cr.translate(r * 0.5, 0)\n        cr.scale(r * 0.5, r * 0.2)\n        cr.arc(0, 0, 1, 0, 2 * math.pi)\n        cr.restore()\n        solid(cr, (176, 182, 188), finish=\"metal\")\n    cr.restore()\n    disc(cr, x, y, 20, (90, 94, 100), finish=\"metal\")\n\n\ndef _lab_ladder(cr, top_y, base_y):\n    # an A-frame stepladder leaning on the flask: rear leg, front leg, rungs\n    rx0, rx1 = 290, 450\n    fx0, fx1 = 560, 540\n    for (xa, xb) in ((rx0, rx1), (fx0, fx1)):\n        cr.move_to(xa - 9, base_y)\n        cr.line_to(xb - 9, top_y)\n        cr.line_to(xb + 9, top_y)\n        cr.line_to(xa + 9, base_y)\n        cr.close_path()\n        solid(cr, (178, 140, 66))\n    for j in range(1, 6):\n        q = j / 6.0\n        yy = base_y - (base_y - top_y) * q\n        xa = rx0 + (rx1 - rx0) * q\n        xb = fx0 + (fx1 - fx0) * q\n        box(cr, xa, yy + 7, xb - xa, 14, (196, 158, 84), depth=14)\n    box(cr, rx1 - 20, top_y + 4, fx1 - rx1 + 50, 20, (206, 168, 92), depth=24)\n\n\ndef _lab_drum(cr, x, y, w, h):\n    contact_shadow(cr, x + w / 2, y, w + 40, a=0.45)\n    cylinder(cr, x, y, w, h, (52, 84, 140), finish=\"metal\")\n    for yy in (y - h * 0.3, y - h * 0.7):\n        cr.rectangle(x, yy - 7, w, 14)\n        solid(cr, (40, 66, 112), finish=\"metal\", rim=False)\n    cr.rectangle(x + w * 0.22, y - h * 0.58, w * 0.56, h * 0.2)\n    solid(cr, (236, 196, 50), rim=False)\n    cr.set_source_rgba(*_c((30, 30, 30)))\n    cr.set_line_width(8)\n    for i in range(4):\n        sx = x + w * 0.24 + i * w * 0.14\n        cr.move_to(sx, y - h * 0.40)\n        cr.line_to(sx + w * 0.08, y - h * 0.56)\n    cr.stroke()\n\n\ndef _lab_surf(cx, sy, x):\n    # the powder's top: a heap peaked where the stream lands, at the angle\n    # a dry powder settles at, flat out to the glass\n    return sy + 8 - 54 * clamp(1.0 - abs(x - cx) / 250.0)\n\n\ndef _lab_powder_path(cr, cx, sy, x0, x1, base):\n    cr.new_path()\n    cr.move_to(x0, base + 10)\n    for i in range(41):\n        x = x0 + (x1 - x0) * i / 40\n        cr.line_to(x, _lab_surf(cx, sy, x))\n    cr.line_to(x1, base + 10)\n    cr.close_path()\n\n\ndef _lab_baggie(cr, x, y, w, h):\n    # a zip baggie of white powder lying by the camera\n    contact_shadow(cr, x + w / 2, y + 4, w + 30, a=0.45)\n    cr.move_to(x, y)\n    cr.line_to(x + 8, y - h)\n    cr.line_to(x + w - 8, y - h)\n    cr.line_to(x + w, y)\n    cr.close_path()\n    solid(cr, (214, 222, 226), finish=\"glass\", a=0.7)\n    cr.move_to(x + 10, y - 6)\n    cr.curve_to(x + 20, y - h * 0.62, x + w - 20, y - h * 0.7, x + w - 10, y - 6)\n    cr.close_path()\n    solid(cr, (238, 236, 230))\n    for i in range(16):\n        gx = x + 24 + ((i * 0.618) % 1.0) * (w - 48)\n        gy = y - 10 - ((i * 0.414) % 1.0) * h * 0.45\n        cr.arc(gx, gy, 2.5, 0, 2 * math.pi)\n        cr.set_source_rgba(*_c((176, 176, 174), 0.9))\n        cr.fill()\n    cr.rectangle(x + 6, y - h - 2, w - 12, 12)\n    solid(cr, (200, 60, 54), rim=False)\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a giant glass lab flask\n    SUBSTANCE: white fentanyl powder\n    CAUSE: Data pours bucket after bucket of white powder into the flask and the level rises\n    A dim clandestine lab under one hanging bulb. One huge Erlenmeyer flask\n    with a skull warning label stands on the floor. In 2013 the powder in it\n    is a thin white layer at the bottom. Data climbs the stepladder leaning on\n    it and pours it in by the bucket, over the rim, one pour at a time: a\n    falling stream of grains that heaps into a dry cone, the way powder\n    lands, until the heap stands at 2021's height, still inside the body of\n    the flask. Height is deaths. The 2013 level stays marked on the glass, so\n    a glance reads \"more than twenty times\". It is done by 0.66 and held; he\n    keeps his bucket tipped at the rim and the extractor fan keeps turning.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    v0 = v0 or 1.0\n    top = max(v1, v0) or 1.0\n    ratio = v1 / v0\n    n = 6\n    a0, c1, a1 = 0.06, 0.18, 0.66\n    span = (a1 - c1) / n\n    k = int(clamp((u - c1) / span, 0, n - 0.001))\n    f = clamp((u - c1 - k * span) / span)\n    grow = ease(seg(f, 0.15, 0.8))\n    if u < c1:\n        step = 0.0\n    elif u >= a1:\n        step = 1.0\n    else:\n        step = (k + grow) / n\n    val = v0 + (v1 - v0) * step\n\n    CX, BASE, HB, HN, YS, YL = 700, 1440, 300, 70, 900, 760\n    # the full heap stays in the flask's body: its peak stops below the shoulder\n    HM = (BASE - 20) - 1010\n    h = HM * val / top\n    h0 = HM * v0 / top\n    sy = BASE - 20 - h\n    TOP_Y = 860                                  # the ladder's top step\n\n    # the lab: a tiled back wall, a bench of glassware, a concrete floor\n    vgrad(cr, [(0, (26, 30, 34)), (1, (70, 80, 82))], 0, 1160)\n    cr.set_source_rgba(*_c((16, 20, 24), 0.35))\n    cr.set_line_width(2)\n    for i in range(1, 20):\n        cr.move_to(0, i * 60)\n        cr.line_to(W, i * 60)\n    for i in range(1, 12):\n        cr.move_to(i * 96, 0)\n        cr.line_to(i * 96, 1160)\n    cr.stroke()\n    _lab_fan(cr, 920, 330, 120, t * 1.2)\n    contact_shadow(cr, 540, 1160, 1080, a=0.3)\n    box(cr, 0, 1160, 1080, 120, (120, 124, 128), depth=30, finish=\"metal\")\n    for i in range(9):\n        bx = 30 + i * 118\n        cylinder(cr, bx, 1040, 46, 70 + (i % 3) * 30,\n                 [(170, 200, 210), (190, 170, 120), (150, 180, 160)][i % 3], finish=\"glass\")\n    haze(cr, 0, 1180, (60, 70, 74), a=0.5)\n    vgrad(cr, [(0, (100, 96, 90)), (1, (50, 48, 46))], 1160, H)\n    # the one bare bulb, hung over the flask, its pool of light on the floor\n    cr.set_source_rgba(*_c((20, 20, 22)))\n    cr.set_line_width(4)\n    cr.move_to(CX - 40, 0)\n    cr.line_to(CX - 40, 150)\n    cr.stroke()\n    cr.move_to(CX - 100, 210)\n    cr.line_to(CX - 62, 150)\n    cr.line_to(CX - 18, 150)\n    cr.line_to(CX + 20, 210)\n    cr.close_path()\n    solid(cr, (60, 66, 60), finish=\"metal\")\n    glow(cr, CX - 40, 214, 120, (255, 236, 190), 0.8)\n    disc(cr, CX - 40, 212, 18, (255, 246, 214), finish=\"gloss\")\n    cr.save()\n    cr.translate(CX, 1470)\n    cr.scale(1, 0.22)\n    glow(cr, 0, 0, 520, (255, 230, 180), 0.35)\n    cr.restore()\n\n    # the flask: glass, the powder heaped inside it, the label, the rim\n    cast_shadow(cr, CX - HB, CX + HB, BASE, length=300, a=0.32)\n    contact_shadow(cr, CX, BASE + 4, 2 * HB + 40, a=0.45)\n    _lab_flask(cr, CX, BASE, HB, HN, YS, YL)\n    cr.set_source_rgba(*_c((120, 160, 170), 0.22))\n    cr.fill()\n    cr.save()\n    _lab_flask(cr, CX, BASE, HB, HN, YS, YL)\n    cr.clip()\n    _lab_powder_path(cr, CX, sy, CX - HB - 20, CX + HB + 20, BASE)\n    solid(cr, (234, 232, 226), edge=False)\n    # the heap's shadowed right slope, away from the key light\n    cr.move_to(CX, _lab_surf(CX, sy, CX))\n    cr.line_to(CX + 250, _lab_surf(CX, sy, CX + 250))\n    cr.line_to(CX + 250, _lab_surf(CX, sy, CX + 250) + 40)\n    cr.line_to(CX, _lab_surf(CX, sy, CX) + 70)\n    cr.close_path()\n    cr.set_source_rgba(*_c((170, 172, 176), 0.35))\n    cr.fill()\n    # the grains it is made of: grey specks and bright crystal glints\n    for i in range(140):\n        px = CX - HB + ((i * 0.618034) % 1.0) * 2 * HB\n        top_y = _lab_surf(CX, sy, px)\n        py = top_y + 4 + ((i * 0.414214) % 1.0) * max(1.0, BASE - 24 - top_y)\n        cr.arc(px, py, 2.6 if i % 3 else 1.8, 0, 2 * math.pi)\n        cr.set_source_rgba(*_c((160, 160, 160) if i % 3 else (255, 255, 255), 0.85))\n        cr.fill()\n    # a grainy edge along the heap's top so it reads as dry powder, not foam\n    for i in range(60):\n        px = CX - HB + 10 + i * (2 * HB - 20) / 59\n        py = _lab_surf(CX, sy, px) + 2 + 3 * ((i * 0.37) % 1.0)\n        cr.arc(px, py, 3.2, 0, 2 * math.pi)\n        cr.set_source_rgba(*_c((196, 196, 194), 0.9))\n        cr.fill()\n    cr.restore()\n    _lab_flask(cr, CX, BASE, HB, HN, YS, YL)\n    solid(cr, P[\"glass\"], finish=\"glass\", a=0.22, edge=False)\n    cr.set_source_rgba(*_c((255, 255, 255), 0.45))\n    cr.set_line_width(10)\n    cr.move_to(CX - HN + 16, YL + 30)\n    cr.line_to(CX - HN + 16, YS)\n    cr.line_to(CX - HB + 40, BASE - 60)\n    cr.stroke()\n    for j in range(1, 9):\n        gy = BASE - 20 - j * (BASE - 20 - (YL + 70)) / 9\n        cr.set_source_rgba(*_c((255, 255, 255), 0.6))\n        cr.set_line_width(4)\n        gx = CX + HN + (HB - HN) * clamp((gy - YS) / (BASE - 26 - YS)) - 30\n        cr.move_to(gx - 30, gy)\n        cr.line_to(gx, gy)\n        cr.stroke()\n    _lab_flask(cr, CX, BASE, HB, HN, YS, YL)\n    edge(cr, (24, 32, 36), width=6)\n    cr.rectangle(CX - HN - 14, YL - 16, 2 * HN + 28, 26)\n    solid(cr, P[\"glass\"], finish=\"glass\")\n    # hazard label: a yellow diamond with a skull\n    lx, ly, ls = CX + 150, 1290, 64\n    cr.move_to(lx, ly - ls)\n    cr.line_to(lx + ls, ly)\n    cr.line_to(lx, ly + ls)\n    cr.line_to(lx - ls, ly)\n    cr.close_path()\n    solid(cr, (236, 196, 50))\n    disc(cr, lx, ly - 8, 22, (246, 244, 236))\n    cr.rectangle(lx - 11, ly + 8, 22, 13)\n    solid(cr, (246, 244, 236), rim=False)\n    for ex in (lx - 8, lx + 8):\n        cr.arc(ex, ly - 8, 5.5, 0, 2 * math.pi)\n        cr.set_source_rgba(*_c((30, 30, 30)))\n        cr.fill()\n    cr.set_source_rgba(*_c((30, 30, 30)))\n    cr.set_line_width(6)\n    cr.move_to(lx - 30, ly + 32)\n    cr.line_to(lx + 30, ly + 4)\n    cr.move_to(lx + 30, ly + 32)\n    cr.line_to(lx - 30, ly + 4)\n    cr.stroke()\n\n    # the 2013 level, kept on the glass\n    if step > 0.02:\n        cr.move_to(CX - HB + 30, BASE - 20 - h0)\n        cr.line_to(CX + HB - 30, BASE - 20 - h0)\n        ghost(cr, a=0.9)\n        then_mark(cr, CX - HB + 40, CX + HB - 40, BASE - 20 - h0, l0)\n\n    # the stepladder leaning on the flask, so he can reach the rim\n    contact_shadow(cr, 425, 1444, 330, a=0.4)\n    _lab_ladder(cr, TOP_Y, 1440)\n\n    # where Data stands: up the ladder as he climbs, then on its top step\n    if u < a0:\n        hx, hy = 220, 1440\n    elif u < c1:\n        p = ease(seg(u, a0, c1))\n        hx, hy = 220 + (500 - 220) * p, 1440 - (1440 - TOP_Y) * p\n    else:\n        hx, hy = 500, TOP_Y\n\n    # the stream of powder from his bucket, over the rim, falling as grains\n    pouring = c1 <= u < a1 and 0.08 < f < 0.8\n    if pouring:\n        bx, by = hx + 66, hy - 118\n        peak = _lab_surf(CX, sy, CX)\n        cr.set_source_rgba(*_c((236, 234, 228), 0.95))\n        cr.set_line_width(12)\n        cr.set_line_cap(cairo.LINE_CAP_ROUND)\n        cr.move_to(bx, by)\n        cr.curve_to(bx + 40, by - 50, CX - 40, YL - 50, CX, YL - 6)\n        cr.line_to(CX, peak - 4)\n        cr.stroke()\n        cr.set_line_cap(cairo.LINE_CAP_BUTT)\n        for i in range(26):\n            q = ((i / 26.0) + t * 1.4) % 1.0\n            gy = YL + (peak - YL) * q\n            gx = CX + 7 * math.sin(i * 2.3) * (0.4 + q)\n            cr.arc(gx, gy, 3.2, 0, 2 * math.pi)\n            cr.set_source_rgba(*_c((190, 190, 188) if i % 2 else (255, 255, 255)))\n            cr.fill()\n\n    # right by the camera: a tray of blue counterfeit pills, a bag of the\n    # same white powder, a chemical drum\n    contact_shadow(cr, 250, 1800, 440, a=0.45)\n    box(cr, 40, 1800, 420, 40, (150, 154, 160), depth=70, finish=\"metal\")\n    for i in range(20):\n        disc(cr, 72 + (i % 10) * 38 + (i // 10) * 22, 1778 - (i // 10) * 24, 16,\n             (70, 130, 200), finish=\"gloss\")\n    _lab_baggie(cr, 500, 1890, 210, 120)\n    _lab_drum(cr, 780, 1860, 240, 320)\n    vignette(cr, a=0.3)\n\n    # Data climbs the ladder, then pours bucket after bucket, and keeps\n    # his bucket tipped at the rim once the flask is full\n    if u < a0:\n        host(\"point\", hx, hy, 220)\n    elif u < c1:\n        host(\"climb\", hx, hy, 220)\n    elif u < 0.9:\n        host(\"pour\", hx, hy, 220, beat=min(k, n - 1) if u < a1 + 0.04 else n - 1)\n    else:\n        host(\"shock\", hx, hy, 220)\n\n    if u >= a1:\n        fit_readout(cr, f\"{int(round(v1)):,} deaths\", f\"US synthetic-opioid overdoses · {l1}\",\n                    80, 520, size=130)\n        text(cr, f\"{ratio:.0f}x\", W - 80, 700, 110, look.INK, face=\"display\",\n             anchor=\"right\", alpha=ease(seg(u, a1, a1 + 0.05)))\n    else:\n        fit_readout(cr, f\"{int(round(v0)):,} deaths\", f\"US synthetic-opioid overdoses · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     }
    ],
    "retold": "retell/v4",
@@ -36052,10 +36055,11 @@
      "params": {
       "file": "exonerees_who_pleaded_guilty.json"
      },
-     "insight_type": "comparison",
+     "insight_type": "rank",
      "role": "3 · THE COST",
      "topic": "Innocent people who took a plea in criminal cases",
-     "say": "The catch: among people later proven innocent and exonerated, roughly 1 in 5 had pleaded guilty to a crime they never committed."
+     "say": "The catch: among people later proven innocent and exonerated, roughly 1 in 5 had pleaded guilty to a crime they never committed.",
+     "ascending": false
     }
    ]
   },
