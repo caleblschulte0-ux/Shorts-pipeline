@@ -15989,14 +15989,32 @@
       "ts": "2026-10-25T12:47:19.314974+00:00"
     },
     "clip-20261025-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/HumbleWealthyShrimpSwiftRage--FPv5NydlWscX4nV",
-      "story_key": null,
-      "streamer": "joe_bartolozzi",
+      "url": "https://youtube.com/shorts/tySLWfCm4sM",
       "title": "Joe Joe_Bartolozzi Can't Keep Watching This And Has To Turn It Off",
       "kind": "twitch_clip",
-      "ts": "2026-10-25T12:50:05.379474+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-25T12:50:10.421297+00:00",
+      "uploaded_at": "2026-10-25T12:50:10.421309+00:00",
+      "publish_at": "2026-10-26T05:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261025-joe-joe-bartolozzi-can-t-keep-watching-this-and--2507a6d9",
+        "tiktok": "queued for 2026-10-26T05:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/joe_bartolozzi/clip/HumbleWealthyShrimpSwiftRage--FPv5NydlWscX4nV",
+      "streamer": "joe_bartolozzi",
+      "series": "fail",
+      "hook": "Joe feels sick and turns it off \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2079,
+      "banger": 0.4,
+      "cut": {
+        "start": 3.0,
+        "end": 29.5
+      },
+      "director_cut": true
     }
   }
 }

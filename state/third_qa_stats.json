@@ -3,350 +3,6 @@
     {
       "date": "20261017",
       "dry_run": false,
-      "ts": "2026-10-17T13:50:57+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 14,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 139,
-        "with_retention": 115,
-        "with_curve": 14,
-        "fetched_at": "2026-10-17T08:46:19.286858+00:00"
-      },
-      "brain": {
-        "ok": 22,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261017-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 87,
-                "refused_shown": 17,
-                "scouted": [
-                  {
-                    "premise": "Kai Cenat swears he's not scared of Outlast and says he'll be the first to play it, then gets jump-scared and loses it o",
-                    "shape": "one_stream",
-                    "n": 2
-                  },
-                  {
-                    "premise": "Burn's GTA RP character Chris Handsome sets out to catch weebs, and the streams of Pengwin and Burn show him catching hi",
-                    "shape": "multi_streamer",
-                    "n": 3
-                  }
-                ],
-                "vod_arcs": 318,
-                "moments": 40,
-                "candidates": 521,
-                "pool": 2959,
-                "pool_with_vod": 2082,
-                "arc_sizes": [
-                  6,
-                  2,
-                  6,
-                  2,
-                  5,
-                  4,
-                  2,
-                  3,
-                  3,
-                  3
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "sondergaardlol@momentfantasticpunchybisonredcoat-pmq8vp3f-er",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: table read 48 < 50 \u2014 not rendered; repetition: The setup repeats the same countdown ('3, 2, 1, go') four or five times between 25s and 38s. Cut it to one failed"
-                },
-                {
-                  "cluster": "kaicenat@vod2824281072/kaicenat-about-announc-2026w30",
-                  "outcome": "narrative_failed",
-                  "why": "scores [68, 72, 72] after 2 revision(s) \u2014 @8s pacing: The announcement clip ends on a dangling 'wouldn't', which is an audible mid-sentence cut. Trim the end of the first segment to just after 'goes to Suburb Baby', or end on the applause or his reaction; @8s missing_context: The speech opens mid-se"
-                },
-                {
-                  "cluster": "scout:burn+pengwin/burn-pengwin-catch-charact-2026w42",
-                  "outcome": "narrative_failed",
-                  "why": "scores [52, 62, 38] after 2 revision(s) \u2014 @0s missing_context: The caption 'Chris Handsome is out to catch' is cut off, so the hook never says what he is out to catch. Complete it (e.g. 'a weeb') and say who the target is. Explain what the bait is and why it matt; @22s weak_payoff: The ending is a s"
-                },
-                {
-                  "cluster": "piskulya@momentcogentcrunchycatoskomodo-yzpvprldw1wcxohf",
-                  "outcome": "starved",
-                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.8s \u2014 too short to edit"
-                },
-                {
-                  "cluster": "jynxzi@vod2876675862/jynxzi-announc-apologiz-2026w38",
-                  "outcome": "not_a_story",
-                  "why": "take 0: every beat is from one source \u2014 a clip, not a story; take 1: every beat is from one source \u2014 a clip, not a story; take 2: every beat is from one source \u2014 a clip, not a story"
-                },
-                {
-                  "cluster": "sondergaardlol@momentartisticfamoustomatofreakinstinkin-f2jw",
-                  "outcome": "already_refused",
-                  "why": "2026-10-15: director judged: not a story \u2014 The sources show no setup, change or payoff that can be stated plainly. The clip (13.7s) has two men bent over a desk, then laugh"
-                },
-                {
-                  "cluster": "northernlion@vod2880264709",
-                  "outcome": "already_refused",
-                  "why": "2026-10-15: sources fail preflight: preflight:source barely moves (avg frame delta 0.13) \u2014 static image/pa; preflight:source barely moves (avg frame delta 0"
-                },
-                {
-                  "cluster": "kaicenat@momenttangentialdeterminedalmondspicyboy-oeitzou0ub",
-                  "outcome": "already_refused",
-                  "why": "2026-10-11: rendered; critic scored 46 after 2 revision(s) \u2014 @15s pacing: From about 12s to 42s the picture is a static red slide (a Europe flag and 'UNIVERSITY 2027 HELD I"
-                },
-                {
-                  "cluster": "ishowspeed@vod2898041380/ishowspeed-anoth-answ-2026w42",
-                  "outcome": "table_read_failed",
-                  "why": "table read 48 < 50 \u2014 not rendered; confusing: The opening never says why Speed is being driven to a hospital or who the friends are. Add one line of context (injury, stream moment) or cut to the moment that shows it. Right now a stranger sees a c; confusing: The masked-character segment never says w"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.78,
-              "why": "kicked out of stadium, live event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "Walking outside after kick-out; no visib",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Lacy Gets Kicked Out Of The Stadium At The Rams Vs Bills Game After Trying To Go Back In"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.85,
-              "problems": [
-                "In the frame at 8.4s the subject is partly cut off at the right edge. It's brief and minor."
-              ]
-            }
-          },
-          "took_s": 228.7
-        },
-        {
-          "slug": "clip-20261017-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 97,
-                "refused_shown": 19,
-                "scouted": [
-                  {
-                    "premise": "Kai Cenat swears he isn't scared of Outlast and says he'll be the first to play it, then gets jump-scared and loses it w",
-                    "shape": "one_stream",
-                    "n": 2
-                  },
-                  {
-                    "premise": "Jynxzi swears he'll tattoo his cheek if a teammate doesn't go first pick, plays his League influencer tournament, reflec",
-                    "shape": "multi_streamer",
-                    "n": 4
-                  }
-                ],
-                "vod_arcs": 318,
-                "moments": 40,
-                "candidates": 521,
-                "pool": 2959,
-                "pool_with_vod": 2082,
-                "arc_sizes": [
-                  6,
-                  2,
-                  6,
-                  2,
-                  5,
-                  4,
-                  2,
-                  3,
-                  3,
-                  3
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "sondergaardlol@momentfantasticpunchybisonredcoat-pmq8vp3f-er",
-                  "outcome": "already_refused",
-                  "why": "2026-10-14: table read 48 < 50 \u2014 not rendered; repetition: The setup repeats the same countdown ('3, 2, 1, go') four or five times between 25s and 38s. Cut it to one failed"
-                },
-                {
-                  "cluster": "scout:jynxzi+ludwig/jynxzi-ludwig-jynxzi-league-2026w42",
-                  "outcome": "narrative_failed",
-                  "why": "scores [64, 66, 58] after 2 revision(s) \u2014 @41s weak_payoff: The ending ('I feel better, that actually felt really good... felt awesome') only restates that he vented. It does not answer 'can he stay this angry', and there is no consequence or reversal. Cut to ; @30s confusing: The Jynxzi beat is not"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.55,
-              "why": "odd physical moment, unclear",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "women's boxing, clinching, no clear payo",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Stableronaldo Says \"That's Beef\" After This Chat Moment Goes Wrong"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "Boxing action is small within the middle panel, though still readable",
-                "Streamer face cam is stacked on top with the fight below, and a small facecam also sits in the fight panel, so it looks ",
-                "Hook caption sits on the blurred padding and doesn't cover any faces or action"
-              ]
-            }
-          },
-          "took_s": 85.7
-        },
-        {
-          "slug": "clip-20261017-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261017-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261017-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "story_director": {
-              "clusters": [
-                {
-                  "cluster": "clip-20261017-5",
-                  "outcome": "story_budget",
-                  "why": "run past story_budget_min"
-                }
-              ]
-            },
-            "banger": {
-              "score": 0.55,
-              "why": "relatable chat roast, unclear visual pay",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "mild insecurity banter, no clear payoff",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Joe Joe_Bartolozzi Asks Chat If He Really Has A Bald Spot \ud83d\ude2d"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.75,
-              "problems": [
-                "The hook card sits near the top of the picture and brushes against the stream's chat overlay and emoji, but it doesn't c",
-                "The word captions are cut off at the left edge in a few frames, e.g. 'rotation That' and 'ald spot?'",
-                "The captions sit at the bottom edge of the sharp region and get close to the blurred padding"
-              ]
-            }
-          },
-          "took_s": 93.0
-        },
-        {
-          "slug": "clip-20261017-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20261017",
-      "dry_run": false,
       "ts": "2026-10-17T13:53:23+00:00",
       "feedback": {
         "snapshot": true,
@@ -5142,6 +4798,174 @@
             }
           },
           "took_s": 48.7
+        },
+        {
+          "slug": "clip-20261025-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261025",
+      "dry_run": false,
+      "ts": "2026-10-25T12:50:10+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 16,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 140,
+        "with_retention": 120,
+        "with_curve": 15,
+        "fetched_at": "2026-10-25T12:26:35.727001+00:00"
+      },
+      "brain": {
+        "ok": 14,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261025-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261025-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261025-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261025-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "visible reaction, unclear trigger",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "Street flirting, translated; no clear pa",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Rayasianboy Girl Breaks Down And Is Left Stunned On Stream"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "The wide shot in the middle band is fairly small, so the subjects are small on a phone. The sharp face close-up above it",
+                "Some captions overlap the stream's own subtitles, which is minor."
+              ]
+            }
+          },
+          "took_s": 156.8
+        },
+        {
+          "slug": "clip-20261025-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Disgust reaction, unseen trigger",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Joe Joe_Bartolozzi Can't Keep Watching This And Has To Turn It Off"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "Person leaves frame partly at 12.1s and 14.4s (leaning out), which is brief and natural",
+                "Captions at the lower edge are sometimes cut off or misaligned (e.g. 'ttle nauseous oh', 'ncoln mod shed')",
+                "Word captions sit very close to the hook line and overlap the shirt, with no overlap on the face"
+              ]
+            }
+          },
+          "took_s": 171.1
         },
         {
           "slug": "clip-20261025-6",
