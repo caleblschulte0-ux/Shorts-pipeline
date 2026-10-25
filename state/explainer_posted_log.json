@@ -4189,6 +4189,13 @@
       ],
       "words_first_10s": 25,
       "scene_changes_before_5s": 3
+    },
+    "body-renewal-clock": {
+      "claimed_at": "2026-10-25T12:08:03.005986+00:00",
+      "title": "The Body Renews Its Stomach Lining In 5 Days, Not Every Cell",
+      "publish_at": "2026-10-25T17:18:34Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5318,6 +5325,14 @@
       "state": "posted",
       "slug": "parker-solar-probe-speed-record",
       "at": "2026-10-25T11:08:36.867660+00:00"
+    },
+    {
+      "claimed_at": "2026-10-25T12:08:03.005986+00:00",
+      "title": "The Body Renews Its Stomach Lining In 5 Days, Not Every Cell",
+      "publish_at": "2026-10-25T17:18:34Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "body-renewal-clock"
     }
   ]
 }
