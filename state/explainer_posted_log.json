@@ -4154,6 +4154,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 70,
       "duration_s": 31.1
+    },
+    "parker-solar-probe-speed-record": {
+      "claimed_at": "2026-10-25T11:08:24.702526+00:00",
+      "title": "Parker Solar Probe Hit 430,000 MPH Without Carrying A Human",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5274,6 +5281,14 @@
       "state": "posted",
       "slug": "chip-shortage-tsmc-fragility",
       "at": "2026-10-24T13:11:46.467438+00:00"
+    },
+    {
+      "claimed_at": "2026-10-25T11:08:24.702526+00:00",
+      "title": "Parker Solar Probe Hit 430,000 MPH Without Carrying A Human",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "parker-solar-probe-speed-record"
     }
   ]
 }
