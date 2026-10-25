@@ -15688,13 +15688,59 @@
       "ts": "2026-10-25T11:30:45.780095+00:00"
     },
     "clip-20261025-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/FantasticPlainMageTBCheesePull-VZiY4EgOK6fmtu_p",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/AOjlr_sgOeU",
       "title": "Stableronaldo Can't Believe What He Just Saw On Stream",
       "kind": "twitch_clip",
-      "ts": "2026-10-25T11:35:12.561791+00:00",
+      "ts": "2026-10-25T11:35:23.096887+00:00",
+      "uploaded_at": "2026-10-25T11:35:23.096899+00:00",
+      "publish_at": "2026-10-25T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261025-stableronaldo-can-t-believe-what-he-just-saw-on--1b9fc43d",
+        "tiktok": "queued for 2026-10-25T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/FantasticPlainMageTBCheesePull-VZiY4EgOK6fmtu_p",
+      "streamer": "stableronaldo",
+      "series": "chaos",
+      "hook": "Stableronaldo saw it coming \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2175,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 29.5
+      },
+      "director_cut": true
+    },
+    "rejected-gentlemotionlesscourgettesoonerlater-4znnz3ymo8xv1wqn": {
+      "source_url": "https://www.twitch.tv/ironmouse/clip/GentleMotionlessCourgetteSoonerLater-4znNz3yMO8XV1wQN",
+      "streamer": "ironmouse",
+      "title": "THE EVIL WORST VTUBER HAS A NEW HALLOWEEN COSTUME | !twitchcon !glamb !youtooz !omocat !fox !cheeky !ht !starforge !tts !merch !razer",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (sexually explicit game, age-restrict ris)",
+      "ts": "2026-10-25T11:37:04.911314+00:00"
+    },
+    "rejected-plainheartlessotterpanicvis-ucbe7uoburyg1tec": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/PlainHeartlessOtterPanicVis-UCbe7UobURyG1tEc",
+      "streamer": "jasontheween",
+      "title": "Ellysa Facetimes Jasontheween And Asks Him To Sing The National Anthem",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip across the middle, about a third of the canvas height. It is not the roughly three qua; vision: Most of the strip is empty black stream chrome and a tiny chat panel. The actual action (Ellysa on FaceTime and Jason's ; vision: Jason, the other person in the e",
+      "ts": "2026-10-25T11:41:52.244723+00:00"
+    },
+    "clip-20261025-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/CalmDependablePterodactylItsBoshyTime-OTyo1_LyDmUykOIe",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Gets CAUGHT After Pointing At Something On Stream \ud83d\ude33",
+      "kind": "twitch_clip",
+      "ts": "2026-10-25T11:45:14.397743+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
