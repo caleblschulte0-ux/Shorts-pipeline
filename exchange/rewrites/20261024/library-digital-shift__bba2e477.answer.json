@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "library-digital-shift__bba2e477",
+  "slug": "library-digital-shift",
+  "by": "chatgpt",
+  "written_at": "2026-10-25T11:48:00Z",
+  "title": "Library Visits Fell To 800 Million While Digital Borrowing Rose",
+  "hook": "Library visits fell to 800 million, but borrowing moved online.",
+  "closing": "Your library did not disappear; much of it moved onto the phone already in your hand.",
+  "question": "Do you borrow library books digitally?",
+  "segments": [
+    {
+      "topic": "Library Visits",
+      "say": "Physical library visits reached 800 million in 2023. Buildings stayed quieter even after the sharp collapse."
+    },
+    {
+      "topic": "Library Checkouts",
+      "say": "Digital library checkouts reached 739 million in 2024. Borrowers changed the doorway, not the habit."
+    }
+  ]
+}
