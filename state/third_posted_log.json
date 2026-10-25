@@ -15941,6 +15941,25 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (static award-voting talk, no event)",
       "ts": "2026-10-25T12:38:40.865223+00:00"
+    },
+    "rejected-encouragingspicywoodpeckerredcoat-e9wztm0w_2pexq30": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/EncouragingSpicyWoodpeckerRedCoat-E9WZtm0w_2pEXq30",
+      "streamer": "jasontheween",
+      "title": "burger Speaks Now",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Walking around with basket, inside talk)",
+      "ts": "2026-10-25T12:43:38.095351+00:00"
+    },
+    "clip-20261025-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/SmoothGlamorousCookieAMPEnergyCherry-6oHPrE7u3SPcKqhn",
+      "story_key": null,
+      "streamer": "rayasianboy",
+      "title": "Rayasianboy Girl Breaks Down And Is Left Stunned On Stream",
+      "kind": "twitch_clip",
+      "ts": "2026-10-25T12:46:06.166374+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
