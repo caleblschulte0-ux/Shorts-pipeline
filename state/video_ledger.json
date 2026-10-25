@@ -6360,6 +6360,74 @@
    ],
    "ending_type": "consequence",
    "notes": "re-validated unchanged 2026-10-25: all segments already carry current-standard scenes; validate_scenes OK"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-25",
+   "topic_category": "nature",
+   "hook_type": "stake",
+   "hook_text": "A deadly fungus is wiping out the bats that protect your food.",
+   "words_first_10s": 26,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "illustrated:bat-spread-map",
+    "mechanic:bat-colony-collapse-columns",
+    "mechanic:farmland-value-gauge"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "bats fall from the cave ceiling to the kill rate, then a bat-needle gauge to $53B"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-25",
+   "topic_category": "money",
+   "hook_type": "stake",
+   "hook_text": "Someone you know is owed money by their state and has no idea.",
+   "words_first_10s": 27,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "illustrated:money-bag-map",
+    "mechanic:vault-drain-trickle",
+    "mechanic:crowd-glow-share"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "vault full vs thin trickle returned; 1-in-7 crowd lights up"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-10-25",
+   "topic_category": "culture",
+   "hook_type": "inversion",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "words_first_10s": 25,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "illustrated:tattoo-arm",
+    "mechanic:torso-ink-fill-duel",
+    "mechanic:skin-grid-more-than-one"
+   ],
+   "ending_type": "inversion",
+   "franchise": "",
+   "notes": "ink fills torsos 37 vs 32; 100-person stamp grid"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-10-25",
+   "topic_category": "body",
+   "hook_type": "shock_stat",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "words_first_10s": 26,
+   "scene_changes_before_5s": 2,
+   "depictions": [
+    "mechanic:crib-night-lights",
+    "illustrated:baby-flip",
+    "mechanic:crib-census"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "nightlights halve; baby rolls over; 34 cribs remain"
   }
  ]
 }
