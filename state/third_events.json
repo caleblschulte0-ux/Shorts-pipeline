@@ -4944,6 +4944,96 @@
         "story-8ac94e5eb0277fae"
       ],
       "last_updated": "2026-10-24"
+    },
+    "morpheya-beside-night-2026w42": {
+      "event_id": "morpheya-beside-night-2026w42",
+      "people": [
+        "morpheya"
+      ],
+      "actions": [
+        "beside",
+        "night",
+        "pool",
+        "woman"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-25",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2904276432/11137-11377",
+        "https://www.twitch.tv/morphe_ya/clip/ComfortableYawningGrouseTwitchRPG-BteZt2PHduQn3IvZ",
+        "vodmine://2904276432/11390-11630"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-25"
+    },
+    "clix-clix-dark-2026w40": {
+      "event_id": "clix-clix-dark-2026w40",
+      "people": [
+        "clix"
+      ],
+      "actions": [
+        "clix",
+        "dark",
+        "mouth",
+        "what"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-25",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2889268903/12592-12832",
+        "https://www.twitch.tv/clix/clip/GeniusCourageousJaguarBudBlast-eqCR2aQ92GuLyDq6",
+        "vodmine://2889268903/12841-13081"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-25"
+    },
+    "marlon-about-holy-2026w39": {
+      "event_id": "marlon-about-holy-2026w39",
+      "people": [
+        "marlon"
+      ],
+      "actions": [
+        "about",
+        "holy",
+        "lion",
+        "night"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-25",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2884594674/6540-6780",
+        "https://www.twitch.tv/marlon/clip/BeautifulFrigidRuffKappaClaus-YnGM_5ilIs1Nqc7U",
+        "vodmine://2884594674/6813-7053"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-25"
+    },
+    "ishowspeed-card-damn-2026w40": {
+      "event_id": "ishowspeed-card-damn-2026w40",
+      "people": [
+        "ishowspeed"
+      ],
+      "actions": [
+        "card",
+        "damn",
+        "gard",
+        "open"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-25",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2875841671/5035-5275",
+        "https://www.twitch.tv/ishowspeed/clip/AssiduousRoughWallabyStinkyCheese-xrY_l9jwzOVrO0Tz",
+        "vodmine://2875841671/5295-5535"
+      ],
+      "published_versions": [
+        "story-abac00523ca0116b"
+      ],
+      "last_updated": "2026-10-25"
     }
   }
 }

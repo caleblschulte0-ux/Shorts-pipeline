@@ -15734,13 +15734,86 @@
       "ts": "2026-10-25T11:41:52.244723+00:00"
     },
     "clip-20261025-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/CalmDependablePterodactylItsBoshyTime-OTyo1_LyDmUykOIe",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/A4TEG_LeIdg",
       "title": "Stableronaldo Gets CAUGHT After Pointing At Something On Stream \ud83d\ude33",
       "kind": "twitch_clip",
-      "ts": "2026-10-25T11:45:14.397743+00:00",
+      "ts": "2026-10-25T11:45:22.666803+00:00",
+      "uploaded_at": "2026-10-25T11:45:22.666818+00:00",
+      "publish_at": "2026-10-25T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261025-stableronaldo-gets-caught-after-pointing-at-some-396024cb",
+        "tiktok": "queued for 2026-10-25T20:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/CalmDependablePterodactylItsBoshyTime-OTyo1_LyDmUykOIe",
+      "streamer": "stableronaldo",
+      "series": "drama",
+      "hook": "Stableronaldo gets caught on stream \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1924,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 14.95
+      },
+      "director_cut": true
+    },
+    "rejected-richartsymartendatboi-n1mwvi-9hv9funzz": {
+      "source_url": "https://www.twitch.tv/xqc/clip/RichArtsyMartenDatBoi-n1mwvI-9hv9FunzZ",
+      "streamer": "xqc",
+      "title": "new paleto heist (non-dm)",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (GTA RP hacking setup, no payoff)",
+      "ts": "2026-10-25T11:46:20.429136+00:00"
+    },
+    "rejected-enchantingclevernostrilstinkycheese-8krb07kij44xjmhu": {
+      "source_url": "https://www.twitch.tv/loltyler1/clip/EnchantingCleverNostrilStinkyCheese-8krB07KiJ44xjMHU",
+      "streamer": "loltyler1",
+      "title": "tyler1 goes evenshroud",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.10 < 0.35 (Auto-battler item menus, insider talk)",
+      "ts": "2026-10-25T11:46:57.910390+00:00"
+    },
+    "rejected-wiseoutstandingdragonflypastathat-ldazqquomtiit8fh": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/WiseOutstandingDragonflyPastaThat-lDAZqQUomtiIT8fh",
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Stream Erupts After Ray Does The La Fairs With La Peace",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture fills only about a third of the 9:16 canvas, a thin strip. The renderer did not crop toward the action; vision: For the first ~8s the two men are tiny and far away in a wide shot with a lot of dead space. They are hard to read on a ; vision: Framing is inconsistent. It jump",
+      "ts": "2026-10-25T11:50:20.780347+00:00"
+    },
+    "rejected-friendlycleareggplantosfrog-tec1jop7npgpz8_q": {
+      "source_url": "https://www.twitch.tv/zackrawrr/clip/FriendlyClearEggplantOSfrog-TeC1jOP7nPGpZ8_q",
+      "streamer": "zackrawrr",
+      "title": "FEAR TIME!!!",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (WoW duel gameplay, insider, unclear payo)",
+      "ts": "2026-10-25T11:51:01.460220+00:00"
+    },
+    "rejected-sullenhonestostrichstrawbeary-zrugcjebakqqrobx": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/SullenHonestOstrichStrawBeary-zRUgcjEbAkqQRobx",
+      "streamer": "jynxzi",
+      "title": "Jynxzi Goes Off After This Wild Moment Happens On Stream",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp picture fills only about a third of the 9:16 canvas, well short of the roughly three quarters expected. It is a th; vision: The streamer's face cam and the game action are both tiny, so they are hard to read on a phone. The renderer did not cro; vision: The frame at 57.5s is nearly bla",
+      "ts": "2026-10-25T12:01:20.480491+00:00"
+    },
+    "clip-20261025-6": {
+      "pending": true,
+      "source_url": "",
+      "story_key": "story-abac00523ca0116b",
+      "streamer": "ishowspeed",
+      "title": "Ishowspeed begs for one more walkout in FC 27",
+      "kind": "story",
+      "ts": "2026-10-25T12:26:17.465697+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
