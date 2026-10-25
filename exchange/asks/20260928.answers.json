@@ -30,6 +30,101 @@
       "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise overturns the assumption that humans can readily domesticate large animals and anchors that reversal in the consequential number 14.\"}",
       "by": "chatgpt",
       "at": "2026-10-25T11:38:00Z"
+    },
+    "de9993f3214c7966": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The premise names a milestone but gives no consequential number in the title or hook.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "06234a6d9a1f040d": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The reversal is potentially interesting, but the premise provides no single consequential number.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "6c460f2ef546fff0": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise overturns the expectation that black holes are rare nearby and anchors the reversal in the consequential estimate of 100 million.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "57a9b1bf65e2bbdd": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise reverses the expectation that diamonds retain value and anchors the contrast in a 90% loss.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "6b4e49e5eeff5f83": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise overturns the expectation that discarded electronics are broadly recovered by showing only 1 in 5 is recycled.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "bce62911c16096ca": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The comparison is vivid but does not provide one precise consequential number in the title or hook.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "fa205ad11ed7c91a": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The deep-sea setting is surprising, but the premise does not reverse a specific viewer expectation with a consequential outcome.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "bc6c324289c4a013": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The premise asserts replacement without a single consequential, verifiable number.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "7bd76ffd01f3905c": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise overturns the expectation of a stable ocean ecosystem and anchors the loss in the consequential figure of 71%.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "3e8ad574a36b89c0": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The premise promises a distant consequence but supplies no single consequential number.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "67696dc99643e00d": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The reversal is strong, but the title and hook contain no consequential number.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "d9bfa507ad9c3107": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise overturns the expectation that eligible donors broadly participate and anchors the shortage in the consequential figure of 3%.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "de463fd12fc0f388": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise reverses the expectation that kelp loss is gradual and anchors the collapse in the consequential figure of 96%.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "fe28b47dae585065": {
+      "answer": "{\"bridges\":{\"0\":true}}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "94fcdd8c1a6dd914": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise reverses the expectation that vaccination thresholds are similar and anchors measles' difference in the consequential figure of 95%.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "309744f139d92eb6": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The price is notable, but the premise does not clearly overturn a specific viewer expectation.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "bf651c20b81c3548": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise reverses the expectation that humans dominate familiar ecosystems and anchors that reversal in 2.5 million ants per person.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "65d0a3424ba839ef": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise overturns the expectation that total eclipses rarely revisit one place and anchors the reversal in two eclipses within 7 years.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
+    },
+    "4b3e0009c547cf3b": {
+      "answer": "{\"bridges\":{\"0\":true,\"1\":true}}",
+      "by": "chatgpt",
+      "at": "2026-10-25T12:28:00Z"
     }
   }
 }
