@@ -25,6 +25,14 @@ dropped by code whatever the brain said.
 
     python scripts/reply_comments.py --dry-run       # print, post nothing
     python scripts/reply_comments.py --channel explainer
+    python scripts/reply_comments.py --save          # read only: keep them
+
+`--save` READS, it never replies (operator, 2026-10-25: *"all of our
+comments are, oh, this is AI ... what can we do to stop that?"*, and no
+session could see one comment). It needs no channel token: public comments
+are read with `YOUTUBE_API_KEY`, video by video, for the newest uploads in
+each channel's posted log, and the newest `SAVE_KEEP` land in
+`state/comments/<channel>.json` for anyone to read. Comment text is data.
 """
 from __future__ import annotations
 
@@ -263,6 +271,93 @@ def run_channel(cid: str, *, dry_run: bool, reg=None) -> dict:
             "unanswered": len(todo), "replied": posted, "skipped": skipped}
 
 
+#: Comments kept per channel in state/comments/ (newest first), and how
+#: many of the channel's newest uploads are read for them. 300 short rows
+#: stay well under the 256KB a state file may be.
+SAVE_KEEP = 300
+SAVE_VIDEOS = 60
+SAVE_TEXT = 300
+_VID = re.compile(r"(?:v=|shorts/|youtu\.be/)([A-Za-z0-9_-]{11})")
+
+
+def _uploads(cid: str, reg=None, n: int = SAVE_VIDEOS) -> list[tuple[str, str]]:
+    """[(video_id, title)] of the channel's newest uploads, from its posted
+    log (`paths.posted_log` in the registry)."""
+    path = ((channel_registry.channel(cid, reg).get("paths") or {})
+            .get("posted_log"))
+    if not path or not (ROOT / path).exists():
+        return []
+    d = json.loads((ROOT / path).read_text())
+    rows = d.get("posted", d) if isinstance(d, dict) else d
+    rows = rows if isinstance(rows, list) else list(rows.values())
+    out, seen = [], set()
+    for e in reversed([r for r in rows if isinstance(r, dict)]):
+        m = _VID.search(str(e.get("url") or e.get("video_url") or ""))
+        if m and m.group(1) not in seen:
+            seen.add(m.group(1))
+            out.append((m.group(1), str(e.get("title") or "")))
+        if len(out) >= n:
+            break
+    return out
+
+
+def comment_rows(items, video_id: str, title: str) -> list[dict]:
+    """commentThreads items -> the saved shape, one row per top comment."""
+    out = []
+    for t in items or []:
+        sn = (((t.get("snippet") or {}).get("topLevelComment") or {})
+              .get("snippet") or {})
+        text = " ".join(str(sn.get("textOriginal")
+                            or sn.get("textDisplay") or "").split())
+        if not text:
+            continue
+        out.append({"video_id": video_id, "title": title,
+                    "text": text[:SAVE_TEXT],
+                    "likes": int(sn.get("likeCount") or 0),
+                    "replies": int((t.get("snippet") or {})
+                                   .get("totalReplyCount") or 0),
+                    "published_at": sn.get("publishedAt", "")})
+    return out
+
+
+def keep_newest(rows: list[dict], n: int = SAVE_KEEP) -> list[dict]:
+    """Newest first, one row per (video, text), at most n."""
+    seen, out = set(), []
+    for r in sorted(rows, key=lambda r: r.get("published_at", ""), reverse=True):
+        k = (r.get("video_id"), r.get("text"))
+        if k in seen:
+            continue
+        seen.add(k)
+        out.append(r)
+    return out[:n]
+
+
+def save_channel(cid: str, key: str, reg=None) -> dict:
+    """Read the newest comments on the channel's uploads and write them to
+    state/comments/<cid>.json. Replies nothing."""
+    from googleapiclient.discovery import build
+    svc = build("youtube", "v3", developerKey=key, cache_discovery=False)
+    rows, failed = [], 0
+    for vid, title in _uploads(cid, reg):
+        try:
+            resp = svc.commentThreads().list(
+                part="snippet", videoId=vid, order="time", maxResults=50,
+                textFormat="plainText").execute()
+        except Exception:  # noqa: BLE001 — comments off, or a removed video
+            failed += 1
+            continue
+        rows += comment_rows(resp.get("items"), vid, title)
+    rows = keep_newest(rows)
+    out = ROOT / "state" / "comments" / f"{cid}.json"
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps({
+        "channel": cid,
+        "fetched_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "comments": rows}, ensure_ascii=False, indent=1) + "\n")
+    return {"channel": cid, "status": f"saved {len(rows)} comments"
+            + (f" ({failed} videos unreadable)" if failed else "")}
+
+
 def summary_md(results: list[dict]) -> str:
     lines = ["# Comment replies", ""]
     for r in results:
@@ -280,13 +375,20 @@ def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--channel", default="", help="one channel id; default all")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--save", action="store_true",
+                    help="read only: save comments to state/comments/")
     a = ap.parse_args(argv)
     reg = channel_registry.load()
     cids = [a.channel] if a.channel else channel_registry.channel_ids(reg)
+    key = os.environ.get("YOUTUBE_API_KEY", "").strip()
+    if a.save and not key:
+        print("[comments] --save needs YOUTUBE_API_KEY", flush=True)
+        return 1
     results = []
     for cid in cids:
         try:
-            results.append(run_channel(cid, dry_run=a.dry_run, reg=reg))
+            results.append(save_channel(cid, key, reg) if a.save
+                           else run_channel(cid, dry_run=a.dry_run, reg=reg))
         except Exception as e:  # noqa: BLE001 — one channel never stops the rest
             results.append({"channel": cid,
                             "status": f"failed: {type(e).__name__}: {str(e)[:160]}"})

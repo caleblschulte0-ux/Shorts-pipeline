@@ -21,7 +21,7 @@ on:
         default: 'false'
 
 permissions:
-  contents: read
+  contents: write   # the saved comments (state/comments/) are committed
 
 concurrency:
   group: comment-replies
@@ -55,3 +55,16 @@ jobs:
           [ -n "${{ inputs.channel }}" ] && args="--channel ${{ inputs.channel }}"
           [ "${{ inputs.dry_run }}" = "true" ] && args="$args --dry-run"
           python scripts/reply_comments.py $args
+      # READ ONLY: every channel's newest comments, saved where any session
+      # can read them (operator, 2026-10-25: "all of our comments are, oh,
+      # this is AI"). Needs no channel token, so it works while the reply
+      # tokens lack youtube.force-ssl.
+      - name: Save comments
+        if: ${{ !cancelled() }}
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: python scripts/reply_comments.py --save
+      - name: Commit saved comments
+        if: ${{ !cancelled() }}
+        run: |
+          bash scripts/ci_commit_state.sh "comments: saved viewer comments [skip ci]" state/comments
