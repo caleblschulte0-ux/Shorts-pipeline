@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "third-interstellar-visitor__c92abc0a",
+  "slug": "third-interstellar-visitor",
+  "by": "chatgpt",
+  "written_at": "2026-10-25T12:32:00Z",
+  "title": "Only 3 Interstellar Visitors Have Ever Been Confirmed",
+  "hook": "Only 3 confirmed objects arrived from other stars.",
+  "closing": "Each visitor carries clues about worlds beyond our solar system.",
+  "question": "Will we ever intercept one?",
+  "segments": [
+    {
+      "topic": "Interstellar Visitor Count",
+      "say": "Only 3 interstellar visitors have been confirmed. Each gives scientists a rare sample of another star system."
+    },
+    {
+      "topic": "Interstellar Visitor Speed",
+      "say": "The newest visitor reached 246,000 kilometers an hour. Its speed reveals how violently it crossed our neighborhood."
+    },
+    {
+      "topic": "Interstellar Visitor Size",
+      "say": "Its nucleus measures 5.6 kilometers. A larger target gives telescopes more material to study."
+    }
+  ]
+}
