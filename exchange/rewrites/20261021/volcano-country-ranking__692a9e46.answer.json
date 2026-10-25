@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "volcano-country-ranking__692a9e46",
+  "slug": "volcano-country-ranking",
+  "by": "chatgpt",
+  "written_at": "2026-10-25T12:32:00Z",
+  "title": "The US Has 165 Volcanoes, More Than Indonesia",
+  "hook": "The US, not Indonesia, leads with 165 volcanoes.",
+  "closing": "Volcano fame follows eruptions, but the count tells a different story.",
+  "question": "Which country would you have guessed?",
+  "segments": [
+    {
+      "topic": "Volcano Country Rank",
+      "say": "The United States has 165 volcanoes. That puts it ahead of every other country in this count."
+    },
+    {
+      "topic": "Volcanoes In Alaska",
+      "say": "Alaska alone contains 130 volcanoes. One state drives most of the US lead."
+    },
+    {
+      "topic": "Volcano Ring Share",
+      "say": "The Ring of Fire holds 75% of Earth's volcanoes. That geography lifts several countries near the top."
+    }
+  ]
+}
