@@ -15841,6 +15841,34 @@
       "used_narration": false,
       "context_overlay_count": 2,
       "replay_count": 0
+    },
+    "rejected-sassyproudhippodoggo-_kb1kqp06uqskdgw": {
+      "source_url": "https://www.twitch.tv/ironmouse/clip/SassyProudHippoDoggo-_KB1kQp06UqSKdgw",
+      "streamer": "ironmouse",
+      "title": "Wrong door.",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Sex-club game walkthrough, nothing happe)",
+      "ts": "2026-10-25T12:30:09.723293+00:00"
+    },
+    "rejected-richinquisitivecarrotpoooound-82_tpldzjzb3c0vc": {
+      "source_url": "https://www.twitch.tv/clix/clip/RichInquisitiveCarrotPoooound-82_tPlDzJzb3c0Vc",
+      "streamer": "clix",
+      "title": "CRAZIEST PREFIRE",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Fortnite build fight, inside-baseball, n)",
+      "ts": "2026-10-25T12:31:27.109933+00:00"
+    },
+    "clip-20261025-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/BitterDoubtfulEggnogFreakinStinkin-CozsYEaZNP6GjzZi",
+      "story_key": null,
+      "streamer": "ishowspeed",
+      "title": "Ishowspeed Gets Spooked And Screams After Smelling This",
+      "kind": "twitch_clip",
+      "ts": "2026-10-25T12:34:16.372900+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
