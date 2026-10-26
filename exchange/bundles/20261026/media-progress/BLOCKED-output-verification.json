@@ -1,0 +1,95 @@
+{
+  "schema": "shorts-production-blocker/v1",
+  "date": "20261026",
+  "written_at": "2026-10-26T12:52:00Z",
+  "status": "blocked",
+  "day_closed": false,
+  "frozen_contract": {
+    "total_required": 13,
+    "channels": {
+      "sports": {
+        "format": "sports_moment",
+        "required": 3,
+        "verified_posted": 1,
+        "pending": 2,
+        "accepted_urls": [
+          "https://youtube.com/shorts/8yY_PMgZdns"
+        ]
+      },
+      "twitch": {
+        "format": "clip",
+        "required": 6,
+        "verified_posted": 6,
+        "pending": 0,
+        "accepted_urls": [
+          "https://youtube.com/shorts/SnlclIWxGLk",
+          "https://youtube.com/shorts/SxkGfbiubsE",
+          "https://youtube.com/shorts/38MTuqyvA1A",
+          "https://youtube.com/shorts/tySLWfCm4sM",
+          "https://youtube.com/shorts/kmu5tfEJEcI",
+          "https://youtube.com/shorts/qm9B_sfraso"
+        ]
+      },
+      "explainer": {
+        "format": "data_story",
+        "required": 4,
+        "verified_posted": 2,
+        "pending": 2,
+        "accepted_urls": [
+          "https://youtube.com/shorts/xPZ_OLM3gM0",
+          "https://youtube.com/shorts/UHdFIaPm8xA"
+        ]
+      }
+    }
+  },
+  "attempts": [
+    {
+      "step": "phase_b_apply",
+      "result": "success",
+      "commit": "c19c55c86a0b6877fe5259df43bf48b405a90d6d"
+    },
+    {
+      "step": "twitch_recovery",
+      "result": "success",
+      "detail": "6/6 verified posted"
+    },
+    {
+      "step": "sports_recovery",
+      "result": "failed",
+      "workflow_run_id": 40314740429,
+      "job_id": 121545262352,
+      "detail": "Worker shipped 0/3. Source download failures, one schema-invalid judge response, vision judge unavailable after Claude weekly limit and Gemini 429, one clip too short."
+    },
+    {
+      "step": "explainer_recovery",
+      "result": "partial",
+      "workflow_run_id": 40314733022,
+      "detail": "Worker posted 1 new explainer and held 92; Claude weekly limit, Gemini 503, Groq 400, and fail-closed vision review prevented more uploads."
+    },
+    {
+      "step": "takeover_mailboxes_round_2",
+      "result": "answered",
+      "detail": "1 visual review, 2 ask keys, and 10 rewrite requests answered within caps; claims may still be pending."
+    }
+  ],
+  "exact_failed_step": "Downstream render/judge/upload workers did not produce accepted upload URLs for 2 sports_moment and 2 data_story slots.",
+  "transient_failures": [
+    "Claude CLI weekly limit; observed reset Oct 28 00:00 UTC",
+    "Gemini unavailable/rate-limited (429/503 observed)",
+    "Groq fallback returned HTTP 400 in Explainer"
+  ],
+  "mailbox_snapshot": {
+    "reviews_open": 0,
+    "asks_open_index": 13,
+    "rewrites_open_index": 132,
+    "answered_this_run": {
+      "reviews": 1,
+      "ask_keys": 22,
+      "rewrites": 20
+    },
+    "notes": "Indexes can lag committed answers until claim/apply workflows consume them. The lightning motion-only rewrite remained outside the second-round cap and cannot be repaired with words."
+  },
+  "remaining_shortfall": 4,
+  "no_done_retrigger": true,
+  "notes": "Existing response.json and DONE were preserved. DONE is a render trigger, not proof of upload completion."
+}
