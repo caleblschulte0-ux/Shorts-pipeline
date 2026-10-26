@@ -5,6 +5,51 @@
       "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The premise asserts replacement without a single consequential, verifiable number.\"}",
       "by": "chatgpt",
       "at": "2026-10-25T12:29:00Z"
+    },
+    "1b65f6f138c718cb": {
+      "answer": "{\"bridges\":{\"1\":true}}",
+      "by": "chatgpt",
+      "at": "2026-10-26T11:28:00Z"
+    },
+    "06234a6d9a1f040d": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The historical reversal is interesting, but the title and hook provide no consequential, verifiable number.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-26T11:28:00Z"
+    },
+    "6c460f2ef546fff0": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise overturns the expectation that nearby black holes are rare and anchors it in the consequential estimate of 100 million.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-26T11:28:00Z"
+    },
+    "7bd76ffd01f3905c": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise overturns the expectation of a stable ocean ecosystem and anchors the loss in the consequential figure of 71%.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-26T11:28:00Z"
+    },
+    "de463fd12fc0f388": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise reverses the expectation that kelp loss is gradual and anchors the collapse in the consequential figure of 96%.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-26T11:28:00Z"
+    },
+    "fe28b47dae585065": {
+      "answer": "{\"bridges\":{\"0\":true}}",
+      "by": "chatgpt",
+      "at": "2026-10-26T11:28:00Z"
+    },
+    "bce62911c16096ca": {
+      "answer": "{\"verdict\":\"REJECT\",\"reason\":\"The New Jersey comparison is vivid, but the title and hook provide no precise consequential number.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-26T11:28:00Z"
+    },
+    "b5e86d9087434591": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise overturns the expectation that humans can readily domesticate large animals and anchors it in the consequential number 14.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-26T11:28:00Z"
+    },
+    "7c6574562d9293d9": {
+      "answer": "{\"verdict\":\"PASS\",\"reason\":\"The premise overturns the expectation that familiar birdlife is stable and anchors the loss in the consequential figure of 3 billion.\"}",
+      "by": "chatgpt",
+      "at": "2026-10-26T11:28:00Z"
     }
   }
 }
