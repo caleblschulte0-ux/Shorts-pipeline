@@ -6,7 +6,7 @@ trending is made by capture — EXACTLY 3: 3 sports_moment. RETIRED — do not a
 
 | format | videos | views | views/video | avg vph | avg view % | likes | shares | subs |
 |---|---|---|---|---|---|---|---|---|
-| graph_race | 50 | 251 | 5.0 | 0.01 | 70.8 | 1 | 0 | 0 |
-| reddit_story | 20 | 24 | 1.2 | 0.0 | 48.2 | 2 | 0 | 0 |
+| graph_race | 47 | 231 | 4.9 | 0.01 | 67.9 | 1 | 0 | 0 |
+| reddit_story | 19 | 23 | 1.2 | 0.0 | 44.9 | 2 | 0 | 0 |
 
-matched 70 videos to packages, 49 unmatched (pre-A/B/C uploads)
+matched 66 videos to packages, 52 unmatched (pre-A/B/C uploads)
