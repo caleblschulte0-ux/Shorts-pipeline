@@ -4301,11 +4301,29 @@
       "duration_s": 35.0
     },
     "lightning-deaths-collapsed-not-the-storms": {
-      "claimed_at": "2026-10-26T12:24:31.187926+00:00",
+      "url": "https://youtube.com/shorts/N-F4PUIj3wQ",
       "title": "Lightning Became 40 Times Less Deadly Per Person",
+      "at": "2026-10-26T12:24:42.809225+00:00",
       "publish_at": "2026-10-26T15:36:21Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.81,
+      "beat_s": [
+        4.71,
+        4.33,
+        6.81,
+        6.31,
+        7.18
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 96,
+      "duration_s": 29.8
     }
   },
   "uploads": [
@@ -5476,9 +5494,10 @@
       "claimed_at": "2026-10-26T12:24:31.187926+00:00",
       "title": "Lightning Became 40 Times Less Deadly Per Person",
       "publish_at": "2026-10-26T15:36:21Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "lightning-deaths-collapsed-not-the-storms"
+      "url": "https://youtube.com/shorts/N-F4PUIj3wQ",
+      "state": "posted",
+      "slug": "lightning-deaths-collapsed-not-the-storms",
+      "at": "2026-10-26T12:24:42.809225+00:00"
     }
   ]
 }
