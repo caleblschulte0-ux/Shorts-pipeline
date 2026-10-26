@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "lottery-odds-vs-real-life__335c9001_r1",
+  "slug": "lottery-odds-vs-real-life",
+  "by": "chatgpt",
+  "written_at": "2026-10-26T11:40:00Z",
+  "title": "Powerball Odds Got 67% Worse After the Rule Change",
+  "hook": "Powerball's rule change made jackpot odds 67% worse.",
+  "closing": "Bigger jackpots came with worse odds, so the spectacle costs players probability.",
+  "question": "Would worse odds stop you?",
+  "segments": [
+    {
+      "topic": "Powerball Lightning",
+      "say": "Powerball odds are one in 292,201,338. A lifetime lightning strike is dramatically more likely."
+    },
+    {
+      "topic": "Powerball Rarity",
+      "say": "A royal flush is one in 649,740. Even that famous long shot is far easier than the jackpot."
+    },
+    {
+      "topic": "Powerball Rule",
+      "say": "The old odds were one in 175 million. The later rule made an already remote jackpot substantially harder."
+    }
+  ]
+}
