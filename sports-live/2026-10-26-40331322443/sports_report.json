@@ -1,0 +1,70 @@
+{
+ "date": "2026-10-26",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Jake Bauers",
+   "why": "A playoff hero shares his emotional journey of nearly quitting baseball.",
+   "post_title": "In an ABC News exclusive, Milwaukee Brewers playoff hero Jake Bauers and his wife, Lauren, speak with Will Reeve about how he revived his career after nearly walking away from baseball.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xcfyi1/in_an_abc_news_exclusive_milwaukee_brewers/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xcfyi1/in_an_abc_news_exclusive_milwaukee_brewers",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "nba",
+   "who": "Shai Gilgeous-Alexander",
+   "why": "Shai Gilgeous-Alexander gets emotional discussing his teammate's serious injury.",
+   "post_title": "SGA fighting back tears in the post game interview after Jalen Williams' gruesome leg injury",
+   "upvotes": 0,
+   "url": "https://streamable.com/w7qx2r",
+   "topic": "https://www.reddit.com/r/nba/comments/1xfjrsg/sga_fighting_back_tears_in_the_post_game",
+   "title": "Shai Gilgeous\u2011Alexander fights back tears after Jalen Williams' injury",
+   "hook": "Shai struggles to hold back tears \ud83d\ude22",
+   "ledger": {
+    "moves": [
+     "zoom@29.0",
+     "sad@4.0(fix_you)"
+    ],
+    "mood": "sad",
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 100
+   },
+   "video_url": "https://youtube.com/shorts/J0uoqHCpRbM",
+   "ok": true,
+   "publish_at": "2026-10-27T00:00:00Z",
+   "seconds": 234,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261026-shai-gilgeous-alexander-fights-back-tears-after--00e5a68d",
+    "tiktok": "queued for 2026-10-27T00:00:00Z"
+   }
+  }
+ ],
+ "already_today": 2,
+ "pool": 86,
+ "already_posted": 13,
+ "shipped": 1
+}
