@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "humpback-whale-recovery__15f8bd75_r1",
+  "slug": "humpback-whale-recovery",
+  "by": "chatgpt",
+  "written_at": "2026-10-26T12:50:00Z",
+  "title": "How 450 Humpbacks Became 25,000",
+  "hook": "Only 450 Humpbacks Survived—Now 25,000 Swim Again",
+  "closing": "Recovery is possible when protection lasts longer than the damage.",
+  "question": "Can this recovery last?",
+  "segments": [
+    {
+      "topic": "Humpback Population",
+      "say": "The humpback population reached 25,000, transforming a near-collapse into one of conservation's clearest comebacks."
+    },
+    {
+      "topic": "Humpback Recoveries",
+      "say": "Experts count 10 recovered humpback populations, while others still need protection to finish the comeback."
+    },
+    {
+      "topic": "Humpback Whaling",
+      "say": "Commercial whaling killed 2.9 million whales last century; stopping it gave depleted populations room to rebuild."
+    }
+  ]
+}
