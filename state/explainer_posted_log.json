@@ -4274,6 +4274,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
       "duration_s": 31.7
+    },
+    "world-wetlands-lost": {
+      "claimed_at": "2026-10-26T11:54:08.978849+00:00",
+      "title": "The World Lost 35% Of Its Wetlands Since 1970",
+      "publish_at": "2026-10-26T12:36:21Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5430,6 +5437,14 @@
       "state": "posted",
       "slug": "opioid-prescribing-decline-fentanyl-rise",
       "at": "2026-10-25T13:48:02.539381+00:00"
+    },
+    {
+      "claimed_at": "2026-10-26T11:54:08.978849+00:00",
+      "title": "The World Lost 35% Of Its Wetlands Since 1970",
+      "publish_at": "2026-10-26T12:36:21Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "world-wetlands-lost"
     }
   ]
 }
