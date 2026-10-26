@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "iss-deorbit-2031__6ede29c2",
+  "slug": "iss-deorbit-2031",
+  "by": "chatgpt",
+  "written_at": "2026-10-26T12:50:00Z",
+  "title": "Why A $843 Million Tug Will End The ISS",
+  "hook": "A $843 Million Tug Will Push The ISS To Earth",
+  "closing": "Ending the station safely matters to everyone living beneath its final path.",
+  "question": "Should the ISS be replaced?",
+  "segments": [
+    {
+      "topic": "ISS Crew Years",
+      "say": "The ISS has hosted crews continuously for 24 years, making its planned ending feel almost unthinkable."
+    },
+    {
+      "topic": "ISS Lifetime Cost",
+      "say": "The ISS cost about $150 billion, so disposal must protect people as carefully as construction did."
+    },
+    {
+      "topic": "ISS Deorbit Tug",
+      "say": "NASA's deorbit tug costs $843 million, because the station cannot be left to fall wherever gravity chooses."
+    }
+  ]
+}
