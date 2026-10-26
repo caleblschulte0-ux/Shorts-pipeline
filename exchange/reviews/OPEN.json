@@ -1,17 +1,6 @@
 {
  "schema": "shorts-review-index/v1",
- "updated": "2026-10-26T11:44:14Z",
- "open": [
-  {
-   "id": "lightning-deaths-collapsed-not-the-storms__3d7b348300",
-   "channel": "explainer",
-   "slug": "lightning-deaths-collapsed-not-the-storms",
-   "title": "Lightning Became 40 Times Less Deadly Per Person",
-   "filed": "2026-10-26T11:44:14Z",
-   "request": "exchange/reviews/20261026/lightning-deaths-collapsed-not-the-storms__3d7b348300.request.json",
-   "sheet_url": "https://raw.githubusercontent.com/caleblschulte0-ux/Shorts-pipeline/preview-renders/reviews/20261026/lightning-deaths-collapsed-not-the-storms__3d7b348300/sheet.jpg",
-   "answer_path": "exchange/reviews/20261026/lightning-deaths-collapsed-not-the-storms__3d7b348300.verdict.json"
-  }
- ],
+ "updated": "2026-10-26T12:07:35Z",
+ "open": [],
  "how": "For each entry open `request` (raw), grade as it says, commit `answer_path`. Never edit a request."
 }
