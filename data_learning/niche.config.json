@@ -20261,10 +20261,10 @@
   },
   {
    "slug": "lottery-odds-vs-real-life",
-   "title": "Powerball's Rules Made An Already Unlikely Jackpot Harder To Win",
-   "hook": "The Powerball jackpot was already a long shot. Then they changed the rules.",
-   "closing": "A bigger-looking jackpot does not make a ticket likelier to win; check the odds before spending.",
-   "question": "Do changing odds change whether you play?",
+   "title": "Powerball Odds Got 67% Worse After the Rule Change",
+   "hook": "Powerball's rule change made jackpot odds 67% worse.",
+   "closing": "Bigger jackpots came with worse odds, so the spectacle costs players probability.",
+   "question": "Would worse odds stop you?",
    "caption": "Winning the Powerball jackpot is a 1 in 292 million shot — worse than a royal flush, worse than a lifetime shark attack, worse than getting struck by lightning nineteen thousand times over. And it's not an accident: in 2015 Powerball deliberately made the odds worse, on purpose, to grow the jackpot. 👇 Still buying a ticket?",
    "hashtags": [
     "powerball",
@@ -20290,8 +20290,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · THE ODDS",
-     "topic": "Powerball versus lightning",
-     "say": "Lifetime lightning odds are about one in 15,300 in this comparison. That lifetime risk is not a lottery ticket's single-draw chance.",
+     "topic": "Powerball Lightning",
+     "say": "Powerball odds are one in 292,201,338. A lifetime lightning strike is dramatically more likely.",
      "scene": {
       "mechanic": "odds-ring-zoom",
       "concept": "two targets built from concentric rings, one ring per power of ten -- the lightning target fills a handful of rings, the jackpot target keeps ringing out far past it",
@@ -20308,8 +20308,8 @@
      "ascending": true,
      "use_baseline": false,
      "role": "2 · STILL WORSE",
-     "topic": "Powerball rarity comparison",
-     "say": "The listed lifetime shark-attack odds are one in 11.5 million. Rare events still need matching exposure periods for a fair comparison.",
+     "topic": "Powerball Rarity",
+     "say": "A royal flush is one in 649,740. Even that famous long shot is far easier than the jackpot.",
      "scene": {
       "mechanic": "shrinking-rarity-circles",
       "concept": "three real photos sit inside circles that shrink log-scaled to how rare each event is, so the jackpot photo is a near-vanishing pinprick next to a big royal flush",
@@ -20324,8 +20324,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · ON PURPOSE",
-     "topic": "Powerball rules changed",
-     "say": "The later jackpot odds became one in 292,201,338 per play. The rule change made an already unlikely win harder.",
+     "topic": "Powerball Rule",
+     "say": "The old odds were one in 175 million. The later rule made an already remote jackpot substantially harder.",
      "scene": {
       "mechanic": "ball-drum-swell",
       "concept": "two lottery-ball drums stand side by side, the after-2015 drum visibly bigger and more crowded with balls, making 'more balls, worse odds' a physical fact",
@@ -20334,7 +20334,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:41Z",
+   "rewritten_at": "2026-10-26T11:49:09Z",
    "retold": "retell/v4",
    "hook_was": "Powerball's jackpot odds worsened to about 1 in 292 million after rule changes."
   },
@@ -27632,10 +27632,10 @@
   },
   {
    "slug": "cargo-ship-size-growth",
-   "title": "Cargo Ships Grew Sixfold While Crews Shrank To 20",
-   "hook": "Cargo ships grew enormously, yet a typical crew shrank to 20 people.",
-   "closing": "More cargo and fewer hands mean enormous shipments depend on surprisingly small crews.",
-   "question": "Would you work on a ship this big?",
+   "title": "Cargo Capacity Hit 24,327 While Crews Got Smaller",
+   "hook": "Cargo capacity reached 24,327 while crews kept shrinking.",
+   "closing": "More of the world's goods now depend on surprisingly few people at sea.",
+   "question": "Would you crew a ship?",
    "caption": "The biggest cargo ship in 1980 carried 4,000 containers. Today's record holder carries 24,327, with roughly the same size crew. Here's how shipping quietly scaled up. 👇",
    "hashtags": [
     "cargoships",
@@ -27658,9 +27658,9 @@
       "file": "container_ship_capacity_trend.json"
      },
      "insight_type": "trend",
-     "topic": "Cargo capacity multiplies",
+     "topic": "Cargo Capacity",
      "role": "1 · THE CLIMB",
-     "say": "The largest container ship's capacity reached 24,327 standard container equivalents. That is roughly six times the earliest supplied capacity.",
+     "say": "The largest ship carries 24,327 container equivalents. Capacity grew more than sixfold from the earliest listed vessel.",
      "scene": {
       "mechanic": "deck-box-loadout",
       "concept": "one container ship's deck fills with real stacked boxes, a box landing every few frames as the years sweep 1980 to 2024 and capacity climbs from 4,000 to 24,327",
@@ -27676,9 +27676,9 @@
      "insight_type": "rank",
      "use_baseline": true,
      "ascending": false,
-     "topic": "Cargo ship scale",
+     "topic": "Cargo Scale",
      "role": "2 · THE SCALE",
-     "say": "The supplied giant container ship measures 400 meters long. It is substantially longer than the Titanic in the comparison.",
+     "say": "The giant vessel stretches 400 meters. Modern cargo ships have outgrown historic passenger liners.",
      "scene": {
       "mechanic": "hull-slides-past-titanic",
       "concept": "the Titanic is laid at its true length and the modern container ship slides in beside it, overshooting by 131 meters",
@@ -27693,9 +27693,9 @@
      },
      "insight_type": "rank",
      "ascending": false,
-     "topic": "Cargo crew shrinks",
+     "topic": "Cargo Crew",
      "role": "3 · THE CATCH",
-     "say": "A typical crew fell to 20 people in these data. Larger cargo capacity did not require a larger crew.",
+     "say": "A typical cargo crew now has 20 people. Bigger ships did not bring bigger teams.",
      "scene": {
       "mechanic": "crew-walks-off-deck",
       "concept": "a muster of 34 real sailors from 1980 stands on deck; 14 of them walk off one by one until only today's 20 remain",
@@ -27705,7 +27705,7 @@
    ],
    "words_by": "chatgpt-rewrite",
    "retold": "retell/v3",
-   "rewritten_at": "2026-10-20T11:24:40Z"
+   "rewritten_at": "2026-10-26T11:49:09Z"
   },
   {
    "slug": "ceo-executive-pay-gap",
@@ -34115,10 +34115,10 @@
   },
   {
    "slug": "dog-breed-popularity-flip",
-   "title": "French Bulldog Registrations Rose 1,000%. Popularity Isn't Health.",
-   "hook": "French Bulldog registrations surged 1,000%, but popularity says nothing about lifespan.",
-   "closing": "Before choosing a popular breed, ask about its health and the care it needs.",
-   "question": "What matters most when choosing a dog?",
+   "title": "America's Top Dog Has a 4.5-Year Life Expectancy",
+   "hook": "The top-ranked dog has a 4.5-year population life expectancy.",
+   "closing": "Popularity cannot replace a hard look at a breed's health and care needs.",
+   "question": "What matters when choosing a dog?",
    "caption": "For 31 years, the Labrador Retriever was America's most popular dog. In 2022, one breed finally took the crown, with registrations up over 1,000% since 2012. But that popularity comes at a real cost to the dog itself. Would you still get one? 👇",
    "hashtags": [
     "dogs",
@@ -34147,8 +34147,8 @@
      "insight_type": "rank",
      "ascending": true,
      "role": "1 · THE UPSET",
-     "topic": "French Bulldog crown",
-     "say": "The French Bulldog reached number one in the rankings. The Labrador no longer led the list."
+     "topic": "Dog Rank",
+     "say": "The French Bulldog ranks number 1. It displaced every other breed in the popularity list."
     },
     {
      "source": "offline",
@@ -34158,8 +34158,8 @@
      },
      "insight_type": "trend",
      "role": "2 · THE SURGE",
-     "topic": "French Bulldog surge",
-     "say": "French Bulldog registrations rose 1,000% over the measured decade. Demand multiplied rather than merely nudging upward."
+     "topic": "Dog Surge",
+     "say": "French Bulldog registrations rose 1,000%. Demand exploded rather than simply edging upward."
     },
     {
      "source": "offline",
@@ -34169,13 +34169,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE COST",
-     "topic": "French Bulldog lifespan",
-     "say": "French Bulldog life expectancy at birth was estimated at 4.5 years. That population estimate is not every individual dog's lifespan."
+     "topic": "Dog Lifespan",
+     "say": "French Bulldog life expectancy was 4.5 years. That population estimate exposes the health cost popularity can hide."
     }
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:19:53Z"
+   "rewritten_at": "2026-10-26T11:49:09Z"
   },
   {
    "slug": "competitive-eating-record-climb",

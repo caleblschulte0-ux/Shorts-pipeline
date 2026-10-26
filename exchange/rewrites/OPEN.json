@@ -1,106 +1,76 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-25T13:48:15Z",
+ "updated": "2026-10-26T11:49:10Z",
  "open": [
   {
-   "id": "california-condor-comeback__ada5193e_r1",
-   "slug": "california-condor-comeback",
-   "filed": "2026-10-25T13:48:15Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation anchored to a single verifiable number."
-   ],
-   "request": "exchange/rewrites/20261025/california-condor-comeback__ada5193e_r1.request.json",
-   "answer_path": "exchange/rewrites/20261025/california-condor-comeback__ada5193e_r1.answer.json"
-  },
-  {
-   "id": "nyc-noise-complaints-per-day__7fcacd7a_r1",
-   "slug": "nyc-noise-complaints-per-day",
-   "filed": "2026-10-25T13:48:14Z",
-   "why": [
-    "premise: brain: It doesn't overturn a clear viewer expectation, merely reports a statistic."
-   ],
-   "request": "exchange/rewrites/20261025/nyc-noise-complaints-per-day__7fcacd7a_r1.request.json",
-   "answer_path": "exchange/rewrites/20261025/nyc-noise-complaints-per-day__7fcacd7a_r1.answer.json"
-  },
-  {
-   "id": "airline-pilot-shortage__6e694dae_r1",
+   "id": "airline-pilot-shortage__6e694dae_r2",
    "slug": "airline-pilot-shortage",
-   "filed": "2026-10-25T11:28:50Z",
+   "filed": "2026-10-26T11:49:10Z",
    "why": [
     "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies only on a raw figure without a verifiable, surprising twist."
    ],
-   "request": "exchange/rewrites/20261025/airline-pilot-shortage__6e694dae_r1.request.json",
-   "answer_path": "exchange/rewrites/20261025/airline-pilot-shortage__6e694dae_r1.answer.json"
+   "request": "exchange/rewrites/20261026/airline-pilot-shortage__6e694dae_r2.request.json",
+   "answer_path": "exchange/rewrites/20261026/airline-pilot-shortage__6e694dae_r2.answer.json"
+  },
+  {
+   "id": "california-condor-comeback__ada5193e_r2",
+   "slug": "california-condor-comeback",
+   "filed": "2026-10-26T11:49:10Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation anchored to a single verifiable number."
+   ],
+   "request": "exchange/rewrites/20261026/california-condor-comeback__ada5193e_r2.request.json",
+   "answer_path": "exchange/rewrites/20261026/california-condor-comeback__ada5193e_r2.answer.json"
+  },
+  {
+   "id": "chatgpt-fastest-adoption-ever__c2e9df7d_r3",
+   "slug": "chatgpt-fastest-adoption-ever",
+   "filed": "2026-10-26T11:49:09Z",
+   "why": [
+    "premise: brain: The claim relies on a vague comparative speed without a single verifiable number, making it a weak premise."
+   ],
+   "request": "exchange/rewrites/20261026/chatgpt-fastest-adoption-ever__c2e9df7d_r3.request.json",
+   "answer_path": "exchange/rewrites/20261026/chatgpt-fastest-adoption-ever__c2e9df7d_r3.answer.json"
+  },
+  {
+   "id": "coldest-place-in-the-universe-is-human-made__81f94a66_r2",
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "filed": "2026-10-26T11:49:09Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261026/coldest-place-in-the-universe-is-human-made__81f94a66_r2.request.json",
+   "answer_path": "exchange/rewrites/20261026/coldest-place-in-the-universe-is-human-made__81f94a66_r2.answer.json"
   },
   {
    "id": "ai-datacenter-water__c0cc9c1a_r2",
    "slug": "ai-datacenter-water",
-   "filed": "2026-10-25T11:26:13Z",
+   "filed": "2026-10-24T11:23:41Z",
    "why": [
     "premise: no consequential number in the title or hook"
    ],
-   "request": "exchange/rewrites/20261025/ai-datacenter-water__c0cc9c1a_r2.request.json",
-   "answer_path": "exchange/rewrites/20261025/ai-datacenter-water__c0cc9c1a_r2.answer.json"
+   "request": "exchange/rewrites/20261024/ai-datacenter-water__c0cc9c1a_r2.request.json",
+   "answer_path": "exchange/rewrites/20261024/ai-datacenter-water__c0cc9c1a_r2.answer.json"
+  },
+  {
+   "id": "nyc-noise-complaints-per-day__7fcacd7a_r1",
+   "slug": "nyc-noise-complaints-per-day",
+   "filed": "2026-10-24T11:23:40Z",
+   "why": [
+    "premise: brain: It does not clearly overturn a common viewer expectation, only presents a surprising statistic."
+   ],
+   "request": "exchange/rewrites/20261024/nyc-noise-complaints-per-day__7fcacd7a_r1.request.json",
+   "answer_path": "exchange/rewrites/20261024/nyc-noise-complaints-per-day__7fcacd7a_r1.answer.json"
   },
   {
    "id": "world-wetlands-lost__3fe5ea62_r2",
    "slug": "world-wetlands-lost",
-   "filed": "2026-10-24T11:23:42Z",
-   "why": [
-    "premise: brain: The claim does not clearly overturn a common viewer expectation, only presents a statistic."
-   ],
-   "request": "exchange/rewrites/20261024/world-wetlands-lost__3fe5ea62_r2.request.json",
-   "answer_path": "exchange/rewrites/20261024/world-wetlands-lost__3fe5ea62_r2.answer.json"
-  },
-  {
-   "id": "chatgpt-fastest-adoption-ever__c2e9df7d_r2",
-   "slug": "chatgpt-fastest-adoption-ever",
-   "filed": "2026-10-24T11:23:41Z",
-   "why": [
-    "premise: brain: The claim relies on a vague comparative speed without a single verifiable number, making it a weak premise."
-   ],
-   "request": "exchange/rewrites/20261024/chatgpt-fastest-adoption-ever__c2e9df7d_r2.request.json",
-   "answer_path": "exchange/rewrites/20261024/chatgpt-fastest-adoption-ever__c2e9df7d_r2.answer.json"
-  },
-  {
-   "id": "dog-breed-popularity-flip__8740e2a9_r2",
-   "slug": "dog-breed-popularity-flip",
-   "filed": "2026-10-24T11:23:41Z",
-   "why": [
-    "premise: brain: The claim lacks a clear reversal of a common viewer expectation and relies on a vague link between popularity and health rather than a single verifiable consequence."
-   ],
-   "request": "exchange/rewrites/20261024/dog-breed-popularity-flip__8740e2a9_r2.request.json",
-   "answer_path": "exchange/rewrites/20261024/dog-breed-popularity-flip__8740e2a9_r2.answer.json"
-  },
-  {
-   "id": "coldest-place-in-the-universe-is-human-made__81f94a66_r1",
-   "slug": "coldest-place-in-the-universe-is-human-made",
    "filed": "2026-10-23T12:48:59Z",
    "why": [
-    "premise: no consequential number in the title or hook"
+    "premise: brain: It presents a factual statistic without overturning a specific viewer expectation, failing the reversal requirement."
    ],
-   "request": "exchange/rewrites/20261023/coldest-place-in-the-universe-is-human-made__81f94a66_r1.request.json",
-   "answer_path": "exchange/rewrites/20261023/coldest-place-in-the-universe-is-human-made__81f94a66_r1.answer.json"
-  },
-  {
-   "id": "lottery-odds-vs-real-life__335c9001_r1",
-   "slug": "lottery-odds-vs-real-life",
-   "filed": "2026-10-23T12:48:59Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261023/lottery-odds-vs-real-life__335c9001_r1.request.json",
-   "answer_path": "exchange/rewrites/20261023/lottery-odds-vs-real-life__335c9001_r1.answer.json"
-  },
-  {
-   "id": "cargo-ship-size-growth__f9ab28c4_r1",
-   "slug": "cargo-ship-size-growth",
-   "filed": "2026-10-23T12:48:58Z",
-   "why": [
-    "premise: brain: It relies on multiple numbers (sixfold growth and crew size 20) rather than a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261023/cargo-ship-size-growth__f9ab28c4_r1.request.json",
-   "answer_path": "exchange/rewrites/20261023/cargo-ship-size-growth__f9ab28c4_r1.answer.json"
+   "request": "exchange/rewrites/20261023/world-wetlands-lost__3fe5ea62_r2.request.json",
+   "answer_path": "exchange/rewrites/20261023/world-wetlands-lost__3fe5ea62_r2.answer.json"
   },
   {
    "id": "helium-supply-squeeze__067a945d",

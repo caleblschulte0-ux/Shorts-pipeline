@@ -1,0 +1,10 @@
+{
+ "id": "ai-datacenter-water__c0cc9c1a_r2",
+ "slug": "ai-datacenter-water",
+ "settled": "2026-10-26T11:49:09Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Surge",
+  "segment 1: new named entity not in the data: Leaders"
+ ]
+}
