@@ -4276,11 +4276,29 @@
       "duration_s": 31.7
     },
     "world-wetlands-lost": {
-      "claimed_at": "2026-10-26T11:54:08.978849+00:00",
+      "url": "https://youtube.com/shorts/UHdFIaPm8xA",
       "title": "The World Lost 35% Of Its Wetlands Since 1970",
+      "at": "2026-10-26T11:54:18.908825+00:00",
       "publish_at": "2026-10-26T12:36:21Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.86,
+      "beat_s": [
+        5.3,
+        7.49,
+        7.86,
+        7.33,
+        6.52
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 96,
+      "duration_s": 35.0
     }
   },
   "uploads": [
@@ -5442,9 +5460,10 @@
       "claimed_at": "2026-10-26T11:54:08.978849+00:00",
       "title": "The World Lost 35% Of Its Wetlands Since 1970",
       "publish_at": "2026-10-26T12:36:21Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "world-wetlands-lost"
+      "url": "https://youtube.com/shorts/UHdFIaPm8xA",
+      "state": "posted",
+      "slug": "world-wetlands-lost",
+      "at": "2026-10-26T11:54:18.908825+00:00"
     }
   ]
 }
