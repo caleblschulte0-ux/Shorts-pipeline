@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "california-condor-comeback__ada5193e_r1",
+  "slug": "california-condor-comeback",
+  "by": "chatgpt",
+  "written_at": "2026-10-26T11:40:00Z",
+  "title": "Saving 500 Condors Didn't End Their Biggest Threat",
+  "hook": "Only 27 condors survived, and poison still threatens the comeback.",
+  "closing": "Recovery works only when the food keeping condors alive stops poisoning them.",
+  "question": "Would you protect condor habitat?",
+  "segments": [
+    {
+      "topic": "Condor Recovery",
+      "say": "About 500 condors live today. A species once near extinction now has a real population again."
+    },
+    {
+      "topic": "Condor Climb",
+      "say": "The population passed 300 in 2008. Recovery took decades, showing how slowly a rescued species returns."
+    },
+    {
+      "topic": "Condor Poison",
+      "say": "Lead causes 50% of wild condor deaths. Their biggest remaining threat is hidden inside the food they scavenge."
+    }
+  ]
+}
