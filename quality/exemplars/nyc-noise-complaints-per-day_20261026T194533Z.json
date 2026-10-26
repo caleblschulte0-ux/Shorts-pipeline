@@ -1,0 +1,33 @@
+{
+ "slug": "nyc-noise-complaints-per-day",
+ "ts": "20261026T194533Z",
+ "score": 96,
+ "dimensions": {
+  "hook": 4,
+  "data_demo": 4,
+  "mascot": 4,
+  "craft": 3,
+  "pace": 2,
+  "payoff": 2,
+  "temporal_craft": 3
+ },
+ "temporal": {
+  "sample_fps": 24,
+  "duplicate_ratio": 0.14,
+  "effective_fps": 20.6,
+  "max_dup_run": 18,
+  "measured": true,
+  "frozen_ratio": 0.036,
+  "frozen_fps": 23.1,
+  "max_frozen_run": 18,
+  "judder_ratio": 0.0,
+  "judder_fps": 24.0,
+  "held_s": 2.21,
+  "max_dup_at_s": 0.0,
+  "duration_s": 24.08
+ },
+ "scene_plan": {},
+ "scenes": [],
+ "why_it_worked": "The video effectively uses custom animation and mascot interaction to demonstrate noise complaint data in NYC, though the initial statistic is text-only.",
+ "render_ref": "preview-renders branch @ 20261026T194533Z"
+}
