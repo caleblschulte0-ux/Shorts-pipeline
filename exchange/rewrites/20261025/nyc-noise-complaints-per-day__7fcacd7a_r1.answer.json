@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "nyc-noise-complaints-per-day__7fcacd7a_r1",
+  "slug": "nyc-noise-complaints-per-day",
+  "by": "chatgpt",
+  "written_at": "2026-10-26T11:40:00Z",
+  "title": "NYC's 1,918 Daily Noise Calls Reveal a Bigger Change",
+  "hook": "NYC now gets 1,918 noise complaints every single day.",
+  "closing": "The rising calls show how much city noise is wearing residents down.",
+  "question": "What noise would make you call?",
+  "segments": [
+    {
+      "topic": "NYC Noise Share",
+      "say": "Noise makes up 18% of NYC complaints. Nearly one in five reports is about what residents hear."
+    },
+    {
+      "topic": "NYC Noise Growth",
+      "say": "Noise complaints reached 700,000 in 2023. The annual total doubled, turning irritation into a citywide pattern."
+    },
+    {
+      "topic": "NYC Noise Daily",
+      "say": "NYC averages 1,918 noise calls daily. The complaint line is now busy from morning through night."
+    }
+  ]
+}
