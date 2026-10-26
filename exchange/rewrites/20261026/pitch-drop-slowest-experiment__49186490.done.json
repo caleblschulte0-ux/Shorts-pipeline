@@ -1,0 +1,10 @@
+{
+ "id": "pitch-drop-slowest-experiment__49186490",
+ "slug": "pitch-drop-slowest-experiment",
+ "settled": "2026-10-26T12:10:20Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Timeline",
+  "segment 1: new named entity not in the data: Rivals"
+ ]
+}
