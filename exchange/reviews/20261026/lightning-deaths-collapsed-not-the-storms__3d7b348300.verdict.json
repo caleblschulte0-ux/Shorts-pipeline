@@ -1,0 +1,99 @@
+{
+  "schema": "shorts-review-verdict/v1",
+  "request_id": "lightning-deaths-collapsed-not-the-storms__3d7b348300",
+  "video_sha256": "3d7b34830066f39c3ab1139a13386d7ab7a4918c3ea77fb8b04c0be84ec01f48",
+  "by": "chatgpt",
+  "graded_at": "2026-10-26T12:04:00Z",
+  "grades": {
+    "dimensions": {
+      "hook": 3,
+      "data_demo": 3,
+      "mascot": 1,
+      "craft": 2,
+      "pace": 2,
+      "payoff": 0
+    },
+    "checks": {
+      "junk_imagery": {
+        "present": false,
+        "evidence": "Across hook@0.3 through seg4:end, the storm, neighborhood, lightning, dock, and fishing-boat imagery all match the subject."
+      },
+      "decorative_mascot": {
+        "present": true,
+        "evidence": "At seg2:mid and payoff@-0.4, Data is a tiny perched figure rather than performing a clear setup-action-payoff tied to the statistic."
+      },
+      "bare_number_card": {
+        "present": false,
+        "evidence": "The numeric beats at seg1:mid and seg2:end sit inside storm, houses, lightning, and dock demonstrations rather than on plain cards."
+      },
+      "dead_air": {
+        "present": false,
+        "evidence": "The measured longest_static_s is 0.0 and the labeled frames change meaningfully through seg0:end to seg4:end."
+      },
+      "empty_void": {
+        "present": true,
+        "evidence": "payoff@-0.4 is almost entirely dark empty space with a tiny mascot isolated at the bottom."
+      },
+      "unreadable": {
+        "present": true,
+        "evidence": "The small white copy in seg4:start through seg4:end is too small and low-contrast to read comfortably on a phone."
+      }
+    },
+    "weakest_scene": {
+      "id": "seg4",
+      "index": 4,
+      "failure_class": "empty_void",
+      "visible_evidence": "seg4:end loses the fishing scene, and payoff@-0.4 leaves a tiny mascot at the bottom of a nearly empty dark frame.",
+      "root_cause": "The closing transition removes the subject illustration before the payoff and scales the performer and text too small.",
+      "repair_goal": "Keep the fishing/storm subject visible through the final beat, enlarge Data and the closing line, and land a clear visual safety payoff instead of fading to an empty field."
+    },
+    "depictions": [
+      {
+        "id": "seg0",
+        "kind": "bespoke",
+        "bespoke": 2,
+        "proves_claim": 2,
+        "note": "Storm clouds physically cover a neighborhood as the historic death toll appears."
+      },
+      {
+        "id": "seg1",
+        "kind": "bespoke",
+        "bespoke": 2,
+        "proves_claim": 2,
+        "note": "The neighborhood remains under lightning while the death count visibly collapses."
+      },
+      {
+        "id": "seg2",
+        "kind": "machine",
+        "bespoke": 1,
+        "proves_claim": 2,
+        "note": "A lightning-and-dock comparison carries the 40-times-less-deadly point, but the layout is reusable."
+      },
+      {
+        "id": "seg3",
+        "kind": "bespoke",
+        "bespoke": 2,
+        "proves_claim": 2,
+        "note": "Fishing boats in open storm water make the remaining risk specific to the subject."
+      },
+      {
+        "id": "seg4",
+        "kind": "bespoke",
+        "bespoke": 1,
+        "proves_claim": 1,
+        "note": "The boat scene supports the warning, but the final empty fade discards the demonstration."
+      }
+    ],
+    "one_line": "Strong subject-specific storm and fishing imagery is undermined by a tiny decorative mascot and an empty, unreadable final payoff.",
+    "problems": [
+      "Data is too small and mostly decorative instead of performing the statistic.",
+      "The closing text is too small and low-contrast on the fishing frames.",
+      "The final payoff collapses into a large dark void with no subject demonstration."
+    ],
+    "fixes": [
+      "Give Data a clear action in the lightning or fishing setup that changes with the statistic.",
+      "Increase closing text size and contrast while retaining the boat/storm scene.",
+      "Hold the final illustrated scene through the payoff instead of fading to an empty dark frame."
+    ]
+  }
+}
