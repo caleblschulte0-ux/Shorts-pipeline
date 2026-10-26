@@ -1,0 +1,10 @@
+{
+ "id": "humpback-whale-recovery__15f8bd75_r1",
+ "slug": "humpback-whale-recovery",
+ "settled": "2026-10-26T12:12:28Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 1: new named entity not in the data: Recoveries",
+  "hook: new named entity not in the data: Survived"
+ ]
+}

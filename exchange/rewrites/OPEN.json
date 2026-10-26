@@ -1,11 +1,21 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-26T12:10:20Z",
+ "updated": "2026-10-26T12:12:30Z",
  "open": [
+  {
+   "id": "nuclear-stockpile-growth-reversal__e5d1ecfb_r1",
+   "slug": "nuclear-stockpile-growth-reversal",
+   "filed": "2026-10-26T12:12:30Z",
+   "why": [
+    "pace: hook is 15 words (max 14)"
+   ],
+   "request": "exchange/rewrites/20261026/nuclear-stockpile-growth-reversal__e5d1ecfb_r1.request.json",
+   "answer_path": "exchange/rewrites/20261026/nuclear-stockpile-growth-reversal__e5d1ecfb_r1.answer.json"
+  },
   {
    "id": "pitch-drop-slowest-experiment__49186490_r1",
    "slug": "pitch-drop-slowest-experiment",
-   "filed": "2026-10-26T12:10:20Z",
+   "filed": "2026-10-26T12:12:30Z",
    "why": [
     "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and does not hinge on a single consequential, verifiable number."
    ],
@@ -13,94 +23,84 @@
    "answer_path": "exchange/rewrites/20261026/pitch-drop-slowest-experiment__49186490_r1.answer.json"
   },
   {
-   "id": "humpback-whale-recovery__15f8bd75_r1",
-   "slug": "humpback-whale-recovery",
-   "filed": "2026-10-26T12:01:26Z",
-   "why": [
-    "premise: brain: The premise does not overturn a viewer's expectation, merely states a population increase."
-   ],
-   "request": "exchange/rewrites/20261026/humpback-whale-recovery__15f8bd75_r1.request.json",
-   "answer_path": "exchange/rewrites/20261026/humpback-whale-recovery__15f8bd75_r1.answer.json"
-  },
-  {
-   "id": "lottery-odds-vs-real-life__07fec88f",
-   "slug": "lottery-odds-vs-real-life",
-   "filed": "2026-10-26T12:01:26Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague percentage without a strong, verifiable hook."
-   ],
-   "request": "exchange/rewrites/20261026/lottery-odds-vs-real-life__07fec88f.request.json",
-   "answer_path": "exchange/rewrites/20261026/lottery-odds-vs-real-life__07fec88f.answer.json"
-  },
-  {
-   "id": "metric-system-holdouts__3d73bc6c_r2",
-   "slug": "metric-system-holdouts",
-   "filed": "2026-10-26T12:01:26Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a viewer's expectation and relies on an ambiguous fuel amount rather than a single consequential, verifiable number."
-   ],
-   "request": "exchange/rewrites/20261026/metric-system-holdouts__3d73bc6c_r2.request.json",
-   "answer_path": "exchange/rewrites/20261026/metric-system-holdouts__3d73bc6c_r2.answer.json"
-  },
-  {
-   "id": "blood-supply-three-percent__0e14bc94",
-   "slug": "blood-supply-three-percent",
-   "filed": "2026-10-26T12:01:25Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on a generic statistic without a striking, consequential number."
-   ],
-   "request": "exchange/rewrites/20261026/blood-supply-three-percent__0e14bc94.request.json",
-   "answer_path": "exchange/rewrites/20261026/blood-supply-three-percent__0e14bc94.answer.json"
-  },
-  {
-   "id": "mangrove-forest-loss__bca1e334",
-   "slug": "mangrove-forest-loss",
-   "filed": "2026-10-26T12:01:25Z",
-   "why": [
-    "premise: brain: The premise does not clearly reverse a viewer expectation and relies on a vague claim rather than a single, verifiable consequential number."
-   ],
-   "request": "exchange/rewrites/20261026/mangrove-forest-loss__bca1e334.request.json",
-   "answer_path": "exchange/rewrites/20261026/mangrove-forest-loss__bca1e334.answer.json"
-  },
-  {
-   "id": "escooter-er-visits-surge__337c3b43",
-   "slug": "escooter-er-visits-surge",
-   "filed": "2026-10-26T12:01:24Z",
-   "why": [
-    "premise: brain: The premise lacks a single, precise, verifiable number, using only a vague multiplier instead."
-   ],
-   "request": "exchange/rewrites/20261026/escooter-er-visits-surge__337c3b43.request.json",
-   "answer_path": "exchange/rewrites/20261026/escooter-er-visits-surge__337c3b43.answer.json"
-  },
-  {
-   "id": "ghost-fishing-gear-ocean-plastic__43f99e61_r1",
-   "slug": "ghost-fishing-gear-ocean-plastic",
-   "filed": "2026-10-26T12:01:24Z",
-   "why": [
-    "premise: brain: The premise provides a factual number but does not clearly reverse a specific viewer expectation, making it insufficient."
-   ],
-   "request": "exchange/rewrites/20261026/ghost-fishing-gear-ocean-plastic__43f99e61_r1.request.json",
-   "answer_path": "exchange/rewrites/20261026/ghost-fishing-gear-ocean-plastic__43f99e61_r1.answer.json"
-  },
-  {
-   "id": "nuclear-stockpile-growth-reversal__e5d1ecfb",
-   "slug": "nuclear-stockpile-growth-reversal",
-   "filed": "2026-10-26T12:01:24Z",
-   "why": [
-    "pace: hook is 15 words (max 14)"
-   ],
-   "request": "exchange/rewrites/20261026/nuclear-stockpile-growth-reversal__e5d1ecfb.request.json",
-   "answer_path": "exchange/rewrites/20261026/nuclear-stockpile-growth-reversal__e5d1ecfb.answer.json"
-  },
-  {
-   "id": "iss-deorbit-2031__6ede29c2",
+   "id": "iss-deorbit-2031__6ede29c2_r1",
    "slug": "iss-deorbit-2031",
-   "filed": "2026-10-26T12:01:23Z",
+   "filed": "2026-10-26T12:12:29Z",
    "why": [
     "premise: brain: The claim lacks a single verifiable number backing the reversal of the expectation that the ISS will stay in orbit."
    ],
-   "request": "exchange/rewrites/20261026/iss-deorbit-2031__6ede29c2.request.json",
-   "answer_path": "exchange/rewrites/20261026/iss-deorbit-2031__6ede29c2.answer.json"
+   "request": "exchange/rewrites/20261026/iss-deorbit-2031__6ede29c2_r1.request.json",
+   "answer_path": "exchange/rewrites/20261026/iss-deorbit-2031__6ede29c2_r1.answer.json"
+  },
+  {
+   "id": "lottery-odds-vs-real-life__07fec88f_r1",
+   "slug": "lottery-odds-vs-real-life",
+   "filed": "2026-10-26T12:12:29Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies on a vague percentage without a strong, verifiable hook."
+   ],
+   "request": "exchange/rewrites/20261026/lottery-odds-vs-real-life__07fec88f_r1.request.json",
+   "answer_path": "exchange/rewrites/20261026/lottery-odds-vs-real-life__07fec88f_r1.answer.json"
+  },
+  {
+   "id": "mangrove-forest-loss__bca1e334_r1",
+   "slug": "mangrove-forest-loss",
+   "filed": "2026-10-26T12:12:29Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a viewer expectation and relies on a vague claim rather than a single, verifiable consequential number."
+   ],
+   "request": "exchange/rewrites/20261026/mangrove-forest-loss__bca1e334_r1.request.json",
+   "answer_path": "exchange/rewrites/20261026/mangrove-forest-loss__bca1e334_r1.answer.json"
+  },
+  {
+   "id": "metric-system-holdouts__3d73bc6c_r3",
+   "slug": "metric-system-holdouts",
+   "filed": "2026-10-26T12:12:29Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a viewer's expectation and relies on an ambiguous fuel amount rather than a single consequential, verifiable number."
+   ],
+   "request": "exchange/rewrites/20261026/metric-system-holdouts__3d73bc6c_r3.request.json",
+   "answer_path": "exchange/rewrites/20261026/metric-system-holdouts__3d73bc6c_r3.answer.json"
+  },
+  {
+   "id": "blood-supply-three-percent__0e14bc94_r1",
+   "slug": "blood-supply-three-percent",
+   "filed": "2026-10-26T12:12:28Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on a generic statistic without a striking, consequential number."
+   ],
+   "request": "exchange/rewrites/20261026/blood-supply-three-percent__0e14bc94_r1.request.json",
+   "answer_path": "exchange/rewrites/20261026/blood-supply-three-percent__0e14bc94_r1.answer.json"
+  },
+  {
+   "id": "escooter-er-visits-surge__337c3b43_r1",
+   "slug": "escooter-er-visits-surge",
+   "filed": "2026-10-26T12:12:28Z",
+   "why": [
+    "premise: brain: The premise lacks a single, precise, verifiable number, using only a vague multiplier instead."
+   ],
+   "request": "exchange/rewrites/20261026/escooter-er-visits-surge__337c3b43_r1.request.json",
+   "answer_path": "exchange/rewrites/20261026/escooter-er-visits-surge__337c3b43_r1.answer.json"
+  },
+  {
+   "id": "ghost-fishing-gear-ocean-plastic__43f99e61_r2",
+   "slug": "ghost-fishing-gear-ocean-plastic",
+   "filed": "2026-10-26T12:12:28Z",
+   "why": [
+    "premise: brain: The premise provides a factual number but does not clearly reverse a specific viewer expectation, making it insufficient."
+   ],
+   "request": "exchange/rewrites/20261026/ghost-fishing-gear-ocean-plastic__43f99e61_r2.request.json",
+   "answer_path": "exchange/rewrites/20261026/ghost-fishing-gear-ocean-plastic__43f99e61_r2.answer.json"
+  },
+  {
+   "id": "humpback-whale-recovery__15f8bd75_r2",
+   "slug": "humpback-whale-recovery",
+   "filed": "2026-10-26T12:12:28Z",
+   "why": [
+    "premise: brain: The premise does not overturn a viewer's expectation, merely states a population increase."
+   ],
+   "request": "exchange/rewrites/20261026/humpback-whale-recovery__15f8bd75_r2.request.json",
+   "answer_path": "exchange/rewrites/20261026/humpback-whale-recovery__15f8bd75_r2.answer.json"
   },
   {
    "id": "lightning-deaths-collapsed-not-the-storms__c86366ce",

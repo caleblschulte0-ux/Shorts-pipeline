@@ -1,0 +1,10 @@
+{
+ "id": "escooter-er-visits-surge__337c3b43",
+ "slug": "escooter-er-visits-surge",
+ "settled": "2026-10-26T12:12:28Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 1: new named entity not in the data: Gap",
+  "hook: new named entity not in the data: Jumped"
+ ]
+}

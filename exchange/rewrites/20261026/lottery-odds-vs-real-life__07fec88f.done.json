@@ -1,0 +1,12 @@
+{
+ "id": "lottery-odds-vs-real-life__07fec88f",
+ "slug": "lottery-odds-vs-real-life",
+ "settled": "2026-10-26T12:12:29Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: number(s) not derivable from this beat's data: 1",
+  "segment 1: number(s) not derivable from this beat's data: 1",
+  "segment 1: new named entity not in the data: Comparison",
+  "hook: new named entity not in the data: Changed, Rules, Worsened"
+ ]
+}

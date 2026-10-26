@@ -1,0 +1,10 @@
+{
+ "id": "metric-system-holdouts__3d73bc6c_r2",
+ "slug": "metric-system-holdouts",
+ "settled": "2026-10-26T12:12:29Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Holdouts",
+  "hook: new named entity not in the data: Exposed, Need, One"
+ ]
+}
