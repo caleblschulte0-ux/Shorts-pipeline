@@ -3,244 +3,6 @@
     {
       "date": "20261018",
       "dry_run": false,
-      "ts": "2026-10-18T11:58:32+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 14,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 140,
-        "with_retention": 118,
-        "with_curve": 14,
-        "fetched_at": "2026-10-18T08:46:17.808487+00:00"
-      },
-      "brain": {
-        "ok": 26,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261018-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "vague reaction, possible drama",
-              "blind": false
-            },
-            "content": {
-              "score": 0.74,
-              "why": "Tailgate table-jump fail, crowd reacts",
-              "floor": 0.7,
-              "aspirational": 0.7,
-              "attempt": 1,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Lacy Screams 'You're Gonna Die' And Then Everything Goes Wrong \ud83d\ude33"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.75,
-              "problems": [
-                "Frame at 0.4s is motion-blurred in the sharp region, and the 1.3s frame is mostly empty sky",
-                "The 'hurt' caption at 9.9s sits close to the chin",
-                "The hook card is on screen the whole clip and overlaps the lower body in a few frames"
-              ]
-            }
-          },
-          "took_s": 143.6
-        },
-        {
-          "slug": "clip-20261018-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261018-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.35,
-              "why": "insider joke, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Minecraft SMP chatter, laughing streamer",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jasontheween Loses It After OSCs Y'all Got Mail"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.72,
-              "problems": [
-                "The facecam streamer is partly cropped at the right edge in several frames",
-                "The hook line and word captions stack over the game's HUD bar, which looks a little cluttered",
-                "The in-game text is cut off at the frame edges, but that comes from the source footage"
-              ]
-            }
-          },
-          "took_s": 145.6
-        },
-        {
-          "slug": "clip-20261018-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261018-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "vague title, unknown content",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Streamer shows fake gun, no payoff",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Cinna Shows Off His Fake Gun And Swears It's Not Real"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": [
-                "Hook caption and word captions sit close together at the bottom, a little cluttered",
-                "Gun pointed at the camera in a few frames is a mild platform-sensitivity risk, but it is clearly a prop in context"
-              ]
-            }
-          },
-          "took_s": 153.1
-        },
-        {
-          "slug": "clip-20261018-6",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (Insider VTuber joke, unclear event)",
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "vague title, unknown VTuber content",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "Insider VTuber joke, unclear event",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 33.6
-        }
-      ]
-    },
-    {
-      "date": "20261018",
-      "dry_run": false,
       "ts": "2026-10-18T14:33:24+00:00",
       "feedback": {
         "snapshot": true,
@@ -4867,6 +4629,138 @@
             "selection": {
               "verdict": "skip",
               "why": "best title score 0.22 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        }
+      ]
+    },
+    {
+      "date": "20261026",
+      "dry_run": false,
+      "ts": "2026-10-26T11:34:58+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 16,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 140,
+        "with_retention": 117,
+        "with_curve": 15,
+        "fetched_at": "2026-10-26T08:46:15.625364+00:00"
+      },
+      "brain": {
+        "ok": 1,
+        "fail": 0,
+        "limited_at": "2026-10-26T11:34:57+00:00",
+        "limit_detail": "You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)"
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261026-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261026-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261026-3",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 8.1
+        },
+        {
+          "slug": "clip-20261026-4",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20261026-5",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20261026-6",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261026-6",
+                  "outcome": "brain_limited",
+                  "why": "usage limit this run"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
             }
           },
           "took_s": 0.0
