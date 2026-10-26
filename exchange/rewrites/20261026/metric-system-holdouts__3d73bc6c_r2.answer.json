@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "metric-system-holdouts__3d73bc6c_r2",
+  "slug": "metric-system-holdouts",
+  "by": "chatgpt",
+  "written_at": "2026-10-26T12:50:00Z",
+  "title": "A 45,000-Pound Mistake Exposed Metric Holdouts",
+  "hook": "A 45,000-Pound Fuel Need Exposed One Metric Mistake",
+  "closing": "Shared units are boring until a mismatch puts lives or missions at risk.",
+  "question": "Should everyone use metric?",
+  "segments": [
+    {
+      "topic": "Metric Holdouts",
+      "say": "Only 5% of countries still resist the metric system, making nonmetric measurement the global exception."
+    },
+    {
+      "topic": "Metric Probe",
+      "say": "The probe flew 169 kilometers below plan because two teams measured its thrust differently."
+    },
+    {
+      "topic": "Metric Fuel",
+      "say": "The plane needed 45,000 pounds of fuel, but a unit mix-up left it short in the air."
+    }
+  ]
+}
