@@ -1,33 +1,6 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "other": {
-   "count": 9,
-   "stories": {
-    "sports_christian_yelich_vited_98_and": 4,
-    "sports_charles_barkley_g_this_close": 1,
-    "sports_chris_olave_as_a_message": 1,
-    "parker-solar-probe-speed-record": 2,
-    "body-renewal-clock": 1
-   },
-   "timestamps": [
-    "2026-10-25T11:39:11+00:00",
-    "2026-10-25T11:47:35+00:00",
-    "2026-10-25T11:49:25+00:00",
-    "2026-10-25T11:54:59+00:00",
-    "2026-10-25T12:09:23+00:00",
-    "2026-10-25T12:26:59+00:00",
-    "2026-10-25T10:38:26+00:00",
-    "2026-10-25T11:00:20+00:00",
-    "2026-10-25T11:57:29+00:00"
-   ],
-   "examples": [
-    "unreadable: Our line sits on top of the source clip's own burned-in captions: hook@0.3 reads 'TO GYelich invites twORLD', hook@0.8 to hook@2.2 read 'THAWWII vets to Game 1ICE', and payoff@-0.4 reads '",
-    "unreadable: In mid0 and mid1 the source's own burned-in captions ('They are 98 and 102 years old / TO SEE THIS', '/ AND PLAY FOR THIS CITY') replace our line. In mid2, 'They are 98 and 102 years old' ",
-    "unreadable: In mid5 and payoff@-0.4, our line 'Yelich invites two WWII vets to Game 1' is printed on top of the footage's own name graphic 'ALECIA YELICH / Mother of Christian Yelich'. Our line covers"
-   ],
-   "recurred_after_fix": false
-  },
   "empty_void": {
    "count": 6,
    "stories": {
@@ -50,40 +23,65 @@
    ],
    "recurred_after_fix": false
   },
-  "junk_imagery": {
-   "count": 3,
+  "other": {
+   "count": 5,
    "stories": {
-    "sports_charles_barkley_g_this_close": 1,
-    "sports_chris_olave_as_a_message": 1,
-    "parker-solar-probe-speed-record": 1
+    "sports_christian_yelich_vited_98_and": 1,
+    "parker-solar-probe-speed-record": 2,
+    "body-renewal-clock": 1,
+    "lightning-deaths-collapsed-not-the-storms": 1
    },
    "timestamps": [
-    "2026-10-25T11:54:59+00:00",
-    "2026-10-25T12:09:23+00:00",
-    "2026-10-25T10:38:26+00:00"
+    "2026-10-25T12:26:59+00:00",
+    "2026-10-25T10:38:26+00:00",
+    "2026-10-25T11:00:20+00:00",
+    "2026-10-25T11:57:29+00:00",
+    "2026-10-26T12:07:35+00:00"
    ],
    "examples": [
-    "junk_imagery: mid2 and mid3 cut to Heat-arena practice footage (two balls over a rim, then a Giannis Antetokounmpo stat lower-third) that has nothing to do with Barkley and Shaq; mid4 to payoff@-0.4 i",
-    "junk_imagery: mid1 is an NBC News REPORTS segment, chyron, network bug and all, letterboxed inside our frame. It is a video playing inside a video, and the Commanders players in it are not Olave.",
-    "junk_imagery: payoff@-0.4: the final frame is a bare dark gradient with Data holding a blank yellow price tag. The prop belongs to no scene."
+    "unreadable: mid1: our line 'Yelich invites WWII vets to the World Series' is printed directly over the footage's own 'ALECIA YELICH / Mother of Christian Yelich' graphic, so both texts collide and the",
+    "unreadable: seg4:start/mid/end: the white closing line 'The fastest machine carries nobody...' is printed directly over the navy headlines 'Nobody aboard', '56 seconds' and '208 seconds', so both are ",
+    "unreadable: At seg0:end and seg0:mid the small white subtitle 'the fastest thing ever built \u00b7 nobody aboard' is crossed by the probe's solar panel over a bright sky. At seg2:end the '430,000 mph' head"
    ],
    "recurred_after_fix": false
   },
   "decorative_mascot": {
-   "count": 3,
+   "count": 5,
    "stories": {
     "parker-solar-probe-speed-record": 2,
-    "body-renewal-clock": 1
+    "body-renewal-clock": 1,
+    "lightning-deaths-collapsed-not-the-storms": 2
    },
    "timestamps": [
     "2026-10-25T10:38:26+00:00",
     "2026-10-25T11:00:20+00:00",
-    "2026-10-25T11:57:29+00:00"
+    "2026-10-25T11:57:29+00:00",
+    "2026-10-26T12:07:35+00:00",
+    "2026-10-26T12:07:35+00:00"
    ],
    "examples": [
     "decorative_mascot: hook@0.3 to seg0:end, Data stands beside a console with a lever that drives nothing. seg2:start/mid/end, he stands by a black box while the probe launches on its own. seg3:start/mid",
     "decorative_mascot: Data stands beside a console in the hook (hook@0.8 to seg0:end) and just perches on the probe in seg1:mid. In seg2:mid he stands still next to a plunger box. In seg3:mid he waves un",
     "decorative_mascot: seg0:mid to seg1:end: Data stands beside the moving grey wall and waves while it slides; he never pushes it. seg4:start to seg4:end: he only points while the stomach fills. The one "
+   ],
+   "recurred_after_fix": false
+  },
+  "junk_imagery": {
+   "count": 3,
+   "stories": {
+    "parker-solar-probe-speed-record": 1,
+    "sports_shai_gilgeous_alexander_he_post_g": 1,
+    "sports_dejan_kulusevski_ter_526_days": 1
+   },
+   "timestamps": [
+    "2026-10-25T10:38:26+00:00",
+    "2026-10-26T11:55:38+00:00",
+    "2026-10-26T12:03:09+00:00"
+   ],
+   "examples": [
+    "junk_imagery: payoff@-0.4: the final frame is a bare dark gradient with Data holding a blank yellow price tag. The prop belongs to no scene.",
+    "malformed_judge_response: checks.junk_imagery.evidence missing or empty",
+    "junk_imagery: Frame mid2 (t=7.64s) shows a different player (Richarlison) while the text \"AFTER 17 MONTHS\" is displayed, which is meant to refer to Kulusevski's return."
    ],
    "recurred_after_fix": false
   },
@@ -101,31 +99,18 @@
     "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
    ],
    "recurred_after_fix": false
-  },
-  "dead_air": {
-   "count": 1,
-   "stories": {
-    "sports_charles_barkley_g_this_close": 1
-   },
-   "timestamps": [
-    "2026-10-25T11:54:59+00:00"
-   ],
-   "examples": [
-    "dead_air: mid4 (t=26.2s) through payoff@-0.4 (t=33.7s) is about 7s of the static Tip-Off sponsor bumper with no host on screen"
-   ],
-   "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 2,
+   "median": 3,
    "min": 0,
-   "max": 3
+   "max": 4
   },
   "data_demo": {
    "median": 3,
    "min": 0,
-   "max": 4
+   "max": 5
   },
   "mascot": {
    "median": 4,
@@ -135,10 +120,10 @@
   "craft": {
    "median": 2,
    "min": 0,
-   "max": 2
+   "max": 3
   },
   "pace": {
-   "median": 1,
+   "median": 2,
    "min": 0,
    "max": 2
   },
@@ -154,16 +139,6 @@
   }
  },
  "scores": [
-  66,
-  75,
-  87,
-  74,
-  53,
-  61,
-  61,
-  70,
-  61,
-  57,
   70,
   87,
   61,
@@ -173,6 +148,16 @@
   74,
   79,
   14,
-  14
+  14,
+  96,
+  14,
+  61,
+  61,
+  100,
+  96,
+  96,
+  95,
+  100,
+  96
  ]
 }
