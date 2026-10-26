@@ -1,16 +1,26 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-26T12:12:30Z",
+ "updated": "2026-10-26T12:45:16Z",
  "open": [
   {
-   "id": "nuclear-stockpile-growth-reversal__e5d1ecfb_r1",
+   "id": "nuclear-stockpile-growth-reversal__0a703448",
    "slug": "nuclear-stockpile-growth-reversal",
-   "filed": "2026-10-26T12:12:30Z",
+   "filed": "2026-10-26T12:45:16Z",
    "why": [
-    "pace: hook is 15 words (max 14)"
+    "premise: brain: The premise lacks a single, clear verifiable number and relies on vague comparative claims rather than a concrete metric."
    ],
-   "request": "exchange/rewrites/20261026/nuclear-stockpile-growth-reversal__e5d1ecfb_r1.request.json",
-   "answer_path": "exchange/rewrites/20261026/nuclear-stockpile-growth-reversal__e5d1ecfb_r1.answer.json"
+   "request": "exchange/rewrites/20261026/nuclear-stockpile-growth-reversal__0a703448.request.json",
+   "answer_path": "exchange/rewrites/20261026/nuclear-stockpile-growth-reversal__0a703448.answer.json"
+  },
+  {
+   "id": "peanut-allergy-guideline-flip__675a4e77_r1",
+   "slug": "peanut-allergy-guideline-flip",
+   "filed": "2026-10-26T12:45:15Z",
+   "why": [
+    "premise: brain: The premise is vague, does not clearly reverse a specific viewer expectation, and lacks a single, clear, verifiable numeric claim."
+   ],
+   "request": "exchange/rewrites/20261026/peanut-allergy-guideline-flip__675a4e77_r1.request.json",
+   "answer_path": "exchange/rewrites/20261026/peanut-allergy-guideline-flip__675a4e77_r1.answer.json"
   },
   {
    "id": "pitch-drop-slowest-experiment__49186490_r1",

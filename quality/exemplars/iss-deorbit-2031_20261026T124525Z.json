@@ -1,0 +1,33 @@
+{
+ "slug": "iss-deorbit-2031",
+ "ts": "20261026T124525Z",
+ "score": 96,
+ "dimensions": {
+  "hook": 4,
+  "data_demo": 4,
+  "mascot": 4,
+  "craft": 3,
+  "pace": 2,
+  "payoff": 2,
+  "temporal_craft": 3
+ },
+ "temporal": {
+  "sample_fps": 24,
+  "duplicate_ratio": 0.23,
+  "effective_fps": 18.5,
+  "max_dup_run": 19,
+  "measured": true,
+  "frozen_ratio": 0.056,
+  "frozen_fps": 22.7,
+  "max_frozen_run": 19,
+  "judder_ratio": 0.0,
+  "judder_fps": 24.0,
+  "held_s": 2.0,
+  "max_dup_at_s": 0.0,
+  "duration_s": 29.88
+ },
+ "scene_plan": {},
+ "scenes": [],
+ "why_it_worked": "The video effectively uses animated visuals and mascot performance to explain the ISS's history and future, though some data demonstrations could be more integrated.",
+ "render_ref": "preview-renders branch @ 20261026T124525Z"
+}
