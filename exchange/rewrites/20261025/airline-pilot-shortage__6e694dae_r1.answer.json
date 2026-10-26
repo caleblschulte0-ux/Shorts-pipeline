@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "airline-pilot-shortage__6e694dae_r1",
+  "slug": "airline-pilot-shortage",
+  "by": "chatgpt",
+  "written_at": "2026-10-26T11:40:00Z",
+  "title": "The Biggest Pilot Shortage Isn't in North America",
+  "hook": "Airlines need 649,000 new pilots, but demand peaks elsewhere.",
+  "closing": "More aircraft mean training enough pilots becomes part of keeping flights available.",
+  "question": "Would you train as a pilot?",
+  "segments": [
+    {
+      "topic": "Pilot Demand",
+      "say": "Airlines need 649,000 new pilots. That workforce gap reaches far beyond the crews flying today."
+    },
+    {
+      "topic": "Pilot Leader",
+      "say": "Eurasia needs 143,000 pilots. Its demand tops both China and North America."
+    },
+    {
+      "topic": "Pilot Fleet",
+      "say": "The commercial fleet is projected to reach 48,600 aircraft. More jets create more cockpits that need trained crews."
+    }
+  ]
+}
