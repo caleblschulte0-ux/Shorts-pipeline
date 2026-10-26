@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "dog-breed-popularity-flip__8740e2a9_r2",
+  "slug": "dog-breed-popularity-flip",
+  "by": "chatgpt",
+  "written_at": "2026-10-26T11:40:00Z",
+  "title": "America's Top Dog Has a 4.5-Year Life Expectancy",
+  "hook": "The top-ranked dog has a 4.5-year population life expectancy.",
+  "closing": "Popularity cannot replace a hard look at a breed's health and care needs.",
+  "question": "What matters when choosing a dog?",
+  "segments": [
+    {
+      "topic": "Dog Rank",
+      "say": "The French Bulldog ranks number 1. It displaced every other breed in the popularity list."
+    },
+    {
+      "topic": "Dog Surge",
+      "say": "French Bulldog registrations rose 1,000%. Demand exploded rather than simply edging upward."
+    },
+    {
+      "topic": "Dog Lifespan",
+      "say": "French Bulldog life expectancy was 4.5 years. That population estimate exposes the health cost popularity can hide."
+    }
+  ]
+}
