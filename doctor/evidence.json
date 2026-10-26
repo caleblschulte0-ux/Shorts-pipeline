@@ -4556,8 +4556,8 @@
     }
   },
   "recent_commits": [
-    "e455125 2026-10-26 claim: mailbox verdicts 2026-10-26T04:47Z [skip ci]",
-    "0f65318 2026-10-26 claim: mailbox verdicts 2026-10-26T03:48Z [skip ci]"
+    "3f90a29 2026-10-26 watchdog: phase A readiness 20261026 [skip ci]",
+    "b1e846f 2026-10-26 exchange: phase A bundle for 20261026 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4668,28 +4668,28 @@
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 20.01,
-          "views": 1370
+          "vph": 16.01,
+          "views": 1381
         },
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 5.08,
+          "vph": 4.69,
           "views": 1086
         },
         {
+          "title": "Ishowspeed Gets Spooked And Screams After Smelling This",
+          "vph": 4.58,
+          "views": 31
+        },
+        {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 3.5,
-          "views": 1656
+          "vph": 3.52,
+          "views": 1729
         },
         {
           "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 2.53,
+          "vph": 2.41,
           "views": 905
-        },
-        {
-          "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
-          "vph": 1.63,
-          "views": 854
         }
       ],
       "full_data": "state/analytics_third/latest.json"
