@@ -1,0 +1,376 @@
+{
+ "date": "2026-10-26",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Jake Bauers",
+   "why": "Bauers and his wife discuss his near\u2011quit and comeback",
+   "post_title": "In an ABC News exclusive, Milwaukee Brewers playoff hero Jake Bauers and his wife, Lauren, speak with Will Reeve about how he revived his career after nearly walking away from baseball.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xcfyi1/in_an_abc_news_exclusive_milwaukee_brewers/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xcfyi1/in_an_abc_news_exclusive_milwaukee_brewers",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "nba",
+   "who": "Shai Gilgeous\u2011Alexander",
+   "why": "SGA fights back tears after teammate Jalen Williams\u2019 gruesome leg injury",
+   "post_title": "SGA fighting back tears in the post game interview after Jalen Williams' gruesome leg injury",
+   "upvotes": 0,
+   "url": "https://streamable.com/w7qx2r",
+   "topic": "https://www.reddit.com/r/nba/comments/1xfjrsg/sga_fighting_back_tears_in_the_post_game",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "nba",
+   "who": "LeBron James",
+   "why": "LeBron gets heated exchanging words with a Knicks fan",
+   "post_title": "LeBron James Heated With a Knicks Fan: \"Ain't nothing soft in the Midwest... I'm not from the West Coast, I'm from Ohio, baby. I'm an Ohio baby, fuck is you talking about?\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/idugt5",
+   "topic": "https://www.reddit.com/r/nba/comments/1xbds51/lebron_james_heated_with_a_knicks_fan_aint",
+   "title": "LeBron James Gets Heated With Knicks Fan Over Midwest Claim",
+   "hook": "LeBron clashes with Knicks fan \ud83d\ude33",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 100
+   },
+   "video_url": "https://youtube.com/shorts/BasWgi77d84",
+   "ok": true,
+   "publish_at": "2026-10-26T16:00:00Z",
+   "seconds": 88,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261026-lebron-james-gets-heated-with-knicks-fan-over-mi-b91c6d9f",
+    "tiktok": "queued for 2026-10-26T16:00:00Z"
+   }
+  },
+  {
+   "sub": "soccer",
+   "who": "Ruben Amorim",
+   "why": "Amorim laughs at fans chanting his name after a 3\u20110 loss",
+   "post_title": "Ruben Amorim laughs listening to Bournemouth fans chant \"Ruben Amorim, its happened again\" after Milan go 3-0 down. For context: Amorim's Manchester United also lost 3-0 to Bournemouth in December 202",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xcw0ox/ruben_amorim_laughs_listening_to_bournemouth_fans/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xcw0ox/ruben_amorim_laughs_listening_to_bournemouth_fans",
+   "title": "Ruben Amorim Laughs As Fans Chant After Milan\u2019s 3\u20110 Collapse",
+   "hook": "Ruben Amorim cracks up at the chant \ud83d\ude06",
+   "ledger": {
+    "moves": [
+     "zoom@2.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      296,
+      396,
+      278,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: HTTP Error ",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: HTTP Error "
+  },
+  {
+   "sub": "soccer",
+   "who": "Michael Carrick",
+   "why": "Carrick visibly emotional at full\u2011time after United\u2019s defeat",
+   "post_title": "Michael Carrick being visibly emotional at FT after Manchester United's 3-0 defeat to Bournemouth",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xf9fkd/michael_carrick_being_visibly_emotional_at_ft/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xf9fkd/michael_carrick_being_visibly_emotional_at_ft",
+   "title": "Michael Carrick Breaks Down After Bournemouth Defeat",
+   "hook": "Carrick visibly emotional post\u2011match \ud83d\ude22",
+   "ledger": {
+    "moves": [
+     "zoom@9.0",
+     "sad@7.0(fix_you)"
+    ],
+    "mood": "sad",
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: out of budg"
+  },
+  {
+   "sub": "soccer",
+   "who": "Dejan Kulusevski",
+   "why": "Kulusevski finally returns to Tottenham after 526\u2011day layoff",
+   "post_title": "Kulusevski\u2019s Return to Tottenham After 526 Days",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xa8q43/kulusevskis_return_to_tottenham_after_526_days/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xa8q43/kulusevskis_return_to_tottenham_after_526_days",
+   "title": "Dejan Kulusevski Returns After 526 Days \u2014 Emotional Homecoming",
+   "hook": "Kulusevski back at Tottenham \ud83d\ude22",
+   "ledger": {
+    "moves": [
+     "sad@0.3(fix_you)"
+    ],
+    "mood": "sad",
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: out of budg"
+  },
+  {
+   "sub": "nfl",
+   "who": "Chris Olave",
+   "why": "Olave explains why he wears a Guardian Cap for his kids",
+   "post_title": "[Highlight/Interview] WR Chris Olave has a message for those who may mock him for his usage of a Gaurdian Cap: \u201cI put it on for my kids, to protect my brain and my future\u201d.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xby31g/highlightinterview_wr_chris_olave_has_a_message/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xby31g/highlightinterview_wr_chris_olave_has_a_message",
+   "title": "Chris Olave Explains Why He Wears Guardian Cap for His Kids",
+   "hook": "Olave talks about his cap choice",
+   "ledger": {
+    "moves": [
+     "sad@0.3"
+    ],
+    "mood": "sad",
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: out of budg"
+  },
+  {
+   "sub": "nfl",
+   "who": "Tom Brady",
+   "why": "Brady erupts over controversial officiating calls",
+   "post_title": "[Highlight] Tom Brady has had enough with the officiating. \u201cMy goodness. What is that?\u201d \u201cThere\u2019s no way!\u201d \u201cIt\u2019s definitely not roughing the passer.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xfh1lc/highlight_tom_brady_has_had_enough_with_the/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xfh1lc/highlight_tom_brady_has_had_enough_with_the",
+   "title": "Tom Brady Calls Out Bad Call After Roughing Controversy",
+   "hook": "Brady questions the call \ud83d\ude21",
+   "ledger": {
+    "moves": [
+     "whoa@0.5"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: out of budg"
+  },
+  {
+   "sub": "MMA",
+   "who": "Alexander Volkov",
+   "why": "Volkov asks Dana White for a title\u2011shot at UFC\u202f333",
+   "post_title": "Alexander Volkov asks Dana White how he can get a title shot at the UFC 333 press conference",
+   "upvotes": 0,
+   "url": "https://streamable.com/1kze1l",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xciwst/alexander_volkov_asks_dana_white_how_he_can_get_a",
+   "title": "Alexander Volkov Asks Dana White How He Can Earn a UFC\u202f333 Title Shot",
+   "hook": "Volkov asks Dana White for a title shot",
+   "ledger": {
+    "moves": [
+     "zoom@5.8"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "split",
+     "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)",
+     "shots": [
+      {
+       "mode": "split",
+       "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)"
+      }
+     ],
+     "n_subjects": 2,
+     "face_bands": [
+      [
+       0.016,
+       0.244
+      ],
+      [
+       0.531,
+       0.739
+      ]
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: out of budg"
+  },
+  {
+   "sub": "MMA",
+   "who": "Sean O'Malley",
+   "why": "O'Malley is baffled by Cormier mentioning another fighter in post\u2011fight interview",
+   "post_title": "Sean O'Malley confused by Daniel Cormier mentioning Song Yadong instead of him in post fight interview: \"DC, I don\u2019t know what he\u2019s thinking. I beat Song like 6 months ago. I should be next for the ti",
+   "upvotes": 0,
+   "url": "https://streamable.com/pmv9xl",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xfakw1/sean_omalley_confused_by_daniel_cormier",
+   "title": "Sean O'Malley Calls Out Cormier\u2019s Mix\u2011up, Says He\u2019s Next",
+   "hook": "Sean O'Malley confused by Cormier\u2019s mix\u2011up",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      540,
+      720,
+      342,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: out of budg"
+  },
+  {
+   "sub": "MMA",
+   "who": "Rizvan Kuniev",
+   "why": "Kuniev surprises Volkov with a birthday cake on camera",
+   "post_title": "Rizvan Kuniev gives Alexander Volkov a cake for his birthday tomorrow: \"Happy Birthday, New Record 40-12\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/ptswtq",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xdq5ck/rizvan_kuniev_gives_alexander_volkov_a_cake_for",
+   "title": "Rizvan Kuniev Gives Alexander Volkov Birthday Cake \ud83c\udf82",
+   "hook": "Rizvan surprises Volkov with cake",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: out of budg"
+  }
+ ],
+ "already_today": 0,
+ "pool": 86,
+ "already_posted": 9,
+ "shipped": 1
+}
