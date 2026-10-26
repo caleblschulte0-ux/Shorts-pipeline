@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "blood-supply-three-percent__0e14bc94",
+  "slug": "blood-supply-three-percent",
+  "by": "chatgpt",
+  "written_at": "2026-10-26T12:50:00Z",
+  "title": "Why Only 3% Donate Blood",
+  "hook": "Only 3% Donate Blood, And The Donor Base Is Shrinking",
+  "closing": "A stable blood supply depends on more eligible people becoming regular donors.",
+  "question": "Would you donate blood?",
+  "segments": [
+    {
+      "topic": "Blood Donor Gap",
+      "say": "Only 3% of eligible people donate blood, leaving the entire supply dependent on a tiny volunteer pool."
+    },
+    {
+      "topic": "Blood Donor Decline",
+      "say": "The blood donor index fell to 60, showing replacement donors are not keeping pace."
+    }
+  ]
+}
