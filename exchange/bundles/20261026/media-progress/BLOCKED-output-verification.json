@@ -1,7 +1,7 @@
 {
   "schema": "shorts-production-blocker/v1",
   "date": "20261026",
-  "written_at": "2026-10-26T12:52:00Z",
+  "written_at": "2026-10-26T12:54:00Z",
   "status": "blocked",
   "day_closed": false,
   "frozen_contract": {
@@ -81,13 +81,13 @@
   "mailbox_snapshot": {
     "reviews_open": 0,
     "asks_open_index": 13,
-    "rewrites_open_index": 132,
+    "rewrites_open_index": 140,
     "answered_this_run": {
       "reviews": 1,
       "ask_keys": 22,
       "rewrites": 20
     },
-    "notes": "Indexes can lag committed answers until claim/apply workflows consume them. The lightning motion-only rewrite remained outside the second-round cap and cannot be repaired with words."
+    "notes": "Indexes still include committed answers until claim/apply workflows consume them. Eight additional rewrite requests appeared after the prior snapshot. The lightning motion-only rewrite remained outside the second-round cap and cannot be repaired with words."
   },
   "remaining_shortfall": 4,
   "no_done_retrigger": true,
