@@ -1,8 +1,199 @@
 {
- "date": "2026-10-25",
+ "date": "2026-10-26",
  "format": "sports_moment",
  "want": 3,
  "dry_run": false,
- "slots": [],
- "already_today": 3
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Jake Bauers",
+   "why": "He opens up about nearly walking away from baseball and his comeback with his wife",
+   "post_title": "In an ABC News exclusive, Milwaukee Brewers playoff hero Jake Bauers and his wife, Lauren, speak with Will Reeve about how he revived his career after nearly walking away from baseball.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xcfyi1/in_an_abc_news_exclusive_milwaukee_brewers/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xcfyi1/in_an_abc_news_exclusive_milwaukee_brewers",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "nba",
+   "who": "Shai Gilgeous-Alexander",
+   "why": "He fights back tears in a post\u2011game interview after teammate Jalen Williams\u2019 gruesome leg injury",
+   "post_title": "SGA fighting back tears in the post game interview after Jalen Williams' gruesome leg injury",
+   "upvotes": 0,
+   "url": "https://streamable.com/w7qx2r",
+   "topic": "https://www.reddit.com/r/nba/comments/1xfjrsg/sga_fighting_back_tears_in_the_post_game",
+   "title": "Shai Gilgeous-Alexander: SGA Fights Back Tears After Jalen Williams' SCARY Injury",
+   "hook": "SGA heartbroken over teammate's injury \ud83e\udd40",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: blocked: judge response failed schema validation",
+    "score": 14
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: blocked: judge response failed schema validation"
+  },
+  {
+   "sub": "nfl",
+   "who": "Chris Olave",
+   "why": "He explains why he wears a Guardian Cap, protecting his kids and his future",
+   "post_title": "[Highlight/Interview] WR Chris Olave has a message for those who may mock him for his usage of a Gaurdian Cap: \u201cI put it on for my kids, to protect my brain and my future\u201d.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xby31g/highlightinterview_wr_chris_olave_has_a_message/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xby31g/highlightinterview_wr_chris_olave_has_a_message",
+   "title": "Chris Olave Explains Why He Wears A Guardian Cap For His Kids' Future",
+   "hook": "Chris Olave on wearing a Guardian Cap",
+   "ledger": {
+    "moves": [
+     "zoom@8.24",
+     "zoom@18.84",
+     "whoa@21.74"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 1,
+     "crop": [
+      540,
+      720,
+      178,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: HTTP Error ",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: HTTP Error "
+  },
+  {
+   "sub": "soccer",
+   "who": "Dejan Kulusevski",
+   "why": "His emotional return to Tottenham after a 526\u2011day absence",
+   "post_title": "Kulusevski\u2019s Return to Tottenham After 526 Days",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xa8q43/kulusevskis_return_to_tottenham_after_526_days/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xa8q43/kulusevskis_return_to_tottenham_after_526_days",
+   "title": "Dejan Kulusevski Returns to Tottenham After 526 Days \ud83d\ude2e",
+   "hook": "Kulusevski back at Spurs",
+   "ledger": {
+    "moves": [
+     "zoom@6.5"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "repairs": [
+    {
+     "score": 61,
+     "reason": "showrunner BLOCK: The video attempts to show Kulusevski's return but misattributes a key detail to the wrong player."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: HTTP Error ",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: HTTP Error "
+  },
+  {
+   "sub": "soccer",
+   "who": "Michael Carrick",
+   "why": "He is visibly emotional after Manchester United\u2019s 3\u20110 defeat to Bournemouth",
+   "post_title": "Michael Carrick being visibly emotional at FT after Manchester United's 3-0 defeat to Bournemouth",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xf9fkd/michael_carrick_being_visibly_emotional_at_ft/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xf9fkd/michael_carrick_being_visibly_emotional_at_ft",
+   "title": "Michael Carrick Breaks Down After Bournemouth Defeat",
+   "hook": "Carrick visibly emotional post\u2011match",
+   "ledger": {
+    "moves": [
+     "zoom@3.0",
+     "sad@2.0(fix_you)"
+    ],
+    "mood": "sad",
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: out of budg",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)\\n)\", 'gemini: out of budg"
+  },
+  {
+   "sub": "hockey",
+   "who": "Michael McCarron",
+   "why": "He accidentally knocks a fan\u2019s beer over, then returns it with a $20 tip",
+   "post_title": "Michael McCarron accidentally knocked over this guy's beer, so he came back & handed him a 20",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xf9d32/michael_mccarron_accidentally_knocked_over_this/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xf9d32/michael_mccarron_accidentally_knocked_over_this",
+   "skipped": "too short: the post runs 11.6s (< 15s)"
+  }
+ ],
+ "already_today": 0,
+ "pool": 86,
+ "already_posted": 11,
+ "shipped": 0
 }
