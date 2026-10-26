@@ -3,299 +3,6 @@
     {
       "date": "20261018",
       "dry_run": false,
-      "ts": "2026-10-18T11:44:25+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 14,
-        "opening_steer": false,
-        "retention_scope": true,
-        "videos": 140,
-        "with_retention": 118,
-        "with_curve": 14,
-        "fetched_at": "2026-10-18T08:46:17.808487+00:00"
-      },
-      "brain": {
-        "ok": 46,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261018-1",
-          "ok": false,
-          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (WoW gameplay, laughing, unclear cause)",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "unknown reaction, could be good",
-              "blind": false
-            },
-            "content": {
-              "score": 0.3,
-              "why": "WoW gameplay, laughing, unclear cause",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "reject"
-            }
-          },
-          "took_s": 61.5
-        },
-        {
-          "slug": "clip-20261018-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "inside drama, strangers lost",
-              "blind": false
-            },
-            "content": {
-              "score": 0.68,
-              "why": "Streamer beef, spoken confrontation, no ",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Cinna Crew Goes Off On Lang And Carlitos Over Kalita"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "The footage is a long, dark GTA driving shot with no on-screen people, so it is visually repetitive. This is a content i",
-                "The word captions are a little garbled in places (\"honest Right you\"), and some words are censored with asterisks."
-              ]
-            }
-          },
-          "took_s": 238.2
-        },
-        {
-          "slug": "clip-20261018-3",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: render_qa: freeze: 3.1s of frozen frames (>= 2s) \u2014 stalled render or dead source; vision: The sharp picture is a thin strip, about a quarter of the canvas height, with large black bands above and belo",
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "vague, insider mood",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Dies in dark Terraria; visible rage, har",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Forsen Gets Stun Locked And Demands Chat Ban Whoever Said Volcano"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": [
-                "render_qa: freeze: 3.1s of frozen frames (>= 2s) \u2014 stalled render or dead source"
-              ]
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.8,
-              "problems": [
-                "The sharp picture is a thin strip, about a quarter of the canvas height, with large black bands above and below. It is m",
-                "The streamer's face cam is tiny and sits in the lower-left corner. The game is a small, dark Terraria screen, so the act",
-                "The whole picture is very dark and dim, which makes it hard to see.",
-                "The word captions sit on top of the face cam and the bottom of the game footage, and the hook card sits right under them",
-                "The renderer did not crop toward the action, so the framing looks like a reposted full-screen stream capture."
-              ]
-            }
-          },
-          "took_s": 106.4
-        },
-        {
-          "slug": "clip-20261018-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, likely confrontation, unkno",
-              "blind": false
-            },
-            "content": {
-              "score": 0.45,
-              "why": "Press-conference confrontation, but cont",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Adinross Faceoff Gets Heated When Jani Is Told Her Mouth Is Too Big"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "Hook caption and word captions sit over her chest and hands, which is slightly cluttered",
-                "The subject is sometimes cropped at the frame edge, with her face partly cut off in some frames (e.g. 1.0s, 3.0s, 23.1s)",
-                "The footage is dark and low-contrast, and Adin never appears, so the hook's 'faceoff' framing is only partly supported"
-              ]
-            }
-          },
-          "took_s": 152.1
-        },
-        {
-          "slug": "clip-20261018-5",
-          "ok": false,
-          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, unknown event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "blindfold prank setup, no payoff yet",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            }
-          },
-          "took_s": 20.3
-        },
-        {
-          "slug": "clip-20261018-6",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin horizontal strip, about a quarter of the canvas height. The rest is blurred padding, so the ; vision: The subject is tiny and hard to read on a phone. The character",
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.45,
-              "why": "vague title, unknown event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "GTA RP incapacitated, laughing, unclear ",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Cinna Tire Blows Out Mid-Stream And He Has To Fix It Fast"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.85,
-              "problems": [
-                "The sharp picture is a thin horizontal strip, about a quarter of the canvas height. The rest is blurred padding, so the ",
-                "The subject is tiny and hard to read on a phone. The characters are small in a wide game view, and the streamer's faceca",
-                "The first ~6s show a game inventory menu rather than any action. This is a weak opening for a hook about a tire blowing ",
-                "The footage does not clearly show a tire blowing out or a fix. It shows a character lying on a sidewalk, which does not ",
-                "The captions sit in the blurred bottom area, away from the action. The hook card repeats unchanged for the whole clip."
-              ]
-            }
-          },
-          "took_s": 181.7
-        }
-      ]
-    },
-    {
-      "date": "20261018",
-      "dry_run": false,
       "ts": "2026-10-18T11:58:32+00:00",
       "feedback": {
         "snapshot": true,
@@ -4971,6 +4678,198 @@
           "slug": "clip-20261025-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261026",
+      "dry_run": false,
+      "ts": "2026-10-26T11:32:01+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 16,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 140,
+        "with_retention": 117,
+        "with_curve": 15,
+        "fetched_at": "2026-10-26T08:46:15.625364+00:00"
+      },
+      "brain": {
+        "ok": 7,
+        "fail": 0,
+        "limited_at": "2026-10-26T11:25:46+00:00",
+        "limit_detail": "You've hit your weekly limit \u00b7 resets Oct 28, 12am (UTC)"
+      },
+      "dead_sources": {
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261026-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.85,
+              "why": "camera hit, cameraman quits",
+              "blind": false
+            },
+            "content": {
+              "score": 0.75,
+              "why": "Streamer reacts, camera drops to ground",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat Hits Cameraman After He Quits \u2013 Streamer Fight"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 178.8
+        },
+        {
+          "slug": "clip-20261026-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.72,
+              "why": "costume reveal drama",
+              "blind": false
+            },
+            "content": {
+              "score": 0.9,
+              "why": "Streamer shocked by revealing ghost in g",
+              "floor": 0.7,
+              "aspirational": 0.7,
+              "attempt": 1,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ironmouse Can't Handle This VTuber's WILD Halloween Costume \ud83d\ude33"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "unavailable"
+            }
+          },
+          "took_s": 203.0
+        },
+        {
+          "slug": "clip-20261026-3",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.22 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.22 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.9
+        },
+        {
+          "slug": "clip-20261026-4",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.22 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.22 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20261026-5",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.22 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.22 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
+        },
+        {
+          "slug": "clip-20261026-6",
+          "ok": false,
+          "skipped": "quality floor: best banger 0.22 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261026-6",
+                  "outcome": "brain_limited",
+                  "why": "usage limit this run"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "skip",
+              "why": "best title score 0.22 < hard floor 0.25 across 8 candidates"
+            }
+          },
+          "took_s": 0.0
         }
       ]
     }
