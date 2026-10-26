@@ -4349,6 +4349,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 96,
       "duration_s": 29.9
+    },
+    "nyc-noise-complaints-per-day": {
+      "claimed_at": "2026-10-26T19:45:04.567517+00:00",
+      "title": "NYC's 311 Line Now Gets Nearly 2,000 Noise Calls A Day",
+      "publish_at": "2026-10-27T00:36:21Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5532,6 +5539,14 @@
       "state": "posted",
       "slug": "iss-deorbit-2031",
       "at": "2026-10-26T12:31:47.466270+00:00"
+    },
+    {
+      "claimed_at": "2026-10-26T19:45:04.567517+00:00",
+      "title": "NYC's 311 Line Now Gets Nearly 2,000 Noise Calls A Day",
+      "publish_at": "2026-10-27T00:36:21Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "nyc-noise-complaints-per-day"
     }
   ]
 }
