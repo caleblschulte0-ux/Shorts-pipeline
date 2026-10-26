@@ -2,12 +2,12 @@
   "mature_hours": 72.0,
   "content_series": {
     "chaos": {
-      "n": 58,
+      "n": 59,
       "median_vph": 0.03
     },
     "drama": {
       "n": 14,
-      "median_vph": 0.08
+      "median_vph": 0.075
     },
     "beef": {
       "n": 11,
@@ -15,7 +15,7 @@
     },
     "wholesome": {
       "n": 10,
-      "median_vph": 0.085
+      "median_vph": 0.08
     },
     "fail": {
       "n": 9,
@@ -35,7 +35,7 @@
     },
     "extended": {
       "n": 1,
-      "median_vph": 0.13
+      "median_vph": 0.12
     },
     "jumpscare": {
       "n": 1,
@@ -49,7 +49,7 @@
   "excluded": {
     "unknown": {
       "n": 1,
-      "median_vph": 0.32
+      "median_vph": 0.31
     },
     "story": {
       "n": 1,
