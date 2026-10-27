@@ -1,0 +1,208 @@
+{
+ "date": "2026-10-27",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Jake Bauers",
+   "why": "He and his wife open up about reviving his career after almost quitting",
+   "post_title": "In an ABC News exclusive, Milwaukee Brewers playoff hero Jake Bauers and his wife, Lauren, speak with Will Reeve about how he revived his career after nearly walking away from baseball.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xcfyi1/in_an_abc_news_exclusive_milwaukee_brewers/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xcfyi1/in_an_abc_news_exclusive_milwaukee_brewers",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "nfl",
+   "who": "Chris Olave",
+   "why": "He explains why he wears a Guardian Cap \u2013 for his kids' safety",
+   "post_title": "[Highlight/Interview] WR Chris Olave has a message for those who may mock him for his usage of a Gaurdian Cap: \u201cI put it on for my kids, to protect my brain and my future\u201d.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xby31g/highlightinterview_wr_chris_olave_has_a_message/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xby31g/highlightinterview_wr_chris_olave_has_a_message",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "nfl",
+   "who": "J.J. McCarthy",
+   "why": "Teammates lift him up after his first win as Giants starter",
+   "post_title": "[Highlight] Teammates celebrate with J.J. McCarthy after he gets his first win as starting QB of the Giants",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xfczzz/highlight_teammates_celebrate_with_jj_mccarthy/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xfczzz/highlight_teammates_celebrate_with_jj_mccarthy",
+   "title": "J.J. McCarthy Celebrates His First Giants Win \ud83c\udf89",
+   "hook": "J.J. McCarthy gets his first win",
+   "ledger": {
+    "moves": [
+     "whoa@5.0",
+     "hype@5.0"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request"
+  },
+  {
+   "sub": "nfl",
+   "who": "Cam Skattebo",
+   "why": "He defiantly refuses to change his running style despite fines",
+   "post_title": "[Highlight] Giants RB Cam Skattebo made it clear he isn\u2019t changing his running style after being penalized today for lowering his helmet. Skattebo says he\u2019ll play for free if the fines keep coming and",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xffx1g/highlight_giants_rb_cam_skattebo_made_it_clear_he/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xffx1g/highlight_giants_rb_cam_skattebo_made_it_clear_he",
+   "title": "Cam Skattebo Vows to Play for Free If Fines Keep Coming",
+   "hook": "Cam says he'll play for free",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  },
+  {
+   "sub": "MMA",
+   "who": "Alexander Volkov",
+   "why": "A teammate brings him a birthday cake on camera",
+   "post_title": "Rizvan Kuniev gives Alexander Volkov a cake for his birthday tomorrow: \"Happy Birthday, New Record 40-12\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/ptswtq",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xdq5ck/rizvan_kuniev_gives_alexander_volkov_a_cake_for",
+   "title": "Alexander Volkov Gets Birthday Cake Surprise Before Game",
+   "hook": "Volkov\u2019s birthday surprise \ud83c\udf82",
+   "ledger": {
+    "moves": [
+     "zoom@1.0",
+     "hype@0.3"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  },
+  {
+   "sub": "MMA",
+   "who": "Petr Yan",
+   "why": "He reveals his son will be his corner man for the upcoming fight",
+   "post_title": "\u2764\ufe0fPetr Yan CONFIRMS his son will corner him vs Merab \u201cHe wanted to do it. Who am I to say no? The kid is growing up and plays sports. I think it\u2019ll be good energy for him.\u201d",
+   "upvotes": 0,
+   "url": "https://x.com/DovySimuMMA/status/2112893425708331028",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xc0mtt/petr_yan_confirms_his_son_will_corner_him_vs",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "soccer",
+   "who": "Jos\u00e9 Mourinho",
+   "why": "He dedicates a win to Bar\u00e7a fans who kept him awake all night",
+   "post_title": "Jos\u00e9 Mourinho: \u201cI dedicate this win to the Bar\u00e7a fans who did not let me take my nap in the hotel today. They came to the hotel and kept singing all day, I couldn't take my nap. Well, I didn't nap, bu",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xfp6er/jos\u00e9_mourinho_i_dedicate_this_win_to_the_bar\u00e7a/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xfp6er/jos\u00e9_mourinho_i_dedicate_this_win_to_the_bar\u00e7a",
+   "title": "Jos\u00e9 Mourinho Dedicates Win to Bar\u00e7a Fans Who Won\u2019t Let Him Nap",
+   "hook": "Mourinho thanks fans for the noisy celebration \ud83d\ude05",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "closeup",
+     "reason": "one large persistent face \u2014 the face is the content",
+     "shots": [
+      {
+       "mode": "closeup",
+       "reason": "one large persistent face \u2014 the face is the content"
+      }
+     ],
+     "n_subjects": 1,
+     "face_bands": [
+      [
+       0.021,
+       0.687
+      ]
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  },
+  {
+   "sub": "soccer",
+   "who": "Michael Carrick",
+   "why": "He gets visibly emotional after Manchester United\u2019s 3\u20110 loss",
+   "post_title": "Michael Carrick being visibly emotional at FT after Manchester United's 3-0 defeat to Bournemouth",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xf9fkd/michael_carrick_being_visibly_emotional_at_ft/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xf9fkd/michael_carrick_being_visibly_emotional_at_ft",
+   "title": "Michael Carrick Breaks Down After United\u2019s 3-0 Loss",
+   "hook": "Carrick visibly emotional after defeat \ud83d\ude2d",
+   "ledger": {
+    "moves": [
+     "whoa@13.04",
+     "sad@3.04(fix_you)"
+    ],
+    "mood": "sad",
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  }
+ ],
+ "already_today": 0,
+ "pool": 103,
+ "already_posted": 14,
+ "shipped": 0
+}
