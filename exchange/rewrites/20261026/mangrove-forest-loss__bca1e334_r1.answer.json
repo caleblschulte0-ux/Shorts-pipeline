@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "mangrove-forest-loss__bca1e334_r1",
+  "slug": "mangrove-forest-loss",
+  "by": "chatgpt",
+  "written_at": "2026-10-27T11:25:00Z",
+  "title": "Mangrove Loss Fell From 187,000 To 102,000 Hectares",
+  "hook": "Annual mangrove loss fell from 187,000 to 102,000 hectares.",
+  "closing": "Slower loss proves protection can work, but slowing is not the same as stopping.",
+  "question": "Can mangroves recover?",
+  "segments": [
+    {
+      "topic": "Mangrove forest loss",
+      "say": "Mangrove forest area fell to 15.2 million hectares, leaving coastlines with less natural protection."
+    },
+    {
+      "topic": "Mangrove loss Asia",
+      "say": "Asia lost 1.9 million hectares of mangroves, more than any region shown."
+    },
+    {
+      "topic": "Annual mangrove loss",
+      "say": "Annual mangrove loss fell to 102,000 hectares, showing the pace of destruction can slow."
+    }
+  ]
+}
