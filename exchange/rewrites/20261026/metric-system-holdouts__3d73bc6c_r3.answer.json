@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "metric-system-holdouts__3d73bc6c_r3",
+  "slug": "metric-system-holdouts",
+  "by": "chatgpt",
+  "written_at": "2026-10-27T11:25:00Z",
+  "title": "A Metric Mix-Up Left A Plane 24,600 Pounds Short",
+  "hook": "A metric mix-up left a plane 24,600 pounds short.",
+  "closing": "Shared units seem boring until a mismatch puts a mission or lives at risk.",
+  "question": "Should everyone use metric?",
+  "segments": [
+    {
+      "topic": "Metric adoption",
+      "say": "Only 5% of the world's population lives in the non-metric countries shown, making them the exception."
+    },
+    {
+      "topic": "Metric altitude",
+      "say": "The actual altitude was 57 kilometers, showing how a unit mismatch can erase a safe margin."
+    },
+    {
+      "topic": "Metric fuel",
+      "say": "The fuel load was 24,600 pounds short, turning a conversion mistake into a physical emergency."
+    }
+  ]
+}
