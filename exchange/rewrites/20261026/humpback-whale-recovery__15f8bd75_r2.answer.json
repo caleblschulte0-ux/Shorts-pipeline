@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "humpback-whale-recovery__15f8bd75_r2",
+  "slug": "humpback-whale-recovery",
+  "by": "chatgpt",
+  "written_at": "2026-10-27T11:25:29.605Z",
+  "title": "Humpback Recovery Turned 450 Whales Into 25,000",
+  "hook": "450 humpbacks became 25,000 after hunting stopped.",
+  "closing": "Protecting wildlife can reverse losses that once looked permanent.",
+  "question": "Which recovery should happen next?",
+  "segments": [
+    {
+      "topic": "Humpback Recovery",
+      "say": "Humpbacks rebounded to 25,000. Protection turned near-collapse into a regional comeback."
+    },
+    {
+      "topic": "Humpback Recovery Status",
+      "say": "10 humpback populations are fully recovered. Conservation can move entire groups off the endangered list."
+    },
+    {
+      "topic": "Humpback Recovery Cause",
+      "say": "Commercial whaling killed 2.9 million whales. The ban removed the pressure that had crushed their numbers."
+    }
+  ]
+}
