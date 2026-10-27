@@ -1,0 +1,125 @@
+{
+  "schema": "shorts-production-blocker/v1",
+  "date": "20261027",
+  "written_at": "2026-10-27T11:26:57.048Z",
+  "status": "blocked",
+  "day_closed": false,
+  "exact_failed_step": "Step 8 actual channel-output verification: the frozen 13-video contract is not satisfied by accepted posted URLs.",
+  "frozen_contract": {
+    "total_required": 13,
+    "channels": {
+      "sports": {
+        "format": "sports_moment",
+        "required": 3,
+        "verified_posted": 1,
+        "pending": 2,
+        "accepted_urls": [
+          "https://youtube.com/shorts/J0uoqHCpRbM"
+        ]
+      },
+      "twitch": {
+        "format": "clip",
+        "required": 6,
+        "verified_posted": 0,
+        "pending": 6,
+        "accepted_urls": []
+      },
+      "explainer": {
+        "format": "data_story",
+        "required": 4,
+        "verified_posted": 1,
+        "pending": 3,
+        "accepted_urls": [
+          "https://youtube.com/shorts/qq-xXpMj_MQ"
+        ]
+      }
+    },
+    "total_verified_posted": 2,
+    "total_pending": 11
+  },
+  "exchange": {
+    "started_commit": "f4eac19f30d5d5c07fe3bc6fd005eeae850f2a0e",
+    "response_commit": "7196a4af5a7c9dfd5fbd68e26c9390f47200bafa",
+    "done_commit": "f3d086362653a8f55d2f41ab70e0099e8e4dd05d",
+    "phase_b_commit": "96e97cee27a67de0b7d8a3db6f3ba4d794f1abce",
+    "phase_b_result": {
+      "explainer_applied": 1,
+      "explainer_rejected": 2,
+      "media_required": 0,
+      "media_fulfilled": 0,
+      "media_unfilled": 0
+    }
+  },
+  "mailbox_rounds": {
+    "round_1": {
+      "reviews": {
+        "open": 0,
+        "answered": 0,
+        "skipped": 0
+      },
+      "asks": {
+        "open": 35,
+        "answered": 20,
+        "skipped": 0,
+        "answer_commit": "5e80810ed5dfd65b932b84566cabac5b93c231f3"
+      },
+      "rewrites": {
+        "open": 141,
+        "answered": 10,
+        "skipped": 0,
+        "first_commit": "c690b919d4e3fb30c3aa10a5ae059794e8f367bb",
+        "last_commit": "3c85f58b1a3cf5c0f6cca7791cf99ff0fbc13a79"
+      }
+    },
+    "round_2": {
+      "reviews": {
+        "open": 0,
+        "answered": 0,
+        "skipped": 0
+      },
+      "asks": {
+        "open_after_reuse": 15,
+        "answered": 7,
+        "skipped": 8,
+        "skip_reason": "Freshness-dependent 'pick today's news' requests from 2026-09-21 through 2026-09-25 are expired; answering them as current would fabricate timeliness.",
+        "answer_commits": [
+          "326eba088bd32f7b0696afbecee44d3fb1e38271",
+          "96d4f95e7540a6a4a818b8cc511b80771757303f"
+        ]
+      },
+      "rewrites": {
+        "cap_examined": 10,
+        "reused_valid_answers": 9,
+        "answered": 1,
+        "skipped": 0,
+        "answer_commit": "cdd4c60cdccf87b5541ee2fec99057304fa1cb86"
+      }
+    },
+    "claim_commits": [
+      "fa24fad194bc7d98d441e363819cdda13cb5e5ab",
+      "ae956d8872ab8c60f0d3234e51e2916e1d12e81d"
+    ],
+    "current_indexes": {
+      "reviews_open": 0,
+      "asks_unresolved_after_answers": 8,
+      "rewrites_open_indexed": 131
+    }
+  },
+  "attempts": [
+    "Read and followed the frozen bundle, registry, exchange contract, and takeover mailbox rules.",
+    "Committed STARTED before other writes and reused all existing artifacts.",
+    "Completed two mailbox rounds within section 7 caps; read back and validated every new answer.",
+    "Committed and read back response.json, then committed DONE separately.",
+    "Inspected Phase B: one Explainer rewrite applied and two were rejected.",
+    "Verified channel logs directly on main and counted only accepted YouTube URLs with 2026-10-27 publish dates."
+  ],
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "folder_verified_shared": true,
+    "media_requests": 0,
+    "note": "No Drive image generation or verification was applicable because the frozen bundle contains no media requests and all active formats are non-image formats."
+  },
+  "no_done_retrigger": true,
+  "remaining_shortfall": "2 sports_moment, 6 Twitch clip, and 3 Explainer data_story uploads remain unverified.",
+  "notes": "Existing response and DONE were preserved. DONE is a render trigger, not publication proof. Transient downstream publication gaps remain enabled for later recovery."
+}
