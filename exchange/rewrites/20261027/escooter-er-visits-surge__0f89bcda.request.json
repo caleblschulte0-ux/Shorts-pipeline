@@ -1,0 +1,141 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "escooter-er-visits-surge__0f89bcda",
+ "filed": "2026-10-27T13:34:46Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "escooter-er-visits-surge",
+ "current": {
+  "title": "E-Scooter ER Visits Rose 260% In Two Years",
+  "hook": "E-scooter ER visits rose 260% in two years.",
+  "closing": "Fast adoption needs safety habits and streets that catch up just as quickly.",
+  "question": "Would you wear a helmet?",
+  "segments": [
+   {
+    "topic": "E-scooter ER visits",
+    "say": "E-scooter ER visits reached 27,700, turning a convenience trend into a fast-growing injury problem."
+   },
+   {
+    "topic": "E-scooter head injuries",
+    "say": "Among young riders with head injuries, 67% wore no helmet, making protection part of the story."
+   },
+   {
+    "topic": "E-scooter ER total",
+    "say": "Cumulative e-scooter ER visits reached 169,300, showing the surge did not end after the first spike."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "E-scooter ER visits",
+   "say": "E-scooter ER visits reached 27,700, turning a convenience trend into a fast-growing injury problem.",
+   "role": "1 · THE SURGE",
+   "data": {
+    "file": "escooter_er_visits_trend.json",
+    "unit": "ED visits",
+    "title": "Estimated US emergency department visits for e-scooter injuries",
+    "points": [
+     {
+      "label": "2017",
+      "value": 7700,
+      "period": "2017"
+     },
+     {
+      "label": "2018",
+      "value": 14500,
+      "period": "2018"
+     },
+     {
+      "label": "2019",
+      "value": 27700,
+      "period": "2019"
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 1,
+   "topic": "E-scooter head injuries",
+   "say": "Among young riders with head injuries, 67% wore no helmet, making protection part of the story.",
+   "role": "2 · HOW THEY GET HURT",
+   "data": {
+    "file": "escooter_head_injury_helmet.json",
+    "unit": "percent",
+    "title": "Helmet use among riders 18 and under with e-scooter head injuries",
+    "points": [
+     {
+      "label": "No helmet",
+      "value": 67
+     },
+     {
+      "label": "Wearing a helmet",
+      "value": 33
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "E-scooter ER total",
+   "say": "Cumulative e-scooter ER visits reached 169,300, showing the surge did not end after the first spike.",
+   "role": "3 · THE TOTAL TOLL",
+   "data": {
+    "file": "escooter_total_toll.json",
+    "unit": "ED visits",
+    "title": "Cumulative US e-scooter ER visits",
+    "points": [
+     {
+      "label": "2017-2019 total",
+      "value": 49900
+     },
+     {
+      "label": "2017-2022 total",
+      "value": 169300
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: It presents a statistic without overturning a viewer expectation, failing the reversal requirement."
+ ],
+ "reasons": [
+  "premise: brain: It presents a statistic without overturning a viewer expectation, failing the reversal requirement."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261027/escooter-er-visits-surge__0f89bcda.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

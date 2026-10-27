@@ -1,7 +1,37 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-27T11:49:13Z",
+ "updated": "2026-10-27T13:34:46Z",
  "open": [
+  {
+   "id": "chatgpt-fastest-adoption-ever__c2e9df7d_r3",
+   "slug": "chatgpt-fastest-adoption-ever",
+   "filed": "2026-10-27T13:34:46Z",
+   "why": [
+    "premise: brain: The claim lacks a clear, verifiable numeric comparison beyond the single 100 million figure and does not concretely reverse a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261027/chatgpt-fastest-adoption-ever__c2e9df7d_r3.request.json",
+   "answer_path": "exchange/rewrites/20261027/chatgpt-fastest-adoption-ever__c2e9df7d_r3.answer.json"
+  },
+  {
+   "id": "escooter-er-visits-surge__0f89bcda",
+   "slug": "escooter-er-visits-surge",
+   "filed": "2026-10-27T13:34:46Z",
+   "why": [
+    "premise: brain: It presents a statistic without overturning a viewer expectation, failing the reversal requirement."
+   ],
+   "request": "exchange/rewrites/20261027/escooter-er-visits-surge__0f89bcda.request.json",
+   "answer_path": "exchange/rewrites/20261027/escooter-er-visits-surge__0f89bcda.answer.json"
+  },
+  {
+   "id": "ghost-fishing-gear-ocean-plastic__29f0976f",
+   "slug": "ghost-fishing-gear-ocean-plastic",
+   "filed": "2026-10-27T13:34:45Z",
+   "why": [
+    "premise: brain: The claim does not clearly overturn a common viewer expectation and relies only on a generic statistic without a striking, counter‑intuitive twist."
+   ],
+   "request": "exchange/rewrites/20261027/ghost-fishing-gear-ocean-plastic__29f0976f.request.json",
+   "answer_path": "exchange/rewrites/20261027/ghost-fishing-gear-ocean-plastic__29f0976f.answer.json"
+  },
   {
    "id": "cargo-ship-size-growth__d3027aac",
    "slug": "cargo-ship-size-growth",
@@ -81,16 +111,6 @@
    ],
    "request": "exchange/rewrites/20261026/lightning-deaths-collapsed-not-the-storms__c86366ce.request.json",
    "answer_path": "exchange/rewrites/20261026/lightning-deaths-collapsed-not-the-storms__c86366ce.answer.json"
-  },
-  {
-   "id": "chatgpt-fastest-adoption-ever__c2e9df7d_r3",
-   "slug": "chatgpt-fastest-adoption-ever",
-   "filed": "2026-10-26T11:49:09Z",
-   "why": [
-    "premise: brain: The claim relies on a vague comparative speed without a single verifiable number, making it a weak premise."
-   ],
-   "request": "exchange/rewrites/20261026/chatgpt-fastest-adoption-ever__c2e9df7d_r3.request.json",
-   "answer_path": "exchange/rewrites/20261026/chatgpt-fastest-adoption-ever__c2e9df7d_r3.answer.json"
   },
   {
    "id": "ai-datacenter-water__c0cc9c1a_r2",
