@@ -16073,14 +16073,32 @@
       "director_cut": true
     },
     "clip-20261027-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/UgliestWimpyPeachAMPTropPunch-OOvfXWaHabZ6wrin",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/MOvP-z0ujMM",
       "title": "Lacy Destroys Two iPhones To See If They Still Work",
       "kind": "twitch_clip",
-      "ts": "2026-10-27T11:44:12.316030+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-27T11:44:24.767873+00:00",
+      "uploaded_at": "2026-10-27T11:44:24.767883+00:00",
+      "publish_at": "2026-10-27T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261027-lacy-destroys-two-iphones-to-see-if-they-still-w-5dfcc74e",
+        "tiktok": "queued for 2026-10-27T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/UgliestWimpyPeachAMPTropPunch-OOvfXWaHabZ6wrin",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "Lacy destroys two iPhones \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2399,
+      "banger": 0.7,
+      "cut": {
+        "start": 6.8,
+        "end": 29.2
+      },
+      "director_cut": true
     }
   }
 }
