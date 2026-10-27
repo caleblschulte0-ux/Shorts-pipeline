@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "nuclear-stockpile-growth-reversal__0a703448",
+  "slug": "nuclear-stockpile-growth-reversal",
+  "by": "chatgpt",
+  "written_at": "2026-10-27T11:25:00Z",
+  "title": "China Reached 500 Nuclear Warheads As The World Cut Back",
+  "hook": "China reached 500 nuclear warheads while the world total kept falling.",
+  "closing": "A reversal in nuclear disarmament makes every country's security harder to predict.",
+  "question": "Can the decline resume?",
+  "segments": [
+    {
+      "topic": "World nuclear warheads",
+      "say": "The world once held 70,300 nuclear warheads; treaties then pushed the total sharply downward."
+    },
+    {
+      "topic": "China nuclear warheads",
+      "say": "China reached 500 nuclear warheads, reversing the expectation that every major arsenal was shrinking."
+    },
+    {
+      "topic": "Nuclear warheads rank",
+      "say": "Russia holds 5,580 nuclear warheads, showing established powers still dominate the balance."
+    }
+  ]
+}
