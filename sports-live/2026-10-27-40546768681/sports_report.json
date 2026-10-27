@@ -1,0 +1,115 @@
+{
+ "date": "2026-10-27",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "sports",
+   "why": "most upvoted",
+   "post_title": "The Brewers scored 8 Runs in the 5th inning and became the first team in MLB history to have 7 consecutive batters get a hit in a postseason game, let alone the World Series.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xghfm6/the_brewers_scored_8_runs_in_the_5th_inning_and/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xghfm6/the_brewers_scored_8_runs_in_the_5th_inning_and",
+   "title": "Sports: Milwaukee Brewers Make MLB HISTORY With 7 STRAIGHT Hits In World Series",
+   "hook": "Brewers make history with 7 straight hits",
+   "ledger": {
+    "moves": [
+     "zoom@3.4",
+     "zoom@23.4",
+     "whoa@27.1",
+     "hype@0.3"
+    ],
+    "mood": "hype",
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request"
+  },
+  {
+   "sub": "nba",
+   "who": "nba",
+   "why": "most upvoted",
+   "post_title": "Lamello Ball travels a few steps",
+   "upvotes": 0,
+   "url": "https://streamable.com/tga7cu",
+   "topic": "https://www.reddit.com/r/nba/comments/1xc4883/lamello_ball_travels_a_few_steps",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "nfl",
+   "who": "nfl",
+   "why": "most upvoted",
+   "post_title": "[Highlight] Giants RB Cam Skattebo made it clear he isn\u2019t changing his running style after being penalized today for lowering his helmet. Skattebo says he\u2019ll play for free if the fines keep coming and",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/nfl/comments/1xffx1g/highlight_giants_rb_cam_skattebo_made_it_clear_he/",
+   "topic": "https://www.reddit.com/r/nfl/comments/1xffx1g/highlight_giants_rb_cam_skattebo_made_it_clear_he",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "soccer",
+   "who": "soccer",
+   "why": "most upvoted",
+   "post_title": "Harry Kane announced as the winner of the 2026 Ballon d'Or",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xgbtum/harry_kane_announced_as_the_winner_of_the_2026/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xgbtum/harry_kane_announced_as_the_winner_of_the_2026",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "MMA",
+   "who": "MMA",
+   "why": "most upvoted",
+   "post_title": "Alexander Volkov asks Dana White how he can get a title shot at the UFC 333 press conference",
+   "upvotes": 0,
+   "url": "https://streamable.com/1kze1l",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xciwst/alexander_volkov_asks_dana_white_how_he_can_get_a",
+   "skipped": "author: no title"
+  },
+  {
+   "sub": "hockey",
+   "who": "hockey",
+   "why": "most upvoted",
+   "post_title": "\"Fuck your podcast\" chants have broken out at the CTC",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/hockey/comments/1xc6dug/fuck_your_podcast_chants_have_broken_out_at_the/",
+   "topic": "https://www.reddit.com/r/hockey/comments/1xc6dug/fuck_your_podcast_chants_have_broken_out_at_the",
+   "skipped": "too short: the post runs 11.0s (< 15s)"
+  },
+  {
+   "sub": "CollegeBasketball",
+   "who": "CollegeBasketball",
+   "why": "most upvoted",
+   "post_title": "Fisticuffs at the end of Alabama Auburn",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/CollegeBasketball/comments/1xd5vwr/fisticuffs_at_the_end_of_alabama_auburn/",
+   "topic": "https://www.reddit.com/r/CollegeBasketball/comments/1xd5vwr/fisticuffs_at_the_end_of_alabama_auburn",
+   "skipped": "author: no title"
+  }
+ ],
+ "already_today": 0,
+ "pool": 88,
+ "already_posted": 12,
+ "shipped": 0
+}
