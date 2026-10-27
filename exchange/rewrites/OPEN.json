@@ -1,7 +1,47 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-27T15:34:58Z",
+ "updated": "2026-10-27T19:48:15Z",
  "open": [
+  {
+   "id": "cavendish-banana-monoculture__66913e65",
+   "slug": "cavendish-banana-monoculture",
+   "filed": "2026-10-27T19:48:15Z",
+   "why": [
+    "premise: brain: It doesn't overturn a common viewer expectation, merely states a statistic without a surprising reversal."
+   ],
+   "request": "exchange/rewrites/20261027/cavendish-banana-monoculture__66913e65.request.json",
+   "answer_path": "exchange/rewrites/20261027/cavendish-banana-monoculture__66913e65.answer.json"
+  },
+  {
+   "id": "frog-freezes-and-revives__74b0628c_r1",
+   "slug": "frog-freezes-and-revives",
+   "filed": "2026-10-27T19:48:15Z",
+   "why": [
+    "premise: brain: The title's freezing-solid claim and the hook's 65-percent claim do not clearly identify what actually freezes, overstating the survival reversal."
+   ],
+   "request": "exchange/rewrites/20261027/frog-freezes-and-revives__74b0628c_r1.request.json",
+   "answer_path": "exchange/rewrites/20261027/frog-freezes-and-revives__74b0628c_r1.answer.json"
+  },
+  {
+   "id": "seabed-mining-rush__94b642eb_r1",
+   "slug": "seabed-mining-rush",
+   "filed": "2026-10-27T19:48:15Z",
+   "why": [
+    "premise: brain: The 4-kilometer depth is descriptive rather than the consequential number driving a clear expectation reversal about deep-sea mining."
+   ],
+   "request": "exchange/rewrites/20261027/seabed-mining-rush__94b642eb_r1.request.json",
+   "answer_path": "exchange/rewrites/20261027/seabed-mining-rush__94b642eb_r1.answer.json"
+  },
+  {
+   "id": "nuclear-stockpile-growth-reversal__419eb74b",
+   "slug": "nuclear-stockpile-growth-reversal",
+   "filed": "2026-10-27T19:48:12Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a common expectation and hinges on an unverified number, making it a weak premise."
+   ],
+   "request": "exchange/rewrites/20261027/nuclear-stockpile-growth-reversal__419eb74b.request.json",
+   "answer_path": "exchange/rewrites/20261027/nuclear-stockpile-growth-reversal__419eb74b.answer.json"
+  },
   {
    "id": "pitch-drop-slowest-experiment__b5be9205",
    "slug": "pitch-drop-slowest-experiment",
@@ -1064,16 +1104,6 @@
    ],
    "request": "exchange/rewrites/20261005/diabetes-quietly-doubled__426a7e29.request.json",
    "answer_path": "exchange/rewrites/20261005/diabetes-quietly-doubled__426a7e29.answer.json"
-  },
-  {
-   "id": "cavendish-banana-monoculture__0921ca0f",
-   "slug": "cavendish-banana-monoculture",
-   "filed": "2026-10-05T10:56:41Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261005/cavendish-banana-monoculture__0921ca0f.request.json",
-   "answer_path": "exchange/rewrites/20261005/cavendish-banana-monoculture__0921ca0f.answer.json"
   },
   {
    "id": "americans-stopped-moving__f6264643",

@@ -97,6 +97,24 @@
    "caller": "_call_llm",
    "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
    "user": "TITLE: Vinyl Records Beat CD Sales In America Again\nHOOK: In 2022, vinyl beat CD sales for the first time since 1987.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "f0056823db7431ad": {
+   "filed": "2026-10-27T19:12:04Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: Why GPS Would Drift 10 Kilometers Without Einstein\nHOOK: Without relativity, GPS misses by 10 kilometers in one day.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "43747ebc55855bca": {
+   "filed": "2026-10-27T19:43:59Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: 9 Pitch Drops Took 84 Years To Fall\nHOOK: The pitch experiment produced only 9 drops in 84 years.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
+  },
+  "fd51ec685ceddeec": {
+   "filed": "2026-10-27T19:47:06Z",
+   "caller": "_call_llm",
+   "system": "You are a ruthless YouTube Shorts editor. Your ONLY job is to REJECT weak premises. A premise passes ONLY if it reverses a specific expectation the viewer already holds AND hangs on one consequential, verifiable number. A searchable noun phrase ('Oldest Written Languages', 'Tectonic Plates on the Move') is an automatic REJECT. Default to REJECT when unsure.",
+   "user": "TITLE: America's Top Dog Has a 4.5-Year Life Expectancy\nHOOK: The top-ranked dog has a 4.5-year population life expectancy.\n\nReturn STRICT JSON: {\"verdict\":\"PASS\"|\"REJECT\",\"reason\":\"<one sentence>\"}."
   }
  },
  "answer_path": "exchange/asks/20261027.answers.json",
