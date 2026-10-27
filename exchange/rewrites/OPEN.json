@@ -1,7 +1,17 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-27T13:34:46Z",
+ "updated": "2026-10-27T15:34:58Z",
  "open": [
+  {
+   "id": "pitch-drop-slowest-experiment__b5be9205",
+   "slug": "pitch-drop-slowest-experiment",
+   "filed": "2026-10-27T15:34:58Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies only on a factual statement about duration."
+   ],
+   "request": "exchange/rewrites/20261027/pitch-drop-slowest-experiment__b5be9205.request.json",
+   "answer_path": "exchange/rewrites/20261027/pitch-drop-slowest-experiment__b5be9205.answer.json"
+  },
   {
    "id": "chatgpt-fastest-adoption-ever__c2e9df7d_r3",
    "slug": "chatgpt-fastest-adoption-ever",
