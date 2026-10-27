@@ -2,29 +2,29 @@
   "formats": [
     {
       "format": "graph_race",
-      "videos": 47,
-      "views": 231,
-      "views_per_video": 4.9,
+      "videos": 39,
+      "views": 216,
+      "views_per_video": 5.5,
       "avg_views_per_hour": 0.01,
-      "engaged_views": 76,
-      "avg_view_pct": 67.9,
+      "engaged_views": 73,
+      "avg_view_pct": 73.4,
       "likes": 1,
       "shares": 0,
       "subs_gained": 0
     },
     {
       "format": "reddit_story",
-      "videos": 19,
-      "views": 23,
-      "views_per_video": 1.2,
+      "videos": 15,
+      "views": 21,
+      "views_per_video": 1.4,
       "avg_views_per_hour": 0.0,
       "engaged_views": 10,
-      "avg_view_pct": 44.9,
+      "avg_view_pct": 50.6,
       "likes": 2,
       "shares": 0,
       "subs_gained": 0
     }
   ],
-  "matched": 66,
-  "unmatched": 52
+  "matched": 54,
+  "unmatched": 54
 }
