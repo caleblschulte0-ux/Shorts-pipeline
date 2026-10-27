@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "peanut-allergy-guideline-flip__675a4e77_r1",
+  "slug": "peanut-allergy-guideline-flip",
+  "by": "chatgpt",
+  "written_at": "2026-10-27T11:25:00Z",
+  "title": "Early Peanut Eating Cut Allergies To 1.9%",
+  "hook": "Eating peanut early beat avoidance: allergies fell to 1.9%.",
+  "closing": "The reversal matters because prevention advice can change when better evidence arrives.",
+  "question": "Would you introduce peanut early?",
+  "segments": [
+    {
+      "topic": "Peanut allergies rose",
+      "say": "Peanut allergy prevalence reached 1.4%, showing the problem had more than tripled."
+    },
+    {
+      "topic": "Early peanut eating",
+      "say": "Early peanut eating held allergies to 1.9%, overturning the old avoidance advice."
+    },
+    {
+      "topic": "Peanut allergies fell",
+      "say": "After guidance changed, diagnoses fell to 0.45%, although this comparison alone cannot prove the cause."
+    }
+  ]
+}
