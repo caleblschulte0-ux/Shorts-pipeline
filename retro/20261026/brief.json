@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261026",
-  "generated_at": "2026-10-26T23:31:10Z",
+  "generated_at": "2026-10-27T00:31:05Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 32.76,
+          "days": 32.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 31.76,
+          "days": 31.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1768,10 +1768,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "a4ab0e2",
-    "commits_since": "2026-10-25",
+    "head": "94cb07e",
+    "commits_since": "2026-10-26",
     "commit_count": 50,
     "commits": [
+      "94cb07e claim: mailbox verdicts 2026-10-26T23:48Z [skip ci]",
+      "ae504e3 retro: brief + triage for 20261026 [skip ci]",
       "a4ab0e2 explainer: update posted log + analytics [skip ci]",
       "405b1cd claim: mailbox verdicts 2026-10-26T22:47Z [skip ci]",
       "f85e57a claim: mailbox verdicts 2026-10-26T21:50Z [skip ci]",
@@ -1809,9 +1811,7 @@
       "31c5da0 sports: 2026-10-26 posted log + verdicts [skip ci]",
       "ba91272 trending: posted shadab_khan_is_out_after_review_sparks_c [skip ci]",
       "50b46ae trending: claim upload slot shadab_khan_is_out_after_review_sparks_c [skip ci]",
-      "7d42936 claim: mailbox verdicts 2026-10-26T12:48Z [skip ci]",
-      "a9adb99 explainer: update posted log + analytics [skip ci]",
-      "15e8464 sports: 2026-10-26 posted log + verdicts [skip ci]"
+      "7d42936 claim: mailbox verdicts 2026-10-26T12:48Z [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
