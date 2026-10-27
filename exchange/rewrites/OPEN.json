@@ -1,16 +1,76 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-27T11:24:54Z",
+ "updated": "2026-10-27T11:49:13Z",
  "open": [
   {
-   "id": "humpback-whale-recovery__15f8bd75_r2",
+   "id": "cargo-ship-size-growth__d3027aac",
+   "slug": "cargo-ship-size-growth",
+   "filed": "2026-10-27T11:49:13Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a common viewer expectation and relies on an arbitrary number without a consequential, verifiable context."
+   ],
+   "request": "exchange/rewrites/20261027/cargo-ship-size-growth__d3027aac.request.json",
+   "answer_path": "exchange/rewrites/20261027/cargo-ship-size-growth__d3027aac.answer.json"
+  },
+  {
+   "id": "lottery-odds-vs-real-life__53af3ace",
+   "slug": "lottery-odds-vs-real-life",
+   "filed": "2026-10-27T11:49:12Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a viewer expectation and hinges on an ambiguous, unverifiable premise."
+   ],
+   "request": "exchange/rewrites/20261027/lottery-odds-vs-real-life__53af3ace.request.json",
+   "answer_path": "exchange/rewrites/20261027/lottery-odds-vs-real-life__53af3ace.answer.json"
+  },
+  {
+   "id": "airline-pilot-shortage__6e694dae_r2",
+   "slug": "airline-pilot-shortage",
+   "filed": "2026-10-27T11:49:11Z",
+   "why": [
+    "premise: brain: It presents a large number without overturning a viewer's expectation, failing the reversal requirement."
+   ],
+   "request": "exchange/rewrites/20261027/airline-pilot-shortage__6e694dae_r2.request.json",
+   "answer_path": "exchange/rewrites/20261027/airline-pilot-shortage__6e694dae_r2.answer.json"
+  },
+  {
+   "id": "california-condor-comeback__ada5193e_r2",
+   "slug": "california-condor-comeback",
+   "filed": "2026-10-27T11:49:11Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation tied to a single verifiable number."
+   ],
+   "request": "exchange/rewrites/20261027/california-condor-comeback__ada5193e_r2.request.json",
+   "answer_path": "exchange/rewrites/20261027/california-condor-comeback__ada5193e_r2.answer.json"
+  },
+  {
+   "id": "mangrove-forest-loss__49815695",
+   "slug": "mangrove-forest-loss",
+   "filed": "2026-10-27T11:49:11Z",
+   "why": [
+    "premise: brain: It presents two figures rather than a single consequential number, failing the one-number requirement."
+   ],
+   "request": "exchange/rewrites/20261027/mangrove-forest-loss__49815695.request.json",
+   "answer_path": "exchange/rewrites/20261027/mangrove-forest-loss__49815695.answer.json"
+  },
+  {
+   "id": "coldest-place-in-the-universe-is-human-made__81f94a66_r2",
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "filed": "2026-10-27T11:49:10Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261027/coldest-place-in-the-universe-is-human-made__81f94a66_r2.request.json",
+   "answer_path": "exchange/rewrites/20261027/coldest-place-in-the-universe-is-human-made__81f94a66_r2.answer.json"
+  },
+  {
+   "id": "humpback-whale-recovery__15f8bd75_r3",
    "slug": "humpback-whale-recovery",
-   "filed": "2026-10-26T12:12:28Z",
+   "filed": "2026-10-27T11:41:37Z",
    "why": [
     "premise: brain: The premise does not overturn a viewer's expectation, merely states a population increase."
    ],
-   "request": "exchange/rewrites/20261026/humpback-whale-recovery__15f8bd75_r2.request.json",
-   "answer_path": "exchange/rewrites/20261026/humpback-whale-recovery__15f8bd75_r2.answer.json"
+   "request": "exchange/rewrites/20261027/humpback-whale-recovery__15f8bd75_r3.request.json",
+   "answer_path": "exchange/rewrites/20261027/humpback-whale-recovery__15f8bd75_r3.answer.json"
   },
   {
    "id": "lightning-deaths-collapsed-not-the-storms__c86366ce",
@@ -23,26 +83,6 @@
    "answer_path": "exchange/rewrites/20261026/lightning-deaths-collapsed-not-the-storms__c86366ce.answer.json"
   },
   {
-   "id": "airline-pilot-shortage__6e694dae_r2",
-   "slug": "airline-pilot-shortage",
-   "filed": "2026-10-26T11:49:10Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a common viewer expectation and relies only on a raw figure without a verifiable, surprising twist."
-   ],
-   "request": "exchange/rewrites/20261026/airline-pilot-shortage__6e694dae_r2.request.json",
-   "answer_path": "exchange/rewrites/20261026/airline-pilot-shortage__6e694dae_r2.answer.json"
-  },
-  {
-   "id": "california-condor-comeback__ada5193e_r2",
-   "slug": "california-condor-comeback",
-   "filed": "2026-10-26T11:49:10Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation anchored to a single verifiable number."
-   ],
-   "request": "exchange/rewrites/20261026/california-condor-comeback__ada5193e_r2.request.json",
-   "answer_path": "exchange/rewrites/20261026/california-condor-comeback__ada5193e_r2.answer.json"
-  },
-  {
    "id": "chatgpt-fastest-adoption-ever__c2e9df7d_r3",
    "slug": "chatgpt-fastest-adoption-ever",
    "filed": "2026-10-26T11:49:09Z",
@@ -51,16 +91,6 @@
    ],
    "request": "exchange/rewrites/20261026/chatgpt-fastest-adoption-ever__c2e9df7d_r3.request.json",
    "answer_path": "exchange/rewrites/20261026/chatgpt-fastest-adoption-ever__c2e9df7d_r3.answer.json"
-  },
-  {
-   "id": "coldest-place-in-the-universe-is-human-made__81f94a66_r2",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-10-26T11:49:09Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261026/coldest-place-in-the-universe-is-human-made__81f94a66_r2.request.json",
-   "answer_path": "exchange/rewrites/20261026/coldest-place-in-the-universe-is-human-made__81f94a66_r2.answer.json"
   },
   {
    "id": "ai-datacenter-water__c0cc9c1a_r2",
