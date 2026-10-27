@@ -1,0 +1,211 @@
+{
+ "date": "2026-10-27",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "sports",
+   "who": "Jake Bauers",
+   "why": "He and his wife open up about reviving his career after almost quitting baseball",
+   "post_title": "In an ABC News exclusive, Milwaukee Brewers playoff hero Jake Bauers and his wife, Lauren, speak with Will Reeve about how he revived his career after nearly walking away from baseball.",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/sports/comments/1xcfyi1/in_an_abc_news_exclusive_milwaukee_brewers/",
+   "topic": "https://www.reddit.com/r/sports/comments/1xcfyi1/in_an_abc_news_exclusive_milwaukee_brewers",
+   "skipped": "download failed"
+  },
+  {
+   "sub": "soccer",
+   "who": "Ruben Amorim",
+   "why": "He bursts out laughing at fans chanting his name after a 3\u20110 defeat, hinting at a deeper rivalry story",
+   "post_title": "Ruben Amorim laughs listening to Bournemouth fans chant \"Ruben Amorim, its happened again\" after Milan go 3-0 down. For context: Amorim's Manchester United also lost 3-0 to Bournemouth in December 202",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xcw0ox/ruben_amorim_laughs_listening_to_bournemouth_fans/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xcw0ox/ruben_amorim_laughs_listening_to_bournemouth_fans",
+   "title": "Ruben Amorim Laughs As Bournemouth Fans Chant \u201cIt\u2019s Happened Again\u201d",
+   "hook": "Amorim cracks up at the chant \ud83d\ude04",
+   "ledger": {
+    "moves": [
+     "zoom@2.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      296,
+      396,
+      278,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude[0]: claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n\", 'gemini: HTTP Error 429: Too Many Request"
+  },
+  {
+   "sub": "soccer",
+   "who": "Michael Carrick",
+   "why": "Visibly emotional in the locker\u2011room after United\u2019s loss, showing the personal weight of the defeat",
+   "post_title": "Michael Carrick being visibly emotional at FT after Manchester United's 3-0 defeat to Bournemouth",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/soccer/comments/1xf9fkd/michael_carrick_being_visibly_emotional_at_ft/",
+   "topic": "https://www.reddit.com/r/soccer/comments/1xf9fkd/michael_carrick_being_visibly_emotional_at_ft",
+   "title": "Michael Carrick Breaks Down After United\u2019s 3-0 Loss",
+   "hook": "Carrick visibly emotional after defeat \ud83d\ude2d",
+   "ledger": {
+    "moves": [
+     "sad@0.3(fix_you)"
+    ],
+    "mood": "sad",
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      370,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  },
+  {
+   "sub": "MMA",
+   "who": "Alexander Volkov",
+   "why": "A teammate brings him a birthday cake on camera, turning a simple celebration into a personal spotlight",
+   "post_title": "Rizvan Kuniev gives Alexander Volkov a cake for his birthday tomorrow: \"Happy Birthday, New Record 40-12\"",
+   "upvotes": 0,
+   "url": "https://streamable.com/ptswtq",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xdq5ck/rizvan_kuniev_gives_alexander_volkov_a_cake_for",
+   "title": "Alexander Volkov Gets Surprise Birthday Cake Before Game \ud83c\udf82",
+   "hook": "Volkov's birthday surprise \ud83c\udf82",
+   "ledger": {
+    "moves": [
+     "zoom@2.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  },
+  {
+   "sub": "MMA",
+   "who": "Alex Volkanovski",
+   "why": "Coach Eugene Bareman breaks down the drama behind a controversial rematch decision",
+   "post_title": "Eugene Bareman talks about Volkanovski's rematch with Islam: \"I was dead set against it. I asked him not to take it. The guy was camping, drinking beer a week before the fight. This speaks to how spec",
+   "upvotes": 0,
+   "url": "https://streamable.com/cexo7c",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xbuuns/eugene_bareman_talks_about_volkanovskis_rematch",
+   "title": "Alex Volkanovski Faces Rematch Drama After Coach Says He Was Against It",
+   "hook": "Volkanovski\u2019s coach reveals the fight drama",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "action",
+     "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame",
+     "shots": [
+      {
+       "mode": "action",
+       "reason": "no persistent subject \u2014 show the whole frame \u2014 cropped to the motion instead of shrinking the whole frame"
+      }
+     ],
+     "n_subjects": 0,
+     "crop": [
+      540,
+      720,
+      376,
+      0
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  },
+  {
+   "sub": "MMA",
+   "who": "Alexander Volkov",
+   "why": "He directly asks Dana White for a title shot, giving fans a rare glimpse of his ambitions",
+   "post_title": "Alexander Volkov asks Dana White how he can get a title shot at the UFC 333 press conference",
+   "upvotes": 0,
+   "url": "https://streamable.com/1kze1l",
+   "topic": "https://www.reddit.com/r/MMA/comments/1xciwst/alexander_volkov_asks_dana_white_how_he_can_get_a",
+   "title": "Alexander Volkov Asks Dana White How to Get a Title Shot \ud83e\udd14",
+   "hook": "Volkov asks Dana White for a title shot",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "split",
+     "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)",
+     "shots": [
+      {
+       "mode": "split",
+       "reason": "two faces too far apart for one crop \u2014 stacked split keeps both visible (no midpoint, no ping-pong)"
+      }
+     ],
+     "n_subjects": 2,
+     "face_bands": [
+      [
+       0.017,
+       0.245
+      ],
+      [
+       0.527,
+       0.738
+      ]
+     ]
+    }
+   },
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP",
+    "score": null
+   },
+   "skipped": "showrunner_block: showrunner failed on a publish run (fail-closed): no vision judge available. [\"headless-claude: out of budget (claude CLI rc=1: You've hit your weekly limit \u00b7 resets 12am (UTC)\\n)\", 'gemini: out of budget (HTTP"
+  }
+ ],
+ "already_today": 0,
+ "pool": 85,
+ "already_posted": 11,
+ "shipped": 0
+}
