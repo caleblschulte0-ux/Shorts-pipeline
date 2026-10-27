@@ -4468,8 +4468,8 @@
     }
   },
   "recent_commits": [
-    "52d1cd4 2026-10-27 claim: mailbox verdicts 2026-10-27T04:48Z [skip ci]",
-    "906692f 2026-10-27 claim: mailbox verdicts 2026-10-27T03:48Z [skip ci]"
+    "274cc61 2026-10-27 watchdog: phase A readiness 20261027 [skip ci]",
+    "ef1d7dd 2026-10-27 exchange: phase A bundle for 20261027 [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4575,32 +4575,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 141,
+      "videos": 137,
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 14.63,
-          "views": 1395
-        },
-        {
-          "title": "Kaicenat: Kai Cenat Hits Cameraman After He Quits \u2013 Streamer Fight",
-          "vph": 5.98,
-          "views": 5
-        },
-        {
-          "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 4.51,
-          "views": 1087
+          "vph": 13.13,
+          "views": 1448
         },
         {
           "title": "Ishowspeed Gets Spooked And Screams After Smelling This",
-          "vph": 4.36,
-          "views": 69
+          "vph": 4.78,
+          "views": 147
+        },
+        {
+          "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
+          "vph": 4.25,
+          "views": 1087
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 3.49,
-          "views": 1744
+          "vph": 3.43,
+          "views": 1767
+        },
+        {
+          "title": "Kaicenat: Kai Cenat Hits Cameraman After He Quits \u2013 Streamer Fight",
+          "vph": 3.04,
+          "views": 48
         }
       ],
       "full_data": "state/analytics_third/latest.json"
