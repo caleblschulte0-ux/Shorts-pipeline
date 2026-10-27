@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "iss-deorbit-2031__6ede29c2_r1",
+  "slug": "iss-deorbit-2031",
+  "by": "chatgpt",
+  "written_at": "2026-10-27T11:25:00Z",
+  "title": "The ISS Needs An $843 Million Deorbit Vehicle",
+  "hook": "NASA will spend $843 million to bring the ISS down.",
+  "closing": "Ending the station safely matters to everyone living beneath its final path.",
+  "question": "Should the ISS be replaced?",
+  "segments": [
+    {
+      "topic": "ISS human presence",
+      "say": "The ISS has hosted people continuously for 24 years, making its planned ending feel almost unthinkable."
+    },
+    {
+      "topic": "ISS annual budget",
+      "say": "NASA spends $3 billion annually on the ISS, so keeping it aloft has a continuing cost."
+    },
+    {
+      "topic": "ISS deorbit vehicle",
+      "say": "The ISS deorbit vehicle costs $843 million because the station cannot be left to fall uncontrolled."
+    }
+  ]
+}
