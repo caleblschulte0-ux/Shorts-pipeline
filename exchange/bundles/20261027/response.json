@@ -1,0 +1,61 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261027",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 10,
+    "registry_sha256": "6481c43e352d51af77c4d61db5486670a9d4db6fd55683a411720ea0c089276a",
+    "source_commit": "755aa9f192df0ce2271740189d2c68316563b90a",
+    "production_date": "20261027",
+    "bundle_sha256": "df9839dd8648392de7a3aa1ab37341bcb00bac900c7a65585ff2810f1ef9e248"
+  },
+  "media": [],
+  "packages": [],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Is 1.5x Its 1972 Level",
+      "hook": "The 1970s food panic missed what global harvests did next.",
+      "says": [
+        "Progression to secondary school rose from 77.8% in 1985 to 91.3% in 2017 — 1.2 times higher.",
+        "Cereal production climbed from 1083.7 million metric tons in 1972 to 1644.1 in 2024 — 1.5 times higher.",
+        "China has 5.2 million square kilometers of farmland; United States 4.2, Australia 3.6, Brazil 2.4, and Russia 2.2."
+      ],
+      "closing": "The famine everyone predicted never arrived because output kept rising.",
+      "question": "What changed food production most?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Combustible Renewables And Waste Are 3.0x Higher Than In 1990",
+      "hook": "One energy source tripled since 1990, and it is not solar or wind.",
+      "says": [
+        "Combustible renewables and waste rose from 10.2% of energy in 1990 to 30.1% in 2024 — 3.0 times higher.",
+        "Electricity access climbed from 73.2% in 1998 to 91.9% in 2024 — 1.3 times higher.",
+        "Waste methane emissions rose from 903.8 Mt CO2e in 1972 to 1,652 in 2024 — 1.8 times higher."
+      ],
+      "closing": "A third of the world's energy now comes from things once thrown away.",
+      "question": "Which number surprised you most?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth was expected to accelerate forever. The data says it reversed.",
+      "says": [
+        "Rural population fell from 63.1% in 1972 to 42.2% in 2025 — down to 67 percent of its former share.",
+        "The largest city's share barely moved: 18.2% of urban population in 1972 versus 16.2% in 2025.",
+        "Population growth fell from 2% annually in 1972 to 0.91% in 2025 — down to 46 percent."
+      ],
+      "closing": "The planet is still growing, but it has almost stopped accelerating.",
+      "question": "Which shift surprised you most?"
+    }
+  ],
+  "notes": [
+    "The frozen 20261027 contract requires 3 sports_moment, 6 clip, and 4 data_story uploads; these are production targets, not completion claims.",
+    "The bundle contains zero media requests and no image-bearing active formats, so no Drive upload, readback, hash, decode, or media checkpoint was applicable.",
+    "The configured shared Drive connection was read successfully; no new file was requested.",
+    "No package punch-ups were requested. All three requested Explainer stories were rewritten with the same segment counts and orders and every supplied number and entity preserved.",
+    "Mandatory mailbox round one completed within caps: 0 reviews, 20 newly answered ask keys, and 10 rewrite requests.",
+    "DONE only hands off this response. Actual channel upload verification remains outstanding."
+  ]
+}
