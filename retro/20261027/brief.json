@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261027",
-  "generated_at": "2026-10-27T23:31:01Z",
+  "generated_at": "2026-10-28T00:31:05Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 33.76,
+          "days": 33.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 32.76,
+          "days": 32.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1585,10 +1585,14 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "8add617",
-    "commits_since": "2026-10-26",
+    "head": "c0cd3c5",
+    "commits_since": "2026-10-27",
     "commit_count": 50,
     "commits": [
+      "c0cd3c5 third: checkpoint posted log (claim upload slot) [skip ci]",
+      "3528165 claim: mailbox verdicts 2026-10-27T23:55Z [skip ci]",
+      "e2ba70d claim: mailbox verdicts 2026-10-27T23:50Z [skip ci]",
+      "74f88ed retro: brief + triage for 20261027 [skip ci]",
       "8add617 claim: mailbox verdicts 2026-10-27T22:49Z [skip ci]",
       "830a171 explainer: update posted log + analytics [skip ci]",
       "59e2fc9 claim: mailbox verdicts 2026-10-27T21:48Z [skip ci]",
@@ -1624,11 +1628,7 @@
       "554ef8b deadman: repaired 2026-10-27 [skip ci]",
       "52c34f2 watchdog: chatgpt task verdicts 20261027 [skip ci]",
       "6b38cfb claim: mailbox verdicts 2026-10-27T13:29Z [skip ci]",
-      "cbc2ad9 sports: 2026-10-27 posted log + verdicts [skip ci]",
-      "f04b2cd claim: mailbox verdicts 2026-10-27T12:48Z [skip ci]",
-      "0716fcd third: analytics [skip ci]",
-      "23c3a8b third: update posted log + analytics [skip ci]",
-      "5892340 watchdog: chatgpt task verdicts 20261027 [skip ci]"
+      "cbc2ad9 sports: 2026-10-27 posted log + verdicts [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
