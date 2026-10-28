@@ -86,6 +86,9 @@ KIT_NAMES = ("vgrad", "glow", "text", "fit_readout", "by_time", "tree", "stump",
              # a rim, an edge, a contact shadow — illustrated.py
              "solid", "box", "cylinder", "disc", "contact_shadow", "haze",
              "vignette", "edge", "KEY", "FINISHES",
+             # BUILT, NOT A TOY (2026-10-28, "it's an art style issue"):
+             # the parts that make a thing look made
+             "seams", "trim",
              # THE SHOT (2026-10-07, "ok now we are talking"): a low sun,
              # far-to-near depth, a three-quarter hero, things by the camera
              "landscape", "foreground", "building", "cast_shadow", "ridge",
@@ -164,7 +167,7 @@ def check_source(code: str) -> None:
 # standard it passed; one from an older standard is re-judged by today's
 # viewer and look again before it is used, and redrawn if it fails. Bump
 # STANDARD whenever a check or a bar a scene must pass is added.
-STANDARD = "2026-10-28"     # the real thing at its real size (rule 24)
+STANDARD = "2026-10-28.1"   # built, not a toy: drawn in detail (rule 25)
 _STAMP = re.compile(r"^# scene standard: (\S+)\s*$", re.M)
 # A standard the POSTING run still accepts as it is. Bumping STANDARD
 # re-judges every saved scene the next time it is used, and on 2026-10-23
@@ -172,7 +175,7 @@ _STAMP = re.compile(r"^# scene standard: (\S+)\s*$", re.M)
 # out that day. A standard named here is re-judged only by the predraw
 # (scripts/predraw_scenes.py sets STRICT), on its own clock hours before
 # the posting window; the posting run keeps using those scenes until then.
-GRACE = ("2026-10-22",)
+GRACE = ("2026-10-22", "2026-10-28")
 STRICT = False
 
 
@@ -1003,6 +1006,81 @@ def craft_problems(fn, pts, at=(0.3, 0.85)) -> list[str]:
     return []
 
 
+#: BUILT, NOT A TOY (operator, 2026-10-28, of a truck-sized red rotary
+#: phone beside a brick walk-up he liked in the same video: "it's an art
+#: style issue not a what we are drawing issue"). The walk-up is hundreds of
+#: small marks — a frame and a sill on every window, rails and rungs on the
+#: fire escape; the phone was one smooth box and a dozen discs. The check
+#: counts the small marks (fills and strokes under `DETAIL_PART` of the band,
+#: Data and the words left out) the payoff frame draws in the hero band.
+#: Measured 2026-10-28: the phone 57; THE SHOT 129, the brownstone 467, THE
+#: CHECKOUT 685, THE PILE 928; across 150 saved scenes the median was 196 and
+#: the ones under 80 were a lone giant thermometer, a lone cube, two
+#: slabs of ice on a seesaw — the toy look, every one.
+DETAIL_MIN = 80
+DETAIL_PART = 0.02
+DETAIL_AT = 0.85
+
+
+class _Counting:
+    """A cairo context that records the device extents of every mark the
+    scene draws, and does everything else as the real one does."""
+
+    def __init__(self, cr):
+        self._cr = cr
+        self.marks: list = []
+
+    def __getattr__(self, name):
+        attr = getattr(self._cr, name)
+        if name not in ("fill", "fill_preserve", "stroke", "stroke_preserve"):
+            return attr
+
+        def mark(*a, _attr=attr, _name=name):
+            try:
+                e = (self._cr.fill_extents() if "fill" in _name
+                     else self._cr.stroke_extents())
+                p0 = self._cr.user_to_device(e[0], e[1])
+                p1 = self._cr.user_to_device(e[2], e[3])
+                self.marks.append((min(p0[0], p1[0]), min(p0[1], p1[1]),
+                                   max(p0[0], p1[0]), max(p0[1], p1[1])))
+            except Exception:  # noqa: BLE001 — a mark we cannot measure
+                pass
+            return _attr(*a)
+        return mark
+
+
+def detail_count(fn, pts, u=DETAIL_AT, band=FLAT_BAND) -> int:
+    """How many small parts `fn` draws in the hero band at `u`."""
+    import cairo
+    from data_learning import illustrated as I
+    surf = cairo.ImageSurface(cairo.FORMAT_ARGB32, SS.W, SS.H)
+    real = cairo.Context(surf)
+    cr = _Counting(real)
+    clock: dict = {}
+    f = int(u * 180)
+
+    def host(role, x, fy, h, pace=False, beat=0, **kw):
+        SS.place_host(real, role, SS.act_phase(clock, (role, int(beat)), f),
+                      None, x, fy, h, f / 30.0, pace, **SS._grip_kw(kw))
+    with I.text_layer(real):
+        fn(cr, 3.0 + u * 8, u, pts, host)
+    big = DETAIL_PART * SS.W * (band[1] - band[0])
+    return sum(1 for x0, y0, x1, y1 in cr.marks
+               if y1 > band[0] and y0 < band[1] and x1 > 0 and x0 < SS.W
+               and (x1 - x0) * (y1 - y0) < big)
+
+
+def detail_problems(fn, pts) -> list[str]:
+    n = detail_count(fn, pts)
+    if n >= DETAIL_MIN:
+        return []
+    return [f"the payoff frame is drawn from {n} small parts (min {DETAIL_MIN}) "
+            f"— a smooth toy, not a built thing. Draw it the way the walk-up "
+            f"is drawn: its real parts, each small and lit — seams() for "
+            f"planks and panels, trim() for sills, rims and bezels, the "
+            f"bolts, handles, hinges and labels a real one has (rule 25)"]
+
+
 #: A number has to stay up long enough to READ. Brain hooks cycled a value
 #: every few frames and the judge wrote "a hook number that flickers too fast
 #: to register" (Amazon, 2026-09-23).
@@ -1113,11 +1191,14 @@ def paced(u: float, landed: float | None, target: float) -> float:
     return landed + (u - target) * (1.0 - landed) / (1.0 - target)
 
 
-def verify(fn, pts, say: str = "", secs: float | None = None) -> list[str]:
+def verify(fn, pts, say: str = "", secs: float | None = None,
+           detail: bool = True) -> list[str]:
     """Every check a teacher scene passes. Empty list = usable. `say` is the
     beat's narration: a number the story itself states ("the 1930s") may be
     printed; the editorial gate has already held the narration to the data.
-    `secs` is how long the scene is on screen; a beat's by default."""
+    `secs` is how long the scene is on screen; a beat's by default.
+    `detail` False skips the toy check, for a saved scene the POSTING run
+    re-judges: the predraw (STRICT) holds those to it, on its own clock."""
     secs = SCENE_SECS["beat"] if secs is None else secs
     import cairo
     import numpy as np
@@ -1245,6 +1326,11 @@ def verify(fn, pts, say: str = "", secs: float | None = None) -> list[str]:
         problems += craft_problems(fn, pts)
     except Exception as e:  # noqa: BLE001 — a crash here is reported above
         problems.append(f"craft check crashed: {e}")
+    if detail:
+        try:
+            problems += detail_problems(fn, pts)
+        except Exception as e:  # noqa: BLE001
+            problems.append(f"detail check crashed: {e}")
     if len(hosts) < 11:
         problems.append("Data is missing from a frame (host not called)")
     problems += bit_problems(fn, pts)
@@ -1439,7 +1525,7 @@ lands, not while he winds up.
 12. THE ART IS LIT, NOT FLAT. One key light from the upper-left (KEY). \
 Nothing solid is a flat fill: draw its path, then solid(cr, rgb) — lit face \
 falling to shadow face, a rim on the lit edge, an ink edge — with a finish \
-when the material has one (gloss, metal, glass, ice). Boxes are box(), \
+when the material has one (metal, glass, ice; gloss is a satin, no shine). Boxes are box(), \
 round things disc() and cylinder(). Everything that stands on the ground \
 stands on a contact_shadow() drawn first. Far things go under haze(); \
 vignette() last, before the text. Build the hero from several lit pieces \
@@ -1559,6 +1645,19 @@ buildings beside it, and never stands alone on bare ground. Data is IN \
 that world doing the act at his own scale (making the call, carrying the \
 box), never standing on or beside an oversized prop pointing at it. A \
 viewer is asked whether the object is true to life and in its own place.
+25. BUILT, NOT A TOY. The owner, 2026-10-28, of the same video: the \
+walk-up looked good and the phone looked like "shit ai slop", and "it's an \
+art style issue not a what we are drawing issue". The walk-up is drawn \
+from hundreds of small parts — every window has its frame and sill, the \
+fire escape its rails and rungs, the roof its water tower on legs. The \
+phone was one smooth red box with a shine and a few discs. Draw every \
+thing the way the walk-up is drawn: its real parts, each small and lit — \
+seams() for planks, panels and siding, trim() for sills, rims and \
+bezels, the bolts, handles, hinges, labels and wear a real one has — in \
+colours that belong to the scene's light, matte unless it is metal, glass \
+or ice. A smooth primitive with a highlight is the toy look; there is no \
+plastic shine in the kit. MEASURED: a payoff frame drawn from fewer than \
+{detail_min} small parts is refused as a toy.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \
@@ -1659,6 +1758,7 @@ def build_prompt(title, topic, say, pts, unit, brief="", secs=None):
     tools = "\n".join(f"  {k}: {v}" for k, v in TOOL_ACTS.items())
     return _PROMPT.format(stances=", ".join(STANCES), tools=tools,
                           flat_max=f"{FLAT_MAX:.0%}", max_heads=MAX_HEADLINES,
+                          detail_min=DETAIL_MIN,
                           secs=SCENE_SECS["beat"] if secs is None else secs,
                           payoff_by=f"{land_by(secs):.2f}",
                           shows=SS.READOUT_SHOWS,
@@ -2029,7 +2129,7 @@ def recertify(fn, code, pts, say="", secs=None, topic="", title="", brief="",
     if not pts:
         return fn, code
     try:
-        probs = verify(fn, pts, say, secs)
+        probs = verify(fn, pts, say, secs, detail=STRICT)
         seen: list = []
         if not probs:
             probs = glance(fn, pts, log=log, say=say, seen_by=seen)

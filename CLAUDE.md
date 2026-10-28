@@ -297,7 +297,15 @@ constants blanked), never on the prose that explains it.
   `verify` and on every SAVED scene at load, so flat scenes drawn before
   the light are redrawn, never shipped again. A subject helper that
   `cr.fill()`s one flat colour is the defect; draw the path, call
-  `solid()`. `tests/test_the_art_is_lit.py`.
+  `solid()`. `tests/test_the_art_is_lit.py`. And it is BUILT, NOT A TOY
+  (operator, 2026-10-28, of a red rotary phone beside a brick walk-up in
+  the same video: *"it's an art style issue not a what we are drawing
+  issue"*): `gloss` is a satin with no white streak (only metal, glass and
+  ice shine, `illustrated.SHINES`), `seams`/`trim` give a thing its parts,
+  prompt rule 25, and `scene_author.detail_problems` refuses a payoff
+  frame drawn from fewer than `DETAIL_MIN` small parts — new draws and the
+  predraw only; the posting run keeps GRACE scenes as they are.
+  `tests/test_built_not_a_toy.py`.
 
 - **A subject scene is a SHOT, not a diagram** (operator, 2026-10-07: a
   front-on barn over an empty field was *"still very much lacking"*; the

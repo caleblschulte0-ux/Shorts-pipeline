@@ -1,0 +1,139 @@
+# scene standard: 2026-10-16.2
+def _hs_world(cx, cy, ang, lx, ly):
+    ca, sa = math.cos(ang), math.sin(ang)
+    return (cx + lx * ca - ly * sa, cy + lx * sa + ly * ca)
+
+
+def _hs_draw(cr, cx, cy, L, ang, rgb):
+    hl = L / 2.0
+    cr.save()
+    cr.translate(cx, cy)
+    cr.rotate(ang)
+    # the two cups hanging under the ends: ear piece and mouth piece
+    for sx in (-1, 1):
+        cr.save()
+        cr.translate(sx * (hl - 60), 26)
+        cr.scale(1.0, 0.5)
+        cr.arc(0, 0, 72, 0, 2 * math.pi)
+        cr.restore()
+        solid(cr, rgb, finish="gloss")
+        cr.save()
+        cr.translate(sx * (hl - 60), 44)
+        cr.scale(1.0, 0.32)
+        cr.arc(0, 0, 50, 0, 2 * math.pi)
+        cr.restore()
+        solid(cr, (70, 18, 20), rim=False)
+    # the handle bar, arched like a real receiver
+    cr.move_to(-hl + 30, 10)
+    cr.curve_to(-hl * 0.4, -46, hl * 0.4, -46, hl - 30, 10)
+    cr.line_to(hl - 40, 34)
+    cr.curve_to(hl * 0.4, -8, -hl * 0.4, -8, -hl + 40, 34)
+    cr.close_path()
+    solid(cr, rgb, finish="gloss")
+    cr.restore()
+
+
+def scene(cr, t, u, pts, host):
+    """HERO: a giant red rotary telephone
+    SUBSTANCE: the ringing receiver
+    CAUSE: Data climbs onto the phone and grips the jumping receiver with both hands, shoving it back down on its cradle
+    THE HOOK: a New York street at dusk and, standing on the sidewalk, one
+    enormous red rotary desk phone ringing off the hook — the receiver leaps
+    off its cradle on every ring and rings of sound roll out over the city.
+    Data is already there in frame one, shocked; he climbs up the phone's
+    body and grabs the receiver in his own two hands, wrestling it down,
+    and it keeps jumping under him. The noise share is the only number."""
+    rows = [(str(l), float(v)) for l, v in pts]
+    noise = next((v for l, v in rows if "noise" in l.lower()),
+                 min(v for _, v in rows))
+
+    landscape(cr, t, "town")
+
+    # the ring: a jump of the receiver, then a short hold, again and again
+    period = 0.75
+    ph = (t % period) / period
+    ring_i = int(t / period)
+    bump = math.sin(math.pi * seg(ph, 0.0, 0.42))
+    held = ease(seg(u, 0.34, 0.42))
+    lift = bump * (95 - 45 * held)
+    tilt = bump * (0.13 - 0.06 * held) * (1 if ring_i % 2 == 0 else -1)
+
+    HCX, HCY, HL = 540, 1040, 540
+    hcx, hcy = HCX, HCY - lift
+
+    # rings of sound rolling out over the street from the receiver
+    for j in range(3):
+        q = ((t / period) + j / 3.0) % 1.0
+        r = 140 + 560 * q
+        cr.set_source_rgba(*_c((250, 246, 236), 0.75 * (1 - q)))
+        cr.set_line_width(16 * (1 - 0.6 * q))
+        cr.arc(hcx, hcy - 40, r, math.pi * 1.08, math.pi * 1.92)
+        cr.stroke()
+
+    # the phone body, three-quarter, on the sidewalk
+    BX0, BX1, BASE, BH = 150, 900, 1440, 340
+    cast_shadow(cr, BX0, BX1, BASE, length=320, a=0.32)
+    contact_shadow(cr, (BX0 + BX1) / 2, BASE + 4, BX1 - BX0 + 80, a=0.42)
+    box(cr, BX0, BASE, BX1 - BX0, BH, (196, 38, 36), depth=120, finish="gloss")
+    # the rotary dial on its face
+    DCX, DCY = 510, BASE - BH / 2
+    disc(cr, DCX, DCY, 128, (232, 226, 214), finish="gloss")
+    for i in range(10):
+        a = math.pi * 0.62 + i * (math.pi * 1.5 / 9)
+        disc(cr, DCX + 88 * math.cos(a), DCY + 88 * math.sin(a), 20,
+             (60, 56, 58), finish="gloss")
+    disc(cr, DCX, DCY, 46, (196, 38, 36), finish="gloss")
+    # the finger stop
+    cr.move_to(DCX + 100, DCY + 70)
+    cr.line_to(DCX + 132, DCY + 100)
+    cr.set_source_rgba(*_c((70, 70, 76)))
+    cr.set_line_width(10)
+    cr.stroke()
+    # the cradle prongs on top
+    for px in (370, 690):
+        cylinder(cr, px, BASE - BH - 8, 44, 46, (170, 30, 30), finish="gloss")
+
+    # the curly cord, from the receiver end down off the side toward the camera
+    ex, ey = _hs_world(hcx, hcy, tilt, HL / 2 - 40, 30)
+    sx_, sy_ = BX1 + 20, BASE - 140
+    cr.set_source_rgba(*_c((150, 26, 28)))
+    cr.set_line_width(9)
+    cr.move_to(ex, ey)
+    cr.curve_to(ex + 120, ey + 60, sx_ + 60, sy_ - 120, sx_, sy_)
+    cr.stroke()
+    for i in range(16):
+        f_ = i / 15.0
+        cx_ = sx_ + 60 * f_ + 12 * math.sin(f_ * 6)
+        cy_ = sy_ + (H + 40 - sy_) * f_
+        cr.save()
+        cr.translate(cx_, cy_)
+        cr.scale(1.0, 0.55)
+        cr.arc(0, 0, 22 + 26 * f_, 0, 2 * math.pi)
+        cr.restore()
+        cr.set_source_rgba(*_c((168, 30, 30)))
+        cr.set_line_width(8 + 8 * f_)
+        cr.stroke()
+
+    # the receiver, leaping off its cradle
+    _hs_draw(cr, hcx, hcy, HL, tilt, (206, 42, 40))
+
+    foreground(cr, "town")
+    vignette(cr, a=0.3)
+
+    # Data: shocked on the sidewalk, climbs the phone, wrestles the receiver
+    climb = ease(seg(u, 0.1, 0.34))
+    fx = 110 + 160 * climb
+    fy = 1440 - (BH + 2) * climb
+    if u < 0.1:
+        host("shock", fx, fy, 230)
+    elif u < 0.36:
+        host("climb", fx, fy, 230)
+    elif u < 0.9:
+        h1 = _hs_world(hcx, hcy, tilt, -HL / 2 + 70, -12)
+        h2 = _hs_world(hcx, hcy, tilt, -HL / 2 + 115, -22)
+        host("grip", fx, fy, 230, hands=[h1, h2], lower="brace", expr="strain")
+    else:
+        host("shock", fx, fy, 230)
+
+    fit_readout(cr, f"{int(round(noise))}%", "of New York's 311 complaints are noise",
+                80, 520, a=ease(seg(u, 0.0, 0.08)), size=130)

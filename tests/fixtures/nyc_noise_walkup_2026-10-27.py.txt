@@ -1,0 +1,235 @@
+# scene standard: 2026-10-16.2
+def scene(cr, t, u, pts, host):
+    """HERO: a tall New York apartment block
+    SUBSTANCE: blaring sound waves
+    CAUSE: Data shoves a giant loudspeaker up to the block and its noise floods the lower floors
+    The apartment block stands for every complaint the city takes: a
+    brick New York walk-up with fire escapes and a water tower on the roof,
+    on a real street under a far skyline. Shove by shove, Data rolls a
+    huge loudspeaker up the sidewalk to the building, and the closer it
+    gets the higher its sound waves wash up the facade: pale rings of
+    sound rolling over the windows, which light up and blare, until
+    exactly the noise share of the floors is drowned in it. The sound
+    keeps its own look (rings of air), and only a bracket down the
+    building's edge wears the accent, so the cut sits on the building
+    itself. Done by 0.62 and held: the speaker keeps blaring and Data
+    keeps his hands on it."""
+    rows = [(str(l), float(v)) for l, v in pts]
+    tot = sum(v for _, v in rows) or 1.0
+    noise = next((r for r in rows if "noise" in r[0].lower()), None)
+    if noise is None:
+        noise = min(rows, key=lambda r: r[1])
+    rest_lab = next((r[0] for r in rows if r is not noise), "Everything else")
+    share = noise[1] / tot
+
+    n = 3
+    a0, a1 = 0.06, 0.62
+    span = (a1 - a0) / n
+    k = int(clamp((u - a0) / span, 0, n - 0.001))
+    f = clamp((u - a0 - k * span) / span)
+    mv = ease(seg(f, 0.08, 0.72))
+    step = 0.0 if u < a0 else (k + mv) / n
+    done = u >= a1
+    if done:
+        step = 1.0
+    fill = share * step
+
+    landscape(cr, t, "town")
+
+    # the neighbours: a far skyline of blocks down the street, under haze
+    far = [(-40, 150, 520), (130, 300, 620), (700, 860, 560), (850, 1010, 680), (990, 1140, 480)]
+    for i, (x0, x1, hh) in enumerate(far):
+        fb = building(cr, x0, x1, 1300, hh, [(150, 132, 120), (128, 120, 118), (160, 140, 124)][i % 3],
+                      roof="flat", boards=False)
+        for r in range(int(hh // 70)):
+            for c in range(3):
+                cr.rectangle(fb["x0"] + 14 + c * (x1 - x0 - 20) / 3, fb["top"] + 24 + r * 70,
+                             (x1 - x0) / 3 - 26, 34)
+                cr.set_source_rgba(*_c((84, 92, 108), 0.8))
+                cr.fill()
+    haze(cr, 500, 1310, (206, 210, 220), a=0.5)
+
+    # the sidewalk and the street running to the camera
+    cr.rectangle(0, 1400, W, 110)
+    solid(cr, (176, 172, 164), edge=False)
+    for i in range(9):
+        cr.set_source_rgba(*_c((130, 126, 120)))
+        cr.set_line_width(3)
+        cr.move_to(i * 140, 1400)
+        cr.line_to(i * 140 - 40, 1510)
+        cr.stroke()
+    cr.rectangle(0, 1500, W, 22)
+    solid(cr, (150, 146, 140))
+    vgrad(cr, [(0, (70, 72, 78)), (1, (46, 48, 54))], 1522, H)
+    for i in range(6):
+        cr.rectangle(60 + i * 190, 1700, 110, 14)
+        cr.set_source_rgba(*_c((236, 200, 90)))
+        cr.fill()
+
+    # the apartment block: the whole of the city's complaints
+    X0, X1, BASE, WH = 200, 720, 1440, 700
+    cast_shadow(cr, X0, X1 + 120, BASE, length=340, a=0.32)
+    contact_shadow(cr, (X0 + X1) / 2 + 40, BASE + 4, X1 - X0 + 160, a=0.4)
+    b = building(cr, X0, X1, BASE, WH, (164, 86, 64), roof="flat", boards=False)
+    top, base = b["top"], b["base"]
+    fx0, fx1 = b["x0"], b["x1"]
+    fw = fx1 - fx0
+    hgt = base - top
+
+    # the rooftop water tower — a New York tell
+    tx = fx1 - 140
+    cr.set_source_rgba(*_c((60, 48, 40)))
+    cr.set_line_width(6)
+    for lx in (tx + 8, tx + 38, tx + 72):
+        cr.move_to(lx, top)
+        cr.line_to(lx, top - 40)
+    cr.stroke()
+    cylinder(cr, tx, top - 40, 80, 80, (140, 104, 72))
+    cr.move_to(tx - 6, top - 118)
+    cr.line_to(tx + 40, top - 150)
+    cr.line_to(tx + 86, top - 118)
+    cr.close_path()
+    solid(cr, (96, 76, 60))
+
+    # cornice along the roof line
+    cr.rectangle(fx0 - 10, top, fw + 20, 22)
+    solid(cr, (206, 196, 180))
+
+    cut = base - (hgt - 22) * fill
+
+    floors, cols = 9, 4
+    gx = fw / cols
+    gy = (hgt - 60) / floors
+    for r in range(floors):
+        for c in range(cols):
+            wx = fx0 + c * gx + gx * 0.24
+            wy = top + 40 + r * gy + gy * 0.16
+            ww, wh = gx * 0.52, gy * 0.6
+            loud = wy + wh > cut
+            if loud:
+                glow(cr, wx + ww / 2, wy + wh / 2, ww, (255, 200, 120), 0.55)
+            cr.rectangle(wx - 5, wy - 8, ww + 10, 8)          # stone lintel
+            solid(cr, (214, 204, 188), rim=False)
+            cr.rectangle(wx, wy, ww, wh)
+            solid(cr, (255, 214, 140) if loud else (66, 80, 100), finish="glass")
+            cr.set_source_rgba(*_c((236, 230, 220)))
+            cr.set_line_width(4)
+            cr.move_to(wx, wy + wh / 2)
+            cr.line_to(wx + ww, wy + wh / 2)
+            cr.stroke()
+    # fire escapes zig-zagging down the left two columns
+    cr.set_source_rgba(*_c((34, 34, 40)))
+    for r in range(floors - 1):
+        py = top + 40 + (r + 1) * gy - 4
+        ex0, ex1 = fx0 + gx * 0.1, fx0 + gx * 1.9
+        cr.set_line_width(7)
+        cr.move_to(ex0, py)
+        cr.line_to(ex1, py)
+        cr.stroke()
+        cr.set_line_width(3)
+        cr.move_to(ex0, py - 30)
+        cr.line_to(ex1, py - 30)
+        for j in range(9):
+            xx = ex0 + (ex1 - ex0) * j / 8
+            cr.move_to(xx, py)
+            cr.line_to(xx, py - 30)
+        cr.stroke()
+        cr.set_line_width(5)
+        if r % 2 == 0:
+            cr.move_to(ex0 + 30, py)
+            cr.line_to(ex1 - 40, py + gy)
+        else:
+            cr.move_to(ex1 - 30, py)
+            cr.line_to(ex0 + 40, py + gy)
+        cr.stroke()
+
+    # the loudspeaker's position, shoved up the sidewalk to the block
+    SY = 1490
+    sx = 820 - 200 * step
+    SW, SH = 170, 340
+    cx, cy = sx, SY - 180
+    power = 0.35 + 0.65 * clamp(step * 2.5)
+
+    # THE SOUND washing up the facade: rings of air rolling out of the
+    # speaker over the lower floors, only as high as the noise has reached
+    if fill > 0.002:
+        cr.save()
+        cr.rectangle(fx0, cut, fw, base - cut)
+        cr.clip()
+        cr.set_source_rgba(*_c((255, 244, 220), 0.18))
+        cr.rectangle(fx0, cut, fw, base - cut)
+        cr.fill()
+        for i in range(6):
+            r0 = 90 + ((t * 300 + i * 120) % 720)
+            a = 0.9 * (1 - (r0 - 90) / 720)
+            cr.set_source_rgba(*_c((40, 26, 24), 0.35 * a))
+            cr.set_line_width(24)
+            cr.arc(cx, cy, r0, math.pi * 0.55, math.pi * 1.45)
+            cr.stroke()
+            cr.set_source_rgba(*_c((255, 240, 210), a))
+            cr.set_line_width(13)
+            cr.arc(cx, cy, r0, math.pi * 0.55, math.pi * 1.45)
+            cr.stroke()
+        cr.restore()
+        # the share in the accent: a bracket down the block's edge, and the line
+        cr.rectangle(fx0 - 34, cut, 20, base - cut)
+        solid(cr, P["accent2"])
+        cr.set_source_rgba(*_c(P["accent2"]))
+        cr.set_line_width(7)
+        cr.move_to(fx0 - 34, cut)
+        cr.line_to(fx1 + 20, cut)
+        cr.stroke()
+        if base - cut > 80:
+            text(cr, noise[0].upper(), fx0 + fw * 0.62, cut + 56, 46, look.INK,
+                 face="bold", anchor="center")
+    la = ease(seg(u, a1 - 0.06, a1))
+    if la > 0:
+        text(cr, rest_lab.upper(), fx0 + fw / 2, top + hgt * 0.42, 44, look.INK,
+             face="bold", anchor="center", alpha=la)
+
+    # the loudspeaker itself, its own waves blasting toward the block
+    for i in range(4):
+        r0 = 80 + ((t * 260 + i * 150) % 600)
+        a = 0.85 * (1 - (r0 - 80) / 600) * power
+        cr.set_source_rgba(*_c((40, 26, 24), 0.35 * a))
+        cr.set_line_width(26)
+        cr.arc(cx, cy, r0, math.pi * 0.7, math.pi * 1.3)
+        cr.stroke()
+        cr.set_source_rgba(*_c((255, 236, 200), a))
+        cr.set_line_width(16)
+        cr.arc(cx, cy, r0, math.pi * 0.7, math.pi * 1.3)
+        cr.stroke()
+    contact_shadow(cr, sx + SW / 2, SY + 4, SW + 60, a=0.45)
+    box(cr, sx, SY, SW, SH, (46, 46, 54), depth=44, finish="gloss")
+    for (yy, rr) in ((SY - 250, 50), (SY - 110, 66)):
+        disc(cr, sx + SW / 2, yy, rr + 8, (30, 30, 36), finish="matte")
+        disc(cr, sx + SW / 2, yy, rr, (84, 84, 96), finish="metal")
+        disc(cr, sx + SW / 2, yy, rr * 0.34, (26, 26, 32), finish="gloss")
+    for wx in (sx + 26, sx + SW - 26):
+        disc(cr, wx, SY - 4, 15, (40, 40, 44), finish="metal")
+
+    # right by the camera: the street's trash cans
+    contact_shadow(cr, 125, 1804, 170, a=0.4)
+    cylinder(cr, 60, 1800, 130, 170, (96, 110, 96), finish="metal")
+    contact_shadow(cr, 950, 1864, 170, a=0.4)
+    cylinder(cr, 885, 1860, 130, 160, (88, 100, 90), finish="metal")
+    foreground(cr, "town")
+    vignette(cr, a=0.28)
+
+    hx, hy = sx + SW + 70, SY
+    if u < a0:
+        host("point", hx, hy, 230)
+    elif u < a1 + 0.04:
+        host("shove", hx, hy, 230, beat=k)
+    elif u < 0.92:
+        host("shove", hx, hy, 230, beat=n)
+    else:
+        host("shock", hx, hy, 230)
+
+    if done:
+        fit_readout(cr, f"{int(round(share * 100))}%",
+                    "of all New York City complaints are about noise",
+                    80, 520, size=130)
+    else:
+        fit_readout(cr, "NYC complaints", "everything New Yorkers phone in",
+                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)
