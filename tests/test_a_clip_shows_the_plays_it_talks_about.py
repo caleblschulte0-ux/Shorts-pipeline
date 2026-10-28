@@ -15,7 +15,7 @@ from unittest import mock
 
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
-sys.path.insert(0, str(REPO / "scripts"))
+sys.path.append(str(REPO / "scripts"))
 
 from scripts import sports_samples  # noqa: E402
 from third_capture import author  # noqa: E402
