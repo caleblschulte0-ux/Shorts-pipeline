@@ -16449,13 +16449,50 @@
       "ts": "2026-10-28T12:18:31.962880+00:00"
     },
     "clip-20261028-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jasontheween/clip/PatientSavageSquirrelItsBoshyTime-RyxwjQeXVLCTawOv",
-      "story_key": null,
-      "streamer": "jasontheween",
+      "url": "https://youtube.com/shorts/74NIWQg9Zgo",
       "title": "Jasontheween Eats Shit And Can't Believe How He Fell",
       "kind": "twitch_clip",
-      "ts": "2026-10-28T12:20:29.084255+00:00",
+      "ts": "2026-10-28T12:20:38.562277+00:00",
+      "uploaded_at": "2026-10-28T12:20:38.562294+00:00",
+      "publish_at": "2026-10-29T08:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261028-jasontheween-eats-shit-and-can-t-believe-how-he--d3048d63",
+        "tiktok": "queued for 2026-10-29T08:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jasontheween/clip/PatientSavageSquirrelItsBoshyTime-RyxwjQeXVLCTawOv",
+      "streamer": "jasontheween",
+      "series": "fail",
+      "hook": "Jason just fell on stream \ud83d\udc80",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1816,
+      "banger": 0.65,
+      "cut": {
+        "start": 2.4,
+        "end": 11.7
+      },
+      "director_cut": true
+    },
+    "rejected-piliablehonorablezucchiniyoudontsay-ecgubxtyr3mov7vs": {
+      "source_url": "https://www.twitch.tv/sodapoppin/clip/PiliableHonorableZucchiniYouDontSay-ECGUbXtyR3mov7vs",
+      "streamer": "sodapoppin",
+      "title": "WTF is going on??????????",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Loot chatter, no visible event)",
+      "ts": "2026-10-28T12:21:33.963114+00:00"
+    },
+    "clip-20261028-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/agent00/clip/SpoopyKindStaplePraiseIt-lf26fEnbgV-_1MfH",
+      "story_key": null,
+      "streamer": "agent00",
+      "title": "Agent00 Finally Reveals His Brand New R34 GTR After Wanting It His Whole Life",
+      "kind": "twitch_clip",
+      "ts": "2026-10-28T12:28:38.247226+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
