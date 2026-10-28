@@ -297,7 +297,8 @@ def main() -> int:
         try:
             row["video_url"] = rt._guarded_upload(
                 title=meta["title"], topic=row["topic"], fmt=FORMAT,
-                publish_at=publish_at, do_upload=_do_upload)
+                publish_at=publish_at, do_upload=_do_upload,
+                extra={"songs": made.get("songs")})
         except rt.DuplicateUpload as e:
             row["skipped"] = f"duplicate: {e}"
             continue

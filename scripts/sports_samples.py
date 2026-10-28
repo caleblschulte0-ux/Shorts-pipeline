@@ -407,6 +407,12 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
                 "meta": meta}
     if meta and isinstance(meta.get("edit"), dict):
         trim_front(meta["edit"], words, dur)
+        # NO MUSIC UNDER THE CLIP (operator, 2026-10-28: "It played loud
+        # music over the guy talking the whole time ... so annoying"). A
+        # sports clip is someone talking; the sad song or hype beat the
+        # author asks for keeps its look and loses its sound. A song plays
+        # only AFTER the clip, over the montage (third_capture/outro.py).
+        meta["edit"]["music"] = False
     o = ((meta or {}).get("edit") or {}).get("outro")
     if isinstance(o, dict):
         perm = str(c.get("permalink") or "")
@@ -422,7 +428,18 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
                                      **({"line": "top"} if line_top else {})))
     return {"meta": meta, "hook": hook,
             "ledger": {k: led.get(k) for k in ("duration", "moves", "mood",
-                                               "shot_plan") if k in led}}
+                                               "shot_plan", "outro")
+                       if k in led},
+            "songs": songs_in(led)}
+
+
+def songs_in(led: dict) -> list[str]:
+    """Every shelf song a render plays, so a song that gets a video
+    blocked can come off the shelf (funnel/songs.py `blocked`)."""
+    out = [((led or {}).get("outro") or {}).get("song")]
+    out += [re.sub(r".*\((\w+)\).*", r"\1", m) for m in
+            (led or {}).get("moves") or [] if "(" in m and "silent" not in m]
+    return [s for s in dict.fromkeys(out) if s]
 
 
 def main() -> int:

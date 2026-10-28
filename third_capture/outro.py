@@ -56,7 +56,10 @@ PER_CLIP = 3
 VERSUS = re.compile(r"\b(vs\.?|versus|against|v\.)\s", re.I)
 XFADE_S = 1.0           # the clip's last frame dissolves into the montage
 PRELAP_S = 5.0          # the song starts under the clip's last words
-PRELAP_GAIN = 0.35      # ... quietly, under the voice, until the cut
+#: ... well under the voice, until the cut. It was 0.35 (about 9 dB down),
+#: which a phone speaker plays as a song over the person talking (operator,
+#: 2026-10-28: "loud music over the guy talking ... so annoying").
+PRELAP_GAIN = 0.15
 TAIL_FADE_S = 1.2       # the song and the picture fade out together
 #: The LAST shot plays the moment out instead of stopping at SHOT_S
 #: (operator, 2026-10-21: *"why did we cut the clip at the end? ... At the
