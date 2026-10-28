@@ -116,12 +116,15 @@ def ready(items: list[dict], work: Path, title: str = "") -> list[dict]:
     out = []
     for it in items:
         hit = find_footage.find(it["who"], it["look"], secs=it["secs"],
-                                work=work, title=title)
+                                work=work, title=title,
+                                avoid=[{"url": o["url"], "from_s": o["from_s"]}
+                                       for o in out])
         print(f"[cut-in] {it['who']!r} @{it['at']}: "
               f"{'cut in' if hit else 'no checked footage — not cut in'}",
               flush=True)
         if hit:
             out.append({**it, "mp4": hit["path"], "url": hit["url"],
+                        "from_s": hit.get("from_s"),
                         "secs": min(it["secs"], hit.get("secs") or it["secs"])})
     return out
 

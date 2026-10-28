@@ -64,3 +64,27 @@ class AClipWithNoCutInIsAsked(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class NeverTheSamePlayTwice(unittest.TestCase):
+    def test_the_second_cut_in_avoids_the_first(self):
+        from third_capture import cut_in
+        from funnel import find_footage
+        calls = []
+
+        def fake(who, look, **kw):
+            calls.append(kw.get("avoid"))
+            return {"path": f"/x{len(calls)}.mp4", "url": "u", "from_s": 40.0,
+                    "secs": 3.2}
+        items = [{"who": "Cam Skattebo", "look": "a", "at": 5, "secs": 3.2},
+                 {"who": "Cam Skattebo", "look": "b", "at": 15, "secs": 3.2}]
+        with mock.patch.object(find_footage, "find", side_effect=fake):
+            got = cut_in.ready(items, Path("/tmp"))
+        self.assertEqual(calls[0], [])
+        self.assertEqual(calls[1], [{"url": "u", "from_s": 40.0}])
+        self.assertEqual(len(got), 2)
+
+    def test_find_skips_an_avoided_shot_and_names_each_cut_apart(self):
+        src = (REPO / "funnel" / "find_footage.py").read_text()
+        self.assertIn("for a in avoid or []", src)
+        self.assertIn('_{start:.0f}_cut.mp4', src)

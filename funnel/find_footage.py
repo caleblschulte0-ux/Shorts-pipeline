@@ -176,9 +176,12 @@ def cut(video: Path, start: float, secs: float, out: Path) -> Path | None:
 
 
 def find(who: str, look: str = "", *, secs: float = SECS,
-         work: Path | str = ".", title: str = "") -> dict | None:
+         work: Path | str = ".", title: str = "",
+         avoid: list[dict] | None = None) -> dict | None:
     """A CHECKED cut of footage showing `look` (who it is of: `who`):
-    {"path", "url", "title", "from_s"}, or None. Never raises."""
+    {"path", "url", "title", "from_s"}, or None. Never raises. `avoid`
+    are cuts this video already shows ({"url", "from_s"}): never the same
+    shot twice (Skattebo's two cut-ins, 2026-10-28, were one play)."""
     who = str(who or "").strip()
     look = str(look or "").strip() or who
     if not who:
@@ -217,12 +220,16 @@ def find(who: str, look: str = "", *, secs: float = SECS,
                     s0, s1 = shot_around(video, at)
                     if s1 - s0 < MIN_SHOT:
                         continue
+                    if any(a.get("url") == v["url"]
+                           and s0 - secs <= float(a.get("from_s") or 0)
+                           <= s1 + secs for a in avoid or []):
+                        continue
                     # only the shot the brain saw, never the next one
                     start = min(max(s0 + 0.1, at - secs / 2),
                                 max(s0 + 0.1, s1 - 0.1 - secs))
                     length = min(secs, s1 - 0.1 - start)
                     clip = cut(video, start, length,
-                               work / f"foot_{tag}_{n}_cut.mp4")
+                               work / f"foot_{tag}_{n}_{start:.0f}_cut.mp4")
                     if clip:
                         print(f"[footage] {who!r}: {v['title'][:60]!r} "
                               f"@{start:.1f}s", flush=True)
