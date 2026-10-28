@@ -3,146 +3,6 @@
     {
       "date": "20261020",
       "dry_run": false,
-      "ts": "2026-10-20T11:34:12+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 15,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 139,
-        "with_retention": 122,
-        "with_curve": 15,
-        "fetched_at": "2026-10-20T08:46:16.329518+00:00"
-      },
-      "brain": {
-        "ok": 1,
-        "fail": 0,
-        "limited_at": "2026-10-20T11:34:12+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261020-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261020-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 7.8
-        },
-        {
-          "slug": "clip-20261020-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261020-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261020-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261020-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
-      "date": "20261020",
-      "dry_run": false,
       "ts": "2026-10-20T11:36:35+00:00",
       "feedback": {
         "snapshot": true,
@@ -4809,6 +4669,273 @@
             }
           },
           "took_s": 0.0
+        }
+      ]
+    },
+    {
+      "date": "20261027",
+      "dry_run": false,
+      "ts": "2026-10-28T00:49:00+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 17,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 137,
+        "with_retention": 117,
+        "with_curve": 14,
+        "fetched_at": "2026-10-27T16:30:32.644707+00:00"
+      },
+      "brain": {
+        "ok": 26,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:sypherpk": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261027-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261027-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "Physical knockdown, likely visible",
+              "blind": false
+            },
+            "content": {
+              "score": 0.72,
+              "why": "Boxing knockdown replay, ref steps in",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Stableronaldo Reacts To A Knockdown And Says It Was Crazy"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "The word captions sit directly under the hook line and touch it in a few frames (0.6s to 4.1s, 13.4s), so the bottom tex",
+                "A stream-chat or overlay sliver shows at the left edge in several frames.",
+                "The subject is sometimes partly cropped or off-centre, for example at 1.8s and 2.9s."
+              ]
+            }
+          },
+          "took_s": 171.4
+        },
+        {
+          "slug": "clip-20261027-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "closeup",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.62,
+              "why": "Response drama, big views, vague",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Apology talk, no visible event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Atrioc Says Some People Should Let Him Play A Game Again"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Word captions are clipped at the left and right frame edges in many frames, e.g. 'is dependent', 'aven't earned', 'or in",
+                "The crop is very tight, so the top of the head is cut off in several frames",
+                "The static hook line sits mid-chest all the way through, which is slightly redundant"
+              ]
+            }
+          },
+          "took_s": 231.2
+        },
+        {
+          "slug": "clip-20261027-4",
+          "ok": true,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 119,
+                "refused_shown": 11,
+                "scouted": [],
+                "vod_arcs": 308,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2912,
+                "pool_with_vod": 2000,
+                "arc_sizes": [
+                  2,
+                  6,
+                  6,
+                  6,
+                  2,
+                  3,
+                  6,
+                  4,
+                  5,
+                  2
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "clix@momentgeniuscourageousjaguarbudblast-eqcr2aq92gulydq6",
+                  "outcome": "already_refused",
+                  "why": "2026-10-25: director judged: not a story \u2014 The popular clip is a 9-second moment where a woman off to the side holds up a dark hoodie while Clix claps. The dialogue is garb"
+                },
+                {
+                  "cluster": "xqc@momentmagnificentbelovedconsoletbtacoright-li6ntmrbejkcp",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                }
+              ]
+            }
+          },
+          "took_s": 769.2
+        },
+        {
+          "slug": "clip-20261027-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "likely ankle-breaker highlight, vague ti",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "Ankle-breaker crossover, visible hype re",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Rayasianboy Breaks His Opponent's Ankles And Can't Believe It"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "Hook card sits over the lower part of the frame in every shot, but it never covers a face or the main action",
+                "Early frames (0.6s, 3.0s) show the subject small and far away",
+                "Word captions land close to the hook text and the stream's own scoreboard, so the bottom third is a bit crowded"
+              ]
+            }
+          },
+          "took_s": 160.6
+        },
+        {
+          "slug": "clip-20261027-6",
+          "ok": false,
+          "error": "RuntimeError: content gate: transcript-aware score 0.30 < 0.35 (crowd walk, greeting, no clear event)",
+          "judges": {
+            "banger": {
+              "score": 0.6,
+              "why": "Fan interaction, likely visible reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.3,
+              "why": "crowd walk, greeting, no clear event",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "reject"
+            }
+          },
+          "took_s": 31.5
         }
       ]
     }

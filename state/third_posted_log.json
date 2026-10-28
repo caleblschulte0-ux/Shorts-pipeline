@@ -16210,14 +16210,59 @@
       "replay_count": 0
     },
     "clip-20261027-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/rayasianboy/clip/PreciousMushyMetalEleGiggle-Snp7TxV5L2fEPWyp",
-      "story_key": null,
-      "streamer": "rayasianboy",
+      "url": "https://youtube.com/shorts/qvxK4K25Jlk",
       "title": "Rayasianboy Breaks His Opponent's Ankles And Can't Believe It",
       "kind": "twitch_clip",
-      "ts": "2026-10-28T00:47:40.075427+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-28T00:47:47.035153+00:00",
+      "uploaded_at": "2026-10-28T00:47:47.035168+00:00",
+      "publish_at": "2026-10-28T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261028-rayasianboy-breaks-his-opponent-s-ankles-and-can-d42540e4",
+        "tiktok": "queued for 2026-10-28T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/PreciousMushyMetalEleGiggle-Snp7TxV5L2fEPWyp",
+      "streamer": "rayasianboy",
+      "series": "win",
+      "hook": "Rayasianboy breaks his ankles \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2351,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 14.5
+      },
+      "director_cut": true
+    },
+    "rejected-piercingpolishedwrenchsmoocherz-4elrsisxlk6zxk0u": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/PiercingPolishedWrenchSmoocherZ-4ElrSisXLK6ZXK0U",
+      "streamer": "caseoh_",
+      "title": "his worst jump scare",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source too dark (avg luma 21/255) \u2014 unwatchable IRL/night footage",
+      "ts": "2026-10-28T00:47:59.832744+00:00"
+    },
+    "rejected-magnificentbelovedconsoletbtacoright-li6ntmrbejkcpit9": {
+      "source_url": "https://www.twitch.tv/xqc/clip/MagnificentBelovedConsoleTBTacoRight-li6NtmRBejkcPit9",
+      "streamer": "xqc",
+      "title": "NIKOLA TESLA",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Static reading of drama posts, no event)",
+      "ts": "2026-10-28T00:48:28.653758+00:00"
+    },
+    "rejected-spoopygrotesqueclambuddhabar-5oe_xwknbr-jw32b": {
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/SpoopyGrotesqueClamBuddhaBar-5Oe_xWknBR-Jw32b",
+      "streamer": "ishowspeed",
+      "title": "number one fan",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (crowd walk, greeting, no clear event)",
+      "ts": "2026-10-28T00:49:00.172387+00:00"
     }
   }
 }
