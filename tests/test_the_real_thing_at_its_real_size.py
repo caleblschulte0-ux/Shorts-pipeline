@@ -120,6 +120,29 @@ class TheNewStandardDoesNotCostAPostingDay(unittest.TestCase):
         self.assertNotIn("standard_of(code) != STANDARD", src)
 
 
+class AGripIsPlacedNotGuessed(unittest.TestCase):
+    """The new hook's drawings missed Data's reach by 7-21px in three of
+    fifteen tries; the kit now says where to stand him."""
+
+    def test_stand_at_resolves_in_the_kit(self):
+        self.assertIn("stand_at", SA.KIT_NAMES)
+        self.assertTrue(callable(SA.kit_globals()["stand_at"]))
+        self.assertIn("stand_at(hands, foot_y", SA.build_prompt("t", "x", "y", PTS, ""))
+
+    def test_where_it_stands_him_both_hands_reach(self):
+        from data_learning import subject_scenes as SS
+        hands = [(700.0, 1300.0), (760.0, 1290.0)]
+        x = SS.stand_at(hands, 1500.0, 330.0, 540.0)
+        self.assertIsNotNone(x)
+        self.assertEqual(SA.grip_problems([("grip", hands, x, 1500.0, 330.0)]), [])
+        self.assertTrue(SA.grip_problems([("grip", hands, 540.0, 1500.0, 330.0)]))
+
+    def test_out_of_reach_from_the_floor_says_so(self):
+        from data_learning import subject_scenes as SS
+        self.assertIsNone(SS.stand_at([(700.0, 900.0), (760.0, 880.0)],
+                                      1500.0, 330.0))
+
+
 class TheGiantPhoneIsGone(unittest.TestCase):
     def test_no_saved_scene_is_the_giant_phone(self):
         cfg = json.loads((ROOT / "data_learning" / "niche.config.json").read_text())

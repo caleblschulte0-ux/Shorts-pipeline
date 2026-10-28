@@ -755,6 +755,24 @@ def dog(cr, x, y, s, t, i=0, flip=False, coat="tan", collar=None, tag=None):
 #     hands = lever(cr, x, y, lever_pull(f))
 #     host("grip", gx, foot_y, h, hands=hands, lower="follow")
 
+def stand_at(hands, foot_y, h, x=None, slack=4.0):
+    """The x to stand Data at, feet on `foot_y`, `h` px tall, so BOTH his
+    hands reach `hands` ([(x, y), (x, y)], the grip's points) — the one
+    nearest `x` when given. None when no spot on that floor reaches them:
+    raise his feet (a crate, a ladder, a step) or bring the points down.
+    Grips missed his reach by 7-21px in three of fifteen drawings of one
+    hook (2026-10-28); measured here with the rig's own arm, never guessed."""
+    from data_learning import mascot_director as _md
+    hx = sum(float(p[0]) for p in hands) / len(hands)
+    want = hx if x is None else float(x)
+    ok = []
+    for k in range(-int(h), int(h) + 1, 2):
+        cx = hx + k
+        if _md.grip_wrists(hands, cx, foot_y, h)[2] * h / _md.RIG_TALL <= slack:
+            ok.append(cx)
+    return min(ok, key=lambda c: abs(c - want)) if ok else None
+
+
 def lever_pull(f, on=(0.0, 0.2), off=(0.8, 0.96)):
     """One pull of a lever over a step's progress `f` (0..1): eased down
     across `on`, held down, eased back up across `off`. 0 = up, 1 = down.
