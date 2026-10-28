@@ -104,6 +104,20 @@ class TheGameItselfGetsNoCutIn(unittest.TestCase):
                 Path("/tmp/raw.mp4"), {}, 30.0, Path("/tmp/w")))
 
 
+class NeverSomeoneElsesEdit(unittest.TestCase):
+    def test_a_phone_edit_is_skipped_and_the_judge_refuses_captions(self):
+        from funnel import find_footage
+        self.assertIn("NOT a fan edit", find_footage.ACTION)
+        self.assertIn("if portrait(video):",
+                      (REPO / "funnel" / "find_footage.py").read_text())
+        fake = mock.Mock(stdout="1080,1920\n")
+        with mock.patch("subprocess.run", return_value=fake):
+            self.assertTrue(find_footage.portrait(Path("/x.mp4")))
+        fake.stdout = "1920,1080\n"
+        with mock.patch("subprocess.run", return_value=fake):
+            self.assertFalse(find_footage.portrait(Path("/x.mp4")))
+
+
 class NeverTheSamePlayTwice(unittest.TestCase):
     def test_the_second_cut_in_avoids_the_first(self):
         from third_capture import cut_in

@@ -40,7 +40,9 @@ SCENE = 0.3                # ffmpeg scene score that counts as a new shot
 #: "there was no basketball clips in there. There was maybe one").
 ACTION = ("real game footage of play on the court or field, the athletes "
           "playing; NOT a studio show, news desk, interview, podcast, press "
-          "conference or someone talking to the camera")
+          "conference or someone talking to the camera; and NOT a fan edit: "
+          "no caption words, circles or arrows laid over the picture (the "
+          "game's own scoreboard is fine)")
 #: A video whose title says it is talk is never downloaded.
 TALK = re.compile(r"\b(react(s|ion|ing)?|podcast|interview|press conference|"
                   r"presser|breaking news|debate|first take|undisputed|"
@@ -76,6 +78,21 @@ def _seconds(path: Path) -> float:
         return float((out.stdout or "0").strip() or 0)
     except Exception:  # noqa: BLE001
         return 0.0
+
+
+def portrait(path: Path) -> bool:
+    """Taller than wide: a phone edit of the play, which carries its own
+    captions ("CAM SKATTEBOO", "TRUCK STICKED" under Skattebo's voice,
+    2026-10-28), never the broadcast."""
+    try:
+        out = subprocess.run(
+            ["ffprobe", "-v", "error", "-select_streams", "v:0",
+             "-show_entries", "stream=width,height", "-of", "csv=p=0",
+             str(path)], capture_output=True, text=True, timeout=30)
+        w, h = (int(x) for x in out.stdout.strip().split(",")[:2])
+        return h > w
+    except Exception:  # noqa: BLE001
+        return False
 
 
 def _has_video(path: Path) -> bool:
@@ -203,6 +220,10 @@ def find(who: str, look: str = "", *, secs: float = SECS,
                 continue
             dur = _seconds(video)
             if dur < secs * 3:
+                continue
+            if portrait(video):
+                print(f"[footage] {who!r}: {v['title'][:50]!r} is a phone "
+                      "edit — skipped", flush=True)
                 continue
             frames = []
             for i, f in enumerate(POINTS):
