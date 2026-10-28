@@ -98,7 +98,9 @@ KIT_NAMES = ("vgrad", "glow", "text", "fit_readout", "by_time", "tree", "stump",
              "dog", "COATS",
              # HE WORKS THE SCENE'S OWN MECHANISM (2026-10-22, "Why is he not
              # pulling the lever down on the tap?"): each returns his hands
-             "lever", "lever_pull", "handwheel")
+             "lever", "lever_pull", "handwheel",
+             # A GRIP IN HIS REACH (2026-10-28): where to stand him for it
+             "stand_at")
 SAFE_BUILTINS = {n: __builtins__[n] if isinstance(__builtins__, dict)
                  else getattr(__builtins__, n)
                  for n in ("range", "len", "min", "max", "abs", "int", "float",
@@ -797,9 +799,13 @@ def grip_problems(grips) -> list[str]:
             break
         over = _md.grip_wrists(pts, x, fy, h)[2] * h / _md.RIG_TALL
         if over > GRIP_SLACK:
+            spot = SS.stand_at(pts, fy, h, x)
+            fix = (f"stand him at x={spot:.0f} (stand_at(hands, foot_y, "
+                   f"height, x) finds it every frame)" if spot is not None else
+                   "no spot on that floor reaches: raise his feet on a crate, "
+                   "a ladder or a step, or bring the points down")
             out.append(f"a grip hand is {over:.0f}px past his reach (Data "
-                       f"{h:.0f}px tall at x={x:.0f}): stand him closer, or "
-                       f"put him on a ladder or a crate under it")
+                       f"{h:.0f}px tall at x={x:.0f}): {fix}")
             break
     return out
 
@@ -1352,7 +1358,9 @@ points, every frame — compute them from the thing you draw (the door's \
 bottom edge as it rises, the cart's handle, the crate's corners) and he \
 lifts, pushes, carries or opens it with his own hands. A hand out of his \
 reach (about 0.48 x height from his shoulder) is refused: move him, or \
-stand him on something.
+stand him on something. Do not guess it: x = stand_at(hands, foot_y, \
+height, x) is the nearest spot where both hands reach (None: raise his \
+feet on a crate or a step, or bring the points down).
 
 THE RULES — every one is checked by code before your scene is used:
 1. The frame IS THE SUBJECT, never a chart. Draw the thing the story is about \
