@@ -1,0 +1,16 @@
+{
+ "slug": "airline-pilot-shortage",
+ "ts": "20261028T184746Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: hook@0.3 through seg1:end: Data stands by the CREW door and waves the whole time while the pilots pile up beside him without him; seg2:mid/end: he stands beside the globe holding a phone to his ear and does not spin it or point to a region. Only in seg3 does he do anything, riding",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "repeated_scene_decorative_mascot",
+  "visible_evidence": "seg1:start/mid/end are almost pixel-identical to the hook: the same 649,000 pilots headline, the same crowd beside the plane, Data waving by the CREW door. The narration says 'on top of hundreds of thousands of technicians and cabin crew', but no technicians or crew appear.",
+  "root_cause": "The hook's scene was carried into beat 0 with no new picture for the beat's own claim, and Data's act is a wave rather than causing the crowd to grow",
+  "repair_goal": "Give seg1 its own shot. Data swings open the CREW hangar door, or waves people through it, and a much larger line of technicians in overalls and cabin crew with rolling bags streams out behind the pilots, so the 'on top of' crowd visibly dwarfs the pilot group. He drives the motion; one headline only."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

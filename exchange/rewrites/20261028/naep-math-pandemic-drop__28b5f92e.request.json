@@ -1,0 +1,157 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "naep-math-pandemic-drop__28b5f92e",
+ "filed": "2026-10-28T18:47:35Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "naep-math-pandemic-drop",
+ "current": {
+  "title": "Why Did US Math Scores Just Drop The Most In 50 Years?",
+  "hook": "Your kid's math scores just fell, and the weakest students lost the most.",
+  "closing": "Kids who fall behind in math now struggle later, so this one costs all of us.",
+  "question": "Did your math skills ever bounce back?",
+  "segments": [
+   {
+    "topic": "US math scores",
+    "say": "Thirteen-year-olds' math scores climbed for decades. Then they slid to 271, nearly back where they started half a century ago."
+   },
+   {
+    "topic": "Who lost math scores",
+    "say": "The weakest students got hit hardest, losing 14 points, far more than average. The gap between kids just got wider."
+   },
+   {
+    "topic": "Math scores still falling",
+    "say": "Five years later, scores haven't bounced back. They've slipped lower, to 270, so kids keep falling behind."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "US math scores",
+   "say": "Thirteen-year-olds' math scores climbed for decades. Then they slid to 271, nearly back where they started half a century ago.",
+   "role": "1 · THE SCORE",
+   "data": {
+    "file": "naep_math_score_trend.json",
+    "unit": "score",
+    "title": "NAEP Long-Term Trend math score, age 13",
+    "points": [
+     {
+      "label": "1973",
+      "value": 266,
+      "period": "1973"
+     },
+     {
+      "label": "2012",
+      "value": 285,
+      "period": "2012"
+     },
+     {
+      "label": "2020",
+      "value": 280,
+      "period": "2020"
+     },
+     {
+      "label": "2023",
+      "value": 271,
+      "period": "2023"
+     },
+     {
+      "label": "2025",
+      "value": 270,
+      "period": "2025"
+     }
+    ],
+    "n_points": 5
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Who lost math scores",
+   "say": "The weakest students got hit hardest, losing 14 points, far more than average. The gap between kids just got wider.",
+   "role": "2 · WHO FELL FURTHEST",
+   "data": {
+    "file": "naep_math_decline_by_percentile.json",
+    "unit": "points lost",
+    "title": "NAEP age-13 math score decline, 2020 to 2023, by performance group",
+    "points": [
+     {
+      "label": "Bottom 10% of students",
+      "value": 14
+     },
+     {
+      "label": "Bottom 25% of students",
+      "value": 12
+     },
+     {
+      "label": "National average",
+      "value": 9
+     }
+    ],
+    "n_points": 3
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Math scores still falling",
+   "say": "Five years later, scores haven't bounced back. They've slipped lower, to 270, so kids keep falling behind.",
+   "role": "3 · NO RECOVERY",
+   "data": {
+    "file": "naep_math_recovery_check.json",
+    "unit": "score",
+    "title": "NAEP age-13 math score, 2020 vs. 2025",
+    "points": [
+     {
+      "label": "2020",
+      "value": 280,
+      "period": "2020"
+     },
+     {
+      "label": "2025",
+      "value": 270,
+      "period": "2025"
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: brain: The premise lacks a single verifiable numeric figure and relies on a vague time span rather than a concrete number."
+ ],
+ "reasons": [
+  "premise: brain: The premise lacks a single verifiable numeric figure and relies on a vague time span rather than a concrete number."
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261028/naep-math-pandemic-drop__28b5f92e.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}
