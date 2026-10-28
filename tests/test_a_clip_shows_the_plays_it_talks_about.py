@@ -36,8 +36,9 @@ class AClipWithNoCutInIsAsked(unittest.TestCase):
         self.assertIn("[5.0] my helmet", b.call_args[0][0])  # fine stamps
         self.assertEqual(edit["broll"][0]["said"], "fined")
 
-    def test_an_author_cut_in_is_kept_and_nothing_asked(self):
-        have = {"broll": [{"who": "x", "look": "x", "at": 3}]}
+    def test_an_author_cut_in_and_picture_are_kept_and_nothing_asked(self):
+        have = {"broll": [{"who": "x", "look": "x", "at": 3}],
+                "show": [{"thing": "x", "kind": "thing", "at": 9}]}
         with mock.patch.object(sports_samples, "_brain") as b:
             sports_samples.broll(C, WORDS, 30.0, have)
         b.assert_not_called()
@@ -54,7 +55,7 @@ class AClipWithNoCutInIsAsked(unittest.TestCase):
     def test_make_asks_and_the_ledger_says_what_was_cut_in(self):
         src = (REPO / "scripts" / "sports_samples.py").read_text()
         self.assertIn('broll(c, words, dur, meta["edit"], raw,', src)
-        self.assertIn('"cut_in")', src)
+        self.assertIn('"cut_in", "shown")', src)
 
     def test_the_author_is_told_their_own_plays_count(self):
         self.assertIn("Their OWN plays count", author.SYSTEM)
@@ -64,6 +65,42 @@ class AClipWithNoCutInIsAsked(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class APostTheyMentionIsShown(unittest.TestCase):
+    """caaleb, 2026-10-28: *"when he says the nfl loves to post me is
+    there any reason we can't get screenshots of their instagram and
+    overlay them?"*"""
+    WORDS = [{"w": w, "s": float(i), "e": i + 0.8} for i, w in enumerate(
+        "you know the NFL loves to post me on their page".split())]
+
+    def test_the_post_lands_on_the_word_that_names_it(self):
+        ans = {"broll": [], "show": [{
+            "thing": "The NFL's Instagram", "kind": "thing", "at": 6.0,
+            "said": "post", "look": "NFL Instagram post of Cam Skattebo"}]}
+        with mock.patch.object(sports_samples, "_brain", return_value=ans):
+            edit = sports_samples.broll(C, self.WORDS, 30.0, {})
+        self.assertEqual(edit["show"][0]["thing"], "The NFL's Instagram")
+        self.assertEqual(edit["show"][0]["at"], 5.8)       # "post" at 6.0
+        self.assertIn("Instagram", edit["show"][0]["look"])
+        self.assertNotIn("broll", edit)
+
+    def test_a_post_said_nowhere_near_is_dropped(self):
+        ans = {"show": [{"thing": "A tweet", "at": 20, "said": "tweet"},
+                        {"thing": "bad", "at": "soon"}]}
+        with mock.patch.object(sports_samples, "_brain", return_value=ans):
+            self.assertNotIn("show", sports_samples.broll(
+                C, self.WORDS, 30.0, {}))
+
+    def test_the_authors_own_cut_ins_are_kept_beside_a_new_picture(self):
+        have = {"broll": [{"who": "x", "look": "x", "at": 3}]}
+        ans = {"broll": [{"who": "y", "look": "y", "at": 9}], "show": [
+            {"thing": "The NFL's Instagram", "at": 6, "said": "post"}]}
+        with mock.patch.object(sports_samples, "_brain", return_value=ans):
+            edit = sports_samples.broll(C, self.WORDS, 30.0, have)
+        self.assertEqual(edit["broll"][0]["who"], "x")
+        self.assertTrue(edit["show"])
+        self.assertIn("instagram", sports_samples.BROLL_SYSTEM.lower())
 
 
 class TheGameItselfGetsNoCutIn(unittest.TestCase):
