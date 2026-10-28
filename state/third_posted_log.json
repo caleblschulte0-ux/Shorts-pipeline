@@ -16438,6 +16438,25 @@
         "end": 17.8
       },
       "director_cut": true
+    },
+    "rejected-lovelyamazonianwasabibrainslug-u_ilcjolhrpn303e": {
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/LovelyAmazonianWasabiBrainSlug-U_iLCJolHRPN303E",
+      "streamer": "ishowspeed",
+      "title": "lolll",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (Phone demo talk, no real event)",
+      "ts": "2026-10-28T12:18:31.962880+00:00"
+    },
+    "clip-20261028-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jasontheween/clip/PatientSavageSquirrelItsBoshyTime-RyxwjQeXVLCTawOv",
+      "story_key": null,
+      "streamer": "jasontheween",
+      "title": "Jasontheween Eats Shit And Can't Believe How He Fell",
+      "kind": "twitch_clip",
+      "ts": "2026-10-28T12:20:29.084255+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
