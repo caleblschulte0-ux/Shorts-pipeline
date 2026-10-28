@@ -88,6 +88,13 @@ class NoWordsOverTheScorebug(unittest.TestCase):
     def test_a_scorebug_in_the_speech_band_is_seen(self):
         y, _, taken = self._spot(("_speech",))
         self.assertTrue(taken)
+        # and the line leaves it room: two sets of words stacked touching
+        # read as one mess (LeBron and the Knicks fan, 2026-10-26)
+        self.assertEqual(y, caption_line.TOP_Y)
+
+    def test_with_the_top_taken_too_the_line_stays_at_the_bottom(self):
+        y, _, taken = self._spot(("_speech", "_top"))
+        self.assertTrue(taken)
         self.assertEqual(y, caption_line.LINE_Y)
 
     def test_a_clean_speech_band_keeps_the_words(self):

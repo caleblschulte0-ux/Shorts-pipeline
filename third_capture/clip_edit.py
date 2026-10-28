@@ -1048,6 +1048,15 @@ def line_spot(src: Path, picture_vf: str, dur: float, line_h: int,
     if not read:
         return done(cl.LINE_Y, "unchecked")
     if not taken(hits["bottom"], read):
+        # The footage's own words sit RIGHT ABOVE the line: a fan video's
+        # captions wrap down into ours (LeBron and the Knicks fan,
+        # 2026-10-26, posted with two sets of words touching). The line
+        # goes to the top when the top is free.
+        if speech and taken(hits["speech"], read) and \
+                not taken(hits["top"], read):
+            return done(cl.TOP_Y, (f"footage text right above the line "
+                                   f"({hits['speech']}/{read} frames)"),
+                        hits, read)
         return done(cl.LINE_Y, "bottom free", hits, read)
     if not taken(hits["top"], read):
         return done(cl.TOP_Y, (f"footage has text in the bottom third "
