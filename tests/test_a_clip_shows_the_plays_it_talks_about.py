@@ -103,6 +103,36 @@ class APostTheyMentionIsShown(unittest.TestCase):
         self.assertIn("instagram", sports_samples.BROLL_SYSTEM.lower())
 
 
+class APictureIsSearchedUnderWhoItIsOf(unittest.TestCase):
+    """Searched under its caption, "The NFL's Instagram", the funnel found
+    two pictures and neither was the post (sample 40733502389)."""
+
+    def test_about_reaches_the_funnel_as_the_entity(self):
+        from funnel import find_image, media_funnel
+        seen = []
+        with mock.patch.object(media_funnel, "search",
+                               side_effect=lambda a, e, **k: seen.append(
+                                   (a, e[0])) or []):
+            find_image.search_urls("The NFL's Instagram",
+                                   "NFL Instagram post of Cam Skattebo",
+                                   about="Cam Skattebo")
+        self.assertEqual(seen[0], ("NFL Instagram post of Cam Skattebo",
+                                   "Cam Skattebo"))
+
+    def test_show_it_carries_about_to_the_finder(self):
+        from third_capture import show_it
+        from funnel import find_image
+        items = show_it.plan(show_it.parse([{
+            "thing": "The NFL's Instagram", "about": "Cam Skattebo",
+            "look": "NFL Instagram post of Cam Skattebo", "at": 6}], 30),
+            30.0)
+        self.assertEqual(items[0]["about"], "Cam Skattebo")
+        with mock.patch.object(find_image, "find",
+                               return_value=None) as f:
+            show_it.fetch(items[0], Path("/tmp/w"))
+        self.assertEqual(f.call_args.kwargs["about"], "Cam Skattebo")
+
+
 class TheGameItselfGetsNoCutIn(unittest.TestCase):
     def _run(self, talks):
         with mock.patch.object(sports_samples, "talking",

@@ -66,7 +66,9 @@ def plan(items, dur: float, offset: float = 0.0) -> list[dict]:
             continue
         out.append({"thing": thing, "kind": kind, "at": round(at, 2),
                     "secs": round(min(SHOW_S, dur - at - 0.2), 2),
-                    "look": _look(r)})
+                    "look": _look(r),
+                    **({"about": clean_thing(r.get("about"))}
+                       if clean_thing(r.get("about")) else {})})
         if len(out) >= MAX_SHOWS:
             break
     return out
@@ -92,6 +94,8 @@ def parse(raw, clip_dur: float = 0.0) -> list[dict]:
                    "at": round(min(at, clip_dur) if clip_dur else at, 2)}
             if _look(r):
                 row["look"] = _look(r)
+            if clean_thing(r.get("about")):
+                row["about"] = clean_thing(r.get("about"))
             out.append(row)
     return out
 
@@ -222,7 +226,8 @@ def fetch(item: dict, work: Path, when: float | None = None) -> Path | None:
     out = Path(work) / f"show_{_norm(thing)[:24] or 'x'}.png"
     try:
         hit = find_image.find(thing, item.get("look") or thing,
-                              kind=item["kind"], when=when, work=work)
+                              kind=item["kind"], when=when, work=work,
+                              about=item.get("about") or "")
         if not hit:
             return None
         if hit.get("chart"):
