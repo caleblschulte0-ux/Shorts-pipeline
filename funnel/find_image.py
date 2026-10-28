@@ -237,13 +237,20 @@ def wiki(thing: str) -> dict | None:
 
 # ------------------------------------------------------- search, judge --
 
-def search_urls(thing: str, look: str = "") -> list[dict]:
+def search_urls(thing: str, look: str = "", about: str = "") -> list[dict]:
     """Every image the wide funnel finds for `look` and for the bare
-    `thing`, best first, deduplicated: [{url, source, title}]."""
+    `thing`, best first, deduplicated: [{url, source, title}]. `about` is
+    who or what the picture is OF, when `thing` is only its caption:
+    searched under "The NFL's Instagram" the funnel found two pictures of
+    Skattebo's post, under "Cam Skattebo" it searches what a page names
+    (2026-10-28)."""
     from funnel import media_funnel
     out: list[dict] = []
     seen: set[str] = set()
-    for angle, ent in ((look or thing, thing), (thing, _bare(thing))):
+    angles = ((look or thing, thing), (thing, _bare(thing)))
+    if about:
+        angles = ((look or thing, about),) + angles
+    for angle, ent in angles:
         try:
             cands = media_funnel.search(angle, [ent], verbose=False)
         except Exception as e:  # noqa: BLE001
@@ -290,7 +297,7 @@ def judge(paths: list[tuple[int, Path]], look: str, title: str = ""
 
 def find(thing: str, look: str = "", *, kind: str = "thing",
          when: float | None = None, work: Path | str = ".",
-         title: str = "") -> dict | None:
+         title: str = "", about: str = "") -> dict | None:
     """The best CHECKED picture of `thing` showing `look`, from every
     source; else, for a coin or a stock, its price data; else None."""
     thing = str(thing or "").strip()
@@ -306,7 +313,7 @@ def find(thing: str, look: str = "", *, kind: str = "thing",
     if w:
         cands.append({"url": w["url"], "source": "wikipedia_exact",
                       "title": w["name"], "exact": True})
-    cands += search_urls(thing, look)
+    cands += search_urls(thing, look, about=about)
 
     pics: list[tuple[int, Path]] = []
     meta: dict[int, dict] = {}

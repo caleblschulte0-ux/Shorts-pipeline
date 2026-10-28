@@ -144,7 +144,10 @@ SPORTS_BRIEF = (
     "own'): whenever the person refers to something not on screen (the "
     "play, the game, the player they are calling out, an old teammate, "
     "the record), broll real footage of it at that second: it plays "
-    "over their voice, then cuts back to them. Only a STORY gets the "
+    "over their voice, then cuts back to them. Anything else they name "
+    "that a viewer needs to SEE (a post, a tweet, a headline, a stat, a "
+    "person not in the shot, a trophy, a car) gets its real picture "
+    "shown (the operator: 'it's the concept'). Only a STORY gets the "
     "outro (the clip plays as it is, then a song over footage of what it "
     "is about): something bigger than the clip that it never shows. A "
     "moment complete on screen (a tearful postgame, a family moment, a "
@@ -171,7 +174,25 @@ BROLL_SYSTEM = (
     "conference or interview; at = the second it is said, from the "
     "time-stamped transcript; said = the word or two of the transcript "
     "that name it there. 0-3, at least 4s apart. [] when the words name "
-    "nothing showable; never a guess at what they do not name.")
+    "nothing showable; never a guess at what they do not name. "
+    "ALSO \"show\": the CONCEPT is that anything they mention which a "
+    "viewer would need to SEE to get it goes on screen; a play is "
+    "footage (broll), anything else is its real picture laid over the "
+    "clip for a few seconds (the operator, 2026-10-28: \"is there any "
+    "reason we can't get screenshots of their instagram and overlay "
+    "them?\", then: \"it's not just post that's just the example I used "
+    "it's the concept\"). So: a social media post or tweet (\"the NFL "
+    "loves to post me\"), a headline, the fine letter, a stat line or a "
+    "contract, a person who is not in the shot, a trophy, a ring, a "
+    "car, a tattoo, a jersey, a magazine cover, a meme of them. Add "
+    "{\"show\": [{\"thing\": str, \"look\": str, \"kind\": \"thing\", "
+    "\"at\": number, \"said\": str, \"about\": str}]}: thing = its short "
+    "name as a caption under it (\"The NFL's Instagram\"); about = who or "
+    "what it is OF, as a search finds them (\"Cam Skattebo\"); look = what the picture "
+    "must SHOW, in the words you would type into an image search "
+    "(\"NFL Instagram post of Cam Skattebo screenshot\"); at and said as "
+    "for broll. 0-2, never at the same second as a cut-in. [] when "
+    "nothing they name needs seeing.")
 
 
 def _fine_stamps(words: list[dict], n: int = 5) -> str:
@@ -219,29 +240,44 @@ def broll(c: dict, words: list[dict], dur: float, edit: dict,
     clip: Skattebo talked about the fines and the plays never appeared.
     A clip of someone talking, with no cut-in, gets one question of its
     own."""
-    if edit.get("broll") or not words:
+    if (edit.get("broll") and edit.get("show")) or not words:
         return edit
     if raw is not None and not talking(raw, edit, dur,
                                        work or raw.parent / "talk"):
         print("[cut-in] the clip is the game itself — nothing cut in",
               flush=True)
         return edit
-    from third_capture import cut_in
+    from third_capture import cut_in, show_it
     user = (f"Who: {c.get('who')}\nThe post: {c.get('post_title')}\n"
             f"Transcript, each line with the second it starts:\n"
             f"{_fine_stamps(words)[:3000]}")
     try:
-        got = cut_in.parse((_brain(user, BROLL_SYSTEM) or {}).get("broll"),
-                           dur)
+        ans = _brain(user, BROLL_SYSTEM) or {}
+        got = cut_in.parse(ans.get("broll"), dur)
+        # a picture lands on the word that names it, like a cut-in
+        shows = show_it.parse(cut_in.snap(
+            [dict(r, who=r.get("thing")) for r in ans.get("show") or []
+             if isinstance(r, dict) and _isnum(r.get("at"))], words), dur)
     except Exception as e:  # noqa: BLE001
         print(f"[cut-in] no answer on what to show ({e})", flush=True)
-        got = []
+        got, shows = [], []
     print(f"[cut-in] asked what the clip talks about: "
-          f"{', '.join(g['look'] for g in got) or 'nothing showable'}",
+          f"{', '.join(g['look'] for g in got) or 'nothing showable'}"
+          f"; pictures: {', '.join(s.get('look', s['thing']) for s in shows) or 'none'}",
           flush=True)
-    if got:
+    if got and not edit.get("broll"):
         edit["broll"] = got
+    if shows and not edit.get("show"):
+        edit["show"] = shows
     return edit
+
+
+def _isnum(v) -> bool:
+    try:
+        float(v)
+        return True
+    except (TypeError, ValueError):
+        return False
 
 
 def _brain(user: str, system: str) -> dict | None:
@@ -581,7 +617,7 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
     return {"meta": meta, "hook": hook,
             "ledger": {k: led.get(k) for k in ("duration", "moves", "mood",
                                                "shot_plan", "outro",
-                                               "cut_in")
+                                               "cut_in", "shown")
                        if k in led},
             "songs": songs_in(led)}
 
