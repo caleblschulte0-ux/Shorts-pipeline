@@ -1,0 +1,16 @@
+{
+ "slug": "ghost-fishing-gear-ocean-plastic",
+ "ts": "20261028T141353Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: seg2:start: Data's saw and arm cover the end of the subtitle, so it reads 'every yea'. The other text reads cleanly.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void_tail",
+  "visible_evidence": "The closing boat scene (seg4:start-end) is good, but payoff@-0.4 cuts to a black-navy void with Data holding a blank price tag and no text.",
+  "root_cause": "After the closing scene, an outro or fallback plate with the default price_tag prop is appended in place of a held finished frame.",
+  "repair_goal": "End on the closing scene's finished frame: the net hauled aboard and the seal and turtle swimming free. Drop the empty gradient plate and the blank price tag."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

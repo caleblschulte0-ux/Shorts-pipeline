@@ -1,0 +1,16 @@
+{
+ "slug": "ghost-fishing-gear-ocean-plastic",
+ "ts": "20261028T141353Z",
+ "failure_class": "junk_imagery",
+ "evidence": "junk_imagery: payoff@-0.4: the last frame cuts to a dark navy gradient with Data holding a blank yellow price tag. It has nothing to do with ghost nets.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void_tail",
+  "visible_evidence": "The closing boat scene (seg4:start-end) is good, but payoff@-0.4 cuts to a black-navy void with Data holding a blank price tag and no text.",
+  "root_cause": "After the closing scene, an outro or fallback plate with the default price_tag prop is appended in place of a held finished frame.",
+  "repair_goal": "End on the closing scene's finished frame: the net hauled aboard and the seal and turtle swimming free. Drop the empty gradient plate and the blank price tag."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

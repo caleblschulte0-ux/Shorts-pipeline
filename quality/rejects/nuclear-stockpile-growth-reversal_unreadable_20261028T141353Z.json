@@ -1,0 +1,16 @@
+{
+ "slug": "nuclear-stockpile-growth-reversal",
+ "ts": "20261028T141353Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At seg3:start the caption 'nuclear warheads, showing' is a dim grey ghost over the grey ground and nearly disappears at phone size. The '2020' label (seg2:start to seg2:end) sits on top of a rocket nose. In the hook the dashed outline houses overlap the '1986' tick area and are hard to m",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 1,
+  "failure_class": "repeated_scene_and_said_shown_mismatch",
+  "visible_evidence": "seg1:start through seg1:end replay the hook's dismantling-yard picture. While the narration says 'held 70,300 nuclear warheads', the headline reads 22,600 and then 12,500 '\u00b7 2023', because the 70,300 already went by during the hook. Data waves beside the carts in all three frames, the dashed ghost houses still clutter the left half, and the truck moves without him.",
+  "root_cause": "The hook and beat 0 share one scene, so the scene's build ran during the hook. By the time beat 0 says its number, the picture has already reached its end state. Data has no agent act tied to the dismantling.",
+  "repair_goal": "Give beat 0 its own build: start at 70,300 warheads crowding the yard on the word '70,300', then have Data push or wheel carts into the DISMANTLING shed (an agent act on the moving part) so the stockpile visibly drains toward 12,500 as 'treaties pushed it sharply downward' is said. Drop the dashed ghost houses, or make them a clear then-vs-now silhouette, and keep the hook's picture different from beat 0's."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
