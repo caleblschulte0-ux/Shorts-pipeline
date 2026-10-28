@@ -255,44 +255,137 @@ def treeline(cr, y, rgb, n=14, seed=0):
     solid(cr, rgb, edge=False)
 
 
-def landscape(cr, t=0.0, kind="field", horizon=1170):
-    """Paints a whole outdoor setting (kind: field, desert, snow, coast,
-    town) under a low sun; returns the ground's top y.
+#: Times of day a setting can be painted at (operator, 2026-10-25: viewers
+#: keep commenting "this is AI", and the same sunset, the same two clouds and
+#: the same grey skyline stood behind almost every scene). Each is the sky
+#: (top, mid, horizon), how far the land darkens toward it, the sun's colour
+#: and how much of it shows; None keeps the setting's own sunset.
+TIMES = {
+    "dawn":     ([(70, 92, 150), (196, 170, 186), (250, 198, 160)], 0.15,
+                 (255, 214, 176), 0.8),
+    "day":      ([(70, 136, 210), (140, 186, 228), (206, 228, 240)], 0.0,
+                 (255, 250, 236), 0.5),
+    "dusk":     ([(52, 50, 104), (176, 104, 120), (246, 152, 96)], 0.3,
+                 (255, 170, 110), 0.9),
+    "night":    ([(10, 14, 36), (26, 34, 70), (58, 64, 104)], 0.62,
+                 (232, 236, 250), 0.35),
+    "overcast": ([(132, 140, 152), (164, 170, 178), (196, 198, 200)], 0.12,
+                 None, 0.0),
+}
 
-    Far to near: sky, sun, clouds, two ridges under haze, ground whose
-    stripes run to the horizon."""
+
+def _rng(seed):
+    """A small deterministic generator keyed on the scene, so the same
+    scene always paints the same place and two scenes rarely share one."""
+    import random
+    return random.Random(str(seed))
+
+
+def landscape(cr, t=0.0, kind="field", horizon=1170, time=None, seed=None,
+              skyline=None):
+    """Paints a whole outdoor setting (kind: field, desert, snow, coast,
+    town; time: dawn, day, dusk, night, overcast; seed: the HERO) and
+    returns the ground's top y.
+
+    Called as before, it is the low-sun shot every scene drew from. Give it
+    the story's own `time` (dawn, day, dusk, night, overcast) and a `seed`
+    (anything the scene is about, e.g. its HERO) and the sun, the clouds,
+    the ridges and the skyline are placed for THAT scene, so no two stories
+    stand in front of the same backdrop. `skyline` turns the far town on or
+    off (default: only for kind="town")."""
     sky0, sky1, sky2, far, near, g0, g1 = SETTINGS.get(kind, SETTINGS["field"])
+    varied = time is not None or seed is not None
+    r = _rng(f"{seed}|{kind}|{time}") if varied else None
+    sun, sun_rgb, sun_a = SUN, (255, 236, 196), 0.55
+    dark = 0.0
+    if time in TIMES:
+        (sky0, sky1, sky2), dark, sun_rgb, sun_a = TIMES[time]
+    if varied:
+        sun = (r.uniform(140, W - 140), r.uniform(420, horizon - 160))
+        if dark:
+            far, near = _mix3(far, sky0, dark), _mix3(near, sky0, dark * 0.8)
+            g0, g1 = _mix3(g0, sky0, dark * 0.7), _mix3(g1, (10, 12, 20), dark * 0.6)
     vgrad(cr, [(0, sky0), (0.45, sky1), (0.8, sky2), (1, sky2)], 0, horizon + 20)
-    glow(cr, SUN[0], SUN[1], 520, (255, 236, 196), 0.55)
-    glow(cr, SUN[0], SUN[1], 140, (255, 250, 232), 0.9)
-    for cx, cy, s in ((760, 380, 1.0), (300, 520, 0.7), (930, 640, 0.6)):
+    if time == "night" and varied:                   # stars and a moon
+        for _ in range(70):
+            cr.arc(r.uniform(0, W), r.uniform(0, horizon - 300),
+                   r.uniform(1.2, 3.0), 0, 2 * math.pi)
+            cr.new_sub_path()
+        cr.set_source_rgba(1, 1, 1, 0.7 + 0.2 * math.sin(t * 2))
+        cr.fill()
+    if sun_rgb is not None:
+        glow(cr, sun[0], sun[1], 520, sun_rgb, sun_a)
+        glow(cr, sun[0], sun[1], 140 if time != "night" else 70,
+             (255, 250, 232), 0.9)
+    if varied:
+        n = {"overcast": 7, "night": 2, "day": r.randint(2, 5)}.get(
+            time, r.randint(1, 4))
+        clouds = [(r.uniform(0, W), r.uniform(220, horizon - 260),
+                   r.uniform(0.5, 1.3)) for _ in range(n)]
+    else:
+        clouds = ((760, 380, 1.0), (300, 520, 0.7), (930, 640, 0.6))
+    for cx, cy, s in clouds:
         cx = (cx + t * 6 * s) % (W + 300) - 150      # clouds drift slowly
-        for dx, r in ((-80, 60), (0, 85), (90, 65), (170, 45)):
+        puffs = ((-80, 60), (0, 85), (90, 65), (170, 45))
+        if varied:
+            puffs = tuple((dx * r.uniform(0.7, 1.3), rr * r.uniform(0.7, 1.3))
+                          for dx, rr in puffs[:r.randint(2, 4)])
+        for dx, rr in puffs:
             cr.save()
             cr.translate(cx + dx * s, cy)
             cr.scale(1, 0.55)
-            cr.arc(0, 0, r * s, 0, 2 * math.pi)
+            cr.arc(0, 0, rr * s, 0, 2 * math.pi)
             cr.restore()
-        cr.set_source_rgba(1, 0.98, 0.95, 0.55)
+        a = 0.55 if time != "overcast" else 0.75
+        if time == "night":
+            cr.set_source_rgba(0.6, 0.65, 0.8, 0.25)
+        else:
+            cr.set_source_rgba(1, 0.98, 0.95, a)
         cr.fill()
-    ridge(cr, horizon - 60, 90, 0.3, 4)
+    ridge(cr, horizon - 60, 90 if not varied else r.uniform(40, 150),
+          0.3 if not varied else r.uniform(0, 6), 4 if not varied else r.randint(3, 7))
     solid(cr, far, edge=False, rim=False)
-    if kind == "town":                                # a far skyline
-        for i in range(16):
-            bw, bh = 40 + (i * 29) % 40, 60 + (i * 53) % 140
-            cr.rectangle(i * 70 - 10, horizon - 20 - bh, bw, bh + 20)
+    town = (kind == "town") if skyline is None else bool(skyline)
+    if town:                                          # a far skyline
+        if varied:
+            x = r.uniform(-40, 0)
+            while x < W:
+                bw = r.uniform(30, 110)
+                bh = r.uniform(40, 260) * (1.4 if r.random() < 0.15 else 1.0)
+                cr.rectangle(x, horizon - 20 - bh, bw, bh + 20)
+                if r.random() < 0.2:                  # a spire or a roof
+                    cr.move_to(x, horizon - 20 - bh)
+                    cr.line_to(x + bw / 2, horizon - 20 - bh - r.uniform(20, 70))
+                    cr.line_to(x + bw, horizon - 20 - bh)
+                    cr.close_path()
+                x += bw + r.uniform(-8, 30)
+        else:
+            for i in range(16):
+                bw, bh = 40 + (i * 29) % 40, 60 + (i * 53) % 140
+                cr.rectangle(i * 70 - 10, horizon - 20 - bh, bw, bh + 20)
         solid(cr, near, edge=False, rim=False)
+        if varied and time in ("night", "dusk"):      # lit windows
+            for _ in range(60):
+                cr.rectangle(r.uniform(0, W), horizon - r.uniform(40, 220), 6, 9)
+            cr.set_source_rgba(1, 0.86, 0.5, 0.55)
+            cr.fill()
     else:
-        ridge(cr, horizon - 20, 70, 2.1, 5)
+        ridge(cr, horizon - 20, 70 if not varied else r.uniform(30, 110),
+              2.1 if not varied else r.uniform(0, 6), 5)
         solid(cr, near, edge=False, rim=False)
     if kind == "field":
-        treeline(cr, horizon - 20, _mix3(near, (40, 70, 40), 0.35))
+        treeline(cr, horizon - 20, _mix3(near, (40, 70, 40), 0.35),
+                 n=14 if not varied else r.randint(6, 18),
+                 seed=0 if not varied else r.randint(0, 50))
     haze(cr, horizon - 170, horizon + 30, sky2, a=0.45)
     if kind == "coast":                               # the sea, then the beach
-        vgrad(cr, [(0, (96, 150, 180)), (1, (48, 104, 140))], horizon, horizon + 160)
+        s0, s1 = (96, 150, 180), (48, 104, 140)
+        if dark:                                      # the sea takes the sky's light
+            s0, s1 = _mix3(s0, sky0, dark), _mix3(s1, sky0, dark * 0.8)
+        vgrad(cr, [(0, s0), (1, s1)], horizon, horizon + 160)
         horizon += 160
     vgrad(cr, [(0, g0), (0.4, _mix3(g0, g1, 0.4)), (1, g1)], horizon, H)
-    vx = W / 2
+    vx = W / 2 if not varied else r.uniform(W * 0.25, W * 0.75)
     for k in range(-9, 10):                          # stripes run to the horizon
         cr.move_to(vx + k * 40, horizon)
         cr.line_to(vx + k * 420, H)
