@@ -4400,11 +4400,29 @@
       "duration_s": 29.9
     },
     "ghost-fishing-gear-ocean-plastic": {
-      "claimed_at": "2026-10-28T11:20:12.310753+00:00",
+      "url": "https://youtube.com/shorts/QJYiqtgH088",
       "title": "Lost Fishing Gear Is 10% Of Ocean Litter",
+      "at": "2026-10-28T11:20:23.577947+00:00",
       "publish_at": "2026-10-28T16:29:36Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.86,
+      "beat_s": [
+        3.74,
+        4.36,
+        5.86,
+        4.9,
+        6.21
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 74,
+      "duration_s": 25.6
     }
   },
   "uploads": [
@@ -5611,9 +5629,10 @@
       "claimed_at": "2026-10-28T11:20:12.310753+00:00",
       "title": "Lost Fishing Gear Is 10% Of Ocean Litter",
       "publish_at": "2026-10-28T16:29:36Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "ghost-fishing-gear-ocean-plastic"
+      "url": "https://youtube.com/shorts/QJYiqtgH088",
+      "state": "posted",
+      "slug": "ghost-fishing-gear-ocean-plastic",
+      "at": "2026-10-28T11:20:23.577947+00:00"
     }
   ]
 }
