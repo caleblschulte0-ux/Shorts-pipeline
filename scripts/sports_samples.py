@@ -382,6 +382,67 @@ def trim_front(edit: dict, words: list[dict], dur: float) -> dict:
     return edit
 
 
+TAIL_S = 8.0              # how far back from the end to look for a card
+CARD_LOOK = ("the moment itself: people, players, coaches, a broadcast "
+             "studio, the crowd, the game. NOT a network logo, a show's "
+             "bumper or title card, a sponsor card, a graphic or an end "
+             "screen")
+
+
+def _cuts_in(raw: Path, lo: float, hi: float) -> list[float]:
+    """Scene changes between lo and hi seconds of `raw`."""
+    from funnel.find_footage import SCENE
+    try:
+        log = subprocess.run(
+            ["ffmpeg", "-v", "info", "-ss", f"{lo:.2f}", "-t",
+             f"{hi - lo:.2f}", "-i", str(raw), "-an", "-vf",
+             f"scale=320:-2,select='gt(scene,{SCENE})',showinfo",
+             "-f", "null", "-"],
+            capture_output=True, text=True, timeout=120).stderr
+    except Exception:  # noqa: BLE001
+        return []
+    return sorted(lo + float(x) for x in re.findall(r"pts_time:([\d.]+)",
+                                                    log))
+
+
+def end_card(raw: Path, edit: dict, work: Path) -> dict:
+    """The cut never ENDS on the broadcast's own card (operator,
+    2026-10-28: "we won't play clips that don't make sense"; the sample
+    of Charles Barkley and Shaq ran four seconds into ESPN's logo and the
+    "Tip-Off presented by Lilly" bumper). Each shot in the last TAIL_S
+    seconds is shown to the brain; the cut ends where the first one that
+    is a logo, bumper or card begins. No brain: as it was."""
+    from funnel import find_footage
+    cut = edit.get("cut") or {}
+    try:
+        lo, hi = float(cut["start"]), float(cut["end"])
+    except (KeyError, TypeError, ValueError):
+        return edit
+    starts = [t for t in _cuts_in(raw, max(lo, hi - TAIL_S), hi)
+              if t - lo >= 10.0 and hi - t >= 0.5]
+    if not starts:
+        return edit
+    work.mkdir(parents=True, exist_ok=True)
+    panels = []
+    for i, (a, b) in enumerate(zip(starts, starts[1:] + [hi])):
+        fr = find_footage._frame(raw, (a + b) / 2, work / f"tail{i}.png")
+        if fr:
+            panels.append((i, fr))
+    from shared import shot_relevance
+    got = shot_relevance.judge_panels([(i, p, CARD_LOOK) for i, p in panels],
+                                      title="the last seconds of a clip")
+    if not got:
+        return edit
+    for i, a in enumerate(starts):
+        if i in got and not got[i].get("depicts", True):
+            print(f"[sports] the cut ran into a card at {a:.1f}s "
+                  f"({got[i].get('why', '')[:80]}) — it ends there",
+                  flush=True)
+            edit["cut"] = {"start": round(lo, 2), "end": round(a - 0.05, 2)}
+            break
+    return edit
+
+
 def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
          line_top: bool = False, used_songs: list | None = None) -> dict:
     """Author and cut one post. `notes` is a refused cut's verdict for the
@@ -407,6 +468,7 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
                 "meta": meta}
     if meta and isinstance(meta.get("edit"), dict):
         trim_front(meta["edit"], words, dur)
+        end_card(raw, meta["edit"], out_mp4.parent / "work" / out_mp4.stem)
         # NO MUSIC UNDER THE CLIP (operator, 2026-10-28: "It played loud
         # music over the guy talking the whole time ... so annoying"). A
         # sports clip is someone talking; the sad song or hype beat the
