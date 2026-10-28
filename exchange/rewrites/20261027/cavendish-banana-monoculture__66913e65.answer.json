@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "cavendish-banana-monoculture__66913e65",
+  "slug": "cavendish-banana-monoculture",
+  "by": "chatgpt",
+  "written_at": "2026-10-28T11:20:46.354Z",
+  "title": "1 Banana Variety Supplies 99% Of Exports",
+  "hook": "Bananas look diverse, but 99% of exports are one variety.",
+  "closing": "Genetic sameness makes the global banana supply efficient, familiar, and dangerously fragile.",
+  "question": "Would you try another banana variety?",
+  "segments": [
+    {
+      "topic": "Banana Exports",
+      "say": "The Cavendish supplies 99% of exported bananas. Grocery-store variety is mostly an illusion."
+    },
+    {
+      "topic": "Banana Variety Gap",
+      "say": "More than 1,000 banana varieties exist. Global exports still depend on a single clone."
+    },
+    {
+      "topic": "Banana Disease Spread",
+      "say": "The disease reached 3 continents. Genetic uniformity lets one threat spread across the same weakness."
+    }
+  ]
+}
