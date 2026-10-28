@@ -128,6 +128,34 @@ def baked_spans_of(segments, disp_start: dict, disp_end: dict) -> list:
     return out
 
 
+def run_to_the_cut(segments, total: float) -> float:
+    """THE LAST PICTURE RUNS TO THE CUT. Returns how many seconds it gained.
+
+    The closing span ends at the closing line's window (`windows[-1][1]`),
+    but the master is cut at the NARRATION's length plus 0.3s, which is
+    longer: a real voice ends its file in silence the window does not
+    count. In that gap no span is enabled, so the frame fell through to the
+    bare navy ground with the gap-fill host on it holding the default blank
+    price tag. Every posted video ended on that card (showrunner,
+    2026-10-17..28: "the video ends on an empty dark void with a blank price
+    tag", payoff@-0.4); the operator: "What's with the weird last frame of
+    all our videos". Each span is laid with a tpad hold of a second past its
+    own end, so carrying the last one to `total` shows its finished picture,
+    and because the host is baked into it the gap fill has nothing left to
+    fill."""
+    spans = [x for s in segments for x in (getattr(s, "spans", None) or [])]
+    if not spans:
+        return 0.0
+    last = max(spans, key=lambda x: float(x["t1"]))
+    gain = float(total) - float(last["t1"])
+    if gain <= 0:
+        return 0.0
+    for x in spans:
+        if abs(float(x["t1"]) - float(last["t1"])) < 1e-6:
+            x["t1"] = float(total)
+    return gain
+
+
 def fully_baked(segments) -> bool:
     """Does EVERY visual in the story draw Data itself? Then the overlay adds
     nothing at all — otherwise the home host parks at bottom-centre through
@@ -3618,6 +3646,10 @@ def render(slug: str, out_path: Path, voice: str | None = None,
                       + " -> ".join(f"{sp['kind']}({sp['t1'] - sp['t0']:.1f}s)"
                                     for sp in seg.spans), flush=True)
         _save_persisted_mechanics(config_path, story_cfg, slug)
+        _gain = run_to_the_cut(st.segments, total)
+        if _gain > 0:
+            print(f"[studio] last picture held {_gain:.2f}s to the cut",
+                  flush=True)
         # The video opens on its picture's finished state (FLASH_S, above).
         _first = next(iter(sorted(
             (sp for sg in st.segments for sp in (getattr(sg, "spans", None) or [])),
