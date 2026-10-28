@@ -315,6 +315,7 @@ def _entries(log: dict) -> list[dict]:
                         # build_retro (doctor c8ca85c0ce21), so the registry's
                         # graph_race / reddit_story mix could not be compared.
                         "format": e.get("format"),
+                        "songs": e.get("songs"),
                         "topic": e.get("topic")})
     return out
 
@@ -354,6 +355,13 @@ def _fetch_stats(service, video_ids: list[str]) -> dict[str, dict]:
                 # a future publishAt; it is NOT a public post yet.
                 "scheduled_publish_at": status.get("publishAt"),
                 "is_public": privacy == "public",
+                # A Content ID block shows here: the countries a claimant
+                # blocked it in (funnel/songs.py takes that song off the
+                # shelf), or an upload YouTube rejected outright.
+                "blocked_in": ((item.get("contentDetails") or {})
+                               .get("regionRestriction") or {})
+                .get("blocked") or [],
+                "rejection": status.get("rejectionReason"),
             }
     return out
 
@@ -558,6 +566,8 @@ def build_snapshot(posted_log: Path, channel: str = "",
             # accumulate a sample. Worth fixing on its own regardless of
             # that finding's outcome.
             "format": entry.get("format"),
+            "songs": entry.get("songs") or [],
+            "blocked_in": s.get("blocked_in") or [],
             # A/B: what was assigned vs what actually rendered.
             "experiment_arm": entry.get("experiment_arm"),
             "actual_structure": entry.get("actual_structure"),

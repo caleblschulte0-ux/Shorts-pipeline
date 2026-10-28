@@ -120,23 +120,57 @@ SONGS: dict[str, dict] = {
 MOODS = ("sad", "hype", "triumph", "funny")
 
 
+#: The analytics snapshots that say which uploads are blocked, each row
+#: carrying the shelf songs it played (scripts/fetch_analytics.py).
+ANALYTICS = [REPO / "state" / d / "latest.json"
+             for d in ("analytics", "analytics_third")]
+
+
+def blocked() -> set[str]:
+    """Shelf songs that got one of OUR uploads blocked somewhere, or
+    rejected. A claim that only takes the ad money leaves the video up and
+    the song on the shelf; a block takes the video away, so that song is
+    off the shelf for good (operator, 2026-10-28: "sometimes we get away
+    with using songs that are copyrighted, but sometimes we don't")."""
+    out: set[str] = set()
+    for f in ANALYTICS:
+        try:
+            rows = json.loads(f.read_text()).get("videos") or []
+        except (OSError, ValueError, AttributeError):
+            continue
+        for v in rows:
+            if isinstance(v, dict) and (v.get("blocked_in")
+                                        or v.get("rejection")):
+                out.update(k for k in v.get("songs") or [] if k in SONGS)
+    return out
+
+
 def names(mood: str = "sad") -> list[str]:
-    return [k for k, s in SONGS.items() if s["mood"] == mood]
+    off = blocked()
+    return [k for k, s in SONGS.items() if s["mood"] == mood
+            and k not in off]
 
 
 def menu(mood: str = "sad") -> str:
     """The shelf as prompt lines: `key: Title (Artist) - when it fits`;
     with mood "" every mood, each line tagged with its own."""
-    keys = names(mood) if mood else list(SONGS)
+    keys = names(mood) if mood else [k for m in MOODS for k in names(m)]
     return "\n".join(f"    {k}: {SONGS[k]['title']} ({SONGS[k]['artist']})"
                      + ("" if mood else f" [{SONGS[k]['mood']}]")
                      + f" - {SONGS[k]['fits']}" for k in keys)
 
 
 def clean(key) -> str:
-    """The key if it is on the shelf, else ''."""
+    """The key if it is on the shelf, else ''. A song taken off the shelf
+    for a block is swapped for the next one of its mood, so a story keeps
+    its ending and loses only the song that got a video blocked."""
     k = re.sub(r"[^a-z0-9]+", "_", str(key or "").strip().lower()).strip("_")
-    return k if k in SONGS else ""
+    if k not in SONGS:
+        return ""
+    if k in blocked():
+        left = names(SONGS[k]["mood"])
+        return left[0] if left else ""
+    return k
 
 
 def _norm(s: str) -> str:

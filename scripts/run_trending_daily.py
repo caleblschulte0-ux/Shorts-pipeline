@@ -262,7 +262,7 @@ _CERTAIN_NO_UPLOAD = ("uploadLimitExceeded", "exceeded the number of videos",
 
 
 def _guarded_upload(*, title: str, topic: str, fmt, publish_at,
-                    do_upload) -> str:
+                    do_upload, extra: dict | None = None) -> str:
     """Claim → upload → record. Returns the video URL; raises DuplicateUpload
     (nothing uploaded) or whatever `do_upload` raised."""
     _refresh_log_from_origin()
@@ -326,6 +326,7 @@ def _guarded_upload(*, title: str, topic: str, fmt, publish_at,
         "publish_at": publish_at,
         "posted_at": datetime.now(timezone.utc).strftime(
             "%Y-%m-%dT%H:%M:%SZ"),
+        **{k: v for k, v in (extra or {}).items() if v},
     })
     save_log(log)
     _persist_log_now(f"posted {claim['slug']}")

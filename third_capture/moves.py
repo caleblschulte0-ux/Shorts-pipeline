@@ -119,6 +119,14 @@ def plan(edit: dict | None, dur: float, offset: float = 0.0) -> dict:
         from funnel import songs
         if songs.clean(edit.get("song")):
             out["bed"]["song"] = songs.clean(edit.get("song"))
+    # NO MUSIC UNDER A VOICE (operator, 2026-10-28, of a Baller Bro clip:
+    # "It played loud music over the guy talking the whole time ... that's
+    # so annoying"). An edit with music=False keeps the bed's LOOK (the
+    # grey, the colour pop) and drops its sound: a song or a beat under
+    # someone talking is noise, however well it is ducked.
+    if out["bed"] and edit.get("music") is False:
+        out["bed"].pop("song", None)
+        out["bed"]["silent"] = True
     l2 = edit.get("line2") or {}
     text = str(l2.get("text", "")).strip() if isinstance(l2, dict) else ""
     at = _at(l2.get("at")) if isinstance(l2, dict) else None
@@ -132,7 +140,8 @@ def summary(p: dict) -> list:
     s = [f"{h['move']}@{h['at']}" for h in p.get("hits", [])]
     if p.get("bed"):
         s.append(f"{p['bed']['move']}@{p['bed']['at']}"
-                 + (f"({p['bed']['song']})" if p["bed"].get("song") else ""))
+                 + (f"({p['bed']['song']})" if p["bed"].get("song") else "")
+                 + ("(silent)" if p["bed"].get("silent") else ""))
     if p.get("line2"):
         s.append(f"line2@{p['line2']['at']}")
     return s
@@ -293,6 +302,8 @@ def audio_graph(p: dict, voice: str, first_input: int, dur: float,
     the voices; the hits land on top of them."""
     parts, files, cur = [], [], voice
     b = p.get("bed")
+    if b and b.get("silent"):
+        b = None                         # the look only: no sound under it
     if b:
         song = None
         if b.get("song"):

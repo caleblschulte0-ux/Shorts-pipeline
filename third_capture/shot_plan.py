@@ -519,6 +519,64 @@ def _ff_complex(video: Path, fc: str, out: Path) -> Path | None:
         return None
 
 
+SUB_BAND = 0.35        # the bottom of the source subtitles sit in
+SUB_SPAN = 0.6         # text across this much of the width is a subtitle
+SUB_FRAMES = 2         # ... in this many sampled frames
+
+
+def _text_span(img: Path) -> float:
+    """How much of the picture's width confident words (tesseract, >= 70,
+    3+ letters) run across, 0..1. 0 without tesseract."""
+    import re as _re
+    import subprocess as _sp
+    try:
+        r = _sp.run(["tesseract", str(img), "-", "--psm", "11", "tsv"],
+                    capture_output=True, text=True, timeout=60)
+        from PIL import Image
+        with Image.open(img) as im:
+            width = im.width
+    except Exception:  # noqa: BLE001
+        return 0.0
+    xs = []
+    for row in (r.stdout or "").splitlines()[1:]:
+        c = row.split("\t")
+        if len(c) < 12:
+            continue
+        try:
+            conf, left, w = float(c[10]), int(c[6]), int(c[8])
+        except ValueError:
+            continue
+        if conf >= 70 and len(_re.sub(r"[^A-Za-z]", "", c[11])) >= 3:
+            xs += [left, left + w]
+    return (max(xs) - min(xs)) / width if xs and width else 0.0
+
+
+def burned_subtitles(video: Path, dur: float, samples: int = 5) -> bool:
+    """Does a landscape source carry subtitles burned into its bottom,
+    running wider than any 9:16 crop could keep? Cropping them cuts every
+    line off at both ends (Yaxel Lendeborg on Luka, posted 2026-10-23:
+    a press conference whose own subtitles read "atching all the whining
+    ar..."), so such a source is shown whole. Never raises."""
+    import subprocess as _sp
+    import tempfile as _tf
+    hits = 0
+    try:
+        with _tf.TemporaryDirectory() as td:
+            for k in range(samples):
+                t = dur * (k + 0.5) / samples
+                fr = Path(td) / f"s{k}.png"
+                _sp.run(["ffmpeg", "-y", "-v", "error", "-ss", f"{t:.2f}",
+                         "-i", str(video), "-frames:v", "1", "-vf",
+                         f"crop=iw:ih*{SUB_BAND}:0:ih*{1 - SUB_BAND},"
+                         "scale=iw*2:-2,format=gray", str(fr)],
+                        check=True, timeout=60, capture_output=True)
+                if _text_span(fr) >= SUB_SPAN:
+                    hits += 1
+    except Exception:  # noqa: BLE001
+        return False
+    return hits >= SUB_FRAMES
+
+
 def build(video: Path, work: Path,
           analyze_on: Path | None = None,
           an: dict | None = None) -> tuple[Path | None, dict]:
@@ -540,6 +598,14 @@ def build(video: Path, work: Path,
         if an is None:
             an = analyze(analyze_on or video)
         if an is None:
+            return None, summary
+        # NOT A CROP THAT CUTS THE FOOTAGE'S OWN SUBTITLES OFF: the whole
+        # frame instead (operator, 2026-10-28: "we won't play clips that
+        # don't make sense")
+        if an["sw"] > an["sh"] and burned_subtitles(
+                analyze_on or video, _probe_wh_dur(analyze_on or video)[2]):
+            summary["reason"] = ("the footage has its own subtitles across "
+                                 "the frame — shown whole, not cropped")
             return None, summary
         if analyze_on is not None:
             vw, vh, _ = _probe_wh_dur(video)
