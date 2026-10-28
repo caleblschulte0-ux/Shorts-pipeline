@@ -101,7 +101,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           # DEPTH 2, NOT 1. `git log -1 --name-only` on a depth-1 clone has no
           # parent to diff against, so git reports EVERY FILE IN THE TREE as
