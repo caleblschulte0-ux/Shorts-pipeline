@@ -226,8 +226,10 @@ class TheFootageIsCutIn(unittest.TestCase):
                 led = clip_edit.edit(
                     td / "src.mp4", td / "out.mp4", credit="r/nba",
                     hook="Russ on KD", words=words,
+                    # "him" is said at 5.0s: the footage lands on it
+                    # (cut_in.snap)
                     direct={"broll": [{"who": "Russ KD", "look": "x",
-                                       "at": 5}]})
+                                       "at": 5, "said": "him"}]})
             self.assertEqual(led["render_level"], "full")
             self.assertEqual(len(led["cut_in"]), 1)
             self.assertTrue(led["cut_in"][0].startswith("Russ KD@"))

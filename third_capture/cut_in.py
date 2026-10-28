@@ -43,7 +43,49 @@ def parse(raw, clip_dur: float = 0.0) -> list[dict]:
         if who and at >= 0:
             out.append({"who": who, "look": _text(r.get("look"), 90) or who,
                         "at": round(min(at, clip_dur) if clip_dur else at,
-                                    2)})
+                                    2),
+                        **({"said": _text(r.get("said"), 60)}
+                           if r.get("said") else {})})
+    return out
+
+
+SNAP_S = 5.0            # how far from the author's second a mention counts
+LEAD_S = 0.2            # the footage lands just as the word is said
+
+
+def _tok(s: str) -> list[str]:
+    return [t for t in re.findall(r"[a-z0-9']+", str(s or "").lower())
+            if len(t) >= 3]
+
+
+def snap(items: list[dict], words: list[dict],
+         offset: float = 0.0) -> list[dict]:
+    """Each cut-in ON THE WORD that names it, or dropped (operator,
+    2026-10-28: "if we're going to play a clip in the middle of a video
+    that it times up right"). The author's "at" is a guess from the
+    transcript; this puts it on the start of the closest word, within
+    SNAP_S, that is in what the author says was `said` (else in the
+    name of `who`). A cut-in with no such word near it is about nothing
+    the person is saying then, and is not cut in. No transcript: as the
+    author gave it. `words` are on the cut's clock, which starts at
+    `offset` of the source the author's seconds are on."""
+    if not words:
+        return list(items or [])
+    out = []
+    for it in items or []:
+        want = set(_tok(it.get("said"))) or set(_tok(it.get("who")))
+        off = float(offset or 0.0)
+        near = [w for w in words
+                if abs(float(w.get("s", 0)) + off - float(it["at"])) <= SNAP_S
+                and set(_tok(w.get("w"))) & want]
+        if not near:
+            print(f"[cut-in] {it.get('who')!r} @{it['at']}: nothing said "
+                  "near it names it — not cut in", flush=True)
+            continue
+        w = min(near, key=lambda w: abs(float(w["s"]) + off
+                                        - float(it["at"])))
+        out.append({**it, "at": round(max(0.0, float(w["s"]) + off
+                                          - LEAD_S), 2)})
     return out
 
 

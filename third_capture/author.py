@@ -52,7 +52,8 @@ Return STRICT JSON:
           "show": [{"thing": str, "look": str, "kind": str,
                     "at": number}, ...],
           "song": str,
-          "broll": [{"who": str, "look": str, "at": number}, ...],
+          "broll": [{"who": str, "look": str, "at": number,
+                     "said": str}, ...],
           "outro": {"song": str, "shows": str, "who": str,
                     "people": [str, ...], "team": str,
                     "numbers": [str, ...],
@@ -188,7 +189,10 @@ Rules:
     news desk, podcast or interview (the operator, of a cut-in of a TV
     host: "there was no basketball clips in there"). For news (a trade,
     a signing, a retirement), show the player PLAYING for that team;
-    "at" is the second it is named, from the transcript. 0-3 of them, at least 4s apart. Most
+    "at" is the second it is named, from the transcript, and "said" the
+    word or two of the transcript that name it there ("Luka", "that
+    block", "five thousand yards"): the footage lands on that word and is
+    dropped if the word is not said near that second. 0-3 of them, at least 4s apart. Most
     clips with a person talking refer to something showable: give those
     at least one. Never the person already on screen talking, never a
     guess at something the words do not name.
