@@ -1,10 +1,10 @@
 {
   "schema": "shorts-production-blocker/v1",
   "date": "20261028",
-  "written_at": "2026-10-28T11:24:50.468Z",
+  "written_at": "2026-10-28T11:25:47.562Z",
   "status": "blocked",
   "day_closed": false,
-  "exact_failed_step": "Step 8 actual channel-output verification: the frozen 13-video contract has only 9 unique accepted YouTube URLs.",
+  "exact_failed_step": "Step 8 actual channel-output verification: the frozen 13-video contract has only 8 format-matching accepted YouTube URLs.",
   "frozen_contract": {
     "total_required": 13,
     "channels": {
@@ -22,12 +22,11 @@
       "twitch": {
         "format": "clip",
         "required": 6,
-        "verified_posted": 4,
-        "pending": 2,
+        "verified_posted": 3,
+        "pending": 3,
         "accepted_urls": [
           "https://youtube.com/shorts/Eat2zweI4hM",
           "https://youtube.com/shorts/G58pNmajFB0",
-          "https://youtube.com/shorts/ve9P1NrYH2k",
           "https://youtube.com/shorts/qvxK4K25Jlk"
         ]
       },
@@ -42,8 +41,8 @@
         ]
       }
     },
-    "total_verified_posted": 9,
-    "total_pending": 4
+    "total_verified_posted": 8,
+    "total_pending": 5
   },
   "exchange": {
     "started_commit": "a623b714e1494ccb8bdb415f12a8eadaffec8e53",
@@ -127,7 +126,7 @@
   },
   "downstream_observations": [
     "Sports produced all 3 required accepted URLs.",
-    "Twitch produced 4 accepted URLs; additional candidates were rejected by existing content and preflight gates.",
+    "Twitch produced 3 format-matching clip URLs. One additional accepted upload was kind=story/structure=extended and does not satisfy the frozen clip format; other candidates were rejected by existing content and preflight gates.",
     "Explainer produced 2 accepted URLs.",
     "Phase B applied 2 daily Explainer rewrites and rejected 1; no supported new rewrite request for that rejection appeared before completion."
   ],
@@ -138,7 +137,7 @@
     "note": "No image generation or Drive byte verification was applicable because today's bundle has no media requests and all frozen formats are non-image formats."
   },
   "no_done_retrigger": true,
-  "remaining_shortfall": "2 Twitch clip uploads and 2 Explainer data_story uploads remain unverified.",
+  "remaining_shortfall": "3 Twitch clip uploads and 2 Explainer data_story uploads remain unverified.",
   "notes": "Existing response and DONE were preserved. DONE is a render trigger, not proof of publication. Transient downstream workers remain enabled.",
   "attempts": [
     "After claim/apply filed LEGO revision r3, answered the new supported request and readied it for the next claim."
