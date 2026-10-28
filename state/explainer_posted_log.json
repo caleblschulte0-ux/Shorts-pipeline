@@ -4375,11 +4375,29 @@
       "duration_s": 24.1
     },
     "nuclear-stockpile-growth-reversal": {
-      "claimed_at": "2026-10-28T10:29:36.569837+00:00",
+      "url": "https://youtube.com/shorts/ZSDXkXD9IjA",
       "title": "China Reached 500 Nuclear Warheads As The World Cut Back",
+      "at": "2026-10-28T10:29:47.806121+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.89,
+      "beat_s": [
+        5.24,
+        5.89,
+        5.17,
+        5.71,
+        7.43
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 66,
+      "duration_s": 29.9
     }
   },
   "uploads": [
@@ -5577,9 +5595,10 @@
       "claimed_at": "2026-10-28T10:29:36.569837+00:00",
       "title": "China Reached 500 Nuclear Warheads As The World Cut Back",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "nuclear-stockpile-growth-reversal"
+      "url": "https://youtube.com/shorts/ZSDXkXD9IjA",
+      "state": "posted",
+      "slug": "nuclear-stockpile-growth-reversal",
+      "at": "2026-10-28T10:29:47.806121+00:00"
     }
   ]
 }
