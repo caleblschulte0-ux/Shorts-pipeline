@@ -1,0 +1,16 @@
+{
+ "slug": "airline-pilot-shortage",
+ "ts": "20261028T234824Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: hook@0.3 to seg1:end: Data stands by the CREW door in the same wave pose for about 9s while the pilot queue builds around him without him. seg2:start to seg2:end: he only scratches his head beside the globe. The tug driving in seg3 is the only real bit.",
+ "weakest_scene": {
+  "id": "seg4",
+  "index": 4,
+  "failure_class": "empty_void_ending",
+  "visible_evidence": "seg4 holds the seg3 apron unchanged under the closing line (seg4:start to seg4:end). Then at payoff@-0.4 it hard-cuts to a black-navy void with Data holding a blank price tag, so the last thing the viewer sees is nothing.",
+  "root_cause": "The closing has no scene of its own. The finishing tail falls back to the default empty stage and the default price_tag prop instead of holding the last beat's finished picture.",
+  "repair_goal": "End on the doubled fleet: Data tows a trainee pilot across the apron to the empty cockpit of one of the new jets as the closing line lands, and hold that full-frame shot to the last frame. No dark stage, no price tag, nothing after it."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

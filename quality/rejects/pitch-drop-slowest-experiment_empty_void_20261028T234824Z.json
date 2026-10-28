@@ -1,0 +1,16 @@
+{
+ "slug": "pitch-drop-slowest-experiment",
+ "ts": "20261028T234824Z",
+ "failure_class": "empty_void",
+ "evidence": "empty_void: payoff@-0.4: the last frame is about 85% dark gradient with only a small Data at the bottom; the whole scene drops out",
+ "weakest_scene": {
+  "id": "seg1",
+  "index": 2,
+  "failure_class": "decorative_mascot",
+  "visible_evidence": "seg1:start to seg1:end: nine drops already sit in the beaker and the funnel drips by itself, while Data stands at the far left holding a red valve wheel over his face the whole beat. He causes nothing, and the frames barely change across 2+ seconds.",
+  "root_cause": "The mascot was given a static prop pose instead of an agent act on the moving part (the drop and funnel). The drop count was already finished at seg0:end, so seg1 has no build left to show.",
+  "repair_goal": "Make Data the cause and the clock: have him turn a calendar or the clock hands, or tap the funnel, and each drop falls only as the years he advances run out, so the ninth drop lands with '84 years' as the payoff. Keep the beaker filling across the beat instead of starting full."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
