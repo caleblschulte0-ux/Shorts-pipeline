@@ -170,7 +170,7 @@ class TheFootageIsCutIn(unittest.TestCase):
             hit = find_footage.find("Russ KD", "together", work=td)
         self.assertAlmostEqual(hit["from_s"],
                                200 * find_footage.POINTS[1]
-                               - find_footage.SECS / 2, places=1)
+                               - find_footage.PLAY_LEAD, places=1)
 
     @unittest.skipUnless(HAVE_FFMPEG, "ffmpeg unavailable")
     def test_only_the_shot_the_brain_saw_is_cut_in(self):

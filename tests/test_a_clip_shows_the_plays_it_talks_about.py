@@ -185,6 +185,37 @@ class NeverSomeoneElsesEdit(unittest.TestCase):
             self.assertFalse(find_footage.portrait(Path("/x.mp4")))
 
 
+class TheWholePlay(unittest.TestCase):
+    """caaleb, 2026-10-28, of the Skattebo cut-in: "that clip might have
+    been the wrong part of the play"."""
+
+    def test_a_cut_in_starts_where_its_shot_starts(self):
+        import tempfile
+        from funnel import find_footage
+        with tempfile.TemporaryDirectory() as td, \
+                mock.patch("funnel.hot_clips.youtube", return_value=[
+                    {"url": "https://www.youtube.com/watch?v=x",
+                     "title": "Skattebo runs"}]), \
+                mock.patch.object(find_footage, "download",
+                                  return_value=Path(td) / "v.mp4"), \
+                mock.patch.object(find_footage, "portrait",
+                                  return_value=False), \
+                mock.patch.object(find_footage, "_seconds",
+                                  return_value=100.0), \
+                mock.patch.object(find_footage, "_frame",
+                                  side_effect=lambda v, a, o: o), \
+                mock.patch.object(find_footage, "judge", return_value={
+                    0: {"depicts": True}}), \
+                mock.patch.object(find_footage, "shot_around",
+                                  return_value=(20.5, 28.0)), \
+                mock.patch.object(find_footage, "cut",
+                                  side_effect=lambda v, s, n, o: o):
+            hit = find_footage.find("Cam Skattebo", "run", work=td)
+        # frame judged at 22s, the shot (the snap) began at 20.5s
+        self.assertAlmostEqual(hit["from_s"], 20.6, places=1)
+        self.assertGreaterEqual(hit["secs"], 4.0)
+
+
 class NeverTheSamePlayTwice(unittest.TestCase):
     def test_the_second_cut_in_avoids_the_first(self):
         from third_capture import cut_in
