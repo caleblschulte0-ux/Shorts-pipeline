@@ -16357,13 +16357,68 @@
       "ts": "2026-10-28T11:56:42.109776+00:00"
     },
     "clip-20261028-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/rayasianboy/clip/HotAmazonianSnoodKlappa-goGfdH3teWprFPxc",
-      "story_key": null,
-      "streamer": "rayasianboy",
+      "url": "https://youtube.com/shorts/AL-D88r4vcA",
       "title": "Rayasianboy Loses It On Stream After This Happens \ud83d\ude2d",
       "kind": "twitch_clip",
-      "ts": "2026-10-28T11:59:03.608064+00:00",
+      "ts": "2026-10-28T11:59:09.482884+00:00",
+      "uploaded_at": "2026-10-28T11:59:09.482900+00:00",
+      "publish_at": "2026-10-29T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261028-rayasianboy-loses-it-on-stream-after-this-happen-f188316f",
+        "tiktok": "queued for 2026-10-29T03:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/HotAmazonianSnoodKlappa-goGfdH3teWprFPxc",
+      "streamer": "rayasianboy",
+      "series": "chaos",
+      "hook": "Ray freaks out on stream \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2292,
+      "banger": 0.5,
+      "cut": {
+        "start": 8.6,
+        "end": 18.9
+      },
+      "director_cut": true
+    },
+    "rejected-lazysucculentradishpermasmug-lbpbnzbazjaqfwvc": {
+      "source_url": "https://www.twitch.tv/silky/clip/LazySucculentRadishPermaSmug-LbPBNZBaZJAQfwVc",
+      "streamer": "silky",
+      "title": "silk",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Talking head rant, no visible event)",
+      "ts": "2026-10-28T12:00:02.232235+00:00"
+    },
+    "rejected-prettylazyyogurtkeyboardcat-edys6vx8vypjz2ax": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/PrettyLazyYogurtKeyboardCat-eDYs6vX8VypJz2ax",
+      "streamer": "caseoh_",
+      "title": "there he is",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.20 < 0.35 (static dialogue screen, nothing visibly )",
+      "ts": "2026-10-28T12:01:26.076914+00:00"
+    },
+    "rejected-apatheticstrangeendivethisissparta-mnkwltvbefvmhhv3": {
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/ApatheticStrangeEndiveThisIsSparta-MnKwLtvBEfVmhhv3",
+      "streamer": "stableronaldo",
+      "title": "bye burger",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Casual unloading chatter, no clear event)",
+      "ts": "2026-10-28T12:03:12.035674+00:00"
+    },
+    "clip-20261028-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jasontheween/clip/SuspiciousSeductiveTurnipPJSalt-ZyXwlIK4rHPqdffl",
+      "story_key": null,
+      "streamer": "jasontheween",
+      "title": "Jasontheween Tries To Get Her To Say Something And She Stays Silent",
+      "kind": "twitch_clip",
+      "ts": "2026-10-28T12:05:57.361923+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
