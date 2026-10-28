@@ -16147,13 +16147,41 @@
       "ts": "2026-10-28T00:27:33.230009+00:00"
     },
     "clip-20261027-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/atrioc/clip/HelplessSlipperyPeanutVoteNay-iDIvZ7YW709zGf34",
-      "story_key": null,
-      "streamer": "atrioc",
+      "url": "https://youtube.com/shorts/G58pNmajFB0",
       "title": "Atrioc Says Some People Should Let Him Play A Game Again",
       "kind": "twitch_clip",
-      "ts": "2026-10-28T00:31:13.306568+00:00",
+      "ts": "2026-10-28T00:31:24.389115+00:00",
+      "uploaded_at": "2026-10-28T00:31:24.389125+00:00",
+      "publish_at": "2026-10-28T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261028-atrioc-says-some-people-should-let-him-play-a-ga-90c88ff2",
+        "tiktok": "queued for 2026-10-28T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/atrioc/clip/HelplessSlipperyPeanutVoteNay-iDIvZ7YW709zGf34",
+      "streamer": "atrioc",
+      "series": "drama",
+      "hook": "Atrioc asks for a second chance",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 106199,
+      "banger": 0.62,
+      "cut": {
+        "start": 0.0,
+        "end": 29.2
+      },
+      "director_cut": true
+    },
+    "clip-20261027-4": {
+      "pending": true,
+      "source_url": "",
+      "story_key": "story-b1d7b6e24a3db960",
+      "streamer": "xqc",
+      "title": "Xqc on Ethan Klein: \"cheater lol, move on\"",
+      "kind": "story",
+      "ts": "2026-10-28T00:44:03.582243+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
