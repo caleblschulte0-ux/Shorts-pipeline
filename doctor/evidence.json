@@ -1,23 +1,38 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261027",
-  "judged_date": "20261026",
+  "date": "20261028",
+  "judged_date": "20261027",
   "alarm": {
-    "date": "20261026",
+    "date": "20261027",
     "ok": false,
     "alarms": [
       {
+        "code": "short_slate_explainer",
+        "severity": "warning",
+        "detail": "explainer: 1/4 posted for 20261027.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
+        "code": "short_slate_third",
+        "severity": "warning",
+        "detail": "third: 1/6 posted for 20261027.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
+        "code": "no_posts_trending",
+        "severity": "critical",
+        "detail": "trending: ZERO videos posted for 20261027 (registry wants 3).",
+        "fix": "Check the trending workflow run for 20261027. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
+      },
+      {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (48 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (49 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
-      "chatgpt finalizer: artifact present",
-      "explainer: 4/4 posted",
-      "third: 6/6 posted",
-      "trending: 3/3 posted"
+      "chatgpt finalizer: artifact present"
     ],
     "deferred": false
   },
@@ -203,551 +218,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-10-23T13:04:57+00:00",
-      "slug": "sports_dejan_kulusevski_ter_526_days",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 2
-      },
-      "one_line": "The real return (crowd clapping, #21 coming on) is buried inside another creator's narrated tribute montage of old clips, with a caption naming Kane.",
-      "auto_fails": [
-        "junk_imagery: mid1-mid3 are an old narrated tribute montage (Conte on the bench, a purple away-kit goal with a SPURS TV bug), not the 526-day return. At mid1 a word caption reads 'ON COMES KANE,' over Kulusevski, naming the wrong player, and mid2 is a smeared full-frame yellow blur."
-      ],
-      "problems": [
-        "The middle 20 seconds (mid0-mid3) are a reposted narrated tribute edit with its own burnt-in word captions. That breaks the no-narrator format and is a video inside a video.",
-        "mid1 is captioned 'ON COMES KANE,' over Kulusevski and Conte, which names the wrong player.",
-        "mid2 is an unwatchable full-frame yellow blur.",
-        "mid3 is an old away-kit goal clip, not the 526-day return.",
-        "The payoff (him coming on, the roar) only appears at mid4-mid5 and is darkened at the end, so it lands weakly."
-      ],
-      "fixes": [
-        "Cut the source down to the stadium return footage only: the crowd ovation at the hook, then the substitution walk-on and handshake at mid4/mid5.",
-        "Remove the source's narration captions entirely, keeping only our one line.",
-        "Put a punch-in plus a crowd-roar hit on the second #21 steps onto the pitch, and do not dim the final seconds before he is on the field.",
-        "If the post only has the narrated tribute edit, reject it and pick another source that shows the raw moment."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.008,
-        "sampled": 120
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "mid1",
-        "index": 5,
-        "failure_class": "junk_imagery",
-        "visible_evidence": "mid1 shows Kulusevski with Conte behind him, captioned 'ON COMES KANE,'. mid2 is an unreadable yellow blur captioned 'HOW HE FEELS,'. The narrated montage has nothing to do with the return.",
-        "root_cause": "The Reddit source is someone else's narrated tribute edit. Its burnt-in narration captions and archival clips were kept as if they were the moment itself.",
-        "repair_goal": "Cut to the real return: the hook@0.3 crowd standing and clapping, then mid4/mid5 with #21 walking on as the substitute and the manager greeting him. Drop the archival montage and the source's narration captions so the clip is the 526-day return only, with the crowd roar on the moment he steps on."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.075,
-        "effective_fps": 22.2,
-        "max_dup_run": 7,
-        "measured": true,
-        "frozen_ratio": 0.049,
-        "frozen_fps": 22.8,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.045,
-        "judder_fps": 22.9,
-        "held_s": 0.25,
-        "max_dup_at_s": 24.25,
-        "duration_s": 40.0
-      },
-      "fingerprint": "?|junk_imagery|junk_imagery"
-    },
-    {
-      "ts": "2026-10-23T13:06:54+00:00",
-      "slug": "sports_chris_olave_as_a_message",
-      "score": 61,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A 34s static press-conference talking head about a Guardian Cap that is never shown, with no punch-in or cutaway, so the hook and the payoff both fall flat.",
-      "auto_fails": [],
-      "problems": [
-        "The hook (hook@0.3\u20132.2) is a silent, locked-off podium shot that gives a scroller no reason to stay.",
-        "The Guardian Cap is never shown, so a stranger may not know what 'the cap' is.",
-        "The payoff line 'protect my brain and my future' comes at about 32s with no zoom or sound hit, so it does not land.",
-        "The video is mostly the same framing for 34s, and the code measured 15.6s held and a 0.57 duplicate ratio.",
-        "Blurred letterbox bands waste the top and bottom of the frame."
-      ],
-      "fixes": [
-        "Cold-open on 'I put it on for my kids' and then cut back to the setup, or trim the setup down to the line.",
-        "Cut in a shot of Olave in the Guardian Cap at practice or on the sideline when the cap is mentioned.",
-        "Add a punch-in and a sound hit on 'for my kids' and on 'protect my brain'.",
-        "Crop the footage to fill the 9:16 frame instead of padding it with blurred bands."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 102
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook_static_talking_head",
-        "visible_evidence": "hook@0.3\u2013hook@2.2 show the same locked-off medium shot of Olave at a podium, mostly silent and looking off-camera, with 'TO YOU TO' as the only spoken words. The Guardian Cap the line is about never appears anywhere in the video.",
-        "root_cause": "The cut starts at the beginning of his answer instead of on the quotable line ('I put it on for my kids, to protect my brain and my future'). There is no cutaway to the cap itself, so a stranger gets 34s of a static press conference with no visual reason to stay.",
-        "repair_goal": "Open on the payoff line or on a punch-in as he says 'for my kids'. Cut in a shot of Olave wearing the Guardian Cap at practice within the first two seconds, using funnel/find_image or a highlight clip. Trim the setup so 'protect my brain and my future' lands by about 15s, and add a zoom on the key w"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.574,
-        "effective_fps": 10.2,
-        "max_dup_run": 42,
-        "measured": true,
-        "frozen_ratio": 0.176,
-        "frozen_fps": 19.8,
-        "max_frozen_run": 8,
-        "judder_ratio": 0.002,
-        "judder_fps": 23.9,
-        "held_s": 15.58,
-        "max_dup_at_s": 14.33,
-        "duration_s": 34.04
-      },
-      "fingerprint": "?|-|weak_hook_static_talking_head"
-    },
-    {
-      "ts": "2026-10-23T13:09:51+00:00",
-      "slug": "sports_chris_olave_as_a_message",
-      "score": 62,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A real and fitting Olave moment, but it is 26s of one locked podium shot with him jammed against the right edge, overlapping captions at 6.8s, and no punch-in on the \"for my kids\" line it promises.",
-      "auto_fails": [
-        "unreadable: In mid1 (t=6.84s) two word captions are printed on top of each other and read as garbled \"AI TO PUT SAFETY RY\". Olave's name placard is also partly covered by our line in hook@0.3 to mid4."
-      ],
-      "problems": [
-        "Hook (hook@0.3 to 2.2) is a static wide press-conference shot with the speaker cropped at the right edge. Nothing makes a stranger stay in the first two seconds.",
-        "mid1: two speech captions render on top of each other and read as gibberish.",
-        "Olave is framed at the far right with part of his head out of frame for the whole podium section. The crop centres on the sponsor backdrop, not the speaker.",
-        "Our hook line and the word captions sit over his name placard and table.",
-        "No zoom, punch-in or sound hit on the payoff line (\"for my kids, to protect my brain\"). The edit never marks the moment.",
-        "The \"for my kids\" line the title promises isn't clearly visible in the sampled captions; the ending lands on \"THE FUTURE.\" and reads as flat."
-      ],
-      "fixes": [
-        "Recrop the podium footage so Olave's face is centred in the vertical frame instead of the backdrop.",
-        "Open on the strongest line or a punch-in on his face saying \"I put it on for my kids\", or cut to the Guardian Cap B-roll first with the line on screen.",
-        "Fix the caption grouper so only one speech caption shows at a time, especially across the cut at about 6.8s.",
-        "Add a punch-in or zoom and a sound hit on \"for my kids, to protect my brain and my future\" so the payoff lands.",
-        "Move the word captions above the placard area, or below the table edge, so they don't cover his name card."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 79
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid1",
-        "index": 1,
-        "failure_class": "unreadable",
-        "visible_evidence": "At t=6.84s two speech captions overlap in the same spot (\"AND ... TO PUT SAFETY ... RY\"), so the key line about putting safety first cannot be read.",
-        "root_cause": "The word-caption grouper let the last caption group stay on screen into the next one (or double-rendered a group across the B-roll to podium cut), so two caption layers were drawn at the same Y.",
-        "repair_goal": "Show exactly one speech caption at a time: end each group before the next begins, especially across the B-roll to podium cut at about 6-7s. Also move our hook line and the word captions so they don't cover the CHRIS OLAVE placard."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.519,
-        "effective_fps": 11.5,
-        "max_dup_run": 25,
-        "measured": true,
-        "frozen_ratio": 0.209,
-        "frozen_fps": 19.0,
-        "max_frozen_run": 13,
-        "judder_ratio": 0.008,
-        "judder_fps": 23.8,
-        "held_s": 11.29,
-        "max_dup_at_s": 22.33,
-        "duration_s": 26.21
-      },
-      "fingerprint": "?|unreadable|unreadable"
-    },
-    {
-      "ts": "2026-10-23T13:11:12+00:00",
-      "slug": "sports_chris_olave_as_a_message",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "",
-      "auto_fails": [
-        "empty_void: In every frame (hook@0.3 to payoff@-0.4) about the top 12% and bottom 12% are a blurred, darkened letterbox, and roughly 60% of the remaining frame is the sponsor backdrop. Olave is pushed against the right edge with half his face cropped off.",
-        "unreadable: In mid3 the word captions overlap into garbled text, 'THE YOUBUT I JUSTRATION.', which can't be read. The hook line also sits low over the table and the blurred crowd."
-      ],
-      "problems": [],
-      "fixes": [],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 77
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid3",
-        "index": 3,
-        "failure_class": "unreadable",
-        "visible_evidence": "mid3 shows two caption groups printed on top of each other ('THE YOUBUT I JUSTRATION.'), with Olave squeezed against the right edge of the frame.",
-        "root_cause": "Consecutive caption groups overlap in time so both draw at once. The vertical crop is centred on the backdrop, not on the speaker's face.",
-        "repair_goal": "Make caption groups mutually exclusive in time (no overlap). Re-crop to centre Olave's face. Trim the clip so it ends on the payoff line 'I put it on for my kids, to protect my brain and my future'."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.625,
-        "effective_fps": 9.0,
-        "max_dup_run": 42,
-        "measured": true,
-        "frozen_ratio": 0.251,
-        "frozen_fps": 18.0,
-        "max_frozen_run": 13,
-        "judder_ratio": 0.011,
-        "judder_fps": 23.7,
-        "held_s": 13.83,
-        "max_dup_at_s": 6.62,
-        "duration_s": 25.79
-      },
-      "fingerprint": "?|empty_void+unreadable|unreadable"
-    },
-    {
-      "ts": "2026-10-23T13:12:26+00:00",
-      "slug": "sports_lebron_james_cks_fan_aint",
-      "score": 79,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The moment is real and lands at mid3, but our line is stacked on the repost's burned-in captions for the first 12 seconds, so the text is a cluttered three-layer collision.",
-      "auto_fails": [
-        "unreadable: Our line 'LeBron fires back at a Knicks fan' sits right under, and touches, the footage's own captions in hook@0.3 to mid3. At mid0 it cuts across 'idk WTF you talking about' and hides the bottom of 'talking'. At mid1 it collides with 'west coast'. The source also has its own top caption, 'LeBron talking sh*t to Knicks fans', so three caption layers stack up."
-      ],
-      "problems": [
-        "Our line collides with the source's burned-in quote captions (mid0: 'talking about' covered; mid1: 'west coast' touching).",
-        "The source carries its own top caption box, so the frame has three text layers.",
-        "The last ~5s (mid4 to payoff@-0.4) are generic game play after the exchange ends, so the payoff fades out instead of ending on the yell."
-      ],
-      "fixes": [
-        "Put our line clear of the burned-in caption block (lower, or a different band), or crop out or skip the source captions.",
-        "Keep only one line of our text when the source already captions the speech.",
-        "Trim the cut to end shortly after the 'I'm a Ohio baby' yell (about 13s) instead of trailing into game play."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 61
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "caption_collision",
-        "visible_evidence": "From hook@0.3 to mid3, our bottom-third line is drawn directly under the source's own white quote captions and overlaps them (mid0: 'talking about' is clipped by 'LeBron fires back'). There is also a second source caption box at the top.",
-        "root_cause": "The source is a repost with its captions burned in. own_captions/SPEECH_Y did not move our line clear of the burned-in text, so our line landed on top of the footage's caption block.",
-        "repair_goal": "Find the source's burned-in caption boxes (top box and lower quote block) and put our single line where it overlaps neither, for example lower in the frame below the quote block. Or crop or choose a source without burned-in captions so only one line of text is on screen."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.0,
-        "effective_fps": 24.0,
-        "max_dup_run": 1,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 20.29
-      },
-      "fingerprint": "?|unreadable|caption_collision"
-    },
-    {
-      "ts": "2026-10-23T13:13:31+00:00",
-      "slug": "sports_lebron_james_cks_fan_aint",
-      "score": 79,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "The moment is real and it lands, but our caption is stacked on top of the source repost's own burned-in captions and title box, so the text collides and is hard to read on a phone.",
-      "auto_fails": [
-        "unreadable: Our line 'LeBron answers a Knicks fan' is printed right on top of the source's own burned-in quote captions. In mid0 the second line of the source caption, 'talking about', overlaps our line. In hook@0.3 and mid1-mid3 the two caption blocks touch with no gap. The source's own white title box, 'LeBron talking sh*t to Knicks fans', also sits at the top, so three text layers compete."
-      ],
-      "problems": [
-        "mid0: the source caption's second line, 'talking about', overlaps our line 'LeBron answers a Knicks fan'.",
-        "hook@0.3 to mid3: the source's quote captions sit directly against our line, so two text blocks read as one jumble.",
-        "The source already carries its own white title box ('LeBron talking sh*t to Knicks fans'), so the clip is a re-edit of another account's edit.",
-        "mid4 to the end: about 5s of ordinary play after the exchange ends, which weakens the finish."
-      ],
-      "fixes": [
-        "OCR the source for burned-in text, and either move our line clear of it or suppress our line while the source's captions are on screen.",
-        "Prefer a clean, unedited source of the moment so our line is the only text overlay.",
-        "End the cut at around 13s, right after the 'Ohio baby' shout, instead of running into regular play."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 61
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "unreadable_text_collision",
-        "visible_evidence": "From hook@0.3 to mid3 our bottom-third line sits directly under, and in mid0 on top of, the source's burned-in quote captions ('idk WTF you talking about'), and the source's own title box is also at the top of the frame. That is three stacked text layers that collide.",
-        "root_cause": "The source is another account's already-edited repost with its own title box and quote captions. Our line was placed at the default SPEECH/hook height without first checking for on-screen text the footage already carries.",
-        "repair_goal": "Detect the source's burned-in captions (OCR) and move our line to a clear band away from them, or drop our line while the source's quote captions are on screen. Better still, cut from a clean source with no prior edit overlays, so our one line is the only text."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.0,
-        "effective_fps": 24.0,
-        "max_dup_run": 1,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 20.25
-      },
-      "fingerprint": "?|unreadable|unreadable_text_collision"
-    },
-    {
-      "ts": "2026-10-23T13:14:39+00:00",
-      "slug": "sports_lebron_james_cks_fan_aint",
-      "score": 71,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The moment itself is good: LeBron's 'I'm an Ohio baby' shout lands at mid3. But it is someone else's captioned repost with our line stamped over their captions, and it trails off into 5s of unrelated game play.",
-      "auto_fails": [
-        "unreadable: Our line 'LeBron fires back at a Knicks fan' is printed on top of the source's own burned-in quote captions. In mid0 'idk WTF you talking about' is half covered, and in mid1 'west coast' is cut through, so both lines collide. The source's own top banner, 'LeBron talking sh*t to Knicks fans', also stays on through mid0, which gives the clip two hooks."
-      ],
-      "problems": [
-        "Our line overlaps the footage's own burned-in quote captions in mid0 and mid1, and they collide so neither can be read.",
-        "The source's top banner, 'LeBron talking sh*t to Knicks fans', is still on screen in the hook and mid0, so the clip shows two hooks.",
-        "After the peak at about 12s, mid5 to the end shows unrelated game play, so the clip ends flat instead of on the shout.",
-        "The hook opens on a wide shot with LeBron small in the frame. The confrontation isn't readable until the close-ups after 5s."
-      ],
-      "fixes": [
-        "Detect the burned-in captions and banner with OCR, then move our line clear of them or crop them out, so only one text layer is on screen at a time.",
-        "End the cut on the 'I'm an Ohio baby' shout, at about 13s.",
-        "Open on the close-up shout (the mid3 frame) as a flash-forward, or punch in on LeBron from the first frame."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 61
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid0",
-        "index": 0,
-        "failure_class": "text_over_source_captions",
-        "visible_evidence": "In mid0 and mid1, our bottom-third line sits directly on the clip's own white quote captions ('idk WTF you talking about', 'I'm not from the west coast'). The overlapping lines can't be read on a phone, and the repost's own top banner is still on screen from the hook through mid0.",
-        "root_cause": "The source is an already-edited repost with burned-in captions and a title banner. Our caption line was placed at the fixed bottom-third Y without checking for text already on the footage.",
-        "repair_goal": "Find the footage's own caption band with OCR and move our line clear of it, or crop or replace the source with a clean feed. Show only one hook, ours, and make sure no frame has our text on top of theirs. Then trim the cut so it ends on the 'Ohio baby' shout (about 13s) instead of 5s of unrelated pl"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.0,
-        "effective_fps": 24.0,
-        "max_dup_run": 1,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 20.29
-      },
-      "fingerprint": "?|unreadable|text_over_source_captions"
-    },
-    {
-      "ts": "2026-10-23T13:17:04+00:00",
-      "slug": "sports_charles_barkley_g_this_close",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "The Barkley/Shaq bit is real and funny for its first 17 seconds, then the cut drifts into the show's highlight montage and title card and never lands Shaq's comeback.",
-      "auto_fails": [
-        "junk_imagery: mid3 (19.6s) cuts to an unrelated Heat-arena dunk and mid4 (25.3s) to Giannis Antetokounmpo dribbling with a Bucks stat bar; neither is Barkley or Shaq, so the footage stops showing what the line promises.",
-        "unreadable: mid4 (25.3s): our line 'Barkley won't stand near Shaq' sits directly on the broadcast's GIANNIS ANTETOKOUNMPO lower-third stat bar, and the yellow caption 'SHAQ.' overlaps it too, so both texts collide."
-      ],
-      "problems": [
-        "mid3 and mid4 show unrelated Heat and Giannis footage, not Barkley or Shaq",
-        "mid4: our line and the 'SHAQ.' caption are printed over the broadcast's Giannis stat lower-third",
-        "mid5 to payoff@-0.4: the video ends on the ESPN TIP-OFF bumper, so the promised Shaq comeback and Chuck backing down are never shown",
-        "hook@0.3 to hook@2.2: the opening is a wide studio shot of people walking with no clear reaction yet, so the hook is weak",
-        "Context is thin: the Kash Patel reference ('OUT WITH WHO' in mid5) plays over a title card, so a stranger cannot tell what the joke is"
-      ],
-      "fixes": [
-        "End the cut on the studio exchange (around 17s), on Shaq's answer or the laugh",
-        "Remove the montage and bumper segments entirely",
-        "Open on Barkley's 'should we be standing this close' line with a punch-in on his face",
-        "Keep the Kash Patel line over the footage of them talking so the joke is understood",
-        "Never place our line over a broadcast lower-third or graphic"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.02,
-        "sampled": 99
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid3",
-        "index": 3,
-        "failure_class": "off_topic_footage_and_no_payoff",
-        "visible_evidence": "From mid3 (19.6s) the cut leaves the Barkley/Shaq studio exchange for an unrelated Heat dunk (mid3), then Giannis b-roll with a TV stat graphic (mid4), then ends on the ESPN TIP-OFF title bumper (mid5, payoff@-1.8, payoff@-0.4). Shaq's promised comeback and Chuck backing down never appear on screen.",
-        "root_cause": "The source is the full show-open package, so the cut runs past the Barkley/Shaq bit into the show's highlight montage and opening titles instead of ending on the exchange.",
-        "repair_goal": "Trim to the studio exchange only (about 0-17s): Barkley's 'should we be standing this close' line, the Kash Patel joke and Shaq's reaction or answer, ending on the laugh or comeback beat. Cut every frame of the Heat/Giannis montage and the TIP-OFF bumper, and never lay our line over a broadcast lowe"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.001,
-        "effective_fps": 24.0,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.001,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 29.29,
-        "duration_s": 33.0
-      },
-      "fingerprint": "?|junk_imagery+unreadable|off_topic_footage_and_no_payoff"
-    },
     {
       "ts": "2026-10-23T13:18:44+00:00",
       "slug": "sports_lebron_james_ident_taking",
@@ -4175,15 +3645,563 @@
       },
       "fingerprint": "?|-|Data demonstration",
       "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-28T00:27:52+00:00",
+      "slug": "sports_chris_olave_as_a_message",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "This is a 34-second locked talking head that never shows the Guardian Cap and buries its one quotable line at the very end, so a stranger swipes before the point lands.",
+      "auto_fails": [],
+      "problems": [
+        "Hook (hook@0.3 to hook@2.2) is a silent or filler-word static shot of him at the podium, with no hook moment.",
+        "The Guardian Cap, the whole subject, is never shown. He wears a plain headband in every frame.",
+        "One unchanging camera angle for the entire clip (mid0 to mid5) with no zoom, punch-in or sound hits, which is not the repost-channel cut the format calls for.",
+        "The key quote arrives only at about 32s ('TRY TO PROTECT', mid5) and may be cut off before 'my kids, my future'.",
+        "Blurred fill bands top and bottom waste about a quarter of the frame."
+      ],
+      "fixes": [
+        "Open on the quote 'I put it on for my kids, to protect my brain and my future'.",
+        "Cut in footage or a picture of Olave wearing the Guardian Cap at the moment it is mentioned.",
+        "Add punch-in zooms on the emotional words ('my kids', 'protect my brain').",
+        "Trim the preamble and end right after the quote lands, aiming for 15 to 20 seconds.",
+        "Reframe tighter so the speaker fills the vertical frame instead of sitting between blurred bands."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 102
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_static_presser",
+        "visible_evidence": "hook@0.3 to hook@2.2: a locked medium shot of Olave sitting silently at the podium, then the filler words 'TO YOU TO' and 'MAYBE BE AN'. No Guardian Cap is shown, and there is no zoom and no reason for a stranger to stay.",
+        "root_cause": "The cut starts at the beginning of a long answer, not at the quote ('I put it on for my kids, to protect my brain and my future'). The thing the line promises, the Guardian Cap, never appears on screen, and none of the repost-style punch-ins or sound hits were applied.",
+        "repair_goal": "Open on the payoff quote 'to protect my brain and my future' with a punch-in zoom on his face. Cut in a shot or picture of Olave wearing the Guardian Cap in a game or practice for 2 to 3 seconds. Trim the filler preamble so the clip runs about 15 to 20 seconds and ends right on 'for my kids'."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.574,
+        "effective_fps": 10.2,
+        "max_dup_run": 42,
+        "measured": true,
+        "frozen_ratio": 0.175,
+        "frozen_fps": 19.8,
+        "max_frozen_run": 8,
+        "judder_ratio": 0.002,
+        "judder_fps": 23.9,
+        "held_s": 15.58,
+        "max_dup_at_s": 14.33,
+        "duration_s": 34.04
+      },
+      "fingerprint": "?|-|weak_hook_static_presser"
+    },
+    {
+      "ts": "2026-10-28T00:29:32+00:00",
+      "slug": "sports_jos\u00e9_mourinho_to_the_bar\u00e7a",
+      "score": 53,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 0,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 2
+      },
+      "one_line": "A re-upload of Madrid Total's Spanish-captioned clip: a static talking head with no English and no edit, ending on an empty wall.",
+      "auto_fails": [
+        "junk_imagery: hook@0.3 through payoff@-0.4: the footage is a re-upload of another account's post. The 'Madrid Total' social bar (Instagram/YouTube/X/TikTok/Facebook icons), the 'al Madrid Tv' bug and a scrolling Spanish ticker are all baked in, so the viewer is watching someone else's video inside ours.",
+        "dead_air: mid0 to mid4: the same locked medium close-up of Mourinho for about 30s, with the same frozen Spanish quote box and no cut, zoom or sound hit. At payoff@-0.4 he has left and the frame is an empty grey wall.",
+        "empty_void: payoff@-0.4: Mourinho is out of frame and the top two-thirds is a blank grey wall. In every frame the bottom ~40% is a black band of foreign captions, logos and ticker.",
+        "unreadable: hook@0.3 to payoff@-0.4: the burned-in Spanish quote is cut off at both edges ('a esos fans (del Barcelona) que r' / 'iaban dormir la siesta en el hote'), and the ticker is cut off ('EL CAMP NOU, EL EQUIPO DE JO'). Our own line is readable, but the source's own text is cropped."
+      ],
+      "problems": [
+        "The footage carries another account's branding (the Madrid Total social bar, the 'al Madrid Tv' bug and a Spanish ticker), so it reads as a restream.",
+        "The burned-in Spanish quote and the ticker are cut off at both frame edges.",
+        "The joke is never delivered in English, so an English-speaking stranger cannot hear or read the nap line.",
+        "About 35s of one locked shot with no zooms, cuts or sound hits.",
+        "The clip ends on an empty grey wall after Mourinho leaves (payoff@-0.4)."
+      ],
+      "fixes": [
+        "Pull the original press-conference footage, not a social repost.",
+        "Add English word captions of the nap quote and punch in on the line itself.",
+        "Trim to the quote, about 15s, and end on his reaction before he leaves the frame.",
+        "Crop out or avoid all third-party logos, tickers and caption boxes."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 117
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "dead_air",
+        "empty_void",
+        "junk_imagery",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "mid5",
+        "index": 5,
+        "failure_class": "restream_reupload",
+        "visible_evidence": "payoff@-0.4 shows an empty grey wall after Mourinho walks off. Every frame carries the Madrid Total social bar, the 'al Madrid Tv' bug, a cropped Spanish quote box and a cropped ticker taking up the bottom 40% of the frame.",
+        "root_cause": "The source is a vertical repost from another account with that account's graphics burned in, and it was cropped again. We never reached the original press-conference footage, and the cut runs past the moment into empty frame.",
+        "repair_goal": "Source the original press-conference clip without Madrid Total's branding or ticker. Frame Mourinho to fill the vertical frame. Add English subtitles of the nap line so a stranger understands it, with a punch-in on the 'I couldn't take my nap' line. End on his delivery or a smile, before he leaves t"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.139,
+        "effective_fps": 20.7,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.112,
+        "frozen_fps": 21.3,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.06,
+        "judder_fps": 22.6,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.58,
+        "duration_s": 38.88
+      },
+      "fingerprint": "?|dead_air+empty_void+junk_imagery+unreadable|restream_reupload"
+    },
+    {
+      "ts": "2026-10-28T00:31:46+00:00",
+      "slug": "sports_jaylen_brown_night_theres",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The moment is real and correctly named, but our word captions collide with the clip's own burned-in captions, and 38s of a talking head buries the 'lamb chops and gravy' punchline, which no sampled frame shows.",
+      "auto_fails": [
+        "unreadable: In mid1 two caption layers collide: 'YOU GOT TO' is printed over another line, so it reads 'TO [YOU GOT TO] AT'. In hook@0.3 'ARE YOU WILLING' sits on top of another garbled caption. Both show our word captions printed over the footage's own burned-in captions."
+      ],
+      "problems": [
+        "mid1 and hook@0.3: our word captions are printed over the source's own burned-in captions, so the text is unreadable ('TO YOU GOT TO AT').",
+        "There are no zooms or sound hits on the reaction. It is 38s of one static interview framing, cut nothing like the big repost channels.",
+        "The 'lamb chops and gravy' punchline the title promises does not appear in any sampled frame. The clip ends on a flat 'WE JUST BOTH...'.",
+        "The hook spends its first 2s on the reporter's question ('ARE YOU WILLING... TO HAVE ONE') rather than on Brown's grin or his line."
+      ],
+      "fixes": [
+        "Suppress our word captions when the source already carries burned-in captions (own_captions OCR), or move them so they never overlap.",
+        "Trim to about 15-20s around the answer. Open on the grin and 'there's no beef', then punch in with a sound hit on 'lamb chops and gravy'.",
+        "End on the 'lamb chops and gravy / stay ready' line so the payoff lands before the cut."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 116
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "mid1",
+        "index": 1,
+        "failure_class": "unreadable",
+        "visible_evidence": "At mid1 (t=9.36s) the caption reads 'TO YOU GOT TO AT': our word caption overlaps a second, different caption at the same spot. The same collision appears in hook@0.3 ('ARE YOU WILLING' over garbled text).",
+        "root_cause": "The source is already a captioned repost, with word captions burned into the picture at mid-frame. Our own word captions were drawn at the same Y on top of them, so the own_captions OCR check did not suppress ours.",
+        "repair_goal": "Drop our word captions whenever the source already shows its own (own_captions should match on this clip), or move ours clear of the burned-in band. Keep only the one hook line at the top, so no text ever sits on other text."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.032,
+        "effective_fps": 23.2,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.028,
+        "frozen_fps": 23.3,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.027,
+        "judder_fps": 23.4,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.92,
+        "duration_s": 38.71
+      },
+      "fingerprint": "?|unreadable|unreadable"
+    },
+    {
+      "ts": "2026-10-28T00:33:14+00:00",
+      "slug": "sports_jaylen_brown_night_theres",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Real footage that matches the quote with a clean, readable line, but it plays as a flat talking head: Tatum's comments are never set up and the clip ends on a reporter's 'say that?' instead of on the gravy punchline.",
+      "auto_fails": [],
+      "problems": [
+        "No context for what Tatum said, so a stranger can't tell what 'no beef' is answering",
+        "The ending runs past the punchline into a reporter question (payoff@-0.4 'SAY THAT?')",
+        "There are no zooms or sound hits on the joke. The whole cut is one static medium close-up (mid0 to mid5)",
+        "The hook frames show a generic face with no hint of the joke to come"
+      ],
+      "fixes": [
+        "End the cut right after 'stay ready at all times' with a punch-in on his expression",
+        "Add a short second line of text giving Tatum's original comment",
+        "Punch in with a sound hit on 'lamb chops and some gravy'",
+        "Open on his smirk or the lamb-chops line as a cold open before the setup"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 69
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "payoff",
+        "index": 1,
+        "failure_class": "weak_payoff",
+        "visible_evidence": "payoff@-0.4 ends on Brown silent while a reporter caption reads 'SAY THAT?'. In mid3 he looks down mid-answer. Nothing shows the 'lamb chops and gravy' punchline landing as the last beat, and Tatum's original comments never appear",
+        "root_cause": "The cut runs the raw interview past the punchline into the next question, and it never gives the setup (what Tatum said), so a stranger gets a talking head with no context and the joke lands mid-clip, not at the end",
+        "repair_goal": "Trim the clip to end on the 'little lamb chops and some gravy... stay ready at all times' line with a punch-in and sound hit on his smirk. Add a second line or a brief cutaway saying what Tatum said last night, so the 'no beef' reply has something to answer"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.025,
+        "effective_fps": 23.4,
+        "max_dup_run": 3,
+        "measured": true,
+        "frozen_ratio": 0.015,
+        "frozen_fps": 23.7,
+        "max_frozen_run": 3,
+        "judder_ratio": 0.013,
+        "judder_fps": 23.7,
+        "held_s": 0.0,
+        "max_dup_at_s": 17.96,
+        "duration_s": 23.0
+      },
+      "fingerprint": "?|-|weak_payoff"
+    },
+    {
+      "ts": "2026-10-28T00:35:49+00:00",
+      "slug": "sports_charles_barkley_g_this_close",
+      "score": 62,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The joke lands in the first ~10s, then the cut drifts into unrelated b-roll and ends on a static ESPN bumper. That buries the payoff.",
+      "auto_fails": [
+        "junk_imagery: mid2 shows unrelated Heat-arena warmup b-roll and mid3 shows Giannis dribbling in a drill. Neither has Barkley, Shaq or the joke the line promises.",
+        "unreadable: mid3: our line 'Barkley warns Shaq's new friend is dangerous' is printed directly over the ESPN Giannis Antetokounmpo stat graphic ('LAST SEASON w/ BUCKS ... 27.6 ... 5.4'), so the two texts collide."
+      ],
+      "problems": [
+        "The second half (mid2-mid5) is unrelated b-roll: a Heat arena and Giannis drills.",
+        "Our line collides with the ESPN stat lower-third at mid3.",
+        "The video ends on the TIP-OFF sponsor bumper, not on the reaction.",
+        "The 'Kash Patel' punchline isn't visibly captioned in the frames sampled after the setup, so a stranger may miss what the joke is.",
+        "The hook opens on Kenny Smith walking away, not on Barkley and Shaq."
+      ],
+      "fixes": [
+        "Trim to the studio exchange and end on Barkley and Shaq laughing.",
+        "Make sure the 'Kash Patel... that's dangerous' words are captioned.",
+        "Never place our line over a broadcast graphic. Cut that footage.",
+        "Open on Barkley next to Shaq so the first frame shows who the line is about."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.02,
+        "sampled": 101
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "junk_imagery",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "off_topic_footage",
+        "visible_evidence": "From mid2 to mid5 the cut leaves the studio for Heat-arena b-roll, then a Giannis drill with an ESPN stat lower-third under our line, then ends on the static 'ESPN TIP-OFF presented by Lilly' bumper (mid4, mid5, payoff@-0.4).",
+        "root_cause": "The source clip runs past the Barkley joke into the show's b-roll and bumper, and the edit kept that tail instead of ending on the reaction.",
+        "repair_goal": "End the cut on the studio laugh (around mid1, Shaq holding the ball while Barkley cracks up), with Barkley's 'Kash Patel... that's dangerous' line clearly heard. Drop the b-roll and the TIP-OFF bumper so the video is about 10-12s and ends on the reaction."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.001,
+        "effective_fps": 24.0,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.001,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 29.29,
+        "duration_s": 33.5
+      },
+      "fingerprint": "?|junk_imagery+unreadable|off_topic_footage"
+    },
+    {
+      "ts": "2026-10-28T00:37:39+00:00",
+      "slug": "sports_charles_barkley_g_this_close",
+      "score": 58,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "The Barkley/Shaq joke lands mid-clip at about 9-12s, but the last 5+ seconds and a 2.5s insert are unrelated Giannis warm-up footage, so the clip ends on the wrong person and the moment never pays off.",
+      "auto_fails": [
+        "junk_imagery: mid0 (t=2.50s) cuts to an unrelated warm-up shooter, and mid4/mid5/payoff@-0.4 (t=15.86-20.80s) show Giannis Antetokounmpo warming up at a Heat arena with his own lower-third. None of that is Barkley, Shaq or the Kash Patel joke the line promises.",
+        "empty_void: Every frame from hook@0.3 to payoff@-0.4 is letterboxed: the 16:9 source sits in the middle, with blurred bars filling roughly the top 12% and bottom 12%, so the vertical frame is not used."
+      ],
+      "problems": [
+        "mid0 (2.5s) cuts away to an unrelated shooter in the middle of the setup",
+        "mid4 to payoff (15.9-21s) is Giannis Antetokounmpo warm-up footage, not the moment the line promises",
+        "The clip ends on unrelated b-roll instead of the laugh",
+        "The 16:9 source is letterboxed with blurred bars and no crop or zoom on the reaction",
+        "No zoom or sound hit on 'that's dangerous' or on the laugh"
+      ],
+      "fixes": [
+        "Cut the source to the studio exchange only (about 0-14s) and end on Shaq and Barkley laughing (mid3)",
+        "Remove the 2.5s shooter insert so 'Should we be standing this close to Shaq?' runs straight into 'He's been hanging out with Kash Patel'",
+        "Punch in on Barkley at 'That's dangerous' and on the laugh-hug, filling more of the vertical frame",
+        "Refuse any source whose later footage shows a different person (the Giannis lower-third) from the one the title names"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 64
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "empty_void",
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 1,
+        "failure_class": "junk_imagery",
+        "visible_evidence": "From about 15s to the end (mid4, mid5, payoff@-0.4), the clip leaves the studio for Giannis Antetokounmpo warm-up footage in a Heat arena, with a 'GIANNIS ANTETOKOUNMPO' lower-third. mid0 at 2.5s also flashes an unrelated shooter.",
+        "root_cause": "The source Reddit video is a compilation or broadcast reel. The cut kept the whole source instead of trimming to the Barkley/Shaq exchange, so unrelated b-roll pads the opening and replaces the payoff.",
+        "repair_goal": "Trim to the studio exchange only, from 'Should we be standing this close to Shaq' (about 0-2.4s) through 'That's dangerous' and the laugh-hug (about 5.8-14s). Drop the 2.5s shooter insert and everything after Barkley and Shaq's laughter, so the clip ends on the laugh."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.002,
+        "effective_fps": 24.0,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.002,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 21.21
+      },
+      "fingerprint": "?|empty_void+junk_imagery|junk_imagery"
+    },
+    {
+      "ts": "2026-10-28T00:39:16+00:00",
+      "slug": "sports_tom_brady_ugh_with_the",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Real broadcast footage with Brady's live outrage captioned, but the cut never isolates the hit or the flag, so the call he's angry about is hard to see",
+      "auto_fails": [],
+      "problems": [
+        "The disputed contact on Goff goes by at full speed at hook@0.3\u2013mid0 and is never replayed or zoomed",
+        "The clip ends on a Brooks close-up (payoff@-0.4) without showing the flag or the ref's signal",
+        "Brady is only a voice in the captions; nothing on screen shows it is Brady in the booth",
+        "Our line sits right above the TV scorebug at payoff@-0.4 and is crowded by it"
+      ],
+      "fixes": [
+        "Add a punch-in or slow replay of the Brooks-on-Goff hit timed to 'There's no way!'",
+        "End on the flag or ref signal, or a frozen frame of the contact, while 'definitely not roughing the passer' plays",
+        "Raise our line slightly at the end so it is clear of the scorebug"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 55
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid5",
+        "index": 5,
+        "failure_class": "weak_payoff",
+        "visible_evidence": "payoff@-0.4 ends on a close-up of Brooks's helmet with the caption 'ROUGHING THE PASSER.' There is no replay of the contact on Goff and no shot of the flag or the ref signal. Brady never appears; he is only a voice in the captions",
+        "root_cause": "The cut never isolates the contact being disputed. The hit at hook@0.3\u2013mid0 goes by at full speed among other shots, so a stranger hears 'definitely not roughing' without having seen the hit clearly",
+        "repair_goal": "Hold or punch in on the Brooks-Goff contact (hook@0.3 to mid0) right as Brady says 'there's no way'. Then end on the flag or ref signal so the call he is reacting to is on screen when the clip ends"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.062,
+        "effective_fps": 22.5,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.051,
+        "frozen_fps": 22.8,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.032,
+        "judder_fps": 23.2,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 18.17
+      },
+      "fingerprint": "?|-|weak_payoff"
+    },
+    {
+      "ts": "2026-10-28T00:40:55+00:00",
+      "slug": "sports_cam_skattebo__it_clear_he",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "This is the right player saying the right thing, but it opens on a reporter's question, stays one static talking-head shot throughout, and ends on an unrelated 'Grandpa?' question instead of the defiant line.",
+      "auto_fails": [],
+      "problems": [
+        "Hook (hook@0.3\u20130.8) is the reporter's question 'WHAT DID HE TELL YOU?' over a still face. Nothing happens in the first two seconds.",
+        "No zoom, punch-in or sound hit anywhere (mid0\u2013mid5), so the shot is identical for 31s.",
+        "The ending (payoff@-0.4 'GRANDPA?') cuts into a new question, so the payoff fizzles.",
+        "The exact 'play for free' words are not clearly the climax of the cut."
+      ],
+      "fixes": [
+        "Cold-open on his strongest sentence (the fined/play-for-free line), then let the context play.",
+        "Punch in on 'FINED FOR IT' (mid3) and 'KEEP PLAYING HARD' (mid5) with a boom hit.",
+        "Trim the tail to end at about 29.1s on 'KEEP PLAYING HARD.' and drop the 'Grandpa?' question."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 93
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "payoff",
+        "index": 11,
+        "failure_class": "weak_payoff",
+        "visible_evidence": "At payoff@-0.4 the caption reads 'GRANDPA?' and he has turned to a new reporter. The clip ends as a new, unrelated question starts. The 'play for free' line is never visibly caught as the closing beat, and from mid0 to the end the shot is the same static talking head with no zoom or sound hit on the",
+        "root_cause": "The cut runs past the answer's natural end ('keep playing hard.' at mid5) into the next question. No punch-in marks the key line.",
+        "repair_goal": "End the clip on 'KEEP PLAYING HARD.' (about 29.1s) or on the exact 'play for free' sentence. Add a punch-in plus a sound hit on the fined/play-for-free line so the moment lands. Open on the defiant line rather than the reporter's 'WHAT DID HE TELL YOU?'."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.026,
+        "effective_fps": 23.4,
+        "max_dup_run": 4,
+        "measured": true,
+        "frozen_ratio": 0.001,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 13.12,
+        "duration_s": 31.08
+      },
+      "fingerprint": "?|-|weak_payoff"
     }
   ],
   "showrunner_recurrence": {
-    "?|-|weak_hook_static_talking_head": {
-      "count": 4,
+    "?|-|weak_payoff": {
+      "count": 5,
       "days": [
-        "2026-10-23",
         "2026-10-24",
-        "2026-10-25"
+        "2026-10-25",
+        "2026-10-28"
       ]
     },
     "?|temporal_gate|-": {
@@ -4192,34 +4210,20 @@
         "2026-10-23"
       ]
     },
+    "?|-|weak_hook_static_talking_head": {
+      "count": 3,
+      "days": [
+        "2026-10-24",
+        "2026-10-25"
+      ]
+    },
     "?|-|Data demonstration": {
       "count": 3,
       "days": [
         "2026-10-26"
       ]
     },
-    "?|junk_imagery|junk_imagery": {
-      "count": 2,
-      "days": [
-        "2026-10-23",
-        "2026-10-26"
-      ]
-    },
-    "?|unreadable|unreadable_text_collision": {
-      "count": 2,
-      "days": [
-        "2026-10-23",
-        "2026-10-25"
-      ]
-    },
     "?|dead_air+junk_imagery+unreadable|junk_imagery": {
-      "count": 2,
-      "days": [
-        "2026-10-24",
-        "2026-10-25"
-      ]
-    },
-    "?|-|weak_payoff": {
       "count": 2,
       "days": [
         "2026-10-24",
@@ -4236,36 +4240,6 @@
       "count": 2,
       "days": [
         "2026-10-25"
-      ]
-    },
-    "?|unreadable|unreadable": {
-      "count": 1,
-      "days": [
-        "2026-10-23"
-      ]
-    },
-    "?|empty_void+unreadable|unreadable": {
-      "count": 1,
-      "days": [
-        "2026-10-23"
-      ]
-    },
-    "?|unreadable|caption_collision": {
-      "count": 1,
-      "days": [
-        "2026-10-23"
-      ]
-    },
-    "?|unreadable|text_over_source_captions": {
-      "count": 1,
-      "days": [
-        "2026-10-23"
-      ]
-    },
-    "?|junk_imagery+unreadable|off_topic_footage_and_no_payoff": {
-      "count": 1,
-      "days": [
-        "2026-10-23"
       ]
     },
     "?|unreadable|bad_crop_and_overlapping_captions": {
@@ -4406,6 +4380,12 @@
         "2026-10-25"
       ]
     },
+    "?|unreadable|unreadable_text_collision": {
+      "count": 1,
+      "days": [
+        "2026-10-25"
+      ]
+    },
     "?|-|slow_setup": {
       "count": 1,
       "days": [
@@ -4431,6 +4411,12 @@
       ]
     },
     "?|malformed_judge_response|-": {
+      "count": 1,
+      "days": [
+        "2026-10-26"
+      ]
+    },
+    "?|junk_imagery|junk_imagery": {
       "count": 1,
       "days": [
         "2026-10-26"
@@ -4465,11 +4451,41 @@
       "days": [
         "2026-10-26"
       ]
+    },
+    "?|-|weak_hook_static_presser": {
+      "count": 1,
+      "days": [
+        "2026-10-28"
+      ]
+    },
+    "?|dead_air+empty_void+junk_imagery+unreadable|restream_reupload": {
+      "count": 1,
+      "days": [
+        "2026-10-28"
+      ]
+    },
+    "?|unreadable|unreadable": {
+      "count": 1,
+      "days": [
+        "2026-10-28"
+      ]
+    },
+    "?|junk_imagery+unreadable|off_topic_footage": {
+      "count": 1,
+      "days": [
+        "2026-10-28"
+      ]
+    },
+    "?|empty_void+junk_imagery|junk_imagery": {
+      "count": 1,
+      "days": [
+        "2026-10-28"
+      ]
     }
   },
   "recent_commits": [
-    "274cc61 2026-10-27 watchdog: phase A readiness 20261027 [skip ci]",
-    "ef1d7dd 2026-10-27 exchange: phase A bundle for 20261027 [skip ci]"
+    "1909ded 2026-10-28 Baller Bro: a cut never ends on the network's logo or bumper (#705)",
+    "37decae 2026-10-28 claim: mailbox verdicts 2026-10-28T04:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4486,15 +4502,15 @@
         "2026-10-23": 3,
         "2026-10-24": 3,
         "2026-10-25": 3,
-        "2026-10-26": 3
+        "2026-10-26": 3,
+        "2026-10-28": 3
       },
-      "total_posted": 478,
-      "attempted": 478,
+      "total_posted": 481,
+      "attempted": 481,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-10-13": 2,
         "2026-10-14": 5,
         "2026-10-15": 3,
         "2026-10-16": 4,
@@ -4513,7 +4529,6 @@
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-10-13": 4,
         "2026-10-14": 1,
         "2026-10-15": 8,
         "2026-10-16": 8,
@@ -4526,11 +4541,13 @@
         "2026-10-23": 3,
         "2026-10-24": 7,
         "2026-10-25": 5,
-        "2026-10-26": 6
+        "2026-10-26": 6,
+        "2026-10-27": 1,
+        "2026-10-28": 4
       },
-      "total_posted": 469,
-      "attempted": 1142,
-      "rejected_or_pending": 673
+      "total_posted": 474,
+      "attempted": 1152,
+      "rejected_or_pending": 678
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4544,71 +4561,71 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 150,
+      "videos": 148,
       "top_by_vph": [
         {
-          "title": "The Body Renews Its Stomach Lining In 5 Days, Not Every Cell",
-          "vph": 32.61,
-          "views": 978
-        },
-        {
           "title": "Parker Solar Probe Hit 430,000 MPH Without Carrying A Human",
-          "vph": 28.66,
-          "views": 1036
+          "vph": 19.57,
+          "views": 1157
         },
         {
-          "title": "Opioid Prescriptions Fell 47%. Overdoses Kept Rising.",
-          "vph": 26.18,
-          "views": 471
+          "title": "The Body Renews Its Stomach Lining In 5 Days, Not Every Cell",
+          "vph": 18.6,
+          "views": 985
         },
         {
           "title": "Hearing Aids Started At $300 Instead Of Requiring A Prescription",
-          "vph": 20.45,
+          "vph": 14.6,
           "views": 1172
         },
         {
-          "title": "The World Lost 35% Of Its Wetlands Since 1970",
-          "vph": 18.25,
-          "views": 195
+          "title": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
+          "vph": 12.58,
+          "views": 1737
+        },
+        {
+          "title": "Opioid Prescriptions Fell 47%. Overdoses Kept Rising.",
+          "vph": 11.89,
+          "views": 487
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 137,
+      "videos": 138,
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 13.13,
-          "views": 1448
-        },
-        {
-          "title": "Ishowspeed Gets Spooked And Screams After Smelling This",
-          "vph": 4.78,
-          "views": 147
+          "vph": 12.33,
+          "views": 1558
         },
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 4.25,
+          "vph": 4.0,
           "views": 1087
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 3.43,
-          "views": 1767
+          "vph": 3.36,
+          "views": 1785
         },
         {
-          "title": "Kaicenat: Kai Cenat Hits Cameraman After He Quits \u2013 Streamer Fight",
-          "vph": 3.04,
-          "views": 48
+          "title": "Ishowspeed Gets Spooked And Screams After Smelling This",
+          "vph": 3.29,
+          "views": 154
+        },
+        {
+          "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
+          "vph": 2.18,
+          "views": 905
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261024/brief.json",
       "retro/20261025/brief.json",
-      "retro/20261026/brief.json"
+      "retro/20261026/brief.json",
+      "retro/20261027/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
