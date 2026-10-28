@@ -2,7 +2,7 @@
   "mature_hours": 72.0,
   "content_series": {
     "chaos": {
-      "n": 61,
+      "n": 62,
       "median_vph": 0.02
     },
     "drama": {
@@ -23,15 +23,15 @@
     },
     "argument": {
       "n": 6,
-      "median_vph": 0.085
-    },
-    "win": {
-      "n": 5,
-      "median_vph": 0.01
+      "median_vph": 0.08
     },
     "rage": {
       "n": 5,
       "median_vph": 0.05
+    },
+    "win": {
+      "n": 4,
+      "median_vph": 0.01
     },
     "extended": {
       "n": 2,
