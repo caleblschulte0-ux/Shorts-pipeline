@@ -22053,10 +22053,10 @@
   },
   {
    "slug": "frog-freezes-and-revives",
-   "title": "This Frog Freezes Solid Every Winter And Survives",
-   "hook": "Your frog froze 65 percent solid. Then it hopped away.",
-   "closing": "Life can survive far more cold than we thought, even frozen solid, and this frog proves it.",
-   "question": "Would you trust your body to do that?",
+   "title": "A Wood Frog Survives With 65% Of Its Water Frozen",
+   "hook": "65% of its body water freezes, yet the wood frog survives.",
+   "closing": "Freeze tolerance lets one small frog live where most vertebrates cannot.",
+   "question": "Would you survive one winter there?",
    "hashtags": [
     "woodfrog",
     "biology",
@@ -22080,8 +22080,8 @@
      },
      "insight_type": "comparison",
      "role": "1 · IT SHOULDN'T WORK",
-     "topic": "Frog survives frozen water",
-     "say": "Most animals die with a little of their body water frozen. The wood frog survives with 65 percent turned to ice.",
+     "topic": "Wood Frog Ice",
+     "say": "The wood frog survives with 65% of its body water frozen. Most vertebrates cannot tolerate even a fraction of that.",
      "scene": {
       "mechanic": "ice-fill-shatter-duel",
       "concept": "two frog cutouts fill with ice to their survival threshold; one shatters, one holds and glows",
@@ -22096,8 +22096,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE TRICK",
-     "topic": "Frog coldest body temperature",
-     "say": "A typical frog can't survive much below freezing. The wood frog survives 16 degrees below, far colder than ordinary frogs manage.",
+     "topic": "Wood Frog Cold",
+     "say": "The wood frog survives temperatures 16 degrees below freezing. Ordinary frogs cannot handle that cold.",
      "scene": {
       "mechanic": "frog-thermometer-plunge",
       "concept": "a shared vertical scale where each frog plunges to the coldest body temperature it survives",
@@ -22112,8 +22112,8 @@
      },
      "insight_type": "comparison",
      "role": "3 · HOW FAR IT TAKES THEM",
-     "topic": "Frog northernmost range",
-     "say": "Most frogs stop well short of the far north. The wood frog lives in Alaska, at 68 degrees latitude, through brutal winters.",
+     "topic": "Wood Frog Range",
+     "say": "The wood frog reaches 68 degrees north in Alaska. Freeze tolerance unlocks habitats other frogs cannot use.",
      "scene": {
       "mechanic": "arctic-range-creep",
       "concept": "frog photos climb a latitude ladder, most stopping well short of the Arctic Circle line",
@@ -22121,8 +22121,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-15T12:13:46Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-28T11:26:39Z",
    "retold": "retell/v4"
   },
   {
@@ -27632,10 +27632,10 @@
   },
   {
    "slug": "cargo-ship-size-growth",
-   "title": "Cargo Capacity Hit 24,327 While Crews Got Smaller",
-   "hook": "Cargo capacity reached 24,327 while crews kept shrinking.",
+   "title": "Cargo Ships Grew Sixfold While Crews Shrunk To 20",
+   "hook": "Cargo ships grew more than sixfold while crews fell to 20.",
    "closing": "More of the world's goods now depend on surprisingly few people at sea.",
-   "question": "Would you crew a ship?",
+   "question": "Would you work on that crew?",
    "caption": "The biggest cargo ship in 1980 carried 4,000 containers. Today's record holder carries 24,327, with roughly the same size crew. Here's how shipping quietly scaled up. 👇",
    "hashtags": [
     "cargoships",
@@ -27660,7 +27660,7 @@
      "insight_type": "trend",
      "topic": "Cargo Capacity",
      "role": "1 · THE CLIMB",
-     "say": "The largest ship carries 24,327 container equivalents. Capacity grew more than sixfold from the earliest listed vessel.",
+     "say": "Cargo capacity reached 24,327 container equivalents. A single vessel now moves what once required several ships.",
      "scene": {
       "mechanic": "deck-box-loadout",
       "concept": "one container ship's deck fills with real stacked boxes, a box landing every few frames as the years sweep 1980 to 2024 and capacity climbs from 4,000 to 24,327",
@@ -27678,7 +27678,7 @@
      "ascending": false,
      "topic": "Cargo Scale",
      "role": "2 · THE SCALE",
-     "say": "The giant vessel stretches 400 meters. Modern cargo ships have outgrown historic passenger liners.",
+     "say": "Today's largest cargo ship stretches 400 meters. Its scale surpasses famous historic passenger liners.",
      "scene": {
       "mechanic": "hull-slides-past-titanic",
       "concept": "the Titanic is laid at its true length and the modern container ship slides in beside it, overshooting by 131 meters",
@@ -27695,7 +27695,7 @@
      "ascending": false,
      "topic": "Cargo Crew",
      "role": "3 · THE CATCH",
-     "say": "A typical cargo crew now has 20 people. Bigger ships did not bring bigger teams.",
+     "say": "A typical cargo crew fell to 20 people. Bigger ships now rely on smaller teams.",
      "scene": {
       "mechanic": "crew-walks-off-deck",
       "concept": "a muster of 34 real sailors from 1980 stands on deck; 14 of them walk off one by one until only today's 20 remain",
@@ -27705,7 +27705,7 @@
    ],
    "words_by": "chatgpt-rewrite",
    "retold": "retell/v3",
-   "rewritten_at": "2026-10-26T11:36:19Z"
+   "rewritten_at": "2026-10-28T11:26:38Z"
   },
   {
    "slug": "ceo-executive-pay-gap",
@@ -32665,10 +32665,10 @@
   },
   {
    "slug": "pitch-drop-slowest-experiment",
-   "title": "9 Pitch Drops Took 84 Years To Fall",
-   "hook": "The pitch experiment produced only 9 drops in 84 years.",
-   "closing": "Slow experiments matter because patience can reveal what a quick test never could.",
-   "question": "Could you watch that long?",
+   "title": "Pitch Looks Solid, Yet 9 Drops Took 84 Years",
+   "hook": "Pitch looks solid, but one experiment recorded just 9 drops.",
+   "closing": "Extreme patience can reveal movement that a normal experiment would completely miss.",
+   "question": "Could you wait for one drop?",
    "caption": "A physics experiment started in 1930 has only produced 9 drops -- ever. One sister experiment waited 69 years for its first. Could you wait that long? Drop your answer below 👇",
    "hashtags": [
     "physics",
@@ -32694,8 +32694,8 @@
      "insight_type": "trend",
      "use_baseline": false,
      "role": "1 · THE SETUP",
-     "topic": "Pitch drops",
-     "say": "The pitch experiment produced just 9 drops, making the wait itself part of the result."
+     "topic": "Pitch Drops",
+     "say": "Only 9 pitch drops were recorded. The experiment proves a solid-looking material can still flow."
     },
     {
      "source": "offline",
@@ -32706,8 +32706,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · EVEN SLOWER",
-     "topic": "Pitch drop years",
-     "say": "Dublin waited 69 years for a pitch drop, proving this liquid moves on a human-lifetime clock.",
+     "topic": "Pitch Waiting",
+     "say": "Dublin waited 69 years for a filmed pitch drop. One result can outlast a researcher's career.",
      "illustrated_scene": null
     },
     {
@@ -32720,14 +32720,14 @@
      "ascending": false,
      "use_baseline": true,
      "role": "3 · WHY",
-     "topic": "Pitch viscosity",
-     "say": "Pitch is 230 billion times more viscous than water, explaining why a liquid looks completely solid."
+     "topic": "Pitch Viscosity",
+     "say": "Pitch is 230 billion times more viscous than water. That is why its movement is almost invisible."
     }
    ],
    "hook_was": "What's the slowest experiment ever recorded?",
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-27T11:24:54Z"
+   "rewritten_at": "2026-10-28T11:26:39Z"
   },
   {
    "slug": "california-condor-comeback",
@@ -35525,9 +35525,9 @@
   },
   {
    "slug": "escooter-er-visits-surge",
-   "title": "E-Scooter ER Visits Rose 260% In Two Years",
-   "hook": "E-scooter ER visits rose 260% in two years.",
-   "closing": "Fast adoption needs safety habits and streets that catch up just as quickly.",
+   "title": "E-Scooters Look Convenient—ER Visits Rose 260%",
+   "hook": "E-scooter ER visits climbed 260% in just two years.",
+   "closing": "Fast adoption needs helmets and streets that protect riders just as quickly.",
    "question": "Would you wear a helmet?",
    "caption": "E-scooter ER visits nearly quadrupled in just two years — and most head injuries happen to riders without a helmet. 👇",
    "hashtags": [
@@ -35556,8 +35556,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE SURGE",
-     "topic": "E-scooter ER visits",
-     "say": "E-scooter ER visits reached 27,700, turning a convenience trend into a fast-growing injury problem.",
+     "topic": "E-Scooter ER Visits",
+     "say": "E-scooter ER visits reached 27,700. A convenience boom became a fast-growing injury problem.",
      "illustrated_scene": "# scene standard: 2026-10-22\ndef _er_scooter(cr, x, y, s, ang=0.0, deck=(58, 60, 66)):\n    \"\"\"An e-scooter side-on: two small wheels, a low deck, a tall stem with a\n    T-bar. (x, y) is the middle of the deck at wheel height.\"\"\"\n    cr.save()\n    cr.translate(x, y)\n    cr.rotate(ang)\n    cr.scale(s, s)\n    disc(cr, -56, 2, 14, (34, 34, 38), finish=\"gloss\")\n    disc(cr, 50, 2, 14, (34, 34, 38), finish=\"gloss\")\n    disc(cr, -56, 2, 5, (170, 172, 178), finish=\"metal\")\n    disc(cr, 50, 2, 5, (170, 172, 178), finish=\"metal\")\n    cr.rectangle(-64, -16, 116, 13)\n    solid(cr, deck, finish=\"metal\")\n    cr.rectangle(-40, -18, 60, 4)\n    cr.set_source_rgba(*_c((70, 190, 120)))\n    cr.fill()\n    cr.set_source_rgba(*_c((44, 46, 52)))\n    cr.set_line_width(10)\n    cr.move_to(46, -10)\n    cr.line_to(28, -128)\n    cr.stroke()\n    cr.set_line_width(9)\n    cr.move_to(8, -130)\n    cr.line_to(50, -126)\n    cr.stroke()\n    disc(cr, 8, -130, 6, (30, 30, 34))\n    disc(cr, 50, -126, 6, (30, 30, 34))\n    cr.restore()\n\n\ndef _er_cross(cr, cx, cy, r):\n    \"\"\"The hospital mark: a white lit disc with a red cross on it.\"\"\"\n    disc(cr, cx, cy, r, (246, 246, 242))\n    a, b = 0.62 * r, 0.2 * r\n    cr.move_to(cx - b, cy - a)\n    cr.line_to(cx + b, cy - a)\n    cr.line_to(cx + b, cy - b)\n    cr.line_to(cx + a, cy - b)\n    cr.line_to(cx + a, cy + b)\n    cr.line_to(cx + b, cy + b)\n    cr.line_to(cx + b, cy + a)\n    cr.line_to(cx - b, cy + a)\n    cr.line_to(cx - b, cy + b)\n    cr.line_to(cx - a, cy + b)\n    cr.line_to(cx - a, cy - b)\n    cr.line_to(cx - b, cy - b)\n    cr.close_path()\n    solid(cr, (206, 36, 40), rim=False)\n\n\ndef _er_ambulance(cr, x, y, s, t):\n    \"\"\"An ambulance side-on, parked facing right, its wheels on y.\"\"\"\n    contact_shadow(cr, x + 130 * s, y + 4, 300 * s, a=0.4)\n    box(cr, x, y - 20 * s, 190 * s, 130 * s, (244, 244, 240), depth=40 * s)\n    cr.move_to(x + 190 * s, y - 20 * s)\n    cr.line_to(x + 190 * s, y - 110 * s)\n    cr.line_to(x + 232 * s, y - 110 * s)\n    cr.line_to(x + 268 * s, y - 64 * s)\n    cr.line_to(x + 268 * s, y - 20 * s)\n    cr.close_path()\n    solid(cr, (240, 240, 236))\n    cr.move_to(x + 200 * s, y - 102 * s)\n    cr.line_to(x + 228 * s, y - 102 * s)\n    cr.line_to(x + 256 * s, y - 68 * s)\n    cr.line_to(x + 200 * s, y - 68 * s)\n    cr.close_path()\n    solid(cr, (120, 160, 190), finish=\"glass\", rim=False)\n    cr.rectangle(x, y - 52 * s, 268 * s, 12 * s)\n    cr.set_source_rgba(*_c((206, 36, 40)))\n    cr.fill()\n    _er_cross(cr, x + 95 * s, y - 92 * s, 30 * s)\n    on = 0.5 + 0.5 * math.sin(t * 5.0)\n    glow(cr, x + 206 * s, y - 118 * s, 70 * s, (255, 60, 50), 0.25 + 0.5 * on)\n    cr.rectangle(x + 186 * s, y - 124 * s, 40 * s, 12 * s)\n    solid(cr, (220, 40, 40), finish=\"gloss\", rim=False)\n    for wx in (x + 52 * s, x + 214 * s):\n        disc(cr, wx, y - 14 * s, 22 * s, (34, 34, 38), finish=\"gloss\")\n        disc(cr, wx, y - 14 * s, 9 * s, (170, 172, 178), finish=\"metal\")\n\n\n_DECKS = [(52, 54, 60), (226, 228, 230), (40, 120, 84), (58, 60, 66), (190, 60, 50)]\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a heap of crashed e-scooters\n    SUBSTANCE: wrecked e-scooters\n    CAUSE: Data tosses crashed e-scooters onto the heap at the ER door, one throw at a time\n    Outside a hospital's emergency entrance (red cross, EMERGENCY sign, an\n    ambulance parked with its light flashing), the scooters of every rider\n    brought in pile up by the door. The heap's height is that year's ER\n    visits: it starts at 2017's size and swells throw by throw to 2019's.\n    2017's heap stays as a dashed ghost with its top marked, and 1x/2x/3x\n    ticks up the side measure the new heap in the old one — nearly four\n    times as much. Done by 0.5 and held; loose scooters keep sliding down\n    its flanks and the ambulance light keeps flashing.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    v0 = v0 or 1.0\n    ratio = v1 / v0\n    n = 6\n    a0, a1 = 0.08, 0.5\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    fly = seg(f, 0.0, 0.35)\n    grow = ease(seg(f, 0.3, 0.7))\n    step = 0.0 if u < a0 else (k + grow) / n\n    val = v0 + (v1 - v0) * step\n\n    CX, BASE = 520, 1440\n    H0 = 110.0\n    h = H0 * val / v0\n    hw = min(440.0, 1.15 * h)\n    h0, hw0 = H0, min(440.0, 1.15 * H0)\n\n    landscape(cr, t, \"town\")\n    haze(cr, 700, 1180, (206, 210, 218), a=0.3)\n\n    # the forecourt in front of the ER\n    cr.rectangle(0, 1200, W, H - 1200)\n    solid(cr, (140, 140, 146), edge=False, rim=False)\n    cr.set_source_rgba(*_c((236, 220, 120), 0.85))\n    cr.set_line_width(8)\n    for i in range(5):\n        cr.move_to(60 + i * 220, 1640)\n        cr.line_to(170 + i * 220, 1640)\n    cr.stroke()\n\n    # the hospital's emergency entrance, three-quarter\n    cast_shadow(cr, 300, 1010, 1200, length=320, a=0.3)\n    contact_shadow(cr, 655, 1202, 740, a=0.4)\n    b = building(cr, 300, 1010, 1200, 400, (230, 226, 218), roof=\"flat\", boards=False)\n    for c_ in range(5):\n        wx = 340 + c_ * 135\n        cr.rectangle(wx, b[\"top\"] + 30, 85, 64)\n        solid(cr, (150, 186, 210), finish=\"glass\", rim=False)\n    cr.rectangle(420, b[\"top\"] + 118, 560, 84)\n    solid(cr, (196, 36, 40))\n    text(cr, \"EMERGENCY\", 700, b[\"top\"] + 180, 62, (250, 248, 244), face=\"bold\",\n         anchor=\"center\", shadow=False)\n    _er_cross(cr, 360, b[\"top\"] + 160, 52)\n    # the glass doors and the canopy over them\n    cr.save()\n    cr.rectangle(560, 1040, 280, 160)\n    cr.clip()\n    vgrad(cr, [(0, (200, 216, 222)), (1, (236, 240, 236))], 1040, 1200, 560, 840)\n    glow(cr, 700, 1130, 150, (255, 252, 236), 0.5)\n    cr.rectangle(570, 1040, 126, 160)\n    solid(cr, (176, 206, 222), finish=\"glass\", a=0.7)\n    cr.rectangle(704, 1040, 126, 160)\n    solid(cr, (176, 206, 222), finish=\"glass\", a=0.7)\n    cr.restore()\n    box(cr, 520, 1036, 360, 24, (204, 206, 212), depth=60, finish=\"metal\")\n\n    # the ambulance parked in the bay\n    _er_ambulance(cr, 30, 1262, 1.0, t)\n\n    # THE HEAP of crashed scooters, by the ER door\n    cast_shadow(cr, CX - hw, CX + hw, BASE, length=300, a=0.3)\n    contact_shadow(cr, CX, BASE + 4, 2 * hw + 60, a=0.4)\n    heap_path(cr, CX, BASE, h, hw)\n    solid(cr, (84, 86, 92))\n    cr.save()\n    heap_path(cr, CX, BASE, h, hw)\n    cr.clip()\n    count = int(16 + 64 * (val - v0) / max(1.0, v1 - v0) + 0.5)\n    for i in range(count):\n        dx = ((i * 0.6180339) % 1.0) * 1.9 - 0.95\n        py = (i * 0.4142136) % 1.0\n        px = CX + hw * dx\n        top_y = heap_top(CX, BASE, h, hw, px)\n        sy = BASE - (BASE - top_y) * py * 0.9 + 4\n        _er_scooter(cr, px, sy, 0.55 + 0.2 * ((i * 0.37) % 1.0), (i * 1.7) % 6.28 - 3.14,\n                    _DECKS[i % len(_DECKS)])\n    cr.restore()\n    heap_path(cr, CX, BASE, h, hw)\n    edge(cr, (36, 36, 40))\n\n    # THE SCALE on the heap: 2017's heap as a ghost, its top marked, ticks up the side\n    if step > 0.02:\n        heap_path(cr, CX, BASE, h0, hw0)\n        ghost(cr, a=0.9)\n        then_mark(cr, CX - 30, CX + 170, BASE - h0, l0)\n        times_ticks(cr, 1010, BASE, h0, max(1, int(ratio)))\n\n    # Data on the heap's left flank, climbing back as it widens\n    hx = CX - hw * 0.72\n    hy = min(1500.0, heap_top(CX, BASE, h, hw, hx) + 10)\n\n    # the scooter in flight, from his hands to the summit\n    if u >= a0 and 0 < fly < 1:\n        sx, sy = hx + 40, hy - 190\n        ex, ey = CX + 20, BASE - h - 10\n        bx = sx + (ex - sx) * fly\n        by = sy + (ey - sy) * fly - 240 * math.sin(math.pi * fly)\n        _er_scooter(cr, bx, by, 1.0, fly * 5.0, _DECKS[k % len(_DECKS)])\n\n    # once the heap is done the world keeps moving: loose scooters slide down\n    if u > a1:\n        for j in range(2):\n            ph = ((u - a1) / 0.2 + j / 2) % 1.0\n            side = 1 if j % 2 else -1\n            bx = CX + side * hw * (0.1 + 0.78 * ph)\n            by = heap_top(CX, BASE, h, hw, bx) - 6\n            _er_scooter(cr, bx, by, 0.95, side * (0.5 + ph * 2.5), _DECKS[(j * 2 + 1) % len(_DECKS)])\n\n    # right by the camera: a crashed scooter and a cracked helmet in the road\n    _er_scooter(cr, 860, 1770, 2.3, -0.35, (52, 54, 60))\n    cr.save()\n    cr.translate(250, 1800)\n    cr.arc(0, 0, 70, math.pi, 2 * math.pi)\n    cr.close_path()\n    cr.restore()\n    solid(cr, (60, 170, 110), finish=\"gloss\")\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    if u < a0:\n        host(\"point\", hx, hy, 220)\n    elif u < a1 + 0.04:\n        host(\"toss\", hx, hy, 220, beat=k)\n    elif u < 0.9:\n        host(\"hold_up\", hx, hy, 220)\n    else:\n        host(\"shock\", hx, hy, 220)\n\n    done = u >= a0 and k == n - 1 and grow >= 0.999\n    if done:\n        fit_readout(cr, f\"{int(round(v1)):,} ER visits\", f\"from e-scooter crashes, US · {l1}\",\n                    80, 520, size=130)\n        text(cr, f\"{ratio:.1f}x\", W - 80, 680, 90, look.INK, face=\"display\",\n             anchor=\"right\", alpha=ease(seg(u, a1, a1 + 0.05)))\n    else:\n        fit_readout(cr, f\"{int(round(v0)):,} ER visits\", f\"from e-scooter crashes, US · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -35568,8 +35568,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · HOW THEY GET HURT",
-     "topic": "E-scooter head injuries",
-     "say": "Among young riders with head injuries, 67% wore no helmet, making protection part of the story.",
+     "topic": "E-Scooter Head Injuries",
+     "say": "67% of young riders with head injuries wore no helmet. Basic protection was missing for most.",
      "illustrated_scene": "# scene standard: 2026-10-22\ndef _sc_helmet(cr, x, y, s, rgb=(236, 236, 230), a=1.0):\n    # a bike helmet seen side-on, its rim at y: the vented dome, the visor, the strap\n    cr.move_to(x - 40 * s, y)\n    cr.curve_to(x - 44 * s, y - 52 * s, x + 32 * s, y - 62 * s, x + 42 * s, y - 6 * s)\n    cr.close_path()\n    solid(cr, rgb, finish=\"gloss\", a=a)\n    cr.set_source_rgba(*_c((36, 38, 46), a))\n    cr.set_line_width(max(2.0, 5 * s))\n    for k in range(3):\n        vx = x - 18 * s + k * 16 * s\n        cr.move_to(vx, y - 42 * s)\n        cr.line_to(vx + 8 * s, y - 24 * s)\n    cr.stroke()\n    cr.move_to(x + 36 * s, y - 9 * s)\n    cr.line_to(x + 58 * s, y - 2 * s)\n    cr.line_to(x + 40 * s, y + 4 * s)\n    cr.close_path()\n    solid(cr, (36, 38, 46), a=a, rim=False)\n    cr.rectangle(x - 40 * s, y - 4 * s, 82 * s, 6 * s)\n    solid(cr, (36, 38, 46), a=a, rim=False, edge=False)\n\n\ndef _sc_scooter(cr, x, y, s):\n    # a rental e-scooter standing at (x, y): wheels, deck, raked stem, bars, lamp\n    contact_shadow(cr, x, y, 160 * s, a=0.38)\n    sx = x + 30 * s\n    cr.move_to(x + 46 * s, y - 22 * s)\n    cr.line_to(sx + 5 * s, y - 140 * s)\n    cr.line_to(sx - 4 * s, y - 140 * s)\n    cr.line_to(x + 36 * s, y - 22 * s)\n    cr.close_path()\n    solid(cr, (70, 74, 84), finish=\"metal\")\n    cr.rectangle(x - 62 * s, y - 33 * s, 112 * s, 14 * s)\n    solid(cr, (226, 224, 214), finish=\"gloss\")\n    cr.rectangle(x - 62 * s, y - 21 * s, 112 * s, 4 * s)\n    solid(cr, (46, 150, 110), rim=False)\n    disc(cr, x - 50 * s, y - 15 * s, 15 * s, (36, 36, 40), finish=\"gloss\")\n    disc(cr, x + 48 * s, y - 15 * s, 15 * s, (36, 36, 40), finish=\"gloss\")\n    cr.rectangle(sx - 25 * s, y - 147 * s, 50 * s, 8 * s)\n    solid(cr, (40, 42, 48), rim=False)\n    disc(cr, sx + 4 * s, y - 118 * s, 6 * s, (255, 236, 180), finish=\"gloss\")\n    return (sx + 22 * s, y - 143 * s)\n\n\ndef _sc_at(row, z):\n    z = clamp(z, 0, len(row) - 1.001)\n    i = int(z)\n    f = z - i\n    (x0, y0, s0), (x1, y1, s1) = row[i], row[i + 1]\n    return x0 + (x1 - x0) * f, y0 + (y1 - y0) * f, s0 + (s1 - s0) * f\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a row of parked e-scooters\n    SUBSTANCE: bike helmets\n    CAUSE: Data places a helmet on the handlebars of one scooter after another, but only a third of them get one\n    A long line of rental e-scooters parked along a city sidewalk, from\n    right by the camera back up the street: the WHOLE is the riders. Data\n    takes helmets out of a crate and hangs one on each scooter's bars, one\n    place per helmet, until the helmets run out at the true share; every\n    scooter after that stands bare. The painted parking bay under the row is\n    cut at the same point, the NO HELMET part in the accent. Done by 0.56\n    and held: two thirds of the row stand bare while traffic passes behind.\"\"\"\n    rows = [(str(l), float(v)) for l, v in pts]\n    tot = sum(v for _, v in rows) or 1.0\n    no = next((r for r in rows if r[0].lower().startswith(\"no\")),\n              max(rows, key=lambda r: r[1]))\n    share = clamp(no[1] / tot)\n    N = 9\n    n = int(clamp(round((1 - share) * N), 1, N - 1))   # scooters that get a helmet\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / n\n    k = int(clamp((u - a0) / span, 0, n - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n\n    row = []\n    x, y, s = 110.0, 1480.0, 2.2\n    for j in range(N + 1):\n        row.append((x, y, s))\n        x += 62 * s\n        y -= 30 * s\n        s *= 0.89\n\n    def land(i):\n        if u < a0 or i > k:\n            return 0.0\n        if i < k:\n            return 1.0\n        return ease(seg(f, 0.25, 0.6))\n\n    def hang(i):\n        x_, y_, s_ = row[i]\n        return x_ + 52 * s_, y_ - 66 * s_, s_\n\n    def spot(i):\n        x_, y_, s_ = row[i]\n        return x_ + 72 * s_, y_ + 12, clamp(100 * s_, 180, 240)\n\n    COLS = [(232, 96, 48), (240, 196, 60), (236, 236, 230)]\n    helmets_on = sum(land(i) for i in range(n))\n    landed_share = u >= a0 and k == n - 1 and land(n - 1) >= 0.999\n\n    # the street: town behind, a road with traffic, the sidewalk\n    landscape(cr, t, \"town\", horizon=1010)\n    haze(cr, 500, 1010, (206, 206, 212), a=0.3)\n    vgrad(cr, [(0, (78, 80, 88)), (1, (62, 64, 70))], 1010, 1095)\n    cr.set_source_rgba(*_c((236, 230, 200), 0.8))\n    cr.set_line_width(5)\n    for i in range(9):\n        cr.move_to(i * 140 - (t * 0) % 140, 1054)\n        cr.line_to(i * 140 + 70, 1054)\n    cr.stroke()\n    tx = -500 + (t * 170) % 2100\n    truck(cr, tx, 1086, 1.1)\n    vgrad(cr, [(0, (188, 184, 176)), (1, (150, 146, 140))], 1090, H)\n    cr.rectangle(0, 1088, W, 10)\n    solid(cr, (204, 200, 192), rim=False)\n    cr.set_source_rgba(*_c((120, 116, 110), 0.5))\n    cr.set_line_width(3)\n    for i in range(8):\n        cr.move_to(-200 + i * 220, H)\n        cr.line_to(700 + i * 70, 1100)\n    cr.stroke()\n\n    # the painted parking bay under the whole row, cut at the share\n    def bay(z0, z1, rgb):\n        if z1 - z0 < 0.01:\n            return\n        top, bot = [], []\n        for i in range(13):\n            bx, by, bs = _sc_at(row, z0 + (z1 - z0) * i / 12)\n            top.append((bx - 70 * bs, by - 8 * bs))\n            bot.append((bx - 70 * bs, by + 24 * bs))\n        cr.move_to(*top[0])\n        for p_ in top[1:]:\n            cr.line_to(*p_)\n        for p_ in reversed(bot):\n            cr.line_to(*p_)\n        cr.close_path()\n        solid(cr, rgb, rim=False)\n    cut = N * (1 - share) * helmets_on / n\n    bay(0, cut, (214, 214, 218))\n    bay(cut, N, P[\"accent2\"])\n    if landed_share:\n        bx, by, bs = _sc_at(row, 5.2)\n        text(cr, \"NO HELMET\", bx - 60 * bs, by + 16 * bs, 24, look.INK,\n             face=\"bold\", shadow=False)\n\n    # the scooters, far first; the helmeted ones carry theirs on the bars\n    cast_shadow(cr, 40, 920, 1480, length=200, a=0.18)\n    for i in reversed(range(N)):\n        x_, y_, s_ = row[i]\n        gx, gy = _sc_scooter(cr, x_, y_, s_)\n        if i < n and land(i) >= 0.999:\n            hx, hy, hs = hang(i)\n            cr.set_source_rgba(*_c((36, 38, 46)))\n            cr.set_line_width(max(2.0, 4 * hs))\n            cr.move_to(hx - 24 * hs, hy)\n            cr.line_to(gx, gy)\n            cr.line_to(hx + 22 * hs, hy)\n            cr.stroke()\n            _sc_helmet(cr, hx, hy, hs, COLS[i % 3])\n\n    # right by the camera: the crate the helmets come out of\n    contact_shadow(cr, 790, 1890, 340, a=0.4)\n    box(cr, 640, 1890, 300, 110, (156, 112, 70), depth=60)\n    left = [i for i in range(n) if u < a0 or i > k]\n    for j, i in enumerate(left):\n        _sc_helmet(cr, 710 + j * 100, 1784, 1.45, COLS[i % 3])\n    foreground(cr, \"town\")\n    vignette(cr, a=0.28)\n\n    # Data walks down the row, one helmet per scooter\n    sx0, sy0, sh0 = spot(0)\n    if u < a0:\n        hx, hy, hh = sx0, sy0, sh0\n        host(\"point\", hx, hy, hh)\n    elif u < a1 + 0.04:\n        px, py, ph = spot(k - 1) if k > 0 else spot(0)\n        nx, ny, nh = spot(k)\n        w = ease(seg(f, 0.0, 0.25))\n        hx, hy, hh = px + (nx - px) * w, py + (ny - py) * w, ph + (nh - ph) * w\n        host(\"place\", hx, hy, hh, beat=k)\n    else:\n        hx, hy, hh = spot(n - 1)\n        host(\"hold_up\", hx, hy, hh)\n\n    # the helmet in his hands, then onto the bars\n    if a0 <= u < a1 + 0.04:\n        l = land(k)\n        if l < 0.999:\n            ax, ay = hx - 10, hy - 0.62 * hh\n            ex, ey, es = hang(k)\n            bx = ax + (ex - ax) * l\n            by = ay + (ey - ay) * l - 70 * math.sin(math.pi * l)\n            _sc_helmet(cr, bx, by, 0.9 + (es - 0.9) * l, COLS[k % 3])\n\n    if landed_share:\n        fit_readout(cr, f\"{int(round(no[1]))}%\",\n                    \"of young riders with head injuries had no helmet\",\n                    80, 520, size=130)\n    else:\n        fit_readout(cr, \"Head injuries\", \"the most common e-scooter injury\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -35580,13 +35580,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · THE TOTAL TOLL",
-     "topic": "E-scooter ER total",
-     "say": "Cumulative e-scooter ER visits reached 169,300, showing the surge did not end after the first spike."
+     "topic": "E-Scooter ER Total",
+     "say": "Cumulative e-scooter ER visits reached 169,300. The injury wave continued long after the first spike."
     }
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-27T11:24:53Z",
+   "rewritten_at": "2026-10-28T11:26:39Z",
    "hook_was": "E-scooters got way more dangerous, way faster."
   },
   {
