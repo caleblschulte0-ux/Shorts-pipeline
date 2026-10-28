@@ -4398,6 +4398,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 66,
       "duration_s": 29.9
+    },
+    "ghost-fishing-gear-ocean-plastic": {
+      "claimed_at": "2026-10-28T11:20:12.310753+00:00",
+      "title": "Lost Fishing Gear Is 10% Of Ocean Litter",
+      "publish_at": "2026-10-28T16:29:36Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5599,6 +5606,14 @@
       "state": "posted",
       "slug": "nuclear-stockpile-growth-reversal",
       "at": "2026-10-28T10:29:47.806121+00:00"
+    },
+    {
+      "claimed_at": "2026-10-28T11:20:12.310753+00:00",
+      "title": "Lost Fishing Gear Is 10% Of Ocean Litter",
+      "publish_at": "2026-10-28T16:29:36Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "ghost-fishing-gear-ocean-plastic"
     }
   ]
 }
