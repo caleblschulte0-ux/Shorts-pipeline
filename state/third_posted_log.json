@@ -16108,6 +16108,16 @@
       "rejected_by": "content gate",
       "rejected_why": "0.20 < 0.35 (No observable event)",
       "ts": "2026-10-27T16:30:23.467706+00:00"
+    },
+    "clip-20261027-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/CovertCrunchyLadiesNerfRedBlaster-_sCdUJ5PkgkjA-UA",
+      "story_key": null,
+      "streamer": "stableronaldo",
+      "title": "Stableronaldo Reacts To A Knockdown And Says It Was Crazy",
+      "kind": "twitch_clip",
+      "ts": "2026-10-28T00:25:54.753384+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
