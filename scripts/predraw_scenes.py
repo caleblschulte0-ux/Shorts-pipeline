@@ -269,6 +269,7 @@ def main(argv=None) -> int:
     args = ap.parse_args(argv)
 
     from data_learning import scene_author as SA
+    SA.STRICT = True    # re-judge scenes the posting run still accepts in GRACE
     if not SA.shutil.which("claude"):
         print("[predraw] no claude CLI — nothing can be drawn; skipping")
         return 0

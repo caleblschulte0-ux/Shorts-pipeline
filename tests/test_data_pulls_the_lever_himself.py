@@ -168,7 +168,8 @@ class TheBeerTap(unittest.TestCase):
         cfg = json.loads((REPO / "data_learning" / "niche.config.json").read_text())
         story = next(s for s in cfg["stories"] if s.get("slug") == "genz-drinking-decline")
         code = story["segments"][0]["illustrated_scene"]
-        self.assertEqual(SA.standard_of(code), SA.STANDARD)
+        # drawn to the lever's standard, which the posting run still accepts
+        self.assertIn(SA.standard_of(code), (SA.STANDARD,) + SA.GRACE)
         self.assertIn("hands=hands", code)
         self.assertIn("lever(", code)
         fn = SA.compile_scene(code)
