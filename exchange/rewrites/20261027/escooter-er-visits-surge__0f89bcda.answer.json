@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "escooter-er-visits-surge__0f89bcda",
+  "slug": "escooter-er-visits-surge",
+  "by": "chatgpt",
+  "written_at": "2026-10-28T11:20:46.354Z",
+  "title": "E-Scooters Look Convenient—ER Visits Rose 260%",
+  "hook": "E-scooter ER visits climbed 260% in just two years.",
+  "closing": "Fast adoption needs helmets and streets that protect riders just as quickly.",
+  "question": "Would you wear a helmet?",
+  "segments": [
+    {
+      "topic": "E-Scooter ER Visits",
+      "say": "E-scooter ER visits reached 27,700. A convenience boom became a fast-growing injury problem."
+    },
+    {
+      "topic": "E-Scooter Head Injuries",
+      "say": "67% of young riders with head injuries wore no helmet. Basic protection was missing for most."
+    },
+    {
+      "topic": "E-Scooter ER Total",
+      "say": "Cumulative e-scooter ER visits reached 169,300. The injury wave continued long after the first spike."
+    }
+  ]
+}
