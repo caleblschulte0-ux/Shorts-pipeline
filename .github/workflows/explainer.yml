@@ -761,7 +761,7 @@ jobs:
       # for ChatGPT; claim_reviews.yml ships it later on a code-decided ship.
       - name: Keep held renders for the mailbox judge
         if: always() && inputs.mode != 'verify' && inputs.mode != 'preview'
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: held-renders-${{ github.run_id }}
           path: |
