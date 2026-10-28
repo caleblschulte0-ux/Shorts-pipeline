@@ -16110,13 +16110,50 @@
       "ts": "2026-10-27T16:30:23.467706+00:00"
     },
     "clip-20261027-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/stableronaldo/clip/CovertCrunchyLadiesNerfRedBlaster-_sCdUJ5PkgkjA-UA",
-      "story_key": null,
-      "streamer": "stableronaldo",
+      "url": "https://youtube.com/shorts/Eat2zweI4hM",
       "title": "Stableronaldo Reacts To A Knockdown And Says It Was Crazy",
       "kind": "twitch_clip",
-      "ts": "2026-10-28T00:25:54.753384+00:00",
+      "ts": "2026-10-28T00:26:02.395251+00:00",
+      "uploaded_at": "2026-10-28T00:26:02.395265+00:00",
+      "publish_at": "2026-10-28T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261028-stableronaldo-reacts-to-a-knockdown-and-says-it--bccb54f6",
+        "tiktok": "queued for 2026-10-28T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/stableronaldo/clip/CovertCrunchyLadiesNerfRedBlaster-_sCdUJ5PkgkjA-UA",
+      "streamer": "stableronaldo",
+      "series": "chaos",
+      "hook": "Stableronaldo sees the knockdown",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2550,
+      "banger": 0.55,
+      "cut": {
+        "start": 3.0,
+        "end": 17.0
+      },
+      "director_cut": true
+    },
+    "rejected-spinelessgoldenswallowgiveplz-tie7yeoxkwjxfqdd": {
+      "source_url": "https://www.twitch.tv/marlon/clip/SpinelessGoldenSwallowGivePLZ-TIE7yeoxKwjXfQdD",
+      "streamer": "marlon",
+      "title": "malon mogged the hell out of core",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Group standing around; no clear event)",
+      "ts": "2026-10-28T00:27:33.230009+00:00"
+    },
+    "clip-20261027-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/atrioc/clip/HelplessSlipperyPeanutVoteNay-iDIvZ7YW709zGf34",
+      "story_key": null,
+      "streamer": "atrioc",
+      "title": "Atrioc Says Some People Should Let Him Play A Game Again",
+      "kind": "twitch_clip",
+      "ts": "2026-10-28T00:31:13.306568+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
