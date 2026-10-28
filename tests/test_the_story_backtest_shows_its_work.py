@@ -72,8 +72,9 @@ class TheHookIsInvisibleInProduction(unittest.TestCase):
 
     def test_both_review_sites_keep_the_cut(self):
         src = (ROOT / "scripts" / "run_third.py").read_text()
-        # the first render, every repair, and the audience arm's cut
-        self.assertEqual(src.count("_backtest_keep(elbl"), 3,
+        # the first render, every repair, the audience arm's cut, and that
+        # cut with its payoff ending
+        self.assertEqual(src.count("_backtest_keep(elbl"), 4,
                          "the first render AND every repair are kept")
 
 
