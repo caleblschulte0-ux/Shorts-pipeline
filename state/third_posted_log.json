@@ -16320,13 +16320,50 @@
       "ts": "2026-10-28T11:51:21.296212+00:00"
     },
     "clip-20261028-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/kaicenat/clip/CloudyModernSandwichSquadGoals-jpKtR4MbGKzAsPXY",
-      "story_key": null,
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/AROcwUYr-FE",
       "title": "Kaicenat: Kai Cenat Loses It When He Finds Out Who Did It",
       "kind": "twitch_clip",
-      "ts": "2026-10-28T11:53:50.215898+00:00",
+      "ts": "2026-10-28T11:53:57.151913+00:00",
+      "uploaded_at": "2026-10-28T11:53:57.151929+00:00",
+      "publish_at": "2026-10-29T02:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261028-kaicenat-kai-cenat-loses-it-when-he-finds-out-wh-35226d17",
+        "tiktok": "queued for 2026-10-29T02:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/kaicenat/clip/CloudyModernSandwichSquadGoals-jpKtR4MbGKzAsPXY",
+      "streamer": "kaicenat",
+      "series": "chaos",
+      "hook": "Kai finds out who did it \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 16501,
+      "banger": 0.55,
+      "cut": {
+        "start": 0.0,
+        "end": 10.0
+      },
+      "director_cut": true
+    },
+    "rejected-incredulousconsideratebaguetteshadylulu-vrl4-esbcxzyixth": {
+      "source_url": "https://www.twitch.tv/cinna/clip/IncredulousConsiderateBaguetteShadyLulu-Vrl4-ESBCXZYIxTh",
+      "streamer": "cinna",
+      "title": "Dono's cooking Kali",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (GTA RP walking, donation talk, no event)",
+      "ts": "2026-10-28T11:56:42.109776+00:00"
+    },
+    "clip-20261028-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/HotAmazonianSnoodKlappa-goGfdH3teWprFPxc",
+      "story_key": null,
+      "streamer": "rayasianboy",
+      "title": "Rayasianboy Loses It On Stream After This Happens \ud83d\ude2d",
+      "kind": "twitch_clip",
+      "ts": "2026-10-28T11:59:03.608064+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
