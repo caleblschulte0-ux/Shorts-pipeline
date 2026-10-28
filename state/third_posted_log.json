@@ -16263,6 +16263,25 @@
       "rejected_by": "content gate",
       "rejected_why": "0.30 < 0.35 (crowd walk, greeting, no clear event)",
       "ts": "2026-10-28T00:49:00.172387+00:00"
+    },
+    "rejected-brightmagnificentbaboonnerfblueblaster-vnwcb52upjvcfkk6": {
+      "source_url": "https://www.twitch.tv/lirik/clip/BrightMagnificentBaboonNerfBlueBlaster-VnwcB52UpjVcfKk6",
+      "streamer": "lirik",
+      "title": "senorsombrero can't scam",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source has 1.8s of black frames \u2014 dropped feed / hard fade",
+      "ts": "2026-10-28T11:30:58.025587+00:00"
+    },
+    "clip-20261028-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/valkyrae/clip/YawningDirtyKumquatKevinTurtle-lZZDqbtt8JMMvHMN",
+      "story_key": null,
+      "streamer": "valkyrae",
+      "title": "Valkyrae Can't Believe She Finally Got A Strike After This",
+      "kind": "twitch_clip",
+      "ts": "2026-10-28T11:36:59.942732+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
