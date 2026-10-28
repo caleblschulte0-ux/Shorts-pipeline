@@ -4484,8 +4484,8 @@
     }
   },
   "recent_commits": [
-    "1909ded 2026-10-28 Baller Bro: a cut never ends on the network's logo or bumper (#705)",
-    "37decae 2026-10-28 claim: mailbox verdicts 2026-10-28T04:48Z [skip ci]"
+    "651368c 2026-10-28 watchdog: phase A readiness 20261028 [skip ci]",
+    "706aaa9 2026-10-28 claim: mailbox verdicts 2026-10-28T10:48Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
@@ -4521,10 +4521,11 @@
         "2026-10-24": 4,
         "2026-10-25": 3,
         "2026-10-26": 4,
-        "2026-10-27": 1
+        "2026-10-27": 1,
+        "2026-10-28": 1
       },
-      "total_posted": 363,
-      "attempted": 363,
+      "total_posted": 364,
+      "attempted": 364,
       "rejected_or_pending": 0
     },
     "third": {
@@ -4592,31 +4593,31 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 138,
+      "videos": 137,
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 12.33,
-          "views": 1558
+          "vph": 11.88,
+          "views": 1595
         },
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 4.0,
+          "vph": 3.89,
           "views": 1087
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 3.36,
-          "views": 1785
+          "vph": 3.32,
+          "views": 1789
         },
         {
           "title": "Ishowspeed Gets Spooked And Screams After Smelling This",
-          "vph": 3.29,
+          "vph": 2.81,
           "views": 154
         },
         {
           "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 2.18,
+          "vph": 2.14,
           "views": 905
         }
       ],
