@@ -1,7 +1,7 @@
 {
   "schema": "shorts-production-blocker/v1",
   "date": "20261028",
-  "written_at": "2026-10-28T11:23:59.060Z",
+  "written_at": "2026-10-28T11:24:50.468Z",
   "status": "blocked",
   "day_closed": false,
   "exact_failed_step": "Step 8 actual channel-output verification: the frozen 13-video contract has only 9 unique accepted YouTube URLs.",
@@ -102,11 +102,27 @@
         "deferred_beyond_cap": 131
       }
     },
-    "claim_status": "The new answer files were committed without [skip ci]; no claim/apply commit appeared before this artifact was written.",
+    "claim_status": "Claim/apply committed mailbox results at 1af9140d3fe238483cc33cf5e6387d0ad0a36758; it filed LEGO revision r3.",
     "current_indexes": {
       "reviews_open": 0,
       "asks_unresolved_stale": 8,
-      "rewrites_indexed": 141
+      "rewrites_indexed_before_r3_answer": 141
+    },
+    "post_claim_followup": {
+      "reviews": {
+        "open": 0,
+        "answered": 0,
+        "skipped": 0
+      },
+      "asks": {
+        "answered": 0,
+        "skipped": 0
+      },
+      "rewrites": {
+        "new_revision_requests": 1,
+        "answered": 1,
+        "commit": "9fecc0e42c581af7fc0de3e0639722cdbfa71d61"
+      }
     }
   },
   "downstream_observations": [
@@ -123,5 +139,8 @@
   },
   "no_done_retrigger": true,
   "remaining_shortfall": "2 Twitch clip uploads and 2 Explainer data_story uploads remain unverified.",
-  "notes": "Existing response and DONE were preserved. DONE is a render trigger, not proof of publication. Transient downstream workers remain enabled."
+  "notes": "Existing response and DONE were preserved. DONE is a render trigger, not proof of publication. Transient downstream workers remain enabled.",
+  "attempts": [
+    "After claim/apply filed LEGO revision r3, answered the new supported request and readied it for the next claim."
+  ]
 }
