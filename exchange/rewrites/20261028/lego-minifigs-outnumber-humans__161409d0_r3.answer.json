@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "lego-minifigs-outnumber-humans__161409d0_r3",
+  "slug": "lego-minifigs-outnumber-humans",
+  "by": "chatgpt",
+  "written_at": "2026-10-28T11:24:42.593Z",
+  "title": "LEGO Produced 10 Billion Minifigures—But Not 10 Billion Survivors",
+  "hook": "10 billion is cumulative production, not minifigures confirmed to still exist.",
+  "closing": "Production totals show cultural scale, but they cannot count what survives.",
+  "question": "How many survived in your house?",
+  "segments": [
+    {
+      "topic": "LEGO Minifigures",
+      "say": "LEGO has produced 10 billion minifigures. That is cumulative production, not a count of surviving toys."
+    },
+    {
+      "topic": "Minifigures Made",
+      "say": "Cumulative minifigure production reached 8.3 billion. The total measures output over time, not pieces still in homes."
+    },
+    {
+      "topic": "New Minifigures",
+      "say": "New minifigure production runs at 400 million yearly. The factory pace outstrips human births."
+    }
+  ]
+}
