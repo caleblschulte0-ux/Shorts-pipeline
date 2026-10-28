@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "nuclear-stockpile-growth-reversal__419eb74b",
+  "slug": "nuclear-stockpile-growth-reversal",
+  "by": "chatgpt",
+  "written_at": "2026-10-28T11:20:46.354Z",
+  "title": "Global Warheads Fell While China's Rose To 500",
+  "hook": "The global arsenal shrank, but China's reached 500 warheads.",
+  "closing": "Disarmament is harder when one major arsenal grows against the global trend.",
+  "question": "Can the global decline continue?",
+  "segments": [
+    {
+      "topic": "Global Warheads",
+      "say": "Global warheads fell to 12,500. Decades of reductions cut the Cold War peak sharply."
+    },
+    {
+      "topic": "China Warheads",
+      "say": "China's warheads reached 500. One major arsenal grew while the global total kept falling."
+    },
+    {
+      "topic": "Warheads Ranking",
+      "say": "Russia still leads with 5,580 warheads. Older nuclear powers continue to dominate the balance."
+    }
+  ]
+}
