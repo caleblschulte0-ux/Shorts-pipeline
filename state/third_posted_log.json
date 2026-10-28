@@ -16175,13 +16175,48 @@
       "director_cut": true
     },
     "clip-20261027-4": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-b1d7b6e24a3db960",
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/ve9P1NrYH2k",
       "title": "Xqc on Ethan Klein: \"cheater lol, move on\"",
       "kind": "story",
-      "ts": "2026-10-28T00:44:03.582243+00:00",
+      "ts": "2026-10-28T00:44:13.639091+00:00",
+      "uploaded_at": "2026-10-28T00:44:13.639107+00:00",
+      "publish_at": "2026-10-28T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261028-xqc-on-ethan-klein-cheater-lol-move-on-8d31836a",
+        "tiktok": "queued for 2026-10-28T20:00:00Z"
+      },
+      "story_key": "story-b1d7b6e24a3db960",
+      "member_keys": [
+        "vodmine://2911620180/386-626",
+        "https://www.twitch.tv/xqc/clip/MagnificentBelovedConsoleTBTacoRight-li6NtmRBejkcPit9"
+      ],
+      "streamer": "xqc",
+      "who": [
+        "xqc"
+      ],
+      "series": "extended",
+      "experiment_arm": "extended",
+      "structure": "extended",
+      "actual_structure": "extended",
+      "n_beats": 2,
+      "story_structure": "chronological",
+      "duration_s": 56.9,
+      "narrative_score": 0,
+      "narrative_summary": "While reacting to a video about Ethan Klein, xQc says he'd never need an excuse: if someone cheated and admits it, you say 'cheater lol' and move on. Then he mocks the excuses people come up with, sta",
+      "revision_count": 0,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 1,
+      "replay_count": 0
+    },
+    "clip-20261027-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/PreciousMushyMetalEleGiggle-Snp7TxV5L2fEPWyp",
+      "story_key": null,
+      "streamer": "rayasianboy",
+      "title": "Rayasianboy Breaks His Opponent's Ankles And Can't Believe It",
+      "kind": "twitch_clip",
+      "ts": "2026-10-28T00:47:40.075427+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
