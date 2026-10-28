@@ -10,5 +10,167 @@
    "score": 88,
    "why": "operator, 2026-10-17: \"That video sucked\""
   }
+ ],
+ "pending": [
+  {
+   "label": "scout:xqc/xqc-call-doubl-2026w41",
+   "run": "40742816892",
+   "score": 82,
+   "edl": {
+    "title": "xQc goes all in on a casino slot, then blackjack hits",
+    "premise": "On one GTA NoPixel stream xQc goes all in on a slot machine and watches it fail, then an hour later wins big at blackjack.",
+    "central_question": "Will xQc's gambling day end in a loss or a win?",
+    "structure": "chronological",
+    "hook_overlay": "xQc's all-in casino day in GTA NoPixel",
+    "beats": [
+     {
+      "source_id": "https://www.twitch.tv/xqc/clip/FineSlipperyPeafowlRlyTho-1EBM2czztq5VtpV0",
+      "start": 0.4,
+      "end": 6.0,
+      "role": "setup",
+      "purpose": "xQc announces he is doubling 33k and going all in on the slot machine, which states the stakes.",
+      "transition": "hard_cut",
+      "framing": "wide",
+      "context_overlay": "GTA NoPixel casino",
+      "link": "start",
+      "effects": []
+     },
+     {
+      "source_id": "https://www.twitch.tv/xqc/clip/FineSlipperyPeafowlRlyTho-1EBM2czztq5VtpV0",
+      "start": 41.0,
+      "end": 47.9,
+      "role": "escalation",
+      "purpose": "After the run of losing spins he calls it a 'dog shit slot': the slot does not pay.",
+      "transition": "hard_cut",
+      "framing": "tight",
+      "context_overlay": "",
+      "link": "so",
+      "effects": []
+     },
+     {
+      "source_id": "https://www.twitch.tv/xqc/clip/FlirtyObedientPuppyPeanutButterJellyTime-6dtAUgSeX4gVy1x-",
+      "start": 40.0,
+      "end": 47.0,
+      "role": "setup",
+      "purpose": "An hour later at the blackjack table he commits the hand: 'That's 10. Send it.'",
+      "transition": "hard_cut",
+      "framing": "wide",
+      "context_overlay": "An hour later, blackjack",
+      "link": "but",
+      "effects": []
+     },
+     {
+      "source_id": "https://www.twitch.tv/xqc/clip/FlirtyObedientPuppyPeanutButterJellyTime-6dtAUgSeX4gVy1x-",
+      "start": 59.5,
+      "end": 74.3,
+      "role": "payoff",
+      "purpose": "The hand lands: 'KABLOW', 'what a fucking play', the win he was chasing.",
+      "transition": "hard_cut",
+      "framing": "wide",
+      "context_overlay": "",
+      "link": "so",
+      "effects": []
+     }
+    ],
+    "narration": null
+   },
+   "sources": [
+    {
+     "url": "https://www.twitch.tv/xqc/clip/PlumpSpotlessBadgerKreygasm-tWq-u1KSD7dCh0K4",
+     "channel": "xqc",
+     "date": "2026-10-02",
+     "summary": "xQc, playing GTA RP, drives a blue car and accuses someone of shooting his tire, then walks into an art gallery with other characters and opens a painting canvas."
+    },
+    {
+     "url": "https://www.twitch.tv/xqc/clip/FineSlipperyPeafowlRlyTho-1EBM2czztq5VtpV0",
+     "channel": "xqc",
+     "date": "2026-10-05",
+     "summary": "xQc says he is doubling 33k and going all in on a slot machine, then reacts with repeated 'wow' to a run of losing spins, and ends by calling the slot's math unplayable and stupid."
+    },
+    {
+     "url": "https://www.twitch.tv/xqc/clip/FlirtyObedientPuppyPeanutButterJellyTime-6dtAUgSeX4gVy1x-",
+     "channel": "xqc",
+     "date": "2026-10-05",
+     "summary": "xQc plays blackjack at a casino in a GTA-style roleplay server, doubles or splits on a big bet and wins, celebrates loudly, then moves to roulette and places bets as the wheel spins."
+    }
+   ],
+   "source_urls": [
+    "https://www.twitch.tv/xqc/clip/FineSlipperyPeafowlRlyTho-1EBM2czztq5VtpV0",
+    "https://www.twitch.tv/xqc/clip/FlirtyObedientPuppyPeanutButterJellyTime-6dtAUgSeX4gVy1x-"
+   ]
+  },
+  {
+   "label": "scout:xqc/xqc-along-believe-2026w41",
+   "run": "40742816892",
+   "score": 80,
+   "edl": {
+    "title": "xQc vs the NoPixel cops",
+    "premise": "xQc keeps running into the cops on NoPixel: first a foot chase that ends with both of them in the water, then a traffic stop where the cop says his car's plate is stolen.",
+    "central_question": "How does xQc keep ending up in the cops' hands?",
+    "structure": "chronological",
+    "hook_overlay": "xQc vs the NoPixel cops",
+    "beats": [
+     {
+      "source_id": "https://www.twitch.tv/xqc/clip/TransparentProductiveAntTBCheesePull-ZHgbQBb2YysBHbYw",
+      "start": 4.0,
+      "end": 24.5,
+      "role": "setup",
+      "purpose": "Opening chase: he runs along the dock past a police car, a cop catches him and they both end up underwater.",
+      "transition": "hard_cut",
+      "framing": "wide",
+      "context_overlay": "",
+      "link": "start",
+      "effects": []
+     },
+     {
+      "source_id": "https://www.twitch.tv/xqc/clip/FrailDullWatercressTheThing-DWH7T9vcg6gdLbAR",
+      "start": 19.9,
+      "end": 30.6,
+      "role": "payoff",
+      "purpose": "Hours later, a cop stops his red car and says he ran the plate and it's stolen. xQc protests: 'It ain't fair at all.'",
+      "transition": "hard_cut",
+      "framing": "wide",
+      "context_overlay": "Hours later, same stream",
+      "link": "and",
+      "effects": []
+     }
+    ],
+    "narration": {
+     "text": "xQc on NoPixel, a GTA roleplay server, runs from the police.",
+     "over_beat": 0,
+     "essential_because": "Streamer, game and the known line 'NoPixel = a GTA RP server xQc streams on'; the scene report says a hooded character i"
+    }
+   },
+   "sources": [
+    {
+     "url": "https://www.twitch.tv/xqc/clip/TransparentProductiveAntTBCheesePull-ZHgbQBb2YysBHbYw",
+     "channel": "xqc",
+     "date": "2026-10-01",
+     "summary": "A hooded character runs along a dockside past a police car, is caught by a gray-haired police officer at the water's edge, and both end up underwater before the screen goes black."
+    },
+    {
+     "url": "https://www.twitch.tv/xqc/clip/FrailDullWatercressTheThing-DWH7T9vcg6gdLbAR",
+     "channel": "xqc",
+     "date": "2026-10-01",
+     "summary": "xQc, shown in a webcam inset, drives a red car along a dark coastal road at night while the audio has him telling a cop they will never see him again, then the cop saying the plate is stolen, followed"
+    },
+    {
+     "url": "https://www.twitch.tv/xqc/clip/PlumpSpotlessBadgerKreygasm-tWq-u1KSD7dCh0K4",
+     "channel": "xqc",
+     "date": "2026-10-02",
+     "summary": "xQc drives a blue Porsche SUV through a GTA roleplay city, says he'll beat someone there, then accuses another player of shooting his tire and says he could have died after being punched."
+    },
+    {
+     "url": "https://www.twitch.tv/xqc/clip/FlirtyObedientPuppyPeanutButterJellyTime-6dtAUgSeX4gVy1x-",
+     "channel": "xqc",
+     "date": "2026-10-05",
+     "summary": "xQc, shown in a facecam, doubles down on a blackjack hand in a game, says \"It's fine. Send it.\", then cheers as the dealer's board shows 120,000 chips."
+    }
+   ],
+   "source_urls": [
+    "https://www.twitch.tv/xqc/clip/FrailDullWatercressTheThing-DWH7T9vcg6gdLbAR",
+    "https://www.twitch.tv/xqc/clip/TransparentProductiveAntTBCheesePull-ZHgbQBb2YysBHbYw"
+   ]
+  }
  ]
 }
