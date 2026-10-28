@@ -97,8 +97,12 @@ def plan(items, dur: float, offset: float = 0.0) -> list[dict]:
     for r in sorted(parse(items), key=lambda r: r["at"]):
         at = r["at"] - float(offset or 0.0)
         if at < 1.0 or at + SECS > dur - 0.8:
+            print(f"[cut-in] {r['who']!r} @{r['at']}: outside the cut "
+                  "— not cut in", flush=True)
             continue
         if any(abs(at - k["at"]) < GAP + SECS for k in out):
+            print(f"[cut-in] {r['who']!r} @{r['at']}: too close to the "
+                  "last — not cut in", flush=True)
             continue
         out.append({**r, "at": round(at, 2), "secs": SECS})
         if len(out) >= MAX_CUTS:

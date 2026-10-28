@@ -194,8 +194,11 @@ Rules:
     block", "five thousand yards"): the footage lands on that word and is
     dropped if the word is not said near that second. 0-3 of them, at least 4s apart. Most
     clips with a person talking refer to something showable: give those
-    at least one. Never the person already on screen talking, never a
-    guess at something the words do not name.
+    at least one. Their OWN plays count: a player talking about the hits
+    he got fined for, his touchdown, his missed shot -> footage of THAT
+    (operator, 2026-10-28: "that skattebo clip show the plays he got
+    fined on"). Never another shot of them talking (a podium, an
+    interview), never a guess at something the words do not name.
   - outro: the PAYOFF ending, a different thing from broll (operator:
     "when Kevin Durant was talking about how sad he was that him and Russ
     aren't playing anymore, you play just that clip, and then after that
