@@ -34,7 +34,8 @@ from shared import look
 from data_learning import illustrated as I
 from data_learning.illustrated import W, H, clamp, ease, pop, seg, glow, text, _c
 from data_learning.illustrated import (solid, box, cylinder, disc, contact_shadow,  # noqa: F401 — the light kit
-                                       haze, vignette, edge, KEY, FINISHES)
+                                       haze, vignette, edge, KEY, FINISHES,
+                                       seams, trim)
 
 P = look.SCENES
 

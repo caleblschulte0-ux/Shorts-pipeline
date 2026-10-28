@@ -239,6 +239,16 @@ EDGE_A = 0.95                        # ...at this opacity
 FINISH = 0.2                         # strength of finish(), every frame
 GRAIN = False                        # paper grain on solids: the felt
 FINISHES = ("matte", "gloss", "metal", "glass", "ice")
+# NO PLASTIC SHINE (operator, 2026-10-28, of a red rotary phone drawn with
+# finish="gloss" on every part, beside a brick walk-up he liked in the same
+# video: "it's an art style issue not a what we are drawing issue"). A white
+# streak across the lit third of every "gloss" solid was the toy-plastic
+# look: the brain asked for gloss 814 times across the saved scenes. Gloss
+# is now a satin — lit like matte, no streak — and only metal, glass and ice
+# catch the light, metal at half its old strength. What makes a thing look
+# made is its parts (trim, seams, panels: `seams`, `trim`), not a shine.
+SHINES = ("metal", "glass", "ice")
+SHINE = {"metal": 0.24, "glass": 0.30, "ice": 0.22}
 
 
 _GRAIN = None
@@ -287,7 +297,7 @@ def _path_box(cr):
 def _lit_shade(rgb, finish):
     # the lit face is always lighter than the colour: a matte lit face equal
     # to the colour left the first half of every gradient a flat run
-    lit = _mix(rgb, (255, 255, 255), 0.16 if finish in ("gloss", "metal") else 0.12)
+    lit = _mix(rgb, (255, 255, 255), 0.16 if finish == "metal" else 0.12)
     shade = _scale(rgb, KEY_SHADE)
     if finish == "ice":
         lit = _mix(rgb, (255, 255, 255), 0.25)
@@ -318,15 +328,16 @@ def solid(cr, rgb, finish="matte", a=1.0, edge=True, rim=True, depth=1.0):
     cr.set_source(g)
     cr.fill_preserve()
     grain(cr)
-    if finish in ("gloss", "metal", "glass", "ice"):
-        # a specular streak across the lit third
+    if finish in SHINES:
+        # a specular streak across the lit third — only where the material
+        # really has one (see SHINES)
         s = cairo.LinearGradient(x0, y0, x0 + w * 0.6, y0 + h * 0.9)
-        hi = 0.42 if finish == "metal" else 0.30 if finish == "glass" else 0.22
+        hi = SHINE.get(finish, 0.0)
         s.add_color_stop_rgba(0.00, 1, 1, 1, 0)
         s.add_color_stop_rgba(0.28, 1, 1, 1, hi * a)
         s.add_color_stop_rgba(0.40, 1, 1, 1, 0)
         if finish == "metal":                 # a second, dimmer band
-            s.add_color_stop_rgba(0.62, 1, 1, 1, 0.14 * a)
+            s.add_color_stop_rgba(0.62, 1, 1, 1, 0.08 * a)
             s.add_color_stop_rgba(0.72, 1, 1, 1, 0)
         cr.set_source(s)
         cr.fill_preserve()
@@ -422,16 +433,59 @@ def disc(cr, x, y, r, rgb, finish="matte", a=1.0):
     cr.set_source(g)
     cr.fill_preserve()
     grain(cr)
-    if finish in ("gloss", "metal", "glass"):
+    if finish in SHINES and finish != "ice":
         cr.save()
         cr.clip_preserve()
         glow(cr, x + KEY[0] * r * 0.5, y + KEY[1] * r * 0.5, r * 0.45, (255, 255, 255),
-             0.55 * a)
+             0.30 * a)
         cr.restore()
     cr.set_line_width(EDGE_W)
     cr.set_source_rgba(*_c(_scale(rgb, EDGE_K), EDGE_A * a))
     cr.stroke()
     cr.restore()
+
+
+def seams(cr, x0, y0, x1, y1, rgb, n=6, axis="v", inset=0.0, width=2.0, a=0.55):
+    """`n` thin seams across the box (x0, y0)-(x1, y1) — planks, panels,
+    siding, the lines between boards or tiles — in the shadow of `rgb`, with
+    a lit line beside each. Draw it over a solid() so the thing reads as
+    BUILT, the way the kit's barn and walk-up do, not as one smooth shape."""
+    if n < 1 or x1 <= x0 or y1 <= y0:
+        return
+    dark = _c(_scale(rgb, EDGE_K + 0.25), a)
+    light = _c(_mix(rgb, (255, 255, 255), 0.3), a * 0.6)
+    cr.save()
+    for k in range(1, n + 1):
+        f = k / (n + 1)
+        for col, off in ((dark, 0.0), (light, width)):
+            cr.set_source_rgba(*col)
+            cr.set_line_width(width)
+            if axis == "v":
+                x = x0 + (x1 - x0) * f + off
+                cr.move_to(x, y0 + inset)
+                cr.line_to(x, y1 - inset)
+            else:
+                y = y0 + (y1 - y0) * f + off
+                cr.move_to(x0 + inset, y)
+                cr.line_to(x1 - inset, y)
+            cr.stroke()
+    cr.restore()
+
+
+def trim(cr, x0, y0, x1, y1, rgb, w=8.0):
+    """A lit frame band `w` wide around the box (x0, y0)-(x1, y1): a sill,
+    a rim, a bezel, a door frame. The walk-up's windows each have one; a
+    smooth box with none is the look of a toy."""
+    if x1 <= x0 or y1 <= y0:
+        return
+    cr.rectangle(x0 - w, y0 - w, x1 - x0 + 2 * w, w)
+    solid(cr, _mix(rgb, (255, 255, 255), 0.2), rim=False)
+    cr.rectangle(x0 - w, y1, x1 - x0 + 2 * w, w)
+    solid(cr, _scale(rgb, 0.8), rim=False)
+    cr.rectangle(x0 - w, y0, w, y1 - y0)
+    solid(cr, _mix(rgb, (255, 255, 255), 0.1), rim=False)
+    cr.rectangle(x1, y0, w, y1 - y0)
+    solid(cr, _scale(rgb, 0.85), rim=False)
 
 
 def contact_shadow(cr, x, y, w, a=0.35, h=None):

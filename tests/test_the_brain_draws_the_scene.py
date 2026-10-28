@@ -47,6 +47,14 @@ def scene(cr, t, u, pts, host):
     """
     rows = by_time([(str(l), float(v)) for l, v in pts])
     vgrad(cr, [(0.0, (30, 30, 60)), (1.0, (10, 10, 20))], 0, H)
+    for b in range(4):                      # the street the road runs down,
+        x0 = 30 + b * 262                   # built of its parts (rule 25)
+        cr.rectangle(x0, 880, 230, 520)
+        solid(cr, (120, 100, 92))
+        for r in range(6):
+            for c in range(3):
+                cr.rectangle(x0 + 22 + c * 68, 910 + r * 78, 46, 54)
+                solid(cr, (60, 70, 90), finish="glass", rim=False)
     heat_shimmer(cr, t, 600, 1500, a=0.3)
     lab, val = rows[-1]
     fit_readout(cr, f"{val:.1f}", lab, 80, 520)
@@ -84,7 +92,30 @@ class TheTeachersPassTheSameChecks(unittest.TestCase):
             for i, (fn0, pts) in enumerate(zip(fns, T._beats(slug))):
                 with self.subTest(scene=fn0.__name__):
                     fn = SA.compile_scene(_teacher_as_brain(fn0))
-                    self.assertEqual(SA.verify(fn, pts, st["segments"][i].get("say", "")), [])
+                    # A teacher that is not shown to the brain as a bar may
+                    # predate rule 25: heat_redlining is a map card drawn
+                    # from 26 parts, for a story already posted.
+                    shown = fn0.__name__ in SHOWN
+                    self.assertEqual(SA.verify(fn, pts, st["segments"][i].get("say", ""),
+                                               detail=shown), [])
+
+    def test_every_scene_the_brain_is_shown_is_built(self):
+        """Rule 25 holds the bars and the prompt's worked examples to it."""
+        from data_learning import scene_author as SA, subject_scenes as SS
+        import tests.test_subject_scenes as T
+        for slug, fns in SS.TEACHERS.items():
+            for fn0, pts in zip(fns, T._beats(slug)):
+                if fn0.__name__ in SHOWN:
+                    with self.subTest(scene=fn0.__name__):
+                        fn = SA.compile_scene(_teacher_as_brain(fn0))
+                        self.assertEqual(SA.detail_problems(fn, pts), [])
+        for fn, pts in ((SS.checkout_lanes, SA.CHECKOUT_ROWS),):
+            self.assertEqual(SA.detail_problems(fn, pts), [])
+
+
+#: The teachers the brain is shown: the three bars and the prompt's examples.
+SHOWN = ("bird_flu_barn", "recycling_pile", "checkout_lanes",
+         "amazon_where_it_goes", "coffee_drought")
 
 
 @unittest.skipUnless(HAVE_CAIRO, "pycairo not installed")

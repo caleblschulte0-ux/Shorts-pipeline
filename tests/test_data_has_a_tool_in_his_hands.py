@@ -104,6 +104,10 @@ def scene(cr, t, u, pts, host):
     """
     rows = by_time([(str(l), float(v)) for l, v in pts])
     vgrad(cr, [(0.0, (30, 30, 60)), (1.0, (10, 10, 20))], 0, H)
+    cr.rectangle(200, 1100, 680, 380)       # the berg, built of its blocks
+    solid(cr, (200, 225, 240), finish="ice")
+    for r in range(8):
+        seams(cr, 200, 1100 + r * 47, 880, 1147 + r * 47, (200, 225, 240), n=6)
     heat_shimmer(cr, t, 600, 1500, a=0.3)
     lab, val = rows[-1]
     fit_readout(cr, f"{val:.1f}", lab, 80, 520)
