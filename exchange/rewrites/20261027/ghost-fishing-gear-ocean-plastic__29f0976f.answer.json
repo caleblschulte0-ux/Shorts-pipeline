@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "ghost-fishing-gear-ocean-plastic__29f0976f",
+  "slug": "ghost-fishing-gear-ocean-plastic",
+  "by": "chatgpt",
+  "written_at": "2026-10-28T11:20:46.354Z",
+  "title": "Just 10% Of Ocean Litter Keeps Fishing After Abandonment",
+  "hook": "Fishing gear is 10% of litter, yet it keeps catching animals.",
+  "closing": "Retrieving abandoned gear stops plastic that continues harming wildlife by itself.",
+  "question": "Should gear retrieval be mandatory?",
+  "segments": [
+    {
+      "topic": "Fishing Gear Share",
+      "say": "Fishing gear makes up 10% of ocean litter. Unlike most trash, it keeps trapping animals after crews abandon it."
+    },
+    {
+      "topic": "Fishing Gear Weight",
+      "say": "Lost fishing gear weighs 640,000 tons each year. Working equipment becomes an enormous recurring waste stream."
+    },
+    {
+      "topic": "Fishing Gear Harm",
+      "say": "Fishing gear entangles 100,000 marine animals yearly. The danger continues long after the gear is lost."
+    }
+  ]
+}
