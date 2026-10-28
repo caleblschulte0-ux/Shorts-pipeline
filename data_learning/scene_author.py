@@ -162,13 +162,28 @@ def check_source(code: str) -> None:
 # standard it passed; one from an older standard is re-judged by today's
 # viewer and look again before it is used, and redrawn if it fails. Bump
 # STANDARD whenever a check or a bar a scene must pass is added.
-STANDARD = "2026-10-22"     # he pulls the scene's own lever (rule 22)
+STANDARD = "2026-10-28"     # the real thing at its real size (rule 24)
 _STAMP = re.compile(r"^# scene standard: (\S+)\s*$", re.M)
+# A standard the POSTING run still accepts as it is. Bumping STANDARD
+# re-judges every saved scene the next time it is used, and on 2026-10-23
+# that re-judging ate the posting run's whole drawing clock: no video went
+# out that day. A standard named here is re-judged only by the predraw
+# (scripts/predraw_scenes.py sets STRICT), on its own clock hours before
+# the posting window; the posting run keeps using those scenes until then.
+GRACE = ("2026-10-22",)
+STRICT = False
 
 
 def standard_of(code) -> str | None:
     m = _STAMP.search(code or "") if isinstance(code, str) else None
     return m.group(1) if m else None
+
+
+def current(code) -> bool:
+    """Whether a saved scene may be used without being re-judged: drawn to
+    today's STANDARD, or — outside the predraw — to one still in GRACE."""
+    got = standard_of(code)
+    return got == STANDARD or (not STRICT and got in GRACE)
 
 
 def stamped(code: str) -> str:
@@ -296,7 +311,17 @@ compare closely), 'clear' or 'dramatic'>",
 and near-and-far depth; 'a diagram' if it is an object shown front-on \
 against a backdrop>",
  "heap": "<'yes' if the main thing that changes is a heap, pile or stack of \
-many copies of one object growing or shrinking; else 'no'>"}}"""
+many copies of one object growing or shrinking; else 'no'>",
+ "size": "<'true to life' if the main object is about the size that thing \
+really is beside the ground, buildings, people, furniture or vehicles \
+around it; 'blown up' if an everyday object (a phone, a bottle, a coin, a \
+pill, a light bulb) is drawn many times its real size, like a giant prop \
+or an icon — a telephone as big as a truck>",
+ "setting": "<'its own place' if the main object stands where that kind \
+of thing really is (a phone on a desk, in a hand or by a window; a boat on \
+water; a tractor in a field; a heap of trash at a dump); 'bare ground' if \
+it stands alone on empty ground or a plain backdrop with nothing of its \
+own world around it>"}}"""
 
 _JUDGE = """A viewer saw two frames of an animated scene with every word \
 and the mascot removed, and described it unaided:
@@ -422,6 +447,8 @@ def glance(fn, pts, log=print, say: str = "", seen_by: list | None = None) -> li
     much = str(seen.get("how_much") or "").strip().lower()
     heap = str(seen.get("heap") or "no").strip().lower()
     shot = str(seen.get("shot") or "").strip().lower()
+    size = str(seen.get("size") or "").strip().lower()
+    where = str(seen.get("setting") or "").strip().lower()
     story = (f"\nThe beat's narration (what the picture must SHOW): {say}\n"
              if str(say or "").strip() else "")
     ans = ask_glance(_JUDGE.format(object=obj, substance=sub, change=chg, heap=heap,
@@ -464,6 +491,20 @@ def glance(fn, pts, log=print, say: str = "", seen_by: list | None = None) -> li
                         "front-on on a backdrop; build the SETTING around it "
                         "with near-and-far depth, three-quarter view and "
                         "something by the camera (rule 13)")
+    if "blown up" in size:
+        # "setting" alone is not a refusal: THE PILE, a bar the owner chose,
+        # was called "bare ground" by one viewer in two. It names the fix.
+        # operator, 2026-10-28, of a truck-sized red rotary phone on an empty
+        # desert beside the same video's brick walk-up: "our basic whatever
+        # animations look better in situations like the building and things
+        # like the phone look like shit ai slop"
+        seen_as = "blown up to many times its real size" + (
+            " and standing alone on bare ground" if "bare ground" in where else "")
+        problems.append(f"a viewer saw {obj!r} {seen_as} — a giant icon of an "
+                        f"object is what reads as AI slop. Show the real thing "
+                        f"at its real size in the place it really is (a phone "
+                        f"in a hand at an apartment window, a bottle on a "
+                        f"shelf), with that world around it (rule 24)")
     if story and ans.get("story_fit") is False:
         # operator, 2026-10-09: the self-checkout video's first scene showed
         # stores being taken over; "by the end it's just stacking boxes"
@@ -1496,6 +1537,20 @@ them overlap and stagger like a real crowd or a real lot. Every prop \
 stands on the ground with its contact_shadow() at the scale of what is \
 next to it; no stray cones, crates or flags dropped into empty space to \
 fill it. Fewer, better-drawn things beat many stamped ones.
+24. THE REAL THING, AT ITS REAL SIZE, IN ITS REAL PLACE. The owner, \
+2026-10-28, of one video: its brick walk-up with a fire escape and a \
+water tower, among other buildings, looked good; its red rotary phone the \
+size of a truck, alone on an empty desert with Data standing on top of it \
+pointing, looked like "shit ai slop". A giant icon of an object is the \
+look of a generated picture. Draw the story where it really happens and \
+at the size things really are: a noise complaint is a tenant at their \
+apartment window phoning the city while a party blares in the street; a \
+price is the tag on a shelf in a shop. An everyday object (a phone, a \
+bottle, a pill, a coin) is never blown up past the people, furniture or \
+buildings beside it, and never stands alone on bare ground. Data is IN \
+that world doing the act at his own scale (making the call, carrying the \
+box), never standing on or beside an oversized prop pointing at it. A \
+viewer is asked whether the object is true to life and in its own place.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \
@@ -1747,7 +1802,10 @@ THE SHOT, THE PILE and THE CHECKOUT — a hero assembled from primitive shapes, 
 read, an empty backdrop, crowded or tiny text, a change you cannot see, \
 Data lost or covered, Data standing beside the action instead of in it, \
 a worn thing (a collar, a strap, a hat) floating as an outline ring \
-instead of wrapping the body it is on — and fix them. Keep the idea, the data, the numbers \
+instead of wrapping the body it is on, an everyday object blown up to the \
+size of a truck on empty ground with Data standing on it (the owner: \
+"shit ai slop" — draw the real thing at its real size in its real place) \
+— and fix them. Keep the idea, the data, the numbers \
 and the HERO / SUBSTANCE / CAUSE declaration; redraw what looks cheap.
 
 YOUR CODE:
@@ -1929,7 +1987,7 @@ def saved_scene(seg_cfg: dict, log=print):
         if probs:
             log(f"[scene_author] saved scene refused — {probs[0][:90]}")
             return None
-        if standard_of(code) != STANDARD:
+        if not current(code):
             got = recertify(fn, code, _seg_pts(seg_cfg), seg_cfg.get("say", ""),
                             SCENE_SECS["beat"], topic=seg_cfg.get("topic", ""), log=log)
             if got is None:
@@ -2044,7 +2102,7 @@ def saved_bookend(story_cfg: dict, kind: str, n_beats: int, log=print):
         if probs:
             log(f"[scene_author] saved {kind} refused — {probs[0][:90]}")
             return None
-        if standard_of(code) != STANDARD:
+        if not current(code):
             got = recertify(fn, code, _seg_pts(segs[idx] if idx < len(segs) else {}),
                             _story_say(story_cfg), SCENE_SECS.get(kind),
                             topic=f"the {kind}: " + (story_cfg.get(kind) or ""),
