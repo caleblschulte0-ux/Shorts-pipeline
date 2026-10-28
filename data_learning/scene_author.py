@@ -1335,7 +1335,8 @@ least half the beat — roles strain, climb or hold_up, doing something to \
 the thing the number is made of; point, cheer, shock and think are only \
 the setup and the reaction. A Data who waves beside the data is marked \
 down every time. Call host(...) every \
-frame, height 180-240.
+frame, height 280-340: big enough to read on a phone, in the middle of \
+the action, never a small figure off to the side.
 5. DECISIVE motion, not constant motion. The story moves when the story \
 moves: the subject changes, arrives, falls, fills — then HOLDS a beat so it \
 can be read — then the next thing happens. Holds of up to ~1.5s are good; \
@@ -1399,8 +1400,17 @@ flat colour is MEASURED and refused as clip art — a gold pile of identical fla
 two flat pans and a flat box were the look this rule replaces.
 13. IT IS A SHOT, NOT A DIAGRAM. A front-on elevation of the hero over an \
 empty field was "still very much lacking"; the same beat as a shot was "ok \
-now we are talking". So: start from a SETTING — landscape(cr, t, kind) for \
-anything outdoors (or a kit interior like cafe()) — never a bare gradient. \
+now we are talking". So: start from a SETTING — never a bare gradient — \
+and make it THIS story's own place. Viewers keep commenting "this is AI" \
+(the owner, 2026-10-25: "it does have a certain clunky Claude \
+generatedness to it"), and the same sunset, the same two clouds and the \
+same grey skyline stood behind almost every scene. Name the time of day \
+and the place the story happens in: landscape(cr, t, kind, time=..., \
+seed=HERO) with time one of dawn, day, dusk, night, overcast (it places \
+the sun, clouds, ridges and skyline for this scene; skyline=True/False), \
+or build the place yourself (a terminal, a stadium at night, a shop \
+floor) like the kit interiors (cafe()). A bare landscape(cr, t, "town") is \
+the stock backdrop: do not use it. \
 Show the hero in THREE-QUARTER view with a side going back into the \
 picture (building() for anything built; box() and cylinder() already turn), \
 throwing a long cast_shadow() to the lower right, away from the sun. Give \
@@ -1411,10 +1421,13 @@ foreground(cr, kind) before vignette(). THE SHOT below is the bar.
 14. THE SCALE IS IN THE PICTURE, read at a glance. Never a chart, key or \
 legend laid over the scene — "freaking boxes on top of the video doesn't \
 help ... it just needs to be able to more easily glance at it and gauge \
-the scale". Show the comparison ON the subject: the earlier size as a \
-ghost() outline where it stood, a then_mark() where the old level reached \
-with its year on it, times_ticks() up the side when it is a multiple, or \
-something everyone knows the size of next to it (Data, a person, a car). \
+the scale". Show the comparison ON the subject, and prefer REAL THINGS \
+to marks: the old size standing beside the new as a real object, a stain \
+or waterline where the old level reached, a person, a car, a door or Data \
+next to it for size. Dashed ghost(), then_mark() and times_ticks() still \
+exist, but a frame full of dashed outlines and tick marks reads as a \
+machine-annotated chart; use one at most, and only when no real object \
+can say it. \
 With the sound off, one look must say "about three times as much".
 15. ONE NUMBER, AND THE CHANGE IS BIG ON SCREEN. The operator liked a \
 pile of plastic that grew to three times its size under one number; he \
@@ -1475,6 +1488,14 @@ lever_pull(f) — down, held while it flows, back up) moves the part AND his \
 hands, and what flows only flows while he holds it down. There is no tap \
 or crank act: his hands are MEASURED on the scene drawn without him, and \
 hands that move where nothing in the picture moves are refused.
+23. NOTHING IS COPY-PASTED, NOTHING FLOATS. A grid of identical people, a \
+row of identical scooters and a forest of identical green balls are what \
+make a picture look generated. When the story has many of a thing, vary \
+each one — size, pose, colour, spacing, the angle it stands at — and let \
+them overlap and stagger like a real crowd or a real lot. Every prop \
+stands on the ground with its contact_shadow() at the scale of what is \
+next to it; no stray cones, crates or flags dropped into empty space to \
+fill it. Fewer, better-drawn things beat many stamped ones.
 Open the docstring of scene() with three lines, exactly this shape — a \
 viewer who sees two of your frames with every word and Data removed will \
 be asked whether they agree with each one, and the scene is refused if \
