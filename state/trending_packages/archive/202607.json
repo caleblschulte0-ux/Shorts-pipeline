@@ -5776,5 +5776,368 @@
       ],
       "music_vibe": "dark"
     }
+  },
+  "20260729": {
+    "01_reddit-landlord-deposit-video.json": {
+      "version": 1,
+      "subreddit": "ProRevenge",
+      "slug": "01_reddit-landlord-deposit-video",
+      "title": "My landlord tried to keep my deposit for damage from my own move-in video.",
+      "hashtags": [
+        "reddit",
+        "storytime",
+        "prorevenge",
+        "revenge",
+        "landlord",
+        "tenant",
+        "karma",
+        "fyp",
+        "shorts",
+        "story",
+        "viral",
+        "justice"
+      ],
+      "script": "My landlord mailed me a deposit deduction notice for six hundred dollars in wall damage and carpet stains, claiming I'd trashed the place during my two years there. What he didn't know was that on move-in day I'd filmed a slow four-minute walkthrough of every room, timestamped and backed up to three different places, specifically because a friend warned me landlords in that building did this every single time. I emailed him the video link along with the itemized list of every stain and scuff he was now billing me for, all clearly visible on day one before I'd even unpacked a single box. He went quiet for eleven days, then sent a new notice reversing the entire charge and returning my full deposit with an extra fifty dollars for the delay, which state law required once I threatened small claims court. Turns out landlords hate paperwork almost as much as they hate losing.",
+      "shots": [
+        {
+          "phrase": "six hundred dollars in wall damage and carpet",
+          "query": "eviction notice letter mailbox",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "filmed a slow four-minute walkthrough of every room",
+          "query": "phone filming empty apartment room walkthrough",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "landlords in that building did this every single time",
+          "query": "apartment building exterior evening",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "emailed him the video link",
+          "query": "hand typing email laptop",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "clearly visible on day one before I'd even unpacked a single box",
+          "query": "moving boxes empty apartment",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "went quiet for eleven days",
+          "query": "phone screen no new messages",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "returning my full deposit with an extra fifty dollars",
+          "query": "bank transfer notification phone",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "threatened small claims court",
+          "query": "courthouse steps exterior",
+          "mascot_pose": "shock"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "six hundred dollars in wall damage",
+          "text": "$600 CLAIM",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "filmed a slow four-minute walkthrough",
+          "text": "ALREADY ON CAMERA",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "went quiet for eleven days",
+          "text": "11 DAYS OF SILENCE",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "returning my full deposit with an extra fifty dollars",
+          "text": "FULL REFUND + $50",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "dark"
+    },
+    "02_reddit-fake-manager-blender.json": {
+      "version": 1,
+      "subreddit": "IDontWorkHereLady",
+      "slug": "02_reddit-fake-manager-blender",
+      "title": "A woman said she basically ran the store. The real manager was standing behind her.",
+      "hashtags": [
+        "reddit",
+        "storytime",
+        "idontworkherelady",
+        "karma",
+        "retail",
+        "customerservice",
+        "fyp",
+        "shorts",
+        "story",
+        "viral",
+        "satisfying",
+        "justice"
+      ],
+      "script": "A woman cut in front of six people at the return counter and announced that she basically ran this store and I'd better process her cash refund on a receipt-less blender before she called corporate on my first day. I told her store policy required a manager for any refund over fifty dollars without a receipt, and she rolled her eyes and said fine, go get one, like she was doing me a favor. I paged for backup and my actual manager walked up behind her while she was still mid-rant about how replaceable I was. My manager asked her name, typed it into the system, and calmly explained that her return privileges had already been suspended two months ago for the exact same blender scam at our other location across town. Security walked her out empty-handed while she screamed that she knew the regional director personally. He does. He's the one who flagged her account.",
+      "shots": [
+        {
+          "phrase": "cut in front of six people at the return counter",
+          "query": "retail store return counter line",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "she basically ran this store",
+          "query": "woman pointing finger arguing store",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a receipt-less blender",
+          "query": "kitchen blender box counter",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "go get one, like she was doing me a favor",
+          "query": "woman rolling eyes dismissive",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "my actual manager walked up behind her",
+          "query": "store manager walking up retail floor",
+          "mascot_pose": "point"
+        },
+        {
+          "phrase": "her return privileges had already been suspended two months ago",
+          "query": "computer screen account flagged",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Security walked her out empty-handed",
+          "query": "security escorting person out store",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "He's the one who flagged her account",
+          "query": "manager closing laptop confident",
+          "mascot_pose": "idle"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "she basically ran this store",
+          "text": "\"RUNS\" THIS STORE?",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "her return privileges had already been suspended two months ago",
+          "text": "ALREADY BANNED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Security walked her out empty-handed",
+          "text": "ESCORTED OUT",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "He's the one who flagged her account",
+          "text": "HE FLAGGED HER",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "dark"
+    },
+    "03_textcard-dino-dust-extinction.json": {
+      "version": 1,
+      "format": "text_card",
+      "slug": "03_textcard-dino-dust-extinction",
+      "title": "The asteroid didn't kill the dinosaurs with fire",
+      "duration": 6,
+      "broll_query": "dinosaur skeleton fossil museum",
+      "hashtags": [
+        "dinosaurs",
+        "science",
+        "extinction",
+        "asteroid",
+        "space",
+        "paleontology",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending",
+        "didyouknow",
+        "history"
+      ],
+      "text": "The asteroid didn't kill the dinosaurs with fire. It killed them with dust.\n\nWhen the Chicxulub asteroid hit what's now Mexico, it blasted fine silicate dust so high into the atmosphere that it blocked the sun for nearly two years. Photosynthesis shut down almost completely, food chains collapsed from the bottom up, and global temperatures dropped by more than 15 degrees Celsius.\n\nThree quarters of all species on Earth died in the dark, not the blast.",
+      "highlights": [
+        "didn't kill the dinosaurs with fire",
+        "killed them with dust",
+        "the Chicxulub asteroid hit",
+        "blocked the sun for nearly two years",
+        "Photosynthesis shut down almost completely",
+        "food chains collapsed from the bottom up",
+        "dropped by more than 15 degrees Celsius",
+        "Three quarters of all species on Earth died",
+        "not the blast"
+      ],
+      "music_vibe": "dark"
+    },
+    "04_textcard-legionnaires-nyc.json": {
+      "version": 1,
+      "format": "text_card",
+      "slug": "04_textcard-legionnaires-nyc",
+      "title": "A sixth person has died from an outbreak in NYC's air",
+      "duration": 6,
+      "broll_query": "rooftop cooling tower water",
+      "hashtags": [
+        "health",
+        "nyc",
+        "outbreak",
+        "publichealth",
+        "news",
+        "warning",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending",
+        "didyouknow",
+        "safety"
+      ],
+      "text": "A sixth person has now died from an outbreak spreading through New York City's air, and it isn't a virus.\n\nLegionnaires' disease spreads through mist from contaminated water systems, cooling towers, hot tubs, even shower heads, not from person to person. Health officials in the affected neighborhood say most cases can be traced back to airborne water vapor drifting from a handful of building cooling towers.\n\nYou can't catch it from a sick coworker. You catch it from breathing the wrong cloud of air.",
+      "highlights": [
+        "A sixth person has now died",
+        "spreading through New York City's air",
+        "it isn't a virus",
+        "spreads through mist from contaminated water systems",
+        "cooling towers, hot tubs, even shower heads",
+        "not from person to person",
+        "drifting from a handful of building cooling towers",
+        "You can't catch it from a sick coworker",
+        "breathing the wrong cloud of air"
+      ],
+      "music_vibe": "dark"
+    },
+    "05_graph-nvidia-amd-datacenter.json": {
+      "version": 1,
+      "format": "graph_race",
+      "slug": "05_graph-nvidia-amd-datacenter",
+      "title": "Nvidia vs AMD: Data Center Revenue by Year",
+      "y_label": "Data center revenue ($ billions)",
+      "duration": 13,
+      "source": "Sources: company earnings reports, fiscal years (approx.)",
+      "hashtags": [
+        "nvidia",
+        "amd",
+        "ai",
+        "chips",
+        "tech",
+        "data",
+        "chart",
+        "fyp",
+        "shorts",
+        "trending",
+        "viral",
+        "stocks"
+      ],
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "Nvidia",
+          "color": "#76b900",
+          "values": [
+            2.98,
+            6.7,
+            10.6,
+            15.0,
+            47.5,
+            115.2
+          ]
+        },
+        {
+          "name": "AMD",
+          "color": "#ff3030",
+          "values": [
+            0.85,
+            1.69,
+            3.7,
+            6.0,
+            6.5,
+            12.6
+          ]
+        }
+      ],
+      "music_vibe": "dark"
+    },
+    "06_graph-india-china-population.json": {
+      "version": 1,
+      "format": "graph_race",
+      "slug": "06_graph-india-china-population",
+      "title": "India vs China: The Population Race",
+      "y_label": "Population (billions)",
+      "duration": 13,
+      "source": "Sources: UN World Population Prospects (approx.)",
+      "hashtags": [
+        "india",
+        "china",
+        "population",
+        "worldpopulation",
+        "data",
+        "chart",
+        "fyp",
+        "shorts",
+        "trending",
+        "viral",
+        "demographics",
+        "facts"
+      ],
+      "years": [
+        2015,
+        2017,
+        2019,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "series": [
+        {
+          "name": "India",
+          "color": "#ff9933",
+          "values": [
+            1.31,
+            1.339,
+            1.366,
+            1.391,
+            1.407,
+            1.4286,
+            1.441
+          ]
+        },
+        {
+          "name": "China",
+          "color": "#ff3030",
+          "values": [
+            1.375,
+            1.386,
+            1.398,
+            1.4126,
+            1.4118,
+            1.4097,
+            1.408
+          ]
+        }
+      ],
+      "music_vibe": "dark"
+    }
   }
 }
