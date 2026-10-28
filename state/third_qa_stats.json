@@ -3,303 +3,6 @@
     {
       "date": "20261021",
       "dry_run": false,
-      "ts": "2026-10-21T12:02:11+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 14,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 140,
-        "with_retention": 125,
-        "with_curve": 15,
-        "fetched_at": "2026-10-21T08:46:22.409074+00:00"
-      },
-      "brain": {
-        "ok": 51,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261021-1",
-          "ok": false,
-          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "roleplay character, vague event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.55,
-              "why": "Joker GTA RP shooting, unclear story",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            }
-          },
-          "took_s": 39.8
-        },
-        {
-          "slug": "clip-20261021-2",
-          "ok": true,
-          "render_level": "full",
-          "layout": "closeup",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, unknown event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.45,
-              "why": "flirty banter, no clear payoff",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Plaqueboymax Gets Told Nobody In Australia Has Ever Seen Anyone Like Him"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": [
-                "Subject is cropped slightly at the left edge in a few frames",
-                "Stream chat text is partly cut off at the left edge",
-                "Word captions sit close to the chin in some frames but do not cover the face"
-              ]
-            }
-          },
-          "took_s": 219.1
-        },
-        {
-          "slug": "clip-20261021-3",
-          "ok": true,
-          "render_level": "full",
-          "layout": "face_content",
-          "self_healed": false,
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.3,
-              "why": "boss defeat, insider gameplay",
-              "blind": false
-            },
-            "content": {
-              "score": 0.66,
-              "why": "Boss kill, visible victory scream",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Spams Like Crazy Then Gets Told To Stop... Does It Work?"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": [
-                "The hook caption sits close to the chin on the facecam but does not cover the face",
-                "The game footage is dark and low-contrast, though it is readable"
-              ]
-            }
-          },
-          "took_s": 357.1
-        },
-        {
-          "slug": "clip-20261021-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "vague title, unknown content",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "GTA RP jump off overpass, dark, unclear",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Valkyrae Gets Told She'll Need A Parachute And Loses It"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.6,
-              "problems": [
-                "The picture is dark and murky, and the subject is small in the later frames.",
-                "The hook caption sits low over the player's legs and the lower part of the action.",
-                "The 'AND ONE MORE' stream caption at 0.7s is close to the hook text."
-              ]
-            }
-          },
-          "took_s": 162.4
-        },
-        {
-          "slug": "clip-20261021-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, possible reaction",
-              "blind": false
-            },
-            "content": {
-              "score": 0.5,
-              "why": "Event interview, chat laughing, unclear ",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Stableronaldo Asks Who Wins This Fight And Picks His Girlfriend Amanda \ud83d\ude33"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "Sharp region is somewhat short, with a large blurred area at the bottom holding only the captions",
-                "Minor mosaic/glitch blocks at the left edge of the source footage, which look like part of the stream's own overlay"
-              ]
-            }
-          },
-          "took_s": 164.2
-        },
-        {
-          "slug": "clip-20261021-6",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: Sharp picture is only about a third of the canvas height, a thin strip between large blurred and black areas. The subjec; vision: The picture doesn't match the title and hook. 'Phone grab' and",
-          "judges": {
-            "banger": {
-              "score": 0.65,
-              "why": "visible physical altercation, reaction",
-              "blind": false
-            },
-            "content": {
-              "score": 0.66,
-              "why": "Crowd watches fan get haircut, visible r",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Lacy Gets Told \"That's Assault\" After This Phone Grab Goes Wrong"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.8,
-              "problems": [
-                "Sharp picture is only about a third of the canvas height, a thin strip between large blurred and black areas. The subjec",
-                "The picture doesn't match the title and hook. 'Phone grab' and 'That's assault' are promised, but most frames show a cro",
-                "Frames at 3.5s and 5.9s are very dark and hard to read, so the action is unclear.",
-                "The hook card sits in the black padding below the strip and the picture stays small the whole time, so it looks reposted"
-              ]
-            }
-          },
-          "took_s": 321.8
-        }
-      ]
-    },
-    {
-      "date": "20261021",
-      "dry_run": false,
       "ts": "2026-10-21T12:12:51+00:00",
       "feedback": {
         "snapshot": true,
@@ -5113,6 +4816,58 @@
         "with_retention": 126,
         "with_curve": 15,
         "fetched_at": "2026-10-28T12:06:15.408098+00:00"
+      },
+      "brain": {
+        "ok": 0,
+        "fail": 0
+      },
+      "dead_sources": {},
+      "clips": [
+        {
+          "slug": "clip-20261028-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261028-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261028-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261028-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261028-5",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261028-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261028",
+      "dry_run": false,
+      "ts": "2026-10-28T13:34:22+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 17,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 137,
+        "with_retention": 126,
+        "with_curve": 15,
+        "fetched_at": "2026-10-28T12:32:01.039936+00:00"
       },
       "brain": {
         "ok": 0,
