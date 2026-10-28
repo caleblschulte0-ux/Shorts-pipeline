@@ -26,7 +26,11 @@ import re
 import subprocess
 from pathlib import Path
 
-SECS = 3.2                 # on screen this long, per cut-in
+SECS = 4.5                 # on screen this long, per cut-in: snap to
+                           # tackle, not a slice of the middle of the play
+MIN_VIDEO = 9.6            # a video shorter than this is a clip, not a reel
+PLAY_LEAD = 3.0            # a judged frame is mid-play; the play began
+                           # at most this long before it
 MAX_S = 900                # a highlight reel, not a full game
 YEARS = 25                 # how far back the search reaches
 CANDIDATES = 3             # videos tried per request
@@ -219,7 +223,7 @@ def find(who: str, look: str = "", *, secs: float = SECS,
             if not video:
                 continue
             dur = _seconds(video)
-            if dur < secs * 3:
+            if dur < MIN_VIDEO:
                 continue
             if portrait(video):
                 print(f"[footage] {who!r}: {v['title'][:50]!r} is a phone "
@@ -245,8 +249,12 @@ def find(who: str, look: str = "", *, secs: float = SECS,
                            and s0 - secs <= float(a.get("from_s") or 0)
                            <= s1 + secs for a in avoid or []):
                         continue
-                    # only the shot the brain saw, never the next one
-                    start = min(max(s0 + 0.1, at - secs / 2),
+                    # only the shot the brain saw, never the next one,
+                    # FROM ITS START: the judged frame is mid-play, and
+                    # a slice around it showed the wrong part of
+                    # Skattebo's run (operator, 2026-10-28). A shot that
+                    # began long before the frame starts PLAY_LEAD back.
+                    start = min(max(s0 + 0.1, at - PLAY_LEAD),
                                 max(s0 + 0.1, s1 - 0.1 - secs))
                     length = min(secs, s1 - 0.1 - start)
                     clip = cut(video, start, length,
