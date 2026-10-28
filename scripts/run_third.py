@@ -151,6 +151,46 @@ def _backtest_keep(label: str, rev: int, mp4: Path, edl: dict,
         print(f"::warning::[backtest] keep failed ({e})", flush=True)
 
 
+def _payoff_outro(out_mp4: Path, led: dict, cluster: dict,
+                  work: Path) -> dict | None:
+    """The outro for an extended clip, built onto `out_mp4` IN PLACE
+    (`_PAYOFF_BRIEF`). None, leaving the clip as it was, when the author
+    names no outro or fewer than `outro.MIN_SHOTS` shots check out.
+    Never raises."""
+    try:
+        from third_capture import outro
+        from third_capture import story as story_mod
+        words = led.get("final_words") or []
+        if not words:
+            return None
+        hot = cluster["clips"][0]
+        net = hot.get("internet") or {}
+        meta = author.author_package(
+            hot.get("channel") or cluster.get("who") or "",
+            net.get("post_title") or hot.get("title") or "",
+            " ".join(str(w.get("w", "")) for w in words),
+            int(hot.get("views") or 0), words=words,
+            clip_dur=float(led.get("duration_s") or 0),
+            guidance=_PAYOFF_BRIEF)
+        item = outro.parse(((meta or {}).get("edit") or {}).get("outro"))
+        if not item:
+            print("[payoff] the author names nothing bigger to show — an "
+                  "extended clip", flush=True)
+            return None
+        item["team"], item["numbers"] = "", []
+        item["avoid"] = [x for x in (hot.get("source_url"),
+                                     net.get("permalink"),
+                                     net.get("post_title")) if x]
+        return outro.build(out_mp4, item, Path(work) / "payoff",
+                           w=story_mod.CANVAS_W, h=story_mod.CANVAS_H,
+                           title=net.get("post_title")
+                           or hot.get("title") or "")
+    except Exception as e:  # noqa: BLE001
+        print(f"::warning::[payoff] failed ({type(e).__name__}: {e})",
+              flush=True)
+        return None
+
+
 def _story_verdict(label: str, outcome: str, why: str) -> None:
     """One cluster's fate at the story director's hands. Appends (a slot
     considers several clusters), so the record shows the whole deliberation
@@ -305,6 +345,28 @@ _MOMENT_STORY_CUT = (
     "matters. 35-75 seconds, opening on the setup line.")
 # what a one-stream story may keep after the popular clip: its fallout
 MOMENT_STORY_TAIL_S = 30.0
+
+
+# BALLER BRO'S STORY SHAPE, ON TWITCH (operator, 2026-10-28: "Bro how are
+# stories still broken"). Every way of building a story out of a stream
+# failed for the same reason: most streams hold no setup, turn and fallout.
+# Baller Bro's stories work because the story is not in the clip: the clip
+# plays whole, then a song over a montage of the bigger thing it is about
+# (third_capture/outro.py). So the extended clip that passes its measured
+# checks is asked the same question every sports clip is, by the same
+# author doctrine: is this moment part of something bigger a viewer could
+# SEE? Yes, and it ends on that montage and is a story. No, and it stays
+# an extended clip.
+_PAYOFF_BRIEF = (
+    "This is a TWITCH moment cut as a STORY slot. The clip plays as it is; "
+    "decide only whether it gets the outro. A Twitch story points at "
+    "something bigger than the clip that happened somewhere else or over "
+    "time: the feud, the person they are talking about, the earlier stream "
+    "or event it comes from, the history between two streamers. The "
+    "'looks' are searches for clips of THAT on YouTube the way a clip of "
+    "it is titled ('xQc Ethan Klein h3 podcast', 'Kai Cenat Disney trip "
+    "stream'). Leave team and numbers empty. When the moment is complete "
+    "on screen, or nothing showable is named, outro null.")
 
 
 # The saga arm's brief to the director: the turns are months apart, so a
@@ -1473,6 +1535,13 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
         # to the measured checks first, then judged as a story at
         # story_min_score.
         _mstory = spec.get("story_pick") == "moment_story"
+        # A RUN OF CLIPS THAT MAKE SENSE (operator, 2026-10-28: "we ain't
+        # Dan Harmon ... interesting clips that make sense to put in the
+        # order we put them in"). The ordinary candidates, every director,
+        # scout and critic call held to the looser bar
+        # (story_director._LOOSE_RULE); same 80, same checks that a
+        # stranger can follow it.
+        story_director.loose(spec.get("story_pick") == "compilation")
         # STORY TIME CAP. Every slot is a story slot now (operator,
         # 2026-10-07: "this channel needs to be stories and edits not just
         # raw clips"), and a story search costs 10-20 minutes. Past
@@ -2302,6 +2371,20 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                                    else "structure_failed",
                                    "; ".join(p["what"] for p in _probs)[:300]
                                    or "kept")
+                _payoff = None
+                if _audience and spec.get("story_payoff") and not _probs:
+                    _payoff = _payoff_outro(out_mp4, led, cluster,
+                                            story_work)
+                    if _payoff:
+                        _backtest_keep(elbl, 9, out_mp4, edl, {
+                            "gate": "structure", "publish": False,
+                            "story_score": 0, "structure_ok": True,
+                            "problems": [], "payoff": _payoff,
+                            "duration_s": round(float(
+                                led.get("duration_s") or 0)
+                                + _payoff["secs"], 2),
+                            "stranger_summary": edl.get("premise", "")},
+                            sub)
                 if _mstory:
                     # a one-stream story that fails the measured checks is
                     # not shown to the critic; one that passes is judged as
@@ -2330,7 +2413,14 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                               "problems": [],
                               "stranger_summary": edl.get("premise", "")}
                     revision_count, _crit = _rev, ""
-                    _extended = True
+                    # with its outro it is a story, told the way Baller
+                    # Bro's are; without one it is an extended clip
+                    _extended = not _payoff
+                    if _payoff:
+                        led["duration_s"] = round(float(
+                            led.get("duration_s") or 0)
+                            + _payoff["secs"], 2)
+                        led["outro"] = _payoff
                 else:
                     _extended = False
                 if not _extended:

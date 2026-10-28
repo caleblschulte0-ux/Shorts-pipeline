@@ -25,6 +25,16 @@ on:
         type: boolean
         required: false
         default: false
+      compilation:
+        description: 'A run of interesting clips about one thing in a sensible order, no plot required'
+        type: boolean
+        required: false
+        default: false
+      payoff:
+        description: 'Audience arm plus the Baller Bro story ending (song over a montage of what it is about)'
+        type: boolean
+        required: false
+        default: false
       saga:
         description: 'Saga arm: one streamer history across years, origin/history/betrayal stories'
         type: boolean
@@ -133,6 +143,8 @@ jobs:
             --out backtest \
             --carry "$RUNNER_TEMP/carry.json" \
             ${{ inputs.audience && '--audience' || '' }} \
+            ${{ inputs.compilation && '--compilation' || '' }} \
+            ${{ inputs.payoff && '--payoff' || '' }} \
             ${{ inputs.saga && '--saga' || '' }} \
             ${{ inputs.moment_story && '--moment-story' || '' }}
 

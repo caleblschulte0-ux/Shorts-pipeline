@@ -117,6 +117,14 @@ def main(argv=None) -> int:
                     help="the saga arm: one streamer's history across "
                          "years per attempt, the scout told to find an "
                          "origin, a history, a betrayal, a rise or a fall")
+    ap.add_argument("--compilation", action="store_true",
+                    help="a run of interesting clips about one thing in an "
+                         "order that makes sense, no plot required "
+                         "(story_director._LOOSE_RULE)")
+    ap.add_argument("--payoff", action="store_true",
+                    help="the audience arm, and each cut that passes is "
+                         "asked for Baller Bro's story ending: a song over "
+                         "a montage of the bigger thing it is about")
     ap.add_argument("--moment-story", action="store_true",
                     help="one-stream stories: the popular clip is the "
                          "turn, the stream before it the setup, the stream "
@@ -149,6 +157,11 @@ def main(argv=None) -> int:
     base["capture"]["story_max_clusters"] = args.max_clusters
     if args.audience:
         base["capture"]["story_pick"] = "audience"
+    if args.compilation:
+        base["capture"]["story_pick"] = "compilation"
+    if args.payoff:
+        base["capture"]["story_pick"] = "audience"
+        base["capture"]["story_payoff"] = True
     if args.saga:
         base["capture"]["story_pick"] = "saga"
     if args.moment_story:

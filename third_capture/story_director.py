@@ -32,6 +32,29 @@ UNFINISHED_MAX = 79
 _CUT_OFF = re.compile(r"mid[- ]sentence|cuts? (?:it )?off|cut off|"
                       r"trailing fragment|ends? on a fragment", re.I)
 LINKS = {"so", "but"}     # how a beat follows the one before it
+# A RUN OF CLIPS THAT MAKE SENSE (operator, 2026-10-28, after every
+# structured story arm failed: "we ain't Dan Harmon we don't need a
+# perfectly structured story it's just need to be interesting clips that
+# make sense to put in the order we put them in and make a larger product
+# then just one clip"; then "they need to make sense not just random
+# clips"). The loose slot keeps every check that a stranger can FOLLOW
+# it (confusing, missing context, misleading, a cut mid-sentence, not
+# entertaining) and drops the ones that asked for a plot: the so/but
+# chain, the one central question, the single payoff. `loose()` sets it
+# for the slot; run_third turns it on for `story_pick: "compilation"`.
+LOOSE_LINKS = LINKS | {"and"}
+_LOOSE = False
+
+
+def loose(on: bool) -> None:
+    """Every director, scout, critic and validator call after this one
+    holds the loose slot's bar (`_LOOSE_RULE`) while `on`."""
+    global _LOOSE
+    _LOOSE = bool(on)
+
+
+def _loose_rule(system: str) -> str:
+    return system + _LOOSE_RULE if _LOOSE else system
 ROLES = {"setup", "escalation", "climax", "payoff", "context", "reaction"}
 # What the brain calls a role it means. Backtests 2026-10-07/08 threw away
 # three repairs over "unknown beat role 'turn'", "'evidence'", "'proof'" —
@@ -287,6 +310,40 @@ def _ground(edl: dict | None, reports: list[dict], rs: list) -> dict | None:
 _BAD_OVERLAY = re.compile(
     r"\b(the story|part (one|two|three|\d)|climax|it gets|what happens"
     r"|the beginning|the end\b|chapter)", re.I)
+
+_LOOSE_RULE = """
+
+THIS SLOT'S BAR IS LOWER THAN EVERYTHING ABOVE, AND IT OVERRIDES IT
+(operator, 2026-10-28: "we don't need a perfectly structured story it's
+just need to be interesting clips that make sense to put in the order we
+put them in and make a larger product than just one clip ... they need
+to make sense not just random clips"). Wherever a rule above asks for a
+meaningful change, a so/but chain, one central question, a single
+payoff, or a feud told from both sides, it does NOT apply here. What
+this slot needs instead:
+- 2-5 clips, each interesting ON ITS OWN, all plainly about ONE thing a
+  stranger can name: the same stream's running bit, the same person or
+  pair, the same game or challenge, the same event, the same kind of
+  moment ("Kai's worst Uber rides", "Lacy rage-quitting Fortnite all
+  week", "every time Jynxzi got jumpscared on one stream").
+- An order that makes sense: time order, or building to the best one
+  last. A context_overlay or narration line bridges a jump in time or
+  place ("Two days later") so nobody is lost.
+- link: "so" or "but" where that is honest, otherwise "and" (more of
+  the same thing). "and" is allowed here.
+- The hook_overlay names the one thing in plain words.
+- NOT allowed: clips that only share a streamer; a greatest-hits pile
+  with nothing else in common; an order that confuses; a clip a
+  stranger cannot follow; a cut that ends mid-sentence.
+- For a critic: score how well a stranger would follow it and enjoy
+  it, 80+ when every clip is clear and interesting and it plainly
+  belongs with the others. A run joined by "and" is NOT a pile of
+  clips here when they are about one thing. payoff_at is the best
+  moment of the last clip; weak_payoff is never a problem here.
+- For a scout: propose groups like that; no change or chain needed.
+- is_story false only when the clips have no one thing in common, or
+  are not interesting."""
+
 
 _PLAN_SYSTEM = """You are the STORY DIRECTOR for a streamer-clip channel.
 You receive structured scene reports for several source clips about the
@@ -570,7 +627,8 @@ def scout_stories(lines: list[str], ids: set[str],
         out = _brain("CATALOGUE:\n" + "\n".join(lines)
                      + ("\n\nALREADY REFUSED (the director watched these):\n"
                         + "\n".join(tried) if tried else ""),
-                     _SCOUT_SYSTEM + (_SAGA_SCOUT if saga else ""))
+                     _loose_rule(_SCOUT_SYSTEM + (_SAGA_SCOUT if saga
+                                                   else "")))
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[scout] failed ({e})", flush=True)
         return []
@@ -1166,7 +1224,7 @@ def validate_edl(edl: dict, durations: dict[str, float],
             # called not a story; a beat that cannot say so or but is not
             # in the story.
             link = re.sub(r"[^a-z]", "", str(b.get("link", "")).lower())
-            if beats and link not in LINKS:
+            if beats and link not in (LOOSE_LINKS if _LOOSE else LINKS):
                 rs.append(f"beat {len(beats) + 1} ({sid} {s:.1f}s) is "
                           f"'{b.get('link') or 'and then'}', not so/but — "
                           "a pile of moments, not a chain")
@@ -1413,7 +1471,7 @@ def plan_story(reports: list[dict], event: dict | None = None,
     user += "SCENE REPORTS:\n" + _fmt_reports(reports)
     _LAST_TAKES.clear()
     out = _brain(user + (_TAKES_ASK.format(n=takes) if takes > 1 else ""),
-                 _PLAN_SYSTEM)
+                 _loose_rule(_PLAN_SYSTEM))
     rs: list = []
     if out is None:
         rs.append("director unreachable")
@@ -1519,7 +1577,7 @@ def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
                if have_sheet else "")
             + _fmt_on_screen(on_screen)
             + f"FINAL TRANSCRIPT:\n{transcript_lines[:3000]}")
-    out = _brain(user, RUBRICS[rubric], read_files=have_sheet,
+    out = _brain(user, _loose_rule(RUBRICS[rubric]), read_files=have_sheet,
                  require_vision=have_sheet,
                  image_path=str(sheet) if have_sheet else None)
     if not out:
@@ -1583,8 +1641,10 @@ def review_rough_cut(edl: dict, transcript_lines: str, sheet: str | None,
     # repair earlier. A cut a stranger cannot follow, or that stops
     # mid-sentence, is not a story at 80 whatever number came with it.
     # Code only ADDS this block; a repair that fixes the note clears it.
+    # a run of clips has no single payoff to be weak (`_LOOSE_RULE`)
+    unfinished = UNFINISHED - {"weak_payoff"} if _LOOSE else UNFINISHED
     left = [p for p in problems
-            if p["type"] in UNFINISHED or _CUT_OFF.search(p["fix"])]
+            if p["type"] in unfinished or _CUT_OFF.search(p["fix"])]
     if left:
         publish = False
         score = min(score, UNFINISHED_MAX)
@@ -1724,7 +1784,7 @@ def revise_edl(edl: dict, problems: list[dict],
     # and an overlay fix. Same validation, same laws — the reviser just
     # hears what it broke.
     for attempt in range(2):
-        out = _brain(user, _REVISE_SYSTEM)
+        out = _brain(user, _loose_rule(_REVISE_SYSTEM))
         rs: list = []
         edl2 = validate_edl(out or {}, durations, _windows(reports),
                             reasons=rs, positions=_positions(reports),
