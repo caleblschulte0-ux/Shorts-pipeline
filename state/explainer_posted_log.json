@@ -4373,6 +4373,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 96,
       "duration_s": 24.1
+    },
+    "nuclear-stockpile-growth-reversal": {
+      "claimed_at": "2026-10-28T10:29:36.569837+00:00",
+      "title": "China Reached 500 Nuclear Warheads As The World Cut Back",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5565,6 +5572,14 @@
       "state": "posted",
       "slug": "nyc-noise-complaints-per-day",
       "at": "2026-10-26T19:45:13.951709+00:00"
+    },
+    {
+      "claimed_at": "2026-10-28T10:29:36.569837+00:00",
+      "title": "China Reached 500 Nuclear Warheads As The World Cut Back",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "nuclear-stockpile-growth-reversal"
     }
   ]
 }
