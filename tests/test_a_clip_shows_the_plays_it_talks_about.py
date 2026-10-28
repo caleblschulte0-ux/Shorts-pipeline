@@ -53,7 +53,7 @@ class AClipWithNoCutInIsAsked(unittest.TestCase):
 
     def test_make_asks_and_the_ledger_says_what_was_cut_in(self):
         src = (REPO / "scripts" / "sports_samples.py").read_text()
-        self.assertIn('broll(c, words, dur, meta["edit"])', src)
+        self.assertIn('broll(c, words, dur, meta["edit"], raw,', src)
         self.assertIn('"cut_in")', src)
 
     def test_the_author_is_told_their_own_plays_count(self):
@@ -64,6 +64,44 @@ class AClipWithNoCutInIsAsked(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TheGameItselfGetsNoCutIn(unittest.TestCase):
+    def _run(self, talks):
+        with mock.patch.object(sports_samples, "talking",
+                               return_value=talks), \
+             mock.patch.object(sports_samples, "_brain", return_value={
+                 "broll": [{"who": "x", "look": "x", "at": 3,
+                            "said": "fined"}]}) as b:
+            edit = sports_samples.broll(C, WORDS, 30.0, {},
+                                        Path("/tmp/raw.mp4"), Path("/tmp/w"))
+        return edit, b
+
+    def test_a_broadcast_of_the_play_is_left_alone(self):
+        edit, b = self._run(False)
+        b.assert_not_called()
+        self.assertNotIn("broll", edit)
+
+    def test_a_locker_room_is_asked(self):
+        edit, b = self._run(True)
+        self.assertTrue(edit["broll"])
+
+    def test_no_brain_to_look_means_nothing_added(self):
+        from shared import shot_relevance
+        with mock.patch.object(shot_relevance, "judge_panels",
+                               return_value=None), \
+             mock.patch("funnel.find_footage._frame",
+                        return_value=Path("/tmp/f.png")):
+            self.assertFalse(sports_samples.talking(
+                Path("/tmp/raw.mp4"), {}, 30.0, Path("/tmp/w")))
+        with mock.patch.object(shot_relevance, "judge_panels",
+                               return_value={0: {"depicts": True},
+                                             1: {"depicts": True},
+                                             2: {"depicts": False}}), \
+             mock.patch("funnel.find_footage._frame",
+                        return_value=Path("/tmp/f.png")):
+            self.assertTrue(sports_samples.talking(
+                Path("/tmp/raw.mp4"), {}, 30.0, Path("/tmp/w")))
 
 
 class NeverTheSamePlayTwice(unittest.TestCase):
