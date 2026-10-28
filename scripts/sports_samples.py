@@ -156,6 +156,94 @@ SPORTS_BRIEF = (
     "not say (a title once put Case Keenum's Bears locker room in Dallas).")
 
 
+BROLL_SYSTEM = (
+    "You find the cut-ins for a sports clip. Someone is talking; whenever "
+    "they talk about something that happened somewhere else (the play, "
+    "the hit they got fined for, the game, the shot, the player they call "
+    "out, the old teammate, the record), we cut to real game footage of "
+    "it for three seconds while their voice carries on, then back to "
+    "them (the operator, 2026-10-28: \"that skattebo clip show the plays "
+    "he got fined on\"). Their OWN plays count. Return STRICT JSON "
+    "{\"broll\": [{\"who\": str, \"look\": str, \"at\": number, "
+    "\"said\": str}]}: who = the players or teams as a search finds "
+    "them; look = the GAME ACTION the footage must show, in search words "
+    "(\"Cam Skattebo lowers helmet run Giants\"), never a press "
+    "conference or interview; at = the second it is said, from the "
+    "time-stamped transcript; said = the word or two of the transcript "
+    "that name it there. 0-3, at least 4s apart. [] when the words name "
+    "nothing showable; never a guess at what they do not name.")
+
+
+def _fine_stamps(words: list[dict], n: int = 5) -> str:
+    """The transcript in lines of `n` words, each with its start second:
+    the author's lines run to eight seconds, wider than `cut_in.snap`
+    looks for the word."""
+    return "\n".join(
+        f"[{float(words[i]['s']):.1f}] "
+        + " ".join(str(w["w"]).strip() for w in words[i:i + n])
+        for i in range(0, len(words), n))
+
+
+TALK_LOOK = ("someone TALKING to a reporter, the camera or a room: a "
+             "podium, a locker room, a press room, a studio desk, a sideline "
+             "or postgame interview. NOT the game itself being played")
+
+
+def talking(raw: Path, edit: dict, dur: float, work: Path) -> bool:
+    """The cut is someone talking, not the game. A clip that IS the game
+    (J.J. McCarthy's win, called by the broadcast) already shows its play;
+    a cut-in there is another play over it and makes no sense. No brain:
+    False, so nothing is added."""
+    from funnel import find_footage
+    from shared import shot_relevance
+    cut = edit.get("cut") or {}
+    lo, hi = float(cut.get("start") or 0.0), float(cut.get("end") or dur)
+    work.mkdir(parents=True, exist_ok=True)
+    panels = []
+    for i, f in enumerate((0.25, 0.5, 0.75)):
+        fr = find_footage._frame(raw, lo + (hi - lo) * f, work / f"talk{i}.png")
+        if fr:
+            panels.append((i, fr, TALK_LOOK))
+    got = shot_relevance.judge_panels(panels, title="a sports clip") \
+        if panels else None
+    if not got:
+        return False
+    return sum(bool((got.get(i) or {}).get("depicts")) for i, *_ in panels) \
+        * 2 > len(panels)
+
+
+def broll(c: dict, words: list[dict], dur: float, edit: dict,
+          raw: Path | None = None, work: Path | None = None) -> dict:
+    """SHOW WHAT THE CLIP TALKS ABOUT. The author is asked for `broll`
+    among a dozen other things and, on the 10-28 batch, gave none on any
+    clip: Skattebo talked about the fines and the plays never appeared.
+    A clip of someone talking, with no cut-in, gets one question of its
+    own."""
+    if edit.get("broll") or not words:
+        return edit
+    if raw is not None and not talking(raw, edit, dur,
+                                       work or raw.parent / "talk"):
+        print("[cut-in] the clip is the game itself — nothing cut in",
+              flush=True)
+        return edit
+    from third_capture import cut_in
+    user = (f"Who: {c.get('who')}\nThe post: {c.get('post_title')}\n"
+            f"Transcript, each line with the second it starts:\n"
+            f"{_fine_stamps(words)[:3000]}")
+    try:
+        got = cut_in.parse((_brain(user, BROLL_SYSTEM) or {}).get("broll"),
+                           dur)
+    except Exception as e:  # noqa: BLE001
+        print(f"[cut-in] no answer on what to show ({e})", flush=True)
+        got = []
+    print(f"[cut-in] asked what the clip talks about: "
+          f"{', '.join(g['look'] for g in got) or 'nothing showable'}",
+          flush=True)
+    if got:
+        edit["broll"] = got
+    return edit
+
+
 def _brain(user: str, system: str) -> dict | None:
     out = author._call_claude(user, system=system)
     if out is None:
@@ -468,6 +556,8 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
                 "meta": meta}
     if meta and isinstance(meta.get("edit"), dict):
         trim_front(meta["edit"], words, dur)
+        broll(c, words, dur, meta["edit"], raw,
+              out_mp4.parent / "work" / out_mp4.stem)
         end_card(raw, meta["edit"], out_mp4.parent / "work" / out_mp4.stem)
         # NO MUSIC UNDER THE CLIP (operator, 2026-10-28: "It played loud
         # music over the guy talking the whole time ... so annoying"). A
@@ -490,7 +580,8 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
                                      **({"line": "top"} if line_top else {})))
     return {"meta": meta, "hook": hook,
             "ledger": {k: led.get(k) for k in ("duration", "moves", "mood",
-                                               "shot_plan", "outro")
+                                               "shot_plan", "outro",
+                                               "cut_in")
                        if k in led},
             "songs": songs_in(led)}
 

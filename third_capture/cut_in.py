@@ -97,8 +97,12 @@ def plan(items, dur: float, offset: float = 0.0) -> list[dict]:
     for r in sorted(parse(items), key=lambda r: r["at"]):
         at = r["at"] - float(offset or 0.0)
         if at < 1.0 or at + SECS > dur - 0.8:
+            print(f"[cut-in] {r['who']!r} @{r['at']}: outside the cut "
+                  "— not cut in", flush=True)
             continue
         if any(abs(at - k["at"]) < GAP + SECS for k in out):
+            print(f"[cut-in] {r['who']!r} @{r['at']}: too close to the "
+                  "last — not cut in", flush=True)
             continue
         out.append({**r, "at": round(at, 2), "secs": SECS})
         if len(out) >= MAX_CUTS:
@@ -112,12 +116,15 @@ def ready(items: list[dict], work: Path, title: str = "") -> list[dict]:
     out = []
     for it in items:
         hit = find_footage.find(it["who"], it["look"], secs=it["secs"],
-                                work=work, title=title)
+                                work=work, title=title,
+                                avoid=[{"url": o["url"], "from_s": o["from_s"]}
+                                       for o in out])
         print(f"[cut-in] {it['who']!r} @{it['at']}: "
               f"{'cut in' if hit else 'no checked footage — not cut in'}",
               flush=True)
         if hit:
             out.append({**it, "mp4": hit["path"], "url": hit["url"],
+                        "from_s": hit.get("from_s"),
                         "secs": min(it["secs"], hit.get("secs") or it["secs"])})
     return out
 
