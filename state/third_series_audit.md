@@ -2,15 +2,15 @@
 
 | series | n | median VPH |
 |---|---|---|
-| chaos | 59 | 0.03 |
+| chaos | 60 | 0.03 |
 | drama | 15 | 0.07 |
 | beef | 11 | 0.08 |
 | wholesome | 11 | 0.09 |
 | fail | 8 | 0.075 |
 | argument | 6 | 0.095 |
+| win | 5 | 0.01 |
 | rage | 5 | 0.06 |
-| win | 3 | 0.01 |
-| extended | 1 | 0.1 |
+| extended | 2 | 0.055 |
 | clutch | 1 | 0.03 |
 | jumpscare | 1 | 0.03 |
 
