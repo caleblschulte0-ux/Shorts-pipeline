@@ -35655,7 +35655,7 @@
    "slug": "tsa-digital-id-states-growth",
    "title": "20 States Now Let You Use A Digital ID At The Airport",
    "hook": "Your phone just became a legit airport ID in 20 states.",
-   "closing": "Real ID 2.0 just lives in your phone now.",
+   "closing": "Soon your phone may replace your wallet at the airport, but pack your plastic ID for now.",
    "question": "Have you tried a digital ID yet?",
    "caption": "TSA went from 11 states to 20 states accepting a digital driver's license at security in just two years. Here's how far -- and how fast -- it's spreading. Have you tried it yet? 👇",
    "hashtags": [
@@ -35682,8 +35682,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE ROLLOUT",
-     "topic": "States accepting a digital ID at TSA",
-     "say": "In October 2024, only 11 states let TSA scan a digital ID. By 2026, that number has grown to 20."
+     "topic": "States accepting digital ID",
+     "say": "Two years ago, only 11 states let airport security scan a phone ID. Since then, that nearly doubled."
     },
     {
      "source": "offline",
@@ -35693,8 +35693,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · WHERE YOU CAN USE IT",
-     "topic": "TSA checkpoints accepting a digital ID",
-     "say": "TSA checkpoints offering it jumped too -- just 27 airports accepted it in 2024, and now more than 250 do nationwide."
+     "topic": "Airport checkpoints digital ID",
+     "say": "Checkpoints taking it grew about tenfold, to more than 250. Your phone now works at far more lines."
     },
     {
      "source": "offline",
@@ -35704,10 +35704,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · STILL THE MINORITY",
-     "topic": "States with digital ID vs all states",
-     "say": "Even so, 20 states is less than half the country -- most travelers still need their plastic ID for now."
+     "topic": "States with digital ID",
+     "say": "Even so, 20 states is less than half the country. Most travelers still need their plastic ID for now."
     }
-   ]
+   ],
+   "retold": "retell/v4",
+   "words_by": "claude-retell",
+   "rewritten_at": "2026-10-28T01:33:41Z"
   },
   {
    "slug": "national-parks-record-then-shutdown",
