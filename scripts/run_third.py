@@ -480,28 +480,25 @@ def _learned_prior() -> dict:
         ret_pct = _pct_fn(min(float(v["average_view_percentage"]), AVP_CAP)
                           for v in ret_vids) if len(ret_vids) >= 3 else None
 
-        def _ratio(v):
-            """2 * percentile on one shared scale; None never happens now —
-            every eligible video has a views-per-hour, even when it is 0."""
-            r = 2.0 * vph_pct(float(v.get("views") or 0.0))
+        def _ret(v):
+            """The retention multiplier (x0.75..x1.25), or None when this
+            video has no usable retention number."""
             if (ret_pct is not None and v.get("usable_for_retention")
                     and v.get("average_view_percentage") is not None):
-                r *= 0.75 + 0.5 * ret_pct(
+                return 0.75 + 0.5 * ret_pct(
                     min(float(v["average_view_percentage"]), AVP_CAP))
-            return r, 1.0
+            return None
 
         from collections import defaultdict
         buckets: dict = defaultdict(list)
         for v in vids:
-            rw = _ratio(v)
-            if rw is not None:
-                buckets[str(v["streamer"]).lower()].append(rw)
+            buckets[str(v["streamer"]).lower()].append(v)
 
         K = 4.0  # shrinkage strength: n/(n+K) weight on observed deviation
         import statistics as _st
         rows = []   # (mid_r, n, shrunk) per streamer with enough clips
-        for streamer, rws in buckets.items():
-            n = len(rws)
+        for streamer, vs in buckets.items():
+            n = len(vs)
             if n < MIN_STREAMER_VIDS:   # too few clips to trust a prior
                 continue
             # The MEDIAN clip, not the mean. The docstring promises "a lucky
@@ -510,7 +507,19 @@ def _learned_prior() -> dict:
             # at 71) out-ranked jasontheween (median 44) because a single
             # lucky clip lifted the average while jasontheween's two brand-
             # new zeros dragged his down. The direction test caught it.
-            mid_r = _st.median(r for r, _ in rws)
+            #
+            # And the percentile OF the median clip, not the median of the
+            # percentiles. With an even number of clips those disagree: on
+            # 2026-10-27 adinross (1,087 / 87 / 4 / 2 views, median 45.5)
+            # sat below erobb221 (median 15) because the mean of 87's and
+            # 4's percentiles is not the percentile of 45.5. Retention then
+            # scales it by the streamer's median multiplier, kept apart
+            # from reach as above.
+            rets = [r for r in (_ret(v) for v in vs) if r is not None]
+            mid_r = 2.0 * vph_pct(_st.median(
+                float(v.get("views") or 0.0) for v in vs))
+            if rets:
+                mid_r *= _st.median(rets)
             rows.append([streamer, mid_r, n, 1.0 + (mid_r - 1.0) * (n / (n + K))])
         # SHRINKAGE MAY DAMPEN AN ORDER, NEVER INVERT IT. On 2026-10-07
         # cinna (3 clips, median 96 views) sat at 1.296 below xqc (14 clips,
