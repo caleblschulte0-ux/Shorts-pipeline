@@ -16486,14 +16486,32 @@
       "ts": "2026-10-28T12:21:33.963114+00:00"
     },
     "clip-20261028-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/agent00/clip/SpoopyKindStaplePraiseIt-lf26fEnbgV-_1MfH",
-      "story_key": null,
-      "streamer": "agent00",
+      "url": "https://youtube.com/shorts/Duo1UpcQoP0",
       "title": "Agent00 Finally Reveals His Brand New R34 GTR After Wanting It His Whole Life",
       "kind": "twitch_clip",
-      "ts": "2026-10-28T12:28:38.247226+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-28T12:28:44.822874+00:00",
+      "uploaded_at": "2026-10-28T12:28:44.822891+00:00",
+      "publish_at": "2026-10-29T09:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261028-agent00-finally-reveals-his-brand-new-r34-gtr-af-f454ae19",
+        "tiktok": "queued for 2026-10-29T09:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/agent00/clip/SpoopyKindStaplePraiseIt-lf26fEnbgV-_1MfH",
+      "streamer": "agent00",
+      "series": "win",
+      "hook": "Agent finally bought his dream car",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1804,
+      "banger": 0.45,
+      "cut": {
+        "start": 0.0,
+        "end": 36.0
+      },
+      "director_cut": true
     }
   }
 }

@@ -3,146 +3,6 @@
     {
       "date": "20261020",
       "dry_run": false,
-      "ts": "2026-10-20T13:34:11+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 15,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 139,
-        "with_retention": 122,
-        "with_curve": 15,
-        "fetched_at": "2026-10-20T11:36:44.666484+00:00"
-      },
-      "brain": {
-        "ok": 1,
-        "fail": 0,
-        "limited_at": "2026-10-20T13:34:10+00:00",
-        "limit_detail": "You've hit your weekly limit \u00b7 resets 12am (UTC)"
-      },
-      "dead_sources": {
-        "twitch:kaysan": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:kyedae": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261020-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261020-2",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 9.0
-        },
-        {
-          "slug": "clip-20261020-3",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261020-4",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261020-5",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        },
-        {
-          "slug": "clip-20261020-6",
-          "ok": false,
-          "skipped": "quality floor: best banger 0.20 < 0.25 (hard floor) across 8 candidates \u2014 nothing worth transcribing",
-          "judges": {
-            "selection": {
-              "verdict": "skip",
-              "why": "best title score 0.20 < hard floor 0.25 across 8 candidates"
-            }
-          },
-          "took_s": 0.0
-        }
-      ]
-    },
-    {
-      "date": "20261020",
-      "dry_run": false,
       "ts": "2026-10-20T15:44:05+00:00",
       "feedback": {
         "snapshot": true,
@@ -5137,6 +4997,241 @@
             }
           },
           "took_s": 172.4
+        }
+      ]
+    },
+    {
+      "date": "20261028",
+      "dry_run": false,
+      "ts": "2026-10-28T12:28:44+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 17,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 137,
+        "with_retention": 126,
+        "with_curve": 15,
+        "fetched_at": "2026-10-28T08:46:16.375455+00:00"
+      },
+      "brain": {
+        "ok": 16,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:sypherpk": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261028-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261028-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 122,
+                "refused_shown": 11,
+                "scouted": [],
+                "vod_arcs": 301,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2882,
+                "pool_with_vod": 1999,
+                "arc_sizes": [
+                  2,
+                  6,
+                  6,
+                  6,
+                  2,
+                  3,
+                  6,
+                  4,
+                  4,
+                  5
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "clix@momentgeniuscourageousjaguarbudblast-eqcr2aq92gulydq6",
+                  "outcome": "already_refused",
+                  "why": "2026-10-25: director judged: not a story \u2014 The popular clip is a 9-second moment where a woman off to the side holds up a dark hoodie while Clix claps. The dialogue is garb"
+                },
+                {
+                  "cluster": "ohnepixel@momentshycourteouswoodcockasianglow-oqmurxnb-pad9m",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "yonnajay@momenttransparentlazywatercresspermasmug-l6gi9piv0c",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "joebartolozzi@momentadventuroussmellyciderresidentsleeper-7g",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "alinity@momentgrossthoughtfuliguanaraccattack-nftl3cbd4acbwc",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "gilticus@momentbombasticpeppyclamstinkycheese-ighll2zb2u7cdc",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.65,
+              "why": "visible gross stunt, Jason name",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "Referee falls in ring, visible fail",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jasontheween Eats Shit And Can't Believe How He Fell"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "Early frames (0.4-3.5s) are wide and the person is small, and at 1.2s the referee is mostly out of frame",
+                "The hook card and word captions sit on the mat or legs, but never cover a face"
+              ]
+            }
+          },
+          "took_s": 126.6
+        },
+        {
+          "slug": "clip-20261028-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261028-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261028-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "car reveal, no visible drama known",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "Car cover reveal, happy streamer, real e",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Agent00 Finally Reveals His Brand New R34 GTR After Wanting It His Whole Life"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "The hook caption overlaps the car's license plate in a couple of frames (10.5s, 13.5s), a minor issue.",
+                "The person is cropped partly out of frame at 28.5s and 34.5s, but this follows the action and looks intentional.",
+                "The 7.5s Skyline inset card sits over the car cover, not over a face, so it's acceptable."
+              ]
+            }
+          },
+          "took_s": 362.9
+        },
+        {
+          "slug": "clip-20261028-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }
