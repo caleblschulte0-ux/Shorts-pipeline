@@ -1,0 +1,127 @@
+{
+  "schema": "shorts-production-blocker/v1",
+  "date": "20261028",
+  "written_at": "2026-10-28T11:23:59.060Z",
+  "status": "blocked",
+  "day_closed": false,
+  "exact_failed_step": "Step 8 actual channel-output verification: the frozen 13-video contract has only 9 unique accepted YouTube URLs.",
+  "frozen_contract": {
+    "total_required": 13,
+    "channels": {
+      "sports": {
+        "format": "sports_moment",
+        "required": 3,
+        "verified_posted": 3,
+        "pending": 0,
+        "accepted_urls": [
+          "https://youtube.com/shorts/vqt7WsBYxE8",
+          "https://youtube.com/shorts/0FOsYi6C1sU",
+          "https://youtube.com/shorts/2oy1G8Hdk_A"
+        ]
+      },
+      "twitch": {
+        "format": "clip",
+        "required": 6,
+        "verified_posted": 4,
+        "pending": 2,
+        "accepted_urls": [
+          "https://youtube.com/shorts/Eat2zweI4hM",
+          "https://youtube.com/shorts/G58pNmajFB0",
+          "https://youtube.com/shorts/ve9P1NrYH2k",
+          "https://youtube.com/shorts/qvxK4K25Jlk"
+        ]
+      },
+      "explainer": {
+        "format": "data_story",
+        "required": 4,
+        "verified_posted": 2,
+        "pending": 2,
+        "accepted_urls": [
+          "https://youtube.com/shorts/ZSDXkXD9IjA",
+          "https://youtube.com/shorts/QJYiqtgH088"
+        ]
+      }
+    },
+    "total_verified_posted": 9,
+    "total_pending": 4
+  },
+  "exchange": {
+    "started_commit": "a623b714e1494ccb8bdb415f12a8eadaffec8e53",
+    "response_commit": "e0dfac0bfbc5c6ae03d33c4766f841609c715b71",
+    "done_commit": "702771c9cccad187c36e62fdb45579fe7a645d90",
+    "phase_b_commit": "9210a2074108de33b5168db250d98e025bf7d5fe",
+    "phase_b_result": {
+      "explainer_applied": 2,
+      "explainer_rejected": 1,
+      "media_required": 0,
+      "media_fulfilled": 0,
+      "media_unfilled": 0
+    }
+  },
+  "mailbox_rounds": {
+    "round_1": {
+      "reviews": {
+        "open": 0,
+        "answered": 0,
+        "skipped": 0
+      },
+      "asks": {
+        "indexed_open": 30,
+        "examined": 20,
+        "answered": 20,
+        "skipped": 0,
+        "commit": "58ec9b7d4d6c4b9f33aa6dda05a2129ef5ed305f"
+      },
+      "rewrites": {
+        "indexed_open": 141,
+        "examined": 10,
+        "answered": 10,
+        "skipped": 0,
+        "first_commit": "360c66bdae40ce4121551756d2b36be53b2cbacc",
+        "last_commit": "fee23dc3e70e4d09c38aea314cc668eedd842ddf"
+      }
+    },
+    "round_2": {
+      "reviews": {
+        "open": 0,
+        "answered": 0,
+        "skipped": 0
+      },
+      "asks": {
+        "remaining_after_round_1": 10,
+        "answered": 2,
+        "skipped": 8,
+        "skip_reason": "These requests ask for today's trending-news picks but their source batches are dated 2026-09-21 through 2026-09-25; answering them as current would fabricate freshness.",
+        "commit": "93936c83f43162a07dddd036e63ed6c6ed56a8e7"
+      },
+      "rewrites": {
+        "examined": 10,
+        "reused_valid_answers": 10,
+        "answered": 0,
+        "skipped": 0,
+        "deferred_beyond_cap": 131
+      }
+    },
+    "claim_status": "The new answer files were committed without [skip ci]; no claim/apply commit appeared before this artifact was written.",
+    "current_indexes": {
+      "reviews_open": 0,
+      "asks_unresolved_stale": 8,
+      "rewrites_indexed": 141
+    }
+  },
+  "downstream_observations": [
+    "Sports produced all 3 required accepted URLs.",
+    "Twitch produced 4 accepted URLs; additional candidates were rejected by existing content and preflight gates.",
+    "Explainer produced 2 accepted URLs.",
+    "Phase B applied 2 daily Explainer rewrites and rejected 1; no supported new rewrite request for that rejection appeared before completion."
+  ],
+  "drive": {
+    "folder_id": "1WRCkr9dfGa042LYb_vitXVfv9Q43poA5",
+    "folder_verified_shared": true,
+    "media_requests": 0,
+    "note": "No image generation or Drive byte verification was applicable because today's bundle has no media requests and all frozen formats are non-image formats."
+  },
+  "no_done_retrigger": true,
+  "remaining_shortfall": "2 Twitch clip uploads and 2 Explainer data_story uploads remain unverified.",
+  "notes": "Existing response and DONE were preserved. DONE is a render trigger, not proof of publication. Transient downstream workers remain enabled."
+}
