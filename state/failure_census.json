@@ -1,102 +1,117 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "empty_void": {
-   "count": 6,
-   "stories": {
-    "parker-solar-probe-speed-record": 2,
-    "body-renewal-clock": 3,
-    "us-formal-volunteering-record-low": 1
-   },
-   "timestamps": [
-    "2026-10-25T10:38:26+00:00",
-    "2026-10-25T11:00:20+00:00",
-    "2026-10-25T11:34:15+00:00",
-    "2026-10-25T11:57:29+00:00",
-    "2026-10-25T11:57:29+00:00",
-    "2026-10-25T12:32:59+00:00"
-   ],
-   "examples": [
-    "empty_void: payoff@-0.4: the last frame is about 90% empty dark gradient, with only a small Data at the bottom.",
-    "empty_void: The final frame (payoff@-0.4) is an almost empty dark navy gradient. A small Data holds a blank yellow price tag at the bottom and the rest of the frame is dead space.",
-    "empty_void: payoff@-0.4 (t=30.07s) is an almost all-black stage. A small Data stands at the bottom holding a blank yellow price tag, and nothing else is in the frame. The video ends on this frame."
-   ],
-   "recurred_after_fix": false
-  },
   "other": {
-   "count": 5,
+   "count": 8,
    "stories": {
-    "sports_christian_yelich_vited_98_and": 1,
-    "parker-solar-probe-speed-record": 2,
-    "body-renewal-clock": 1,
-    "lightning-deaths-collapsed-not-the-storms": 1
+    "lightning-deaths-collapsed-not-the-storms": 1,
+    "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
+    "sports_jaylen_brown_night_theres": 1,
+    "sports_charles_barkley_g_this_close": 1,
+    "nuclear-stockpile-growth-reversal": 1,
+    "ghost-fishing-gear-ocean-plastic": 2,
+    "airline-pilot-shortage": 1
    },
    "timestamps": [
-    "2026-10-25T12:26:59+00:00",
-    "2026-10-25T10:38:26+00:00",
-    "2026-10-25T11:00:20+00:00",
-    "2026-10-25T11:57:29+00:00",
-    "2026-10-26T12:07:35+00:00"
+    "2026-10-26T12:07:35+00:00",
+    "2026-10-28T00:29:32+00:00",
+    "2026-10-28T00:31:46+00:00",
+    "2026-10-28T00:35:49+00:00",
+    "2026-10-28T10:13:13+00:00",
+    "2026-10-28T10:56:22+00:00",
+    "2026-10-28T11:20:10+00:00",
+    "2026-10-28T15:23:43+00:00"
    ],
    "examples": [
-    "unreadable: mid1: our line 'Yelich invites WWII vets to the World Series' is printed directly over the footage's own 'ALECIA YELICH / Mother of Christian Yelich' graphic, so both texts collide and the",
-    "unreadable: seg4:start/mid/end: the white closing line 'The fastest machine carries nobody...' is printed directly over the navy headlines 'Nobody aboard', '56 seconds' and '208 seconds', so both are ",
-    "unreadable: At seg0:end and seg0:mid the small white subtitle 'the fastest thing ever built \u00b7 nobody aboard' is crossed by the probe's solar panel over a bright sky. At seg2:end the '430,000 mph' head"
+    "unreadable: The small white copy in seg4:start through seg4:end is too small and low-contrast to read comfortably on a phone.",
+    "unreadable: hook@0.3 to payoff@-0.4: the burned-in Spanish quote is cut off at both edges ('a esos fans (del Barcelona) que r' / 'iaban dormir la siesta en el hote'), and the ticker is cut off ('EL CA",
+    "unreadable: In mid1 two caption layers collide: 'YOU GOT TO' is printed over another line, so it reads 'TO [YOU GOT TO] AT'. In hook@0.3 'ARE YOU WILLING' sits on top of another garbled caption. Both "
    ],
    "recurred_after_fix": false
   },
   "decorative_mascot": {
-   "count": 5,
+   "count": 6,
    "stories": {
-    "parker-solar-probe-speed-record": 2,
-    "body-renewal-clock": 1,
-    "lightning-deaths-collapsed-not-the-storms": 2
+    "lightning-deaths-collapsed-not-the-storms": 2,
+    "nuclear-stockpile-growth-reversal": 1,
+    "ghost-fishing-gear-ocean-plastic": 2,
+    "airline-pilot-shortage": 1
    },
    "timestamps": [
-    "2026-10-25T10:38:26+00:00",
-    "2026-10-25T11:00:20+00:00",
-    "2026-10-25T11:57:29+00:00",
     "2026-10-26T12:07:35+00:00",
-    "2026-10-26T12:07:35+00:00"
+    "2026-10-26T12:07:35+00:00",
+    "2026-10-28T10:13:13+00:00",
+    "2026-10-28T10:56:22+00:00",
+    "2026-10-28T11:20:10+00:00",
+    "2026-10-28T15:23:43+00:00"
    ],
    "examples": [
-    "decorative_mascot: hook@0.3 to seg0:end, Data stands beside a console with a lever that drives nothing. seg2:start/mid/end, he stands by a black box while the probe launches on its own. seg3:start/mid",
-    "decorative_mascot: Data stands beside a console in the hook (hook@0.8 to seg0:end) and just perches on the probe in seg1:mid. In seg2:mid he stands still next to a plunger box. In seg3:mid he waves un",
-    "decorative_mascot: seg0:mid to seg1:end: Data stands beside the moving grey wall and waves while it slides; he never pushes it. seg4:start to seg4:end: he only points while the stomach fills. The one "
+    "decorative_mascot: At seg2:mid and payoff@-0.4, Data is a tiny perched figure rather than performing a clear setup-action-payoff tied to the statistic.",
+    "empty_void: payoff@-0.4 is almost entirely dark empty space with a tiny mascot isolated at the bottom.",
+    "decorative_mascot: In the world-dismantling scenes Data stands beside the warhead carts in the same waving pose (seg1:start, seg1:mid, seg1:end) while a truck carries warheads off on its own. He never"
    ],
    "recurred_after_fix": false
   },
   "junk_imagery": {
-   "count": 3,
+   "count": 6,
    "stories": {
-    "parker-solar-probe-speed-record": 1,
-    "sports_shai_gilgeous_alexander_he_post_g": 1,
-    "sports_dejan_kulusevski_ter_526_days": 1
+    "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
+    "sports_charles_barkley_g_this_close": 2,
+    "ghost-fishing-gear-ocean-plastic": 2,
+    "airline-pilot-shortage": 1
    },
    "timestamps": [
-    "2026-10-25T10:38:26+00:00",
-    "2026-10-26T11:55:38+00:00",
-    "2026-10-26T12:03:09+00:00"
+    "2026-10-28T00:29:32+00:00",
+    "2026-10-28T00:35:49+00:00",
+    "2026-10-28T00:37:39+00:00",
+    "2026-10-28T10:56:22+00:00",
+    "2026-10-28T11:20:10+00:00",
+    "2026-10-28T15:23:43+00:00"
    ],
    "examples": [
-    "junk_imagery: payoff@-0.4: the final frame is a bare dark gradient with Data holding a blank yellow price tag. The prop belongs to no scene.",
-    "malformed_judge_response: checks.junk_imagery.evidence missing or empty",
-    "junk_imagery: Frame mid2 (t=7.64s) shows a different player (Richarlison) while the text \"AFTER 17 MONTHS\" is displayed, which is meant to refer to Kulusevski's return."
+    "junk_imagery: hook@0.3 through payoff@-0.4: the footage is a re-upload of another account's post. The 'Madrid Total' social bar (Instagram/YouTube/X/TikTok/Facebook icons), the 'al Madrid Tv' bug and ",
+    "junk_imagery: mid2 shows unrelated Heat-arena warmup b-roll and mid3 shows Giannis dribbling in a drill. Neither has Barkley, Shaq or the joke the line promises.",
+    "junk_imagery: mid0 (t=2.50s) cuts to an unrelated warm-up shooter, and mid4/mid5/payoff@-0.4 (t=15.86-20.80s) show Giannis Antetokounmpo warming up at a Heat arena with his own lower-third. None of th"
    ],
    "recurred_after_fix": false
   },
-  "temporal_gate": {
-   "count": 2,
+  "empty_void": {
+   "count": 6,
    "stories": {
-    "longform:foreign-aid-never-broke-0-32-of-health-spending": 2
+    "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
+    "sports_charles_barkley_g_this_close": 1,
+    "nuclear-stockpile-growth-reversal": 1,
+    "ghost-fishing-gear-ocean-plastic": 2,
+    "airline-pilot-shortage": 1
    },
    "timestamps": [
-    "2026-10-25T17:26:19+00:00",
-    "2026-10-25T19:54:17+00:00"
+    "2026-10-28T00:29:32+00:00",
+    "2026-10-28T00:37:39+00:00",
+    "2026-10-28T10:13:13+00:00",
+    "2026-10-28T10:56:22+00:00",
+    "2026-10-28T11:10:17+00:00",
+    "2026-10-28T15:23:43+00:00"
    ],
    "examples": [
-    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master",
-    "temporal_gate: effective_fps 1.7 < 11.0 (phase-1 floor) \u2014 low-fps source in a 30fps master"
+    "empty_void: payoff@-0.4: Mourinho is out of frame and the top two-thirds is a blank grey wall. In every frame the bottom ~40% is a black band of foreign captions, logos and ticker.",
+    "empty_void: Every frame from hook@0.3 to payoff@-0.4 is letterboxed: the 16:9 source sits in the middle, with blurred bars filling roughly the top 12% and bottom 12%, so the vertical frame is not used",
+    "empty_void: The last frame (payoff@-0.4) is an almost empty dark-navy gradient with only Data holding a blank yellow tag at the bottom. The vault scene and the closing line are gone, so the video ends"
+   ],
+   "recurred_after_fix": false
+  },
+  "dead_air": {
+   "count": 2,
+   "stories": {
+    "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
+    "airline-pilot-shortage": 1
+   },
+   "timestamps": [
+    "2026-10-28T00:29:32+00:00",
+    "2026-10-28T15:23:43+00:00"
+   ],
+   "examples": [
+    "dead_air: mid0 to mid4: the same locked medium close-up of Mourinho for about 30s, with the same frozen Spanish quote box and no cut, zoom or sound hit. At payoff@-0.4 he has left and the frame is an ",
+    "dead_air: seg1:start/mid/end (5.4-9.7s) reuse the hook's exact airport shot: the same 649,000 headline, Data waving at the door, the same crowd of pilots. Two beats look identical, and nothing new is "
    ],
    "recurred_after_fix": false
   }
@@ -104,17 +119,17 @@
  "weak_dims": {
   "hook": {
    "median": 3,
-   "min": 0,
+   "min": 1,
    "max": 4
   },
   "data_demo": {
    "median": 3,
-   "min": 0,
+   "min": 2,
    "max": 5
   },
   "mascot": {
    "median": 4,
-   "min": 0,
+   "min": 1,
    "max": 4
   },
   "craft": {
@@ -124,7 +139,7 @@
   },
   "pace": {
    "median": 2,
-   "min": 0,
+   "min": 1,
    "max": 2
   },
   "payoff": {
@@ -139,25 +154,25 @@
   }
  },
  "scores": [
-  70,
-  87,
-  61,
-  65,
-  70,
-  66,
-  74,
-  79,
-  14,
-  14,
-  96,
-  14,
-  61,
   61,
   100,
   96,
   96,
   95,
   100,
-  96
+  96,
+  57,
+  53,
+  66,
+  70,
+  62,
+  58,
+  79,
+  70,
+  66,
+  49,
+  74,
+  61,
+  52
  ]
 }

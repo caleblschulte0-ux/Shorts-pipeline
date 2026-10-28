@@ -1,0 +1,2005 @@
+{
+  "schema": "shorts-retro-brief/v1",
+  "date": "20261028",
+  "generated_at": "2026-10-28T23:31:11Z",
+  "problem_classes": {
+    "audience_performance": "real viewers saw it and did not stay",
+    "editorial_quality": "the idea or the writing was weak",
+    "packaging": "title, thumbnail or hook did not earn the click",
+    "media_quality": "the visuals were wrong, generic or repeated",
+    "pipeline_failure": "render, upload or gate failed \u2014 viewers never judged this at all",
+    "insufficient_data": "too young, too few samples, or the metric was not reported"
+  },
+  "how_to_read_this": {
+    "classify_before_you_propose": "Pick a `problem_class` first. A render that failed or an upload that never went public is a pipeline_failure \u2014 NOT evidence that viewers rejected the idea. A null metric is insufficient_data, not a zero.",
+    "compare_like_with_like": "Use `channels.<n>.maturity` \u2014 cohorts at ~24h, ~72h and ~7d, and within a format. A graph_race baseline does not judge a reddit_story unless you argue why it does.",
+    "age_matters": "Every video is compared ONLY against videos of the same age band. `percentile_vs_same_age` is the honest signal; raw `views` is not, because a 2-hour-old short and a 3-week-old short are not comparable.",
+    "sample_size": "Bands listed in `thin_bands` have fewer than 5 samples. Do not build a theory on them \u2014 say the data is thin instead.",
+    "channel_scale": "This channel is small. Single-digit view counts are normal and mostly noise. Prefer explanations that survive that fact over ones that require a 9-view video to mean something."
+  },
+  "posted_today": 3,
+  "continuity": {
+    "my_verdicts_on_your_last_proposals": [],
+    "decision_history": {
+      "total": 0,
+      "adopted": 0,
+      "declined": 0
+    },
+    "open_agenda": [],
+    "experiments": {
+      "total": 2,
+      "by_status": {
+        "running": 2
+      },
+      "running": [
+        {
+          "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
+          "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
+          "days": 34.76,
+          "samples": 1,
+          "needs": "28d / 25 samples",
+          "status": "running",
+          "blocked_by": "1/25 samples \u2014 not enough videos have run under this change"
+        },
+        {
+          "id": "20260925-superlative-science-family-explainer-topics-beat-t",
+          "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
+          "days": 33.76,
+          "samples": 1,
+          "needs": "28d / 25 samples",
+          "status": "running",
+          "blocked_by": "1/25 samples \u2014 not enough videos have run under this change"
+        }
+      ],
+      "concluded": []
+    },
+    "readouts_due": []
+  },
+  "what_you_owe_today": {
+    "count": 1,
+    "must_do": 0,
+    "items": [
+      {
+        "kind": "coverage",
+        "ref": "explainer,curiosity,third",
+        "must": false,
+        "what": "Some age bands are too thin to judge. Worth a `watch` note on what would give us signal."
+      }
+    ],
+    "an_empty_retro_is_only_ok_if": "must_do is 0. Otherwise 'nothing needs changing' means the loop stopped working, not that the channel is finished."
+  },
+  "standing_directive": "You are not a helper that comments on a dashboard \u2014 you are the channel's editor-in-residence, and the job is that it gets better every week without anyone asking. Continue yesterday's work: read out what is due, answer what I asked for, and always have something running. A day with nothing to change is a real outcome ONLY when `what_you_owe_today.must_do` is 0.",
+  "channels": {
+    "trending": {
+      "channel": "trending",
+      "available": true,
+      "fetched_at": "2026-10-28T11:27:42.483477+00:00",
+      "today": [],
+      "last_7d": {
+        "videos": 17,
+        "total_views": 6278,
+        "median_views": 44.0,
+        "median_vph": 0.381,
+        "best": "Shai Gilgeous\u2011Alexander fights back tears after Jalen Williams' injury",
+        "worst": "LeBron James Names Every Starter From His First Game, Then Gets Caught Off Guard"
+      },
+      "last_30d": {
+        "videos": 103,
+        "total_views": 7735,
+        "median_views": 4.0,
+        "median_vph": 0.008,
+        "best": "Shai Gilgeous\u2011Alexander fights back tears after Jalen Williams' injury",
+        "worst": "Smartphones Passed PCs In Two Years"
+      },
+      "all_time_summary": {
+        "total_videos": 103,
+        "total_views": 7735,
+        "avg_views_per_video": 75.1,
+        "median_views_per_hour": 0.01,
+        "top_5_by_vph": [
+          {
+            "title": "Shai Gilgeous\u2011Alexander fights back tears after Jalen Williams' injury",
+            "views_per_hour": 29.98,
+            "views": 1063,
+            "age_hours": 35.5,
+            "url": "https://youtube.com/shorts/J0uoqHCpRbM"
+          },
+          {
+            "title": "LeBron James Gets Heated With Knicks Fan Over Midwest Claim",
+            "views_per_hour": 25.26,
+            "views": 1098,
+            "age_hours": 43.5,
+            "url": "https://youtube.com/shorts/BasWgi77d84"
+          },
+          {
+            "title": "Mario Ferraro Reads The Lineup And Instantly Messes Up His Own Name Spot \ud83d\ude02",
+            "views_per_hour": 16.65,
+            "views": 1123,
+            "age_hours": 67.5,
+            "url": "https://youtube.com/shorts/aAaX0VUfQGY"
+          },
+          {
+            "title": "Christian Yelich Invites Two WWII Veterans To Game 1 And Their Seats Are Unreal",
+            "views_per_hour": 15.79,
+            "views": 939,
+            "age_hours": 59.5,
+            "url": "https://youtube.com/shorts/8yY_PMgZdns"
+          },
+          {
+            "title": "Kenneth Walker Tells Jalen Hurts To Stay Positive After His Blood Clots",
+            "views_per_hour": 14.01,
+            "views": 889,
+            "age_hours": 63.5,
+            "url": "https://youtube.com/shorts/Xcn0aaa2rLo"
+          }
+        ],
+        "bottom_5_by_vph": [
+          {
+            "title": "She Demanded I Find Her A Discount. I Don't Work There.",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 400.5,
+            "url": "https://youtube.com/shorts/XGG7WmMG4Zk"
+          },
+          {
+            "title": "Digital Ad Spending Buried TV Advertising",
+            "views_per_hour": 0.0,
+            "views": 1,
+            "age_hours": 402.0,
+            "url": "https://youtube.com/shorts/mqlwA6482og"
+          },
+          {
+            "title": "Lab-Grown Diamonds Just Passed Mined Diamonds",
+            "views_per_hour": 0.0,
+            "views": 2,
+            "age_hours": 406.5,
+            "url": "https://youtube.com/shorts/BjlF60OneSA"
+          },
+          {
+            "title": "The Gym Auto-Renewed My Contract. Paragraph Nine Ended It.",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 424.5,
+            "url": "https://youtube.com/shorts/8-q3zxRayBY"
+          },
+          {
+            "title": "Netflix's Revenue Just Beat All Of Hollywood's Theaters",
+            "views_per_hour": 0.0,
+            "views": 2,
+            "age_hours": 426.0,
+            "url": "https://youtube.com/shorts/y64dFdXeBJI"
+          }
+        ],
+        "opening": {
+          "median_early_retention": 0.731,
+          "videos_with_curve": 8,
+          "worst": 0.619,
+          "best": 0.84
+        },
+        "videos_with_retention": 12,
+        "avg_view_percentage": 73.0,
+        "top_5_by_retention": [
+          {
+            "title": "Mario Ferraro Reads The Lineup And Instantly Messes Up His Own Name Spot \ud83d\ude02",
+            "average_view_percentage": 166.8,
+            "average_view_duration_s": 46.0,
+            "views": 1123,
+            "url": "https://youtube.com/shorts/aAaX0VUfQGY"
+          },
+          {
+            "title": "Pat Murphy Says His Team Is 'A Bunch Of Gamers' After Sweeping The Dodgers",
+            "average_view_percentage": 119.5,
+            "average_view_duration_s": 27.0,
+            "views": 356,
+            "url": "https://youtube.com/shorts/0WLBdjKKZLg"
+          },
+          {
+            "title": "Alvin Kamara Gets Asked About A Rare NFL Record And Jokes About Cam",
+            "average_view_percentage": 90.7,
+            "average_view_duration_s": 18.0,
+            "views": 175,
+            "url": "https://youtube.com/shorts/1EHJrYhuXRQ"
+          },
+          {
+            "title": "Darnell Nurse Shuts Down Reporter Mark Spector With A Savage 'Low IQ' Line",
+            "average_view_percentage": 90.5,
+            "average_view_duration_s": 18.0,
+            "views": 227,
+            "url": "https://youtube.com/shorts/E7eJ3o6UKxI"
+          },
+          {
+            "title": "Pat Murphy On Tarik Skubal: \"I Just Want To Step On His Throat\"",
+            "average_view_percentage": 81.5,
+            "average_view_duration_s": 17.0,
+            "views": 155,
+            "url": "https://youtube.com/shorts/rCqCMw1jR4I"
+          }
+        ],
+        "bottom_5_by_retention": [
+          {
+            "title": "Christian Yelich Invites Two WWII Veterans To Game 1 And Their Seats Are Unreal",
+            "average_view_percentage": 0.0,
+            "average_view_duration_s": 0.0,
+            "views": 939,
+            "url": "https://youtube.com/shorts/8yY_PMgZdns"
+          },
+          {
+            "title": "Kenneth Walker Tells Jalen Hurts To Stay Positive After His Blood Clots",
+            "average_view_percentage": 25.1,
+            "average_view_duration_s": 5.0,
+            "views": 889,
+            "url": "https://youtube.com/shorts/Xcn0aaa2rLo"
+          },
+          {
+            "title": "Marlon Humphrey Reveals Kyle Hamilton KNEW He'd Intercept Tua",
+            "average_view_percentage": 45.6,
+            "average_view_duration_s": 13.0,
+            "views": 63,
+            "url": "https://youtube.com/shorts/olvsc2MwnhA"
+          },
+          {
+            "title": "Ryan Fitzpatrick Says Bo Nix Is 'Disrespecting' The QB Position",
+            "average_view_percentage": 48.2,
+            "average_view_duration_s": 14.0,
+            "views": 61,
+            "url": "https://youtube.com/shorts/h4wDV-e1_x8"
+          },
+          {
+            "title": "Kevin Garnett Is HYPED After Timberwolves Retire His Jersey",
+            "average_view_percentage": 63.5,
+            "average_view_duration_s": 22.0,
+            "views": 73,
+            "url": "https://youtube.com/shorts/c8SRsLV7iMY"
+          }
+        ],
+        "ab_experiment": {
+          "edit": {
+            "n": 0
+          },
+          "clip": {
+            "n": 0
+          },
+          "story": {
+            "n": 0
+          },
+          "simple_fallback": {
+            "n": 0
+          },
+          "note": "compare only when each arm's n_mature_24h >= 25"
+        },
+        "story_structures": {
+          "structures": {},
+          "n_mature_total": 0,
+          "enough_data": false
+        },
+        "pending_scheduled": 3,
+        "format_coverage": {
+          "with_format": 90,
+          "total": 103,
+          "fraction": 0.874
+        }
+      },
+      "band_sample_sizes": {
+        "1-3d": 6,
+        "1-4w": 70,
+        "3-7d": 11,
+        "4w+": 16
+      },
+      "thin_bands": [],
+      "maturity": {
+        "24h": {
+          "all_formats": {
+            "n": 0,
+            "note": "no videos in this age window"
+          },
+          "by_format": {
+            "graph_race": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "reddit": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "sports_moment": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "unknown": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        },
+        "72h": {
+          "all_formats": {
+            "n": 3,
+            "median_vph": 14.0,
+            "median_views": 889.0,
+            "median_view_pct": null,
+            "view_pct_reported_for": "0/3",
+            "enough_to_judge": false
+          },
+          "by_format": {
+            "graph_race": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "reddit": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "sports_moment": {
+              "n": 3,
+              "median_vph": 14.0,
+              "median_views": 889.0,
+              "median_view_pct": null,
+              "view_pct_reported_for": "0/3",
+              "enough_to_judge": false
+            },
+            "unknown": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        },
+        "7d": {
+          "all_formats": {
+            "n": 4,
+            "median_vph": 0.0925,
+            "median_views": 16.0,
+            "median_view_pct": null,
+            "view_pct_reported_for": "0/4",
+            "enough_to_judge": false
+          },
+          "by_format": {
+            "graph_race": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "reddit": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "sports_moment": {
+              "n": 4,
+              "median_vph": 0.0925,
+              "median_views": 16.0,
+              "median_view_pct": null,
+              "view_pct_reported_for": "0/4",
+              "enough_to_judge": false
+            },
+            "unknown": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        }
+      },
+      "mature_enough_to_judge": [
+        {
+          "title": "Shai Gilgeous\u2011Alexander fights back tears after Jalen Williams' injury",
+          "vph": 29.9437,
+          "fmt": "sports_moment",
+          "age_hours": 35.5
+        },
+        {
+          "title": "LeBron James Gets Heated With Knicks Fan Over Midwest Claim",
+          "vph": 25.2414,
+          "fmt": "sports_moment",
+          "age_hours": 43.5
+        },
+        {
+          "title": "Mario Ferraro Reads The Lineup And Instantly Messes Up His Own Name Spot \ud83d\ude02",
+          "vph": 16.637,
+          "fmt": "sports_moment",
+          "age_hours": 67.5
+        },
+        {
+          "title": "Christian Yelich Invites Two WWII Veterans To Game 1 And Their Seats Are Unreal",
+          "vph": 15.7815,
+          "fmt": "sports_moment",
+          "age_hours": 59.5
+        },
+        {
+          "title": "Kenneth Walker Tells Jalen Hurts To Stay Positive After His Blood Clots",
+          "vph": 14.0,
+          "fmt": "sports_moment",
+          "age_hours": 63.5
+        }
+      ],
+      "worst_mature": [
+        {
+          "title": "Smartphones Passed PCs In Two Years",
+          "vph": 0.0,
+          "fmt": "graph_race",
+          "age_hours": 719.7
+        },
+        {
+          "title": "I Saved a $200 Order and Got Promoted",
+          "vph": 0.0,
+          "fmt": "unknown",
+          "age_hours": 712.5
+        },
+        {
+          "title": "I Served a Free Refill and the Cafe Charged Him Everything",
+          "vph": 0.0,
+          "fmt": "unknown",
+          "age_hours": 694.5
+        },
+        {
+          "title": "He Banned Email. The Task Board Remembered Everything.",
+          "vph": 0.0,
+          "fmt": "reddit",
+          "age_hours": 695.3
+        },
+        {
+          "title": "I Served a Free Latte and Got Sweet Karma",
+          "vph": 0.0,
+          "fmt": "unknown",
+          "age_hours": 719.5
+        }
+      ]
+    },
+    "explainer": {
+      "channel": "explainer",
+      "available": true,
+      "fetched_at": "2026-10-28T18:47:46.320703+00:00",
+      "today": [
+        {
+          "title": "China Reached 500 Nuclear Warheads As The World Cut Back",
+          "url": "https://youtube.com/shorts/ZSDXkXD9IjA",
+          "published_at": "2026-10-28T10:30:08Z",
+          "age_hours": 8.3,
+          "age_band": "6-24h",
+          "views": 541,
+          "engaged_views": 541,
+          "likes": 1,
+          "comments": 0,
+          "avg_view_pct": null,
+          "avg_view_duration": null,
+          "impressions": null,
+          "ctr": null,
+          "missing_metrics": [
+            "avg_view_pct",
+            "avg_view_duration",
+            "impressions",
+            "ctr"
+          ],
+          "views_per_hour": 65.1807,
+          "percentile_vs_same_age": null,
+          "verdict": "no comparable history"
+        },
+        {
+          "title": "Lost Fishing Gear Is 10% Of Ocean Litter",
+          "url": "https://youtube.com/shorts/QJYiqtgH088",
+          "published_at": "2026-10-28T16:30:01Z",
+          "age_hours": 2.3,
+          "age_band": "0-6h",
+          "views": 62,
+          "engaged_views": 62,
+          "likes": 1,
+          "comments": 0,
+          "avg_view_pct": null,
+          "avg_view_duration": null,
+          "impressions": null,
+          "ctr": null,
+          "missing_metrics": [
+            "avg_view_pct",
+            "avg_view_duration",
+            "impressions",
+            "ctr"
+          ],
+          "views_per_hour": 26.9565,
+          "percentile_vs_same_age": null,
+          "verdict": "no comparable history"
+        }
+      ],
+      "last_7d": {
+        "videos": 18,
+        "total_views": 7672,
+        "median_views": 191.5,
+        "median_vph": 4.6723,
+        "best": "China Reached 500 Nuclear Warheads As The World Cut Back",
+        "worst": "The $210 Billion Chip Shortage Nobody Saw Coming"
+      },
+      "last_30d": {
+        "videos": 82,
+        "total_views": 17465,
+        "median_views": 79.0,
+        "median_vph": 0.2449,
+        "best": "China Reached 500 Nuclear Warheads As The World Cut Back",
+        "worst": "Kids Are Being Diagnosed With ADHD Way More Than Before"
+      },
+      "all_time_summary": {
+        "total_videos": 148,
+        "total_views": 25837,
+        "avg_views_per_video": 174.6,
+        "median_views_per_hour": 0.12,
+        "top_5_by_vph": [
+          {
+            "title": "China Reached 500 Nuclear Warheads As The World Cut Back",
+            "views_per_hour": 65.23,
+            "views": 541,
+            "age_hours": 8.3,
+            "url": "https://youtube.com/shorts/ZSDXkXD9IjA"
+          },
+          {
+            "title": "Lost Fishing Gear Is 10% Of Ocean Litter",
+            "views_per_hour": 27.0,
+            "views": 62,
+            "age_hours": 2.3,
+            "url": "https://youtube.com/shorts/QJYiqtgH088"
+          },
+          {
+            "title": "Parker Solar Probe Hit 430,000 MPH Without Carrying A Human",
+            "views_per_hour": 14.8,
+            "views": 1179,
+            "age_hours": 79.6,
+            "url": "https://youtube.com/shorts/UN-dVWVz6IM"
+          },
+          {
+            "title": "The Body Renews Its Stomach Lining In 5 Days, Not Every Cell",
+            "views_per_hour": 13.42,
+            "views": 986,
+            "age_hours": 73.5,
+            "url": "https://youtube.com/shorts/Qz3UnREJdOI"
+          },
+          {
+            "title": "Hearing Aids Started At $300 Instead Of Requiring A Prescription",
+            "views_per_hour": 11.63,
+            "views": 1172,
+            "age_hours": 100.8,
+            "url": "https://youtube.com/shorts/OVx7o2iUhKU"
+          }
+        ],
+        "bottom_5_by_vph": [
+          {
+            "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
+            "views_per_hour": 0.0,
+            "views": 1,
+            "age_hours": 478.0,
+            "url": "https://youtube.com/shorts/aCtti_E5Nqo"
+          },
+          {
+            "title": "The World's Workforce Has Never Been This Big \u2014 Or This Free",
+            "views_per_hour": 0.0,
+            "views": 2,
+            "age_hours": 669.4,
+            "url": "https://youtube.com/shorts/cY4-tgGIir4"
+          },
+          {
+            "title": "Why Is There A Vault Built For The End Of The World?",
+            "views_per_hour": 0.0,
+            "views": 1,
+            "age_hours": 937.9,
+            "url": "https://youtube.com/shorts/kkODTt8nWuQ"
+          },
+          {
+            "title": "Why Cargo Ships Started Losing Containers Again (3 Charts)",
+            "views_per_hour": 0.0,
+            "views": 2,
+            "age_hours": 1171.0,
+            "url": "https://youtube.com/shorts/NhR15EjR3uI"
+          },
+          {
+            "title": "Why Empty Offices Will Never Fill Back Up (3 Charts)",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 1272.6,
+            "url": "https://youtube.com/shorts/fReGr_FMIEw"
+          }
+        ],
+        "opening": {
+          "median_early_retention": 0.884,
+          "videos_with_curve": 14,
+          "worst": 0.789,
+          "best": 0.964
+        },
+        "videos_with_retention": 75,
+        "avg_view_percentage": 58.2,
+        "top_5_by_retention": [
+          {
+            "title": "Getting Into Space Just Got Nearly Impossible",
+            "average_view_percentage": 310.8,
+            "average_view_duration_s": 133.0,
+            "views": 97,
+            "url": "https://youtube.com/shorts/DwrzOVm6uWY"
+          },
+          {
+            "title": "One Rule Change Fixed 16 Million Credit Scores For Free",
+            "average_view_percentage": 165.9,
+            "average_view_duration_s": 33.0,
+            "views": 187,
+            "url": "https://youtube.com/shorts/RITO4fF3tqY"
+          },
+          {
+            "title": "F1 Pit Stops Went From A Minute To 1.8 Seconds",
+            "average_view_percentage": 119.9,
+            "average_view_duration_s": 46.0,
+            "views": 303,
+            "url": "https://youtube.com/shorts/Wne-eoIQXaU"
+          },
+          {
+            "title": "NASA's Mars Helicopter Was Built For 5 Flights. It Flew 72.",
+            "average_view_percentage": 100.8,
+            "average_view_duration_s": 17.0,
+            "views": 628,
+            "url": "https://youtube.com/shorts/LrMy6Z8J9Ug"
+          },
+          {
+            "title": "Amazon Now Runs 1 Million Warehouse Robots",
+            "average_view_percentage": 89.3,
+            "average_view_duration_s": 25.0,
+            "views": 167,
+            "url": "https://youtube.com/shorts/eCi19jT6B74"
+          }
+        ],
+        "bottom_5_by_retention": [
+          {
+            "title": "Bald Eagles Were Nearly Extinct. Not Anymore. (3 Charts)",
+            "average_view_percentage": 17.4,
+            "average_view_duration_s": 8.0,
+            "views": 124,
+            "url": "https://youtube.com/shorts/Vu_ZQg8xcec"
+          },
+          {
+            "title": "Flying Got This Much Safer In 20 Years",
+            "average_view_percentage": 18.8,
+            "average_view_duration_s": 7.0,
+            "views": 66,
+            "url": "https://youtube.com/shorts/Alu1k6VDUQ8"
+          },
+          {
+            "title": "Buy Now Pay Later Is Eating The Checkout Button",
+            "average_view_percentage": 24.7,
+            "average_view_duration_s": 10.0,
+            "views": 132,
+            "url": "https://youtube.com/shorts/4FUVzs56pzQ"
+          },
+          {
+            "title": "1 In 3 Couples Now Sleep In Separate Rooms",
+            "average_view_percentage": 25.7,
+            "average_view_duration_s": 12.0,
+            "views": 95,
+            "url": "https://youtube.com/shorts/fj-AO9xa1Jk"
+          },
+          {
+            "title": "Organ Transplants Hit A Record. The Waitlist Still Didn't Shrink (3 Charts)",
+            "average_view_percentage": 27.6,
+            "average_view_duration_s": 12.0,
+            "views": 119,
+            "url": "https://youtube.com/shorts/wz02Q9HFaHg"
+          }
+        ],
+        "ab_experiment": {
+          "edit": {
+            "n": 0
+          },
+          "clip": {
+            "n": 0
+          },
+          "story": {
+            "n": 0
+          },
+          "simple_fallback": {
+            "n": 0
+          },
+          "note": "compare only when each arm's n_mature_24h >= 25"
+        },
+        "story_structures": {
+          "structures": {},
+          "n_mature_total": 0,
+          "enough_data": false
+        },
+        "pending_scheduled": 8,
+        "format_coverage": {
+          "with_format": 0,
+          "total": 148,
+          "fraction": 0.0
+        }
+      },
+      "band_sample_sizes": {
+        "0-6h": 1,
+        "1-3d": 6,
+        "1-4w": 62,
+        "3-7d": 10,
+        "4w+": 68,
+        "6-24h": 1
+      },
+      "thin_bands": [
+        "6-24h",
+        "0-6h"
+      ],
+      "maturity": {
+        "24h": {
+          "all_formats": {
+            "n": 0,
+            "note": "no videos in this age window"
+          },
+          "by_format": {
+            "other_topic": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "superlative_topic": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "unknown": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        },
+        "72h": {
+          "all_formats": {
+            "n": 4,
+            "median_vph": 10.6993,
+            "median_views": 738.5,
+            "median_view_pct": null,
+            "view_pct_reported_for": "0/4",
+            "enough_to_judge": false
+          },
+          "by_format": {
+            "other_topic": {
+              "n": 4,
+              "median_vph": 10.6993,
+              "median_views": 738.5,
+              "median_view_pct": null,
+              "view_pct_reported_for": "0/4",
+              "enough_to_judge": false
+            },
+            "superlative_topic": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "unknown": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        },
+        "7d": {
+          "all_formats": {
+            "n": 4,
+            "median_vph": 0.2625,
+            "median_views": 44.0,
+            "median_view_pct": null,
+            "view_pct_reported_for": "0/4",
+            "enough_to_judge": false
+          },
+          "by_format": {
+            "other_topic": {
+              "n": 4,
+              "median_vph": 0.2625,
+              "median_views": 44.0,
+              "median_view_pct": null,
+              "view_pct_reported_for": "0/4",
+              "enough_to_judge": false
+            },
+            "superlative_topic": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "unknown": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        }
+      },
+      "mature_enough_to_judge": [
+        {
+          "title": "Parker Solar Probe Hit 430,000 MPH Without Carrying A Human",
+          "vph": 14.8116,
+          "fmt": "other_topic",
+          "age_hours": 79.6
+        },
+        {
+          "title": "The Body Renews Its Stomach Lining In 5 Days, Not Every Cell",
+          "vph": 13.415,
+          "fmt": "other_topic",
+          "age_hours": 73.5
+        },
+        {
+          "title": "Hearing Aids Started At $300 Instead Of Requiring A Prescription",
+          "vph": 11.627,
+          "fmt": "other_topic",
+          "age_hours": 100.8
+        },
+        {
+          "title": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
+          "vph": 10.9521,
+          "fmt": "other_topic",
+          "age_hours": 158.6
+        },
+        {
+          "title": "Opioid Prescriptions Fell 47%. Overdoses Kept Rising.",
+          "vph": 7.9837,
+          "fmt": "other_topic",
+          "age_hours": 61.5
+        }
+      ],
+      "worst_mature": [
+        {
+          "title": "Cereal production Is 1.5x Higher Than In 1972",
+          "vph": 0.0,
+          "fmt": "unknown",
+          "age_hours": 1404.0
+        },
+        {
+          "title": "Central Banks Are Hoarding Gold Like It's 1967",
+          "vph": 0.0,
+          "fmt": "unknown",
+          "age_hours": 1366.2
+        },
+        {
+          "title": "Why Empty Offices Will Never Fill Back Up (3 Charts)",
+          "vph": 0.0,
+          "fmt": "unknown",
+          "age_hours": 1272.6
+        },
+        {
+          "title": "The 8-Glasses-a-Day Rule Was Never Real",
+          "vph": 0.0007,
+          "fmt": "unknown",
+          "age_hours": 1398.0
+        },
+        {
+          "title": "Why Is There A Vault Built For The End Of The World?",
+          "vph": 0.0011,
+          "fmt": "unknown",
+          "age_hours": 937.9
+        }
+      ]
+    },
+    "curiosity": {
+      "channel": "curiosity",
+      "available": true,
+      "fetched_at": "2026-07-08T18:27:01.431310+00:00",
+      "today": [],
+      "last_7d": {
+        "videos": 1,
+        "total_views": 0,
+        "median_views": 0.0,
+        "median_vph": 0.0,
+        "best": "The Deepest Hole on Earth Is Welded Shut",
+        "worst": "The Deepest Hole on Earth Is Welded Shut"
+      },
+      "last_30d": {
+        "videos": 1,
+        "total_views": 0,
+        "median_views": 0.0,
+        "median_vph": 0.0,
+        "best": "The Deepest Hole on Earth Is Welded Shut",
+        "worst": "The Deepest Hole on Earth Is Welded Shut"
+      },
+      "all_time_summary": {
+        "total_videos": 1,
+        "total_views": 0,
+        "avg_views_per_video": 0.0,
+        "median_views_per_hour": 0.0,
+        "top_5_by_vph": [
+          {
+            "title": "The Deepest Hole on Earth Is Welded Shut",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 0.0,
+            "url": "https://www.youtube.com/watch?v=JzMogQCJFE8"
+          }
+        ],
+        "bottom_5_by_vph": [
+          {
+            "title": "The Deepest Hole on Earth Is Welded Shut",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 0.0,
+            "url": "https://www.youtube.com/watch?v=JzMogQCJFE8"
+          }
+        ]
+      },
+      "band_sample_sizes": {
+        "0-6h": 1
+      },
+      "thin_bands": [
+        "0-6h"
+      ],
+      "maturity": {
+        "24h": {
+          "all_formats": {
+            "n": 0,
+            "note": "no videos in this age window"
+          },
+          "by_format": {
+            "unknown": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        },
+        "72h": {
+          "all_formats": {
+            "n": 0,
+            "note": "no videos in this age window"
+          },
+          "by_format": {
+            "unknown": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        },
+        "7d": {
+          "all_formats": {
+            "n": 0,
+            "note": "no videos in this age window"
+          },
+          "by_format": {
+            "unknown": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        }
+      },
+      "mature_enough_to_judge": [],
+      "worst_mature": []
+    },
+    "third": {
+      "channel": "third",
+      "available": true,
+      "fetched_at": "2026-10-28T17:10:15.181265+00:00",
+      "today": [
+        {
+          "title": "Stableronaldo Reacts To A Knockdown And Says It Was Crazy",
+          "url": "https://youtube.com/shorts/Eat2zweI4hM",
+          "published_at": "2026-10-28T17:00:36Z",
+          "age_hours": 0.2,
+          "age_band": "0-6h",
+          "views": 0,
+          "engaged_views": 0,
+          "likes": 0,
+          "comments": 0,
+          "avg_view_pct": null,
+          "avg_view_duration": null,
+          "impressions": null,
+          "ctr": null,
+          "missing_metrics": [
+            "avg_view_pct",
+            "avg_view_duration",
+            "impressions",
+            "ctr"
+          ],
+          "views_per_hour": 0.0,
+          "percentile_vs_same_age": null,
+          "verdict": "too young to judge"
+        }
+      ],
+      "last_7d": {
+        "videos": 33,
+        "total_views": 2092,
+        "median_views": 5.0,
+        "median_vph": 0.0416,
+        "best": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
+        "worst": "Kaicenat: Kai Cenat's Fans Block A Blind Woman's Path And Chat Panics"
+      },
+      "last_30d": {
+        "videos": 137,
+        "total_views": 9231,
+        "median_views": 11.0,
+        "median_vph": 0.0312,
+        "best": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
+        "worst": "Extraemily: Emily Can't Stop Laughing While Cleaning Keem's Ear And It Hurts"
+      },
+      "all_time_summary": {
+        "total_videos": 137,
+        "total_views": 9231,
+        "avg_views_per_video": 67.4,
+        "median_views_per_hour": 0.03,
+        "top_5_by_vph": [
+          {
+            "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
+            "views_per_hour": 11.25,
+            "views": 1605,
+            "age_hours": 142.7,
+            "url": "https://youtube.com/shorts/Hnj4zFNzRTc"
+          },
+          {
+            "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Talk Gets Heated",
+            "views_per_hour": 3.77,
+            "views": 1087,
+            "age_hours": 288.2,
+            "url": "https://youtube.com/shorts/8GQQg-O1Bx8"
+          },
+          {
+            "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
+            "views_per_hour": 3.28,
+            "views": 1797,
+            "age_hours": 547.7,
+            "url": "https://youtube.com/shorts/s8y7xYyiG44"
+          },
+          {
+            "title": "Ishowspeed Gets Spooked And Screams After Smelling This",
+            "views_per_hour": 2.47,
+            "views": 156,
+            "age_hours": 63.2,
+            "url": "https://youtube.com/shorts/SxkGfbiubsE"
+          },
+          {
+            "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
+            "views_per_hour": 2.09,
+            "views": 905,
+            "age_hours": 432.2,
+            "url": "https://youtube.com/shorts/V3hJr2XCDkU"
+          }
+        ],
+        "bottom_5_by_vph": [
+          {
+            "title": "Stableronaldo Reacts To A Knockdown And Says It Was Crazy",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 0.2,
+            "url": "https://youtube.com/shorts/Eat2zweI4hM"
+          },
+          {
+            "title": "Lacy Destroys Two iPhones To See If They Still Work",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 24.2,
+            "url": "https://youtube.com/shorts/MOvP-z0ujMM"
+          },
+          {
+            "title": "Rayasianboy Girl Breaks Down And Is Left Stunned On Stream",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 61.7,
+            "url": "https://youtube.com/shorts/38MTuqyvA1A"
+          },
+          {
+            "title": "Jynxzi Conquers Midra And Can't Hold Back After This",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 88.7,
+            "url": "https://youtube.com/shorts/Pvi2XEdAnDQ"
+          },
+          {
+            "title": "Kaicenat: Kai Cenat's Fans Block A Blind Woman's Path And Chat Panics",
+            "views_per_hour": 0.0,
+            "views": 0,
+            "age_hours": 138.2,
+            "url": "https://youtube.com/shorts/b4dr9psJQMM"
+          }
+        ],
+        "opening": {
+          "median_early_retention": 0.733,
+          "videos_with_curve": 15,
+          "worst": 0.385,
+          "best": 0.88
+        },
+        "videos_with_retention": 20,
+        "avg_view_percentage": 64.8,
+        "top_5_by_retention": [
+          {
+            "title": "Ishowspeed Gets Spooked And Screams After Smelling This",
+            "average_view_percentage": 109.0,
+            "average_view_duration_s": 19.0,
+            "views": 156,
+            "url": "https://youtube.com/shorts/SxkGfbiubsE"
+          },
+          {
+            "title": "The Forsen Clip Everyone's Talking About",
+            "average_view_percentage": 101.2,
+            "average_view_duration_s": 9.0,
+            "views": 98,
+            "url": "https://youtube.com/shorts/zsysPb1NdrA"
+          },
+          {
+            "title": "Lacy Reacts As Chip And Heinz Kiss In Front Of Everyone",
+            "average_view_percentage": 87.4,
+            "average_view_duration_s": 10.0,
+            "views": 866,
+            "url": "https://youtube.com/shorts/Lq01D3HtSC4"
+          },
+          {
+            "title": "Xqc Gets Captured And Chat Can't Believe It",
+            "average_view_percentage": 87.3,
+            "average_view_duration_s": 15.0,
+            "views": 60,
+            "url": "https://youtube.com/shorts/qLIS24cJ8k8"
+          },
+          {
+            "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
+            "average_view_percentage": 76.8,
+            "average_view_duration_s": 19.0,
+            "views": 1605,
+            "url": "https://youtube.com/shorts/Hnj4zFNzRTc"
+          }
+        ],
+        "bottom_5_by_retention": [
+          {
+            "title": "Cinna Scene Turns Ugly After John Bobby Shoots Kalita Dub",
+            "average_view_percentage": 37.4,
+            "average_view_duration_s": 22.0,
+            "views": 129,
+            "url": "https://youtube.com/shorts/5kGBPoooNW0"
+          },
+          {
+            "title": "Cinna Blames Kalita After Wrong-Side Crash Into 4Head and Twinkles Car",
+            "average_view_percentage": 38.9,
+            "average_view_duration_s": 15.0,
+            "views": 135,
+            "url": "https://youtube.com/shorts/y6Bmba84xDA"
+          },
+          {
+            "title": "Xqc Can't Believe He Got Shot In The Tire After This",
+            "average_view_percentage": 43.1,
+            "average_view_duration_s": 8.0,
+            "views": 50,
+            "url": "https://youtube.com/shorts/6wpYxI7efhI"
+          },
+          {
+            "title": "Cinna Panics After Kalita Dub Becomes The Getaway Driver For The First Time",
+            "average_view_percentage": 45.5,
+            "average_view_duration_s": 13.0,
+            "views": 65,
+            "url": "https://youtube.com/shorts/dWP7uYZFCUo"
+          },
+          {
+            "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Talk Gets Heated",
+            "average_view_percentage": 46.2,
+            "average_view_duration_s": 22.0,
+            "views": 1087,
+            "url": "https://youtube.com/shorts/8GQQg-O1Bx8"
+          }
+        ],
+        "ab_experiment": {
+          "edit": {
+            "n": 0
+          },
+          "clip": {
+            "n": 129,
+            "n_mature_24h": 128,
+            "median_vph": 0.03,
+            "avg_views": 58.5,
+            "enough_data": true
+          },
+          "story": {
+            "n": 1,
+            "n_mature_24h": 1,
+            "median_vph": 0.01,
+            "avg_views": 7.0,
+            "enough_data": false
+          },
+          "simple_fallback": {
+            "n": 4,
+            "n_mature_24h": 4,
+            "median_vph": 0.09,
+            "avg_views": 412.0,
+            "enough_data": false
+          },
+          "note": "compare only when each arm's n_mature_24h >= 25"
+        },
+        "story_structures": {
+          "structures": {
+            "chronological": {
+              "n_mature": 1,
+              "median_vph": 0.01,
+              "median_duration": 41.9,
+              "avg_retention": null
+            }
+          },
+          "n_mature_total": 1,
+          "enough_data": false
+        },
+        "pending_scheduled": 12,
+        "format_coverage": {
+          "with_format": 0,
+          "total": 137,
+          "fraction": 0.0
+        }
+      },
+      "band_sample_sizes": {
+        "0-6h": 1,
+        "1-3d": 7,
+        "1-4w": 102,
+        "3-7d": 25,
+        "4w+": 2
+      },
+      "thin_bands": [
+        "4w+",
+        "0-6h"
+      ],
+      "maturity": {
+        "24h": {
+          "all_formats": {
+            "n": 1,
+            "median_vph": 0.0,
+            "median_views": 0.0,
+            "median_view_pct": null,
+            "view_pct_reported_for": "0/1",
+            "enough_to_judge": false
+          },
+          "by_format": {
+            "clip": {
+              "n": 1,
+              "median_vph": 0.0,
+              "median_views": 0.0,
+              "median_view_pct": null,
+              "view_pct_reported_for": "0/1",
+              "enough_to_judge": false
+            },
+            "extended": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "story": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        },
+        "72h": {
+          "all_formats": {
+            "n": 6,
+            "median_vph": 0.199,
+            "median_views": 13.5,
+            "median_view_pct": null,
+            "view_pct_reported_for": "0/6",
+            "enough_to_judge": true
+          },
+          "by_format": {
+            "clip": {
+              "n": 5,
+              "median_vph": 0.1662,
+              "median_views": 12.0,
+              "median_view_pct": null,
+              "view_pct_reported_for": "0/5",
+              "enough_to_judge": true
+            },
+            "extended": {
+              "n": 1,
+              "median_vph": 0.2318,
+              "median_views": 15.0,
+              "median_view_pct": null,
+              "view_pct_reported_for": "0/1",
+              "enough_to_judge": false
+            },
+            "story": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        },
+        "7d": {
+          "all_formats": {
+            "n": 6,
+            "median_vph": 0.0311,
+            "median_views": 5.0,
+            "median_view_pct": null,
+            "view_pct_reported_for": "0/6",
+            "enough_to_judge": true
+          },
+          "by_format": {
+            "clip": {
+              "n": 6,
+              "median_vph": 0.0311,
+              "median_views": 5.0,
+              "median_view_pct": null,
+              "view_pct_reported_for": "0/6",
+              "enough_to_judge": true
+            },
+            "extended": {
+              "n": 0,
+              "note": "no videos in this age window"
+            },
+            "story": {
+              "n": 0,
+              "note": "no videos in this age window"
+            }
+          }
+        }
+      },
+      "mature_enough_to_judge": [
+        {
+          "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
+          "vph": 11.2474,
+          "fmt": "clip",
+          "age_hours": 142.7
+        },
+        {
+          "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Talk Gets Heated",
+          "vph": 3.7717,
+          "fmt": "clip",
+          "age_hours": 288.2
+        },
+        {
+          "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
+          "vph": 3.281,
+          "fmt": "clip",
+          "age_hours": 547.7
+        },
+        {
+          "title": "Ishowspeed Gets Spooked And Screams After Smelling This",
+          "vph": 2.4684,
+          "fmt": "clip",
+          "age_hours": 63.2
+        },
+        {
+          "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
+          "vph": 2.0939,
+          "fmt": "clip",
+          "age_hours": 432.2
+        }
+      ],
+      "worst_mature": [
+        {
+          "title": "Extraemily: Emily Can't Stop Laughing While Cleaning Keem's Ear And It Hurts",
+          "vph": 0.0,
+          "fmt": "clip",
+          "age_hours": 595.7
+        },
+        {
+          "title": "Lacy Can't Believe Her Own Bare Moment Is Number One Show In The World",
+          "vph": 0.0,
+          "fmt": "clip",
+          "age_hours": 568.7
+        },
+        {
+          "title": "Kaicenat: Kai Cenat Threatens To Sue Someone For Playing With His Name",
+          "vph": 0.0,
+          "fmt": "clip",
+          "age_hours": 454.7
+        },
+        {
+          "title": "Kaicenat: Kai Cenat's Wifi Man Goes Off On Captain Ray Over A Ponytail",
+          "vph": 0.0,
+          "fmt": "clip",
+          "age_hours": 285.2
+        },
+        {
+          "title": "Clix Says He's Done Fighting And Shows Kids How To Get In",
+          "vph": 0.0,
+          "fmt": "clip",
+          "age_hours": 259.7
+        }
+      ]
+    }
+  },
+  "pipeline_health": {
+    "consecutive_failures": "0",
+    "exchange": {
+      "media": {
+        "fulfilled": 0,
+        "self_filled": 0,
+        "unfilled": 0,
+        "refused": 0
+      },
+      "punchup": {
+        "applied": 0,
+        "kept": 0,
+        "rejected": 0,
+        "absent": 0
+      },
+      "done_marker": true,
+      "authored": {
+        "promoted": 0,
+        "rejected": 0,
+        "other_channels": {
+          "explainer": {
+            "applied": 2,
+            "rejected": 1
+          },
+          "curiosity": {
+            "applied": 0,
+            "rejected": 0
+          }
+        }
+      }
+    },
+    "slots": {
+      "note": "no daily_report.json \u2014 the trending run has not reported since this clone was made"
+    },
+    "showrunner": {
+      "recent": 40,
+      "blocks": 21,
+      "avg_score": 66.7
+    },
+    "failure_census": {
+      "n_verdicts": 20,
+      "classes": {
+        "other": {
+          "count": 8,
+          "stories": {
+            "lightning-deaths-collapsed-not-the-storms": 1,
+            "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
+            "sports_jaylen_brown_night_theres": 1,
+            "sports_charles_barkley_g_this_close": 1,
+            "nuclear-stockpile-growth-reversal": 1,
+            "ghost-fishing-gear-ocean-plastic": 2,
+            "airline-pilot-shortage": 1
+          },
+          "timestamps": [
+            "2026-10-26T12:07:35+00:00",
+            "2026-10-28T00:29:32+00:00",
+            "2026-10-28T00:31:46+00:00",
+            "2026-10-28T00:35:49+00:00",
+            "2026-10-28T10:13:13+00:00",
+            "2026-10-28T10:56:22+00:00",
+            "2026-10-28T11:20:10+00:00",
+            "2026-10-28T15:23:43+00:00"
+          ],
+          "examples": [
+            "unreadable: The small white copy in seg4:start through seg4:end is too small and low-contrast to read comfortably on a phone.",
+            "unreadable: hook@0.3 to payoff@-0.4: the burned-in Spanish quote is cut off at both edges ('a esos fans (del Barcelona) que r' / 'iaban dormir la siesta en el hote'), and the ticker is cut off ('EL CA",
+            "unreadable: In mid1 two caption layers collide: 'YOU GOT TO' is printed over another line, so it reads 'TO [YOU GOT TO] AT'. In hook@0.3 'ARE YOU WILLING' sits on top of another garbled caption. Both "
+          ],
+          "recurred_after_fix": false
+        },
+        "decorative_mascot": {
+          "count": 6,
+          "stories": {
+            "lightning-deaths-collapsed-not-the-storms": 2,
+            "nuclear-stockpile-growth-reversal": 1,
+            "ghost-fishing-gear-ocean-plastic": 2,
+            "airline-pilot-shortage": 1
+          },
+          "timestamps": [
+            "2026-10-26T12:07:35+00:00",
+            "2026-10-26T12:07:35+00:00",
+            "2026-10-28T10:13:13+00:00",
+            "2026-10-28T10:56:22+00:00",
+            "2026-10-28T11:20:10+00:00",
+            "2026-10-28T15:23:43+00:00"
+          ],
+          "examples": [
+            "decorative_mascot: At seg2:mid and payoff@-0.4, Data is a tiny perched figure rather than performing a clear setup-action-payoff tied to the statistic.",
+            "empty_void: payoff@-0.4 is almost entirely dark empty space with a tiny mascot isolated at the bottom.",
+            "decorative_mascot: In the world-dismantling scenes Data stands beside the warhead carts in the same waving pose (seg1:start, seg1:mid, seg1:end) while a truck carries warheads off on its own. He never"
+          ],
+          "recurred_after_fix": false
+        },
+        "junk_imagery": {
+          "count": 6,
+          "stories": {
+            "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
+            "sports_charles_barkley_g_this_close": 2,
+            "ghost-fishing-gear-ocean-plastic": 2,
+            "airline-pilot-shortage": 1
+          },
+          "timestamps": [
+            "2026-10-28T00:29:32+00:00",
+            "2026-10-28T00:35:49+00:00",
+            "2026-10-28T00:37:39+00:00",
+            "2026-10-28T10:56:22+00:00",
+            "2026-10-28T11:20:10+00:00",
+            "2026-10-28T15:23:43+00:00"
+          ],
+          "examples": [
+            "junk_imagery: hook@0.3 through payoff@-0.4: the footage is a re-upload of another account's post. The 'Madrid Total' social bar (Instagram/YouTube/X/TikTok/Facebook icons), the 'al Madrid Tv' bug and ",
+            "junk_imagery: mid2 shows unrelated Heat-arena warmup b-roll and mid3 shows Giannis dribbling in a drill. Neither has Barkley, Shaq or the joke the line promises.",
+            "junk_imagery: mid0 (t=2.50s) cuts to an unrelated warm-up shooter, and mid4/mid5/payoff@-0.4 (t=15.86-20.80s) show Giannis Antetokounmpo warming up at a Heat arena with his own lower-third. None of th"
+          ],
+          "recurred_after_fix": false
+        },
+        "empty_void": {
+          "count": 6,
+          "stories": {
+            "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
+            "sports_charles_barkley_g_this_close": 1,
+            "nuclear-stockpile-growth-reversal": 1,
+            "ghost-fishing-gear-ocean-plastic": 2,
+            "airline-pilot-shortage": 1
+          },
+          "timestamps": [
+            "2026-10-28T00:29:32+00:00",
+            "2026-10-28T00:37:39+00:00",
+            "2026-10-28T10:13:13+00:00",
+            "2026-10-28T10:56:22+00:00",
+            "2026-10-28T11:10:17+00:00",
+            "2026-10-28T15:23:43+00:00"
+          ],
+          "examples": [
+            "empty_void: payoff@-0.4: Mourinho is out of frame and the top two-thirds is a blank grey wall. In every frame the bottom ~40% is a black band of foreign captions, logos and ticker.",
+            "empty_void: Every frame from hook@0.3 to payoff@-0.4 is letterboxed: the 16:9 source sits in the middle, with blurred bars filling roughly the top 12% and bottom 12%, so the vertical frame is not used",
+            "empty_void: The last frame (payoff@-0.4) is an almost empty dark-navy gradient with only Data holding a blank yellow tag at the bottom. The vault scene and the closing line are gone, so the video ends"
+          ],
+          "recurred_after_fix": false
+        },
+        "dead_air": {
+          "count": 2,
+          "stories": {
+            "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
+            "airline-pilot-shortage": 1
+          },
+          "timestamps": [
+            "2026-10-28T00:29:32+00:00",
+            "2026-10-28T15:23:43+00:00"
+          ],
+          "examples": [
+            "dead_air: mid0 to mid4: the same locked medium close-up of Mourinho for about 30s, with the same frozen Spanish quote box and no cut, zoom or sound hit. At payoff@-0.4 he has left and the frame is an ",
+            "dead_air: seg1:start/mid/end (5.4-9.7s) reuse the hook's exact airport shot: the same 649,000 headline, Data waving at the door, the same crowd of pilots. Two beats look identical, and nothing new is "
+          ],
+          "recurred_after_fix": false
+        }
+      },
+      "weak_dims": {
+        "hook": {
+          "median": 3,
+          "min": 1,
+          "max": 4
+        },
+        "data_demo": {
+          "median": 3,
+          "min": 2,
+          "max": 5
+        },
+        "mascot": {
+          "median": 4,
+          "min": 1,
+          "max": 4
+        },
+        "craft": {
+          "median": 2,
+          "min": 0,
+          "max": 3
+        },
+        "pace": {
+          "median": 2,
+          "min": 1,
+          "max": 2
+        },
+        "payoff": {
+          "median": 1,
+          "min": 0,
+          "max": 2
+        },
+        "temporal_craft": {
+          "median": 3,
+          "min": 2,
+          "max": 3
+        }
+      },
+      "scores": [
+        61,
+        100,
+        96,
+        96,
+        95,
+        100,
+        96,
+        57,
+        53,
+        66,
+        70,
+        62,
+        58,
+        79,
+        70,
+        66,
+        49,
+        74,
+        61,
+        52
+      ]
+    }
+  },
+  "depictions": {
+    "note": "best judge `bespoke` grade per video vs views-per-hour at >= 24h",
+    "buckets": {},
+    "ungraded": 146,
+    "thin": []
+  },
+  "style_arms": {
+    "note": "views-per-hour percentile vs same-age explainer videos, by style arm, videos >= 24h old posted since the first illustrated upload",
+    "arms": {
+      "current": {
+        "n": 22,
+        "median_percentile": 37.2,
+        "thin": true
+      },
+      "illustrated": {
+        "n": 73,
+        "median_percentile": 55.1,
+        "thin": false
+      }
+    },
+    "enough_to_judge": false,
+    "caution": "fewer than 30 mature videos in at least one arm: this is noise, not a result"
+  },
+  "levity": {
+    "eligible_scripts": 19,
+    "with_levity": 10,
+    "pct": 52.6,
+    "kept_straight_by_the_gate": 1,
+    "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
+  },
+  "repo": {
+    "head": "d0a5177",
+    "commits_since": "2026-10-27",
+    "commit_count": 50,
+    "commits": [
+      "d0a5177 claim: mailbox verdicts 2026-10-28T23:25Z [skip ci]",
+      "77798bf claim: mailbox verdicts 2026-10-28T22:48Z [skip ci]",
+      "4f7cb8e explainer: the last picture runs to the cut, no empty end card (#714)",
+      "4e39682 claim: mailbox verdicts 2026-10-28T21:48Z [skip ci]",
+      "c10944d find_footage: a cut-in shows the whole play, from where its shot starts (#713)",
+      "6d5da6c third: story backtest 40742816892 passed a story [skip ci]",
+      "ab9289f claim: mailbox verdicts 2026-10-28T20:48Z [skip ci]",
+      "8b654cb watchdog: chatgpt task verdicts 20261028 [skip ci]",
+      "e085342 claim: mailbox verdicts 2026-10-28T19:48Z [skip ci]",
+      "6e08244 comments: saved viewer comments [skip ci]",
+      "ab7cfac watchdog: chatgpt task verdicts 20261028 [skip ci]",
+      "78bb611 Baller Bro: anything they name that needs seeing goes on screen (#711)",
+      "f121e98 story forge: new real-data stories [skip ci]",
+      "866aeeb claim: mailbox verdicts 2026-10-28T19:00Z [skip ci]",
+      "ab4abd5 Twitch stories: a run of good clips that make sense together, no plot required (#712)",
+      "56bbebf watchdog: chatgpt task verdicts 20261028 [skip ci]",
+      "5728c59 claim: mailbox verdicts 2026-10-28T18:48Z [skip ci]",
+      "27225c8 explainer: update posted log + analytics [skip ci]",
+      "89b6d5f credentials: heartbeat [skip ci]",
+      "0e7b1b6 watchdog: chatgpt task verdicts 20261028 [skip ci]",
+      "e52e806 claim: mailbox verdicts 2026-10-28T17:48Z [skip ci]",
+      "3b3525c Built, not a toy: no plastic shine, parts in the kit, a measured detail floor (#710)",
+      "ad192cf third: analytics [skip ci]",
+      "258d860 third: update posted log + analytics [skip ci]",
+      "551e5ea Baller Bro: a cut-in is the broadcast, never someone else's phone edit (#709)",
+      "1f2dc91 watchdog: phase A readiness 20261028 [skip ci]",
+      "bdf28b8 claim: mailbox verdicts 2026-10-28T16:48Z [skip ci]",
+      "60f2279 watchdog: phase A readiness 20261028 [skip ci]",
+      "cc44425 Baller Bro: a clip that talks about a play shows the play (#708)",
+      "3c7dd3b claim: mailbox verdicts 2026-10-28T15:48Z [skip ci]",
+      "dce7b55 Stand Data where his grip reaches: kit stand_at, and the refusal names the spot (#707)",
+      "e36383e watchdog: chatgpt task verdicts 20261028 [skip ci]",
+      "6cbdb60 third: analytics snapshot [skip ci]",
+      "2da4b5c claim: mailbox verdicts 2026-10-28T14:47Z [skip ci]",
+      "924c386 watchdog: chatgpt task verdicts 20261028 [skip ci]",
+      "ed0a35d The real thing at its real size: refuse giant-icon props (#706)",
+      "e298bfa explainer: update posted log + analytics [skip ci]",
+      "8b46eb7 claim: mailbox verdicts 2026-10-28T13:48Z [skip ci]",
+      "176f746 third: analytics [skip ci]",
+      "2fec9a7 third: update posted log + analytics [skip ci]"
+    ],
+    "test_files": [
+      "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
+      "test_a_banned_song_never_plays.py",
+      "test_a_beat_always_has_a_picture.py",
+      "test_a_block_costs_a_story_not_the_day.py",
+      "test_a_clip_is_edited_like_the_reposts.py",
+      "test_a_clip_is_whole_and_shown_once.py",
+      "test_a_clip_shows_the_plays_it_talks_about.py",
+      "test_a_comparison_is_checked_not_invented.py",
+      "test_a_cut_in_lands_on_its_word.py",
+      "test_a_cut_never_ends_on_the_networks_card.py",
+      "test_a_dial_needs_a_scale.py",
+      "test_a_face_beside_what_it_shows_gets_both.py",
+      "test_a_framing_failure_is_reframed.py",
+      "test_a_gauge_and_a_timeline_keep_moving.py",
+      "test_a_held_render_waits_for_a_judge_it_is_never_lost.py",
+      "test_a_held_story_is_reauthored_not_parked.py",
+      "test_a_judge_that_is_out_is_not_asked_again.py",
+      "test_a_label_never_leaves_the_frame.py",
+      "test_a_line_is_paid_for_once.py",
+      "test_a_long_row_name_goes_above_its_bar.py",
+      "test_a_look_back_ends_on_a_tribute.py",
+      "test_a_losing_repair_leaves_no_plan_behind.py",
+      "test_a_machine_that_crashes_is_invisible.py",
+      "test_a_mechanic_is_measured_at_the_length_it_plays.py",
+      "test_a_near_miss_is_retried_by_a_better_edit.py",
+      "test_a_near_miss_keeps_its_edit.py",
+      "test_a_pair_is_drawn_as_the_thing.py",
+      "test_a_pile_is_a_count.py",
+      "test_a_plan_is_read_before_it_is_rendered.py",
+      "test_a_queued_run_starts_on_todays_main.py",
+      "test_a_race_keeps_the_drawn_scenes.py",
+      "test_a_race_label_never_sits_on_the_pass.py",
+      "test_a_refused_scene_stays_refused.py",
+      "test_a_rendered_mechanic_is_never_lost.py",
+      "test_a_repair_lands_where_the_critic_pointed.py",
+      "test_a_run_never_writes_another_out_of_the_ledger.py",
+      "test_a_run_says_where_it_is.py",
+      "test_a_sad_turn_gets_a_real_song_and_the_footage.py",
+      "test_a_scene_draws_until_the_clock.py",
+      "test_a_scene_that_never_moves_is_refused.py",
+      "test_a_source_credit_is_read_at_full_size.py",
+      "test_a_sports_cut_is_cut_clean.py",
+      "test_a_story_beat_is_framed_like_a_clip.py",
+      "test_a_story_can_be_one_moment_and_the_stream_around_it.py",
+      "test_a_story_cuts_between_lines.py",
+      "test_a_story_has_a_narrator_per_beat.py",
+      "test_a_story_has_no_narrator_only_a_line_of_text.py",
+      "test_a_story_hears_its_streamer.py",
+      "test_a_story_is_a_chain_and_shows_what_it_talks_about.py",
+      "test_a_story_is_a_saga.py",
+      "test_a_story_is_good_clips_that_make_sense_together.py",
+      "test_a_story_is_long_enough_to_mean_something.py",
+      "test_a_story_is_planned_in_several_takes.py",
+      "test_a_story_is_repaired_before_it_is_dropped.py",
+      "test_a_story_knows_what_the_stream_was.py",
+      "test_a_story_line_is_not_laid_over_the_footages_own_text.py",
+      "test_a_story_says_each_line_once.py",
+      "test_a_story_says_whose_stream_it_cuts_to.py",
+      "test_a_story_that_passes_a_search_reaches_the_channel.py",
+      "test_a_stranger_is_told_the_streamer_and_the_game.py",
+      "test_a_style_is_readable.py",
+      "test_a_turn_is_not_a_zigzag.py",
+      "test_a_twitch_story_ends_on_what_it_is_about.py",
+      "test_a_year_series_is_a_trend.py",
+      "test_aletheia_answers_the_mailbox.py",
+      "test_an_orbit_needs_a_centre.py",
+      "test_authoring_takeover.py",
+      "test_automerge_gate.py",
+      "test_backfill.py",
+      "test_baller_bro_is_sports_moments.py",
+      "test_beats_match_the_words.py",
+      "test_blocked_slug_churn.py",
+      "test_bubbles_use_the_frame.py",
+      "test_built_not_a_toy.py",
+      "test_camera_float.py",
+      "test_capabilities.py",
+      "test_captions.py",
+      "test_channel_mascot_separation.py",
+      "test_channel_registry.py",
+      "test_chart_race.py",
+      "test_charts_are_readable.py",
+      "test_chatgpt_watchdog.py",
+      "test_checkpoint_recovery.py",
+      "test_ci_persist_merges_the_library.py",
+      "test_clip_qa_fail_closed.py",
+      "test_contact_set_is_honest.py",
+      "test_contract_isolation.py",
+      "test_credential_check.py",
+      "test_daily_alarm.py",
+      "test_data_does_it_with_his_own_hands.py",
+      "test_data_does_not_cheer_the_damage.py",
+      "test_data_has_a_tool_in_his_hands.py",
+      "test_data_has_physics.py",
+      "test_data_is_in_every_beat.py",
+      "test_data_is_the_cause.py",
+      "test_data_learning_tests_run.py",
+      "test_data_pulls_the_lever_himself.py",
+      "test_disabled_channels_stay_off.py",
+      "test_dispatch_render.py",
+      "test_docs_state_the_live_schedule.py",
+      "test_doctor.py",
+      "test_doctor_managing_editor.py",
+      "test_doctor_reviewer_silence.py",
+      "test_draw_first_render_second.py",
+      "test_edit_pacing.py",
+      "test_editorial_gate.py",
+      "test_elevenlabs_first.py",
+      "test_engine_registry_honesty.py",
+      "test_every_kind_has_a_shape.py",
+      "test_every_scene_is_its_own_place.py",
+      "test_every_trending_upload_is_claimed_and_recorded.py",
+      "test_exchange.py",
+      "test_explainer_actually_ships.py",
+      "test_expression_gate_blocks_merge.py",
+      "test_fifteen_seconds_a_beat_is_too_long.py",
+      "test_fit_title.py",
+      "test_format_is_not_a_template.py",
+      "test_format_scoreboard.py",
+      "test_fsutil_writes.py",
+      "test_gap_coverage.py",
+      "test_generate_one_shot_note.py",
+      "test_generate_quarantine.py",
+      "test_grip_and_variety.py",
+      "test_isotype_scene.py",
+      "test_it_is_a_shot_not_a_diagram.py",
+      "test_judge_policy_schema.py",
+      "test_levity.py",
+      "test_llm_falls_through.py",
+      "test_longform_gated.py",
+      "test_longform_ready.py",
+      "test_longform_renders.py",
+      "test_longform_sourced.py",
+      "test_machines_are_pliable.py",
+      "test_machines_never_crash.py",
+      "test_main_pushes_run_the_suite.py",
+      "test_mascot_anchoring.py",
+      "test_mascot_performs.py",
+      "test_measure_what_ships.py",
+      "test_media_cache_attestation.py",
+      "test_media_checkpoint.py",
+      "test_media_evidence.py",
+      "test_media_funnel_cache.py",
+      "test_media_funnel_outcomes.py",
+      "test_media_funnel_prefilter.py",
+      "test_missing_data_is_not_a_finding.py",
+      "test_multichannel_takeover.py",
+      "test_near_duplicate.py",
+      "test_no_channel_drops_three_in_two_hours.py",
+      "test_no_coloured_dots.py",
+      "test_no_duplicate_upload_ever.py",
+      "test_no_duplicate_uploads.py",
+      "test_no_music_under_a_voice.py",
+      "test_no_noise_between_scenes.py",
+      "test_no_second_source_of_truth.py",
+      "test_no_single_provider_dependency.py",
+      "test_no_undefined_names.py",
+      "test_no_ungated_publish.py",
+      "test_no_window_is_left_empty.py",
+      "test_not_everything_is_a_pile.py",
+      "test_nothing_out_of_date_posts.py",
+      "test_novelty_fail_closed.py",
+      "test_one_fact_one_beat.py",
+      "test_one_icon_one_thing.py",
+      "test_one_number_and_a_big_change.py",
+      "test_one_palette_reaches_the_frame.py",
+      "test_one_thing_repeated_is_rare.py",
+      "test_only_the_new_look_posts.py",
+      "test_only_the_newest_cut_is_judged.py",
+      "test_overcap_replay_drops_its_whoosh.py",
+      "test_package_schema.py",
+      "test_palette.py",
+      "test_phase_a_readiness.py",
+      "test_phase_a_ready_signal.py",
+      "test_phase_a_sees_third.py",
+      "test_phase_a_topology.py",
+      "test_phase_b_render_handoff.py",
+      "test_placement_gate.py",
+      "test_pollinations_is_paced.py",
+      "test_post_outcome.py",
+      "test_post_stories_superlative_experiment.py",
+      "test_posted_log_durability.py",
+      "test_production_outcome.py",
+      "test_publish_slots.py",
+      "test_punchup_fields.py",
+      "test_punchup_multiplicity.py",
+      "test_real_footage_is_not_held_for_standing_still.py",
+      "test_rebuild_policy.py",
+      "test_reddit_story_attestation.py",
+      "test_reddit_story_timing.py",
+      "test_release_video.py",
+      "test_render_motion_floor.py",
+      "test_render_seed.py",
+      "test_repair_targets_the_failure.py",
+      "test_repo_layout.py",
+      "test_research_intake.py",
+      "test_response_envelope.py",
+      "test_retro.py",
+      "test_retro_gate.py",
+      "test_retro_loop.py",
+      "test_retro_workflow.py",
+      "test_say_a_number_the_picture_shows.py",
+      "test_shots_are_about_their_line.py",
+      "test_showrunner_gate.py",
+      "test_showrunner_judge_schema.py",
+      "test_split_worker.py",
+      "test_sports_moments_sources.py",
+      "test_stock_cache_freshness.py",
+      "test_story_scout.py",
+      "test_study_clippers.py",
+      "test_subject_scenes.py",
+      "test_superseded_contracts_are_marked.py",
+      "test_temporal_probe_is_measured.py",
+      "test_the_alarm_can_reach_you.py",
+      "test_the_art_is_lit.py",
+      "test_the_audience_picks_the_moment.py",
+      "test_the_beat_does_not_freeze_at_eighty_percent.py",
+      "test_the_brain_draws_the_scene.py",
+      "test_the_brain_has_tier_one_teachers.py",
+      "test_the_build_fills_the_beat.py",
+      "test_the_channel_aims_at_90.py",
+      "test_the_channel_answers_its_comments.py",
+      "test_the_channel_has_a_look.py",
+      "test_the_chart_is_a_shot_not_a_widget.py",
+      "test_the_chart_reads_left_to_right.py",
+      "test_the_clock_does_not_trust_cron.py",
+      "test_the_closing_never_freezes.py",
+      "test_the_day_renders_when_the_day_lands.py",
+      "test_the_day_ships_or_someone_is_told.py",
+      "test_the_explainer_tells_its_numbers_true.py",
+      "test_the_finish_keeps_moving.py",
+      "test_the_finished_cuts_are_shown_not_a_zip.py",
+      "test_the_first_frame_is_the_shock.py",
+      "test_the_first_live_mailbox_run.py",
+      "test_the_first_shot_reads_and_nothing_is_cropped.py",
+      "test_the_frame_is_used.py",
+      "test_the_frame_reads_on_a_phone.py",
+      "test_the_gate_can_see_illegibility.py",
+      "test_the_groq_model_is_alive.py",
+      "test_the_hero_number_never_drew.py",
+      "test_the_hook_gets_its_own_chart.py",
+      "test_the_hook_is_an_ad.py",
+      "test_the_hook_is_the_threat_not_beat_one.py",
+      "test_the_host_never_hides_a_word.py",
+      "test_the_icon_must_be_about_the_label.py",
+      "test_the_illustrated_arm.py",
+      "test_the_judge_grades_each_depiction.py",
+      "test_the_judge_is_reachable.py",
+      "test_the_judge_of_last_resort_is_chatgpt.py",
+      "test_the_line_is_never_on_the_footages_own_text.py",
+      "test_the_mailbox_round_needs_no_paste.py",
+      "test_the_mascot_is_actually_directed.py",
+      "test_the_music_sits_under_the_voice.py",
+      "test_the_narration_tells_a_story.py",
+      "test_the_new_look_actually_renders.py",
+      "test_the_opening_is_its_own_shot.py",
+      "test_the_payoff_is_a_new_picture.py",
+      "test_the_payoff_lands_in_time_to_read.py",
+      "test_the_picture_is_made_of_the_thing.py",
+      "test_the_picture_is_of_the_subject.py",
+      "test_the_post_card_arrives.py",
+      "test_the_race_is_not_mostly_black.py",
+      "test_the_real_thing_at_its_real_size.py",
+      "test_the_retell_fits_the_pace.py",
+      "test_the_retro_measures_bespoke.py",
+      "test_the_ring_circles_the_whole_number.py",
+      "test_the_ring_lands_on_the_number.py",
+      "test_the_scale_is_on_screen.py",
+      "test_the_scout_reads_footage.py",
+      "test_the_sources_strip_is_one_line.py",
+      "test_the_story_backtest_shows_its_work.py",
+      "test_the_story_critic_sees_the_whole_edit.py",
+      "test_the_stream_around_a_clip_arrives_in_time.py",
+      "test_the_video_ends_on_its_picture.py",
+      "test_the_voice_is_a_real_narrator.py",
+      "test_the_voice_is_directed.py",
+      "test_the_voice_reads_words.py",
+      "test_the_week_s_most_watched_moments_are_in_the_pool.py",
+      "test_third_fallback_count.py",
+      "test_third_has_three_judges.py",
+      "test_third_rejections_say_why.py",
+      "test_third_search_demand.py",
+      "test_third_series_labels.py",
+      "test_third_story_is_findable_and_recorded.py",
+      "test_third_streamer_prior.py",
+      "test_tiktok_channels.py",
+      "test_tiktok_site.py",
+      "test_topic_video_cache.py",
+      "test_trending_analytics_keeps_format.py",
+      "test_trending_is_readable.py",
+      "test_twitch_roster_scout.py",
+      "test_upload_metadata.py",
+      "test_uploaders.py",
+      "test_video_qa.py",
+      "test_vision_layout.py",
+      "test_vod_arcs.py",
+      "test_we_can_read_what_viewers_say.py",
+      "test_what_is_worn_wraps_the_body.py",
+      "test_what_the_judge_named_on_run_457.py",
+      "test_what_the_judge_named_on_run_461.py",
+      "test_what_works.py",
+      "test_workflow_actions_are_pinned.py",
+      "test_youtube_duplicates.py"
+    ],
+    "open_ticket_docs": [
+      "MEDIA_ACQUISITION.md",
+      "ENGINE_REGISTRY.md"
+    ]
+  },
+  "channel_contract": {
+    "registry_revision": 10,
+    "registry_sha256": "6481c43e352d51af77c4d61db5486670a9d4db6fd55683a411720ea0c089276a",
+    "channels": {
+      "explainer": {
+        "target_count": 4,
+        "target_mix": {
+          "data_story": 4
+        },
+        "retired": []
+      },
+      "third": {
+        "target_count": 6,
+        "target_mix": {
+          "clip": 6
+        },
+        "retired": []
+      },
+      "trending": {
+        "target_count": 3,
+        "target_mix": {
+          "sports_moment": 3
+        },
+        "retired": [
+          "graph_race",
+          "reddit_story",
+          "text_card"
+        ]
+      }
+    },
+    "note": "Proposals are judged against THIS ruling. A change to the mix is a change to what the numbers mean \u2014 compare revisions before comparing performance."
+  },
+  "your_job": "retro/README.md"
+}
