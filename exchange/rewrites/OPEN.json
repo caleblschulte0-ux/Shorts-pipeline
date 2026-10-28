@@ -1,11 +1,11 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-28T11:26:39Z",
+ "updated": "2026-10-28T11:28:42Z",
  "open": [
   {
    "id": "ghost-fishing-gear-ocean-plastic__29f0976f_r1",
    "slug": "ghost-fishing-gear-ocean-plastic",
-   "filed": "2026-10-28T11:26:39Z",
+   "filed": "2026-10-28T11:28:42Z",
    "why": [
     "premise: brain: The claim does not clearly overturn a common viewer expectation and relies only on a generic statistic without a striking, counter‑intuitive twist."
    ],
@@ -13,19 +13,9 @@
    "answer_path": "exchange/rewrites/20261028/ghost-fishing-gear-ocean-plastic__29f0976f_r1.answer.json"
   },
   {
-   "id": "lego-minifigs-outnumber-humans__161409d0_r3",
-   "slug": "lego-minifigs-outnumber-humans",
-   "filed": "2026-10-28T11:26:39Z",
-   "why": [
-    "premise: brain: The premise compares accumulated toy production with living people without establishing how the 10-billion total measures figures that still exist."
-   ],
-   "request": "exchange/rewrites/20261028/lego-minifigs-outnumber-humans__161409d0_r3.request.json",
-   "answer_path": "exchange/rewrites/20261028/lego-minifigs-outnumber-humans__161409d0_r3.answer.json"
-  },
-  {
    "id": "nuclear-stockpile-growth-reversal__419eb74b_r1",
    "slug": "nuclear-stockpile-growth-reversal",
-   "filed": "2026-10-28T11:26:39Z",
+   "filed": "2026-10-28T11:28:42Z",
    "why": [
     "premise: brain: The claim lacks a clear reversal of a common expectation and hinges on an unverified number, making it a weak premise."
    ],
@@ -35,7 +25,7 @@
   {
    "id": "seabed-mining-rush__94b642eb_r2",
    "slug": "seabed-mining-rush",
-   "filed": "2026-10-28T11:26:39Z",
+   "filed": "2026-10-28T11:28:42Z",
    "why": [
     "premise: brain: The 4-kilometer depth is descriptive rather than the consequential number driving a clear expectation reversal about deep-sea mining."
    ],
@@ -45,7 +35,7 @@
   {
    "id": "cavendish-banana-monoculture__66913e65_r1",
    "slug": "cavendish-banana-monoculture",
-   "filed": "2026-10-28T11:26:38Z",
+   "filed": "2026-10-28T11:28:41Z",
    "why": [
     "premise: brain: It doesn't overturn a common viewer expectation, merely states a statistic without a surprising reversal."
    ],

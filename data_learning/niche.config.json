@@ -22122,7 +22122,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-28T11:26:39Z",
+   "rewritten_at": "2026-10-28T11:28:41Z",
    "retold": "retell/v4"
   },
   {
@@ -24494,10 +24494,10 @@
   },
   {
    "slug": "lego-minifigs-outnumber-humans",
-   "title": "There Are Now More Lego Minifigures Than People",
-   "hook": "10 billion Lego minifigures just out-populated your entire planet.",
-   "closing": "Plastic is outgrowing us, so watch your step at home: that yellow army keeps growing.",
-   "question": "How many minifigures are in your house?",
+   "title": "LEGO Produced 10 Billion Minifigures—But Not 10 Billion Survivors",
+   "hook": "10 billion is cumulative production, not minifigures confirmed to still exist.",
+   "closing": "Production totals show cultural scale, but they cannot count what survives.",
+   "question": "How many survived in your house?",
    "caption": "Lego has cranked out an estimated 10 billion minifigures since 1978, more than the 8.1 billion humans currently alive, and it makes around 400 million more every year. How many Lego minifigures do you think are in your house? Tell me below 👇",
    "hashtags": [
     "lego",
@@ -24526,8 +24526,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "1 · THE HEADLINE",
-     "topic": "Minifigures versus people",
-     "say": "Lego has made more minifigures than there are people alive. About ten billion, so everyone could get one, with plenty spare.",
+     "topic": "LEGO Minifigures",
+     "say": "LEGO has produced 10 billion minifigures. That is cumulative production, not a count of surviving toys.",
      "scene": {
       "mechanic": "toy-vs-humanity-columns",
       "concept": "two rising columns, one built from a photo of stacked minifigures and one from a crowd of people, race to their totals",
@@ -24542,8 +24542,8 @@
      },
      "insight_type": "trend",
      "role": "2 · HOW",
-     "topic": "Minifigures made by 2019",
-     "say": "From zero in 1978, the count passed eight billion by 2019. A little toy outgrew the whole planet in four decades.",
+     "topic": "Minifigures Made",
+     "say": "Cumulative minifigure production reached 8.3 billion. The total measures output over time, not pieces still in homes.",
      "scene": {
       "mechanic": "minifig-fill-sweep",
       "concept": "a giant minifigure silhouette fills bottom-up as the reveal sweeps across the production years toward the cumulative total",
@@ -24559,8 +24559,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · THE PACE",
-     "topic": "Minifigures versus babies",
-     "say": "Lego now makes 400 million a year, about three times the babies born. More new minifigures arrive than new people.",
+     "topic": "New Minifigures",
+     "say": "New minifigure production runs at 400 million yearly. The factory pace outstrips human births.",
      "scene": {
       "mechanic": "assembly-line-density",
       "concept": "two streaming lanes of repeated icons, minifigures vs babies, whose count density encodes the per-year production rate race",
@@ -24568,8 +24568,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T03:35:04Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-28T11:28:42Z",
    "retold": "retell/v3"
   },
   {
@@ -27705,7 +27705,7 @@
    ],
    "words_by": "chatgpt-rewrite",
    "retold": "retell/v3",
-   "rewritten_at": "2026-10-28T11:26:38Z"
+   "rewritten_at": "2026-10-28T11:28:41Z"
   },
   {
    "slug": "ceo-executive-pay-gap",
@@ -32727,7 +32727,7 @@
    "hook_was": "What's the slowest experiment ever recorded?",
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-28T11:26:39Z"
+   "rewritten_at": "2026-10-28T11:28:42Z"
   },
   {
    "slug": "california-condor-comeback",
@@ -35586,7 +35586,7 @@
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-28T11:26:39Z",
+   "rewritten_at": "2026-10-28T11:28:41Z",
    "hook_was": "E-scooters got way more dangerous, way faster."
   },
   {
