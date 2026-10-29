@@ -16705,6 +16705,51 @@
         "end": 25.0
       },
       "director_cut": true
+    },
+    "rejected-vibrantperfectcardonehand-eber6u291yekiukg": {
+      "source_url": "https://www.twitch.tv/xqc/clip/VibrantPerfectCardOneHand-EBEr6u291yeKiukG",
+      "streamer": "xqc",
+      "title": "Brick bois finally found the drill",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (Crafting menu browsing, no visible event)",
+      "ts": "2026-10-29T13:04:44.971696+00:00"
+    },
+    "rejected-darlingplumptubershassaanchop-vbpbstuwse1xl4qg": {
+      "source_url": "https://www.twitch.tv/shylily/clip/DarlingPlumpTubersHassaanChop-vbPBSTUWSE1xl4qg",
+      "streamer": "shylily",
+      "title": "Pretty lady... FEET!",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (gacha pull animation, vtuber avatar, nic)",
+      "ts": "2026-10-29T13:05:30.362472+00:00"
+    },
+    "rejected-silkymoraltrianglevohiyo-itkn7qoesinm4myz": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/SilkyMoralTriangleVoHiYo-itkn7qoEsinm4myZ",
+      "streamer": "caseoh_",
+      "title": "Caseoh Says She Is Super Possessed And Then Chat Sees This",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "black screen 1.3s at 16.5s; black screen 0.7s at 22.3s; vision: The sharp picture is a thin strip, about 1/3 of the 9:16 canvas, with large dark padding above and below.; vision: The facecam is tiny and the game footage is very dark, so very little is readable on a phone.; vision: In most frames the",
+      "ts": "2026-10-29T13:10:28.452731+00:00"
+    },
+    "rejected-abstruseopenwalletkippa-qv6fwqq32yz7z1j5": {
+      "source_url": "https://www.twitch.tv/pokimane/clip/AbstruseOpenWalletKippa-Qv6fWqq32Yz7z1J5",
+      "streamer": "pokimane",
+      "title": "clip",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Pokimane talking over leak screenshots; )",
+      "ts": "2026-10-29T13:51:43.252597+00:00"
+    },
+    "rejected-darksweeteelbirb-iyi5pxarwu5acjjq": {
+      "source_url": "https://www.twitch.tv/erobb221/clip/DarkSweetEelBIRB-iYI5PxaRwu5AcJjQ",
+      "streamer": "erobb221",
+      "title": "Erobb221 Gets Roasted After Chat Begs Him To Get Dreads",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip of about 25-30% of the canvas height. It sits in the middle, with large empty blurred ; vision: The two people are small and far away. Their faces are hard to read on a phone, so this is small-and-lost framing.; vision: The top third of the canvas is an empt",
+      "ts": "2026-10-29T13:55:16.460768+00:00"
     }
   }
 }
