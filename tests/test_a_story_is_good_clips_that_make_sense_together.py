@@ -83,6 +83,16 @@ class TheBarIsLooserOnlyWhereItAskedForAPlot(unittest.TestCase):
         self.assertNotIn("OVERRIDES", seen[0])
 
 
+class AFullStoryStillComesFirst(unittest.TestCase):
+    def test_the_run_of_clips_is_the_floor_not_the_goal(self):
+        # operator, 2026-10-29: "this is the min bar like if we can throw a
+        # story together that does fit a good beginning middle and end
+        # payoff then obviously we should do that"
+        self.assertIn("THE FLOOR, NOT THE GOAL", sd._LOOSE_RULE)
+        self.assertLess(sd._LOOSE_RULE.index("THE FLOOR, NOT THE GOAL"),
+                        sd._LOOSE_RULE.index("2-5 clips"))
+
+
 class TheSlotIsWired(unittest.TestCase):
     def test_compilation_turns_it_on(self):
         src = (REPO / "scripts" / "run_third.py").read_text()
