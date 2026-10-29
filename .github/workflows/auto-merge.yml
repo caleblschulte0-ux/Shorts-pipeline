@@ -171,7 +171,11 @@ jobs:
       - name: Full unit suite
         run: |
           set -o pipefail
-          python -m unittest discover -s tests -v 2>&1 | tail -40
+          python -m unittest discover -s tests -v > /tmp/unit.log 2>&1 && rc=0 || rc=$?
+          # The names of what failed, not just the last 40 lines of print noise.
+          grep -E -A30 '^(FAIL|ERROR):' /tmp/unit.log | head -400 || true
+          tail -40 /tmp/unit.log
+          exit $rc
       - name: Split-worker dry run (offline, no Drive, no ChatGPT)
         run: python scripts/exchange_dry_run.py
       - name: Channel-contract acceptance (registry propagation)
