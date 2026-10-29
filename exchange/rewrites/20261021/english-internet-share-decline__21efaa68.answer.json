@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "english-internet-share-decline__21efaa68",
+  "slug": "english-internet-share-decline",
+  "by": "chatgpt",
+  "written_at": "2026-10-29T11:16:26.670Z",
+  "title": "English Fell From 75% To 45% Of Web Pages",
+  "hook": "English web pages fell to 45% as the world logged on.",
+  "closing": "Using only English reveals just part of what the internet contains.",
+  "question": "Which language do you browse?",
+  "segments": [
+    {
+      "topic": "English Web Share",
+      "say": "English held 75% of web pages. The early internet was far less multilingual."
+    },
+    {
+      "topic": "English Content Growth",
+      "say": "Arabic content grew 2,501%. New users built the web in their own languages."
+    },
+    {
+      "topic": "English Website Share",
+      "say": "English still leads with 55% of websites. Nearly half now use other languages."
+    }
+  ]
+}
