@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "helium-supply-squeeze__067a945d",
+  "slug": "helium-supply-squeeze",
+  "by": "chatgpt",
+  "written_at": "2026-10-29T11:16:26.670Z",
+  "title": "Helium Demand Is Headed Toward 190",
+  "hook": "Helium demand is projected to nearly double by 2035.",
+  "closing": "Rising demand makes a concentrated supply more vulnerable and expensive.",
+  "question": "Where should helium be prioritized?",
+  "segments": [
+    {
+      "topic": "Helium Reserve Concentration",
+      "say": "Qatar holds 10.1 billion cubic meters of helium. A few suppliers shape global access."
+    },
+    {
+      "topic": "Helium Demand Growth",
+      "say": "Helium demand is projected to reach an index of 190. Buyers will chase a limited supply."
+    },
+    {
+      "topic": "Helium Price Shock",
+      "say": "The helium price index reached 400. Supply tightness can quickly hit buyers."
+    }
+  ]
+}
