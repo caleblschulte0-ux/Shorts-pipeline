@@ -1,17 +1,7 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-28T18:47:37Z",
+ "updated": "2026-10-29T11:15:51Z",
  "open": [
-  {
-   "id": "dog-breed-popularity-flip__1c3bed67",
-   "slug": "dog-breed-popularity-flip",
-   "filed": "2026-10-28T18:47:37Z",
-   "why": [
-    "premise: brain: The claim merely presents a surprising number without clearly reversing a common viewer expectation, and relies on a vague premise rather than a single, verifiable statistic."
-   ],
-   "request": "exchange/rewrites/20261028/dog-breed-popularity-flip__1c3bed67.request.json",
-   "answer_path": "exchange/rewrites/20261028/dog-breed-popularity-flip__1c3bed67.answer.json"
-  },
   {
    "id": "national-parks-record-then-shutdown__52d77463",
    "slug": "national-parks-record-then-shutdown",
