@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "naep-math-pandemic-drop__28b5f92e",
+  "slug": "naep-math-pandemic-drop",
+  "by": "chatgpt",
+  "written_at": "2026-10-29T11:14:00.229Z",
+  "title": "US Math Scores Fell To 270",
+  "hook": "The weakest students lost 14 math points, widening the gap.",
+  "closing": "Falling math scores compound over time, making early recovery matter.",
+  "question": "What would help students recover?",
+  "segments": [
+    {
+      "topic": "Math Scores Slide",
+      "say": "Math scores fell to 271. Decades of progress nearly vanished."
+    },
+    {
+      "topic": "Math Scores Gap",
+      "say": "The weakest students lost 14 points. The setback hit those already furthest behind."
+    },
+    {
+      "topic": "Math Scores Recovery",
+      "say": "Math scores slipped again to 270. The expected rebound still has not arrived."
+    }
+  ]
+}
