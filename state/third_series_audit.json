@@ -11,7 +11,7 @@
     },
     "wholesome": {
       "n": 12,
-      "median_vph": 0.08
+      "median_vph": 0.075
     },
     "beef": {
       "n": 11,
@@ -21,13 +21,13 @@
       "n": 8,
       "median_vph": 0.065
     },
+    "rage": {
+      "n": 6,
+      "median_vph": 0.05
+    },
     "argument": {
       "n": 6,
       "median_vph": 0.075
-    },
-    "rage": {
-      "n": 5,
-      "median_vph": 0.05
     },
     "win": {
       "n": 4,
@@ -35,11 +35,11 @@
     },
     "extended": {
       "n": 3,
-      "median_vph": 0.09
+      "median_vph": 0.08
     },
     "jumpscare": {
       "n": 2,
-      "median_vph": 0.945
+      "median_vph": 0.895
     },
     "clutch": {
       "n": 1,
@@ -49,7 +49,7 @@
   "excluded": {
     "unknown": {
       "n": 1,
-      "median_vph": 0.26
+      "median_vph": 0.25
     },
     "story": {
       "n": 1,
