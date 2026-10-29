@@ -16512,6 +16512,25 @@
         "end": 36.0
       },
       "director_cut": true
+    },
+    "rejected-auspiciousdistinctchimpanzeebabyrage-pgaxsigabqycc4cq": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/AuspiciousDistinctChimpanzeeBabyRage-pGaXsigABqYCc4cq",
+      "streamer": "caseoh_",
+      "title": "WHAT IS THAT..GGs\ud83d\ude33\ud83d\ude31",
+      "qa_rejected": true,
+      "rejected_by": "preflight",
+      "rejected_why": "source too dark (avg luma 25/255) \u2014 unwatchable IRL/night footage; source has 1.7s of black frames \u2014 dropped feed / hard fade",
+      "ts": "2026-10-29T11:25:54.772291+00:00"
+    },
+    "clip-20261029-1": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/pokimane/clip/CrepuscularClearHumanDoubleRainbow-AxY-KlSEaMNiFwF5",
+      "story_key": null,
+      "streamer": "pokimane",
+      "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
+      "kind": "twitch_clip",
+      "ts": "2026-10-29T11:28:20.036651+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
