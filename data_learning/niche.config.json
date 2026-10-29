@@ -36260,6 +36260,228 @@
    "retold": "retell/v4",
    "words_by": "claude-retell",
    "rewritten_at": "2026-10-28T23:01:24Z"
+  },
+  {
+   "slug": "maternal-mortality-pandemic-reversal",
+   "title": "US Maternal Deaths Fell To 18.6 Per 100,000 In 2023",
+   "hook": "Moms are dying less. But not all moms equally.",
+   "closing": "The number is dropping. The gap behind it isn't.",
+   "question": "Were you surprised by that gap?",
+   "caption": "The US maternal mortality rate spiked to 32.9 per 100,000 births in 2021, then fell for two straight years to 18.6 in 2023 — below pre-pandemic levels. But Black mothers' rate barely moved. Were you surprised by that gap? 👇",
+   "hashtags": [
+    "maternalhealth",
+    "maternalmortality",
+    "cdc",
+    "publichealth",
+    "pregnancy",
+    "healthdata",
+    "didyouknow",
+    "dataviz",
+    "racialdisparity",
+    "womenshealth",
+    "explainer"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "maternal_mortality_national_trend",
+     "params": {
+      "file": "maternal_mortality_national_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE FULL CIRCLE",
+     "topic": "US maternal death rate",
+     "say": "In 2019 the rate was 20.1. COVID pushed it to 32.9 in 2021. By 2023 it fell to 18.6 — below its pre-pandemic level."
+    },
+    {
+     "source": "offline",
+     "key": "maternal_mortality_black_women_trend",
+     "params": {
+      "file": "maternal_mortality_black_women_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · THE RATE THAT DIDN'T FALL",
+     "topic": "Black maternal mortality rate",
+     "say": "Black mothers' rate spiked to 69.9 in 2021, then barely moved — 49.5 in 2022, 50.3 in 2023. The national drop skipped them."
+    },
+    {
+     "source": "offline",
+     "key": "maternal_mortality_by_race_2023",
+     "params": {
+      "file": "maternal_mortality_by_race_2023.json"
+     },
+     "insight_type": "rank",
+     "ascending": false,
+     "role": "3 · THE 2023 GAP",
+     "topic": "maternal deaths by race",
+     "say": "In 2023, Black women died at 50.3 per 100,000 births. White women: 14.5. Hispanic women: 12.4. Asian women: 10.7 — the gap stayed huge."
+    }
+   ]
+  },
+  {
+   "slug": "drone-commercial-overtake",
+   "title": "There Are Now 837,513 Drones Registered With The FAA",
+   "hook": "And most of them aren't toys anymore.",
+   "closing": "The sky went from a hobby to a business, fast.",
+   "question": "Ever flown a drone yourself?",
+   "caption": "Commercial drones (453,635) have overtaken hobby drones (371,334) in the FAA's registry — total registrations topped 837,513 in late 2025, even as monthly sign-ups start to cool off. Ever flown a drone yourself? 👇",
+   "hashtags": [
+    "drones",
+    "faa",
+    "dronelife",
+    "aviation",
+    "uas",
+    "techfacts",
+    "didyouknow",
+    "dataviz",
+    "technology",
+    "explainer"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "drone_commercial_vs_recreational_2025",
+     "params": {
+      "file": "drone_commercial_vs_recreational_2025.json"
+     },
+     "insight_type": "comparison",
+     "role": "1 · THE OVERTAKE",
+     "topic": "commercial vs hobby drones",
+     "say": "Commercial drones just passed hobby drones: 453,635 versus 371,334 registered with the FAA. The hobby craze turned into a real industry."
+    },
+    {
+     "source": "offline",
+     "key": "drone_total_registered_trend",
+     "params": {
+      "file": "drone_total_registered_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "2 · STILL CLIMBING",
+     "topic": "total drones registered with the FAA",
+     "say": "Total registered drones climbed from 785,827 in August 2024 to 837,513 by November 2025 — still growing fast."
+    },
+    {
+     "source": "offline",
+     "key": "drone_monthly_registrations_slowing",
+     "params": {
+      "file": "drone_monthly_registrations_slowing.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · BUT SLOWING",
+     "topic": "drones: new registrations slowing",
+     "say": "But new sign-ups are slowing: about 11,300 drones joined per month in 2024, now just 10,500 in 2025."
+    }
+   ]
+  },
+  {
+   "slug": "right-whale-breeding-females",
+   "title": "Only 70 Breeding Right Whales Are Left On Earth",
+   "hook": "The species almost went silent in 2018.",
+   "closing": "More calves are being born. The whales aren't safe yet.",
+   "question": "Did you know whales could go extinct?",
+   "caption": "North Atlantic right whales hit a low of 358 in 2020 and have crept back to 384 — with 22 calves born this season versus zero in 2018. But fewer than 70 of them are breeding females. Did you know whales could go extinct? 👇",
+   "hashtags": [
+    "rightwhale",
+    "noaa",
+    "endangeredspecies",
+    "wildlife",
+    "oceanlife",
+    "conservation",
+    "didyouknow",
+    "dataviz",
+    "marinelife",
+    "explainer"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "right_whale_population_trend",
+     "params": {
+      "file": "right_whale_population_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE TURN",
+     "topic": "right whale population",
+     "say": "The population hit a low of 358 in 2020. It's crept back up to 376 in 2023, then 384 in 2024."
+    },
+    {
+     "source": "offline",
+     "key": "right_whale_calves_comparison",
+     "params": {
+      "file": "right_whale_calves_comparison.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · FROM ZERO",
+     "topic": "right whale calves born",
+     "say": "In 2018, zero calves were born — the first time in 30 years. This season, 22 calves arrived, the most in 15 years."
+    },
+    {
+     "source": "offline",
+     "key": "right_whale_breeding_females_share",
+     "params": {
+      "file": "right_whale_breeding_females_share.json"
+     },
+     "insight_type": "share",
+     "role": "3 · THE BOTTLENECK",
+     "topic": "breeding right whales",
+     "say": "Of the roughly 380 whales left, fewer than 70 are breeding females. That's the real bottleneck on recovery."
+    }
+   ]
+  },
+  {
+   "slug": "pedestrian-deaths-outlier",
+   "title": "US Traffic Deaths Fell To 40,990 In 2023",
+   "hook": "But one kind of death kept climbing.",
+   "closing": "The roads got safer. Walking on them didn't.",
+   "question": "Do you feel safe walking near traffic?",
+   "caption": "Total US traffic deaths fell three years straight to 40,990 in 2023. But pedestrian deaths rose 77% since 2010 — hitting 7,508 in 2022, the most since 1981. Do you feel safe walking near traffic? 👇",
+   "hashtags": [
+    "trafficsafety",
+    "nhtsa",
+    "pedestriansafety",
+    "roadsafety",
+    "publichealth",
+    "cityliving",
+    "didyouknow",
+    "dataviz",
+    "transportation",
+    "explainer"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "traffic_deaths_national_trend",
+     "params": {
+      "file": "traffic_deaths_national_trend.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE GOOD NEWS",
+     "topic": "US traffic deaths",
+     "say": "Total traffic deaths fell three years straight: 43,230 in 2021, 42,514 in 2022, 40,990 in 2023."
+    },
+    {
+     "source": "offline",
+     "key": "pedestrian_vs_other_traffic_deaths_growth",
+     "params": {
+      "file": "pedestrian_vs_other_traffic_deaths_growth.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE OUTLIER",
+     "topic": "pedestrian deaths vs other traffic deaths",
+     "say": "But pedestrian deaths rose 77% since 2010, while every other kind of traffic death rose just 25%."
+    },
+    {
+     "source": "offline",
+     "key": "pedestrian_deaths_2022_vs_1981",
+     "params": {
+      "file": "pedestrian_deaths_2022_vs_1981.json"
+     },
+     "insight_type": "share",
+     "role": "3 · ONE IN SIX",
+     "topic": "pedestrian deaths hit a record",
+     "say": "Pedestrians made up 7,508 of 42,514 traffic deaths in 2022 — the worst count since 1981, about 1 in 6 of all deaths."
+    }
+   ]
   }
  ]
 }

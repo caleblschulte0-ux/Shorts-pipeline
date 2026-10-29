@@ -1,0 +1,19 @@
+{
+  "key": "right_whale_calves_comparison",
+  "title": "North Atlantic right whale calves born, 2018 vs recent season",
+  "unit": "number",
+  "geography": "North Atlantic Ocean (calving grounds off GA/FL)",
+  "time_coverage": "2018 vs 2025-26 season",
+  "source": {
+    "name": "North Atlantic Right Whale Calving Season reports",
+    "publisher": "NOAA Fisheries",
+    "url": "https://www.fisheries.noaa.gov/national/endangered-species-conservation/north-atlantic-right-whale-calving-season-2024",
+    "officiality": "official",
+    "access_date": "2026-10-29"
+  },
+  "notes": "The 2018 calving season produced zero confirmed calves for the first time since aerial surveys began in 1989. The 2025-26 season has documented 22 calves, the most in 15 years, per NOAA Fisheries and partner surveys.",
+  "points": [
+    {"label": "2018 season", "value": 0},
+    {"label": "2025-26 season", "value": 22}
+  ]
+}

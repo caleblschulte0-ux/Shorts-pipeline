@@ -1,0 +1,19 @@
+{
+  "key": "drone_total_registered_trend",
+  "title": "Total drones registered with the FAA",
+  "unit": "number",
+  "geography": "United States",
+  "time_coverage": "August 2024 - November 2025",
+  "source": {
+    "name": "UAS by the Numbers",
+    "publisher": "Federal Aviation Administration (FAA)",
+    "url": "https://www.faa.gov/node/54496",
+    "officiality": "official",
+    "access_date": "2026-10-29"
+  },
+  "notes": "Total FAA drone registrations grew from 785,827 (August 8, 2024) to 837,513 (November 2025).",
+  "points": [
+    {"label": "Aug 2024", "value": 785827, "period": "2024"},
+    {"label": "Nov 2025", "value": 837513, "period": "2025"}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "key": "right_whale_breeding_females_share",
+  "title": "Reproductively active females as a share of the right whale population",
+  "unit": "number",
+  "geography": "North Atlantic Ocean",
+  "time_coverage": "2025",
+  "source": {
+    "name": "North Atlantic Right Whale Calving Season 2025",
+    "publisher": "NOAA Fisheries",
+    "url": "https://www.fisheries.noaa.gov/national/endangered-species-conservation/north-atlantic-right-whale-calving-season-2024",
+    "officiality": "official",
+    "access_date": "2026-10-29"
+  },
+  "notes": "NOAA Fisheries estimates fewer than 70 reproductively active females remain out of roughly 380 total North Atlantic right whales.",
+  "points": [
+    {"label": "Breeding females", "value": 70},
+    {"label": "Everyone else", "value": 310}
+  ]
+}
