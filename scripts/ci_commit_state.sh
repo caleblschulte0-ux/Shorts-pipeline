@@ -85,6 +85,13 @@ for attempt in 1 2 3 4 5; do
     git diff --cached --name-only 2>/dev/null; } | sort -u | while read -r p; do
     [ -n "$p" ] && [ -e "$p" ] && cp -a --parents "$p" "$SAVE/" 2>/dev/null || true
   done
+  # THE BASE: the main this checkout last synced with (checkout, or the last
+  # fetch/push of this loop), read BEFORE the fetch moves it. The story
+  # config is merged three-way against it, so the run writes back only what
+  # it changed; a two-way "ours wins" put a scene main had nulled back on
+  # the story twice on 2026-10-28 (scripts/merge_state_json.py). A shallow
+  # checkout has this commit, which is all `git show` needs.
+  BASE_REV=$(git rev-parse -q --verify "refs/remotes/origin/$BRANCH^{commit}" 2>/dev/null || true)
   git fetch origin "$BRANCH"
   git reset --hard "origin/$BRANCH"
   # Restore every artifact this run generated on top of the fresh branch...
@@ -116,10 +123,13 @@ for attempt in 1 2 3 4 5; do
         continue ;;
       *viz_mechanics.json|*niche.config.json)
         git show "origin/$BRANCH:$rel" > "$THEIRS" 2>/dev/null || echo '' > "$THEIRS"
-        python3 scripts/merge_state_json.py "$THEIRS" "$SAVE/$rel" "$rel" \
+        BASEF=$(mktemp)
+        BASEARG=()                              # the base, when git has it
+        [ -n "$BASE_REV" ] && git show "$BASE_REV:$rel" > "$BASEF" 2>/dev/null && BASEARG=("$BASEF")
+        python3 scripts/merge_state_json.py "$THEIRS" "$SAVE/$rel" "$rel" ${BASEARG[@]+"${BASEARG[@]}"} \
           || { echo "::error::[persist] union-merge failed for $rel — refusing to overwrite either side" >&2
                touch "$SAVE/.merge_failed"; }
-        rm -f "$THEIRS"
+        rm -f "$THEIRS" "$BASEF"
         continue ;;
     esac
     git show "origin/$BRANCH:$rel" > "$THEIRS" 2>/dev/null || echo '{}' > "$THEIRS"
