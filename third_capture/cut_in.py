@@ -90,33 +90,42 @@ def snap(items: list[dict], words: list[dict],
 
 
 def plan(items, dur: float, offset: float = 0.0) -> list[dict]:
-    """The cut-ins this cut can carry, on the cut's clock. One said before
-    the cut, in its first second, or too late to finish, is dropped."""
-    from funnel.find_footage import SECS
-    out: list[dict] = []
+    """The cut-ins this cut can carry, on the cut's clock, each with the
+    `secs` there is ROOM for (to the next cut-in or the end of the cut,
+    at most MAX_MOMENT): how long it runs is the moment's own length, as
+    the footage finder watched it, never a fixed time. One said before
+    the cut, in its first second, or with no room left, is dropped."""
+    from funnel.find_footage import MAX_MOMENT, MIN_MOMENT
+    keep: list[dict] = []
     for r in sorted(parse(items), key=lambda r: r["at"]):
         at = r["at"] - float(offset or 0.0)
-        if at < 1.0 or at + SECS > dur - 0.8:
+        if at < 1.0 or at + MIN_MOMENT > dur - 0.8:
             print(f"[cut-in] {r['who']!r} @{r['at']}: outside the cut "
                   "— not cut in", flush=True)
             continue
-        if any(abs(at - k["at"]) < GAP + SECS for k in out):
+        if any(abs(at - k["at"]) < GAP for k in keep):
             print(f"[cut-in] {r['who']!r} @{r['at']}: too close to the "
                   "last — not cut in", flush=True)
             continue
-        out.append({**r, "at": round(at, 2), "secs": SECS})
-        if len(out) >= MAX_CUTS:
+        keep.append({**r, "at": round(at, 2)})
+        if len(keep) >= MAX_CUTS:
             break
+    out = []
+    for k, r in enumerate(keep):
+        nxt = keep[k + 1]["at"] - 0.3 if k + 1 < len(keep) else dur - 0.8
+        out.append({**r, "secs": round(min(MAX_MOMENT, nxt - r["at"]), 2)})
     return out
 
 
 def ready(items: list[dict], work: Path, title: str = "") -> list[dict]:
-    """`plan` items that found footage, each with its `mp4`."""
+    """`plan` items that found footage, each with its `mp4`, as long as
+    the moment the finder watched."""
     from funnel import find_footage
     out = []
     for it in items:
         hit = find_footage.find(it["who"], it["look"], secs=it["secs"],
                                 work=work, title=title,
+                                context=it.get("said") or "",
                                 avoid=[{"url": o["url"], "from_s": o["from_s"]}
                                        for o in out])
         print(f"[cut-in] {it['who']!r} @{it['at']}: "

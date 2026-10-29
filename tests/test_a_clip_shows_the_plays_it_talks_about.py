@@ -185,11 +185,13 @@ class NeverSomeoneElsesEdit(unittest.TestCase):
             self.assertFalse(find_footage.portrait(Path("/x.mp4")))
 
 
-class TheWholePlay(unittest.TestCase):
-    """caaleb, 2026-10-28, of the Skattebo cut-in: "that clip might have
-    been the wrong part of the play"."""
+class ACutInIsWatchedNotTimed(unittest.TestCase):
+    """caaleb, 2026-10-29: "it can't just be 4.5 seconds later ...
+    something that checks, is this the beginning of the play? Yes. Is
+    this the end of the play? Yes. Did they show what we needed to show?
+    Yes ... not just a football play"."""
 
-    def test_a_cut_in_starts_where_its_shot_starts(self):
+    def _find(self, watched, room=10.0):
         import tempfile
         from funnel import find_footage
         with tempfile.TemporaryDirectory() as td, \
@@ -206,14 +208,70 @@ class TheWholePlay(unittest.TestCase):
                                   side_effect=lambda v, a, o: o), \
                 mock.patch.object(find_footage, "judge", return_value={
                     0: {"depicts": True}}), \
-                mock.patch.object(find_footage, "shot_around",
-                                  return_value=(20.5, 28.0)), \
+                mock.patch.object(find_footage, "watch",
+                                  return_value=watched), \
                 mock.patch.object(find_footage, "cut",
                                   side_effect=lambda v, s, n, o: o):
-            hit = find_footage.find("Cam Skattebo", "run", work=td)
-        # frame judged at 22s, the shot (the snap) began at 20.5s
-        self.assertAlmostEqual(hit["from_s"], 20.6, places=1)
-        self.assertGreaterEqual(hit["secs"], 4.0)
+            return find_footage.find("Cam Skattebo", "run", work=td,
+                                     secs=room)
+
+    def test_it_runs_from_the_moments_start_to_its_end(self):
+        hit = self._find((19.0, 26.5))
+        self.assertEqual((hit["from_s"], hit["secs"]), (19.0, 7.5))
+
+    def test_footage_the_watcher_refuses_is_never_cut_in(self):
+        self.assertIsNone(self._find(None))
+
+    def test_a_moment_longer_than_the_room_is_not_cut_short(self):
+        self.assertIsNone(self._find((10.0, 21.0), room=6.0))
+
+    def test_the_watcher_names_frames_and_they_become_seconds(self):
+        import shutil
+        import subprocess
+        import tempfile
+        from funnel import find_footage
+        from shared import shot_relevance
+        if not shutil.which("ffmpeg"):
+            self.skipTest("ffmpeg unavailable")
+        with tempfile.TemporaryDirectory() as td:
+            td = Path(td)
+            subprocess.run(
+                ["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i",
+                 "testsrc=s=640x360:r=30:d=20", "-c:v", "libx264",
+                 str(td / "reel.mp4")], check=True)
+            with mock.patch.object(shot_relevance, "watch_moment",
+                                   return_value={"shows": True, "begin": 4,
+                                                 "end": 15, "why": "a run"}
+                                   ) as wm:
+                got = find_footage.watch(td / "reel.mp4", 10.0, 20.0,
+                                         "a run", "run the ball", "t", td)
+            sheets = wm.call_args[0][0]
+            self.assertEqual(len(sheets), 3)        # 34 frames, 12 a sheet
+            self.assertTrue(all(p.exists() for p in sheets))
+            # frame 4 is 2.0 + 4 * 0.5 = 4.0s; frame 15 ends at 9.5 + 0.5
+            self.assertEqual(got, (4.0, 10.0))
+            with mock.patch.object(shot_relevance, "watch_moment",
+                                   return_value={"shows": False,
+                                                 "why": "a huddle"}):
+                self.assertIsNone(find_footage.watch(
+                    td / "reel.mp4", 10.0, 20.0, "a run", "", "t", td))
+
+    def test_a_watchers_answer_is_validated(self):
+        from shared import shot_relevance as sr
+        self.assertIsNone(sr.moment({"begin": 1}))
+        self.assertIsNone(sr.moment({"shows": True, "begin": 5, "end": 5}))
+        self.assertIsNone(sr.moment({"shows": True, "begin": "x", "end": 3}))
+        self.assertEqual(sr.moment({"shows": False})["shows"], False)
+        self.assertEqual(sr.moment({"shows": True, "begin": 2, "end": 9}
+                                   )["end"], 9)
+        self.assertIn("not just", sr.watch_moment.__doc__)
+        self.assertIn("BEGINS", sr._WATCH)
+
+    def test_the_room_is_to_the_next_cut_in_or_the_end(self):
+        from third_capture import cut_in
+        got = cut_in.plan([{"who": "a", "at": 5}, {"who": "b", "at": 12},
+                           {"who": "c", "at": 30}], 36.0)
+        self.assertEqual([g["secs"] for g in got], [6.7, 10.0, 5.2])
 
 
 class NeverTheSamePlayTwice(unittest.TestCase):
