@@ -4425,11 +4425,39 @@
       "duration_s": 25.6
     },
     "lottery-odds-vs-real-life": {
-      "claimed_at": "2026-10-29T01:25:59.309467+00:00",
+      "url": "https://youtube.com/shorts/x6_nr3aa6rg",
       "title": "Powerball's Jackpot Denominator Grew 67%",
+      "at": "2026-10-29T01:26:09.442553+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 8.49,
+      "beat_s": [
+        4.53,
+        8.49,
+        6.36,
+        5.4,
+        6.05
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 61,
+      "duration_s": 31.3,
+      "hook": "shock_stat",
+      "topic_category": "math",
+      "ending_type": "consequence",
+      "depictions": [
+        "mechanic:odds-ring-zoom",
+        "mechanic:shrinking-rarity-circles",
+        "mechanic:ball-drum-swell"
+      ],
+      "words_first_10s": 7,
+      "scene_changes_before_5s": 2
     }
   },
   "uploads": [
@@ -5645,9 +5673,10 @@
       "claimed_at": "2026-10-29T01:25:59.309467+00:00",
       "title": "Powerball's Jackpot Denominator Grew 67%",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "lottery-odds-vs-real-life"
+      "url": "https://youtube.com/shorts/x6_nr3aa6rg",
+      "state": "posted",
+      "slug": "lottery-odds-vs-real-life",
+      "at": "2026-10-29T01:26:09.442553+00:00"
     }
   ]
 }
