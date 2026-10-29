@@ -20,7 +20,7 @@
       "says": [
         "Progression to secondary school rose from 77.8% in 1985 to 91.3% in 2017 — 1.2 times higher.",
         "Cereal production climbed from 1083.7 million metric tons in 1972 to 1644.1 million metric tons in 2024 — 1.5 times higher.",
-        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+        "China leads farmland at 5.2 million square kilometers; United States 4.2, Australia 3.6, Brazil 2.4, and Russia 2.2."
       ],
       "closing": "Production kept rising while farmland remained concentrated.",
       "question": "Which number changed your view?"
@@ -56,6 +56,7 @@
     "The configured shared Drive destination was found and remains shared; no new file was requested.",
     "No package punch-ups were requested. All three requested Explainer stories were rewritten with the same segment counts and orders and every supplied number and entity preserved.",
     "Mandatory mailbox round one completed within caps: 0 reviews, 20 already-answered ask keys reused, 8 expired freshness-dependent asks skipped, and 10 rewrite requests answered.",
-    "DONE only hands off this response. Actual channel upload verification remains outstanding."
+    "DONE only hands off this response. Actual channel upload verification remains outstanding.",
+    "Pre-DONE readback caught and corrected one 29-word SAY; all SAY lines now satisfy the 24-word limit."
   ]
 }
