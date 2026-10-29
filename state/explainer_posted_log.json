@@ -4460,11 +4460,29 @@
       "scene_changes_before_5s": 2
     },
     "cryonics-client-count": {
-      "claimed_at": "2026-10-29T11:21:01.589023+00:00",
+      "url": "https://youtube.com/shorts/23IQUFS7r2w",
       "title": "Nearly 2,000 People Signed Up To Be Frozen",
+      "at": "2026-10-29T11:21:12.386102+00:00",
       "publish_at": null,
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.09,
+      "beat_s": [
+        3.24,
+        5.3,
+        5.94,
+        7.09,
+        6.1
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 70,
+      "duration_s": 28.2
     }
   },
   "uploads": [
@@ -5689,9 +5707,10 @@
       "claimed_at": "2026-10-29T11:21:01.589023+00:00",
       "title": "Nearly 2,000 People Signed Up To Be Frozen",
       "publish_at": null,
-      "url": null,
-      "state": "uploading",
-      "slug": "cryonics-client-count"
+      "url": "https://youtube.com/shorts/23IQUFS7r2w",
+      "state": "posted",
+      "slug": "cryonics-client-count",
+      "at": "2026-10-29T11:21:12.386102+00:00"
     }
   ]
 }
