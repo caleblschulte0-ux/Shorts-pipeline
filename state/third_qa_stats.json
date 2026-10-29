@@ -3,135 +3,6 @@
     {
       "date": "20261021",
       "dry_run": false,
-      "ts": "2026-10-21T12:18:41+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 14,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 140,
-        "with_retention": 125,
-        "with_curve": 15,
-        "fetched_at": "2026-10-21T12:02:21.174177+00:00"
-      },
-      "brain": {
-        "ok": 6,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261021-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.62,
-              "why": "visible injury, strong flinch potential",
-              "blind": false
-            },
-            "content": {
-              "score": 0.45,
-              "why": "Dark horror game, monster attack, unclea",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jasontheween Freaks Out After Something Grabs Him Mid-Stream"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "The scene is dark and murky, though the action stays readable.",
-                "The sharp region fills only about 60% of the canvas, which is slightly small.",
-                "The caption sits over the subject's lower body in some frames. It does not cover any faces."
-              ]
-            }
-          },
-          "took_s": 136.9
-        },
-        {
-          "slug": "clip-20261021-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261021-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261021-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261021-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261021-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
-      "date": "20261021",
-      "dry_run": false,
       "ts": "2026-10-21T13:33:40+00:00",
       "feedback": {
         "snapshot": true,
@@ -4810,6 +4681,506 @@
           "slug": "clip-20261028-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261029",
+      "dry_run": false,
+      "ts": "2026-10-29T12:42:25+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 17,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 144,
+        "with_retention": 127,
+        "with_curve": 15,
+        "fetched_at": "2026-10-29T08:46:26.913442+00:00"
+      },
+      "brain": {
+        "ok": 48,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:sypherpk": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261029-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "facecam_gameplay",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, possible reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.45,
+              "why": "Static screenshots, insider deepfake con",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "The screen-share panel is small and mostly dark, so the tweet text is hard to read on a phone.",
+                "The sharp area fills only about 60% of the canvas, with a large blurred band at the bottom holding the caption."
+              ]
+            }
+          },
+          "took_s": 154.3
+        },
+        {
+          "slug": "clip-20261029-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "face_content",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.62,
+              "why": "shocking bill reaction",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "Shock at 500k yen bill, visible reaction",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Is Told Her Restaurant Bill Already Passed 500,000 Yen"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "The bottom half briefly loses the woman: at about 3.8s only a sliver of a head is visible at the right edge.",
+                "The hook caption sits across her chin and mouth in a few frames, for example at 2.2s and 15.8s.",
+                "Her face is tight and partly cropped at the top in some frames."
+              ]
+            }
+          },
+          "took_s": 183.1
+        },
+        {
+          "slug": "clip-20261029-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "face_content",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Elden Ring boss win, insider, stream cut",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Screams As He Watches Someone Try To Flash And Actually Pull It Off"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "The hook caption sits across the lower face in the facecam half, and in a few frames it covers the mouth or chin",
+                "Word captions are clipped at the right edge in places ('dare you Fl', 'Flash r')",
+                "The facecam shows only a torso or shirt in the last two frames because the streamer leaves the frame, so there is no fac",
+                "The game half is dark and the action in it is small"
+              ]
+            }
+          },
+          "took_s": 144.9
+        },
+        {
+          "slug": "clip-20261029-4",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Sharp picture is a thin 16:9 strip, about a third of the canvas height, not the roughly three quarters expected. The ren; vision: Subject is small and far away in the strip, so it is hard to r",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 131,
+                "refused_shown": 7,
+                "scouted": [],
+                "vod_arcs": 322,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2931,
+                "pool_with_vod": 2032,
+                "arc_sizes": [
+                  2,
+                  6,
+                  6,
+                  6,
+                  2,
+                  2,
+                  2,
+                  4,
+                  5,
+                  3
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "yonnajay@momenttransparentlazywatercresspermasmug-l6gi9piv0c",
+                  "outcome": "already_refused",
+                  "why": "2026-10-28: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "clix@momentgeniuscourageousjaguarbudblast-eqcr2aq92gulydq6",
+                  "outcome": "already_refused",
+                  "why": "2026-10-25: director judged: not a story \u2014 The popular clip is a 9-second moment where a woman off to the side holds up a dark hoodie while Clix claps. The dialogue is garb"
+                },
+                {
+                  "cluster": "ohnepixel@momentshycourteouswoodcockasianglow-oqmurxnb-pad9m",
+                  "outcome": "already_refused",
+                  "why": "2026-10-28: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "gilticus@momentbombasticpeppyclamstinkycheese-ighll2zb2u7cdc",
+                  "outcome": "already_refused",
+                  "why": "2026-10-28: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "joebartolozzi@momentadventuroussmellyciderresidentsleeper-7g",
+                  "outcome": "already_refused",
+                  "why": "2026-10-28: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "alinity@momentgrossthoughtfuliguanaraccattack-nftl3cbd4acbwc",
+                  "outcome": "already_refused",
+                  "why": "2026-10-28: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "ludwig@momententhusiasticblitheminkheyguys-juiglmr90ksw5v9t",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit; source too dark (avg l"
+                },
+                {
+                  "cluster": "ishowspeed@momentrelievedrelievedeagleitsboshytime-sae9j8tvu",
+                  "outcome": "structure_ok",
+                  "why": "kept"
+                },
+                {
+                  "cluster": "ishowspeed@momentrelievedrelievedeagleitsboshytime-sae9j8tvu",
+                  "outcome": "qa_failed",
+                  "why": "vision: Large empty white or grey areas fill the top of the frame at 1.7s, 5.2s, 8.7s, 12.2s, 15.7s, 19.2s, 22.7s and 26.2s. The; vision: In"
+                },
+                {
+                  "cluster": "pokimane@momentpeacefulbelovedchinchillapoooound-g-d6-fjv_wn",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The sources are a silent, speechless animated intro: an anime-style Pokimane avatar with two cats, an OBS Start Streaming click, then Fortnite character-select screens showing the Streamer Style and L"
+                },
+                {
+                  "cluster": "alinity@momentbillowingwonderfulheronripepperonis-xnrro_zppd",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "helydia@momentrockyfunnyllamahassanchop-3iorkuk2_r5rs0up",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.0s \u2014 too short to edit"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unknown event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "Ringside chaos, security scuffle, unclea",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Silky Says He's Back In The Ring For NMS Boxing 6 Next Year"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.7,
+              "problems": [
+                "Sharp picture is a thin 16:9 strip, about a third of the canvas height, not the roughly three quarters expected. The ren",
+                "Subject is small and far away in the strip, so it is hard to read on a phone.",
+                "Frames at 5.5s and 7.2s show mostly dark or empty space with no clear person or action.",
+                "Frames at 6.4s and 8.1s show only feet, legs or a torso, so the subject is lost.",
+                "Baked-in stream captions and chat overlays sit inside the small strip, adding clutter."
+              ]
+            }
+          },
+          "took_s": 214.6
+        },
+        {
+          "slug": "clip-20261029-5",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin strip, about a quarter of the canvas height. The rest is blurred padding, so the framing fai; vision: Most of the clip is a desktop or OBS screen-share (frames 7s t",
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 134,
+                "refused_shown": 7,
+                "scouted": [
+                  {
+                    "premise": "Ohnepixel plays Five Hearts Under One Roof 2 on stream, gets pulled into the suggestive game, insists he's not playing, ",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Ajak0n's GTA RP stream on 10/22: a repeat mishap, then a doctor who spent months looking for him finds him.",
+                    "shape": "one_stream",
+                    "n": 2
+                  },
+                  {
+                    "premise": "Jasontheween and Stableronaldo's NMS Boxing night: the knockdown, the fall, and the awkward silence.",
+                    "shape": "multi_streamer",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Jynxzi's Elden Ring run: he conquers Midra, begs for a third one, then screams at a flash that actually works.",
+                    "shape": "one_stream",
+                    "n": 3
+                  }
+                ],
+                "vod_arcs": 322,
+                "moments": 40,
+                "candidates": 538,
+                "pool": 2931,
+                "pool_with_vod": 2032,
+                "arc_sizes": [
+                  2,
+                  6,
+                  6,
+                  6,
+                  2,
+                  2,
+                  2,
+                  4,
+                  5,
+                  3
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-adult-bett-2026w41",
+                  "outcome": "narrative_failed",
+                  "why": "scores [77, 78, 78] after 2 revision(s) \u2014 @12s pacing: The 'Half a minute later' overlay appears at 12.2s, before the second clip starts at about 14.8s. Move it to the clip boundary so it labels the jump instead of sitting over the end of the first clip.; @9s confusing: 'I may actually get tapped on"
+                },
+                {
+                  "cluster": "yonnajay@momenttransparentlazywatercresspermasmug-l6gi9piv0c",
+                  "outcome": "already_refused",
+                  "why": "2026-10-28: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "alinity@vod2892098335",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 preflight:source only 5.8s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "scout:ajak0n/ajak0n-charact-hair-2026w43",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage doesn't hold a story or a run of clips about one thing. The first clip (2h15m) is a camo SUV driving along a coastal road. The streamer says 'Can I say reason? What? What?' and then names "
+                },
+                {
+                  "cluster": "clix@momentgeniuscourageousjaguarbudblast-eqcr2aq92gulydq6",
+                  "outcome": "already_refused",
+                  "why": "2026-10-25: director judged: not a story \u2014 The popular clip is a 9-second moment where a woman off to the side holds up a dark hoodie while Clix claps. The dialogue is garb"
+                },
+                {
+                  "cluster": "kaicenat@vod2888642092/kaicenat-call-cenat-2026w40",
+                  "outcome": "narrative_failed",
+                  "why": "scores [76, 74, 77] after 2 revision(s) \u2014 @6s missing_context: Reggie is introduced only by a short on-screen line. Say in the caption or an overlay what the 'first lie' is (what Reggie claimed or asked for help with), so a stranger knows what the feud is about.; @1s other: The transcript opens with"
+                }
+              ]
+            },
+            "banger": {
+              "score": 0.62,
+              "why": "beef reaction, but unclear what's shown",
+              "blind": false
+            },
+            "content": {
+              "score": 0.42,
+              "why": "Streamer reacts, insider context, weak p",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Fires Back At Jasone: \"I Don't Fight\" After Boxing Callout"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.85,
+              "problems": [
+                "The sharp picture is a thin strip, about a quarter of the canvas height. The rest is blurred padding, so the framing fai",
+                "Most of the clip is a desktop or OBS screen-share (frames 7s to 23s). The UI and chat text is unreadably small on a phon",
+                "The streamer's face is small in the bottom-left corner, and the main content (the tweet, the boxing footage) is tiny and",
+                "The word captions sit over the lower part of the strip and cover part of the streamer.",
+                "The first frames show a blurred, zoomed-in padding image with no clear subject, so the opening is weak."
+              ]
+            }
+          },
+          "took_s": 211.4
+        },
+        {
+          "slug": "clip-20261029-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "face_content",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "outfit showcase, no clear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Cosplay reveal, mod hiding, mild payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Emiru Cowgirl Outfit Has Her Mod Fully Hiding From Stream"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "The top panel is mostly an empty plush-toy wall with no person in it for most of the clip",
+                "At 20.7s the top panel shows only a cropped torso with no head",
+                "The hook caption sits across the lower face panel and touches the chin and neck area in some frames"
+              ]
+            }
+          },
+          "took_s": 231.3
         }
       ]
     }
