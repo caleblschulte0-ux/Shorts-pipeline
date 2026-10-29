@@ -1,0 +1,75 @@
+{
+  "schema": "shorts-production-blocker/v1",
+  "date": "20261029",
+  "status": "incomplete",
+  "checked_at": "2026-10-29T11:17:36.767Z",
+  "frozen_contract": {
+    "sports": {
+      "format": "sports_moment",
+      "required": 3,
+      "verified_posted": 0,
+      "pending": 3,
+      "accepted_urls": []
+    },
+    "twitch": {
+      "format": "clip",
+      "required": 6,
+      "verified_posted": 0,
+      "pending": 6,
+      "accepted_urls": []
+    },
+    "explainer": {
+      "format": "data_story",
+      "required": 4,
+      "verified_posted": 1,
+      "pending": 3,
+      "accepted_urls": [
+        {
+          "url": "https://youtube.com/shorts/x6_nr3aa6rg",
+          "title": "Powerball's Jackpot Denominator Grew 67%",
+          "at": "2026-10-29T01:26:09.442553+00:00",
+          "format": "other_topic"
+        }
+      ]
+    }
+  },
+  "remaining_shortfall": 12,
+  "exact_failed_step": "Downstream render/upload verification: accepted, format-matching posted URLs are missing for part of the frozen 13-video contract.",
+  "attempts": [
+    "Committed and read back STARTED before other writes.",
+    "Completed two mandatory mailbox rounds across all three live indexes.",
+    "Committed and validated 19 rewrite answers; reused 22 existing ask answers; skipped 8 expired freshness-dependent asks and one frozen-frame rewrite.",
+    "Committed response.json, corrected a pacing violation on readback, validated it again, then committed DONE separately.",
+    "Inspected Phase B, claim commits, and all three posted logs after downstream processing time.",
+    "Verified the shared Drive destination; no custom image request existed in the frozen bundle."
+  ],
+  "phase_b": {
+    "commit": "0bc9fde9fda0834c55ad9b9343f56cfa4f41fb46",
+    "explainer_applied": 2,
+    "explainer_rejected": 1,
+    "media_required": 0
+  },
+  "mailboxes": {
+    "reviews": {
+      "index_open": 0,
+      "newly_answered": 0,
+      "skipped": 0
+    },
+    "asks": {
+      "index_open_keys": 30,
+      "newly_answered": 0,
+      "reused_existing_unique": 22,
+      "skipped": 8,
+      "skip_reason": "Month-old prompts explicitly asked for today's news; freshness expired, so a timely answer cannot be supplied honestly."
+    },
+    "rewrites": {
+      "index_open_entries": 138,
+      "newly_answered": 19,
+      "skipped": 1,
+      "skip_reason": "One request is a frozen-video duplicate-frame defect; a words-only answer cannot repair motion frames.",
+      "claim_state": "Some new answers remain listed while claim/apply workflows consume them."
+    }
+  },
+  "no_done_retrigger": true,
+  "retryable": true
+}
