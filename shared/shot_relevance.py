@@ -43,8 +43,11 @@ and the line as the same thing. A generic stock photo, a brand logo or \
 product, a keyword coincidence (a courtroom gavel for "the state's security", \
 a medical textbook, a photo wall, a fruit stand under "picking my paint"), a \
 different animal, a statue for a real animal, or an image about a different \
-story is NOT a depiction. When in doubt, say false: a missing picture costs \
-less than a wrong one.
+story is NOT a depiction. When the line names a THING SOMEONE MADE \
+(a post, a tweet, a screenshot, a headline, an article, a letter, a chart), \
+the picture must BE that thing, its own text or layout visible: a photo of \
+the people it is by or about is NOT their post. When in doubt, say false: a \
+missing picture costs less than a wrong one.
 
 Shots:
 {shots}
@@ -202,3 +205,82 @@ def replace_dropped(pkg: dict, dropped: list[dict], materialise,
         i = d["index"]
         shots[i].pop("image_url", None)
     return kept, dropped_again
+
+
+_WATCH = """You are WATCHING a stretch of footage before it is cut into a \
+short video, for the story titled: {title}
+
+The footage is laid out in the contact sheet image(s) below: numbered frames \
+in order, {step:.1f}s apart. READ every sheet with the Read tool.
+
+{sheets}
+
+It will play while the person in the video says: "{context}". It must SHOW: \
+{look}.
+
+Watch the frames in order and find the ONE moment that shows it, whole: \
+the frame where it BEGINS (before the action starts: the snap, the tip-off, \
+the windup, the run-up, the walk-in, whatever starts THIS moment) and the \
+frame where it ENDS (the action complete and its result on screen: the \
+tackle, the ball through the net, the landing, the reaction). It must make \
+sense to a stranger on its own: never start halfway through, never stop \
+before the result, never run into a different moment, a replay of \
+something else, a graphic or a studio. When no stretch shows it, \
+shows=false: a missing cut-in costs less than a wrong one.
+
+Return ONLY a JSON object, no prose:
+{{"shows": <true|false>, "begin": <frame number>, "end": <frame number>, \
+"why": "<one line: what happens from begin to end>"}}
+"""
+
+
+def watch_moment(sheets: list[Path], look: str, context: str = "",
+                 title: str = "", step: float = 0.5,
+                 model: str | None = None) -> dict | None:
+    """The headless brain WATCHES numbered frames of footage (contact
+    sheets) and says where the moment showing `look` begins and ends:
+    {"shows": bool, "begin": int, "end": int, "why": str}, or None when it
+    could not answer. Operator, 2026-10-29, of cut-ins timed by a fixed
+    length: "Something needs to watch these clips ... is this the
+    beginning of the play? Yes. Is this the end of the play? Yes. Did they
+    show what we needed to show? Yes ... not just a football play"."""
+    if not sheets or not shutil.which("claude"):
+        return None
+    prompt = _WATCH.format(
+        title=title or "(untitled)", step=step, look=look.strip(),
+        context=(context or "").strip() or "(no words)",
+        sheets="\n".join(f"- sheet {k + 1}: {p}" for k, p in
+                         enumerate(sheets)))
+    model = model or os.environ.get("SHOT_RELEVANCE_MODEL",
+                                    os.environ.get("SHOWRUNNER_MODEL", "sonnet"))
+    try:
+        proc = subprocess.run(
+            ["claude", "-p", prompt, "--model", model,
+             "--allowedTools", "Read", "--output-format", "text"],
+            capture_output=True, text=True, timeout=TIMEOUT_S)
+    except Exception:  # noqa: BLE001
+        return None
+    if proc.returncode != 0:
+        return None
+    try:
+        from scripts.showrunner_review import parse_judge_json
+        data = parse_judge_json(proc.stdout or "")
+    except Exception:  # noqa: BLE001
+        return None
+    return moment(data)
+
+
+def moment(data) -> dict | None:
+    """A watcher's answer, validated: None unless it is a verdict."""
+    if not isinstance(data, dict) or "shows" not in data:
+        return None
+    out = {"shows": bool(data.get("shows")),
+           "why": str(data.get("why") or "")[:200]}
+    if out["shows"]:
+        try:
+            out["begin"], out["end"] = int(data["begin"]), int(data["end"])
+        except Exception:  # noqa: BLE001
+            return None
+        if out["end"] <= out["begin"]:
+            return None
+    return out

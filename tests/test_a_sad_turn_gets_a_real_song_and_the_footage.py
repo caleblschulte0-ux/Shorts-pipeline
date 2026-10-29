@@ -150,7 +150,7 @@ class TheFootageIsCutIn(unittest.TestCase):
             self.assertIsNone(find_footage.find("Russ KD", "together",
                                                 work=td))
 
-    def test_the_first_checked_frame_is_where_it_is_cut(self):
+    def test_the_watched_moment_is_what_is_cut(self):
         with tempfile.TemporaryDirectory() as td, \
                 mock.patch("funnel.hot_clips.youtube", return_value=[
                     {"url": "https://www.youtube.com/watch?v=x",
@@ -163,44 +163,15 @@ class TheFootageIsCutIn(unittest.TestCase):
                                   side_effect=lambda v, a, o: o), \
                 mock.patch.object(find_footage, "judge", return_value={
                     0: {"depicts": False}, 1: {"depicts": True}}), \
-                mock.patch.object(find_footage, "shot_around",
-                                  return_value=(0.0, 200.0)), \
+                mock.patch.object(find_footage, "watch",
+                                  return_value=(76.5, 83.0)) as w, \
                 mock.patch.object(find_footage, "cut",
                                   side_effect=lambda v, s, n, o: o):
-            hit = find_footage.find("Russ KD", "together", work=td)
-        self.assertAlmostEqual(hit["from_s"],
-                               200 * find_footage.POINTS[1]
-                               - find_footage.PLAY_LEAD, places=1)
-
-    @unittest.skipUnless(HAVE_FFMPEG, "ffmpeg unavailable")
-    def test_only_the_shot_the_brain_saw_is_cut_in(self):
-        # 2026-10-17: the brain saw Westbrook and Durant, the cut showed
-        # Kobe Bryant from the reel's next shot
-        with tempfile.TemporaryDirectory() as td:
-            td = Path(td)
-            subprocess.run(
-                ["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i",
-                 "color=c=red:s=640x360:r=30:d=4.6", "-f", "lavfi", "-i",
-                 "color=c=blue:s=640x360:r=30:d=6", "-filter_complex",
-                 "[0:v][1:v]concat=n=2:v=1[v]", "-map", "[v]", "-c:v",
-                 "libx264", str(td / "reel.mp4")], check=True)
-            s0, s1 = find_footage.shot_around(td / "reel.mp4", 4.0)
-            self.assertAlmostEqual(s1, 4.6, delta=0.1)
-            with mock.patch("funnel.hot_clips.youtube", return_value=[
-                    {"url": "u", "title": "reel"}]), \
-                    mock.patch.object(find_footage, "download",
-                                      return_value=td / "reel.mp4"), \
-                    mock.patch.object(find_footage, "POINTS", (0.42,)), \
-                    mock.patch.object(find_footage, "judge",
-                                      return_value={0: {"depicts": True}}):
-                hit = find_footage.find("Russ KD", "together", work=td)
-            self.assertLessEqual(hit["from_s"] + hit["secs"], 4.6)
-            px = subprocess.run(
-                ["ffmpeg", "-v", "error", "-sseof", "-0.1", "-i",
-                 hit["path"], "-frames:v", "1", "-vf", "scale=1:1",
-                 "-f", "rawvideo", "-pix_fmt", "rgb24", "-"],
-                capture_output=True, check=True).stdout
-            self.assertGreater(px[0], px[2])             # still red
+            hit = find_footage.find("Russ KD", "together", work=td,
+                                    context="the alley-oop")
+        self.assertEqual(w.call_args[0][1], 200 * find_footage.POINTS[1])
+        self.assertEqual(w.call_args[0][4], "the alley-oop")
+        self.assertEqual((hit["from_s"], hit["secs"]), (76.5, 6.5))
 
     @unittest.skipUnless(HAVE_FFMPEG, "ffmpeg unavailable")
     def test_it_renders_over_the_whole_frame_under_the_words(self):

@@ -26,11 +26,20 @@ import re
 import subprocess
 from pathlib import Path
 
-SECS = 4.5                 # on screen this long, per cut-in: snap to
-                           # tackle, not a slice of the middle of the play
+SECS = 3.2                 # a montage shot's length (outro passes its own)
 MIN_VIDEO = 9.6            # a video shorter than this is a clip, not a reel
-PLAY_LEAD = 3.0            # a judged frame is mid-play; the play began
-                           # at most this long before it
+# A CUT-IN IS WATCHED, NOT TIMED (operator, 2026-10-29: "it can't just be
+# 4.5 seconds later ... something that checks, is this the beginning of
+# the play? Yes. Is this the end of the play? Yes. Did they show what we
+# needed to show? Yes"). Frames around the judged one are laid out as
+# numbered contact sheets and the brain says where the moment begins and
+# ends (shared.shot_relevance.watch_moment); the cut is exactly that.
+WATCH_BACK = 8.0           # seconds watched before the judged frame
+WATCH_AHEAD = 10.0         # and after it
+WATCH_STEP = 0.5           # one frame per this many seconds
+SHEET_TILES = 12           # frames per contact sheet (4 x 3)
+MIN_MOMENT = 1.5           # shorter than this is a flash, not a moment
+MAX_MOMENT = 10.0          # the most a cut-in may run over the voice
 MAX_S = 900                # a highlight reel, not a full game
 YEARS = 25                 # how far back the search reaches
 CANDIDATES = 3             # videos tried per request
@@ -151,6 +160,69 @@ def _frame(video: Path, at: float, out: Path, width: int = 640
         return None
 
 
+def sheets(frames: list[Path], work: Path, tag: str) -> list[Path]:
+    """The frames as numbered contact sheets, SHEET_TILES to a sheet, so
+    one watch reads a stretch of footage in two or three images."""
+    from PIL import Image, ImageDraw, ImageFont
+    out = []
+    try:
+        font = ImageFont.truetype(
+            str(Path(__file__).resolve().parent.parent / "assets" / "fonts"
+                / "InterDisplay-Bold.ttf"), 28)
+    except Exception:  # noqa: BLE001
+        font = ImageFont.load_default()
+    for k in range(0, len(frames), SHEET_TILES):
+        group = frames[k:k + SHEET_TILES]
+        tiles = [Image.open(p).convert("RGB") for p in group]
+        w, h = 320, int(320 * tiles[0].height / max(1, tiles[0].width))
+        sheet = Image.new("RGB", (4 * w, 3 * h), (0, 0, 0))
+        d = ImageDraw.Draw(sheet)
+        for j, im in enumerate(tiles):
+            x, y = (j % 4) * w, (j // 4) * h
+            sheet.paste(im.resize((w, h)), (x, y))
+            d.rectangle((x, y, x + 58, y + 36), fill=(0, 0, 0))
+            d.text((x + 6, y + 2), str(k + j), font=font, fill=(255, 255, 0))
+        p = Path(work) / f"sheet_{tag}_{k // SHEET_TILES}.png"
+        sheet.save(p)
+        out.append(p)
+    return out
+
+
+def watch(video: Path, at: float, dur: float, look: str, context: str,
+          title: str, work: Path) -> tuple[float, float] | None:
+    """(start, end) of the moment around second `at` that shows `look`,
+    from beginning to result, as the brain WATCHED it; None when it does
+    not show it, is too short, or nothing could watch."""
+    from shared import shot_relevance
+    lo, hi = max(0.0, at - WATCH_BACK), min(dur - 0.1, at + WATCH_AHEAD)
+    times, frames = [], []
+    t = lo
+    while t <= hi:
+        p = _frame(video, t, Path(work) / f"w_{Path(video).stem}_"
+                   f"{int(t * 10)}.png", width=320)
+        if p:
+            times.append(t)
+            frames.append(p)
+        t += WATCH_STEP
+    if len(frames) < 4:
+        return None
+    m = shot_relevance.watch_moment(
+        sheets(frames, Path(work), f"{Path(video).stem}_{int(at)}"),
+        look, context=context, title=title, step=WATCH_STEP)
+    if not m or not m.get("shows"):
+        print(f"[footage] watched {lo:.0f}-{hi:.0f}s: "
+              f"{(m or {}).get('why') or 'no answer'} — not used", flush=True)
+        return None
+    b = max(0, min(m["begin"], len(times) - 1))
+    e = max(0, min(m["end"], len(times) - 1))
+    start, end = times[b], times[e] + WATCH_STEP
+    if end - start < MIN_MOMENT:
+        return None
+    print(f"[footage] watched: {m.get('why', '')[:90]} "
+          f"({start:.1f}-{end:.1f}s)", flush=True)
+    return start, end
+
+
 def judge(frames: list[tuple[int, Path]], look: str, title: str = ""
           ) -> dict[int, dict] | None:
     """The brain's per-frame verdict on whether it DEPICTS `look`, or None
@@ -196,9 +268,9 @@ def cut(video: Path, start: float, secs: float, out: Path) -> Path | None:
         return None
 
 
-def find(who: str, look: str = "", *, secs: float = SECS,
+def find(who: str, look: str = "", *, secs: float = MAX_MOMENT,
          work: Path | str = ".", title: str = "",
-         avoid: list[dict] | None = None) -> dict | None:
+         avoid: list[dict] | None = None, context: str = "") -> dict | None:
     """A CHECKED cut of footage showing `look` (who it is of: `who`):
     {"path", "url", "title", "from_s"}, or None. Never raises. `avoid`
     are cuts this video already shows ({"url", "from_s"}): never the same
@@ -242,29 +314,29 @@ def find(who: str, look: str = "", *, secs: float = SECS,
             for i, _p in frames:
                 if (verdicts.get(i) or {}).get("depicts"):
                     at = dur * POINTS[i]
-                    s0, s1 = shot_around(video, at)
-                    if s1 - s0 < MIN_SHOT:
-                        continue
                     if any(a.get("url") == v["url"]
-                           and s0 - secs <= float(a.get("from_s") or 0)
-                           <= s1 + secs for a in avoid or []):
+                           and abs(at - float(a.get("from_s") or 0))
+                           <= WATCH_BACK + WATCH_AHEAD for a in avoid or []):
                         continue
-                    # only the shot the brain saw, never the next one,
-                    # FROM ITS START: the judged frame is mid-play, and
-                    # a slice around it showed the wrong part of
-                    # Skattebo's run (operator, 2026-10-28). A shot that
-                    # began long before the frame starts PLAY_LEAD back.
-                    start = min(max(s0 + 0.1, at - PLAY_LEAD),
-                                max(s0 + 0.1, s1 - 0.1 - secs))
-                    length = min(secs, s1 - 0.1 - start)
-                    clip = cut(video, start, length,
+                    # WATCHED, not timed: where this moment begins and
+                    # ends, and whether it shows `look` at all
+                    m = watch(video, at, dur, look, context, title, work)
+                    if not m:
+                        continue
+                    start, end = m
+                    if end - start > secs:
+                        print(f"[footage] {who!r}: the moment runs "
+                              f"{end - start:.1f}s, more than the "
+                              f"{secs:.1f}s there is room for", flush=True)
+                        continue
+                    clip = cut(video, start, end - start,
                                work / f"foot_{tag}_{n}_{start:.0f}_cut.mp4")
                     if clip:
                         print(f"[footage] {who!r}: {v['title'][:60]!r} "
-                              f"@{start:.1f}s", flush=True)
+                              f"{start:.1f}-{end:.1f}s", flush=True)
                         return {"path": str(clip), "url": v["url"],
                                 "title": v["title"], "from_s": round(start, 1),
-                                "secs": round(length, 2)}
+                                "secs": round(end - start, 2)}
         print(f"[footage] {who!r}: no footage showed {look!r}", flush=True)
     except Exception as e:  # noqa: BLE001
         print(f"::warning::[footage] {who!r} failed ({type(e).__name__})",
