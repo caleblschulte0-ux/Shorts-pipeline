@@ -170,9 +170,11 @@
    "ch": "ishowspeed",
    "d": "2026-10-02",
    "said": "Then I'll stop. I just need one more walkout. One more walkout shot and I'll stop more wal",
-   "saw": "IShowSpeed opens an EA FC pack on stream, begging for one more walkout, and the pack reveals Brentford's Damsgaard (80 CAM), which he reacts",
+   "saw": "IShowSpeed opens an FC pack on stream, begging for one more walkout, and it reveals an 80-rated Damsgaard card that he reacts to with 'Damn'",
    "who": [
-    "IShowSpeed"
+    "IShowSpeed",
+    "Twitch chat (on-scre",
+    "Damsgaard (player ca"
    ]
   },
   "astutekawaiiherbsspicyboy-yxpye-zl3sf314sb": {
@@ -661,6 +663,15 @@
    "who": [
     "Stableronaldo",
     "a shirtless man in j"
+   ]
+  },
+  "drabfairpuppystrawbeary-dwpyegfkwkdxwd4p": {
+   "ch": "pokimane",
+   "d": "2026-10-06",
+   "said": "chicken.",
+   "saw": "Pokimane in a black polka-dot dress moves around beside her white gaming chair, bends down near the plush toys, then walks away from the cam",
+   "who": [
+    "Pokimane"
    ]
   },
   "drabmanlyfinchhassaanchop-l7g5fw5h-f8c-o8s": {
@@ -2013,6 +2024,15 @@
    "d": "2026-10-10",
    "said": "A family of three. So that means only one child. Okay. And to me, that's kind of even what"
   },
+  "tenderspikysparrowpastathat-9dx229vfizuvhcyf": {
+   "ch": "hello_kiko",
+   "d": "2026-10-24",
+   "said": "I'm happy about the chance. Wait, happy about the let's go!",
+   "saw": "The streamer talks to the camera and rubs lotion or sunscreen over her chest and arms while gesturing, with a bottle briefly visible near th",
+   "who": [
+    "hello_kiko (streamer"
+   ]
+  },
   "thirstylongwasprlytho-pflu1wpbhpwvqjru": {
    "ch": "jasontheween",
    "d": "2026-10-21",
@@ -2022,6 +2042,17 @@
    "ch": "kaicenat",
    "d": "2026-10-10",
    "said": "let's take this nigga I'm you, I'm telling you. Give me your nigga! Give me your off! I'm"
+  },
+  "thirstytriangularorangepanicvis-omlzvyeiz_foiqbt": {
+   "ch": "kaicenat",
+   "d": "2026-10-04",
+   "said": "me see. me see. me see.",
+   "saw": "Kai Cenat stands with a group of young men by a lake, talking and laughing while they look at a phone, and the group later meets a tall man ",
+   "who": [
+    "Kai Cenat",
+    "a young man with ora",
+    "a young man with lig"
+   ]
   },
   "tireddependablegoblinmrdestructoid-3x7wqdn4vov78eq9": {
    "ch": "joe_bartolozzi",
@@ -2596,23 +2627,6 @@
   {
    "d": "2026-10-13",
    "members": [
-    "abstruseobliviouselkgiveplz-g6zrujkpi8pkigzq",
-    "punchysarcasticskirretsmorc-wx0qyiuanwgib-mx"
-   ],
-   "premise": "esfandtv@vod2873268289",
-   "why": "director judged: not a story \u2014 The footage only shows a streamer wandering a convention in costume with no clear conflict, decision, or payoff; there is no mean"
-  },
-  {
-   "d": "2026-10-13",
-   "members": [
-    "crypticcogentbubbletearulefive-do-xxp1gppbegbhb"
-   ],
-   "premise": "lyasyaa@momentcrypticcogentbubbletearulefive-do-xxp1gppbegbhb",
-   "why": "its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
-  },
-  {
-   "d": "2026-10-13",
-   "members": [
     "hotquaintbibimbapdogface-gff3mhv1b53eoidh",
     "pleasantobliquehamcclamchamp-cyhopen_-mov3tgm"
    ],
@@ -3165,6 +3179,23 @@
    "premise": "Ohnepixel brags that his osu grind made him good at a touch-the-circle game, then gets embarrassed by a later level and ",
    "retries_left": 2,
    "why": "rendered; critic scored 74 after 2 revision(s) \u2014 @24s confusing: The payoff lines 'need massage 67 rate! Don't move!' have no context. Say what the massage rate"
+  },
+  {
+   "d": "2026-10-29",
+   "edit": 5,
+   "members": [
+    "drabfairpuppystrawbeary-dwpyegfkwkdxwd4p"
+   ],
+   "premise": "Pokimane announces chat is getting chicken, goes to fetch it, plans to eat the mild sandwich before the spicy one, then ",
+   "why": "extended clip failed its checks: trails 28s past the picked moment"
+  },
+  {
+   "d": "2026-10-29",
+   "members": [
+    "tenderspikysparrowpastathat-9dx229vfizuvhcyf"
+   ],
+   "premise": "hellokiko@momenttenderspikysparrowpastathat-9dx229vfizuvhcyf",
+   "why": "its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
   }
  ]
 }

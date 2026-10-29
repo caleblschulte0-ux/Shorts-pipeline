@@ -16750,6 +16750,16 @@
       "rejected_by": "qa",
       "rejected_why": "vision: The sharp picture is a thin strip of about 25-30% of the canvas height. It sits in the middle, with large empty blurred ; vision: The two people are small and far away. Their faces are hard to read on a phone, so this is small-and-lost framing.; vision: The top third of the canvas is an empt",
       "ts": "2026-10-29T13:55:16.460768+00:00"
+    },
+    "clip-20261029-4": {
+      "pending": true,
+      "source_url": "",
+      "story_key": "story-d58cd89e0783c54c",
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Landed In Iceland And Fans Were Already Waiting",
+      "kind": "story",
+      "ts": "2026-10-29T18:29:40.564607+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
