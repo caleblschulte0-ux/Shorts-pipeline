@@ -4485,11 +4485,29 @@
       "duration_s": 28.2
     },
     "escooter-er-visits-surge": {
-      "claimed_at": "2026-10-29T12:21:03.752645+00:00",
+      "url": "https://youtube.com/shorts/wIMAu0-5PBM",
       "title": "E-Scooter ER Visits Rose 260% In Two Years",
+      "at": "2026-10-29T12:21:18.299246+00:00",
       "publish_at": "2026-10-29T17:25:49Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 6.07,
+      "beat_s": [
+        4.32,
+        6.07,
+        5.27,
+        5.93,
+        4.75
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 65,
+      "duration_s": 26.8
     }
   },
   "uploads": [
@@ -5723,9 +5741,10 @@
       "claimed_at": "2026-10-29T12:21:03.752645+00:00",
       "title": "E-Scooter ER Visits Rose 260% In Two Years",
       "publish_at": "2026-10-29T17:25:49Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "escooter-er-visits-surge"
+      "url": "https://youtube.com/shorts/wIMAu0-5PBM",
+      "state": "posted",
+      "slug": "escooter-er-visits-surge",
+      "at": "2026-10-29T12:21:18.299246+00:00"
     }
   ]
 }
