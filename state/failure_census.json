@@ -1,64 +1,14 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "other": {
-   "count": 8,
-   "stories": {
-    "lightning-deaths-collapsed-not-the-storms": 1,
-    "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
-    "sports_jaylen_brown_night_theres": 1,
-    "sports_charles_barkley_g_this_close": 1,
-    "nuclear-stockpile-growth-reversal": 1,
-    "ghost-fishing-gear-ocean-plastic": 2,
-    "airline-pilot-shortage": 1
-   },
-   "timestamps": [
-    "2026-10-26T12:07:35+00:00",
-    "2026-10-28T00:29:32+00:00",
-    "2026-10-28T00:31:46+00:00",
-    "2026-10-28T00:35:49+00:00",
-    "2026-10-28T10:13:13+00:00",
-    "2026-10-28T10:56:22+00:00",
-    "2026-10-28T11:20:10+00:00",
-    "2026-10-28T15:23:43+00:00"
-   ],
-   "examples": [
-    "unreadable: The small white copy in seg4:start through seg4:end is too small and low-contrast to read comfortably on a phone.",
-    "unreadable: hook@0.3 to payoff@-0.4: the burned-in Spanish quote is cut off at both edges ('a esos fans (del Barcelona) que r' / 'iaban dormir la siesta en el hote'), and the ticker is cut off ('EL CA",
-    "unreadable: In mid1 two caption layers collide: 'YOU GOT TO' is printed over another line, so it reads 'TO [YOU GOT TO] AT'. In hook@0.3 'ARE YOU WILLING' sits on top of another garbled caption. Both "
-   ],
-   "recurred_after_fix": false
-  },
-  "decorative_mascot": {
-   "count": 6,
-   "stories": {
-    "lightning-deaths-collapsed-not-the-storms": 2,
-    "nuclear-stockpile-growth-reversal": 1,
-    "ghost-fishing-gear-ocean-plastic": 2,
-    "airline-pilot-shortage": 1
-   },
-   "timestamps": [
-    "2026-10-26T12:07:35+00:00",
-    "2026-10-26T12:07:35+00:00",
-    "2026-10-28T10:13:13+00:00",
-    "2026-10-28T10:56:22+00:00",
-    "2026-10-28T11:20:10+00:00",
-    "2026-10-28T15:23:43+00:00"
-   ],
-   "examples": [
-    "decorative_mascot: At seg2:mid and payoff@-0.4, Data is a tiny perched figure rather than performing a clear setup-action-payoff tied to the statistic.",
-    "empty_void: payoff@-0.4 is almost entirely dark empty space with a tiny mascot isolated at the bottom.",
-    "decorative_mascot: In the world-dismantling scenes Data stands beside the warhead carts in the same waving pose (seg1:start, seg1:mid, seg1:end) while a truck carries warheads off on its own. He never"
-   ],
-   "recurred_after_fix": false
-  },
   "junk_imagery": {
-   "count": 6,
+   "count": 8,
    "stories": {
     "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
     "sports_charles_barkley_g_this_close": 2,
     "ghost-fishing-gear-ocean-plastic": 2,
-    "airline-pilot-shortage": 1
+    "airline-pilot-shortage": 2,
+    "pitch-drop-slowest-experiment": 1
    },
    "timestamps": [
     "2026-10-28T00:29:32+00:00",
@@ -66,7 +16,9 @@
     "2026-10-28T00:37:39+00:00",
     "2026-10-28T10:56:22+00:00",
     "2026-10-28T11:20:10+00:00",
-    "2026-10-28T15:23:43+00:00"
+    "2026-10-28T15:23:43+00:00",
+    "2026-10-28T20:04:01+00:00",
+    "2026-10-28T23:28:52+00:00"
    ],
    "examples": [
     "junk_imagery: hook@0.3 through payoff@-0.4: the footage is a re-upload of another account's post. The 'Madrid Total' social bar (Instagram/YouTube/X/TikTok/Facebook icons), the 'al Madrid Tv' bug and ",
@@ -76,13 +28,14 @@
    "recurred_after_fix": false
   },
   "empty_void": {
-   "count": 6,
+   "count": 8,
    "stories": {
     "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
     "sports_charles_barkley_g_this_close": 1,
     "nuclear-stockpile-growth-reversal": 1,
     "ghost-fishing-gear-ocean-plastic": 2,
-    "airline-pilot-shortage": 1
+    "airline-pilot-shortage": 2,
+    "pitch-drop-slowest-experiment": 1
    },
    "timestamps": [
     "2026-10-28T00:29:32+00:00",
@@ -90,12 +43,64 @@
     "2026-10-28T10:13:13+00:00",
     "2026-10-28T10:56:22+00:00",
     "2026-10-28T11:10:17+00:00",
-    "2026-10-28T15:23:43+00:00"
+    "2026-10-28T15:23:43+00:00",
+    "2026-10-28T20:04:01+00:00",
+    "2026-10-28T23:28:52+00:00"
    ],
    "examples": [
     "empty_void: payoff@-0.4: Mourinho is out of frame and the top two-thirds is a blank grey wall. In every frame the bottom ~40% is a black band of foreign captions, logos and ticker.",
     "empty_void: Every frame from hook@0.3 to payoff@-0.4 is letterboxed: the 16:9 source sits in the middle, with blurred bars filling roughly the top 12% and bottom 12%, so the vertical frame is not used",
     "empty_void: The last frame (payoff@-0.4) is an almost empty dark-navy gradient with only Data holding a blank yellow tag at the bottom. The vault scene and the closing line are gone, so the video ends"
+   ],
+   "recurred_after_fix": false
+  },
+  "other": {
+   "count": 8,
+   "stories": {
+    "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
+    "sports_jaylen_brown_night_theres": 1,
+    "sports_charles_barkley_g_this_close": 1,
+    "nuclear-stockpile-growth-reversal": 1,
+    "ghost-fishing-gear-ocean-plastic": 2,
+    "airline-pilot-shortage": 2
+   },
+   "timestamps": [
+    "2026-10-28T00:29:32+00:00",
+    "2026-10-28T00:31:46+00:00",
+    "2026-10-28T00:35:49+00:00",
+    "2026-10-28T10:13:13+00:00",
+    "2026-10-28T10:56:22+00:00",
+    "2026-10-28T11:20:10+00:00",
+    "2026-10-28T15:23:43+00:00",
+    "2026-10-28T23:28:52+00:00"
+   ],
+   "examples": [
+    "unreadable: hook@0.3 to payoff@-0.4: the burned-in Spanish quote is cut off at both edges ('a esos fans (del Barcelona) que r' / 'iaban dormir la siesta en el hote'), and the ticker is cut off ('EL CA",
+    "unreadable: In mid1 two caption layers collide: 'YOU GOT TO' is printed over another line, so it reads 'TO [YOU GOT TO] AT'. In hook@0.3 'ARE YOU WILLING' sits on top of another garbled caption. Both ",
+    "unreadable: mid3: our line 'Barkley warns Shaq's new friend is dangerous' is printed directly over the ESPN Giannis Antetokounmpo stat graphic ('LAST SEASON w/ BUCKS ... 27.6 ... 5.4'), so the two tex"
+   ],
+   "recurred_after_fix": false
+  },
+  "decorative_mascot": {
+   "count": 6,
+   "stories": {
+    "nuclear-stockpile-growth-reversal": 1,
+    "ghost-fishing-gear-ocean-plastic": 2,
+    "airline-pilot-shortage": 2,
+    "pitch-drop-slowest-experiment": 1
+   },
+   "timestamps": [
+    "2026-10-28T10:13:13+00:00",
+    "2026-10-28T10:56:22+00:00",
+    "2026-10-28T11:20:10+00:00",
+    "2026-10-28T15:23:43+00:00",
+    "2026-10-28T20:04:01+00:00",
+    "2026-10-28T23:28:52+00:00"
+   ],
+   "examples": [
+    "decorative_mascot: In the world-dismantling scenes Data stands beside the warhead carts in the same waving pose (seg1:start, seg1:mid, seg1:end) while a truck carries warheads off on its own. He never",
+    "decorative_mascot: In hook@0.3-2.2 Data only cheers on a rock while the turtle drifts behind the net. In seg1:start-end he only stands and points beside a beached net. He does real work only in seg3, ",
+    "empty_void: payoff@-0.4: nearly the whole frame is empty dark gradient, with one small mascot at the bottom. The closing shot is replaced by a void."
    ],
    "recurred_after_fix": false
   },
@@ -118,7 +123,7 @@
  },
  "weak_dims": {
   "hook": {
-   "median": 3,
+   "median": 2,
    "min": 1,
    "max": 4
   },
@@ -138,7 +143,7 @@
    "max": 3
   },
   "pace": {
-   "median": 2,
+   "median": 1,
    "min": 1,
    "max": 2
   },
@@ -154,8 +159,6 @@
   }
  },
  "scores": [
-  61,
-  100,
   96,
   96,
   95,
@@ -173,6 +176,8 @@
   49,
   74,
   61,
-  52
+  52,
+  61,
+  57
  ]
 }

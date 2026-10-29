@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261028",
-  "generated_at": "2026-10-28T23:31:11Z",
+  "generated_at": "2026-10-29T00:31:15Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 34.76,
+          "days": 34.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 33.76,
+          "days": 33.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -444,16 +444,16 @@
     "explainer": {
       "channel": "explainer",
       "available": true,
-      "fetched_at": "2026-10-28T18:47:46.320703+00:00",
+      "fetched_at": "2026-10-28T23:48:23.931441+00:00",
       "today": [
         {
           "title": "China Reached 500 Nuclear Warheads As The World Cut Back",
           "url": "https://youtube.com/shorts/ZSDXkXD9IjA",
           "published_at": "2026-10-28T10:30:08Z",
-          "age_hours": 8.3,
+          "age_hours": 13.3,
           "age_band": "6-24h",
-          "views": 541,
-          "engaged_views": 541,
+          "views": 649,
+          "engaged_views": 649,
           "likes": 1,
           "comments": 0,
           "avg_view_pct": null,
@@ -466,7 +466,7 @@
             "impressions",
             "ctr"
           ],
-          "views_per_hour": 65.1807,
+          "views_per_hour": 48.797,
           "percentile_vs_same_age": null,
           "verdict": "no comparable history"
         },
@@ -474,12 +474,12 @@
           "title": "Lost Fishing Gear Is 10% Of Ocean Litter",
           "url": "https://youtube.com/shorts/QJYiqtgH088",
           "published_at": "2026-10-28T16:30:01Z",
-          "age_hours": 2.3,
-          "age_band": "0-6h",
-          "views": 62,
-          "engaged_views": 62,
-          "likes": 1,
-          "comments": 0,
+          "age_hours": 7.3,
+          "age_band": "6-24h",
+          "views": 585,
+          "engaged_views": 585,
+          "likes": 7,
+          "comments": 2,
           "avg_view_pct": null,
           "avg_view_duration": null,
           "impressions": null,
@@ -490,66 +490,66 @@
             "impressions",
             "ctr"
           ],
-          "views_per_hour": 26.9565,
+          "views_per_hour": 80.137,
           "percentile_vs_same_age": null,
           "verdict": "no comparable history"
         }
       ],
       "last_7d": {
-        "videos": 18,
-        "total_views": 7672,
-        "median_views": 191.5,
-        "median_vph": 4.6723,
-        "best": "China Reached 500 Nuclear Warheads As The World Cut Back",
+        "videos": 17,
+        "total_views": 8286,
+        "median_views": 284.0,
+        "median_vph": 4.7973,
+        "best": "Lost Fishing Gear Is 10% Of Ocean Litter",
         "worst": "The $210 Billion Chip Shortage Nobody Saw Coming"
       },
       "last_30d": {
         "videos": 82,
-        "total_views": 17465,
-        "median_views": 79.0,
-        "median_vph": 0.2449,
-        "best": "China Reached 500 Nuclear Warheads As The World Cut Back",
+        "total_views": 18115,
+        "median_views": 83.5,
+        "median_vph": 0.2356,
+        "best": "Lost Fishing Gear Is 10% Of Ocean Litter",
         "worst": "Kids Are Being Diagnosed With ADHD Way More Than Before"
       },
       "all_time_summary": {
         "total_videos": 148,
-        "total_views": 25837,
-        "avg_views_per_video": 174.6,
-        "median_views_per_hour": 0.12,
+        "total_views": 26487,
+        "avg_views_per_video": 179.0,
+        "median_views_per_hour": 0.11,
         "top_5_by_vph": [
           {
-            "title": "China Reached 500 Nuclear Warheads As The World Cut Back",
-            "views_per_hour": 65.23,
-            "views": 541,
-            "age_hours": 8.3,
-            "url": "https://youtube.com/shorts/ZSDXkXD9IjA"
-          },
-          {
             "title": "Lost Fishing Gear Is 10% Of Ocean Litter",
-            "views_per_hour": 27.0,
-            "views": 62,
-            "age_hours": 2.3,
+            "views_per_hour": 80.07,
+            "views": 585,
+            "age_hours": 7.3,
             "url": "https://youtube.com/shorts/QJYiqtgH088"
           },
           {
+            "title": "China Reached 500 Nuclear Warheads As The World Cut Back",
+            "views_per_hour": 48.78,
+            "views": 649,
+            "age_hours": 13.3,
+            "url": "https://youtube.com/shorts/ZSDXkXD9IjA"
+          },
+          {
             "title": "Parker Solar Probe Hit 430,000 MPH Without Carrying A Human",
-            "views_per_hour": 14.8,
-            "views": 1179,
-            "age_hours": 79.6,
+            "views_per_hour": 14.03,
+            "views": 1188,
+            "age_hours": 84.7,
             "url": "https://youtube.com/shorts/UN-dVWVz6IM"
           },
           {
             "title": "The Body Renews Its Stomach Lining In 5 Days, Not Every Cell",
-            "views_per_hour": 13.42,
+            "views_per_hour": 12.56,
             "views": 986,
-            "age_hours": 73.5,
+            "age_hours": 78.5,
             "url": "https://youtube.com/shorts/Qz3UnREJdOI"
           },
           {
             "title": "Hearing Aids Started At $300 Instead Of Requiring A Prescription",
-            "views_per_hour": 11.63,
+            "views_per_hour": 11.08,
             "views": 1172,
-            "age_hours": 100.8,
+            "age_hours": 105.8,
             "url": "https://youtube.com/shorts/OVx7o2iUhKU"
           }
         ],
@@ -558,45 +558,45 @@
             "title": "Kids Are Being Diagnosed With ADHD Way More Than Before",
             "views_per_hour": 0.0,
             "views": 1,
-            "age_hours": 478.0,
+            "age_hours": 483.0,
             "url": "https://youtube.com/shorts/aCtti_E5Nqo"
           },
           {
             "title": "The World's Workforce Has Never Been This Big \u2014 Or This Free",
             "views_per_hour": 0.0,
             "views": 2,
-            "age_hours": 669.4,
+            "age_hours": 674.4,
             "url": "https://youtube.com/shorts/cY4-tgGIir4"
           },
           {
             "title": "Why Is There A Vault Built For The End Of The World?",
             "views_per_hour": 0.0,
             "views": 1,
-            "age_hours": 937.9,
+            "age_hours": 942.9,
             "url": "https://youtube.com/shorts/kkODTt8nWuQ"
           },
           {
             "title": "Why Cargo Ships Started Losing Containers Again (3 Charts)",
             "views_per_hour": 0.0,
             "views": 2,
-            "age_hours": 1171.0,
+            "age_hours": 1176.0,
             "url": "https://youtube.com/shorts/NhR15EjR3uI"
           },
           {
             "title": "Why Empty Offices Will Never Fill Back Up (3 Charts)",
             "views_per_hour": 0.0,
             "views": 0,
-            "age_hours": 1272.6,
+            "age_hours": 1277.6,
             "url": "https://youtube.com/shorts/fReGr_FMIEw"
           }
         ],
         "opening": {
-          "median_early_retention": 0.884,
-          "videos_with_curve": 14,
+          "median_early_retention": 0.879,
+          "videos_with_curve": 13,
           "worst": 0.789,
-          "best": 0.964
+          "best": 0.965
         },
-        "videos_with_retention": 75,
+        "videos_with_retention": 78,
         "avg_view_percentage": 58.2,
         "top_5_by_retention": [
           {
@@ -700,16 +700,14 @@
         }
       },
       "band_sample_sizes": {
-        "0-6h": 1,
-        "1-3d": 6,
-        "1-4w": 62,
+        "1-3d": 5,
+        "1-4w": 61,
         "3-7d": 10,
-        "4w+": 68,
-        "6-24h": 1
+        "4w+": 70,
+        "6-24h": 2
       },
       "thin_bands": [
-        "6-24h",
-        "0-6h"
+        "6-24h"
       ],
       "maturity": {
         "24h": {
@@ -734,20 +732,20 @@
         },
         "72h": {
           "all_formats": {
-            "n": 4,
-            "median_vph": 10.6993,
-            "median_views": 738.5,
+            "n": 3,
+            "median_vph": 7.4286,
+            "median_views": 494.0,
             "median_view_pct": null,
-            "view_pct_reported_for": "0/4",
+            "view_pct_reported_for": "0/3",
             "enough_to_judge": false
           },
           "by_format": {
             "other_topic": {
-              "n": 4,
-              "median_vph": 10.6993,
-              "median_views": 738.5,
+              "n": 3,
+              "median_vph": 7.4286,
+              "median_views": 494.0,
               "median_view_pct": null,
-              "view_pct_reported_for": "0/4",
+              "view_pct_reported_for": "0/3",
               "enough_to_judge": false
             },
             "superlative_topic": {
@@ -763,7 +761,7 @@
         "7d": {
           "all_formats": {
             "n": 4,
-            "median_vph": 0.2625,
+            "median_vph": 0.2549,
             "median_views": 44.0,
             "median_view_pct": null,
             "view_pct_reported_for": "0/4",
@@ -772,7 +770,7 @@
           "by_format": {
             "other_topic": {
               "n": 4,
-              "median_vph": 0.2625,
+              "median_vph": 0.2549,
               "median_views": 44.0,
               "median_view_pct": null,
               "view_pct_reported_for": "0/4",
@@ -792,33 +790,33 @@
       "mature_enough_to_judge": [
         {
           "title": "Parker Solar Probe Hit 430,000 MPH Without Carrying A Human",
-          "vph": 14.8116,
+          "vph": 14.026,
           "fmt": "other_topic",
-          "age_hours": 79.6
+          "age_hours": 84.7
         },
         {
           "title": "The Body Renews Its Stomach Lining In 5 Days, Not Every Cell",
-          "vph": 13.415,
+          "vph": 12.5605,
           "fmt": "other_topic",
-          "age_hours": 73.5
+          "age_hours": 78.5
         },
         {
           "title": "Hearing Aids Started At $300 Instead Of Requiring A Prescription",
-          "vph": 11.627,
+          "vph": 11.0775,
           "fmt": "other_topic",
-          "age_hours": 100.8
+          "age_hours": 105.8
         },
         {
           "title": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
-          "vph": 10.9521,
+          "vph": 10.617,
           "fmt": "other_topic",
-          "age_hours": 158.6
+          "age_hours": 163.7
         },
         {
           "title": "Opioid Prescriptions Fell 47%. Overdoses Kept Rising.",
-          "vph": 7.9837,
+          "vph": 7.4286,
           "fmt": "other_topic",
-          "age_hours": 61.5
+          "age_hours": 66.5
         }
       ],
       "worst_mature": [
@@ -826,31 +824,31 @@
           "title": "Cereal production Is 1.5x Higher Than In 1972",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 1404.0
+          "age_hours": 1409.0
         },
         {
           "title": "Central Banks Are Hoarding Gold Like It's 1967",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 1366.2
+          "age_hours": 1371.2
         },
         {
           "title": "Why Empty Offices Will Never Fill Back Up (3 Charts)",
           "vph": 0.0,
           "fmt": "unknown",
-          "age_hours": 1272.6
+          "age_hours": 1277.6
         },
         {
           "title": "The 8-Glasses-a-Day Rule Was Never Real",
           "vph": 0.0007,
           "fmt": "unknown",
-          "age_hours": 1398.0
+          "age_hours": 1403.0
         },
         {
           "title": "Why Is There A Vault Built For The End Of The World?",
           "vph": 0.0011,
           "fmt": "unknown",
-          "age_hours": 937.9
+          "age_hours": 942.9
         }
       ]
     },
@@ -1402,70 +1400,20 @@
     },
     "showrunner": {
       "recent": 40,
-      "blocks": 21,
-      "avg_score": 66.7
+      "blocks": 22,
+      "avg_score": 66.5
     },
     "failure_census": {
       "n_verdicts": 20,
       "classes": {
-        "other": {
-          "count": 8,
-          "stories": {
-            "lightning-deaths-collapsed-not-the-storms": 1,
-            "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
-            "sports_jaylen_brown_night_theres": 1,
-            "sports_charles_barkley_g_this_close": 1,
-            "nuclear-stockpile-growth-reversal": 1,
-            "ghost-fishing-gear-ocean-plastic": 2,
-            "airline-pilot-shortage": 1
-          },
-          "timestamps": [
-            "2026-10-26T12:07:35+00:00",
-            "2026-10-28T00:29:32+00:00",
-            "2026-10-28T00:31:46+00:00",
-            "2026-10-28T00:35:49+00:00",
-            "2026-10-28T10:13:13+00:00",
-            "2026-10-28T10:56:22+00:00",
-            "2026-10-28T11:20:10+00:00",
-            "2026-10-28T15:23:43+00:00"
-          ],
-          "examples": [
-            "unreadable: The small white copy in seg4:start through seg4:end is too small and low-contrast to read comfortably on a phone.",
-            "unreadable: hook@0.3 to payoff@-0.4: the burned-in Spanish quote is cut off at both edges ('a esos fans (del Barcelona) que r' / 'iaban dormir la siesta en el hote'), and the ticker is cut off ('EL CA",
-            "unreadable: In mid1 two caption layers collide: 'YOU GOT TO' is printed over another line, so it reads 'TO [YOU GOT TO] AT'. In hook@0.3 'ARE YOU WILLING' sits on top of another garbled caption. Both "
-          ],
-          "recurred_after_fix": false
-        },
-        "decorative_mascot": {
-          "count": 6,
-          "stories": {
-            "lightning-deaths-collapsed-not-the-storms": 2,
-            "nuclear-stockpile-growth-reversal": 1,
-            "ghost-fishing-gear-ocean-plastic": 2,
-            "airline-pilot-shortage": 1
-          },
-          "timestamps": [
-            "2026-10-26T12:07:35+00:00",
-            "2026-10-26T12:07:35+00:00",
-            "2026-10-28T10:13:13+00:00",
-            "2026-10-28T10:56:22+00:00",
-            "2026-10-28T11:20:10+00:00",
-            "2026-10-28T15:23:43+00:00"
-          ],
-          "examples": [
-            "decorative_mascot: At seg2:mid and payoff@-0.4, Data is a tiny perched figure rather than performing a clear setup-action-payoff tied to the statistic.",
-            "empty_void: payoff@-0.4 is almost entirely dark empty space with a tiny mascot isolated at the bottom.",
-            "decorative_mascot: In the world-dismantling scenes Data stands beside the warhead carts in the same waving pose (seg1:start, seg1:mid, seg1:end) while a truck carries warheads off on its own. He never"
-          ],
-          "recurred_after_fix": false
-        },
         "junk_imagery": {
-          "count": 6,
+          "count": 8,
           "stories": {
             "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
             "sports_charles_barkley_g_this_close": 2,
             "ghost-fishing-gear-ocean-plastic": 2,
-            "airline-pilot-shortage": 1
+            "airline-pilot-shortage": 2,
+            "pitch-drop-slowest-experiment": 1
           },
           "timestamps": [
             "2026-10-28T00:29:32+00:00",
@@ -1473,7 +1421,9 @@
             "2026-10-28T00:37:39+00:00",
             "2026-10-28T10:56:22+00:00",
             "2026-10-28T11:20:10+00:00",
-            "2026-10-28T15:23:43+00:00"
+            "2026-10-28T15:23:43+00:00",
+            "2026-10-28T20:04:01+00:00",
+            "2026-10-28T23:28:52+00:00"
           ],
           "examples": [
             "junk_imagery: hook@0.3 through payoff@-0.4: the footage is a re-upload of another account's post. The 'Madrid Total' social bar (Instagram/YouTube/X/TikTok/Facebook icons), the 'al Madrid Tv' bug and ",
@@ -1483,13 +1433,14 @@
           "recurred_after_fix": false
         },
         "empty_void": {
-          "count": 6,
+          "count": 8,
           "stories": {
             "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
             "sports_charles_barkley_g_this_close": 1,
             "nuclear-stockpile-growth-reversal": 1,
             "ghost-fishing-gear-ocean-plastic": 2,
-            "airline-pilot-shortage": 1
+            "airline-pilot-shortage": 2,
+            "pitch-drop-slowest-experiment": 1
           },
           "timestamps": [
             "2026-10-28T00:29:32+00:00",
@@ -1497,12 +1448,64 @@
             "2026-10-28T10:13:13+00:00",
             "2026-10-28T10:56:22+00:00",
             "2026-10-28T11:10:17+00:00",
-            "2026-10-28T15:23:43+00:00"
+            "2026-10-28T15:23:43+00:00",
+            "2026-10-28T20:04:01+00:00",
+            "2026-10-28T23:28:52+00:00"
           ],
           "examples": [
             "empty_void: payoff@-0.4: Mourinho is out of frame and the top two-thirds is a blank grey wall. In every frame the bottom ~40% is a black band of foreign captions, logos and ticker.",
             "empty_void: Every frame from hook@0.3 to payoff@-0.4 is letterboxed: the 16:9 source sits in the middle, with blurred bars filling roughly the top 12% and bottom 12%, so the vertical frame is not used",
             "empty_void: The last frame (payoff@-0.4) is an almost empty dark-navy gradient with only Data holding a blank yellow tag at the bottom. The vault scene and the closing line are gone, so the video ends"
+          ],
+          "recurred_after_fix": false
+        },
+        "other": {
+          "count": 8,
+          "stories": {
+            "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
+            "sports_jaylen_brown_night_theres": 1,
+            "sports_charles_barkley_g_this_close": 1,
+            "nuclear-stockpile-growth-reversal": 1,
+            "ghost-fishing-gear-ocean-plastic": 2,
+            "airline-pilot-shortage": 2
+          },
+          "timestamps": [
+            "2026-10-28T00:29:32+00:00",
+            "2026-10-28T00:31:46+00:00",
+            "2026-10-28T00:35:49+00:00",
+            "2026-10-28T10:13:13+00:00",
+            "2026-10-28T10:56:22+00:00",
+            "2026-10-28T11:20:10+00:00",
+            "2026-10-28T15:23:43+00:00",
+            "2026-10-28T23:28:52+00:00"
+          ],
+          "examples": [
+            "unreadable: hook@0.3 to payoff@-0.4: the burned-in Spanish quote is cut off at both edges ('a esos fans (del Barcelona) que r' / 'iaban dormir la siesta en el hote'), and the ticker is cut off ('EL CA",
+            "unreadable: In mid1 two caption layers collide: 'YOU GOT TO' is printed over another line, so it reads 'TO [YOU GOT TO] AT'. In hook@0.3 'ARE YOU WILLING' sits on top of another garbled caption. Both ",
+            "unreadable: mid3: our line 'Barkley warns Shaq's new friend is dangerous' is printed directly over the ESPN Giannis Antetokounmpo stat graphic ('LAST SEASON w/ BUCKS ... 27.6 ... 5.4'), so the two tex"
+          ],
+          "recurred_after_fix": false
+        },
+        "decorative_mascot": {
+          "count": 6,
+          "stories": {
+            "nuclear-stockpile-growth-reversal": 1,
+            "ghost-fishing-gear-ocean-plastic": 2,
+            "airline-pilot-shortage": 2,
+            "pitch-drop-slowest-experiment": 1
+          },
+          "timestamps": [
+            "2026-10-28T10:13:13+00:00",
+            "2026-10-28T10:56:22+00:00",
+            "2026-10-28T11:20:10+00:00",
+            "2026-10-28T15:23:43+00:00",
+            "2026-10-28T20:04:01+00:00",
+            "2026-10-28T23:28:52+00:00"
+          ],
+          "examples": [
+            "decorative_mascot: In the world-dismantling scenes Data stands beside the warhead carts in the same waving pose (seg1:start, seg1:mid, seg1:end) while a truck carries warheads off on its own. He never",
+            "decorative_mascot: In hook@0.3-2.2 Data only cheers on a rock while the turtle drifts behind the net. In seg1:start-end he only stands and points beside a beached net. He does real work only in seg3, ",
+            "empty_void: payoff@-0.4: nearly the whole frame is empty dark gradient, with one small mascot at the bottom. The closing shot is replaced by a void."
           ],
           "recurred_after_fix": false
         },
@@ -1525,7 +1528,7 @@
       },
       "weak_dims": {
         "hook": {
-          "median": 3,
+          "median": 2,
           "min": 1,
           "max": 4
         },
@@ -1545,7 +1548,7 @@
           "max": 3
         },
         "pace": {
-          "median": 2,
+          "median": 1,
           "min": 1,
           "max": 2
         },
@@ -1561,8 +1564,6 @@
         }
       },
       "scores": [
-        61,
-        100,
         96,
         96,
         95,
@@ -1580,7 +1581,9 @@
         49,
         74,
         61,
-        52
+        52,
+        61,
+        57
       ]
     }
   },
@@ -1595,12 +1598,12 @@
     "arms": {
       "current": {
         "n": 22,
-        "median_percentile": 37.2,
+        "median_percentile": 37.0,
         "thin": true
       },
       "illustrated": {
         "n": 73,
-        "median_percentile": 55.1,
+        "median_percentile": 55.0,
         "thin": false
       }
     },
@@ -1615,10 +1618,13 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "d0a5177",
-    "commits_since": "2026-10-27",
+    "head": "c588395",
+    "commits_since": "2026-10-28",
     "commit_count": 50,
     "commits": [
+      "c588395 explainer: update posted log + analytics [skip ci]",
+      "700ff5c claim: mailbox verdicts 2026-10-28T23:48Z [skip ci]",
+      "f729f71 retro: brief + triage for 20261028 [skip ci]",
       "d0a5177 claim: mailbox verdicts 2026-10-28T23:25Z [skip ci]",
       "77798bf claim: mailbox verdicts 2026-10-28T22:48Z [skip ci]",
       "4f7cb8e explainer: the last picture runs to the cut, no empty end card (#714)",
@@ -1655,10 +1661,7 @@
       "2da4b5c claim: mailbox verdicts 2026-10-28T14:47Z [skip ci]",
       "924c386 watchdog: chatgpt task verdicts 20261028 [skip ci]",
       "ed0a35d The real thing at its real size: refuse giant-icon props (#706)",
-      "e298bfa explainer: update posted log + analytics [skip ci]",
-      "8b46eb7 claim: mailbox verdicts 2026-10-28T13:48Z [skip ci]",
-      "176f746 third: analytics [skip ci]",
-      "2fec9a7 third: update posted log + analytics [skip ci]"
+      "e298bfa explainer: update posted log + analytics [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",

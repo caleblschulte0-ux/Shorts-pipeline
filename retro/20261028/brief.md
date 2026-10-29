@@ -1,6 +1,6 @@
 # Retro — 20261028
 
-generated 2026-10-28T23:31:11Z · 3 video(s) posted today
+generated 2026-10-29T00:31:15Z · 3 video(s) posted today
 
 ## trending
 
@@ -13,12 +13,12 @@ _nothing published today_
 
 | video | age | views | vph | vs same age |
 |---|---|---|---|---|
-| China Reached 500 Nuclear Warheads As The Wo | 8.3h | 541 | 65.1807 | — · no comparable history |
-| Lost Fishing Gear Is 10% Of Ocean Litter | 2.3h | 62 | 26.9565 | — · no comparable history |
+| China Reached 500 Nuclear Warheads As The Wo | 13.3h | 649 | 48.797 | — · no comparable history |
+| Lost Fishing Gear Is 10% Of Ocean Litter | 7.3h | 585 | 80.137 | — · no comparable history |
 
-- 7d: 18 videos, median 191.5 views
-- 30d: 82 videos, median 79.0 views
-- thin data (<5): 6-24h, 0-6h
+- 7d: 17 videos, median 284.0 views
+- 30d: 82 videos, median 83.5 views
+- thin data (<5): 6-24h
 
 ## curiosity
 
@@ -45,9 +45,9 @@ _nothing published today_
 ## Running experiments
 
 - `20260924-third-story-arm-slot-beats-mature-clip-baseline-on` — Third story-arm slot beats mature clip baseline on views-per-hour
-    - 34.76d, 1 samples, needs 28d / 25 samples · 1/25 samples — not enough videos have run under this change
+    - 34.8d, 1 samples, needs 28d / 25 samples · 1/25 samples — not enough videos have run under this change
 - `20260925-superlative-science-family-explainer-topics-beat-t` — Superlative/science-family explainer topics beat the broad mix on average-view-percentage
-    - 33.76d, 1 samples, needs 28d / 25 samples · 1/25 samples — not enough videos have run under this change
+    - 33.8d, 1 samples, needs 28d / 25 samples · 1/25 samples — not enough videos have run under this change
 
 ## Bespoke pictures vs performance
 
@@ -68,10 +68,10 @@ _views-per-hour percentile vs same-age explainer videos, by style arm, videos >=
 - consecutive failures: 0
 - exchange: {"media": {"fulfilled": 0, "self_filled": 0, "unfilled": 0, "refused": 0}, "punchup": {"applied": 0, "kept": 0, "rejected": 0, "absent": 0}, "done_marker": true, "authored": {"promoted": 0, "rejected"
 - slots: {"note": "no daily_report.json \u2014 the trending run has not reported since this clone was made"}
-- showrunner: {"recent": 40, "blocks": 21, "avg_score": 66.7}
+- showrunner: {"recent": 40, "blocks": 22, "avg_score": 66.5}
 
 ## Repo
 
-- HEAD d0a5177, 50 commit(s) since 2026-10-27
+- HEAD c588395, 50 commit(s) since 2026-10-28
 
 Write proposals per `retro/README.md`. Nothing you write is applied automatically.
