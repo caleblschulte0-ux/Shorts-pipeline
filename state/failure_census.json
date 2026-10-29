@@ -1,122 +1,120 @@
 {
  "n_verdicts": 20,
  "classes": {
-  "junk_imagery": {
-   "count": 8,
-   "stories": {
-    "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
-    "sports_charles_barkley_g_this_close": 2,
-    "ghost-fishing-gear-ocean-plastic": 2,
-    "airline-pilot-shortage": 2,
-    "pitch-drop-slowest-experiment": 1
-   },
-   "timestamps": [
-    "2026-10-28T00:29:32+00:00",
-    "2026-10-28T00:35:49+00:00",
-    "2026-10-28T00:37:39+00:00",
-    "2026-10-28T10:56:22+00:00",
-    "2026-10-28T11:20:10+00:00",
-    "2026-10-28T15:23:43+00:00",
-    "2026-10-28T20:04:01+00:00",
-    "2026-10-28T23:28:52+00:00"
-   ],
-   "examples": [
-    "junk_imagery: hook@0.3 through payoff@-0.4: the footage is a re-upload of another account's post. The 'Madrid Total' social bar (Instagram/YouTube/X/TikTok/Facebook icons), the 'al Madrid Tv' bug and ",
-    "junk_imagery: mid2 shows unrelated Heat-arena warmup b-roll and mid3 shows Giannis dribbling in a drill. Neither has Barkley, Shaq or the joke the line promises.",
-    "junk_imagery: mid0 (t=2.50s) cuts to an unrelated warm-up shooter, and mid4/mid5/payoff@-0.4 (t=15.86-20.80s) show Giannis Antetokounmpo warming up at a Heat arena with his own lower-third. None of th"
-   ],
-   "recurred_after_fix": false
-  },
-  "empty_void": {
-   "count": 8,
-   "stories": {
-    "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
-    "sports_charles_barkley_g_this_close": 1,
-    "nuclear-stockpile-growth-reversal": 1,
-    "ghost-fishing-gear-ocean-plastic": 2,
-    "airline-pilot-shortage": 2,
-    "pitch-drop-slowest-experiment": 1
-   },
-   "timestamps": [
-    "2026-10-28T00:29:32+00:00",
-    "2026-10-28T00:37:39+00:00",
-    "2026-10-28T10:13:13+00:00",
-    "2026-10-28T10:56:22+00:00",
-    "2026-10-28T11:10:17+00:00",
-    "2026-10-28T15:23:43+00:00",
-    "2026-10-28T20:04:01+00:00",
-    "2026-10-28T23:28:52+00:00"
-   ],
-   "examples": [
-    "empty_void: payoff@-0.4: Mourinho is out of frame and the top two-thirds is a blank grey wall. In every frame the bottom ~40% is a black band of foreign captions, logos and ticker.",
-    "empty_void: Every frame from hook@0.3 to payoff@-0.4 is letterboxed: the 16:9 source sits in the middle, with blurred bars filling roughly the top 12% and bottom 12%, so the vertical frame is not used",
-    "empty_void: The last frame (payoff@-0.4) is an almost empty dark-navy gradient with only Data holding a blank yellow tag at the bottom. The vault scene and the closing line are gone, so the video ends"
-   ],
-   "recurred_after_fix": false
-  },
   "other": {
-   "count": 8,
+   "count": 9,
    "stories": {
-    "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
-    "sports_jaylen_brown_night_theres": 1,
-    "sports_charles_barkley_g_this_close": 1,
-    "nuclear-stockpile-growth-reversal": 1,
-    "ghost-fishing-gear-ocean-plastic": 2,
-    "airline-pilot-shortage": 2
+    "airline-pilot-shortage": 2,
+    "sports_john_wall_mother_every": 1,
+    "sports_jose_mourinho_to_the_bar\u00e7a": 1,
+    "sports_kylian_mbappe_he_one_where": 3,
+    "cryonics-client-count": 1,
+    "escooter-er-visits-surge": 1
    },
    "timestamps": [
-    "2026-10-28T00:29:32+00:00",
-    "2026-10-28T00:31:46+00:00",
-    "2026-10-28T00:35:49+00:00",
-    "2026-10-28T10:13:13+00:00",
-    "2026-10-28T10:56:22+00:00",
-    "2026-10-28T11:20:10+00:00",
     "2026-10-28T15:23:43+00:00",
-    "2026-10-28T23:28:52+00:00"
+    "2026-10-28T23:28:52+00:00",
+    "2026-10-29T12:11:48+00:00",
+    "2026-10-29T12:22:40+00:00",
+    "2026-10-29T12:25:04+00:00",
+    "2026-10-29T12:27:41+00:00",
+    "2026-10-29T12:30:02+00:00",
+    "2026-10-29T11:10:55+00:00",
+    "2026-10-29T12:09:04+00:00"
    ],
    "examples": [
-    "unreadable: hook@0.3 to payoff@-0.4: the burned-in Spanish quote is cut off at both edges ('a esos fans (del Barcelona) que r' / 'iaban dormir la siesta en el hote'), and the ticker is cut off ('EL CA",
-    "unreadable: In mid1 two caption layers collide: 'YOU GOT TO' is printed over another line, so it reads 'TO [YOU GOT TO] AT'. In hook@0.3 'ARE YOU WILLING' sits on top of another garbled caption. Both ",
-    "unreadable: mid3: our line 'Barkley warns Shaq's new friend is dangerous' is printed directly over the ESPN Giannis Antetokounmpo stat graphic ('LAST SEASON w/ BUCKS ... 27.6 ... 5.4'), so the two tex"
+    "unreadable: seg3:end: the '2042 (projected)' label is printed over the parked jet in the second row, and the '2.0x' jet is cut off at the right edge; seg2:end: the 'MOST' tag floats in a corner with n",
+    "unreadable: seg3:end: the '2042 (projected)' label is printed over the back row of jets on top of the '~2022 fleet' area, and the '2.0x' sits under a descending plane that clips into it.",
+    "unreadable: mid4 (t=26.42s): the speech caption 'KEEP THAT AS' is printed right against and partly over the broadcast scorebug (PHI 68 / WSH 74). Our line also runs into the bee sticker in mid2 to mid"
+   ],
+   "recurred_after_fix": false
+  },
+  "junk_imagery": {
+   "count": 7,
+   "stories": {
+    "airline-pilot-shortage": 2,
+    "pitch-drop-slowest-experiment": 1,
+    "sports_john_wall_mother_every": 1,
+    "sports_jose_mourinho_to_the_bar\u00e7a": 1,
+    "sports_kylian_mbappe_he_one_where": 2
+   },
+   "timestamps": [
+    "2026-10-28T15:23:43+00:00",
+    "2026-10-28T20:04:01+00:00",
+    "2026-10-28T23:28:52+00:00",
+    "2026-10-29T12:11:48+00:00",
+    "2026-10-29T12:22:40+00:00",
+    "2026-10-29T12:25:04+00:00",
+    "2026-10-29T12:30:02+00:00"
+   ],
+   "examples": [
+    "junk_imagery: payoff@-0.4: the last frame cuts to an empty dark backdrop where Data holds a blank yellow price tag that has nothing to do with pilots or planes",
+    "junk_imagery: payoff@-0.4: Data alone on an empty dark gradient holding a blank yellow price tag, which has nothing to do with pitch",
+    "junk_imagery: payoff@-0.4: the last frame cuts to an empty dark gradient with Data holding a blank yellow price tag. The tag has nothing to do with pilots or planes; it is the blank-prop fallback, not"
    ],
    "recurred_after_fix": false
   },
   "decorative_mascot": {
    "count": 6,
    "stories": {
-    "nuclear-stockpile-growth-reversal": 1,
-    "ghost-fishing-gear-ocean-plastic": 2,
     "airline-pilot-shortage": 2,
-    "pitch-drop-slowest-experiment": 1
+    "pitch-drop-slowest-experiment": 1,
+    "lottery-odds-vs-real-life": 1,
+    "escooter-er-visits-surge": 1,
+    "jury-trial-collapse": 1
    },
    "timestamps": [
-    "2026-10-28T10:13:13+00:00",
-    "2026-10-28T10:56:22+00:00",
-    "2026-10-28T11:20:10+00:00",
     "2026-10-28T15:23:43+00:00",
     "2026-10-28T20:04:01+00:00",
-    "2026-10-28T23:28:52+00:00"
+    "2026-10-28T23:28:52+00:00",
+    "2026-10-29T01:15:31+00:00",
+    "2026-10-29T12:09:04+00:00",
+    "2026-10-29T13:10:56+00:00"
    ],
    "examples": [
-    "decorative_mascot: In the world-dismantling scenes Data stands beside the warhead carts in the same waving pose (seg1:start, seg1:mid, seg1:end) while a truck carries warheads off on its own. He never",
-    "decorative_mascot: In hook@0.3-2.2 Data only cheers on a rock while the turtle drifts behind the net. In seg1:start-end he only stands and points beside a beached net. He does real work only in seg3, ",
-    "empty_void: payoff@-0.4: nearly the whole frame is empty dark gradient, with one small mascot at the bottom. The closing shot is replaced by a void."
+    "decorative_mascot: hook@0.3 through seg1:end: Data stands by the CREW door and waves the whole time while the pilots pile up beside him without him; seg2:mid/end: he stands beside the globe holding a ",
+    "decorative_mascot: seg0:end through seg1:end: Data stands beside the dome holding a red valve wheel up to his face while the drops fall without him; in seg2:mid/end he only waves at the hourglass",
+    "decorative_mascot: hook@0.3 to seg1:end: Data stands by the CREW door in the same wave pose for about 9s while the pilot queue builds around him without him. seg2:start to seg2:end: he only scratches "
+   ],
+   "recurred_after_fix": false
+  },
+  "empty_void": {
+   "count": 5,
+   "stories": {
+    "airline-pilot-shortage": 2,
+    "pitch-drop-slowest-experiment": 1,
+    "sports_yaxel_lendeborg_and_melo_for": 2
+   },
+   "timestamps": [
+    "2026-10-28T15:23:43+00:00",
+    "2026-10-28T20:04:01+00:00",
+    "2026-10-28T23:28:52+00:00",
+    "2026-10-29T12:18:01+00:00",
+    "2026-10-29T12:20:26+00:00"
+   ],
+   "examples": [
+    "empty_void: payoff@-0.4: the final frame is almost entirely dark gradient, with only a small Data in the bottom third",
+    "empty_void: payoff@-0.4: the last frame is about 85% dark gradient with only a small Data at the bottom; the whole scene drops out",
+    "empty_void: payoff@-0.4: the final frame is an almost entirely dark navy void with one small Data figure at the bottom. The airport world is gone."
    ],
    "recurred_after_fix": false
   },
   "dead_air": {
-   "count": 2,
+   "count": 3,
    "stories": {
-    "sports_jos\u00e9_mourinho_to_the_bar\u00e7a": 1,
-    "airline-pilot-shortage": 1
+    "airline-pilot-shortage": 1,
+    "sports_jose_mourinho_to_the_bar\u00e7a": 1,
+    "cryonics-client-count": 1
    },
    "timestamps": [
-    "2026-10-28T00:29:32+00:00",
-    "2026-10-28T15:23:43+00:00"
+    "2026-10-28T15:23:43+00:00",
+    "2026-10-29T12:22:40+00:00",
+    "2026-10-29T11:10:55+00:00"
    ],
    "examples": [
-    "dead_air: mid0 to mid4: the same locked medium close-up of Mourinho for about 30s, with the same frozen Spanish quote box and no cut, zoom or sound hit. At payoff@-0.4 he has left and the frame is an ",
-    "dead_air: seg1:start/mid/end (5.4-9.7s) reuse the hook's exact airport shot: the same 649,000 headline, Data waving at the door, the same crowd of pilots. Two beats look identical, and nothing new is "
+    "dead_air: seg1:start/mid/end (5.4-9.7s) reuse the hook's exact airport shot: the same 649,000 headline, Data waving at the door, the same crowd of pilots. Two beats look identical, and nothing new is ",
+    "dead_air: mid0 through payoff@-0.4: the same static head-and-shoulders shot with the same unchanging quote card for about 20s. Only the ticker scrolls, and there is no reaction, cutaway or shot of the",
+    "dead_air: In seg3:start and seg3:mid the block and Data look the same (no cut has happened). Then seg3:end, seg4:start, payoff@-1.8 and payoff@-0.4 all show the same finished cube and the same waving "
    ],
    "recurred_after_fix": false
   }
@@ -125,12 +123,12 @@
   "hook": {
    "median": 2,
    "min": 1,
-   "max": 4
+   "max": 3
   },
   "data_demo": {
    "median": 3,
-   "min": 2,
-   "max": 5
+   "min": 1,
+   "max": 4
   },
   "mascot": {
    "median": 4,
@@ -139,7 +137,7 @@
   },
   "craft": {
    "median": 2,
-   "min": 0,
+   "min": 1,
    "max": 3
   },
   "pace": {
@@ -159,25 +157,25 @@
   }
  },
  "scores": [
-  96,
-  96,
-  95,
-  100,
-  96,
-  57,
-  53,
-  66,
-  70,
-  62,
-  58,
-  79,
-  70,
-  66,
-  49,
-  74,
-  61,
   52,
   61,
-  57
+  57,
+  61,
+  57,
+  75,
+  66,
+  62,
+  79,
+  62,
+  57,
+  57,
+  61,
+  66,
+  53,
+  87,
+  70,
+  65,
+  74,
+  83
  ]
 }
