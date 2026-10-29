@@ -16752,13 +16752,50 @@
       "ts": "2026-10-29T13:55:16.460768+00:00"
     },
     "clip-20261029-4": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-d58cd89e0783c54c",
-      "streamer": "kaicenat",
+      "url": "https://youtube.com/shorts/tx6UTSPw5Jo",
       "title": "Kaicenat: Kai Cenat Landed In Iceland And Fans Were Already Waiting",
       "kind": "story",
-      "ts": "2026-10-29T18:29:40.564607+00:00",
+      "ts": "2026-10-29T18:29:54.929038+00:00",
+      "uploaded_at": "2026-10-29T18:29:54.929051+00:00",
+      "publish_at": "2026-10-30T02:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261029-kaicenat-kai-cenat-landed-in-iceland-and-fans-we-374b5624",
+        "tiktok": "queued for 2026-10-30T02:00:00Z"
+      },
+      "story_key": "story-d58cd89e0783c54c",
+      "member_keys": [
+        "vodmine://2884438305/380-620",
+        "vodmine://2884438305/380-620",
+        "vodmine://2884438305/380-620",
+        "https://www.twitch.tv/kaicenat/clip/ThirstyTriangularOrangePanicVis-OmlzVyeiZ_fOIQbT"
+      ],
+      "streamer": "kaicenat",
+      "who": [
+        "kaicenat"
+      ],
+      "series": "extended",
+      "experiment_arm": "extended",
+      "structure": "extended",
+      "actual_structure": "extended",
+      "n_beats": 4,
+      "story_structure": "chronological",
+      "duration_s": 43.4,
+      "narrative_score": 0,
+      "narrative_summary": "Kai Cenat lands in Iceland saying he has no idea how anyone knew he was coming. Locals are already waiting for him, and they say they have been there since 5 a.m.",
+      "revision_count": 2,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 1,
+      "replay_count": 0
+    },
+    "clip-20261029-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/AgreeableBovineCroissantVoHiYo-bw2DVrMMcYb8OZCj",
+      "story_key": null,
+      "streamer": "ishowspeed",
+      "title": "Ishowspeed Can't Believe Harry Maguire Just Did This",
+      "kind": "twitch_clip",
+      "ts": "2026-10-29T18:33:17.360879+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
