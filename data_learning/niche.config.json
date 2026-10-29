@@ -24338,10 +24338,10 @@
   },
   {
    "slug": "seabed-mining-rush",
-   "title": "The Race To Mine A Place No One Owns (3 Charts)",
-   "hook": "There's a gold rush happening 4 kilometers underwater.",
-   "closing": "The deep ocean belongs to everyone, so whoever digs first decides for all of us.",
-   "question": "Should anyone mine the ocean floor?",
+   "title": "31 Mining Contracts Turned The Seabed Into A Race",
+   "hook": "The seabed rush has already reached 31 contracts.",
+   "closing": "Mining the shared ocean floor could lock in consequences for everyone.",
+   "question": "Should seabed mining pause?",
    "caption": "The Pacific seafloor holds more cobalt than every country's land reserves combined, 44 million tonnes down there versus 11 million tonnes on land. Mining companies have already filed 31 international claims to go get it, even as 37 countries now say the rules aren't ready. Should anyone be allowed to mine the ocean floor? Tell me below 👇",
    "hashtags": [
     "deepseamining",
@@ -24369,8 +24369,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE RUSH",
-     "topic": "Mining contracts",
-     "say": "Companies now hold four times more deep-sea mining claims than in 2001. A race for the ocean floor is on, and it's crowded.",
+     "topic": "Seabed Mining Contracts",
+     "say": "Seabed mining reached 31 exploration contracts. The race is no longer hypothetical.",
      "scene": {
       "mechanic": "seafloor-claim-flags-plant",
       "concept": "small claim flags plant themselves across a dark seafloor bed one by one as exploration contracts climb from 8 to 31",
@@ -24386,8 +24386,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "2 · THE MECHANISM",
-     "topic": "Cobalt mining",
-     "say": "The seafloor holds four times more cobalt than every mine on land combined. That's the prize, and the stuff in your phone battery.",
+     "topic": "Seabed Mining Cobalt",
+     "say": "Seabed nodules hold 44 million tonnes of cobalt. That concentration makes the ocean floor a strategic prize.",
      "scene": {
       "mechanic": "nodule-pile-vs-landpile",
       "concept": "two rising mounds of polymetallic nodules, the seabed pile towering far above the land-reserves pile",
@@ -24403,8 +24403,8 @@
      "insight_type": "comparison",
      "use_baseline": false,
      "role": "3 · THE CATCH",
-     "topic": "Mining pause",
-     "say": "Meanwhile, the countries asking for a pause grew by more than half in a year. The world is split on whether to dig.",
+     "topic": "Seabed Mining Pause",
+     "say": "A mining pause has support from 37 countries. Opposition is rising alongside the rush.",
      "scene": {
       "mechanic": "world-pause-flag-spread",
       "concept": "small pause-sign flags light up across a world map, spreading from 24 to 37 objecting countries",
@@ -24412,8 +24412,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-12T03:34:15Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-29T11:18:02Z",
    "retold": "retell/v3"
   },
   {
@@ -25538,10 +25538,10 @@
   },
   {
    "slug": "coldest-place-in-the-universe-is-human-made",
-   "title": "A NASA Lab Makes Atoms Colder Than Deep Space",
-   "hook": "Space is freezing, and we made something colder.",
-   "closing": "Extreme cold is also an engineering achievement; a laboratory can reach temperatures below the natural examples compared here.",
-   "question": "What would you use ultracold atoms to study?",
+   "title": "NASA Made Atoms Colder Than 1 Kelvin",
+   "hook": "NASA reached 0.0000000001 kelvin in orbit.",
+   "closing": "Extreme cold gives researchers a laboratory nature cannot easily provide.",
+   "question": "What would you study there?",
    "caption": "The coldest known place in the universe isn't 5,000 light-years away -- it's 250 miles above your head. NASA's Cold Atom Lab chills atoms a billion times colder than deep space itself. Could you survive one second there? 👇",
    "hashtags": [
     "nasa",
@@ -25567,9 +25567,9 @@
      },
      "insight_type": "rank",
      "ascending": true,
-     "topic": "Colder space background",
+     "topic": "NASA Cold Space",
      "role": "1 · HOW COLD SPACE GETS",
-     "say": "Deep space's background temperature is 2.7 kelvin in this comparison. Empty space is cold, but it is not absolute zero.",
+     "say": "Deep space sits at 2.7 kelvin in this comparison. Empty space is cold, but not the limit.",
      "scene": {
       "mechanic": "cryo-ladder-frost-climb",
       "concept": "a vertical thermometer scale drops from room temperature to deep space to the Boomerang Nebula, frost rings thickening at each colder marker",
@@ -25584,9 +25584,9 @@
       "file": "cold_atom_lab_vs_nebula.json"
      },
      "insight_type": "comparison",
-     "topic": "Colder NASA atoms",
+     "topic": "NASA Cold Lab",
      "role": "2 · THE UPSET",
-     "say": "NASA's Cold Atom Lab reaches 0.0000000001 kelvin in the supplied data. Its atoms are colder than the compared nebula.",
+     "say": "NASA's lab reaches 0.0000000001 kelvin. Human engineering beat the natural cold compared here.",
      "scene": {
       "mechanic": "frost-density-duel",
       "concept": "a nebula photo lightly dusted with frost sits beside NASA's ISS lab, frost particle density on the lab panel dialed up to a billion-times-colder extreme",
@@ -25601,9 +25601,9 @@
       "file": "nebula_vs_iss_distance.json"
      },
      "insight_type": "comparison",
-     "topic": "Colder atoms overhead",
+     "topic": "NASA Cold Orbit",
      "role": "3 · THE TWIST",
-     "say": "The space-station laboratory orbits about 250 miles up. This extreme-cold experiment is nearby in space, rather than in a distant nebula.",
+     "say": "NASA's laboratory orbits about 250 miles overhead. Extreme-cold research is closer than the distant nebula.",
      "scene": {
       "mechanic": "earth-orbit-vs-deep-space-flyout",
       "concept": "the ISS orbits tight around Earth while a marker flies out toward the frame edge racking up quadrillions of miles to reach the nebula",
@@ -25612,7 +25612,7 @@
     }
    ],
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-20T11:24:41Z",
+   "rewritten_at": "2026-10-29T11:18:01Z",
    "hook_was": "The coldest place in the universe is 250 miles above your head",
    "retold": "retell/v3"
   },
@@ -35684,9 +35684,9 @@
   },
   {
    "slug": "mangrove-forest-loss",
-   "title": "Mangrove Loss Fell From 187,000 To 102,000 Hectares",
-   "hook": "Annual mangrove loss fell from 187,000 to 102,000 hectares.",
-   "closing": "Slower loss proves protection can work, but slowing is not the same as stopping.",
+   "title": "Annual Mangrove Loss Fell To 102,000 Hectares",
+   "hook": "Mangrove destruction slowed to 102,000 hectares a year.",
+   "closing": "Slower loss proves protection can work, but coastlines still need recovery.",
    "question": "Can mangroves recover?",
    "caption": "The world has lost a fifth of its mangrove forests since 1980 — but the pace of loss is finally slowing down. 👇",
    "hashtags": [
@@ -35715,8 +35715,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE LOSS",
-     "topic": "Mangrove forest loss",
-     "say": "Mangrove forest area fell to 15.2 million hectares, leaving coastlines with less natural protection.",
+     "topic": "Mangrove Forest Area",
+     "say": "Mangrove forest area fell to 15.2 million hectares. Coastlines lost natural protection with it.",
      "illustrated_scene": "# scene standard: 2026-10-22\ndef _mangrove(cr, x, base, s, lean=0.0):\n    cr.save()\n    cr.translate(x, base)\n    cr.rotate(lean * 1.45)\n    # the stilt roots: dark arches stepping out of the mud, the mangrove's tell\n    cr.set_source_rgba(*_c((70, 50, 36)))\n    cr.set_line_width(9 * s)\n    for r in (-3, -2, -1, 1, 2, 3):\n        cr.move_to(r * 4 * s, -95 * s)\n        cr.curve_to(r * 18 * s, -82 * s, r * 32 * s, -36 * s, r * 40 * s, 0)\n        cr.stroke()\n    # the trunk\n    cr.move_to(-13 * s, -85 * s)\n    cr.curve_to(-11 * s, -170 * s, -8 * s, -240 * s, -9 * s, -300 * s)\n    cr.line_to(9 * s, -300 * s)\n    cr.curve_to(8 * s, -240 * s, 11 * s, -170 * s, 13 * s, -85 * s)\n    cr.close_path()\n    solid(cr, (112, 84, 58))\n    # the crown: a big dense dome of glossy green leaves\n    lobes = [(-62, -300, 60, P[\"leaf_shade\"]), (62, -294, 60, P[\"leaf_shade\"]),\n             (0, -306, 66, P[\"leaf_shade\"]), (-36, -350, 62, P[\"leaf\"]),\n             (38, -346, 60, P[\"leaf\"]), (0, -386, 58, P[\"leaf\"])]\n    for ox, oy, r, col in lobes:\n        disc(cr, ox * s, oy * s, r * s, col, finish=\"gloss\")\n    cr.restore()\n\n\ndef _seedling(cr, px, py):\n    cr.move_to(px - 4, py)\n    cr.line_to(px - 3, py - 90)\n    cr.line_to(px + 3, py - 90)\n    cr.line_to(px + 4, py)\n    cr.close_path()\n    solid(cr, (96, 120, 60))\n    disc(cr, px - 16, py - 96, 18, P[\"leaf\"])\n    disc(cr, px + 16, py - 100, 18, P[\"leaf_shade\"])\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a green mangrove forest on stilt roots\n    SUBSTANCE: the green mangrove trees\n    CAUSE: Data chops the mangrove trees down with an axe, each one falling on the strike\n    One dense wall of mangroves on the shore is the whole of the world's\n    mangroves in 1980. The share lost by 2005 is a fifth of that same wall,\n    cut at its true width: Data chops those trees with an axe and each one\n    TOPPLES across the sky on the strike and lies on the mud, leaving a wide\n    gap of open sky and bare stumps in the canopy. The old canopy stays as\n    a dashed ghost over the gap, and the hectares lost are written inside\n    that gap, clear of the readout above, so the lost fifth reads at a\n    glance. Done by 0.56 and held; the tide keeps rolling in and he keeps\n    chopping.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    (l0, v0), (l1, v1) = rows[0], rows[-1]\n    v0 = v0 or 1.0\n    share = clamp((v0 - v1) / v0)\n\n    N = 10\n    X0, X1 = 70, 880\n    BASE = 1350\n    xs = [X0 + i * (X1 - X0) / (N - 1) for i in range(N)]\n    sc = [1.62 + 0.16 * ((i * 0.618) % 1.0) for i in range(N)]\n    nl = max(1, int(round(N * share)))\n    lost = list(range(N - 1, N - 1 - nl, -1))      # rightmost first\n    first_lost = lost[-1]\n    x_cut = (xs[first_lost] + xs[first_lost - 1]) / 2 if first_lost > 0 else X0 - 60\n\n    a0, a1 = 0.08, 0.56\n    span = (a1 - a0) / nl\n    k = int(clamp((u - a0) / span, 0, nl - 0.001))\n    f = clamp((u - a0 - k * span) / span)\n    fall = seg(f, 0.3, 0.8) ** 2                   # it FALLS, on the strike\n    done = u >= a1\n\n    # the setting: a low sun over open coastal water — no far forest, so the\n    # gap cut in the canopy opens onto bright sky\n    landscape(cr, t, \"coast\")\n    haze(cr, 900, 1220, (214, 222, 228), a=0.4)\n    vgrad(cr, [(0, (58, 104, 116)), (1, (34, 70, 84))], 1215, 1590)\n    # the mud bank the forest stands on\n    cr.move_to(0, 1304)\n    cr.curve_to(300, 1290, 700, 1294, W, 1304)\n    cr.line_to(W, 1372)\n    cr.curve_to(700, 1382, 300, 1378, 0, 1372)\n    cr.close_path()\n    solid(cr, (104, 86, 64), edge=False)\n\n    cast_shadow(cr, X0 - 60, X1 + 60, BASE, length=260, a=0.28)\n    contact_shadow(cr, (X0 + X1) / 2, BASE + 4, X1 - X0 + 180, a=0.35)\n\n    # the forest that stays\n    for i in range(N):\n        if i not in lost:\n            _mangrove(cr, xs[i], BASE, sc[i])\n    # the lost share: felled one by one, each crown sweeping down to the mud\n    for j, i in enumerate(lost):\n        if u < a0 or j > k:\n            lean = 0.0\n        elif j < k:\n            lean = 1.0\n        else:\n            lean = fall\n        if lean > 0:\n            stump(cr, xs[i], BASE, 1.0)\n        _mangrove(cr, xs[i] + 10 * lean, BASE + 8 * lean, sc[i], lean)\n\n    # THE SCALE: the lost canopy as a ghost where it stood\n    gx1 = min(X1 + 110, W - 40)\n    if done:\n        top = BASE - 440 * sc[lost[0]]\n        cr.move_to(x_cut, BASE - 100)\n        cr.line_to(x_cut, top + 90)\n        cr.curve_to(x_cut + 40, top - 20, gx1 - 50, top - 20, gx1, top + 90)\n        cr.line_to(gx1, BASE - 100)\n        ghost(cr, a=0.85 * ease(seg(u, a1, a1 + 0.06)))\n\n    # the tide rolling in toward the camera\n    for j in range(4):\n        wy = 1392 + ((t * 150 + j * 48) % 192)\n        cr.move_to(0, wy)\n        for x in range(0, W + 60, 60):\n            cr.line_to(x, wy + 8 * math.sin(x * 0.02 + t * 1.5 + j))\n        cr.set_source_rgba(*_c((226, 240, 240), 0.75))\n        cr.set_line_width(14)\n        cr.stroke()\n\n    # right by the camera: the muddy shore and young mangroves\n    vgrad(cr, [(0, (120, 100, 76)), (1, (82, 66, 50))], 1590, H)\n    for i in range(5):\n        _seedling(cr, 110 + i * 210, 1740 + (i % 2) * 90)\n    foreground(cr, \"coast\")\n    vignette(cr, a=0.28)\n\n    # Data walks in from the water's edge and fells each tree with the axe\n    spot = [xs[i] - 90 for i in lost]\n    if u < a0:\n        host(\"point\", 990, BASE, 220)\n    elif not done:\n        prev = spot[k - 1] if k > 0 else 990\n        hx = prev + (spot[k] - prev) * ease(seg(f, 0.0, 0.25))\n        host(\"chop\", hx, BASE, 220, beat=k)\n    else:\n        # the gap is cut: he keeps working the last stump\n        host(\"chop\", spot[-1], BASE, 220, beat=nl + int((u - a1) / 0.14))\n\n    if done:\n        fit_readout(cr, f\"{v1:.1f}M hectares\", f\"of mangrove forest left · {l1}\",\n                    80, 520, size=130)\n        # the loss, written in the open sky of the gap itself\n        gap_cx = clamp((x_cut + gx1) / 2, 200, W - 200)\n        text(cr, f\"-{v0 - v1:.1f}M\", gap_cx, 930, 90, look.INK, face=\"display\",\n             anchor=\"center\", alpha=ease(seg(u, a1, a1 + 0.05)))\n    else:\n        fit_readout(cr, f\"{v0:.1f}M hectares\", f\"of mangrove forest · {l0}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -35728,8 +35728,8 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "2 · WHERE",
-     "topic": "Mangrove loss Asia",
-     "say": "Asia lost 1.9 million hectares of mangroves, more than any region shown.",
+     "topic": "Mangrove Asia Loss",
+     "say": "Asia lost 1.9 million hectares of mangroves. It carried the largest regional loss shown.",
      "illustrated_scene": "# scene standard: 2026-10-22\ndef _h(i, k=0):\n    return ((i * 0.6180339 + k * 0.4142136) % 1.0)\n\n\ndef _mangrove(cr, x, base, s, lean=0.0, a=1.0, i=0):\n    # the prop roots arch down into the mud; they stay when the tree goes\n    sz = s * (0.88 + 0.24 * _h(i, 3))\n    nr = 4 + int(3 * _h(i, 1))\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for pass_, (col, wd, off) in enumerate((((52, 38, 28), 7.0, 0.0), ((128, 100, 74), 2.6, -2.0))):\n        cr.set_source_rgba(*_c(col))\n        cr.set_line_width(wd * sz)\n        for r in range(nr):\n            d = (r - (nr - 1) / 2) * 16 * sz\n            cr.move_to(x + d * 0.2 + off, base - 66 * sz)\n            cr.curve_to(x + d * 0.5 + off, base - 84 * sz, x + d * 1.6 + off, base - 50 * sz,\n                        x + d * 2.0 + off, base)\n        cr.stroke()\n    if lean > 0.0:\n        cr.rectangle(x - 9 * sz, base - 80 * sz, 18 * sz, 16 * sz)\n        solid(cr, P[\"trunk\"])\n        cr.save()\n        cr.translate(x, base - 80 * sz)\n        cr.scale(1.0, 0.35)\n        cr.arc(0, 0, 9 * sz, 0, 2 * math.pi)\n        cr.restore()\n        solid(cr, P[\"stump_top\"], edge=False)\n    if a <= 0.01:\n        return\n    cr.push_group()\n    cr.translate(x, base - 74 * sz)\n    cr.rotate(lean * 1.45)\n    cr.move_to(-8 * sz, 0)\n    cr.curve_to(-6 * sz, -50 * sz, -9 * sz, -90 * sz, -5 * sz, -128 * sz)\n    cr.line_to(5 * sz, -128 * sz)\n    cr.curve_to(8 * sz, -90 * sz, 6 * sz, -50 * sz, 8 * sz, 0)\n    cr.close_path()\n    solid(cr, P[\"trunk\"])\n    # a dense, glossy, irregular crown: shade lobes behind, lit lobes over them\n    lobes = []\n    for j in range(9):\n        ang = math.pi * (0.95 + 1.1 * j / 8.0)\n        rr = 52 + 14 * _h(i + j, 2)\n        lobes.append((math.cos(ang) * 62 * (0.8 + 0.3 * _h(i, j)),\n                      -150 + math.sin(ang) * 46 * (0.8 + 0.3 * _h(j, i)), rr))\n    for cx, cy, r in lobes:\n        cr.new_path()\n        cr.arc(cx * sz, cy * sz, r * sz, 0, 2 * math.pi)\n        solid(cr, P[\"leaf_shade\"], edge=False, rim=False)\n    for cx, cy, r in lobes[2:7]:\n        cr.new_path()\n        cr.arc((cx - 8) * sz, (cy - 10) * sz, r * 0.78 * sz, 0, 2 * math.pi)\n        solid(cr, P[\"leaf\"], finish=\"gloss\")\n    cr.new_path()\n    cr.arc(-14 * sz, -196 * sz, 40 * sz, 0, 2 * math.pi)\n    solid(cr, P[\"rim_leaf\"] if \"rim_leaf\" in P else P[\"leaf\"], finish=\"gloss\")\n    cr.pop_group_to_source()\n    cr.paint_with_alpha(a)\n\n\ndef _ripples(cr, t, y0, y1, n, speed, seed):\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for i in range(n):\n        y = y0 + (y1 - y0) * (((i + seed) * 0.6180339) % 1.0)\n        v = speed * (1.0 + 0.35 * (i % 3))\n        x = ((t * v + i * 233 + seed * 97) % 1320) - 120\n        cr.set_source_rgba(*_c((226, 240, 246), 0.6))\n        cr.set_line_width(10)\n        cr.move_to(x, y)\n        cr.line_to(x + 90, y)\n        cr.stroke()\n\n\ndef _bank(cr, y, seed):\n    cr.move_to(0, y - 18)\n    for i in range(13):\n        cr.line_to(i * 90, y - 18 - 8 * math.sin(i * 1.7 + seed))\n    cr.line_to(W, y + 30)\n    cr.curve_to(700, y + 44, 300, y + 22, 0, y + 36)\n    cr.close_path()\n    solid(cr, (112, 92, 70))\n\n\ndef _drift_trunk(cr, x, y, ang, s):\n    # a felled mangrove trunk riding the tide: pale bleached wood, roots trailing\n    cr.save()\n    cr.translate(x, y)\n    cr.rotate(ang)\n    cr.set_source_rgba(*_c((34, 74, 96), 0.5))\n    cr.save()\n    cr.scale(1.0, 0.25)\n    cr.arc(0, 60 * s, 240 * s, 0, 2 * math.pi)\n    cr.restore()\n    cr.fill()\n    cr.rectangle(-210 * s, -34 * s, 420 * s, 68 * s)\n    solid(cr, (198, 176, 140))\n    cr.set_source_rgba(*_c((120, 96, 70)))\n    cr.set_line_width(6 * s)\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for i in range(4):\n        cr.move_to(-210 * s, (-20 + 13 * i) * s)\n        cr.curve_to(-250 * s, (-40 + 26 * i) * s, -280 * s, (-10 + 20 * i) * s,\n                    -300 * s, (-30 + 30 * i) * s)\n    cr.stroke()\n    cr.restore()\n    disc(cr, x + 210 * s * math.cos(ang), y + 210 * s * math.sin(ang), 34 * s,\n         P[\"stump_top\"])\n\n\ndef _root_clump(cr, x0, y0, flip):\n    # big lit prop roots right by the camera, arching out of the water\n    sgn = -1 if flip else 1\n    cr.set_line_cap(cairo.LINE_CAP_ROUND)\n    for col, wd, off in (((40, 30, 22), 1.0, 0), ((132, 104, 76), 0.35, -5)):\n        cr.set_source_rgba(*_c(col))\n        for i in range(4):\n            cr.set_line_width((30 - 5 * i) * wd)\n            sx = x0 + sgn * (10 + 25 * i) + off\n            cr.move_to(sx, y0 - 60 + 30 * i)\n            cr.curve_to(sx + sgn * (90 + 30 * i), y0 - 140 + 20 * i,\n                        sx + sgn * (170 + 40 * i), y0 + 60,\n                        sx + sgn * (190 + 55 * i), H + 20)\n            cr.stroke()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a mangrove shoreline across a tidal channel\n    SUBSTANCE: mangrove trees\n    CAUSE: Data saws through the mangrove trunks and they fall, opening a gap as wide as that region's loss\n    Two banks of one tidal channel, drawn at the same scale: a dense double\n    wall of mangroves filling the middle of the frame. On the far bank Data\n    saws into the mangroves and they topple one into the next until the gap\n    is as wide as Asia's loss; that width is then marked on the near bank's\n    mud. On the near bank he saws again for North & Central America, then\n    Africa, end to end, and the two gaps together stop short of Asia's mark:\n    Asia lost more than both combined, read straight off the shore. Done by\n    0.70 and held; he keeps sawing the felled trunk into rounds and the cut\n    trunks keep drifting out on the tide.\"\"\"\n    rows = sorted([(str(l), float(v)) for l, v in pts], key=lambda r: -r[1])\n    (lb, vb), rest = rows[0], rows[1:]\n    rs = sum(v for _, v in rest)\n    X0 = 130.0\n    SC = min(420.0, 820.0 / max(vb, rs, 1e-6))\n    FB, NB = 1040.0, 1450.0\n    FS, NS = 1.05, 1.22\n    HH = 232\n    xs = [20 + 50 * i for i in range(22)]\n    A0, MID, A1 = 0.05, 0.30, 0.67\n\n    gaps = [(\"far\", X0, X0 + vb * SC, lb, vb, A0, MID)]\n    x, s0 = X0, MID + 0.02\n    for l, v in rest:\n        s1 = s0 + (A1 - MID - 0.02) * v / (rs or 1.0)\n        gaps.append((\"near\", x, x + v * SC, l, v, s0, s1))\n        x, s0 = x + v * SC, s1\n    trees_in = [[tx for tx in xs if g[1] <= tx <= g[2]] for g in gaps]\n\n    def state(bank, tx):\n        for gi, g in enumerate(gaps):\n            if g[0] != bank or tx not in trees_in[gi]:\n                continue\n            m = len(trees_in[gi])\n            j = trees_in[gi].index(tx)\n            f = seg(u, g[5], g[6])\n            fs = 0.2 + 0.5 * (j / max(1, m - 1)) if m > 1 else 0.2\n            fp = seg(f, fs, fs + 0.15)\n            return fp * fp, 1.0 - seg(f, fs + 0.15, fs + 0.3)\n        return 0.0, 1.0\n\n    # which gap Data is working, and where along it\n    gk = 0\n    for gi, g in enumerate(gaps):\n        if u >= g[5]:\n            gk = gi\n    g = gaps[gk]\n    tr = trees_in[gk] or [g[1] + 20]\n    f = seg(u, g[5], g[6])\n    hx = tr[0] - 55 + (tr[-1] - tr[0]) * ease(seg(f, 0.2, 0.95))\n    far = g[0] == \"far\"\n    fy = FB + 2 if far else NB + 4\n    if u < A0:\n        hx, fy, far = X0 - 50, FB + 2, True\n\n    def data():\n        if u < A0:\n            host(\"point\", hx, fy, HH)\n        elif u < A1:\n            host(\"cut\", hx, fy, HH, beat=gk)\n        else:\n            # the story is done; he keeps sawing the felled trunk into rounds\n            k2 = int((u - A1) / 0.08)\n            fk = ((u - A1) / 0.08) % 1.0\n            cr.rectangle(hx + 30, fy - 36, 210, 32)\n            solid(cr, P[\"log\"])\n            disc(cr, hx + 30, fy - 20, 17, P[\"stump_top\"])\n            rx = hx + 240\n            drop = seg(fk, 0.45, 0.9)\n            disc(cr, rx + 30 * drop, fy - 20 + 60 * drop * drop, 17, P[\"stump_top\"],\n                 a=1.0 - seg(fk, 0.8, 1.0))\n            host(\"cut\", hx, fy, HH, beat=gk + 1 + k2)\n\n    # the setting: open sea behind the far shore, the channel in front\n    landscape(cr, t, \"coast\", horizon=960)\n    haze(cr, 600, 980, (204, 216, 224), a=0.3)\n    vgrad(cr, [(0, (84, 132, 152)), (1, (34, 74, 96))], 1030, H)\n    _ripples(cr, t, 1090, 1400, 11, 60, 1)\n\n    # the far bank: a dense wall of mangroves, softened by distance\n    _bank(cr, FB, 0.3)\n    cast_shadow(cr, 20, 1070, FB, length=140, a=0.2)\n    for tx in xs:\n        lean, a = state(\"far\", tx)\n        _mangrove(cr, tx, FB, FS, lean, a, i=int(tx))\n    haze(cr, 700, FB, (214, 222, 226), a=0.12)\n    if u >= MID:\n        c = (gaps[0][1] + gaps[0][2]) / 2\n        text(cr, lb, c, 900, fit_size(cr, lb, 48, gaps[0][2] - gaps[0][1]), look.INK,\n             anchor=\"center\", alpha=ease(seg(u, MID, MID + 0.04)))\n    if far:\n        data()\n\n    # the near bank, bigger, by the camera\n    _bank(cr, NB, 1.9)\n    cast_shadow(cr, 20, 1070, NB, length=140, a=0.22)\n    for tx in xs:\n        lean, a = state(\"near\", tx)\n        _mangrove(cr, tx + 22, NB, NS, lean, a, i=int(tx) + 7)\n    if u >= MID:\n        then_mark(cr, X0, X0 + vb * SC, NB + 14, lb, a=ease(seg(u, MID, MID + 0.04)))\n    for gi, gg in enumerate(gaps[1:], 1):\n        if u >= gg[6]:\n            c = (gg[1] + gg[2]) / 2\n            text(cr, gg[3], c, NB + 70, fit_size(cr, gg[3], 34, gg[2] - gg[1] - 8),\n                 look.INK, anchor=\"center\", alpha=min(1.0, ease(seg(u, gg[6], gg[6] + 0.025))))\n\n    # right by the camera: the tide, felled trunks drifting out, big prop roots\n    _ripples(cr, t, 1560, 1900, 10, 80, 5)\n    for i in range(2):\n        px = ((t * 170 + i * 760) % 1640) - 300\n        py = 1680 + 120 * i + 8 * math.sin(t * 1.3 + i)\n        _drift_trunk(cr, px, py, 0.08 * math.sin(t * 0.9 + i) - 0.1 + 0.2 * i,\n                     1.0 + 0.2 * i)\n    _root_clump(cr, -40, 1640, False)\n    _root_clump(cr, W + 40, 1690, True)\n    foreground(cr, \"coast\", y0=1780)\n    if not far:\n        data()\n    vignette(cr, a=0.28)\n\n    if u >= MID:\n        fit_readout(cr, f\"{vb:.1f}M hectares\", f\"of mangroves lost in {lb}\", 80, 520,\n                    a=ease(seg(u, MID, MID + 0.04)), size=130)\n    else:\n        fit_readout(cr, \"Mangroves lost\", \"where the loss hit hardest\", 80, 520,\n                    a=ease(seg(u, 0.0, 0.05)), size=130)\n    if u >= A1:\n        b = min(1.0, ease(seg(u, A1, A1 + 0.025)))\n        text(cr, f\"{rs:.1f}M\", W - 80, 655, 72, look.INK, face=\"display\",\n             anchor=\"right\", alpha=b)\n        lab = \" + \".join(l for l, _ in rest) + \" combined\"\n        text(cr, lab, W - 80, 698, fit_size(cr, lab, 30, 620), look.INK,\n             anchor=\"right\", alpha=b)\n"
     },
     {
@@ -35740,13 +35740,13 @@
      },
      "insight_type": "comparison",
      "role": "3 · A BRIGHT SPOT",
-     "topic": "Annual mangrove loss",
-     "say": "Annual mangrove loss fell to 102,000 hectares, showing the pace of destruction can slow."
+     "topic": "Mangrove Annual Loss",
+     "say": "Annual mangrove loss fell to 102,000 hectares. The decline proves destruction can slow."
     }
    ],
    "retold": "retell/v4",
    "words_by": "chatgpt-rewrite",
-   "rewritten_at": "2026-10-27T11:24:54Z",
+   "rewritten_at": "2026-10-29T11:18:02Z",
    "hook_was": "Mangrove forests are quietly disappearing."
   },
   {
@@ -35813,10 +35813,10 @@
   },
   {
    "slug": "national-parks-record-then-shutdown",
-   "title": "National Parks Broke A Record. Then A Shutdown Hit.",
-   "hook": "The parks were packed and breaking records. Then the shutdown hit.",
-   "closing": "Even in a rough year, people still show up for the view.",
-   "question": "Which park would you brave a shutdown for?",
+   "title": "National Parks Fell To 323 Million Visits After Shutdown",
+   "hook": "A record year became 323 million visits after shutdown.",
+   "closing": "Public access can disappear quickly, even when demand for parks remains strong.",
+   "question": "Which national park would you visit?",
    "caption": "National parks hit a record 331.9 million visits in 2024. Then a 43-day government shutdown in 2025 knocked visits back down -- but people still showed up in huge numbers. Which park would you brave a shutdown for? 👇",
    "hashtags": [
     "nationalparks",
@@ -35842,8 +35842,8 @@
      },
      "insight_type": "trend",
      "role": "1 · THE CLIMB",
-     "topic": "National park visits climbing",
-     "say": "Back in 2019, parks drew 327.5 million visits. Crowds kept growing, and 2024 set an all-time record.",
+     "topic": "National Park Record",
+     "say": "National parks reached 331.9 million visits. The new record showed demand was still climbing.",
      "illustrated_scene": "# scene standard: 2026-10-22\ndef _np_pine(cr, x, base, s, rgb):\n    contact_shadow(cr, x, base, 70 * s, a=0.3)\n    box(cr, x - 7 * s, base, 14 * s, 34 * s, (96, 66, 42), depth=4 * s)\n    for i in range(4):\n        w = (78 - 15 * i) * s\n        by = base - 28 * s - i * 46 * s\n        cr.move_to(x - w, by)\n        cr.curve_to(x - w * 0.5, by - 30 * s, x - 8 * s, by - 70 * s, x, by - 92 * s)\n        cr.curve_to(x + 8 * s, by - 70 * s, x + w * 0.5, by - 30 * s, x + w, by)\n        cr.close_path()\n        solid(cr, rgb)\n\n\ndef _np_car(cr, cx, by, s, rgb):\n    w, h = 170 * s, 112 * s\n    contact_shadow(cr, cx, by, w * 1.15, a=0.4)\n    for wx in (cx - w * 0.44, cx + w * 0.44 - 26 * s):\n        cr.rectangle(wx, by - 22 * s, 26 * s, 24 * s)\n        solid(cr, (34, 34, 38), rim=False)\n    box(cr, cx - w / 2, by - 10 * s, w, h * 0.46, rgb, depth=w * 0.06, finish=\"gloss\")\n    ty = by - 10 * s - h * 0.46\n    cr.move_to(cx - w * 0.42, ty)\n    cr.line_to(cx - w * 0.3, by - h)\n    cr.line_to(cx + w * 0.3, by - h)\n    cr.line_to(cx + w * 0.42, ty)\n    cr.close_path()\n    solid(cr, rgb, finish=\"gloss\")\n    cr.move_to(cx - w * 0.34, ty - 4 * s)\n    cr.line_to(cx - w * 0.26, by - h + 8 * s)\n    cr.line_to(cx + w * 0.26, by - h + 8 * s)\n    cr.line_to(cx + w * 0.34, ty - 4 * s)\n    cr.close_path()\n    solid(cr, (46, 58, 72), finish=\"glass\")\n    for lx in (cx - w * 0.47, cx + w * 0.47 - 22 * s):\n        cr.rectangle(lx, ty + 10 * s, 22 * s, 14 * s)\n        solid(cr, (214, 40, 36), finish=\"gloss\", rim=False)\n    cr.rectangle(cx - 22 * s, ty + 22 * s, 44 * s, 14 * s)\n    solid(cr, (236, 232, 214), rim=False)\n\n\ndef _np_pillar(cr, bx, top, base, w):\n    # a fieldstone pillar: a lit box, then each stone laid on its face\n    box(cr, bx, base, w, base - top, (140, 132, 120), depth=30)\n    greys = [(168, 160, 146), (150, 142, 130), (182, 172, 156), (138, 132, 124),\n             (160, 150, 134)]\n    cr.save()\n    cr.rectangle(bx, top, w, base - top)\n    cr.clip()\n    r = 0\n    y = top\n    while y < base:\n        hgt = 46 + 10 * ((r * 7) % 3)\n        x = bx - (18 if r % 2 else 0)\n        c = 0\n        while x < bx + w:\n            sw = 44 + 14 * ((r * 3 + c * 5) % 3)\n            cr.move_to(x + 4, y + 3)\n            cr.line_to(x + sw - 3, y + 2)\n            cr.line_to(x + sw - 2, y + hgt - 3)\n            cr.line_to(x + 3, y + hgt - 2)\n            cr.close_path()\n            solid(cr, greys[(r * 2 + c * 3) % len(greys)])\n            x += sw\n            c += 1\n        y += hgt\n        r += 1\n    cr.restore()\n\n\ndef scene(cr, t, u, pts, host):\n    \"\"\"HERO: a national park entrance arch\n    SUBSTANCE: visitors' cars\n    CAUSE: Data lifts the entrance gate arm with his own hands and the line of cars drives into the park\n    A log-and-stone entrance arch under a snowy peak, a road running\n    through it into the pines. Data stands at the gate post with both hands\n    on the barrier arm. Each year he heaves it up, cars roll through into\n    the park while he holds it, and the readout lands that year's visits.\n    In 2024, the record, he raises it and keeps it up. A ribbon reading\n    ALL-TIME RECORD drops across the sign, and the traffic keeps streaming\n    in to the end.\"\"\"\n    rows = by_time([(str(l), float(v)) for l, v in pts])\n    n = len(rows)\n    a0, a1 = 0.12, 0.56\n    span = (a1 - a0) / max(1, n)\n\n    def step(uu):\n        k_ = int(clamp((uu - a0) / span, 0, n - 0.001))\n        return k_, clamp((uu - a0 - k_ * span) / span)\n\n    def pull_at(uu):\n        if uu < a0:\n            return 0.0\n        if uu >= a1:\n            return 1.0\n        k_, f_ = step(uu)\n        if k_ == n - 1:\n            return ease(seg(f_, 0.0, 0.2))\n        return lever_pull(f_)\n\n    k, f = step(u)\n    pull = pull_at(u)\n    D = t / u if u > 1e-3 else 6.0\n\n    # flow time: the cars only advance through the gate while it is up\n    M = 90\n    Fs, Ts = [0.0], [0.0]\n    for j in range(1, M + 1):\n        tau = t * j / M\n        op = clamp((pull_at(tau / D) - 0.5) / 0.4)\n        Fs.append(Fs[-1] + op * t / M)\n        Ts.append(tau)\n    F = Fs[-1]\n    V, GAP = 0.45, 0.9\n\n    def y_of(s):\n        return 1170 + 330 * (1 - s) ** 1.6\n\n    def x_of(y):\n        return 560 - (y - 1170) * 0.06\n\n    COLS = [(196, 58, 50), (60, 110, 170), (232, 228, 218), (70, 130, 96),\n            (214, 160, 60), (90, 90, 100), (150, 70, 120), (40, 70, 110)]\n    cars = []\n    for i in range(40):\n        Fi = (i + 0.3) * GAP\n        if F < Fi:\n            s = (F - Fi) * V\n        else:\n            tc = next((Ts[j] for j in range(len(Fs)) if Fs[j] >= Fi), t)\n            s = (t - tc) * V\n        if -1.0 < s < 0.93:\n            cars.append((s, i))\n\n    # the place: a mountain park on a clear morning\n    landscape(cr, t, \"field\", horizon=1170, time=\"day\", seed=\"national park entrance\",\n              skyline=False)\n    # a far blue range behind the peak\n    ridge(cr, 900, 140, seed=2.3, n=6)\n    solid(cr, (150, 168, 192), edge=False)\n    haze(cr, 600, 1100, (196, 212, 230), a=0.45)\n    cr.move_to(-60, 1175)\n    cr.line_to(180, 860)\n    cr.line_to(330, 640)\n    cr.line_to(470, 820)\n    cr.line_to(640, 760)\n    cr.line_to(860, 560)\n    cr.line_to(1140, 1175)\n    cr.close_path()\n    solid(cr, (118, 130, 150))\n    # a rocky shadow face on the big peak\n    cr.move_to(860, 560)\n    cr.line_to(1140, 1175)\n    cr.line_to(900, 1175)\n    cr.line_to(880, 900)\n    cr.close_path()\n    cr.set_source_rgba(*_c((80, 92, 114), 0.45))\n    cr.fill()\n    cr.move_to(760, 660)\n    cr.line_to(860, 560)\n    cr.line_to(960, 690)\n    cr.line_to(905, 670)\n    cr.line_to(860, 700)\n    cr.line_to(815, 672)\n    cr.close_path()\n    solid(cr, (238, 242, 248), finish=\"ice\")\n    cr.move_to(270, 730)\n    cr.line_to(330, 640)\n    cr.line_to(395, 735)\n    cr.line_to(330, 712)\n    cr.close_path()\n    solid(cr, (238, 242, 248), finish=\"ice\")\n    haze(cr, 540, 1175, (196, 212, 230), a=0.45)\n    # the forest the road runs into: rows of varied pines, staggered\n    for i in range(18):\n        px = -20 + i * 64 + 22 * math.sin(i * 2.7)\n        if 470 < px < 650:\n            continue\n        ps = 0.42 + 0.22 * ((i * 0.618) % 1.0)\n        pb = 1180 + 14 * ((i * 0.414) % 1.0)\n        _np_pine(cr, px, pb, ps, [(58, 96, 74), (50, 88, 68), (66, 104, 80)][i % 3])\n    haze(cr, 1000, 1200, (196, 212, 230), a=0.3)\n    far = [(40, 1250, 1.3), (130, 1225, 1.0), (215, 1262, 1.5), (905, 1240, 1.2),\n           (980, 1270, 1.6), (1060, 1232, 1.05), (650, 1205, 0.7), (465, 1200, 0.6)]\n    for i, (px, pb, ps) in enumerate(far):\n        _np_pine(cr, px, pb, ps, [(48, 96, 66), (40, 84, 58), (62, 104, 70)][i % 3])\n    haze(cr, 1080, 1280, (196, 212, 230), a=0.2)\n\n    # the road from the camera, under the arch, into the park\n    cr.move_to(x_of(1172) - 6, 1172)\n    cr.line_to(x_of(H) - (H - 1170) * 0.55, H)\n    cr.line_to(x_of(H) + (H - 1170) * 0.55, H)\n    cr.line_to(x_of(1172) + 6, 1172)\n    cr.close_path()\n    solid(cr, (78, 78, 84), edge=False)\n    for j in range(9):\n        ya, yb = y_of(0.95 - j * 0.22), y_of(0.87 - j * 0.22)\n        cr.move_to(x_of(ya), ya)\n        cr.line_to(x_of(yb), yb)\n    cr.set_source_rgba(*_c((236, 200, 70)))\n    cr.set_line_width(6)\n    cr.stroke()\n\n    def draw_car(s, i):\n        y = y_of(s)\n        sc = (y - 1150) / 350.0\n        _np_car(cr, x_of(y), y, sc, COLS[(i * 3) % len(COLS)])\n\n    for s, i in sorted(cars, reverse=True):\n        if s > 0.0:\n            draw_car(s, i)\n\n    # the ranger booth, by the right pillar, its window lit\n    contact_shadow(cr, 960, 1484, 190, a=0.35)\n    bth = building(cr, 880, 1040, 1484, 170, (150, 108, 70), roof_rgb=(70, 84, 64),\n                   roof=\"gable\", depth=40)\n    cr.rectangle(bth[\"x0\"] + 22, bth[\"top\"] + 28, bth[\"x1\"] - bth[\"x0\"] - 44, 62)\n    solid(cr, (70, 92, 110), finish=\"glass\")\n    glow(cr, (bth[\"x0\"] + bth[\"x1\"]) / 2, bth[\"top\"] + 60, 70, (255, 226, 160), 0.35)\n\n    # the entrance arch: fieldstone pillars, a log beam, a carved sign\n    cast_shadow(cr, 280, 860, 1480, length=260, a=0.28)\n    contact_shadow(cr, 330, 1482, 150, a=0.45)\n    contact_shadow(cr, 810, 1482, 150, a=0.45)\n    _np_pillar(cr, 280, 940, 1480, 100)\n    _np_pillar(cr, 760, 940, 1480, 100)\n    for by_, h_ in ((866, 58), (928, 34)):\n        cr.rectangle(226, by_, 688, h_)\n        solid(cr, (126, 86, 52))\n        cr.set_source_rgba(*_c((88, 58, 34), 0.55))\n        cr.set_line_width(3)\n        cr.move_to(240, by_ + h_ * 0.4)\n        cr.line_to(900, by_ + h_ * 0.4)\n        cr.stroke()\n    for ex in (226, 914):\n        disc(cr, ex, 895, 29, (176, 130, 86))\n        cr.set_source_rgba(*_c((110, 74, 44), 0.7))\n        cr.set_line_width(3)\n        cr.arc(ex, 895, 15, 0, 2 * math.pi)\n        cr.stroke()\n    cr.set_source_rgba(*_c((60, 44, 30)))\n    cr.set_line_width(5)\n    for cx_ in (420, 740):\n        cr.move_to(cx_, 962)\n        cr.line_to(cx_, 972)\n    cr.stroke()\n    cr.rectangle(360, 970, 440, 100)\n    solid(cr, (110, 72, 42))\n    cr.rectangle(372, 980, 416, 80)\n    edge(cr, (70, 46, 26))\n    text(cr, \"NATIONAL PARK\", 580, 1038, 48, (240, 226, 196), face=\"bold\",\n         anchor=\"center\", shadow=False)\n    # the record lands on the sign itself\n    last_lands = a0 + (n - 1 + 0.6) * span\n    rb = ease(seg(u, last_lands, last_lands + 0.04))\n    if rb > 0:\n        cr.save()\n        cr.translate(580, 1094)\n        cr.rotate(-0.05)\n        cr.scale(1, rb)\n        cr.rectangle(-250, -34, 500, 64)\n        solid(cr, P[\"accent2\"])\n        cr.restore()\n        text(cr, \"ALL-TIME RECORD\", 580, 1108, 40, look.INK, face=\"bold\",\n             anchor=\"center\", alpha=rb, shadow=False)\n\n    # the gate: a post and its striped arm, lifted by hand\n    PX, PY = 412, 1300\n    contact_shadow(cr, PX, 1500, 60, a=0.4)\n    box(cr, PX - 14, 1500, 28, 200, (210, 206, 196), depth=10, finish=\"metal\")\n    ang = 1.3 * pull\n    L_ = 330\n    cr.save()\n    cr.translate(PX, PY)\n    cr.rotate(-ang)\n    cr.rectangle(0, -11, L_, 22)\n    solid(cr, (244, 242, 236))\n    for j in range(5):\n        cr.rectangle(30 + j * 64, -11, 30, 22)\n        cr.set_source_rgba(*_c((206, 48, 42)))\n        cr.fill()\n    cr.restore()\n    disc(cr, PX, PY, 14, (70, 70, 76), finish=\"metal\")\n\n    for s, i in sorted(cars, reverse=True):\n        if s <= 0.0:\n            draw_car(s, i)\n\n    # by the camera: big pines framing the shot, the booth left readable\n    _np_pine(cr, 30, 1900, 3.2, (38, 78, 52))\n    _np_pine(cr, 1110, 1900, 2.6, (52, 92, 62))\n    foreground(cr, \"field\")\n    vignette(cr, a=0.28)\n\n    # Data: walks over from the booth, then works the gate with his hands\n    HX = 370\n    if u < a0:\n        x = 720 - (720 - HX) * ease(seg(u, 0.0, a0))\n        host(\"point\", x, 1500, 300)\n    else:\n        hands = [(PX + r * math.cos(ang), PY - r * math.sin(ang)) for r in (25, 80)]\n        host(\"grip\", HX, 1500, 300, hands=hands, lower=\"follow\",\n             expr=\"happy\" if u > last_lands else \"strain\")\n\n    shown = None\n    if u >= a1:\n        shown = rows[-1]\n    elif u >= a0:\n        shown = landed(rows, k, f)\n    if shown is not None:\n        lab, v = shown\n        sub = f\"US national park visits · {lab}\"\n        if lab == rows[-1][0] and rows[-1][1] >= max(r[1] for r in rows):\n            sub = f\"US national park visits · {lab} record\"\n        fit_readout(cr, f\"{v:.1f}M\", sub, 80, 520, size=130)\n    else:\n        fit_readout(cr, \"Park visits\", f\"US national parks, {rows[0][0]}–{rows[-1][0]}\",\n                    80, 520, a=ease(seg(u, 0.0, 0.05)), size=130)\n"
     },
     {
@@ -35854,8 +35854,8 @@
      },
      "insight_type": "comparison",
      "role": "2 · THE SHUTDOWN HIT",
-     "topic": "Park visits after shutdown",
-     "say": "Then a government shutdown closed sites in 2025. Visits slid to 323 million, a drop from the record."
+     "topic": "National Park Shutdown",
+     "say": "National park visits fell to 323 million. Shutdown disruption erased the record year's gain."
     },
     {
      "source": "offline",
@@ -35866,13 +35866,13 @@
      "insight_type": "rank",
      "ascending": false,
      "role": "3 · WHERE THEY STILL WENT",
-     "topic": "National park favorites",
-     "say": "Even then, Blue Ridge Parkway drew 16.5 million visits. That's the most of any park site, so crowds still showed up."
+     "topic": "National Park Favorite",
+     "say": "Blue Ridge Parkway drew 16.5 million visits. Even amid disruption, the most popular site kept pulling crowds."
     }
    ],
    "retold": "retell/v4",
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-28T13:46:23Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-29T11:18:02Z",
    "hook_was": "331.9 million visits -- the most ever, until the shutdown."
   },
   {

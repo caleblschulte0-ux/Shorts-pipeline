@@ -1,96 +1,16 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-29T11:15:51Z",
+ "updated": "2026-10-29T11:18:02Z",
  "open": [
   {
-   "id": "national-parks-record-then-shutdown__52d77463",
-   "slug": "national-parks-record-then-shutdown",
-   "filed": "2026-10-28T18:47:36Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261028/national-parks-record-then-shutdown__52d77463.request.json",
-   "answer_path": "exchange/rewrites/20261028/national-parks-record-then-shutdown__52d77463.answer.json"
-  },
-  {
-   "id": "airline-pilot-shortage__6e694dae_r2",
-   "slug": "airline-pilot-shortage",
-   "filed": "2026-10-28T18:47:35Z",
-   "why": [
-    "judge: The airport art is decent and the fleet-doubling beat works, but beat 0 repeats the hook's shot, Data mostly waves or stands, and the video ends on a dark void holding a blank price tag."
-   ],
-   "request": "exchange/rewrites/20261028/airline-pilot-shortage__6e694dae_r2.request.json",
-   "answer_path": "exchange/rewrites/20261028/airline-pilot-shortage__6e694dae_r2.answer.json"
-  },
-  {
-   "id": "mangrove-forest-loss__49815695",
-   "slug": "mangrove-forest-loss",
-   "filed": "2026-10-28T18:47:35Z",
-   "why": [
-    "premise: brain: It relies on two numbers rather than a single consequential, verifiable figure."
-   ],
-   "request": "exchange/rewrites/20261028/mangrove-forest-loss__49815695.request.json",
-   "answer_path": "exchange/rewrites/20261028/mangrove-forest-loss__49815695.answer.json"
-  },
-  {
-   "id": "naep-math-pandemic-drop__28b5f92e",
+   "id": "naep-math-pandemic-drop__28b5f92e_r1",
    "slug": "naep-math-pandemic-drop",
-   "filed": "2026-10-28T18:47:35Z",
+   "filed": "2026-10-29T11:18:02Z",
    "why": [
     "premise: brain: The premise lacks a single verifiable numeric figure and relies on a vague time span rather than a concrete number."
    ],
-   "request": "exchange/rewrites/20261028/naep-math-pandemic-drop__28b5f92e.request.json",
-   "answer_path": "exchange/rewrites/20261028/naep-math-pandemic-drop__28b5f92e.answer.json"
-  },
-  {
-   "id": "california-condor-comeback__ada5193e_r2",
-   "slug": "california-condor-comeback",
-   "filed": "2026-10-28T18:47:34Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a viewer expectation and does not hinge on a single verifiable number."
-   ],
-   "request": "exchange/rewrites/20261028/california-condor-comeback__ada5193e_r2.request.json",
-   "answer_path": "exchange/rewrites/20261028/california-condor-comeback__ada5193e_r2.answer.json"
-  },
-  {
-   "id": "coldest-place-in-the-universe-is-human-made__81f94a66_r2",
-   "slug": "coldest-place-in-the-universe-is-human-made",
-   "filed": "2026-10-28T18:47:34Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261028/coldest-place-in-the-universe-is-human-made__81f94a66_r2.request.json",
-   "answer_path": "exchange/rewrites/20261028/coldest-place-in-the-universe-is-human-made__81f94a66_r2.answer.json"
-  },
-  {
-   "id": "ghost-fishing-gear-ocean-plastic__29f0976f_r1",
-   "slug": "ghost-fishing-gear-ocean-plastic",
-   "filed": "2026-10-28T11:28:42Z",
-   "why": [
-    "premise: brain: The claim does not clearly overturn a common viewer expectation and relies only on a generic statistic without a striking, counter‑intuitive twist."
-   ],
-   "request": "exchange/rewrites/20261028/ghost-fishing-gear-ocean-plastic__29f0976f_r1.request.json",
-   "answer_path": "exchange/rewrites/20261028/ghost-fishing-gear-ocean-plastic__29f0976f_r1.answer.json"
-  },
-  {
-   "id": "nuclear-stockpile-growth-reversal__419eb74b_r1",
-   "slug": "nuclear-stockpile-growth-reversal",
-   "filed": "2026-10-28T11:28:42Z",
-   "why": [
-    "premise: brain: The claim lacks a clear reversal of a common expectation and hinges on an unverified number, making it a weak premise."
-   ],
-   "request": "exchange/rewrites/20261028/nuclear-stockpile-growth-reversal__419eb74b_r1.request.json",
-   "answer_path": "exchange/rewrites/20261028/nuclear-stockpile-growth-reversal__419eb74b_r1.answer.json"
-  },
-  {
-   "id": "seabed-mining-rush__94b642eb_r2",
-   "slug": "seabed-mining-rush",
-   "filed": "2026-10-28T11:28:42Z",
-   "why": [
-    "premise: brain: The 4-kilometer depth is descriptive rather than the consequential number driving a clear expectation reversal about deep-sea mining."
-   ],
-   "request": "exchange/rewrites/20261028/seabed-mining-rush__94b642eb_r2.request.json",
-   "answer_path": "exchange/rewrites/20261028/seabed-mining-rush__94b642eb_r2.answer.json"
+   "request": "exchange/rewrites/20261029/naep-math-pandemic-drop__28b5f92e_r1.request.json",
+   "answer_path": "exchange/rewrites/20261029/naep-math-pandemic-drop__28b5f92e_r1.answer.json"
   },
   {
    "id": "cavendish-banana-monoculture__66913e65_r1",
@@ -111,6 +31,46 @@
    ],
    "request": "exchange/rewrites/20261027/lottery-odds-vs-real-life__53af3ace.request.json",
    "answer_path": "exchange/rewrites/20261027/lottery-odds-vs-real-life__53af3ace.answer.json"
+  },
+  {
+   "id": "airline-pilot-shortage__6e694dae_r2",
+   "slug": "airline-pilot-shortage",
+   "filed": "2026-10-27T11:49:11Z",
+   "why": [
+    "premise: brain: It presents a large number without overturning a viewer's expectation, failing the reversal requirement."
+   ],
+   "request": "exchange/rewrites/20261027/airline-pilot-shortage__6e694dae_r2.request.json",
+   "answer_path": "exchange/rewrites/20261027/airline-pilot-shortage__6e694dae_r2.answer.json"
+  },
+  {
+   "id": "california-condor-comeback__ada5193e_r2",
+   "slug": "california-condor-comeback",
+   "filed": "2026-10-27T11:49:11Z",
+   "why": [
+    "premise: brain: The premise lacks a clear reversal of a viewer expectation tied to a single verifiable number."
+   ],
+   "request": "exchange/rewrites/20261027/california-condor-comeback__ada5193e_r2.request.json",
+   "answer_path": "exchange/rewrites/20261027/california-condor-comeback__ada5193e_r2.answer.json"
+  },
+  {
+   "id": "mangrove-forest-loss__49815695",
+   "slug": "mangrove-forest-loss",
+   "filed": "2026-10-27T11:49:11Z",
+   "why": [
+    "premise: brain: It presents two figures rather than a single consequential number, failing the one-number requirement."
+   ],
+   "request": "exchange/rewrites/20261027/mangrove-forest-loss__49815695.request.json",
+   "answer_path": "exchange/rewrites/20261027/mangrove-forest-loss__49815695.answer.json"
+  },
+  {
+   "id": "coldest-place-in-the-universe-is-human-made__81f94a66_r2",
+   "slug": "coldest-place-in-the-universe-is-human-made",
+   "filed": "2026-10-27T11:49:10Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261027/coldest-place-in-the-universe-is-human-made__81f94a66_r2.request.json",
+   "answer_path": "exchange/rewrites/20261027/coldest-place-in-the-universe-is-human-made__81f94a66_r2.answer.json"
   },
   {
    "id": "humpback-whale-recovery__15f8bd75_r3",
