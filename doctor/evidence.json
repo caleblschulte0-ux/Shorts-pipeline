@@ -4579,8 +4579,8 @@
     }
   },
   "recent_commits": [
-    "0d11d43 2026-10-28 persist: merge the story config three-way so a stale run can't resurrect a nulled scene (#717)",
-    "c166726 2026-10-29 explainer: update posted log + analytics [skip ci]"
+    "a853ea7 2026-10-29 third: checkpoint posted log (claim upload slot) [skip ci]",
+    "5b668ca 2026-10-29 claim: 7 ChatGPT rewrite(s) applied 2026-10-29T11:22Z"
   ],
   "channel_performance": {
     "trending": {
@@ -4616,10 +4616,10 @@
         "2026-10-26": 4,
         "2026-10-27": 1,
         "2026-10-28": 2,
-        "2026-10-29": 1
+        "2026-10-29": 2
       },
-      "total_posted": 366,
-      "attempted": 366,
+      "total_posted": 367,
+      "attempted": 367,
       "rejected_or_pending": 0
     },
     "third": {
@@ -4641,8 +4641,8 @@
         "2026-10-29": 5
       },
       "total_posted": 480,
-      "attempted": 1167,
-      "rejected_or_pending": 687
+      "attempted": 1169,
+      "rejected_or_pending": 689
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4687,32 +4687,32 @@
       "full_data": "state/analytics_explainer/latest.json"
     },
     "analytics_third": {
-      "videos": 137,
+      "videos": 144,
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 11.25,
-          "views": 1605
+          "vph": 10.26,
+          "views": 1624
         },
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 3.77,
+          "vph": 3.58,
           "views": 1087
         },
         {
+          "title": "Rayasianboy Breaks His Opponent's Ankles And Can't Believe It",
+          "vph": 3.37,
+          "views": 38
+        },
+        {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 3.28,
-          "views": 1797
+          "vph": 3.23,
+          "views": 1819
         },
         {
-          "title": "Ishowspeed Gets Spooked And Screams After Smelling This",
-          "vph": 2.47,
-          "views": 156
-        },
-        {
-          "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 2.09,
-          "views": 905
+          "title": "Rayasianboy Loses It On Stream After This Happens \ud83d\ude2d",
+          "vph": 3.23,
+          "views": 17
         }
       ],
       "full_data": "state/analytics_third/latest.json"
