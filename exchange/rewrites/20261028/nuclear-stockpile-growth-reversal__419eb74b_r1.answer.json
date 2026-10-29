@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "nuclear-stockpile-growth-reversal__419eb74b_r1",
+  "slug": "nuclear-stockpile-growth-reversal",
+  "by": "chatgpt",
+  "written_at": "2026-10-29T11:14:00.229Z",
+  "title": "China Reached 500 Nuclear Warheads As World Stockpiles Fell",
+  "hook": "China reached 500 warheads while the world total kept shrinking.",
+  "closing": "One growing arsenal makes future disarmament harder to predict.",
+  "question": "Can nuclear stockpiles keep falling?",
+  "segments": [
+    {
+      "topic": "Nuclear World Stockpile",
+      "say": "The world once held 70,300 nuclear warheads. The global stockpile then fell sharply."
+    },
+    {
+      "topic": "Nuclear China Growth",
+      "say": "China reached 500 nuclear warheads. Its arsenal grew against the wider decline."
+    },
+    {
+      "topic": "Nuclear Stockpile Rank",
+      "say": "Russia holds 5,580 nuclear warheads. Established powers still dominate the balance."
+    }
+  ]
+}
