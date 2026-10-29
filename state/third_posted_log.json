@@ -16560,13 +16560,59 @@
       "ts": "2026-10-29T11:30:37.413615+00:00"
     },
     "clip-20261029-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/BlindingTiredGorillaKeyboardCat-G6AJEBWwaT2O2wZ8",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/0UmTPc5L1kI",
       "title": "Lacy Is Told Her Restaurant Bill Already Passed 500,000 Yen",
       "kind": "twitch_clip",
-      "ts": "2026-10-29T11:33:30.916652+00:00",
+      "ts": "2026-10-29T11:33:40.509224+00:00",
+      "uploaded_at": "2026-10-29T11:33:40.509240+00:00",
+      "publish_at": "2026-10-29T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261029-lacy-is-told-her-restaurant-bill-already-passed--37f038aa",
+        "tiktok": "queued for 2026-10-29T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/BlindingTiredGorillaKeyboardCat-G6AJEBWwaT2O2wZ8",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "Lacy's restaurant bill hits 500,000 yen \ud83d\ude2d",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2766,
+      "banger": 0.62,
+      "cut": {
+        "start": 4.0,
+        "end": 22.0
+      },
+      "director_cut": true
+    },
+    "rejected-tenderenergeticgoatcharlietheunicorn-fzpy49zlg3lqs00f": {
+      "source_url": "https://www.twitch.tv/rayasianboy/clip/TenderEnergeticGoatCharlietheUnicorn-FZpY49ZLg3lQs00F",
+      "streamer": "rayasianboy",
+      "title": "Ray\u53c8\u723d",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Street selfie posing, no clear payoff)",
+      "ts": "2026-10-29T11:34:19.586105+00:00"
+    },
+    "rejected-deadonerouswallabymorecowbell-4t3zlnlpxxnfgrx_": {
+      "source_url": "https://www.twitch.tv/xqc/clip/DeadOnerousWallabyMoreCowbell-4T3ZlNLPxxnFgrX_",
+      "streamer": "xqc",
+      "title": "becoming a jet with 48% jet",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Routine GTA RP running, no clear event)",
+      "ts": "2026-10-29T11:35:23.830154+00:00"
+    },
+    "clip-20261029-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jynxzi/clip/FitFlaccidVanillaNerfRedBlaster-TZK2VU_U89c5isuY",
+      "story_key": null,
+      "streamer": "jynxzi",
+      "title": "Jynxzi Screams As He Watches Someone Try To Flash And Actually Pull It Off",
+      "kind": "twitch_clip",
+      "ts": "2026-10-29T11:37:43.147787+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
