@@ -1,0 +1,20 @@
+{
+  "key": "right_whale_population_trend",
+  "title": "North Atlantic right whale population estimate",
+  "unit": "number",
+  "geography": "North Atlantic Ocean",
+  "time_coverage": "2020-2024",
+  "source": {
+    "name": "Population size estimation of North Atlantic right whales from 1990-2024 (NEFSC Technical Memorandum 338)",
+    "publisher": "NOAA Fisheries / Northeast Fisheries Science Center",
+    "url": "https://www.fisheries.noaa.gov/resource/peer-reviewed-research/population-size-estimate-north-atlantic-right-whales",
+    "officiality": "official",
+    "access_date": "2026-10-29"
+  },
+  "notes": "NOAA's latest stock assessment estimates the population bottomed out at 358 whales in 2020 and has crept up since: 376 in 2023, 384 at the start of 2024 (95% credible interval 375-394).",
+  "points": [
+    {"label": "2020", "value": 358, "period": "2020"},
+    {"label": "2023", "value": 376, "period": "2023"},
+    {"label": "2024", "value": 384, "period": "2024"}
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "key": "traffic_deaths_national_trend",
+  "title": "US motor vehicle traffic fatalities",
+  "unit": "number",
+  "geography": "United States",
+  "time_coverage": "2021-2023",
+  "source": {
+    "name": "Traffic Safety Facts / Fatality Analysis Reporting System (FARS) annual reports",
+    "publisher": "National Highway Traffic Safety Administration (NHTSA)",
+    "url": "https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/813627",
+    "officiality": "official",
+    "access_date": "2026-10-29"
+  },
+  "notes": "NHTSA reports total US traffic deaths fell three years in a row after the pandemic-era spike: 43,230 (2021, revised), 42,514 (2022, final), 40,990 (2023, early estimate).",
+  "points": [
+    {"label": "2021", "value": 43230, "period": "2021"},
+    {"label": "2022", "value": 42514, "period": "2022"},
+    {"label": "2023", "value": 40990, "period": "2023"}
+  ]
+}

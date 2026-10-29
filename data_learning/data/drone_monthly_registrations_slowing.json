@@ -1,0 +1,19 @@
+{
+  "key": "drone_monthly_registrations_slowing",
+  "title": "New drone registrations per month",
+  "unit": "number",
+  "geography": "United States",
+  "time_coverage": "2024-2025",
+  "source": {
+    "name": "FAA Aerospace Forecast, Fiscal Years 2026-2046",
+    "publisher": "Federal Aviation Administration (FAA)",
+    "url": "https://www.faa.gov/node/54496",
+    "officiality": "official",
+    "access_date": "2026-10-29"
+  },
+  "notes": "FAA's 2026 Aerospace Forecast reports new drone registrations peaked in 2024 and are now trending down: about 11,300 new registrations per month in 2024 versus about 10,500 per month in 2025.",
+  "points": [
+    {"label": "2024", "value": 11300, "period": "2024"},
+    {"label": "2025", "value": 10500, "period": "2025"}
+  ]
+}

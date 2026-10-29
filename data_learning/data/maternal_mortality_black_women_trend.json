@@ -1,0 +1,20 @@
+{
+  "key": "maternal_mortality_black_women_trend",
+  "title": "Maternal mortality rate for Black women (deaths per 100,000 live births)",
+  "unit": "number",
+  "geography": "United States",
+  "time_coverage": "2021-2023",
+  "source": {
+    "name": "Maternal Mortality Rates in the United States, 2022 and 2023 (Health E-Stat)",
+    "publisher": "CDC National Center for Health Statistics (NCHS)",
+    "url": "https://www.cdc.gov/nchs/data/hestat/maternal-mortality/2023/maternal-mortality-rates-2023.htm",
+    "officiality": "official",
+    "access_date": "2026-10-29"
+  },
+  "notes": "While the national rate fell every year after 2021, NCHS reports the rate for non-Hispanic Black women plateaued: 69.9 (2021), 49.5 (2022), 50.3 (2023) per 100,000 live births; NCHS notes the 2022-to-2023 increase was not statistically significant.",
+  "points": [
+    {"label": "2021", "value": 69.9, "period": "2021"},
+    {"label": "2022", "value": 49.5, "period": "2022"},
+    {"label": "2023", "value": 50.3, "period": "2023"}
+  ]
+}

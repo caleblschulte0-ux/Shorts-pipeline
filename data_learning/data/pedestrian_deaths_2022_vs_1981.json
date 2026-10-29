@@ -1,0 +1,19 @@
+{
+  "key": "pedestrian_deaths_2022_vs_1981",
+  "title": "Pedestrian deaths as a share of all US traffic deaths, 2022",
+  "unit": "number",
+  "geography": "United States",
+  "time_coverage": "2022",
+  "source": {
+    "name": "Pedestrian Traffic Fatalities by State, 2022 Preliminary Data / Traffic Safety Facts",
+    "publisher": "GHSA / National Highway Traffic Safety Administration (NHTSA)",
+    "url": "https://www.ghsa.org/resources/Pedestrians23",
+    "officiality": "secondary",
+    "access_date": "2026-10-29"
+  },
+  "notes": "GHSA's 2022 pedestrian count (7,508, the most since 1981) set against NHTSA's 2022 total traffic death count (42,514): pedestrians made up about 1 in 6 of all US traffic deaths that year.",
+  "points": [
+    {"label": "Pedestrian deaths", "value": 7508},
+    {"label": "All other traffic deaths", "value": 35006}
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "key": "maternal_mortality_by_race_2023",
+  "title": "US maternal mortality rate by race/ethnicity, 2023 (per 100,000 live births)",
+  "unit": "number",
+  "geography": "United States",
+  "time_coverage": "2023",
+  "source": {
+    "name": "Maternal Mortality Rates in the United States, 2023 (Health E-Stat 100)",
+    "publisher": "CDC National Center for Health Statistics (NCHS)",
+    "url": "https://www.cdc.gov/nchs/data/hestat/maternal-mortality/2023/maternal-mortality-rates-2023.htm",
+    "officiality": "official",
+    "access_date": "2026-10-29"
+  },
+  "notes": "2023 maternal mortality rate per 100,000 live births by race/ethnicity: non-Hispanic Black 50.3, non-Hispanic White 14.5, Hispanic 12.4, non-Hispanic Asian 10.7.",
+  "points": [
+    {"label": "Black women", "value": 50.3},
+    {"label": "White women", "value": 14.5},
+    {"label": "Hispanic women", "value": 12.4},
+    {"label": "Asian women", "value": 10.7}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "key": "pedestrian_vs_other_traffic_deaths_growth",
+  "title": "Growth in pedestrian deaths vs all other traffic deaths since 2010",
+  "unit": "percent",
+  "geography": "United States",
+  "time_coverage": "2010-2022",
+  "source": {
+    "name": "Pedestrian Traffic Fatalities by State, 2022 Preliminary Data",
+    "publisher": "Governors Highway Safety Association (GHSA)",
+    "url": "https://www.ghsa.org/resources/Pedestrians23",
+    "officiality": "secondary",
+    "access_date": "2026-10-29"
+  },
+  "notes": "GHSA's analysis of state data found pedestrian fatalities rose 77% from 2010 to 2022, compared with a 25% rise for all other traffic deaths over the same period.",
+  "points": [
+    {"label": "Pedestrian deaths", "value": 77},
+    {"label": "All other traffic deaths", "value": 25}
+  ]
+}

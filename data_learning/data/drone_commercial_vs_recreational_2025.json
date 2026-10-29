@@ -1,0 +1,19 @@
+{
+  "key": "drone_commercial_vs_recreational_2025",
+  "title": "FAA-registered drones by type, November 2025",
+  "unit": "number",
+  "geography": "United States",
+  "time_coverage": "November 2025",
+  "source": {
+    "name": "UAS by the Numbers",
+    "publisher": "Federal Aviation Administration (FAA)",
+    "url": "https://www.faa.gov/node/54496",
+    "officiality": "official",
+    "access_date": "2026-10-29"
+  },
+  "notes": "FAA's registration dashboard shows commercial drone registrations have overtaken recreational ones: 453,635 commercial vs 371,334 recreational as of November 2025. As recently as August 2024 the two were nearly tied (390,027 commercial vs 388,838 recreational).",
+  "points": [
+    {"label": "Commercial drones", "value": 453635},
+    {"label": "Recreational drones", "value": 371334}
+  ]
+}
