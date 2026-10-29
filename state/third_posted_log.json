@@ -16523,13 +16523,50 @@
       "ts": "2026-10-29T11:25:54.772291+00:00"
     },
     "clip-20261029-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/pokimane/clip/CrepuscularClearHumanDoubleRainbow-AxY-KlSEaMNiFwF5",
-      "story_key": null,
-      "streamer": "pokimane",
+      "url": "https://youtube.com/shorts/v4Kl3iX7A1I",
       "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
       "kind": "twitch_clip",
-      "ts": "2026-10-29T11:28:20.036651+00:00",
+      "ts": "2026-10-29T11:28:29.049255+00:00",
+      "uploaded_at": "2026-10-29T11:28:29.049271+00:00",
+      "publish_at": "2026-10-29T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261029-pokimane-reveals-why-these-photos-hit-different--b5d28a9c",
+        "tiktok": "queued for 2026-10-29T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/pokimane/clip/CrepuscularClearHumanDoubleRainbow-AxY-KlSEaMNiFwF5",
+      "streamer": "pokimane",
+      "series": "drama",
+      "hook": "Pokimane recognizes every photo \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 20868,
+      "banger": 0.5,
+      "cut": {
+        "start": 5.6,
+        "end": 29.8
+      },
+      "director_cut": true
+    },
+    "rejected-moldytardybutterflybcouch-hawdur4jaun0fqxp": {
+      "source_url": "https://www.twitch.tv/lirik/clip/MoldyTardyButterflyBCouch-haWDur4jaUN0FqXp",
+      "streamer": "lirik",
+      "title": "Lirik and his team cleaned the Moon in Moon Sweeper",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Post-game wrap-up talk, no event)",
+      "ts": "2026-10-29T11:30:37.413615+00:00"
+    },
+    "clip-20261029-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/BlindingTiredGorillaKeyboardCat-G6AJEBWwaT2O2wZ8",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Is Told Her Restaurant Bill Already Passed 500,000 Yen",
+      "kind": "twitch_clip",
+      "ts": "2026-10-29T11:33:30.916652+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
