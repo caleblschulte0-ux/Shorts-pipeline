@@ -1,0 +1,22 @@
+name: Probe NCS
+on:
+  pull_request:
+    paths: ['.github/workflows/probe-ncs.yml']
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - run: |
+          UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124 Safari/537.36"
+          curl -sSL -A "$UA" -o s.html -w 'search %{http_code} %{size_download}\n' 'https://ncs.io/music-search?q=&genre=&mood=&version=instrumental' || true
+          grep -o 'data-[a-z-]*="[^"]*"' s.html | sort | uniq -c | sort -rn | head -40
+          python3 - <<'PY'
+          import re
+          s=open('s.html',encoding='utf8',errors='ignore').read()
+          i=s.find('<tbody'); print(s[i:i+4000])
+          PY
+          curl -sSL -A "$UA" -o t.html -w 'track %{http_code}\n' 'https://ncs.io/Lighthouse' || true
+          grep -o 'track/download/[^"]*' t.html | head
+          curl -sSL -A "$UA" -D h.txt -o a.mp3 -w 'dl %{http_code} %{size_download} %{content_type} %{url_effective}\n' 'https://ncs.io/track/download/i_f4183b05-aa72-4f33-89ea-a58d98551d29' || true
+          head -20 h.txt; file a.mp3; ffprobe -v error -show_entries format=duration -of csv=p=0 a.mp3 || true
