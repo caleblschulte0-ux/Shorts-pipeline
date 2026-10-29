@@ -4510,11 +4510,29 @@
       "duration_s": 26.8
     },
     "jury-trial-collapse": {
-      "claimed_at": "2026-10-29T13:48:15.939730+00:00",
+      "url": "https://youtube.com/shorts/qERI9Ut_q-U",
       "title": "Fewer Than 2% Of Federal Criminal Cases Go To Trial",
+      "at": "2026-10-29T13:48:27.935212+00:00",
       "publish_at": "2026-10-29T23:25:49Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 8.02,
+      "beat_s": [
+        4.42,
+        8.02,
+        7.17,
+        5.61,
+        7.96
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 83,
+      "duration_s": 33.7
     }
   },
   "uploads": [
@@ -5757,9 +5775,10 @@
       "claimed_at": "2026-10-29T13:48:15.939730+00:00",
       "title": "Fewer Than 2% Of Federal Criminal Cases Go To Trial",
       "publish_at": "2026-10-29T23:25:49Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "jury-trial-collapse"
+      "url": "https://youtube.com/shorts/qERI9Ut_q-U",
+      "state": "posted",
+      "slug": "jury-trial-collapse",
+      "at": "2026-10-29T13:48:27.935212+00:00"
     }
   ]
 }
