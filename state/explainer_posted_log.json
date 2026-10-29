@@ -4423,6 +4423,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 74,
       "duration_s": 25.6
+    },
+    "lottery-odds-vs-real-life": {
+      "claimed_at": "2026-10-29T01:25:59.309467+00:00",
+      "title": "Powerball's Jackpot Denominator Grew 67%",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5633,6 +5640,14 @@
       "state": "posted",
       "slug": "ghost-fishing-gear-ocean-plastic",
       "at": "2026-10-28T11:20:23.577947+00:00"
+    },
+    {
+      "claimed_at": "2026-10-29T01:25:59.309467+00:00",
+      "title": "Powerball's Jackpot Denominator Grew 67%",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "lottery-odds-vs-real-life"
     }
   ]
 }
