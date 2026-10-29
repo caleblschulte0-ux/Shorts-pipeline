@@ -171,6 +171,98 @@
     "https://www.twitch.tv/xqc/clip/FrailDullWatercressTheThing-DWH7T9vcg6gdLbAR",
     "https://www.twitch.tv/xqc/clip/TransparentProductiveAntTBCheesePull-ZHgbQBb2YysBHbYw"
    ]
+  },
+  {
+   "label": "ohnepixel@vod2889800273/ohnepixel-bikini-ohnepixel-2026w43",
+   "run": "40903348035",
+   "score": 82,
+   "edl": {
+    "title": "Ohnepixel swears he quit this game",
+    "premise": "ohnepixel keeps insisting he's done with a suggestive mobile game, then goes right back to playing it.",
+    "central_question": "Will he stop?",
+    "structure": "escalation",
+    "hook_overlay": "Ohnepixel swears he quit this game",
+    "beats": [
+     {
+      "source_id": "https://www.twitch.tv/ohnepixel/clip/RelatedComfortableBillPartyTime-iwOeTC82RSBb_jVO",
+      "start": 5.0,
+      "end": 11.5,
+      "role": "setup",
+      "purpose": "With the game on screen, he says 'I'm done' and 'nah nah nah'.",
+      "transition": "j_cut",
+      "framing": "wide",
+      "context_overlay": "",
+      "link": "start",
+      "effects": []
+     },
+     {
+      "source_id": "https://www.twitch.tv/ohnepixel/clip/PolishedHyperToothKeyboardCat-lYxt3_2OqjYU0qwe",
+      "start": 2.0,
+      "end": 7.8,
+      "role": "escalation",
+      "purpose": "Half a minute later the game is playing again and he tells chat 'I'm not playing'.",
+      "transition": "hard_cut",
+      "framing": "tight",
+      "context_overlay": "",
+      "link": "but",
+      "effects": []
+     },
+     {
+      "source_id": "https://www.twitch.tv/ohnepixel/clip/PeacefulCleverCardRaccAttack-ucc04g0tD9xvgOU1",
+      "start": 3.8,
+      "end": 10.8,
+      "role": "climax",
+      "purpose": "Eleven minutes later he is still in the game and says 'All right. Continuing.'",
+      "transition": "hard_cut",
+      "framing": "tight",
+      "context_overlay": "11 minutes later",
+      "link": "and",
+      "effects": []
+     }
+    ],
+    "narration": {
+     "text": "Ohnepixel says he's done with this mobile game",
+     "over_beat": 0,
+     "essential_because": "Transcript: 'Yo I'm done'; streamer=ohnepixel; scene report: mobile-style game"
+    }
+   },
+   "sources": [
+    {
+     "url": "https://www.twitch.tv/ohnepixel/clip/RelatedComfortableBillPartyTime-iwOeTC82RSBb_jVO",
+     "channel": "ohnepixel",
+     "date": "2026-10-02",
+     "summary": "ohnepixel plays a mobile game showing a 3D-rendered woman in a leopard-print bikini. He rests his hand on his face, then opens the game's Pause menu around 10s, says 'I'm done' and 'nah nah nah', and "
+    },
+    {
+     "url": "https://www.twitch.tv/ohnepixel/clip/PolishedHyperToothKeyboardCat-lYxt3_2OqjYU0qwe",
+     "channel": "ohnepixel",
+     "date": "2026-10-02",
+     "summary": "The streamer reacts with 'whoa okay bro, I'm not playing' while a suggestive, interactive video game plays full-screen, showing a woman in a leopard-print bikini and a touch-control interface, with ch"
+    },
+    {
+     "url": "https://www.twitch.tv/ohnepixel/clip/PeacefulCleverCardRaccAttack-ucc04g0tD9xvgOU1",
+     "channel": "ohnepixel",
+     "date": "2026-10-02",
+     "summary": "Ohnepixel plays an FMV game paused on a Pause menu, opens a Twitch chat window and a profile popup, then resumes. He jokes that he mistook a name for 'Leafa from Deadlock', and the scene continues wit"
+    },
+    {
+     "url": "https://www.twitch.tv/ohnepixel/clip/ShyCourteousWoodcockAsianGlow-OQMUrXnb-pAd9MP4",
+     "channel": "ohnepixel",
+     "date": "2026-10-02",
+     "summary": "ohnepixel plays an interactive massage game in which a woman lies on a bed and a cursor circle picks body areas (shoulder, waist); she talks to the player while he watches with his hand over his face."
+    },
+    {
+     "url": "https://www.twitch.tv/ohnepixel/clip/FragileCleanPoultryBibleThump-hqAUUkm7CEedMm3N",
+     "channel": "ohnepixel",
+     "date": "2026-10-23",
+     "summary": "Streamer ohnepixel, on a CS:GO case-opening screen that then cuts to a map-pick lobby, tells a story about someone who took a spoonful of hot sauce each time and asks chat what voice to make or what t"
+    }
+   ],
+   "source_urls": [
+    "https://www.twitch.tv/ohnepixel/clip/PeacefulCleverCardRaccAttack-ucc04g0tD9xvgOU1",
+    "https://www.twitch.tv/ohnepixel/clip/PolishedHyperToothKeyboardCat-lYxt3_2OqjYU0qwe",
+    "https://www.twitch.tv/ohnepixel/clip/RelatedComfortableBillPartyTime-iwOeTC82RSBb_jVO"
+   ]
   }
  ]
 }
