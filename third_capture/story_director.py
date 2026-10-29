@@ -426,7 +426,9 @@ Then emit the COMPLETE timeline. Segment rules:
 - context_overlay: 2-6 words, sentence case, briefly replacing the
   caption only when the viewer would otherwise be confused (time jump,
   new speaker, new place) — e.g. "Earlier that day", "Then his friend
-  responded". NEVER meta-labels like
+  responded". A time-jump overlay stays on screen for its whole beat,
+  and that beat plays at least 7 seconds so the viewer SEES what changed
+  ("11 minutes later" over him actually playing). NEVER meta-labels like
   "IT GETS WORSE" or "PART TWO". "" when the cut is already obvious.
 - A STRANGER DOES NOT KNOW THE STREAMER OR THE GAME. Each SOURCE's
   `streamer=` and `game=` are Twitch's own metadata — verified facts. When
@@ -1050,6 +1052,9 @@ def _finish_the_sentence(beats: list[dict], words: dict,
         clean = not before or ends_thought(before[-1])
     if clean:
         return beats
+    ov = last.get("context_overlay") or ""
+    if ov and _TIME_JUMP.search(ov):
+        min_beat = max(min_beat, TIME_JUMP_MIN_S)   # never cut a jump short
     fwd = [w["e"] for i, w in enumerate(ws)
            if w["e"] > end - 0.05 and w["e"] <= limit and ends_thought(i)]
     if fwd:
@@ -1070,6 +1075,36 @@ def _finish_the_sentence(beats: list[dict], words: dict,
 
 def _words(reports: list[dict]) -> dict:
     return {r.get("source_id"): r.get("words") or [] for r in reports}
+
+
+# A beat that opens on a jump in time is ON SCREEN long enough to see what
+# changed (operator, 2026-10-29, of Ohnepixel's "11 minutes later" cut to a
+# 4-second shot of him playing: "let that clip play out a little bit
+# longer. Let us see that he was playing 11 minutes later").
+TIME_JUMP_MIN_S = 7.0
+_TIME_JUMP = re.compile(
+    r"\b(later|earlier|after|before|next|then|meanwhile|ago|"
+    r"seconds?|minutes?|hours?|days?|weeks?|months?|years?)\b", re.I)
+
+
+def _time_jumps_play_out(beats: list[dict], durations: dict[str, float],
+                         rs: list[str]) -> list[dict]:
+    """Lengthen a time-jump beat to `TIME_JUMP_MIN_S` from its own source,
+    as far as the source runs; `_finish_the_sentence` then lands its new
+    end on the end of a thought."""
+    out = []
+    for b in beats:
+        ov = b.get("context_overlay") or ""
+        dur = float(durations.get(b["source_id"]) or 0.0)
+        if ov and _TIME_JUMP.search(ov) and \
+                b["end"] - b["start"] < TIME_JUMP_MIN_S and dur > b["end"]:
+            end = round(min(dur, b["start"] + TIME_JUMP_MIN_S), 2)
+            rs.append(f"beat {b['source_id']} after {ov!r} plays to "
+                      f"{end:.1f}s (was {b['end']:.1f}s): a time jump is "
+                      "seen, not just read")
+            b = dict(b, end=end)
+        out.append(b)
+    return out
 
 
 def validate_edl(edl: dict, durations: dict[str, float],
@@ -1251,6 +1286,7 @@ def validate_edl(edl: dict, durations: dict[str, float],
                           "link": link if beats else "start",
                           **({"show": show} if show else {}),
                           "effects": effects})
+        beats = _time_jumps_play_out(beats, durations, rs)
         beats = _no_replayed_seconds(beats, positions or {}, rs)
         beats = _no_repeated_lines(beats, words or {}, rs)
         beats = _finish_the_sentence(beats, words or {}, durations, rs)
