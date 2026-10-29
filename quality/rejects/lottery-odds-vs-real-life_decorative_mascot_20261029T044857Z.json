@@ -1,0 +1,16 @@
+{
+ "slug": "lottery-odds-vs-real-life",
+ "ts": "20261029T044857Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From seg2:start through seg4:end (about 15s, half the video) Data stands by the velvet rope with his arms crossed. He does nothing to the queue or the odds. In seg0:start/end he holds a sledgehammer on the tower that never strikes anything, and the lightning is not caused by him.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "picture_does_not_prove_claim",
+  "visible_evidence": "seg2:start\u2192seg2:end: the headline swaps from '1 in 175,000,000' to '1 in 292,201,338', but the picture hardly changes. A couple of people join the queue and Data stands with his arms crossed by the rope. The sign above still reads 'Before Oct 2015' after the number has become the post-2015 odds.",
+  "root_cause": "The rule change that made the odds 67% worse is shown only as a label change. A longer queue suggests more players, not worse odds, and Data does nothing to cause it. The 'Before Oct 2015' sign is never updated, so it contradicts the new number.",
+  "repair_goal": "Draw the odds as something Data makes harder. For example, Data cranks a lotto ball drum larger, or hauls in more balls (69 white balls replacing 59), so the winning ball visibly becomes a smaller speck in a bigger drum. Keep a ghost of the old drum at 175M beside it, and switch the sign to 'After Oct 2015' when the number lands."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
