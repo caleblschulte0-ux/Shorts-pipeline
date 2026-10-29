@@ -1,38 +1,33 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261028",
-  "judged_date": "20261027",
+  "date": "20261029",
+  "judged_date": "20261028",
   "alarm": {
-    "date": "20261027",
+    "date": "20261028",
     "ok": false,
     "alarms": [
       {
         "code": "short_slate_explainer",
         "severity": "warning",
-        "detail": "explainer: 1/4 posted for 20261027.",
+        "detail": "explainer: 2/4 posted for 20261028.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
       },
       {
         "code": "short_slate_third",
         "severity": "warning",
-        "detail": "third: 1/6 posted for 20261027.",
+        "detail": "third: 5/6 posted for 20261028.",
         "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
-      },
-      {
-        "code": "no_posts_trending",
-        "severity": "critical",
-        "detail": "trending: ZERO videos posted for 20261027 (registry wants 3).",
-        "fix": "Check the trending workflow run for 20261027. A day that ships nothing has never once turned a check red \u2014 that is why this alarm exists."
       },
       {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (49 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (50 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
-      "chatgpt finalizer: artifact present"
+      "chatgpt finalizer: artifact present",
+      "trending: 3/3 posted"
     ],
     "deferred": false
   },
@@ -218,592 +213,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-10-23T13:18:44+00:00",
-      "slug": "sports_lebron_james_ident_taking",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The one-liner is real and it lands, but about 11 of its 19 seconds show the top of LeBron's head, and the captions garble and pile onto the TV graphic.",
-      "auto_fails": [
-        "unreadable: mid0 (t=2.50s): two word captions are printed over each other and read 'F[ACT THAT TRUMP]E', which is garbled. Every frame also stacks our hook line and the word captions right on top of the broadcast's LEBRON JAMES stat graphic, filling the bottom third."
-      ],
-      "problems": [
-        "The crop for t=2.5-11s (mid0-mid3) frames LeBron's scalp, not his face, and in mid1 he is half out of frame.",
-        "mid0: two word captions overprint into 'F[ACT THAT TRUMP]E'.",
-        "The hook line and word captions sit right on top of the broadcast's stat lower-third, so the bottom third is cluttered.",
-        "Hook: the first two seconds are a close face plus a vague line ('LeBron answers the Trump question'). It names no stakes and gives no reason to stay.",
-        "Payoff: the quip lands at about 14-17s and the clip ends right after, so the reaction gets little room."
-      ],
-      "fixes": [
-        "Track and crop on his face, eyes in the upper third, through the downward-looking stretch.",
-        "Show only one word-caption group at a time, with no overlapping cues.",
-        "Move our line and the word captions above the broadcast graphic, or crop the graphic out.",
-        "Sharpen the on-screen line to tease the quip, e.g. 'LeBron's one-line answer to Trump'. Consider opening on the smile or quip, then cutting back to the question.",
-        "Punch in with a sound hit on 'slow news day' so the payoff hits harder."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 56
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid0",
-        "index": 0,
-        "failure_class": "bad_crop_and_overlapping_captions",
-        "visible_evidence": "From mid0 to mid3 (t=2.5-11s) the 9:16 crop shows mostly the top of LeBron's bald scalp while he looks down. His eyes and mouth are cut off, and in mid1 he is half out of frame, with the frame filled by the locker on the left. mid0's word caption is two captions overprinted ('F[ACT THAT TRUMP]E').",
-        "root_cause": "The reframe is anchored too high or tracks the head instead of the face. When he lowers his head to listen to the question, the crop shows his scalp. The caption renderer also let two word groups overlap in time.",
-        "repair_goal": "Reframe on his face (eyes to mouth in the upper-middle third) for the whole question, or cut tight to the question audio over a steady face crop. Show one word-caption group at a time. Raise the word captions and hook line so they clear the broadcast stat bar."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.062,
-        "effective_fps": 22.5,
-        "max_dup_run": 3,
-        "measured": true,
-        "frozen_ratio": 0.053,
-        "frozen_fps": 22.7,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.036,
-        "judder_fps": 23.1,
-        "held_s": 0.0,
-        "max_dup_at_s": 4.67,
-        "duration_s": 18.79
-      },
-      "fingerprint": "?|unreadable|bad_crop_and_overlapping_captions"
-    },
-    {
-      "ts": "2026-10-23T13:20:08+00:00",
-      "slug": "sports_lebron_james_ident_taking",
-      "score": 83,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "The one-liner lands with a grin at mid4, but for about 8 seconds (mid1 to mid3) the crop shows the top of LeBron's bald head instead of his face.",
-      "auto_fails": [],
-      "problems": [
-        "mid1: the crop slides off his head and leaves mostly empty locker background",
-        "mid2 and mid3: a tight zoom on his scalp while he looks down, so his face and the reaction are not visible",
-        "mid3: the zoom cuts the broadcast chyron to 'EBRON'",
-        "hook: no context for what Trump said, though the question in the captions partly covers it"
-      ],
-      "fixes": [
-        "Reframe mid1 to mid3 to track his face (eyes and mouth), not the top of his head",
-        "Use a wider crop while he looks down and keep the punch-in for the grin at mid4 on 'slow news day at the office'",
-        "Keep the zoom from cutting through the TV chyron, or crop the chyron out completely"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 56
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid1",
-        "index": 1,
-        "failure_class": "bad_crop",
-        "visible_evidence": "From mid1 to mid3 the punch-in frames the top of LeBron's bald scalp while he looks down. In mid1 only the edge of his head is visible beside an empty locker background, and in mid3 the zoom cuts the chyron to 'EBRON'.",
-        "root_cause": "The reframe or zoom follows a head that tilts down and out of frame, so the face drops below the crop and the subject is lost for about 8 seconds",
-        "repair_goal": "Track his face rather than the top of his head: reframe mid1 to mid3 so his eyes and mouth stay in the upper-middle of the frame, or use a wider crop while he looks down. Save the punch-in for the 'slow news day at the office' grin at mid4."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.058,
-        "effective_fps": 22.6,
-        "max_dup_run": 3,
-        "measured": true,
-        "frozen_ratio": 0.045,
-        "frozen_fps": 22.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.025,
-        "judder_fps": 23.4,
-        "held_s": 0.0,
-        "max_dup_at_s": 4.58,
-        "duration_s": 18.71
-      },
-      "fingerprint": "?|-|bad_crop"
-    },
-    {
-      "ts": "2026-10-23T13:22:32+00:00",
-      "slug": "sports_yaxel_lenderborg_and_guarding",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The moment the line promises is really there, but the crop cuts off every burned-in caption at both edges and the clip ends on a weak trailing sentence, not the 'you can't score' punchline.",
-      "auto_fails": [
-        "unreadable: Our crop cuts off both ends of the footage's own captions in every frame: 'omplaining the entire game and th' (mid1), 'hat, that's just weak, you know. S' (mid2), 'g him he sucks. He can't s' (mid4). At payoff@-1.8 the captions sit on top of the YAXEL LENDEBORG lower third and cover it. Our own line at the top is readable."
-      ],
-      "problems": [
-        "The burned-in source captions are cut off on both sides in every frame (mid1, mid2, mid3, mid4), so a viewer watching with sound off cannot follow.",
-        "At payoff@-1.8 the captions sit on top of the TV lower third.",
-        "No game footage of Luka ever appears, so a stranger never sees the flopping he describes; it is a talking head only.",
-        "The ending (payoff@-0.4) trails off on 'I was letting him know' and does not land.",
-        "The only move is one punch-in (mid4); the rest is a static podium shot for 36s."
-      ],
-      "fixes": [
-        "Fit the source width so its captions are whole, or crop them out and draw our own word captions above our line.",
-        "End the cut on the mid4 'he sucks / you can't score' line, with a punch-in and a sound hit.",
-        "Use the 'lost all respect' clip (hook@0.3) as the first frame. It is there now, so keep it, and repeat the zoom on that line.",
-        "If available, cut in a few seconds of the Luka foul-baiting play he describes."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 109
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "payoff",
-        "index": 11,
-        "failure_class": "cropped_source_captions_and_flat_ending",
-        "visible_evidence": "At payoff@-1.8 and payoff@-0.4 the burned-in captions are cut off at both edges ('that's why I got the technical and') and printed over the TV lower third. The clip ends mid-thought on a still talking head.",
-        "root_cause": "The 16:9 source has burned-in subtitles sized for the full width, and our 9:16 centre crop cuts them off. The cut ends on a trailing sentence, not on the sharpest line ('you can't score', mid4).",
-        "repair_goal": "Reframe so the source captions fit the full frame width (or crop them out and draw our own word captions), and end the cut on the 'he sucks / you can't score' line from mid4, with a punch-in on that line."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.406,
-        "effective_fps": 14.3,
-        "max_dup_run": 17,
-        "measured": true,
-        "frozen_ratio": 0.028,
-        "frozen_fps": 23.3,
-        "max_frozen_run": 4,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 5.0,
-        "max_dup_at_s": 5.21,
-        "duration_s": 36.25
-      },
-      "fingerprint": "?|unreadable|cropped_source_captions_and_flat_ending"
-    },
-    {
-      "ts": "2026-10-23T13:25:48+00:00",
-      "slug": "sports_yaxel_lenderborg_and_guarding",
-      "score": 83,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "The moment lands: he says on camera that Luka 'can't score on me'. But the source is a cropped repost, its subtitles are cut off at both edges, and the frame rate is choppy.",
-      "auto_fails": [],
-      "problems": [
-        "The footage's own subtitles are cut off at both edges in every frame (hook@0.3, mid2, payoff@-0.4), so a viewer cannot follow what he says.",
-        "The source is a letterboxed repost with blurred top and bottom bands (hook@0.3, mid2), not a clean original.",
-        "Effective frame rate is 13.8fps with 42.6% duplicate frames: a low-fps source stretched onto the timeline.",
-        "The zoom jumps between framings (mid1 and mid5 are punched in, the rest wide) with no clear beat motivating it."
-      ],
-      "fixes": [
-        "Get the original press-conference clip without burned-in subtitles, and caption the speech ourselves above the hook line.",
-        "If this source has to be used, crop or scale so the full subtitle line fits inside the 9:16 frame.",
-        "Put the punch-in on the 'you can't score on me' line only, and keep the framing steady elsewhere."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 118
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "mid0",
-        "index": 4,
-        "failure_class": "cropped_source_captions",
-        "visible_evidence": "The footage's own subtitles are cut off at both frame edges in every frame: 'ad a lot of respect for him, you kno' (hook@0.3), 'it's not about like, uh, the, the fou' (mid2), 'lling him he sucks. He can't score' (payoff@-0.4). The source is also a letterboxed repost with blurred bands and a crop tha",
-        "root_cause": "We cropped a 16:9 repost that already had wide subtitles burned in. A 9:16 crop cuts both ends off every subtitle line, and duplicated frames (effective 13.8fps) show it was re-encoded from a lower-fps upload.",
-        "repair_goal": "Use a clean source without burned-in subtitles, or crop so the full subtitle width fits. Otherwise drop the source subtitles and lay our own word captions over the speech. Keep one steady framing across the clip."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.426,
-        "effective_fps": 13.8,
-        "max_dup_run": 42,
-        "measured": true,
-        "frozen_ratio": 0.029,
-        "frozen_fps": 23.3,
-        "max_frozen_run": 3,
-        "judder_ratio": 0.001,
-        "judder_fps": 24.0,
-        "held_s": 8.67,
-        "max_dup_at_s": 33.92,
-        "duration_s": 39.38
-      },
-      "fingerprint": "?|-|cropped_source_captions"
-    },
-    {
-      "ts": "2026-10-23T15:41:06+00:00",
-      "slug": "red-hair-recessive-gene",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The red-hair crowd and the girl whose hair changes are good ideas, but the flags contradict their labels, Data is a bystander in the inheritance scene, and the video ends on an empty dark frame with a blank price tag.",
-      "auto_fails": [
-        "junk_imagery: seg0:end shows the Irish tricolour behind '1.5% have red hair \u00b7 World', and seg1:start shows the Saltire behind '10% have red hair \u00b7 Ireland'. The flags contradict their own labels, and at payoff@-0.4 Data holds a blank yellow price tag.",
-        "decorative_mascot: In seg3:mid, seg3:end and all of seg4 Data stands waving beside the 'Dad' box. The levers never move and he does nothing to make the hair change. In seg2 he only stands in front of the stands.",
-        "empty_void: payoff@-0.4 is almost all dark gradient with a small Data and a blank tag at the bottom. The last thing the viewer sees is an empty frame."
-      ],
-      "problems": [
-        "seg0/seg1: the Irish flag appears under 'World' and the Saltire under 'Ireland'. The imagery contradicts the labels.",
-        "seg0: the readout shows a 10% Ireland value the narration never says, so there are too many numbers in one beat.",
-        "seg3: the Mum and Dad levers never move. Data stands beside the Dad box waving while the hair changes by itself, so he is decoration, not the cause.",
-        "seg2: carriers are not visibly told apart from non-carriers, so 37% doesn't read as a picture.",
-        "payoff@-0.4: the final frame is an empty dark void with Data holding a blank price tag.",
-        "The on-screen hook line ('Two parents with brown hair...') doesn't match the script's hook."
-      ],
-      "fixes": [
-        "Sync the jumbotron picture to the readout: globe for World 1.5%, Saltire for Scotland 13%, and cut the Ireland step.",
-        "seg3: have Data pull the Mum lever, then the Dad lever, each dropping one gene copy into the girl so her hair turns red on his second pull.",
-        "seg2: mark carriers on the spectators themselves, for example a red strand under the hat, so 37% is countable.",
-        "Remove the dark outro frame, or end on the finished red-haired girl with no blank-tag Data.",
-        "Make the on-screen hook text match the spoken hook."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 83
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot",
-        "empty_void",
-        "junk_imagery"
-      ],
-      "weakest_scene": {
-        "id": "seg0",
-        "index": 1,
-        "failure_class": "mislabeled_imagery",
-        "visible_evidence": "seg0:end: '1.5% have red hair \u00b7 World' over an Irish flag. seg1:start: '10% have red hair \u00b7 Ireland' over the Scottish flag. The readout steps through 1.5%, 10% and 13% while the screen picture lags one value behind.",
-        "root_cause": "The jumbotron's flag and the headline readout step out of sync, so each flag shows under the previous or next label. The world value gets a country flag instead of the globe.",
-        "repair_goal": "Lock the screen picture to the readout: the globe with 1.5% World, then the Saltire with 13% Scotland, and drop the Ireland step the narration never mentions. Show fewer values, so the 1.5% to 13% jump lands as the payoff with the crowd lighting up orange as Data sweeps the spotlight."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.282,
-        "effective_fps": 17.2,
-        "max_dup_run": 17,
-        "measured": true,
-        "frozen_ratio": 0.09,
-        "frozen_fps": 21.8,
-        "max_frozen_run": 14,
-        "judder_ratio": 0.003,
-        "judder_fps": 23.9,
-        "held_s": 4.17,
-        "max_dup_at_s": 7.04,
-        "duration_s": 27.67
-      },
-      "fingerprint": "?|decorative_mascot+empty_void+junk_imagery|mislabeled_imagery",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-23T16:29:05+00:00",
-      "slug": "lightning-deaths-collapsed-not-the-storms",
-      "score": 14,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.08s of 27.62s (~2.0s frozen)",
-      "auto_fails": [
-        "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.08s of 27.62s (~2.0s frozen)"
-      ],
-      "problems": [
-        "max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.08s of 27.62s (~2.0s frozen)"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 83
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "temporal_gate"
-      ],
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.225,
-        "effective_fps": 18.6,
-        "max_dup_run": 48,
-        "measured": true,
-        "frozen_ratio": 0.071,
-        "frozen_fps": 22.3,
-        "max_frozen_run": 14,
-        "judder_ratio": 0.008,
-        "judder_fps": 23.8,
-        "held_s": 5.29,
-        "max_dup_at_s": 21.08,
-        "duration_s": 27.62
-      },
-      "fingerprint": "?|temporal_gate|-",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-23T17:12:58+00:00",
-      "slug": "hearing-aids-otc-price-drop",
-      "score": 14,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "blocked before vision review: max_dup_run 67 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.42s of 29.62s (~2.8s frozen)",
-      "auto_fails": [
-        "temporal_gate: max_dup_run 67 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.42s of 29.62s (~2.8s frozen)"
-      ],
-      "problems": [
-        "max_dup_run 67 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=21.42s of 29.62s (~2.8s frozen)"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.67,
-        "static_at_s": 23.33,
-        "dark_fraction": 0.0,
-        "sampled": 89
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "temporal_gate"
-      ],
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.392,
-        "effective_fps": 14.6,
-        "max_dup_run": 67,
-        "measured": true,
-        "frozen_ratio": 0.201,
-        "frozen_fps": 19.2,
-        "max_frozen_run": 30,
-        "judder_ratio": 0.006,
-        "judder_fps": 23.9,
-        "held_s": 9.83,
-        "max_dup_at_s": 21.42,
-        "duration_s": 29.62
-      },
-      "fingerprint": "?|temporal_gate|-",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-23T20:59:50+00:00",
-      "slug": "world-wetlands-lost",
-      "score": 14,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 0,
-        "data_demo": 0,
-        "mascot": 0,
-        "craft": 0,
-        "pace": 0,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "blocked before vision review: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=29.08s of 34.96s (~2.0s frozen)",
-      "auto_fails": [
-        "temporal_gate: max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=29.08s of 34.96s (~2.0s frozen)"
-      ],
-      "problems": [
-        "max_dup_run 48 frames > 45 (phase-1 ceiling) \u2014 a frozen stretch outside any intentional hold starting at t=29.08s of 34.96s (~2.0s frozen)"
-      ],
-      "fixes": [
-        "raise real motion per output frame (see temporal thresholds)"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 105
-      },
-      "judge": "code-temporal-pregate",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "temporal_gate"
-      ],
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.226,
-        "effective_fps": 18.6,
-        "max_dup_run": 48,
-        "measured": true,
-        "frozen_ratio": 0.116,
-        "frozen_fps": 21.2,
-        "max_frozen_run": 18,
-        "judder_ratio": 0.001,
-        "judder_fps": 24.0,
-        "held_s": 6.25,
-        "max_dup_at_s": 29.08,
-        "duration_s": 34.96
-      },
-      "fingerprint": "?|temporal_gate|-",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-24T01:47:28+00:00",
-      "slug": "olympic-bid-collapse",
-      "score": 75,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong flags-dropping opening and a swelling-stadium middle, but the video ends on an empty dark void with Data holding a blank price tag, and the 30-years debt is never drawn.",
-      "auto_fails": [
-        "empty_void: payoff@-0.4 (t=27.37s), the last frame, is a nearly empty dark navy screen with one small Data holding a blank yellow price tag in the bottom third. More than 70% of the frame is dead space, and it lands exactly on the payoff."
-      ],
-      "problems": [
-        "payoff@-0.4: the last frame is an empty dark void with Data holding a blank price tag. The closing lands on dead space.",
-        "seg4: the closing reuses seg3's finished picture with almost no motion for about 4 seconds (held_s 4.17), so it is static and reads as a held frame.",
-        "seg2/seg3: '15x' floats at the top right with no meaning, and the ball and chain never shows 2 years against 30. The ratio is only in the text.",
-        "seg1: the 'rail +45%' ring and the 1x/2x ticks are small and look like gauge furniture laid over the scene rather than part of the stadium.",
-        "hook@0.3: the opening frame shows '2 cities \u00b7 2024' and flips to '11 cities \u00b7 2004' half a second later, which reads like a glitch before the story has started."
-      ],
-      "fixes": [
-        "Remove the empty-ground mascot tail. Hold the closing's own finished shot through the last frame, and never use the default price_tag prop.",
-        "Draw a bespoke closing for 'Everyone wants the medals. Nobody wants the bill.': medals grabbed and a giant bill left on the podium, with Data passing it along.",
-        "Make the debt visible as time: the chain gets 15x longer than the build (link by link, a year per link) while Data drags it, with the 30 marked on the chain itself.",
-        "Drop or explain the floating '15x' by putting it on the chain against the 2-year segment.",
-        "Either hold the hook on 11 flags that collapse to 2, or label the flash-forward clearly so the flip does not read as a glitch."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 83
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void"
-      ],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "empty_void_payoff",
-        "visible_evidence": "seg4:start to seg4:end replay seg3's finished chained-Data picture under the closing line, then payoff@-0.4 cuts to a blank dark void with Data holding an empty price tag. The video ends on its emptiest frame.",
-        "root_cause": "The closing has no scene of its own. It reuses the last beat's picture, and an outro or end-card fallback puts in the default mascot pose with the 'price_tag' prop on an empty ground instead of holding on the finished shot.",
-        "repair_goal": "Give the closing its own full-frame shot of 'nobody wants the bill': for example, Data handing an enormous unpaid bill to an empty row of city podiums. Hold that finished picture through the last frame, and remove the empty-ground mascot tail and the blank price-tag prop."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.203,
-        "effective_fps": 19.1,
-        "max_dup_run": 24,
-        "measured": true,
-        "frozen_ratio": 0.071,
-        "frozen_fps": 22.3,
-        "max_frozen_run": 15,
-        "judder_ratio": 0.005,
-        "judder_fps": 23.9,
-        "held_s": 4.17,
-        "max_dup_at_s": 22.25,
-        "duration_s": 27.75
-      },
-      "fingerprint": "?|empty_void|empty_void_payoff",
-      "style_arm": "illustrated"
-    },
     {
       "ts": "2026-10-24T03:54:21+00:00",
       "slug": "red-hair-recessive-gene",
@@ -4193,6 +3602,685 @@
         "duration_s": 31.08
       },
       "fingerprint": "?|-|weak_payoff"
+    },
+    {
+      "ts": "2026-10-28T10:13:13+00:00",
+      "slug": "nuclear-stockpile-growth-reversal",
+      "score": 66,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The Russia vault ('each row = all of China') and the silo-digging China beat work, but beat 0 replays the hook's yard with the wrong number on screen and Data just waving, and the video ends on an empty dark card with a blank tag.",
+      "auto_fails": [
+        "decorative_mascot: In the world-dismantling scenes Data stands beside the warhead carts in the same waving pose (seg1:start, seg1:mid, seg1:end) while a truck carries warheads off on its own. He never pushes one into the DISMANTLING shed. He is only the cause in seg2 (digging a silo with a shovel) and seg3 (holding the vault door).",
+        "empty_void: The last frame (payoff@-0.4) is an almost empty dark-navy gradient with only Data holding a blank yellow tag at the bottom. The vault scene and the closing line are gone, so the video ends on a void.",
+        "unreadable: At seg3:start the caption 'nuclear warheads, showing' is a dim grey ghost over the grey ground and nearly disappears at phone size. The '2020' label (seg2:start to seg2:end) sits on top of a rocket nose. In the hook the dashed outline houses overlap the '1986' tick area and are hard to make out (hook@0.3)."
+      ],
+      "problems": [
+        "seg1 repeats the hook's dismantling-yard picture, and its headline shows 22,600 and then 12,500 while the narration says 70,300.",
+        "Data waves beside the warhead carts in the hook and in seg1. The truck and the carts move without him.",
+        "The dashed outline houses in the hook and seg1 are unreadable clutter, and a hook may not use ghost outlines.",
+        "The last frame (payoff@-0.4) is a near-empty dark gradient with Data holding a blank yellow tag, so the payoff ends on a void.",
+        "The caption at seg3:start ('nuclear warheads, showing') is low-contrast grey and nearly disappears.",
+        "The '2020' label overlaps a rocket nose in the China scene."
+      ],
+      "fixes": [
+        "Give beat 0 its own build from 70,300 down to 12,500, timed to its narration, with Data wheeling carts into the DISMANTLING shed.",
+        "Make the hook its own shot: China's silo field at its finished 500 state, set against a shrinking world pile, with no dashed ghosts.",
+        "Remove the trailing blank-tag card. End on the vault, or on a finished closing picture under the closing line.",
+        "Give captions full-white ink with an outline throughout seg3.",
+        "Move the year label in the China scene clear of the rockets."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 90
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "decorative_mascot",
+        "empty_void",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 1,
+        "failure_class": "repeated_scene_and_said_shown_mismatch",
+        "visible_evidence": "seg1:start through seg1:end replay the hook's dismantling-yard picture. While the narration says 'held 70,300 nuclear warheads', the headline reads 22,600 and then 12,500 '\u00b7 2023', because the 70,300 already went by during the hook. Data waves beside the carts in all three frames, the dashed ghost h",
+        "root_cause": "The hook and beat 0 share one scene, so the scene's build ran during the hook. By the time beat 0 says its number, the picture has already reached its end state. Data has no agent act tied to the dismantling.",
+        "repair_goal": "Give beat 0 its own build: start at 70,300 warheads crowding the yard on the word '70,300', then have Data push or wheel carts into the DISMANTLING shed (an agent act on the moving part) so the stockpile visibly drains toward 12,500 as 'treaties pushed it sharply downward' is said. Drop the dashed g"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.264,
+        "effective_fps": 17.7,
+        "max_dup_run": 20,
+        "measured": true,
+        "frozen_ratio": 0.073,
+        "frozen_fps": 22.3,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 4.21,
+        "max_dup_at_s": 20.75,
+        "duration_s": 29.92
+      },
+      "fingerprint": "?|decorative_mascot+empty_void+unreadable|repeated_scene_and_said_shown_mismatch",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-28T10:56:22+00:00",
+      "slug": "ghost-fishing-gear-ocean-plastic",
+      "score": 49,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 2,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "The middle scenes (gear sinking from the boat, Data cutting a seal free) fit the story, but the 10% beat proves nothing and the video ends on an empty dark void with a blank price tag.",
+      "auto_fails": [
+        "junk_imagery: payoff@-0.4: the last frame cuts to an empty dark gradient where Data holds a blank yellow price tag. It's a leftover default prop that has nothing to do with ghost nets.",
+        "decorative_mascot: In hook@0.3-2.2 Data only cheers on a rock while the turtle drifts behind the net. In seg1:start-end he only stands and points beside a beached net. He does real work only in seg3, sawing the net off the seal.",
+        "empty_void: payoff@-0.4: the final frame is about 85% dark gradient with only a small Data and a price tag at the bottom. The video ends on a void.",
+        "unreadable: seg2:start: Data's head and boat cover the subtitle, which reads 'every yea'. In seg0:start and seg0:end a red-and-orange mark sits on the 'after' at the end of the caption's second line."
+      ],
+      "problems": [
+        "payoff@-0.4: the final frame is an empty dark gradient with Data holding a blank price tag, so the video ends on a void.",
+        "seg1: the 10% claim is a single net on a beach. Nothing shows 1 in 10 of the litter.",
+        "hook@0.3-2.2: Data just cheers on a rock while the net and turtle move behind him, which is decorative.",
+        "seg2:start: Data's head covers the end of the subtitle, so it reads 'every yea'.",
+        "seg4: the closing reuses the seg3 picture and never shows the retrieval it narrates.",
+        "seg2: 640,000 tons / 63 Eiffel Towers is only text, and the sinking gear never reaches that scale."
+      ],
+      "fixes": [
+        "Draw a real closing scene where Data hauls the ghost net aboard and the animals swim free, and hold it to the last frame without falling through to the empty ground.",
+        "In seg1, have Data rake ten pieces of beach litter into a row and pull out the one net among them, so 1 in 10 is visible at a glance.",
+        "In the hook, have Data tug at the drifting net so the net reacts to him, instead of having him cheer.",
+        "Keep Data's boat out of the subtitle band in seg2.",
+        "In seg2, show the seabed pile growing until an Eiffel Tower silhouette marks its scale on the pile itself."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 71
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "decorative_mascot",
+        "empty_void",
+        "junk_imagery",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg4",
+        "index": 4,
+        "failure_class": "empty_void",
+        "visible_evidence": "seg4 reuses the seg3 seal tableau under the closing text. Then payoff@-0.4 drops to a black-blue void with Data holding a blank price tag, so the video ends on nothing.",
+        "root_cause": "The closing reuses the previous beat's picture and then falls through to a default dark ground with a fallback price_tag prop. No closing scene was drawn for the retrieval payoff.",
+        "repair_goal": "Draw a full-frame closing for retrieval in which Data hauls the ghost net up out of the water onto a boat with his own hands and the freed seal and turtle swim away. Hold that finished picture to the last frame, with no fall-through to the empty ground or the price-tag prop."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.301,
+        "effective_fps": 16.8,
+        "max_dup_run": 24,
+        "measured": true,
+        "frozen_ratio": 0.079,
+        "frozen_fps": 22.1,
+        "max_frozen_run": 13,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 5.29,
+        "max_dup_at_s": 18.25,
+        "duration_s": 23.75
+      },
+      "fingerprint": "?|decorative_mascot+empty_void+junk_imagery+unreadable|empty_void",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-28T11:10:17+00:00",
+      "slug": "ghost-fishing-gear-ocean-plastic",
+      "score": 74,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The scenes are good and Data has real jobs, but the numbers are labels rather than drawn magnitudes and the video ends on a black void with a blank price tag.",
+      "auto_fails": [
+        "empty_void: In payoff@-0.4 the whole frame is a dark gradient with Data in the bottom third holding a blank yellow price tag. The closing scene has cut to an empty void."
+      ],
+      "problems": [
+        "The final frame (payoff@-0.4) cuts to a dark empty frame with Data holding a blank yellow price tag, which looks like a fallback plate.",
+        "Nothing in seg0 shows the 10%; the share is only stated in text.",
+        "The 640,000 tons and the 63 Eiffel Towers in seg1 are text only; three traps sinking does not convey the mass.",
+        "In the hook (hook@0.3-2.2) Data just cheers on a rock in front of the net and does nothing to it.",
+        "100,000 animals in seg2 is shown as a single seal, so the count is never felt."
+      ],
+      "fixes": [
+        "Hold the finished retrieval picture to the last frame and delete the dark tail plate and the price-tag prop.",
+        "seg0: show the beach litter as a field in which one item in ten is a tangle of net, so the share is visible.",
+        "seg1: let the seabed pile of sunk nets and traps grow, or set an Eiffel Tower silhouette beside the heap for scale.",
+        "Hook: have Data tugging at the net or freeing the trapped turtle instead of cheering."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 77
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "empty_void"
+      ],
+      "weakest_scene": {
+        "id": "seg4",
+        "index": 4,
+        "failure_class": "empty_void",
+        "visible_evidence": "The closing builds a good retrieval-boat scene in seg4:start-end, then the last frame (payoff@-0.4) cuts to a near-black empty frame with Data holding a blank price tag and nothing else.",
+        "root_cause": "A fallback tail or end-card plate takes over after the closing scene ends, using the default mascot pose with the blank price-tag prop instead of holding the finished closing picture.",
+        "repair_goal": "Hold the finished closing picture (the boat hauling in the net, sea life swimming free) through to the last frame. Remove the dark end plate and the blank price-tag prop."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.259,
+        "effective_fps": 17.8,
+        "max_dup_run": 26,
+        "measured": true,
+        "frozen_ratio": 0.065,
+        "frozen_fps": 22.4,
+        "max_frozen_run": 13,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 4.83,
+        "max_dup_at_s": 22.0,
+        "duration_s": 25.58
+      },
+      "fingerprint": "?|empty_void|empty_void",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-28T11:20:10+00:00",
+      "slug": "ghost-fishing-gear-ocean-plastic",
+      "score": 61,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Lit scenes with real causal bits in seg3 and seg4, but the video ends on an empty dark void with a blank price tag, and the 10% and 63-Eiffel-Tower numbers are never shown to scale.",
+      "auto_fails": [
+        "junk_imagery: payoff@-0.4: the last frame cuts to a dark navy gradient with Data holding a blank yellow price tag. It has nothing to do with ghost nets.",
+        "empty_void: payoff@-0.4: nearly the whole frame is empty dark gradient, with one small mascot at the bottom. The closing shot is replaced by a void.",
+        "unreadable: seg2:start: Data's saw and arm cover the end of the subtitle, so it reads 'every yea'. The other text reads cleanly."
+      ],
+      "problems": [
+        "payoff@-0.4: the last frame is an empty dark gradient with Data holding a blank price tag.",
+        "seg1: the 10% share is only a label. Nothing on the beach shows 1 in 10 of the litter is gear.",
+        "seg2: '63 Eiffel Towers' sits over three traps. There is no sense of scale, and Data holds a saw that does nothing.",
+        "seg2:start: Data's saw covers 'every year' in the subtitle.",
+        "hook: Data only cheers on a rock and the net traps nothing, so 'still killing' is not shown."
+      ],
+      "fixes": [
+        "Hold the closing scene's finished frame to the end and remove the void outro plate.",
+        "In seg1, make the 10% visible on the beach: one item in ten of the litter is net, highlighted.",
+        "In seg2, put the scale in the shot: a growing mound of gear on the seabed, with a ghost Eiffel Tower drawn against it, and have Data cut the trap lines himself.",
+        "In the hook, have the net catch a fish or the turtle as it drifts, and have Data react to that catch rather than cheer."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 77
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "empty_void",
+        "junk_imagery",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg4",
+        "index": 4,
+        "failure_class": "empty_void_tail",
+        "visible_evidence": "The closing boat scene (seg4:start-end) is good, but payoff@-0.4 cuts to a black-navy void with Data holding a blank price tag and no text.",
+        "root_cause": "After the closing scene, an outro or fallback plate with the default price_tag prop is appended in place of a held finished frame.",
+        "repair_goal": "End on the closing scene's finished frame: the net hauled aboard and the seal and turtle swimming free. Drop the empty gradient plate and the blank price tag."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.258,
+        "effective_fps": 17.8,
+        "max_dup_run": 26,
+        "measured": true,
+        "frozen_ratio": 0.065,
+        "frozen_fps": 22.4,
+        "max_frozen_run": 13,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 4.83,
+        "max_dup_at_s": 22.0,
+        "duration_s": 25.58
+      },
+      "fingerprint": "?|empty_void+junk_imagery+unreadable|empty_void_tail",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-28T15:23:43+00:00",
+      "slug": "airline-pilot-shortage",
+      "score": 52,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 1,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The airport art is decent and the fleet-doubling beat works, but beat 0 repeats the hook's shot, Data mostly waves or stands, and the video ends on a dark void holding a blank price tag.",
+      "auto_fails": [
+        "junk_imagery: payoff@-0.4: the last frame cuts to an empty dark backdrop where Data holds a blank yellow price tag that has nothing to do with pilots or planes",
+        "decorative_mascot: hook@0.3 through seg1:end: Data stands by the CREW door and waves the whole time while the pilots pile up beside him without him; seg2:mid/end: he stands beside the globe holding a phone to his ear and does not spin it or point to a region. Only in seg3 does he do anything, riding a tug among the jets.",
+        "dead_air: seg1:start/mid/end (5.4-9.7s) reuse the hook's exact airport shot: the same 649,000 headline, Data waving at the door, the same crowd of pilots. Two beats look identical, and nothing new is shown for the 'technicians and cabin crew' line.",
+        "empty_void: payoff@-0.4: the final frame is almost entirely dark gradient, with only a small Data in the bottom third",
+        "unreadable: seg3:end: the '2042 (projected)' label is printed over the parked jet in the second row, and the '2.0x' jet is cut off at the right edge; seg2:end: the 'MOST' tag floats in a corner with no clear link to anything"
+      ],
+      "problems": [
+        "seg1 reuses the hook scene almost exactly; the technicians and cabin crew it narrates are never drawn",
+        "Data waves by a door (hook, seg1) and holds a phone beside the globe (seg2): decoration, not cause",
+        "seg2's globe never compares Eurasia with China or the US; it only swaps a label, and 'MOST' floats unattached",
+        "seg3: the '2042 (projected)' label overlaps a jet, and the 2.0x plane is cut off at the frame edge",
+        "The final frame (payoff@-0.4) is an empty dark backdrop with Data holding a blank price tag: junk prop, empty void"
+      ],
+      "fixes": [
+        "Draw a new seg1 in which Data opens the CREW hangar and a far larger line of technicians and cabin crew pours out behind the pilots",
+        "In seg2, have Data spin the globe and pull up three regional crowds of pilots sized by need (Eurasia, China, North America) so the US visibly is not the biggest",
+        "Move the seg3 labels clear of the jets and keep the 2.0x jet inside the frame",
+        "Remove the dark price-tag end card; hold the finished tarmac under the closing line instead"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 86
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "dead_air",
+        "decorative_mascot",
+        "empty_void",
+        "junk_imagery",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 1,
+        "failure_class": "repeated_scene_decorative_mascot",
+        "visible_evidence": "seg1:start/mid/end are almost pixel-identical to the hook: the same 649,000 pilots headline, the same crowd beside the plane, Data waving by the CREW door. The narration says 'on top of hundreds of thousands of technicians and cabin crew', but no technicians or crew appear.",
+        "root_cause": "The hook's scene was carried into beat 0 with no new picture for the beat's own claim, and Data's act is a wave rather than causing the crowd to grow",
+        "repair_goal": "Give seg1 its own shot. Data swings open the CREW hangar door, or waves people through it, and a much larger line of technicians in overalls and cabin crew with rolling bags streams out behind the pilots, so the 'on top of' crowd visibly dwarfs the pilot group. He drives the motion; one headline onl"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.276,
+        "effective_fps": 17.4,
+        "max_dup_run": 18,
+        "measured": true,
+        "frozen_ratio": 0.034,
+        "frozen_fps": 23.2,
+        "max_frozen_run": 11,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 4.33,
+        "max_dup_at_s": 8.17,
+        "duration_s": 28.54
+      },
+      "fingerprint": "?|dead_air+decorative_mascot+empty_void+junk_imagery+unreadable|repeated_scene_decorative_mascot",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-28T20:04:01+00:00",
+      "slug": "pitch-drop-slowest-experiment",
+      "score": 61,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 1,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The pitch-drop rig is a strong subject-made picture, but Data is a bystander holding a valve, the drop beat starts already full, and the video ends on an empty dark frame with a blank price tag.",
+      "auto_fails": [
+        "junk_imagery: payoff@-0.4: Data alone on an empty dark gradient holding a blank yellow price tag, which has nothing to do with pitch",
+        "decorative_mascot: seg0:end through seg1:end: Data stands beside the dome holding a red valve wheel up to his face while the drops fall without him; in seg2:mid/end he only waves at the hourglass",
+        "empty_void: payoff@-0.4: the last frame is about 85% dark gradient with only a small Data at the bottom; the whole scene drops out"
+      ],
+      "problems": [
+        "seg0/seg1: Data holds a red valve wheel to his face beside the rig and never causes or interacts with a drop",
+        "seg1: the beaker already holds all 9 drops at the start, so the beat has no build and the '84 years' payoff never lands visibly",
+        "seg2: the narration is about Dublin's 69 years, but the mid frame headlines '10 years Queensland'; the hourglass never compares the two waits",
+        "seg3: '230 billion times more viscous' is only a headline over a tipped barrel; nothing shows water next to it",
+        "payoff@-0.4: the final frame is an empty dark gradient with Data holding a blank yellow price tag, an unrelated stock prop and a void",
+        "The hook caption and the script hook disagree ('lifelong commitment' vs 'outlived its own scientists'), which weakens the opening line"
+      ],
+      "fixes": [
+        "Give Data an agent act on the rig: he turns the clock or a calendar and each drop falls only when the years he advances run out",
+        "Start seg1 with an empty beaker and land drop 9 with '84 years' around 70% of the beat",
+        "In seg2, show two pitch columns or hourglasses, Queensland ~10 years against Dublin 69 years, with Data pouring or holding the slow one",
+        "In seg3, set a water splash beside the pitch ooze, e.g. water empties the barrel instantly while the pitch barely moves",
+        "Remove the blank price-tag end card; hold the barrel or rig finished frame under the closing line until the end"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 68
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "decorative_mascot",
+        "empty_void",
+        "junk_imagery"
+      ],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 2,
+        "failure_class": "decorative_mascot",
+        "visible_evidence": "seg1:start to seg1:end: nine drops already sit in the beaker and the funnel drips by itself, while Data stands at the far left holding a red valve wheel over his face the whole beat. He causes nothing, and the frames barely change across 2+ seconds.",
+        "root_cause": "The mascot was given a static prop pose instead of an agent act on the moving part (the drop and funnel). The drop count was already finished at seg0:end, so seg1 has no build left to show.",
+        "repair_goal": "Make Data the cause and the clock: have him turn a calendar or the clock hands, or tap the funnel, and each drop falls only as the years he advances run out, so the ninth drop lands with '84 years' as the payoff. Keep the beaker filling across the beat instead of starting full."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.333,
+        "effective_fps": 16.0,
+        "max_dup_run": 24,
+        "measured": true,
+        "frozen_ratio": 0.194,
+        "frozen_fps": 19.3,
+        "max_frozen_run": 24,
+        "judder_ratio": 0.011,
+        "judder_fps": 23.7,
+        "held_s": 5.38,
+        "max_dup_at_s": 17.25,
+        "duration_s": 22.54
+      },
+      "fingerprint": "?|decorative_mascot+empty_void+junk_imagery|decorative_mascot",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-28T23:28:52+00:00",
+      "slug": "airline-pilot-shortage",
+      "score": 57,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 0,
+        "temporal_craft": 3
+      },
+      "one_line": "The doubling-fleet beat works, but the video opens and spends beat one on the same crew-queue shot, the globe asserts its ranking only in labels, and it ends on a black void with a blank price tag.",
+      "auto_fails": [
+        "junk_imagery: payoff@-0.4: the last frame cuts to an empty dark gradient with Data holding a blank yellow price tag. The tag has nothing to do with pilots or planes; it is the blank-prop fallback, not a story element.",
+        "decorative_mascot: hook@0.3 to seg1:end: Data stands by the CREW door in the same wave pose for about 9s while the pilot queue builds around him without him. seg2:start to seg2:end: he only scratches his head beside the globe. The tug driving in seg3 is the only real bit.",
+        "empty_void: payoff@-0.4: the final frame is an almost entirely dark navy void with one small Data figure at the bottom. The airport world is gone.",
+        "unreadable: seg3:end: the '2042 (projected)' label is printed over the back row of jets on top of the '~2022 fleet' area, and the '2.0x' sits under a descending plane that clips into it."
+      ],
+      "problems": [
+        "payoff@-0.4: the final frame is an empty dark stage with Data holding a blank price tag. The ending collapses instead of landing.",
+        "seg1 reuses the hook's queue picture almost unchanged and repeats 649,000. Beat one adds nothing new to see.",
+        "Data waves in one pose by the CREW door through the hook and seg1, and only scratches his head at the globe in seg2. He causes nothing until the tug in seg3.",
+        "seg2: the globe never compares Eurasia (143,000) with China (134,000). The labels switch and the picture stays the same.",
+        "seg3:end: the '2042 (projected)' label overlaps the back row of jets, and the '2.0x' is clipped by a plane flying through it.",
+        "seg4 holds the seg3 apron with no new motion under the closing line."
+      ],
+      "fixes": [
+        "Replace the void tail: hold a full-frame closing shot on the doubled apron, with Data walking a trainee to an empty cockpit, and remove the price_tag fallback.",
+        "Give beat one its own picture: show the full 649,000 as a scale (crowds filling the terminal, with a then_mark of today's pilot pool) instead of replaying the hook queue.",
+        "Make Data the cause in seg1 and seg2: he waves each pilot up the stairs in seg1, and in seg2 he turns the crank to spin the globe and drops two pilot stacks onto Eurasia and China so their heights race.",
+        "Move the '2042 (projected)' label to clear apron space and keep the flying plane's path away from the '2.0x' callout."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 80
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "decorative_mascot",
+        "empty_void",
+        "junk_imagery",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg4",
+        "index": 4,
+        "failure_class": "empty_void_ending",
+        "visible_evidence": "seg4 holds the seg3 apron unchanged under the closing line (seg4:start to seg4:end). Then at payoff@-0.4 it hard-cuts to a black-navy void with Data holding a blank price tag, so the last thing the viewer sees is nothing.",
+        "root_cause": "The closing has no scene of its own. The finishing tail falls back to the default empty stage and the default price_tag prop instead of holding the last beat's finished picture.",
+        "repair_goal": "End on the doubled fleet: Data tows a trainee pilot across the apron to the empty cockpit of one of the new jets as the closing line lands, and hold that full-frame shot to the last frame. No dark stage, no price tag, nothing after it."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.27,
+        "effective_fps": 17.5,
+        "max_dup_run": 20,
+        "measured": true,
+        "frozen_ratio": 0.033,
+        "frozen_fps": 23.2,
+        "max_frozen_run": 11,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 3.46,
+        "max_dup_at_s": 7.58,
+        "duration_s": 26.54
+      },
+      "fingerprint": "?|decorative_mascot+empty_void+junk_imagery+unreadable|empty_void_ending",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-29T00:38:02+00:00",
+      "slug": "lottery-odds-vs-real-life",
+      "score": 61,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The scenes are clean and well lit, but the numbers are carried by text tags instead of the pictures. Only the queue scene shows its number, and the lightning beat reuses the hook's billboard.",
+      "auto_fails": [],
+      "problems": [
+        "seg1 reuses the hook billboard, and the 19,098x lightning ratio is only a text label",
+        "seg2's 450x rarer comparison is a text tag over the cards and is never shown against the jackpot",
+        "seg3 keeps the 'Before Oct 2015' sign up after the number switches to the current 292M odds, which contradicts the headline",
+        "seg4 closing is the finished queue scene again with only a walker moving, so there is no payoff picture",
+        "Data is idle in seg1 and seg4: he holds the pole or waves and causes nothing",
+        "The hook opens on the lightning stat (hook@0.3) and then switches to the jackpot odds, so the first second is muddled"
+      ],
+      "fixes": [
+        "Redraw seg1 as a lightning field: Data drives strikes and they pile up against one lit jackpot ball, so the ratio can be seen",
+        "In seg2, show the gap: 450 royal-flush hands dealt in the time one jackpot hits, or the cards stacking 450 high",
+        "Change the seg3 sign to 'After Oct 2015' when the number updates, and have Data visibly stretch the rope to let the line grow",
+        "Give the closing its own shot, for example the jackpot ball drifting further out of reach as Data strains toward it",
+        "Open the hook on one claim (the goalposts moving) rather than flashing the lightning stat first"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 94
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 1,
+        "failure_class": "label_carries_the_number",
+        "visible_evidence": "seg1:start to seg1:end show the same Powerball billboard as the hook. A lightning bolt flashes once at seg1:mid and the comparison '19,098x more likely than the jackpot' is only a text tag. Data just holds the pole.",
+        "root_cause": "The scene that was built for the hook is reused for beat 0. The lightning-vs-jackpot ratio is never drawn: nothing in the picture is 19,098 times bigger or more frequent than anything else.",
+        "repair_goal": "Draw the ratio as lightning. Data holds a lightning rod, the field fills with strike marks or a counter racks up strikes, and the single jackpot ball lights only at the end. A viewer should feel the 19,098 to 1 gap without reading the tag, and Data should cause the strikes."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.376,
+        "effective_fps": 15.0,
+        "max_dup_run": 24,
+        "measured": true,
+        "frozen_ratio": 0.064,
+        "frozen_fps": 22.5,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.001,
+        "judder_fps": 24.0,
+        "held_s": 6.04,
+        "max_dup_at_s": 8.08,
+        "duration_s": 31.29
+      },
+      "fingerprint": "?|-|label_carries_the_number",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-29T01:15:31+00:00",
+      "slug": "lottery-odds-vs-real-life",
+      "score": 57,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 2,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The lightning and poker scenes look good, but the back half spends 15s on one queue scene where the odds change only in a label and Data stands with his arms crossed.",
+      "auto_fails": [
+        "decorative_mascot: From seg2:start through seg4:end (about 15s, half the video) Data stands by the velvet rope with his arms crossed. He does nothing to the queue or the odds. In seg0:start/end he holds a sledgehammer on the tower that never strikes anything, and the lightning is not caused by him."
+      ],
+      "problems": [
+        "seg2: the 175M\u2192292M change is a text swap. The queue picture does not show the odds getting harder.",
+        "seg2:end: the 'Before Oct 2015' sign stays up while the headline shows the post-2015 odds of 1 in 292,201,338, which contradicts it.",
+        "seg2-seg4: Data stands at the rope with his arms crossed for about 15s. He is decoration, not a performer.",
+        "seg0: Data holds a sledgehammer on the tower that never strikes. He does not cause the lightning.",
+        "seg1: the cards are dealt, but 649,740 and the 450x gap to the jackpot are only in the labels.",
+        "The closing (seg3/seg4) reuses the seg2 scene almost unchanged, so the payoff has no reveal."
+      ],
+      "fixes": [
+        "Rebuild seg2 as a ball drum Data enlarges: more balls go in, the winning ball becomes a smaller speck, and a ghost outline of the 175M drum stays beside it.",
+        "Update or remove the 'Before Oct 2015' sign when the number becomes 292,201,338.",
+        "Give the closing its own payoff shot, for example Data's ticket next to the giant drum, instead of reusing the queue.",
+        "In seg0, have Data's hammer strike the tower to call the lightning, or swap it for a lightning rod he raises.",
+        "In seg1, show the 450x as 450 poker tables stacked or receding behind Data, so the multiple is drawn rather than labelled.",
+        "Change the hook pose from celebrating to dismay to match 'your odds paid the price'."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 94
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "decorative_mascot"
+      ],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "picture_does_not_prove_claim",
+        "visible_evidence": "seg2:start\u2192seg2:end: the headline swaps from '1 in 175,000,000' to '1 in 292,201,338', but the picture hardly changes. A couple of people join the queue and Data stands with his arms crossed by the rope. The sign above still reads 'Before Oct 2015' after the number has become the post-2015 odds.",
+        "root_cause": "The rule change that made the odds 67% worse is shown only as a label change. A longer queue suggests more players, not worse odds, and Data does nothing to cause it. The 'Before Oct 2015' sign is never updated, so it contradicts the new number.",
+        "repair_goal": "Draw the odds as something Data makes harder. For example, Data cranks a lotto ball drum larger, or hauls in more balls (69 white balls replacing 59), so the winning ball visibly becomes a smaller speck in a bigger drum. Keep a ghost of the old drum at 175M beside it, and switch the sign to 'After O"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.224,
+        "effective_fps": 18.6,
+        "max_dup_run": 19,
+        "measured": true,
+        "frozen_ratio": 0.085,
+        "frozen_fps": 22.0,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 3.08,
+        "max_dup_at_s": 0.0,
+        "duration_s": 31.29
+      },
+      "fingerprint": "?|decorative_mascot|picture_does_not_prove_claim",
+      "style_arm": "illustrated"
     }
   ],
   "showrunner_recurrence": {
@@ -4204,17 +4292,18 @@
         "2026-10-28"
       ]
     },
-    "?|temporal_gate|-": {
-      "count": 3,
-      "days": [
-        "2026-10-23"
-      ]
-    },
     "?|-|weak_hook_static_talking_head": {
       "count": 3,
       "days": [
         "2026-10-24",
         "2026-10-25"
+      ]
+    },
+    "?|empty_void|empty_void": {
+      "count": 3,
+      "days": [
+        "2026-10-25",
+        "2026-10-28"
       ]
     },
     "?|-|Data demonstration": {
@@ -4230,52 +4319,10 @@
         "2026-10-25"
       ]
     },
-    "?|empty_void|empty_void": {
-      "count": 2,
-      "days": [
-        "2026-10-25"
-      ]
-    },
     "longform|temporal_gate|-": {
       "count": 2,
       "days": [
         "2026-10-25"
-      ]
-    },
-    "?|unreadable|bad_crop_and_overlapping_captions": {
-      "count": 1,
-      "days": [
-        "2026-10-23"
-      ]
-    },
-    "?|-|bad_crop": {
-      "count": 1,
-      "days": [
-        "2026-10-23"
-      ]
-    },
-    "?|unreadable|cropped_source_captions_and_flat_ending": {
-      "count": 1,
-      "days": [
-        "2026-10-23"
-      ]
-    },
-    "?|-|cropped_source_captions": {
-      "count": 1,
-      "days": [
-        "2026-10-23"
-      ]
-    },
-    "?|decorative_mascot+empty_void+junk_imagery|mislabeled_imagery": {
-      "count": 1,
-      "days": [
-        "2026-10-23"
-      ]
-    },
-    "?|empty_void|empty_void_payoff": {
-      "count": 1,
-      "days": [
-        "2026-10-24"
       ]
     },
     "?|empty_void|empty_void_tail": {
@@ -4481,16 +4528,63 @@
       "days": [
         "2026-10-28"
       ]
+    },
+    "?|decorative_mascot+empty_void+unreadable|repeated_scene_and_said_shown_mismatch": {
+      "count": 1,
+      "days": [
+        "2026-10-28"
+      ]
+    },
+    "?|decorative_mascot+empty_void+junk_imagery+unreadable|empty_void": {
+      "count": 1,
+      "days": [
+        "2026-10-28"
+      ]
+    },
+    "?|empty_void+junk_imagery+unreadable|empty_void_tail": {
+      "count": 1,
+      "days": [
+        "2026-10-28"
+      ]
+    },
+    "?|dead_air+decorative_mascot+empty_void+junk_imagery+unreadable|repeated_scene_decorative_mascot": {
+      "count": 1,
+      "days": [
+        "2026-10-28"
+      ]
+    },
+    "?|decorative_mascot+empty_void+junk_imagery|decorative_mascot": {
+      "count": 1,
+      "days": [
+        "2026-10-28"
+      ]
+    },
+    "?|decorative_mascot+empty_void+junk_imagery+unreadable|empty_void_ending": {
+      "count": 1,
+      "days": [
+        "2026-10-28"
+      ]
+    },
+    "?|-|label_carries_the_number": {
+      "count": 1,
+      "days": [
+        "2026-10-29"
+      ]
+    },
+    "?|decorative_mascot|picture_does_not_prove_claim": {
+      "count": 1,
+      "days": [
+        "2026-10-29"
+      ]
     }
   },
   "recent_commits": [
-    "651368c 2026-10-28 watchdog: phase A readiness 20261028 [skip ci]",
-    "706aaa9 2026-10-28 claim: mailbox verdicts 2026-10-28T10:48Z [skip ci]"
+    "0d11d43 2026-10-28 persist: merge the story config three-way so a stale run can't resurrect a nulled scene (#717)",
+    "c166726 2026-10-29 explainer: update posted log + analytics [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-10-14": 3,
         "2026-10-15": 3,
         "2026-10-16": 3,
         "2026-10-17": 3,
@@ -4511,7 +4605,6 @@
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-10-14": 5,
         "2026-10-15": 3,
         "2026-10-16": 4,
         "2026-10-17": 4,
@@ -4522,15 +4615,15 @@
         "2026-10-25": 3,
         "2026-10-26": 4,
         "2026-10-27": 1,
-        "2026-10-28": 1
+        "2026-10-28": 2,
+        "2026-10-29": 1
       },
-      "total_posted": 364,
-      "attempted": 364,
+      "total_posted": 366,
+      "attempted": 366,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-10-14": 1,
         "2026-10-15": 8,
         "2026-10-16": 8,
         "2026-10-17": 3,
@@ -4544,11 +4637,12 @@
         "2026-10-25": 5,
         "2026-10-26": 6,
         "2026-10-27": 1,
-        "2026-10-28": 4
+        "2026-10-28": 5,
+        "2026-10-29": 5
       },
-      "total_posted": 474,
-      "attempted": 1152,
-      "rejected_or_pending": 678
+      "total_posted": 480,
+      "attempted": 1167,
+      "rejected_or_pending": 687
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4565,29 +4659,29 @@
       "videos": 148,
       "top_by_vph": [
         {
+          "title": "Lost Fishing Gear Is 10% Of Ocean Litter",
+          "vph": 59.68,
+          "views": 735
+        },
+        {
+          "title": "China Reached 500 Nuclear Warheads As The World Cut Back",
+          "vph": 38.71,
+          "views": 709
+        },
+        {
+          "title": "Powerball's Jackpot Denominator Grew 67%",
+          "vph": 16.3,
+          "views": 55
+        },
+        {
           "title": "Parker Solar Probe Hit 430,000 MPH Without Carrying A Human",
-          "vph": 19.57,
-          "views": 1157
+          "vph": 13.3,
+          "views": 1193
         },
         {
           "title": "The Body Renews Its Stomach Lining In 5 Days, Not Every Cell",
-          "vph": 18.6,
-          "views": 985
-        },
-        {
-          "title": "Hearing Aids Started At $300 Instead Of Requiring A Prescription",
-          "vph": 14.6,
-          "views": 1172
-        },
-        {
-          "title": "The Rubik's Cube Record Dropped From 22 To 3 Seconds",
-          "vph": 12.58,
-          "views": 1737
-        },
-        {
-          "title": "Opioid Prescriptions Fell 47%. Overdoses Kept Rising.",
-          "vph": 11.89,
-          "views": 487
+          "vph": 11.81,
+          "views": 986
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
@@ -4597,36 +4691,36 @@
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 11.88,
-          "views": 1595
+          "vph": 11.25,
+          "views": 1605
         },
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 3.89,
+          "vph": 3.77,
           "views": 1087
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 3.32,
-          "views": 1789
+          "vph": 3.28,
+          "views": 1797
         },
         {
           "title": "Ishowspeed Gets Spooked And Screams After Smelling This",
-          "vph": 2.81,
-          "views": 154
+          "vph": 2.47,
+          "views": 156
         },
         {
           "title": "Ohnepixel Breaks Down Crying On Stream And Needs A Minute",
-          "vph": 2.14,
+          "vph": 2.09,
           "views": 905
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261025/brief.json",
       "retro/20261026/brief.json",
-      "retro/20261027/brief.json"
+      "retro/20261027/brief.json",
+      "retro/20261028/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
