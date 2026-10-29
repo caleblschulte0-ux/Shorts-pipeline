@@ -16789,14 +16789,32 @@
       "replay_count": 0
     },
     "clip-20261029-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ishowspeed/clip/AgreeableBovineCroissantVoHiYo-bw2DVrMMcYb8OZCj",
-      "story_key": null,
-      "streamer": "ishowspeed",
+      "url": "https://youtube.com/shorts/Q_76gXxh7mA",
       "title": "Ishowspeed Can't Believe Harry Maguire Just Did This",
       "kind": "twitch_clip",
-      "ts": "2026-10-29T18:33:17.360879+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-29T18:33:25.677089+00:00",
+      "uploaded_at": "2026-10-29T18:33:25.677102+00:00",
+      "publish_at": "2026-10-30T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261029-ishowspeed-can-t-believe-harry-maguire-just-did--af3d1d07",
+        "tiktok": "queued for 2026-10-30T03:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/AgreeableBovineCroissantVoHiYo-bw2DVrMMcYb8OZCj",
+      "streamer": "ishowspeed",
+      "series": "chaos",
+      "hook": "Speed sees Maguire land it \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 8380,
+      "banger": 0.55,
+      "cut": {
+        "start": 1.8,
+        "end": 10.48
+      },
+      "director_cut": true
     }
   }
 }
