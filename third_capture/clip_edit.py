@@ -1412,6 +1412,8 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
     overlays were retired 2026-10-09. Every layer degrades gracefully, so a
     clip always ships. Returns the ledger.
     """
+    from funnel import songs as _songs
+    _songs.reset_used()             # what this render plays, for its credit
     probe = json.loads(_run(
         ["ffprobe", "-v", "quiet", "-print_format", "json",
          "-show_format", str(raw)]))
@@ -1864,4 +1866,7 @@ def edit(raw: Path, out_path: Path, *, credit: str, hook: str = "",
             # scripts/smoke_third.py before it reached the channel.
             "reframe": ("blur" if reframed is None else
                         (sp_summary or {}).get("layout") or "face"),
+            # the music it plays, by track, with the credit its licence asks
+            "music": [{"track": _songs.track_id(f), "credit": _songs.credit(f)}
+                      for f in _songs.used()],
             **ledger_ae}

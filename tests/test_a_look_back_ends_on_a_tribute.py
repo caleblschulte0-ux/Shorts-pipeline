@@ -20,14 +20,14 @@ from funnel import find_footage, songs
 from third_capture import author, moves, outro
 
 HAVE_FFMPEG = shutil.which("ffmpeg") is not None
-OUTRO = {"song": "see_you_again", "who": "Kevin Durant Russell Westbrook",
+OUTRO = {"song": "tribute", "who": "Kevin Durant Russell Westbrook",
          "looks": ["Durant and Westbrook celebrating on the Thunder",
                    "Westbrook lob to Durant"]}
 
 
 class TheAuthorMarksIt(unittest.TestCase):
     def test_an_outro_needs_a_song_who_and_two_shots(self):
-        self.assertEqual(outro.parse(OUTRO)["song"], "see_you_again")
+        self.assertEqual(outro.parse(OUTRO)["song"], "tribute")
         self.assertIsNone(outro.parse({**OUTRO, "song": "stock piano"}))
         self.assertIsNone(outro.parse({**OUTRO, "looks": ["one shot"]}))
         self.assertIsNone(outro.parse({**OUTRO, "who": ""}))
@@ -339,12 +339,12 @@ class ItIsAStoryNotATribute(unittest.TestCase):
 
     def test_the_author_is_told_to_use_it_on_any_showable_story(self):
         self.assertIn("it's not just tributes", author.SYSTEM)
-        self.assertIn("till_i_collapse", author.SYSTEM)     # a hype song
-        self.assertIn("yakety_sax", author.SYSTEM)          # a funny one
+        self.assertIn("going_off", author.SYSTEM)     # a hype song
+        self.assertIn("chaos", author.SYSTEM)          # a funny one
         self.assertNotIn("{OUTRO_MENU}", author.SYSTEM)
 
     def test_a_hype_payoff_of_one_player(self):
-        item = outro.parse({"song": "till_i_collapse", "who": "Kobe Bryant",
+        item = outro.parse({"song": "going_off", "who": "Kobe Bryant",
                             "people": ["Kobe Bryant"],
                             "team": "Los Angeles Lakers", "numbers": ["8"],
                             "grade": "hype",

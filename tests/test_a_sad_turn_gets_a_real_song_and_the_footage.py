@@ -23,28 +23,31 @@ HAVE_FFMPEG = shutil.which("ffmpeg") is not None
 
 
 class TheSongShelf(unittest.TestCase):
-    def test_every_song_resolves_and_is_a_real_record(self):
+    def test_every_vibe_resolves_and_names_its_moods(self):
         self.assertGreaterEqual(len(songs.names("sad")), 6)
         for k, s in songs.SONGS.items():
             self.assertEqual(songs.clean(k), k)
             self.assertTrue(s["artist"] and s["title"] and s["fits"])
             self.assertIn(s["mood"], songs.MOODS)
+            self.assertTrue(s["tags"])
 
     def test_a_name_not_on_the_shelf_is_no_song(self):
         self.assertEqual(songs.clean("kevin macleod sad piano"), "")
         self.assertIsNone(songs.get("kevin macleod sad piano"))
-        self.assertEqual(songs.clean("See You Again"), "see_you_again")
+        self.assertEqual(songs.clean("Tribute"), "tribute")
 
     def test_the_author_is_shown_the_shelf_itself(self):
         self.assertNotIn("{SONG_MENU}", author.SYSTEM)
         for k in songs.names("sad"):
             self.assertIn(f"{k}: {songs.SONGS[k]['title']}", author.SYSTEM)
 
-    def test_the_store_match_is_the_song_not_a_cover(self):
-        s = songs.SONGS["see_you_again"]
-        self.assertTrue(songs._match(
-            s, "See You Again (feat. Charlie Puth)", "Wiz Khalifa"))
-        self.assertFalse(songs._match(s, "See You Again", "Piano Covers"))
+    def test_no_hit_with_lyrics_is_on_the_shelf(self):
+        """Operator, 2026-10-29: "songs with no lyrics that give the vibe
+        ... we don't need these getting instantly dinged"."""
+        for k, s in songs.SONGS.items():
+            self.assertEqual(s["artist"], "instrumental", k)
+        self.assertIn("instrumental", songs.SEARCH)
+        self.assertIn("/i_{tid}", songs.DOWNLOAD)
 
 
 class TheSongIsWhatPlays(unittest.TestCase):
@@ -56,23 +59,23 @@ class TheSongIsWhatPlays(unittest.TestCase):
                  "series": "drama", "edit": edit},
                 "Russell Westbrook", "russ talks about kd", 30.0)["edit"]
         self.assertEqual(post({"mood": "sad", "mood_at": 6,
-                               "song": "see_you_again"})["song"],
-                         "see_you_again")
+                               "song": "tribute"})["song"],
+                         "tribute")
         self.assertNotIn("song", post({"mood": "hype", "mood_at": 6,
-                                       "song": "see_you_again"}))
+                                       "song": "tribute"}))
         self.assertNotIn("song", post({"mood": "sad", "mood_at": 6,
                                        "song": "stock piano"}))
 
     def test_the_plan_carries_it_to_the_bed(self):
-        p = moves.plan({"mood": "sad", "mood_at": 5, "song": "fix_you"}, 30)
-        self.assertEqual(p["bed"]["song"], "fix_you")
-        self.assertIn("sad@5.0(fix_you)", moves.summary(p))
+        p = moves.plan({"mood": "sad", "mood_at": 5, "song": "heartbreak"}, 30)
+        self.assertEqual(p["bed"]["song"], "heartbreak")
+        self.assertIn("sad@5.0(heartbreak)", moves.summary(p))
         self.assertNotIn("song", moves.plan(
-            {"mood": "hype", "mood_at": 5, "song": "fix_you"}, 30)["bed"])
+            {"mood": "hype", "mood_at": 5, "song": "heartbreak"}, 30)["bed"])
 
     def test_the_song_file_is_mixed_and_the_piano_is_only_the_fallback(self):
-        p = moves.plan({"mood": "sad", "mood_at": 5, "song": "fix_you"}, 30)
-        fake = Path("/tmp/fix_you.wav")
+        p = moves.plan({"mood": "sad", "mood_at": 5, "song": "heartbreak"}, 30)
+        fake = Path("/tmp/heartbreak.wav")
         with mock.patch.object(songs, "get", return_value=fake):
             frag, files = moves.audio_graph(p, "0:a", 1, 30, "a")
         self.assertEqual(files, [fake])

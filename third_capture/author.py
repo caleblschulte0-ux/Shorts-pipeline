@@ -167,10 +167,10 @@ Rules:
     transcript. 0-2 of them, only when knowing what it LOOKS like or
     what its price DID makes the clip land. Never a guess, never
     something already on screen, never the streamer. Most clips: [].
-  - song: with mood "sad", the REAL song that comes in, a record people
-    know (operator: "an actual like wistful sad song people might
-    recognize", never stock music). Pick the key whose feeling fits
-    THIS moment:
+  - song: with mood "sad", the music that comes in: an instrumental with
+    the vibe, no lyrics, never a hit a Content ID match dings (operator,
+    2026-10-29), never cheesy stock music. Pick the key whose feeling
+    fits THIS moment:
 {SONG_MENU}
     "" when mood is not "sad".
   - broll: MAKE THE CLIP OUR OWN, not just a moment lifted off the

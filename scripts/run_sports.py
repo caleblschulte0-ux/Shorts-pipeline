@@ -97,11 +97,14 @@ def next_slot(slots, *, after: str = "", now: datetime | None = None,
     return post_spacing.iso(t)
 
 
-def description(meta: dict, c: dict) -> str:
-    """Caption, the call to action, the credit, the tags."""
+def description(meta: dict, c: dict, music: list | None = None) -> str:
+    """Caption, the call to action, the credit, the music's credit (the
+    NCS licence asks for it), the tags."""
     parts = [meta.get("caption") or c.get("post_title") or "",
              meta.get("cta") or ""]
     parts.append(f"Via r/{c.get('sub')}: {permalink_key(c)}")
+    parts += [m["credit"] for m in music or []
+              if isinstance(m, dict) and m.get("credit")]
     tags = " ".join(f"#{t.lstrip('#')}" for t in meta.get("hashtags") or [])
     if tags:
         parts.append(tags)
@@ -284,7 +287,8 @@ def main() -> int:
 
         rt._refresh_log_from_origin()
         publish_at = next_slot(slots, after=last_slot, log=rt.load_log())
-        desc, tg = description(meta, c), tags(meta, c)
+        desc = description(meta, c, (made.get("ledger") or {}).get("music"))
+        tg = tags(meta, c)
 
         def _do_upload():
             from shared.uploaders import YouTubeUploader
