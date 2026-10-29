@@ -159,7 +159,7 @@ class AnExtendedClipIsItsOwnSlot(unittest.TestCase):
         ext = [p for p in pkgs if p["capture"].get("story_pick")
                == "audience"]
         story = [p for p in pkgs if p["story_mode"]
-                 and not p["capture"].get("story_pick")]
+                 and p["capture"].get("story_pick") != "audience"]
         self.assertEqual(len(ext), 1)
         self.assertTrue(ext[0]["story_mode"])
         self.assertEqual(len(story), 1)

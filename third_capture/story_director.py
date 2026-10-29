@@ -321,6 +321,13 @@ to make sense not just random clips"). Wherever a rule above asks for a
 meaningful change, a so/but chain, one central question, a single
 payoff, or a feud told from both sides, it does NOT apply here. What
 this slot needs instead:
+- THIS IS THE FLOOR, NOT THE GOAL (same night: "this is the min bar
+  like if we can throw a story together that does fit a good beginning
+  middle and end payoff then obviously we should do that"). When the
+  clips DO hold a real story (a beginning, a middle and a payoff), cut
+  that story, with every rule above that helps it. Only when they do
+  not, cut the run of clips below. A critic scores a real story with a
+  payoff above a run of clips of the same quality.
 - 2-5 clips, each interesting ON ITS OWN, all plainly about ONE thing a
   stranger can name: the same stream's running bit, the same person or
   pair, the same game or challenge, the same event, the same kind of

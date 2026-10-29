@@ -1,6 +1,6 @@
 {
   "count": 4,
-  "story_count": 0,
+  "story_count": 1,
   "extended_count": 1,
   "channel": "third",
   "title": "{clip_title}",
@@ -126,7 +126,8 @@
     "story_moment_before_s": 240,
     "story_moment_after_s": 240,
     "story_table_reads": 2,
-    "story_table_read_min": 50
+    "story_table_read_min": 50,
+    "story_pick": "compilation"
   },
   "hashtags": [
     "streamerclips",

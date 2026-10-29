@@ -652,13 +652,16 @@ class EverySlotTriesAStory(unittest.TestCase):
     posting stories because they suck ... if we're running our
     subscription and trying to post stories and wasting it, turn that
     off. Right now, we're just trying to workshop the whole stories
-    thing." The daily run makes no story attempts while it is workshopped;
-    story_budget_min still caps them when they come back."""
+    thing." 2026-10-28 the workshop found the shape ("interesting clips
+    that make sense to put in the order we put them in"; the first
+    compilation backtest passed two at 80+) and the operator turned one a
+    day back on. story_budget_min caps it so the clips keep their time."""
 
-    def test_the_daily_run_makes_no_story_attempts_while_workshopped(self):
+    def test_one_story_a_day_of_clips_that_make_sense_together(self):
         tpl = json.loads((ROOT / "state" / "third_packages" /
                           "default_clip.json").read_text())
-        self.assertEqual(tpl["story_count"], 0)
+        self.assertEqual(tpl["story_count"], 1)
+        self.assertEqual(tpl["capture"]["story_pick"], "compilation")
 
     def test_the_story_budget_leaves_the_clips_time(self):
         rt = _load_rt()
