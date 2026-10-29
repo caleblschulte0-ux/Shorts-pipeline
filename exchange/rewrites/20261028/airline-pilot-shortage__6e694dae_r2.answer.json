@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "airline-pilot-shortage__6e694dae_r2",
+  "slug": "airline-pilot-shortage",
+  "by": "chatgpt",
+  "written_at": "2026-10-29T11:14:00.229Z",
+  "title": "Airlines Need 649,000 New Pilots By 2042",
+  "hook": "Airlines need 649,000 new pilots, and training is the bottleneck.",
+  "closing": "More aircraft mean little without enough trained people to keep them moving.",
+  "question": "Would you train to become a pilot?",
+  "segments": [
+    {
+      "topic": "Airline Pilot Shortage",
+      "say": "Airlines need 649,000 new pilots. That is a training-pipeline problem, not merely a hiring problem."
+    },
+    {
+      "topic": "Airline Pilot Demand",
+      "say": "Eurasia needs 143,000 new pilots. The biggest demand is not where many viewers expect."
+    },
+    {
+      "topic": "Airline Fleet Growth",
+      "say": "The jet fleet is projected to reach 48,600 aircraft. Every added plane needs trained crews."
+    }
+  ]
+}
