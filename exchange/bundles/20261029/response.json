@@ -1,0 +1,61 @@
+{
+  "schema": "chatgpt-exchange-response/v1",
+  "date": "20261029",
+  "status": "fulfilled",
+  "contract": {
+    "registry_revision": 10,
+    "registry_sha256": "6481c43e352d51af77c4d61db5486670a9d4db6fd55683a411720ea0c089276a",
+    "source_commit": "f152f251b1886c43903ea27042c1a97800fb6ab8",
+    "production_date": "20261029",
+    "bundle_sha256": "1d21b60bedc4fad16e7caa72eca8f4d966c59f70c95262377b6dc38fa67bd29e"
+  },
+  "media": [],
+  "packages": [],
+  "authored": [],
+  "authored_explainer": [
+    {
+      "slug": "cereal-production-is-1-5x-higher-than-in-1972",
+      "title": "Cereal Production Is 1.5x Higher Than In 1972",
+      "hook": "Cereal production rose 1.5x instead of running out.",
+      "says": [
+        "Progression to secondary school rose from 77.8% in 1985 to 91.3% in 2017 — 1.2 times higher.",
+        "Cereal production climbed from 1083.7 million metric tons in 1972 to 1644.1 million metric tons in 2024 — 1.5 times higher.",
+        "China leads at 5.2 million square kilometers of farmland, then the United States at 4.2 million, Australia at 3.6 million, Brazil at 2.4 million, and Russia at 2.2 million."
+      ],
+      "closing": "Production kept rising while farmland remained concentrated.",
+      "question": "Which number changed your view?"
+    },
+    {
+      "slug": "combustible-renewables-and-waste-is-3-0x-higher-than-in-1990",
+      "title": "Combustible Renewables And Waste Is 3.0x Higher Than In 1990",
+      "hook": "Combustible renewables and waste tripled since 1990.",
+      "says": [
+        "Combustible renewables and waste rose from 10.2% of total energy in 1990 to 30.1% in 2024 — 3.0 times higher.",
+        "Access to electricity rose from 73.2% of population in 1998 to 91.9% in 2024 — 1.3 times higher.",
+        "Methane (CH4) emissions from waste rose from 903.8 Mt CO2e in 1972 to 1,652 Mt CO2e in 2024 — 1.8 times higher."
+      ],
+      "closing": "More energy from waste also means more methane emissions.",
+      "question": "Which number surprised you most?"
+    },
+    {
+      "slug": "population-growth-fell-54-since-1972",
+      "title": "Population Growth Fell 54% Since 1972",
+      "hook": "Population growth fell 54% instead of accelerating forever.",
+      "says": [
+        "Rural population fell from 63.1% of total population in 1972 to 42.2% in 2025 — down to 67 percent of that.",
+        "Population in the largest city shifted from 18.2% of urban population in 1972 to 16.2% in 2025 — it barely moved.",
+        "Population growth fell from 2 annual % in 1972 to 0.91 annual % in 2025 — down to 46 percent of that."
+      ],
+      "closing": "The planet is still growing. It has just almost stopped accelerating.",
+      "question": "Which shift surprised you most?"
+    }
+  ],
+  "notes": [
+    "The frozen 20261029 contract requires 3 sports_moment, 6 clip, and 4 data_story uploads; these are production targets, not completion claims.",
+    "The bundle contains zero media requests and no image-bearing active formats, so no Drive upload, readback, hash, decode, or media checkpoint was applicable.",
+    "The configured shared Drive destination was found and remains shared; no new file was requested.",
+    "No package punch-ups were requested. All three requested Explainer stories were rewritten with the same segment counts and orders and every supplied number and entity preserved.",
+    "Mandatory mailbox round one completed within caps: 0 reviews, 20 already-answered ask keys reused, 8 expired freshness-dependent asks skipped, and 10 rewrite requests answered.",
+    "DONE only hands off this response. Actual channel upload verification remains outstanding."
+  ]
+}
