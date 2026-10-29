@@ -1,11 +1,21 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-29T11:18:02Z",
+ "updated": "2026-10-29T11:22:25Z",
  "open": [
+  {
+   "id": "chatgpt-fastest-adoption-ever__c2e9df7d_r4",
+   "slug": "chatgpt-fastest-adoption-ever",
+   "filed": "2026-10-29T11:22:25Z",
+   "why": [
+    "premise: brain: The claim relies on a vague comparative speed without a single verifiable number, making it a weak premise."
+   ],
+   "request": "exchange/rewrites/20261029/chatgpt-fastest-adoption-ever__c2e9df7d_r4.request.json",
+   "answer_path": "exchange/rewrites/20261029/chatgpt-fastest-adoption-ever__c2e9df7d_r4.answer.json"
+  },
   {
    "id": "naep-math-pandemic-drop__28b5f92e_r1",
    "slug": "naep-math-pandemic-drop",
-   "filed": "2026-10-29T11:18:02Z",
+   "filed": "2026-10-29T11:22:25Z",
    "why": [
     "premise: brain: The premise lacks a single verifiable numeric figure and relies on a vague time span rather than a concrete number."
    ],
@@ -13,24 +23,24 @@
    "answer_path": "exchange/rewrites/20261029/naep-math-pandemic-drop__28b5f92e_r1.answer.json"
   },
   {
-   "id": "cavendish-banana-monoculture__66913e65_r1",
-   "slug": "cavendish-banana-monoculture",
-   "filed": "2026-10-28T11:28:41Z",
+   "id": "ai-datacenter-water__c0cc9c1a_r3",
+   "slug": "ai-datacenter-water",
+   "filed": "2026-10-29T11:22:24Z",
    "why": [
-    "premise: brain: It doesn't overturn a common viewer expectation, merely states a statistic without a surprising reversal."
+    "premise: no consequential number in the title or hook"
    ],
-   "request": "exchange/rewrites/20261028/cavendish-banana-monoculture__66913e65_r1.request.json",
-   "answer_path": "exchange/rewrites/20261028/cavendish-banana-monoculture__66913e65_r1.answer.json"
+   "request": "exchange/rewrites/20261029/ai-datacenter-water__c0cc9c1a_r3.request.json",
+   "answer_path": "exchange/rewrites/20261029/ai-datacenter-water__c0cc9c1a_r3.answer.json"
   },
   {
-   "id": "lottery-odds-vs-real-life__53af3ace",
-   "slug": "lottery-odds-vs-real-life",
-   "filed": "2026-10-27T11:49:12Z",
+   "id": "nyc-noise-complaints-per-day__7fcacd7a_r2",
+   "slug": "nyc-noise-complaints-per-day",
+   "filed": "2026-10-29T11:22:24Z",
    "why": [
-    "premise: brain: The claim lacks a clear reversal of a viewer expectation and hinges on an ambiguous, unverifiable premise."
+    "premise: brain: It does not clearly overturn a common viewer expectation, only presents a surprising statistic."
    ],
-   "request": "exchange/rewrites/20261027/lottery-odds-vs-real-life__53af3ace.request.json",
-   "answer_path": "exchange/rewrites/20261027/lottery-odds-vs-real-life__53af3ace.answer.json"
+   "request": "exchange/rewrites/20261029/nyc-noise-complaints-per-day__7fcacd7a_r2.request.json",
+   "answer_path": "exchange/rewrites/20261029/nyc-noise-complaints-per-day__7fcacd7a_r2.answer.json"
   },
   {
    "id": "airline-pilot-shortage__6e694dae_r2",
@@ -73,16 +83,6 @@
    "answer_path": "exchange/rewrites/20261027/coldest-place-in-the-universe-is-human-made__81f94a66_r2.answer.json"
   },
   {
-   "id": "humpback-whale-recovery__15f8bd75_r3",
-   "slug": "humpback-whale-recovery",
-   "filed": "2026-10-27T11:41:37Z",
-   "why": [
-    "premise: brain: The premise does not overturn a viewer's expectation, merely states a population increase."
-   ],
-   "request": "exchange/rewrites/20261027/humpback-whale-recovery__15f8bd75_r3.request.json",
-   "answer_path": "exchange/rewrites/20261027/humpback-whale-recovery__15f8bd75_r3.answer.json"
-  },
-  {
    "id": "lightning-deaths-collapsed-not-the-storms__c86366ce",
    "slug": "lightning-deaths-collapsed-not-the-storms",
    "filed": "2026-10-26T12:01:23Z",
@@ -91,66 +91,6 @@
    ],
    "request": "exchange/rewrites/20261026/lightning-deaths-collapsed-not-the-storms__c86366ce.request.json",
    "answer_path": "exchange/rewrites/20261026/lightning-deaths-collapsed-not-the-storms__c86366ce.answer.json"
-  },
-  {
-   "id": "chatgpt-fastest-adoption-ever__c2e9df7d_r3",
-   "slug": "chatgpt-fastest-adoption-ever",
-   "filed": "2026-10-26T11:49:09Z",
-   "why": [
-    "premise: brain: The claim relies on a vague comparative speed without a single verifiable number, making it a weak premise."
-   ],
-   "request": "exchange/rewrites/20261026/chatgpt-fastest-adoption-ever__c2e9df7d_r3.request.json",
-   "answer_path": "exchange/rewrites/20261026/chatgpt-fastest-adoption-ever__c2e9df7d_r3.answer.json"
-  },
-  {
-   "id": "ai-datacenter-water__c0cc9c1a_r2",
-   "slug": "ai-datacenter-water",
-   "filed": "2026-10-24T11:23:41Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261024/ai-datacenter-water__c0cc9c1a_r2.request.json",
-   "answer_path": "exchange/rewrites/20261024/ai-datacenter-water__c0cc9c1a_r2.answer.json"
-  },
-  {
-   "id": "nyc-noise-complaints-per-day__7fcacd7a_r1",
-   "slug": "nyc-noise-complaints-per-day",
-   "filed": "2026-10-24T11:23:40Z",
-   "why": [
-    "premise: brain: It does not clearly overturn a common viewer expectation, only presents a surprising statistic."
-   ],
-   "request": "exchange/rewrites/20261024/nyc-noise-complaints-per-day__7fcacd7a_r1.request.json",
-   "answer_path": "exchange/rewrites/20261024/nyc-noise-complaints-per-day__7fcacd7a_r1.answer.json"
-  },
-  {
-   "id": "world-wetlands-lost__3fe5ea62_r2",
-   "slug": "world-wetlands-lost",
-   "filed": "2026-10-23T12:48:59Z",
-   "why": [
-    "premise: brain: It presents a factual statistic without overturning a specific viewer expectation, failing the reversal requirement."
-   ],
-   "request": "exchange/rewrites/20261023/world-wetlands-lost__3fe5ea62_r2.request.json",
-   "answer_path": "exchange/rewrites/20261023/world-wetlands-lost__3fe5ea62_r2.answer.json"
-  },
-  {
-   "id": "helium-supply-squeeze__067a945d",
-   "slug": "helium-supply-squeeze",
-   "filed": "2026-10-21T16:21:54Z",
-   "why": [
-    "premise: brain: The premise lacks a clear reversal of a specific viewer expectation and relies on an unverifiable, ambiguous number."
-   ],
-   "request": "exchange/rewrites/20261021/helium-supply-squeeze__067a945d.request.json",
-   "answer_path": "exchange/rewrites/20261021/helium-supply-squeeze__067a945d.answer.json"
-  },
-  {
-   "id": "english-internet-share-decline__21efaa68",
-   "slug": "english-internet-share-decline",
-   "filed": "2026-10-21T13:38:37Z",
-   "why": [
-    "premise: no consequential number in the title or hook"
-   ],
-   "request": "exchange/rewrites/20261021/english-internet-share-decline__21efaa68.request.json",
-   "answer_path": "exchange/rewrites/20261021/english-internet-share-decline__21efaa68.answer.json"
   },
   {
    "id": "divorce-rate-quiet-decline__d6b27d36",
@@ -221,6 +161,16 @@
    ],
    "request": "exchange/rewrites/20261020/index-funds-own-corporate-america__19285cc1.request.json",
    "answer_path": "exchange/rewrites/20261020/index-funds-own-corporate-america__19285cc1.answer.json"
+  },
+  {
+   "id": "english-internet-share-decline__21efaa68",
+   "slug": "english-internet-share-decline",
+   "filed": "2026-10-20T12:07:14Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261020/english-internet-share-decline__21efaa68.request.json",
+   "answer_path": "exchange/rewrites/20261020/english-internet-share-decline__21efaa68.answer.json"
   },
   {
    "id": "freshwater-accessible__94d3a9c8",
@@ -363,6 +313,16 @@
    ],
    "request": "exchange/rewrites/20261020/third-interstellar-visitor__c92abc0a.request.json",
    "answer_path": "exchange/rewrites/20261020/third-interstellar-visitor__c92abc0a.answer.json"
+  },
+  {
+   "id": "helium-supply-squeeze__067a945d",
+   "slug": "helium-supply-squeeze",
+   "filed": "2026-10-20T12:07:10Z",
+   "why": [
+    "premise: brain: The claim lacks a clear reversal of a common expectation and relies on an unverified, vague figure."
+   ],
+   "request": "exchange/rewrites/20261020/helium-supply-squeeze__067a945d.request.json",
+   "answer_path": "exchange/rewrites/20261020/helium-supply-squeeze__067a945d.answer.json"
   },
   {
    "id": "rubiks-cube-record-vs-robot__5d087bf9",

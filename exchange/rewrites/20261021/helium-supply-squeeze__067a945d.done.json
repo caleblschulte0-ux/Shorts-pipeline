@@ -1,0 +1,11 @@
+{
+ "id": "helium-supply-squeeze__067a945d",
+ "slug": "helium-supply-squeeze",
+ "settled": "2026-10-29T11:22:24Z",
+ "decision": "rejected",
+ "problems": [
+  "segment 0: new named entity not in the data: Concentration",
+  "segment 1: new named entity not in the data: Growth",
+  "segment 2: new named entity not in the data: Shock"
+ ]
+}
