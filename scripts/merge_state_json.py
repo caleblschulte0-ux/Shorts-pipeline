@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Union-merge the two learning files a CI push race used to clobber.
 
-Usage: merge_state_json.py THEIRS OURS OUT   (OUT's name picks the rule)
+Usage: merge_state_json.py THEIRS OURS OUT [BASE]   (OUT's name picks the rule)
 
     data_learning/viz_mechanics.json   entries by `sig`
     data_learning/niche.config.json    stories by `slug`
@@ -32,6 +32,21 @@ The posted logs never had this problem because they are UNIONED
              `code` on their side is kept if ours has none for that key,
              and a drawn scene (`STORY_SCENES`, `SEGMENT_SCENES`) only
              their side has is kept while the words it was drawn for agree.
+
+THE NIGHT THE GIANT PHONE CAME BACK. "ours wins" is a two-way rule, and a
+two-way merge cannot tell an edit from a stale copy. PR #706 nulled the
+giant-phone `hook_scene` on nyc-noise-complaints-per-day at 14:26 UTC on
+2026-10-28; the posting runs that had checked out before it lost their push
+races at 18:47 and 23:48, took OUR story for the slug, and wrote the scene
+back both times, while the 19:18 forge (checked out before 18:47) took ITS
+story and reverted five retold stories and two drawn beats the 18:47 run had
+just landed. Every writer clobbered the one before it. So when the caller
+passes BASE (the main the run last synced with), stories are merged
+THREE-WAY, field by field and segment by segment: a field only one side
+changed takes that side's value, so a run writes back only what it changed
+and can never resurrect what main nulled; a field both sides changed takes
+ours, the old rule, now confined to a real conflict. Without BASE the
+two-way rule below still applies.
 
 Fails CLOSED on unparseable input, like merge_posted_log: a corrupt side
 must never be pushed over a good one.
@@ -176,10 +191,105 @@ def merge_stories(theirs, ours) -> dict:
     return out
 
 
-def merge_for(name: str, theirs, ours):
+_GONE = object()
+
+
+def _three(b, t, o):
+    """One value, three-way: whichever side moved off the base wins; when
+    both moved, ours (the run that just rendered it)."""
+    if o == b:
+        return t
+    if t == b:
+        return o
+    return o
+
+
+def _fields3(b: dict, t: dict, o: dict, skip=()) -> dict:
+    out = {}
+    for k in list(t) + [k for k in o if k not in t] + [k for k in b if k not in t and k not in o]:
+        if k in skip or k in out:
+            continue
+        v = _three(b.get(k, _GONE), t.get(k, _GONE), o.get(k, _GONE))
+        if v is not _GONE:
+            out[k] = v
+    return out
+
+
+def _words_moved(b: dict, t: dict, o: dict, out: dict, pairs) -> None:
+    """A scene is drawn FOR its words: where main re-worded and the run did
+    not, the run's scene is for words that are gone, so main's stands."""
+    for key, words in pairs:
+        if t.get(words, _GONE) != b.get(words, _GONE) and o.get(words, _GONE) == b.get(words, _GONE):
+            if key in t:
+                out[key] = t[key]
+            else:
+                out.pop(key, None)
+
+
+def _merge_story3(b: dict, t: dict, o: dict) -> dict:
+    if o == b:
+        return t
+    if t == b:
+        return o
+    out = _fields3(b, t, o, skip=("segments",))
+    _words_moved(b, t, o, out, STORY_SCENES)
+    bs, ts, os_ = b.get("segments"), t.get("segments"), o.get("segments")
+    if all(isinstance(x, list) for x in (bs, ts, os_)) and len(bs) == len(ts) == len(os_) \
+            and all(isinstance(x, dict) for x in bs + ts + os_):
+        out["segments"] = []
+        for x, y, z in zip(bs, ts, os_):
+            seg = _fields3(x, y, z)
+            _words_moved(x, y, z, seg, [(k, "say") for k in SEGMENT_SCENES])
+            out["segments"].append(seg)
+    elif os_ == bs:                          # beats re-cut on main only
+        if ts is not None:
+            out["segments"] = ts
+    elif ts == bs:                           # ...or in the run only
+        if os_ is not None:
+            out["segments"] = os_
+    elif os_ is not None:                    # re-cut on both sides: old rule
+        out["segments"] = _merge_story(t, o).get("segments", os_)
+    return out
+
+
+def merge_stories3(theirs, ours, base) -> dict:
+    """`merge_stories` with the common ancestor: see THE NIGHT THE GIANT
+    PHONE CAME BACK. A slug one side deleted and the other left alone is
+    gone; a slug new on both sides falls back to the two-way rule."""
+    t = theirs if isinstance(theirs, dict) else {}
+    o = ours if isinstance(ours, dict) else {}
+    b = base if isinstance(base, dict) else {}
+    out = _fields3(b, t, o, skip=("stories",))
+
+    def by_slug(d):
+        lst = d.get("stories") if isinstance(d.get("stories"), list) else []
+        return {s["slug"]: s for s in lst if isinstance(s, dict) and s.get("slug")}, \
+            [s["slug"] for s in lst if isinstance(s, dict) and s.get("slug")]
+    bb, _ = by_slug(b)
+    tb, torder = by_slug(t)
+    ob, oorder = by_slug(o)
+    stories = []
+    for slug in torder + [x for x in oorder if x not in tb]:
+        bs, ts, os_ = bb.get(slug), tb.get(slug), ob.get(slug)
+        if ts is not None and os_ is not None:
+            stories.append(_merge_story3(bs, ts, os_) if bs is not None
+                           else _merge_story(ts, os_))
+        elif ts is not None:                 # ours lacks it
+            if bs is None or ts != bs:       # new on main, or main edited it
+                stories.append(ts)
+        elif os_ is not None:                # theirs lacks it
+            if bs is None or os_ != bs:      # new in the run, or the run edited it
+                stories.append(os_)
+    out["stories"] = stories
+    return out
+
+
+def merge_for(name: str, theirs, ours, base=None):
     if name.endswith("viz_mechanics.json"):
         return merge_mechanics(theirs, ours)
     if name.endswith("niche.config.json"):
+        if isinstance(base, dict):
+            return merge_stories3(theirs, ours, base)
         return merge_stories(theirs, ours)
     raise SystemExit(f"merge_state_json: no rule for {name}")
 
@@ -200,7 +310,7 @@ def merge_jsonl(theirs_text: str, ours_text: str) -> str:
 
 
 def main(argv: list[str]) -> int:
-    if len(argv) != 4:
+    if len(argv) not in (4, 5):
         print(__doc__.splitlines()[2], file=sys.stderr)
         return 2
     if argv[3].endswith(".jsonl"):
@@ -216,7 +326,13 @@ def main(argv: list[str]) -> int:
     except json.JSONDecodeError as e:
         print(f"[merge_state_json] refusing: unparseable input ({e})", file=sys.stderr)
         return 1
-    merged = merge_for(argv[3], theirs, ours)
+    base = None
+    if len(argv) == 5:
+        try:                     # an unreadable base only costs the three-way
+            base = _load(argv[4])
+        except json.JSONDecodeError:
+            print("[merge_state_json] base unparseable — two-way merge", file=sys.stderr)
+    merged = merge_for(argv[3], theirs, ours, base)
     Path(argv[3]).write_text(json.dumps(merged, indent=1, ensure_ascii=False) + "\n")
     n = len(merged) if isinstance(merged, list) else len(merged.get("stories", []))
     print(f"[merge_state_json] union -> {n} entries in {Path(argv[3]).name}")
