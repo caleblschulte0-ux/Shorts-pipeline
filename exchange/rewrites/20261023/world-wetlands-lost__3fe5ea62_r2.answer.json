@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "world-wetlands-lost__3fe5ea62_r2",
+  "slug": "world-wetlands-lost",
+  "by": "chatgpt",
+  "written_at": "2026-10-29T11:16:26.670Z",
+  "title": "Wetlands Lost 35% While Forests Lost Less",
+  "hook": "Wetlands disappeared nearly three times faster than forests.",
+  "closing": "Wetlands protect water and absorb floods, so their loss reaches everyone.",
+  "question": "Is there a wetland near you?",
+  "segments": [
+    {
+      "topic": "Wetlands Extent",
+      "say": "Wetland extent fell to an index of 65. The world's natural water buffers keep shrinking."
+    },
+    {
+      "topic": "Wetlands Forest Loss",
+      "say": "Wetlands lost 35% of their extent. Their decline far outpaced forests."
+    },
+    {
+      "topic": "Wetlands Europe Loss",
+      "say": "Europe lost 50% of its wetlands. It had the steepest regional decline shown."
+    }
+  ]
+}
