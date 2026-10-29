@@ -5033,7 +5033,7 @@
       "published_versions": [
         "story-abac00523ca0116b"
       ],
-      "last_updated": "2026-10-28"
+      "last_updated": "2026-10-29"
     },
     "xqc-ethan-klein-2026w44": {
       "event_id": "xqc-ethan-klein-2026w44",
@@ -5058,6 +5058,50 @@
         "story-b1d7b6e24a3db960"
       ],
       "last_updated": "2026-10-28"
+    },
+    "ishowspeed-energy-gravity-2026w40": {
+      "event_id": "ishowspeed-energy-gravity-2026w40",
+      "people": [
+        "ishowspeed"
+      ],
+      "actions": [
+        "energy",
+        "gravity",
+        "ishowspe",
+        "speed"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-29",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2890898173/869-1109",
+        "https://www.twitch.tv/ishowspeed/clip/RelievedRelievedEagleItsBoshyTime-Sae9J8tvuXjeMM6g",
+        "vodmine://2890898173/1122-1362"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-29"
+    },
+    "pokimane-avatar-cats-2026w41": {
+      "event_id": "pokimane-avatar-cats-2026w41",
+      "people": [
+        "pokimane"
+      ],
+      "actions": [
+        "avatar",
+        "cats",
+        "pokimane",
+        "style"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-29",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2878624939/0-10",
+        "https://www.twitch.tv/pokimane/clip/PeacefulBelovedChinchillaPoooound-g-d6-Fjv_WN-VKoi",
+        "vodmine://2878624939/20-260"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-29"
     }
   }
 }

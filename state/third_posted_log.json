@@ -16606,13 +16606,86 @@
       "ts": "2026-10-29T11:35:23.830154+00:00"
     },
     "clip-20261029-3": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jynxzi/clip/FitFlaccidVanillaNerfRedBlaster-TZK2VU_U89c5isuY",
-      "story_key": null,
-      "streamer": "jynxzi",
+      "url": "https://youtube.com/shorts/KkMxSy8Er-s",
       "title": "Jynxzi Screams As He Watches Someone Try To Flash And Actually Pull It Off",
       "kind": "twitch_clip",
-      "ts": "2026-10-29T11:37:43.147787+00:00",
+      "ts": "2026-10-29T11:37:48.685316+00:00",
+      "uploaded_at": "2026-10-29T11:37:48.685335+00:00",
+      "publish_at": "2026-10-29T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261029-jynxzi-screams-as-he-watches-someone-try-to-flas-a7a4650d",
+        "tiktok": "queued for 2026-10-29T20:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jynxzi/clip/FitFlaccidVanillaNerfRedBlaster-TZK2VU_U89c5isuY",
+      "streamer": "jynxzi",
+      "series": "clutch",
+      "hook": "Jynxzi dares him to flash",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2495,
+      "banger": 0.4,
+      "cut": {
+        "start": 6.5,
+        "end": 16.5
+      },
+      "director_cut": true
+    },
+    "rejected-smilingtangiblebutterimglitch-g0rp6qqiv-o3ynkn": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/SmilingTangibleButterImGlitch-G0rP6QQiV-O3ynkn",
+      "streamer": "caseoh_",
+      "title": "where toothpick?",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Minecraft inventory search, no visible e)",
+      "ts": "2026-10-29T11:55:46.945777+00:00"
+    },
+    "rejected-goodblithearugulawtruck-abas-2wk4nge4jeu": {
+      "source_url": "https://www.twitch.tv/silky/clip/GoodBlitheArugulaWTRuck-abAs-2wK4nGe4JEu",
+      "streamer": "silky",
+      "title": "Silky Says He's Back In The Ring For NMS Boxing 6 Next Year",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp picture is a thin 16:9 strip, about a third of the canvas height, not the roughly three quarters expected. The ren; vision: Subject is small and far away in the strip, so it is hard to read on a phone.; vision: Frames at 5.5s and 7.2s show mostly dark or empty space with no clear perso",
+      "ts": "2026-10-29T11:59:21.562274+00:00"
+    },
+    "rejected-drabsmoggypistachiofunrun-ab6duljhplu0hu6b": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/DrabSmoggyPistachioFunRun-ab6DuLjHpLu0Hu6b",
+      "streamer": "jynxzi",
+      "title": "Jynxzi Fires Back At Jasone: \"I Don't Fight\" After Boxing Callout",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin strip, about a quarter of the canvas height. The rest is blurred padding, so the framing fai; vision: Most of the clip is a desktop or OBS screen-share (frames 7s to 23s). The UI and chat text is unreadably small on a phon; vision: The streamer's face is small in ",
+      "ts": "2026-10-29T12:37:02.071611+00:00"
+    },
+    "rejected-eagermotionlessruffstonelightning-vbpqgva4stmay2ap": {
+      "source_url": "https://www.twitch.tv/hasanabi/clip/EagerMotionlessRuffStoneLightning-vBpQGva4StMaY2ap",
+      "streamer": "hasanabi",
+      "title": "tamara pov",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Creepy portrait, facepalm; unclear, insi)",
+      "ts": "2026-10-29T12:37:50.388674+00:00"
+    },
+    "rejected-callousreliablecocoathunbeast-xsedbo7gs0tzdcng": {
+      "source_url": "https://www.twitch.tv/lacy/clip/CallousReliableCocoaThunBeast-xSEDbO7GS0TzdCnG",
+      "streamer": "lacy",
+      "title": "wwwwwwww",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "the clip ends mid-sentence on \"a\"",
+      "ts": "2026-10-29T12:38:33.928752+00:00"
+    },
+    "clip-20261029-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/emiru/clip/TacitConfidentDumplingsSMOrc-x7Ood49ekFo_TZxO",
+      "story_key": null,
+      "streamer": "emiru",
+      "title": "Emiru Cowgirl Outfit Has Her Mod Fully Hiding From Stream",
+      "kind": "twitch_clip",
+      "ts": "2026-10-29T12:42:15.889041+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
