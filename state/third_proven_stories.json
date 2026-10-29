@@ -1,17 +1,5 @@
 {
- "stories": [],
- "rejected": [
-  {
-   "label": "scout:payo+pikabooirl+xaryuclips/payo-pikabooirl-xaryuclips-duel-payo-2026w41",
-   "source_urls": [
-    "https://www.twitch.tv/pikabooirl/clip/SmoothArborealAlmondBabyRage-OPhvuRN5fcL3_6ST",
-    "https://www.youtube.com/watch?v=n5WiXe5qBWY"
-   ],
-   "score": 88,
-   "why": "operator, 2026-10-17: \"That video sucked\""
-  }
- ],
- "pending": [
+ "stories": [
   {
    "label": "scout:xqc/xqc-call-doubl-2026w41",
    "run": "40742816892",
@@ -97,7 +85,8 @@
    "source_urls": [
     "https://www.twitch.tv/xqc/clip/FineSlipperyPeafowlRlyTho-1EBM2czztq5VtpV0",
     "https://www.twitch.tv/xqc/clip/FlirtyObedientPuppyPeanutButterJellyTime-6dtAUgSeX4gVy1x-"
-   ]
+   ],
+   "approved": "2026-10-29 operator: \"yeah, whatever. Seems like you get the basic idea\""
   },
   {
    "label": "scout:xqc/xqc-along-believe-2026w41",
@@ -170,7 +159,8 @@
    "source_urls": [
     "https://www.twitch.tv/xqc/clip/FrailDullWatercressTheThing-DWH7T9vcg6gdLbAR",
     "https://www.twitch.tv/xqc/clip/TransparentProductiveAntTBCheesePull-ZHgbQBb2YysBHbYw"
-   ]
+   ],
+   "approved": "2026-10-29 operator: \"yeah, whatever. Seems like you get the basic idea\""
   },
   {
    "label": "ohnepixel@vod2889800273/ohnepixel-bikini-ohnepixel-2026w43",
@@ -262,7 +252,20 @@
     "https://www.twitch.tv/ohnepixel/clip/PeacefulCleverCardRaccAttack-ucc04g0tD9xvgOU1",
     "https://www.twitch.tv/ohnepixel/clip/PolishedHyperToothKeyboardCat-lYxt3_2OqjYU0qwe",
     "https://www.twitch.tv/ohnepixel/clip/RelatedComfortableBillPartyTime-iwOeTC82RSBb_jVO"
-   ]
+   ],
+   "approved": "2026-10-29 operator: \"yeah, whatever. Seems like you get the basic idea\""
   }
- ]
+ ],
+ "rejected": [
+  {
+   "label": "scout:payo+pikabooirl+xaryuclips/payo-pikabooirl-xaryuclips-duel-payo-2026w41",
+   "source_urls": [
+    "https://www.twitch.tv/pikabooirl/clip/SmoothArborealAlmondBabyRage-OPhvuRN5fcL3_6ST",
+    "https://www.youtube.com/watch?v=n5WiXe5qBWY"
+   ],
+   "score": 88,
+   "why": "operator, 2026-10-17: \"That video sucked\""
+  }
+ ],
+ "pending": []
 }

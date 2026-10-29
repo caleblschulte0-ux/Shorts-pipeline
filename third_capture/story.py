@@ -193,7 +193,8 @@ def beat_captions(idx: int, beat_secs: float, hook: str = "",
     a black outline, no box, there the whole clip). So the hook is that
     line and it STAYS; a time-jump overlay or a line of context (who
     someone is, how one clip leads to the next) takes its place long
-    enough to read, and the hook comes back. On the opening the hook is
+    enough to read; a time jump then stays up for the rest of its beat,
+    and the hook comes back on the next one. On the opening the hook is
     read first."""
     out, t = [], 0.0
 
@@ -209,9 +210,14 @@ def beat_captions(idx: int, beat_secs: float, hook: str = "",
         show("title", hook, HOOK_DUR)
     show("overlay", overlay, OVERLAY_DUR)
     show("text", text, 2.5)
-    if hook and t < beat_secs - 0.3:
-        out.append({"kind": "title", "text": hook, "at": round(t, 2),
-                    "secs": round(beat_secs - t, 2)})
+    # A TIME JUMP STAYS THE LINE for the rest of its beat (operator,
+    # 2026-10-29, of "11 minutes later" giving way to the hook again: "we
+    # don't need to change the title ... back ... we can keep that as 11
+    # minutes later"). The hook comes back on the next beat.
+    rest = overlay or hook
+    if rest and t < beat_secs - 0.3:
+        out.append({"kind": "overlay" if overlay else "title", "text": rest,
+                    "at": round(t, 2), "secs": round(beat_secs - t, 2)})
     return out
 
 

@@ -46,9 +46,14 @@ class OneCaptionAtATime(unittest.TestCase):
         self.assertEqual(caps[0]["at"], 0.0)
         self.assertAlmostEqual(caps[-1]["at"] + caps[-1]["secs"], 12.0)
 
-    def test_later_beats_keep_the_hook_around_their_overlay(self):
-        caps = story.beat_captions(1, 3.0, self.HOOK, "Minutes later", "")
-        self.assertEqual([c["kind"] for c in caps], ["overlay", "title"])
+    def test_a_time_jump_stays_the_line_for_its_beat(self):
+        # operator, 2026-10-29: keep "11 minutes later" up, don't switch
+        # back to the hook mid-beat
+        caps = story.beat_captions(1, 8.0, self.HOOK, "11 minutes later", "")
+        self.assertEqual({c["text"] for c in caps}, {"11 minutes later"})
+        self.assertAlmostEqual(caps[-1]["at"] + caps[-1]["secs"], 8.0)
+        nxt = story.beat_captions(2, 5.0, self.HOOK, "", "")
+        self.assertEqual([c["text"] for c in nxt], [self.HOOK])
 
     def test_they_never_overlap_and_never_outlast_the_beat(self):
         for secs in (0.8, 2.0, 4.0, 9.0):
