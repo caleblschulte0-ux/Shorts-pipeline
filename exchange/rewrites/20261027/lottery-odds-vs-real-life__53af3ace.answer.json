@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "lottery-odds-vs-real-life__53af3ace",
+  "slug": "lottery-odds-vs-real-life",
+  "by": "chatgpt",
+  "written_at": "2026-10-29T11:16:26.670Z",
+  "title": "Powerball Jackpot Odds Worsened 67%",
+  "hook": "Powerball made an already remote jackpot 67% harder.",
+  "closing": "Bigger jackpots came from making the winning ticket even less likely.",
+  "question": "Would those odds stop you?",
+  "segments": [
+    {
+      "topic": "Powerball Lightning Odds",
+      "say": "Powerball's jackpot denominator is 292,201,338. A lifetime lightning strike is dramatically more likely."
+    },
+    {
+      "topic": "Powerball Rarity Odds",
+      "say": "A royal flush has a 649,740 denominator. That rare poker hand is still far easier."
+    },
+    {
+      "topic": "Powerball Jackpot Change",
+      "say": "The Powerball denominator rose to 292,201,338. The rule change made the jackpot harder to win."
+    }
+  ]
+}
