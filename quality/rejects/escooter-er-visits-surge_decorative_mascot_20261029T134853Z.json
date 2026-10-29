@@ -1,0 +1,16 @@
+{
+ "slug": "escooter-er-visits-surge",
+ "ts": "20261029T134853Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: Data mostly stands and waves beside things that move on their own: he waves next to the pile while it grows (seg0:end, seg1:start), stands among the scooters and does nothing with the helmets (seg2:end), and holds a stanchion pose while the queue forms by itself (seg3:end, payoff@",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "weak_demonstration",
+  "visible_evidence": "seg2:start/end: a row of scooters with three helmets sitting on the near ones and a tiny 'NO HELMET' tag. Nothing shows that 67% of injured riders were bare-headed. Data stands in the middle doing nothing.",
+  "root_cause": "The number is carried by a scooter row with helmets dropped on it, not by riders with and without helmets. The 2/3 split is never visible as a proportion, and the mascot is not the cause of anything.",
+  "repair_goal": "Show about 3 injured riders with only 1 wearing a helmet (2 of 3 bare-headed), or have Data hand helmets down the line from the crate and run out after a third of the riders, so the 67% reads with no label. Drop the tiny 'NO HELMET' text."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

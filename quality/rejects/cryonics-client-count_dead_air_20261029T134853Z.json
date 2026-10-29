@@ -1,0 +1,16 @@
+{
+ "slug": "cryonics-client-count",
+ "ts": "20261029T134853Z",
+ "failure_class": "dead_air",
+ "evidence": "dead_air: In seg3:start and seg3:mid the block and Data look the same (no cut has happened). Then seg3:end, seg4:start, payoff@-1.8 and payoff@-0.4 all show the same finished cube and the same waving Data for about 8s, with only the captions changing. Code also measured a 27-frame duplicate run near",
+ "weakest_scene": {
+  "id": "seg3",
+  "index": 3,
+  "failure_class": "dead_air",
+  "visible_evidence": "The $200,000 block barely changes between seg3:start and seg3:mid, and Data stands on a box holding a saw he never visibly uses. The shrunken cube and waving Data are then held through seg3:end and the whole closing (seg4, payoff@-0.4). The subtitle reads 'to freeze your whole-body body'.",
+  "root_cause": "The cut lands late and is never shown as an action, and the closing reuses the finished frame without moving. Generic ice cubes carry the price, and the label template doubled a word.",
+  "repair_goal": "Have Data saw the block down to the head-only size in one arc, landing by about 70% of the beat. Make the cut-away 60% fall off, or turn the block into a coin stack paid from a life-insurance policy. Fix the label to 'to freeze your whole body'. Give the closing its own moving shot, such as a tank light ticking over to a far-future date, rather than holding the cube."
+ },
+ "scene_plan": {},
+ "scenes": []
+}
