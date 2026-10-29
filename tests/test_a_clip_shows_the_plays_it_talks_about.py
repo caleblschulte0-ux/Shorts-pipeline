@@ -296,3 +296,15 @@ class NeverTheSamePlayTwice(unittest.TestCase):
         src = (REPO / "funnel" / "find_footage.py").read_text()
         self.assertIn("for a in avoid or []", src)
         self.assertIn('_{start:.0f}_cut.mp4', src)
+
+
+class APhotoOfThemIsNotTheirPost(unittest.TestCase):
+    """2026-10-29 sample: "Tatum's post" came up as two game photos of
+    Tatum and Brown. The picture judge is told a post must be the post."""
+
+    def test_the_judge_is_told(self):
+        from shared import shot_relevance
+        p = shot_relevance._PROMPT
+        self.assertIn("the picture must BE that thing", p)
+        self.assertIn("is NOT their post", p)
+        p.format(title="t", shots="s")  # still a valid template

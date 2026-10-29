@@ -43,8 +43,11 @@ and the line as the same thing. A generic stock photo, a brand logo or \
 product, a keyword coincidence (a courtroom gavel for "the state's security", \
 a medical textbook, a photo wall, a fruit stand under "picking my paint"), a \
 different animal, a statue for a real animal, or an image about a different \
-story is NOT a depiction. When in doubt, say false: a missing picture costs \
-less than a wrong one.
+story is NOT a depiction. When the line names a THING SOMEONE MADE \
+(a post, a tweet, a screenshot, a headline, an article, a letter, a chart), \
+the picture must BE that thing, its own text or layout visible: a photo of \
+the people it is by or about is NOT their post. When in doubt, say false: a \
+missing picture costs less than a wrong one.
 
 Shots:
 {shots}
