@@ -6139,5 +6139,1014 @@
       ],
       "music_vibe": "dark"
     }
+  },
+  "20260730": {
+    "01_sinkhole-marshall-nc-funeral-home.json": {
+      "version": 8,
+      "slug": "sinkhole-marshall-nc-funeral-home",
+      "title": "A Sinkhole Opened Right at a Funeral Home",
+      "hashtags": [
+        "marshallnc",
+        "northcarolina",
+        "sinkhole",
+        "funeralhome",
+        "tornadowarning",
+        "madisoncounty",
+        "severeweather",
+        "weirdnews",
+        "naturaldisaster",
+        "stormdamage",
+        "wnc",
+        "freakevent",
+        "breakingnews",
+        "extremeweather"
+      ],
+      "script": "A sinkhole opened where? Tuesday night, severe storms tore through Madison County, North Carolina \u2014 a funnel cloud spotted right near Marshall's Foster Creek community, tornado warnings up across the whole western half of the state. Then the ground gave out. A sinkhole swallowed the pavement directly in front of Madison Funeral Home. Not a field. Not a backyard. A funeral home. County manager Rod Honeycutt confirmed nobody was hurt and the building itself is fine \u2014 the real damage was downed trees, flooded roads, and knocked-out power across Marshall. Still, out of every spot in Madison County, the earth picked the one already handling the dead. So of all places in Marshall, why the funeral home?",
+      "shots": [
+        {
+          "phrase": "A sinkhole opened where?",
+          "query": "sinkhole road pavement",
+          "mascot_pose": "think",
+          "image_url": "https://images.pexels.com/photos/11574520/pexels-photo-11574520.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "severe storms tore through Madison County, North Carolina",
+          "query": "storm dark clouds",
+          "pin_query": "Madison County",
+          "pin_context": "A Sinkhole Opened Right at a Funeral Home",
+          "news_query": "Madison County",
+          "news_angle": "A Sinkhole Opened Right at a Funeral Home",
+          "image_url": "https://live.staticflickr.com/3133/2911357073_445ac364ec_b.jpg"
+        },
+        {
+          "phrase": "a funnel cloud spotted right near Marshall's Foster Creek community",
+          "query": "funnel cloud sky",
+          "pin_query": "Marshall",
+          "pin_context": "A Sinkhole Opened Right at a Funeral Home",
+          "news_query": "Marshall",
+          "news_angle": "A Sinkhole Opened Right at a Funeral Home",
+          "image_url": "https://live.staticflickr.com/5521/13910166598_ccf22a65af_b.jpg"
+        },
+        {
+          "phrase": "tornado warnings up across the whole western half of the state",
+          "query": "tornado warning radar",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Radar_collage_of_a_long-lived_supercell_radar_on_December_10-11%2C_2021.png",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Then the ground gave out",
+          "query": "collapsed pavement hole",
+          "mascot_pose": "shock",
+          "image_url": "https://images.pexels.com/photos/5138311/pexels-photo-5138311.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "A sinkhole swallowed the pavement directly in front of Madison Funeral Home",
+          "query": "funeral home building",
+          "evidence_urls": [
+            "https://wlos.com/news/local/storm-leaves-sinkhole-at-madison-funeral-home-as-funnel-cloud-spotted-near-laurel-road-closures-power-outages-flooding-downed-trees-911-calls"
+          ],
+          "pin_query": "Madison Funeral Home",
+          "pin_context": "A Sinkhole Opened Right at a Funeral Home",
+          "news_query": "Madison Funeral Home",
+          "news_angle": "A Sinkhole Opened Right at a Funeral Home",
+          "image_url": "https://live.staticflickr.com/4137/4864473542_40593f9539_b.jpg"
+        },
+        {
+          "phrase": "Not a field",
+          "query": "empty rural field",
+          "pin_query": "Not",
+          "pin_context": "A Sinkhole Opened Right at a Funeral Home",
+          "news_query": "Not",
+          "news_angle": "A Sinkhole Opened Right at a Funeral Home",
+          "image_url": "https://live.staticflickr.com/8463/8150681666_77173105ef_b.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Not a backyard",
+          "query": "suburban backyard",
+          "image_url": "https://live.staticflickr.com/5594/14247149703_d6959150b9_b.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "County manager Rod Honeycutt confirmed nobody was hurt",
+          "query": "county official briefing",
+          "pin_query": "Rod Honeycutt",
+          "pin_context": "A Sinkhole Opened Right at a Funeral Home",
+          "news_query": "Rod Honeycutt",
+          "news_angle": "A Sinkhole Opened Right at a Funeral Home",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Interview_with_Col._%28Ret%29_Rod_Honeycutt.jpg"
+        },
+        {
+          "phrase": "downed trees, flooded roads, and knocked-out power across Marshall",
+          "query": "flooded street storm damage",
+          "image_url": "https://pixabay.com/get/g6365128646431bf17deb1d61d1ae3161ddbdbfbf01f7c605a8c74a528ed48099e55a132813657c4d0553ec94f4e3bfcccfb38779cdedbd5b6a4d8e456fe70dea_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "the earth picked the one already handling the dead",
+          "query": "sinkhole hole ground",
+          "image_url": "https://pixabay.com/get/g6134c8482b7394139a7ec037a7f8417345cff368d5d9a37838a681aef4878b6eb012f8202d781a05f4c658be4e4c79a9a144b5cb5abd64078f0ddd6232829e86_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "why the funeral home",
+          "query": "funeral home exterior",
+          "mascot_pose": "dismiss",
+          "image_url": "https://pixabay.com/get/g53d0ccd987f4905e2127d42df65ea783dbf5df465073cc8fac25ebb25a98caf9769c13e41688f6d0e69bda092e4b91743e68f9bfb83aebe9cb18e83997fbef90_1280.jpg",
+          "media_origin": "self_fill"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "A sinkhole opened where",
+          "text": "SINKHOLE OPENS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "a funnel cloud spotted",
+          "text": "FUNNEL CLOUD",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Then the ground gave out",
+          "text": "GROUND GAVE OUT",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Madison Funeral Home",
+          "text": "AT A FUNERAL HOME",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "nobody was hurt",
+          "text": "NO INJURIES",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "downed trees",
+          "text": "TREES DOWN",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "knocked-out power",
+          "text": "POWER OUT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "handling the dead",
+          "text": "ALREADY HANDLING THE DEAD",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "dark",
+      "bottom_theme": "auto",
+      "punched_up": true
+    },
+    "02_gary-the-goat-louisiana.json": {
+      "version": 8,
+      "slug": "gary-the-goat-louisiana",
+      "title": "This Goat Cannot Be Contained",
+      "hashtags": [
+        "garythegoat",
+        "louisiana",
+        "deridder",
+        "goatescape",
+        "escapeartist",
+        "rosepine",
+        "animalnews",
+        "funnyanimals",
+        "us171",
+        "goatlife",
+        "louisianalife",
+        "viralanimal",
+        "weirdnews",
+        "oddnews"
+      ],
+      "script": "One goat, zero enclosures? This is Gary. A nonprofit in Rosepine, Louisiana bought him so kids could practice goat roping. Gary had other plans. First he broke out of the horse pen. Then a stall. Then a kennel \u2014 reinforced, extra latches, didn't matter. Every fix, Gary found the gap. So he did the only logical thing: he moved to the shoulder of U.S. Highway 171 and just... stayed. Drivers started spotting him daily. Now he's basically DeRidder's unofficial mascot, a goat nobody owns anymore because nobody can catch him. The foundation still checks on him. He still won't come home. So who's actually in charge here \u2014 the humans, or the goat?",
+      "shots": [
+        {
+          "phrase": "One goat, zero enclosures?",
+          "query": "goat pen fence",
+          "mascot_pose": "think",
+          "image_url": "https://pixabay.com/get/g14c335f41684f7ed203aa05efe50f7f70a628f1ea1bf194f8ac82292e91d583a896f99c8eaa50423a74cad209c61fca9ffabe0a39c773ac4b5f2d0d7b98f1fd8_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "A nonprofit in Rosepine, Louisiana bought him",
+          "query": "rural louisiana ranch",
+          "pin_query": "Rosepine",
+          "pin_context": "This Goat Cannot Be Contained",
+          "news_query": "Rosepine",
+          "news_angle": "This Goat Cannot Be Contained",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/82/Vernon_Parish_Louisiana_Incorporated_and_Unincorporated_areas_Rosepine_Highlighted.svg"
+        },
+        {
+          "phrase": "kids could practice goat roping",
+          "query": "kids rodeo roping",
+          "image_url": "https://pixabay.com/get/g33a25bdd892572540ac63f13f26690d7d17a685b3a15472bb8994031702ede3210842c733cbd3e300fa5535ad0bd87767d866d52c1b4bc7b98a8b38e57a7a419_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Gary had other plans",
+          "query": "goat standing alone",
+          "pin_query": "Gary",
+          "pin_context": "This Goat Cannot Be Contained",
+          "news_query": "Gary",
+          "news_angle": "This Goat Cannot Be Contained",
+          "image_url": "https://live.staticflickr.com/8005/6981257390_ceb31698ef_b.jpg"
+        },
+        {
+          "phrase": "broke out of the horse pen",
+          "query": "horse pen fence",
+          "image_url": "https://pixabay.com/get/g106d307e5daf7333a52fddfb6dc595c00e92c88c34f08d16531a103c3e310952f1228620bd9846541def013e90309f0caf5a181809e05aaf0ea0a0a44bead002_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Then a stall",
+          "query": "barn stall interior",
+          "image_url": "https://pixabay.com/get/g92cc5d3ca36f72e6bd3a8586617ebc0ccc3ede7d562510d8df9ff7815d6b8cb231944a6925dae1487dd47efce0b3f4493000cb6a8711004fa44b8ce72255253a_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Then a kennel",
+          "query": "dog kennel enclosure",
+          "image_url": "https://pixabay.com/get/g69cf2d42fd9dee4a86b693f488581bbe12ca489821cbb41da1bb9ffcc0bcff86698f09bb36875e767e6536fcc38e80bb71df1c9b01387680df4b09b96d028408_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "reinforced, extra latches",
+          "query": "metal latch lock",
+          "image_url": "https://pixabay.com/get/g3388314c3953c53262f527829ed591cf750724d7087953cf577b16806ec71f4b8070ce30166ee667b61ebcf9096bef5f9af6b8a3346b435ecbe88fd68e42c00b_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Gary found the gap",
+          "query": "goat escaping fence",
+          "mascot_pose": "laugh",
+          "image_url": "https://pixabay.com/get/gcb153b16d073eea8b138ed9b835792fd84dee6ba606789c546984de8b9d02d36ffe1d7fbafd71474b2f09ae3d5b01bc431e8474ffdee3dfc3d14adecf28fb476_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "the shoulder of U.S. Highway 171",
+          "query": "highway road shoulder",
+          "evidence_urls": [
+            "https://www.kplctv.com/2026/07/28/wheres-gary-escape-artist-goat-who-united-southwest-louisiana/"
+          ],
+          "pin_query": "Highway",
+          "pin_context": "This Goat Cannot Be Contained",
+          "news_query": "Highway",
+          "news_angle": "This Goat Cannot Be Contained",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Street%2C_Oguz_%28P1090484%29.jpg"
+        },
+        {
+          "phrase": "Drivers started spotting him daily",
+          "query": "car dashboard highway view",
+          "pin_query": "Drivers",
+          "pin_context": "This Goat Cannot Be Contained",
+          "news_query": "Drivers",
+          "news_angle": "This Goat Cannot Be Contained",
+          "image_url": "https://live.staticflickr.com/3950/15722506505_d7325a95c8_b.jpg"
+        },
+        {
+          "phrase": "DeRidder's unofficial mascot",
+          "query": "small town main street",
+          "pin_query": "DeRidder",
+          "pin_context": "This Goat Cannot Be Contained",
+          "news_query": "DeRidder",
+          "news_angle": "This Goat Cannot Be Contained",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/BeauregardCourthouse.jpg"
+        },
+        {
+          "phrase": "nobody can catch him",
+          "query": "domestic goat close up",
+          "image_url": "https://pixabay.com/get/gf268391af596b72fa47df741788ed5fb2d5559d55ec307f1ef66a02c711ecdb29421e6d239ae802a362675cdd341761c13f6b5a103afae3c966d5c99ff6a90ec_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "the humans, or the goat",
+          "query": "goat face close up",
+          "mascot_pose": "dismiss",
+          "image_url": "https://pixabay.com/get/g82be0394751951226516d8c6d6f42ad272ea0c8a586138a40a8eb1c4b74469c82262de0550d21572f65774fae86086d49876d09016185048f720dff8e7ed1da3_1280.jpg",
+          "media_origin": "self_fill"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Gary had other plans",
+          "text": "OTHER PLANS",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "broke out of the horse pen",
+          "text": "PEN #1: FAILED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Then a stall",
+          "text": "STALL #2: FAILED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Then a kennel",
+          "text": "KENNEL #3: FAILED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Gary found the gap",
+          "text": "GARY WINS",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "unofficial mascot",
+          "text": "TOWN MASCOT",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "nobody can catch him",
+          "text": "UNCATCHABLE",
+          "color": "#ff3030"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto",
+      "punched_up": true
+    },
+    "03_man-of-steal-superman-burglary.json": {
+      "version": 8,
+      "slug": "man-of-steal-superman-burglary",
+      "title": "Superman Got Arrested in Florida",
+      "hashtags": [
+        "manofsteal",
+        "superman",
+        "hillsboroughcounty",
+        "ruskin",
+        "boatburglary",
+        "bodycamera",
+        "florida",
+        "crimenews",
+        "viralarrest",
+        "truecrime",
+        "weirdnews",
+        "costumecrime",
+        "floridacrime",
+        "oddnews"
+      ],
+      "script": "Superman just got arrested? Deputies in Hillsborough County, Florida got a call about a boat burglary in Ruskin \u2014 someone broke into the cabin, walked off with a bag of power tools. Body camera rolls up. And there he is: cape, full costume, the whole look. His name's James Tidwell, 57, a convicted felon who apparently thought the disguise would help. It did not. Tidwell confessed on camera before deputies even finished reading him his rights. He's now charged with burglary of an unoccupied conveyance and petit theft \u2014 dressed like the Man of Steel, booked like everybody else. Even superheroes get read their rights in Ruskin. So did the cape make it better, or just easier to spot?",
+      "shots": [
+        {
+          "phrase": "Superman just got arrested?",
+          "query": "police lights night",
+          "mascot_pose": "shock",
+          "pin_query": "Superman",
+          "pin_context": "Superman Got Arrested in Florida",
+          "news_query": "Superman",
+          "news_angle": "Superman Got Arrested in Florida",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/de/Don%27t_be_scared_Superman_graffiti_Tel_Aviv.jpg"
+        },
+        {
+          "phrase": "a boat burglary in Ruskin",
+          "query": "boat dock marina",
+          "pin_query": "Ruskin",
+          "pin_context": "Superman Got Arrested in Florida",
+          "news_query": "Ruskin",
+          "news_angle": "Superman Got Arrested in Florida",
+          "image_url": "https://live.staticflickr.com/3621/3321639475_b42700ed4b_b.jpg"
+        },
+        {
+          "phrase": "broke into the cabin",
+          "query": "boat cabin interior",
+          "image_url": "https://pixabay.com/get/geb64731e021db3f8d0504b1f1235914525adb6930d8880aa75f349b95ff061826ef79628b53f40b4ad51465fd5cf2afec755476128b3b398b6b76783c45638e3_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "a bag of power tools",
+          "query": "power tools bag",
+          "image_url": "https://pixabay.com/get/g7fb8b72fb00ea7db6324511a38354771263b1b031cd99aed768dc5a8e4ae5098e771d7ae6747bae18389cfae5ac0f2294bc884c733a47043e7c3212374b08390_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Body camera rolls up",
+          "query": "police body camera",
+          "pin_query": "Body",
+          "pin_context": "Superman Got Arrested in Florida",
+          "news_query": "Body",
+          "news_angle": "Superman Got Arrested in Florida",
+          "image_url": "https://live.staticflickr.com/6/6079217_7e51c53a3a.jpg"
+        },
+        {
+          "phrase": "cape, full costume",
+          "query": "superhero cape costume",
+          "mascot_pose": "point",
+          "evidence_urls": [
+            "https://www.mysuncoast.com/2026/07/29/caught-camera-hillsborough-county-man-arrested-after-ruskin-boat-burglary/"
+          ],
+          "image_url": "https://pixabay.com/get/gf730c5522dffdf9567bab46993eef98ff471eebfa7b2b105d3501580357ca4b3ec6f4d92a7a08971d299e673ea54c7b44e58305254f073f67918ac431a4bdecb_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "His name's James Tidwell, 57",
+          "query": "police booking photo",
+          "pin_query": "James Tidwell",
+          "pin_context": "Superman Got Arrested in Florida",
+          "news_query": "James Tidwell",
+          "news_angle": "Superman Got Arrested in Florida",
+          "image_url": "https://live.staticflickr.com/1395/5145846431_6f30c62c47_m.jpg"
+        },
+        {
+          "phrase": "a convicted felon",
+          "query": "courthouse handcuffs",
+          "image_url": "https://pixabay.com/get/g0eae59193b1acfc75f982d05c3b1d64f60f1f2c8571c8de2ea03ad093bb524dc0b44a545acfca7519181131f568bea7cee227687bb6d711f0975501cc37e8c57_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "the disguise would help",
+          "query": "man in costume",
+          "mascot_pose": "laugh",
+          "image_url": "https://pixabay.com/get/g926d2150405fd4fecc879fe96c66931e836aa5bea7eed70bc2f993a9589faf55e985bb14cafdb98460942c299e76a714fc0c667cf7471e2289b7b9ac61d7bb80_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "confessed on camera",
+          "query": "police interview room",
+          "image_url": "https://pixabay.com/get/gd6ff83da16f8964f95cf9e2c6464fb518180be26d763c2d4224d75a1cb930a9ebbfb8a5214651542a95f86289efc268e7b7a6765c52a4262f0ed7ec999f56f6f_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "reading him his rights",
+          "query": "police officer talking",
+          "image_url": "https://pixabay.com/get/g966ce873af787a43cd1bcdb83dbba6ae23d847bf840d14f19b597bf23abd91be02d4a08eab664ec93fdfd4de916c4390da4ad45121bccf4d645a82b12e6db8ca_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "burglary of an unoccupied conveyance",
+          "query": "boat anchored water",
+          "image_url": "https://pixabay.com/get/gad5d3cf6212524823d76ab031cf1be747a10142383a254d42d34ff6e174a91a0b34cdc21518f936499895a6e2a9d442ebf6c5dcf44f5bd5dcc44ef3ba4d39127_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "the Man of Steel",
+          "query": "superman comic cape",
+          "pin_query": "Steel",
+          "pin_context": "Superman Got Arrested in Florida",
+          "news_query": "Steel",
+          "news_angle": "Superman Got Arrested in Florida",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/%D0%90%D1%80%D0%BC%D0%B0%D1%82%D1%83%D1%80%D0%BD%D1%8B%D0%B9_%D0%BF%D1%80%D0%BE%D0%BA%D0%B0%D1%82.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Superman just got arrested",
+          "text": "SUPERMAN ARRESTED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "power tools",
+          "text": "TOOLS STOLEN",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "cape, full costume",
+          "text": "FULL COSTUME",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "James Tidwell, 57",
+          "text": "AGE 57",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "a convicted felon",
+          "text": "CONVICTED FELON",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "It did not",
+          "text": "DIDN'T WORK",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "confessed on camera",
+          "text": "CONFESSED",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "Man of Steel",
+          "text": "MAN OF STEEL",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "hiphop",
+      "bottom_theme": "auto",
+      "punched_up": true
+    },
+    "04_bench-fire-warm-springs-oregon.json": {
+      "version": 8,
+      "slug": "bench-fire-warm-springs-oregon",
+      "title": "An Entire Reservation Just Got Evacuated",
+      "hashtags": [
+        "benchfire",
+        "warmsprings",
+        "oregonwildfire",
+        "oregon",
+        "wildfire",
+        "evacuation",
+        "centraloregon",
+        "nativeamerican",
+        "wildfirenews",
+        "disasternews",
+        "level3evacuation",
+        "pacificnorthwest",
+        "breakingnews",
+        "climate"
+      ],
+      "script": "An entire reservation, evacuated? The Bench Fire ripped through the Warm Springs Reservation in Central Oregon, and in less than a week it swallowed over 60,000 acres. Six homes are already gone. Five other buildings too. Officials issued Level 3 'Go Now' orders for the entire community \u2014 no packing, no deciding, just leaving. Nearly 600 firefighters are on it right now, and containment sits at just 3 percent. This isn't an isolated blaze either \u2014 Oregon has more than a million acres burning statewide, with thousands more under the same evacuation order. For a tribal community that's called Warm Springs home for generations, the fire didn't ask permission. So how do you rebuild a whole reservation from 3 percent contained?",
+      "shots": [
+        {
+          "phrase": "An entire reservation, evacuated?",
+          "query": "wildfire smoke evacuation",
+          "mascot_pose": "shock",
+          "image_url": "https://live.staticflickr.com/2094/1718077055_b53781ef44_b.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "The Bench Fire ripped through",
+          "query": "wildfire flames forest",
+          "pin_query": "Bench Fire",
+          "pin_context": "An Entire Reservation Just Got Evacuated",
+          "news_query": "Bench Fire",
+          "news_angle": "An Entire Reservation Just Got Evacuated",
+          "image_url": "https://live.staticflickr.com/65535/54975858925_8a1b686504_b.jpg"
+        },
+        {
+          "phrase": "the Warm Springs Reservation in Central Oregon",
+          "query": "oregon forest landscape",
+          "mascot_pose": "point",
+          "pin_query": "Warm Springs Reservation",
+          "pin_context": "An Entire Reservation Just Got Evacuated",
+          "news_query": "Warm Springs Reservation",
+          "news_angle": "An Entire Reservation Just Got Evacuated",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Map_Warm_Springs_Indian_Reservation.png"
+        },
+        {
+          "phrase": "swallowed over 60,000 acres",
+          "query": "burned forest aerial",
+          "image_url": "https://pixabay.com/get/g2637c2e10029bd9a01ee8ccbe3e2945504d3f3fb32d21372b19ba7e7ee22b2bcee6531aed427b89bd8d2a7bbcc86b9afe1c94486632887ed6fe8d7c334ce3e71_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Six homes are already gone",
+          "query": "burned house rubble",
+          "evidence_urls": [
+            "https://www.kptv.com/2026/07/30/devastating-warm-springs-tribal-members-displaced-bench-fire-burns-6-homes/"
+          ],
+          "image_url": "https://pixabay.com/get/g41b07aebf214da8f27c60d89223483b69e553305d734137202cf1b5b939786530ea3c14f2fdda0ea34afe395f987a4263a4d35239dbfc9ffcd4aa70ef74edb40_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Five other buildings too",
+          "query": "destroyed building fire",
+          "image_url": "https://pixabay.com/get/g89ff8134779812977de823271ac740dd57209a78c587c4698a3d8f1c7a8d298e745e9f3aca82a4972759bb3a112a326675202f42da9e862e3d4b435b9344f4a4_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Level 3 'Go Now' orders",
+          "query": "evacuation road cars",
+          "pin_query": "Level",
+          "pin_context": "An Entire Reservation Just Got Evacuated",
+          "news_query": "Level",
+          "news_angle": "An Entire Reservation Just Got Evacuated",
+          "image_url": "https://live.staticflickr.com/2902/14089034986_54b25d7461_b.jpg"
+        },
+        {
+          "phrase": "Nearly 600 firefighters",
+          "query": "firefighters battling wildfire",
+          "pin_query": "Nearly",
+          "pin_context": "An Entire Reservation Just Got Evacuated",
+          "news_query": "Nearly",
+          "news_angle": "An Entire Reservation Just Got Evacuated",
+          "image_url": "https://live.staticflickr.com/7722/17310171451_7863d41829_b.jpg"
+        },
+        {
+          "phrase": "containment sits at just 3 percent",
+          "query": "wildfire smoke sky",
+          "image_url": "https://pixabay.com/get/gb904c5c8dfa3f6505169b2e5a9190a348fec219e214088fe7aaaa38020e91d5e640e427c0a36d2107b418a6c5866d5ca5d879eef5ed4ac484eb0eec9c1df34d6_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "more than a million acres burning statewide",
+          "query": "wildfire smoke horizon",
+          "image_url": "https://pixabay.com/get/gf52b7b44af17e8fb92ffc94d063e2b5ec880b9748f55679aa3d44f1533162d49405291f007aece2ac5176a717354d06fcc0d7a01eee6cefb1e83f3f0ce2e6318_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "thousands more under the same evacuation order",
+          "query": "evacuation shelter cots",
+          "image_url": "https://pixabay.com/get/g7271ae11ae2d1d5e67d9be547020e460ba59da69b53d3db0c862ab1c6c600bf6328a3cb4735d3516b6d0f75fa3ccd870_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "called Warm Springs home for generations",
+          "query": "native american community",
+          "image_url": "https://images-assets.nasa.gov/image/KSC-04pd0126/KSC-04pd0126~medium.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "the fire didn't ask permission",
+          "query": "wildfire flames night",
+          "image_url": "https://pixabay.com/get/g5bf0d0b212067d4c8499377727f635834b6c1ab32467e036f60fa37d24128b62a369c00af32a0fcf9bdde089bb6a6c56cd0c4b121f2ccd3b5712e12fe6e0de17_1280.jpg",
+          "media_origin": "self_fill"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "entire reservation, evacuated",
+          "text": "ENTIRE RESERVATION EVACUATED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "60,000 acres",
+          "text": "60,000+ ACRES",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Six homes are already gone",
+          "text": "6 HOMES GONE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Level 3 'Go Now'",
+          "text": "GO NOW ORDER",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Nearly 600 firefighters",
+          "text": "600 FIREFIGHTERS",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "just 3 percent",
+          "text": "3% CONTAINED",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "a million acres burning statewide",
+          "text": "1M+ ACRES",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "home for generations",
+          "text": "GENERATIONS OF HOME",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto",
+      "punched_up": true
+    },
+    "05_iran-missile-attack-jordan.json": {
+      "version": 8,
+      "slug": "iran-missile-attack-jordan",
+      "title": "Iran Just Attacked a US Base in Jordan",
+      "hashtags": [
+        "iran",
+        "jordan",
+        "centcom",
+        "trump",
+        "netanyahu",
+        "middleeast",
+        "breakingnews",
+        "worldnews",
+        "military",
+        "missileattack",
+        "geopolitics",
+        "israel",
+        "irgc",
+        "worldaffairs"
+      ],
+      "script": "Iran just attacked Jordan? Iran's Revolutionary Guard launched ballistic missiles at Muwaffaq Salti Air Base, a U.S.-linked site inside Jordan, along with a CENTCOM command center. Jordan's air defenses intercepted every one of them before they hit. Nobody died. But the timing is the story \u2014 this happened hours after President Trump sat down with Israeli Prime Minister Netanyahu at the White House to talk specifically about Iran. Trump's response was blunt: 'We'll be hitting them hard.' CENTCOM says American forces are now at a high state of readiness across the region. Iran calls it retaliation. The U.S. calls it an attempted surprise attack that failed. Either way, a missile just crossed into an ally's airspace and everyone's waiting on Washington's answer. So what does Trump actually do next?",
+      "shots": [
+        {
+          "phrase": "Iran just attacked Jordan?",
+          "query": "missile launch night sky",
+          "mascot_pose": "shock",
+          "pin_query": "Iran",
+          "pin_context": "Iran Just Attacked a US Base in Jordan",
+          "news_query": "Iran",
+          "news_angle": "Iran Just Attacked a US Base in Jordan",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Flag_of_Iran_%28official%29.svg"
+        },
+        {
+          "phrase": "Revolutionary Guard launched ballistic missiles",
+          "query": "ballistic missile launch",
+          "image_url": "https://pixabay.com/get/gfaf778cbad1962ee5e7077484af8bdf2577decd9dde1e24bd3b1232e79e39dc105d5d5f874a24537d1bb43b463a76e47aa3540ba26e42a53773d7a02a230fe3c_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Muwaffaq Salti Air Base",
+          "query": "military air base",
+          "pin_query": "Muwaffaq Salti Air Base",
+          "pin_context": "Iran Just Attacked a US Base in Jordan",
+          "news_query": "Muwaffaq Salti Air Base",
+          "news_angle": "Iran Just Attacked a US Base in Jordan",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Jordanian_F-16_landing.jpg"
+        },
+        {
+          "phrase": "a CENTCOM command center",
+          "query": "military command center",
+          "pin_query": "CENTCOM",
+          "pin_context": "Iran Just Attacked a US Base in Jordan",
+          "news_query": "CENTCOM",
+          "news_angle": "Iran Just Attacked a US Base in Jordan",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Seal_of_United_States_Central_Command.svg"
+        },
+        {
+          "phrase": "Jordan's air defenses intercepted",
+          "query": "air defense missile intercept",
+          "image_url": "https://live.staticflickr.com/3819/11361110253_0cf6d125e8_b.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Nobody died",
+          "query": "military base exterior",
+          "pin_query": "Nobody",
+          "pin_context": "Iran Just Attacked a US Base in Jordan",
+          "news_query": "Nobody",
+          "news_angle": "Iran Just Attacked a US Base in Jordan",
+          "image_url": "https://live.staticflickr.com/8244/8517258392_bdbd1c2d08_b.jpg"
+        },
+        {
+          "phrase": "President Trump sat down with",
+          "query": "donald trump white house",
+          "mascot_pose": "point",
+          "evidence_urls": [
+            "https://www.aljazeera.com/news/2026/7/29/iran-attacks-us-bases-in-middle-east-as-trump-meets-netanyahu"
+          ],
+          "pin_query": "President Trump",
+          "pin_context": "Iran Just Attacked a US Base in Jordan",
+          "news_query": "President Trump",
+          "news_angle": "Iran Just Attacked a US Base in Jordan",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/16/Official_Presidential_Portrait_of_President_Donald_J._Trump_%282025%29.jpg"
+        },
+        {
+          "phrase": "Israeli Prime Minister Netanyahu",
+          "query": "benjamin netanyahu portrait",
+          "pin_query": "Israeli Prime Minister Netanyahu",
+          "pin_context": "Iran Just Attacked a US Base in Jordan",
+          "news_query": "Israeli Prime Minister Netanyahu",
+          "news_angle": "Iran Just Attacked a US Base in Jordan",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Ambassador_Dave_Sharma_and_Israeli_Prime_Minister_Netanyahu.jpg"
+        },
+        {
+          "phrase": "at the White House",
+          "query": "white house exterior",
+          "pin_query": "White House",
+          "pin_context": "Iran Just Attacked a US Base in Jordan",
+          "news_query": "White House",
+          "news_angle": "Iran Just Attacked a US Base in Jordan",
+          "image_url": "https://live.staticflickr.com/8600/15870725062_120c91470a_b.jpg"
+        },
+        {
+          "phrase": "We'll be hitting them hard",
+          "query": "press conference podium",
+          "pin_query": "We'll",
+          "pin_context": "Iran Just Attacked a US Base in Jordan",
+          "news_query": "We'll",
+          "news_angle": "Iran Just Attacked a US Base in Jordan",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/01/Faryab-_village_dug_well.JPG"
+        },
+        {
+          "phrase": "high state of readiness",
+          "query": "soldiers military base",
+          "image_url": "https://pixabay.com/get/g9ff24012087f313f7d2f394df1c9c35e04e64bec1ee7226fbc407bc2eb4deff04e884c493c247a57eff8d5a3b499db284577e28c825a3551385f162715fbe6a0_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "attempted surprise attack that failed",
+          "query": "military radar screen",
+          "mascot_pose": "think",
+          "image_url": "https://pixabay.com/get/g8eaa2e70c551a5cce07d9ff964c99cd9823b0dd891517cac56457c5013fd7b832e2f4009fc857388dee166e61be44c13_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "Washington's answer",
+          "query": "capitol building washington",
+          "pin_query": "Washington",
+          "pin_context": "Iran Just Attacked a US Base in Jordan",
+          "news_query": "Washington",
+          "news_angle": "Iran Just Attacked a US Base in Jordan",
+          "image_url": "https://live.staticflickr.com/3420/3213900514_03cd645c4c_b.jpg"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "Iran just attacked Jordan",
+          "text": "IRAN ATTACKS JORDAN",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "ballistic missiles",
+          "text": "BALLISTIC MISSILES",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "intercepted every one of them",
+          "text": "ALL INTERCEPTED",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "Nobody died",
+          "text": "NO CASUALTIES",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "high state of readiness",
+          "text": "HIGH READINESS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "attempted surprise attack",
+          "text": "SURPRISE ATTACK",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "Washington's answer",
+          "text": "WHAT'S NEXT?",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto",
+      "punched_up": true
+    },
+    "06_fcc-bans-chinese-humanoid-robots.json": {
+      "version": 8,
+      "slug": "fcc-bans-chinese-humanoid-robots",
+      "title": "The FCC Just Banned Humanoid Robots",
+      "hashtags": [
+        "fcc",
+        "china",
+        "humanoidrobots",
+        "xijinping",
+        "trump",
+        "nationalsecurity",
+        "robotics",
+        "techpolicy",
+        "technews",
+        "geopolitics",
+        "robotdogs",
+        "cyberattack",
+        "chinausrelations",
+        "technology"
+      ],
+      "script": "The FCC banned robots? Not the ones already in your house \u2014 new imports. The FCC just added foreign-made humanoid robots, robot dogs, and power inverters to its official 'covered list,' which means they're now banned from entering the U.S. at all. The reasoning: these devices could be remotely controlled, used for surveillance, or hijacked in a cyberattack \u2014 by a foreign government. China makes about 85 percent of the world's humanoid robots, so this is aimed almost entirely at one country. And the timing isn't subtle \u2014 this drops weeks before Chinese leader Xi Jinping is set to visit Washington in September to meet with President Trump. Your Roomba's fine. It's the humanoid ones nobody was using anyway that just became a diplomatic flashpoint. So is this about security \u2014 or about Xi's visit?",
+      "shots": [
+        {
+          "phrase": "The FCC banned robots?",
+          "query": "robot humanoid standing",
+          "mascot_pose": "think",
+          "pin_query": "FCC",
+          "pin_context": "The FCC Just Banned Humanoid Robots",
+          "news_query": "FCC",
+          "news_angle": "The FCC Just Banned Humanoid Robots",
+          "image_url": "https://live.staticflickr.com/3015/2624192405_541c082064_b.jpg"
+        },
+        {
+          "phrase": "new imports",
+          "query": "shipping cargo containers",
+          "image_url": "https://pixabay.com/get/g170dbc44b0e2ef21874ca07f4cd87afe3d37812e632777569731bed1b5b6dbeec6c520c2b10bee0c197c6be75174911073c7aea970e740a9b50db9224fd49772_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "foreign-made humanoid robots, robot dogs",
+          "query": "quadruped robot dog",
+          "evidence_urls": [
+            "https://techcrunch.com/2026/07/29/us-government-bans-new-foreign-made-humanoids-robot-dogs-and-solar-inverters-citing-risks-to-national-security/"
+          ],
+          "image_url": "https://pixabay.com/get/g15ba211b4228e0704ac36c8cbe0928cdce2372618d7f6460fb519230b66d29b1a22e189c3a41862be99b6e344fd365614e465a20916ecd86d314b035dee7a4ec_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "covered list",
+          "query": "government document stamp",
+          "image_url": "https://pixabay.com/get/g2eef5577a15170fcbf5db9aaceee7996a7c480e804cda9e51de48dbd67303a558d91957d3b39f7f99d707104437b3b8c71035f0911c2dfdf1ddc6289b2a40905_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "banned from entering the U.S.",
+          "query": "customs border checkpoint",
+          "image_url": "https://pixabay.com/get/g53d8b8fea213b5dddc305c58222b5650971f05070a36704af5c913a4696792f9c9c6981c32a3b646edb530154cbed9bac1907cee9470c0cf6afc7d2fed62a5d9_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "remotely controlled",
+          "query": "remote control device",
+          "image_url": "https://pixabay.com/get/g21cf892b77615593e285d41b34331c288b555a96e058a713f08db3ad2eaeaf8576dc13003f131233bdc533b1328b00cf7fba4fbe0fa850d7c6ceb3fc930008d0_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "used for surveillance",
+          "query": "security camera surveillance",
+          "image_url": "https://pixabay.com/get/gc7d8f20d84f80e5e2970bb1cf428179a4600e21d843d78c7ef781e040b50f25afa991ba523b23cd0a115b13c80583e141d2527f5273b8ecba06890bebe2df69d_1280.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "hijacked in a cyberattack",
+          "query": "computer code cyberattack",
+          "image_url": "https://live.staticflickr.com/8116/29723649810_8cb4a06489_b.jpg",
+          "media_origin": "self_fill"
+        },
+        {
+          "phrase": "China makes about 85 percent",
+          "query": "factory robotics assembly line",
+          "pin_query": "China",
+          "pin_context": "The FCC Just Banned Humanoid Robots",
+          "news_query": "China",
+          "news_angle": "The FCC Just Banned Humanoid Robots",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg"
+        },
+        {
+          "phrase": "Chinese leader Xi Jinping",
+          "query": "xi jinping portrait",
+          "mascot_pose": "point",
+          "pin_query": "Chinese",
+          "pin_context": "The FCC Just Banned Humanoid Robots",
+          "news_query": "Chinese",
+          "news_angle": "The FCC Just Banned Humanoid Robots",
+          "image_url": "https://live.staticflickr.com/226/497785966_7fdd04e6de.jpg"
+        },
+        {
+          "phrase": "visit Washington in September",
+          "query": "washington dc capitol",
+          "pin_query": "Washington",
+          "pin_context": "The FCC Just Banned Humanoid Robots",
+          "news_query": "Washington",
+          "news_angle": "The FCC Just Banned Humanoid Robots",
+          "image_url": "https://live.staticflickr.com/3420/3213900514_03cd645c4c_b.jpg"
+        },
+        {
+          "phrase": "Your Roomba's fine",
+          "query": "robot vacuum cleaner home",
+          "mascot_pose": "laugh",
+          "pin_query": "Roomba",
+          "pin_context": "The FCC Just Banned Humanoid Robots",
+          "news_query": "Roomba",
+          "news_angle": "The FCC Just Banned Humanoid Robots",
+          "image_url": "https://live.staticflickr.com/5591/14505181338_51ccb3837e_b.jpg"
+        },
+        {
+          "phrase": "a diplomatic flashpoint",
+          "query": "diplomats handshake meeting",
+          "image_url": "https://pixabay.com/get/gc1a3e6503308b8970f8f87c1ff42a6db41a1f77e2141aaf11a6985ff654cf7834dce58873ea6eae071baf8b1386298d7ca078fbea7799462fa766cef0c3e104d_1280.jpg",
+          "media_origin": "self_fill"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "The FCC banned robots",
+          "text": "ROBOTS BANNED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "covered list",
+          "text": "COVERED LIST",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "remotely controlled",
+          "text": "REMOTE CONTROLLED?",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "used for surveillance",
+          "text": "SURVEILLANCE RISK",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "85 percent",
+          "text": "85% MARKET SHARE",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "Xi Jinping",
+          "text": "XI JINPING",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "September",
+          "text": "SEPTEMBER VISIT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "Your Roomba's fine",
+          "text": "ROOMBA: SAFE",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "cinematic",
+      "bottom_theme": "auto",
+      "punched_up": true
+    }
   }
 }
