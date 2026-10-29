@@ -4483,6 +4483,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 70,
       "duration_s": 28.2
+    },
+    "escooter-er-visits-surge": {
+      "claimed_at": "2026-10-29T12:21:03.752645+00:00",
+      "title": "E-Scooter ER Visits Rose 260% In Two Years",
+      "publish_at": "2026-10-29T17:25:49Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5711,6 +5718,14 @@
       "state": "posted",
       "slug": "cryonics-client-count",
       "at": "2026-10-29T11:21:12.386102+00:00"
+    },
+    {
+      "claimed_at": "2026-10-29T12:21:03.752645+00:00",
+      "title": "E-Scooter ER Visits Rose 260% In Two Years",
+      "publish_at": "2026-10-29T17:25:49Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "escooter-er-visits-surge"
     }
   ]
 }
