@@ -4458,6 +4458,13 @@
       ],
       "words_first_10s": 7,
       "scene_changes_before_5s": 2
+    },
+    "cryonics-client-count": {
+      "claimed_at": "2026-10-29T11:21:01.589023+00:00",
+      "title": "Nearly 2,000 People Signed Up To Be Frozen",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5677,6 +5684,14 @@
       "state": "posted",
       "slug": "lottery-odds-vs-real-life",
       "at": "2026-10-29T01:26:09.442553+00:00"
+    },
+    {
+      "claimed_at": "2026-10-29T11:21:01.589023+00:00",
+      "title": "Nearly 2,000 People Signed Up To Be Frozen",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "cryonics-client-count"
     }
   ]
 }
