@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "national-parks-record-then-shutdown__52d77463",
+  "slug": "national-parks-record-then-shutdown",
+  "by": "chatgpt",
+  "written_at": "2026-10-29T11:14:00.229Z",
+  "title": "National Parks Fell To 323 Million Visits After Shutdown",
+  "hook": "A record year became 323 million visits after shutdown.",
+  "closing": "Public access can disappear quickly, even when demand for parks remains strong.",
+  "question": "Which national park would you visit?",
+  "segments": [
+    {
+      "topic": "National Park Record",
+      "say": "National parks reached 331.9 million visits. The new record showed demand was still climbing."
+    },
+    {
+      "topic": "National Park Shutdown",
+      "say": "National park visits fell to 323 million. Shutdown disruption erased the record year's gain."
+    },
+    {
+      "topic": "National Park Favorite",
+      "say": "Blue Ridge Parkway drew 16.5 million visits. Even amid disruption, the most popular site kept pulling crowds."
+    }
+  ]
+}
