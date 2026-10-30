@@ -1,0 +1,29 @@
+{
+  "key": "moon_landing_outcome_breakdown",
+  "title": "Breakdown of all 7 private Moon landing attempts, 2019-2025",
+  "unit": "number",
+  "geography": "Worldwide (private/commercial missions)",
+  "time_coverage": "2019-2025",
+  "source": {
+    "name": "Compiled mission outcome record (Beresheet, Hakuto-R M1/M2, Peregrine Mission One, IM-1 Odysseus, IM-2 Athena, Blue Ghost Mission 1)",
+    "publisher": "NASA CLPS program / company mission reports",
+    "url": "https://www.nasa.gov/clps/",
+    "officiality": "secondary",
+    "access_date": "2026-10-30"
+  },
+  "notes": "4 of 7 attempts crashed or never reached the surface (Beresheet, Hakuto-R M1, Peregrine, Resilience). 2 landed but tipped onto their side (Odysseus, Athena). 1 landed clean (Blue Ghost).",
+  "points": [
+    {
+      "label": "Crashed or missed",
+      "value": 4
+    },
+    {
+      "label": "Landed but tipped",
+      "value": 2
+    },
+    {
+      "label": "Clean landing",
+      "value": 1
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "key": "billion_dollar_disasters_cumulative_cost",
+  "title": "Cumulative cost of US billion-dollar disasters",
+  "unit": "billion dollars",
+  "geography": "United States",
+  "time_coverage": "1980-2023",
+  "source": {
+    "name": "Billion-Dollar Weather and Climate Disasters",
+    "publisher": "NOAA National Centers for Environmental Information (NCEI)",
+    "url": "https://www.ncei.noaa.gov/access/billions/",
+    "officiality": "official",
+    "access_date": "2026-10-30"
+  },
+  "notes": "Since 1980, 372 billion-dollar disasters have cost the US $2,635.1 billion total (CPI-adjusted). 2023 alone added $93.0 billion to that running total.",
+  "points": [
+    {
+      "label": "Total cost since 1980",
+      "value": 2635.1
+    },
+    {
+      "label": "Cost added in 2023 alone",
+      "value": 93.0
+    }
+  ]
+}

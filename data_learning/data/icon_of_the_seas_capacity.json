@@ -1,0 +1,25 @@
+{
+  "key": "icon_of_the_seas_capacity",
+  "title": "People aboard the world's largest cruise ship at max capacity",
+  "unit": "number",
+  "geography": "Icon of the Seas (Royal Caribbean)",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Icon of the Seas ship specifications",
+    "publisher": "Royal Caribbean International",
+    "url": "https://www.royalcaribbean.com/cruise-ships/icon-of-the-seas",
+    "officiality": "secondary",
+    "access_date": "2026-10-30"
+  },
+  "notes": "Icon of the Seas, which debuted January 2024 as the world's largest cruise ship, can carry up to 7,600 guests plus 2,350 crew \u2014 nearly 10,000 people sharing the same pools, buffets, and elevators.",
+  "points": [
+    {
+      "label": "Guests",
+      "value": 7600
+    },
+    {
+      "label": "Crew",
+      "value": 2350
+    }
+  ]
+}

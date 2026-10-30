@@ -1,0 +1,25 @@
+{
+  "key": "tonga_shockwave_distance",
+  "title": "Distance traveled by the Hunga Tonga pressure wave vs the Moon",
+  "unit": "miles",
+  "geography": "Global atmosphere",
+  "time_coverage": "2022",
+  "source": {
+    "name": "NOAA Pacific Marine Environmental Laboratory, Hunga Tonga eruption pressure wave analysis",
+    "publisher": "NOAA Pacific Marine Environmental Laboratory (PMEL)",
+    "url": "https://www.pmel.noaa.gov/node/1803",
+    "officiality": "official",
+    "access_date": "2026-10-30"
+  },
+  "notes": "NOAA PMEL recorded the eruption's atmospheric pressure wave circling the Earth 3 times before dissipating. At Earth's circumference of about 24,901 miles, that's roughly 74,700 miles traveled -- almost a third of the average 238,900-mile distance to the Moon.",
+  "points": [
+    {
+      "label": "Hunga Tonga pressure wave (3 laps)",
+      "value": 74700
+    },
+    {
+      "label": "Average distance to the Moon",
+      "value": 238900
+    }
+  ]
+}

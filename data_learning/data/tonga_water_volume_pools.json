@@ -1,0 +1,25 @@
+{
+  "key": "tonga_water_volume_pools",
+  "title": "Hunga Tonga's water vapor in Olympic swimming pools",
+  "unit": "Olympic swimming pools",
+  "geography": "Global stratosphere",
+  "time_coverage": "2022",
+  "source": {
+    "name": "Millan et al., 'The Hunga Tonga-Hunga Ha'apai Hydration of the Stratosphere', Geophysical Research Letters",
+    "publisher": "NASA Jet Propulsion Laboratory",
+    "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL099381",
+    "officiality": "official",
+    "access_date": "2026-10-30"
+  },
+  "notes": "146 million metric tons of water is about 146,000,000 cubic meters. A standard Olympic pool holds 2,500 cubic meters, so the eruption injected roughly 58,400 pools' worth of water into the stratosphere.",
+  "points": [
+    {
+      "label": "A single Olympic pool",
+      "value": 1
+    },
+    {
+      "label": "Water Hunga Tonga added to the sky",
+      "value": 58400
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "key": "moon_landing_attempt_pace",
+  "title": "Private Moon landing attempts per year",
+  "unit": "number",
+  "geography": "Worldwide (private/commercial missions)",
+  "time_coverage": "2019-2025",
+  "source": {
+    "name": "Compiled mission outcome record",
+    "publisher": "NASA CLPS program / company mission reports",
+    "url": "https://www.nasa.gov/clps/",
+    "officiality": "secondary",
+    "access_date": "2026-10-30"
+  },
+  "notes": "Attempts: 2019 Beresheet (1); 2023 Hakuto-R M1 (1); 2024 Peregrine Mission One + IM-1 Odysseus (2); 2025 Blue Ghost + IM-2 Athena + Hakuto-R M2 Resilience (3).",
+  "points": [
+    {
+      "label": "2019",
+      "value": 1,
+      "period": "2019"
+    },
+    {
+      "label": "2023",
+      "value": 1,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 2,
+      "period": "2024"
+    },
+    {
+      "label": "2025",
+      "value": 3,
+      "period": "2025"
+    }
+  ]
+}
