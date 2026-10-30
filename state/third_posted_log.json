@@ -16845,13 +16845,104 @@
       "director_cut": true
     },
     "clip-20261030-2": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/jasontheween/clip/KawaiiCleverMangoPJSugar-lzIa3llQhZuX6F0D",
-      "story_key": null,
-      "streamer": "jasontheween",
+      "url": "https://youtube.com/shorts/4ORQm-EO5tg",
       "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
       "kind": "twitch_clip",
-      "ts": "2026-10-30T12:28:01.311359+00:00",
+      "ts": "2026-10-30T12:28:11.880284+00:00",
+      "uploaded_at": "2026-10-30T12:28:11.880298+00:00",
+      "publish_at": "2026-10-30T18:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261030-jasontheween-news-chat-loses-it-when-his-girl-wa-6c275017",
+        "tiktok": "queued for 2026-10-30T18:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/jasontheween/clip/KawaiiCleverMangoPJSugar-lzIa3llQhZuX6F0D",
+      "streamer": "jasontheween",
+      "series": "drama",
+      "hook": "Jason's girl walks in on stream \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3366,
+      "banger": 0.3,
+      "cut": {
+        "start": 0.8,
+        "end": 9.9
+      },
+      "director_cut": true
+    },
+    "rejected-tentativesavorybeantebowing-pmwtborpr_fkey0z": {
+      "source_url": "https://www.twitch.tv/northernlion/clip/TentativeSavoryBeanTebowing-pMWtborpr_FkEy0z",
+      "streamer": "northernlion",
+      "title": "um police, I've witnessed a murder",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Static betting menu, beard anecdote talk)",
+      "ts": "2026-10-30T12:29:15.673101+00:00"
+    },
+    "rejected-viscousrichsandwichnotatk-vh7iiw00wrlvka9q": {
+      "source_url": "https://www.twitch.tv/cinna/clip/ViscousRichSandwichNotATK-vh7IIW00wRlvkA9q",
+      "streamer": "cinna",
+      "title": "multistreaming",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.25 < 0.35 (Talking about streaming platforms, no ev)",
+      "ts": "2026-10-30T12:30:20.358161+00:00"
+    },
+    "rejected-tubularcuriousjaguarvotenay-acir7ih_yoger7eh": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/TubularCuriousJaguarVoteNay-Acir7ih_Yoger7eH",
+      "streamer": "jynxzi",
+      "title": "Jynxzi Is 1 Hit Away From Winning And Then This Happens",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: Sharp picture is a thin strip, about a third of the canvas height, with the gameplay small and hard to read on a phone. ; vision: The last three frames show a black screen at 23.8s, then a Windows volume-mixer settings screen at 26.3s and 28.8s. The ; vision: The hook says 'one hit from the ",
+      "ts": "2026-10-30T12:36:11.778268+00:00"
+    },
+    "rejected-savagelovelyrutabagabatchest-rfq_telluvwu9cva": {
+      "source_url": "https://www.twitch.tv/jasontheween/clip/SavageLovelyRutabagaBatChest-rfq_tellUvwU9cVA",
+      "streamer": "jasontheween",
+      "title": "ninja",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-10-30T12:39:45.381755+00:00"
+    },
+    "rejected-crepuscularironicorcadogface-vgv5k9dqyrj0jydw": {
+      "source_url": "https://www.twitch.tv/ironmouse/clip/CrepuscularIronicOrcaDogFace-vgV5K9dqyrj0JyDW",
+      "streamer": "ironmouse",
+      "title": "cinnamoroll shrine",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Minecraft build tour, no real event)",
+      "ts": "2026-10-30T12:40:54.814825+00:00"
+    },
+    "rejected-wimpyfunnyokapiplanking-8get0pzdb8khpj4l": {
+      "source_url": "https://www.twitch.tv/valkyrae/clip/WimpyFunnyOkapiPlanking-8gEt0pzDB8khpJ4l",
+      "streamer": "valkyrae",
+      "title": "knife kill",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-10-30T12:43:01.534827+00:00"
+    },
+    "rejected-glutenfreesmoothpizzaunclenox-rpsjjd6slfb66qso": {
+      "source_url": "https://www.twitch.tv/caseoh_/clip/GlutenFreeSmoothPizzaUncleNox-RpSjjD6sLfB66QsO",
+      "streamer": "caseoh_",
+      "title": "why did the music to that",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.15 < 0.35 (Routine Minecraft walking, no visible ev)",
+      "ts": "2026-10-30T12:44:08.624012+00:00"
+    },
+    "clip-20261030-6": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/BashfulAggressiveQuailTheRinger-VSclFcbWq-Mq0hmZ",
+      "story_key": null,
+      "streamer": "ishowspeed",
+      "title": "Ishowspeed Can't Believe Somebody Actually Found Him",
+      "kind": "twitch_clip",
+      "ts": "2026-10-30T12:47:55.749619+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
