@@ -22,8 +22,8 @@ the operator called "that weird slowdown thing" stay retired.
 
 Every hit and the hype beat are SYNTHESISED here: a boom on every clip
 would otherwise be a Content ID claim on every clip. The one exception is
-the sad turn, which carries a REAL song the author picks (operator,
-2026-10-17: "an actual like wistful sad song people might recognize"),
+the sad turn, which carries the instrumental the author picks
+(a vibe, no lyrics, operator 2026-10-29), from
 funnel/songs.py; the synthesised piano is its fallback. Made once
 per run into cache/ (gitignored); nothing binary is committed.
 """
@@ -113,8 +113,8 @@ def plan(edit: dict | None, dur: float, offset: float = 0.0) -> dict:
             continue
         if all(abs(h["at"] - k["at"]) >= HIT_GAP for k in out["hits"]):
             out["hits"].append(h)
-    # the REAL song under a sad turn (operator, 2026-10-17: "an actual
-    # like wistful sad song people might recognize"): funnel/songs.py
+    # the instrumental under a sad turn (operator, 2026-10-29: "songs
+    # with no lyrics that give the vibe"): funnel/songs.py
     if out["bed"] and out["bed"]["move"] == "sad":
         from funnel import songs
         if songs.clean(edit.get("song")):

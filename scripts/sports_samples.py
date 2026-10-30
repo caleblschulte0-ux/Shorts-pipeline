@@ -506,6 +506,86 @@ def trim_front(edit: dict, words: list[dict], dur: float) -> dict:
     return edit
 
 
+def sentences(words: list[dict]) -> list[dict]:
+    """The transcript as sentences: a break after . ? ! or a pause of
+    PAUSE_S. Each is {"s", "e", "text"}."""
+    out, cur = [], []
+    for i, w in enumerate(words or []):
+        cur.append(w)
+        nxt = words[i + 1] if i + 1 < len(words) else None
+        end = str(w["w"]).rstrip()[-1:] in ".?!"
+        gap = nxt is not None and float(nxt["s"]) - float(w["e"]) >= PAUSE_S
+        if end or gap or nxt is None:
+            out.append({"s": float(cur[0]["s"]), "e": float(cur[-1]["e"]),
+                        "text": " ".join(str(x["w"]).strip() for x in cur)})
+            cur = []
+    return out
+
+
+PAUSE_S = 0.6
+THOUGHT_SYSTEM = """You choose where a sports clip STARTS and ENDS, from its
+transcript, so it is one whole thought. The operator, of a tribute that
+ended on "one of my great mentors was Joe Morgan" and cut to the montage:
+"why didn't we cut it before he gets to talking about this Joe Morgan
+guy?" A clip that ends by starting something new (a new story, a name it
+never explains, "let me tell you...", half an anecdote) feels broken.
+
+You get the numbered sentences [i] [start-end] of the WHOLE source, the
+post's title, and what plays AFTER the clip (the montage, or nothing).
+Pick the FIRST and LAST sentence to keep:
+- FIRST opens a thought a stranger can follow: the question, the setup,
+  the start of what they are saying. Never mid-sentence, never mid-story.
+- LAST closes a thought: the line that lands (the payoff, the emotional
+  line, the joke, the answer) and its reaction. NEVER a sentence that
+  begins a new story, tangent or name that the clip then does not finish.
+  When what follows is a montage of the subject, end on the strongest
+  line ABOUT that subject, so the cut into the montage feels earned.
+- Everything between them is kept, and it must run at most CAP seconds
+  (last end - first start). Prefer a shorter, complete thought to a
+  longer one with a loose end.
+Return ONLY JSON: {"first": <int>, "last": <int>, "why": "<one line>"}"""
+
+
+def whole_thought(c: dict, edit: dict, words: list[dict], dur: float) -> dict:
+    """The cut STARTS and ENDS on a whole thought, read by the brain from
+    the transcript; the author's window and trim_front only cut by seconds.
+    No brain or an answer that breaks the cap: the cut stays as it was."""
+    sents = sentences(words)
+    if len(sents) < 2:
+        return edit
+    cap = FRONT_MAX_S if edit.get("outro") else CLIP_MAX_S
+    o = edit.get("outro") or {}
+    after = (f"a montage of {o.get('shows') or o.get('who')}" if o
+             else "nothing (the clip is the whole video)")
+    cut = edit.get("cut") or {}
+    user = (f"TITLE: {c.get('post_title')}\nAFTER THE CLIP: {after}\n"
+            f"CAP: {cap:.0f} seconds\nTHE AUTHOR'S WINDOW: "
+            f"{float(cut.get('start') or 0):.1f}-"
+            f"{float(cut.get('end') or dur):.1f}s\n\n"
+            + "\n".join(f"[{i}] [{x['s']:.1f}-{x['e']:.1f}] {x['text']}"
+                        for i, x in enumerate(sents)))
+    got = _brain(user, THOUGHT_SYSTEM) or {}
+    try:
+        a, b = int(got["first"]), int(got["last"])
+    except (KeyError, TypeError, ValueError):
+        return edit
+    if not (0 <= a <= b < len(sents)) or \
+            sents[b]["e"] - sents[a]["s"] > cap + 1.0:
+        print(f"[cut] whole thought refused: {got}", flush=True)
+        return edit
+    lo = max(0.0, sents[a]["s"] - 0.25)
+    if a:
+        lo = max(lo, sents[a - 1]["e"])
+    hi = min(dur, sents[b]["e"] + 0.6)
+    if b + 1 < len(sents):
+        hi = min(hi, sents[b + 1]["s"])
+    edit["cut"] = {"start": round(lo, 2), "end": round(hi, 2)}
+    print(f"[cut] whole thought {lo:.1f}-{hi:.1f}s: \"{sents[a]['text'][:40]}"
+          f"\" ... \"{sents[b]['text'][-50:]}\" ({got.get('why', '')})",
+          flush=True)
+    return edit
+
+
 TAIL_S = 8.0              # how far back from the end to look for a card
 CARD_LOOK = ("the moment itself: people, players, coaches, a broadcast "
              "studio, the crowd, the game. NOT a network logo, a show's "
@@ -592,6 +672,7 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
                 "meta": meta}
     if meta and isinstance(meta.get("edit"), dict):
         trim_front(meta["edit"], words, dur)
+        whole_thought(c, meta["edit"], words, dur)
         broll(c, words, dur, meta["edit"], raw,
               out_mp4.parent / "work" / out_mp4.stem)
         end_card(raw, meta["edit"], out_mp4.parent / "work" / out_mp4.stem)
@@ -617,7 +698,8 @@ def make(c: dict, info: dict, out_mp4: Path, notes: str = "",
     return {"meta": meta, "hook": hook,
             "ledger": {k: led.get(k) for k in ("duration", "moves", "mood",
                                                "shot_plan", "outro",
-                                               "cut_in", "shown")
+                                               "cut_in", "shown",
+                                               "music")
                        if k in led},
             "songs": songs_in(led)}
 
@@ -628,6 +710,8 @@ def songs_in(led: dict) -> list[str]:
     out = [((led or {}).get("outro") or {}).get("song")]
     out += [re.sub(r".*\((\w+)\).*", r"\1", m) for m in
             (led or {}).get("moves") or [] if "(" in m and "silent" not in m]
+    out += [m.get("track") for m in (led or {}).get("music") or []
+            if isinstance(m, dict)]
     return [s for s in dict.fromkeys(out) if s]
 
 

@@ -1204,6 +1204,14 @@ def _other_side_clips(story: dict, members: list[dict],
 
 
 def _description(pkg: dict, led: dict) -> str:
+    """The description, then the credit the music's licence asks for
+    (funnel/songs.py: NCS instrumentals, credited in the description)."""
+    music = [m["credit"] for m in (led or {}).get("music") or []
+             if isinstance(m, dict) and m.get("credit")]
+    return "\n\n".join([_description_text(pkg, led)] + music)
+
+
+def _description_text(pkg: dict, led: dict) -> str:
     tags = " ".join(f"#{t}" for t in _hashtags(pkg, led))
     note = pkg.get("description_note", "")
     if led.get("kind") == "story":

@@ -29,7 +29,7 @@ class TheClipHasNoMusicUnderIt(unittest.TestCase):
         return moves.plan(dict(edit), dur=40.0)
 
     def test_a_sad_song_keeps_its_grey_and_loses_its_sound(self):
-        p = self._plan(moves=[{"move": "sad", "at": 4}], song="fix_you",
+        p = self._plan(moves=[{"move": "sad", "at": 4}], song="heartbreak",
                        music=False)
         self.assertTrue(p["bed"]["silent"])
         self.assertNotIn("song", p["bed"])
@@ -66,35 +66,35 @@ class ABlockedSongComesOffTheShelf(unittest.TestCase):
         return mock.patch.object(songs, "ANALYTICS", [f])
 
     def test_a_block_takes_it_off_and_a_claim_does_not(self):
-        rows = [{"songs": ["fix_you"], "blocked_in": ["DE", "RU"]},
-                {"songs": ["see_you_again"], "blocked_in": []}]
+        rows = [{"songs": ["heartbreak"], "blocked_in": ["DE", "RU"]},
+                {"songs": ["tribute"], "blocked_in": []}]
         with self._with(rows):
-            self.assertEqual(songs.blocked(), {"fix_you"})
-            self.assertNotIn("fix_you", songs.names("sad"))
-            self.assertIn("see_you_again", songs.names("sad"))
-            self.assertNotIn("fix_you", songs.menu(""))
+            self.assertEqual(songs.blocked(), {"heartbreak"})
+            self.assertNotIn("heartbreak", songs.names("sad"))
+            self.assertIn("tribute", songs.names("sad"))
+            self.assertNotIn("heartbreak", songs.menu(""))
 
     def test_a_story_that_asks_for_it_gets_another_of_its_mood(self):
-        with self._with([{"songs": ["fix_you"], "rejection": "claim"}]):
-            got = songs.clean("fix_you")
+        with self._with([{"songs": ["heartbreak"], "rejection": "claim"}]):
+            got = songs.clean("heartbreak")
         self.assertTrue(got)
-        self.assertNotEqual(got, "fix_you")
+        self.assertNotEqual(got, "heartbreak")
         self.assertEqual(songs.SONGS[got]["mood"], "sad")
 
     def test_no_analytics_means_the_whole_shelf(self):
         with mock.patch.object(songs, "ANALYTICS",
                                [Path("/nonexistent/latest.json")]):
             self.assertEqual(songs.blocked(), set())
-            self.assertEqual(songs.clean("fix_you"), "fix_you")
+            self.assertEqual(songs.clean("heartbreak"), "heartbreak")
 
     def test_the_upload_records_which_songs_it_played(self):
         sys.path.insert(0, str(REPO / "scripts"))
         from scripts.sports_samples import songs_in
         self.assertEqual(
-            songs_in({"outro": {"song": "fix_you"},
-                      "moves": ["zoom@1", "sad@4(see_you_again)",
+            songs_in({"outro": {"song": "heartbreak"},
+                      "moves": ["zoom@1", "sad@4(tribute)",
                                 "hype@0.3(silent)"]}),
-            ["fix_you", "see_you_again"])
+            ["heartbreak", "tribute"])
         run = (REPO / "scripts" / "run_sports.py").read_text()
         self.assertIn('extra={"songs": made.get("songs")}', run)
         fa = (REPO / "scripts" / "fetch_analytics.py").read_text()

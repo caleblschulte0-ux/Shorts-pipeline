@@ -1,4 +1,4 @@
-"""The PAYOFF ending: the clip plays untouched, then a real song over a
+"""The PAYOFF ending: the clip plays untouched, then music over a
 montage of what it was about. A tribute is one kind of it; any clip that
 talks about something we can show gets it, in that story's mood (operator,
 2026-10-21: *"it's not just tributes ... anytime we can do anything like
@@ -335,7 +335,7 @@ def build(clip: Path, item: dict, work: Path, *, w: int, h: int,
     Never raises."""
     from funnel import songs
     try:
-        song = songs.get(item["song"])
+        song = songs.get(item["song"], seed=title)
         if song is None:
             print(f"[outro] song {item['song']} not fetched — no outro",
                   flush=True)
