@@ -17054,6 +17054,25 @@
       "rejected_by": "qa",
       "rejected_why": "render_qa: freeze: 2.1s of frozen frames (>= 2s) \u2014 stalled render or dead source",
       "ts": "2026-10-30T14:07:37.187150+00:00"
+    },
+    "rejected-gracefuldependablejaymau5-j9jn63hoabwqkdyn": {
+      "source_url": "https://www.twitch.tv/pokimane/clip/GracefulDependableJayMau5-j9Jn63hoaBWqkdYN",
+      "streamer": "pokimane",
+      "title": "omg i missclicked NOOOOOOOOOO",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Watching Jubilee video, gifted-sub chatt)",
+      "ts": "2026-10-30T14:11:23.512788+00:00"
+    },
+    "clip-20261030-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/silky/clip/UnsightlyRockySoybeanMVGame-LOfR4NNdtOclaYcu",
+      "story_key": null,
+      "streamer": "silky",
+      "title": "Silky Finally Pulls Up To NMS Boxing And This Happens",
+      "kind": "twitch_clip",
+      "ts": "2026-10-30T14:15:33.721176+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
