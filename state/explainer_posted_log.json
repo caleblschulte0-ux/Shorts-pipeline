@@ -4620,11 +4620,29 @@
       "duration_s": 29.0
     },
     "private-moon-landings-fail-rate": {
-      "claimed_at": "2026-10-30T16:26:33.376843+00:00",
+      "url": "https://youtube.com/shorts/7EtBqv7NFxk",
       "title": "Private Moon Landings Have Failed 6 Times Out Of 7",
+      "at": "2026-10-30T16:26:48.497096+00:00",
       "publish_at": "2026-10-30T20:09:52Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.83,
+      "beat_s": [
+        5.06,
+        6.69,
+        5.08,
+        7.83,
+        6.63
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 83,
+      "duration_s": 31.8
     }
   },
   "uploads": [
@@ -5903,9 +5921,10 @@
       "claimed_at": "2026-10-30T16:26:33.376843+00:00",
       "title": "Private Moon Landings Have Failed 6 Times Out Of 7",
       "publish_at": "2026-10-30T20:09:52Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "private-moon-landings-fail-rate"
+      "url": "https://youtube.com/shorts/7EtBqv7NFxk",
+      "state": "posted",
+      "slug": "private-moon-landings-fail-rate",
+      "at": "2026-10-30T16:26:48.497096+00:00"
     }
   ]
 }
