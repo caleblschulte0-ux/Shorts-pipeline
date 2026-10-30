@@ -17010,14 +17010,50 @@
       "ts": "2026-10-30T13:58:01.752566+00:00"
     },
     "clip-20261030-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/RockyCrunchyBasenjiDancingBanana-sWJlV7BdUvkDNxqe",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/mDFSLS1u61A",
       "title": "Lacy Can't Believe What Marlin Just Showed Her In Nook Town",
       "kind": "twitch_clip",
-      "ts": "2026-10-30T14:01:03.867108+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-30T14:01:13.919358+00:00",
+      "uploaded_at": "2026-10-30T14:01:13.919371+00:00",
+      "publish_at": "2026-10-31T03:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261030-lacy-can-t-believe-what-marlin-just-showed-her-i-6574c3ef",
+        "tiktok": "queued for 2026-10-31T03:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/RockyCrunchyBasenjiDancingBanana-sWJlV7BdUvkDNxqe",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "Lacy knows exactly what that is \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2390,
+      "banger": 0.4,
+      "cut": {
+        "start": 8.4,
+        "end": 32.2
+      },
+      "director_cut": true
+    },
+    "rejected-elateddaintyoryxbuddhabar-pzwdwhpcugtksshe": {
+      "source_url": "https://www.twitch.tv/jynxzi/clip/ElatedDaintyOryxBuddhaBar-PZwdwhpcUgtKSshe",
+      "streamer": "jynxzi",
+      "title": "n word",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Suspicion talk, no clear payoff)",
+      "ts": "2026-10-30T14:02:03.739097+00:00"
+    },
+    "rejected-sparklyantediluviangalagodxcat-0gean3dipynosjoo": {
+      "source_url": "https://www.twitch.tv/kaicenat/clip/SparklyAntediluvianGalagoDxCat-0geaN3dIpYnOSJOo",
+      "streamer": "kaicenat",
+      "title": "Kaicenat: Kai Cenat Crowd Goes Absolutely Crazy Over La Ray",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "render_qa: freeze: 2.1s of frozen frames (>= 2s) \u2014 stalled render or dead source",
+      "ts": "2026-10-30T14:07:37.187150+00:00"
     }
   }
 }

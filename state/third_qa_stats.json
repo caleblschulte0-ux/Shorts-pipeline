@@ -3,135 +3,6 @@
     {
       "date": "20261022",
       "dry_run": false,
-      "ts": "2026-10-22T12:44:35+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 14,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 140,
-        "with_retention": 123,
-        "with_curve": 15,
-        "fetched_at": "2026-10-22T08:46:35.333831+00:00"
-      },
-      "brain": {
-        "ok": 6,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261022-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261022-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261022-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261022-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261022-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261022-6",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "Vague title; plausible physical surprise",
-              "blind": false
-            },
-            "content": {
-              "score": 0.66,
-              "why": "Cash thrown at ceiling, hype reaction",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Lacy Goes Wild When The Money Stuck In The Ceiling Finally Comes Down"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.72,
-              "problems": [
-                "Hook caption sits over the lower torso and hands, and it overlaps the word captions in the first frames",
-                "A few frames (3.3s, 4.0s) show only the money and the ceiling, with no person, but that is the payoff moment",
-                "In the last frames, one person is partly cropped at the frame edge"
-              ]
-            }
-          },
-          "took_s": 144.0
-        }
-      ]
-    },
-    {
-      "date": "20261022",
-      "dry_run": false,
       "ts": "2026-10-22T15:53:34+00:00",
       "feedback": {
         "snapshot": true,
@@ -5760,6 +5631,323 @@
             }
           },
           "took_s": 189.8
+        }
+      ]
+    },
+    {
+      "date": "20261030",
+      "dry_run": false,
+      "ts": "2026-10-30T14:07:37+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 16,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 151,
+        "with_retention": 127,
+        "with_curve": 13,
+        "fetched_at": "2026-10-30T08:46:28.064552+00:00"
+      },
+      "brain": {
+        "ok": 24,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:sypherpk": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261030-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261030-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261030-3",
+          "ok": true,
+          "render_level": "full",
+          "layout": "wide",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.45,
+              "why": "odd title, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.62,
+              "why": "Pokimane real emotional wholesome moment",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Pokimane Thanks Chat For Letting Her Cry And Says It Made Her Feel Better"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "The sharp picture fills only about a third of the canvas height, with a large blurred area above and below, so Pokimane ",
+                "The sharp picture sits low, with the hook card above it and an empty blurred area below.",
+                "Captions are small, and they sit over the stream's own bottom UI."
+              ]
+            }
+          },
+          "took_s": 112.8
+        },
+        {
+          "slug": "clip-20261030-4",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 135,
+                "refused_shown": 9,
+                "scouted": [
+                  {
+                    "premise": "Kai Cenat watches IShowSpeed in Minecraft: first he panics when Speed goes down, then he screams at him not to die, and ",
+                    "shape": "one_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "IShowSpeed keeps dying in Minecraft, and the deaths get bigger each time, ending with 'Speed death 2'.",
+                    "shape": "multi_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "xQc's casino run: a dog-shit slot, then a 120K blackjack double that hits, then demanding his money back after poker han",
+                    "shape": "multi_stream",
+                    "n": 3
+                  },
+                  {
+                    "premise": "Jasontheween and Stableronaldo take part in the NMS Boxing event: Jason can't get a reply from her, he falls on camera, ",
+                    "shape": "multi_streamer",
+                    "n": 4
+                  },
+                  {
+                    "premise": "Lacy destroys two iPhones to see if they still work, then opens an iPhone Duo on stream and can't believe what's inside.",
+                    "shape": "one_stream",
+                    "n": 2
+                  }
+                ],
+                "vod_arcs": 333,
+                "moments": 40,
+                "candidates": 557,
+                "pool": 2926,
+                "pool_with_vod": 2019,
+                "arc_sizes": [
+                  2,
+                  6,
+                  6,
+                  6,
+                  2,
+                  2,
+                  6,
+                  2,
+                  2,
+                  4
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "scout:xqc/xqc-blackjack-casino-2026w41",
+                  "outcome": "narrative_failed",
+                  "why": "scores [79, 79, 74] after 2 revision(s) \u2014 @19s missing_context: The jump from the slot to the blackjack table has no time bridge. Add a context_overlay such as 'An hour later' on the first blackjack clip, since the purpose notes say an hour passes but nothing on s; @8s repetition: 'The slot doesn't "
+                },
+                {
+                  "cluster": "scout:xqc",
+                  "outcome": "already_refused",
+                  "why": "2026-10-16: director judged: not a story \u2014 The footage does not show the scout's arc. In the Oct 1 traffic-stop clip, xQc jokes with the officer ('the last you ever see of "
+                },
+                {
+                  "cluster": "scout:ohnepixel/ohnepixel-bikini-leopard-2026w40",
+                  "outcome": "narrative_failed",
+                  "why": "scores [74, 58, 62] after 2 revision(s) \u2014 @20s pacing: The last clip ends mid-sentence ('one of the greatest us'). End it on the 'if you know you know' line, or extend the out-point to the end of the sentence, so the final clip finishes cleanly.; @15s repetition: '11 minutes later' is shown twice (1"
+                },
+                {
+                  "cluster": "yonnajay@momenttransparentlazywatercresspermasmug-l6gi9piv0c",
+                  "outcome": "already_refused",
+                  "why": "2026-10-28: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "alinity@vod2892098335",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: sources fail preflight: preflight:source only 5.8s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "scout:ishowspeed/ishowspeed-dies-from-2026w32",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The footage does not show the scout's running bit of Minecraft deaths that get bigger. Only one clip, the Nether fall on 08-08, has a Minecraft death in it. The 08-07 grandma clip has no death: Speed "
+                },
+                {
+                  "cluster": "pokimane@momentdrabfairpuppystrawbeary-dwpyegfkwkdxwd4p",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: extended clip failed its checks: trails 28s past the picked moment"
+                },
+                {
+                  "cluster": "kaicenat@vod2888642092/kaicenat-call-cenat-2026w40",
+                  "outcome": "narrative_failed",
+                  "why": "scores [78, 72, 77] after 2 revision(s) \u2014 @13s confusing: 'A friend is fading' and 'did you stop lean?' arrive with no explanation of who is fading or what lean means. Add a short overlay at about 13s, such as 'Kai says Reggie has a lean problem', or trim to; @39s pacing: The 'Days later' label is a"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "garbage title, unknown",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Laughing at phone video, unclear payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Can't Believe What Marlin Just Showed Her In Nook Town"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.8,
+              "problems": [
+                "Minor: the hook caption and the word captions both sit over Lacy's chest and shirt, but neither covers his face.",
+                "Minor: the phone-screen frames at 9\u201311s are slightly off-centre, but the subject is still clear."
+              ]
+            }
+          },
+          "took_s": 192.2
+        },
+        {
+          "slug": "clip-20261030-5",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: render_qa: freeze: 2.1s of frozen frames (>= 2s) \u2014 stalled render or dead source",
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "vague title, unknown content",
+              "blind": false
+            },
+            "content": {
+              "score": 0.5,
+              "why": "Odd costumed kung-fu scene, unclear payo",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Kaicenat: Kai Cenat Crowd Goes Absolutely Crazy Over La Ray"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": [
+                "render_qa: freeze: 2.1s of frozen frames (>= 2s) \u2014 stalled render or dead source"
+              ]
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.6,
+              "problems": [
+                "Sharp region is a fairly thin strip (roughly 1/3 of canvas height), so the subjects are small on a phone",
+                "Last two frames (26.3s and 28.8s) show the subjects small and far away in a doorway",
+                "Caption sits over the blurred padding and does not cover any faces"
+              ]
+            }
+          },
+          "took_s": 288.7
+        },
+        {
+          "slug": "clip-20261030-6",
+          "ok": true,
+          "skipped": "already posted"
         }
       ]
     }
