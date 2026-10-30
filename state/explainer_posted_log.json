@@ -4618,6 +4618,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 61,
       "duration_s": 29.0
+    },
+    "private-moon-landings-fail-rate": {
+      "claimed_at": "2026-10-30T16:26:33.376843+00:00",
+      "title": "Private Moon Landings Have Failed 6 Times Out Of 7",
+      "publish_at": "2026-10-30T20:09:52Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5891,6 +5898,14 @@
       "state": "posted",
       "slug": "airline-pilot-shortage",
       "at": "2026-10-30T14:31:39.203283+00:00"
+    },
+    {
+      "claimed_at": "2026-10-30T16:26:33.376843+00:00",
+      "title": "Private Moon Landings Have Failed 6 Times Out Of 7",
+      "publish_at": "2026-10-30T20:09:52Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "private-moon-landings-fail-rate"
     }
   ]
 }
