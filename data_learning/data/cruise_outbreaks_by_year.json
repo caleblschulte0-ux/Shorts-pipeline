@@ -1,0 +1,32 @@
+{
+  "key": "cruise_outbreaks_by_year",
+  "title": "Cruise ship gastrointestinal illness outbreaks reported to CDC",
+  "unit": "number",
+  "geography": "United States (cruise ships calling on US ports)",
+  "time_coverage": "2023-2025",
+  "source": {
+    "name": "Vessel Sanitation Program (VSP) Gastrointestinal Illness Outbreak list",
+    "publisher": "Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/nceh/vsp/surv/gilist.htm",
+    "officiality": "official",
+    "access_date": "2026-10-30"
+  },
+  "notes": "CDC's VSP recorded 14 outbreaks in 2023 and 18 in 2024. 2025's count had already passed 20 reported outbreaks by late October 2025, continuing the climb.",
+  "points": [
+    {
+      "label": "2023",
+      "value": 14,
+      "period": "2023"
+    },
+    {
+      "label": "2024",
+      "value": 18,
+      "period": "2024"
+    },
+    {
+      "label": "2025",
+      "value": 20,
+      "period": "2025"
+    }
+  ]
+}

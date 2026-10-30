@@ -1,0 +1,25 @@
+{
+  "key": "moon_landing_outcomes_comparison",
+  "title": "Outcomes of private Moon landing attempts, 2019-2025",
+  "unit": "number",
+  "geography": "Worldwide (private/commercial missions)",
+  "time_coverage": "2019-2025",
+  "source": {
+    "name": "Compiled mission outcome record (Beresheet, Hakuto-R M1/M2, Peregrine Mission One, IM-1 Odysseus, IM-2 Athena, Blue Ghost Mission 1)",
+    "publisher": "NASA CLPS program / company mission reports (SpaceIL, ispace, Astrobotic, Intuitive Machines, Firefly Aerospace)",
+    "url": "https://www.nasa.gov/clps/",
+    "officiality": "secondary",
+    "access_date": "2026-10-30"
+  },
+  "notes": "Of 7 private Moon landing attempts since 2019, only Firefly's Blue Ghost Mission 1 (March 2025) achieved a clean upright landing. The other 6 either crashed/missed the Moon (Beresheet 2019, Hakuto-R Mission 1 2023, Peregrine Mission One 2024, Hakuto-R Mission 2 'Resilience' 2025) or landed but tipped onto their side (IM-1 Odysseus 2024, IM-2 Athena 2025).",
+  "points": [
+    {
+      "label": "Clean landing",
+      "value": 1
+    },
+    {
+      "label": "Crashed or tipped over",
+      "value": 6
+    }
+  ]
+}

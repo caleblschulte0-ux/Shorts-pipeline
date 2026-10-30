@@ -36490,6 +36490,239 @@
      "say": "Pedestrians made up 7,508 of 42,514 traffic deaths in 2022 — the worst count since 1981, about 1 in 6 of all deaths."
     }
    ]
+  },
+  {
+   "slug": "private-moon-landings-fail-rate",
+   "title": "Private Moon Landings Have Failed 6 Times Out Of 7",
+   "hook": "Only 1 of 7 stuck the landing.",
+   "closing": "The Moon's grading on a brutal curve.",
+   "question": "Would you bet on it landing clean?",
+   "caption": "Private companies have tried to land on the Moon 7 times since 2019. Only 1 stuck a clean touchdown -- the other 6 crashed, missed, or tipped over. NASA's betting its own Artemis deliveries on these same companies nailing it next. Would you bet on the next one? 👇",
+   "hashtags": [
+    "moonlanding",
+    "spacex",
+    "nasa",
+    "artemis",
+    "spacefacts",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "spaceexploration",
+    "clps",
+    "firefly",
+    "intuitivemachines",
+    "astronomy",
+    "techfacts"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "moon_landing_outcomes_comparison",
+     "params": {
+      "file": "moon_landing_outcomes_comparison.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": false,
+     "role": "1 · THE RECORD",
+     "topic": "private Moon landing attempts",
+     "say": "Seven companies have tried to land on the Moon since 2019. Only 1 landed clean — Blue Ghost. The other 6 crashed or tipped."
+    },
+    {
+     "source": "offline",
+     "key": "moon_landing_outcome_breakdown",
+     "params": {
+      "file": "moon_landing_outcome_breakdown.json"
+     },
+     "insight_type": "share",
+     "role": "2 · THE BREAKDOWN",
+     "topic": "how those Moon landings actually went",
+     "say": "4 crashed or never reached the surface. 2 landed but tipped onto their side. Only 1 came down clean."
+    },
+    {
+     "source": "offline",
+     "key": "moon_landing_attempt_pace",
+     "params": {
+      "file": "moon_landing_attempt_pace.json"
+     },
+     "insight_type": "trend",
+     "role": "3 · THE PACE",
+     "topic": "Moon landing attempts picking up speed",
+     "say": "Attempts are speeding up: 1 in 2019, 1 in 2023, 2 in 2024, 3 in 2025. NASA's betting Artemis deliveries on whoever masters this."
+    }
+   ]
+  },
+  {
+   "slug": "cruise-ship-outbreaks-climbing",
+   "title": "Cruise Ship Outbreaks Jumped From 14 To 20 In Two Years",
+   "hook": "Here's why your next cruise might get you sick.",
+   "closing": "Bring your own hand sanitizer. Seriously.",
+   "question": "Would an outbreak change your cruise pick?",
+   "caption": "The CDC tracked 14 cruise ship outbreaks in 2023, 18 in 2024, and 2025 had already passed 20. Most are norovirus -- and modern mega-ships now pack up to 9,950 people onto one deck. Would it change which cruise you book? 👇",
+   "hashtags": [
+    "norovirus",
+    "cruiseship",
+    "cdc",
+    "publichealth",
+    "cruiseships",
+    "healthfacts",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "royalcaribbean",
+    "iconoftheseas",
+    "travel",
+    "cruisenews"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "cruise_outbreaks_by_year",
+     "params": {
+      "file": "cruise_outbreaks_by_year.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE CLIMB",
+     "topic": "cruise ship outbreaks climbing",
+     "say": "The CDC tracked 14 cruise ship outbreaks in 2023, 18 in 2024, and over 20 already in 2025 — still climbing."
+    },
+    {
+     "source": "offline",
+     "key": "cruise_outbreaks_norovirus_share_2024",
+     "params": {
+      "file": "cruise_outbreaks_norovirus_share_2024.json"
+     },
+     "insight_type": "share",
+     "role": "2 · THE CULPRIT",
+     "topic": "what's behind the cruise ship outbreaks",
+     "say": "Norovirus caused 15 of last year's outbreaks; only 3 were something else — one contagious bug driving almost all of it."
+    },
+    {
+     "source": "offline",
+     "key": "icon_of_the_seas_capacity",
+     "params": {
+      "file": "icon_of_the_seas_capacity.json"
+     },
+     "insight_type": "share",
+     "role": "3 · THE SCALE",
+     "topic": "why cruise ship outbreaks spread so fast",
+     "say": "And outbreaks spread fast because ships keep growing — Icon of the Seas packs 7,600 guests and 2,350 crew onto one ship."
+    }
+   ]
+  },
+  {
+   "slug": "billion-dollar-disasters-record-2023",
+   "title": "The US Hit A Record 28 Billion-Dollar Disasters In 2023",
+   "hook": "28 billion-dollar disasters hit America in a single year.",
+   "closing": "Mother Nature's sending itemized bills now.",
+   "question": "Lived through one of these disasters?",
+   "caption": "The US averaged under 3 billion-dollar weather disasters a year in the 1980s. By 2023, a record 28 hit in a single year, pushing the 44-year total past $2.6 trillion. Have you lived through one? 👇",
+   "hashtags": [
+    "noaa",
+    "billiondollardisasters",
+    "climatedata",
+    "climatechange",
+    "weatherfacts",
+    "disasterprep",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "naturaldisasters",
+    "climatescience",
+    "extremeweather"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "billion_dollar_disasters_by_decade",
+     "params": {
+      "file": "billion_dollar_disasters_by_decade.json"
+     },
+     "insight_type": "trend",
+     "role": "1 · THE CLIMB",
+     "topic": "billion-dollar disasters by decade",
+     "say": "In the 1980s, the US averaged 2.8 of these disasters a year. The 1990s nearly doubled that to 5.2. By 2019-2023, it hit 20.4."
+    },
+    {
+     "source": "offline",
+     "key": "billion_dollar_disasters_2023_vs_average",
+     "params": {
+      "file": "billion_dollar_disasters_2023_vs_average.json"
+     },
+     "insight_type": "comparison",
+     "use_baseline": true,
+     "role": "2 · THE RECORD YEAR",
+     "topic": "2023's record year of billion-dollar disasters",
+     "say": "2023 alone had 28 of them — the most ever — more than 3 times the average of 8.5 a year since 1980."
+    },
+    {
+     "source": "offline",
+     "key": "billion_dollar_disasters_cumulative_cost",
+     "params": {
+      "file": "billion_dollar_disasters_cumulative_cost.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE BILL",
+     "topic": "the cost of billion-dollar disasters",
+     "say": "These disasters have cost $2,635.1 billion since 1980 — and 2023 alone added $93.0 billion to that total."
+    }
+   ]
+  },
+  {
+   "slug": "tonga-volcano-water-vapor-record",
+   "title": "One Volcano Added 146 Million Tons Of Water To The Sky",
+   "hook": "This volcano didn't cool the Earth. It warmed it.",
+   "closing": "One eruption. Zero cooling. All kinds of weird.",
+   "question": "Did you know a volcano could warm us?",
+   "caption": "In January 2022, the Hunga Tonga volcano blasted 146 million metric tons of water vapor into the stratosphere -- about 10% of all the water normally up there. Its shockwave circled Earth 3 times. Unlike most big eruptions, this one is expected to warm the planet slightly, not cool it. Did you know that? 👇",
+   "hashtags": [
+    "volcano",
+    "tonga",
+    "nasa",
+    "noaa",
+    "climatescience",
+    "earthscience",
+    "didyouknow",
+    "dataviz",
+    "explainer",
+    "geology",
+    "sciencefacts",
+    "stratosphere"
+   ],
+   "segments": [
+    {
+     "source": "offline",
+     "key": "tonga_water_vapor_share",
+     "params": {
+      "file": "tonga_water_vapor_share.json"
+     },
+     "insight_type": "share",
+     "role": "1 · THE BLAST",
+     "topic": "the volcano's water vapor blast",
+     "say": "Hunga Tonga blasted 146 million metric tons of water vapor into the stratosphere in January 2022 — about 10% of the stratosphere's total."
+    },
+    {
+     "source": "offline",
+     "key": "tonga_shockwave_distance",
+     "params": {
+      "file": "tonga_shockwave_distance.json"
+     },
+     "insight_type": "comparison",
+     "role": "2 · THE SHOCKWAVE",
+     "topic": "the volcano's shockwave reach",
+     "say": "The pressure wave circled Earth 3 times — about 74,700 miles, almost a third of the way to the Moon."
+    },
+    {
+     "source": "offline",
+     "key": "tonga_water_volume_pools",
+     "params": {
+      "file": "tonga_water_volume_pools.json"
+     },
+     "insight_type": "comparison",
+     "role": "3 · THE TWIST",
+     "topic": "the volcano's water by the pool-load",
+     "say": "That's 58,400 Olympic pools of water dumped into the sky in hours — enough to warm the planet instead of cooling it."
+    }
+   ]
   }
  ]
 }

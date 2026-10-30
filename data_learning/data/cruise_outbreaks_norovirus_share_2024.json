@@ -1,0 +1,25 @@
+{
+  "key": "cruise_outbreaks_norovirus_share_2024",
+  "title": "Cause of 2024's cruise ship outbreaks",
+  "unit": "number",
+  "geography": "United States (cruise ships calling on US ports)",
+  "time_coverage": "2024",
+  "source": {
+    "name": "Vessel Sanitation Program (VSP) Gastrointestinal Illness Outbreak list",
+    "publisher": "Centers for Disease Control and Prevention (CDC)",
+    "url": "https://www.cdc.gov/nceh/vsp/surv/gilist.htm",
+    "officiality": "official",
+    "access_date": "2026-10-30"
+  },
+  "notes": "15 of 2024's 18 reported cruise ship outbreaks were confirmed norovirus; the other 3 were other gastrointestinal illnesses.",
+  "points": [
+    {
+      "label": "Norovirus",
+      "value": 15
+    },
+    {
+      "label": "Other illness",
+      "value": 3
+    }
+  ]
+}

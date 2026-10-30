@@ -1,0 +1,25 @@
+{
+  "key": "tonga_water_vapor_share",
+  "title": "Hunga Tonga's water vapor vs the stratosphere's total",
+  "unit": "million metric tons",
+  "geography": "Global stratosphere",
+  "time_coverage": "2022",
+  "source": {
+    "name": "Millan et al., 'The Hunga Tonga-Hunga Ha'apai Hydration of the Stratosphere', Geophysical Research Letters",
+    "publisher": "NASA Jet Propulsion Laboratory",
+    "url": "https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL099381",
+    "officiality": "official",
+    "access_date": "2026-10-30"
+  },
+  "notes": "NASA-funded researchers estimated the January 2022 Hunga Tonga eruption injected about 146 million metric tons of water vapor into the stratosphere -- roughly 10% of the ~1,460 million metric tons of water normally found there (146 is ~10% of 1,460; remainder shown as 1,314).",
+  "points": [
+    {
+      "label": "Hunga Tonga's water vapor",
+      "value": 146
+    },
+    {
+      "label": "Rest of the stratosphere's water",
+      "value": 1314
+    }
+  ]
+}

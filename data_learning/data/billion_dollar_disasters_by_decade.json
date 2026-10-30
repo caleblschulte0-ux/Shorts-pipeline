@@ -1,0 +1,32 @@
+{
+  "key": "billion_dollar_disasters_by_decade",
+  "title": "Average US billion-dollar weather disasters per year",
+  "unit": "number",
+  "geography": "United States",
+  "time_coverage": "1980-2023",
+  "source": {
+    "name": "Billion-Dollar Weather and Climate Disasters",
+    "publisher": "NOAA National Centers for Environmental Information (NCEI)",
+    "url": "https://www.ncei.noaa.gov/access/billions/",
+    "officiality": "official",
+    "access_date": "2026-10-30"
+  },
+  "notes": "CPI-adjusted annual averages: 2.8 events/year in the 1980s, 5.2/year in the 1990s, climbing to 20.4/year from 2019-2023.",
+  "points": [
+    {
+      "label": "1980s",
+      "value": 2.8,
+      "period": "1980s"
+    },
+    {
+      "label": "1990s",
+      "value": 5.2,
+      "period": "1990s"
+    },
+    {
+      "label": "2019-2023",
+      "value": 20.4,
+      "period": "2019-2023"
+    }
+  ]
+}

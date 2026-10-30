@@ -1,0 +1,25 @@
+{
+  "key": "billion_dollar_disasters_2023_vs_average",
+  "title": "2023's disaster count vs the all-time yearly average",
+  "unit": "number",
+  "geography": "United States",
+  "time_coverage": "1980-2023",
+  "source": {
+    "name": "Billion-Dollar Weather and Climate Disasters",
+    "publisher": "NOAA National Centers for Environmental Information (NCEI)",
+    "url": "https://www.ncei.noaa.gov/access/billions/",
+    "officiality": "official",
+    "access_date": "2026-10-30"
+  },
+  "notes": "2023 had 28 billion-dollar disasters, the most in a single year since NOAA's records began in 1980 \u2014 more than 3x the all-time annual average of 8.5.",
+  "points": [
+    {
+      "label": "2023 (record year)",
+      "value": 28
+    },
+    {
+      "label": "All-time yearly average since 1980",
+      "value": 8.5
+    }
+  ]
+}
