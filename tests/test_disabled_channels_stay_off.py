@@ -149,7 +149,7 @@ class TestTheRegistryAndTheWorkflowsAgree(unittest.TestCase):
         from shared import channel_registry as reg
         self.assertEqual(
             {c: reg.channel(c).get("target_count") for c in reg.channel_ids()},
-            {"explainer": 4, "third": 6, "trending": 3})
+            {"explainer": 4, "third": 6, "trending": 5})
 
     def test_long_form_is_not_a_format_any_channel_ships(self):
         """If long-form ever becomes a registered format, this test failing

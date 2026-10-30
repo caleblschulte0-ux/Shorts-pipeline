@@ -122,7 +122,7 @@ disagree with itself.**
 |---|---|---|---|---|
 | `explainer` | 4 | 4x `data_story` | — | editorial_review, takeover_authoring, production_supervisor |
 | `third` | 6 | 6x `clip` | — | production_supervisor |
-| `trending` | 3 | 3x `sports_moment` | `graph_race`, `reddit_story`, `text_card` | production_supervisor |
+| `trending` | 5 | 5x `sports_moment` | `graph_race`, `reddit_story`, `text_card` | production_supervisor |
 
 <!-- generated from config/channel_registry.json rev 9 — do not edit by hand; run `python -m shared.channel_registry --markdown` -->
 

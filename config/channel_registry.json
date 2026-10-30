@@ -72,29 +72,16 @@
       "enabled": true,
       "display_name": "Baller Bro / sports moments",
       "cadence": {
-        "per_day": 3,
-        "publish_slots_central": [
-          [
-            11,
-            0
-          ],
-          [
-            15,
-            0
-          ],
-          [
-            19,
-            0
-          ]
-        ],
+        "per_day": 5,
+        "publish_slots_central": [[9, 0], [12, 0], [15, 0], [18, 0], [21, 0]],
         "slots_owner": "config/channel_registry.json (read by scripts/run_sports.py)",
         "min_gap_hours": 3
       },
-      "target_count": 3,
+      "target_count": 5,
       "formats": {
         "sports_moment": {
           "state": "active",
-          "target": 3,
+          "target": 5,
           "renderer": "scripts/run_sports.py",
           "authoring": "capture",
           "authoring_note": "Not authored as packages. scripts/run_sports.py finds the week's most upvoted sports video posts on Reddit, the brain picks the moments with people in them, the Twitch channel's editor cuts them, the showrunner judges them and the trending posted log claims them before upload. Nothing \u2014 the Routine, Phase A, ChatGPT \u2014 writes a package for this format.",
