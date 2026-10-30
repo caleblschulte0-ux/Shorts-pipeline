@@ -1,0 +1,104 @@
+{
+  "schema": "shorts-production-blocker/v1",
+  "production_date": "20261030",
+  "written_at": "2026-10-30T11:21:00Z",
+  "status": "blocked_downstream_output_verification",
+  "retryable": true,
+  "bundle": {
+    "id": "61ae537b7ed21ade2a303cad51507e8771e6e401d6a802bf39f61ae60e7a22f2",
+    "source_commit": "a4522f94840ffae8dceda727a390fec0531acdef",
+    "frozen_contract": {
+      "sports": {
+        "format": "sports_moment",
+        "required": 3,
+        "verified_posted": 0,
+        "pending": 3
+      },
+      "twitch": {
+        "format": "clip",
+        "required": 6,
+        "verified_posted": 0,
+        "pending": 6
+      },
+      "explainer": {
+        "format": "data_story",
+        "required": 4,
+        "verified_posted": 1,
+        "pending": 3
+      }
+    }
+  },
+  "verified_uploads": [
+    {
+      "channel": "explainer",
+      "slug": "humpback-whale-recovery",
+      "url": "https://youtube.com/shorts/DFeIumLWvZo",
+      "posted_at": "2026-10-30T10:50:02.614988+00:00"
+    }
+  ],
+  "verification": {
+    "method": "Read state/posted_log.json, state/third_posted_log.json, and state/explainer_posted_log.json from main; counted only accepted URLs whose actual posted/upload timestamp is 2026-10-30 UTC. Scheduled publish_at alone was not counted.",
+    "total_required": 13,
+    "total_verified_posted": 1,
+    "total_pending": 12
+  },
+  "attempts": [
+    "Committed and read back media-progress/STARTED.json before other writes.",
+    "Completed two mandatory ChatGPT mailbox rounds within section 7 caps.",
+    "Committed and read back 18 supported rewrite answers; skipped the lightning request because duplicate frozen frames cannot be repaired with words.",
+    "Committed and validated response.json, then committed DONE separately.",
+    "Observed Phase B commit b9cd1cca6f637d7b641572509793fea836106c5d; report applied 2 Explainer stories and rejected 1.",
+    "Allowed a downstream consumption window and re-read all three posted logs from main.",
+    "Did not retrigger unchanged DONE because it is only a render trigger and cannot prove uploads."
+  ],
+  "mailbox": {
+    "reviews": {
+      "open_index": 0,
+      "answered": 0,
+      "skipped": 0
+    },
+    "asks": {
+      "open_index_keys": 30,
+      "reused_existing_answers": 22,
+      "skipped": 8,
+      "skip_reason": "September requests ask for time-sensitive 'today' facts that are expired on 2026-10-30; answering them now would fabricate freshness."
+    },
+    "rewrites": {
+      "open_index_entries": 130,
+      "answered_this_run": 18,
+      "unique_skipped": 1,
+      "skip_reason": "lightning-deaths-collapsed-not-the-storms has a frozen-frame defect outside any intentional hold; text-only rewrite cannot repair duplicate rendered frames.",
+      "remaining_index_entries_not_processed": 111,
+      "cap_note": "Two rounds, 10 requests per round; the same unrepairable request appeared in both rounds."
+    }
+  },
+  "commits": {
+    "started": "3ec123cdc9c2359a0121bb8eba5b72d0fe5be2b3",
+    "response": "78632f537791a23e4144258526a157cde0f608f1",
+    "done": "48dc465a487c509d13da49593ab48f5d0b117b5d",
+    "phase_b": "b9cd1cca6f637d7b641572509793fea836106c5d",
+    "rewrite_answers": [
+      "394da961874db38f8d6eb8f6b1b2f2721fb857aa",
+      "929f26c6925b10ff2e6d745dbe54dd6c1b9b157b",
+      "231850086e1c3423c6d41e918c6239a6df2ed49d",
+      "fa83c65b83ad810ef849311c814e59fef9ec17a6",
+      "68fa9044e1449d5e8be82be0e4373d7225213955",
+      "f4f71b3c4db24152b86c51f9d7571c34ea531fc6",
+      "1606b2332568610f99f966ac30a0b220d7e425f8",
+      "b67324280645f9f85c1b287696be19009d320110",
+      "e64f318cede2941e78bbf50923911f8ff020c5ce",
+      "54823496645ae54a13ac537dd12fbe8111cdc2ca",
+      "01645a310d03a2370349733813700f89386a86bf",
+      "e27f572ed96025fa882a5edb456b5df1212d8c60",
+      "cfc139f58526b4d618061cfac0da1b6dda97f88c",
+      "fd7def9408cf851e4407c2d550afc640ce54596b",
+      "f34728075ccdba0ec99beb09237b92fc9da97add",
+      "105cbb93a03dfc09f5cba152be71c5cb656c9ce6",
+      "51ba987fd3a67cb4f7d8620d5c871cb6835c05d0",
+      "09b8634842d34da2743cb5bc50328e6c6542f4f1"
+    ]
+  },
+  "no_done_retrigger": true,
+  "day_closed": false,
+  "exact_failed_step": "Step 8 output verification: downstream workers did not produce accepted same-day upload URLs for 3 sports moments, 6 Twitch clips, and 3 remaining Explainer videos."
+}
