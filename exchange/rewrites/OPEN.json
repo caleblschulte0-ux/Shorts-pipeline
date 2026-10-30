@@ -1,7 +1,37 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-30T14:31:49Z",
+ "updated": "2026-10-30T16:27:03Z",
  "open": [
+  {
+   "id": "drone-commercial-overtake__4ce6725d",
+   "slug": "drone-commercial-overtake",
+   "filed": "2026-10-30T16:27:03Z",
+   "why": [
+    "premise: brain: It presents a single statistic without clearly reversing a common viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261030/drone-commercial-overtake__4ce6725d.request.json",
+   "answer_path": "exchange/rewrites/20261030/drone-commercial-overtake__4ce6725d.answer.json"
+  },
+  {
+   "id": "earthquake-detection-illusion__c70a68bc",
+   "slug": "earthquake-detection-illusion",
+   "filed": "2026-10-30T16:27:03Z",
+   "why": [
+    "thesis: seg0 ('Earthquake stations worldwide') has no bridge to the headline (\"Magnitude 7+ Earthquakes Haven't Increased In Over 100 Years\") — brain: no genuine bridge to the headline"
+   ],
+   "request": "exchange/rewrites/20261030/earthquake-detection-illusion__c70a68bc.request.json",
+   "answer_path": "exchange/rewrites/20261030/earthquake-detection-illusion__c70a68bc.answer.json"
+  },
+  {
+   "id": "peanut-allergy-guideline-flip__68c934c9",
+   "slug": "peanut-allergy-guideline-flip",
+   "filed": "2026-10-30T16:27:02Z",
+   "why": [
+    "premise: brain: The claim offers a modest 1.9% figure without clearly overturning a strong viewer expectation, making the premise too weak."
+   ],
+   "request": "exchange/rewrites/20261030/peanut-allergy-guideline-flip__68c934c9.request.json",
+   "answer_path": "exchange/rewrites/20261030/peanut-allergy-guideline-flip__68c934c9.answer.json"
+  },
   {
    "id": "antarctic-sea-ice-record-low__0e8066f9",
    "slug": "antarctic-sea-ice-record-low",
