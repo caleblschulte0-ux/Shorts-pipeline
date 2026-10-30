@@ -49,8 +49,8 @@ class TestTheLiveRuling(unittest.TestCase):
         """Operator, 2026-10-11, of Baller Bro: "we'll switch it to sports
         moments". Graph races and Reddit stories are retired, and the
         channel is CAPTURED — nothing may author it a package."""
-        self.assertEqual(reg.target_mix("trending"), {"sports_moment": 3})
-        self.assertEqual(reg.target_count("trending"), 3)
+        self.assertEqual(reg.target_mix("trending"), {"sports_moment": 5})
+        self.assertEqual(reg.target_count("trending"), 5)
         self.assertEqual(sorted(reg.retired_formats("trending")),
                          ["graph_race", "reddit_story", "text_card"])
         self.assertTrue(reg.captured("trending"))
