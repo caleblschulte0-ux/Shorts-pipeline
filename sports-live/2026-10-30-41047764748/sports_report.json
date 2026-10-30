@@ -1,0 +1,188 @@
+{
+ "date": "2026-10-30",
+ "format": "sports_moment",
+ "want": 3,
+ "dry_run": false,
+ "slots": [
+  {
+   "sub": "baseball",
+   "who": "Pat Murphy",
+   "why": "A manager's raw, funny postgame advice to Jake Bauers about the Yankees, caught on camera.",
+   "post_title": "Pat Murphy to Jake Bauers post-game: \u201cYou\u2019re gonna make a lot of money. Just remember when you\u2019re on that horse shit Yankee team\u2026everyone playing for themselves. Just remember.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xie7fw/pat_murphy_to_jake_bauers_postgame_youre_gonna/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xie7fw/pat_murphy_to_jake_bauers_postgame_youre_gonna",
+   "title": "Pat Murphy Tells Jake Bauers What To Remember About The Yankees",
+   "hook": "Murphy's message to Bauers \ud83d\ude33",
+   "ledger": {
+    "moves": [
+     "zoom@4.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 66,
+     "reason": "showrunner BLOCK: The real moment is here (Murphy lecturing Bauers about the Yankees), but the first 10s are a hug and a ball handoff under a conflicting Spectrum caption, and the quote that makes it viral is never put on screen."
+    }
+   ],
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 79
+   },
+   "video_url": "https://youtube.com/shorts/cOfcFe84NMA",
+   "ok": true,
+   "publish_at": "2026-10-30T16:00:00Z",
+   "seconds": 272,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261030-pat-murphy-tells-jake-bauers-what-to-remember-ab-d983d5ab",
+    "tiktok": "queued for 2026-10-30T16:00:00Z"
+   }
+  },
+  {
+   "sub": "baseball",
+   "who": "Brewers",
+   "why": "Every Brewers player wrote Bob Uecker on their cancer cards, a tribute to the late broadcaster.",
+   "post_title": "On their Stand Up To Cancer cards, every single Brewers player wrote Bob Uecker",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xhbjos/on_their_stand_up_to_cancer_cards_every_single/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xhbjos/on_their_stand_up_to_cancer_cards_every_single",
+   "skipped": "too short: the post runs 5.8s (< 15s)"
+  },
+  {
+   "sub": "baseball",
+   "who": "Brewers fan",
+   "why": "A Wisconsin woman holds up a photo of her dad who couldn't be there for the title, and it hits hard.",
+   "post_title": "Wisconsin woman after the Brewers win: \u201c I have a photo. This is a picture of my dad. I wanted to be with him tonight so much\u2026but he\u2019s at home. He\u2019s in Waukesha.\u201d",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xiow22/wisconsin_woman_after_the_brewers_win_i_have_a/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xiow22/wisconsin_woman_after_the_brewers_win_i_have_a",
+   "title": "Wisconsin Brewers fan Shows Photo Of Her Dad She Couldn't Get Home To After Brewers Win",
+   "hook": "She wanted her dad there so bad \ud83e\udd79",
+   "ledger": {
+    "moves": [],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "the footage has its own subtitles across the frame \u2014 shown whole, not cropped",
+     "shots": []
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 70
+   },
+   "video_url": "https://youtube.com/shorts/UZIEC39RwNI",
+   "ok": true,
+   "publish_at": "2026-10-30T20:00:00Z",
+   "seconds": 172,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261030-wisconsin-brewers-fan-shows-photo-of-her-dad-she-6aee04b1",
+    "tiktok": "queued for 2026-10-30T20:00:00Z"
+   }
+  },
+  {
+   "sub": "baseball",
+   "who": "Jake Bauers",
+   "why": "A player hands his manager the last-out ball after the Brewers clinch.",
+   "post_title": "Jake Bauers gives Pat Murphy the last out ball",
+   "upvotes": 0,
+   "url": "https://www.reddit.com/r/baseball/comments/1xi9yea/jake_bauers_gives_pat_murphy_the_last_out_ball/",
+   "topic": "https://www.reddit.com/r/baseball/comments/1xi9yea/jake_bauers_gives_pat_murphy_the_last_out_ball",
+   "title": "Jake Bauers Gives Pat Murphy The Last Out Ball",
+   "hook": "Bauers hands Murphy the last out ball \ud83e\udd79",
+   "ledger": {
+    "moves": [
+     "zoom@1.0"
+    ],
+    "mood": null,
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "no persistent subject \u2014 show the whole frame",
+     "shots": [],
+     "n_subjects": 0
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "repairs": [
+    {
+     "score": 70,
+     "reason": "showrunner BLOCK: It is a real, heartfelt World Series moment, but the ball handoff goes by in a second at 2.5s behind a duplicated headline, and the other 27 seconds are two men chatting with no payoff."
+    },
+    {
+     "score": 71,
+     "reason": "showrunner BLOCK: The ball handoff and hug land in the first 10s, then the last two-thirds are letterboxed clubhouse filler in blurred fill and the clip fades out without a payoff."
+    }
+   ],
+   "showrunner": {
+    "blocked": true,
+    "reason": "showrunner BLOCK: The handoff and hug really happen and land, but our line sits on top of Spectrum's banner and repeats the source's own caption, and the first two seconds are a woman's back.",
+    "score": 79
+   },
+   "skipped": "showrunner_block: showrunner BLOCK: The handoff and hug really happen and land, but our line sits on top of Spectrum's banner and repeats the source's own caption, and the first two seconds are a woman's back."
+  },
+  {
+   "sub": "nba",
+   "who": "Ernie Johnson",
+   "why": "Ernie Johnson announces his final season hosting Inside The NBA.",
+   "post_title": "Ernie Johnson announces below that this will be his final season as host of Inside The NBA",
+   "upvotes": 0,
+   "url": "https://streamable.com/x9klcy",
+   "topic": "https://www.reddit.com/r/nba/comments/1xhvn2g/ernie_johnson_announces_below_that_this_will_be",
+   "title": "Ernie Johnson Announces His Final Season Hosting Inside The NBA After 37 Years",
+   "hook": "Ernie Johnson announces his last season \ud83e\udd40",
+   "ledger": {
+    "moves": [
+     "sad@0.3(silent)"
+    ],
+    "mood": "sad",
+    "shot_plan": {
+     "layout": "wide",
+     "reason": "face too big for a facecam \u2014 the camera IS the content, show the whole frame",
+     "shots": [],
+     "n_subjects": 1
+    },
+    "outro": null,
+    "cut_in": [],
+    "shown": [],
+    "music": []
+   },
+   "showrunner": {
+    "blocked": false,
+    "reason": "",
+    "score": 70
+   },
+   "video_url": "https://youtube.com/shorts/iKKjSKQEuYk",
+   "ok": true,
+   "publish_at": "2026-10-31T00:00:00Z",
+   "seconds": 198,
+   "crossposts": {
+    "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-trending-20261030-ernie-johnson-announces-his-final-season-hosting-c551aa4c",
+    "tiktok": "queued for 2026-10-31T00:00:00Z"
+   }
+  }
+ ],
+ "already_today": 0,
+ "pool": 90,
+ "already_posted": 10,
+ "shipped": 3
+}
