@@ -5,13 +5,13 @@
 | chaos | 62 | 0.02 |
 | drama | 17 | 0.05 |
 | wholesome | 12 | 0.07 |
-| beef | 11 | 0.08 |
+| beef | 11 | 0.07 |
 | fail | 8 | 0.065 |
 | rage | 6 | 0.05 |
 | argument | 6 | 0.07 |
 | win | 4 | 0.005 |
-| extended | 3 | 0.08 |
-| jumpscare | 2 | 0.735 |
+| extended | 3 | 0.07 |
+| jumpscare | 2 | 0.715 |
 | clutch | 1 | 0.02 |
 
 Excluded from the content-mix comparison (unclassified / non-series structure):
