@@ -16936,14 +16936,32 @@
       "ts": "2026-10-30T12:44:08.624012+00:00"
     },
     "clip-20261030-6": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/ishowspeed/clip/BashfulAggressiveQuailTheRinger-VSclFcbWq-Mq0hmZ",
-      "story_key": null,
-      "streamer": "ishowspeed",
+      "url": "https://youtube.com/shorts/9VnUbOQYK6E",
       "title": "Ishowspeed Can't Believe Somebody Actually Found Him",
       "kind": "twitch_clip",
-      "ts": "2026-10-30T12:47:55.749619+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-30T12:48:05.820322+00:00",
+      "uploaded_at": "2026-10-30T12:48:05.820333+00:00",
+      "publish_at": "2026-10-31T00:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261030-ishowspeed-can-t-believe-somebody-actually-found-0184d469",
+        "tiktok": "queued for 2026-10-31T00:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/BashfulAggressiveQuailTheRinger-VSclFcbWq-Mq0hmZ",
+      "streamer": "ishowspeed",
+      "series": "chaos",
+      "hook": "Speed thinks somebody found him \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3022,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.6,
+        "end": 23.5
+      },
+      "director_cut": true
     }
   }
 }

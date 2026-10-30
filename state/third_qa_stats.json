@@ -3,321 +3,6 @@
     {
       "date": "20261022",
       "dry_run": false,
-      "ts": "2026-10-22T12:38:11+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 14,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 140,
-        "with_retention": 123,
-        "with_curve": 15,
-        "fetched_at": "2026-10-22T08:46:35.333831+00:00"
-      },
-      "brain": {
-        "ok": 33,
-        "fail": 0
-      },
-      "dead_sources": {
-        "twitch:tarik": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:mizkif": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:trainwreckstv": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:cdawgva": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:yourrage": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:filian": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:ramee": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        },
-        "twitch:koil": {
-          "ok": 2,
-          "fail": 0,
-          "clips": 0
-        }
-      },
-      "clips": [
-        {
-          "slug": "clip-20261022-1",
-          "ok": true,
-          "render_level": "full",
-          "layout": "facecam_gameplay",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "vague title, unclear event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.55,
-              "why": "GTA RP heist getaway, hard to follow",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Xqc Chaos As Chat Screams 'Where's The Key' During A Brickbois Heist"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.72,
-              "problems": [
-                "Small black patch in the top-right of the face-cam crop at about 3.7s and 6.2s",
-                "Gameplay strip is fairly small, but the action is readable"
-              ]
-            }
-          },
-          "took_s": 285.2
-        },
-        {
-          "slug": "clip-20261022-2",
-          "ok": true,
-          "render_level": "full",
-          "self_healed": true,
-          "judges": {
-            "banger": {
-              "score": 0.55,
-              "why": "vague exposure title, big velocity",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "Animated callout, inside-baseball, no vi",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.7,
-              "problems": [
-                "The sharp picture fills only about a third of the 9:16 canvas, so it is a wide letterbox strip. The streamer is still la",
-                "The stream's own tiny burned-in captions sit beside the big word captions, which looks slightly inconsistent.",
-                "Hand gestures are cut off at the frame edge in a few frames."
-              ]
-            }
-          },
-          "took_s": 286.0
-        },
-        {
-          "slug": "clip-20261022-3",
-          "ok": true,
-          "judges": {
-            "story_director": {
-              "supply": {
-                "catalogue": 440,
-                "catalogue_watched": 96,
-                "refused_shown": 11,
-                "scouted": [],
-                "vod_arcs": 298,
-                "moments": 40,
-                "candidates": 40,
-                "pool": 3030,
-                "pool_with_vod": 2118,
-                "arc_sizes": [
-                  6,
-                  3,
-                  2,
-                  3,
-                  3,
-                  2,
-                  2,
-                  2,
-                  4,
-                  4
-                ]
-              },
-              "clusters": [
-                {
-                  "cluster": "dinerowiner@momentbeautifulnastyhorseninjagrumpy-3ycpzw948fd",
-                  "outcome": "not_a_story",
-                  "why": "director judged: not a story \u2014 The sources hold no meaningful change. The clip (11.9s) is a streamer turning away from the camera, answering an inaudible chat question ('No, not a lot') and saying 'Oh my God!', and nothing shows wh"
-                },
-                {
-                  "cluster": "marlon@momentbeautifulfrigidruffkappaclaus-yngm_5ilis1nqc7u/",
-                  "outcome": "structure_ok",
-                  "why": "kept"
-                }
-              ]
-            }
-          },
-          "took_s": 1863.4
-        },
-        {
-          "slug": "clip-20261022-4",
-          "ok": true,
-          "render_level": "full",
-          "layout": "face_content",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.5,
-              "why": "boss defeat, gamer-centric win",
-              "blind": false
-            },
-            "content": {
-              "score": 0.72,
-              "why": "Boss win, big visible celebration reacti",
-              "floor": 0.525,
-              "aspirational": 0.7,
-              "attempt": 2,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Jynxzi Finally Beats Rellana And Loses It"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.8,
-              "problems": [
-                "Last frame (15.3s) has a nearly black game feed and the face is cropped tight, which is minor",
-                "The hook caption sits close to the chin or chest area of the facecam, but it doesn't cover the face"
-              ]
-            }
-          },
-          "took_s": 184.9
-        },
-        {
-          "slug": "clip-20261022-5",
-          "ok": true,
-          "render_level": "full",
-          "layout": "action",
-          "self_healed": false,
-          "judges": {
-            "banger": {
-              "score": 0.72,
-              "why": "visible awkward crowd moment, relatable",
-              "blind": false
-            },
-            "content": {
-              "score": 0.45,
-              "why": "Chaotic street crowd, blind woman unclea",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Kaicenat: Kai Cenat's Fans Block A Blind Woman's Path And Chat Panics"
-            },
-            "render_qa": {
-              "verdict": "pass",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "pass",
-              "confidence": 0.72,
-              "problems": [
-                "Hook caption sits over the lower part of the picture in a few frames, but it doesn't cover any faces",
-                "The 0.8s and 2.5s frames have the source's own caption fragments ('Talk to him') colliding with the hook line",
-                "The 2.5s frame crops the foreground man's face at the edge",
-                "The blind woman appears in only one frame, so the hook subject is barely shown"
-              ]
-            }
-          },
-          "took_s": 193.4
-        },
-        {
-          "slug": "clip-20261022-6",
-          "ok": false,
-          "render_level": "full",
-          "self_healed": true,
-          "error": "RuntimeError: qa_rejected: vision: The sharp picture is a thin 16:9 strip, about 30% of the 9:16 canvas, when it should be about three quarters. The render; vision: The streamer's webcam face and the game HUD are tiny and hard ",
-          "judges": {
-            "selection": {
-              "verdict": "rescue",
-              "why": "best title score 0.40 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
-            },
-            "banger": {
-              "score": 0.4,
-              "why": "affirmations, little observable event",
-              "blind": false
-            },
-            "content": {
-              "score": 0.4,
-              "why": "Tilted CS2 affirmations, no clear payoff",
-              "floor": 0.35,
-              "aspirational": 0.7,
-              "attempt": 3,
-              "saw_frames": true,
-              "verdict": "pass"
-            },
-            "title": {
-              "source": "authored",
-              "title": "Squeex Loses It Then Tries Positive Affirmations To Calm Down"
-            },
-            "render_qa": {
-              "verdict": "fail",
-              "problems": []
-            },
-            "vision": {
-              "verdict": "reject",
-              "confidence": 0.6,
-              "problems": [
-                "The sharp picture is a thin 16:9 strip, about 30% of the 9:16 canvas, when it should be about three quarters. The render",
-                "The streamer's webcam face and the game HUD are tiny and hard to read on a phone. The subject looks lost in the blurred ",
-                "The sharp strip sits in the upper-middle of the canvas, so the empty blurred area is large. The hook card fills the lowe",
-                "Several frames are mostly black or a dark scope view, with little visible action (16.3s, 20.9s, 25.5s)."
-              ]
-            }
-          },
-          "took_s": 524.3
-        }
-      ]
-    },
-    {
-      "date": "20261022",
-      "dry_run": false,
       "ts": "2026-10-22T12:44:35+00:00",
       "feedback": {
         "snapshot": true,
@@ -5671,6 +5356,410 @@
           "slug": "clip-20261029-6",
           "ok": true,
           "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261030",
+      "dry_run": false,
+      "ts": "2026-10-30T12:48:05+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 16,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 151,
+        "with_retention": 127,
+        "with_curve": 13,
+        "fetched_at": "2026-10-30T08:46:28.064552+00:00"
+      },
+      "brain": {
+        "ok": 44,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:sypherpk": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261030-1",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.4,
+              "why": "iPhone duo, unclear event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.55,
+              "why": "Unboxing, reaction visible, payoff uncle",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Lacy Opens Her iPhone Duo On Stream And Can't Believe What's Inside"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.85,
+              "problems": [
+                "The hook card and the word captions are stacked tightly in the lower third and nearly touch",
+                "The 24.1s frame crops the subject's face out while the phone is shown"
+              ]
+            }
+          },
+          "took_s": 291.9
+        },
+        {
+          "slug": "clip-20261030-2",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "story_director": {
+              "supply": {
+                "catalogue": 440,
+                "catalogue_watched": 135,
+                "refused_shown": 9,
+                "scouted": [],
+                "vod_arcs": 335,
+                "moments": 40,
+                "candidates": 40,
+                "pool": 2929,
+                "pool_with_vod": 2021,
+                "arc_sizes": [
+                  2,
+                  6,
+                  6,
+                  6,
+                  2,
+                  2,
+                  6,
+                  2,
+                  2,
+                  4
+                ]
+              },
+              "clusters": [
+                {
+                  "cluster": "yonnajay@momenttransparentlazywatercresspermasmug-l6gi9piv0c",
+                  "outcome": "already_refused",
+                  "why": "2026-10-28: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "pokimane@momentdrabfairpuppystrawbeary-dwpyegfkwkdxwd4p",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: extended clip failed its checks: trails 28s past the picked moment"
+                },
+                {
+                  "cluster": "clix@momentgeniuscourageousjaguarbudblast-eqcr2aq92gulydq6",
+                  "outcome": "already_refused",
+                  "why": "2026-10-25: director judged: not a story \u2014 The popular clip is a 9-second moment where a woman off to the side holds up a dark hoodie while Clix claps. The dialogue is garb"
+                },
+                {
+                  "cluster": "ohnepixel@momentshycourteouswoodcockasianglow-oqmurxnb-pad9m",
+                  "outcome": "already_refused",
+                  "why": "2026-10-28: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "joebartolozzi@momentadventuroussmellyciderresidentsleeper-7g",
+                  "outcome": "already_refused",
+                  "why": "2026-10-28: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "alinity@momentgrossthoughtfuliguanaraccattack-nftl3cbd4acbwc",
+                  "outcome": "already_refused",
+                  "why": "2026-10-28: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "hellokiko@momenttenderspikysparrowpastathat-9dx229vfizuvhcyf",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "ludwig@momententhusiasticblitheminkheyguys-juiglmr90ksw5v9t",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: its VOD is unavailable: preflight:source only 5.0s \u2014 too short to edit; source too dark (avg l"
+                },
+                {
+                  "cluster": "ishowspeed@momentrelievedrelievedeagleitsboshytime-sae9j8tvu",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: extended clip failed its checks: the picture stands still for 2s at 0s"
+                },
+                {
+                  "cluster": "pokimane@momentpeacefulbelovedchinchillapoooound-g-d6-fjv_wn",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: director judged: not a story \u2014 All three sources are silent. There is no dialogue, no argument, no challenge and no reaction. The clip and the footage around it"
+                },
+                {
+                  "cluster": "alinity@momentbillowingwonderfulheronripepperonis-xnrro_zppd",
+                  "outcome": "already_refused",
+                  "why": "2026-10-29: its VOD is unavailable: vod_before:unavailable; vod_after:unavailable"
+                },
+                {
+                  "cluster": "ishowspeed@momentpiliablecovertpepperonibloodtrail-pazjxyrtl",
+                  "outcome": "structure_failed",
+                  "why": "opens on filler: \"so what's your purchase? Oh my gosh, I'm\""
+                },
+                {
+                  "cluster": "@momentquaintneighborlydogdaesuppy-syv9xet0trdsph5p/about-ja",
+                  "outcome": "not_a_story",
+                  "why": "director judged: not a story \u2014 The clip is a streamer asking someone named Ars (\u30a2\u30eb\u30b9) to stop taking Bankara Match so seriously. It is only a plea, and the transcript is garbled. The stream before it is SIM and eSIM talk plus a prom"
+                },
+                {
+                  "cluster": "ohnepixel@momentanimatedagreeablesandstormcheffrank-jwr8qp2b",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (0) \u2014 preflight:source only 5.8s \u2014 too short to edit"
+                },
+                {
+                  "cluster": "shroud@momentlitigiousmoldycardminglee-9cbvde7d74y1wkkb",
+                  "outcome": "starved",
+                  "why": "<2 analyzable sources (1) \u2014 vod_before:unavailable; vod_after:unavailable"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.3,
+              "why": "vague title, no visible event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.72,
+              "why": "Boxing brawl, ref stops fight, crowd rea",
+              "floor": 0.525,
+              "aspirational": 0.7,
+              "attempt": 2,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "Word captions sit on top of the stream's own scoreboard bar, so the text looks cluttered and slightly doubled",
+                "The hook text overlaps the top edge of the crowd in the wide shots, though it covers no faces",
+                "The footage is a boxing match with a referee, so the 'girl walks in' hook is only implied by the chat captions"
+              ]
+            }
+          },
+          "took_s": 145.1
+        },
+        {
+          "slug": "clip-20261030-3",
+          "ok": false,
+          "render_level": "full",
+          "self_healed": true,
+          "error": "RuntimeError: qa_rejected: vision: Sharp picture is a thin strip, about a third of the canvas height, with the gameplay small and hard to read on a phone. ; vision: The last three frames show a black screen at 23.8s, then a Win",
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "tense near-win, visible stakes",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Elden Ring boss fight, outcome unclear, ",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Jynxzi Is 1 Hit Away From Winning And Then This Happens"
+            },
+            "render_qa": {
+              "verdict": "fail",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "reject",
+              "confidence": 0.9,
+              "problems": [
+                "Sharp picture is a thin strip, about a third of the canvas height, with the gameplay small and hard to read on a phone. ",
+                "The last three frames show a black screen at 23.8s, then a Windows volume-mixer settings screen at 26.3s and 28.8s. The ",
+                "The hook says 'one hit from the win', but the clip shows no win, no hit and no payoff. The ending is off-topic and misle",
+                "The game action is mostly obscured by a large blurred or white smear, so the viewer cannot tell what is happening.",
+                "The caption stays on screen for the whole clip, including the black and desktop frames where it makes no sense."
+              ]
+            }
+          },
+          "took_s": 351.4
+        },
+        {
+          "slug": "clip-20261030-4",
+          "ok": false,
+          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
+          "judges": {
+            "story_director": {
+              "clusters": [
+                {
+                  "cluster": "clip-20261030-4",
+                  "outcome": "story_budget",
+                  "why": "run past story_budget_min"
+                }
+              ]
+            },
+            "selection": {
+              "verdict": "rescue",
+              "why": "best title score 0.45 < 0.5; escalated to the transcript judge (bar 0.70) instead of skipping"
+            },
+            "banger": {
+              "score": 0.35,
+              "why": "vague title, unknown content",
+              "blind": false
+            },
+            "content": {
+              "score": 0.66,
+              "why": "Visible boxing knockdown, 'scripted' rea",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            }
+          },
+          "took_s": 32.1
+        },
+        {
+          "slug": "clip-20261030-5",
+          "ok": false,
+          "error": "RuntimeError: director: clip incomplete (no setup / payoff cut off)",
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unclear what happens",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "CS2 knife kill, round won, little reacti",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            }
+          },
+          "took_s": 34.6
+        },
+        {
+          "slug": "clip-20261030-6",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.5,
+              "why": "vague title, unknown event",
+              "blind": false
+            },
+            "content": {
+              "score": 0.45,
+              "why": "Hide-and-seek found, no visible payoff",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Ishowspeed Can't Believe Somebody Actually Found Him"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.7,
+              "problems": [
+                "Word captions sit on top of the second line of the hook card and the ISHOWSPEED watermark in several frames (2.9s, 6.7s,",
+                "The bottom of the sharp region is slightly dark and cluttered where the hook card, captions and watermark stack up"
+              ]
+            }
+          },
+          "took_s": 189.8
         }
       ]
     }
