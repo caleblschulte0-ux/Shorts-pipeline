@@ -4595,11 +4595,29 @@
       "duration_s": 24.3
     },
     "airline-pilot-shortage": {
-      "claimed_at": "2026-10-30T14:31:27.707435+00:00",
+      "url": "https://youtube.com/shorts/Ps_nqBfSQM0",
       "title": "Airlines Need 649,000 New Pilots By 2042",
+      "at": "2026-10-30T14:31:39.203283+00:00",
       "publish_at": "2026-10-30T23:09:52Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.21,
+      "beat_s": [
+        3.58,
+        7.21,
+        6.75,
+        5.93,
+        5.02
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 61,
+      "duration_s": 29.0
     }
   },
   "uploads": [
@@ -5869,9 +5887,10 @@
       "claimed_at": "2026-10-30T14:31:27.707435+00:00",
       "title": "Airlines Need 649,000 New Pilots By 2042",
       "publish_at": "2026-10-30T23:09:52Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "airline-pilot-shortage"
+      "url": "https://youtube.com/shorts/Ps_nqBfSQM0",
+      "state": "posted",
+      "slug": "airline-pilot-shortage",
+      "at": "2026-10-30T14:31:39.203283+00:00"
     }
   ]
 }
