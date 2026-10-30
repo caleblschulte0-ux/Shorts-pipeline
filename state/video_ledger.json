@@ -6496,6 +6496,66 @@
    "ending_type": "consequence",
    "franchise": "",
    "notes": "re-confirmed existing scenes (validate OK); no creative change"
+  },
+  {
+   "slug": "bat-fungus-collapse",
+   "directed_at": "2026-10-30",
+   "topic_category": "nature",
+   "hook_type": "stake",
+   "hook_text": "A deadly fungus is wiping out the bats that protect your food.",
+   "depictions": [
+    "illustrated:geo_us",
+    "mechanic:wns_bat_species_decline",
+    "mechanic:wns_pest_control_value"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "re-confirmed existing scenes (validate OK); no creative change"
+  },
+  {
+   "slug": "unclaimed-money-states-hold",
+   "directed_at": "2026-10-30",
+   "topic_category": "money",
+   "hook_type": "stake",
+   "hook_text": "Someone you know is owed money by their state and has no idea.",
+   "depictions": [
+    "illustrated:geo_us",
+    "mechanic:unclaimed_property_returned_vs_total",
+    "mechanic:unclaimed_property_population_share"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "re-confirmed existing scenes (validate OK); no creative change"
+  },
+  {
+   "slug": "tattoo-mainstream-shift",
+   "directed_at": "2026-10-30",
+   "topic_category": "body",
+   "hook_type": "stake",
+   "hook_text": "Once you get one tattoo, you almost never stop at one.",
+   "depictions": [
+    "illustrated:trend",
+    "mechanic:tattoo_gender_comparison",
+    "mechanic:tattoo_multiple_ink_share"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "re-confirmed existing scenes (validate OK); no creative change"
+  },
+  {
+   "slug": "back-to-sleep-campaign-cut-sids",
+   "directed_at": "2026-10-30",
+   "topic_category": "body",
+   "hook_type": "stake",
+   "hook_text": "For years, the way we put babies to bed was killing them.",
+   "depictions": [
+    "mechanic:sids_rate_1991_2008",
+    "illustrated:trend",
+    "mechanic:sids_deaths_still_annual"
+   ],
+   "ending_type": "consequence",
+   "franchise": "",
+   "notes": "re-confirmed existing scenes (validate OK); no creative change"
   }
  ]
 }

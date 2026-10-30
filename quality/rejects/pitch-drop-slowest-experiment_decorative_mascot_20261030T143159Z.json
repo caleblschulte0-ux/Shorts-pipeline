@@ -1,0 +1,16 @@
+{
+ "slug": "pitch-drop-slowest-experiment",
+ "ts": "20261030T143159Z",
+ "failure_class": "decorative_mascot",
+ "evidence": "decorative_mascot: From hook@0.3 through seg1:end (about 8.5s) Data stands at the left edge holding a magnifier in the same pose. In seg2:start to seg2:end he gives a thumbs-up and waves beside the cabinet. In both scenes the pitch falls without him doing anything. Only seg3, where he shoves the bar",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "claim_picture_mismatch_and_decorative_mascot",
+  "visible_evidence": "The narration and the seg2:end headline say 'Dublin's wait 69 years', but the cabinet's only marker reads 'Queensland' and the scene opens on '10 years Queensland's wait between drops' (seg2:start). Data stands beside the case giving a thumbs-up and waving (seg2:mid, seg2:end). Nothing on screen shows 69 years as a span of time; the drop simply sags and falls.",
+  "root_cause": "A Queensland scene was reused for a Dublin beat, and the headline was swapped mid-beat instead of drawing the claim. The mascot was placed as a bystander rather than as the one doing the waiting.",
+  "repair_goal": "Redraw seg2 as the Dublin experiment, labelled Dublin, and make the 69 years visible on the subject itself. For example, Data ages beside the funnel (calendar pages tearing, a beard growing, a chair wearing out) while one drop slowly necks and finally falls at the payoff, with '69 years' landing by land_by. Remove the stray Queensland marker and the 10-years opener."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

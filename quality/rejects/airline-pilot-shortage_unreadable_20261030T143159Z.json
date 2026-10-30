@@ -1,0 +1,16 @@
+{
+ "slug": "airline-pilot-shortage",
+ "ts": "20261030T143159Z",
+ "failure_class": "unreadable",
+ "evidence": "unreadable: At payoff@-0.4 a plane silhouette crosses the subline \"+ 938,000 cabin crew \u00b7 + 690,000 technicians\". At seg3:end the label \"2042 (projected)\" is printed on top of the parked jets' tails, and the caption \"new plane needs\" is faded to low contrast.",
+ "weakest_scene": {
+  "id": "seg2",
+  "index": 2,
+  "failure_class": "weak_demonstration",
+  "visible_evidence": "From seg2:start to seg2:end the globe only lights up blobs labelled China, then Eurasia. The headline swaps 134,000 for 143,000, a loose \"MOST\" word floats in the top right, and Data stands beside the globe on a phone.",
+  "root_cause": "The claim is a ranking (Eurasia narrowly beats China and the US is not first), but the picture is one highlight at a time. The viewer never sees the regions side by side, so 'just ahead' and 'Nope, not the US' are never shown, and Data has no role in it.",
+  "repair_goal": "Show the regions competing in one picture, e.g. queues of pilots on each region of the globe or a podium. Eurasia's line should land just longer than China's, with the US visibly behind. Data should do the measuring or the stacking himself, and the floating 'MOST' tag should go."
+ },
+ "scene_plan": {},
+ "scenes": []
+}

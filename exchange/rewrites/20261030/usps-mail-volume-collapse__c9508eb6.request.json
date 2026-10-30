@@ -1,0 +1,140 @@
+{
+ "schema": "shorts-rewrite-request/v1",
+ "id": "usps-mail-volume-collapse__c9508eb6",
+ "filed": "2026-10-30T14:31:48Z",
+ "status": "open",
+ "channel": "explainer",
+ "slug": "usps-mail-volume-collapse",
+ "current": {
+  "title": "Mail Nearly Halved While The Stamp Price More Than Doubled",
+  "hook": "Mail is collapsing, and the post office is sending you the bill.",
+  "closing": "Less mail does not mean cheaper postage; a thinning mailbox can still come with rising costs.",
+  "question": "What still makes you buy a stamp?",
+  "segments": [
+   {
+    "topic": "Mail volume shrinks",
+    "say": "Total mail volume fell to 109 billion pieces in the supplied latest year. The peak was nearly twice as high."
+   },
+   {
+    "topic": "Mail letters fade",
+    "say": "First-Class Mail fell to 46 billion pieces in the measured comparison. Its decline outpaced the overall mail contraction."
+   },
+   {
+    "topic": "Mail stamps rise",
+    "say": "The stamp price reached 68 cents in the supplied historical comparison. That more than doubled the earlier price."
+   }
+  ]
+ },
+ "segments": [
+  {
+   "index": 0,
+   "topic": "Mail volume shrinks",
+   "say": "Total mail volume fell to 109 billion pieces in the supplied latest year. The peak was nearly twice as high.",
+   "role": "1 · THE COLLAPSE",
+   "data": {
+    "file": "usps_total_mail_volume_trend.json",
+    "unit": "billion",
+    "title": "Total USPS mail volume",
+    "points": [
+     {
+      "label": "2006 (peak)",
+      "value": 213,
+      "period": "2006"
+     },
+     {
+      "label": "2025",
+      "value": 109,
+      "period": "2025"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 1,
+   "topic": "Mail letters fade",
+   "say": "First-Class Mail fell to 46 billion pieces in the measured comparison. Its decline outpaced the overall mail contraction.",
+   "role": "2 · THE LETTERS",
+   "data": {
+    "file": "usps_first_class_mail_volume_comparison.json",
+    "unit": "billion",
+    "title": "First-Class Mail volume",
+    "points": [
+     {
+      "label": "2001 (peak)",
+      "value": 103.7,
+      "period": "2001"
+     },
+     {
+      "label": "2023",
+      "value": 46.0,
+      "period": "2023"
+     }
+    ],
+    "n_points": 2
+   }
+  },
+  {
+   "index": 2,
+   "topic": "Mail stamps rise",
+   "say": "The stamp price reached 68 cents in the supplied historical comparison. That more than doubled the earlier price.",
+   "role": "3 · THE IRONY",
+   "data": {
+    "file": "stamp_price_comparison.json",
+    "unit": "dollars",
+    "title": "Price of a First-Class stamp",
+    "points": [
+     {
+      "label": "1995",
+      "value": 0.33,
+      "period": "1995"
+     },
+     {
+      "label": "2024",
+      "value": 0.68,
+      "period": "2024"
+     }
+    ],
+    "n_points": 2
+   }
+  }
+ ],
+ "held_for": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "reasons": [
+  "premise: no consequential number in the title or hook"
+ ],
+ "judge": null,
+ "prior_rejection": [],
+ "rules": [
+  "TITLE or HOOK must contain a consequential NUMBER from the data below (the gate refuses a title+hook with no digit in either).",
+  "TITLE must be a PREMISE, not a searchable noun phrase: more than five words, or a number, or a question mark, or a tension word. 'Oldest Written Languages' is the failure; 'Why 3 of the 5 Oldest Scripts Are Still Unreadable' is the shape.",
+  "Every segment's TOPIC (a 2-4 word on-screen label) must share at least one real word with the TITLE — the gate checks a keyword bridge from each segment to the headline. Rename the topic, or write the title so it names what the segments are about.",
+  "Every NUMBER you say in a segment's SAY must be one that segment's data can show: a listed value, a difference between two of them, a percent change, a share of the total, or the same value in a bigger unit. A number from nowhere is refused — a guard derives every spoken quantity from the listed points.",
+  "Keep every number that is already correct. Do not add a country, company or person the data does not name.",
+  "PACE: each SAY is at most two short spoken sentences and 24 words: the beat's number, then what it MEANS (why it is surprising, what it caused, why the viewer should care), nothing else; the HOOK at most 14 words, the CLOSING at most 18 words and it says why this matters to the viewer, the QUESTION at most 8. A beat is on screen about 8 seconds; a longer line is refused. Each SAY says its beat's headline number out loud.",
+  "Each beat is part of a STORY, not a readout, simple enough for a distracted viewer: at most ONE number a beat, said with what it means (a change in words: 'it nearly doubled'). Name no group a viewer would not know ('the experts', not 'the OECD'); the WHO, NASA and the White House are fine.",
+  "TOPIC labels are printed on the video: at most 4 words, no clause.",
+  "The HOOK is clickbait, never a scam: the most surprising TRUE fact in the story, 5-14 words, said the way a person tells a friend. It makes sense heard once. 'You' only when it is the viewer's own money, body or kids. No formula tags ('...and nobody told you', '...shocking everyone'), no quiz ('Which animal...', 'Did you know...'), no hedge (might, may), no vague size ('astonishing'). Exaggerate nothing."
+ ],
+ "answer_path": "exchange/rewrites/20261030/usps-mail-volume-collapse__c9508eb6.answer.json",
+ "answer_schema": {
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "<copied from the request>",
+  "slug": "<copied>",
+  "by": "chatgpt",
+  "written_at": "<ISO-8601 UTC>",
+  "title": "<the premise>",
+  "hook": "<one line that stops the thumb, with a number>",
+  "closing": "<lands the point>",
+  "question": "<an engagement question, optional>",
+  "segments": [
+   {
+    "topic": "<2-4 words>",
+    "say": "<the line>"
+   }
+  ]
+ },
+ "how_to_answer": "Rewrite the WORDS so this story clears every rule above and answers every reason in `held_for`. Same number of segments, same order. Use ONLY numbers you can derive from each segment's `data.points` (or a year that appears as a label). If `judge` is present, its `problems`/`fixes` are what the video editor saw on the RENDERED video — shorter topics and one clear number per line are what fix 'unreadable' and 'text on text'. Write answer_path as one JSON object matching answer_schema, request_id and slug copied, and commit it. Do not touch the request."
+}

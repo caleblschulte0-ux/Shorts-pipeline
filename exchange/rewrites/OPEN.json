@@ -1,7 +1,97 @@
 {
  "schema": "shorts-rewrite-index/v1",
- "updated": "2026-10-30T11:23:36Z",
+ "updated": "2026-10-30T14:31:49Z",
  "open": [
+  {
+   "id": "antarctic-sea-ice-record-low__0e8066f9",
+   "slug": "antarctic-sea-ice-record-low",
+   "filed": "2026-10-30T14:31:49Z",
+   "why": [
+    "premise: brain: The premise does not clearly reverse a specific viewer expectation and lacks a single, verifiable consequential number."
+   ],
+   "request": "exchange/rewrites/20261030/antarctic-sea-ice-record-low__0e8066f9.request.json",
+   "answer_path": "exchange/rewrites/20261030/antarctic-sea-ice-record-low__0e8066f9.answer.json"
+  },
+  {
+   "id": "cruise-ship-outbreaks-climbing__d4f52a13",
+   "slug": "cruise-ship-outbreaks-climbing",
+   "filed": "2026-10-30T14:31:49Z",
+   "why": [
+    "premise: brain: It presents a simple numeric increase without overturning a viewer's expectation, failing the reversal criterion."
+   ],
+   "request": "exchange/rewrites/20261030/cruise-ship-outbreaks-climbing__d4f52a13.request.json",
+   "answer_path": "exchange/rewrites/20261030/cruise-ship-outbreaks-climbing__d4f52a13.answer.json"
+  },
+  {
+   "id": "measles-comeback-since-2000__7726747b",
+   "slug": "measles-comeback-since-2000",
+   "filed": "2026-10-30T14:31:49Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261030/measles-comeback-since-2000__7726747b.request.json",
+   "answer_path": "exchange/rewrites/20261030/measles-comeback-since-2000__7726747b.answer.json"
+  },
+  {
+   "id": "metric-system-holdouts__c3934ec2",
+   "slug": "metric-system-holdouts",
+   "filed": "2026-10-30T14:31:48Z",
+   "why": [
+    "premise: brain: The premise does not clearly overturn a specific viewer expectation and relies on a vague metric error rather than a striking, verifiable reversal."
+   ],
+   "request": "exchange/rewrites/20261030/metric-system-holdouts__c3934ec2.request.json",
+   "answer_path": "exchange/rewrites/20261030/metric-system-holdouts__c3934ec2.answer.json"
+  },
+  {
+   "id": "national-parks-record-then-shutdown__52d77463_r1",
+   "slug": "national-parks-record-then-shutdown",
+   "filed": "2026-10-30T14:31:48Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261030/national-parks-record-then-shutdown__52d77463_r1.request.json",
+   "answer_path": "exchange/rewrites/20261030/national-parks-record-then-shutdown__52d77463_r1.answer.json"
+  },
+  {
+   "id": "usps-mail-volume-collapse__c9508eb6",
+   "slug": "usps-mail-volume-collapse",
+   "filed": "2026-10-30T14:31:48Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261030/usps-mail-volume-collapse__c9508eb6.request.json",
+   "answer_path": "exchange/rewrites/20261030/usps-mail-volume-collapse__c9508eb6.answer.json"
+  },
+  {
+   "id": "ai-datacenter-water__c0cc9c1a_r4",
+   "slug": "ai-datacenter-water",
+   "filed": "2026-10-30T14:31:46Z",
+   "why": [
+    "premise: no consequential number in the title or hook"
+   ],
+   "request": "exchange/rewrites/20261030/ai-datacenter-water__c0cc9c1a_r4.request.json",
+   "answer_path": "exchange/rewrites/20261030/ai-datacenter-water__c0cc9c1a_r4.answer.json"
+  },
+  {
+   "id": "mangrove-forest-loss__49815695_r1",
+   "slug": "mangrove-forest-loss",
+   "filed": "2026-10-30T14:31:46Z",
+   "why": [
+    "premise: brain: It relies on two figures rather than a single consequential number and does not clearly invert a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261030/mangrove-forest-loss__49815695_r1.request.json",
+   "answer_path": "exchange/rewrites/20261030/mangrove-forest-loss__49815695_r1.answer.json"
+  },
+  {
+   "id": "naep-math-pandemic-drop__aa1c0224",
+   "slug": "naep-math-pandemic-drop",
+   "filed": "2026-10-30T14:31:46Z",
+   "why": [
+    "premise: brain: The premise lacks a single, verifiable numerical claim and does not clearly reverse a specific viewer expectation."
+   ],
+   "request": "exchange/rewrites/20261030/naep-math-pandemic-drop__aa1c0224.request.json",
+   "answer_path": "exchange/rewrites/20261030/naep-math-pandemic-drop__aa1c0224.answer.json"
+  },
   {
    "id": "astronaut-bone-loss__315fba90_r1",
    "slug": "astronaut-bone-loss",
