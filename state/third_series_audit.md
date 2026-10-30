@@ -11,7 +11,7 @@
 | argument | 6 | 0.07 |
 | win | 4 | 0.005 |
 | extended | 3 | 0.08 |
-| jumpscare | 2 | 0.745 |
+| jumpscare | 2 | 0.735 |
 | clutch | 1 | 0.02 |
 
 Excluded from the content-mix comparison (unclassified / non-series structure):
