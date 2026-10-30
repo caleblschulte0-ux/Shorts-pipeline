@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "english-internet-share-decline__21efaa68",
+  "slug": "english-internet-share-decline",
+  "by": "chatgpt",
+  "written_at": "2026-10-30T12:20:00Z",
+  "title": "English Fell From 75% To Under Half The Web",
+  "hook": "English once filled 75% of the web, then lost its majority.",
+  "closing": "Searching only in English leaves a huge share of the internet invisible to you.",
+  "question": "Which language do you browse in?",
+  "segments": [
+    {
+      "topic": "English Web Share",
+      "say": "English filled 75% of web pages, before global access pushed its share below half."
+    },
+    {
+      "topic": "English Web Growth",
+      "say": "Arabic content grew 2,501%, showing newer internet users built online worlds beyond English."
+    },
+    {
+      "topic": "English Web Today",
+      "say": "English still covers 55% of websites, but nearly half the web now speaks differently."
+    }
+  ]
+}
