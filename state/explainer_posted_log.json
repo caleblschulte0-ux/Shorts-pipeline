@@ -4593,6 +4593,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 66,
       "duration_s": 24.3
+    },
+    "airline-pilot-shortage": {
+      "claimed_at": "2026-10-30T14:31:27.707435+00:00",
+      "title": "Airlines Need 649,000 New Pilots By 2042",
+      "publish_at": "2026-10-30T23:09:52Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5857,6 +5864,14 @@
       "state": "posted",
       "slug": "pitch-drop-slowest-experiment",
       "at": "2026-10-30T14:11:14.085912+00:00"
+    },
+    {
+      "claimed_at": "2026-10-30T14:31:27.707435+00:00",
+      "title": "Airlines Need 649,000 New Pilots By 2042",
+      "publish_at": "2026-10-30T23:09:52Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "airline-pilot-shortage"
     }
   ]
 }
