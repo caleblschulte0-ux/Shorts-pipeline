@@ -19705,10 +19705,10 @@
   },
   {
    "slug": "chatgpt-fastest-adoption-ever",
-   "title": "ChatGPT Grew Faster Than Any App Ever Has",
-   "hook": "This app hit 100 million faster",
-   "closing": "Most ride free, so someone covers the huge bill, and that shapes what this app becomes.",
-   "question": "Do you use ChatGPT weekly? Tell below",
+   "title": "ChatGPT Reached 100 Million Users In 2 Months",
+   "hook": "ChatGPT reached 100 million users in just 2 months.",
+   "closing": "Mass adoption arrived before the business model caught up.",
+   "question": "Do you use ChatGPT weekly?",
    "caption": "ChatGPT hit 100 million users within 2 months of launch. TikTok took 9 months. Instagram took two and a half years. Here's the full curve 👇",
    "hashtags": [
     "chatgpt",
@@ -19734,7 +19734,7 @@
      "insight_type": "trend",
      "role": "1 · THE ROCKET",
      "topic": "ChatGPT Users",
-     "say": "Its users grew nine times over, and it's still climbing. That means a chatbot became a daily habit for hundreds of millions.",
+     "say": "ChatGPT reached 900 million active users. A chatbot became a mainstream habit.",
      "scene": {
       "mechanic": "rocket-altitude-climb",
       "concept": "a rocket climbs an altitude scale marked by each user-count checkpoint, flame flickering as it rises toward 900 million weekly users",
@@ -19751,7 +19751,7 @@
      "ascending": true,
      "role": "2 · THE OLD GUARD",
      "topic": "ChatGPT Speed",
-     "say": "Instagram took fifteen times longer than ChatGPT to reach the same crowd. Nothing before it came close.",
+     "say": "ChatGPT reached the benchmark in 2 months. No compared app moved faster.",
      "scene": {
       "mechanic": "speed-race-track",
       "concept": "three lanes race toward a '100 million users' finish line, each app's marker positioned by how few months it took - ChatGPT nearly there instantly",
@@ -19767,7 +19767,7 @@
      "insight_type": "share",
      "role": "3 · THE CATCH",
      "topic": "ChatGPT Paying",
-     "say": "For every paying user, seventeen use it free. That means almost everyone costs money and brings in none.",
+     "say": "ChatGPT has 50 million paying subscribers. Most users still rely on free access.",
      "scene": {
       "mechanic": "wallet-crowd-fill",
       "concept": "a 90-icon crowd grid stands for every weekly user; only the true, tiny gold-colored sliver actually pays",
@@ -19775,8 +19775,8 @@
      }
     }
    ],
-   "words_by": "claude-retell",
-   "rewritten_at": "2026-10-21T23:44:35Z",
+   "words_by": "chatgpt-rewrite",
+   "rewritten_at": "2026-10-30T11:18:56Z",
    "retold": "retell/v4"
   },
   {
