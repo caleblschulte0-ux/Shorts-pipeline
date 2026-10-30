@@ -1,7 +1,7 @@
 {
   "schema": "shorts-retro-brief/v1",
   "date": "20261029",
-  "generated_at": "2026-10-29T23:31:08Z",
+  "generated_at": "2026-10-30T00:31:07Z",
   "problem_classes": {
     "audience_performance": "real viewers saw it and did not stay",
     "editorial_quality": "the idea or the writing was weak",
@@ -35,7 +35,7 @@
         {
           "id": "20260924-third-story-arm-slot-beats-mature-clip-baseline-on",
           "hypothesis": "Third story-arm slot beats mature clip baseline on views-per-hour",
-          "days": 35.76,
+          "days": 35.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -44,7 +44,7 @@
         {
           "id": "20260925-superlative-science-family-explainer-topics-beat-t",
           "hypothesis": "Superlative/science-family explainer topics beat the broad mix on average-view-percentage",
-          "days": 34.76,
+          "days": 34.8,
           "samples": 1,
           "needs": "28d / 25 samples",
           "status": "running",
@@ -1829,10 +1829,12 @@
     "note": "Detects the SHAPE of an aside, not whether it is funny. A low number is a real finding; a high one is not proof the channel is entertaining."
   },
   "repo": {
-    "head": "8b840f2",
-    "commits_since": "2026-10-28",
+    "head": "2536123",
+    "commits_since": "2026-10-29",
     "commit_count": 50,
     "commits": [
+      "2536123 claim: mailbox verdicts 2026-10-29T23:48Z [skip ci]",
+      "1b15aaa retro: brief + triage for 20261029 [skip ci]",
       "8b840f2 Twitch stories: a time jump stays the line and plays out; queue the three passing stories (#720)",
       "86a3295 claim: mailbox verdicts 2026-10-29T22:48Z [skip ci]",
       "937b33e explainer: update posted log + analytics [skip ci]",
@@ -1870,9 +1872,7 @@
       "d6ba48a third: update posted log + analytics [skip ci]",
       "ecd7229 explainer: update posted log + analytics [skip ci]",
       "833d6e9 explainer: posted jury-trial-collapse [skip ci]",
-      "7fca471 explainer: claim upload slot jury-trial-collapse [skip ci]",
-      "0e81c8e claim: mailbox verdicts 2026-10-29T13:48Z [skip ci]",
-      "5124ea3 deadman: repaired 2026-10-29 [skip ci]"
+      "7fca471 explainer: claim upload slot jury-trial-collapse [skip ci]"
     ],
     "test_files": [
       "test_a_backfill_story_is_fiction_on_a_universal_premise.py",
