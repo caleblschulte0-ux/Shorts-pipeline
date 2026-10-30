@@ -4535,11 +4535,39 @@
       "duration_s": 33.7
     },
     "humpback-whale-recovery": {
-      "claimed_at": "2026-10-30T10:49:52.160340+00:00",
+      "url": "https://youtube.com/shorts/DFeIumLWvZo",
       "title": "Humpback Whales Went From 450 To 25,000 In One Region",
+      "at": "2026-10-30T10:50:02.614988+00:00",
       "publish_at": "2026-10-30T11:09:52Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 7.86,
+      "beat_s": [
+        6.17,
+        7.02,
+        6.2,
+        7.86,
+        9.27
+      ],
+      "n_beats": 3,
+      "story_structure": "scene+scene+scene",
+      "narrative_score": 79,
+      "duration_s": 37.0,
+      "hook": "shock_stat",
+      "topic_category": "nature",
+      "ending_type": "inversion",
+      "depictions": [
+        "mechanic:whale-school-regrowth",
+        "mechanic:whale-fourteen-pods-lift",
+        "mechanic:whaling-ban-spigot"
+      ],
+      "words_first_10s": 20,
+      "scene_changes_before_5s": 2
     }
   },
   "uploads": [
@@ -5791,9 +5819,10 @@
       "claimed_at": "2026-10-30T10:49:52.160340+00:00",
       "title": "Humpback Whales Went From 450 To 25,000 In One Region",
       "publish_at": "2026-10-30T11:09:52Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "humpback-whale-recovery"
+      "url": "https://youtube.com/shorts/DFeIumLWvZo",
+      "state": "posted",
+      "slug": "humpback-whale-recovery",
+      "at": "2026-10-30T10:50:02.614988+00:00"
     }
   ]
 }
