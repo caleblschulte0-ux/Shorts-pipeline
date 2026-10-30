@@ -752,7 +752,12 @@ Compilation dedupe rides `story_key` (member-set hash), never member
   But the critic is not the operator (2026-10-17, of that 88: *"That
   video sucked"*): a pass lands in `pending` and reaches `stories` only
   after the operator has watched it; what they turn down goes to
-  `rejected` and is never promoted again.
+  `rejected` and is never promoted again. And once they have approved it,
+  the critic does not re-litigate it (2026-10-30: the same xQc edit read
+  82 then 79, and no approved story posted): the approved EDIT is
+  rendered without table reads or repairs, no old refusal skips it, the
+  critic's score is recorded but the operator is the bar, and every
+  mechanical check (render QA, vision, dedupe, duration) still applies.
 - **A plan is READ before it is rendered, and a near-miss KEEPS ITS EDIT**
   (2026-10-08, backtests 7-8). The critic reads the words a plan would
   hold (`story.plan_ledger`, held equal to the render's ledger) and the
