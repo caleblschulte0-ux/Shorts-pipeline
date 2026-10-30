@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "blood-type-rarity__962b83aa",
+  "slug": "blood-type-rarity",
+  "by": "chatgpt",
+  "written_at": "2026-10-30T12:20:00Z",
+  "title": "The Rarest Blood Type Is Just 1% Of Americans",
+  "hook": "Just 1% of Americans have the rarest blood type.",
+  "closing": "Rarity makes matching harder, so knowing and donating your type can save time.",
+  "question": "Do you know your blood type?",
+  "segments": [
+    {
+      "topic": "Blood Type Rarity",
+      "say": "AB negative belongs to just 1% of Americans, making compatible donors exceptionally scarce."
+    },
+    {
+      "topic": "Blood Type Negative",
+      "say": "Only 15% are Rh negative, shrinking the matching pool before doctors even consider letter type."
+    },
+    {
+      "topic": "Blood Type Mix",
+      "say": "O positive reaches 53% among Latin American donors, showing donor background changes the available mix."
+    }
+  ]
+}
