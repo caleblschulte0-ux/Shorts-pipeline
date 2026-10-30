@@ -4570,11 +4570,29 @@
       "scene_changes_before_5s": 2
     },
     "pitch-drop-slowest-experiment": {
-      "claimed_at": "2026-10-30T14:11:03.831451+00:00",
+      "url": "https://youtube.com/shorts/CpenBcYEUHU",
       "title": "9 Pitch Drops Took 84 Years To Fall",
+      "at": "2026-10-30T14:11:14.085912+00:00",
       "publish_at": "2026-10-30T17:09:52Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 5.23,
+      "beat_s": [
+        5.25,
+        3.85,
+        4.62,
+        5.23,
+        4.89
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 66,
+      "duration_s": 24.3
     }
   },
   "uploads": [
@@ -5835,9 +5853,10 @@
       "claimed_at": "2026-10-30T14:11:03.831451+00:00",
       "title": "9 Pitch Drops Took 84 Years To Fall",
       "publish_at": "2026-10-30T17:09:52Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "pitch-drop-slowest-experiment"
+      "url": "https://youtube.com/shorts/CpenBcYEUHU",
+      "state": "posted",
+      "slug": "pitch-drop-slowest-experiment",
+      "at": "2026-10-30T14:11:14.085912+00:00"
     }
   ]
 }
