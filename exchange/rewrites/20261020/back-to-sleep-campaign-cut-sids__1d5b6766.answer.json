@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "back-to-sleep-campaign-cut-sids__1d5b6766",
+  "slug": "back-to-sleep-campaign-cut-sids",
+  "by": "chatgpt",
+  "written_at": "2026-10-30T12:20:00Z",
+  "title": "SIDS Fell To 0.64 Deaths Per Thousand Babies",
+  "hook": "SIDS fell to 0.64 deaths per thousand babies.",
+  "closing": "Putting babies on their backs remains a simple habit that protects sleeping infants.",
+  "question": "Would you share this with parents?",
+  "segments": [
+    {
+      "topic": "SIDS Deaths Fell",
+      "say": "SIDS fell to 0.64 deaths per thousand babies, showing a simple sleep change cut risk dramatically."
+    },
+    {
+      "topic": "SIDS Sleep Position",
+      "say": "85.4% of cases involved stomach-down sleep, revealing why changing position mattered so much."
+    },
+    {
+      "topic": "SIDS Risk Remains",
+      "say": "About 3,400 sleep-related infant deaths still occur yearly, so safer sleep advice remains urgent."
+    }
+  ]
+}
