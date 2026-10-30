@@ -1,0 +1,21 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "divorce-rate-quiet-decline__d6b27d36",
+  "slug": "divorce-rate-quiet-decline",
+  "by": "chatgpt",
+  "written_at": "2026-10-30T11:16:56.571Z",
+  "title": "US Divorce Fell To 2.4 Per Thousand",
+  "hook": "The US divorce rate nearly halved to 2.4 per thousand.",
+  "closing": "Later marriage and fewer divorces challenge the idea that relationships keep getting less stable.",
+  "question": "Why do you think divorce fell?",
+  "segments": [
+    {
+      "topic": "US divorce rate",
+      "say": "The US divorce rate fell to 2.4 per thousand. The long rise people remember has reversed."
+    },
+    {
+      "topic": "Later marriage, less divorce",
+      "say": "Women first marry at a median age of 28.6. Later marriage now accompanies fewer breakups."
+    }
+  ]
+}
