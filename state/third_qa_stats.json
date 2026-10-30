@@ -1,58 +1,6 @@
 {
   "runs": [
     {
-      "date": "20261022",
-      "dry_run": false,
-      "ts": "2026-10-22T15:53:34+00:00",
-      "feedback": {
-        "snapshot": true,
-        "prior_streamers": 14,
-        "opening_steer": true,
-        "retention_scope": true,
-        "videos": 140,
-        "with_retention": 123,
-        "with_curve": 15,
-        "fetched_at": "2026-10-22T14:00:06.747474+00:00"
-      },
-      "brain": {
-        "ok": 0,
-        "fail": 0
-      },
-      "dead_sources": {},
-      "clips": [
-        {
-          "slug": "clip-20261022-1",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261022-2",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261022-3",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261022-4",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261022-5",
-          "ok": true,
-          "skipped": "already posted"
-        },
-        {
-          "slug": "clip-20261022-6",
-          "ok": true,
-          "skipped": "already posted"
-        }
-      ]
-    },
-    {
       "date": "20261023",
       "dry_run": false,
       "ts": "2026-10-23T12:28:16+00:00",
@@ -5943,6 +5891,144 @@
             }
           },
           "took_s": 288.7
+        },
+        {
+          "slug": "clip-20261030-6",
+          "ok": true,
+          "skipped": "already posted"
+        }
+      ]
+    },
+    {
+      "date": "20261030",
+      "dry_run": false,
+      "ts": "2026-10-30T14:15:43+00:00",
+      "feedback": {
+        "snapshot": true,
+        "prior_streamers": 16,
+        "opening_steer": true,
+        "retention_scope": true,
+        "videos": 151,
+        "with_retention": 127,
+        "with_curve": 13,
+        "fetched_at": "2026-10-30T12:48:19.594876+00:00"
+      },
+      "brain": {
+        "ok": 8,
+        "fail": 0
+      },
+      "dead_sources": {
+        "twitch:kaysan": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:tarik": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:mizkif": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:trainwreckstv": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:yourrage": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:cdawgva": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:filian": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:sypherpk": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:koil": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        },
+        "twitch:ramee": {
+          "ok": 2,
+          "fail": 0,
+          "clips": 0
+        }
+      },
+      "clips": [
+        {
+          "slug": "clip-20261030-1",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261030-2",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261030-3",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261030-4",
+          "ok": true,
+          "skipped": "already posted"
+        },
+        {
+          "slug": "clip-20261030-5",
+          "ok": true,
+          "render_level": "full",
+          "layout": "action",
+          "self_healed": false,
+          "judges": {
+            "banger": {
+              "score": 0.55,
+              "why": "event appearance, searchable name",
+              "blind": false
+            },
+            "content": {
+              "score": 0.4,
+              "why": "Crowded boxing event, unclear confrontat",
+              "floor": 0.35,
+              "aspirational": 0.7,
+              "attempt": 3,
+              "saw_frames": true,
+              "verdict": "pass"
+            },
+            "title": {
+              "source": "authored",
+              "title": "Silky Finally Pulls Up To NMS Boxing And This Happens"
+            },
+            "render_qa": {
+              "verdict": "pass",
+              "problems": []
+            },
+            "vision": {
+              "verdict": "pass",
+              "confidence": 0.72,
+              "problems": [
+                "frames at 6.7s and 8.0s are motion-blurred (fast camera movement), brief only",
+                "captions are small and slightly inconsistent in size at 8.0s"
+              ]
+            }
+          },
+          "took_s": 190.0
         },
         {
           "slug": "clip-20261030-6",

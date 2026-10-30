@@ -17065,14 +17065,32 @@
       "ts": "2026-10-30T14:11:23.512788+00:00"
     },
     "clip-20261030-5": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/silky/clip/UnsightlyRockySoybeanMVGame-LOfR4NNdtOclaYcu",
-      "story_key": null,
-      "streamer": "silky",
+      "url": "https://youtube.com/shorts/fIx97W7Miwk",
       "title": "Silky Finally Pulls Up To NMS Boxing And This Happens",
       "kind": "twitch_clip",
-      "ts": "2026-10-30T14:15:33.721176+00:00",
-      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
+      "ts": "2026-10-30T14:15:43.387340+00:00",
+      "uploaded_at": "2026-10-30T14:15:43.387354+00:00",
+      "publish_at": "2026-10-31T05:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261030-silky-finally-pulls-up-to-nms-boxing-and-this-ha-db791b91",
+        "tiktok": "queued for 2026-10-31T05:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/silky/clip/UnsightlyRockySoybeanMVGame-LOfR4NNdtOclaYcu",
+      "streamer": "silky",
+      "series": "drama",
+      "hook": "Silky finally pulls up to NMS boxing",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 1844,
+      "banger": 0.55,
+      "cut": {
+        "start": 30.0,
+        "end": 44.69
+      },
+      "director_cut": true
     }
   }
 }
