@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "astronaut-bone-loss__315fba90",
+  "slug": "astronaut-bone-loss",
+  "by": "chatgpt",
+  "written_at": "2026-10-30T12:20:00Z",
+  "title": "Astronaut Bones Can Lose 30% Before A Mars Return",
+  "hook": "A Mars mission can cost astronauts 30% of hip-bone density.",
+  "closing": "Exercise is not optional when spaceflight steadily weakens the skeleton carrying you home.",
+  "question": "Would you still go to Mars?",
+  "segments": [
+    {
+      "topic": "Astronaut Bone Loss",
+      "say": "Astronaut bone density can drop 1.5% monthly, compressing years of Earth-side weakening into weeks."
+    },
+    {
+      "topic": "Astronaut Hip Loss",
+      "say": "Hip density can fall 2.2% monthly because weight-bearing bones lose their normal workload."
+    },
+    {
+      "topic": "Astronaut Mars Loss",
+      "say": "An unprotected Mars mission could cost 30% of hip density, making countermeasures essential for survival."
+    }
+  ]
+}
