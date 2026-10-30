@@ -7148,5 +7148,476 @@
       "bottom_theme": "auto",
       "punched_up": true
     }
+  },
+  "20260731": {
+    "01_reddit-hoa-shed-approval.json": {
+      "version": 1,
+      "subreddit": "ProRevenge",
+      "slug": "01_reddit-hoa-shed-approval",
+      "title": "The HOA fined me for a shed they approved in writing",
+      "hashtags": [
+        "hoa",
+        "prorevenge",
+        "neighborhood",
+        "backyard",
+        "shed",
+        "homeowner",
+        "receipts",
+        "karma",
+        "reddit",
+        "storytime",
+        "viral",
+        "fyp",
+        "shorts",
+        "justice",
+        "paperwork"
+      ],
+      "script": "They fined me for THAT? 3 years ago I emailed the HOA board president and asked if I could build a storage shed in my own backyard. She wrote back four words: approved, no issue. Last month a brand-new board measured my yard against some outdated map and mailed me a $500 violation for an unapproved structure. I forwarded her original email, timestamp and all, still sitting untouched in my inbox. Funny how an approval that apparently expires never once said so in writing. The new board president went silent for 12 days. Then came the reversal, fine dropped, a full year of dues waived, and a bylaw rewrite so a signed approval can never quietly vanish again. So who's actually reading their own paperwork now?",
+      "shots": [
+        {
+          "phrase": "fined me for THAT",
+          "query": "violation notice letter",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "emailed the HOA board president",
+          "query": "laptop email typing",
+          "mascot_pose": "idle",
+          "pin_query": "HOA",
+          "pin_context": "homeowners association board",
+          "news_query": "HOA",
+          "news_angle": "The HOA board fined a homeowner for a shed they had previously approved in writing.",
+          "image_url": "https://live.staticflickr.com/5137/5583932913_9f03bdda26.jpg"
+        },
+        {
+          "phrase": "build a storage shed in my own backyard",
+          "query": "backyard storage shed",
+          "mascot_pose": "idle",
+          "pin_query": "backyard",
+          "pin_context": "residential yard storage shed",
+          "news_query": "backyard",
+          "news_angle": "A homeowner built a storage shed in their backyard, which was initially approved by the HOA.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/StateLibQld_1_162315_Irene_and_Cecil_Harveyson_posing_in_their_backyard_in_Ashgrove%2C_Brisbane%2C_ca._1929.jpg"
+        },
+        {
+          "phrase": "wrote back four words",
+          "query": "email reply screen",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "measured my yard against some outdated map",
+          "query": "tape measure yard",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "mailed me a $500 violation",
+          "query": "certified mail envelope",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "forwarded her original email, timestamp and all",
+          "query": "email inbox screenshot",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "still sitting untouched in my inbox",
+          "query": "phone inbox unread",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "an approval that apparently expires",
+          "query": "calendar pages flipping",
+          "mascot_pose": "think"
+        },
+        {
+          "phrase": "went silent for 12 days",
+          "query": "phone screen no messages",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "fine dropped",
+          "query": "crossed out invoice",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a full year of dues waived",
+          "query": "handshake agreement",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "a bylaw rewrite",
+          "query": "committee meeting table",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "reading their own paperwork now",
+          "query": "stack of documents desk",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "wrote back four words",
+          "text": "APPROVED. NO ISSUE.",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "mailed me a $500 violation",
+          "text": "$500 FINE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "forwarded her original email, timestamp and all",
+          "text": "RECEIPTS",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "went silent for 12 days",
+          "text": "12 DAYS SILENT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "fine dropped",
+          "text": "FINE: GONE",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "a full year of dues waived",
+          "text": "FREE YEAR",
+          "color": "#50ff80"
+        },
+        {
+          "phrase": "a bylaw rewrite",
+          "text": "RULES REWRITTEN",
+          "color": "#ffffff"
+        }
+      ],
+      "music_vibe": "dark"
+    },
+    "02_reddit-parking-spot-tow.json": {
+      "version": 1,
+      "subreddit": "pettyrevenge",
+      "slug": "02_reddit-parking-spot-tow",
+      "title": "Someone kept stealing my numbered parking spot at work",
+      "hashtags": [
+        "reddit",
+        "storytime",
+        "pettyrevenge",
+        "revenge",
+        "parking",
+        "karma",
+        "office",
+        "workplace",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending",
+        "justice",
+        "satisfying",
+        "receipts"
+      ],
+      "script": "My reserved spot, again? My assigned space is spot 14, painted number and everything, and for 3 straight weeks the same white SUV parked in it every single morning. I left 2 polite notes on the windshield asking the driver to check the number. Nothing changed. Building policy says an unauthorized vehicle in a numbered spot after 2 written warnings gets towed at the owner's expense, no exceptions. So on week 3 I called the property office, handed over my dated notes, and let them make the call. The SUV vanished from spot 14 around 10 a.m. Turned out the driver was 2 floors up, mid performance review, when someone texted him his car was gone. Tough meeting to sit through with THAT on your mind. So whose name is on spot 14 now?",
+      "shots": [
+        {
+          "phrase": "My reserved spot, again",
+          "query": "parking lot numbered spot",
+          "mascot_pose": "shock"
+        },
+        {
+          "phrase": "assigned space is spot 14",
+          "query": "parking space number painted",
+          "mascot_pose": "idle",
+          "pin_query": "spot 14",
+          "pin_context": "parking spot number",
+          "news_query": "spot 14",
+          "news_angle": "Spot 14 being occupied by an unauthorized vehicle at work",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/AS17-143-21931_%2821633337446%29.jpg/1280px-AS17-143-21931_%2821633337446%29.jpg"
+        },
+        {
+          "phrase": "same white SUV parked in it every single morning",
+          "query": "white SUV parked",
+          "mascot_pose": "idle",
+          "pin_query": "white SUV",
+          "pin_context": "vehicle car parking",
+          "news_query": "white SUV",
+          "news_angle": "A white SUV repeatedly parking in spot 14 without authorization",
+          "image_url": "https://live.staticflickr.com/5727/20310096144_84c276d974_b.jpg"
+        },
+        {
+          "phrase": "2 polite notes on the windshield",
+          "query": "note on windshield",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "unauthorized vehicle in a numbered spot",
+          "query": "no parking sign",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "towed at the owner's expense",
+          "query": "tow truck hooking car",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "called the property office",
+          "query": "office phone call desk",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "handed over my dated notes",
+          "query": "handwritten note paper",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "SUV vanished from spot 14",
+          "query": "empty parking space",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "around 10 a.m.",
+          "query": "office building morning",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "mid performance review",
+          "query": "office meeting review",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "someone texted him his car was gone",
+          "query": "phone text notification",
+          "mascot_pose": "idle"
+        },
+        {
+          "phrase": "Tough meeting to sit through with THAT on your mind",
+          "query": "stressed man conference room",
+          "mascot_pose": "laugh",
+          "pin_query": "Tough",
+          "pin_context": "Someone kept stealing my numbered parking spot at work",
+          "news_query": "Tough",
+          "news_angle": "Someone kept stealing my numbered parking spot at work",
+          "image_url": "https://live.staticflickr.com/5132/5401097937_93000437c8_b.jpg"
+        },
+        {
+          "phrase": "whose name is on spot 14 now",
+          "query": "parking lot empty spot",
+          "mascot_pose": "dismiss"
+        }
+      ],
+      "punches": [
+        {
+          "phrase": "assigned space is spot 14",
+          "text": "SPOT 14",
+          "color": "#ffffff"
+        },
+        {
+          "phrase": "same white SUV parked in it every single morning",
+          "text": "3 WEEKS STRAIGHT",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "2 polite notes on the windshield",
+          "text": "2 WARNINGS",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "towed at the owner's expense",
+          "text": "TOWED",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "SUV vanished from spot 14",
+          "text": "GONE",
+          "color": "#ff3030"
+        },
+        {
+          "phrase": "mid performance review",
+          "text": "WORST TIMING",
+          "color": "#ffaa30"
+        },
+        {
+          "phrase": "whose name is on spot 14 now",
+          "text": "SPOT 14: MINE",
+          "color": "#50ff80"
+        }
+      ],
+      "music_vibe": "hiphop"
+    },
+    "03_textcard-ceuta-border-crisis.json": {
+      "version": 1,
+      "format": "text_card",
+      "slug": "03_textcard-ceuta-border-crisis",
+      "title": "Spain Just Sent Its Military Into One Of Its Own Cities",
+      "duration": 9,
+      "broll_query": "border fence migrants crossing",
+      "hashtags": [
+        "ceuta",
+        "spain",
+        "morocco",
+        "migration",
+        "bordercrisis",
+        "europe",
+        "worldnews",
+        "breakingnews",
+        "immigration",
+        "military",
+        "africa",
+        "eu",
+        "fyp",
+        "shorts",
+        "trending"
+      ],
+      "text": "Spain just sent its military into one of its own cities.\n\nThousands of migrants broke through the border fence between Morocco and the Spanish exclave of Ceuta this week. Officials report at least 9 deaths, with some outlets now putting the toll as high as 18. Spain's government is deploying the Armed Forces to back up the Civil Guard, and the Prime Minister is flying in personally.\n\nThis isn't a war zone. It's a 7-square-mile Spanish city of about 85,000 people, on the coast of Africa, that just saw thousands more arrive in a matter of days.",
+      "highlights": [
+        "sent its military into one of its own cities",
+        "broke through the border fence",
+        "at least 9 deaths",
+        "as high as 18",
+        "deploying the Armed Forces",
+        "Prime Minister is flying in personally",
+        "7-square-mile Spanish city of about 85,000 people",
+        "thousands more arrive in a matter of days"
+      ],
+      "music_vibe": "dark"
+    },
+    "04_textcard-nj-pig-escape.json": {
+      "version": 1,
+      "format": "text_card",
+      "slug": "04_textcard-nj-pig-escape",
+      "title": "15 Pigs Just Took Over A New Jersey Highway",
+      "duration": 8,
+      "broll_query": "pigs running road",
+      "hashtags": [
+        "pigs",
+        "newjersey",
+        "sussexcounty",
+        "animals",
+        "farmanimals",
+        "statepolice",
+        "weirdnews",
+        "fyp",
+        "shorts",
+        "viral",
+        "trending",
+        "offbeat",
+        "roadclosure",
+        "animalcontrol",
+        "wantagetownship"
+      ],
+      "text": "Fifteen pigs just shut down a New Jersey highway.\n\nNew Jersey State Police responded to Route 565 in Frankford Township, Sussex County Wednesday morning to find a full herd loose and wandering across traffic. No one was hurt, but plenty of commuters had a very confusing commute.\n\nTurns out a damaged fence back at the farm let all fifteen out at once. Police, animal control, and the owner spent the morning walking them back home, one pig at a time.",
+      "highlights": [
+        "Fifteen pigs",
+        "shut down a New Jersey highway",
+        "Route 565 in Frankford Township, Sussex County",
+        "loose and wandering across traffic",
+        "damaged fence",
+        "walking them back home"
+      ],
+      "music_vibe": "hiphop"
+    },
+    "05_graph-openai-anthropic-valuation.json": {
+      "version": 1,
+      "format": "graph_race",
+      "slug": "05_graph-openai-anthropic-valuation",
+      "title": "OpenAI vs Anthropic: Valuation By Year",
+      "y_label": "Valuation ($ billions)",
+      "duration": 13,
+      "source": "Sources: OpenAI and Anthropic funding-round announcements 2023-2026, compiled via CNBC, Reuters and Morning Brew valuation trackers",
+      "hashtags": [
+        "openai",
+        "anthropic",
+        "ai",
+        "valuation",
+        "startups",
+        "tech",
+        "chatgpt",
+        "claude",
+        "ipo",
+        "artificialintelligence",
+        "funding",
+        "moneymoves",
+        "fyp",
+        "shorts",
+        "trending"
+      ],
+      "years": [
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "series": [
+        {
+          "name": "OpenAI",
+          "color": "#10a37f",
+          "values": [
+            29,
+            157,
+            300,
+            852
+          ]
+        },
+        {
+          "name": "Anthropic",
+          "color": "#d97757",
+          "values": [
+            4.1,
+            18.5,
+            183,
+            965
+          ]
+        }
+      ],
+      "music_vibe": "cinematic"
+    },
+    "06_graph-wildfire-acres-burned.json": {
+      "version": 1,
+      "format": "graph_race",
+      "slug": "06_graph-wildfire-acres-burned",
+      "title": "US Wildfire Acres Burned By Year",
+      "y_label": "Acres burned (millions)",
+      "duration": 13,
+      "source": "Source: National Interagency Fire Center (NIFC) annual wildland fire statistics, 2020-2025",
+      "hashtags": [
+        "wildfire",
+        "wildfires",
+        "climate",
+        "disaster",
+        "nifc",
+        "forestfire",
+        "drought",
+        "weather",
+        "environment",
+        "naturaldisaster",
+        "usa",
+        "wildfireseason",
+        "fyp",
+        "shorts",
+        "trending"
+      ],
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "series": [
+        {
+          "name": "US wildfires",
+          "color": "#ff6b35",
+          "values": [
+            10.12,
+            7.1,
+            7.6,
+            2.69,
+            8.92,
+            5.13
+          ]
+        }
+      ],
+      "music_vibe": "dark"
+    }
   }
 }
