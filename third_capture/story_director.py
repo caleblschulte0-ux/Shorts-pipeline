@@ -1088,17 +1088,36 @@ _TIME_JUMP = re.compile(
 
 
 def _time_jumps_play_out(beats: list[dict], durations: dict[str, float],
-                         rs: list[str]) -> list[dict]:
+                         rs: list[str], words: dict | None = None
+                         ) -> list[dict]:
     """Lengthen a time-jump beat to `TIME_JUMP_MIN_S` from its own source,
-    as far as the source runs; `_finish_the_sentence` then lands its new
-    end on the end of a thought."""
+    as far as the source runs, and land the new end where a thought ends:
+    the first word past the minimum that carries sentence punctuation or
+    a 0.35s pause, at most 3s further. 2026-10-30, the first run with the
+    rule: Ohnepixel's jump beat ran on to "one of the greatest us" and the
+    critic marked the cut down for ending mid-sentence."""
     out = []
     for b in beats:
         ov = b.get("context_overlay") or ""
         dur = float(durations.get(b["source_id"]) or 0.0)
         if ov and _TIME_JUMP.search(ov) and \
                 b["end"] - b["start"] < TIME_JUMP_MIN_S and dur > b["end"]:
-            end = round(min(dur, b["start"] + TIME_JUMP_MIN_S), 2)
+            floor = min(dur, b["start"] + TIME_JUMP_MIN_S)
+            end = floor
+            ws = sorted((words or {}).get(b["source_id"]) or [],
+                        key=lambda w: w["s"])
+            if any(w["s"] < floor - 0.05 and w["e"] > floor - 0.05
+                   for w in ws) or any(w["s"] >= floor for w in ws):
+                for i, w in enumerate(ws):
+                    if w["e"] < floor - 0.05:
+                        continue
+                    nxt = ws[i + 1]["s"] if i + 1 < len(ws) else dur
+                    if str(w["w"]).rstrip("\"'”’)").endswith(
+                            (".", "!", "?")) or nxt - w["e"] >= 0.35:
+                        if w["e"] <= min(dur, floor + 3.0):
+                            end = min(dur, w["e"] + 0.1)
+                        break
+            end = round(end, 2)
             rs.append(f"beat {b['source_id']} after {ov!r} plays to "
                       f"{end:.1f}s (was {b['end']:.1f}s): a time jump is "
                       "seen, not just read")
@@ -1286,7 +1305,7 @@ def validate_edl(edl: dict, durations: dict[str, float],
                           "link": link if beats else "start",
                           **({"show": show} if show else {}),
                           "effects": effects})
-        beats = _time_jumps_play_out(beats, durations, rs)
+        beats = _time_jumps_play_out(beats, durations, rs, words)
         beats = _no_replayed_seconds(beats, positions or {}, rs)
         beats = _no_repeated_lines(beats, words or {}, rs)
         beats = _finish_the_sentence(beats, words or {}, durations, rs)

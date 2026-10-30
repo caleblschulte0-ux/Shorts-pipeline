@@ -208,16 +208,21 @@ def beat_captions(idx: int, beat_secs: float, hook: str = "",
         t += secs
     if idx == 0:
         show("title", hook, HOOK_DUR)
-    show("overlay", overlay, OVERLAY_DUR)
+    if overlay:
+        # A TIME JUMP STAYS THE LINE for the rest of its beat (operator,
+        # 2026-10-29, of "11 minutes later" giving way to the hook again:
+        # "we don't need to change the title ... back ... we can keep that
+        # as 11 minutes later"), as ONE entry from the cut: shown in two
+        # pieces, the critic read it as on screen twice (2026-10-30). The
+        # hook comes back on the next beat.
+        if t < beat_secs - 0.3:
+            out.append({"kind": "overlay", "text": overlay,
+                        "at": round(t, 2), "secs": round(beat_secs - t, 2)})
+        return out
     show("text", text, 2.5)
-    # A TIME JUMP STAYS THE LINE for the rest of its beat (operator,
-    # 2026-10-29, of "11 minutes later" giving way to the hook again: "we
-    # don't need to change the title ... back ... we can keep that as 11
-    # minutes later"). The hook comes back on the next beat.
-    rest = overlay or hook
-    if rest and t < beat_secs - 0.3:
-        out.append({"kind": "overlay" if overlay else "title", "text": rest,
-                    "at": round(t, 2), "secs": round(beat_secs - t, 2)})
+    if hook and t < beat_secs - 0.3:
+        out.append({"kind": "title", "text": hook, "at": round(t, 2),
+                    "secs": round(beat_secs - t, 2)})
     return out
 
 

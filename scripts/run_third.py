@@ -1948,6 +1948,11 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
             # answer. A candidate holding a clip the refused one did not is
             # a new hypothesis and goes ahead (already_tried says so).
             _was = clip_memory.already_tried(_memory(), urls)
+            if _was and cluster.get("proven_edl"):
+                # the operator watched THIS edit and said post it; an older
+                # refusal of its footage does not outrank them (2026-10-30:
+                # xQc vs the NoPixel cops was skipped on a 10-16 refusal)
+                _was = None
             if _was:
                 print(f"[story] {who}: refused on {_was.get('d', '?')} — "
                       f"{_was.get('why', '')[:80]} — skipped", flush=True)
@@ -2188,6 +2193,9 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 except Exception as e:  # noqa: BLE001
                     print(f"::warning::[story] kept edit: {e}", flush=True)
                     edl = None
+                # approved means THE EDIT the operator watched still holds;
+                # a fresh plan from the same footage is judged like any other
+                _approved = bool(cluster.get("proven_edl")) and edl is not None
                 # ---- eligibility + structure + story EDL (§8-10)
                 edl = edl or story_director.plan_story(
                     sub, event, guidance=_story_guidance(),
@@ -2251,7 +2259,8 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                 # critic sees frames the words leave out). At 65 the read
                 # blocked all but one render, so it screens only what reads
                 # as no story at all (`story_table_read_min`).
-                _tr_n = 0 if (_audience or _mstory) else int(
+                # an approved story renders the edit the operator watched
+                _tr_n = 0 if (_audience or _mstory or _approved) else int(
                     spec.get("story_table_reads", 2))
 
                 def _read(e):
@@ -2454,9 +2463,24 @@ def _story_attempt(pkg: dict, log: dict, work: Path, out_mp4: Path,
                     # that held viewers (98.7% viewed) was the 80. A story ships
                     # at `story_min_score` or above; below it, it is repaired
                     # toward the bar, never shipped. Code may only ADD blocks.
+                    # AN APPROVED STORY IS NOT RE-LITIGATED (operator,
+                    # 2026-10-29, of three backtest passes: "yeah, whatever.
+                    # Seems like you get the basic idea"). He watched those
+                    # edits; the next morning the same critic scored the
+                    # same xQc edit 79 where it had said 82, and repairs
+                    # chasing that took Ohnepixel from 74 to 58 — the
+                    # brain never answers twice the same way. The critic
+                    # still reads it and is recorded; the operator is the
+                    # bar. Every mechanical check below still applies.
                     def _passes(rv):
+                        if _approved:
+                            return True
                         return bool(rv["publish"]) and \
                             int(rv["story_score"]) >= _floor
+                    if _approved:
+                        print(f"[story] {elbl}: the operator approved this "
+                              f"story; the critic's {review['story_score']} "
+                              "is recorded, not the bar", flush=True)
                     _scores = [review["story_score"]]
                     _render_failed = False
                     max_rev = int(spec.get("story_revisions", 2))
