@@ -4533,6 +4533,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 83,
       "duration_s": 33.7
+    },
+    "humpback-whale-recovery": {
+      "claimed_at": "2026-10-30T10:49:52.160340+00:00",
+      "title": "Humpback Whales Went From 450 To 25,000 In One Region",
+      "publish_at": "2026-10-30T11:09:52Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5779,6 +5786,14 @@
       "state": "posted",
       "slug": "jury-trial-collapse",
       "at": "2026-10-29T13:48:27.935212+00:00"
+    },
+    {
+      "claimed_at": "2026-10-30T10:49:52.160340+00:00",
+      "title": "Humpback Whales Went From 450 To 25,000 In One Region",
+      "publish_at": "2026-10-30T11:09:52Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "humpback-whale-recovery"
     }
   ]
 }
