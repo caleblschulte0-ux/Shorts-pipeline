@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "freshwater-accessible__94d3a9c8",
+  "slug": "freshwater-accessible",
+  "by": "chatgpt",
+  "written_at": "2026-10-30T12:20:00Z",
+  "title": "Just 0.007% Of Earth’s Water Sits In Rivers And Lakes",
+  "hook": "Just 0.007% of Earth’s water sits in rivers and lakes.",
+  "closing": "Accessible water is a tiny reserve, so pollution and waste hit far harder than they look.",
+  "question": "Did you expect so little?",
+  "segments": [
+    {
+      "topic": "Earth Water Fresh",
+      "say": "Only 3.5% of Earth’s water is fresh, leaving nearly everything around us too salty to drink."
+    },
+    {
+      "topic": "Earth Water Frozen",
+      "say": "Ice holds 68.7% of freshwater, locking most of that already-small supply beyond easy reach."
+    },
+    {
+      "topic": "Earth Water Accessible",
+      "say": "Rivers and lakes hold 0.007% of Earth’s water, making our usable surface supply astonishingly thin."
+    }
+  ]
+}
