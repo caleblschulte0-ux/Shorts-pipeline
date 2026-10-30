@@ -16962,6 +16962,25 @@
         "end": 23.5
       },
       "director_cut": true
+    },
+    "rejected-tawdrysquarecodcoolstorybro-jebp-6ao2y1ok0xh": {
+      "source_url": "https://www.twitch.tv/timthetatman/clip/TawdrySquareCodCoolStoryBro-JebP-6ao2y1oK0XH",
+      "streamer": "timthetatman",
+      "title": "aaaaa",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (chaotic Marvel Rivals gameplay, no clear)",
+      "ts": "2026-10-30T12:53:20.969868+00:00"
+    },
+    "clip-20261030-3": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/pokimane/clip/KnottyBadWombatJebaited-H_PeEvUWB3UlMlaW",
+      "story_key": null,
+      "streamer": "pokimane",
+      "title": "Pokimane Thanks Chat For Letting Her Cry And Says It Made Her Feel Better",
+      "kind": "twitch_clip",
+      "ts": "2026-10-30T12:55:05.294477+00:00",
+      "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
 }
