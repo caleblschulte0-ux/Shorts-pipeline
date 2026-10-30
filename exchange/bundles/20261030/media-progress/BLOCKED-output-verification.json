@@ -1,7 +1,7 @@
 {
   "schema": "shorts-production-blocker/v1",
   "production_date": "20261030",
-  "written_at": "2026-10-30T11:21:00Z",
+  "written_at": "2026-10-30T11:22:00Z",
   "status": "blocked_downstream_output_verification",
   "retryable": true,
   "bundle": {
@@ -49,7 +49,8 @@
     "Committed and validated response.json, then committed DONE separately.",
     "Observed Phase B commit b9cd1cca6f637d7b641572509793fea836106c5d; report applied 2 Explainer stories and rejected 1.",
     "Allowed a downstream consumption window and re-read all three posted logs from main.",
-    "Did not retrigger unchanged DONE because it is only a render trigger and cannot prove uploads."
+    "Did not retrigger unchanged DONE because it is only a render trigger and cannot prove uploads.",
+    "Inspected post-answer claim commit b5102830055749506654f654126993de1894e585; it reports 6 ChatGPT rewrites applied. Posted-log SHAs remained unchanged afterward."
   ],
   "mailbox": {
     "reviews": {
@@ -64,12 +65,16 @@
       "skip_reason": "September requests ask for time-sensitive 'today' facts that are expired on 2026-10-30; answering them now would fabricate freshness."
     },
     "rewrites": {
-      "open_index_entries": 130,
+      "open_index_entries": 125,
       "answered_this_run": 18,
       "unique_skipped": 1,
       "skip_reason": "lightning-deaths-collapsed-not-the-storms has a frozen-frame defect outside any intentional hold; text-only rewrite cannot repair duplicate rendered frames.",
-      "remaining_index_entries_not_processed": 111,
-      "cap_note": "Two rounds, 10 requests per round; the same unrepairable request appeared in both rounds."
+      "cap_note": "Two rounds, 10 requests per round; the same unrepairable request appeared in both rounds.",
+      "live_after_claim": {
+        "open_index_entries": 125,
+        "claim_commit": "b5102830055749506654f654126993de1894e585",
+        "claim_message": "claim: 6 ChatGPT rewrite(s) applied 2026-10-30T11:21Z"
+      }
     }
   },
   "commits": {
@@ -96,6 +101,10 @@
       "105cbb93a03dfc09f5cba152be71c5cb656c9ce6",
       "51ba987fd3a67cb4f7d8620d5c871cb6835c05d0",
       "09b8634842d34da2743cb5bc50328e6c6542f4f1"
+    ],
+    "rewrite_claims": [
+      "b61deb073f244ace8bc9935382bf2a14bbad98af",
+      "b5102830055749506654f654126993de1894e585"
     ]
   },
   "no_done_retrigger": true,
