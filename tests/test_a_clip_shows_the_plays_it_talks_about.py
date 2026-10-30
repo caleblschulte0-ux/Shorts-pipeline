@@ -55,7 +55,7 @@ class AClipWithNoCutInIsAsked(unittest.TestCase):
     def test_make_asks_and_the_ledger_says_what_was_cut_in(self):
         src = (REPO / "scripts" / "sports_samples.py").read_text()
         self.assertIn('broll(c, words, dur, meta["edit"], raw,', src)
-        self.assertIn('"cut_in", "shown")', src)
+        self.assertIn('"cut_in", "shown",', src)
 
     def test_the_author_is_told_their_own_plays_count(self):
         self.assertIn("Their OWN plays count", author.SYSTEM)
