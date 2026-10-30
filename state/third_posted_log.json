@@ -16817,13 +16817,41 @@
       "director_cut": true
     },
     "clip-20261030-1": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/lacy/clip/DifficultProudFungusJonCarnage-7lXJ1FF_qmNArlWd",
-      "story_key": null,
-      "streamer": "lacy",
+      "url": "https://youtube.com/shorts/sUMZz1tgSqA",
       "title": "Lacy Opens Her iPhone Duo On Stream And Can't Believe What's Inside",
       "kind": "twitch_clip",
-      "ts": "2026-10-30T11:33:34.235166+00:00",
+      "ts": "2026-10-30T11:33:47.835768+00:00",
+      "uploaded_at": "2026-10-30T11:33:47.835784+00:00",
+      "publish_at": "2026-10-30T17:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261030-lacy-opens-her-iphone-duo-on-stream-and-can-t-be-d2a54820",
+        "tiktok": "queued for 2026-10-30T17:00:00Z"
+      },
+      "source_url": "https://www.twitch.tv/lacy/clip/DifficultProudFungusJonCarnage-7lXJ1FF_qmNArlWd",
+      "streamer": "lacy",
+      "series": "chaos",
+      "hook": "Lacy opens the iPhone duo live \ud83d\ude33",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 2728,
+      "banger": 0.4,
+      "cut": {
+        "start": 0.5,
+        "end": 34.5
+      },
+      "director_cut": true
+    },
+    "clip-20261030-2": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/jasontheween/clip/KawaiiCleverMangoPJSugar-lzIa3llQhZuX6F0D",
+      "story_key": null,
+      "streamer": "jasontheween",
+      "title": "Jasontheween News: Chat Loses It When His Girl Walks In \ud83d\ude33",
+      "kind": "twitch_clip",
+      "ts": "2026-10-30T12:28:01.311359+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }

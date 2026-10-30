@@ -5033,7 +5033,7 @@
       "published_versions": [
         "story-abac00523ca0116b"
       ],
-      "last_updated": "2026-10-29"
+      "last_updated": "2026-10-30"
     },
     "xqc-ethan-klein-2026w44": {
       "event_id": "xqc-ethan-klein-2026w44",
@@ -5147,7 +5147,51 @@
       "published_versions": [
         "story-d58cd89e0783c54c"
       ],
-      "last_updated": "2026-10-29"
+      "last_updated": "2026-10-30"
+    },
+    "ishowspeed-apple-buys-2026w43": {
+      "event_id": "ishowspeed-apple-buys-2026w43",
+      "people": [
+        "ishowspeed"
+      ],
+      "actions": [
+        "apple",
+        "buys",
+        "crowd",
+        "ishowspe"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-30",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2908755591/1034-1274",
+        "https://www.twitch.tv/ishowspeed/clip/PiliableCovertPepperoniBloodTrail-pazjXyrTl3fSCwjT",
+        "vodmine://2908755591/1304-1544"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-30"
+    },
+    "about-japanese-2026w44": {
+      "event_id": "about-japanese-2026w44",
+      "people": [
+        ""
+      ],
+      "actions": [
+        "about",
+        "japanese",
+        "scroll",
+        "while"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-30",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2911245473/116-356",
+        "https://www.twitch.tv/yaritaiji/clip/QuaintNeighborlyDogDAESuppy-syV9Xet0TRdSpH5P",
+        "vodmine://2911245473/408-648"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-30"
     }
   }
 }
