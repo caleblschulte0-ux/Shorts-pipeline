@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "airline-pilot-shortage__6e694dae_r2",
+  "slug": "airline-pilot-shortage",
+  "by": "chatgpt",
+  "written_at": "2026-10-30T11:16:56.571Z",
+  "title": "Eurasia Needs 143,000 Pilots—More Than North America",
+  "hook": "The biggest pilot shortage needs 143,000 new hires in Eurasia.",
+  "closing": "More aircraft mean little without enough trained people to keep them moving.",
+  "question": "Would you train to become a pilot?",
+  "segments": [
+    {
+      "topic": "new pilots needed",
+      "say": "Airlines need 649,000 new pilots. That is a training-pipeline problem, not merely a hiring problem."
+    },
+    {
+      "topic": "pilots needed most",
+      "say": "Eurasia needs 143,000 new pilots. The biggest demand is not where many viewers expect."
+    },
+    {
+      "topic": "why more pilots",
+      "say": "The jet fleet is projected to reach 48,600 aircraft. Every added plane needs trained crews."
+    }
+  ]
+}
