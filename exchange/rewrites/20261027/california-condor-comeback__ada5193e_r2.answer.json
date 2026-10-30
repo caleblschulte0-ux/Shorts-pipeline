@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "california-condor-comeback__ada5193e_r2",
+  "slug": "california-condor-comeback",
+  "by": "chatgpt",
+  "written_at": "2026-10-30T11:16:56.571Z",
+  "title": "California Condors Rebounded To 500—Then Lead Poisoning Hit",
+  "hook": "California condors climbed from just 27 birds.",
+  "closing": "Recovery works, but preventable poisoning can still erase decades of progress.",
+  "question": "Should lead ammunition be restricted?",
+  "segments": [
+    {
+      "topic": "Condor Comeback Today",
+      "say": "California condors reached 500 birds. A species near extinction became a real recovery story."
+    },
+    {
+      "topic": "Slow Condor Comeback",
+      "say": "The condor population passed 300 birds. Rebuilding a species takes decades of protection."
+    },
+    {
+      "topic": "Condor Lead Poisoning",
+      "say": "Lead poisoning causes 50% of wild condor deaths. One preventable threat still endangers the comeback."
+    }
+  ]
+}
