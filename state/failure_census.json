@@ -2,132 +2,89 @@
  "n_verdicts": 20,
  "classes": {
   "other": {
-   "count": 9,
+   "count": 8,
    "stories": {
-    "airline-pilot-shortage": 2,
-    "sports_john_wall_mother_every": 1,
-    "sports_jose_mourinho_to_the_bar\u00e7a": 1,
-    "sports_kylian_mbappe_he_one_where": 3,
     "cryonics-client-count": 1,
-    "escooter-er-visits-surge": 1
+    "escooter-er-visits-surge": 1,
+    "sports_jake_bauers_ast_out_ball": 2,
+    "airline-pilot-shortage": 1,
+    "sports_patrick_kane__and_tribute": 1,
+    "private-moon-landings-fail-rate": 2
    },
    "timestamps": [
-    "2026-10-28T15:23:43+00:00",
-    "2026-10-28T23:28:52+00:00",
-    "2026-10-29T12:11:48+00:00",
-    "2026-10-29T12:22:40+00:00",
-    "2026-10-29T12:25:04+00:00",
-    "2026-10-29T12:27:41+00:00",
-    "2026-10-29T12:30:02+00:00",
     "2026-10-29T11:10:55+00:00",
-    "2026-10-29T12:09:04+00:00"
+    "2026-10-29T12:09:04+00:00",
+    "2026-10-30T11:42:01+00:00",
+    "2026-10-30T11:57:59+00:00",
+    "2026-10-30T14:31:26+00:00",
+    "2026-10-30T16:00:16+00:00",
+    "2026-10-30T15:24:38+00:00",
+    "2026-10-30T15:55:02+00:00"
    ],
    "examples": [
-    "unreadable: seg3:end: the '2042 (projected)' label is printed over the parked jet in the second row, and the '2.0x' jet is cut off at the right edge; seg2:end: the 'MOST' tag floats in a corner with n",
-    "unreadable: seg3:end: the '2042 (projected)' label is printed over the back row of jets on top of the '~2022 fleet' area, and the '2.0x' sits under a descending plane that clips into it.",
-    "unreadable: mid4 (t=26.42s): the speech caption 'KEEP THAT AS' is printed right against and partly over the broadcast scorebug (PHI 68 / WSH 74). Our line also runs into the bee sticker in mid2 to mid"
-   ],
-   "recurred_after_fix": false
-  },
-  "junk_imagery": {
-   "count": 7,
-   "stories": {
-    "airline-pilot-shortage": 2,
-    "pitch-drop-slowest-experiment": 1,
-    "sports_john_wall_mother_every": 1,
-    "sports_jose_mourinho_to_the_bar\u00e7a": 1,
-    "sports_kylian_mbappe_he_one_where": 2
-   },
-   "timestamps": [
-    "2026-10-28T15:23:43+00:00",
-    "2026-10-28T20:04:01+00:00",
-    "2026-10-28T23:28:52+00:00",
-    "2026-10-29T12:11:48+00:00",
-    "2026-10-29T12:22:40+00:00",
-    "2026-10-29T12:25:04+00:00",
-    "2026-10-29T12:30:02+00:00"
-   ],
-   "examples": [
-    "junk_imagery: payoff@-0.4: the last frame cuts to an empty dark backdrop where Data holds a blank yellow price tag that has nothing to do with pilots or planes",
-    "junk_imagery: payoff@-0.4: Data alone on an empty dark gradient holding a blank yellow price tag, which has nothing to do with pitch",
-    "junk_imagery: payoff@-0.4: the last frame cuts to an empty dark gradient with Data holding a blank yellow price tag. The tag has nothing to do with pilots or planes; it is the blank-prop fallback, not"
+    "unreadable: In seg4:start the CTA 'Would you ever sign up to be frozen?' is faded grey-on-grey and sits over the ice cubes on the floor. The fine-print subtitles in hook@0.3 ('Alcor's patients \u00b7 2023 ",
+    "unreadable: At seg2:end a tiny white 'NO HELMET' label is printed over a scooter's grey deck and a helmet. It is unreadable on a phone at arm's length.",
+    "unreadable: In hook@0.3 to mid0 our line 'Bauers gives Murphy the last out ball' sits right under the source's own blue-and-white banner 'BAUERS GIVES MURPHY THE LAST OUT BALL'. The same sentence is s"
    ],
    "recurred_after_fix": false
   },
   "decorative_mascot": {
-   "count": 6,
+   "count": 4,
    "stories": {
-    "airline-pilot-shortage": 2,
-    "pitch-drop-slowest-experiment": 1,
-    "lottery-odds-vs-real-life": 1,
     "escooter-er-visits-surge": 1,
-    "jury-trial-collapse": 1
-   },
-   "timestamps": [
-    "2026-10-28T15:23:43+00:00",
-    "2026-10-28T20:04:01+00:00",
-    "2026-10-28T23:28:52+00:00",
-    "2026-10-29T01:15:31+00:00",
-    "2026-10-29T12:09:04+00:00",
-    "2026-10-29T13:10:56+00:00"
-   ],
-   "examples": [
-    "decorative_mascot: hook@0.3 through seg1:end: Data stands by the CREW door and waves the whole time while the pilots pile up beside him without him; seg2:mid/end: he stands beside the globe holding a ",
-    "decorative_mascot: seg0:end through seg1:end: Data stands beside the dome holding a red valve wheel up to his face while the drops fall without him; in seg2:mid/end he only waves at the hourglass",
-    "decorative_mascot: hook@0.3 to seg1:end: Data stands by the CREW door in the same wave pose for about 9s while the pilot queue builds around him without him. seg2:start to seg2:end: he only scratches "
-   ],
-   "recurred_after_fix": false
-  },
-  "empty_void": {
-   "count": 5,
-   "stories": {
-    "airline-pilot-shortage": 2,
+    "jury-trial-collapse": 1,
     "pitch-drop-slowest-experiment": 1,
-    "sports_yaxel_lendeborg_and_melo_for": 2
+    "airline-pilot-shortage": 1
    },
    "timestamps": [
-    "2026-10-28T15:23:43+00:00",
-    "2026-10-28T20:04:01+00:00",
-    "2026-10-28T23:28:52+00:00",
-    "2026-10-29T12:18:01+00:00",
-    "2026-10-29T12:20:26+00:00"
+    "2026-10-29T12:09:04+00:00",
+    "2026-10-29T13:10:56+00:00",
+    "2026-10-30T14:11:01+00:00",
+    "2026-10-30T14:31:26+00:00"
    ],
    "examples": [
-    "empty_void: payoff@-0.4: the final frame is almost entirely dark gradient, with only a small Data in the bottom third",
-    "empty_void: payoff@-0.4: the last frame is about 85% dark gradient with only a small Data at the bottom; the whole scene drops out",
-    "empty_void: payoff@-0.4: the final frame is an almost entirely dark navy void with one small Data figure at the bottom. The airport world is gone."
+    "decorative_mascot: Data mostly stands and waves beside things that move on their own: he waves next to the pile while it grows (seg0:end, seg1:start), stands among the scooters and does nothing with t",
+    "decorative_mascot: Data holds the same pose at the jury gate from hook@0.3 through seg1:end (about 9s), while jurors vanish from the box and only one walks out past him (seg1:mid). In the plea scene h",
+    "decorative_mascot: From hook@0.3 through seg1:end (about 8.5s) Data stands at the left edge holding a magnifier in the same pose. In seg2:start to seg2:end he gives a thumbs-up and waves beside the ca"
    ],
    "recurred_after_fix": false
   },
   "dead_air": {
-   "count": 3,
+   "count": 1,
    "stories": {
-    "airline-pilot-shortage": 1,
-    "sports_jose_mourinho_to_the_bar\u00e7a": 1,
     "cryonics-client-count": 1
    },
    "timestamps": [
-    "2026-10-28T15:23:43+00:00",
-    "2026-10-29T12:22:40+00:00",
     "2026-10-29T11:10:55+00:00"
    ],
    "examples": [
-    "dead_air: seg1:start/mid/end (5.4-9.7s) reuse the hook's exact airport shot: the same 649,000 headline, Data waving at the door, the same crowd of pilots. Two beats look identical, and nothing new is ",
-    "dead_air: mid0 through payoff@-0.4: the same static head-and-shoulders shot with the same unchanging quote card for about 20s. Only the ticker scrolls, and there is no reaction, cutaway or shot of the",
     "dead_air: In seg3:start and seg3:mid the block and Data look the same (no cut has happened). Then seg3:end, seg4:start, payoff@-1.8 and payoff@-0.4 all show the same finished cube and the same waving "
+   ],
+   "recurred_after_fix": false
+  },
+  "empty_void": {
+   "count": 1,
+   "stories": {
+    "sports_jake_bauers_ast_out_ball": 1
+   },
+   "timestamps": [
+    "2026-10-30T11:56:33+00:00"
+   ],
+   "examples": [
+    "empty_void: From mid2 to the payoff, the 16:9 broadcast fills only the middle third (mid3, mid4). The top and bottom thirds are blurred copies of the same clip, and the bottom blur shows a smeared, un"
    ],
    "recurred_after_fix": false
   }
  },
  "weak_dims": {
   "hook": {
-   "median": 2,
+   "median": 3,
    "min": 1,
    "max": 3
   },
   "data_demo": {
    "median": 3,
-   "min": 1,
+   "min": 3,
    "max": 4
   },
   "mascot": {
@@ -147,35 +104,35 @@
   },
   "payoff": {
    "median": 1,
-   "min": 0,
+   "min": 1,
    "max": 2
   },
   "temporal_craft": {
    "median": 3,
-   "min": 2,
+   "min": 3,
    "max": 3
   }
  },
  "scores": [
-  52,
-  61,
-  57,
-  61,
-  57,
-  75,
-  66,
-  62,
-  79,
-  62,
-  57,
-  57,
-  61,
-  66,
-  53,
-  87,
   70,
   65,
   74,
+  83,
+  66,
+  79,
+  70,
+  70,
+  71,
+  79,
+  70,
+  79,
+  66,
+  61,
+  75,
+  70,
+  87,
+  70,
+  70,
   83
  ]
 }
