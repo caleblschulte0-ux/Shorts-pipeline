@@ -4643,6 +4643,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 83,
       "duration_s": 31.8
+    },
+    "dog-breed-popularity-flip": {
+      "claimed_at": "2026-10-31T10:32:54.172380+00:00",
+      "title": "America's Top Dog Has a 4.5-Year Life Expectancy",
+      "publish_at": "2026-10-31T10:56:48Z",
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5925,6 +5932,14 @@
       "state": "posted",
       "slug": "private-moon-landings-fail-rate",
       "at": "2026-10-30T16:26:48.497096+00:00"
+    },
+    {
+      "claimed_at": "2026-10-31T10:32:54.172380+00:00",
+      "title": "America's Top Dog Has a 4.5-Year Life Expectancy",
+      "publish_at": "2026-10-31T10:56:48Z",
+      "url": null,
+      "state": "uploading",
+      "slug": "dog-breed-popularity-flip"
     }
   ]
 }
