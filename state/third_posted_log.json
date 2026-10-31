@@ -17195,13 +17195,59 @@
       "ts": "2026-10-31T12:24:38.279702+00:00"
     },
     "clip-20261031-4": {
-      "pending": true,
-      "source_url": "https://www.twitch.tv/caseoh_/clip/LovelyElegantArugulaWoofer-jnyFXQgoHL2b-o1R",
-      "story_key": null,
-      "streamer": "caseoh_",
+      "url": "https://youtube.com/shorts/UJEW8MF9dJY",
       "title": "Caseoh Backrooms Dance Party Goes Absolutely Wild \ud83d\udd7a",
       "kind": "twitch_clip",
-      "ts": "2026-10-31T12:28:54.440091+00:00",
+      "ts": "2026-10-31T12:29:05.460655+00:00",
+      "uploaded_at": "2026-10-31T12:29:05.460667+00:00",
+      "publish_at": "2026-10-31T21:30:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261031-caseoh-backrooms-dance-party-goes-absolutely-wil-c93601ac",
+        "tiktok": "queued for 2026-10-31T21:30:00Z"
+      },
+      "source_url": "https://www.twitch.tv/caseoh_/clip/LovelyElegantArugulaWoofer-jnyFXQgoHL2b-o1R",
+      "streamer": "caseoh_",
+      "series": "chaos",
+      "hook": "Caseoh_ backrooms turns into a dance party \ud83e\udea9",
+      "experiment_arm": "clip",
+      "title_arm": "search",
+      "structure": "clip",
+      "actual_structure": "clip",
+      "self_healed": false,
+      "source_views": 3230,
+      "banger": 0.5,
+      "cut": {
+        "start": 0.0,
+        "end": 20.0
+      },
+      "director_cut": true
+    },
+    "rejected-dirtymistyduckasianglow-kt7omukbhud3jnkd": {
+      "source_url": "https://www.twitch.tv/valkyrae/clip/DirtyMistyDuckAsianGlow-kT7omukbhuD3JnKd",
+      "streamer": "valkyrae",
+      "title": "AAAA",
+      "qa_rejected": true,
+      "rejected_by": "content gate",
+      "rejected_why": "0.30 < 0.35 (Horror game, static frames, unclear even)",
+      "ts": "2026-10-31T12:29:55.616848+00:00"
+    },
+    "rejected-mistyhelplessmanateepastathat-4bwdyu3znig0fhtr": {
+      "source_url": "https://www.twitch.tv/plaqueboymax/clip/MistyHelplessManateePastaThat-4BWDYu3ZNIG0FHTR",
+      "streamer": "plaqueboymax",
+      "title": "tmnt",
+      "qa_rejected": true,
+      "rejected_by": "director",
+      "rejected_why": "clip incomplete (no setup / payoff cut off)",
+      "ts": "2026-10-31T12:31:24.972595+00:00"
+    },
+    "clip-20261031-5": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/lacy/clip/RudeImpossiblePuffinBCouch-iHELurIb993agvM_",
+      "story_key": null,
+      "streamer": "lacy",
+      "title": "Lacy Cameraman Quits His Job In The Middle Of Japan Mid-Stream",
+      "kind": "twitch_clip",
+      "ts": "2026-10-31T12:34:42.013321+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }
