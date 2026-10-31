@@ -17149,13 +17149,59 @@
       "director_cut": true
     },
     "clip-20261031-3": {
-      "pending": true,
-      "source_url": "",
-      "story_key": "story-0852b947ea5d8f27",
-      "streamer": "xqc",
+      "url": "https://youtube.com/shorts/S0FdKRJMsxw",
       "title": "Xqc goes all in on a casino slot, then blackjack hits",
       "kind": "story",
-      "ts": "2026-10-31T11:44:01.446049+00:00",
+      "ts": "2026-10-31T11:44:08.463456+00:00",
+      "uploaded_at": "2026-10-31T11:44:08.463472+00:00",
+      "publish_at": "2026-10-31T20:00:00Z",
+      "crossposts": {
+        "github_release": "https://github.com/caleblschulte0-ux/Shorts-pipeline/releases/tag/video-third-20261031-xqc-goes-all-in-on-a-casino-slot-then-blackjack--be4573b1",
+        "tiktok": "queued for 2026-10-31T20:00:00Z"
+      },
+      "story_key": "story-0852b947ea5d8f27",
+      "member_keys": [
+        "https://www.twitch.tv/xqc/clip/FineSlipperyPeafowlRlyTho-1EBM2czztq5VtpV0",
+        "https://www.twitch.tv/xqc/clip/FineSlipperyPeafowlRlyTho-1EBM2czztq5VtpV0",
+        "https://www.twitch.tv/xqc/clip/FlirtyObedientPuppyPeanutButterJellyTime-6dtAUgSeX4gVy1x-",
+        "https://www.twitch.tv/xqc/clip/FlirtyObedientPuppyPeanutButterJellyTime-6dtAUgSeX4gVy1x-"
+      ],
+      "streamer": "xqc",
+      "who": [
+        "xqc"
+      ],
+      "series": "story",
+      "experiment_arm": "story",
+      "structure": "story",
+      "actual_structure": "story",
+      "n_beats": 4,
+      "story_structure": "chronological",
+      "duration_s": 38.1,
+      "narrative_score": 79,
+      "narrative_summary": "xQc goes all in on a GTA casino slot machine and rages when it doesn't pay, then an hour later wins big at blackjack and celebrates.",
+      "revision_count": 0,
+      "used_vod_expansion": true,
+      "used_narration": false,
+      "context_overlay_count": 2,
+      "replay_count": 0
+    },
+    "rejected-artsycoweringowlmau5-gjfjdpliuj5520vj": {
+      "source_url": "https://www.twitch.tv/ishowspeed/clip/ArtsyCoweringOwlMau5-gJfJDpLIuj5520vj",
+      "streamer": "ishowspeed",
+      "title": "Ishowspeed Tells Him He Won $250,000 With His Eyes Closed... Then Admits It Was A Prank",
+      "qa_rejected": true,
+      "rejected_by": "qa",
+      "rejected_why": "vision: The sharp picture is a thin letterboxed strip, about a third of the canvas height, with the rest blurred padding. It is ; vision: The people are tiny and distant in many frames (7.2s, 12.0s, 21.6s, 50.5s, 55.3s). They are hard to read on a phone and ; vision: The stream's own overlays, such ",
+      "ts": "2026-10-31T12:24:38.279702+00:00"
+    },
+    "clip-20261031-4": {
+      "pending": true,
+      "source_url": "https://www.twitch.tv/caseoh_/clip/LovelyElegantArugulaWoofer-jnyFXQgoHL2b-o1R",
+      "story_key": null,
+      "streamer": "caseoh_",
+      "title": "Caseoh Backrooms Dance Party Goes Absolutely Wild \ud83d\udd7a",
+      "kind": "twitch_clip",
+      "ts": "2026-10-31T12:28:54.440091+00:00",
       "note": "upload started; entry is upgraded on success and left pending if the upload died mid-flight"
     }
   }

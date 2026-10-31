@@ -5147,7 +5147,7 @@
       "published_versions": [
         "story-d58cd89e0783c54c"
       ],
-      "last_updated": "2026-10-30"
+      "last_updated": "2026-10-31"
     },
     "ishowspeed-apple-buys-2026w43": {
       "event_id": "ishowspeed-apple-buys-2026w43",
@@ -5214,6 +5214,72 @@
       "published_versions": [
         "story-0852b947ea5d8f27"
       ],
+      "last_updated": "2026-10-31"
+    },
+    "ishowspeed-damn-gard-2026w40": {
+      "event_id": "ishowspeed-damn-gard-2026w40",
+      "people": [
+        "ishowspeed"
+      ],
+      "actions": [
+        "damn",
+        "gard",
+        "pack",
+        "walkout"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-31",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2875841671/5035-5275",
+        "https://www.twitch.tv/ishowspeed/clip/AssiduousRoughWallabyStinkyCheese-xrY_l9jwzOVrO0Tz",
+        "vodmine://2875841671/5295-5535"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-31"
+    },
+    "dangerlyoha-about-bottle-2026w44": {
+      "event_id": "dangerlyoha-about-bottle-2026w44",
+      "people": [
+        "dangerlyoha"
+      ],
+      "actions": [
+        "about",
+        "bottle",
+        "ivan",
+        "night"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-31",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2913052385/13689-13929",
+        "https://www.twitch.tv/dangerlyoha/clip/AuspiciousFunDelicataPunchTrees-sXEw5fPzCaY1uLEu",
+        "vodmine://2913052385/13939-14179"
+      ],
+      "published_versions": [],
+      "last_updated": "2026-10-31"
+    },
+    "bankara-camera-2026w44": {
+      "event_id": "bankara-camera-2026w44",
+      "people": [
+        ""
+      ],
+      "actions": [
+        "bankara",
+        "camera",
+        "entertain",
+        "japanese"
+      ],
+      "event_type": "storyline",
+      "first_seen": "2026-10-31",
+      "known_claims": [],
+      "candidate_sources": [
+        "vodmine://2911245473/116-356",
+        "https://www.twitch.tv/yaritaiji/clip/QuaintNeighborlyDogDAESuppy-syV9Xet0TRdSpH5P",
+        "vodmine://2911245473/408-648"
+      ],
+      "published_versions": [],
       "last_updated": "2026-10-31"
     }
   }
