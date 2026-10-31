@@ -4668,6 +4668,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 87,
       "duration_s": 28.1
+    },
+    "ai-datacenter-water": {
+      "claimed_at": "2026-10-31T14:12:47.442075+00:00",
+      "title": "One AI Conversation Can Use 500 Milliliters Of Water",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5959,6 +5966,14 @@
       "state": "posted",
       "slug": "dog-breed-popularity-flip",
       "at": "2026-10-31T10:33:06.912871+00:00"
+    },
+    {
+      "claimed_at": "2026-10-31T14:12:47.442075+00:00",
+      "title": "One AI Conversation Can Use 500 Milliliters Of Water",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "ai-datacenter-water"
     }
   ]
 }
