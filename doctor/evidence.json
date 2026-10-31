@@ -1,23 +1,28 @@
 {
   "schema": "shorts-doctor-evidence/v1",
-  "date": "20261030",
-  "judged_date": "20261029",
+  "date": "20261031",
+  "judged_date": "20261030",
   "alarm": {
-    "date": "20261029",
+    "date": "20261030",
     "ok": false,
     "alarms": [
       {
+        "code": "short_slate_third",
+        "severity": "warning",
+        "detail": "third: 5/6 posted for 20261030.",
+        "fix": "Some slots failed or were skipped. The per-video reason is in that day's run log."
+      },
+      {
         "code": "doctor_reviewer_silent",
         "severity": "critical",
-        "detail": "No doctor findings filed since 20260908 (51 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
+        "detail": "No doctor findings filed since 20260908 (52 days). The evidence pack and triage are still running \u2014 the REVIEWER stopped.",
         "fix": "An empty backlog looks identical whether every finding was ruled or nobody filed one. Check the doctor scheduled task in the ChatGPT app; it writes doctor/reports/<date>.json. The repo side is waiting and needs no changes."
       }
     ],
     "notes": [
       "chatgpt finalizer: artifact present",
       "explainer: 4/4 posted",
-      "third: 8/6 posted",
-      "trending: 3/3 posted"
+      "trending: 5/5 posted"
     ],
     "deferred": false
   },
@@ -203,1113 +208,6 @@
     }
   ],
   "showrunner_recent": [
-    {
-      "ts": "2026-10-25T11:49:25+00:00",
-      "slug": "sports_christian_yelich_vited_98_and",
-      "score": 87,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A warm, real moment that lands, but our hook line sits on top of the footage's own 'Alecia Yelich' name graphic at the payoff.",
-      "auto_fails": [
-        "unreadable: In mid5 and payoff@-0.4, our line 'Yelich invites two WWII vets to Game 1' is printed on top of the footage's own name graphic 'ALECIA YELICH / Mother of Christian Yelich'. Our line covers the 'Mother of Christian Yelich' subtitle, and both texts collide at the top of the frame."
-      ],
-      "problems": [
-        "mid5/payoff: our line collides with the source's 'ALECIA YELICH / Mother of Christian Yelich' graphic, covering the subtitle",
-        "hook: our line sits on Yelich's face area and above the source's own burned-in captions, so there are two text layers in the opening",
-        "mid4: the anthem shot drifts away from the veterans for a beat"
-      ],
-      "fixes": [
-        "Put our line in the bottom third, or detect burned-in graphics and move our line out of their band for those seconds",
-        "Keep our line clear of the source's caption band and name graphics throughout",
-        "Trim or shorten the anthem cut so the edit stays on the veterans"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 71
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid5",
-        "index": 5,
-        "failure_class": "text_collision",
-        "visible_evidence": "In mid5 (t=21.8s) through payoff@-0.4, our white hook line sits directly over the source's lower-third name graphic 'ALECIA YELICH / Mother of Christian Yelich', so the subtitle is covered and neither line reads cleanly on a phone.",
-        "root_cause": "Our line is pinned high in the frame for the whole clip and never checks for the footage's own burned-in graphics, which this source draws in the same top band in its last segment.",
-        "repair_goal": "Move our line to the bottom third (as the repost style calls for), or detect the burned-in name graphic and move or briefly hide our line while that graphic is on screen, so 'Mother of Christian Yelich' reads clearly at the payoff."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.019,
-        "effective_fps": 23.5,
-        "max_dup_run": 3,
-        "measured": true,
-        "frozen_ratio": 0.004,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 19.75,
-        "duration_s": 23.79
-      },
-      "fingerprint": "?|unreadable|text_collision"
-    },
-    {
-      "ts": "2026-10-25T11:51:34+00:00",
-      "slug": "sports_mario_ferraro_e_up_on_d_we",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 2
-      },
-      "one_line": "This is a genuine, likeable locker-room blooper that lands with the redo and the teammates clapping, but the hook opens on the wrong caption instead of the slip.",
-      "auto_fails": [],
-      "problems": [
-        "The first 2s show the footage caption 'LET'S GO BOYS ALL TOGETHER TONIGHT', not the botch the line promises (hook@0.3 to hook@2.2).",
-        "The 'On D we got myself' slip is not visibly captioned or emphasised in the sampled frames, so the joke depends on audio.",
-        "Our line sits right under the footage's own burned-in quote captions (hook@0.3 to mid0), which makes the bottom third crowded."
-      ],
-      "fixes": [
-        "Cold-open on the slip line with a punch-in and a sound hit on 'What the f-ck?'.",
-        "Move our line clear of the source's burned-in captions, or leave a wider gap between them.",
-        "Trim the setup so 'So he ran it back' arrives sooner and the clapping payoff gets a beat to breathe."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 81
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "buried_moment",
-        "visible_evidence": "From hook@0.3 to hook@2.2 the footage's own caption reads 'LET'S GO BOYS ALL TOGETHER TONIGHT...', which is a later line, while our text promises a botch. The 'On D we got myself' slip itself never shows up in any sampled frame. The second half (mid2 onward) is the redo.",
-        "root_cause": "The cut opens on a sign-off caption rather than on the slip. The botch happens somewhere around 3-10s without a caption or emphasis, so a stranger has to infer it.",
-        "repair_goal": "Open on the 'On D we got myself... What the f-ck?' line with its caption and put a punch-in and a sound hit on his reaction. Then cut to 'So he ran it back' and the teammates clapping."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.099,
-        "effective_fps": 21.6,
-        "max_dup_run": 4,
-        "measured": true,
-        "frozen_ratio": 0.094,
-        "frozen_fps": 21.7,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.071,
-        "judder_fps": 22.3,
-        "held_s": 0.0,
-        "max_dup_at_s": 5.25,
-        "duration_s": 27.04
-      },
-      "fingerprint": "?|-|buried_moment"
-    },
-    {
-      "ts": "2026-10-25T11:54:59+00:00",
-      "slug": "sports_charles_barkley_g_this_close",
-      "score": 53,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 1,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 0,
-        "temporal_craft": 3
-      },
-      "one_line": "The Barkley/Shaq moment is over by about 10s; the remaining 24s are unrelated Giannis practice and a sponsor bumper, so the clip never lands its joke.",
-      "auto_fails": [
-        "junk_imagery: mid2 and mid3 cut to Heat-arena practice footage (two balls over a rim, then a Giannis Antetokounmpo stat lower-third) that has nothing to do with Barkley and Shaq; mid4 to payoff@-0.4 is just the ESPN Tip-Off bumper",
-        "dead_air: mid4 (t=26.2s) through payoff@-0.4 (t=33.7s) is about 7s of the static Tip-Off sponsor bumper with no host on screen",
-        "unreadable: mid3: our line 'Barkley jokes about standing near Shaq' sits on top of the TV's 'GIANNIS ANTETOKOUNMPO 27.6 9.8 5.4' graphic; mid4: the caption 'WANT TO.' collides with 'PRESENTED BY Lilly' in the bumper"
-      ],
-      "problems": [
-        "The Kash Patel punchline is never visible or captioned in the sampled frames, so a stranger can't tell what the joke is",
-        "mid2 and mid3 are off-topic Giannis/Heat practice footage under a Barkley line",
-        "mid4 to the end is a static ESPN Tip-Off bumper, which reads as dead air and ends on the sponsor card",
-        "Our line overlaps the broadcast's Giannis stat graphic in mid3"
-      ],
-      "fixes": [
-        "Trim the source to the studio exchange (about 0-12s) and end on the shared laugh at mid1",
-        "Make sure the 'Kash Patel... that's dangerous' line is in the cut and captioned",
-        "Never let a source run into the show's next segment or its bumpers; cut at the first scene change"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.02,
-        "sampled": 102
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "dead_air",
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid3",
-        "index": 3,
-        "failure_class": "junk_imagery",
-        "visible_evidence": "From mid2 (t=14.3s) to the end the cut leaves the studio for Giannis practice footage with its own stat graphic under our line, then sits on the ESPN Tip-Off bumper. The Kash Patel punchline and Shaq's comeback never appear in any sampled frame.",
-        "root_cause": "The source clip was cut without trimming. It runs past the studio moment into the show's next segment and its intro bumper, so the clip goes 34s while the moment ends near 10s.",
-        "repair_goal": "Trim to the studio exchange only, about 0-12s: Barkley's 'should we be standing this close', the Kash Patel line, and Shaq and Barkley laughing at mid1. End on that laugh, and drop all the Giannis and bumper footage."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.001,
-        "effective_fps": 24.0,
-        "max_dup_run": 2,
-        "measured": true,
-        "frozen_ratio": 0.001,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 29.29,
-        "duration_s": 34.08
-      },
-      "fingerprint": "?|dead_air+junk_imagery+unreadable|junk_imagery"
-    },
-    {
-      "ts": "2026-10-25T11:57:27+00:00",
-      "slug": "sports_kenneth_walker_o_dealt_with",
-      "score": 61,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "This is the right person on the right topic, but it is 37 seconds of one static presser shot with no edit, no stake on screen and an ending cut mid-sentence.",
-      "auto_fails": [],
-      "problems": [
-        "The hook is a calm talking head saying 'Hurts? Yeah,', with nothing in the first two seconds to stop a scroll (hook@0.3 to hook@2.2).",
-        "Walker's own pulmonary embolism, the whole reason this matters, is never shown or said on screen.",
-        "There are no punch-ins, zooms or sound hits: one framing from hook@0.3 to payoff@-0.4.",
-        "The ending cuts off mid-sentence on 'WE SHOULD TAKE' (payoff@-0.4), so there is no landed moment.",
-        "At about 37s it runs long for one rambling answer ('IDEA OF WAYS', 'THINGS NECESSARY THAT')."
-      ],
-      "fixes": [
-        "Start on his strongest emotional line with a punch-in and a sound hit.",
-        "Add a second on-screen line at the turn: 'He had clots in BOTH lungs in high school'.",
-        "End on a completed thought such as 'stay positive', and cut out the meandering middle.",
-        "Add one or two punch-ins on emotional words so the static shot has motion."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 113
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook_and_no_payoff",
-        "visible_evidence": "hook@0.3 to hook@2.2 is a locked-off medium shot of Walker at the podium saying 'HURTS? ... YEAH,'. The same framing runs unchanged to payoff@-0.4, which cuts off mid-sentence on 'WE SHOULD TAKE'.",
-        "root_cause": "This is 37s of one unedited presser answer. There is no punch-in, sound hit or second line, and the cut never shows the stake (his own clots in both lungs) or a finished takeaway. The end point lands mid-thought.",
-        "repair_goal": "Open on his most emotional line with a punch-in. Add a second line at the turn naming his own high-school blood clots in both lungs. End on a completed sentence (e.g. 'stay positive') instead of cutting mid-phrase. Trim to about 20-25s."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.562,
-        "effective_fps": 10.5,
-        "max_dup_run": 32,
-        "measured": true,
-        "frozen_ratio": 0.189,
-        "frozen_fps": 19.5,
-        "max_frozen_run": 11,
-        "judder_ratio": 0.017,
-        "judder_fps": 23.6,
-        "held_s": 16.12,
-        "max_dup_at_s": 19.92,
-        "duration_s": 37.58
-      },
-      "fingerprint": "?|-|weak_hook_and_no_payoff"
-    },
-    {
-      "ts": "2026-10-25T12:00:18+00:00",
-      "slug": "sports_kenneth_walker_o_dealt_with",
-      "score": 61,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Real and relevant press-conference footage, but it is one static talking-head shot that starts mid-answer and ends mid-sentence ('WE SHOULD TAKE') without landing the 'I'll be praying' payoff.",
-      "auto_fails": [],
-      "problems": [
-        "The hook (hook@0.3-2.2) starts mid-sentence on a static podium shot, with nothing to stop a scroll",
-        "The whole clip is one camera angle with only a slight zoom at mid4",
-        "The title promises 'I'll be praying', and no sampled frame shows that line landing",
-        "The final frame payoff@-0.4 cuts off mid-sentence on 'WE SHOULD TAKE'"
-      ],
-      "fixes": [
-        "Cold-open on his most personal line about having blood clots himself, or on the 'praying' line",
-        "Add a punch-in and a sound hit on the emotional line",
-        "Trim so the clip ends on a complete sentence that delivers the message to Hurts",
-        "Cut dead lead-in words so the clip runs tighter, under about 20s"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 87
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook_static_talking_head",
-        "visible_evidence": "hook@0.3-2.2 is a static medium shot of Walker at a podium mid-sentence ('OF WAYS TO', 'ENCOURAGE HIM OR'), with no reaction, punch-in or emotional beat; the whole clip is one unchanging angle through payoff@-0.4, which ends on 'WE SHOULD TAKE'",
-        "root_cause": "The cut opens in the middle of his answer instead of on the strongest line, and it never reaches the 'I'll be praying' payoff the title promises before the clip ends",
-        "repair_goal": "Open on his most emotional line (the shared blood-clot experience or 'I'll be praying'), add a punch-in on that line, and trim so the clip ends on a complete sentence that lands the message to Hurts"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.457,
-        "effective_fps": 13.0,
-        "max_dup_run": 32,
-        "measured": true,
-        "frozen_ratio": 0.101,
-        "frozen_fps": 21.6,
-        "max_frozen_run": 8,
-        "judder_ratio": 0.014,
-        "judder_fps": 23.7,
-        "held_s": 7.88,
-        "max_dup_at_s": 11.25,
-        "duration_s": 28.92
-      },
-      "fingerprint": "?|-|weak_hook_static_talking_head"
-    },
-    {
-      "ts": "2026-10-25T12:03:31+00:00",
-      "slug": "sports_kenneth_walker_o_dealt_with",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Real, correctly attributed footage, but it's one static podium shot with no on-screen context about Walker's own blood clots, so the moment barely lands for a stranger.",
-      "auto_fails": [],
-      "problems": [
-        "Walker's own pulmonary embolism, the whole point, never appears on screen.",
-        "One locked-off camera angle for 20s, with no punch-ins or moves at the key line.",
-        "The clip ends on the trailing word 'RIGHT.' with no clear landing.",
-        "Blurred letterbox bands waste about a quarter of the frame."
-      ],
-      "fixes": [
-        "Add a second on-screen line stating Walker had blood clots in both lungs in high school.",
-        "Punch in on 'just stay positive' as the emotional beat.",
-        "Trim so the strongest sentence opens the clip and the cut ends on a complete thought.",
-        "Scale the footage to fill more of the vertical frame."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 61
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "missing_context",
-        "visible_evidence": "hook@0.3 to hook@2.2 show one locked-off podium shot with 'HONESTLY,' and then 'JUST STAY POSITIVE,'. Nothing tells a stranger that Walker survived a pulmonary embolism himself, which is the only reason his advice matters. The clip ends at payoff@-0.4 on 'RIGHT.' with no turn or reaction.",
-        "root_cause": "A 20s single-angle press-conference excerpt with no visual moves. The payoff context, that Walker had blood clots in both lungs, appears only in the Reddit title and never on screen.",
-        "repair_goal": "Add a second line early, such as 'Walker had blood clots in BOTH lungs in high school'. Punch in on 'just stay positive' and cut the opening so the strongest line lands in the first second. End on a definite beat instead of a trailing word."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.43,
-        "effective_fps": 13.7,
-        "max_dup_run": 29,
-        "measured": true,
-        "frozen_ratio": 0.126,
-        "frozen_fps": 21.0,
-        "max_frozen_run": 4,
-        "judder_ratio": 0.012,
-        "judder_fps": 23.7,
-        "held_s": 4.83,
-        "max_dup_at_s": 7.08,
-        "duration_s": 20.29
-      },
-      "fingerprint": "?|-|missing_context"
-    },
-    {
-      "ts": "2026-10-25T12:05:57+00:00",
-      "slug": "sports_chris_olave_as_a_message",
-      "score": 61,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "This is the right person saying the right thing, but it is 33s of one static presser shot that never shows the Guardian Cap and buries the quotable line, so a scrolling stranger has no reason to stay.",
-      "auto_fails": [],
-      "problems": [
-        "The hook (0-2.2s) is Olave mid-sentence on a static presser shot. Nothing happens in the first two seconds to stop a scroll.",
-        "The Guardian Cap, which the line and title are about, is never shown. A viewer who doesn't know what it is gets no picture of it.",
-        "The 'I put it on for my kids' quote from the title is not clearly placed as the payoff. The last frames read 'TRY TO PROTECT' and 'THE FUTURE.', which is soft.",
-        "A single locked-off angle with no zooms or punch-ins for 33s, against a format that calls for zooms and sound hits on the reaction."
-      ],
-      "fixes": [
-        "Cold-open on the 'I put it on for my kids, to protect my brain and my future' line, then let the context play.",
-        "Cut in 2-3s of Olave wearing the Guardian Cap in a game or practice when he mentions it.",
-        "Add punch-in zooms on the key phrases ('inspiration', 'protect'), and trim the runtime to the strongest 15-20s of the answer."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 101
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "hook",
-        "index": 0,
-        "failure_class": "weak_hook_static_talking_head",
-        "visible_evidence": "hook@0.3 to hook@2.2: one locked-off medium shot of Olave sitting silently at a podium, with captions 'TO YOU TO' and 'MAYBE BE AN'. The Guardian Cap is never shown, and the clip opens mid-thought.",
-        "root_cause": "The cut starts at the beginning of the answer instead of at the quotable line ('I put it on for my kids, to protect my brain'). It is also 33s of one static camera angle with no cutaway to the cap the line promises.",
-        "repair_goal": "Open on the 'I put it on for my kids' line, or on a punch-in at that line. Cut in a few seconds of Olave wearing the Guardian Cap on the field, and trim the answer to its strongest 15-20s."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.577,
-        "effective_fps": 10.2,
-        "max_dup_run": 42,
-        "measured": true,
-        "frozen_ratio": 0.179,
-        "frozen_fps": 19.7,
-        "max_frozen_run": 8,
-        "judder_ratio": 0.002,
-        "judder_fps": 23.9,
-        "held_s": 15.96,
-        "max_dup_at_s": 14.33,
-        "duration_s": 33.79
-      },
-      "fingerprint": "?|-|weak_hook_static_talking_head"
-    },
-    {
-      "ts": "2026-10-25T12:09:23+00:00",
-      "slug": "sports_chris_olave_as_a_message",
-      "score": 57,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 1,
-        "data_demo": 2,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A real, sympathetic quote, buried in a static presser that crops Olave at the frame edge, with a restreamed NBC segment in the middle and colliding captions.",
-      "auto_fails": [
-        "junk_imagery: mid1 is an NBC News REPORTS segment, chyron, network bug and all, letterboxed inside our frame. It is a video playing inside a video, and the Commanders players in it are not Olave.",
-        "unreadable: In mid3 two word captions are printed over each other ('THE YOUBUT I JUSTRATION.'). In mid1 the caption 'AND PUT IT' sits on top of the NBC chyron 'NFL APPROVES ... SAFETY HELMETS'."
-      ],
-      "problems": [
-        "Hook: the first two seconds are a static presser with the filler captions 'INSPIRATION,' and 'THAT'S JUST THE'. Nothing makes a stranger stay.",
-        "Olave is framed at the far right edge with half his face cut off (hook@0.3 to payoff@-0.4).",
-        "mid1 is a restreamed NBC News segment with its chyron and bug.",
-        "Captions overlap each other at mid3 and the TV chyron at mid1.",
-        "We never see Olave wearing the Guardian Cap, which is the object the whole line is about.",
-        "The payoff ('protect my brain in...') is still mid-sentence at payoff@-0.4."
-      ],
-      "fixes": [
-        "Open on footage of Olave on the field in the Guardian Cap, with a punch-in on his quote 'for my kids'.",
-        "Reframe the presser so his face is centred.",
-        "Drop or clean the NBC insert, and keep word captions off any baked-in graphics.",
-        "Fix the caption timing so two lines never render on top of each other.",
-        "End on the full 'for my kids, to protect my brain and my future' line, held long enough to read."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 77
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "mid1",
-        "index": 1,
-        "failure_class": "restream_and_caption_collision",
-        "visible_evidence": "mid1 cuts to a letterboxed NBC News report: Commanders players in Guardian Caps under an 'NFL APPROVES ... SAFETY HELMETS' chyron, with our caption 'AND PUT IT' printed over that chyron.",
-        "root_cause": "Source b-roll from a TV news package was used as-is, so the chyron and network bug come with it. The caption layer does not avoid the graphic.",
-        "repair_goal": "Replace the NBC insert with clean footage of Olave himself in a Guardian Cap, or crop the chyron out. Keep word captions off any baked-in TV graphic, and fix the overlapping caption at mid3."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.526,
-        "effective_fps": 11.4,
-        "max_dup_run": 26,
-        "measured": true,
-        "frozen_ratio": 0.22,
-        "frozen_fps": 18.7,
-        "max_frozen_run": 13,
-        "judder_ratio": 0.015,
-        "judder_fps": 23.7,
-        "held_s": 11.58,
-        "max_dup_at_s": 7.29,
-        "duration_s": 25.79
-      },
-      "fingerprint": "?|junk_imagery+unreadable|restream_and_caption_collision"
-    },
-    {
-      "ts": "2026-10-25T12:26:59+00:00",
-      "slug": "sports_christian_yelich_vited_98_and",
-      "score": 70,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 2,
-        "data_demo": 3,
-        "mascot": 4,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The moment is genuine and moving, but the hook opens on a stadium exterior, Yelich is never clearly seen, our line collides with the source's name graphic at mid1, and the video ends on the back of a man's jacket instead of the vet's reaction.",
-      "auto_fails": [
-        "unreadable: mid1: our line 'Yelich invites WWII vets to the World Series' is printed directly over the footage's own 'ALECIA YELICH / Mother of Christian Yelich' graphic, so both texts collide and the subtitle cannot be read."
-      ],
-      "problems": [
-        "hook@0.3-2.2: the opening is a wide shot of the stadium exterior and a man pushing a cart; the vets and the emotion only arrive at ~2.5s",
-        "mid1: our hook line overlaps the burned-in 'ALECIA YELICH / Mother of Christian Yelich' lower-third",
-        "Yelich himself, whose invitation the title names, is never clearly shown",
-        "mid3-mid4: distant crowd and field shots dilute the moment",
-        "payoff@-0.4: it ends on the back of a man's jacket in the stands; the reaction peak at mid2 is not the ending"
-      ],
-      "fixes": [
-        "Open on mid2's 'I never thought I'd be able to see this' reaction (or mid0's vet close-up) so the first frame is the emotion",
-        "Move or hide our line while the source's name graphic is on screen",
-        "Trim the generic field and crowd footage (mid3-mid5) and end on the vets' reaction or the 'thank you for your service' moment",
-        "If footage of Yelich with the vets exists, cut it in to pay off the title"
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 112
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "unreadable_text_collision",
-        "visible_evidence": "mid1 (t=9.07s): our white hook line sits on top of the source's 'ALECIA YELICH / Mother of Christian Yelich' lower-third, so the two texts overlap.",
-        "root_cause": "The hook line is placed at a fixed top-third position with no check for burned-in graphics in the source. Here the source's own name title occupies the same band.",
-        "repair_goal": "Detect the source's burned-in text, either with OCR or by checking where the footage's own text sits, and move our line to a clear band (for example lower, above the speech captions) or hide it while the graphic is on screen, so neither text is covered."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.013,
-        "effective_fps": 23.7,
-        "max_dup_run": 4,
-        "measured": true,
-        "frozen_ratio": 0.0,
-        "frozen_fps": 24.0,
-        "max_frozen_run": 1,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 32.75,
-        "duration_s": 37.38
-      },
-      "fingerprint": "?|unreadable|unreadable_text_collision"
-    },
-    {
-      "ts": "2026-10-25T12:29:12+00:00",
-      "slug": "sports_christian_yelich_vited_98_and",
-      "score": 87,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 4,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 2,
-        "temporal_craft": 3
-      },
-      "one_line": "A heartfelt real moment that is clearly shown: Yelich's invite, the vets arriving, the seats, and the vet's 'I never thought I'd be able to see this' land as the payoff, though the arrival walk runs a little long.",
-      "auto_fails": [],
-      "problems": [
-        "The arrival and walking footage (hook@1.5 to mid1) takes about a third of the runtime before the stadium reveal.",
-        "The hook opens on Yelich talking to camera, which is softer than opening on a veteran's face or the crowd."
-      ],
-      "fixes": [
-        "Cut the tent and plaza walk to about 3 seconds total.",
-        "Consider opening on the vet's smiling reaction (mid5) as a flash-forward, then cut to Yelich's invite."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 99
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg0",
-        "index": 0,
-        "failure_class": "slow_setup",
-        "visible_evidence": "From hook@1.5 through mid1 the clip is a wheelchair being pushed through a tent and across the plaza. It is mostly walking footage before the stadium reveal at mid3.",
-        "root_cause": "The source's arrival sequence is kept nearly whole, so the emotional peak (the vet saying 'I never thought I'd be able to see this' in mid5) comes late.",
-        "repair_goal": "Trim the tent and plaza walking down to one or two quick shots. That gets to the crowd reveal and the vet's reaction sooner, and leaves the 'I never thought I'd be able to see this' line more time to land."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.016,
-        "effective_fps": 23.6,
-        "max_dup_run": 3,
-        "measured": true,
-        "frozen_ratio": 0.003,
-        "frozen_fps": 23.9,
-        "max_frozen_run": 2,
-        "judder_ratio": 0.0,
-        "judder_fps": 24.0,
-        "held_s": 0.0,
-        "max_dup_at_s": 19.75,
-        "duration_s": 32.92
-      },
-      "fingerprint": "?|-|slow_setup"
-    },
-    {
-      "ts": "2026-10-25T10:38:26+00:00",
-      "slug": "parker-solar-probe-speed-record",
-      "score": 61,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 1,
-        "craft": 1,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Solid subject-made scenes through seg3, but the closing piles its caption on top of its own headlines and the video ends on an empty dark card with a blank price tag.",
-      "auto_fails": [
-        "junk_imagery: payoff@-0.4: the final frame is a bare dark gradient with Data holding a blank yellow price tag. The prop belongs to no scene.",
-        "decorative_mascot: hook@0.3 to seg0:end, Data stands beside a console with a lever that drives nothing. seg2:start/mid/end, he stands by a black box while the probe launches on its own. seg3:start/mid/end, he waves under a stopwatch. seg4, he stands by a globe. Only seg1 has him riding the probe, and even there he does not cause its speed.",
-        "empty_void: payoff@-0.4: the last frame is about 90% empty dark gradient, with only a small Data at the bottom.",
-        "unreadable: seg4:start/mid/end: the white closing line 'The fastest machine carries nobody...' is printed directly over the navy headlines 'Nobody aboard', '56 seconds' and '208 seconds', so both are garbled. In seg0:end the 'nobody aboard' subtitle crosses the solar panel."
-      ],
-      "problems": [
-        "seg4: closing caption overlaps the headline ('Nobody aboard', '56 seconds', '208 seconds'), so neither can be read on a phone.",
-        "payoff@-0.4: the end card is an empty dark void with Data holding a blank price tag.",
-        "Data is decorative in the hook, seg2, seg3 and seg4: he stands beside consoles and globes and never causes the motion.",
-        "seg4 re-cycles seg3's numbers instead of paying off the 'nobody aboard' idea.",
-        "seg0:end: the 'nobody aboard' subtitle crosses the solar panel art.",
-        "seg3: the '3.7x' label floats with no referent."
-      ],
-      "fixes": [
-        "Move the closing caption out of the headline band, or suppress the scene headline, during the closing.",
-        "Remove the fallback end card and hold the closing scene's finished frame to the last frame.",
-        "Give Data agency: he pulls the console lever that fires the probe in the hook, launches the probe in seg2, and spins the globe or carries the probe along the arc in seg3.",
-        "Make the closing show the empty seat or cockpit (nobody aboard) rather than repeating 56s/208s.",
-        "Give the hook's subtitle a clear backing or move it off the probe art; label 3.7x as 'around Earth vs NY-Tokyo' or drop it."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 92
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot",
-        "empty_void",
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "unreadable_text_collision",
-        "visible_evidence": "In seg4:start, seg4:mid and seg4:end the closing caption block sits on top of the large headline. 'felt!' lands inside 'Nobody aboard' and then inside '56 seconds' and '208 seconds'. The headline also cycles through numbers already shown, and the video ends on payoff@-0.4: an empty dark frame with D",
-        "root_cause": "The closing caption is laid out in the same top band as the closing scene's headline, with no collision check. The scene repeats seg3's numbers instead of landing the 'nobody aboard' idea. After the scene ends, a fallback end card with the default price-tag prop plays.",
-        "repair_goal": "Give the closing caption its own band, or drop the scene headline, so no text overlaps. Show 'nobody aboard' in the picture, for example an empty seat or cockpit on the probe while Data waves it off, instead of re-cycling 56s/208s. Hold that finished scene to the end, with no blank end card and no p"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.192,
-        "effective_fps": 19.4,
-        "max_dup_run": 20,
-        "measured": true,
-        "frozen_ratio": 0.083,
-        "frozen_fps": 22.0,
-        "max_frozen_run": 18,
-        "judder_ratio": 0.001,
-        "judder_fps": 24.0,
-        "held_s": 3.71,
-        "max_dup_at_s": 3.08,
-        "duration_s": 30.58
-      },
-      "fingerprint": "?|decorative_mascot+empty_void+junk_imagery+unreadable|unreadable_text_collision",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-25T11:00:20+00:00",
-      "slug": "parker-solar-probe-speed-record",
-      "score": 65,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 1,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The art and speed comparisons are strong, but Data never causes anything and the video ends on a blank price-tag void.",
-      "auto_fails": [
-        "decorative_mascot: Data stands beside a console in the hook (hook@0.8 to seg0:end) and just perches on the probe in seg1:mid. In seg2:mid he stands still next to a plunger box. In seg3:mid he waves under a stopwatch floating over his head. He never causes the motion: the probe flies, the plume grows and the arc draws without him.",
-        "empty_void: The final frame (payoff@-0.4) is an almost empty dark navy gradient. A small Data holds a blank yellow price tag at the bottom and the rest of the frame is dead space.",
-        "unreadable: At seg0:end and seg0:mid the small white subtitle 'the fastest thing ever built \u00b7 nobody aboard' is crossed by the probe's solar panel over a bright sky. At seg2:end the '430,000 mph' headline runs into the probe's panel, and at seg2:mid the dish sits on top of '24,791 mph'."
-      ],
-      "problems": [
-        "The video ends on an almost empty dark frame with Data holding a blank price tag (payoff@-0.4): a fallback end card and an empty void.",
-        "Data is decorative throughout: he stands at a console (hook), perches on the probe (seg1), stands by a plunger (seg2) and waves under a floating stopwatch (seg3).",
-        "The hook subtitle is crossed by the solar panel over a bright sky (seg0:mid, seg0:end).",
-        "The seg2 headline collides with the rising probe (seg2:mid, seg2:end).",
-        "The closing hands the payoff to a six-line text block, not the picture (seg4)."
-      ],
-      "fixes": [
-        "Remove the dark price-tag end card and hold the closing scene to the final frame.",
-        "Give Data a causal act in each scene: he hits the console button that fires the probe (hook), pushes the plunger that launches it up the tower (seg2), clicks the stopwatch in his own hand as the arc draws (seg3), pulls the lever that launches the empty-seat probe (seg4).",
-        "Keep headlines and subtitles clear of moving parts: put the subtitle on a band of sky the probe never crosses, and stop the seg2 probe below the headline.",
-        "Cut the closing's on-screen text to one short line and let the empty seat carry the meaning."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 93
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot",
-        "empty_void",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "empty_void_end_card",
-        "visible_evidence": "The closing (seg4:start to seg4:end) is a dense six-line text block over a probe tilting past an empty seat, while Data stands at a lever doing nothing. The video then cuts to a near-black void with Data holding a blank price tag (payoff@-0.4).",
-        "root_cause": "A generic fallback end card with a default blank price-tag prop is appended after the closing scene. The closing scene also has no bit for Data, and its payoff is carried by a text dump, not the picture.",
-        "repair_goal": "Remove the dark price-tag end card and let the closing picture hold to the last frame. Make Data the cause: he pulls the lever and the empty-seat probe blasts off, he is left on the ground looking up, and the empty seat is the payoff. Cut the on-screen closing text to one short line so the picture i"
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.248,
-        "effective_fps": 18.0,
-        "max_dup_run": 17,
-        "measured": true,
-        "frozen_ratio": 0.077,
-        "frozen_fps": 22.2,
-        "max_frozen_run": 17,
-        "judder_ratio": 0.004,
-        "judder_fps": 23.9,
-        "held_s": 3.67,
-        "max_dup_at_s": 0.0,
-        "duration_s": 31.08
-      },
-      "fingerprint": "?|decorative_mascot+empty_void+unreadable|empty_void_end_card",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-25T11:34:15+00:00",
-      "slug": "body-renewal-clock",
-      "score": 70,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The stomach and the cell-built body are strong demonstrations, but the video repeats the stomach for about 11s, never shows the neuron's age against the skin's, and ends on an empty black stage with Data holding a blank tag.",
-      "auto_fails": [
-        "empty_void: payoff@-0.4 (t=30.07s) is an almost all-black stage. A small Data stands at the bottom holding a blank yellow price tag, and nothing else is in the frame. The video ends on this frame."
-      ],
-      "problems": [
-        "The final frame (payoff@-0.4) is a dark empty stage with a small Data holding a blank price tag. This is a void and a junk default prop.",
-        "The stomach scene runs from the hook through seg1 (about 0 to 11s) with the same picture, so seg1 adds nothing new.",
-        "In seg3 the payoff number, 29,200 days for cortical neurons, is only a label. Nothing makes the neuron look old next to the 28-day skin.",
-        "The closing (seg4) is a block of wrapped text over a reused scene with no payoff picture.",
-        "In the hook, the '5 days' readout and the 'skin takes 28' subtitle appear before the myth line lands, which muddies the opening."
-      ],
-      "fixes": [
-        "Cut the empty-stage tail and hold the finished closing picture to the last frame.",
-        "Give seg1 its own beat, for example a calendar ring that Data advances day by day, or move on to the comparison sooner.",
-        "In seg3, show the comparison: many skin layers flaking off and regrowing while the same neuron stays, ageing and stamped 'about 80 years'.",
-        "Draw a closing picture of fast and slow clocks side by side, with a short line instead of a paragraph."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 91
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void"
-      ],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "empty_void",
-        "visible_evidence": "seg4:start to seg4:end hold a text card over the unchanged skin block from seg3. The final frame, payoff@-0.4, cuts to a bare dark-navy stage where Data holds a blank price tag. The story's turn, that neurons are 80 years old while skin is 28 days old, is never shown.",
-        "root_cause": "The closing reuses the last beat's finished picture under a wall of text. The tail falls back to the default empty stage with the default price-tag prop, so the video ends on dead space instead of a payoff.",
-        "repair_goal": "Remove the dark empty-stage tail. Draw a closing in which Data sets a fresh 5-day stomach patch next to a weathered, decades-old neuron, so 'many different schedules' is a picture of fast and slow side by side. Make the closing line short and keep that finished picture on screen to the last frame."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.175,
-        "effective_fps": 19.8,
-        "max_dup_run": 16,
-        "measured": true,
-        "frozen_ratio": 0.077,
-        "frozen_fps": 22.2,
-        "max_frozen_run": 16,
-        "judder_ratio": 0.007,
-        "judder_fps": 23.8,
-        "held_s": 3.0,
-        "max_dup_at_s": 0.0,
-        "duration_s": 30.46
-      },
-      "fingerprint": "?|empty_void|empty_void",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-25T11:57:29+00:00",
-      "slug": "body-renewal-clock",
-      "score": 66,
-      "verdict": "block",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 2,
-        "craft": 2,
-        "pace": 1,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "The body-of-cells beat is strong, but the stomach scene runs twice with Data waving beside it, the closing is a generic fill gauge, and the video ends on a black void with a blank price tag.",
-      "auto_fails": [
-        "junk_imagery: payoff@-0.4: the end card drops the world for a dark blue void where Data holds a blank yellow price tag. That prop has nothing to do with cell renewal.",
-        "decorative_mascot: seg0:mid to seg1:end: Data stands beside the moving grey wall and waves while it slides; he never pushes it. seg4:start to seg4:end: he only points while the stomach fills. The one real bit is seg2, where he places cells from scaffolding.",
-        "empty_void: payoff@-0.4: almost the whole frame is dark gradient with only a small Data at the bottom, a wasted closing frame.",
-        "unreadable: seg3:end: the neuron's dendrite branches cross the subtitle 'about 80 years old', so the '80' is partly covered on a phone."
-      ],
-      "problems": [
-        "seg0/seg1: the stomach renewal plays across the hook and the first beat with the same picture, and Data waves instead of doing the renewing.",
-        "seg3: the claim that cortical neurons are 'vastly older' is only a number label (29,200 days). The picture never shows the age gap, and the dendrites cover the '80 years old' subtitle.",
-        "seg4: the closing is a stomach-shaped fill gauge plus a bone with Data pointing, a decorative mascot.",
-        "payoff@-0.4: the last frame cuts to a dark empty void with Data holding a blank yellow price tag, a junk end card.",
-        "The hook line 'it's a myth' names no visual shock; the opening is the stomach scene the next beat repeats."
-      ],
-      "fixes": [
-        "seg1: Data actively rolls or scrubs new lining across the stomach, one stroke per day. Add a slow tissue that stays untouched in the same frame.",
-        "seg3: show the age contrast in the picture, for example skin flakes cycling quickly while the neuron stands unchanged as a counter runs to 80 years. Move the subtitle clear of the dendrites.",
-        "seg4: make Data the cause in the closing, e.g. he fills the stomach in a flash while still chiselling at the slow bone, instead of pointing.",
-        "Remove the dark-void price-tag end card. Hold the last world frame under the closing line instead.",
-        "Give the hook its own shot: the '7 years' idea visibly breaking, e.g. a calendar reading 7 shattering against a 5-day stomach and an 80-year neuron."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 91
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "decorative_mascot",
-        "empty_void",
-        "junk_imagery",
-        "unreadable"
-      ],
-      "weakest_scene": {
-        "id": "seg1",
-        "index": 1,
-        "failure_class": "decorative_mascot",
-        "visible_evidence": "seg1:start to seg1:end shows the same stomach cut-away as the hook. The grey wall reaches Day 5 and then holds while Data stands next to it waving. The picture repeats what the hook already showed, with no new action.",
-        "root_cause": "Data was staged as a bystander to the renewal wipe instead of the agent driving it, and the beat reuses the hook's finished picture, so nothing new happens for about 4s.",
-        "repair_goal": "Make Data the cause: he rolls or scrubs the new pink lining across the stomach wall with a paint roller or mop, one stroke per day, ticking Day 1 to Day 5. In the same beat, show a slow tissue (bone or neuron) that is still untouched, so 'other tissues take far longer' is in the picture."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.192,
-        "effective_fps": 19.4,
-        "max_dup_run": 19,
-        "measured": true,
-        "frozen_ratio": 0.108,
-        "frozen_fps": 21.4,
-        "max_frozen_run": 16,
-        "judder_ratio": 0.003,
-        "judder_fps": 23.9,
-        "held_s": 4.25,
-        "max_dup_at_s": 22.46,
-        "duration_s": 30.46
-      },
-      "fingerprint": "?|decorative_mascot+empty_void+junk_imagery+unreadable|decorative_mascot",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-25T12:32:59+00:00",
-      "slug": "us-formal-volunteering-record-low",
-      "score": 74,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 3,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "Strong illustrated scenes where Data actually works, but the video ends on an empty black plate with a blank price tag, and the barn beat's crowd never shows the drop it narrates.",
-      "auto_fails": [
-        "empty_void: payoff@-0.4 (t=32.6s): the last frame cuts from the register to a near-black empty gradient. The whole frame is dead space, with only Data and a blank yellow price tag at the bottom."
-      ],
-      "problems": [
-        "payoff@-0.4: the final frame cuts to an empty dark gradient with Data holding a blank price tag, a fallback plate in place of the closing scene.",
-        "seg1: the readout jumps 29% \u2192 23% \u2192 28% while the bucket line stays the same length, so the record low isn't shown.",
-        "Hook: the narration promises a gap between graduates and everyone else, but the hook picture is the burning barn and shows no gap.",
-        "seg4: the closing reuses the seg3 register unchanged, so the ending has no new 'whoa'."
-      ],
-      "fixes": [
-        "Hold the closing register frame, with its text and COMMENT BELOW, to the last frame. Never render the blank price-tag fallback plate.",
-        "In the barn beat, thin the bucket line visibly to the 2021 low as the fire flares, then let a few people rejoin for the rebound.",
-        "Make the closing image show the consequence: a receipt that shrinks or a kitchen counter left unstaffed, so the line about services paying for it lands visually."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 99
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [
-        "empty_void"
-      ],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "empty_void",
-        "visible_evidence": "The closing on the register is fine at seg4:end (31.43s). Then the final frame, payoff@-0.4 at 32.6s, becomes an empty dark navy gradient with Data alone holding a blank yellow price tag: no scene, no text, no data.",
-        "root_cause": "The closing scene ends before the audio or video tail does, and the fallback 'no scene' plate (blank prop, default pose, empty ground) fills the last ~0.5s instead of holding the register's finished frame.",
-        "repair_goal": "Hold the closing register scene, with the $167B receipt, the closing line and COMMENT BELOW, through the very last frame. Never fall back to the empty plate or the blank price-tag prop."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.244,
-        "effective_fps": 18.1,
-        "max_dup_run": 19,
-        "measured": true,
-        "frozen_ratio": 0.085,
-        "frozen_fps": 22.0,
-        "max_frozen_run": 19,
-        "judder_ratio": 0.006,
-        "judder_fps": 23.8,
-        "held_s": 4.67,
-        "max_dup_at_s": 0.0,
-        "duration_s": 33.0
-      },
-      "fingerprint": "?|empty_void|empty_void",
-      "style_arm": "illustrated"
-    },
-    {
-      "ts": "2026-10-25T13:47:52+00:00",
-      "slug": "opioid-prescribing-decline-fentanyl-rise",
-      "score": 79,
-      "verdict": "ship",
-      "dimensions": {
-        "hook": 3,
-        "data_demo": 4,
-        "mascot": 3,
-        "craft": 2,
-        "pace": 2,
-        "payoff": 1,
-        "temporal_craft": 3
-      },
-      "one_line": "A strong, well-drawn three-act story (pills fall, deaths stay, fentanyl floods in), let down by a static reused closing and an empty-frame blank-tag tail.",
-      "auto_fails": [],
-      "problems": [
-        "seg2 headline says 75% while the narration says 'about four in five' (80%): the number on screen disagrees with the voice.",
-        "seg4 closing reuses the finished seg3 flask with no new action; the payoff doesn't land visually.",
-        "payoff@-0.4: the final frame is an empty dark ground with Data holding a blank yellow price tag, the default-prop defect.",
-        "seg4:end: the closing question fades in at low contrast over the pill tray and box at the bottom of the frame.",
-        "seg3: the 2013 starting level is a thin sliver at the flask bottom, so the 23x growth reads less dramatically than it could."
-      ],
-      "fixes": [
-        "Make the seg2 headline and the narration use the same figure: say 'three in four', or show the 80% value if that is what the data says.",
-        "Give the closing its own scene: Data refills the emptied Rx jar with fentanyl powder from the flask, showing the supply changed, not shrank.",
-        "Cut the blank price-tag end card, or end on the closing scene's finished picture.",
-        "Put the closing question on a clear ground or give it a stronger outline so it never sits faint over the props.",
-        "In seg3, show the 2013 amount as a visible small heap with a then-mark ghost, so the 23x rise reads as a dramatic jump."
-      ],
-      "motion": {
-        "longest_static_s": 0.0,
-        "static_at_s": null,
-        "dark_fraction": 0.0,
-        "sampled": 95
-      },
-      "judge": "headless-claude",
-      "model": "opus",
-      "rubric_sha": "923d169cfb",
-      "schema": 2,
-      "format": null,
-      "checks_hit": [],
-      "weakest_scene": {
-        "id": "seg4",
-        "index": 4,
-        "failure_class": "weak_payoff",
-        "visible_evidence": "seg4:start to payoff@-1.8: the finished flask scene from seg3 sits still with the closing text over it while Data waves on the ladder. The video then cuts (payoff@-0.4) to an empty dark frame with Data holding a blank yellow price tag.",
-        "root_cause": "The closing has no scene of its own. It reuses the beat 2 end state with nothing new happening, and the end card falls back to the default price-tag prop on an empty ground.",
-        "repair_goal": "Draw a closing scene that shows the supply changed: Data swaps the pills in the Rx jar for fentanyl powder from the flask, so the same jar now holds a deadlier thing. Remove the blank-price-tag void tail, or replace it with that finished picture held under the question."
-      },
-      "temporal": {
-        "sample_fps": 24,
-        "duplicate_ratio": 0.341,
-        "effective_fps": 15.8,
-        "max_dup_run": 20,
-        "measured": true,
-        "frozen_ratio": 0.078,
-        "frozen_fps": 22.1,
-        "max_frozen_run": 20,
-        "judder_ratio": 0.005,
-        "judder_fps": 23.9,
-        "held_s": 4.58,
-        "max_dup_at_s": 16.08,
-        "duration_s": 31.71
-      },
-      "fingerprint": "?|-|weak_payoff",
-      "style_arm": "illustrated"
-    },
     {
       "ts": "2026-10-25T17:26:19+00:00",
       "slug": "longform:foreign-aid-never-broke-0-32-of-health-spending",
@@ -4282,22 +3180,1097 @@
       },
       "fingerprint": "?|-|weak_depiction",
       "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-30T11:34:24+00:00",
+      "slug": "sports_pat_murphy__youre_gonna",
+      "score": 66,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 1,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The real moment is here (Murphy lecturing Bauers about the Yankees), but the first 10s are a hug and a ball handoff under a conflicting Spectrum caption, and the quote that makes it viral is never put on screen.",
+      "auto_fails": [],
+      "problems": [
+        "The hook (hook@0.3 to hook@2.2) shows Murphy hugging a woman. Bauers is not with Murphy, so the 'parting words' promise is not visible.",
+        "The Spectrum News lower third 'BAUERS GIVES MURPHY THE LAST OUT BALL' sits right on top of our line until about 2.5s and competes with it.",
+        "The quote ('horse shit Yankee team... everyone playing for themselves') is not captioned anywhere. In a loud celebration a muted or noisy viewer cannot tell what was said.",
+        "From mid1 on, the camera is handheld with arms and phones (mid5, payoff) blocking the frame edges."
+      ],
+      "fixes": [
+        "Trim the opening so the video starts on Murphy turning to Bauers (around mid2).",
+        "Add burned-in speech captions for Murphy's Yankee line, timed to his delivery, and put a punch-in on 'horse shit Yankee team'.",
+        "Keep our single hook line clear of the station's lower third, either by starting after it leaves or by moving our line."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 91
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_competing_graphic",
+        "visible_evidence": "hook@0.3 to hook@2.2 show Murphy hugging a woman with her back to the camera. A Spectrum News lower third about 'THE LAST OUT BALL' sits right on top of our line, and Bauers is not in the shot with Murphy until mid1.",
+        "root_cause": "The cut starts at the start of the source clip, which shows a hug and the ball handoff, instead of at the confrontation the line promises. The station's own caption tells a different story from ours for the first 2.5s.",
+        "repair_goal": "Start the cut at or just before Murphy turns to Bauers and points (about mid2, t\u224812s), or crop out or start after the Spectrum lower third. The first frame should show Murphy and Bauers face to face, and the key quote ('horse shit Yankee team... everyone playing for themselves') should be legible as"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.004,
+        "effective_fps": 23.9,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.003,
+        "frozen_fps": 23.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 30.29
+      },
+      "fingerprint": "?|-|weak_hook_competing_graphic"
+    },
+    {
+      "ts": "2026-10-30T11:36:31+00:00",
+      "slug": "sports_pat_murphy__youre_gonna",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Real, on-brand World Series moment with a good hook, but the Yankee jab only lives in the audio and the clip ends on a walk-off instead of landing the line.",
+      "auto_fails": [],
+      "problems": [
+        "The quote that is the whole point ('horse shit Yankee team ... everyone playing for themselves') has no on-screen captions, so sound-off viewers miss the payoff",
+        "There is no zoom or sound hit on the key line; the edit is flat footage under one static text line",
+        "The ending (payoff@-1.8 to payoff@-0.4) is Bauers walking out of frame and a crowd shot, so the moment fizzles instead of landing",
+        "The pre-roll hug from hook@0.3 to hook@1.5 delays Murphy starting to speak"
+      ],
+      "fixes": [
+        "Burn in word captions for Murphy's quote above the hook line, in the SPEECH_Y position",
+        "Punch in with a boom on 'horse shit Yankee team' and again on 'Just remember'",
+        "Trim the tail to end on Bauers' laughing reaction (around mid4) right after 'Just remember'",
+        "Start nearer the moment Murphy begins talking (around hook@2.2), so the first two seconds carry the confrontation energy"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 61
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg1",
+        "index": 1,
+        "failure_class": "weak_payoff",
+        "visible_evidence": "From mid4 to payoff@-0.4 Murphy pats Bauers' shoulder, Bauers grins and walks out of frame left, and the clip ends on the crowd and a phone recording. The quote ('horse shit Yankee team ... everyone playing for themselves') is never put on screen.",
+        "root_cause": "The punchline of the moment is only in the audio. No word captions carry the quote, there is no punch-in on the 'horse shit Yankee team' line, and the cut runs past the line into a walk-off.",
+        "repair_goal": "Add word captions above the hook line for the Yankee quote, punch in with a sound hit on 'horse shit Yankee team' / 'just remember', and end the cut on Bauers' laughing reaction right after 'Just remember' instead of on him walking away."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.004,
+        "effective_fps": 23.9,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.002,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 20.25
+      },
+      "fingerprint": "?|-|weak_payoff"
+    },
+    {
+      "ts": "2026-10-30T11:39:31+00:00",
+      "slug": "sports_brewers_fan_win_i_have_a",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Real, touching fan moment, but it opens on a generic crowd and never punches in on her or the dad photo, so the emotion arrives late and small.",
+      "auto_fails": [],
+      "problems": [
+        "Hook (0-2.5s) shows a crowd and another fan, not the woman the line is about",
+        "The dad photo on her phone is shown tiny inside a letterboxed 16:9 frame and is never enlarged",
+        "No zoom or sound hit on the emotional beat (mid3), unlike the repost style the format calls for",
+        "Without the audio a stranger gets little: there are no speech captions and the photo can't be read"
+      ],
+      "fixes": [
+        "Start the cut on her holding up the phone (~mid1)",
+        "Push in on the phone photo for 1-2s so viewers can see her dad",
+        "Punch in on her face with a soft sound hit as she tears up (mid3)",
+        "Add burned-in speech captions for her line about Waukesha above our line"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 60
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "slow_hook_subject_offscreen",
+        "visible_evidence": "hook@0.3-hook@2.2 show a wide shot of a cheering crowd and a man on the mic. The woman the line is about does not get the frame until mid1 (~5.6s), and the dad photo on her phone is tiny at mid2",
+        "root_cause": "The cut starts at the start of the news segment instead of on her. It is a 16:9 frame shrunk into the middle band, with no punch-in on her face or on the photo",
+        "repair_goal": "Open on her holding up the phone, punched in so the dad photo is readable, inside the first second. Punch in on her face when her eyes well up (mid3). Cut the opening crowd shot down to under a second, or drop it"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.006,
+        "effective_fps": 23.9,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.006,
+        "frozen_fps": 23.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 20.08
+      },
+      "fingerprint": "?|-|slow_hook_subject_offscreen"
+    },
+    {
+      "ts": "2026-10-30T11:42:01+00:00",
+      "slug": "sports_jake_bauers_ast_out_ball",
+      "score": 70,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "It is a real, heartfelt World Series moment, but the ball handoff goes by in a second at 2.5s behind a duplicated headline, and the other 27 seconds are two men chatting with no payoff.",
+      "auto_fails": [
+        "unreadable: In hook@0.3 to mid0 our line 'Bauers gives Murphy the last out ball' sits right under the source's own blue-and-white banner 'BAUERS GIVES MURPHY THE LAST OUT BALL'. The same sentence is stacked twice, and our caption crowds the footage's graphic."
+      ],
+      "problems": [
+        "The hook opens on Murphy hugging an unrelated woman, not the handoff.",
+        "The source's burned-in 'BAUERS GIVES MURPHY THE LAST OUT BALL' banner and our identical caption are stacked together from hook@0.3 to mid0.",
+        "The handoff at mid0 is brief and partly blocked by a foreground shoulder, and there is no punch-in on the ball.",
+        "From mid1 to payoff@-0.4 the clip is a long, flat conversation, and it ends on Murphy turning away instead of a reaction."
+      ],
+      "fixes": [
+        "Start the cut at the handoff and punch in on the ball and Murphy's face.",
+        "Crop or trim past the source banner, or drop our line while the banner is on screen, so the same sentence is never shown twice.",
+        "Cut the trailing chat down to the best reaction beat, roughly 12-15s total, and end on the emotional beat."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 91
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "duplicate_on_screen_text_and_buried_moment",
+        "visible_evidence": "hook@0.3 to hook@2.2 show Murphy hugging a woman while the source banner and our caption repeat the same line in two blocks. The actual ball handoff is only glimpsed at mid0 (2.5s), partly blocked by a foreground shoulder, and the remaining 27s are the two men chatting.",
+        "root_cause": "The cut starts on an unrelated hug and keeps the source's burned-in headline banner, so our line duplicates it. The handoff, which is the moment the clip exists for, goes by in under a second, and the rest of the clip has no build or second beat.",
+        "repair_goal": "Open on the ball changing hands, with a punch-in on the ball and Murphy's reaction. Crop or cut so the source's 'BAUERS GIVES MURPHY' banner is not on screen while our line shows, and never have both at once. Trim the long trailing chat so the clip ends on Murphy's reaction to the ball."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.003,
+        "effective_fps": 23.9,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.003,
+        "frozen_fps": 23.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.001,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 30.25
+      },
+      "fingerprint": "?|unreadable|duplicate_on_screen_text_and_buried_moment"
+    },
+    {
+      "ts": "2026-10-30T11:56:33+00:00",
+      "slug": "sports_jake_bauers_ast_out_ball",
+      "score": 71,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The ball handoff and hug land in the first 10s, then the last two-thirds are letterboxed clubhouse filler in blurred fill and the clip fades out without a payoff.",
+      "auto_fails": [
+        "empty_void: From mid2 to the payoff, the 16:9 broadcast fills only the middle third (mid3, mid4). The top and bottom thirds are blurred copies of the same clip, and the bottom blur shows a smeared, unreadable 'NATIONAL LEAGUE CHA' banner."
+      ],
+      "problems": [
+        "The ball handoff at hook@1.5 is real, but it is half-covered by the source's own caption card.",
+        "mid2 to the payoff (about 13-32s) is letterboxed broadcast footage with a blurred top and bottom that wastes two-thirds of the frame.",
+        "The FS1 clubhouse speech has nothing to do with the last-out ball, so the clip ends faded out on unrelated footage.",
+        "At hook@0.3, our line sits beside the source's Spectrum bar and directly above its own caption card, so two captions compete."
+      ],
+      "fixes": [
+        "Trim the clip to about 12s so it ends on the hug or on Murphy's emotional reaction.",
+        "Drop the letterboxed segments, or crop them to full-frame vertical.",
+        "Crop or punch in past the source's 'BAUERS GIVES MURPHY' card so only our line is on screen.",
+        "Add a punch-in on the ball as it passes from Bauers to Murphy around 1.5s."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.01,
+        "sampled": 96
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "empty_void"
+      ],
+      "weakest_scene": {
+        "id": "mid3",
+        "index": 3,
+        "failure_class": "off_promise_padding",
+        "visible_evidence": "mid3 (19s), mid4 and the payoff are a letterboxed FS1 clubhouse speech under a '2026 National League Champions' graphic, in blurred fill. No ball appears in them, and the clip fades out on this speech.",
+        "root_cause": "The handoff and hug are over by about 10s, and the cut pads the rest with an unrelated NLCS clubhouse clip and a dugout shot (mid2) that the source post had appended, so the moment never gets a payoff.",
+        "repair_goal": "End the cut on the hug and Murphy's reaction (around mid1/mid2, about 12s). Drop the letterboxed broadcast filler, or replace it with Murphy holding up the ball, so the last frame is the emotional peak at full frame."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.037,
+        "effective_fps": 23.1,
+        "max_dup_run": 4,
+        "measured": true,
+        "frozen_ratio": 0.005,
+        "frozen_fps": 23.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.004,
+        "judder_fps": 23.9,
+        "held_s": 0.0,
+        "max_dup_at_s": 16.08,
+        "duration_s": 32.0
+      },
+      "fingerprint": "?|empty_void|off_promise_padding"
+    },
+    {
+      "ts": "2026-10-30T11:57:59+00:00",
+      "slug": "sports_jake_bauers_ast_out_ball",
+      "score": 79,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "The handoff and hug really happen and land, but our line sits on top of Spectrum's banner and repeats the source's own caption, and the first two seconds are a woman's back.",
+      "auto_fails": [
+        "unreadable: At hook@0.3 our line 'Bauers hands Murphy' runs into the source's 'Spectrum' banner on the right. At hook@0.3 to mid0 the source's own burned-in caption 'BAUERS GIVES MURPHY THE LAST OUT BALL' sits under ours, so the screen shows two captions saying the same thing."
+      ],
+      "problems": [
+        "hook@0.3: a woman's back blocks the subjects, so the opening shows no action",
+        "hook@0.3: our line overlaps the Spectrum banner graphic",
+        "hook@0.3 to mid0: the source's caption card repeats our line, so two captions are on screen",
+        "The Spectrum News watermark stays in the corner for the whole clip"
+      ],
+      "fixes": [
+        "Cut in at the handoff, about 2s later",
+        "Move our line clear of the Spectrum banner",
+        "Crop or mask the source's own caption card so there is one line of text"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 36
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "caption_over_source_graphics",
+        "visible_evidence": "At hook@0.3 our hook line overlaps the Spectrum News 'Powered by Spectrum' banner. Through mid0 the clip's own blue-and-white caption card repeats our line, and at hook@0.3 the opening is a woman's back blocking Bauers and Murphy.",
+        "root_cause": "The source is a Spectrum News repost with its own captions and banner. Our line was placed in a fixed spot without checking for graphics already in the footage, and the cut starts before the handoff.",
+        "repair_goal": "Start the cut near the handoff (about 2.0s in, before mid0) so frame one shows the ball changing hands. Move our line so it clears the Spectrum banner, and crop or mask the source's own caption card so only one line of text is on screen."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.003,
+        "effective_fps": 23.9,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.003,
+        "frozen_fps": 23.9,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 12.0
+      },
+      "fingerprint": "?|unreadable|caption_over_source_graphics"
+    },
+    {
+      "ts": "2026-10-30T12:01:09+00:00",
+      "slug": "sports_ernie_johnson_this_will_be",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The footage and the farewell mood are right, but it is 40s of one talking head that starts on a slow preamble and ends mid-sentence ('and we're getting') without landing the announcement.",
+      "auto_fails": [],
+      "problems": [
+        "Hook is slow: the first 2s are 'Total honesty here' / 'I've always prided', with no announcement yet (hook@0.3, mid0).",
+        "The middle is one locked-off talking head for about 35s with no punch-ins or cuts, so the visuals barely change from mid1 to mid5.",
+        "It ends mid-sentence on 'AND WE'RE GETTING' (payoff@-0.4), so the moment never resolves on screen.",
+        "None of the sampled captions show the key line about it being his final season after 37 years."
+      ],
+      "fixes": [
+        "Open on the sentence where he says this is his final season.",
+        "Cut the preamble and end on a complete sentence: his reason, or a thank-you to the fans.",
+        "Add a punch-in plus sound hit on the emotional hand-on-chest moment (mid4) and one more mid-clip zoom to break up the static framing."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 119
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "payoff",
+        "index": 11,
+        "failure_class": "weak_payoff",
+        "visible_evidence": "payoff@-0.4 cuts off on 'AND WE'RE GETTING' with his hands out mid-gesture. No sampled frame shows him actually saying 'final season' or giving his reason.",
+        "root_cause": "The cut is 40s of one unbroken monologue. It runs through his preamble ('Total honesty here', 'I've always prided', 'I've always loved') and ends before the actual announcement or emotional beat lands on screen.",
+        "repair_goal": "Trim the preamble so the first 2s have him saying 'this will be my final season'. Then end on the line that completes his reason or his emotional sign-off, not mid-sentence. Punch in on the emotional moment (mid4, hand on chest)."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.17,
+        "effective_fps": 19.9,
+        "max_dup_run": 23,
+        "measured": true,
+        "frozen_ratio": 0.009,
+        "frozen_fps": 23.8,
+        "max_frozen_run": 4,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 2.92,
+        "max_dup_at_s": 23.25,
+        "duration_s": 39.79
+      },
+      "fingerprint": "?|-|weak_payoff"
+    },
+    {
+      "ts": "2026-10-30T10:35:03+00:00",
+      "slug": "humpback-whale-recovery",
+      "score": 79,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 3,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The hook and the ocean-fills-with-whales beat are strong, but the closing parks on the reused whaling-station set for about 7s under a text block and never pays off the recovery.",
+      "auto_fails": [],
+      "problems": [
+        "seg4 / closing reuses the seg3 whaling station for its whole length and never shows the 'oceans filled back up' payoff.",
+        "The closing puts a four-line paragraph over the sky. That is a text card, not a shot.",
+        "seg2's '10 populations' shows about 7 tethered whales, and the 4 still-endangered ones are not marked.",
+        "seg3's 2.9M has no scale on screen; putting out two fires does not convey millions.",
+        "The breaching hero whale holds nearly the same pose from the hook through seg1:end."
+      ],
+      "fixes": [
+        "Give the closing its own scene: the derelict station with a crowded, breaching sea beyond it, and Data retiring the harpoon gun.",
+        "Cut the closing text to one headline, or drop it and let the narration carry the line.",
+        "In seg2, tether exactly 10 whales and let Data cut 10 free while 4 stay tied with a marker.",
+        "In seg3, show scale with stacked oil barrels or a ghost mark of the barrels' earlier size draining to empty as the fires go out.",
+        "Animate the hero whale's breach arc (rise, splash, re-breach) so it isn't a held pose across beats."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 111
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg4",
+        "index": 4,
+        "failure_class": "payoff_reuses_prior_scene",
+        "visible_evidence": "From seg4:start to payoff@-0.4 the whaling station from seg3 stays on screen with a paragraph of text over the sky. Data shrugs and waves. Nothing shows 'the oceans filled back up', and the last frame is the empty station with no text.",
+        "root_cause": "There is no closing scene of its own, so the last beat's finished picture is held under the closing line. The story's 'whoa' (whales filling the ocean) is never shown again at the end.",
+        "repair_goal": "Draw a closing scene that pays off the whole arc: the shut-down, rusting station gives way to a sea crowded with breaching humpbacks, with Data pushing the old harpoon gun off the pier or hanging a CLOSED sign. One headline at most; the narration carries the rest."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.28,
+        "effective_fps": 17.3,
+        "max_dup_run": 19,
+        "measured": true,
+        "frozen_ratio": 0.076,
+        "frozen_fps": 22.2,
+        "max_frozen_run": 19,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 5.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 37.0
+      },
+      "fingerprint": "?|-|payoff_reuses_prior_scene",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-30T14:11:01+00:00",
+      "slug": "pitch-drop-slowest-experiment",
+      "score": 66,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The pitch scenes are well made and the barrel tip lands, but for the first two-thirds Data only watches, and the Dublin beat shows a Queensland cabinet that never pictures its 69 years.",
+      "auto_fails": [
+        "decorative_mascot: From hook@0.3 through seg1:end (about 8.5s) Data stands at the left edge holding a magnifier in the same pose. In seg2:start to seg2:end he gives a thumbs-up and waves beside the cabinet. In both scenes the pitch falls without him doing anything. Only seg3, where he shoves the barrel, and seg4, where he holds the tap, are real bits, and they are the last ~9s."
+      ],
+      "problems": [
+        "seg2: the narration and headline say Dublin 69 years, but the cabinet is labelled 'Queensland' and opens on '10 years Queensland' (seg2:start). The claim and the picture disagree.",
+        "seg2: the 69-year wait exists only as text; nothing in the picture shows that length of time.",
+        "hook through seg1 (about 8.5s): Data holds a magnifier in one static pose at the frame edge and causes nothing.",
+        "seg2: Data waves and gives a thumbs-up beside the case, which is decorative.",
+        "seg0:end shows the '4 drops 1930-1962' label over a beaker holding 9 blobs; the count contradicts the picture.",
+        "seg1: the 9 drops have already landed before the beat starts, so the beat mostly holds a finished frame with only the pendulum moving."
+      ],
+      "fixes": [
+        "Redraw seg2 as Dublin and make 69 years physical on the subject (Data ages, calendar pages pile up, one drop necks and falls at the payoff), with no Queensland label.",
+        "Give Data agency in the hook and seg1: let him be the one who tips the funnel or sets up the beaker, or have him visibly age or doze between drops so the long wait is his bit, not a static magnifier hold.",
+        "Rebuild seg1 so the drops land in sync with the count during the beat (one per beat-tick, ending at 9 by land_by), and keep any label in step with the number of blobs shown.",
+        "Separate the closing line from the seg4 headline: drop the headline under the closing line, or let the closing line replace it."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 73
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "decorative_mascot"
+      ],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "claim_picture_mismatch_and_decorative_mascot",
+        "visible_evidence": "The narration and the seg2:end headline say 'Dublin's wait 69 years', but the cabinet's only marker reads 'Queensland' and the scene opens on '10 years Queensland's wait between drops' (seg2:start). Data stands beside the case giving a thumbs-up and waving (seg2:mid, seg2:end). Nothing on screen sho",
+        "root_cause": "A Queensland scene was reused for a Dublin beat, and the headline was swapped mid-beat instead of drawing the claim. The mascot was placed as a bystander rather than as the one doing the waiting.",
+        "repair_goal": "Redraw seg2 as the Dublin experiment, labelled Dublin, and make the 69 years visible on the subject itself. For example, Data ages beside the funnel (calendar pages tearing, a beard growing, a chair wearing out) while one drop slowly necks and finally falls at the payoff, with '69 years' landing by "
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.204,
+        "effective_fps": 19.1,
+        "max_dup_run": 19,
+        "measured": true,
+        "frozen_ratio": 0.098,
+        "frozen_fps": 21.7,
+        "max_frozen_run": 16,
+        "judder_ratio": 0.003,
+        "judder_fps": 23.9,
+        "held_s": 3.33,
+        "max_dup_at_s": 0.0,
+        "duration_s": 24.33
+      },
+      "fingerprint": "?|decorative_mascot|claim_picture_mismatch_and_decorative_mascot",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-30T14:31:26+00:00",
+      "slug": "airline-pilot-shortage",
+      "score": 61,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The airport world is well drawn, but the ranking beat is a globe that highlights one blob at a time, and Data is mostly a bystander until the fleet scene.",
+      "auto_fails": [
+        "decorative_mascot: From hook@0.3 to seg1:end Data stands in the same spot by the CREW door, waving the same way while the crew file out. At seg2:start through seg2:end he holds a phone to his ear beside the globe. He only does real work at seg3, where he drives the tug that pushes the planes.",
+        "unreadable: At payoff@-0.4 a plane silhouette crosses the subline \"+ 938,000 cabin crew \u00b7 + 690,000 technicians\". At seg3:end the label \"2042 (projected)\" is printed on top of the parked jets' tails, and the caption \"new plane needs\" is faded to low contrast."
+      ],
+      "problems": [
+        "seg2: the globe highlights China, then Eurasia, without comparing them, so 'just ahead of China' and 'not the US' are never shown.",
+        "seg2: a loose 'MOST' word floats at the top right with no anchor.",
+        "hook through seg1: Data holds one waving pose by the door for about 10s while the crew move.",
+        "seg2: Data stands holding a phone, unrelated to the globe.",
+        "seg3:end: the '2042 (projected)' label is printed over the jets' tails and the caption is faded.",
+        "payoff@-0.4: a plane silhouette flies across the crew and technicians subline."
+      ],
+      "fixes": [
+        "Redraw seg2 as a side-by-side regional race (pilot queues or a podium on the globe). Eurasia should edge out China and the US should trail, with Data moving the pieces.",
+        "Remove the floating 'MOST' tag.",
+        "Give Data a job in the crew beat, e.g. issuing caps or wings to each pilot as they pass, so he causes the line.",
+        "Move the '2042 (projected)' label off the aircraft, and keep the flying plane's path clear of the headline and subline text.",
+        "Make the closing show the crew and technician totals as larger lines behind the pilots, so the 'on top of that' lands visually."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 87
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "decorative_mascot",
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg2",
+        "index": 2,
+        "failure_class": "weak_demonstration",
+        "visible_evidence": "From seg2:start to seg2:end the globe only lights up blobs labelled China, then Eurasia. The headline swaps 134,000 for 143,000, a loose \"MOST\" word floats in the top right, and Data stands beside the globe on a phone.",
+        "root_cause": "The claim is a ranking (Eurasia narrowly beats China and the US is not first), but the picture is one highlight at a time. The viewer never sees the regions side by side, so 'just ahead' and 'Nope, not the US' are never shown, and Data has no role in it.",
+        "repair_goal": "Show the regions competing in one picture, e.g. queues of pilots on each region of the globe or a podium. Eurasia's line should land just longer than China's, with the US visibly behind. Data should do the measuring or the stacking himself, and the floating 'MOST' tag should go."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.213,
+        "effective_fps": 18.9,
+        "max_dup_run": 22,
+        "measured": true,
+        "frozen_ratio": 0.042,
+        "frozen_fps": 23.0,
+        "max_frozen_run": 13,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 4.17,
+        "max_dup_at_s": 7.75,
+        "duration_s": 28.96
+      },
+      "fingerprint": "?|decorative_mascot+unreadable|weak_demonstration",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-30T15:57:17+00:00",
+      "slug": "sports_ernie_johnson_be_his_final",
+      "score": 75,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The first 20 seconds are strong, with Ernie himself giving the news and the reason, but the last 14 seconds are tiny letterboxed desk B-roll with no visible reaction, and the video fades out without a payoff.",
+      "auto_fails": [],
+      "problems": [
+        "mid3 to payoff@-0.4: the wide desk shots are letterboxed into the middle third and the people are too small to read on a phone",
+        "There is no co-host reaction or emotional beat after the announcement, so the payoff never lands",
+        "The video ends on a fade over a generic desk shot (payoff@-0.4), not on a moment",
+        "max_dup_run is 58 at 21.08s, so the desk B-roll section has a choppy or held cadence"
+      ],
+      "fixes": [
+        "Punch in so the desk footage fills the frame, cropped on Ernie or on the co-hosts reacting",
+        "Add the co-hosts' on-air reaction (Charles or Shaq) to the news as the closing beat",
+        "Trim the B-roll montage and end on the line where he gives his reason, about 'totally my decision'",
+        "Replace the low-fps desk clip with a smoother source, or cut it"
+      ],
+      "motion": {
+        "longest_static_s": 0.33,
+        "static_at_s": 23.0,
+        "dark_fraction": 0.009,
+        "sampled": 106
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "mid3",
+        "index": 3,
+        "failure_class": "weak_payoff",
+        "visible_evidence": "From mid3 (t=21.08s) to payoff@-0.4, about 14s plays as letterboxed wide shots of the whole desk. Ernie and his co-hosts are tiny figures and no reaction can be read. The video fades out on that wide shot.",
+        "root_cause": "The cut runs past the to-camera announcement (mid0 to mid2, 'TURNED 70 THIS PAST SUMMER... TOTALLY MY DECISION.') into generic desk B-roll. It has no punch-in on Charles, Shaq or Kenny reacting, so the emotional beat never lands. The max_dup_run of 58 at 21.08s also suggests a low-cadence or held so",
+        "repair_goal": "Cut to the co-hosts' reaction to the news, or Ernie's sign-off, with a punch-in that fills the frame, and end on that face. Or trim the wide desk B-roll and end on 'totally my decision' or the reason he gives, so the video closes on the moment and not on a fading wide shot."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.438,
+        "effective_fps": 13.5,
+        "max_dup_run": 58,
+        "measured": true,
+        "frozen_ratio": 0.098,
+        "frozen_fps": 21.7,
+        "max_frozen_run": 12,
+        "judder_ratio": 0.002,
+        "judder_fps": 23.9,
+        "held_s": 9.33,
+        "max_dup_at_s": 21.08,
+        "duration_s": 35.46
+      },
+      "fingerprint": "?|-|weak_payoff"
+    },
+    {
+      "ts": "2026-10-30T16:00:16+00:00",
+      "slug": "sports_patrick_kane__and_tribute",
+      "score": 70,
+      "verdict": "block",
+      "dimensions": {
+        "hook": 2,
+        "data_demo": 3,
+        "mascot": 4,
+        "craft": 1,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The ovation the line promises only arrives in the last second. Thirteen seconds of framed ESPN package and a locker-room speech come before it, and our line runs over the scoreboard graphic.",
+      "auto_fails": [
+        "unreadable: At mid5 and payoff@-1.8, our line 'Detroit stands for Patrick Kane' sits on top of the arena scoreboard graphic (HOME / 22 / Shots panels) and collides with its digits. From hook@0.3 to mid3 it also sits on the ESPN frame's bottom border."
+      ],
+      "problems": [
+        "The hook (hook@0.8 to hook@2.2) is a locker-room speech, not the standing ovation, so a stranger gets no reason to stay.",
+        "From hook@0.3 to mid3 the footage is a small picture inside an ESPN+ Hockey Night frame with a cropped side panel, which wastes about half the vertical frame.",
+        "At mid5 and payoff@-1.8 our on-screen line is printed over the arena scoreboard graphic.",
+        "The Detroit crowd standing appears only at payoff@-0.4, too late to land as the payoff.",
+        "Speech captions such as 'REDLING AND DO' at hook@1.5 are garbled fragments."
+      ],
+      "fixes": [
+        "Open on Kane raising his stick and the crowd on its feet.",
+        "Crop or reframe so the tribute footage fills the vertical frame without the ESPN border.",
+        "Reposition our line, or cut the scoreboard shot, so the line never sits on a TV graphic.",
+        "Extend the crowd-ovation shot to at least 3-4 seconds and end on it.",
+        "Drop the locker-room speech or move it later, and fix or remove the garbled speech captions."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 63
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "mid0",
+        "index": 4,
+        "failure_class": "buried_payoff",
+        "visible_evidence": "From hook@0.3 to mid3 (0-13s), the footage is a small framed ESPN+ package: a locker-room speech, then Kane raising his stick. The actual standing ovation from the Detroit crowd shows up only at payoff@-0.4 (about the last second). At mid5 and payoff@-1.8 the shot is Blackhawks alumni in a suite, wi",
+        "root_cause": "The cut runs the broadcast segment in order. It opens on a locker-room speech that has nothing to do with the ovation and holds the crowd standing until the final second.",
+        "repair_goal": "Open on the Detroit crowd on its feet and Kane acknowledging them (the stick raise from mid1 and the crowd from payoff@-0.4). Crop out the ESPN frame and side panel so the footage fills the vertical frame. Move our line clear of the scoreboard graphic, and give the ovation at least 3-4 seconds befor"
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.061,
+        "effective_fps": 22.5,
+        "max_dup_run": 2,
+        "measured": true,
+        "frozen_ratio": 0.012,
+        "frozen_fps": 23.7,
+        "max_frozen_run": 2,
+        "judder_ratio": 0.006,
+        "judder_fps": 23.9,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 21.12
+      },
+      "fingerprint": "?|unreadable|buried_payoff"
+    },
+    {
+      "ts": "2026-10-30T16:01:38+00:00",
+      "slug": "sports_patrick_kane__and_tribute",
+      "score": 87,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 4,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 2,
+        "temporal_craft": 3
+      },
+      "one_line": "A clean, short sports moment: the tribute, Kane's reaction and Detroit fans standing all land in 7.5 seconds, though the opening frame is a busy broadcast graphic.",
+      "auto_fails": [],
+      "problems": [
+        "hook@0.3 opens on a cluttered ESPN and jumbotron graphic with Kane small in the corner, and the 'SHOWT...' text is cut off by the frame edge in the source footage",
+        "The clip is only 7.5s, so the ovation gets about a second and a half on screen at the end"
+      ],
+      "fixes": [
+        "Open on Kane at the bench or on the standing crowd instead of the broadcast intro graphic",
+        "Let the crowd ovation shot run a little longer so the payoff can breathe"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 23
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "hook",
+        "index": 0,
+        "failure_class": "weak_hook_framing",
+        "visible_evidence": "hook@0.3 opens on a busy ESPN 'HOCKEY NIGHT' banner and a jumbotron 'WELCOME B... SHOWT...' graphic cropped at the right edge. Kane is small in the corner, so the first second reads as a broadcast graphic rather than the moment.",
+        "root_cause": "The cut starts at the broadcast intro instead of on Kane or the standing crowd.",
+        "repair_goal": "Open on Kane acknowledging the crowd (mid0/mid2 footage) or on the standing Red Wings fans (payoff), so the first frame shows the ovation itself."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.0,
+        "effective_fps": 24.0,
+        "max_dup_run": 1,
+        "measured": true,
+        "frozen_ratio": 0.0,
+        "frozen_fps": 24.0,
+        "max_frozen_run": 1,
+        "judder_ratio": 0.0,
+        "judder_fps": 24.0,
+        "held_s": 0.0,
+        "max_dup_at_s": 0.0,
+        "duration_s": 7.5
+      },
+      "fingerprint": "?|-|weak_hook_framing"
+    },
+    {
+      "ts": "2026-10-30T15:24:38+00:00",
+      "slug": "private-moon-landings-fail-rate",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 3,
+        "craft": 2,
+        "pace": 1,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "The landers are strong and Data drives the action, but the acceleration beat shows a running total of seven trails under a '3 launches' label, and the payoff is a static text card over a reused picture.",
+      "auto_fails": [
+        "unreadable: The seg3:start caption 'in 2019, but' is dark text on the dark brown ground band and almost disappears. At seg4:start, 'Would you bet on it landing clean?' fades in at low contrast over the barrels."
+      ],
+      "problems": [
+        "seg3: seven trails and seven rockets contradict the '1 launch'/'3 launches' labels, so the speed-up claim is never shown",
+        "seg3:start: the caption 'in 2019, but' is nearly invisible on the dark ground band",
+        "seg4: the closing is a block of white text over the finished seg3 picture, with only Data's small gestures moving for about 5s, so the payoff lands flat",
+        "seg2: the counts are muddled; the '2 landed but tipped' frame shows more than two downed landers once the crater wrecks are counted",
+        "seg0 and seg1 share almost the same wreck-row picture, so the first two beats feel repeated"
+      ],
+      "fixes": [
+        "Redraw seg3 as volleys per year: one rocket in 2019, then three firing together in 2025 as Data spins the valves, with older trails faded",
+        "Give captions a light fill and an outline so they read over the dark foreground band",
+        "Give the closing a new action, such as Data watching the next lander descend with its outcome unresolved, instead of a text card over the old picture",
+        "In seg2, show exactly two tipped landers and one clean one, and drop the extra crater debris",
+        "Differentiate seg0's descent from seg1's tally: show the crashes happening one by one in seg0, then the finished graveyard in seg1"
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 82
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "picture_contradicts_number",
+        "visible_evidence": "At seg3:end the label reads '3 launches \u00b7 2025', but seven trails arc to the Moon and every rocket is gone. At seg3:start the label reads '1 launch \u00b7 2019' over seven rockets standing on the pads. The caption 'in 2019, but' is nearly invisible against the dark ground.",
+        "root_cause": "The scene builds a running total of all seven launches instead of showing launches per year. The claim is that the pace is speeding up (1 \u2192 3), and the picture never contrasts one year against another. The caption plate has no contrast treatment over the dark foreground band.",
+        "repair_goal": "Show each year as its own volley. In 2019 one rocket lifts off and one trail is drawn. Then the 2025 volley fires three rockets at once while Data spins three valves in quick succession, so the speed-up reads as a burst. Keep earlier trails faded so the years stay distinct. Put the caption plate in "
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.268,
+        "effective_fps": 17.6,
+        "max_dup_run": 24,
+        "measured": true,
+        "frozen_ratio": 0.174,
+        "frozen_fps": 19.8,
+        "max_frozen_run": 24,
+        "judder_ratio": 0.012,
+        "judder_fps": 23.7,
+        "held_s": 5.79,
+        "max_dup_at_s": 21.25,
+        "duration_s": 27.38
+      },
+      "fingerprint": "?|unreadable|picture_contradicts_number",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-30T15:55:02+00:00",
+      "slug": "private-moon-landings-fail-rate",
+      "score": 70,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 3,
+        "mascot": 2,
+        "craft": 2,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "Strong, on-subject lunar wreckage scenes, but the acceleration beat leaves Data watching instead of launching, and two captions fade into the dark ground.",
+      "auto_fails": [
+        "unreadable: At seg3:start the caption 'In 2019, but' is dim grey on the dark brown ground and nearly vanishes. At seg4:start the question 'Would you bet on it landing clean?' fades in at the same low contrast."
+      ],
+      "problems": [
+        "seg3: Data idles with a hand on his chin while the rockets launch, so he is not causing the motion.",
+        "seg3:start: the caption 'In 2019, but' is nearly invisible against the brown ground band.",
+        "seg4:start: the closing question fades in at low contrast over the barrels.",
+        "seg2:end: the header switches to '1 clean landing' while the narration is still describing landers tipping onto their side.",
+        "The payoff closes on a static wall of text over the plumes, with no final 'whoa' image."
+      ],
+      "fixes": [
+        "In seg3, give Data a valve-turn or lever-pull act that fires each rocket, timed to the count going 1 to 2 to 3.",
+        "Draw every narration caption in full-white ink with a dark outline over the ground band.",
+        "Keep the seg2 header on '2 landed but tipped' until the narration moves on.",
+        "End the closing on a visual beat, for example a fourth lander descending with Data guiding it, before the comment prompt appears."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 82
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [
+        "unreadable"
+      ],
+      "weakest_scene": {
+        "id": "seg3",
+        "index": 3,
+        "failure_class": "passive_mascot_and_low_contrast_caption",
+        "visible_evidence": "From seg3:start to seg3:end, Data stands beside the valve wheels with a hand on his chin while the rockets rise and launch without him. At seg3:start the narration caption is dim grey on the dirt band and cannot be read.",
+        "root_cause": "The launch-pad machine casts Data as an onlooker instead of the agent that fires each launch, and the caption style uses a faded ink over the dark foreground band.",
+        "repair_goal": "Have Data turn the red valve wheel or pull a launch lever with both hands each time a rocket fires (1, then 2, then 3), so each new plume comes from his action. Render the caption in full-contrast white with an outline over the ground band."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.216,
+        "effective_fps": 18.8,
+        "max_dup_run": 24,
+        "measured": true,
+        "frozen_ratio": 0.13,
+        "frozen_fps": 20.9,
+        "max_frozen_run": 24,
+        "judder_ratio": 0.003,
+        "judder_fps": 23.9,
+        "held_s": 4.67,
+        "max_dup_at_s": 21.25,
+        "duration_s": 27.38
+      },
+      "fingerprint": "?|unreadable|passive_mascot_and_low_contrast_caption",
+      "style_arm": "illustrated"
+    },
+    {
+      "ts": "2026-10-30T16:26:31+00:00",
+      "slug": "private-moon-landings-fail-rate",
+      "score": 83,
+      "verdict": "ship",
+      "dimensions": {
+        "hook": 3,
+        "data_demo": 4,
+        "mascot": 3,
+        "craft": 3,
+        "pace": 2,
+        "payoff": 1,
+        "temporal_craft": 3
+      },
+      "one_line": "This is a strong bespoke wreck-field demonstration with Data as operator. The closing reuses the finished pad under a wall of text and lands no payoff.",
+      "auto_fails": [],
+      "problems": [
+        "seg4: the closing has no new picture; it repeats the seg3 end state under a five-line text block, question and CTA.",
+        "seg3:start: the caption 'in 2019, but' is briefly faint over the pad tracks during its fade.",
+        "seg3 shows '2 launches ... 2024', which the narration never mentions. The narration jumps from 2019 to 2025."
+      ],
+      "fixes": [
+        "Draw a dedicated closing shot of the next lander descending over the wreck field, outcome undecided, and cut the overlay to one line.",
+        "Give the seg3 caption a darker plate or a stronger outline so it reads from its first frame over the busy tracks.",
+        "Either have the narration name the 2024 step or make the 2019 to 2025 jump directly."
+      ],
+      "motion": {
+        "longest_static_s": 0.0,
+        "static_at_s": null,
+        "dark_fraction": 0.0,
+        "sampled": 95
+      },
+      "judge": "headless-claude",
+      "model": "opus",
+      "rubric_sha": "923d169cfb",
+      "schema": 2,
+      "format": null,
+      "checks_hit": [],
+      "weakest_scene": {
+        "id": "seg4",
+        "index": 4,
+        "failure_class": "static_closing_text_wall",
+        "visible_evidence": "From seg4:start to seg4:end the picture is the finished pad from seg3 with no new action. A five-line closing sentence sits over the Moon, with the question and CTA stacked below it. Nothing visual shows that 'the next few landings decide' anything.",
+        "root_cause": "The closing reuses the seg3 end state as a wordless backdrop rather than having its own payoff shot, so the video ends on a restatement rather than a 'whoa'.",
+        "repair_goal": "Give the closing its own shot: an upcoming lander descending toward the wreck field, with Data at the console holding his breath and the outcome left visibly undecided. Shorten the overlaid text to one short line."
+      },
+      "temporal": {
+        "sample_fps": 24,
+        "duplicate_ratio": 0.248,
+        "effective_fps": 18.0,
+        "max_dup_run": 24,
+        "measured": true,
+        "frozen_ratio": 0.142,
+        "frozen_fps": 20.6,
+        "max_frozen_run": 24,
+        "judder_ratio": 0.011,
+        "judder_fps": 23.7,
+        "held_s": 5.75,
+        "max_dup_at_s": 24.96,
+        "duration_s": 31.75
+      },
+      "fingerprint": "?|-|static_closing_text_wall",
+      "style_arm": "illustrated"
     }
   ],
   "showrunner_recurrence": {
     "?|-|weak_payoff": {
-      "count": 5,
+      "count": 7,
       "days": [
-        "2026-10-25",
         "2026-10-28",
-        "2026-10-29"
-      ]
-    },
-    "?|empty_void|empty_void": {
-      "count": 3,
-      "days": [
-        "2026-10-25",
-        "2026-10-28"
+        "2026-10-29",
+        "2026-10-30"
       ]
     },
     "?|-|Data demonstration": {
@@ -4306,84 +4279,17 @@
         "2026-10-26"
       ]
     },
-    "?|-|weak_hook_static_talking_head": {
-      "count": 2,
-      "days": [
-        "2026-10-25"
-      ]
-    },
-    "?|unreadable|unreadable_text_collision": {
-      "count": 2,
-      "days": [
-        "2026-10-25",
-        "2026-10-29"
-      ]
-    },
-    "?|-|slow_setup": {
-      "count": 2,
-      "days": [
-        "2026-10-25",
-        "2026-10-29"
-      ]
-    },
     "longform|temporal_gate|-": {
       "count": 2,
       "days": [
         "2026-10-25"
       ]
     },
-    "?|unreadable|text_collision": {
-      "count": 1,
+    "?|decorative_mascot+unreadable|weak_demonstration": {
+      "count": 2,
       "days": [
-        "2026-10-25"
-      ]
-    },
-    "?|-|buried_moment": {
-      "count": 1,
-      "days": [
-        "2026-10-25"
-      ]
-    },
-    "?|dead_air+junk_imagery+unreadable|junk_imagery": {
-      "count": 1,
-      "days": [
-        "2026-10-25"
-      ]
-    },
-    "?|-|weak_hook_and_no_payoff": {
-      "count": 1,
-      "days": [
-        "2026-10-25"
-      ]
-    },
-    "?|-|missing_context": {
-      "count": 1,
-      "days": [
-        "2026-10-25"
-      ]
-    },
-    "?|junk_imagery+unreadable|restream_and_caption_collision": {
-      "count": 1,
-      "days": [
-        "2026-10-25"
-      ]
-    },
-    "?|decorative_mascot+empty_void+junk_imagery+unreadable|unreadable_text_collision": {
-      "count": 1,
-      "days": [
-        "2026-10-25"
-      ]
-    },
-    "?|decorative_mascot+empty_void+unreadable|empty_void_end_card": {
-      "count": 1,
-      "days": [
-        "2026-10-25"
-      ]
-    },
-    "?|decorative_mascot+empty_void+junk_imagery+unreadable|decorative_mascot": {
-      "count": 1,
-      "days": [
-        "2026-10-25"
+        "2026-10-29",
+        "2026-10-30"
       ]
     },
     "?|malformed_judge_response|-": {
@@ -4470,6 +4376,12 @@
         "2026-10-28"
       ]
     },
+    "?|empty_void|empty_void": {
+      "count": 1,
+      "days": [
+        "2026-10-28"
+      ]
+    },
     "?|empty_void+junk_imagery+unreadable|empty_void_tail": {
       "count": 1,
       "days": [
@@ -4548,19 +4460,25 @@
         "2026-10-29"
       ]
     },
+    "?|unreadable|unreadable_text_collision": {
+      "count": 1,
+      "days": [
+        "2026-10-29"
+      ]
+    },
     "?|junk_imagery+unreadable|unreadable_overlapping_captions_and_missing_payoff": {
       "count": 1,
       "days": [
         "2026-10-29"
       ]
     },
-    "?|dead_air+unreadable|dead_air": {
+    "?|-|slow_setup": {
       "count": 1,
       "days": [
         "2026-10-29"
       ]
     },
-    "?|decorative_mascot+unreadable|weak_demonstration": {
+    "?|dead_air+unreadable|dead_air": {
       "count": 1,
       "days": [
         "2026-10-29"
@@ -4577,16 +4495,87 @@
       "days": [
         "2026-10-29"
       ]
+    },
+    "?|-|weak_hook_competing_graphic": {
+      "count": 1,
+      "days": [
+        "2026-10-30"
+      ]
+    },
+    "?|-|slow_hook_subject_offscreen": {
+      "count": 1,
+      "days": [
+        "2026-10-30"
+      ]
+    },
+    "?|unreadable|duplicate_on_screen_text_and_buried_moment": {
+      "count": 1,
+      "days": [
+        "2026-10-30"
+      ]
+    },
+    "?|empty_void|off_promise_padding": {
+      "count": 1,
+      "days": [
+        "2026-10-30"
+      ]
+    },
+    "?|unreadable|caption_over_source_graphics": {
+      "count": 1,
+      "days": [
+        "2026-10-30"
+      ]
+    },
+    "?|-|payoff_reuses_prior_scene": {
+      "count": 1,
+      "days": [
+        "2026-10-30"
+      ]
+    },
+    "?|decorative_mascot|claim_picture_mismatch_and_decorative_mascot": {
+      "count": 1,
+      "days": [
+        "2026-10-30"
+      ]
+    },
+    "?|unreadable|buried_payoff": {
+      "count": 1,
+      "days": [
+        "2026-10-30"
+      ]
+    },
+    "?|-|weak_hook_framing": {
+      "count": 1,
+      "days": [
+        "2026-10-30"
+      ]
+    },
+    "?|unreadable|picture_contradicts_number": {
+      "count": 1,
+      "days": [
+        "2026-10-30"
+      ]
+    },
+    "?|unreadable|passive_mascot_and_low_contrast_caption": {
+      "count": 1,
+      "days": [
+        "2026-10-30"
+      ]
+    },
+    "?|-|static_closing_text_wall": {
+      "count": 1,
+      "days": [
+        "2026-10-30"
+      ]
     }
   },
   "recent_commits": [
-    "5f9408b 2026-10-30 daily: 2026-10-30 report + state [skip ci]",
-    "09b8634 2026-10-30 exchange: answer rewrite game-industry-layoffs-record__47b9280e"
+    "2cd0949 2026-10-31 claim: mailbox verdicts 2026-10-31T04:47Z [skip ci]",
+    "5b6dcd2 2026-10-31 claim: mailbox verdicts 2026-10-31T03:47Z [skip ci]"
   ],
   "channel_performance": {
     "trending": {
       "posted_by_day_14d": {
-        "2026-10-16": 3,
         "2026-10-17": 3,
         "2026-10-18": 3,
         "2026-10-19": 2,
@@ -4598,15 +4587,15 @@
         "2026-10-25": 3,
         "2026-10-26": 3,
         "2026-10-28": 3,
-        "2026-10-29": 3
+        "2026-10-29": 3,
+        "2026-10-30": 5
       },
-      "total_posted": 484,
-      "attempted": 484,
+      "total_posted": 489,
+      "attempted": 489,
       "rejected_or_pending": 0
     },
     "explainer": {
       "posted_by_day_14d": {
-        "2026-10-16": 4,
         "2026-10-17": 4,
         "2026-10-18": 4,
         "2026-10-21": 3,
@@ -4617,15 +4606,14 @@
         "2026-10-27": 1,
         "2026-10-28": 2,
         "2026-10-29": 4,
-        "2026-10-30": 1
+        "2026-10-30": 4
       },
-      "total_posted": 370,
-      "attempted": 370,
+      "total_posted": 373,
+      "attempted": 373,
       "rejected_or_pending": 0
     },
     "third": {
       "posted_by_day_14d": {
-        "2026-10-16": 8,
         "2026-10-17": 3,
         "2026-10-18": 7,
         "2026-10-19": 6,
@@ -4639,11 +4627,12 @@
         "2026-10-27": 1,
         "2026-10-28": 5,
         "2026-10-29": 8,
-        "2026-10-30": 3
+        "2026-10-30": 5,
+        "2026-10-31": 4
       },
-      "total_posted": 486,
-      "attempted": 1187,
-      "rejected_or_pending": 701
+      "total_posted": 492,
+      "attempted": 1205,
+      "rejected_or_pending": 713
     },
     "analytics_curiosity": {
       "videos": 1,
@@ -4657,32 +4646,32 @@
       "full_data": "state/analytics_curiosity/latest.json"
     },
     "analytics_explainer": {
-      "videos": 150,
+      "videos": 149,
       "top_by_vph": [
         {
+          "title": "Private Moon Landings Have Failed 6 Times Out Of 7",
+          "vph": 97.99,
+          "views": 148
+        },
+        {
+          "title": "9 Pitch Drops Took 84 Years To Fall",
+          "vph": 45.96,
+          "views": 207
+        },
+        {
           "title": "Nearly 2,000 People Signed Up To Be Frozen",
-          "vph": 49.5,
-          "views": 527
+          "vph": 19.44,
+          "views": 667
         },
         {
           "title": "Lost Fishing Gear Is 10% Of Ocean Litter",
-          "vph": 31.39,
-          "views": 926
+          "vph": 18.9,
+          "views": 1005
         },
         {
-          "title": "China Reached 500 Nuclear Warheads As The World Cut Back",
-          "vph": 25.41,
-          "views": 902
-        },
-        {
-          "title": "Parker Solar Probe Hit 430,000 MPH Without Carrying A Human",
-          "vph": 11.18,
-          "views": 1195
-        },
-        {
-          "title": "The Body Renews Its Stomach Lining In 5 Days, Not Every Cell",
-          "vph": 9.79,
-          "views": 986
+          "title": "Humpback Whales Went From 450 To 25,000 In One Region",
+          "vph": 18.65,
+          "views": 196
         }
       ],
       "full_data": "state/analytics_explainer/latest.json"
@@ -4692,36 +4681,36 @@
       "top_by_vph": [
         {
           "title": "Atrioc Calls Out Fuslie And Emiru For Showing Up Late To The Ceremony",
-          "vph": 9.1,
-          "views": 1659
-        },
-        {
-          "title": "Rayasianboy Loses It On Stream After This Happens \ud83d\ude2d",
-          "vph": 4.58,
-          "views": 134
+          "vph": 8.79,
+          "views": 1675
         },
         {
           "title": "Pokimane Reveals Why These Photos Hit Different And It's Not Okay",
-          "vph": 3.87,
-          "views": 61
+          "vph": 4.29,
+          "views": 103
+        },
+        {
+          "title": "Rayasianboy Loses It On Stream After This Happens \ud83d\ude2d",
+          "vph": 3.89,
+          "views": 146
         },
         {
           "title": "Adinross Hosts Boxing Match: Michael Beasley vs Delante West Trash Tal",
-          "vph": 3.32,
+          "vph": 3.23,
           "views": 1087
         },
         {
           "title": "Alinity Shows Chat The Rabbit After It Died And It Looks Really Bad",
-          "vph": 3.17,
-          "views": 1859
+          "vph": 3.15,
+          "views": 1876
         }
       ],
       "full_data": "state/analytics_third/latest.json"
     },
     "retro_briefs": [
-      "retro/20261027/brief.json",
       "retro/20261028/brief.json",
-      "retro/20261029/brief.json"
+      "retro/20261029/brief.json",
+      "retro/20261030/brief.json"
     ],
     "format_scoreboard": "python scripts/format_scoreboard.py",
     "longform": {
