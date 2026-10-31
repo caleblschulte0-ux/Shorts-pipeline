@@ -4693,6 +4693,13 @@
       "story_structure": "auto+auto+auto",
       "narrative_score": 79,
       "duration_s": 27.7
+    },
+    "earthquake-detection-illusion": {
+      "claimed_at": "2026-10-31T18:39:16.281911+00:00",
+      "title": "Magnitude 7+ Earthquakes Haven't Increased In Over 100 Years",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading"
     }
   },
   "uploads": [
@@ -5993,6 +6000,14 @@
       "state": "posted",
       "slug": "ai-datacenter-water",
       "at": "2026-10-31T14:12:59.359172+00:00"
+    },
+    {
+      "claimed_at": "2026-10-31T18:39:16.281911+00:00",
+      "title": "Magnitude 7+ Earthquakes Haven't Increased In Over 100 Years",
+      "publish_at": null,
+      "url": null,
+      "state": "uploading",
+      "slug": "earthquake-detection-illusion"
     }
   ]
 }
