@@ -4720,11 +4720,29 @@
       "duration_s": 30.4
     },
     "tonga-volcano-water-vapor-record": {
-      "claimed_at": "2026-10-31T20:06:57.151901+00:00",
+      "url": "https://youtube.com/shorts/c2bYgCTcpYQ",
       "title": "One Volcano Added 146 Million Tons Of Water To The Sky",
+      "at": "2026-10-31T20:07:07.814860+00:00",
       "publish_at": "2026-11-01T00:39:16Z",
-      "url": null,
-      "state": "uploading"
+      "state": "posted",
+      "experiment_arm": "other_topic",
+      "actual_structure": "other_topic",
+      "style_arm": "illustrated",
+      "tts": "gemini",
+      "illustrated_beats": 3,
+      "fallback_beats": 0,
+      "beat_s_max": 8.75,
+      "beat_s": [
+        4.36,
+        6.91,
+        4.29,
+        8.75,
+        7.88
+      ],
+      "n_beats": 3,
+      "story_structure": "auto+auto+auto",
+      "narrative_score": 70,
+      "duration_s": 32.7
     }
   },
   "uploads": [
@@ -6039,9 +6057,10 @@
       "claimed_at": "2026-10-31T20:06:57.151901+00:00",
       "title": "One Volcano Added 146 Million Tons Of Water To The Sky",
       "publish_at": "2026-11-01T00:39:16Z",
-      "url": null,
-      "state": "uploading",
-      "slug": "tonga-volcano-water-vapor-record"
+      "url": "https://youtube.com/shorts/c2bYgCTcpYQ",
+      "state": "posted",
+      "slug": "tonga-volcano-water-vapor-record",
+      "at": "2026-10-31T20:07:07.814860+00:00"
     }
   ]
 }
