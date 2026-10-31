@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "earthquake-detection-illusion__c70a68bc",
+  "slug": "earthquake-detection-illusion",
+  "by": "chatgpt",
+  "written_at": "2026-10-31T11:20:00Z",
+  "title": "Magnitude 7+ Earthquakes Haven't Increased In Over 100 Years",
+  "hook": "Magnitude 7+ earthquakes still average just 17 each year.",
+  "closing": "More earthquake headlines reflect better detection, not a planet suddenly shaking harder.",
+  "question": "Does that change the headlines?",
+  "segments": [
+    {
+      "topic": "Earthquake Stations Multiplied",
+      "say": "Earthquake stations reached 8,000, so modern instruments hear tremors earlier networks completely missed."
+    },
+    {
+      "topic": "Earthquake Magnitude Stable",
+      "say": "Magnitude 7+ earthquakes average 17 yearly, barely changing across a century of records."
+    },
+    {
+      "topic": "Earthquake Detection Expanded",
+      "say": "Scientists now locate 20,000 earthquakes yearly, making improved detection look like worsening geology."
+    }
+  ]
+}
