@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "astronaut-bone-loss__315fba90_r1",
+  "slug": "astronaut-bone-loss",
+  "by": "chatgpt",
+  "written_at": "2026-10-31T11:22:00Z",
+  "title": "Floating Can Cost Astronauts 30% Of Hip-Bone Density",
+  "hook": "Floating can cost astronauts 30% of hip-bone density.",
+  "closing": "Weightlessness feels effortless, but an astronaut's skeleton keeps paying for it.",
+  "question": "How much bone protection will a Mars mission require?",
+  "segments": [
+    {
+      "topic": "Astronaut Bone Loss",
+      "say": "An astronaut can lose 1.5% of bone density each month despite intensive exercise."
+    },
+    {
+      "topic": "Astronaut Hip Loss",
+      "say": "Hip-bone density can fall 2.2%, making the body's strongest supports unexpectedly vulnerable."
+    },
+    {
+      "topic": "Astronaut Mars Risk",
+      "say": "A Mars mission could cost 30% of hip-bone density without stronger protection."
+    }
+  ]
+}
