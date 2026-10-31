@@ -1,0 +1,25 @@
+{
+  "schema": "shorts-rewrite-answer/v1",
+  "request_id": "antarctic-sea-ice-record-low__0e8066f9",
+  "slug": "antarctic-sea-ice-record-low",
+  "by": "chatgpt",
+  "written_at": "2026-10-31T11:20:00Z",
+  "title": "Antarctic Sea Ice Lost 1.3 Million Square Kilometers",
+  "hook": "Antarctic sea ice lost 1.3 million square kilometers.",
+  "closing": "Less reflective ice leaves more heat in the ocean, amplifying warming beyond Antarctica.",
+  "question": "Did you expect a loss this large?",
+  "segments": [
+    {
+      "topic": "Antarctic Ice Record",
+      "say": "Antarctic sea ice shrank to 1.79 million square kilometers, setting a record low in the supplied comparison."
+    },
+    {
+      "topic": "Antarctic Ice Missing",
+      "say": "The missing ice spans 1.3 million square kilometers, erasing an area larger than two major states combined."
+    },
+    {
+      "topic": "Antarctic Ice Reflection",
+      "say": "Sea ice reflects 60% of sunlight, so losing it lets the darker ocean absorb far more heat."
+    }
+  ]
+}
